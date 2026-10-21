@@ -1,0 +1,72 @@
+{
+  "id": "DD-BESTIARY-FINAL-RECONCILIATION-105-01-DECISIONS",
+  "decisions": [
+    {
+      "id": "BFR105-D01",
+      "question": "Pressure Wave control payload",
+      "part01": "10ft push; no Prone",
+      "return02": "5ft push plus Prone",
+      "selection": "10ft push, no new Prone",
+      "procedureId": "BFR105-PW-01",
+      "kind": "NEW scoped authorship selection, not a printed parameter",
+      "reason": "Provides a distinct formation-displacement tool without importing an additional posture debuff. The printed missing control rider does not select either alternative.",
+      "tradeoff": "Longer displacement can break reach and make a later Halberd ineligible; it no longer creates Prone-based combat/standing consequences. No assertion of equal numerical balance.",
+      "rejectedCurrentOption": "Return02 five-foot-plus-Prone is superseded, not deleted."
+    },
+    {
+      "id": "BFR105-D02",
+      "question": "Pressure Wave origin/range/path witness",
+      "part01": "declared actual body emitter -> actual interior target point, same clear segment <=30ft",
+      "return02": "general minimum-body separation; action did not explicitly override",
+      "selection": "Declared attached emitter/interior witness; same Euclidean segment supplies range and line of effect; revalidate at resolution. Override only this action use of B02-GEOMETRY.",
+      "procedureId": "BFR105-PW-01",
+      "kind": "NEW scoped geometry clarification",
+      "reason": "Prevents taking range from the nearest body face while taking an unrelated permissive ray from another origin or exposed point.",
+      "tradeoff": "Exactly30ft exterior separation alone is insufficient when every legal interior witness is farther away. Exact30ft to a genuine interior point is valid; no reach buffer or global geometry rewrite."
+    },
+    {
+      "id": "BFR105-D03",
+      "question": "Tail Sweep rider save",
+      "part01": "DEX DC13",
+      "return02": "STR DC13",
+      "selection": "DEX DC13 after hit damage",
+      "procedureId": "BFR105-TAIL-01",
+      "kind": "NEW scoped save-ability selection",
+      "reason": "The admitted control is losing footing, not a separate push or a contest of raw force. The source prints no save ability for this missing tactic.",
+      "tradeoff": "Nimble and strong targets can exchange which option they resist. +4 and1d6+2bludgeoning stay unchanged; no actual extra Action, target or area."
+    },
+    {
+      "id": "BFR105-D04",
+      "question": "Constrict escape",
+      "part01": "Action STR(Athletics)/DEX(Acrobatics) fixed-DC14 TASK",
+      "return02": "Action STR/DEX saveDC14",
+      "selection": "Action fixed-DC14 skill TASK with actual proficiency, Core task degree rules and check-only modifiers",
+      "procedureId": "BFR105-CONSTRICT-01",
+      "kind": "NEW native-action extension of the named existing fixed-DC Grappled escape pattern",
+      "reason": "Separates forced initial STR-save admission from a voluntary physical escape task. The existing condition has an explicit fixed-DC task model; applying it to this newly authored natural action is made explicit, not globalized.",
+      "tradeoff": "Real Help and actual skill entitlement can improve escape; saving-throw proficiency cannot be repurposed. Natural task degree shifts apply but do not invent an Injury or extra effect. No PB is supplied by CR or owner level."
+    },
+    {
+      "id": "BFR105-D05",
+      "question": "Constrict size and occupied coil",
+      "part01": "up to one category larger than actual source; real coiling contact",
+      "return02": "no larger than Huge",
+      "selection": "Up to one size larger; Huge source therefore permits Gargantuan by size, subject to actual accessible contact and one usable unoccupied coil",
+      "procedureId": "BFR105-CONSTRICT-01",
+      "kind": "NEW scoped natural-action size/appendage selection",
+      "reason": "Matches the one-size-larger physical grapple envelope rather than adding an unexplained equal-size cap. The fixed-DC attack/admission procedure is still its own named exception, not an ordinary opposed grapple.",
+      "tradeoff": "Size eligibility is not automatic anatomy, reach, motion, strength or acquisition. No printed Gargantuan profile exists in this66-profile catalog, so the positive Gargantuan encounter remains a distinct content fixture prerequisite; native Huge cases are fully exercised.",
+      "unchangedNative": {
+        "size": "Huge",
+        "HP": 18,
+        "AC": 11,
+        "CR": "1/4",
+        "attackBonus": 3,
+        "damage": "1d6+1"
+      }
+    }
+  ],
+  "fullBeforeAndSelected": "SELECTED_PROCEDURES.json",
+  "scope": "Exactly the five requested differing choices; NEW parameters selected deliberately, not recovered printed law.",
+  "sourceReasoning": "Native dossier leaves these controls/geometry/task/size details unprinted. Existing Core/Combat/Conditions constrain execution in their actual scopes; natural-coil fixed-DC task and size limit are explicitly new local completions."
+}

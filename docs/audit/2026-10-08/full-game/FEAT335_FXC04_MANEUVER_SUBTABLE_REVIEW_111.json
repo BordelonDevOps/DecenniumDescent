@@ -1,0 +1,396 @@
+{
+  "id": "FXC04-MANEUVER-SUBTABLE-REVIEW-111",
+  "recordedAtUtc": "2026-10-21T06:58:34.790034+00:00",
+  "sourceBindings": [
+    {
+      "path": "C:\\Github\\DecenniumDescent\\docs\\audit\\2026-10-08\\full-game\\feat335-assembly-106\\after\\data\\director\\feat_candidates\\exact_01\\supplements.json",
+      "bytes": 2629494,
+      "sha256": "156f5d0d8b572e5139ae914fe07704a88d6b232a1b0bd0f0de43e06b6584b998"
+    },
+    {
+      "path": "C:\\Github\\DecenniumDescent\\docs\\audit\\2026-10-08\\full-game\\feat335-planar-reference-108\\after\\data\\director\\feat_candidates\\exact_01\\candidate.json",
+      "bytes": 3697319,
+      "sha256": "e4e106a4a3f9cc8bd40b378ccddc53bbf146070504136f8e1b0abd6ed14a6590"
+    }
+  ],
+  "completeCurrentFeatures": [
+    {
+      "id": "martialAdept",
+      "name": "Martial Adept",
+      "cohort": "general_combat",
+      "sourceObject": {
+        "id": "martialAdept",
+        "name": "Martial Adept",
+        "description": "You have martial training that allows you to perform special combat maneuvers.",
+        "prerequisite": "None",
+        "effect": "Learn two maneuvers from the Battle Master archetype, gain one superiority die (d6)",
+        "type": "General",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": false
+      },
+      "originalQuestion": "Source invokes Battle Master archetype and one superiority d6 without a supplied maneuver menu or recovery. Establish actual current class/source identity, finite two-choice maneuver definitions, action/trigger/DC/target/range and consumption/recharge. Do not import external5e maneuvers or assume the Soldier card is the same resource.",
+      "questionId": "GC-37",
+      "sourceDirection": {
+        "featId": "martialAdept",
+        "name": "Martial Adept",
+        "cohort": "general_combat",
+        "questionId": "GC-37",
+        "disposition": "AUTHOR_FROM_SUBMITTED_PROCEDURE_WITH_FINAL_SHARED_RULES",
+        "sourcePath": "DescentReviewChanges/ReviewBible/data/director/general_combat_feat_operating_proposal_internal.json",
+        "sourceFileSha256": "a24a353b4420deb167e355a0d056e491b11e9729b135cb690220c4654683c73b",
+        "sourcePointer": "/records/36",
+        "originalQuestion": "Source invokes Battle Master archetype and one superiority d6 without a supplied maneuver menu or recovery. Establish actual current class/source identity, finite two-choice maneuver definitions, action/trigger/DC/target/range and consumption/recharge. Do not import external5e maneuvers or assume the Soldier card is the same resource.",
+        "originalSourceObject": {
+          "id": "martialAdept",
+          "name": "Martial Adept",
+          "description": "You have martial training that allows you to perform special combat maneuvers.",
+          "prerequisite": "None",
+          "effect": "Learn two maneuvers from the Battle Master archetype, gain one superiority die (d6)",
+          "type": "General",
+          "draft": false,
+          "deprecated": false,
+          "needsReview": false
+        },
+        "originalSourceObjectSha256AsSubmitted": "5e02c4967a035f4fc93e3072c6f984268af9a5c2e9429afa8ac06d4a7421c313",
+        "submittedProcedure": "The literal Battle Master archetype/superiority-die source has no matching current class-card menu. NEW use the six feat-only maneuver definitions below, each fully specified from existing ordinary actions with a finite die spend. At acquisition permanently choose two different maneuverIDs; gain a separate pool of one superiorityd6, initially available and recovered on completedSR orLR. One die can fund only one declared maneuver on one event; noRP/RC/class-resource exchange or conversion. All maneuvers pay their own actual Action/BA/Reaction or attack-replacement timing, with ordinary target/body legality. A committed attempt spends its die even on miss/failure/countering; illegal attempts spend nothing. The rolled result is used only as the selected maneuver states, not free damage on every maneuver. It grants no Soldier Coordinated Maneuver, class levels or Battle Master subclass. Choices cannot be changed for free at rest.",
+        "submittedNewChoices": "Explicit NEW six-maneuver feat menu, two permanent choices and oneSRd6 pool.",
+        "submittedWorkedCases": [
+          "Choose Measured Strike and Guarding Deflection; spending the one die on either leaves none for the other before a legal rest.",
+          "A Soldier's independent resource cannot be spent as this superiority die, nor does the feat acquire Coordinated Maneuver."
+        ],
+        "decision": "Retain the complete GC-37 proposal as explicitly NEW where supplied; Explicit NEW six-maneuver feat menu, two permanent choices and oneSRd6 pool. Apply the final shared cadence, actual-action, proficiency, stacking and causal-root decisions; no class or equipment profile is imported by name.",
+        "completeAuthoringProcedure": "The literal Battle Master archetype/superiority-die source has no matching current class-card menu. NEW use the six feat-only maneuver definitions below, each fully specified from existing ordinary actions with a finite die spend. At acquisition permanently choose two different maneuverIDs; gain a separate pool of one superiorityd6, initially available and recovered on completedSR orLR. One die can fund only one declared maneuver on one event; noRP/RC/class-resource exchange or conversion. All maneuvers pay their own actual Action/BA/Reaction or attack-replacement timing, with ordinary target/body legality. A committed attempt spends its die even on miss/failure/countering; illegal attempts spend nothing. The rolled result is used only as the selected maneuver states, not free damage on every maneuver. It grants no Soldier Coordinated Maneuver, class levels or Battle Master subclass. Choices cannot be changed for free at rest.",
+        "newRuleProvenance": "All submitted NEW/proposed completions retained by this decision and all departures below are authoring decisions of FEAT327-SOURCE-2026-10-11, not recovered source wording. The original object remains immutable.",
+        "sharedContract": "FEAT_SHARED_DIRECTIONS.json: FS-01–16",
+        "supplementContract": "FEAT_SUPPLEMENT_DIRECTIONS.json: explicit source path/pointer mappings",
+        "workedCases": [
+          "Choose Measured Strike and Guarding Deflection; spending the one die on either leaves none for the other before a legal rest.",
+          "A Soldier's independent resource cannot be spent as this superiority die, nor does the feat acquire Coordinated Maneuver."
+        ],
+        "payloadOperational": "full authored procedure; not a runtime adapter",
+        "selectionEnabled": false,
+        "exactApproved": false,
+        "runtimeApproved": false
+      },
+      "operationalRules": "The literal Battle Master archetype/superiority-die source has no matching current class-card menu. NEW use the six feat-only maneuver definitions below, each fully specified from existing ordinary actions with a finite die spend. At acquisition permanently choose two different maneuverIDs; gain a separate pool of one superiorityd6, initially available and recovered on completedSR orLR. One die can fund only one declared maneuver on one event; noRP/RC/class-resource exchange or conversion. All maneuvers pay their own actual Action/BA/Reaction or attack-replacement timing, with ordinary target/body legality. A committed attempt spends its die even on miss/failure/countering; illegal attempts spend nothing. The rolled result is used only as the selected maneuver states, not free damage on every maneuver. It grants no Soldier Coordinated Maneuver, class levels or Battle Master subclass. Choices cannot be changed for free at rest.",
+      "workedCases": [
+        "Choose Measured Strike and Guarding Deflection; spending the one die on either leaves none for the other before a legal rest.",
+        "A Soldier's independent resource cannot be spent as this superiority die, nor does the feat acquire Coordinated Maneuver."
+      ],
+      "payloadOperational": "The literal Battle Master archetype/superiority-die source has no matching current class-card menu. NEW use the six feat-only maneuver definitions below, each fully specified from existing ordinary actions with a finite die spend. At acquisition permanently choose two different maneuverIDs; gain a separate pool of one superiorityd6, initially available and recovered on completedSR orLR. One die can fund only one declared maneuver on one event; noRP/RC/class-resource exchange or conversion. All maneuvers pay their own actual Action/BA/Reaction or attack-replacement timing, with ordinary target/body legality. A committed attempt spends its die even on miss/failure/countering; illegal attempts spend nothing. The rolled result is used only as the selected maneuver states, not free damage on every maneuver. It grants no Soldier Coordinated Maneuver, class levels or Battle Master subclass. Choices cannot be changed for free at rest.",
+      "selectionEnabled": false,
+      "exactApproved": false,
+      "runtimeApproved": false,
+      "sourceAuthored": true,
+      "sharedRulesRef": "shared_rules.json",
+      "supplementsRef": "supplements.json"
+    },
+    {
+      "id": "martial_adept_advanced",
+      "name": "Martial Adept (Advanced)",
+      "cohort": "general_combat",
+      "sourceObject": {
+        "id": "martial_adept_advanced",
+        "name": "Martial Adept (Advanced)",
+        "description": "You have advanced martial training.",
+        "prerequisite": "Martial Adept feat",
+        "effect": "You learn two additional maneuvers and gain one more superiority die.",
+        "type": "General",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": false
+      },
+      "originalQuestion": "Require exact Martial Adept and its completed maneuver/die procedure. Define two distinct extra choices, one additional die size and common recovery/cap, duplicate choices and retraining. Do not make this missing dependency playable by inventing an unrelated class archetype.",
+      "questionId": "GC-38",
+      "sourceDirection": {
+        "featId": "martial_adept_advanced",
+        "name": "Martial Adept (Advanced)",
+        "cohort": "general_combat",
+        "questionId": "GC-38",
+        "disposition": "AUTHOR_FROM_SUBMITTED_PROCEDURE_WITH_FINAL_SHARED_RULES",
+        "sourcePath": "DescentReviewChanges/ReviewBible/data/director/general_combat_feat_operating_proposal_internal.json",
+        "sourceFileSha256": "a24a353b4420deb167e355a0d056e491b11e9729b135cb690220c4654683c73b",
+        "sourcePointer": "/records/37",
+        "originalQuestion": "Require exact Martial Adept and its completed maneuver/die procedure. Define two distinct extra choices, one additional die size and common recovery/cap, duplicate choices and retraining. Do not make this missing dependency playable by inventing an unrelated class archetype.",
+        "originalSourceObject": {
+          "id": "martial_adept_advanced",
+          "name": "Martial Adept (Advanced)",
+          "description": "You have advanced martial training.",
+          "prerequisite": "Martial Adept feat",
+          "effect": "You learn two additional maneuvers and gain one more superiority die.",
+          "type": "General",
+          "draft": false,
+          "deprecated": false,
+          "needsReview": false
+        },
+        "originalSourceObjectSha256AsSubmitted": "0bbc151dc1d2ec0bca8322393ea5cbf03e0d2c585bfc9851f0835a083f5b618f",
+        "submittedProcedure": "Require exact martialAdept. Choose two additional distinct entries from that same six-maneuver menu, excluding the two already known; permanent choices. Increase the common feat superiority pool capacity by one die of the same sized6, for two total; NEW the newly granted die begins available on actual acquisition, not each rest or retarget. CompletedSR/LR restores the shared pool to its current capacity once. Known maneuver count becomes four, not four copies of one option. No larger die, additional class resource, extraAction, simultaneous multiple-die payment or free retraining. Same underlying event may still use at most one superiority maneuver unless a future expressly priced source overrides it.",
+        "submittedNewChoices": "Exact dependency, four distinct choices, common2d6 capacity and one-maneuver-per-event.",
+        "submittedWorkedCases": [
+          "Adept knew two maneuvers; Advanced chooses two others and now has four with a two-die shared pool.",
+          "It cannot spend two dice to double Measured Strike's bonus on one attack or recharge each feat as independent extra pools."
+        ],
+        "decision": "Retain the complete GC-38 proposal as explicitly NEW where supplied; Exact dependency, four distinct choices, common2d6 capacity and one-maneuver-per-event. Apply the final shared cadence, actual-action, proficiency, stacking and causal-root decisions; no class or equipment profile is imported by name.",
+        "completeAuthoringProcedure": "Require exact martialAdept. Choose two additional distinct entries from that same six-maneuver menu, excluding the two already known; permanent choices. Increase the common feat superiority pool capacity by one die of the same sized6, for two total; NEW the newly granted die begins available on actual acquisition, not each rest or retarget. CompletedSR/LR restores the shared pool to its current capacity once. Known maneuver count becomes four, not four copies of one option. No larger die, additional class resource, extraAction, simultaneous multiple-die payment or free retraining. Same underlying event may still use at most one superiority maneuver unless a future expressly priced source overrides it.",
+        "newRuleProvenance": "All submitted NEW/proposed completions retained by this decision and all departures below are authoring decisions of FEAT327-SOURCE-2026-10-11, not recovered source wording. The original object remains immutable.",
+        "sharedContract": "FEAT_SHARED_DIRECTIONS.json: FS-01–16",
+        "supplementContract": "FEAT_SUPPLEMENT_DIRECTIONS.json: explicit source path/pointer mappings",
+        "workedCases": [
+          "Adept knew two maneuvers; Advanced chooses two others and now has four with a two-die shared pool.",
+          "It cannot spend two dice to double Measured Strike's bonus on one attack or recharge each feat as independent extra pools."
+        ],
+        "payloadOperational": "full authored procedure; not a runtime adapter",
+        "selectionEnabled": false,
+        "exactApproved": false,
+        "runtimeApproved": false
+      },
+      "operationalRules": "Require exact martialAdept. Choose two additional distinct entries from that same six-maneuver menu, excluding the two already known; permanent choices. Increase the common feat superiority pool capacity by one die of the same sized6, for two total; NEW the newly granted die begins available on actual acquisition, not each rest or retarget. CompletedSR/LR restores the shared pool to its current capacity once. Known maneuver count becomes four, not four copies of one option. No larger die, additional class resource, extraAction, simultaneous multiple-die payment or free retraining. Same underlying event may still use at most one superiority maneuver unless a future expressly priced source overrides it.",
+      "workedCases": [
+        "Adept knew two maneuvers; Advanced chooses two others and now has four with a two-die shared pool.",
+        "It cannot spend two dice to double Measured Strike's bonus on one attack or recharge each feat as independent extra pools."
+      ],
+      "payloadOperational": "Require exact martialAdept. Choose two additional distinct entries from that same six-maneuver menu, excluding the two already known; permanent choices. Increase the common feat superiority pool capacity by one die of the same sized6, for two total; NEW the newly granted die begins available on actual acquisition, not each rest or retarget. CompletedSR/LR restores the shared pool to its current capacity once. Known maneuver count becomes four, not four copies of one option. No larger die, additional class resource, extraAction, simultaneous multiple-die payment or free retraining. Same underlying event may still use at most one superiority maneuver unless a future expressly priced source overrides it.",
+      "selectionEnabled": false,
+      "exactApproved": false,
+      "runtimeApproved": false,
+      "sourceAuthored": true,
+      "sharedRulesRef": "shared_rules.json",
+      "supplementsRef": "supplements.json"
+    }
+  ],
+  "completeCurrentSupplementGroup": {
+    "id": "SUP-03",
+    "cohort": "general_combat",
+    "sourcePath": "DescentReviewChanges/ReviewBible/data/director/general_combat_feat_operating_proposal_internal.json",
+    "pointer": "/newFeatOnlyManeuvers",
+    "disposition": "ADOPT_NEW_FINITE_AUTHORING_PROFILE_WITH_STATED_CORRECTIONS",
+    "decision": "Adopt all six NEW feat-only maneuvers and their actual die/action/target/DC limits; no Warrior/Soldier maneuver feature or extra full Action is granted.",
+    "original": [
+      {
+        "id": "feat-maneuver.measured-strike",
+        "name": "Measured Strike",
+        "activation": "Within one actual weapon attack, before its attack roll",
+        "cost": "One superiorityd6",
+        "procedure": "Roll the spentd6 and add it to that one attack roll. Choose before seeing the d20/outcome; natural1 still misses and no extra critical range is created. It adds no damage and supplies no attack, target permission or extra Action.",
+        "basis": "NEW attack-check enhancement; not an imported Battle Master maneuver."
+      },
+      {
+        "id": "feat-maneuver.driving-shove",
+        "name": "Driving Shove",
+        "activation": "Replace one Attack Action attack with ordinary Shove",
+        "cost": "One superiorityd6 plus the replaced attack",
+        "procedure": "Before both opposed rolls, spend/roll thed6 and add it to yourSTR Athletics total for that one ordinary Shove. Target choosesAthletics/Acrobatics; tie preserves state. Actual reach/one-size-larger cap applies; success still pushes5ft away OR Prone, never both solely from this maneuver. It adds no damage.",
+        "basis": "NEW finite bonus on reviewed ordinary Shove; printed feat/class save-based Shoves are not this maneuver."
+      },
+      {
+        "id": "feat-maneuver.disarming-feint",
+        "name": "Disarming Feint",
+        "activation": "Replace one Attack Action attack with ordinary opposed Disarm",
+        "cost": "One superiorityd6 plus replaced attack",
+        "procedure": "Choose a reachable actually held droppable item and an ordinary legal Athletics or weapon-check Disarm. Before rolls, spend/roll thed6 and add it to your one opposed total; defender usesAthletics/Acrobatics, tie preserves state. Success uses the existing adjacent/own-space drop placement, not automatic custody. No damage, severed bond or proficiency grant. The save-based Disarm feat and Whip Control are separate procedures and do not acquire this bonus.",
+        "basis": "NEW finite die on reviewed ordinary Disarm only."
+      },
+      {
+        "id": "feat-maneuver.guarding-deflection",
+        "name": "Guarding Deflection",
+        "activation": "Reaction when one direct damage event would damage you",
+        "cost": "One superiorityd6 and the actual Reaction",
+        "procedure": "After passive defenses but before tempHP, spend/roll1d6 to reduce that whole resolved event by its face, minimum0. Allocate across stable native component order. Attached conditions remain. No re-mitigation of transfer packets that forbid recipient mitigation, HP sacrifice, state assignment or direct death. It neither changes a hit to a miss nor qualifies as Riposte's successful Parry.",
+        "basis": "NEW finite physical defense using current whole-event/damage-provenance interface."
+      },
+      {
+        "id": "feat-maneuver.measured-advance",
+        "name": "Measured Advance",
+        "activation": "Bonus Action on your own regular turn",
+        "cost": "One superiorityd6 and the actual BA",
+        "procedure": "Spend/roll1d6, gaining a separate movement-cost budget of5×face feet resolved immediately. Use one already available movement mode with nonzeroSpeed, pay normal terrain/crawl/squeeze costs, respect legal endpoints and provoke ordinary opportunity attacks. No teleport, new movement mode, free Disengage, replenished ordinary movement or banked distance. Interrupted unspent distance is lost.",
+        "basis": "NEW bounded movement procedure; no copied Soldier grant."
+      },
+      {
+        "id": "feat-maneuver.rallying-signal",
+        "name": "Rallying Signal",
+        "activation": "Action under the ordinary Rally procedure",
+        "cost": "One superiorityd6 and the actual Action",
+        "procedure": "Choose one actual ally within30ft able to perceive the rally and one active source-qualifiedFrightened record. Before rolling the ordinaryCHA task check at its sourceDC (otherwise10), spend/roll thed6 and add its face to the total. Apply actual task degrees/natural shift; success ends only that selected record. NoHP/tempHP, loyalty, extra save, new ally turn or automatic cure of other fear records.",
+        "basis": "NEW finite die on current reviewed Rally."
+      }
+    ],
+    "completeAuthoringValue": [
+      {
+        "id": "feat-maneuver.measured-strike",
+        "name": "Measured Strike",
+        "activation": "Within one actual weapon attack, before its attack roll",
+        "cost": "One superiorityd6",
+        "procedure": "Roll the spentd6 and add it to that one attack roll. Choose before seeing the d20/outcome; natural1 still misses and no extra critical range is created. It adds no damage and supplies no attack, target permission or extra Action.",
+        "basis": "NEW attack-check enhancement; not an imported Battle Master maneuver."
+      },
+      {
+        "id": "feat-maneuver.driving-shove",
+        "name": "Driving Shove",
+        "activation": "Replace one Attack Action attack with ordinary Shove",
+        "cost": "One superiorityd6 plus the replaced attack",
+        "procedure": "Before both opposed rolls, spend/roll thed6 and add it to yourSTR Athletics total for that one ordinary Shove. Target choosesAthletics/Acrobatics; tie preserves state. Actual reach/one-size-larger cap applies; success still pushes5ft away OR Prone, never both solely from this maneuver. It adds no damage.",
+        "basis": "NEW finite bonus on reviewed ordinary Shove; printed feat/class save-based Shoves are not this maneuver."
+      },
+      {
+        "id": "feat-maneuver.disarming-feint",
+        "name": "Disarming Feint",
+        "activation": "Replace one Attack Action attack with ordinary opposed Disarm",
+        "cost": "One superiorityd6 plus replaced attack",
+        "procedure": "Choose a reachable actually held droppable item and an ordinary legal Athletics or weapon-check Disarm. Before rolls, spend/roll thed6 and add it to your one opposed total; defender usesAthletics/Acrobatics, tie preserves state. Success uses the existing adjacent/own-space drop placement, not automatic custody. No damage, severed bond or proficiency grant. The save-based Disarm feat and Whip Control are separate procedures and do not acquire this bonus.",
+        "basis": "NEW finite die on reviewed ordinary Disarm only."
+      },
+      {
+        "id": "feat-maneuver.guarding-deflection",
+        "name": "Guarding Deflection",
+        "activation": "Reaction when one direct damage event would damage you",
+        "cost": "One superiorityd6 and the actual Reaction",
+        "procedure": "After passive defenses but before tempHP, spend/roll1d6 to reduce that whole resolved event by its face, minimum0. Allocate across stable native component order. Attached conditions remain. No re-mitigation of transfer packets that forbid recipient mitigation, HP sacrifice, state assignment or direct death. It neither changes a hit to a miss nor qualifies as Riposte's successful Parry.",
+        "basis": "NEW finite physical defense using current whole-event/damage-provenance interface."
+      },
+      {
+        "id": "feat-maneuver.measured-advance",
+        "name": "Measured Advance",
+        "activation": "Bonus Action on your own regular turn",
+        "cost": "One superiorityd6 and the actual BA",
+        "procedure": "Spend/roll1d6, gaining a separate movement-cost budget of5×face feet resolved immediately. Use one already available movement mode with nonzeroSpeed, pay normal terrain/crawl/squeeze costs, respect legal endpoints and provoke ordinary opportunity attacks. No teleport, new movement mode, free Disengage, replenished ordinary movement or banked distance. Interrupted unspent distance is lost.",
+        "basis": "NEW bounded movement procedure; no copied Soldier grant."
+      },
+      {
+        "id": "feat-maneuver.rallying-signal",
+        "name": "Rallying Signal",
+        "activation": "Action under the ordinary Rally procedure",
+        "cost": "One superiorityd6 and the actual Action",
+        "procedure": "Choose one actual ally within30ft able to perceive the rally and one active source-qualifiedFrightened record. Before rolling the ordinaryCHA task check at its sourceDC (otherwise10), spend/roll thed6 and add its face to the total. Apply actual task degrees/natural shift; success ends only that selected record. NoHP/tempHP, loyalty, extra save, new ally turn or automatic cure of other fear records.",
+        "basis": "NEW finite die on current reviewed Rally."
+      }
+    ],
+    "selectionEnabled": false,
+    "exactApproved": false
+  },
+  "rowReviews": [
+    {
+      "id": "feat-maneuver.measured-strike",
+      "completeCurrentRow": {
+        "id": "feat-maneuver.measured-strike",
+        "name": "Measured Strike",
+        "activation": "Within one actual weapon attack, before its attack roll",
+        "cost": "One superiorityd6",
+        "procedure": "Roll the spentd6 and add it to that one attack roll. Choose before seeing the d20/outcome; natural1 still misses and no extra critical range is created. It adds no damage and supplies no attack, target permission or extra Action.",
+        "basis": "NEW attack-check enhancement; not an imported Battle Master maneuver."
+      },
+      "fieldByFieldAssessment": {
+        "activationAndPayment": "Before one independently legal weapon attack roll; spend1superiorityd6, add its face to that attack only. Attack Action/BA/Reaction still comes from the underlying source.",
+        "targetAndResolution": "Actual weapon range, attack target, body and attack permissions apply. Natural1 misses; no changed critical range, automatic damage or added damage die.",
+        "lifecycle": "One committed event spends the die even on miss/failure/counter; invalid declaration spends none. No ongoing effect or new attack."
+      },
+      "bodyStockProviderAuthority": "No independent body, tool, weapon, target, proficiency, resource pool other than the expressly purchased feat superiority pool, or class feature is created. Underlying action carries actual body/equipment/stock requirements.",
+      "status": "AUTHORED_SOURCE_REVIEW_NOT_RUNTIME"
+    },
+    {
+      "id": "feat-maneuver.driving-shove",
+      "completeCurrentRow": {
+        "id": "feat-maneuver.driving-shove",
+        "name": "Driving Shove",
+        "activation": "Replace one Attack Action attack with ordinary Shove",
+        "cost": "One superiorityd6 plus the replaced attack",
+        "procedure": "Before both opposed rolls, spend/roll thed6 and add it to yourSTR Athletics total for that one ordinary Shove. Target choosesAthletics/Acrobatics; tie preserves state. Actual reach/one-size-larger cap applies; success still pushes5ft away OR Prone, never both solely from this maneuver. It adds no damage.",
+        "basis": "NEW finite bonus on reviewed ordinary Shove; printed feat/class save-based Shoves are not this maneuver."
+      },
+      "fieldByFieldAssessment": {
+        "activationAndPayment": "Replace one actual Attack Action attack with ordinary Shove; spend1d6 before both opposed rolls.",
+        "targetAndResolution": "Actual ordinary reach/one-size-larger cap; STR Athletics plus die opposes chosen Athletics/Acrobatics. Equal totals preserve state. Success chooses5ftpush OR Prone, no damage.",
+        "lifecycle": "Immediate ordinary Shove result. Does not change save-based feat/class Shoves or provide another attack."
+      },
+      "bodyStockProviderAuthority": "No independent body, tool, weapon, target, proficiency, resource pool other than the expressly purchased feat superiority pool, or class feature is created. Underlying action carries actual body/equipment/stock requirements.",
+      "status": "AUTHORED_SOURCE_REVIEW_NOT_RUNTIME"
+    },
+    {
+      "id": "feat-maneuver.disarming-feint",
+      "completeCurrentRow": {
+        "id": "feat-maneuver.disarming-feint",
+        "name": "Disarming Feint",
+        "activation": "Replace one Attack Action attack with ordinary opposed Disarm",
+        "cost": "One superiorityd6 plus replaced attack",
+        "procedure": "Choose a reachable actually held droppable item and an ordinary legal Athletics or weapon-check Disarm. Before rolls, spend/roll thed6 and add it to your one opposed total; defender usesAthletics/Acrobatics, tie preserves state. Success uses the existing adjacent/own-space drop placement, not automatic custody. No damage, severed bond or proficiency grant. The save-based Disarm feat and Whip Control are separate procedures and do not acquire this bonus.",
+        "basis": "NEW finite die on reviewed ordinary Disarm only."
+      },
+      "fieldByFieldAssessment": {
+        "activationAndPayment": "Replace one actual Attack Action attack with ordinary opposed Disarm; spend1d6 before rolls.",
+        "targetAndResolution": "Reachable actually held droppable item, ordinary legal Athletics/weapon-check route vs Athletics/Acrobatics. Tie preserves state. Success drops to ordinary adjacent/own-space placement; no automatic custody, damage or severed bond.",
+        "lifecycle": "Immediate ordinary disarm only. No general proficiency and no imported die for separate save-based Disarm/Whip Control."
+      },
+      "bodyStockProviderAuthority": "No independent body, tool, weapon, target, proficiency, resource pool other than the expressly purchased feat superiority pool, or class feature is created. Underlying action carries actual body/equipment/stock requirements.",
+      "status": "AUTHORED_SOURCE_REVIEW_NOT_RUNTIME"
+    },
+    {
+      "id": "feat-maneuver.guarding-deflection",
+      "completeCurrentRow": {
+        "id": "feat-maneuver.guarding-deflection",
+        "name": "Guarding Deflection",
+        "activation": "Reaction when one direct damage event would damage you",
+        "cost": "One superiorityd6 and the actual Reaction",
+        "procedure": "After passive defenses but before tempHP, spend/roll1d6 to reduce that whole resolved event by its face, minimum0. Allocate across stable native component order. Attached conditions remain. No re-mitigation of transfer packets that forbid recipient mitigation, HP sacrifice, state assignment or direct death. It neither changes a hit to a miss nor qualifies as Riposte's successful Parry.",
+        "basis": "NEW finite physical defense using current whole-event/damage-provenance interface."
+      },
+      "fieldByFieldAssessment": {
+        "activationAndPayment": "Actual available Reaction plus1d6 after passive defenses and before temporary HP on one direct damage event against self.",
+        "targetAndResolution": "Reduce the whole resolved event by the die face, minimum0, using stable native component order. Conditions remain. Not a hit-to-miss or successful Parry for Riposte.",
+        "lifecycle": "One event, no repeat reduction per typed component. Excludes transfer packets forbidding mitigation, HP sacrifice, state assignment and direct death; adds no healing/reserve/resource."
+      },
+      "bodyStockProviderAuthority": "No independent body, tool, weapon, target, proficiency, resource pool other than the expressly purchased feat superiority pool, or class feature is created. Underlying action carries actual body/equipment/stock requirements.",
+      "status": "AUTHORED_SOURCE_REVIEW_NOT_RUNTIME"
+    },
+    {
+      "id": "feat-maneuver.measured-advance",
+      "completeCurrentRow": {
+        "id": "feat-maneuver.measured-advance",
+        "name": "Measured Advance",
+        "activation": "Bonus Action on your own regular turn",
+        "cost": "One superiorityd6 and the actual BA",
+        "procedure": "Spend/roll1d6, gaining a separate movement-cost budget of5×face feet resolved immediately. Use one already available movement mode with nonzeroSpeed, pay normal terrain/crawl/squeeze costs, respect legal endpoints and provoke ordinary opportunity attacks. No teleport, new movement mode, free Disengage, replenished ordinary movement or banked distance. Interrupted unspent distance is lost.",
+        "basis": "NEW bounded movement procedure; no copied Soldier grant."
+      },
+      "fieldByFieldAssessment": {
+        "activationAndPayment": "Actual Bonus Action on own regular turn plus1d6; immediately spend separate5times-face movement-cost budget.",
+        "targetAndResolution": "Self using one already available nonzero-Speed mode; pay actual terrain/crawl/squeeze, obey route/endpoints and ordinary opportunity attacks.",
+        "lifecycle": "No teleport, new mode, Disengage, normal movement refill or stored movement. Interrupted remainder is lost."
+      },
+      "bodyStockProviderAuthority": "No independent body, tool, weapon, target, proficiency, resource pool other than the expressly purchased feat superiority pool, or class feature is created. Underlying action carries actual body/equipment/stock requirements.",
+      "status": "AUTHORED_SOURCE_REVIEW_NOT_RUNTIME"
+    },
+    {
+      "id": "feat-maneuver.rallying-signal",
+      "completeCurrentRow": {
+        "id": "feat-maneuver.rallying-signal",
+        "name": "Rallying Signal",
+        "activation": "Action under the ordinary Rally procedure",
+        "cost": "One superiorityd6 and the actual Action",
+        "procedure": "Choose one actual ally within30ft able to perceive the rally and one active source-qualifiedFrightened record. Before rolling the ordinaryCHA task check at its sourceDC (otherwise10), spend/roll thed6 and add its face to the total. Apply actual task degrees/natural shift; success ends only that selected record. NoHP/tempHP, loyalty, extra save, new ally turn or automatic cure of other fear records.",
+        "basis": "NEW finite die on current reviewed Rally."
+      },
+      "fieldByFieldAssessment": {
+        "activationAndPayment": "Actual ordinary Rally Action plus1d6, declared before its task roll.",
+        "targetAndResolution": "One actual ally within30ft able to perceive rally; choose one actual source-qualified Frightened record. CHA task at its source DC, otherwise10; actual task degrees/natural shifts apply.",
+        "lifecycle": "Success ends selected fear record only. No HP/tempHP, loyalty, new save, extra turn or removal of other records."
+      },
+      "bodyStockProviderAuthority": "No independent body, tool, weapon, target, proficiency, resource pool other than the expressly purchased feat superiority pool, or class feature is created. Underlying action carries actual body/equipment/stock requirements.",
+      "status": "AUTHORED_SOURCE_REVIEW_NOT_RUNTIME"
+    }
+  ],
+  "commonAcquisitionAndLifecycle": "martialAdept permanently selects2distinct IDs from6 and grants one separate initially available d6; actual beneficial SR/LR restores it. Advanced requires the exact base feat, selects2additional distinct unknown IDs, increases same pool capacity to2 and explicitly initializes the newly granted die on real acquisition. That source-specific initial die is not a general capacity-refill rule. Rest does not retrain; one event uses at most one maneuver/die. Actual action/target/body legality remains required and a committed failed attempt spends its die. No RP/RC/class conversion or Battle Master subclass is supplied.",
+  "remaining": [
+    "Exact GPT review pending.",
+    "FXC04 other tables and full assembled parent evidence remain open.",
+    "Actual action, body, stock, movement, damage and condition engines are not executed by this review."
+  ],
+  "newMechanicsAuthored": false,
+  "historicalProgramsRerun": false,
+  "runtimeExecuted": false,
+  "canonicalApplied": false,
+  "FXC04Accepted": false,
+  "parent335Accepted": false,
+  "actuallySentToGpt": false,
+  "sourceInformationDeleted": false
+}

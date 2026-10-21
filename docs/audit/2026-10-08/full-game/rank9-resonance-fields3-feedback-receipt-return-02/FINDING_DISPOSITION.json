@@ -1,0 +1,32 @@
+{
+  "id": "RF9-RECEIPT86-01",
+  "disposition": "CONFIRMED_MISSING_EXPLICIT_DURABLE_FREQUENCY_AND_SOURCE_SETTLEMENT",
+  "notPrejudged": true,
+  "reason": "The existing generic event list can guard replay of a whole event ID, and castRecords prove payment/resolution. Neither supplies the actual Feedback event-to-owner/negated-source/numbered-round mapping or a gate against a distinct qualifying counter in that round. Narration and arithmetic assertions cannot supply the missing deterministic rule.",
+  "existingFieldsInspected": [
+    "eventsApplied",
+    "castRecords",
+    "actors/*/limitedUses",
+    "observations",
+    "RF9-PERSISTENCE-01",
+    "ACTOR_TEMPLATES.json automaticFeatureAccounting",
+    "verify_bundle.py numeric Feedback calculation"
+  ],
+  "completeSourceEvidence": "SOURCE_EVIDENCE.json",
+  "completeCaseBeforeAfter": "AFFECTED_CASES.json",
+  "selectedCompletion": "FEEDBACK_RECEIPT_CONTRACT.json",
+  "branchDispositions": [
+    {
+      "caseId": "RF9-NS-A-counter",
+      "disposition": "CORRECTED_RECEIPT_WITH_ORIGINAL_NUMERIC_AND_NATIVE_RESULTS_UNCHANGED",
+      "completeBeforeAfterPointer": "AFFECTED_CASES.json#/cases/0"
+    },
+    {
+      "caseId": "RF9-NS-B-counterpulse",
+      "disposition": "CORRECTED_RECEIPT_WITH_ORIGINAL_NUMERIC_AND_NATIVE_RESULTS_UNCHANGED",
+      "completeBeforeAfterPointer": "AFFECTED_CASES.json#/cases/1"
+    }
+  ],
+  "unchangedBenefits": "All three procedures, enhancement/absorption/payment scope, native Wizard card, Counterpulse use, actual 1RP awards and all other fixture results unchanged.",
+  "limits": "Pending independent exact reconciliation; no canonical or runtime changes, class-wide blocked-zero consumption rule, or parent335 approval."
+}

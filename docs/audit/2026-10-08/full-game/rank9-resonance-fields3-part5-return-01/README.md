@@ -1,0 +1,3 @@
+# Rank9 Resonance Fields3 proposed return
+
+Start with REVIEW.md and CODEX_HANDOFF.md. MODEL.json is the complete new proposed candidate; PROCEDURES/SHARED_RULES and both chapters render full operative selections. QUESTION_DISPOSITIONS preserves all24 questions and answers. CASE_DISPOSITIONS contains7 complete main cases and28 independent branches, with full state. Exact source inputs are in input/. SOURCE_AUTHORITY and SOURCE_REFERENCES identify actual accepted boundaries versus pending comparison. HOLD_REGISTER retains all independent gates. EXACT_OPERATIONS_FROM_SOURCE uses full-value references to complete immutable files; it is not an abbreviated patch. MANIFEST binds every delivered file except itself. No canonical application is performed.

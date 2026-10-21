@@ -1,0 +1,83 @@
+{
+  "id": "RIC5-READY-DEADLINE-RECOVERY01-SOURCES",
+  "deadlineRule": {
+    "path": "sources/DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+    "bytes": 30409,
+    "sha256": "f90d039142145fbd31c37992ebece70d7926dc4b6081e340f9a2fd9dc7237bc6",
+    "lineStart": 97,
+    "lineEnd": 107,
+    "text": "## Ready\n\nSpend an Action to declare a perceivable trigger and one legal Action-time action or movement. It expires next regular own-turn start. **NEW:** only one pending Ready per creature; replacing it loses the prior setup and any paid held-spell costs. No Bonus Action/Reaction ability, long ritual or multi-minute activity can be prepared by generic Ready.\n\nThe trigger happens first, then the readied response immediately follows before later events, unless a specific effect explicitly interrupts. On release spend the normal Reaction and recheck target, range, sight/perception, line of effect, ammunition and other prerequisites. An invalid or declined occurrence spends no release resource; the Ready can wait for another valid occurrence before expiry. This does not undo setup costs. Once released, it is consumed.\n\nFor ordinary nonspell actions, feature/ammunition costs are paid on release unless text charges setup. A readied **Attack Action** gets its legally available ordinary attack count; a feature limited to your own turn does not thereby work off-turn. Core Overwatch is explicitly one ranged attack, not that full Attack Action and not Soldier's distinct engine.\n\nA readied spell is actually **cast at preparation**: choose spell/mode, verify legality, pay RP/material/other costs, provide components, resolve Dissonance/Refrain and cast-trigger effects once. Counterspell/cast-interruption opportunity occurs then, not again at release. Every held spell requires concentration, even ordinarily non-concentration spells; incompatible prior concentration ends. Lost concentration loses the held spell and costs. NEW: select the legal target/area point at release and recheck legality without repaying. At release the hold continues as ordinary spell concentration if required, otherwise ends after resolution. Expired/replaced/countered held spells do not refund paid costs.\n\nReady movement grants a separate current-Speed budget on release, pays terrain costs and can provoke ordinary opportunity attacks. It grants no extra Action, Bonus Action or interaction."
+  },
+  "registryReady": {
+    "path": "sources/DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_06.json",
+    "records": [
+      {
+        "pointer": "/entries/1",
+        "completeRecord": {
+          "id": "docs/mechanics/COMBAT_ACTION_PLAYTEST.md#ready",
+          "name": "Ready",
+          "acceptanceStatus": "current-authoritative-provisional-interface",
+          "acceptanceBasis": {
+            "basis": "Current operative integration text, reused by exact accepted cohorts; not a new claim of whole-document or canon approval.",
+            "cohortEvidence": [
+              {
+                "path": "docs/audit/2026-10-08/full-game/AC4_EXACT_ACCEPTANCE_03_RECEIPT.json",
+                "bytes": 6291,
+                "sha256": "8dfee7f8a9cd036df80650079b289895cae245de0d8ca17bd926798de55bce2d",
+                "frozenCopy": "docs/audit/2026-10-08/full-game/accelerated-review-01/sources/docs/audit/2026-10-08/full-game/AC4_EXACT_ACCEPTANCE_03_RECEIPT.json"
+              },
+              {
+                "path": "docs/audit/2026-10-08/full-game/AC5_EXACT_ACCEPTANCE_05_RECEIPT.json",
+                "bytes": 7471,
+                "sha256": "5590d1b66ed59287069835ea19e9ffc3d52ea32a6166a9d0645757c7202885a9",
+                "frozenCopy": "docs/audit/2026-10-08/full-game/accelerated-review-01/sources/docs/audit/2026-10-08/full-game/AC5_EXACT_ACCEPTANCE_05_RECEIPT.json"
+              }
+            ]
+          },
+          "scope": "Ordinary Ready and held spells",
+          "currentAuthoritativeSource": {
+            "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+            "bytes": 30409,
+            "sha256": "f90d039142145fbd31c37992ebece70d7926dc4b6081e340f9a2fd9dc7237bc6",
+            "frozenCopy": "docs/audit/2026-10-08/full-game/accelerated-review-01/sources/DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+            "heading": "## Ready",
+            "line": 97
+          },
+          "exactAuthority": "## Ready\n\nSpend an Action to declare a perceivable trigger and one legal Action-time action or movement. It expires next regular own-turn start. **NEW:** only one pending Ready per creature; replacing it loses the prior setup and any paid held-spell costs. No Bonus Action/Reaction ability, long ritual or multi-minute activity can be prepared by generic Ready.\n\nThe trigger happens first, then the readied response immediately follows before later events, unless a specific effect explicitly interrupts. On release spend the normal Reaction and recheck target, range, sight/perception, line of effect, ammunition and other prerequisites. An invalid or declined occurrence spends no release resource; the Ready can wait for another valid occurrence before expiry. This does not undo setup costs. Once released, it is consumed.\n\nFor ordinary nonspell actions, feature/ammunition costs are paid on release unless text charges setup. A readied **Attack Action** gets its legally available ordinary attack count; a feature limited to your own turn does not thereby work off-turn. Core Overwatch is explicitly one ranged attack, not that full Attack Action and not Soldier's distinct engine.\n\nA readied spell is actually **cast at preparation**: choose spell/mode, verify legality, pay RP/material/other costs, provide components, resolve Dissonance/Refrain and cast-trigger effects once. Counterspell/cast-interruption opportunity occurs then, not again at release. Every held spell requires concentration, even ordinarily non-concentration spells; incompatible prior concentration ends. Lost concentration loses the held spell and costs. NEW: select the legal target/area point at release and recheck legality without repaying. At release the hold continues as ordinary spell concentration if required, otherwise ends after resolution. Expired/replaced/countered held spells do not refund paid costs.\n\nReady movement grants a separate current-Speed budget on release, pays terrain costs and can provoke ordinary opportunity attacks. It grants no extra Action, Bonus Action or interaction.\n\nFocused stance's Reaction restriction also blocks an ordinary Ready release; Ready does not create a Counterspell exception. Holding a spell does not waive any current Reaction prohibition.\n\n**Spell-effect duration begins at release.** Its normal duration is anchored when the effect manifests, while Ready expiry and held concentration already run from preparation. A source explicitly tying a particular consequence to casting/preparation retains that consequence's stated clock. No casting cost, Refrain, Dissonance or cast trigger occurs a second time merely from release.\n\n",
+          "authoritySha256": "43396ea2fb27e46f9a7935b91f8385cd9a83d4c0e180ce011dd98206abe4a056",
+          "trigger": "Action preparation, perceivable trigger, Reaction release",
+          "inputs": "Spell/mode, paid cost, next own regular START, release-time target/area legality",
+          "outputs": "One pending Ready; paid spell held in concentration; target selected at release",
+          "lifecycle": "Expiry next own regular START; effect duration begins at release; no second cast",
+          "exceptions": "Specific interrupt overrides ordinary trigger-first order",
+          "knownSourceSpecificExtensions": [],
+          "usedBy": [
+            "AC5",
+            "AC6-N15 (candidate)"
+          ],
+          "usageCoverage": "Explicit known users, not a claim of exhaustive reverse-dependency indexing.",
+          "reusableWithinScope": true,
+          "summaryAuthority": "The exactAuthority and named source control; normalized fields index them and create no rules.",
+          "runtimeImplementedByRegistry": false
+        }
+      }
+    ]
+  },
+  "actualCurrentBranch": {
+    "path": "MODEL.json",
+    "pointer": "/currentVectors/2/independentBranches/0"
+  },
+  "metaSurgeProcedure": {
+    "path": "MODEL.json",
+    "pointer": "/records/1/proposedProcedure",
+    "completeValue": "# Meta Surge — NEW RIC5-MS-01 through RIC5-MS-04\n\nAction;one willing actual creature within120feet, including self;V/S/F;rank7;base17RP. On real resolution establish a nonconcentration benefit with an absolute deadline60seconds later. Actual consent, source/target paths and real class acquisition remain. A paid resisted/prevented effect grants no hidden diagnostic. This grants no metamagic mode, class card, feat, RP pool, sorcery pool or additional mode slot.\n\n## Exhausted-provider admission and exact waived charges\nAt each personally modified spell's actual commitment while a live unsuppressed Meta Surge applies, choose exactly one genuinely acquired eligible metamagic mode and provider. NEW waiver includes both Mage Metaspell Access's1/long-rest use charge and the source-directed Metamagic Adept's1 sorcery-point charge. The numerical source balance MAY already be zero; for this one waived charge the usual availability-of-that-charge test is waived too. Acquisition, chosen mode, class/source eligibility, body/casting permission and compatibility remain mandatory. Preserve each actual ledger at its existing value: a0-use Mage remains0, a1-use Mage remains1;0..2 actual feat points remain0..2. There is no refill, new entitlement, negative debit, 'spend then refund', duplicated recovery event or unused-credit bank.\n\nMage Metaspell Access modifies a genuine Mage spell under its actual card, with the single mode permanently selected on acquisition. Metamagic Adept requires its actual personal-spellcasting/total-level4 acquisition and two selected modes; this spell does not approve the entire pending feat cohort. Its complete source-directed menu remains the comparison/qualified-operand contract, with actual campaign feat availability a separate prerequisite. Reach adds30feet only to a positive numeric casting range, not Self/Touch/unlimited or a separate effect radius. Widen adds5feet to one eligible circular/spherical radius or cone length. Sculpt chooses up to the actual provider's stated casting-modifier limit in the initial area, gives automatic initial save success and no damage where success normally halves damage; it neither erases later ticks nor overrides other non-damage successful-save consequences. One total metamagic mode per cast across the Mage card and feat remains; select the provider, do not combine a free class mode and free feat mode.\n\nOnly an expense explicitly owned by an actually authorized metamagic mode is waived. The concrete reviewed set here is the Mage use and the feat point; a future genuine metamagic provider must bring its complete contract, not merely a 'metamagic' tag. Parent spell RP, surcharges, components, consumed materials, normal-HP prices, paid Action/Reaction, Dissonance/Refrain, copy capture/allowances, concentration and recipient restrictions remain. Mage Resonance Surge is a separately paid2RP/short-rest enhancement, not automatically a waived metamagic charge. Wizard Matrix Mastery, Spell Tether, Overchannel, quick-cast spells and class/feat copies retain their actual separate costs and permissions. No RP/RC/HP conversion is introduced.\n\n## Commitment, Ready, suppression and overlap\nDetermine the waiver when the modified spell actually commits; an intervening suppression before that commitment removes qualification, and ordinary resource availability then governs the attempt. An otherwise illegal declaration spends nothing. If a valid modified Ready spell commits under Surge at preparation, its modifier/payment is fixed: later expiry or suppression neither retrocharges a point/use nor removes the committed modifier. Release still needs the actual Reaction, legal trigger/targets, concentration and deadline; it has no second metamagic spend. Conversely a previously paid modifier is not refunded by a later Surge. A just-cast Meta Surge cannot waive its own precommit modification retroactively; another already-live application can qualify it normally if the actual mode applies.\n\nKeep each application and original deadline. One effective waiver suffices; overlaps do not create multiple modes, pool capacity or charges. A successful recast by the same caster replaces that caster's previous Surge on the same recipient without refilling anything; sources on different recipients or from other casters retain their own clocks. A full/recipient-effective suppression removes the payment benefit for new commitments only, and resumption before expiry restores that benefit without replay. Actual dispel, source-specific removal or expiry ends only that application. Caster distance/death does not invent an ending for this nonconcentration spell. The current point/use accounting is a new local exception explicitly selected here; the original metamagic source text remains unmodified history."
+  },
+  "originalRequest": {
+    "path": "history/recovery_input/evidence/GPT_PART5_RANK7_READY_DEADLINE_CORRECTION_14_REQUEST.txt"
+  },
+  "actualCompletedReply": {
+    "path": "history/recovery_input/evidence/GPT_PART5_RANK7_READY_DEADLINE_RETURN_03_NATIVE.json",
+    "assistantTurn": "b7cc95cd-bc1a-40c7-802a-b09859e01d9c"
+  },
+  "noOutsideRuleUsed": true
+}

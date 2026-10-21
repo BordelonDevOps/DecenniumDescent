@@ -1,0 +1,13 @@
+# Decennium Descent saved development — 21 October 2026
+
+The owner requested this GitHub backup after development paused. Saved work through [checkpoint 111](docs/audit/2026-10-08/full-game/ACTIVE_AUTHORING_CHECKPOINT_JOINT_REVIEW_111.json) is included. Decennium Descent remains video-game-only. No new gameplay rule, canonical index, helper, or runtime implementation is applied by this delivery.
+
+Applied spell accounting remains **525 reviewed / 323 pending / 249 standalone procedures / 173 interfaces**. **53 accepted identities remain unapplied.** This snapshot preserves the intervening source conferences, spell acceptance evidence, bestiary review and recovery records, feat casebooks and exact candidate maps, and the completed GPT response received at checkpoint 111.
+
+The final GPT FXC07/08/09 review is preserved as the actual 53,957-byte archive, SHA256 `03db66fea6c2fe7493252824ad6c2d552a97ff6d516bed90b8ba8a96af85565b`. FXC07 and FXC08 evidence was covered. FXC09 still requires the Quickened Thought requirement-map timing correction: its maintained encounter bank persists across later actual turns; the next-START restriction belongs to the separate Bonus Action conversion. The underlying procedure is preserved. The full acquisition, gadget and maneuver evidence remains saved with its pending review status. The three empty requirement-text fields were repaired separately. No whole-feat or whole-game acceptance is claimed.
+
+All prior tracked paths and Git history are preserved. [The manifest](docs/audit/2026-10-21/github-snapshot-checkpoint111/manifest.json) fingerprints the source snapshot and established locally retained exclusions. [Pre-push verification](docs/audit/2026-10-21/github-snapshot-checkpoint111/STAGED_VERIFICATION.json) records content verification. Dependencies, generated folders, the imported asset workbench, private configuration, external reference books, unrelated browser captures, and immutable archives containing those captures keep their established local-only treatment. Original files remain untouched. Any oversized deliverable is split losslessly with hashes and reconstruction instructions in [the split-source manifest](docs/audit/2026-10-21/github-snapshot-checkpoint111/SPLIT_SOURCES.json).
+
+The separate Unity chat's uncommitted `engine/` and `docs/unity/` directories were not staged. This commit was assembled with an isolated Git index. The active authoring folder remains `C:\Github\DecenniumDescent`.
+
+Resume from checkpoint 111 when requested. Source preservation, semantic acceptance, canonical integration, engine execution, human gameplay, balance, cosmology and final release approval remain distinct unfinished gates.

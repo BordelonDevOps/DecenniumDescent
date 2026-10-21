@@ -1,0 +1,630 @@
+{
+  "profileCount": 7,
+  "fullAcceptedCommonProfileContract": {
+    "capture": "Capture only one directly witnessed resolved component that actually expresses one profile below. Record canonical source/event, actual original spell rank or pre-encounter monster effective rank, native magnitude before external bonuses/defenses, selected type/profile and qualifying own casting route. For monster abilities without a spell rank, use max(1, min(9, ceil(actualCR/2))); missing CR needs a rating assigned before the encounter, never a favorable after-the-fact guess. No unique/legendary/boss feature without an independently reviewed exception; no copying copies, class engines, actions, resources, permanent changes, resurrection, creation, items or protected information. An unsupported role is ineligible, not a blank Director permission.",
+    "rankAndPayment": "For original rank 0, q=0; otherwise q=max(1, floor(originalRank/2)). The chosen actual owned spellcasting route must independently support learning q; merely owning a pool or feat prerequisite does not. Use that route’s real ability for attack/DC and spell components V/S, normal rank price 0/2/3/5/7/10/13/17/21/26 plus actual adjustments. It grants a temporary feat-copy route only, never the original full spell. Spellcasting time is oneAction. At release pay/cast/history/interrupt once, with copy-provenance flags disabling copy/resource/class-proc chains. An explicit source such as Mirrorsage retains its own actual profile/rank/payment instead of being silently converted. FINAL FS-08: these releases are paid feat-copy casts with actual RP/components/history, not ordinary knowledge grants. Boon uses one feat-copy-boon family; its repeated copies do not add, while genuinely distinct eligible ordinary feat bonuses use FS-03.",
+    "numericBound": "For numeric damage/heal/ward select one witnessed native component/type and record its rolled or fixed magnitude B before external bonuses, saves, defenses and recipient caps. If that magnitude was hidden, the Director records it privately; no free identification is given. At feat-copy release roll (q+1)d6, then bound the native numeric result to min(roll, floor(B/2)). No copied critical multiplier, external damage/heal modifier, converted excess or extra recipients. Actual recipient defenses and healing limits still apply. A zero ceiling cannot produce a numeric benefit. This is an explicit NEW meaning of half potency, not an assertion about original undefined wording.",
+    "lifecycle": "At most one feat-copy release per owner per numbered round across Eldritch Echo, Mimicry and adapted copies. A Mirrorsage owner also spends its existing shared release allowance; an unowned Mirrorsage engine is not granted. Strike/Burst/Mend/Step are immediate. Ward/Hindrance/Boon use their stated maximum two-interval duration; source-specific shorter hold deadlines still govern. Only one pending feat-copy record across Eldritch Echo/Mimicry; before a new capture choose whether to replace the old, losing its paid capture/use without refund. Adaptation may retain permission but creates no second release allowance. No copied effect grants extra Action/BA/Reaction, persistent body, loot, learning or concentration capacity.",
+    "profiles": [
+      {
+        "id": "strike",
+        "role": "Direct single-target damage",
+        "activation": "Action",
+        "range": "60 ft, one perceived creature with line of effect",
+        "resolution": "Actual own casting ability+PB spell attack; on hit bounded numeric damage of one observed native type. No added critical dice. No original riders. Instant.",
+        "concentrationRequired": false
+      },
+      {
+        "id": "burst",
+        "role": "Area damage",
+        "activation": "Action",
+        "range": "Point within 30 ft;10 ft radius, at most 3 originally declared perceived creatures in area with line of effect",
+        "resolution": "DEX save vs own DC for bounded numeric observed-type damage, half on success; one shared roll. No original riders. Instant.",
+        "concentrationRequired": false
+      },
+      {
+        "id": "mend",
+        "role": "Actual normal HP healing",
+        "activation": "Action",
+        "range": "30 ft one perceived willing living creature with line of effect",
+        "resolution": "Restore bounded numeric HP under actual prohibitions/maximum/Critical caps. No reviving, healing dice add-ons, Wound cure, heal-copy/resource trigger or excess conversion. Instant.",
+        "concentrationRequired": false
+      },
+      {
+        "id": "ward",
+        "role": "Temporary HP",
+        "activation": "Action",
+        "range": "30 ft one perceived willing living creature with line of effect",
+        "resolution": "Offer bounded numerictemp HP into the actual single grant ledger, ending at the source’s second future regular start. Rejected offer wastes the copy. No linked riders.",
+        "concentrationRequired": true
+      },
+      {
+        "id": "hindrance",
+        "role": "Actual slow or action/reaction control",
+        "activation": "Action",
+        "range": "30 ft one perceived creature with line of effect",
+        "resolution": "WIS save vs own DC or Speed−10 ft and no new Reactions until its next future regular end, never later than the source’s second future regular start. Strongest slow arbitration; no wholeAction/turn denial, repeated save or original hard-control rider.",
+        "concentrationRequired": true
+      },
+      {
+        "id": "boon",
+        "role": "A source actually granting a positive attack, save or AC modifier",
+        "activation": "Action",
+        "range": "30 ft one perceived willing creature with line of effect",
+        "resolution": "Choose one statistic actually benefited by the witnessed source: +1 AC OR+1 to one next actual attack roll OR+1 to one next actual save, through source’s next future regular end. Strongest feat-copy-boon-family arbitration; no new roll or cloned concentration.",
+        "concentrationRequired": true
+      },
+      {
+        "id": "step",
+        "role": "Actual short personal movement/teleport",
+        "activation": "Action",
+        "range": "Self to visible unoccupied fitting space within min(15 ft, floor(observed distance/2))",
+        "resolution": "If original component was teleport, teleport with actual line of effect and ordinary teleport restrictions; otherwise move that distance over an actual legal path paying terrain and provoking normally. No passenger, planar travel, new locomotion mode or movement into an unseen space. Instant.",
+        "concentrationRequired": false
+      }
+    ],
+    "castFamilyKeyContract": "NEW feat-copy chronological identity. Every paid feat-copy cast records `castFamilyKey = feat-copy::<canonicalSourceEffectId>`. `canonicalSourceEffectId` is the stable identity of the actually witnessed underlying spell/effect from which the bounded profile was captured; for a source-qualified monster ability use that ability's stable source identity. Changing the capture event, owner, Eldritch Echo/Mimicry/Arcane Adaptation permission, bounded profile, selected damage/type component, q, or qualifying casting-ability route does not create a new family. Copies sharing that key use the ordinary chronological Refrain history together. An ordinary cast of the underlying spell uses its ordinary spell family and does not share the feat-copy family; Mirrorsage Echo Release likewise keeps its own class family. A missing stable underlying source identity is ineligible for release rather than being assigned a favorable new key. This key grants no ordinary spell knowledge or access.",
+    "concentrationRules": "NEW feat-copy concentration tags. Strike: no. Burst: no. Mend: no. Ward: yes. Hindrance: yes. Boon: yes. Step: no; its movement/teleport resolves instantaneously. A concentration-required copy establishes the releaser's one concentration burden during casting commitment under the ordinary sequence, ending an incompatible existing concentration before the counter window. If that cast is later countered, prior concentration remains ended and no copied lasting effect remains. Loss of concentration ends the Ward/Hindrance/Boon copied effect immediately; their printed earlier deadlines still cap duration. Immediate profiles establish no new concentration burden. Ready is separate: preparation already occupies concentration. On release, an immediate profile resolves and that Ready concentration ends with the released spell; a concentration-required Ward/Hindrance/Boon continues on that same one concentration burden, never a second slot. No witnessed original concentration tag is inherited or used to change these seven profile tags.",
+    "strainEngineRef": "FS-09/CRS-03",
+    "strainEngineRules": "COPY-ROUTE STRAIN SCOPE. A paid feat-copy cast under FS-08 is an independent feat-casting route for strain purposes. Use FS-09 exactly: base Dissonance 0 for q/rank 0, 1 for ranks 1-5, and 2 for ranks 6-9; apply ordinary same-family Refrain using CRS-01; and use `Limit = max(4, 2*PB + casting modifier)` for that copy route, including its existing surcharge/block thresholds. The owned route chosen to qualify the copy supplies only the permitted casting ability, rank ceiling and other expressly required source credentials; it does not import that class engine's protected Dissonance reduction, routing, vent, prepared-matrix treatment or proc chain into the feat-copy cast. In particular a Wizard-qualified copy is not a prepared matrix, a Shaman-qualified copy is not an ordinary Shaman spell for the totem vent, and a Mirrorsage-qualified copy is not class Echo Release. The ordinary `max(4, 2 + PB + max(0, modifier))` Limit in SPELL_INTEGRATION_RULES remains controlling for ordinary class spells within its existing scope and is not globally changed here. If the only qualifying route is the feat-only Eldritch Blast grant, it supplies CHA and only its actual rank-0 ceiling; it does not change the copy engine or Limit, create a Warlock/class engine, or qualify a ranked q>0 copy."
+  },
+  "profiles": [
+    {
+      "id": "strike",
+      "completeAcceptedProfile": {
+        "id": "strike",
+        "role": "Direct single-target damage",
+        "activation": "Action",
+        "range": "60 ft, one perceived creature with line of effect",
+        "resolution": "Actual own casting ability+PB spell attack; on hit bounded numeric damage of one observed native type. No added critical dice. No original riders. Instant.",
+        "concentrationRequired": false
+      },
+      "source": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/supplements.json",
+        "pointer": "/groups/6/value/copyProfileContract/profiles/0",
+        "bytes": 817313,
+        "sha256": "273b9f3151898fe668d422bec91180c7e1aba7f94a2ffb029325866ea901d984"
+      },
+      "disposition": "SCOPED_CONTRACT_RETAINED_REFERENCE_CODE_REQUIRES_LISTED_GUARDS_NOT_FULL_RUNTIME_ACCEPTANCE",
+      "analysis": "Arcane Ray/Lifedraw numeric direct damage, own attack, ordinary defenses/Core consequences and no extra critical dice; full unsupplied native/interception sources remain open.",
+      "actualScope": [
+        "Wizard native INT/actual ceiling",
+        "paid feat-only CHA/q0 credential without RP grant",
+        "actual Shaman WIS/native ceiling with linked path limits",
+        "actual Mirrorsage INT/native ceiling and shared EchoLedger"
+      ],
+      "codeRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_source_components.py",
+          "symbol": "CopySourceComponents",
+          "startLine": 22,
+          "endLine": 135,
+          "bytes": 8461,
+          "sha256": "62cf8ff2f15b20c1a5a4e5e698bf1fd8f625fe4ede5c89a5c1bba79f01437929"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_release.py",
+          "symbol": "CopyReleases.commit",
+          "startLine": 168,
+          "endLine": 225,
+          "bytes": 13155,
+          "sha256": "ce41ffeed640e95ba3fae6567002bea09cc646d21a6176a0f99539f7e8cb7f18"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_payloads.py",
+          "symbol": "CopyPayloadReleases._payload",
+          "startLine": 239,
+          "endLine": 316,
+          "bytes": 22515,
+          "sha256": "c53e48e9be34798f9053f07fa55e07169ec3117ad7fd7c8f6731074747455455"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_class_release.py",
+          "symbol": "ClassCopyCommit.commit",
+          "startLine": 28,
+          "endLine": 95,
+          "bytes": 9978,
+          "sha256": "80a571d5aa76d19d8c4dfb120ebf2bb96c73cd0848556320066d5ed584d183c1"
+        }
+      ],
+      "providerScopeQualification": "These are conditional provider interfaces, not a grant that every listed provider can release every profile. The actual captured q must fit the owned provider ceiling.",
+      "featOnlyRouteInDeliveredNativeExamples": true,
+      "featOnlyBoundary": "The delivered rank-zero feat-only example is native Arcane Ray→Strike. The other delivered profile witnesses have q>=1 and cannot be released by that CHA/q0-only credential."
+    },
+    {
+      "id": "burst",
+      "completeAcceptedProfile": {
+        "id": "burst",
+        "role": "Area damage",
+        "activation": "Action",
+        "range": "Point within 30 ft;10 ft radius, at most 3 originally declared perceived creatures in area with line of effect",
+        "resolution": "DEX save vs own DC for bounded numeric observed-type damage, half on success; one shared roll. No original riders. Instant.",
+        "concentrationRequired": false
+      },
+      "source": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/supplements.json",
+        "pointer": "/groups/6/value/copyProfileContract/profiles/1",
+        "bytes": 817313,
+        "sha256": "273b9f3151898fe668d422bec91180c7e1aba7f94a2ffb029325866ea901d984"
+      },
+      "disposition": "SCOPED_CONTRACT_RETAINED_REFERENCE_CODE_REQUIRES_LISTED_GUARDS_NOT_FULL_RUNTIME_ACCEPTANCE",
+      "analysis": "Burning Hands component; fixed declared maximum-three recipients, one shared bounded roll and independent DEX outcomes. Caller must provide real occupied-body/LoE/roll facts.",
+      "actualScope": [
+        "Wizard native INT/actual ceiling",
+        "paid feat-only CHA/q0 credential without RP grant",
+        "actual Shaman WIS/native ceiling with linked path limits",
+        "actual Mirrorsage INT/native ceiling and shared EchoLedger"
+      ],
+      "codeRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_source_components.py",
+          "symbol": "CopySourceComponents",
+          "startLine": 22,
+          "endLine": 135,
+          "bytes": 8461,
+          "sha256": "62cf8ff2f15b20c1a5a4e5e698bf1fd8f625fe4ede5c89a5c1bba79f01437929"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_release.py",
+          "symbol": "CopyReleases.commit",
+          "startLine": 168,
+          "endLine": 225,
+          "bytes": 13155,
+          "sha256": "ce41ffeed640e95ba3fae6567002bea09cc646d21a6176a0f99539f7e8cb7f18"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_payloads.py",
+          "symbol": "CopyPayloadReleases._payload",
+          "startLine": 239,
+          "endLine": 316,
+          "bytes": 22515,
+          "sha256": "c53e48e9be34798f9053f07fa55e07169ec3117ad7fd7c8f6731074747455455"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_class_release.py",
+          "symbol": "ClassCopyCommit.commit",
+          "startLine": 28,
+          "endLine": 95,
+          "bytes": 9978,
+          "sha256": "80a571d5aa76d19d8c4dfb120ebf2bb96c73cd0848556320066d5ed584d183c1"
+        }
+      ],
+      "providerScopeQualification": "These are conditional provider interfaces, not a grant that every listed provider can release every profile. The actual captured q must fit the owned provider ceiling.",
+      "featOnlyRouteInDeliveredNativeExamples": false,
+      "featOnlyBoundary": "The delivered rank-zero feat-only example is native Arcane Ray→Strike. The other delivered profile witnesses have q>=1 and cannot be released by that CHA/q0-only credential."
+    },
+    {
+      "id": "mend",
+      "completeAcceptedProfile": {
+        "id": "mend",
+        "role": "Actual normal HP healing",
+        "activation": "Action",
+        "range": "30 ft one perceived willing living creature with line of effect",
+        "resolution": "Restore bounded numeric HP under actual prohibitions/maximum/Critical caps. No reviving, healing dice add-ons, Wound cure, heal-copy/resource trigger or excess conversion. Instant.",
+        "concentrationRequired": false
+      },
+      "source": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/supplements.json",
+        "pointer": "/groups/6/value/copyProfileContract/profiles/2",
+        "bytes": 817313,
+        "sha256": "273b9f3151898fe668d422bec91180c7e1aba7f94a2ffb029325866ea901d984"
+      },
+      "disposition": "SCOPED_CONTRACT_RETAINED_REFERENCE_CODE_REQUIRES_LISTED_GUARDS_NOT_FULL_RUNTIME_ACCEPTANCE",
+      "analysis": "Actual eligible Lifedraw healing component, not raw original damage as healing. Normal-HP caps/prohibitions/reducers; no death revival/Wound cure/resource conversion/bonus dice. CFI-03 guards a later actual linked caster state change.",
+      "actualScope": [
+        "Wizard native INT/actual ceiling",
+        "paid feat-only CHA/q0 credential without RP grant",
+        "actual Shaman WIS/native ceiling with linked path limits",
+        "actual Mirrorsage INT/native ceiling and shared EchoLedger"
+      ],
+      "codeRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_source_components.py",
+          "symbol": "CopySourceComponents",
+          "startLine": 22,
+          "endLine": 135,
+          "bytes": 8461,
+          "sha256": "62cf8ff2f15b20c1a5a4e5e698bf1fd8f625fe4ede5c89a5c1bba79f01437929"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_release.py",
+          "symbol": "CopyReleases.commit",
+          "startLine": 168,
+          "endLine": 225,
+          "bytes": 13155,
+          "sha256": "ce41ffeed640e95ba3fae6567002bea09cc646d21a6176a0f99539f7e8cb7f18"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_payloads.py",
+          "symbol": "CopyPayloadReleases._payload",
+          "startLine": 239,
+          "endLine": 316,
+          "bytes": 22515,
+          "sha256": "c53e48e9be34798f9053f07fa55e07169ec3117ad7fd7c8f6731074747455455"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_class_release.py",
+          "symbol": "ClassCopyCommit.commit",
+          "startLine": 28,
+          "endLine": 95,
+          "bytes": 9978,
+          "sha256": "80a571d5aa76d19d8c4dfb120ebf2bb96c73cd0848556320066d5ed584d183c1"
+        }
+      ],
+      "providerScopeQualification": "These are conditional provider interfaces, not a grant that every listed provider can release every profile. The actual captured q must fit the owned provider ceiling.",
+      "featOnlyRouteInDeliveredNativeExamples": false,
+      "featOnlyBoundary": "The delivered rank-zero feat-only example is native Arcane Ray→Strike. The other delivered profile witnesses have q>=1 and cannot be released by that CHA/q0-only credential."
+    },
+    {
+      "id": "ward",
+      "completeAcceptedProfile": {
+        "id": "ward",
+        "role": "Temporary HP",
+        "activation": "Action",
+        "range": "30 ft one perceived willing living creature with line of effect",
+        "resolution": "Offer bounded numerictemp HP into the actual single grant ledger, ending at the source’s second future regular start. Rejected offer wastes the copy. No linked riders.",
+        "concentrationRequired": true
+      },
+      "source": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/supplements.json",
+        "pointer": "/groups/6/value/copyProfileContract/profiles/3",
+        "bytes": 817313,
+        "sha256": "273b9f3151898fe668d422bec91180c7e1aba7f94a2ffb029325866ea901d984"
+      },
+      "disposition": "SCOPED_CONTRACT_RETAINED_REFERENCE_CODE_REQUIRES_LISTED_GUARDS_NOT_FULL_RUNTIME_ACCEPTANCE",
+      "analysis": "False Life component offered to one real grant ledger, original deadline and lost-concentration cleanup; rejection wastes paid copy. Native concentration divergence is rejected under CFI-03, not automatically resolved.",
+      "actualScope": [
+        "Wizard native INT/actual ceiling",
+        "paid feat-only CHA/q0 credential without RP grant",
+        "actual Shaman WIS/native ceiling with linked path limits",
+        "actual Mirrorsage INT/native ceiling and shared EchoLedger"
+      ],
+      "codeRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_source_components.py",
+          "symbol": "CopySourceComponents",
+          "startLine": 22,
+          "endLine": 135,
+          "bytes": 8461,
+          "sha256": "62cf8ff2f15b20c1a5a4e5e698bf1fd8f625fe4ede5c89a5c1bba79f01437929"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_release.py",
+          "symbol": "CopyReleases.commit",
+          "startLine": 168,
+          "endLine": 225,
+          "bytes": 13155,
+          "sha256": "ce41ffeed640e95ba3fae6567002bea09cc646d21a6176a0f99539f7e8cb7f18"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_payloads.py",
+          "symbol": "CopyPayloadReleases._payload",
+          "startLine": 239,
+          "endLine": 316,
+          "bytes": 22515,
+          "sha256": "c53e48e9be34798f9053f07fa55e07169ec3117ad7fd7c8f6731074747455455"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_class_release.py",
+          "symbol": "ClassCopyCommit.commit",
+          "startLine": 28,
+          "endLine": 95,
+          "bytes": 9978,
+          "sha256": "80a571d5aa76d19d8c4dfb120ebf2bb96c73cd0848556320066d5ed584d183c1"
+        }
+      ],
+      "providerScopeQualification": "These are conditional provider interfaces, not a grant that every listed provider can release every profile. The actual captured q must fit the owned provider ceiling.",
+      "featOnlyRouteInDeliveredNativeExamples": false,
+      "featOnlyBoundary": "The delivered rank-zero feat-only example is native Arcane Ray→Strike. The other delivered profile witnesses have q>=1 and cannot be released by that CHA/q0-only credential."
+    },
+    {
+      "id": "hindrance",
+      "completeAcceptedProfile": {
+        "id": "hindrance",
+        "role": "Actual slow or action/reaction control",
+        "activation": "Action",
+        "range": "30 ft one perceived creature with line of effect",
+        "resolution": "WIS save vs own DC or Speed−10 ft and no new Reactions until its next future regular end, never later than the source’s second future regular start. Strongest slow arbitration; no wholeAction/turn denial, repeated save or original hard-control rider.",
+        "concentrationRequired": true
+      },
+      "source": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/supplements.json",
+        "pointer": "/groups/6/value/copyProfileContract/profiles/4",
+        "bytes": 817313,
+        "sha256": "273b9f3151898fe668d422bec91180c7e1aba7f94a2ffb029325866ea901d984"
+      },
+      "disposition": "SCOPED_CONTRACT_RETAINED_REFERENCE_CODE_REQUIRES_LISTED_GUARDS_NOT_FULL_RUNTIME_ACCEPTANCE",
+      "analysis": "Actually surviving Slow component, WIS/no new Reactions/Speed−10 only; strongest slow and original future endpoints. Hard original riders, repeat saves and body turns are not copied.",
+      "actualScope": [
+        "Wizard native INT/actual ceiling",
+        "paid feat-only CHA/q0 credential without RP grant",
+        "actual Shaman WIS/native ceiling with linked path limits",
+        "actual Mirrorsage INT/native ceiling and shared EchoLedger"
+      ],
+      "codeRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_source_components.py",
+          "symbol": "CopySourceComponents",
+          "startLine": 22,
+          "endLine": 135,
+          "bytes": 8461,
+          "sha256": "62cf8ff2f15b20c1a5a4e5e698bf1fd8f625fe4ede5c89a5c1bba79f01437929"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_release.py",
+          "symbol": "CopyReleases.commit",
+          "startLine": 168,
+          "endLine": 225,
+          "bytes": 13155,
+          "sha256": "ce41ffeed640e95ba3fae6567002bea09cc646d21a6176a0f99539f7e8cb7f18"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_payloads.py",
+          "symbol": "CopyPayloadReleases._payload",
+          "startLine": 239,
+          "endLine": 316,
+          "bytes": 22515,
+          "sha256": "c53e48e9be34798f9053f07fa55e07169ec3117ad7fd7c8f6731074747455455"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_class_release.py",
+          "symbol": "ClassCopyCommit.commit",
+          "startLine": 28,
+          "endLine": 95,
+          "bytes": 9978,
+          "sha256": "80a571d5aa76d19d8c4dfb120ebf2bb96c73cd0848556320066d5ed584d183c1"
+        }
+      ],
+      "providerScopeQualification": "These are conditional provider interfaces, not a grant that every listed provider can release every profile. The actual captured q must fit the owned provider ceiling.",
+      "featOnlyRouteInDeliveredNativeExamples": false,
+      "featOnlyBoundary": "The delivered rank-zero feat-only example is native Arcane Ray→Strike. The other delivered profile witnesses have q>=1 and cannot be released by that CHA/q0-only credential."
+    },
+    {
+      "id": "boon",
+      "completeAcceptedProfile": {
+        "id": "boon",
+        "role": "A source actually granting a positive attack, save or AC modifier",
+        "activation": "Action",
+        "range": "30 ft one perceived willing creature with line of effect",
+        "resolution": "Choose one statistic actually benefited by the witnessed source: +1 AC OR+1 to one next actual attack roll OR+1 to one next actual save, through source’s next future regular end. Strongest feat-copy-boon-family arbitration; no new roll or cloned concentration.",
+        "concentrationRequired": true
+      },
+      "source": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/supplements.json",
+        "pointer": "/groups/6/value/copyProfileContract/profiles/5",
+        "bytes": 817313,
+        "sha256": "273b9f3151898fe668d422bec91180c7e1aba7f94a2ffb029325866ea901d984"
+      },
+      "disposition": "SCOPED_CONTRACT_RETAINED_REFERENCE_CODE_REQUIRES_LISTED_GUARDS_NOT_FULL_RUNTIME_ACCEPTANCE",
+      "analysis": "Shield supplies AC only in the delivered source adapter; +1 strongest-family AC and source next futureEND are implemented. Printed next-attack and next-save alternatives remain genuine required benefits requiring actual eligible source/consumption adapters.",
+      "actualScope": [
+        "Wizard native INT/actual ceiling",
+        "paid feat-only CHA/q0 credential without RP grant",
+        "actual Shaman WIS/native ceiling with linked path limits",
+        "actual Mirrorsage INT/native ceiling and shared EchoLedger"
+      ],
+      "codeRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_source_components.py",
+          "symbol": "CopySourceComponents",
+          "startLine": 22,
+          "endLine": 135,
+          "bytes": 8461,
+          "sha256": "62cf8ff2f15b20c1a5a4e5e698bf1fd8f625fe4ede5c89a5c1bba79f01437929"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_release.py",
+          "symbol": "CopyReleases.commit",
+          "startLine": 168,
+          "endLine": 225,
+          "bytes": 13155,
+          "sha256": "ce41ffeed640e95ba3fae6567002bea09cc646d21a6176a0f99539f7e8cb7f18"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_payloads.py",
+          "symbol": "CopyPayloadReleases._payload",
+          "startLine": 239,
+          "endLine": 316,
+          "bytes": 22515,
+          "sha256": "c53e48e9be34798f9053f07fa55e07169ec3117ad7fd7c8f6731074747455455"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_class_release.py",
+          "symbol": "ClassCopyCommit.commit",
+          "startLine": 28,
+          "endLine": 95,
+          "bytes": 9978,
+          "sha256": "80a571d5aa76d19d8c4dfb120ebf2bb96c73cd0848556320066d5ed584d183c1"
+        }
+      ],
+      "providerScopeQualification": "These are conditional provider interfaces, not a grant that every listed provider can release every profile. The actual captured q must fit the owned provider ceiling.",
+      "featOnlyRouteInDeliveredNativeExamples": false,
+      "featOnlyBoundary": "The delivered rank-zero feat-only example is native Arcane Ray→Strike. The other delivered profile witnesses have q>=1 and cannot be released by that CHA/q0-only credential."
+    },
+    {
+      "id": "step",
+      "completeAcceptedProfile": {
+        "id": "step",
+        "role": "Actual short personal movement/teleport",
+        "activation": "Action",
+        "range": "Self to visible unoccupied fitting space within min(15 ft, floor(observed distance/2))",
+        "resolution": "If original component was teleport, teleport with actual line of effect and ordinary teleport restrictions; otherwise move that distance over an actual legal path paying terrain and provoking normally. No passenger, planar travel, new locomotion mode or movement into an unseen space. Instant.",
+        "concentrationRequired": false
+      },
+      "source": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/supplements.json",
+        "pointer": "/groups/6/value/copyProfileContract/profiles/6",
+        "bytes": 817313,
+        "sha256": "273b9f3151898fe668d422bec91180c7e1aba7f94a2ffb029325866ea901d984"
+      },
+      "disposition": "SCOPED_CONTRACT_RETAINED_REFERENCE_CODE_REQUIRES_LISTED_GUARDS_NOT_FULL_RUNTIME_ACCEPTANCE",
+      "analysis": "Mist Step supplies actual teleport only; bounded coordinate update from explicit visibility/fit/LoE queries. Original nonteleport movement remains a required unimplemented variant. CFI-04 rejects only the true linked Shaman coordinate mismatch; no printed Step eligibility is removed.",
+      "actualScope": [
+        "Wizard native INT/actual ceiling",
+        "paid feat-only CHA/q0 credential without RP grant",
+        "actual Shaman WIS/native ceiling with linked path limits",
+        "actual Mirrorsage INT/native ceiling and shared EchoLedger"
+      ],
+      "codeRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_source_components.py",
+          "symbol": "CopySourceComponents",
+          "startLine": 22,
+          "endLine": 135,
+          "bytes": 8461,
+          "sha256": "62cf8ff2f15b20c1a5a4e5e698bf1fd8f625fe4ede5c89a5c1bba79f01437929"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_release.py",
+          "symbol": "CopyReleases.commit",
+          "startLine": 168,
+          "endLine": 225,
+          "bytes": 13155,
+          "sha256": "ce41ffeed640e95ba3fae6567002bea09cc646d21a6176a0f99539f7e8cb7f18"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_payloads.py",
+          "symbol": "CopyPayloadReleases._payload",
+          "startLine": 239,
+          "endLine": 316,
+          "bytes": 22515,
+          "sha256": "c53e48e9be34798f9053f07fa55e07169ec3117ad7fd7c8f6731074747455455"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_class_release.py",
+          "symbol": "ClassCopyCommit.commit",
+          "startLine": 28,
+          "endLine": 95,
+          "bytes": 9978,
+          "sha256": "80a571d5aa76d19d8c4dfb120ebf2bb96c73cd0848556320066d5ed584d183c1"
+        }
+      ],
+      "providerScopeQualification": "These are conditional provider interfaces, not a grant that every listed provider can release every profile. The actual captured q must fit the owned provider ceiling.",
+      "featOnlyRouteInDeliveredNativeExamples": false,
+      "featOnlyBoundary": "The delivered rank-zero feat-only example is native Arcane Ray→Strike. The other delivered profile witnesses have q>=1 and cannot be released by that CHA/q0-only credential."
+    }
+  ],
+  "retainedCRS01Through03": {
+    "reviewId": "FEAT335-COPY-RELEASE-SOURCE-01-ADDENDUM",
+    "date": "2026-10-15",
+    "scope": "CRS-01..03 only; no feat exact approval, runtime, balance, whole-game or cosmology approval",
+    "submission": {
+      "path": "DD_Feat335_Copy_Release_Source_01.zip",
+      "bytes": 1768982,
+      "sha256": "922898bd1cf1fd64fb6c77639f2fdefd3266417b05344567031a5cf04b9c5196",
+      "payloadsPlusManifest": 24
+    },
+    "decisions": [
+      {
+        "id": "CRS-01",
+        "classification": "NEW minimum completion",
+        "decision": "Use one copy-derived chronological family keyed by the stable underlying captured source effect identity, not by capture event, granting feat, profile, q, selected numeric type, or chosen casting-ability route. The feat-copy namespace keeps this history distinct from ordinary casting of the underlying spell and from Mirrorsage class Echo Release.",
+        "operativeWording": "NEW feat-copy chronological identity. Every paid feat-copy cast records `castFamilyKey = feat-copy::<canonicalSourceEffectId>`. `canonicalSourceEffectId` is the stable identity of the actually witnessed underlying spell/effect from which the bounded profile was captured; for a source-qualified monster ability use that ability's stable source identity. Changing the capture event, owner, Eldritch Echo/Mimicry/Arcane Adaptation permission, bounded profile, selected damage/type component, q, or qualifying casting-ability route does not create a new family. Copies sharing that key use the ordinary chronological Refrain history together. An ordinary cast of the underlying spell uses its ordinary spell family and does not share the feat-copy family; Mirrorsage Echo Release likewise keeps its own class family. A missing stable underlying source identity is ineligible for release rather than being assigned a favorable new key. This key grants no ordinary spell knowledge or access."
+      },
+      {
+        "id": "CRS-02",
+        "classification": "NEW minimum completion",
+        "decision": "Only sustained copy profiles require concentration: Ward, Hindrance and Boon yes; Strike, Burst, Mend and Step no. Step is instantaneous. This corrects the lifecycle shorthand that grouped Step with sustained profiles.",
+        "operativeWording": "NEW feat-copy concentration tags. Strike: no. Burst: no. Mend: no. Ward: yes. Hindrance: yes. Boon: yes. Step: no; its movement/teleport resolves instantaneously. A concentration-required copy establishes the releaser's one concentration burden during casting commitment under the ordinary sequence, ending an incompatible existing concentration before the counter window. If that cast is later countered, prior concentration remains ended and no copied lasting effect remains. Loss of concentration ends the Ward/Hindrance/Boon copied effect immediately; their printed earlier deadlines still cap duration. Immediate profiles establish no new concentration burden. Ready is separate: preparation already occupies concentration. On release, an immediate profile resolves and that Ready concentration ends with the released spell; a concentration-required Ward/Hindrance/Boon continues on that same one concentration burden, never a second slot. No witnessed original concentration tag is inherited or used to change these seven profile tags."
+      },
+      {
+        "id": "CRS-03",
+        "classification": "KEEP FS-09 feat-route engine; guarded scope clarification",
+        "decision": "Paid feat-copy casts use the FS-09 independent feat-casting strain engine, not the chosen class route engine. Base Dissonance 0/1/2 and Limit=max(4, 2*PB + casting modifier). No Wizard protected prepared-matrix exemption, Shaman totem vent, Mirrorsage class Echo first-release waiver, Cleric Rite/Invocation vent, or other class protected reduction/routing applies unless a future source explicitly names feat-copy casts. The ordinary SPELL_INTEGRATION_RULES Limit remains unchanged for ordinary class casting.",
+        "operativeWording": "COPY-ROUTE STRAIN SCOPE. A paid feat-copy cast under FS-08 is an independent feat-casting route for strain purposes. Use FS-09 exactly: base Dissonance 0 for q/rank 0, 1 for ranks 1-5, and 2 for ranks 6-9; apply ordinary same-family Refrain using CRS-01; and use `Limit = max(4, 2*PB + casting modifier)` for that copy route, including its existing surcharge/block thresholds. The owned route chosen to qualify the copy supplies only the permitted casting ability, rank ceiling and other expressly required source credentials; it does not import that class engine's protected Dissonance reduction, routing, vent, prepared-matrix treatment or proc chain into the feat-copy cast. In particular a Wizard-qualified copy is not a prepared matrix, a Shaman-qualified copy is not an ordinary Shaman spell for the totem vent, and a Mirrorsage-qualified copy is not class Echo Release. The ordinary `max(4, 2 + PB + max(0, modifier))` Limit in SPELL_INTEGRATION_RULES remains controlling for ordinary class spells within its existing scope and is not globally changed here. If the only qualifying route is the feat-only Eldritch Blast grant, it supplies CHA and only its actual rank-0 ceiling; it does not change the copy engine or Limit, create a Warlock/class engine, or qualify a ranked q>0 copy."
+      }
+    ],
+    "affectedDerivedLocations": [
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/shared_rules.json",
+        "location": "FS-08",
+        "operation": "append CRS-01 family key, CRS-02 concentration tags and CRS-03 copy-route strain scope; preserve existing FS-08 text"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/supplements.json",
+        "location": "SUP-07/value/copyProfileContract",
+        "operation": "add castFamilyKey contract; add per-profile concentrationRequired fields; correct lifecycle Step shorthand to instantaneous; add strainEngineRef=FS-09/CRS-03"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/candidate.json",
+        "location": "feat IDs eldritch_echo, mimicry, arcane_adaptation",
+        "operation": "append matching release text to completeOperativeProcedure/payloadOperational/operationalRules representations as present; do not change acquisition predicates or source originals"
+      },
+      {
+        "path": "docs/audit/2026-10-08/full-game/FEAT_EXACT_01_ACQUISITION_CONTRACTS.json",
+        "location": "records eldritch_echo, mimicry, arcane_adaptation",
+        "operation": "append same release integration wording to derived operative procedure only; preserve originalObject and acquisition contract history"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+        "location": "no global replacement",
+        "operation": "optional cross-reference note only: ordinary class Limit remains unchanged; feat-copy route uses FS-09. Do not replace line-35 formula."
+      }
+    ],
+    "acceptanceExamples": [
+      {
+        "id": "CRS01-A",
+        "expectation": "Two consecutive Eldritch Echo captures of the same underlying spell identity, even from different source events or with different bounded profile/q choices, share one feat-copy family; the second copy receives the next ordinary Refrain step. Capture event ID does not reset history."
+      },
+      {
+        "id": "CRS01-B",
+        "expectation": "A Mimicry copy and later Arcane Adaptation activation of the same underlying captured spell/effect identity share the same feat-copy family. Changing permission source or casting ability route does not reset Refrain."
+      },
+      {
+        "id": "CRS01-C",
+        "expectation": "An ordinary personally known cast of the underlying spell followed by a feat-copy cast uses two distinct chronological families. The ordinary cast does not grant the copy and does not pre-load the feat-copy Refrain family."
+      },
+      {
+        "id": "CRS01-D",
+        "expectation": "Two different underlying source spell/effect identities that both map to Strike remain different feat-copy families; common profile ID alone does not merge history."
+      },
+      {
+        "id": "CRS02-A",
+        "expectation": "Strike/Burst/Mend/Step do not displace existing concentration merely because they are feat-copy casts; each resolves immediately."
+      },
+      {
+        "id": "CRS02-B",
+        "expectation": "Ward/Hindrance/Boon displace incompatible prior concentration at commitment. Countering afterward does not restore prior concentration and leaves no copied lasting effect."
+      },
+      {
+        "id": "CRS02-C",
+        "expectation": "A successful lasting Ward/Hindrance/Boon ends immediately on lost concentration even if its stated two-interval/source deadline has not arrived."
+      },
+      {
+        "id": "CRS02-D",
+        "expectation": "Ready preparation already holds concentration. Releasing Ward/Hindrance/Boon continues the same one burden; releasing an immediate profile ends the Ready hold after resolution. No second concentration slot exists."
+      },
+      {
+        "id": "CRS03-A",
+        "expectation": "Wizard-qualified feat copy does not receive Wizard first-prepared-matrix base-Dissonance exemption and is not a prepared matrix."
+      },
+      {
+        "id": "CRS03-B",
+        "expectation": "Shaman-qualified feat copy inside its own totem aura does not consume or benefit from the ordinary-Shaman-spell vent unless a future source explicitly names feat-copy casts."
+      },
+      {
+        "id": "CRS03-C",
+        "expectation": "Mirrorsage qualification does not import class Echo Release first-release Refrain waiver; the feat copy still consumes the shared release allowance only where its exact existing source says so."
+      },
+      {
+        "id": "CRS03-D",
+        "expectation": "At PB3 and casting modifier +3, feat-copy Limit is max(4,6+3)=9. Ordinary class spell Limit under the separate integration formula would be max(4,2+3+3)=8; this difference is intentional scoped authority, not a global correction."
+      },
+      {
+        "id": "CRS03-E",
+        "expectation": "Feat-only Eldritch Blast route can qualify q0 with CHA; it cannot establish q1+ ceiling, a class engine, Wizard/Mirrorsage/Shaman protections, or another RP pool."
+      }
+    ],
+    "nonGrants": [
+      "No original spell/repertoire grant",
+      "No new copy/capture source",
+      "No new RP pool",
+      "No class proc/vent/protected matrix",
+      "No extra concentration slot",
+      "No changed owner-round release cap",
+      "No promotion of the 335-feat candidate"
+    ]
+  },
+  "all335FeatsApproved": false,
+  "profileKindsAreNotSevenNewSpellIdentities": true
+}

@@ -1,0 +1,408 @@
+{
+  "id": "DD-BESTIARY-FINAL-RECONCILIATION-105-01",
+  "status": "SCOPED_NEW_AUTHORED_RECONCILIATION_PENDING_INDEPENDENT_REVIEW",
+  "decisions": [
+    {
+      "id": "BFR105-D01",
+      "question": "Pressure Wave control payload",
+      "part01": "10ft push; no Prone",
+      "return02": "5ft push plus Prone",
+      "selection": "10ft push, no new Prone",
+      "procedureId": "BFR105-PW-01",
+      "kind": "NEW scoped authorship selection, not a printed parameter",
+      "reason": "Provides a distinct formation-displacement tool without importing an additional posture debuff. The printed missing control rider does not select either alternative.",
+      "tradeoff": "Longer displacement can break reach and make a later Halberd ineligible; it no longer creates Prone-based combat/standing consequences. No assertion of equal numerical balance.",
+      "rejectedCurrentOption": "Return02 five-foot-plus-Prone is superseded, not deleted."
+    },
+    {
+      "id": "BFR105-D02",
+      "question": "Pressure Wave origin/range/path witness",
+      "part01": "declared actual body emitter -> actual interior target point, same clear segment <=30ft",
+      "return02": "general minimum-body separation; action did not explicitly override",
+      "selection": "Declared attached emitter/interior witness; same Euclidean segment supplies range and line of effect; revalidate at resolution. Override only this action use of B02-GEOMETRY.",
+      "procedureId": "BFR105-PW-01",
+      "kind": "NEW scoped geometry clarification",
+      "reason": "Prevents taking range from the nearest body face while taking an unrelated permissive ray from another origin or exposed point.",
+      "tradeoff": "Exactly30ft exterior separation alone is insufficient when every legal interior witness is farther away. Exact30ft to a genuine interior point is valid; no reach buffer or global geometry rewrite."
+    },
+    {
+      "id": "BFR105-D03",
+      "question": "Tail Sweep rider save",
+      "part01": "DEX DC13",
+      "return02": "STR DC13",
+      "selection": "DEX DC13 after hit damage",
+      "procedureId": "BFR105-TAIL-01",
+      "kind": "NEW scoped save-ability selection",
+      "reason": "The admitted control is losing footing, not a separate push or a contest of raw force. The source prints no save ability for this missing tactic.",
+      "tradeoff": "Nimble and strong targets can exchange which option they resist. +4 and1d6+2bludgeoning stay unchanged; no actual extra Action, target or area."
+    },
+    {
+      "id": "BFR105-D04",
+      "question": "Constrict escape",
+      "part01": "Action STR(Athletics)/DEX(Acrobatics) fixed-DC14 TASK",
+      "return02": "Action STR/DEX saveDC14",
+      "selection": "Action fixed-DC14 skill TASK with actual proficiency, Core task degree rules and check-only modifiers",
+      "procedureId": "BFR105-CONSTRICT-01",
+      "kind": "NEW native-action extension of the named existing fixed-DC Grappled escape pattern",
+      "reason": "Separates forced initial STR-save admission from a voluntary physical escape task. The existing condition has an explicit fixed-DC task model; applying it to this newly authored natural action is made explicit, not globalized.",
+      "tradeoff": "Real Help and actual skill entitlement can improve escape; saving-throw proficiency cannot be repurposed. Natural task degree shifts apply but do not invent an Injury or extra effect. No PB is supplied by CR or owner level."
+    },
+    {
+      "id": "BFR105-D05",
+      "question": "Constrict size and occupied coil",
+      "part01": "up to one category larger than actual source; real coiling contact",
+      "return02": "no larger than Huge",
+      "selection": "Up to one size larger; Huge source therefore permits Gargantuan by size, subject to actual accessible contact and one usable unoccupied coil",
+      "procedureId": "BFR105-CONSTRICT-01",
+      "kind": "NEW scoped natural-action size/appendage selection",
+      "reason": "Matches the one-size-larger physical grapple envelope rather than adding an unexplained equal-size cap. The fixed-DC attack/admission procedure is still its own named exception, not an ordinary opposed grapple.",
+      "tradeoff": "Size eligibility is not automatic anatomy, reach, motion, strength or acquisition. No printed Gargantuan profile exists in this66-profile catalog, so the positive Gargantuan encounter remains a distinct content fixture prerequisite; native Huge cases are fully exercised.",
+      "unchangedNative": {
+        "size": "Huge",
+        "HP": 18,
+        "AC": 11,
+        "CR": "1/4",
+        "attackBonus": 3,
+        "damage": "1d6+1"
+      }
+    }
+  ],
+  "selectedFullWording": {
+    "BFR105-PW-01": "BFR105-PW-01 — Pact Automaton Sentinel / Pressure Wave.\nPRINTED: one target; save DC15; 3d8 force on failure; an unspecified control effect. Printed save ability, range, control definition and success effect are missing.\nNEW: one perceived, legally targetable creature within30ft of a declared emitter point on the Sentinel's actual body, with an unobstructed line to an actual interior target point. Record emitter and target-point positions at release. The emitter cannot be moved outside the body to gain range. Range is Euclidean for this expressly scoped three-dimensional action; this is not a global grid rewrite.\nThis is a magical nonspell native force action, not a learned spell or class resource. It requires one real Action, or one of the two selections in this Sentinel's printed Multiattack; that limited substitution is explicit NEW authorship. Each selected Wave has its own save/dice/root. No RP, V/S/F, ammunition, concentration or recharge is added. Current source-qualified suppression can prevent its magical output; ordinary spell-only Counterspell does not become permission to counter this nonspell.\nAfter actual interruptions and target revalidation, make one STR save DC15. Success prevents both damage and push; do not roll damage and do not apply half damage. Failure rolls3d8 force once. After that damage's actual life/concentration consequences, a still-eligible extant creature recipient is pushed up to10ft in the fixed direction from the discharge emitter through the declared target point. Normalize that direction; zero-length origin-to-target is illegal at declaration. Sweep the recipient's whole body along it, stopping at the first placement obstruction. An actual push-reduction effect such as already-paid Brace applies within its own scope. No size exemption or extra save is invented.\nThe push is instantaneous: no Prone, Stunned, restraint, persistent zone or repeated tick is added. Completed damage/push remains after source suppression, death or later removal; those events before discharge can prevent that pending discharge. It does not move a now-dead body as a new creature effect.\nContainment Pulse stays separate and unchanged: area, STR DC15,5d6 force, half on success, Recharge5–6 and its printed charge-up. Its unspecified area, formation mechanics and broader recharge/Multiattack questions remain for their own parts. It is not a Pressure Wave variant and is not granted as a slot in this Part01's two-selection substitution.\nReason/tradeoff: a resisted single-target10ft displacement supplies meaningful disruption without importing an area blast, Prone or another game's profile. One-third of the printed damage has not been removed: success-zero follows the printed 'succeed ... or take' conditional. All missing parameters are NEW proposals.\nReconciliation selection BFR105-D02: this one action overrides the minimum-body-separation range sentence of Return02 B02-GEOMETRY. At declaration choose an actual emitter location attached to the acting body's anatomy (surface or interior, never a proxy projected outside it) and one actual interior witness in the chosen recipient. Record their body-local coordinates and resulting world segment; check positive Euclidean segment length at most30ft and unobstructed line of effect along that SAME segment, plus actual perception. At this outcome's resolution update those attached points from their actual bodies and revalidate them; a vanished, obstructed, out-of-range or no-longer-interior witness fails this committed outcome without a replacement target, relocated emitter or refund. At the resolved discharge freeze that segment for the instantaneous push vector. Equality at30ft is legal only when that actual interior witness is at30ft; an exterior face at30ft with every interior point farther away does not qualify. The selected procedure does not change other melee/ranged/area geometry. It changes no trait-imposed displacement prevention. The 10ft/no-Prone choice is retained from Part01; the 5ft-plus-Prone Return02 choice is superseded for this action only. Existing independently caused Prone is not removed.\nType-language clarification: the historical Part01 word 'living' is not selected as an added type restriction. The printed one-target action has no living-only gate; an extant eligible nonliving creature is not excluded merely by type. Actual destruction/removal still ends its creature-target eligibility. This does not turn corpse remains into a creature.",
+    "BFR105-TAIL-01": "BFR105-TAIL-01 — Dimetrodon / Tail Sweep.\nTactics names Tail Sweep and preparation names bludgeoning, but no Tail Sweep action statistics are printed. Preserve the existing Sail-Back Bite and all source text.\nNEW: a physical natural melee attack, reach5ft, one perceived legal creature, +4 to hit,1d6+2 bludgeoning. Critical damage is2d6+2. One real Action; no Multiattack, Bonus Action, recharge or helper-triggered Reaction is granted. Attack magnitude uses this creature's own printed Bite benchmark; the following control is expressly NEW.\nOn a hit, apply damage first. If the same recipient remains a creature eligible for Prone, it then makes one DEX save against this profile's printed save-DC benchmark13. Failure applies actual Prone; success adds no Prone but does not refund the hit's damage. A miss causes neither damage nor the rider save. Actual Prone immunity prevents the rider, not the bludgeoning packet. An already-Prone recipient is not given a stacking penalty, new duration or stand-cost increase.\nNo area or automatic push is inferred from 'Sweep'. Prone lasts until a lawful stand or real removal; standing requires nonzero current Speed and floor(half current Speed) movement, with actual remaining budget. It survives the Dimetrodon's later source removal because posture already changed. Flying/support consequences use actual Falling rules, not free impact damage.\nFor comparing the original action, Sail-Back Bite stays+4,1d6+2 piercing and is completed as physical5ft one-target melee with no new rider. Same damage budget does not establish balance equivalence; Tail's new posture utility is a proposed tactical benefit pending independent review.\nReconciliation BFR105-D03 selects DEX DC13, not STR DC13. Actual saving-throw proficiency applies only if independently supplied; the profile's Save DC is not a proficiency grant.",
+    "BFR105-CONSTRICT-01": "BFR105-CONSTRICT-01 — Giant Constrictor Snake / Constrict.\nTactics names Constrict and preparation names bludgeoning, but the only printed damage action is Bite+3,1d6+1 piercing. Keep that Bite, Huge size,18HP,AC11,CR1/4 and all other printed values exact.\nNEW: a physical natural melee Constrict, reach5ft, one perceived legal creature no more than one size category larger than the snake and with actual space for its body-contact coil. No tail-only remote grab is invented. Attack+3; hit1d6+1 bludgeoning, critical2d6+1. One real Action. This uses the printed Bite magnitude as the explicit numeric benchmark, not a foreign constrictor profile.\nAfter hit damage/life processing, a still-eligible recipient makes STR DC14, using the profile's printed save-DC benchmark. Failure creates one source-qualified Grappled relationship to this snake with5ft maintained reach. Success prevents the relationship, not damage. Grappled immunity blocks only the rider. A miss supplies neither damage nor that save.\nThis NEW natural coil occupies one designated coiling appendage and can hold only one recipient at a time. It is not a hand-based ordinary opposed grapple. While occupied, Constrict may attack that same recipient again for its normal paid attack/damage, but does not reroll admission, refresh or duplicate the existing grapple. A different recipient requires the old grip to end first. Existing Bite can still be used at a lawful opportunity without automatically ending the hold.\nEscape costs the recipient one Action and a STR(Athletics) or DEX(Acrobatics) fixed-DC14 task check; use only actual applicable proficiency. The two upper task degrees end this one relationship; other results retain it, without an invented injury. Release is free on the snake's own turn. The relationship also ends on snake Incapacitated/death/removal, target death/removal, or actual reach breaking, including forced movement/teleport; current target Speed returns to whatever its other real sources permit.\nNo Restrained, paralysis, suffocation, swallowed state, recurring free damage, concentration or extra action is added. A squeeze on a later turn remains a paid Constrict attack. Maintaining Grappled does not itself take away the target's Action or Reaction.\nFor the original Bite demonstration, its unchanged+3 and1d6+1 piercing use physical5ft one-target melee. Reason/tradeoff: this selects finite damage plus escapable movement control while retaining the unusually low printed CR/HP and explicit attack modifier; the record is not re-rated to satisfy a spell test.\nReconciliation BFR105-D04/D05: escape is a fixed-DC TASK, never a STR/DEX saving throw. Apply Core task degrees and natural1/20 degree shifts; collapse Success/Critical Success to ending this relationship and Failure/Critical Failure to retaining it. No extra escape effect or injury is implied by a degree. Actual Athletics/Acrobatics proficiency and check-only modifiers/Help require their own real source and still apply; saving-throw proficiency never supplies them. The initial post-hit STR DC14 is still a binary SAVE and is not converted into a task. The maximum target size is one actual category above this printed Huge source: Gargantuan is eligible by SIZE, not automatically by all requirements. A usable single coiling appendage must be able to obtain real accessible body-contact within5ft along a clear contact path while both occupied bodies remain legally placed. Whole-body encirclement is not a new prerequisite, but neither a size label nor minimum distance alone manufactures coil contact, appendage availability, anatomy or movement. With the coil occupied, a different-target Constrict attempt is rejected before spending another Action unless the old grip is actually released first. An ordinary paid same-target Constrict can deal its printed completed damage again without a second admission save or resetting the relationship. A later acquired size change needs its actual source; no such effect or Gargantuan stat block is granted here.",
+    "inheritedBoundedCommon": "BRP01-COMMON-01 — Bounded execution contract.\nStatus: NEW scoped completion only where this Part01 names missing creature-action details; existing combat, roll, defense, condition and damage/Null contracts retain their actual scopes.\nThese procedures add no creature, rating, level, skill proficiency, spell, material, Action, Reaction or resource. Printed HP/AC/abilities/type/CR, every printed action and all original dossier text remain exact. The three tactic-only additions are proposed actions, not silently relabelled printed actions.\nUse the actual body and legal perception. Each new anatomical melee attack has reach5ft, measured between actual occupied body boundaries with a clear contact/line-of-effect witness; it is physical and nonspell. Pressure Wave instead uses its own declared actual body emitter and range. Full target validation precedes commitment and repeats before the particular outcome; a known illegal attempt spends nothing. After legal commitment, a genuinely authorized interruption can invalidate the still-pending outcome; spent Action/attack slot is not refunded and that outcome is not retargeted. No new interrupt window or free Reaction is supplied. Ordinary Ready remains trigger-first.\nOne standalone action spends one real Action. A permitted Multiattack spends one Action once, resolves its two selections in order, and revalidates each selection independently; every performed selection consumes its slot even on a miss/save success. No second Action, Bonus Action or Reaction is created. Skipping an unusable remaining slot grants no refund.\nUse binary saves and actual printed attack modifiers; no PB is inferred from CR, owner level or save proficiency. Attack natural1 misses; natural20 hits and doubles only damage dice. Saves have no generic natural1/20 exception. Roll each real damage event separately. Original source actor is the dealer, not an assumed controller; create one source-qualified root per resolved damage event and retain any actually qualifying creation-time Null flag. Pure transfer preserves provenance and does not replay the action or its control rider.\nApply actual defenses once, then temporary HP and normal HP, then existing instant-death/Wound/zero-state and concentration consequences in their actual order. Wounds are tested per packet, never by summing Multiattack packets; a qualifying Null root uses its own accepted exceptions. None of these actions gains Maiming or an unprinted Wound exemption.\nResolve a new on-hit save or post-damage movement/condition only while its same recipient remains an eligible creature. Preventing damage is not automatically preventing an independently admitted non-damage rider. These actions do not manufacture equipment damage, loot, recharge, a harvest slot or a new corpse. At actual death use the recipient's actual lifecycle; no general monster resurrection/remains rule is authored here.\nOrdinary forced movement spends no voluntary movement, provokes no ordinary opportunity attack, and stops at the first obstacle that prevents legal whole-body placement. It does not grant passage through another body, collision damage or Hover. Actual reach breaks end grapples; loss of support uses the existing Falling contract. Mechanical impairment is distinct from damage immunity. Repeated callback delivery cannot duplicate any committed slot, root, movement or application: retain action/subattack/event and condition-source identifiers.\nThe numerical cases instantiate synthetic legal scene inputs, not authenticated campaign creatures, proficiencies, class access, resources or schedules. They are authored calculations, not project-engine execution. Bodies and slots supplied in those fixtures do not settle BV3-16 formation composition or other creatures' geometry."
+  },
+  "completeBothFinalBeforeValues": {
+    "part01": {
+      "BRP01-COMMON-01": "BRP01-COMMON-01 — Bounded execution contract.\nStatus: NEW scoped completion only where this Part01 names missing creature-action details; existing combat, roll, defense, condition and damage/Null contracts retain their actual scopes.\nThese procedures add no creature, rating, level, skill proficiency, spell, material, Action, Reaction or resource. Printed HP/AC/abilities/type/CR, every printed action and all original dossier text remain exact. The three tactic-only additions are proposed actions, not silently relabelled printed actions.\nUse the actual body and legal perception. Each new anatomical melee attack has reach5ft, measured between actual occupied body boundaries with a clear contact/line-of-effect witness; it is physical and nonspell. Pressure Wave instead uses its own declared actual body emitter and range. Full target validation precedes commitment and repeats before the particular outcome; a known illegal attempt spends nothing. After legal commitment, a genuinely authorized interruption can invalidate the still-pending outcome; spent Action/attack slot is not refunded and that outcome is not retargeted. No new interrupt window or free Reaction is supplied. Ordinary Ready remains trigger-first.\nOne standalone action spends one real Action. A permitted Multiattack spends one Action once, resolves its two selections in order, and revalidates each selection independently; every performed selection consumes its slot even on a miss/save success. No second Action, Bonus Action or Reaction is created. Skipping an unusable remaining slot grants no refund.\nUse binary saves and actual printed attack modifiers; no PB is inferred from CR, owner level or save proficiency. Attack natural1 misses; natural20 hits and doubles only damage dice. Saves have no generic natural1/20 exception. Roll each real damage event separately. Original source actor is the dealer, not an assumed controller; create one source-qualified root per resolved damage event and retain any actually qualifying creation-time Null flag. Pure transfer preserves provenance and does not replay the action or its control rider.\nApply actual defenses once, then temporary HP and normal HP, then existing instant-death/Wound/zero-state and concentration consequences in their actual order. Wounds are tested per packet, never by summing Multiattack packets; a qualifying Null root uses its own accepted exceptions. None of these actions gains Maiming or an unprinted Wound exemption.\nResolve a new on-hit save or post-damage movement/condition only while its same recipient remains an eligible creature. Preventing damage is not automatically preventing an independently admitted non-damage rider. These actions do not manufacture equipment damage, loot, recharge, a harvest slot or a new corpse. At actual death use the recipient's actual lifecycle; no general monster resurrection/remains rule is authored here.\nOrdinary forced movement spends no voluntary movement, provokes no ordinary opportunity attack, and stops at the first obstacle that prevents legal whole-body placement. It does not grant passage through another body, collision damage or Hover. Actual reach breaks end grapples; loss of support uses the existing Falling contract. Mechanical impairment is distinct from damage immunity. Repeated callback delivery cannot duplicate any committed slot, root, movement or application: retain action/subattack/event and condition-source identifiers.\nThe numerical cases instantiate synthetic legal scene inputs, not authenticated campaign creatures, proficiencies, class access, resources or schedules. They are authored calculations, not project-engine execution. Bodies and slots supplied in those fixtures do not settle BV3-16 formation composition or other creatures' geometry.",
+      "BRP01-PW-01": "BRP01-PW-01 — Pact Automaton Sentinel / Pressure Wave.\nPRINTED: one target; save DC15; 3d8 force on failure; an unspecified control effect. Printed save ability, range, control definition and success effect are missing.\nNEW: one perceived, legally targetable creature within30ft of a declared emitter point on the Sentinel's actual body, with an unobstructed line to an actual interior target point. Record emitter and target-point positions at release. The emitter cannot be moved outside the body to gain range. Range is Euclidean for this expressly scoped three-dimensional action; this is not a global grid rewrite.\nThis is a magical nonspell native force action, not a learned spell or class resource. It requires one real Action, or one of the two selections in this Sentinel's printed Multiattack; that limited substitution is explicit NEW authorship. Each selected Wave has its own save/dice/root. No RP, V/S/F, ammunition, concentration or recharge is added. Current source-qualified suppression can prevent its magical output; ordinary spell-only Counterspell does not become permission to counter this nonspell.\nAfter actual interruptions and target revalidation, make one STR save DC15. Success prevents both damage and push; do not roll damage and do not apply half damage. Failure rolls3d8 force once. After that damage's actual life/concentration consequences, a still-eligible living recipient is pushed up to10ft in the fixed direction from the discharge emitter through the declared target point. Normalize that direction; zero-length origin-to-target is illegal at declaration. Sweep the recipient's whole body along it, stopping at the first placement obstruction. An actual push-reduction effect such as already-paid Brace applies within its own scope. No size exemption or extra save is invented.\nThe push is instantaneous: no Prone, Stunned, restraint, persistent zone or repeated tick is added. Completed damage/push remains after source suppression, death or later removal; those events before discharge can prevent that pending discharge. It does not move a now-dead body as a new creature effect.\nContainment Pulse stays separate and unchanged: area, STR DC15,5d6 force, half on success, Recharge5–6 and its printed charge-up. Its unspecified area, formation mechanics and broader recharge/Multiattack questions remain for their own parts. It is not a Pressure Wave variant and is not granted as a slot in this Part01's two-selection substitution.\nReason/tradeoff: a resisted single-target10ft displacement supplies meaningful disruption without importing an area blast, Prone or another game's profile. One-third of the printed damage has not been removed: success-zero follows the printed 'succeed ... or take' conditional. All missing parameters are NEW proposals.",
+      "BRP01-DIM-TAIL-01": "BRP01-DIM-TAIL-01 — Dimetrodon / Tail Sweep.\nTactics names Tail Sweep and preparation names bludgeoning, but no Tail Sweep action statistics are printed. Preserve the existing Sail-Back Bite and all source text.\nNEW: a physical natural melee attack, reach5ft, one perceived legal creature, +4 to hit,1d6+2 bludgeoning. Critical damage is2d6+2. One real Action; no Multiattack, Bonus Action, recharge or helper-triggered Reaction is granted. Attack magnitude uses this creature's own printed Bite benchmark; the following control is expressly NEW.\nOn a hit, apply damage first. If the same recipient remains a creature eligible for Prone, it then makes one DEX save against this profile's printed save-DC benchmark13. Failure applies actual Prone; success adds no Prone but does not refund the hit's damage. A miss causes neither damage nor the rider save. Actual Prone immunity prevents the rider, not the bludgeoning packet. An already-Prone recipient is not given a stacking penalty, new duration or stand-cost increase.\nNo area or automatic push is inferred from 'Sweep'. Prone lasts until a lawful stand or real removal; standing requires nonzero current Speed and floor(half current Speed) movement, with actual remaining budget. It survives the Dimetrodon's later source removal because posture already changed. Flying/support consequences use actual Falling rules, not free impact damage.\nFor comparing the original action, Sail-Back Bite stays+4,1d6+2 piercing and is completed as physical5ft one-target melee with no new rider. Same damage budget does not establish balance equivalence; Tail's new posture utility is a proposed tactical benefit pending independent review.",
+      "BRP01-SNAKE-CONSTRICT-01": "BRP01-SNAKE-CONSTRICT-01 — Giant Constrictor Snake / Constrict.\nTactics names Constrict and preparation names bludgeoning, but the only printed damage action is Bite+3,1d6+1 piercing. Keep that Bite, Huge size,18HP,AC11,CR1/4 and all other printed values exact.\nNEW: a physical natural melee Constrict, reach5ft, one perceived legal creature no more than one size category larger than the snake and with actual space for its body-contact coil. No tail-only remote grab is invented. Attack+3; hit1d6+1 bludgeoning, critical2d6+1. One real Action. This uses the printed Bite magnitude as the explicit numeric benchmark, not a foreign constrictor profile.\nAfter hit damage/life processing, a still-eligible recipient makes STR DC14, using the profile's printed save-DC benchmark. Failure creates one source-qualified Grappled relationship to this snake with5ft maintained reach. Success prevents the relationship, not damage. Grappled immunity blocks only the rider. A miss supplies neither damage nor that save.\nThis NEW natural coil occupies one designated coiling appendage and can hold only one recipient at a time. It is not a hand-based ordinary opposed grapple. While occupied, Constrict may attack that same recipient again for its normal paid attack/damage, but does not reroll admission, refresh or duplicate the existing grapple. A different recipient requires the old grip to end first. Existing Bite can still be used at a lawful opportunity without automatically ending the hold.\nEscape costs the recipient one Action and a STR(Athletics) or DEX(Acrobatics) fixed-DC14 task check; use only actual applicable proficiency. The two upper task degrees end this one relationship; other results retain it, without an invented injury. Release is free on the snake's own turn. The relationship also ends on snake Incapacitated/death/removal, target death/removal, or actual reach breaking, including forced movement/teleport; current target Speed returns to whatever its other real sources permit.\nNo Restrained, paralysis, suffocation, swallowed state, recurring free damage, concentration or extra action is added. A squeeze on a later turn remains a paid Constrict attack. Maintaining Grappled does not itself take away the target's Action or Reaction.\nFor the original Bite demonstration, its unchanged+3 and1d6+1 piercing use physical5ft one-target melee. Reason/tradeoff: this selects finite damage plus escapable movement control while retaining the unusually low printed CR/HP and explicit attack modifier; the record is not re-rated to satisfy a spell test."
+    },
+    "return02": {
+      "pressure": {
+        "id": "pact-automaton-sentinel:action:2",
+        "nativeIndex": 2,
+        "name": "Pressure Wave",
+        "original": {
+          "name": "Pressure Wave",
+          "sourceText": "One target must succeed on a DC 15 save or take 3d8 force damage and suffer the action’s described control effect."
+        },
+        "newScope": "B02 native geometry/category completion only; numeric source fields unchanged",
+        "cost": {
+          "action": 1,
+          "bonusAction": 0,
+          "reaction": 0,
+          "rp": null,
+          "explanation": "One ordinary native Action, or one admitted subattack slot inside the already-paid Multiattack. No unprinted RP pool."
+        },
+        "sourceUse": "actorId/actionCommitId; subattack ordinal distinct damage root, same parent source-use",
+        "dealer": "actual creature actorId",
+        "classification": "magical-nonspell",
+        "damage": {
+          "dice": 3,
+          "sides": 8,
+          "flat": 0,
+          "type": "force"
+        },
+        "printedAverage": null,
+        "kind": "save-single",
+        "save": {
+          "ability": "strength",
+          "dc": 15,
+          "success": "0 damage; no push or Prone"
+        },
+        "geometry": {
+          "shape": "single",
+          "rangeFeet": 30,
+          "requiresPerception": true,
+          "requiresLineOfEffect": true
+        },
+        "newRider": {
+          "pushFeet": 5,
+          "direction": "away from actual acting outlet",
+          "condition": "Prone",
+          "onlyOnFailedSave": true
+        },
+        "procedure": "NEW PW02: one perceived legal creature within30ft and line of effect makes STR DC15. Failure takes exactly3d8 force, then independently eligible five-foot push away from the outlet and Prone; success takes no damage and neither rider. Damage/life resolves before riders; a dead recipient gains no new creature condition. Actual push/Prone defenses can prevent their own components without canceling the force packet. Collision stops at the last lawful body position; no extra collision damage. This is not Deep Scion's separate recharge wave, and it is not a cone, DC16 or3d10 thunder. It may occupy one printed Sentinel Multiattack slot; no recharge, extra Action or free Reaction is added."
+      },
+      "tail": {
+        "id": "dimetrodon:tactic:TailSweep",
+        "kind": "attack",
+        "name": "Tail Sweep",
+        "nativeIndex": null,
+        "attackBonus": 4,
+        "damage": {
+          "dice": 1,
+          "sides": 6,
+          "flat": 2,
+          "type": "bludgeoning"
+        },
+        "geometry": {
+          "mode": "melee",
+          "reachFeet": 5
+        },
+        "procedure": "NEW tactic completion: one Action, melee5ft attack+4; on hit1d6+2 bludgeoning. A successful hit permits a separate STR DC13 save; failure applies Prone only, subject to actual immunity, with no extra damage/attack. No Multiattack is added. This is a named native alternative, not a sweep over unlisted targets.",
+        "newRider": {
+          "saveAbility": "strength",
+          "dc": 13,
+          "condition": "Prone"
+        },
+        "classification": "physical/biological-nonspell"
+      },
+      "constrict": {
+        "id": "giant-constrictor-snake:tactic:Constrict",
+        "kind": "attack",
+        "name": "Constrict",
+        "nativeIndex": null,
+        "attackBonus": 3,
+        "damage": {
+          "dice": 1,
+          "sides": 6,
+          "flat": 1,
+          "type": "bludgeoning"
+        },
+        "geometry": {
+          "mode": "melee",
+          "reachFeet": 5
+        },
+        "procedure": "NEW tactic completion: one Action, melee5ft attack+3; on hit1d6+1 bludgeoning, then STR DC14 resists a single-body Grappled restraint. Only a creature no larger than the snake's printed Huge size qualifies. One grapple at a time; occupied coils cannot hold another. No Restrained, ongoing crush or extra bite is granted. Escape takes an actual Action with STR or DEX save DC14, not ungranted Athletics proficiency; forced separation beyond5ft, release, death/incapacitation or an applicable actual effect ends it. This explicitly authored source save is distinct from the Core opposed ordinary grapple and does not repair the unrelated companion-contest hold.",
+        "newRider": {
+          "saveAbility": "strength",
+          "dc": 14,
+          "condition": "Grappled",
+          "escape": "Action STR or DEX save DC14"
+        },
+        "classification": "physical/biological-nonspell"
+      }
+    }
+  },
+  "selectedStructuredObjects": {
+    "pressure": {
+      "id": "pact-automaton-sentinel:action:2",
+      "nativeIndex": 2,
+      "name": "Pressure Wave",
+      "original": {
+        "name": "Pressure Wave",
+        "sourceText": "One target must succeed on a DC 15 save or take 3d8 force damage and suffer the action’s described control effect."
+      },
+      "newScope": "BFR105-D01/D02: explicit NEW scoped selection; original printed fields untouched",
+      "cost": {
+        "action": 1,
+        "bonusAction": 0,
+        "reaction": 0,
+        "rp": null,
+        "explanation": "One ordinary native Action, or one admitted subattack slot inside the already-paid Multiattack. No unprinted RP pool."
+      },
+      "sourceUse": "actorId/actionCommitId; subattack ordinal distinct damage root, same parent source-use",
+      "dealer": "actual creature actorId",
+      "classification": "magical-nonspell",
+      "damage": {
+        "dice": 3,
+        "sides": 8,
+        "flat": 0,
+        "type": "force"
+      },
+      "printedAverage": null,
+      "kind": "save-single",
+      "save": {
+        "ability": "strength",
+        "dc": 15,
+        "success": "0 damage; no push; no damage RNG or damage root created"
+      },
+      "geometry": {
+        "shape": "single",
+        "rangeFeet": 30,
+        "requiresPerception": true,
+        "requiresLineOfEffect": true,
+        "origin": "actual attached body emitter, declared and revalidated",
+        "targetWitness": "actual attached interior target point, declared and revalidated",
+        "measurement": "positive Euclidean length of same unobstructed emitter/witness segment <=30ft",
+        "precedence": "BFR105-D02 overrides only this action use of B02-GEOMETRY minimum-body separation"
+      },
+      "newRider": {
+        "pushFeet": 10,
+        "direction": "normalized frozen actual emitter-to-interior-witness segment at discharge",
+        "condition": null,
+        "onlyOnFailedSave": true,
+        "placement": "whole-body sweep; actual prevention and collision truncate only movement"
+      },
+      "procedure": "BFR105-PW-01 — Pact Automaton Sentinel / Pressure Wave.\nPRINTED: one target; save DC15; 3d8 force on failure; an unspecified control effect. Printed save ability, range, control definition and success effect are missing.\nNEW: one perceived, legally targetable creature within30ft of a declared emitter point on the Sentinel's actual body, with an unobstructed line to an actual interior target point. Record emitter and target-point positions at release. The emitter cannot be moved outside the body to gain range. Range is Euclidean for this expressly scoped three-dimensional action; this is not a global grid rewrite.\nThis is a magical nonspell native force action, not a learned spell or class resource. It requires one real Action, or one of the two selections in this Sentinel's printed Multiattack; that limited substitution is explicit NEW authorship. Each selected Wave has its own save/dice/root. No RP, V/S/F, ammunition, concentration or recharge is added. Current source-qualified suppression can prevent its magical output; ordinary spell-only Counterspell does not become permission to counter this nonspell.\nAfter actual interruptions and target revalidation, make one STR save DC15. Success prevents both damage and push; do not roll damage and do not apply half damage. Failure rolls3d8 force once. After that damage's actual life/concentration consequences, a still-eligible extant creature recipient is pushed up to10ft in the fixed direction from the discharge emitter through the declared target point. Normalize that direction; zero-length origin-to-target is illegal at declaration. Sweep the recipient's whole body along it, stopping at the first placement obstruction. An actual push-reduction effect such as already-paid Brace applies within its own scope. No size exemption or extra save is invented.\nThe push is instantaneous: no Prone, Stunned, restraint, persistent zone or repeated tick is added. Completed damage/push remains after source suppression, death or later removal; those events before discharge can prevent that pending discharge. It does not move a now-dead body as a new creature effect.\nContainment Pulse stays separate and unchanged: area, STR DC15,5d6 force, half on success, Recharge5–6 and its printed charge-up. Its unspecified area, formation mechanics and broader recharge/Multiattack questions remain for their own parts. It is not a Pressure Wave variant and is not granted as a slot in this Part01's two-selection substitution.\nReason/tradeoff: a resisted single-target10ft displacement supplies meaningful disruption without importing an area blast, Prone or another game's profile. One-third of the printed damage has not been removed: success-zero follows the printed 'succeed ... or take' conditional. All missing parameters are NEW proposals.\nReconciliation selection BFR105-D02: this one action overrides the minimum-body-separation range sentence of Return02 B02-GEOMETRY. At declaration choose an actual emitter location attached to the acting body's anatomy (surface or interior, never a proxy projected outside it) and one actual interior witness in the chosen recipient. Record their body-local coordinates and resulting world segment; check positive Euclidean segment length at most30ft and unobstructed line of effect along that SAME segment, plus actual perception. At this outcome's resolution update those attached points from their actual bodies and revalidate them; a vanished, obstructed, out-of-range or no-longer-interior witness fails this committed outcome without a replacement target, relocated emitter or refund. At the resolved discharge freeze that segment for the instantaneous push vector. Equality at30ft is legal only when that actual interior witness is at30ft; an exterior face at30ft with every interior point farther away does not qualify. The selected procedure does not change other melee/ranged/area geometry. It changes no trait-imposed displacement prevention. The 10ft/no-Prone choice is retained from Part01; the 5ft-plus-Prone Return02 choice is superseded for this action only. Existing independently caused Prone is not removed.\nType-language clarification: the historical Part01 word 'living' is not selected as an added type restriction. The printed one-target action has no living-only gate; an extant eligible nonliving creature is not excluded merely by type. Actual destruction/removal still ends its creature-target eligibility. This does not turn corpse remains into a creature."
+    },
+    "tail": {
+      "id": "dimetrodon:tactic:TailSweep",
+      "kind": "attack",
+      "name": "Tail Sweep",
+      "nativeIndex": null,
+      "attackBonus": 4,
+      "damage": {
+        "dice": 1,
+        "sides": 6,
+        "flat": 2,
+        "type": "bludgeoning"
+      },
+      "geometry": {
+        "mode": "melee",
+        "reachFeet": 5
+      },
+      "procedure": "BFR105-TAIL-01 — Dimetrodon / Tail Sweep.\nTactics names Tail Sweep and preparation names bludgeoning, but no Tail Sweep action statistics are printed. Preserve the existing Sail-Back Bite and all source text.\nNEW: a physical natural melee attack, reach5ft, one perceived legal creature, +4 to hit,1d6+2 bludgeoning. Critical damage is2d6+2. One real Action; no Multiattack, Bonus Action, recharge or helper-triggered Reaction is granted. Attack magnitude uses this creature's own printed Bite benchmark; the following control is expressly NEW.\nOn a hit, apply damage first. If the same recipient remains a creature eligible for Prone, it then makes one DEX save against this profile's printed save-DC benchmark13. Failure applies actual Prone; success adds no Prone but does not refund the hit's damage. A miss causes neither damage nor the rider save. Actual Prone immunity prevents the rider, not the bludgeoning packet. An already-Prone recipient is not given a stacking penalty, new duration or stand-cost increase.\nNo area or automatic push is inferred from 'Sweep'. Prone lasts until a lawful stand or real removal; standing requires nonzero current Speed and floor(half current Speed) movement, with actual remaining budget. It survives the Dimetrodon's later source removal because posture already changed. Flying/support consequences use actual Falling rules, not free impact damage.\nFor comparing the original action, Sail-Back Bite stays+4,1d6+2 piercing and is completed as physical5ft one-target melee with no new rider. Same damage budget does not establish balance equivalence; Tail's new posture utility is a proposed tactical benefit pending independent review.\nReconciliation BFR105-D03 selects DEX DC13, not STR DC13. Actual saving-throw proficiency applies only if independently supplied; the profile's Save DC is not a proficiency grant.",
+      "newRider": {
+        "saveAbility": "dexterity",
+        "dc": 13,
+        "condition": "Prone"
+      },
+      "classification": "physical/biological-nonspell"
+    },
+    "constrict": {
+      "id": "giant-constrictor-snake:tactic:Constrict",
+      "kind": "attack",
+      "name": "Constrict",
+      "nativeIndex": null,
+      "attackBonus": 3,
+      "damage": {
+        "dice": 1,
+        "sides": 6,
+        "flat": 1,
+        "type": "bludgeoning"
+      },
+      "geometry": {
+        "mode": "melee",
+        "reachFeet": 5
+      },
+      "procedure": "BFR105-CONSTRICT-01 — Giant Constrictor Snake / Constrict.\nTactics names Constrict and preparation names bludgeoning, but the only printed damage action is Bite+3,1d6+1 piercing. Keep that Bite, Huge size,18HP,AC11,CR1/4 and all other printed values exact.\nNEW: a physical natural melee Constrict, reach5ft, one perceived legal creature no more than one size category larger than the snake and with actual space for its body-contact coil. No tail-only remote grab is invented. Attack+3; hit1d6+1 bludgeoning, critical2d6+1. One real Action. This uses the printed Bite magnitude as the explicit numeric benchmark, not a foreign constrictor profile.\nAfter hit damage/life processing, a still-eligible recipient makes STR DC14, using the profile's printed save-DC benchmark. Failure creates one source-qualified Grappled relationship to this snake with5ft maintained reach. Success prevents the relationship, not damage. Grappled immunity blocks only the rider. A miss supplies neither damage nor that save.\nThis NEW natural coil occupies one designated coiling appendage and can hold only one recipient at a time. It is not a hand-based ordinary opposed grapple. While occupied, Constrict may attack that same recipient again for its normal paid attack/damage, but does not reroll admission, refresh or duplicate the existing grapple. A different recipient requires the old grip to end first. Existing Bite can still be used at a lawful opportunity without automatically ending the hold.\nEscape costs the recipient one Action and a STR(Athletics) or DEX(Acrobatics) fixed-DC14 task check; use only actual applicable proficiency. The two upper task degrees end this one relationship; other results retain it, without an invented injury. Release is free on the snake's own turn. The relationship also ends on snake Incapacitated/death/removal, target death/removal, or actual reach breaking, including forced movement/teleport; current target Speed returns to whatever its other real sources permit.\nNo Restrained, paralysis, suffocation, swallowed state, recurring free damage, concentration or extra action is added. A squeeze on a later turn remains a paid Constrict attack. Maintaining Grappled does not itself take away the target's Action or Reaction.\nFor the original Bite demonstration, its unchanged+3 and1d6+1 piercing use physical5ft one-target melee. Reason/tradeoff: this selects finite damage plus escapable movement control while retaining the unusually low printed CR/HP and explicit attack modifier; the record is not re-rated to satisfy a spell test.\nReconciliation BFR105-D04/D05: escape is a fixed-DC TASK, never a STR/DEX saving throw. Apply Core task degrees and natural1/20 degree shifts; collapse Success/Critical Success to ending this relationship and Failure/Critical Failure to retaining it. No extra escape effect or injury is implied by a degree. Actual Athletics/Acrobatics proficiency and check-only modifiers/Help require their own real source and still apply; saving-throw proficiency never supplies them. The initial post-hit STR DC14 is still a binary SAVE and is not converted into a task. The maximum target size is one actual category above this printed Huge source: Gargantuan is eligible by SIZE, not automatically by all requirements. A usable single coiling appendage must be able to obtain real accessible body-contact within5ft along a clear contact path while both occupied bodies remain legally placed. Whole-body encirclement is not a new prerequisite, but neither a size label nor minimum distance alone manufactures coil contact, appendage availability, anatomy or movement. With the coil occupied, a different-target Constrict attempt is rejected before spending another Action unless the old grip is actually released first. An ordinary paid same-target Constrict can deal its printed completed damage again without a second admission save or resetting the relationship. A later acquired size change needs its actual source; no such effect or Gargantuan stat block is granted here.",
+      "newRider": {
+        "saveAbility": "strength",
+        "dc": 14,
+        "condition": "Grappled",
+        "escape": "Action; fixed DC14 STR(Athletics) or DEX(Acrobatics) TASK with actual applicable proficiency and Core task degrees"
+      },
+      "classification": "physical/biological-nonspell",
+      "targetEligibility": {
+        "maximumCategoriesAboveActualSource": 1,
+        "printedSourceSize": "Huge",
+        "largestNamedTargetSize": "Gargantuan",
+        "coilContact": "actual accessible target body contact through one usable designated coiling appendage",
+        "capacity": 1,
+        "occupiedSameTarget": "paid repeat damage, no refreshed admission",
+        "occupiedDifferentTarget": "must end existing grip before commitment"
+      }
+    }
+  },
+  "files": {
+    "fullSources": "BOUND_SOURCES.json",
+    "fullChangedCases": "RETURN02_CASE_REPLACEMENTS.json",
+    "newDistinguishingCases": "DISTINGUISHING_CASES.json",
+    "allPointerDispositions": "IMPACT_INDEX.json",
+    "reversibleJson": "JSON_REFERENCE_OPERATIONS.json",
+    "reversibleText": "TEXT_REFERENCE_OPERATIONS.json",
+    "otherFullAfterValues": "DERIVATIVE_VALUES.json",
+    "validation": "VALIDATION_REPORT.json"
+  },
+  "inputBindings": {
+    "part01Json": {
+      "file": "DD_Bestiary_Recovery_Part01.json",
+      "bytes": 1744791,
+      "sha256": "810c3551c3b369ffe12e69e8790d12f42731d35166be6e1e580d2e4c433e1938"
+    },
+    "part01Text": {
+      "file": "DD_Bestiary_Recovery_Part01.txt",
+      "bytes": 29116,
+      "sha256": "3e974ffdca03a014e656724328e17bf0eb6690f427474bf1370b7f1d7b0ff8b9"
+    },
+    "return02Archive": {
+      "file": "DD_Bestiary_Return02.zip",
+      "bytes": 53908070,
+      "sha256": "ae2dd8f6300546321ddceb1a305aab108df04114acad4fbb737607cb71a1875f"
+    }
+  },
+  "scopeBoundary": {
+    "id": "DD-BESTIARY-FINAL-RECONCILIATION-105-01",
+    "scope": "Five authored-choice differences between the two complete delivered proposals only.",
+    "priorFinals": {
+      "part01": {
+        "file": "DD_Bestiary_Recovery_Part01.json",
+        "bytes": 1744791,
+        "sha256": "810c3551c3b369ffe12e69e8790d12f42731d35166be6e1e580d2e4c433e1938"
+      },
+      "return02": {
+        "file": "DD_Bestiary_Return02.zip",
+        "bytes": 53908070,
+        "sha256": "ae2dd8f6300546321ddceb1a305aab108df04114acad4fbb737607cb71a1875f"
+      }
+    },
+    "selectedProcedures": [
+      "BFR105-PW-01",
+      "BFR105-TAIL-01",
+      "BFR105-CONSTRICT-01"
+    ],
+    "currentReview": "No whole-bestiary semantic acceptance, source deletion, canonical installation or supplied-code execution.",
+    "containmentPulse": "Its charged Multiattack admission in Return02 remains a separate proposed expansion, neither approved nor removed here.",
+    "caseReplacementAuthority": "The exact13 changed parent-case objects and26 changed trace dispositions in this bounded return; originals remain in Return02.",
+    "historicalReports": "All old diagnostics/verification counts remain historical; do not infer current broad pass.",
+    "retainedWholePositiveCaseHolds": [
+      "IN6-09-A",
+      "IN6-09-B",
+      "EN5-01-A",
+      "EN5-01-B",
+      "EN6-03-B"
+    ],
+    "appliedBaseline": [
+      525,
+      323,
+      249,
+      173
+    ],
+    "acceptedUnappliedOrdinary": 53
+  },
+  "noOriginalOutputsModified": true,
+  "remainingConditionalSizeCase": {
+    "id": "BFR105-SIZE-PREDICATE-ONLY",
+    "status": "CONDITIONAL_SIZE_BOUNDARY_NOT_A_COMPLETE_GARGANTUAN_ENCOUNTER",
+    "actualSource": {
+      "dossier": "giant-constrictor-snake",
+      "size": "Huge",
+      "hp": 18,
+      "AC": 11,
+      "CR": "1/4",
+      "attack": 3,
+      "damage": "1d6+1"
+    },
+    "nativeAvailability": "The complete66 printed profile set contains Huge/Large/Medium/Small/Tiny, no printed Gargantuan. No target stats, campaign spawn, growth spell or CR are fabricated.",
+    "rows": [
+      {
+        "targetSize": "Huge",
+        "coilAvailable": true,
+        "realContact": true,
+        "selectedSizeEligibility": true,
+        "Return02SizeEligibility": true
+      },
+      {
+        "targetSize": "Gargantuan",
+        "coilAvailable": true,
+        "realContact": true,
+        "selectedSizeEligibility": true,
+        "Return02SizeEligibility": false,
+        "qualification": "actual independent Gargantuan profile/body/contact/schedule required for an end-to-end positive case"
+      },
+      {
+        "targetSize": "Gargantuan",
+        "coilAvailable": false,
+        "realContact": true,
+        "selectedOverallEligibility": false,
+        "reason": "occupied/unusable coil"
+      },
+      {
+        "targetSize": "Gargantuan",
+        "coilAvailable": true,
+        "realContact": false,
+        "selectedOverallEligibility": false,
+        "reason": "no real contact"
+      }
+    ],
+    "noActionRNGDamageOrConditionProduced": true,
+    "notCountedAsPositiveEncounter": true
+  },
+  "historicalCounts": "Part01 FINAL23cases/56transitions/5ops/279reportedchecks; not the earlier24case/6op interim.",
+  "instructionBoundary": "Read-only proposed reconciliation. No executable is returned and no supplied/previously-successful program was executed."
+}

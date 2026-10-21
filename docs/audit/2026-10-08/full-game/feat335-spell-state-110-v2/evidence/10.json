@@ -1,0 +1,993 @@
+{
+  "source": "All original example data below is copied complete from exact historical records. Earlier contradictory outcomes remain historical, not current requirements.",
+  "cardWorkedCases": [
+    {
+      "index": 291,
+      "id": "arcane_adaptation",
+      "completeWorkedCases": [
+        "Capturing a fire Strike grants fire resistance through next end; adapting it permits paid bounded releases within two regular-start intervals.",
+        "Copying a harmless warning reveals no damage type and grants no invented resistance."
+      ]
+    },
+    {
+      "index": 307,
+      "id": "eldritch_echo",
+      "completeWorkedCases": [
+        "Observe rank 4 damage: half-rankq 2 Strike may be captured if your real route can learn rank 2, then costs 3 RP next turn.",
+        "Forbidden Pact alone supplies the cantrip, not a rank 2 spell repertoire orRPpool for that copied release."
+      ]
+    },
+    {
+      "index": 318,
+      "id": "mimicry",
+      "completeWorkedCases": [
+        "A perceived attack spell directed at you from 60 ft may qualify through the targeted clause despite the ordinary 30 ftwitness radius.",
+        "Observing a monster restore RP cannot produce a copied recovery profile."
+      ]
+    }
+  ],
+  "completePriorImplementationCases": {
+    "scope": "Ten complete source-linked integration obligations for future Codex engine work. These are NOT runtime-passed tests. Isolated narrower model tests are reported separately.",
+    "count": 10,
+    "cases": [
+      {
+        "id": "P5-CP01",
+        "decision": "CTRL15-PRISON-ROOT-01",
+        "kind": "Existing complete numeric fixture plus selected causality",
+        "sourceCase": "AFFECTED_CASES.json#EN6-05-A",
+        "given": "Use the entire preserved EN6-05-A actor, geometry, admission and entry28/exit24 fixture. Root is created once on actual admission.",
+        "events": [
+          "admit prison and snapshot original caster Null flag",
+          "entry28",
+          "later legal escape",
+          "consume exit entitlement",
+          "exit24"
+        ],
+        "expected": "100→72→48HP; two damage events under one original-caster root. No single event reaches50. Duplicate ending/cleanup callbacks yield no third packet.",
+        "runtimeExecution": "NOT_EXECUTED"
+      },
+      {
+        "id": "P5-CP02",
+        "decision": "CTRL15-PRISON-ROOT-01",
+        "kind": "Harness-level conditional transition",
+        "given": "Actually admitted prison with a recorded creation flag; provide a separately lawful source event that changes caster Null state after admission. This fixture does not supply that source event.",
+        "events": [
+          "record root flag",
+          "external Veil gain/loss/suppression",
+          "actual exit"
+        ],
+        "expected": "Exit retains the stored flag, independent of current Veil. Current recipient defenses are evaluated separately. Test both creationFlag=false/current=true and creationFlag=true/current=false.",
+        "runtimeExecution": "NOT_EXECUTED"
+      },
+      {
+        "id": "P5-CP03",
+        "decision": "CTRL15-PRISON-ROOT-01",
+        "kind": "Counter/replace integration obligation",
+        "given": "Same caster actually maintains the old prison and legally commits a replacement concentration spell. Any counter/save provider must be genuinely legal.",
+        "events": [
+          "new legal commitment displaces old concentration",
+          "old unsuppressed live exit resolves once",
+          "new counter/save result prevents new admission"
+        ],
+        "expected": "Old application stays ended; no refund/restoration, no new entry/root. Compare a different caster saved-against attempt, which leaves old prison intact because it never reached replacement-by-admission.",
+        "runtimeExecution": "NOT_EXECUTED"
+      },
+      {
+        "id": "P5-CP04",
+        "decision": "CTRL15-PRISON-ROOT-01",
+        "kind": "Different-caster replacement/life-state obligation",
+        "given": "New failed-save otherwise eligible prison would replace another caster's old prison. Supply the actual old-exit damage/life response path, not an assumed zeroHP death.",
+        "events": [
+          "old entitlement consumed",
+          "old exit and real responses finish",
+          "revalidate same recipient and new cast concentration/source",
+          "admit new only if still eligible"
+        ],
+        "expected": "Actual death/removal or new-source cancellation prevents new entry/root. Alive at0HP alone does not. No new save/target choice or payment refund.",
+        "runtimeExecution": "NOT_EXECUTED"
+      },
+      {
+        "id": "P5-CP05",
+        "decision": "CTRL15-PUPPET-END-01",
+        "kind": "Existing conditional whole fixture",
+        "sourceCase": "AFFECTED_CASES.json#EN6-03-B",
+        "given": "Use the full EN6-03-B fixture, preserving the separately unresolved prior grapple contest. Ready release2.2; underwayphaseEND2.4; futureSTART8/END8.4; expiry14.4. Independent suppression coversSTART8 and ends8.3.",
+        "events": [
+          "release2.2",
+          "skip underway2.4 checkpoint",
+          "suppressedSTART8 has no route",
+          "firstfutureEND8.4",
+          "originalexpiry14.4"
+        ],
+        "expected": "One early STR save at8.4 despite no travel/instruction. No early save2.4; no final save14.4; no phase invented if chassis supplies none.",
+        "runtimeExecution": "NOT_EXECUTED; contest content hold remains"
+      },
+      {
+        "id": "P5-CP06",
+        "decision": "CTRL15-GEAS-SOFT-01",
+        "kind": "Soft-permission state-machine obligation",
+        "sourceCase": "AFFECTED_CASES.json#EN5-06-A",
+        "given": "A meaningful Geas was admitted only as soft movement/ordinary interaction. An actual later obstacle would require a full Action.",
+        "events": [
+          "soft establishment",
+          "obstacle appears",
+          "seek valid safe soft method or wait",
+          "actual voluntary action by target may independently open a path"
+        ],
+        "expected": "No new compelled whole Action, hard reservation or objective. Preserve deadline and legitimate temporary suspension. Voluntary action not granted or compelled by Geas.",
+        "runtimeExecution": "NOT_EXECUTED"
+      },
+      {
+        "id": "P5-CP07",
+        "decision": "CTRL15-DOMINATE-PHASE-01",
+        "kind": "Conditional source-qualified phase obligation",
+        "given": "An actual documentedCR<=10 admitted target really uses an owner-attached chassis. The pending EN5-01-A/B creature profiles do not themselves prove this given.",
+        "events": [
+          "admit during existing phase",
+          "that phaseEND",
+          "nextactualphaseSTART/END",
+          "phaseabsence",
+          "return to realphase"
+        ],
+        "expected": "UnderwayEND WIS save but no retroactive START order; future orders preserve original-owner shared caps. Absence supplies END-only saves with saved cadence anchor, no actions. Mapping/repeatedcallbacks do not duplicate or reset saves/deadline.",
+        "runtimeExecution": "NOT_EXECUTED; native profile holds remain"
+      },
+      {
+        "id": "P5-CP08",
+        "decision": "CTRL15-READY-SELECTION-01",
+        "kind": "Ready source/geometry integration obligation",
+        "given": "A real acquired Action-time Control15 source can legally be readied. Mode/preparation-bound choices and all source component/comprehension timing must be supplied by its actual rules.",
+        "events": [
+          "paid preparation",
+          "world/recipient positions change",
+          "perceived trigger completes",
+          "select legal actual release targets/area",
+          "resolve"
+        ],
+        "expected": "Use release-time legal targets/orderedlist/area and actualresolution snapshots. No setup ghost target, secondRP/component/counter/cadence, free speech or retroactive hearing. Field/control lifetime starts at actual establishment.",
+        "runtimeExecution": "NOT_EXECUTED"
+      },
+      {
+        "id": "P5-CP09",
+        "decision": "COPY-READY-ALLOWANCE-01",
+        "kind": "Conditional cross-round copy transaction",
+        "given": "Actually authorized feat-copy preparation in numberedroundN with Ready still live before nextownregularSTART in N+1. Actual classsharedengine exists only if separately acquired.",
+        "events": [
+          "atomically commit setup allowances/costs inN",
+          "triggeroccursN+1 beforeexpiry",
+          "check currentN+1cap(s)",
+          "commit releaseReaction/currentcap(s)",
+          "resolveonepayload"
+        ],
+        "expected": "UseNandN+1cap(s), not twoRPpayments or two permissionuses/counterwindows/historyupdates. Same-round release reuses only thisholdtokens. Later capfailure has no partial spend; expires at originaldeadline.",
+        "runtimeExecution": "NOT_EXECUTED"
+      },
+      {
+        "id": "P5-CP10",
+        "decision": "COPY-READY-ALLOWANCE-01",
+        "kind": "Competing release/source obligation",
+        "given": "Another copy/class release before the priorholdexpiry needs its own independently lawful Action/Reaction/source opportunity; this fixture grants none.",
+        "events": [
+          "priorroundhold exists",
+          "genuinelylegal competing use commitscurrentcap",
+          "oldholdtriggerattempt",
+          "optional later lawfuloccurrence beforeoriginalexpiry"
+        ],
+        "expected": "Priorhold grants no priority and cannot bypass spentcurrentcap. No reaction/partialotherledger debit on blockedattempt; no cap/permissionrefund from losthold. Save/load and retryIDs preservechronology.",
+        "runtimeExecution": "NOT_EXECUTED"
+      }
+    ]
+  },
+  "completeSelectedImplementationCases": {
+    "scope": "Ten source-linked integration obligations. The first eight remain unchanged from corrections01; CP09/CP10 are owner-policy successors preserving their full originals in baseline and history. NOT runtime-passed tests. New executable checks in this return are isolated specification tests only.",
+    "count": 10,
+    "cases": [
+      {
+        "id": "P5-CP01",
+        "decision": "CTRL15-PRISON-ROOT-01",
+        "kind": "Existing complete numeric fixture plus selected causality",
+        "sourceCase": "AFFECTED_CASES.json#EN6-05-A",
+        "given": "Use the entire preserved EN6-05-A actor, geometry, admission and entry28/exit24 fixture. Root is created once on actual admission.",
+        "events": [
+          "admit prison and snapshot original caster Null flag",
+          "entry28",
+          "later legal escape",
+          "consume exit entitlement",
+          "exit24"
+        ],
+        "expected": "100→72→48HP; two damage events under one original-caster root. No single event reaches50. Duplicate ending/cleanup callbacks yield no third packet.",
+        "runtimeExecution": "NOT_EXECUTED"
+      },
+      {
+        "id": "P5-CP02",
+        "decision": "CTRL15-PRISON-ROOT-01",
+        "kind": "Harness-level conditional transition",
+        "given": "Actually admitted prison with a recorded creation flag; provide a separately lawful source event that changes caster Null state after admission. This fixture does not supply that source event.",
+        "events": [
+          "record root flag",
+          "external Veil gain/loss/suppression",
+          "actual exit"
+        ],
+        "expected": "Exit retains the stored flag, independent of current Veil. Current recipient defenses are evaluated separately. Test both creationFlag=false/current=true and creationFlag=true/current=false.",
+        "runtimeExecution": "NOT_EXECUTED"
+      },
+      {
+        "id": "P5-CP03",
+        "decision": "CTRL15-PRISON-ROOT-01",
+        "kind": "Counter/replace integration obligation",
+        "given": "Same caster actually maintains the old prison and legally commits a replacement concentration spell. Any counter/save provider must be genuinely legal.",
+        "events": [
+          "new legal commitment displaces old concentration",
+          "old unsuppressed live exit resolves once",
+          "new counter/save result prevents new admission"
+        ],
+        "expected": "Old application stays ended; no refund/restoration, no new entry/root. Compare a different caster saved-against attempt, which leaves old prison intact because it never reached replacement-by-admission.",
+        "runtimeExecution": "NOT_EXECUTED"
+      },
+      {
+        "id": "P5-CP04",
+        "decision": "CTRL15-PRISON-ROOT-01",
+        "kind": "Different-caster replacement/life-state obligation",
+        "given": "New failed-save otherwise eligible prison would replace another caster's old prison. Supply the actual old-exit damage/life response path, not an assumed zeroHP death.",
+        "events": [
+          "old entitlement consumed",
+          "old exit and real responses finish",
+          "revalidate same recipient and new cast concentration/source",
+          "admit new only if still eligible"
+        ],
+        "expected": "Actual death/removal or new-source cancellation prevents new entry/root. Alive at0HP alone does not. No new save/target choice or payment refund.",
+        "runtimeExecution": "NOT_EXECUTED"
+      },
+      {
+        "id": "P5-CP05",
+        "decision": "CTRL15-PUPPET-END-01",
+        "kind": "Existing conditional whole fixture",
+        "sourceCase": "AFFECTED_CASES.json#EN6-03-B",
+        "given": "Use the full EN6-03-B fixture, preserving the separately unresolved prior grapple contest. Ready release2.2; underwayphaseEND2.4; futureSTART8/END8.4; expiry14.4. Independent suppression coversSTART8 and ends8.3.",
+        "events": [
+          "release2.2",
+          "skip underway2.4 checkpoint",
+          "suppressedSTART8 has no route",
+          "firstfutureEND8.4",
+          "originalexpiry14.4"
+        ],
+        "expected": "One early STR save at8.4 despite no travel/instruction. No early save2.4; no final save14.4; no phase invented if chassis supplies none.",
+        "runtimeExecution": "NOT_EXECUTED; contest content hold remains"
+      },
+      {
+        "id": "P5-CP06",
+        "decision": "CTRL15-GEAS-SOFT-01",
+        "kind": "Soft-permission state-machine obligation",
+        "sourceCase": "AFFECTED_CASES.json#EN5-06-A",
+        "given": "A meaningful Geas was admitted only as soft movement/ordinary interaction. An actual later obstacle would require a full Action.",
+        "events": [
+          "soft establishment",
+          "obstacle appears",
+          "seek valid safe soft method or wait",
+          "actual voluntary action by target may independently open a path"
+        ],
+        "expected": "No new compelled whole Action, hard reservation or objective. Preserve deadline and legitimate temporary suspension. Voluntary action not granted or compelled by Geas.",
+        "runtimeExecution": "NOT_EXECUTED"
+      },
+      {
+        "id": "P5-CP07",
+        "decision": "CTRL15-DOMINATE-PHASE-01",
+        "kind": "Conditional source-qualified phase obligation",
+        "given": "An actual documentedCR<=10 admitted target really uses an owner-attached chassis. The pending EN5-01-A/B creature profiles do not themselves prove this given.",
+        "events": [
+          "admit during existing phase",
+          "that phaseEND",
+          "nextactualphaseSTART/END",
+          "phaseabsence",
+          "return to realphase"
+        ],
+        "expected": "UnderwayEND WIS save but no retroactive START order; future orders preserve original-owner shared caps. Absence supplies END-only saves with saved cadence anchor, no actions. Mapping/repeatedcallbacks do not duplicate or reset saves/deadline.",
+        "runtimeExecution": "NOT_EXECUTED; native profile holds remain"
+      },
+      {
+        "id": "P5-CP08",
+        "decision": "CTRL15-READY-SELECTION-01",
+        "kind": "Ready source/geometry integration obligation",
+        "given": "A real acquired Action-time Control15 source can legally be readied. Mode/preparation-bound choices and all source component/comprehension timing must be supplied by its actual rules.",
+        "events": [
+          "paid preparation",
+          "world/recipient positions change",
+          "perceived trigger completes",
+          "select legal actual release targets/area",
+          "resolve"
+        ],
+        "expected": "Use release-time legal targets/orderedlist/area and actualresolution snapshots. No setup ghost target, secondRP/component/counter/cadence, free speech or retroactive hearing. Field/control lifetime starts at actual establishment.",
+        "runtimeExecution": "NOT_EXECUTED"
+      },
+      {
+        "id": "P5-CP09",
+        "decision": "COPY-READY-ALLOWANCE-02",
+        "kind": "Conditional cross-round copy transaction",
+        "given": "Actually authorized feat-copy preparation in numberedroundN with Ready still live before nextownregularSTART in N+1. Actual classsharedengine exists only if separately acquired.",
+        "events": [
+          "atomically commit preparation allowance(s), actual Action/costs/permission/history in N",
+          "actual perceivable trigger completes in N+1 before every original deadline",
+          "validate same paid hold receipts, real Reaction, concentration and actual current target/source predicates; do not check N+1 copy allowances",
+          "atomically consume hold once and actual Reaction; no new copy/class allowance",
+          "resolve one source-qualified payload"
+        ],
+        "expected": "Only preparation-round N allowance(s) are spent by this hold. A free N+1 allowance remains free; an independently already-spent N+1 allowance remains spent with its own original owner/use identity and does not block this hold. RP/components/permission/counter/history occur once. Same-round release also spends no new allowance. Invalid release has no new debit; expiry is unchanged and wins at its exact marker.",
+        "runtimeExecution": "NOT_EXECUTED",
+        "policySupersession": "The former both-touched-round outcome is superseded only for this copy-Ready accounting decision. Complete original case retained in baseline/IMPLEMENTATION_CASES_RECONCILED.json and the unchanged corrections01 archive."
+      },
+      {
+        "id": "P5-CP10",
+        "decision": "COPY-READY-ALLOWANCE-02",
+        "kind": "Competing release/source obligation",
+        "given": "Another copy/class release before the priorholdexpiry needs its own independently lawful Action/Reaction/source opportunity; this fixture grants none.",
+        "events": [
+          "prior-round paid hold is still valid before its next-own-regular-START/earlier source deadline",
+          "a separately source-qualified nonconcentration competing direct copy or class use consumes its own current-round allowance with a genuine action opportunity",
+          "the old hold trigger completes while concentration and real Reaction remain available",
+          "validate and commit the old release independently of the already-spent current allowance",
+          "compare reverse ordering: old release first leaves current allowance available for another genuinely legal commitment"
+        ],
+        "expected": "Both lawful uses may resolve in the same numbered release round. The held release never recharges, overwrites or bypasses the competing use's own commitment rule; it simply is not a new commitment. No Action opportunity, Reaction, capture or second concentration slot is supplied by this case. A competing concentration-breaking cast ends the hold under its actual rule. A missing legal action opportunity leaves the competing-use branch conditional, not a free additional cast. Failed/declined release spends no Reaction; preparation is never refunded.",
+        "runtimeExecution": "NOT_EXECUTED",
+        "policySupersession": "The former both-touched-round outcome is superseded only for this copy-Ready accounting decision. Complete original case retained in baseline/IMPLEMENTATION_CASES_RECONCILED.json and the unchanged corrections01 archive."
+      }
+    ]
+  },
+  "originalReadySpecificationTests": [
+    {
+      "name": "test_preparation_spends_before_counter",
+      "completeOriginalSource": "def test_preparation_spends_before_counter(self):\n        m=CopyReadyLedger();self.assertTrue(m.prepare('h','N',time(6),countered=True));self.assertEqual((m.rp,m.permission_uses,m.counter_windows,m.action_spends),(23,2,1,1));self.assertIn('N',m.feat_rounds);self.assertIsNone(m.hold)",
+      "currentDisposition": "RETAINED_SPECIFICATION_OBLIGATION",
+      "selectedOutcome": "Original narrow obligation retained; no live game/provider behavior inferred from the isolated test."
+    },
+    {
+      "name": "test_precommit_failure_is_atomic",
+      "completeOriginalSource": "def test_precommit_failure_is_atomic(self):\n        m=CopyReadyLedger(class_engine_actually_owned=True);m.class_rounds['N']='other';before=m.snapshot();self.assertFalse(m.prepare('h','N',time(6)));self.assertEqual(before,m.snapshot())",
+      "currentDisposition": "RETAINED_SPECIFICATION_OBLIGATION",
+      "selectedOutcome": "Original narrow obligation retained; no live game/provider behavior inferred from the isolated test."
+    },
+    {
+      "name": "test_same_round_release_reuses_own_token",
+      "completeOriginalSource": "def test_same_round_release_reuses_own_token(self):\n        m=self.prepared(True);self.assertEqual(m.release('N',time(2)),'committed');self.assertEqual((len(m.feat_rounds),len(m.class_rounds)),(1,1))",
+      "currentDisposition": "RETAINED_SPECIFICATION_OBLIGATION",
+      "selectedOutcome": "Original narrow obligation retained; no live game/provider behavior inferred from the isolated test."
+    },
+    {
+      "name": "test_crossround_spends_both_rounds_with_one_payment",
+      "completeOriginalSource": "def test_crossround_spends_both_rounds_with_one_payment(self):\n        m=self.prepared(True);self.assertEqual(m.release('N+1',time(5)),'committed');self.assertEqual(set(m.feat_rounds),{'N','N+1'});self.assertEqual(set(m.class_rounds),{'N','N+1'});self.assertEqual((m.rp,m.permission_uses,m.cast_history_updates,m.counter_windows,m.components_provided),(23,2,1,1,1))",
+      "currentDisposition": "SUPERSEDED_EXPECTATION",
+      "selectedOutcome": "Current hold spends preparation allowance(s) only; one payment/history remains."
+    },
+    {
+      "name": "test_crossround_class_cap_failure_no_partial_feat_spend",
+      "completeOriginalSource": "def test_crossround_class_cap_failure_no_partial_feat_spend(self):\n        m=self.prepared(True);m.class_rounds['N+1']='actually-lawful-other-release';before=m.snapshot();self.assertEqual(m.release('N+1',time(5)),'not-committed');self.assertEqual(before,m.snapshot())",
+      "currentDisposition": "SUPERSEDED_EXPECTATION",
+      "selectedOutcome": "A spent later-round class cap no longer blocks the otherwise valid paid hold."
+    },
+    {
+      "name": "test_crossround_feat_cap_failure_no_partial_class_spend",
+      "completeOriginalSource": "def test_crossround_feat_cap_failure_no_partial_class_spend(self):\n        m=self.prepared(True);m.feat_rounds['N+1']='actually-lawful-other-copy';before=m.snapshot();self.assertEqual(m.release('N+1',time(5)),'not-committed');self.assertEqual(before,m.snapshot())",
+      "currentDisposition": "SUPERSEDED_EXPECTATION",
+      "selectedOutcome": "A spent later-round feat cap no longer blocks the otherwise valid paid hold."
+    },
+    {
+      "name": "test_target_invalid_keeps_hold_without_reaction",
+      "completeOriginalSource": "def test_target_invalid_keeps_hold_without_reaction(self):\n        m=self.prepared();before=m.snapshot();self.assertEqual(m.release('N',time(3),legal_target_and_sources=False),'not-committed');self.assertEqual(before,m.snapshot())",
+      "currentDisposition": "RETAINED_SPECIFICATION_OBLIGATION",
+      "selectedOutcome": "Original narrow obligation retained; no live game/provider behavior inferred from the isolated test."
+    },
+    {
+      "name": "test_decline_keeps_original_hold_and_deadline",
+      "completeOriginalSource": "def test_decline_keeps_original_hold_and_deadline(self):\n        m=self.prepared();self.assertEqual(m.release('N',time(3),trigger_declined=True),'not-committed');self.assertEqual(m.hold['expiry'],6);self.assertEqual(m.reaction_spends,0)",
+      "currentDisposition": "RETAINED_SPECIFICATION_OBLIGATION",
+      "selectedOutcome": "Original narrow obligation retained; no live game/provider behavior inferred from the isolated test."
+    },
+    {
+      "name": "test_expiry_exact_boundary_precedes_release",
+      "completeOriginalSource": "def test_expiry_exact_boundary_precedes_release(self):\n        m=self.prepared();self.assertEqual(m.release('N+1',time(6)),'expired');self.assertEqual(m.reaction_spends,0);self.assertNotIn('N+1',m.feat_rounds);self.assertEqual(m.rp,23)",
+      "currentDisposition": "RETAINED_SPECIFICATION_OBLIGATION",
+      "selectedOutcome": "Original narrow obligation retained; no live game/provider behavior inferred from the isolated test."
+    },
+    {
+      "name": "test_concentration_loss_no_refund",
+      "completeOriginalSource": "def test_concentration_loss_no_refund(self):\n        m=self.prepared();m.lose_hold();self.assertEqual((m.rp,m.permission_uses),(23,2));self.assertIn('N',m.feat_rounds);self.assertEqual(m.release('N',time(4)),'no-hold')",
+      "currentDisposition": "RETAINED_SPECIFICATION_OBLIGATION",
+      "selectedOutcome": "Original narrow obligation retained; no live game/provider behavior inferred from the isolated test."
+    },
+    {
+      "name": "test_retry_no_second_payload_or_spend",
+      "completeOriginalSource": "def test_retry_no_second_payload_or_spend(self):\n        m=self.prepared();m.release('N',time(3));before=m.snapshot();self.assertEqual(m.release('N',time(3)),'no-hold');self.assertEqual(m.snapshot(),before)",
+      "currentDisposition": "RETAINED_SPECIFICATION_OBLIGATION",
+      "selectedOutcome": "Original narrow obligation retained; no live game/provider behavior inferred from the isolated test."
+    },
+    {
+      "name": "test_preparation_id_cannot_be_reused",
+      "completeOriginalSource": "def test_preparation_id_cannot_be_reused(self):\n        m=self.prepared();m.lose_hold();before=m.snapshot();self.assertFalse(m.prepare('h','N+1',time(10)));self.assertEqual(before,m.snapshot())",
+      "currentDisposition": "RETAINED_SPECIFICATION_OBLIGATION",
+      "selectedOutcome": "Original narrow obligation retained; no live game/provider behavior inferred from the isolated test."
+    },
+    {
+      "name": "test_invalid_replacement_does_not_delete_prior_hold",
+      "completeOriginalSource": "def test_invalid_replacement_does_not_delete_prior_hold(self):\n        m=self.prepared();before=m.snapshot();self.assertFalse(m.prepare('other','N+1',time(10),legal_action_and_sources=False));self.assertEqual(before,m.snapshot())",
+      "currentDisposition": "RETAINED_SPECIFICATION_OBLIGATION",
+      "selectedOutcome": "Original narrow obligation retained; no live game/provider behavior inferred from the isolated test."
+    },
+    {
+      "name": "test_same_round_cannot_use_someone_elses_token",
+      "completeOriginalSource": "def test_same_round_cannot_use_someone_elses_token(self):\n        m=self.prepared();m.feat_rounds['N']='different-copy';before=m.snapshot();self.assertEqual(m.release('N',time(3)),'not-committed');self.assertEqual(before,m.snapshot())",
+      "currentDisposition": "RETAINED_SPECIFICATION_OBLIGATION",
+      "selectedOutcome": "Original narrow obligation retained; no live game/provider behavior inferred from the isolated test."
+    },
+    {
+      "name": "test_unowned_class_engine_not_granted",
+      "completeOriginalSource": "def test_unowned_class_engine_not_granted(self):\n        m=self.prepared(False);m.release('N+1',time(5));self.assertEqual(m.class_rounds,{})",
+      "currentDisposition": "RETAINED_SPECIFICATION_OBLIGATION",
+      "selectedOutcome": "Original narrow obligation retained; no live game/provider behavior inferred from the isolated test."
+    },
+    {
+      "name": "test_sustained_same_concentration_burden",
+      "completeOriginalSource": "def test_sustained_same_concentration_burden(self):\n        m=self.prepared(profile='Ward');m.release('N',time(3));self.assertEqual(m.concentration,'sustained');self.assertEqual(m.cast_history_updates,1)",
+      "currentDisposition": "RETAINED_SPECIFICATION_OBLIGATION",
+      "selectedOutcome": "Original narrow obligation retained; no live game/provider behavior inferred from the isolated test."
+    },
+    {
+      "name": "test_immediate_concentration_ends_after_resolution",
+      "completeOriginalSource": "def test_immediate_concentration_ends_after_resolution(self):\n        m=self.prepared(profile='Strike');m.release('N',time(3));self.assertIsNone(m.concentration)",
+      "currentDisposition": "RETAINED_SPECIFICATION_OBLIGATION",
+      "selectedOutcome": "Original narrow obligation retained; no live game/provider behavior inferred from the isolated test."
+    },
+    {
+      "name": "test_late_prevention_retains_committed_spends",
+      "completeOriginalSource": "def test_late_prevention_retains_committed_spends(self):\n        m=self.prepared(True);self.assertEqual(m.release('N+1',time(5),later_payload_prevented=True),'committed-prevented');self.assertEqual(m.reaction_spends,1);self.assertIn('N+1',m.class_rounds);self.assertEqual(m.payloads,0)",
+      "currentDisposition": "SUPERSEDED_EXPECTATION",
+      "selectedOutcome": "Retain Reaction and preparation spends, but create no release-round allowance entry."
+    },
+    {
+      "name": "test_snapshot_restoration_preserves_history",
+      "completeOriginalSource": "def test_snapshot_restoration_preserves_history(self):\n        m=self.prepared(True);saved=m.snapshot();restored=CopyReadyLedger();restored.__dict__=copy.deepcopy(saved);restored.release('N+1',time(5));self.assertEqual((restored.rp,restored.counter_windows,restored.cast_history_updates),(23,1,1));self.assertIn('N',restored.feat_rounds)",
+      "currentDisposition": "RETAINED_SPECIFICATION_OBLIGATION",
+      "selectedOutcome": "Original narrow obligation retained; no live game/provider behavior inferred from the isolated test."
+    },
+    {
+      "name": "test_no_future_allowance_reserved_at_preparation",
+      "completeOriginalSource": "def test_no_future_allowance_reserved_at_preparation(self):\n        m=self.prepared(True);self.assertNotIn('N+1',m.feat_rounds);self.assertNotIn('N+1',m.class_rounds)",
+      "currentDisposition": "RETAINED_SPECIFICATION_OBLIGATION",
+      "selectedOutcome": "Original narrow obligation retained; no live game/provider behavior inferred from the isolated test."
+    }
+  ],
+  "completeOriginalReadyLifecycleHistories": [
+    {
+      "id": "ready-lifecycle/strike",
+      "source": {
+        "path": "docs/audit/2026-10-08/full-game/FEAT335_COPY_RELEASE_01_CHECK.json",
+        "pointer": "/readyLifecycleHistories/0",
+        "bytes": 868662,
+        "sha256": "577b92bf5f82030ef2203623f0d8fed155aec09d45b10489e04bd16780111a07"
+      },
+      "disposition": "RETAIN_PAID_PREPARATION_PREMISE_ONLY_NOT_FULL_READY",
+      "reason": "One concentration burden transitions from an already-paid hold to the declared immediate/lasting lifecycle. Payment, trigger, actual Reaction, cross-round allowances, earlier capture expiry and release-time selection are not executed by this helper.",
+      "completeOriginalHistory": {
+        "casts": {
+          "paid-ready": {
+            "id": "paid-ready",
+            "profile": "strike",
+            "ready": true,
+            "state": "resolved",
+            "effectActive": false,
+            "concentrationRequired": false,
+            "displacedConcentration": "old",
+            "counterWindowOutcome": "not-countered"
+          }
+        },
+        "currentBurden": null
+      },
+      "completeProposedReplayHistory": {
+        "casts": {
+          "paid-ready": {
+            "id": "paid-ready",
+            "profile": "strike",
+            "ready": true,
+            "state": "resolved",
+            "effectActive": false,
+            "concentrationRequired": false,
+            "displacedConcentration": "old",
+            "counterWindowOutcome": "not-countered"
+          }
+        },
+        "currentBurden": null
+      }
+    },
+    {
+      "id": "ready-lifecycle/burst",
+      "source": {
+        "path": "docs/audit/2026-10-08/full-game/FEAT335_COPY_RELEASE_01_CHECK.json",
+        "pointer": "/readyLifecycleHistories/1",
+        "bytes": 868662,
+        "sha256": "577b92bf5f82030ef2203623f0d8fed155aec09d45b10489e04bd16780111a07"
+      },
+      "disposition": "RETAIN_PAID_PREPARATION_PREMISE_ONLY_NOT_FULL_READY",
+      "reason": "One concentration burden transitions from an already-paid hold to the declared immediate/lasting lifecycle. Payment, trigger, actual Reaction, cross-round allowances, earlier capture expiry and release-time selection are not executed by this helper.",
+      "completeOriginalHistory": {
+        "casts": {
+          "paid-ready": {
+            "id": "paid-ready",
+            "profile": "burst",
+            "ready": true,
+            "state": "resolved",
+            "effectActive": false,
+            "concentrationRequired": false,
+            "displacedConcentration": "old",
+            "counterWindowOutcome": "not-countered"
+          }
+        },
+        "currentBurden": null
+      },
+      "completeProposedReplayHistory": {
+        "casts": {
+          "paid-ready": {
+            "id": "paid-ready",
+            "profile": "burst",
+            "ready": true,
+            "state": "resolved",
+            "effectActive": false,
+            "concentrationRequired": false,
+            "displacedConcentration": "old",
+            "counterWindowOutcome": "not-countered"
+          }
+        },
+        "currentBurden": null
+      }
+    },
+    {
+      "id": "ready-lifecycle/mend",
+      "source": {
+        "path": "docs/audit/2026-10-08/full-game/FEAT335_COPY_RELEASE_01_CHECK.json",
+        "pointer": "/readyLifecycleHistories/2",
+        "bytes": 868662,
+        "sha256": "577b92bf5f82030ef2203623f0d8fed155aec09d45b10489e04bd16780111a07"
+      },
+      "disposition": "RETAIN_PAID_PREPARATION_PREMISE_ONLY_NOT_FULL_READY",
+      "reason": "One concentration burden transitions from an already-paid hold to the declared immediate/lasting lifecycle. Payment, trigger, actual Reaction, cross-round allowances, earlier capture expiry and release-time selection are not executed by this helper.",
+      "completeOriginalHistory": {
+        "casts": {
+          "paid-ready": {
+            "id": "paid-ready",
+            "profile": "mend",
+            "ready": true,
+            "state": "resolved",
+            "effectActive": false,
+            "concentrationRequired": false,
+            "displacedConcentration": "old",
+            "counterWindowOutcome": "not-countered"
+          }
+        },
+        "currentBurden": null
+      },
+      "completeProposedReplayHistory": {
+        "casts": {
+          "paid-ready": {
+            "id": "paid-ready",
+            "profile": "mend",
+            "ready": true,
+            "state": "resolved",
+            "effectActive": false,
+            "concentrationRequired": false,
+            "displacedConcentration": "old",
+            "counterWindowOutcome": "not-countered"
+          }
+        },
+        "currentBurden": null
+      }
+    },
+    {
+      "id": "ready-lifecycle/ward",
+      "source": {
+        "path": "docs/audit/2026-10-08/full-game/FEAT335_COPY_RELEASE_01_CHECK.json",
+        "pointer": "/readyLifecycleHistories/3",
+        "bytes": 868662,
+        "sha256": "577b92bf5f82030ef2203623f0d8fed155aec09d45b10489e04bd16780111a07"
+      },
+      "disposition": "RETAIN_PAID_PREPARATION_PREMISE_ONLY_NOT_FULL_READY",
+      "reason": "One concentration burden transitions from an already-paid hold to the declared immediate/lasting lifecycle. Payment, trigger, actual Reaction, cross-round allowances, earlier capture expiry and release-time selection are not executed by this helper.",
+      "completeOriginalHistory": {
+        "casts": {
+          "paid-ready": {
+            "id": "paid-ready",
+            "profile": "ward",
+            "ready": true,
+            "state": "ended",
+            "effectActive": false,
+            "concentrationRequired": true,
+            "displacedConcentration": "old",
+            "counterWindowOutcome": "not-countered",
+            "endReason": "source-deadline"
+          }
+        },
+        "currentBurden": null
+      },
+      "completeProposedReplayHistory": {
+        "casts": {
+          "paid-ready": {
+            "id": "paid-ready",
+            "profile": "ward",
+            "ready": true,
+            "state": "ended",
+            "effectActive": false,
+            "concentrationRequired": true,
+            "displacedConcentration": "old",
+            "counterWindowOutcome": "not-countered",
+            "endReason": "source-deadline"
+          }
+        },
+        "currentBurden": null
+      }
+    },
+    {
+      "id": "ready-lifecycle/hindrance",
+      "source": {
+        "path": "docs/audit/2026-10-08/full-game/FEAT335_COPY_RELEASE_01_CHECK.json",
+        "pointer": "/readyLifecycleHistories/4",
+        "bytes": 868662,
+        "sha256": "577b92bf5f82030ef2203623f0d8fed155aec09d45b10489e04bd16780111a07"
+      },
+      "disposition": "RETAIN_PAID_PREPARATION_PREMISE_ONLY_NOT_FULL_READY",
+      "reason": "One concentration burden transitions from an already-paid hold to the declared immediate/lasting lifecycle. Payment, trigger, actual Reaction, cross-round allowances, earlier capture expiry and release-time selection are not executed by this helper.",
+      "completeOriginalHistory": {
+        "casts": {
+          "paid-ready": {
+            "id": "paid-ready",
+            "profile": "hindrance",
+            "ready": true,
+            "state": "ended",
+            "effectActive": false,
+            "concentrationRequired": true,
+            "displacedConcentration": "old",
+            "counterWindowOutcome": "not-countered",
+            "endReason": "source-deadline"
+          }
+        },
+        "currentBurden": null
+      },
+      "completeProposedReplayHistory": {
+        "casts": {
+          "paid-ready": {
+            "id": "paid-ready",
+            "profile": "hindrance",
+            "ready": true,
+            "state": "ended",
+            "effectActive": false,
+            "concentrationRequired": true,
+            "displacedConcentration": "old",
+            "counterWindowOutcome": "not-countered",
+            "endReason": "source-deadline"
+          }
+        },
+        "currentBurden": null
+      }
+    },
+    {
+      "id": "ready-lifecycle/boon",
+      "source": {
+        "path": "docs/audit/2026-10-08/full-game/FEAT335_COPY_RELEASE_01_CHECK.json",
+        "pointer": "/readyLifecycleHistories/5",
+        "bytes": 868662,
+        "sha256": "577b92bf5f82030ef2203623f0d8fed155aec09d45b10489e04bd16780111a07"
+      },
+      "disposition": "RETAIN_PAID_PREPARATION_PREMISE_ONLY_NOT_FULL_READY",
+      "reason": "One concentration burden transitions from an already-paid hold to the declared immediate/lasting lifecycle. Payment, trigger, actual Reaction, cross-round allowances, earlier capture expiry and release-time selection are not executed by this helper.",
+      "completeOriginalHistory": {
+        "casts": {
+          "paid-ready": {
+            "id": "paid-ready",
+            "profile": "boon",
+            "ready": true,
+            "state": "ended",
+            "effectActive": false,
+            "concentrationRequired": true,
+            "displacedConcentration": "old",
+            "counterWindowOutcome": "not-countered",
+            "endReason": "source-deadline"
+          }
+        },
+        "currentBurden": null
+      },
+      "completeProposedReplayHistory": {
+        "casts": {
+          "paid-ready": {
+            "id": "paid-ready",
+            "profile": "boon",
+            "ready": true,
+            "state": "ended",
+            "effectActive": false,
+            "concentrationRequired": true,
+            "displacedConcentration": "old",
+            "counterWindowOutcome": "not-countered",
+            "endReason": "source-deadline"
+          }
+        },
+        "currentBurden": null
+      }
+    },
+    {
+      "id": "ready-lifecycle/step",
+      "source": {
+        "path": "docs/audit/2026-10-08/full-game/FEAT335_COPY_RELEASE_01_CHECK.json",
+        "pointer": "/readyLifecycleHistories/6",
+        "bytes": 868662,
+        "sha256": "577b92bf5f82030ef2203623f0d8fed155aec09d45b10489e04bd16780111a07"
+      },
+      "disposition": "RETAIN_PAID_PREPARATION_PREMISE_ONLY_NOT_FULL_READY",
+      "reason": "One concentration burden transitions from an already-paid hold to the declared immediate/lasting lifecycle. Payment, trigger, actual Reaction, cross-round allowances, earlier capture expiry and release-time selection are not executed by this helper.",
+      "completeOriginalHistory": {
+        "casts": {
+          "paid-ready": {
+            "id": "paid-ready",
+            "profile": "step",
+            "ready": true,
+            "state": "resolved",
+            "effectActive": false,
+            "concentrationRequired": false,
+            "displacedConcentration": "old",
+            "counterWindowOutcome": "not-countered"
+          }
+        },
+        "currentBurden": null
+      },
+      "completeProposedReplayHistory": {
+        "casts": {
+          "paid-ready": {
+            "id": "paid-ready",
+            "profile": "step",
+            "ready": true,
+            "state": "resolved",
+            "effectActive": false,
+            "concentrationRequired": false,
+            "displacedConcentration": "old",
+            "counterWindowOutcome": "not-countered"
+          }
+        },
+        "currentBurden": null
+      }
+    }
+  ],
+  "completeOriginalSourceAcceptanceExamples": [
+    {
+      "id": "CRS01-A",
+      "source": {
+        "path": "docs/audit/2026-10-08/full-game/FEAT335_COPY_RELEASE_01_CHECK.json",
+        "pointer": "/acceptanceCoverage/0",
+        "bytes": 868662,
+        "sha256": "577b92bf5f82030ef2203623f0d8fed155aec09d45b10489e04bd16780111a07"
+      },
+      "completeOriginalExpectationAndDisposition": {
+        "id": "CRS01-A",
+        "expectation": "Two consecutive Eldritch Echo captures of the same underlying spell identity, even from different source events or with different bounded profile/q choices, share one feat-copy family; the second copy receives the next ordinary Refrain step. Capture event ID does not reset history.",
+        "status": "bounded-interface-tested",
+        "limitations": [
+          "Different actual capture/profile/feat tested; two Echo captures across a real beneficial rest and varying same-source class rank are not executed."
+        ]
+      },
+      "currentDisposition": "RETAIN_BOUNDED_REFERENCE_COVERAGE",
+      "reason": "Retain the complete original expectation and its stated executed/conditional coverage. No full engine claim or removal of an unexecuted source premise."
+    },
+    {
+      "id": "CRS01-B",
+      "source": {
+        "path": "docs/audit/2026-10-08/full-game/FEAT335_COPY_RELEASE_01_CHECK.json",
+        "pointer": "/acceptanceCoverage/1",
+        "bytes": 868662,
+        "sha256": "577b92bf5f82030ef2203623f0d8fed155aec09d45b10489e04bd16780111a07"
+      },
+      "completeOriginalExpectationAndDisposition": {
+        "id": "CRS01-B",
+        "expectation": "A Mimicry copy and later Arcane Adaptation activation of the same underlying captured spell/effect identity share the same feat-copy family. Changing permission source or casting ability route does not reset Refrain.",
+        "status": "bounded-interface-tested",
+        "limitations": []
+      },
+      "currentDisposition": "RETAIN_BOUNDED_REFERENCE_COVERAGE",
+      "reason": "Retain the complete original expectation and its stated executed/conditional coverage. No full engine claim or removal of an unexecuted source premise."
+    },
+    {
+      "id": "CRS01-C",
+      "source": {
+        "path": "docs/audit/2026-10-08/full-game/FEAT335_COPY_RELEASE_01_CHECK.json",
+        "pointer": "/acceptanceCoverage/2",
+        "bytes": 868662,
+        "sha256": "577b92bf5f82030ef2203623f0d8fed155aec09d45b10489e04bd16780111a07"
+      },
+      "completeOriginalExpectationAndDisposition": {
+        "id": "CRS01-C",
+        "expectation": "An ordinary personally known cast of the underlying spell followed by a feat-copy cast uses two distinct chronological families. The ordinary cast does not grant the copy and does not pre-load the feat-copy Refrain family.",
+        "status": "bounded-interface-tested",
+        "limitations": [
+          "Ordinary quote/history boundary tested; no full ordinary spell cast/payload transaction here."
+        ]
+      },
+      "currentDisposition": "RETAIN_BOUNDED_REFERENCE_COVERAGE",
+      "reason": "Retain the complete original expectation and its stated executed/conditional coverage. No full engine claim or removal of an unexecuted source premise."
+    },
+    {
+      "id": "CRS01-D",
+      "source": {
+        "path": "docs/audit/2026-10-08/full-game/FEAT335_COPY_RELEASE_01_CHECK.json",
+        "pointer": "/acceptanceCoverage/3",
+        "bytes": 868662,
+        "sha256": "577b92bf5f82030ef2203623f0d8fed155aec09d45b10489e04bd16780111a07"
+      },
+      "completeOriginalExpectationAndDisposition": {
+        "id": "CRS01-D",
+        "expectation": "Two different underlying source spell/effect identities that both map to Strike remain different feat-copy families; common profile ID alone does not merge history.",
+        "status": "bounded-interface-tested",
+        "limitations": []
+      },
+      "currentDisposition": "RETAIN_BOUNDED_REFERENCE_COVERAGE",
+      "reason": "Retain the complete original expectation and its stated executed/conditional coverage. No full engine claim or removal of an unexecuted source premise."
+    },
+    {
+      "id": "CRS02-A",
+      "source": {
+        "path": "docs/audit/2026-10-08/full-game/FEAT335_COPY_RELEASE_01_CHECK.json",
+        "pointer": "/acceptanceCoverage/4",
+        "bytes": 868662,
+        "sha256": "577b92bf5f82030ef2203623f0d8fed155aec09d45b10489e04bd16780111a07"
+      },
+      "completeOriginalExpectationAndDisposition": {
+        "id": "CRS02-A",
+        "expectation": "Strike/Burst/Mend/Step do not displace existing concentration merely because they are feat-copy casts; each resolves immediately.",
+        "status": "bounded-interface-tested",
+        "limitations": []
+      },
+      "currentDisposition": "RETAIN_BOUNDED_REFERENCE_COVERAGE",
+      "reason": "Retain the complete original expectation and its stated executed/conditional coverage. No full engine claim or removal of an unexecuted source premise."
+    },
+    {
+      "id": "CRS02-B",
+      "source": {
+        "path": "docs/audit/2026-10-08/full-game/FEAT335_COPY_RELEASE_01_CHECK.json",
+        "pointer": "/acceptanceCoverage/5",
+        "bytes": 868662,
+        "sha256": "577b92bf5f82030ef2203623f0d8fed155aec09d45b10489e04bd16780111a07"
+      },
+      "completeOriginalExpectationAndDisposition": {
+        "id": "CRS02-B",
+        "expectation": "Ward/Hindrance/Boon displace incompatible prior concentration at commitment. Countering afterward does not restore prior concentration and leaves no copied lasting effect.",
+        "status": "bounded-interface-tested",
+        "limitations": []
+      },
+      "currentDisposition": "RETAIN_BOUNDED_REFERENCE_COVERAGE",
+      "reason": "Retain the complete original expectation and its stated executed/conditional coverage. No full engine claim or removal of an unexecuted source premise."
+    },
+    {
+      "id": "CRS02-C",
+      "source": {
+        "path": "docs/audit/2026-10-08/full-game/FEAT335_COPY_RELEASE_01_CHECK.json",
+        "pointer": "/acceptanceCoverage/6",
+        "bytes": 868662,
+        "sha256": "577b92bf5f82030ef2203623f0d8fed155aec09d45b10489e04bd16780111a07"
+      },
+      "completeOriginalExpectationAndDisposition": {
+        "id": "CRS02-C",
+        "expectation": "A successful lasting Ward/Hindrance/Boon ends immediately on lost concentration even if its stated two-interval/source deadline has not arrived.",
+        "status": "bounded-interface-tested",
+        "limitations": []
+      },
+      "currentDisposition": "RETAIN_BOUNDED_REFERENCE_COVERAGE",
+      "reason": "Retain the complete original expectation and its stated executed/conditional coverage. No full engine claim or removal of an unexecuted source premise."
+    },
+    {
+      "id": "CRS02-D",
+      "source": {
+        "path": "docs/audit/2026-10-08/full-game/FEAT335_COPY_RELEASE_01_CHECK.json",
+        "pointer": "/acceptanceCoverage/7",
+        "bytes": 868662,
+        "sha256": "577b92bf5f82030ef2203623f0d8fed155aec09d45b10489e04bd16780111a07"
+      },
+      "completeOriginalExpectationAndDisposition": {
+        "id": "CRS02-D",
+        "expectation": "Ready preparation already holds concentration. Releasing Ward/Hindrance/Boon continues the same one burden; releasing an immediate profile ends the Ready hold after resolution. No second concentration slot exists.",
+        "status": "bounded-interface-tested",
+        "limitations": [
+          "Shared concentration lifecycle tested from paid-preparation premise; Ready payment, trigger, Reaction, expiry scheduling and release cap remain unintegrated."
+        ]
+      },
+      "currentDisposition": "RETAIN_BOUNDED_REFERENCE_COVERAGE",
+      "reason": "Exact one-burden lifecycle is demonstrated, not a complete Ready transaction. The later COPY-READY-ALLOWANCE-01 is a proposed rule target and remains unimplemented."
+    },
+    {
+      "id": "CRS03-A",
+      "source": {
+        "path": "docs/audit/2026-10-08/full-game/FEAT335_COPY_RELEASE_01_CHECK.json",
+        "pointer": "/acceptanceCoverage/8",
+        "bytes": 868662,
+        "sha256": "577b92bf5f82030ef2203623f0d8fed155aec09d45b10489e04bd16780111a07"
+      },
+      "completeOriginalExpectationAndDisposition": {
+        "id": "CRS03-A",
+        "expectation": "Wizard-qualified feat copy does not receive Wizard first-prepared-matrix base-Dissonance exemption and is not a prepared matrix.",
+        "status": "bounded-interface-tested",
+        "limitations": []
+      },
+      "currentDisposition": "RETAIN_BOUNDED_REFERENCE_COVERAGE",
+      "reason": "Retain the complete original expectation and its stated executed/conditional coverage. No full engine claim or removal of an unexecuted source premise."
+    },
+    {
+      "id": "CRS03-B",
+      "source": {
+        "path": "docs/audit/2026-10-08/full-game/FEAT335_COPY_RELEASE_01_CHECK.json",
+        "pointer": "/acceptanceCoverage/9",
+        "bytes": 868662,
+        "sha256": "577b92bf5f82030ef2203623f0d8fed155aec09d45b10489e04bd16780111a07"
+      },
+      "completeOriginalExpectationAndDisposition": {
+        "id": "CRS03-B",
+        "expectation": "Shaman-qualified feat copy inside its own totem aura does not consume or benefit from the ordinary-Shaman-spell vent unless a future source explicitly names feat-copy casts.",
+        "status": "open-class-provider-integration",
+        "limitations": [
+          "Unsupported actual class routes reject; no Shaman totem or Mirrorsage shared allowance engine executed."
+        ]
+      },
+      "currentDisposition": "LATER_CLASS_REFERENCE_EVIDENCE_SUPPLIED_WITH_LIMITS",
+      "reason": "The same actual Shaman RP/cadence/Action account and paid totem are used. The feat copy gets no vent; the later qualified ordinary Shaman spell uses its own actual vent. Native position must remain synchronized; the historical test did not include CFI-04 Step."
+    },
+    {
+      "id": "CRS03-C",
+      "source": {
+        "path": "docs/audit/2026-10-08/full-game/FEAT335_COPY_RELEASE_01_CHECK.json",
+        "pointer": "/acceptanceCoverage/10",
+        "bytes": 868662,
+        "sha256": "577b92bf5f82030ef2203623f0d8fed155aec09d45b10489e04bd16780111a07"
+      },
+      "completeOriginalExpectationAndDisposition": {
+        "id": "CRS03-C",
+        "expectation": "Mirrorsage qualification does not import class Echo Release first-release Refrain waiver; the feat copy still consumes the shared release allowance only where its exact existing source says so.",
+        "status": "open-class-provider-integration",
+        "limitations": [
+          "Unsupported actual class routes reject; no Shaman totem or Mirrorsage shared allowance engine executed."
+        ]
+      },
+      "currentDisposition": "LATER_CLASS_REFERENCE_EVIDENCE_SUPPLIED_WITH_LIMITS",
+      "reason": "The adapted repeat uses normal feat Refrain without class first-release waiver; countered repeat still consumes the actual shared cap and payment."
+    },
+    {
+      "id": "CRS03-D",
+      "source": {
+        "path": "docs/audit/2026-10-08/full-game/FEAT335_COPY_RELEASE_01_CHECK.json",
+        "pointer": "/acceptanceCoverage/11",
+        "bytes": 868662,
+        "sha256": "577b92bf5f82030ef2203623f0d8fed155aec09d45b10489e04bd16780111a07"
+      },
+      "completeOriginalExpectationAndDisposition": {
+        "id": "CRS03-D",
+        "expectation": "At PB3 and casting modifier +3, feat-copy Limit is max(4,6+3)=9. Ordinary class spell Limit under the separate integration formula would be max(4,2+3+3)=8; this difference is intentional scoped authority, not a global correction.",
+        "status": "bounded-interface-tested",
+        "limitations": []
+      },
+      "currentDisposition": "RETAIN_BOUNDED_REFERENCE_COVERAGE",
+      "reason": "Retain the complete original expectation and its stated executed/conditional coverage. No full engine claim or removal of an unexecuted source premise."
+    },
+    {
+      "id": "CRS03-E",
+      "source": {
+        "path": "docs/audit/2026-10-08/full-game/FEAT335_COPY_RELEASE_01_CHECK.json",
+        "pointer": "/acceptanceCoverage/12",
+        "bytes": 868662,
+        "sha256": "577b92bf5f82030ef2203623f0d8fed155aec09d45b10489e04bd16780111a07"
+      },
+      "completeOriginalExpectationAndDisposition": {
+        "id": "CRS03-E",
+        "expectation": "Feat-only Eldritch Blast route can qualify q0 with CHA; it cannot establish q1+ ceiling, a class engine, Wizard/Mirrorsage/Shaman protections, or another RP pool.",
+        "status": "bounded-interface-tested",
+        "limitations": []
+      },
+      "currentDisposition": "RETAIN_BOUNDED_REFERENCE_COVERAGE",
+      "reason": "Retain the complete original expectation and its stated executed/conditional coverage. No full engine claim or removal of an unexecuted source premise."
+    }
+  ],
+  "ordinaryHistories": {
+    "count": 68,
+    "completeRecordsRetainedIn": "history/DD_Part5_Copied_Feat_Integration_Supplement_02.zip!history/DD_Part5_Copied_Feat_Integration_Review_01.zip!CASE_DISPOSITIONS.json#/histories",
+    "changedByThisReturn": 0,
+    "rerunByThisReturn": false
+  },
+  "interpretation": "Seven original Ready lifecycle histories assume an already paid lawful preparation and actual_legal_release. They do not establish the new ledger rule or implement live Ready. The thirteen source expectations remain source-qualified, not blanket feature approval."
+}

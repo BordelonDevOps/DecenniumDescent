@@ -1,0 +1,51 @@
+from pathlib import Path
+import json,hashlib,datetime
+
+G=Path(r'C:\Github\DecenniumDescent');A=G/'docs/audit/2026-10-08/full-game'
+OUT=A/'ACTIVE_AUTHORING_CHECKPOINT_JOINT_REVIEW_108.json';assert not OUT.exists()
+def j(p):return json.loads(p.read_bytes())
+def bind(p):
+    b=p.read_bytes();return {'path':p.relative_to(G).as_posix(),'bytes':len(b),'sha256':hashlib.sha256(b).hexdigest()}
+checks=[]
+def ck(n,v):checks.append({'name':n,'passed':bool(v)});assert v,n
+prev=A/'ACTIVE_AUTHORING_CHECKPOINT_FEAT_DEPENDENCIES_107.json';d=j(prev)
+for b in d['canonicalHelperBaselinesUnchanged']+[d['currentAuthoredIndex'],d['currentAcceptedInterfaceRegistry']]:ck('Protected source unchanged '+b['path'],bind(G/b['path'])==b)
+intake=j(A/'BESTIARY_FINAL_RECONCILIATION_INTAKE_108.json');recon=j(A/'BESTIARY_FINAL_RECONCILIATION_RECONSTRUCTION_108.json');case=j(A/'BESTIARY_RECONCILIATION_CASE_REVIEW_108.json');schedule=j(A/'BESTIARY_SCHEDULE_CORRECTION_RECEIPT_108.json');planar=j(A/'FEAT335_PLANAR_REFERENCE_RECEIPT_108.json');time=j(A/'FEAT335_FXC06_EXACT_MAPPING_108.json')
+ck('Bestiary actual final preserved',intake['passed']==47 and intake['failed']==0)
+ck('Bestiary exact44JSON24text reconstruction complete',recon['passed']==205 and recon['failed']==0 and recon['jsonOperationCount']==44 and recon['textOperationCount']==24)
+ck('Four genuine schedule discrepancies preserved',case['passed']==220 and case['failed']==4 and len(case['scheduleDiscrepancies'])==4)
+ck('Schedule proposed delta check complete',schedule['passed']==10 and schedule['failed']==0)
+ck('Planar complete eight-file successor',planar['passed']==63 and planar['failed']==0 and planar['changedFiles']==8)
+ck('FXC06 complete existing case map',time['passed']==222 and time['failed']==0 and len(time['allOriginalCaseDispositions'])==106 and len(time['full57AcceptedScopedCases'])==57)
+for label,b in [('schedulePackage',schedule['archive']),('planarPackage',planar['package'])]:
+    actual=bind(Path(b['path']));ck(label+' measured unchanged',actual['bytes']==b['bytes'] and actual['sha256']==b['sha256'])
+d['id']='ACTIVE_AUTHORING_CHECKPOINT_JOINT_REVIEW_108';d['recordedAtUtc']=datetime.datetime.now(datetime.timezone.utc).isoformat();d['previousCheckpoint']=bind(prev)
+d['status']='Progress: actual final bestiary reconciliation preserved and independently reconstructed; four fixture schedule discrepancies sent with full proposed correction. Agreed Planar reference correction carried through eight derived files. FXC06 exact evidence map complete.'
+d['previousGoalTurnClassification']='107 completed284dependency/1845placement audit and exactFXC03mapping;108 verifies107registration success and does not rerun its programs.'
+d['bestiaryFinal108']={'intake':bind(A/'BESTIARY_FINAL_RECONCILIATION_INTAKE_108.json'),'actualFinalArchive':intake['finalArchive'],'reconstruction':bind(A/'BESTIARY_FINAL_RECONCILIATION_RECONSTRUCTION_108.json'),'derivedDirectory':'docs/audit/2026-10-08/full-game/bestiary-reconciliation-108/derived','completeDerivedFiles':10,'caseReview':bind(A/'BESTIARY_RECONCILIATION_CASE_REVIEW_108.json'),'newCompleteCases':16,'newTransitions':28,'replacementParents':13,'changedTraces':26,'sourceAndReconstructionChecks':205,'caseChecksPassed':220,'caseDiscrepancies':4,'scopedFiveChoices':'GPT selected and Codex agrees on10ft/noProne/same-emitter-witness,DEX13Tail,DC14skill-taskescape and real one-size-larger coil/contact. Source statistics unchanged. Scope is authored choice agreement, not whole catalog or runtime.','pendingFixtureCorrection':schedule,'supersededInterimMetadata':'The334113-byte105 staged artifact observed106/107 is not the final634707-byte105_01 delivery. Do not use its11-file/12-case/45-op counts as final.','originalsPreserved':True,'canonicalApplied':False}
+d['gptDependencyExchange108']={'sentMessage':bind(A/'GPT_FEAT_DEPENDENCY_MESSAGE_108.txt'),'sentSnapshot':bind(A/'GPT_FEAT_DEPENDENCY_SENT_108.txt'),'sentScreenshot':bind(A/'GPT_FEAT_DEPENDENCY_SENT_108.png'),'actualUploadedPacket':d['featDependencies107']['package'],'finalSnapshot':bind(A/'GPT_PLANAR_FINAL_OR_PROGRESS_108.txt'),'actualReturn':bind(A/'feat335-planar-reference-108/DD_Feat335_Planar_Dependency_107_Reference_Return_01.zip'),'decision':bind(A/'feat335-planar-reference-108/decision/DECISION.json'),'verdict':'CONFIRM_REFERENCE_ONLY_PROPOSAL_WITH_ONE_CONTAINER_HEADER_CLARIFICATION__FEAT_WRAPPERS_REMAIN_NULL','actuallySent':True,'actuallyDownloaded':True}
+d['planarReferenceSuccessor108']={'receipt':bind(A/'FEAT335_PLANAR_REFERENCE_RECEIPT_108.json'),'report':planar['report'],'package':planar['package'],'completeSuccessorDirectory':'docs/audit/2026-10-08/full-game/feat335-planar-reference-108/after','changedFiles':8,'checksPassed':63,'failed':0,'currentAuthority':'Use these eight complete files over106 assembly and the ACQ106 acquisition appendix for final assembly. Original106/107/accepted source receipts remain immutable.','nullWrappers':2,'allowance177Unchanged':True,'remainingReferenceMismatchIds':[],'qualification':'283unchanged current cards plus exact accepted Planar card now reconcile all284. Source comparison preserved from107; not new ordinary acceptance/counts.','parent335Accepted':False,'canonicalApplied':False,'packageSentToGpt':False}
+d['featAcceptanceMapping108']={'FXC06':bind(A/'FEAT335_FXC06_EXACT_MAPPING_108.json'),'checksPassed':222,'failed':0,'originalTimeWorkCases':106,'laterAcceptedScopedCases':57,'exactSixCurrentProcedures':6,'oldCasesNumericallySuperseded':0,'finding':'Actual106 original-case dispositions retain their qualified evidence. Three unselected questions were superseded by FT84 answers and six procedures;57 later cases supply followthrough. The107 supersession task wording was broader than the actual evidence.','FXC03AlreadyComplete107':True,'remainingMaps':['FXC04 finite table lifecycle','FXC05 source-qualified acquisition branches','FXC07 numeric/healing boundary','FXC08 physical/social boundary','FXC09 current copy/Ready/command/ritual/plant'],'parentAccepted':False}
+d['gptScheduleExchange108']={'request':bind(A/'GPT_BESTIARY_SCHEDULE_REQUEST_108.txt'),'package':schedule['archive'],'actuallyUploaded':True,'actuallySent':True,'sentSnapshot':bind(A/'GPT_BESTIARY_SCHEDULE_SENT_108.txt'),'sentScreenshot':bind(A/'GPT_BESTIARY_SCHEDULE_SENT_108.png'),'latestSnapshot':bind(A/'GPT_BESTIARY_SCHEDULE_PROGRESS_108.txt'),'status':'GPT visibly responding with Stop. Do not interrupt; no final correction verdict yet received.','proposal':'Complete cases8/9/10 retain all mechanics/results with coherent synthetic prior/next START fields S[-3,3] and D[-2,4]; all four offending events covered.','correctionAppliedToCurrentCasebook':False,'generationInterrupted':False}
+d['lastUsageObservation']={'usedPercent':75,'remainingPercent':25,'resetsAt':1793110625,'stopAtRemainingPercent':20,'source':'Fresh get_usage_limits after108 derived reference integration'}
+d['nextAction']='Read goal objective and fresh allowance. First inspect current live Part5 tab without interrupting. Receive and preserve the actual final GPT schedule-only verdict; verify its hash/complete bound data. If it confirms the108proposal, create a new complete16-case derived successor with exactly its three corrected cases; keep the original4failed checks as history and verify only new corrected evidence, never rerun successful programs. Send/report Planar108 successor status when GPT idle. Continue FXC04/05/07/08/09 named source/case maps; FXC03done107 and FXC06done108. All660+28original case reviews done105; full335assembly106,ACQ106current177descriptors and eight-file Planar108overlay exist. Do not rebuild those from historical shorter sources. Finish one final parent candidate/evidence bundle with current bindings and submit actual full package to GPT for exact review. Bestiary five-choice agreement is scoped only; full Return02 catalog/Containment Pulse and remaining domain work are open. Keep owner-reserved canonical integration, sealed/private boundaries, five positive holds,525/323/249/173and53unapplied, Unity isolation, and joint whole-game flow→verifiedGitHub→cosmology ordering.'
+d['laterLocalWork']='73–108 remain local since the last separately verified GitHub baseline. No push, canonical gameplay integration or cosmology change in108.'
+backup=A/'navigation-before-joint-review-108';backup.mkdir();nav=[];prior=[]
+for n,b in enumerate(d['navigation']):
+    p=G/b['path'];raw=p.read_bytes();bp=backup/(str(n+1)+p.suffix);bp.write_bytes(raw);prior.append(bind(bp));text=raw.decode('utf-8-sig')
+    link='docs/audit/2026-10-08/full-game/ACTIVE_AUTHORING_CHECKPOINT_JOINT_REVIEW_108.json'
+    summary='GPT final bestiary reconciliation is preserved; five choices have scoped agreement and three fixture schedules are under correction review. The agreed Planar Binding reference is synchronized across eight derived files while both feat wrappers stay unavailable. FXC03 and FXC06 evidence maps are complete; parent review remains open.'
+    if p.suffix=='.html':
+        ck('HTML main exists','<main>' in text);text=text.replace('<main>','<main>\n<section class="sequence"><p><strong>Current review checkpoint:</strong> <a href="'+link+'">Checkpoint108</a> '+summary+'</p></section>\n',1)
+    else:
+        if p.name=='DEVELOPMENT_DIRECTION.md':link='../../../'+link
+        first,rest=text.split('\n',1);text=first+'\n\n**Current review checkpoint:** [Checkpoint108]('+link+') '+summary+'\n'+rest
+    p.write_text(text,encoding='utf8');nav.append(bind(p))
+d['navigation']=nav;d['preservedNavigation']=prior
+with OUT.open('xb') as f:f.write((json.dumps(d,ensure_ascii=False,indent=2)+'\n').encode())
+for b in prior:ck('Navigation history preserved '+b['path'],bind(G/b['path'])==b)
+check={'id':'CHECKPOINT108-REGISTRATION','checkpoint':bind(OUT),'passed':len(checks),'failed':0,'checks':checks,'goalComplete':False}
+q=A/'ACTIVE_AUTHORING_CHECKPOINT_JOINT_REVIEW_108_CHECK.json'
+with q.open('xb') as f:f.write((json.dumps(check,ensure_ascii=False,indent=2)+'\n').encode())
+with (A/Path(__file__).name).open('xb') as f:f.write(Path(__file__).read_bytes())
+print(json.dumps({'checkpoint':bind(OUT),'check':bind(q),'passed':len(checks),'failed':0,'usageRemainingPercent':25}))

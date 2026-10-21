@@ -1,0 +1,85 @@
+improves one degree and natural 1 worsens one. Success recovers the selected allocation. Critical success additionally preserves one otherwise damaged ordinary unit within the selected attempted allocation that the manifest already recorded as damaged but potentially recoverable. If the selected allocation contains no such unit, Critical Success grants no additional unit. It cannot recover an unselected or already-forfeited category, duplicate an exceptional drop or exceed the manifest's finite anatomy. Failure ruins one selected unit (highest-value selected unit, tied at player's choice), recovers no selected units, and ends that attempt. Critical failure ruins all selected ordinary units, recovers none, and invokes only a hazard explicitly declared in the manifest; absent one, apply the gathering trade's minor accident (1d4 damage) to the lead. No reroll or new generic attempt on the same exhausted selection; named exceptional-drop procedures remain as stated. A hurried extraction takes half the listed/partial time, rounded up to whole minutes, minimum 1 minute, with disadvantage. This is a new reconciliation of the detailed size table with the older one-hour rushed Watch summary; it avoids making a hurried Tiny harvest slower than normal. Normal and hurried harvesting consume actual Watch time, not a second automatic eight-hour charge. Yield, limits and spoilage are unchanged. Resource Team membership grants no duplicate attempt or extra yield. Harvested lots become actual cargo immediately, including containers and weight. Food, water or fuel gathered separately does not magically become the complete expedition Supply bundle. An ancestry's explicit forage or Natural Remedy grant follows its own finite procedure; this generic harvest does not refresh those uses. Humanoid and celestial remains keep the source's consent, lawful-authority or explicit-dark-path restriction; the procedure supplies no blanket permission and makes no cosmological conclusion."
+    - button "Analyzed" [expanded]
+    - generic: Analyzed
+    - generic: Python
+    - button "Copy code":
+    - code:
+      - generic: rcat=json.loads((S/'DescentReviewChanges/ReviewBible/data/director/crafting_recipe_review_catalog.json').read_text())
+      - generic: print(rcat.keys())
+      - text: def json_find_strings(
+      - generic: obj, needle, path=''
+      - text: "):"
+      - text: out=[]
+      - generic: "if isinstance(obj,dict):"
+      - generic: for k,v in obj.items():out+=json_find_strings(v,needle,path+'/'+str(k))
+      - generic: "elif isinstance(obj,list):"
+      - generic: for i,v in enumerate(obj):out+=json_find_strings(v,needle,path+'/'+str(i))
+      - generic: elif isinstance(obj,str) and needle in obj:out.append((path,obj[:200]))
+      - generic: return out
+      - generic: print(json_find_strings(rcat,'recipe-173')[:10])
+      - generic: print(json_find_strings(ce,'recipe-173')[:10])
+      - generic: "# keep full card query direct index from results next"
+      - generic: print([(p.name,len(p.read_bytes())) for p in S.rglob('*.md') if 'GATHER' in p.name])
+      - generic: "# frameworkadditional scopes"
+      - generic: print((AUD/'BESTIARY_SPELL_PROFILE_DEPENDENCY_INDEX.md').read_text())
+    - generic: STDOUT/STDERR
+    - generic: "dict_keys(['schemaVersion', 'sourceSha256', 'scope', 'batches', 'visibility', 'totals', 'recipes']) [('/recipes/172/recipeId', 'recipe-173')] [('/publicRecipeFrameworkIndex/115/recipeId', 'recipe-173')] [('GATHERING_TOOL_CANDIDATE_GUIDE.md', 12879), ('GATHERING_TOOL_CANDIDATE_BODY_CATALOGUE.md', 16470), ('GATHERING_TOOL_INTERNAL_SOURCE_DIRECTIONS.md', 264167), ('GATHERING_TOOL_INTERNAL_DRAFT_INDEX.md', 3108), ('GATHERING_TOOL_INTERNAL_OPERATIONAL_GUIDE.md', 8328), ('GATHERING_TOOL_PHYSICAL_SEQUENCE_CASEBOOK.md', 33461), ('GATHERING_TOOL_INTERNAL_BODY_CATALOGUE.md', 18735), ('GPT_GATHERING_128_EXACT_OPERATIONAL_REVIEW.md', 16560)] # Spell outcomes that need creature-profile reconciliation Prepared source evidence only. These questions connect ordinary spells (DD-12), creature stat interfaces (DD-33), and summons/companions (DD-35). They do not approve profiles, change the bestiary, or settle cosmology. | Spell source | Preserved evidence | Joint decision still needed | |---|---|---| | Create Undead | [Ghoul, Ghast, Wight and Mummy originals](RANK6_UNDEAD_PROFILE_SOURCE_ADDENDUM.md) | All four named outcomes need an explicit profile binding. The runtime Ghast is classified as Fey; none of the four names has a dossier in the current 67-record source candidate. | | Command Undeath | [CR comparison](RANK6_UNDEAD_PROFILE_SOURCE_ADDENDUM.json) | Preserve the spell's CR2 wording. None of the four runtime candidates above is exactly CR2; do not silently broaden the predicate or infer their eligibility. | | Summon Soul Wraith | [Exact-name search and ordinary Wraith comparison](RANK6_UNDEAD_PROFILE_SOURCE_ADDENDUM.json) | No exact Soul Wraith exists in the four searched registries. The ordinary runtime Wraith differs from the spell's printed HP100/AC18 and is not an automatic substitute. | | Finger of Death | [Zombie original](RANK6_7_CREATED_COMPANION_SOURCE_ADDENDUM.md) | The runtime Zombie is Gargantuan, CR26, HP1030, AC21. The spell's creation clause supplies no profile; reconcile the intended outcome explicitly. | | Create Homunculus | [Homunculus original](RANK6_7_CREATED_COMPANION_SOURCE_ADDENDUM.json) | The runtime record is a Medium Monstrosity, CR4, HP75, AC14. Its existence does not prove that the servant spell creates that combat profile. | | Summon Bone Colossus and Simulacrum | [Bounded missing-profile searches](RANK6_7_CREATED_COMPANION_SOURCE_ADDENDUM.json) | No exact named creature row appears in the four searched registries. Preserve the printed HP140/two slams/cleave and creature-duplication promises when authoring finite profiles. | Each addendum records the complete matched originals, file hashes, exact indices, searched registries and search limits. Absence from these registries is not proof that no historical source exists elsewhere. Do not import another game's statistics, change existing records, or equate outcomes with Wizard Auto-Raise merely because names overlap. Carry the complete addenda into the relevant spell and bestiary source conferences. Resolve profile authority, commands, body/material identity, creation/death timing and audience boundaries before exact operational review. The [prepared spell index](PREPARED_SPELL_SOURCE_INDEX.md) and [whole-game ledger](../../../../DescentReviewChanges/ReviewBible/docs/mechanics/GAME_DEVELOPMENT_COVERAGE.md) retain the broader queue."
+    - button "Analyzed" [expanded]
+    - generic: Analyzed
+    - generic: Python
+    - button "Copy code":
+    - code:
+      - generic: print(json.dumps(rcat['recipes'][172],indent=2))
+      - generic: print(json.dumps(ce['publicRecipeFrameworkIndex'][115],indent=2))
+      - generic: "# names mapping oldrecipe173 may renamednew unique sourceRecipe172?"
+      - generic: print('gathinternal')
+      - generic: gi=json.loads((S/'DescentReviewChanges/ReviewBible/data/director/gathering_tool_recipe_candidate_internal.json').read_text())
+      - generic: print(gi.keys(),len(gi.get('cards',[])))
+      - generic: "print([(c.get('recipeId'),c.get('name'),c.get('sourceRecipe',{}).get('id')) for c in gi.get('cards',[]) if c.get('recipeId')=='recipe-173' or c.get('sourceRecipe',{}).get('id')=='recipe-173'])"
+      - generic: "# Find all archived files with 173 literal but only names matching dirs"
+      - generic: import os
+      - text: outs=[]
+      - generic: "for p in S.rglob('*.json'):"
+      - generic: "if p.stat().st_size<10000000 and 'Sealed' not in str(p):"
+      - text: b=p.read_bytes()
+      - generic: if b'"recipe-173"' in b:outs.append(p.relative_to(S).as_posix())
+      - generic: print('\n'.join(outs))
+    - generic: STDOUT/STDERR
+    - generic: "{ \"recipeId\": \"recipe-173\", \"name\": \"Refined Verdant Tackle\", \"trade\": \"Fishing\", \"family\": \"fishing_gear\", \"visibility\": \"public\", \"sourceStatus\": \"developed\", \"batch\": \"Fishing\", \"status\": \"reviewed-authored-playtest\", \"cardFile\": \"docs/mechanics/FISHING_PUBLIC_RECIPE_CARDS.md\", \"reviewManifest\": \"docs/mechanics/FISHING_REVIEW_STATUS.json\" } { \"recipeId\": \"recipe-173\", \"name\": \"Refined Verdant Tackle\", \"visibility\": \"public\", \"skill\": \"Fishing\", \"skillLevel\": 4, \"tier\": 2, \"batchQuantity\": 4, \"sourceActiveHours\": 8, \"candidateActiveHours\": 8, \"timeProvenance\": \"source\", \"requiresFormula\": false, \"sourceRecommendedValue\": 75, \"candidateBatchReferenceValueGp\": 75, \"candidateUnitValueRatioGp\": { \"numerator\": 75, \"denominator\": 4 }, \"effectReviewStatus\": \"unreviewed\", \"sourcePointer\": \"/recipes/172\" } gathinternal dict_keys(['schemaVersion', 'status', 'audience', 'sourceSha256', 'sourceAuthorities', 'sourceErratum', 'sharedCandidateRules', 'sharedSourceDirections', 'baseModels', 'cards', 'exactRecipeApproval', 'runtimeImplemented', 'balanceApproved', 'cosmology', 'sourceJointReconciliation', 'sharedOperationalGuide', 'auxiliaryModels', 'exactOperationalReviewAuthority']) 128 [] DescentReviewChanges/crafting-bible/Decennium_Descent_Crafting_Bible_v2.json DescentReviewChanges/ReviewBible/src/data/crafting-recipes.json DescentReviewChanges/ReviewBible/data/crafting/Decennium_Descent_Crafting_Bible_v4.json DescentReviewChanges/ReviewBible/data/director/crafting_recipe_review_catalog.json DescentReviewChanges/ReviewBible/data/playtest/crafting_engine_candidate.json src/data/crafting-recipes.json data/crafting/Decennium_Descent_Crafting_Bible_v4.json data/director/Decennium_Descent_Crafting_Bible_v4_Full_Internal.json docs/audit/2026-10-08/full-game/BESTIARY_CRAFTING_CROSSLINK_AUDIT.json docs/audit/2026-10-08/full-game/blacksmithing-before-part2-promotion/DescentReviewChanges/ReviewBible/data/director/crafting_recipe_review_catalog.json docs/audit/2026-10-08/full-game/queued-before-nwx-refresh/bestiary_complete_file_handoff/DescentReviewChanges/ReviewBible/data/director/crafting_recipe_review_catalog.json"
+    - button "Analyzed" [expanded]
+    - generic: Analyzed
+    - generic: Python
+    - button "Copy code":
+    - code:
+      - generic: print([p.relative_to(S).as_posix() for p in S.rglob('*FISHING*')])
+      - generic: "for a in audits.values():"
+      - generic: "hs=a.get('sourceHashes',{})"
+      - generic: print(type(hs),str(hs)[:100])
+      - generic: "if isinstance(hs,dict):"
+      - generic: print([(k,v) for k,v in hs.items() if 'FISHING_PUBLIC' in k or 'FISHING_REVIEW' in k])
+      - generic: "elif isinstance(hs,list):"
+      - generic: print([v for v in hs if 'FISHING_PUBLIC' in str(v) or 'FISHING_REVIEW' in str(v)][:3])
+      - generic: "# Compare historical v2member includes rawsourcecards?"
+      - generic: "with zipfile.ZipFile(V/'history/DD_Bestiary_Complete_Source_Prepared_v2.zip') as z:"
+      - generic: print([n for n in z.namelist() if 'FISHING' in n])
+      - generic: print([p.relative_to(S).as_posix() for p in S.rglob('*trade*reference*')])
+      - generic: print([p.relative_to(S).as_posix() for p in S.rglob('*TRADESKILL*')])
+    - generic: STDOUT/STDERR
+    - generic: "[] <class 'dict'> {'docs/bestiary/Decennium_Descent_Monster_Manual_Canon_Rewrite_Source_Pack/build-filters.json': '14c [] <class 'dict'> {'Bestiary.xlsx': '23212a836998554aa89d37cd16cf66d57f7b986d38db43b3e7a981e7a12ba5b7', 'src/data/lega [] <class 'dict'> {'docs/bestiary/Decennium_Descent_Monster_Manual_Canon_Rewrite_Source_Pack/build-filters.json': '14c [] [] [] []"
+    - generic: ChatGPT can make mistakes. Check important info.
+    - button "Scroll to bottom"
+    - heading "Latest response" [level=4]
+    - status
+    - button "Add files and more":
+    - textbox "Ask ChatGPT":
+      - paragraph: Ask ChatGPT
+    - button "Select ChatGPT model":
+      - generic: Pro
+    - button "Dictate":
+    - button "Stop":
+- status
+- status
+- status
+- status
+- status
+- status

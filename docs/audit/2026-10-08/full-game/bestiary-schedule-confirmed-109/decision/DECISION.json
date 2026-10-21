@@ -1,0 +1,666 @@
+{
+  "id": "DD-BESTIARY-SCHEDULE-108-CONFIRMATION-01",
+  "recordedAtUtc": "2026-10-21T06:03:55.182119+00:00",
+  "disposition": "CONFIRM_EXACT_SUBMITTED_SCHEDULE_ONLY_FIXTURE_SUCCESSOR",
+  "selectedScope": "Exactly the three complete proposed after-cases and 43 field operations in bound PROPOSAL.json. No change to any of the five scoped mechanical choices.",
+  "proposalAlterationCount": 0,
+  "input": {
+    "file": "DD_Bestiary_Schedule_Correction_108.zip",
+    "bytes": 35106,
+    "sha256": "681e30c734fb4a4468a00b844432e453dbb226c6a4f323df5cb939266e17fc01"
+  },
+  "inputMembers": {
+    "CASE_REVIEW_108.json": {
+      "file": "CASE_REVIEW_108.json",
+      "bytes": 167526,
+      "sha256": "6de5524d5149964e03c846f77b2558e8e485a45d8ad41b40a56c5e651d66bc4b"
+    },
+    "MANIFEST.json": {
+      "file": "MANIFEST.json",
+      "bytes": 524,
+      "sha256": "a6cbe3533c945832c5f91d189093df302938ad3d53e302a7bf1d5b55dd938f4b"
+    },
+    "PROPOSAL.json": {
+      "file": "PROPOSAL.json",
+      "bytes": 670006,
+      "sha256": "6ed09fea766f287456f5d6d11d654c031322717bde38ccf8e1a1ec85b2e62f93"
+    },
+    "README.txt": {
+      "file": "README.txt",
+      "bytes": 692,
+      "sha256": "15542e279b8df920430d4f109fddfc2ab84ca6671d513c2acd377da4cbfdee86"
+    }
+  },
+  "frozenOriginalArchive": {
+    "file": "DD_Bestiary_Final_Reconciliation_105_01.zip",
+    "bytes": 634707,
+    "sha256": "951bdc3d80f1b803e92584139ba50c900294af62ec7e38860ae697b96873465c"
+  },
+  "frozenTargetMember": {
+    "file": "DISTINGUISHING_CASES.json",
+    "bytes": 921721,
+    "sha256": "0458966939d12bf9388f19c753cc3b46efa71ba28b00378254060790b5f5696c"
+  },
+  "rationale": [
+    "The original helper-start at3 and target-start at4 contradicted preceding nextRegularStart6. The four independently listed mismatches are reproduced by comparison of the complete supplied before-states.",
+    "The proposal explicitly defines an ongoing synthetic scene observed at t=0. Before the upcoming events, S is previousSTART=-3/nextSTART=3 and D is previousSTART=-2/nextSTART=4; N remains0/6. These are declared fixture inputs, not campaign authentication, an encounter-reset event or a global seconds-to-numbered-round formula.",
+    "At the already-present helper START3, S becomes3/9; at each already-present target START4, D becomes4/10. The exact metadata persists through all subsequent full-state mirrors. No event, Action, Reaction, result, geometry, damage or RNG value is added or moved.",
+    "The already-paid Help at3.1 remains valid until S's next regular START9; D's START4 does not expire it. The existing escape TASK at4.1 consumes Help normally. An untrained task without Help still uses only its supplied natural modifier, without proficiency.",
+    "All original final states are exact: D remains27HP, spends its escape Action, and is released at Speed40 in cases8/10 or remains Grappled at Speed0 in case9."
+  ],
+  "historicalFindingEvidence": {
+    "archive": "DD_Bestiary_Schedule_Correction_108.zip",
+    "archiveSha256": "681e30c734fb4a4468a00b844432e453dbb226c6a4f323df5cb939266e17fc01",
+    "member": "CASE_REVIEW_108.json",
+    "memberSha256": "6de5524d5149964e03c846f77b2558e8e485a45d8ad41b40a56c5e651d66bc4b",
+    "pointer": "/scheduleDiscrepancies",
+    "completeFourReportedMismatches": [
+      {
+        "casePointer": "/completeCases/8",
+        "eventPointer": "/completeCases/8/timeline/1",
+        "actor": "S",
+        "declaredNextRegularStart": 6,
+        "actualStartEvent": 3,
+        "previousRegularStart": 0
+      },
+      {
+        "casePointer": "/completeCases/8",
+        "eventPointer": "/completeCases/8/timeline/3",
+        "actor": "D",
+        "declaredNextRegularStart": 6,
+        "actualStartEvent": 4,
+        "previousRegularStart": 0
+      },
+      {
+        "casePointer": "/completeCases/9",
+        "eventPointer": "/completeCases/9/timeline/1",
+        "actor": "D",
+        "declaredNextRegularStart": 6,
+        "actualStartEvent": 4,
+        "previousRegularStart": 0
+      },
+      {
+        "casePointer": "/completeCases/10",
+        "eventPointer": "/completeCases/10/timeline/1",
+        "actor": "D",
+        "declaredNextRegularStart": 6,
+        "actualStartEvent": 4,
+        "previousRegularStart": 0
+      }
+    ],
+    "reportedPriorChecks": {
+      "caseReview": {
+        "passed": 220,
+        "failed": 4
+      },
+      "proposal": {
+        "passed": 10,
+        "failed": 0
+      }
+    },
+    "qualification": "These are preserved historical reports, not scripts rerun or results relabelled as new checks."
+  },
+  "caseDispositions": [
+    {
+      "pointer": "/completeCases/8",
+      "id": "BFR105-CONSTRICT-HELP-DIFFERENCE",
+      "scalarReplacements": 24,
+      "addedPremise": "Synthetic schedule clarification only: this is an ongoing fixture encounter observed at t=0. S has actual previous regular START -3 and next regular START 3; D has actual previous regular START -2 and next regular START 4. N retains actual START0/next6. These disclosed actor opportunities are fixture inputs, not campaign facts or a global time-to-round formula. No action, Reaction, result or elapsed event is added.",
+      "startTransitions": [
+        {
+          "eventPointer": "/completeCases/8/timeline/1",
+          "actor": "S",
+          "eventTime": 3,
+          "before": [
+            -3,
+            3
+          ],
+          "after": [
+            3,
+            9
+          ]
+        },
+        {
+          "eventPointer": "/completeCases/8/timeline/3",
+          "actor": "D",
+          "eventTime": 4,
+          "before": [
+            -2,
+            4
+          ],
+          "after": [
+            4,
+            10
+          ]
+        }
+      ],
+      "escapeResult": {
+        "kind": "TASK",
+        "skill": "Acrobatics",
+        "ability": "DEX",
+        "actualProficiency": 0,
+        "d20": [
+          7,
+          12
+        ],
+        "selected": 12,
+        "naturalModifier": 2,
+        "total": 14,
+        "DC": 14,
+        "degree": "Success",
+        "success": true,
+        "helpSource": "S/help",
+        "rejectedRawSaveUsingFirstDie": {
+          "total": 9,
+          "success": false,
+          "noHelpToSave": true
+        }
+      },
+      "finalHp": 27,
+      "finalSpeed": 40,
+      "fullFinalStateUnchanged": true
+    },
+    {
+      "pointer": "/completeCases/9",
+      "id": "BFR105-CONSTRICT-UNTRAINED-FAIL",
+      "scalarReplacements": 8,
+      "addedPremise": "Synthetic schedule clarification only: this is an ongoing fixture encounter observed at t=0. D has actual previous regular START -2 and next regular START 4. N retains actual START0/next6. These disclosed actor opportunities are fixture inputs, not campaign facts or a global time-to-round formula. No action, Reaction, result or elapsed event is added.",
+      "startTransitions": [
+        {
+          "eventPointer": "/completeCases/9/timeline/1",
+          "actor": "D",
+          "eventTime": 4,
+          "before": [
+            -2,
+            4
+          ],
+          "after": [
+            4,
+            10
+          ]
+        }
+      ],
+      "escapeResult": {
+        "kind": "TASK",
+        "skill": "Acrobatics",
+        "ability": "DEX",
+        "actualProficiency": 0,
+        "d20": [
+          11
+        ],
+        "selected": 11,
+        "naturalModifier": 2,
+        "total": 13,
+        "DC": 14,
+        "degree": "Failure",
+        "success": false,
+        "helpSource": null,
+        "rejectedRawSaveUsingFirstDie": {
+          "total": 13,
+          "success": false,
+          "noHelpToSave": true
+        }
+      },
+      "finalHp": 27,
+      "finalSpeed": 0,
+      "fullFinalStateUnchanged": true
+    },
+    {
+      "pointer": "/completeCases/10",
+      "id": "BFR105-CONSTRICT-UNTRAINED-SUCCESS",
+      "scalarReplacements": 8,
+      "addedPremise": "Synthetic schedule clarification only: this is an ongoing fixture encounter observed at t=0. D has actual previous regular START -2 and next regular START 4. N retains actual START0/next6. These disclosed actor opportunities are fixture inputs, not campaign facts or a global time-to-round formula. No action, Reaction, result or elapsed event is added.",
+      "startTransitions": [
+        {
+          "eventPointer": "/completeCases/10/timeline/1",
+          "actor": "D",
+          "eventTime": 4,
+          "before": [
+            -2,
+            4
+          ],
+          "after": [
+            4,
+            10
+          ]
+        }
+      ],
+      "escapeResult": {
+        "kind": "TASK",
+        "skill": "Acrobatics",
+        "ability": "DEX",
+        "actualProficiency": 0,
+        "d20": [
+          12
+        ],
+        "selected": 12,
+        "naturalModifier": 2,
+        "total": 14,
+        "DC": 14,
+        "degree": "Success",
+        "success": true,
+        "helpSource": null,
+        "rejectedRawSaveUsingFirstDie": {
+          "total": 14,
+          "success": true,
+          "noHelpToSave": true
+        }
+      },
+      "finalHp": 27,
+      "finalSpeed": 40,
+      "fullFinalStateUnchanged": true
+    }
+  ],
+  "fieldOperations": [
+    {
+      "op": "replace",
+      "path": "/completeCases/8/initialState/actors/D/regularStart",
+      "before": 0,
+      "after": -2
+    },
+    {
+      "op": "replace",
+      "path": "/completeCases/8/initialState/actors/D/nextRegularStart",
+      "before": 6,
+      "after": 4
+    },
+    {
+      "op": "replace",
+      "path": "/completeCases/8/initialState/actors/S/regularStart",
+      "before": 0,
+      "after": -3
+    },
+    {
+      "op": "replace",
+      "path": "/completeCases/8/initialState/actors/S/nextRegularStart",
+      "before": 6,
+      "after": 3
+    },
+    {
+      "op": "replace",
+      "path": "/completeCases/8/timeline/0/before/actors/D/regularStart",
+      "before": 0,
+      "after": -2
+    },
+    {
+      "op": "replace",
+      "path": "/completeCases/8/timeline/0/before/actors/D/nextRegularStart",
+      "before": 6,
+      "after": 4
+    },
+    {
+      "op": "replace",
+      "path": "/completeCases/8/timeline/0/before/actors/S/regularStart",
+      "before": 0,
+      "after": -3
+    },
+    {
+      "op": "replace",
+      "path": "/completeCases/8/timeline/0/before/actors/S/nextRegularStart",
+      "before": 6,
+      "after": 3
+    },
+    {
+      "op": "replace",
+      "path": "/completeCases/8/timeline/0/after/actors/D/regularStart",
+      "before": 0,
+      "after": -2
+    },
+    {
+      "op": "replace",
+      "path": "/completeCases/8/timeline/0/after/actors/D/nextRegularStart",
+      "before": 6,
+      "after": 4
+    },
+    {
+      "op": "replace",
+      "path": "/completeCases/8/timeline/0/after/actors/S/regularStart",
+      "before": 0,
+      "after": -3
+    },
+    {
+      "op": "replace",
+      "path": "/completeCases/8/timeline/0/after/actors/S/nextRegularStart",
+      "before": 6,
+      "after": 3
+    },
+    {
+      "op": "replace",
+      "path": "/completeCases/8/timeline/1/before/actors/D/regularStart",
+      "before": 0,
+      "after": -2
+    },
+    {
+      "op": "replace",
+      "path": "/completeCases/8/timeline/1/before/actors/D/nextRegularStart",
+      "before": 6,
+      "after": 4
+    },
+    {
+      "op": "replace",
+      "path": "/completeCases/8/timeline/1/before/actors/S/regularStart",
+      "before": 0,
+      "after": -3
+    },
+    {
+      "op": "replace",
+      "path": "/completeCases/8/timeline/1/before/actors/S/nextRegularStart",
+      "before": 6,
+      "after": 3
+    },
+    {
+      "op": "replace",
+      "path": "/completeCases/8/timeline/1/after/actors/D/regularStart",
+      "before": 0,
+      "after": -2
+    },
+    {
+      "op": "replace",
+      "path": "/completeCases/8/timeline/1/after/actors/D/nextRegularStart",
+      "before": 6,
+      "after": 4
+    },
+    {
+      "op": "replace",
+      "path": "/completeCases/8/timeline/2/before/actors/D/regularStart",
+      "before": 0,
+      "after": -2
+    },
+    {
+      "op": "replace",
+      "path": "/completeCases/8/timeline/2/before/actors/D/nextRegularStart",
+      "before": 6,
+      "after": 4
+    },
+    {
+      "op": "replace",
+      "path": "/completeCases/8/timeline/2/after/actors/D/regularStart",
+      "before": 0,
+      "after": -2
+    },
+    {
+      "op": "replace",
+      "path": "/completeCases/8/timeline/2/after/actors/D/nextRegularStart",
+      "before": 6,
+      "after": 4
+    },
+    {
+      "op": "replace",
+      "path": "/completeCases/8/timeline/3/before/actors/D/regularStart",
+      "before": 0,
+      "after": -2
+    },
+    {
+      "op": "replace",
+      "path": "/completeCases/8/timeline/3/before/actors/D/nextRegularStart",
+      "before": 6,
+      "after": 4
+    },
+    {
+      "op": "add",
+      "path": "/completeCases/8/premises/2",
+      "beforeAbsent": true,
+      "after": "Synthetic schedule clarification only: this is an ongoing fixture encounter observed at t=0. S has actual previous regular START -3 and next regular START 3; D has actual previous regular START -2 and next regular START 4. N retains actual START0/next6. These disclosed actor opportunities are fixture inputs, not campaign facts or a global time-to-round formula. No action, Reaction, result or elapsed event is added."
+    },
+    {
+      "op": "replace",
+      "path": "/completeCases/9/initialState/actors/D/regularStart",
+      "before": 0,
+      "after": -2
+    },
+    {
+      "op": "replace",
+      "path": "/completeCases/9/initialState/actors/D/nextRegularStart",
+      "before": 6,
+      "after": 4
+    },
+    {
+      "op": "replace",
+      "path": "/completeCases/9/timeline/0/before/actors/D/regularStart",
+      "before": 0,
+      "after": -2
+    },
+    {
+      "op": "replace",
+      "path": "/completeCases/9/timeline/0/before/actors/D/nextRegularStart",
+      "before": 6,
+      "after": 4
+    },
+    {
+      "op": "replace",
+      "path": "/completeCases/9/timeline/0/after/actors/D/regularStart",
+      "before": 0,
+      "after": -2
+    },
+    {
+      "op": "replace",
+      "path": "/completeCases/9/timeline/0/after/actors/D/nextRegularStart",
+      "before": 6,
+      "after": 4
+    },
+    {
+      "op": "replace",
+      "path": "/completeCases/9/timeline/1/before/actors/D/regularStart",
+      "before": 0,
+      "after": -2
+    },
+    {
+      "op": "replace",
+      "path": "/completeCases/9/timeline/1/before/actors/D/nextRegularStart",
+      "before": 6,
+      "after": 4
+    },
+    {
+      "op": "add",
+      "path": "/completeCases/9/premises/0",
+      "beforeAbsent": true,
+      "after": "Synthetic schedule clarification only: this is an ongoing fixture encounter observed at t=0. D has actual previous regular START -2 and next regular START 4. N retains actual START0/next6. These disclosed actor opportunities are fixture inputs, not campaign facts or a global time-to-round formula. No action, Reaction, result or elapsed event is added."
+    },
+    {
+      "op": "replace",
+      "path": "/completeCases/10/initialState/actors/D/regularStart",
+      "before": 0,
+      "after": -2
+    },
+    {
+      "op": "replace",
+      "path": "/completeCases/10/initialState/actors/D/nextRegularStart",
+      "before": 6,
+      "after": 4
+    },
+    {
+      "op": "replace",
+      "path": "/completeCases/10/timeline/0/before/actors/D/regularStart",
+      "before": 0,
+      "after": -2
+    },
+    {
+      "op": "replace",
+      "path": "/completeCases/10/timeline/0/before/actors/D/nextRegularStart",
+      "before": 6,
+      "after": 4
+    },
+    {
+      "op": "replace",
+      "path": "/completeCases/10/timeline/0/after/actors/D/regularStart",
+      "before": 0,
+      "after": -2
+    },
+    {
+      "op": "replace",
+      "path": "/completeCases/10/timeline/0/after/actors/D/nextRegularStart",
+      "before": 6,
+      "after": 4
+    },
+    {
+      "op": "replace",
+      "path": "/completeCases/10/timeline/1/before/actors/D/regularStart",
+      "before": 0,
+      "after": -2
+    },
+    {
+      "op": "replace",
+      "path": "/completeCases/10/timeline/1/before/actors/D/nextRegularStart",
+      "before": 6,
+      "after": 4
+    },
+    {
+      "op": "add",
+      "path": "/completeCases/10/premises/0",
+      "beforeAbsent": true,
+      "after": "Synthetic schedule clarification only: this is an ongoing fixture encounter observed at t=0. D has actual previous regular START -2 and next regular START 4. N retains actual START0/next6. These disclosed actor opportunities are fixture inputs, not campaign facts or a global time-to-round formula. No action, Reaction, result or elapsed event is added."
+    }
+  ],
+  "wholeCaseReplacementAlternative": [
+    {
+      "op": "replace",
+      "path": "/completeCases/8",
+      "caseId": "BFR105-CONSTRICT-HELP-DIFFERENCE",
+      "beforeRef": {
+        "archive": "DD_Bestiary_Schedule_Correction_108.zip",
+        "archiveSha256": "681e30c734fb4a4468a00b844432e453dbb226c6a4f323df5cb939266e17fc01",
+        "member": "PROPOSAL.json",
+        "memberSha256": "6ed09fea766f287456f5d6d11d654c031322717bde38ccf8e1a1ec85b2e62f93",
+        "pointer": "/completeCases/0/completeBefore"
+      },
+      "afterRef": {
+        "archive": "DD_Bestiary_Schedule_Correction_108.zip",
+        "archiveSha256": "681e30c734fb4a4468a00b844432e453dbb226c6a4f323df5cb939266e17fc01",
+        "member": "PROPOSAL.json",
+        "memberSha256": "6ed09fea766f287456f5d6d11d654c031322717bde38ccf8e1a1ec85b2e62f93",
+        "pointer": "/completeCases/0/proposedCompleteAfter"
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/completeCases/9",
+      "caseId": "BFR105-CONSTRICT-UNTRAINED-FAIL",
+      "beforeRef": {
+        "archive": "DD_Bestiary_Schedule_Correction_108.zip",
+        "archiveSha256": "681e30c734fb4a4468a00b844432e453dbb226c6a4f323df5cb939266e17fc01",
+        "member": "PROPOSAL.json",
+        "memberSha256": "6ed09fea766f287456f5d6d11d654c031322717bde38ccf8e1a1ec85b2e62f93",
+        "pointer": "/completeCases/1/completeBefore"
+      },
+      "afterRef": {
+        "archive": "DD_Bestiary_Schedule_Correction_108.zip",
+        "archiveSha256": "681e30c734fb4a4468a00b844432e453dbb226c6a4f323df5cb939266e17fc01",
+        "member": "PROPOSAL.json",
+        "memberSha256": "6ed09fea766f287456f5d6d11d654c031322717bde38ccf8e1a1ec85b2e62f93",
+        "pointer": "/completeCases/1/proposedCompleteAfter"
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/completeCases/10",
+      "caseId": "BFR105-CONSTRICT-UNTRAINED-SUCCESS",
+      "beforeRef": {
+        "archive": "DD_Bestiary_Schedule_Correction_108.zip",
+        "archiveSha256": "681e30c734fb4a4468a00b844432e453dbb226c6a4f323df5cb939266e17fc01",
+        "member": "PROPOSAL.json",
+        "memberSha256": "6ed09fea766f287456f5d6d11d654c031322717bde38ccf8e1a1ec85b2e62f93",
+        "pointer": "/completeCases/2/completeBefore"
+      },
+      "afterRef": {
+        "archive": "DD_Bestiary_Schedule_Correction_108.zip",
+        "archiveSha256": "681e30c734fb4a4468a00b844432e453dbb226c6a4f323df5cb939266e17fc01",
+        "member": "PROPOSAL.json",
+        "memberSha256": "6ed09fea766f287456f5d6d11d654c031322717bde38ccf8e1a1ec85b2e62f93",
+        "pointer": "/completeCases/2/proposedCompleteAfter"
+      }
+    }
+  ],
+  "operationCounts": {
+    "scalarScheduleReplacements": 40,
+    "premiseAdditions": 3,
+    "fieldOperations": 43,
+    "completeCaseReplacementAlternative": 3
+  },
+  "reconstruction": {
+    "baseMember": "DISTINGUISHING_CASES.json",
+    "baseBytes": 921721,
+    "baseSha256": "0458966939d12bf9388f19c753cc3b46efa71ba28b00378254060790b5f5696c",
+    "selectedVirtualSuccessorBytes": 922913,
+    "selectedVirtualSuccessorSha256": "61422722e9a599804e0d9f870135dcba8a4b9d2170b375d6011c09e79dbcf8fb",
+    "serialization": "UTF-8, JSON indent=2, ensure_ascii=false, LF, one trailing LF; preserves input object order.",
+    "fullFieldAndWholeCasePathsAgree": true,
+    "fullInverseRestoresOriginalBytes": true,
+    "deliveryBoundary": "The complete successor was reconstructed in memory only for comparison and binding. It is not separately written or reissued here. Every full before/after case remains in the unchanged supplied PROPOSAL.json.",
+    "applicationInstruction": "Choose EITHER the 43 field operations OR the three complete-case replacements against the exact original member. Do not apply both. Validate complete before-values; stop on baseline drift and preserve unrelated later work."
+  },
+  "governingSourceReferences": [
+    {
+      "archive": "DD_Bestiary_Final_Reconciliation_105_01.zip",
+      "archiveSha256": "951bdc3d80f1b803e92584139ba50c900294af62ec7e38860ae697b96873465c",
+      "member": "BOUND_SOURCES.json",
+      "memberBytes": 132151,
+      "memberSha256": "7d9c413f84e4f601e7363e1225311163904ca8fee972ee299b21601e755bd80d",
+      "pointer": "/governingFullSections/0",
+      "sourceId": "SRC-COMBAT",
+      "heading": "## Encounter and action resources",
+      "sectionUtf8Sha256": "cc987787a9e61d51aa618e59597b4a581bc69f87571bf4aaabada1acba95c3a3",
+      "use": "Existing Action/Reaction/regular-marker and Help deadline contract; no new scheduling policy."
+    },
+    {
+      "archive": "DD_Bestiary_Final_Reconciliation_105_01.zip",
+      "archiveSha256": "951bdc3d80f1b803e92584139ba50c900294af62ec7e38860ae697b96873465c",
+      "member": "BOUND_SOURCES.json",
+      "memberBytes": 132151,
+      "memberSha256": "7d9c413f84e4f601e7363e1225311163904ca8fee972ee299b21601e755bd80d",
+      "pointer": "/governingFullSections/1",
+      "sourceId": "SRC-COMBAT",
+      "heading": "## Time and event ordering — NEW",
+      "sectionUtf8Sha256": "dcdd59bd56040c3a94ee32e2320a6805c5becf0cef5407d7c11a8744007cde01",
+      "use": "Existing Action/Reaction/regular-marker and Help deadline contract; no new scheduling policy."
+    },
+    {
+      "archive": "DD_Bestiary_Final_Reconciliation_105_01.zip",
+      "archiveSha256": "951bdc3d80f1b803e92584139ba50c900294af62ec7e38860ae697b96873465c",
+      "member": "BOUND_SOURCES.json",
+      "memberBytes": 132151,
+      "memberSha256": "7d9c413f84e4f601e7363e1225311163904ca8fee972ee299b21601e755bd80d",
+      "pointer": "/governingFullSections/2",
+      "sourceId": "SRC-COMBAT",
+      "heading": "## Standard Actions",
+      "sectionUtf8Sha256": "5027be75e0ac4e6d5d4d4364ade2fe179394cd6b3476e7d829a8a6b052265349",
+      "use": "Existing Action/Reaction/regular-marker and Help deadline contract; no new scheduling policy."
+    }
+  ],
+  "freshReadOnlyAudit": {
+    "passed": 59,
+    "failed": 0,
+    "report": "CHECKS.json",
+    "runtimeExecuted": false,
+    "scope": "Archive/source bindings, full objects, reversible in-memory reconstruction, unchanged nonschedule data, complete schedule/state chains and retained Help/escape arithmetic. Not game scheduler execution."
+  },
+  "retainedBoundaries": {
+    "fiveMechanicalChoicesChanged": false,
+    "ContainmentPulseScope": "Separate whole-catalog proposal, not approved by this confirmation.",
+    "Gargantuan": "Retains its conditional actual-content/contact prerequisite; no new creature or rating.",
+    "wholePositiveCaseHolds": [
+      "IN6-09-A",
+      "IN6-09-B",
+      "EN5-01-A",
+      "EN5-01-B",
+      "EN6-03-B"
+    ],
+    "otherHolds": "All previously disclosed bestiary, source/content, parent335, implementation, human, balance, cosmology, publication and release holds remain.",
+    "planarDependency": "FT107 is a separate exact reference-only scope, not reapplied or broadened.",
+    "FXC06Update": "User-reported local progress only; map not supplied or independently reviewed here.",
+    "baseline": {
+      "reviewed": 525,
+      "pending": 323,
+      "standaloneProcedures": 249,
+      "scopedInterfaces": 173,
+      "acceptedButUnappliedOrdinarySpells": 53
+    },
+    "ownerImplementationReservation": true,
+    "canonicalApplied": false,
+    "sourceInformationDeleted": 0,
+    "suppliedScriptsExecuted": 0,
+    "previousProgramsRerun": 0,
+    "newSchedulerRules": 0,
+    "originalFilesModified": false,
+    "wholeBestiaryAccepted": false
+  }
+}

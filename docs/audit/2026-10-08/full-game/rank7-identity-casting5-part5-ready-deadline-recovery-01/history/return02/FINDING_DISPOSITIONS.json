@@ -1,0 +1,217 @@
+{
+  "id": "RIC5-CORRECTION02-FINDINGS",
+  "scope": "Bounded fixture corrections, not local whole-cohort semantic acceptance.",
+  "originalReportedDiagnosticCount": 314,
+  "originalReportedPasses": 303,
+  "originalReportedFailures": 11,
+  "originalDiagnosticScriptExecuted": false,
+  "findings": [
+    {
+      "id": "RIC5-LOCAL68-01",
+      "disposition": "CONFIRMED_CORRECTED_IN_PROPOSED_FIXTURES_ONLY",
+      "completeOriginalFindingUnchanged": {
+        "id": "RIC5-LOCAL68-01",
+        "priority": 2,
+        "status": "FIXTURE_CORRECTION_REQUIRED",
+        "caseIds": [
+          "RIC5-02-B-a",
+          "RIC5-02-B-b"
+        ],
+        "title": "Claimed Adept acquisition conflicts with the full advancement history",
+        "evidence": {
+          "positiveCasePointer": "/currentVectors/3/independentBranches/0",
+          "asiHistory": {
+            "rolledINT": 16,
+            "class4": "INT+2 to18",
+            "class8": "STR+2 from8 to10",
+            "class12": "CHA+2 from8 to10",
+            "DEX": 14,
+            "CON": 14,
+            "WIS": 12,
+            "note": "Explicit legal generated-score/ASI fixture inputs; no extra feat is claimed."
+          },
+          "legalMilestones": [
+            4,
+            8,
+            12,
+            16,
+            19
+          ],
+          "source": "CHARACTER_CREATION_PLAYTEST.md:45; wizard.json and mage.json asiClassLevels",
+          "observed": "Positive Wizard branch claims acquired Adept Sculpt at an eligible feat milestone, but all three reached milestones are spent on scores and the supplied actor says no extra feat. The negative two-provider branch inherits the same issue when claiming both providers genuinely acquired."
+        },
+        "requestedCorrection": "Supply one internally consistent full acquisition fixture with actual chosen Adept modes, milestone and source. If one reached milestone becomes a feat, reconcile starting/final scores and dependent saves/stats. Do not grant a free bonus feat. Retain genuine external feat-operational availability qualification. For the negative branch, either bind legal both-provider ownership or label its provider predicate explicitly conditional without claiming a complete acquired actor."
+      },
+      "explanation": "Confirmed fixture acquisition contradiction. Replace class12 CHA+2 with one named Metamagic Adept selection in both affected variants. Permanent Reach/Sculpt; CHA8/save-1; no additional milestone. Class5 Sculpt remains a separate real Mage selection. Preserve all pending feat flags and the positive branch's operational availability qualification.",
+      "sourceReferences": [
+        "sources/DescentReviewChanges/ReviewBible/docs/mechanics/CHARACTER_CREATION_PLAYTEST.md#L45",
+        "inputs/DD_Rank7_Identity_Casting_5_Source_Conference_01.zip!/sources/DescentReviewChanges/ReviewBible/data/director/feat_candidates/exact_01/cohorts/magic_core.json#/records/21",
+        "sources/DescentReviewChanges/ReviewBible/data/public/class_playtests/mage.json#/cards/16"
+      ],
+      "affectedModelPointers": [
+        "/currentVectors/3/independentBranches/0",
+        "/currentVectors/3/independentBranches/1"
+      ]
+    },
+    {
+      "id": "RIC5-LOCAL68-02",
+      "disposition": "CONFIRMED_CORRECTED_IN_PROPOSED_FIXTURES_ONLY",
+      "completeOriginalFindingUnchanged": {
+        "id": "RIC5-LOCAL68-02",
+        "priority": 2,
+        "status": "STATE_CORRECTION_REQUIRED",
+        "caseIds": [
+          "RIC5-01-B",
+          "RIC5-02-A",
+          "RIC5-04-A",
+          "RIC5-04-B",
+          "RIC5-05-B",
+          "RIC5-02-B-a",
+          "RIC5-04-B-b"
+        ],
+        "title": "Eight successful Action events leave the remaining Action ledger true",
+        "evidence": {
+          "events": [
+            {
+              "caseId": "RIC5-01-B",
+              "timelineIndex": 3,
+              "actor": "enemy",
+              "event": "Enemy next regular start and new Fireball commitment",
+              "beforeAction": true,
+              "afterAction": true
+            },
+            {
+              "caseId": "RIC5-02-A",
+              "timelineIndex": 2,
+              "actor": "mage",
+              "event": "Next actual regular Action repeats same acquired free Reach",
+              "beforeAction": true,
+              "afterAction": true
+            },
+            {
+              "caseId": "RIC5-04-A",
+              "timelineIndex": 3,
+              "actor": "enemy",
+              "event": "Enemy next genuine Action Ray of Frost at10feet",
+              "beforeAction": true,
+              "afterAction": true
+            },
+            {
+              "caseId": "RIC5-04-B",
+              "timelineIndex": 3,
+              "actor": "carrier",
+              "event": "Carrier ownnextregularAction puts bodyonthefloor locally",
+              "beforeAction": true,
+              "afterAction": true
+            },
+            {
+              "caseId": "RIC5-05-B",
+              "timelineIndex": 5,
+              "actor": "creator",
+              "event": "CreatorregularActiondismisses perceivedduplicate",
+              "beforeAction": true,
+              "afterAction": true
+            },
+            {
+              "caseId": "RIC5-05-B",
+              "timelineIndex": 7,
+              "actor": "creator",
+              "event": "Newrealcast atsame donor, same bodyposition nowclear",
+              "beforeAction": true,
+              "afterAction": true
+            },
+            {
+              "caseId": "RIC5-02-B-a",
+              "timelineIndex": 1,
+              "actor": "wizard",
+              "event": "Actual next-turn Fireball uses acquired Adept Sculpt, no point debit",
+              "beforeAction": true,
+              "afterAction": true
+            },
+            {
+              "caseId": "RIC5-04-B-b",
+              "timelineIndex": 0,
+              "actor": "caster",
+              "event": "CasternextregularActioncastsactualLesserAntimagicpoint[10,0,0]",
+              "beforeAction": true,
+              "afterAction": true
+            }
+          ],
+          "budgetSemantics": "Action/BonusAction/Reaction booleans are remaining underlying ledgers, not action eligibility outside an actual source-qualified phase or while Incapacitated. Supplied regular-START refreshes are materialized before events; explicit relevant END/idle-D transitions remain in the trace. Other uninvoked actions are declined. Long uninterrupted work/rest branches explicitly use real elapsed noncombat work, not thousands of fabricated Actions.",
+          "source": "CLASS_PLAYTEST_RULES.md:11,15; each exact procedure/native source still spends an Action."
+        },
+        "requestedCorrection": "Apply the real regular-START refresh before the event, then consume the successful Action once and carry false through intermediate/terminal states until a later real refresh. Repair all full case/model/chapter/specification mirrors. Audit other cadence-normalized events for the same defect. Do not change legal rejection cases or add an Action charge to a composite Cast Echo child or a Reaction-only release."
+      },
+      "explanation": "Confirmed eight missing post-commitment Action debits. Spend exactly once, propagate false through all actual same-turn snapshots and restore only at a real future START. The full121-event/44-ordinary-commitment audit additionally reconciles three related cadence mirrors; no Action charge is added to an illegal declaration, a composite child or Reaction-only release.",
+      "sourceReferences": [
+        "sources/DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md#L11-L17",
+        "sources/DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_06.json#/entries/1"
+      ],
+      "affectedModelPointers": [
+        "/currentVectors/0",
+        "/currentVectors/1",
+        "/currentVectors/2",
+        "/currentVectors/3",
+        "/currentVectors/6",
+        "/currentVectors/7",
+        "/currentVectors/9"
+      ],
+      "relatedAuditCorrections": [
+        {
+          "id": "RIC5-CADENCE-AUDIT-01",
+          "caseId": "RIC5-01-B-f",
+          "eventIndex": 1,
+          "before": "Enemy before-state remained at START-3, Actionfalse, while event/after states explicitly used its START3 Action.",
+          "after": "Materialize existing START3 in before: Actiontrue, next9. After remains Actionfalse. No extra Action and no second child Action."
+        },
+        {
+          "id": "RIC5-CADENCE-AUDIT-02",
+          "caseId": "RIC5-02-A-a",
+          "eventIndex": 2,
+          "before": "Actual serialized cadence55/61 conflicts with prose56/62; event at61 materializes a refresh yet still releases old Ready.",
+          "after": "Keep actual55/61 cadence. Change stated trigger completion/release to60.9, after Surge expiry60.5 and before hold expiry61. Remove the61 refresh from that event; Action remainsfalse; Reaction true→false. Original full branch preserved.",
+          "scope": "Fixture timestamp/prose repair, not a new interrupt, expiry exception or action source."
+        },
+        {
+          "id": "RIC5-CADENCE-AUDIT-03",
+          "caseId": "RIC5-01-A-g",
+          "eventIndex": 0,
+          "before": "Paid donor Action-1 is serialized under START0 and then its recorded START0 refresh appears to restore an Action within the same phase.",
+          "after": "Place the existing-1 cast in the preceding regular turn START-6/next0; preserve the already supplied START0 record once. No extra marker, cast or resource change."
+        }
+      ]
+    },
+    {
+      "id": "RIC5-LOCAL68-03",
+      "disposition": "CONFIRMED_CORRECTED_IN_PROPOSED_FIXTURES_ONLY",
+      "completeOriginalFindingUnchanged": {
+        "id": "RIC5-LOCAL68-03",
+        "priority": 2,
+        "status": "STATE_CORRECTION_REQUIRED",
+        "caseIds": [
+          "RIC5-03-B-a"
+        ],
+        "title": "Successful Erase observer-exclusion branch omits casting history",
+        "evidence": {
+          "pointer": "/currentVectors/5/independentBranches/0/expectedFinalState/actors/caster",
+          "rp": 31,
+          "action": false,
+          "lastSpell": null,
+          "preparedFamiliesUsed": [],
+          "observed": "The caster pays17 and establishes protection on the willing subject; only the observer is excluded by a wall. lastSpell stays null and the used matrix-family list stays empty."
+        },
+        "requestedCorrection": "Record actual erase-from-reality casting history and the spent prepared-family exemption at commitment in every mirror. Preserve zero base Dissonance for this real first prepared cast, the valid subject protection, and the excluded observer. This is not an illegal-cast refund case."
+      },
+      "explanation": "Confirmed successful-cast history omission. Subject admission and payment were valid; a wall excluded one observer only. Record lastSpell=erase-from-reality and the spent prepared family at commitment, retaining RP31, Actionfalse, first baseD0/refrain0. The next actual repeated prepared cast has baseD2 plus Refrain1, totalD3, and costs17RP again.",
+      "sourceReferences": [
+        "sources/DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json#/engine/11",
+        "sources/DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md#Ordinary spells"
+      ],
+      "affectedModelPointers": [
+        "/currentVectors/5/independentBranches/0"
+      ]
+    }
+  ],
+  "additionalProceduralOrGlobalRuleSelections": 0,
+  "preservedConditionalBranches": 11
+}

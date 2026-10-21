@@ -1,0 +1,1229 @@
+{
+  "report": {
+    "path": "docs/audit/2026-10-08/full-game/FEAT335_TIME_PROVISIONS_CASES_83.json",
+    "bytes": 186843,
+    "sha256": "8e73d44e1e00f56592c22b392ca6dcb34bd25a06beac4325371862deb50e1adc"
+  },
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/DD_Feat335_Time_Provisions_Cases_83.zip",
+    "bytes": 1292131,
+    "sha256": "582739739ad368851a34e9383a25ccd77a5631e845122dd071ddfd826e0da147"
+  },
+  "checkCount": 88,
+  "failures": 0,
+  "checks": [
+    {
+      "check": "endurance full current public/internal text equality",
+      "pass": true,
+      "actual": "Keep advantage on an actual Constitution save to resist Exhaustion; this supplies no save where the governing rule assesses a penalty directly. NEW Endurance/EX58 bridge: keep the same 24-hour provisioning checkpoints, eight-hour Watches, two-active-work ceiling, actual Rest Debt opening, deadline at the end of the second following Watch, and safe eight-hour rest cure. Do not double a Watch, create food/water, lengthen an actual sleep-debt deadline, or treat work as rest.\nMaintain two separate feat records, foodWaterPending and sleepPending, each initially 0 and limited to 0 or 1. At a canonical daily checkpoint where food/water shortage is the sole reason for the one expedition-Strain penalty, 0 becomes 1 and that one penalty is omitted; 1 becomes 0 and the original one penalty applies. A day actually meeting both food and water requirements clears foodWaterPending. Another unmet mandatory logistical requirement still causes its original single daily penalty; Endurance does not reduce it or add a second daily penalty. The day remains unsupported wherever its actual requirements are unmet, even when the feat omits a Strain point.\nAt an actual canonical sleep-debt penalty event, apply the same 0→1/omit, 1→0/apply sequence to sleepPending. Assess each original event once: the unpaid deadline event and a subsequent missed designated Rest Watch follow their own EX58 scheduling; do not create an hourly or per-Watch penalty. Debt remains owed and deadlines reset only as EX58 says. A genuinely completed safe eight-hour rest clears sleepPending and actual Rest Debt, even if it supplies no additional beneficial-long-rest resource recovery. Food/water and sleep credits never offset each other. Other Strain, Exhaustion, air, weather and hazard causes retain their original rules.\nAcquisition clears neither existing Strain nor existing debt. If the feat is unavailable at a checkpoint, apply the original cause-specific penalty and clear that cause's pending credit; availability later cannot rewrite the past. Preserve all assessed and omitted events and their causes. This is an explicitly NEW interpretation of 'go twice as long': it halves the frequency of the applicable canonical penalty events, not the elapsed length of every irregular sleep-debt window. Literal older wording and the rejected generic-timer draft remain historical.",
+      "expected": "Keep advantage on an actual Constitution save to resist Exhaustion; this supplies no save where the governing rule assesses a penalty directly. NEW Endurance/EX58 bridge: keep the same 24-hour provisioning checkpoints, eight-hour Watches, two-active-work ceiling, actual Rest Debt opening, deadline at the end of the second following Watch, and safe eight-hour rest cure. Do not double a Watch, create food/water, lengthen an actual sleep-debt deadline, or treat work as rest.\nMaintain two separate feat records, foodWaterPending and sleepPending, each initially 0 and limited to 0 or 1. At a canonical daily checkpoint where food/water shortage is the sole reason for the one expedition-Strain penalty, 0 becomes 1 and that one penalty is omitted; 1 becomes 0 and the original one penalty applies. A day actually meeting both food and water requirements clears foodWaterPending. Another unmet mandatory logistical requirement still causes its original single daily penalty; Endurance does not reduce it or add a second daily penalty. The day remains unsupported wherever its actual requirements are unmet, even when the feat omits a Strain point.\nAt an actual canonical sleep-debt penalty event, apply the same 0→1/omit, 1→0/apply sequence to sleepPending. Assess each original event once: the unpaid deadline event and a subsequent missed designated Rest Watch follow their own EX58 scheduling; do not create an hourly or per-Watch penalty. Debt remains owed and deadlines reset only as EX58 says. A genuinely completed safe eight-hour rest clears sleepPending and actual Rest Debt, even if it supplies no additional beneficial-long-rest resource recovery. Food/water and sleep credits never offset each other. Other Strain, Exhaustion, air, weather and hazard causes retain their original rules.\nAcquisition clears neither existing Strain nor existing debt. If the feat is unavailable at a checkpoint, apply the original cause-specific penalty and clear that cause's pending credit; availability later cannot rewrite the past. Preserve all assessed and omitted events and their causes. This is an explicitly NEW interpretation of 'go twice as long': it halves the frequency of the applicable canonical penalty events, not the elapsed length of every irregular sleep-debt window. Literal older wording and the rejected generic-timer draft remain historical."
+    },
+    {
+      "check": "endurance remains source-authored not promoted",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "forager full current public/internal text equality",
+      "pass": true,
+      "actual": "NEW finite interpretation of the source guarantee: in an accessible non-desert, non-arctic area that actually contains enough recoverable edible food and potable water, spend one active eight-hour forage Watch to gather the normal daily food and water requirement for yourself and up to six other ordinary Small/Medium people. This feat guarantees that result from qualifying available resources without a separate yield roll; it does not guarantee access through a hazard, remove contamination or defeat a resource-specific harvesting gate. Identify a real foraging area and deplete its recorded stocks. The actual expedition procedure supplies food/water units, body-size requirements, carry weight and Supply conversion; this feat creates no extra abstract Supply. Larger or unusual consumers use their actual greater requirement from the same finite quantity, not seven unlimited creature-day portions. Record one feat forage output per holder per24 elapsed hours, shared across all locations, with the window beginning on completion; a second feat owner can work separately only against remaining real stock and their actual time. Deserts and arctic regions use ordinary foraging. A stripped, sealed or foodless place cannot satisfy the prerequisite, and no water appears because food exists. Preserve, transport and consume the actual output normally.\nNEW explicit quantity ceiling: the seven ordinary Small/Medium daily food-and-water portions are at most14lb edible food and56pints potable water in one completed480-active-minute Watch. Each pint of water is1lb for the existing cargo accounting. A Large consumer normally uses4lb/16pints from this same stock. These are food/water only, not seven complete Supply Units: no oil, sundries, storage or transport is awarded. If the full guarantee cannot be supported, before work declare an ordinary lawful forage attempt or a smaller supported quantity under this feat; its no-yield-roll benefit may recover only that predeclared real accessible amount. The one-completion/24-elapsed-hour and all actual acquisition/handling restrictions still apply.",
+      "expected": "NEW finite interpretation of the source guarantee: in an accessible non-desert, non-arctic area that actually contains enough recoverable edible food and potable water, spend one active eight-hour forage Watch to gather the normal daily food and water requirement for yourself and up to six other ordinary Small/Medium people. This feat guarantees that result from qualifying available resources without a separate yield roll; it does not guarantee access through a hazard, remove contamination or defeat a resource-specific harvesting gate. Identify a real foraging area and deplete its recorded stocks. The actual expedition procedure supplies food/water units, body-size requirements, carry weight and Supply conversion; this feat creates no extra abstract Supply. Larger or unusual consumers use their actual greater requirement from the same finite quantity, not seven unlimited creature-day portions. Record one feat forage output per holder per24 elapsed hours, shared across all locations, with the window beginning on completion; a second feat owner can work separately only against remaining real stock and their actual time. Deserts and arctic regions use ordinary foraging. A stripped, sealed or foodless place cannot satisfy the prerequisite, and no water appears because food exists. Preserve, transport and consume the actual output normally.\nNEW explicit quantity ceiling: the seven ordinary Small/Medium daily food-and-water portions are at most14lb edible food and56pints potable water in one completed480-active-minute Watch. Each pint of water is1lb for the existing cargo accounting. A Large consumer normally uses4lb/16pints from this same stock. These are food/water only, not seven complete Supply Units: no oil, sundries, storage or transport is awarded. If the full guarantee cannot be supported, before work declare an ordinary lawful forage attempt or a smaller supported quantity under this feat; its no-yield-roll benefit may recover only that predeclared real accessible amount. The one-completion/24-elapsed-hour and all actual acquisition/handling restrictions still apply."
+    },
+    {
+      "check": "forager remains source-authored not promoted",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "Endurance literal CON13 prerequisite",
+      "pass": true,
+      "actual": "Constitution 13+",
+      "expected": "Constitution 13+"
+    },
+    {
+      "check": "Forager literal WIS13 prerequisite",
+      "pass": true,
+      "actual": "Wisdom 13+",
+      "expected": "Wisdom 13+"
+    },
+    {
+      "check": "Forager exact quantity/time source 14lb",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "Forager exact quantity/time source 56pints",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "Forager exact quantity/time source 480-active-minute",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "Forager exact quantity/time source one-completion/24-elapsed-hour",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "Exact EX58 input source 2 lb of ration-equivalent edible food, 8 pints",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "Exact EX58 input source 1 pint of compatible lamp oil",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "Exact EX58 input source 0.25 lb of ordinary camp sundries",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "Exact EX58 input source Donkey/mule 10",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "Exact EX58 input source 32, 24, 128, 40, 32, 40, 8, 16 and 12 pints/day",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "Exact EX58 input source end of the second following canonical Watch",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "Full current EX58 book exact accepted bytes",
+      "pass": true,
+      "actual": [
+        307717,
+        "4c58b9f7063e562b785b8db6006699d3c4f68edd0e697d06db69662ba9b7e480"
+      ],
+      "expected": [
+        307717,
+        "4c58b9f7063e562b785b8db6006699d3c4f68edd0e697d06db69662ba9b7e480"
+      ]
+    },
+    {
+      "check": "Existing acquisition source is Endurance",
+      "pass": true,
+      "actual": "endurance",
+      "expected": "endurance"
+    },
+    {
+      "check": "Existing source slice Warrior8",
+      "pass": true,
+      "actual": {
+        "Warrior": 8
+      },
+      "expected": {
+        "Warrior": 8
+      }
+    },
+    {
+      "check": "Existing source slice ability gates",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "Two distinct real class-scheduled opportunity levels",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "FP83-01 complete scoped outcome",
+      "pass": true,
+      "actual": {
+        "spent": [
+          "Warrior:4",
+          "Warrior:8"
+        ],
+        "owned": [
+          "forager",
+          "endurance"
+        ],
+        "foodLb": 0,
+        "waterPints": 0,
+        "foodWaterPending": 0,
+        "sleepPending": 0
+      },
+      "expected": {
+        "spent": [
+          "Warrior:4",
+          "Warrior:8"
+        ],
+        "owned": [
+          "forager",
+          "endurance"
+        ],
+        "foodLb": 0,
+        "waterPints": 0,
+        "foodWaterPending": 0,
+        "sleepPending": 0
+      }
+    },
+    {
+      "check": "FP83-02 complete scoped outcome",
+      "pass": true,
+      "actual": {
+        "stock": {
+          "siteId": "TEST_ONLY-grain-and-spring-A",
+          "siteFoodLb": 6,
+          "siteWaterPints": 24,
+          "holderFoodLb": 14,
+          "holderWaterPints": 56,
+          "lastCompletedMinute": 510
+        },
+        "elapsedCompletionMinute": 510,
+        "activeMinutes": 480,
+        "elapsedSpanMinutes": 510,
+        "nonworkMinutes": 30,
+        "nextCompletionAtOrAfterMinute": 1950,
+        "outputContentsLb": 70,
+        "outputContainersTareLb": 16,
+        "packedOutputLb": 86,
+        "oilCreatedPints": 0,
+        "sundriesCreatedLb": 0,
+        "abstractSupplyCreated": 0,
+        "workWatchSlots": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": {
+        "stock": {
+          "siteId": "TEST_ONLY-grain-and-spring-A",
+          "siteFoodLb": 6,
+          "siteWaterPints": 24,
+          "holderFoodLb": 14,
+          "holderWaterPints": 56,
+          "lastCompletedMinute": 510
+        },
+        "elapsedCompletionMinute": 510,
+        "activeMinutes": 480,
+        "elapsedSpanMinutes": 510,
+        "nonworkMinutes": 30,
+        "nextCompletionAtOrAfterMinute": 1950,
+        "outputContentsLb": 70,
+        "outputContainersTareLb": 16,
+        "packedOutputLb": 86,
+        "oilCreatedPints": 0,
+        "sundriesCreatedLb": 0,
+        "abstractSupplyCreated": 0,
+        "workWatchSlots": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      }
+    },
+    {
+      "check": "FP83-03-1949 complete scoped outcome",
+      "pass": true,
+      "actual": {
+        "elapsedSinceCompletion": 1439,
+        "eligible": false,
+        "stockChanged": false
+      },
+      "expected": {
+        "elapsedSinceCompletion": 1439,
+        "eligible": false,
+        "stockChanged": false
+      }
+    },
+    {
+      "check": "FP83-03-1950 complete scoped outcome",
+      "pass": true,
+      "actual": {
+        "elapsedSinceCompletion": 1440,
+        "eligible": true,
+        "stockChanged": false
+      },
+      "expected": {
+        "elapsedSinceCompletion": 1440,
+        "eligible": true,
+        "stockChanged": false
+      }
+    },
+    {
+      "check": "FP83-03-1951 complete scoped outcome",
+      "pass": true,
+      "actual": {
+        "elapsedSinceCompletion": 1441,
+        "eligible": true,
+        "stockChanged": false
+      },
+      "expected": {
+        "elapsedSinceCompletion": 1441,
+        "eligible": true,
+        "stockChanged": false
+      }
+    },
+    {
+      "check": "FP83-04 complete scoped outcome",
+      "pass": true,
+      "actual": {
+        "siteFoodLb": 0,
+        "siteWaterPints": 0,
+        "holderFoodLb": 4,
+        "holderWaterPints": 8,
+        "contentsLb": 12
+      },
+      "expected": {
+        "siteFoodLb": 0,
+        "siteWaterPints": 0,
+        "holderFoodLb": 4,
+        "holderWaterPints": 8,
+        "contentsLb": 12
+      }
+    },
+    {
+      "check": "FP83-05 complete scoped outcome",
+      "pass": true,
+      "actual": {
+        "rejected": true,
+        "originalStateUnchanged": true
+      },
+      "expected": {
+        "rejected": true,
+        "originalStateUnchanged": true
+      }
+    },
+    {
+      "check": "FP83-06 complete scoped outcome",
+      "pass": true,
+      "actual": {
+        "rejected": true,
+        "originalStateUnchanged": true
+      },
+      "expected": {
+        "rejected": true,
+        "originalStateUnchanged": true
+      }
+    },
+    {
+      "check": "FP83-07 complete scoped outcome",
+      "pass": true,
+      "actual": {
+        "foodConsumedLb": 14,
+        "waterConsumedPints": 40,
+        "foodRemainingLb": 0,
+        "waterRemainingPints": 16,
+        "oilRemainingPints": 0,
+        "sundriesRemainingLb": 0
+      },
+      "expected": {
+        "foodConsumedLb": 14,
+        "waterConsumedPints": 40,
+        "foodRemainingLb": 0,
+        "waterRemainingPints": 16,
+        "oilRemainingPints": 0,
+        "sundriesRemainingLb": 0
+      }
+    },
+    {
+      "check": "FP83-08 complete scoped outcome",
+      "pass": true,
+      "actual": {
+        "completePhysicalBaskets": 0,
+        "wholeSupplyCommitmentAllowed": false,
+        "createdOil": 0,
+        "createdSundries": 0
+      },
+      "expected": {
+        "completePhysicalBaskets": 0,
+        "wholeSupplyCommitmentAllowed": false,
+        "createdOil": 0,
+        "createdSundries": 0
+      }
+    },
+    {
+      "check": "FP83-09 complete scoped outcome",
+      "pass": true,
+      "actual": {
+        "minute": 2880,
+        "strain": 1,
+        "foodWaterPending": 0,
+        "sleepPending": 0,
+        "restDebt": false,
+        "deadlineMinute": null,
+        "unsupportedDayEndpoints": [
+          1440,
+          2880
+        ]
+      },
+      "expected": {
+        "minute": 2880,
+        "strain": 1,
+        "foodWaterPending": 0,
+        "sleepPending": 0,
+        "restDebt": false,
+        "deadlineMinute": null,
+        "unsupportedDayEndpoints": [
+          1440,
+          2880
+        ]
+      }
+    },
+    {
+      "check": "FP83-10 complete scoped outcome",
+      "pass": true,
+      "actual": {
+        "minute": 2880,
+        "strain": 2,
+        "foodWaterPending": 0,
+        "sleepPending": 0,
+        "restDebt": true,
+        "deadlineMinute": 3840,
+        "unsupportedDayEndpoints": [
+          1440,
+          2880
+        ]
+      },
+      "expected": {
+        "minute": 2880,
+        "strain": 2,
+        "foodWaterPending": 0,
+        "sleepPending": 0,
+        "restDebt": true,
+        "deadlineMinute": 3840,
+        "unsupportedDayEndpoints": [
+          1440,
+          2880
+        ]
+      }
+    },
+    {
+      "check": "FP83-10 four distinct assessed deprivation events",
+      "pass": true,
+      "actual": 4,
+      "expected": 4
+    },
+    {
+      "check": "FP83-11 complete scoped outcome",
+      "pass": true,
+      "actual": {
+        "minute": 2400,
+        "strain": 0,
+        "foodWaterPending": 0,
+        "sleepPending": 0,
+        "restDebt": false,
+        "deadlineMinute": null,
+        "unsupportedDayEndpoints": []
+      },
+      "expected": {
+        "minute": 2400,
+        "strain": 0,
+        "foodWaterPending": 0,
+        "sleepPending": 0,
+        "restDebt": false,
+        "deadlineMinute": null,
+        "unsupportedDayEndpoints": []
+      }
+    },
+    {
+      "check": "FP83-11 no unpaid due event introduced",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "check": "FP83-12 complete scoped outcome",
+      "pass": true,
+      "actual": {
+        "minute": 2460,
+        "strain": 2,
+        "foodWaterPending": 0,
+        "sleepPending": 0,
+        "restDebt": false,
+        "deadlineMinute": null,
+        "unsupportedDayEndpoints": []
+      },
+      "expected": {
+        "minute": 2460,
+        "strain": 2,
+        "foodWaterPending": 0,
+        "sleepPending": 0,
+        "restDebt": false,
+        "deadlineMinute": null,
+        "unsupportedDayEndpoints": []
+      }
+    },
+    {
+      "check": "FP83-12 due events retained at16h and40h",
+      "pass": true,
+      "actual": [
+        960,
+        2400
+      ],
+      "expected": [
+        960,
+        2400
+      ]
+    },
+    {
+      "check": "FP83-13 complete scoped outcome",
+      "pass": true,
+      "actual": {
+        "minute": 3360,
+        "strain": 0,
+        "foodWaterPending": 0,
+        "sleepPending": 0,
+        "restDebt": false,
+        "deadlineMinute": null,
+        "unsupportedDayEndpoints": []
+      },
+      "expected": {
+        "minute": 3360,
+        "strain": 0,
+        "foodWaterPending": 0,
+        "sleepPending": 0,
+        "restDebt": false,
+        "deadlineMinute": null,
+        "unsupportedDayEndpoints": []
+      }
+    },
+    {
+      "check": "FP83-13 resource reward ineligible",
+      "pass": true,
+      "actual": [
+        {
+          "endMinute": 3360,
+          "eligible": false
+        }
+      ],
+      "expected": [
+        {
+          "endMinute": 3360,
+          "eligible": false
+        }
+      ]
+    },
+    {
+      "check": "FP83-13 prior reward identity unchanged",
+      "pass": true,
+      "actual": 2400,
+      "expected": 2400
+    },
+    {
+      "check": "FP83-14 complete scoped outcome",
+      "pass": true,
+      "actual": {
+        "minute": 4320,
+        "strain": 1,
+        "foodWaterPending": 1,
+        "sleepPending": 0,
+        "restDebt": false,
+        "deadlineMinute": null,
+        "unsupportedDayEndpoints": [
+          1440,
+          2880,
+          4320
+        ]
+      },
+      "expected": {
+        "minute": 4320,
+        "strain": 1,
+        "foodWaterPending": 1,
+        "sleepPending": 0,
+        "restDebt": false,
+        "deadlineMinute": null,
+        "unsupportedDayEndpoints": [
+          1440,
+          2880,
+          4320
+        ]
+      }
+    },
+    {
+      "check": "FP83-15 complete scoped outcome",
+      "pass": true,
+      "actual": {
+        "minute": 2880,
+        "strain": 1,
+        "foodWaterPending": 1,
+        "sleepPending": 0,
+        "restDebt": false,
+        "deadlineMinute": null,
+        "unsupportedDayEndpoints": [
+          1440,
+          2880
+        ]
+      },
+      "expected": {
+        "minute": 2880,
+        "strain": 1,
+        "foodWaterPending": 1,
+        "sleepPending": 0,
+        "restDebt": false,
+        "deadlineMinute": null,
+        "unsupportedDayEndpoints": [
+          1440,
+          2880
+        ]
+      }
+    },
+    {
+      "check": "FP83-16 complete scoped outcome",
+      "pass": true,
+      "actual": {
+        "minute": 2880,
+        "strain": 2,
+        "foodWaterPending": 0,
+        "sleepPending": 0,
+        "restDebt": false,
+        "deadlineMinute": null,
+        "unsupportedDayEndpoints": [
+          1440
+        ]
+      },
+      "expected": {
+        "minute": 2880,
+        "strain": 2,
+        "foodWaterPending": 0,
+        "sleepPending": 0,
+        "restDebt": false,
+        "deadlineMinute": null,
+        "unsupportedDayEndpoints": [
+          1440
+        ]
+      }
+    },
+    {
+      "check": "FP83-17 complete scoped outcome",
+      "pass": true,
+      "actual": {
+        "rejected": true,
+        "originalStateUnchanged": true
+      },
+      "expected": {
+        "rejected": true,
+        "originalStateUnchanged": true
+      }
+    },
+    {
+      "check": "FP83-17 actual ledger unchanged after duplicate rejection",
+      "pass": true,
+      "actual": {
+        "minute": 2880,
+        "strain": 2,
+        "foodWaterPending": 0,
+        "sleepPending": 0,
+        "operative": true,
+        "restDebt": false,
+        "deadlineMinute": null,
+        "assessedEvents": [
+          "day:1440",
+          "foodWater:1440",
+          "day:2880"
+        ],
+        "unsupportedDayEndpoints": [
+          1440
+        ],
+        "lastBeneficialLongRestMinute": null,
+        "longRestRewardEligibility": [],
+        "events": [
+          {
+            "minute": 1440,
+            "event": "foodWater:1440",
+            "cause": "foodWater",
+            "strainGain": 0,
+            "pendingBefore": 0,
+            "pendingAfter": 1
+          }
+        ]
+      },
+      "expected": {
+        "minute": 2880,
+        "strain": 2,
+        "foodWaterPending": 0,
+        "sleepPending": 0,
+        "operative": true,
+        "restDebt": false,
+        "deadlineMinute": null,
+        "assessedEvents": [
+          "day:1440",
+          "foodWater:1440",
+          "day:2880"
+        ],
+        "unsupportedDayEndpoints": [
+          1440
+        ],
+        "lastBeneficialLongRestMinute": null,
+        "longRestRewardEligibility": [],
+        "events": [
+          {
+            "minute": 1440,
+            "event": "foodWater:1440",
+            "cause": "foodWater",
+            "strainGain": 0,
+            "pendingBefore": 0,
+            "pendingAfter": 1
+          }
+        ]
+      }
+    },
+    {
+      "check": "FP83-18 complete scoped outcome",
+      "pass": true,
+      "actual": {
+        "rejected": true,
+        "originalStateUnchanged": true
+      },
+      "expected": {
+        "rejected": true,
+        "originalStateUnchanged": true
+      }
+    },
+    {
+      "check": "FP83-19-eligibleTerrain complete scoped outcome",
+      "pass": true,
+      "actual": {
+        "rejected": true,
+        "originalStateUnchanged": true
+      },
+      "expected": {
+        "rejected": true,
+        "originalStateUnchanged": true
+      }
+    },
+    {
+      "check": "FP83-19-safeAccessibleCompatibleStocks complete scoped outcome",
+      "pass": true,
+      "actual": {
+        "rejected": true,
+        "originalStateUnchanged": true
+      },
+      "expected": {
+        "rejected": true,
+        "originalStateUnchanged": true
+      }
+    },
+    {
+      "check": "FP83-19-waterContainerCapacityPints complete scoped outcome",
+      "pass": true,
+      "actual": {
+        "rejected": true,
+        "originalStateUnchanged": true
+      },
+      "expected": {
+        "rejected": true,
+        "originalStateUnchanged": true
+      }
+    },
+    {
+      "check": "FP83-19-actualPaidFeat complete scoped outcome",
+      "pass": true,
+      "actual": {
+        "rejected": true,
+        "originalStateUnchanged": true
+      },
+      "expected": {
+        "rejected": true,
+        "originalStateUnchanged": true
+      }
+    },
+    {
+      "check": "FP83-19-wisdom complete scoped outcome",
+      "pass": true,
+      "actual": {
+        "rejected": true,
+        "originalStateUnchanged": true
+      },
+      "expected": {
+        "rejected": true,
+        "originalStateUnchanged": true
+      }
+    },
+    {
+      "check": "FP83-20-unsafe complete scoped outcome",
+      "pass": true,
+      "actual": {
+        "rejected": true,
+        "originalStateUnchanged": true
+      },
+      "expected": {
+        "rejected": true,
+        "originalStateUnchanged": true
+      }
+    },
+    {
+      "check": "FP83-20-unsafe actual ledger unchanged",
+      "pass": true,
+      "actual": {
+        "minute": 1440,
+        "strain": 0,
+        "foodWaterPending": 0,
+        "sleepPending": 0,
+        "operative": true,
+        "restDebt": true,
+        "deadlineMinute": 2400,
+        "assessedEvents": [
+          "missed-rest:1440"
+        ],
+        "unsupportedDayEndpoints": [],
+        "lastBeneficialLongRestMinute": null,
+        "longRestRewardEligibility": [],
+        "events": [
+          {
+            "minute": 1440,
+            "event": "debt-open-or-reset",
+            "deadlineMinute": 2400
+          }
+        ]
+      },
+      "expected": {
+        "minute": 1440,
+        "strain": 0,
+        "foodWaterPending": 0,
+        "sleepPending": 0,
+        "operative": true,
+        "restDebt": true,
+        "deadlineMinute": 2400,
+        "assessedEvents": [
+          "missed-rest:1440"
+        ],
+        "unsupportedDayEndpoints": [],
+        "lastBeneficialLongRestMinute": null,
+        "longRestRewardEligibility": [],
+        "events": [
+          {
+            "minute": 1440,
+            "event": "debt-open-or-reset",
+            "deadlineMinute": 2400
+          }
+        ]
+      }
+    },
+    {
+      "check": "FP83-20-interrupted complete scoped outcome",
+      "pass": true,
+      "actual": {
+        "rejected": true,
+        "originalStateUnchanged": true
+      },
+      "expected": {
+        "rejected": true,
+        "originalStateUnchanged": true
+      }
+    },
+    {
+      "check": "FP83-20-interrupted actual ledger unchanged",
+      "pass": true,
+      "actual": {
+        "minute": 1440,
+        "strain": 0,
+        "foodWaterPending": 0,
+        "sleepPending": 0,
+        "operative": true,
+        "restDebt": true,
+        "deadlineMinute": 2400,
+        "assessedEvents": [
+          "missed-rest:1440"
+        ],
+        "unsupportedDayEndpoints": [],
+        "lastBeneficialLongRestMinute": null,
+        "longRestRewardEligibility": [],
+        "events": [
+          {
+            "minute": 1440,
+            "event": "debt-open-or-reset",
+            "deadlineMinute": 2400
+          }
+        ]
+      },
+      "expected": {
+        "minute": 1440,
+        "strain": 0,
+        "foodWaterPending": 0,
+        "sleepPending": 0,
+        "operative": true,
+        "restDebt": true,
+        "deadlineMinute": 2400,
+        "assessedEvents": [
+          "missed-rest:1440"
+        ],
+        "unsupportedDayEndpoints": [],
+        "lastBeneficialLongRestMinute": null,
+        "longRestRewardEligibility": [],
+        "events": [
+          {
+            "minute": 1440,
+            "event": "debt-open-or-reset",
+            "deadlineMinute": 2400
+          }
+        ]
+      }
+    },
+    {
+      "check": "FP83-20-short complete scoped outcome",
+      "pass": true,
+      "actual": {
+        "rejected": true,
+        "originalStateUnchanged": true
+      },
+      "expected": {
+        "rejected": true,
+        "originalStateUnchanged": true
+      }
+    },
+    {
+      "check": "FP83-20-short actual ledger unchanged",
+      "pass": true,
+      "actual": {
+        "minute": 1440,
+        "strain": 0,
+        "foodWaterPending": 0,
+        "sleepPending": 0,
+        "operative": true,
+        "restDebt": true,
+        "deadlineMinute": 2400,
+        "assessedEvents": [
+          "missed-rest:1440"
+        ],
+        "unsupportedDayEndpoints": [],
+        "lastBeneficialLongRestMinute": null,
+        "longRestRewardEligibility": [],
+        "events": [
+          {
+            "minute": 1440,
+            "event": "debt-open-or-reset",
+            "deadlineMinute": 2400
+          }
+        ]
+      },
+      "expected": {
+        "minute": 1440,
+        "strain": 0,
+        "foodWaterPending": 0,
+        "sleepPending": 0,
+        "operative": true,
+        "restDebt": true,
+        "deadlineMinute": 2400,
+        "assessedEvents": [
+          "missed-rest:1440"
+        ],
+        "unsupportedDayEndpoints": [],
+        "lastBeneficialLongRestMinute": null,
+        "longRestRewardEligibility": [],
+        "events": [
+          {
+            "minute": 1440,
+            "event": "debt-open-or-reset",
+            "deadlineMinute": 2400
+          }
+        ]
+      }
+    },
+    {
+      "check": "Original source unchanged DescentReviewChanges/ReviewBible/data/director/feat_candidates/exact_01/candidate.json",
+      "pass": true,
+      "actual": {
+        "path": "DescentReviewChanges/ReviewBible/data/director/feat_candidates/exact_01/candidate.json",
+        "bytes": 3580207,
+        "sha256": "12efffe4f7c92726de235185c56f2e6ef37af2261c73f4aae26ffb8fee25cb53"
+      },
+      "expected": {
+        "path": "DescentReviewChanges/ReviewBible/data/director/feat_candidates/exact_01/candidate.json",
+        "bytes": 3580207,
+        "sha256": "12efffe4f7c92726de235185c56f2e6ef37af2261c73f4aae26ffb8fee25cb53"
+      }
+    },
+    {
+      "check": "Original source unchanged DescentReviewChanges/ReviewBible/data/director/feat_candidates/exact_01/shared_rules.json",
+      "pass": true,
+      "actual": {
+        "path": "DescentReviewChanges/ReviewBible/data/director/feat_candidates/exact_01/shared_rules.json",
+        "bytes": 52692,
+        "sha256": "b5c312539ccb449a10d0217ec34b02420cded411a5b2f7f6955312cd8b786fd6"
+      },
+      "expected": {
+        "path": "DescentReviewChanges/ReviewBible/data/director/feat_candidates/exact_01/shared_rules.json",
+        "bytes": 52692,
+        "sha256": "b5c312539ccb449a10d0217ec34b02420cded411a5b2f7f6955312cd8b786fd6"
+      }
+    },
+    {
+      "check": "Original source unchanged DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/candidate.json",
+      "pass": true,
+      "actual": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/candidate.json",
+        "bytes": 1365732,
+        "sha256": "2a8721de5a57543f1b8989a899b16c98f2a720afec949200acd97cd0ff59aafc"
+      },
+      "expected": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/candidate.json",
+        "bytes": 1365732,
+        "sha256": "2a8721de5a57543f1b8989a899b16c98f2a720afec949200acd97cd0ff59aafc"
+      }
+    },
+    {
+      "check": "Original source unchanged docs/audit/2026-10-08/full-game/FEAT335_COMPLETE_ACQUISITION_ASSEMBLY_AFTER_FLORA.json",
+      "pass": true,
+      "actual": {
+        "path": "docs/audit/2026-10-08/full-game/FEAT335_COMPLETE_ACQUISITION_ASSEMBLY_AFTER_FLORA.json",
+        "bytes": 4510298,
+        "sha256": "97570a8cdd10ee75e5728ac8bc621261628e7938a6ba85a6a42a4b15e3e1aa7b"
+      },
+      "expected": {
+        "path": "docs/audit/2026-10-08/full-game/FEAT335_COMPLETE_ACQUISITION_ASSEMBLY_AFTER_FLORA.json",
+        "bytes": 4510298,
+        "sha256": "97570a8cdd10ee75e5728ac8bc621261628e7938a6ba85a6a42a4b15e3e1aa7b"
+      }
+    },
+    {
+      "check": "Original source unchanged docs/audit/2026-10-08/full-game/FEAT335_DEFERRED_ACQUISITION_STATE_CHECK.json",
+      "pass": true,
+      "actual": {
+        "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFERRED_ACQUISITION_STATE_CHECK.json",
+        "bytes": 1099347,
+        "sha256": "ad640f20217f4790d537cd319532708e1c2204ed8cafe32c190ca5c3143637ae"
+      },
+      "expected": {
+        "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFERRED_ACQUISITION_STATE_CHECK.json",
+        "bytes": 1099347,
+        "sha256": "ad640f20217f4790d537cd319532708e1c2204ed8cafe32c190ca5c3143637ae"
+      }
+    },
+    {
+      "check": "Original source unchanged docs/audit/2026-10-08/full-game/feat327-source-verdict/FEAT_EXACT_CANDIDATE_ACCEPTANCE_CONTRACT.md",
+      "pass": true,
+      "actual": {
+        "path": "docs/audit/2026-10-08/full-game/feat327-source-verdict/FEAT_EXACT_CANDIDATE_ACCEPTANCE_CONTRACT.md",
+        "bytes": 7680,
+        "sha256": "14f0bcc4c828e8e6d9e551e66f673ac145ffd22ecbf4d65b04e97785b31113af"
+      },
+      "expected": {
+        "path": "docs/audit/2026-10-08/full-game/feat327-source-verdict/FEAT_EXACT_CANDIDATE_ACCEPTANCE_CONTRACT.md",
+        "bytes": 7680,
+        "sha256": "14f0bcc4c828e8e6d9e551e66f673ac145ffd22ecbf4d65b04e97785b31113af"
+      }
+    },
+    {
+      "check": "Original source unchanged docs/audit/2026-10-08/full-game/feat327-source-verdict/FEAT_ADDITIONAL_BOUNDARY_EXPECTATIONS.json",
+      "pass": true,
+      "actual": {
+        "path": "docs/audit/2026-10-08/full-game/feat327-source-verdict/FEAT_ADDITIONAL_BOUNDARY_EXPECTATIONS.json",
+        "bytes": 11337,
+        "sha256": "1238f5030b180f9e4ef11ed0363ae68f0e805f6e055f8e55782a820750759ebb"
+      },
+      "expected": {
+        "path": "docs/audit/2026-10-08/full-game/feat327-source-verdict/FEAT_ADDITIONAL_BOUNDARY_EXPECTATIONS.json",
+        "bytes": 11337,
+        "sha256": "1238f5030b180f9e4ef11ed0363ae68f0e805f6e055f8e55782a820750759ebb"
+      }
+    },
+    {
+      "check": "Original source unchanged DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_PLAYER_BOOK.md",
+      "pass": true,
+      "actual": {
+        "path": "DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_PLAYER_BOOK.md",
+        "bytes": 307717,
+        "sha256": "4c58b9f7063e562b785b8db6006699d3c4f68edd0e697d06db69662ba9b7e480"
+      },
+      "expected": {
+        "path": "DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_PLAYER_BOOK.md",
+        "bytes": 307717,
+        "sha256": "4c58b9f7063e562b785b8db6006699d3c4f68edd0e697d06db69662ba9b7e480"
+      }
+    },
+    {
+      "check": "Original source unchanged DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_REVIEW_STATUS.json",
+      "pass": true,
+      "actual": {
+        "path": "DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_REVIEW_STATUS.json",
+        "bytes": 3089,
+        "sha256": "9471c767d64eac8b484786405654a8821a290a649900ade9ddd0f7377e9ba0c4"
+      },
+      "expected": {
+        "path": "DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_REVIEW_STATUS.json",
+        "bytes": 3089,
+        "sha256": "9471c767d64eac8b484786405654a8821a290a649900ade9ddd0f7377e9ba0c4"
+      }
+    },
+    {
+      "check": "Original source unchanged docs/audit/2026-10-08/full-game/EX58_X01_FULFILLMENT.json",
+      "pass": true,
+      "actual": {
+        "path": "docs/audit/2026-10-08/full-game/EX58_X01_FULFILLMENT.json",
+        "bytes": 7454,
+        "sha256": "49925aa48ebc23363df42e8c743f5c91cd63e634b94a4f128012291d0736334e"
+      },
+      "expected": {
+        "path": "docs/audit/2026-10-08/full-game/EX58_X01_FULFILLMENT.json",
+        "bytes": 7454,
+        "sha256": "49925aa48ebc23363df42e8c743f5c91cd63e634b94a4f128012291d0736334e"
+      }
+    },
+    {
+      "check": "Original source unchanged docs/audit/2026-10-08/full-game/EX58_REVIEW_LABEL_NORMALIZATION.json",
+      "pass": true,
+      "actual": {
+        "path": "docs/audit/2026-10-08/full-game/EX58_REVIEW_LABEL_NORMALIZATION.json",
+        "bytes": 13007,
+        "sha256": "183eca8ade9b4e25378d6593d7a42d259d87a390d45b5b6c3ca74925b6444f71"
+      },
+      "expected": {
+        "path": "docs/audit/2026-10-08/full-game/EX58_REVIEW_LABEL_NORMALIZATION.json",
+        "bytes": 13007,
+        "sha256": "183eca8ade9b4e25378d6593d7a42d259d87a390d45b5b6c3ca74925b6444f71"
+      }
+    },
+    {
+      "check": "Original source unchanged docs/audit/2026-10-08/full-game/ACTIVE_AUTHORING_CHECKPOINT_FULL_GAME_FRONTIER_82.json",
+      "pass": true,
+      "actual": {
+        "path": "docs/audit/2026-10-08/full-game/ACTIVE_AUTHORING_CHECKPOINT_FULL_GAME_FRONTIER_82.json",
+        "bytes": 72621,
+        "sha256": "8d232518b1b00bad2dd5b3776e3514b28ed59ffd638e69e59843d2ddfba042e3"
+      },
+      "expected": {
+        "path": "docs/audit/2026-10-08/full-game/ACTIVE_AUTHORING_CHECKPOINT_FULL_GAME_FRONTIER_82.json",
+        "bytes": 72621,
+        "sha256": "8d232518b1b00bad2dd5b3776e3514b28ed59ffd638e69e59843d2ddfba042e3"
+      }
+    },
+    {
+      "check": "Complete unique archive membership",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "Archive CRC",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "Full archive byte roundtrip REPORT.json",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "Full archive byte roundtrip check_feat_time_provisions_83.py",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "Full archive byte roundtrip README.md",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "Full archive byte roundtrip sources/DescentReviewChanges/ReviewBible/data/director/feat_candidates/exact_01/candidate.json",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "Full archive byte roundtrip sources/DescentReviewChanges/ReviewBible/data/director/feat_candidates/exact_01/shared_rules.json",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "Full archive byte roundtrip sources/DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/candidate.json",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "Full archive byte roundtrip sources/docs/audit/2026-10-08/full-game/FEAT335_COMPLETE_ACQUISITION_ASSEMBLY_AFTER_FLORA.json",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "Full archive byte roundtrip sources/docs/audit/2026-10-08/full-game/FEAT335_DEFERRED_ACQUISITION_STATE_CHECK.json",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "Full archive byte roundtrip sources/docs/audit/2026-10-08/full-game/feat327-source-verdict/FEAT_EXACT_CANDIDATE_ACCEPTANCE_CONTRACT.md",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "Full archive byte roundtrip sources/docs/audit/2026-10-08/full-game/feat327-source-verdict/FEAT_ADDITIONAL_BOUNDARY_EXPECTATIONS.json",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "Full archive byte roundtrip sources/DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_PLAYER_BOOK.md",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "Full archive byte roundtrip sources/DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_REVIEW_STATUS.json",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "Full archive byte roundtrip sources/docs/audit/2026-10-08/full-game/EX58_X01_FULFILLMENT.json",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "Full archive byte roundtrip sources/docs/audit/2026-10-08/full-game/EX58_REVIEW_LABEL_NORMALIZATION.json",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "Full archive byte roundtrip sources/docs/audit/2026-10-08/full-game/ACTIVE_AUTHORING_CHECKPOINT_FULL_GAME_FRONTIER_82.json",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "Full archive byte roundtrip MANIFEST.json",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    }
+  ],
+  "scope": "FXC-06 subset: actual forage work time and finite stock, ordinary people and actual named mule diet, no abstract Supply creation, independent Endurance food/water and sleep causes, real debt deadlines, safe rest versus benefit eligibility, suppression and replay. No time-discount/repair completion claim.",
+  "runtimeTestsExecuted": 0,
+  "isolatedSpecificationDiagnosticExecuted": true,
+  "newRuleAdoptions": 0,
+  "sourceInformationDeleted": 0
+}

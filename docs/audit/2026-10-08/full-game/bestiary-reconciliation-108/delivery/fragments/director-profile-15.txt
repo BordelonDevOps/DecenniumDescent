@@ -1,0 +1,307 @@
+{
+  "id": "B02-dimetrodon",
+  "status": "PROPOSED_NOT_INDEPENDENTLY_ACCEPTED_OR_IMPLEMENTED",
+  "sourcePointer": "/records/15",
+  "fullNativeStatBlock": {
+    "printedCoreFields": {
+      "size": "Large",
+      "type": "Beast",
+      "alignment": "Unaligned",
+      "challengeRating": "1/2",
+      "xp": 100,
+      "armorClass": 12,
+      "hitPoints": 31,
+      "speed": "40 ft.",
+      "saveDc": 13
+    },
+    "abilities": {
+      "strength": {
+        "score": 16,
+        "printedModifier": 3
+      },
+      "dexterity": {
+        "score": 14,
+        "printedModifier": 2
+      },
+      "constitution": {
+        "score": 13,
+        "printedModifier": 1
+      },
+      "intelligence": {
+        "score": 3,
+        "printedModifier": -4
+      },
+      "wisdom": {
+        "score": 12,
+        "printedModifier": 1
+      },
+      "charisma": {
+        "score": 6,
+        "printedModifier": -2
+      }
+    },
+    "printedDefenses": {
+      "resistanceLabels": {
+        "sourceText": "None",
+        "labels": []
+      },
+      "immunityLabels": {
+        "sourceText": "None",
+        "labels": []
+      },
+      "conditionImmunityLabels": {
+        "sourceText": "None",
+        "labels": []
+      }
+    },
+    "tacticalVulnerabilityText": "None identified",
+    "traits": [
+      {
+        "name": "Territorial Morale",
+        "sourceText": "It may retreat or break off if food, young, or escape access is secured."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Sail-Back Bite",
+        "sourceText": "*Attack:* +4 to hit, one target. *Hit:* 1d6+2 piercing damage (average 6)."
+      }
+    ]
+  },
+  "body": {
+    "rulesSizeUnchanged": "Large",
+    "memberCount": 1,
+    "memberDimensionsFeet": [
+      10,
+      10,
+      10
+    ],
+    "wholeUnitUnladenMassLb": 800,
+    "eachMemberMassLb": 800.0,
+    "geometryAuthorship": "NEW actual proxy dimensions and mass, not inferred printed measurements. Distributed unit keeps printed rules size; each actual member footprint is the declared local completion. Gear is additional actual mass.",
+    "formation": "one body/one actor",
+    "hands": "no unprinted fine-manipulation or weapon/tool entitlement",
+    "lifecycle": "ordinaryLiving",
+    "ordinaryZero": "ordinary monster death under Core unless predeclared significant/valid knockout",
+    "movement": "Only printed modes and speeds; formation members each keep that speed cap in the same unit turn, no extra phase."
+  },
+  "ordinaryBudget": {
+    "action": 1,
+    "reaction": 1,
+    "bonusAction": "only actually authorized source; none added",
+    "regularStart": "refresh Action/movement and ordinary Reaction exactly once per real turn id",
+    "extraTurns": "only actual source; no new recharge/regular-end histories from an extra turn"
+  },
+  "naturalSavesAndChecks": {
+    "strength": 3,
+    "dexterity": 2,
+    "constitution": 1,
+    "intelligence": -4,
+    "wisdom": 1,
+    "charisma": -2
+  },
+  "defenseProcedure": "Use exact printed typed defenses; disease label is prevention of actual disease acquisition/progression only, not a damage type, Poison immunity or resistance to every associated attack. Real direct damage and non-disease riders remain. Resolve attack rolls with natural1 miss/natural20 hit and doubled dice only, not doubled flat modifiers. A save is binary meeting DC; natural20 is not automatic save success. Use actual typed defenses and temporary HP, then actual normal-HP loss and overkill. CORE ordering: lethal instant-death threshold precedes a living recipient's Wound check; otherwise one qualifying Wound check occurs on positive-to-zero or post-temp damage at least half effective maximum. DC=max(10,floor(post-temp/2)); subtract pre-event Wounds from the CON save. Failure adds one Wound; a fourth Wound kills. Failure by at least5 also uses the actual d6 injury result. Do not reduce maximum HP merely because a Wound was added: Critical's ordinary-heal ceiling is not a maximum-HP clamp. Ordinary monsters reaching zero die/end after their actual life sequence unless a real valid knockout or source override applies. Significant-NPC death-save handling must be declared before the event. Death is distinct from zero, suppression, disappearance, and harvest availability. Each attack names the creature as dealer; controller Null does not transfer to it. A qualifying actual Null root inherits its original dealer snapshot; it prevents only the applicable damage-caused lethal/Wound endpoint and keeps non-damage costs and riders. Ordinary living profiles use Stable0 and the one actual Stable clock. Printed Constructs are explicitly nonliving Constructs and use accepted Null Disabled0 without creating salvage. NEW for only the four printed Undead here: ordinary damage at zero destroys the same body into its finite native remains; a qualifying Null root instead leaves the same nonliving body Null Disabled0, no corpse/soul/loot. This is not the named Silence Wraith projection rule, a resurrection, generic repair or a global Undead physiology. Only a real compatible recovery source restores a disabled nonliving body. Roots, life events and finite-remains claims are durable and idempotent. Existing Core detail: each Wound penalizes CON saves and normal Hit-Dice recovery maximum by1 only; at3Wounds Critical gives Speed-10ft and ordinary-heal ceiling max(1,effectiveMaximum-1), not maximum-HP loss. Actual linked injury d6:1Concussion(-1future Initiative/Perception),2OffensiveTrauma(-1attacks),3MobilityTrauma(-5nonteleportSpeeds),4FineMotor(-1tools/manipulationDEX),5Exertion(-1STR/DEXabilitychecks),6Cognitive(-1INT/WIS/CHAabilitychecks). Identical/different applicable Injury penalties use their actual strongest-only rule; separate Wound CON penalty remains. Removing the linked Wound removes its injury, not damage or spent resources.",
+  "actions": [
+    {
+      "id": "dimetrodon:action:0",
+      "nativeIndex": 0,
+      "name": "Sail-Back Bite",
+      "original": {
+        "name": "Sail-Back Bite",
+        "sourceText": "*Attack:* +4 to hit, one target. *Hit:* 1d6+2 piercing damage (average 6)."
+      },
+      "newScope": "B02 native geometry/category completion only; numeric source fields unchanged",
+      "cost": {
+        "action": 1,
+        "bonusAction": 0,
+        "reaction": 0,
+        "rp": null,
+        "explanation": "One ordinary native Action, or one admitted subattack slot inside the already-paid Multiattack. No unprinted RP pool."
+      },
+      "sourceUse": "actorId/actionCommitId; subattack ordinal distinct damage root, same parent source-use",
+      "dealer": "actual creature actorId",
+      "classification": "physical/biological-nonspell",
+      "damage": {
+        "dice": 1,
+        "sides": 6,
+        "flat": 2,
+        "type": "piercing"
+      },
+      "printedAverage": 6,
+      "kind": "attack",
+      "attackBonus": 4,
+      "geometry": {
+        "shape": "one creature or actual ordinary damageable object",
+        "mode": "melee",
+        "normalRangeFeet": null,
+        "reachFeet": 5,
+        "longRange": null,
+        "outlet": "one actual selected body or expressly legal Living Substrate feature"
+      },
+      "additionalRiders": [],
+      "procedure": "Use one real Action or one native Multiattack slot. Choose a perceived/otherwise legally attackable target, required actual path and 5ft actual reach. Roll d20+4 with real cover and advantage/disadvantage. Natural1 misses; natural20 hits and doubles the 1d6 dice only. On a hit roll 1d6+2 piercing, then actual defenses/tempHP/Core life/Wounds. Flat source modifiers are not rederived from ability or CR. Preserve original creature dealer and one root per genuine attack. Names such as Life Drain, Entangle, Mislead Strike or Contagion Touch do not supply an unprinted heal, condition, disease, teleport or extra damage. These printed damage-only actions remain fully usable attacks. A legal ordinary melee opportunity uses one such action, not the whole Multiattack. No native title supplies a spell or tool proficiency."
+    }
+  ],
+  "tacticCompletions": [
+    {
+      "id": "dimetrodon:tactic:TailSweep",
+      "kind": "attack",
+      "name": "Tail Sweep",
+      "nativeIndex": null,
+      "attackBonus": 4,
+      "damage": {
+        "dice": 1,
+        "sides": 6,
+        "flat": 2,
+        "type": "bludgeoning"
+      },
+      "geometry": {
+        "mode": "melee",
+        "reachFeet": 5
+      },
+      "procedure": "BFR105-TAIL-01 — Dimetrodon / Tail Sweep.\nTactics names Tail Sweep and preparation names bludgeoning, but no Tail Sweep action statistics are printed. Preserve the existing Sail-Back Bite and all source text.\nNEW: a physical natural melee attack, reach5ft, one perceived legal creature, +4 to hit,1d6+2 bludgeoning. Critical damage is2d6+2. One real Action; no Multiattack, Bonus Action, recharge or helper-triggered Reaction is granted. Attack magnitude uses this creature's own printed Bite benchmark; the following control is expressly NEW.\nOn a hit, apply damage first. If the same recipient remains a creature eligible for Prone, it then makes one DEX save against this profile's printed save-DC benchmark13. Failure applies actual Prone; success adds no Prone but does not refund the hit's damage. A miss causes neither damage nor the rider save. Actual Prone immunity prevents the rider, not the bludgeoning packet. An already-Prone recipient is not given a stacking penalty, new duration or stand-cost increase.\nNo area or automatic push is inferred from 'Sweep'. Prone lasts until a lawful stand or real removal; standing requires nonzero current Speed and floor(half current Speed) movement, with actual remaining budget. It survives the Dimetrodon's later source removal because posture already changed. Flying/support consequences use actual Falling rules, not free impact damage.\nFor comparing the original action, Sail-Back Bite stays+4,1d6+2 piercing and is completed as physical5ft one-target melee with no new rider. Same damage budget does not establish balance equivalence; Tail's new posture utility is a proposed tactical benefit pending independent review.\nReconciliation BFR105-D03 selects DEX DC13, not STR DC13. Actual saving-throw proficiency applies only if independently supplied; the profile's Save DC is not a proficiency grant.",
+      "newRider": {
+        "saveAbility": "dexterity",
+        "dc": 13,
+        "condition": "Prone"
+      },
+      "classification": "physical/biological-nonspell"
+    }
+  ],
+  "traits": [
+    {
+      "id": "dimetrodon:trait:0",
+      "nativeIndex": 0,
+      "original": {
+        "name": "Territorial Morale",
+        "sourceText": "It may retreat or break off if food, young, or escape access is secured."
+      },
+      "configuration": {
+        "tierAllowedSourceRange": "T1, Floors 1-10",
+        "exampleTierWithinNativeRange": 1,
+        "actualTierRequirement": "Actual encounter floor T-tier, recorded before play; not CR, character level, damage rank, material tier or always the lowest listed tier. The example tier is a synthetic fixture value within the native source range."
+      },
+      "sourceUse": "For a discrete paid native activation use actorId/actionCommitId; persistent intrinsic traits keep actorId/traitInstanceId across expressions, suppression and reentry. Triggered discrete offers/tokens keep the actual observed triggerId. No frame, copied callback or body fragment mints another conversion origin.",
+      "classification": "native physical/tactical",
+      "procedure": "NEW TM02. Declare a genuine food cache, young/den or open retreat route and the creature's territorial objective before initiative. At its regular END, actual security of that object or actual removal of the encroaching threat can set a break-off intention. On its next real turn it chooses the safe known Withdraw/Disengage route using its normal Action and movement; if blocked it can defend rather than teleport. It ceases voluntary pursuit after the objective remains secure and visible foes leave its territory. Bait is real stock, a controlled den is real space and an exit must fit the body. A party's arbitrary claim 'food secured' or animal name does not force morale. This is a deterministic default goal policy with actual inputs, not Charmed, a skill-check mind-control action or a guaranteed surrender.",
+      "sourcePointer": "/records/15/statBlock/traits/0"
+    }
+  ],
+  "languages": {
+    "status": "NEW individual roster grants where native language mechanics are absent",
+    "knownOrdinaryModes": {},
+    "notGranted": "No telepathy, hidden language, generic comprehension, anatomy or automatic social/contract success. Empty means no ordinary language is authored here, not immunity to observation or all magical communication.",
+    "source": "LAX mode rules; actual player/ancestry comparisons do not silently grant every creature."
+  },
+  "knowledge": {
+    "original": "Use **Nature** unless the Director approves a more specific approach.\n\n| Result | Information Learned |\n|---|---|\n| DC 11 | Creature family, usual habitat, and dominant attack type. |\n| DC 15 | The first reliable counter and the sign that its strongest ability is ready. |\n| DC 19 | Its defining tactical weakness, safe harvest method, and likely retreat condition. |",
+    "procedure": "Retain each dossier's knowledge skill alternatives and its three actual DC thresholds. A focused identification attempt uses one real Search/Research Action in combat with actual observable signs or examined remains, or one uninterrupted minute of ordinary examination outside combat. Use the real acquired skill and underlying ability, actual helpers and conditions; no stat-block or hidden roster is supplied merely by selecting a UI row. Meeting successive printed thresholds reveals only the corresponding family/habitat/dominant type, actual first counter/telegraph, then relevant weakness/harvest/retreat facts. A failed attempt does not create false certainty; an identical unaltered evidence check cannot be spammed. New direct observations can update specific facts without retroactively exposing unknown identities. Recognizing a creature is not knowing its language, reading its contract or receiving a public route. LAX keeps speaking/comprehension/reading/writing/script and physical channels distinct. Individual proposed language competencies below are explicit NEW roster defaults, not grants to observers, all members of an ancestry or unnamed populations. Actual anatomy, silence, hearing, light and usable writing tools still govern communication. Social credentials and promises use actual EX58 records; a failed negotiation is not an invented charm, compelled confession or global reputation loss."
+  },
+  "tactics": {
+    "originalHowItFights": "It opens with **Sail-Back Bite** against the target most capable of controlling its movement. It uses **Tail Sweep** to punish anyone who tries to stabilize that target. It attacks from concealment, protects its escape path, and stops pursuing once territory or food is secured.",
+    "originalHowToDefeat": "**Prepare Before Contact**\n\n- Prepare resistance or mitigation for piercing, bludgeoning damage.\n- Carry bait, scent control, and a noncombat retreat route.\n\n**Combat Priority**\n\nControl its escape and feeding choices rather than cornering it.\n\n**Exploit**\n\nThe defining weakness is **None identified**. Treat this as an encounter solution rather than an automatic damage vulnerability. Successful Research, Recon, or Resource actions should make the exploit easier or safer.\n\n**Withdraw When**\n\nWithdraw or change the objective when the creature reaches favorable terrain or isolates a target. A failed retreat against this creature usually costs more than abandoning the immediate treasure.",
+    "originalHabitat": "Predators choose terrain that hides approach and protects retreat. The lair is usually more dangerous than the animal.\n\nNot every dangerous creature serves a faction or cosmic principle. Ordinary predators become expedition-level threats when dungeon terrain, repeated Openings, or magical food chains reshape them.\n\nAnimal Handling, food, territory, and nonthreatening movement matter more than language.",
+    "procedure": "At each actual regular START choose from the creature's real perceptions, remembered observations and declared objective: an actual legal source-specific objective/counter first; otherwise the printed How It Fights opening attack, a ready announced area only if its visible recipients suit the objective, then a legal native sequence. A failed path or unavailable target does not grant hidden location knowledge or teleportation. A territorial withdrawal decision and an intelligent surrender/parley are choices, not conditions that remove a player's agency. To disengage under threat the creature must spend its own actual Withdraw/Disengage Action and actual movement, or bear ordinary opportunity-attack risk; no guaranteed escape or unearned pursuit distance. Exact route geometry, hazards, loads and chase transitions come from actual EX58 inputs. Adjacent enemies, line of sight and cover are recomputed before each real movement segment. Real retreat leaves actual cargo, mounts, downed bodies and witness histories where their sources place them; success awards no second kill, material bundle, generic XP or faction change. An encounter boundary does not reset resource/source receipts unless their actual rule says it does.",
+    "arenaNarrativeBoundary": "Gate test victory, alleged origins, memories and route rewards remain source narrative, not automatic hidden mechanics. An unprinted Seal Pulse is not a second new damage action; the printed recharge supplies the operational burst until separately authored evidence says otherwise."
+  },
+  "sharedRuleIds": [
+    "B02-IDENTITY",
+    "B02-GEOMETRY",
+    "B02-ACTIONS",
+    "B02-DAMAGE-LIFE",
+    "B02-RECHARGE",
+    "B02-SUPPRESSION",
+    "B02-KNOWLEDGE",
+    "B02-DEATH-HARVEST",
+    "B02-RETREAT"
+  ],
+  "phaseAndMovement": {
+    "turnSource": "One actually scheduled native regular turn per source sequence; explicit extra-turn providers retain their real limits. These profiles grant none.",
+    "timeline": "Cases supply numbered-round/turn identities as encounter fixtures; no global seconds-to-round mapping is adopted.",
+    "terrainAndStances": "Actual Dash/Withdraw/Guard/Brace/Ready/Hide/Search/Help and movement budgets use their accepted Core/Combat action procedures. Narrative Dimetrodon counterplay grants no free off-turn movement.",
+    "gateAndArena": "An actual arena/anchor is a scene input with real location and state. Missing scene content prevents that particular scene-dependent predicate, not the native damage attacks.",
+    "formationMembership": "Printed named units are single actors with explicit member IDs. Other nearby constructs are not joined or cloned by name; Sentinel networks require actual separate bodies.",
+    "resetBoundary": "No reset on body-fragment selection, mode transition, duplicate event, save/load or alternate route. Real source-ending/reset events retain their exact authority."
+  },
+  "harvest": {
+    "status": "PROPOSED_SOURCE_LOCAL_COMPLETE_EXTRACTION",
+    "original": {
+      "sourceText": "**Harvest skill:** Nature · **Harvest DC:** 10 · **Base time:** 20 minutes  \n\n| Component | Tier | Drop / Value |\n|---|---:|---|\n| Dimetrodon meat | 1 | 47%, 10 gp base |\n\nHide, meat, bone, venom, teeth, and organs are practical resources. Damage type and preservation method determine quality.",
+      "skillLabel": "Nature",
+      "printedDC": 10,
+      "printedBaseTime": "20 minutes",
+      "procedureFieldsPrinted": true,
+      "components": [
+        {
+          "sourceOrder": 0,
+          "sectionLine": 5,
+          "sourceCells": [
+            "Dimetrodon meat",
+            "1",
+            "47%, 10 gp base"
+          ],
+          "name": "Dimetrodon meat",
+          "printedTier": 1,
+          "printedDropValue": "47%, 10 gp base",
+          "printedRatePercent": 47,
+          "printedValueGp": 10,
+          "printedValueQualifier": "base",
+          "requiresDirectorValues": false
+        }
+      ],
+      "interpretationStatus": "Source labels and printed numbers only; no quantity, roll, availability, extraction or market procedure inferred."
+    },
+    "sourceSkill": "Nature",
+    "checkAbility": "intelligence",
+    "checkDc": 10,
+    "fullActiveMinutes": 20,
+    "missingProcedureCompleted": false,
+    "physicalTools": "actual compatible removal tools, accessible stable remains and real containers; source skill training is not supplied by owning a kit",
+    "units": [
+      {
+        "id": "b02.harvest.dimetrodon.0",
+        "sourceOccurrence": 0,
+        "original": {
+          "sourceOrder": 0,
+          "sectionLine": 5,
+          "sourceCells": [
+            "Dimetrodon meat",
+            "1",
+            "47%, 10 gp base"
+          ],
+          "name": "Dimetrodon meat",
+          "printedTier": 1,
+          "printedDropValue": "47%, 10 gp base",
+          "printedRatePercent": 47,
+          "printedValueGp": 10,
+          "printedValueQualifier": "base",
+          "requiresDirectorValues": false
+        },
+        "identityStatus": "NEW source-local material unit; no global ingredient equivalence selected by matching label",
+        "physicalCategory": "meat",
+        "weightLb": 1,
+        "unitDefinition": "One identified finite physical source unit of the listed weight, requiring actual anatomy; fluid/bulk is measured, indivisible pieces cannot be synthesized from fractions. These weights/categories are NEW defaults, not recovered measurements.",
+        "tier": 1,
+        "referenceGpPerFreshUnit": 10,
+        "referenceNotGuaranteedBuyer": true,
+        "availabilityPercent": 47,
+        "rateInterpretation": "One source-specific d100 availability test at original remains-manifest creation, success <= printed percent. This is eligibility within the one shared pool, not another pool or a second global-material roll.",
+        "quantity": "Constrained share of one body-size pool fixed before category selection, actual anatomy/mass and prior losses. Unique actual organ/active core cap1 when its actual anatomy is one, not one per label/worker/fragment.",
+        "spoilIntervalSeconds": 28800,
+        "spoilBasis": "Native source does not give a finer interval: explicitly selected local physical category uses the current framework conservative interval. Botanical samples use a NEW12h interval. Dry ordinary parts persist only while physically dry/intact. Active cores/specimens require a real compatible container to stop their clock.",
+        "clockOrigin": "actual death or loss of sustaining environment; never harvesting, transfer, copying, splitting or reentry",
+        "conditionStages": "Fresh until one unprotected interval; Degraded then half reference value and no Fresh recipe; Spoiled at two, value0/ordinary recipe unusable. Actual source preservation can pause age but not restore it.",
+        "publicKnowledge": "Material qualities/access require actual identification and publication authorization. Mere source-local label does not grant edibility, compatibility, price, crafting effect, soul extraction or formula."
+      }
+    ],
+    "identification": "One minute actual close examination: native knowledge skill/INT, except Medicine/WIS; actual relevant proficiency only. One actually trained assistant+1 spends the same minute. Success exposes real recorded categories, hazards and clocks, not unobserved hidden sources. Failure no hidden qualities; plainly recognizable unidentified work may proceed at the actual disadvantage. No unchanged-evidence roll spam.",
+    "extraction": "The printed body-level skill/DC/time expressly governs removal for this source, overriding generic body time/DC; missing two use their labelled completion. It authorizes that actual skill as a removal route but grants neither training nor tools. A properly qualified actual gathering trade can supply its own genuine route. No double PB from skill plus tool. One eligible assistant+1 spends the entire extraction time.",
+    "manifestAlgorithm": "At actual remains availability, assign remainsId/bodyId/deathTime and all prior damage/custody/claims. Roll one size pool (Tiny1, Small1d2, Medium1d4, Large2d4,Huge4d4) under the accepted finite framework. Resolve each native category availability d100 once. NEW allocation: order eligible categories by original occurrence; if more than one, roll uniform starting ordinal 1..N and distribute the one pool round-robin from there, respecting each actual anatomical cap and measured remaining mass. No eligible category means pool yields nothing. Record fixed unit IDs/allocation before worker choice; do not redirect forfeited quantities. One actual unit cannot belong to two categories. No exceptional additive drop is inferred here.",
+    "selectionAndTime": "Choose categories from the complete available manifest. Full time is this exact source time; partial time is ceil(fullMinutes*chosenCategories/availableCategories), minimum1minute. All unselected ordinary categories are forfeited when work begins. Hurry halves that actual required time with upward minute rounding and disadvantage. No Craftsman/Spell Scribe research/manufacturing discount shortens harvest.",
+    "workAndInterruption": "NEW harvest-only physical progress completion: record actual exclusive active seconds of usable removal work; safe pauses retain only physically usable progress, clocks continue and real damage can destroy work/stock. No crafting incorporation stabilization or study-phase clock is imported. An interrupted unfinished attempt resumes the same selected finite units and original receipts, not a new yield roll. Completed failure exhausts that selected attempt. Another worker requires genuine access/skill and inherits existing physical progress, never duplicated hours or fresh material.",
+    "resolution": "Core four-degree extraction check. Success recovers selected intact allocated units. Critical success additionally saves at most one predeclared damaged/recoverable selected unit within the same anatomical cap; no nonexistent bonus. Failure ruins the highest-reference selected unit (actual tie choice recorded), recovers none, and exhausts selection. Critical failure ruins all selected units, with only actual declared hazard; absent one, real1d4 minor physical accident to lead. No new retry or repeated corpse conversion.",
+    "custodyAndAftermath": "Award actual identified lots once at completion, with source occurrence, unit ID, quantity, weight, current condition, clock, owner/claimant and custodian kept separate. Real carried gear is separate and not duplicated by harvest. Humanoid/celestial remains require actual consent/lawful authority/explicit dark-path source. A destroyed or Null-disabled living body is not automatically eligible remains. Magical projections, companions and Simulacra keep their own accepted no-farming/lifecycle procedures.",
+    "noGuaranteedEquivalence": "Every global material/recipe-name comparison is retained separately. A source-local unit is not that named catalog ingredient until actual properties/tier/form/amount/provenance satisfy the accepted exact card or a legitimate substitution record. Unresolved recipe labels remain unresolved references, not approved formulas or nonexistent history."
+  },
+  "sourceCompletionBoundary": "Printed statistics, action count, attack bonus, dice/type/average, DCs, defenses and full prose are retained. Category, geometry, lifecycle, mass, language rosters and unprinted interaction mechanics are explicitly NEW per-profile selections, not recovered text or outside-game imports."
+}

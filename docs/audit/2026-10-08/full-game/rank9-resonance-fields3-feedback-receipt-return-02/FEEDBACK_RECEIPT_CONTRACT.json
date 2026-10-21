@@ -1,0 +1,62 @@
+{
+  "id": "RF9-FEEDBACK-RECEIPT-86",
+  "status": "PROPOSED_EXPLICIT_DURABLE_REPRESENTATION_OF_EXISTING_AWARDED_USES",
+  "classification": "Narrow state/receipt completion, not a new spell benefit or class recovery rule.",
+  "finding": "Return01 records Counter1/ClassCounter, numeric credits and generic eventsApplied, but supplies no Feedback-specific successful-negation linkage plus authoritative numbered-round gate or source-event replay derivation. The read-only verifier infers arithmetic credit from observations; it does not implement or define an eligibility ledger. Generic persistence prose is not a complete Feedback derivation.",
+  "authority": {
+    "feature": "wizard#/cards/60",
+    "actualCounterMode": "wizard#/cards/17",
+    "separateCounterpulse": "wizard#/cards/29",
+    "roundAndReaction": "combat#Action and timing / numbered rounds and regular own-turn starts",
+    "sourceFiles": "SOURCE_EVIDENCE.json"
+  },
+  "sourceRulesRetained": [
+    "An actually acquired Wizard15 Arcane Feedback restores 1 RP only after that owner's actual Counterspell successfully negates a spell; never above normal maximum.",
+    "Companion, reflected and copied Counterspell are excluded. Dispel, absorption, a failed counter, or merely resolving a counter without a genuine negation supplies no qualifying source.",
+    "Actual current recovery prohibitions remain controlling. This receipt does not create an exception to them, improve the award or reclassify it as a base-cost refund or Singularity conversion.",
+    "At most one awarded recovery per actual numbered round, per owner. Actor START refreshes Reaction according to its own source; it does not clear the numbered-round Feedback use. A round boundary grants no Reaction.",
+    "Counterpulse remains a separately acquired optional feature and separate once-per-round record; neither substitutes for the other."
+  ],
+  "stateSchema": {
+    "roundContext": "Complete affected fixture states add numberedRoundContext with stable scopeId/roundId and ordinal. Both supplied positive events are in numbered round1. These IDs are supplied authoritative fixture markers, not derived from an actor START, callback arrival time, save/load or floor(seconds/6).",
+    "actorLedger": "actors[ownerId].limitedUses[\"wizard.supplement.arcane-feedback\"] contains sourceRef, ownerId, roundUses and sourceSettlements. Other limitedUses keys remain unchanged.",
+    "settlementKey": "Stable tuple(scopeId, ownerId, featureId, originalCounterCastId), JSON-array encoded. It deliberately excludes delivery/callback ID and current round so the same actual source cannot repay under a renamed callback or after a round change.",
+    "roundUseKey": "Authoritative original event roundId. roundUses[roundId] references the credited source settlement, while old rounds and source settlements survive.",
+    "receipt": "Full actual successful-negation source and target IDs, original event ID/time/round, native source path, owner, qualification/recovery snapshot, actual before/after RP and credited amount. No receipt is inferred merely from observations.",
+    "visibility": "Private authoritative state. No player-visible source roster or sixth DE4 presentation is added."
+  },
+  "settlementOrder": [
+    "Native casting, paid costs/cadence/history, Reaction spending, counter RNG, actual negation and other native obligations are settled by their existing source, not by this reward callback.",
+    "Validate the actual immutable owner/source/countered-cast linkage and qualification. Look up the stable source settlement before using callback arrival round or touching resources. A complete prior settlement is a read-only duplicate, including after save/reload or a new round.",
+    "For a genuinely new, qualified positive recovery in the event's authoritative round, consult that owner's roundUses. An existing spent receipt prohibits a second award regardless of a separately refreshed Reaction.",
+    "When actual recovery is lawful and has positive capped credit, atomically persist the spent round pointer, terminal source receipt and resulting RP. Logical reservation precedes the credit; all publish in one transaction before downstream callbacks.",
+    "An already-spent-round new source can be recorded as terminal no-award referencing its original round's winning receipt. Replaying that source in a later round must not promote it to a fresh opportunity.",
+    "No settlement refreshes or spends a Reaction, Action, casting payment, recharge, Dissonance, Refrain or a different feature use. A new genuine numbered round permits a distinct qualifying counter only if that counter's own permissions and resources really exist."
+  ],
+  "zeroCreditBoundary": "This follow-through encodes the two actual positive 1RP awards and spent-round denials. Capped-zero and prohibited-recovery tests are pure nonaward projections; no new convention is selected for whether an otherwise-unused class frequency is consumed by an unawarded trigger. Such a source-owned policy must not be inferred from these diagnostic projections. A prior successful spent receipt is never cleared or refunded.",
+  "persistenceBoundary": "Save/reload preserves the whole ledger and original scope/round/source IDs. No partial publication is a valid completed state. A real store must atomically commit or recover its original transaction; missing, contradictory, or partially committed evidence is an integration error, never permission to mint another RP. No actual runtime persistence/crash recovery is implemented.",
+  "newRoundBoundary": "Do not garbage-collect a source receipt merely because its round ended. The new round provides a distinct roundUse lookup only; old-source duplicate callbacks stay duplicate. Outside-initiative/encounter transitions require their actual authoritative cadence mapping and are not redefined here.",
+  "fixtureScope": "RF9-NS-A and RF9-NS-B are independent resets. Their round1 starts at fixture marker0 and next numbered boundary6, distinct from E START2 and B START1; those offsets describe these fixtures only, not a global clock/mode mandate.",
+  "affectedBranches": [
+    "RF9-NS-A-counter",
+    "RF9-NS-B-counterpulse"
+  ],
+  "unchanged": {
+    "procedures": 3,
+    "sharedRules": 6,
+    "selectedQuestions": 24,
+    "mainCases": 7,
+    "branches": 28,
+    "conditionalBranches": 4,
+    "applied": [
+      525,
+      323,
+      249,
+      173
+    ],
+    "acceptedUnapplied": 50
+  },
+  "runtimeImplemented": false,
+  "gameRuntimeExecuted": false,
+  "ownerImplementationReservation": true
+}

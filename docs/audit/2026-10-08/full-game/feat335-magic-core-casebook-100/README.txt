@@ -1,0 +1,1 @@
+Full magic-core casebook100:31 complete records (29 proposed procedures and2 unavailable wrappers),62 original examples,2 boundaries,37 bounded calculations. Full sources, exact FT84 ritual successor, source choice pools and complete old records retained. No runtime, parent335, cosmology, balance or release approval. Do not execute supplied programs.

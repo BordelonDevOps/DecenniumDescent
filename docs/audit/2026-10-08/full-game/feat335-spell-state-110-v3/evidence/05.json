@@ -1,0 +1,3349 @@
+{
+  "recordedAtUtc": "2026-10-13T23:38:11.090585+00:00",
+  "status": "pass",
+  "checks": 248,
+  "failures": [],
+  "sourceBindings": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/spell_dependencies.json",
+      "bytes": 5404911,
+      "sha256": "ee4fa64d0fa8175287620ebf263d545480d2221f1d07e314fc072978032a614e"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/supplements.json",
+      "bytes": 805113,
+      "sha256": "18536daa06d5bbf81fe5f1d96b51213255854a6ec7bff58cb2c298be9b48dae5"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+      "bytes": 100635,
+      "sha256": "8ab2f4f43bcbced418fb266e5bd3216cff491b0c442c16f93438bd3556672c8b"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_source_components.py",
+      "bytes": 8461,
+      "sha256": "62cf8ff2f15b20c1a5a4e5e698bf1fd8f625fe4ede5c89a5c1bba79f01437929"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/tools/feat_exact_01_casting_credential_model.py",
+      "bytes": 11454,
+      "sha256": "f4d99a518827dcec6179ae1ff69cad1927c7096008aa98da7ab1fae6d6e585b7"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/tools/validate_feat335_copy_source_components.py",
+      "bytes": 11780,
+      "sha256": "e69bdd49283bcf5192df4bde65a0b4c35fac71b3f55115e00e4c8c98017e49f9"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+      "bytes": 5059561,
+      "sha256": "1227af1d81eebf793adda68b6b375f3b351629929eb022526fb8ce4642b0c584"
+    }
+  ],
+  "completeCopyContract": {
+    "capture": "Capture only one directly witnessed resolved component that actually expresses one profile below. Record canonical source/event, actual original spell rank or pre-encounter monster effective rank, native magnitude before external bonuses/defenses, selected type/profile and qualifying own casting route. For monster abilities without a spell rank, use max(1, min(9, ceil(actualCR/2))); missing CR needs a rating assigned before the encounter, never a favorable after-the-fact guess. No unique/legendary/boss feature without an independently reviewed exception; no copying copies, class engines, actions, resources, permanent changes, resurrection, creation, items or protected information. An unsupported role is ineligible, not a blank Director permission.",
+    "rankAndPayment": "For original rank 0, q=0; otherwise q=max(1, floor(originalRank/2)). The chosen actual owned spellcasting route must independently support learning q; merely owning a pool or feat prerequisite does not. Use that route’s real ability for attack/DC and spell components V/S, normal rank price 0/2/3/5/7/10/13/17/21/26 plus actual adjustments. It grants a temporary feat-copy route only, never the original full spell. Spellcasting time is oneAction. At release pay/cast/history/interrupt once, with copy-provenance flags disabling copy/resource/class-proc chains. An explicit source such as Mirrorsage retains its own actual profile/rank/payment instead of being silently converted. FINAL FS-08: these releases are paid feat-copy casts with actual RP/components/history, not ordinary knowledge grants. Boon uses one feat-copy-boon family; its repeated copies do not add, while genuinely distinct eligible ordinary feat bonuses use FS-03.",
+    "numericBound": "For numeric damage/heal/ward select one witnessed native component/type and record its rolled or fixed magnitude B before external bonuses, saves, defenses and recipient caps. If that magnitude was hidden, the Director records it privately; no free identification is given. At feat-copy release roll (q+1)d6, then bound the native numeric result to min(roll, floor(B/2)). No copied critical multiplier, external damage/heal modifier, converted excess or extra recipients. Actual recipient defenses and healing limits still apply. A zero ceiling cannot produce a numeric benefit. This is an explicit NEW meaning of half potency, not an assertion about original undefined wording.",
+    "lifecycle": "At most one feat-copy release per owner per numbered round across Eldritch Echo, Mimicry and adapted copies. A Mirrorsage owner also spends its existing shared release allowance; an unowned Mirrorsage engine is not granted. Strike/Burst/Mend are immediate. Ward/Hindrance/Boon/Step use their stated maximum two-interval duration; source-specific shorter hold deadlines still govern. Only one pending feat-copy record across Eldritch Echo/Mimicry; before a new capture choose whether to replace the old, losing its paid capture/use without refund. Adaptation may retain permission but creates no second release allowance. No copied effect grants extra Action/BA/Reaction, persistent body, loot, learning or concentration capacity.",
+    "profiles": [
+      {
+        "id": "strike",
+        "role": "Direct single-target damage",
+        "activation": "Action",
+        "range": "60 ft, one perceived creature with line of effect",
+        "resolution": "Actual own casting ability+PB spell attack; on hit bounded numeric damage of one observed native type. No added critical dice. No original riders. Instant."
+      },
+      {
+        "id": "burst",
+        "role": "Area damage",
+        "activation": "Action",
+        "range": "Point within 30 ft;10 ft radius, at most 3 originally declared perceived creatures in area with line of effect",
+        "resolution": "DEX save vs own DC for bounded numeric observed-type damage, half on success; one shared roll. No original riders. Instant."
+      },
+      {
+        "id": "mend",
+        "role": "Actual normal HP healing",
+        "activation": "Action",
+        "range": "30 ft one perceived willing living creature with line of effect",
+        "resolution": "Restore bounded numeric HP under actual prohibitions/maximum/Critical caps. No reviving, healing dice add-ons, Wound cure, heal-copy/resource trigger or excess conversion. Instant."
+      },
+      {
+        "id": "ward",
+        "role": "Temporary HP",
+        "activation": "Action",
+        "range": "30 ft one perceived willing living creature with line of effect",
+        "resolution": "Offer bounded numerictemp HP into the actual single grant ledger, ending at the source’s second future regular start. Rejected offer wastes the copy. No linked riders."
+      },
+      {
+        "id": "hindrance",
+        "role": "Actual slow or action/reaction control",
+        "activation": "Action",
+        "range": "30 ft one perceived creature with line of effect",
+        "resolution": "WIS save vs own DC or Speed−10 ft and no new Reactions until its next future regular end, never later than the source’s second future regular start. Strongest slow arbitration; no wholeAction/turn denial, repeated save or original hard-control rider."
+      },
+      {
+        "id": "boon",
+        "role": "A source actually granting a positive attack, save or AC modifier",
+        "activation": "Action",
+        "range": "30 ft one perceived willing creature with line of effect",
+        "resolution": "Choose one statistic actually benefited by the witnessed source: +1 AC OR+1 to one next actual attack roll OR+1 to one next actual save, through source’s next future regular end. Strongest feat-copy-boon-family arbitration; no new roll or cloned concentration."
+      },
+      {
+        "id": "step",
+        "role": "Actual short personal movement/teleport",
+        "activation": "Action",
+        "range": "Self to visible unoccupied fitting space within min(15 ft, floor(observed distance/2))",
+        "resolution": "If original component was teleport, teleport with actual line of effect and ordinary teleport restrictions; otherwise move that distance over an actual legal path paying terrain and provoking normally. No passenger, planar travel, new locomotion mode or movement into an unseen space. Instant."
+      }
+    ]
+  },
+  "results": [
+    {
+      "id": "strike/reviewed-whole-card-and-exact-placement",
+      "passed": true
+    },
+    {
+      "id": "strike/derived-rank-no-capture-or-release",
+      "passed": true
+    },
+    {
+      "id": "strike/native-before-recipient-cap",
+      "passed": true
+    },
+    {
+      "id": "strike/half-native-cap",
+      "passed": true
+    },
+    {
+      "id": "strike/low-copy-roll-cap",
+      "passed": true
+    },
+    {
+      "id": "strike/invalid-copy-dice/[]",
+      "passed": true
+    },
+    {
+      "id": "strike/invalid-copy-dice/[]/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "strike/invalid-copy-dice/[7]",
+      "passed": true
+    },
+    {
+      "id": "strike/invalid-copy-dice/[7]/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "strike/invalid-copy-dice/[True]",
+      "passed": true
+    },
+    {
+      "id": "strike/invalid-copy-dice/[True]/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "strike/does-not-invent-step",
+      "passed": true
+    },
+    {
+      "id": "strike/does-not-invent-step/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "strike/does-not-invent-hindrance",
+      "passed": true
+    },
+    {
+      "id": "strike/does-not-invent-hindrance/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "strike/does-not-invent-ward",
+      "passed": true
+    },
+    {
+      "id": "strike/does-not-invent-ward/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "strike/does-not-invent-burst",
+      "passed": true
+    },
+    {
+      "id": "strike/does-not-invent-burst/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "strike/does-not-invent-mend",
+      "passed": true
+    },
+    {
+      "id": "strike/does-not-invent-mend/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "strike/does-not-invent-boon",
+      "passed": true
+    },
+    {
+      "id": "strike/does-not-invent-boon/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "strike/canonical-event-no-replay",
+      "passed": true
+    },
+    {
+      "id": "strike/canonical-event-no-replay/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "burst/reviewed-whole-card-and-exact-placement",
+      "passed": true
+    },
+    {
+      "id": "burst/derived-rank-no-capture-or-release",
+      "passed": true
+    },
+    {
+      "id": "burst/native-before-recipient-cap",
+      "passed": true
+    },
+    {
+      "id": "burst/half-native-cap",
+      "passed": true
+    },
+    {
+      "id": "burst/low-copy-roll-cap",
+      "passed": true
+    },
+    {
+      "id": "burst/invalid-copy-dice/[6]",
+      "passed": true
+    },
+    {
+      "id": "burst/invalid-copy-dice/[6]/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "burst/invalid-copy-dice/[7, 7]",
+      "passed": true
+    },
+    {
+      "id": "burst/invalid-copy-dice/[7, 7]/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "burst/invalid-copy-dice/[True, True]",
+      "passed": true
+    },
+    {
+      "id": "burst/invalid-copy-dice/[True, True]/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "burst/does-not-invent-strike",
+      "passed": true
+    },
+    {
+      "id": "burst/does-not-invent-strike/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "burst/does-not-invent-step",
+      "passed": true
+    },
+    {
+      "id": "burst/does-not-invent-step/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "burst/does-not-invent-hindrance",
+      "passed": true
+    },
+    {
+      "id": "burst/does-not-invent-hindrance/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "burst/does-not-invent-ward",
+      "passed": true
+    },
+    {
+      "id": "burst/does-not-invent-ward/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "burst/does-not-invent-mend",
+      "passed": true
+    },
+    {
+      "id": "burst/does-not-invent-mend/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "burst/does-not-invent-boon",
+      "passed": true
+    },
+    {
+      "id": "burst/does-not-invent-boon/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "burst/canonical-event-no-replay",
+      "passed": true
+    },
+    {
+      "id": "burst/canonical-event-no-replay/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "mend/reviewed-whole-card-and-exact-placement",
+      "passed": true
+    },
+    {
+      "id": "mend/derived-rank-no-capture-or-release",
+      "passed": true
+    },
+    {
+      "id": "mend/native-before-recipient-cap",
+      "passed": true
+    },
+    {
+      "id": "mend/half-native-cap",
+      "passed": true
+    },
+    {
+      "id": "mend/low-copy-roll-cap",
+      "passed": true
+    },
+    {
+      "id": "mend/invalid-copy-dice/[6]",
+      "passed": true
+    },
+    {
+      "id": "mend/invalid-copy-dice/[6]/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "mend/invalid-copy-dice/[7, 7]",
+      "passed": true
+    },
+    {
+      "id": "mend/invalid-copy-dice/[7, 7]/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "mend/invalid-copy-dice/[True, True]",
+      "passed": true
+    },
+    {
+      "id": "mend/invalid-copy-dice/[True, True]/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "mend/does-not-invent-step",
+      "passed": true
+    },
+    {
+      "id": "mend/does-not-invent-step/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "mend/does-not-invent-hindrance",
+      "passed": true
+    },
+    {
+      "id": "mend/does-not-invent-hindrance/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "mend/does-not-invent-ward",
+      "passed": true
+    },
+    {
+      "id": "mend/does-not-invent-ward/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "mend/does-not-invent-burst",
+      "passed": true
+    },
+    {
+      "id": "mend/does-not-invent-burst/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "mend/does-not-invent-boon",
+      "passed": true
+    },
+    {
+      "id": "mend/does-not-invent-boon/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "mend/canonical-event-no-replay",
+      "passed": true
+    },
+    {
+      "id": "mend/canonical-event-no-replay/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "ward/reviewed-whole-card-and-exact-placement",
+      "passed": true
+    },
+    {
+      "id": "ward/derived-rank-no-capture-or-release",
+      "passed": true
+    },
+    {
+      "id": "ward/native-before-recipient-cap",
+      "passed": true
+    },
+    {
+      "id": "ward/half-native-cap",
+      "passed": true
+    },
+    {
+      "id": "ward/low-copy-roll-cap",
+      "passed": true
+    },
+    {
+      "id": "ward/invalid-copy-dice/[6]",
+      "passed": true
+    },
+    {
+      "id": "ward/invalid-copy-dice/[6]/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "ward/invalid-copy-dice/[7, 7]",
+      "passed": true
+    },
+    {
+      "id": "ward/invalid-copy-dice/[7, 7]/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "ward/invalid-copy-dice/[True, True]",
+      "passed": true
+    },
+    {
+      "id": "ward/invalid-copy-dice/[True, True]/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "ward/does-not-invent-strike",
+      "passed": true
+    },
+    {
+      "id": "ward/does-not-invent-strike/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "ward/does-not-invent-step",
+      "passed": true
+    },
+    {
+      "id": "ward/does-not-invent-step/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "ward/does-not-invent-hindrance",
+      "passed": true
+    },
+    {
+      "id": "ward/does-not-invent-hindrance/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "ward/does-not-invent-burst",
+      "passed": true
+    },
+    {
+      "id": "ward/does-not-invent-burst/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "ward/does-not-invent-mend",
+      "passed": true
+    },
+    {
+      "id": "ward/does-not-invent-mend/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "ward/does-not-invent-boon",
+      "passed": true
+    },
+    {
+      "id": "ward/does-not-invent-boon/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "ward/canonical-event-no-replay",
+      "passed": true
+    },
+    {
+      "id": "ward/canonical-event-no-replay/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "hindrance/reviewed-whole-card-and-exact-placement",
+      "passed": true
+    },
+    {
+      "id": "hindrance/derived-rank-no-capture-or-release",
+      "passed": true
+    },
+    {
+      "id": "hindrance/not-numeric",
+      "passed": true
+    },
+    {
+      "id": "hindrance/not-numeric/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "hindrance/does-not-invent-strike",
+      "passed": true
+    },
+    {
+      "id": "hindrance/does-not-invent-strike/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "hindrance/does-not-invent-step",
+      "passed": true
+    },
+    {
+      "id": "hindrance/does-not-invent-step/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "hindrance/does-not-invent-ward",
+      "passed": true
+    },
+    {
+      "id": "hindrance/does-not-invent-ward/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "hindrance/does-not-invent-burst",
+      "passed": true
+    },
+    {
+      "id": "hindrance/does-not-invent-burst/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "hindrance/does-not-invent-mend",
+      "passed": true
+    },
+    {
+      "id": "hindrance/does-not-invent-mend/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "hindrance/does-not-invent-boon",
+      "passed": true
+    },
+    {
+      "id": "hindrance/does-not-invent-boon/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "hindrance/canonical-event-no-replay",
+      "passed": true
+    },
+    {
+      "id": "hindrance/canonical-event-no-replay/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "boon/reviewed-whole-card-and-exact-placement",
+      "passed": true
+    },
+    {
+      "id": "boon/derived-rank-no-capture-or-release",
+      "passed": true
+    },
+    {
+      "id": "boon/not-numeric",
+      "passed": true
+    },
+    {
+      "id": "boon/not-numeric/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "shield-only-benefits-AC-not-save-or-attack",
+      "passed": true
+    },
+    {
+      "id": "boon/does-not-invent-strike",
+      "passed": true
+    },
+    {
+      "id": "boon/does-not-invent-strike/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "boon/does-not-invent-step",
+      "passed": true
+    },
+    {
+      "id": "boon/does-not-invent-step/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "boon/does-not-invent-hindrance",
+      "passed": true
+    },
+    {
+      "id": "boon/does-not-invent-hindrance/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "boon/does-not-invent-ward",
+      "passed": true
+    },
+    {
+      "id": "boon/does-not-invent-ward/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "boon/does-not-invent-burst",
+      "passed": true
+    },
+    {
+      "id": "boon/does-not-invent-burst/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "boon/does-not-invent-mend",
+      "passed": true
+    },
+    {
+      "id": "boon/does-not-invent-mend/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "boon/canonical-event-no-replay",
+      "passed": true
+    },
+    {
+      "id": "boon/canonical-event-no-replay/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "step/reviewed-whole-card-and-exact-placement",
+      "passed": true
+    },
+    {
+      "id": "step/derived-rank-no-capture-or-release",
+      "passed": true
+    },
+    {
+      "id": "step/not-numeric",
+      "passed": true
+    },
+    {
+      "id": "step/not-numeric/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "mist-step-actual30-produces15-ceiling",
+      "passed": true
+    },
+    {
+      "id": "step/does-not-invent-strike",
+      "passed": true
+    },
+    {
+      "id": "step/does-not-invent-strike/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "step/does-not-invent-hindrance",
+      "passed": true
+    },
+    {
+      "id": "step/does-not-invent-hindrance/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "step/does-not-invent-ward",
+      "passed": true
+    },
+    {
+      "id": "step/does-not-invent-ward/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "step/does-not-invent-burst",
+      "passed": true
+    },
+    {
+      "id": "step/does-not-invent-burst/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "step/does-not-invent-mend",
+      "passed": true
+    },
+    {
+      "id": "step/does-not-invent-mend/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "step/does-not-invent-boon",
+      "passed": true
+    },
+    {
+      "id": "step/does-not-invent-boon/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "step/canonical-event-no-replay",
+      "passed": true
+    },
+    {
+      "id": "step/canonical-event-no-replay/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "all-seven-source-witnessed-profiles",
+      "passed": true
+    },
+    {
+      "id": "source-event-gate/resolved",
+      "passed": true
+    },
+    {
+      "id": "source-event-gate/resolved/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "source-event-gate/directlyWitnessed",
+      "passed": true
+    },
+    {
+      "id": "source-event-gate/directlyWitnessed/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "source-event-gate/actualLegalSourceCast",
+      "passed": true
+    },
+    {
+      "id": "source-event-gate/actualLegalSourceCast/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "source-event-gate/copyDerived",
+      "passed": true
+    },
+    {
+      "id": "source-event-gate/copyDerived/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "source-event-gate/protectedFeature",
+      "passed": true
+    },
+    {
+      "id": "source-event-gate/protectedFeature/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "actual-source-class-placement-required",
+      "passed": true
+    },
+    {
+      "id": "actual-source-class-placement-required/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "source-actual-class-level-required",
+      "passed": true
+    },
+    {
+      "id": "source-actual-class-level-required/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "source-level-not-bool",
+      "passed": true
+    },
+    {
+      "id": "source-level-not-bool/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "no-arbitrary-native-B",
+      "passed": true
+    },
+    {
+      "id": "no-arbitrary-native-B/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "name-or-apparent-healing-not-authority/seal-minor-wound",
+      "passed": true
+    },
+    {
+      "id": "name-or-apparent-healing-not-authority/seal-minor-wound/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "name-or-apparent-healing-not-authority/false-comfort",
+      "passed": true
+    },
+    {
+      "id": "name-or-apparent-healing-not-authority/false-comfort/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "name-or-apparent-healing-not-authority/mending",
+      "passed": true
+    },
+    {
+      "id": "name-or-apparent-healing-not-authority/mending/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "name-or-apparent-healing-not-authority/spare-the-dying",
+      "passed": true
+    },
+    {
+      "id": "name-or-apparent-healing-not-authority/spare-the-dying/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "name-or-apparent-healing-not-authority/flickerstep",
+      "passed": true
+    },
+    {
+      "id": "name-or-apparent-healing-not-authority/flickerstep/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "source-non-healing/seal-minor-wound",
+      "passed": true
+    },
+    {
+      "id": "source-non-healing/false-comfort",
+      "passed": true
+    },
+    {
+      "id": "source-non-healing/mending",
+      "passed": true
+    },
+    {
+      "id": "source-non-healing/spare-the-dying",
+      "passed": true
+    },
+    {
+      "id": "lifedraw-healing-eligibility/living-hostile",
+      "passed": true
+    },
+    {
+      "id": "lifedraw-healing-eligibility/undead",
+      "passed": true
+    },
+    {
+      "id": "no-healing-component/undead",
+      "passed": true
+    },
+    {
+      "id": "no-healing-component/undead/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "lifedraw-healing-eligibility/construct",
+      "passed": true
+    },
+    {
+      "id": "no-healing-component/construct",
+      "passed": true
+    },
+    {
+      "id": "no-healing-component/construct/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "lifedraw-healing-eligibility/farmed-summon",
+      "passed": true
+    },
+    {
+      "id": "no-healing-component/farmed-summon",
+      "passed": true
+    },
+    {
+      "id": "no-healing-component/farmed-summon/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "lifedraw-healing-eligibility/ally",
+      "passed": true
+    },
+    {
+      "id": "no-healing-component/ally",
+      "passed": true
+    },
+    {
+      "id": "no-healing-component/ally/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "lifedraw-healing-eligibility/helpless-captive",
+      "passed": true
+    },
+    {
+      "id": "no-healing-component/helpless-captive",
+      "passed": true
+    },
+    {
+      "id": "no-healing-component/helpless-captive/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "lifedraw-healing-eligibility/corpse",
+      "passed": true
+    },
+    {
+      "id": "no-healing-component/corpse",
+      "passed": true
+    },
+    {
+      "id": "no-healing-component/corpse/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "lifedraw-healing-eligibility/other-nonliving",
+      "passed": true
+    },
+    {
+      "id": "no-healing-component/other-nonliving",
+      "passed": true
+    },
+    {
+      "id": "no-healing-component/other-nonliving/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "zero-damage-no-heal",
+      "passed": true
+    },
+    {
+      "id": "zero-damage-no-heal/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "lifedraw-native-heal-derived-from-actual-damage/1",
+      "passed": true
+    },
+    {
+      "id": "lifedraw-copy-half-heal-not-half-source-damage/1",
+      "passed": true
+    },
+    {
+      "id": "lifedraw-native-heal-derived-from-actual-damage/2",
+      "passed": true
+    },
+    {
+      "id": "lifedraw-copy-half-heal-not-half-source-damage/2",
+      "passed": true
+    },
+    {
+      "id": "lifedraw-native-heal-derived-from-actual-damage/9",
+      "passed": true
+    },
+    {
+      "id": "lifedraw-copy-half-heal-not-half-source-damage/9",
+      "passed": true
+    },
+    {
+      "id": "lifedraw-native-heal-derived-from-actual-damage/10",
+      "passed": true
+    },
+    {
+      "id": "lifedraw-copy-half-heal-not-half-source-damage/10",
+      "passed": true
+    },
+    {
+      "id": "lifedraw-native-heal-derived-from-actual-damage/17",
+      "passed": true
+    },
+    {
+      "id": "lifedraw-copy-half-heal-not-half-source-damage/17",
+      "passed": true
+    },
+    {
+      "id": "lifedraw-native-heal-derived-from-actual-damage/18",
+      "passed": true
+    },
+    {
+      "id": "lifedraw-copy-half-heal-not-half-source-damage/18",
+      "passed": true
+    },
+    {
+      "id": "miss-no-source-component/arcane-ray",
+      "passed": true
+    },
+    {
+      "id": "miss-cannot-copy-damage/arcane-ray",
+      "passed": true
+    },
+    {
+      "id": "miss-cannot-copy-damage/arcane-ray/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "miss-no-source-component/lifedraw",
+      "passed": true
+    },
+    {
+      "id": "miss-cannot-copy-damage/lifedraw",
+      "passed": true
+    },
+    {
+      "id": "miss-cannot-copy-damage/lifedraw/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "no-expressed-control/(False, True)",
+      "passed": true
+    },
+    {
+      "id": "no-expressed-control/(True, False)",
+      "passed": true
+    },
+    {
+      "id": "no-expressed-control/(False, False)",
+      "passed": true
+    },
+    {
+      "id": "slow-no-mode-union",
+      "passed": true
+    },
+    {
+      "id": "slow-no-mode-union/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "actual-Mage-mode-also-hindrance",
+      "passed": true
+    },
+    {
+      "id": "step-actual-distance-not-printed-range/0",
+      "passed": true
+    },
+    {
+      "id": "step-actual-distance-not-printed-range/1",
+      "passed": true
+    },
+    {
+      "id": "step-actual-distance-not-printed-range/5",
+      "passed": true
+    },
+    {
+      "id": "step-actual-distance-not-printed-range/10",
+      "passed": true
+    },
+    {
+      "id": "step-actual-distance-not-printed-range/29",
+      "passed": true
+    },
+    {
+      "id": "step-actual-distance-not-printed-range/30",
+      "passed": true
+    },
+    {
+      "id": "impossible-source-teleport/-1",
+      "passed": true
+    },
+    {
+      "id": "impossible-source-teleport/-1/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "impossible-source-teleport/31",
+      "passed": true
+    },
+    {
+      "id": "impossible-source-teleport/31/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "impossible-source-teleport/True",
+      "passed": true
+    },
+    {
+      "id": "impossible-source-teleport/True/no-mutation",
+      "passed": true
+    },
+    {
+      "id": "all-source-bindings-stable",
+      "passed": true
+    }
+  ],
+  "histories": [
+    {
+      "id": "all-seven/strike",
+      "state": {
+        "source-strike": {
+          "sourceEvent": "source-strike",
+          "spellId": "arcane-ray",
+          "sourceRoute": {
+            "spellId": "arcane-ray",
+            "sourceClass": "Wizard",
+            "rank": 0,
+            "school": "Evocation",
+            "minimumClassLevel": 1,
+            "placement": {
+              "rank": 0,
+              "minimumClassLevel": 1,
+              "school": "Evocation",
+              "baseRpCost": 0
+            },
+            "payloadBinding": {
+              "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+              "bytes": 5059561,
+              "sha256": "1227af1d81eebf793adda68b6b375f3b351629929eb022526fb8ce4642b0c584",
+              "pointer": "/spells/402"
+            },
+            "authoredIndexEntry": {
+              "id": "arcane-ray",
+              "name": "Arcane Ray",
+              "authoredStatus": "reviewed-authored-operational-playtest",
+              "procedureFile": "catalog.json",
+              "procedurePointer": "/spells/402/operational",
+              "wholeCardPointer": "/spells/402",
+              "sourceStatus": "operational-playtest-draft",
+              "priorCatalogSelectionStatusUnchanged": true
+            }
+          },
+          "sourceClassLevel": 1,
+          "premises": {
+            "resolved": true,
+            "directlyWitnessed": true,
+            "actualLegalSourceCast": true,
+            "copyDerived": false,
+            "protectedFeature": false
+          },
+          "outcome": {
+            "actualHit": true,
+            "ordinaryNativeDice": [
+              6
+            ]
+          },
+          "originalRank": 0,
+          "components": [
+            {
+              "profile": "strike",
+              "nativeMagnitude": 6,
+              "damageType": "force"
+            }
+          ],
+          "scope": "conditional-source-component-witness; no capture/payment/release executed"
+        }
+      },
+      "selected": {
+        "sourceEvent": "source-strike",
+        "sourceSpellId": "arcane-ray",
+        "sourcePayloadBinding": {
+          "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "bytes": 5059561,
+          "sha256": "1227af1d81eebf793adda68b6b375f3b351629929eb022526fb8ce4642b0c584",
+          "pointer": "/spells/402"
+        },
+        "originalRank": 0,
+        "copyRank": 0,
+        "profile": "strike",
+        "nativeMagnitude": 6,
+        "damageType": "force",
+        "captureAuthorized": false,
+        "releaseExecuted": false
+      }
+    },
+    {
+      "id": "all-seven/burst",
+      "state": {
+        "source-burst": {
+          "sourceEvent": "source-burst",
+          "spellId": "burning-hands",
+          "sourceRoute": {
+            "spellId": "burning-hands",
+            "sourceClass": "Wizard",
+            "rank": 1,
+            "school": "Evocation",
+            "minimumClassLevel": 1,
+            "placement": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Evocation",
+              "baseRpCost": 2
+            },
+            "payloadBinding": {
+              "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+              "bytes": 5059561,
+              "sha256": "1227af1d81eebf793adda68b6b375f3b351629929eb022526fb8ce4642b0c584",
+              "pointer": "/spells/426"
+            },
+            "authoredIndexEntry": {
+              "id": "burning-hands",
+              "name": "Burning Hands",
+              "authoredStatus": "reviewed-authored-operational-playtest",
+              "procedureFile": "catalog.json",
+              "procedurePointer": "/spells/426/operational",
+              "wholeCardPointer": "/spells/426",
+              "sourceStatus": "operational-playtest-draft",
+              "priorCatalogSelectionStatusUnchanged": true
+            }
+          },
+          "sourceClassLevel": 1,
+          "premises": {
+            "resolved": true,
+            "directlyWitnessed": true,
+            "actualLegalSourceCast": true,
+            "copyDerived": false,
+            "protectedFeature": false
+          },
+          "outcome": {
+            "ordinaryNativeDice": [
+              6,
+              5,
+              4
+            ],
+            "actualResolvedArea": true
+          },
+          "originalRank": 1,
+          "components": [
+            {
+              "profile": "burst",
+              "nativeMagnitude": 15,
+              "damageType": "fire"
+            }
+          ],
+          "scope": "conditional-source-component-witness; no capture/payment/release executed"
+        }
+      },
+      "selected": {
+        "sourceEvent": "source-burst",
+        "sourceSpellId": "burning-hands",
+        "sourcePayloadBinding": {
+          "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "bytes": 5059561,
+          "sha256": "1227af1d81eebf793adda68b6b375f3b351629929eb022526fb8ce4642b0c584",
+          "pointer": "/spells/426"
+        },
+        "originalRank": 1,
+        "copyRank": 1,
+        "profile": "burst",
+        "nativeMagnitude": 15,
+        "damageType": "fire",
+        "captureAuthorized": false,
+        "releaseExecuted": false
+      }
+    },
+    {
+      "id": "all-seven/mend",
+      "state": {
+        "source-mend": {
+          "sourceEvent": "source-mend",
+          "spellId": "lifedraw",
+          "sourceRoute": {
+            "spellId": "lifedraw",
+            "sourceClass": "Wizard",
+            "rank": 1,
+            "school": "Necromancy",
+            "minimumClassLevel": 1,
+            "placement": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Necromancy",
+              "baseRpCost": 2
+            },
+            "payloadBinding": {
+              "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+              "bytes": 5059561,
+              "sha256": "1227af1d81eebf793adda68b6b375f3b351629929eb022526fb8ce4642b0c584",
+              "pointer": "/spells/603"
+            },
+            "authoredIndexEntry": {
+              "id": "lifedraw",
+              "name": "Lifedraw",
+              "authoredStatus": "reviewed-authored-operational-playtest",
+              "procedureFile": "catalog.json",
+              "procedurePointer": "/spells/603/operational",
+              "wholeCardPointer": "/spells/603",
+              "sourceStatus": "operational-playtest-draft",
+              "priorCatalogSelectionStatusUnchanged": true
+            }
+          },
+          "sourceClassLevel": 1,
+          "premises": {
+            "resolved": true,
+            "directlyWitnessed": true,
+            "actualLegalSourceCast": true,
+            "copyDerived": false,
+            "protectedFeature": false
+          },
+          "outcome": {
+            "actualHit": true,
+            "ordinaryNativeDice": [
+              6,
+              6,
+              6
+            ],
+            "actualNecroticDamageDealt": 10,
+            "targetCategory": "living-hostile"
+          },
+          "originalRank": 1,
+          "components": [
+            {
+              "profile": "strike",
+              "nativeMagnitude": 18,
+              "damageType": "necrotic"
+            },
+            {
+              "profile": "mend",
+              "nativeMagnitude": 5
+            }
+          ],
+          "scope": "conditional-source-component-witness; no capture/payment/release executed"
+        }
+      },
+      "selected": {
+        "sourceEvent": "source-mend",
+        "sourceSpellId": "lifedraw",
+        "sourcePayloadBinding": {
+          "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "bytes": 5059561,
+          "sha256": "1227af1d81eebf793adda68b6b375f3b351629929eb022526fb8ce4642b0c584",
+          "pointer": "/spells/603"
+        },
+        "originalRank": 1,
+        "copyRank": 1,
+        "profile": "mend",
+        "nativeMagnitude": 5,
+        "captureAuthorized": false,
+        "releaseExecuted": false
+      }
+    },
+    {
+      "id": "all-seven/ward",
+      "state": {
+        "source-ward": {
+          "sourceEvent": "source-ward",
+          "spellId": "false-life",
+          "sourceRoute": {
+            "spellId": "false-life",
+            "sourceClass": "Wizard",
+            "rank": 1,
+            "school": "Necromancy",
+            "minimumClassLevel": 1,
+            "placement": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Necromancy",
+              "baseRpCost": 2
+            },
+            "payloadBinding": {
+              "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+              "bytes": 5059561,
+              "sha256": "1227af1d81eebf793adda68b6b375f3b351629929eb022526fb8ce4642b0c584",
+              "pointer": "/spells/611"
+            },
+            "authoredIndexEntry": {
+              "id": "false-life",
+              "name": "False Life",
+              "authoredStatus": "reviewed-authored-operational-playtest",
+              "procedureFile": "catalog.json",
+              "procedurePointer": "/spells/611/operational",
+              "wholeCardPointer": "/spells/611",
+              "sourceStatus": "operational-playtest-draft",
+              "priorCatalogSelectionStatusUnchanged": true
+            }
+          },
+          "sourceClassLevel": 1,
+          "premises": {
+            "resolved": true,
+            "directlyWitnessed": true,
+            "actualLegalSourceCast": true,
+            "copyDerived": false,
+            "protectedFeature": false
+          },
+          "outcome": {
+            "ordinaryNativeDice": [
+              4
+            ],
+            "actualWillingLivingRecipient": true
+          },
+          "originalRank": 1,
+          "components": [
+            {
+              "profile": "ward",
+              "nativeMagnitude": 8
+            }
+          ],
+          "scope": "conditional-source-component-witness; no capture/payment/release executed"
+        }
+      },
+      "selected": {
+        "sourceEvent": "source-ward",
+        "sourceSpellId": "false-life",
+        "sourcePayloadBinding": {
+          "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "bytes": 5059561,
+          "sha256": "1227af1d81eebf793adda68b6b375f3b351629929eb022526fb8ce4642b0c584",
+          "pointer": "/spells/611"
+        },
+        "originalRank": 1,
+        "copyRank": 1,
+        "profile": "ward",
+        "nativeMagnitude": 8,
+        "captureAuthorized": false,
+        "releaseExecuted": false
+      }
+    },
+    {
+      "id": "all-seven/hindrance",
+      "state": {
+        "source-hindrance": {
+          "sourceEvent": "source-hindrance",
+          "spellId": "slow",
+          "sourceRoute": {
+            "spellId": "slow",
+            "sourceClass": "Wizard",
+            "rank": 3,
+            "school": "Enchantment",
+            "minimumClassLevel": 5,
+            "placement": {
+              "rank": 3,
+              "minimumClassLevel": 5,
+              "school": "Enchantment",
+              "baseRpCost": 5
+            },
+            "payloadBinding": {
+              "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+              "bytes": 5059561,
+              "sha256": "1227af1d81eebf793adda68b6b375f3b351629929eb022526fb8ce4642b0c584",
+              "pointer": "/spells/346"
+            },
+            "authoredIndexEntry": {
+              "id": "slow",
+              "name": "Slow",
+              "authoredStatus": "reviewed-authored-operational-playtest",
+              "procedureFile": "catalog.json",
+              "procedurePointer": "/spells/346/operational",
+              "wholeCardPointer": "/spells/346",
+              "sourceStatus": "operational-playtest-draft",
+              "priorCatalogSelectionStatusUnchanged": true
+            }
+          },
+          "sourceClassLevel": 5,
+          "premises": {
+            "resolved": true,
+            "directlyWitnessed": true,
+            "actualLegalSourceCast": true,
+            "copyDerived": false,
+            "protectedFeature": false
+          },
+          "outcome": {
+            "actualFailedSave": true,
+            "actualSurvivingControlComponent": true,
+            "mode": "Enchantment"
+          },
+          "originalRank": 3,
+          "components": [
+            {
+              "profile": "hindrance"
+            }
+          ],
+          "scope": "conditional-source-component-witness; no capture/payment/release executed"
+        }
+      },
+      "selected": {
+        "sourceEvent": "source-hindrance",
+        "sourceSpellId": "slow",
+        "sourcePayloadBinding": {
+          "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "bytes": 5059561,
+          "sha256": "1227af1d81eebf793adda68b6b375f3b351629929eb022526fb8ce4642b0c584",
+          "pointer": "/spells/346"
+        },
+        "originalRank": 3,
+        "copyRank": 1,
+        "profile": "hindrance",
+        "captureAuthorized": false,
+        "releaseExecuted": false
+      }
+    },
+    {
+      "id": "all-seven/boon",
+      "state": {
+        "source-boon": {
+          "sourceEvent": "source-boon",
+          "spellId": "shield",
+          "sourceRoute": {
+            "spellId": "shield",
+            "sourceClass": "Wizard",
+            "rank": 1,
+            "school": "Abjuration",
+            "minimumClassLevel": 1,
+            "placement": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Abjuration",
+              "baseRpCost": 2
+            },
+            "payloadBinding": {
+              "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+              "bytes": 5059561,
+              "sha256": "1227af1d81eebf793adda68b6b375f3b351629929eb022526fb8ce4642b0c584",
+              "pointer": "/spells/16"
+            },
+            "authoredIndexEntry": {
+              "id": "shield",
+              "name": "Shield",
+              "authoredStatus": "reviewed-authored-operational-playtest",
+              "procedureFile": "catalog.json",
+              "procedurePointer": "/spells/16/operational",
+              "wholeCardPointer": "/spells/16",
+              "sourceStatus": "operational-playtest-draft",
+              "priorCatalogSelectionStatusUnchanged": true
+            }
+          },
+          "sourceClassLevel": 1,
+          "premises": {
+            "resolved": true,
+            "directlyWitnessed": true,
+            "actualLegalSourceCast": true,
+            "copyDerived": false,
+            "protectedFeature": false
+          },
+          "outcome": {
+            "actualAcBenefitEstablished": true
+          },
+          "originalRank": 1,
+          "components": [
+            {
+              "profile": "boon",
+              "benefitedStatistics": [
+                "AC"
+              ]
+            }
+          ],
+          "scope": "conditional-source-component-witness; no capture/payment/release executed"
+        }
+      },
+      "selected": {
+        "sourceEvent": "source-boon",
+        "sourceSpellId": "shield",
+        "sourcePayloadBinding": {
+          "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "bytes": 5059561,
+          "sha256": "1227af1d81eebf793adda68b6b375f3b351629929eb022526fb8ce4642b0c584",
+          "pointer": "/spells/16"
+        },
+        "originalRank": 1,
+        "copyRank": 1,
+        "profile": "boon",
+        "benefitedStatistics": [
+          "AC"
+        ],
+        "captureAuthorized": false,
+        "releaseExecuted": false
+      }
+    },
+    {
+      "id": "all-seven/step",
+      "state": {
+        "source-step": {
+          "sourceEvent": "source-step",
+          "spellId": "mist-step",
+          "sourceRoute": {
+            "spellId": "mist-step",
+            "sourceClass": "Wizard",
+            "rank": 1,
+            "school": "Conjuration",
+            "minimumClassLevel": 1,
+            "placement": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Conjuration",
+              "baseRpCost": 2
+            },
+            "payloadBinding": {
+              "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+              "bytes": 5059561,
+              "sha256": "1227af1d81eebf793adda68b6b375f3b351629929eb022526fb8ce4642b0c584",
+              "pointer": "/spells/125"
+            },
+            "authoredIndexEntry": {
+              "id": "mist-step",
+              "name": "Mist Step",
+              "authoredStatus": "reviewed-authored-operational-playtest",
+              "procedureFile": "catalog.json",
+              "procedurePointer": "/spells/125/operational",
+              "wholeCardPointer": "/spells/125",
+              "sourceStatus": "operational-playtest-draft",
+              "priorCatalogSelectionStatusUnchanged": true
+            }
+          },
+          "sourceClassLevel": 1,
+          "premises": {
+            "resolved": true,
+            "directlyWitnessed": true,
+            "actualLegalSourceCast": true,
+            "copyDerived": false,
+            "protectedFeature": false
+          },
+          "outcome": {
+            "observedDistance": 30,
+            "actualLegalTeleportCompleted": true
+          },
+          "originalRank": 1,
+          "components": [
+            {
+              "profile": "step",
+              "observedDistance": 30,
+              "wasTeleport": true
+            }
+          ],
+          "scope": "conditional-source-component-witness; no capture/payment/release executed"
+        }
+      },
+      "selected": {
+        "sourceEvent": "source-step",
+        "sourceSpellId": "mist-step",
+        "sourcePayloadBinding": {
+          "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "bytes": 5059561,
+          "sha256": "1227af1d81eebf793adda68b6b375f3b351629929eb022526fb8ce4642b0c584",
+          "pointer": "/spells/125"
+        },
+        "originalRank": 1,
+        "copyRank": 1,
+        "profile": "step",
+        "observedDistance": 30,
+        "wasTeleport": true,
+        "captureAuthorized": false,
+        "releaseExecuted": false
+      }
+    },
+    {
+      "id": "source-gate-isolation",
+      "state": {}
+    },
+    {
+      "id": "lifedraw/living-hostile",
+      "state": {
+        "life": {
+          "sourceEvent": "life",
+          "spellId": "lifedraw",
+          "sourceRoute": {
+            "spellId": "lifedraw",
+            "sourceClass": "Wizard",
+            "rank": 1,
+            "school": "Necromancy",
+            "minimumClassLevel": 1,
+            "placement": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Necromancy",
+              "baseRpCost": 2
+            },
+            "payloadBinding": {
+              "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+              "bytes": 5059561,
+              "sha256": "1227af1d81eebf793adda68b6b375f3b351629929eb022526fb8ce4642b0c584",
+              "pointer": "/spells/603"
+            },
+            "authoredIndexEntry": {
+              "id": "lifedraw",
+              "name": "Lifedraw",
+              "authoredStatus": "reviewed-authored-operational-playtest",
+              "procedureFile": "catalog.json",
+              "procedurePointer": "/spells/603/operational",
+              "wholeCardPointer": "/spells/603",
+              "sourceStatus": "operational-playtest-draft",
+              "priorCatalogSelectionStatusUnchanged": true
+            }
+          },
+          "sourceClassLevel": 1,
+          "premises": {
+            "resolved": true,
+            "directlyWitnessed": true,
+            "actualLegalSourceCast": true,
+            "copyDerived": false,
+            "protectedFeature": false
+          },
+          "outcome": {
+            "actualHit": true,
+            "ordinaryNativeDice": [
+              6,
+              6,
+              6
+            ],
+            "actualNecroticDamageDealt": 10,
+            "targetCategory": "living-hostile"
+          },
+          "originalRank": 1,
+          "components": [
+            {
+              "profile": "strike",
+              "nativeMagnitude": 18,
+              "damageType": "necrotic"
+            },
+            {
+              "profile": "mend",
+              "nativeMagnitude": 5
+            }
+          ],
+          "scope": "conditional-source-component-witness; no capture/payment/release executed"
+        }
+      }
+    },
+    {
+      "id": "lifedraw/undead",
+      "state": {
+        "life": {
+          "sourceEvent": "life",
+          "spellId": "lifedraw",
+          "sourceRoute": {
+            "spellId": "lifedraw",
+            "sourceClass": "Wizard",
+            "rank": 1,
+            "school": "Necromancy",
+            "minimumClassLevel": 1,
+            "placement": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Necromancy",
+              "baseRpCost": 2
+            },
+            "payloadBinding": {
+              "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+              "bytes": 5059561,
+              "sha256": "1227af1d81eebf793adda68b6b375f3b351629929eb022526fb8ce4642b0c584",
+              "pointer": "/spells/603"
+            },
+            "authoredIndexEntry": {
+              "id": "lifedraw",
+              "name": "Lifedraw",
+              "authoredStatus": "reviewed-authored-operational-playtest",
+              "procedureFile": "catalog.json",
+              "procedurePointer": "/spells/603/operational",
+              "wholeCardPointer": "/spells/603",
+              "sourceStatus": "operational-playtest-draft",
+              "priorCatalogSelectionStatusUnchanged": true
+            }
+          },
+          "sourceClassLevel": 1,
+          "premises": {
+            "resolved": true,
+            "directlyWitnessed": true,
+            "actualLegalSourceCast": true,
+            "copyDerived": false,
+            "protectedFeature": false
+          },
+          "outcome": {
+            "actualHit": true,
+            "ordinaryNativeDice": [
+              6,
+              6,
+              6
+            ],
+            "actualNecroticDamageDealt": 10,
+            "targetCategory": "undead"
+          },
+          "originalRank": 1,
+          "components": [
+            {
+              "profile": "strike",
+              "nativeMagnitude": 18,
+              "damageType": "necrotic"
+            }
+          ],
+          "scope": "conditional-source-component-witness; no capture/payment/release executed"
+        }
+      }
+    },
+    {
+      "id": "lifedraw/construct",
+      "state": {
+        "life": {
+          "sourceEvent": "life",
+          "spellId": "lifedraw",
+          "sourceRoute": {
+            "spellId": "lifedraw",
+            "sourceClass": "Wizard",
+            "rank": 1,
+            "school": "Necromancy",
+            "minimumClassLevel": 1,
+            "placement": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Necromancy",
+              "baseRpCost": 2
+            },
+            "payloadBinding": {
+              "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+              "bytes": 5059561,
+              "sha256": "1227af1d81eebf793adda68b6b375f3b351629929eb022526fb8ce4642b0c584",
+              "pointer": "/spells/603"
+            },
+            "authoredIndexEntry": {
+              "id": "lifedraw",
+              "name": "Lifedraw",
+              "authoredStatus": "reviewed-authored-operational-playtest",
+              "procedureFile": "catalog.json",
+              "procedurePointer": "/spells/603/operational",
+              "wholeCardPointer": "/spells/603",
+              "sourceStatus": "operational-playtest-draft",
+              "priorCatalogSelectionStatusUnchanged": true
+            }
+          },
+          "sourceClassLevel": 1,
+          "premises": {
+            "resolved": true,
+            "directlyWitnessed": true,
+            "actualLegalSourceCast": true,
+            "copyDerived": false,
+            "protectedFeature": false
+          },
+          "outcome": {
+            "actualHit": true,
+            "ordinaryNativeDice": [
+              6,
+              6,
+              6
+            ],
+            "actualNecroticDamageDealt": 10,
+            "targetCategory": "construct"
+          },
+          "originalRank": 1,
+          "components": [
+            {
+              "profile": "strike",
+              "nativeMagnitude": 18,
+              "damageType": "necrotic"
+            }
+          ],
+          "scope": "conditional-source-component-witness; no capture/payment/release executed"
+        }
+      }
+    },
+    {
+      "id": "lifedraw/farmed-summon",
+      "state": {
+        "life": {
+          "sourceEvent": "life",
+          "spellId": "lifedraw",
+          "sourceRoute": {
+            "spellId": "lifedraw",
+            "sourceClass": "Wizard",
+            "rank": 1,
+            "school": "Necromancy",
+            "minimumClassLevel": 1,
+            "placement": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Necromancy",
+              "baseRpCost": 2
+            },
+            "payloadBinding": {
+              "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+              "bytes": 5059561,
+              "sha256": "1227af1d81eebf793adda68b6b375f3b351629929eb022526fb8ce4642b0c584",
+              "pointer": "/spells/603"
+            },
+            "authoredIndexEntry": {
+              "id": "lifedraw",
+              "name": "Lifedraw",
+              "authoredStatus": "reviewed-authored-operational-playtest",
+              "procedureFile": "catalog.json",
+              "procedurePointer": "/spells/603/operational",
+              "wholeCardPointer": "/spells/603",
+              "sourceStatus": "operational-playtest-draft",
+              "priorCatalogSelectionStatusUnchanged": true
+            }
+          },
+          "sourceClassLevel": 1,
+          "premises": {
+            "resolved": true,
+            "directlyWitnessed": true,
+            "actualLegalSourceCast": true,
+            "copyDerived": false,
+            "protectedFeature": false
+          },
+          "outcome": {
+            "actualHit": true,
+            "ordinaryNativeDice": [
+              6,
+              6,
+              6
+            ],
+            "actualNecroticDamageDealt": 10,
+            "targetCategory": "farmed-summon"
+          },
+          "originalRank": 1,
+          "components": [
+            {
+              "profile": "strike",
+              "nativeMagnitude": 18,
+              "damageType": "necrotic"
+            }
+          ],
+          "scope": "conditional-source-component-witness; no capture/payment/release executed"
+        }
+      }
+    },
+    {
+      "id": "lifedraw/ally",
+      "state": {
+        "life": {
+          "sourceEvent": "life",
+          "spellId": "lifedraw",
+          "sourceRoute": {
+            "spellId": "lifedraw",
+            "sourceClass": "Wizard",
+            "rank": 1,
+            "school": "Necromancy",
+            "minimumClassLevel": 1,
+            "placement": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Necromancy",
+              "baseRpCost": 2
+            },
+            "payloadBinding": {
+              "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+              "bytes": 5059561,
+              "sha256": "1227af1d81eebf793adda68b6b375f3b351629929eb022526fb8ce4642b0c584",
+              "pointer": "/spells/603"
+            },
+            "authoredIndexEntry": {
+              "id": "lifedraw",
+              "name": "Lifedraw",
+              "authoredStatus": "reviewed-authored-operational-playtest",
+              "procedureFile": "catalog.json",
+              "procedurePointer": "/spells/603/operational",
+              "wholeCardPointer": "/spells/603",
+              "sourceStatus": "operational-playtest-draft",
+              "priorCatalogSelectionStatusUnchanged": true
+            }
+          },
+          "sourceClassLevel": 1,
+          "premises": {
+            "resolved": true,
+            "directlyWitnessed": true,
+            "actualLegalSourceCast": true,
+            "copyDerived": false,
+            "protectedFeature": false
+          },
+          "outcome": {
+            "actualHit": true,
+            "ordinaryNativeDice": [
+              6,
+              6,
+              6
+            ],
+            "actualNecroticDamageDealt": 10,
+            "targetCategory": "ally"
+          },
+          "originalRank": 1,
+          "components": [
+            {
+              "profile": "strike",
+              "nativeMagnitude": 18,
+              "damageType": "necrotic"
+            }
+          ],
+          "scope": "conditional-source-component-witness; no capture/payment/release executed"
+        }
+      }
+    },
+    {
+      "id": "lifedraw/helpless-captive",
+      "state": {
+        "life": {
+          "sourceEvent": "life",
+          "spellId": "lifedraw",
+          "sourceRoute": {
+            "spellId": "lifedraw",
+            "sourceClass": "Wizard",
+            "rank": 1,
+            "school": "Necromancy",
+            "minimumClassLevel": 1,
+            "placement": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Necromancy",
+              "baseRpCost": 2
+            },
+            "payloadBinding": {
+              "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+              "bytes": 5059561,
+              "sha256": "1227af1d81eebf793adda68b6b375f3b351629929eb022526fb8ce4642b0c584",
+              "pointer": "/spells/603"
+            },
+            "authoredIndexEntry": {
+              "id": "lifedraw",
+              "name": "Lifedraw",
+              "authoredStatus": "reviewed-authored-operational-playtest",
+              "procedureFile": "catalog.json",
+              "procedurePointer": "/spells/603/operational",
+              "wholeCardPointer": "/spells/603",
+              "sourceStatus": "operational-playtest-draft",
+              "priorCatalogSelectionStatusUnchanged": true
+            }
+          },
+          "sourceClassLevel": 1,
+          "premises": {
+            "resolved": true,
+            "directlyWitnessed": true,
+            "actualLegalSourceCast": true,
+            "copyDerived": false,
+            "protectedFeature": false
+          },
+          "outcome": {
+            "actualHit": true,
+            "ordinaryNativeDice": [
+              6,
+              6,
+              6
+            ],
+            "actualNecroticDamageDealt": 10,
+            "targetCategory": "helpless-captive"
+          },
+          "originalRank": 1,
+          "components": [
+            {
+              "profile": "strike",
+              "nativeMagnitude": 18,
+              "damageType": "necrotic"
+            }
+          ],
+          "scope": "conditional-source-component-witness; no capture/payment/release executed"
+        }
+      }
+    },
+    {
+      "id": "lifedraw/corpse",
+      "state": {
+        "life": {
+          "sourceEvent": "life",
+          "spellId": "lifedraw",
+          "sourceRoute": {
+            "spellId": "lifedraw",
+            "sourceClass": "Wizard",
+            "rank": 1,
+            "school": "Necromancy",
+            "minimumClassLevel": 1,
+            "placement": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Necromancy",
+              "baseRpCost": 2
+            },
+            "payloadBinding": {
+              "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+              "bytes": 5059561,
+              "sha256": "1227af1d81eebf793adda68b6b375f3b351629929eb022526fb8ce4642b0c584",
+              "pointer": "/spells/603"
+            },
+            "authoredIndexEntry": {
+              "id": "lifedraw",
+              "name": "Lifedraw",
+              "authoredStatus": "reviewed-authored-operational-playtest",
+              "procedureFile": "catalog.json",
+              "procedurePointer": "/spells/603/operational",
+              "wholeCardPointer": "/spells/603",
+              "sourceStatus": "operational-playtest-draft",
+              "priorCatalogSelectionStatusUnchanged": true
+            }
+          },
+          "sourceClassLevel": 1,
+          "premises": {
+            "resolved": true,
+            "directlyWitnessed": true,
+            "actualLegalSourceCast": true,
+            "copyDerived": false,
+            "protectedFeature": false
+          },
+          "outcome": {
+            "actualHit": true,
+            "ordinaryNativeDice": [
+              6,
+              6,
+              6
+            ],
+            "actualNecroticDamageDealt": 10,
+            "targetCategory": "corpse"
+          },
+          "originalRank": 1,
+          "components": [
+            {
+              "profile": "strike",
+              "nativeMagnitude": 18,
+              "damageType": "necrotic"
+            }
+          ],
+          "scope": "conditional-source-component-witness; no capture/payment/release executed"
+        }
+      }
+    },
+    {
+      "id": "lifedraw/other-nonliving",
+      "state": {
+        "life": {
+          "sourceEvent": "life",
+          "spellId": "lifedraw",
+          "sourceRoute": {
+            "spellId": "lifedraw",
+            "sourceClass": "Wizard",
+            "rank": 1,
+            "school": "Necromancy",
+            "minimumClassLevel": 1,
+            "placement": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Necromancy",
+              "baseRpCost": 2
+            },
+            "payloadBinding": {
+              "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+              "bytes": 5059561,
+              "sha256": "1227af1d81eebf793adda68b6b375f3b351629929eb022526fb8ce4642b0c584",
+              "pointer": "/spells/603"
+            },
+            "authoredIndexEntry": {
+              "id": "lifedraw",
+              "name": "Lifedraw",
+              "authoredStatus": "reviewed-authored-operational-playtest",
+              "procedureFile": "catalog.json",
+              "procedurePointer": "/spells/603/operational",
+              "wholeCardPointer": "/spells/603",
+              "sourceStatus": "operational-playtest-draft",
+              "priorCatalogSelectionStatusUnchanged": true
+            }
+          },
+          "sourceClassLevel": 1,
+          "premises": {
+            "resolved": true,
+            "directlyWitnessed": true,
+            "actualLegalSourceCast": true,
+            "copyDerived": false,
+            "protectedFeature": false
+          },
+          "outcome": {
+            "actualHit": true,
+            "ordinaryNativeDice": [
+              6,
+              6,
+              6
+            ],
+            "actualNecroticDamageDealt": 10,
+            "targetCategory": "other-nonliving"
+          },
+          "originalRank": 1,
+          "components": [
+            {
+              "profile": "strike",
+              "nativeMagnitude": 18,
+              "damageType": "necrotic"
+            }
+          ],
+          "scope": "conditional-source-component-witness; no capture/payment/release executed"
+        }
+      }
+    },
+    {
+      "id": "lifedraw-damage/0",
+      "state": {
+        "life": {
+          "sourceEvent": "life",
+          "spellId": "lifedraw",
+          "sourceRoute": {
+            "spellId": "lifedraw",
+            "sourceClass": "Wizard",
+            "rank": 1,
+            "school": "Necromancy",
+            "minimumClassLevel": 1,
+            "placement": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Necromancy",
+              "baseRpCost": 2
+            },
+            "payloadBinding": {
+              "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+              "bytes": 5059561,
+              "sha256": "1227af1d81eebf793adda68b6b375f3b351629929eb022526fb8ce4642b0c584",
+              "pointer": "/spells/603"
+            },
+            "authoredIndexEntry": {
+              "id": "lifedraw",
+              "name": "Lifedraw",
+              "authoredStatus": "reviewed-authored-operational-playtest",
+              "procedureFile": "catalog.json",
+              "procedurePointer": "/spells/603/operational",
+              "wholeCardPointer": "/spells/603",
+              "sourceStatus": "operational-playtest-draft",
+              "priorCatalogSelectionStatusUnchanged": true
+            }
+          },
+          "sourceClassLevel": 1,
+          "premises": {
+            "resolved": true,
+            "directlyWitnessed": true,
+            "actualLegalSourceCast": true,
+            "copyDerived": false,
+            "protectedFeature": false
+          },
+          "outcome": {
+            "actualHit": true,
+            "ordinaryNativeDice": [
+              6,
+              6,
+              6
+            ],
+            "actualNecroticDamageDealt": 0,
+            "targetCategory": "living-hostile"
+          },
+          "originalRank": 1,
+          "components": [
+            {
+              "profile": "strike",
+              "nativeMagnitude": 18,
+              "damageType": "necrotic"
+            }
+          ],
+          "scope": "conditional-source-component-witness; no capture/payment/release executed"
+        }
+      }
+    },
+    {
+      "id": "lifedraw-damage/1",
+      "state": {
+        "life": {
+          "sourceEvent": "life",
+          "spellId": "lifedraw",
+          "sourceRoute": {
+            "spellId": "lifedraw",
+            "sourceClass": "Wizard",
+            "rank": 1,
+            "school": "Necromancy",
+            "minimumClassLevel": 1,
+            "placement": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Necromancy",
+              "baseRpCost": 2
+            },
+            "payloadBinding": {
+              "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+              "bytes": 5059561,
+              "sha256": "1227af1d81eebf793adda68b6b375f3b351629929eb022526fb8ce4642b0c584",
+              "pointer": "/spells/603"
+            },
+            "authoredIndexEntry": {
+              "id": "lifedraw",
+              "name": "Lifedraw",
+              "authoredStatus": "reviewed-authored-operational-playtest",
+              "procedureFile": "catalog.json",
+              "procedurePointer": "/spells/603/operational",
+              "wholeCardPointer": "/spells/603",
+              "sourceStatus": "operational-playtest-draft",
+              "priorCatalogSelectionStatusUnchanged": true
+            }
+          },
+          "sourceClassLevel": 1,
+          "premises": {
+            "resolved": true,
+            "directlyWitnessed": true,
+            "actualLegalSourceCast": true,
+            "copyDerived": false,
+            "protectedFeature": false
+          },
+          "outcome": {
+            "actualHit": true,
+            "ordinaryNativeDice": [
+              6,
+              6,
+              6
+            ],
+            "actualNecroticDamageDealt": 1,
+            "targetCategory": "living-hostile"
+          },
+          "originalRank": 1,
+          "components": [
+            {
+              "profile": "strike",
+              "nativeMagnitude": 18,
+              "damageType": "necrotic"
+            },
+            {
+              "profile": "mend",
+              "nativeMagnitude": 0
+            }
+          ],
+          "scope": "conditional-source-component-witness; no capture/payment/release executed"
+        }
+      }
+    },
+    {
+      "id": "lifedraw-damage/2",
+      "state": {
+        "life": {
+          "sourceEvent": "life",
+          "spellId": "lifedraw",
+          "sourceRoute": {
+            "spellId": "lifedraw",
+            "sourceClass": "Wizard",
+            "rank": 1,
+            "school": "Necromancy",
+            "minimumClassLevel": 1,
+            "placement": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Necromancy",
+              "baseRpCost": 2
+            },
+            "payloadBinding": {
+              "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+              "bytes": 5059561,
+              "sha256": "1227af1d81eebf793adda68b6b375f3b351629929eb022526fb8ce4642b0c584",
+              "pointer": "/spells/603"
+            },
+            "authoredIndexEntry": {
+              "id": "lifedraw",
+              "name": "Lifedraw",
+              "authoredStatus": "reviewed-authored-operational-playtest",
+              "procedureFile": "catalog.json",
+              "procedurePointer": "/spells/603/operational",
+              "wholeCardPointer": "/spells/603",
+              "sourceStatus": "operational-playtest-draft",
+              "priorCatalogSelectionStatusUnchanged": true
+            }
+          },
+          "sourceClassLevel": 1,
+          "premises": {
+            "resolved": true,
+            "directlyWitnessed": true,
+            "actualLegalSourceCast": true,
+            "copyDerived": false,
+            "protectedFeature": false
+          },
+          "outcome": {
+            "actualHit": true,
+            "ordinaryNativeDice": [
+              6,
+              6,
+              6
+            ],
+            "actualNecroticDamageDealt": 2,
+            "targetCategory": "living-hostile"
+          },
+          "originalRank": 1,
+          "components": [
+            {
+              "profile": "strike",
+              "nativeMagnitude": 18,
+              "damageType": "necrotic"
+            },
+            {
+              "profile": "mend",
+              "nativeMagnitude": 1
+            }
+          ],
+          "scope": "conditional-source-component-witness; no capture/payment/release executed"
+        }
+      }
+    },
+    {
+      "id": "lifedraw-damage/9",
+      "state": {
+        "life": {
+          "sourceEvent": "life",
+          "spellId": "lifedraw",
+          "sourceRoute": {
+            "spellId": "lifedraw",
+            "sourceClass": "Wizard",
+            "rank": 1,
+            "school": "Necromancy",
+            "minimumClassLevel": 1,
+            "placement": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Necromancy",
+              "baseRpCost": 2
+            },
+            "payloadBinding": {
+              "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+              "bytes": 5059561,
+              "sha256": "1227af1d81eebf793adda68b6b375f3b351629929eb022526fb8ce4642b0c584",
+              "pointer": "/spells/603"
+            },
+            "authoredIndexEntry": {
+              "id": "lifedraw",
+              "name": "Lifedraw",
+              "authoredStatus": "reviewed-authored-operational-playtest",
+              "procedureFile": "catalog.json",
+              "procedurePointer": "/spells/603/operational",
+              "wholeCardPointer": "/spells/603",
+              "sourceStatus": "operational-playtest-draft",
+              "priorCatalogSelectionStatusUnchanged": true
+            }
+          },
+          "sourceClassLevel": 1,
+          "premises": {
+            "resolved": true,
+            "directlyWitnessed": true,
+            "actualLegalSourceCast": true,
+            "copyDerived": false,
+            "protectedFeature": false
+          },
+          "outcome": {
+            "actualHit": true,
+            "ordinaryNativeDice": [
+              6,
+              6,
+              6
+            ],
+            "actualNecroticDamageDealt": 9,
+            "targetCategory": "living-hostile"
+          },
+          "originalRank": 1,
+          "components": [
+            {
+              "profile": "strike",
+              "nativeMagnitude": 18,
+              "damageType": "necrotic"
+            },
+            {
+              "profile": "mend",
+              "nativeMagnitude": 4
+            }
+          ],
+          "scope": "conditional-source-component-witness; no capture/payment/release executed"
+        }
+      }
+    },
+    {
+      "id": "lifedraw-damage/10",
+      "state": {
+        "life": {
+          "sourceEvent": "life",
+          "spellId": "lifedraw",
+          "sourceRoute": {
+            "spellId": "lifedraw",
+            "sourceClass": "Wizard",
+            "rank": 1,
+            "school": "Necromancy",
+            "minimumClassLevel": 1,
+            "placement": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Necromancy",
+              "baseRpCost": 2
+            },
+            "payloadBinding": {
+              "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+              "bytes": 5059561,
+              "sha256": "1227af1d81eebf793adda68b6b375f3b351629929eb022526fb8ce4642b0c584",
+              "pointer": "/spells/603"
+            },
+            "authoredIndexEntry": {
+              "id": "lifedraw",
+              "name": "Lifedraw",
+              "authoredStatus": "reviewed-authored-operational-playtest",
+              "procedureFile": "catalog.json",
+              "procedurePointer": "/spells/603/operational",
+              "wholeCardPointer": "/spells/603",
+              "sourceStatus": "operational-playtest-draft",
+              "priorCatalogSelectionStatusUnchanged": true
+            }
+          },
+          "sourceClassLevel": 1,
+          "premises": {
+            "resolved": true,
+            "directlyWitnessed": true,
+            "actualLegalSourceCast": true,
+            "copyDerived": false,
+            "protectedFeature": false
+          },
+          "outcome": {
+            "actualHit": true,
+            "ordinaryNativeDice": [
+              6,
+              6,
+              6
+            ],
+            "actualNecroticDamageDealt": 10,
+            "targetCategory": "living-hostile"
+          },
+          "originalRank": 1,
+          "components": [
+            {
+              "profile": "strike",
+              "nativeMagnitude": 18,
+              "damageType": "necrotic"
+            },
+            {
+              "profile": "mend",
+              "nativeMagnitude": 5
+            }
+          ],
+          "scope": "conditional-source-component-witness; no capture/payment/release executed"
+        }
+      }
+    },
+    {
+      "id": "lifedraw-damage/17",
+      "state": {
+        "life": {
+          "sourceEvent": "life",
+          "spellId": "lifedraw",
+          "sourceRoute": {
+            "spellId": "lifedraw",
+            "sourceClass": "Wizard",
+            "rank": 1,
+            "school": "Necromancy",
+            "minimumClassLevel": 1,
+            "placement": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Necromancy",
+              "baseRpCost": 2
+            },
+            "payloadBinding": {
+              "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+              "bytes": 5059561,
+              "sha256": "1227af1d81eebf793adda68b6b375f3b351629929eb022526fb8ce4642b0c584",
+              "pointer": "/spells/603"
+            },
+            "authoredIndexEntry": {
+              "id": "lifedraw",
+              "name": "Lifedraw",
+              "authoredStatus": "reviewed-authored-operational-playtest",
+              "procedureFile": "catalog.json",
+              "procedurePointer": "/spells/603/operational",
+              "wholeCardPointer": "/spells/603",
+              "sourceStatus": "operational-playtest-draft",
+              "priorCatalogSelectionStatusUnchanged": true
+            }
+          },
+          "sourceClassLevel": 1,
+          "premises": {
+            "resolved": true,
+            "directlyWitnessed": true,
+            "actualLegalSourceCast": true,
+            "copyDerived": false,
+            "protectedFeature": false
+          },
+          "outcome": {
+            "actualHit": true,
+            "ordinaryNativeDice": [
+              6,
+              6,
+              6
+            ],
+            "actualNecroticDamageDealt": 17,
+            "targetCategory": "living-hostile"
+          },
+          "originalRank": 1,
+          "components": [
+            {
+              "profile": "strike",
+              "nativeMagnitude": 18,
+              "damageType": "necrotic"
+            },
+            {
+              "profile": "mend",
+              "nativeMagnitude": 8
+            }
+          ],
+          "scope": "conditional-source-component-witness; no capture/payment/release executed"
+        }
+      }
+    },
+    {
+      "id": "lifedraw-damage/18",
+      "state": {
+        "life": {
+          "sourceEvent": "life",
+          "spellId": "lifedraw",
+          "sourceRoute": {
+            "spellId": "lifedraw",
+            "sourceClass": "Wizard",
+            "rank": 1,
+            "school": "Necromancy",
+            "minimumClassLevel": 1,
+            "placement": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Necromancy",
+              "baseRpCost": 2
+            },
+            "payloadBinding": {
+              "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+              "bytes": 5059561,
+              "sha256": "1227af1d81eebf793adda68b6b375f3b351629929eb022526fb8ce4642b0c584",
+              "pointer": "/spells/603"
+            },
+            "authoredIndexEntry": {
+              "id": "lifedraw",
+              "name": "Lifedraw",
+              "authoredStatus": "reviewed-authored-operational-playtest",
+              "procedureFile": "catalog.json",
+              "procedurePointer": "/spells/603/operational",
+              "wholeCardPointer": "/spells/603",
+              "sourceStatus": "operational-playtest-draft",
+              "priorCatalogSelectionStatusUnchanged": true
+            }
+          },
+          "sourceClassLevel": 1,
+          "premises": {
+            "resolved": true,
+            "directlyWitnessed": true,
+            "actualLegalSourceCast": true,
+            "copyDerived": false,
+            "protectedFeature": false
+          },
+          "outcome": {
+            "actualHit": true,
+            "ordinaryNativeDice": [
+              6,
+              6,
+              6
+            ],
+            "actualNecroticDamageDealt": 18,
+            "targetCategory": "living-hostile"
+          },
+          "originalRank": 1,
+          "components": [
+            {
+              "profile": "strike",
+              "nativeMagnitude": 18,
+              "damageType": "necrotic"
+            },
+            {
+              "profile": "mend",
+              "nativeMagnitude": 9
+            }
+          ],
+          "scope": "conditional-source-component-witness; no capture/payment/release executed"
+        }
+      }
+    },
+    {
+      "id": "actual-miss/arcane-ray",
+      "state": {
+        "miss": {
+          "sourceEvent": "miss",
+          "spellId": "arcane-ray",
+          "sourceRoute": {
+            "spellId": "arcane-ray",
+            "sourceClass": "Wizard",
+            "rank": 0,
+            "school": "Evocation",
+            "minimumClassLevel": 1,
+            "placement": {
+              "rank": 0,
+              "minimumClassLevel": 1,
+              "school": "Evocation",
+              "baseRpCost": 0
+            },
+            "payloadBinding": {
+              "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+              "bytes": 5059561,
+              "sha256": "1227af1d81eebf793adda68b6b375f3b351629929eb022526fb8ce4642b0c584",
+              "pointer": "/spells/402"
+            },
+            "authoredIndexEntry": {
+              "id": "arcane-ray",
+              "name": "Arcane Ray",
+              "authoredStatus": "reviewed-authored-operational-playtest",
+              "procedureFile": "catalog.json",
+              "procedurePointer": "/spells/402/operational",
+              "wholeCardPointer": "/spells/402",
+              "sourceStatus": "operational-playtest-draft",
+              "priorCatalogSelectionStatusUnchanged": true
+            }
+          },
+          "sourceClassLevel": 1,
+          "premises": {
+            "resolved": true,
+            "directlyWitnessed": true,
+            "actualLegalSourceCast": true,
+            "copyDerived": false,
+            "protectedFeature": false
+          },
+          "outcome": {
+            "actualHit": false,
+            "ordinaryNativeDice": []
+          },
+          "originalRank": 0,
+          "components": [],
+          "scope": "conditional-source-component-witness; no capture/payment/release executed"
+        }
+      }
+    },
+    {
+      "id": "actual-miss/lifedraw",
+      "state": {
+        "miss": {
+          "sourceEvent": "miss",
+          "spellId": "lifedraw",
+          "sourceRoute": {
+            "spellId": "lifedraw",
+            "sourceClass": "Wizard",
+            "rank": 1,
+            "school": "Necromancy",
+            "minimumClassLevel": 1,
+            "placement": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Necromancy",
+              "baseRpCost": 2
+            },
+            "payloadBinding": {
+              "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+              "bytes": 5059561,
+              "sha256": "1227af1d81eebf793adda68b6b375f3b351629929eb022526fb8ce4642b0c584",
+              "pointer": "/spells/603"
+            },
+            "authoredIndexEntry": {
+              "id": "lifedraw",
+              "name": "Lifedraw",
+              "authoredStatus": "reviewed-authored-operational-playtest",
+              "procedureFile": "catalog.json",
+              "procedurePointer": "/spells/603/operational",
+              "wholeCardPointer": "/spells/603",
+              "sourceStatus": "operational-playtest-draft",
+              "priorCatalogSelectionStatusUnchanged": true
+            }
+          },
+          "sourceClassLevel": 1,
+          "premises": {
+            "resolved": true,
+            "directlyWitnessed": true,
+            "actualLegalSourceCast": true,
+            "copyDerived": false,
+            "protectedFeature": false
+          },
+          "outcome": {
+            "actualHit": false,
+            "ordinaryNativeDice": [],
+            "actualNecroticDamageDealt": 0,
+            "targetCategory": "living-hostile"
+          },
+          "originalRank": 1,
+          "components": [],
+          "scope": "conditional-source-component-witness; no capture/payment/release executed"
+        }
+      }
+    },
+    {
+      "id": "slow-negative/(False, True)",
+      "state": {
+        "slow": {
+          "sourceEvent": "slow",
+          "spellId": "slow",
+          "sourceRoute": {
+            "spellId": "slow",
+            "sourceClass": "Wizard",
+            "rank": 3,
+            "school": "Enchantment",
+            "minimumClassLevel": 5,
+            "placement": {
+              "rank": 3,
+              "minimumClassLevel": 5,
+              "school": "Enchantment",
+              "baseRpCost": 5
+            },
+            "payloadBinding": {
+              "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+              "bytes": 5059561,
+              "sha256": "1227af1d81eebf793adda68b6b375f3b351629929eb022526fb8ce4642b0c584",
+              "pointer": "/spells/346"
+            },
+            "authoredIndexEntry": {
+              "id": "slow",
+              "name": "Slow",
+              "authoredStatus": "reviewed-authored-operational-playtest",
+              "procedureFile": "catalog.json",
+              "procedurePointer": "/spells/346/operational",
+              "wholeCardPointer": "/spells/346",
+              "sourceStatus": "operational-playtest-draft",
+              "priorCatalogSelectionStatusUnchanged": true
+            }
+          },
+          "sourceClassLevel": 5,
+          "premises": {
+            "resolved": true,
+            "directlyWitnessed": true,
+            "actualLegalSourceCast": true,
+            "copyDerived": false,
+            "protectedFeature": false
+          },
+          "outcome": {
+            "actualFailedSave": false,
+            "actualSurvivingControlComponent": true,
+            "mode": "Enchantment"
+          },
+          "originalRank": 3,
+          "components": [],
+          "scope": "conditional-source-component-witness; no capture/payment/release executed"
+        }
+      }
+    },
+    {
+      "id": "slow-negative/(True, False)",
+      "state": {
+        "slow": {
+          "sourceEvent": "slow",
+          "spellId": "slow",
+          "sourceRoute": {
+            "spellId": "slow",
+            "sourceClass": "Wizard",
+            "rank": 3,
+            "school": "Enchantment",
+            "minimumClassLevel": 5,
+            "placement": {
+              "rank": 3,
+              "minimumClassLevel": 5,
+              "school": "Enchantment",
+              "baseRpCost": 5
+            },
+            "payloadBinding": {
+              "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+              "bytes": 5059561,
+              "sha256": "1227af1d81eebf793adda68b6b375f3b351629929eb022526fb8ce4642b0c584",
+              "pointer": "/spells/346"
+            },
+            "authoredIndexEntry": {
+              "id": "slow",
+              "name": "Slow",
+              "authoredStatus": "reviewed-authored-operational-playtest",
+              "procedureFile": "catalog.json",
+              "procedurePointer": "/spells/346/operational",
+              "wholeCardPointer": "/spells/346",
+              "sourceStatus": "operational-playtest-draft",
+              "priorCatalogSelectionStatusUnchanged": true
+            }
+          },
+          "sourceClassLevel": 5,
+          "premises": {
+            "resolved": true,
+            "directlyWitnessed": true,
+            "actualLegalSourceCast": true,
+            "copyDerived": false,
+            "protectedFeature": false
+          },
+          "outcome": {
+            "actualFailedSave": true,
+            "actualSurvivingControlComponent": false,
+            "mode": "Enchantment"
+          },
+          "originalRank": 3,
+          "components": [],
+          "scope": "conditional-source-component-witness; no capture/payment/release executed"
+        }
+      }
+    },
+    {
+      "id": "slow-negative/(False, False)",
+      "state": {
+        "slow": {
+          "sourceEvent": "slow",
+          "spellId": "slow",
+          "sourceRoute": {
+            "spellId": "slow",
+            "sourceClass": "Wizard",
+            "rank": 3,
+            "school": "Enchantment",
+            "minimumClassLevel": 5,
+            "placement": {
+              "rank": 3,
+              "minimumClassLevel": 5,
+              "school": "Enchantment",
+              "baseRpCost": 5
+            },
+            "payloadBinding": {
+              "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+              "bytes": 5059561,
+              "sha256": "1227af1d81eebf793adda68b6b375f3b351629929eb022526fb8ce4642b0c584",
+              "pointer": "/spells/346"
+            },
+            "authoredIndexEntry": {
+              "id": "slow",
+              "name": "Slow",
+              "authoredStatus": "reviewed-authored-operational-playtest",
+              "procedureFile": "catalog.json",
+              "procedurePointer": "/spells/346/operational",
+              "wholeCardPointer": "/spells/346",
+              "sourceStatus": "operational-playtest-draft",
+              "priorCatalogSelectionStatusUnchanged": true
+            }
+          },
+          "sourceClassLevel": 5,
+          "premises": {
+            "resolved": true,
+            "directlyWitnessed": true,
+            "actualLegalSourceCast": true,
+            "copyDerived": false,
+            "protectedFeature": false
+          },
+          "outcome": {
+            "actualFailedSave": false,
+            "actualSurvivingControlComponent": false,
+            "mode": "Enchantment"
+          },
+          "originalRank": 3,
+          "components": [],
+          "scope": "conditional-source-component-witness; no capture/payment/release executed"
+        }
+      }
+    },
+    {
+      "id": "actual-transmutation-slow",
+      "state": {
+        "slow": {
+          "sourceEvent": "slow",
+          "spellId": "slow",
+          "sourceRoute": {
+            "spellId": "slow",
+            "sourceClass": "Mage",
+            "rank": 3,
+            "school": "Transmutation",
+            "minimumClassLevel": 5,
+            "placement": {
+              "rank": 3,
+              "minimumClassLevel": 5,
+              "school": "Transmutation",
+              "baseRpCost": 5
+            },
+            "payloadBinding": {
+              "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+              "bytes": 5059561,
+              "sha256": "1227af1d81eebf793adda68b6b375f3b351629929eb022526fb8ce4642b0c584",
+              "pointer": "/spells/346"
+            },
+            "authoredIndexEntry": {
+              "id": "slow",
+              "name": "Slow",
+              "authoredStatus": "reviewed-authored-operational-playtest",
+              "procedureFile": "catalog.json",
+              "procedurePointer": "/spells/346/operational",
+              "wholeCardPointer": "/spells/346",
+              "sourceStatus": "operational-playtest-draft",
+              "priorCatalogSelectionStatusUnchanged": true
+            }
+          },
+          "sourceClassLevel": 5,
+          "premises": {
+            "resolved": true,
+            "directlyWitnessed": true,
+            "actualLegalSourceCast": true,
+            "copyDerived": false,
+            "protectedFeature": false
+          },
+          "outcome": {
+            "actualFailedSave": true,
+            "actualSurvivingControlComponent": true,
+            "mode": "Transmutation"
+          },
+          "originalRank": 3,
+          "components": [
+            {
+              "profile": "hindrance"
+            }
+          ],
+          "scope": "conditional-source-component-witness; no capture/payment/release executed"
+        }
+      }
+    },
+    {
+      "id": "actual-teleport-distance/0",
+      "state": {
+        "step": {
+          "sourceEvent": "step",
+          "spellId": "mist-step",
+          "sourceRoute": {
+            "spellId": "mist-step",
+            "sourceClass": "Wizard",
+            "rank": 1,
+            "school": "Conjuration",
+            "minimumClassLevel": 1,
+            "placement": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Conjuration",
+              "baseRpCost": 2
+            },
+            "payloadBinding": {
+              "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+              "bytes": 5059561,
+              "sha256": "1227af1d81eebf793adda68b6b375f3b351629929eb022526fb8ce4642b0c584",
+              "pointer": "/spells/125"
+            },
+            "authoredIndexEntry": {
+              "id": "mist-step",
+              "name": "Mist Step",
+              "authoredStatus": "reviewed-authored-operational-playtest",
+              "procedureFile": "catalog.json",
+              "procedurePointer": "/spells/125/operational",
+              "wholeCardPointer": "/spells/125",
+              "sourceStatus": "operational-playtest-draft",
+              "priorCatalogSelectionStatusUnchanged": true
+            }
+          },
+          "sourceClassLevel": 1,
+          "premises": {
+            "resolved": true,
+            "directlyWitnessed": true,
+            "actualLegalSourceCast": true,
+            "copyDerived": false,
+            "protectedFeature": false
+          },
+          "outcome": {
+            "observedDistance": 0,
+            "actualLegalTeleportCompleted": true
+          },
+          "originalRank": 1,
+          "components": [
+            {
+              "profile": "step",
+              "observedDistance": 0,
+              "wasTeleport": true
+            }
+          ],
+          "scope": "conditional-source-component-witness; no capture/payment/release executed"
+        }
+      }
+    },
+    {
+      "id": "actual-teleport-distance/1",
+      "state": {
+        "step": {
+          "sourceEvent": "step",
+          "spellId": "mist-step",
+          "sourceRoute": {
+            "spellId": "mist-step",
+            "sourceClass": "Wizard",
+            "rank": 1,
+            "school": "Conjuration",
+            "minimumClassLevel": 1,
+            "placement": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Conjuration",
+              "baseRpCost": 2
+            },
+            "payloadBinding": {
+              "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+              "bytes": 5059561,
+              "sha256": "1227af1d81eebf793adda68b6b375f3b351629929eb022526fb8ce4642b0c584",
+              "pointer": "/spells/125"
+            },
+            "authoredIndexEntry": {
+              "id": "mist-step",
+              "name": "Mist Step",
+              "authoredStatus": "reviewed-authored-operational-playtest",
+              "procedureFile": "catalog.json",
+              "procedurePointer": "/spells/125/operational",
+              "wholeCardPointer": "/spells/125",
+              "sourceStatus": "operational-playtest-draft",
+              "priorCatalogSelectionStatusUnchanged": true
+            }
+          },
+          "sourceClassLevel": 1,
+          "premises": {
+            "resolved": true,
+            "directlyWitnessed": true,
+            "actualLegalSourceCast": true,
+            "copyDerived": false,
+            "protectedFeature": false
+          },
+          "outcome": {
+            "observedDistance": 1,
+            "actualLegalTeleportCompleted": true
+          },
+          "originalRank": 1,
+          "components": [
+            {
+              "profile": "step",
+              "observedDistance": 1,
+              "wasTeleport": true
+            }
+          ],
+          "scope": "conditional-source-component-witness; no capture/payment/release executed"
+        }
+      }
+    },
+    {
+      "id": "actual-teleport-distance/5",
+      "state": {
+        "step": {
+          "sourceEvent": "step",
+          "spellId": "mist-step",
+          "sourceRoute": {
+            "spellId": "mist-step",
+            "sourceClass": "Wizard",
+            "rank": 1,
+            "school": "Conjuration",
+            "minimumClassLevel": 1,
+            "placement": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Conjuration",
+              "baseRpCost": 2
+            },
+            "payloadBinding": {
+              "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+              "bytes": 5059561,
+              "sha256": "1227af1d81eebf793adda68b6b375f3b351629929eb022526fb8ce4642b0c584",
+              "pointer": "/spells/125"
+            },
+            "authoredIndexEntry": {
+              "id": "mist-step",
+              "name": "Mist Step",
+              "authoredStatus": "reviewed-authored-operational-playtest",
+              "procedureFile": "catalog.json",
+              "procedurePointer": "/spells/125/operational",
+              "wholeCardPointer": "/spells/125",
+              "sourceStatus": "operational-playtest-draft",
+              "priorCatalogSelectionStatusUnchanged": true
+            }
+          },
+          "sourceClassLevel": 1,
+          "premises": {
+            "resolved": true,
+            "directlyWitnessed": true,
+            "actualLegalSourceCast": true,
+            "copyDerived": false,
+            "protectedFeature": false
+          },
+          "outcome": {
+            "observedDistance": 5,
+            "actualLegalTeleportCompleted": true
+          },
+          "originalRank": 1,
+          "components": [
+            {
+              "profile": "step",
+              "observedDistance": 5,
+              "wasTeleport": true
+            }
+          ],
+          "scope": "conditional-source-component-witness; no capture/payment/release executed"
+        }
+      }
+    },
+    {
+      "id": "actual-teleport-distance/10",
+      "state": {
+        "step": {
+          "sourceEvent": "step",
+          "spellId": "mist-step",
+          "sourceRoute": {
+            "spellId": "mist-step",
+            "sourceClass": "Wizard",
+            "rank": 1,
+            "school": "Conjuration",
+            "minimumClassLevel": 1,
+            "placement": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Conjuration",
+              "baseRpCost": 2
+            },
+            "payloadBinding": {
+              "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+              "bytes": 5059561,
+              "sha256": "1227af1d81eebf793adda68b6b375f3b351629929eb022526fb8ce4642b0c584",
+              "pointer": "/spells/125"
+            },
+            "authoredIndexEntry": {
+              "id": "mist-step",
+              "name": "Mist Step",
+              "authoredStatus": "reviewed-authored-operational-playtest",
+              "procedureFile": "catalog.json",
+              "procedurePointer": "/spells/125/operational",
+              "wholeCardPointer": "/spells/125",
+              "sourceStatus": "operational-playtest-draft",
+              "priorCatalogSelectionStatusUnchanged": true
+            }
+          },
+          "sourceClassLevel": 1,
+          "premises": {
+            "resolved": true,
+            "directlyWitnessed": true,
+            "actualLegalSourceCast": true,
+            "copyDerived": false,
+            "protectedFeature": false
+          },
+          "outcome": {
+            "observedDistance": 10,
+            "actualLegalTeleportCompleted": true
+          },
+          "originalRank": 1,
+          "components": [
+            {
+              "profile": "step",
+              "observedDistance": 10,
+              "wasTeleport": true
+            }
+          ],
+          "scope": "conditional-source-component-witness; no capture/payment/release executed"
+        }
+      }
+    },
+    {
+      "id": "actual-teleport-distance/29",
+      "state": {
+        "step": {
+          "sourceEvent": "step",
+          "spellId": "mist-step",
+          "sourceRoute": {
+            "spellId": "mist-step",
+            "sourceClass": "Wizard",
+            "rank": 1,
+            "school": "Conjuration",
+            "minimumClassLevel": 1,
+            "placement": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Conjuration",
+              "baseRpCost": 2
+            },
+            "payloadBinding": {
+              "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+              "bytes": 5059561,
+              "sha256": "1227af1d81eebf793adda68b6b375f3b351629929eb022526fb8ce4642b0c584",
+              "pointer": "/spells/125"
+            },
+            "authoredIndexEntry": {
+              "id": "mist-step",
+              "name": "Mist Step",
+              "authoredStatus": "reviewed-authored-operational-playtest",
+              "procedureFile": "catalog.json",
+              "procedurePointer": "/spells/125/operational",
+              "wholeCardPointer": "/spells/125",
+              "sourceStatus": "operational-playtest-draft",
+              "priorCatalogSelectionStatusUnchanged": true
+            }
+          },
+          "sourceClassLevel": 1,
+          "premises": {
+            "resolved": true,
+            "directlyWitnessed": true,
+            "actualLegalSourceCast": true,
+            "copyDerived": false,
+            "protectedFeature": false
+          },
+          "outcome": {
+            "observedDistance": 29,
+            "actualLegalTeleportCompleted": true
+          },
+          "originalRank": 1,
+          "components": [
+            {
+              "profile": "step",
+              "observedDistance": 29,
+              "wasTeleport": true
+            }
+          ],
+          "scope": "conditional-source-component-witness; no capture/payment/release executed"
+        }
+      }
+    },
+    {
+      "id": "actual-teleport-distance/30",
+      "state": {
+        "step": {
+          "sourceEvent": "step",
+          "spellId": "mist-step",
+          "sourceRoute": {
+            "spellId": "mist-step",
+            "sourceClass": "Wizard",
+            "rank": 1,
+            "school": "Conjuration",
+            "minimumClassLevel": 1,
+            "placement": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Conjuration",
+              "baseRpCost": 2
+            },
+            "payloadBinding": {
+              "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+              "bytes": 5059561,
+              "sha256": "1227af1d81eebf793adda68b6b375f3b351629929eb022526fb8ce4642b0c584",
+              "pointer": "/spells/125"
+            },
+            "authoredIndexEntry": {
+              "id": "mist-step",
+              "name": "Mist Step",
+              "authoredStatus": "reviewed-authored-operational-playtest",
+              "procedureFile": "catalog.json",
+              "procedurePointer": "/spells/125/operational",
+              "wholeCardPointer": "/spells/125",
+              "sourceStatus": "operational-playtest-draft",
+              "priorCatalogSelectionStatusUnchanged": true
+            }
+          },
+          "sourceClassLevel": 1,
+          "premises": {
+            "resolved": true,
+            "directlyWitnessed": true,
+            "actualLegalSourceCast": true,
+            "copyDerived": false,
+            "protectedFeature": false
+          },
+          "outcome": {
+            "observedDistance": 30,
+            "actualLegalTeleportCompleted": true
+          },
+          "originalRank": 1,
+          "components": [
+            {
+              "profile": "step",
+              "observedDistance": 30,
+              "wasTeleport": true
+            }
+          ],
+          "scope": "conditional-source-component-witness; no capture/payment/release executed"
+        }
+      }
+    }
+  ],
+  "counts": {
+    "conditionalHistories": 35,
+    "profiles": 7,
+    "positiveSpellSources": 7
+  },
+  "scope": "Exact whole-card source bindings and actual class placement feed seven finite component witnesses. Native damage/ward dice, Lifedraw qualifying damage-to-heal derivation, actual Slow mode/result, Shield AC-only and completed Mist Step distance constrain profile selection and native numeric bounds.",
+  "limits": [
+    "Source-cast payment, repertoire, attack/save/defense resolution, direct perception, actual world geometry and completion are supplied conditional premises; this adapter cannot authenticate a campaign occurrence.",
+    "Only seven explicitly named ordinary source procedures are modeled. Rejection of unadapted sources is scope restriction, not a general game ruling that they can never qualify. The separately bound non-healing examples support their specific negative interpretations.",
+    "Selecting a witness neither spends nor authorizes capture. Paid Echo/Mimicry/Adaptation acquisition, qualifying own rank route, timing/Reaction/use/rest/copy-record lifecycle and full paid release/counter/casting history remain required.",
+    "Native ordinary damage dice exclude external add-ons and separately copied critical multipliers. Actual Lifedraw damage after its own defenses is a premise and is used only to derive the original healing component before the healer maximum/other recipient limits.",
+    "No full recipient damage/healing/ward/control/boon/movement application, monster effective rank, protected-feature exception or Mirrorsage engine is executed.",
+    "No source-rule adoption, full335 approval, runtime certification, human balance evidence, GitHub push or cosmology review follows."
+  ],
+  "newRules": 0,
+  "fullFeatExactApproved": false,
+  "runtimeApproved": false,
+  "humanBalanceApproved": false,
+  "cosmologyReviewed": false
+}

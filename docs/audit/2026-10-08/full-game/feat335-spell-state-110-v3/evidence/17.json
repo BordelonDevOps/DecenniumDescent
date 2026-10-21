@@ -1,0 +1,52 @@
+{
+  "newDefectGroups": 2,
+  "priorFindingIdsUnchanged": [
+    "CFI-01",
+    "CFI-02",
+    "CFI-03",
+    "CFI-04",
+    "CFI-05"
+  ],
+  "omissionCorrection": "These were omissions from Return01 final disposition, not defensible scope exclusions. Return01 itself is preserved unchanged; this external supplement corrects its incomplete findings selection.",
+  "findings": [
+    {
+      "id": "CFI-06",
+      "disposition": "CONFIRMED_DEFECT_IN_ORIGINAL_AND_RETURN01_PROPOSAL__EXACT_CORRECTION_PROPOSED",
+      "title": "Inactive next-healing reducers falsely block Mend",
+      "sourceRefs": [
+        "SRC-HEALING-LIVENESS",
+        "SRC-HEALING-RULE",
+        "SRC-OLD-MEND-DECLARE",
+        "SRC-OLD-MEND-PAYLOAD"
+      ],
+      "reason": "Both guards checked next_healing without the present and not-suppressed predicate used by healing_packet. An inactive record supplies neither arithmetic nor consumption candidates and does not justify rejection.",
+      "correction": "At both guards require source integration only for a record that is present, not suppressed, and next_healing. Preserve the active-source failure behavior and perform no record removal or consumption.",
+      "proof": "Both supplied paid cases reproduced at HP30 with atomic ValueError in original and Return01. Both now resolve paid Mend to HP32 with nativeDice[4,4], empty nextHealingCandidates and the reducer retained. The before-declaration variants also now pass.",
+      "scopeExclusionRejected": "LIMIT-DEFENSES legitimately retains active next-healing source consumption, not inactive-record rejection. The existing helper and healing rules expressly exclude inactive records.",
+      "operationIds": [
+        "CFI02-OP-02",
+        "CFI02-OP-03"
+      ],
+      "retainedGap": "Actual positive next-healing source consumption and source eligibility remain unimplemented. Rejecting an active unsupported source is a protective boundary, not successful implementation of that source."
+    },
+    {
+      "id": "CFI-07",
+      "disposition": "CONFIRMED_DEFECT_IN_ORIGINAL_AND_RETURN01_PROPOSAL__EXACT_CORRECTION_PROPOSED",
+      "title": "Shared-buffer natural-expiry instruction discarded",
+      "sourceRefs": [
+        "SRC-BUFFER-HANDOFF",
+        "SRC-COPY-SCOPE",
+        "SRC-OLD-ADVANCE",
+        "SRC-NEW-ADVANCE"
+      ],
+      "reason": "The canonical ledger irreversibly ends the grant and returns its source-owned instruction. The old copy-world advance neither returns nor retains it. A second expire returns none because the grant already ended.",
+      "correction": "Return the complete unfiltered BufferLedger.expire instruction list after the existing projection update. Add the explicit internal caller handoff contract. Preserve original sourceId/grantId/target/chooseUpTo/eligibleConditions and ledger ownership; do not synthesize or execute a cleanse.",
+      "proof": "The conditional prior Overflowing Light grant at deadline12 ends naturally and loses its5 remaining tempHP in every variant. Original and Return01 advance return None. The successor returns the exact one-choice instruction; repeated expiry returns [] without re-emission. Positive recorder handoff is tested.",
+      "scopeExclusionRejected": "The copy world is explicitly using one shared canonical ledger. Oracle acquisition and condition choice remain outside this helper, but that does not authorize discarding an already-lawfully-established other-source expiry instruction.",
+      "operationIds": [
+        "CFI02-OP-01"
+      ],
+      "retainedGap": "Actual downstream source/target eligibility, player/AI choice, zero-or-one removal, receipt ownership, delivery acknowledgment, persistence and crash-safe deduplication remain implementation work. Returning a list is not a production event dispatcher."
+    }
+  ]
+}

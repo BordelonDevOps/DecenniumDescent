@@ -1,0 +1,315 @@
+{
+  "currentRecord": {
+    "source": {
+      "outerArchive": "DD_Feat335_FXC07_08_09_110.zip",
+      "nestedArchive": "DD_Feat335_Spell_State_Evidence_110.zip",
+      "member": "FXC09.json",
+      "bytes": 1327004,
+      "sha256": "62f83c233e6d2d40881210dbc8fddd9ba18ead60f8010c75b0043d11313d62ac",
+      "pointer": "/currentFeatJoins/29"
+    },
+    "completeJoin": {
+      "binding": {
+        "path": "C:\\Github\\DecenniumDescent\\docs\\audit\\2026-10-08\\full-game\\feat335-planar-reference-108\\after\\data\\director\\feat_candidates\\exact_01\\candidate.json",
+        "bytes": 3697319,
+        "sha256": "e4e106a4a3f9cc8bd40b378ccddc53bbf146070504136f8e1b0abd6ed14a6590"
+      },
+      "pointer": "/records/297",
+      "completeCurrentRecord": {
+        "id": "quickened_thought",
+        "name": "Quickened Thought",
+        "cohort": "magic_extended",
+        "sourceObject": {
+          "id": "quickened_thought",
+          "name": "Quickened Thought",
+          "description": "Your mind outpaces the tick of Aethel's clocks—ideas arrive finished in the Temporal Tower's shadow, as if tomorrow's spell were already written in today's breath. Prestige lineage: Chronomancer. completed from the existing development record.)",
+          "prerequisite": "Intelligence 15+, Arcane Calculus or Temporal Theory",
+          "effect": "You gain +2 to initiative and advantage on concentration saves while holding a readied spell. Once per short rest, you may cast a spell of 2nd level or lower as a bonus action; if you do, you cannot take a reaction until the start of your next turn. When you roll initiative, you may bank one cantrip cast—release it on any later turn in the encounter without spending an action.",
+          "type": "Magic",
+          "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+          "legacyEffect": "You gain +2 to initiative and advantage on concentration saves while holding a readied spell. Once per short rest, you may cast a spell of 2nd level or lower as a bonus action; if you do, you cannot take a reaction until the start of your next turn. When you roll initiative, you may bank one cantrip cast—release it on any later turn in the encounter without spending an action.",
+          "status": "provisional-complete",
+          "balanceReview": true,
+          "draft": false,
+          "deprecated": false,
+          "needsReview": true
+        },
+        "originalQuestion": "Resolve Arcane Calculus OR Temporal Theory, readied-spell+2 initiative and concentration advantage. Define rank≤2 Bonus Action cast once per Short Rest, no-Reaction debt and expiry. Separately define initiative-banked cantrip setup/payment/one record/release on any later turn, target recheck and no free-copy or extra-turn loop.",
+        "questionId": "MX-51",
+        "sourceDirection": {
+          "featId": "quickened_thought",
+          "name": "Quickened Thought",
+          "cohort": "magic_extended",
+          "questionId": "MX-51",
+          "disposition": "AUTHOR_FROM_EXACT_REPLACEMENT_WITH_FINAL_SHARED_RULES",
+          "sourcePath": "DescentReviewChanges/ReviewBible/data/director/magic_extended_feat_operating_proposal_internal.json",
+          "sourceFileSha256": "e8fdd919d8ffab3a01e7ff494edee3a45141375383ec4ec9f7c4224e1f250380",
+          "sourcePointer": "/records/50",
+          "originalQuestion": "Resolve Arcane Calculus OR Temporal Theory, readied-spell+2 initiative and concentration advantage. Define rank≤2 Bonus Action cast once per Short Rest, no-Reaction debt and expiry. Separately define initiative-banked cantrip setup/payment/one record/release on any later turn, target recheck and no free-copy or extra-turn loop.",
+          "originalSourceObject": {
+            "id": "quickened_thought",
+            "name": "Quickened Thought",
+            "description": "Your mind outpaces the tick of Aethel's clocks—ideas arrive finished in the Temporal Tower's shadow, as if tomorrow's spell were already written in today's breath. Prestige lineage: Chronomancer. completed from the existing development record.)",
+            "prerequisite": "Intelligence 15+, Arcane Calculus or Temporal Theory",
+            "effect": "You gain +2 to initiative and advantage on concentration saves while holding a readied spell. Once per short rest, you may cast a spell of 2nd level or lower as a bonus action; if you do, you cannot take a reaction until the start of your next turn. When you roll initiative, you may bank one cantrip cast—release it on any later turn in the encounter without spending an action.",
+            "type": "Magic",
+            "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+            "legacyEffect": "You gain +2 to initiative and advantage on concentration saves while holding a readied spell. Once per short rest, you may cast a spell of 2nd level or lower as a bonus action; if you do, you cannot take a reaction until the start of your next turn. When you roll initiative, you may bank one cantrip cast—release it on any later turn in the encounter without spending an action.",
+            "status": "provisional-complete",
+            "balanceReview": true,
+            "draft": false,
+            "deprecated": false,
+            "needsReview": true
+          },
+          "originalSourceObjectSha256AsSubmitted": "0d000584a8395778af19d53894037aed14421a1b82cf15552af4776f4d176bfc",
+          "submittedProcedure": "Require INT 15 and (Arcane Calculus OR Temporal Theory). NEW resolve the grammatical scope as+2 initiative AND concentration-saveadvantage only while actually holding a readied spell; initiative is not recomputed later. Once SR/LR change an actually available normalActionspell of actualrank 0–2 to BA, paying every normal cost. From commitment until your next regular start you cannot commit anyReaction, even if the spell is countered; existing stacked Reactions finish. Separately, at first legitimate initiative roll of a real encounter, you may immediately prepare one legal normalActioncantrip as a non-action: pay components/independent RP/history, establish held concentration, open interruption, and use the same single pendingReady slot. NEW release that cantrip once withoutAction on one of your later own regular turns in that encounter, retaining actual concentration until then; target legality rechecks at release. This replaces any oldReady, ends at encounter end or lostconcentration, cannot be banked again by reroll/reentry, and shares the free-stored-release cap of one per owner/numbered round with Arcane Calculus. No extra cast/copy/proc at release.",
+          "submittedNewChoices": "Both passivebonuses scoped to actual hold, one initial cantrip preparation and persistent no Reaction debt.",
+          "submittedWorkedCases": [
+            "A banked cantrip paid at initiative can release on your second regular turn withoutAction if concentration survives.",
+            "Using theBAspell branch then leaves noReaction for Counterspell until the real next regular start."
+          ],
+          "decision": "Keep the source later-any-turn banked cantrip release rather than own-turn-only; it is between events, concentration-bound and shared-cap, not a free interrupt or extra turn.",
+          "completeAuthoringProcedure": "Require INT 15 and (Arcane Calculus OR Temporal Theory). NEW resolve the grammatical scope as+2 initiative AND concentration-saveadvantage only while actually holding a readied spell; initiative is not recomputed later. Once SR/LR change an actually available normalActionspell of actualrank 0–2 to BA, paying every normal cost. From commitment until your next regular start you cannot commit anyReaction, even if the spell is countered; existing stacked Reactions finish. Separately, at first legitimate initiative roll of a real encounter, you may immediately prepare one legal normalActioncantrip as a non-action: pay components/independent RP/history, establish held concentration, open interruption, and use the same single pendingReady slot. NEW release that cantrip once without an Action on any later actual turn in that encounter, between completed events, retaining actual concentration until then; target legality rechecks at release. This replaces any oldReady, ends at encounter end or lostconcentration, cannot be banked again by reroll/reentry, and shares the free-stored-release cap of one per owner/numbered round with Arcane Calculus. No extra cast/copy/proc at release.\nNEW exact banked-cantrip release window supersedes a narrower own-turn-only draft: the held cantrip may be voluntarily released without an Action or Reaction on any later actual turn before its preserved Ready deadline, between completed events, not retroactively or as an interruption. Use the shared one free release per owner per numbered round; no extra turn is created. Holding still consumes the one actual concentration/Ready slot and its original costs/history. Arcane Calculus retains its expressly narrower next-own-regular-turn release window.",
+          "newRuleProvenance": "All submitted NEW/proposed completions retained by this decision and all departures below are authoring decisions of FEAT327-SOURCE-2026-10-11, not recovered source wording. The original object remains immutable.",
+          "sharedContract": "FEAT_SHARED_DIRECTIONS.json: FS-01–16",
+          "supplementContract": "FEAT_SUPPLEMENT_DIRECTIONS.json: explicit source path/pointer mappings",
+          "workedCases": [
+            "A banked cantrip paid at initiative can release on your second regular turn withoutAction if concentration survives.",
+            "Using theBAspell branch then leaves noReaction for Counterspell until the real next regular start."
+          ],
+          "payloadOperational": "full authored procedure; not a runtime adapter",
+          "selectionEnabled": false,
+          "exactApproved": false,
+          "runtimeApproved": false
+        },
+        "operationalRules": "Require INT 15 and (Arcane Calculus OR Temporal Theory). NEW resolve the grammatical scope as+2 initiative AND concentration-saveadvantage only while actually holding a readied spell; initiative is not recomputed later. Once SR/LR change an actually available normalActionspell of actualrank 0–2 to BA, paying every normal cost. From commitment until your next regular start you cannot commit anyReaction, even if the spell is countered; existing stacked Reactions finish. Separately, at first legitimate initiative roll of a real encounter, you may immediately prepare one legal normalActioncantrip as a non-action: pay components/independent RP/history, establish held concentration, open interruption, and use the same single pendingReady slot. NEW release that cantrip once without an Action on any later actual turn in that encounter, between completed events, retaining actual concentration until then; target legality rechecks at release. This replaces any oldReady, ends at encounter end or lostconcentration, cannot be banked again by reroll/reentry, and shares the free-stored-release cap of one per owner/numbered round with Arcane Calculus. No extra cast/copy/proc at release.\nNEW exact banked-cantrip release window supersedes a narrower own-turn-only draft: the held cantrip may be voluntarily released without an Action or Reaction on any later actual turn before its preserved Ready deadline, between completed events, not retroactively or as an interruption. Use the shared one free release per owner per numbered round; no extra turn is created. Holding still consumes the one actual concentration/Ready slot and its original costs/history. Arcane Calculus retains its expressly narrower next-own-regular-turn release window.",
+        "workedCases": [
+          "A banked cantrip paid at initiative can release on your second regular turn withoutAction if concentration survives.",
+          "Using theBAspell branch then leaves noReaction for Counterspell until the real next regular start."
+        ],
+        "payloadOperational": "Require INT 15 and (Arcane Calculus OR Temporal Theory). NEW resolve the grammatical scope as+2 initiative AND concentration-saveadvantage only while actually holding a readied spell; initiative is not recomputed later. Once SR/LR change an actually available normalActionspell of actualrank 0–2 to BA, paying every normal cost. From commitment until your next regular start you cannot commit anyReaction, even if the spell is countered; existing stacked Reactions finish. Separately, at first legitimate initiative roll of a real encounter, you may immediately prepare one legal normalActioncantrip as a non-action: pay components/independent RP/history, establish held concentration, open interruption, and use the same single pendingReady slot. NEW release that cantrip once without an Action on any later actual turn in that encounter, between completed events, retaining actual concentration until then; target legality rechecks at release. This replaces any oldReady, ends at encounter end or lostconcentration, cannot be banked again by reroll/reentry, and shares the free-stored-release cap of one per owner/numbered round with Arcane Calculus. No extra cast/copy/proc at release.\nNEW exact banked-cantrip release window supersedes a narrower own-turn-only draft: the held cantrip may be voluntarily released without an Action or Reaction on any later actual turn before its preserved Ready deadline, between completed events, not retroactively or as an interruption. Use the shared one free release per owner per numbered round; no extra turn is created. Holding still consumes the one actual concentration/Ready slot and its original costs/history. Arcane Calculus retains its expressly narrower next-own-regular-turn release window.",
+        "selectionEnabled": false,
+        "exactApproved": false,
+        "runtimeApproved": false,
+        "sourceAuthored": true,
+        "sharedRulesRef": "shared_rules.json",
+        "supplementsRef": "supplements.json"
+      },
+      "completeOrdinaryReviews": [
+        {
+          "position": {
+            "id": "MX-51-E01",
+            "featId": "quickened_thought",
+            "cohort": "magic_extended",
+            "originalSourcePointer": "/records/50/workedCases/0",
+            "reviewedByThisFullCaseRegister": true,
+            "reviewEvidencePointer": "/originalCaseReviews/20",
+            "status": "COMPLETE_STATED_CASE_SEMANTIC_REVIEW",
+            "reviewEvidenceReport": {
+              "path": "docs/audit/2026-10-08/full-game/FEAT335_MAGIC_EXTENDED_PART03_CASEBOOK_REVIEW_104.json",
+              "bytes": 807419,
+              "sha256": "d9389cd12039a6bc84c6c25aa3883aabcad2fb7841d638acd7d652f0c4bbdc92"
+            }
+          },
+          "completeReview": {
+            "id": "MX-51-E01",
+            "featId": "quickened_thought",
+            "completeOriginalDisposition": {
+              "id": "MX-51-E01",
+              "featId": "quickened_thought",
+              "questionId": "MX-51",
+              "sourcePath": "DescentReviewChanges/ReviewBible/data/director/magic_extended_feat_operating_proposal_internal.json",
+              "sourcePointer": "/records/50/workedCases/0",
+              "original": "A banked cantrip paid at initiative can release on your second regular turn withoutAction if concentration survives.",
+              "disposition": "KEEP_AUTHORED_EXPECTATION",
+              "completeExpectedOutcome": "A banked cantrip paid at initiative can release on your second regular turn withoutAction if concentration survives.",
+              "basis": "Keep the source later-any-turn banked cantrip release rather than own-turn-only; it is between events, concentration-bound and shared-cap, not a free interrupt or extra turn.",
+              "assessmentKind": "Authored source-based semantic adjudication; not executed feat runtime or campaign authentication"
+            },
+            "reviewResult": "CONSISTENT_UNDER_EXACT_PREMISES_AND_CURRENT_SUCCESSORS",
+            "reasoning": "One actual firstencounter initiative event may prepare a legal normalActioncantrip without an Action, but pays components/independentRP/history and uses the one actual Ready/concentration slot. Its specifically banked lifetime can reach secondregularturn if maintained. Release may occur on any later actualturn between completed events, not as an interrupt, subject to one shared freerelease perowner/round and original helddeadline. No initiative reroll/reentry refills it.",
+            "qualification": "Full stated-case semantic review; unspecified actual acquisition, world actors/geometry, owned routes and source opportunities remain conditional. No engine execution or balance approval.",
+            "runtimeExecuted": false,
+            "canonicalApplied": false
+          }
+        },
+        {
+          "position": {
+            "id": "MX-51-E02",
+            "featId": "quickened_thought",
+            "cohort": "magic_extended",
+            "originalSourcePointer": "/records/50/workedCases/1",
+            "reviewedByThisFullCaseRegister": true,
+            "reviewEvidencePointer": "/originalCaseReviews/21",
+            "status": "COMPLETE_STATED_CASE_SEMANTIC_REVIEW",
+            "reviewEvidenceReport": {
+              "path": "docs/audit/2026-10-08/full-game/FEAT335_MAGIC_EXTENDED_PART03_CASEBOOK_REVIEW_104.json",
+              "bytes": 807419,
+              "sha256": "d9389cd12039a6bc84c6c25aa3883aabcad2fb7841d638acd7d652f0c4bbdc92"
+            }
+          },
+          "completeReview": {
+            "id": "MX-51-E02",
+            "featId": "quickened_thought",
+            "completeOriginalDisposition": {
+              "id": "MX-51-E02",
+              "featId": "quickened_thought",
+              "questionId": "MX-51",
+              "sourcePath": "DescentReviewChanges/ReviewBible/data/director/magic_extended_feat_operating_proposal_internal.json",
+              "sourcePointer": "/records/50/workedCases/1",
+              "original": "Using theBAspell branch then leaves noReaction for Counterspell until the real next regular start.",
+              "disposition": "KEEP_AUTHORED_EXPECTATION",
+              "completeExpectedOutcome": "Using theBAspell branch then leaves noReaction for Counterspell until the real next regular start.",
+              "basis": "Keep the source later-any-turn banked cantrip release rather than own-turn-only; it is between events, concentration-bound and shared-cap, not a free interrupt or extra turn.",
+              "assessmentKind": "Authored source-based semantic adjudication; not executed feat runtime or campaign authentication"
+            },
+            "reviewResult": "CONSISTENT_UNDER_EXACT_PREMISES_AND_CURRENT_SUCCESSORS",
+            "reasoning": "The separate finite normalAction rank0-2toBA conversion commits no-new-Reactions debt until nextregularSTART, even when countered; alreadycommitted Reactions finish. Initiative2and concentrationadvantage apply only while actually holding a readiedspell at the relevant roll. This does not extend Arcane Calculus's next-own-regular-turn window or ordinary/copiedReady deadlines.",
+            "qualification": "Full stated-case semantic review; unspecified actual acquisition, world actors/geometry, owned routes and source opportunities remain conditional. No engine execution or balance approval.",
+            "runtimeExecuted": false,
+            "canonicalApplied": false
+          }
+        }
+      ],
+      "completeAdditionalReviews": []
+    }
+  },
+  "completeAreaBefore": {
+    "source": {
+      "outerArchive": "DD_Feat335_FXC07_08_09_110.zip",
+      "nestedArchive": "DD_Feat335_Spell_State_Evidence_110.zip",
+      "member": "FXC09.json",
+      "bytes": 1327004,
+      "sha256": "62f83c233e6d2d40881210dbc8fddd9ba18ead60f8010c75b0043d11313d62ac",
+      "pointer": "/namedRequirementMap/6"
+    },
+    "value": {
+      "requirementArea": "Quickened Thought on any later actual turn",
+      "meaning": "One prepared cantrip may release between completed events during a later actual turn, including another actor turn; preserve held concentration, Ready capacity and actual next-START deadline. No interrupt or second casting transaction.",
+      "currentFeatIds": [
+        "quickened_thought"
+      ],
+      "currentSharedRuleIds": [
+        "FS-06",
+        "FS-08",
+        "FS-10"
+      ],
+      "semanticCaseRefs": [
+        {
+          "id": "MX-51-E01",
+          "featId": "quickened_thought",
+          "pointer": "/ordinary/600"
+        },
+        {
+          "id": "MX-51-E02",
+          "featId": "quickened_thought",
+          "pointer": "/ordinary/601"
+        }
+      ],
+      "historicalCalculationRefs": [
+        {
+          "document": "magic104",
+          "pointer": "/numericAndStateCalculations/19",
+          "id": "MX104-N20",
+          "classification": "HISTORICAL_BOUNDED_REFERENCE_CALCULATION_NOT_RERUN"
+        },
+        {
+          "document": "magic104",
+          "pointer": "/numericAndStateCalculations/20",
+          "id": "MX104-N21",
+          "classification": "HISTORICAL_BOUNDED_REFERENCE_CALCULATION_NOT_RERUN"
+        }
+      ],
+      "completeEvidenceKeys": [
+        "magic104"
+      ],
+      "status": "EXACT_SOURCE_AND_CASE_EVIDENCE_MAPPED_PARENT_REVIEW_PENDING"
+    }
+  },
+  "completeMappedCalculations": [
+    {
+      "source": {
+        "outerArchive": "DD_Feat335_FXC07_08_09_110.zip",
+        "nestedArchive": "DD_Feat335_Spell_State_Evidence_110.zip",
+        "member": "evidence/04.json",
+        "bytes": 807419,
+        "sha256": "d9389cd12039a6bc84c6c25aa3883aabcad2fb7841d638acd7d652f0c4bbdc92",
+        "pointer": "/numericAndStateCalculations/19"
+      },
+      "value": {
+        "id": "MX104-N20",
+        "originalCaseIds": [
+          "MX-51-E01",
+          "MX-51-E02"
+        ],
+        "inputs": {
+          "initiativeBanked": true,
+          "pendingReadyCapacity": 1,
+          "priorConcentrationEnded": true,
+          "laterActualTurnOwner": "other",
+          "betweenCompletedEvents": true,
+          "freeReleasesThisRound": 0
+        },
+        "calculatedResult": [
+          1,
+          1,
+          0,
+          false
+        ],
+        "expectedResult": [
+          1,
+          1,
+          0,
+          false
+        ],
+        "scope": "Oneconcentrationhold, onefreereleaseonlateractualotherturnifheldlawfully, noActionandnointerruptpermission. Reroll/reentrydoesnotprepareasecondbank. TEST_ONLY conditional projection, not actual engine/campaign authentication.",
+        "runtimeExecuted": false
+      }
+    },
+    {
+      "source": {
+        "outerArchive": "DD_Feat335_FXC07_08_09_110.zip",
+        "nestedArchive": "DD_Feat335_Spell_State_Evidence_110.zip",
+        "member": "evidence/04.json",
+        "bytes": 807419,
+        "sha256": "d9389cd12039a6bc84c6c25aa3883aabcad2fb7841d638acd7d652f0c4bbdc92",
+        "pointer": "/numericAndStateCalculations/20"
+      },
+      "value": {
+        "id": "MX104-N21",
+        "originalCaseIds": [
+          "MX-51-E01",
+          "MX-51-E02"
+        ],
+        "inputs": {
+          "BASpellRank": 2,
+          "counteredAfterCommit": true,
+          "reactionAlreadyPending": true,
+          "beforeNextRegularStart": true
+        },
+        "calculatedResult": [
+          true,
+          false,
+          true
+        ],
+        "expectedResult": [
+          true,
+          false,
+          true
+        ],
+        "scope": "Qualifyingrank2BAcommitsnoreactiondebtthroughfutureSTART; newCounterspellunavailable, alreadycommittedreactionfinishes. TEST_ONLY conditional projection, not actual engine/campaign authentication.",
+        "runtimeExecuted": false
+      }
+    }
+  ],
+  "reasoning": [
+    "The native effect says a cantrip banked at initiative may release on any later turn in the encounter.",
+    "The complete current procedure ends that special bank on encounter end or lost concentration and retains the one pending-Ready capacity, paid setup, shared free-release cap and replacement consequences.",
+    "MX-51-E01 and its complete current semantic review expressly retain possible release on the second owner regular turn. A generic next-owner-START cutoff contradicts that example.",
+    "MX104-N20 is a conditional later-other-turn projection, not proof of a numerical lifetime or engine schedule.",
+    "MX104-N21 concerns the separate Bonus-Action spell mode and its no-new-Reactions debt until next regular START, not expiry of the initiative bank.",
+    "The selected repair removes the map-only contraction. No procedure, worked case, native source, FS rule or copied-feat Ready policy is rewritten."
+  ],
+  "noNewMechanicalSelection": true,
+  "runtimeExecuted": false
+}

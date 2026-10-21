@@ -1,0 +1,273 @@
+{
+  "status": "PREPARED NOT SENT; source profile comparisons only",
+  "spellIds": [
+    "finger-of-death",
+    "summon-bone-colossus",
+    "create-homunculus",
+    "simulacrum"
+  ],
+  "preparedCohorts": [
+    "TRANSMUTATION_UNIVERSAL_RANK6_SOURCE_PREPARATION.json",
+    "ILLUSION_NECROMANCY_RANK7_SOURCE_PREPARATION.json"
+  ],
+  "searches": [
+    {
+      "file": "DescentReviewChanges/ReviewBible/data/director/bestiary_source_candidate_internal.json",
+      "sha256": "66d3d54ec0e70d9515f14789a697b379c648dc604af9f1035194c5230f09663c",
+      "searchedRecords": 67,
+      "exactCaseInsensitiveNameMatches": {
+        "Zombie": [],
+        "Bone Colossus": [],
+        "Homunculus": [],
+        "Simulacrum": []
+      }
+    },
+    {
+      "file": "DescentReviewChanges/ReviewBible/data/playtest/bestiary_public_source_candidate.json",
+      "sha256": "a9c86af89b900b1c5426757d3eb31d4992cf2b66bbbd2c3d465abab29d4c2af1",
+      "searchedRecords": 26,
+      "exactCaseInsensitiveNameMatches": {
+        "Zombie": [],
+        "Bone Colossus": [],
+        "Homunculus": [],
+        "Simulacrum": []
+      }
+    },
+    {
+      "file": "src/bestiary_data_full.json",
+      "sha256": "5717861200b3c229be4248fc67f1b7c6903da63747bd5b0d4d6b4ea892057b55",
+      "searchedRecords": 707,
+      "exactCaseInsensitiveNameMatches": {
+        "Zombie": [
+          706
+        ],
+        "Bone Colossus": [],
+        "Homunculus": [
+          345
+        ],
+        "Simulacrum": []
+      }
+    },
+    {
+      "file": "src/bestiary_data.json",
+      "sha256": "515ddba44cca8244953daca8b9c186eafd4e26ce8af09f24fd60c4e67194095d",
+      "searchedRecords": 50,
+      "exactCaseInsensitiveNameMatches": {
+        "Zombie": [],
+        "Bone Colossus": [],
+        "Homunculus": [],
+        "Simulacrum": []
+      }
+    }
+  ],
+  "completeMatches": [
+    {
+      "name": "Homunculus",
+      "file": "src/bestiary_data_full.json",
+      "index": 345,
+      "fullOriginalRecord": {
+        "name": "Homunculus",
+        "type": "Monstrosity",
+        "size": "Medium",
+        "challengeRating": "4",
+        "xp": 1100,
+        "alignment": "Neutral Evil",
+        "zoneFound": "Aethel Oceans",
+        "description": "A medium monstrosity found in Aethel Oceans.",
+        "loot": {
+          "tier1": {
+            "drop": "Monstrous Claw (Tier 1)",
+            "rate": "0.63",
+            "value": "14"
+          },
+          "tier2": {
+            "drop": "Exotic Hide (Tier 2)",
+            "rate": "0.52",
+            "value": "28"
+          }
+        },
+        "ingestSource": "Bestiary.xlsx:Monsters",
+        "armorClass": 14,
+        "hitPoints": 75,
+        "speed": "40 ft.",
+        "saveDc": 12,
+        "combat": {
+          "schemaVersion": 1,
+          "draft": false,
+          "source": "band-trusted",
+          "defaultActionId": "hooked-claw",
+          "defenses": {
+            "resistances": [],
+            "immunities": [],
+            "conditionImmunities": []
+          },
+          "attacks": [
+            {
+              "id": "hooked-claw",
+              "name": "Hooked Claw",
+              "kind": "attack",
+              "actionCost": "action",
+              "usage": "atWill",
+              "count": 1,
+              "targets": {
+                "count": 1,
+                "scope": "creature"
+              },
+              "damage": [
+                {
+                  "dice": "2d6+3",
+                  "average": 10.0,
+                  "type": "slashing"
+                }
+              ],
+              "attackBonus": 6
+            }
+          ],
+          "saveDc": 12
+        }
+      }
+    },
+    {
+      "name": "Zombie",
+      "file": "src/bestiary_data_full.json",
+      "index": 706,
+      "fullOriginalRecord": {
+        "name": "Zombie",
+        "type": "Undead",
+        "size": "Gargantuan",
+        "challengeRating": "26",
+        "xp": 90000,
+        "alignment": "Lawful Neutral",
+        "zoneFound": "Aethel Caves",
+        "description": "A gargantuan undead found in Aethel Caves.",
+        "loot": {
+          "tier1": {
+            "drop": "Spectral Essence (Tier 1)",
+            "rate": "1",
+            "value": "36"
+          },
+          "tier2": {
+            "drop": "Preserved Bone (Tier 2)",
+            "rate": "1",
+            "value": "72"
+          },
+          "tier3": {
+            "drop": "Death Energy (Tier 3)",
+            "rate": "0.9",
+            "value": "144"
+          },
+          "tier4": {
+            "drop": "Cursed Remains (Tier 4)",
+            "rate": "0.68",
+            "value": "288"
+          },
+          "tier5": {
+            "drop": "Cursed Remains (Tier 5)",
+            "rate": "0.45",
+            "value": "576"
+          },
+          "tier6": {
+            "drop": "Cursed Remains (Tier 6)",
+            "rate": "0.23",
+            "value": "1152"
+          }
+        },
+        "ingestSource": "Bestiary.xlsx:Monsters",
+        "armorClass": 21,
+        "hitPoints": 1030,
+        "speed": "40 ft.",
+        "saveDc": 23,
+        "combat": {
+          "schemaVersion": 1,
+          "draft": false,
+          "source": "band-trusted",
+          "defaultActionId": "death-chill",
+          "defenses": {
+            "resistances": [],
+            "immunities": [],
+            "conditionImmunities": []
+          },
+          "attacks": [
+            {
+              "id": "death-chill",
+              "name": "Death Chill",
+              "kind": "attack",
+              "actionCost": "action",
+              "usage": "atWill",
+              "count": 4,
+              "targets": {
+                "count": 1,
+                "scope": "creature"
+              },
+              "damage": [
+                {
+                  "dice": "4d12+18",
+                  "average": 44.0,
+                  "type": "cold"
+                }
+              ],
+              "attackBonus": 13
+            },
+            {
+              "id": "life-drain",
+              "name": "Life Drain",
+              "kind": "attack",
+              "actionCost": "action",
+              "usage": "atWill",
+              "count": 1,
+              "targets": {
+                "count": 1,
+                "scope": "creature"
+              },
+              "damage": [
+                {
+                  "dice": "4d12+17",
+                  "average": 43.0,
+                  "type": "necrotic"
+                }
+              ],
+              "attackBonus": 13
+            }
+          ],
+          "saveDc": 23
+        }
+      }
+    }
+  ],
+  "questions": [
+    "The current707-row runtime Zombie is Gargantuan Undead CR26,HP1030,AC21. Finger of Death promises a zombie on a qualifying humanoid death but specifies no profile. Determine intended binding jointly; do not automatically grant this runtime monster or silently replace it with a familiar external zombie.",
+    "Runtime Homunculus is Medium Monstrosity CR4,HP75,AC14 with a Hooked Claw attack. Create Homunculus promises a servant but no stats; preserve this source as a candidate,not proof of the summoned servant profile.",
+    "No exact Bone Colossus or Simulacrum creature row appears in these four registries. The spell HP140/two slams/cleave and creature-duplication clauses remain authoritative source promises with unresolved profile details. No broader historical-absence claim is made.",
+    "The existing Wizard standard-minion and companion lifecycle rules remain separate explicit source procedures. Similar names and corpse creation do not automatically merge a spell outcome with Auto-Raise or grant independent attack budgets."
+  ],
+  "checks": [
+    {
+      "name": "Four explicit names searched in67 internal,26 public,707 main-runtime and50 alternate records",
+      "pass": true
+    },
+    {
+      "name": "Both actual runtime records retained complete",
+      "pass": true
+    },
+    {
+      "name": "Both prepared spell cohorts unchanged",
+      "pass": true
+    },
+    {
+      "name": "All six source inputs unchanged",
+      "pass": true
+    }
+  ],
+  "protectedFiles": {
+    "DescentReviewChanges/ReviewBible/data/director/bestiary_source_candidate_internal.json": "66d3d54ec0e70d9515f14789a697b379c648dc604af9f1035194c5230f09663c",
+    "DescentReviewChanges/ReviewBible/data/playtest/bestiary_public_source_candidate.json": "a9c86af89b900b1c5426757d3eb31d4992cf2b66bbbd2c3d465abab29d4c2af1",
+    "src/bestiary_data_full.json": "5717861200b3c229be4248fc67f1b7c6903da63747bd5b0d4d6b4ea892057b55",
+    "src/bestiary_data.json": "515ddba44cca8244953daca8b9c186eafd4e26ce8af09f24fd60c4e67194095d",
+    "docs/audit/2026-10-08/full-game/TRANSMUTATION_UNIVERSAL_RANK6_SOURCE_PREPARATION.json": "3a52a41ead9095346d71ce9fcc55fdd3ae676edf76338a61ea4f77c1c4b11177",
+    "docs/audit/2026-10-08/full-game/ILLUSION_NECROMANCY_RANK7_SOURCE_PREPARATION.json": "4f75a602ebf4b1d59d1f695594aa7b2592fdc6a5c06aa6cd45e121b0637a40cd"
+  },
+  "spellsApproved": 0,
+  "sourceInformationDeleted": 0,
+  "cosmology": "Historical descriptions preserved; no origins,afterlife or soul model reviewed",
+  "dispatchInstruction": "Send this complete addendum with the affected source cohorts after rebasing their dependencies. Source decisions and separate exact cards remain required."
+}

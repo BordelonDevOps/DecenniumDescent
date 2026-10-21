@@ -1,0 +1,328 @@
+[
+  {
+    "id": "FN109-01",
+    "title": "Attack substitution does not rewrite explicitly Strength-fixed damage/DCs",
+    "currentFeatIds": [
+      "weapon_finesse",
+      "disarming_blow",
+      "bull_rush",
+      "shield_bash"
+    ],
+    "currentRuleIds": [
+      "FS-05"
+    ],
+    "premise": "A conditional authored boundary fixture. Actual lawful acquired sources, body/equipment access, event eligibility and world facts are explicit inputs, not authenticated campaign state. No new mechanical choice is adopted.",
+    "initialState": {
+      "STRmodifier": 1,
+      "DEXmodifier": 4,
+      "PB": 3,
+      "actualProficientMeleeAttackOriginallySTR": true,
+      "WeaponFinesseAppliesToAttackOnly": true,
+      "damageIndependentFinesseProperty": false
+    },
+    "operations": [
+      {
+        "kind": "Independent legal comparisons, not one granted combined action",
+        "declaration": "Use DEX on a qualifying normal STR melee attack. Evaluate each otherwise eligible rider in its own native source scope. This does not supply the approach, Attack Action, usable shield, held object, die payment, stun use or hit."
+      }
+    ],
+    "expectedFinalState": {
+      "attackModifier": 7,
+      "nativeDamageAbilityModifier": 1,
+      "DisarmingBlowDC": 15,
+      "BullRushDC": 12,
+      "ShieldBashStunDC": 12
+    },
+    "evidenceKind": "NEW_BOUNDED_ARITHMETIC_PROJECTION_NOT_RUNTIME",
+    "runtimeExecuted": false,
+    "freshReferenceProjection": {
+      "attackModifier": 7,
+      "nativeDamageAbilityModifier": 1,
+      "DisarmingBlowDC": 15,
+      "BullRushDC": 12,
+      "ShieldBashStunDC": 12
+    }
+  },
+  {
+    "id": "FP109-01",
+    "title": "Ally self-eligibility retains a genuinely separate flanking participant",
+    "currentFeatIds": [
+      "coordinator",
+      "tactical_flanker"
+    ],
+    "currentRuleIds": [
+      "FS-05"
+    ],
+    "premise": "A conditional authored boundary fixture. Actual lawful acquired sources, body/equipment access, event eligibility and world facts are explicit inputs, not authenticated campaign state. No new mechanical choice is adopted.",
+    "initialState": {
+      "ownerId": "owner-109",
+      "ownerCanPayBonusAction": true,
+      "selfInstructionPredicatesSatisfied": true,
+      "flankingCandidateIds": [
+        "owner-109",
+        "owner-109"
+      ],
+      "otherDistinctCreaturePresent": false
+    },
+    "operations": [
+      {
+        "kind": "Independent branches",
+        "selfCoordinator": "Pay one actual Bonus Action; create one next-attack entitlement to next original regular START. First attack consumes it even if disadvantage cancels it.",
+        "selfFlanking": "Reject using two aliases of the same physical actor as both participants; do not grant a flanking rider or spend its hit-only allowance."
+      }
+    ],
+    "expectedFinalState": {
+      "coordinatorSelfEligible": true,
+      "coordinatorBonusActionsSpent": 1,
+      "coordinatorExtraAttacksGranted": 0,
+      "distinctFlankingParticipants": 1,
+      "tacticalFlankerEligible": false,
+      "flankerRiderDiceGranted": 0,
+      "flankerAllowanceSpent": 0
+    },
+    "evidenceKind": "NEW_SOURCE_ADJUDICATED_STATE_BRANCHES_WITH_IDENTITY_COUNT_ONLY",
+    "runtimeExecuted": false,
+    "freshReferenceProjection": {
+      "distinctPhysicalIds": 1
+    }
+  },
+  {
+    "id": "FP109-02",
+    "title": "Safe own-trap disarm and actual transport preserve physical stock and spent allowance",
+    "currentFeatIds": [
+      "trapsetter"
+    ],
+    "currentRuleIds": [
+      "FS-10",
+      "FS-15"
+    ],
+    "premise": "A conditional authored boundary fixture. Actual lawful acquired sources, body/equipment access, event eligibility and world facts are explicit inputs, not authenticated campaign state. No new mechanical choice is adopted.",
+    "initialState": {
+      "trapId": "snare-109-A",
+      "type": "snare",
+      "setterId": "setter-109",
+      "armed": true,
+      "accessibleBySetterWithSafeReach": true,
+      "physicalAssemblyIntact": true,
+      "parts": [
+        "cord-109",
+        "spring-109",
+        "anchor-109"
+      ],
+      "storedDC": 13,
+      "setterActionsAvailable": 1,
+      "quickPlacementUseSpent": true,
+      "preparedReplacementKitCreated": false,
+      "holderId": null
+    },
+    "operations": [
+      {
+        "kind": "Own safe disarm",
+        "before": {
+          "trapId": "snare-109-A",
+          "type": "snare",
+          "setterId": "setter-109",
+          "armed": true,
+          "accessibleBySetterWithSafeReach": true,
+          "physicalAssemblyIntact": true,
+          "parts": [
+            "cord-109",
+            "spring-109",
+            "anchor-109"
+          ],
+          "storedDC": 13,
+          "setterActionsAvailable": 1,
+          "quickPlacementUseSpent": true,
+          "preparedReplacementKitCreated": false,
+          "holderId": null
+        },
+        "after": {
+          "trapId": "snare-109-A",
+          "type": "snare",
+          "setterId": "setter-109",
+          "armed": false,
+          "accessibleBySetterWithSafeReach": true,
+          "physicalAssemblyIntact": true,
+          "parts": [
+            "cord-109",
+            "spring-109",
+            "anchor-109"
+          ],
+          "storedDC": 13,
+          "setterActionsAvailable": 0,
+          "quickPlacementUseSpent": true,
+          "preparedReplacementKitCreated": false,
+          "holderId": null
+        },
+        "adjudication": "Actual setter spends one Action with safe reach to accessible own trap. No new roll or consumed complete kit is required by this disarm clause."
+      },
+      {
+        "kind": "Later lawful physical transport",
+        "before": {
+          "trapId": "snare-109-A",
+          "type": "snare",
+          "setterId": "setter-109",
+          "armed": false,
+          "accessibleBySetterWithSafeReach": true,
+          "physicalAssemblyIntact": true,
+          "parts": [
+            "cord-109",
+            "spring-109",
+            "anchor-109"
+          ],
+          "storedDC": 13,
+          "setterActionsAvailable": 0,
+          "quickPlacementUseSpent": true,
+          "preparedReplacementKitCreated": false,
+          "holderId": null
+        },
+        "after": {
+          "trapId": "snare-109-A",
+          "type": "snare",
+          "setterId": "setter-109",
+          "armed": false,
+          "accessibleBySetterWithSafeReach": true,
+          "physicalAssemblyIntact": false,
+          "parts": [
+            "cord-109",
+            "spring-109",
+            "anchor-109"
+          ],
+          "storedDC": 13,
+          "setterActionsAvailable": 0,
+          "quickPlacementUseSpent": true,
+          "preparedReplacementKitCreated": false,
+          "holderId": "carrier-109"
+        },
+        "premise": "A separately legal world operation actually collects the same parts and transports them with real custody, load, route and costs; those underlying operations are supplied premises, not granted or priced by this feat. Moving the necessary arrangement leaves it disarmed; actual rearming is still required."
+      }
+    ],
+    "expectedFinalState": {
+      "trapId": "snare-109-A",
+      "type": "snare",
+      "setterId": "setter-109",
+      "armed": false,
+      "accessibleBySetterWithSafeReach": true,
+      "physicalAssemblyIntact": false,
+      "parts": [
+        "cord-109",
+        "spring-109",
+        "anchor-109"
+      ],
+      "storedDC": 13,
+      "setterActionsAvailable": 0,
+      "quickPlacementUseSpent": true,
+      "preparedReplacementKitCreated": false,
+      "holderId": "carrier-109"
+    },
+    "evidenceKind": "NEW_SOURCE_ADJUDICATED_STATE_SEQUENCE_NOT_NATIVE_PHYSICS_EXECUTION",
+    "runtimeExecuted": false
+  },
+  {
+    "id": "FP109-03",
+    "title": "Other creature disarms at stored DC; failed safe manipulation does not invent a remote trigger",
+    "currentFeatIds": [
+      "trapsetter"
+    ],
+    "currentRuleIds": [
+      "FS-05",
+      "FS-15"
+    ],
+    "premise": "A conditional authored boundary fixture. Actual lawful acquired sources, body/equipment access, event eligibility and world facts are explicit inputs, not authenticated campaign state. No new mechanical choice is adopted.",
+    "initialState": {
+      "storedDC": 13,
+      "DEXmodifier": 3,
+      "actualToolPB": 2,
+      "detected": true,
+      "appropriateTools": true,
+      "actualSafeReach": true,
+      "manipulationEntersWorkingTrigger": false,
+      "ActionAvailable": 1,
+      "armed": true,
+      "storedQuickUseSpent": true
+    },
+    "operations": [
+      {
+        "kind": "Two independent declared task branches",
+        "branches": [
+          {
+            "d20": 8,
+            "modifier": 5,
+            "total": 13,
+            "DC": 13,
+            "coreDegree": "Success",
+            "result": {
+              "ActionAvailable": 0,
+              "armed": false,
+              "triggered": false,
+              "storedQuickUseSpent": true,
+              "newKitCreated": false
+            },
+            "qualification": "Failure does not trigger the mechanism when the actual manipulation did not enter its working trigger. This is not universal failure safety; changed physical contact can change that predicate."
+          },
+          {
+            "d20": 5,
+            "modifier": 5,
+            "total": 10,
+            "DC": 13,
+            "coreDegree": "Failure",
+            "result": {
+              "ActionAvailable": 0,
+              "armed": true,
+              "triggered": false,
+              "storedQuickUseSpent": true,
+              "newKitCreated": false
+            },
+            "qualification": "Failure does not trigger the mechanism when the actual manipulation did not enter its working trigger. This is not universal failure safety; changed physical contact can change that predicate."
+          }
+        ]
+      }
+    ],
+    "expectedFinalState": {
+      "branches": [
+        {
+          "d20": 8,
+          "modifier": 5,
+          "total": 13,
+          "DC": 13,
+          "coreDegree": "Success",
+          "result": {
+            "ActionAvailable": 0,
+            "armed": false,
+            "triggered": false,
+            "storedQuickUseSpent": true,
+            "newKitCreated": false
+          },
+          "qualification": "Failure does not trigger the mechanism when the actual manipulation did not enter its working trigger. This is not universal failure safety; changed physical contact can change that predicate."
+        },
+        {
+          "d20": 5,
+          "modifier": 5,
+          "total": 10,
+          "DC": 13,
+          "coreDegree": "Failure",
+          "result": {
+            "ActionAvailable": 0,
+            "armed": true,
+            "triggered": false,
+            "storedQuickUseSpent": true,
+            "newKitCreated": false
+          },
+          "qualification": "Failure does not trigger the mechanism when the actual manipulation did not enter its working trigger. This is not universal failure safety; changed physical contact can change that predicate."
+        }
+      ]
+    },
+    "evidenceKind": "NEW_BOUNDED_TASK_ARITHMETIC_AND_SOURCE_ADJUDICATION_NOT_RUNTIME",
+    "runtimeExecuted": false,
+    "freshReferenceProjection": {
+      "totals": [
+        13,
+        10
+      ],
+      "successes": [
+        true,
+        false
+      ]
+    }
+  }
+]

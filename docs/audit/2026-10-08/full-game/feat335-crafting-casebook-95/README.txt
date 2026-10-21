@@ -1,0 +1,1 @@
+Full crafting casebook review95:24 complete procedures,48 original cases,3 FA boundaries and40 bounded reference calculations. Full originals, accepted FT84 derived wording and individual rationales preserved. Unapplied, no runtime or parent335 acceptance. No supplied program needs execution.

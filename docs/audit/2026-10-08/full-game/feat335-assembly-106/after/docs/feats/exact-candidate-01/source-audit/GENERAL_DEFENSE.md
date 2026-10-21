@@ -1,0 +1,3220 @@
+# General Defense — source reconciliation
+
+Derived complete-text assembly 106; exact parent review and integration pending.
+
+Original source decisions below are historical receipts. The complete current candidate procedure and linked complete case review control this derived reading.
+
+## GD-01 — Ability Score Improvement
+
+### Complete original object
+
+```json
+{
+  "id": "abilityScoreImprovement",
+  "name": "Ability Score Improvement",
+  "description": "Increase one ability score by 2, or increase two ability scores by 1 each. You can't increase an ability score above 20 using this feat.",
+  "prerequisite": "None",
+  "effect": "Choose +2 to one ability score or +1 to two ability scores",
+  "type": "General",
+  "draft": false,
+  "deprecated": false,
+  "needsReview": false
+}
+```
+
+### Original question
+
+```json
+"Retain the description-only ability20 ceiling alongside the effect. Define +2 to one or +1 to two distinct scores, legal acquisition/repeatability, total-character versus class-level ASI choice, lost eligibility and derived modifier/HP changes. Compare class ASI choices without granting both a feat and an extra ASI from one opportunity."
+```
+
+### Preserved original source direction (historical)
+
+```json
+{
+  "featId": "abilityScoreImprovement",
+  "name": "Ability Score Improvement",
+  "cohort": "general_defense",
+  "questionId": "GD-01",
+  "disposition": "AUTHOR_FROM_SUBMITTED_PROCEDURE_WITH_FINAL_SHARED_RULES",
+  "sourcePath": "DescentReviewChanges/ReviewBible/data/director/general_defense_feat_operating_proposal_internal.json",
+  "sourceFileSha256": "7f8cf43d5ad139cb0f7b1c107a16db87cccf71d7b5caa3cfe632c2efc4eeb274",
+  "sourcePointer": "/records/0",
+  "originalQuestion": "Retain the description-only ability20 ceiling alongside the effect. Define +2 to one or +1 to two distinct scores, legal acquisition/repeatability, total-character versus class-level ASI choice, lost eligibility and derived modifier/HP changes. Compare class ASI choices without granting both a feat and an extra ASI from one opportunity.",
+  "originalSourceObject": {
+    "id": "abilityScoreImprovement",
+    "name": "Ability Score Improvement",
+    "description": "Increase one ability score by 2, or increase two ability scores by 1 each. You can't increase an ability score above 20 using this feat.",
+    "prerequisite": "None",
+    "effect": "Choose +2 to one ability score or +1 to two ability scores",
+    "type": "General",
+    "draft": false,
+    "deprecated": false,
+    "needsReview": false
+  },
+  "originalSourceObjectSha256AsSubmitted": "a73adb264be7a84f36923396041819d5f274fc3f223eb1ac7d7743134310a845",
+  "submittedProcedure": "Use one actual earned ASI/feat choice to increase one ability by 2 or two distinct abilities by 1 each. Retain the source description's ceiling of 20 for this feature. NEW: this entry is the registry representation of that ordinary ASI option and may be selected at each legitimate ASI opportunity; choosing it does not give both an ASI and another feat. The one-score option requires room for the full +2, and the two-score option requires room for both full +1 increases; do not waste or bank part of the award. Record the acquisition event and chosen scores, then recompute actual modifiers and other derived statistics under the shared rules. No current HP/resource refill, retroactive class selection, starting feat or extra ASI schedule is created. Use each class's real ASI levels, including Oracle's specific schedule, rather than total-level multiples.",
+  "submittedNewChoices": "Registry ASI identity and repeatability; full legal increase allocation and no banking. Source ability-20 cap preserved.",
+  "submittedWorkedCases": [
+    "At one earned opportunity, STR 18 can become 20, or STR 19 and WIS 13 can become 20 and 14. That same opportunity cannot also acquire Tough.",
+    "A multiclass character reaching total level 4 without an actual class ASI milestone receives no new ASI merely from this registry entry."
+  ],
+  "decision": "Adopt ordinary ASI registry identity, repeatable only at actual class-scheduled opportunities, full legal allocation and source cap20, no double feat/ASI reward.",
+  "completeAuthoringProcedure": "Use one actual earned ASI/feat choice to increase one ability by 2 or two distinct abilities by 1 each. Retain the source description's ceiling of 20 for this feature. NEW: this entry is the registry representation of that ordinary ASI option and may be selected at each legitimate ASI opportunity; choosing it does not give both an ASI and another feat. The one-score option requires room for the full +2, and the two-score option requires room for both full +1 increases; do not waste or bank part of the award. Record the acquisition event and chosen scores, then recompute actual modifiers and other derived statistics under the shared rules. No current HP/resource refill, retroactive class selection, starting feat or extra ASI schedule is created. Use each class's real ASI levels, including Oracle's specific schedule, rather than total-level multiples.",
+  "newRuleProvenance": "All submitted NEW/proposed completions retained by this decision and all departures below are authoring decisions of FEAT327-SOURCE-2026-10-11, not recovered source wording. The original object remains immutable.",
+  "sharedContract": "FEAT_SHARED_DIRECTIONS.json: FS-01–16",
+  "supplementContract": "FEAT_SUPPLEMENT_DIRECTIONS.json: explicit source path/pointer mappings",
+  "workedCases": [
+    "At one earned opportunity, STR 18 can become 20, or STR 19 and WIS 13 can become 20 and 14. That same opportunity cannot also acquire Tough.",
+    "A multiclass character reaching total level 4 without an actual class ASI milestone receives no new ASI merely from this registry entry."
+  ],
+  "payloadOperational": "full authored procedure; not a runtime adapter",
+  "selectionEnabled": false,
+  "exactApproved": false,
+  "runtimeApproved": false
+}
+```
+
+### Complete current candidate procedure
+
+Use one actual earned ASI/feat choice to increase one ability by 2 or two distinct abilities by 1 each. Retain the source description's ceiling of 20 for this feature. NEW: this entry is the registry representation of that ordinary ASI option and may be selected at each legitimate ASI opportunity; choosing it does not give both an ASI and another feat. The one-score option requires room for the full +2, and the two-score option requires room for both full +1 increases; do not waste or bank part of the award. Record the acquisition event and chosen scores, then recompute actual modifiers and other derived statistics under the shared rules. No current HP/resource refill, retroactive class selection, starting feat or extra ASI schedule is created. Use each class's real ASI levels, including Oracle's specific schedule, rather than total-level multiples.
+
+### Original-position authored review references
+
+```json
+[
+  {
+    "id": "GD-01-E01",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/0"
+  },
+  {
+    "id": "GD-01-E02",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/1"
+  }
+]
+```
+
+## GD-02 — Armor Proficiency
+
+### Complete original object
+
+```json
+{
+  "id": "armorProficiency",
+  "name": "Armor Proficiency",
+  "description": "You are skilled with a type of armor.",
+  "prerequisite": "None",
+  "effect": "You gain proficiency with light, medium, or heavy armor (choose one).",
+  "type": "General",
+  "draft": false,
+  "deprecated": false,
+  "needsReview": false
+}
+```
+
+### Original question
+
+```json
+"Source permits choosing light, medium or heavy with no prerequisite. Decide whether that remains a direct tier choice and whether this feat is repeatable for other tiers. Distinguish armor from shields, actual training from item ownership, and chosen-tier access from automatic lower-tier or weapon grants."
+```
+
+### Preserved original source direction (historical)
+
+```json
+{
+  "featId": "armorProficiency",
+  "name": "Armor Proficiency",
+  "cohort": "general_defense",
+  "questionId": "GD-02",
+  "disposition": "AUTHOR_FROM_SUBMITTED_PROCEDURE_WITH_FINAL_SHARED_RULES",
+  "sourcePath": "DescentReviewChanges/ReviewBible/data/director/general_defense_feat_operating_proposal_internal.json",
+  "sourceFileSha256": "7f8cf43d5ad139cb0f7b1c107a16db87cccf71d7b5caa3cfe632c2efc4eeb274",
+  "sourcePointer": "/records/1",
+  "originalQuestion": "Source permits choosing light, medium or heavy with no prerequisite. Decide whether that remains a direct tier choice and whether this feat is repeatable for other tiers. Distinguish armor from shields, actual training from item ownership, and chosen-tier access from automatic lower-tier or weapon grants.",
+  "originalSourceObject": {
+    "id": "armorProficiency",
+    "name": "Armor Proficiency",
+    "description": "You are skilled with a type of armor.",
+    "prerequisite": "None",
+    "effect": "You gain proficiency with light, medium, or heavy armor (choose one).",
+    "type": "General",
+    "draft": false,
+    "deprecated": false,
+    "needsReview": false
+  },
+  "originalSourceObjectSha256AsSubmitted": "a0dca4128572c308e134706579a4d301f1c02527cd889940a9e3aa12a65098f7",
+  "submittedProcedure": "Choose one actual armor proficiency tier: light, medium or heavy. Preserve the source's lack of a prerequisite: NEW explicit selection permits direct heavy-armor proficiency without first learning lighter tiers. Only the chosen tier is granted; heavy does not automatically grant light, medium, shields, weapons or tools. NEW repeatability: this feat may be acquired again through another actual feat choice for a different armor tier not already proficient; record each chosen tier under one source family with distinct acquisition events. Choosing an already proficient tier gives no benefit and is not an eligible new selection. Training does not supply armor, alter fit/anatomy, remove its Strength requirement, waive donning time or invent an AC bonus. While legally using the selected tier, remove only the nonproficiency consequences that actual proficiency removes; other properties remain.",
+  "submittedNewChoices": "Direct tier choice retained; repeatability for distinct missing tiers only; no implied lower-tier/shield grants.",
+  "submittedWorkedCases": [
+    "An unarmored character can spend this proposed feat choice on heavy armor proficiency, but remains untrained in a separately used shield.",
+    "A second acquisition can select medium if it is genuinely missing. It cannot select heavy again to stack AC or obtain an unrelated skill."
+  ],
+  "decision": "Adopt direct choice including heavy with no prerequisite and repeatability only for distinct missing tiers; no implied shield/lower-tier/item grants.",
+  "completeAuthoringProcedure": "Choose one actual armor proficiency tier: light, medium or heavy. Preserve the source's lack of a prerequisite: NEW explicit selection permits direct heavy-armor proficiency without first learning lighter tiers. Only the chosen tier is granted; heavy does not automatically grant light, medium, shields, weapons or tools. NEW repeatability: this feat may be acquired again through another actual feat choice for a different armor tier not already proficient; record each chosen tier under one source family with distinct acquisition events. Choosing an already proficient tier gives no benefit and is not an eligible new selection. Training does not supply armor, alter fit/anatomy, remove its Strength requirement, waive donning time or invent an AC bonus. While legally using the selected tier, remove only the nonproficiency consequences that actual proficiency removes; other properties remain.",
+  "newRuleProvenance": "All submitted NEW/proposed completions retained by this decision and all departures below are authoring decisions of FEAT327-SOURCE-2026-10-11, not recovered source wording. The original object remains immutable.",
+  "sharedContract": "FEAT_SHARED_DIRECTIONS.json: FS-01–16",
+  "supplementContract": "FEAT_SUPPLEMENT_DIRECTIONS.json: explicit source path/pointer mappings",
+  "workedCases": [
+    "An unarmored character can spend this proposed feat choice on heavy armor proficiency, but remains untrained in a separately used shield.",
+    "A second acquisition can select medium if it is genuinely missing. It cannot select heavy again to stack AC or obtain an unrelated skill."
+  ],
+  "payloadOperational": "full authored procedure; not a runtime adapter",
+  "selectionEnabled": false,
+  "exactApproved": false,
+  "runtimeApproved": false
+}
+```
+
+### Complete current candidate procedure
+
+Choose one actual armor proficiency tier: light, medium or heavy. Preserve the source's lack of a prerequisite: NEW explicit selection permits direct heavy-armor proficiency without first learning lighter tiers. Only the chosen tier is granted; heavy does not automatically grant light, medium, shields, weapons or tools. NEW repeatability: this feat may be acquired again through another actual feat choice for a different armor tier not already proficient; record each chosen tier under one source family with distinct acquisition events. Choosing an already proficient tier gives no benefit and is not an eligible new selection. Training does not supply armor, alter fit/anatomy, remove its Strength requirement, waive donning time or invent an AC bonus. While legally using the selected tier, remove only the nonproficiency consequences that actual proficiency removes; other properties remain.
+
+### Original-position authored review references
+
+```json
+[
+  {
+    "id": "GD-02-E01",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/2"
+  },
+  {
+    "id": "GD-02-E02",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/3"
+  }
+]
+```
+
+## GD-03 — Athlete
+
+### Complete original object
+
+```json
+{
+  "id": "athlete",
+  "name": "Athlete",
+  "description": "You have undergone extensive physical training to gain the following benefits:",
+  "prerequisite": "None",
+  "effect": "Increase Strength or Dexterity by 1, climbing doesn't cost extra movement, running long jump distance increases by feet equal to Strength modifier",
+  "type": "General",
+  "draft": false,
+  "deprecated": false,
+  "needsReview": false
+}
+```
+
+### Original question
+
+```json
+"Retain +1STR orDEX, no extra climbing movement cost and running-long-jump addition equal to STR modifier. Define score cap, negative modifier, running start, movement-budget ceiling and ordinary checks; no automatic climb success, ceiling adhesion or unprinted swim/climb Speed. Reconcile Athlete Improved and Climber separately."
+```
+
+### Preserved original source direction (historical)
+
+```json
+{
+  "featId": "athlete",
+  "name": "Athlete",
+  "cohort": "general_defense",
+  "questionId": "GD-03",
+  "disposition": "AUTHOR_FROM_SUBMITTED_PROCEDURE_WITH_FINAL_SHARED_RULES",
+  "sourcePath": "DescentReviewChanges/ReviewBible/data/director/general_defense_feat_operating_proposal_internal.json",
+  "sourceFileSha256": "7f8cf43d5ad139cb0f7b1c107a16db87cccf71d7b5caa3cfe632c2efc4eeb274",
+  "sourcePointer": "/records/2",
+  "originalQuestion": "Retain +1STR orDEX, no extra climbing movement cost and running-long-jump addition equal to STR modifier. Define score cap, negative modifier, running start, movement-budget ceiling and ordinary checks; no automatic climb success, ceiling adhesion or unprinted swim/climb Speed. Reconcile Athlete Improved and Climber separately.",
+  "originalSourceObject": {
+    "id": "athlete",
+    "name": "Athlete",
+    "description": "You have undergone extensive physical training to gain the following benefits:",
+    "prerequisite": "None",
+    "effect": "Increase Strength or Dexterity by 1, climbing doesn't cost extra movement, running long jump distance increases by feet equal to Strength modifier",
+    "type": "General",
+    "draft": false,
+    "deprecated": false,
+    "needsReview": false
+  },
+  "originalSourceObjectSha256AsSubmitted": "9638dc80e7a9efb1b2d62dd8d7e0c0ba8ac94161861061dd2fd2bdfa8b5ccbf9",
+  "submittedProcedure": "Choose Strength or Dexterity and increase it by 1, normally no higher than 20. Climbing does not cost extra movement solely because it is climbing; terrain, crawling, squeezing and other independent costs remain. This grants no climbing Speed, handholds, ceiling adhesion, automatic check success or immunity to falls. For a running long jump, add your current Strength modifier in feet to the otherwise legal horizontal distance. NEW: the increase has a minimum of zero when that modifier is negative, and a running approach requires at least 10 feet of actual immediately preceding movement on support. The approach and jump both spend movement; clearance, checks and legal landing remain. This does not increase a high jump or ordinary standing long jump. Improved Athlete's separate proposal supplies its own standing-distance change and retains this running increase once. The approach and negative-modifier completions require the full movement-source decision before adoption.",
+  "submittedNewChoices": "Score cap; no negative 'increase'; explicit 10-foot approach and movement-budget interpretation. No new climb mode.",
+  "submittedWorkedCases": [
+    "A legal running jump with baseline 16 feet and STR modifier +3 can span 19 feet, still paid from actual movement after its approach.",
+    "A character with STR modifier -1 gains no extra jump distance and suffers no extra one-foot reduction from this feat. Difficult terrain on a climb still costs its terrain surcharge."
+  ],
+  "decision": "Adopt+1score, source climb-surcharge removal only and nonnegative running jump increment with ten-foot real approach; preserve ordinary movement and checks.",
+  "completeAuthoringProcedure": "Choose Strength or Dexterity and increase it by 1, normally no higher than 20. Climbing does not cost extra movement solely because it is climbing; terrain, crawling, squeezing and other independent costs remain. This grants no climbing Speed, handholds, ceiling adhesion, automatic check success or immunity to falls. For a running long jump, add your current Strength modifier in feet to the otherwise legal horizontal distance. NEW: the increase has a minimum of zero when that modifier is negative, and a running approach requires at least 10 feet of actual immediately preceding movement on support. The approach and jump both spend movement; clearance, checks and legal landing remain. This does not increase a high jump or ordinary standing long jump. Improved Athlete's separate proposal supplies its own standing-distance change and retains this running increase once. The approach and negative-modifier completions require the full movement-source decision before adoption.",
+  "newRuleProvenance": "All submitted NEW/proposed completions retained by this decision and all departures below are authoring decisions of FEAT327-SOURCE-2026-10-11, not recovered source wording. The original object remains immutable.",
+  "sharedContract": "FEAT_SHARED_DIRECTIONS.json: FS-01–16",
+  "supplementContract": "FEAT_SUPPLEMENT_DIRECTIONS.json: explicit source path/pointer mappings",
+  "workedCases": [
+    "A legal running jump with baseline 16 feet and STR modifier +3 can span 19 feet, still paid from actual movement after its approach.",
+    "A character with STR modifier -1 gains no extra jump distance and suffers no extra one-foot reduction from this feat. Difficult terrain on a climb still costs its terrain surcharge."
+  ],
+  "payloadOperational": "full authored procedure; not a runtime adapter",
+  "selectionEnabled": false,
+  "exactApproved": false,
+  "runtimeApproved": false
+}
+```
+
+### Complete current candidate procedure
+
+Choose Strength or Dexterity and increase it by 1, normally no higher than 20. Climbing does not cost extra movement solely because it is climbing; terrain, crawling, squeezing and other independent costs remain. This grants no climbing Speed, handholds, ceiling adhesion, automatic check success or immunity to falls. For a running long jump, add your current Strength modifier in feet to the otherwise legal horizontal distance. NEW: the increase has a minimum of zero when that modifier is negative, and a running approach requires at least 10 feet of actual immediately preceding movement on support. The approach and jump both spend movement; clearance, checks and legal landing remain. This does not increase a high jump or ordinary standing long jump. Improved Athlete's separate proposal supplies its own standing-distance change and retains this running increase once. The approach and negative-modifier completions require the full movement-source decision before adoption.
+
+### Original-position authored review references
+
+```json
+[
+  {
+    "id": "GD-03-E01",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/4"
+  },
+  {
+    "id": "GD-03-E02",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/5"
+  }
+]
+```
+
+## GD-04 — Battle Ready
+
+### Complete original object
+
+```json
+{
+  "id": "battleReady",
+  "name": "Battle Ready",
+  "description": "You are always prepared for combat.",
+  "prerequisite": "Constitution 13 or higher",
+  "effect": "You can don or doff armor in half the normal time and have advantage on initiative rolls.",
+  "type": "General",
+  "draft": false,
+  "deprecated": false,
+  "needsReview": false
+}
+```
+
+### Original question
+
+```json
+"Define exact halving and rounding for each existing armor don/doff duration, actual helpers/hands/closures and interruption. Preserve advantage on initiative as initiative, not an ability check or extra turn. Do not apply armor timing automatically to shields, jewelry or general gear without explicit source scope."
+```
+
+### Preserved original source direction (historical)
+
+```json
+{
+  "featId": "battleReady",
+  "name": "Battle Ready",
+  "cohort": "general_defense",
+  "questionId": "GD-04",
+  "disposition": "AUTHOR_FROM_SUBMITTED_PROCEDURE_WITH_FINAL_SHARED_RULES",
+  "sourcePath": "DescentReviewChanges/ReviewBible/data/director/general_defense_feat_operating_proposal_internal.json",
+  "sourceFileSha256": "7f8cf43d5ad139cb0f7b1c107a16db87cccf71d7b5caa3cfe632c2efc4eeb274",
+  "sourcePointer": "/records/3",
+  "originalQuestion": "Define exact halving and rounding for each existing armor don/doff duration, actual helpers/hands/closures and interruption. Preserve advantage on initiative as initiative, not an ability check or extra turn. Do not apply armor timing automatically to shields, jewelry or general gear without explicit source scope.",
+  "originalSourceObject": {
+    "id": "battleReady",
+    "name": "Battle Ready",
+    "description": "You are always prepared for combat.",
+    "prerequisite": "Constitution 13 or higher",
+    "effect": "You can don or doff armor in half the normal time and have advantage on initiative rolls.",
+    "type": "General",
+    "draft": false,
+    "deprecated": false,
+    "needsReview": false
+  },
+  "originalSourceObjectSha256AsSubmitted": "544c0bd6081ce3ec198cd0a90e589e7166194f02302fd2e487eb0d871ebfd780",
+  "submittedProcedure": "Don or doff an actual suit of armor in half its normal time, preserving its real steps, access, hands, closures and fit. NEW: apply this factor once to the selected suit's existing armor duration; do not automatically include shields, weapons, jewelry or other gear. Combine the separately authorized single helper's doff-time halving multiplicatively with this feat because they represent distinct sources, then round elapsed time upward once to a whole second. In initiative, spend enough complete Actions/turn intervals to cover that elapsed work without compressing an Action below its legal availability; partial progress is retained only to the extent the armor procedure actually permits. Extra helpers do not further halve the time. Interruption leaves the real partially completed state and does not make the armor usable sooner. Gain advantage on each actual initiative roll; this creates neither a new roll after order is established nor an extra turn. Multiple initiative-advantage sources do not stack.",
+  "submittedNewChoices": "Armor-only scope; actual helper composition and final-second rounding; initiative-event boundary.",
+  "submittedWorkedCases": [
+    "A normal 60-second armor doff becomes 30 seconds; one real helper can reduce it to 15 seconds under this proposed composition. Two helpers do not reduce it to 7.5 seconds.",
+    "A shield whose separate rule takes one Action still takes that Action; the feat does not convert it to a free interaction."
+  ],
+  "decision": "Adopt actual armor-time half, compose once with actual independent helper doff half then round elapsedseconds up; spend full legal Actions in initiative, shield remains own Action.",
+  "completeAuthoringProcedure": "Don or doff an actual suit of armor in half its normal time, preserving its real steps, access, hands, closures and fit. NEW: apply this factor once to the selected suit's existing armor duration; do not automatically include shields, weapons, jewelry or other gear. Combine the separately authorized single helper's doff-time halving multiplicatively with this feat because they represent distinct sources, then round elapsed time upward once to a whole second. In initiative, spend enough complete Actions/turn intervals to cover that elapsed work without compressing an Action below its legal availability; partial progress is retained only to the extent the armor procedure actually permits. Extra helpers do not further halve the time. Interruption leaves the real partially completed state and does not make the armor usable sooner. Gain advantage on each actual initiative roll; this creates neither a new roll after order is established nor an extra turn. Multiple initiative-advantage sources do not stack.",
+  "newRuleProvenance": "All submitted NEW/proposed completions retained by this decision and all departures below are authoring decisions of FEAT327-SOURCE-2026-10-11, not recovered source wording. The original object remains immutable.",
+  "sharedContract": "FEAT_SHARED_DIRECTIONS.json: FS-01–16",
+  "supplementContract": "FEAT_SUPPLEMENT_DIRECTIONS.json: explicit source path/pointer mappings",
+  "workedCases": [
+    "A normal 60-second armor doff becomes 30 seconds; one real helper can reduce it to 15 seconds under this proposed composition. Two helpers do not reduce it to 7.5 seconds.",
+    "A shield whose separate rule takes one Action still takes that Action; the feat does not convert it to a free interaction."
+  ],
+  "payloadOperational": "full authored procedure; not a runtime adapter",
+  "selectionEnabled": false,
+  "exactApproved": false,
+  "runtimeApproved": false
+}
+```
+
+### Complete current candidate procedure
+
+Don or doff an actual suit of armor in half its normal time, preserving its real steps, access, hands, closures and fit. NEW: apply this factor once to the selected suit's existing armor duration; do not automatically include shields, weapons, jewelry or other gear. Combine the separately authorized single helper's doff-time halving multiplicatively with this feat because they represent distinct sources, then round elapsed time upward once to a whole second. In initiative, spend enough complete Actions/turn intervals to cover that elapsed work without compressing an Action below its legal availability; partial progress is retained only to the extent the armor procedure actually permits. Extra helpers do not further halve the time. Interruption leaves the real partially completed state and does not make the armor usable sooner. Gain advantage on each actual initiative roll; this creates neither a new roll after order is established nor an extra turn. Multiple initiative-advantage sources do not stack.
+
+### Original-position authored review references
+
+```json
+[
+  {
+    "id": "GD-04-E01",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/6"
+  },
+  {
+    "id": "GD-04-E02",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/7"
+  }
+]
+```
+
+## GD-05 — Berserker
+
+### Complete original object
+
+```json
+{
+  "id": "berserker",
+  "name": "Berserker",
+  "description": "You can enter a battle rage.",
+  "prerequisite": "Constitution 15+",
+  "effect": "Once per long rest, you can rage for 1 minute, gaining +2 damage on melee attacks and resistance to physical damage.",
+  "type": "General",
+  "draft": false,
+  "deprecated": false,
+  "needsReview": false
+}
+```
+
+### Original question
+
+```json
+"Complete once-per-Long-Rest activation action, minute clock, voluntary ending, incapacitation and simultaneous class/feat rages. Bound physical resistance to explicit damage types and clarify +2 on melee weapon, natural, unarmed or melee spell attacks. Compare Berserker Rage and Frenzied Rage without importing unstated class features, spell bans or rage extension."
+```
+
+### Preserved original source direction (historical)
+
+```json
+{
+  "featId": "berserker",
+  "name": "Berserker",
+  "cohort": "general_defense",
+  "questionId": "GD-05",
+  "disposition": "AUTHOR_FROM_SUBMITTED_PROCEDURE_WITH_FINAL_SHARED_RULES",
+  "sourcePath": "DescentReviewChanges/ReviewBible/data/director/general_defense_feat_operating_proposal_internal.json",
+  "sourceFileSha256": "7f8cf43d5ad139cb0f7b1c107a16db87cccf71d7b5caa3cfe632c2efc4eeb274",
+  "sourcePointer": "/records/4",
+  "originalQuestion": "Complete once-per-Long-Rest activation action, minute clock, voluntary ending, incapacitation and simultaneous class/feat rages. Bound physical resistance to explicit damage types and clarify +2 on melee weapon, natural, unarmed or melee spell attacks. Compare Berserker Rage and Frenzied Rage without importing unstated class features, spell bans or rage extension.",
+  "originalSourceObject": {
+    "id": "berserker",
+    "name": "Berserker",
+    "description": "You can enter a battle rage.",
+    "prerequisite": "Constitution 15+",
+    "effect": "Once per long rest, you can rage for 1 minute, gaining +2 damage on melee attacks and resistance to physical damage.",
+    "type": "General",
+    "draft": false,
+    "deprecated": false,
+    "needsReview": false
+  },
+  "originalSourceObjectSha256AsSubmitted": "347a36035865ca04d8c04bf8bc7cff6679713f76b578dc98412757432acad073",
+  "submittedProcedure": "NEW: as a Bonus Action, spend the feat's one long-rest use to enter this feat rage for one elapsed minute. Gain resistance to bludgeoning, piercing and slashing damage, whether magical or nonmagical, and add 2 damage on each actual successful melee attack you own. The melee scope includes weapon, unarmed, natural and melee spell attacks; it is not limited to weapons. Add the flat 2 once to the attack's primary damage type before target defenses; it is not doubled by a critical hit and is not a separate hit, copied damage or spellcasting trigger. NEW: the rage ends early if you voluntarily end it as a Bonus Action or become Incapacitated. It does not require attacking or taking damage to continue, prohibit spellcasting/concentration, extend through repeated attacks, or grant unstated class rage features. Another real rage may coexist under its own rules, but same-scope resistance does not stack and bonuses obey their actual families; this feat's flat rider cannot be counted twice under aliases. A completed rest restores the use, not an encounter declaration.",
+  "submittedNewChoices": "Bonus Action activation/end, physical-type mapping, melee attack breadth, flat rider attribution and incapacity ending.",
+  "submittedWorkedCases": [
+    "A critical melee weapon hit doubles its actual damage dice but adds this feat's flat 2 only once. A separate ranged attack receives none of this rider.",
+    "An already bludgeoning-resistant holder remains resistant, not quarter-damage, when the rage begins. Becoming Stunned ends this proposed rage through Incapacitated."
+  ],
+  "decision": "Adopt finite BA one-minute rage and end/incapacity rule, all own melee-attack+2 and B/P/S resistance; no imported class rage benefits or spell prohibition.",
+  "completeAuthoringProcedure": "NEW: as a Bonus Action, spend the feat's one long-rest use to enter this feat rage for one elapsed minute. Gain resistance to bludgeoning, piercing and slashing damage, whether magical or nonmagical, and add 2 damage on each actual successful melee attack you own. The melee scope includes weapon, unarmed, natural and melee spell attacks; it is not limited to weapons. Add the flat 2 once to the attack's primary damage type before target defenses; it is not doubled by a critical hit and is not a separate hit, copied damage or spellcasting trigger. NEW: the rage ends early if you voluntarily end it as a Bonus Action or become Incapacitated. It does not require attacking or taking damage to continue, prohibit spellcasting/concentration, extend through repeated attacks, or grant unstated class rage features. Another real rage may coexist under its own rules, but same-scope resistance does not stack and bonuses obey their actual families; this feat's flat rider cannot be counted twice under aliases. A completed rest restores the use, not an encounter declaration.",
+  "newRuleProvenance": "All submitted NEW/proposed completions retained by this decision and all departures below are authoring decisions of FEAT327-SOURCE-2026-10-11, not recovered source wording. The original object remains immutable.",
+  "sharedContract": "FEAT_SHARED_DIRECTIONS.json: FS-01–16",
+  "supplementContract": "FEAT_SUPPLEMENT_DIRECTIONS.json: explicit source path/pointer mappings",
+  "workedCases": [
+    "A critical melee weapon hit doubles its actual damage dice but adds this feat's flat 2 only once. A separate ranged attack receives none of this rider.",
+    "An already bludgeoning-resistant holder remains resistant, not quarter-damage, when the rage begins. Becoming Stunned ends this proposed rage through Incapacitated."
+  ],
+  "payloadOperational": "full authored procedure; not a runtime adapter",
+  "selectionEnabled": false,
+  "exactApproved": false,
+  "runtimeApproved": false
+}
+```
+
+### Complete current candidate procedure
+
+NEW: as a Bonus Action, spend the feat's one long-rest use to enter this feat rage for one elapsed minute. Gain resistance to bludgeoning, piercing and slashing damage, whether magical or nonmagical, and add 2 damage on each actual successful melee attack you own. The melee scope includes weapon, unarmed, natural and melee spell attacks; it is not limited to weapons. Add the flat 2 once to the attack's primary damage type before target defenses; it is not doubled by a critical hit and is not a separate hit, copied damage or spellcasting trigger. NEW: the rage ends early if you voluntarily end it as a Bonus Action or become Incapacitated. It does not require attacking or taking damage to continue, prohibit spellcasting/concentration, extend through repeated attacks, or grant unstated class rage features. Another real rage may coexist under its own rules, but same-scope resistance does not stack and bonuses obey their actual families; this feat's flat rider cannot be counted twice under aliases. A completed rest restores the use, not an encounter declaration.
+
+### Original-position authored review references
+
+```json
+[
+  {
+    "id": "GD-05-E01",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/8"
+  },
+  {
+    "id": "GD-05-E02",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/9"
+  }
+]
+```
+
+## GD-06 — Dragon Blood
+
+### Complete original object
+
+```json
+{
+  "id": "dragon_blood",
+  "name": "Dragon Blood",
+  "description": "Draconic blood flows through your veins.",
+  "prerequisite": "Dragonborn or sorcerer with draconic bloodline",
+  "effect": "You gain resistance to your draconic ancestry's damage type and can speak, read, and write Draconic.",
+  "type": "General",
+  "draft": false,
+  "deprecated": false,
+  "needsReview": false
+}
+```
+
+### Original question
+
+```json
+"Preserve Dragonborn or sorcerer-with-draconic-bloodline prerequisite. Neither Dragonborn nor Sorcerer is an exact current base-ancestry/class identity in the supplied catalogs; Drakari is not an automatic alias. Identify lawful eligibility and a finite ancestry damage-type binding, plus Draconic language acquisition, without rewriting origins or undertaking cosmology."
+```
+
+### Preserved original source direction (historical)
+
+```json
+{
+  "featId": "dragon_blood",
+  "name": "Dragon Blood",
+  "cohort": "general_defense",
+  "questionId": "GD-06",
+  "disposition": "AUTHOR_FROM_SUBMITTED_PROCEDURE_WITH_FINAL_SHARED_RULES",
+  "sourcePath": "DescentReviewChanges/ReviewBible/data/director/general_defense_feat_operating_proposal_internal.json",
+  "sourceFileSha256": "7f8cf43d5ad139cb0f7b1c107a16db87cccf71d7b5caa3cfe632c2efc4eeb274",
+  "sourcePointer": "/records/5",
+  "originalQuestion": "Preserve Dragonborn or sorcerer-with-draconic-bloodline prerequisite. Neither Dragonborn nor Sorcerer is an exact current base-ancestry/class identity in the supplied catalogs; Drakari is not an automatic alias. Identify lawful eligibility and a finite ancestry damage-type binding, plus Draconic language acquisition, without rewriting origins or undertaking cosmology.",
+  "originalSourceObject": {
+    "id": "dragon_blood",
+    "name": "Dragon Blood",
+    "description": "Draconic blood flows through your veins.",
+    "prerequisite": "Dragonborn or sorcerer with draconic bloodline",
+    "effect": "You gain resistance to your draconic ancestry's damage type and can speak, read, and write Draconic.",
+    "type": "General",
+    "draft": false,
+    "deprecated": false,
+    "needsReview": false
+  },
+  "originalSourceObjectSha256AsSubmitted": "a8729cc839cc105297dfa09d04cb2e68c8e32e5f2bc508d90d655d17901997ab",
+  "submittedProcedure": "Preserve the printed prerequisite exactly: Dragonborn, or a Sorcerer with an actual draconic bloodline. Neither name is silently replaced by Drakari or Mage. NEW mechanical eligibility record: identify an actual controlling character/lineage source that expressly establishes one of those prerequisites and its one draconic ancestry damage type. Without that evidence the feat is not selectable in the current candidate; the name alone is not a lineage grant. Once legitimately acquired, gain resistance to that recorded actual damage type and the source's ability to speak, read and write Draconic under the reviewed language procedure. The language grant does not supply writing tools, hands or current speech when an independent condition prevents it. Existing resistance does not stack, and an existing language grant does not produce a substitute language or feat. No bloodline, species origin, dragon allegiance or cosmology is authored here. Resolve any proposed legacy-name alias in the actual source conference before opening eligibility.",
+  "submittedNewChoices": "Evidence-backed prerequisite/type record and duplicate-language handling; unmatched identity stays unresolved without inventing an alias.",
+  "submittedWorkedCases": [
+    "A Drakari entry with no explicit Dragonborn alias does not automatically satisfy the printed prerequisite. A verified historical alias would need to be recorded by the source decision first.",
+    "An actually eligible source specifying fire produces fire resistance and Draconic literacy/speech, not a free choice among every dragon damage type."
+  ],
+  "decision": "Preserve exact unmatched Dragonborn/Sorcerer bloodline prerequisite and source-bound damage type; no Drakari/Mage alias invented. Procedure complete but source-qualified eligibility remains unavailable without real receipt.",
+  "completeAuthoringProcedure": "Preserve the printed prerequisite exactly: Dragonborn, or a Sorcerer with an actual draconic bloodline. Neither name is silently replaced by Drakari or Mage. NEW mechanical eligibility record: identify an actual controlling character/lineage source that expressly establishes one of those prerequisites and its one draconic ancestry damage type. Without that evidence the feat is not selectable in the current candidate; the name alone is not a lineage grant. Once legitimately acquired, gain resistance to that recorded actual damage type and the source's ability to speak, read and write Draconic under the reviewed language procedure. The language grant does not supply writing tools, hands or current speech when an independent condition prevents it. Existing resistance does not stack, and an existing language grant does not produce a substitute language or feat. No bloodline, species origin, dragon allegiance or cosmology is authored here. Resolve any proposed legacy-name alias in the actual source conference before opening eligibility.",
+  "newRuleProvenance": "All submitted NEW/proposed completions retained by this decision and all departures below are authoring decisions of FEAT327-SOURCE-2026-10-11, not recovered source wording. The original object remains immutable.",
+  "sharedContract": "FEAT_SHARED_DIRECTIONS.json: FS-01–16",
+  "supplementContract": "FEAT_SUPPLEMENT_DIRECTIONS.json: explicit source path/pointer mappings",
+  "workedCases": [
+    "A Drakari entry with no explicit Dragonborn alias does not automatically satisfy the printed prerequisite. A verified historical alias would need to be recorded by the source decision first.",
+    "An actually eligible source specifying fire produces fire resistance and Draconic literacy/speech, not a free choice among every dragon damage type."
+  ],
+  "payloadOperational": "full authored procedure; not a runtime adapter",
+  "selectionEnabled": false,
+  "exactApproved": false,
+  "runtimeApproved": false
+}
+```
+
+### Complete current candidate procedure
+
+Preserve the printed prerequisite exactly: Dragonborn, or a Sorcerer with an actual draconic bloodline. Neither name is silently replaced by Drakari or Mage. NEW mechanical eligibility record: identify an actual controlling character/lineage source that expressly establishes one of those prerequisites and its one draconic ancestry damage type. Without that evidence the feat is not selectable in the current candidate; the name alone is not a lineage grant. Once legitimately acquired, gain resistance to that recorded actual damage type and the source's ability to speak, read and write Draconic under the reviewed language procedure. The language grant does not supply writing tools, hands or current speech when an independent condition prevents it. Existing resistance does not stack, and an existing language grant does not produce a substitute language or feat. No bloodline, species origin, dragon allegiance or cosmology is authored here. Resolve any proposed legacy-name alias in the actual source conference before opening eligibility.
+
+### Original-position authored review references
+
+```json
+[
+  {
+    "id": "GD-06-E01",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/10"
+  },
+  {
+    "id": "GD-06-E02",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/11"
+  },
+  {
+    "id": "FA-27",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/additionalBoundaryReviews/3"
+  }
+]
+```
+
+## GD-07 — Durable
+
+### Complete original object
+
+```json
+{
+  "id": "durable",
+  "name": "Durable",
+  "description": "Hardy and resilient, you gain the following benefits:",
+  "prerequisite": "None",
+  "effect": "Increase Constitution by 1, when you roll a Hit Die to regain hit points, minimum amount regained equals twice your Constitution modifier",
+  "type": "General",
+  "draft": false,
+  "deprecated": false,
+  "needsReview": false
+}
+```
+
+### Original question
+
+```json
+"Retain +1CON and the twice-CON-modifier minimum when spending a Hit Die for HP. Decide floor0/1 for nonpositive modifiers, whether the minimum applies after the die plus CON or to the die, per-die versus combined spending, score cap and maxHP recomputation. Respect actual Hit Dice, rest eligibility, Wounds and same-healing bonuses."
+```
+
+### Preserved original source direction (historical)
+
+```json
+{
+  "featId": "durable",
+  "name": "Durable",
+  "cohort": "general_defense",
+  "questionId": "GD-07",
+  "disposition": "AUTHOR_FROM_SUBMITTED_PROCEDURE_WITH_FINAL_SHARED_RULES",
+  "sourcePath": "DescentReviewChanges/ReviewBible/data/director/general_defense_feat_operating_proposal_internal.json",
+  "sourceFileSha256": "7f8cf43d5ad139cb0f7b1c107a16db87cccf71d7b5caa3cfe632c2efc4eeb274",
+  "sourcePointer": "/records/6",
+  "originalQuestion": "Retain +1CON and the twice-CON-modifier minimum when spending a Hit Die for HP. Decide floor0/1 for nonpositive modifiers, whether the minimum applies after the die plus CON or to the die, per-die versus combined spending, score cap and maxHP recomputation. Respect actual Hit Dice, rest eligibility, Wounds and same-healing bonuses.",
+  "originalSourceObject": {
+    "id": "durable",
+    "name": "Durable",
+    "description": "Hardy and resilient, you gain the following benefits:",
+    "prerequisite": "None",
+    "effect": "Increase Constitution by 1, when you roll a Hit Die to regain hit points, minimum amount regained equals twice your Constitution modifier",
+    "type": "General",
+    "draft": false,
+    "deprecated": false,
+    "needsReview": false
+  },
+  "originalSourceObjectSha256AsSubmitted": "d26c75a30601c8cab401cda59b8623fdfe2b85050ca9d0e2bd49db7e26974c51",
+  "submittedProcedure": "Increase Constitution by 1, normally no higher than 20, and recompute the real derived modifier and maximum-HP records without healing. For each actual Hit Die legally spent and rolled to restore HP, NEW: set that die's pre-healing-modifier amount to the greatest of its ordinary die-plus-CON healing amount, twice the current signed CON modifier, and zero. Apply the minimum after the ordinary die-plus-CON calculation, separately per die, before ordinary healing bonuses, reductions, blockers and maximum/Critical caps. The resulting actual HP gain may be less than this raw minimum or zero. It creates no Hit Die, rest permission or automatic restoration of spent dice. Wounds reduce actual Hit Dice recovery under their existing rule, not this individual die's result. Do not floor the die face itself at twice CON or multiply a combined multi-die pool a second time.",
+  "submittedNewChoices": "Per-die floor after die-plus-CON, nonnegative bound and placement before ordinary healing pipeline.",
+  "submittedWorkedCases": [
+    "CON modifier +3 with a Hit Die face of 1 normally gives 4; Durable makes the raw healing 6 before actual healing modifiers and caps.",
+    "CON modifier -1 with a die face of 1 gives zero under the proposed floor, not negative healing. A genuine no-HP-gain effect can still prevent a positive Durable result."
+  ],
+  "decision": "Adopt per-HitDie max(ordinarydie+CON,2CON,0) before healing pipeline; source CON+1 capacity is not healing, no new HitDice.",
+  "completeAuthoringProcedure": "Increase Constitution by 1, normally no higher than 20, and recompute the real derived modifier and maximum-HP records without healing. For each actual Hit Die legally spent and rolled to restore HP, NEW: set that die's pre-healing-modifier amount to the greatest of its ordinary die-plus-CON healing amount, twice the current signed CON modifier, and zero. Apply the minimum after the ordinary die-plus-CON calculation, separately per die, before ordinary healing bonuses, reductions, blockers and maximum/Critical caps. The resulting actual HP gain may be less than this raw minimum or zero. It creates no Hit Die, rest permission or automatic restoration of spent dice. Wounds reduce actual Hit Dice recovery under their existing rule, not this individual die's result. Do not floor the die face itself at twice CON or multiply a combined multi-die pool a second time.",
+  "newRuleProvenance": "All submitted NEW/proposed completions retained by this decision and all departures below are authoring decisions of FEAT327-SOURCE-2026-10-11, not recovered source wording. The original object remains immutable.",
+  "sharedContract": "FEAT_SHARED_DIRECTIONS.json: FS-01–16",
+  "supplementContract": "FEAT_SUPPLEMENT_DIRECTIONS.json: explicit source path/pointer mappings",
+  "workedCases": [
+    "CON modifier +3 with a Hit Die face of 1 normally gives 4; Durable makes the raw healing 6 before actual healing modifiers and caps.",
+    "CON modifier -1 with a die face of 1 gives zero under the proposed floor, not negative healing. A genuine no-HP-gain effect can still prevent a positive Durable result."
+  ],
+  "payloadOperational": "full authored procedure; not a runtime adapter",
+  "selectionEnabled": false,
+  "exactApproved": false,
+  "runtimeApproved": false
+}
+```
+
+### Complete current candidate procedure
+
+Increase Constitution by 1, normally no higher than 20, and recompute the real derived modifier and maximum-HP records without healing. For each actual Hit Die legally spent and rolled to restore HP, NEW: set that die's pre-healing-modifier amount to the greatest of its ordinary die-plus-CON healing amount, twice the current signed CON modifier, and zero. Apply the minimum after the ordinary die-plus-CON calculation, separately per die, before ordinary healing bonuses, reductions, blockers and maximum/Critical caps. The resulting actual HP gain may be less than this raw minimum or zero. It creates no Hit Die, rest permission or automatic restoration of spent dice. Wounds reduce actual Hit Dice recovery under their existing rule, not this individual die's result. Do not floor the die face itself at twice CON or multiply a combined multi-die pool a second time.
+
+### Original-position authored review references
+
+```json
+[
+  {
+    "id": "GD-07-E01",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/12"
+  },
+  {
+    "id": "GD-07-E02",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/13"
+  }
+]
+```
+
+## GD-08 — Elemental Body
+
+### Complete original object
+
+```json
+{
+  "id": "elemental_body",
+  "name": "Elemental Body",
+  "description": "Your body has been infused with elemental energy.",
+  "prerequisite": "Constitution 15+, exposure to elemental plane",
+  "effect": "Choose an element. You gain resistance to that damage type and your unarmed strikes deal that damage type.",
+  "type": "General",
+  "draft": false,
+  "deprecated": false,
+  "needsReview": false
+}
+```
+
+### Original question
+
+```json
+"Preserve CON15 and exposure-to-elemental-plane prerequisite as unresolved eligibility for the deferred cosmology branch. Define a finite mechanical damage-type choice, resistance and replacement versus extra unarmed damage; attacks still use actual proficiency/ability and damage dice. No creature-type change, new anatomy or planar-origin claim follows."
+```
+
+### Preserved original source direction (historical)
+
+```json
+{
+  "featId": "elemental_body",
+  "name": "Elemental Body",
+  "cohort": "general_defense",
+  "questionId": "GD-08",
+  "disposition": "AUTHOR_FROM_SUBMITTED_PROCEDURE_WITH_FINAL_SHARED_RULES",
+  "sourcePath": "DescentReviewChanges/ReviewBible/data/director/general_defense_feat_operating_proposal_internal.json",
+  "sourceFileSha256": "7f8cf43d5ad139cb0f7b1c107a16db87cccf71d7b5caa3cfe632c2efc4eeb274",
+  "sourcePointer": "/records/7",
+  "originalQuestion": "Preserve CON15 and exposure-to-elemental-plane prerequisite as unresolved eligibility for the deferred cosmology branch. Define a finite mechanical damage-type choice, resistance and replacement versus extra unarmed damage; attacks still use actual proficiency/ability and damage dice. No creature-type change, new anatomy or planar-origin claim follows.",
+  "originalSourceObject": {
+    "id": "elemental_body",
+    "name": "Elemental Body",
+    "description": "Your body has been infused with elemental energy.",
+    "prerequisite": "Constitution 15+, exposure to elemental plane",
+    "effect": "Choose an element. You gain resistance to that damage type and your unarmed strikes deal that damage type.",
+    "type": "General",
+    "draft": false,
+    "deprecated": false,
+    "needsReview": false
+  },
+  "originalSourceObjectSha256AsSubmitted": "b2ec20a84ac7cdfc93b0112f3b3bbf4b9f335b0aeaeda0b4c258f7f63052dd58",
+  "submittedProcedure": "Require Constitution 15 and an actual recorded source event satisfying the printed exposure-to-an-elemental-plane prerequisite. This record is a literal eligibility receipt, not permission to invent a plane or reinterpret an origin. NEW finite mechanical choice at acquisition: select acid, cold, fire, lightning or thunder as the feat's one permanent damage type; this menu is proposed, not a recovered elemental taxonomy. Gain resistance to that type. Your actual unarmed strikes replace their ordinary base damage type with the selected type; they do not add a second packet, new dice or another ability modifier. Other separately sourced riders keep their own types. Use actual unarmed attack proficiency, ability, action economy and body legality. A natural weapon is not automatically an unarmed strike unless its source says so. No creature-type change, anatomy, emitted aura, elemental immunity or automatic environmental protection is granted. A new type choice requires an explicit later retraining source; none is created here.",
+  "submittedNewChoices": "Five-type operational menu and base unarmed-type replacement; exposure remains receipt-bound without new lore.",
+  "submittedWorkedCases": [
+    "Selecting lightning changes a legal unarmed strike's normal base damage to lightning. It does not add an extra lightning die on top of the old bludgeoning damage.",
+    "Without an actual qualifying exposure receipt, Constitution 15 alone does not unlock the feat or establish that a planar trip occurred."
+  ],
+  "decision": "Adopt explicitly NEW acid/cold/fire/lightning/thunder menu and unarmed base-type replacement; exposure prerequisite remains literal receipt only, no invented plane.",
+  "completeAuthoringProcedure": "Require Constitution 15 and an actual recorded source event satisfying the printed exposure-to-an-elemental-plane prerequisite. This record is a literal eligibility receipt, not permission to invent a plane or reinterpret an origin. NEW finite mechanical choice at acquisition: select acid, cold, fire, lightning or thunder as the feat's one permanent damage type; this menu is proposed, not a recovered elemental taxonomy. Gain resistance to that type. Your actual unarmed strikes replace their ordinary base damage type with the selected type; they do not add a second packet, new dice or another ability modifier. Other separately sourced riders keep their own types. Use actual unarmed attack proficiency, ability, action economy and body legality. A natural weapon is not automatically an unarmed strike unless its source says so. No creature-type change, anatomy, emitted aura, elemental immunity or automatic environmental protection is granted. A new type choice requires an explicit later retraining source; none is created here.",
+  "newRuleProvenance": "All submitted NEW/proposed completions retained by this decision and all departures below are authoring decisions of FEAT327-SOURCE-2026-10-11, not recovered source wording. The original object remains immutable.",
+  "sharedContract": "FEAT_SHARED_DIRECTIONS.json: FS-01–16",
+  "supplementContract": "FEAT_SUPPLEMENT_DIRECTIONS.json: explicit source path/pointer mappings",
+  "workedCases": [
+    "Selecting lightning changes a legal unarmed strike's normal base damage to lightning. It does not add an extra lightning die on top of the old bludgeoning damage.",
+    "Without an actual qualifying exposure receipt, Constitution 15 alone does not unlock the feat or establish that a planar trip occurred."
+  ],
+  "payloadOperational": "full authored procedure; not a runtime adapter",
+  "selectionEnabled": false,
+  "exactApproved": false,
+  "runtimeApproved": false
+}
+```
+
+### Complete current candidate procedure
+
+Require Constitution 15 and an actual recorded source event satisfying the printed exposure-to-an-elemental-plane prerequisite. This record is a literal eligibility receipt, not permission to invent a plane or reinterpret an origin. NEW finite mechanical choice at acquisition: select acid, cold, fire, lightning or thunder as the feat's one permanent damage type; this menu is proposed, not a recovered elemental taxonomy. Gain resistance to that type. Your actual unarmed strikes replace their ordinary base damage type with the selected type; they do not add a second packet, new dice or another ability modifier. Other separately sourced riders keep their own types. Use actual unarmed attack proficiency, ability, action economy and body legality. A natural weapon is not automatically an unarmed strike unless its source says so. No creature-type change, anatomy, emitted aura, elemental immunity or automatic environmental protection is granted. A new type choice requires an explicit later retraining source; none is created here.
+
+### Original-position authored review references
+
+```json
+[
+  {
+    "id": "GD-08-E01",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/14"
+  },
+  {
+    "id": "GD-08-E02",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/15"
+  }
+]
+```
+
+## GD-09 — Endurance
+
+### Complete original object
+
+```json
+{
+  "id": "endurance",
+  "name": "Endurance",
+  "description": "You can push your body beyond normal limits.",
+  "prerequisite": "Constitution 13+",
+  "effect": "You can go twice as long without food, water, or sleep, and you have advantage on Constitution saves against exhaustion.",
+  "type": "General",
+  "draft": false,
+  "deprecated": false,
+  "needsReview": false
+}
+```
+
+### Original question
+
+```json
+"Resolve twice-as-long food/water/sleep deprivation against actual schedules, quantities and cumulative penalties, not infinite sustenance. Identify exact CON saves against Exhausted and environmental Strain, and whether sleep tolerance changes any rest benefits. No unprinted healing, RP recovery or universal immunity."
+```
+
+### Preserved original source direction (historical)
+
+```json
+{
+  "featId": "endurance",
+  "name": "Endurance",
+  "cohort": "general_defense",
+  "questionId": "GD-09",
+  "disposition": "AUTHOR_FROM_EXACT_REPLACEMENT_WITH_FINAL_SHARED_RULES",
+  "sourcePath": "DescentReviewChanges/ReviewBible/data/director/general_defense_feat_operating_proposal_internal.json",
+  "sourceFileSha256": "7f8cf43d5ad139cb0f7b1c107a16db87cccf71d7b5caa3cfe632c2efc4eeb274",
+  "sourcePointer": "/records/8",
+  "originalQuestion": "Resolve twice-as-long food/water/sleep deprivation against actual schedules, quantities and cumulative penalties, not infinite sustenance. Identify exact CON saves against Exhausted and environmental Strain, and whether sleep tolerance changes any rest benefits. No unprinted healing, RP recovery or universal immunity.",
+  "originalSourceObject": {
+    "id": "endurance",
+    "name": "Endurance",
+    "description": "You can push your body beyond normal limits.",
+    "prerequisite": "Constitution 13+",
+    "effect": "You can go twice as long without food, water, or sleep, and you have advantage on Constitution saves against exhaustion.",
+    "type": "General",
+    "draft": false,
+    "deprecated": false,
+    "needsReview": false
+  },
+  "originalSourceObjectSha256AsSubmitted": "d150e5adda6e6c0170ac49f6a8d49be4acc7afa950e4443d4139abc08a85af5f",
+  "submittedProcedure": "NEW precise deprivation bridge: while this feat is operative, accrue only half the ordinary food-, water- and sleep-deprivation time toward each respective unmet-need deadline. Use the same elapsed world clock, preserving fractional accrued time and prior exposure; do not halve the actual daily food/water quantity. A nominal 24-hour no-water threshold therefore requires 48 actual hours of otherwise identical deprivation under the feat. Partial intake and resets follow the actual deprivation procedure. Acquisition does not erase already accrued debt or penalties, and suppression changes future accrual rather than replaying old time. Gain advantage on actual Constitution saves whose source prevents or resists gaining the Exhaustion condition. NEW: include a Constitution save against ordinary environmental expedition Strain only if the source explicitly equates that save with exhaustion; do not apply it to Dissonance, serum Strain or every similarly named track. Sleep tolerance gives no short/long-rest benefits, extra active-work Watch, free recovery or exemption from an actual hard work cap. The live expedition verdict must supply the final baseline schedules and distinct track mapping.",
+  "submittedNewChoices": "Half-rate future deprivation accrual, no retroactive cure, exact save predicate and preserved rest/work limits.",
+  "submittedWorkedCases": [
+    "Twelve actual hours without water adds six hours to a deprivation clock that would ordinarily accrue one-for-one. It does not produce half a ration of missing water.",
+    "Remaining awake longer does not itself restore RP or grant a beneficial long rest. An unrelated Warrior serum-Strain save does not gain this feat's advantage by name alone."
+  ],
+  "decision": "NEW FS-12 adopts a checkpoint-based exception to canonical daily shortage/Rest Debt penalties; it replaces the hypothetical deprivation timer, not the EX58 clock or requirements.",
+  "completeAuthoringProcedure": "Keep advantage on an actual Constitution save to resist Exhaustion; this supplies no save where the governing rule assesses a penalty directly. NEW Endurance/EX58 bridge: keep the same 24-hour provisioning checkpoints, eight-hour Watches, two-active-work ceiling, actual Rest Debt opening, deadline at the end of the second following Watch, and safe eight-hour rest cure. Do not double a Watch, create food/water, lengthen an actual sleep-debt deadline, or treat work as rest.\nMaintain two separate feat records, foodWaterPending and sleepPending, each initially 0 and limited to 0 or 1. At a canonical daily checkpoint where food/water shortage is the sole reason for the one expedition-Strain penalty, 0 becomes 1 and that one penalty is omitted; 1 becomes 0 and the original one penalty applies. A day actually meeting both food and water requirements clears foodWaterPending. Another unmet mandatory logistical requirement still causes its original single daily penalty; Endurance does not reduce it or add a second daily penalty. The day remains unsupported wherever its actual requirements are unmet, even when the feat omits a Strain point.\nAt an actual canonical sleep-debt penalty event, apply the same 0→1/omit, 1→0/apply sequence to sleepPending. Assess each original event once: the unpaid deadline event and a subsequent missed designated Rest Watch follow their own EX58 scheduling; do not create an hourly or per-Watch penalty. Debt remains owed and deadlines reset only as EX58 says. A genuinely completed safe eight-hour rest clears sleepPending and actual Rest Debt, even if it supplies no additional beneficial-long-rest resource recovery. Food/water and sleep credits never offset each other. Other Strain, Exhaustion, air, weather and hazard causes retain their original rules.\nAcquisition clears neither existing Strain nor existing debt. If the feat is unavailable at a checkpoint, apply the original cause-specific penalty and clear that cause's pending credit; availability later cannot rewrite the past. Preserve all assessed and omitted events and their causes. This is an explicitly NEW interpretation of 'go twice as long': it halves the frequency of the applicable canonical penalty events, not the elapsed length of every irregular sleep-debt window. Literal older wording and the rejected generic-timer draft remain historical.",
+  "newRuleProvenance": "All submitted NEW/proposed completions retained by this decision and all departures below are authoring decisions of FEAT327-SOURCE-2026-10-11, not recovered source wording. The original object remains immutable.",
+  "sharedContract": "FEAT_SHARED_DIRECTIONS.json: FS-01–16",
+  "supplementContract": "FEAT_SUPPLEMENT_DIRECTIONS.json: explicit source path/pointer mappings",
+  "workedCases": [
+    "A standard actor lacks water but has all other daily provisions. At the first 24-hour shortage checkpoint Endurance omits the one Strain point and sets foodWaterPending=1; at the next equally unsupported checkpoint it applies one and returns the counter to0. Both days are still unsupported; no water or recovery permission appears.",
+    "A missed Rest Watch opens actual Rest Debt. At its unchanged deadline Endurance may omit its first sleep penalty, but the debt is not cleared. A later canonical missed-Rest penalty applies the second point and resets only the normal EX58 deadline. A real safe eight-hour rest clears the debt and sleepPending, not a previously spent RP pool or another beneficial-long-rest allowance."
+  ],
+  "payloadOperational": "full authored procedure; not a runtime adapter",
+  "selectionEnabled": false,
+  "exactApproved": false,
+  "runtimeApproved": false
+}
+```
+
+### Complete current candidate procedure
+
+Keep advantage on an actual Constitution save to resist Exhaustion; this supplies no save where the governing rule assesses a penalty directly. NEW Endurance/EX58 bridge: keep the same 24-hour provisioning checkpoints, eight-hour Watches, two-active-work ceiling, actual Rest Debt opening, deadline at the end of the second following Watch, and safe eight-hour rest cure. Do not double a Watch, create food/water, lengthen an actual sleep-debt deadline, or treat work as rest.
+Maintain two separate feat records, foodWaterPending and sleepPending, each initially 0 and limited to 0 or 1. At a canonical daily checkpoint where food/water shortage is the sole reason for the one expedition-Strain penalty, 0 becomes 1 and that one penalty is omitted; 1 becomes 0 and the original one penalty applies. A day actually meeting both food and water requirements clears foodWaterPending. Another unmet mandatory logistical requirement still causes its original single daily penalty; Endurance does not reduce it or add a second daily penalty. The day remains unsupported wherever its actual requirements are unmet, even when the feat omits a Strain point.
+At an actual canonical sleep-debt penalty event, apply the same 0→1/omit, 1→0/apply sequence to sleepPending. Assess each original event once: the unpaid deadline event and a subsequent missed designated Rest Watch follow their own EX58 scheduling; do not create an hourly or per-Watch penalty. Debt remains owed and deadlines reset only as EX58 says. A genuinely completed safe eight-hour rest clears sleepPending and actual Rest Debt, even if it supplies no additional beneficial-long-rest resource recovery. Food/water and sleep credits never offset each other. Other Strain, Exhaustion, air, weather and hazard causes retain their original rules.
+Acquisition clears neither existing Strain nor existing debt. If the feat is unavailable at a checkpoint, apply the original cause-specific penalty and clear that cause's pending credit; availability later cannot rewrite the past. Preserve all assessed and omitted events and their causes. This is an explicitly NEW interpretation of 'go twice as long': it halves the frequency of the applicable canonical penalty events, not the elapsed length of every irregular sleep-debt window. Literal older wording and the rejected generic-timer draft remain historical.
+
+### Original-position authored review references
+
+```json
+[
+  {
+    "id": "GD-09-E01",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/16"
+  },
+  {
+    "id": "GD-09-E02",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/17"
+  },
+  {
+    "id": "FA-01",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/additionalBoundaryReviews/0"
+  },
+  {
+    "id": "FA-02",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/additionalBoundaryReviews/1"
+  }
+]
+```
+
+## GD-10 — Fey Ancestry
+
+### Complete original object
+
+```json
+{
+  "id": "fey_ancestry",
+  "name": "Fey Ancestry",
+  "description": "You have fey blood in your lineage.",
+  "prerequisite": "Charisma 13+",
+  "effect": "You have advantage on saving throws against being charmed, and magic can't put you to sleep.",
+  "type": "General",
+  "draft": false,
+  "deprecated": false,
+  "needsReview": false
+}
+```
+
+### Original question
+
+```json
+"Source requires only CHA13, not a Feykin/Elf ancestry. Preserve that distinction while defining advantage against actual Charmed and magical-sleep prevention, including already asleep versus future application and ordinary exhaustion/sleep. Do not infer creature type, lineage truth or broad charm/fear immunity."
+```
+
+### Preserved original source direction (historical)
+
+```json
+{
+  "featId": "fey_ancestry",
+  "name": "Fey Ancestry",
+  "cohort": "general_defense",
+  "questionId": "GD-10",
+  "disposition": "AUTHOR_FROM_SUBMITTED_PROCEDURE_WITH_FINAL_SHARED_RULES",
+  "sourcePath": "DescentReviewChanges/ReviewBible/data/director/general_defense_feat_operating_proposal_internal.json",
+  "sourceFileSha256": "7f8cf43d5ad139cb0f7b1c107a16db87cccf71d7b5caa3cfe632c2efc4eeb274",
+  "sourcePointer": "/records/9",
+  "originalQuestion": "Source requires only CHA13, not a Feykin/Elf ancestry. Preserve that distinction while defining advantage against actual Charmed and magical-sleep prevention, including already asleep versus future application and ordinary exhaustion/sleep. Do not infer creature type, lineage truth or broad charm/fear immunity.",
+  "originalSourceObject": {
+    "id": "fey_ancestry",
+    "name": "Fey Ancestry",
+    "description": "You have fey blood in your lineage.",
+    "prerequisite": "Charisma 13+",
+    "effect": "You have advantage on saving throws against being charmed, and magic can't put you to sleep.",
+    "type": "General",
+    "draft": false,
+    "deprecated": false,
+    "needsReview": false
+  },
+  "originalSourceObjectSha256AsSubmitted": "b0a1c53c63bbc95f9dd1f68c09fe02c683517c914791a27827bb1e4dddc10f88",
+  "submittedProcedure": "The printed prerequisite is Charisma 13; acquiring this feat does not require or grant an Elf/Feykin ancestry. Gain advantage on actual saving throws to prevent or end the Charmed condition. NEW: qualify by the actual effect's Charmed outcome, not merely an Enchantment school or a persuasive theme; no new save is created for a no-save effect. Prevent a new magical application whose actual source puts you to sleep. This does not block ordinary sleep, fatigue, zero-HP Unconsciousness or a magical effect that causes Unconsciousness without sleep. NEW prospective boundary: acquiring or unsuppressing the feat does not itself end an already applied sleep effect; that effect retains its own wake/removal rules unless it explicitly checks immunity continuously. A new sleep application while protection is operative fails. Other independent damage/conditions from the same source remain. This feat grants no creature type, lineage history, charm immunity or fear immunity.",
+  "submittedNewChoices": "Charmed/sleep predicates and prospective sleep protection; no implicit ancestry gate or origin claim.",
+  "submittedWorkedCases": [
+    "An eligible Charisma-13 character of a different ancestry can acquire the feat through a legal choice and gains its mechanical protections without becoming Feykin.",
+    "A spell that newly puts the holder to sleep is prevented. Falling to zero HP from ordinary damage still follows Core Unconsciousness and death rules."
+  ],
+  "decision": "Keep actualCHA13 prerequisite without heritage gate, Charmed-save advantage and prospective magic-sleep prevention only.",
+  "completeAuthoringProcedure": "The printed prerequisite is Charisma 13; acquiring this feat does not require or grant an Elf/Feykin ancestry. Gain advantage on actual saving throws to prevent or end the Charmed condition. NEW: qualify by the actual effect's Charmed outcome, not merely an Enchantment school or a persuasive theme; no new save is created for a no-save effect. Prevent a new magical application whose actual source puts you to sleep. This does not block ordinary sleep, fatigue, zero-HP Unconsciousness or a magical effect that causes Unconsciousness without sleep. NEW prospective boundary: acquiring or unsuppressing the feat does not itself end an already applied sleep effect; that effect retains its own wake/removal rules unless it explicitly checks immunity continuously. A new sleep application while protection is operative fails. Other independent damage/conditions from the same source remain. This feat grants no creature type, lineage history, charm immunity or fear immunity.",
+  "newRuleProvenance": "All submitted NEW/proposed completions retained by this decision and all departures below are authoring decisions of FEAT327-SOURCE-2026-10-11, not recovered source wording. The original object remains immutable.",
+  "sharedContract": "FEAT_SHARED_DIRECTIONS.json: FS-01–16",
+  "supplementContract": "FEAT_SUPPLEMENT_DIRECTIONS.json: explicit source path/pointer mappings",
+  "workedCases": [
+    "An eligible Charisma-13 character of a different ancestry can acquire the feat through a legal choice and gains its mechanical protections without becoming Feykin.",
+    "A spell that newly puts the holder to sleep is prevented. Falling to zero HP from ordinary damage still follows Core Unconsciousness and death rules."
+  ],
+  "payloadOperational": "full authored procedure; not a runtime adapter",
+  "selectionEnabled": false,
+  "exactApproved": false,
+  "runtimeApproved": false
+}
+```
+
+### Complete current candidate procedure
+
+The printed prerequisite is Charisma 13; acquiring this feat does not require or grant an Elf/Feykin ancestry. Gain advantage on actual saving throws to prevent or end the Charmed condition. NEW: qualify by the actual effect's Charmed outcome, not merely an Enchantment school or a persuasive theme; no new save is created for a no-save effect. Prevent a new magical application whose actual source puts you to sleep. This does not block ordinary sleep, fatigue, zero-HP Unconsciousness or a magical effect that causes Unconsciousness without sleep. NEW prospective boundary: acquiring or unsuppressing the feat does not itself end an already applied sleep effect; that effect retains its own wake/removal rules unless it explicitly checks immunity continuously. A new sleep application while protection is operative fails. Other independent damage/conditions from the same source remain. This feat grants no creature type, lineage history, charm immunity or fear immunity.
+
+### Original-position authored review references
+
+```json
+[
+  {
+    "id": "GD-10-E01",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/18"
+  },
+  {
+    "id": "GD-10-E02",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/19"
+  }
+]
+```
+
+## GD-11 — Giant Strength
+
+### Complete original object
+
+```json
+{
+  "id": "giant_strength",
+  "name": "Giant Strength",
+  "description": "You possess the strength of giants.",
+  "prerequisite": "Strength 17+",
+  "effect": "Your carrying capacity doubles, and you can wield weapons one size larger than normal without penalty.",
+  "type": "General",
+  "draft": false,
+  "deprecated": false,
+  "needsReview": false
+}
+```
+
+### Original question
+
+```json
+"Define doubling under the current pounds and Load reconciliation, whether it affects push/drag/lift, and stacking with actual size or other capacity effects. Complete one-size-larger weapon access using existing weapon sizes, hands and damage rules; no automatic reach, extra dice, anatomy or exemption from other restrictions."
+```
+
+### Preserved original source direction (historical)
+
+```json
+{
+  "featId": "giant_strength",
+  "name": "Giant Strength",
+  "cohort": "general_defense",
+  "questionId": "GD-11",
+  "disposition": "AUTHOR_FROM_SUBMITTED_PROCEDURE_WITH_FINAL_SHARED_RULES",
+  "sourcePath": "DescentReviewChanges/ReviewBible/data/director/general_defense_feat_operating_proposal_internal.json",
+  "sourceFileSha256": "7f8cf43d5ad139cb0f7b1c107a16db87cccf71d7b5caa3cfe632c2efc4eeb274",
+  "sourcePointer": "/records/10",
+  "originalQuestion": "Define doubling under the current pounds and Load reconciliation, whether it affects push/drag/lift, and stacking with actual size or other capacity effects. Complete one-size-larger weapon access using existing weapon sizes, hands and damage rules; no automatic reach, extra dice, anatomy or exemption from other restrictions.",
+  "originalSourceObject": {
+    "id": "giant_strength",
+    "name": "Giant Strength",
+    "description": "You possess the strength of giants.",
+    "prerequisite": "Strength 17+",
+    "effect": "Your carrying capacity doubles, and you can wield weapons one size larger than normal without penalty.",
+    "type": "General",
+    "draft": false,
+    "deprecated": false,
+    "needsReview": false
+  },
+  "originalSourceObjectSha256AsSubmitted": "f003bbe0dc36a1f185764d83b90d0befaf765fde54a43a38c6dc8ad7f8ed6b38",
+  "submittedProcedure": "After computing the current body's ordinary physical carrying capacity and inventory Load capacity from actual Strength and size, double both capacities. NEW: the same factor also doubles the corresponding push/drag/lift limit so that the paired physical-handling limits remain coherent. It does not double an item's weight, remove carried cargo, alter casualty Load, enlarge a mount's capacity or multiply an already modified result twice. Distinct capacity effects use their actual stacking clauses; no generic repeated doubling is granted. You may wield a weapon made for a body one size category larger than your actual current body without a size-only handling penalty. Use that weapon's actual reviewed item profile, hands, reach, damage and properties; the feat itself adds no damage die, reach, proficiency, free hand or two-size permission. An oversized weapon without a complete source profile remains an item-authoring dependency rather than receiving improvised bigger statistics. Real anatomy and Strength requirements still apply.",
+  "submittedNewChoices": "Pounds/Load/push-drag-lift capacity binding and one-category weapon permission; no invented oversized profile.",
+  "submittedWorkedCases": [
+    "A Medium STR-18 body has ordinary 270-pound carry and 18 Load; this proposal gives 540 pounds and 36 Load, with the corresponding lift/push/drag limit doubled once.",
+    "Wielding an actual Large weapon does not give a Medium holder Large reach or an extra damage die unless that weapon's complete profile expressly supplies it."
+  ],
+  "decision": "Adopt paired pounds/Load and push-drag-lift doubling with real size/profile and one-size-larger actual weapon permission; final capacity family governs overlap, no invented weapon dice.",
+  "completeAuthoringProcedure": "After computing the current body's ordinary physical carrying capacity and inventory Load capacity from actual Strength and size, double both capacities. NEW: the same factor also doubles the corresponding push/drag/lift limit so that the paired physical-handling limits remain coherent. It does not double an item's weight, remove carried cargo, alter casualty Load, enlarge a mount's capacity or multiply an already modified result twice. Distinct capacity effects use their actual stacking clauses; no generic repeated doubling is granted. You may wield a weapon made for a body one size category larger than your actual current body without a size-only handling penalty. Use that weapon's actual reviewed item profile, hands, reach, damage and properties; the feat itself adds no damage die, reach, proficiency, free hand or two-size permission. An oversized weapon without a complete source profile remains an item-authoring dependency rather than receiving improvised bigger statistics. Real anatomy and Strength requirements still apply.",
+  "newRuleProvenance": "All submitted NEW/proposed completions retained by this decision and all departures below are authoring decisions of FEAT327-SOURCE-2026-10-11, not recovered source wording. The original object remains immutable.",
+  "sharedContract": "FEAT_SHARED_DIRECTIONS.json: FS-01–16",
+  "supplementContract": "FEAT_SUPPLEMENT_DIRECTIONS.json: explicit source path/pointer mappings",
+  "workedCases": [
+    "A Medium STR-18 body has ordinary 270-pound carry and 18 Load; this proposal gives 540 pounds and 36 Load, with the corresponding lift/push/drag limit doubled once.",
+    "Wielding an actual Large weapon does not give a Medium holder Large reach or an extra damage die unless that weapon's complete profile expressly supplies it."
+  ],
+  "payloadOperational": "full authored procedure; not a runtime adapter",
+  "selectionEnabled": false,
+  "exactApproved": false,
+  "runtimeApproved": false
+}
+```
+
+### Complete current candidate procedure
+
+After computing the current body's ordinary physical carrying capacity and inventory Load capacity from actual Strength and size, double both capacities. NEW: the same factor also doubles the corresponding push/drag/lift limit so that the paired physical-handling limits remain coherent. It does not double an item's weight, remove carried cargo, alter casualty Load, enlarge a mount's capacity or multiply an already modified result twice. Distinct capacity effects use their actual stacking clauses; no generic repeated doubling is granted. You may wield a weapon made for a body one size category larger than your actual current body without a size-only handling penalty. Use that weapon's actual reviewed item profile, hands, reach, damage and properties; the feat itself adds no damage die, reach, proficiency, free hand or two-size permission. An oversized weapon without a complete source profile remains an item-authoring dependency rather than receiving improvised bigger statistics. Real anatomy and Strength requirements still apply.
+
+### Original-position authored review references
+
+```json
+[
+  {
+    "id": "GD-11-E01",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/20"
+  },
+  {
+    "id": "GD-11-E02",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/21"
+  }
+]
+```
+
+## GD-12 — Hardy
+
+### Complete original object
+
+```json
+{
+  "id": "hardy",
+  "name": "Hardy",
+  "description": "You are resistant to environmental hazards.",
+  "prerequisite": "Constitution 15+",
+  "effect": "You have resistance to cold and heat damage, and you have advantage on saves against disease and poison.",
+  "type": "General",
+  "draft": false,
+  "deprecated": false,
+  "needsReview": false
+}
+```
+
+### Original question
+
+```json
+"Resolve source cold and heat damage: heat is not automatically a new damage type or universally fire. Define the exact resistance mapping and separate save advantage for disease and poison, with no automatic environmental survival or disease cure. Retain overlaps under existing resistance/advantage rules."
+```
+
+### Preserved original source direction (historical)
+
+```json
+{
+  "featId": "hardy",
+  "name": "Hardy",
+  "cohort": "general_defense",
+  "questionId": "GD-12",
+  "disposition": "AUTHOR_FROM_EXACT_REPLACEMENT_WITH_FINAL_SHARED_RULES",
+  "sourcePath": "DescentReviewChanges/ReviewBible/data/director/general_defense_feat_operating_proposal_internal.json",
+  "sourceFileSha256": "7f8cf43d5ad139cb0f7b1c107a16db87cccf71d7b5caa3cfe632c2efc4eeb274",
+  "sourcePointer": "/records/11",
+  "originalQuestion": "Resolve source cold and heat damage: heat is not automatically a new damage type or universally fire. Define the exact resistance mapping and separate save advantage for disease and poison, with no automatic environmental survival or disease cure. Retain overlaps under existing resistance/advantage rules.",
+  "originalSourceObject": {
+    "id": "hardy",
+    "name": "Hardy",
+    "description": "You are resistant to environmental hazards.",
+    "prerequisite": "Constitution 15+",
+    "effect": "You have resistance to cold and heat damage, and you have advantage on saves against disease and poison.",
+    "type": "General",
+    "draft": false,
+    "deprecated": false,
+    "needsReview": false
+  },
+  "originalSourceObjectSha256AsSubmitted": "b7690f0bbddefb5a9be32d1671d661bfe51eefe7dfcee459efbdf0074d8aab8f",
+  "submittedProcedure": "Gain resistance to cold damage. NEW explicit type mapping: treat the source's undefined 'heat damage' as fire damage for this feat, granting fire resistance rather than introducing another damage type. This mapping requires joint approval; a different typed effect does not qualify merely because its narration sounds hot. Gain advantage on actual saving throws directly against poison or disease, including a permitted save to prevent or end that actual ailment. These protections do not stack with other resistance or advantage sources. They do not cure an existing illness, prevent the Poisoned condition without a save, erase a dose's non-save consequences or automatically defeat environmental heat/cold exposure that uses a separate save or deprivation rule. An ordinary exposure Constitution save is not a poison/disease save unless its real source says so.",
+  "submittedNewChoices": "Heat-to-fire mapping and poison/disease save predicate; no generic environmental immunity.",
+  "submittedWorkedCases": [
+    "A 9-point fire component is reduced under ordinary fire-resistance rounding after its other applicable damage stages; a separately typed radiant component is unchanged.",
+    "A disease-recovery save can gain advantage. The feat does not automatically cure that disease or prevent starvation in a hot region."
+  ],
+  "decision": "Adopt NEW heat-to-fire damage-type mapping, cold resistance and genuine poison/disease save advantage; no universal exposure immunity.",
+  "completeAuthoringProcedure": "Gain resistance to cold damage. NEW explicit type mapping: treat the source's undefined 'heat damage' as fire damage for this feat, granting fire resistance rather than introducing another damage type. This NEW mapping is adopted for candidate authorship; a different typed effect does not qualify merely because its narration sounds hot. Gain advantage on actual saving throws directly against poison or disease, including a permitted save to prevent or end that actual ailment. These protections do not stack with other resistance or advantage sources. They do not cure an existing illness, prevent the Poisoned condition without a save, erase a dose's non-save consequences or automatically defeat environmental heat/cold exposure that uses a separate save or deprivation rule. An ordinary exposure Constitution save is not a poison/disease save unless its real source says so.",
+  "newRuleProvenance": "All submitted NEW/proposed completions retained by this decision and all departures below are authoring decisions of FEAT327-SOURCE-2026-10-11, not recovered source wording. The original object remains immutable.",
+  "sharedContract": "FEAT_SHARED_DIRECTIONS.json: FS-01–16",
+  "supplementContract": "FEAT_SUPPLEMENT_DIRECTIONS.json: explicit source path/pointer mappings",
+  "workedCases": [
+    "A 9-point fire component is reduced under ordinary fire-resistance rounding after its other applicable damage stages; a separately typed radiant component is unchanged.",
+    "A disease-recovery save can gain advantage. The feat does not automatically cure that disease or prevent starvation in a hot region."
+  ],
+  "payloadOperational": "full authored procedure; not a runtime adapter",
+  "selectionEnabled": false,
+  "exactApproved": false,
+  "runtimeApproved": false
+}
+```
+
+### Complete current candidate procedure
+
+Gain resistance to cold damage. NEW explicit type mapping: treat the source's undefined 'heat damage' as fire damage for this feat, granting fire resistance rather than introducing another damage type. This NEW mapping is adopted for candidate authorship; a different typed effect does not qualify merely because its narration sounds hot. Gain advantage on actual saving throws directly against poison or disease, including a permitted save to prevent or end that actual ailment. These protections do not stack with other resistance or advantage sources. They do not cure an existing illness, prevent the Poisoned condition without a save, erase a dose's non-save consequences or automatically defeat environmental heat/cold exposure that uses a separate save or deprivation rule. An ordinary exposure Constitution save is not a poison/disease save unless its real source says so.
+
+### Original-position authored review references
+
+```json
+[
+  {
+    "id": "GD-12-E01",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/22"
+  },
+  {
+    "id": "GD-12-E02",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/23"
+  }
+]
+```
+
+## GD-13 — Healer
+
+### Complete original object
+
+```json
+{
+  "id": "healer",
+  "name": "Healer",
+  "description": "You are skilled in medicine and healing.",
+  "prerequisite": "Wisdom 13 or higher",
+  "effect": "You can use a healer's kit to restore hit points and stabilize dying creatures more effectively.",
+  "type": "General",
+  "draft": false,
+  "deprecated": false,
+  "needsReview": false
+}
+```
+
+### Original question
+
+```json
+"The source has no HP amount, action, target cadence or kit-charge cost. Complete all of them, including stabilization versus actual healing, touch/access and zeroHP/Wound gates. Bind the actual ten-charge Healer kit and compare the already-reviewed Field Medic plus pending Field Surgeon, without double expenditure, invented charges or unbounded repeat healing."
+```
+
+### Preserved original source direction (historical)
+
+```json
+{
+  "featId": "healer",
+  "name": "Healer",
+  "cohort": "general_defense",
+  "questionId": "GD-13",
+  "disposition": "AUTHOR_FROM_SUBMITTED_PROCEDURE_WITH_FINAL_SHARED_RULES",
+  "sourcePath": "DescentReviewChanges/ReviewBible/data/director/general_defense_feat_operating_proposal_internal.json",
+  "sourceFileSha256": "7f8cf43d5ad139cb0f7b1c107a16db87cccf71d7b5caa3cfe632c2efc4eeb274",
+  "sourcePointer": "/records/12",
+  "originalQuestion": "The source has no HP amount, action, target cadence or kit-charge cost. Complete all of them, including stabilization versus actual healing, touch/access and zeroHP/Wound gates. Bind the actual ten-charge Healer kit and compare the already-reviewed Field Medic plus pending Field Surgeon, without double expenditure, invented charges or unbounded repeat healing.",
+  "originalSourceObject": {
+    "id": "healer",
+    "name": "Healer",
+    "description": "You are skilled in medicine and healing.",
+    "prerequisite": "Wisdom 13 or higher",
+    "effect": "You can use a healer's kit to restore hit points and stabilize dying creatures more effectively.",
+    "type": "General",
+    "draft": false,
+    "deprecated": false,
+    "needsReview": false
+  },
+  "originalSourceObjectSha256AsSubmitted": "6c661b39850e53539bf0a9087b3a1ad1de7b13d78b343833b414ff3cb11dfbbb",
+  "submittedProcedure": "NEW full healing procedure: as an Action, spend one real healer's-kit charge to treat one adjacent legally reachable living creature. Choose ordinary stabilization only, or this feat's healing treatment. A full actual kit has ten charges, costs 5 gp and weighs 3 lb under the reviewed item rule; transfer or partial use never refills it. Healing treatment has one entitlement per recipient per that recipient's completed short or long rest, shared across all Healer practitioners. Commit that entitlement and the charge before resolution even if healing is later blocked. If the recipient is dying, first cause an actual dying-to-Stable transition using this paid kit use, then resolve ordinary healing of 2d4 plus the practitioner's signed Wisdom modifier, minimum zero before the normal healing pipeline. One charge funds both parts of this single treatment. If HP gain is blocked, the stabilization remains with its genuine recovery deadline; if positive HP returns, close that obsolete deadline normally. A recipient whose healing entitlement is spent may still receive ordinary kit stabilization for its real charge and Action, without more feat HP. Already Stable creatures can receive the once-per-rest healing but create no new stabilization trigger. This removes no Wounds, Injury, disease or death. Independently owned Field Medic/Field Surgeon triggers require their actual source/event and own limits, with no duplicated kit charge or invented second stabilization.",
+  "submittedNewChoices": "Action, one-charge cost, 2d4+WIS healing, recipient short-rest family cap, blocked-offer commitment and stabilization-before-healing sequence.",
+  "submittedWorkedCases": [
+    "One charge treats a dying target: record stabilization, then dice 3+2 and WIS +3 give 8 ordinary healing before actual modifiers/caps. A second Healer owner cannot repeat the HP treatment before that target rests.",
+    "Under a broad HP-gain prohibition the target remains Stable at zero; the charge and healing entitlement are spent. The feat does not resurrect a dead body."
+  ],
+  "decision": "Adopt Action/oneactualkit charge,2d4+WIS ordinary healing and recipient beneficialSR/LR lock, stabilization first; existing kits/healing/trigger ledgers remain.",
+  "completeAuthoringProcedure": "NEW full healing procedure: as an Action, spend one real healer's-kit charge to treat one adjacent legally reachable living creature. Choose ordinary stabilization only, or this feat's healing treatment. A full actual kit has ten charges, costs 5 gp and weighs 3 lb under the reviewed item rule; transfer or partial use never refills it. Healing treatment has one entitlement per recipient per that recipient's completed short or long rest, shared across all Healer practitioners. Commit that entitlement and the charge before resolution even if healing is later blocked. If the recipient is dying, first cause an actual dying-to-Stable transition using this paid kit use, then resolve ordinary healing of 2d4 plus the practitioner's signed Wisdom modifier, minimum zero before the normal healing pipeline. One charge funds both parts of this single treatment. If HP gain is blocked, the stabilization remains with its genuine recovery deadline; if positive HP returns, close that obsolete deadline normally. A recipient whose healing entitlement is spent may still receive ordinary kit stabilization for its real charge and Action, without more feat HP. Already Stable creatures can receive the once-per-rest healing but create no new stabilization trigger. This removes no Wounds, Injury, disease or death. Independently owned Field Medic/Field Surgeon triggers require their actual source/event and own limits, with no duplicated kit charge or invented second stabilization.",
+  "newRuleProvenance": "All submitted NEW/proposed completions retained by this decision and all departures below are authoring decisions of FEAT327-SOURCE-2026-10-11, not recovered source wording. The original object remains immutable.",
+  "sharedContract": "FEAT_SHARED_DIRECTIONS.json: FS-01–16",
+  "supplementContract": "FEAT_SUPPLEMENT_DIRECTIONS.json: explicit source path/pointer mappings",
+  "workedCases": [
+    "One charge treats a dying target: record stabilization, then dice 3+2 and WIS +3 give 8 ordinary healing before actual modifiers/caps. A second Healer owner cannot repeat the HP treatment before that target rests.",
+    "Under a broad HP-gain prohibition the target remains Stable at zero; the charge and healing entitlement are spent. The feat does not resurrect a dead body."
+  ],
+  "payloadOperational": "full authored procedure; not a runtime adapter",
+  "selectionEnabled": false,
+  "exactApproved": false,
+  "runtimeApproved": false
+}
+```
+
+### Complete current candidate procedure
+
+NEW full healing procedure: as an Action, spend one real healer's-kit charge to treat one adjacent legally reachable living creature. Choose ordinary stabilization only, or this feat's healing treatment. A full actual kit has ten charges, costs 5 gp and weighs 3 lb under the reviewed item rule; transfer or partial use never refills it. Healing treatment has one entitlement per recipient per that recipient's completed short or long rest, shared across all Healer practitioners. Commit that entitlement and the charge before resolution even if healing is later blocked. If the recipient is dying, first cause an actual dying-to-Stable transition using this paid kit use, then resolve ordinary healing of 2d4 plus the practitioner's signed Wisdom modifier, minimum zero before the normal healing pipeline. One charge funds both parts of this single treatment. If HP gain is blocked, the stabilization remains with its genuine recovery deadline; if positive HP returns, close that obsolete deadline normally. A recipient whose healing entitlement is spent may still receive ordinary kit stabilization for its real charge and Action, without more feat HP. Already Stable creatures can receive the once-per-rest healing but create no new stabilization trigger. This removes no Wounds, Injury, disease or death. Independently owned Field Medic/Field Surgeon triggers require their actual source/event and own limits, with no duplicated kit charge or invented second stabilization.
+
+### Original-position authored review references
+
+```json
+[
+  {
+    "id": "GD-13-E01",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/24"
+  },
+  {
+    "id": "GD-13-E02",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/25"
+  }
+]
+```
+
+## GD-14 — Heavily Armored
+
+### Complete original object
+
+```json
+{
+  "id": "heavily_armored",
+  "name": "Heavily Armored",
+  "description": "You have trained to master heavy armor.",
+  "prerequisite": "Proficiency with medium armor",
+  "effect": "You gain proficiency with heavy armor and increase your Strength score by 1.",
+  "type": "General",
+  "draft": false,
+  "deprecated": false,
+  "needsReview": false
+}
+```
+
+### Original question
+
+```json
+"Require actual medium armor proficiency and preserve heavy proficiency plus1STR. Define ability ceiling, no duplicate training, later loss of prerequisite and what the feat does not grant to shields or lower armor tiers. Keep armor properties/fit/strength minimum and item acquisition independent."
+```
+
+### Preserved original source direction (historical)
+
+```json
+{
+  "featId": "heavily_armored",
+  "name": "Heavily Armored",
+  "cohort": "general_defense",
+  "questionId": "GD-14",
+  "disposition": "AUTHOR_FROM_SUBMITTED_PROCEDURE_WITH_FINAL_SHARED_RULES",
+  "sourcePath": "DescentReviewChanges/ReviewBible/data/director/general_defense_feat_operating_proposal_internal.json",
+  "sourceFileSha256": "7f8cf43d5ad139cb0f7b1c107a16db87cccf71d7b5caa3cfe632c2efc4eeb274",
+  "sourcePointer": "/records/13",
+  "originalQuestion": "Require actual medium armor proficiency and preserve heavy proficiency plus1STR. Define ability ceiling, no duplicate training, later loss of prerequisite and what the feat does not grant to shields or lower armor tiers. Keep armor properties/fit/strength minimum and item acquisition independent.",
+  "originalSourceObject": {
+    "id": "heavily_armored",
+    "name": "Heavily Armored",
+    "description": "You have trained to master heavy armor.",
+    "prerequisite": "Proficiency with medium armor",
+    "effect": "You gain proficiency with heavy armor and increase your Strength score by 1.",
+    "type": "General",
+    "draft": false,
+    "deprecated": false,
+    "needsReview": false
+  },
+  "originalSourceObjectSha256AsSubmitted": "a955d4660667a78c12dd6098c5ce8aacb4f3a0430a73b9174196e6a272f6ca31",
+  "submittedProcedure": "Require actual medium-armor proficiency at acquisition. Gain heavy-armor proficiency and increase Strength by 1, normally no higher than 20. NEW: record the actual Strength increase at acquisition, including zero if already at the ceiling; another existing heavy-proficiency grant produces no substitute skill, shield, feat or Expertise. Later loss of a prerequisite does not erase ownership, but actual suit/body legality continues to apply. Heavy proficiency removes only the relevant nonproficiency penalties while using that armor; it does not supply the suit, grant medium/light/shield proficiency a second time, change AC formula, waive Strength minimum, eliminate Stealth disadvantage, cancel weight/Load or shorten donning. A source suppressing training operates under its own actual duration without undoing the permanent score history.",
+  "submittedNewChoices": "Score cap, duplicate-grant handling and acquisition-time prerequisite; no armor-property waiver.",
+  "submittedWorkedCases": [
+    "A medium-trained character with STR 15 can become STR 16 and learn heavy armor through one legal feat choice; a real suit still has to be acquired and donned.",
+    "Already knowing heavy armor yields no extra proficiency, though the actual permitted +1 Strength remains the feat's separate benefit."
+  ],
+  "decision": "Keep medium proficiency prerequisite, heavy grant and+1STR cap20 with no duplicate substitutions or suit-property waiver.",
+  "completeAuthoringProcedure": "Require actual medium-armor proficiency at acquisition. Gain heavy-armor proficiency and increase Strength by 1, normally no higher than 20. NEW: record the actual Strength increase at acquisition, including zero if already at the ceiling; another existing heavy-proficiency grant produces no substitute skill, shield, feat or Expertise. Later loss of a prerequisite does not erase ownership, but actual suit/body legality continues to apply. Heavy proficiency removes only the relevant nonproficiency penalties while using that armor; it does not supply the suit, grant medium/light/shield proficiency a second time, change AC formula, waive Strength minimum, eliminate Stealth disadvantage, cancel weight/Load or shorten donning. A source suppressing training operates under its own actual duration without undoing the permanent score history.",
+  "newRuleProvenance": "All submitted NEW/proposed completions retained by this decision and all departures below are authoring decisions of FEAT327-SOURCE-2026-10-11, not recovered source wording. The original object remains immutable.",
+  "sharedContract": "FEAT_SHARED_DIRECTIONS.json: FS-01–16",
+  "supplementContract": "FEAT_SUPPLEMENT_DIRECTIONS.json: explicit source path/pointer mappings",
+  "workedCases": [
+    "A medium-trained character with STR 15 can become STR 16 and learn heavy armor through one legal feat choice; a real suit still has to be acquired and donned.",
+    "Already knowing heavy armor yields no extra proficiency, though the actual permitted +1 Strength remains the feat's separate benefit."
+  ],
+  "payloadOperational": "full authored procedure; not a runtime adapter",
+  "selectionEnabled": false,
+  "exactApproved": false,
+  "runtimeApproved": false
+}
+```
+
+### Complete current candidate procedure
+
+Require actual medium-armor proficiency at acquisition. Gain heavy-armor proficiency and increase Strength by 1, normally no higher than 20. NEW: record the actual Strength increase at acquisition, including zero if already at the ceiling; another existing heavy-proficiency grant produces no substitute skill, shield, feat or Expertise. Later loss of a prerequisite does not erase ownership, but actual suit/body legality continues to apply. Heavy proficiency removes only the relevant nonproficiency penalties while using that armor; it does not supply the suit, grant medium/light/shield proficiency a second time, change AC formula, waive Strength minimum, eliminate Stealth disadvantage, cancel weight/Load or shorten donning. A source suppressing training operates under its own actual duration without undoing the permanent score history.
+
+### Original-position authored review references
+
+```json
+[
+  {
+    "id": "GD-14-E01",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/26"
+  },
+  {
+    "id": "GD-14-E02",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/27"
+  }
+]
+```
+
+## GD-15 — Immortal Vigor
+
+### Complete original object
+
+```json
+{
+  "id": "immortal_vigor",
+  "name": "Immortal Vigor",
+  "description": "You age more slowly than normal.",
+  "prerequisite": "Constitution 17+, level 10+",
+  "effect": "You age at half the normal rate and have advantage on death saving throws.",
+  "type": "General",
+  "draft": false,
+  "deprecated": false,
+  "needsReview": false
+}
+```
+
+### Original question
+
+```json
+"Define the half-rate aging effect as a mechanical clock only, distinguishing natural versus magical aging without granting immortality or cosmology. Define advantage specifically on death saving throws, applicable timing and no replacement of Wounds, instant death or already-dead state; CON17 and character-level10 gate remain."
+```
+
+### Preserved original source direction (historical)
+
+```json
+{
+  "featId": "immortal_vigor",
+  "name": "Immortal Vigor",
+  "cohort": "general_defense",
+  "questionId": "GD-15",
+  "disposition": "AUTHOR_FROM_SUBMITTED_PROCEDURE_WITH_FINAL_SHARED_RULES",
+  "sourcePath": "DescentReviewChanges/ReviewBible/data/director/general_defense_feat_operating_proposal_internal.json",
+  "sourceFileSha256": "7f8cf43d5ad139cb0f7b1c107a16db87cccf71d7b5caa3cfe632c2efc4eeb274",
+  "sourcePointer": "/records/14",
+  "originalQuestion": "Define the half-rate aging effect as a mechanical clock only, distinguishing natural versus magical aging without granting immortality or cosmology. Define advantage specifically on death saving throws, applicable timing and no replacement of Wounds, instant death or already-dead state; CON17 and character-level10 gate remain.",
+  "originalSourceObject": {
+    "id": "immortal_vigor",
+    "name": "Immortal Vigor",
+    "description": "You age more slowly than normal.",
+    "prerequisite": "Constitution 17+, level 10+",
+    "effect": "You age at half the normal rate and have advantage on death saving throws.",
+    "type": "General",
+    "draft": false,
+    "deprecated": false,
+    "needsReview": false
+  },
+  "originalSourceObjectSha256AsSubmitted": "9f606a74e50d688bd22372e544be58789483c0fa092ce9608b6695abe6beb966",
+  "submittedProcedure": "Require Constitution 17 and total character level 10. From acquisition onward, accrue natural biological aging at half the body's otherwise applicable natural rate. NEW: keep elapsed world time and accumulated age separate; the feat does not reverse existing age or halve a discrete magical aging event unless that event expressly changes the natural aging rate. Suppression restores future ordinary accrual without retroactive catch-up or rejuvenation. This is a bounded mechanical clock, not immortality, resurrection or a new lifespan/cosmology claim. Gain advantage on actual death saving throws at the existing regular-turn start. Roll the two dice and select the higher before resolving death-save natural 1/20 and counters. Ordinary advantage cancellation applies. No extra death save occurs on an extra turn, and the feat does not replace Instant Death, a fatal Wound save, an effect without a death save or an already dead state.",
+  "submittedNewChoices": "Future natural-aging accrual versus discrete magical events; death-save advantage integration without new saves.",
+  "submittedWorkedCases": [
+    "Two elapsed years under an unchanged ordinary aging rate add one biological year, while the world calendar still advances two years.",
+    "Death-save faces 1 and 12 select 12 under advantage, giving the ordinary success. The feat does not permit a roll after actual Instant Death."
+  ],
+  "decision": "Adopt future half biologicalaging and actual death-save advantage before natural results; no worldclock change, extra saves or resurrection.",
+  "completeAuthoringProcedure": "Require Constitution 17 and total character level 10. From acquisition onward, accrue natural biological aging at half the body's otherwise applicable natural rate. NEW: keep elapsed world time and accumulated age separate; the feat does not reverse existing age or halve a discrete magical aging event unless that event expressly changes the natural aging rate. Suppression restores future ordinary accrual without retroactive catch-up or rejuvenation. This is a bounded mechanical clock, not immortality, resurrection or a new lifespan/cosmology claim. Gain advantage on actual death saving throws at the existing regular-turn start. Roll the two dice and select the higher before resolving death-save natural 1/20 and counters. Ordinary advantage cancellation applies. No extra death save occurs on an extra turn, and the feat does not replace Instant Death, a fatal Wound save, an effect without a death save or an already dead state.",
+  "newRuleProvenance": "All submitted NEW/proposed completions retained by this decision and all departures below are authoring decisions of FEAT327-SOURCE-2026-10-11, not recovered source wording. The original object remains immutable.",
+  "sharedContract": "FEAT_SHARED_DIRECTIONS.json: FS-01–16",
+  "supplementContract": "FEAT_SUPPLEMENT_DIRECTIONS.json: explicit source path/pointer mappings",
+  "workedCases": [
+    "Two elapsed years under an unchanged ordinary aging rate add one biological year, while the world calendar still advances two years.",
+    "Death-save faces 1 and 12 select 12 under advantage, giving the ordinary success. The feat does not permit a roll after actual Instant Death."
+  ],
+  "payloadOperational": "full authored procedure; not a runtime adapter",
+  "selectionEnabled": false,
+  "exactApproved": false,
+  "runtimeApproved": false
+}
+```
+
+### Complete current candidate procedure
+
+Require Constitution 17 and total character level 10. From acquisition onward, accrue natural biological aging at half the body's otherwise applicable natural rate. NEW: keep elapsed world time and accumulated age separate; the feat does not reverse existing age or halve a discrete magical aging event unless that event expressly changes the natural aging rate. Suppression restores future ordinary accrual without retroactive catch-up or rejuvenation. This is a bounded mechanical clock, not immortality, resurrection or a new lifespan/cosmology claim. Gain advantage on actual death saving throws at the existing regular-turn start. Roll the two dice and select the higher before resolving death-save natural 1/20 and counters. Ordinary advantage cancellation applies. No extra death save occurs on an extra turn, and the feat does not replace Instant Death, a fatal Wound save, an effect without a death save or an already dead state.
+
+### Original-position authored review references
+
+```json
+[
+  {
+    "id": "GD-15-E01",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/28"
+  },
+  {
+    "id": "GD-15-E02",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/29"
+  }
+]
+```
+
+## GD-16 — Iron Will
+
+### Complete original object
+
+```json
+{
+  "id": "iron_will",
+  "name": "Iron Will",
+  "description": "Your willpower is unbreakable.",
+  "prerequisite": "Wisdom 13+",
+  "effect": "+2 bonus to saves vs mind effects",
+  "type": "General",
+  "draft": false,
+  "deprecated": false,
+  "needsReview": false
+}
+```
+
+### Original question
+
+```json
+"Define an exhaustive mechanical predicate for mind effects and +2 on actual saving throws. Compare Psychic/mental magic, Charmed/Frightened and mundane pressure without giving all WIS/INT saves a universal bonus. Resolve stacking with Resilient Mind and other static save modifiers using explicit families."
+```
+
+### Preserved original source direction (historical)
+
+```json
+{
+  "featId": "iron_will",
+  "name": "Iron Will",
+  "cohort": "general_defense",
+  "questionId": "GD-16",
+  "disposition": "AUTHOR_FROM_SUBMITTED_PROCEDURE_WITH_FINAL_SHARED_RULES",
+  "sourcePath": "DescentReviewChanges/ReviewBible/data/director/general_defense_feat_operating_proposal_internal.json",
+  "sourceFileSha256": "7f8cf43d5ad139cb0f7b1c107a16db87cccf71d7b5caa3cfe632c2efc4eeb274",
+  "sourcePointer": "/records/15",
+  "originalQuestion": "Define an exhaustive mechanical predicate for mind effects and +2 on actual saving throws. Compare Psychic/mental magic, Charmed/Frightened and mundane pressure without giving all WIS/INT saves a universal bonus. Resolve stacking with Resilient Mind and other static save modifiers using explicit families.",
+  "originalSourceObject": {
+    "id": "iron_will",
+    "name": "Iron Will",
+    "description": "Your willpower is unbreakable.",
+    "prerequisite": "Wisdom 13+",
+    "effect": "+2 bonus to saves vs mind effects",
+    "type": "General",
+    "draft": false,
+    "deprecated": false,
+    "needsReview": false
+  },
+  "originalSourceObjectSha256AsSubmitted": "a4b9b34e31bc3156a823f8dd2482e3ae15029e149a7f55c95d298fe5600560f0",
+  "submittedProcedure": "Add 2 once to the actual saving throw against a mental effect meeting the shared proposed finite predicate. This can apply to an INT, WIS, CHA, CON or other save if the actual effect qualifies; it is not a blanket ability-based bonus. The same source cannot add twice when one effect both causes fear and deals psychic damage. No bonus applies to an opposed skill check, death save, ordinary concentration maintenance or an effect granting no save. NEW stacking completion: this distinct feat bonus can combine with Resilient Mind's independently applicable +1 Wisdom-save rider, subject to any explicit overriding source restriction; class-technique bonuses first obey their own strongest-only family. Preserve actual natural-save rules and any printed failure margin. The feat supplies no immunity, automatic success, new save, changed belief or agency override.",
+  "submittedNewChoices": "Shared mental predicate and explicit distinct-feat combination with Resilient Mind; existing +2 retained.",
+  "submittedWorkedCases": [
+    "An actual Wisdom save against Charmed can receive Iron Will +2 and an owned Resilient Mind's qualifying +1, for a proposed total +3 from those distinct feats.",
+    "A Constitution concentration save caused by psychic damage is not itself the attack's mental-effect save; Iron Will does not add +2 merely from that causal history."
+  ],
+  "decision": "Adopt finite mental-effect predicate and literal+2 actualsave; not concentration or genericWIS, actual distinct-feat stack convention applies.",
+  "completeAuthoringProcedure": "Add 2 once to the actual saving throw against a mental effect meeting the shared proposed finite predicate. This can apply to an INT, WIS, CHA, CON or other save if the actual effect qualifies; it is not a blanket ability-based bonus. The same source cannot add twice when one effect both causes fear and deals psychic damage. No bonus applies to an opposed skill check, death save, ordinary concentration maintenance or an effect granting no save. NEW stacking completion: this distinct feat bonus can combine with Resilient Mind's independently applicable +1 Wisdom-save rider, subject to any explicit overriding source restriction; class-technique bonuses first obey their own strongest-only family. Preserve actual natural-save rules and any printed failure margin. The feat supplies no immunity, automatic success, new save, changed belief or agency override.",
+  "newRuleProvenance": "All submitted NEW/proposed completions retained by this decision and all departures below are authoring decisions of FEAT327-SOURCE-2026-10-11, not recovered source wording. The original object remains immutable.",
+  "sharedContract": "FEAT_SHARED_DIRECTIONS.json: FS-01–16",
+  "supplementContract": "FEAT_SUPPLEMENT_DIRECTIONS.json: explicit source path/pointer mappings",
+  "workedCases": [
+    "An actual Wisdom save against Charmed can receive Iron Will +2 and an owned Resilient Mind's qualifying +1, for a proposed total +3 from those distinct feats.",
+    "A Constitution concentration save caused by psychic damage is not itself the attack's mental-effect save; Iron Will does not add +2 merely from that causal history."
+  ],
+  "payloadOperational": "full authored procedure; not a runtime adapter",
+  "selectionEnabled": false,
+  "exactApproved": false,
+  "runtimeApproved": false
+}
+```
+
+### Complete current candidate procedure
+
+Add 2 once to the actual saving throw against a mental effect meeting the current adopted finite predicate in FS-05. This can apply to an INT, WIS, CHA, CON or other save if the actual effect qualifies; it is not a blanket ability-based bonus. The same source cannot add twice when one effect both causes fear and deals psychic damage. No bonus applies to an opposed skill check, death save, ordinary concentration maintenance or an effect granting no save. NEW stacking completion: this distinct feat bonus can combine with Resilient Mind's independently applicable +1 Wisdom-save rider, subject to any explicit overriding source restriction; class-technique bonuses first obey their own strongest-only family. Preserve actual natural-save rules and any printed failure margin. The feat supplies no immunity, automatic success, new save, changed belief or agency override.
+
+CURRENT ADOPTED MENTAL-EFFECT PREDICATE (FS-05). A qualifying mental-effect save is the effect's own save to prevent or end Charmed, Frightened, possession, compelled actions/speech, or an explicitly described alteration of thoughts, memories, beliefs, emotions or perceived sensory reality; also include a save directly against psychic damage. Actual concentration maintenance is a separate save, not automatically a mental-effect save because psychic damage caused it. A generic INT/WIS/CHA save, mundane physical hazard or ordinary social check does not qualify solely by ability or theme. Tag the actual effect and outcome before the roll. This is the finite source definition already adopted for Iron Will and Resilient Mind; it supplies no new roll, immunity or concentration permission.
+
+### Original-position authored review references
+
+```json
+[
+  {
+    "id": "GD-16-E01",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/30"
+  },
+  {
+    "id": "GD-16-E02",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/31"
+  }
+]
+```
+
+## GD-17 — Lightly Armored
+
+### Complete original object
+
+```json
+{
+  "id": "lightly_armored",
+  "name": "Lightly Armored",
+  "description": "You have trained to master light armor.",
+  "prerequisite": "None",
+  "effect": "You gain proficiency with light armor and shields, and increase your Strength or Dexterity score by 1.",
+  "type": "General",
+  "draft": false,
+  "deprecated": false,
+  "needsReview": false
+}
+```
+
+### Original question
+
+```json
+"Preserve light armor AND shield proficiency plus1STR orDEX, although the name mentions only light armor. Define score cap and legal choice, existing proficiency/no duplicate alternatives, armor versus shield carrying/equipping, and no automatic item or AC bonus."
+```
+
+### Preserved original source direction (historical)
+
+```json
+{
+  "featId": "lightly_armored",
+  "name": "Lightly Armored",
+  "cohort": "general_defense",
+  "questionId": "GD-17",
+  "disposition": "AUTHOR_FROM_SUBMITTED_PROCEDURE_WITH_FINAL_SHARED_RULES",
+  "sourcePath": "DescentReviewChanges/ReviewBible/data/director/general_defense_feat_operating_proposal_internal.json",
+  "sourceFileSha256": "7f8cf43d5ad139cb0f7b1c107a16db87cccf71d7b5caa3cfe632c2efc4eeb274",
+  "sourcePointer": "/records/16",
+  "originalQuestion": "Preserve light armor AND shield proficiency plus1STR orDEX, although the name mentions only light armor. Define score cap and legal choice, existing proficiency/no duplicate alternatives, armor versus shield carrying/equipping, and no automatic item or AC bonus.",
+  "originalSourceObject": {
+    "id": "lightly_armored",
+    "name": "Lightly Armored",
+    "description": "You have trained to master light armor.",
+    "prerequisite": "None",
+    "effect": "You gain proficiency with light armor and shields, and increase your Strength or Dexterity score by 1.",
+    "type": "General",
+    "draft": false,
+    "deprecated": false,
+    "needsReview": false
+  },
+  "originalSourceObjectSha256AsSubmitted": "959801b343e9ec32a27e1a4c2cd3eaca03499fa3c18c667f112a3ab394ff1da4",
+  "submittedProcedure": "Gain light-armor proficiency and shield proficiency, preserving both printed grants despite the feat's name. Choose Strength or Dexterity and increase that score by 1, normally no higher than 20. Existing proficiency in either category provides no unprinted substitute training or Expertise; the other actual grants still apply. NEW: treat this as one nonrepeatable feat identity with the chosen score recorded at acquisition. Training does not give armor or a shield, free a hand, grant two shields' AC, waive fit, auto-don equipment or add an AC modifier beyond the actual item's reviewed contribution. Shield proficiency removes its own relevant nonproficiency consequences; light-armor proficiency applies only to that armor tier. Recompute actual derived statistics without healing or refilling resources.",
+  "submittedNewChoices": "Score cap and fixed duplicate-grant handling; source light-plus-shields breadth retained.",
+  "submittedWorkedCases": [
+    "A character already proficient in shields can still gain light armor and the legal +1 chosen ability; duplicate shield training does not become another skill.",
+    "A shield's real hand/forearm occupancy and donning Action remain. The feat's name is not grounds to omit its explicit shield proficiency."
+  ],
+  "decision": "Keep source light armor AND shields and+1STR/DEX, no omitted shield, free gear or duplicate proficiency.",
+  "completeAuthoringProcedure": "Gain light-armor proficiency and shield proficiency, preserving both printed grants despite the feat's name. Choose Strength or Dexterity and increase that score by 1, normally no higher than 20. Existing proficiency in either category provides no unprinted substitute training or Expertise; the other actual grants still apply. NEW: treat this as one nonrepeatable feat identity with the chosen score recorded at acquisition. Training does not give armor or a shield, free a hand, grant two shields' AC, waive fit, auto-don equipment or add an AC modifier beyond the actual item's reviewed contribution. Shield proficiency removes its own relevant nonproficiency consequences; light-armor proficiency applies only to that armor tier. Recompute actual derived statistics without healing or refilling resources.",
+  "newRuleProvenance": "All submitted NEW/proposed completions retained by this decision and all departures below are authoring decisions of FEAT327-SOURCE-2026-10-11, not recovered source wording. The original object remains immutable.",
+  "sharedContract": "FEAT_SHARED_DIRECTIONS.json: FS-01–16",
+  "supplementContract": "FEAT_SUPPLEMENT_DIRECTIONS.json: explicit source path/pointer mappings",
+  "workedCases": [
+    "A character already proficient in shields can still gain light armor and the legal +1 chosen ability; duplicate shield training does not become another skill.",
+    "A shield's real hand/forearm occupancy and donning Action remain. The feat's name is not grounds to omit its explicit shield proficiency."
+  ],
+  "payloadOperational": "full authored procedure; not a runtime adapter",
+  "selectionEnabled": false,
+  "exactApproved": false,
+  "runtimeApproved": false
+}
+```
+
+### Complete current candidate procedure
+
+Gain light-armor proficiency and shield proficiency, preserving both printed grants despite the feat's name. Choose Strength or Dexterity and increase that score by 1, normally no higher than 20. Existing proficiency in either category provides no unprinted substitute training or Expertise; the other actual grants still apply. NEW: treat this as one nonrepeatable feat identity with the chosen score recorded at acquisition. Training does not give armor or a shield, free a hand, grant two shields' AC, waive fit, auto-don equipment or add an AC modifier beyond the actual item's reviewed contribution. Shield proficiency removes its own relevant nonproficiency consequences; light-armor proficiency applies only to that armor tier. Recompute actual derived statistics without healing or refilling resources.
+
+### Original-position authored review references
+
+```json
+[
+  {
+    "id": "GD-17-E01",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/32"
+  },
+  {
+    "id": "GD-17-E02",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/33"
+  }
+]
+```
+
+## GD-18 — Medium Armor Master
+
+### Complete original object
+
+```json
+{
+  "id": "medium_armor_master",
+  "name": "Medium Armor Master",
+  "description": "You have mastered medium armor.",
+  "prerequisite": "Proficiency with medium armor",
+  "effect": "Wearing medium armor doesn't impose disadvantage on Dexterity (Stealth) checks and you can add 3 to AC instead of 2 if you have a Dexterity of 16 or higher.",
+  "type": "General",
+  "draft": false,
+  "deprecated": false,
+  "needsReview": false
+}
+```
+
+### Original question
+
+```json
+"Require actual medium proficiency. Waive the armor-imposed Stealth disadvantage only, leaving other disadvantage. At DEX16+ define raised Dexterity AC contribution cap3 instead of2 under the selected medium-suit formula; handle score changes, nonselected formulas, suppression/condition and other enhancement families."
+```
+
+### Preserved original source direction (historical)
+
+```json
+{
+  "featId": "medium_armor_master",
+  "name": "Medium Armor Master",
+  "cohort": "general_defense",
+  "questionId": "GD-18",
+  "disposition": "AUTHOR_FROM_SUBMITTED_PROCEDURE_WITH_FINAL_SHARED_RULES",
+  "sourcePath": "DescentReviewChanges/ReviewBible/data/director/general_defense_feat_operating_proposal_internal.json",
+  "sourceFileSha256": "7f8cf43d5ad139cb0f7b1c107a16db87cccf71d7b5caa3cfe632c2efc4eeb274",
+  "sourcePointer": "/records/17",
+  "originalQuestion": "Require actual medium proficiency. Waive the armor-imposed Stealth disadvantage only, leaving other disadvantage. At DEX16+ define raised Dexterity AC contribution cap3 instead of2 under the selected medium-suit formula; handle score changes, nonselected formulas, suppression/condition and other enhancement families.",
+  "originalSourceObject": {
+    "id": "medium_armor_master",
+    "name": "Medium Armor Master",
+    "description": "You have mastered medium armor.",
+    "prerequisite": "Proficiency with medium armor",
+    "effect": "Wearing medium armor doesn't impose disadvantage on Dexterity (Stealth) checks and you can add 3 to AC instead of 2 if you have a Dexterity of 16 or higher.",
+    "type": "General",
+    "draft": false,
+    "deprecated": false,
+    "needsReview": false
+  },
+  "originalSourceObjectSha256AsSubmitted": "912abd196fd9466501621a93407b95bfbd7133c28231322c41581e00652a6b8c",
+  "submittedProcedure": "Require medium-armor proficiency at acquisition. While wearing an actual medium suit, remove only that suit's Stealth-disadvantage cause; other remaining causes still combine normally with advantage. When the selected operative AC formula is that medium suit's formula and your current Dexterity score is at least 16, raise its Dexterity contribution cap from 2 to 3. Use the actual Dexterity modifier, including any penalty, capped at 3; this is not a flat +3 added to AC. If Dexterity falls below 16, use the ordinary cap of 2. A shield's legal bonus remains separate, and another chosen unarmored/natural formula gains nothing from this medium-suit modification. NEW: a Broken or otherwise nonbeneficial suit supplies no positive AC formula benefit, although removing that suit's Stealth-disadvantage cause still applies while it is physically worn. Other properties, weight, Strength limits and actual fit remain.",
+  "submittedNewChoices": "Live DEX threshold, formula-specific cap and Broken-suit treatment; no broad Stealth advantage.",
+  "submittedWorkedCases": [
+    "A medium suit with base AC 14 and DEX 16 contributes 14+3=17 before a real shield. DEX 14 uses 14+2=16.",
+    "Removing the suit's Stealth disadvantage does not remove an unrelated Exhaustion disadvantage or grant automatic Hidden."
+  ],
+  "decision": "Adopt liveDEX16 threshold for medium-formula cap3 and armor-only stealthdisadvantage removal; notflat+3 or unarmoredformula.",
+  "completeAuthoringProcedure": "Require medium-armor proficiency at acquisition. While wearing an actual medium suit, remove only that suit's Stealth-disadvantage cause; other remaining causes still combine normally with advantage. When the selected operative AC formula is that medium suit's formula and your current Dexterity score is at least 16, raise its Dexterity contribution cap from 2 to 3. Use the actual Dexterity modifier, including any penalty, capped at 3; this is not a flat +3 added to AC. If Dexterity falls below 16, use the ordinary cap of 2. A shield's legal bonus remains separate, and another chosen unarmored/natural formula gains nothing from this medium-suit modification. NEW: a Broken or otherwise nonbeneficial suit supplies no positive AC formula benefit, although removing that suit's Stealth-disadvantage cause still applies while it is physically worn. Other properties, weight, Strength limits and actual fit remain.",
+  "newRuleProvenance": "All submitted NEW/proposed completions retained by this decision and all departures below are authoring decisions of FEAT327-SOURCE-2026-10-11, not recovered source wording. The original object remains immutable.",
+  "sharedContract": "FEAT_SHARED_DIRECTIONS.json: FS-01–16",
+  "supplementContract": "FEAT_SUPPLEMENT_DIRECTIONS.json: explicit source path/pointer mappings",
+  "workedCases": [
+    "A medium suit with base AC 14 and DEX 16 contributes 14+3=17 before a real shield. DEX 14 uses 14+2=16.",
+    "Removing the suit's Stealth disadvantage does not remove an unrelated Exhaustion disadvantage or grant automatic Hidden."
+  ],
+  "payloadOperational": "full authored procedure; not a runtime adapter",
+  "selectionEnabled": false,
+  "exactApproved": false,
+  "runtimeApproved": false
+}
+```
+
+### Complete current candidate procedure
+
+Require medium-armor proficiency at acquisition. While wearing an actual medium suit, remove only that suit's Stealth-disadvantage cause; other remaining causes still combine normally with advantage. When the selected operative AC formula is that medium suit's formula and your current Dexterity score is at least 16, raise its Dexterity contribution cap from 2 to 3. Use the actual Dexterity modifier, including any penalty, capped at 3; this is not a flat +3 added to AC. If Dexterity falls below 16, use the ordinary cap of 2. A shield's legal bonus remains separate, and another chosen unarmored/natural formula gains nothing from this medium-suit modification. NEW: a Broken or otherwise nonbeneficial suit supplies no positive AC formula benefit, although removing that suit's Stealth-disadvantage cause still applies while it is physically worn. Other properties, weight, Strength limits and actual fit remain.
+
+### Original-position authored review references
+
+```json
+[
+  {
+    "id": "GD-18-E01",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/34"
+  },
+  {
+    "id": "GD-18-E02",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/35"
+  }
+]
+```
+
+## GD-19 — Mental Fortress
+
+### Complete original object
+
+```json
+{
+  "id": "mental_fortress",
+  "name": "Mental Fortress",
+  "description": "At level 6, a disciplined mind receives the feat's listed once-per-rest immunity to fear effects.",
+  "prerequisite": "Level 6",
+  "effect": "Once per short rest, when you fail a saving throw against fear, reroll it and use the new result.",
+  "type": "General",
+  "legacyEffect": "Immune to fear effects once per rest",
+  "status": "provisional-complete",
+  "balanceReview": true,
+  "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+  "draft": false,
+  "deprecated": false,
+  "needsReview": true
+}
+```
+
+### Original question
+
+```json
+"Preserve description/legacy immunity wording beside current failed-fear-save reroll once per Short Rest. Explicitly select the operative completion, define exact fear predicate, declaration after failure/new result and same-event advantage interactions. Do not silently grant immunity, automatic success or more than one use per recovery interval."
+```
+
+### Preserved original source direction (historical)
+
+```json
+{
+  "featId": "mental_fortress",
+  "name": "Mental Fortress",
+  "cohort": "general_defense",
+  "questionId": "GD-19",
+  "disposition": "AUTHOR_FROM_SUBMITTED_PROCEDURE_WITH_FINAL_SHARED_RULES",
+  "sourcePath": "DescentReviewChanges/ReviewBible/data/director/general_defense_feat_operating_proposal_internal.json",
+  "sourceFileSha256": "7f8cf43d5ad139cb0f7b1c107a16db87cccf71d7b5caa3cfe632c2efc4eeb274",
+  "sourcePointer": "/records/18",
+  "originalQuestion": "Preserve description/legacy immunity wording beside current failed-fear-save reroll once per Short Rest. Explicitly select the operative completion, define exact fear predicate, declaration after failure/new result and same-event advantage interactions. Do not silently grant immunity, automatic success or more than one use per recovery interval.",
+  "originalSourceObject": {
+    "id": "mental_fortress",
+    "name": "Mental Fortress",
+    "description": "At level 6, a disciplined mind receives the feat's listed once-per-rest immunity to fear effects.",
+    "prerequisite": "Level 6",
+    "effect": "Once per short rest, when you fail a saving throw against fear, reroll it and use the new result.",
+    "type": "General",
+    "legacyEffect": "Immune to fear effects once per rest",
+    "status": "provisional-complete",
+    "balanceReview": true,
+    "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+    "draft": false,
+    "deprecated": false,
+    "needsReview": true
+  },
+  "originalSourceObjectSha256AsSubmitted": "f379d8e992cc4126c1b44c061a4546638f15867e5ebe3bf575bab50bba149a0d",
+  "submittedProcedure": "At total character level 6 or higher, once per completed short rest, after failing an actual saving throw to prevent or end Frightened or another source explicitly designated as a fear effect, you may spend this feat's use to reroll under the shared save-replacement procedure. Keep the new result. A no-save fear effect supplies no eligible roll, and success does not cure unrelated conditions. NEW operative-source choice: use the current reroll effect; preserve the description/legacy fear-immunity wording as an inactive alternative rather than granting both. Advantage/disadvantage applies to the replacement as it did to the original complete save procedure. A failed replacement still applies the original effect's actual failure outcome; it is not an automatic success. No additional Action or Reaction cost is proposed because this is a response within the original save's uncommitted result window.",
+  "submittedNewChoices": "Current effect controls over legacy immunity; fear predicate and complete-procedure reroll timing.",
+  "submittedWorkedCases": [
+    "After a failed advantaged fear save, spend the one use and roll the replacement two-d20 procedure. Its new failed result must stand if still below the actual DC.",
+    "A fear aura with no saving throw cannot be canceled by inventing a Mental Fortress save. The feat grants no immunity under this proposed current-effect selection."
+  ],
+  "decision": "Choose current failed-fear-save reroll, not archivedimmunity; finite beneficialSR, whole roll replacement and actual fear predicate.",
+  "completeAuthoringProcedure": "At total character level 6 or higher, once per completed short rest, after failing an actual saving throw to prevent or end Frightened or another source explicitly designated as a fear effect, you may spend this feat's use to reroll under the shared save-replacement procedure. Keep the new result. A no-save fear effect supplies no eligible roll, and success does not cure unrelated conditions. NEW operative-source choice: use the current reroll effect; preserve the description/legacy fear-immunity wording as an inactive alternative rather than granting both. Advantage/disadvantage applies to the replacement as it did to the original complete save procedure. A failed replacement still applies the original effect's actual failure outcome; it is not an automatic success. No additional Action or Reaction cost is proposed because this is a response within the original save's uncommitted result window.",
+  "newRuleProvenance": "All submitted NEW/proposed completions retained by this decision and all departures below are authoring decisions of FEAT327-SOURCE-2026-10-11, not recovered source wording. The original object remains immutable.",
+  "sharedContract": "FEAT_SHARED_DIRECTIONS.json: FS-01–16",
+  "supplementContract": "FEAT_SUPPLEMENT_DIRECTIONS.json: explicit source path/pointer mappings",
+  "workedCases": [
+    "After a failed advantaged fear save, spend the one use and roll the replacement two-d20 procedure. Its new failed result must stand if still below the actual DC.",
+    "A fear aura with no saving throw cannot be canceled by inventing a Mental Fortress save. The feat grants no immunity under this proposed current-effect selection."
+  ],
+  "payloadOperational": "full authored procedure; not a runtime adapter",
+  "selectionEnabled": false,
+  "exactApproved": false,
+  "runtimeApproved": false
+}
+```
+
+### Complete current candidate procedure
+
+At total character level 6 or higher, once per completed short rest, after failing an actual saving throw to prevent or end Frightened or another source explicitly designated as a fear effect, you may spend this feat's use to reroll under the shared save-replacement procedure. Keep the new result. A no-save fear effect supplies no eligible roll, and success does not cure unrelated conditions. NEW operative-source choice: use the current reroll effect; preserve the description/legacy fear-immunity wording as an inactive alternative rather than granting both. Advantage/disadvantage applies to the replacement as it did to the original complete save procedure. A failed replacement still applies the original effect's actual failure outcome; it is not an automatic success. No additional Action or Reaction cost is proposed because this is a response within the original save's uncommitted result window.
+
+### Original-position authored review references
+
+```json
+[
+  {
+    "id": "GD-19-E01",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/36"
+  },
+  {
+    "id": "GD-19-E02",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/37"
+  }
+]
+```
+
+## GD-20 — Moderately Armored
+
+### Complete original object
+
+```json
+{
+  "id": "moderately_armored",
+  "name": "Moderately Armored",
+  "description": "You have trained to master medium armor.",
+  "prerequisite": "Proficiency with light armor",
+  "effect": "You gain proficiency with medium armor and shields, and increase your Strength or Dexterity score by 1.",
+  "type": "General",
+  "draft": false,
+  "deprecated": false,
+  "needsReview": false
+}
+```
+
+### Original question
+
+```json
+"Require actual light proficiency; preserve medium and shield proficiency plus1STR orDEX. Resolve score cap and existing shield training without an unprinted substitute proficiency. Keep actual armor formula, fit, donning, Strength and noise properties intact."
+```
+
+### Preserved original source direction (historical)
+
+```json
+{
+  "featId": "moderately_armored",
+  "name": "Moderately Armored",
+  "cohort": "general_defense",
+  "questionId": "GD-20",
+  "disposition": "AUTHOR_FROM_SUBMITTED_PROCEDURE_WITH_FINAL_SHARED_RULES",
+  "sourcePath": "DescentReviewChanges/ReviewBible/data/director/general_defense_feat_operating_proposal_internal.json",
+  "sourceFileSha256": "7f8cf43d5ad139cb0f7b1c107a16db87cccf71d7b5caa3cfe632c2efc4eeb274",
+  "sourcePointer": "/records/19",
+  "originalQuestion": "Require actual light proficiency; preserve medium and shield proficiency plus1STR orDEX. Resolve score cap and existing shield training without an unprinted substitute proficiency. Keep actual armor formula, fit, donning, Strength and noise properties intact.",
+  "originalSourceObject": {
+    "id": "moderately_armored",
+    "name": "Moderately Armored",
+    "description": "You have trained to master medium armor.",
+    "prerequisite": "Proficiency with light armor",
+    "effect": "You gain proficiency with medium armor and shields, and increase your Strength or Dexterity score by 1.",
+    "type": "General",
+    "draft": false,
+    "deprecated": false,
+    "needsReview": false
+  },
+  "originalSourceObjectSha256AsSubmitted": "23d826b6eb809f93d18d23a56086e7b97b7b3c23403a76acea86e37b33e2b75d",
+  "submittedProcedure": "Require actual light-armor proficiency at acquisition. Gain medium-armor and shield proficiency, and choose Strength or Dexterity to increase by 1, normally no higher than 20. Preserve all three printed benefits. NEW: one nonrepeatable identity records the actual chosen score and grants; already held medium/shield proficiency gives no substitute selection or Expertise. The feat does not waive suit properties, body fit, Strength minimum, weight, don/doff time or hand use. Apply the actual selected armor formula and shield contribution, with the ordinary cap unless a separately owned feature changes it. Later loss of the acquisition prerequisite does not erase ownership; ongoing item/body restrictions and actual suppression still govern use.",
+  "submittedNewChoices": "Score cap, nonrepeatability and duplicate-training handling; no hidden lower/upper-tier grants.",
+  "submittedWorkedCases": [
+    "A light-trained holder with DEX 15 can become DEX 16 and gain medium armor plus shields. The medium suit still uses its normal +2 DEX cap without Medium Armor Master.",
+    "Existing shield proficiency does not create an extra skill when this feat is acquired; the medium training and legal ability increase remain."
+  ],
+  "decision": "Keep actual lightgate, medium/shield/+1source grants and liveequipment restrictions.",
+  "completeAuthoringProcedure": "Require actual light-armor proficiency at acquisition. Gain medium-armor and shield proficiency, and choose Strength or Dexterity to increase by 1, normally no higher than 20. Preserve all three printed benefits. NEW: one nonrepeatable identity records the actual chosen score and grants; already held medium/shield proficiency gives no substitute selection or Expertise. The feat does not waive suit properties, body fit, Strength minimum, weight, don/doff time or hand use. Apply the actual selected armor formula and shield contribution, with the ordinary cap unless a separately owned feature changes it. Later loss of the acquisition prerequisite does not erase ownership; ongoing item/body restrictions and actual suppression still govern use.",
+  "newRuleProvenance": "All submitted NEW/proposed completions retained by this decision and all departures below are authoring decisions of FEAT327-SOURCE-2026-10-11, not recovered source wording. The original object remains immutable.",
+  "sharedContract": "FEAT_SHARED_DIRECTIONS.json: FS-01–16",
+  "supplementContract": "FEAT_SUPPLEMENT_DIRECTIONS.json: explicit source path/pointer mappings",
+  "workedCases": [
+    "A light-trained holder with DEX 15 can become DEX 16 and gain medium armor plus shields. The medium suit still uses its normal +2 DEX cap without Medium Armor Master.",
+    "Existing shield proficiency does not create an extra skill when this feat is acquired; the medium training and legal ability increase remain."
+  ],
+  "payloadOperational": "full authored procedure; not a runtime adapter",
+  "selectionEnabled": false,
+  "exactApproved": false,
+  "runtimeApproved": false
+}
+```
+
+### Complete current candidate procedure
+
+Require actual light-armor proficiency at acquisition. Gain medium-armor and shield proficiency, and choose Strength or Dexterity to increase by 1, normally no higher than 20. Preserve all three printed benefits. NEW: one nonrepeatable identity records the actual chosen score and grants; already held medium/shield proficiency gives no substitute selection or Expertise. The feat does not waive suit properties, body fit, Strength minimum, weight, don/doff time or hand use. Apply the actual selected armor formula and shield contribution, with the ordinary cap unless a separately owned feature changes it. Later loss of the acquisition prerequisite does not erase ownership; ongoing item/body restrictions and actual suppression still govern use.
+
+### Original-position authored review references
+
+```json
+[
+  {
+    "id": "GD-20-E01",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/38"
+  },
+  {
+    "id": "GD-20-E02",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/39"
+  }
+]
+```
+
+## GD-21 — Quick Recovery
+
+### Complete original object
+
+```json
+{
+  "id": "quick_recovery",
+  "name": "Quick Recovery",
+  "description": "Constitution 12+ supports the listed +50% HP regeneration outside combat.",
+  "prerequisite": "Constitution 12+",
+  "effect": "When you spend Hit Dice during a short rest, add your proficiency bonus to the total hit points restored.",
+  "type": "General",
+  "legacyEffect": "+50% HP regen out of combat",
+  "status": "provisional-complete",
+  "balanceReview": true,
+  "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+  "draft": false,
+  "deprecated": false,
+  "needsReview": true
+}
+```
+
+### Original question
+
+```json
+"Reconcile description/legacy +50percent out-of-combat regeneration with current PB added to HP restored when spending Hit Dice during Short Rest. Define once per rest versus per die, multiple installments, zero dice, actual healing caps and Wounds. Current wording must not become a new free recurring regeneration pulse."
+```
+
+### Preserved original source direction (historical)
+
+```json
+{
+  "featId": "quick_recovery",
+  "name": "Quick Recovery",
+  "cohort": "general_defense",
+  "questionId": "GD-21",
+  "disposition": "AUTHOR_FROM_SUBMITTED_PROCEDURE_WITH_FINAL_SHARED_RULES",
+  "sourcePath": "DescentReviewChanges/ReviewBible/data/director/general_defense_feat_operating_proposal_internal.json",
+  "sourceFileSha256": "7f8cf43d5ad139cb0f7b1c107a16db87cccf71d7b5caa3cfe632c2efc4eeb274",
+  "sourcePointer": "/records/20",
+  "originalQuestion": "Reconcile description/legacy +50percent out-of-combat regeneration with current PB added to HP restored when spending Hit Dice during Short Rest. Define once per rest versus per die, multiple installments, zero dice, actual healing caps and Wounds. Current wording must not become a new free recurring regeneration pulse.",
+  "originalSourceObject": {
+    "id": "quick_recovery",
+    "name": "Quick Recovery",
+    "description": "Constitution 12+ supports the listed +50% HP regeneration outside combat.",
+    "prerequisite": "Constitution 12+",
+    "effect": "When you spend Hit Dice during a short rest, add your proficiency bonus to the total hit points restored.",
+    "type": "General",
+    "legacyEffect": "+50% HP regen out of combat",
+    "status": "provisional-complete",
+    "balanceReview": true,
+    "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+    "draft": false,
+    "deprecated": false,
+    "needsReview": true
+  },
+  "originalSourceObjectSha256AsSubmitted": "dab18c63700ddf42f10e99665bb727f7282248559f22b490ae5e02bdd07ad0ae",
+  "submittedProcedure": "Preserve the current effect: when you legally spend one or more Hit Dice during a completed short-rest recovery procedure, add your current PB once to the total ordinary HP-healing amount for that rest. NEW: commit this single Quick-Recovery-family addition with the first actual Hit Die healing event of that rest; further installments or extra dice in the same rest do not add it again. Zero spent Hit Dice yields no feat addition. Add PB before the ordinary healing reductions, prohibitions and capacity/Critical caps; it is not a promise of PB actual HP restored. The entitlement is spent even if that first event is blocked or entirely excess, and a separate owned converter still needs its own actual rules. Wounds affect recovered Hit Dice under their existing procedure, not a second fee on this bonus. The description/legacy +50-percent out-of-combat regeneration remains preserved but inactive. No free recurring regeneration, extra rest reward or new Hit Dice is created.",
+  "submittedNewChoices": "Once-per-real-rest total bonus, first-event commitment and inactive legacy regeneration choice.",
+  "submittedWorkedCases": [
+    "PB +3 with two Hit Die results totaling 11 gives 14 raw ordinary healing for that rest, before actual healing modifiers and caps; spending another die later in the same rest adds no second +3.",
+    "A rest spent without any Hit Die gives no Quick Recovery healing. A blocked first Hit Die heal does not reserve the bonus for repeated retries."
+  ],
+  "decision": "Choose currentPB once per real short-rest HitDice episode, atfirstactualdie, not legacyregeneration; blockers/excess do not bank it.",
+  "completeAuthoringProcedure": "Preserve the current effect: when you legally spend one or more Hit Dice during a completed short-rest recovery procedure, add your current PB once to the total ordinary HP-healing amount for that rest. NEW: commit this single Quick-Recovery-family addition with the first actual Hit Die healing event of that rest; further installments or extra dice in the same rest do not add it again. Zero spent Hit Dice yields no feat addition. Add PB before the ordinary healing reductions, prohibitions and capacity/Critical caps; it is not a promise of PB actual HP restored. The entitlement is spent even if that first event is blocked or entirely excess, and a separate owned converter still needs its own actual rules. Wounds affect recovered Hit Dice under their existing procedure, not a second fee on this bonus. The description/legacy +50-percent out-of-combat regeneration remains preserved but inactive. No free recurring regeneration, extra rest reward or new Hit Dice is created.",
+  "newRuleProvenance": "All submitted NEW/proposed completions retained by this decision and all departures below are authoring decisions of FEAT327-SOURCE-2026-10-11, not recovered source wording. The original object remains immutable.",
+  "sharedContract": "FEAT_SHARED_DIRECTIONS.json: FS-01–16",
+  "supplementContract": "FEAT_SUPPLEMENT_DIRECTIONS.json: explicit source path/pointer mappings",
+  "workedCases": [
+    "PB +3 with two Hit Die results totaling 11 gives 14 raw ordinary healing for that rest, before actual healing modifiers and caps; spending another die later in the same rest adds no second +3.",
+    "A rest spent without any Hit Die gives no Quick Recovery healing. A blocked first Hit Die heal does not reserve the bonus for repeated retries."
+  ],
+  "payloadOperational": "full authored procedure; not a runtime adapter",
+  "selectionEnabled": false,
+  "exactApproved": false,
+  "runtimeApproved": false
+}
+```
+
+### Complete current candidate procedure
+
+Preserve the current effect: when you legally spend one or more Hit Dice during a completed short-rest recovery procedure, add your current PB once to the total ordinary HP-healing amount for that rest. NEW: commit this single Quick-Recovery-family addition with the first actual Hit Die healing event of that rest; further installments or extra dice in the same rest do not add it again. Zero spent Hit Dice yields no feat addition. Add PB before the ordinary healing reductions, prohibitions and capacity/Critical caps; it is not a promise of PB actual HP restored. The entitlement is spent even if that first event is blocked or entirely excess, and a separate owned converter still needs its own actual rules. Wounds affect recovered Hit Dice under their existing procedure, not a second fee on this bonus. The description/legacy +50-percent out-of-combat regeneration remains preserved but inactive. No free recurring regeneration, extra rest reward or new Hit Dice is created.
+
+### Original-position authored review references
+
+```json
+[
+  {
+    "id": "GD-21-E01",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/40"
+  },
+  {
+    "id": "GD-21-E02",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/41"
+  }
+]
+```
+
+## GD-22 — Resilient
+
+### Complete original object
+
+```json
+{
+  "id": "resilient",
+  "name": "Resilient",
+  "description": "Choose one ability score. You gain the following benefits:",
+  "prerequisite": "None",
+  "effect": "Increase the chosen ability score by 1, gain proficiency in saving throws using the chosen ability",
+  "type": "General",
+  "draft": false,
+  "deprecated": false,
+  "needsReview": false
+}
+```
+
+### Original question
+
+```json
+"Choose one actual ability, add1 subject to explicit score cap and gain that save proficiency. Decide repeatability for different abilities, existing proficiency and no expertise/doublePB. Recompute legitimate derived statistics without automatic HP healing or replacing the class ASI/feat acquisition opportunity."
+```
+
+### Preserved original source direction (historical)
+
+```json
+{
+  "featId": "resilient",
+  "name": "Resilient",
+  "cohort": "general_defense",
+  "questionId": "GD-22",
+  "disposition": "AUTHOR_FROM_SUBMITTED_PROCEDURE_WITH_FINAL_SHARED_RULES",
+  "sourcePath": "DescentReviewChanges/ReviewBible/data/director/general_defense_feat_operating_proposal_internal.json",
+  "sourceFileSha256": "7f8cf43d5ad139cb0f7b1c107a16db87cccf71d7b5caa3cfe632c2efc4eeb274",
+  "sourcePointer": "/records/21",
+  "originalQuestion": "Choose one actual ability, add1 subject to explicit score cap and gain that save proficiency. Decide repeatability for different abilities, existing proficiency and no expertise/doublePB. Recompute legitimate derived statistics without automatic HP healing or replacing the class ASI/feat acquisition opportunity.",
+  "originalSourceObject": {
+    "id": "resilient",
+    "name": "Resilient",
+    "description": "Choose one ability score. You gain the following benefits:",
+    "prerequisite": "None",
+    "effect": "Increase the chosen ability score by 1, gain proficiency in saving throws using the chosen ability",
+    "type": "General",
+    "draft": false,
+    "deprecated": false,
+    "needsReview": false
+  },
+  "originalSourceObjectSha256AsSubmitted": "f418c10bd80fc5513c4dc117fe742c6c1827a1b3c296a9bf44dc9641e8f59cd4",
+  "submittedProcedure": "Choose one of STR, DEX, CON, INT, WIS or CHA. Increase that score by 1, normally no higher than 20, and gain proficiency in saving throws using that same ability. NEW repeatability: a later actual feat opportunity can select a different ability, but cannot select the same ability again through this feat. Record the chosen ability and acquisition event; there is no free switch or banked +1. An existing save proficiency adds no second PB or Expertise, though an otherwise legal +1 ability remains. Check the score ceiling for each selection. Apply the actual save ability only when that save is made, including other legitimate modifiers; proficiency is not a bonus to every save. Recompute derived statistics and the CON/maximum-HP records where relevant without ordinary healing or resource refills.",
+  "submittedNewChoices": "Different-ability repeatability, score cap and duplicate-save handling; same ability binds both benefits.",
+  "submittedWorkedCases": [
+    "Selecting WIS 15 makes WIS 16 and grants Wisdom-save proficiency. A later separate selection may choose CON, but not WIS again.",
+    "If Wisdom saves were already proficient, selecting a legal WIS increase does not add PB twice or grant Expertise on those saves."
+  ],
+  "decision": "Adopt different-ability-only repeatability and tied+1/saveproficiency, no Expertise or duplicatePB.",
+  "completeAuthoringProcedure": "Choose one of STR, DEX, CON, INT, WIS or CHA. Increase that score by 1, normally no higher than 20, and gain proficiency in saving throws using that same ability. NEW repeatability: a later actual feat opportunity can select a different ability, but cannot select the same ability again through this feat. Record the chosen ability and acquisition event; there is no free switch or banked +1. An existing save proficiency adds no second PB or Expertise, though an otherwise legal +1 ability remains. Check the score ceiling for each selection. Apply the actual save ability only when that save is made, including other legitimate modifiers; proficiency is not a bonus to every save. Recompute derived statistics and the CON/maximum-HP records where relevant without ordinary healing or resource refills.",
+  "newRuleProvenance": "All submitted NEW/proposed completions retained by this decision and all departures below are authoring decisions of FEAT327-SOURCE-2026-10-11, not recovered source wording. The original object remains immutable.",
+  "sharedContract": "FEAT_SHARED_DIRECTIONS.json: FS-01–16",
+  "supplementContract": "FEAT_SUPPLEMENT_DIRECTIONS.json: explicit source path/pointer mappings",
+  "workedCases": [
+    "Selecting WIS 15 makes WIS 16 and grants Wisdom-save proficiency. A later separate selection may choose CON, but not WIS again.",
+    "If Wisdom saves were already proficient, selecting a legal WIS increase does not add PB twice or grant Expertise on those saves."
+  ],
+  "payloadOperational": "full authored procedure; not a runtime adapter",
+  "selectionEnabled": false,
+  "exactApproved": false,
+  "runtimeApproved": false
+}
+```
+
+### Complete current candidate procedure
+
+Choose one of STR, DEX, CON, INT, WIS or CHA. Increase that score by 1, normally no higher than 20, and gain proficiency in saving throws using that same ability. NEW repeatability: a later actual feat opportunity can select a different ability, but cannot select the same ability again through this feat. Record the chosen ability and acquisition event; there is no free switch or banked +1. An existing save proficiency adds no second PB or Expertise, though an otherwise legal +1 ability remains. Check the score ceiling for each selection. Apply the actual save ability only when that save is made, including other legitimate modifiers; proficiency is not a bonus to every save. Recompute derived statistics and the CON/maximum-HP records where relevant without ordinary healing or resource refills.
+
+### Original-position authored review references
+
+```json
+[
+  {
+    "id": "GD-22-E01",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/42"
+  },
+  {
+    "id": "GD-22-E02",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/43"
+  }
+]
+```
+
+## GD-23 — Resilient Mind
+
+### Complete original object
+
+```json
+{
+  "id": "resilient_mind",
+  "name": "Resilient Mind",
+  "description": "Wisdom 14+ supports the listed +2 to concentration checks.",
+  "prerequisite": "Wisdom 14+",
+  "effect": "Gain +2 to Constitution saving throws made to maintain concentration and +1 to Wisdom saves against mental effects.",
+  "type": "General",
+  "legacyEffect": "+2 to concentration checks",
+  "status": "provisional-complete",
+  "balanceReview": true,
+  "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+  "draft": false,
+  "deprecated": false,
+  "needsReview": true
+}
+```
+
+### Original question
+
+```json
+"Preserve description/legacy concentration-check wording and current +2CON concentration saves plus1WIS saves against mental effects. Define the second predicate independently; no double application of the same source, no all-CON/all-WIS bonus and no use when no legitimate concentration save occurs."
+```
+
+### Preserved original source direction (historical)
+
+```json
+{
+  "featId": "resilient_mind",
+  "name": "Resilient Mind",
+  "cohort": "general_defense",
+  "questionId": "GD-23",
+  "disposition": "AUTHOR_FROM_EXACT_REPLACEMENT_WITH_FINAL_SHARED_RULES",
+  "sourcePath": "DescentReviewChanges/ReviewBible/data/director/general_defense_feat_operating_proposal_internal.json",
+  "sourceFileSha256": "7f8cf43d5ad139cb0f7b1c107a16db87cccf71d7b5caa3cfe632c2efc4eeb274",
+  "sourcePointer": "/records/22",
+  "originalQuestion": "Preserve description/legacy concentration-check wording and current +2CON concentration saves plus1WIS saves against mental effects. Define the second predicate independently; no double application of the same source, no all-CON/all-WIS bonus and no use when no legitimate concentration save occurs.",
+  "originalSourceObject": {
+    "id": "resilient_mind",
+    "name": "Resilient Mind",
+    "description": "Wisdom 14+ supports the listed +2 to concentration checks.",
+    "prerequisite": "Wisdom 14+",
+    "effect": "Gain +2 to Constitution saving throws made to maintain concentration and +1 to Wisdom saves against mental effects.",
+    "type": "General",
+    "legacyEffect": "+2 to concentration checks",
+    "status": "provisional-complete",
+    "balanceReview": true,
+    "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+    "draft": false,
+    "deprecated": false,
+    "needsReview": true
+  },
+  "originalSourceObjectSha256AsSubmitted": "112e7f84665b3a6d6364cd9c9d656b224a741573f40c8d7caadbc4d18ad98d89",
+  "submittedProcedure": "Add 2 on actual Constitution saving throws whose purpose is maintaining concentration on a real active effect. This does not create concentration on an effect that lacks it, grant a new slot or add to every Constitution save. Separately add 1 on actual Wisdom saves against a mental effect under the shared proposed finite predicate. The two clauses have different roll requirements and do not both apply to one ordinary Constitution concentration save. Preserve the current source's save wording over its legacy 'concentration checks' shorthand; an effect using a different non-save procedure is not automatically converted. NEW: its distinct qualifying Wisdom +1 can coexist with Iron Will's +2 under the proposed feat-family rule. No effect without an actual save grants an invented roll, and no bonus automatically prevents concentration ending from Incapacitated, voluntary replacement or its source's dependency ending.",
+  "submittedNewChoices": "Separate exact predicates, current-save wording and explicit Iron Will combination.",
+  "submittedWorkedCases": [
+    "A CON concentration save with ordinary modifier +4 becomes +6. Its causal psychic damage does not also activate this feat's Wisdom-only +1.",
+    "A qualifying WIS save against mental coercion can receive the +1, while an unrelated Wisdom-based navigation check receives nothing."
+  ],
+  "decision": "Keep distinctCON-concentration+2 andWIS-mental+1 predicates, notgenericchecks; combine distinctfeats onlyunderfinalconvention.",
+  "completeAuthoringProcedure": "Add 2 on actual Constitution saving throws whose purpose is maintaining concentration on a real active effect. This does not create concentration on an effect that lacks it, grant a new slot or add to every Constitution save. Separately add 1 on actual Wisdom saves against a mental effect under the shared proposed finite predicate. The two clauses have different roll requirements and do not both apply to one ordinary Constitution concentration save. Preserve the current source's save wording over its legacy 'concentration checks' shorthand; an effect using a different non-save procedure is not automatically converted. NEW: its distinct qualifying Wisdom +1 can coexist with Iron Will's +2 under FS-03/FS-04 as applicable. No effect without an actual save grants an invented roll, and no bonus automatically prevents concentration ending from Incapacitated, voluntary replacement or its source's dependency ending.",
+  "newRuleProvenance": "All submitted NEW/proposed completions retained by this decision and all departures below are authoring decisions of FEAT327-SOURCE-2026-10-11, not recovered source wording. The original object remains immutable.",
+  "sharedContract": "FEAT_SHARED_DIRECTIONS.json: FS-01–16",
+  "supplementContract": "FEAT_SUPPLEMENT_DIRECTIONS.json: explicit source path/pointer mappings",
+  "workedCases": [
+    "A CON concentration save with ordinary modifier +4 becomes +6. Its causal psychic damage does not also activate this feat's Wisdom-only +1.",
+    "A qualifying WIS save against mental coercion can receive the +1, while an unrelated Wisdom-based navigation check receives nothing."
+  ],
+  "payloadOperational": "full authored procedure; not a runtime adapter",
+  "selectionEnabled": false,
+  "exactApproved": false,
+  "runtimeApproved": false
+}
+```
+
+### Complete current candidate procedure
+
+Add 2 on actual Constitution saving throws whose purpose is maintaining concentration on a real active effect. This does not create concentration on an effect that lacks it, grant a new slot or add to every Constitution save. Separately add 1 on actual Wisdom saves against a mental effect under the current adopted finite predicate in FS-05. The two clauses have different roll requirements and do not both apply to one ordinary Constitution concentration save. Preserve the current source's save wording over its legacy 'concentration checks' shorthand; an effect using a different non-save procedure is not automatically converted. NEW: its distinct qualifying Wisdom +1 can coexist with Iron Will's +2 under FS-03/FS-04 as applicable. No effect without an actual save grants an invented roll, and no bonus automatically prevents concentration ending from Incapacitated, voluntary replacement or its source's dependency ending.
+
+CURRENT ADOPTED MENTAL-EFFECT PREDICATE (FS-05). A qualifying mental-effect save is the effect's own save to prevent or end Charmed, Frightened, possession, compelled actions/speech, or an explicitly described alteration of thoughts, memories, beliefs, emotions or perceived sensory reality; also include a save directly against psychic damage. Actual concentration maintenance is a separate save, not automatically a mental-effect save because psychic damage caused it. A generic INT/WIS/CHA save, mundane physical hazard or ordinary social check does not qualify solely by ability or theme. Tag the actual effect and outcome before the roll. This is the finite source definition already adopted for Iron Will and Resilient Mind; it supplies no new roll, immunity or concentration permission.
+
+### Original-position authored review references
+
+```json
+[
+  {
+    "id": "GD-23-E01",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/44"
+  },
+  {
+    "id": "GD-23-E02",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/45"
+  }
+]
+```
+
+## GD-24 — Stubborn Resolve
+
+### Complete original object
+
+```json
+{
+  "id": "stubborn_resolve",
+  "name": "Stubborn Resolve",
+  "description": "Constitution 15+ supports the listed resistance to one death effect per day.",
+  "prerequisite": "Constitution 15+",
+  "effect": "Once per long rest, when you fail a saving throw against an effect that would kill you outright, reroll the save and use the new result.",
+  "type": "General",
+  "legacyEffect": "Can resist 1 death effect per day",
+  "status": "provisional-complete",
+  "balanceReview": true,
+  "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+  "draft": false,
+  "deprecated": false,
+  "needsReview": true
+}
+```
+
+### Original question
+
+```json
+"Current once-Long-Rest reroll applies after failing a save against an effect that would kill outright. Define qualifying kill versus HP0/Wound/death-save/damage events, choice and new result, trigger/recovery ledger and exceptions for no-save death. Reconcile legacy resistance wording without granting resurrection or automatic survival."
+```
+
+### Preserved original source direction (historical)
+
+```json
+{
+  "featId": "stubborn_resolve",
+  "name": "Stubborn Resolve",
+  "cohort": "general_defense",
+  "questionId": "GD-24",
+  "disposition": "AUTHOR_FROM_SUBMITTED_PROCEDURE_WITH_FINAL_SHARED_RULES",
+  "sourcePath": "DescentReviewChanges/ReviewBible/data/director/general_defense_feat_operating_proposal_internal.json",
+  "sourceFileSha256": "7f8cf43d5ad139cb0f7b1c107a16db87cccf71d7b5caa3cfe632c2efc4eeb274",
+  "sourcePointer": "/records/23",
+  "originalQuestion": "Current once-Long-Rest reroll applies after failing a save against an effect that would kill outright. Define qualifying kill versus HP0/Wound/death-save/damage events, choice and new result, trigger/recovery ledger and exceptions for no-save death. Reconcile legacy resistance wording without granting resurrection or automatic survival.",
+  "originalSourceObject": {
+    "id": "stubborn_resolve",
+    "name": "Stubborn Resolve",
+    "description": "Constitution 15+ supports the listed resistance to one death effect per day.",
+    "prerequisite": "Constitution 15+",
+    "effect": "Once per long rest, when you fail a saving throw against an effect that would kill you outright, reroll the save and use the new result.",
+    "type": "General",
+    "legacyEffect": "Can resist 1 death effect per day",
+    "status": "provisional-complete",
+    "balanceReview": true,
+    "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+    "draft": false,
+    "deprecated": false,
+    "needsReview": true
+  },
+  "originalSourceObjectSha256AsSubmitted": "0fbd1bd2cc622f8e17facbf5f543d78040d72fc2aca51aabab3f453d94a3785c",
+  "submittedProcedure": "Once per completed long rest, after you fail an actual saving throw whose currently applicable failure outcome directly makes you Dead, you may spend the feat's use to reroll under the shared replacement procedure before death commits. NEW eligible examples include an explicit save-or-die effect and a Wound save begun at three Wounds, where another failure is immediately fatal. An ordinary damage save does not qualify merely because the eventual damage could reduce HP to zero or meet Instant Death; that save's failure outcome is damage, not direct death. Ordinary death saving throws and their accumulated failure counters are a separate Core procedure and do not qualify here. No-save direct death, an already committed death, a maximum-HP clamp or a future delayed risk supplies no new save. Use the new result even if it still kills; there is no resurrection or automatic survival. Preserve legacy death-effect 'resistance' wording as inactive beside this explicit current reroll proposal. A separately eligible would-die replacement still keeps its own later legal window if the new result remains fatal.",
+  "submittedNewChoices": "Exact direct-death failure predicate; fatal Wound inclusion; damage/death-save exclusions; precommit reroll timing.",
+  "submittedWorkedCases": [
+    "At three Wounds, a failed actual Wound save would kill. This proposal permits one paid reroll before committing that death, with the new save's actual result controlling.",
+    "A failed fire-damage save is not eligible merely because the incoming damage is lethal. A no-save Instant Death check supplies no Stubborn Resolve roll."
+  ],
+  "decision": "Adopt failed direct-death-save reroll includingfatalWounds, notordinarylethaldamage/deathsaves/no-save death; noactualdeathrewind.",
+  "completeAuthoringProcedure": "Once per completed long rest, after you fail an actual saving throw whose currently applicable failure outcome directly makes you Dead, you may spend the feat's use to reroll under the shared replacement procedure before death commits. NEW eligible examples include an explicit save-or-die effect and a Wound save begun at three Wounds, where another failure is immediately fatal. An ordinary damage save does not qualify merely because the eventual damage could reduce HP to zero or meet Instant Death; that save's failure outcome is damage, not direct death. Ordinary death saving throws and their accumulated failure counters are a separate Core procedure and do not qualify here. No-save direct death, an already committed death, a maximum-HP clamp or a future delayed risk supplies no new save. Use the new result even if it still kills; there is no resurrection or automatic survival. Preserve legacy death-effect 'resistance' wording as inactive beside this explicit current reroll proposal. A separately eligible would-die replacement still keeps its own later legal window if the new result remains fatal.",
+  "newRuleProvenance": "All submitted NEW/proposed completions retained by this decision and all departures below are authoring decisions of FEAT327-SOURCE-2026-10-11, not recovered source wording. The original object remains immutable.",
+  "sharedContract": "FEAT_SHARED_DIRECTIONS.json: FS-01–16",
+  "supplementContract": "FEAT_SUPPLEMENT_DIRECTIONS.json: explicit source path/pointer mappings",
+  "workedCases": [
+    "At three Wounds, a failed actual Wound save would kill. This proposal permits one paid reroll before committing that death, with the new save's actual result controlling.",
+    "A failed fire-damage save is not eligible merely because the incoming damage is lethal. A no-save Instant Death check supplies no Stubborn Resolve roll."
+  ],
+  "payloadOperational": "full authored procedure; not a runtime adapter",
+  "selectionEnabled": false,
+  "exactApproved": false,
+  "runtimeApproved": false
+}
+```
+
+### Complete current candidate procedure
+
+Once per completed long rest, after you fail an actual saving throw whose currently applicable failure outcome directly makes you Dead, you may spend the feat's use to reroll under the shared replacement procedure before death commits. NEW eligible examples include an explicit save-or-die effect and a Wound save begun at three Wounds, where another failure is immediately fatal. An ordinary damage save does not qualify merely because the eventual damage could reduce HP to zero or meet Instant Death; that save's failure outcome is damage, not direct death. Ordinary death saving throws and their accumulated failure counters are a separate Core procedure and do not qualify here. No-save direct death, an already committed death, a maximum-HP clamp or a future delayed risk supplies no new save. Use the new result even if it still kills; there is no resurrection or automatic survival. Preserve legacy death-effect 'resistance' wording as inactive beside this explicit current reroll proposal. A separately eligible would-die replacement still keeps its own later legal window if the new result remains fatal.
+
+### Original-position authored review references
+
+```json
+[
+  {
+    "id": "GD-24-E01",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/46"
+  },
+  {
+    "id": "GD-24-E02",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/47"
+  }
+]
+```
+
+## GD-25 — Tenacity
+
+### Complete original object
+
+```json
+{
+  "id": "tenacity",
+  "name": "Tenacity",
+  "description": "Level 4 supports the listed +1 HP per level.",
+  "prerequisite": "Level 4",
+  "effect": "Your hit point maximum increases by 1 for each character level, including levels already gained.",
+  "type": "General",
+  "legacyEffect": "+1 HP per level",
+  "status": "provisional-complete",
+  "balanceReview": true,
+  "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+  "draft": false,
+  "deprecated": false,
+  "needsReview": true
+}
+```
+
+### Original question
+
+```json
+"Bind +1maximumHP per total character level, explicitly retroactive. Define future advancement, level loss and suppression/removal through the reviewed maxHP source identity and current-HP reconciliation. Compare Tough, Tough as Nails and Dark Fortitude without accidental duplicate family bonuses or healing."
+```
+
+### Preserved original source direction (historical)
+
+```json
+{
+  "featId": "tenacity",
+  "name": "Tenacity",
+  "cohort": "general_defense",
+  "questionId": "GD-25",
+  "disposition": "AUTHOR_FROM_SUBMITTED_PROCEDURE_WITH_FINAL_SHARED_RULES",
+  "sourcePath": "DescentReviewChanges/ReviewBible/data/director/general_defense_feat_operating_proposal_internal.json",
+  "sourceFileSha256": "7f8cf43d5ad139cb0f7b1c107a16db87cccf71d7b5caa3cfe632c2efc4eeb274",
+  "sourcePointer": "/records/24",
+  "originalQuestion": "Bind +1maximumHP per total character level, explicitly retroactive. Define future advancement, level loss and suppression/removal through the reviewed maxHP source identity and current-HP reconciliation. Compare Tough, Tough as Nails and Dark Fortitude without accidental duplicate family bonuses or healing.",
+  "originalSourceObject": {
+    "id": "tenacity",
+    "name": "Tenacity",
+    "description": "Level 4 supports the listed +1 HP per level.",
+    "prerequisite": "Level 4",
+    "effect": "Your hit point maximum increases by 1 for each character level, including levels already gained.",
+    "type": "General",
+    "legacyEffect": "+1 HP per level",
+    "status": "provisional-complete",
+    "balanceReview": true,
+    "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+    "draft": false,
+    "deprecated": false,
+    "needsReview": true
+  },
+  "originalSourceObjectSha256AsSubmitted": "5f3e13d83dd42dca3d5fac9ba4fa2e707884921e38b07f80e230d3f013aae461",
+  "submittedProcedure": "At total character level 4 or higher, acquire Tenacity through a legal feat opportunity. RETAIN its reviewed maximum-HP component: one bonus record equal to your current total character level, including already attained levels. It updates with genuine later level changes; do not snapshot it at acquisition. It is one identity and cannot be counted twice through aliases, engine descriptions or repeated registration. Distinct Tough, Tough as Nails and Dark Fortitude records add under the already reviewed maximum-HP contract. Apply systemic factors and reductions in that contract's order. Gaining or restoring this bonus increases capacity only; losing/suppressing it recomputes capacity and clamps current HP if necessary without damage, Wounds, healing, death-failure or first-fall triggers. NEW full-feat completion: nonrepeatable acquisition and retention under ordinary later prerequisite loss; no free retraining or HP refill.",
+  "submittedNewChoices": "Only full-feat acquisition/nonrepeatability completion; existing HP coefficient, stacking and no-healing rule are retained authority.",
+  "submittedWorkedCases": [
+    "At total level 7, Tenacity contributes +7 maximum HP. A later genuine level 8 makes that +8 without restoring a missing current HP point.",
+    "With current HP 35 and maximum 40, removing a +7 Tenacity record can clamp HP to the recomputed maximum 33; the two-point clamp is not damage."
+  ],
+  "decision": "Keep already-reviewed currenttotallevelHP coefficient, distinct identityand capacity-only/clamp behavior; addonlynonrepeatablefullfeat acquisition.",
+  "completeAuthoringProcedure": "At total character level 4 or higher, acquire Tenacity through a legal feat opportunity. RETAIN its reviewed maximum-HP component: one bonus record equal to your current total character level, including already attained levels. It updates with genuine later level changes; do not snapshot it at acquisition. It is one identity and cannot be counted twice through aliases, engine descriptions or repeated registration. Distinct Tough, Tough as Nails and Dark Fortitude records add under the already reviewed maximum-HP contract. Apply systemic factors and reductions in that contract's order. Gaining or restoring this bonus increases capacity only; losing/suppressing it recomputes capacity and clamps current HP if necessary without damage, Wounds, healing, death-failure or first-fall triggers. NEW full-feat completion: nonrepeatable acquisition and retention under ordinary later prerequisite loss; no free retraining or HP refill.",
+  "newRuleProvenance": "All submitted NEW/proposed completions retained by this decision and all departures below are authoring decisions of FEAT327-SOURCE-2026-10-11, not recovered source wording. The original object remains immutable.",
+  "sharedContract": "FEAT_SHARED_DIRECTIONS.json: FS-01–16",
+  "supplementContract": "FEAT_SUPPLEMENT_DIRECTIONS.json: explicit source path/pointer mappings",
+  "workedCases": [
+    "At total level 7, Tenacity contributes +7 maximum HP. A later genuine level 8 makes that +8 without restoring a missing current HP point.",
+    "With current HP 35 and maximum 40, removing a +7 Tenacity record can clamp HP to the recomputed maximum 33; the two-point clamp is not damage."
+  ],
+  "payloadOperational": "full authored procedure; not a runtime adapter",
+  "selectionEnabled": false,
+  "exactApproved": false,
+  "runtimeApproved": false
+}
+```
+
+### Complete current candidate procedure
+
+At total character level 4 or higher, acquire Tenacity through a legal feat opportunity. RETAIN its reviewed maximum-HP component: one bonus record equal to your current total character level, including already attained levels. It updates with genuine later level changes; do not snapshot it at acquisition. It is one identity and cannot be counted twice through aliases, engine descriptions or repeated registration. Distinct Tough, Tough as Nails and Dark Fortitude records add under the already reviewed maximum-HP contract. Apply systemic factors and reductions in that contract's order. Gaining or restoring this bonus increases capacity only; losing/suppressing it recomputes capacity and clamps current HP if necessary without damage, Wounds, healing, death-failure or first-fall triggers. NEW full-feat completion: nonrepeatable acquisition and retention under ordinary later prerequisite loss; no free retraining or HP refill.
+
+### Original-position authored review references
+
+```json
+[
+  {
+    "id": "GD-25-E01",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/48"
+  },
+  {
+    "id": "GD-25-E02",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/49"
+  }
+]
+```
+
+## GD-26 — Tough
+
+### Complete original object
+
+```json
+{
+  "id": "tough",
+  "name": "Tough",
+  "description": "Your hit point maximum increases.",
+  "prerequisite": "None",
+  "effect": "Your hit point maximum increases by an amount equal to twice your level when you gain this feat.",
+  "type": "General",
+  "draft": false,
+  "deprecated": false,
+  "needsReview": false
+}
+```
+
+### Original question
+
+```json
+"Source effect says +2times level when gained but lacks the explicit later-level increment printed in Tough as Nails. Decide whether this is a snapshot or ongoing coefficient, preserve the distinction and reconcile identity/stacking with the other HP feats. Define removal/level changes without treating maximum-HP capacity as healing."
+```
+
+### Preserved original source direction (historical)
+
+```json
+{
+  "featId": "tough",
+  "name": "Tough",
+  "cohort": "general_defense",
+  "questionId": "GD-26",
+  "disposition": "AUTHOR_FROM_SUBMITTED_PROCEDURE_WITH_FINAL_SHARED_RULES",
+  "sourcePath": "DescentReviewChanges/ReviewBible/data/director/general_defense_feat_operating_proposal_internal.json",
+  "sourceFileSha256": "7f8cf43d5ad139cb0f7b1c107a16db87cccf71d7b5caa3cfe632c2efc4eeb274",
+  "sourcePointer": "/records/25",
+  "originalQuestion": "Source effect says +2times level when gained but lacks the explicit later-level increment printed in Tough as Nails. Decide whether this is a snapshot or ongoing coefficient, preserve the distinction and reconcile identity/stacking with the other HP feats. Define removal/level changes without treating maximum-HP capacity as healing.",
+  "originalSourceObject": {
+    "id": "tough",
+    "name": "Tough",
+    "description": "Your hit point maximum increases.",
+    "prerequisite": "None",
+    "effect": "Your hit point maximum increases by an amount equal to twice your level when you gain this feat.",
+    "type": "General",
+    "draft": false,
+    "deprecated": false,
+    "needsReview": false
+  },
+  "originalSourceObjectSha256AsSubmitted": "525ce21adb774fad8a95a76be8358bf3e37fa8a2649aa2ccecb6c2009cbf45bc",
+  "submittedProcedure": "Acquire Tough through one legal feat opportunity and record total character level at that moment. RETAIN the reviewed component decision: its maximum-HP bonus is twice that acquisition-level snapshot, with no automatic later increment from Tough itself. Keep that snapshot through current level changes, temporary suppression and save loading; do not rewrite it to current level or borrow Tough as Nails' later-level clause. Distinct maximum-HP feat identities add under the reviewed ledger, but duplicate Tough copies do not. Capacity increases give no current HP; removal/suppression can clamp current HP without damage or healing triggers. NEW full-feat completion: nonrepeatable, with no ordinary re-acquisition loop to replace the snapshot at a higher level. Only a separately authorized actual retraining/removal procedure could create a genuinely new acquisition event; this feat supplies none.",
+  "submittedNewChoices": "Nonrepeatable acquisition and no snapshot-reset loop; reviewed snapshot/stacking component stays unchanged.",
+  "submittedWorkedCases": [
+    "Tough acquired at level 4 contributes +8 even after the character reaches level 10. Tough as Nails' separately owned later-level rule does not rewrite this record.",
+    "Suppressing and restoring Tough keeps the original +8 snapshot and restores no current HP."
+  ],
+  "decision": "Keep reviewed twiceacquisitionlevelsnapshot, noautomaticgrowth or reacquisitionrefresh.",
+  "completeAuthoringProcedure": "Acquire Tough through one legal feat opportunity and record total character level at that moment. RETAIN the reviewed component decision: its maximum-HP bonus is twice that acquisition-level snapshot, with no automatic later increment from Tough itself. Keep that snapshot through current level changes, temporary suppression and save loading; do not rewrite it to current level or borrow Tough as Nails' later-level clause. Distinct maximum-HP feat identities add under the reviewed ledger, but duplicate Tough copies do not. Capacity increases give no current HP; removal/suppression can clamp current HP without damage or healing triggers. NEW full-feat completion: nonrepeatable, with no ordinary re-acquisition loop to replace the snapshot at a higher level. Only a separately authorized actual retraining/removal procedure could create a genuinely new acquisition event; this feat supplies none.",
+  "newRuleProvenance": "All submitted NEW/proposed completions retained by this decision and all departures below are authoring decisions of FEAT327-SOURCE-2026-10-11, not recovered source wording. The original object remains immutable.",
+  "sharedContract": "FEAT_SHARED_DIRECTIONS.json: FS-01–16",
+  "supplementContract": "FEAT_SUPPLEMENT_DIRECTIONS.json: explicit source path/pointer mappings",
+  "workedCases": [
+    "Tough acquired at level 4 contributes +8 even after the character reaches level 10. Tough as Nails' separately owned later-level rule does not rewrite this record.",
+    "Suppressing and restoring Tough keeps the original +8 snapshot and restores no current HP."
+  ],
+  "payloadOperational": "full authored procedure; not a runtime adapter",
+  "selectionEnabled": false,
+  "exactApproved": false,
+  "runtimeApproved": false
+}
+```
+
+### Complete current candidate procedure
+
+Acquire Tough through one legal feat opportunity and record total character level at that moment. RETAIN the reviewed component decision: its maximum-HP bonus is twice that acquisition-level snapshot, with no automatic later increment from Tough itself. Keep that snapshot through current level changes, temporary suppression and save loading; do not rewrite it to current level or borrow Tough as Nails' later-level clause. Distinct maximum-HP feat identities add under the reviewed ledger, but duplicate Tough copies do not. Capacity increases give no current HP; removal/suppression can clamp current HP without damage or healing triggers. NEW full-feat completion: nonrepeatable, with no ordinary re-acquisition loop to replace the snapshot at a higher level. Only a separately authorized actual retraining/removal procedure could create a genuinely new acquisition event; this feat supplies none.
+
+### Original-position authored review references
+
+```json
+[
+  {
+    "id": "GD-26-E01",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/50"
+  },
+  {
+    "id": "GD-26-E02",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/51"
+  }
+]
+```
+
+## GD-27 — Tough as Nails
+
+### Complete original object
+
+```json
+{
+  "id": "tough_as_nails",
+  "name": "Tough as Nails",
+  "description": "Level 5 supports the listed +10% maximum HP.",
+  "prerequisite": "Level 5",
+  "effect": "Your hit point maximum increases by 2 per character level when you take this feat, and by 2 whenever you gain a level thereafter.",
+  "type": "General",
+  "legacyEffect": "+10% max HP",
+  "status": "provisional-complete",
+  "balanceReview": true,
+  "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+  "draft": false,
+  "deprecated": false,
+  "needsReview": true
+}
+```
+
+### Original question
+
+```json
+"Reconcile description/legacy +10percent maximumHP with current retroactive +2per-character-level and +2on later level gains. Define exact source identity and stacking with Tough/Dark Fortitude/Tenacity, level loss and no current-HP refill from toggling capacity. Keep level5 prerequisite and balance status."
+```
+
+### Preserved original source direction (historical)
+
+```json
+{
+  "featId": "tough_as_nails",
+  "name": "Tough as Nails",
+  "cohort": "general_defense",
+  "questionId": "GD-27",
+  "disposition": "AUTHOR_FROM_SUBMITTED_PROCEDURE_WITH_FINAL_SHARED_RULES",
+  "sourcePath": "DescentReviewChanges/ReviewBible/data/director/general_defense_feat_operating_proposal_internal.json",
+  "sourceFileSha256": "7f8cf43d5ad139cb0f7b1c107a16db87cccf71d7b5caa3cfe632c2efc4eeb274",
+  "sourcePointer": "/records/26",
+  "originalQuestion": "Reconcile description/legacy +10percent maximumHP with current retroactive +2per-character-level and +2on later level gains. Define exact source identity and stacking with Tough/Dark Fortitude/Tenacity, level loss and no current-HP refill from toggling capacity. Keep level5 prerequisite and balance status.",
+  "originalSourceObject": {
+    "id": "tough_as_nails",
+    "name": "Tough as Nails",
+    "description": "Level 5 supports the listed +10% maximum HP.",
+    "prerequisite": "Level 5",
+    "effect": "Your hit point maximum increases by 2 per character level when you take this feat, and by 2 whenever you gain a level thereafter.",
+    "type": "General",
+    "legacyEffect": "+10% max HP",
+    "status": "provisional-complete",
+    "balanceReview": true,
+    "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+    "draft": false,
+    "deprecated": false,
+    "needsReview": true
+  },
+  "originalSourceObjectSha256AsSubmitted": "148868a5e7c860c3f3569c6f3fcade2a1f323ddca3d9cb35609511fce3ed0d86",
+  "submittedProcedure": "Require total character level 5 at acquisition. RETAIN the reviewed maximum-HP component: +2 for each total character level already gained, and +2 for each genuine later gained level. Record acquisition level and each subsequent actual advancement so that the benefit tracks the actual attained-level history without replaying level events. NEW edge completion: if a separately authorized level-loss rule removes a level and its benefits, remove the corresponding later-level +2 contribution; restoration of that same level restores that contribution once, not an additional duplicate. The ordinary candidate currently grants no free level loss/retraining mechanism. Preserve source description/legacy +10-percent wording as an inactive alternative, not a second bonus. Distinct HP feat identities add under the already reviewed ledger. Capacity changes never heal and clamps are not damage. This feat is nonrepeatable.",
+  "submittedNewChoices": "Full-feat gate/nonrepeatability and explicit replay-safe level-loss edge; reviewed current coefficient and legacy distinction retained.",
+  "submittedWorkedCases": [
+    "Acquiring at level 5 gives +10 maximum HP; reaching level 6 adds exactly +2, for +12. It does not also apply the legacy +10 percent.",
+    "Replaying the saved level-6 advancement event adds nothing after that same event is already recorded."
+  ],
+  "decision": "Keep reviewed2perattainedlevel withreplay-safeactuallevelloss/restoration, notlegacy10%.",
+  "completeAuthoringProcedure": "Require total character level 5 at acquisition. RETAIN the reviewed maximum-HP component: +2 for each total character level already gained, and +2 for each genuine later gained level. Record acquisition level and each subsequent actual advancement so that the benefit tracks the actual attained-level history without replaying level events. NEW edge completion: if a separately authorized level-loss rule removes a level and its benefits, remove the corresponding later-level +2 contribution; restoration of that same level restores that contribution once, not an additional duplicate. The ordinary candidate currently grants no free level loss/retraining mechanism. Preserve source description/legacy +10-percent wording as an inactive alternative, not a second bonus. Distinct HP feat identities add under the already reviewed ledger. Capacity changes never heal and clamps are not damage. This feat is nonrepeatable.",
+  "newRuleProvenance": "All submitted NEW/proposed completions retained by this decision and all departures below are authoring decisions of FEAT327-SOURCE-2026-10-11, not recovered source wording. The original object remains immutable.",
+  "sharedContract": "FEAT_SHARED_DIRECTIONS.json: FS-01–16",
+  "supplementContract": "FEAT_SUPPLEMENT_DIRECTIONS.json: explicit source path/pointer mappings",
+  "workedCases": [
+    "Acquiring at level 5 gives +10 maximum HP; reaching level 6 adds exactly +2, for +12. It does not also apply the legacy +10 percent.",
+    "Replaying the saved level-6 advancement event adds nothing after that same event is already recorded."
+  ],
+  "payloadOperational": "full authored procedure; not a runtime adapter",
+  "selectionEnabled": false,
+  "exactApproved": false,
+  "runtimeApproved": false
+}
+```
+
+### Complete current candidate procedure
+
+Require total character level 5 at acquisition. RETAIN the reviewed maximum-HP component: +2 for each total character level already gained, and +2 for each genuine later gained level. Record acquisition level and each subsequent actual advancement so that the benefit tracks the actual attained-level history without replaying level events. NEW edge completion: if a separately authorized level-loss rule removes a level and its benefits, remove the corresponding later-level +2 contribution; restoration of that same level restores that contribution once, not an additional duplicate. The ordinary candidate currently grants no free level loss/retraining mechanism. Preserve source description/legacy +10-percent wording as an inactive alternative, not a second bonus. Distinct HP feat identities add under the already reviewed ledger. Capacity changes never heal and clamps are not damage. This feat is nonrepeatable.
+
+### Original-position authored review references
+
+```json
+[
+  {
+    "id": "GD-27-E01",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/52"
+  },
+  {
+    "id": "GD-27-E02",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/53"
+  }
+]
+```
+
+## GD-28 — Void Touched
+
+### Complete original object
+
+```json
+{
+  "id": "void_touched",
+  "name": "Void Touched",
+  "description": "You have been exposed to the void between planes.",
+  "prerequisite": "Wisdom 15+",
+  "effect": "You have resistance to necrotic damage and can see normally in magical darkness.",
+  "type": "General",
+  "draft": false,
+  "deprecated": false,
+  "needsReview": false
+}
+```
+
+### Original question
+
+```json
+"Define necrotic resistance and normal sight through magical darkness, including range, line of sight, non-darkness obscurity and actual form senses. It does not automatically grant darkvision beyond normal sight or see invisible/through walls. Preserve void/plane description without confirming origins or cosmology."
+```
+
+### Preserved original source direction (historical)
+
+```json
+{
+  "featId": "void_touched",
+  "name": "Void Touched",
+  "cohort": "general_defense",
+  "questionId": "GD-28",
+  "disposition": "AUTHOR_FROM_SUBMITTED_PROCEDURE_WITH_FINAL_SHARED_RULES",
+  "sourcePath": "DescentReviewChanges/ReviewBible/data/director/general_defense_feat_operating_proposal_internal.json",
+  "sourceFileSha256": "7f8cf43d5ad139cb0f7b1c107a16db87cccf71d7b5caa3cfe632c2efc4eeb274",
+  "sourcePointer": "/records/27",
+  "originalQuestion": "Define necrotic resistance and normal sight through magical darkness, including range, line of sight, non-darkness obscurity and actual form senses. It does not automatically grant darkvision beyond normal sight or see invisible/through walls. Preserve void/plane description without confirming origins or cosmology.",
+  "originalSourceObject": {
+    "id": "void_touched",
+    "name": "Void Touched",
+    "description": "You have been exposed to the void between planes.",
+    "prerequisite": "Wisdom 15+",
+    "effect": "You have resistance to necrotic damage and can see normally in magical darkness.",
+    "type": "General",
+    "draft": false,
+    "deprecated": false,
+    "needsReview": false
+  },
+  "originalSourceObjectSha256AsSubmitted": "5ebabf79a43e69770a4012f41cd924158d363e6ec64502b1198a17fa196a68b7",
+  "submittedProcedure": "Gain resistance to necrotic damage. You can see normally through magical darkness with your current functioning visual sense. NEW precise scope: within the range at which that body's normal vision can resolve a subject under adequate light, treat magical darkness's obscuring effect as absent for your sight; where the magic itself creates a dark region, treat that region as normally lit for this personal perception. This emits no light and grants no benefit to allies. Independent ordinary darkness beyond that region, non-darkness fog/smoke, total cover, invisible creatures, lack of eyes, Blinded and an actual vision-range limit still apply. It neither creates a new visual sense in a sightless form nor extends a specified sense range. Existing necrotic resistance does not stack. The name/descriptive void connection grants no planar origin, alignment change, creature type or other cosmological assertion.",
+  "submittedNewChoices": "Personal normally-lit interpretation for magical darkness, actual visual-range/body boundary and no light emission; no invented fixed range.",
+  "submittedWorkedCases": [
+    "A visible unobstructed target inside magical darkness can be seen by a holder with functioning ordinary sight. An invisible target remains invisible without another exact ability.",
+    "A wall still blocks sight and a sightless form gains no eyes from this feat; necrotic resistance remains its separate benefit where otherwise operative."
+  ],
+  "decision": "Adopt personal magicaldarkness-as-lit functioningvision andnecroticresistance, noordinarydarkness/wall/invisibility exception ororigininterpretation.",
+  "completeAuthoringProcedure": "Gain resistance to necrotic damage. You can see normally through magical darkness with your current functioning visual sense. NEW precise scope: within the range at which that body's normal vision can resolve a subject under adequate light, treat magical darkness's obscuring effect as absent for your sight; where the magic itself creates a dark region, treat that region as normally lit for this personal perception. This emits no light and grants no benefit to allies. Independent ordinary darkness beyond that region, non-darkness fog/smoke, total cover, invisible creatures, lack of eyes, Blinded and an actual vision-range limit still apply. It neither creates a new visual sense in a sightless form nor extends a specified sense range. Existing necrotic resistance does not stack. The name/descriptive void connection grants no planar origin, alignment change, creature type or other cosmological assertion.",
+  "newRuleProvenance": "All submitted NEW/proposed completions retained by this decision and all departures below are authoring decisions of FEAT327-SOURCE-2026-10-11, not recovered source wording. The original object remains immutable.",
+  "sharedContract": "FEAT_SHARED_DIRECTIONS.json: FS-01–16",
+  "supplementContract": "FEAT_SUPPLEMENT_DIRECTIONS.json: explicit source path/pointer mappings",
+  "workedCases": [
+    "A visible unobstructed target inside magical darkness can be seen by a holder with functioning ordinary sight. An invisible target remains invisible without another exact ability.",
+    "A wall still blocks sight and a sightless form gains no eyes from this feat; necrotic resistance remains its separate benefit where otherwise operative."
+  ],
+  "payloadOperational": "full authored procedure; not a runtime adapter",
+  "selectionEnabled": false,
+  "exactApproved": false,
+  "runtimeApproved": false
+}
+```
+
+### Complete current candidate procedure
+
+Gain resistance to necrotic damage. You can see normally through magical darkness with your current functioning visual sense. NEW precise scope: within the range at which that body's normal vision can resolve a subject under adequate light, treat magical darkness's obscuring effect as absent for your sight; where the magic itself creates a dark region, treat that region as normally lit for this personal perception. This emits no light and grants no benefit to allies. Independent ordinary darkness beyond that region, non-darkness fog/smoke, total cover, invisible creatures, lack of eyes, Blinded and an actual vision-range limit still apply. It neither creates a new visual sense in a sightless form nor extends a specified sense range. Existing necrotic resistance does not stack. The name/descriptive void connection grants no planar origin, alignment change, creature type or other cosmological assertion.
+
+### Original-position authored review references
+
+```json
+[
+  {
+    "id": "GD-28-E01",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/54"
+  },
+  {
+    "id": "GD-28-E02",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/55"
+  }
+]
+```
+
+## GD-29 — Cursebound Flesh
+
+### Complete original object
+
+```json
+{
+  "id": "cursebound_flesh",
+  "name": "Cursebound Flesh",
+  "description": "The moon's bite runs in your veins. Your body has learned to endure what would break mortal flesh. Prestige lineage: Mooncursed. completed from the existing development record.)",
+  "prerequisite": "Constitution 13+, level 6+",
+  "effect": "While transformed or under a lycanthropic curse, you have resistance to nonmagical slashing damage and reduce damage from silver weapons by half. You have advantage on saves to resist involuntary transformation. Once per long rest, when you would drop to 0 hit points while transformed, you may instead drop to 1 hit point and remain transformed until the end of your next turn.",
+  "type": "General",
+  "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+  "legacyEffect": "While transformed or under a lycanthropic curse, you have resistance to nonmagical slashing damage and reduce damage from silver weapons by half. You have advantage on saves to resist involuntary transformation. Once per long rest, when you would drop to 0 hit points while transformed, you may instead drop to 1 hit point and remain transformed until the end of your next turn.",
+  "status": "provisional-complete",
+  "balanceReview": true,
+  "draft": false,
+  "deprecated": false,
+  "needsReview": true
+}
+```
+
+### Original question
+
+```json
+"Define the actual transformed/lycanthropic-curse eligibility without inventing a curse or origin. Resolve nonmagical slashing resistance and separate silver-weapon halving on one event, timing/rounding and no automatic quartering. Specify involuntary-transformation saves and once-Long-Rest HP0-to1 replacement, instant-death/Wound priority and next-turn form extension without bypassing a forced invalid anatomy ending."
+```
+
+### Preserved original source direction (historical)
+
+```json
+{
+  "featId": "cursebound_flesh",
+  "name": "Cursebound Flesh",
+  "cohort": "general_defense",
+  "questionId": "GD-29",
+  "disposition": "AUTHOR_FROM_SUBMITTED_PROCEDURE_WITH_FINAL_SHARED_RULES",
+  "sourcePath": "DescentReviewChanges/ReviewBible/data/director/general_defense_feat_operating_proposal_internal.json",
+  "sourceFileSha256": "7f8cf43d5ad139cb0f7b1c107a16db87cccf71d7b5caa3cfe632c2efc4eeb274",
+  "sourcePointer": "/records/28",
+  "originalQuestion": "Define the actual transformed/lycanthropic-curse eligibility without inventing a curse or origin. Resolve nonmagical slashing resistance and separate silver-weapon halving on one event, timing/rounding and no automatic quartering. Specify involuntary-transformation saves and once-Long-Rest HP0-to1 replacement, instant-death/Wound priority and next-turn form extension without bypassing a forced invalid anatomy ending.",
+  "originalSourceObject": {
+    "id": "cursebound_flesh",
+    "name": "Cursebound Flesh",
+    "description": "The moon's bite runs in your veins. Your body has learned to endure what would break mortal flesh. Prestige lineage: Mooncursed. completed from the existing development record.)",
+    "prerequisite": "Constitution 13+, level 6+",
+    "effect": "While transformed or under a lycanthropic curse, you have resistance to nonmagical slashing damage and reduce damage from silver weapons by half. You have advantage on saves to resist involuntary transformation. Once per long rest, when you would drop to 0 hit points while transformed, you may instead drop to 1 hit point and remain transformed until the end of your next turn.",
+    "type": "General",
+    "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+    "legacyEffect": "While transformed or under a lycanthropic curse, you have resistance to nonmagical slashing damage and reduce damage from silver weapons by half. You have advantage on saves to resist involuntary transformation. Once per long rest, when you would drop to 0 hit points while transformed, you may instead drop to 1 hit point and remain transformed until the end of your next turn.",
+    "status": "provisional-complete",
+    "balanceReview": true,
+    "draft": false,
+    "deprecated": false,
+    "needsReview": true
+  },
+  "originalSourceObjectSha256AsSubmitted": "e57099578bb61f938854a009524c6e756827df66c5caa4002a5c29836adfb481",
+  "submittedProcedure": "Require Constitution 13 and total character level 6 at acquisition. For the two damage defenses, the holder must currently have an actual operative transformation or an explicitly recorded lycanthropic curse. A cosmetic disguise, feat name or inferred origin is insufficient. Gain resistance to nonmagical slashing damage and halve an actual silver weapon's own damage components, including any intrinsic item-profile components. Separate poison doses, class/feat riders and spell damage are not silver-weapon damage merely because the weapon hit delivered their trigger, unless an exact source says they are part of that weapon's own damage. NEW: the two passive halves supplied by this same feat form one defensive family; a nonmagical silver slashing hit is halved once by this family, not automatically quartered. Resolve separate actually applicable defenses by the governing damage pipeline. Gain advantage on actual saves to resist an involuntary transformation, without creating a save for a no-save change. Once per completed long rest, when a real positive-to-zero HP transition would occur while actually transformed, you may spend the use to remain at 1 HP instead. NEW: this is a true drop-prevention floor after Instant Death checking and before later Wound consequences; it does not override Instant Death, fatal Wounds, an already-zero state, actual death or a mandatory unpreventable cost. Extend only the current transformation's ordinary time endpoint, if needed, to at least the end of your next original regular turn. It does not shorten a longer duration, create another form, waive upkeep, prevent voluntary ending or preserve a form through independently failed concentration, invalid anatomy, suppression or another mandatory source ending. Keep the source's origin/curse language as a literal eligibility receipt without inventing a curse.",
+  "submittedNewChoices": "Actual form/curse predicates; same-feat passive-halving family; true-floor order and limited time-endpoint extension. Silver-weapon native components are explicitly separated from independent riders.",
+  "submittedWorkedCases": [
+    "An eligible nonmagical silver slashing packet of 11 is halved once by this feat's own passive family, yielding 5 before any other distinct legally ordered stage, not 2 from counting both clauses twice.",
+    "A transformed positive-HP holder can spend the floor use on an eligible drop, but a subsequent failed Wound save begun at three Wounds can still kill under Core. The feat is not resurrection."
+  ],
+  "decision": "Adopt actualform/curse gating, onefamilyhalvingofsilvernonmagicalslashing, sourcefloorwithInstantDeath/fatalWound boundsandonlyordinaryendpoint extension.",
+  "completeAuthoringProcedure": "Require Constitution 13 and total character level 6 at acquisition. For the two damage defenses, the holder must currently have an actual operative transformation or an explicitly recorded lycanthropic curse. A cosmetic disguise, feat name or inferred origin is insufficient. Gain resistance to nonmagical slashing damage and halve an actual silver weapon's own damage components, including any intrinsic item-profile components. Separate poison doses, class/feat riders and spell damage are not silver-weapon damage merely because the weapon hit delivered their trigger, unless an exact source says they are part of that weapon's own damage. NEW: the two passive halves supplied by this same feat form one defensive family; a nonmagical silver slashing hit is halved once by this family, not automatically quartered. Resolve separate actually applicable defenses by the governing damage pipeline. Gain advantage on actual saves to resist an involuntary transformation, without creating a save for a no-save change. Once per completed long rest, when a real positive-to-zero HP transition would occur while actually transformed, you may spend the use to remain at 1 HP instead. NEW: this is a true drop-prevention floor after Instant Death checking and before later Wound consequences; it does not override Instant Death, fatal Wounds, an already-zero state, actual death or a mandatory unpreventable cost. Extend only the current transformation's ordinary time endpoint, if needed, to at least the end of your next original regular turn. It does not shorten a longer duration, create another form, waive upkeep, prevent voluntary ending or preserve a form through independently failed concentration, invalid anatomy, suppression or another mandatory source ending. Keep the source's origin/curse language as a literal eligibility receipt without inventing a curse.",
+  "newRuleProvenance": "All submitted NEW/proposed completions retained by this decision and all departures below are authoring decisions of FEAT327-SOURCE-2026-10-11, not recovered source wording. The original object remains immutable.",
+  "sharedContract": "FEAT_SHARED_DIRECTIONS.json: FS-01–16",
+  "supplementContract": "FEAT_SUPPLEMENT_DIRECTIONS.json: explicit source path/pointer mappings",
+  "workedCases": [
+    "An eligible nonmagical silver slashing packet of 11 is halved once by this feat's own passive family, yielding 5 before any other distinct legally ordered stage, not 2 from counting both clauses twice.",
+    "A transformed positive-HP holder can spend the floor use on an eligible drop, but a subsequent failed Wound save begun at three Wounds can still kill under Core. The feat is not resurrection."
+  ],
+  "payloadOperational": "full authored procedure; not a runtime adapter",
+  "selectionEnabled": false,
+  "exactApproved": false,
+  "runtimeApproved": false
+}
+```
+
+### Complete current candidate procedure
+
+Require Constitution 13 and total character level 6 at acquisition. For the two damage defenses, the holder must currently have an actual operative transformation or an explicitly recorded lycanthropic curse. A cosmetic disguise, feat name or inferred origin is insufficient. Gain resistance to nonmagical slashing damage and halve an actual silver weapon's own damage components, including any intrinsic item-profile components. Separate poison doses, class/feat riders and spell damage are not silver-weapon damage merely because the weapon hit delivered their trigger, unless an exact source says they are part of that weapon's own damage. NEW: the two passive halves supplied by this same feat form one defensive family; a nonmagical silver slashing hit is halved once by this family, not automatically quartered. Resolve separate actually applicable defenses by the governing damage pipeline. Gain advantage on actual saves to resist an involuntary transformation, without creating a save for a no-save change. Once per completed long rest, when a real positive-to-zero HP transition would occur while actually transformed, you may spend the use to remain at 1 HP instead. NEW: this is a true drop-prevention floor after Instant Death checking and before later Wound consequences; it does not override Instant Death, fatal Wounds, an already-zero state, actual death or a mandatory unpreventable cost. Extend only the current transformation's ordinary time endpoint, if needed, to at least the end of your next original regular turn. It does not shorten a longer duration, create another form, waive upkeep, prevent voluntary ending or preserve a form through independently failed concentration, invalid anatomy, suppression or another mandatory source ending. Keep the source's origin/curse language as a literal eligibility receipt without inventing a curse.
+
+### Original-position authored review references
+
+```json
+[
+  {
+    "id": "GD-29-E01",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/56"
+  },
+  {
+    "id": "GD-29-E02",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/57"
+  }
+]
+```
+
+## GD-30 — Dark Fortitude
+
+### Complete original object
+
+```json
+{
+  "id": "dark_fortitude",
+  "name": "Dark Fortitude",
+  "description": "Grave-cold and poison have tried to claim you. They learned your name and backed away. Prestige lineage: Gravetouched. completed from the existing development record.)",
+  "prerequisite": "Constitution 15+",
+  "effect": "You have advantage on saving throws against poison and disease. Your hit point maximum increases by 2 per character level. When you take necrotic damage, you can use your reaction to reduce that instance by half (once per short rest). While below half your hit point maximum, you have resistance to poison damage.",
+  "type": "General",
+  "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+  "legacyEffect": "You have advantage on saving throws against poison and disease. Your hit point maximum increases by 2 per character level. When you take necrotic damage, you can use your reaction to reduce that instance by half (once per short rest). While below half your hit point maximum, you have resistance to poison damage.",
+  "status": "provisional-complete",
+  "balanceReview": true,
+  "draft": false,
+  "deprecated": false,
+  "needsReview": true
+}
+```
+
+### Original question
+
+```json
+"Preserve every clause: poison/disease save advantage, +2maxHP per character level, once-Short-Rest Reaction to halve one necrotic damage instance, and poison resistance below half maximum. Define snapshot thresholds, exact damage event and order/rounding, activation at zeroHP/incapacity and stacking with actual resistance. Reconcile HP-family identity without changing lineage lore."
+```
+
+### Preserved original source direction (historical)
+
+```json
+{
+  "featId": "dark_fortitude",
+  "name": "Dark Fortitude",
+  "cohort": "general_defense",
+  "questionId": "GD-30",
+  "disposition": "AUTHOR_FROM_SUBMITTED_PROCEDURE_WITH_FINAL_SHARED_RULES",
+  "sourcePath": "DescentReviewChanges/ReviewBible/data/director/general_defense_feat_operating_proposal_internal.json",
+  "sourceFileSha256": "7f8cf43d5ad139cb0f7b1c107a16db87cccf71d7b5caa3cfe632c2efc4eeb274",
+  "sourcePointer": "/records/29",
+  "originalQuestion": "Preserve every clause: poison/disease save advantage, +2maxHP per character level, once-Short-Rest Reaction to halve one necrotic damage instance, and poison resistance below half maximum. Define snapshot thresholds, exact damage event and order/rounding, activation at zeroHP/incapacity and stacking with actual resistance. Reconcile HP-family identity without changing lineage lore.",
+  "originalSourceObject": {
+    "id": "dark_fortitude",
+    "name": "Dark Fortitude",
+    "description": "Grave-cold and poison have tried to claim you. They learned your name and backed away. Prestige lineage: Gravetouched. completed from the existing development record.)",
+    "prerequisite": "Constitution 15+",
+    "effect": "You have advantage on saving throws against poison and disease. Your hit point maximum increases by 2 per character level. When you take necrotic damage, you can use your reaction to reduce that instance by half (once per short rest). While below half your hit point maximum, you have resistance to poison damage.",
+    "type": "General",
+    "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+    "legacyEffect": "You have advantage on saving throws against poison and disease. Your hit point maximum increases by 2 per character level. When you take necrotic damage, you can use your reaction to reduce that instance by half (once per short rest). While below half your hit point maximum, you have resistance to poison damage.",
+    "status": "provisional-complete",
+    "balanceReview": true,
+    "draft": false,
+    "deprecated": false,
+    "needsReview": true
+  },
+  "originalSourceObjectSha256AsSubmitted": "852eee532dee1859120104bb0d8f83f5458baa418d3a224d02d255a0e7d7890a",
+  "submittedProcedure": "Gain advantage on actual saves against poison and disease. RETAIN the reviewed maximum-HP record of +2 per current total character level, additive with distinct HP feat identities and never a current-HP refill. RETAIN its continuous strict-below-half threshold: poison resistance applies exactly while 2 × current HP is less than effective maximum HP. Freeze eligibility for a damage component at its actual defense evaluation; later HP loss does not retroactively resist earlier damage in that packet. Once per completed short rest, when a positive necrotic damage component is about to reach you after passive defenses and before temporary HP/normal HP, NEW: spend your available Reaction and this feat use to halve that remaining necrotic component, rounding the remaining amount down. Other damage types in the same event are unchanged. This is a separate paid prevention step and can follow an actual passive necrotic resistance, but never double-apply either stage or replay a committed packet. You must legally be able to react at that window; zero-HP Incapacitated supplies no generic permission. Necrotic Affinity's separate reaction remains its own choice/cost and does not activate for free from this feat. No prevented amount becomes healing or temporary HP here.",
+  "submittedNewChoices": "Exact paid reaction window, necrotic-component halving/rounding and no generated resource; reviewed HP/threshold components retained.",
+  "submittedWorkedCases": [
+    "With effective maximum 21, HP 10 is strictly below half and grants poison resistance; HP 11 does not. A later maximum change recomputes the continuous predicate without a damage event.",
+    "A remaining necrotic component of 5 can be reduced to 2 by the paid Reaction. A simultaneous 4 fire remains 4; no temporary HP is granted."
+  ],
+  "decision": "Keepreviewed2currentlevelHP/strictbelowhalf threshold; adopt paidReactivehalfonlyremainingnecrotic afterpassivedefensesbeforetempHP, norefund/resource.",
+  "completeAuthoringProcedure": "Gain advantage on actual saves against poison and disease. RETAIN the reviewed maximum-HP record of +2 per current total character level, additive with distinct HP feat identities and never a current-HP refill. RETAIN its continuous strict-below-half threshold: poison resistance applies exactly while 2 × current HP is less than effective maximum HP. Freeze eligibility for a damage component at its actual defense evaluation; later HP loss does not retroactively resist earlier damage in that packet. Once per completed short rest, when a positive necrotic damage component is about to reach you after passive defenses and before temporary HP/normal HP, NEW: spend your available Reaction and this feat use to halve that remaining necrotic component, rounding the remaining amount down. Other damage types in the same event are unchanged. This is a separate paid prevention step and can follow an actual passive necrotic resistance, but never double-apply either stage or replay a committed packet. You must legally be able to react at that window; zero-HP Incapacitated supplies no generic permission. Necrotic Affinity's separate reaction remains its own choice/cost and does not activate for free from this feat. No prevented amount becomes healing or temporary HP here.",
+  "newRuleProvenance": "All submitted NEW/proposed completions retained by this decision and all departures below are authoring decisions of FEAT327-SOURCE-2026-10-11, not recovered source wording. The original object remains immutable.",
+  "sharedContract": "FEAT_SHARED_DIRECTIONS.json: FS-01–16",
+  "supplementContract": "FEAT_SUPPLEMENT_DIRECTIONS.json: explicit source path/pointer mappings",
+  "workedCases": [
+    "With effective maximum 21, HP 10 is strictly below half and grants poison resistance; HP 11 does not. A later maximum change recomputes the continuous predicate without a damage event.",
+    "A remaining necrotic component of 5 can be reduced to 2 by the paid Reaction. A simultaneous 4 fire remains 4; no temporary HP is granted."
+  ],
+  "payloadOperational": "full authored procedure; not a runtime adapter",
+  "selectionEnabled": false,
+  "exactApproved": false,
+  "runtimeApproved": false
+}
+```
+
+### Complete current candidate procedure
+
+Gain advantage on actual saves against poison and disease. RETAIN the reviewed maximum-HP record of +2 per current total character level, additive with distinct HP feat identities and never a current-HP refill. RETAIN its continuous strict-below-half threshold: poison resistance applies exactly while 2 × current HP is less than effective maximum HP. Freeze eligibility for a damage component at its actual defense evaluation; later HP loss does not retroactively resist earlier damage in that packet. Once per completed short rest, when a positive necrotic damage component is about to reach you after passive defenses and before temporary HP/normal HP, NEW: spend your available Reaction and this feat use to halve that remaining necrotic component, rounding the remaining amount down. Other damage types in the same event are unchanged. This is a separate paid prevention step and can follow an actual passive necrotic resistance, but never double-apply either stage or replay a committed packet. You must legally be able to react at that window; zero-HP Incapacitated supplies no generic permission. Necrotic Affinity's separate reaction remains its own choice/cost and does not activate for free from this feat. No prevented amount becomes healing or temporary HP here.
+
+### Original-position authored review references
+
+```json
+[
+  {
+    "id": "GD-30-E01",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/58"
+  },
+  {
+    "id": "GD-30-E02",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/59"
+  }
+]
+```
+
+## GD-31 — Undying Flesh
+
+### Complete original object
+
+```json
+{
+  "id": "undying_flesh",
+  "name": "Undying Flesh",
+  "description": "Death tried to keep you. Your flesh negotiated a reprieve. Prestige lineage: Gravetouched. completed from the existing development record.)",
+  "prerequisite": "Constitution 15+, Necrotic Affinity or Dark Fortitude",
+  "effect": "You have resistance to necrotic and poison damage. Once per long rest, when you are reduced to 0 hit points but not killed outright, you rise at 1 hit point at the start of your next turn with temporary necrotic bonuses (+2 damage for 1 minute).",
+  "type": "General",
+  "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+  "legacyEffect": "You have resistance to necrotic and poison damage. Once per long rest, when you are reduced to 0 hit points but not killed outright, you rise at 1 hit point at the start of your next turn with temporary necrotic bonuses (+2 damage for 1 minute).",
+  "status": "provisional-complete",
+  "balanceReview": true,
+  "draft": false,
+  "deprecated": false,
+  "needsReview": true
+}
+```
+
+### Original question
+
+```json
+"Bind CON15 plus Necrotic Affinity OR Dark Fortitude to actual feat IDs. Define necrotic/poison resistance and once-Long-Rest delayed rise at1HP on next own turn after HP0-but-not-outright-death, with Wound/death/resurrection distinctions and interruption if killed in between. Specify what +2damage for one minute applies to, damage type, attacks/packets/copies and consumption/recovery timing; no indefinite corpse wake-up."
+```
+
+### Preserved original source direction (historical)
+
+```json
+{
+  "featId": "undying_flesh",
+  "name": "Undying Flesh",
+  "cohort": "general_defense",
+  "questionId": "GD-31",
+  "disposition": "AUTHOR_FROM_EXACT_REPLACEMENT_WITH_FINAL_SHARED_RULES",
+  "sourcePath": "DescentReviewChanges/ReviewBible/data/director/general_defense_feat_operating_proposal_internal.json",
+  "sourceFileSha256": "7f8cf43d5ad139cb0f7b1c107a16db87cccf71d7b5caa3cfe632c2efc4eeb274",
+  "sourcePointer": "/records/30",
+  "originalQuestion": "Bind CON15 plus Necrotic Affinity OR Dark Fortitude to actual feat IDs. Define necrotic/poison resistance and once-Long-Rest delayed rise at1HP on next own turn after HP0-but-not-outright-death, with Wound/death/resurrection distinctions and interruption if killed in between. Specify what +2damage for one minute applies to, damage type, attacks/packets/copies and consumption/recovery timing; no indefinite corpse wake-up.",
+  "originalSourceObject": {
+    "id": "undying_flesh",
+    "name": "Undying Flesh",
+    "description": "Death tried to keep you. Your flesh negotiated a reprieve. Prestige lineage: Gravetouched. completed from the existing development record.)",
+    "prerequisite": "Constitution 15+, Necrotic Affinity or Dark Fortitude",
+    "effect": "You have resistance to necrotic and poison damage. Once per long rest, when you are reduced to 0 hit points but not killed outright, you rise at 1 hit point at the start of your next turn with temporary necrotic bonuses (+2 damage for 1 minute).",
+    "type": "General",
+    "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+    "legacyEffect": "You have resistance to necrotic and poison damage. Once per long rest, when you are reduced to 0 hit points but not killed outright, you rise at 1 hit point at the start of your next turn with temporary necrotic bonuses (+2 damage for 1 minute).",
+    "status": "provisional-complete",
+    "balanceReview": true,
+    "draft": false,
+    "deprecated": false,
+    "needsReview": true
+  },
+  "originalSourceObjectSha256AsSubmitted": "322d88cd15bc4ea108124344a8865e0667335733edba7de8bf8697c314e056ea",
+  "submittedProcedure": "Require Constitution 15 and actually owned Necrotic Affinity or Dark Fortitude, using their exact feat IDs. Gain resistance to necrotic and poison damage. NEW delayed-recovery procedure: once per completed long rest, after an actual positive-to-zero damage/loss event finishes its Core Instant Death, Wound and death processing and leaves you living at zero, you may commit the use to that real dying/Stable episode. Record a recovery deadline at the start of your next original regular turn, preserving its virtual marker if initiative changes. At that deadline, before the normal death save, if you are still living at zero in that same episode, attempt direct state recovery to 1 HP. Broad HP-gain prohibition blocks the point; it does not create stability or refund the use. Earlier positive healing closes the pending episode and cancels this later recovery without reducing HP; actual death cancels it and cannot be reversed. On actual successful recovery, NEW: gain a one-elapsed-minute rider adding 2 necrotic damage once to each genuine personally owned damaging attack/spell/feature event, before target defenses. Apply it once to a shared area roll/event, with each target resolving its own defenses; a mixed-type packet does not gain it per component. Fixed damage and actual ongoing source ticks can qualify, but copied/reflected damage, another creature's actions and newly invented split packets do not. The flat +2 is not doubled by critical hits. It is this feat's damage component, not ordinary spell damage for Lifeleech, and creates no new spell, hit, payment, resource event or damage root; it cannot recursively trigger itself. Direct recovery does not remove Wounds, Prone or an independent cause of Unconsciousness. It ends on its deadline or your actual death and does not stack with itself. Missing this delayed recovery or being killed before it never becomes a later corpse wake-up.",
+  "submittedNewChoices": "Episode-bound regular-start recovery, before-death-save placement, blocked/early-healed/dead branches and exact one-minute +2 necrotic rider scope. Distinguish direct recovery from resurrection.",
+  "submittedWorkedCases": [
+    "The holder drops to zero and survives the packet, commits the use, then receives ordinary healing before the next regular start. That real episode closes; the delayed effect neither lowers them to 1 HP nor grants its recovery rider.",
+    "If still alive at zero at the deadline, legal direct recovery restores 1 HP before the death save and starts the minute-long rider. If already dead, neither recovery nor rider occurs."
+  ],
+  "decision": "Complete the delayed passive choice at living0HP, explicitly bypassing only the incapacity caused by this triggering drop; preserve death, blockers, episode and actual recovery-rider conditions.",
+  "completeAuthoringProcedure": "Require Constitution 15 and actually owned Necrotic Affinity or Dark Fortitude, using their exact feat IDs. Gain resistance to necrotic and poison damage. NEW delayed-recovery procedure: once per completed long rest, after an actual positive-to-zero damage/loss event finishes its Core Instant Death, Wound and death processing and leaves you living at zero, you may commit the use to that real dying/Stable episode without an Action or Reaction. NEW this trigger choice is permitted despite Unconscious/Incapacitated caused by this just-completed drop to0; it does not require an impossible conscious Reaction. No earlier corpse, unrelated historical0HP episode or lethal event qualifies. Record a recovery deadline at the start of your next original regular turn, preserving its virtual marker if initiative changes. At that deadline, before the normal death save, if you are still living at zero in that same episode, attempt direct state recovery to 1 HP. Broad HP-gain prohibition blocks the point; it does not create stability or refund the use. Earlier positive healing closes the pending episode and cancels this later recovery without reducing HP; actual death cancels it and cannot be reversed. On actual successful recovery, NEW: gain a one-elapsed-minute rider adding 2 necrotic damage once to each genuine personally owned damaging attack/spell/feature event, before target defenses. Apply it once to a shared area roll/event, with each target resolving its own defenses; a mixed-type packet does not gain it per component. Fixed damage and actual ongoing source ticks can qualify, but copied/reflected damage, another creature's actions and newly invented split packets do not. The flat +2 is not doubled by critical hits. It is this feat's damage component, not ordinary spell damage for Lifeleech, and creates no new spell, hit, payment, resource event or damage root; it cannot recursively trigger itself. Direct recovery does not remove Wounds, Prone or an independent cause of Unconsciousness. It ends on its deadline or your actual death and does not stack with itself. Missing this delayed recovery or being killed before it never becomes a later corpse wake-up.",
+  "newRuleProvenance": "All submitted NEW/proposed completions retained by this decision and all departures below are authoring decisions of FEAT327-SOURCE-2026-10-11, not recovered source wording. The original object remains immutable.",
+  "sharedContract": "FEAT_SHARED_DIRECTIONS.json: FS-01–16",
+  "supplementContract": "FEAT_SUPPLEMENT_DIRECTIONS.json: explicit source path/pointer mappings",
+  "workedCases": [
+    "The holder drops to zero and survives the packet, commits the use, then receives ordinary healing before the next regular start. That real episode closes; the delayed effect neither lowers them to 1 HP nor grants its recovery rider.",
+    "If still alive at zero at the deadline, legal direct recovery restores 1 HP before the death save and starts the minute-long rider. If already dead, neither recovery nor rider occurs."
+  ],
+  "payloadOperational": "full authored procedure; not a runtime adapter",
+  "selectionEnabled": false,
+  "exactApproved": false,
+  "runtimeApproved": false
+}
+```
+
+### Complete current candidate procedure
+
+Require Constitution 15 and actually owned Necrotic Affinity or Dark Fortitude, using their exact feat IDs. Gain resistance to necrotic and poison damage. NEW delayed-recovery procedure: once per completed long rest, after an actual positive-to-zero damage/loss event finishes its Core Instant Death, Wound and death processing and leaves you living at zero, you may commit the use to that real dying/Stable episode without an Action or Reaction. NEW this trigger choice is permitted despite Unconscious/Incapacitated caused by this just-completed drop to0; it does not require an impossible conscious Reaction. No earlier corpse, unrelated historical0HP episode or lethal event qualifies. Record a recovery deadline at the start of your next original regular turn, preserving its virtual marker if initiative changes. At that deadline, before the normal death save, if you are still living at zero in that same episode, attempt direct state recovery to 1 HP. Broad HP-gain prohibition blocks the point; it does not create stability or refund the use. Earlier positive healing closes the pending episode and cancels this later recovery without reducing HP; actual death cancels it and cannot be reversed. On actual successful recovery, NEW: gain a one-elapsed-minute rider adding 2 necrotic damage once to each genuine personally owned damaging attack/spell/feature event, before target defenses. Apply it once to a shared area roll/event, with each target resolving its own defenses; a mixed-type packet does not gain it per component. Fixed damage and actual ongoing source ticks can qualify, but copied/reflected damage, another creature's actions and newly invented split packets do not. The flat +2 is not doubled by critical hits. It is this feat's damage component, not ordinary spell damage for Lifeleech, and creates no new spell, hit, payment, resource event or damage root; it cannot recursively trigger itself. Direct recovery does not remove Wounds, Prone or an independent cause of Unconsciousness. It ends on its deadline or your actual death and does not stack with itself. Missing this delayed recovery or being killed before it never becomes a later corpse wake-up.
+
+### Original-position authored review references
+
+```json
+[
+  {
+    "id": "GD-31-E01",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/60"
+  },
+  {
+    "id": "GD-31-E02",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/originalCaseReviews/61"
+  },
+  {
+    "id": "FA-25",
+    "report": {
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_DEFENSE_ORIGINAL_CASEBOOK_REVIEW_97.json",
+      "bytes": 473472,
+      "sha256": "f37559bdc9bdf082034db5775ba91e1a3c6de99e7d9981965a900aebef3e8e2b"
+    },
+    "pointer": "/additionalBoundaryReviews/2"
+  }
+]
+```

@@ -1,0 +1,5893 @@
+{
+  "id": "FT84-NEW-ISOLATED-WORK-CASES-01",
+  "cases": [
+    {
+      "id": "FT84-01-written",
+      "title": "Rank-one learning uses its real route",
+      "question": "FT84-Q01",
+      "scope": "SOURCE_QUALIFIED_ISOLATED_SPECIFICATION",
+      "premises": {
+        "learningRollRequired": false,
+        "safeRelevantWorksite": true,
+        "oneWorkWatch": "0..28800 seconds",
+        "sourceContentIsFixture": true,
+        "itemizedBillIsFixtureNotUniversalSplit": true,
+        "teacherContract": "teacher-only:2cp/active minute; written tutor voluntarily advisory, no compulsory paid instruction"
+      },
+      "initialState": {
+        "actor": {
+          "id": "TEST-scholar",
+          "scope": "paid-acquisition/ability slice, not full authenticated character",
+          "class": "Wizard",
+          "level": 12,
+          "INT": 16,
+          "PB": 4,
+          "Arcana": 7,
+          "History": 7,
+          "paidMilestones": {
+            "4": "Ritual Caster: INT chosen",
+            "8": "Spell Scribe",
+            "12": "Diligent Researcher"
+          },
+          "noASIIncreasesAtThoseMilestones": true,
+          "actualBook": "book-S",
+          "tools": "usable writing kit",
+          "RP": 0,
+          "spellcastingExecuted": false
+        },
+        "walletCp": 4000,
+        "bookEntries": [],
+        "materialLots": [
+          {
+            "id": "paper-A",
+            "category": "mundane",
+            "quantity": 4,
+            "unitCp": 25,
+            "indivisible": true
+          },
+          {
+            "id": "ink-A",
+            "category": "mundane",
+            "quantity": 5,
+            "unitCp": 100,
+            "indivisible": false
+          },
+          {
+            "id": "rare-ink-R",
+            "category": "rare",
+            "quantity": 4,
+            "unitCp": 100,
+            "indivisible": false
+          }
+        ],
+        "source": {
+          "exactRitual": "Detect Magic, rank1 Wizard placement named by Ritual Caster overlay",
+          "completeLegitimateText": true,
+          "actualQualifiedTeacher": false,
+          "languageNotationUsable": true,
+          "bookAlreadyOwned": true,
+          "billNominalCp": 1000
+        },
+        "creditSeconds": 0
+      },
+      "events": [
+        {
+          "event": {
+            "start": 0,
+            "seconds": 14400
+          },
+          "before": {
+            "creditSeconds": 0,
+            "pendingSeconds": 0,
+            "lostSeconds": 0,
+            "activeSeconds": 0,
+            "time": 0
+          },
+          "after": {
+            "creditSeconds": 14400,
+            "pendingSeconds": 0,
+            "lostSeconds": 0,
+            "activeSeconds": 14400,
+            "time": 14400
+          }
+        }
+      ],
+      "finalState": {
+        "walletCp": 3150,
+        "materialsConsumed": {
+          "lines": [
+            {
+              "id": "paper-A",
+              "category": "mundane",
+              "quantity": 4,
+              "unitCp": 25,
+              "indivisible": true,
+              "required": 3,
+              "lineExactCp": 75,
+              "reductionFactor": "3/4"
+            },
+            {
+              "id": "ink-A",
+              "category": "mundane",
+              "quantity": 5,
+              "unitCp": 100,
+              "indivisible": false,
+              "required": "15/4",
+              "lineExactCp": 375,
+              "reductionFactor": "3/4"
+            },
+            {
+              "id": "rare-ink-R",
+              "category": "rare",
+              "quantity": 4,
+              "unitCp": 100,
+              "indivisible": false,
+              "required": 4,
+              "lineExactCp": 400,
+              "reductionFactor": 1
+            }
+          ],
+          "exactTotalCp": 850,
+          "finalPurchaseCp": 850
+        },
+        "materialsRemaining": [
+          {
+            "id": "paper-A",
+            "quantity": 1
+          },
+          {
+            "id": "ink-A",
+            "quantity": "5/4"
+          },
+          {
+            "id": "rare-ink-R",
+            "quantity": 0
+          }
+        ],
+        "teacherFeeCp": 0,
+        "bookEntries": [
+          "Detect Magic ritual-record only"
+        ],
+        "normalWizardBookAcquisition": false,
+        "credits": {
+          "requiredSeconds": 14400,
+          "creditedSeconds": 14400,
+          "pendingSeconds": 0,
+          "lostSeconds": 0,
+          "actualActiveSeconds": 14400,
+          "elapsedSeconds": 14400,
+          "complete": true,
+          "completionOpportunities": 1,
+          "trace": [
+            {
+              "event": {
+                "start": 0,
+                "seconds": 14400
+              },
+              "before": {
+                "creditSeconds": 0,
+                "pendingSeconds": 0,
+                "lostSeconds": 0,
+                "activeSeconds": 0,
+                "time": 0
+              },
+              "after": {
+                "creditSeconds": 14400,
+                "pendingSeconds": 0,
+                "lostSeconds": 0,
+                "activeSeconds": 14400,
+                "time": 14400
+              }
+            }
+          ]
+        },
+        "RP": 0,
+        "noCastOrXP": true
+      },
+      "expectedAssertions": [
+        [
+          "time",
+          14400,
+          14400
+        ],
+        [
+          "cost",
+          850,
+          850
+        ],
+        [
+          "rare units",
+          4,
+          4
+        ],
+        [
+          "no ordinary Wizard acquisition",
+          false,
+          false
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-01-teacher",
+      "title": "Rank-one learning uses its real route",
+      "question": "FT84-Q01",
+      "scope": "SOURCE_QUALIFIED_ISOLATED_SPECIFICATION",
+      "premises": {
+        "learningRollRequired": false,
+        "safeRelevantWorksite": true,
+        "oneWorkWatch": "0..28800 seconds",
+        "sourceContentIsFixture": true,
+        "itemizedBillIsFixtureNotUniversalSplit": true,
+        "teacherContract": "teacher-only:2cp/active minute; written tutor voluntarily advisory, no compulsory paid instruction"
+      },
+      "initialState": {
+        "actor": {
+          "id": "TEST-scholar",
+          "scope": "paid-acquisition/ability slice, not full authenticated character",
+          "class": "Wizard",
+          "level": 12,
+          "INT": 16,
+          "PB": 4,
+          "Arcana": 7,
+          "History": 7,
+          "paidMilestones": {
+            "4": "Ritual Caster: INT chosen",
+            "8": "Spell Scribe",
+            "12": "Diligent Researcher"
+          },
+          "noASIIncreasesAtThoseMilestones": true,
+          "actualBook": "book-S",
+          "tools": "usable writing kit",
+          "RP": 0,
+          "spellcastingExecuted": false
+        },
+        "walletCp": 4000,
+        "bookEntries": [],
+        "materialLots": [
+          {
+            "id": "paper-A",
+            "category": "mundane",
+            "quantity": 4,
+            "unitCp": 25,
+            "indivisible": true
+          },
+          {
+            "id": "ink-A",
+            "category": "mundane",
+            "quantity": 5,
+            "unitCp": 100,
+            "indivisible": false
+          },
+          {
+            "id": "rare-ink-R",
+            "category": "rare",
+            "quantity": 4,
+            "unitCp": 100,
+            "indivisible": false
+          }
+        ],
+        "source": {
+          "exactRitual": "Detect Magic, rank1 Wizard placement named by Ritual Caster overlay",
+          "completeLegitimateText": false,
+          "actualQualifiedTeacher": true,
+          "languageNotationUsable": true,
+          "bookAlreadyOwned": true,
+          "billNominalCp": 1000
+        },
+        "creditSeconds": 0
+      },
+      "events": [
+        {
+          "event": {
+            "start": 0,
+            "seconds": 28800
+          },
+          "before": {
+            "creditSeconds": 0,
+            "pendingSeconds": 0,
+            "lostSeconds": 0,
+            "activeSeconds": 0,
+            "time": 0
+          },
+          "after": {
+            "creditSeconds": 28800,
+            "pendingSeconds": 0,
+            "lostSeconds": 0,
+            "activeSeconds": 28800,
+            "time": 28800
+          }
+        }
+      ],
+      "finalState": {
+        "walletCp": 2040,
+        "materialsConsumed": {
+          "lines": [
+            {
+              "id": "paper-A",
+              "category": "mundane",
+              "quantity": 4,
+              "unitCp": 25,
+              "indivisible": true,
+              "required": 4,
+              "lineExactCp": 100,
+              "reductionFactor": 1
+            },
+            {
+              "id": "ink-A",
+              "category": "mundane",
+              "quantity": 5,
+              "unitCp": 100,
+              "indivisible": false,
+              "required": 5,
+              "lineExactCp": 500,
+              "reductionFactor": 1
+            },
+            {
+              "id": "rare-ink-R",
+              "category": "rare",
+              "quantity": 4,
+              "unitCp": 100,
+              "indivisible": false,
+              "required": 4,
+              "lineExactCp": 400,
+              "reductionFactor": 1
+            }
+          ],
+          "exactTotalCp": 1000,
+          "finalPurchaseCp": 1000
+        },
+        "materialsRemaining": [
+          {
+            "id": "paper-A",
+            "quantity": 0
+          },
+          {
+            "id": "ink-A",
+            "quantity": 0
+          },
+          {
+            "id": "rare-ink-R",
+            "quantity": 0
+          }
+        ],
+        "teacherFeeCp": 960,
+        "bookEntries": [
+          "Detect Magic ritual-record only"
+        ],
+        "normalWizardBookAcquisition": false,
+        "credits": {
+          "requiredSeconds": 28800,
+          "creditedSeconds": 28800,
+          "pendingSeconds": 0,
+          "lostSeconds": 0,
+          "actualActiveSeconds": 28800,
+          "elapsedSeconds": 28800,
+          "complete": true,
+          "completionOpportunities": 1,
+          "trace": [
+            {
+              "event": {
+                "start": 0,
+                "seconds": 28800
+              },
+              "before": {
+                "creditSeconds": 0,
+                "pendingSeconds": 0,
+                "lostSeconds": 0,
+                "activeSeconds": 0,
+                "time": 0
+              },
+              "after": {
+                "creditSeconds": 28800,
+                "pendingSeconds": 0,
+                "lostSeconds": 0,
+                "activeSeconds": 28800,
+                "time": 28800
+              }
+            }
+          ]
+        },
+        "RP": 0,
+        "noCastOrXP": true
+      },
+      "expectedAssertions": [
+        [
+          "time",
+          28800,
+          28800
+        ],
+        [
+          "cost",
+          1000,
+          1000
+        ],
+        [
+          "rare units",
+          4,
+          4
+        ],
+        [
+          "no ordinary Wizard acquisition",
+          false,
+          false
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-01-written-tutor-present",
+      "title": "Rank-one learning uses its real route",
+      "question": "FT84-Q01",
+      "scope": "SOURCE_QUALIFIED_ISOLATED_SPECIFICATION",
+      "premises": {
+        "learningRollRequired": false,
+        "safeRelevantWorksite": true,
+        "oneWorkWatch": "0..28800 seconds",
+        "sourceContentIsFixture": true,
+        "itemizedBillIsFixtureNotUniversalSplit": true,
+        "teacherContract": "teacher-only:2cp/active minute; written tutor voluntarily advisory, no compulsory paid instruction"
+      },
+      "initialState": {
+        "actor": {
+          "id": "TEST-scholar",
+          "scope": "paid-acquisition/ability slice, not full authenticated character",
+          "class": "Wizard",
+          "level": 12,
+          "INT": 16,
+          "PB": 4,
+          "Arcana": 7,
+          "History": 7,
+          "paidMilestones": {
+            "4": "Ritual Caster: INT chosen",
+            "8": "Spell Scribe",
+            "12": "Diligent Researcher"
+          },
+          "noASIIncreasesAtThoseMilestones": true,
+          "actualBook": "book-S",
+          "tools": "usable writing kit",
+          "RP": 0,
+          "spellcastingExecuted": false
+        },
+        "walletCp": 4000,
+        "bookEntries": [],
+        "materialLots": [
+          {
+            "id": "paper-A",
+            "category": "mundane",
+            "quantity": 4,
+            "unitCp": 25,
+            "indivisible": true
+          },
+          {
+            "id": "ink-A",
+            "category": "mundane",
+            "quantity": 5,
+            "unitCp": 100,
+            "indivisible": false
+          },
+          {
+            "id": "rare-ink-R",
+            "category": "rare",
+            "quantity": 4,
+            "unitCp": 100,
+            "indivisible": false
+          }
+        ],
+        "source": {
+          "exactRitual": "Detect Magic, rank1 Wizard placement named by Ritual Caster overlay",
+          "completeLegitimateText": true,
+          "actualQualifiedTeacher": true,
+          "languageNotationUsable": true,
+          "bookAlreadyOwned": true,
+          "billNominalCp": 1000
+        },
+        "creditSeconds": 0
+      },
+      "events": [
+        {
+          "event": {
+            "start": 0,
+            "seconds": 14400
+          },
+          "before": {
+            "creditSeconds": 0,
+            "pendingSeconds": 0,
+            "lostSeconds": 0,
+            "activeSeconds": 0,
+            "time": 0
+          },
+          "after": {
+            "creditSeconds": 14400,
+            "pendingSeconds": 0,
+            "lostSeconds": 0,
+            "activeSeconds": 14400,
+            "time": 14400
+          }
+        }
+      ],
+      "finalState": {
+        "walletCp": 3150,
+        "materialsConsumed": {
+          "lines": [
+            {
+              "id": "paper-A",
+              "category": "mundane",
+              "quantity": 4,
+              "unitCp": 25,
+              "indivisible": true,
+              "required": 3,
+              "lineExactCp": 75,
+              "reductionFactor": "3/4"
+            },
+            {
+              "id": "ink-A",
+              "category": "mundane",
+              "quantity": 5,
+              "unitCp": 100,
+              "indivisible": false,
+              "required": "15/4",
+              "lineExactCp": 375,
+              "reductionFactor": "3/4"
+            },
+            {
+              "id": "rare-ink-R",
+              "category": "rare",
+              "quantity": 4,
+              "unitCp": 100,
+              "indivisible": false,
+              "required": 4,
+              "lineExactCp": 400,
+              "reductionFactor": 1
+            }
+          ],
+          "exactTotalCp": 850,
+          "finalPurchaseCp": 850
+        },
+        "materialsRemaining": [
+          {
+            "id": "paper-A",
+            "quantity": 1
+          },
+          {
+            "id": "ink-A",
+            "quantity": "5/4"
+          },
+          {
+            "id": "rare-ink-R",
+            "quantity": 0
+          }
+        ],
+        "teacherFeeCp": 0,
+        "bookEntries": [
+          "Detect Magic ritual-record only"
+        ],
+        "normalWizardBookAcquisition": false,
+        "credits": {
+          "requiredSeconds": 14400,
+          "creditedSeconds": 14400,
+          "pendingSeconds": 0,
+          "lostSeconds": 0,
+          "actualActiveSeconds": 14400,
+          "elapsedSeconds": 14400,
+          "complete": true,
+          "completionOpportunities": 1,
+          "trace": [
+            {
+              "event": {
+                "start": 0,
+                "seconds": 14400
+              },
+              "before": {
+                "creditSeconds": 0,
+                "pendingSeconds": 0,
+                "lostSeconds": 0,
+                "activeSeconds": 0,
+                "time": 0
+              },
+              "after": {
+                "creditSeconds": 14400,
+                "pendingSeconds": 0,
+                "lostSeconds": 0,
+                "activeSeconds": 14400,
+                "time": 14400
+              }
+            }
+          ]
+        },
+        "RP": 0,
+        "noCastOrXP": true
+      },
+      "expectedAssertions": [
+        [
+          "time",
+          14400,
+          14400
+        ],
+        [
+          "cost",
+          850,
+          850
+        ],
+        [
+          "rare units",
+          4,
+          4
+        ],
+        [
+          "no ordinary Wizard acquisition",
+          false,
+          false
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-01-ambiguous-full-price",
+      "title": "Unclassified material price does not block valid half-time work",
+      "question": "FT84-Q01",
+      "scope": "SOURCE_QUALIFIED_ISOLATED_SPECIFICATION",
+      "premises": {
+        "completeWrittenSource": true,
+        "actualCompleteRequiredBundleSupplied": true,
+        "classificationUnknown": true
+      },
+      "initialState": {
+        "walletCp": 2000,
+        "bookEntries": []
+      },
+      "events": [
+        {
+          "event": "supply real full bundle and do240 active minutes",
+          "activeSeconds": 14400,
+          "consumedBundle": 1
+        }
+      ],
+      "finalState": {
+        "walletCp": 1000,
+        "bookEntries": [
+          "Detect Magic ritual-record"
+        ],
+        "activeSeconds": 14400,
+        "materialDiscount": 0
+      },
+      "expectedAssertions": [
+        [
+          "full bill",
+          1000,
+          1000
+        ],
+        [
+          "written time unaffected",
+          14400,
+          14400
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-01-missing-source",
+      "title": "No new prerequisite or stock from a discount",
+      "question": "FT84-Q01",
+      "scope": "NEGATIVE_PREDICATE_NOT_WHOLE_LEARNING_IMPLEMENTATION",
+      "premises": {
+        "isolatedAbsentPredicate": "missing-source",
+        "allOtherActualRequirements": "supplied only for this negative input"
+      },
+      "initialState": {
+        "walletCp": 2000,
+        "creditSeconds": 0,
+        "bookEntries": []
+      },
+      "events": [
+        {
+          "event": "pre-work validation",
+          "result": "no-learning-progress"
+        }
+      ],
+      "finalState": {
+        "walletCp": 2000,
+        "creditSeconds": 0,
+        "bookEntries": [],
+        "adjudication": "no-learning-progress"
+      },
+      "expectedAssertions": [
+        [
+          "no spent validation",
+          2000,
+          2000
+        ],
+        [
+          "no phantom entry",
+          [],
+          []
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-01-no-readable-language",
+      "title": "No new prerequisite or stock from a discount",
+      "question": "FT84-Q01",
+      "scope": "NEGATIVE_PREDICATE_NOT_WHOLE_LEARNING_IMPLEMENTATION",
+      "premises": {
+        "isolatedAbsentPredicate": "no-readable-language",
+        "allOtherActualRequirements": "supplied only for this negative input"
+      },
+      "initialState": {
+        "walletCp": 2000,
+        "creditSeconds": 0,
+        "bookEntries": []
+      },
+      "events": [
+        {
+          "event": "pre-work validation",
+          "result": "no-learning-progress"
+        }
+      ],
+      "finalState": {
+        "walletCp": 2000,
+        "creditSeconds": 0,
+        "bookEntries": [],
+        "adjudication": "no-learning-progress"
+      },
+      "expectedAssertions": [
+        [
+          "no spent validation",
+          2000,
+          2000
+        ],
+        [
+          "no phantom entry",
+          [],
+          []
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-01-no-real-book",
+      "title": "No new prerequisite or stock from a discount",
+      "question": "FT84-Q01",
+      "scope": "NEGATIVE_PREDICATE_NOT_WHOLE_LEARNING_IMPLEMENTATION",
+      "premises": {
+        "isolatedAbsentPredicate": "no-real-book",
+        "allOtherActualRequirements": "supplied only for this negative input"
+      },
+      "initialState": {
+        "walletCp": 2000,
+        "creditSeconds": 0,
+        "bookEntries": []
+      },
+      "events": [
+        {
+          "event": "pre-work validation",
+          "result": "no-learning-progress"
+        }
+      ],
+      "finalState": {
+        "walletCp": 2000,
+        "creditSeconds": 0,
+        "bookEntries": [],
+        "adjudication": "no-learning-progress"
+      },
+      "expectedAssertions": [
+        [
+          "no spent validation",
+          2000,
+          2000
+        ],
+        [
+          "no phantom entry",
+          [],
+          []
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-01-missing-rare-stock",
+      "title": "No new prerequisite or stock from a discount",
+      "question": "FT84-Q01",
+      "scope": "NEGATIVE_PREDICATE_NOT_WHOLE_LEARNING_IMPLEMENTATION",
+      "premises": {
+        "isolatedAbsentPredicate": "missing-rare-stock",
+        "allOtherActualRequirements": "supplied only for this negative input"
+      },
+      "initialState": {
+        "walletCp": 2000,
+        "creditSeconds": 0,
+        "bookEntries": []
+      },
+      "events": [
+        {
+          "event": "pre-work validation",
+          "result": "no-learning-progress"
+        }
+      ],
+      "finalState": {
+        "walletCp": 2000,
+        "creditSeconds": 0,
+        "bookEntries": [],
+        "adjudication": "no-learning-progress"
+      },
+      "expectedAssertions": [
+        [
+          "no spent validation",
+          2000,
+          2000
+        ],
+        [
+          "no phantom entry",
+          [],
+          []
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-01-unpaid-Spell-Scribe",
+      "title": "No new prerequisite or stock from a discount",
+      "question": "FT84-Q01",
+      "scope": "NEGATIVE_PREDICATE_NOT_WHOLE_LEARNING_IMPLEMENTATION",
+      "premises": {
+        "isolatedAbsentPredicate": "unpaid-Spell-Scribe",
+        "allOtherActualRequirements": "supplied only for this negative input"
+      },
+      "initialState": {
+        "walletCp": 2000,
+        "creditSeconds": 0,
+        "bookEntries": []
+      },
+      "events": [
+        {
+          "event": "pre-work validation",
+          "result": "no-copy-discount; use otherwise-legal baseline"
+        }
+      ],
+      "finalState": {
+        "walletCp": 2000,
+        "creditSeconds": 0,
+        "bookEntries": [],
+        "adjudication": "no-copy-discount; use otherwise-legal baseline"
+      },
+      "expectedAssertions": [
+        [
+          "no spent validation",
+          2000,
+          2000
+        ],
+        [
+          "no phantom entry",
+          [],
+          []
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-01-unqualified-teacher",
+      "title": "No new prerequisite or stock from a discount",
+      "question": "FT84-Q01",
+      "scope": "NEGATIVE_PREDICATE_NOT_WHOLE_LEARNING_IMPLEMENTATION",
+      "premises": {
+        "isolatedAbsentPredicate": "unqualified-teacher",
+        "allOtherActualRequirements": "supplied only for this negative input"
+      },
+      "initialState": {
+        "walletCp": 2000,
+        "creditSeconds": 0,
+        "bookEntries": []
+      },
+      "events": [
+        {
+          "event": "pre-work validation",
+          "result": "no-learning-progress"
+        }
+      ],
+      "finalState": {
+        "walletCp": 2000,
+        "creditSeconds": 0,
+        "bookEntries": [],
+        "adjudication": "no-learning-progress"
+      },
+      "expectedAssertions": [
+        [
+          "no spent validation",
+          2000,
+          2000
+        ],
+        [
+          "no phantom entry",
+          [],
+          []
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-01-interruption",
+      "title": "Written study retains completed15-minute credit and real used stock",
+      "question": "FT84-Q01",
+      "scope": "SOURCE_QUALIFIED_ISOLATED_SPECIFICATION",
+      "premises": {
+        "actor": {
+          "id": "TEST-scholar",
+          "scope": "paid-acquisition/ability slice, not full authenticated character",
+          "class": "Wizard",
+          "level": 12,
+          "INT": 16,
+          "PB": 4,
+          "Arcana": 7,
+          "History": 7,
+          "paidMilestones": {
+            "4": "Ritual Caster: INT chosen",
+            "8": "Spell Scribe",
+            "12": "Diligent Researcher"
+          },
+          "noASIIncreasesAtThoseMilestones": true,
+          "actualBook": "book-S",
+          "tools": "usable writing kit",
+          "RP": 0,
+          "spellcastingExecuted": false
+        },
+        "completeTextAndSafeResumption": true,
+        "stockUse": "fixture:0.25 ordinary ink unit is irrecoverably used in lost work, additional to successful-copy3.75units; adequate5unit lot genuinely supplied",
+        "noAutomaticGlobalConsumptionRule": true
+      },
+      "initialState": {
+        "inkUnits": 5,
+        "creditSeconds": 0,
+        "bookEntries": []
+      },
+      "events": [
+        {
+          "event": {
+            "start": 0,
+            "seconds": 1500,
+            "interrupt": true
+          },
+          "before": {
+            "creditSeconds": 0,
+            "pendingSeconds": 0,
+            "lostSeconds": 0,
+            "activeSeconds": 0,
+            "time": 0
+          },
+          "after": {
+            "creditSeconds": 900,
+            "pendingSeconds": 0,
+            "lostSeconds": 600,
+            "activeSeconds": 1500,
+            "time": 1500
+          }
+        },
+        {
+          "event": {
+            "start": 1800,
+            "seconds": 13500
+          },
+          "before": {
+            "creditSeconds": 900,
+            "pendingSeconds": 0,
+            "lostSeconds": 600,
+            "activeSeconds": 1500,
+            "time": 1500
+          },
+          "after": {
+            "creditSeconds": 14400,
+            "pendingSeconds": 0,
+            "lostSeconds": 600,
+            "activeSeconds": 15000,
+            "time": 15300
+          }
+        }
+      ],
+      "finalState": {
+        "credit": {
+          "requiredSeconds": 14400,
+          "creditedSeconds": 14400,
+          "pendingSeconds": 0,
+          "lostSeconds": 600,
+          "actualActiveSeconds": 15000,
+          "elapsedSeconds": 15300,
+          "complete": true,
+          "completionOpportunities": 1,
+          "trace": [
+            {
+              "event": {
+                "start": 0,
+                "seconds": 1500,
+                "interrupt": true
+              },
+              "before": {
+                "creditSeconds": 0,
+                "pendingSeconds": 0,
+                "lostSeconds": 0,
+                "activeSeconds": 0,
+                "time": 0
+              },
+              "after": {
+                "creditSeconds": 900,
+                "pendingSeconds": 0,
+                "lostSeconds": 600,
+                "activeSeconds": 1500,
+                "time": 1500
+              }
+            },
+            {
+              "event": {
+                "start": 1800,
+                "seconds": 13500
+              },
+              "before": {
+                "creditSeconds": 900,
+                "pendingSeconds": 0,
+                "lostSeconds": 600,
+                "activeSeconds": 1500,
+                "time": 1500
+              },
+              "after": {
+                "creditSeconds": 14400,
+                "pendingSeconds": 0,
+                "lostSeconds": 600,
+                "activeSeconds": 15000,
+                "time": 15300
+              }
+            }
+          ]
+        },
+        "inkConsumed": 4,
+        "inkRemaining": 1,
+        "bookEntries": [
+          "Detect Magic ritual-record"
+        ]
+      },
+      "expectedAssertions": [
+        [
+          "credit",
+          14400,
+          14400
+        ],
+        [
+          "actual",
+          15000,
+          15000
+        ],
+        [
+          "elapsed including gap",
+          15300,
+          15300
+        ],
+        [
+          "lost",
+          600,
+          600
+        ],
+        [
+          "no returned ink",
+          1,
+          1
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-01-rounding",
+      "title": "Final purchase and time ceilings, not per-line or per-phase",
+      "question": "FT84-Q01",
+      "scope": "PURE_ROUNDING_BOUNDARY_WITHOUT_NEW_COPY_PERMISSION",
+      "premises": {
+        "actualAuthorizedCopy": "arithmetic fixture only;not a newly granted ritual",
+        "sameCategoryReductions": "one strongest factor"
+      },
+      "initialState": {
+        "baseMinutes": 121,
+        "materialLines": "2+2 mundane cp and1protected cp"
+      },
+      "events": [],
+      "finalState": {
+        "minutes": 61,
+        "bill": {
+          "lines": [
+            {
+              "id": "tinyA",
+              "category": "mundane",
+              "quantity": 2,
+              "unitCp": 1,
+              "indivisible": false,
+              "required": "3/2",
+              "lineExactCp": "3/2",
+              "reductionFactor": "3/4"
+            },
+            {
+              "id": "tinyB",
+              "category": "mundane",
+              "quantity": 2,
+              "unitCp": 1,
+              "indivisible": false,
+              "required": "3/2",
+              "lineExactCp": "3/2",
+              "reductionFactor": "3/4"
+            },
+            {
+              "id": "protected",
+              "category": "unique",
+              "quantity": 1,
+              "unitCp": 1,
+              "indivisible": true,
+              "required": 1,
+              "lineExactCp": 1,
+              "reductionFactor": 1
+            }
+          ],
+          "exactTotalCp": 4,
+          "finalPurchaseCp": 4
+        },
+        "oneIndivisibleSheetRequired": 1
+      },
+      "expectedAssertions": [
+        [
+          "time ceil",
+          61,
+          61
+        ],
+        [
+          "aggregate cost",
+          4,
+          4
+        ],
+        [
+          "single sheet",
+          1,
+          1
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-01-wizard-route",
+      "title": "Wizard Spell Scribing remains its own found-spell procedure",
+      "question": "FT84-Q01",
+      "scope": "EXISTING_SOURCE_WORKED_COMPARISON_NOT_CLASS_ACQUISITION_EXECUTION",
+      "premises": {
+        "actualSelectedClassCard": "wizard.base.spell-scribing",
+        "rank2FoundWizardSpellActuallyLegal": true,
+        "copyNotRitualLearning": true,
+        "SpellScribeAlsoOwned": true
+      },
+      "initialState": {
+        "baselineMinutes": 240,
+        "baselineCp": 10000
+      },
+      "events": [],
+      "finalState": {
+        "activeMinutes": 120,
+        "costCp": 5000,
+        "RitualBookEntryGranted": false
+      },
+      "expectedAssertions": [
+        [
+          "strongest time",
+          120,
+          120
+        ],
+        [
+          "strongest cost",
+          5000,
+          5000
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-01-method-switch",
+      "title": "A later complete text changes only the unworked phase-aligned remainder",
+      "question": "FT84-Q01",
+      "scope": "SOURCE_QUALIFIED_ISOLATED_SPECIFICATION",
+      "premises": {
+        "completedTeacherPhases": 8,
+        "completeLegitimateTextArrivesAtBoundary": true,
+        "noNewFeatGrant": true,
+        "billNoRetroactiveDiscountOnConsumedStock": true
+      },
+      "initialState": {
+        "baselineMinutes": 480,
+        "actualTeacherMinutes": 120,
+        "creditedBaselineMinutes": 120
+      },
+      "events": [
+        {
+          "timeMinute": 120,
+          "event": "prospective route switch;360unworked baseline minutes become180written work"
+        }
+      ],
+      "finalState": {
+        "actualWorkMinutes": 300,
+        "completedRitualRecords": 1,
+        "retroactiveRefundCp": 0
+      },
+      "expectedAssertions": [
+        [
+          "actual total",
+          300.0,
+          300
+        ],
+        [
+          "no quartering",
+          180.0,
+          180
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-02-translate",
+      "title": "Named research preserves completed phase credit and exact single result",
+      "question": "FT84-Q02",
+      "scope": "SOURCE_QUALIFIED_ISOLATED_SPECIFICATION",
+      "premises": {
+        "worksiteEvidenceAndPaidAcquisition": "explicit source-qualified fixture premises,not world authentication",
+        "normalPhases": 900,
+        "maxActiveWorkWatches": 2,
+        "feeContract": "Translate:2cp per actual attended work minute;formula:flat200cp agreed facility access;not source-universal fees",
+        "noManufacturingIncorporation": true
+      },
+      "initialState": {
+        "actor": "TEST-research-lead",
+        "class": "Wizard",
+        "level": 12,
+        "INT": 16,
+        "PB": 4,
+        "actualResearcherFeat": {
+          "paidMilestone": "Wizard:4",
+          "INTPrerequisite": true
+        },
+        "creditSeconds": 0,
+        "walletCp": 2000,
+        "workingStock": {
+          "ordinaryNotesSheets": 4,
+          "reagentLotsConsumed": 0
+        },
+        "source": {
+          "route": "LA07 ordinary related-dialect Translate/Decipher",
+          "baselineMinutes": 480,
+          "actualMinimumResearchHours": null,
+          "actualSkillCredential": "History proficiency",
+          "passage": "TEST_ONLY supported target: The eastern gate closes at dusk.",
+          "evidence": "real adequate parallel/grammatical evidence and author-held supported meaning",
+          "libraryOrFacility": true,
+          "assistant": "one actual qualified participant for all250active minutes",
+          "manufactureStockNotSpent": null
+        }
+      },
+      "events": [
+        {
+          "event": {
+            "start": 0,
+            "seconds": 1500,
+            "interrupt": true
+          },
+          "before": {
+            "creditSeconds": 0,
+            "pendingSeconds": 0,
+            "lostSeconds": 0,
+            "activeSeconds": 0,
+            "time": 0
+          },
+          "after": {
+            "creditSeconds": 900,
+            "pendingSeconds": 0,
+            "lostSeconds": 600,
+            "activeSeconds": 1500,
+            "time": 1500
+          }
+        },
+        {
+          "event": {
+            "start": 1800,
+            "seconds": 13500
+          },
+          "before": {
+            "creditSeconds": 900,
+            "pendingSeconds": 0,
+            "lostSeconds": 600,
+            "activeSeconds": 1500,
+            "time": 1500
+          },
+          "after": {
+            "creditSeconds": 14400,
+            "pendingSeconds": 0,
+            "lostSeconds": 600,
+            "activeSeconds": 15000,
+            "time": 15300
+          }
+        },
+        {
+          "time": 15300,
+          "event": "one ordinary completion task roll",
+          "result": {
+            "die": 7,
+            "INT": 3,
+            "PB": 4,
+            "assistant": 1,
+            "total": 15,
+            "DC": 15,
+            "success": true
+          }
+        }
+      ],
+      "finalState": {
+        "progress": {
+          "requiredSeconds": 14400,
+          "creditedSeconds": 14400,
+          "pendingSeconds": 0,
+          "lostSeconds": 600,
+          "actualActiveSeconds": 15000,
+          "elapsedSeconds": 15300,
+          "complete": true,
+          "completionOpportunities": 1,
+          "trace": [
+            {
+              "event": {
+                "start": 0,
+                "seconds": 1500,
+                "interrupt": true
+              },
+              "before": {
+                "creditSeconds": 0,
+                "pendingSeconds": 0,
+                "lostSeconds": 0,
+                "activeSeconds": 0,
+                "time": 0
+              },
+              "after": {
+                "creditSeconds": 900,
+                "pendingSeconds": 0,
+                "lostSeconds": 600,
+                "activeSeconds": 1500,
+                "time": 1500
+              }
+            },
+            {
+              "event": {
+                "start": 1800,
+                "seconds": 13500
+              },
+              "before": {
+                "creditSeconds": 900,
+                "pendingSeconds": 0,
+                "lostSeconds": 600,
+                "activeSeconds": 1500,
+                "time": 1500
+              },
+              "after": {
+                "creditSeconds": 14400,
+                "pendingSeconds": 0,
+                "lostSeconds": 600,
+                "activeSeconds": 15000,
+                "time": 15300
+              }
+            }
+          ]
+        },
+        "walletCp": 1500,
+        "actualAgreedFeeCp": 500,
+        "notesSheetsUsed": 1,
+        "notesSheetsRemaining": 3,
+        "completionCheck": {
+          "die": 7,
+          "INT": 3,
+          "PB": 4,
+          "assistant": 1,
+          "total": 15,
+          "DC": 15,
+          "success": true
+        },
+        "result": "one supported preregistered passage",
+        "XP": 0,
+        "RP": 0,
+        "manufactureInputsConsumed": 0,
+        "newLanguageOrItem": false
+      },
+      "expectedAssertions": [
+        [
+          "required",
+          14400,
+          14400
+        ],
+        [
+          "actual",
+          15000,
+          15000
+        ],
+        [
+          "lost",
+          600,
+          600
+        ],
+        [
+          "success",
+          true,
+          true
+        ],
+        [
+          "check once",
+          1,
+          1
+        ],
+        [
+          "XP",
+          0,
+          0
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-02-formula",
+      "title": "Named research preserves completed phase credit and exact single result",
+      "question": "FT84-Q02",
+      "scope": "SOURCE_QUALIFIED_ISOLATED_SPECIFICATION",
+      "premises": {
+        "worksiteEvidenceAndPaidAcquisition": "explicit source-qualified fixture premises,not world authentication",
+        "normalPhases": 900,
+        "maxActiveWorkWatches": 2,
+        "feeContract": "Translate:2cp per actual attended work minute;formula:flat200cp agreed facility access;not source-universal fees",
+        "noManufacturingIncorporation": true
+      },
+      "initialState": {
+        "actor": "TEST-research-lead",
+        "class": "Wizard",
+        "level": 8,
+        "INT": 16,
+        "PB": 3,
+        "actualResearcherFeat": {
+          "paidMilestone": "Wizard:4",
+          "INTPrerequisite": true
+        },
+        "creditSeconds": 0,
+        "walletCp": 2000,
+        "workingStock": {
+          "ordinaryNotesSheets": 4,
+          "reagentLotsConsumed": 0
+        },
+        "source": {
+          "route": "existing available recipe-121 formula research",
+          "baselineMinutes": 480,
+          "actualMinimumResearchHours": 0,
+          "actualSkillCredential": "actual Enchanting4 and relevant trade proficiency, no second PB contribution",
+          "passage": null,
+          "evidence": "actually accessible damaged partial formula plus sufficient genuine sample/evidence;not already-legible simple-copy route",
+          "libraryOrFacility": true,
+          "assistant": null,
+          "manufactureStockNotSpent": {
+            "crystals": 2,
+            "rib": 1,
+            "hosts": 6
+          }
+        }
+      },
+      "events": [
+        {
+          "event": {
+            "start": 0,
+            "seconds": 1500,
+            "interrupt": true
+          },
+          "before": {
+            "creditSeconds": 0,
+            "pendingSeconds": 0,
+            "lostSeconds": 0,
+            "activeSeconds": 0,
+            "time": 0
+          },
+          "after": {
+            "creditSeconds": 900,
+            "pendingSeconds": 0,
+            "lostSeconds": 600,
+            "activeSeconds": 1500,
+            "time": 1500
+          }
+        },
+        {
+          "event": {
+            "start": 1800,
+            "seconds": 13500
+          },
+          "before": {
+            "creditSeconds": 900,
+            "pendingSeconds": 0,
+            "lostSeconds": 600,
+            "activeSeconds": 1500,
+            "time": 1500
+          },
+          "after": {
+            "creditSeconds": 14400,
+            "pendingSeconds": 0,
+            "lostSeconds": 600,
+            "activeSeconds": 15000,
+            "time": 15300
+          }
+        },
+        {
+          "time": 15300,
+          "event": "one ordinary completion task roll",
+          "result": {
+            "die": 5,
+            "INT": 3,
+            "PB": 3,
+            "assistant": 0,
+            "total": 11,
+            "DC": 8,
+            "success": true
+          }
+        }
+      ],
+      "finalState": {
+        "progress": {
+          "requiredSeconds": 14400,
+          "creditedSeconds": 14400,
+          "pendingSeconds": 0,
+          "lostSeconds": 600,
+          "actualActiveSeconds": 15000,
+          "elapsedSeconds": 15300,
+          "complete": true,
+          "completionOpportunities": 1,
+          "trace": [
+            {
+              "event": {
+                "start": 0,
+                "seconds": 1500,
+                "interrupt": true
+              },
+              "before": {
+                "creditSeconds": 0,
+                "pendingSeconds": 0,
+                "lostSeconds": 0,
+                "activeSeconds": 0,
+                "time": 0
+              },
+              "after": {
+                "creditSeconds": 900,
+                "pendingSeconds": 0,
+                "lostSeconds": 600,
+                "activeSeconds": 1500,
+                "time": 1500
+              }
+            },
+            {
+              "event": {
+                "start": 1800,
+                "seconds": 13500
+              },
+              "before": {
+                "creditSeconds": 900,
+                "pendingSeconds": 0,
+                "lostSeconds": 600,
+                "activeSeconds": 1500,
+                "time": 1500
+              },
+              "after": {
+                "creditSeconds": 14400,
+                "pendingSeconds": 0,
+                "lostSeconds": 600,
+                "activeSeconds": 15000,
+                "time": 15300
+              }
+            }
+          ]
+        },
+        "walletCp": 1800,
+        "actualAgreedFeeCp": 200,
+        "notesSheetsUsed": 1,
+        "notesSheetsRemaining": 3,
+        "completionCheck": {
+          "die": 5,
+          "INT": 3,
+          "PB": 3,
+          "assistant": 0,
+          "total": 11,
+          "DC": 8,
+          "success": true
+        },
+        "result": "usable exact recipe-121 transcription only",
+        "XP": 0,
+        "RP": 0,
+        "manufactureInputsConsumed": 0,
+        "newLanguageOrItem": false
+      },
+      "expectedAssertions": [
+        [
+          "required",
+          14400,
+          14400
+        ],
+        [
+          "actual",
+          15000,
+          15000
+        ],
+        [
+          "lost",
+          600,
+          600
+        ],
+        [
+          "success",
+          true,
+          true
+        ],
+        [
+          "check once",
+          1,
+          1
+        ],
+        [
+          "XP",
+          0,
+          0
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-02-assistant-True",
+      "title": "Assistant contribution requires all adjusted successful work",
+      "question": "FT84-Q02",
+      "scope": "SOURCE_QUALIFIED_ISOLATED_SPECIFICATION",
+      "premises": {
+        "sameTranslateCase": "independent reset",
+        "actualEligibleAssistantAllWork": true,
+        "noSecondProficiency": true
+      },
+      "initialState": {
+        "creditedSeconds": 14400
+      },
+      "events": [
+        {
+          "event": "one completion roll",
+          "die": 7,
+          "INT": 3,
+          "PB": 4,
+          "assistant": 1,
+          "DC": 15
+        }
+      ],
+      "finalState": {
+        "total": 15,
+        "success": true,
+        "result": "supported passage",
+        "retryWithoutNewEvidenceOrMethod": false
+      },
+      "expectedAssertions": [
+        [
+          "sum",
+          15,
+          15
+        ],
+        [
+          "success",
+          true,
+          true
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-02-assistant-False",
+      "title": "Assistant contribution requires all adjusted successful work",
+      "question": "FT84-Q02",
+      "scope": "SOURCE_QUALIFIED_ISOLATED_SPECIFICATION",
+      "premises": {
+        "sameTranslateCase": "independent reset",
+        "actualEligibleAssistantAllWork": false,
+        "noSecondProficiency": true
+      },
+      "initialState": {
+        "creditedSeconds": 14400
+      },
+      "events": [
+        {
+          "event": "one completion roll",
+          "die": 7,
+          "INT": 3,
+          "PB": 4,
+          "assistant": 0,
+          "DC": 15
+        }
+      ],
+      "finalState": {
+        "total": 14,
+        "success": false,
+        "result": "notes only",
+        "retryWithoutNewEvidenceOrMethod": false
+      },
+      "expectedAssertions": [
+        [
+          "sum",
+          14,
+          14
+        ],
+        [
+          "success",
+          false,
+          false
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-02-final-fraction",
+      "title": "A source-qualified final30seconds is a real shorter final phase",
+      "question": "FT84-Q02",
+      "scope": "FINITE_PHASE_BOUNDARY_WITH_SOURCE_MINIMUM_PREMISE",
+      "premises": {
+        "ordinaryFormulaProjectMinimumMinutes": 481,
+        "independentlyAuthorizedSourceMinimum": "arithmetic fixture,not a new recipe",
+        "eligibleFactor": "1/2"
+      },
+      "initialState": {
+        "creditSeconds": 0
+      },
+      "events": [
+        {
+          "event": {
+            "start": 0,
+            "seconds": 14400
+          },
+          "before": {
+            "creditSeconds": 0,
+            "pendingSeconds": 0,
+            "lostSeconds": 0,
+            "activeSeconds": 0,
+            "time": 0
+          },
+          "after": {
+            "creditSeconds": 14400,
+            "pendingSeconds": 0,
+            "lostSeconds": 0,
+            "activeSeconds": 14400,
+            "time": 14400
+          }
+        },
+        {
+          "event": {
+            "start": 14400,
+            "seconds": 30
+          },
+          "before": {
+            "creditSeconds": 14400,
+            "pendingSeconds": 0,
+            "lostSeconds": 0,
+            "activeSeconds": 14400,
+            "time": 14400
+          },
+          "after": {
+            "creditSeconds": 14430,
+            "pendingSeconds": 0,
+            "lostSeconds": 0,
+            "activeSeconds": 14430,
+            "time": 14430
+          }
+        }
+      ],
+      "finalState": {
+        "requiredSeconds": 14430,
+        "creditedSeconds": 14430,
+        "pendingSeconds": 0,
+        "lostSeconds": 0,
+        "actualActiveSeconds": 14430,
+        "elapsedSeconds": 14430,
+        "complete": true,
+        "completionOpportunities": 1,
+        "trace": [
+          {
+            "event": {
+              "start": 0,
+              "seconds": 14400
+            },
+            "before": {
+              "creditSeconds": 0,
+              "pendingSeconds": 0,
+              "lostSeconds": 0,
+              "activeSeconds": 0,
+              "time": 0
+            },
+            "after": {
+              "creditSeconds": 14400,
+              "pendingSeconds": 0,
+              "lostSeconds": 0,
+              "activeSeconds": 14400,
+              "time": 14400
+            }
+          },
+          {
+            "event": {
+              "start": 14400,
+              "seconds": 30
+            },
+            "before": {
+              "creditSeconds": 14400,
+              "pendingSeconds": 0,
+              "lostSeconds": 0,
+              "activeSeconds": 14400,
+              "time": 14400
+            },
+            "after": {
+              "creditSeconds": 14430,
+              "pendingSeconds": 0,
+              "lostSeconds": 0,
+              "activeSeconds": 14430,
+              "time": 14430
+            }
+          }
+        ]
+      },
+      "expectedAssertions": [
+        [
+          "required",
+          14430,
+          14430
+        ],
+        [
+          "complete",
+          true,
+          true
+        ],
+        [
+          "no padding",
+          14430,
+          14430
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-02-real-progress-loss",
+      "title": "A genuine prior loss leaves a5-minute final remainder",
+      "question": "FT84-Q02",
+      "scope": "CONDITIONAL_PROGRESS_LOSS_BOUNDARY_NOT_NEW_LOSS_SOURCE",
+      "premises": {
+        "priorSourceQualifiedLoss": "external source must genuinely supply this;not granted here",
+        "originalCompletedCreditSeconds": 14400,
+        "actualLossSeconds": 300
+      },
+      "initialState": {
+        "creditedSeconds": 14100
+      },
+      "events": [
+        {
+          "event": {
+            "start": 0,
+            "seconds": 300
+          },
+          "before": {
+            "creditSeconds": 14100,
+            "pendingSeconds": 0,
+            "lostSeconds": 0,
+            "activeSeconds": 0,
+            "time": 0
+          },
+          "after": {
+            "creditSeconds": 14400,
+            "pendingSeconds": 0,
+            "lostSeconds": 0,
+            "activeSeconds": 300,
+            "time": 300
+          }
+        }
+      ],
+      "finalState": {
+        "requiredSeconds": 14400,
+        "creditedSeconds": 14400,
+        "pendingSeconds": 0,
+        "lostSeconds": 0,
+        "actualActiveSeconds": 300,
+        "elapsedSeconds": 300,
+        "complete": true,
+        "completionOpportunities": 1,
+        "trace": [
+          {
+            "event": {
+              "start": 0,
+              "seconds": 300
+            },
+            "before": {
+              "creditSeconds": 14100,
+              "pendingSeconds": 0,
+              "lostSeconds": 0,
+              "activeSeconds": 0,
+              "time": 0
+            },
+            "after": {
+              "creditSeconds": 14400,
+              "pendingSeconds": 0,
+              "lostSeconds": 0,
+              "activeSeconds": 300,
+              "time": 300
+            }
+          }
+        ]
+      },
+      "expectedAssertions": [
+        [
+          "remainder",
+          300,
+          300
+        ],
+        [
+          "complete",
+          true,
+          true
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-02-exclude-ordinary-language-course",
+      "title": "Named research completion does not leak into another procedure",
+      "question": "FT84-Q02",
+      "scope": "SCOPED_CLASSIFICATION_BOUNDARY",
+      "premises": {
+        "actualActivity": "ordinary-language-course",
+        "DiligentResearcherOwned": true
+      },
+      "initialState": {
+        "requiredMinutes": 19200
+      },
+      "events": [],
+      "finalState": {
+        "requiredMinutes": 19200,
+        "newPhaseClockApplied": false,
+        "newEvidenceGranted": false
+      },
+      "expectedAssertions": [
+        [
+          "unchanged time",
+          19200,
+          19200
+        ],
+        [
+          "no new clock",
+          false,
+          false
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-02-exclude-RitualCaster-teacher-learning",
+      "title": "Named research completion does not leak into another procedure",
+      "question": "FT84-Q02",
+      "scope": "SCOPED_CLASSIFICATION_BOUNDARY",
+      "premises": {
+        "actualActivity": "RitualCaster-teacher-learning",
+        "DiligentResearcherOwned": true
+      },
+      "initialState": {
+        "requiredMinutes": 480
+      },
+      "events": [],
+      "finalState": {
+        "requiredMinutes": 480,
+        "newPhaseClockApplied": false,
+        "newEvidenceGranted": false
+      },
+      "expectedAssertions": [
+        [
+          "unchanged time",
+          480,
+          480
+        ],
+        [
+          "no new clock",
+          false,
+          false
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-02-exclude-ordinary-formula-copy",
+      "title": "Named research completion does not leak into another procedure",
+      "question": "FT84-Q02",
+      "scope": "SCOPED_CLASSIFICATION_BOUNDARY",
+      "premises": {
+        "actualActivity": "ordinary-formula-copy",
+        "DiligentResearcherOwned": true
+      },
+      "initialState": {
+        "requiredMinutes": 60
+      },
+      "events": [],
+      "finalState": {
+        "requiredMinutes": 60,
+        "newPhaseClockApplied": false,
+        "newEvidenceGranted": false
+      },
+      "expectedAssertions": [
+        [
+          "unchanged time",
+          60,
+          60
+        ],
+        [
+          "no new clock",
+          false,
+          false
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-02-exclude-Scribing-Insight-specific-spend",
+      "title": "Named research completion does not leak into another procedure",
+      "question": "FT84-Q02",
+      "scope": "SCOPED_CLASSIFICATION_BOUNDARY",
+      "premises": {
+        "actualActivity": "Scribing-Insight-specific-spend",
+        "DiligentResearcherOwned": true
+      },
+      "initialState": {
+        "requiredMinutes": 480
+      },
+      "events": [],
+      "finalState": {
+        "requiredMinutes": 480,
+        "newPhaseClockApplied": false,
+        "newEvidenceGranted": false
+      },
+      "expectedAssertions": [
+        [
+          "unchanged time",
+          480,
+          480
+        ],
+        [
+          "no new clock",
+          false,
+          false
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-02-exclude-fixed-curing-wait",
+      "title": "Named research completion does not leak into another procedure",
+      "question": "FT84-Q02",
+      "scope": "SCOPED_CLASSIFICATION_BOUNDARY",
+      "premises": {
+        "actualActivity": "fixed-curing-wait",
+        "DiligentResearcherOwned": true
+      },
+      "initialState": {
+        "requiredMinutes": 1440
+      },
+      "events": [],
+      "finalState": {
+        "requiredMinutes": 1440,
+        "newPhaseClockApplied": false,
+        "newEvidenceGranted": false
+      },
+      "expectedAssertions": [
+        [
+          "unchanged time",
+          1440,
+          1440
+        ],
+        [
+          "no new clock",
+          false,
+          false
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-02-exclude-unrelated-research-clock",
+      "title": "Named research completion does not leak into another procedure",
+      "question": "FT84-Q02",
+      "scope": "SCOPED_CLASSIFICATION_BOUNDARY",
+      "premises": {
+        "actualActivity": "unrelated-research-clock",
+        "DiligentResearcherOwned": true
+      },
+      "initialState": {
+        "requiredMinutes": null
+      },
+      "events": [],
+      "finalState": {
+        "requiredMinutes": null,
+        "newPhaseClockApplied": false,
+        "newEvidenceGranted": false
+      },
+      "expectedAssertions": [
+        [
+          "unchanged time",
+          null,
+          null
+        ],
+        [
+          "no new clock",
+          false,
+          false
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-02-invalid-unsupported-meaning",
+      "title": "An actual project gate remains required",
+      "question": "FT84-Q02",
+      "scope": "PREDICATE_DIAGNOSTIC_NOT_FULL_PROJECT_REJECTION_ENGINE",
+      "premises": {
+        "absentPermission": "unsupported-meaning"
+      },
+      "initialState": {
+        "creditSeconds": 0,
+        "stock": 4
+      },
+      "events": [
+        {
+          "event": "attempted work/check admission",
+          "admitted": false
+        }
+      ],
+      "finalState": {
+        "creditSeconds": 0,
+        "stock": 4,
+        "extraRoll": false,
+        "extraWorkWatch": false
+      },
+      "expectedAssertions": [
+        [
+          "no invented credit",
+          0,
+          0
+        ],
+        [
+          "no extra roll",
+          false,
+          false
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-02-invalid-missing-archive-access",
+      "title": "An actual project gate remains required",
+      "question": "FT84-Q02",
+      "scope": "PREDICATE_DIAGNOSTIC_NOT_FULL_PROJECT_REJECTION_ENGINE",
+      "premises": {
+        "absentPermission": "missing-archive-access"
+      },
+      "initialState": {
+        "creditSeconds": 0,
+        "stock": 4
+      },
+      "events": [
+        {
+          "event": "attempted work/check admission",
+          "admitted": false
+        }
+      ],
+      "finalState": {
+        "creditSeconds": 0,
+        "stock": 4,
+        "extraRoll": false,
+        "extraWorkWatch": false
+      },
+      "expectedAssertions": [
+        [
+          "no invented credit",
+          0,
+          0
+        ],
+        [
+          "no extra roll",
+          false,
+          false
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-02-invalid-unchanged-evidence-retry",
+      "title": "An actual project gate remains required",
+      "question": "FT84-Q02",
+      "scope": "PREDICATE_DIAGNOSTIC_NOT_FULL_PROJECT_REJECTION_ENGINE",
+      "premises": {
+        "absentPermission": "unchanged-evidence-retry"
+      },
+      "initialState": {
+        "creditSeconds": 0,
+        "stock": 4
+      },
+      "events": [
+        {
+          "event": "attempted work/check admission",
+          "admitted": false
+        }
+      ],
+      "finalState": {
+        "creditSeconds": 0,
+        "stock": 4,
+        "extraRoll": false,
+        "extraWorkWatch": false
+      },
+      "expectedAssertions": [
+        [
+          "no invented credit",
+          0,
+          0
+        ],
+        [
+          "no extra roll",
+          false,
+          false
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-02-invalid-third-active-work-Watch",
+      "title": "An actual project gate remains required",
+      "question": "FT84-Q02",
+      "scope": "PREDICATE_DIAGNOSTIC_NOT_FULL_PROJECT_REJECTION_ENGINE",
+      "premises": {
+        "absentPermission": "third-active-work-Watch"
+      },
+      "initialState": {
+        "creditSeconds": 0,
+        "stock": 4
+      },
+      "events": [
+        {
+          "event": "attempted work/check admission",
+          "admitted": false
+        }
+      ],
+      "finalState": {
+        "creditSeconds": 0,
+        "stock": 4,
+        "extraRoll": false,
+        "extraWorkWatch": false
+      },
+      "expectedAssertions": [
+        [
+          "no invented credit",
+          0,
+          0
+        ],
+        [
+          "no extra roll",
+          false,
+          false
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-02-invalid-same-minute-training-and-research",
+      "title": "An actual project gate remains required",
+      "question": "FT84-Q02",
+      "scope": "PREDICATE_DIAGNOSTIC_NOT_FULL_PROJECT_REJECTION_ENGINE",
+      "premises": {
+        "absentPermission": "same-minute-training-and-research"
+      },
+      "initialState": {
+        "creditSeconds": 0,
+        "stock": 4
+      },
+      "events": [
+        {
+          "event": "attempted work/check admission",
+          "admitted": false
+        }
+      ],
+      "finalState": {
+        "creditSeconds": 0,
+        "stock": 4,
+        "extraRoll": false,
+        "extraWorkWatch": false
+      },
+      "expectedAssertions": [
+        [
+          "no invented credit",
+          0,
+          0
+        ],
+        [
+          "no extra roll",
+          false,
+          false
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-03-gadget-False",
+      "title": "Complete real gadget construction",
+      "question": "FT84-Q03",
+      "scope": "SOURCE_QUALIFIED_ISOLATED_SPECIFICATION",
+      "premises": {
+        "actualGnomeAndTools": "explicit conditional world premise",
+        "paidFeatHistory": {
+          "Wizard:4": "Craftsman, chooses actual carpenters tools",
+          "Wizard:8": "Contraption Crafter"
+        },
+        "INT": 16,
+        "noToolProficiencyFromContraption": true,
+        "partsLots": "two actual5gp lots,not currency converted to stock",
+        "noClampActivationClaim": true,
+        "operativeCraftsmanForThisComparator": false,
+        "baselineComparator": "same source procedure before actually acquiring Craftsman; class4 choice is not operative in this independent comparator"
+      },
+      "initialState": {
+        "owner": "TEST-Gnome-maker",
+        "partsLots": 2,
+        "lotPriceCp": 500,
+        "useSpent": 0,
+        "nextUseAt": 0,
+        "receipts": [],
+        "actualWorkSeconds": 0,
+        "activeGadget": null,
+        "currencyCp": 0,
+        "RP": 0,
+        "otherItemCharges": 2
+      },
+      "events": [
+        {
+          "time": 0,
+          "event": "commit actual stock and24h use; end prior same-owner gadget if any",
+          "before": {
+            "owner": "TEST-Gnome-maker",
+            "partsLots": 2,
+            "lotPriceCp": 500,
+            "useSpent": 0,
+            "nextUseAt": 0,
+            "receipts": [],
+            "actualWorkSeconds": 0,
+            "activeGadget": null,
+            "currencyCp": 0,
+            "RP": 0,
+            "otherItemCharges": 2
+          },
+          "after": {
+            "owner": "TEST-Gnome-maker",
+            "partsLots": 1,
+            "lotPriceCp": 500,
+            "useSpent": 1,
+            "nextUseAt": 86400,
+            "receipts": [
+              "build-1"
+            ],
+            "actualWorkSeconds": 0,
+            "activeGadget": null,
+            "currencyCp": 0,
+            "RP": 0,
+            "otherItemCharges": 2
+          }
+        },
+        {
+          "time": 600,
+          "event": "complete once; real d4=3; no activation",
+          "after": {
+            "owner": "TEST-Gnome-maker",
+            "partsLots": 1,
+            "lotPriceCp": 500,
+            "useSpent": 1,
+            "nextUseAt": 86400,
+            "receipts": [
+              "build-1"
+            ],
+            "actualWorkSeconds": 600,
+            "activeGadget": {
+              "id": "build-1-body",
+              "profile": "clamp (source worked-case d4=3; activation not tested)",
+              "weightLb": 1,
+              "AC": 10,
+              "HP": 1,
+              "createdAt": 600,
+              "expiresAt": 4200,
+              "holder": "TEST-Gnome-maker",
+              "activationExecuted": false
+            },
+            "currencyCp": 0,
+            "RP": 0,
+            "otherItemCharges": 2
+          }
+        }
+      ],
+      "finalState": {
+        "owner": "TEST-Gnome-maker",
+        "partsLots": 1,
+        "lotPriceCp": 500,
+        "useSpent": 1,
+        "nextUseAt": 86400,
+        "receipts": [
+          "build-1"
+        ],
+        "actualWorkSeconds": 600,
+        "activeGadget": {
+          "id": "build-1-body",
+          "profile": "clamp (source worked-case d4=3; activation not tested)",
+          "weightLb": 1,
+          "AC": 10,
+          "HP": 1,
+          "createdAt": 600,
+          "expiresAt": 4200,
+          "holder": "TEST-Gnome-maker",
+          "activationExecuted": false
+        },
+        "currencyCp": 0,
+        "RP": 0,
+        "otherItemCharges": 2
+      },
+      "expectedAssertions": [
+        [
+          "duration",
+          600,
+          600
+        ],
+        [
+          "parts",
+          1,
+          1
+        ],
+        [
+          "use",
+          1,
+          1
+        ],
+        [
+          "RNG once",
+          1,
+          1
+        ],
+        [
+          "expiry",
+          4200,
+          4200
+        ],
+        [
+          "24h not reduced",
+          86400,
+          86400
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-03-gadget-True",
+      "title": "Complete real gadget construction",
+      "question": "FT84-Q03",
+      "scope": "SOURCE_QUALIFIED_ISOLATED_SPECIFICATION",
+      "premises": {
+        "actualGnomeAndTools": "explicit conditional world premise",
+        "paidFeatHistory": {
+          "Wizard:4": "Craftsman, chooses actual carpenters tools",
+          "Wizard:8": "Contraption Crafter"
+        },
+        "INT": 16,
+        "noToolProficiencyFromContraption": true,
+        "partsLots": "two actual5gp lots,not currency converted to stock",
+        "noClampActivationClaim": true,
+        "operativeCraftsmanForThisComparator": true,
+        "baselineComparator": "personally led creation with paid feat"
+      },
+      "initialState": {
+        "owner": "TEST-Gnome-maker",
+        "partsLots": 2,
+        "lotPriceCp": 500,
+        "useSpent": 0,
+        "nextUseAt": 0,
+        "receipts": [],
+        "actualWorkSeconds": 0,
+        "activeGadget": null,
+        "currencyCp": 0,
+        "RP": 0,
+        "otherItemCharges": 2
+      },
+      "events": [
+        {
+          "time": 0,
+          "event": "commit actual stock and24h use; end prior same-owner gadget if any",
+          "before": {
+            "owner": "TEST-Gnome-maker",
+            "partsLots": 2,
+            "lotPriceCp": 500,
+            "useSpent": 0,
+            "nextUseAt": 0,
+            "receipts": [],
+            "actualWorkSeconds": 0,
+            "activeGadget": null,
+            "currencyCp": 0,
+            "RP": 0,
+            "otherItemCharges": 2
+          },
+          "after": {
+            "owner": "TEST-Gnome-maker",
+            "partsLots": 1,
+            "lotPriceCp": 500,
+            "useSpent": 1,
+            "nextUseAt": 86400,
+            "receipts": [
+              "build-1"
+            ],
+            "actualWorkSeconds": 0,
+            "activeGadget": null,
+            "currencyCp": 0,
+            "RP": 0,
+            "otherItemCharges": 2
+          }
+        },
+        {
+          "time": 300,
+          "event": "complete once; real d4=3; no activation",
+          "after": {
+            "owner": "TEST-Gnome-maker",
+            "partsLots": 1,
+            "lotPriceCp": 500,
+            "useSpent": 1,
+            "nextUseAt": 86400,
+            "receipts": [
+              "build-1"
+            ],
+            "actualWorkSeconds": 300,
+            "activeGadget": {
+              "id": "build-1-body",
+              "profile": "clamp (source worked-case d4=3; activation not tested)",
+              "weightLb": 1,
+              "AC": 10,
+              "HP": 1,
+              "createdAt": 300,
+              "expiresAt": 3900,
+              "holder": "TEST-Gnome-maker",
+              "activationExecuted": false
+            },
+            "currencyCp": 0,
+            "RP": 0,
+            "otherItemCharges": 2
+          }
+        }
+      ],
+      "finalState": {
+        "owner": "TEST-Gnome-maker",
+        "partsLots": 1,
+        "lotPriceCp": 500,
+        "useSpent": 1,
+        "nextUseAt": 86400,
+        "receipts": [
+          "build-1"
+        ],
+        "actualWorkSeconds": 300,
+        "activeGadget": {
+          "id": "build-1-body",
+          "profile": "clamp (source worked-case d4=3; activation not tested)",
+          "weightLb": 1,
+          "AC": 10,
+          "HP": 1,
+          "createdAt": 300,
+          "expiresAt": 3900,
+          "holder": "TEST-Gnome-maker",
+          "activationExecuted": false
+        },
+        "currencyCp": 0,
+        "RP": 0,
+        "otherItemCharges": 2
+      },
+      "expectedAssertions": [
+        [
+          "duration",
+          300,
+          300
+        ],
+        [
+          "parts",
+          1,
+          1
+        ],
+        [
+          "use",
+          1,
+          1
+        ],
+        [
+          "RNG once",
+          1,
+          1
+        ],
+        [
+          "expiry",
+          3900,
+          3900
+        ],
+        [
+          "24h not reduced",
+          86400,
+          86400
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-03-gadget-interrupt",
+      "title": "Four minutes cannot be banked into a later gadget",
+      "question": "FT84-Q03",
+      "scope": "SOURCE_QUALIFIED_ISOLATED_SPECIFICATION",
+      "premises": {
+        "actualGnomeAndTools": "explicit conditional world premise",
+        "paidFeatHistory": {
+          "Wizard:4": "Craftsman, chooses actual carpenters tools",
+          "Wizard:8": "Contraption Crafter"
+        },
+        "INT": 16,
+        "noToolProficiencyFromContraption": true,
+        "partsLots": "two actual5gp lots,not currency converted to stock",
+        "noClampActivationClaim": true
+      },
+      "initialState": {
+        "owner": "TEST-Gnome-maker",
+        "partsLots": 2,
+        "lotPriceCp": 500,
+        "useSpent": 0,
+        "nextUseAt": 0,
+        "receipts": [],
+        "actualWorkSeconds": 0,
+        "activeGadget": null,
+        "currencyCp": 0,
+        "RP": 0,
+        "otherItemCharges": 2
+      },
+      "events": [
+        {
+          "time": 0,
+          "event": "commit actual stock and24h use; end prior same-owner gadget if any",
+          "before": {
+            "owner": "TEST-Gnome-maker",
+            "partsLots": 2,
+            "lotPriceCp": 500,
+            "useSpent": 0,
+            "nextUseAt": 0,
+            "receipts": [],
+            "actualWorkSeconds": 0,
+            "activeGadget": null,
+            "currencyCp": 0,
+            "RP": 0,
+            "otherItemCharges": 2
+          },
+          "after": {
+            "owner": "TEST-Gnome-maker",
+            "partsLots": 1,
+            "lotPriceCp": 500,
+            "useSpent": 1,
+            "nextUseAt": 86400,
+            "receipts": [
+              "build-1"
+            ],
+            "actualWorkSeconds": 0,
+            "activeGadget": null,
+            "currencyCp": 0,
+            "RP": 0,
+            "otherItemCharges": 2
+          }
+        },
+        {
+          "time": 240,
+          "event": "actual interruption; entire committed attempt lost",
+          "after": {
+            "owner": "TEST-Gnome-maker",
+            "partsLots": 1,
+            "lotPriceCp": 500,
+            "useSpent": 1,
+            "nextUseAt": 86400,
+            "receipts": [
+              "build-1"
+            ],
+            "actualWorkSeconds": 240,
+            "activeGadget": null,
+            "currencyCp": 0,
+            "RP": 0,
+            "otherItemCharges": 2
+          }
+        }
+      ],
+      "finalState": {
+        "owner": "TEST-Gnome-maker",
+        "partsLots": 1,
+        "lotPriceCp": 500,
+        "useSpent": 1,
+        "nextUseAt": 86400,
+        "receipts": [
+          "build-1"
+        ],
+        "actualWorkSeconds": 240,
+        "activeGadget": null,
+        "currencyCp": 0,
+        "RP": 0,
+        "otherItemCharges": 2
+      },
+      "expectedAssertions": [
+        [
+          "no gadget",
+          null,
+          null
+        ],
+        [
+          "parts spent",
+          1,
+          1
+        ],
+        [
+          "use spent",
+          1,
+          1
+        ],
+        [
+          "no d4",
+          0,
+          0
+        ],
+        [
+          "only actual work",
+          240,
+          240
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-03-gadget-immediate-retry",
+      "title": "Remaining parts do not reset the spent24h use",
+      "question": "FT84-Q03",
+      "scope": "SOURCE_QUALIFIED_ISOLATED_SPECIFICATION",
+      "premises": {
+        "actualGnomeAndTools": "explicit conditional world premise",
+        "paidFeatHistory": {
+          "Wizard:4": "Craftsman, chooses actual carpenters tools",
+          "Wizard:8": "Contraption Crafter"
+        },
+        "INT": 16,
+        "noToolProficiencyFromContraption": true,
+        "partsLots": "two actual5gp lots,not currency converted to stock",
+        "noClampActivationClaim": true
+      },
+      "initialState": {
+        "owner": "TEST-Gnome-maker",
+        "partsLots": 1,
+        "lotPriceCp": 500,
+        "useSpent": 1,
+        "nextUseAt": 86400,
+        "receipts": [
+          "build-1"
+        ],
+        "actualWorkSeconds": 240,
+        "activeGadget": null,
+        "currencyCp": 0,
+        "RP": 0,
+        "otherItemCharges": 2
+      },
+      "events": [],
+      "finalState": {
+        "owner": "TEST-Gnome-maker",
+        "partsLots": 1,
+        "lotPriceCp": 500,
+        "useSpent": 1,
+        "nextUseAt": 86400,
+        "receipts": [
+          "build-1"
+        ],
+        "actualWorkSeconds": 240,
+        "activeGadget": null,
+        "currencyCp": 0,
+        "RP": 0,
+        "otherItemCharges": 2
+      },
+      "expectedAssertions": [
+        [
+          "rejected",
+          "REJECT_BEFORE_COMMIT",
+          "REJECT_BEFORE_COMMIT"
+        ],
+        [
+          "no duplicate parts charge",
+          {
+            "owner": "TEST-Gnome-maker",
+            "partsLots": 1,
+            "lotPriceCp": 500,
+            "useSpent": 1,
+            "nextUseAt": 86400,
+            "receipts": [
+              "build-1"
+            ],
+            "actualWorkSeconds": 240,
+            "activeGadget": null,
+            "currencyCp": 0,
+            "RP": 0,
+            "otherItemCharges": 2
+          },
+          {
+            "owner": "TEST-Gnome-maker",
+            "partsLots": 1,
+            "lotPriceCp": 500,
+            "useSpent": 1,
+            "nextUseAt": 86400,
+            "receipts": [
+              "build-1"
+            ],
+            "actualWorkSeconds": 240,
+            "activeGadget": null,
+            "currencyCp": 0,
+            "RP": 0,
+            "otherItemCharges": 2
+          }
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-03-gadget-later-use",
+      "title": "A real next24h use needs a fresh full5-minute job and parts",
+      "question": "FT84-Q03",
+      "scope": "SOURCE_QUALIFIED_ISOLATED_SPECIFICATION",
+      "premises": {
+        "actualGnomeAndTools": "explicit conditional world premise",
+        "paidFeatHistory": {
+          "Wizard:4": "Craftsman, chooses actual carpenters tools",
+          "Wizard:8": "Contraption Crafter"
+        },
+        "INT": 16,
+        "noToolProficiencyFromContraption": true,
+        "partsLots": "two actual5gp lots,not currency converted to stock",
+        "noClampActivationClaim": true
+      },
+      "initialState": {
+        "owner": "TEST-Gnome-maker",
+        "partsLots": 1,
+        "lotPriceCp": 500,
+        "useSpent": 1,
+        "nextUseAt": 86400,
+        "receipts": [
+          "build-1"
+        ],
+        "actualWorkSeconds": 240,
+        "activeGadget": null,
+        "currencyCp": 0,
+        "RP": 0,
+        "otherItemCharges": 2
+      },
+      "events": [
+        {
+          "time": 86400,
+          "event": "commit actual stock and24h use; end prior same-owner gadget if any",
+          "before": {
+            "owner": "TEST-Gnome-maker",
+            "partsLots": 1,
+            "lotPriceCp": 500,
+            "useSpent": 1,
+            "nextUseAt": 86400,
+            "receipts": [
+              "build-1"
+            ],
+            "actualWorkSeconds": 240,
+            "activeGadget": null,
+            "currencyCp": 0,
+            "RP": 0,
+            "otherItemCharges": 2
+          },
+          "after": {
+            "owner": "TEST-Gnome-maker",
+            "partsLots": 0,
+            "lotPriceCp": 500,
+            "useSpent": 2,
+            "nextUseAt": 172800,
+            "receipts": [
+              "build-1",
+              "build-2"
+            ],
+            "actualWorkSeconds": 240,
+            "activeGadget": null,
+            "currencyCp": 0,
+            "RP": 0,
+            "otherItemCharges": 2
+          }
+        },
+        {
+          "time": 86700,
+          "event": "complete once; real d4=3; no activation",
+          "after": {
+            "owner": "TEST-Gnome-maker",
+            "partsLots": 0,
+            "lotPriceCp": 500,
+            "useSpent": 2,
+            "nextUseAt": 172800,
+            "receipts": [
+              "build-1",
+              "build-2"
+            ],
+            "actualWorkSeconds": 540,
+            "activeGadget": {
+              "id": "build-2-body",
+              "profile": "clamp (source worked-case d4=3; activation not tested)",
+              "weightLb": 1,
+              "AC": 10,
+              "HP": 1,
+              "createdAt": 86700,
+              "expiresAt": 90300,
+              "holder": "TEST-Gnome-maker",
+              "activationExecuted": false
+            },
+            "currencyCp": 0,
+            "RP": 0,
+            "otherItemCharges": 2
+          }
+        }
+      ],
+      "finalState": {
+        "owner": "TEST-Gnome-maker",
+        "partsLots": 0,
+        "lotPriceCp": 500,
+        "useSpent": 2,
+        "nextUseAt": 172800,
+        "receipts": [
+          "build-1",
+          "build-2"
+        ],
+        "actualWorkSeconds": 540,
+        "activeGadget": {
+          "id": "build-2-body",
+          "profile": "clamp (source worked-case d4=3; activation not tested)",
+          "weightLb": 1,
+          "AC": 10,
+          "HP": 1,
+          "createdAt": 86700,
+          "expiresAt": 90300,
+          "holder": "TEST-Gnome-maker",
+          "activationExecuted": false
+        },
+        "currencyCp": 0,
+        "RP": 0,
+        "otherItemCharges": 2
+      },
+      "expectedAssertions": [
+        [
+          "parts exhausted",
+          0,
+          0
+        ],
+        [
+          "work totals",
+          540,
+          540
+        ],
+        [
+          "new expiry",
+          90300,
+          90300
+        ],
+        [
+          "second deadline",
+          172800,
+          172800
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-03-gadget-replay",
+      "title": "A repeated build receipt does not roll or grant another body",
+      "question": "FT84-Q03",
+      "scope": "SOURCE_QUALIFIED_ISOLATED_SPECIFICATION",
+      "premises": {
+        "actualGnomeAndTools": "explicit conditional world premise",
+        "paidFeatHistory": {
+          "Wizard:4": "Craftsman, chooses actual carpenters tools",
+          "Wizard:8": "Contraption Crafter"
+        },
+        "INT": 16,
+        "noToolProficiencyFromContraption": true,
+        "partsLots": "two actual5gp lots,not currency converted to stock",
+        "noClampActivationClaim": true
+      },
+      "initialState": {
+        "owner": "TEST-Gnome-maker",
+        "partsLots": 1,
+        "lotPriceCp": 500,
+        "useSpent": 1,
+        "nextUseAt": 86400,
+        "receipts": [
+          "build-1"
+        ],
+        "actualWorkSeconds": 300,
+        "activeGadget": {
+          "id": "build-1-body",
+          "profile": "clamp (source worked-case d4=3; activation not tested)",
+          "weightLb": 1,
+          "AC": 10,
+          "HP": 1,
+          "createdAt": 300,
+          "expiresAt": 3900,
+          "holder": "TEST-Gnome-maker",
+          "activationExecuted": false
+        },
+        "currencyCp": 0,
+        "RP": 0,
+        "otherItemCharges": 2
+      },
+      "events": [],
+      "finalState": {
+        "owner": "TEST-Gnome-maker",
+        "partsLots": 1,
+        "lotPriceCp": 500,
+        "useSpent": 1,
+        "nextUseAt": 86400,
+        "receipts": [
+          "build-1"
+        ],
+        "actualWorkSeconds": 300,
+        "activeGadget": {
+          "id": "build-1-body",
+          "profile": "clamp (source worked-case d4=3; activation not tested)",
+          "weightLb": 1,
+          "AC": 10,
+          "HP": 1,
+          "createdAt": 300,
+          "expiresAt": 3900,
+          "holder": "TEST-Gnome-maker",
+          "activationExecuted": false
+        },
+        "currencyCp": 0,
+        "RP": 0,
+        "otherItemCharges": 2
+      },
+      "expectedAssertions": [
+        [
+          "same state",
+          {
+            "owner": "TEST-Gnome-maker",
+            "partsLots": 1,
+            "lotPriceCp": 500,
+            "useSpent": 1,
+            "nextUseAt": 86400,
+            "receipts": [
+              "build-1"
+            ],
+            "actualWorkSeconds": 300,
+            "activeGadget": {
+              "id": "build-1-body",
+              "profile": "clamp (source worked-case d4=3; activation not tested)",
+              "weightLb": 1,
+              "AC": 10,
+              "HP": 1,
+              "createdAt": 300,
+              "expiresAt": 3900,
+              "holder": "TEST-Gnome-maker",
+              "activationExecuted": false
+            },
+            "currencyCp": 0,
+            "RP": 0,
+            "otherItemCharges": 2
+          },
+          {
+            "owner": "TEST-Gnome-maker",
+            "partsLots": 1,
+            "lotPriceCp": 500,
+            "useSpent": 1,
+            "nextUseAt": 86400,
+            "receipts": [
+              "build-1"
+            ],
+            "actualWorkSeconds": 300,
+            "activeGadget": {
+              "id": "build-1-body",
+              "profile": "clamp (source worked-case d4=3; activation not tested)",
+              "weightLb": 1,
+              "AC": 10,
+              "HP": 1,
+              "createdAt": 300,
+              "expiresAt": 3900,
+              "holder": "TEST-Gnome-maker",
+              "activationExecuted": false
+            },
+            "currencyCp": 0,
+            "RP": 0,
+            "otherItemCharges": 2
+          }
+        ],
+        [
+          "no roll",
+          0,
+          0
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-03-gadget-custody",
+      "title": "Actual transfer preserves identity, expiry and construction use",
+      "question": "FT84-Q03",
+      "scope": "SOURCE_QUALIFIED_ISOLATED_SPECIFICATION",
+      "premises": {
+        "lawfulHandsAndObjectTransfer": "fixture premise;no free Action granted",
+        "time": 600
+      },
+      "initialState": {
+        "owner": "TEST-Gnome-maker",
+        "partsLots": 1,
+        "lotPriceCp": 500,
+        "useSpent": 1,
+        "nextUseAt": 86400,
+        "receipts": [
+          "build-1"
+        ],
+        "actualWorkSeconds": 300,
+        "activeGadget": {
+          "id": "build-1-body",
+          "profile": "clamp (source worked-case d4=3; activation not tested)",
+          "weightLb": 1,
+          "AC": 10,
+          "HP": 1,
+          "createdAt": 300,
+          "expiresAt": 3900,
+          "holder": "TEST-Gnome-maker",
+          "activationExecuted": false
+        },
+        "currencyCp": 0,
+        "RP": 0,
+        "otherItemCharges": 2
+      },
+      "events": [
+        {
+          "event": "actual completed handoff",
+          "time": 600
+        }
+      ],
+      "finalState": {
+        "owner": "TEST-Gnome-maker",
+        "partsLots": 1,
+        "lotPriceCp": 500,
+        "useSpent": 1,
+        "nextUseAt": 86400,
+        "receipts": [
+          "build-1"
+        ],
+        "actualWorkSeconds": 300,
+        "activeGadget": {
+          "id": "build-1-body",
+          "profile": "clamp (source worked-case d4=3; activation not tested)",
+          "weightLb": 1,
+          "AC": 10,
+          "HP": 1,
+          "createdAt": 300,
+          "expiresAt": 3900,
+          "holder": "actual-recipient",
+          "activationExecuted": false
+        },
+        "currencyCp": 0,
+        "RP": 0,
+        "otherItemCharges": 2
+      },
+      "expectedAssertions": [
+        [
+          "same ID",
+          "build-1-body",
+          "build-1-body"
+        ],
+        [
+          "same expiry",
+          3900,
+          3900
+        ],
+        [
+          "same use",
+          86400,
+          86400
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-03-gadget-missing-sourceGranted",
+      "title": "No permission or stock generated by Craftsman",
+      "question": "FT84-Q03",
+      "scope": "PREDICATE_DIAGNOSTIC_NOT_ACQUISITION_ENGINE",
+      "premises": {
+        "missingActualPredicate": "sourceGranted"
+      },
+      "initialState": {
+        "owner": "TEST-Gnome-maker",
+        "partsLots": 2,
+        "lotPriceCp": 500,
+        "useSpent": 0,
+        "nextUseAt": 0,
+        "receipts": [],
+        "actualWorkSeconds": 0,
+        "activeGadget": null,
+        "currencyCp": 0,
+        "RP": 0,
+        "otherItemCharges": 2
+      },
+      "events": [],
+      "finalState": {
+        "owner": "TEST-Gnome-maker",
+        "partsLots": 2,
+        "lotPriceCp": 500,
+        "useSpent": 0,
+        "nextUseAt": 0,
+        "receipts": [],
+        "actualWorkSeconds": 0,
+        "activeGadget": null,
+        "currencyCp": 0,
+        "RP": 0,
+        "otherItemCharges": 2
+      },
+      "expectedAssertions": [
+        [
+          "status",
+          "REJECT_BEFORE_COMMIT",
+          "REJECT_BEFORE_COMMIT"
+        ],
+        [
+          "same before state",
+          {
+            "owner": "TEST-Gnome-maker",
+            "partsLots": 2,
+            "lotPriceCp": 500,
+            "useSpent": 0,
+            "nextUseAt": 0,
+            "receipts": [],
+            "actualWorkSeconds": 0,
+            "activeGadget": null,
+            "currencyCp": 0,
+            "RP": 0,
+            "otherItemCharges": 2
+          },
+          {
+            "owner": "TEST-Gnome-maker",
+            "partsLots": 2,
+            "lotPriceCp": 500,
+            "useSpent": 0,
+            "nextUseAt": 0,
+            "receipts": [],
+            "actualWorkSeconds": 0,
+            "activeGadget": null,
+            "currencyCp": 0,
+            "RP": 0,
+            "otherItemCharges": 2
+          }
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-03-gadget-missing-gnome",
+      "title": "No permission or stock generated by Craftsman",
+      "question": "FT84-Q03",
+      "scope": "PREDICATE_DIAGNOSTIC_NOT_ACQUISITION_ENGINE",
+      "premises": {
+        "missingActualPredicate": "gnome"
+      },
+      "initialState": {
+        "owner": "TEST-Gnome-maker",
+        "partsLots": 2,
+        "lotPriceCp": 500,
+        "useSpent": 0,
+        "nextUseAt": 0,
+        "receipts": [],
+        "actualWorkSeconds": 0,
+        "activeGadget": null,
+        "currencyCp": 0,
+        "RP": 0,
+        "otherItemCharges": 2
+      },
+      "events": [],
+      "finalState": {
+        "owner": "TEST-Gnome-maker",
+        "partsLots": 2,
+        "lotPriceCp": 500,
+        "useSpent": 0,
+        "nextUseAt": 0,
+        "receipts": [],
+        "actualWorkSeconds": 0,
+        "activeGadget": null,
+        "currencyCp": 0,
+        "RP": 0,
+        "otherItemCharges": 2
+      },
+      "expectedAssertions": [
+        [
+          "status",
+          "REJECT_BEFORE_COMMIT",
+          "REJECT_BEFORE_COMMIT"
+        ],
+        [
+          "same before state",
+          {
+            "owner": "TEST-Gnome-maker",
+            "partsLots": 2,
+            "lotPriceCp": 500,
+            "useSpent": 0,
+            "nextUseAt": 0,
+            "receipts": [],
+            "actualWorkSeconds": 0,
+            "activeGadget": null,
+            "currencyCp": 0,
+            "RP": 0,
+            "otherItemCharges": 2
+          },
+          {
+            "owner": "TEST-Gnome-maker",
+            "partsLots": 2,
+            "lotPriceCp": 500,
+            "useSpent": 0,
+            "nextUseAt": 0,
+            "receipts": [],
+            "actualWorkSeconds": 0,
+            "activeGadget": null,
+            "currencyCp": 0,
+            "RP": 0,
+            "otherItemCharges": 2
+          }
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-03-gadget-missing-tools",
+      "title": "No permission or stock generated by Craftsman",
+      "question": "FT84-Q03",
+      "scope": "PREDICATE_DIAGNOSTIC_NOT_ACQUISITION_ENGINE",
+      "premises": {
+        "missingActualPredicate": "tools"
+      },
+      "initialState": {
+        "owner": "TEST-Gnome-maker",
+        "partsLots": 2,
+        "lotPriceCp": 500,
+        "useSpent": 0,
+        "nextUseAt": 0,
+        "receipts": [],
+        "actualWorkSeconds": 0,
+        "activeGadget": null,
+        "currencyCp": 0,
+        "RP": 0,
+        "otherItemCharges": 2
+      },
+      "events": [],
+      "finalState": {
+        "owner": "TEST-Gnome-maker",
+        "partsLots": 2,
+        "lotPriceCp": 500,
+        "useSpent": 0,
+        "nextUseAt": 0,
+        "receipts": [],
+        "actualWorkSeconds": 0,
+        "activeGadget": null,
+        "currencyCp": 0,
+        "RP": 0,
+        "otherItemCharges": 2
+      },
+      "expectedAssertions": [
+        [
+          "status",
+          "REJECT_BEFORE_COMMIT",
+          "REJECT_BEFORE_COMMIT"
+        ],
+        [
+          "same before state",
+          {
+            "owner": "TEST-Gnome-maker",
+            "partsLots": 2,
+            "lotPriceCp": 500,
+            "useSpent": 0,
+            "nextUseAt": 0,
+            "receipts": [],
+            "actualWorkSeconds": 0,
+            "activeGadget": null,
+            "currencyCp": 0,
+            "RP": 0,
+            "otherItemCharges": 2
+          },
+          {
+            "owner": "TEST-Gnome-maker",
+            "partsLots": 2,
+            "lotPriceCp": 500,
+            "useSpent": 0,
+            "nextUseAt": 0,
+            "receipts": [],
+            "actualWorkSeconds": 0,
+            "activeGadget": null,
+            "currencyCp": 0,
+            "RP": 0,
+            "otherItemCharges": 2
+          }
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-03-gadget-missing-partsOwned",
+      "title": "No permission or stock generated by Craftsman",
+      "question": "FT84-Q03",
+      "scope": "PREDICATE_DIAGNOSTIC_NOT_ACQUISITION_ENGINE",
+      "premises": {
+        "missingActualPredicate": "partsOwned"
+      },
+      "initialState": {
+        "owner": "TEST-Gnome-maker",
+        "partsLots": 2,
+        "lotPriceCp": 500,
+        "useSpent": 0,
+        "nextUseAt": 0,
+        "receipts": [],
+        "actualWorkSeconds": 0,
+        "activeGadget": null,
+        "currencyCp": 0,
+        "RP": 0,
+        "otherItemCharges": 2
+      },
+      "events": [],
+      "finalState": {
+        "owner": "TEST-Gnome-maker",
+        "partsLots": 2,
+        "lotPriceCp": 500,
+        "useSpent": 0,
+        "nextUseAt": 0,
+        "receipts": [],
+        "actualWorkSeconds": 0,
+        "activeGadget": null,
+        "currencyCp": 0,
+        "RP": 0,
+        "otherItemCharges": 2
+      },
+      "expectedAssertions": [
+        [
+          "status",
+          "REJECT_BEFORE_COMMIT",
+          "REJECT_BEFORE_COMMIT"
+        ],
+        [
+          "same before state",
+          {
+            "owner": "TEST-Gnome-maker",
+            "partsLots": 2,
+            "lotPriceCp": 500,
+            "useSpent": 0,
+            "nextUseAt": 0,
+            "receipts": [],
+            "actualWorkSeconds": 0,
+            "activeGadget": null,
+            "currencyCp": 0,
+            "RP": 0,
+            "otherItemCharges": 2
+          },
+          {
+            "owner": "TEST-Gnome-maker",
+            "partsLots": 2,
+            "lotPriceCp": 500,
+            "useSpent": 0,
+            "nextUseAt": 0,
+            "receipts": [],
+            "actualWorkSeconds": 0,
+            "activeGadget": null,
+            "currencyCp": 0,
+            "RP": 0,
+            "otherItemCharges": 2
+          }
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-03-gadget-missing-lawfulWork",
+      "title": "No permission or stock generated by Craftsman",
+      "question": "FT84-Q03",
+      "scope": "PREDICATE_DIAGNOSTIC_NOT_ACQUISITION_ENGINE",
+      "premises": {
+        "missingActualPredicate": "lawfulWork"
+      },
+      "initialState": {
+        "owner": "TEST-Gnome-maker",
+        "partsLots": 2,
+        "lotPriceCp": 500,
+        "useSpent": 0,
+        "nextUseAt": 0,
+        "receipts": [],
+        "actualWorkSeconds": 0,
+        "activeGadget": null,
+        "currencyCp": 0,
+        "RP": 0,
+        "otherItemCharges": 2
+      },
+      "events": [],
+      "finalState": {
+        "owner": "TEST-Gnome-maker",
+        "partsLots": 2,
+        "lotPriceCp": 500,
+        "useSpent": 0,
+        "nextUseAt": 0,
+        "receipts": [],
+        "actualWorkSeconds": 0,
+        "activeGadget": null,
+        "currencyCp": 0,
+        "RP": 0,
+        "otherItemCharges": 2
+      },
+      "expectedAssertions": [
+        [
+          "status",
+          "REJECT_BEFORE_COMMIT",
+          "REJECT_BEFORE_COMMIT"
+        ],
+        [
+          "same before state",
+          {
+            "owner": "TEST-Gnome-maker",
+            "partsLots": 2,
+            "lotPriceCp": 500,
+            "useSpent": 0,
+            "nextUseAt": 0,
+            "receipts": [],
+            "actualWorkSeconds": 0,
+            "activeGadget": null,
+            "currencyCp": 0,
+            "RP": 0,
+            "otherItemCharges": 2
+          },
+          {
+            "owner": "TEST-Gnome-maker",
+            "partsLots": 2,
+            "lotPriceCp": 500,
+            "useSpent": 0,
+            "nextUseAt": 0,
+            "receipts": [],
+            "actualWorkSeconds": 0,
+            "activeGadget": null,
+            "currencyCp": 0,
+            "RP": 0,
+            "otherItemCharges": 2
+          }
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-03-kit-success",
+      "title": "Half-time prepared snare retains actual stock and check",
+      "question": "FT84-Q03",
+      "scope": "SOURCE_QUALIFIED_ISOLATED_SPECIFICATION",
+      "premises": {
+        "INT": 16,
+        "PB": 3,
+        "actualEngineeringProficiency": "admitted use-time prerequisite;its independent grant is TEST_ONLY,not fabricated here",
+        "paidFeatOpportunitySlices": {
+          "Wizard:4": "Craftsman",
+          "Wizard:8": "Trapsetter"
+        },
+        "sourceClassSchedule": "actual supplied Wizard ASI schedule;Wizard8 INT16/PB3 slice,not full campaign acquisition validation",
+        "realMaterials": "measured actual fixture0.5lb frame plus1.5lb cord=2lb source snare kit;no universal bill of materials inferred",
+        "actualToolsAndWorksite": true
+      },
+      "initialState": {
+        "owner": "TEST-kit-maker",
+        "cordLb": "3/2",
+        "frameLb": "1/2",
+        "fixtureKitNominalPriceCp": 500,
+        "kits": [],
+        "actualWorkSeconds": 0,
+        "quickPlacementUses": {
+          "snare": 1,
+          "caltrop": 1,
+          "charge": 1
+        },
+        "armedSlots": {
+          "snare": null,
+          "caltrop": null,
+          "charge": null
+        },
+        "hardDenialHistory": [
+          "preserved-prior"
+        ]
+      },
+      "events": [
+        {
+          "start": 0,
+          "end": 900,
+          "event": "complete binary task check; history retained, not reusable new-job credit",
+          "die": 8,
+          "INT": 3,
+          "PB": 3,
+          "total": 14,
+          "DC": 12,
+          "success": true,
+          "before": {
+            "owner": "TEST-kit-maker",
+            "cordLb": "3/2",
+            "frameLb": "1/2",
+            "fixtureKitNominalPriceCp": 500,
+            "kits": [],
+            "actualWorkSeconds": 0,
+            "quickPlacementUses": {
+              "snare": 1,
+              "caltrop": 1,
+              "charge": 1
+            },
+            "armedSlots": {
+              "snare": null,
+              "caltrop": null,
+              "charge": null
+            },
+            "hardDenialHistory": [
+              "preserved-prior"
+            ],
+            "usableWorkSeconds": 0
+          },
+          "after": {
+            "owner": "TEST-kit-maker",
+            "cordLb": 0,
+            "frameLb": 0,
+            "fixtureKitNominalPriceCp": 500,
+            "kits": [
+              {
+                "id": "kit-1",
+                "type": "snare",
+                "weightLb": 2,
+                "armed": false,
+                "setter": null
+              }
+            ],
+            "actualWorkSeconds": 900,
+            "quickPlacementUses": {
+              "snare": 1,
+              "caltrop": 1,
+              "charge": 1
+            },
+            "armedSlots": {
+              "snare": null,
+              "caltrop": null,
+              "charge": null
+            },
+            "hardDenialHistory": [
+              "preserved-prior"
+            ],
+            "usableWorkSeconds": 900,
+            "attemptClosed": true
+          }
+        }
+      ],
+      "finalState": {
+        "owner": "TEST-kit-maker",
+        "cordLb": 0,
+        "frameLb": 0,
+        "fixtureKitNominalPriceCp": 500,
+        "kits": [
+          {
+            "id": "kit-1",
+            "type": "snare",
+            "weightLb": 2,
+            "armed": false,
+            "setter": null
+          }
+        ],
+        "actualWorkSeconds": 900,
+        "quickPlacementUses": {
+          "snare": 1,
+          "caltrop": 1,
+          "charge": 1
+        },
+        "armedSlots": {
+          "snare": null,
+          "caltrop": null,
+          "charge": null
+        },
+        "hardDenialHistory": [
+          "preserved-prior"
+        ],
+        "usableWorkSeconds": 900,
+        "attemptClosed": true
+      },
+      "expectedAssertions": [
+        [
+          "status",
+          "KIT_CREATED",
+          "KIT_CREATED"
+        ],
+        [
+          "work",
+          900,
+          900
+        ],
+        [
+          "elapsed",
+          900,
+          900
+        ],
+        [
+          "one check",
+          1,
+          1
+        ],
+        [
+          "no quick use",
+          {
+            "snare": 1,
+            "caltrop": 1,
+            "charge": 1
+          },
+          {
+            "snare": 1,
+            "caltrop": 1,
+            "charge": 1
+          }
+        ],
+        [
+          "hard history",
+          [
+            "preserved-prior"
+          ],
+          [
+            "preserved-prior"
+          ]
+        ],
+        [
+          "frame",
+          0,
+          0
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-03-kit-failure",
+      "title": "Half-time prepared snare retains actual stock and check",
+      "question": "FT84-Q03",
+      "scope": "SOURCE_QUALIFIED_ISOLATED_SPECIFICATION",
+      "premises": {
+        "INT": 16,
+        "PB": 3,
+        "actualEngineeringProficiency": "admitted use-time prerequisite;its independent grant is TEST_ONLY,not fabricated here",
+        "paidFeatOpportunitySlices": {
+          "Wizard:4": "Craftsman",
+          "Wizard:8": "Trapsetter"
+        },
+        "sourceClassSchedule": "actual supplied Wizard ASI schedule;Wizard8 INT16/PB3 slice,not full campaign acquisition validation",
+        "realMaterials": "measured actual fixture0.5lb frame plus1.5lb cord=2lb source snare kit;no universal bill of materials inferred",
+        "actualToolsAndWorksite": true
+      },
+      "initialState": {
+        "owner": "TEST-kit-maker",
+        "cordLb": "3/2",
+        "frameLb": "1/2",
+        "fixtureKitNominalPriceCp": 500,
+        "kits": [],
+        "actualWorkSeconds": 0,
+        "quickPlacementUses": {
+          "snare": 1,
+          "caltrop": 1,
+          "charge": 1
+        },
+        "armedSlots": {
+          "snare": null,
+          "caltrop": null,
+          "charge": null
+        },
+        "hardDenialHistory": [
+          "preserved-prior"
+        ]
+      },
+      "events": [
+        {
+          "start": 0,
+          "end": 900,
+          "event": "complete binary task check; history retained, not reusable new-job credit",
+          "die": 5,
+          "INT": 3,
+          "PB": 3,
+          "total": 11,
+          "DC": 12,
+          "success": false,
+          "before": {
+            "owner": "TEST-kit-maker",
+            "cordLb": "3/2",
+            "frameLb": "1/2",
+            "fixtureKitNominalPriceCp": 500,
+            "kits": [],
+            "actualWorkSeconds": 0,
+            "quickPlacementUses": {
+              "snare": 1,
+              "caltrop": 1,
+              "charge": 1
+            },
+            "armedSlots": {
+              "snare": null,
+              "caltrop": null,
+              "charge": null
+            },
+            "hardDenialHistory": [
+              "preserved-prior"
+            ],
+            "usableWorkSeconds": 0
+          },
+          "after": {
+            "owner": "TEST-kit-maker",
+            "cordLb": 0,
+            "frameLb": "1/2",
+            "fixtureKitNominalPriceCp": 500,
+            "kits": [],
+            "actualWorkSeconds": 900,
+            "quickPlacementUses": {
+              "snare": 1,
+              "caltrop": 1,
+              "charge": 1
+            },
+            "armedSlots": {
+              "snare": null,
+              "caltrop": null,
+              "charge": null
+            },
+            "hardDenialHistory": [
+              "preserved-prior"
+            ],
+            "usableWorkSeconds": 900,
+            "attemptClosed": true
+          }
+        }
+      ],
+      "finalState": {
+        "owner": "TEST-kit-maker",
+        "cordLb": 0,
+        "frameLb": "1/2",
+        "fixtureKitNominalPriceCp": 500,
+        "kits": [],
+        "actualWorkSeconds": 900,
+        "quickPlacementUses": {
+          "snare": 1,
+          "caltrop": 1,
+          "charge": 1
+        },
+        "armedSlots": {
+          "snare": null,
+          "caltrop": null,
+          "charge": null
+        },
+        "hardDenialHistory": [
+          "preserved-prior"
+        ],
+        "usableWorkSeconds": 900,
+        "attemptClosed": true
+      },
+      "expectedAssertions": [
+        [
+          "status",
+          "FAILED",
+          "FAILED"
+        ],
+        [
+          "work",
+          900,
+          900
+        ],
+        [
+          "elapsed",
+          900,
+          900
+        ],
+        [
+          "one check",
+          1,
+          1
+        ],
+        [
+          "no quick use",
+          {
+            "snare": 1,
+            "caltrop": 1,
+            "charge": 1
+          },
+          {
+            "snare": 1,
+            "caltrop": 1,
+            "charge": 1
+          }
+        ],
+        [
+          "hard history",
+          [
+            "preserved-prior"
+          ],
+          [
+            "preserved-prior"
+          ]
+        ],
+        [
+          "frame",
+          "1/2",
+          "1/2"
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-03-kit-interruption",
+      "title": "Half-time prepared snare retains actual stock and check",
+      "question": "FT84-Q03",
+      "scope": "SOURCE_QUALIFIED_ISOLATED_SPECIFICATION",
+      "premises": {
+        "INT": 16,
+        "PB": 3,
+        "actualEngineeringProficiency": "admitted use-time prerequisite;its independent grant is TEST_ONLY,not fabricated here",
+        "paidFeatOpportunitySlices": {
+          "Wizard:4": "Craftsman",
+          "Wizard:8": "Trapsetter"
+        },
+        "sourceClassSchedule": "actual supplied Wizard ASI schedule;Wizard8 INT16/PB3 slice,not full campaign acquisition validation",
+        "realMaterials": "measured actual fixture0.5lb frame plus1.5lb cord=2lb source snare kit;no universal bill of materials inferred",
+        "actualToolsAndWorksite": true
+      },
+      "initialState": {
+        "owner": "TEST-kit-maker",
+        "cordLb": "3/2",
+        "frameLb": "1/2",
+        "fixtureKitNominalPriceCp": 500,
+        "kits": [],
+        "actualWorkSeconds": 0,
+        "quickPlacementUses": {
+          "snare": 1,
+          "caltrop": 1,
+          "charge": 1
+        },
+        "armedSlots": {
+          "snare": null,
+          "caltrop": null,
+          "charge": null
+        },
+        "hardDenialHistory": [
+          "preserved-prior"
+        ]
+      },
+      "events": [
+        {
+          "start": 0,
+          "end": 420,
+          "event": "pause; actual usable partial assembly and stock persist without protection or a functioning kit",
+          "before": {
+            "owner": "TEST-kit-maker",
+            "cordLb": "3/2",
+            "frameLb": "1/2",
+            "fixtureKitNominalPriceCp": 500,
+            "kits": [],
+            "actualWorkSeconds": 0,
+            "quickPlacementUses": {
+              "snare": 1,
+              "caltrop": 1,
+              "charge": 1
+            },
+            "armedSlots": {
+              "snare": null,
+              "caltrop": null,
+              "charge": null
+            },
+            "hardDenialHistory": [
+              "preserved-prior"
+            ],
+            "usableWorkSeconds": 0
+          },
+          "after": {
+            "owner": "TEST-kit-maker",
+            "cordLb": "3/2",
+            "frameLb": "1/2",
+            "fixtureKitNominalPriceCp": 500,
+            "kits": [],
+            "actualWorkSeconds": 420,
+            "quickPlacementUses": {
+              "snare": 1,
+              "caltrop": 1,
+              "charge": 1
+            },
+            "armedSlots": {
+              "snare": null,
+              "caltrop": null,
+              "charge": null
+            },
+            "hardDenialHistory": [
+              "preserved-prior"
+            ],
+            "usableWorkSeconds": 420
+          }
+        },
+        {
+          "start": 480,
+          "end": 960,
+          "event": "complete binary task check; history retained, not reusable new-job credit",
+          "die": 8,
+          "INT": 3,
+          "PB": 3,
+          "total": 14,
+          "DC": 12,
+          "success": true,
+          "before": {
+            "owner": "TEST-kit-maker",
+            "cordLb": "3/2",
+            "frameLb": "1/2",
+            "fixtureKitNominalPriceCp": 500,
+            "kits": [],
+            "actualWorkSeconds": 420,
+            "quickPlacementUses": {
+              "snare": 1,
+              "caltrop": 1,
+              "charge": 1
+            },
+            "armedSlots": {
+              "snare": null,
+              "caltrop": null,
+              "charge": null
+            },
+            "hardDenialHistory": [
+              "preserved-prior"
+            ],
+            "usableWorkSeconds": 420
+          },
+          "after": {
+            "owner": "TEST-kit-maker",
+            "cordLb": 0,
+            "frameLb": 0,
+            "fixtureKitNominalPriceCp": 500,
+            "kits": [
+              {
+                "id": "kit-1",
+                "type": "snare",
+                "weightLb": 2,
+                "armed": false,
+                "setter": null
+              }
+            ],
+            "actualWorkSeconds": 900,
+            "quickPlacementUses": {
+              "snare": 1,
+              "caltrop": 1,
+              "charge": 1
+            },
+            "armedSlots": {
+              "snare": null,
+              "caltrop": null,
+              "charge": null
+            },
+            "hardDenialHistory": [
+              "preserved-prior"
+            ],
+            "usableWorkSeconds": 900,
+            "attemptClosed": true
+          }
+        }
+      ],
+      "finalState": {
+        "owner": "TEST-kit-maker",
+        "cordLb": 0,
+        "frameLb": 0,
+        "fixtureKitNominalPriceCp": 500,
+        "kits": [
+          {
+            "id": "kit-1",
+            "type": "snare",
+            "weightLb": 2,
+            "armed": false,
+            "setter": null
+          }
+        ],
+        "actualWorkSeconds": 900,
+        "quickPlacementUses": {
+          "snare": 1,
+          "caltrop": 1,
+          "charge": 1
+        },
+        "armedSlots": {
+          "snare": null,
+          "caltrop": null,
+          "charge": null
+        },
+        "hardDenialHistory": [
+          "preserved-prior"
+        ],
+        "usableWorkSeconds": 900,
+        "attemptClosed": true
+      },
+      "expectedAssertions": [
+        [
+          "status",
+          "KIT_CREATED",
+          "KIT_CREATED"
+        ],
+        [
+          "work",
+          900,
+          900
+        ],
+        [
+          "elapsed",
+          960,
+          960
+        ],
+        [
+          "one check",
+          1,
+          1
+        ],
+        [
+          "no quick use",
+          {
+            "snare": 1,
+            "caltrop": 1,
+            "charge": 1
+          },
+          {
+            "snare": 1,
+            "caltrop": 1,
+            "charge": 1
+          }
+        ],
+        [
+          "hard history",
+          [
+            "preserved-prior"
+          ],
+          [
+            "preserved-prior"
+          ]
+        ],
+        [
+          "frame",
+          0,
+          0
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-03-category-barricade",
+      "title": "Actual source category controls the factor",
+      "question": "FT84-Q03",
+      "scope": "CATEGORY_AND_ARITHMETIC_BOUNDARY_NOT_COMPLETE_MANUFACTURE",
+      "premises": {
+        "activity": "barricade",
+        "noStockOrOutputInvented": true,
+        "factorsIndependentlyEligibleWhereListed": true,
+        "separateWaitComparator": "hypothetical actually supplied independent1440-minute wait to test nonreduction;not a new wait requirement on any named process"
+      },
+      "initialState": {
+        "baseMinutes": 60,
+        "fixedWaitMinutes": 1440
+      },
+      "events": [],
+      "finalState": {
+        "activeMinutes": 30,
+        "fixedWaitMinutes": 1440
+      },
+      "expectedAssertions": [
+        [
+          "minutes",
+          30,
+          30
+        ],
+        [
+          "no wait reduction",
+          1440,
+          1440
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-03-category-explicit-temper",
+      "title": "Actual source category controls the factor",
+      "question": "FT84-Q03",
+      "scope": "CATEGORY_AND_ARITHMETIC_BOUNDARY_NOT_COMPLETE_MANUFACTURE",
+      "premises": {
+        "activity": "explicit-temper",
+        "noStockOrOutputInvented": true,
+        "factorsIndependentlyEligibleWhereListed": true,
+        "separateWaitComparator": "hypothetical actually supplied independent1440-minute wait to test nonreduction;not a new wait requirement on any named process"
+      },
+      "initialState": {
+        "baseMinutes": 480,
+        "fixedWaitMinutes": 1440
+      },
+      "events": [],
+      "finalState": {
+        "activeMinutes": 480,
+        "fixedWaitMinutes": 1440
+      },
+      "expectedAssertions": [
+        [
+          "minutes",
+          480,
+          480
+        ],
+        [
+          "no wait reduction",
+          1440,
+          1440
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-03-category-explicit-killzone",
+      "title": "Actual source category controls the factor",
+      "question": "FT84-Q03",
+      "scope": "CATEGORY_AND_ARITHMETIC_BOUNDARY_NOT_COMPLETE_MANUFACTURE",
+      "premises": {
+        "activity": "explicit-killzone",
+        "noStockOrOutputInvented": true,
+        "factorsIndependentlyEligibleWhereListed": true,
+        "separateWaitComparator": "hypothetical actually supplied independent1440-minute wait to test nonreduction;not a new wait requirement on any named process"
+      },
+      "initialState": {
+        "baseMinutes": 10,
+        "fixedWaitMinutes": 1440
+      },
+      "events": [],
+      "finalState": {
+        "activeMinutes": 10,
+        "fixedWaitMinutes": 1440
+      },
+      "expectedAssertions": [
+        [
+          "minutes",
+          10,
+          10
+        ],
+        [
+          "no wait reduction",
+          1440,
+          1440
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-03-category-collect-caltrops",
+      "title": "Actual source category controls the factor",
+      "question": "FT84-Q03",
+      "scope": "CATEGORY_AND_ARITHMETIC_BOUNDARY_NOT_COMPLETE_MANUFACTURE",
+      "premises": {
+        "activity": "collect-caltrops",
+        "noStockOrOutputInvented": true,
+        "factorsIndependentlyEligibleWhereListed": true,
+        "separateWaitComparator": "hypothetical actually supplied independent1440-minute wait to test nonreduction;not a new wait requirement on any named process"
+      },
+      "initialState": {
+        "baseMinutes": 1,
+        "fixedWaitMinutes": 1440
+      },
+      "events": [],
+      "finalState": {
+        "activeMinutes": 1,
+        "fixedWaitMinutes": 1440
+      },
+      "expectedAssertions": [
+        [
+          "minutes",
+          1,
+          1
+        ],
+        [
+          "no wait reduction",
+          1440,
+          1440
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-03-category-authorized-full-repair",
+      "title": "Actual source category controls the factor",
+      "question": "FT84-Q03",
+      "scope": "CATEGORY_AND_ARITHMETIC_BOUNDARY_NOT_COMPLETE_MANUFACTURE",
+      "premises": {
+        "activity": "authorized-full-repair",
+        "noStockOrOutputInvented": true,
+        "factorsIndependentlyEligibleWhereListed": true,
+        "separateWaitComparator": "hypothetical actually supplied independent1440-minute wait to test nonreduction;not a new wait requirement on any named process"
+      },
+      "initialState": {
+        "baseMinutes": 120,
+        "fixedWaitMinutes": 1440
+      },
+      "events": [],
+      "finalState": {
+        "activeMinutes": 120,
+        "fixedWaitMinutes": 1440
+      },
+      "expectedAssertions": [
+        [
+          "minutes",
+          120,
+          120
+        ],
+        [
+          "no wait reduction",
+          1440,
+          1440
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-03-category-recipe121",
+      "title": "Actual source category controls the factor",
+      "question": "FT84-Q03",
+      "scope": "CATEGORY_AND_ARITHMETIC_BOUNDARY_NOT_COMPLETE_MANUFACTURE",
+      "premises": {
+        "activity": "recipe121",
+        "noStockOrOutputInvented": true,
+        "factorsIndependentlyEligibleWhereListed": true,
+        "separateWaitComparator": "hypothetical actually supplied independent1440-minute wait to test nonreduction;not a new wait requirement on any named process"
+      },
+      "initialState": {
+        "baseMinutes": 240,
+        "fixedWaitMinutes": 1440
+      },
+      "events": [],
+      "finalState": {
+        "activeMinutes": 120,
+        "fixedWaitMinutes": 1440
+      },
+      "expectedAssertions": [
+        [
+          "minutes",
+          120,
+          120
+        ],
+        [
+          "no wait reduction",
+          1440,
+          1440
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-03-recipe121-phases",
+      "title": "Research and short kits do not erase actual manufacture incorporation",
+      "question": "FT84-Q03",
+      "scope": "COMPLETE_WORK_LEDGER_ONLY_NO_MANUFACTURE_ROLL_OR_OUTPUT",
+      "premises": {
+        "completeRecipe121": "full source retained",
+        "actualMaterialsBodiesAndStation": "source-qualified premises;not created by this case",
+        "requiredStock": {
+          "LuminousCrystal": 2,
+          "bronzeDragonRib": 1,
+          "completeNeverMagicallyAlteredHosts": 6
+        },
+        "maximumAssistants": 0
+      },
+      "initialState": {
+        "requiredCreditSeconds": 7200,
+        "phaseSeconds": [
+          900,
+          6300
+        ]
+      },
+      "events": [
+        {
+          "phase": 0,
+          "workSeconds": 600,
+          "completed": false,
+          "actualSeconds": 600,
+          "creditedSeconds": 0
+        },
+        {
+          "phase": 0,
+          "workSeconds": 900,
+          "completed": true,
+          "actualSeconds": 1500,
+          "creditedSeconds": 900
+        },
+        {
+          "phase": 1,
+          "workSeconds": 1800,
+          "completed": false,
+          "actualSeconds": 3300,
+          "creditedSeconds": 900
+        },
+        {
+          "phase": 1,
+          "workSeconds": 6300,
+          "completed": true,
+          "actualSeconds": 9600,
+          "creditedSeconds": 7200
+        }
+      ],
+      "finalState": {
+        "creditedSeconds": 7200,
+        "actualSeconds": 9600,
+        "completionCheckNowDue": true,
+        "outputsAlreadyGranted": 0
+      },
+      "expectedAssertions": [
+        [
+          "actual",
+          9600,
+          9600
+        ],
+        [
+          "credit",
+          7200,
+          7200
+        ],
+        [
+          "no assistant",
+          0,
+          0
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-03-rest-whole-20",
+      "title": "FA13 whole-job boundary remains unchanged",
+      "question": "FT84-Q03",
+      "scope": "RETAINED_WHOLE_JOB_BOUNDARY_NOT_REST_OR_REPAIR_ENGINE",
+      "premises": {
+        "baseRepair": "actual independently authorized FA13-style partial repair",
+        "PB": 3,
+        "complexBodyToolsMaterialsAndSafeOwnerRest": "TEST_ONLY premises",
+        "durationVariantsAreBoundaryFixturesNotNewRecipes": true
+      },
+      "initialState": {
+        "HP": 2,
+        "maxHP": 10,
+        "charges": 1,
+        "service": 4,
+        "fuel": 3,
+        "materialCp": 100
+      },
+      "events": [
+        {
+          "event": "actual authorized successful repair",
+          "wholeJobMinutes": 20,
+          "insideRestMinutes": 20,
+          "actualBaseRestoration": 2,
+          "spentMaterialCp": 20
+        }
+      ],
+      "finalState": {
+        "HP": 7,
+        "maxHP": 10,
+        "charges": 1,
+        "service": 4,
+        "fuel": 3,
+        "materialCp": 80,
+        "beneficialRestGrantedByThisTest": false
+      },
+      "expectedAssertions": [
+        [
+          "bonus",
+          3,
+          3
+        ],
+        [
+          "actual HP",
+          7,
+          7
+        ],
+        [
+          "whole job exception",
+          true,
+          true
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-03-rest-whole-30",
+      "title": "FA13 whole-job boundary remains unchanged",
+      "question": "FT84-Q03",
+      "scope": "RETAINED_WHOLE_JOB_BOUNDARY_NOT_REST_OR_REPAIR_ENGINE",
+      "premises": {
+        "baseRepair": "actual independently authorized FA13-style partial repair",
+        "PB": 3,
+        "complexBodyToolsMaterialsAndSafeOwnerRest": "TEST_ONLY premises",
+        "durationVariantsAreBoundaryFixturesNotNewRecipes": true
+      },
+      "initialState": {
+        "HP": 2,
+        "maxHP": 10,
+        "charges": 1,
+        "service": 4,
+        "fuel": 3,
+        "materialCp": 100
+      },
+      "events": [
+        {
+          "event": "actual authorized successful repair",
+          "wholeJobMinutes": 30,
+          "insideRestMinutes": 30,
+          "actualBaseRestoration": 2,
+          "spentMaterialCp": 20
+        }
+      ],
+      "finalState": {
+        "HP": 7,
+        "maxHP": 10,
+        "charges": 1,
+        "service": 4,
+        "fuel": 3,
+        "materialCp": 80,
+        "beneficialRestGrantedByThisTest": false
+      },
+      "expectedAssertions": [
+        [
+          "bonus",
+          3,
+          3
+        ],
+        [
+          "actual HP",
+          7,
+          7
+        ],
+        [
+          "whole job exception",
+          true,
+          true
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-03-rest-whole-31",
+      "title": "FA13 whole-job boundary remains unchanged",
+      "question": "FT84-Q03",
+      "scope": "RETAINED_WHOLE_JOB_BOUNDARY_NOT_REST_OR_REPAIR_ENGINE",
+      "premises": {
+        "baseRepair": "actual independently authorized FA13-style partial repair",
+        "PB": 3,
+        "complexBodyToolsMaterialsAndSafeOwnerRest": "TEST_ONLY premises",
+        "durationVariantsAreBoundaryFixturesNotNewRecipes": true
+      },
+      "initialState": {
+        "HP": 2,
+        "maxHP": 10,
+        "charges": 1,
+        "service": 4,
+        "fuel": 3,
+        "materialCp": 100
+      },
+      "events": [
+        {
+          "event": "actual authorized successful repair",
+          "wholeJobMinutes": 31,
+          "insideRestMinutes": 30,
+          "actualBaseRestoration": 2,
+          "spentMaterialCp": 20
+        }
+      ],
+      "finalState": {
+        "HP": 4,
+        "maxHP": 10,
+        "charges": 1,
+        "service": 4,
+        "fuel": 3,
+        "materialCp": 80,
+        "beneficialRestGrantedByThisTest": false
+      },
+      "expectedAssertions": [
+        [
+          "bonus",
+          0,
+          0
+        ],
+        [
+          "actual HP",
+          4,
+          4
+        ],
+        [
+          "whole job exception",
+          false,
+          false
+        ]
+      ],
+      "runtimeExecuted": false
+    },
+    {
+      "id": "FT84-03-rest-whole-480",
+      "title": "FA13 whole-job boundary remains unchanged",
+      "question": "FT84-Q03",
+      "scope": "RETAINED_WHOLE_JOB_BOUNDARY_NOT_REST_OR_REPAIR_ENGINE",
+      "premises": {
+        "baseRepair": "actual independently authorized FA13-style partial repair",
+        "PB": 3,
+        "complexBodyToolsMaterialsAndSafeOwnerRest": "TEST_ONLY premises",
+        "durationVariantsAreBoundaryFixturesNotNewRecipes": true
+      },
+      "initialState": {
+        "HP": 2,
+        "maxHP": 10,
+        "charges": 1,
+        "service": 4,
+        "fuel": 3,
+        "materialCp": 100
+      },
+      "events": [
+        {
+          "event": "actual authorized successful repair",
+          "wholeJobMinutes": 480,
+          "insideRestMinutes": 20,
+          "actualBaseRestoration": 2,
+          "spentMaterialCp": 20
+        }
+      ],
+      "finalState": {
+        "HP": 4,
+        "maxHP": 10,
+        "charges": 1,
+        "service": 4,
+        "fuel": 3,
+        "materialCp": 80,
+        "beneficialRestGrantedByThisTest": false
+      },
+      "expectedAssertions": [
+        [
+          "bonus",
+          0,
+          0
+        ],
+        [
+          "actual HP",
+          4,
+          4
+        ],
+        [
+          "whole job exception",
+          false,
+          false
+        ]
+      ],
+      "runtimeExecuted": false
+    }
+  ],
+  "caseCount": 57,
+  "assertions": [
+    {
+      "assertion": "FT84-01-written time",
+      "pass": true,
+      "actual": 14400,
+      "expected": 14400
+    },
+    {
+      "assertion": "FT84-01-written cost",
+      "pass": true,
+      "actual": 850,
+      "expected": 850
+    },
+    {
+      "assertion": "FT84-01-written rare units",
+      "pass": true,
+      "actual": 4,
+      "expected": 4
+    },
+    {
+      "assertion": "FT84-01-written no ordinary Wizard acquisition",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "assertion": "FT84-01-teacher time",
+      "pass": true,
+      "actual": 28800,
+      "expected": 28800
+    },
+    {
+      "assertion": "FT84-01-teacher cost",
+      "pass": true,
+      "actual": 1000,
+      "expected": 1000
+    },
+    {
+      "assertion": "FT84-01-teacher rare units",
+      "pass": true,
+      "actual": 4,
+      "expected": 4
+    },
+    {
+      "assertion": "FT84-01-teacher no ordinary Wizard acquisition",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "assertion": "FT84-01-written-tutor-present time",
+      "pass": true,
+      "actual": 14400,
+      "expected": 14400
+    },
+    {
+      "assertion": "FT84-01-written-tutor-present cost",
+      "pass": true,
+      "actual": 850,
+      "expected": 850
+    },
+    {
+      "assertion": "FT84-01-written-tutor-present rare units",
+      "pass": true,
+      "actual": 4,
+      "expected": 4
+    },
+    {
+      "assertion": "FT84-01-written-tutor-present no ordinary Wizard acquisition",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "assertion": "FT84-01-ambiguous-full-price full bill",
+      "pass": true,
+      "actual": 1000,
+      "expected": 1000
+    },
+    {
+      "assertion": "FT84-01-ambiguous-full-price written time unaffected",
+      "pass": true,
+      "actual": 14400,
+      "expected": 14400
+    },
+    {
+      "assertion": "FT84-01-missing-source no spent validation",
+      "pass": true,
+      "actual": 2000,
+      "expected": 2000
+    },
+    {
+      "assertion": "FT84-01-missing-source no phantom entry",
+      "pass": true,
+      "actual": [],
+      "expected": []
+    },
+    {
+      "assertion": "FT84-01-no-readable-language no spent validation",
+      "pass": true,
+      "actual": 2000,
+      "expected": 2000
+    },
+    {
+      "assertion": "FT84-01-no-readable-language no phantom entry",
+      "pass": true,
+      "actual": [],
+      "expected": []
+    },
+    {
+      "assertion": "FT84-01-no-real-book no spent validation",
+      "pass": true,
+      "actual": 2000,
+      "expected": 2000
+    },
+    {
+      "assertion": "FT84-01-no-real-book no phantom entry",
+      "pass": true,
+      "actual": [],
+      "expected": []
+    },
+    {
+      "assertion": "FT84-01-missing-rare-stock no spent validation",
+      "pass": true,
+      "actual": 2000,
+      "expected": 2000
+    },
+    {
+      "assertion": "FT84-01-missing-rare-stock no phantom entry",
+      "pass": true,
+      "actual": [],
+      "expected": []
+    },
+    {
+      "assertion": "FT84-01-unpaid-Spell-Scribe no spent validation",
+      "pass": true,
+      "actual": 2000,
+      "expected": 2000
+    },
+    {
+      "assertion": "FT84-01-unpaid-Spell-Scribe no phantom entry",
+      "pass": true,
+      "actual": [],
+      "expected": []
+    },
+    {
+      "assertion": "FT84-01-unqualified-teacher no spent validation",
+      "pass": true,
+      "actual": 2000,
+      "expected": 2000
+    },
+    {
+      "assertion": "FT84-01-unqualified-teacher no phantom entry",
+      "pass": true,
+      "actual": [],
+      "expected": []
+    },
+    {
+      "assertion": "FT84-01-interruption credit",
+      "pass": true,
+      "actual": 14400,
+      "expected": 14400
+    },
+    {
+      "assertion": "FT84-01-interruption actual",
+      "pass": true,
+      "actual": 15000,
+      "expected": 15000
+    },
+    {
+      "assertion": "FT84-01-interruption elapsed including gap",
+      "pass": true,
+      "actual": 15300,
+      "expected": 15300
+    },
+    {
+      "assertion": "FT84-01-interruption lost",
+      "pass": true,
+      "actual": 600,
+      "expected": 600
+    },
+    {
+      "assertion": "FT84-01-interruption no returned ink",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "assertion": "FT84-01-rounding time ceil",
+      "pass": true,
+      "actual": 61,
+      "expected": 61
+    },
+    {
+      "assertion": "FT84-01-rounding aggregate cost",
+      "pass": true,
+      "actual": 4,
+      "expected": 4
+    },
+    {
+      "assertion": "FT84-01-rounding single sheet",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "assertion": "FT84-01-wizard-route strongest time",
+      "pass": true,
+      "actual": 120,
+      "expected": 120
+    },
+    {
+      "assertion": "FT84-01-wizard-route strongest cost",
+      "pass": true,
+      "actual": 5000,
+      "expected": 5000
+    },
+    {
+      "assertion": "FT84-01-method-switch actual total",
+      "pass": true,
+      "actual": 300.0,
+      "expected": 300
+    },
+    {
+      "assertion": "FT84-01-method-switch no quartering",
+      "pass": true,
+      "actual": 180.0,
+      "expected": 180
+    },
+    {
+      "assertion": "FT84-02-translate required",
+      "pass": true,
+      "actual": 14400,
+      "expected": 14400
+    },
+    {
+      "assertion": "FT84-02-translate actual",
+      "pass": true,
+      "actual": 15000,
+      "expected": 15000
+    },
+    {
+      "assertion": "FT84-02-translate lost",
+      "pass": true,
+      "actual": 600,
+      "expected": 600
+    },
+    {
+      "assertion": "FT84-02-translate success",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "assertion": "FT84-02-translate check once",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "assertion": "FT84-02-translate XP",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "assertion": "FT84-02-formula required",
+      "pass": true,
+      "actual": 14400,
+      "expected": 14400
+    },
+    {
+      "assertion": "FT84-02-formula actual",
+      "pass": true,
+      "actual": 15000,
+      "expected": 15000
+    },
+    {
+      "assertion": "FT84-02-formula lost",
+      "pass": true,
+      "actual": 600,
+      "expected": 600
+    },
+    {
+      "assertion": "FT84-02-formula success",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "assertion": "FT84-02-formula check once",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "assertion": "FT84-02-formula XP",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "assertion": "FT84-02-assistant-True sum",
+      "pass": true,
+      "actual": 15,
+      "expected": 15
+    },
+    {
+      "assertion": "FT84-02-assistant-True success",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "assertion": "FT84-02-assistant-False sum",
+      "pass": true,
+      "actual": 14,
+      "expected": 14
+    },
+    {
+      "assertion": "FT84-02-assistant-False success",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "assertion": "FT84-02-final-fraction required",
+      "pass": true,
+      "actual": 14430,
+      "expected": 14430
+    },
+    {
+      "assertion": "FT84-02-final-fraction complete",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "assertion": "FT84-02-final-fraction no padding",
+      "pass": true,
+      "actual": 14430,
+      "expected": 14430
+    },
+    {
+      "assertion": "FT84-02-real-progress-loss remainder",
+      "pass": true,
+      "actual": 300,
+      "expected": 300
+    },
+    {
+      "assertion": "FT84-02-real-progress-loss complete",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "assertion": "FT84-02-exclude-ordinary-language-course unchanged time",
+      "pass": true,
+      "actual": 19200,
+      "expected": 19200
+    },
+    {
+      "assertion": "FT84-02-exclude-ordinary-language-course no new clock",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "assertion": "FT84-02-exclude-RitualCaster-teacher-learning unchanged time",
+      "pass": true,
+      "actual": 480,
+      "expected": 480
+    },
+    {
+      "assertion": "FT84-02-exclude-RitualCaster-teacher-learning no new clock",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "assertion": "FT84-02-exclude-ordinary-formula-copy unchanged time",
+      "pass": true,
+      "actual": 60,
+      "expected": 60
+    },
+    {
+      "assertion": "FT84-02-exclude-ordinary-formula-copy no new clock",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "assertion": "FT84-02-exclude-Scribing-Insight-specific-spend unchanged time",
+      "pass": true,
+      "actual": 480,
+      "expected": 480
+    },
+    {
+      "assertion": "FT84-02-exclude-Scribing-Insight-specific-spend no new clock",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "assertion": "FT84-02-exclude-fixed-curing-wait unchanged time",
+      "pass": true,
+      "actual": 1440,
+      "expected": 1440
+    },
+    {
+      "assertion": "FT84-02-exclude-fixed-curing-wait no new clock",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "assertion": "FT84-02-exclude-unrelated-research-clock unchanged time",
+      "pass": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "assertion": "FT84-02-exclude-unrelated-research-clock no new clock",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "assertion": "FT84-02-invalid-unsupported-meaning no invented credit",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "assertion": "FT84-02-invalid-unsupported-meaning no extra roll",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "assertion": "FT84-02-invalid-missing-archive-access no invented credit",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "assertion": "FT84-02-invalid-missing-archive-access no extra roll",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "assertion": "FT84-02-invalid-unchanged-evidence-retry no invented credit",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "assertion": "FT84-02-invalid-unchanged-evidence-retry no extra roll",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "assertion": "FT84-02-invalid-third-active-work-Watch no invented credit",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "assertion": "FT84-02-invalid-third-active-work-Watch no extra roll",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "assertion": "FT84-02-invalid-same-minute-training-and-research no invented credit",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "assertion": "FT84-02-invalid-same-minute-training-and-research no extra roll",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "assertion": "FT84-03-gadget-False duration",
+      "pass": true,
+      "actual": 600,
+      "expected": 600
+    },
+    {
+      "assertion": "FT84-03-gadget-False parts",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "assertion": "FT84-03-gadget-False use",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "assertion": "FT84-03-gadget-False RNG once",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "assertion": "FT84-03-gadget-False expiry",
+      "pass": true,
+      "actual": 4200,
+      "expected": 4200
+    },
+    {
+      "assertion": "FT84-03-gadget-False 24h not reduced",
+      "pass": true,
+      "actual": 86400,
+      "expected": 86400
+    },
+    {
+      "assertion": "FT84-03-gadget-True duration",
+      "pass": true,
+      "actual": 300,
+      "expected": 300
+    },
+    {
+      "assertion": "FT84-03-gadget-True parts",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "assertion": "FT84-03-gadget-True use",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "assertion": "FT84-03-gadget-True RNG once",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "assertion": "FT84-03-gadget-True expiry",
+      "pass": true,
+      "actual": 3900,
+      "expected": 3900
+    },
+    {
+      "assertion": "FT84-03-gadget-True 24h not reduced",
+      "pass": true,
+      "actual": 86400,
+      "expected": 86400
+    },
+    {
+      "assertion": "FT84-03-gadget-interrupt no gadget",
+      "pass": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "assertion": "FT84-03-gadget-interrupt parts spent",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "assertion": "FT84-03-gadget-interrupt use spent",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "assertion": "FT84-03-gadget-interrupt no d4",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "assertion": "FT84-03-gadget-interrupt only actual work",
+      "pass": true,
+      "actual": 240,
+      "expected": 240
+    },
+    {
+      "assertion": "FT84-03-gadget-immediate-retry rejected",
+      "pass": true,
+      "actual": "REJECT_BEFORE_COMMIT",
+      "expected": "REJECT_BEFORE_COMMIT"
+    },
+    {
+      "assertion": "FT84-03-gadget-immediate-retry no duplicate parts charge",
+      "pass": true,
+      "actual": {
+        "owner": "TEST-Gnome-maker",
+        "partsLots": 1,
+        "lotPriceCp": 500,
+        "useSpent": 1,
+        "nextUseAt": 86400,
+        "receipts": [
+          "build-1"
+        ],
+        "actualWorkSeconds": 240,
+        "activeGadget": null,
+        "currencyCp": 0,
+        "RP": 0,
+        "otherItemCharges": 2
+      },
+      "expected": {
+        "owner": "TEST-Gnome-maker",
+        "partsLots": 1,
+        "lotPriceCp": 500,
+        "useSpent": 1,
+        "nextUseAt": 86400,
+        "receipts": [
+          "build-1"
+        ],
+        "actualWorkSeconds": 240,
+        "activeGadget": null,
+        "currencyCp": 0,
+        "RP": 0,
+        "otherItemCharges": 2
+      }
+    },
+    {
+      "assertion": "FT84-03-gadget-later-use parts exhausted",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "assertion": "FT84-03-gadget-later-use work totals",
+      "pass": true,
+      "actual": 540,
+      "expected": 540
+    },
+    {
+      "assertion": "FT84-03-gadget-later-use new expiry",
+      "pass": true,
+      "actual": 90300,
+      "expected": 90300
+    },
+    {
+      "assertion": "FT84-03-gadget-later-use second deadline",
+      "pass": true,
+      "actual": 172800,
+      "expected": 172800
+    },
+    {
+      "assertion": "FT84-03-gadget-replay same state",
+      "pass": true,
+      "actual": {
+        "owner": "TEST-Gnome-maker",
+        "partsLots": 1,
+        "lotPriceCp": 500,
+        "useSpent": 1,
+        "nextUseAt": 86400,
+        "receipts": [
+          "build-1"
+        ],
+        "actualWorkSeconds": 300,
+        "activeGadget": {
+          "id": "build-1-body",
+          "profile": "clamp (source worked-case d4=3; activation not tested)",
+          "weightLb": 1,
+          "AC": 10,
+          "HP": 1,
+          "createdAt": 300,
+          "expiresAt": 3900,
+          "holder": "TEST-Gnome-maker",
+          "activationExecuted": false
+        },
+        "currencyCp": 0,
+        "RP": 0,
+        "otherItemCharges": 2
+      },
+      "expected": {
+        "owner": "TEST-Gnome-maker",
+        "partsLots": 1,
+        "lotPriceCp": 500,
+        "useSpent": 1,
+        "nextUseAt": 86400,
+        "receipts": [
+          "build-1"
+        ],
+        "actualWorkSeconds": 300,
+        "activeGadget": {
+          "id": "build-1-body",
+          "profile": "clamp (source worked-case d4=3; activation not tested)",
+          "weightLb": 1,
+          "AC": 10,
+          "HP": 1,
+          "createdAt": 300,
+          "expiresAt": 3900,
+          "holder": "TEST-Gnome-maker",
+          "activationExecuted": false
+        },
+        "currencyCp": 0,
+        "RP": 0,
+        "otherItemCharges": 2
+      }
+    },
+    {
+      "assertion": "FT84-03-gadget-replay no roll",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "assertion": "FT84-03-gadget-custody same ID",
+      "pass": true,
+      "actual": "build-1-body",
+      "expected": "build-1-body"
+    },
+    {
+      "assertion": "FT84-03-gadget-custody same expiry",
+      "pass": true,
+      "actual": 3900,
+      "expected": 3900
+    },
+    {
+      "assertion": "FT84-03-gadget-custody same use",
+      "pass": true,
+      "actual": 86400,
+      "expected": 86400
+    },
+    {
+      "assertion": "FT84-03-gadget-missing-sourceGranted status",
+      "pass": true,
+      "actual": "REJECT_BEFORE_COMMIT",
+      "expected": "REJECT_BEFORE_COMMIT"
+    },
+    {
+      "assertion": "FT84-03-gadget-missing-sourceGranted same before state",
+      "pass": true,
+      "actual": {
+        "owner": "TEST-Gnome-maker",
+        "partsLots": 2,
+        "lotPriceCp": 500,
+        "useSpent": 0,
+        "nextUseAt": 0,
+        "receipts": [],
+        "actualWorkSeconds": 0,
+        "activeGadget": null,
+        "currencyCp": 0,
+        "RP": 0,
+        "otherItemCharges": 2
+      },
+      "expected": {
+        "owner": "TEST-Gnome-maker",
+        "partsLots": 2,
+        "lotPriceCp": 500,
+        "useSpent": 0,
+        "nextUseAt": 0,
+        "receipts": [],
+        "actualWorkSeconds": 0,
+        "activeGadget": null,
+        "currencyCp": 0,
+        "RP": 0,
+        "otherItemCharges": 2
+      }
+    },
+    {
+      "assertion": "FT84-03-gadget-missing-gnome status",
+      "pass": true,
+      "actual": "REJECT_BEFORE_COMMIT",
+      "expected": "REJECT_BEFORE_COMMIT"
+    },
+    {
+      "assertion": "FT84-03-gadget-missing-gnome same before state",
+      "pass": true,
+      "actual": {
+        "owner": "TEST-Gnome-maker",
+        "partsLots": 2,
+        "lotPriceCp": 500,
+        "useSpent": 0,
+        "nextUseAt": 0,
+        "receipts": [],
+        "actualWorkSeconds": 0,
+        "activeGadget": null,
+        "currencyCp": 0,
+        "RP": 0,
+        "otherItemCharges": 2
+      },
+      "expected": {
+        "owner": "TEST-Gnome-maker",
+        "partsLots": 2,
+        "lotPriceCp": 500,
+        "useSpent": 0,
+        "nextUseAt": 0,
+        "receipts": [],
+        "actualWorkSeconds": 0,
+        "activeGadget": null,
+        "currencyCp": 0,
+        "RP": 0,
+        "otherItemCharges": 2
+      }
+    },
+    {
+      "assertion": "FT84-03-gadget-missing-tools status",
+      "pass": true,
+      "actual": "REJECT_BEFORE_COMMIT",
+      "expected": "REJECT_BEFORE_COMMIT"
+    },
+    {
+      "assertion": "FT84-03-gadget-missing-tools same before state",
+      "pass": true,
+      "actual": {
+        "owner": "TEST-Gnome-maker",
+        "partsLots": 2,
+        "lotPriceCp": 500,
+        "useSpent": 0,
+        "nextUseAt": 0,
+        "receipts": [],
+        "actualWorkSeconds": 0,
+        "activeGadget": null,
+        "currencyCp": 0,
+        "RP": 0,
+        "otherItemCharges": 2
+      },
+      "expected": {
+        "owner": "TEST-Gnome-maker",
+        "partsLots": 2,
+        "lotPriceCp": 500,
+        "useSpent": 0,
+        "nextUseAt": 0,
+        "receipts": [],
+        "actualWorkSeconds": 0,
+        "activeGadget": null,
+        "currencyCp": 0,
+        "RP": 0,
+        "otherItemCharges": 2
+      }
+    },
+    {
+      "assertion": "FT84-03-gadget-missing-partsOwned status",
+      "pass": true,
+      "actual": "REJECT_BEFORE_COMMIT",
+      "expected": "REJECT_BEFORE_COMMIT"
+    },
+    {
+      "assertion": "FT84-03-gadget-missing-partsOwned same before state",
+      "pass": true,
+      "actual": {
+        "owner": "TEST-Gnome-maker",
+        "partsLots": 2,
+        "lotPriceCp": 500,
+        "useSpent": 0,
+        "nextUseAt": 0,
+        "receipts": [],
+        "actualWorkSeconds": 0,
+        "activeGadget": null,
+        "currencyCp": 0,
+        "RP": 0,
+        "otherItemCharges": 2
+      },
+      "expected": {
+        "owner": "TEST-Gnome-maker",
+        "partsLots": 2,
+        "lotPriceCp": 500,
+        "useSpent": 0,
+        "nextUseAt": 0,
+        "receipts": [],
+        "actualWorkSeconds": 0,
+        "activeGadget": null,
+        "currencyCp": 0,
+        "RP": 0,
+        "otherItemCharges": 2
+      }
+    },
+    {
+      "assertion": "FT84-03-gadget-missing-lawfulWork status",
+      "pass": true,
+      "actual": "REJECT_BEFORE_COMMIT",
+      "expected": "REJECT_BEFORE_COMMIT"
+    },
+    {
+      "assertion": "FT84-03-gadget-missing-lawfulWork same before state",
+      "pass": true,
+      "actual": {
+        "owner": "TEST-Gnome-maker",
+        "partsLots": 2,
+        "lotPriceCp": 500,
+        "useSpent": 0,
+        "nextUseAt": 0,
+        "receipts": [],
+        "actualWorkSeconds": 0,
+        "activeGadget": null,
+        "currencyCp": 0,
+        "RP": 0,
+        "otherItemCharges": 2
+      },
+      "expected": {
+        "owner": "TEST-Gnome-maker",
+        "partsLots": 2,
+        "lotPriceCp": 500,
+        "useSpent": 0,
+        "nextUseAt": 0,
+        "receipts": [],
+        "actualWorkSeconds": 0,
+        "activeGadget": null,
+        "currencyCp": 0,
+        "RP": 0,
+        "otherItemCharges": 2
+      }
+    },
+    {
+      "assertion": "FT84-03-kit-success status",
+      "pass": true,
+      "actual": "KIT_CREATED",
+      "expected": "KIT_CREATED"
+    },
+    {
+      "assertion": "FT84-03-kit-success work",
+      "pass": true,
+      "actual": 900,
+      "expected": 900
+    },
+    {
+      "assertion": "FT84-03-kit-success elapsed",
+      "pass": true,
+      "actual": 900,
+      "expected": 900
+    },
+    {
+      "assertion": "FT84-03-kit-success one check",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "assertion": "FT84-03-kit-success no quick use",
+      "pass": true,
+      "actual": {
+        "snare": 1,
+        "caltrop": 1,
+        "charge": 1
+      },
+      "expected": {
+        "snare": 1,
+        "caltrop": 1,
+        "charge": 1
+      }
+    },
+    {
+      "assertion": "FT84-03-kit-success hard history",
+      "pass": true,
+      "actual": [
+        "preserved-prior"
+      ],
+      "expected": [
+        "preserved-prior"
+      ]
+    },
+    {
+      "assertion": "FT84-03-kit-success frame",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "assertion": "FT84-03-kit-failure status",
+      "pass": true,
+      "actual": "FAILED",
+      "expected": "FAILED"
+    },
+    {
+      "assertion": "FT84-03-kit-failure work",
+      "pass": true,
+      "actual": 900,
+      "expected": 900
+    },
+    {
+      "assertion": "FT84-03-kit-failure elapsed",
+      "pass": true,
+      "actual": 900,
+      "expected": 900
+    },
+    {
+      "assertion": "FT84-03-kit-failure one check",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "assertion": "FT84-03-kit-failure no quick use",
+      "pass": true,
+      "actual": {
+        "snare": 1,
+        "caltrop": 1,
+        "charge": 1
+      },
+      "expected": {
+        "snare": 1,
+        "caltrop": 1,
+        "charge": 1
+      }
+    },
+    {
+      "assertion": "FT84-03-kit-failure hard history",
+      "pass": true,
+      "actual": [
+        "preserved-prior"
+      ],
+      "expected": [
+        "preserved-prior"
+      ]
+    },
+    {
+      "assertion": "FT84-03-kit-failure frame",
+      "pass": true,
+      "actual": "1/2",
+      "expected": "1/2"
+    },
+    {
+      "assertion": "FT84-03-kit-interruption status",
+      "pass": true,
+      "actual": "KIT_CREATED",
+      "expected": "KIT_CREATED"
+    },
+    {
+      "assertion": "FT84-03-kit-interruption work",
+      "pass": true,
+      "actual": 900,
+      "expected": 900
+    },
+    {
+      "assertion": "FT84-03-kit-interruption elapsed",
+      "pass": true,
+      "actual": 960,
+      "expected": 960
+    },
+    {
+      "assertion": "FT84-03-kit-interruption one check",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "assertion": "FT84-03-kit-interruption no quick use",
+      "pass": true,
+      "actual": {
+        "snare": 1,
+        "caltrop": 1,
+        "charge": 1
+      },
+      "expected": {
+        "snare": 1,
+        "caltrop": 1,
+        "charge": 1
+      }
+    },
+    {
+      "assertion": "FT84-03-kit-interruption hard history",
+      "pass": true,
+      "actual": [
+        "preserved-prior"
+      ],
+      "expected": [
+        "preserved-prior"
+      ]
+    },
+    {
+      "assertion": "FT84-03-kit-interruption frame",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "assertion": "FT84-03-category-barricade minutes",
+      "pass": true,
+      "actual": 30,
+      "expected": 30
+    },
+    {
+      "assertion": "FT84-03-category-barricade no wait reduction",
+      "pass": true,
+      "actual": 1440,
+      "expected": 1440
+    },
+    {
+      "assertion": "FT84-03-category-explicit-temper minutes",
+      "pass": true,
+      "actual": 480,
+      "expected": 480
+    },
+    {
+      "assertion": "FT84-03-category-explicit-temper no wait reduction",
+      "pass": true,
+      "actual": 1440,
+      "expected": 1440
+    },
+    {
+      "assertion": "FT84-03-category-explicit-killzone minutes",
+      "pass": true,
+      "actual": 10,
+      "expected": 10
+    },
+    {
+      "assertion": "FT84-03-category-explicit-killzone no wait reduction",
+      "pass": true,
+      "actual": 1440,
+      "expected": 1440
+    },
+    {
+      "assertion": "FT84-03-category-collect-caltrops minutes",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "assertion": "FT84-03-category-collect-caltrops no wait reduction",
+      "pass": true,
+      "actual": 1440,
+      "expected": 1440
+    },
+    {
+      "assertion": "FT84-03-category-authorized-full-repair minutes",
+      "pass": true,
+      "actual": 120,
+      "expected": 120
+    },
+    {
+      "assertion": "FT84-03-category-authorized-full-repair no wait reduction",
+      "pass": true,
+      "actual": 1440,
+      "expected": 1440
+    },
+    {
+      "assertion": "FT84-03-category-recipe121 minutes",
+      "pass": true,
+      "actual": 120,
+      "expected": 120
+    },
+    {
+      "assertion": "FT84-03-category-recipe121 no wait reduction",
+      "pass": true,
+      "actual": 1440,
+      "expected": 1440
+    },
+    {
+      "assertion": "FT84-03-recipe121-phases actual",
+      "pass": true,
+      "actual": 9600,
+      "expected": 9600
+    },
+    {
+      "assertion": "FT84-03-recipe121-phases credit",
+      "pass": true,
+      "actual": 7200,
+      "expected": 7200
+    },
+    {
+      "assertion": "FT84-03-recipe121-phases no assistant",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "assertion": "FT84-03-rest-whole-20 bonus",
+      "pass": true,
+      "actual": 3,
+      "expected": 3
+    },
+    {
+      "assertion": "FT84-03-rest-whole-20 actual HP",
+      "pass": true,
+      "actual": 7,
+      "expected": 7
+    },
+    {
+      "assertion": "FT84-03-rest-whole-20 whole job exception",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "assertion": "FT84-03-rest-whole-30 bonus",
+      "pass": true,
+      "actual": 3,
+      "expected": 3
+    },
+    {
+      "assertion": "FT84-03-rest-whole-30 actual HP",
+      "pass": true,
+      "actual": 7,
+      "expected": 7
+    },
+    {
+      "assertion": "FT84-03-rest-whole-30 whole job exception",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "assertion": "FT84-03-rest-whole-31 bonus",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "assertion": "FT84-03-rest-whole-31 actual HP",
+      "pass": true,
+      "actual": 4,
+      "expected": 4
+    },
+    {
+      "assertion": "FT84-03-rest-whole-31 whole job exception",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "assertion": "FT84-03-rest-whole-480 bonus",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "assertion": "FT84-03-rest-whole-480 actual HP",
+      "pass": true,
+      "actual": 4,
+      "expected": 4
+    },
+    {
+      "assertion": "FT84-03-rest-whole-480 whole job exception",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    }
+  ],
+  "assertionCount": 167,
+  "failures": 0,
+  "scope": "Only new standard-library finite specifications executed. Actual permissions, content, class milestones, stock/worksites and safety are disclosed premises; no game runtime or supplied project module is imported."
+}

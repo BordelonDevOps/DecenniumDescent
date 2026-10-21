@@ -1,4 +1,4 @@
-> **Latest development backup — 20 October 2026:** Work through checkpoint72 is preserved: full Rank7/Rank8 review histories and two new rank9 source packets. Applied525 reviewed/323 pending/249 standalone/173 interfaces and39 accepted-but-unapplied remain unchanged. See [snapshot status](SNAPSHOT_STATUS_2026-10-20_MATERIAL_FORGING72.md). Earlier notices remain history.
+> **Latest backup — 21 October 2026:** Saved review work through checkpoint 111 is preserved. Video game only; development remains paused. Applied spell counts remain 525 reviewed / 323 pending, with 53 accepted identities awaiting integration. See [snapshot status](SNAPSHOT_STATUS_2026-10-21_CHECKPOINT111.md). Earlier notices remain history.
 
 > **Recovered working root — 2026-10-08:** Start with [START_HERE.md](START_HERE.md) for the current books, preserved history and completion status. This folder contains approved V6 plus unpromoted review work; older release claims below must be read in that context.
 

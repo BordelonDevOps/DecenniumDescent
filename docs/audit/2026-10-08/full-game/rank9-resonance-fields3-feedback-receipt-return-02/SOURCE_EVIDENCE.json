@@ -1,0 +1,146 @@
+{
+  "sources": [
+    {
+      "alias": "wizard",
+      "completeFile": "sources/wizard.json",
+      "bytes": 100635,
+      "sha256": "8ab2f4f43bcbced418fb266e5bd3216cff491b0c442c16f93438bd3556672c8b",
+      "originalArchiveReference": {
+        "archive": "input/DD_Rank9_Resonance_Fields_3_Source_Conference_01.zip",
+        "member": "sources/DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+        "bytes": 100635,
+        "sha256": "8ab2f4f43bcbced418fb266e5bd3216cff491b0c442c16f93438bd3556672c8b"
+      }
+    },
+    {
+      "alias": "classRules",
+      "completeFile": "sources/classRules.md",
+      "bytes": 17321,
+      "sha256": "adb2f4752b45dc70ce792a675bb30dda362aab5056588061bcde3ba31c4c8a81",
+      "originalArchiveReference": {
+        "archive": "input/DD_Rank9_Resonance_Fields_3_Source_Conference_01.zip",
+        "member": "sources/DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md",
+        "bytes": 17321,
+        "sha256": "adb2f4752b45dc70ce792a675bb30dda362aab5056588061bcde3ba31c4c8a81"
+      }
+    },
+    {
+      "alias": "casting",
+      "completeFile": "sources/casting.md",
+      "bytes": 67451,
+      "sha256": "55f486de8d38a6734f8f0f2f62066401504f5b1311ebe66693175876b3f7aa6d",
+      "originalArchiveReference": {
+        "archive": "input/DD_Rank9_Resonance_Fields_3_Source_Conference_01.zip",
+        "member": "sources/DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+        "bytes": 67451,
+        "sha256": "55f486de8d38a6734f8f0f2f62066401504f5b1311ebe66693175876b3f7aa6d"
+      }
+    },
+    {
+      "alias": "combat",
+      "completeFile": "sources/combat.md",
+      "bytes": 30409,
+      "sha256": "f90d039142145fbd31c37992ebece70d7926dc4b6081e340f9a2fd9dc7237bc6",
+      "originalArchiveReference": {
+        "archive": "input/DD_Rank9_Resonance_Fields_3_Source_Conference_01.zip",
+        "member": "sources/DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+        "bytes": 30409,
+        "sha256": "f90d039142145fbd31c37992ebece70d7926dc4b6081e340f9a2fd9dc7237bc6"
+      }
+    }
+  ],
+  "completeCards": {
+    "wizard#/cards/17": {
+      "id": "wizard.base.counterspell",
+      "name": "Counterspell",
+      "className": "Wizard",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 2,
+      "acquisition": "automatic",
+      "activation": "Reaction",
+      "cost": "3 RP",
+      "rangeAndTarget": "One creature you perceive casting a spell within 60 feet",
+      "duration": "Instantaneous",
+      "frequency": "Automatic at Wizard 2; recharge 2 rounds",
+      "effect": "Counterspell. Tags: arch-source, automatic, wizard-spell, abjuration, disruption. Trigger when a creature begins casting a spell. Make an Intelligence check adding proficiency against DC 10 + twice the spell's rank, treating rank 0 as 0. Success negates the triggering spell after its costs are paid; failure lets it resolve. This is gained automatically at Wizard 2 and is never also selected from the Arch pool.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 5222,
+        "originalText": "Counterspell: Disrupt an enemy's spellcasting, potentially negating their spell entirely."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": 1
+    },
+    "wizard#/cards/29": {
+      "id": "wizard.hero.spellbinder.counterpulse",
+      "name": "Counterpulse",
+      "className": "Wizard",
+      "band": "Hero",
+      "path": "Spellbinder",
+      "sourceKind": "active",
+      "minimumClassLevel": 12,
+      "acquisition": "selection",
+      "activation": "Triggered",
+      "cost": "1 RP",
+      "rangeAndTarget": "Caster whose spell you successfully Counterspelled",
+      "duration": "Until end of target's next turn",
+      "frequency": "At most once per round",
+      "effect": "Counterpulse. Tags: hero, spellbinder, counter, control. Immediately after your Counterspell succeeds, spend 1 RP. The countered caster is Silenced until the end of its next turn. This is part of the successful counter event rather than another spell cast and cannot trigger another Counterpulse.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 5251,
+        "originalText": "Counterpulse: Countering a spell silences the caster for 1 round"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    "wizard#/cards/60": {
+      "id": "wizard.supplement.arcane-feedback",
+      "name": "Arcane Feedback",
+      "className": "Wizard",
+      "band": "Hero",
+      "path": null,
+      "sourceKind": "supplement",
+      "minimumClassLevel": 15,
+      "acquisition": "automatic",
+      "activation": "Triggered",
+      "cost": "0",
+      "rangeAndTarget": "Self",
+      "duration": "Instantaneous",
+      "frequency": "At most once per round",
+      "effect": "Source progression line 5191, converted from historical slot wording to RP. After your Counterspell successfully negates a spell, restore 1 RP, never above your normal maximum. A counter produced by a companion, reflected spell or copied Counterspell does not trigger this feature.",
+      "prerequisite": "See class engine and progression.",
+      "source": {
+        "line": 5191,
+        "reference": null,
+        "originalText": "| 15 | Arcane Feedback (after successfully countering a spell, recover 1 RP once per round) |",
+        "status": "source-derived"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  "ordinaryCounterspell": {
+    "completeExtract": "sources/ordinary_counterspell_complete_record.json",
+    "originalFullSource": {
+      "archive": "input/DD_Rank9_Resonance_Fields_3_Source_Conference_01.zip",
+      "member": "sources/DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+      "bytes": 4945319,
+      "sha256": "f52cf6a4a4673897615a74c7c67dcba798c431362d4357e71ee552cc7c5d31f8"
+    },
+    "pointer": "/spells/38",
+    "scope": "Additional diagnostic source comparison, not newly selected acquisition in existing cases."
+  },
+  "priorVerifierEvidence": {
+    "archive": "input/DD_Rank9_Resonance_Fields_3_Part5_Conference_Return_01.zip",
+    "member": "verify_bundle.py",
+    "lines": [
+      129,
+      143
+    ],
+    "finding": "Arithmetic reads observations to add Feedback1; this is not a persisted round-use or eligibility algorithm. File inspected as text only."
+  },
+  "interpretation": "No supplied complete durable derivation was found. This receipt supplies the representation missing for the actual awarded uses, not new resource law."
+}

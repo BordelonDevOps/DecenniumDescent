@@ -1,0 +1,38 @@
+2026-10-21T02:37:01.357Z
+es not make material exceptional. A Gate Seal needs actual valid evidence. A patient auction needs its real appointment/buyer and waiting time. A disputed-provenance discount grants no right to sell another owner's property.\\n\\n**True artifacts.** Use the actual artifact formula and profile, with separately stated Base Function Value and Gate Tier Multiplier or a genuine finite buyer quote. Missing inputs mean *unvalued*, not zero or infinite price. No ordinary sword or crafted Masterwork acquires artifact multipliers by being recovered from the dungeon. Record gross and each deduction separately. A negative net estimate exposes a possible liability; it is not a compulsory purchase, debt or negative payment to a seller.\"} FL-21 {\"id\": \"FL-21\", \"title\": \"One settlement ledger\", \"text\": \"Keep exact fractions of copper until each actual final payment. Use 1 sp = 10 cp, 1 gp = 100 cp and 1 pp = 1,000 cp. Where accepted, retain 1 Mithril Mark = 500 cp, Embermark = 2 sp, Soulshard = 1 gp and Tidesilver = 1 sp. Verdant Leaf and otherwise unvalued currency have no invented universal conversion. Names do not establish currency origins.\\n\\nRound a final purchase, tax or fee payable **up** to copper once; round a final sale receipt **down** once. A coherent homogeneous sale bill is one receipt. Distinct real contracts can have separate final rounding; individual factors or components are not new transactions merely to change rounding. Displayed decimals never replace the exact value.\\n\\nFor each entry, record transaction ID, payer/payee, currency, goods/quantity or service, agreement/authority, exact quote, actual rounded payment, timestamp, status and related prior payment. Quoted, reserved, paid, owed, refunded and lawfully written off are different states. A price quote spends nothing. Apply deposits to their agreed bill. Insurance is an inflow, not sold cargo.\\n\\nFor the default Loop net-share sponsor agreement:\\n\\n`SponsorBase = max(0, G − T − RQ)`\\n\\n`SponsorShare = contracted percentage × SponsorBase, rounded once as payment`\\n\\n`NetExpedition = G − T − RQ − SponsorShare`\\n\\nG is actual sale receipts, T the direct Haven taxes on them, and RQ the episode's actual mandatory rescue/quarantine expenses. Count RQ once whether paid earlier or now. This sponsor base is before personal wages and discretionary purchases. A signed gross-share or priority-lien agreement instead uses its own declared terms.\\n\\nTrue profit includes actual episode inflows less every distinct actual episode cost once: shares, wages, consumed/replaced supplies, operating fuel, repair, interest and other agreed costs. Show capital purchases and borrowed principal separately. Loans and principal repayment are financing, and selling existing personal capital is not earned cargo. Cash allocated to next-expedition reserves is a further allocation, not automatically the same as profit.\\n\\nReport the charter's gross cargo target, net expedition target and true-profit/distributable-after-reserves target, stating whether the comparison is an appraisal or a realized sale. Appraised value does not pay wages. Keep insufficiently funded obligations owed; do not invent negative inventory, a compulsory new loan or unlimited sponsor funds. Allocations cannot exceed actual available money.\"} traits names count script"
+    - button "Analyzed" [expanded]
+    - generic: Analyzed
+    - generic: Python
+    - button "Copy code":
+    - code:
+      - generic: "# Print only the save-only native source strings."
+      - generic: "for r in records:"
+      - generic: if not r['statBlock']:continue
+      - generic: "for a in r['statBlock']['actions']:"
+      - generic: "if 'Save' in a['sourceText']:"
+      - generic: print(r['id'],a)
+      - generic: print("manifesttype",type(json.loads((V/'FILE_MANIFEST.json').read_text())))
+      - generic: print("exmanifesttype",type(json.loads((E/'MANIFEST.json').read_text())))
+      - generic: print("regkey",list(registry['entries'][0]))
+      - generic: print([(v['id'],v.get('title')) for v in registry['entries'][:12]])
+    - generic: STDOUT/STDERR
+    - generic: manifesttype <class 'dict'> exmanifesttype <class 'dict'> regkey ['id', 'name', 'acceptanceStatus', 'acceptanceBasis', 'scope', 'currentAuthoritativeSource', 'exactAuthority', 'authoritySha256', 'trigger', 'inputs', 'outputs', 'lifecycle', 'exceptions', 'knownSourceSpecificExtensions', 'usedBy', 'usageCoverage', 'reusableWithinScope', 'summaryAuthority', 'runtimeImplementedByRegistry'] [('docs/mechanics/SPELL_INTEGRATION_RULES.md#resolve-a-cast-at-the-table', None), ('docs/mechanics/COMBAT_ACTION_PLAYTEST.md#ready', None), ('docs/mechanics/SPELL_INTEGRATION_RULES.md#falling-bridge-—-new-provisional-procedure', None), ('docs/mechanics/COMBAT_ACTION_PLAYTEST.md#time-and-event-ordering-—-new', None), ('docs/mechanics/COMBAT_ACTION_PLAYTEST.md#movement-and-geometry', None), ('docs/mechanics/CORE_RESOLUTION_PLAYTEST.md#resolve-a-damage-event', None), ('docs/mechanics/CORE_RESOLUTION_PLAYTEST.md#zero-hp-and-recovery', None), ('docs/mechanics/CORE_RESOLUTION_PLAYTEST.md#rolls', None), ('docs/mechanics/CLASS_PLAYTEST_RULES.md#targets,-concentration-and-control', None), ('docs/mechanics/COSMOLOGY_EPILOGUE_RELIC_NULL_PLAYTEST.md#null-veil', None), ('docs/mechanics/COSMOLOGY_EPILOGUE_RELIC_NULL_PLAYTEST.md#recipient-lifecycles-for-qualifying-null-damage', None), ('docs/mechanics/SPELL_INTEGRATION_RULES.md#components,-summons-and-ongoing-effects', None)]
+    - status:
+      - generic: Our systems are thinking a bit more about this request before responding.
+    - generic: ChatGPT can make mistakes. Check important info.
+    - button:
+    - heading "Latest response" [level=4]
+    - status
+    - button "Add files and more":
+    - textbox "Ask ChatGPT":
+      - paragraph: Ask ChatGPT
+    - button "Select ChatGPT model":
+      - generic: Pro
+    - button "Dictate":
+    - button "Stop":
+- status
+- status
+- status
+- status
+- status
+- status

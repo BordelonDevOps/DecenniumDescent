@@ -1,0 +1,1561 @@
+# Rank8Damage6 — exact source anchors
+
+The complete unchanged sources are in the bound input ZIP. This file exposes the relevant native rows and automatic fixture features for convenient inspection; it is not a replacement source or a new rule.
+
+## Deep Crust Spike
+
+Original source pointer: `baseline/CANDIDATE.json#/records/0`
+
+```json
+
+{
+  "native": {
+    "name": "Deep Crust Spike",
+    "level": 8,
+    "resonanceRank": 8,
+    "school": "Transmutation",
+    "schools": [
+      "Transmutation"
+    ],
+    "placements": [
+      {
+        "name": "Deep Crust Spike",
+        "school": "Transmutation",
+        "level": 8,
+        "summary": "Erupting lava spike from below: 10d8 fire/piercing."
+      }
+    ],
+    "classLevels": {
+      "Druid": 8,
+      "Mage": 8,
+      "Wizard": 8
+    },
+    "classRanks": {
+      "Druid": 8,
+      "Mage": 8,
+      "Wizard": 8
+    },
+    "classLearnLevels": {
+      "Druid": 15,
+      "Mage": 15,
+      "Wizard": 15
+    },
+    "classSchools": {
+      "Druid": "Transmutation",
+      "Mage": "Transmutation",
+      "Wizard": "Transmutation"
+    },
+    "castingTime": "Not specified in current rulebook",
+    "range": "Not specified in current rulebook",
+    "components": "Not specified in current rulebook",
+    "duration": "Not specified in current rulebook",
+    "description": "Erupting lava spike from below: 10d8 fire/piercing.",
+    "alternateSummaries": [],
+    "classes": [
+      "Druid",
+      "Mage",
+      "Wizard"
+    ],
+    "status": "canon",
+    "source": "Player Rulebook — Spell Lists"
+  },
+  "coreEntries": [
+    {
+      "index": 810,
+      "original": {
+        "school": "Transmutation",
+        "level": 8,
+        "name": "Deep Crust Spike",
+        "effect": "Erupting lava spike from below: 10d8 fire/piercing.",
+        "source_paragraph": 9984,
+        "casting_time": "1 action",
+        "range": "120 feet",
+        "duration": "Instantaneous",
+        "components": "V, S, F",
+        "resolution": "Automatic or opposed as described",
+        "tags": [
+          "Damage"
+        ],
+        "rp_cost": 21
+      }
+    }
+  ],
+  "classAccess": {
+    "Druid": {
+      "rank": 8,
+      "minimumClassLevel": 15,
+      "school": "Transmutation",
+      "baseRpCost": 21
+    },
+    "Mage": {
+      "rank": 8,
+      "minimumClassLevel": 15,
+      "school": "Transmutation",
+      "baseRpCost": 21
+    },
+    "Wizard": {
+      "rank": 8,
+      "minimumClassLevel": 15,
+      "school": "Transmutation",
+      "baseRpCost": 21
+    }
+  },
+  "exactBookBindings": [
+    {
+      "spellId": "deep-crust-spike",
+      "catalogPlacement": {
+        "name": "Deep Crust Spike",
+        "school": "Transmutation",
+        "level": 8,
+        "summary": "Erupting lava spike from below: 10d8 fire/piercing."
+      },
+      "currentBookRow": {
+        "line": 9726,
+        "name": "Deep Crust Spike",
+        "school": "Transmutation",
+        "level": 8,
+        "summary": "Erupting lava spike from below: 10d8 fire/piercing.",
+        "exactText": "Deep Crust Spike – Erupting lava spike from below: 10d8 fire/piercing."
+      },
+      "summaryDifferencePreserved": false
+    }
+  ]
+}
+
+```
+
+## Molecular Destabilization
+
+Original source pointer: `baseline/CANDIDATE.json#/records/1`
+
+```json
+
+{
+  "native": {
+    "name": "Molecular Destabilization",
+    "level": 8,
+    "resonanceRank": 8,
+    "school": "Transmutation",
+    "schools": [
+      "Transmutation"
+    ],
+    "placements": [
+      {
+        "name": "Molecular Destabilization",
+        "school": "Transmutation",
+        "level": 8,
+        "summary": "Target takes 10d6 force as body partially dissolves."
+      }
+    ],
+    "classLevels": {
+      "Druid": 8,
+      "Mage": 8,
+      "Wizard": 8
+    },
+    "classRanks": {
+      "Druid": 8,
+      "Mage": 8,
+      "Wizard": 8
+    },
+    "classLearnLevels": {
+      "Druid": 15,
+      "Mage": 15,
+      "Wizard": 15
+    },
+    "classSchools": {
+      "Druid": "Transmutation",
+      "Mage": "Transmutation",
+      "Wizard": "Transmutation"
+    },
+    "castingTime": "Not specified in current rulebook",
+    "range": "Not specified in current rulebook",
+    "components": "Not specified in current rulebook",
+    "duration": "Not specified in current rulebook",
+    "description": "Target takes 10d6 force as body partially dissolves.",
+    "alternateSummaries": [],
+    "classes": [
+      "Druid",
+      "Mage",
+      "Wizard"
+    ],
+    "status": "canon",
+    "source": "Player Rulebook — Spell Lists"
+  },
+  "coreEntries": [
+    {
+      "index": 808,
+      "original": {
+        "school": "Transmutation",
+        "level": 8,
+        "name": "Molecular Destabilization",
+        "effect": "Target takes 10d6 force as body partially dissolves.",
+        "source_paragraph": 9982,
+        "casting_time": "1 action",
+        "range": "120 feet",
+        "duration": "Instantaneous",
+        "components": "V, S, F",
+        "resolution": "Automatic or opposed as described",
+        "tags": [
+          "Damage"
+        ],
+        "rp_cost": 21
+      }
+    }
+  ],
+  "classAccess": {
+    "Druid": {
+      "rank": 8,
+      "minimumClassLevel": 15,
+      "school": "Transmutation",
+      "baseRpCost": 21
+    },
+    "Mage": {
+      "rank": 8,
+      "minimumClassLevel": 15,
+      "school": "Transmutation",
+      "baseRpCost": 21
+    },
+    "Wizard": {
+      "rank": 8,
+      "minimumClassLevel": 15,
+      "school": "Transmutation",
+      "baseRpCost": 21
+    }
+  },
+  "exactBookBindings": [
+    {
+      "spellId": "molecular-destabilization",
+      "catalogPlacement": {
+        "name": "Molecular Destabilization",
+        "school": "Transmutation",
+        "level": 8,
+        "summary": "Target takes 10d6 force as body partially dissolves."
+      },
+      "currentBookRow": {
+        "line": 9724,
+        "name": "Molecular Destabilization",
+        "school": "Transmutation",
+        "level": 8,
+        "summary": "Target takes 10d6 force as body partially dissolves.",
+        "exactText": "Molecular Destabilization – Target takes 10d6 force as body partially dissolves."
+      },
+      "summaryDifferencePreserved": false
+    }
+  ]
+}
+
+```
+
+## Soul Pyre
+
+Original source pointer: `baseline/CANDIDATE.json#/records/2`
+
+```json
+
+{
+  "native": {
+    "name": "Soul Pyre",
+    "level": 8,
+    "resonanceRank": 8,
+    "school": "Necromancy",
+    "schools": [
+      "Necromancy"
+    ],
+    "placements": [
+      {
+        "name": "Soul Pyre",
+        "school": "Necromancy",
+        "level": 8,
+        "summary": "Burn a corpse to explode for 8d6 fire + necrotic to all in 20 ft."
+      }
+    ],
+    "classLevels": {
+      "Cleric": 8,
+      "Druid": 8,
+      "Wizard": 8
+    },
+    "classRanks": {
+      "Cleric": 8,
+      "Druid": 8,
+      "Wizard": 8
+    },
+    "classLearnLevels": {
+      "Cleric": 15,
+      "Druid": 15,
+      "Wizard": 15
+    },
+    "classSchools": {
+      "Cleric": "Necromancy",
+      "Druid": "Necromancy",
+      "Wizard": "Necromancy"
+    },
+    "castingTime": "Not specified in current rulebook",
+    "range": "Not specified in current rulebook",
+    "components": "Not specified in current rulebook",
+    "duration": "Not specified in current rulebook",
+    "description": "Burn a corpse to explode for 8d6 fire + necrotic to all in 20 ft.",
+    "alternateSummaries": [],
+    "classes": [
+      "Cleric",
+      "Druid",
+      "Wizard"
+    ],
+    "status": "canon",
+    "source": "Player Rulebook — Spell Lists"
+  },
+  "coreEntries": [
+    {
+      "index": 706,
+      "original": {
+        "school": "Necromancy",
+        "level": 8,
+        "name": "Soul Pyre",
+        "effect": "Burn a corpse to explode for 8d6 fire + necrotic to all in 20 ft.",
+        "source_paragraph": 9855,
+        "casting_time": "1 action",
+        "range": "20 feet",
+        "duration": "Instantaneous",
+        "components": "V, S, M/F",
+        "resolution": "Automatic or opposed as described",
+        "tags": [
+          "Damage"
+        ],
+        "rp_cost": 21
+      }
+    }
+  ],
+  "classAccess": {
+    "Cleric": {
+      "rank": 8,
+      "minimumClassLevel": 15,
+      "school": "Necromancy",
+      "baseRpCost": 21
+    },
+    "Druid": {
+      "rank": 8,
+      "minimumClassLevel": 15,
+      "school": "Necromancy",
+      "baseRpCost": 21
+    },
+    "Wizard": {
+      "rank": 8,
+      "minimumClassLevel": 15,
+      "school": "Necromancy",
+      "baseRpCost": 21
+    }
+  },
+  "exactBookBindings": [
+    {
+      "spellId": "soul-pyre",
+      "catalogPlacement": {
+        "name": "Soul Pyre",
+        "school": "Necromancy",
+        "level": 8,
+        "summary": "Burn a corpse to explode for 8d6 fire + necrotic to all in 20 ft."
+      },
+      "currentBookRow": {
+        "line": 9597,
+        "name": "Soul Pyre",
+        "school": "Necromancy",
+        "level": 8,
+        "summary": "Burn a corpse to explode for 8d6 fire + necrotic to all in 20 ft.",
+        "exactText": "Soul Pyre – Burn a corpse to explode for 8d6 fire + necrotic to all in 20 ft."
+      },
+      "summaryDifferencePreserved": false
+    }
+  ]
+}
+
+```
+
+## Incendiary Cloud
+
+Original source pointer: `baseline/CANDIDATE.json#/records/3`
+
+```json
+
+{
+  "native": {
+    "name": "Incendiary Cloud",
+    "level": 8,
+    "resonanceRank": 8,
+    "school": "Evocation",
+    "schools": [
+      "Evocation"
+    ],
+    "placements": [
+      {
+        "name": "Incendiary Cloud",
+        "school": "Evocation",
+        "level": 8,
+        "summary": "10d8 fire damage per round in 20-ft radius."
+      }
+    ],
+    "classLevels": {
+      "Mage": 8,
+      "Wizard": 8
+    },
+    "classRanks": {
+      "Mage": 8,
+      "Wizard": 8
+    },
+    "classLearnLevels": {
+      "Mage": 15,
+      "Wizard": 15
+    },
+    "classSchools": {
+      "Mage": "Evocation",
+      "Wizard": "Evocation"
+    },
+    "castingTime": "Not specified in current rulebook",
+    "range": "Not specified in current rulebook",
+    "components": "Not specified in current rulebook",
+    "duration": "Not specified in current rulebook",
+    "description": "10d8 fire damage per round in 20-ft radius.",
+    "alternateSummaries": [],
+    "classes": [
+      "Mage",
+      "Wizard"
+    ],
+    "status": "canon",
+    "source": "Player Rulebook — Spell Lists"
+  },
+  "coreEntries": [
+    {
+      "index": 501,
+      "original": {
+        "school": "Evocation",
+        "level": 8,
+        "name": "Incendiary Cloud",
+        "effect": "10d8 fire damage per round in 20-ft radius.",
+        "source_paragraph": 9600,
+        "casting_time": "1 action",
+        "range": "20 feet",
+        "duration": "Instantaneous",
+        "components": "V, S, F",
+        "resolution": "Automatic or opposed as described",
+        "tags": [
+          "Damage"
+        ],
+        "rp_cost": 21
+      }
+    }
+  ],
+  "classAccess": {
+    "Mage": {
+      "rank": 8,
+      "minimumClassLevel": 15,
+      "school": "Evocation",
+      "baseRpCost": 21
+    },
+    "Wizard": {
+      "rank": 8,
+      "minimumClassLevel": 15,
+      "school": "Evocation",
+      "baseRpCost": 21
+    }
+  },
+  "exactBookBindings": [
+    {
+      "spellId": "incendiary-cloud",
+      "catalogPlacement": {
+        "name": "Incendiary Cloud",
+        "school": "Evocation",
+        "level": 8,
+        "summary": "10d8 fire damage per round in 20-ft radius."
+      },
+      "currentBookRow": {
+        "line": 9342,
+        "name": "Incendiary Cloud",
+        "school": "Evocation",
+        "level": 8,
+        "summary": "10d8 fire damage per round in 20-ft radius.",
+        "exactText": "Incendiary Cloud – 10d8 fire damage per round in 20-ft radius."
+      },
+      "summaryDifferencePreserved": false
+    }
+  ]
+}
+
+```
+
+## Dimensional Break
+
+Original source pointer: `baseline/CANDIDATE.json#/records/4`
+
+```json
+
+{
+  "native": {
+    "name": "Dimensional Break",
+    "level": 8,
+    "resonanceRank": 8,
+    "school": "Universal",
+    "schools": [
+      "Universal"
+    ],
+    "placements": [
+      {
+        "name": "Dimensional Break",
+        "school": "Universal",
+        "level": 8,
+        "summary": "Tear open unstable gate: 8d10 force + banish 1 enemy."
+      }
+    ],
+    "classLevels": {
+      "Cleric": 8,
+      "Mage": 8,
+      "Wizard": 8
+    },
+    "classRanks": {
+      "Cleric": 8,
+      "Mage": 8,
+      "Wizard": 8
+    },
+    "classLearnLevels": {
+      "Cleric": 15,
+      "Mage": 15,
+      "Wizard": 15
+    },
+    "classSchools": {
+      "Cleric": "Universal",
+      "Mage": "Universal",
+      "Wizard": "Universal"
+    },
+    "castingTime": "Not specified in current rulebook",
+    "range": "Not specified in current rulebook",
+    "components": "Not specified in current rulebook",
+    "duration": "Not specified in current rulebook",
+    "description": "Tear open unstable gate: 8d10 force + banish 1 enemy.",
+    "alternateSummaries": [],
+    "classes": [
+      "Cleric",
+      "Mage",
+      "Wizard"
+    ],
+    "status": "canon",
+    "source": "Player Rulebook — Spell Lists"
+  },
+  "coreEntries": [
+    {
+      "index": 912,
+      "original": {
+        "school": "Universal",
+        "level": 8,
+        "name": "Dimensional Break",
+        "effect": "Tear open unstable gate: 8d10 force + banish 1 enemy.",
+        "source_paragraph": 10111,
+        "casting_time": "1 action",
+        "range": "120 feet",
+        "duration": "Instantaneous",
+        "components": "V, S, F",
+        "resolution": "Automatic or opposed as described",
+        "tags": [
+          "Damage"
+        ],
+        "rp_cost": 21
+      }
+    }
+  ],
+  "classAccess": {
+    "Cleric": {
+      "rank": 8,
+      "minimumClassLevel": 15,
+      "school": "Universal",
+      "baseRpCost": 21
+    },
+    "Mage": {
+      "rank": 8,
+      "minimumClassLevel": 15,
+      "school": "Universal",
+      "baseRpCost": 21
+    },
+    "Wizard": {
+      "rank": 8,
+      "minimumClassLevel": 15,
+      "school": "Universal",
+      "baseRpCost": 21
+    }
+  },
+  "exactBookBindings": [
+    {
+      "spellId": "dimensional-break",
+      "catalogPlacement": {
+        "name": "Dimensional Break",
+        "school": "Universal",
+        "level": 8,
+        "summary": "Tear open unstable gate: 8d10 force + banish 1 enemy."
+      },
+      "currentBookRow": {
+        "line": 9853,
+        "name": "Dimensional Break",
+        "school": "Universal",
+        "level": 8,
+        "summary": "Tear open unstable gate: 8d10 force + banish 1 enemy.",
+        "exactText": "Dimensional Break – Tear open unstable gate: 8d10 force + banish 1 enemy."
+      },
+      "summaryDifferencePreserved": false
+    }
+  ]
+}
+
+```
+
+## Illusory Wall of Doom
+
+Original source pointer: `baseline/CANDIDATE.json#/records/5`
+
+```json
+
+{
+  "native": {
+    "name": "Illusory Wall of Doom",
+    "level": 8,
+    "resonanceRank": 8,
+    "school": "Illusion",
+    "schools": [
+      "Illusion"
+    ],
+    "placements": [
+      {
+        "name": "Illusory Wall of Doom",
+        "school": "Illusion",
+        "level": 8,
+        "summary": "Huge wall appears to collapse: creatures take 8d6 psychic and fall prone."
+      }
+    ],
+    "classLevels": {
+      "Wizard": 8
+    },
+    "classRanks": {
+      "Wizard": 8
+    },
+    "classLearnLevels": {
+      "Wizard": 15
+    },
+    "classSchools": {
+      "Wizard": "Illusion"
+    },
+    "castingTime": "Not specified in current rulebook",
+    "range": "Not specified in current rulebook",
+    "components": "Not specified in current rulebook",
+    "duration": "Not specified in current rulebook",
+    "description": "Huge wall appears to collapse: creatures take 8d6 psychic and fall prone.",
+    "alternateSummaries": [],
+    "classes": [
+      "Wizard"
+    ],
+    "status": "canon",
+    "source": "Player Rulebook — Spell Lists"
+  },
+  "coreEntries": [
+    {
+      "index": 603,
+      "original": {
+        "school": "Illusion",
+        "level": 8,
+        "name": "Illusory Wall of Doom",
+        "effect": "Huge wall appears to collapse: creatures take 8d6 psychic and fall prone.",
+        "source_paragraph": 9727,
+        "casting_time": "1 action",
+        "range": "120 feet",
+        "duration": "Concentration, up to 1 minute",
+        "components": "V, S, F",
+        "resolution": "Automatic or opposed as described",
+        "tags": [
+          "Damage"
+        ],
+        "rp_cost": 21
+      }
+    }
+  ],
+  "classAccess": {
+    "Wizard": {
+      "rank": 8,
+      "minimumClassLevel": 15,
+      "school": "Illusion",
+      "baseRpCost": 21
+    }
+  },
+  "exactBookBindings": [
+    {
+      "spellId": "illusory-wall-of-doom",
+      "catalogPlacement": {
+        "name": "Illusory Wall of Doom",
+        "school": "Illusion",
+        "level": 8,
+        "summary": "Huge wall appears to collapse: creatures take 8d6 psychic and fall prone."
+      },
+      "currentBookRow": {
+        "line": 9469,
+        "name": "Illusory Wall of Doom",
+        "school": "Illusion",
+        "level": 8,
+        "summary": "Huge wall appears to collapse: creatures take 8d6 psychic and fall prone.",
+        "exactText": "Illusory Wall of Doom – Huge wall appears to collapse: creatures take 8d6 psychic and fall prone."
+      },
+      "summaryDifferencePreserved": false
+    }
+  ]
+}
+
+```
+
+## Actual Wizard fixture feature: Counterspell
+
+Exact source: `DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json#/cards/17`
+
+```json
+
+{
+  "id": "wizard.base.counterspell",
+  "name": "Counterspell",
+  "className": "Wizard",
+  "band": "Base",
+  "path": null,
+  "sourceKind": "active",
+  "minimumClassLevel": 2,
+  "acquisition": "automatic",
+  "activation": "Reaction",
+  "cost": "3 RP",
+  "rangeAndTarget": "One creature you perceive casting a spell within 60 feet",
+  "duration": "Instantaneous",
+  "frequency": "Automatic at Wizard 2; recharge 2 rounds",
+  "effect": "Counterspell. Tags: arch-source, automatic, wizard-spell, abjuration, disruption. Trigger when a creature begins casting a spell. Make an Intelligence check adding proficiency against DC 10 + twice the spell's rank, treating rank 0 as 0. Success negates the triggering spell after its costs are paid; failure lets it resolve. This is gained automatically at Wizard 2 and is never also selected from the Arch pool.",
+  "source": {
+    "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+    "line": 5222,
+    "originalText": "Counterspell: Disrupt an enemy's spellcasting, potentially negating their spell entirely."
+  },
+  "designStatus": "provisional-playtest",
+  "spellRank": 1
+}
+
+```
+
+## Actual Wizard fixture feature: School Mastery
+
+Exact source: `DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json#/cards/56`
+
+```json
+
+{
+  "id": "wizard.supplement.school-mastery",
+  "name": "School Mastery",
+  "className": "Wizard",
+  "band": "Arch",
+  "path": null,
+  "sourceKind": "supplement",
+  "minimumClassLevel": 5,
+  "acquisition": "automatic",
+  "activation": "Passive",
+  "cost": "0",
+  "rangeAndTarget": "Your level-1 Arcane School",
+  "duration": "Permanent",
+  "frequency": "Automatic at Wizard 5",
+  "effect": "Source progression line 5186. This is the one School Mastery progression grant, not a second school choice or duplicate feat. Increase the level-1 Arcane School spell-attack and spell-save bonus from +1 to +2 total. Its school passive and bonus-spell rules otherwise remain unchanged.",
+  "prerequisite": "See class engine and progression.",
+  "source": {
+    "line": 5186,
+    "reference": null,
+    "originalText": "| 5 | Bonus Feat: School Mastery |",
+    "status": "source-derived"
+  },
+  "designStatus": "provisional-playtest",
+  "spellRank": null
+}
+
+```
+
+## Actual Wizard fixture feature: Arcane Ward
+
+Exact source: `DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json#/cards/57`
+
+```json
+
+{
+  "id": "wizard.supplement.arcane-ward",
+  "name": "Arcane Ward",
+  "className": "Wizard",
+  "band": "Arch",
+  "path": null,
+  "sourceKind": "supplement",
+  "minimumClassLevel": 6,
+  "acquisition": "automatic",
+  "activation": "Passive",
+  "cost": "0",
+  "rangeAndTarget": "Self",
+  "duration": "Until next long rest",
+  "frequency": "Choose after each long rest",
+  "effect": "Source progression line 5187. After preparing spells, choose one of acid, cold, fire, force, lightning, necrotic, psychic, radiant or thunder that is dealt by at least one prepared spell of your Arcane School. Gain resistance to that damage type until your next long rest. If none of your prepared school spells deals a damage type, choose force. This is provisional completion of the source's ambiguous 'chosen school's element' wording.",
+  "prerequisite": "See class engine and progression.",
+  "source": {
+    "line": 5187,
+    "reference": null,
+    "originalText": "| 6 | Arcane Ward (resistance to chosen school's element) |",
+    "status": "source-derived"
+  },
+  "designStatus": "provisional-playtest",
+  "spellRank": null
+}
+
+```
+
+## Actual Wizard fixture feature: Arcane Feedback
+
+Exact source: `DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json#/cards/60`
+
+```json
+
+{
+  "id": "wizard.supplement.arcane-feedback",
+  "name": "Arcane Feedback",
+  "className": "Wizard",
+  "band": "Hero",
+  "path": null,
+  "sourceKind": "supplement",
+  "minimumClassLevel": 15,
+  "acquisition": "automatic",
+  "activation": "Triggered",
+  "cost": "0",
+  "rangeAndTarget": "Self",
+  "duration": "Instantaneous",
+  "frequency": "At most once per round",
+  "effect": "Source progression line 5191, converted from historical slot wording to RP. After your Counterspell successfully negates a spell, restore 1 RP, never above your normal maximum. A counter produced by a companion, reflected spell or copied Counterspell does not trigger this feature.",
+  "prerequisite": "See class engine and progression.",
+  "source": {
+    "line": 5191,
+    "reference": null,
+    "originalText": "| 15 | Arcane Feedback (after successfully countering a spell, recover 1 RP once per round) |",
+    "status": "source-derived"
+  },
+  "designStatus": "provisional-playtest",
+  "spellRank": null
+}
+
+```
+
+## Warrior damage-taken BT and caps
+
+Exact source: `context/warrior.json#/engine`
+
+TAKING DAMAGE AND BT. Once per round when one source deals you actual damage after mitigation equal to or greater than PB + M, gain 1 BT. This direct gain does not increase Brutality Progress. Normal threshold and damage-taken generation together can grant at most 2 BT per round. Explicit card gains such as Overpressure Response or Backlash Engine ignore that generation ceiling but never exceed the current BT cap.
+
+BT CAP AND RESET. Default BT cap is 3. Stack Overflow raises it to 4. BT is not automatically spent; only features explicitly saying spend reduce it. Encounter end resets BT and Brutality Progress to 0. BT cannot be generated from friendly attacks, summoned sacrificial creatures, unattended objects, staged sparring or enemies that do not meaningfully threaten the party.
+
+
+# Bounded correction03: additional exact source evidence
+
+## `local_evidence/sources/DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_06.json` → `/entries/0`
+
+Bytes 1038128; SHA256 `a08f8040c2ad5eaff08668376d15155f926f909c4b63a30461d55449e18aa567`.
+
+```json
+{
+  "id": "docs/mechanics/SPELL_INTEGRATION_RULES.md#resolve-a-cast-at-the-table",
+  "name": "Ordinary casting and pricing",
+  "acceptanceStatus": "current-authoritative-provisional-interface",
+  "acceptanceBasis": {
+    "basis": "Current operative integration text, reused by exact accepted cohorts; not a new claim of whole-document or canon approval.",
+    "cohortEvidence": [
+      {
+        "path": "docs/audit/2026-10-08/full-game/AC4_EXACT_ACCEPTANCE_03_RECEIPT.json",
+        "bytes": 6291,
+        "sha256": "8dfee7f8a9cd036df80650079b289895cae245de0d8ca17bd926798de55bce2d",
+        "frozenCopy": "docs/audit/2026-10-08/full-game/accelerated-review-01/sources/docs/audit/2026-10-08/full-game/AC4_EXACT_ACCEPTANCE_03_RECEIPT.json"
+      },
+      {
+        "path": "docs/audit/2026-10-08/full-game/AC5_EXACT_ACCEPTANCE_05_RECEIPT.json",
+        "bytes": 7471,
+        "sha256": "5590d1b66ed59287069835ea19e9ffc3d52ea32a6166a9d0645757c7202885a9",
+        "frozenCopy": "docs/audit/2026-10-08/full-game/accelerated-review-01/sources/docs/audit/2026-10-08/full-game/AC5_EXACT_ACCEPTANCE_05_RECEIPT.json"
+      }
+    ]
+  },
+  "scope": "Ordinary class-qualified casts",
+  "currentAuthoritativeSource": {
+    "path": "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+    "bytes": 67451,
+    "sha256": "55f486de8d38a6734f8f0f2f62066401504f5b1311ebe66693175876b3f7aa6d",
+    "frozenCopy": "docs/audit/2026-10-08/full-game/accepted-interface-refresh-04/sources/DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+    "heading": "## Resolve a cast at the table",
+    "line": 31
+  },
+  "exactAuthority": "## Resolve a cast at the table\n\n1. Verify the available Action/Bonus Action/Reaction, its exact trigger, components, targets, range and line of effect. No legal target means no activation or payment. A target in an area still needs the card's eligibility. Total cover blocks direct targeting unless expressly overridden.\n2. Choose a spell from your actual repertoire. Determine its class-specific rank and RP cost: rank 0–9 costs **0/2/3/5/7/10/13/17/21/26**. Add explicitly printed extra costs; Resonance Shield adds 1 RP even when the caster receives it as a cantrip. Generic Overcast is excluded.\n3. Read Dissonance **before** casting. Limit = max(4, 2 + PB + max(0, casting modifier)). At limit/limit+3/limit+6, ranked spells cost +1/+2/+3 RP. At limit+6 ordinary rank-1+ casting is blocked. Cantrips have no strain surcharge but still build Refrain. An expressly granted traumatic-casting exception pays the cost and its printed trauma; it grants neither rank nor repertoire access.\n4. Commit the legal cast's RP, materials and other printed costs before any attack/save or interruption. Perform its components and establish concentration if required, ending incompatible prior concentration. An ordinary missed, saved-against or countered legal cast refunds nothing and never restores displaced concentration.\n5. At this cast's beginning, apply ordinary Dissonance and Refrain once: 0 base for rank 0, 1 for ranks 1–5, 2 for ranks 6–9; consecutive same-named casts add Refrain +1/+2/+3, capped at +3. First cast or a different name adds +0. Apply the class's exact protected reduction, routing or vent and any hook whose printed trigger is beginning/casting. Weapon or idle turns do not reset the previous name/Refrain unless the class expressly says so. This chronological commitment occurs before the Counterspell window; a later Reaction cast updates its own history, and resuming the earlier cast does not update that history again.\n6. Open legal cast-interruption Reactions, resolving nested counters last-in, first-out. A surviving cast then resolves its effect: spell attacks are d20 + PB + the actual casting ability modifier; save DC is 8 + PB + that modifier. Use the exact card's hit/failure/success results and ordinary damage/conditions. Outcome-dependent class hooks occur only at their printed timing and with the required actual result. No automatic cantrip scaling applies. A negated spell grants no success/hit/damage effect merely because its casting cost was paid.\n7. Record concentration, exact expiration, per-rest use, summon and companion command obligations. A second spell cannot supply an ungranted Action, duplicate concentration or resource reset. A readied spell commits this casting sequence at preparation; release has no second cast, cost, cadence update or Counterspell window.\n\nCountering requires an actual operational spell or class card, its repertoire/access and a legal remaining Reaction. The ordinary Counterspell is now reviewed; it is separate from the Mage and Wizard class cards. Dispel Minor, Dispel Resonance, Dispel Magic (Lesser) and Dispel Magic use their exact individual scopes. Rank-limited dispels inspect the original generating cast's spell rank, not RP cost or the dispeller's rank. Higher and unassigned source variants retain their own unfinished status.\n\n",
+  "authoritySha256": "6edfabe262f2ddb4812e76f2a665403d5cd68ddd412eb908125ff389d27d72fb",
+  "trigger": "Legal cast commitment",
+  "inputs": "Class/rank, repertoire, actions, components, pre-cast Dissonance, prior spell name, costs",
+  "outputs": "Committed resources/concentration/cadence; attack/save/effect resolution",
+  "lifecycle": "No refund/restoration on miss/save/interruption; generating rank retained",
+  "exceptions": "Exact class exceptions; no generic overcast",
+  "knownSourceSpecificExtensions": [],
+  "usedBy": [
+    "AC4",
+    "AC5",
+    "all ordinary spells"
+  ],
+  "usageCoverage": "Explicit known users, not a claim of exhaustive reverse-dependency indexing.",
+  "reusableWithinScope": true,
+  "summaryAuthority": "The exactAuthority and named source control; normalized fields index them and create no rules.",
+  "runtimeImplementedByRegistry": false
+}
+```
+
+## `local_evidence/sources/DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_06.json` → `/entries/1`
+
+Bytes 1038128; SHA256 `a08f8040c2ad5eaff08668376d15155f926f909c4b63a30461d55449e18aa567`.
+
+```json
+{
+  "id": "docs/mechanics/COMBAT_ACTION_PLAYTEST.md#ready",
+  "name": "Ready",
+  "acceptanceStatus": "current-authoritative-provisional-interface",
+  "acceptanceBasis": {
+    "basis": "Current operative integration text, reused by exact accepted cohorts; not a new claim of whole-document or canon approval.",
+    "cohortEvidence": [
+      {
+        "path": "docs/audit/2026-10-08/full-game/AC4_EXACT_ACCEPTANCE_03_RECEIPT.json",
+        "bytes": 6291,
+        "sha256": "8dfee7f8a9cd036df80650079b289895cae245de0d8ca17bd926798de55bce2d",
+        "frozenCopy": "docs/audit/2026-10-08/full-game/accelerated-review-01/sources/docs/audit/2026-10-08/full-game/AC4_EXACT_ACCEPTANCE_03_RECEIPT.json"
+      },
+      {
+        "path": "docs/audit/2026-10-08/full-game/AC5_EXACT_ACCEPTANCE_05_RECEIPT.json",
+        "bytes": 7471,
+        "sha256": "5590d1b66ed59287069835ea19e9ffc3d52ea32a6166a9d0645757c7202885a9",
+        "frozenCopy": "docs/audit/2026-10-08/full-game/accelerated-review-01/sources/docs/audit/2026-10-08/full-game/AC5_EXACT_ACCEPTANCE_05_RECEIPT.json"
+      }
+    ]
+  },
+  "scope": "Ordinary Ready and held spells",
+  "currentAuthoritativeSource": {
+    "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+    "bytes": 30409,
+    "sha256": "f90d039142145fbd31c37992ebece70d7926dc4b6081e340f9a2fd9dc7237bc6",
+    "frozenCopy": "docs/audit/2026-10-08/full-game/accelerated-review-01/sources/DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+    "heading": "## Ready",
+    "line": 97
+  },
+  "exactAuthority": "## Ready\n\nSpend an Action to declare a perceivable trigger and one legal Action-time action or movement. It expires next regular own-turn start. **NEW:** only one pending Ready per creature; replacing it loses the prior setup and any paid held-spell costs. No Bonus Action/Reaction ability, long ritual or multi-minute activity can be prepared by generic Ready.\n\nThe trigger happens first, then the readied response immediately follows before later events, unless a specific effect explicitly interrupts. On release spend the normal Reaction and recheck target, range, sight/perception, line of effect, ammunition and other prerequisites. An invalid or declined occurrence spends no release resource; the Ready can wait for another valid occurrence before expiry. This does not undo setup costs. Once released, it is consumed.\n\nFor ordinary nonspell actions, feature/ammunition costs are paid on release unless text charges setup. A readied **Attack Action** gets its legally available ordinary attack count; a feature limited to your own turn does not thereby work off-turn. Core Overwatch is explicitly one ranged attack, not that full Attack Action and not Soldier's distinct engine.\n\nA readied spell is actually **cast at preparation**: choose spell/mode, verify legality, pay RP/material/other costs, provide components, resolve Dissonance/Refrain and cast-trigger effects once. Counterspell/cast-interruption opportunity occurs then, not again at release. Every held spell requires concentration, even ordinarily non-concentration spells; incompatible prior concentration ends. Lost concentration loses the held spell and costs. NEW: select the legal target/area point at release and recheck legality without repaying. At release the hold continues as ordinary spell concentration if required, otherwise ends after resolution. Expired/replaced/countered held spells do not refund paid costs.\n\nReady movement grants a separate current-Speed budget on release, pays terrain costs and can provoke ordinary opportunity attacks. It grants no extra Action, Bonus Action or interaction.\n\nFocused stance's Reaction restriction also blocks an ordinary Ready release; Ready does not create a Counterspell exception. Holding a spell does not waive any current Reaction prohibition.\n\n**Spell-effect duration begins at release.** Its normal duration is anchored when the effect manifests, while Ready expiry and held concentration already run from preparation. A source explicitly tying a particular consequence to casting/preparation retains that consequence's stated clock. No casting cost, Refrain, Dissonance or cast trigger occurs a second time merely from release.\n\n",
+  "authoritySha256": "43396ea2fb27e46f9a7935b91f8385cd9a83d4c0e180ce011dd98206abe4a056",
+  "trigger": "Action preparation, perceivable trigger, Reaction release",
+  "inputs": "Spell/mode, paid cost, next own regular START, release-time target/area legality",
+  "outputs": "One pending Ready; paid spell held in concentration; target selected at release",
+  "lifecycle": "Expiry next own regular START; effect duration begins at release; no second cast",
+  "exceptions": "Specific interrupt overrides ordinary trigger-first order",
+  "knownSourceSpecificExtensions": [],
+  "usedBy": [
+    "AC5",
+    "AC6-N15 (candidate)"
+  ],
+  "usageCoverage": "Explicit known users, not a claim of exhaustive reverse-dependency indexing.",
+  "reusableWithinScope": true,
+  "summaryAuthority": "The exactAuthority and named source control; normalized fields index them and create no rules.",
+  "runtimeImplementedByRegistry": false
+}
+```
+
+## `local_evidence/sources/DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_06.json` → `/entries/8`
+
+Bytes 1038128; SHA256 `a08f8040c2ad5eaff08668376d15155f926f909c4b63a30461d55449e18aa567`.
+
+```json
+{
+  "id": "docs/mechanics/CLASS_PLAYTEST_RULES.md#targets,-concentration-and-control",
+  "name": "Concentration and control",
+  "acceptanceStatus": "current-authoritative-provisional-interface",
+  "acceptanceBasis": {
+    "basis": "Current operative integration text, reused by exact accepted cohorts; not a new claim of whole-document or canon approval.",
+    "cohortEvidence": [
+      {
+        "path": "docs/audit/2026-10-08/full-game/AC4_EXACT_ACCEPTANCE_03_RECEIPT.json",
+        "bytes": 6291,
+        "sha256": "8dfee7f8a9cd036df80650079b289895cae245de0d8ca17bd926798de55bce2d",
+        "frozenCopy": "docs/audit/2026-10-08/full-game/accelerated-review-01/sources/docs/audit/2026-10-08/full-game/AC4_EXACT_ACCEPTANCE_03_RECEIPT.json"
+      },
+      {
+        "path": "docs/audit/2026-10-08/full-game/AC5_EXACT_ACCEPTANCE_05_RECEIPT.json",
+        "bytes": 7471,
+        "sha256": "5590d1b66ed59287069835ea19e9ffc3d52ea32a6166a9d0645757c7202885a9",
+        "frozenCopy": "docs/audit/2026-10-08/full-game/accelerated-review-01/sources/docs/audit/2026-10-08/full-game/AC5_EXACT_ACCEPTANCE_05_RECEIPT.json"
+      }
+    ]
+  },
+  "scope": "Shared concentration and bounded control",
+  "currentAuthoritativeSource": {
+    "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md",
+    "bytes": 17321,
+    "sha256": "adb2f4752b45dc70ce792a675bb30dda362aab5056588061bcde3ba31c4c8a81",
+    "frozenCopy": "docs/audit/2026-10-08/full-game/accelerated-review-01/sources/DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md",
+    "heading": "## Targets, concentration and control",
+    "line": 21
+  },
+  "exactAuthority": "## Targets, concentration and control\n\nUnless expressly stated, perceive the target, remain within range and have line of effect; total cover blocks targeting. “Ally” includes self unless it says OTHER. A list cannot contain a creature twice. Select up to the printed limit; an empty target list is not a valid way to farm activation benefits. Zones remain at their chosen point unless described as an aura; allies can leave and lose their benefits. An aura requires its owner conscious unless the card supplies a bounded exception. An effect ending at “end next turn” means the affected creature's next turn only when the card says target's; otherwise the user's.\n\nOne concentration slot for all spells, Chants, Veinweaves, forms or zones that require concentration. Starting another ends the old before the new effect resolves, except for an explicit limited linked-effect rule. Damage prompts CON save against max(10, floor(damage/2)); incapacitation or a failed save ends concentration. The round-down convention is a deliberate pilot interpretation. Concentration does not demand a Bonus Action unless maintenance says so. For a paid 3-pulse effect, start is pulse 1; pay maintenance on each of the next 2 regular turns by turn end for pulses 2/3. Missing payment ends it at that turn's end; otherwise it ends at start of turn 4. No repeated start triggers on maintenance.\n\nForced movement does not provoke opportunity attacks unless explicitly stated, cannot place a creature inside solid matter, and stops at an obstacle. Grapples use the card's save/DC, can be escaped with an Action and STR(Athletics) or DEX(Acrobatics) against that DC, and end beyond reach. A root sets Speed 0 but does not remove Actions. Slows reduce Speed to minimum 0. Silence blocks verbal spells/audible abilities, not all thought or all class features. Charmed effects never determine a player's beliefs; use only the printed action restrictions.\n\nNo repeated hard denial without a new save and cost. For this class suite, a creature can suffer **Stunned, compelled loss of its whole Action/turn, or equivalent hard denial from a given character at most once per encounter**, across that character's class features; later such riders fail while damage and soft riders resolve normally. Record source and target. This draft guard is broader than the older Oracle-only ceiling and is an explicit balance proposal. Reaction denial, Speed reduction, penalties and Frightened do not count as whole-turn loss. Do not silently waive boss immunities, legendary defenses or anatomy.\n\n",
+  "authoritySha256": "1d0f7675f29d8051b587c3d6564a373e20829c2b11e14bf90914683572a4bb0e",
+  "trigger": "New concentration, damage check or condition ending",
+  "inputs": "Old slot, source exception, actual damage/CON save, source-target guard",
+  "outputs": "End incompatible old concentration at commitment; exact control effects",
+  "lifecycle": "No restoration after failed new cast; source-specific linked effects only",
+  "exceptions": "Explicit limited class exceptions remain operative",
+  "knownSourceSpecificExtensions": [],
+  "usedBy": [
+    "AC4",
+    "AC5",
+    "DE4 (unaccepted proposal)"
+  ],
+  "usageCoverage": "Explicit known users, not a claim of exhaustive reverse-dependency indexing.",
+  "reusableWithinScope": true,
+  "summaryAuthority": "The exactAuthority and named source control; normalized fields index them and create no rules.",
+  "runtimeImplementedByRegistry": false
+}
+```
+
+## `local_evidence/sources/DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_06.json` → `/entries/14`
+
+Bytes 1038128; SHA256 `a08f8040c2ad5eaff08668376d15155f926f909c4b63a30461d55449e18aa567`.
+
+```json
+{
+  "id": "docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md#carrying-and-load",
+  "name": "Carrying and Load",
+  "acceptanceStatus": "current-authoritative-provisional-interface",
+  "acceptanceBasis": {
+    "basis": "Current operative integration text, reused by exact accepted cohorts; not a new claim of whole-document or canon approval.",
+    "cohortEvidence": [
+      {
+        "path": "docs/audit/2026-10-08/full-game/AC4_EXACT_ACCEPTANCE_03_RECEIPT.json",
+        "bytes": 6291,
+        "sha256": "8dfee7f8a9cd036df80650079b289895cae245de0d8ca17bd926798de55bce2d",
+        "frozenCopy": "docs/audit/2026-10-08/full-game/accelerated-review-01/sources/docs/audit/2026-10-08/full-game/AC4_EXACT_ACCEPTANCE_03_RECEIPT.json"
+      },
+      {
+        "path": "docs/audit/2026-10-08/full-game/AC5_EXACT_ACCEPTANCE_05_RECEIPT.json",
+        "bytes": 7471,
+        "sha256": "5590d1b66ed59287069835ea19e9ffc3d52ea32a6166a9d0645757c7202885a9",
+        "frozenCopy": "docs/audit/2026-10-08/full-game/accelerated-review-01/sources/docs/audit/2026-10-08/full-game/AC5_EXACT_ACCEPTANCE_05_RECEIPT.json"
+      }
+    ]
+  },
+  "scope": "Actual body/item custody and Load",
+  "currentAuthoritativeSource": {
+    "path": "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+    "bytes": 22726,
+    "sha256": "d93f9cb0ec8a8398560511f23029d38d9b9a8b901e816373579c8f72b0bec1f3",
+    "frozenCopy": "docs/audit/2026-10-08/full-game/accelerated-review-01/sources/DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+    "heading": "## Carrying and Load",
+    "line": 88
+  },
+  "exactAuthority": "## Carrying and Load\n\nUse pounds for actual weight and Load for inventory burden. Extraction Class describes cargo danger and attention. A casualty's Load describes the difficulty of transporting a body; it is not the body's weight. These quantities answer different questions and never convert automatically into each other.\n\nThe following is a **new provisional reconciliation** of V6 physical handling with the staged Gameplay Loop inventory rules. It does not promote the historical Gameplay Loop file into the approved books. V6's optional encumbrance variant remains preserved as an alternative; do not add its penalties to this Load procedure.\n\n| Carrier size | Physical carry limit in pounds | Push, drag or lift limit in pounds | Inventory capacity in Load | Casualty Load for a body of this size |\n|---|---|---|---|---|\n| Tiny | Strength score × 7.5 | Strength score × 15 | Strength score ÷ 2 | 1.5 |\n| Small | Strength score × 15 | Strength score × 30 | Maximum of 0 and Strength score − 2 | 3 |\n| Medium | Strength score × 15 | Strength score × 30 | Strength score | 6 |\n| Large | Strength score × 30 | Strength score × 60 | Strength score × 2 | 12 |\n\nUse the character's current Strength score, not the modifier or an imported monster score. Tiny's Inventory capacity and casualty Load are new provisional additions. The pound limits come from V6; Small, Medium and Large Load values come from the Gameplay Loop. Larger unsupported transport sizes require their own completed rule before this table can handle them.\n\nKeep fractional Loads without rounding. An item with a printed Load uses that value. If it has only a known weight, its **provisional Load is pounds divided by ten**. A Load-only item may use ten pounds per Load as a clearly labeled estimate for ordinary hauling; this is insufficient for effects requiring documented physical mass.\n\nCount a container's own empty Load plus the contents' Loads, unless an explicitly inclusive Load already covers those exact contents. Handle pounds separately: sum the empty container weight and contents' weights, or use an explicitly inclusive gross weight for the contents it covers. An inclusive Load does not make a printed weight inclusive, or vice versa. Apply this rule through nested containers and meld budgets so every item counts exactly once in each quantity.\n\nWith positive carried Load at or above half capacity and no greater than capacity, you are **Burdened**: reduce Speed by 10 feet and apply disadvantage to checks to climb, swim or move silently. An empty inventory is not Burdened, including at zero capacity. Above capacity, that inventory cannot be carried routinely; drop or transfer something, or use a legal alternative such as dragging or a vehicle. These threshold and zero-Load details are provisional clarifications.\n\nApply actual physical limits when handling a known weight. Between physical carry capacity and twice that capacity, pushing or dragging uses the lower of otherwise-current Speed and 5 feet. A Speed of 0 stays 0; a Speed of 3 stays 3. Lifting does not independently permit movement: moving while supporting a weight must satisfy carrying, pushing, dragging or another exact rule. An anatomy restriction, such as Hawk's prohibition on carrying a Medium ally, still applies even if numbers would fit. Burden penalties do not create hands, harnesses, lift or access to melded gear.\n\nTransporting a creature must pass both checks: the carrier can physically handle the body's effective weight and associated equipment, and can accommodate the casualty Load plus the equipment's Load. Petrified multiplies the body weight by ten, not its casualty Load. Removing gear can reduce equipment weight and Load; it cannot reduce the body's weight or erase its condition.\n\n",
+  "authoritySha256": "5a9f0bfe63e68d2b0412be053e6cd7c6e7da6ba0c32f5c0d2028ffbe6583b7a4",
+  "trigger": "Take, carry, release or transform cargo",
+  "inputs": "Real items, weight, Load, hands, body/source limits",
+  "outputs": "Source-legal custody and movement effects",
+  "lifecycle": "Same items persist unless an actual source consumes/removes them",
+  "exceptions": "Summon/portal caps add their own explicit constraints",
+  "knownSourceSpecificExtensions": [],
+  "usedBy": [
+    "AC4",
+    "AC5"
+  ],
+  "usageCoverage": "Explicit known users, not a claim of exhaustive reverse-dependency indexing.",
+  "reusableWithinScope": true,
+  "summaryAuthority": "The exactAuthority and named source control; normalized fields index them and create no rules.",
+  "runtimeImplementedByRegistry": false
+}
+```
+
+## `local_evidence/sources/DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_06.json` → `/entries/40`
+
+Bytes 1038128; SHA256 `a08f8040c2ad5eaff08668376d15155f926f909c4b63a30461d55449e18aa567`.
+
+```json
+{
+  "id": "greater-dispel#procedure",
+  "name": "Greater Dispel",
+  "acceptanceStatus": "accepted-authored-campaign-playtest",
+  "acceptanceBasis": {
+    "path": "docs/audit/2026-10-08/full-game/AC5_EXACT_ACCEPTANCE_05_RECEIPT.json",
+    "bytes": 7471,
+    "sha256": "5590d1b66ed59287069835ea19e9ffc3d52ea32a6166a9d0645757c7202885a9",
+    "frozenCopy": "docs/audit/2026-10-08/full-game/accelerated-review-01/sources/docs/audit/2026-10-08/full-game/AC5_EXACT_ACCEPTANCE_05_RECEIPT.json"
+  },
+  "scope": "Only Greater Dispel",
+  "currentAuthoritativeSource": {
+    "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank5_reviewed_05.json",
+    "bytes": 337035,
+    "sha256": "d782569ed8ef558f4edf54634e0d8c19926e24e2437528f1769b5ef3ce594898",
+    "frozenCopy": "docs/audit/2026-10-08/full-game/accelerated-review-01/sources/DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank5_reviewed_05.json",
+    "pointer": "/spells/2/procedure"
+  },
+  "exactAuthority": "Action; casting-point range 30 feet; V/S/F; base 10 RP; Instantaneous. Choose one perceived center within 30 feet. At resolution take one immutable snapshot of every ongoing independently addressable magical effect application having an affected body, discrete anchor/object effect, or freestanding area portion inside the 30-foot-radius sphere and center line of effect. Allies are included. Individual effect perception is not required; no numerical cap or selective post-result omission exists.\n\nEligible ordinary spell applications retain their original generating rank. Rank 0-5 ends automatically. Rank 6-9 requires one check per original generating cast using the caster's actual spellcasting ability + PB against DC 10 + 2×recorded rank. Reuse that one roll for all captured applications from the same generating cast. Apply current Core task degrees/natural shifts. A nonspell magical component is eligible only if its own source explicitly supplies a dispel interface/rank/DC; never assign rank 0 by appearance or RP cost.\n\nCapture is fixed before any endings. If a captured Wall of Force ends and reveals another effect behind it, that effect is not added. A captured indivisible wall/field ends as one effect on successful/automatic dispel; recipient-specific applications from one cast end only where captured unless their real parent dependency says ending one ends all. Suppressed-but-still-existing records can be dispelled if this cast itself can reach them. Completed instantaneous consequences, permanent matter, class engines, permanent item enchantments and explicitly nondispellable effects are outside scope.\n\nThis is distinct from Wizard class Dispel Magic `/cards/19`: that class spell costs 3 RP, range 60, Recharge 2, auto through rank 3, and uses INT+PB vs DC 10+rank above 3. Sigil Authority `/cards/22` names Counterspell and Dispel Magic only and does not modify Greater Dispel. Xi remains its own consent-based branch-ending source and grants no Greater Dispel permission.",
+  "authoritySha256": "ebb04fe1d6a35092426ce6f9fb5c47186dec2a21b96c01dfc8696ee795b015ae",
+  "trigger": "Exact activation/operation in source procedure",
+  "inputs": "Actual source class rank, cost, eligible targets, geometry and current state",
+  "outputs": "Exact source procedure result",
+  "lifecycle": "Original identity, concentration/deadline and operation snapshots",
+  "exceptions": "No transport/antimagic/pricing classification exported beyond stated scope",
+  "knownSourceSpecificExtensions": [],
+  "usedBy": [
+    "AC5",
+    "AC6 (candidate)"
+  ],
+  "usageCoverage": "Explicit known users, not a claim of exhaustive reverse-dependency indexing.",
+  "reusableWithinScope": true,
+  "summaryAuthority": "The exactAuthority and named source control; normalized fields index them and create no rules.",
+  "runtimeImplementedByRegistry": false
+}
+```
+
+## `local_evidence/sources/DescentReviewChanges/ReviewBible/data/public/class_playtests/druid.json` → `/engine/0`
+
+Bytes 88119; SHA256 `581bd030286dc91e17792e9724e942b99d7e7d97ce6f6a3dfacc4f37f5113b8f`.
+
+Wisdom governs spells, form attacks and class DC/M. Hit Die d8; book armor, weapons, saves and skills remain. Retain your own ability scores, HP, saves, proficiency and personality in all forms; form traits replace only the stated anatomy, movement and attacks. No additional monster stat block or separate beast HP pool. One natural attack per Attack Action unless a form explicitly states otherwise, attack PB+WIS, printed dice+WIS damage. Missing natural attack is 1d6 bludgeoning; default walking Speed 30 ft, normal AC, Medium size. Hawk is Tiny, Bear/Earth Warden/hero forms may be Large when space permits. Equipment melds and cannot be used while melded; magical numeric bonuses persist only if compatible with form anatomy and never duplicate armor.
+
+## `local_evidence/sources/DescentReviewChanges/ReviewBible/data/public/class_playtests/druid.json` → `/engine/1`
+
+Bytes 88119; SHA256 `581bd030286dc91e17792e9724e942b99d7e7d97ce6f6a3dfacc4f37f5113b8f`.
+
+This class follows its explicit book progression instead of the ordinary 25-choice template. Base 1 grants Druidic, spellcasting, all five Base forms and 2 shifts/long rest. Choose one of seven Circles at 2; its level 2 features are a Base-stage exception. Enter the chosen Circle Arch path at 3, gain its 6 feature, then Circle Hero forms at 10 and its 14 feature. Arch Forms unlock 11 despite the historical word Arch; these are forms, not a second promotion. At 11 attune up to 2 Arch forms during long rest. Base forms remain available at higher levels. All features below are automatic at their gate for the chosen Circle; no generic extra class-card choices are added.
+
+## `local_evidence/sources/DescentReviewChanges/ReviewBible/data/public/class_playtests/druid.json` → `/engine/3`
+
+Bytes 88119; SHA256 `581bd030286dc91e17792e9724e942b99d7e7d97ce6f6a3dfacc4f37f5113b8f`.
+
+Shifting: Bonus Action, one long-rest shift use, 10 minutes, early reversion Bonus Action. Reaching 0 HP or incapacitation ends form; excess damage stays on your own HP. Shift uses follow detailed book table:2 at 1, 3 at 4, 4 at 7, 5 at 10, 6 at 13, 7 at 16, 8 at 19. Supplemental runtime alternative 2/3/4/5/6 at 1/4/8/12/16 remains preserved. At 20 changing form is unlimited but does not refill finite form benefits. Speech unavailable in Base forms, available in Arch/Hero. No spellcasting in form until Beast Spells 18 except an explicit form permission. Maintaining an existing spell concentration is allowed, still only one concentration. Changing form spends a use and ends old form features/summons; it does not reset once/rest abilities.
+
+## `local_evidence/sources/DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json` → `/engine/1`
+
+Bytes 100635; SHA256 `8ab2f4f43bcbced418fb266e5bd3216cff491b0c442c16f93438bd3556672c8b`.
+
+The Wizard remains three distinct stages: Base Wizard at levels 1-2, Arch Arcanist at levels 3-9, and one Hero path at levels 10-20: Spellbinder, Elementalist or Necromancer. Hero paths are not additional starting classes and their features cannot be selected before their Wizard class-level gates.
+
+## `local_evidence/sources/DescentReviewChanges/ReviewBible/data/public/class_playtests/druid.json` → `/cards/4`
+
+Bytes 88119; SHA256 `581bd030286dc91e17792e9724e942b99d7e7d97ce6f6a3dfacc4f37f5113b8f`.
+
+```json
+{
+  "id": "druid.base.bear-form-tank",
+  "name": "Bear Form (Tank)",
+  "className": "Druid",
+  "band": "Base",
+  "path": null,
+  "sourceKind": "form",
+  "minimumClassLevel": 1,
+  "acquisition": "automatic",
+  "activation": "Action attack; passive form traits",
+  "cost": "One shift; buffer drawn from reserve",
+  "rangeAndTarget": "Self; claw 5 ft",
+  "duration": "While in Bear",
+  "frequency": "One claw/Action",
+  "effect": "Gain up to 20 temporary HP from reserve; AC max(normal, 14). Claw 2d6 slashing+WIS+1. Buffer disappears on reversion and cannot be refilled through free shifting.",
+  "source": {
+    "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+    "line": 2455,
+    "originalText": "Bear Form (Tank)\n+20 HP temporary buffer\nAC set to 14 (unless your normal AC is higher)\nClaw: 2d6 slashing damage\nRage-like trait: Deal +1 damage per attack"
+  },
+  "designStatus": "provisional-playtest",
+  "spellRank": null
+}
+```
+
+## `local_evidence/sources/DescentReviewChanges/ReviewBible/data/public/class_playtests/druid.json` → `/cards/5`
+
+Bytes 88119; SHA256 `581bd030286dc91e17792e9724e942b99d7e7d97ce6f6a3dfacc4f37f5113b8f`.
+
+```json
+{
+  "id": "druid.base.hawk-form-scout",
+  "name": "Hawk Form (Scout)",
+  "className": "Druid",
+  "band": "Base",
+  "path": null,
+  "sourceKind": "form",
+  "minimumClassLevel": 1,
+  "acquisition": "automatic",
+  "activation": "Action attack; passive form traits",
+  "cost": "One shift",
+  "rangeAndTarget": "Self; talon 5 ft",
+  "duration": "While in Hawk",
+  "frequency": "One talon/Action",
+  "effect": "Tiny, flight 60 ft, walking 10 ft, advantage on sight Perception. Talon 1d4 slashing+WIS; advantage if you descended at least 10 ft immediately before attack. No carrying Medium allies or casting spells before 18.",
+  "source": {
+    "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+    "line": 2460,
+    "originalText": "Hawk Form (Scout)\nFlight speed of 60 ft.\nKeen Sight: Advantage on Wisdom (Perception) checks that rely on sight\nDive Attack: 1d4 slashing damage + advantage if striking from above"
+  },
+  "designStatus": "provisional-playtest",
+  "spellRank": null
+}
+```
+
+## `local_evidence/sources/DescentReviewChanges/ReviewBible/data/public/class_playtests/druid.json` → `/cards/9`
+
+Bytes 88119; SHA256 `581bd030286dc91e17792e9724e942b99d7e7d97ce6f6a3dfacc4f37f5113b8f`.
+
+```json
+{
+  "id": "druid.hero.beast-spells",
+  "name": "Beast Spells",
+  "className": "Druid",
+  "band": "Hero",
+  "path": null,
+  "sourceKind": "feature",
+  "minimumClassLevel": 18,
+  "acquisition": "automatic",
+  "activation": "Passive",
+  "cost": "Normal spell cost",
+  "rangeAndTarget": "Self while transformed",
+  "duration": "Permanent",
+  "frequency": "Automatic",
+  "effect": "Perform verbal/somatic Druid spell components in any form. Still cannot supply material components from melded gear. At 20 Archdruid waives only noncostly unconsumed components.",
+  "source": {
+    "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+    "line": 2477,
+    "originalText": "Beast Spells\nBeginning at 18th level, you can cast many of your druid spells in any shape you assume using Shapeshifting. You can perform the somatic and verbal components of a druid spell while in a beast shape, but you aren't able to provide material components."
+  },
+  "designStatus": "provisional-playtest",
+  "spellRank": null
+}
+```
+
+## `local_evidence/sources/DescentReviewChanges/ReviewBible/data/public/class_playtests/druid.json` → `/cards/14`
+
+Bytes 88119; SHA256 `581bd030286dc91e17792e9724e942b99d7e7d97ce6f6a3dfacc4f37f5113b8f`.
+
+```json
+{
+  "id": "druid.arch.ironhorn-ram",
+  "name": "Ironhorn Ram",
+  "className": "Druid",
+  "band": "Arch",
+  "path": null,
+  "sourceKind": "form",
+  "minimumClassLevel": 11,
+  "acquisition": "automatic",
+  "activation": "Action ram; passive traits",
+  "cost": "One shift",
+  "rangeAndTarget": "Self; ram 5 ft",
+  "duration": "While in Ironhorn Ram",
+  "frequency": "One ram/Action",
+  "effect": "Arch attunement required. AC max(normal, 17), immune Prone. Ram 1d8+WIS bludgeoning; after 20 ft straight approach first hit/turn adds 3d6, STR against Druid DC or push 10 ft. No bonus against same target more than once/round.",
+  "source": {
+    "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+    "line": 2644,
+    "originalText": "Ironhorn Ram\nAC set to 17 (unless your normal AC is higher)\nCharge: If you move at least 20 ft. straight toward a target and hit with a ram attack, the target takes an extra 3d6 bludgeoning damage and must succeed on a DC 14 Strength saving throw or be pushed 10 ft. away\nStability: You cannot be knocked prone"
+  },
+  "designStatus": "provisional-playtest",
+  "spellRank": null
+}
+```
+
+## `local_evidence/sources/DescentReviewChanges/ReviewBible/data/public/class_playtests/druid.json` → `/cards/31`
+
+Bytes 88119; SHA256 `581bd030286dc91e17792e9724e942b99d7e7d97ce6f6a3dfacc4f37f5113b8f`.
+
+```json
+{
+  "id": "druid.arch.storm.storm-s-embrace",
+  "name": "Storm's Embrace",
+  "className": "Druid",
+  "band": "Arch",
+  "path": "Storm",
+  "sourceKind": "feature",
+  "minimumClassLevel": 6,
+  "acquisition": "automatic",
+  "activation": "Passive",
+  "cost": "0",
+  "rangeAndTarget": "Storm Circle self",
+  "duration": "Permanent",
+  "frequency": "Automatic",
+  "effect": "Resistance lightning/thunder. Add WIS modifier to one damage roll against one target of your lightning/thunder spell, once/cast; no multiplication over pulses or area targets.",
+  "source": {
+    "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+    "line": 2716,
+    "originalText": "Storm's Embrace\nStarting at 6th level, you gain resistance to lightning and thunder damage. Additionally, whenever you cast a spell that deals lightning or thunder damage, add your Wisdom modifier to the damage it deals."
+  },
+  "designStatus": "provisional-playtest",
+  "spellRank": null
+}
+```
+
+## `local_evidence/sources/DescentReviewChanges/ReviewBible/data/public/class_playtests/druid.json` → `/cards/53`
+
+Bytes 88119; SHA256 `581bd030286dc91e17792e9724e942b99d7e7d97ce6f6a3dfacc4f37f5113b8f`.
+
+```json
+{
+  "id": "druid.base.ashen-grove.fire-affinity",
+  "name": "Fire Affinity",
+  "className": "Druid",
+  "band": "Base",
+  "path": "Ashen Grove",
+  "sourceKind": "feature",
+  "minimumClassLevel": 2,
+  "acquisition": "automatic",
+  "activation": "Passive",
+  "cost": "0",
+  "rangeAndTarget": "Ashen Grove Circle self",
+  "duration": "Permanent",
+  "frequency": "Automatic",
+  "effect": "Resistance fire and additional produce flame cantrip. No immunity to smoke/suffocation or supernatural heat beyond resistance.",
+  "source": {
+    "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+    "line": 2800,
+    "originalText": "Fire Affinity\nWhen you choose this circle at 2nd level, you gain resistance to fire damage. Additionally, you learn the produce flame cantrip if you don't already know it."
+  },
+  "designStatus": "provisional-playtest",
+  "spellRank": null
+}
+```
+
+## `local_evidence/sources/DescentReviewChanges/ReviewBible/data/public/class_playtests/druid.json` → `/cards/54`
+
+Bytes 88119; SHA256 `581bd030286dc91e17792e9724e942b99d7e7d97ce6f6a3dfacc4f37f5113b8f`.
+
+```json
+{
+  "id": "druid.base.ashen-grove.blazing-rebirth",
+  "name": "Blazing Rebirth",
+  "className": "Druid",
+  "band": "Base",
+  "path": "Ashen Grove",
+  "sourceKind": "feature",
+  "minimumClassLevel": 2,
+  "acquisition": "automatic",
+  "activation": "Reaction",
+  "cost": "One long-rest use",
+  "rangeAndTarget": "Ashen Grove; ally/self 30 ft taking fire damage",
+  "duration": "After damage",
+  "frequency": "1/long rest",
+  "effect": "Grant L+M temporary HP after real hostile/environmental fire damage. Cannot reduce triggering hit retroactively or trigger from deliberate ally/self-farming. Normal temporary HP nonstacking; no buffer reserve payment because finite feature use.",
+  "source": {
+    "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+    "line": 2802,
+    "originalText": "Blazing Rebirth\nStarting at 2nd level, you can channel the regenerative power of fire. When you or an ally within 30 feet of you takes fire damage, you can use your reaction to grant temporary hit points equal to your druid level + your Wisdom modifier to that creature.\nYou can use this feature a number of times equal to your Wisdom modifier (minimum of once). You regain all expended uses when you finish a long rest."
+  },
+  "designStatus": "provisional-playtest",
+  "spellRank": null
+}
+```
+
+## `local_evidence/sources/DescentReviewChanges/ReviewBible/data/public/class_playtests/druid.json` → `/cards/55`
+
+Bytes 88119; SHA256 `581bd030286dc91e17792e9724e942b99d7e7d97ce6f6a3dfacc4f37f5113b8f`.
+
+```json
+{
+  "id": "druid.arch.ashen-grove.flame-stride",
+  "name": "Flame Stride",
+  "className": "Druid",
+  "band": "Arch",
+  "path": "Ashen Grove",
+  "sourceKind": "feature",
+  "minimumClassLevel": 6,
+  "acquisition": "automatic",
+  "activation": "Bonus Action",
+  "cost": "One short-rest use",
+  "rangeAndTarget": "Ashen Grove; up to 6 ground tiles traversed",
+  "duration": "3 rounds",
+  "frequency": "1/short rest",
+  "effect": "For 3 rounds immune to nonmagical environmental fire only. Leave up to 6 total 5 ft fire tiles along movement; creatures entering/starting DEX save or 1d6 fire, once/creature/round across all tiles. Tiles end with feature; no recursive area expansion.",
+  "source": {
+    "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+    "line": 2805,
+    "originalText": "Flame Stride\nBeginning at 6th level, you can move through fire without taking damage. Additionally, when you move through a space containing fire, you can choose to leave a trail of fire behind you. Each creature that enters this fire for the first time on a turn or starts its turn there takes 1d6 fire damage.\nThe fire lasts for 1 minute or until extinguished. Once you use this feature, you can't use it again until you finish a short or long rest."
+  },
+  "designStatus": "provisional-playtest",
+  "spellRank": null
+}
+```
+
+## `local_evidence/sources/DescentReviewChanges/ReviewBible/data/public/class_playtests/druid.json` → `/cards/58`
+
+Bytes 88119; SHA256 `581bd030286dc91e17792e9724e942b99d7e7d97ce6f6a3dfacc4f37f5113b8f`.
+
+```json
+{
+  "id": "druid.hero.ashen-grove.master-of-ash",
+  "name": "Master of Ash",
+  "className": "Druid",
+  "band": "Hero",
+  "path": "Ashen Grove",
+  "sourceKind": "feature",
+  "minimumClassLevel": 14,
+  "acquisition": "automatic",
+  "activation": "Passive; restoration ritual",
+  "cost": "Plant growth normal cost and 10 minutes",
+  "rangeAndTarget": "Ashen Circle; self/fire-spell target/regrowth area",
+  "duration": "One save; vegetation permanent",
+  "frequency": "Save penalty once/own turn",
+  "effect": "Immune fire. Before one initial save against your fire spell impose-2, never auto failure. A paid prepared plant growth may restore ordinary vegetation in burned land within its printed area; no instant food/valuable timber, magical plants or creature creation.",
+  "source": {
+    "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+    "line": 2818,
+    "originalText": "Master of Ash\nAt 14th level, you gain immunity to fire damage. Additionally, when you cast a spell that deals fire damage, you can choose a number of creatures equal to your Wisdom modifier (minimum of one) to automatically fail their saving throws against the spell.\nFurthermore, you can cast the plant growth spell to instantly restore vegetation to an area devastated by fire, causing plants to grow to full maturity within minutes rather than over the course of a year."
+  },
+  "designStatus": "provisional-playtest",
+  "spellRank": null
+}
+```
+
+## `local_evidence/sources/DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json` → `/cards/16`
+
+Bytes 100635; SHA256 `8ab2f4f43bcbced418fb266e5bd3216cff491b0c442c16f93438bd3556672c8b`.
+
+```json
+{
+  "id": "wizard.arch.improved-concentration",
+  "name": "Improved Concentration",
+  "className": "Wizard",
+  "band": "Arch",
+  "path": null,
+  "sourceKind": "passive",
+  "minimumClassLevel": 7,
+  "acquisition": "selection",
+  "activation": "Passive",
+  "cost": "0",
+  "rangeAndTarget": "Self",
+  "duration": "While concentrating",
+  "frequency": "Always",
+  "effect": "Improved Concentration. Tags: arch, passive, concentration. You have advantage on Constitution saving throws made because damage threatens your concentration on a Wizard spell. This does not alter the DC, protect a Tether from rules that explicitly end both effects, or prevent Silence, incapacitation and other non-damage concentration failures.",
+  "source": {
+    "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+    "line": 5219,
+    "originalText": "Improved Concentration: Advantage on concentration checks when taking damage."
+  },
+  "designStatus": "provisional-playtest",
+  "spellRank": null
+}
+```
+
+## `local_evidence/sources/DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json` → `/cards/22`
+
+Bytes 100635; SHA256 `8ab2f4f43bcbced418fb266e5bd3216cff491b0c442c16f93438bd3556672c8b`.
+
+```json
+{
+  "id": "wizard.hero.spellbinder.sigil-authority",
+  "name": "Sigil Authority",
+  "className": "Wizard",
+  "band": "Hero",
+  "path": "Spellbinder",
+  "sourceKind": "passive",
+  "minimumClassLevel": 10,
+  "acquisition": "selection",
+  "activation": "Passive",
+  "cost": "0",
+  "rangeAndTarget": "Self",
+  "duration": "Permanent",
+  "frequency": "Always",
+  "effect": "Sigil Authority. Tags: hero, spellbinder, passive. Gain +1 on Counterspell and Dispel Magic ability checks. When a creature is Charmed, Frightened, Paralyzed, Restrained or Stunned by a source other than the spell you are currently casting, your Spellbinder spells that force it to save use a Wizard spell DC 2 higher. This increase never applies retroactively to the condition that enabled it.",
+  "source": {
+    "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+    "line": 5242,
+    "originalText": "Sigil Authority: +1 to all counterspell rolls, +2 DC vs targets currently affected by crowd control"
+  },
+  "designStatus": "provisional-playtest",
+  "spellRank": null
+}
+```
+
+## `local_evidence/sources/DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json` → `/cards/56`
+
+Bytes 100635; SHA256 `8ab2f4f43bcbced418fb266e5bd3216cff491b0c442c16f93438bd3556672c8b`.
+
+```json
+{
+  "id": "wizard.supplement.school-mastery",
+  "name": "School Mastery",
+  "className": "Wizard",
+  "band": "Arch",
+  "path": null,
+  "sourceKind": "supplement",
+  "minimumClassLevel": 5,
+  "acquisition": "automatic",
+  "activation": "Passive",
+  "cost": "0",
+  "rangeAndTarget": "Your level-1 Arcane School",
+  "duration": "Permanent",
+  "frequency": "Automatic at Wizard 5",
+  "effect": "Source progression line 5186. This is the one School Mastery progression grant, not a second school choice or duplicate feat. Increase the level-1 Arcane School spell-attack and spell-save bonus from +1 to +2 total. Its school passive and bonus-spell rules otherwise remain unchanged.",
+  "prerequisite": "See class engine and progression.",
+  "source": {
+    "line": 5186,
+    "reference": null,
+    "originalText": "| 5 | Bonus Feat: School Mastery |",
+    "status": "source-derived"
+  },
+  "designStatus": "provisional-playtest",
+  "spellRank": null
+}
+```
+
+## `local_evidence/sources/DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json` → `/cards/57`
+
+Bytes 100635; SHA256 `8ab2f4f43bcbced418fb266e5bd3216cff491b0c442c16f93438bd3556672c8b`.
+
+```json
+{
+  "id": "wizard.supplement.arcane-ward",
+  "name": "Arcane Ward",
+  "className": "Wizard",
+  "band": "Arch",
+  "path": null,
+  "sourceKind": "supplement",
+  "minimumClassLevel": 6,
+  "acquisition": "automatic",
+  "activation": "Passive",
+  "cost": "0",
+  "rangeAndTarget": "Self",
+  "duration": "Until next long rest",
+  "frequency": "Choose after each long rest",
+  "effect": "Source progression line 5187. After preparing spells, choose one of acid, cold, fire, force, lightning, necrotic, psychic, radiant or thunder that is dealt by at least one prepared spell of your Arcane School. Gain resistance to that damage type until your next long rest. If none of your prepared school spells deals a damage type, choose force. This is provisional completion of the source's ambiguous 'chosen school's element' wording.",
+  "prerequisite": "See class engine and progression.",
+  "source": {
+    "line": 5187,
+    "reference": null,
+    "originalText": "| 6 | Arcane Ward (resistance to chosen school's element) |",
+    "status": "source-derived"
+  },
+  "designStatus": "provisional-playtest",
+  "spellRank": null
+}
+```
+
+## `local_evidence/sources/DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json` → `/cards/60`
+
+Bytes 100635; SHA256 `8ab2f4f43bcbced418fb266e5bd3216cff491b0c442c16f93438bd3556672c8b`.
+
+```json
+{
+  "id": "wizard.supplement.arcane-feedback",
+  "name": "Arcane Feedback",
+  "className": "Wizard",
+  "band": "Hero",
+  "path": null,
+  "sourceKind": "supplement",
+  "minimumClassLevel": 15,
+  "acquisition": "automatic",
+  "activation": "Triggered",
+  "cost": "0",
+  "rangeAndTarget": "Self",
+  "duration": "Instantaneous",
+  "frequency": "At most once per round",
+  "effect": "Source progression line 5191, converted from historical slot wording to RP. After your Counterspell successfully negates a spell, restore 1 RP, never above your normal maximum. A counter produced by a companion, reflected spell or copied Counterspell does not trigger this feature.",
+  "prerequisite": "See class engine and progression.",
+  "source": {
+    "line": 5191,
+    "reference": null,
+    "originalText": "| 15 | Arcane Feedback (after successfully countering a spell, recover 1 RP once per round) |",
+    "status": "source-derived"
+  },
+  "designStatus": "provisional-playtest",
+  "spellRank": null
+}
+```
+
+# New Pyre-only completion, not a quoted source
+
+READY SELF-DAMAGE / CREATED BLAST — NEW RD8-PYRE-READY-BATCH-03, only for Soul Pyre: ordinary Ready concentration continues through this instantaneous resolution. Loss of that concentration before the valid fuel-consumption/blast-creation checkpoint prevents creating the blast and consumes no corpse; already paid preparation costs remain spent. Once that checkpoint has actually consumed the fuel, frozen the recipients and created their roots, resolve the already-created instantaneous blast once in the scene's fixed recipient order. If its own damage reaches the concentrating caster, make the actual CON concentration save immediately after that damage/life processing, before continuing to later recipients: DC max(10, floor(resolved event damage/2)), with the caster's actual modifiers and features. Success retains the hold until end-of-resolution cleanup. Failure ends the hold immediately, without delaying unrelated concentration/life consequences, but does not unconsume the corpse, cancel or resample the already-created instantaneous blast, erase completed damage or create another root/roll/payment. A later recipient still uses its actual current existence and defenses. At completion clear any surviving hold once; a hold already ended by failure is not ended or released a second time. This is a new Soul-Pyre-only completion of its existing atomic blast transaction, not a global Ready or all-instantaneous-spells exception, and it changes neither Incendiary Cloud's nor the Wall's separately named batch rule.

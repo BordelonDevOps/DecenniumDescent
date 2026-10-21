@@ -1,0 +1,107 @@
+{
+  "id": "RIC5-READY-DEADLINE-RECOVERY01-FINDING",
+  "finding": "RIC5-LOCAL74-01",
+  "disposition": "EXACT_PREVIOUSLY_REPORTED_CORRECTION_RECOVERED_NO_NEW_MODEL_CHANGE",
+  "sourceReferences": [
+    {
+      "path": "sources/DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+      "lines": [
+        99,
+        105
+      ]
+    },
+    {
+      "path": "MODEL.json",
+      "pointer": "/currentVectors/2/independentBranches/0"
+    }
+  ],
+  "sixOperations": [
+    {
+      "op": "replace",
+      "pointer": "/currentVectors/2/independentBranches/0/timeline/0/after/sourceLedger/hold/deadline",
+      "beforeExists": true,
+      "before": 62,
+      "after": 61
+    },
+    {
+      "op": "replace",
+      "pointer": "/currentVectors/2/independentBranches/0/timeline/1/before/sourceLedger/hold/deadline",
+      "beforeExists": true,
+      "before": 62,
+      "after": 61
+    },
+    {
+      "op": "replace",
+      "pointer": "/currentVectors/2/independentBranches/0/timeline/1/after/sourceLedger/hold/deadline",
+      "beforeExists": true,
+      "before": 62,
+      "after": 61
+    },
+    {
+      "op": "replace",
+      "pointer": "/currentVectors/2/independentBranches/0/timeline/2/before/sourceLedger/hold/deadline",
+      "beforeExists": true,
+      "before": 62,
+      "after": 61
+    },
+    {
+      "op": "replace",
+      "pointer": "/currentVectors/2/independentBranches/0/timeline/2/after/sourceLedger/hold/deadline",
+      "beforeExists": true,
+      "before": 62,
+      "after": 61
+    },
+    {
+      "op": "replace",
+      "pointer": "/currentVectors/2/independentBranches/0/expectedFinalState/sourceLedger/hold/deadline",
+      "beforeExists": true,
+      "before": 62,
+      "after": 61
+    }
+  ],
+  "originalValues": [
+    62,
+    62,
+    62,
+    62,
+    62,
+    62
+  ],
+  "recoveredValues": [
+    61,
+    61,
+    61,
+    61,
+    61,
+    61
+  ],
+  "reason": "A hold prepared during actual START55 expires at actual next own regular START61. The supplied MODEL matches the six-field previously reported successor exactly.",
+  "positiveOutcome": {
+    "release": 60.9,
+    "mageRP": 38,
+    "mageDissonance": 0,
+    "mageRefrain": 0,
+    "mageClassUses": 0,
+    "actionRemaining": false,
+    "reactionRemaining": false,
+    "targetHP": 74,
+    "holdState": "consumed",
+    "retainedDeadline": 61
+  },
+  "boundaryDiagnostic": "READY_DEADLINE_DIAGNOSTIC.json",
+  "priorThreeFindingsAndThreeCadenceRepairs": "Preserved without reopening; full original findings and numerical history retained.",
+  "withdrawnLocalStartChecks": "Nine withdrawn local checker restrictions remain documented in the original semantic report, not promoted to authoring defects.",
+  "newAuthorshipDecisions": 0,
+  "modelModifiedFromRecoveredBytes": false,
+  "originalReturn03ArchiveRecovered": false,
+  "newSemanticAcceptance": false,
+  "inheritedDocumentaryMismatches": {
+    "count": 2,
+    "file": "INHERITED_MIRROR_RECONCILIATION.json",
+    "ids": [
+      "RIC5-SI03",
+      "RIC5-SI05"
+    ],
+    "scope": "Derivative evidence synchronization only; exact recovered MODEL controls and is unchanged."
+  }
+}

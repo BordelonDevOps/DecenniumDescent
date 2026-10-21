@@ -1,0 +1,1 @@
+Complete two-spell source conference. Preserve all six placements and actual class schools.24choices remain unselected. Full original cosmology archive and current scoped records included. No imported silver cord, duplicate equipment, universal soul law or single-stun replacement for various entombment methods.50accepted-unapplied; canonical implementation reserved.

@@ -1,0 +1,187 @@
+{
+  "scope": "Isolated arithmetic/geometry/event traces, not production runtime, source acquisition or action-reachability tests.",
+  "originalReadyOmission": {
+    "suppliedDamage": 32,
+    "actualCONBonus": 2,
+    "requiredDC": 16,
+    "originalCaseHasCONSave": false
+  },
+  "readySuccess": {
+    "RP": 21,
+    "Dissonance": 2,
+    "Reaction": false,
+    "held": false,
+    "casterHP": 76,
+    "carrierHP": 93,
+    "corpse": "consumed",
+    "roots": [
+      "caster",
+      "carrier"
+    ],
+    "concentrationEndEvents": 1,
+    "cleanupEndEvents": 1,
+    "timeline": [
+      "consume and freeze existing blast",
+      "caster takes32",
+      "concentration success",
+      "existing carrier application takes15",
+      "end surviving hold after resolution"
+    ],
+    "save": {
+      "face": 14,
+      "bonus": 2,
+      "total": 16,
+      "DC": 16,
+      "success": true
+    }
+  },
+  "readyFailure": {
+    "RP": 21,
+    "Dissonance": 2,
+    "Reaction": false,
+    "held": false,
+    "casterHP": 76,
+    "carrierHP": 93,
+    "corpse": "consumed",
+    "roots": [
+      "caster",
+      "carrier"
+    ],
+    "concentrationEndEvents": 1,
+    "cleanupEndEvents": 0,
+    "timeline": [
+      "consume and freeze existing blast",
+      "caster takes32",
+      "immediate concentration failure",
+      "existing carrier application takes15",
+      "cleanup: no second concentration end"
+    ],
+    "save": {
+      "face": 13,
+      "bonus": 2,
+      "total": 15,
+      "DC": 16,
+      "success": false
+    }
+  },
+  "readyLostBeforeCreation": {
+    "RP": 21,
+    "Dissonance": 2,
+    "Reaction": true,
+    "held": false,
+    "casterHP": 108,
+    "carrierHP": 108,
+    "corpse": "available",
+    "roots": [],
+    "concentrationEndEvents": 0,
+    "cleanupEndEvents": 0,
+    "timeline": [
+      "no live hold: no release, fuel consumption or damage"
+    ]
+  },
+  "screen": {
+    "oldRayIntersects": false,
+    "newRayIntersects": true,
+    "fullBodyY33Proof": {
+      "x": [
+        "7/3",
+        "27/7"
+      ],
+      "z": [
+        "16/3",
+        "264/35"
+      ]
+    },
+    "RamBlocked": false,
+    "completeVisualOcclusionAsserted": false
+  },
+  "dispelBothSucceed": {
+    "captured": [
+      "cloudA",
+      "cloudB"
+    ],
+    "checks": [
+      {
+        "cast": "cloudA",
+        "face": 17,
+        "bonus": 9,
+        "total": 26,
+        "DC": 26,
+        "ends": true
+      },
+      {
+        "cast": "cloudB",
+        "face": 18,
+        "bonus": 9,
+        "total": 27,
+        "DC": 26,
+        "ends": true
+      }
+    ],
+    "RP": 46,
+    "ArcaneFeedback": false
+  },
+  "dispelIndependentFailureDiagnostic": {
+    "captured": [
+      "cloudA",
+      "cloudB"
+    ],
+    "checks": [
+      {
+        "cast": "cloudA",
+        "face": 16,
+        "bonus": 9,
+        "total": 25,
+        "DC": 26,
+        "ends": false
+      },
+      {
+        "cast": "cloudB",
+        "face": 18,
+        "bonus": 9,
+        "total": 27,
+        "DC": 26,
+        "ends": true
+      }
+    ],
+    "RP": 46,
+    "ArcaneFeedback": false
+  },
+  "carrier": {
+    "strengthSave": 4,
+    "massLb": 160,
+    "capacityLb": 270,
+    "Load": 8,
+    "LoadCap": 18,
+    "releaseRangeSquared": 226,
+    "outOfRangeSquared": 626
+  },
+  "movement": {
+    "turn": [
+      8,
+      10
+    ],
+    "out": 11,
+    "back": 11,
+    "total": 22,
+    "remaining": 8,
+    "wholeBodyOutsideAt41": true,
+    "nextPulseHP": 9,
+    "extraTurnProvider": "still conditional, not authored"
+  },
+  "strain": {
+    "limit": 11,
+    "startingDissonance": 17,
+    "blocked": true
+  },
+  "wall": {
+    "commitment": 1,
+    "establishment": 1.1,
+    "duration": 60,
+    "nominalExpiry": 61.1,
+    "actualEarlierEnd": 5,
+    "exactCalculation": "611/10",
+    "unrelatedTrueSeeingDeadline": 58,
+    "FallingMarker": 8
+  }
+}

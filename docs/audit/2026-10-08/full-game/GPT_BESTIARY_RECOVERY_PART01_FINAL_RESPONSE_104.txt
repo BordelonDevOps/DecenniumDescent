@@ -1,0 +1,340 @@
+ChatGPT said:
+Bestiary Recovery Part01 — BV3-04, BV3-05 and BV3-06
+
+This bounded proposal is complete and the three files below exist. Their actual sizes and hashes were measured immediately before this reply. This is a new Part01 delivery, not a reconstruction of either unavailable bestiary return.
+
+The JSON contains the complete original and proposed records, exact source bindings, governing source text, five reversible additive operations, all 119 damage-average observations, 23 full-state encounter cases and three separate display/arithmetic diagnostics. No executable is included.
+
+Delivery manifest
+File	Actual bytes	SHA256
+DD_Bestiary_Recovery_Part01.json	1,744,791	810c3551c3b369ffe12e69e8790d12f42731d35166be6e1e580d2e4c433e1938
+DD_Bestiary_Recovery_Part01.txt	29,116	3e974ffdca03a014e656724328e17bf0eb6690f427474bf1370b7f1d7b0ff8b9
+DD_Bestiary_Recovery_Part01_MANIFEST.json	999	dc075a862a118c1d8cf813062b5a93809e1547d033c5b25d390ce9a49fb7bf04
+
+The manifest binds the JSON and text; its own measured hash is recorded above. Actual recipient download is not yet asserted. The large input archives have not been repackaged.
+
+1. Exact source findings and bindings
+
+The complete four dossiers confirm the following.
+
+Source	What is actually printed
+Pact Automaton Sentinel	Pressure Wave targets one target, has DC15, deals 3d8 force on failure and refers to an undefined control effect. It does not identify the save ability, range or control procedure.
+Cave Bear	Its actions list Multiattack and Mauling Claws. Its tactics separately name Bite, without a Bite action block.
+Dimetrodon	Its action is Sail-Back Bite. Its tactics separately name Tail Sweep, without a Tail Sweep action block.
+Giant Constrictor Snake	Its action is Bite. Its tactics separately name Constrict, without a Constrict action block.
+
+Pressure Wave’s complete native wording is:
+
+One target must succeed on a DC 15 save or take 3d8 force damage and suffer the action’s described control effect.
+
+The separate Containment Pulse (Recharge 5–6) says:
+
+Creatures in the affected area make a DC 15 Strength save, taking 5d6 force damage (average 18) on a failure and half on a success. The Director should describe the charge-up before resolving it.
+
+The lost Return01 response’s DC16/3d10 thunder Pressure Wave claim is unsupported by this source. The interim DC15/3d8 force statement is now independently confirmed. Neither statement substitutes for the full original dossier.
+
+Dossier bindings
+
+All four members use this archive-relative prefix:
+
+Plain text
+sources/docs/bestiary/Decennium_Descent_Monster_Manual_Canon_Rewrite_Source_Pack/
+Monster_Manual_of_the_Known_Descent_Source/entries/
+Original model pointer	Member	Bytes	SHA256
+/records/36	pact-automaton-sentinel.md	5,225	e2990583d101429f13f64234faf5525333350da0ec7364516d496905cc8f44d9
+/records/3	cave-bear.md	4,406	51616216515a4245183bf4a71cf05832a9cf7570576fac3895cb92c567e5a1c3
+/records/15	dimetrodon.md	4,257	6668406fcbd80facec64dfe2a04de701b36a12150fe51e266c191834117e09fd
+/records/22	giant-constrictor-snake.md	4,264	007984266562761c7957b9193b2fb5d59d16bb7671b923894b9ded89d9e149f6
+
+The original source model is:
+
+Plain text
+sources/DescentReviewChanges/ReviewBible/data/director/bestiary_source_candidate_internal.json
+
+930,613 bytes, SHA256:
+
+Plain text
+66d3d54ec0e70d9515f14789a697b379c648dc604af9f1035194c5230f09663c
+
+The complete BV3 questions are retained from BESTIARY_CURRENT_SOURCE_INTERFACES_81.json, 505,284 bytes, SHA256:
+
+Plain text
+1ddccf808cdb586009a598b267a9787f2d7bb841fe6db9a4b5edc86e3fc18ffd
+Governing interfaces
+
+The JSON retains the complete relevant sections, exact headings and source-file hashes—not merely interface names.
+
+Full governing file under sources/DescentReviewChanges/ReviewBible/docs/mechanics/	Bytes	SHA256
+COMBAT_ACTION_PLAYTEST.md	30,409	f90d039142145fbd31c37992ebece70d7926dc4b6081e340f9a2fd9dc7237bc6
+CORE_RESOLUTION_PLAYTEST.md	15,877	69d0e64394de58c4d86a3ec57cf282978d131a1a9c1eaa21632bb7d3b72562da
+CLASS_PLAYTEST_RULES.md	17,321	adb2f4752b45dc70ce792a675bb30dda362aab5056588061bcde3ba31c4c8a81
+CONDITIONS_PLAYTEST.md	62,017	6f6278430d48d0c74dc8e3b928b01dea3cc97d5e45226b128a405ab37b1e7148
+
+Registry06’s complete Null damage-provenance entry is also retained. The registry file is 1,038,128 bytes, SHA256 a08f8040c2ad5eaff08668376d15155f926f909c4b63a30461d55449e18aa567.
+
+2. Complete common execution contract
+BRP01-COMMON-01
+
+These are scoped creature-action completions, not new general combat rules. Printed HP, AC, abilities, CR, type, every printed action and the entire original dossier text remain unchanged.
+
+Each anatomical melee action below is physical and nonspell, with 5-foot reach, measured between actual occupied body boundaries using a clear contact/line-of-effect witness. Pressure Wave has its own declared emitter and range. The actors must actually perceive and legally target their recipients.
+
+Validate before commitment and again before the particular outcome. A known illegal attempt spends nothing. After legal commitment, a genuinely authorized interruption can invalidate the pending outcome; the spent Action or attack selection is not refunded, and that outcome is not retargeted. No new interruption window or free Reaction is supplied. Ordinary Ready remains trigger-first.
+
+A standalone action spends one real Action. A permitted Multiattack spends one Action once, resolves its two selections in order and revalidates each selection independently. Each performed selection consumes its slot even on a miss or successful recipient save. An unusable remaining slot does not become another Action or a refund.
+
+Use the actual printed attack modifiers. Do not infer proficiency from CR, owner level or saving-throw proficiency. Attack natural 1 misses; natural 20 hits and doubles damage dice, not constants. Ordinary saves are binary and have no generic natural-1/natural-20 exception.
+
+Each genuine damage event rolls separately and retains its original source actor as dealer. Create its source-qualified damage root and preserve any actually qualifying creation-time Null flag. Transfer does not replay the action or control rider.
+
+Apply actual defenses, temporary HP, normal HP, life/Wound/zero-state consequences and concentration checks in their accepted order. Wound thresholds apply per packet, not to summed Multiattack damage. These actions do not gain Maiming or an unprinted Wound exemption.
+
+An on-hit control save or post-damage movement applies only while the same recipient remains an eligible creature. Damage prevention does not automatically prevent an independently admitted control rider. No action manufactures equipment damage, loot, recharge, another harvest slot or a new corpse.
+
+Forced movement spends no voluntary movement and provokes no ordinary opportunity attack. Sweep the whole body and stop at the first obstruction to legal placement. It grants no passage through another body, collision damage or Hover. Broken reach ends the applicable grapple; loss of support uses the existing Falling contract.
+
+Retain action, subattack, root and condition-source identifiers so repeated delivery cannot duplicate a slot, packet, push or grapple.
+
+The supplied scene bodies and schedules are synthetic fixture inputs, not authenticated campaign actors or a decision about distributed formations. They do not settle BV3-16.
+
+3. BV3-04 — complete Pressure Wave proposal
+BRP01-PW-01
+
+Preserved: one target, DC15, 3d8 force and a control effect.
+
+NEW selected completion:
+
+Target and geometry. Choose one perceived, legally targetable creature within 30 feet of a declared emitter point on the Sentinel’s actual body. Require an unobstructed line to an actual interior target point. Record those positions at discharge. The emitter cannot move outside the body to extend range. This action uses Euclidean three-dimensional distance; that does not rewrite the global grid convention.
+
+Category and cost. Pressure Wave is a magical nonspell native force action. It costs one real Action or, by this expressly new local permission, one selection in this Sentinel’s printed two-selection Multiattack. Each Wave has its own save, dice and root.
+
+It adds no RP, V/S/F, ammunition, concentration or recharge cost. Actual source-qualified suppression can prevent its magical output. Ordinary spell-only Counterspell does not acquire permission to counter a nonspell.
+
+Resolution. After actual interruptions and revalidation, the recipient makes STR DC15.
+
+Success: no damage and no push; do not roll damage.
+Failure: roll 3d8 force once. After its damage and actual life/concentration consequences, push a still-eligible living recipient up to 10 feet along the fixed direction from the discharge emitter through the declared target point.
+
+Normalize that direction. A zero-length emitter-to-target direction is illegal at declaration. Sweep the target’s whole body, stopping at placement obstructions. An actually available push-reduction feature, such as a previously paid Brace, applies within its scope. No size exemption or additional save is invented.
+
+The push is instantaneous. It adds no Prone, Stunned, restraint, persistent zone or repeated tick. Completed damage and movement are not undone by later suppression or source removal. Removal before discharge can prevent the pending discharge. A now-dead recipient is not moved as a newly invented creature effect.
+
+Containment Pulse remains separate: area, STR DC15, 5d6 force, half on success, Recharge 5–6 and its printed charge-up. Its missing full area and the broader recharge/formation/Multiattack questions remain for their own parts. Part01 does not grant it a Pressure Wave slot or treat it as the same ability.
+
+Reason and tradeoff. This supplies a useful resisted displacement without importing an area blast or additional condition. Success-zero follows the printed “succeed … or take” structure. STR, range, magical category, push distance and local Multiattack substitution are new proposals, not recovered facts.
+
+4. BV3-05 — three complete tactic-action proposals
+
+The original text remains verbatim. Each new action is separately identified; none is silently inserted into the historical printed-action count.
+
+BRP01-BEAR-BITE-01 — Cave Bear Bite
+
+Source gap. The tactics name Bite, and preparation text names piercing damage, but no Bite numbers are supplied.
+
+NEW procedure: physical natural melee attack, reach 5 feet, one perceived legal creature, +5 to hit, 1d10+2 piercing on hit. Critical damage is 2d10+2.
+
+The magnitude uses this dossier’s own Mauling Claws benchmark; piercing is supported by its preparation text. These are new assignments—not another game’s bear profile. No poison, grapple, swallowing or healing is added.
+
+Use one standalone Action or one of the existing two Cave Bear Multiattack selections. Each selection may be Bite or Mauling Claws, including repeating either. The two selections consume one Action total and roll independently. There is no third “tactics Bite” and no stabilization-triggered Reaction.
+
+For this limited executable comparison, existing Mauling Claws uses physical 5-foot melee reach with its unchanged +5, 1d10+2 slashing.
+
+The tactics sentence is a target preference at a lawful opportunity, not permission to interrupt a helper. Bite has no continuing rider; miss, interruption, lost eligibility, damage and cleanup use the common contract.
+
+Tradeoff: the same native magnitude preserves the existing offensive budget while giving the foreshadowed piercing option.
+
+BRP01-DIM-TAIL-01 — Dimetrodon Tail Sweep
+
+Source gap. Tactics name Tail Sweep, and preparation names bludgeoning; its action statistics are absent.
+
+NEW procedure: physical natural melee attack, reach 5 feet, one perceived legal creature, +4 to hit, 1d6+2 bludgeoning. Critical damage is 2d6+2.
+
+It costs one real Action. No Multiattack, Bonus Action, recharge or helper-triggered Reaction is granted. Attack magnitude uses its own printed Bite benchmark.
+
+On a hit, apply damage first. If the same recipient remains eligible for Prone, it makes DEX DC13, using the profile’s printed save-DC benchmark.
+
+Failure: actual Prone.
+Success: no new Prone, but the hit’s damage remains.
+Attack miss: no damage or rider-save draw.
+
+Prone immunity blocks the rider, not bludgeoning damage. An already-Prone creature receives no stacking penalty, refreshed duration or increased standing cost.
+
+No area or automatic push is inferred from “Sweep.” Prone ends through a lawful stand or removal. Standing requires nonzero Speed and floor(half current Speed) movement with sufficient remaining budget. Source removal does not automatically restore posture. Actual flight/support consequences use Falling, not free impact damage.
+
+The original Sail-Back Bite remains +4, 1d6+2 piercing, completed here as physical 5-foot, one-target melee without a new rider.
+
+Tradeoff: Tail Sweep adds expressly proposed posture utility. Equal damage magnitude does not establish balance equivalence.
+
+BRP01-SNAKE-CONSTRICT-01 — Giant Constrictor Snake Constrict
+
+Source gap. Tactics name Constrict and preparation names bludgeoning. The only printed attack is Bite +3, 1d6+1 piercing.
+
+Keep the printed Huge size, 18 HP, AC11 and CR¼ unchanged.
+
+NEW procedure: physical natural melee Constrict, reach 5 feet, one perceived legal creature no more than one size category larger than the snake, with actual usable coil-contact geometry. No remote tail-only grab is invented.
+
+Attack +3; hit 1d6+1 bludgeoning; critical 2d6+1. One real Action. The numerical benchmark is this dossier’s printed Bite.
+
+After hit damage and life processing, the same eligible recipient makes STR DC14.
+
+Failure: create a source-qualified Grappled relationship with this snake, maintained reach 5 feet.
+Success: no relationship; damage remains.
+Miss: neither damage nor admission save.
+Grappled immunity: prevents the rider only.
+
+The coil occupies one designated coiling appendage and one recipient. This is a new natural fixed-DC procedure, not an ordinary hand-based opposed grapple.
+
+While occupied, Constrict may attack that same recipient again through another paid Action, but it does not reroll admission or duplicate/refresh the existing grapple. A different recipient requires the old grip to end first. Existing Bite remains available at a lawful opportunity without automatically ending the hold.
+
+Escape: one recipient Action and STR Athletics or DEX Acrobatics against fixed DC14, using only actual applicable proficiency. The two successful task degrees end this relationship; failure retains it without an invented Injury.
+
+The snake may release freely on its own turn. The relationship also ends on snake Incapacitated/death/removal, target death/removal or actual reach breaking, including forced movement or teleportation. Speed then returns to what the remaining real sources permit.
+
+No Restrained, paralysis, suffocation, swallowing, recurring free damage, concentration or extra Action is added. Maintaining Grappled does not itself remove the recipient’s Action or Reaction.
+
+The original Bite remains +3, 1d6+1 piercing, completed as physical 5-foot, one-target melee.
+
+Tradeoff: finite damage plus escapable movement control makes the tactic usable without importing a foreign constrictor or changing its unusual printed rating/stat combination.
+
+5. BV3-06 — dossier display, not damage law
+BRP01-DISPLAY-01
+
+The independent source pass finds 119 printed damage-average occurrences:
+
+81 integral exact means and 38 half-integer means. Every printed value matches nearest-integer ties-to-even.
+
+Preserve every original formula, complete source text and printed integer, including half-integer values rounded downward.
+
+For this bounded dossier presentation, check the exact rational mean:
+
+Plain text
+n × (s + 1) / 2 + constant
+
+Choose the nearest integer; at an exact half choose the even integer.
+
+This is display policy only. It does not replace RNG, change critical dice, round a live damage packet, average Multiattack events, alter mitigation or establish global clock/currency/game rounding.
+
+Actual damage uses its real dice and modifiers. Core’s applicable round-down convention remains for fractional effects unless their own source overrides it. Critical attacks double dice, not constants.
+
+Pressure Wave has no printed average. Its mathematical mean 13.5 could be annotated as a new proposed display of 14, but no native average is filled retroactively and it is not added to the 119 source observations.
+
+The three new proposed attacks may display 8, 6 and 4 respectively. Those are new action displays, not newly discovered original rows. Future discrepancies must preserve both values and be flagged, not silently “fixed.”
+
+6. Full finite case record
+
+All cases below are independent resets unless a continuation is stated. The JSON expands every initial, before, after and final state.
+
+Common initial actors and scene
+Key	Native profile	Size/type/CR	HP / AC / walking Speed	STR / DEX / CON modifiers
+S	Pact Automaton Sentinel	Large Construct, CR6	145 / 18 / 30 ft	+3 / +2 / +4
+B	Cave Bear	Large Beast, CR2	68 / 13 / 40 ft	+3 / +2 / +1
+D	Dimetrodon	Large Beast, CR½	31 / 12 / 40 ft	+3 / +2 / +1
+N	Giant Constrictor Snake	Huge Beast, CR¼	18 / 11 / 40 ft	+5 / +1 / +1
+
+All start at full normal/effective maximum, with 0 temporary HP, 0 Wounds, no Injury, condition, concentration or Null, no RP pool, no consumed inventory and one available Action and ordinary Reaction, except the expressly prepaid Brace/Ready cases. Bonus Action availability supplies no ability to use it. No proficiency is added to these saves or checks.
+
+S retains its printed poison/psychic resistance and condition immunities; none affects the demonstrated force packets. The beasts retain their printed absence of defenses. No formation peer is present, so S receives no Formation Intelligence bonus.
+
+Large fixture volumes are 10×10×10 feet, Huge 15×15×15 feet. Listed foot positions are the horizontal center and bottom z. These are declared test volumes, not recovered anatomical dimensions. Ground is level and supported, sight is clear, and there are no unlisted actors, hazards, stances or modifiers.
+
+Source regular START0 and subsequent target START3/4 markers are supplied fixture schedules. Every later refresh is explicit. Same-time events use their stated order. These are not authenticated campaign actors or executed scheduler events.
+
+All unmentioned state remains unchanged.
+
+Pressure Wave cases
+
+For the first six cases, S is at [0,0,0]; the recipient is at [25,0,0]. Emitter [5,0,5] and target point [25,0,5] give range 20 feet. Commitment at 1 spends S’s Action; resolution is 1.1.
+
+ID	Complete outcome
+BRP01-PW-FAIL	B rolls STR 11+3=14<15. 3d8 [8,5,4]=17: 68→51 HP. No Wound threshold; push 10 feet to [35,0,0]. B Action/Reaction remain 1/1; S becomes 0/1.
+BRP01-PW-SUCCESS	B rolls 12+3=15. No damage draw, root or push. B remains 68 HP at [25,0,0]. S’s Action remains spent.
+BRP01-PW-OBSTACLE	Reset FAIL with wall minimum [35,-20,0], maximum [36,20,20]. Damage remains 17. B’s forward body face contacts x35 after 5 feet; foot ends [30,0,0], 51 HP. No collision damage or voluntary-movement expenditure.
+BRP01-PW-WOUND-PASS	Recipient D rolls STR 11+3=14. 3d8 [8,8,8]=24: 31→7 HP. Half-maximum trigger gives CON DC12; 11+1=12 succeeds. Wounds0, then push to [35,0,0].
+BRP01-PW-WOUND-FAIL	Same reset except CON 10+1=11, failure by one. Final 7 HP, one Wound, no Injury, at [35,0,0]. Its future CON saves receive the existing Wound penalty; that penalty is not applied retroactively.
+BRP01-PW-BRACE	B already paid an actual Action for Hold Ground, with unused opportunity/Reaction and expiry START6. STR14 fails; damage17 remains. B spends its Reaction to reduce push 10→5 feet. Final 51 HP at [30,0,0], B Action0/Reaction0 and Brace spent.
+BRP01-PW-COVER	S/B remain at 0/25. Opaque screen minimum [15,-20,0], maximum [16,20,20] blocks every relevant line. At1 declaration fails before commitment: S Action1/Reaction1, B68 HP, no RNG/root/push.
+BRP01-PW-READY-RETREAT	B paid its earlier Action at −2.9 to Ready movement, expiring START3. S begins at [-5,0,0]; at0.5 it spends five of its 30 movement feet to reach [0,0,0], completing the trigger. At0.6 B spends its existing Reaction and separate Ready movement budget to move 40 feet, [25,0,0]→[65,0,0]. Ready is consumed. At1 Wave is out of range and never commits. S retains Action1/Reaction1 with ordinary movement spent5; B remains68 HP, Action0/Reaction0 and ordinary movement spent0. This is trigger-first retreat, not a mid-attack interrupt.
+BRP01-PW-TWO-SLOTS	One Multiattack Action at1 reserves two selections. First at1.1: STR14 fails, [8,5,4]=17, B 68→51, foot25→35. Second at1.2 revalidates exactly 30-foot range; STR14 fails, [7,6,4]=17, B 51→34, foot35→45. Two roots and two 17-point packets do not become one 34-point Wound event. S Action0/slots0/Reaction1; B Action/Reaction1/1.
+Cave Bear cases
+
+B is at [0,0,0], D at [12.5,0,0]: whole-body gap 2.5 feet. Commit at1; ordered Multiattack outcomes at1.1 and1.2.
+
+ID	Complete outcome
+BRP01-BEAR-TWO-HITS	One Action/two slots. Bite 10+5=15≥AC12; d10[8]+2=10 piercing, D 31→21. Printed Claws 9+5=14; d10[3]+2=5 slashing, D 21→16. Neither packet reaches half31. B Action0/slots0/Reaction1; D Action/Reaction1/1.
+BRP01-BEAR-FIRST-MISS	Bite natural1 misses; no damage draw, slot spent. Claws 12+5=17, d10[4]+2=6, D 31→25. Exactly two slots, no third attack.
+BRP01-BEAR-CRITICAL	Standalone Bite uses one Action; natural20. 2d10[8,6]+2=16, D 31→15. Wound CON DC10: 9+1=10, success. No Wound, no doubled constant and no second attack granted by the standalone choice.
+BRP01-BEAR-RANGE	D instead at [30,0,0], gap20. Declaration fails before payment. B Action/Reaction1/1, D31 HP, no roll.
+Dimetrodon cases
+
+D is at [0,0,0], B at [12.5,0,0], gap2.5. D spends its Action at1; outcome1.1.
+
+ID	Complete outcome
+BRP01-TAIL-PRONE	Attack 9+4=13, hit. d6[6]+2=8 bludgeoning, B 68→60. DEX 10+2=12<13 applies Prone. At actual B START3 its budgets refresh, not posture. At3.1 it spends 20 of40 feet to stand. Final60 HP, movement spent20, Action/Reaction1/1. D Action0/Reaction1.
+BRP01-TAIL-SAVE	Same hit/damage; DEX 11+2=13 succeeds. B60 HP, no new Prone, movement spent0. Damage remains.
+BRP01-TAIL-MISS	8+4=12<AC13. No damage or rider-save draw. B68 HP and upright; D’s Action is spent.
+BRP01-TAIL-ORIGINAL-BITE	Choose unchanged Sail-Back Bite. 9+4=13; d6[6]+2=8 piercing, B60 HP. No Tail save or Prone. The original attack remains usable.
+Giant Constrictor Snake cases
+
+N is at [0,0,0], D at [15,0,0]: Huge-to-Large gap 2.5 feet, with usable coil contact. N spends Action at1; outcome1.1. D’s future actual regular START is4.
+
+ID	Complete outcome
+BRP01-CONSTRICT-ESCAPE-SUCCESS	Attack 12+3=15≥AC12; d6[5]+1=6 bludgeoning, D 31→25. STR 10+3=13<14 creates N/coil/1, reach5; D Speed0 and one coil occupied. At START4 D refreshes Action. At4.1 it spends Action on untrained DEX Acrobatics 12+2=14, success. Grip ends; Speed40 returns. D25 HP/Action0/Reaction1; N18 HP/Action0/Reaction1/coil empty.
+BRP01-CONSTRICT-ESCAPE-FAIL	Same admission; escape 11+2=13 fails. D25 HP/Speed0/Action0/Reaction1; N retains that one recipient. No further damage, Injury or free retry.
+BRP01-CONSTRICT-ADMISSION-SAVE	Same hit/damage; STR 11+3=14 succeeds. D25 HP/Speed40/no grip, Action/Reaction1/1. Damage remains.
+BRP01-CONSTRICT-MISS	8+3=11<AC12. No damage or STR save. D31 HP/Speed40; no grip. N’s Action is spent.
+BRP01-CONSTRICT-BREAK	Begin with successful Constrict at1/1.1, plus S at [29,18,0], actual next START2. S refreshes at2 and spends Action at2.1 on Pressure Wave. Emitter [24,18,7.5] to N interior [0,0,7.5] is exactly30 feet; its clear ray misses D’s body. At2.2 N STR 9+5=14<15**; 3d8[3,4,5]=12, N **18→6**. Wound CON **9+1=10** succeeds against10. Push vector [-8,-6,0] is exactly10 feet; N ends there. Whole-body gap to D becomes **10.5>5 feet, ending the grip. D stays25 HP at [15,0,0], Speed40, Action/Reaction1/1, with no escape expenditure. N and S each spent one Action and retain Reaction1. Two real turns—not an off-turn grant—produce this outcome.
+BRP01-CONSTRICT-RANGE	D instead at [30,0,0], gap17.5. Declaration fails before payment. N Action/Reaction1/1; D31 HP; no RNG or grip.
+Separate display/arithmetic diagnostics
+
+These are not extra creature activations.
+
+BRP01-DISPLAY-CLAW: preserved 1d10+2 has exact mean 15/2, displayed 8. Actual d10=1 produces 3 damage, not8.
+
+BRP01-DISPLAY-SNAKE: preserved 1d6+1 has exact mean 9/2, displayed 4. Actual d6=6 produces 7 damage, not4.
+
+BRP01-DISPLAY-PULSE-HALF: this is explicitly conditional recipient-only arithmetic, not a completed Containment Pulse activation. If a genuine Pulse has independently established B’s eligibility, STR 12+3=15 succeeds. 5d6[6,6,4,3,2]=21; its existing success-half rule gives 10 damage, B 68→58, no Wound. Displaying mean35/2 as18 does not authorize using18/2=9. The missing full Pulse area/recharge/formation adjudication remains unprovided by this calculation.
+
+7. Exact operations, verification and remaining scope
+
+The JSON supplies complete original and proposed four-record objects. Five operations add only:
+
+Plain text
+/records/36/recoveryPart01
+/records/3/recoveryPart01
+/records/15/recoveryPart01
+/records/22/recoveryPart01
+/bestiaryRecoveryPart01
+
+Each before-value is explicitly absent; every complete after-object is included. The inverse removes only those additions after exact-value comparison. Full original UTF-8/CRLF serialization and key order were preserved in the complete reverse-byte check.
+
+Full record replacement and additive-field application describe the same proposal. Do not apply both. No native action, source statement, approval flag or publication route is replaced.
+
+The fresh bounded inspection passed 279 source, structure, arithmetic and state-continuity checks. It covers the 119 independent exact-mean observations and the complete 23 cases / 56 transitions, plus three display diagnostics. These are not game-engine tests. An initial LF-only restoration comparison correctly failed; the completed inverse uses the source’s actual CRLF bytes without changing its expected hash.
+
+What remains
+
+Only BV3-04, BV3-05 and BV3-06 receive proposed dispositions here. The other 24 mapped questions—BV3-01–03 and BV3-07–27—remain for later parts, including other attack geometry, Multiattack/recharge, individual traits, formation identity, knowledge/language, retreat, death, harvest, materials and complete creature operations.
+
+The independently recounted 79 native trait occurrences are inventory evidence, not 79 completed trait procedures. The earlier lost response’s 136-trait claim is not adopted.
+
+The eventual scope remains 67 dossiers, 66 printed profiles, 162 original actions, 42 Multiattacks, 178 harvest occurrences, 707 bindings, 184 differences and 26 unchanged public routes, plus every retained original question/interface set. Part01 adds three explicitly proposed tactic actions without relabelling the original 162 or claiming whole-bestiary completion.
+
+The five sealed dossiers remain containment/routing-only; their contents were not reviewed or included. Keep the five positive-case holds IN6-09-A/B, EN5-01-A/B and EN6-03-B. Current scoped Companion, Rank7, Resonance, FT84, EX58, LAX and Null authorities remain unchanged.
+
+Applied525/323/249/173 and53 accepted-but-unapplied remain unchanged. Parent335 remains pending. The separate TEST_ONLY Unity foundation and reported local feat progress are not rules/runtime acceptance here.
+
+No supplied script or previously successful program was executed. No canonical application, game runtime, human gameplay, numerical balance, cosmology, whole-game or release approval is claimed. The owner’s implementation reservation remains in force. 
+
+DD_Bestiary_Recovery_Part01.json
+Code
+DD_Bestiary_Recovery_Part01.txt
+Document
+DD_Bestiary_Recovery_Part01_MANIFEST.json
+Code
+ChatGPT can make mistakes. Check important info.
+Latest response
+
+
+
+
+Pro

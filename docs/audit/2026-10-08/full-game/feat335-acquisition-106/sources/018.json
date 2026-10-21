@@ -1,0 +1,437 @@
+{
+  "reviewId": "FEAT335-CADENCE-CHECK-01",
+  "submissionSha256": "5d67cc24ab7ce5274f6a055a60616143d5d605b3dfdfdb9b1c4f4e7910f1ffe9",
+  "inputManifestSha256": "68caa986936a31b1deb49ef96cbb212696ff72d23e618ffc9db484555a143f27",
+  "operations": [
+    {
+      "operationId": "FCD-01",
+      "kind": "append_json_string",
+      "path": "DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/shared_rules.json",
+      "pointer": "/rules/5/wording",
+      "recordId": "FS-06",
+      "expectedSha256": "382078e9245d54dc06f55f4a525e6567dcbb0e8771a743ef9f8db9d37fab4e74",
+      "old": "Use EX58's single elapsed clock, eight-hour Watches, actual task minutes, two-active-work-Watch ceiling and scheduled Rest. A change of scene, gate, holder, location, initiative, class representation or calendar label does not reset a resource. SR/LR in these new procedures mean the actual beneficial completed owner rest, with one beneficial Long Rest per 24 elapsed hours and at most two beneficial Short Rests between beneficial Long Rests. A qualifying long rest restores a short-rest allowance as already governed. Extra safe Rest paying Rest Debt alone provides no second resource recovery. Recipient-rest limits use the actual named recipient's rest epoch.\nNEW initial acquisition completion: the newly acquired limited-use feat begins with its specified full finite allowance, unless it expressly starts empty (such as accumulated stacks/charges). Reacquisition/alias duplication cannot initialize it again. An increase in a PB-based maximum increases capacity only, not current unspent uses. Genuine maximum-HP/RP/RC, Hit Die, reserve and slot changes never heal or refill unrelated current values.\nUse each explicit own-turn/any-turn/round predicate literally. A per-round allowance has one numbered global-round identity; extra turns do not refresh it. A default 'your turn' feat allowance uses the owner's regular interval unless its exact source direction expressly retains any actual turn. Newly completed missing durations use the next future original regular marker specified by the row, not the already-underway marker, retaining virtual/absolute deadlines across schedule changes. Outside initiative use the governed six-second phase without double ticks. A missed trigger is not queued for later. An early ending does not refund time or a use.",
+      "append": "\n\nNEW FEAT335-CADENCE-CHECK-01 completion, limited to feat procedures governed by FS-06: an otherwise unqualified \"once per turn\" allowance is once for that feat owner during each genuine actual creature turn in which its exact trigger legally occurs, whether that turn belongs to the owner or another creature. A separately sourced and actually occurring extra turn has a distinct actual-turn identity and can supply a distinct opportunity for that unqualified allowance; this rule grants no extra turn. Another Action, Bonus Action, attack, Reaction, nested event, target or resumed segment of the same actual turn does not create another turn identity. Returning to or replaying an already recorded turn retains that turn's spent claim. Actual body, movement, attack, casting, payment, causal-root and recipient restrictions still govern independently.\n\nThis completion does not replace an expressly regular-turn allowance or FS-06's existing default owner-regular-interval allowance for \"your turn\". In particular, Savage Attacker retains its stated own/off-turn regular-turn allowances, and Eldritch Combat retains its expressly regular-creature-turn shared embedded-cast cap plus its owner-regular-interval ordinary-append cap. Overrun's per-creature challenge limit belongs to the actual turn containing its qualifying Dash and subsequent movement; another Dash in that same turn does not renew it. Quickened Thought keeps its expressly any-later-actual-turn release window and the shared one-free-stored-release-per-owner/numbered-round cap, not a new bank at each turn. Per-round, encounter, underlying-roll/cast, recipient-rest and source-defined duration/deadline histories are not reset by an extra turn. Outside initiative retain the governed six-second procedure without inventing a turn from each action or counting an initiative transition twice. Source-specific temporal restoration remains separately governed; this completion supplies no rewind or unsupported extra-turn adapter.",
+      "provenance": "NEW minimal feat-cadence completion; preserves existing explicit exceptions."
+    },
+    {
+      "operationId": "FCD-02.builder.1",
+      "kind": "replace_text",
+      "path": "DescentReviewChanges/ReviewBible/tools/build_feat335_allowance_descriptors.py",
+      "expectedSha256": "e78a9000c89b0586b7b1d44af641d07a8df6b62240bd0933ae3e5247d261c460",
+      "old": "cadence('bladedancer break_line bull_rush crippling_strike crusher piercer punishing_blow savage_attacker slasher tactical_flanker unstoppable_force precision_strike',\n    None, ['owner'], 'actual regular creature-turn interval under FS06', 'An eligible off-turn event can use a distinct regular creature-turn interval; linked extra turns do not reset it. Exact own-movement/attack prerequisites remain in the full procedure.')",
+      "replacement": "# FEAT335-CADENCE-CHECK-01: unqualified actual turns; retain the explicit Savage exception.\ncadence('bladedancer break_line bull_rush crippling_strike crusher piercer punishing_blow slasher tactical_flanker unstoppable_force precision_strike',\n    None, ['owner'], 'genuine actual creature-turn identity (regular or separately authorized extra turn)', \"One claim per feat owner in the actual turn containing the qualifying event, including a separately authorized genuine extra turn. Additional Actions, attacks, Reactions, targets or resumed segments of that same turn share its existing claim. This caps only the procedure's expressly once-per-turn clause; separately stated critical-hit and per-event riders retain their own frequencies. Off-turn use still requires the complete actual trigger and all source permissions, costs and causal/recipient limits. This descriptor grants and authenticates no turn or event.\")\ncadence('savage_attacker',\n    None, ['owner'], 'actual regular creature-turn interval under FS06', 'An eligible off-turn event can use a distinct regular creature-turn interval; linked extra turns do not reset it. Exact own-movement/attack prerequisites remain in the full procedure.')",
+      "expectedOccurrences": 1
+    },
+    {
+      "operationId": "FCD-02.builder.2",
+      "kind": "replace_text",
+      "path": "DescentReviewChanges/ReviewBible/tools/build_feat335_allowance_descriptors.py",
+      "expectedSha256": "e78a9000c89b0586b7b1d44af641d07a8df6b62240bd0933ae3e5247d261c460",
+      "old": "cadence('overrun', 'overrun.challenge', ['owner', 'recipient'], 'owner regular-turn interval', 'No repeated challenge against the same creature from extra Dashes.')",
+      "replacement": "cadence('overrun', 'overrun.challenge', ['owner', 'recipient'], 'actual turn containing the qualifying Dash and subsequent movement', 'One challenge per feat owner and distinct recipient during that actual Dash turn. Another legal Dash in the same actual turn does not renew the challenge. A separately authorized genuine extra turn can provide a new challenge only with a new qualifying Dash and genuinely legal subsequent movement in that turn. A Reaction, target relabel, resumed segment or replay does not mint a turn. No movement, action, body, path or target permission is supplied by this key.')",
+      "expectedOccurrences": 1
+    },
+    {
+      "operationId": "FCD-02.descriptor.bladedancer",
+      "kind": "replace_json_value",
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_ALLOWANCE_DESCRIPTORS.json",
+      "expectedSha256": "3c469dd182b83a380478e23fcc5669fc43ac5cd283f63779e078f18883fb2722",
+      "pointer": "/entries/16/laterEventCadences",
+      "recordId": "bladedancer",
+      "old": [
+        {
+          "family": "bladedancer",
+          "maximum": 1,
+          "scope": [
+            "owner"
+          ],
+          "epoch": "actual regular creature-turn interval under FS06",
+          "initialization": "No event/epoch claim at acquisition; retain existing clock and history.",
+          "detail": "An eligible off-turn event can use a distinct regular creature-turn interval; linked extra turns do not reset it. Exact own-movement/attack prerequisites remain in the full procedure."
+        }
+      ],
+      "replacement": [
+        {
+          "family": "bladedancer",
+          "maximum": 1,
+          "scope": [
+            "owner"
+          ],
+          "epoch": "genuine actual creature-turn identity (regular or separately authorized extra turn)",
+          "initialization": "No event/epoch claim at acquisition; retain existing clock and history.",
+          "detail": "One claim per feat owner in the actual turn containing the qualifying event, including a separately authorized genuine extra turn. Additional Actions, attacks, Reactions, targets or resumed segments of that same turn share its existing claim. This caps only the procedure's expressly once-per-turn clause; separately stated critical-hit and per-event riders retain their own frequencies. Off-turn use still requires the complete actual trigger and all source permissions, costs and causal/recipient limits. This descriptor grants and authenticates no turn or event."
+        }
+      ]
+    },
+    {
+      "operationId": "FCD-02.descriptor.break_line",
+      "kind": "replace_json_value",
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_ALLOWANCE_DESCRIPTORS.json",
+      "expectedSha256": "3c469dd182b83a380478e23fcc5669fc43ac5cd283f63779e078f18883fb2722",
+      "pointer": "/entries/23/laterEventCadences",
+      "recordId": "break_line",
+      "old": [
+        {
+          "family": "break_line",
+          "maximum": 1,
+          "scope": [
+            "owner"
+          ],
+          "epoch": "actual regular creature-turn interval under FS06",
+          "initialization": "No event/epoch claim at acquisition; retain existing clock and history.",
+          "detail": "An eligible off-turn event can use a distinct regular creature-turn interval; linked extra turns do not reset it. Exact own-movement/attack prerequisites remain in the full procedure."
+        }
+      ],
+      "replacement": [
+        {
+          "family": "break_line",
+          "maximum": 1,
+          "scope": [
+            "owner"
+          ],
+          "epoch": "genuine actual creature-turn identity (regular or separately authorized extra turn)",
+          "initialization": "No event/epoch claim at acquisition; retain existing clock and history.",
+          "detail": "One claim per feat owner in the actual turn containing the qualifying event, including a separately authorized genuine extra turn. Additional Actions, attacks, Reactions, targets or resumed segments of that same turn share its existing claim. This caps only the procedure's expressly once-per-turn clause; separately stated critical-hit and per-event riders retain their own frequencies. Off-turn use still requires the complete actual trigger and all source permissions, costs and causal/recipient limits. This descriptor grants and authenticates no turn or event."
+        }
+      ]
+    },
+    {
+      "operationId": "FCD-02.descriptor.bull_rush",
+      "kind": "replace_json_value",
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_ALLOWANCE_DESCRIPTORS.json",
+      "expectedSha256": "3c469dd182b83a380478e23fcc5669fc43ac5cd283f63779e078f18883fb2722",
+      "pointer": "/entries/24/laterEventCadences",
+      "recordId": "bull_rush",
+      "old": [
+        {
+          "family": "bull_rush",
+          "maximum": 1,
+          "scope": [
+            "owner"
+          ],
+          "epoch": "actual regular creature-turn interval under FS06",
+          "initialization": "No event/epoch claim at acquisition; retain existing clock and history.",
+          "detail": "An eligible off-turn event can use a distinct regular creature-turn interval; linked extra turns do not reset it. Exact own-movement/attack prerequisites remain in the full procedure."
+        }
+      ],
+      "replacement": [
+        {
+          "family": "bull_rush",
+          "maximum": 1,
+          "scope": [
+            "owner"
+          ],
+          "epoch": "genuine actual creature-turn identity (regular or separately authorized extra turn)",
+          "initialization": "No event/epoch claim at acquisition; retain existing clock and history.",
+          "detail": "One claim per feat owner in the actual turn containing the qualifying event, including a separately authorized genuine extra turn. Additional Actions, attacks, Reactions, targets or resumed segments of that same turn share its existing claim. This caps only the procedure's expressly once-per-turn clause; separately stated critical-hit and per-event riders retain their own frequencies. Off-turn use still requires the complete actual trigger and all source permissions, costs and causal/recipient limits. This descriptor grants and authenticates no turn or event."
+        }
+      ]
+    },
+    {
+      "operationId": "FCD-02.descriptor.crippling_strike",
+      "kind": "replace_json_value",
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_ALLOWANCE_DESCRIPTORS.json",
+      "expectedSha256": "3c469dd182b83a380478e23fcc5669fc43ac5cd283f63779e078f18883fb2722",
+      "pointer": "/entries/41/laterEventCadences",
+      "recordId": "crippling_strike",
+      "old": [
+        {
+          "family": "crippling_strike",
+          "maximum": 1,
+          "scope": [
+            "owner"
+          ],
+          "epoch": "actual regular creature-turn interval under FS06",
+          "initialization": "No event/epoch claim at acquisition; retain existing clock and history.",
+          "detail": "An eligible off-turn event can use a distinct regular creature-turn interval; linked extra turns do not reset it. Exact own-movement/attack prerequisites remain in the full procedure."
+        }
+      ],
+      "replacement": [
+        {
+          "family": "crippling_strike",
+          "maximum": 1,
+          "scope": [
+            "owner"
+          ],
+          "epoch": "genuine actual creature-turn identity (regular or separately authorized extra turn)",
+          "initialization": "No event/epoch claim at acquisition; retain existing clock and history.",
+          "detail": "One claim per feat owner in the actual turn containing the qualifying event, including a separately authorized genuine extra turn. Additional Actions, attacks, Reactions, targets or resumed segments of that same turn share its existing claim. This caps only the procedure's expressly once-per-turn clause; separately stated critical-hit and per-event riders retain their own frequencies. Off-turn use still requires the complete actual trigger and all source permissions, costs and causal/recipient limits. This descriptor grants and authenticates no turn or event."
+        }
+      ]
+    },
+    {
+      "operationId": "FCD-02.descriptor.crusher",
+      "kind": "replace_json_value",
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_ALLOWANCE_DESCRIPTORS.json",
+      "expectedSha256": "3c469dd182b83a380478e23fcc5669fc43ac5cd283f63779e078f18883fb2722",
+      "pointer": "/entries/42/laterEventCadences",
+      "recordId": "crusher",
+      "old": [
+        {
+          "family": "crusher",
+          "maximum": 1,
+          "scope": [
+            "owner"
+          ],
+          "epoch": "actual regular creature-turn interval under FS06",
+          "initialization": "No event/epoch claim at acquisition; retain existing clock and history.",
+          "detail": "An eligible off-turn event can use a distinct regular creature-turn interval; linked extra turns do not reset it. Exact own-movement/attack prerequisites remain in the full procedure."
+        }
+      ],
+      "replacement": [
+        {
+          "family": "crusher",
+          "maximum": 1,
+          "scope": [
+            "owner"
+          ],
+          "epoch": "genuine actual creature-turn identity (regular or separately authorized extra turn)",
+          "initialization": "No event/epoch claim at acquisition; retain existing clock and history.",
+          "detail": "One claim per feat owner in the actual turn containing the qualifying event, including a separately authorized genuine extra turn. Additional Actions, attacks, Reactions, targets or resumed segments of that same turn share its existing claim. This caps only the procedure's expressly once-per-turn clause; separately stated critical-hit and per-event riders retain their own frequencies. Off-turn use still requires the complete actual trigger and all source permissions, costs and causal/recipient limits. This descriptor grants and authenticates no turn or event."
+        }
+      ]
+    },
+    {
+      "operationId": "FCD-02.descriptor.overrun",
+      "kind": "replace_json_value",
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_ALLOWANCE_DESCRIPTORS.json",
+      "expectedSha256": "3c469dd182b83a380478e23fcc5669fc43ac5cd283f63779e078f18883fb2722",
+      "pointer": "/entries/103/laterEventCadences",
+      "recordId": "overrun",
+      "old": [
+        {
+          "family": "overrun.challenge",
+          "maximum": 1,
+          "scope": [
+            "owner",
+            "recipient"
+          ],
+          "epoch": "owner regular-turn interval",
+          "initialization": "No event/epoch claim at acquisition; retain existing clock and history.",
+          "detail": "No repeated challenge against the same creature from extra Dashes."
+        }
+      ],
+      "replacement": [
+        {
+          "family": "overrun.challenge",
+          "maximum": 1,
+          "scope": [
+            "owner",
+            "recipient"
+          ],
+          "epoch": "actual turn containing the qualifying Dash and subsequent movement",
+          "initialization": "No event/epoch claim at acquisition; retain existing clock and history.",
+          "detail": "One challenge per feat owner and distinct recipient during that actual Dash turn. Another legal Dash in the same actual turn does not renew the challenge. A separately authorized genuine extra turn can provide a new challenge only with a new qualifying Dash and genuinely legal subsequent movement in that turn. A Reaction, target relabel, resumed segment or replay does not mint a turn. No movement, action, body, path or target permission is supplied by this key."
+        }
+      ]
+    },
+    {
+      "operationId": "FCD-02.descriptor.piercer",
+      "kind": "replace_json_value",
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_ALLOWANCE_DESCRIPTORS.json",
+      "expectedSha256": "3c469dd182b83a380478e23fcc5669fc43ac5cd283f63779e078f18883fb2722",
+      "pointer": "/entries/105/laterEventCadences",
+      "recordId": "piercer",
+      "old": [
+        {
+          "family": "piercer",
+          "maximum": 1,
+          "scope": [
+            "owner"
+          ],
+          "epoch": "actual regular creature-turn interval under FS06",
+          "initialization": "No event/epoch claim at acquisition; retain existing clock and history.",
+          "detail": "An eligible off-turn event can use a distinct regular creature-turn interval; linked extra turns do not reset it. Exact own-movement/attack prerequisites remain in the full procedure."
+        }
+      ],
+      "replacement": [
+        {
+          "family": "piercer",
+          "maximum": 1,
+          "scope": [
+            "owner"
+          ],
+          "epoch": "genuine actual creature-turn identity (regular or separately authorized extra turn)",
+          "initialization": "No event/epoch claim at acquisition; retain existing clock and history.",
+          "detail": "One claim per feat owner in the actual turn containing the qualifying event, including a separately authorized genuine extra turn. Additional Actions, attacks, Reactions, targets or resumed segments of that same turn share its existing claim. This caps only the procedure's expressly once-per-turn clause; separately stated critical-hit and per-event riders retain their own frequencies. Off-turn use still requires the complete actual trigger and all source permissions, costs and causal/recipient limits. This descriptor grants and authenticates no turn or event."
+        }
+      ]
+    },
+    {
+      "operationId": "FCD-02.descriptor.punishing_blow",
+      "kind": "replace_json_value",
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_ALLOWANCE_DESCRIPTORS.json",
+      "expectedSha256": "3c469dd182b83a380478e23fcc5669fc43ac5cd283f63779e078f18883fb2722",
+      "pointer": "/entries/110/laterEventCadences",
+      "recordId": "punishing_blow",
+      "old": [
+        {
+          "family": "punishing_blow",
+          "maximum": 1,
+          "scope": [
+            "owner"
+          ],
+          "epoch": "actual regular creature-turn interval under FS06",
+          "initialization": "No event/epoch claim at acquisition; retain existing clock and history.",
+          "detail": "An eligible off-turn event can use a distinct regular creature-turn interval; linked extra turns do not reset it. Exact own-movement/attack prerequisites remain in the full procedure."
+        }
+      ],
+      "replacement": [
+        {
+          "family": "punishing_blow",
+          "maximum": 1,
+          "scope": [
+            "owner"
+          ],
+          "epoch": "genuine actual creature-turn identity (regular or separately authorized extra turn)",
+          "initialization": "No event/epoch claim at acquisition; retain existing clock and history.",
+          "detail": "One claim per feat owner in the actual turn containing the qualifying event, including a separately authorized genuine extra turn. Additional Actions, attacks, Reactions, targets or resumed segments of that same turn share its existing claim. This caps only the procedure's expressly once-per-turn clause; separately stated critical-hit and per-event riders retain their own frequencies. Off-turn use still requires the complete actual trigger and all source permissions, costs and causal/recipient limits. This descriptor grants and authenticates no turn or event."
+        }
+      ]
+    },
+    {
+      "operationId": "FCD-02.descriptor.slasher",
+      "kind": "replace_json_value",
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_ALLOWANCE_DESCRIPTORS.json",
+      "expectedSha256": "3c469dd182b83a380478e23fcc5669fc43ac5cd283f63779e078f18883fb2722",
+      "pointer": "/entries/126/laterEventCadences",
+      "recordId": "slasher",
+      "old": [
+        {
+          "family": "slasher",
+          "maximum": 1,
+          "scope": [
+            "owner"
+          ],
+          "epoch": "actual regular creature-turn interval under FS06",
+          "initialization": "No event/epoch claim at acquisition; retain existing clock and history.",
+          "detail": "An eligible off-turn event can use a distinct regular creature-turn interval; linked extra turns do not reset it. Exact own-movement/attack prerequisites remain in the full procedure."
+        }
+      ],
+      "replacement": [
+        {
+          "family": "slasher",
+          "maximum": 1,
+          "scope": [
+            "owner"
+          ],
+          "epoch": "genuine actual creature-turn identity (regular or separately authorized extra turn)",
+          "initialization": "No event/epoch claim at acquisition; retain existing clock and history.",
+          "detail": "One claim per feat owner in the actual turn containing the qualifying event, including a separately authorized genuine extra turn. Additional Actions, attacks, Reactions, targets or resumed segments of that same turn share its existing claim. This caps only the procedure's expressly once-per-turn clause; separately stated critical-hit and per-event riders retain their own frequencies. Off-turn use still requires the complete actual trigger and all source permissions, costs and causal/recipient limits. This descriptor grants and authenticates no turn or event."
+        }
+      ]
+    },
+    {
+      "operationId": "FCD-02.descriptor.tactical_flanker",
+      "kind": "replace_json_value",
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_ALLOWANCE_DESCRIPTORS.json",
+      "expectedSha256": "3c469dd182b83a380478e23fcc5669fc43ac5cd283f63779e078f18883fb2722",
+      "pointer": "/entries/136/laterEventCadences",
+      "recordId": "tactical_flanker",
+      "old": [
+        {
+          "family": "tactical_flanker",
+          "maximum": 1,
+          "scope": [
+            "owner"
+          ],
+          "epoch": "actual regular creature-turn interval under FS06",
+          "initialization": "No event/epoch claim at acquisition; retain existing clock and history.",
+          "detail": "An eligible off-turn event can use a distinct regular creature-turn interval; linked extra turns do not reset it. Exact own-movement/attack prerequisites remain in the full procedure."
+        }
+      ],
+      "replacement": [
+        {
+          "family": "tactical_flanker",
+          "maximum": 1,
+          "scope": [
+            "owner"
+          ],
+          "epoch": "genuine actual creature-turn identity (regular or separately authorized extra turn)",
+          "initialization": "No event/epoch claim at acquisition; retain existing clock and history.",
+          "detail": "One claim per feat owner in the actual turn containing the qualifying event, including a separately authorized genuine extra turn. Additional Actions, attacks, Reactions, targets or resumed segments of that same turn share its existing claim. This caps only the procedure's expressly once-per-turn clause; separately stated critical-hit and per-event riders retain their own frequencies. Off-turn use still requires the complete actual trigger and all source permissions, costs and causal/recipient limits. This descriptor grants and authenticates no turn or event."
+        }
+      ]
+    },
+    {
+      "operationId": "FCD-02.descriptor.unstoppable_force",
+      "kind": "replace_json_value",
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_ALLOWANCE_DESCRIPTORS.json",
+      "expectedSha256": "3c469dd182b83a380478e23fcc5669fc43ac5cd283f63779e078f18883fb2722",
+      "pointer": "/entries/142/laterEventCadences",
+      "recordId": "unstoppable_force",
+      "old": [
+        {
+          "family": "unstoppable_force",
+          "maximum": 1,
+          "scope": [
+            "owner"
+          ],
+          "epoch": "actual regular creature-turn interval under FS06",
+          "initialization": "No event/epoch claim at acquisition; retain existing clock and history.",
+          "detail": "An eligible off-turn event can use a distinct regular creature-turn interval; linked extra turns do not reset it. Exact own-movement/attack prerequisites remain in the full procedure."
+        }
+      ],
+      "replacement": [
+        {
+          "family": "unstoppable_force",
+          "maximum": 1,
+          "scope": [
+            "owner"
+          ],
+          "epoch": "genuine actual creature-turn identity (regular or separately authorized extra turn)",
+          "initialization": "No event/epoch claim at acquisition; retain existing clock and history.",
+          "detail": "One claim per feat owner in the actual turn containing the qualifying event, including a separately authorized genuine extra turn. Additional Actions, attacks, Reactions, targets or resumed segments of that same turn share its existing claim. This caps only the procedure's expressly once-per-turn clause; separately stated critical-hit and per-event riders retain their own frequencies. Off-turn use still requires the complete actual trigger and all source permissions, costs and causal/recipient limits. This descriptor grants and authenticates no turn or event."
+        }
+      ]
+    },
+    {
+      "operationId": "FCD-02.descriptor.precision_strike",
+      "kind": "replace_json_value",
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_ALLOWANCE_DESCRIPTORS.json",
+      "expectedSha256": "3c469dd182b83a380478e23fcc5669fc43ac5cd283f63779e078f18883fb2722",
+      "pointer": "/entries/169/laterEventCadences",
+      "recordId": "precision_strike",
+      "old": [
+        {
+          "family": "precision_strike",
+          "maximum": 1,
+          "scope": [
+            "owner"
+          ],
+          "epoch": "actual regular creature-turn interval under FS06",
+          "initialization": "No event/epoch claim at acquisition; retain existing clock and history.",
+          "detail": "An eligible off-turn event can use a distinct regular creature-turn interval; linked extra turns do not reset it. Exact own-movement/attack prerequisites remain in the full procedure."
+        }
+      ],
+      "replacement": [
+        {
+          "family": "precision_strike",
+          "maximum": 1,
+          "scope": [
+            "owner"
+          ],
+          "epoch": "genuine actual creature-turn identity (regular or separately authorized extra turn)",
+          "initialization": "No event/epoch claim at acquisition; retain existing clock and history.",
+          "detail": "One claim per feat owner in the actual turn containing the qualifying event, including a separately authorized genuine extra turn. Additional Actions, attacks, Reactions, targets or resumed segments of that same turn share its existing claim. This caps only the procedure's expressly once-per-turn clause; separately stated critical-hit and per-event riders retain their own frequencies. Off-turn use still requires the complete actual trigger and all source permissions, costs and causal/recipient limits. This descriptor grants and authenticates no turn or event."
+        }
+      ]
+    }
+  ],
+  "applicationRules": [
+    "Verify all supplied before hashes before applying any operation; operations sharing a path are applied to one admitted original object, not rechecked against its mutated bytes between operations.",
+    "Preserve the input archive and all original objects, copied source procedures, old reports and statuses. Only the listed current derived fields and builder declarations change.",
+    "Propagate the identical FS-06 added paragraph to the actual current internal shared-rule mirror and shared manuscript. Those counterparts are not in this small packet: locate by FS-06 plus exact existing wording; preserve them and require exact equality before editing. No guessed path/hash is certified here.",
+    "When emitting current descriptor descendants, update the current shared_rules.json and builder source-binding bytes/hash from measured descendants, preserving the old manifest/report as history. Do not claim any old test executed against these new bytes.",
+    "Retain the same 177 entries, 38 cadence-bearing identities and 40 cadence records. No original feat, permanent choice, finite allowance, selection flag, approval flag or historical source statement is rewritten.",
+    "The untouched EpochClaims class requires no new algorithm for these epoch corrections. Its inputs remain source-qualified caller facts, not authenticated by this adapter."
+  ],
+  "newSharedParagraph": "NEW FEAT335-CADENCE-CHECK-01 completion, limited to feat procedures governed by FS-06: an otherwise unqualified \"once per turn\" allowance is once for that feat owner during each genuine actual creature turn in which its exact trigger legally occurs, whether that turn belongs to the owner or another creature. A separately sourced and actually occurring extra turn has a distinct actual-turn identity and can supply a distinct opportunity for that unqualified allowance; this rule grants no extra turn. Another Action, Bonus Action, attack, Reaction, nested event, target or resumed segment of the same actual turn does not create another turn identity. Returning to or replaying an already recorded turn retains that turn's spent claim. Actual body, movement, attack, casting, payment, causal-root and recipient restrictions still govern independently.\n\nThis completion does not replace an expressly regular-turn allowance or FS-06's existing default owner-regular-interval allowance for \"your turn\". In particular, Savage Attacker retains its stated own/off-turn regular-turn allowances, and Eldritch Combat retains its expressly regular-creature-turn shared embedded-cast cap plus its owner-regular-interval ordinary-append cap. Overrun's per-creature challenge limit belongs to the actual turn containing its qualifying Dash and subsequent movement; another Dash in that same turn does not renew it. Quickened Thought keeps its expressly any-later-actual-turn release window and the shared one-free-stored-release-per-owner/numbered-round cap, not a new bank at each turn. Per-round, encounter, underlying-roll/cast, recipient-rest and source-defined duration/deadline histories are not reset by an extra turn. Outside initiative retain the governed six-second procedure without inventing a turn from each action or counting an initiative transition twice. Source-specific temporal restoration remains separately governed; this completion supplies no rewind or unsupported extra-turn adapter.",
+  "notIncludedOrCertified": [
+    "Current internal shared_rules counterpart",
+    "Current shared manuscript counterpart",
+    "Full feat runtime/host turn scheduler",
+    "BoundAllowance/FiniteFeatUse rest behavior outside this narrow request"
+  ]
+}

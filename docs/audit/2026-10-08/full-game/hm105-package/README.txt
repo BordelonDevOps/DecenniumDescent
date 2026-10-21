@@ -1,0 +1,1 @@
+All22 heritage/mutation records,44original statedcases and4boundaries. Full source bytes mapped to original paths. Historical and later rules remain separate; no canonical application, parent335 acceptance, engine or balance approval. Supplied code is evidence, do not execute.

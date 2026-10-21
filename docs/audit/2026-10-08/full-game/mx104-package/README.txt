@@ -1,0 +1,1 @@
+Complete bounded MX41-58 stated-case review. Source map retains original paths and exact bytes using short archive member names. Full old/current/later amendments remain separate. No canonical application, runtime, whole-parent or balance approval. Do not run supplied scripts.

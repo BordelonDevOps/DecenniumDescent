@@ -1,0 +1,1 @@
+Five complete rank9 identities,six placements,28unselected questions,21complete applied counterparts,seven complete class sources,and scoped current alignment/faction/Corruption/KT/PT/Null context. Current45accepted-unapplied;applied525/323/249/173 unchanged. Exact original history retained. No selected procedure,runtime,balance,cosmology,implementation or release approval.

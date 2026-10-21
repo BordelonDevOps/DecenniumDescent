@@ -1,0 +1,4622 @@
+{
+  "id": "RF9-FEEDBACK-ISOLATED-DIAGNOSTICS-02",
+  "scope": "New isolated finite data/receipt diagnostics only. No downloaded/project/game modules imported or executed.",
+  "caseCount": 31,
+  "assertionCount": 64,
+  "failures": 0,
+  "cases": [
+    {
+      "id": "RF9-NS-A-counter-POSITIVE",
+      "scope": "isolated reward/receipt diagnostic, not native casting or game runtime",
+      "premise": {
+        "completeOriginalCase": "AFFECTED_CASES.json#/cases/0/completeBefore",
+        "completeCorrectedCase": "AFFECTED_CASES.json#/cases/0/completeAfter",
+        "nativePayment": {
+          "beforeRP": 64,
+          "cost": 3,
+          "afterPaymentRP": 61
+        },
+        "projectionBoundary": "Counter payment, Reaction spending, native success and other native effects are supplied complete case facts. Only the withheld1RP and its new receipt are recomputed."
+      },
+      "before": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 61,
+        "maxRP": 64,
+        "action": false,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {},
+            "sourceSettlements": {}
+          }
+        }
+      },
+      "sourceOutcome": {
+        "scopeId": "RF9-NS-A",
+        "ownerId": "E",
+        "roundId": "RF9-NS-A:round:1",
+        "roundOrdinal": 1,
+        "counterCastId": "Counter1",
+        "negatedCastId": "Nexus1",
+        "nativeCounterSourceRef": "wizard#/cards/17",
+        "originalResolutionEventId": "RF9-NS-A-counter:0",
+        "settledAt": 0.06,
+        "qualification": {
+          "featureActuallyAcquired": true,
+          "ownActualCounterspell": true,
+          "successfullyNegated": true,
+          "companionCounter": false,
+          "reflectedCounter": false,
+          "copiedCounter": false,
+          "recoveryPermitted": true
+        },
+        "nativeCounterTransactionComplete": true,
+        "deliveryId": "first-delivery"
+      },
+      "after": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 62,
+        "maxRP": 64,
+        "action": false,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {
+              "RF9-NS-A:round:1": {
+                "state": "spent",
+                "settlementId": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]"
+              }
+            },
+            "sourceSettlements": {
+              "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]": {
+                "id": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]",
+                "featureId": "wizard.supplement.arcane-feedback",
+                "sourceRef": "wizard#/cards/60",
+                "status": "awarded",
+                "scopeId": "RF9-NS-A",
+                "ownerId": "E",
+                "roundId": "RF9-NS-A:round:1",
+                "roundOrdinal": 1,
+                "counterCastId": "Counter1",
+                "negatedCastId": "Nexus1",
+                "nativeCounterSourceRef": "wizard#/cards/17",
+                "originalResolutionEventId": "RF9-NS-A-counter:0",
+                "settledAt": 0.06,
+                "qualification": {
+                  "featureActuallyAcquired": true,
+                  "ownActualCounterspell": true,
+                  "successfullyNegated": true,
+                  "companionCounter": false,
+                  "reflectedCounter": false,
+                  "copiedCounter": false,
+                  "recoveryPermitted": true
+                },
+                "requestedRP": 1,
+                "rpBeforeRecovery": 61,
+                "normalMaxRP": 64,
+                "creditedRP": 1,
+                "rpAfterRecovery": 62,
+                "frequencyDisposition": "spent; terminal source settlement and round pointer atomically committed with RP",
+                "otherBudgetMutation": "none; native counter payment/Reaction/recharge/history already belongs to the counter transaction"
+              }
+            }
+          }
+        }
+      },
+      "result": {
+        "status": "awarded",
+        "creditedRP": 1,
+        "settlementId": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]"
+      },
+      "expected": {
+        "creditedRP": 1,
+        "afterRP": 62,
+        "allOtherProjectionFieldsExact": true
+      }
+    },
+    {
+      "id": "RF9-NS-A-counter/DUPLICATE",
+      "scope": "isolated reward/receipt diagnostic, not native casting or game runtime",
+      "premise": "Replay of same immutable completed source; no new Reaction or source event.",
+      "before": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 62,
+        "maxRP": 64,
+        "action": false,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {
+              "RF9-NS-A:round:1": {
+                "state": "spent",
+                "settlementId": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]"
+              }
+            },
+            "sourceSettlements": {
+              "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]": {
+                "id": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]",
+                "featureId": "wizard.supplement.arcane-feedback",
+                "sourceRef": "wizard#/cards/60",
+                "status": "awarded",
+                "scopeId": "RF9-NS-A",
+                "ownerId": "E",
+                "roundId": "RF9-NS-A:round:1",
+                "roundOrdinal": 1,
+                "counterCastId": "Counter1",
+                "negatedCastId": "Nexus1",
+                "nativeCounterSourceRef": "wizard#/cards/17",
+                "originalResolutionEventId": "RF9-NS-A-counter:0",
+                "settledAt": 0.06,
+                "qualification": {
+                  "featureActuallyAcquired": true,
+                  "ownActualCounterspell": true,
+                  "successfullyNegated": true,
+                  "companionCounter": false,
+                  "reflectedCounter": false,
+                  "copiedCounter": false,
+                  "recoveryPermitted": true
+                },
+                "requestedRP": 1,
+                "rpBeforeRecovery": 61,
+                "normalMaxRP": 64,
+                "creditedRP": 1,
+                "rpAfterRecovery": 62,
+                "frequencyDisposition": "spent; terminal source settlement and round pointer atomically committed with RP",
+                "otherBudgetMutation": "none; native counter payment/Reaction/recharge/history already belongs to the counter transaction"
+              }
+            }
+          }
+        }
+      },
+      "sourceOutcome": {
+        "scopeId": "RF9-NS-A",
+        "ownerId": "E",
+        "roundId": "RF9-NS-A:round:1",
+        "roundOrdinal": 1,
+        "counterCastId": "Counter1",
+        "negatedCastId": "Nexus1",
+        "nativeCounterSourceRef": "wizard#/cards/17",
+        "originalResolutionEventId": "RF9-NS-A-counter:0",
+        "settledAt": 0.06,
+        "qualification": {
+          "featureActuallyAcquired": true,
+          "ownActualCounterspell": true,
+          "successfullyNegated": true,
+          "companionCounter": false,
+          "reflectedCounter": false,
+          "copiedCounter": false,
+          "recoveryPermitted": true
+        },
+        "nativeCounterTransactionComplete": true,
+        "deliveryId": "first-delivery"
+      },
+      "after": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 62,
+        "maxRP": 64,
+        "action": false,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {
+              "RF9-NS-A:round:1": {
+                "state": "spent",
+                "settlementId": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]"
+              }
+            },
+            "sourceSettlements": {
+              "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]": {
+                "id": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]",
+                "featureId": "wizard.supplement.arcane-feedback",
+                "sourceRef": "wizard#/cards/60",
+                "status": "awarded",
+                "scopeId": "RF9-NS-A",
+                "ownerId": "E",
+                "roundId": "RF9-NS-A:round:1",
+                "roundOrdinal": 1,
+                "counterCastId": "Counter1",
+                "negatedCastId": "Nexus1",
+                "nativeCounterSourceRef": "wizard#/cards/17",
+                "originalResolutionEventId": "RF9-NS-A-counter:0",
+                "settledAt": 0.06,
+                "qualification": {
+                  "featureActuallyAcquired": true,
+                  "ownActualCounterspell": true,
+                  "successfullyNegated": true,
+                  "companionCounter": false,
+                  "reflectedCounter": false,
+                  "copiedCounter": false,
+                  "recoveryPermitted": true
+                },
+                "requestedRP": 1,
+                "rpBeforeRecovery": 61,
+                "normalMaxRP": 64,
+                "creditedRP": 1,
+                "rpAfterRecovery": 62,
+                "frequencyDisposition": "spent; terminal source settlement and round pointer atomically committed with RP",
+                "otherBudgetMutation": "none; native counter payment/Reaction/recharge/history already belongs to the counter transaction"
+              }
+            }
+          }
+        }
+      },
+      "result": {
+        "status": "duplicate-source-no-mutation",
+        "creditedRP": 0,
+        "originalSettlementId": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]"
+      },
+      "expected": {
+        "exactNoMutation": true
+      }
+    },
+    {
+      "id": "RF9-NS-A-counter/RENAMED-CALLBACK",
+      "scope": "isolated reward/receipt diagnostic, not native casting or game runtime",
+      "premise": "Replay of same immutable completed source; no new Reaction or source event.",
+      "before": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 62,
+        "maxRP": 64,
+        "action": false,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {
+              "RF9-NS-A:round:1": {
+                "state": "spent",
+                "settlementId": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]"
+              }
+            },
+            "sourceSettlements": {
+              "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]": {
+                "id": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]",
+                "featureId": "wizard.supplement.arcane-feedback",
+                "sourceRef": "wizard#/cards/60",
+                "status": "awarded",
+                "scopeId": "RF9-NS-A",
+                "ownerId": "E",
+                "roundId": "RF9-NS-A:round:1",
+                "roundOrdinal": 1,
+                "counterCastId": "Counter1",
+                "negatedCastId": "Nexus1",
+                "nativeCounterSourceRef": "wizard#/cards/17",
+                "originalResolutionEventId": "RF9-NS-A-counter:0",
+                "settledAt": 0.06,
+                "qualification": {
+                  "featureActuallyAcquired": true,
+                  "ownActualCounterspell": true,
+                  "successfullyNegated": true,
+                  "companionCounter": false,
+                  "reflectedCounter": false,
+                  "copiedCounter": false,
+                  "recoveryPermitted": true
+                },
+                "requestedRP": 1,
+                "rpBeforeRecovery": 61,
+                "normalMaxRP": 64,
+                "creditedRP": 1,
+                "rpAfterRecovery": 62,
+                "frequencyDisposition": "spent; terminal source settlement and round pointer atomically committed with RP",
+                "otherBudgetMutation": "none; native counter payment/Reaction/recharge/history already belongs to the counter transaction"
+              }
+            }
+          }
+        }
+      },
+      "sourceOutcome": {
+        "scopeId": "RF9-NS-A",
+        "ownerId": "E",
+        "roundId": "RF9-NS-A:round:1",
+        "roundOrdinal": 1,
+        "counterCastId": "Counter1",
+        "negatedCastId": "Nexus1",
+        "nativeCounterSourceRef": "wizard#/cards/17",
+        "originalResolutionEventId": "RF9-NS-A-counter:0",
+        "settledAt": 0.06,
+        "qualification": {
+          "featureActuallyAcquired": true,
+          "ownActualCounterspell": true,
+          "successfullyNegated": true,
+          "companionCounter": false,
+          "reflectedCounter": false,
+          "copiedCounter": false,
+          "recoveryPermitted": true
+        },
+        "nativeCounterTransactionComplete": true,
+        "deliveryId": "different-delivery"
+      },
+      "after": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 62,
+        "maxRP": 64,
+        "action": false,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {
+              "RF9-NS-A:round:1": {
+                "state": "spent",
+                "settlementId": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]"
+              }
+            },
+            "sourceSettlements": {
+              "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]": {
+                "id": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]",
+                "featureId": "wizard.supplement.arcane-feedback",
+                "sourceRef": "wizard#/cards/60",
+                "status": "awarded",
+                "scopeId": "RF9-NS-A",
+                "ownerId": "E",
+                "roundId": "RF9-NS-A:round:1",
+                "roundOrdinal": 1,
+                "counterCastId": "Counter1",
+                "negatedCastId": "Nexus1",
+                "nativeCounterSourceRef": "wizard#/cards/17",
+                "originalResolutionEventId": "RF9-NS-A-counter:0",
+                "settledAt": 0.06,
+                "qualification": {
+                  "featureActuallyAcquired": true,
+                  "ownActualCounterspell": true,
+                  "successfullyNegated": true,
+                  "companionCounter": false,
+                  "reflectedCounter": false,
+                  "copiedCounter": false,
+                  "recoveryPermitted": true
+                },
+                "requestedRP": 1,
+                "rpBeforeRecovery": 61,
+                "normalMaxRP": 64,
+                "creditedRP": 1,
+                "rpAfterRecovery": 62,
+                "frequencyDisposition": "spent; terminal source settlement and round pointer atomically committed with RP",
+                "otherBudgetMutation": "none; native counter payment/Reaction/recharge/history already belongs to the counter transaction"
+              }
+            }
+          }
+        }
+      },
+      "result": {
+        "status": "duplicate-source-no-mutation",
+        "creditedRP": 0,
+        "originalSettlementId": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]"
+      },
+      "expected": {
+        "exactNoMutation": true
+      }
+    },
+    {
+      "id": "RF9-NS-A-counter/SAVE-RELOAD",
+      "scope": "isolated reward/receipt diagnostic, not native casting or game runtime",
+      "premise": "Replay of same immutable completed source; no new Reaction or source event.",
+      "before": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 62,
+        "maxRP": 64,
+        "action": false,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {
+              "RF9-NS-A:round:1": {
+                "state": "spent",
+                "settlementId": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]"
+              }
+            },
+            "sourceSettlements": {
+              "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]": {
+                "id": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]",
+                "featureId": "wizard.supplement.arcane-feedback",
+                "sourceRef": "wizard#/cards/60",
+                "status": "awarded",
+                "scopeId": "RF9-NS-A",
+                "ownerId": "E",
+                "roundId": "RF9-NS-A:round:1",
+                "roundOrdinal": 1,
+                "counterCastId": "Counter1",
+                "negatedCastId": "Nexus1",
+                "nativeCounterSourceRef": "wizard#/cards/17",
+                "originalResolutionEventId": "RF9-NS-A-counter:0",
+                "settledAt": 0.06,
+                "qualification": {
+                  "featureActuallyAcquired": true,
+                  "ownActualCounterspell": true,
+                  "successfullyNegated": true,
+                  "companionCounter": false,
+                  "reflectedCounter": false,
+                  "copiedCounter": false,
+                  "recoveryPermitted": true
+                },
+                "requestedRP": 1,
+                "rpBeforeRecovery": 61,
+                "normalMaxRP": 64,
+                "creditedRP": 1,
+                "rpAfterRecovery": 62,
+                "frequencyDisposition": "spent; terminal source settlement and round pointer atomically committed with RP",
+                "otherBudgetMutation": "none; native counter payment/Reaction/recharge/history already belongs to the counter transaction"
+              }
+            }
+          }
+        }
+      },
+      "sourceOutcome": {
+        "scopeId": "RF9-NS-A",
+        "ownerId": "E",
+        "roundId": "RF9-NS-A:round:1",
+        "roundOrdinal": 1,
+        "counterCastId": "Counter1",
+        "negatedCastId": "Nexus1",
+        "nativeCounterSourceRef": "wizard#/cards/17",
+        "originalResolutionEventId": "RF9-NS-A-counter:0",
+        "settledAt": 0.06,
+        "qualification": {
+          "featureActuallyAcquired": true,
+          "ownActualCounterspell": true,
+          "successfullyNegated": true,
+          "companionCounter": false,
+          "reflectedCounter": false,
+          "copiedCounter": false,
+          "recoveryPermitted": true
+        },
+        "nativeCounterTransactionComplete": true,
+        "deliveryId": "reload-delivery"
+      },
+      "after": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 62,
+        "maxRP": 64,
+        "action": false,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {
+              "RF9-NS-A:round:1": {
+                "state": "spent",
+                "settlementId": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]"
+              }
+            },
+            "sourceSettlements": {
+              "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]": {
+                "id": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]",
+                "featureId": "wizard.supplement.arcane-feedback",
+                "sourceRef": "wizard#/cards/60",
+                "status": "awarded",
+                "scopeId": "RF9-NS-A",
+                "ownerId": "E",
+                "roundId": "RF9-NS-A:round:1",
+                "roundOrdinal": 1,
+                "counterCastId": "Counter1",
+                "negatedCastId": "Nexus1",
+                "nativeCounterSourceRef": "wizard#/cards/17",
+                "originalResolutionEventId": "RF9-NS-A-counter:0",
+                "settledAt": 0.06,
+                "qualification": {
+                  "featureActuallyAcquired": true,
+                  "ownActualCounterspell": true,
+                  "successfullyNegated": true,
+                  "companionCounter": false,
+                  "reflectedCounter": false,
+                  "copiedCounter": false,
+                  "recoveryPermitted": true
+                },
+                "requestedRP": 1,
+                "rpBeforeRecovery": 61,
+                "normalMaxRP": 64,
+                "creditedRP": 1,
+                "rpAfterRecovery": 62,
+                "frequencyDisposition": "spent; terminal source settlement and round pointer atomically committed with RP",
+                "otherBudgetMutation": "none; native counter payment/Reaction/recharge/history already belongs to the counter transaction"
+              }
+            }
+          }
+        }
+      },
+      "result": {
+        "status": "duplicate-source-no-mutation",
+        "creditedRP": 0,
+        "originalSettlementId": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]"
+      },
+      "expected": {
+        "exactNoMutation": true
+      }
+    },
+    {
+      "id": "RF9-NS-A-counter/OLD-SOURCE-NEXT-ROUND",
+      "scope": "isolated reward/receipt diagnostic, not native casting or game runtime",
+      "premise": "Only the supplied numbered-round marker changes; no own-turn START or Reaction refresh is run.",
+      "before": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:2",
+          "ordinal": 2,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 6,
+          "nextBoundaryMarker": 12
+        },
+        "rp": 62,
+        "maxRP": 64,
+        "action": false,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {
+              "RF9-NS-A:round:1": {
+                "state": "spent",
+                "settlementId": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]"
+              }
+            },
+            "sourceSettlements": {
+              "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]": {
+                "id": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]",
+                "featureId": "wizard.supplement.arcane-feedback",
+                "sourceRef": "wizard#/cards/60",
+                "status": "awarded",
+                "scopeId": "RF9-NS-A",
+                "ownerId": "E",
+                "roundId": "RF9-NS-A:round:1",
+                "roundOrdinal": 1,
+                "counterCastId": "Counter1",
+                "negatedCastId": "Nexus1",
+                "nativeCounterSourceRef": "wizard#/cards/17",
+                "originalResolutionEventId": "RF9-NS-A-counter:0",
+                "settledAt": 0.06,
+                "qualification": {
+                  "featureActuallyAcquired": true,
+                  "ownActualCounterspell": true,
+                  "successfullyNegated": true,
+                  "companionCounter": false,
+                  "reflectedCounter": false,
+                  "copiedCounter": false,
+                  "recoveryPermitted": true
+                },
+                "requestedRP": 1,
+                "rpBeforeRecovery": 61,
+                "normalMaxRP": 64,
+                "creditedRP": 1,
+                "rpAfterRecovery": 62,
+                "frequencyDisposition": "spent; terminal source settlement and round pointer atomically committed with RP",
+                "otherBudgetMutation": "none; native counter payment/Reaction/recharge/history already belongs to the counter transaction"
+              }
+            }
+          }
+        }
+      },
+      "sourceOutcome": {
+        "scopeId": "RF9-NS-A",
+        "ownerId": "E",
+        "roundId": "RF9-NS-A:round:1",
+        "roundOrdinal": 1,
+        "counterCastId": "Counter1",
+        "negatedCastId": "Nexus1",
+        "nativeCounterSourceRef": "wizard#/cards/17",
+        "originalResolutionEventId": "RF9-NS-A-counter:0",
+        "settledAt": 0.06,
+        "qualification": {
+          "featureActuallyAcquired": true,
+          "ownActualCounterspell": true,
+          "successfullyNegated": true,
+          "companionCounter": false,
+          "reflectedCounter": false,
+          "copiedCounter": false,
+          "recoveryPermitted": true
+        },
+        "nativeCounterTransactionComplete": true,
+        "deliveryId": "first-delivery"
+      },
+      "after": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:2",
+          "ordinal": 2,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 6,
+          "nextBoundaryMarker": 12
+        },
+        "rp": 62,
+        "maxRP": 64,
+        "action": false,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {
+              "RF9-NS-A:round:1": {
+                "state": "spent",
+                "settlementId": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]"
+              }
+            },
+            "sourceSettlements": {
+              "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]": {
+                "id": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]",
+                "featureId": "wizard.supplement.arcane-feedback",
+                "sourceRef": "wizard#/cards/60",
+                "status": "awarded",
+                "scopeId": "RF9-NS-A",
+                "ownerId": "E",
+                "roundId": "RF9-NS-A:round:1",
+                "roundOrdinal": 1,
+                "counterCastId": "Counter1",
+                "negatedCastId": "Nexus1",
+                "nativeCounterSourceRef": "wizard#/cards/17",
+                "originalResolutionEventId": "RF9-NS-A-counter:0",
+                "settledAt": 0.06,
+                "qualification": {
+                  "featureActuallyAcquired": true,
+                  "ownActualCounterspell": true,
+                  "successfullyNegated": true,
+                  "companionCounter": false,
+                  "reflectedCounter": false,
+                  "copiedCounter": false,
+                  "recoveryPermitted": true
+                },
+                "requestedRP": 1,
+                "rpBeforeRecovery": 61,
+                "normalMaxRP": 64,
+                "creditedRP": 1,
+                "rpAfterRecovery": 62,
+                "frequencyDisposition": "spent; terminal source settlement and round pointer atomically committed with RP",
+                "otherBudgetMutation": "none; native counter payment/Reaction/recharge/history already belongs to the counter transaction"
+              }
+            }
+          }
+        }
+      },
+      "result": {
+        "status": "duplicate-source-no-mutation",
+        "creditedRP": 0,
+        "originalSettlementId": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]"
+      },
+      "expected": {
+        "exactNoMutation": true
+      }
+    },
+    {
+      "id": "RF9-NS-B-counterpulse-POSITIVE",
+      "scope": "isolated reward/receipt diagnostic, not native casting or game runtime",
+      "premise": {
+        "completeOriginalCase": "AFFECTED_CASES.json#/cases/1/completeBefore",
+        "completeCorrectedCase": "AFFECTED_CASES.json#/cases/1/completeAfter",
+        "nativePayment": {
+          "beforeRP": 64,
+          "cost": 1,
+          "afterPaymentRP": 63
+        },
+        "projectionBoundary": "Counter payment, Reaction spending, native success and other native effects are supplied complete case facts. Only the withheld1RP and its new receipt are recomputed."
+      },
+      "before": {
+        "ownerId": "B",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-B",
+          "roundId": "RF9-NS-B:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 63,
+        "maxRP": 64,
+        "action": true,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "counterpulse-round1": "spent",
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "B",
+            "roundUses": {},
+            "sourceSettlements": {}
+          }
+        }
+      },
+      "sourceOutcome": {
+        "scopeId": "RF9-NS-B",
+        "ownerId": "B",
+        "roundId": "RF9-NS-B:round:1",
+        "roundOrdinal": 1,
+        "counterCastId": "ClassCounter",
+        "negatedCastId": "EnemyFire",
+        "nativeCounterSourceRef": "wizard#/cards/17",
+        "originalResolutionEventId": "RF9-NS-B-counterpulse:1",
+        "settledAt": 2.2,
+        "qualification": {
+          "featureActuallyAcquired": true,
+          "ownActualCounterspell": true,
+          "successfullyNegated": true,
+          "companionCounter": false,
+          "reflectedCounter": false,
+          "copiedCounter": false,
+          "recoveryPermitted": true
+        },
+        "nativeCounterTransactionComplete": true,
+        "deliveryId": "first-delivery"
+      },
+      "after": {
+        "ownerId": "B",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-B",
+          "roundId": "RF9-NS-B:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 64,
+        "maxRP": 64,
+        "action": true,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "counterpulse-round1": "spent",
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "B",
+            "roundUses": {
+              "RF9-NS-B:round:1": {
+                "state": "spent",
+                "settlementId": "[\"RF9-NS-B\",\"B\",\"wizard.supplement.arcane-feedback\",\"ClassCounter\"]"
+              }
+            },
+            "sourceSettlements": {
+              "[\"RF9-NS-B\",\"B\",\"wizard.supplement.arcane-feedback\",\"ClassCounter\"]": {
+                "id": "[\"RF9-NS-B\",\"B\",\"wizard.supplement.arcane-feedback\",\"ClassCounter\"]",
+                "featureId": "wizard.supplement.arcane-feedback",
+                "sourceRef": "wizard#/cards/60",
+                "status": "awarded",
+                "scopeId": "RF9-NS-B",
+                "ownerId": "B",
+                "roundId": "RF9-NS-B:round:1",
+                "roundOrdinal": 1,
+                "counterCastId": "ClassCounter",
+                "negatedCastId": "EnemyFire",
+                "nativeCounterSourceRef": "wizard#/cards/17",
+                "originalResolutionEventId": "RF9-NS-B-counterpulse:1",
+                "settledAt": 2.2,
+                "qualification": {
+                  "featureActuallyAcquired": true,
+                  "ownActualCounterspell": true,
+                  "successfullyNegated": true,
+                  "companionCounter": false,
+                  "reflectedCounter": false,
+                  "copiedCounter": false,
+                  "recoveryPermitted": true
+                },
+                "requestedRP": 1,
+                "rpBeforeRecovery": 63,
+                "normalMaxRP": 64,
+                "creditedRP": 1,
+                "rpAfterRecovery": 64,
+                "frequencyDisposition": "spent; terminal source settlement and round pointer atomically committed with RP",
+                "otherBudgetMutation": "none; native counter payment/Reaction/recharge/history already belongs to the counter transaction"
+              }
+            }
+          }
+        }
+      },
+      "result": {
+        "status": "awarded",
+        "creditedRP": 1,
+        "settlementId": "[\"RF9-NS-B\",\"B\",\"wizard.supplement.arcane-feedback\",\"ClassCounter\"]"
+      },
+      "expected": {
+        "creditedRP": 1,
+        "afterRP": 64,
+        "allOtherProjectionFieldsExact": true
+      }
+    },
+    {
+      "id": "RF9-NS-B-counterpulse/DUPLICATE",
+      "scope": "isolated reward/receipt diagnostic, not native casting or game runtime",
+      "premise": "Replay of same immutable completed source; no new Reaction or source event.",
+      "before": {
+        "ownerId": "B",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-B",
+          "roundId": "RF9-NS-B:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 64,
+        "maxRP": 64,
+        "action": true,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "counterpulse-round1": "spent",
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "B",
+            "roundUses": {
+              "RF9-NS-B:round:1": {
+                "state": "spent",
+                "settlementId": "[\"RF9-NS-B\",\"B\",\"wizard.supplement.arcane-feedback\",\"ClassCounter\"]"
+              }
+            },
+            "sourceSettlements": {
+              "[\"RF9-NS-B\",\"B\",\"wizard.supplement.arcane-feedback\",\"ClassCounter\"]": {
+                "id": "[\"RF9-NS-B\",\"B\",\"wizard.supplement.arcane-feedback\",\"ClassCounter\"]",
+                "featureId": "wizard.supplement.arcane-feedback",
+                "sourceRef": "wizard#/cards/60",
+                "status": "awarded",
+                "scopeId": "RF9-NS-B",
+                "ownerId": "B",
+                "roundId": "RF9-NS-B:round:1",
+                "roundOrdinal": 1,
+                "counterCastId": "ClassCounter",
+                "negatedCastId": "EnemyFire",
+                "nativeCounterSourceRef": "wizard#/cards/17",
+                "originalResolutionEventId": "RF9-NS-B-counterpulse:1",
+                "settledAt": 2.2,
+                "qualification": {
+                  "featureActuallyAcquired": true,
+                  "ownActualCounterspell": true,
+                  "successfullyNegated": true,
+                  "companionCounter": false,
+                  "reflectedCounter": false,
+                  "copiedCounter": false,
+                  "recoveryPermitted": true
+                },
+                "requestedRP": 1,
+                "rpBeforeRecovery": 63,
+                "normalMaxRP": 64,
+                "creditedRP": 1,
+                "rpAfterRecovery": 64,
+                "frequencyDisposition": "spent; terminal source settlement and round pointer atomically committed with RP",
+                "otherBudgetMutation": "none; native counter payment/Reaction/recharge/history already belongs to the counter transaction"
+              }
+            }
+          }
+        }
+      },
+      "sourceOutcome": {
+        "scopeId": "RF9-NS-B",
+        "ownerId": "B",
+        "roundId": "RF9-NS-B:round:1",
+        "roundOrdinal": 1,
+        "counterCastId": "ClassCounter",
+        "negatedCastId": "EnemyFire",
+        "nativeCounterSourceRef": "wizard#/cards/17",
+        "originalResolutionEventId": "RF9-NS-B-counterpulse:1",
+        "settledAt": 2.2,
+        "qualification": {
+          "featureActuallyAcquired": true,
+          "ownActualCounterspell": true,
+          "successfullyNegated": true,
+          "companionCounter": false,
+          "reflectedCounter": false,
+          "copiedCounter": false,
+          "recoveryPermitted": true
+        },
+        "nativeCounterTransactionComplete": true,
+        "deliveryId": "first-delivery"
+      },
+      "after": {
+        "ownerId": "B",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-B",
+          "roundId": "RF9-NS-B:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 64,
+        "maxRP": 64,
+        "action": true,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "counterpulse-round1": "spent",
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "B",
+            "roundUses": {
+              "RF9-NS-B:round:1": {
+                "state": "spent",
+                "settlementId": "[\"RF9-NS-B\",\"B\",\"wizard.supplement.arcane-feedback\",\"ClassCounter\"]"
+              }
+            },
+            "sourceSettlements": {
+              "[\"RF9-NS-B\",\"B\",\"wizard.supplement.arcane-feedback\",\"ClassCounter\"]": {
+                "id": "[\"RF9-NS-B\",\"B\",\"wizard.supplement.arcane-feedback\",\"ClassCounter\"]",
+                "featureId": "wizard.supplement.arcane-feedback",
+                "sourceRef": "wizard#/cards/60",
+                "status": "awarded",
+                "scopeId": "RF9-NS-B",
+                "ownerId": "B",
+                "roundId": "RF9-NS-B:round:1",
+                "roundOrdinal": 1,
+                "counterCastId": "ClassCounter",
+                "negatedCastId": "EnemyFire",
+                "nativeCounterSourceRef": "wizard#/cards/17",
+                "originalResolutionEventId": "RF9-NS-B-counterpulse:1",
+                "settledAt": 2.2,
+                "qualification": {
+                  "featureActuallyAcquired": true,
+                  "ownActualCounterspell": true,
+                  "successfullyNegated": true,
+                  "companionCounter": false,
+                  "reflectedCounter": false,
+                  "copiedCounter": false,
+                  "recoveryPermitted": true
+                },
+                "requestedRP": 1,
+                "rpBeforeRecovery": 63,
+                "normalMaxRP": 64,
+                "creditedRP": 1,
+                "rpAfterRecovery": 64,
+                "frequencyDisposition": "spent; terminal source settlement and round pointer atomically committed with RP",
+                "otherBudgetMutation": "none; native counter payment/Reaction/recharge/history already belongs to the counter transaction"
+              }
+            }
+          }
+        }
+      },
+      "result": {
+        "status": "duplicate-source-no-mutation",
+        "creditedRP": 0,
+        "originalSettlementId": "[\"RF9-NS-B\",\"B\",\"wizard.supplement.arcane-feedback\",\"ClassCounter\"]"
+      },
+      "expected": {
+        "exactNoMutation": true
+      }
+    },
+    {
+      "id": "RF9-NS-B-counterpulse/RENAMED-CALLBACK",
+      "scope": "isolated reward/receipt diagnostic, not native casting or game runtime",
+      "premise": "Replay of same immutable completed source; no new Reaction or source event.",
+      "before": {
+        "ownerId": "B",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-B",
+          "roundId": "RF9-NS-B:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 64,
+        "maxRP": 64,
+        "action": true,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "counterpulse-round1": "spent",
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "B",
+            "roundUses": {
+              "RF9-NS-B:round:1": {
+                "state": "spent",
+                "settlementId": "[\"RF9-NS-B\",\"B\",\"wizard.supplement.arcane-feedback\",\"ClassCounter\"]"
+              }
+            },
+            "sourceSettlements": {
+              "[\"RF9-NS-B\",\"B\",\"wizard.supplement.arcane-feedback\",\"ClassCounter\"]": {
+                "id": "[\"RF9-NS-B\",\"B\",\"wizard.supplement.arcane-feedback\",\"ClassCounter\"]",
+                "featureId": "wizard.supplement.arcane-feedback",
+                "sourceRef": "wizard#/cards/60",
+                "status": "awarded",
+                "scopeId": "RF9-NS-B",
+                "ownerId": "B",
+                "roundId": "RF9-NS-B:round:1",
+                "roundOrdinal": 1,
+                "counterCastId": "ClassCounter",
+                "negatedCastId": "EnemyFire",
+                "nativeCounterSourceRef": "wizard#/cards/17",
+                "originalResolutionEventId": "RF9-NS-B-counterpulse:1",
+                "settledAt": 2.2,
+                "qualification": {
+                  "featureActuallyAcquired": true,
+                  "ownActualCounterspell": true,
+                  "successfullyNegated": true,
+                  "companionCounter": false,
+                  "reflectedCounter": false,
+                  "copiedCounter": false,
+                  "recoveryPermitted": true
+                },
+                "requestedRP": 1,
+                "rpBeforeRecovery": 63,
+                "normalMaxRP": 64,
+                "creditedRP": 1,
+                "rpAfterRecovery": 64,
+                "frequencyDisposition": "spent; terminal source settlement and round pointer atomically committed with RP",
+                "otherBudgetMutation": "none; native counter payment/Reaction/recharge/history already belongs to the counter transaction"
+              }
+            }
+          }
+        }
+      },
+      "sourceOutcome": {
+        "scopeId": "RF9-NS-B",
+        "ownerId": "B",
+        "roundId": "RF9-NS-B:round:1",
+        "roundOrdinal": 1,
+        "counterCastId": "ClassCounter",
+        "negatedCastId": "EnemyFire",
+        "nativeCounterSourceRef": "wizard#/cards/17",
+        "originalResolutionEventId": "RF9-NS-B-counterpulse:1",
+        "settledAt": 2.2,
+        "qualification": {
+          "featureActuallyAcquired": true,
+          "ownActualCounterspell": true,
+          "successfullyNegated": true,
+          "companionCounter": false,
+          "reflectedCounter": false,
+          "copiedCounter": false,
+          "recoveryPermitted": true
+        },
+        "nativeCounterTransactionComplete": true,
+        "deliveryId": "different-delivery"
+      },
+      "after": {
+        "ownerId": "B",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-B",
+          "roundId": "RF9-NS-B:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 64,
+        "maxRP": 64,
+        "action": true,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "counterpulse-round1": "spent",
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "B",
+            "roundUses": {
+              "RF9-NS-B:round:1": {
+                "state": "spent",
+                "settlementId": "[\"RF9-NS-B\",\"B\",\"wizard.supplement.arcane-feedback\",\"ClassCounter\"]"
+              }
+            },
+            "sourceSettlements": {
+              "[\"RF9-NS-B\",\"B\",\"wizard.supplement.arcane-feedback\",\"ClassCounter\"]": {
+                "id": "[\"RF9-NS-B\",\"B\",\"wizard.supplement.arcane-feedback\",\"ClassCounter\"]",
+                "featureId": "wizard.supplement.arcane-feedback",
+                "sourceRef": "wizard#/cards/60",
+                "status": "awarded",
+                "scopeId": "RF9-NS-B",
+                "ownerId": "B",
+                "roundId": "RF9-NS-B:round:1",
+                "roundOrdinal": 1,
+                "counterCastId": "ClassCounter",
+                "negatedCastId": "EnemyFire",
+                "nativeCounterSourceRef": "wizard#/cards/17",
+                "originalResolutionEventId": "RF9-NS-B-counterpulse:1",
+                "settledAt": 2.2,
+                "qualification": {
+                  "featureActuallyAcquired": true,
+                  "ownActualCounterspell": true,
+                  "successfullyNegated": true,
+                  "companionCounter": false,
+                  "reflectedCounter": false,
+                  "copiedCounter": false,
+                  "recoveryPermitted": true
+                },
+                "requestedRP": 1,
+                "rpBeforeRecovery": 63,
+                "normalMaxRP": 64,
+                "creditedRP": 1,
+                "rpAfterRecovery": 64,
+                "frequencyDisposition": "spent; terminal source settlement and round pointer atomically committed with RP",
+                "otherBudgetMutation": "none; native counter payment/Reaction/recharge/history already belongs to the counter transaction"
+              }
+            }
+          }
+        }
+      },
+      "result": {
+        "status": "duplicate-source-no-mutation",
+        "creditedRP": 0,
+        "originalSettlementId": "[\"RF9-NS-B\",\"B\",\"wizard.supplement.arcane-feedback\",\"ClassCounter\"]"
+      },
+      "expected": {
+        "exactNoMutation": true
+      }
+    },
+    {
+      "id": "RF9-NS-B-counterpulse/SAVE-RELOAD",
+      "scope": "isolated reward/receipt diagnostic, not native casting or game runtime",
+      "premise": "Replay of same immutable completed source; no new Reaction or source event.",
+      "before": {
+        "ownerId": "B",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-B",
+          "roundId": "RF9-NS-B:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 64,
+        "maxRP": 64,
+        "action": true,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "counterpulse-round1": "spent",
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "B",
+            "roundUses": {
+              "RF9-NS-B:round:1": {
+                "state": "spent",
+                "settlementId": "[\"RF9-NS-B\",\"B\",\"wizard.supplement.arcane-feedback\",\"ClassCounter\"]"
+              }
+            },
+            "sourceSettlements": {
+              "[\"RF9-NS-B\",\"B\",\"wizard.supplement.arcane-feedback\",\"ClassCounter\"]": {
+                "id": "[\"RF9-NS-B\",\"B\",\"wizard.supplement.arcane-feedback\",\"ClassCounter\"]",
+                "featureId": "wizard.supplement.arcane-feedback",
+                "sourceRef": "wizard#/cards/60",
+                "status": "awarded",
+                "scopeId": "RF9-NS-B",
+                "ownerId": "B",
+                "roundId": "RF9-NS-B:round:1",
+                "roundOrdinal": 1,
+                "counterCastId": "ClassCounter",
+                "negatedCastId": "EnemyFire",
+                "nativeCounterSourceRef": "wizard#/cards/17",
+                "originalResolutionEventId": "RF9-NS-B-counterpulse:1",
+                "settledAt": 2.2,
+                "qualification": {
+                  "featureActuallyAcquired": true,
+                  "ownActualCounterspell": true,
+                  "successfullyNegated": true,
+                  "companionCounter": false,
+                  "reflectedCounter": false,
+                  "copiedCounter": false,
+                  "recoveryPermitted": true
+                },
+                "requestedRP": 1,
+                "rpBeforeRecovery": 63,
+                "normalMaxRP": 64,
+                "creditedRP": 1,
+                "rpAfterRecovery": 64,
+                "frequencyDisposition": "spent; terminal source settlement and round pointer atomically committed with RP",
+                "otherBudgetMutation": "none; native counter payment/Reaction/recharge/history already belongs to the counter transaction"
+              }
+            }
+          }
+        }
+      },
+      "sourceOutcome": {
+        "scopeId": "RF9-NS-B",
+        "ownerId": "B",
+        "roundId": "RF9-NS-B:round:1",
+        "roundOrdinal": 1,
+        "counterCastId": "ClassCounter",
+        "negatedCastId": "EnemyFire",
+        "nativeCounterSourceRef": "wizard#/cards/17",
+        "originalResolutionEventId": "RF9-NS-B-counterpulse:1",
+        "settledAt": 2.2,
+        "qualification": {
+          "featureActuallyAcquired": true,
+          "ownActualCounterspell": true,
+          "successfullyNegated": true,
+          "companionCounter": false,
+          "reflectedCounter": false,
+          "copiedCounter": false,
+          "recoveryPermitted": true
+        },
+        "nativeCounterTransactionComplete": true,
+        "deliveryId": "reload-delivery"
+      },
+      "after": {
+        "ownerId": "B",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-B",
+          "roundId": "RF9-NS-B:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 64,
+        "maxRP": 64,
+        "action": true,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "counterpulse-round1": "spent",
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "B",
+            "roundUses": {
+              "RF9-NS-B:round:1": {
+                "state": "spent",
+                "settlementId": "[\"RF9-NS-B\",\"B\",\"wizard.supplement.arcane-feedback\",\"ClassCounter\"]"
+              }
+            },
+            "sourceSettlements": {
+              "[\"RF9-NS-B\",\"B\",\"wizard.supplement.arcane-feedback\",\"ClassCounter\"]": {
+                "id": "[\"RF9-NS-B\",\"B\",\"wizard.supplement.arcane-feedback\",\"ClassCounter\"]",
+                "featureId": "wizard.supplement.arcane-feedback",
+                "sourceRef": "wizard#/cards/60",
+                "status": "awarded",
+                "scopeId": "RF9-NS-B",
+                "ownerId": "B",
+                "roundId": "RF9-NS-B:round:1",
+                "roundOrdinal": 1,
+                "counterCastId": "ClassCounter",
+                "negatedCastId": "EnemyFire",
+                "nativeCounterSourceRef": "wizard#/cards/17",
+                "originalResolutionEventId": "RF9-NS-B-counterpulse:1",
+                "settledAt": 2.2,
+                "qualification": {
+                  "featureActuallyAcquired": true,
+                  "ownActualCounterspell": true,
+                  "successfullyNegated": true,
+                  "companionCounter": false,
+                  "reflectedCounter": false,
+                  "copiedCounter": false,
+                  "recoveryPermitted": true
+                },
+                "requestedRP": 1,
+                "rpBeforeRecovery": 63,
+                "normalMaxRP": 64,
+                "creditedRP": 1,
+                "rpAfterRecovery": 64,
+                "frequencyDisposition": "spent; terminal source settlement and round pointer atomically committed with RP",
+                "otherBudgetMutation": "none; native counter payment/Reaction/recharge/history already belongs to the counter transaction"
+              }
+            }
+          }
+        }
+      },
+      "result": {
+        "status": "duplicate-source-no-mutation",
+        "creditedRP": 0,
+        "originalSettlementId": "[\"RF9-NS-B\",\"B\",\"wizard.supplement.arcane-feedback\",\"ClassCounter\"]"
+      },
+      "expected": {
+        "exactNoMutation": true
+      }
+    },
+    {
+      "id": "RF9-NS-B-counterpulse/OLD-SOURCE-NEXT-ROUND",
+      "scope": "isolated reward/receipt diagnostic, not native casting or game runtime",
+      "premise": "Only the supplied numbered-round marker changes; no own-turn START or Reaction refresh is run.",
+      "before": {
+        "ownerId": "B",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-B",
+          "roundId": "RF9-NS-B:round:2",
+          "ordinal": 2,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 6,
+          "nextBoundaryMarker": 12
+        },
+        "rp": 64,
+        "maxRP": 64,
+        "action": true,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "counterpulse-round1": "spent",
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "B",
+            "roundUses": {
+              "RF9-NS-B:round:1": {
+                "state": "spent",
+                "settlementId": "[\"RF9-NS-B\",\"B\",\"wizard.supplement.arcane-feedback\",\"ClassCounter\"]"
+              }
+            },
+            "sourceSettlements": {
+              "[\"RF9-NS-B\",\"B\",\"wizard.supplement.arcane-feedback\",\"ClassCounter\"]": {
+                "id": "[\"RF9-NS-B\",\"B\",\"wizard.supplement.arcane-feedback\",\"ClassCounter\"]",
+                "featureId": "wizard.supplement.arcane-feedback",
+                "sourceRef": "wizard#/cards/60",
+                "status": "awarded",
+                "scopeId": "RF9-NS-B",
+                "ownerId": "B",
+                "roundId": "RF9-NS-B:round:1",
+                "roundOrdinal": 1,
+                "counterCastId": "ClassCounter",
+                "negatedCastId": "EnemyFire",
+                "nativeCounterSourceRef": "wizard#/cards/17",
+                "originalResolutionEventId": "RF9-NS-B-counterpulse:1",
+                "settledAt": 2.2,
+                "qualification": {
+                  "featureActuallyAcquired": true,
+                  "ownActualCounterspell": true,
+                  "successfullyNegated": true,
+                  "companionCounter": false,
+                  "reflectedCounter": false,
+                  "copiedCounter": false,
+                  "recoveryPermitted": true
+                },
+                "requestedRP": 1,
+                "rpBeforeRecovery": 63,
+                "normalMaxRP": 64,
+                "creditedRP": 1,
+                "rpAfterRecovery": 64,
+                "frequencyDisposition": "spent; terminal source settlement and round pointer atomically committed with RP",
+                "otherBudgetMutation": "none; native counter payment/Reaction/recharge/history already belongs to the counter transaction"
+              }
+            }
+          }
+        }
+      },
+      "sourceOutcome": {
+        "scopeId": "RF9-NS-B",
+        "ownerId": "B",
+        "roundId": "RF9-NS-B:round:1",
+        "roundOrdinal": 1,
+        "counterCastId": "ClassCounter",
+        "negatedCastId": "EnemyFire",
+        "nativeCounterSourceRef": "wizard#/cards/17",
+        "originalResolutionEventId": "RF9-NS-B-counterpulse:1",
+        "settledAt": 2.2,
+        "qualification": {
+          "featureActuallyAcquired": true,
+          "ownActualCounterspell": true,
+          "successfullyNegated": true,
+          "companionCounter": false,
+          "reflectedCounter": false,
+          "copiedCounter": false,
+          "recoveryPermitted": true
+        },
+        "nativeCounterTransactionComplete": true,
+        "deliveryId": "first-delivery"
+      },
+      "after": {
+        "ownerId": "B",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-B",
+          "roundId": "RF9-NS-B:round:2",
+          "ordinal": 2,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 6,
+          "nextBoundaryMarker": 12
+        },
+        "rp": 64,
+        "maxRP": 64,
+        "action": true,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "counterpulse-round1": "spent",
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "B",
+            "roundUses": {
+              "RF9-NS-B:round:1": {
+                "state": "spent",
+                "settlementId": "[\"RF9-NS-B\",\"B\",\"wizard.supplement.arcane-feedback\",\"ClassCounter\"]"
+              }
+            },
+            "sourceSettlements": {
+              "[\"RF9-NS-B\",\"B\",\"wizard.supplement.arcane-feedback\",\"ClassCounter\"]": {
+                "id": "[\"RF9-NS-B\",\"B\",\"wizard.supplement.arcane-feedback\",\"ClassCounter\"]",
+                "featureId": "wizard.supplement.arcane-feedback",
+                "sourceRef": "wizard#/cards/60",
+                "status": "awarded",
+                "scopeId": "RF9-NS-B",
+                "ownerId": "B",
+                "roundId": "RF9-NS-B:round:1",
+                "roundOrdinal": 1,
+                "counterCastId": "ClassCounter",
+                "negatedCastId": "EnemyFire",
+                "nativeCounterSourceRef": "wizard#/cards/17",
+                "originalResolutionEventId": "RF9-NS-B-counterpulse:1",
+                "settledAt": 2.2,
+                "qualification": {
+                  "featureActuallyAcquired": true,
+                  "ownActualCounterspell": true,
+                  "successfullyNegated": true,
+                  "companionCounter": false,
+                  "reflectedCounter": false,
+                  "copiedCounter": false,
+                  "recoveryPermitted": true
+                },
+                "requestedRP": 1,
+                "rpBeforeRecovery": 63,
+                "normalMaxRP": 64,
+                "creditedRP": 1,
+                "rpAfterRecovery": 64,
+                "frequencyDisposition": "spent; terminal source settlement and round pointer atomically committed with RP",
+                "otherBudgetMutation": "none; native counter payment/Reaction/recharge/history already belongs to the counter transaction"
+              }
+            }
+          }
+        }
+      },
+      "result": {
+        "status": "duplicate-source-no-mutation",
+        "creditedRP": 0,
+        "originalSettlementId": "[\"RF9-NS-B\",\"B\",\"wizard.supplement.arcane-feedback\",\"ClassCounter\"]"
+      },
+      "expected": {
+        "exactNoMutation": true
+      }
+    },
+    {
+      "id": "OWN-START-REACTION-NOT-FEEDBACK",
+      "scope": "isolated reward/receipt diagnostic, not native casting or game runtime",
+      "premise": "Actual E regular START2 supplies ordinary Reaction refresh and one recharge tick2→1; not an extra turn. Replayed Counter1 still does nothing.",
+      "before": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 62,
+        "maxRP": 64,
+        "action": true,
+        "reaction": true,
+        "recharge": {
+          "wizard.base.counterspell": 1
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {
+              "RF9-NS-A:round:1": {
+                "state": "spent",
+                "settlementId": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]"
+              }
+            },
+            "sourceSettlements": {
+              "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]": {
+                "id": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]",
+                "featureId": "wizard.supplement.arcane-feedback",
+                "sourceRef": "wizard#/cards/60",
+                "status": "awarded",
+                "scopeId": "RF9-NS-A",
+                "ownerId": "E",
+                "roundId": "RF9-NS-A:round:1",
+                "roundOrdinal": 1,
+                "counterCastId": "Counter1",
+                "negatedCastId": "Nexus1",
+                "nativeCounterSourceRef": "wizard#/cards/17",
+                "originalResolutionEventId": "RF9-NS-A-counter:0",
+                "settledAt": 0.06,
+                "qualification": {
+                  "featureActuallyAcquired": true,
+                  "ownActualCounterspell": true,
+                  "successfullyNegated": true,
+                  "companionCounter": false,
+                  "reflectedCounter": false,
+                  "copiedCounter": false,
+                  "recoveryPermitted": true
+                },
+                "requestedRP": 1,
+                "rpBeforeRecovery": 61,
+                "normalMaxRP": 64,
+                "creditedRP": 1,
+                "rpAfterRecovery": 62,
+                "frequencyDisposition": "spent; terminal source settlement and round pointer atomically committed with RP",
+                "otherBudgetMutation": "none; native counter payment/Reaction/recharge/history already belongs to the counter transaction"
+              }
+            }
+          }
+        }
+      },
+      "sourceOutcome": {
+        "scopeId": "RF9-NS-A",
+        "ownerId": "E",
+        "roundId": "RF9-NS-A:round:1",
+        "roundOrdinal": 1,
+        "counterCastId": "Counter1",
+        "negatedCastId": "Nexus1",
+        "nativeCounterSourceRef": "wizard#/cards/17",
+        "originalResolutionEventId": "RF9-NS-A-counter:0",
+        "settledAt": 0.06,
+        "qualification": {
+          "featureActuallyAcquired": true,
+          "ownActualCounterspell": true,
+          "successfullyNegated": true,
+          "companionCounter": false,
+          "reflectedCounter": false,
+          "copiedCounter": false,
+          "recoveryPermitted": true
+        },
+        "nativeCounterTransactionComplete": true,
+        "deliveryId": "first-delivery"
+      },
+      "after": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 62,
+        "maxRP": 64,
+        "action": true,
+        "reaction": true,
+        "recharge": {
+          "wizard.base.counterspell": 1
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {
+              "RF9-NS-A:round:1": {
+                "state": "spent",
+                "settlementId": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]"
+              }
+            },
+            "sourceSettlements": {
+              "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]": {
+                "id": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]",
+                "featureId": "wizard.supplement.arcane-feedback",
+                "sourceRef": "wizard#/cards/60",
+                "status": "awarded",
+                "scopeId": "RF9-NS-A",
+                "ownerId": "E",
+                "roundId": "RF9-NS-A:round:1",
+                "roundOrdinal": 1,
+                "counterCastId": "Counter1",
+                "negatedCastId": "Nexus1",
+                "nativeCounterSourceRef": "wizard#/cards/17",
+                "originalResolutionEventId": "RF9-NS-A-counter:0",
+                "settledAt": 0.06,
+                "qualification": {
+                  "featureActuallyAcquired": true,
+                  "ownActualCounterspell": true,
+                  "successfullyNegated": true,
+                  "companionCounter": false,
+                  "reflectedCounter": false,
+                  "copiedCounter": false,
+                  "recoveryPermitted": true
+                },
+                "requestedRP": 1,
+                "rpBeforeRecovery": 61,
+                "normalMaxRP": 64,
+                "creditedRP": 1,
+                "rpAfterRecovery": 62,
+                "frequencyDisposition": "spent; terminal source settlement and round pointer atomically committed with RP",
+                "otherBudgetMutation": "none; native counter payment/Reaction/recharge/history already belongs to the counter transaction"
+              }
+            }
+          }
+        }
+      },
+      "result": {
+        "status": "duplicate-source-no-mutation",
+        "creditedRP": 0,
+        "originalSettlementId": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]"
+      },
+      "expected": {
+        "reactionStillAvailable": true,
+        "FeedbackRound1StillSpent": true,
+        "classCounterNotYetReady": true
+      }
+    },
+    {
+      "id": "SECOND-SOURCE-SAME-ROUND",
+      "scope": "isolated reward/receipt diagnostic, not native casting or game runtime",
+      "premise": {
+        "status": "CONDITIONAL_NATIVE_TRANSACTION_INPUT",
+        "actualRequiredProvider": "Wizard ordinary Counterspell catalog#/spells/38; rank3/base5, actual prepared matrix, V/S/F, genuine perceived pending cast/range/LoE and actual successful native check. Not a class Counterspell while recharge1.",
+        "preparationQualification": "W17-Conj already owns counterspell in its complete book but has not prepared it in the main fixture. This independent comparison requires actual prior preparation (16 matrices would fit the actual limit23); no instant acquisition/preparation is supplied.",
+        "reactionQualification": "The real first regular START2, not the receipt or a numbered boundary, can refresh E's original Reaction. The full native second-counter opportunity and all cadence/hooks are external conditional inputs here.",
+        "nativePayment": "62→57 after its actual undiscounted5RP fee; source-native histories and RNG are not implemented by this reward-only projection."
+      },
+      "before": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 57,
+        "maxRP": 64,
+        "action": true,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 1
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {
+              "RF9-NS-A:round:1": {
+                "state": "spent",
+                "settlementId": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]"
+              }
+            },
+            "sourceSettlements": {
+              "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]": {
+                "id": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]",
+                "featureId": "wizard.supplement.arcane-feedback",
+                "sourceRef": "wizard#/cards/60",
+                "status": "awarded",
+                "scopeId": "RF9-NS-A",
+                "ownerId": "E",
+                "roundId": "RF9-NS-A:round:1",
+                "roundOrdinal": 1,
+                "counterCastId": "Counter1",
+                "negatedCastId": "Nexus1",
+                "nativeCounterSourceRef": "wizard#/cards/17",
+                "originalResolutionEventId": "RF9-NS-A-counter:0",
+                "settledAt": 0.06,
+                "qualification": {
+                  "featureActuallyAcquired": true,
+                  "ownActualCounterspell": true,
+                  "successfullyNegated": true,
+                  "companionCounter": false,
+                  "reflectedCounter": false,
+                  "copiedCounter": false,
+                  "recoveryPermitted": true
+                },
+                "requestedRP": 1,
+                "rpBeforeRecovery": 61,
+                "normalMaxRP": 64,
+                "creditedRP": 1,
+                "rpAfterRecovery": 62,
+                "frequencyDisposition": "spent; terminal source settlement and round pointer atomically committed with RP",
+                "otherBudgetMutation": "none; native counter payment/Reaction/recharge/history already belongs to the counter transaction"
+              }
+            }
+          }
+        }
+      },
+      "sourceOutcome": {
+        "scopeId": "RF9-NS-A",
+        "ownerId": "E",
+        "roundId": "RF9-NS-A:round:1",
+        "roundOrdinal": 1,
+        "counterCastId": "DiagnosticOrdinaryCounter2",
+        "negatedCastId": "DiagnosticPendingSpell2",
+        "nativeCounterSourceRef": "catalog#/spells/38/operational",
+        "originalResolutionEventId": "diagnostic:second-native-counter",
+        "settledAt": 3.2,
+        "qualification": {
+          "featureActuallyAcquired": true,
+          "ownActualCounterspell": true,
+          "successfullyNegated": true,
+          "companionCounter": false,
+          "reflectedCounter": false,
+          "copiedCounter": false,
+          "recoveryPermitted": true
+        },
+        "nativeCounterTransactionComplete": true,
+        "deliveryId": "new-delivery"
+      },
+      "after": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 57,
+        "maxRP": 64,
+        "action": true,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 1
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {
+              "RF9-NS-A:round:1": {
+                "state": "spent",
+                "settlementId": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]"
+              }
+            },
+            "sourceSettlements": {
+              "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]": {
+                "id": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]",
+                "featureId": "wizard.supplement.arcane-feedback",
+                "sourceRef": "wizard#/cards/60",
+                "status": "awarded",
+                "scopeId": "RF9-NS-A",
+                "ownerId": "E",
+                "roundId": "RF9-NS-A:round:1",
+                "roundOrdinal": 1,
+                "counterCastId": "Counter1",
+                "negatedCastId": "Nexus1",
+                "nativeCounterSourceRef": "wizard#/cards/17",
+                "originalResolutionEventId": "RF9-NS-A-counter:0",
+                "settledAt": 0.06,
+                "qualification": {
+                  "featureActuallyAcquired": true,
+                  "ownActualCounterspell": true,
+                  "successfullyNegated": true,
+                  "companionCounter": false,
+                  "reflectedCounter": false,
+                  "copiedCounter": false,
+                  "recoveryPermitted": true
+                },
+                "requestedRP": 1,
+                "rpBeforeRecovery": 61,
+                "normalMaxRP": 64,
+                "creditedRP": 1,
+                "rpAfterRecovery": 62,
+                "frequencyDisposition": "spent; terminal source settlement and round pointer atomically committed with RP",
+                "otherBudgetMutation": "none; native counter payment/Reaction/recharge/history already belongs to the counter transaction"
+              },
+              "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"DiagnosticOrdinaryCounter2\"]": {
+                "id": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"DiagnosticOrdinaryCounter2\"]",
+                "featureId": "wizard.supplement.arcane-feedback",
+                "sourceRef": "wizard#/cards/60",
+                "status": "no-award-round-already-spent",
+                "scopeId": "RF9-NS-A",
+                "ownerId": "E",
+                "roundId": "RF9-NS-A:round:1",
+                "roundOrdinal": 1,
+                "counterCastId": "DiagnosticOrdinaryCounter2",
+                "negatedCastId": "DiagnosticPendingSpell2",
+                "nativeCounterSourceRef": "catalog#/spells/38/operational",
+                "originalResolutionEventId": "diagnostic:second-native-counter",
+                "settledAt": 3.2,
+                "qualification": {
+                  "featureActuallyAcquired": true,
+                  "ownActualCounterspell": true,
+                  "successfullyNegated": true,
+                  "companionCounter": false,
+                  "reflectedCounter": false,
+                  "copiedCounter": false,
+                  "recoveryPermitted": true
+                },
+                "requestedRP": 1,
+                "rpBeforeRecovery": 57,
+                "normalMaxRP": 64,
+                "creditedRP": 0,
+                "rpAfterRecovery": 57,
+                "frequencyDisposition": "existing round use retained; this distinct source receives no recovery",
+                "otherBudgetMutation": "none; native counter payment/Reaction/recharge/history already belongs to the counter transaction",
+                "roundWinnerSettlementId": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]"
+              }
+            }
+          }
+        }
+      },
+      "result": {
+        "status": "no-award-round-already-spent",
+        "creditedRP": 0
+      },
+      "expected": {
+        "afterRP": 57,
+        "secondFeedbackCredit": 0
+      }
+    },
+    {
+      "id": "SECOND-SOURCE-RELOAD",
+      "scope": "isolated reward/receipt diagnostic, not native casting or game runtime",
+      "premise": "Reload of no-award terminal source receipt; its original round winner persists.",
+      "before": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 57,
+        "maxRP": 64,
+        "action": true,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 1
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {
+              "RF9-NS-A:round:1": {
+                "state": "spent",
+                "settlementId": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]"
+              }
+            },
+            "sourceSettlements": {
+              "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]": {
+                "id": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]",
+                "featureId": "wizard.supplement.arcane-feedback",
+                "sourceRef": "wizard#/cards/60",
+                "status": "awarded",
+                "scopeId": "RF9-NS-A",
+                "ownerId": "E",
+                "roundId": "RF9-NS-A:round:1",
+                "roundOrdinal": 1,
+                "counterCastId": "Counter1",
+                "negatedCastId": "Nexus1",
+                "nativeCounterSourceRef": "wizard#/cards/17",
+                "originalResolutionEventId": "RF9-NS-A-counter:0",
+                "settledAt": 0.06,
+                "qualification": {
+                  "featureActuallyAcquired": true,
+                  "ownActualCounterspell": true,
+                  "successfullyNegated": true,
+                  "companionCounter": false,
+                  "reflectedCounter": false,
+                  "copiedCounter": false,
+                  "recoveryPermitted": true
+                },
+                "requestedRP": 1,
+                "rpBeforeRecovery": 61,
+                "normalMaxRP": 64,
+                "creditedRP": 1,
+                "rpAfterRecovery": 62,
+                "frequencyDisposition": "spent; terminal source settlement and round pointer atomically committed with RP",
+                "otherBudgetMutation": "none; native counter payment/Reaction/recharge/history already belongs to the counter transaction"
+              },
+              "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"DiagnosticOrdinaryCounter2\"]": {
+                "id": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"DiagnosticOrdinaryCounter2\"]",
+                "featureId": "wizard.supplement.arcane-feedback",
+                "sourceRef": "wizard#/cards/60",
+                "status": "no-award-round-already-spent",
+                "scopeId": "RF9-NS-A",
+                "ownerId": "E",
+                "roundId": "RF9-NS-A:round:1",
+                "roundOrdinal": 1,
+                "counterCastId": "DiagnosticOrdinaryCounter2",
+                "negatedCastId": "DiagnosticPendingSpell2",
+                "nativeCounterSourceRef": "catalog#/spells/38/operational",
+                "originalResolutionEventId": "diagnostic:second-native-counter",
+                "settledAt": 3.2,
+                "qualification": {
+                  "featureActuallyAcquired": true,
+                  "ownActualCounterspell": true,
+                  "successfullyNegated": true,
+                  "companionCounter": false,
+                  "reflectedCounter": false,
+                  "copiedCounter": false,
+                  "recoveryPermitted": true
+                },
+                "requestedRP": 1,
+                "rpBeforeRecovery": 57,
+                "normalMaxRP": 64,
+                "creditedRP": 0,
+                "rpAfterRecovery": 57,
+                "frequencyDisposition": "existing round use retained; this distinct source receives no recovery",
+                "otherBudgetMutation": "none; native counter payment/Reaction/recharge/history already belongs to the counter transaction",
+                "roundWinnerSettlementId": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]"
+              }
+            }
+          }
+        }
+      },
+      "sourceOutcome": {
+        "scopeId": "RF9-NS-A",
+        "ownerId": "E",
+        "roundId": "RF9-NS-A:round:1",
+        "roundOrdinal": 1,
+        "counterCastId": "DiagnosticOrdinaryCounter2",
+        "negatedCastId": "DiagnosticPendingSpell2",
+        "nativeCounterSourceRef": "catalog#/spells/38/operational",
+        "originalResolutionEventId": "diagnostic:second-native-counter",
+        "settledAt": 3.2,
+        "qualification": {
+          "featureActuallyAcquired": true,
+          "ownActualCounterspell": true,
+          "successfullyNegated": true,
+          "companionCounter": false,
+          "reflectedCounter": false,
+          "copiedCounter": false,
+          "recoveryPermitted": true
+        },
+        "nativeCounterTransactionComplete": true,
+        "deliveryId": "new-delivery"
+      },
+      "after": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 57,
+        "maxRP": 64,
+        "action": true,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 1
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {
+              "RF9-NS-A:round:1": {
+                "state": "spent",
+                "settlementId": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]"
+              }
+            },
+            "sourceSettlements": {
+              "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]": {
+                "id": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]",
+                "featureId": "wizard.supplement.arcane-feedback",
+                "sourceRef": "wizard#/cards/60",
+                "status": "awarded",
+                "scopeId": "RF9-NS-A",
+                "ownerId": "E",
+                "roundId": "RF9-NS-A:round:1",
+                "roundOrdinal": 1,
+                "counterCastId": "Counter1",
+                "negatedCastId": "Nexus1",
+                "nativeCounterSourceRef": "wizard#/cards/17",
+                "originalResolutionEventId": "RF9-NS-A-counter:0",
+                "settledAt": 0.06,
+                "qualification": {
+                  "featureActuallyAcquired": true,
+                  "ownActualCounterspell": true,
+                  "successfullyNegated": true,
+                  "companionCounter": false,
+                  "reflectedCounter": false,
+                  "copiedCounter": false,
+                  "recoveryPermitted": true
+                },
+                "requestedRP": 1,
+                "rpBeforeRecovery": 61,
+                "normalMaxRP": 64,
+                "creditedRP": 1,
+                "rpAfterRecovery": 62,
+                "frequencyDisposition": "spent; terminal source settlement and round pointer atomically committed with RP",
+                "otherBudgetMutation": "none; native counter payment/Reaction/recharge/history already belongs to the counter transaction"
+              },
+              "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"DiagnosticOrdinaryCounter2\"]": {
+                "id": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"DiagnosticOrdinaryCounter2\"]",
+                "featureId": "wizard.supplement.arcane-feedback",
+                "sourceRef": "wizard#/cards/60",
+                "status": "no-award-round-already-spent",
+                "scopeId": "RF9-NS-A",
+                "ownerId": "E",
+                "roundId": "RF9-NS-A:round:1",
+                "roundOrdinal": 1,
+                "counterCastId": "DiagnosticOrdinaryCounter2",
+                "negatedCastId": "DiagnosticPendingSpell2",
+                "nativeCounterSourceRef": "catalog#/spells/38/operational",
+                "originalResolutionEventId": "diagnostic:second-native-counter",
+                "settledAt": 3.2,
+                "qualification": {
+                  "featureActuallyAcquired": true,
+                  "ownActualCounterspell": true,
+                  "successfullyNegated": true,
+                  "companionCounter": false,
+                  "reflectedCounter": false,
+                  "copiedCounter": false,
+                  "recoveryPermitted": true
+                },
+                "requestedRP": 1,
+                "rpBeforeRecovery": 57,
+                "normalMaxRP": 64,
+                "creditedRP": 0,
+                "rpAfterRecovery": 57,
+                "frequencyDisposition": "existing round use retained; this distinct source receives no recovery",
+                "otherBudgetMutation": "none; native counter payment/Reaction/recharge/history already belongs to the counter transaction",
+                "roundWinnerSettlementId": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]"
+              }
+            }
+          }
+        }
+      },
+      "result": {
+        "status": "duplicate-source-no-mutation",
+        "creditedRP": 0,
+        "originalSettlementId": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"DiagnosticOrdinaryCounter2\"]"
+      },
+      "expected": {
+        "exactNoMutation": true
+      }
+    },
+    {
+      "id": "OLD-DENIED-SOURCE-NEXT-ROUND",
+      "scope": "isolated reward/receipt diagnostic, not native casting or game runtime",
+      "premise": "Old same-round-denied source stays terminal even though round2 has no credited use.",
+      "before": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:2",
+          "ordinal": 2,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 6,
+          "nextBoundaryMarker": 12
+        },
+        "rp": 57,
+        "maxRP": 64,
+        "action": true,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 1
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {
+              "RF9-NS-A:round:1": {
+                "state": "spent",
+                "settlementId": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]"
+              }
+            },
+            "sourceSettlements": {
+              "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]": {
+                "id": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]",
+                "featureId": "wizard.supplement.arcane-feedback",
+                "sourceRef": "wizard#/cards/60",
+                "status": "awarded",
+                "scopeId": "RF9-NS-A",
+                "ownerId": "E",
+                "roundId": "RF9-NS-A:round:1",
+                "roundOrdinal": 1,
+                "counterCastId": "Counter1",
+                "negatedCastId": "Nexus1",
+                "nativeCounterSourceRef": "wizard#/cards/17",
+                "originalResolutionEventId": "RF9-NS-A-counter:0",
+                "settledAt": 0.06,
+                "qualification": {
+                  "featureActuallyAcquired": true,
+                  "ownActualCounterspell": true,
+                  "successfullyNegated": true,
+                  "companionCounter": false,
+                  "reflectedCounter": false,
+                  "copiedCounter": false,
+                  "recoveryPermitted": true
+                },
+                "requestedRP": 1,
+                "rpBeforeRecovery": 61,
+                "normalMaxRP": 64,
+                "creditedRP": 1,
+                "rpAfterRecovery": 62,
+                "frequencyDisposition": "spent; terminal source settlement and round pointer atomically committed with RP",
+                "otherBudgetMutation": "none; native counter payment/Reaction/recharge/history already belongs to the counter transaction"
+              },
+              "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"DiagnosticOrdinaryCounter2\"]": {
+                "id": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"DiagnosticOrdinaryCounter2\"]",
+                "featureId": "wizard.supplement.arcane-feedback",
+                "sourceRef": "wizard#/cards/60",
+                "status": "no-award-round-already-spent",
+                "scopeId": "RF9-NS-A",
+                "ownerId": "E",
+                "roundId": "RF9-NS-A:round:1",
+                "roundOrdinal": 1,
+                "counterCastId": "DiagnosticOrdinaryCounter2",
+                "negatedCastId": "DiagnosticPendingSpell2",
+                "nativeCounterSourceRef": "catalog#/spells/38/operational",
+                "originalResolutionEventId": "diagnostic:second-native-counter",
+                "settledAt": 3.2,
+                "qualification": {
+                  "featureActuallyAcquired": true,
+                  "ownActualCounterspell": true,
+                  "successfullyNegated": true,
+                  "companionCounter": false,
+                  "reflectedCounter": false,
+                  "copiedCounter": false,
+                  "recoveryPermitted": true
+                },
+                "requestedRP": 1,
+                "rpBeforeRecovery": 57,
+                "normalMaxRP": 64,
+                "creditedRP": 0,
+                "rpAfterRecovery": 57,
+                "frequencyDisposition": "existing round use retained; this distinct source receives no recovery",
+                "otherBudgetMutation": "none; native counter payment/Reaction/recharge/history already belongs to the counter transaction",
+                "roundWinnerSettlementId": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]"
+              }
+            }
+          }
+        }
+      },
+      "sourceOutcome": {
+        "scopeId": "RF9-NS-A",
+        "ownerId": "E",
+        "roundId": "RF9-NS-A:round:1",
+        "roundOrdinal": 1,
+        "counterCastId": "DiagnosticOrdinaryCounter2",
+        "negatedCastId": "DiagnosticPendingSpell2",
+        "nativeCounterSourceRef": "catalog#/spells/38/operational",
+        "originalResolutionEventId": "diagnostic:second-native-counter",
+        "settledAt": 3.2,
+        "qualification": {
+          "featureActuallyAcquired": true,
+          "ownActualCounterspell": true,
+          "successfullyNegated": true,
+          "companionCounter": false,
+          "reflectedCounter": false,
+          "copiedCounter": false,
+          "recoveryPermitted": true
+        },
+        "nativeCounterTransactionComplete": true,
+        "deliveryId": "new-delivery"
+      },
+      "after": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:2",
+          "ordinal": 2,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 6,
+          "nextBoundaryMarker": 12
+        },
+        "rp": 57,
+        "maxRP": 64,
+        "action": true,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 1
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {
+              "RF9-NS-A:round:1": {
+                "state": "spent",
+                "settlementId": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]"
+              }
+            },
+            "sourceSettlements": {
+              "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]": {
+                "id": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]",
+                "featureId": "wizard.supplement.arcane-feedback",
+                "sourceRef": "wizard#/cards/60",
+                "status": "awarded",
+                "scopeId": "RF9-NS-A",
+                "ownerId": "E",
+                "roundId": "RF9-NS-A:round:1",
+                "roundOrdinal": 1,
+                "counterCastId": "Counter1",
+                "negatedCastId": "Nexus1",
+                "nativeCounterSourceRef": "wizard#/cards/17",
+                "originalResolutionEventId": "RF9-NS-A-counter:0",
+                "settledAt": 0.06,
+                "qualification": {
+                  "featureActuallyAcquired": true,
+                  "ownActualCounterspell": true,
+                  "successfullyNegated": true,
+                  "companionCounter": false,
+                  "reflectedCounter": false,
+                  "copiedCounter": false,
+                  "recoveryPermitted": true
+                },
+                "requestedRP": 1,
+                "rpBeforeRecovery": 61,
+                "normalMaxRP": 64,
+                "creditedRP": 1,
+                "rpAfterRecovery": 62,
+                "frequencyDisposition": "spent; terminal source settlement and round pointer atomically committed with RP",
+                "otherBudgetMutation": "none; native counter payment/Reaction/recharge/history already belongs to the counter transaction"
+              },
+              "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"DiagnosticOrdinaryCounter2\"]": {
+                "id": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"DiagnosticOrdinaryCounter2\"]",
+                "featureId": "wizard.supplement.arcane-feedback",
+                "sourceRef": "wizard#/cards/60",
+                "status": "no-award-round-already-spent",
+                "scopeId": "RF9-NS-A",
+                "ownerId": "E",
+                "roundId": "RF9-NS-A:round:1",
+                "roundOrdinal": 1,
+                "counterCastId": "DiagnosticOrdinaryCounter2",
+                "negatedCastId": "DiagnosticPendingSpell2",
+                "nativeCounterSourceRef": "catalog#/spells/38/operational",
+                "originalResolutionEventId": "diagnostic:second-native-counter",
+                "settledAt": 3.2,
+                "qualification": {
+                  "featureActuallyAcquired": true,
+                  "ownActualCounterspell": true,
+                  "successfullyNegated": true,
+                  "companionCounter": false,
+                  "reflectedCounter": false,
+                  "copiedCounter": false,
+                  "recoveryPermitted": true
+                },
+                "requestedRP": 1,
+                "rpBeforeRecovery": 57,
+                "normalMaxRP": 64,
+                "creditedRP": 0,
+                "rpAfterRecovery": 57,
+                "frequencyDisposition": "existing round use retained; this distinct source receives no recovery",
+                "otherBudgetMutation": "none; native counter payment/Reaction/recharge/history already belongs to the counter transaction",
+                "roundWinnerSettlementId": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]"
+              }
+            }
+          }
+        }
+      },
+      "result": {
+        "status": "duplicate-source-no-mutation",
+        "creditedRP": 0,
+        "originalSettlementId": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"DiagnosticOrdinaryCounter2\"]"
+      },
+      "expected": {
+        "exactNoMutation": true
+      }
+    },
+    {
+      "id": "NEW-ROUND-NEW-QUALIFIED-SOURCE",
+      "scope": "isolated reward/receipt diagnostic, not native casting or game runtime",
+      "premise": {
+        "status": "CONDITIONAL_NATIVE_TRANSACTION_INPUT",
+        "clock": "Numbered boundary6 alone refreshes neither Reaction nor class recharge. Actual regular E START8 can tick recharge1→0 and refresh Reaction, after START2 already ticked2→1.",
+        "nativeCounter": "A genuine later pending spell/successful class Counterspell at9.2 is required. No pending opponent or native cast execution is manufactured here. Actual fee3 is supplied after prior Matrix Efficiency expiry3;57→54; class use sets recharge2 and spends real Reaction. Other native history/RNG must be resolved by their existing provider."
+      },
+      "before": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:2",
+          "ordinal": 2,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 6,
+          "nextBoundaryMarker": 12
+        },
+        "rp": 54,
+        "maxRP": 64,
+        "action": true,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {
+              "RF9-NS-A:round:1": {
+                "state": "spent",
+                "settlementId": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]"
+              }
+            },
+            "sourceSettlements": {
+              "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]": {
+                "id": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]",
+                "featureId": "wizard.supplement.arcane-feedback",
+                "sourceRef": "wizard#/cards/60",
+                "status": "awarded",
+                "scopeId": "RF9-NS-A",
+                "ownerId": "E",
+                "roundId": "RF9-NS-A:round:1",
+                "roundOrdinal": 1,
+                "counterCastId": "Counter1",
+                "negatedCastId": "Nexus1",
+                "nativeCounterSourceRef": "wizard#/cards/17",
+                "originalResolutionEventId": "RF9-NS-A-counter:0",
+                "settledAt": 0.06,
+                "qualification": {
+                  "featureActuallyAcquired": true,
+                  "ownActualCounterspell": true,
+                  "successfullyNegated": true,
+                  "companionCounter": false,
+                  "reflectedCounter": false,
+                  "copiedCounter": false,
+                  "recoveryPermitted": true
+                },
+                "requestedRP": 1,
+                "rpBeforeRecovery": 61,
+                "normalMaxRP": 64,
+                "creditedRP": 1,
+                "rpAfterRecovery": 62,
+                "frequencyDisposition": "spent; terminal source settlement and round pointer atomically committed with RP",
+                "otherBudgetMutation": "none; native counter payment/Reaction/recharge/history already belongs to the counter transaction"
+              },
+              "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"DiagnosticOrdinaryCounter2\"]": {
+                "id": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"DiagnosticOrdinaryCounter2\"]",
+                "featureId": "wizard.supplement.arcane-feedback",
+                "sourceRef": "wizard#/cards/60",
+                "status": "no-award-round-already-spent",
+                "scopeId": "RF9-NS-A",
+                "ownerId": "E",
+                "roundId": "RF9-NS-A:round:1",
+                "roundOrdinal": 1,
+                "counterCastId": "DiagnosticOrdinaryCounter2",
+                "negatedCastId": "DiagnosticPendingSpell2",
+                "nativeCounterSourceRef": "catalog#/spells/38/operational",
+                "originalResolutionEventId": "diagnostic:second-native-counter",
+                "settledAt": 3.2,
+                "qualification": {
+                  "featureActuallyAcquired": true,
+                  "ownActualCounterspell": true,
+                  "successfullyNegated": true,
+                  "companionCounter": false,
+                  "reflectedCounter": false,
+                  "copiedCounter": false,
+                  "recoveryPermitted": true
+                },
+                "requestedRP": 1,
+                "rpBeforeRecovery": 57,
+                "normalMaxRP": 64,
+                "creditedRP": 0,
+                "rpAfterRecovery": 57,
+                "frequencyDisposition": "existing round use retained; this distinct source receives no recovery",
+                "otherBudgetMutation": "none; native counter payment/Reaction/recharge/history already belongs to the counter transaction",
+                "roundWinnerSettlementId": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]"
+              }
+            }
+          }
+        }
+      },
+      "sourceOutcome": {
+        "scopeId": "RF9-NS-A",
+        "ownerId": "E",
+        "roundId": "RF9-NS-A:round:2",
+        "roundOrdinal": 2,
+        "counterCastId": "DiagnosticNativeCounter3",
+        "negatedCastId": "DiagnosticPendingSpell3",
+        "nativeCounterSourceRef": "wizard#/cards/17",
+        "originalResolutionEventId": "diagnostic:new-round-success",
+        "settledAt": 9.2,
+        "qualification": {
+          "featureActuallyAcquired": true,
+          "ownActualCounterspell": true,
+          "successfullyNegated": true,
+          "companionCounter": false,
+          "reflectedCounter": false,
+          "copiedCounter": false,
+          "recoveryPermitted": true
+        },
+        "nativeCounterTransactionComplete": true,
+        "deliveryId": "first-delivery"
+      },
+      "after": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:2",
+          "ordinal": 2,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 6,
+          "nextBoundaryMarker": 12
+        },
+        "rp": 55,
+        "maxRP": 64,
+        "action": true,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {
+              "RF9-NS-A:round:1": {
+                "state": "spent",
+                "settlementId": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]"
+              },
+              "RF9-NS-A:round:2": {
+                "state": "spent",
+                "settlementId": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"DiagnosticNativeCounter3\"]"
+              }
+            },
+            "sourceSettlements": {
+              "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]": {
+                "id": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]",
+                "featureId": "wizard.supplement.arcane-feedback",
+                "sourceRef": "wizard#/cards/60",
+                "status": "awarded",
+                "scopeId": "RF9-NS-A",
+                "ownerId": "E",
+                "roundId": "RF9-NS-A:round:1",
+                "roundOrdinal": 1,
+                "counterCastId": "Counter1",
+                "negatedCastId": "Nexus1",
+                "nativeCounterSourceRef": "wizard#/cards/17",
+                "originalResolutionEventId": "RF9-NS-A-counter:0",
+                "settledAt": 0.06,
+                "qualification": {
+                  "featureActuallyAcquired": true,
+                  "ownActualCounterspell": true,
+                  "successfullyNegated": true,
+                  "companionCounter": false,
+                  "reflectedCounter": false,
+                  "copiedCounter": false,
+                  "recoveryPermitted": true
+                },
+                "requestedRP": 1,
+                "rpBeforeRecovery": 61,
+                "normalMaxRP": 64,
+                "creditedRP": 1,
+                "rpAfterRecovery": 62,
+                "frequencyDisposition": "spent; terminal source settlement and round pointer atomically committed with RP",
+                "otherBudgetMutation": "none; native counter payment/Reaction/recharge/history already belongs to the counter transaction"
+              },
+              "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"DiagnosticOrdinaryCounter2\"]": {
+                "id": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"DiagnosticOrdinaryCounter2\"]",
+                "featureId": "wizard.supplement.arcane-feedback",
+                "sourceRef": "wizard#/cards/60",
+                "status": "no-award-round-already-spent",
+                "scopeId": "RF9-NS-A",
+                "ownerId": "E",
+                "roundId": "RF9-NS-A:round:1",
+                "roundOrdinal": 1,
+                "counterCastId": "DiagnosticOrdinaryCounter2",
+                "negatedCastId": "DiagnosticPendingSpell2",
+                "nativeCounterSourceRef": "catalog#/spells/38/operational",
+                "originalResolutionEventId": "diagnostic:second-native-counter",
+                "settledAt": 3.2,
+                "qualification": {
+                  "featureActuallyAcquired": true,
+                  "ownActualCounterspell": true,
+                  "successfullyNegated": true,
+                  "companionCounter": false,
+                  "reflectedCounter": false,
+                  "copiedCounter": false,
+                  "recoveryPermitted": true
+                },
+                "requestedRP": 1,
+                "rpBeforeRecovery": 57,
+                "normalMaxRP": 64,
+                "creditedRP": 0,
+                "rpAfterRecovery": 57,
+                "frequencyDisposition": "existing round use retained; this distinct source receives no recovery",
+                "otherBudgetMutation": "none; native counter payment/Reaction/recharge/history already belongs to the counter transaction",
+                "roundWinnerSettlementId": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]"
+              },
+              "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"DiagnosticNativeCounter3\"]": {
+                "id": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"DiagnosticNativeCounter3\"]",
+                "featureId": "wizard.supplement.arcane-feedback",
+                "sourceRef": "wizard#/cards/60",
+                "status": "awarded",
+                "scopeId": "RF9-NS-A",
+                "ownerId": "E",
+                "roundId": "RF9-NS-A:round:2",
+                "roundOrdinal": 2,
+                "counterCastId": "DiagnosticNativeCounter3",
+                "negatedCastId": "DiagnosticPendingSpell3",
+                "nativeCounterSourceRef": "wizard#/cards/17",
+                "originalResolutionEventId": "diagnostic:new-round-success",
+                "settledAt": 9.2,
+                "qualification": {
+                  "featureActuallyAcquired": true,
+                  "ownActualCounterspell": true,
+                  "successfullyNegated": true,
+                  "companionCounter": false,
+                  "reflectedCounter": false,
+                  "copiedCounter": false,
+                  "recoveryPermitted": true
+                },
+                "requestedRP": 1,
+                "rpBeforeRecovery": 54,
+                "normalMaxRP": 64,
+                "creditedRP": 1,
+                "rpAfterRecovery": 55,
+                "frequencyDisposition": "spent; terminal source settlement and round pointer atomically committed with RP",
+                "otherBudgetMutation": "none; native counter payment/Reaction/recharge/history already belongs to the counter transaction"
+              }
+            }
+          }
+        }
+      },
+      "result": {
+        "status": "awarded",
+        "creditedRP": 1,
+        "settlementId": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"DiagnosticNativeCounter3\"]"
+      },
+      "expected": {
+        "afterRP": 55,
+        "newCredit": 1,
+        "retainedRoundCount": 2
+      }
+    },
+    {
+      "id": "EXTRA-TURN",
+      "scope": "isolated reward/receipt diagnostic, not native casting or game runtime",
+      "premise": "No real round advance or new source-use; receipt persists. Field/recharge behavior is not rerun.",
+      "before": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 62,
+        "maxRP": 64,
+        "action": false,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {
+              "RF9-NS-A:round:1": {
+                "state": "spent",
+                "settlementId": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]"
+              }
+            },
+            "sourceSettlements": {
+              "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]": {
+                "id": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]",
+                "featureId": "wizard.supplement.arcane-feedback",
+                "sourceRef": "wizard#/cards/60",
+                "status": "awarded",
+                "scopeId": "RF9-NS-A",
+                "ownerId": "E",
+                "roundId": "RF9-NS-A:round:1",
+                "roundOrdinal": 1,
+                "counterCastId": "Counter1",
+                "negatedCastId": "Nexus1",
+                "nativeCounterSourceRef": "wizard#/cards/17",
+                "originalResolutionEventId": "RF9-NS-A-counter:0",
+                "settledAt": 0.06,
+                "qualification": {
+                  "featureActuallyAcquired": true,
+                  "ownActualCounterspell": true,
+                  "successfullyNegated": true,
+                  "companionCounter": false,
+                  "reflectedCounter": false,
+                  "copiedCounter": false,
+                  "recoveryPermitted": true
+                },
+                "requestedRP": 1,
+                "rpBeforeRecovery": 61,
+                "normalMaxRP": 64,
+                "creditedRP": 1,
+                "rpAfterRecovery": 62,
+                "frequencyDisposition": "spent; terminal source settlement and round pointer atomically committed with RP",
+                "otherBudgetMutation": "none; native counter payment/Reaction/recharge/history already belongs to the counter transaction"
+              }
+            }
+          }
+        }
+      },
+      "sourceOutcome": {
+        "scopeId": "RF9-NS-A",
+        "ownerId": "E",
+        "roundId": "RF9-NS-A:round:1",
+        "roundOrdinal": 1,
+        "counterCastId": "Counter1",
+        "negatedCastId": "Nexus1",
+        "nativeCounterSourceRef": "wizard#/cards/17",
+        "originalResolutionEventId": "RF9-NS-A-counter:0",
+        "settledAt": 0.06,
+        "qualification": {
+          "featureActuallyAcquired": true,
+          "ownActualCounterspell": true,
+          "successfullyNegated": true,
+          "companionCounter": false,
+          "reflectedCounter": false,
+          "copiedCounter": false,
+          "recoveryPermitted": true
+        },
+        "nativeCounterTransactionComplete": true,
+        "deliveryId": "first-delivery"
+      },
+      "after": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 62,
+        "maxRP": 64,
+        "action": false,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {
+              "RF9-NS-A:round:1": {
+                "state": "spent",
+                "settlementId": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]"
+              }
+            },
+            "sourceSettlements": {
+              "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]": {
+                "id": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]",
+                "featureId": "wizard.supplement.arcane-feedback",
+                "sourceRef": "wizard#/cards/60",
+                "status": "awarded",
+                "scopeId": "RF9-NS-A",
+                "ownerId": "E",
+                "roundId": "RF9-NS-A:round:1",
+                "roundOrdinal": 1,
+                "counterCastId": "Counter1",
+                "negatedCastId": "Nexus1",
+                "nativeCounterSourceRef": "wizard#/cards/17",
+                "originalResolutionEventId": "RF9-NS-A-counter:0",
+                "settledAt": 0.06,
+                "qualification": {
+                  "featureActuallyAcquired": true,
+                  "ownActualCounterspell": true,
+                  "successfullyNegated": true,
+                  "companionCounter": false,
+                  "reflectedCounter": false,
+                  "copiedCounter": false,
+                  "recoveryPermitted": true
+                },
+                "requestedRP": 1,
+                "rpBeforeRecovery": 61,
+                "normalMaxRP": 64,
+                "creditedRP": 1,
+                "rpAfterRecovery": 62,
+                "frequencyDisposition": "spent; terminal source settlement and round pointer atomically committed with RP",
+                "otherBudgetMutation": "none; native counter payment/Reaction/recharge/history already belongs to the counter transaction"
+              }
+            }
+          }
+        }
+      },
+      "result": {
+        "status": "duplicate-source-no-mutation",
+        "creditedRP": 0,
+        "originalSettlementId": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]"
+      },
+      "expected": {
+        "exactNoMutation": true
+      }
+    },
+    {
+      "id": "FIELD-EXIT-REENTRY",
+      "scope": "isolated reward/receipt diagnostic, not native casting or game runtime",
+      "premise": "No real round advance or new source-use; receipt persists. Field/recharge behavior is not rerun.",
+      "before": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 62,
+        "maxRP": 64,
+        "action": false,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {
+              "RF9-NS-A:round:1": {
+                "state": "spent",
+                "settlementId": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]"
+              }
+            },
+            "sourceSettlements": {
+              "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]": {
+                "id": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]",
+                "featureId": "wizard.supplement.arcane-feedback",
+                "sourceRef": "wizard#/cards/60",
+                "status": "awarded",
+                "scopeId": "RF9-NS-A",
+                "ownerId": "E",
+                "roundId": "RF9-NS-A:round:1",
+                "roundOrdinal": 1,
+                "counterCastId": "Counter1",
+                "negatedCastId": "Nexus1",
+                "nativeCounterSourceRef": "wizard#/cards/17",
+                "originalResolutionEventId": "RF9-NS-A-counter:0",
+                "settledAt": 0.06,
+                "qualification": {
+                  "featureActuallyAcquired": true,
+                  "ownActualCounterspell": true,
+                  "successfullyNegated": true,
+                  "companionCounter": false,
+                  "reflectedCounter": false,
+                  "copiedCounter": false,
+                  "recoveryPermitted": true
+                },
+                "requestedRP": 1,
+                "rpBeforeRecovery": 61,
+                "normalMaxRP": 64,
+                "creditedRP": 1,
+                "rpAfterRecovery": 62,
+                "frequencyDisposition": "spent; terminal source settlement and round pointer atomically committed with RP",
+                "otherBudgetMutation": "none; native counter payment/Reaction/recharge/history already belongs to the counter transaction"
+              }
+            }
+          }
+        }
+      },
+      "sourceOutcome": {
+        "scopeId": "RF9-NS-A",
+        "ownerId": "E",
+        "roundId": "RF9-NS-A:round:1",
+        "roundOrdinal": 1,
+        "counterCastId": "Counter1",
+        "negatedCastId": "Nexus1",
+        "nativeCounterSourceRef": "wizard#/cards/17",
+        "originalResolutionEventId": "RF9-NS-A-counter:0",
+        "settledAt": 0.06,
+        "qualification": {
+          "featureActuallyAcquired": true,
+          "ownActualCounterspell": true,
+          "successfullyNegated": true,
+          "companionCounter": false,
+          "reflectedCounter": false,
+          "copiedCounter": false,
+          "recoveryPermitted": true
+        },
+        "nativeCounterTransactionComplete": true,
+        "deliveryId": "first-delivery"
+      },
+      "after": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 62,
+        "maxRP": 64,
+        "action": false,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {
+              "RF9-NS-A:round:1": {
+                "state": "spent",
+                "settlementId": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]"
+              }
+            },
+            "sourceSettlements": {
+              "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]": {
+                "id": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]",
+                "featureId": "wizard.supplement.arcane-feedback",
+                "sourceRef": "wizard#/cards/60",
+                "status": "awarded",
+                "scopeId": "RF9-NS-A",
+                "ownerId": "E",
+                "roundId": "RF9-NS-A:round:1",
+                "roundOrdinal": 1,
+                "counterCastId": "Counter1",
+                "negatedCastId": "Nexus1",
+                "nativeCounterSourceRef": "wizard#/cards/17",
+                "originalResolutionEventId": "RF9-NS-A-counter:0",
+                "settledAt": 0.06,
+                "qualification": {
+                  "featureActuallyAcquired": true,
+                  "ownActualCounterspell": true,
+                  "successfullyNegated": true,
+                  "companionCounter": false,
+                  "reflectedCounter": false,
+                  "copiedCounter": false,
+                  "recoveryPermitted": true
+                },
+                "requestedRP": 1,
+                "rpBeforeRecovery": 61,
+                "normalMaxRP": 64,
+                "creditedRP": 1,
+                "rpAfterRecovery": 62,
+                "frequencyDisposition": "spent; terminal source settlement and round pointer atomically committed with RP",
+                "otherBudgetMutation": "none; native counter payment/Reaction/recharge/history already belongs to the counter transaction"
+              }
+            }
+          }
+        }
+      },
+      "result": {
+        "status": "duplicate-source-no-mutation",
+        "creditedRP": 0,
+        "originalSettlementId": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]"
+      },
+      "expected": {
+        "exactNoMutation": true
+      }
+    },
+    {
+      "id": "CALLBACK-NEW-ID",
+      "scope": "isolated reward/receipt diagnostic, not native casting or game runtime",
+      "premise": "No real round advance or new source-use; receipt persists. Field/recharge behavior is not rerun.",
+      "before": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 62,
+        "maxRP": 64,
+        "action": false,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {
+              "RF9-NS-A:round:1": {
+                "state": "spent",
+                "settlementId": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]"
+              }
+            },
+            "sourceSettlements": {
+              "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]": {
+                "id": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]",
+                "featureId": "wizard.supplement.arcane-feedback",
+                "sourceRef": "wizard#/cards/60",
+                "status": "awarded",
+                "scopeId": "RF9-NS-A",
+                "ownerId": "E",
+                "roundId": "RF9-NS-A:round:1",
+                "roundOrdinal": 1,
+                "counterCastId": "Counter1",
+                "negatedCastId": "Nexus1",
+                "nativeCounterSourceRef": "wizard#/cards/17",
+                "originalResolutionEventId": "RF9-NS-A-counter:0",
+                "settledAt": 0.06,
+                "qualification": {
+                  "featureActuallyAcquired": true,
+                  "ownActualCounterspell": true,
+                  "successfullyNegated": true,
+                  "companionCounter": false,
+                  "reflectedCounter": false,
+                  "copiedCounter": false,
+                  "recoveryPermitted": true
+                },
+                "requestedRP": 1,
+                "rpBeforeRecovery": 61,
+                "normalMaxRP": 64,
+                "creditedRP": 1,
+                "rpAfterRecovery": 62,
+                "frequencyDisposition": "spent; terminal source settlement and round pointer atomically committed with RP",
+                "otherBudgetMutation": "none; native counter payment/Reaction/recharge/history already belongs to the counter transaction"
+              }
+            }
+          }
+        }
+      },
+      "sourceOutcome": {
+        "scopeId": "RF9-NS-A",
+        "ownerId": "E",
+        "roundId": "RF9-NS-A:round:1",
+        "roundOrdinal": 1,
+        "counterCastId": "Counter1",
+        "negatedCastId": "Nexus1",
+        "nativeCounterSourceRef": "wizard#/cards/17",
+        "originalResolutionEventId": "RF9-NS-A-counter:0",
+        "settledAt": 0.06,
+        "qualification": {
+          "featureActuallyAcquired": true,
+          "ownActualCounterspell": true,
+          "successfullyNegated": true,
+          "companionCounter": false,
+          "reflectedCounter": false,
+          "copiedCounter": false,
+          "recoveryPermitted": true
+        },
+        "nativeCounterTransactionComplete": true,
+        "deliveryId": "another-id"
+      },
+      "after": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 62,
+        "maxRP": 64,
+        "action": false,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {
+              "RF9-NS-A:round:1": {
+                "state": "spent",
+                "settlementId": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]"
+              }
+            },
+            "sourceSettlements": {
+              "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]": {
+                "id": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]",
+                "featureId": "wizard.supplement.arcane-feedback",
+                "sourceRef": "wizard#/cards/60",
+                "status": "awarded",
+                "scopeId": "RF9-NS-A",
+                "ownerId": "E",
+                "roundId": "RF9-NS-A:round:1",
+                "roundOrdinal": 1,
+                "counterCastId": "Counter1",
+                "negatedCastId": "Nexus1",
+                "nativeCounterSourceRef": "wizard#/cards/17",
+                "originalResolutionEventId": "RF9-NS-A-counter:0",
+                "settledAt": 0.06,
+                "qualification": {
+                  "featureActuallyAcquired": true,
+                  "ownActualCounterspell": true,
+                  "successfullyNegated": true,
+                  "companionCounter": false,
+                  "reflectedCounter": false,
+                  "copiedCounter": false,
+                  "recoveryPermitted": true
+                },
+                "requestedRP": 1,
+                "rpBeforeRecovery": 61,
+                "normalMaxRP": 64,
+                "creditedRP": 1,
+                "rpAfterRecovery": 62,
+                "frequencyDisposition": "spent; terminal source settlement and round pointer atomically committed with RP",
+                "otherBudgetMutation": "none; native counter payment/Reaction/recharge/history already belongs to the counter transaction"
+              }
+            }
+          }
+        }
+      },
+      "result": {
+        "status": "duplicate-source-no-mutation",
+        "creditedRP": 0,
+        "originalSettlementId": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]"
+      },
+      "expected": {
+        "exactNoMutation": true
+      }
+    },
+    {
+      "id": "UNACQUIRED",
+      "scope": "isolated reward/receipt diagnostic, not native casting or game runtime",
+      "premise": "Supplied actual source predicate; no source or prohibition is newly granted. This does not select an unused zero-award frequency-consumption convention.",
+      "before": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 61,
+        "maxRP": 64,
+        "action": false,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {},
+            "sourceSettlements": {}
+          }
+        }
+      },
+      "sourceOutcome": {
+        "scopeId": "RF9-NS-A",
+        "ownerId": "E",
+        "roundId": "RF9-NS-A:round:1",
+        "roundOrdinal": 1,
+        "counterCastId": "Counter1",
+        "negatedCastId": "Nexus1",
+        "nativeCounterSourceRef": "wizard#/cards/17",
+        "originalResolutionEventId": "RF9-NS-A-counter:0",
+        "settledAt": 0.06,
+        "qualification": {
+          "featureActuallyAcquired": false,
+          "ownActualCounterspell": true,
+          "successfullyNegated": true,
+          "companionCounter": false,
+          "reflectedCounter": false,
+          "copiedCounter": false,
+          "recoveryPermitted": true
+        },
+        "nativeCounterTransactionComplete": true,
+        "deliveryId": "first-delivery"
+      },
+      "after": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 61,
+        "maxRP": 64,
+        "action": false,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {},
+            "sourceSettlements": {}
+          }
+        }
+      },
+      "result": {
+        "status": "native-source-not-qualified",
+        "creditedRP": 0
+      },
+      "expected": {
+        "creditedRP": 0,
+        "noOtherMutation": true
+      }
+    },
+    {
+      "id": "DISPEL-OR-ABSORPTION",
+      "scope": "isolated reward/receipt diagnostic, not native casting or game runtime",
+      "premise": "Supplied actual source predicate; no source or prohibition is newly granted. This does not select an unused zero-award frequency-consumption convention.",
+      "before": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 61,
+        "maxRP": 64,
+        "action": false,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {},
+            "sourceSettlements": {}
+          }
+        }
+      },
+      "sourceOutcome": {
+        "scopeId": "RF9-NS-A",
+        "ownerId": "E",
+        "roundId": "RF9-NS-A:round:1",
+        "roundOrdinal": 1,
+        "counterCastId": "Counter1",
+        "negatedCastId": "Nexus1",
+        "nativeCounterSourceRef": "wizard#/cards/17",
+        "originalResolutionEventId": "RF9-NS-A-counter:0",
+        "settledAt": 0.06,
+        "qualification": {
+          "featureActuallyAcquired": true,
+          "ownActualCounterspell": false,
+          "successfullyNegated": true,
+          "companionCounter": false,
+          "reflectedCounter": false,
+          "copiedCounter": false,
+          "recoveryPermitted": true
+        },
+        "nativeCounterTransactionComplete": true,
+        "deliveryId": "first-delivery"
+      },
+      "after": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 61,
+        "maxRP": 64,
+        "action": false,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {},
+            "sourceSettlements": {}
+          }
+        }
+      },
+      "result": {
+        "status": "native-source-not-qualified",
+        "creditedRP": 0
+      },
+      "expected": {
+        "creditedRP": 0,
+        "noOtherMutation": true
+      }
+    },
+    {
+      "id": "FAILED-NATIVE-COUNTER",
+      "scope": "isolated reward/receipt diagnostic, not native casting or game runtime",
+      "premise": "Supplied actual source predicate; no source or prohibition is newly granted. This does not select an unused zero-award frequency-consumption convention.",
+      "before": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 61,
+        "maxRP": 64,
+        "action": false,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {},
+            "sourceSettlements": {}
+          }
+        }
+      },
+      "sourceOutcome": {
+        "scopeId": "RF9-NS-A",
+        "ownerId": "E",
+        "roundId": "RF9-NS-A:round:1",
+        "roundOrdinal": 1,
+        "counterCastId": "Counter1",
+        "negatedCastId": "Nexus1",
+        "nativeCounterSourceRef": "wizard#/cards/17",
+        "originalResolutionEventId": "RF9-NS-A-counter:0",
+        "settledAt": 0.06,
+        "qualification": {
+          "featureActuallyAcquired": true,
+          "ownActualCounterspell": true,
+          "successfullyNegated": false,
+          "companionCounter": false,
+          "reflectedCounter": false,
+          "copiedCounter": false,
+          "recoveryPermitted": true
+        },
+        "nativeCounterTransactionComplete": true,
+        "deliveryId": "first-delivery"
+      },
+      "after": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 61,
+        "maxRP": 64,
+        "action": false,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {},
+            "sourceSettlements": {}
+          }
+        }
+      },
+      "result": {
+        "status": "native-source-not-qualified",
+        "creditedRP": 0
+      },
+      "expected": {
+        "creditedRP": 0,
+        "noOtherMutation": true
+      }
+    },
+    {
+      "id": "COMPANION",
+      "scope": "isolated reward/receipt diagnostic, not native casting or game runtime",
+      "premise": "Supplied actual source predicate; no source or prohibition is newly granted. This does not select an unused zero-award frequency-consumption convention.",
+      "before": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 61,
+        "maxRP": 64,
+        "action": false,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {},
+            "sourceSettlements": {}
+          }
+        }
+      },
+      "sourceOutcome": {
+        "scopeId": "RF9-NS-A",
+        "ownerId": "E",
+        "roundId": "RF9-NS-A:round:1",
+        "roundOrdinal": 1,
+        "counterCastId": "Counter1",
+        "negatedCastId": "Nexus1",
+        "nativeCounterSourceRef": "wizard#/cards/17",
+        "originalResolutionEventId": "RF9-NS-A-counter:0",
+        "settledAt": 0.06,
+        "qualification": {
+          "featureActuallyAcquired": true,
+          "ownActualCounterspell": true,
+          "successfullyNegated": true,
+          "companionCounter": true,
+          "reflectedCounter": false,
+          "copiedCounter": false,
+          "recoveryPermitted": true
+        },
+        "nativeCounterTransactionComplete": true,
+        "deliveryId": "first-delivery"
+      },
+      "after": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 61,
+        "maxRP": 64,
+        "action": false,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {},
+            "sourceSettlements": {}
+          }
+        }
+      },
+      "result": {
+        "status": "native-source-not-qualified",
+        "creditedRP": 0
+      },
+      "expected": {
+        "creditedRP": 0,
+        "noOtherMutation": true
+      }
+    },
+    {
+      "id": "REFLECTED",
+      "scope": "isolated reward/receipt diagnostic, not native casting or game runtime",
+      "premise": "Supplied actual source predicate; no source or prohibition is newly granted. This does not select an unused zero-award frequency-consumption convention.",
+      "before": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 61,
+        "maxRP": 64,
+        "action": false,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {},
+            "sourceSettlements": {}
+          }
+        }
+      },
+      "sourceOutcome": {
+        "scopeId": "RF9-NS-A",
+        "ownerId": "E",
+        "roundId": "RF9-NS-A:round:1",
+        "roundOrdinal": 1,
+        "counterCastId": "Counter1",
+        "negatedCastId": "Nexus1",
+        "nativeCounterSourceRef": "wizard#/cards/17",
+        "originalResolutionEventId": "RF9-NS-A-counter:0",
+        "settledAt": 0.06,
+        "qualification": {
+          "featureActuallyAcquired": true,
+          "ownActualCounterspell": true,
+          "successfullyNegated": true,
+          "companionCounter": false,
+          "reflectedCounter": true,
+          "copiedCounter": false,
+          "recoveryPermitted": true
+        },
+        "nativeCounterTransactionComplete": true,
+        "deliveryId": "first-delivery"
+      },
+      "after": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 61,
+        "maxRP": 64,
+        "action": false,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {},
+            "sourceSettlements": {}
+          }
+        }
+      },
+      "result": {
+        "status": "native-source-not-qualified",
+        "creditedRP": 0
+      },
+      "expected": {
+        "creditedRP": 0,
+        "noOtherMutation": true
+      }
+    },
+    {
+      "id": "COPIED",
+      "scope": "isolated reward/receipt diagnostic, not native casting or game runtime",
+      "premise": "Supplied actual source predicate; no source or prohibition is newly granted. This does not select an unused zero-award frequency-consumption convention.",
+      "before": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 61,
+        "maxRP": 64,
+        "action": false,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {},
+            "sourceSettlements": {}
+          }
+        }
+      },
+      "sourceOutcome": {
+        "scopeId": "RF9-NS-A",
+        "ownerId": "E",
+        "roundId": "RF9-NS-A:round:1",
+        "roundOrdinal": 1,
+        "counterCastId": "Counter1",
+        "negatedCastId": "Nexus1",
+        "nativeCounterSourceRef": "wizard#/cards/17",
+        "originalResolutionEventId": "RF9-NS-A-counter:0",
+        "settledAt": 0.06,
+        "qualification": {
+          "featureActuallyAcquired": true,
+          "ownActualCounterspell": true,
+          "successfullyNegated": true,
+          "companionCounter": false,
+          "reflectedCounter": false,
+          "copiedCounter": true,
+          "recoveryPermitted": true
+        },
+        "nativeCounterTransactionComplete": true,
+        "deliveryId": "first-delivery"
+      },
+      "after": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 61,
+        "maxRP": 64,
+        "action": false,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {},
+            "sourceSettlements": {}
+          }
+        }
+      },
+      "result": {
+        "status": "native-source-not-qualified",
+        "creditedRP": 0
+      },
+      "expected": {
+        "creditedRP": 0,
+        "noOtherMutation": true
+      }
+    },
+    {
+      "id": "RECOVERY-PROHIBITED",
+      "scope": "isolated reward/receipt diagnostic, not native casting or game runtime",
+      "premise": "Supplied actual source predicate; no source or prohibition is newly granted. This does not select an unused zero-award frequency-consumption convention.",
+      "before": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 61,
+        "maxRP": 64,
+        "action": false,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {},
+            "sourceSettlements": {}
+          }
+        }
+      },
+      "sourceOutcome": {
+        "scopeId": "RF9-NS-A",
+        "ownerId": "E",
+        "roundId": "RF9-NS-A:round:1",
+        "roundOrdinal": 1,
+        "counterCastId": "Counter1",
+        "negatedCastId": "Nexus1",
+        "nativeCounterSourceRef": "wizard#/cards/17",
+        "originalResolutionEventId": "RF9-NS-A-counter:0",
+        "settledAt": 0.06,
+        "qualification": {
+          "featureActuallyAcquired": true,
+          "ownActualCounterspell": true,
+          "successfullyNegated": true,
+          "companionCounter": false,
+          "reflectedCounter": false,
+          "copiedCounter": false,
+          "recoveryPermitted": false
+        },
+        "nativeCounterTransactionComplete": true,
+        "deliveryId": "first-delivery"
+      },
+      "after": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 61,
+        "maxRP": 64,
+        "action": false,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {},
+            "sourceSettlements": {}
+          }
+        }
+      },
+      "result": {
+        "status": "external-recovery-prohibition-no-award-projection",
+        "creditedRP": 0,
+        "zeroAwardFrequencyPolicySelected": false
+      },
+      "expected": {
+        "creditedRP": 0,
+        "noOtherMutation": true
+      }
+    },
+    {
+      "id": "COUNTER-NOT-COMPLETED",
+      "scope": "isolated reward/receipt diagnostic, not native casting or game runtime",
+      "premise": "A callback is not the actual native outcome.",
+      "before": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 61,
+        "maxRP": 64,
+        "action": false,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {},
+            "sourceSettlements": {}
+          }
+        }
+      },
+      "sourceOutcome": {
+        "scopeId": "RF9-NS-A",
+        "ownerId": "E",
+        "roundId": "RF9-NS-A:round:1",
+        "roundOrdinal": 1,
+        "counterCastId": "Counter1",
+        "negatedCastId": "Nexus1",
+        "nativeCounterSourceRef": "wizard#/cards/17",
+        "originalResolutionEventId": "RF9-NS-A-counter:0",
+        "settledAt": 0.06,
+        "qualification": {
+          "featureActuallyAcquired": true,
+          "ownActualCounterspell": true,
+          "successfullyNegated": true,
+          "companionCounter": false,
+          "reflectedCounter": false,
+          "copiedCounter": false,
+          "recoveryPermitted": true
+        },
+        "nativeCounterTransactionComplete": false,
+        "deliveryId": "first-delivery"
+      },
+      "after": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 61,
+        "maxRP": 64,
+        "action": false,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {},
+            "sourceSettlements": {}
+          }
+        }
+      },
+      "result": {
+        "status": "native-source-not-qualified",
+        "creditedRP": 0
+      },
+      "expected": {
+        "creditedRP": 0
+      }
+    },
+    {
+      "id": "POOL-ALREADY-MAXIMUM",
+      "scope": "isolated reward/receipt diagnostic, not native casting or game runtime",
+      "premise": "Read-only cap projection; zero-credit frequency consumption is not selected in this follow-through.",
+      "before": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 64,
+        "maxRP": 64,
+        "action": false,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {},
+            "sourceSettlements": {}
+          }
+        }
+      },
+      "sourceOutcome": {
+        "scopeId": "RF9-NS-A",
+        "ownerId": "E",
+        "roundId": "RF9-NS-A:round:1",
+        "roundOrdinal": 1,
+        "counterCastId": "Counter1",
+        "negatedCastId": "Nexus1",
+        "nativeCounterSourceRef": "wizard#/cards/17",
+        "originalResolutionEventId": "RF9-NS-A-counter:0",
+        "settledAt": 0.06,
+        "qualification": {
+          "featureActuallyAcquired": true,
+          "ownActualCounterspell": true,
+          "successfullyNegated": true,
+          "companionCounter": false,
+          "reflectedCounter": false,
+          "copiedCounter": false,
+          "recoveryPermitted": true
+        },
+        "nativeCounterTransactionComplete": true,
+        "deliveryId": "first-delivery"
+      },
+      "after": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 64,
+        "maxRP": 64,
+        "action": false,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {},
+            "sourceSettlements": {}
+          }
+        }
+      },
+      "result": {
+        "status": "normal-maximum-no-award-projection",
+        "creditedRP": 0,
+        "zeroAwardFrequencyPolicySelected": false
+      },
+      "expected": {
+        "creditedRP": 0,
+        "noOverflow": true
+      }
+    },
+    {
+      "id": "PARTIAL-ATOMIC-RECEIPT",
+      "scope": "isolated reward/receipt diagnostic, not native casting or game runtime",
+      "premise": "Invalid evidence cannot authorize another RP; recovery/storage implementation is not supplied.",
+      "before": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 62,
+        "maxRP": 64,
+        "action": false,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {
+              "RF9-NS-A:round:1": {
+                "state": "spent",
+                "settlementId": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]"
+              }
+            },
+            "sourceSettlements": {}
+          }
+        }
+      },
+      "sourceOutcome": {
+        "scopeId": "RF9-NS-A",
+        "ownerId": "E",
+        "roundId": "RF9-NS-A:round:1",
+        "roundOrdinal": 1,
+        "counterCastId": "Counter1",
+        "negatedCastId": "Nexus1",
+        "nativeCounterSourceRef": "wizard#/cards/17",
+        "originalResolutionEventId": "RF9-NS-A-counter:0",
+        "settledAt": 0.06,
+        "qualification": {
+          "featureActuallyAcquired": true,
+          "ownActualCounterspell": true,
+          "successfullyNegated": true,
+          "companionCounter": false,
+          "reflectedCounter": false,
+          "copiedCounter": false,
+          "recoveryPermitted": true
+        },
+        "nativeCounterTransactionComplete": true,
+        "deliveryId": "first-delivery"
+      },
+      "after": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 62,
+        "maxRP": 64,
+        "action": false,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {
+              "RF9-NS-A:round:1": {
+                "state": "spent",
+                "settlementId": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]"
+              }
+            },
+            "sourceSettlements": {}
+          }
+        }
+      },
+      "result": {
+        "status": "rejected-invalid-receipt-input",
+        "message": "Incomplete or inconsistent atomic round/source receipt",
+        "creditedRP": 0
+      },
+      "expected": {
+        "noMutation": true,
+        "rejected": true
+      }
+    },
+    {
+      "id": "WRONG-OWNER",
+      "scope": "isolated reward/receipt diagnostic, not native casting or game runtime",
+      "premise": "Invalid evidence cannot authorize another RP; recovery/storage implementation is not supplied.",
+      "before": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 61,
+        "maxRP": 64,
+        "action": false,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {},
+            "sourceSettlements": {}
+          }
+        }
+      },
+      "sourceOutcome": {
+        "scopeId": "RF9-NS-A",
+        "ownerId": "other",
+        "roundId": "RF9-NS-A:round:1",
+        "roundOrdinal": 1,
+        "counterCastId": "Counter1",
+        "negatedCastId": "Nexus1",
+        "nativeCounterSourceRef": "wizard#/cards/17",
+        "originalResolutionEventId": "RF9-NS-A-counter:0",
+        "settledAt": 0.06,
+        "qualification": {
+          "featureActuallyAcquired": true,
+          "ownActualCounterspell": true,
+          "successfullyNegated": true,
+          "companionCounter": false,
+          "reflectedCounter": false,
+          "copiedCounter": false,
+          "recoveryPermitted": true
+        },
+        "nativeCounterTransactionComplete": true,
+        "deliveryId": "first-delivery"
+      },
+      "after": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 61,
+        "maxRP": 64,
+        "action": false,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {},
+            "sourceSettlements": {}
+          }
+        }
+      },
+      "result": {
+        "status": "rejected-invalid-receipt-input",
+        "message": "Wrong authoritative owner or scope; no mutation",
+        "creditedRP": 0
+      },
+      "expected": {
+        "noMutation": true,
+        "rejected": true
+      }
+    },
+    {
+      "id": "WRONG-SCOPE",
+      "scope": "isolated reward/receipt diagnostic, not native casting or game runtime",
+      "premise": "Invalid evidence cannot authorize another RP; recovery/storage implementation is not supplied.",
+      "before": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 61,
+        "maxRP": 64,
+        "action": false,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {},
+            "sourceSettlements": {}
+          }
+        }
+      },
+      "sourceOutcome": {
+        "scopeId": "other",
+        "ownerId": "E",
+        "roundId": "RF9-NS-A:round:1",
+        "roundOrdinal": 1,
+        "counterCastId": "Counter1",
+        "negatedCastId": "Nexus1",
+        "nativeCounterSourceRef": "wizard#/cards/17",
+        "originalResolutionEventId": "RF9-NS-A-counter:0",
+        "settledAt": 0.06,
+        "qualification": {
+          "featureActuallyAcquired": true,
+          "ownActualCounterspell": true,
+          "successfullyNegated": true,
+          "companionCounter": false,
+          "reflectedCounter": false,
+          "copiedCounter": false,
+          "recoveryPermitted": true
+        },
+        "nativeCounterTransactionComplete": true,
+        "deliveryId": "first-delivery"
+      },
+      "after": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 61,
+        "maxRP": 64,
+        "action": false,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {},
+            "sourceSettlements": {}
+          }
+        }
+      },
+      "result": {
+        "status": "rejected-invalid-receipt-input",
+        "message": "Wrong authoritative owner or scope; no mutation",
+        "creditedRP": 0
+      },
+      "expected": {
+        "noMutation": true,
+        "rejected": true
+      }
+    },
+    {
+      "id": "SOURCE-IDENTITY-CONFLICT",
+      "scope": "isolated reward/receipt diagnostic, not native casting or game runtime",
+      "premise": "Invalid evidence cannot authorize another RP; recovery/storage implementation is not supplied.",
+      "before": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 62,
+        "maxRP": 64,
+        "action": false,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {
+              "RF9-NS-A:round:1": {
+                "state": "spent",
+                "settlementId": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]"
+              }
+            },
+            "sourceSettlements": {
+              "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]": {
+                "id": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]",
+                "featureId": "wizard.supplement.arcane-feedback",
+                "sourceRef": "wizard#/cards/60",
+                "status": "awarded",
+                "scopeId": "RF9-NS-A",
+                "ownerId": "E",
+                "roundId": "RF9-NS-A:round:1",
+                "roundOrdinal": 1,
+                "counterCastId": "Counter1",
+                "negatedCastId": "Nexus1",
+                "nativeCounterSourceRef": "wizard#/cards/17",
+                "originalResolutionEventId": "RF9-NS-A-counter:0",
+                "settledAt": 0.06,
+                "qualification": {
+                  "featureActuallyAcquired": true,
+                  "ownActualCounterspell": true,
+                  "successfullyNegated": true,
+                  "companionCounter": false,
+                  "reflectedCounter": false,
+                  "copiedCounter": false,
+                  "recoveryPermitted": true
+                },
+                "requestedRP": 1,
+                "rpBeforeRecovery": 61,
+                "normalMaxRP": 64,
+                "creditedRP": 1,
+                "rpAfterRecovery": 62,
+                "frequencyDisposition": "spent; terminal source settlement and round pointer atomically committed with RP",
+                "otherBudgetMutation": "none; native counter payment/Reaction/recharge/history already belongs to the counter transaction"
+              }
+            }
+          }
+        }
+      },
+      "sourceOutcome": {
+        "scopeId": "RF9-NS-A",
+        "ownerId": "E",
+        "roundId": "RF9-NS-A:round:1",
+        "roundOrdinal": 1,
+        "counterCastId": "Counter1",
+        "negatedCastId": "not-the-original-target",
+        "nativeCounterSourceRef": "wizard#/cards/17",
+        "originalResolutionEventId": "RF9-NS-A-counter:0",
+        "settledAt": 0.06,
+        "qualification": {
+          "featureActuallyAcquired": true,
+          "ownActualCounterspell": true,
+          "successfullyNegated": true,
+          "companionCounter": false,
+          "reflectedCounter": false,
+          "copiedCounter": false,
+          "recoveryPermitted": true
+        },
+        "nativeCounterTransactionComplete": true,
+        "deliveryId": "first-delivery"
+      },
+      "after": {
+        "ownerId": "E",
+        "numberedRoundContext": {
+          "scopeId": "RF9-NS-A",
+          "roundId": "RF9-NS-A:round:1",
+          "ordinal": 1,
+          "authority": "explicit supplied fixture numbered-round marker; not own-turn refresh",
+          "startMarker": 0,
+          "nextBoundaryMarker": 6
+        },
+        "rp": 62,
+        "maxRP": 64,
+        "action": false,
+        "reaction": false,
+        "recharge": {
+          "wizard.base.counterspell": 2
+        },
+        "limitedUses": {
+          "wizard.supplement.arcane-feedback": {
+            "sourceRef": "wizard#/cards/60",
+            "ownerId": "E",
+            "roundUses": {
+              "RF9-NS-A:round:1": {
+                "state": "spent",
+                "settlementId": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]"
+              }
+            },
+            "sourceSettlements": {
+              "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]": {
+                "id": "[\"RF9-NS-A\",\"E\",\"wizard.supplement.arcane-feedback\",\"Counter1\"]",
+                "featureId": "wizard.supplement.arcane-feedback",
+                "sourceRef": "wizard#/cards/60",
+                "status": "awarded",
+                "scopeId": "RF9-NS-A",
+                "ownerId": "E",
+                "roundId": "RF9-NS-A:round:1",
+                "roundOrdinal": 1,
+                "counterCastId": "Counter1",
+                "negatedCastId": "Nexus1",
+                "nativeCounterSourceRef": "wizard#/cards/17",
+                "originalResolutionEventId": "RF9-NS-A-counter:0",
+                "settledAt": 0.06,
+                "qualification": {
+                  "featureActuallyAcquired": true,
+                  "ownActualCounterspell": true,
+                  "successfullyNegated": true,
+                  "companionCounter": false,
+                  "reflectedCounter": false,
+                  "copiedCounter": false,
+                  "recoveryPermitted": true
+                },
+                "requestedRP": 1,
+                "rpBeforeRecovery": 61,
+                "normalMaxRP": 64,
+                "creditedRP": 1,
+                "rpAfterRecovery": 62,
+                "frequencyDisposition": "spent; terminal source settlement and round pointer atomically committed with RP",
+                "otherBudgetMutation": "none; native counter payment/Reaction/recharge/history already belongs to the counter transaction"
+              }
+            }
+          }
+        }
+      },
+      "result": {
+        "status": "rejected-invalid-receipt-input",
+        "message": "Conflicting immutable source outcome",
+        "creditedRP": 0
+      },
+      "expected": {
+        "noMutation": true,
+        "rejected": true
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "check": "RF9-NS-A-counter original explicit receipt absent",
+      "pass": true
+    },
+    {
+      "check": "RF9-NS-A-counter exact positive reward projection",
+      "pass": true
+    },
+    {
+      "check": "RF9-NS-A-counter pure input preserved",
+      "pass": true
+    },
+    {
+      "check": "RF9-NS-A-counter no reward action mutation",
+      "pass": true
+    },
+    {
+      "check": "RF9-NS-A-counter no reward reaction mutation",
+      "pass": true
+    },
+    {
+      "check": "RF9-NS-A-counter no reward recharge mutation",
+      "pass": true
+    },
+    {
+      "check": "RF9-NS-A-counter native payment distinct",
+      "pass": true
+    },
+    {
+      "check": "RF9-NS-A-counter exact1 actual recovery",
+      "pass": true
+    },
+    {
+      "check": "RF9-NS-A-counter exact final full state retained",
+      "pass": true
+    },
+    {
+      "check": "RF9-NS-A-counter/DUPLICATE no mutation",
+      "pass": true
+    },
+    {
+      "check": "RF9-NS-A-counter/DUPLICATE no credit",
+      "pass": true
+    },
+    {
+      "check": "RF9-NS-A-counter/RENAMED-CALLBACK no mutation",
+      "pass": true
+    },
+    {
+      "check": "RF9-NS-A-counter/RENAMED-CALLBACK no credit",
+      "pass": true
+    },
+    {
+      "check": "RF9-NS-A-counter/SAVE-RELOAD no mutation",
+      "pass": true
+    },
+    {
+      "check": "RF9-NS-A-counter/SAVE-RELOAD no credit",
+      "pass": true
+    },
+    {
+      "check": "RF9-NS-A-counter old source after round boundary no credit",
+      "pass": true
+    },
+    {
+      "check": "RF9-NS-A-counter boundary grants no Reaction",
+      "pass": true
+    },
+    {
+      "check": "RF9-NS-B-counterpulse original explicit receipt absent",
+      "pass": true
+    },
+    {
+      "check": "RF9-NS-B-counterpulse exact positive reward projection",
+      "pass": true
+    },
+    {
+      "check": "RF9-NS-B-counterpulse pure input preserved",
+      "pass": true
+    },
+    {
+      "check": "RF9-NS-B-counterpulse no reward action mutation",
+      "pass": true
+    },
+    {
+      "check": "RF9-NS-B-counterpulse no reward reaction mutation",
+      "pass": true
+    },
+    {
+      "check": "RF9-NS-B-counterpulse no reward recharge mutation",
+      "pass": true
+    },
+    {
+      "check": "RF9-NS-B-counterpulse native payment distinct",
+      "pass": true
+    },
+    {
+      "check": "RF9-NS-B-counterpulse exact1 actual recovery",
+      "pass": true
+    },
+    {
+      "check": "RF9-NS-B-counterpulse exact final full state retained",
+      "pass": true
+    },
+    {
+      "check": "RF9-NS-B-counterpulse/DUPLICATE no mutation",
+      "pass": true
+    },
+    {
+      "check": "RF9-NS-B-counterpulse/DUPLICATE no credit",
+      "pass": true
+    },
+    {
+      "check": "RF9-NS-B-counterpulse/RENAMED-CALLBACK no mutation",
+      "pass": true
+    },
+    {
+      "check": "RF9-NS-B-counterpulse/RENAMED-CALLBACK no credit",
+      "pass": true
+    },
+    {
+      "check": "RF9-NS-B-counterpulse/SAVE-RELOAD no mutation",
+      "pass": true
+    },
+    {
+      "check": "RF9-NS-B-counterpulse/SAVE-RELOAD no credit",
+      "pass": true
+    },
+    {
+      "check": "RF9-NS-B-counterpulse old source after round boundary no credit",
+      "pass": true
+    },
+    {
+      "check": "RF9-NS-B-counterpulse boundary grants no Reaction",
+      "pass": true
+    },
+    {
+      "check": "own START does not refresh Feedback",
+      "pass": true
+    },
+    {
+      "check": "class recharge not bypassed by START",
+      "pass": true
+    },
+    {
+      "check": "distinct same-round actual counter pays5 and earns0",
+      "pass": true
+    },
+    {
+      "check": "same-round new counter does not grant Reaction",
+      "pass": true
+    },
+    {
+      "check": "same-round winner unchanged",
+      "pass": true
+    },
+    {
+      "check": "same-round second source terminal",
+      "pass": true
+    },
+    {
+      "check": "second source save/reload no award replay",
+      "pass": true
+    },
+    {
+      "check": "old no-award source cannot be cashed next round",
+      "pass": true
+    },
+    {
+      "check": "new round distinct qualified counter credit1",
+      "pass": true
+    },
+    {
+      "check": "both historical round spends retained",
+      "pass": true
+    },
+    {
+      "check": "new native event no free Reaction",
+      "pass": true
+    },
+    {
+      "check": "EXTRA-TURN cannot reset receipt",
+      "pass": true
+    },
+    {
+      "check": "FIELD-EXIT-REENTRY cannot reset receipt",
+      "pass": true
+    },
+    {
+      "check": "CALLBACK-NEW-ID cannot reset receipt",
+      "pass": true
+    },
+    {
+      "check": "UNACQUIRED zero credit",
+      "pass": true
+    },
+    {
+      "check": "DISPEL-OR-ABSORPTION zero credit",
+      "pass": true
+    },
+    {
+      "check": "FAILED-NATIVE-COUNTER zero credit",
+      "pass": true
+    },
+    {
+      "check": "COMPANION zero credit",
+      "pass": true
+    },
+    {
+      "check": "REFLECTED zero credit",
+      "pass": true
+    },
+    {
+      "check": "COPIED zero credit",
+      "pass": true
+    },
+    {
+      "check": "RECOVERY-PROHIBITED zero credit",
+      "pass": true
+    },
+    {
+      "check": "unresolved counter is not success",
+      "pass": true
+    },
+    {
+      "check": "normal maximum obeyed",
+      "pass": true
+    },
+    {
+      "check": "PARTIAL-ATOMIC-RECEIPT original input unchanged",
+      "pass": true
+    },
+    {
+      "check": "WRONG-OWNER original input unchanged",
+      "pass": true
+    },
+    {
+      "check": "WRONG-SCOPE original input unchanged",
+      "pass": true
+    },
+    {
+      "check": "SOURCE-IDENTITY-CONFLICT original input unchanged",
+      "pass": true
+    },
+    {
+      "check": "Counterpulse key preserved separately",
+      "pass": true
+    },
+    {
+      "check": "two feature namespaces distinct",
+      "pass": true
+    },
+    {
+      "check": "awards remain 1 under Supreme",
+      "pass": true
+    }
+  ],
+  "limits": [
+    "Native counter checks, target spells, reaction-source eligibility, cadence, scheduler and cost quoting are supplied inputs, not implementations.",
+    "Positive main receipts are exact full-case projections. The two additional native-counter opportunities are expressly conditional, not new providers.",
+    "Negative recovery/cap projections prove nonaward, not a new unused-token consumption policy.",
+    "JSON roundtrip is an isolated persistence diagnostic, not runtime save/load/crash-recovery certification."
+  ]
+}

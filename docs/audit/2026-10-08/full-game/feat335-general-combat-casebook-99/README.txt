@@ -1,0 +1,1 @@
+General combat casebook99:58 complete procedures,116 original positions,3 additional boundaries and65 bounded calculations. All original sources and seven prior changes preserved. Full dependencies carried; Mage/Wizard/Cleric example selections checked. No runtime, parent335, balance, cosmology or release approval. No supplied program needs execution.

@@ -1,0 +1,1 @@
+Full defense casebook97:31 complete procedures,62 original cases,4 FA boundaries,42 bounded calculations. Full source history/individual rationales retained. Unapplied; no runtime or parent335 acceptance. Source-resolved mental-predicate carriage remains an explicit final-assembly dependency. No supplied program needs execution.

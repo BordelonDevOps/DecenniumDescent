@@ -1,0 +1,76 @@
+{
+  "id": "RF9-FEEDBACK-NUMERICAL-STATE-02",
+  "scope": "New isolated receipt/payment arithmetic only. Existing field arithmetic/history not rerun or changed.",
+  "actualOriginalAwards": [
+    {
+      "case": "RF9-NS-A-counter",
+      "actor": "E",
+      "nativeCounter": "Counter1",
+      "initialRP": 64,
+      "actualPaidCost": 3,
+      "postPaymentRP": 61,
+      "Feedback": 1,
+      "finalRP": 62,
+      "round": 1,
+      "reactionAfter": false
+    },
+    {
+      "case": "RF9-NS-B-counterpulse",
+      "actor": "B",
+      "nativeCounter": "ClassCounter",
+      "initialRP": 64,
+      "nativeBase": 3,
+      "actualSupremePaidCost": 1,
+      "postPaymentRP": 63,
+      "Feedback": 1,
+      "finalRP": 64,
+      "actualCounterpulseFee": 0,
+      "CounterpulseRound1": "spent",
+      "round": 1,
+      "reactionAfter": false
+    }
+  ],
+  "conditionalContinuation": [
+    {
+      "checkpoint": "independently prepared ordinary Counterspell, after real E START2 refresh, same numbered round1",
+      "postPreviousRecoveryRP": 62,
+      "sourceFee": 5,
+      "postPaymentRP": 57,
+      "newFeedback": 0,
+      "finalRP": 57,
+      "newReactionProvider": false,
+      "nativeSourceExecutionImplemented": false
+    },
+    {
+      "checkpoint": "new numbered round2 plus genuine regular START8 and actual native class Counterspell later",
+      "initialRP": 57,
+      "sourceFee": 3,
+      "postPaymentRP": 54,
+      "newFeedback": 1,
+      "finalRP": 55,
+      "reactionAfter": false,
+      "nativeSourceExecutionImplemented": false
+    }
+  ],
+  "completeStateReport": {
+    "file": "FEEDBACK_DIAGNOSTICS.json",
+    "bytes": 175564,
+    "sha256": "677619d897e875f44cd3292ef243d39bf35da6b0966c24d44dc06db62141ff62"
+  },
+  "script": {
+    "file": "diagnose_feedback_receipts.py",
+    "bytes": 20782,
+    "sha256": "08ad62a9c1c1c779ddff2dc07c3207dcf6c3f8a28291b6f6d3898802057080c3"
+  },
+  "diagnosticCases": 31,
+  "assertions": 64,
+  "failures": 0,
+  "historicalNumericalEvidence": {
+    "archive": "input/DD_Rank9_Resonance_Fields_3_Part5_Conference_Return_01.zip",
+    "member": "NUMERICAL_STATE_EVIDENCE.json",
+    "bytes": 49571,
+    "sha256": "12acafc3fec902339cdf71f305084492b9ca635eda877f600ac048750590300d",
+    "status": "Complete original preserved; not rerun"
+  },
+  "scopeBoundary": "Complete positive cases still seven plus28 branches with four original conditionals. Reward-only conditional continuation is separate; no additional native casting or timing provider is granted."
+}

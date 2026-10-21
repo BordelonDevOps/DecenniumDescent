@@ -1,0 +1,1409 @@
+{
+  "schemaVersion": "1.0",
+  "version": "0.1-playtest",
+  "class": "Ranger",
+  "status": "provisional-card-draft-not-balance-approved",
+  "sourceExtractSha256": "a346670f4244efe3641cfb06814819d83ffb8512153858205f0621bd8ab8a04b",
+  "protectedInterfaceOriginal": "A successful weapon hit between spell casts clears Refrain and reduces the next spell's Dissonance gain by 1 (minimum 0), rewarding the Ranger's martial/primal cadence.",
+  "rpByClassLevel": [
+    1,
+    2,
+    3,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32,
+    34,
+    36
+  ],
+  "rpAuthority": "Direct Core Systems V2 table",
+  "maxSpellRankByClassLevel": [
+    0,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5
+  ],
+  "asiClassLevels": [
+    4,
+    8,
+    12,
+    16,
+    19
+  ],
+  "engine": [
+    "Dexterity governs weapons; Wisdom governs primal technique DC/M. This draft uses the detailed book's d8 Hit Die; older runtime d10 remains preserved as a conflicting alternative. At 1 gain Track Target engine: Bonus Action mark one perceived enemy within 90 ft for 1 minute, no RP, one quarry at a time; new mark replaces old. Once/own turn a weapon hit against quarry adds S damage. Mark does not reveal creatures through total cover. Track Target selection is an upgrade, not a second unlock tax.",
+    "Weapon Synergy tracks last successful direct weapon hit on your own turns. Changing melee→ranged grants+1 to that ranged attack roll if it is your first attack of the turn; changing ranged→melee makes the hit apply Bleed 1d4 on target's next 2 turns. Once/turn synergy; Do Ts, copies, companions, forced attacks and misses do not advance it. At 5 ordinary Attack Action makes two attacks; techniques use only printed counts. You may draw/stow one weapon as normal object interaction; Dual Style later improves this.",
+    "Elemental Attunement is defensive; Elemental Imbue is the separate Pathfinder feature gated 6. Imbue Bonus Action 2 RP, one element for 3 of your turns; once/turn a weapon hit adds 1d4 of chosen element plus fire:Burn 1d4 next target turn, cold:Speed-10 ft until end next turn, poison:CON save or-1 attack rolls until end next turn. Nonstacking; Do Ts never build Hit Chain. Switching element pays again.",
+    "Druidic Arrow Combo starts at Ranger 11, not at Base 1. Each direct successful weapon hit adds 1 Hit Chain, maximum 2 gained per regular turn and cap 3. Completing 3 primes one Arrow until end next turn; using it consumes the chain, even on miss. Efficient Killer lowers threshold 2. Chain starts/ends encounters 0, cannot be stocked against allies/captives/summons and is cleared by incapacitation. The Arrow is one Action with a ranged weapon attack or the stated save, costs 0 RP when primed, and is a magical class technique rather than an ordinary spell cast. At most one Arrow per round; it cannot advance its own chain. It requires a wielded bow and ammunition. Ordinary attack/damage riders apply once as printed, never another free arrow.",
+    "All Rangers learn five bounded Arrows at 11. Emberroot requires the previous 3 successful weapon hits carried fire imbue: ranged attack, weapon+S d6 fire on hit; up to 2 others within 5 ft take S fire, and primary target Burns 1d4 next turn. Glacial Thorn requires 2 ranged+1 melee among those 3 hits: ranged attack weapon+S d6 cold; on hit STR save or Speed 0 until end next turn. Venomlash requires poisoned/blighted terrain at you or target: ranged attack weapon+S d6 poison; on hit CON save or-1 damage on its next attack. Spirit Fang requires quarry: ranged attack at advantage, weapon+S d6 force; ignores resistance but not immunity on the added force only. Cleansing Grove requires natural terrain at you or target: up to 3 living allies within 10 ft of a point within 60 ft each end Frightened or Poisoned; no attack or damage.",
+    "Chosen Hero grants a sixth Arrow at 11. Warder Nature's Wrath: ranged attack weapon+S d6 piercing; up to 2 allies within 10 ft gain M temporary HP (finite mitigation, not repeatable real healing). Stalker Phantom: two ranged attacks against different aligned targets within 60 ft, each weapon damage, no extra dice; one Arrow activation. Outrider Corruption: place 10 ft-radius zone within 60 ft, concentration until start next turn; up to 3 enemies entering/starting there take S d4 necrotic once each, CON half. Arrow copies cannot generate extra attacks, resources or permanent terrain changes.",
+    "A successful direct weapon hit between ordinary spell casts clears Refrain and gives the next ordinary spell before end next turn 1 less Dissonance, minimum 0. The benefit is single-use/nonstacking; it reduces neither RP nor both base and repeat separately. Ordinary spells use Ranger rank gates and the shared test magic configuration.",
+    "Base choices 1–2, Pathfinder Arch 3–9, and chosen Warder/Stalker/Outrider Hero 10–20 are distinct stages. No source Arch capstone/Finale exists: level 9 receives its normal eligible choice, while 20 automatically improves your Hero Arrow once/long rest (new capstone below). Do not acquire a Hero by spending Base choices. Beast Companion is one permanent bond; it must be a willing/tamed noncorrupted beast with INT<7 and CR no greater than your class level. Its combat profile uses the bounded companion below rather than importing a full CR 20 monster.",
+    "If a primed Arrow expires unused, the prime ends and Hit Chain resets to 0. This applies equally to Efficient Killer’s threshold of two. Efficient Killer itself requires Ranger 11, when Hit Chain exists."
+  ],
+  "workedExample": [
+    "Ranger 11, DEX 18, WIS 16, PB 4, S 3, M 3, RP 18. Track quarry with Bonus Action; no RP spent. Start Hit Chain 0.",
+    "Turn 1 normal Attack Action has 2 attacks; both hit quarry, chain 0→2. Apply quarry bonus 3 once, not twice. No Arrow until next qualifying hit.",
+    "Turn 2 first weapon attack hits, chain 2→3 and primes Arrow. You already spent your Action on Attack, so cannot freely add an Arrow. An extra Action from an ally would use the shared cap, but none is assumed.",
+    "Turn 3 use Spirit Fang Arrow as Action, consume chain 3→0, pay 0 RP. On hit weapon+3d6 force; advantage does not double damage. The Arrow cannot rebuild its own chain.",
+    "Turn 4 cast an ordinary rank 1 spell after the previous direct weapon hit between casts. Pay 2 RP, RP 18→16 plus any pre-existing strain surcharge. Its base 1 D is reduced by 1 to 0; the one-use cadence benefit ends.",
+    "On encounter end unused chain and mark expire. RP does not refill. Natural-terrain healing and companions still need their printed finite costs."
+  ],
+  "balanceQuestions": [
+    "Can switching weapons remain worthwhile without eclipsing focused styles?",
+    "Does the level11 Arrow timing feel rewarding without free attacks?",
+    "Are permanent companions useful while respecting a shared command budget?"
+  ],
+  "cards": [
+    {
+      "id": "ranger.base.weapon-bond",
+      "name": "Weapon Bond",
+      "className": "Ranger",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Ritual",
+      "cost": "0; 1 hour during rest",
+      "rangeAndTarget": "One bow or pair of blades touched",
+      "duration": "Until rebonded",
+      "frequency": "One bond",
+      "effect": "Bond weapons. Bonus Action summons one bonded weapon to your hand from within 30 ft if not held by another creature and no total cover. Cannot disarm someone or cross planar boundaries; bond no additional items.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3841,
+        "originalText": "Weapon Bond: Form a special connection with either a bow or a pair of blades, allowing you to summon them to your hand."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "ranger.base.track-target",
+      "name": "Track Target",
+      "className": "Ranger",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Your quarry",
+      "duration": "While marked",
+      "frequency": "Continuous",
+      "effect": "You have advantage on Survival checks to follow its physical tracks for 1 hour after the mark ends. While it is marked, once/turn your first hit also ignores 2 points of nonmagical flat damage reduction. Does not pierce immunity or reveal through cover.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3842,
+        "originalText": "Track Target: Mark an enemy to deal +10% damage and enable special abilities against them."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "ranger.base.natural-explorer",
+      "name": "Natural Explorer",
+      "className": "Ranger",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Self",
+      "duration": "While known",
+      "frequency": "Continuous",
+      "effect": "Advantage on Survival checks in natural terrain; ignore nonmagical difficult terrain caused by vegetation, loose earth, mud or snow. Magical terrain, climbing and hazards still require their own rules.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3843,
+        "originalText": "Natural Explorer: Gain advantage on Survival checks and move normally through difficult natural terrain."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "ranger.base.keen-senses",
+      "name": "Keen Senses",
+      "className": "Ranger",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Self in natural terrain",
+      "duration": "While known",
+      "frequency": "Continuous",
+      "effect": "Gain+2 Perception and passive Perception. You still need a sense that can detect the target; this does not reveal invisible creatures automatically or read tracks through solid stone.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3844,
+        "originalText": "Keen Senses: Gain enhanced perception in natural environments, making it harder for creatures to hide from you."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "ranger.base.combat-focus",
+      "name": "Combat Focus",
+      "className": "Ranger",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Self",
+      "duration": "Choice on learning",
+      "frequency": "Continuous",
+      "effect": "Choose one: Precision adds 1 to first ranged attack each turn against quarry; Momentum gives+5 ft Speed after switching weapon mode; Wild Hunt gives advantage on Survival to follow injured creatures and+1 initiative. Choices do not stack; no general retraining.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3845,
+        "originalText": "Combat Focus: Choose one combat style (Precision, Momentum, or Wild Hunt) that enhances your fighting abilities."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "ranger.base.quick-shot",
+      "name": "Quick Shot",
+      "className": "Ranger",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "1 short-rest use",
+      "rangeAndTarget": "One enemy in bow range",
+      "duration": "Instant",
+      "frequency": "1/short rest",
+      "effect": "Make one ranged weapon attack, dealing weapon die only without ability damage modifier. Does not trigger Extra Attack or another Quick Shot; may gain one Hit Chain point at 11 within the turn cap.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3848,
+        "originalText": "Quick Shot: Fire a rapid arrow that deals less damage but can be used as part of another action."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "ranger.base.twin-strike",
+      "name": "Twin Strike",
+      "className": "Ranger",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "0",
+      "rangeAndTarget": "One or 2 enemies in melee reach; two light weapons wielded",
+      "duration": "Instant",
+      "frequency": "Recharge 2",
+      "effect": "Make one attack with each weapon. Add ability modifier to first hit only. These are the full attacks for this Action; do not add ordinary Extra Attack. Hit Chain gains at 11 cap 2 per turn.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3849,
+        "originalText": "Twin Strike: Make a swift attack with both melee weapons when dual wielding."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "ranger.base.nature-s-whisper",
+      "name": "Nature's Whisper",
+      "className": "Ranger",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "1 RP",
+      "rangeAndTarget": "Natural terrain within 15 ft",
+      "duration": "1 minute",
+      "frequency": "Recharge 3",
+      "effect": "Gain advantage on one Perception/Survival check to find tracks, hidden natural creatures or signs of passage. It reveals evidence on success, not automatically creatures through total cover, incorporeal beings or thoughts.\n\nNEW NWQ-01 classification: this exact card is a magical nonspell class technique, not an ordinary spell, class spell, cantrip, Echo release or Matrix cast. Preserve spellRank:null and the historical originalText; no rank, school, spell component block, repertoire, spellcasting credential or class engine is inferred from its name, its historical minor-spell wording or its 1 RP cost.\n\nNEW NWQ-02 activation: no verbal, somatic, focus, material, command-word or audible channel is required by the technique itself. You must be conscious, capable of the required Action, legitimately entitled to this exact activation, ready on its own recharge ledger, and able to perceive and have line of effect to the selected actual natural terrain within 15 feet. Silence, occupied hands or lack of a casting focus alone do not prohibit it. Actual suppression or a prohibition whose operative scope covers this magical technique still applies. The later investigation keeps its own senses, hands, tools, access and task requirements. A permitted borrowed activation separately requires Versatile Mastery's actual donor preparation, consent and perceived/understood signal; the technique supplies no communication channel.\n\nKEEP shared technique strain: pay 1 actual RP from your own existing lawful personal pool, not a donor pool or newly granted pool. No ordinary spell-rank price, spell strain surcharge, automatic spell Dissonance, Refrain update, remembered-spell-name change, Fracture ranked-cast prohibition or rank-based trauma is applied by this activation. It does not clear, advance, consume or vent an ordinary spell-cadence record. Do not invent a casting ability or recompute a strain Limit for it. A later Perception or Survival check uses your own current applicable task ability and actual proficiency or replacing Expertise, ordinarily Wisdom, not a donor modifier or automatic borrowed skill proficiency. There is no activation attack or saving-throw DC. Its legal commitment is a magical-ability-use event: it prevents idle-turn Dissonance recovery on the actor's regular turn containing that commitment, including when the paid activation is interrupted. An illegal uncommitted declaration is not such an event. Merely retaining the rider or applying it to a later ordinary task is not another activation. Extra turns and off-turn releases create no additional recovery tick and cannot rewrite a completed tick. Actual separately acquired hooks operate only on their exact triggers; this is not a Bard Performance or an ordinary Ranger spell cast, and it grants no donor Track Target, Hit Chain, stabilization, Crescendo or Echo engine.\n\nNEW NWQ-04 commitment and area: before payment, declare this source, actor and one fixed investigation area consisting only of the actual natural terrain within 15 feet of the actor's commitment position that is then perceivable and has line of effect. Record that area and position; the area does not follow the actor and no moving aura or remote sensor is created. Actual hidden clues need not already be known or present to make an otherwise lawful investigation site eligible. Commit the legal Action and 1 RP together, set the actor's same-card Recharge counter to 3, and, for borrowing, spend the single Versatile Mastery use at that same commitment. Record donor provenance without spending any donor resource. A rejected precommit declaration spends none of these costs. Resolve the activation within that same action after only genuinely applicable source-defined interruptions; there is no automatic Counterspell window, opposed cast roll or concentration test. Ordinary Counterspell and rank-limited spell dispels do not acquire this nonspell target. A separately sourced interrupt or suppression must actually cover it; ordinary damage alone does not add a concentration requirement. If the actor cannot finish the activation or its fixed terrain is no longer legally in range, perceivable and reachable by line of effect at resolution, the paid activation fails without a new area or refund. Borrowing's donor condition is tested at actual activation commitment, not imposed as a new continuing tether after receipt of the signal.\n\nNEW NWQ-04 rider and check: a surviving activation gives this actor one unused rider from actual resolution until resolution time plus 60 elapsed seconds; the exact deadline is not renewed by travel, turns, initiative changes, donor departure or the borrowed permission ending. No concentration is required. At most one unused Nature's Whisper rider belongs to that actor across native and borrowed uses; a new successful resolution replaces an older unused rider, not stacks or banks checks. A failed or interrupted new activation does not itself replace an older otherwise valid rider. Before any dice or outcome are supplied, voluntarily bind the rider to one separately lawful and paid Perception or Survival check about tracks, hidden natural creatures or signs of passage in the original fixed area. The relevant terrain/evidence must still be natural, within 15 feet of the actor and accessible to the task's actual senses and line of effect; no total-cover, thoughts, incorporeal-detection or automatic-revelation exception is supplied. Consume the rider at that check's outcome commitment before rolling or determining its result, even if other advantage already exists, disadvantage cancels it, the legal check fails, or a genuine interruption then prevents its result. An invalid check declaration does not consume the rider or grant a free roll. A paid longer task whose check reaches adjudication at or after the deadline receives no rider. Use ordinary task resolution and advantage cancellation; no passive-score adjustment, extra degree effect, free check, new retry or second bonus is granted. Reveal only real evidence supported by the actual successful task and observer rules; unknown data is not proof of absence. Failure does not reveal otherwise hidden facts. Expired, consumed or ended riders cannot be reclaimed by repeating a request.\n\nKEEP generic nonspell Ready: this Action-time technique may be readied through the current Ready procedure. Ready setup spends its Action and records one perceivable trigger; it does not activate Nature's Whisper, pay its RP/feat use, start its Recharge, start its minute, update spell history or create held-spell concentration. On a legal release before Ready expires, spend the required permitted Reaction and perform the actual activation commitment instead of another Action; recheck its own entitlement, recharge, personal RP, terrain and, for borrowing, the prepared donor/signal conditions at that release. An invalid or declined trigger spends no release resource and may await another valid trigger within the same Ready window. Unreleased, replaced or expired Ready loses its setup Action but not an unspent Nature/feat cost. A legally released then interrupted activation retains all committed costs and Recharge. Native and borrowed copies use the actor's same source-ID recharge history; borrowing does not refresh it or the donor's history. Recharge 3 ticks once at each subsequent owner regular-turn start, or once per six elapsed seconds outside initiative without double counting; extra Actions and extra turns do not tick it. A recharge becoming ready grants no new borrowed feat use.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3850,
+        "originalText": "Nature's Whisper: Cast a minor nature spell that reveals hidden creatures or tracks within a small area."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "ranger.base.skirmisher-s-step",
+      "name": "Skirmisher's Step",
+      "className": "Ranger",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "0",
+      "rangeAndTarget": "Self",
+      "duration": "Immediate movement",
+      "frequency": "Recharge 2",
+      "effect": "Move up to half Speed without provoking opportunity attacks. Supplied movement does not increase remaining normal movement. Requires an unblocked route; no teleport or escape from restraints.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3851,
+        "originalText": "Skirmisher's Step: Move half your speed without provoking opportunity attacks."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "ranger.base.elemental-attunement",
+      "name": "Elemental Attunement",
+      "className": "Ranger",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "1 RP",
+      "rangeAndTarget": "Self",
+      "duration": "Concentration, 1 minute",
+      "frequency": "Recharge 3",
+      "effect": "Choose fire/cold/poison. Gain resistance to that damage and sense an exposed source of it within 15 ft. Does not infuse weapons, detect through total cover or identify exact poison recipes.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3852,
+        "originalText": "Elemental Attunement: Temporarily attune yourself to an element (fire, cold, or poison), gaining minor resistance and the ability to detect that element."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "ranger.arch.ignore-difficult-terrain",
+      "name": "Ignore Difficult Terrain",
+      "className": "Ranger",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Self",
+      "duration": "While known",
+      "frequency": "Continuous",
+      "effect": "Ignore movement cost increases from difficult terrain, including magical terrain. You still suffer its separate damage, restraints and hazards, and cannot cross impassable walls or surfaces without movement capability.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3858,
+        "originalText": "Ignore Difficult Terrain: Move normally through any type of difficult terrain."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "ranger.arch.enhanced-stealth-and-perception",
+      "name": "Enhanced Stealth and Perception",
+      "className": "Ranger",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Self",
+      "duration": "While known",
+      "frequency": "Continuous",
+      "effect": "Gain+2 Stealth and Perception. It does not stack with Keen Senses on Perception; use+2 total from these class features. Advantage from another feature is separate.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3859,
+        "originalText": "Enhanced Stealth and Perception: Gain +2 to Stealth and Perception checks."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "ranger.arch.tactical-draw",
+      "name": "Tactical Draw",
+      "className": "Ranger",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Self after switching melee/ranged weapon mode",
+      "duration": "Until start next turn",
+      "frequency": "Once/own turn",
+      "effect": "Gain+1 AC after making an attack with the new mode. Drawing/stowing alone is insufficient. Further switches refresh neither extra AC nor actions.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3860,
+        "originalText": "Tactical Draw: Gain +1 AC after switching from bow to blade or vice versa."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "ranger.arch.vigilant-heart",
+      "name": "Vigilant Heart",
+      "className": "Ranger",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 7,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Self",
+      "duration": "While conscious",
+      "frequency": "Continuous",
+      "effect": "You cannot be surprised by a creature you can perceive. Gain advantage on saves against scrying; on success learn someone attempted it but not identity/location. No blanket immunity to divination.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3861,
+        "originalText": "Vigilant Heart: Become immune to surprise and scrying attempts."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "ranger.arch.dual-style",
+      "name": "Dual Style",
+      "className": "Ranger",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 5,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Self",
+      "duration": "Own turn",
+      "frequency": "Once/turn",
+      "effect": "Draw/stow a bow and up to 2 light melee weapons as one free exchange on your turn. This replaces normal object interaction for those weapons and cannot manipulate unrelated items or grant attacks.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3862,
+        "originalText": "Dual Style: Gain the ability to swap weapons as a free action (level 5)."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "ranger.arch.elemental-imbue",
+      "name": "Elemental Imbue",
+      "className": "Ranger",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 6,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "2 RP",
+      "rangeAndTarget": "Wielded weapons",
+      "duration": "3 of your turns",
+      "frequency": "Recharge 3",
+      "effect": "Use the engine's fire/cold/poison Imbue: once/turn add 1d4 and its bounded elemental rider to a weapon hit. Switching element pays again. It does not stack multiple imbues or multiply Do Ts.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3863,
+        "originalText": "Elemental Imbue: Infuse your weapons with fire, cold, or poison to deal additional effects (level 6)."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "ranger.arch.pathfinder-s-mark",
+      "name": "Pathfinder's Mark",
+      "className": "Ranger",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "1 RP",
+      "rangeAndTarget": "One fixed visible point within 30 ft",
+      "duration": "24 hours",
+      "frequency": "One location mark",
+      "effect": "Know direction and rough distance to the point within 10 miles on same plane. A new mark replaces old. It does not create teleportation, observe occupants or reveal a path through barriers.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3866,
+        "originalText": "Pathfinder's Mark: Place a magical mark on a location that you can sense the direction and distance to for 24 hours."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "ranger.arch.natural-camouflage",
+      "name": "Natural Camouflage",
+      "className": "Ranger",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "0",
+      "rangeAndTarget": "Self in natural cover",
+      "duration": "Until you move or attack",
+      "frequency": "Recharge 2",
+      "effect": "Take Hide with advantage if foliage, rock or other natural cover can conceal you. Being stationary in open view does not qualify. Does not grant invisibility or hide your allies.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3867,
+        "originalText": "Natural Camouflage: Blend into natural surroundings, gaining advantage on Stealth checks while stationary."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "ranger.arch.terrain-analysis",
+      "name": "Terrain Analysis",
+      "className": "Ranger",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "0",
+      "rangeAndTarget": "Visible terrain within 60 ft",
+      "duration": "Instant information",
+      "frequency": "Recharge 2",
+      "effect": "Learn up to 2 observable tactical facts: difficult ground, unstable footing, tracks or usable cover. Director states facts supported by senses; hidden magical traps still need normal checks. Next ally following your identified safe route gains+5 ft movement once.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3868,
+        "originalText": "Terrain Analysis: Quickly survey an area to gain tactical information about the environment."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "ranger.arch.swift-traverse",
+      "name": "Swift Traverse",
+      "className": "Ranger",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 5,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "1 RP",
+      "rangeAndTarget": "Self in natural terrain",
+      "duration": "This turn",
+      "frequency": "Recharge 3",
+      "effect": "Take Dash, gaining movement equal to Speed; ignore opportunity attacks from your quarry during this movement only. No free attacks, flight, wall traversal or doubled daily travel rate.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3869,
+        "originalText": "Swift Traverse: Move at double speed for a short time when in natural terrain."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "ranger.arch.predator-s-mark",
+      "name": "Predator's Mark",
+      "className": "Ranger",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 9,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "2 RP",
+      "rangeAndTarget": "Your quarry within 90 ft",
+      "duration": "1 minute",
+      "frequency": "Recharge 3",
+      "effect": "Upgrade current mark: first direct weapon hit per turn adds 1d6 rather than the engine's flat S; choose the higher, not both. Know quarry direction while within 90 ft unless blocked by total cover. Requires concentration; ordinary mark remains if this upgrade ends.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3870,
+        "originalText": "Predator's Mark: Mark a tracked target for bonus damage and enhanced awareness of their movements (level 9)."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "ranger.hero.warder.living-pulse",
+      "name": "Living Pulse",
+      "className": "Ranger",
+      "band": "Hero",
+      "path": "Warder",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Triggered",
+      "cost": "1 RP",
+      "rangeAndTarget": "Self in natural terrain",
+      "duration": "Start of your regular turn",
+      "frequency": "Once/turn",
+      "effect": "You may pay 1 RP to regain 2 HP. Does not trigger when Downed or incapacitated, cannot exceed maximum and never counts as another healing spell. Replaces unlimited passive regeneration with a finite cost.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3879,
+        "originalText": "Living Pulse: Regenerate 2 HP per round while in natural terrain."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "ranger.hero.warder.beast-empathy",
+      "name": "Beast Empathy",
+      "className": "Ranger",
+      "band": "Hero",
+      "path": "Warder",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Natural beasts within 30 ft that hear you",
+      "duration": "While communicating",
+      "frequency": "Continuous",
+      "effect": "Communicate simple emotions/directions. They are not automatically friendly or controlled, cannot answer beyond their experience, and may need normal Animal Handling. No language-based compulsion or extra companion slot.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3880,
+        "originalText": "Beast Empathy: Communicate basic concepts with natural beasts."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "ranger.hero.warder.warden-s-vigilance",
+      "name": "Warden's Vigilance",
+      "className": "Ranger",
+      "band": "Hero",
+      "path": "Warder",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Ritual",
+      "cost": "1 RP; 10 minutes",
+      "rangeAndTarget": "Natural area within 300 ft",
+      "duration": "Instant information",
+      "frequency": "1/short rest",
+      "effect": "Learn direction of one substantial recent fire, poisoning or unnatural blight in the area. Does not locate arbitrary enemies or identify culprits. A protected or planar-hidden effect may remain undetected.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3881,
+        "originalText": "Warden's Vigilance: Detect threats to natural areas within a large radius."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "ranger.hero.warder.healing-touch",
+      "name": "Healing Touch",
+      "className": "Ranger",
+      "band": "Hero",
+      "path": "Warder",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "One other ally healed by your paid spell/item",
+      "duration": "Instant",
+      "frequency": "Once/turn",
+      "effect": "Add M HP to actual healing. Do not multiply potion dice or duplicate consumed items; cannot apply to regeneration, companions' healing, copies or another Ranger's same bonus.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3882,
+        "originalText": "Healing Touch: Your healing spells and items are 25% more effective on allies."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "ranger.hero.warder.rootcall-quake",
+      "name": "Rootcall Quake",
+      "className": "Ranger",
+      "band": "Hero",
+      "path": "Warder",
+      "sourceKind": "active",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "3 RP",
+      "rangeAndTarget": "Up to 3 enemies in 10 ft-radius ground area within 60 ft",
+      "duration": "Concentration, 3 of your turns",
+      "frequency": "Recharge 3",
+      "effect": "STR save or Speed 0. Each affected target repeats save at end of each turn and may use Action to attempt escape using STR(Athletics) against class DC. Flying creatures not touching ground are unaffected.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3885,
+        "originalText": "Rootcall Quake: Create an area effect that roots enemies in place."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "ranger.hero.warder.healing-briar",
+      "name": "Healing Briar",
+      "className": "Ranger",
+      "band": "Hero",
+      "path": "Warder",
+      "sourceKind": "active",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "4 RP",
+      "rangeAndTarget": "Fixed 10 ft-radius natural-ground zone within 30 ft; 3 allies/pulse",
+      "duration": "Concentration, 3 of your turns",
+      "frequency": "Recharge 4",
+      "effect": "On start heal 1d8+M per chosen living ally; on next 2 turns Bonus Action+1 RP repeats pulse. Maximum 3 pulses; no passive additional entry healing and no Wound removal.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3886,
+        "originalText": "Healing Briar: Establish a healing zone that restores health to allies within it."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "ranger.hero.warder.warden-s-step",
+      "name": "Warden's Step",
+      "className": "Ranger",
+      "band": "Hero",
+      "path": "Warder",
+      "sourceKind": "active",
+      "minimumClassLevel": 12,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "3 RP",
+      "rangeAndTarget": "Empty space adjacent to injured ally within 30 ft",
+      "duration": "Instant; pressure until start next turn",
+      "frequency": "Recharge 3",
+      "effect": "Teleport to visible legal space. Up to 2 adjacent enemies make WIS save; failure gives disadvantage on next attack against someone other than you. No forced targeting, movement or whole-Action loss.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3887,
+        "originalText": "Warden's Step: Teleport to an injured ally and taunt nearby foes."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "ranger.hero.warder.nature-s-blessing",
+      "name": "Nature's Blessing",
+      "className": "Ranger",
+      "band": "Hero",
+      "path": "Warder",
+      "sourceKind": "active",
+      "minimumClassLevel": 14,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "3 RP",
+      "rangeAndTarget": "One willing ally within 30 ft",
+      "duration": "Concentration, 3 of your turns",
+      "frequency": "Recharge 3",
+      "effect": "Ally gains+10 ft Speed and S d6+M temporary HP on start. While effect lasts it has advantage on saves against forced movement. Temporary HP are not refreshed each turn.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3888,
+        "originalText": "Nature's Blessing: Grant an ally temporary bonuses to speed and resilience."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "ranger.hero.warder.beast-companion",
+      "name": "Beast Companion",
+      "className": "Ranger",
+      "band": "Hero",
+      "path": "Warder",
+      "sourceKind": "active",
+      "minimumClassLevel": 16,
+      "acquisition": "selection",
+      "activation": "Ritual",
+      "cost": "4 RP; 1 hour with a willing/tamed eligible beast",
+      "rangeAndTarget": "One beast touched",
+      "duration": "Bond persists; one companion",
+      "frequency": "1/long rest",
+      "effect": "Bond eligible beast using standard companion stats plus Wisdom modifier HP; preserve one movement mode up to 40 ft and keen-sense advantage. Bonus Action command gives one attack, no imported boss powers. Injury persists; heal normally. Death requires a new bond after long rest, not free resummoning.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3889,
+        "originalText": "Beast Companion: Tame one beast from the bestiary (CR ≤ your level, INT < 7, not corrupted) as a permanent companion that scales with your Wisdom and level."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "ranger.hero.stalker.hunter-s-reflex",
+      "name": "Hunter's Reflex",
+      "className": "Ranger",
+      "band": "Hero",
+      "path": "Stalker",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Self after ranged attack",
+      "duration": "Until start next turn",
+      "frequency": "Once/turn",
+      "effect": "Gain+1 AC against the next ranged attack targeting you. Benefit ends after that attack, hit or miss. Multiple shots do not create multiple dodge charges.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3895,
+        "originalText": "Hunter's Reflex: Gain +10% Dodge chance after making a ranged attack."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "ranger.hero.stalker.shadow-step",
+      "name": "Shadow Step",
+      "className": "Ranger",
+      "band": "Hero",
+      "path": "Stalker",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Self at normal walking speed",
+      "duration": "While moving",
+      "frequency": "Continuous",
+      "effect": "Leave no mundane footprints and make no ordinary footstep sound. You still need cover and Stealth to hide; speech, equipment noise, scent, tremorsense and magical tracking remain possible.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3896,
+        "originalText": "Shadow Step: Leave no tracks and make no sound when moving at normal speed."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "ranger.hero.stalker.keen-hunter",
+      "name": "Keen Hunter",
+      "className": "Ranger",
+      "band": "Hero",
+      "path": "Stalker",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Your quarry within normal sight",
+      "duration": "While marked",
+      "frequency": "Continuous",
+      "effect": "If quarry attempts to Hide while visible to you, you know its position until it gains total cover or leaves your sight. Does not negate invisibility, darkness or planar travel without an appropriate sense.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3897,
+        "originalText": "Keen Hunter: Tracked targets cannot hide from you within your line of sight."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "ranger.hero.stalker.efficient-killer",
+      "name": "Efficient Killer",
+      "className": "Ranger",
+      "band": "Hero",
+      "path": "Stalker",
+      "sourceKind": "passive",
+      "minimumClassLevel": 11,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Your Hit Chain after class 11 unlock",
+      "duration": "While known",
+      "frequency": "Continuous",
+      "effect": "Arrow threshold becomes 2 successful direct weapon hits instead of 3; gain cap remains 2/turn. The source of an Arrow's combo prerequisite still needs its stated history; Emberroot/Glacial may require 3 hits even though chain is primed at 2.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3898,
+        "originalText": "Efficient Killer: Reduce the Hit Chain requirement for Druidic Arrow to 2 hits instead of 3."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "ranger.hero.stalker.camouflage-step",
+      "name": "Camouflage Step",
+      "className": "Ranger",
+      "band": "Hero",
+      "path": "Stalker",
+      "sourceKind": "active",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "2 RP",
+      "rangeAndTarget": "Self in natural cover or dim light",
+      "duration": "Until end next turn or attack/cast",
+      "frequency": "Recharge 3",
+      "effect": "Become invisible; ends immediately after your first attack roll or spell cast, hit or miss. No automatic surprise. Taking damage does not itself end it, but ordinary senses can locate you.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3901,
+        "originalText": "Camouflage Step: Become invisible until you make your first attack."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "ranger.hero.stalker.silent-volley",
+      "name": "Silent Volley",
+      "className": "Ranger",
+      "band": "Hero",
+      "path": "Stalker",
+      "sourceKind": "active",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "3 RP",
+      "rangeAndTarget": "Up to 3 distinct enemies in bow range",
+      "duration": "Instant",
+      "frequency": "Recharge 3",
+      "effect": "Make 3 bow attacks, each weapon die without ability damage modifier. Ignore half cover, not armor or total cover. Quarry/riders once per their limits; chain gains at most 2. This is not three full Attack Actions.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3902,
+        "originalText": "Silent Volley: Fire three arrows in rapid succession, ignoring armor bonuses."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "ranger.hero.stalker.shattershot",
+      "name": "Shattershot",
+      "className": "Ranger",
+      "band": "Hero",
+      "path": "Stalker",
+      "sourceKind": "active",
+      "minimumClassLevel": 12,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "3 RP",
+      "rangeAndTarget": "One enemy in bow range",
+      "duration": "Instant; shield suppression until end next turn",
+      "frequency": "Recharge 3",
+      "effect": "One bow attack; hit adds S d6 piercing. Target makes STR save or loses its shield's AC bonus until end next turn. One visible rank 1–3 magical defense can instead be suppressed after a WIS save failure; never permanently destroys gear or dispels everything.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3903,
+        "originalText": "Shattershot: Fire a specialized arrow that breaks shields and removes magical buffs."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "ranger.hero.stalker.ghost-strike",
+      "name": "Ghost Strike",
+      "className": "Ranger",
+      "band": "Hero",
+      "path": "Stalker",
+      "sourceKind": "active",
+      "minimumClassLevel": 14,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "2 RP",
+      "rangeAndTarget": "One enemy in melee reach",
+      "duration": "Instant",
+      "frequency": "Recharge 3",
+      "effect": "One melee weapon attack with+2 to hit; on hit add S d6 force. Only added force ignores resistance, not immunity. Does not remove natural armor, all AC or legendary defenses.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3904,
+        "originalText": "Ghost Strike: Make a melee attack that bypasses physical armor."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "ranger.hero.stalker.vanishing-act",
+      "name": "Vanishing Act",
+      "className": "Ranger",
+      "band": "Hero",
+      "path": "Stalker",
+      "sourceKind": "active",
+      "minimumClassLevel": 16,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "4 RP; 1 short-rest use",
+      "rangeAndTarget": "Self; visible destination within 30 ft",
+      "duration": "Until start next turn or attack/cast",
+      "frequency": "1/short rest",
+      "effect": "Teleport to unoccupied visible space and become invisible until the stated end. Cannot pass a ward that blocks teleportation, escape a dimensional prison or retain invisibility after attacking.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3905,
+        "originalText": "Vanishing Act: Disappear from sight and reposition to any point within 30 feet."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "ranger.hero.outrider.predator-s-grin",
+      "name": "Predator's Grin",
+      "className": "Ranger",
+      "band": "Hero",
+      "path": "Outrider",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Triggered",
+      "cost": "1 short-rest use",
+      "rangeAndTarget": "Self after directly reducing quarry to 0",
+      "duration": "Your next regular turn",
+      "frequency": "1/short rest",
+      "effect": "Gain one extra full Action next turn within the shared cap. It cannot grant another Action or trigger another Predator's Grin. Allies, summons, helpless creatures and ongoing copied damage do not qualify.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3911,
+        "originalText": "Predator's Grin: Killing a tracked target grants you an extra action once per rest."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "ranger.hero.outrider.toxic-affinity",
+      "name": "Toxic Affinity",
+      "className": "Ranger",
+      "band": "Hero",
+      "path": "Outrider",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Self",
+      "duration": "While known",
+      "frequency": "Continuous",
+      "effect": "Immune to Poisoned and nonmagical disease; gain poison resistance. This deliberately replaces blanket immunity to every poison/disease source. Existing magical diseases require their own treatment.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3912,
+        "originalText": "Toxic Affinity: Gain immunity to poison and disease."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "ranger.hero.outrider.corruption-touch",
+      "name": "Corruption Touch",
+      "className": "Ranger",
+      "band": "Hero",
+      "path": "Outrider",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Your Elemental Imbue",
+      "duration": "Up to 6 of your turns",
+      "frequency": "Once/turn spread",
+      "effect": "Imbue lasts 6 turns instead of 3. On a weapon critical, one other enemy within 5 ft takes 1d4 of imbue type. No additional condition, Hit Chain or recursive critical effects on that secondary damage.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3913,
+        "originalText": "Corruption Touch: Your elemental imbues last twice as long and spread to adjacent targets on critical hits."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "ranger.hero.outrider.blight-infusion",
+      "name": "Blight Infusion",
+      "className": "Ranger",
+      "band": "Hero",
+      "path": "Outrider",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Primary target of your Arrow on blighted ground",
+      "duration": "Until end target's next turn",
+      "frequency": "Once/Arrow",
+      "effect": "On hit target makes CON save or the next HP healing it receives is reduced by M, minimum 0. This is temporary Blight, not permanent campaign Corruption; multiple applications do not stack.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3914,
+        "originalText": "Blight Infusion: Your Druidic Arrows inflict Blight on hit if the terrain is corrupted."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "ranger.hero.outrider.venom-rain",
+      "name": "Venom Rain",
+      "className": "Ranger",
+      "band": "Hero",
+      "path": "Outrider",
+      "sourceKind": "active",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "3 RP",
+      "rangeAndTarget": "Up to 3 enemies in 10 ft-radius area within 60 ft",
+      "duration": "Instant; Poisoned until end next turn",
+      "frequency": "Recharge 3",
+      "effect": "CON save: S d8 poison, half on success; failure Poisoned until end next turn. No permanent Corruption gain, contagious disease or poison harvesting. This is a paid technique and does not build Hit Chain.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3917,
+        "originalText": "Venom Rain: Create an area effect that deals poison damage and applies Corruption."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "ranger.hero.outrider.rotting-tether",
+      "name": "Rotting Tether",
+      "className": "Ranger",
+      "band": "Hero",
+      "path": "Outrider",
+      "sourceKind": "active",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "3 RP",
+      "rangeAndTarget": "One enemy standing on ground within 60 ft",
+      "duration": "Concentration, 3 of your turns",
+      "frequency": "Recharge 3",
+      "effect": "CON save or tethered: first time it voluntarily moves at least 5 ft each turn, takes S d4 necrotic. Repeat save at turn end ends tether. Forced movement causes no damage; maximum 1 tick/turn, no whole-turn loss.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3918,
+        "originalText": "Rotting Tether: Link an enemy to corrupted terrain, causing damage when they move."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "ranger.hero.outrider.entropic-march",
+      "name": "Entropic March",
+      "className": "Ranger",
+      "band": "Hero",
+      "path": "Outrider",
+      "sourceKind": "active",
+      "minimumClassLevel": 12,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "4 RP",
+      "rangeAndTarget": "Fixed 15 ft-radius ground area within 60 ft",
+      "duration": "Concentration, 3 of your turns",
+      "frequency": "Recharge 4",
+      "effect": "Create temporary blighted difficult terrain. On start and first entry/start of turn, up to 3 enemies take S d4 necrotic, CON half, maximum once/creature/round. Ground returns unchanged afterward; no permanent ecological corruption or resource farming.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3919,
+        "originalText": "Entropic March: Convert natural terrain into Blighted terrain in a large area."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "ranger.hero.outrider.withering-shot",
+      "name": "Withering Shot",
+      "className": "Ranger",
+      "band": "Hero",
+      "path": "Outrider",
+      "sourceKind": "active",
+      "minimumClassLevel": 14,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "3 RP",
+      "rangeAndTarget": "One enemy in bow range",
+      "duration": "Instant; until end target's next turn",
+      "frequency": "Recharge 3",
+      "effect": "Bow attack; hit adds S d6 necrotic and target makes CON save. Failure halves the next HP healing it receives before expiry, rounding down. No stacking with another reduction to create negative healing.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3920,
+        "originalText": "Withering Shot: Fire an arrow that drastically reduces the target's healing received."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "ranger.hero.outrider.plague-bearer",
+      "name": "Plague Bearer",
+      "className": "Ranger",
+      "band": "Hero",
+      "path": "Outrider",
+      "sourceKind": "active",
+      "minimumClassLevel": 16,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "5 RP; 1 long-rest use",
+      "rangeAndTarget": "Self; direct weapon targets",
+      "duration": "Concentration, 3 of your turns",
+      "frequency": "1/long rest",
+      "effect": "Your first weapon hit each turn adds 1d6 poison; target CON save or Poisoned until end next turn. You lose M real HP on activation, cannot fall below 1. The controlled effect is not a transmissible permanent disease and creates no free toxins.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3921,
+        "originalText": "Plague Bearer: Infect yourself with a controlled disease that spreads to enemies you damage."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "ranger.supplement.master-of-the-hunt-new-hero-capstone",
+      "name": "Master of the Hunt — new Hero capstone",
+      "className": "Ranger",
+      "band": "Hero",
+      "path": null,
+      "sourceKind": "supplement",
+      "minimumClassLevel": 20,
+      "acquisition": "automatic",
+      "activation": "Triggered",
+      "cost": "1 long-rest use",
+      "rangeAndTarget": "One legal chosen Hero Arrow",
+      "duration": "That Arrow",
+      "frequency": "1/long rest",
+      "effect": "New playtest Hero capstone. Once per long rest when using your Hero Arrow, pay its normal Hit Chain/action requirements, then enhance only that activation: Warder grants 2 M temporary HP instead of M; Stalker adds S d6 piercing to one of its two hits; Outrider adds S d4 necrotic to one target on its single pulse. No extra Arrow, Hit Chain, action or copied proc.",
+      "prerequisite": "See class engine and progression.",
+      "source": {
+        "line": null,
+        "reference": null,
+        "originalText": "",
+        "status": "explicit-new-playtest-completion"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  ],
+  "schedule": [
+    {
+      "classLevel": 1,
+      "choose": 4,
+      "bands": [
+        "Base"
+      ],
+      "minimumActives": 2,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 2,
+      "choose": 2,
+      "bands": [
+        "Base"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 3,
+      "choose": 2,
+      "bands": [
+        "Arch"
+      ],
+      "minimumActives": 1,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 4,
+      "choose": 1,
+      "bands": [
+        "Base",
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": true
+    },
+    {
+      "classLevel": 5,
+      "choose": 1,
+      "bands": [
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 6,
+      "choose": 1,
+      "bands": [
+        "Base",
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 7,
+      "choose": 1,
+      "bands": [
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 8,
+      "choose": 1,
+      "bands": [
+        "Base",
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": true
+    },
+    {
+      "classLevel": 9,
+      "choose": 1,
+      "bands": [
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 10,
+      "choose": 2,
+      "bands": [
+        "Hero"
+      ],
+      "minimumActives": 1,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 11,
+      "choose": 1,
+      "bands": [
+        "Base",
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 12,
+      "choose": 1,
+      "bands": [
+        "Hero"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": true
+    },
+    {
+      "classLevel": 13,
+      "choose": 1,
+      "bands": [
+        "Base",
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 14,
+      "choose": 1,
+      "bands": [
+        "Hero"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 15,
+      "choose": 1,
+      "bands": [
+        "Base",
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 16,
+      "choose": 1,
+      "bands": [
+        "Hero"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": true
+    },
+    {
+      "classLevel": 17,
+      "choose": 1,
+      "bands": [
+        "Base",
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 18,
+      "choose": 1,
+      "bands": [
+        "Hero"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 19,
+      "choose": 1,
+      "bands": [
+        "Base",
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": true
+    },
+    {
+      "classLevel": 20,
+      "choose": 0,
+      "bands": [],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    }
+  ],
+  "exceptionSchedule": {},
+  "sourceFiles": [
+    "../../../data/playtest/class_sources/ranger.json",
+    "../../../data/playtest/class_sources/supplements.json"
+  ],
+  "authoringNotes": "Provisional; notebook adversarial findings reconciled and source-preserving editorial review complete. Human balance testing remains."
+}

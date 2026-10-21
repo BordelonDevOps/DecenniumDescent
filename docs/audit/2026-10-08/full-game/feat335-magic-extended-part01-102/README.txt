@@ -1,0 +1,1 @@
+Complete bounded stated-case review MX01-20. All source files are retained under sources/. Original and final source records remain distinct. Review.json records individual notes and conditional arithmetic; no runtime implementation or whole-cohort acceptance. Do not run supplied scripts.
