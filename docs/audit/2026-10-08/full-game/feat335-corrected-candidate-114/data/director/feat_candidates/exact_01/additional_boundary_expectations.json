@@ -1,0 +1,202 @@
+{
+  "reviewId": "FEAT327-SOURCE-2026-10-11",
+  "status": "Authored expectations for exact-candidate validation, not executed runtime",
+  "cases": [
+    {
+      "id": "FA-01",
+      "name": "Endurance combined real clock",
+      "featId": "endurance",
+      "completeExpectedOutcome": "Start worldt0; designated Rest Watch16–24 is missed, opening debt at24 with deadline40. Food/water-only shortage at24 is its first omitted daily penalty; sleep penalty at40 is its first omitted sleep penalty. Another designated Rest Watch40–48 is missed and a second food/water-only shortage occurs at48: apply one sleep and one provisioning Strain, not zero and not a new hourly penalty. Preserve new debt deadline under EX58. Actual safe rest48–56 clears debt/sleep credit; it creates no provisions or automatic extra beneficial-rest reward.",
+      "basis": "FS-12"
+    },
+    {
+      "id": "FA-02",
+      "name": "Other shortages",
+      "featId": "endurance",
+      "completeExpectedOutcome": "If oil or other mandatory logistics independently make the day unsupported, the original one daily Strain remains even when the feat would omit a food/water-only penalty. Do not award a second daily Strain merely because two supplies are missing.",
+      "basis": "FS-12"
+    },
+    {
+      "id": "FA-03",
+      "name": "Finite real cargo",
+      "featId": "forager",
+      "completeExpectedOutcome": "14lb food+56pints water is70lb before containers. One Large consumer uses4lb/16pints from that stock. Survivalist on that Large consumer changes only its own requirement to2lb/8pints; no oil or sundries are added.",
+      "basis": "FS-11"
+    },
+    {
+      "id": "FA-04",
+      "name": "Mixed feat/class bonus",
+      "featId": "concentrated_will",
+      "completeExpectedOutcome": "Two applicable distinct+2 concentration-save feats contribute+4. Two eligible class-technique bonuses+1/+2 in one strongest family contribute+2, not+3. With no other restrictions, their combined contribution is+6, plus the one actual ability/proficiency contribution.",
+      "basis": "FS-03"
+    },
+    {
+      "id": "FA-05",
+      "name": "Strongest slow",
+      "featId": "slasher",
+      "completeExpectedOutcome": "Speed30 with Slasher−10 and Crippling Strike−10 becomes20. An independent half-Speed hostile slow produces15 instead, not5. Genuine hard0 restrictions still win; separate systemic stages retain their source order.",
+      "basis": "FS-04"
+    },
+    {
+      "id": "FA-06",
+      "name": "Native percent boundary",
+      "featId": "nightfang_training",
+      "completeExpectedOutcome": "Native19 damage gainsfloor(19/10)=1, total20, then a successful half-damage save gives10. Calculating10% afterfloor(19/2)=9 would incorrectly add0. External riders are not in that19 base.",
+      "basis": "FS-04"
+    },
+    {
+      "id": "FA-07",
+      "name": "Self ally Reaction",
+      "featId": "battlefield_commander",
+      "completeExpectedOutcome": "The commander can select themselves among at most3 genuine recipients, but their move still spends their own available Reaction. It cannot use an ally’s Reaction or provide a second commander turn.",
+      "basis": "FS-05"
+    },
+    {
+      "id": "FA-08",
+      "name": "Ranged breath attack",
+      "featId": "slayer_s_resolve",
+      "completeExpectedOutcome": "A Dragon’s ranged breath attack qualifies for pre-roll disadvantage. A non-breath ranged attack does not. A breath requiring a save uses its own reroll branch without inventing an attack.",
+      "basis": "FS-05"
+    },
+    {
+      "id": "FA-09",
+      "name": "Persistent caltrops",
+      "featId": "trapsetter",
+      "completeExpectedOutcome": "The second actual entrant still faces a supported caltrop field after the first entrant saved. Pieces embedded, removed or collected have one physical identity. A remote replacement cannot erase the field.",
+      "basis": "FS-15"
+    },
+    {
+      "id": "FA-10",
+      "name": "Ordinary lock",
+      "featId": "burglar",
+      "completeExpectedOutcome": "An ordinary reviewed lock uses one Action/DC15 with actual tools. DEX3+PB2+Burglar2 gives+7; Expertise replacesPB2 with4 for+9, not+11. No extra minute or retry permission is invented.",
+      "basis": "FS-15"
+    },
+    {
+      "id": "FA-11",
+      "name": "Mount one phase",
+      "featId": "cavalry",
+      "completeExpectedOutcome": "An actually ridden walking-only Speed40 animal gains+10to50 before its normal limiting stages. It gains no flight; a bonded mount retains one chosen compatible phase and shared spent budgets. A rider’s dismount still pays actual EX58 cost and geometry.",
+      "basis": "FS-10"
+    },
+    {
+      "id": "FA-12",
+      "name": "Two companions one offense",
+      "featId": "companion_training",
+      "completeExpectedOutcome": "At ownerlevel10 two companions may receive the same legal support command. An Attack command still designates only one offensive result; the other cannot bank a second attack or gain an independent initiative phase.",
+      "basis": "FS-10"
+    },
+    {
+      "id": "FA-13",
+      "name": "Rest repair whole job",
+      "featId": "tinker_adept",
+      "completeExpectedOutcome": "A genuinely authorized twenty-minute partial repair restoring2HP may restore5withPB3, capped by currentmaximum. An eight-hour reconstruction cannot qualify by doing its finaltwenty minutes while resting. Charges, service and fuel remain spent.",
+      "basis": "FS-14"
+    },
+    {
+      "id": "FA-14",
+      "name": "Haven complete time",
+      "featId": "appraise",
+      "completeExpectedOutcome": "A ten-minute inspection within a full thirty-minute Haven appraisal is not a second check or twenty-minute time refund. A forty-gp reference and twenty-gp agreed sale are distinct; their actual claim/disposition/settlement actors still work their full procedures.",
+      "basis": "FS-13"
+    },
+    {
+      "id": "FA-15",
+      "name": "Assay greater of",
+      "featId": "appraise",
+      "completeExpectedOutcome": "False face100gp and totalassay/remintfees3gp yield knowing-holder total10gp:3fees+7additionalassessment. If fees12gp, total12gp and additionalassessment0. No second charge of those same fees and no presumption of intent.",
+      "basis": "FS-13"
+    },
+    {
+      "id": "FA-16",
+      "name": "Capacity not refill",
+      "featId": "arcane_recall",
+      "completeExpectedOutcome": "Actual Mage3maximumRP8 at current7 can regain at most1 despite a larger legal unrefunded payment. Dragoon8maximumRP7 is not8. A Warrior7without another actual source has RPcapacity0, so3RP Arcane Pulse is unaffordable.",
+      "basis": "FS-07"
+    },
+    {
+      "id": "FA-17",
+      "name": "Paid versus free copy",
+      "featId": "eldritch_echo",
+      "completeExpectedOutcome": "Witnessed eligible rank4numeric componentB10 givesq2. Roll3d6then cap tofloor(10/2)=5; pay the actualrank2base3RP plus legitimate adjustments, real components and cast history. The release is copy-derived and cannot feed another capture or RP-generating class proc.",
+      "basis": "FS-08"
+    },
+    {
+      "id": "FA-18",
+      "name": "Zero copied magnitude",
+      "featId": "mimicry",
+      "completeExpectedOutcome": "A witnessed nativeB1numeric component caps at0; it cannot produce healing, Temp HP or damage by a minimum-one rule. Missing CR/rank/observed component is not a favorable inferred magnitude.",
+      "basis": "FS-08"
+    },
+    {
+      "id": "FA-19",
+      "name": "Current Invisibility",
+      "featId": "shadow_touched",
+      "completeExpectedOutcome": "The chosen current Invisibility payload may survive ordinary movement, but ends before committing Hide as an Action or another Action/BonusAction/Reaction. The feat’s charge does not supply an older concentration-hour version.",
+      "basis": "FS-09"
+    },
+    {
+      "id": "FA-20",
+      "name": "Ritual floors",
+      "featId": "quick_ritualist",
+      "completeExpectedOutcome": "Base6seconds+added600 becomes306seconds. Channeler’s75% calculation cannot undercut the6+300floor. Both reductions affect actual labor only; neither invents a check, cast instance or extra physical helper.",
+      "basis": "FS-14"
+    },
+    {
+      "id": "FA-21",
+      "name": "Concentration transfer",
+      "featId": "spellweave",
+      "completeExpectedOutcome": "Hold the actual non-concentration True Strike buff. The next spell consumes its attachment even if countered or lacking an attack. No extra concentration slot or new attack exists; a genuine eligible first attack can use only its one advantage.",
+      "basis": "FS-09"
+    },
+    {
+      "id": "FA-22",
+      "name": "Whole-footprint light",
+      "featId": "nightfang_training",
+      "completeExpectedOutcome": "Darkvision does not illuminate the holder’s space. Actual dim light on part of a footprint fails this total-darkness predicate even if the holder sees poorly. A light-generating spell may end qualification before its damage resolves.",
+      "basis": "FS-04"
+    },
+    {
+      "id": "FA-23",
+      "name": "Mutation equipped versus active",
+      "featId": "livingFortress",
+      "completeExpectedOutcome": "Three equipped Vital mutations satisfy only their acquisition side. At use, three must genuinely be active through existing slots/capacity; the feat does not itself unlock a third active mutation atWarrior8.",
+      "basis": "FS-02"
+    },
+    {
+      "id": "FA-24",
+      "name": "Pending condition",
+      "featId": "terrorEngine",
+      "completeExpectedOutcome": "One Shaken hostile plus one pending Disoriented hostile is only one active qualifying creature. At the second creature’s actual transition it may become two; no backdatedDR2 is applied to earlier damage.",
+      "basis": "FS-07"
+    },
+    {
+      "id": "FA-25",
+      "name": "Undying episode",
+      "featId": "undying_flesh",
+      "completeExpectedOutcome": "Commit after a positive-to-zero event leaves the holder living. Incapacity caused by that drop does not prevent the no-Action choice. Death before the deadline cancels it; earlier real positive healing cancels the old episode without later reducingHP to1.",
+      "basis": "FS-07"
+    },
+    {
+      "id": "FA-26",
+      "name": "Suppressed copy immunity",
+      "featId": "hemocraft",
+      "completeExpectedOutcome": "A present unexpired own Hemocraft record may be consumed under its exact explicit permission while losing Bleed arbitration; a cured/ended record cannot. Its reserve begins0onacquisition and is set only at an actual beneficialLR.",
+      "basis": "FS-07"
+    },
+    {
+      "id": "FA-27",
+      "name": "No lineage invention",
+      "featId": "dragon_blood",
+      "completeExpectedOutcome": "A character lacking an actual qualifying Dragonborn/Sorcerer bloodline receipt does not become eligible by calling a Mage route Sorcerer. The complete feat can still be authored with that prerequisite; no new ancestry/class is granted.",
+      "basis": "FS-02"
+    },
+    {
+      "id": "FA-28",
+      "name": "Two deferred grants",
+      "featId": "astral_projection",
+      "completeExpectedOutcome": "Astral Projection and Planar Binding keep their finite acquired wrappers and full original records. Their payload fields remainnull and unavailable; no travel/creature-binding example may execute them or imply cosmology approval.",
+      "basis": "FS-16"
+    }
+  ]
+}

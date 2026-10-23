@@ -1,0 +1,243 @@
+# Eight unchanged reviewed feats
+
+Derived complete-text assembly 106; exact parent review and integration pending.
+
+## Chef
+
+```json
+{
+  "id": "chef",
+  "name": "Chef",
+  "sourceObject": {
+    "id": "chef",
+    "name": "Chef",
+    "description": "You are an accomplished cook.",
+    "prerequisite": "None",
+    "effect": "You can cook special food during a long rest that provides temporary hit points to your party.",
+    "type": "General",
+    "draft": false,
+    "deprecated": false,
+    "needsReview": false
+  },
+  "sourceObjectSha256": "0e5b2a5c446a30438540005e0f2bc1754523b0c07f23a3d58d9738758d823de0",
+  "repeatability": "nonrepeatable",
+  "acquisition": "Actual class feat selection; source-specific prerequisite at acquisition",
+  "operationalRules": "## Chef — General; no prerequisite\n\nDuring an actual long-rest attempt, use cook's utensils and spend one uninterrupted hour cooking. This is permitted light activity only when the normal long-rest procedure permits that hour; the feat does not enlarge the allowance. Designate one batch of1..current PB intended servings at cooking start. Only one batch may be designated per rest attempt and only one can gain potency per successful completed rest.\n\nOn successful cooking completion, consume one real standard ration or meal-equivalent ingredient per intended serving. Create exactly that many physical prepared-food items, each with its own identity. Their food exists immediately, but they gain no feat potency before the rest actually succeeds. If the rest fails, the ingredients remain spent and the food remains ordinary. An incomplete cooking hour creates no special food.\n\nAt successful long-rest completion, first resolve old rest-expiring effects and advance the rest epoch. Then snapshot the Chef's current PB and empower up to `min(physically prepared servings still present, current PB)` items. Each grants `2 × PB at batch finalization` temporary HP. A PB increase cannot manufacture more ingredients or servings; a decrease leaves excess prepared items ordinary.\n\nA creature with a legal serving must spend one uninterrupted minute eating it. Completing a legal offer consumes the serving and the recipient's **Chef-family entitlement for its current completed-long-rest epoch**, even if an equal/stronger existing grant wins. This limit is shared across every Chef. The Chef's own rest does not reset another recipient's entitlement.\n\nPotency ends at the earlier of24 elapsed hours from successful batch creation or the Chef's next completed long rest after the creation rest. An already consumed/discarded item never returns. Expired potency leaves ordinary food, with no magical premium value. Potency expiration does not end a previously granted shield; that shield has the recipient's default lifetime.\n\nChef servings are distinct from crafted Feast recipes. Chef grants no recipe ingredients, crafting checks, RP restoration, creature traits or recipe power. It does not occupy the recipe system's one-feast-at-a-time slot. A lawful recipe rider can coexist with a Chef rider; temporary HP still do not stack. One physical meal cannot claim both effects unless an exact recipe expressly supports it. Recipe-specific ten-minute eating, longer crafting and materials remain independent.\n\n**NEW:** the finite batch transaction, quantities, preparation/eating times, recipient-family cap, potency expiry and explicit no-duplication/economy bridges. The source's long-rest cooking role is preserved.\n",
+  "reviewClosure": "docs/audit/2026-10-08/full-game/GPT_BUFFER_FEAT_FINAL_CLOSURE.md",
+  "sharedGuide": "docs/mechanics/BUFFER_FEAT_PLAYTEST.md",
+  "operationalStatus": "operational-playtest"
+}
+```
+
+## Empowered Summoning
+
+```json
+{
+  "id": "empowered_summoning",
+  "name": "Empowered Summoning",
+  "sourceObject": {
+    "id": "empowered_summoning",
+    "name": "Empowered Summoning",
+    "description": "A charismatic summoner calls allies with increased health and damage.",
+    "prerequisite": "Charisma 14+",
+    "effect": "Creatures you summon gain temporary hit points equal to twice your proficiency bonus and add your proficiency bonus to the first damage roll they make each round.",
+    "type": "Magic",
+    "legacyEffect": "Summoned allies +10% HP and damage",
+    "status": "provisional-complete",
+    "balanceReview": true,
+    "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+    "draft": false,
+    "deprecated": false,
+    "needsReview": true
+  },
+  "sourceObjectSha256": "afba301851de043876c6bb7d07d91ea717dd38a05ef6f2609540f0588a6bc31c",
+  "repeatability": "nonrepeatable",
+  "acquisition": "Actual class feat selection; source-specific prerequisite at acquisition",
+  "operationalRules": "## Empowered Summoning — Magic; Charisma14+\n\nWhen your actual source activation genuinely creates a new finite summoned creature, offer it `2 × your PB at creation` temporary HP. Its lifetime is default recipient long rest, also ending when that creature instance ends. Returned/revived preexisting bodies, persistent companion redeploy/rebuild, Mage bound returns, Ranger bonds and devices do not qualify merely by appearing again.\n\nRecord a lineage key containing the owner, actual source activation root and creation-slot/body-lineage. Several distinct bodies created by one source each receive their own grant. Reissuing/recreating the same lineage never refreshes its creation grant or its round damage entitlement. A genuinely new activation paid/used under its own rules can create a new root. An Action, limited use, ritual use or item charge can be a real source cost; RP is not mandatory.\n\nEach qualifying creature adds its owner's **current PB** to its first actual damage roll in each canonical round/window. Add this flat bonus once to a shared area roll, not once per affected target. A roll on an ongoing damage tick can qualify; fixed damage without a roll does not consume or receive the rider. Later rolls in that window gain nothing. A critical hit does not double this flat PB bonus.\n\nThe creature remains attacker and damage owner. This is not the owner's spell damage. All existing companion command, Bonus Action and offensive budgets remain unchanged. The feat grants neither an initiative entry nor an independent command budget.\n\n**NEW integration:** exact lineage identity, recreation guard and preserved round phase. Creation amount and damage rider are tied to their exact respective PB timings.\n",
+  "reviewClosure": "docs/audit/2026-10-08/full-game/GPT_BUFFER_FEAT_FINAL_CLOSURE.md",
+  "sharedGuide": "docs/mechanics/BUFFER_FEAT_PLAYTEST.md",
+  "operationalStatus": "operational-playtest"
+}
+```
+
+## Field Medic
+
+```json
+{
+  "id": "field_medic",
+  "name": "Field Medic",
+  "sourceObject": {
+    "id": "field_medic",
+    "name": "Field Medic",
+    "description": "Trained medical care stabilizes allies faster during combat.",
+    "prerequisite": "Trained in Medicine",
+    "effect": "You may use a healer’s kit as a bonus action. When you stabilize a creature, it gains temporary hit points equal to your proficiency bonus.",
+    "type": "General",
+    "legacyEffect": "Stabilize allies in combat faster",
+    "status": "provisional-complete",
+    "balanceReview": true,
+    "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+    "draft": false,
+    "deprecated": false,
+    "needsReview": true
+  },
+  "sourceObjectSha256": "e12c23ca62a26cc73da76870d8066b93ea9e29e1518604d0e1e76b354ebc3dab",
+  "repeatability": "nonrepeatable",
+  "acquisition": "Actual class feat selection; source-specific prerequisite at acquisition",
+  "operationalRules": "## Field Medic — General; trained in Medicine\n\nAs a Bonus Action, use one actual healer's-kit use on one legally reachable living dying creature. Resolve the canonical automatic kit stabilization, including its normal1d4-hour recovery deadline. Inventory must contain a real remaining use; this feat invents no kit capacity. This is distinct from the ordinary Action/DC10 Wisdom(Medicine) stabilization option.\n\nWhenever you actually cause a dying→Stable transition by **any legal method**, offer the target your PB temporary HP with default lifetime. Record the transition when it occurs. Already-Stable creatures cannot be stabilized again for a new grant. Record one entitlement per target + actual dying episode + feat owner, plus the actual stabilization event ID. Different owners do not share an artificial family lock, but each must actually cause a valid transition. A new episode requires a genuine exit from the old dying episode and later entry into dying; damage absorbed entirely by temporary HP does not create one.\n\nIf you also possess Battlefield Medic's separately sourced Trauma Response, first record the actual kit stabilization, then resolve that background's independent1HP recovery, then resolve Field Medic's temporary-HP offer. The later1HP does not erase the stabilization trigger. The feat itself provides no normal HP, consciousness, Wound removal or resurrection. No background is granted by acquiring this feat.\n\n**NEW integration:** event/episode anti-replay identity and ordering with independent recovery; the broad “when you stabilize” trigger is preserved.\n",
+  "reviewClosure": "docs/audit/2026-10-08/full-game/GPT_BUFFER_FEAT_FINAL_CLOSURE.md",
+  "sharedGuide": "docs/mechanics/BUFFER_FEAT_PLAYTEST.md",
+  "operationalStatus": "operational-playtest"
+}
+```
+
+## Inspiring Leader
+
+```json
+{
+  "id": "inspiring_leader",
+  "name": "Inspiring Leader",
+  "sourceObject": {
+    "id": "inspiring_leader",
+    "name": "Inspiring Leader",
+    "description": "You can inspire others through stirring words.",
+    "prerequisite": "Charisma 13 or higher",
+    "effect": "You can spend 10 minutes inspiring your companions, giving them temporary hit points.",
+    "type": "General",
+    "draft": false,
+    "deprecated": false,
+    "needsReview": false
+  },
+  "sourceObjectSha256": "ccf20f2fc5f38ad47473a963c27e49c6cfd5be9d2f2da6b314d71ba583e47d3e",
+  "repeatability": "nonrepeatable",
+  "acquisition": "Actual class feat selection; source-specific prerequisite at acquisition",
+  "operationalRules": "## Inspiring Leader — General; Charisma13+\n\nSpeak for ten uninterrupted minutes. At the start, select up to your current PB **other** willing creatures within30ft. Snapshot your character level and actual signed Charisma modifier then. Each selected creature must remain in range, hear and understand you throughout. No replacements or retargeting during the speech.\n\nOn completion, each continuously eligible recipient receives `max(1, snapshotted level + actual CHA modifier)` temporary HP with default lifetime. Each recipient can receive one legal Inspiring-Leader-family offer per its own completed-long-rest epoch, shared across all speakers. An offer rejected by stronger/equal temporary HP still consumes the entitlement.\n\nIf one listener loses eligibility, only that listener misses the benefit. If the speaker becomes Incapacitated, cannot continue speaking or abandons the speech, the whole unfinished performance fails. Interrupted speeches spend no recipient entitlements and have no owner per-rest use; the speaker may begin again. Later changes in the speaker's statistics do not change this performance's snapshot. Temporary CHA below13 after acquisition does not disable ownership.\n\n**NEW:** other-creature restriction, count, range/language/presence gates, amount, snapshots and family rest limit.\n",
+  "reviewClosure": "docs/audit/2026-10-08/full-game/GPT_BUFFER_FEAT_FINAL_CLOSURE.md",
+  "sharedGuide": "docs/mechanics/BUFFER_FEAT_PLAYTEST.md",
+  "operationalStatus": "operational-playtest"
+}
+```
+
+## Blood Ritual
+
+```json
+{
+  "id": "blood_ritual",
+  "name": "Blood Ritual",
+  "sourceObject": {
+    "id": "blood_ritual",
+    "name": "Blood Ritual",
+    "description": "Under the moon's gaze you bind flesh to curse through rites older than the cities of Aethel. Prestige lineage: Mooncursed. completed from the existing development record.)",
+    "prerequisite": "Constitution 13+, level 4+",
+    "effect": "Once per long rest, as part of a 10-minute ritual using your blood, you gain temporary hit points equal to twice your level and advantage on the next saving throw against curse or disease effects. Required for many lycanthropic oaths. Allies who witness the ritual and share a drop of blood gain half your temporary hit points (rounded down) for 1 hour.",
+    "type": "Magic",
+    "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+    "legacyEffect": "Once per long rest, as part of a 10-minute ritual using your blood, you gain temporary hit points equal to twice your level and advantage on the next saving throw against curse or disease effects. Required for many lycanthropic oaths. Allies who witness the ritual and share a drop of blood gain half your temporary hit points (rounded down) for 1 hour.",
+    "status": "provisional-complete",
+    "balanceReview": true,
+    "draft": false,
+    "deprecated": false,
+    "needsReview": true
+  },
+  "sourceObjectSha256": "5aaa8868de08ed8e614580b12164631975ce589856efeaf5c015ab44505904f7",
+  "repeatability": "nonrepeatable",
+  "acquisition": "Actual class feat selection; source-specific prerequisite at acquisition",
+  "operationalRules": "## Blood Ritual — Magic; Constitution13+ and character level4+\n\nPerform a ten-minute ritual once per completed long rest. Commit the use at ritual start. Snapshot your character level, PB and selected targets then: yourself plus up to PB **other** willing allies. Each ally must remain within10ft throughout, witness the ritual and voluntarily contribute a drop of blood. There is no normal-HP payment. No substitutions are allowed after starting.\n\nAt completion, offer yourself `2 × snapshotted character level` temporary HP with default lifetime. Each continuously eligible selected ally receives `snapshotted character level` temporary HP for one elapsed hour. A departed/ineligible ally loses only its own benefit. Your interruption fails the whole unfinished ritual and the use remains spent until a real rest resets it.\n\nYou also gain advantage on your next actual saving throw against an effect explicitly classified as a curse or disease. This rider is independent of the shield: rejection, replacement or depletion of temporary HP does not remove it. It ends when you roll that qualifying save or complete your next long rest, whichever is first. Consume it on the roll even if advantage cancels disadvantage or the save fails. It neither cures nor waives Oracle's intrinsic Curse and grants no oath or transformation.\n\nIf completion is strictly before a long-rest endpoint, the self shield/rider expire at that rest normally. At an exact tied completion, resolve old rest expirations, advance the epoch/reset resources, finalize Chef if applicable, then complete the tied ritual; its new shield/rider belong to the new epoch. Its already-committed start use is never retroactively refunded.\n\n**NEW:** PB ally cap, presence/willingness details, use timing and independent save-rider deadline. Self/ally amounts and the ally's hour follow the reconciled source.\n",
+  "reviewClosure": "docs/audit/2026-10-08/full-game/GPT_BUFFER_FEAT_FINAL_CLOSURE.md",
+  "sharedGuide": "docs/mechanics/BUFFER_FEAT_PLAYTEST.md",
+  "operationalStatus": "operational-playtest"
+}
+```
+
+## Lifeleech
+
+```json
+{
+  "id": "lifeleech",
+  "name": "Lifeleech",
+  "sourceObject": {
+    "id": "lifeleech",
+    "name": "Lifeleech",
+    "description": "Your magic does not merely harm—it siphons the vigor that death has not yet claimed. Prestige lineage: Soulrender. completed from the existing development record.)",
+    "prerequisite": "Spellcasting ability",
+    "effect": "When you deal necrotic damage with a spell, you regain hit points equal to half the necrotic damage dealt. When a hostile creature dies within 30 feet, you absorb a soul spark, gaining 1 soul charge (max 3). Soul charges can power Soul Cage abilities.",
+    "type": "Magic",
+    "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+    "legacyEffect": "When you deal necrotic damage with a spell, you regain hit points equal to half the necrotic damage dealt. When a hostile creature dies within 30 feet, you absorb a soul spark, gaining 1 soul charge (max 3). Soul charges can power Soul Cage abilities.",
+    "status": "provisional-complete",
+    "balanceReview": true,
+    "draft": false,
+    "deprecated": false,
+    "needsReview": true
+  },
+  "sourceObjectSha256": "1ec74c9ea62fd5d8cd1ee136c1589d4b6b752b55adb162c35d54c783321fc932",
+  "repeatability": "nonrepeatable",
+  "acquisition": "Actual class feat selection; source-specific prerequisite at acquisition",
+  "operationalRules": "## Lifeleech — Magic; actual spellcasting ability\n\nBefore your spell's damage resolves, designate one eligible hostile target for that spell root and canonical round/window. Your first positive actual necrotic damage to that target in the window commits the entitlement, even if the eventual healing is0, prohibited, capped or unfunded. No retargeting after observing results; area spells do not harvest a separate heal from every target. The same continuing spell can qualify again in a later real round/window.\n\nRaw self-healing is `floor(actual necrotic damage dealt /2)`. Use only the actual necrotic component, including actual temporary-HP absorption and normal HP lost under the existing actual-damage interface; no overkill. Targets must be genuine hostile opposition, not friendly/staged/trivial sacrifices or owner/ally-generated farming bodies. Natural attacks, Agony Lance and the Necrotic Affinity die alone are not spells. The feat removes no Wounds and cannot resurrect its dead owner.\n\n**NEW finite resource — Lifeleech Recovery Reserve:** newly acquiring the feat starts at0. At each actual completed long rest set its capacity and remaining points to `2 × current character level`, snapshotted then. Level/PB changes between rests do not refill/recompute it. This reserve is neither RP nor Mutation Recovery Reserve. Persistent save imports must preserve validated spent state.\n\nRun the ordinary two-pass healing modifiers/reductions/prohibitions. Preview uses available reserve to determine whether conditional bonuses requiring positive actual HP restoration qualify. Apply reductions before funding. Cap final legal healing potential by remaining reserve; spend that **entire funded amount** on commitment, including funded excess. All lawful healing bonuses consume this same reserve. Then restore HP subject to ordinary maximum HP and Critical ceiling, and calculate `genuine excess = max(0, funded amount − ordinary missing HP)`.\n\nA broad HP-gain prohibition produces0 legal amount, spends0 reserve and creates0 excess. At reserve0 the round/root trigger still commits, but it produces neither restoration nor excess. Full HP can produce funded excess, but does not enable conditional bonuses requiring actual HP restoration. Critical's ceiling does not itself turn all unrestored points into excess.\n\nLifeleech provides no intrinsic excess converter. A separately authorized converter must have its own eligibility/cost/cadence/cap and consume each funded excess point once. An explicitly legal resource-output converter remains possible; incidental heal-triggered resource production is blocked. The child heal carries `noLifeleechRetrigger`, `blockHealCopyTriggers` and `blockResourceTriggers`; propagate these to downstream callers. The resource flag blocks incidental triggers, not an exact, separately paid excess-conversion transaction. No new resource converter is granted here.\n\nLifeleech also automatically collects one Soul Charge at an eligible hostile soul-bearing creature's actual death within30ft, perceived with legal line of effect. No crystal is required for Lifeleech's own collection. Use the shared resource/death rules below. Lifeleech alone cannot spend charges through abilities from the unowned Soul Cage feat.\n",
+  "reviewClosure": "docs/audit/2026-10-08/full-game/GPT_BUFFER_FEAT_FINAL_CLOSURE.md",
+  "sharedGuide": "docs/mechanics/BUFFER_FEAT_PLAYTEST.md",
+  "operationalStatus": "operational-playtest"
+}
+```
+
+## Necrotic Affinity
+
+```json
+{
+  "id": "necrotic_affinity",
+  "name": "Necrotic Affinity",
+  "sourceObject": {
+    "id": "necrotic_affinity",
+    "name": "Necrotic Affinity",
+    "description": "Death's chill is an old friend on Aethel's battlefields—you channel grave-cold through fist and focus without flinching, as if the Binding left a door ajar in your marrow. Prestige lineage: Gravetouched. completed from the existing development record.)",
+    "prerequisite": "Proficiency in Religion or level 8+",
+    "effect": "You have resistance to necrotic damage. Once per turn when you hit with a melee attack, you can deal an additional 1d6 necrotic damage. When you take necrotic damage from a spell or supernatural effect, you can use your reaction to absorb half of it (rounded down) and add that amount as temporary hit points until the end of your next turn. Creatures you kill with necrotic damage cannot be raised by effects of 5th level or lower for 24 hours.",
+    "type": "Magic",
+    "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+    "legacyEffect": "You have resistance to necrotic damage. Once per turn when you hit with a melee attack, you can deal an additional 1d6 necrotic damage. When you take necrotic damage from a spell or supernatural effect, you can use your reaction to absorb half of it (rounded down) and add that amount as temporary hit points until the end of your next turn. Creatures you kill with necrotic damage cannot be raised by effects of 5th level or lower for 24 hours.",
+    "status": "provisional-complete",
+    "balanceReview": true,
+    "draft": false,
+    "deprecated": false,
+    "needsReview": true
+  },
+  "sourceObjectSha256": "c179a7e4246e9e668e859a699a56179c5ae85fe69d22691d7e9fda1cfe0b23ea",
+  "repeatability": "nonrepeatable",
+  "acquisition": "Actual class feat selection; source-specific prerequisite at acquisition",
+  "operationalRules": "## Necrotic Affinity — Magic; Religion proficiency **or** character level8+\n\nYou have resistance to necrotic damage. Once per actual turn, when you hit with a melee attack, you may add1d6 necrotic damage. Natural/form melee attacks and off-turn Reaction attacks can qualify. A critical hit doubles this die to2d6; extra Actions in the same turn do not refresh it, while a genuinely different extra turn has its own entitlement. The die is feat damage, not spell damage.\n\nPreserve the previously reviewed absorption procedure: when a legal necrotic spell/supernatural packet reaches the post-passive-defense stage, you may pay your Reaction to prevent `floor(post-defense necrotic damage /2)` before the old temporary-HP buffer. Resolve the remaining canonical damage once. Afterwards, if the holder remains living, offer temporary HP equal to the prevented amount until the end of the holder's next original regular turn, using its real endpoint marker. A1-point packet spends the Reaction but prevents/grants0. New temporary HP cannot absorb that same packet. Use `BufferLedger.necrotic_affinity` and `finish_necrotic_affinity`; do not apply resistance or damage twice.\n\nWhen a creature actually dies from a canonical fatal damage/death root containing positive qualifying necrotic harm **owned by you**, attach a Necrotic Affinity seal to that death instance for24 elapsed hours. This includes your spells, the feat die, Agony Lance or another genuinely personal necrotic source. It is not limited to the feat's1d6. Supplying a summoned/transformed creature's statistics does not make its damage yours.\n\nA mixed-type fatal root qualifies if your positive resolved necrotic component belongs to that root and the root actually causes death; no counterfactual subtraction test. Direct Instant Death, fatal death failures at0HP, or a later consequence expressly preserving that necrotic causal root can qualify. Temporary-HP-only absorption with no harmful consequence does not establish a seal.\n\nThe seal blocks applicable resurrection with an **actual spellRank/effectiveRank0..5**. Never invent a rank for unranked class features. Reviewed Paladin Grace Reversal is rank5 and is blocked; ordinary Resurrection7 and True Resurrection9 are above this restriction. Other resurrection requirements and Soul Bind still apply independently.\n\nSame owner/death instance does not duplicate; different owners can have separate endpoints, but boolean blocking does not compound. A seal ends by elapsed expiry or an exact source able to remove that blocker, not generic cure. A legal return to life closes that death instance; its historical seals do not persist onto a later death. Transformations never create a new soul/body identity to evade a seal.\n\n**NEW integration:** actual-turn identity, rank translation and fatal-root/death-instance bookkeeping. The broader printed necrotic-kill scope is preserved, correcting the narrower first draft.\n",
+  "reviewClosure": "docs/audit/2026-10-08/full-game/GPT_BUFFER_FEAT_FINAL_CLOSURE.md",
+  "sharedGuide": "docs/mechanics/BUFFER_FEAT_PLAYTEST.md",
+  "operationalStatus": "operational-playtest"
+}
+```
+
+## Soul Cage
+
+```json
+{
+  "id": "soul_cage",
+  "name": "Soul Cage",
+  "sourceObject": {
+    "id": "soul_cage",
+    "name": "Soul Cage",
+    "description": "You trap the departing in black crystal—voices pressed flat until you need their scream. Prestige lineage: Soulrender. completed from the existing development record.)",
+    "prerequisite": "Lifeleech or spellcasting ability, level 8+",
+    "effect": "When a hostile creature dies within 30 feet, you may bind its soul to a black crystal, storing up to 3 soul charges. Spend 1 charge to shield an ally for 2d8 temporary HP, or spend 2 charges to fire an Agony Lance (3d8 necrotic, save for half, and the target has disadvantage on the next healing it receives).",
+    "type": "Magic",
+    "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+    "legacyEffect": "When a hostile creature dies within 30 feet, you may bind its soul to a black crystal, storing up to 3 soul charges. Spend 1 charge to shield an ally for 2d8 temporary HP, or spend 2 charges to fire an Agony Lance (3d8 necrotic, save for half, and the target has disadvantage on the next healing it receives).",
+    "status": "provisional-complete",
+    "balanceReview": true,
+    "draft": false,
+    "deprecated": false,
+    "needsReview": true
+  },
+  "sourceObjectSha256": "34a051cc5c242b04c7a7b784acbf69249adc0042ba2a27721ba3433283c9d1fc",
+  "repeatability": "nonrepeatable",
+  "acquisition": "Actual class feat selection; source-specific prerequisite at acquisition",
+  "operationalRules": "## Soul Cage feat — Magic; level8+ and (Lifeleech **or** actual spellcasting ability)\n\nOn acquisition, lock one actually possessed spellcasting source/ability as this feat's DC provider. Agony uses that source's current normal spell-save DC. No freely switchable DC ability or general retraining is created.\n\n**Shared Soul Charges:** each owner has one persistent pool0..3, shared with Lifeleech. A charge is a soul **spark/residue**, not custody of the whole soul. It neither prevents resurrection nor replaces/removes Soul Bind. The ordinary Soul Cage spell is a separate rank6/13RP spell awaiting its own operational review. Soulrender's separate whole-soul ritual unlock still requires actually binding the soul of a living named enemy; residue cannot satisfy it.\n\nAt an eligible hostile soul-bearing creature's actual death within30ft, with perception and legal line of effect, Soul Cage permits immediate optional capture with no Action or Reaction. A discrete physical black crystal must actually be possessed and available. Lifeleech collection is automatic and needs no crystal. Owning both never gives two charges for the same death.\n\nEach owner permanently records the exact death event as evaluated, including ineligible events. There is no later corpse rescan after moving closer, gaining a feat/crystal or improving perception. For an eligible event, also reserve the immutable body for that owner's current completed-long-rest epoch. Declining or being at full capacity consumes that entitlement; there is no latent fourth charge. A new real death after resurrection is a new event, but the same body cannot supply the owner again in the same epoch. A future completed rest can permit a future new death, never the old corpse. Different owners evaluate independently.\n\nCreated/generated farming bodies and immutable object-origin transformed creatures are ineligible. Soul status otherwise follows actual source/canon or Director adjudication; this feat does not declare every undead/construct category soulless. Death/root/body identities persist through forms.\n\nCharges live on the owner and do not decay automatically. Losing/destroying/transferring the crystal transfers or erases **zero** charges; Soul Cage capture/spending is unavailable without another actual legal black crystal. Another feat owner can use the transferred physical crystal for their own pool. There is no invented price, attunement, HP, durability or crystal charge capacity. During one uninterrupted quiet minute handling the crystal, you may voluntarily dissipate owned charges; this does nothing to any deceased soul.\n\n**Shield:** Bonus Action; pay1 Soul Charge; one legal ally within30ft, including yourself; roll2d8 temporary HP with default lifetime. Pay before strongest-only comparison. An equal/stronger old shield does not refund the charge or Bonus Action.\n\n**Agony Lance:** Action; pay2 Soul Charges; one perceived legal creature within60ft; CON save against the locked provider's current DC. Deal3d8 necrotic damage, half rounded down on success, then ordinary defenses/Core apply once. This is feat damage owned by you, not a spell, RP expenditure or spellcasting trigger.\n\nThe target also gains one **Agony healing-suppression family** record until the next committed ordinary HP-healing event with positive pre-reduction potential, or one elapsed minute. That next healing receives an exact×1/2 factor in the canonical healing pipeline. Save success or necrotic immunity affects damage but does not remove this separate rider. Multiple Agony Lances never multiply to1/4: a new paid application refreshes the single endpoint to `max(old expiry, new application+60s)` and retains contributor history.\n\nConsume the suppression on the first applicable committed healing event even if a stronger arithmetic branch wins or actual healing is later capped/prohibited. Suppressed/inapplicable records do not apply or consume; absolute time continues. Temporary HP, stabilization, resurrection, prevention and maximum-HP changes are not ordinary HP healing and do not consume it. Removal requires an exact source capable of removing this magical suppression/debuff; generic cure is insufficient.\n\n**NEW:** prerequisite parsing, residue identity, shared resource/death transaction, conduit role, activations/ranges/DC and the exact healing-suppression conversion. Original source IDs and relationships remain distinct.\n",
+  "reviewClosure": "docs/audit/2026-10-08/full-game/GPT_BUFFER_FEAT_FINAL_CLOSURE.md",
+  "sharedGuide": "docs/mechanics/BUFFER_FEAT_PLAYTEST.md",
+  "operationalStatus": "operational-playtest"
+}
+```

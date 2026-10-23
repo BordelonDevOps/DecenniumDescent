@@ -1,4 +1,8 @@
-> **Latest backup — 21 October 2026:** Saved review work through checkpoint 111 is preserved. Video game only; development remains paused. Applied spell counts remain 525 reviewed / 323 pending, with 53 accepted identities awaiting integration. See [snapshot status](SNAPSHOT_STATUS_2026-10-21_CHECKPOINT111.md). Earlier notices remain history.
+**Latest checkpoint: [114](docs/audit/2026-10-08/full-game/ACTIVE_AUTHORING_CHECKPOINT_REVIEW_DELIVERY_PENDING_114.json).** Lifecycle mapping and packet submission complete. Two chapter defects repaired and284full cards verified. Corrected46-file candidate saved. GPT final delivery remains pending; no final parent acceptance claimed.
+
+**Latest checkpoint: [113](docs/audit/2026-10-08/full-game/ACTIVE_AUTHORING_CHECKPOINT_CLOSEOUT_REVIEW_113.json).** Lifecycle mapping complete; full closeout packet actually sent to Calibration Review Part 5. Local assembly2020checks passed. GPT exact final review pending; no parent acceptance yet.
+
+**Latest checkpoint: [112](docs/audit/2026-10-08/full-game/ACTIVE_AUTHORING_CHECKPOINT_MAP_RECONCILIATION_112.json).** Live Calibration Review Part 5 read. Four map corrections reconciled; 23 checks passed. Updated closeout packet prepared, unsent. FXC04/05 and final parent335 review remain open.
 
 # Decennium Descent — start here
 
