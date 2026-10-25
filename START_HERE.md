@@ -1,10 +1,10 @@
-# Active ordinary spell review153 — Calibration review part6
+# Active ordinary spell review155 — Calibration review part6
 
-Return151 was GPT director accepted, independently verified, and applied to four exact identities: **713 applied-reviewed / 135 pending / 0 accepted-unapplied**. The 21,481 static checks passed; all 13 holds and 40 held dependent branches remain. Runtime, human-play, balance, cosmology, domain closure and release approval remain separate.
+Return153 was GPT director accepted, independently verified, and applied to five exact identities: **718 applied-reviewed / 130 pending / 0 accepted-unapplied**. The director reports 50,589 static checks with no failures; independent return verification passed all 246 members, 77 source bindings, 120 evidence bindings, and 2,480 event operations. All 15 hold categories and 57 held dependent branches remain. Runtime, human-play, balance, cosmology, domain closure and release approval remain separate.
 
-The fresh **Rank8 Summon/Structure5 Conference02** packet was submitted to GPT Calibration review part 6 on 2026-10-25 against 713/135/0. It covers Summon Greater Water Pet, Summon Archlich Shade, Faction Paragon, Conjure Sky Fortress, and Shifting Fortress with the 20 original questions still unselected. The independent director check is in progress; Conference01 remains historical 525/323 evidence only. Apply only exact accepted IDs, then continue with the updated queue. Preserve closed feat335 and completed spell cohorts.
+Continue with **rank8-perception5**, preparing a fresh packet against 718/130 and submitting it to GPT for exact director review. Apply only accepted IDs. Preserve closed feat335 and completed spell cohorts.
 
-Read [CURRENT-HANDOFF-154](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_154.json), [submission record](docs/audit/2026-10-08/full-game/director-spell-review-129/SUMMONSTRUCTURE5_SUBMISSION_154.json), [the 135-pending audit](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT135_PENDING_IDENTITY_AUDIT_152.json), [the source packet preparation](docs/audit/2026-10-08/full-game/RANK8_SUMMON_STRUCTURE_5_SOURCE_CONFERENCE_02_PREPARATION.json), and [snapshot status](SNAPSHOT_STATUS_2026-10-25_SPELL_REVIEW_151.md).
+Read [CURRENT-HANDOFF-155](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_155.json), [the 130-pending audit](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT130_PENDING_IDENTITY_AUDIT_155.json), [the application validation](docs/audit/2026-10-08/full-game/director-spell-review-129/SUMMON_STRUCTURE5_APPLICATION_VALIDATION_153.json), and [snapshot status](SNAPSHOT_STATUS_2026-10-25_SPELL_REVIEW_153.md).
 
 **Prior checkpoint: [148](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_148.json).**
 

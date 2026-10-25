@@ -1,0 +1,15 @@
+# Independent static failure check — Return153
+
+PASS for the five exact authored procedures, with all qualifications retained. The director decision is accepted=true, applied=false. Input authority remains the exact unmodified713/135/0 snapshot; this separate decision accepts five procedures for subsequent independent application.
+
+The checked scope is summon-greater-water-pet, summon-archlich-shade, faction-paragon, conjure-sky-fortress and shifting-fortress. No closed cohort or feat was reopened.
+
+All20 conference questions are explicitly selected and answered. All5 original identity questions and7 future obligations remain verbatim and have linked dispositions. The five complete standalone JSON blocks match their procedure files and proposal operations. Complete child-spell comparison records preserve source-native costs, components, ranges, channel and healing rules. The Shade actually casts the named spells; the owner funds them without gaining their acquisition or duplicating their caster hooks.
+
+The independent read-only audit checked source size/SHA/CRC, exact current authority and queue, all77 source bindings, all28 exact accepted-scope interface records,120 evidence members, native/access preservation, actor acquisition and automatic source cards, all full-state hashes, continuity, forward/inverse test/replace replays, resource changes, healing/damage deltas, source clocks, operator budgets, custody/ammunition partitions, geometry and cover witnesses, and all procedure/disposition/case/hold mirrors. VALIDATION.json reports the exact assertion counts by category and contains no remaining blocker.
+
+Corrections made before the passing audit include complete Water Wave recipient snapshots; actual uncommanded Dodge and the corresponding two-die hostile touch attack; true intervening regular START/attached boundaries; parent/child/Ready clocks; actual Cleric Radiance and Sanctified Reprisal state; explicit Wizard force-ward resistance; structure operation epochs independent of owner presence; exact barrel/swept bounds; cargo and projectile conservation; and exact final case mirrors. These are corrections to this newly authored return, not changes to any applied authority.
+
+Missing factual evidence is not treated as a pass. Both Paragon main cases are complete negative admission cases. Every positive Paragon trace is explicitly counterfactual and forbidden for canonical execution until its whole-case faction/champion/permission hold is discharged. Conditional external damage, suppression, transport, material/support and equipment facts retain branch holds. No arbitrary creature roster, real champion, extra siege equipment, secret knowledge or cosmological route was invented. All other inherited source, content, access, lifecycle and runtime qualifications remain.
+
+The data checks were performed with newly authored local integrity tooling. No supplied/historical program or game was run. This report makes no human-play, runtime, balance, cosmology, release or domain-closure claim.
