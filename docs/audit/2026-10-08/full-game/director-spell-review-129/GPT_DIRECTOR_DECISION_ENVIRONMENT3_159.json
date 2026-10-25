@@ -1,0 +1,2765 @@
+{
+  "id": "GPT-DIRECTOR-DECISION-ENVIRONMENT3-159",
+  "recordedAtUtc": "2026-10-25T22:05:01.719663+00:00",
+  "source": {
+    "product": "ChatGPT",
+    "project": "Dungeon Crawler",
+    "conversation": "Calibration review part 6",
+    "conversationId": "6adc506d-8770-83ea-b64c-0345d9b9b682"
+  },
+  "decisionId": "DD-ENVIRONMENT3-DIRECTOR-159-ACCEPTANCE",
+  "accepted": true,
+  "appliedAtDecision": false,
+  "acceptedIds": [
+    "absolute-silence",
+    "control-weather",
+    "earthquake"
+  ],
+  "rejectedIds": [],
+  "remainingBlockingDefects": [],
+  "verification": {
+    "directorStaticChecksPassed": 10892,
+    "directorStaticFailures": 0,
+    "independentReturnAudit": {
+      "id": "ENVIRONMENT3-RETURN159-INDEPENDENT-VERIFICATION",
+      "status": "PASS",
+      "archive": {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/environment3_return159_received/DD_Rank8_Environment3_Director_Return159.zip",
+        "bytes": 14025213,
+        "sha256": "a62241bc136dc7b4af88312357930d201055c2a9eb3dae17d76dabdf9c7c1d92"
+      },
+      "delivery": {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/environment3_return159_received/DD_Rank8_Environment3_Director_Return159_DELIVERY.json",
+        "bytes": 2719,
+        "sha256": "c66baa9269614992f9269e9ac444329c2902faf2b5b3e9216dee95f685eefce7"
+      },
+      "authority": {
+        "reviewedApplied": 723,
+        "pending": 125,
+        "acceptedUnapplied": 0,
+        "completeReviewedStandaloneProcedures": 447
+      },
+      "acceptedIds": [
+        "absolute-silence",
+        "control-weather",
+        "earthquake"
+      ],
+      "checkCount": 669,
+      "failures": 0,
+      "failedChecks": [],
+      "checks": [
+        {
+          "check": "Downloaded ZIP exact byte count and SHA-256 match delivery",
+          "passed": true
+        },
+        {
+          "check": "Delivery names the downloaded archive exactly",
+          "passed": true
+        },
+        {
+          "check": "Director accepted but did not apply exactly three requested identities",
+          "passed": true
+        },
+        {
+          "check": "Delivery binds the exact unchanged authority",
+          "passed": true
+        },
+        {
+          "check": "Delivery does not claim canonical, runtime, play, balance, cosmology or release mutation",
+          "passed": true
+        },
+        {
+          "check": "Downloaded delivery has distinct stable content and hash",
+          "passed": true
+        },
+        {
+          "check": "Delivery is bound to the exact expected package counts",
+          "passed": true
+        },
+        {
+          "check": "Fresh source packet independent verifier passed",
+          "passed": true
+        },
+        {
+          "check": "Live authored index remains exactly 723/125 with 447 complete procedures",
+          "passed": true
+        },
+        {
+          "check": "All and only the three requested IDs are still pending in current index",
+          "passed": true
+        },
+        {
+          "check": "Return ZIP has 65 unique members and passes CRC test",
+          "passed": true
+        },
+        {
+          "check": "Return ZIP members have safe exact paths",
+          "passed": true
+        },
+        {
+          "check": "Outer delivery binds the inner member manifest by size, SHA and CRC",
+          "passed": true
+        },
+        {
+          "check": "Inner manifest is an exact allowlist with no hidden or temporary members",
+          "passed": true
+        },
+        {
+          "check": "Member binding ACTOR_PROFILES.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding CASEBOOK.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding CASE_DISPOSITIONS.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding COUNTS.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding COVERAGE.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding DIRECTOR_DECISION.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding DIRECTOR_REVIEW.md",
+          "passed": true
+        },
+        {
+          "check": "Member binding FUTURE_OBLIGATION_DISPOSITIONS.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding HOLDS.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding INDEPENDENT_FAILURE_CHECK.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding MODEL.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding ORIGINAL_QUESTION_DISPOSITIONS.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding ORIGINAL_SOURCE_RECORDS.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding PROPOSAL_OPERATIONS.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding QUESTION_DISPOSITIONS.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding STANDALONE_PROCEDURES.md",
+          "passed": true
+        },
+        {
+          "check": "Member binding VALIDATION.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding cases/RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-A.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding cases/RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-B.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding cases/RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-Ready-expiry.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding cases/RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-Ready-release-clock.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding cases/RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-actual-root-Null-qualification-held.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding cases/RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-insufficient-native-RP.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding cases/RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-known-energy-immunity.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding cases/RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-known-existing-silence-V-block.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding cases/RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-mixed-component-source-held.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding cases/RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-nonspell-thunder-held.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding cases/RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-suppressed-no-banking.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding cases/RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-transfer-in-no-late-amplification.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding cases/RANK8ENVIRONMENT3129-CONTROL-WEATHER-A.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding cases/RANK8ENVIRONMENT3129-CONTROL-WEATHER-B.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding cases/RANK8ENVIRONMENT3129-CONTROL-WEATHER-Ready-expiry.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding cases/RANK8ENVIRONMENT3129-CONTROL-WEATHER-Ready-release-clock.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding cases/RANK8ENVIRONMENT3129-CONTROL-WEATHER-insufficient-native-RP.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding cases/RANK8ENVIRONMENT3129-CONTROL-WEATHER-known-finite-moisture-exhaustion.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding cases/RANK8ENVIRONMENT3129-CONTROL-WEATHER-partial-overlap-held.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding cases/RANK8ENVIRONMENT3129-CONTROL-WEATHER-snow-phase-content-held.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding cases/RANK8ENVIRONMENT3129-CONTROL-WEATHER-suppression-physical-history.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding cases/RANK8ENVIRONMENT3129-CONTROL-WEATHER-unbound-exposure-consequence.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding cases/RANK8ENVIRONMENT3129-CONTROL-WEATHER-weatherless-whole-case-held.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding cases/RANK8ENVIRONMENT3129-EARTHQUAKE-A.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding cases/RANK8ENVIRONMENT3129-EARTHQUAKE-B.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding cases/RANK8ENVIRONMENT3129-EARTHQUAKE-Druid-no-Evocation-access.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding cases/RANK8ENVIRONMENT3129-EARTHQUAKE-Ready-expiry.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding cases/RANK8ENVIRONMENT3129-EARTHQUAKE-Ready-release-clock.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding cases/RANK8ENVIRONMENT3129-EARTHQUAKE-fall-marker-not-duplicated.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding cases/RANK8ENVIRONMENT3129-EARTHQUAKE-hidden-protected-matter.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding cases/RANK8ENVIRONMENT3129-EARTHQUAKE-insufficient-native-RP.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding cases/RANK8ENVIRONMENT3129-EARTHQUAKE-magical-parent-physical-descendants.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding cases/RANK8ENVIRONMENT3129-EARTHQUAKE-occupied-spoil-reject.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding cases/RANK8ENVIRONMENT3129-EARTHQUAKE-unknown-structure-whole-case-held.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding cases/RANK8ENVIRONMENT3129-EARTHQUAKE-unsupported-final-debris-volume.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding evidence/COUNTERPART_SCOPE_CHECK.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding evidence/EXACT_ACCEPTED_INTERFACES.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding evidence/SOURCE_VERIFICATION.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding evidence/USED_ORDINARY_COUNTERPARTS.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding procedures/absolute-silence.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding procedures/control-weather.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding procedures/earthquake.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding source/CANDIDATE.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding source/CONFERENCE_NOTES.json",
+          "passed": true
+        },
+        {
+          "check": "Member binding source/DD_Rank8_Environment_3_Source_Conference_02.zip",
+          "passed": true
+        },
+        {
+          "check": "Member binding source/REQUEST.txt",
+          "passed": true
+        },
+        {
+          "check": "Member binding source/SOURCE_MANIFEST.json",
+          "passed": true
+        },
+        {
+          "check": "Model and decision agree on static-only acceptance and exact IDs",
+          "passed": true
+        },
+        {
+          "check": "Decision preserves current authority and complete-procedure count",
+          "passed": true
+        },
+        {
+          "check": "Decision, delivery, counts and validation agree",
+          "passed": true
+        },
+        {
+          "check": "Independent failure check passes with no remaining blockers",
+          "passed": true
+        },
+        {
+          "check": "Package validation passes without blockers",
+          "passed": true
+        },
+        {
+          "check": "All qualification limits are false",
+          "passed": true
+        },
+        {
+          "check": "Exactly three procedure records and six required cases are present",
+          "passed": true
+        },
+        {
+          "check": "Casebook covers exactly 35 distinct cases with no actual-campaign successes",
+          "passed": true
+        },
+        {
+          "check": "Six main cases and 29 branches match the return counts",
+          "passed": true
+        },
+        {
+          "check": "Every case is separately serialized with no extra case files",
+          "passed": true
+        },
+        {
+          "check": "Exact current native catalog/access binding absolute-silence",
+          "passed": true
+        },
+        {
+          "check": "Procedure is a new static proposal with pending source status absolute-silence",
+          "passed": true
+        },
+        {
+          "check": "Procedure references only known cases and exact retained holds absolute-silence",
+          "passed": true
+        },
+        {
+          "check": "Procedure mirror equals archived procedure file absolute-silence",
+          "passed": true
+        },
+        {
+          "check": "Exact current native catalog/access binding control-weather",
+          "passed": true
+        },
+        {
+          "check": "Procedure is a new static proposal with pending source status control-weather",
+          "passed": true
+        },
+        {
+          "check": "Procedure references only known cases and exact retained holds control-weather",
+          "passed": true
+        },
+        {
+          "check": "Procedure mirror equals archived procedure file control-weather",
+          "passed": true
+        },
+        {
+          "check": "Exact current native catalog/access binding earthquake",
+          "passed": true
+        },
+        {
+          "check": "Procedure is a new static proposal with pending source status earthquake",
+          "passed": true
+        },
+        {
+          "check": "Procedure references only known cases and exact retained holds earthquake",
+          "passed": true
+        },
+        {
+          "check": "Procedure mirror equals archived procedure file earthquake",
+          "passed": true
+        },
+        {
+          "check": "All 15 unique questions are resolved exactly once",
+          "passed": true
+        },
+        {
+          "check": "Question source/options unchanged and selection is properly sourced R8E3-CASTING-01",
+          "passed": true
+        },
+        {
+          "check": "Question source/options unchanged and selection is properly sourced R8E3-SILENCE-FIELD-02",
+          "passed": true
+        },
+        {
+          "check": "Question source/options unchanged and selection is properly sourced R8E3-SILENCE-QUALIFY-03",
+          "passed": true
+        },
+        {
+          "check": "Question source/options unchanged and selection is properly sourced R8E3-SILENCE-MULTIPLY-04",
+          "passed": true
+        },
+        {
+          "check": "Question source/options unchanged and selection is properly sourced R8E3-SILENCE-LIFECYCLE-05",
+          "passed": true
+        },
+        {
+          "check": "Question source/options unchanged and selection is properly sourced R8E3-WEATHER-REGION-06",
+          "passed": true
+        },
+        {
+          "check": "Question source/options unchanged and selection is properly sourced R8E3-WEATHER-CHOICES-07",
+          "passed": true
+        },
+        {
+          "check": "Question source/options unchanged and selection is properly sourced R8E3-WEATHER-MATTER-08",
+          "passed": true
+        },
+        {
+          "check": "Question source/options unchanged and selection is properly sourced R8E3-WEATHER-END-09",
+          "passed": true
+        },
+        {
+          "check": "Question source/options unchanged and selection is properly sourced R8E3-QUAKE-MODES-10",
+          "passed": true
+        },
+        {
+          "check": "Question source/options unchanged and selection is properly sourced R8E3-QUAKE-GEOMETRY-11",
+          "passed": true
+        },
+        {
+          "check": "Question source/options unchanged and selection is properly sourced R8E3-QUAKE-STRUCTURES-12",
+          "passed": true
+        },
+        {
+          "check": "Question source/options unchanged and selection is properly sourced R8E3-QUAKE-CREATURES-13",
+          "passed": true
+        },
+        {
+          "check": "Question source/options unchanged and selection is properly sourced ENV129-ADD01",
+          "passed": true
+        },
+        {
+          "check": "Question source/options unchanged and selection is properly sourced ENV129-ADD02",
+          "passed": true
+        },
+        {
+          "check": "Three original identity questions and five future obligations are preserved",
+          "passed": true
+        },
+        {
+          "check": "Original identity question source preserved absolute-silence",
+          "passed": true
+        },
+        {
+          "check": "Original identity question source preserved control-weather",
+          "passed": true
+        },
+        {
+          "check": "Original identity question source preserved earthquake",
+          "passed": true
+        },
+        {
+          "check": "Future obligation preserved 1",
+          "passed": true
+        },
+        {
+          "check": "Future obligation preserved 2",
+          "passed": true
+        },
+        {
+          "check": "Future obligation preserved 3",
+          "passed": true
+        },
+        {
+          "check": "Future obligation preserved 4",
+          "passed": true
+        },
+        {
+          "check": "Future obligation preserved 5",
+          "passed": true
+        },
+        {
+          "check": "Six required case dispositions preserve source requirements",
+          "passed": true
+        },
+        {
+          "check": "All 15 hold categories remain retained and uniquely indexed",
+          "passed": true
+        },
+        {
+          "check": "All 18 conditional branches remain held",
+          "passed": true
+        },
+        {
+          "check": "Coverage records the complete scope and six required cases",
+          "passed": true
+        },
+        {
+          "check": "Case is bounded by explicit hold records RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-A",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-A:1",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-A:1",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-A:2",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-A:2",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-A:2",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-A:3",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-A:3",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-A:3",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-A:4",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-A:4",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-A:4",
+          "passed": true
+        },
+        {
+          "check": "Case final state matches its last event RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-A",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-A#1",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-A#2",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-A#3",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-A#4",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-A#5",
+          "passed": true
+        },
+        {
+          "check": "Standalone case file mirrors the casebook RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-A",
+          "passed": true
+        },
+        {
+          "check": "Case is bounded by explicit hold records RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-B",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-B:1",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-B:1",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-B:2",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-B:2",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-B:2",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-B:3",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-B:3",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-B:3",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-B:4",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-B:4",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-B:4",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-B:5",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-B:5",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-B:5",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-B:6",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-B:6",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-B:6",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-B:7",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-B:7",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-B:7",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-B:8",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-B:8",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-B:8",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-B:9",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-B:9",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-B:9",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-B:10",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-B:10",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-B:10",
+          "passed": true
+        },
+        {
+          "check": "Case final state matches its last event RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-B",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-B#1",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-B#2",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-B#3",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-B#4",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-B#5",
+          "passed": true
+        },
+        {
+          "check": "Standalone case file mirrors the casebook RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-B",
+          "passed": true
+        },
+        {
+          "check": "Case is bounded by explicit hold records RANK8ENVIRONMENT3129-CONTROL-WEATHER-A",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:1",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:1",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:2",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:2",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:2",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:3",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:3",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:3",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:4",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:4",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:4",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:5",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:5",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:5",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:6",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:6",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:6",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:7",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:7",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:7",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:8",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:8",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:8",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:9",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:9",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:9",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:10",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:10",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:10",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:11",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:11",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:11",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:12",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:12",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:12",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:13",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:13",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:13",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:14",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:14",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:14",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:15",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:15",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:15",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:16",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:16",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:16",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:17",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:17",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:17",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:18",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:18",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:18",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:19",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:19",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-CONTROL-WEATHER-A:19",
+          "passed": true
+        },
+        {
+          "check": "Case final state matches its last event RANK8ENVIRONMENT3129-CONTROL-WEATHER-A",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-CONTROL-WEATHER-A#1",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-CONTROL-WEATHER-A#2",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-CONTROL-WEATHER-A#3",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-CONTROL-WEATHER-A#4",
+          "passed": true
+        },
+        {
+          "check": "Standalone case file mirrors the casebook RANK8ENVIRONMENT3129-CONTROL-WEATHER-A",
+          "passed": true
+        },
+        {
+          "check": "Case is bounded by explicit hold records RANK8ENVIRONMENT3129-CONTROL-WEATHER-B",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:1",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:1",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:2",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:2",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:2",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:3",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:3",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:3",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:4",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:4",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:4",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:5",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:5",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:5",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:6",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:6",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:6",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:7",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:7",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:7",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:8",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:8",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:8",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:9",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:9",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:9",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:10",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:10",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:10",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:11",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:11",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:11",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:12",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:12",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:12",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:13",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:13",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:13",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:14",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:14",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:14",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:15",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:15",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:15",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:16",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:16",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:16",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:17",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:17",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-CONTROL-WEATHER-B:17",
+          "passed": true
+        },
+        {
+          "check": "Case final state matches its last event RANK8ENVIRONMENT3129-CONTROL-WEATHER-B",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-CONTROL-WEATHER-B#1",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-CONTROL-WEATHER-B#2",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-CONTROL-WEATHER-B#3",
+          "passed": true
+        },
+        {
+          "check": "Standalone case file mirrors the casebook RANK8ENVIRONMENT3129-CONTROL-WEATHER-B",
+          "passed": true
+        },
+        {
+          "check": "Case is bounded by explicit hold records RANK8ENVIRONMENT3129-EARTHQUAKE-A",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-EARTHQUAKE-A:1",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-EARTHQUAKE-A:1",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-EARTHQUAKE-A:2",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-EARTHQUAKE-A:2",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-EARTHQUAKE-A:2",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-EARTHQUAKE-A:3",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-EARTHQUAKE-A:3",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-EARTHQUAKE-A:3",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-EARTHQUAKE-A:4",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-EARTHQUAKE-A:4",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-EARTHQUAKE-A:4",
+          "passed": true
+        },
+        {
+          "check": "Case final state matches its last event RANK8ENVIRONMENT3129-EARTHQUAKE-A",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-EARTHQUAKE-A#1",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-EARTHQUAKE-A#2",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-EARTHQUAKE-A#3",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-EARTHQUAKE-A#4",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-EARTHQUAKE-A#5",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-EARTHQUAKE-A#6",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-EARTHQUAKE-A#7",
+          "passed": true
+        },
+        {
+          "check": "Standalone case file mirrors the casebook RANK8ENVIRONMENT3129-EARTHQUAKE-A",
+          "passed": true
+        },
+        {
+          "check": "Case is bounded by explicit hold records RANK8ENVIRONMENT3129-EARTHQUAKE-B",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-EARTHQUAKE-B:1",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-EARTHQUAKE-B:1",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-EARTHQUAKE-B:2",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-EARTHQUAKE-B:2",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-EARTHQUAKE-B:2",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-EARTHQUAKE-B:3",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-EARTHQUAKE-B:3",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-EARTHQUAKE-B:3",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-EARTHQUAKE-B:4",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-EARTHQUAKE-B:4",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-EARTHQUAKE-B:4",
+          "passed": true
+        },
+        {
+          "check": "Case final state matches its last event RANK8ENVIRONMENT3129-EARTHQUAKE-B",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-EARTHQUAKE-B#1",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-EARTHQUAKE-B#2",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-EARTHQUAKE-B#3",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-EARTHQUAKE-B#4",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-EARTHQUAKE-B#5",
+          "passed": true
+        },
+        {
+          "check": "Standalone case file mirrors the casebook RANK8ENVIRONMENT3129-EARTHQUAKE-B",
+          "passed": true
+        },
+        {
+          "check": "Case is bounded by explicit hold records RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-insufficient-native-RP",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-insufficient-native-RP:1",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-insufficient-native-RP:1",
+          "passed": true
+        },
+        {
+          "check": "Case final state matches its last event RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-insufficient-native-RP",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-insufficient-native-RP#1",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-insufficient-native-RP#2",
+          "passed": true
+        },
+        {
+          "check": "Standalone case file mirrors the casebook RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-insufficient-native-RP",
+          "passed": true
+        },
+        {
+          "check": "Case is bounded by explicit hold records RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-Ready-expiry",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-Ready-expiry:1",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-Ready-expiry:1",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-Ready-expiry:2",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-Ready-expiry:2",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-Ready-expiry:2",
+          "passed": true
+        },
+        {
+          "check": "Case final state matches its last event RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-Ready-expiry",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-Ready-expiry#1",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-Ready-expiry#2",
+          "passed": true
+        },
+        {
+          "check": "Standalone case file mirrors the casebook RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-Ready-expiry",
+          "passed": true
+        },
+        {
+          "check": "Case is bounded by explicit hold records RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-Ready-release-clock",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-Ready-release-clock:1",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-Ready-release-clock:1",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-Ready-release-clock:2",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-Ready-release-clock:2",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-Ready-release-clock:2",
+          "passed": true
+        },
+        {
+          "check": "Case final state matches its last event RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-Ready-release-clock",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-Ready-release-clock#1",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-Ready-release-clock#2",
+          "passed": true
+        },
+        {
+          "check": "Standalone case file mirrors the casebook RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-Ready-release-clock",
+          "passed": true
+        },
+        {
+          "check": "Case is bounded by explicit hold records RANK8ENVIRONMENT3129-CONTROL-WEATHER-insufficient-native-RP",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-insufficient-native-RP:1",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-insufficient-native-RP:1",
+          "passed": true
+        },
+        {
+          "check": "Case final state matches its last event RANK8ENVIRONMENT3129-CONTROL-WEATHER-insufficient-native-RP",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-CONTROL-WEATHER-insufficient-native-RP#1",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-CONTROL-WEATHER-insufficient-native-RP#2",
+          "passed": true
+        },
+        {
+          "check": "Standalone case file mirrors the casebook RANK8ENVIRONMENT3129-CONTROL-WEATHER-insufficient-native-RP",
+          "passed": true
+        },
+        {
+          "check": "Case is bounded by explicit hold records RANK8ENVIRONMENT3129-CONTROL-WEATHER-Ready-expiry",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-Ready-expiry:1",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-Ready-expiry:1",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-Ready-expiry:2",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-Ready-expiry:2",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-CONTROL-WEATHER-Ready-expiry:2",
+          "passed": true
+        },
+        {
+          "check": "Case final state matches its last event RANK8ENVIRONMENT3129-CONTROL-WEATHER-Ready-expiry",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-CONTROL-WEATHER-Ready-expiry#1",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-CONTROL-WEATHER-Ready-expiry#2",
+          "passed": true
+        },
+        {
+          "check": "Standalone case file mirrors the casebook RANK8ENVIRONMENT3129-CONTROL-WEATHER-Ready-expiry",
+          "passed": true
+        },
+        {
+          "check": "Case is bounded by explicit hold records RANK8ENVIRONMENT3129-CONTROL-WEATHER-Ready-release-clock",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-Ready-release-clock:1",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-Ready-release-clock:1",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-Ready-release-clock:2",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-Ready-release-clock:2",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-CONTROL-WEATHER-Ready-release-clock:2",
+          "passed": true
+        },
+        {
+          "check": "Case final state matches its last event RANK8ENVIRONMENT3129-CONTROL-WEATHER-Ready-release-clock",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-CONTROL-WEATHER-Ready-release-clock#1",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-CONTROL-WEATHER-Ready-release-clock#2",
+          "passed": true
+        },
+        {
+          "check": "Standalone case file mirrors the casebook RANK8ENVIRONMENT3129-CONTROL-WEATHER-Ready-release-clock",
+          "passed": true
+        },
+        {
+          "check": "Case is bounded by explicit hold records RANK8ENVIRONMENT3129-EARTHQUAKE-insufficient-native-RP",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-EARTHQUAKE-insufficient-native-RP:1",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-EARTHQUAKE-insufficient-native-RP:1",
+          "passed": true
+        },
+        {
+          "check": "Case final state matches its last event RANK8ENVIRONMENT3129-EARTHQUAKE-insufficient-native-RP",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-EARTHQUAKE-insufficient-native-RP#1",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-EARTHQUAKE-insufficient-native-RP#2",
+          "passed": true
+        },
+        {
+          "check": "Standalone case file mirrors the casebook RANK8ENVIRONMENT3129-EARTHQUAKE-insufficient-native-RP",
+          "passed": true
+        },
+        {
+          "check": "Case is bounded by explicit hold records RANK8ENVIRONMENT3129-EARTHQUAKE-Ready-expiry",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-EARTHQUAKE-Ready-expiry:1",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-EARTHQUAKE-Ready-expiry:1",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-EARTHQUAKE-Ready-expiry:2",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-EARTHQUAKE-Ready-expiry:2",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-EARTHQUAKE-Ready-expiry:2",
+          "passed": true
+        },
+        {
+          "check": "Case final state matches its last event RANK8ENVIRONMENT3129-EARTHQUAKE-Ready-expiry",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-EARTHQUAKE-Ready-expiry#1",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-EARTHQUAKE-Ready-expiry#2",
+          "passed": true
+        },
+        {
+          "check": "Standalone case file mirrors the casebook RANK8ENVIRONMENT3129-EARTHQUAKE-Ready-expiry",
+          "passed": true
+        },
+        {
+          "check": "Case is bounded by explicit hold records RANK8ENVIRONMENT3129-EARTHQUAKE-Ready-release-clock",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-EARTHQUAKE-Ready-release-clock:1",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-EARTHQUAKE-Ready-release-clock:1",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-EARTHQUAKE-Ready-release-clock:2",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-EARTHQUAKE-Ready-release-clock:2",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-EARTHQUAKE-Ready-release-clock:2",
+          "passed": true
+        },
+        {
+          "check": "Case final state matches its last event RANK8ENVIRONMENT3129-EARTHQUAKE-Ready-release-clock",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-EARTHQUAKE-Ready-release-clock#1",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-EARTHQUAKE-Ready-release-clock#2",
+          "passed": true
+        },
+        {
+          "check": "Standalone case file mirrors the casebook RANK8ENVIRONMENT3129-EARTHQUAKE-Ready-release-clock",
+          "passed": true
+        },
+        {
+          "check": "Case is bounded by explicit hold records RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-mixed-component-source-held",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-mixed-component-source-held:1",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-mixed-component-source-held:1",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-mixed-component-source-held:2",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-mixed-component-source-held:2",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-mixed-component-source-held:2",
+          "passed": true
+        },
+        {
+          "check": "Case final state matches its last event RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-mixed-component-source-held",
+          "passed": true
+        },
+        {
+          "check": "Standalone case file mirrors the casebook RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-mixed-component-source-held",
+          "passed": true
+        },
+        {
+          "check": "Case is bounded by explicit hold records RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-nonspell-thunder-held",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-nonspell-thunder-held:1",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-nonspell-thunder-held:1",
+          "passed": true
+        },
+        {
+          "check": "Case final state matches its last event RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-nonspell-thunder-held",
+          "passed": true
+        },
+        {
+          "check": "Standalone case file mirrors the casebook RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-nonspell-thunder-held",
+          "passed": true
+        },
+        {
+          "check": "Case is bounded by explicit hold records RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-actual-root-Null-qualification-held",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-actual-root-Null-qualification-held:1",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-actual-root-Null-qualification-held:1",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-actual-root-Null-qualification-held:2",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-actual-root-Null-qualification-held:2",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-actual-root-Null-qualification-held:2",
+          "passed": true
+        },
+        {
+          "check": "Case final state matches its last event RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-actual-root-Null-qualification-held",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-actual-root-Null-qualification-held#1",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-actual-root-Null-qualification-held#2",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-actual-root-Null-qualification-held#3",
+          "passed": true
+        },
+        {
+          "check": "Standalone case file mirrors the casebook RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-actual-root-Null-qualification-held",
+          "passed": true
+        },
+        {
+          "check": "Case is bounded by explicit hold records RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-suppressed-no-banking",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-suppressed-no-banking:1",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-suppressed-no-banking:1",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-suppressed-no-banking:2",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-suppressed-no-banking:2",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-suppressed-no-banking:2",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-suppressed-no-banking:3",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-suppressed-no-banking:3",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-suppressed-no-banking:3",
+          "passed": true
+        },
+        {
+          "check": "Case final state matches its last event RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-suppressed-no-banking",
+          "passed": true
+        },
+        {
+          "check": "Standalone case file mirrors the casebook RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-suppressed-no-banking",
+          "passed": true
+        },
+        {
+          "check": "Case is bounded by explicit hold records RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-transfer-in-no-late-amplification",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-transfer-in-no-late-amplification:1",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-transfer-in-no-late-amplification:1",
+          "passed": true
+        },
+        {
+          "check": "Case final state matches its last event RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-transfer-in-no-late-amplification",
+          "passed": true
+        },
+        {
+          "check": "Standalone case file mirrors the casebook RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-transfer-in-no-late-amplification",
+          "passed": true
+        },
+        {
+          "check": "Case is bounded by explicit hold records RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-known-existing-silence-V-block",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-known-existing-silence-V-block:1",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-known-existing-silence-V-block:1",
+          "passed": true
+        },
+        {
+          "check": "Case final state matches its last event RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-known-existing-silence-V-block",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-known-existing-silence-V-block#1",
+          "passed": true
+        },
+        {
+          "check": "Standalone case file mirrors the casebook RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-known-existing-silence-V-block",
+          "passed": true
+        },
+        {
+          "check": "Case is bounded by explicit hold records RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-known-energy-immunity",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-known-energy-immunity:1",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-known-energy-immunity:1",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-known-energy-immunity:2",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-known-energy-immunity:2",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-known-energy-immunity:2",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-known-energy-immunity:3",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-known-energy-immunity:3",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-known-energy-immunity:3",
+          "passed": true
+        },
+        {
+          "check": "Case final state matches its last event RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-known-energy-immunity",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-known-energy-immunity#1",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-known-energy-immunity#2",
+          "passed": true
+        },
+        {
+          "check": "Standalone case file mirrors the casebook RANK8ENVIRONMENT3129-ABSOLUTE-SILENCE-known-energy-immunity",
+          "passed": true
+        },
+        {
+          "check": "Case is bounded by explicit hold records RANK8ENVIRONMENT3129-CONTROL-WEATHER-weatherless-whole-case-held",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-weatherless-whole-case-held:1",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-weatherless-whole-case-held:1",
+          "passed": true
+        },
+        {
+          "check": "Case final state matches its last event RANK8ENVIRONMENT3129-CONTROL-WEATHER-weatherless-whole-case-held",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-CONTROL-WEATHER-weatherless-whole-case-held#1",
+          "passed": true
+        },
+        {
+          "check": "Standalone case file mirrors the casebook RANK8ENVIRONMENT3129-CONTROL-WEATHER-weatherless-whole-case-held",
+          "passed": true
+        },
+        {
+          "check": "Case is bounded by explicit hold records RANK8ENVIRONMENT3129-CONTROL-WEATHER-known-finite-moisture-exhaustion",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-known-finite-moisture-exhaustion:1",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-known-finite-moisture-exhaustion:1",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-known-finite-moisture-exhaustion:2",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-known-finite-moisture-exhaustion:2",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-CONTROL-WEATHER-known-finite-moisture-exhaustion:2",
+          "passed": true
+        },
+        {
+          "check": "Case final state matches its last event RANK8ENVIRONMENT3129-CONTROL-WEATHER-known-finite-moisture-exhaustion",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-CONTROL-WEATHER-known-finite-moisture-exhaustion#1",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-CONTROL-WEATHER-known-finite-moisture-exhaustion#2",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-CONTROL-WEATHER-known-finite-moisture-exhaustion#3",
+          "passed": true
+        },
+        {
+          "check": "Standalone case file mirrors the casebook RANK8ENVIRONMENT3129-CONTROL-WEATHER-known-finite-moisture-exhaustion",
+          "passed": true
+        },
+        {
+          "check": "Case is bounded by explicit hold records RANK8ENVIRONMENT3129-CONTROL-WEATHER-partial-overlap-held",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-partial-overlap-held:1",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-partial-overlap-held:1",
+          "passed": true
+        },
+        {
+          "check": "Case final state matches its last event RANK8ENVIRONMENT3129-CONTROL-WEATHER-partial-overlap-held",
+          "passed": true
+        },
+        {
+          "check": "Standalone case file mirrors the casebook RANK8ENVIRONMENT3129-CONTROL-WEATHER-partial-overlap-held",
+          "passed": true
+        },
+        {
+          "check": "Case is bounded by explicit hold records RANK8ENVIRONMENT3129-CONTROL-WEATHER-suppression-physical-history",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-suppression-physical-history:1",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-suppression-physical-history:1",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-suppression-physical-history:2",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-suppression-physical-history:2",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-CONTROL-WEATHER-suppression-physical-history:2",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-suppression-physical-history:3",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-suppression-physical-history:3",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-CONTROL-WEATHER-suppression-physical-history:3",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-suppression-physical-history:4",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-suppression-physical-history:4",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-CONTROL-WEATHER-suppression-physical-history:4",
+          "passed": true
+        },
+        {
+          "check": "Case final state matches its last event RANK8ENVIRONMENT3129-CONTROL-WEATHER-suppression-physical-history",
+          "passed": true
+        },
+        {
+          "check": "Standalone case file mirrors the casebook RANK8ENVIRONMENT3129-CONTROL-WEATHER-suppression-physical-history",
+          "passed": true
+        },
+        {
+          "check": "Case is bounded by explicit hold records RANK8ENVIRONMENT3129-CONTROL-WEATHER-snow-phase-content-held",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-snow-phase-content-held:1",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-snow-phase-content-held:1",
+          "passed": true
+        },
+        {
+          "check": "Case final state matches its last event RANK8ENVIRONMENT3129-CONTROL-WEATHER-snow-phase-content-held",
+          "passed": true
+        },
+        {
+          "check": "Standalone case file mirrors the casebook RANK8ENVIRONMENT3129-CONTROL-WEATHER-snow-phase-content-held",
+          "passed": true
+        },
+        {
+          "check": "Case is bounded by explicit hold records RANK8ENVIRONMENT3129-CONTROL-WEATHER-unbound-exposure-consequence",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-CONTROL-WEATHER-unbound-exposure-consequence:1",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-CONTROL-WEATHER-unbound-exposure-consequence:1",
+          "passed": true
+        },
+        {
+          "check": "Case final state matches its last event RANK8ENVIRONMENT3129-CONTROL-WEATHER-unbound-exposure-consequence",
+          "passed": true
+        },
+        {
+          "check": "Standalone case file mirrors the casebook RANK8ENVIRONMENT3129-CONTROL-WEATHER-unbound-exposure-consequence",
+          "passed": true
+        },
+        {
+          "check": "Case is bounded by explicit hold records RANK8ENVIRONMENT3129-EARTHQUAKE-unknown-structure-whole-case-held",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-EARTHQUAKE-unknown-structure-whole-case-held:1",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-EARTHQUAKE-unknown-structure-whole-case-held:1",
+          "passed": true
+        },
+        {
+          "check": "Case final state matches its last event RANK8ENVIRONMENT3129-EARTHQUAKE-unknown-structure-whole-case-held",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-EARTHQUAKE-unknown-structure-whole-case-held#1",
+          "passed": true
+        },
+        {
+          "check": "Standalone case file mirrors the casebook RANK8ENVIRONMENT3129-EARTHQUAKE-unknown-structure-whole-case-held",
+          "passed": true
+        },
+        {
+          "check": "Case is bounded by explicit hold records RANK8ENVIRONMENT3129-EARTHQUAKE-occupied-spoil-reject",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-EARTHQUAKE-occupied-spoil-reject:1",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-EARTHQUAKE-occupied-spoil-reject:1",
+          "passed": true
+        },
+        {
+          "check": "Case final state matches its last event RANK8ENVIRONMENT3129-EARTHQUAKE-occupied-spoil-reject",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-EARTHQUAKE-occupied-spoil-reject#1",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-EARTHQUAKE-occupied-spoil-reject#2",
+          "passed": true
+        },
+        {
+          "check": "Standalone case file mirrors the casebook RANK8ENVIRONMENT3129-EARTHQUAKE-occupied-spoil-reject",
+          "passed": true
+        },
+        {
+          "check": "Case is bounded by explicit hold records RANK8ENVIRONMENT3129-EARTHQUAKE-hidden-protected-matter",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-EARTHQUAKE-hidden-protected-matter:1",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-EARTHQUAKE-hidden-protected-matter:1",
+          "passed": true
+        },
+        {
+          "check": "Case final state matches its last event RANK8ENVIRONMENT3129-EARTHQUAKE-hidden-protected-matter",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-EARTHQUAKE-hidden-protected-matter#1",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-EARTHQUAKE-hidden-protected-matter#2",
+          "passed": true
+        },
+        {
+          "check": "Standalone case file mirrors the casebook RANK8ENVIRONMENT3129-EARTHQUAKE-hidden-protected-matter",
+          "passed": true
+        },
+        {
+          "check": "Case is bounded by explicit hold records RANK8ENVIRONMENT3129-EARTHQUAKE-magical-parent-physical-descendants",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-EARTHQUAKE-magical-parent-physical-descendants:1",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-EARTHQUAKE-magical-parent-physical-descendants:1",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-EARTHQUAKE-magical-parent-physical-descendants:2",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-EARTHQUAKE-magical-parent-physical-descendants:2",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-EARTHQUAKE-magical-parent-physical-descendants:2",
+          "passed": true
+        },
+        {
+          "check": "Case final state matches its last event RANK8ENVIRONMENT3129-EARTHQUAKE-magical-parent-physical-descendants",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-EARTHQUAKE-magical-parent-physical-descendants#1",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-EARTHQUAKE-magical-parent-physical-descendants#2",
+          "passed": true
+        },
+        {
+          "check": "Standalone case file mirrors the casebook RANK8ENVIRONMENT3129-EARTHQUAKE-magical-parent-physical-descendants",
+          "passed": true
+        },
+        {
+          "check": "Case is bounded by explicit hold records RANK8ENVIRONMENT3129-EARTHQUAKE-unsupported-final-debris-volume",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-EARTHQUAKE-unsupported-final-debris-volume:1",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-EARTHQUAKE-unsupported-final-debris-volume:1",
+          "passed": true
+        },
+        {
+          "check": "Case final state matches its last event RANK8ENVIRONMENT3129-EARTHQUAKE-unsupported-final-debris-volume",
+          "passed": true
+        },
+        {
+          "check": "Standalone case file mirrors the casebook RANK8ENVIRONMENT3129-EARTHQUAKE-unsupported-final-debris-volume",
+          "passed": true
+        },
+        {
+          "check": "Case is bounded by explicit hold records RANK8ENVIRONMENT3129-EARTHQUAKE-Druid-no-Evocation-access",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-EARTHQUAKE-Druid-no-Evocation-access:1",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-EARTHQUAKE-Druid-no-Evocation-access:1",
+          "passed": true
+        },
+        {
+          "check": "Case final state matches its last event RANK8ENVIRONMENT3129-EARTHQUAKE-Druid-no-Evocation-access",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-EARTHQUAKE-Druid-no-Evocation-access#1",
+          "passed": true
+        },
+        {
+          "check": "Standalone case file mirrors the casebook RANK8ENVIRONMENT3129-EARTHQUAKE-Druid-no-Evocation-access",
+          "passed": true
+        },
+        {
+          "check": "Case is bounded by explicit hold records RANK8ENVIRONMENT3129-EARTHQUAKE-fall-marker-not-duplicated",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-EARTHQUAKE-fall-marker-not-duplicated:1",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-EARTHQUAKE-fall-marker-not-duplicated:1",
+          "passed": true
+        },
+        {
+          "check": "Event state continuity and canonical hashes RANK8ENVIRONMENT3129-EARTHQUAKE-fall-marker-not-duplicated:2",
+          "passed": true
+        },
+        {
+          "check": "Event full-state forward and inverse operations RANK8ENVIRONMENT3129-EARTHQUAKE-fall-marker-not-duplicated:2",
+          "passed": true
+        },
+        {
+          "check": "Event clock does not run backwards RANK8ENVIRONMENT3129-EARTHQUAKE-fall-marker-not-duplicated:2",
+          "passed": true
+        },
+        {
+          "check": "Case final state matches its last event RANK8ENVIRONMENT3129-EARTHQUAKE-fall-marker-not-duplicated",
+          "passed": true
+        },
+        {
+          "check": "Case assertion RANK8ENVIRONMENT3129-EARTHQUAKE-fall-marker-not-duplicated#1",
+          "passed": true
+        },
+        {
+          "check": "Standalone case file mirrors the casebook RANK8ENVIRONMENT3129-EARTHQUAKE-fall-marker-not-duplicated",
+          "passed": true
+        },
+        {
+          "check": "Full case/event/operation totals agree with declared counts",
+          "passed": true
+        },
+        {
+          "check": "Proposal full-state forward/inverse operation absolute-silence",
+          "passed": true
+        },
+        {
+          "check": "Proposal full-state forward/inverse operation control-weather",
+          "passed": true
+        },
+        {
+          "check": "Proposal full-state forward/inverse operation earthquake",
+          "passed": true
+        },
+        {
+          "check": "Proposal operation totals agree with declared counts",
+          "passed": true
+        },
+        {
+          "check": "Return carries exact source-conference archive and candidate",
+          "passed": true
+        },
+        {
+          "check": "Return carries exact source request, conference notes and source manifest",
+          "passed": true
+        },
+        {
+          "check": "Embedded source archive exact hash/size/member count match",
+          "passed": true
+        },
+        {
+          "check": "Return records current 723/125 source authority with no historical adoption",
+          "passed": true
+        },
+        {
+          "check": "71 frozen current source file bindings are listed",
+          "passed": true
+        },
+        {
+          "check": "Source packet nested ZIP has unique members and passes CRC",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_06.json",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding DescentReviewChanges/ReviewBible/data/director/spell_review/material_terrain_8_conference_02.json",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding DescentReviewChanges/ReviewBible/data/director/spell_review/rank7_mechanics_16_source_conference_01.json",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding DescentReviewChanges/ReviewBible/data/director/spell_review/rank8_summon_structure_5_source_conference_01.json",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding DescentReviewChanges/ReviewBible/data/director/spell_review/remaining_work_queue_31.json",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding DescentReviewChanges/ReviewBible/data/playtest/game_development_coverage.json",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/abjuration_conjuration_rank5_cases_05.json",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/persistent_damage_20_cases_07.json",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding DescentReviewChanges/ReviewBible/data/playtest/spell_drafts/batch_divination_cantrips.json",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding DescentReviewChanges/ReviewBible/data/playtest/spell_drafts/batch_evocation_rank1.json",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding DescentReviewChanges/ReviewBible/data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding DescentReviewChanges/ReviewBible/data/public/class_playtests/druid.json",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding DescentReviewChanges/ReviewBible/data/public/class_playtests/mage.json",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank5_reviewed_05.json",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding DescentReviewChanges/ReviewBible/data/public/spell_candidates/materialterrain8_reviewed_140/MODEL.json",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank7_mechanics16_reviewed_122.json",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank8perception5_reviewed_156/CANDIDATE_PACKAGE_MANIFEST.json",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank8perception5_reviewed_156/MODEL.json",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank8summonstructure5_reviewed_153/MODEL.json",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding DescentReviewChanges/ReviewBible/data/public/spell_playtests/candidate_low_rank_136.json",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding DescentReviewChanges/ReviewBible/docs/mechanics/COSMOLOGY_EPILOGUE_RELIC_NULL_PLAYTEST.md",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding DescentReviewChanges/ReviewBible/docs/mechanics/CREATURE_LIFECYCLE_PLAYTEST.md",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding DescentReviewChanges/ReviewBible/docs/mechanics/EQUIPMENT_ACQUISITION_PLAYTEST.md",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding DescentReviewChanges/ReviewBible/docs/mechanics/EQUIPMENT_ITEM_PROCEDURES.md",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding DescentReviewChanges/ReviewBible/docs/mechanics/HEALING_DEATH_PLAYTEST.md",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding DescentReviewChanges/ReviewBible/docs/mechanics/MAXIMUM_HP_PLAYTEST.md",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding DescentReviewChanges/ReviewBible/docs/mechanics/VIDEO_GAME_ONLY_DIRECTIVE.md",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EX58_SOURCE_CONTRACTS_CORRECTED.md",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_DIRECTOR_BOOK.md",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_PLAYER_BOOK.md",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding DescentReviewChanges/ReviewBible/docs/mechanics/expedition/TRANSPORT_CATALOGUE_CANDIDATE.md",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding DescentReviewChanges/ReviewBible/rulebook_output.txt",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding DescentReviewChanges/ReviewBible/src/data/spells.js",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding DescentReviewChanges/ReviewBible/tools/prepare_rank8_environment_3_source_conference_01.py",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding DescentReviewChanges/ReviewBible/tools/rank8_environment_3_questions_01.py",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding docs/audit/2026-10-08/full-game/AC5_EXACT_ACCEPTANCE_05_RECEIPT.json",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding docs/audit/2026-10-08/full-game/ACTIVE_AUTHORING_CHECKPOINT_RANK8_PERCEPTION_38.json",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding docs/audit/2026-10-08/full-game/EVOCATION_RANK8_SOURCE_PREPARATION.json",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding docs/audit/2026-10-08/full-game/EX58_FINAL_RECEIPT_LOCAL.json",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding docs/audit/2026-10-08/full-game/GPT_DIVINATION_CANTRIP_EXACT_REVIEW.md",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding docs/audit/2026-10-08/full-game/GPT_DIVINATION_CANTRIP_FINAL_CLARIFICATION.md",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding docs/audit/2026-10-08/full-game/GPT_DIVINATION_CANTRIP_SOURCE_CONFERENCE.md",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_AUTHORING_CLARIFICATION.md",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_EXACT_REVIEW.md",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_SOURCE_CONFERENCE.md",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding docs/audit/2026-10-08/full-game/GPT_PART5_EXACT_ACCEPTANCES_01_NATIVE.json",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding docs/audit/2026-10-08/full-game/GPT_PART5_PERTINENT_RETURNS_01_RECEIPT.json",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding docs/audit/2026-10-08/full-game/PERSISTENT_DAMAGE_20_EXACT07_APPLICATION_RECEIPT.json",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding docs/audit/2026-10-08/full-game/TRANSMUTATION_UNIVERSAL_RANK8_SOURCE_PREPARATION.json",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding docs/audit/2026-10-08/full-game/ac5-local-final-05-candidate/REGISTER.json",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT125_PENDING_IDENTITY_AUDIT_158.json",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_158.json",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_SPELL_QUEUE_158.json",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding docs/audit/2026-10-08/full-game/director-spell-review-129/GPT_DIRECTOR_DECISION_PERCEPTION5_156.json",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding docs/audit/2026-10-08/full-game/director-spell-review-129/PERCEPTION5_APPLICATION_158.json",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding docs/audit/2026-10-08/full-game/director-spell-review-129/PERCEPTION5_APPLICATION_VERIFICATION_158.json",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding docs/audit/2026-10-08/full-game/director-spell-review-129/PERCEPTION5_EXACT_ACCEPTANCE_156.json",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding docs/audit/2026-10-08/full-game/director-spell-review-129/perception5_return156_received/DIRECTOR_RETURN_DELIVERY.json",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding docs/audit/2026-10-08/full-game/persistent-damage20-exact-rebound-07/REGISTER.json",
+          "passed": true
+        },
+        {
+          "check": "Current and frozen source binding docs/reference/Player_Rulebook_v6_source_text.txt",
+          "passed": true
+        },
+        {
+          "check": "Current authority binding index",
+          "passed": true
+        },
+        {
+          "check": "Current authority binding catalog",
+          "passed": true
+        },
+        {
+          "check": "Current authority binding currentQueue",
+          "passed": true
+        },
+        {
+          "check": "Current authority binding pendingIdentityAudit",
+          "passed": true
+        },
+        {
+          "check": "Current authority binding priorHandoff",
+          "passed": true
+        },
+        {
+          "check": "Exact accepted-interface comparison evidence is present and scoped",
+          "passed": true
+        },
+        {
+          "check": "Comparison checks did not execute historical programs or grant broad authority",
+          "passed": true
+        }
+      ],
+      "scope": "Independent integrity, source/authority binding, exact identity, hold, case/state transition, and proposal inverse verification. Static authored review only; no runtime or source program execution."
+    },
+    "returnArchiveMembers": 65,
+    "sourceArchiveMembers": 83,
+    "sourceBoundFiles": 71,
+    "conferenceQuestions": 15,
+    "originalIdentityQuestions": 3,
+    "futureObligations": 5,
+    "cases": 35,
+    "heldBranches": 18,
+    "events": 105,
+    "eventOperations": 420,
+    "proposalOperations": 12,
+    "retainedHolds": 15
+  },
+  "acceptedArchive": {
+    "name": "DD_Rank8_Environment3_Director_Return159.zip",
+    "bytes": 14025213,
+    "sha256": "a62241bc136dc7b4af88312357930d201055c2a9eb3dae17d76dabdf9c7c1d92"
+  },
+  "sourceArchive": {
+    "name": "DD_Rank8_Environment_3_Source_Conference_02.zip",
+    "bytes": 10585509,
+    "sha256": "4d81358a29f0d6dc0e123883dd02044c794e84b02d6cc1f87e5e8942605d56e1"
+  },
+  "scope": "Static authored operational review of these exact proposed procedures and data only, with all retained holds. No canonical application, runtime, human-play, balance, cosmology or release approval.",
+  "holdScope": "All 15 source-access, geometry, information, control, source-authority, physical, atmospheric, lightning, ground, temporal, interface, event, balance, runtime/play and release hold categories remain retained. All 18 held dependent branches remain held. No runtime, human-play, balance, cosmology, domain-closure or release approval is granted.",
+  "excludedClaims": {
+    "runtime": false,
+    "humanPlay": false,
+    "balance": false,
+    "cosmology": false,
+    "domainClosure": false,
+    "release": false,
+    "canonicalApplication": false
+  },
+  "directorMadeNoCanonicalChanges": true
+}

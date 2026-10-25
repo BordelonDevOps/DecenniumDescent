@@ -1,0 +1,1047 @@
+{
+  "status": "PLAYTEST — REVIEWED / MANUSCRIPT-APPROVED; no functional repairs; runtime/balance pending",
+  "spells": [
+    {
+      "id": "chain-jolt",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "Choose one or two distinct creatures or independently legal objects you perceive within 30 feet and line of effect. Each need only be within your range, not near the other target. Declare their resolution order at commitment; the same creature/object cannot receive both jolts.",
+      "duration": "Instantaneous, no concentration.",
+      "concentration": false,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "After the cast survives its interrupt window, make one ranged spell attack independently against each still-legal chosen target in declared order. Each hit deals an independently rolled 1d8 lightning; each miss deals nothing. Each attack has its ordinary attack-reaction opportunities and its own attack/damage event.",
+      "effect": "One cast supplies at most these two attacks. A lost or invalidated target receives no substituted jolt and provides no retargeting. One attack’s outcome does not change the other’s die or convert the spell into a freely bouncing chain.",
+      "scaling": "None. No automatic increase in damage, range, targets, duration, uses or magnitude.",
+      "limitations": "No automatic Stunned, Reaction denial, unselected secondary creature, extra reach or free ongoing link. Objects must be independently legal targets with actual object AC, durability and material/damage defenses. This spell grants no generic permission to target an unwilling creature’s worn/carried equipment, no invented object statistics and no automatic secondary equipment damage. Actual class/source access, repertoire, level, action availability, components, costs, concentration transitions, Dissonance/Refrain and cast/counter/outcome hooks follow SPELL_INTEGRATION_RULES.md. These actual rank-1 placements have base 2 RP; real source modifiers and strain surcharges still apply. V is audible, S requires the ordinary usable free hand or an actual exception, and F is the ordinary class focus. A legal cast commits payment and cast-begin consequences before its Counterspell window; later failure/countering refunds nothing and restores no displaced concentration. Spell attacks use d20 + PB + actual casting modifier against AC; natural 1 misses/natural 20 hits and doubles only actual attack damage dice. Saves use DC 8 + PB + actual casting modifier and binary-save rules. Actual target/area defenses and source-specific hooks retain their real trigger scopes. No automatic level scaling, generic upcast, new action budget or resource generation.",
+      "designNotes": "PRESERVED: Action, 30 feet, V/S/F and two targets for1d8 lightning each. NEW: up-to-two flexibility, independent ranged spell attacks/dice, creature/legal-object selection, and explicit fixed target order. No double allocation to one target or imported bounce-distance restriction.",
+      "implementationStatus": "REVIEWED authored operational PLAYTEST manuscript; runtime, human balance and broader integration pending",
+      "sourcePlacements": [
+        {
+          "name": "Chain Jolt",
+          "school": "Evocation",
+          "level": 1,
+          "summary": "Hit 2 targets for 1d8 lightning each."
+        }
+      ],
+      "sourceCoreEntries": [
+        {
+          "index": 434,
+          "original": {
+            "school": "Evocation",
+            "level": 1,
+            "name": "Chain Jolt",
+            "effect": "Hit 2 targets for 1d8 lightning each.",
+            "source_paragraph": 9519,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Damage"
+            ],
+            "rp_cost": 2
+          }
+        }
+      ],
+      "classAccessEvidence": {
+        "Crimson Agent": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Evocation",
+          "baseRpCost": 2
+        },
+        "Dragoon": {
+          "rank": 1,
+          "minimumClassLevel": 3,
+          "school": "Evocation",
+          "baseRpCost": 2
+        },
+        "Mage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Evocation",
+          "baseRpCost": 2
+        },
+        "Wizard": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Evocation",
+          "baseRpCost": 2
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_SOURCE_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_AUTHORING_CLARIFICATION.md",
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_EXACT_REVIEW.md"
+      ],
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_EXACT_REVIEW.md"
+      ]
+    },
+    {
+      "id": "force-spike",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One creature you perceive within 30 feet and line of effect.",
+      "duration": "Instantaneous damage and Prone application; Prone then uses its ordinary ending/standing rules. No concentration.",
+      "concentration": false,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "The legal target automatically takes 3d6 force, with no attack or damage save. After that packet, if still a legal creature target, it makes a Strength save solely against Prone. Failure: attempt actual Prone under its own defenses. Success: no Prone. The save neither prevents nor halves the already-resolved damage.",
+      "effect": "Damage and knockdown are separate components. Force resistance/immunity does not itself protect against Prone, and Prone immunity does not reduce force damage. A damage packet reduced to0 still permits the independent STR/Prone procedure. Actual Prone uses its existing attack/movement/standing consequences.",
+      "scaling": "None. No automatic increase in damage, range, targets, duration, uses or magnitude.",
+      "limitations": "Prone is not positional forced movement. No push, collision damage, Rooted, Stunned, save for the automatic force packet or whole-Action hard-control claim is added. No postmortem new creature save is manufactured if damage ended the creature’s eligibility. Actual class/source access, repertoire, level, action availability, components, costs, concentration transitions, Dissonance/Refrain and cast/counter/outcome hooks follow SPELL_INTEGRATION_RULES.md. These actual rank-1 placements have base 2 RP; real source modifiers and strain surcharges still apply. V is audible, S requires the ordinary usable free hand or an actual exception, and F is the ordinary class focus. A legal cast commits payment and cast-begin consequences before its Counterspell window; later failure/countering refunds nothing and restores no displaced concentration. Spell attacks use d20 + PB + actual casting modifier against AC; natural 1 misses/natural 20 hits and doubles only actual attack damage dice. Saves use DC 8 + PB + actual casting modifier and binary-save rules. Actual target/area defenses and source-specific hooks retain their real trigger scopes. No automatic level scaling, generic upcast, new action budget or resource generation.",
+      "designNotes": "PRESERVED: Action, 30 feet, V/S/F,3d6 force and STRsave for knockdown. NEW: one perceived creature and explicit automatic-damage-first/save-only-Prone decomposition. Automatic rank-1 damage remains a human-balance question.",
+      "implementationStatus": "REVIEWED authored operational PLAYTEST manuscript; runtime, human balance and broader integration pending",
+      "sourcePlacements": [
+        {
+          "name": "Force Spike",
+          "school": "Evocation",
+          "level": 1,
+          "summary": "3d6 force, knocks prone if target fails STR save."
+        }
+      ],
+      "sourceCoreEntries": [
+        {
+          "index": 435,
+          "original": {
+            "school": "Evocation",
+            "level": 1,
+            "name": "Force Spike",
+            "effect": "3d6 force, knocks prone if target fails STR save.",
+            "source_paragraph": 9520,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Strength save",
+            "tags": [
+              "Damage"
+            ],
+            "rp_cost": 2
+          }
+        }
+      ],
+      "classAccessEvidence": {
+        "Crimson Agent": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Evocation",
+          "baseRpCost": 2
+        },
+        "Dragoon": {
+          "rank": 1,
+          "minimumClassLevel": 3,
+          "school": "Evocation",
+          "baseRpCost": 2
+        },
+        "Mage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Evocation",
+          "baseRpCost": 2
+        },
+        "Wizard": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Evocation",
+          "baseRpCost": 2
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_SOURCE_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_AUTHORING_CLARIFICATION.md",
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_EXACT_REVIEW.md"
+      ],
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_EXACT_REVIEW.md"
+      ]
+    },
+    {
+      "id": "magic-missile-storm",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "Allocate exactly three numbered missiles 1, 2, 3 at cast commitment among one to three distinct creatures you perceive within 30 feet and line of effect. Several missiles may share a recipient. Lock every allocation and the fixed1→2→3 resolution order before effects; no later reassignment.",
+      "duration": "Instantaneous, no concentration.",
+      "concentration": false,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "After the ordinary cast/counter window, resolve numbered missiles in order. Each missile automatically hits its still-legal assigned creature, with no attack roll or save, and deals an independently rolled1d4+1 force as its own damage packet. A creature that becomes an illegal target before an unresolved allocation receives no new corpse/object attack; that allocation is simply spent without retargeting or a location oracle.",
+      "effect": "Each of the three missiles is a separate auto-hit/damage event: apply actual DR, temporaryHP, Wounds, concentration and per-hit/packet callbacks separately where their real triggers require it. Do not combine three allocated missiles into one 3d4+3 packet or count each die as more events. NEW named interaction: only for the ordinary Shield spell’s expressly named Magic Missile exception, this spell counts as Magic Missile. At committed allocation each distinct recipient supplies one such Shield targeting opportunity for this Storm, available before that recipient’s first missile damage resolves. A willing eligible recipient can be protected by a legal Shield cast within its own actual30-foot/source/repertoire/Reaction rules; Shield has its normal cost and nested counter window. Later missiles do not reopen that allocation opportunity once its first missile damage has resolved. While Shield is actually active, every unresolved Storm missile allocated to that protected creature is prevented from dealing damage; allocations remain spent, and an auto-hit is not converted into a miss merely because its damage is prevented.",
+      "scaling": "None. No automatic increase in damage, range, targets, duration, uses or magnitude.",
+      "limitations": "This bridge neither renames an identity nor grants general auto-hit immunity. It does not cover Mage Arcane Missile or other class features/names. Shield is not automatically known or cast, and the Storm creates no new Reaction resources. There is no critical-hit attack roll, physical projectile item, recoverable missile or free retarget after Shield/death/immunity. Ordinary source conditions still govern hit versus positive-damage hooks; damage prevented by Shield supplies no positive damage, HP loss or positive-damage trigger merely because an auto-hit occurred. Actual class/source access, repertoire, level, action availability, components, costs, concentration transitions, Dissonance/Refrain and cast/counter/outcome hooks follow SPELL_INTEGRATION_RULES.md. These actual rank-1 placements have base 2 RP; real source modifiers and strain surcharges still apply. V is audible, S requires the ordinary usable free hand or an actual exception, and F is the ordinary class focus. A legal cast commits payment and cast-begin consequences before its Counterspell window; later failure/countering refunds nothing and restores no displaced concentration. Spell attacks use d20 + PB + actual casting modifier against AC; natural 1 misses/natural 20 hits and doubles only actual attack damage dice. Saves use DC 8 + PB + actual casting modifier and binary-save rules. Actual target/area defenses and source-specific hooks retain their real trigger scopes. No automatic level scaling, generic upcast, new action budget or resource generation.",
+      "designNotes": "PRESERVED: Action,30 feet,V/S/F,three auto-hit missiles each1d4+1. NEW: force type, numbered locked allocation/order, separate independent dice/packets and one Shield allocation trigger per recipient. The named Shield compatibility explicitly reconciles its old Magic Missile reference to this sole ordinary missile identity; it is not a global alias or Mage class-feature merge.",
+      "implementationStatus": "REVIEWED authored operational PLAYTEST manuscript; runtime, human balance and broader integration pending",
+      "sourcePlacements": [
+        {
+          "name": "Magic Missile Storm",
+          "school": "Evocation",
+          "level": 1,
+          "summary": "3 missiles, each 1d4+1; auto-hit."
+        }
+      ],
+      "sourceCoreEntries": [
+        {
+          "index": 436,
+          "original": {
+            "school": "Evocation",
+            "level": 1,
+            "name": "Magic Missile Storm",
+            "effect": "3 missiles, each 1d4+1; auto-hit.",
+            "source_paragraph": 9521,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Damage"
+            ],
+            "rp_cost": 2
+          }
+        }
+      ],
+      "classAccessEvidence": {
+        "Crimson Agent": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Evocation",
+          "baseRpCost": 2
+        },
+        "Dragoon": {
+          "rank": 1,
+          "minimumClassLevel": 3,
+          "school": "Evocation",
+          "baseRpCost": 2
+        },
+        "Mage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Evocation",
+          "baseRpCost": 2
+        },
+        "Wizard": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Evocation",
+          "baseRpCost": 2
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_SOURCE_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_AUTHORING_CLARIFICATION.md",
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_EXACT_REVIEW.md"
+      ],
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_EXACT_REVIEW.md"
+      ]
+    },
+    {
+      "id": "thunder-clap",
+      "activation": "Action",
+      "rangeFeet": 15,
+      "targets": "A 15-foot cone originating from you in a chosen direction. Affect every creature whose occupied space is actually within the cone with line of effect from its origin, including allies. Merely being the cone’s origin does not include you; actual geometric inclusion does.",
+      "duration": "Instantaneous, no concentration.",
+      "concentration": false,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "Each affected creature makes a Dexterity save. Roll2d6 thunder once for the cast. Failure: the full raw result; success: half rounded down, then each target applies its actual damage defenses.",
+      "effect": "Resolve one initial cone burst. The printed DEX save controls half damage only; no additional rider is supplied.",
+      "scaling": "None. No automatic increase in damage, range, targets, duration, uses or magnitude.",
+      "limitations": "No Deafened, push, object fling, persistent zone or extra hearing prerequisite. This rank-1 Thunder Clap (thunder-clap) is distinct from rank-0 Thunderclap (thunderclap); accessing one grants nothing from the other. Initial area targets are a snapshot at resolution, with no selective omission or later entry damage. Each affected creature uses its own save/defenses; a shared raw damage roll is not a shared defensive result. No Burning, Frozen, Deafened, Poisoned or other unnamed condition arises merely from the damage type. Actual class/source access, repertoire, level, action availability, components, costs, concentration transitions, Dissonance/Refrain and cast/counter/outcome hooks follow SPELL_INTEGRATION_RULES.md. These actual rank-1 placements have base 2 RP; real source modifiers and strain surcharges still apply. V is audible, S requires the ordinary usable free hand or an actual exception, and F is the ordinary class focus. A legal cast commits payment and cast-begin consequences before its Counterspell window; later failure/countering refunds nothing and restores no displaced concentration. Spell attacks use d20 + PB + actual casting modifier against AC; natural 1 misses/natural 20 hits and doubles only actual attack damage dice. Saves use DC 8 + PB + actual casting modifier and binary-save rules. Actual target/area defenses and source-specific hooks retain their real trigger scopes. No automatic level scaling, generic upcast, new action budget or resource generation.",
+      "designNotes": "PRESERVED: Action,15-foot cone,V/S/F,2d6 thunder and DEXhalf. NEW: exact all-creature/center-line-of-effect geometry and shared roll. No caster exemption from actual area inclusion or imported condition rider.",
+      "implementationStatus": "REVIEWED authored operational PLAYTEST manuscript; runtime, human balance and broader integration pending",
+      "sourcePlacements": [
+        {
+          "name": "Thunder Clap",
+          "school": "Evocation",
+          "level": 1,
+          "summary": "15-ft cone, 2d6 thunder, DEX save halves."
+        }
+      ],
+      "sourceCoreEntries": [
+        {
+          "index": 437,
+          "original": {
+            "school": "Evocation",
+            "level": 1,
+            "name": "Thunder Clap",
+            "effect": "15-ft cone, 2d6 thunder, DEX save halves.",
+            "source_paragraph": 9522,
+            "casting_time": "1 action",
+            "range": "15 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Dexterity save",
+            "tags": [
+              "Damage"
+            ],
+            "rp_cost": 2
+          }
+        }
+      ],
+      "classAccessEvidence": {
+        "Crimson Agent": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Evocation",
+          "baseRpCost": 2
+        },
+        "Dragoon": {
+          "rank": 1,
+          "minimumClassLevel": 3,
+          "school": "Evocation",
+          "baseRpCost": 2
+        },
+        "Mage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Evocation",
+          "baseRpCost": 2
+        },
+        "Wizard": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Evocation",
+          "baseRpCost": 2
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_SOURCE_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_AUTHORING_CLARIFICATION.md",
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_EXACT_REVIEW.md"
+      ],
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_EXACT_REVIEW.md"
+      ]
+    },
+    {
+      "id": "arcane-shield-shatter",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "Select one individually perceptible ongoing magical shield effect and designate one creature it currently protects. Both its legal effect-targeting locus and that creature must be perceived, within 30 feet and line of effect from you, at commitment and resolution. This spell grants no detection/identification ability or free owner/rank diagnostic. For a distributed Protective Sphere, use the explicit boundary/inside-creature procedure in Effect.",
+      "duration": "Instantaneous ending and subsequent damage, no concentration.",
+      "concentration": false,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "After paid commitment, resolve actual hidden eligibility: spell origin, recorded generating rank 0–1, eligible protective identity, ongoing operational defense of the designated creature, and susceptibility to ending. Failure of any required predicate means no ending, no damage, no replacement target and no refund. If eligible, automatically end exactly that selected effect/component through its ordinary parent/dependency callbacks. Only after successful ending, deal one automatic1d8 force packet to the designated still-legal creature. No attack/save is added. If the effect cannot actually end, there is no damage fallback.",
+      "effect": "NEW eligible-shield definition: one individually perceptible ongoing magical effect generated by an actual rank-0 or rank-1 spell whose source expressly identifies or describes it as a shield, barrier, ward or unambiguous equivalent magical protective layer, and which currently retains at least one operational defensive component protecting the designated creature. Defensive components include attack/AC protection, damage prevention/reduction/absorption, projectile or creature interception, saving-throw protection, or an actual magical defensive boundary. A generic defensive benefit does not qualify without that source-qualified identity. Stronger same-stat numerical supersession does not end eligibility; actual complete suppression of every defensive component prevents eligibility until protection resumes. An active conditional defense need not currently be triggered. The actual generating rank controls, not RP spent, discount, dispeller level or a different class placement. Reviewed examples: Arcane Ward, active Shield, active Barrier Flicker, Corruption Ward and unconsumed Minor Elemental Ward qualify subject to all gates. Rank-1 Abjuration Alignment Shield qualifies without a currently attacking opposed-alignment creature; its rank-3 Conjuration application fails the rank ceiling. Resonance Shield qualifies only if its own accepted current temporary-HP grant has points remaining and has not expired/depleted/replaced. The reviewed finite source-owned grant is an ongoing effect despite old Instantaneous metadata; this does not make historical instantaneous consequences generically dispellable. Remove only that actual accepted grant administratively, never a discarded historical grant or a replacement False Life/class pool. Administrative removal is not damage, a hit or paid absorption and triggers depletion/removal hooks only where their actual wording covers it. For Protective Sphere, choose one perceived actual boundary point within 30 feet/line of effect as the effect locus, and one perceived creature actually inside it also within 30 feet/line of effect. That creature need not be the owner, and no projectile must be in flight. End the whole one selected maintained sphere application and its actual dependencies, not a hole or segment; overlapping independent spheres remain. An outside creature cannot be designated merely through hypothetical protection by the sphere.",
+      "scaling": "None. No automatic increase in damage, range, targets, duration, uses or magnitude.",
+      "limitations": "Generic temporary HP, generic resistance/save buffs, information-only wards, permanent magic, items, class engines, creature traits, ordinary physical shields and spell-created purely physical objects fail this predicate unless another exact rule expressly makes that source eligible. In the reviewed comparison set, Alarm Ward, Warning Ward, False Life and Resistance are excluded. A word appearing in a name does not establish source-qualified eligibility. A save ward consumed before resolution is no longer an ongoing target. A shield numerically superseded by a stronger modifier remains distinct from wholly suppressed protection; hidden failure supplies no reason diagnostic. Ending an independent component leaves siblings unless actual parent rules link them; selecting an entire maintained application invokes its normal ending/concentration cleanup. No arbitrary sibling purge, stale-grant removal or resource restoration. Barrier Flicker’s brief eligibility grants no Action/interrupt permission: a separately legal timing mechanism must let Shatter resolve before Flicker ends. This spell’s source word arcane maps to force only for this1d8; no global arcane-to-force alias is created. Actual class/source access, repertoire, level, action availability, components, costs, concentration transitions, Dissonance/Refrain and cast/counter/outcome hooks follow SPELL_INTEGRATION_RULES.md. These actual rank-1 placements have base 2 RP; real source modifiers and strain surcharges still apply. V is audible, S requires the ordinary usable free hand or an actual exception, and F is the ordinary class focus. A legal cast commits payment and cast-begin consequences before its Counterspell window; later failure/countering refunds nothing and restores no displaced concentration. Spell attacks use d20 + PB + actual casting modifier against AC; natural 1 misses/natural 20 hits and doubles only actual attack damage dice. Saves use DC 8 + PB + actual casting modifier and binary-save rules. Actual target/area defenses and source-specific hooks retain their real trigger scopes. No automatic level scaling, generic upcast, new action budget or resource generation.",
+      "designNotes": "PRESERVED: Action,30 feet,V/S/F,shield-spell ending plus1d8arcane damage. NEW: one effect/one protected creature, actual rank 0–1 ceiling, finite semantic shield predicate and twelve explicit comparison dispositions, paid hidden predicates, successful ending before automatic damage, spell-local force interpretation, tempHP identity conservation and whole-Sphere targeting. No existing249 operational card or class engine is rewritten. Runtime eligibility metadata and numerical balance remain open.",
+      "implementationStatus": "REVIEWED authored operational PLAYTEST manuscript; runtime, human balance and broader integration pending",
+      "sourcePlacements": [
+        {
+          "name": "Arcane Shield Shatter",
+          "school": "Evocation",
+          "level": 1,
+          "summary": "Dispel shield spells; deals 1d8 arcane damage."
+        }
+      ],
+      "sourceCoreEntries": [
+        {
+          "index": 438,
+          "original": {
+            "school": "Evocation",
+            "level": 1,
+            "name": "Arcane Shield Shatter",
+            "effect": "Dispel shield spells; deals 1d8 arcane damage.",
+            "source_paragraph": 9523,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Damage",
+              "Ward"
+            ],
+            "rp_cost": 2
+          }
+        }
+      ],
+      "classAccessEvidence": {
+        "Crimson Agent": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Evocation",
+          "baseRpCost": 2
+        },
+        "Dragoon": {
+          "rank": 1,
+          "minimumClassLevel": 3,
+          "school": "Evocation",
+          "baseRpCost": 2
+        },
+        "Mage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Evocation",
+          "baseRpCost": 2
+        },
+        "Wizard": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Evocation",
+          "baseRpCost": 2
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_SOURCE_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_AUTHORING_CLARIFICATION.md",
+        "docs/audit/2026-10-08/full-game/GPT_ARCANE_SHIELD_SHATTER_ELIGIBILITY_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_EXACT_REVIEW.md"
+      ],
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_EXACT_REVIEW.md"
+      ]
+    },
+    {
+      "id": "ignition-bolt",
+      "activation": "Action",
+      "rangeFeet": 5,
+      "targets": "One creature or independently legal object you perceive within 5 feet and line of effect. The source’s5-foot casting range is retained. The primary target determines a separate5-foot-radius splash on a hit.",
+      "duration": "Instantaneous, no concentration.",
+      "concentration": false,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "Make one ranged spell attack against the still-legal primary target. Capture its actual impact position when the attack legally resolves, before damage consequences. Miss: no primary damage or splash. Hit: roll one base 1d10 fire; the primary takes that amount. On a critical hit, roll one additional attack-only1d10 for the primary. The extra critical die is never part of the splash value.",
+      "effect": "On a hit, every OTHER creature within 5 feet of the captured impact point with line of effect from that point makes a Dexterity save, including you/allies if geometrically included. Failure: take the same base 1d10 fire result. Success: half that base result rounded down. Apply each creature’s actual defenses. The primary never receives the splash again. Primary destruction, movement or disappearance caused by its damage does not move or erase the captured impact center or already-established splash. If the primary became illegal before attack resolution, no attack/impact/splash is created.",
+      "scaling": "None. No automatic increase in damage, range, targets, duration, uses or magnitude.",
+      "limitations": "The primary attack packet and each secondary area packet remain distinct; area damage never critically doubles. No Burning, automatic mundane ignition, persistent fire, unselected object splash or extended casting range. A missed attack supplies no invented impact location. Objects must be independently legal targets with actual object AC, durability and material/damage defenses. This spell grants no generic permission to target an unwilling creature’s worn/carried equipment, no invented object statistics and no automatic secondary equipment damage. Initial area targets are a snapshot at resolution, with no selective omission or later entry damage. Each affected creature uses its own save/defenses; a shared raw damage roll is not a shared defensive result. No Burning, Frozen, Deafened, Poisoned or other unnamed condition arises merely from the damage type. Actual class/source access, repertoire, level, action availability, components, costs, concentration transitions, Dissonance/Refrain and cast/counter/outcome hooks follow SPELL_INTEGRATION_RULES.md. These actual rank-1 placements have base 2 RP; real source modifiers and strain surcharges still apply. V is audible, S requires the ordinary usable free hand or an actual exception, and F is the ordinary class focus. A legal cast commits payment and cast-begin consequences before its Counterspell window; later failure/countering refunds nothing and restores no displaced concentration. Spell attacks use d20 + PB + actual casting modifier against AC; natural 1 misses/natural 20 hits and doubles only actual attack damage dice. Saves use DC 8 + PB + actual casting modifier and binary-save rules. Actual target/area defenses and source-specific hooks retain their real trigger scopes. No automatic level scaling, generic upcast, new action budget or resource generation.",
+      "designNotes": "PRESERVED: Action,V/S/F,1d10firebolt with5-foot splash and unusual metadata casting range5. NEW: ranged attack, hit-gated splash/DEXhalf, primary exclusion, shared base die versus critical-only die, and pre-consequence impact capture. Name alone does not ignite objects.",
+      "implementationStatus": "REVIEWED authored operational PLAYTEST manuscript; runtime, human balance and broader integration pending",
+      "sourcePlacements": [
+        {
+          "name": "Ignition Bolt",
+          "school": "Evocation",
+          "level": 1,
+          "summary": "1d10 fire bolt with 5-ft splash zone."
+        }
+      ],
+      "sourceCoreEntries": [
+        {
+          "index": 439,
+          "original": {
+            "school": "Evocation",
+            "level": 1,
+            "name": "Ignition Bolt",
+            "effect": "1d10 fire bolt with 5-ft splash zone.",
+            "source_paragraph": 9524,
+            "casting_time": "1 action",
+            "range": "5 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Damage"
+            ],
+            "rp_cost": 2
+          }
+        }
+      ],
+      "classAccessEvidence": {
+        "Crimson Agent": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Evocation",
+          "baseRpCost": 2
+        },
+        "Dragoon": {
+          "rank": 1,
+          "minimumClassLevel": 3,
+          "school": "Evocation",
+          "baseRpCost": 2
+        },
+        "Mage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Evocation",
+          "baseRpCost": 2
+        },
+        "Wizard": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Evocation",
+          "baseRpCost": 2
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_SOURCE_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_AUTHORING_CLARIFICATION.md",
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_EXACT_REVIEW.md"
+      ],
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_EXACT_REVIEW.md"
+      ]
+    },
+    {
+      "id": "chromatic-orb",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One creature or independently legal object you perceive within 30 feet and line of effect. Before paid commitment choose acid, cold, fire, lightning, poison or thunder. Actual Evocation/Illusion class placement determines school; the two are not unioned.",
+      "duration": "Instantaneous, no concentration.",
+      "concentration": false,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "Make one ranged spell attack. Hit: deal3d8 of the single chosen type. Miss: no damage. Choose no different type after observing defenses, a roll or an outcome.",
+      "effect": "Either actual school placement produces real selected-type damage. Ordinary attack critical dice and the target’s actual type-specific defenses apply.",
+      "scaling": "None. No automatic increase in damage, range, targets, duration, uses or magnitude.",
+      "limitations": "No resistance/vulnerability information is granted merely by selecting a type. No costly gemstone, additional material, fake-damage Illusion rule, extra condition, alignment interaction or new cosmology meaning is supplied. Objects must be independently legal targets with actual object AC, durability and material/damage defenses. This spell grants no generic permission to target an unwilling creature’s worn/carried equipment, no invented object statistics and no automatic secondary equipment damage. Actual class/source access, repertoire, level, action availability, components, costs, concentration transitions, Dissonance/Refrain and cast/counter/outcome hooks follow SPELL_INTEGRATION_RULES.md. These actual rank-1 placements have base 2 RP; real source modifiers and strain surcharges still apply. V is audible, S requires the ordinary usable free hand or an actual exception, and F is the ordinary class focus. A legal cast commits payment and cast-begin consequences before its Counterspell window; later failure/countering refunds nothing and restores no displaced concentration. Spell attacks use d20 + PB + actual casting modifier against AC; natural 1 misses/natural 20 hits and doubles only actual attack damage dice. Saves use DC 8 + PB + actual casting modifier and binary-save rules. Actual target/area defenses and source-specific hooks retain their real trigger scopes. No automatic level scaling, generic upcast, new action budget or resource generation.",
+      "designNotes": "PRESERVED: both rank-1 source placements and exact class access,Action30 feet,V/S/F,3d8selected from the six printed types. NEW: one legal target, ranged attack and before-commitment type choice. Illusion school retains real damage without importing external material costs.",
+      "implementationStatus": "REVIEWED authored operational PLAYTEST manuscript; runtime, human balance and broader integration pending",
+      "sourcePlacements": [
+        {
+          "name": "Chromatic Orb",
+          "school": "Evocation",
+          "level": 1,
+          "summary": "3d8 damage of chosen type (acid, cold, fire, lightning, poison, thunder)."
+        },
+        {
+          "name": "Chromatic Orb",
+          "school": "Illusion",
+          "level": 1,
+          "summary": "3d8 damage of chosen type (acid, cold, fire, lightning, poison, thunder)."
+        }
+      ],
+      "sourceCoreEntries": [
+        {
+          "index": 441,
+          "original": {
+            "school": "Evocation",
+            "level": 1,
+            "name": "Chromatic Orb",
+            "effect": "3d8 damage of chosen type (acid, cold, fire, lightning, poison, thunder).",
+            "source_paragraph": 9526,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Damage"
+            ],
+            "rp_cost": 2
+          }
+        },
+        {
+          "index": 546,
+          "original": {
+            "school": "Illusion",
+            "level": 1,
+            "name": "Chromatic Orb",
+            "effect": "3d8 damage of chosen type (acid, cold, fire, lightning, poison, thunder).",
+            "source_paragraph": 9656,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Damage"
+            ],
+            "rp_cost": 2
+          }
+        }
+      ],
+      "classAccessEvidence": {
+        "Bard": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Illusion",
+          "baseRpCost": 2
+        },
+        "Crimson Agent": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Evocation",
+          "baseRpCost": 2
+        },
+        "Dragoon": {
+          "rank": 1,
+          "minimumClassLevel": 3,
+          "school": "Evocation",
+          "baseRpCost": 2
+        },
+        "Mage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Evocation",
+          "baseRpCost": 2
+        },
+        "Monk": {
+          "rank": 1,
+          "minimumClassLevel": 3,
+          "school": "Illusion",
+          "baseRpCost": 2
+        },
+        "Mirrorsage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Illusion",
+          "baseRpCost": 2
+        },
+        "Thief": {
+          "rank": 1,
+          "minimumClassLevel": 3,
+          "school": "Illusion",
+          "baseRpCost": 2
+        },
+        "Wizard": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Evocation",
+          "baseRpCost": 2
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_SOURCE_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_AUTHORING_CLARIFICATION.md",
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_EXACT_REVIEW.md"
+      ],
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_EXACT_REVIEW.md"
+      ]
+    },
+    {
+      "id": "earth-tremor",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "Choose a perceived point on an actual physical supporting surface within 30 feet and line of effect. Affect a10-foot-radius patch on ONE contiguous supporting surface associated with that center, with line of effect from the center. Initial creature targets are every creature actually standing on/physically supported by that eligible patch, including you/allies; no selective omission.",
+      "duration": "Instantaneous initial damage; difficult terrain up to one minute, no concentration. In initiative the maximum ends at the caster’s tenth future regular-turn START after application, excluding a start already underway/passed. Outside initiative it ends 60 elapsed seconds after application. Preserve the original regular/virtual marker or absolute deadline through initiative changes, extra turns, absence and travel; no timing-mode change resets the maximum.",
+      "concentration": false,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "Each initially supported creature makes a Dexterity save. Roll3d6 bludgeoning once. Failure: full raw result; success: no damage; each creature’s actual defenses apply. Regardless of individual saves, the eligible patch becomes difficult terrain for its finite duration.",
+      "effect": "The patch is a magical movement-cost effect on existing ground, floor or platform, not permanent material alteration. Its source-defined support/line-of-effect topology does not propagate through walls, floors/ceilings to another storey, or onto disconnected/stacked platforms merely because they fit a3D radius. Air/open water supplies no qualifying supporting surface. A normal building floor can qualify without receiving structural damage. Moving through the patch uses ordinary difficult-terrain costs; flying creatures not using that surface do not incur its cost. Separate casts retain their own patches/deadlines, but identical overlapping difficult terrain does not multiply the cost.",
+      "scaling": "None. No automatic increase in damage, range, targets, duration, uses or magnitude.",
+      "limitations": "No recurring damage on later entry, Prone, structural cracking/collapse, excavation, rubble inventory, permanent terrain or physical difficult-terrain object survives ending. Expiry, actual removal or eligible dispelling ends the relevant magical patch; it neither rebuilds nor damages the real surface. Initial creature damage and the shared terrain effect are separate, so a successful save prevents only that creature’s initial damage. Initial area targets are a snapshot at resolution, with no selective omission or later entry damage. Each affected creature uses its own save/defenses; a shared raw damage roll is not a shared defensive result. No Burning, Frozen, Deafened, Poisoned or other unnamed condition arises merely from the damage type. Actual class/source access, repertoire, level, action availability, components, costs, concentration transitions, Dissonance/Refrain and cast/counter/outcome hooks follow SPELL_INTEGRATION_RULES.md. These actual rank-1 placements have base 2 RP; real source modifiers and strain surcharges still apply. V is audible, S requires the ordinary usable free hand or an actual exception, and F is the ordinary class focus. A legal cast commits payment and cast-begin consequences before its Counterspell window; later failure/countering refunds nothing and restores no displaced concentration. Spell attacks use d20 + PB + actual casting modifier against AC; natural 1 misses/natural 20 hits and doubles only actual attack damage dice. Saves use DC 8 + PB + actual casting modifier and binary-save rules. Actual target/area defenses and source-specific hooks retain their real trigger scopes. No automatic level scaling, generic upcast, new action budget or resource generation.",
+      "designNotes": "PRESERVED: Action,30 feet,V/S/F,3d6 bludgeoning,DEXnegates and difficult terrain. NEW:10-foot-radius single supported-surface patch, all supported creatures/centerLoE, shared roll, save-for-damage only, nonconcentration minute and finite nonmaterial terrain state.",
+      "implementationStatus": "REVIEWED authored operational PLAYTEST manuscript; runtime, human balance and broader integration pending",
+      "sourcePlacements": [
+        {
+          "name": "Earth Tremor",
+          "school": "Evocation",
+          "level": 1,
+          "summary": "3d6 bludgeoning damage, difficult terrain (DEX save negates)."
+        }
+      ],
+      "sourceCoreEntries": [
+        {
+          "index": 442,
+          "original": {
+            "school": "Evocation",
+            "level": 1,
+            "name": "Earth Tremor",
+            "effect": "3d6 bludgeoning damage, difficult terrain (DEX save negates).",
+            "source_paragraph": 9527,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Dexterity save",
+            "tags": [
+              "Damage"
+            ],
+            "rp_cost": 2
+          }
+        }
+      ],
+      "classAccessEvidence": {
+        "Crimson Agent": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Evocation",
+          "baseRpCost": 2
+        },
+        "Dragoon": {
+          "rank": 1,
+          "minimumClassLevel": 3,
+          "school": "Evocation",
+          "baseRpCost": 2
+        },
+        "Mage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Evocation",
+          "baseRpCost": 2
+        },
+        "Wizard": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Evocation",
+          "baseRpCost": 2
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_SOURCE_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_AUTHORING_CLARIFICATION.md",
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_EXACT_REVIEW.md"
+      ],
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_EXACT_REVIEW.md"
+      ]
+    },
+    {
+      "id": "ice-knife",
+      "activation": "Action",
+      "rangeFeet": 5,
+      "targets": "One creature or independently legal object you perceive within 5 feet and line of effect. The source’s5-foot casting range remains. A separate5-foot-radius cold burst uses the legal primary target’s captured impact point.",
+      "duration": "Instantaneous, no concentration.",
+      "concentration": false,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "Recheck primary target legality before attack resolution. If illegal, no attack roll, impact point or cold burst occurs; no hidden last-location or point-target substitution. Otherwise make one ranged spell attack and capture its actual target position before damage consequences. Hit:1d10 piercing, with only those attack dice doubling on a critical. Miss: no piercing. Either legal hit or legal miss then produces the cold burst at that same captured point.",
+      "effect": "After the primary attack/piercing packet, every creature within 5 feet of the captured point with line of effect from it takes a shared 2d6 cold result, with NO saving throw. Include primary target, you and allies whenever still legal and geometrically eligible. Apply each target’s actual defenses separately. The initial target’s possible piercing and its cold burst are distinct damage packets for their actual defenses, tempHP, Wounds, concentration and relevant hooks. Primary damage causing movement/destruction does not relocate or erase the captured center. The cold dice never become critical dice.",
+      "scaling": "None. No automatic increase in damage, range, targets, duration, uses or magnitude.",
+      "limitations": "No Frozen, persistent zone, recurring cold, separate object damage from the creature-only cold area, or reusable physical knife. No cold save is imported; the unusual short range and automatic cold area are explicit human-balance questions. Objects must be independently legal targets with actual object AC, durability and material/damage defenses. This spell grants no generic permission to target an unwilling creature’s worn/carried equipment, no invented object statistics and no automatic secondary equipment damage. Initial area targets are a snapshot at resolution, with no selective omission or later entry damage. Each affected creature uses its own save/defenses; a shared raw damage roll is not a shared defensive result. No Burning, Frozen, Deafened, Poisoned or other unnamed condition arises merely from the damage type. Actual class/source access, repertoire, level, action availability, components, costs, concentration transitions, Dissonance/Refrain and cast/counter/outcome hooks follow SPELL_INTEGRATION_RULES.md. These actual rank-1 placements have base 2 RP; real source modifiers and strain surcharges still apply. V is audible, S requires the ordinary usable free hand or an actual exception, and F is the ordinary class focus. A legal cast commits payment and cast-begin consequences before its Counterspell window; later failure/countering refunds nothing and restores no displaced concentration. Spell attacks use d20 + PB + actual casting modifier against AC; natural 1 misses/natural 20 hits and doubles only actual attack damage dice. Saves use DC 8 + PB + actual casting modifier and binary-save rules. Actual target/area defenses and source-specific hooks retain their real trigger scopes. No automatic level scaling, generic upcast, new action budget or resource generation.",
+      "designNotes": "PRESERVED: Action,V/S/F,5-foot metadata range,1d10 piercing plus2d6 cold in5-foot radius. NEW: ranged primary attack, burst on legal hit or miss, captured pre-consequence target position, centerLoE/all creatures, no-save shared cold and separate packet/critical handling. No target becomes a covert last-location oracle.",
+      "implementationStatus": "REVIEWED authored operational PLAYTEST manuscript; runtime, human balance and broader integration pending",
+      "sourcePlacements": [
+        {
+          "name": "Ice Knife",
+          "school": "Evocation",
+          "level": 1,
+          "summary": "1d10 piercing plus 2d6 cold in 5-ft radius."
+        }
+      ],
+      "sourceCoreEntries": [
+        {
+          "index": 444,
+          "original": {
+            "school": "Evocation",
+            "level": 1,
+            "name": "Ice Knife",
+            "effect": "1d10 piercing plus 2d6 cold in 5-ft radius.",
+            "source_paragraph": 9529,
+            "casting_time": "1 action",
+            "range": "5 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Damage"
+            ],
+            "rp_cost": 2
+          }
+        }
+      ],
+      "classAccessEvidence": {
+        "Crimson Agent": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Evocation",
+          "baseRpCost": 2
+        },
+        "Dragoon": {
+          "rank": 1,
+          "minimumClassLevel": 3,
+          "school": "Evocation",
+          "baseRpCost": 2
+        },
+        "Mage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Evocation",
+          "baseRpCost": 2
+        },
+        "Wizard": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Evocation",
+          "baseRpCost": 2
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_SOURCE_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_AUTHORING_CLARIFICATION.md",
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_EXACT_REVIEW.md"
+      ],
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_EXACT_REVIEW.md"
+      ]
+    },
+    {
+      "id": "thunderwave",
+      "activation": "Action",
+      "rangeFeet": 10,
+      "targets": "A10-foot cone originating from you in a chosen direction. Affect every creature whose actual occupied space is in the cone with line of effect from its origin, including allies. Being the origin alone does not include or self-push you.",
+      "duration": "Instantaneous, no concentration.",
+      "concentration": false,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "Each affected creature makes a Strength save. Roll2d8 thunder once. Failure: full raw damage and independently attempt the mandatory10-foot outward push. Success: half the raw damage rounded down and no push. Apply damage and movement defenses in their own scopes.",
+      "effect": "On a failed save, force the creature directly radially away from the cone origin toward a total10-foot displacement, stopping early only when ordinary forced-movement legality prevents further movement: an obstacle, illegal occupied destination, geometry or applicable defense. Neither caster nor target chooses an arbitrarily shorter open path. A thunder packet reduced to0 does not prevent the independent failed-save push. Existing support, hazard and falling procedures apply if legal displacement carries the target beyond an edge.",
+      "scaling": "None. No automatic increase in damage, range, targets, duration, uses or magnitude.",
+      "limitations": "No extra collision/impact damage, unprinted object fling, building destruction, Deafened or arbitrary-direction movement. The push itself supplies no new falling clock or general forced-movement immunity. Source-defined geometric eligibility still controls; the caster is not forced away from itself merely because it is the origin. Initial area targets are a snapshot at resolution, with no selective omission or later entry damage. Each affected creature uses its own save/defenses; a shared raw damage roll is not a shared defensive result. No Burning, Frozen, Deafened, Poisoned or other unnamed condition arises merely from the damage type. Actual class/source access, repertoire, level, action availability, components, costs, concentration transitions, Dissonance/Refrain and cast/counter/outcome hooks follow SPELL_INTEGRATION_RULES.md. These actual rank-1 placements have base 2 RP; real source modifiers and strain surcharges still apply. V is audible, S requires the ordinary usable free hand or an actual exception, and F is the ordinary class focus. A legal cast commits payment and cast-begin consequences before its Counterspell window; later failure/countering refunds nothing and restores no displaced concentration. Spell attacks use d20 + PB + actual casting modifier against AC; natural 1 misses/natural 20 hits and doubles only actual attack damage dice. Saves use DC 8 + PB + actual casting modifier and binary-save rules. Actual target/area defenses and source-specific hooks retain their real trigger scopes. No automatic level scaling, generic upcast, new action budget or resource generation.",
+      "designNotes": "PRESERVED: Action,10-foot source range,V/S/F,2d8 thunder and10-foot push. NEW:10-foot cone,STRsave/full+push orhalf/no push, shared damage and explicit mandatory-distance/legality-stop interpretation. This refines the conference’s ambiguous up-to wording without making push optional.",
+      "implementationStatus": "REVIEWED authored operational PLAYTEST manuscript; runtime, human balance and broader integration pending",
+      "sourcePlacements": [
+        {
+          "name": "Thunderwave",
+          "school": "Evocation",
+          "level": 1,
+          "summary": "2d8 thunder damage, pushes creatures 10 feet."
+        }
+      ],
+      "sourceCoreEntries": [
+        {
+          "index": 445,
+          "original": {
+            "school": "Evocation",
+            "level": 1,
+            "name": "Thunderwave",
+            "effect": "2d8 thunder damage, pushes creatures 10 feet.",
+            "source_paragraph": 9530,
+            "casting_time": "1 action",
+            "range": "10 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Damage"
+            ],
+            "rp_cost": 2
+          }
+        }
+      ],
+      "classAccessEvidence": {
+        "Crimson Agent": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Evocation",
+          "baseRpCost": 2
+        },
+        "Dragoon": {
+          "rank": 1,
+          "minimumClassLevel": 3,
+          "school": "Evocation",
+          "baseRpCost": 2
+        },
+        "Mage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Evocation",
+          "baseRpCost": 2
+        },
+        "Wizard": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Evocation",
+          "baseRpCost": 2
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_SOURCE_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_AUTHORING_CLARIFICATION.md",
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_EXACT_REVIEW.md"
+      ],
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_EXACT_REVIEW.md"
+      ]
+    },
+    {
+      "id": "witch-bolt",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One creature you perceive within 30 feet and line of effect. Each later pulse rechecks the same continuing creature, perception,30-foot range and line of effect; those are pulse-attempt gates, not a continuous range/sensory tether between opportunities.",
+      "duration": "Concentration, up to one minute. In initiative the maximum ends at the caster’s tenth future regular-turn START after application, excluding a start already underway/passed. Outside initiative it ends 60 elapsed seconds after application. Preserve the original regular/virtual marker or absolute deadline through initiative changes, extra turns, absence and travel; no timing-mode change resets the maximum. Target death/ended continuing creature existence ends the tether; it is not maintained on a corpse, replacement or later resummoned/revived creature.",
+      "concentration": true,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "Make one ranged spell attack at initial resolution. Miss: no initial damage or sustained tether. Hit: deal1d12 lightning and establish the tether under its independent defenses, even if the damage becomes0. An actual defense separately preventing the tether still applies. No repeat save is added.",
+      "effect": "Starting on your next future regular turn after establishment, you may use one ordinary Action for at most one maintenance pulse on each regular turn while the tether remains. A pulse against the currently legal target automatically deals1d12 lightning with no attack/save and no additional RP. It activates the existing spell rather than casting again: no new Dissonance, Refrain, cast-begin hooks, Counterspell window or concentration transition. Actual damage/outcome hooks still apply at their real trigger scope. There is no pulse on the cast turn, no extra-turn pulse, and no second pulse because an extra Action exists. An extra Action can serve its otherwise legal purposes but does not create a pulse allowance. If target eligibility or ordinary Action availability is absent, no pulse occurs; you can retain concentration and try a later unused regular-turn opportunity. Declining maintenance also causes no pulse rather than ending the spell.",
+      "scaling": "None. No automatic increase in damage, range, targets, duration, uses or magnitude.",
+      "limitations": "Outside initiative, create a spell-specific six-second pulse-opportunity schedule: first opportunity at application+6, then every 6 seconds strictly before the original+60 maximum. A used pulse requires an ordinary Action-length behavior opportunity; it is not automatic round damage or a new spell cast. When hostile sequencing matters establish ordinary initiative. On entry, map the next opportunity to your next actual regular turn, which may occur before projected+6 if no virtual pulse was yet used; preserve the original+60 maximum. If a virtual pulse was already used in the currently open six-second opportunity, the first mapped real turn’s Witch Bolt pulse is already consumed, but its ordinary Action remains available for OTHER legal uses. Do not import the separate dominated-creature whole-behavior-budget bridge. Already-used opportunities never replay. After mapping, each future regular turn has at most one new pulse opportunity; extra turns never create one. On exit/reordering, retain already-established regular/virtual opportunities, their used histories and original maximum rather than creating another schedule. The tenth future caster-START maximum or absolute deadline expires before any new voluntary pulse at that time. Temporary cover, invisibility/unperceived state, distance or no Action can prevent a pulse without ending concentration; target death/ended existence does end this creature-only tether, and later resurrection cannot restore it. No corpse channel, damage without an Action, refunded initial costs, duplicate opportunity or resource-reset loop. Actual class/source access, repertoire, level, action availability, components, costs, concentration transitions, Dissonance/Refrain and cast/counter/outcome hooks follow SPELL_INTEGRATION_RULES.md. These actual rank-1 placements have base 2 RP; real source modifiers and strain surcharges still apply. V is audible, S requires the ordinary usable free hand or an actual exception, and F is the ordinary class focus. A legal cast commits payment and cast-begin consequences before its Counterspell window; later failure/countering refunds nothing and restores no displaced concentration. Spell attacks use d20 + PB + actual casting modifier against AC; natural 1 misses/natural 20 hits and doubles only actual attack damage dice. Saves use DC 8 + PB + actual casting modifier and binary-save rules. Actual target/area defenses and source-specific hooks retain their real trigger scopes. No automatic level scaling, generic upcast, new action budget or resource generation.",
+      "designNotes": "PRESERVED: Action,30 feet,V/S/F,initial1d12 lightning and1d12each maintained round. NEW: ranged initial attack, independent hit-based tether, concentration minute replacing Instantaneous placeholder, future-regular-turn ordinary-Action maintenance, automatic pulse/no additional RP, event-versus-cast distinction, target-ending rule and spell-specific outside/initiative history bridge preserving unrelated real-turn Actions.",
+      "implementationStatus": "REVIEWED authored operational PLAYTEST manuscript; runtime, human balance and broader integration pending",
+      "sourcePlacements": [
+        {
+          "name": "Witch Bolt",
+          "school": "Evocation",
+          "level": 1,
+          "summary": "1d12 lightning damage initially, 1d12 each round while maintained."
+        }
+      ],
+      "sourceCoreEntries": [
+        {
+          "index": 446,
+          "original": {
+            "school": "Evocation",
+            "level": 1,
+            "name": "Witch Bolt",
+            "effect": "1d12 lightning damage initially, 1d12 each round while maintained.",
+            "source_paragraph": 9531,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Damage"
+            ],
+            "rp_cost": 2
+          }
+        }
+      ],
+      "classAccessEvidence": {
+        "Crimson Agent": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Evocation",
+          "baseRpCost": 2
+        },
+        "Dragoon": {
+          "rank": 1,
+          "minimumClassLevel": 3,
+          "school": "Evocation",
+          "baseRpCost": 2
+        },
+        "Mage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Evocation",
+          "baseRpCost": 2
+        },
+        "Wizard": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Evocation",
+          "baseRpCost": 2
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_SOURCE_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_AUTHORING_CLARIFICATION.md",
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_EXACT_REVIEW.md"
+      ],
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_EXACT_REVIEW.md"
+      ]
+    },
+    {
+      "id": "zephyr-strike",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One willing creature, including yourself, you perceive within 30 feet and line of effect. Initial range is not a continuing tether.",
+      "duration": "Concentration, up to one minute. In initiative the maximum ends at the caster’s tenth future regular-turn START after application, excluding a start already underway/passed. Outside initiative it ends 60 elapsed seconds after application. Preserve the original regular/virtual marker or absolute deadline through initiative changes, extra turns, absence and travel; no timing-mode change resets the maximum. The pending damage rider can be consumed earlier without ending the independent movement protection.",
+      "concentration": true,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "On successful application establish one Zephyr Strike on the recipient, replacing any previous application across casters. A failed/countered new cast creates no replacement and does not restore concentration already displaced by ordinary casting. Casting this Action grants no weapon attack, Attack Action, Bonus Action or movement budget.",
+      "effect": "While maintained, the recipient’s voluntary movement using its existing Speed/movement allowances does not provoke opportunity attacks caused by that movement. Existing movement costs, difficult terrain, legal paths, actual Speed and other unrelated Reaction triggers remain. Once during this application, its first successful qualifying weapon-attack hit consumes the pending strike rider and adds1d8 force to THAT weapon-hit damage event. A miss does not consume it. Consume on hit even if damage is later prevented, reduced to0 or the target does not survive. The added die is an actual attack damage die and follows ordinary critical-dice doubling; it is not a second attack, hit or separate weapon-attack event. Within Extra Attack/Multiattack only the first qualifying hit consuming the rider gains it. Movement protection continues after strike consumption until concentration, expiry, removal or replacement ends the application.",
+      "scaling": "None. No automatic increase in damage, range, targets, duration, uses or magnitude.",
+      "limitations": "No advantage, extra Speed, free attack, forced-movement exception, suppression of all Reactions or blanket avoidance of unrelated triggers. Each application owns its concentration dependency, damage rider, movement record and endpoint. Replacement ends only the old application’s actual records/dependency; stale old cleanup cannot erase the new one. Independent sources do not stack pending1d8riders or preserve a displaced application underneath. A recipient must supply its own legal weapon attack after the spell’s Action; later same-turn attack opportunities work only if independently granted. Actual class/source access, repertoire, level, action availability, components, costs, concentration transitions, Dissonance/Refrain and cast/counter/outcome hooks follow SPELL_INTEGRATION_RULES.md. These actual rank-1 placements have base 2 RP; real source modifiers and strain surcharges still apply. V is audible, S requires the ordinary usable free hand or an actual exception, and F is the ordinary class focus. A legal cast commits payment and cast-begin consequences before its Counterspell window; later failure/countering refunds nothing and restores no displaced concentration. Spell attacks use d20 + PB + actual casting modifier against AC; natural 1 misses/natural 20 hits and doubles only actual attack damage dice. Saves use DC 8 + PB + actual casting modifier and binary-save rules. Actual target/area defenses and source-specific hooks retain their real trigger scopes. No automatic level scaling, generic upcast, new action budget or resource generation.",
+      "designNotes": "PRESERVED: Action,30 feet,V/S/F,weapon-attack bonus1d8 force and movement without opportunity attacks. NEW: willing recipient/self, concentration minute replacing Instantaneous metadata, first-hit consumption, ordinary movement/OA scope, separate strike/movement components and one-application-per-recipient replacement. No imported Bonus Action, advantage or+Speed.",
+      "implementationStatus": "REVIEWED authored operational PLAYTEST manuscript; runtime, human balance and broader integration pending",
+      "sourcePlacements": [
+        {
+          "name": "Zephyr Strike",
+          "school": "Evocation",
+          "level": 1,
+          "summary": "Weapon attack deals extra 1d8 force damage, move without opportunity attacks."
+        }
+      ],
+      "sourceCoreEntries": [
+        {
+          "index": 447,
+          "original": {
+            "school": "Evocation",
+            "level": 1,
+            "name": "Zephyr Strike",
+            "effect": "Weapon attack deals extra 1d8 force damage, move without opportunity attacks.",
+            "source_paragraph": 9532,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Damage"
+            ],
+            "rp_cost": 2
+          }
+        }
+      ],
+      "classAccessEvidence": {
+        "Crimson Agent": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Evocation",
+          "baseRpCost": 2
+        },
+        "Dragoon": {
+          "rank": 1,
+          "minimumClassLevel": 3,
+          "school": "Evocation",
+          "baseRpCost": 2
+        },
+        "Mage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Evocation",
+          "baseRpCost": 2
+        },
+        "Wizard": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Evocation",
+          "baseRpCost": 2
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_SOURCE_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_AUTHORING_CLARIFICATION.md",
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_EXACT_REVIEW.md"
+      ],
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_EXACT_REVIEW.md"
+      ]
+    }
+  ],
+  "sourceConference": "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_SOURCE_CONFERENCE.md",
+  "authoringClarification": "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_AUTHORING_CLARIFICATION.md",
+  "eligibilityConference": "docs/audit/2026-10-08/full-game/GPT_ARCANE_SHIELD_SHATTER_ELIGIBILITY_CONFERENCE.md",
+  "scope": "Twelve source-reconciled full rank-one cards with thirteen placements/Core blocks. No exact approval, runtime/human-balance certification or whole-game delivery approval. Cosmology deferred.",
+  "reviewEvidence": [
+    "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_EXACT_REVIEW.md"
+  ]
+}

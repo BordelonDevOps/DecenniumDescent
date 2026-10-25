@@ -1,0 +1,1540 @@
+{
+  "sonic-collapse": {
+    "id": "sonic-collapse",
+    "name": "Sonic Collapse",
+    "schools": [
+      "Evocation"
+    ],
+    "status": "blocked-pending-operational-review",
+    "visibility": "public-source-review",
+    "classAccess": {
+      "Crimson Agent": {
+        "rank": 6,
+        "minimumClassLevel": 19,
+        "school": "Evocation",
+        "baseRpCost": 13
+      },
+      "Mage": {
+        "rank": 6,
+        "minimumClassLevel": 11,
+        "school": "Evocation",
+        "baseRpCost": 13
+      },
+      "Wizard": {
+        "rank": 6,
+        "minimumClassLevel": 11,
+        "school": "Evocation",
+        "baseRpCost": 13
+      }
+    },
+    "operational": null,
+    "additionalRpCost": 0,
+    "source": {
+      "catalogPath": "src/data/spells.js",
+      "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+      "catalogKey": "sonic-collapse",
+      "original": {
+        "name": "Sonic Collapse",
+        "level": 6,
+        "resonanceRank": 6,
+        "school": "Evocation",
+        "schools": [
+          "Evocation"
+        ],
+        "placements": [
+          {
+            "name": "Sonic Collapse",
+            "school": "Evocation",
+            "level": 6,
+            "summary": "Thunder AoE: 8d8 thunder and causes collapse in weak structures."
+          }
+        ],
+        "classLevels": {
+          "Crimson Agent": 6,
+          "Mage": 6,
+          "Wizard": 6
+        },
+        "classRanks": {
+          "Crimson Agent": 6,
+          "Mage": 6,
+          "Wizard": 6
+        },
+        "classLearnLevels": {
+          "Crimson Agent": 19,
+          "Mage": 11,
+          "Wizard": 11
+        },
+        "classSchools": {
+          "Crimson Agent": "Evocation",
+          "Mage": "Evocation",
+          "Wizard": "Evocation"
+        },
+        "castingTime": "Not specified in current rulebook",
+        "range": "Not specified in current rulebook",
+        "components": "Not specified in current rulebook",
+        "duration": "Not specified in current rulebook",
+        "description": "Thunder AoE: 8d8 thunder and causes collapse in weak structures.",
+        "alternateSummaries": [],
+        "classes": [
+          "Crimson Agent",
+          "Mage",
+          "Wizard"
+        ],
+        "status": "canon",
+        "source": "Player Rulebook — Spell Lists"
+      },
+      "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+      "coreEntries": [
+        {
+          "index": 483,
+          "original": {
+            "school": "Evocation",
+            "level": 6,
+            "name": "Sonic Collapse",
+            "effect": "Thunder AoE: 8d8 thunder and causes collapse in weak structures.",
+            "source_paragraph": 9578,
+            "casting_time": "1 action",
+            "range": "60 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Damage"
+            ],
+            "rp_cost": 13
+          }
+        }
+      ],
+      "possibleHistoricalAliases": []
+    },
+    "reviewFlags": [
+      "Core resolution requires an explicit operational interpretation",
+      "Not selectable in this spell playtest packet until individual operational review"
+    ]
+  },
+  "thunderwave": {
+    "id": "thunderwave",
+    "name": "Thunderwave",
+    "schools": [
+      "Evocation"
+    ],
+    "status": "operational-playtest-draft",
+    "visibility": "public-source-review",
+    "classAccess": {
+      "Crimson Agent": {
+        "rank": 1,
+        "minimumClassLevel": 2,
+        "school": "Evocation",
+        "baseRpCost": 2
+      },
+      "Dragoon": {
+        "rank": 1,
+        "minimumClassLevel": 3,
+        "school": "Evocation",
+        "baseRpCost": 2
+      },
+      "Mage": {
+        "rank": 1,
+        "minimumClassLevel": 1,
+        "school": "Evocation",
+        "baseRpCost": 2
+      },
+      "Wizard": {
+        "rank": 1,
+        "minimumClassLevel": 1,
+        "school": "Evocation",
+        "baseRpCost": 2
+      }
+    },
+    "operational": {
+      "id": "thunderwave",
+      "activation": "Action",
+      "rangeFeet": 10,
+      "targets": "A10-foot cone originating from you in a chosen direction. Affect every creature whose actual occupied space is in the cone with line of effect from its origin, including allies. Being the origin alone does not include or self-push you.",
+      "duration": "Instantaneous, no concentration.",
+      "concentration": false,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "Each affected creature makes a Strength save. Roll2d8 thunder once. Failure: full raw damage and independently attempt the mandatory10-foot outward push. Success: half the raw damage rounded down and no push. Apply damage and movement defenses in their own scopes.",
+      "effect": "On a failed save, force the creature directly radially away from the cone origin toward a total10-foot displacement, stopping early only when ordinary forced-movement legality prevents further movement: an obstacle, illegal occupied destination, geometry or applicable defense. Neither caster nor target chooses an arbitrarily shorter open path. A thunder packet reduced to0 does not prevent the independent failed-save push. Existing support, hazard and falling procedures apply if legal displacement carries the target beyond an edge.",
+      "scaling": "None. No automatic increase in damage, range, targets, duration, uses or magnitude.",
+      "limitations": "No extra collision/impact damage, unprinted object fling, building destruction, Deafened or arbitrary-direction movement. The push itself supplies no new falling clock or general forced-movement immunity. Source-defined geometric eligibility still controls; the caster is not forced away from itself merely because it is the origin. Initial area targets are a snapshot at resolution, with no selective omission or later entry damage. Each affected creature uses its own save/defenses; a shared raw damage roll is not a shared defensive result. No Burning, Frozen, Deafened, Poisoned or other unnamed condition arises merely from the damage type. Actual class/source access, repertoire, level, action availability, components, costs, concentration transitions, Dissonance/Refrain and cast/counter/outcome hooks follow SPELL_INTEGRATION_RULES.md. These actual rank-1 placements have base 2 RP; real source modifiers and strain surcharges still apply. V is audible, S requires the ordinary usable free hand or an actual exception, and F is the ordinary class focus. A legal cast commits payment and cast-begin consequences before its Counterspell window; later failure/countering refunds nothing and restores no displaced concentration. Spell attacks use d20 + PB + actual casting modifier against AC; natural 1 misses/natural 20 hits and doubles only actual attack damage dice. Saves use DC 8 + PB + actual casting modifier and binary-save rules. Actual target/area defenses and source-specific hooks retain their real trigger scopes. No automatic level scaling, generic upcast, new action budget or resource generation.",
+      "designNotes": "PRESERVED: Action,10-foot source range,V/S/F,2d8 thunder and10-foot push. NEW:10-foot cone,STRsave/full+push orhalf/no push, shared damage and explicit mandatory-distance/legality-stop interpretation. This refines the conference’s ambiguous up-to wording without making push optional.",
+      "implementationStatus": "REVIEWED authored operational PLAYTEST manuscript; runtime, human balance and broader integration pending",
+      "sourcePlacements": [
+        {
+          "name": "Thunderwave",
+          "school": "Evocation",
+          "level": 1,
+          "summary": "2d8 thunder damage, pushes creatures 10 feet."
+        }
+      ],
+      "sourceCoreEntries": [
+        {
+          "index": 445,
+          "original": {
+            "school": "Evocation",
+            "level": 1,
+            "name": "Thunderwave",
+            "effect": "2d8 thunder damage, pushes creatures 10 feet.",
+            "source_paragraph": 9530,
+            "casting_time": "1 action",
+            "range": "10 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Damage"
+            ],
+            "rp_cost": 2
+          }
+        }
+      ],
+      "classAccessEvidence": {
+        "Crimson Agent": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Evocation",
+          "baseRpCost": 2
+        },
+        "Dragoon": {
+          "rank": 1,
+          "minimumClassLevel": 3,
+          "school": "Evocation",
+          "baseRpCost": 2
+        },
+        "Mage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Evocation",
+          "baseRpCost": 2
+        },
+        "Wizard": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Evocation",
+          "baseRpCost": 2
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_SOURCE_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_AUTHORING_CLARIFICATION.md",
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_EXACT_REVIEW.md"
+      ],
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_EXACT_REVIEW.md"
+      ],
+      "authoringFile": "data/playtest/spell_drafts/batch_evocation_rank1.json"
+    },
+    "additionalRpCost": 0,
+    "source": {
+      "catalogPath": "src/data/spells.js",
+      "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+      "catalogKey": "thunderwave",
+      "original": {
+        "name": "Thunderwave",
+        "level": 1,
+        "resonanceRank": 1,
+        "school": "Evocation",
+        "schools": [
+          "Evocation"
+        ],
+        "placements": [
+          {
+            "name": "Thunderwave",
+            "school": "Evocation",
+            "level": 1,
+            "summary": "2d8 thunder damage, pushes creatures 10 feet."
+          }
+        ],
+        "classLevels": {
+          "Crimson Agent": 1,
+          "Dragoon": 1,
+          "Mage": 1,
+          "Wizard": 1
+        },
+        "classRanks": {
+          "Crimson Agent": 1,
+          "Dragoon": 1,
+          "Mage": 1,
+          "Wizard": 1
+        },
+        "classLearnLevels": {
+          "Crimson Agent": 2,
+          "Dragoon": 3,
+          "Mage": 1,
+          "Wizard": 1
+        },
+        "classSchools": {
+          "Crimson Agent": "Evocation",
+          "Dragoon": "Evocation",
+          "Mage": "Evocation",
+          "Wizard": "Evocation"
+        },
+        "castingTime": "Not specified in current rulebook",
+        "range": "Not specified in current rulebook",
+        "components": "Not specified in current rulebook",
+        "duration": "Not specified in current rulebook",
+        "description": "2d8 thunder damage, pushes creatures 10 feet.",
+        "alternateSummaries": [],
+        "classes": [
+          "Crimson Agent",
+          "Dragoon",
+          "Mage",
+          "Wizard"
+        ],
+        "status": "canon",
+        "source": "Player Rulebook — Spell Lists"
+      },
+      "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+      "coreEntries": [
+        {
+          "index": 445,
+          "original": {
+            "school": "Evocation",
+            "level": 1,
+            "name": "Thunderwave",
+            "effect": "2d8 thunder damage, pushes creatures 10 feet.",
+            "source_paragraph": 9530,
+            "casting_time": "1 action",
+            "range": "10 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Damage"
+            ],
+            "rp_cost": 2
+          }
+        }
+      ],
+      "possibleHistoricalAliases": []
+    },
+    "reviewFlags": [
+      "Core resolution requires an explicit operational interpretation"
+    ]
+  },
+  "thunderclap": {
+    "id": "thunderclap",
+    "name": "Thunderclap",
+    "schools": [
+      "Evocation"
+    ],
+    "status": "operational-playtest-draft",
+    "visibility": "public-source-review",
+    "classAccess": {
+      "Crimson Agent": {
+        "rank": 0,
+        "minimumClassLevel": 1,
+        "school": "Evocation",
+        "baseRpCost": 0
+      },
+      "Dragoon": {
+        "rank": 0,
+        "minimumClassLevel": 3,
+        "school": "Evocation",
+        "baseRpCost": 0
+      },
+      "Mage": {
+        "rank": 0,
+        "minimumClassLevel": 1,
+        "school": "Evocation",
+        "baseRpCost": 0
+      },
+      "Wizard": {
+        "rank": 0,
+        "minimumClassLevel": 1,
+        "school": "Evocation",
+        "baseRpCost": 0
+      }
+    },
+    "operational": {
+      "id": "thunderclap",
+      "activation": "Action",
+      "rangeFeet": 5,
+      "targets": "Every creature within a 5-foot-radius sphere centered on you with line of effect from you, including yourself and allies. No selective omission or separate perception prerequisite for individual area occupants.",
+      "duration": "Instantaneous, no concentration.",
+      "concentration": false,
+      "components": [
+        "V",
+        "S"
+      ],
+      "resolution": "Each affected creature independently makes a Constitution save. Failure: take 1d6 thunder. Success: no damage. Roll damage once and use the shared raw result for all failed saves, applying each target’s own defenses.",
+      "effect": "Resolve one initial caster-centered thunder burst against its snapshot of creatures. The printed all-creatures scope includes its caster. The sound is ordinarily perceptible under actual hearing and environmental rules; no fixed hundred-foot alarm radius is supplied.",
+      "scaling": "None. No automatic increase in damage, range, target count, duration, uses or magnitude.",
+      "limitations": "No Deafened, Stunned, forced movement, object damage or continuing aura. This rank-0 identity thunderclap is separate from rank-1 Thunder Clap (thunder-clap); knowing one grants no access to the other. The caster’s inclusion remains an explicit human-balance question, not a silently removed source consequence. Actual class/source access, repertoire, action availability, components, RP, Dissonance/Refrain, concentration transitions, paid commitment and cast/counter/outcome hooks follow SPELL_INTEGRATION_RULES.md. Base rank 0 costs 0 RP but does not waive real extra costs or Refrain. V requires audible speech; S requires the ordinary usable free hand or an actual exception. No F is added. Spell attacks use d20 + PB + actual casting modifier against AC; natural 1 misses, natural 20 hits and doubles only actual damage dice. Saves use DC 8 + PB + actual casting modifier and binary-save rules. An illegal uncommitted attempt supplies no effect; a legally paid cast countered or failing afterward refunds nothing. Actual damage/material/condition defenses retain their own scopes. No automatic level scaling, extra action budget or resource generation.",
+      "designNotes": "PRESERVED: Action, range5, V/S, 1d6 thunder to ALL creatures within5 feet. NEW: caster-centered sphere/line of effect, CON save negates and shared damage roll. No caster exemption or unrelated-game auditory distance is imported.",
+      "implementationStatus": "REVIEWED authored operational PLAYTEST manuscript; runtime, human balance and broader integration pending",
+      "sourcePlacements": [
+        {
+          "name": "Thunderclap",
+          "school": "Evocation",
+          "level": 0,
+          "summary": "1d6 thunder damage to all creatures within 5 feet."
+        }
+      ],
+      "sourceCoreEntries": [
+        {
+          "index": 430,
+          "original": {
+            "school": "Evocation",
+            "level": 0,
+            "name": "Thunderclap",
+            "effect": "1d6 thunder damage to all creatures within 5 feet.",
+            "source_paragraph": 9513,
+            "casting_time": "1 action",
+            "range": "5 feet",
+            "duration": "Instantaneous",
+            "components": "V, S",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Damage"
+            ],
+            "rp_cost": 0
+          }
+        }
+      ],
+      "classAccessEvidence": {
+        "Crimson Agent": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Evocation",
+          "baseRpCost": 0
+        },
+        "Dragoon": {
+          "rank": 0,
+          "minimumClassLevel": 3,
+          "school": "Evocation",
+          "baseRpCost": 0
+        },
+        "Mage": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Evocation",
+          "baseRpCost": 0
+        },
+        "Wizard": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Evocation",
+          "baseRpCost": 0
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_CANTRIP_SOURCE_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_CANTRIP_AUTHORING_CLARIFICATION.md",
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_CANTRIP_EXACT_REVIEW.md"
+      ],
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_CANTRIP_EXACT_REVIEW.md"
+      ],
+      "authoringFile": "data/playtest/spell_drafts/batch_evocation_cantrips.json"
+    },
+    "additionalRpCost": 0,
+    "source": {
+      "catalogPath": "src/data/spells.js",
+      "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+      "catalogKey": "thunderclap",
+      "original": {
+        "name": "Thunderclap",
+        "level": 0,
+        "resonanceRank": 0,
+        "school": "Evocation",
+        "schools": [
+          "Evocation"
+        ],
+        "placements": [
+          {
+            "name": "Thunderclap",
+            "school": "Evocation",
+            "level": 0,
+            "summary": "1d6 thunder damage to all creatures within 5 feet."
+          }
+        ],
+        "classLevels": {
+          "Crimson Agent": 0,
+          "Dragoon": 0,
+          "Mage": 0,
+          "Wizard": 0
+        },
+        "classRanks": {
+          "Crimson Agent": 0,
+          "Dragoon": 0,
+          "Mage": 0,
+          "Wizard": 0
+        },
+        "classLearnLevels": {
+          "Crimson Agent": 1,
+          "Dragoon": 3,
+          "Mage": 1,
+          "Wizard": 1
+        },
+        "classSchools": {
+          "Crimson Agent": "Evocation",
+          "Dragoon": "Evocation",
+          "Mage": "Evocation",
+          "Wizard": "Evocation"
+        },
+        "castingTime": "Not specified in current rulebook",
+        "range": "Not specified in current rulebook",
+        "components": "Not specified in current rulebook",
+        "duration": "Not specified in current rulebook",
+        "description": "1d6 thunder damage to all creatures within 5 feet.",
+        "alternateSummaries": [],
+        "classes": [
+          "Crimson Agent",
+          "Dragoon",
+          "Mage",
+          "Wizard"
+        ],
+        "status": "canon",
+        "source": "Player Rulebook — Spell Lists"
+      },
+      "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+      "coreEntries": [
+        {
+          "index": 430,
+          "original": {
+            "school": "Evocation",
+            "level": 0,
+            "name": "Thunderclap",
+            "effect": "1d6 thunder damage to all creatures within 5 feet.",
+            "source_paragraph": 9513,
+            "casting_time": "1 action",
+            "range": "5 feet",
+            "duration": "Instantaneous",
+            "components": "V, S",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Damage"
+            ],
+            "rp_cost": 0
+          }
+        }
+      ],
+      "possibleHistoricalAliases": []
+    },
+    "reviewFlags": [
+      "Core resolution requires an explicit operational interpretation"
+    ]
+  },
+  "shatter": {
+    "id": "shatter",
+    "name": "Shatter",
+    "schools": [
+      "Evocation"
+    ],
+    "status": "operational-playtest-draft",
+    "visibility": "public-source-review",
+    "classAccess": {
+      "Crimson Agent": {
+        "rank": 2,
+        "minimumClassLevel": 5,
+        "school": "Evocation",
+        "baseRpCost": 3
+      },
+      "Dragoon": {
+        "rank": 2,
+        "minimumClassLevel": 8,
+        "school": "Evocation",
+        "baseRpCost": 3
+      },
+      "Mage": {
+        "rank": 2,
+        "minimumClassLevel": 3,
+        "school": "Evocation",
+        "baseRpCost": 3
+      },
+      "Wizard": {
+        "rank": 2,
+        "minimumClassLevel": 3,
+        "school": "Evocation",
+        "baseRpCost": 3
+      }
+    },
+    "operational": {
+      "id": "shatter",
+      "activation": "Action",
+      "rangeFeet": 10,
+      "targets": "Choose a perceived point within 10 feet and line of effect. The initial area is a 10-foot-radius sphere around it. After interruption but before any damage, fix one snapshot of all eligible creatures, ordinary nonmagical discrete objects and bounded structural sections within the sphere with center line of effect.",
+      "duration": "Instantaneous, no concentration; actual damaged objects retain ordinary damage consequences.",
+      "concentration": false,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "Roll one shared 3d8 thunder base and one shared additional 1d8 thunder object bonus. Each affected creature makes a Constitution save: failure takes the base; success takes half the base, rounded down. Creatures never receive the object bonus. Each eligible object or selected structural section takes base plus bonus as ONE grouped thunder packet, without a save, using its actual durability/material/damage defenses. Apply recipient defenses independently; do not turn the four damage dice into separate packets.",
+      "effect": "Eligible objects are ordinary nonmagical objects that are unattended, caster-held, or deliberately offered/exposed by willing holders; hostile worn/carried inventory is not automatically included. For each actual distinct large structural whole or terrain feature, select at most one contiguous exposed section wholly within the original sphere and bounded by a 5-foot cube. Use the eligible section containing its line-of-effect-reachable point nearest the spell center. Resolve equivalent nearest-point ties by stable neutral geometry/order fixed before damage, not caster choice or post-damage Director optimization. The Director determines actual structural identity and hidden boundaries without revealing them merely because the spell was cast. Arbitrarily naming bricks/panels/floorboards does not multiply one structure’s packets. A genuinely separate freestanding object remains independent. A large discrete object beyond the damage scale of its actual durability rules receives damage only to its legal affected section, not automatic transfer through the entire object. Fix all recipients and sections before any packet; destroying cover cannot expose new targets or cause another scan. Actual later support/collapse/falling consequences follow their own rules. Initial area recipients are a snapshot at resolution, with no selective omission or later entry damage. Apply the stated geometry and line of effect from the origin/center before damage removes cover; allies and caster are included only when the card actually includes their occupied space. Roll the stated raw area damage once, then apply each recipient’s save and defenses independently. Halved damage rounds down before individual defenses. Distinct recipients retain separate damage packets and callbacks. No attack critical applies to area save damage.",
+      "scaling": "None. No automatic increase in damage, range, targets, duration, uses or magnitude.",
+      "limitations": "The short 10-foot point range and separate 10-foot radius both apply. No damage extends outside the selected section/sphere, no automatic whole-building collapse or propagation is granted, and no Deafened, construct vulnerability, magic-item suppression or named shattered condition is added. No one can choose a concealed load-bearing element or optimize sections after damage outcomes. Actual class/source access, repertoire, level, action availability, components, costs, concentration transitions, Dissonance/Refrain and cast/counter/outcome hooks follow SPELL_INTEGRATION_RULES.md. These actual rank-2 placements have base 3 RP; actual source modifiers and strain surcharges still apply. V is audible, S requires the ordinary usable free hand or an actual exception, and F is the ordinary class focus. A legal cast commits payment and cast-begin consequences before its Counterspell window; later failure/countering refunds nothing and restores no displaced concentration. Spell attacks use d20 + PB + actual casting modifier against AC; natural 1 misses/natural 20 hits and doubles only actual attack damage dice. Saves use DC 8 + PB + actual casting modifier and binary-save rules. Actual defenses and source-specific hooks retain their real trigger scopes. No automatic level scaling, generic upcast, new action budget or resource generation.",
+      "designNotes": "PRESERVED: Action, 10-foot casting range, V/S/F, 3d8 thunder in 10-foot radius and extra object damage. NEW: perceived point/sphere, CON half for creatures, shared +1d8 for legal nonmagical objects in one grouped packet, fixed pre-damage snapshot and deterministic bounded structural section procedure.",
+      "implementationStatus": "REVIEWED authored operational PLAYTEST manuscript; runtime, human balance and broader integration pending",
+      "sourcePlacements": [
+        {
+          "name": "Shatter",
+          "school": "Evocation",
+          "level": 2,
+          "summary": "3d8 thunder damage in 10-ft radius, extra damage to objects."
+        }
+      ],
+      "sourceCoreEntries": [
+        {
+          "index": 453,
+          "original": {
+            "school": "Evocation",
+            "level": 2,
+            "name": "Shatter",
+            "effect": "3d8 thunder damage in 10-ft radius, extra damage to objects.",
+            "source_paragraph": 9540,
+            "casting_time": "1 action",
+            "range": "10 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Damage"
+            ],
+            "rp_cost": 3
+          }
+        }
+      ],
+      "sourceHistoricalAliasEvidence": [],
+      "classAccessEvidence": {
+        "Crimson Agent": {
+          "rank": 2,
+          "minimumClassLevel": 5,
+          "school": "Evocation",
+          "baseRpCost": 3
+        },
+        "Dragoon": {
+          "rank": 2,
+          "minimumClassLevel": 8,
+          "school": "Evocation",
+          "baseRpCost": 3
+        },
+        "Mage": {
+          "rank": 2,
+          "minimumClassLevel": 3,
+          "school": "Evocation",
+          "baseRpCost": 3
+        },
+        "Wizard": {
+          "rank": 2,
+          "minimumClassLevel": 3,
+          "school": "Evocation",
+          "baseRpCost": 3
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK2_SOURCE_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK2_AUTHORING_CLARIFICATION.md",
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK2_EXACT_AND_DELIVERY_REVIEW.md"
+      ],
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK2_EXACT_AND_DELIVERY_REVIEW.md"
+      ],
+      "authoringFile": "data/playtest/spell_drafts/batch_evocation_rank2.json"
+    },
+    "additionalRpCost": 0,
+    "source": {
+      "catalogPath": "src/data/spells.js",
+      "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+      "catalogKey": "shatter",
+      "original": {
+        "name": "Shatter",
+        "level": 2,
+        "resonanceRank": 2,
+        "school": "Evocation",
+        "schools": [
+          "Evocation"
+        ],
+        "placements": [
+          {
+            "name": "Shatter",
+            "school": "Evocation",
+            "level": 2,
+            "summary": "3d8 thunder damage in 10-ft radius, extra damage to objects."
+          }
+        ],
+        "classLevels": {
+          "Crimson Agent": 2,
+          "Dragoon": 2,
+          "Mage": 2,
+          "Wizard": 2
+        },
+        "classRanks": {
+          "Crimson Agent": 2,
+          "Dragoon": 2,
+          "Mage": 2,
+          "Wizard": 2
+        },
+        "classLearnLevels": {
+          "Crimson Agent": 5,
+          "Dragoon": 8,
+          "Mage": 3,
+          "Wizard": 3
+        },
+        "classSchools": {
+          "Crimson Agent": "Evocation",
+          "Dragoon": "Evocation",
+          "Mage": "Evocation",
+          "Wizard": "Evocation"
+        },
+        "castingTime": "Not specified in current rulebook",
+        "range": "Not specified in current rulebook",
+        "components": "Not specified in current rulebook",
+        "duration": "Not specified in current rulebook",
+        "description": "3d8 thunder damage in 10-ft radius, extra damage to objects.",
+        "alternateSummaries": [],
+        "classes": [
+          "Crimson Agent",
+          "Dragoon",
+          "Mage",
+          "Wizard"
+        ],
+        "status": "canon",
+        "source": "Player Rulebook — Spell Lists"
+      },
+      "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+      "coreEntries": [
+        {
+          "index": 453,
+          "original": {
+            "school": "Evocation",
+            "level": 2,
+            "name": "Shatter",
+            "effect": "3d8 thunder damage in 10-ft radius, extra damage to objects.",
+            "source_paragraph": 9540,
+            "casting_time": "1 action",
+            "range": "10 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Damage"
+            ],
+            "rp_cost": 3
+          }
+        }
+      ],
+      "possibleHistoricalAliases": []
+    },
+    "reviewFlags": [
+      "Core resolution requires an explicit operational interpretation"
+    ]
+  },
+  "warding-bond": {
+    "id": "warding-bond",
+    "name": "Warding Bond",
+    "schools": [
+      "Abjuration"
+    ],
+    "status": "operational-playtest-draft",
+    "visibility": "public-source-review",
+    "classAccess": {
+      "Cleric": {
+        "rank": 1,
+        "minimumClassLevel": 1,
+        "school": "Abjuration",
+        "baseRpCost": 2
+      },
+      "Druid": {
+        "rank": 1,
+        "minimumClassLevel": 1,
+        "school": "Abjuration",
+        "baseRpCost": 2
+      },
+      "Mage": {
+        "rank": 1,
+        "minimumClassLevel": 1,
+        "school": "Abjuration",
+        "baseRpCost": 2
+      },
+      "Monk": {
+        "rank": 1,
+        "minimumClassLevel": 3,
+        "school": "Abjuration",
+        "baseRpCost": 2
+      },
+      "Tinker": {
+        "rank": 1,
+        "minimumClassLevel": 2,
+        "school": "Abjuration",
+        "baseRpCost": 2
+      },
+      "Wizard": {
+        "rank": 1,
+        "minimumClassLevel": 1,
+        "school": "Abjuration",
+        "baseRpCost": 2
+      },
+      "Paladin": {
+        "rank": 1,
+        "minimumClassLevel": 2,
+        "school": "Abjuration",
+        "baseRpCost": 2
+      }
+    },
+    "operational": {
+      "id": "warding-bond",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One willing ally other than yourself, perceived within range and line of effect. Neither participant may already participate in another Warding Bond, as caster or protected ally.",
+      "duration": "Concentration, up to 1 minute. In initiative, expires at the caster's tenth future regular-start marker after application; retain that virtual marker through initiative changes, departure or death. Outside initiative, expires 60 seconds after application; entering initiative preserves that absolute deadline. An already-passed start never counts. Ends earlier when concentration ends. Also ends if either participant dies. Reaching 0 HP alone is not a separate ending condition; ordinary Incapacitated/concentration rules still apply.",
+      "concentration": true,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "Automatic on legal casting. On each eligible positive incoming damage packet to the ally, apply the mandatory post-defense transfer described below; a rounded-zero transfer claims no transfer operation.",
+      "effect": "The ally gains +1 AC and +1 to saves, subject separately to the strongest applicable flat bonus. After the ally's defenses and legal prevention, before temporary HP, transfer floor(remaining damage / 2) to you and leave the remainder on the ally. Keep the damage type. Your transferred share skips a second mitigation/prevention stage and cannot transfer again; apply your temporary HP, HP, applicable life-state protections, Wounds and concentration consequences normally. The ally retains the hit, failed-save, critical and attached-rider identity; you were not hit and did not fail that save merely because damage transferred.",
+      "scaling": "None. The rank-2 duplicate grants no upgrade or extra effect.",
+      "limitations": "Use DAMAGE_SHARING_PLAYTEST.md: one transfer operation per original-recipient damage root, across all owners. A prior pre-mitigation split preempts this transfer; competing positive mandatory post-defense claims are chosen by the original target. The retained ally portion cannot subsequently be transferred again after this split. Complete the current packet's split and life consequences before concentration failure caused by that packet ends the bond; never undo a committed share. One Warding Bond per participating creature across all casters; casting cannot create chains or cycles. Initial range/line of effect are required, but no continuing distance or line-of-effect tether is imposed. This ordinary spell neither consumes nor increases the Paladin class redirection round ledger and grants none of its named healing/resource riders or proc permissions. Unrelated downstream triggers still require their own exact source authorization. Direct HP payments are not damage and cannot be transferred. Known/prepared access, class-level gates, legal components, line of effect, payment before resolution, concentration transitions, Dissonance, Refrain and class cadence follow SPELL_INTEGRATION_RULES.md. No automatic scaling or generic upcast.",
+      "designNotes": "PRESERVED: Action, 30 feet, concentration 1 minute, +1 AC/saves and half-damage sharing; M/F uses focus. NEW: willing ally, conserved mandatory post-defense split, rounding, participation and life endpoints, no continued tether and ordinary-spell/class-engine separation. CONFLICT RULING: source-derived class access is rank 1; duplicate rank-2 block is retained as evidence only.",
+      "implementationStatus": "REVIEWED authored operational-playtest manuscript; runtime and balance validation pending",
+      "sourceCoreEntries": [
+        {
+          "index": 27,
+          "original": {
+            "school": "Abjuration",
+            "level": 1,
+            "name": "Warding Bond",
+            "effect": "Link with ally; they gain +1 AC and saves, you take half their damage.",
+            "source_paragraph": 9012,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Concentration, up to 1 minute",
+            "components": "V, S, M/F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Damage",
+              "Ward"
+            ],
+            "rp_cost": 2
+          }
+        },
+        {
+          "index": 35,
+          "original": {
+            "school": "Abjuration",
+            "level": 2,
+            "name": "Warding Bond",
+            "effect": "Link with ally; they gain +1 AC and saves, you take half their damage.",
+            "source_paragraph": 9022,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Concentration, up to 1 minute",
+            "components": "V, S, M/F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Damage",
+              "Ward"
+            ],
+            "rp_cost": 3
+          }
+        }
+      ],
+      "sourcePlacements": [
+        {
+          "name": "Warding Bond",
+          "school": "Abjuration",
+          "level": 1,
+          "summary": "Link with ally; they gain +1 AC and saves, you take half their damage."
+        },
+        {
+          "name": "Warding Bond",
+          "school": "Abjuration",
+          "level": 2,
+          "summary": "Link with ally; they gain +1 AC and saves, you take half their damage."
+        }
+      ],
+      "classAccessEvidence": {
+        "Cleric": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Druid": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Mage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Monk": {
+          "rank": 1,
+          "minimumClassLevel": 3,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Tinker": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Wizard": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Paladin": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_SOURCE_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_EXACT_REVIEW.md"
+      ],
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_EXACT_REVIEW.md"
+      ],
+      "authoringFile": "data/playtest/spell_drafts/batch_abjuration_rank1.json"
+    },
+    "additionalRpCost": 0,
+    "source": {
+      "catalogPath": "src/data/spells.js",
+      "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+      "catalogKey": "warding-bond",
+      "original": {
+        "name": "Warding Bond",
+        "level": 1,
+        "resonanceRank": 1,
+        "school": "Abjuration",
+        "schools": [
+          "Abjuration"
+        ],
+        "placements": [
+          {
+            "name": "Warding Bond",
+            "school": "Abjuration",
+            "level": 1,
+            "summary": "Link with ally; they gain +1 AC and saves, you take half their damage."
+          },
+          {
+            "name": "Warding Bond",
+            "school": "Abjuration",
+            "level": 2,
+            "summary": "Link with ally; they gain +1 AC and saves, you take half their damage."
+          }
+        ],
+        "classLevels": {
+          "Cleric": 1,
+          "Druid": 1,
+          "Mage": 1,
+          "Monk": 1,
+          "Tinker": 1,
+          "Wizard": 1,
+          "Paladin": 1
+        },
+        "classRanks": {
+          "Cleric": 1,
+          "Druid": 1,
+          "Mage": 1,
+          "Monk": 1,
+          "Tinker": 1,
+          "Wizard": 1,
+          "Paladin": 1
+        },
+        "classLearnLevels": {
+          "Cleric": 1,
+          "Druid": 1,
+          "Mage": 1,
+          "Monk": 3,
+          "Tinker": 2,
+          "Wizard": 1,
+          "Paladin": 2
+        },
+        "classSchools": {
+          "Cleric": "Abjuration",
+          "Druid": "Abjuration",
+          "Mage": "Abjuration",
+          "Monk": "Abjuration",
+          "Tinker": "Abjuration",
+          "Wizard": "Abjuration",
+          "Paladin": "Abjuration"
+        },
+        "castingTime": "Not specified in current rulebook",
+        "range": "Not specified in current rulebook",
+        "components": "Not specified in current rulebook",
+        "duration": "Not specified in current rulebook",
+        "description": "Link with ally; they gain +1 AC and saves, you take half their damage.",
+        "alternateSummaries": [],
+        "classes": [
+          "Cleric",
+          "Druid",
+          "Mage",
+          "Monk",
+          "Tinker",
+          "Wizard",
+          "Paladin"
+        ],
+        "status": "canon",
+        "source": "Player Rulebook — Spell Lists"
+      },
+      "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+      "coreEntries": [
+        {
+          "index": 27,
+          "original": {
+            "school": "Abjuration",
+            "level": 1,
+            "name": "Warding Bond",
+            "effect": "Link with ally; they gain +1 AC and saves, you take half their damage.",
+            "source_paragraph": 9012,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Concentration, up to 1 minute",
+            "components": "V, S, M/F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Damage",
+              "Ward"
+            ],
+            "rp_cost": 2
+          }
+        },
+        {
+          "index": 35,
+          "original": {
+            "school": "Abjuration",
+            "level": 2,
+            "name": "Warding Bond",
+            "effect": "Link with ally; they gain +1 AC and saves, you take half their damage.",
+            "source_paragraph": 9022,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Concentration, up to 1 minute",
+            "components": "V, S, M/F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Damage",
+              "Ward"
+            ],
+            "rp_cost": 3
+          }
+        }
+      ],
+      "possibleHistoricalAliases": []
+    },
+    "reviewFlags": [
+      "Core resolution requires an explicit operational interpretation"
+    ]
+  },
+  "protection-from-energy": {
+    "id": "protection-from-energy",
+    "name": "Protection from Energy",
+    "schools": [
+      "Abjuration"
+    ],
+    "status": "operational-playtest-draft",
+    "visibility": "public-source-review",
+    "classAccess": {
+      "Cleric": {
+        "rank": 2,
+        "minimumClassLevel": 3,
+        "school": "Abjuration",
+        "baseRpCost": 3
+      },
+      "Druid": {
+        "rank": 2,
+        "minimumClassLevel": 3,
+        "school": "Abjuration",
+        "baseRpCost": 3
+      },
+      "Mage": {
+        "rank": 2,
+        "minimumClassLevel": 3,
+        "school": "Abjuration",
+        "baseRpCost": 3
+      },
+      "Monk": {
+        "rank": 2,
+        "minimumClassLevel": 8,
+        "school": "Abjuration",
+        "baseRpCost": 3
+      },
+      "Tinker": {
+        "rank": 2,
+        "minimumClassLevel": 6,
+        "school": "Abjuration",
+        "baseRpCost": 3
+      },
+      "Wizard": {
+        "rank": 2,
+        "minimumClassLevel": 3,
+        "school": "Abjuration",
+        "baseRpCost": 3
+      },
+      "Paladin": {
+        "rank": 2,
+        "minimumClassLevel": 5,
+        "school": "Abjuration",
+        "baseRpCost": 3
+      }
+    },
+    "operational": {
+      "id": "protection-from-energy",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One willing creature you can perceive within range and line of effect, including yourself.",
+      "duration": "If cast in initiative, expires at the caster's tenth future regular-start marker; preserve that virtual marker through order changes or departure. If cast outside initiative, expires 60 seconds after application; entering initiative preserves that absolute deadline. An already-passed start does not count.",
+      "concentration": false,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "Automatic after legal casting.",
+      "effect": "Choose acid, cold, fire, lightning, thunder, force, necrotic or radiant. The target is immune to damage of that one type for the duration.",
+      "scaling": "None.",
+      "limitations": "Bludgeoning, piercing, slashing, poison, psychic and Corruption are not selectable energy types here. One Protection from Energy per target across all casters: a later application replaces the old type and owns its own deadline; stale cleanup cannot erase the replacement. Immunity blocks only the selected damage, not attached conditions or riders unless those independently require positive damage. It does not undo resolved damage or protect against a transferred post-defense branch expressly skipping a second mitigation/prevention stage. A magical weapon's physical damage remains physical. Apply SPELL_INTEGRATION_RULES.md for actual class access and repertoire, costs before resolution, components, concentration, Dissonance/Refrain and exact source cadence. No automatic scaling or generic upcast.",
+      "designNotes": "PRESERVED: immunity, Action, 30 feet, V/S/F and 1 minute without concentration. NEW: eight-type energy list, willing target, one all-caster application and explicit damage-only boundaries.",
+      "implementationStatus": "REVIEWED authored operational-playtest manuscript; runtime and balance validation pending",
+      "sourceCoreEntries": [
+        {
+          "index": 34,
+          "original": {
+            "school": "Abjuration",
+            "level": 2,
+            "name": "Protection from Energy",
+            "effect": "Target gains immunity to one energy type for 1 minute.",
+            "source_paragraph": 9021,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "1 minute",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Ward"
+            ],
+            "rp_cost": 3
+          }
+        }
+      ],
+      "sourcePlacements": [
+        {
+          "name": "Protection from Energy",
+          "school": "Abjuration",
+          "level": 2,
+          "summary": "Target gains immunity to one energy type for 1 minute."
+        }
+      ],
+      "classAccessEvidence": {
+        "Cleric": {
+          "rank": 2,
+          "minimumClassLevel": 3,
+          "school": "Abjuration",
+          "baseRpCost": 3
+        },
+        "Druid": {
+          "rank": 2,
+          "minimumClassLevel": 3,
+          "school": "Abjuration",
+          "baseRpCost": 3
+        },
+        "Mage": {
+          "rank": 2,
+          "minimumClassLevel": 3,
+          "school": "Abjuration",
+          "baseRpCost": 3
+        },
+        "Monk": {
+          "rank": 2,
+          "minimumClassLevel": 8,
+          "school": "Abjuration",
+          "baseRpCost": 3
+        },
+        "Tinker": {
+          "rank": 2,
+          "minimumClassLevel": 6,
+          "school": "Abjuration",
+          "baseRpCost": 3
+        },
+        "Wizard": {
+          "rank": 2,
+          "minimumClassLevel": 3,
+          "school": "Abjuration",
+          "baseRpCost": 3
+        },
+        "Paladin": {
+          "rank": 2,
+          "minimumClassLevel": 5,
+          "school": "Abjuration",
+          "baseRpCost": 3
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK2_3_SOURCE_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK2_3_EXACT_REVIEW.md"
+      ],
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK2_3_EXACT_REVIEW.md"
+      ],
+      "authoringFile": "data/playtest/spell_drafts/batch_abjuration_rank2_3.json"
+    },
+    "additionalRpCost": 0,
+    "source": {
+      "catalogPath": "src/data/spells.js",
+      "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+      "catalogKey": "protection-from-energy",
+      "original": {
+        "name": "Protection from Energy",
+        "level": 2,
+        "resonanceRank": 2,
+        "school": "Abjuration",
+        "schools": [
+          "Abjuration"
+        ],
+        "placements": [
+          {
+            "name": "Protection from Energy",
+            "school": "Abjuration",
+            "level": 2,
+            "summary": "Target gains immunity to one energy type for 1 minute."
+          }
+        ],
+        "classLevels": {
+          "Cleric": 2,
+          "Druid": 2,
+          "Mage": 2,
+          "Monk": 2,
+          "Tinker": 2,
+          "Wizard": 2,
+          "Paladin": 2
+        },
+        "classRanks": {
+          "Cleric": 2,
+          "Druid": 2,
+          "Mage": 2,
+          "Monk": 2,
+          "Tinker": 2,
+          "Wizard": 2,
+          "Paladin": 2
+        },
+        "classLearnLevels": {
+          "Cleric": 3,
+          "Druid": 3,
+          "Mage": 3,
+          "Monk": 8,
+          "Tinker": 6,
+          "Wizard": 3,
+          "Paladin": 5
+        },
+        "classSchools": {
+          "Cleric": "Abjuration",
+          "Druid": "Abjuration",
+          "Mage": "Abjuration",
+          "Monk": "Abjuration",
+          "Tinker": "Abjuration",
+          "Wizard": "Abjuration",
+          "Paladin": "Abjuration"
+        },
+        "castingTime": "Not specified in current rulebook",
+        "range": "Not specified in current rulebook",
+        "components": "Not specified in current rulebook",
+        "duration": "Not specified in current rulebook",
+        "description": "Target gains immunity to one energy type for 1 minute.",
+        "alternateSummaries": [],
+        "classes": [
+          "Cleric",
+          "Druid",
+          "Mage",
+          "Monk",
+          "Tinker",
+          "Wizard",
+          "Paladin"
+        ],
+        "status": "canon",
+        "source": "Player Rulebook — Spell Lists"
+      },
+      "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+      "coreEntries": [
+        {
+          "index": 34,
+          "original": {
+            "school": "Abjuration",
+            "level": 2,
+            "name": "Protection from Energy",
+            "effect": "Target gains immunity to one energy type for 1 minute.",
+            "source_paragraph": 9021,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "1 minute",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Ward"
+            ],
+            "rp_cost": 3
+          }
+        }
+      ],
+      "possibleHistoricalAliases": []
+    },
+    "reviewFlags": [
+      "Core resolution requires an explicit operational interpretation"
+    ]
+  },
+  "detect-weather": {
+    "id": "detect-weather",
+    "name": "Detect Weather",
+    "schools": [
+      "Divination"
+    ],
+    "status": "operational-playtest-draft",
+    "visibility": "public-source-review",
+    "classAccess": {
+      "Cleric": {
+        "rank": 0,
+        "minimumClassLevel": 1,
+        "school": "Divination",
+        "baseRpCost": 0
+      },
+      "Mirrorsage": {
+        "rank": 0,
+        "minimumClassLevel": 1,
+        "school": "Divination",
+        "baseRpCost": 0
+      },
+      "Ranger": {
+        "rank": 0,
+        "minimumClassLevel": 1,
+        "school": "Divination",
+        "baseRpCost": 0
+      },
+      "Shaman": {
+        "rank": 0,
+        "minimumClassLevel": 1,
+        "school": "Divination",
+        "baseRpCost": 0
+      },
+      "Wizard": {
+        "rank": 0,
+        "minimumClassLevel": 1,
+        "school": "Divination",
+        "baseRpCost": 0
+      },
+      "Paladin": {
+        "rank": 0,
+        "minimumClassLevel": 2,
+        "school": "Divination",
+        "baseRpCost": 0
+      }
+    },
+    "operational": {
+      "id": "detect-weather",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One point you perceive within 30 feet and line of effect, on your current plane.",
+      "duration": "Instantaneous information about the following 24 hours; no continuing buff or concentration.",
+      "concentration": false,
+      "components": [
+        "V",
+        "S"
+      ],
+      "resolution": "No roll. The Director gives an accurate 24-hour forecast for the local outdoor region within 1 mile horizontally of that point on the same plane. Describe meaningful local variations when the terrain makes the region's weather differ. An indoor or underground point refers to the outdoor local weather above/around that same geographical location rather than the room's climate.",
+      "effect": "Report relevant temperature bands/trends, precipitation type and approximate timing, wind direction/strength, weather-caused visibility and significant storm or environmental-weather hazards. The report is intelligible to the caster and accurate for the current natural processes and already-existing magical weather expected to continue; record the forecast as the current weather expectation. A weatherless environment reports that fact. It supplies useful specific conditions rather than a vague warning that weather might change.",
+      "scaling": "None. No automatic increase in targets, range, duration or information.",
+      "limitations": "A genuinely new later cause, such as a voluntary weather-changing spell, new supernatural event or catastrophe, can change actual conditions after the forecast without having been predicted. The Director must identify an actual intervening cause in the game record, not silently invalidate the forecast by rerolling unchanged weather; this need not reveal that cause to the caster. The spell does not control weather, grant exposure protection, reveal encounters/loot, complete travel, recover resources or predict unrelated events. Information about a specifically protected subject remains limited by that actual protection; ordinary ambient weather is not automatically protected by a creature standing in it. Actual class access and repertoire, audible V/free-hand S components, casting sequence, Refrain/Dissonance, class hooks and interruption follow SPELL_INTEGRATION_RULES.md. Base RP is 0 but repeated cantrips still follow their actual strain rules. No automatic upcast or unstated scaling. Source-specific protections apply only to their actual scope. Protection from Scrying prevents new Divination/Scrying information about its protected subject, including beneficial inspection, but grants no blanket immunity to damage, buffs or other noninformational mechanics merely because of their school; it does not erase already-known facts or ordinary records.",
+      "designNotes": "PRESERVED: Action/30feet/V,S/instantaneous and accurate next24-hour weather prediction. NEW: finite1-mile local outdoor region, explicit indoor reference, forecast fields and current-processes/future-agency boundary. This is a tabletop forecast record, not a claim a weather simulation is implemented.",
+      "implementationStatus": "REVIEWED authored operational-playtest manuscript; information-system runtime and numerical balance pending",
+      "sourcePlacements": [
+        {
+          "name": "Detect Weather",
+          "school": "Divination",
+          "level": 0,
+          "summary": "Accurately predict weather for the next 24 hours."
+        }
+      ],
+      "sourceCoreEntries": [
+        {
+          "index": 222,
+          "original": {
+            "school": "Divination",
+            "level": 0,
+            "name": "Detect Weather",
+            "effect": "Accurately predict weather for the next 24 hours.",
+            "source_paragraph": 9255,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Instantaneous",
+            "components": "V, S",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Detection"
+            ],
+            "rp_cost": 0
+          }
+        }
+      ],
+      "classAccessEvidence": {
+        "Cleric": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Divination",
+          "baseRpCost": 0
+        },
+        "Mirrorsage": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Divination",
+          "baseRpCost": 0
+        },
+        "Ranger": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Divination",
+          "baseRpCost": 0
+        },
+        "Shaman": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Divination",
+          "baseRpCost": 0
+        },
+        "Wizard": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Divination",
+          "baseRpCost": 0
+        },
+        "Paladin": {
+          "rank": 0,
+          "minimumClassLevel": 2,
+          "school": "Divination",
+          "baseRpCost": 0
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_DIVINATION_CANTRIP_SOURCE_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_DIVINATION_CANTRIP_EXACT_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_DIVINATION_CANTRIP_FINAL_CLARIFICATION.md"
+      ],
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_DIVINATION_CANTRIP_EXACT_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_DIVINATION_CANTRIP_FINAL_CLARIFICATION.md"
+      ],
+      "authoringFile": "data/playtest/spell_drafts/batch_divination_cantrips.json"
+    },
+    "additionalRpCost": 0,
+    "source": {
+      "catalogPath": "src/data/spells.js",
+      "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+      "catalogKey": "detect-weather",
+      "original": {
+        "name": "Detect Weather",
+        "level": 0,
+        "resonanceRank": 0,
+        "school": "Divination",
+        "schools": [
+          "Divination"
+        ],
+        "placements": [
+          {
+            "name": "Detect Weather",
+            "school": "Divination",
+            "level": 0,
+            "summary": "Accurately predict weather for the next 24 hours."
+          }
+        ],
+        "classLevels": {
+          "Cleric": 0,
+          "Mirrorsage": 0,
+          "Ranger": 0,
+          "Shaman": 0,
+          "Wizard": 0,
+          "Paladin": 0
+        },
+        "classRanks": {
+          "Cleric": 0,
+          "Mirrorsage": 0,
+          "Ranger": 0,
+          "Shaman": 0,
+          "Wizard": 0,
+          "Paladin": 0
+        },
+        "classLearnLevels": {
+          "Cleric": 1,
+          "Mirrorsage": 1,
+          "Ranger": 1,
+          "Shaman": 1,
+          "Wizard": 1,
+          "Paladin": 2
+        },
+        "classSchools": {
+          "Cleric": "Divination",
+          "Mirrorsage": "Divination",
+          "Ranger": "Divination",
+          "Shaman": "Divination",
+          "Wizard": "Divination",
+          "Paladin": "Divination"
+        },
+        "castingTime": "Not specified in current rulebook",
+        "range": "Not specified in current rulebook",
+        "components": "Not specified in current rulebook",
+        "duration": "Not specified in current rulebook",
+        "description": "Accurately predict weather for the next 24 hours.",
+        "alternateSummaries": [],
+        "classes": [
+          "Cleric",
+          "Mirrorsage",
+          "Ranger",
+          "Shaman",
+          "Wizard",
+          "Paladin"
+        ],
+        "status": "canon",
+        "source": "Player Rulebook — Spell Lists"
+      },
+      "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+      "coreEntries": [
+        {
+          "index": 222,
+          "original": {
+            "school": "Divination",
+            "level": 0,
+            "name": "Detect Weather",
+            "effect": "Accurately predict weather for the next 24 hours.",
+            "source_paragraph": 9255,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Instantaneous",
+            "components": "V, S",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Detection"
+            ],
+            "rp_cost": 0
+          }
+        }
+      ],
+      "possibleHistoricalAliases": []
+    },
+    "reviewFlags": [
+      "Core resolution requires an explicit operational interpretation"
+    ]
+  }
+}

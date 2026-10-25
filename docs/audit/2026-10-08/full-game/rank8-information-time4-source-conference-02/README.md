@@ -1,0 +1,1 @@
+Rank8 Information/Time4 packet02. Current authority is 726 reviewed / 122 pending; requested identities are the four exact pending spells. Packet01 is embedded as historical context and its old authority is superseded by CURRENT_AUTHORITY bindings. The ZIP is the review submission artifact.
