@@ -1,0 +1,945 @@
+{
+  "id": "MAGIC7-RETURN03-FINAL-INDEPENDENT-CHECKS-129",
+  "checks": 225,
+  "errors": [],
+  "exactBranchForks": 3,
+  "actionSpendTransitionsInspected": 66,
+  "unexplainedTimingFindings": [],
+  "priorMembersPreserved": 79,
+  "nonOperativePreservationLocatorErrata": [
+    {
+      "kind": "preservation-locator-only",
+      "originalPath": "ARTIFACT_BINDINGS.json",
+      "reportedLocation": "ARTIFACT_BINDINGS.json",
+      "verifiedExactLocation": "history/return02/ARTIFACT_BINDINGS.json",
+      "bytes": 13725,
+      "sha256": "f10dd5e167b6f074a42648a0c8814a8b67b8386dde021c83b74326c8696afdd2"
+    },
+    {
+      "kind": "preservation-locator-only",
+      "originalPath": "MANIFEST.json",
+      "reportedLocation": "MANIFEST.json",
+      "verifiedExactLocation": "history/return02/MANIFEST.json",
+      "bytes": 13891,
+      "sha256": "2d39ab8988be6c0221b356886af1abea19b849d254cf3b3a96c24bb81d59610e"
+    }
+  ],
+  "verifiedPriorPreservationMap": [
+    {
+      "originalPath": "ACTOR_TEMPLATES.json",
+      "originalBytes": 282254,
+      "originalSha256": "0105cf00208844d66a9d6514b97ed3b9725b09e47afc2a802d9013081192e155",
+      "preservedAt": "ACTOR_TEMPLATES.json"
+    },
+    {
+      "originalPath": "APPLICATION_PLAN.json",
+      "originalBytes": 2531,
+      "originalSha256": "44eb31b70fda65e98599e585f30f862d82d9aa083a1c68744b39eacfbef1f080",
+      "preservedAt": "history/return02/APPLICATION_PLAN.json"
+    },
+    {
+      "originalPath": "ARCHIVE_SOURCE_VALIDATION.json",
+      "originalBytes": 12810,
+      "originalSha256": "61d67ae985b7760ac40d64f6533070128603de51bdf083c7c17a552fb18a9dd7",
+      "preservedAt": "ARCHIVE_SOURCE_VALIDATION.json"
+    },
+    {
+      "originalPath": "ARTIFACT_BINDINGS.json",
+      "originalBytes": 13725,
+      "originalSha256": "f10dd5e167b6f074a42648a0c8814a8b67b8386dde021c83b74326c8696afdd2",
+      "preservedAt": "history/return02/ARTIFACT_BINDINGS.json"
+    },
+    {
+      "originalPath": "CASEBOOK.json",
+      "originalBytes": 47608494,
+      "originalSha256": "65ce406fe874639589cf0a6f666b831f412afd14e873ddea6530887923503ac0",
+      "preservedAt": "history/return02/CASEBOOK.json"
+    },
+    {
+      "originalPath": "CASE_DISPOSITIONS.json",
+      "originalBytes": 6627,
+      "originalSha256": "e42844fe4560da10d7aed4d88fa6f76b4fcce38a6435cbe5a9c2c11e1eb73d22",
+      "preservedAt": "CASE_DISPOSITIONS.json"
+    },
+    {
+      "originalPath": "CORRECTION_REGISTER.json",
+      "originalBytes": 4998,
+      "originalSha256": "f3b5a2d5f0484ffae074e7418c297b2393a4d69b553159027b11408aeb534cf9",
+      "preservedAt": "history/return02/CORRECTION_REGISTER.json"
+    },
+    {
+      "originalPath": "EVENT_REVERSIBLE_OPERATIONS.json",
+      "originalBytes": 806630,
+      "originalSha256": "3c2fc7aaee38ff53d8a816553bbc01c0611b514d6a7309d1503033676dc7dbfb",
+      "preservedAt": "history/return02/EVENT_REVERSIBLE_OPERATIONS.json"
+    },
+    {
+      "originalPath": "EXACT_PROCEDURE_OPERATIONS.json",
+      "originalBytes": 101271,
+      "originalSha256": "6c5e1350c96fe4bbbb3b9887f237b2ed552bfa3ea11eba0f1a767a27bcfc32c8",
+      "preservedAt": "EXACT_PROCEDURE_OPERATIONS.json"
+    },
+    {
+      "originalPath": "HOLD_REGISTER.json",
+      "originalBytes": 2150,
+      "originalSha256": "21abf953e95fbcf0aaf1b65a8e508d07138087279f7a2c8cd21de0a0cc912cf5",
+      "preservedAt": "HOLD_REGISTER.json"
+    },
+    {
+      "originalPath": "IDENTITY_DISPOSITIONS.json",
+      "originalBytes": 3347,
+      "originalSha256": "20f11c4b7fcdbda01e1c0ada74a1e5b08d21c1f5712e23d026242fd3be91900a",
+      "preservedAt": "IDENTITY_DISPOSITIONS.json"
+    },
+    {
+      "originalPath": "INPUT_SOURCE_BINDINGS.json",
+      "originalBytes": 2586,
+      "originalSha256": "07b6734e491d1eedeed768635beee5e0ec7071b0478cd137f4dc0abb1bc65361",
+      "preservedAt": "INPUT_SOURCE_BINDINGS.json"
+    },
+    {
+      "originalPath": "MANIFEST.json",
+      "originalBytes": 13891,
+      "originalSha256": "2d39ab8988be6c0221b356886af1abea19b849d254cf3b3a96c24bb81d59610e",
+      "preservedAt": "history/return02/MANIFEST.json"
+    },
+    {
+      "originalPath": "MODEL.json",
+      "originalBytes": 114496,
+      "originalSha256": "b6c135a712025afcf6458f9b9965d5e75ff2b58513dc7b4ffa3036eb263e700d",
+      "preservedAt": "MODEL.json"
+    },
+    {
+      "originalPath": "NATIVE_AND_ACCESS_RECORDS.json",
+      "originalBytes": 72075,
+      "originalSha256": "e31254e4989d3256c761fc2994a6cf53598e92718667fb5ce7cf19ad67d1cb06",
+      "preservedAt": "NATIVE_AND_ACCESS_RECORDS.json"
+    },
+    {
+      "originalPath": "NATIVE_PARAMETER_CHECKPOINTS.json",
+      "originalBytes": 2204,
+      "originalSha256": "068d70d8a5a2939c92e69ecef31ad508d9506a5bc5da5d57f61ca484bc711a86",
+      "preservedAt": "NATIVE_PARAMETER_CHECKPOINTS.json"
+    },
+    {
+      "originalPath": "OPERATIVE_TEXT.md",
+      "originalBytes": 44807,
+      "originalSha256": "2096bf91cefd923b2f06cbcf816a943f64c5f15d08537a77f967f995b6df38a9",
+      "preservedAt": "OPERATIVE_TEXT.md"
+    },
+    {
+      "originalPath": "ORIGINAL_SCENARIO_DISPOSITIONS.json",
+      "originalBytes": 17509,
+      "originalSha256": "5067c533dbb417b5c51c64ffd06159d4877862fa3f4149168bb9321aab873186",
+      "preservedAt": "ORIGINAL_SCENARIO_DISPOSITIONS.json"
+    },
+    {
+      "originalPath": "PROCEDURES.json",
+      "originalBytes": 187712,
+      "originalSha256": "42ac5f07d6efef5e77584856196d3e2dfbc2cd51598329a6f3aeed877ae69894",
+      "preservedAt": "PROCEDURES.json"
+    },
+    {
+      "originalPath": "PROPOSED_INDEX_ENTRY_PROJECTION.json",
+      "originalBytes": 671379,
+      "originalSha256": "d8931c618bdff3244c19c3b486c890b87ec29a6191ef465d3b363e6a1591162e",
+      "preservedAt": "PROPOSED_INDEX_ENTRY_PROJECTION.json"
+    },
+    {
+      "originalPath": "PROPOSED_INDEX_OPERATIONS.json",
+      "originalBytes": 17229,
+      "originalSha256": "3bcb0b035c59a780b1520748dfa7c1e2e59b15a2fb436dbdb32f308bb583714a",
+      "preservedAt": "PROPOSED_INDEX_OPERATIONS.json"
+    },
+    {
+      "originalPath": "QUESTION_DISPOSITIONS.json",
+      "originalBytes": 30198,
+      "originalSha256": "edad70a1afd1cf1cad7d75876e7f547a555b594c2c649e6eab3b0fa9c8f5e378",
+      "preservedAt": "QUESTION_DISPOSITIONS.json"
+    },
+    {
+      "originalPath": "README.md",
+      "originalBytes": 1953,
+      "originalSha256": "361407f81c3b94fc1bd56539058196fe1aef755d2b32b2a5bbc4150fdc85eb9d",
+      "preservedAt": "history/return02/README.md"
+    },
+    {
+      "originalPath": "RECOVERY_AND_SOURCE_PRESERVATION.json",
+      "originalBytes": 1509,
+      "originalSha256": "d4d540f7f6e669835a7c4bb222643c9f24b4106aa97833d6bc54a9ff06cbf592",
+      "preservedAt": "RECOVERY_AND_SOURCE_PRESERVATION.json"
+    },
+    {
+      "originalPath": "REVIEW_RECEIPT.json",
+      "originalBytes": 1213,
+      "originalSha256": "a21b8c9ef2d92f36c02ee16543cbb7d2f5a6cbb02026316cc5b86cbb7673491a",
+      "preservedAt": "history/return02/REVIEW_RECEIPT.json"
+    },
+    {
+      "originalPath": "SHARED_RULES.json",
+      "originalBytes": 3933,
+      "originalSha256": "a525d33e979380e8dfbf9f292ef4e9b0124c3b67f7b6d510a2ccdd3002c22616",
+      "preservedAt": "SHARED_RULES.json"
+    },
+    {
+      "originalPath": "SOURCE_AUTHORITY.json",
+      "originalBytes": 30527,
+      "originalSha256": "d966006769d05fe9e79a9714772f1ad4eb578eb1d274f7361428b32016ced9d7",
+      "preservedAt": "SOURCE_AUTHORITY.json"
+    },
+    {
+      "originalPath": "VALIDATION_REPORT.json",
+      "originalBytes": 726934,
+      "originalSha256": "c4fb4ba9c57f5d3f4292c96fb6747585bb41bc1df6c29b40e713a1fb0a184ebc",
+      "preservedAt": "history/return02/VALIDATION_REPORT.json"
+    },
+    {
+      "originalPath": "evidence/CURRENT_CARDS.json",
+      "originalBytes": 502263,
+      "originalSha256": "04474364500e32af377bb7aae4771300a8aaa147cfd4419bdb7fb53d5c2e64c2",
+      "preservedAt": "evidence/CURRENT_CARDS.json"
+    },
+    {
+      "originalPath": "evidence/CURRENT_INDEX_129.json",
+      "originalBytes": 669902,
+      "originalSha256": "a03b61fe6b2bbebc9b019e5576287603c6b9a84708beb361e9b9c5e5e35cc535",
+      "preservedAt": "evidence/CURRENT_INDEX_129.json"
+    },
+    {
+      "originalPath": "evidence/CURRENT_QUEUE_129.json",
+      "originalBytes": 82740,
+      "originalSha256": "c5f090fbdf6f5998b207e04beb97f2f93f59d8e1da31fcc3353cddec4a1c7441",
+      "preservedAt": "evidence/CURRENT_QUEUE_129.json"
+    },
+    {
+      "originalPath": "evidence/ILLUSION14_CURRENT_FULL.json",
+      "originalBytes": 759078,
+      "originalSha256": "1e75574cbecbcf3ac77937c178197adf46f924534d88d8f95cff597d192ed446",
+      "preservedAt": "evidence/ILLUSION14_CURRENT_FULL.json"
+    },
+    {
+      "originalPath": "evidence/INDEPENDENT_QUESTIONS.json",
+      "originalBytes": 9126,
+      "originalSha256": "d24f61af2828e07f58582c6ef11d64c13675c8fd13cb88e4c595b175f95bc0ef",
+      "preservedAt": "evidence/INDEPENDENT_QUESTIONS.json"
+    },
+    {
+      "originalPath": "evidence/INTERFACE_REGISTRY06.json",
+      "originalBytes": 1038128,
+      "originalSha256": "a08f8040c2ad5eaff08668376d15155f926f909c4b63a30461d55449e18aa567",
+      "preservedAt": "evidence/INTERFACE_REGISTRY06.json"
+    },
+    {
+      "originalPath": "evidence/LOW_RANK136_FULL.json",
+      "originalBytes": 1664654,
+      "originalSha256": "506393b1131e3ed099effbe55b05d6b00a5193e503b02f065a5f84751a2955fe",
+      "preservedAt": "evidence/LOW_RANK136_FULL.json"
+    },
+    {
+      "originalPath": "evidence/NATIVE_CATALOG.json",
+      "originalBytes": 4945319,
+      "originalSha256": "f52cf6a4a4673897615a74c7c67dcba798c431362d4357e71ee552cc7c5d31f8",
+      "preservedAt": "evidence/NATIVE_CATALOG.json"
+    },
+    {
+      "originalPath": "evidence/NATIVE_DEFENSE_FINDINGS.json",
+      "originalBytes": 15255,
+      "originalSha256": "7242e7d075a95489a36e76c344dc0b2c1adc5b20c1764ee919965a624f79700d",
+      "preservedAt": "evidence/NATIVE_DEFENSE_FINDINGS.json"
+    },
+    {
+      "originalPath": "evidence/ORIGINAL_CANDIDATE.json",
+      "originalBytes": 772642,
+      "originalSha256": "dcfe882fb1e71b057ee4d4cf16be44659a8d6bd93c5a5d2e9363fcb415122723",
+      "preservedAt": "evidence/ORIGINAL_CANDIDATE.json"
+    },
+    {
+      "originalPath": "evidence/PENDING232_NATIVE_SOURCE_GUARD_129.json",
+      "originalBytes": 1229981,
+      "originalSha256": "ef17a2ad565f8b72518a047e7a3761bd5e5e36cb2df24e08f31975772dfc8988",
+      "preservedAt": "evidence/PENDING232_NATIVE_SOURCE_GUARD_129.json"
+    },
+    {
+      "originalPath": "evidence/PLAYER_RULEBOOK_ATTACHMENT.docx",
+      "originalBytes": 613500,
+      "originalSha256": "54551884330e0337cdb1a504848f275062434d079aeaab0ae2db48353de23dbe",
+      "preservedAt": "evidence/PLAYER_RULEBOOK_ATTACHMENT.docx"
+    },
+    {
+      "originalPath": "evidence/PLAYER_RULEBOOK_V6_NATIVE_TEXT.txt",
+      "originalBytes": 776711,
+      "originalSha256": "a346670f4244efe3641cfb06814819d83ffb8512153858205f0621bd8ab8a04b",
+      "preservedAt": "evidence/PLAYER_RULEBOOK_V6_NATIVE_TEXT.txt"
+    },
+    {
+      "originalPath": "evidence/TIME5_ACTOR_TEMPLATES_ORIGINAL.json",
+      "originalBytes": 189516,
+      "originalSha256": "fec854450ad28ec1d42fe4aa409870447b10f0ab0fd2471454f99c9f9f5799e8",
+      "preservedAt": "evidence/TIME5_ACTOR_TEMPLATES_ORIGINAL.json"
+    },
+    {
+      "originalPath": "evidence/WARRIOR_CLASS_FULL.json",
+      "originalBytes": 156208,
+      "originalSha256": "b695808e3ad03411f0c482af40da964c8d2bac3235eb7c5f8953d27ed73a11b7",
+      "preservedAt": "evidence/WARRIOR_CLASS_FULL.json"
+    },
+    {
+      "originalPath": "evidence/WIZARD_CLASS_FULL.json",
+      "originalBytes": 98867,
+      "originalSha256": "2314a96bd49bb28e26583ecc06b96ab29528a62df41a4519d5ab1a4db8d666e1",
+      "preservedAt": "evidence/WIZARD_CLASS_FULL.json"
+    },
+    {
+      "originalPath": "evidence/abjuration_conjuration_rank5_reviewed_05.json",
+      "originalBytes": 337035,
+      "originalSha256": "d782569ed8ef558f4edf54634e0d8c19926e24e2437528f1769b5ef3ce594898",
+      "preservedAt": "evidence/abjuration_conjuration_rank5_reviewed_05.json"
+    },
+    {
+      "originalPath": "evidence/abjuration_conjuration_rank6_reviewed_06.json",
+      "originalBytes": 904985,
+      "originalSha256": "6f6fe2141e011624e585262a7de6e6a95fef75696d5d6337440f2d1dce711885",
+      "preservedAt": "evidence/abjuration_conjuration_rank6_reviewed_06.json"
+    },
+    {
+      "originalPath": "evidence/rules/BODY_EQUIPMENT_PLAYTEST.md",
+      "originalBytes": 22726,
+      "originalSha256": "d93f9cb0ec8a8398560511f23029d38d9b9a8b901e816373579c8f72b0bec1f3",
+      "preservedAt": "evidence/rules/BODY_EQUIPMENT_PLAYTEST.md"
+    },
+    {
+      "originalPath": "evidence/rules/CHARACTER_CREATION_PLAYTEST.md",
+      "originalBytes": 20258,
+      "originalSha256": "5c9f9ab4c9b485546a249637a335f56193dd3d58e58c451f9561c4e330c09a84",
+      "preservedAt": "evidence/rules/CHARACTER_CREATION_PLAYTEST.md"
+    },
+    {
+      "originalPath": "evidence/rules/CLASS_PLAYTEST_RULES.md",
+      "originalBytes": 17321,
+      "originalSha256": "adb2f4752b45dc70ce792a675bb30dda362aab5056588061bcde3ba31c4c8a81",
+      "preservedAt": "evidence/rules/CLASS_PLAYTEST_RULES.md"
+    },
+    {
+      "originalPath": "evidence/rules/COMBAT_ACTION_PLAYTEST.md",
+      "originalBytes": 30409,
+      "originalSha256": "f90d039142145fbd31c37992ebece70d7926dc4b6081e340f9a2fd9dc7237bc6",
+      "preservedAt": "evidence/rules/COMBAT_ACTION_PLAYTEST.md"
+    },
+    {
+      "originalPath": "evidence/rules/CONTROL_STATES_PLAYTEST.md",
+      "originalBytes": 28382,
+      "originalSha256": "f2c6263c7385d4a1487c0563227f537ea64e80da48fb8f3cd2255935a415e1f2",
+      "preservedAt": "evidence/rules/CONTROL_STATES_PLAYTEST.md"
+    },
+    {
+      "originalPath": "evidence/rules/CORE_RESOLUTION_PLAYTEST.md",
+      "originalBytes": 15877,
+      "originalSha256": "69d0e64394de58c4d86a3ec57cf282978d131a1a9c1eaa21632bb7d3b72562da",
+      "preservedAt": "evidence/rules/CORE_RESOLUTION_PLAYTEST.md"
+    },
+    {
+      "originalPath": "evidence/rules/COSMOLOGY_EPILOGUE_RELIC_NULL_PLAYTEST.md",
+      "originalBytes": 59409,
+      "originalSha256": "de147857b37ddf3e5632b067023e5863214e4c64bcee9d7a4f1190ab59beae83",
+      "preservedAt": "evidence/rules/COSMOLOGY_EPILOGUE_RELIC_NULL_PLAYTEST.md"
+    },
+    {
+      "originalPath": "evidence/rules/CREATURE_LIFECYCLE_PLAYTEST.md",
+      "originalBytes": 20087,
+      "originalSha256": "eae68470d4dba14aa74334e22270e35a8aea022d3c5013aa75a96c15d8e93b08",
+      "preservedAt": "evidence/rules/CREATURE_LIFECYCLE_PLAYTEST.md"
+    },
+    {
+      "originalPath": "evidence/rules/DAMAGE_SHARING_PLAYTEST.md",
+      "originalBytes": 13112,
+      "originalSha256": "b298415146cba6453ec33f1310b4b668ac74e0e2d2681a08e077852c065d56e1",
+      "preservedAt": "evidence/rules/DAMAGE_SHARING_PLAYTEST.md"
+    },
+    {
+      "originalPath": "evidence/rules/HEALING_DEATH_PLAYTEST.md",
+      "originalBytes": 23410,
+      "originalSha256": "8d68794687b97da70aaff9953f9724e31e9fa3c8568fd4c2f9e8fd05d34c93f7",
+      "preservedAt": "evidence/rules/HEALING_DEATH_PLAYTEST.md"
+    },
+    {
+      "originalPath": "evidence/rules/MAXIMUM_HP_PLAYTEST.md",
+      "originalBytes": 12388,
+      "originalSha256": "c3771a0b40f8a969b20c152ec66db3789ecdf0c18033a7cae460bea6ccea516a",
+      "preservedAt": "evidence/rules/MAXIMUM_HP_PLAYTEST.md"
+    },
+    {
+      "originalPath": "evidence/rules/SPELL_INTEGRATION_RULES.md",
+      "originalBytes": 67451,
+      "originalSha256": "55f486de8d38a6734f8f0f2f62066401504f5b1311ebe66693175876b3f7aa6d",
+      "preservedAt": "evidence/rules/SPELL_INTEGRATION_RULES.md"
+    },
+    {
+      "originalPath": "evidence/rules/VIDEO_GAME_ONLY_DIRECTIVE.md",
+      "originalBytes": 8055,
+      "originalSha256": "10fb0f2e5892bcb77e63bf45fe95b36a526a31f1bdda42cc2561031e8913478f",
+      "preservedAt": "evidence/rules/VIDEO_GAME_ONLY_DIRECTIVE.md"
+    },
+    {
+      "originalPath": "history/AVAILABLE_SELECTED_PROCEDURE_LITERAL_RECONSTRUCTION.json",
+      "originalBytes": 187403,
+      "originalSha256": "63f0197c48c3b7a8e4780fae41ff4cb15c681554150ab2794aef4e10c2035248",
+      "preservedAt": "history/AVAILABLE_SELECTED_PROCEDURE_LITERAL_RECONSTRUCTION.json"
+    },
+    {
+      "originalPath": "history/EXACT_AVAILABLE_COMPLETE_CASE_OBJECTS.json",
+      "originalBytes": 3,
+      "originalSha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "preservedAt": "history/EXACT_AVAILABLE_COMPLETE_CASE_OBJECTS.json"
+    },
+    {
+      "originalPath": "history/captured-fragments/MAGIC7_CONTINUATION_VISIBLE_128.txt.json",
+      "originalBytes": 45546,
+      "originalSha256": "831564b70a18baf2c823f8f49ad3a06335ba46bc29787e0db639a2f307aaaabd",
+      "preservedAt": "history/captured-fragments/MAGIC7_CONTINUATION_VISIBLE_128.txt.json"
+    },
+    {
+      "originalPath": "history/captured-fragments/MAGIC7_VISIBLE_DRAFT_128.txt.json",
+      "originalBytes": 4729,
+      "originalSha256": "f27c273c6fd789bf0a6969c2bcd8056371b15609a40a65694faeca85c11c3d12",
+      "preservedAt": "history/captured-fragments/MAGIC7_VISIBLE_DRAFT_128.txt.json"
+    },
+    {
+      "originalPath": "history/input129/HANDOFF_129.json",
+      "originalBytes": 2440,
+      "originalSha256": "cc1f0ea9968cee66340a0e3cde6563fe3b195ad92335456ac0d166e18c0c0f0f",
+      "preservedAt": "history/input129/HANDOFF_129.json"
+    },
+    {
+      "originalPath": "history/input129/MANIFEST.json",
+      "originalBytes": 2791,
+      "originalSha256": "e479abf97bd4395a4db871e846910905648172cf0c4a3961ab62bd4a3545d237",
+      "preservedAt": "history/input129/MANIFEST.json"
+    },
+    {
+      "originalPath": "history/input129/README.txt",
+      "originalBytes": 436,
+      "originalSha256": "b2eec6e536553c6d1403d0ff8feed6781e4852a24c99b20646bd7303dfa9d4f3",
+      "preservedAt": "history/input129/README.txt"
+    },
+    {
+      "originalPath": "history/input129/current/CURRENT_SPELL_QUEUE_129.json",
+      "originalBytes": 82740,
+      "originalSha256": "c5f090fbdf6f5998b207e04beb97f2f93f59d8e1da31fcc3353cddec4a1c7441",
+      "preservedAt": "history/input129/current/CURRENT_SPELL_QUEUE_129.json"
+    },
+    {
+      "originalPath": "history/input129/current/PENDING232_NATIVE_SOURCE_GUARD_129.json",
+      "originalBytes": 1229981,
+      "originalSha256": "ef17a2ad565f8b72518a047e7a3761bd5e5e36cb2df24e08f31975772dfc8988",
+      "preservedAt": "history/input129/current/PENDING232_NATIVE_SOURCE_GUARD_129.json"
+    },
+    {
+      "originalPath": "history/input129/current/authored_review_index.json",
+      "originalBytes": 669902,
+      "originalSha256": "a03b61fe6b2bbebc9b019e5576287603c6b9a84708beb361e9b9c5e5e35cc535",
+      "preservedAt": "history/input129/current/authored_review_index.json"
+    },
+    {
+      "originalPath": "history/input129/exact-inputs/DD_Magic7_Native_Defense_Sources_128_v02.zip",
+      "originalBytes": 845445,
+      "originalSha256": "eee5c576214b363b8aaf3923b7bb0f3adf5d69db4a0a6b5db76cd3cb65970b2a",
+      "preservedAt": "history/input129/exact-inputs/DD_Magic7_Native_Defense_Sources_128_v02.zip"
+    },
+    {
+      "originalPath": "history/input129/exact-inputs/DD_MagicModifiers7_Director_Conference_127.zip",
+      "originalBytes": 54892717,
+      "originalSha256": "155e994000fb13c3fdcbee85a34e6ec0231e91f00aa6d635192e243dba72b64f",
+      "preservedAt": "history/input129/exact-inputs/DD_MagicModifiers7_Director_Conference_127.zip"
+    },
+    {
+      "originalPath": "history/input129/exact-inputs/DD_Transport6_Applied_Context_128.zip",
+      "originalBytes": 4965897,
+      "originalSha256": "93413f80edf331c90de276e66ea85a87a44105279fab84336e291db4723a3d7a",
+      "preservedAt": "history/input129/exact-inputs/DD_Transport6_Applied_Context_128.zip"
+    },
+    {
+      "originalPath": "history/input129/provisional-history/MAGIC7_CONTINUATION_VISIBLE_128.txt",
+      "originalBytes": 200117,
+      "originalSha256": "5674e9edeec1887d192b8499cd242ba083ea015a4ade2ff5b7c744dbd1962ff3",
+      "preservedAt": "history/input129/provisional-history/MAGIC7_CONTINUATION_VISIBLE_128.txt"
+    },
+    {
+      "originalPath": "history/input129/provisional-history/MAGIC7_CORRECTION_REQUEST_129.txt",
+      "originalBytes": 3942,
+      "originalSha256": "8f3d60e0e96d1d61d734541a82a48a4720db59ccfbec07bccf20308a77b0bc34",
+      "preservedAt": "history/input129/provisional-history/MAGIC7_CORRECTION_REQUEST_129.txt"
+    },
+    {
+      "originalPath": "history/input129/provisional-history/MAGIC7_CORRECTION_SENT_129.json",
+      "originalBytes": 1381,
+      "originalSha256": "37e7c652bd1e8d39f4cb4b4e67b578908533f6d086b153e1825c1f436cb4951e",
+      "preservedAt": "history/input129/provisional-history/MAGIC7_CORRECTION_SENT_129.json"
+    },
+    {
+      "originalPath": "history/input129/provisional-history/MAGIC7_DIRECTOR_RETURN01_RESPONSE_129.txt",
+      "originalBytes": 14801,
+      "originalSha256": "234e6d2fc08170b0509c1b4bcb2c28a2e5b115f4e600a74344483f4444a33f79",
+      "preservedAt": "history/input129/provisional-history/MAGIC7_DIRECTOR_RETURN01_RESPONSE_129.txt"
+    },
+    {
+      "originalPath": "history/input129/provisional-history/MAGIC7_DRAFT_SOURCE_FINDINGS_128.json",
+      "originalBytes": 6557,
+      "originalSha256": "77bfcc5aa32a5c0b4a6f43d959c7587cc38f5feae5ca2f05b495b0ac7bcd7a4c",
+      "preservedAt": "history/input129/provisional-history/MAGIC7_DRAFT_SOURCE_FINDINGS_128.json"
+    },
+    {
+      "originalPath": "history/input129/provisional-history/MAGIC7_VISIBLE_DRAFT_128.txt",
+      "originalBytes": 97205,
+      "originalSha256": "3e5d723a7961730ee4db3472ecc67b4dac1a56c32bb6f57bcbbd3c93ed039c09",
+      "preservedAt": "history/input129/provisional-history/MAGIC7_VISIBLE_DRAFT_128.txt"
+    },
+    {
+      "originalPath": "history/input129/provisional-history/MAGIC7_VISIBLE_DRAFT_REVIEW_128.json",
+      "originalBytes": 2689,
+      "originalSha256": "0a36a04770fd5012be94878344c6f503c6d5a8d194056bd0ba8dd21e47f35c4a",
+      "preservedAt": "history/input129/provisional-history/MAGIC7_VISIBLE_DRAFT_REVIEW_128.json"
+    }
+  ],
+  "recipientRoundHistories": [
+    {
+      "case": "TU6-01-A",
+      "event": "TU6-01-A:19",
+      "uses": {
+        "T": {
+          "1": {
+            "sourceCardId": "warrior.hero.wardborn.protective-mutations",
+            "sourceOwnerId": "G",
+            "sourceBinding": {
+              "file": "evidence/WARRIOR_CLASS_FULL.json",
+              "pointer": "/cards/23"
+            },
+            "activeMutation": "warrior.supplement.ironhide-graft",
+            "mutationActivatedAt": 7.1,
+            "recipientId": "T",
+            "numberedRound": 1,
+            "firstDamageRoot": "ER-root",
+            "at": 8.2,
+            "reduction": 3,
+            "scope": "This recipient first damage in this numbered round; no owner-wide consumption."
+          }
+        }
+      }
+    },
+    {
+      "case": "TU6-01-A",
+      "event": "TU6-01-A:20",
+      "uses": {
+        "T": {
+          "1": {
+            "sourceCardId": "warrior.hero.wardborn.protective-mutations",
+            "sourceOwnerId": "G",
+            "sourceBinding": {
+              "file": "evidence/WARRIOR_CLASS_FULL.json",
+              "pointer": "/cards/23"
+            },
+            "activeMutation": "warrior.supplement.ironhide-graft",
+            "mutationActivatedAt": 7.1,
+            "recipientId": "T",
+            "numberedRound": 1,
+            "firstDamageRoot": "ER-root",
+            "at": 8.2,
+            "reduction": 3,
+            "scope": "This recipient first damage in this numbered round; no owner-wide consumption."
+          }
+        }
+      }
+    },
+    {
+      "case": "TU6-01-A",
+      "event": "TU6-01-A:21",
+      "uses": {
+        "T": {
+          "1": {
+            "sourceCardId": "warrior.hero.wardborn.protective-mutations",
+            "sourceOwnerId": "G",
+            "sourceBinding": {
+              "file": "evidence/WARRIOR_CLASS_FULL.json",
+              "pointer": "/cards/23"
+            },
+            "activeMutation": "warrior.supplement.ironhide-graft",
+            "mutationActivatedAt": 7.1,
+            "recipientId": "T",
+            "numberedRound": 1,
+            "firstDamageRoot": "ER-root",
+            "at": 8.2,
+            "reduction": 3,
+            "scope": "This recipient first damage in this numbered round; no owner-wide consumption."
+          }
+        }
+      }
+    },
+    {
+      "case": "TU6-01-A",
+      "event": "TU6-01-A:22",
+      "uses": {
+        "T": {
+          "1": {
+            "sourceCardId": "warrior.hero.wardborn.protective-mutations",
+            "sourceOwnerId": "G",
+            "sourceBinding": {
+              "file": "evidence/WARRIOR_CLASS_FULL.json",
+              "pointer": "/cards/23"
+            },
+            "activeMutation": "warrior.supplement.ironhide-graft",
+            "mutationActivatedAt": 7.1,
+            "recipientId": "T",
+            "numberedRound": 1,
+            "firstDamageRoot": "ER-root",
+            "at": 8.2,
+            "reduction": 3,
+            "scope": "This recipient first damage in this numbered round; no owner-wide consumption."
+          }
+        }
+      }
+    },
+    {
+      "case": "TU6-01-A",
+      "event": "TU6-01-A:23",
+      "uses": {
+        "T": {
+          "1": {
+            "sourceCardId": "warrior.hero.wardborn.protective-mutations",
+            "sourceOwnerId": "G",
+            "sourceBinding": {
+              "file": "evidence/WARRIOR_CLASS_FULL.json",
+              "pointer": "/cards/23"
+            },
+            "activeMutation": "warrior.supplement.ironhide-graft",
+            "mutationActivatedAt": 7.1,
+            "recipientId": "T",
+            "numberedRound": 1,
+            "firstDamageRoot": "ER-root",
+            "at": 8.2,
+            "reduction": 3,
+            "scope": "This recipient first damage in this numbered round; no owner-wide consumption."
+          }
+        }
+      }
+    },
+    {
+      "case": "TU6-01-A/later-same-round",
+      "event": "TU6-01-A/later-same-round:R03-replay-TU6-01-A:19",
+      "uses": {
+        "T": {
+          "1": {
+            "sourceCardId": "warrior.hero.wardborn.protective-mutations",
+            "sourceOwnerId": "G",
+            "sourceBinding": {
+              "file": "evidence/WARRIOR_CLASS_FULL.json",
+              "pointer": "/cards/23"
+            },
+            "activeMutation": "warrior.supplement.ironhide-graft",
+            "mutationActivatedAt": 7.1,
+            "recipientId": "T",
+            "numberedRound": 1,
+            "firstDamageRoot": "ER-root",
+            "at": 8.2,
+            "reduction": 3,
+            "scope": "This recipient first damage in this numbered round; no owner-wide consumption."
+          }
+        }
+      }
+    },
+    {
+      "case": "TU6-01-A/later-same-round",
+      "event": "TU6-01-A/later-same-round:0",
+      "uses": {
+        "T": {
+          "1": {
+            "sourceCardId": "warrior.hero.wardborn.protective-mutations",
+            "sourceOwnerId": "G",
+            "sourceBinding": {
+              "file": "evidence/WARRIOR_CLASS_FULL.json",
+              "pointer": "/cards/23"
+            },
+            "activeMutation": "warrior.supplement.ironhide-graft",
+            "mutationActivatedAt": 7.1,
+            "recipientId": "T",
+            "numberedRound": 1,
+            "firstDamageRoot": "ER-root",
+            "at": 8.2,
+            "reduction": 3,
+            "scope": "This recipient first damage in this numbered round; no owner-wide consumption."
+          }
+        }
+      }
+    },
+    {
+      "case": "TU6-01-A/later-same-round",
+      "event": "TU6-01-A/later-same-round:R03-real-speech",
+      "uses": {
+        "T": {
+          "1": {
+            "sourceCardId": "warrior.hero.wardborn.protective-mutations",
+            "sourceOwnerId": "G",
+            "sourceBinding": {
+              "file": "evidence/WARRIOR_CLASS_FULL.json",
+              "pointer": "/cards/23"
+            },
+            "activeMutation": "warrior.supplement.ironhide-graft",
+            "mutationActivatedAt": 7.1,
+            "recipientId": "T",
+            "numberedRound": 1,
+            "firstDamageRoot": "ER-root",
+            "at": 8.2,
+            "reduction": 3,
+            "scope": "This recipient first damage in this numbered round; no owner-wide consumption."
+          }
+        }
+      }
+    },
+    {
+      "case": "TU6-01-A/later-same-round",
+      "event": "TU6-01-A/later-same-round:R03-second-real-hit",
+      "uses": {
+        "T": {
+          "1": {
+            "sourceCardId": "warrior.hero.wardborn.protective-mutations",
+            "sourceOwnerId": "G",
+            "sourceBinding": {
+              "file": "evidence/WARRIOR_CLASS_FULL.json",
+              "pointer": "/cards/23"
+            },
+            "activeMutation": "warrior.supplement.ironhide-graft",
+            "mutationActivatedAt": 7.1,
+            "recipientId": "T",
+            "numberedRound": 1,
+            "firstDamageRoot": "ER-root",
+            "at": 8.2,
+            "reduction": 3,
+            "scope": "This recipient first damage in this numbered round; no owner-wide consumption."
+          }
+        }
+      }
+    },
+    {
+      "case": "TU6-01-A/later-same-round",
+      "event": "TU6-01-A/later-same-round:R03-C-move",
+      "uses": {
+        "T": {
+          "1": {
+            "sourceCardId": "warrior.hero.wardborn.protective-mutations",
+            "sourceOwnerId": "G",
+            "sourceBinding": {
+              "file": "evidence/WARRIOR_CLASS_FULL.json",
+              "pointer": "/cards/23"
+            },
+            "activeMutation": "warrior.supplement.ironhide-graft",
+            "mutationActivatedAt": 7.1,
+            "recipientId": "T",
+            "numberedRound": 1,
+            "firstDamageRoot": "ER-root",
+            "at": 8.2,
+            "reduction": 3,
+            "scope": "This recipient first damage in this numbered round; no owner-wide consumption."
+          }
+        }
+      }
+    },
+    {
+      "case": "TU6-01-A/later-same-round",
+      "event": "TU6-01-A/later-same-round:R03-replay-TU6-01-A:20",
+      "uses": {
+        "T": {
+          "1": {
+            "sourceCardId": "warrior.hero.wardborn.protective-mutations",
+            "sourceOwnerId": "G",
+            "sourceBinding": {
+              "file": "evidence/WARRIOR_CLASS_FULL.json",
+              "pointer": "/cards/23"
+            },
+            "activeMutation": "warrior.supplement.ironhide-graft",
+            "mutationActivatedAt": 7.1,
+            "recipientId": "T",
+            "numberedRound": 1,
+            "firstDamageRoot": "ER-root",
+            "at": 8.2,
+            "reduction": 3,
+            "scope": "This recipient first damage in this numbered round; no owner-wide consumption."
+          }
+        }
+      }
+    },
+    {
+      "case": "TU6-01-A/later-same-round",
+      "event": "TU6-01-A/later-same-round:R03-replay-TU6-01-A:21",
+      "uses": {
+        "T": {
+          "1": {
+            "sourceCardId": "warrior.hero.wardborn.protective-mutations",
+            "sourceOwnerId": "G",
+            "sourceBinding": {
+              "file": "evidence/WARRIOR_CLASS_FULL.json",
+              "pointer": "/cards/23"
+            },
+            "activeMutation": "warrior.supplement.ironhide-graft",
+            "mutationActivatedAt": 7.1,
+            "recipientId": "T",
+            "numberedRound": 1,
+            "firstDamageRoot": "ER-root",
+            "at": 8.2,
+            "reduction": 3,
+            "scope": "This recipient first damage in this numbered round; no owner-wide consumption."
+          }
+        }
+      }
+    },
+    {
+      "case": "TU6-01-A/later-same-round",
+      "event": "TU6-01-A/later-same-round:R03-other-pay",
+      "uses": {
+        "T": {
+          "1": {
+            "sourceCardId": "warrior.hero.wardborn.protective-mutations",
+            "sourceOwnerId": "G",
+            "sourceBinding": {
+              "file": "evidence/WARRIOR_CLASS_FULL.json",
+              "pointer": "/cards/23"
+            },
+            "activeMutation": "warrior.supplement.ironhide-graft",
+            "mutationActivatedAt": 7.1,
+            "recipientId": "T",
+            "numberedRound": 1,
+            "firstDamageRoot": "ER-root",
+            "at": 8.2,
+            "reduction": 3,
+            "scope": "This recipient first damage in this numbered round; no owner-wide consumption."
+          }
+        }
+      }
+    },
+    {
+      "case": "TU6-01-A/later-same-round",
+      "event": "TU6-01-A/later-same-round:R03-other-first-hit",
+      "uses": {
+        "T": {
+          "1": {
+            "sourceCardId": "warrior.hero.wardborn.protective-mutations",
+            "sourceOwnerId": "G",
+            "sourceBinding": {
+              "file": "evidence/WARRIOR_CLASS_FULL.json",
+              "pointer": "/cards/23"
+            },
+            "activeMutation": "warrior.supplement.ironhide-graft",
+            "mutationActivatedAt": 7.1,
+            "recipientId": "T",
+            "numberedRound": 1,
+            "firstDamageRoot": "ER-root",
+            "at": 8.2,
+            "reduction": 3,
+            "scope": "This recipient first damage in this numbered round; no owner-wide consumption."
+          }
+        },
+        "C": {
+          "1": {
+            "sourceCardId": "warrior.hero.wardborn.protective-mutations",
+            "sourceOwnerId": "G",
+            "sourceBinding": {
+              "file": "evidence/WARRIOR_CLASS_FULL.json",
+              "pointer": "/cards/23"
+            },
+            "activeMutation": "warrior.supplement.ironhide-graft",
+            "mutationActivatedAt": 7.1,
+            "recipientId": "C",
+            "numberedRound": 1,
+            "firstDamageRoot": "ALLY-BOLT-root",
+            "at": 10.2,
+            "reduction": 3,
+            "scope": "This recipient first damage in this numbered round; no owner-wide consumption."
+          }
+        }
+      }
+    },
+    {
+      "case": "TU6-01-A/later-same-round",
+      "event": "TU6-01-A/later-same-round:R03-replay-TU6-01-A:22",
+      "uses": {
+        "T": {
+          "1": {
+            "sourceCardId": "warrior.hero.wardborn.protective-mutations",
+            "sourceOwnerId": "G",
+            "sourceBinding": {
+              "file": "evidence/WARRIOR_CLASS_FULL.json",
+              "pointer": "/cards/23"
+            },
+            "activeMutation": "warrior.supplement.ironhide-graft",
+            "mutationActivatedAt": 7.1,
+            "recipientId": "T",
+            "numberedRound": 1,
+            "firstDamageRoot": "ER-root",
+            "at": 8.2,
+            "reduction": 3,
+            "scope": "This recipient first damage in this numbered round; no owner-wide consumption."
+          }
+        },
+        "C": {
+          "1": {
+            "sourceCardId": "warrior.hero.wardborn.protective-mutations",
+            "sourceOwnerId": "G",
+            "sourceBinding": {
+              "file": "evidence/WARRIOR_CLASS_FULL.json",
+              "pointer": "/cards/23"
+            },
+            "activeMutation": "warrior.supplement.ironhide-graft",
+            "mutationActivatedAt": 7.1,
+            "recipientId": "C",
+            "numberedRound": 1,
+            "firstDamageRoot": "ALLY-BOLT-root",
+            "at": 10.2,
+            "reduction": 3,
+            "scope": "This recipient first damage in this numbered round; no owner-wide consumption."
+          }
+        }
+      }
+    },
+    {
+      "case": "TU6-01-A/later-same-round",
+      "event": "TU6-01-A/later-same-round:R03-replay-TU6-01-A:23",
+      "uses": {
+        "T": {
+          "1": {
+            "sourceCardId": "warrior.hero.wardborn.protective-mutations",
+            "sourceOwnerId": "G",
+            "sourceBinding": {
+              "file": "evidence/WARRIOR_CLASS_FULL.json",
+              "pointer": "/cards/23"
+            },
+            "activeMutation": "warrior.supplement.ironhide-graft",
+            "mutationActivatedAt": 7.1,
+            "recipientId": "T",
+            "numberedRound": 1,
+            "firstDamageRoot": "ER-root",
+            "at": 8.2,
+            "reduction": 3,
+            "scope": "This recipient first damage in this numbered round; no owner-wide consumption."
+          }
+        },
+        "C": {
+          "1": {
+            "sourceCardId": "warrior.hero.wardborn.protective-mutations",
+            "sourceOwnerId": "G",
+            "sourceBinding": {
+              "file": "evidence/WARRIOR_CLASS_FULL.json",
+              "pointer": "/cards/23"
+            },
+            "activeMutation": "warrior.supplement.ironhide-graft",
+            "mutationActivatedAt": 7.1,
+            "recipientId": "C",
+            "numberedRound": 1,
+            "firstDamageRoot": "ALLY-BOLT-root",
+            "at": 10.2,
+            "reduction": 3,
+            "scope": "This recipient first damage in this numbered round; no owner-wide consumption."
+          }
+        }
+      }
+    }
+  ],
+  "suppliedCodeExecuted": false,
+  "canonicalChanges": false
+}
