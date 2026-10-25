@@ -1,12 +1,12 @@
-> **GitHub snapshot — 25 October 2026:** Ordinary spell review is at **700 applied-reviewed / 148 pending**. Return148 was accepted and applied with retained holds. The next Ward5 packet is prepared; its review and acceptance remain pending. See [snapshot status](SNAPSHOT_STATUS_2026-10-25_SPELL_REVIEW_148.md). Earlier notes below are retained history.
+# Active ordinary spell review149 — Calibration review part6
 
-# Active ordinary spell review148 — Calibration review part6
+Return149 was director accepted and applied for five identities: **705 applied-reviewed / 143 pending / 0 accepted-unapplied**. GPT reports 15,142 independent static checks and 755 package-member checks with zero failures. All 13 Ward5 holds remain, including 10 positive Fortress campaign cases. Runtime selection, implementation, human play, balance, cosmology, release and domain-closure approval remain separate.
 
-Return148 is director accepted and applied for five identities in the authored procedure index: **700 applied-reviewed / 148 pending / 0 accepted-unapplied**. GPT passed 36,451 independent data checks, 985 package checks and 743 ZIP round-trip checks with zero failures; all 10 new holds and 13 retained comparison holds remain. Runtime selection, implementation, human play, balance, cosmology, release and domain-closure approval remain separate.
+Continue with **rank8-memory-control4** (four identities), preparing a fresh packet against 705/143 and submitting it to GPT for exact director review. Apply only accepted IDs. Preserve closed feat335 and completed spell cohorts.
 
-Continue in the current source queue with **rank8-ward5** (five identities), preparing a fresh packet against the 700/148 authority. Apply only after independent exact review and director acceptance. Preserve the closed feat335 and completed spell cohorts.
+Read [CURRENT-HANDOFF-149](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_149.json), [the 143-pending audit](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT143_PENDING_IDENTITY_AUDIT_149.json), [the application validation](docs/audit/2026-10-08/full-game/director-spell-review-129/RANK8_WARD5_APPLICATION_VALIDATION_149.json), and [snapshot status](SNAPSHOT_STATUS_2026-10-25_SPELL_REVIEW_149.md).
 
-Read [CURRENT-HANDOFF-148](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_148.json), [the 148-pending audit](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT148_PENDING_IDENTITY_AUDIT_148.json), and [the application validation](docs/audit/2026-10-08/full-game/director-spell-review-129/RANK8_CONTROL5_APPLICATION_VALIDATION_148.json).
+**Prior checkpoint: [148](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_148.json).**
 
 **Latest checkpoint: [128](docs/audit/2026-10-08/full-game/ACTIVE_AUTHORING_CHECKPOINT_ORDINARY_SPELL_REVIEW_128.json).** Transport6 accepted and applied with retained holds. Current authored coverage616 reviewed/232 pending,340 standalone,0 accepted-unapplied. All23,499 independent data checks and120 current-source/acquisition checks pass; all49 exact return files and1000 work-phase records are preserved. MagicModifiers7 is submitted and actively under director review in Calibration Review Part5. Continue its exact review and apply after acceptance, then LifeMatter5/Information8/Eye1. Closed feats and completed spells remain closed; runtime, human/balance/cosmology and release gates remain. Earlier checkpoint labels below are historical.
 
