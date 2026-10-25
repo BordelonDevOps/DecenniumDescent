@@ -1,0 +1,400 @@
+{
+  "id": "animal-shapes",
+  "proposalScope": "spell-local NEW authored operational procedure",
+  "nativeUnchanged": {
+    "id": "animal-shapes",
+    "name": "Animal Shapes",
+    "schools": [
+      "Transmutation"
+    ],
+    "status": "blocked-pending-operational-review",
+    "visibility": "public-source-review",
+    "classAccess": {
+      "Druid": {
+        "rank": 8,
+        "minimumClassLevel": 15,
+        "school": "Transmutation",
+        "baseRpCost": 21
+      },
+      "Mage": {
+        "rank": 8,
+        "minimumClassLevel": 15,
+        "school": "Transmutation",
+        "baseRpCost": 21
+      },
+      "Wizard": {
+        "rank": 8,
+        "minimumClassLevel": 15,
+        "school": "Transmutation",
+        "baseRpCost": 21
+      }
+    },
+    "operational": null,
+    "additionalRpCost": 0,
+    "source": {
+      "catalogPath": "src/data/spells.js",
+      "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+      "catalogKey": "animal-shapes",
+      "original": {
+        "name": "Animal Shapes",
+        "level": 8,
+        "resonanceRank": 8,
+        "school": "Transmutation",
+        "schools": [
+          "Transmutation"
+        ],
+        "placements": [
+          {
+            "name": "Animal Shapes",
+            "school": "Transmutation",
+            "level": 8,
+            "summary": "Transform willing creatures into chosen beasts."
+          }
+        ],
+        "classLevels": {
+          "Druid": 8,
+          "Mage": 8,
+          "Wizard": 8
+        },
+        "classRanks": {
+          "Druid": 8,
+          "Mage": 8,
+          "Wizard": 8
+        },
+        "classLearnLevels": {
+          "Druid": 15,
+          "Mage": 15,
+          "Wizard": 15
+        },
+        "classSchools": {
+          "Druid": "Transmutation",
+          "Mage": "Transmutation",
+          "Wizard": "Transmutation"
+        },
+        "castingTime": "Not specified in current rulebook",
+        "range": "Not specified in current rulebook",
+        "components": "Not specified in current rulebook",
+        "duration": "Not specified in current rulebook",
+        "description": "Transform willing creatures into chosen beasts.",
+        "alternateSummaries": [],
+        "classes": [
+          "Druid",
+          "Mage",
+          "Wizard"
+        ],
+        "status": "canon",
+        "source": "Player Rulebook — Spell Lists"
+      },
+      "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+      "coreEntries": [
+        {
+          "index": 815,
+          "original": {
+            "school": "Transmutation",
+            "level": 8,
+            "name": "Animal Shapes",
+            "effect": "Transform willing creatures into chosen beasts.",
+            "source_paragraph": 9989,
+            "casting_time": "1 action",
+            "range": "120 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Utility"
+            ],
+            "rp_cost": 21
+          }
+        }
+      ],
+      "possibleHistoricalAliases": []
+    },
+    "reviewFlags": [
+      "Core resolution requires an explicit operational interpretation",
+      "Not selectable in this spell playtest packet until individual operational review"
+    ]
+  },
+  "common": {
+    "scope": "NEW spell-local operational authorship only. Native source envelopes are immutable; they still say blocked-pending-operational-review and operational=null. The isolated proposal is not installed in the live catalog. Exact accepted interfaces are reproduced in ORIGINAL_SOURCE_RECORDS.json; no later backing-file changes become accepted merely by presence.",
+    "access": "Use the native classAccess rows exactly, actual class level, actual known/book/prepared entry, class prerequisites and available rank. Rank8 costs21RP before actual source-specific adjustments; no Overcast, invented acquisition, global discounts, slots or imported costly components. V/S/F, ordinary Action, one perceived target or declared target set within120ft and unobstructed line of effect at commitment and application. A focus is an actual accessible item; no material cost is added. Missing access or known physical illegality prevents commitment. Hidden disqualification after a lawful commitment spends the cast without an oracle or substitute target.",
+    "commitment": "Resolve actual current defenses, legal ability to act, anatomy/components and perception before committing. Spend Action and actual21RP; record exact family, base strain, Refrain, Dissonance and any source-specific hooks. Wizard first prepared family in encounter has0 base strain; rank8 repeated family uses base2 plus actual Refrain. Other ordinary classes use rank8 base2 plus Refrain. Read Dissonance before casting: limit=max(4,2+PB+max(0,casting modifier)); ranked surcharge at limit/limit+3/limit+6 is+1/+2/+3RP, and ordinary rank1+ casting is blocked at limit+6 absent an actual expressly granted traumatic exception. Refrain for consecutive same-name casts is+1/+2/+3 capped3; a different name resets it to0, idle/weapon turns do not. Track all actual threshold consequences if reached. Nondamaging Life/Form spells are not damaging Mage Focus casts: clear Nuke Chain; no Surge damage or chain award. Animal Shapes is not Druid Shapeshift and clears no Refrain or reserves.",
+    "timing": "Use elapsed seconds plus original regular-slot marker and phase. Absolute expiry at phase0 wins before new events at that timestamp. Complete an already resolving packet under its actual source ordering; no extra turns tick clocks. Ready uses its own actual Action commitment, components,21RP/strain and concentration hold, then one eligible Reaction release before its deadline; it gives no free cast or renewed duration. Ready selects the legal target set/area and any required body/form/anchor choices at release, not at preparation, as the accepted Ready exception. Revalidate every prerequisite and all-outcome fit before spending the release Reaction; invalid/declined occurrence may await another valid trigger until next regular own-turn START, with setup cost retained. Counterspell is at preparation only. Effect duration/maturity starts at successful release/application, not preparation. For Animal Shapes a concentration hold becomes the shared effect on successful release; loss/failure does not restore prior concentration. Other effects end the Ready hold after resolution.",
+    "defenses": "Use actual acquired Counterspell, reflection, immunity, antimagic, dispel and concentration records within exact scope, not spell names or guessed ranks. All four are rank8 for applicable checks. A class Wizard Dispel is rank3 at its printed3RP/check10+target rank; it is never Greater Dispel rank5. Source-specific counter success is necessary; a suppressed effect is not terminated unless its source says so. New Animal concentration ends old same-caster concentration at commitment, before counter/save/failure. Nonconcentration Clone/Flesh/Perfect do not end other concentration unless Ready does.",
+    "returnsAndOwnership": "Preserve actors, real body and item IDs, personal HP/max ledger, temporaryHP, Wounds/injuries, actual conditions, paid resources, spent turn markers, debts, death and return histories. Do not infer ownership, loyalty, soul geography, CR, content permission, creature roster or preparation from a title. Actual death ends concentration and only the effects whose sources end on death; completed memory losses and other persistent personal consequences are retained. Every fixture is synthetic data for a static rule trace, not an acquired campaign character or physical-world proof.",
+    "holds": "Source/access/content/form/body geometry/identity topology/runtime/human-play/balance/release holds survive this return. A missing prerequisite holds the whole dependent case or branch; it cannot be narrated as a positive actual campaign result. All changed rules below are NEW only for these four spells."
+  },
+  "rules": {
+    "selection": "NEW for an ordinary cast select1–10 distinct willing perceived physical creature-origin recipients and one of the seven complete animal mappings per recipient before commitment. The common accepted Ready exception instead selects this set at release after paid preparation; fit is then checked before the release Reaction. No mass opt-in later, arbitrary bestiary, CR filtering, hidden target replacement or switching forms during the effect. Form names denote actual chosen spell-local beast anatomy, not a change of origin taxonomy. Object-origin transformed objects, summon bodies with incompatible lifecycle, unknown anatomy/mass and undocumented origin require their own established source; otherwise that dependent branch is held. Actual willing withdrawal before resolution makes only that recipient fail, with cost retained.",
+    "duration": "NEW one shared rank8 concentration record expires exactly60elapsedseconds after successful application; individual target links may end separately. Caster concentration loss/death ends all links; ending the final target link ends this now-empty shared concentration. Range120 is acquisition/application only, not a maintained tether. No extra body, turn, HP pool, concentration slot or form-switch Action is granted.",
+    "geometry": "NEW reuse accepted all-outcome fit: before ordinary payment (or before an already-paid Ready release Reaction) every target origin O and proposed transformed T must fit simultaneously for every pair O/O,O/T,T/O,T/T, other creatures, occupied matter and height. Reproject roots when this caster must drop an earlier concentration. Recheck at resolution; hidden newly blocked recipient fails, no displacement of another actor. Mandatory reversion ends the form even if placement becomes difficult: source-scoped BODY same anchor, actual legal squeeze, then nearest legal adjacent in the same unobstructed region, minimum displacement/greatest overlap/fixed neutral board tie; no farther search or barrier crossing. If none, record placementConflict and hold geometry-dependent continuation. Banishment-specific conflict rules are not globalized.",
+    "identityAndGear": "NEW explicitly reuse accepted creature transformation conservation. Scores, PB, HP/max/tempHP, class resources, Wounds, injuries, identity, species/ancestry, conditions and initiative remain real. Only listed anatomy/movement/AC/natural attack changes. Base body weight unchanged even across sizes; actual cargo still weighs including melded items; BODY carry/load and actual anatomy restrictions apply. Earliest root carried gear becomes melded, inaccessible, custody unchanged; incompatible armor/features cease expression. Existing external cargo stays external. Successful legal replacement closes previous anatomy atomically and recaptures actual extant gear once, never restores consumed items, charges or healing. No displaced form stack. Druid class Shapeshift cannot enter while a spell-form record remains, including suppressed.",
+    "attacks": "NEW use current original caster attack bonus/M for the mapped natural attack; original caster statistics must be actually resolvable. Subject is the attacker/damage owner for Null, kill credit and reactions; no caster cast-proc on a natural attack. One attack per ordinary Attack Action, reach5, listed dice+M; no Multiattack, spells, magic attacks, class beast benefits or senses beyond mapped/existing compatible source. Missing caster-stat provenance holds the attack branch; other links do not disappear.",
+    "endings": "Temporary form ends for that target on actual normalHP0, actual death or external Incapacitated after same-packet survival replacements. A real remain-at1 intervention prevents that zero ending. Each willing recipient may reject using one ordinary Action on its own regular turn if actually able, even while suppressed. New rank8 temporary anatomy may replace actual temporary ranks≤8 on success, not permanent True Polymorph absent its exact exception. A failed new cast leaves another caster’s prior form; same-caster concentration already ended is never restored.",
+    "suppression": "Suppression expresses earliest root anatomy while original melded gear remains inaccessible; it does not recapture gear, refund RP, end concentration, pause deadline or restore a displaced form. Unsuppression restores only a surviving unexpired link. Loss of actual flight begins accepted Falling now, first descent at END of the enclosing original regular slot NEXT round, then6second steps≤300ft. No instant ground teleport; actual landing damage min(10,floor(uncontrolledFeet/20))d6, positive damage causes Prone. Regaining adequate flight ends Falling without impact.",
+    "forms": [
+      {
+        "animal": "wolf",
+        "profile": "Predator",
+        "authorship": "NEW finite spell-local beast-shaped anatomy mapping; no monster, Beast taxonomy or CR assertion",
+        "size": "Medium",
+        "horizontalFeet": [
+          5,
+          5
+        ],
+        "requiredHeightFeet": 4,
+        "stance": "Authored occupied envelope includes limbs and extended wings; no smaller squeezed pose is assumed. Use BODY legal squeeze only if actual geometry proves it.",
+        "baseBodyMass": "unchanged actual origin pounds",
+        "walk": 40,
+        "fly": 0,
+        "swim": 0,
+        "burrowLooseSoil": 0,
+        "hover": false,
+        "AC": "max(actual compatible ordinary AC,13)",
+        "hands": false,
+        "speech": false,
+        "senses": [
+          "ordinary sight",
+          "ordinary hearing"
+        ],
+        "breathing": "Adds water breathing for dolphin; retains actual original air-breathing needs otherwise. No no-air/food/sleep immunity.",
+        "attack": {
+          "countPerAttackAction": 1,
+          "reachFeet": 5,
+          "attackBonus": "current original caster PB + casting ability modifier plus actual applicable source bonuses",
+          "damageDice": "1d8",
+          "damageModifier": "max(1,current original caster casting ability modifier)",
+          "type": "slashing",
+          "magicalByDefault": false,
+          "damageOwner": "subject"
+        }
+      },
+      {
+        "animal": "brown bear",
+        "profile": "Brute",
+        "authorship": "NEW finite spell-local beast-shaped anatomy mapping; no monster, Beast taxonomy or CR assertion",
+        "size": "Large",
+        "horizontalFeet": [
+          10,
+          10
+        ],
+        "requiredHeightFeet": 8,
+        "stance": "Authored occupied envelope includes limbs and extended wings; no smaller squeezed pose is assumed. Use BODY legal squeeze only if actual geometry proves it.",
+        "baseBodyMass": "unchanged actual origin pounds",
+        "walk": 30,
+        "fly": 0,
+        "swim": 0,
+        "burrowLooseSoil": 0,
+        "hover": false,
+        "AC": "max(actual compatible ordinary AC,15)",
+        "hands": false,
+        "speech": false,
+        "senses": [
+          "ordinary sight",
+          "ordinary hearing"
+        ],
+        "breathing": "Adds water breathing for dolphin; retains actual original air-breathing needs otherwise. No no-air/food/sleep immunity.",
+        "attack": {
+          "countPerAttackAction": 1,
+          "reachFeet": 5,
+          "attackBonus": "current original caster PB + casting ability modifier plus actual applicable source bonuses",
+          "damageDice": "2d6",
+          "damageModifier": "max(1,current original caster casting ability modifier)",
+          "type": "bludgeoning",
+          "magicalByDefault": false,
+          "damageOwner": "subject"
+        }
+      },
+      {
+        "animal": "hawk",
+        "profile": "Avian",
+        "authorship": "NEW finite spell-local beast-shaped anatomy mapping; no monster, Beast taxonomy or CR assertion",
+        "size": "Small",
+        "horizontalFeet": [
+          5,
+          5
+        ],
+        "requiredHeightFeet": 3,
+        "stance": "Authored occupied envelope includes limbs and extended wings; no smaller squeezed pose is assumed. Use BODY legal squeeze only if actual geometry proves it.",
+        "baseBodyMass": "unchanged actual origin pounds",
+        "walk": 10,
+        "fly": 50,
+        "swim": 0,
+        "burrowLooseSoil": 0,
+        "hover": false,
+        "AC": "max(actual compatible ordinary AC,13)",
+        "hands": false,
+        "speech": false,
+        "senses": [
+          "ordinary sight",
+          "ordinary hearing"
+        ],
+        "breathing": "Adds water breathing for dolphin; retains actual original air-breathing needs otherwise. No no-air/food/sleep immunity.",
+        "attack": {
+          "countPerAttackAction": 1,
+          "reachFeet": 5,
+          "attackBonus": "current original caster PB + casting ability modifier plus actual applicable source bonuses",
+          "damageDice": "1d6",
+          "damageModifier": "max(1,current original caster casting ability modifier)",
+          "type": "slashing",
+          "magicalByDefault": false,
+          "damageOwner": "subject"
+        }
+      },
+      {
+        "animal": "dolphin",
+        "profile": "Aquatic",
+        "authorship": "NEW finite spell-local beast-shaped anatomy mapping; no monster, Beast taxonomy or CR assertion",
+        "size": "Medium",
+        "horizontalFeet": [
+          5,
+          5
+        ],
+        "requiredHeightFeet": 3,
+        "stance": "Authored occupied envelope includes limbs and extended wings; no smaller squeezed pose is assumed. Use BODY legal squeeze only if actual geometry proves it.",
+        "baseBodyMass": "unchanged actual origin pounds",
+        "walk": 20,
+        "fly": 0,
+        "swim": 50,
+        "burrowLooseSoil": 0,
+        "hover": false,
+        "AC": "max(actual compatible ordinary AC,14)",
+        "hands": false,
+        "speech": false,
+        "senses": [
+          "ordinary sight",
+          "ordinary hearing"
+        ],
+        "breathing": "Adds water breathing for dolphin; retains actual original air-breathing needs otherwise. No no-air/food/sleep immunity.",
+        "attack": {
+          "countPerAttackAction": 1,
+          "reachFeet": 5,
+          "attackBonus": "current original caster PB + casting ability modifier plus actual applicable source bonuses",
+          "damageDice": "1d8",
+          "damageModifier": "max(1,current original caster casting ability modifier)",
+          "type": "piercing",
+          "magicalByDefault": false,
+          "damageOwner": "subject"
+        }
+      },
+      {
+        "animal": "badger",
+        "profile": "Burrower",
+        "authorship": "NEW finite spell-local beast-shaped anatomy mapping; no monster, Beast taxonomy or CR assertion",
+        "size": "Medium",
+        "horizontalFeet": [
+          5,
+          5
+        ],
+        "requiredHeightFeet": 3,
+        "stance": "Authored occupied envelope includes limbs and extended wings; no smaller squeezed pose is assumed. Use BODY legal squeeze only if actual geometry proves it.",
+        "baseBodyMass": "unchanged actual origin pounds",
+        "walk": 30,
+        "fly": 0,
+        "swim": 0,
+        "burrowLooseSoil": 15,
+        "hover": false,
+        "AC": "max(actual compatible ordinary AC,14)",
+        "hands": false,
+        "speech": false,
+        "senses": [
+          "ordinary sight",
+          "ordinary hearing"
+        ],
+        "breathing": "Adds water breathing for dolphin; retains actual original air-breathing needs otherwise. No no-air/food/sleep immunity.",
+        "attack": {
+          "countPerAttackAction": 1,
+          "reachFeet": 5,
+          "attackBonus": "current original caster PB + casting ability modifier plus actual applicable source bonuses",
+          "damageDice": "1d8",
+          "damageModifier": "max(1,current original caster casting ability modifier)",
+          "type": "bludgeoning",
+          "magicalByDefault": false,
+          "damageOwner": "subject"
+        }
+      },
+      {
+        "animal": "elephant",
+        "profile": "Greater brute",
+        "authorship": "NEW finite spell-local beast-shaped anatomy mapping; no monster, Beast taxonomy or CR assertion",
+        "size": "Large",
+        "horizontalFeet": [
+          10,
+          10
+        ],
+        "requiredHeightFeet": 10,
+        "stance": "Authored occupied envelope includes limbs and extended wings; no smaller squeezed pose is assumed. Use BODY legal squeeze only if actual geometry proves it.",
+        "baseBodyMass": "unchanged actual origin pounds",
+        "walk": 40,
+        "fly": 0,
+        "swim": 0,
+        "burrowLooseSoil": 0,
+        "hover": false,
+        "AC": "max(actual compatible ordinary AC,17)",
+        "hands": false,
+        "speech": false,
+        "senses": [
+          "ordinary sight",
+          "ordinary hearing"
+        ],
+        "breathing": "Adds water breathing for dolphin; retains actual original air-breathing needs otherwise. No no-air/food/sleep immunity.",
+        "attack": {
+          "countPerAttackAction": 1,
+          "reachFeet": 5,
+          "attackBonus": "current original caster PB + casting ability modifier plus actual applicable source bonuses",
+          "damageDice": "2d8",
+          "damageModifier": "max(1,current original caster casting ability modifier)",
+          "type": "bludgeoning",
+          "magicalByDefault": false,
+          "damageOwner": "subject"
+        }
+      },
+      {
+        "animal": "giant condor",
+        "profile": "Greater winged",
+        "authorship": "NEW finite spell-local beast-shaped anatomy mapping; no monster, Beast taxonomy or CR assertion",
+        "size": "Large",
+        "horizontalFeet": [
+          10,
+          10
+        ],
+        "requiredHeightFeet": 8,
+        "stance": "Authored occupied envelope includes limbs and extended wings; no smaller squeezed pose is assumed. Use BODY legal squeeze only if actual geometry proves it.",
+        "baseBodyMass": "unchanged actual origin pounds",
+        "walk": 20,
+        "fly": 60,
+        "swim": 0,
+        "burrowLooseSoil": 0,
+        "hover": false,
+        "AC": "max(actual compatible ordinary AC,16)",
+        "hands": false,
+        "speech": false,
+        "senses": [
+          "ordinary sight",
+          "ordinary hearing"
+        ],
+        "breathing": "Adds water breathing for dolphin; retains actual original air-breathing needs otherwise. No no-air/food/sleep immunity.",
+        "attack": {
+          "countPerAttackAction": 1,
+          "reachFeet": 5,
+          "attackBonus": "current original caster PB + casting ability modifier plus actual applicable source bonuses",
+          "damageDice": "2d8",
+          "damageModifier": "max(1,current original caster casting ability modifier)",
+          "type": "slashing",
+          "magicalByDefault": false,
+          "damageOwner": "subject"
+        }
+      }
+    ]
+  },
+  "sourceQuestionIds": [
+    "LF8-Q01",
+    "LF8-A01",
+    "LF8-A02",
+    "LF8-A03",
+    "LF8-A04",
+    "LF8-A05",
+    "LF8-X01",
+    "LF8-X02"
+  ]
+}

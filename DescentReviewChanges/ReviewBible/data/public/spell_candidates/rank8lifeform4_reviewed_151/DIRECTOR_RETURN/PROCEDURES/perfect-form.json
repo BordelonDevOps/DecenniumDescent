@@ -1,0 +1,147 @@
+{
+  "id": "perfect-form",
+  "proposalScope": "spell-local NEW authored operational procedure",
+  "nativeUnchanged": {
+    "id": "perfect-form",
+    "name": "Perfect Form",
+    "schools": [
+      "Transmutation"
+    ],
+    "status": "blocked-pending-operational-review",
+    "visibility": "public-source-review",
+    "classAccess": {
+      "Druid": {
+        "rank": 8,
+        "minimumClassLevel": 15,
+        "school": "Transmutation",
+        "baseRpCost": 21
+      },
+      "Mage": {
+        "rank": 8,
+        "minimumClassLevel": 15,
+        "school": "Transmutation",
+        "baseRpCost": 21
+      },
+      "Wizard": {
+        "rank": 8,
+        "minimumClassLevel": 15,
+        "school": "Transmutation",
+        "baseRpCost": 21
+      }
+    },
+    "operational": null,
+    "additionalRpCost": 0,
+    "source": {
+      "catalogPath": "src/data/spells.js",
+      "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+      "catalogKey": "perfect-form",
+      "original": {
+        "name": "Perfect Form",
+        "level": 8,
+        "resonanceRank": 8,
+        "school": "Transmutation",
+        "schools": [
+          "Transmutation"
+        ],
+        "placements": [
+          {
+            "name": "Perfect Form",
+            "school": "Transmutation",
+            "level": 8,
+            "summary": "Ally gains +4 to all physical stats and ignores exhaustion effects for 1 min."
+          }
+        ],
+        "classLevels": {
+          "Druid": 8,
+          "Mage": 8,
+          "Wizard": 8
+        },
+        "classRanks": {
+          "Druid": 8,
+          "Mage": 8,
+          "Wizard": 8
+        },
+        "classLearnLevels": {
+          "Druid": 15,
+          "Mage": 15,
+          "Wizard": 15
+        },
+        "classSchools": {
+          "Druid": "Transmutation",
+          "Mage": "Transmutation",
+          "Wizard": "Transmutation"
+        },
+        "castingTime": "Not specified in current rulebook",
+        "range": "Not specified in current rulebook",
+        "components": "Not specified in current rulebook",
+        "duration": "Not specified in current rulebook",
+        "description": "Ally gains +4 to all physical stats and ignores exhaustion effects for 1 min.",
+        "alternateSummaries": [],
+        "classes": [
+          "Druid",
+          "Mage",
+          "Wizard"
+        ],
+        "status": "canon",
+        "source": "Player Rulebook — Spell Lists"
+      },
+      "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+      "coreEntries": [
+        {
+          "index": 811,
+          "original": {
+            "school": "Transmutation",
+            "level": 8,
+            "name": "Perfect Form",
+            "effect": "Ally gains +4 to all physical stats and ignores exhaustion effects for 1 min.",
+            "source_paragraph": 9985,
+            "casting_time": "1 action",
+            "range": "120 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Utility"
+            ],
+            "rp_cost": 21
+          }
+        }
+      ],
+      "possibleHistoricalAliases": []
+    },
+    "reviewFlags": [
+      "Core resolution requires an explicit operational interpretation",
+      "Not selectable in this spell playtest packet until individual operational review"
+    ]
+  },
+  "common": {
+    "scope": "NEW spell-local operational authorship only. Native source envelopes are immutable; they still say blocked-pending-operational-review and operational=null. The isolated proposal is not installed in the live catalog. Exact accepted interfaces are reproduced in ORIGINAL_SOURCE_RECORDS.json; no later backing-file changes become accepted merely by presence.",
+    "access": "Use the native classAccess rows exactly, actual class level, actual known/book/prepared entry, class prerequisites and available rank. Rank8 costs21RP before actual source-specific adjustments; no Overcast, invented acquisition, global discounts, slots or imported costly components. V/S/F, ordinary Action, one perceived target or declared target set within120ft and unobstructed line of effect at commitment and application. A focus is an actual accessible item; no material cost is added. Missing access or known physical illegality prevents commitment. Hidden disqualification after a lawful commitment spends the cast without an oracle or substitute target.",
+    "commitment": "Resolve actual current defenses, legal ability to act, anatomy/components and perception before committing. Spend Action and actual21RP; record exact family, base strain, Refrain, Dissonance and any source-specific hooks. Wizard first prepared family in encounter has0 base strain; rank8 repeated family uses base2 plus actual Refrain. Other ordinary classes use rank8 base2 plus Refrain. Read Dissonance before casting: limit=max(4,2+PB+max(0,casting modifier)); ranked surcharge at limit/limit+3/limit+6 is+1/+2/+3RP, and ordinary rank1+ casting is blocked at limit+6 absent an actual expressly granted traumatic exception. Refrain for consecutive same-name casts is+1/+2/+3 capped3; a different name resets it to0, idle/weapon turns do not. Track all actual threshold consequences if reached. Nondamaging Life/Form spells are not damaging Mage Focus casts: clear Nuke Chain; no Surge damage or chain award. Animal Shapes is not Druid Shapeshift and clears no Refrain or reserves.",
+    "timing": "Use elapsed seconds plus original regular-slot marker and phase. Absolute expiry at phase0 wins before new events at that timestamp. Complete an already resolving packet under its actual source ordering; no extra turns tick clocks. Ready uses its own actual Action commitment, components,21RP/strain and concentration hold, then one eligible Reaction release before its deadline; it gives no free cast or renewed duration. Ready selects the legal target set/area and any required body/form/anchor choices at release, not at preparation, as the accepted Ready exception. Revalidate every prerequisite and all-outcome fit before spending the release Reaction; invalid/declined occurrence may await another valid trigger until next regular own-turn START, with setup cost retained. Counterspell is at preparation only. Effect duration/maturity starts at successful release/application, not preparation. For Animal Shapes a concentration hold becomes the shared effect on successful release; loss/failure does not restore prior concentration. Other effects end the Ready hold after resolution.",
+    "defenses": "Use actual acquired Counterspell, reflection, immunity, antimagic, dispel and concentration records within exact scope, not spell names or guessed ranks. All four are rank8 for applicable checks. A class Wizard Dispel is rank3 at its printed3RP/check10+target rank; it is never Greater Dispel rank5. Source-specific counter success is necessary; a suppressed effect is not terminated unless its source says so. New Animal concentration ends old same-caster concentration at commitment, before counter/save/failure. Nonconcentration Clone/Flesh/Perfect do not end other concentration unless Ready does.",
+    "returnsAndOwnership": "Preserve actors, real body and item IDs, personal HP/max ledger, temporaryHP, Wounds/injuries, actual conditions, paid resources, spent turn markers, debts, death and return histories. Do not infer ownership, loyalty, soul geography, CR, content permission, creature roster or preparation from a title. Actual death ends concentration and only the effects whose sources end on death; completed memory losses and other persistent personal consequences are retained. Every fixture is synthetic data for a static rule trace, not an acquired campaign character or physical-world proof.",
+    "holds": "Source/access/content/form/body geometry/identity topology/runtime/human-play/balance/release holds survive this return. A missing prerequisite holds the whole dependent case or branch; it cannot be narrated as a positive actual campaign result. All changed rules below are NEW only for these four spells."
+  },
+  "rules": {
+    "eligibilityAndDuration": "NEW one actually allied living physical creature, including self, within120ft/LoE for60elapsedseconds, nonconcentration. Amend recommended P01’s added willingness requirement: the printed native card says Ally, not willing. No additional consent or save gate is imposed, so an actual unconscious ally can receive this benign benefit; this does not imply unconscious consent for another spell or force allegiance. Already dead target gains no revival. Core Instantaneous remains verbatim as a source conflict; printed minute governs the authored continuing effect.",
+    "scores": "NEW physical stats means STR,DEX,CON scores each+4, not+4 modifiers/rolls. Apply actual score-setting layers then this compatible bonus according to actual sources. Same-spell component bonus is at most+4 per ability, irrespective of multiple records; strongest same-name wins while every record keeps independent duration/suppression. No advancement20cap is silently imported; an actual explicit absolute cap retains its own scope. Floor((score−10)/2) is the resulting ordinary modifier. No changes to INT,WIS,CHA, proficiency, classes or armor permissions.",
+    "capacity": "NEW this spell specifically authorizes its temporary CON component to recompute attained-level baseHP: sum(max(1,stored level base result + current authorized HP-CON modifier)) across actual attained levels, including the actual first-level Hit Die maximum. Do not use level×2 when per-level floors bind. Other temporary CON sources do not receive this authorization. Combine actual independently authorized permanent/temporary HP-CON layers, then add compatible max bonuses, subtract strongest actual max trauma, floor subtotal to1, multiply exact systemic rational factors together and floor once/min1. Exhaustion4 factor1/2 is omitted only while mask active; expedition4+factor3/4 remains. Capacity rise gives no healing; decrease clamps normalHP only, no damage/Wound/fall/proc/death-save event; tempHP unchanged. Recompute ordinary STR melee attack/damage and checks, DEX attack/check/save and actual AC formula, CON saves/checks, and actual carrying/movement from current anatomy; do not substitute recipient modifiers for an Animal Shapes attack that explicitly uses its caster. Unarmored AC10+DEX changes by the actual modifier delta; worn armor caps and finite-form max(ordinary AC,profile AC) remain exact. BODY pounds capacity Tiny STR*7.5, Small/Medium STR*15, Large STR*30; Load Tiny STR/2, Small max(0,STR−2), Medium STR, Large2STR. No extra attack, proficiency or action arises.",
+    "mask": "NEW active Exhaustion component masks every effect of the actual six-level Exhaustion track, including half maximumHP, Speed0 and lethal6 endpoint. Retain levels, provenance, every unprevented gain and all costs/recovery prerequisites; this is not level-gain immunity. Only Exhaustion-derived disadvantage/Speed/max/collapse/Unconscious is removed; independent zeroHP unconsciousness, restraints, expedition/serum/Revelation strain and other source penalties remain. Never revive a creature already dead.",
+    "lethalLifecycle": "Store protectedStaticEndpoint from an actual earlier lawful death-prevention/return and a separate pendingFreshEndpoint. Gaining6 or a new positive unprevented gain while already6 during masking records a single pendingFreshEndpoint; no death resolves while masked. At last mask loss at6, if pendingFreshEndpoint or no protectedStaticEndpoint, open exactly one fresh would-die event and offer actual finite protection; if prevented, clear pending and install protected collapse at6. If protectedStaticEndpoint and no new gain, merely restore protected collapse alive/Unconscious, never re-kill through HP recomputation. An existing protected collapse may be temporarily masked at positiveHP, but independent Unconscious remains. Actual recovery below6 clears obsolete pending/protected endpoint, not an old past death. Overlapping active masks prevent premature endpoint evaluation. Simultaneous mask expiry is one effective transition, not several deaths.",
+    "componentOrder": "NEW each source has STR/DEX/CON and Exhaustion components separately active/suppressed/ended. At actual change: expire due records phase0; arbitrate active components; compute actual scores and authorized baseHP; apply present rational maximum factors; clamp normalHP; then process actual source-specific collapse/lethal transition. A maxHP helper itself never kills. Partial CON suppression may clamp without mask loss, and mask suppression may reinstate Exhaustion while scores stay+4. No prior attack/save replay, RP refund or deadline pause. Death ends this living-recipient effect; later return cannot restore it from a body snapshot.",
+    "recovery": "Ordinary qualifying8hour long rest can remove1Exhaustion only with actual food/water, inactive cause, legal care and once-per24hour gate; masking grants none of these. An unconscious protected collapsed creature may complete actual qualifying care/rest under later healing/death. A60second cast does not manufacture8hours or remove levels. Real work/travel gains remain, and mask loss is evaluated from present levels, not original levels.",
+    "formInteraction": "Same-identity transformations preserve real scores/HP ledger; this bonus applies only if target still living and actual compatible sources permit it, no second form HP pool or flesh repair. It never changes Beast/Undead taxonomy, gear compatibility, existing injury or the actual caster-stat owner of Animal Shapes attacks."
+  },
+  "sourceQuestionIds": [
+    "LF8-Q01",
+    "LF8-P01",
+    "LF8-P02",
+    "LF8-P03",
+    "LF8-P04",
+    "LF8-P05",
+    "LF8-X01",
+    "LF8-X02"
+  ]
+}

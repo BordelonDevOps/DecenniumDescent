@@ -1,10 +1,10 @@
-# Active ordinary spell review150 — Calibration review part6
+# Active ordinary spell review152 — Calibration review part6
 
-Return150 was director accepted and applied for four identities: **709 applied-reviewed / 139 pending / 0 accepted-unapplied**. GPT reports 29,730 independent static checks and 748 package round-trip checks with zero failures. All 13 qualifications remain, including 59 whole-case holds. Runtime selection, implementation, human play, balance, cosmology and release approval remain separate.
+Return151 was GPT director accepted and independently verified, then applied to four identities: **713 applied-reviewed / 135 pending / 0 accepted-unapplied**. The 21,481 static checks passed with no failures; all 13 hold definitions and 40 held dependent branches remain. Runtime, human-play, balance, cosmology, domain closure and release approval remain separate.
 
-Continue with **rank8-life-form4**, preparing a fresh packet against 709/139 and submitting it to GPT for exact director review. Apply only accepted IDs. Preserve closed feat335 and completed spell cohorts.
+Continue with **rank8-summon-structure5**, preparing a fresh packet against 713/135 and submitting it to GPT for exact director review. Apply only accepted IDs. Preserve closed feat335 and completed spell cohorts.
 
-Read [CURRENT-HANDOFF-150](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_150.json), [the 139-pending audit](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT139_PENDING_IDENTITY_AUDIT_150.json), [the application validation](docs/audit/2026-10-08/full-game/director-spell-review-129/MEMORY_CONTROL4_APPLICATION_VALIDATION_150.json), and [snapshot status](SNAPSHOT_STATUS_2026-10-25_SPELL_REVIEW_150.md).
+Read [CURRENT-HANDOFF-152](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_152.json), [the 135-pending audit](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT135_PENDING_IDENTITY_AUDIT_152.json), [the application validation](docs/audit/2026-10-08/full-game/director-spell-review-129/LIFE_FORM4_APPLICATION_VALIDATION_151.json), and [snapshot status](SNAPSHOT_STATUS_2026-10-25_SPELL_REVIEW_151.md).
 
 **Prior checkpoint: [148](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_148.json).**
 

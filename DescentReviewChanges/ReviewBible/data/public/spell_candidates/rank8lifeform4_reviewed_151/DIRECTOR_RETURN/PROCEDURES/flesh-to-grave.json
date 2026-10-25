@@ -1,0 +1,192 @@
+{
+  "id": "flesh-to-grave",
+  "proposalScope": "spell-local NEW authored operational procedure",
+  "nativeUnchanged": {
+    "id": "flesh-to-grave",
+    "name": "Flesh to Grave",
+    "schools": [
+      "Necromancy"
+    ],
+    "status": "blocked-pending-operational-review",
+    "visibility": "public-source-review",
+    "classAccess": {
+      "Cleric": {
+        "rank": 8,
+        "minimumClassLevel": 15,
+        "school": "Necromancy",
+        "baseRpCost": 21
+      },
+      "Druid": {
+        "rank": 8,
+        "minimumClassLevel": 15,
+        "school": "Necromancy",
+        "baseRpCost": 21
+      },
+      "Wizard": {
+        "rank": 8,
+        "minimumClassLevel": 15,
+        "school": "Necromancy",
+        "baseRpCost": 21
+      }
+    },
+    "operational": null,
+    "additionalRpCost": 0,
+    "source": {
+      "catalogPath": "src/data/spells.js",
+      "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+      "catalogKey": "flesh-to-grave",
+      "original": {
+        "name": "Flesh to Grave",
+        "level": 8,
+        "resonanceRank": 8,
+        "school": "Necromancy",
+        "schools": [
+          "Necromancy"
+        ],
+        "placements": [
+          {
+            "name": "Flesh to Grave",
+            "school": "Necromancy",
+            "level": 8,
+            "summary": "Target with <100 HP must CON save or die and rise as undead."
+          }
+        ],
+        "classLevels": {
+          "Cleric": 8,
+          "Druid": 8,
+          "Wizard": 8
+        },
+        "classRanks": {
+          "Cleric": 8,
+          "Druid": 8,
+          "Wizard": 8
+        },
+        "classLearnLevels": {
+          "Cleric": 15,
+          "Druid": 15,
+          "Wizard": 15
+        },
+        "classSchools": {
+          "Cleric": "Necromancy",
+          "Druid": "Necromancy",
+          "Wizard": "Necromancy"
+        },
+        "castingTime": "Not specified in current rulebook",
+        "range": "Not specified in current rulebook",
+        "components": "Not specified in current rulebook",
+        "duration": "Not specified in current rulebook",
+        "description": "Target with <100 HP must CON save or die and rise as undead.",
+        "alternateSummaries": [],
+        "classes": [
+          "Cleric",
+          "Druid",
+          "Wizard"
+        ],
+        "status": "canon",
+        "source": "Player Rulebook — Spell Lists"
+      },
+      "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+      "coreEntries": [
+        {
+          "index": 707,
+          "original": {
+            "school": "Necromancy",
+            "level": 8,
+            "name": "Flesh to Grave",
+            "effect": "Target with <100 HP must CON save or die and rise as undead.",
+            "source_paragraph": 9856,
+            "casting_time": "1 action",
+            "range": "120 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Constitution save",
+            "tags": [
+              "Utility"
+            ],
+            "rp_cost": 21
+          }
+        }
+      ],
+      "possibleHistoricalAliases": []
+    },
+    "reviewFlags": [
+      "Not selectable in this spell playtest packet until individual operational review"
+    ]
+  },
+  "common": {
+    "scope": "NEW spell-local operational authorship only. Native source envelopes are immutable; they still say blocked-pending-operational-review and operational=null. The isolated proposal is not installed in the live catalog. Exact accepted interfaces are reproduced in ORIGINAL_SOURCE_RECORDS.json; no later backing-file changes become accepted merely by presence.",
+    "access": "Use the native classAccess rows exactly, actual class level, actual known/book/prepared entry, class prerequisites and available rank. Rank8 costs21RP before actual source-specific adjustments; no Overcast, invented acquisition, global discounts, slots or imported costly components. V/S/F, ordinary Action, one perceived target or declared target set within120ft and unobstructed line of effect at commitment and application. A focus is an actual accessible item; no material cost is added. Missing access or known physical illegality prevents commitment. Hidden disqualification after a lawful commitment spends the cast without an oracle or substitute target.",
+    "commitment": "Resolve actual current defenses, legal ability to act, anatomy/components and perception before committing. Spend Action and actual21RP; record exact family, base strain, Refrain, Dissonance and any source-specific hooks. Wizard first prepared family in encounter has0 base strain; rank8 repeated family uses base2 plus actual Refrain. Other ordinary classes use rank8 base2 plus Refrain. Read Dissonance before casting: limit=max(4,2+PB+max(0,casting modifier)); ranked surcharge at limit/limit+3/limit+6 is+1/+2/+3RP, and ordinary rank1+ casting is blocked at limit+6 absent an actual expressly granted traumatic exception. Refrain for consecutive same-name casts is+1/+2/+3 capped3; a different name resets it to0, idle/weapon turns do not. Track all actual threshold consequences if reached. Nondamaging Life/Form spells are not damaging Mage Focus casts: clear Nuke Chain; no Surge damage or chain award. Animal Shapes is not Druid Shapeshift and clears no Refrain or reserves.",
+    "timing": "Use elapsed seconds plus original regular-slot marker and phase. Absolute expiry at phase0 wins before new events at that timestamp. Complete an already resolving packet under its actual source ordering; no extra turns tick clocks. Ready uses its own actual Action commitment, components,21RP/strain and concentration hold, then one eligible Reaction release before its deadline; it gives no free cast or renewed duration. Ready selects the legal target set/area and any required body/form/anchor choices at release, not at preparation, as the accepted Ready exception. Revalidate every prerequisite and all-outcome fit before spending the release Reaction; invalid/declined occurrence may await another valid trigger until next regular own-turn START, with setup cost retained. Counterspell is at preparation only. Effect duration/maturity starts at successful release/application, not preparation. For Animal Shapes a concentration hold becomes the shared effect on successful release; loss/failure does not restore prior concentration. Other effects end the Ready hold after resolution.",
+    "defenses": "Use actual acquired Counterspell, reflection, immunity, antimagic, dispel and concentration records within exact scope, not spell names or guessed ranks. All four are rank8 for applicable checks. A class Wizard Dispel is rank3 at its printed3RP/check10+target rank; it is never Greater Dispel rank5. Source-specific counter success is necessary; a suppressed effect is not terminated unless its source says so. New Animal concentration ends old same-caster concentration at commitment, before counter/save/failure. Nonconcentration Clone/Flesh/Perfect do not end other concentration unless Ready does.",
+    "returnsAndOwnership": "Preserve actors, real body and item IDs, personal HP/max ledger, temporaryHP, Wounds/injuries, actual conditions, paid resources, spent turn markers, debts, death and return histories. Do not infer ownership, loyalty, soul geography, CR, content permission, creature roster or preparation from a title. Actual death ends concentration and only the effects whose sources end on death; completed memory losses and other persistent personal consequences are retained. Every fixture is synthetic data for a static rule trace, not an acquired campaign character or physical-world proof.",
+    "holds": "Source/access/content/form/body geometry/identity topology/runtime/human-play/balance/release holds survive this return. A missing prerequisite holds the whole dependent case or branch; it cannot be narrated as a positive actual campaign result. All changed rules below are NEW only for these four spells."
+  },
+  "rules": {
+    "eligibility": "NEW one perceived living physical creature within120ft/LoE. Actual current normalHP must be strictly<100 at application; temporaryHP never enters the threshold. Living dying0 qualifies; already dead/nonliving HP-only animation does not. This is an explicit living target completion, not an inferred universal Necromancy immunity. Known impossible target rejects before pay; hidden100+, hidden nonliving identity or changed eligibility spends a lawful commitment without numeric disclosure, no retarget. Eligible target makes one binary CON save against actual caster DC; success prevents both death and rising.",
+    "death": "On failure and after actual applicable defenses, resolve a nondamage would-die event. No necrotic damage, damage root, Wound save, zero-HP damage threshold or death-save failure is fabricated. TemporaryHP, resistances, caster Null Veil damage nonlethality and ordinary Death Ward positive-to-zero floor do not themselves prevent this event. A real applicable would-die replacement (e.g. actually acquired Cleric16 Ritual of Undeath Ward, already paid and active) can prevent death; then no rising. Finish actual death and its sourced triggers/claims before attempting body allocation.",
+    "rising": "NEW physical Ghoul-derived animation, explicitly not a same-person undead resurrection. Only this spell’s actual completed death can supply its same usable body. If a prior actual death-trigger return such as Clone succeeds for this death, cancel this spell’s rising even if old remains still exist; do not create a simultaneous living original and newly animated old body from this event. Otherwise require connected usable actual body/anatomy and unclaimed matter. Missing/destroyed/disintegrated/already allocated body blocks rising without rewinding death or selecting another corpse. Unknown physical premises hold the rising branch. The local adaptation permits actual Tiny through Large creature bodies rather than importing Create Undead’s Small/Medium Humanoid gate; fixed stats do not guess a creature CR or restore missing parts.",
+    "statistics": {
+      "origin": "NEW Flesh-to-Grave local adaptation of exact accepted Companion10 Ghoul comparison; no global Create Undead amendment",
+      "size": "actual source body Tiny/Small/Medium/Large; any other or undocumented anatomy branch held",
+      "spaceHeightMass": "actual source body envelope and mass; no growth, repaired limbs or relocated anchor",
+      "AC": 13,
+      "baseHP": 40,
+      "scores": {
+        "STR": 14,
+        "DEX": 14,
+        "CON": 12,
+        "INT": 6,
+        "WIS": 10,
+        "CHA": 6
+      },
+      "walk": 40,
+      "climb": 20,
+      "anatomyGate": "actual locomotor/striking/climbing parts must support the chosen action",
+      "senses": [
+        "ordinary sight",
+        "ordinary hearing",
+        "Darkvision60feet"
+      ],
+      "saveBonus": "creation snapshot of original caster PB, all six saves",
+      "checks": "ordinary profile ability modifier unless actual independent proficiency source",
+      "attack": {
+        "count": 1,
+        "reachFeet": 5,
+        "bonus": "creation snapshot original caster spell attack",
+        "dice": "2d6",
+        "type": "slashing",
+        "additiveModifier": 0,
+        "magicalPhysicalAttack": false
+      },
+      "slow": {
+        "trigger": "positive resolved damage packet from this physical hit, including temporaryHP loss; not a zero-damage hit",
+        "save": "CON versus creation snapshot original caster spell DC",
+        "failure": "Speed−10 until target next future regular END (exclude already resolving END); outside initiative6seconds",
+        "stacking": "strongest compatible slow, never additive same rider",
+        "magical": true,
+        "spell": false
+      },
+      "CR": null,
+      "resistances": [],
+      "immunities": [],
+      "classResources": {},
+      "control": null
+    },
+    "statisticsJustification": "NEW choose only the accepted Ghoul comparison’s fixed40HP/13AC/six scores/movement/attack/rider, never the strongest four-profile result. NEW snapshot original caster attack/DC/PB at creation instead of that comparison’s continuing caster-stat dependency, so permanent independent body needs no dead creator lookup. Copy exact numbers into the new actor. Original person remains dead; memories, personality, classes, magical training, resources, ownership and soul are not transferred. Unrated mechanical Undead is not a cosmological soul assertion.",
+    "agency": "NEW no automatic caster control, loyalty, hostility, work order, wages or companion command allowance. Independent actor has no turn in creation round; first independent opportunity is the next numbered round at a fixed virtual slot immediately after the original caster’s captured regular slot, then once each numbered round, regardless of creator initiative change/death. It receives ordinary Action/movement/Bonus Action/Reaction only when a source grants usable actions; no Extra Attack or special reaction. Actual goals/content/needs must be supplied before campaign use, otherwise the agency-dependent branch is held. Explicit fixture goal is test input, not granted by the spell.",
+    "persistence": "Physical conversion is permanent and survives original caster loss, ordinary antimagic and link dispel. Only the slow rider is magical/nonspell and suppressible; generic spell-only dispel does not erase the physical body or a nonspell rider. Completed0structuralHP destroys the HP-only animation and leaves consumed unusable-for-new-animation remains and real gear; no Wounds/death-save or ordinary living healing engine unless another exact source grants it. No new corpse, XP, resource, harvest or resurrection-target farm follows. Actual applicable physical damage/healing/repair/needs require sources; Undead does not imply no food/air/water/sleep.",
+    "nullAndReturn": "NEW explicitly extend the named animation NullDisabled rule: a qualifying damage-root Nonlethal effect on this HP-only animation leaves it inert at0, not destroyed; identity-specific disabling and recovery require the actual Null source. No generic nondamage prevention follows. Future attacks use the animation as damage owner; original caster Null is not inherited. Later true resurrection is governed by its exact identity/body requirements and current claims; no body can be allocated twice. This spell gives no new personal soul binding, compelled service, CR-based command access or cosmology."
+  },
+  "sourceQuestionIds": [
+    "LF8-Q01",
+    "LF8-F01",
+    "LF8-F02",
+    "LF8-F03",
+    "LF8-F04",
+    "LF8-F05",
+    "LF8-X01",
+    "LF8-X02"
+  ]
+}
