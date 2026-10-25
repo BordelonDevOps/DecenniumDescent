@@ -1,0 +1,120 @@
+{
+  "kind": "independent read-only data/source and scoped semantic audit; no source program or game execution",
+  "checksByCategory": {
+    "source": 252,
+    "authority": 4,
+    "native": 22,
+    "authored content": 158,
+    "profile": 178,
+    "coverage": 999,
+    "case mirror": 132,
+    "state continuity": 906,
+    "state hash": 1680,
+    "operations": 6192,
+    "time": 774,
+    "history": 1548,
+    "world": 774,
+    "resource": 2324,
+    "life": 2324,
+    "permissions": 16381,
+    "cadence": 268,
+    "casting": 249,
+    "application": 984,
+    "duration": 77,
+    "threshold": 16,
+    "semantic": 64,
+    "proposal": 55,
+    "preserved evidence": 87,
+    "decision consistency": 3
+  },
+  "checkCount": 36451,
+  "failureCount": 0,
+  "failures": [],
+  "measuredCounts": {
+    "procedures": 5,
+    "conferenceQuestions": 18,
+    "originalIdentityQuestions": 5,
+    "dispositions": 23,
+    "mainCases": 10,
+    "branches": 122,
+    "cases": 132,
+    "heldWholeCases": 31,
+    "events": 774,
+    "eventOperations": 3096,
+    "proposalOperations": 20,
+    "holds": 10,
+    "retainedResource6ComparisonHolds": 13,
+    "dataAndScopedSemanticChecks": 36451,
+    "sourceArchiveMembers": 84,
+    "nativePlacements": 5,
+    "nativeAccessRows": 7,
+    "reviewedCounterparts": 11
+  },
+  "limitations": [
+    "Static deterministic expected-state checking, not game simulation.",
+    "Exact semantic branches and source qualifications are explicitly enumerated; no exhaustive game-wide proof."
+  ],
+  "checkedFileBindings": [
+    {
+      "path": "PROCEDURES.json",
+      "bytes": 110588,
+      "sha256": "4fe26a6e0eb50b584eac31a856ef753f2fa4ac0aa88273f14018e90eaca742b7"
+    },
+    {
+      "path": "QUESTION_DISPOSITIONS.json",
+      "bytes": 147855,
+      "sha256": "e95fb6adde92f3bbd779145e8d02d6d933480c65457d1c5c0b1dbade571a51fe"
+    },
+    {
+      "path": "STANDALONE_PROCEDURES.md",
+      "bytes": 68323,
+      "sha256": "a33cd78780e3dc614d6b067d32abe0cbc2d760f4c1b68f65121e69dfecaee8a7"
+    },
+    {
+      "path": "ACTOR_PROFILES.json",
+      "bytes": 69478,
+      "sha256": "5dc92d96fefbd02cf69756a33c12e7aee33dcba6ca28bd3068651a17a6181df3"
+    },
+    {
+      "path": "CASEBOOK.json",
+      "bytes": 85677217,
+      "sha256": "fdb7cd0cfa2af9c69b3f7f57624706e03c6fc62ddb304757c93d1ca4e1dc32d7"
+    },
+    {
+      "path": "HOLD_REGISTER.json",
+      "bytes": 3432,
+      "sha256": "57178d0b1c3410eb9e2e93dde88318071960b154578f2f295873b43514123264"
+    },
+    {
+      "path": "MODEL.json",
+      "bytes": 825,
+      "sha256": "43456fa830f08fd99c1c56660f333d86c2e61bf1917f64940c006da1af9384a0"
+    },
+    {
+      "path": "PROPOSAL_OPERATIONS.json",
+      "bytes": 370365,
+      "sha256": "02512c4bdba9eab2334460b91c668f0f894b4dfb7e02abf826f2ca4fc011bbf3"
+    },
+    {
+      "path": "ORIGINAL_QUESTIONS.json",
+      "bytes": 43659,
+      "sha256": "3115664fb301c9e040b4ca95e608241a17652b53bb4f5b81879888b6bd269f34"
+    },
+    {
+      "path": "INHERITED_HOLDS.json",
+      "bytes": 6134,
+      "sha256": "bf25fb4b4394aeab6a8fd2dca4a23cd5615dcaa8c85f9a819289c74e478a2fc0"
+    }
+  ],
+  "newIndependentCheckerSourceSHA256": "a735c3c38dad734ad7a0ca5e0efbea756dee3e3f4e0cfdd42f79455782a8592f",
+  "resolvedPreDeliveryFindings": [
+    {
+      "finding": "Four same-time two-source expiry traces briefly retained another application due at the same checkpoint.",
+      "correction": "Clear every due expiry before later processing; refreshed full states and inverse bindings verified."
+    },
+    {
+      "finding": "Suppression prose needed to distinguish replay of an old concentration loss from newly unlawful concentration when Incapacitated resumes.",
+      "correction": "Clarified procedure and added a complete adverse trace for genuinely new concentration, with source immunity premise held."
+    }
+  ]
+}

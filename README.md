@@ -1,4 +1,4 @@
-> **Latest backup — 21 October 2026:** Saved review work through checkpoint 111 is preserved. Video game only; development remains paused. Applied spell counts remain 525 reviewed / 323 pending, with 53 accepted identities awaiting integration. See [snapshot status](SNAPSHOT_STATUS_2026-10-21_CHECKPOINT111.md). Earlier notices remain history.
+> **GitHub snapshot — 25 October 2026:** Ordinary spell review is at **700 applied-reviewed / 148 pending**. Return148 was accepted and applied with retained holds. The next Ward5 packet is prepared; its review and acceptance remain pending. See [snapshot status](SNAPSHOT_STATUS_2026-10-25_SPELL_REVIEW_148.md). Earlier notes below are retained history.
 
 > **Recovered working root — 2026-10-08:** Start with [START_HERE.md](START_HERE.md) for the current books, preserved history and completion status. This folder contains approved V6 plus unpromoted review work; older release claims below must be read in that context.
 

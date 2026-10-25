@@ -1,0 +1,173 @@
+"""Independent read-only data checks. No authoring helpers or supplied code imported."""
+import json,pathlib,hashlib,zipfile,copy,collections,math
+ROOT=pathlib.Path('/workspace/scratch/f8fddf85e4c9');OUT=ROOT/'control5/return148';SRC=ROOT/'control5/source02'
+def js(p):return json.loads(p.read_text())
+def canon(x):return json.dumps(x,sort_keys=True,ensure_ascii=False,separators=(',',':'),allow_nan=False).encode()
+def hash(b):return hashlib.sha256(b).hexdigest()
+CHECKS=collections.Counter();FAIL=[]
+def check(group,truth,where,detail=''):
+ CHECKS[group]+=1
+ if not truth:FAIL.append({'category':group,'location':where,'finding':detail})
+c=js(SRC/'CANDIDATE.json');m=js(SRC/'MANIFEST.json');ids=[x['spellId'] for x in c['records']]
+archive=ROOT/'upload/DD_Rank8_Control_5_Source_Conference_02.zip';data=archive.read_bytes()
+check('source',len(data)==14865779,str(archive),'byte count')
+check('source',hash(data)=='ffa8dc96550ef9b5b5eed7890aa3269feb9ea1c287c47426c7ea4c360ecc7cf3',str(archive),'SHA256')
+with zipfile.ZipFile(archive) as z:
+ check('source',z.testzip() is None,'source archive','CRC')
+ check('source',len(z.namelist())==84 and len(set(z.namelist()))==84,'source archive','84 unique members')
+ for n in z.namelist():check('source',(SRC/n).read_bytes()==z.read(n),n,'extracted bytes')
+for binding,local in [(m['candidate'],SRC/'CANDIDATE.json'),(m['check'],SRC/'PREFLIGHT.json')]+[(x,SRC/'sources'/x['path']) for x in m['files']]:
+ b=local.read_bytes();check('source',len(b)==binding['bytes'],str(local),'bound size');check('source',hash(b)==binding['sha256'],str(local),'bound SHA')
+base=SRC/'sources/DescentReviewChanges/ReviewBible'
+cat=js(base/'data/public/spell_playtests/catalog.json');idx=js(base/'data/public/spell_playtests/authored_review_index.json');w=js(base/'data/public/class_playtests/wizard.json')
+check('authority',idx['authoredCounts']=={'reviewed':695,'pending':153},'index/authoredCounts')
+check('authority',c['currentAuthoritySnapshot']['queue']['nextGroup']['pendingIds']==ids,'queue/nextGroup')
+check('authority',c['currentAuthoritySnapshot']['pendingIdentityAudit']['pendingCount']==153,'pending audit')
+check('authority',c['currentAuthoritySnapshot']['pendingIdentityAudit']['acceptedUnapplied']==0,'accepted-unapplied')
+for r in c['records']:
+ i=int(r['currentIndexEntry']['wholeCardPointer'].split('/')[-1]);check('native',cat['spells'][i]==r['completeCurrentCatalogSourceAndAccess'],r['spellId'],'exact catalog card')
+ check('native',r['spellId'] in c['currentAuthoritySnapshot']['pendingIdentityAudit']['pendingIds'],r['spellId'],'still pending')
+ for a,x in r['completeCurrentCatalogSourceAndAccess']['classAccess'].items():
+  check('native',x['rank']==8 and x['baseRpCost']==21 and x['minimumClassLevel']==15,r['spellId']+'/'+a,'native rank/cost/minimum')
+ for x in r['completeCurrentBookBindings']:
+  row=x['currentBookRow'];book=(SRC/'sources/docs/reference/Player_Rulebook_v6_source_text.txt').read_text().splitlines()
+  check('native',book[row['line']-1].strip()==row['exactText'],r['spellId'],'exact native book line')
+procs=js(OUT/'PROCEDURES.json');disps=js(OUT/'QUESTION_DISPOSITIONS.json');profiles=js(OUT/'ACTOR_PROFILES.json')['profiles'];cases=js(OUT/'CASEBOOK.json')['cases'];holds=js(OUT/'HOLD_REGISTER.json')
+check('authored content',[p['id'] for p in procs]==ids,'procedures','exact IDs/order')
+check('authored content',len(disps)==23,'dispositions','18 conference +5 original')
+md=(OUT/'STANDALONE_PROCEDURES.md').read_text()
+for n,p in enumerate(procs):
+ check('authored content',p==js(OUT/'procedures'/f"{p['id']}.json"),p['id'],'procedure mirror')
+ check('authored content',p['completeNativeCardUnchanged']==c['records'][n]['completeCurrentCatalogSourceAndAccess'],p['id'],'native bytes as JSON value')
+ for k,v in p['sharedRules'].items():check('authored content',md.count(v)==5,'standalone/'+k,'shared text replicated exactly5')
+ for k,v in p['procedure'].items():check('authored content',v in md,p['id']+'/'+k,'standalone exact proposal text')
+for n,q in enumerate(c['questions']):
+ d=disps[n];check('authored content',d['originalUnchanged']==q,q['id'],'original question/options unchanged');check('authored content',d['selectedOption']=='A',q['id'],'explicit selected option');check('authored content',bool(d['completeDecision']),q['id'],'complete decision')
+for n,r in enumerate(c['records']):check('authored content',disps[n+18]['originalUnchanged']==r['completeOriginalSourceQuestionUnchanged'],r['spellId'],'original identity question unchanged')
+catalog={x['id']:x for x in cat['spells']};cards={x['id']:x for x in w['cards']}
+for p in profiles:
+ check('profile',p['maximumRP']==w['rpByClassLevel'][15]==60,p['id'],'actual pool')
+ check('profile',p['maximumSpellRank']==w['maxSpellRankByClassLevel'][15]==8,p['id'],'rank gate')
+ check('profile',p['ordinaryDC']==8+p['PB']+(p['abilityScores']['INT']-10)//2==17,p['id'],'base DC')
+ check('profile',p['maximumHP']==6+4+sum(p['HPDerivation']['laterD6Rolls'])+15*4,p['id'],'HP roll arithmetic')
+ check('profile',len(p['spellbook'])==len(set(p['spellbook']))==61,p['id'],'61 distinct acquired entries')
+ for a in p['spellbookAcquisitionLedger']:
+  ac=catalog[a['id']]['classAccess']['Wizard'];check('profile',ac['minimumClassLevel']<=a['classLevel'] and ac['rank']<=w['maxSpellRankByClassLevel'][a['classLevel']-1],p['id']+'/'+a['id'],'actual acquisition level and rank')
+ for lv,sel in p['selectedCardsByLevel'].items():
+  for name in sel:
+   card=cards[name];check('profile',card['minimumClassLevel']<=int(lv) and card['acquisition']=='selection' and (card['path'] in [None,'Spellbinder']),p['id']+'/'+name,'legal selected card, not automatic duplicate')
+ check('profile',all(x in p['spellbook'] for x in p['prepared']) and len(p['prepared'])<=p['dailyPreparedLimit'],p['id'],'actual prepared access')
+allCaseIDs={x['id'] for x in cases};holdIDs={x['id'] for x in holds}
+for d in disps:
+ check('coverage',set(d['caseIds'])<=allCaseIDs and bool(d['caseIds']),d['id'],'linked cases exist')
+ check('coverage',set(d['holdIds'])<=holdIDs,d['id'],'linked holds exist')
+ for ci in d['caseIds']:
+  case=next(x for x in cases if x['id']==ci);check('coverage',set(case['holdIds'])<=set(d['holdIds']),d['id']+'/'+ci,'all linked-case holds retained')
+for id in ids:check('coverage',sum(x['spellId']==id and x['kind']=='main' and not x['wholeCaseHeld'] for x in cases)>=2,id,'two actual main cases')
+events=0;operations=0;held=0
+for ca in cases:
+ where=ca['id'];held+=ca['wholeCaseHeld'];check('case mirror',ca==js(OUT/'cases'/(where.replace('/','__')+'.json')),where)
+ check('coverage',set(ca['holdIds'])<=holdIDs,where,'holds registered')
+ current=ca['initialState']
+ for e in ca['events']:
+  events+=1;loc=e['id'];b=e['beforeState'];a=e['afterState']
+  check('state continuity',current==b,loc,'previous full after-state equals next before-state')
+  check('state hash',hash(canon(b))==e['beforeSHA256'],loc,'before SHA256')
+  check('state hash',hash(canon(a))==e['afterSHA256'],loc,'after SHA256')
+  for name,start,end in [('forward',b,a),('inverse',a,b)]:
+   operations+=len(e[name]);state=copy.deepcopy(start)
+   for op in e[name]:
+    check('operations',op['path']=='' and op['op'] in ['test','replace'],loc+'/'+name,'full-state test/replace only')
+    if op['op']=='test':check('operations',state==op['value'],loc+'/'+name,'test exact state')
+    else:state=copy.deepcopy(op['value'])
+   check('operations',state==end,loc+'/'+name,'replay reaches exact terminal state')
+  check('time',tuple(a['clock'][x] for x in ['seconds','phase','sequence'])>=tuple(b['clock'][x] for x in ['seconds','phase','sequence']),loc,'monotonic typed clock')
+  check('history',set(b['hardHistory'])<=set(a['hardHistory']),loc,'hard admission never refunded')
+  check('history',len(a['hardHistory'])==len(set(a['hardHistory'])),loc,'one guard claim per key')
+  check('world',a['world']['terrain']==ca['initialState']['world']['terrain'] and not a['world']['inventoryChanges'] and not a['world']['custodyChanges'] and not a['world']['historyChanges'],loc,'no physical/history rewrite')
+  for key,act in a['actors'].items():
+   check('resource',0<=act['rp']<=act['maxRP'],loc+'/'+key,'bounded RP')
+   check('life',0<=act['hp']<=act['maxHP'] and act['alive'],loc+'/'+key,'actual player profile remains living legal HP')
+   active=[x for x in a['applications'].values() if x['target']==key and not x['suppressed']];comps={v for x in active for v in x['components']}|set(act.get('independentComponents',[]));incap='Incapacitated' in comps
+   for budget in ['Action','BonusAction','Reaction']:check('permissions',act['permitted'][budget]==(act['budgets'][budget] and not incap),loc+'/'+key+'/'+budget,'independent budget and component permission')
+   expectedSpeed=0 if 'Speed0' in comps else act['baseSpeed'];check('permissions',act['speed']==expectedSpeed,loc+'/'+key,'no numeric Speed0 invented by Stunned/Paralyzed')
+   check('permissions',act['movementRemaining']==max(0,expectedSpeed*(1+act['dashes'])-act['movementSpent']),loc+'/'+key,'spent movement preserved')
+   check('permissions',act['permitted']['newSpell']==(not incap and 'noNewSpell' not in comps),loc+'/'+key,'new-spell restriction')
+   check('permissions',act['communication']['outgoing']==('noOutgoing' not in comps),loc+'/'+key,'Mental Collapse distinct from inability to speak')
+   if incap:check('permissions',act['concentration'] is None and act['ready'] is None,loc+'/'+key,'incapacitation destroys actual held concentration once')
+  # Check each newly committed full actual resource record independently from authoring calculation.
+  for key,act in a['actors'].items():
+   prior=b['actors'][key];new=act['resourceHistory'][len(prior['resourceHistory']):]
+   for h in new:
+    if 'spell' not in h:continue
+    spell=h['spell'];rank=h['rank'];first=spell not in prior['familyHistory'];rep=min(3,prior['refrain']+1) if prior['lastFamily']==spell else 0
+    strain=0 if first or rank==0 else 1 if rank<=5 else 2
+    check('cadence',h['firstPreparedFamily']==first and h['DissonanceAfter']==prior['dissonance']+strain+rep,loc+'/'+key,'real rank-dependent base strain + chronological Refrain')
+    check('cadence',act['rp']==prior['rp']-h['totalPaid'],loc+'/'+key,'actual debit')
+    if rank==8:check('casting',h['totalPaid']==21 and spell in prior['prepared'],loc+'/'+key,'native prepared rank8 cost')
+    if h['action']=='Action':check('casting',prior['canCommitOrdinaryActionNow'],loc+'/'+key,'actual legal regular phase or lawful outside action')
+    if h['action']=='Reaction':check('casting',prior['permitted']['Reaction'],loc+'/'+key,'actual remaining Reaction')
+  for aid,x in a['applications'].items():
+   check('application',x['rank']==8 and x['target'] in a['actors'],loc+'/'+aid,'actual source rank and identity')
+   check('application',(x['deadline']['seconds'],x['deadline']['phase'])>(a['clock']['seconds'],a['clock']['phase']),loc+'/'+aid,'no application survives expiry')
+   if aid not in b['applications']:
+    if x['spellId']=='mental-collapse':check('duration',x['deadline']['seconds']-x['establishedAt']['seconds']==(66 if x['extensionFromActualClass'] else 60),loc+'/'+aid,'base minute / actual specialist extension')
+    else:
+     if a['turnSchedule']['mode']=='outside':expect=x['establishedAt']['seconds']+6*(2 if x['extensionFromActualClass'] else 1);ph=0
+     else:
+      n=x['establishedAt']['seconds'];slot=a['turnSchedule']['regularSlots'][x['target']];ends=[slot['end']+6*k for k in range(-1,30)];good=[v for v in ends if v>n and not(v- (slot['end']-slot['start'])<=n<=v)];expect=good[1 if x['extensionFromActualClass'] else 0];ph=20
+     check('duration',(x['deadline']['seconds'],x['deadline']['phase'])==(expect,ph),loc+'/'+aid,'first future target END excludes current underway target turn')
+    if x['spellId']=='power-word-stun':check('threshold',a['actors'][x['target']]['hp']<=150,loc+'/'+aid,'current ordinary HP at resolution')
+  current=a
+ check('state continuity',current==ca['finalState'],where,'final full state')
+ check('state hash',hash(canon(current))==ca['finalSHA256'],where,'final hash')
+ # Focused independently expected endpoints / effects.
+ if where.endswith('same-owner-new-paid-cast-retains-history'):
+  check('semantic',ca['finalState']['actors']['A']['rp']==18 and ca['finalState']['actors']['A']['dissonance']==3,where,'two actual rank8 casts; repeat base2+Refrain1')
+ if where.endswith('acquired-class-dispel'):
+  a=ca['finalState'];check('semantic',a['actors']['C']['rp']==55 and not a['applications'],where,'ArcaneSight2 + actual Dispel3, all selected source ended')
+ if where.endswith('actual-Ready-release-on-target-turn'):
+  for e in ca['events']:
+   for app in e['afterState']['applications'].values():
+    if app['establishedAt']['seconds']==4:check('semantic',app['deadline']['seconds']==(64 if ca['spellId']=='mental-collapse' else 11),e['id'],'Ready release clock, no current-turn truncation')
+proposalCount=0
+if (OUT/'PROPOSAL_OPERATIONS.json').exists():
+ proposal=js(OUT/'PROPOSAL_OPERATIONS.json')
+ for n,op in enumerate(proposal['records']):
+  check('proposal',op['after']['proposedProcedure']==procs[n],op['id'],'complete final proposal, no stale procedure copy')
+  for key in ['before','after']:check('proposal',hash(canon(op[key]))==op[key+'SHA256'],op['id']+'/'+key,'full proposal state hash')
+  for direction,start,end in [('forward',op['before'],op['after']),('inverse',op['after'],op['before'])]:
+   state=copy.deepcopy(start)
+   for action in op[direction]:
+    proposalCount+=1;check('proposal',action['path']=='',op['id'],'full root operation')
+    if action['op']=='test':check('proposal',state==action['value'],op['id'],'exact inverse/forward test')
+    elif action['op']=='replace':state=copy.deepcopy(action['value'])
+    else:check('proposal',False,op['id'],'unexpected operation')
+   check('proposal',state==end,op['id'],'proposal replay complete')
+ for original in SRC.rglob('*'):
+  if original.is_file():check('preserved evidence',original.read_bytes()==(OUT/'evidence/source02'/original.relative_to(SRC)).read_bytes(),str(original),'byte-exact evidence copy')
+ check('preserved evidence',(OUT/'history'/archive.name).read_bytes()==data,'exact source archive','unchanged inner source ZIP')
+ oq=js(OUT/'ORIGINAL_QUESTIONS.json');check('preserved evidence',oq['conferenceQuestionsUnchanged']==c['questions'],'original conference questions')
+ check('preserved evidence',js(OUT/'INHERITED_HOLDS.json')['completeRegisterUnchanged']==c['acceptedResource6Comparison']['retainedHoldRegister'],'Resource6 holds','13 exact retained records unchanged')
+ check('decision consistency',all(p['accepted'] and not p['applied'] for p in procs),'procedure flags','accepted manuscript, not applied')
+ check('decision consistency',all(d['accepted'] and not d['applied'] for d in disps),'disposition flags','accepted manuscript, not applied')
+ check('decision consistency',js(OUT/'MODEL.json')['acceptedIds']==ids,'model','exact five IDs only')
+ # Source-preserving explicit variants / adverse branches, independent expected outcomes.
+ bysuffix={x['id'].split('/',1)[1]:x for x in cases if x['spellId']=='mental-collapse'}
+ parent=bysuffix['already-committed-ordinary-spell-finishes']['finalState']
+ check('semantic',parent['actors']['B']['rp']==59 and parent['actors']['C']['hp']==155 and parent['casts']['B-pending-bolt']['state']=='resolved','Mental Collapse/ordinary pending','already committed real spell finishes with one actual cost and force resistance')
+ private=bysuffix['private-willingness-for-real-nonspell-reception']['finalState']
+ check('semantic',private['actors']['C']['rp']==58 and private['actors']['B']['communication']['outgoing']==False and private['actors']['B']['privateWillingnessInput']['outgoingReply']==False,'Mental Collapse/private willingness','actual nonspell receipt has no outgoing message')
+ resume=next(x for x in cases if x['id'].endswith('resumed-Incapacitated-ends-genuinely-new-concentration'))['finalState']
+ check('semantic',resume['actors']['B']['rp']==57 and resume['actors']['B']['concentration'] is None and resume['hardHistory']==['A|B|E1'],'resumption/new concentration','new valid concentration ends once, original history stays spent')
+ dying=next(x for x in cases if x['id'].endswith('actual-dying-player-regular-START-life-recovery'))['finalState']
+ check('semantic',dying['actors']['B']['hp']==1 and dying['actors']['B']['death']['failures']==0 and dying['actors']['B']['conditions']==['Prone'] and not dying['actors']['B']['components']['focus'],'Prism/life','natural20 real recovery; independent posture and dropped gear remain')
+report={'kind':'independent read-only data/source and scoped semantic audit; no source program or game execution','checksByCategory':dict(CHECKS),'checkCount':sum(CHECKS.values()),'failureCount':len(FAIL),'failures':FAIL,'measuredCounts':{'procedures':len(procs),'conferenceQuestions':18,'originalIdentityQuestions':5,'dispositions':len(disps),'mainCases':sum(x['kind']=='main' for x in cases),'branches':sum(x['kind']=='branch' for x in cases),'cases':len(cases),'heldWholeCases':held,'events':events,'eventOperations':operations,'proposalOperations':proposalCount,'holds':len(holds),'retainedResource6ComparisonHolds':13},'limitations':['Static deterministic expected-state checking, not game simulation.','Exact semantic branches and source qualifications are explicitly enumerated; no exhaustive game-wide proof.']}
+report['checkedFileBindings']=[]
+for name in ['PROCEDURES.json','QUESTION_DISPOSITIONS.json','STANDALONE_PROCEDURES.md','ACTOR_PROFILES.json','CASEBOOK.json','HOLD_REGISTER.json','MODEL.json','PROPOSAL_OPERATIONS.json','ORIGINAL_QUESTIONS.json','INHERITED_HOLDS.json']:
+ p=OUT/name
+ if p.exists():
+  raw=p.read_bytes();report['checkedFileBindings'].append({'path':name,'bytes':len(raw),'sha256':hash(raw)})
+report['newIndependentCheckerSourceSHA256']=hash(pathlib.Path(__file__).read_bytes())
+(ROOT/'control5/work/check-result.json').write_text(json.dumps(report,indent=2)+'\n')
+print(json.dumps({'checks':report['checkCount'],'failures':len(FAIL),'sample':FAIL[:15],'counts':report['measuredCounts']},indent=2))
