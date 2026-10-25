@@ -1,0 +1,518 @@
+{
+  "recipe90": {
+    "recipeId": "recipe-90",
+    "name": "Field Vital Soup",
+    "visibility": "public",
+    "status": "reviewed-authored-operational-playtest",
+    "sourceSha256": "32b2bf00c28584ad259c343bc5b961126d25078c094444c05bf3caf0c9edda5e",
+    "sourceRecipeIndex": 89,
+    "sourceEffect": "After a 10-minute meal, gain 3 temporary hit points and +1 to Constitution saves. A creature can benefit from one feast at a time.",
+    "sourceMechanics": {
+      "type": "meal",
+      "tag": "Vitality",
+      "tier": 1,
+      "temporaryHP": 3,
+      "duration": "until next long rest",
+      "secondaryTag": "Vitality"
+    },
+    "sourceRecipeTags": [
+      "Vitality"
+    ],
+    "sourceLegacyFields": {
+      "legacyName": "Soup of Savory Serviceableness",
+      "legacyEffect": "Minor magical effect"
+    },
+    "sourceRequirements": {
+      "skill": "Cooking",
+      "skillLevel": 1,
+      "difficulty": 11,
+      "tier": 1,
+      "rarity": "Common",
+      "quantity": 3,
+      "craftingTime": "4 hours",
+      "workRequirements": {
+        "station": "Cookfire or Kitchen",
+        "requiredTools": [
+          "Cook's utensils",
+          "Knife",
+          "Pot or pan"
+        ],
+        "fieldCraftable": true,
+        "timeMode": "expedition",
+        "activeWorkHours": 4,
+        "maximumAssistants": 0,
+        "facilityBonusEligible": true
+      },
+      "craftingCheck": {
+        "abilityOptions": [
+          "Wisdom"
+        ],
+        "formula": "d20 + chosen ability modifier + proficiency bonus + tool bonus + facility bonus + assistant bonus",
+        "targetDC": 11,
+        "qualityOutcomes": [
+          {
+            "margin": "10+",
+            "result": "Masterwork",
+            "effect": "Increase yield by 50% or improve one item property; preserve one catalyst."
+          },
+          {
+            "margin": "5 to 9",
+            "result": "Exceptional",
+            "effect": "Increase yield by 25% or improve durability/charges."
+          },
+          {
+            "margin": "0 to 4",
+            "result": "Standard",
+            "effect": "Create the listed result."
+          },
+          {
+            "margin": "-1 to -4",
+            "result": "Flawed",
+            "effect": "Create half yield or one reduced-duration/flawed result."
+          },
+          {
+            "margin": "-5 to -9",
+            "result": "Failed",
+            "effect": "No finished item; recover 25% of non-catalyst materials."
+          },
+          {
+            "margin": "-10 or natural 1",
+            "result": "Mishap",
+            "effect": "Lose consumed materials and roll on the tradeskill mishap table."
+          }
+        ]
+      },
+      "discovery": {
+        "sources": [
+          "trainer",
+          "starter manual",
+          "common experimentation"
+        ],
+        "minimumResearchHours": 0,
+        "requiresFormula": false,
+        "formulaConsumed": false
+      },
+      "components": [
+        {
+          "id": "ing-90-0-vegetables",
+          "name": "Vegetables",
+          "tier": 1,
+          "rarity": "Common",
+          "category": "crafting_supply",
+          "value": 2,
+          "weight": 0.1,
+          "quantity": 4,
+          "properties": [
+            "substrate"
+          ],
+          "materialCategory": "substrate",
+          "consumed": true,
+          "role": "substrate"
+        },
+        {
+          "id": "drop-living_root",
+          "name": "living root",
+          "tier": 1,
+          "rarity": "Common",
+          "category": "monster_part",
+          "value": 12,
+          "weight": 0.29,
+          "quantity": 1,
+          "properties": [
+            "botanical",
+            "organic",
+            "regenerative",
+            "vital"
+          ],
+          "legacyName": "Dawnflare Heart",
+          "materialCategory": "plant",
+          "sourceMonsters": [
+            "Awakened Shrub",
+            "Corpse Flower",
+            "Gas Spore",
+            "Sporefolk Adult",
+            "Sporefolk Sovereign (and 5 more)"
+          ],
+          "dropRate": 0.62,
+          "dropQuantity": "1d4",
+          "description": "A common living root. Unusual material with various crafting applications.",
+          "consumed": true,
+          "role": "material"
+        }
+      ],
+      "economy": {
+        "consumedMaterialValue": 20,
+        "consumedWeight": 0.69,
+        "laborValue": 2.0,
+        "recommendedMarketValue": 29,
+        "commissionDepositPercent": 50,
+        "salvageRecoveryOnFailurePercent": 25
+      },
+      "skillProgression": {
+        "skillXPOnSuccess": 4,
+        "trivialAtSkillLevel": 6,
+        "firstCraftBonus": true
+      }
+    },
+    "operational": {
+      "text": "After completing and accepting this feast, offer 3 temporary HP. Gain +1 to actual Constitution saving throws until the parent feast ends, including concentration and Wound/Injury saves when they are CON saves. Other roll types are not converted.",
+      "effect": {
+        "kind": "constitution-save-bonus",
+        "recipeTags": [
+          "Vitality"
+        ],
+        "magical": true,
+        "spell": false,
+        "concentration": false,
+        "temporaryHP": 3,
+        "parentDurationSeconds": null,
+        "parentEndsAtNextBeneficialLongRest": true,
+        "riderDurationSeconds": null,
+        "riderEndsWithParent": true,
+        "shieldDepletionEndsRider": false,
+        "acceptedFeastRequired": true,
+        "saveAbility": "CON",
+        "saveBonus": 1
+      },
+      "traitRider": null,
+      "failureOverride": null,
+      "activation": {
+        "activeMinutes": 10,
+        "regularTurnActions": 100,
+        "minimumElapsedSeconds": 600,
+        "additionalActionAfterRequiredCount": false,
+        "oneEaterOrFeederThroughout": true,
+        "recipientLocked": true,
+        "consent": "willing or Incapacitated with actual helper and compatible swallowing route",
+        "servingSpentAtLegalStart": true,
+        "noBenefitBeforeCompletion": true,
+        "interruptionLeavesOldFeast": true,
+        "declineMagicStillCountsCompletedFood": true
+      },
+      "physical": {
+        "foodWeightLb": {
+          "numerator": 2,
+          "denominator": 3
+        },
+        "defaultPackagingItemId": "cooking-containers.lidded-meal-crock",
+        "defaultPackagingWeightLb": 0.5,
+        "defaultGrossWeightLb": {
+          "numerator": 7,
+          "denominator": 6
+        },
+        "servings": 1,
+        "shelfLifeSeconds": 86400,
+        "spoilsWithoutDegradedStage": true,
+        "consumptionNeedOnlyStartBeforeShelfDeadline": true
+      },
+      "nutrition": {
+        "dailySmallMediumFoodFraction": {
+          "numerator": 1,
+          "denominator": 3
+        },
+        "dailyLargeFoodFraction": {
+          "numerator": 1,
+          "denominator": 6
+        },
+        "waterFuelOrSupplyCredit": 0,
+        "nutritiveInputMassLb": 0.4,
+        "worstRetainedNutritiveCatalystLb": 0.0,
+        "supplementaryRationReferenceCpPerLb": 25,
+        "standardSupplementaryFoodLb": 1.6,
+        "maximumMasterworkSupplementaryFoodLb": 2.27,
+        "reserveRoundedUpToLb": 0.01,
+        "sourceComponents": [
+          {
+            "componentIndex": 0,
+            "componentId": "ing-90-0-vegetables",
+            "name": "Vegetables",
+            "countsAsNutritiveInput": true,
+            "countedMassLb": 0.4,
+            "basis": "ordinary edible food after actual recipe preparation; Oil means food-grade cooking oil"
+          },
+          {
+            "componentIndex": 1,
+            "componentId": "drop-living_root",
+            "name": "living root",
+            "countsAsNutritiveInput": false,
+            "countedMassLb": 0,
+            "basis": "not credited as nutritive bulk by this card; no verified edible-food profile supplied"
+          }
+        ],
+        "reserveBeforeCheck": true,
+        "genericSupplementIncorporation": "after outcome, before finished-serving creation",
+        "reservationConsumesFood": false,
+        "genericFailedOrMishapWithoutFinishedProductConsumesSupplement": false
+      },
+      "craft": {
+        "sourceActiveWorkHours": 4,
+        "operationalActiveWorkHours": 4,
+        "workTimeProvenance": "source",
+        "firstBindingPhaseMinutes": 15,
+        "phaseIncludedInWork": true,
+        "maximumYield": 4,
+        "standardQuantity": 3,
+        "flawed": {
+          "mode": "half-batch-quantity",
+          "quantity": 1
+        },
+        "durabilityOnlyDedicatedMundanePackaging": true,
+        "standardQuantityOnlyWhenDurabilityChosen": true,
+        "mealCrockQualityMaxHP": 3,
+        "potencyImproved": false,
+        "maximumYieldNutritionReservedBeforeCheck": true,
+        "maximumYieldOutputDispositionReservedBeforeCheck": true,
+        "qualityDurabilityPreservesDamageDeficit": true,
+        "mealCrockCurrentHPIncreaseOnFirstImprovement": 1,
+        "mealCrockRepeatedMaximumIncrease": 0
+      },
+      "value": {
+        "standardBatchReferenceGp": 29,
+        "unitReferenceGp": {
+          "numerator": 29,
+          "denominator": 3
+        },
+        "extraFoodAndPackagingOutsideSourceEconomics": true
+      },
+      "sharedRules": "docs/mechanics/COOKING_RECIPE_PLAYTEST.md",
+      "outputDisposition": {
+        "predeclaredBeforeCompletionCheck": true,
+        "maximumServingSlots": 4,
+        "allowedKinds": [
+          "actual compatible food-safe storage capacity",
+          "distinct immediate-consumption slot"
+        ],
+        "immediateSlotRequiresPresentCompatibleRecipientEaterOrFeederAndAccess": true,
+        "maximumSimultaneousImmediateSlotsPerRecipient": 1,
+        "immediateServingCommittedAtCraftCompletion": true,
+        "invalidImmediateSlotRequiresActualReservedStorage": true,
+        "missingFallbackPreventsValidCompletionThroughException": true
+      }
+    }
+  },
+  "vegetableSourcePointer": "/cards/9/sourceRequirements/components/0",
+  "priceUnitEvidence": "COOKING_PUBLIC_RECIPE_CARDS.md recipe-90: 2 gp/unit; 0.1lb/unit. Not recipe-90 serving or magical feast.",
+  "items": [
+    {
+      "sourcePointer": "/items/24",
+      "completeItem": {
+        "id": "simple-melee-weapons.quarterstaff",
+        "name": "Quarterstaff",
+        "category": "Simple melee weapons",
+        "group": null,
+        "status": "reviewed-authored-playtest",
+        "sourceLine": 6773,
+        "sourceFields": {
+          "Weapon": "Quarterstaff",
+          "Cost": "2 sp",
+          "Damage": "1d6 bludgeoning",
+          "Weight": "4 lb.",
+          "Properties": "Versatile (1d8)"
+        },
+        "sourcePriceCp": 20.0,
+        "sourceWeightLb": 4.0,
+        "sourceWeightIncludesContents": false,
+        "procedure": "docs/mechanics/EQUIPMENT_ACQUISITION_PLAYTEST.md",
+        "bundleSize": 1,
+        "operationalBundleWeightLb": 4.0,
+        "weightProvenance": "source",
+        "unitWeightLb": 4.0,
+        "unitPriceCp": 20.0,
+        "tags": [],
+        "largeSizingEligible": true
+      }
+    },
+    {
+      "sourcePointer": "/items/38",
+      "completeItem": {
+        "id": "martial-melee-weapons.longsword",
+        "name": "Longsword",
+        "category": "Martial melee weapons",
+        "group": null,
+        "status": "reviewed-authored-playtest",
+        "sourceLine": 6798,
+        "sourceFields": {
+          "Weapon": "Longsword",
+          "Cost": "15 gp",
+          "Damage": "1d8 slashing",
+          "Weight": "3 lb.",
+          "Properties": "Versatile (1d10)"
+        },
+        "sourcePriceCp": 1500.0,
+        "sourceWeightLb": 3.0,
+        "sourceWeightIncludesContents": false,
+        "procedure": "docs/mechanics/EQUIPMENT_ACQUISITION_PLAYTEST.md",
+        "bundleSize": 1,
+        "operationalBundleWeightLb": 3.0,
+        "weightProvenance": "source",
+        "unitWeightLb": 3.0,
+        "unitPriceCp": 1500.0,
+        "tags": [],
+        "largeSizingEligible": true
+      }
+    },
+    {
+      "sourcePointer": "/items/59",
+      "completeItem": {
+        "id": "arcane-focuses.orb",
+        "name": "Orb",
+        "category": "Arcane focuses",
+        "group": null,
+        "status": "reviewed-authored-playtest",
+        "sourceLine": 6877,
+        "sourceFields": {
+          "Item": "Orb",
+          "Cost": "20 gp",
+          "Weight": "3 lb."
+        },
+        "sourcePriceCp": 2000.0,
+        "sourceWeightLb": 3.0,
+        "sourceWeightIncludesContents": false,
+        "procedure": "docs/mechanics/EQUIPMENT_ACQUISITION_PLAYTEST.md",
+        "bundleSize": 1,
+        "operationalBundleWeightLb": 3.0,
+        "weightProvenance": "source",
+        "unitWeightLb": 3.0,
+        "unitPriceCp": 2000.0,
+        "tags": [],
+        "largeSizingEligible": false
+      }
+    },
+    {
+      "sourcePointer": "/items/127",
+      "completeItem": {
+        "id": "adventuring-gear.paper-one-sheet",
+        "name": "Paper (one sheet)",
+        "category": "Adventuring gear",
+        "group": null,
+        "status": "reviewed-authored-playtest",
+        "sourceLine": 6983,
+        "sourceFields": {
+          "Item": "Paper (one sheet)",
+          "Cost": "2 sp",
+          "Weight": ","
+        },
+        "sourcePriceCp": 20.0,
+        "sourceWeightLb": null,
+        "sourceWeightIncludesContents": false,
+        "procedure": "docs/mechanics/EQUIPMENT_ACQUISITION_PLAYTEST.md",
+        "bundleSize": 1,
+        "operationalBundleWeightLb": 0.02,
+        "weightProvenance": "new small-item completion; source null preserved",
+        "unitWeightLb": 0.02,
+        "unitPriceCp": 20.0,
+        "tags": [],
+        "largeSizingEligible": false
+      }
+    },
+    {
+      "sourcePointer": "/items/141",
+      "completeItem": {
+        "id": "adventuring-gear.rope-hempen-50-feet",
+        "name": "Rope, hempen (50 feet)",
+        "category": "Adventuring gear",
+        "group": null,
+        "status": "reviewed-authored-playtest",
+        "sourceLine": 6997,
+        "sourceFields": {
+          "Item": "Rope, hempen (50 feet)",
+          "Cost": "1 gp",
+          "Weight": "10 lb."
+        },
+        "sourcePriceCp": 100.0,
+        "sourceWeightLb": 10.0,
+        "sourceWeightIncludesContents": false,
+        "procedure": "docs/mechanics/EQUIPMENT_ACQUISITION_PLAYTEST.md",
+        "bundleSize": 1,
+        "operationalBundleWeightLb": 10.0,
+        "weightProvenance": "source",
+        "unitWeightLb": 10.0,
+        "unitPriceCp": 100.0,
+        "tags": [],
+        "largeSizingEligible": false
+      }
+    },
+    {
+      "sourcePointer": "/items/142",
+      "completeItem": {
+        "id": "adventuring-gear.rope-silk-50-feet",
+        "name": "Rope, silk (50 feet)",
+        "category": "Adventuring gear",
+        "group": null,
+        "status": "reviewed-authored-playtest",
+        "sourceLine": 6998,
+        "sourceFields": {
+          "Item": "Rope, silk (50 feet)",
+          "Cost": "10 gp",
+          "Weight": "5 lb."
+        },
+        "sourcePriceCp": 1000.0,
+        "sourceWeightLb": 5.0,
+        "sourceWeightIncludesContents": false,
+        "procedure": "docs/mechanics/EQUIPMENT_ACQUISITION_PLAYTEST.md",
+        "bundleSize": 1,
+        "operationalBundleWeightLb": 5.0,
+        "weightProvenance": "source",
+        "unitWeightLb": 5.0,
+        "unitPriceCp": 1000.0,
+        "tags": [],
+        "largeSizingEligible": false
+      }
+    },
+    {
+      "sourcePointer": "/items/162",
+      "completeItem": {
+        "id": "tools.carpenter-s-tools",
+        "name": "Carpenter's tools",
+        "category": "Tools",
+        "group": "Artisan's Tools",
+        "status": "reviewed-authored-playtest",
+        "sourceLine": 7024,
+        "sourceFields": {
+          "Item": "Carpenter's tools",
+          "Cost": "8 gp",
+          "Weight": "6 lb."
+        },
+        "sourcePriceCp": 800.0,
+        "sourceWeightLb": 6.0,
+        "sourceWeightIncludesContents": false,
+        "procedure": "docs/mechanics/EQUIPMENT_ACQUISITION_PLAYTEST.md",
+        "bundleSize": 1,
+        "operationalBundleWeightLb": 6.0,
+        "weightProvenance": "source",
+        "unitWeightLb": 6.0,
+        "unitPriceCp": 800.0,
+        "tags": [],
+        "largeSizingEligible": false
+      }
+    },
+    {
+      "sourcePointer": "/items/175",
+      "completeItem": {
+        "id": "tools.woodcarver-s-tools",
+        "name": "Woodcarver's tools",
+        "category": "Tools",
+        "group": "Artisan's Tools",
+        "status": "reviewed-authored-playtest",
+        "sourceLine": 7037,
+        "sourceFields": {
+          "Item": "Woodcarver's tools",
+          "Cost": "1 gp",
+          "Weight": "5 lb."
+        },
+        "sourcePriceCp": 100.0,
+        "sourceWeightLb": 5.0,
+        "sourceWeightIncludesContents": false,
+        "procedure": "docs/mechanics/EQUIPMENT_ACQUISITION_PLAYTEST.md",
+        "bundleSize": 1,
+        "operationalBundleWeightLb": 5.0,
+        "weightProvenance": "source",
+        "unitWeightLb": 5.0,
+        "unitPriceCp": 100.0,
+        "tags": [],
+        "largeSizingEligible": false
+      }
+    }
+  ],
+  "newValueRules": "100cp=1gp, existing ordinary equipment exchange. Finished item full Standard baseline used as conservative cap where no separate raw-material valuation exists."
+}

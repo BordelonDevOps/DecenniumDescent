@@ -1,0 +1,34 @@
+{
+  "id": "QUEUE-128-IDENTITY-AUDIT",
+  "recordedAtUtc": "2026-10-24T01:44:21.743689+00:00",
+  "actualAuthoredCounts": {
+    "reviewed": 616,
+    "pending": 232
+  },
+  "pendingStatusBreakdown": {
+    "pending-authored-procedure": 231,
+    "receipt-only-post-push-cosmology": 1
+  },
+  "actualPending": 232,
+  "unacceptedQueueIdentities": 232,
+  "uncovered": [],
+  "nonpendingInUnacceptedQueue": [],
+  "duplicateIdentities": [],
+  "noCanonicalChange": true,
+  "inspectorCorrection": {
+    "priorAttempt": {
+      "id": "QUEUE-128-IDENTITY-AUDIT",
+      "actualPending": 231,
+      "unacceptedQueueIdentities": 232,
+      "uncovered": [],
+      "nonpendingInUnacceptedQueue": [
+        "blink"
+      ],
+      "duplicateIdentities": [],
+      "passed": false,
+      "noCanonicalChange": true
+    },
+    "resolution": "Blink is explicitly receipt-only-post-push-cosmology with null procedure, so is one of232pending and belongs in Planar6. Initial inspector omitted this second pending status; no source/count/queue discrepancy."
+  },
+  "passed": true
+}

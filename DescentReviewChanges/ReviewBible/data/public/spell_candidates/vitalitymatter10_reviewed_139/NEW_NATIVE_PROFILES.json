@@ -1,0 +1,211 @@
+{
+  "colossus": {
+    "provenance": "NEW VM139-COLOSSUS profile, only baseHP140/two slams/cleave native",
+    "origin": "finite spell manifestation; no native-plane/soul/CR assertion",
+    "mechanicalType": "Undead, NEW no automatic immunity/needs inference",
+    "size": "Large",
+    "boxFeet": [
+      10,
+      10,
+      15
+    ],
+    "massLb": 2000,
+    "abilities": {
+      "STR": 22,
+      "DEX": 8,
+      "CON": 18,
+      "INT": 3,
+      "WIS": 10,
+      "CHA": 5
+    },
+    "AC": 16,
+    "baseHP": 140,
+    "saves": "each save uses original creating caster PB as TOTAL; no added ability; ordinary unproficient checks use profile ability modifier",
+    "speed": {
+      "walk": 30
+    },
+    "support": "full ground or actual load-bearing platform; no flight/hover",
+    "senses": "ordinary sight/hearing, no darkvision",
+    "grippers": 2,
+    "speech": false,
+    "understands": "original caster languages for commands only",
+    "reach": 10,
+    "carryLb": 660,
+    "carryLoad": 22,
+    "bodyCasualtyLoad": 12,
+    "breathFoodSleep": "NEW finite manifestation needs none during its original60s; no general undead rule",
+    "immunities": [],
+    "resistances": [],
+    "slam": {
+      "attack": "original creating class spell attack",
+      "damage": "2d8+original caster M bludgeoning",
+      "count": 2,
+      "roots": "independent attack rolls and damage rolls, same or different legal recipients",
+      "reachFeet": 10
+    },
+    "cleave": {
+      "option": "instead of both slams",
+      "origin": "center front chest at actual body pose, no remote origin",
+      "geometry": "NEW axial cone0<s<=15, r²<=(s/2)², terminal diameter15; body interior witness and clear same-origin LoE; cover applies",
+      "targets": "all actual creatures intersecting, including allies",
+      "save": "DEX vs original caster DC; half floored on success",
+      "damage": "one shared3d8 bludgeoning roll",
+      "recharge": 0
+    }
+  },
+  "zombie": {
+    "provenance": "NEW VM139-FINGER-ZOMBIE distinct from standard Wizard minion",
+    "origin": "same consumed dead Humanoid body, immutable person/body/part history; no new soul",
+    "mechanicalType": "Undead, only for this animation",
+    "size": "original Small/Medium body only, NEW rider limitation",
+    "boxFeet": "original body extents, maintained missing parts",
+    "massLb": "actual original surviving matter, unchanged; no added corpse",
+    "abilities": {
+      "STR": 16,
+      "DEX": 8,
+      "CON": 14,
+      "INT": 3,
+      "WIS": 8,
+      "CHA": 5
+    },
+    "AC": 12,
+    "baseHP": 30,
+    "saves": "original creating caster PB TOTAL; no added ability",
+    "speed": {
+      "walk": 20
+    },
+    "support": "ordinary ground; requires actual legs",
+    "senses": "ordinary sight/hearing; no darkvision",
+    "grippers": "original surviving functional hands, at most2",
+    "speech": false,
+    "breathFoodSleep": "NEW no intake/sleep need during finite60s animation only",
+    "resistances": [],
+    "immunities": [],
+    "attack": {
+      "name": "slam",
+      "count": 1,
+      "reachFeet": 5,
+      "attack": "original caster spell attack",
+      "damage": "1d8+original caster M bludgeoning",
+      "needs": "one intact arm"
+    },
+    "carryLb": 240,
+    "carryLoad": 16,
+    "bodyCasualtyLoad": "original Small4/Medium6",
+    "lifetimeSeconds": 60,
+    "harvest": "no renewed corpse or body entitlement; original physical allocation remains consumed"
+  },
+  "Elemental": {
+    "provenance": "NEW VM139-TRANSMUTE-BEING fixed profile; no imported monster",
+    "size": "Large",
+    "boxFeet": [
+      10,
+      10,
+      10
+    ],
+    "massLb": 1000,
+    "abilityAssignments": {
+      "STR": 24,
+      "CON": 18
+    },
+    "otherAbilities": "subject retained",
+    "maxHP": "subject unchanged",
+    "AC": 17,
+    "speed": {
+      "walk": 30,
+      "burrowLooseSoil": 15
+    },
+    "hands": 2,
+    "speech": true,
+    "senses": "ordinary sight/hearing, no special senses",
+    "support": "earth support, no stone passage or new elemental-origin type",
+    "attacks": {
+      "count": 1,
+      "reachFeet": 5,
+      "roll": "subject PB+subject current STR modifier",
+      "damage": "2d8 bludgeoning +subject current STR modifier",
+      "dealer": "subject, not transformation caster",
+      "magicalFlag": false
+    },
+    "immunities": [],
+    "resistances": [],
+    "needs": "subject retained unless explicit anatomy incompatible; no new environmental immunity",
+    "gear": "original gear melds inaccessible; genuine newly acquired compatible external focus usable only Elemental; no equipment proficiency granted",
+    "carry": "15*currentSTR lb doubled if Large; currentSTR Load; Large doubles Burden threshold only per actual body rules"
+  },
+  "Beast": {
+    "provenance": "NEW VM139-TRANSMUTE-BEING fixed profile; no imported monster",
+    "size": "Large",
+    "boxFeet": [
+      10,
+      10,
+      8
+    ],
+    "massLb": 600,
+    "abilityAssignments": {
+      "STR": 20,
+      "DEX": 16
+    },
+    "otherAbilities": "subject retained",
+    "maxHP": "subject unchanged",
+    "AC": 15,
+    "speed": {
+      "walk": 40
+    },
+    "hands": 0,
+    "speech": false,
+    "senses": "ordinary sight/hearing, no special senses",
+    "support": "quadruped; four load-bearing limbs, no hands or speech",
+    "attacks": {
+      "count": 1,
+      "reachFeet": 5,
+      "roll": "subject PB+subject current STR modifier",
+      "damage": "2d8 slashing +subject current STR modifier",
+      "dealer": "subject, not transformation caster",
+      "magicalFlag": false
+    },
+    "immunities": [],
+    "resistances": [],
+    "needs": "subject retained unless explicit anatomy incompatible; no new environmental immunity",
+    "gear": "original gear melds inaccessible; genuine newly acquired compatible external focus usable only Elemental; no equipment proficiency granted",
+    "carry": "15*currentSTR lb doubled if Large; currentSTR Load; Large doubles Burden threshold only per actual body rules"
+  },
+  "Ooze": {
+    "provenance": "NEW VM139-TRANSMUTE-BEING fixed profile; no imported monster",
+    "size": "Medium",
+    "boxFeet": [
+      5,
+      5,
+      3
+    ],
+    "massLb": 200,
+    "abilityAssignments": {
+      "DEX": 16,
+      "CON": 18
+    },
+    "otherAbilities": "subject retained",
+    "maxHP": "subject unchanged",
+    "AC": 14,
+    "speed": {
+      "walk": 20,
+      "climb": 20
+    },
+    "hands": 0,
+    "speech": false,
+    "senses": "ordinary sight/hearing, no special senses",
+    "support": "adhesive surface support; no wall passage, squeezing immunity or acid",
+    "attacks": {
+      "count": 1,
+      "reachFeet": 5,
+      "roll": "subject PB+subject current STR modifier",
+      "damage": "2d6 bludgeoning +subject current STR modifier",
+      "dealer": "subject, not transformation caster",
+      "magicalFlag": false
+    },
+    "immunities": [],
+    "resistances": [],
+    "needs": "subject retained unless explicit anatomy incompatible; no new environmental immunity",
+    "gear": "original gear melds inaccessible; genuine newly acquired compatible external focus usable only Elemental; no equipment proficiency granted",
+    "carry": "15*currentSTR lb doubled if Large; currentSTR Load; Large doubles Burden threshold only per actual body rules"
+  }
+}

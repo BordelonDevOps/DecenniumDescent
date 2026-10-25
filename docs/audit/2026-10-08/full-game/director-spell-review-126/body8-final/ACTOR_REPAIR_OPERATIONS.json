@@ -1,0 +1,235 @@
+{
+  "baselineMember": "ACTOR_TEMPLATES.json",
+  "successorFile": "ACTOR_TEMPLATES.json",
+  "operations": [
+    {
+      "op": "replace",
+      "pointer": "/W2/automaticCards",
+      "before": [
+        {
+          "id": "wizard.arch.arcane-tradition",
+          "name": "Arcane Tradition",
+          "className": "Wizard",
+          "band": "Arch",
+          "path": null,
+          "sourceKind": "passive",
+          "minimumClassLevel": 3,
+          "acquisition": "automatic",
+          "activation": "Passive",
+          "cost": "0",
+          "rangeAndTarget": "Your level-1 Arcane School",
+          "duration": "Permanent",
+          "frequency": "Automatic at Wizard 3; not a selection",
+          "effect": "Arcane Tradition. Tags: arch, school, automatic. Your level-1 Arcane School becomes your Arcanist tradition; do not choose a second school. Prepare one additional matrix from that same school each day without counting it against your normal prepared-matrix maximum. It otherwise obeys all ordinary rank, spellbook, Dissonance and duplicate-family rules.",
+          "source": {
+            "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+            "line": 5217,
+            "originalText": "Arcane Tradition: Choose a school of magic to specialize in, gaining bonuses to spells of that school."
+          },
+          "designStatus": "provisional-playtest",
+          "spellRank": null
+        },
+        {
+          "id": "wizard.base.counterspell",
+          "name": "Counterspell",
+          "className": "Wizard",
+          "band": "Base",
+          "path": null,
+          "sourceKind": "active",
+          "minimumClassLevel": 2,
+          "acquisition": "automatic",
+          "activation": "Reaction",
+          "cost": "3 RP",
+          "rangeAndTarget": "One creature you perceive casting a spell within 60 feet",
+          "duration": "Instantaneous",
+          "frequency": "Automatic at Wizard 2; recharge 2 rounds",
+          "effect": "Counterspell. Tags: arch-source, automatic, wizard-spell, abjuration, disruption. Trigger when a creature begins casting a spell. Make an Intelligence check adding proficiency against DC 10 + twice the spell's rank, treating rank 0 as 0. Success negates the triggering spell after its costs are paid; failure lets it resolve. This is gained automatically at Wizard 2 and is never also selected from the Arch pool.",
+          "source": {
+            "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+            "line": 5222,
+            "originalText": "Counterspell: Disrupt an enemy's spellcasting, potentially negating their spell entirely."
+          },
+          "designStatus": "provisional-playtest",
+          "spellRank": 1
+        },
+        {
+          "id": "wizard.supplement.ritual-casting",
+          "name": "Ritual Casting",
+          "className": "Wizard",
+          "band": "Base",
+          "path": null,
+          "sourceKind": "supplement",
+          "minimumClassLevel": 2,
+          "acquisition": "automatic",
+          "activation": "Ritual",
+          "cost": "0 RP unless the individual ritual explicitly states otherwise",
+          "rangeAndTarget": "As the ritual spell",
+          "duration": "As the ritual spell",
+          "frequency": "At will outside encounters with sufficient time",
+          "effect": "Source progression line 5184. Cast a Wizard spell bearing the Ritual tag directly from your spellbook without preparing it. Increase its casting time by at least 10 minutes. Ritual Casting cannot be completed during an encounter, does not use an ordinary prepared-matrix position and does not generate or vent normal casting Dissonance.",
+          "prerequisite": "See class engine and progression.",
+          "source": {
+            "line": 5184,
+            "reference": null,
+            "originalText": "| 2 | Counterspell Reaction, Ritual Casting |",
+            "status": "source-derived"
+          },
+          "designStatus": "provisional-playtest",
+          "spellRank": null
+        },
+        {
+          "id": "wizard.supplement.school-mastery",
+          "name": "School Mastery",
+          "className": "Wizard",
+          "band": "Arch",
+          "path": null,
+          "sourceKind": "supplement",
+          "minimumClassLevel": 5,
+          "acquisition": "automatic",
+          "activation": "Passive",
+          "cost": "0",
+          "rangeAndTarget": "Your level-1 Arcane School",
+          "duration": "Permanent",
+          "frequency": "Automatic at Wizard 5",
+          "effect": "Source progression line 5186. This is the one School Mastery progression grant, not a second school choice or duplicate feat. Increase the level-1 Arcane School spell-attack and spell-save bonus from +1 to +2 total. Its school passive and bonus-spell rules otherwise remain unchanged.",
+          "prerequisite": "See class engine and progression.",
+          "source": {
+            "line": 5186,
+            "reference": null,
+            "originalText": "| 5 | Bonus Feat: School Mastery |",
+            "status": "source-derived"
+          },
+          "designStatus": "provisional-playtest",
+          "spellRank": null
+        },
+        {
+          "id": "wizard.supplement.arcane-ward",
+          "name": "Arcane Ward",
+          "className": "Wizard",
+          "band": "Arch",
+          "path": null,
+          "sourceKind": "supplement",
+          "minimumClassLevel": 6,
+          "acquisition": "automatic",
+          "activation": "Passive",
+          "cost": "0",
+          "rangeAndTarget": "Self",
+          "duration": "Until next long rest",
+          "frequency": "Choose after each long rest",
+          "effect": "Source progression line 5187. After preparing spells, choose one of acid, cold, fire, force, lightning, necrotic, psychic, radiant or thunder that is dealt by at least one prepared spell of your Arcane School. Gain resistance to that damage type until your next long rest. If none of your prepared school spells deals a damage type, choose force. This is provisional completion of the source's ambiguous 'chosen school's element' wording.",
+          "prerequisite": "See class engine and progression.",
+          "source": {
+            "line": 5187,
+            "reference": null,
+            "originalText": "| 6 | Arcane Ward (resistance to chosen school's element) |",
+            "status": "source-derived"
+          },
+          "designStatus": "provisional-playtest",
+          "spellRank": null
+        },
+        {
+          "id": "wizard.supplement.dual-cast",
+          "name": "Dual Cast",
+          "className": "Wizard",
+          "band": "Arch",
+          "path": null,
+          "sourceKind": "supplement",
+          "minimumClassLevel": 9,
+          "acquisition": "automatic",
+          "activation": "Action",
+          "cost": "Pay the complete RP costs of both spells",
+          "rangeAndTarget": "As each spell",
+          "duration": "As each spell",
+          "frequency": "1/short rest",
+          "effect": "Source progression line 5188. Choose two DIFFERENT prepared Wizard spells of rank 1 or 2, neither of which summons a creature or grants an additional Action. Cast both sequentially as one Action, paying both RP costs. They cannot both require concentration. Each matrix separately updates first-cast/Refrain history. Features that trigger merely from 'casting a spell' may trigger once for each actual matrix unless that feature itself says once per turn; no trigger may create another Dual Cast or additional full Action.",
+          "prerequisite": "See class engine and progression.",
+          "source": {
+            "line": 5188,
+            "reference": null,
+            "originalText": "| 9 | Dual Cast (cast 2 Tier 1–2 spells in a round) |",
+            "status": "source-derived"
+          },
+          "designStatus": "provisional-playtest",
+          "spellRank": null
+        },
+        {
+          "id": "wizard.supplement.overchannel",
+          "name": "Overchannel",
+          "className": "Wizard",
+          "band": "Hero",
+          "path": null,
+          "sourceKind": "supplement",
+          "minimumClassLevel": 13,
+          "acquisition": "automatic",
+          "activation": "Triggered",
+          "cost": "Pay the Core V 2 RP cost for one rank above the spell's normal cast rank",
+          "rangeAndTarget": "One prepared spell you are beginning to cast",
+          "duration": "For that cast",
+          "frequency": "1/long rest",
+          "effect": "Source progression line 5190. Cast one prepared spell as though it were one rank higher than the highest rank at which you could normally cast that SAME spell, provided the spell has an explicit higher-rank scaling rule. Overchannel does not teach or prepare a higher-rank spell, cannot exceed effective rank 9 and cannot be combined with another generic Overcast rule during this pilot. All normal Dissonance/Refrain rules still apply.",
+          "prerequisite": "See class engine and progression.",
+          "source": {
+            "line": 5190,
+            "reference": null,
+            "originalText": "| 13 | Overchannel (cast a spell 1 tier higher once/day) |",
+            "status": "source-derived"
+          },
+          "designStatus": "provisional-playtest",
+          "spellRank": null
+        }
+      ],
+      "after": [
+        {
+          "id": "wizard.base.counterspell",
+          "name": "Counterspell",
+          "className": "Wizard",
+          "band": "Base",
+          "path": null,
+          "sourceKind": "active",
+          "minimumClassLevel": 2,
+          "acquisition": "automatic",
+          "activation": "Reaction",
+          "cost": "3 RP",
+          "rangeAndTarget": "One creature you perceive casting a spell within 60 feet",
+          "duration": "Instantaneous",
+          "frequency": "Automatic at Wizard 2; recharge 2 rounds",
+          "effect": "Counterspell. Tags: arch-source, automatic, wizard-spell, abjuration, disruption. Trigger when a creature begins casting a spell. Make an Intelligence check adding proficiency against DC 10 + twice the spell's rank, treating rank 0 as 0. Success negates the triggering spell after its costs are paid; failure lets it resolve. This is gained automatically at Wizard 2 and is never also selected from the Arch pool.",
+          "source": {
+            "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+            "line": 5222,
+            "originalText": "Counterspell: Disrupt an enemy's spellcasting, potentially negating their spell entirely."
+          },
+          "designStatus": "provisional-playtest",
+          "spellRank": 1
+        },
+        {
+          "id": "wizard.supplement.ritual-casting",
+          "name": "Ritual Casting",
+          "className": "Wizard",
+          "band": "Base",
+          "path": null,
+          "sourceKind": "supplement",
+          "minimumClassLevel": 2,
+          "acquisition": "automatic",
+          "activation": "Ritual",
+          "cost": "0 RP unless the individual ritual explicitly states otherwise",
+          "rangeAndTarget": "As the ritual spell",
+          "duration": "As the ritual spell",
+          "frequency": "At will outside encounters with sufficient time",
+          "effect": "Source progression line 5184. Cast a Wizard spell bearing the Ritual tag directly from your spellbook without preparing it. Increase its casting time by at least 10 minutes. Ritual Casting cannot be completed during an encounter, does not use an ordinary prepared-matrix position and does not generate or vent normal casting Dissonance.",
+          "prerequisite": "See class engine and progression.",
+          "source": {
+            "line": 5184,
+            "reference": null,
+            "originalText": "| 2 | Counterspell Reaction, Ritual Casting |",
+            "status": "source-derived"
+          },
+          "designStatus": "provisional-playtest",
+          "spellRank": null
+        }
+      ]
+    }
+  ],
+  "count": 1,
+  "scope": "Actual W2 acquisition list only; complete class source text is retained as history."
+}

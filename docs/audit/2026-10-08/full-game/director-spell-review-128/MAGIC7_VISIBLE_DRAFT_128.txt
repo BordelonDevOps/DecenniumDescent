@@ -1,0 +1,569 @@
+I’ll review the complete MagicModifiers7 packet against current127 authority, then deliver full procedures, cases, reversible operations, and verified data artifacts. Transport6 remains separately pending Codex review.
+
+Inspected spell archives, source files, acceptance data, and manifests
+
+I’ll treat applied Body8 and Time5 as current authority, superseding older packet labels, while keeping Material8 outside the accepted rule set.
+
+Inspected candidate records, spells, procedures, questions, and card counterparts
+
+Planned source validation
+
+Inspected spell sources, dependencies, structures, and review registry
+
+Refined procedures
+
+Scheduled event timing
+
+Mapped scenario events
+
+I’ll preserve Water Pet’s real 2d6 heal without inventing a reserve, and source-bind Rebind’s immunity, resistance, and reduction separately. Haste theft retains ending Stun/concentration loss.
+
+Computed and validated magic procedures, interactions, defenses, and source access
+
+Analyzed
+Python
+from pathlib import Path, PurePosixPath
+import json, hashlib, zipfile, io, copy, math, tempfile, datetime
+from fractions import Fraction
+inp=Path("/mnt/data/DD_MagicModifiers7_Director_Conference_127.zip")
+outer=zipfile.ZipFile(inp)
+prep=zipfile.ZipFile(io.BytesIO(outer.read("prepared/DD_MagicModifiers7_Director_Conference_126.zip")))
+orig=zipfile.ZipFile(io.BytesIO(prep.read("original/DD_Magic_Modifiers_7_Conference_01.zip")))
+ctx=zipfile.ZipFile(io.BytesIO(prep.read("accepted-context/DD_Spell_Current_Context_116.zip")))
+C=json.loads(orig.read("CANDIDATE.json"))
+additional=json.loads(prep.read("MAGIC_MODIFIERS7_INDEPENDENT_QUESTIONS.json"))
+index=json.loads(outer.read("current/authored_review_index.json"))
+registry=json.loads(prep.read("current/DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_06.json"))
+base="sources/DescentReviewChanges/ReviewBible/"
+catalog=json.loads(orig.read(base+"data/public/spell_playtests/catalog.json"))
+low=json.loads(orig.read(base+"data/public/spell_playtests/candidate_low_rank_136.json"))
+classes={k:json.loads(orig.read(base+f"data/public/class_playtests/{k}.json")) for k in ["wizard","cleric","mage"]}
+out=Path(tempfile.mkdtemp(prefix="MM7_127_Authored_",dir="/mnt/data"))
+(out/"evidence").mkdir()
+(out/"history").mkdir()
+def sha(b):return hashlib.sha256(b).hexdigest()
+def dump(name,obj):
+    p=out/name;p.parent.mkdir(parents=True,exist_ok=True)
+    data=(json.dumps(obj,ensure_ascii=False,indent=2)+"\n").encode()
+    with p.open("wb") as f:f.write(data)
+    return {"path":name,"bytes":len(data),"sha256":sha(data)}
+checks=[]
+def chk(name,test,details=None):
+    checks.append({"id":name,"passed":bool(test),"detail":details})
+    if not test:raise AssertionError((name,details))
+def archive_check(z,label):
+    ns=z.namelist()
+    chk(label+":names",len(ns)==len(set(ns)) and all(not PurePosixPath(n).is_absolute() and ".." not in PurePosixPath(n).parts and "\\" not in n for n in ns))
+    chk(label+":CRC",z.testzip() is None)
+    m=json.loads(z.read("MANIFEST.json"))
+    for e in m["files"]:
+        key=e.get("path",e.get("file",e.get("member")))
+        if key not in ns:key="sources/"+key
+        b=z.read(key);chk(label+":"+key,len(b)==e["bytes"] and sha(b)==e["sha256"])
+    return m
+mouter=archive_check(outer,"wrapper127")
+mprep=archive_check(prep,"prepared126")
+morig=archive_check(orig,"original01")
+mctx=archive_check(ctx,"context116")
+chk("original-candidate",len(orig.read("CANDIDATE.json"))==772642 and sha(orig.read("CANDIDATE.json"))=="dcfe882fb1e71b057ee4d4cf16be44659a8d6bd93c5a5d2e9363fcb415122723")
+(out/"evidence/ORIGINAL_CANDIDATE.json").write_bytes(orig.read("CANDIDATE.json"))
+(out/"evidence/ADDITIONAL_QUESTIONS.json").write_bytes(prep.read("MAGIC_MODIFIERS7_INDEPENDENT_QUESTIONS.json"))
+(out/"evidence/CURRENT_INDEX.json").write_bytes(outer.read("current/authored_review_index.json"))
+for k in classes: (out/f"evidence/{k.upper()}_COMPLETE_SOURCE.json").write_bytes(orig.read(base+f"data/public/class_playtests/{k}.json"))
+# Input source references, all bindings (not executing any source).
+input_records={
+"outer":{"file":inp.name,"bytes":inp.stat().st_size,"sha256":sha(inp.read_bytes())},
+"prepared":{"member":"prepared/DD_MagicModifiers7_Director_Conference_126.zip","bytes":len(prep.fp.getvalue()),"sha256":sha(prep.fp.getvalue())},
+"original":{"member":"original/DD_Magic_Modifiers_7_Conference_01.zip","bytes":len(orig.fp.getvalue()),"sha256":sha(orig.fp.getvalue())},
+"context116":{"member":"accepted-context/DD_Spell_Current_Context_116.zip","bytes":len(ctx.fp.getvalue()),"sha256":sha(ctx.fp.getvalue())}}
+fullrefs={"inputBindings":input_records,"original33CompleteSources":C["sourceBindings"],"wrapperManifest":mouter,"preparedManifest":mprep,
+"originalManifest":morig,"context116Manifest":mctx,"countsAuthority":json.loads(outer.read("current/APPLICATION_CHECKPOINT_127.json"))}
+dump("SOURCE_REFERENCES.json",fullrefs)
+dump("INPUT_VALIDATION.json",{"checks":checks,"noSuppliedCodeExecuted":True})
+print(out,len(checks))
+
+STDOUT/STDERR
+/mnt/data/MM7_127_Authored_sq8_cmub 129
+
+Analyzed
+Python
+# Build a complete, reference-bound card library for examples.
+cards={}
+cardrefs={}
+def addcard(sid,card,ref):
+    cards[sid]=copy.deepcopy(card);cardrefs[sid]=ref
+for r in C["completeAcceptedCounterparts"]:
+    addcard(r["spellId"],r["completeCurrentCard"],{"archive":"original","member":"CANDIDATE.json","pointer":"/completeAcceptedCounterparts/"+str(C["completeAcceptedCounterparts"].index(r)),"source":r["source"],"sourcePointer":r["pointer"]})
+for sid in ["armor-of-faith","detect-magic","chill-touch","shield","resonance-anchor","ray-of-frost"]:
+    for i,c in enumerate(catalog["spells"]):
+        if c["id"]==sid and c.get("operational"):
+            addcard(sid,c,{"archive":"original","member":base+"data/public/spell_playtests/catalog.json","pointer":f"/spells/{i}"})
+for sid in ["invisibility","mage-hand"]:
+    for i,c in enumerate(low["spells"]):
+        if c.get("id")==sid:
+            addcard(sid,c,{"archive":"original","member":base+"data/public/spell_playtests/candidate_low_rank_136.json","pointer":f"/spells/{i}"})
+ac5=json.loads(orig.read(base+"data/public/spell_candidates/abjuration_conjuration_rank5_reviewed_05.json"))
+for i,c in enumerate(ac5["spells"]):
+    if c["id"] in ["antimagic-field-lesser","greater-dispel","wall-of-force","living-magma","summon-greater-fire-pet"]:
+        addcard(c["id"],c,{"archive":"original","member":base+"data/public/spell_candidates/abjuration_conjuration_rank5_reviewed_05.json","pointer":f"/spells/{i}","sharedRules":ac5["sharedRules"]})
+ice=next(e for e in registry["entries"] if e["id"]=="P20-PROCEDURE-ice-storm")
+print("ICE registry keys",ice["completeContext"].keys() if isinstance(ice["completeContext"],dict) else type(ice["completeContext"]))
+print(str(ice["completeContext"])[:1000])
+print("ArcaneSight",classes["wizard"]["cards"][21])
+print("Automatic",[(i,c["id"],c["minimumClassLevel"]) for i,c in enumerate(classes["wizard"]["cards"]) if c["acquisition"]=="automatic"])
+print("\nENGINE selections",*[s for s in classes["wizard"]["engine"] if any(t in s for t in ["SCHOOL MASTERY","ARCANE WARD"])],sep="\n")
+print("\nCORE\n",orig.read(base+"docs/mechanics/CORE_RESOLUTION_PLAYTEST.md").decode()[:12500])
+
+STDOUT/STDERR
+ICE registry keys dict_keys(['model', 'sharedRulesPointer', 'referenceAliases', 'rootMappingPointer', 'completeSourceSpecificRootMapping'])
+{'model': {'path': 'DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json', 'bytes': 849980, 'sha256': '0601bba2d5ece6d12c0c27b3dcca656e7da8bfba7f1a47b5c647d1e03007b55d', 'frozenCopy': 'docs/audit/2026-10-08/full-game/accepted-interface-refresh-06/sources/DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json'}, 'sharedRulesPointer': '/sharedRules', 'referenceAliases': {'SPELLS_MODEL.json': 'DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json', 'CASEBOOK.json': 'DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/persistent_damage_20_cases_07.json', 'REGISTER.json': 'docs/audit/2026-10-08/full-game/persistent-damage20-exact-rebound-07/REGISTER.json'}, 'rootMappingPointer': '/spells/2/damageRootProposal', 'completeSourceSpecificRootMapping': {'spellId': 'ice-storm', 'status': 'NEW source-specific proposal, requires Director agreement', 'c
+ArcaneSight {'id': 'wizard.arch.arcane-sight', 'name': 'Arcane Sight', 'className': 'Wizard', 'band': 'Arch', 'path': None, 'sourceKind': 'active', 'minimumClassLevel': 3, 'acquisition': 'selection', 'activation': 'Action', 'cost': '2 RP', 'rangeAndTarget': 'Self; 60-foot sight', 'duration': 'Concentration, maximum 10 minutes', 'frequency': 'Recharge 2 rounds', 'effect': "Arcane Sight. Tags: arch, active, wizard-spell, divination, concentration. While active you perceive magical auras within 60 feet and automatically know each visible aura's school or broad magical category. As an Action on a later turn, examine one aura to learn whether it is concentrated, summoned, cursed, warded or linked to another visible magical effect. Total cover blocks sight.", 'source': {'extract': 'docs/reference/Player_Rulebook_v6_source_text.txt', 'line': 5226, 'originalText': 'Arcane Sight: See magical auras and effects for a short duration.'}, 'designStatus': 'provisional-playtest', 'spellRank': 2}
+Automatic [(14, 'wizard.arch.arcane-tradition', 3), (17, 'wizard.base.counterspell', 2), (32, 'wizard.hero.spellbinder.arcane-sanctuary', 20), (38, 'wizard.hero.elementalist.elemental-affinity', 10), (43, 'wizard.hero.elementalist.reality-edit', 20), (54, 'wizard.hero.necromancer.mind-prison', 20), (55, 'wizard.supplement.ritual-casting', 2), (56, 'wizard.supplement.school-mastery', 5), (57, 'wizard.supplement.arcane-ward', 6), (58, 'wizard.supplement.dual-cast', 9), (59, 'wizard.supplement.overchannel', 13), (60, 'wizard.supplement.arcane-feedback', 15), (61, 'wizard.supplement.tethered-cast', 17), (62, 'wizard.supplement.grand-reservoir', 20)]
+
+ENGINE selections
+
+CORE
+ # Core resolution and injury playtest rules
+
+This is the active provisional integration for rolls, damage, zero HP, Wounds and injuries in the developing campaign candidate. It resolves specific conflicts between approved Core V2, compatible Player Rulebook V6 rules and the retained Gameplay Loop. Original books and alternate procedures remain unchanged. Full conditions, equipment, hazards and recovery integration remain separate work.
+
+Use with [class rules](CLASS_PLAYTEST_RULES.md), [spell rules](SPELL_INTEGRATION_RULES.md) and the [complete coverage ledger](GAME_DEVELOPMENT_COVERAGE.md). The [source conference](../../../../docs/audit/2026-10-08/full-game/CODEX_CORE_RESOLUTION_CONFERENCE.json), [V6 findings](../../../../docs/audit/2026-10-08/full-game/CODEX_CORE_SOURCE_FOLLOWUP.md) and [GPT proposal](../../../../docs/audit/2026-10-08/full-game/GPT_CORE_STATE_AND_INJURY_PROPOSAL.md) preserve the reasoning.
+
+## Which rule applies
+
+The domain authority is [Core Systems Known Descent V2](../../../../books/player/Decennium_Descent_Core_Systems_Bible_v2_Known_Descent.docx). The approved [Player Rulebook V6](../../../../books/player/Decennium_Descent_Player_Rulebook_v6.docx) supplies compatible rules that Core does not replace. This overlay states the selected interpretation or newly authored rule wherever those sources leave a gap. An explicit exception on an operative, reviewed class/spell/item card applies only within its printed scope; a historical alternate or a same-named feature is not an extra grant. This candidate does not promote an entire historical branch.
+
+| Question | Active rule and provenance | Inactive alternate |
+|---|---|---|
+| Attacks | Core V2: meet AC; natural 1 misses; natural 20 hits and doubles damage dice. | Applying the general Gameplay four-degree roll to attacks. |
+| Task checks | Explicitly adopted Gameplay four degrees and natural shifts. | Assuming every critical result creates an unprinted effect. |
+| Ordinary saves | Binary meet-DC test; printed failure margins remain literal. Natural 1/20 do not generically shift saves in this candidate. This separation is an integration choice. | Automatic critical saves or natural-result shifts inferred from the task rule. |
+| Death-save timing | Core and V6: start of turn; regular-turn-only timing is a provisional guard. | Gameplay end-of-turn saves. |
+| Wounds | Core trigger/save, Constitution-save and Hit-Dice-recovery penalties, and three-Wound Critical state. | Gameplay automatic Wound triggers, Hit Dice healing penalty, half Speed and Strain lock. |
+| Named Wounded condition | Core paragraph 782 expressly describes the same Wound count, Constitution penalty, Hit Dice recovery and three-Wound Critical state. Apply those records once. | V6 Appendix A paragraphs 9971–9974 give a conflicting temporary condition cleared by magic/rest with Constitution-save disadvantage; Core replaces it here. |
+| Stable, instant death, knockout and temporary HP | Compatible recovered V6 rules. | Treating these recovered rules as newly invented. |
+| Ordinary Wound treatment | Explicit Gameplay-derived integration below. | Claiming it is original Core wording or ordinary HP healing. |
+| Injury table and unresolved thresholds | New provisional choices below, with their search limits stated. | Dropping Core's failure-by-5 consequence because its table was not located. |
+
+## Rolls
+
+Choose the roll type before rolling. Use the actual ability modifier, including negative values, and normal proficiency only when applicable. Existing advantage/disadvantage chooses the higher/lower of two d20s; multiple sources do not stack, and any advantage plus disadvantage cancels. Add other legal modifiers once. Fractions round down unless a rule specifies otherwise. One tile is 5 feet. Class L, S and effect M retain their definitions in the shared class rules.
+
+**Attack:** roll d20 plus the appropriate attack modifier against AC. Meeting AC hits. Natural 1 always misses; natural 20 always hits and critically doubles damage dice, not flat modifiers. Beating AC by 10 is not a critical hit. An explicit broader critical range does not stack with another; use the broadest eligible range. In this overlay, a natural result below 20 in that range must still meet AC unless the feature expressly says it always hits.
+
+**Task, skill or tool check against a fixed DC:** total at least DC+10 is Critical Success; at least DC is Success; at most DC-10 is Critical Failure; other totals below DC are Failure. Natural 20 then improves one degree and natural 1 worsens one, bounded at either end. A task printing only success/failure collapses the two upper degrees to success and two lower degrees to failure; no extra consequence is invented. A natural 20 can still fail an otherwise impossible check, and a natural 1 with sufficient modifiers can still succeed.
+
+**Saving throw:** total at least DC succeeds; otherwise it fails. Natural 1 and 20 have no generic special outcome. A printed failure by 5 or 10 compares the final total with the DC; it does not add an unprinted critical-save system. Death saves are the specific exception below.
+
+**Opposed check, new provisional tie rule:** compare final totals. Higher wins; an exact tie leaves the existing state unchanged, so the initiating creature fails to change it. Do not turn task natural shifts into hidden numeric modifiers. A maneuver explicitly printing degree outcomes must specify how those apply.
+
+## Resolve a damage event
+
+Resolve each genuinely separate hit or damage event once. Do not split one packet to multiply Wound saves or combine separate hits merely to cross a threshold. Feature-specific prevention that acts before damage or before reaching zero resolves at its printed timing first.
+
+1. Resolve attack/save, damage and applicable defenses. The remaining nonnegative amount is **resolved damage**.
+2. Record HP, Wounds and zero-HP state before the event. Remove temporary HP first. **Post-temp damage = resolved damage minus temporary HP absorbed.** Keep this amount even when it exceeds current HP; floor the resulting current HP at zero.
+3. Check V6 Instant Death. If post-temp damage minus HP before the hit is at least maximum HP, the creature dies. For a creature already at zero, this is post-temp damage at least maximum HP. Stop: there is no Wound save, death-save failure or successful knockout from that event.
+4. Otherwise, a living creature makes one Wound save if it dropped from positive HP to zero, if **2 × post-temp damage is at least maximum HP**, or if the effect actually inflicts Maiming. Overlapping triggers still cause only one save. The post-temp threshold and one-save rule are new provisional interpretations. Maiming is an independent trigger even when temporary HP absorbs all ordinary damage; immunity to Maiming itself still applies.
+5. Make a Constitution save against **max(10, floor(post-temp damage / 2))**. Use pre-event Wounds for the -1-per-Wound penalty. Maiming with zero post-temp damage uses DC 10. A Wound gained now cannot penalize the roll that created it.
+6. A success adds no Wound. A failure that began with zero, one or two Wounds adds exactly one; failure by 5 or more also gives that Wound one Injury. A failure that began with three Wounds kills the creature instead: no fourth Wound and no Injury roll. Stop processing later living-target consequences if dead.
+7. If the creature was already at zero before this event and post-temp damage is positive, end Stable. A creature using death saves adds one failure, or two for a critical hit; three failures kill it. An ordinary creature that does not use death saves dies instead, without starting death counters. A hit from positive HP to zero does not also cause a same-packet death failure.
+8. If this event newly reduces positive HP to zero, a valid melee knockout makes the surviving creature Stable. Otherwise a character/significant NPC using death saves begins dying; an ordinary monster dies. A previously Stable creature whose temporary HP absorbed all damage remains Stable unless an independent Maiming result killed it. The Director identifies significant NPCs consistently. Knockout cannot override Instant Death or a fatal Wound save.
+
+Core's Maiming and Wound trigger rules remain subject to an actual feature's eligibility. The reference helper receives already legal events; it does not grant every attack Maiming or a damage-prevention exception.
+
+## Zero HP and recovery
+
+A living character at zero HP is Unconscious. Core's condition already includes Incapacitated, unawareness, dropping held items and falling Prone; an adjacent hit is critical as specified there. Healing does not silently remove other independent causes of Unconscious or Prone.
+
+While dying, make one death save at the **start of each regular initiative turn**. Roll d20 without modifiers unless a feature specifically modifies death saves. Natural 20 restores 1 HP; natural 1 adds two failures. Other results of 10 or more add one success; 9 or less add one failure. Three successes make the creature Stable; three failures make it Dead. Extra turns and Actions add no extra death saves. Stable or Dead creatures do not roll them.
+
+Regaining positive HP or becoming Stable resets both counters. Temporary HP does not raise normal HP, end Unconscious or reset counters. Fully absorbed damage does not end Stable or add a death failure in this provisional interpretation. Independent Maiming can still cause its Wound save.
+
+**Stabilize:** an Action and DC 10 Wisdom (Medicine) check, or an Action using one healer's-kit use automatically, stabilizes a living dying creature at zero. It remains Unconscious and makes no death saves. Roll 1d4 once when it becomes Stable and record its absolute recovery time that many hours later. If still Stable then, it regains 1 HP. Damage reaching normal HP cancels that deadline and resumes dying with the appropriate failures. Rest and Stable recovery use the same elapsed clock, so four hours of recovery inside an eight-hour Watch do not cost twelve hours. A later rest does not separately replay the Stable healing event.
+
+**Dead:** ordinary healing and stabilization do not restore life. Resurrection must satisfy its own willing-soul, body, time, cost and target rules. It does not automatically remove Wounds, Corruption, debts, legal death or claims upon the body. Corpses cannot supply repeated resource triggers.
+
+## Wounds and Critical state
+
+Each Wound imposes **-1 Constitution saves** and reduces the normal maximum number of Hit Dice recovered per long rest by one, to a minimum of zero. It does not reduce each healing die. The broader recovery rules own the normal recovery maximum and rest legality.
+
+At three Wounds the creature is **Critically Wounded**: Speed is reduced by 10 feet, to minimum zero, and the next failed Wound save is fatal. The failure that first raises two Wounds to three is not that later failure. Core's named **Wounded** condition (paragraph 782, preserved in [the 28-condition source register](../../data/playtest/core_condition_sources.json)) explicitly summarizes these same Wounds; it does not add duplicate penalties. Its conflicting V6 predecessor is inactive in this overlay. This individual source comparison does not complete the remaining condition audit.
+
+**New provisional healing ceiling:** while Critical, healing cannot increase HP above **max(1, maximum HP - 1)**. Maximum HP itself does not change. Gaining the third Wound does not immediately remove existing HP; a later attempted heal also cannot reduce HP. The minimum of one permits recovery when maximum HP is one and is an explicit exception to “cannot regain full HP.” Removing enough Wounds to leave Critical removes its Speed penalty and ceiling, but does not itself heal HP.
+
+## Linked injuries
+
+The inspected eight approved books and current text sources reference an Injury table, but no actual table was located. The full Wound/Medicine searches of both Core editions found no alternate general treatment procedure. Those are search limits, not proof about every archive. This **new provisional d6 table** supplies Core's failure-by-5 consequence until a reviewed replacement is adopted.
+
+| d6 | Injury | Exact penalty |
+|---:|---|---|
+| 1 | Concussion | -1 Initiative and Perception checks. |
+| 2 | Offensive Trauma | -1 attack rolls. |
+| 3 | Mobility Trauma | All non-teleport Speeds reduced by 5 feet, minimum zero. |
+| 4 | Fine-Motor Trauma | -1 tool checks and Dexterity
+
+Analyzed
+Python
+text=orig.read(base+"docs/mechanics/CHARACTER_CREATION_PLAYTEST.md").decode()
+for term in ["Hit Points","Hit Dice","hit die","HP","ability","Standard"]:
+    idx=text.find(term)
+    print(term, text[max(0,idx-250):idx+800] if idx>=0 else None)
+w=classes["wizard"]
+for i in [24,25,26,27,28,29,30,31,55,56,57,58]:
+    print(i,w["cards"][i]["id"],w["cards"][i]["minimumClassLevel"],w["cards"][i]["effect"][:700])
+for sid in ["summon-water-pet","wall-of-force"]:
+    print(sid, cards[sid].keys())
+print("ICE",ice["exactAuthority"][:250])
+# Ordinary active cards simple roster inputs
+print("\nCLASS RULES\n", orig.read(base+"docs/mechanics/CLASS_PLAYTEST_RULES.md").decode()[:9500])
+
+STDOUT/STDERR
+Hit Points None
+Hit Dice  choices from the foundation tables. Use the class list for each skill choice. Add ancestry/background training with the duplicate procedure below. Proficiency grants training, not equipment ownership, spells or a second PB on one roll.
+6. **Set HP, Hit Dice and proficiency.** First-character-level base HP is the maximum face of this class’s HD; add current CON modifier, minimum 1. Record one unspent Hit Die of that size. At level 1 PB is +2. Keep base maximum HP separate from later effects, reductions and systemic multipliers.
+7. **Acquire the actual class kit.** Follow the class’s own level-1 engine, automatic grants and scheduled choices. Ordinary classes start with four Base choices, at least two active, where their schedule says so. Druid, Oracle and Paladin have explicit schedules; follow those instead. Make required engine/path choices, such as Oracle Mystery and Curse, exactly when their cards require them. Use the [class library](CLASS_PLAYTEST_INDEX.md), [legal acquisition examples](CLASS_PLAYTEST_BUILD_EXAMPLES.md), and [Pa
+hit die None
+HP kill choices from the foundation tables. Use the class list for each skill choice. Add ancestry/background training with the duplicate procedure below. Proficiency grants training, not equipment ownership, spells or a second PB on one roll.
+6. **Set HP, Hit Dice and proficiency.** First-character-level base HP is the maximum face of this class’s HD; add current CON modifier, minimum 1. Record one unspent Hit Die of that size. At level 1 PB is +2. Keep base maximum HP separate from later effects, reductions and systemic multipliers.
+7. **Acquire the actual class kit.** Follow the class’s own level-1 engine, automatic grants and scheduled choices. Ordinary classes start with four Base choices, at least two active, where their schedule says so. Druid, Oracle and Paladin have explicit schedules; follow those instead. Make required engine/path choices, such as Oracle Mystery and Curse, exactly when their cards require them. Use the [class library](CLASS_PLAYTEST_INDEX.md), [legal acquisition examples](CLASS_PLAYTEST_BUILD_EXAMPLES.md), and
+ability nd CHA. Keep the original rolls. Do not reroll, mix methods or select a preferred set without a separate table rule. The optional provisional point-buy method below is also available.
+3. **Record ancestry and any required variant.** Apply its actual ability increases once after assigning scores, resolving an OR choice once. Record size, movement, senses, languages and each complete trait procedure from its source. Trait names alone are insufficient. Do not stack alternative builder/racial-variant entries onto the same book trait. Use the reviewed ancestry/background integration and complete source bindings for all14 base ancestries and45 variants; apply the reviewed language chapter to their actual language grants. This step grants no authority to revise their cosmology or origin lore.
+4. **Choose one background.** Record its actual skills, tools, languages, feature and starting package, including required choices. Use the reviewed ancestry/background guide and complete source bindings for the20 background packages; its named outstand
+Standard None
+24 wizard.hero.spellbinder.knowledge-shield 12 Knowledge Shield. Tags: hero, spellbinder, passive, protection. When you cast an Abjuration spell that grants AC, temporary HP, resistance or a saving-throw benefit to an ally, that ally also gains +2 on its next saving throw before the start of your next regular turn. Multiple Knowledge Shields do not stack.
+25 wizard.hero.spellbinder.matrix-sharing 14 Matrix Sharing. Tags: hero, spellbinder, passive-upgrade, matrix. Choose one prepared Wizard spell of rank 3 or lower with an Action casting time. Pay both costs now. The ally may cast that spell once before the end of its next turn without paying RP, using your spell attack and DC. The shared spell cannot summon creatures, create additional Actions, use Overcast, be Shared again or bypass concentration limits. Granting this permission takes your Action; the ally spends its own normal Action to cast. The ally owns concentration and strain for the cast, and it does not update your matrix-family history or grant you cast-trigger resources.
+26 wizard.hero.spellbinder.arcane-memory 16 Arcane Memory. Tags: hero, spellbinder, passive-upgrade, spellbook. Cast one legal-rank Wizard spell that you previously prepared and have recorded in your campaign memory log, even if it is not currently prepared or its spellbook entry is unavailable. Pay the normal RP cost and obey casting time, concentration and all ordinary restrictions. This grants no spell above your Wizard rank limit.
+27 wizard.hero.spellbinder.seal-magic 10 Seal Magic. Tags: hero, spellbinder, wizard-spell, control. Choose one of the eight schools and target one creature. It makes a Wisdom save. On failure it cannot cast spells of the chosen school. At the end of each of its turns it repeats the save, ending the Seal on success. The effect ends automatically after 3 rounds and never prevents non-spell class techniques merely because they are magical.
+28 wizard.hero.spellbinder.runic-snare 10 Runic Snare. Tags: hero, spellbinder, wizard-spell, glyph, control. Place a visible-to-you glyph. The first hostile creature entering the square makes a Dexterity save. Failure deals S d6 force damage, causes Restrained until the end of its next turn and makes it drop one non-attuned held item of its choice. Success takes half damage with no restraint or drop. A Restrained target may repeat a Strength save at the end of its turn.
+29 wizard.hero.spellbinder.counterpulse 12 Counterpulse. Tags: hero, spellbinder, counter, control. Immediately after your Counterspell succeeds, spend 1 RP. The countered caster is Silenced until the end of its next turn. This is part of the successful counter event rather than another spell cast and cannot trigger another Counterpulse.
+30 wizard.hero.spellbinder.spell-absorption 14 Spell Absorption. Tags: hero, spellbinder, wizard-spell, abjuration. Trigger after you become the target of a hostile spell but before it resolves. Make an Intelligence check adding proficiency against DC 10 + twice the spell rank. On success that spell has no effect on you, though it resolves normally against other targets, and you gain temporary HP equal to spell rank + M. On failure it resolves normally and the use is spent.
+31 wizard.hero.spellbinder.knowledge-transfer 16 Knowledge Transfer. Tags: hero, spellbinder, knowledge. Choose one language you can speak or one skill in which you are proficient. The ally gains proficiency in that language or skill for 1 hour. Expertise is never transferred. The feature conveys functional knowledge, not memories, secrets, class features, spellcasting or tool ownership.
+55 wizard.supplement.ritual-casting 2 Source progression line 5184. Cast a Wizard spell bearing the Ritual tag directly from your spellbook without preparing it. Increase its casting time by at least 10 minutes. Ritual Casting cannot be completed during an encounter, does not use an ordinary prepared-matrix position and does not generate or vent normal casting Dissonance.
+56 wizard.supplement.school-mastery 5 Source progression line 5186. This is the one School Mastery progression grant, not a second school choice or duplicate feat. Increase the level-1 Arcane School spell-attack and spell-save bonus from +1 to +2 total. Its school passive and bonus-spell rules otherwise remain unchanged.
+57 wizard.supplement.arcane-ward 6 Source progression line 5187. After preparing spells, choose one of acid, cold, fire, force, lightning, necrotic, psychic, radiant or thunder that is dealt by at least one prepared spell of your Arcane School. Gain resistance to that damage type until your next long rest. If none of your prepared school spells deals a damage type, choose force. This is provisional completion of the source's ambiguous 'chosen school's element' wording.
+58 wizard.supplement.dual-cast 9 Source progression line 5188. Choose two DIFFERENT prepared Wizard spells of rank 1 or 2, neither of which summons a creature or grants an additional Action. Cast both sequentially as one Action, paying both RP costs. They cannot both require concentration. Each matrix separately updates first-cast/Refrain history. Features that trigger merely from 'casting a spell' may trigger once for each actual matrix unless that feature itself says once per turn; no trigger may create another Dual Cast or additional full Action.
+summon-water-pet dict_keys(['spellId', 'name', 'status', 'questionId', 'questionDisposition', 'sourceAndAccess', 'sourceRecordSha256', 'procedure', 'newChoices', 'historicalWorkedCases', 'examplesAreRuntimeTests'])
+wall-of-force dict_keys(['id', 'questionId', 'name', 'reviewStatus', 'completeSourceAndAccess', 'historicalQuestion', 'historicalProposalEvidence', 'procedure', 'newScopedAuthorship', 'currentInterfaces', 'profile', 'sourceConflicts', 'sourceRefs'])
+ICE Action; range 60 feet; V/S/F. KEEP immediate 4d6 bludgeoning PLUS 4d6 cold and difficult terrain. NEW choose a perceived supported surface point with line of effect; create a fixed cylinder of twenty-foot radius and forty-foot height upward from that
+
+CLASS RULES
+ # Shared rules for the class playtest drafts
+
+**Provisional design integration, 8 October 2026.** These rules make the class drafts usable together for testing. They preserve each protected class engine while specifying missing timing and replacing conflicting old percentages. They do not rewrite the approved Word books. Original descriptions and alternate registry entries remain in `data/playtest/class_sources`.
+
+## Reading a class card
+
+Use the class's own level, never total character level, for gates and effects. **L** means that class level; **S** is 1/2/3/4 at class levels 1/5/11/17. **M** means max(1, the class ability modifier), for effect a mounts only. Attacks use d20 + normal character proficiency + the actual appropriate ability modifier. Class save DC is 8 + normal proficiency + actual class ability modifier. Negative modifiers still apply to attacks and DCs. One tile is 5 ft. Fractions round down unless specified. Distances cannot be negative.
+
+A weapon attack uses its usual ability, weapon die and damage type. A technique that says “make one weapon attack” replaces your Action with that attack; it does not also grant a normal Attack Action or Extra Attack. Generic attack-speed language has no effect beyond the exact attacks printed in the draft. A spell attack uses the class's stated casting ability. Natural 1 misses and natural 20 hits/critically doubles damage dice; flat bonuses do not double. A save succeeds at DC; “fails by 10” means the total is at least 10 below DC. Critical-range improvements never stack; use the broadest one.
+
+An ability is known only if granted or selected by the draft schedule. Satisfy all printed prerequisites, target legality, action availability, recharge and resource costs before spending anything. A failed legal attack/save attempt still pays; an illegal activation spends nothing. No resource goes below 0 or above its cap. A class feature name shared with a spell does not grant both versions; use the version selected, with its own cost and timing. Names and source text are preserved; the current card is the operational draft.
+
+## Action and timing limits
+
+One regular Action, one Bonus Action if a feature permits it, normal movement and one Reaction between starts of your turns. A free trigger costs no Action only if expressly stated. All grants share **one extra full Action per creature per round**. An extra Action cannot grant another Action, recharge itself, or start another extra-Action grant. It supplies no extra Bonus Action or Reaction. A card granting additional attacks is not permission to repeat all class riders on every hit: obey each rider's frequency.
+
+Recharge N sets a counter to N after use; reduce once at the start of the owner's regular initiative turn, whether able to act or not. Extra turns/Actions do not tick it. Outside combat tick once per 6 elapsed seconds, without double counting. Recharge 2 used on turn 1 is ready on turn 3. A positive counter can be reset/shortened at most once per ability per round. Zero counters are not legal reset targets and expend no reset use. Resets never restore RP or per-rest uses or grant an immediate activation.
+
+An encounter is a genuine scene of uncertain opposition chosen by the Director, not a player declaration used to reset resources. No encounter gain from attacking allies, one's summons, harmless animals, helpless captives or reused corpses. Out-of-combat abilities retain all printed costs and time. Short-rest means a completed uninterrupted hour of permitted recovery; long-rest means a completed 8-hour Rest Watch. This time convention is a draft integration. Expedition pressure, supplies, safe locations and rest debt still matter. A long rest also refreshes short-rest uses; a short rest never refreshes long-rest uses. Weekly uses refresh after seven full in-world days, not repeated rests.
+
+## Targets, concentration and control
+
+Unless expressly stated, perceive the target, remain within range and have line of effect; total cover blocks targeting. “Ally” includes self unless it says OTHER. A list cannot contain a creature twice. Select up to the printed limit; an empty target list is not a valid way to farm activation benefits. Zones remain at their chosen point unless described as an aura; allies can leave and lose their benefits. An aura requires its owner conscious unless the card supplies a bounded exception. An effect ending at “end next turn” means the affected creature's next turn only when the card says target's; otherwise the user's.
+
+One concentration slot for all spells, Chants, Veinweaves, forms or zones that require concentration. Starting another ends the old before the new effect resolves, except for an explicit limited linked-effect rule. Damage prompts CON save against max(10, floor(damage/2)); incapacitation or a failed save ends concentration. The round-down convention is a deliberate pilot interpretation. Concentration does not demand a Bonus Action unless maintenance says so. For a paid 3-pulse effect, start is pulse 1; pay maintenance on each of the next 2 regular turns by turn end for pulses 2/3. Missing payment ends it at that turn's end; otherwise it ends at start of turn 4. No repeated start triggers on maintenance.
+
+Forced movement does not provoke opportunity attacks unless explicitly stated, cannot place a creature inside solid matter, and stops at an obstacle. Grapples use the card's save/DC, can be escaped with an Action and STR(Athletics) or DEX(Acrobatics) against that DC, and end beyond reach. A root sets Speed 0 but does not remove Actions. Slows reduce Speed to minimum 0. Silence blocks verbal spells/audible abilities, not all thought or all class features. Charmed effects never determine a player's beliefs; use only the printed action restrictions.
+
+No repeated hard denial without a new save and cost. For this class suite, a creature can suffer **Stunned, compelled loss of its whole Action/turn, or equivalent hard denial from a given character at most once per encounter**, across that character's class features; later such riders fail while damage and soft riders resolve normally. Record source and target. This draft guard is broader than the older Oracle-only ceiling and is an explicit balance proposal. Reaction denial, Speed reduction, penalties and Frightened do not count as whole-turn loss. Do not silently waive boss immunities, legendary defenses or anatomy.
+
+## Damage, healing, stacking and companions
+
+Roll once for each shared area/pulse and apply saves/defenses to each target separately; separate attacks roll separately. Halve once for a successful save and apply resistance/immunity normally. Same-named conditions/bonuses do not stack unless a printed cap allows it; same-stat flat bonuses from these class techniques use the strongest. Different resources remain separate. Damage reduction from these class features uses the strongest flat reduction, then applies resistance; it cannot create negative damage or healing. Temporary HP never stack; choose the larger remaining amount. Immunity is not reduced resistance.
+
+Repeated permanent HP recovery must consume finite RP, a per-rest use or another finite resource; a combat-generated gauge alone never enables unlimited healing. Healing cannot exceed maximum HP or erase Wounds, death consequences, debt or Corruption unless explicit. Downed is living at 0 HP; dead is different. Resurrection requires a willing soul and sufficiently intact body, obeys its time window, cannot create a duplicate and never refunds the feature on failure to meet known prerequisites. Sacrificial HP is actual unpreventable loss, cannot be redirected or paid with temporary HP, and is not damage for resource triggers. It cannot reduce the donor below 1 unless a card expressly grants a death-triggered effect.
+
+No damage/healing copy repeats the source's costs, procs, resource generation, critical bonus dice, buffs, actions, cooldown resets or duration. Compute fractions once, capped at 100% of one stored source unless an explicit card states a separately priced higher amount. Copies still cause ordinary damage consequences, concentration checks and death. A copy cannot copy another copy. A target/source record must refer to an actual resolved event, not merely a known ability name.
+
+Where a class card calls for a **standard companion** without a more specific profile, use: Small or Medium; AC 12+floor(PB/2); HP 2 L; walking Speed 30 ft; saves equal owner's PB; one melee or ranged attack (reach 5 ft/range 30 ft) at owner's class attack bonus, damage S d6 of the printed type. It has no independent class features, resources, loot, death triggers or extra turns. All companions belonging to one character share one Bonus Action command and **one damaging attack/action total per round** unless a specifically priced feature grants more. Without a command they move and Dodge. Act immediately after owner. A standard companion lasts 1 minute, disappears at 0 HP and cannot be healed for free by dismissing/resummoning. The creation cost must be paid again. Creature-specific stat blocks override this profile only where explicitly printed.
+
+## Ordinary spells: one explicit test configuration
+
+Use the manifest-owned **Core Systems Known Descent V 2** class RP tables and rank costs: rank 0–9 costs 0/2/3/5/7/10/13/17/21/26; Grand 32. Follow `src/data/class-spell-progression.js` for each class's rank gates and the existing spell cat
+
+Analyzed
+Python
+print(cards['wall-of-force']['procedure'])
+# exact class foundation source relevant
+t=orig.read(base+"docs/mechanics/CHARACTER_CREATION_PLAYTEST.md").decode()
+for line in t.splitlines():
+    if any(x in line for x in ['Wizard','higher','level-up','Level-up','average','medium','point','Hit Die']):
+        print(line)
+# accepted Fire Pet profile
+print(cards["summon-greater-fire-pet"]['procedure'])
+print(cards['summon-greater-fire-pet'].get('profile'))
+print(ice['currentAuthoritativeSource'])
+# P20 full shared currently retained (history compared)
+p20=json.loads(orig.read(base+"data/director/spell_proposals/persistent_damage_20_current_07.json"))
+icecard=next(x for x in p20["spells"] if x["id"]=="ice-storm")
+print("ICE exacttext",icecard["procedure"]==ice["exactAuthority"])
+print("ICE native access",icecard["completeSourceAndAccess"]["classAccess"])
+
+STDOUT/STDERR
+Action; range 60 feet; V/S/F; base 10 RP; concentration up to 60 elapsed seconds. Create one fixed invisible flat rectangular plane up to 30 feet long × 15 feet high × 1 inch thick in any chosen orientation. Every part must lie within 60 feet and the intended near surface must be perceivable with line of effect. The wall may meet existing supports but cannot overlap a creature or independent object at creation; hidden occupancy can defeat the paid placement without diagnostic or automatic reshaping.
+
+The wall supports itself and ordinary loads on either side, including horizontal platform use. It has no AC/HP and is impenetrable to ordinary physical bodies, projectiles, liquids, gas and sound. Ordinary light/vision passes through it; it remains visually invisible, though touch or an applicable magical sense can reveal the boundary. It blocks ordinary spell/effect line of effect and other effects requiring a physical path. Its finite edges remain open routes.
+
+Do not infer a teleport path. Accepted Dimensional Door has no traversed path and may move from one legal endpoint to another even if a drawn line would intersect the wall, provided its own endpoint/knowledge rules pass. Resonance Beacon likewise uses its own teleport endpoint, not an imagined wall crossing. Dimensional Anchor remains an independent endpoint blocker. A destination footprint cannot overlap the wall itself.
+
+The wall creates no oxygen deletion or automatic breathable volume. It never pushes/crushes at creation/end. Suppression removes only intersecting wall portions while concentration/deadline continues. On resumption recreate only clear portions; an occupied closing segment remains locally pending until clear, without severing/shoving. Expiry/removal ends support immediately and actual unsupported bodies begin ordinary Falling from their current location, one real Fall Marker.
+
+Repair04 resumption geometry uses AC5-WALL-PANELS-04: fixed 2.5-foot panels/edge remainders retain exact suppressed-portion geometry. A previously suppressed portion whose 1-inch volume is occupied remains wholly absent until clear; wall portions that were never suppressed remain solid. No push, cut, crush or arbitrary hole.
+2. **Generate six abilities.** Choose the method before generating scores: roll four d6, discard the lowest and total the other three, six times; or assign the standard array 15, 14, 13, 12, 10, 8. Assign those six results once to STR, DEX, CON, INT, WIS and CHA. Keep the original rolls. Do not reroll, mix methods or select a preferred set without a separate table rule. The optional provisional point-buy method below is also available.
+6. **Set HP, Hit Dice and proficiency.** First-character-level base HP is the maximum face of this class’s HD; add current CON modifier, minimum 1. Record one unspent Hit Die of that size. At level 1 PB is +2. Keep base maximum HP separate from later effects, reductions and systemic multipliers.
+**Optional new candidate method:** 27-point buy, scores 8–15 before ancestry. Costs are 8:0, 9:1, 10:2, 11:3, 12:4, 13:5, 14:7, 15:9. Spend no more than 27 points across six scores; no score outside that range. This adopts the existing companion method as a provisional option, not a claim that the book already specified it.
+2. Add one new unspent Hit Die of the gained class’s size. Previously spent Hit Dice remain spent; gaining this die does not refresh any earlier die. For HP, roll that die or use its fixed rounded-up average: d6→4, d8→5, d10→6, d12→7. Record the base result before CON. This includes taking a new class’s first level after character level 1; maximum first-level HP is never granted again.
+4. At an ASI milestone, increase one score by 2 or two scores by 1, normally no higher than 20, or select one eligible operational feat. Ordinary milestones are class levels 4/8/12/16/19; Oracle uses 4/8/14/19. Follow any already-reviewed specific exception. No starting feat or repeatable feat is implied. [Eight complete feat options](FEAT_PLAYTEST_INDEX.md) do not make the other 327 complete.
+5. Update legal repertoire, prepared capacity, class scaling and resource maxima at the gained **class** level. Use class-specific Druid preparation, Wizard spellbook/matrices and other explicit rules before generic acquisition defaults. New capacity does not provide an unnamed spell, an unearned choice, a filled Echo record or an extra prepared spell without the required preparation procedure.
+7. Keep current HP and spent resources unchanged except for a downward clamp when a maximum falls. An ordinary level-up is not healing or a rest: it cannot revive a downed/dead character, erase Wounds or refill already spent Hit Dice, RP, RC, class pools, item charges or uses. Newly granted features still follow an explicit acquisition/initialization clause if they have one; “gain a maximum” alone does not mean “restore current.”
+1. Caster tier: Full (Cleric, Druid, Mage, Wizard), then Half (Paladin, Ranger), then Hybrid (Bard, Shaman, Mirrorsage, Crimson Agent), then Minor (Dragoon, Monk, Thief, Tinker).
+2. Within a tier, higher class level first.
+3. If class levels tie, higher actual RP pool first.
+All RP-paid spells and techniques use this one merged pool unless an exact rule names another resource. RC, BG, Momentum, Ki, Conviction, Lay on Hands and other class resources remain separate. A change in the primary class or maximum is not recovery: preserve current RP and clamp only if above the new maximum. This can reduce maximum RP when a newly entered higher-tier class becomes primary; do not silently choose a larger lower-tier pool instead.
+- **First Bard level:** CON 14 gives modifier +2; base HP 8+2 = 10, one d8 Hit Die and PB +2. Choose three class skills from the 20-skill list and four eligible Base cards with at least two active, as the Bard schedule directs. Background/ancestry grants remain separate and must be fully specified before play.
+- **Bard 1→2 without a rest:** fixed HP base 5 and CON +2 increase base maximum 10→17. If current HP was 6 it stays 6. The second Bard level grants its actual two Base selections. A higher RP maximum does not refill spent RP.
+- **A three-class caster:** Cleric 6, Druid 6 and Wizard 1 use Cleric/Druid as the two Full-tier contributors because class level precedes pool size. Their own level-6 pools are 15 each, giving 15+ceil(15/4) = 19 RP; earlier acquisition breaks their tie. Wizard 1 adds no RP but retains its own legal Wizard 1 spell access. Total 13 supplies PB +5; no class has a Hero gate.
+New candidate decisions are explicitly identified: missing class skill lists, Oracle’s starting Arcana substitution, Tinker’s Engineering option, bounded favored/blade weapon choices, optional point buy, duplicate-grant resolution, per-level HP floors and capacity-only advancement, precise multiclass entry/chassis rules, final RP tie-breaking and shared strain/recovery interpretation. These are authored playtest rules rather than approved-book rewrites.
+Action; range 60 feet; V/S/F; base 10 RP; concentration up to 60 elapsed seconds. Create one Greater Fire Pet in one perceived supported unoccupied footprint that fits its Medium body and has line of effect. Use AC5-PROFILE-GREATER-FIRE-PET-01 exactly: HP60, AC17, Speed30, commanded 5-ft Fire Strike for 2d10 fire using original owner's current spell attack, and the passive 5-ft aura.
+
+The aura is not an entry trigger. At each perceived hostile recipient's future regular START while within 5 feet and body-to-recipient line of effect, make DEX vs original owner's current spell DC; failure takes 1d6 fire, success half floor. Max one aura attempt per owner/target/Greater-Fire-Pet family/numbered round, outside initiative once per six seconds. One d6 may be shared across the cycle but saves/defenses/damage roots are per recipient. The owner cannot use the aura as hidden allegiance detection: only creatures the conscious owner actually perceives/regards as hostile qualify.
+
+Use shared Companion Command/global offense budget for Fire Strike; aura is the printed passive exception and does not grant another offensive Action. One Greater Fire Pet per owner, distinct from lower Fire Pet body cap but not from the owner-wide command/offense allowance.
+
+Damage-root identity follows AC5-ROOT-01: commanded attack dealer=pet; each aura recipient root dealer=pet at that START. Owner Null Veil never automatically converts pet damage. Apply AC5-SUMMON-TARGET-01/accepted Null lifecycle: qualifying Null damage to 0 keeps this same finite body Disabled 0 while concentration/source remains, including subsequent Null hits; legal Healing Rite/ordinary living-ally HP healing can restore above 0. Ordinary non-Null damage to 0 removes the body normally. Independent expiry/concentration/replacement still ends it.
+
+Under Lesser Antimagic use AC5-ANTIMAGIC-SUMMON-01. No fire immunity, extra light, fuel, generic Burning condition, corpse or harvestable elemental material is inferred.
+{'id': 'AC5-PROFILE-GREATER-FIRE-PET-01', 'classification': 'NEW finite summoned profile; mechanical type Elemental only for targeting; no native-plane/soul inference', 'size': 'Medium', 'creatureType': 'Elemental', 'weightLb': 100, 'hpMax': 60, 'ac': 17, 'speedFt': 30, 'abilities': {'STR': 14, 'DEX': 14, 'CON': 16, 'INT': 4, 'WIS': 10, 'CHA': 6}, 'saves': "Each saving throw uses original owner's current PB as the total modifier; no ability modifier is added unless another exact source says so.", 'checks': 'Raw current ability modifier only; no proficiency.', 'senses': 'Ordinary sight/hearing; no inherent darkvision or special sense.', 'defenses': 'No inherent resistance/immunity from this profile.', 'command': "Shared Companion Command: owner Bonus Action while conscious, perceiving the body within 60 ft and line of effect; attached phase immediately after owner's whole turn. One global command and one offensive companion Action per owner/numbered round across eligible companions. Without command: defensive Move/Dodge only.", 'attack': {'name': 'Fire Strike', 'activation': 'commanded Action', 'reachFt': 5, 'targets': 1, 'attackModifier': "original owner's current spell attack modifier", 'damage': '2d10 fire', 'critical': 'double attack dice only'}, 'aura': {'radiusFt': 5, 'lineOfEffect': True, 'trigger': 'qualifying hostile perceived recipient future regular START', 'save': "DEX vs original owner's current spell DC", 'damage': '1d6 fire fail; half floor success', 'frequency': 'max one attempt per owner/target/Greater-Fire-Pet family/numbered round; outside initiative one per 6 sec', 'roll': 'one shared d6 per owner aura cycle, separate recipient saves/roots', 'entry': 'no entry tick', 'offenseBudget': 'passive source exception; does not consume or grant offensive companion Action'}, 'ending': 'One Greater Fire Pet per owner. Successful replacement, concentration/source end, expiry/dismissal or ordinary non-Null damage reaching 0 ends body. Intrinsic manifestation leaves no corpse/loot/fuel. Genuine independently supplied objects remain real and drop/settle normally.', 'nullHealing': 'AC5-SUMMON-TARGET-01 + accepted finite-summon Null branch', 'suppression': 'AC5-ANTIMAGIC-SUMMON-01'}
+{'path': 'DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json', 'bytes': 849980, 'sha256': '0601bba2d5ece6d12c0c27b3dcca656e7da8bfba7f1a47b5c647d1e03007b55d', 'frozenCopy': 'docs/audit/2026-10-08/full-game/accepted-interface-refresh-06/sources/DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json', 'pointer': '/spells/2/procedure'}
+ICE exacttext True
+ICE native access {'Crimson Agent': {'rank': 4, 'minimumClassLevel': 11, 'school': 'Evocation', 'baseRpCost': 7}, 'Dragoon': {'rank': 4, 'minimumClassLevel': 18, 'school': 'Evocation', 'baseRpCost': 7}, 'Mage': {'rank': 4, 'minimumClassLevel': 7, 'school': 'Evocation', 'baseRpCost': 7}, 'Wizard': {'rank': 4, 'minimumClassLevel': 7, 'school': 'Evocation', 'baseRpCost': 7}}
+
+Analyzed
+Python
+# Complete selected procedures are the full preserved proposal plus explicitly ordered local completions.
+def original_proc(i):return C["records"][i]["completeOriginalRecordUnchanged"]["procedure"]
+current=[]
+for i,r in enumerate(C["records"]):
+    current.append({"spellId":r["spellId"],"riskTier":"C","status":"PROPOSED_DIRECTOR_SELECTION_PENDING_INDEPENDENT_REVIEW",
+                    "completeOriginalProcedure":original_proc(i),"completeNativeSourceAndAccess":r["completeCurrentCatalogSourceAndAccess"],
+                    "sourceRecord":r["source"],"sourcePointer":r["pointer"],"procedure":original_proc(i),
+                    "scope":"Ordinary source-qualified spell; no catalog/index/runtime flag application."})
+current[0]["procedure"] += """
+\nMM127-CLONE-01 — NEW exact targeting completion. The combined draw is a private uniformly sampled list of actual eligible candidates: real caster first, original Mirror Image duplicate IDs in stable original order, then this Clone. Filter perception, reach/range and line of effect BEFORE the one draw. If no Clone qualifies, Mirror Image's own complete contract still governs; this completion changes neither its concentration nor native three-duplicate count. Recognition disqualifies only the observer's known-false candidates. No sixth Fate presentation or public candidate roster is emitted.
+A direct attack roll whose original selected target is the real caster may use this narrow redirect, including a sight-dependent spell attack which legally selected that real creature. A separate apparent Clone may be selected only by an ordinary weapon/unarmed Attack Action's apparent-target permission selected HERE. This does not make it a creature or extend to creature-only spells, named class techniques, opportunity attacks or other creature-bound selectors. No Spectral Army paid-hidden-target bridge is inherited. A known-false image is ineligible for deliberate productive attacks. An image miss/hit consumes the original action/ammunition/attack slot but generates no creature hit, critical injury or downstream healing/resource event.
+The Clone's Bonus Action command uses the real actor's one BA, not a companion command. An owner cannot command a pet and this image with the same single BA. No companion offense budget is spent or created by the image. Existing Mirror Image concentration is compatible with nonconcentrating Clone; countering a new Clone never replaces either current source. Image loss does not refund a completed original attack."""
+current[1]["procedure"] += """
+\nMM127-REVERSAL-01 — NEW Water Pet exception and category boundary. The exact AC4 Water Pet parent explicitly permits its 2d6 heal or cold attack in the same original-owner/numbered-round offensive/support slot. This Reversal deliberately authorizes conversion of that native heal despite the parent's ordinary no-conversion restriction; no other generic source exception follows. Its original owner's real Bonus Action command, true attached phase, pet Action, willing eligible ally at5ft/line of effect, ordinary parent concentration and deadline all remain. There is no healing reserve. The native 2d6 computed potential is not limited to target missing HP before conversion; final category handles HP cap/defenses. Original living-ally eligibility and actual informed willingness remain requirements, including knowledge that the present command will deliver harm. A heal prohibition alone does not prohibit necrotic damage; it is never consumed as a next-heal reducer by the converted damage. No owner personal cast/heal trigger or free command occurs.
+For an original healing-only opportunity converted to damage, create the damage root after the native action/trigger legality and source funding checks and before mitigation. Dealer is the actor actually producing the native healing: Water Pet here, NOT the inverter or its controller. Snapshot that dealer's actually qualifying Null state then; do not invent one. For an already damage-rooted component converted to healing, retain original lineage/Null history but emit no damage event, Wound, damage resource or damage-dependent secondary rider. Independent native costs and recipient riders remain where their own text still applies. No simultaneous normal heal accompanies converted damage.
+MM127-REVERSAL-02 — Component identity and lifetime. Attach to one permanent parent-component key and, when the source is recipient-local, its one real application key. A native pet healing action that selects willing allies on later commands is one action component, not an invented permanent single-target roster; later legal targets are native command selections. Mark the successful inversion before callbacks. The mark survives dispelling/suppression of this modifier. Inversion of this modifier itself is illegal. An eligible otherwise lawful removal may end this rank4 modifier alone; it does not end the surviving original parent. Temporary suppression only suspends future conversion and never banks an opportunity.
+The synthetic eight-unit reserve obligation remains conditional on an independently authorized spell reserve. For such a genuinely supplied source, commit the converted potential from that actual reserve once, capped by its available units; no reserve is granted to Water Pet. Actual ongoing modifier records traveling with a Spell-Theft-eligible original bundle retain these identities and clocks."""
+# actual original living-only replaced
+current[3]["procedure"]=current[3]["procedure"].replace("each still-living designated creature","each still-existing, eligible designated creature")
+current[3]["procedure"] += """
+\nMM127-SCULPT-01 — NEW active-creature scope. A still-existing actual Undead/Construct/summoned creature can be an allied roster identity; biological living is not required by Sculptor. Its parent still has its own recipient rules. Dead remains, an ended body or a newly created replacement do not inherit the old identity. Actual perceived allies are frozen at the parent's commitment. With ordinary Ready the eligible parent is cast at PREPARATION: spend the Sculptor preparation and fix roster then. Release chooses the actual parent area/target under ordinary Ready but cannot choose new exclusion identities. Modifier's60-second active-application maximum starts at the parent's successful manifestation; any earlier consumed preparation deadline is not a second casting expiry. The real held spell can expire/counter/lose concentration before manifestation, wasting the consumed preparation.
+Mixed parent payload is adjudicated by complete current text, not words such as physical or ice. Accepted Ice Storm's direct magical bludgeoning and cold are both omitted, while its actual environmental difficult-terrain footprint remains and doubles real grounded movement cost. No slip/Prone/object injury is invented. Omission generates no successful save or avoided-damage resource.
+Actual Lesser Antimagic suppresses parent and modifier at the affected locus. It is NOT a source for selective suppression of only Sculptor while the same magical parent payload remains active. Likewise actual Greater Dispel snapshots all eligible co-located termination operations before any ending and never rescans. The original selective-suppression positive remains conditional on a separately supplied selective source. The modifier's rank6 removability alone does not create that missing mechanism."""
+current[2]["procedure"] += """
+\nMM127-REBIND-01 — Type coverage, not defense-source deletion. A resistance/immunity whose actual predicate covers the selected type, including the selected portion of an all-damage resistance, is covered while that predicate is otherwise true. An immunity explicitly against source disablement, an independent absolute prevention, Null nonlethal handling, flat reductions, body lifecycle and transfer are not retyped as elemental resistance. No assumed material composition, pet-name immunity or class immunity is granted.
+For a recipient with no ordinary independent regular turn, register the actual recognized owner-attached phase END as its next-future eligible END, excluding a phase already underway. If no phase actually exists, select a source-only recorded END every six elapsed seconds from that recipient application's establishment, with first fallback at+6; this NEW rider-save-free expiration clock grants no Actions, saves or extra turn. A transition to a genuinely supplied phase cannot postpone an already earlier endpoint. The original ending always wins before later callbacks. Original independent defense-source expiries remain processed while suppressed.
+The historical immunity+resistance+DR3 and independent immunity-expiry examples need their actual compatible sources. A real Wizard Arcane Ward proves resistance only. Their arithmetic is not proof of acquiring immunity or DR."""
+current[4]["procedure"]=current[4]["procedure"].replace("Spell Seal cannot target itself or another Spell Seal,avoiding recursive protection records; its own protection is intrinsic.",
+"""MM127-SEAL-01 — NEW reciprocal local exclusion: Spell Seal cannot select Spell Seal, Resonance Seal or Resonance Anchor themselves. The three complete existing procedures stay distinct. Resonance Seal's existing exclusions are inherited; Resonance Anchor's text is NOT rewritten or made nondispellable. Spell Seal has no independent movable spatial origin to invent for an otherwise excluded Anchor target; an attached modifier does not anchor its living carrier. Its own nondispel protection is intrinsic.""")
+current[4]["procedure"] += """
+\nMM127-SEAL-02 — Snapshot removal. An ordinary dispel neither rolls to defeat this active protection nor treats it as automatic rank0. Only the actual unsuppressed protection predicate at the captured operation can exclude that operation. The accepted Lesser Antimagic self-field termination exception reaches its own field operation, not the co-suppressed Seal/parent. Ending that field in Greater Dispel does not rescan or revive suppressed operations. A successful field removal can resume an otherwise live protection before any later cast; it is not a proved Seal bypass. A source-qualified future selective suppressor/remover remains conditional.
+The Seal is attached to the chosen actual application, not ownership. If an otherwise legally transferable buff is stolen, that SAME bundle carries a Seal and its original expiry with it; the Seal's creator is unchanged and it never prevents the true parent owner ending concentration or Haste ending costs. A completed image-hit, native expiry, failed maintenance or true source-dependent destruction still wins."""
+current[5]["procedure"] += """
+\nMM127-THEFT-01 — NEW atomic transfer and ending order. Freeze actual bundle identity, all component modifiers (including any same-application Reversal and Spell Seal), original target, owner, original deadline, existing source/recipient allowances and native receiver eligibility. After WIS failure/actual waiver, move the whole eligible bundle to the thief and mark its one successful lifetime transfer before any callback. Resolve the donor's ending cost immediately; no voluntary attack/extra Action interposes. For Haste this actual Stun includes Incapacitated and immediately ends concentration if the donor is also the original source creator. That source end terminates the received bundle and causes the thief's separate one ending backlash; original transfer is not undone and neither actor gets a gratuitous action. A real independent Stunned immunity would need its actual source; none is invented.
+The proper positive twenty-seconds-remaining case uses a distinct unaffected original concentrating creator. At native expiration or actual earlier concentration ending, the new recipient loses the benefits and receives the accepted future-regular-END Stun once. Both character/numbered-round extra-Action occupancy and any original source action restrictions remain spent; transfer never clears them. The donor's departure backlash cannot be dispelled by deleting a bookkeeping theft record. If the original parent ends in the donor-cost callback, finish only that cleanup chain, never grant a transient usable action.
+A modifier's partial eligibility follows the actual bundle identity/location under its own source. No class technique becomes an ordinary buff merely by sharing a name. An absent exact Fly card remains an unresolved original content example; no substitute foreign Fly or free acquired flight is added."""
+current[6]["procedure"] += """
+\nMM127-COMMUNION-01 — Current manuscript eligibility. For THIS candidate, reviewed ordinary identity means exact authored status and the complete operative card selected by the current applied610 index or a separately fully bound exact acceptance/application; catalog historical nulls cannot negate a current accepted card and mere proposed/pending/source-only records cannot qualify. This finite manuscript registry check does not enable runtimeSelectionEnabled and is not a global rewrite of acquisition. Complete actual class, rank, school, level, family, specific material/target and source prerequisites remain.
+Choose the recipient's actual class profile and all three exact IDs as fixed mode/payload choices at casting/preparation; choose/revalidate the actual willing recipient under ordinary direct/Ready rules. No post-roll substitute or fourth bank is permitted. Known-unprepared book entries qualify only while genuinely unavailable through that chosen profile; already prepared, known cantrips or always-prepared class matrices do not. The three must be distinct ordinary IDs; copying, class techniques and null feat wrappers are not extra candidate IDs.
+Once this grant authorized a legal paid ordinary Ready preparation, a grant expiry/replacement outside the hold does not invalidate the already-completed casting. The Ready still needs its real Reaction, unexpired next-START hold, actual source/target/range/geometry and maintained concentration. No copied-feat release allowance is added to it. Incomplete long-casting knowledge requirements remain live and can fail on grant loss, with actual costs retained.
+Temporary usable comprehension creates no persistent transcription credential or free formula. Original lore saying Weave is retained without a cosmological source or mind-copy interpretation. All higher-level class source cards remain history when the recipient's actual class level has not acquired them."""
+shared=[
+{"id":"MM127-CAST","status":"INHERITED with these seven's explicit target choices","rule":"Use complete actual source classAccess for rank/minimum/school/baseRP. All seven are Action,60ft,V/S/F. Base costs Clone/Rebind/Sculptor13; Reversal/Theft7; Seal/Communion10. Real Action, RP, body/hand/focus, repertoire and predeclared fixed choices precede casting. Starting incompatible concentration ends it at commitment; none of these seven itself requires concentration except ordinary Ready's paid hold. Counter windows are at casting/preparation only. Actual class reductions, base strain, Refrain and surcharge are retained; no refund for a legal paid failure. Ordinary Ready fixes spell/mode/inverse/type/IDs then selects legal actual target/effect/area at release under its exact contract. No reaction/extra Action provider is invented."},
+{"id":"MM127-CLOCKS","status":"INHERITED plus listed local endpoints","rule":"Real regular START/END identities are distinct from numbered rounds and absolute seconds. Future markers exclude already underway phases where specified. No extra turn, absence, replacement or suppression resets an original marker. Refresh real action wallets only at actual applicable START; same-round owner-wide companion/copy/extra-action history remains. Outside-initiative local deadlines stay fixed on later initiative entry. Expiry/true source end precedes later same-time payload requests. Registered fallback clocks explicitly identified in Rebind supply no turns."},
+{"id":"MM127-GEOMETRY","status":"INHERITED","rule":"Source and target witnesses belong to real declared bodies/anchors. Distances are actual occupied-boundary separation unless a named source supplies center/emitter convention. A range witness and line-of-effect segment must be consistent. Complete body fit, intervening occupied space, visibility and actual supports are separate predicates. Synthetic fixture geometry is explicitly stated, not a new creature or campaign route. Images are nonphysical: no body/collision/cover/load."},
+{"id":"MM127-LINEAGE","status":"INHERITED plus explicit modifier exceptions","rule":"Retain original cast, application, component, creator, dealer and source budgets. A modifier's creator does not inherit an ordinary parent's attacks/healing/kills. New healing-to-damage roots use the actual native producer at the declared checkpoint; original damage transformations retain lineage. No duplicate callbacks reapply effect, pay/refresh twice, or renew inversion/transfer/one-shot entitlements. Explicit new local exceptions never import a generic copying/conversion system."},
+{"id":"MM127-SUPPRESSION","status":"INHERITED AC5/AC6 plus modifier-local behavior","rule":"Complete accepted Antimagic/GreaterDispel input/output, immutable captured operations and self-field exception govern. Distinguish a current suppressed expression from true source ending. Clocks and spent history continue; no missed command or pulse is banked. Temporary suppression never reverses completed HP, movement or costs. Parent-specific body suppression/ending always controls, and a modifier's resumption never recreates an ended parent."},
+{"id":"MM127-OBSERVATION","status":"INHERITED and explicit evidence boundary","rule":"Perception/access precede declared selection; no silent source owner/rank/hostility roster is published. Private draws, application IDs and known-false records are durable internal data, not a sixth Fate channel. Each event's observations are immutable copies of its own after-state. Native and historical source text remain separately complete. Case premises about actors, actual acquired class choices, knowledge, consent, space and provider events are synthetic source-qualified inputs, never proof of campaign acquisition or runtime behavior."}]
+# full original source preserved; modifications are explicitly identifiable
+for p in current:p["sharedRuleIds"]=[s["id"] for s in shared];p["newAuthoringBoundary"]="All missing choices and restrictions marked NEW; detailed rationale in question dispositions. Not an acceptance of pending comparison sources."
+dump("PROCEDURES.json",{"id":"MM7-127-PROPOSED-PROCEDURES","spells":current})
+dump("SHARED_RULES.json",shared)
+print([(r["spellId"],len(r["procedure"])) for r in current])
+
+STDOUT/STDERR
+[('arcane-clone', 6299), ('arcane-reversal', 7352), ('elemental-rebind', 4311), ('spell-sculptor', 6995), ('spell-seal', 4739), ('spell-theft', 5367), ('resonance-communion', 5584)]
+
+Analyzed
+Python
+answers=[
+("Select the complete one-image audiovisual snapshot, actual BA30ft movement and original third-future-START/18sec lifetime. No concentration, native body, remote feed, creature resource or automatic caster-follow is supplied.",
+"The printed copy/three rounds needs an executable decoy without fabricating a companion or biology."),
+("Select one uniform candidate draw for a legally targeted real caster, after actual geometry/perception filters, explicitly joining Mirror Image only here. Separate apparent images use ordinary Attack Action eligibility only; creature-only selectors never gain an independent false creature.",
+"New local redirect retains real ammunition/Action and Mirror Image concentration and removes serial compounded miss chances. No Spectral Army hidden-target exception is generalized."),
+("Keep observer-specific disbelief through suppression and one lineage draw. Direct contact establishes recognition; Investigation is a real Action. Preserve the existing five Fate presentations.",
+"No result exposes private identities or a new reroll channel; fake casting is not an actual Counterspell event."),
+("Select the five finite inversions, generating rank<=4, ability+PB task against10+2rank, one-component/lifetime inversion and no-concentration60sec maximum. This bounded inverse family is explicitly NEW.",
+"An unrestricted semantic inverse has no deterministic resource, duration or target meaning. Source costs, independent effects and original deadlines survive."),
+("Select the actual AC4 Water Pet output exception as NEW; original synthetic eight-unit reserve scenario remains a separate whole-scenario content hold.",
+"Pet2d6, true owner BA/attached Action/shared offensive-support slot, willing ally and5ft geometry are real. No pet reserve is invented."),
+("Select native producer ownership and precise category conversion. Healing-only opportunity creates damage root at its real resolution; existing damage transformations keep original roots. Final-category defenses run once.",
+"Retains conditional source funding and Null without crediting inverter/owner. HP-gain prohibitions are not necrotic damage immunity. Healing conversion creates no damage-dependent resources."),
+("Select acid/cold/fire/lightning/thunder, initial CON, full5d10 after established stripping on failure, half/no-rider on success and first-future-target-END expiry.",
+"All save, type set and finite ending parameters are NEW. Damage remains independent if the rider itself is genuinely prevented."),
+("Select overlay of every presently applicable matching resistance/immunity, including matching broader coverage and later acquired sources; no deletion of source records.",
+"FlatDR, temporaryHP, actual invulnerability/disablement immunity, Null and receiving transfer targets retain independent authority. Original triple-defense fixture remains conditional where exact sources absent."),
+("Select one60sec preparation, next genuinely initiated rank0–6 creature-area spell, fixed perceived allied roster at the parent's actual casting/preparation commitment and consumed before counters.",
+"No free cast, retroactive ally selection or replacement roster; parent owner remains independent."),
+("Replace still-living with still-existing eligible creature. Source-qualified active Undead/Construct allies can qualify.",
+"Printed allies does not support the prior biological exclusion. Corpses/ended/replacement identities do not inherit it; actual parent restrictions remain."),
+("Select full omission of direct magical creature-facing components, while actual environment and independent world consequences remain.",
+"Accepted Ice Storm supplies real direct typed damage and a magical difficult-terrain footprint; neither hail description nor physical appearance alone excuses direct damage. Actual Antimagic suppresses both sources, not selectively only Sculptor."),
+("Select one source-defined application, no invented rank/consent prerequisite, nondispel protection for parent and modifier and24h nonconcentration maximum.",
+"Preserves cannot be dispelled without converting in-place into a spatial freeze or stronger duration."),
+("Explicitly NEW: Spell Seal excludes itself, Resonance Seal and Resonance Anchor. Existing other two texts remain unchanged.",
+"Reciprocal restriction prevents mutual protection manufacturing without silently asserting it was already accepted. Anchor remains normally dispellable and retains its own targeting."),
+("Retain current AC5/AC6 immutable dispel captures and same-field exception. No proved suppress-then-dispel escape at a shared locus.",
+"Suppression alone is not an ability to execute a termination there. A real future selective source remains a content/interface prerequisite rather than a free bypass."),
+("Select full rank<=4 eligible ordinary buff bundle transfer with donor WIS/waiver, actual thief eligibility, once-lifetime source receipt and same-identity modifiers following their application.",
+"Preserve Haste FULL Action and separate donor/thief ending Stuns. Self-creator Stun ends concentration immediately; never fabricate a usable20seconds. Missing exact Fly remains unresolved."),
+("Select exactly three distinct currently unavailable reviewed ordinary IDs, all truly unlocked ranks through one real class profile, temporary known+prepared excess capacity for3600sec.",
+"Current610 index/card bindings determine manuscript authority, not runtime enablement. Genuine completed Ready survives permission expiry; new or unfinished knowledge-dependent casts do not. No enduring formula or cosmology.")
+]
+qd=[]
+for q,(ans,why) in zip(C["questions"],answers):
+    qd.append({"id":q["id"],"completeOriginalQuestion":copy.deepcopy(q),"disposition":"SELECT_SCOPED_PROPOSED_AUTHORED_RULE",
+               "answer":ans,"reason":why,"sourceReferences":[{"archive":"original","member":"CANDIDATE.json","pointer":f"/questions/{C['questions'].index(q)}"}],
+               "operativeReferences":[f"PROCEDURES.json#/spells/{i}/procedure" for i,r in enumerate(current) if r["spellId"] in q["spellIds"]]})
+follow=[
+("Uniform five-way selection is performed only for true actual candidate geometry. The same original attack lineage cannot resample, real Mirror Image concentration persists, and known false images supply no spell target or proc. A BA image command competes with actual owner BA commands.","MM127-CLONE-01"),
+("Use native Water Pet's actual two-d6 heal, not a reserve. Fix its pet producer and root checkpoint, retain actual informed willingness and all command/phase/recipient gates, test a real Chill Touch blocker separately from final necrotic defense.","MM127-REVERSAL-01"),
+("Supply actual Wizard fire Ward as a sourced resistance example. Do not turn its resistance into immunity or3DR. Preserve the full triple-source, expiring immunity and transferred-recipient obligations as conditional when those particular providers are absent.","MM127-REBIND-01"),
+("Use exact registry06 Ice Storm for direct cold/bludgeoning and residual terrain. Demonstrate actual both-source Antimagic; retain the selective-only parent-live suppression and six-recipient buff as separate source-qualified obligations.","MM127-SCULPT-01"),
+("Use a distinct original Haste concentrating creator for a real20-second remaining transfer. Include self-concentrating donor as an immediate donor-Stun/concentration-end/thief-Stun chain, with both receipts and source/person action ledgers retained.","MM127-THEFT-01"),
+("Choose Haste, Invisibility and Stoneflesh for actual Wizard9 additional permissions, all currently accepted and unavailable in that prepared set; no class/rank leak. Include legal paid ongoing/Ready cast before expiry and no new cast afterward. Wizard actual acquired cards are level-filtered.","MM127-COMMUNION-01"),
+("Freeze all full event.before/event.after and observation snapshots by data copy. All declared source points, plans, custody, defenses, histories and actions are recorded before outcomes. All bindings and reversible operations are data only.","MM127-OBSERVATION")
+]
+for q,(ans,rule) in zip(additional["reviewRequirements"],follow):
+    qd.append({"id":q["id"],"completeOriginalQuestion":q,"disposition":"SELECT_SCOPED_PROPOSED_FOLLOW_THROUGH","answer":ans,
+              "reason":"Resolve the precise supplied evidence boundary without granting an unseen source or upgrading historical tests into runtime validation.",
+              "operativeReference":rule,"sourceReferences":[{"archive":"prepared","member":"MAGIC_MODIFIERS7_INDEPENDENT_QUESTIONS.json","pointer":f"/reviewRequirements/{additional['reviewRequirements'].index(q)}"}]})
+dump("QUESTION_DISPOSITIONS.json",qd)
+dump("evidence/ORIGINAL_SCENARIOS.json",C["all14OriginalScenarios"])
+dump("evidence/REGISTRY_COMPARISONS.json",{"original32":C["currentAcceptedInterfaceComparisons"],"currentRegistryEntries":[e for e in registry["entries"] if e["id"] in {x["completeEntryUnchanged"]["id"] for x in C["currentAcceptedInterfaceComparisons"]} or e["id"] in ['P20-PROCEDURE-ice-storm','P20-ICE-MIXED-07']]})
+# Live current IceStorm authority for mixed example.
+addcard("ice-storm",{"id":"ice-storm","procedure":ice["exactAuthority"],"completeSourceAndAccess":icecard["completeSourceAndAccess"],"damageRootMapping":ice["completeContext"]["completeSourceSpecificRootMapping"]},
+        {"archive":"prepared","member":"current/DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_06.json","pointer":"/entries/154","completeAuthority":ice})
+# Preserve whole original counterpart shared contexts; add complete exact source model for AC5.
+dump("evidence/CURRENT_CARDS.json",{"cards":cards,"references":cardrefs,"original11":C["completeAcceptedCounterparts"],"AC5Shared":ac5["sharedRules"],"IceMixed":next(e for e in registry["entries"] if e["id"]=="P20-ICE-MIXED-07")})
+print("saved rules/dispositions",len(qd),out)
+
+STDOUT/STDERR
+saved rules/dispositions 23 /mnt/data/MM7_127_Authored_sq8_cmub
+
+Analyzed
+Python
+# Source HP/class foundations and current spell parameters used for fixtures.
+t=orig.read(base+"docs/mechanics/CHARACTER_CREATION_PLAYTEST.md").decode()
+print(t[:1200])
+print("Wizard entries", [line for line in t.splitlines() if "Wizard" in line][:20])
+print("base school engine",*[s for s in w['engine'] if 'EVOCATION:' in s or 'ILLUSION:' in s],sep='\n')
+print("profiles references catalog",[(c['id'],c.get('classAccess',{}).get('Wizard')) for c in catalog['spells'] if c['id'] in ['decay','invisibility','minor-illusion','dancing-lights','mage-hand','ray-of-frost']])
+for i in [5,6,7,8,11,18,19,21,27,28,17]:
+    c=w['cards'][i]; print(c['id'],c['activation'],c['cost'],c['frequency'])
+print("rank cost D", orig.read(base+"docs/mechanics/SPELL_INTEGRATION_RULES.md").decode()[:7000])
+
+STDOUT/STDERR
+# Create and advance a character
+
+**REVIEWED CHARACTER FOUNDATION — authored operational PLAYTEST candidate.** The [source conference](../../../../docs/audit/2026-10-08/full-game/GPT_CHARACTER_FOUNDATION_CONFERENCE.md) and [exact review](../../../../docs/audit/2026-10-08/full-game/GPT_CHARACTER_FOUNDATION_EXACT_REVIEW.md), with both requested wording repairs applied, settle the class foundations and advancement rules below. Use the [17-class tables](CHARACTER_FOUNDATION_TABLES.md) beside this guide. Use the later reviewed ancestry/background and equipment guides for their stated scopes, and the reviewed language chapter for language grants and records. Remaining option dependencies and live companion parity are still separate work.
+
+## Begin a character sheet
+
+1. **Record the concept and first Base class.** Choose one of the 17 classes. Start at character level 1 and that class’s level 1. Keep a chronological level record and the order in which you enter classes. Arch and Hero are later stages within a class, not additional Base classes. The former Fighter/Swashbuckler entries and separate historical prestige records supply no extra starting class or automatic grants.
+2. **Generate
+Wizard entries ['5. Update legal repertoire, prepared capacity, class scaling and resource maxima at the gained **class** level. Use class-specific Druid preparation, Wizard spellbook/matrices and other explicit rules before generic acquisition defaults. New capacity does not provide an unnamed spell, an unearned choice, a filled Echo record or an extra prepared spell without the required preparation procedure.', '1. Caster tier: Full (Cleric, Druid, Mage, Wizard), then Half (Paladin, Ranger), then Hybrid (Bard, Shaman, Mirrorsage, Crimson Agent), then Minor (Dragoon, Monk, Thief, Tinker).', '- **A three-class caster:** Cleric 6, Druid 6 and Wizard 1 use Cleric/Druid as the two Full-tier contributors because class level precedes pool size. Their own level-6 pools are 15 each, giving 15+ceil(15/4) = 19 RP; earlier acquisition breaks their tie. Wizard 1 adds no RP but retains its own legal Wizard 1 spell access. Total 13 supplies PB +5; no class has a Hero gate.']
+base school engine
+ABJURATION, provisional completion for the omitted eighth row: once per round after you cast an Abjuration spell, gain temporary HP equal to PB until the start of your next regular turn. CONJURATION: creatures summoned by your Wizard spells gain +1 maximum HP per Wizard level. DIVINATION: once per long rest reroll one failed saving throw and use the new result. ENCHANTMENT: when a creature fails its initial save against one of your Enchantment spells, a printed control duration of at least 1 round may last one additional round, but every normally allowed repeat save still occurs. EVOCATION: when casting an area Evocation spell, exclude one creature from its initial damaging area; that creature automatically succeeds and takes no damage if success normally halves damage. ILLUSION: gain +2 on concentration saves made to maintain Illusion spells. NECROMANCY: once per turn during a real encounter when a hostile non-summoned creature dies from your Necromancy spell, gain 1 temporary HP; it is not permanent healing. TRANSMUTATION: after casting a Transmutation spell, gain +5 feet Speed until the end of that turn.
+profiles references catalog [('ray-of-frost', {'rank': 0, 'minimumClassLevel': 1, 'school': 'Evocation', 'baseRpCost': 0}), ('dancing-lights', {'rank': 0, 'minimumClassLevel': 1, 'school': 'Evocation', 'baseRpCost': 0}), ('minor-illusion', {'rank': 0, 'minimumClassLevel': 1, 'school': 'Illusion', 'baseRpCost': 0}), ('invisibility', {'rank': 2, 'minimumClassLevel': 3, 'school': 'Illusion', 'baseRpCost': 3}), ('decay', {'rank': 1, 'minimumClassLevel': 1, 'school': 'Necromancy', 'baseRpCost': 2}), ('mage-hand', {'rank': 0, 'minimumClassLevel': 1, 'school': 'Universal', 'baseRpCost': 0})]
+wizard.base.arcane-bolt Action 1 RP At will while RP remains
+wizard.base.minor-conjuration Action 1 RP At will while RP remains; one object at a time
+wizard.base.arcane-shield Reaction 2 RP Recharge 2 rounds
+wizard.base.analyze-magic Action 1 RP Recharge 1 round
+wizard.arch.sigil-rewrite Bonus Action 0 1/long rest
+wizard.arch.arcane-lock Action 2 RP Recharge 2 rounds
+wizard.arch.dispel-magic Action 3 RP Recharge 2 rounds
+wizard.arch.arcane-sight Action 2 RP Recharge 2 rounds
+wizard.hero.spellbinder.seal-magic Action 4 RP Recharge 3 rounds
+wizard.hero.spellbinder.runic-snare Action 3 RP Recharge 3 rounds
+wizard.base.counterspell Reaction 3 RP Automatic at Wizard 2; recharge 2 rounds
+rank cost D # Spell integration rules — provisional v0.1
+
+Use this document with the [shared class rules](CLASS_PLAYTEST_RULES.md), the class's own engine and the [spell packet](SPELL_PLAYTEST_STARTER.md). This is a staged development layer, not an approved-book replacement or a live companion update.
+
+## What owns each decision
+
+| Decision | Source used for this packet |
+|---|---|
+| Spell identity, every school placement and per-class rank/access | Preserved `src/data/spells.js`; do not collapse different class ranks into one global rank. |
+| Common RP prices and additional spell evidence | Core Systems Known Descent V2. Its spell blocks are retained with the catalog summaries. |
+| Class identity, engine, spellbook/preparation and cadence exceptions | The current class playtest packet. |
+| Generic Dissonance/Refrain, action limits and core conditions | Shared class playtest rules; source Core conditions remain unchanged. |
+| Missing targeting, exact endpoints, concentration ambiguities and exploit limits | Explicitly provisional decisions on each spell card. |
+
+The approved Core V2 source has 936 spell blocks. The companion catalog has 848 unique IDs with 936 school placements, but leaves four metadata fields unspecified. These are different views of the source, not evidence that all casting details were absent. Core's generic “Automatic or opposed as described” does not supply a concrete save or targeting rule.
+
+Eleven possible renamed entries remain comparative evidence in the register. Harmonic Bulwark's catalog summary says 5 temporary HP per RP while the possible historical Mana Shield entry says 2; its [individual transformation and buffer review](TRANSFORMATION_SPELL_PLAYTEST.md) now supplies the operational decision. Both source variants remain preserved. Other unresolved aliases stay pending their own review; matching names never silently merge effects.
+
+Resonance Kindle now has [exact manuscript approval](../../../../docs/audit/2026-10-08/full-game/GPT_CONJURATION_CANTRIP_EXACT_REVIEW.md): Action/Self/V/S, recover 1 RP only when this spell reaches resolution. Its one character-wide use is spent at legal cast start and refreshes only on a beneficial completed long rest. The comparative Mana Kindle block remains separately preserved; its broader wording does not trigger recovery from other cantrips and its historical range grants no remote recipient. The [Conjuration cantrip status](CONJURATION_CANTRIP_REVIEW_STATUS.json) records this bounded decision and the other eleven approved cards.
+
+## Select a spell
+
+1. Choose the class through which you are learning/casting it. Check that class's school access and minimum **class** level on the card.
+2. Use that class's spell rank and Core V2 cost. A different eligible class may receive the same spell at a different rank and level.
+3. Record it in your allowed known, prepared or spellbook choices. An eligible catalog entry is not an automatic grant. Wizard and Druid keep their explicit preparation systems; fallback counts apply only where the class has no more specific rule.
+4. Select only a spell marked `operational-playtest-draft` in this packet, or an operational spell expressly supplied by a class card. Other records stay visible in the unfinished queue.
+5. A class card and an ordinary spell with the same name remain separate records with separate acquisition and costs. Knowing one does not grant the other. Oath spells, Matrix techniques and similar class spells use their own card.
+
+Oracle uses RC and its Mystery/Curse system. Soldier and Warrior have no general Weave access. Dragoon first gains ordinary magic at class 3; Paladin at class 2. Sufficient RP, total character level, a class feature with the same name, or a borrowed spellbook cannot bypass a gate.
+
+## Resolve a cast at the table
+
+1. Verify the available Action/Bonus Action/Reaction, its exact trigger, components, targets, range and line of effect. No legal target means no activation or payment. A target in an area still needs the card's eligibility. Total cover blocks direct targeting unless expressly overridden.
+2. Choose a spell from your actual repertoire. Determine its class-specific rank and RP cost: rank 0–9 costs **0/2/3/5/7/10/13/17/21/26**. Add explicitly printed extra costs; Resonance Shield adds 1 RP even when the caster receives it as a cantrip. Generic Overcast is excluded.
+3. Read Dissonance **before** casting. Limit = max(4, 2 + PB + max(0, casting modifier)). At limit/limit+3/limit+6, ranked spells cost +1/+2/+3 RP. At limit+6 ordinary rank-1+ casting is blocked. Cantrips have no strain surcharge but still build Refrain. An expressly granted traumatic-casting exception pays the cost and its printed trauma; it grants neither rank nor repertoire access.
+4. Commit the legal cast's RP, materials and other printed costs before any attack/save or interruption. Perform its components and establish concentration if required, ending incompatible prior concentration. An ordinary missed, saved-against or countered legal cast refunds nothing and never restores displaced concentration.
+5. At this cast's beginning, apply ordinary Dissonance and Refrain once: 0 base for rank 0, 1 for ranks 1–5, 2 for ranks 6–9; consecutive same-named casts add Refrain +1/+2/+3, capped at +3. First cast or a different name adds +0. Apply the class's exact protected reduction, routing or vent and any hook whose printed trigger is beginning/casting. Weapon or idle turns do not reset the previous name/Refrain unless the class expressly says so. This chronological commitment occurs before the Counterspell window; a later Reaction cast updates its own history, and resuming the earlier cast does not update that history again.
+6. Open legal cast-interruption Reactions, resolving nested counters last-in, first-out. A surviving cast then resolves its effect: spell attacks are d20 + PB + the actual casting ability modifier; save DC is 8 + PB + that modifier. Use the exact card's hit/failure/success results and ordinary damage/conditions. Outcome-dependent class hooks occur only at their printed timing and with the required actual result. No automatic cantrip scaling applies. A negated spell grants no success/hit/damage effect merely because its casting cost was paid.
+7. Record concentration, exact expiration, per-rest use, summon and companion command obligations. A second spell cannot supply an ungranted Action, duplicate concentration or resource reset. A readied spell commits this casting sequence at preparation; release has no second cast, cost, cadence update or Counterspell window.
+
+Countering requires an actual operational spell or class card, its repertoire/access and a legal remaining Reaction. The ordinary Counterspell is now reviewed; it is separate from the Mage and Wizard class cards. Dispel Minor, Dispel Resonance, Dispel Magic (Lesser) and Dispel Magic use their exact individual scopes. Rank-limited dispels inspect the original generati
+
+Analyzing
+Python
+tz=zipfile.ZipFile(io.BytesIO(outer.read("accepted/DD_Time_Cast5_Accepted_127.zip")))
+print([(n,tz.getinfo(n).file_size) for n in tz.namelist() if any(t in n for t in ["ACTOR","TEMPLATE","MANIFEST"])])
+# accepted archive prefix maybe directory
+print(tz.namelist()[:12])
+# Read only data.
+for n in tz.namelist():
+    if n.endswith('ACTOR_TEMPLATES.json') or n.endswith('ACTOR_DEFINITIONS.json'):
+        at=json.loads(tz.read(n));print(n,type(at),list(at)[:12])
+        print(str(at)[:1200])
+# gear sources full body guide hp no need speculative prof.
+print("CARD33+",[(i,x["id"],x["minimumClassLevel"]) for i,x in enumerate(w["cards"]) if i in range(33,44)])
+

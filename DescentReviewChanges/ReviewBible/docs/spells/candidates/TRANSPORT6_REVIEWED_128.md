@@ -1,0 +1,399 @@
+# Transport6 - applied authored review128
+
+The six exact authored procedures are accepted by TRANSPORT6_EXACT_ACCEPTANCE_128.json and applied by TRANSPORT6_APPLICATION_128.json under the owner instruction to apply each accepted batch. All49 exact return files, including the1000 work-phase events, are preserved together under data/public/spell_candidates/transport6_reviewed_128 so internal evidence references remain resolvable. Historical pending labels are retained evidence, superseded by the current acceptance/application receipts. All stated content, conditional-case, implementation, human, balance, cosmology and release holds remain. No rule or case was changed locally.
+
+# Transport6 — complete proposed operative authoring
+
+Status: proposed source-qualified video-game candidate; independent exact review and implementation remain separate.
+
+## TR126-CAST
+
+**INHERIT current casting/Ready; NEW transport-local plan schema**
+
+Use the actual classAccess row, rank, cost, acquired repertoire, current body/voice/hands/focus and real Action at commitment. Rank4 costs7, rank5 costs10, rank6 costs13 before actual modifiers; no generic upcast. Preserve class-specific Dissonance, Refrain and first-prepared-family history. Observable illegality fails before expenditure; actual hidden/new invalidity can defeat a paid attempt without a free reason, contents/weight readout or replacement target. Commit action, RP, components, original source owner/rank/DC, last-spell/family/refrain and prospective concentration before the single beginning counter window. Failed/countered casts restore neither cost nor displaced concentration. Circle's ten-minute continuous work has one beginning cast/counter/payment, not one per work marker. Its completed site is nonconcentration.
+Direct casting freezes mode, target identity, location representation, material/custody consent representation, origin/arrival anchors, orientations and relevant whole payload before countering. Actual quantities/occupancy/wards revalidate at resolution without changing the declared identity or target. Ordinary Ready fixes spell/mode and pays at preparation; its legal target/group/point selections are fixed at release, following the completed perceived trigger and spending the actual Reaction. The ordinary hold expires at next regular own START, not a new minute. The released spell's own duration begins at manifestation. No generic Ready of the ten-minute Circle, Bonus Action recall or portal/Circle activation is created. Already paid ordinary Ready maintains concentration through release; Instant Summons/Mystic Gate continue their own source concentration if established. Successful instantaneous relocation does not give an extra Action, movement budget, Reaction, cast, item use or resource reset.
+
+## TR126-IDENTITY
+
+**INHERIT real identity/capacity; NEW explicit per-transaction graph snapshot**
+
+Keep one physical identity per body, container, connected assembly and content lot; ownership and physical custody are distinct. A payload graph includes the complete recursively enclosed actual contents and lawful carried equipment once. A connected component is not notionally detachable by selecting its name. Creature-origin object shapes, Petrified, Undead and Constructs remain under their actual creature/source targeting predicates. Genuine dead remains are objects only when the accepted lifecycle actually establishes that state, retaining all identity, weight, source and no-farming history.
+Snapshot immutable ordered payload identities and custody edges immediately before atomic placement. Exclude only volumes of actual departing graph members from simultaneous occupancy tests; leave every other body/object/anchor in place. No internal duplicate, cycle or overlap between two swap payload graphs is allowed. Reject a known overlap before payment; a hidden/new overlap after commitment causes complete paid failure. Only an independently completed lawful release can change the graph; no spell silently cuts an embedded item or detaches the selected internal cargo. Revalidate actual transported passengers' own blockers, anatomy and both pounds and Load. The supplied carrying table has no generic Huge/Gargantuan carrying completion; missing sizes/anatomy remain content prerequisites. Caster inability or source ending before resolution follows its actual rule; do not resurrect a vanished target.
+Atomic success changes existing transforms and local custody only as expressly authorized. A successful contested loose-item transfer clears all actual old grip/custodian edges and records prior holder IDs as history; no separate free hand Action is invented. On failure those edges remain intact. No intangible/distant/melded item is accessible merely because someone owns it.
+
+## TR126-GEOMETRY
+
+**NEW cohort-local anchor measurement and finite arrival selection; existing physical support/Falling retained**
+
+For these six local range bounds, use exact Euclidean three-dimensional distance between recorded transport reference anchors: a creature's registered body/root foot anchor and an object's declared physical base/reference anchor, not a later convenient face. Placement points/endpoints use their named world coordinates. This expressly completes these cards' 3D transport limits only, not global grid distance. Perception and line of effect additionally require a real source-body sensory/emission witness and actual target interior/endpoint ray; an allowed destination path exception supplies no new senses. The exact range/line rules of an independently cast counterpart such as Lesser Antimagic remain its own rules.
+Record full occupied body/equipment volumes and actual shape, mass, orientation, support and custody. No reference point stands in for whole-body fit. Exterior boundary contact is not an overlapping interior; missing geometry is not automatically clear. Translation preserves orientation except Gate/Circle's declared rigid heading mapping. Destination legality includes all incoming volumes and actual supports; do not use a wrong-size bounding approximation as physical authentication. An instantaneous teleport crosses no intervening path and provokes no ordinary opportunity attack; ordinary approach and movement retain their costs and actual hazards. Speed0 does not itself stop a teleport. Only Dimension Door and Shift expressly allow unsupported arrival; then ordinary Falling starts with its actual fixed marker and defense/life consequences. Nothing in this cohort adds impact damage.
+For local Gate/Circle fallback, the permitted arrival anchor list is finite: declared mapped/center anchor first, then horizontal5ft offsets in fixed destination basis +forward,-forward,+right,-right (Gate omits -forward because arrival must remain on its front side). Order increasing squared offset then the listed stable order. Entire support and unoccupied fit must pass. No candidate may cross solid material separating it from the actual exit/receiving neighborhood; a supplied local structural-clearance witness is required, not a search through walls. Actors occupying the base candidate do not become movable obstacles. No vertical candidate, retry scan beyond5ft or post-result tactical choice exists. This is a local atomic placement exception, not free ordinary movement or a general transport search.
+
+## TR126-TRANSPORT-PREVENTION
+
+**NEW classification for only these six; INHERIT exact external predicates**
+
+Each actual relocation in this cohort is same-plane TELEPORTATION. A valid existing same-plane relationship is an input; no plane registry or cosmology is invented. Gate/Circle creation and inscription are not themselves transit. No taxonomy is inferred for Alignment Portal (planar/nonteleport), Banishment (planar/nonteleport), or Alignment Nexus (its own both-classification).
+Dimensional Anchor tests every transported body/object endpoint, including carried creature passengers and both endpoints of a swap, not an imaginary path between outside endpoints. Known prevention blocks preflight; hidden/late prevention defeats the whole paid attempt. No Escape requires its actual marked target and forbids VOLUNTARY teleport/extradimensional travel; Verdict Absolute requires its actual Judgment Brand and forbids VOLUNTARY teleport/invisibility; neither becomes universal protection against a failed-save forced hostile Shift. Reign of Ashes retains its exact cannot-benefit-from-teleport predicate and actual failed-save ash-bound duration, not a new universal anti-relocation condition. Voluntary self/traveler or willingly accepted assisted relocation is a teleport benefit; a genuinely forced hostile displacement does not become beneficial solely because it changes location. Where an actual effect's benefit/voluntary fact is genuinely unresolved, retain that qualified branch rather than choose immunity by title. Custody-transfer of an ordinary external object does not automatically teleport its old bearer.
+Accepted Lesser Antimagic input/output rules apply to actual origination/destination/effect manifestations; outside-to-outside transport is not intercepted by an imaginary beam. Remote ongoing magic is not canceled merely by suppressing its caster. Gate endpoint or Circle site suppression blocks use, not an already completed arrival or unrelated remote site. Counterspell is cast-time only; genuine later dispel uses its exact rank/capture/termination authority. All source histories and already completed physical results remain.
+
+## TR126-CLOCKS
+
+**NEW explicit elapsed deadlines for these long-lived sources; INHERIT real actor markers and life clocks**
+
+Instant Summons and Mystic Gate have immutable successful-establishment+60 elapsed-second deadlines. Circle work is600 uninterrupted active seconds and completed sites have no lifetime expiry. A Circle activation reserves a source-local nextAttemptAt=commitTime+6 seconds even on a spent failed attempt; actor changes, duplicate callbacks and extra turns do not reset it. Deadline expiry precedes a same-time new optional use. Suppression never pauses deadlines, queues missed arrivals or restores an ended/consumed relation.
+Keep original source/cast IDs, immutable link IDs, cast and activation receipts, actual Action/Bonus Action/Reaction slots and real regular markers. All fixture schedules are declared inputs; six seconds between their listed starts is not a new world-wide scheduler. Death/absence/initiative changes preserve existing clocks. Source removal before a transport checkpoint can prevent it; after an atomic commit it cannot move the traveler backward or strand half a body. Retain a completed transaction receipt before callbacks so save/reload/redelivery cannot duplicate transported identities, payments, resistance rolls, source uses or events. No use of these sources authenticates real encounter or recovery opportunities.
+
+## TR126-EXPEDITION
+
+**INHERIT current EX58/body/memory/resource contracts; no new world/cosmology rule**
+
+Transport may genuinely bypass route distance where its card permits. Actual elapsed work/rest, supplies, custody, extraction claims, standing, title, customs, housing, safety, body condition, hunger, death, RP/HP, Wounds and concentration remain unchanged unless their own source explicitly acts. Moving a stolen object does not legitimize it; sharing a Circle address does not grant a recipe, class route or remote knowledge of a destination's live contents. No free carried-body profile, vehicle driver, whole party eligibility, fishing work, completed settlement, material harvest or sale is added.
+All complete prior source text/scenarios/questions remain history. Current accepted ordinary and Body8 authorities control only named scopes. Time/Cast5 director work and missing Material/Terrain8 are not accepted authority here. Hold IN6-09-A/B, EN5-01-A/B and EN6-03-B and all actual inherited source/content/implementation gates. New procedures and synthetic cases are proposed authored behavior, not canonical integration, game execution, human tests, balance, cosmology or release approval.
+
+## dimension-door
+
+Actual access (unaltered):
+
+```json
+{
+  "Bard": {
+    "rank": 4,
+    "minimumClassLevel": 10,
+    "school": "Universal",
+    "baseRpCost": 7
+  },
+  "Cleric": {
+    "rank": 4,
+    "minimumClassLevel": 7,
+    "school": "Universal",
+    "baseRpCost": 7
+  },
+  "Mage": {
+    "rank": 4,
+    "minimumClassLevel": 7,
+    "school": "Universal",
+    "baseRpCost": 7
+  },
+  "Mirrorsage": {
+    "rank": 4,
+    "minimumClassLevel": 10,
+    "school": "Universal",
+    "baseRpCost": 7
+  },
+  "Tinker": {
+    "rank": 4,
+    "minimumClassLevel": 14,
+    "school": "Universal",
+    "baseRpCost": 7
+  },
+  "Wizard": {
+    "rank": 4,
+    "minimumClassLevel": 7,
+    "school": "Universal",
+    "baseRpCost": 7
+  },
+  "Paladin": {
+    "rank": 4,
+    "minimumClassLevel": 13,
+    "school": "Universal",
+    "baseRpCost": 7
+  }
+}
+```
+
+Action; range 500 feet; V/S/F; Instantaneous. KEEP the Universal identity’s up-to-five-hundred-foot teleport. NEW self and actually lawful worn/held/carried noncreature belongings only. Declare one exact destination footprint/orientation on the same established plane, no more than five hundred feet from the caster. You may designate it by current perception, accurate personal knowledge, or a precise measured direction-and-distance displacement from your current known anchor; this last option expressly differs from the Conjuration Dimensional Door proposal’s known-location gate. No originating sight, line of effect or traversable path to the destination is required by this specific teleport. Designation supplies no new sensory information or guarantee that the chosen space is free. A vague request for a safe room, hidden treasure, an unknown person’s location or the other side of an unmeasured wall is insufficient. At resolution the whole actual body and gear must fit unoccupied space with all actual transport prohibitions satisfied. Unsupported open space is allowed, but starts ordinary Falling immediately if no independent support/flight exists. No passenger, carried creature, mount or unwilling grappled victim travels as gear; retained and released relationships use their actual rules at the old/new positions. A corpse-object or container can accompany only as an actual legal noncreature belonging within both real carrying limits, with the same full contents/weight and history. If hidden/new occupancy, solid matter, a ward or custody failure makes the destination illegal after commitment, nothing moves; paid costs remain spent, with no damage, remote diagnostic, split body or automatic substitute square. Teleportation spends no Speed and provokes no ordinary opportunity attack, but grants no invisibility, sound suppression, attack, return journey, rest, concentration reset or renewed class resources. Current conditions persist unless their actual source relation ends. The separate Dimension Door and Dimensional Door source records, spell names, schools and class access remain distinct; the already accepted Conjuration procedure remains its own authority and is not rewritten.
+
+DIRECTOR TR126-DD: Inherit TR126 shared rules. Record destination representation (CURRENT-PERCEIVED, PERSONALLY-KNOWN, or MEASURED-VECTOR), anchor coordinates and exact whole-body orientation at direct commitment/Ready release. A vector is fixed relative to that recorded true current anchor, not retargeted if the caster later moves. Preserve the permitted caster and all noncreature cargo once; an actually carried other creature remains where lawfully released/left and uses its own support rules. An external inseparable physical anchor is not severed. A pure ordinary grapple may end only if actual reach breaks; no grappled victim is added. At failed fit, retain all old coordinates and cast spend. One resolved movement has no persistent Door object to dispel.
+
+## dimensional-shift
+
+Actual access (unaltered):
+
+```json
+{
+  "Bard": {
+    "rank": 5,
+    "minimumClassLevel": 13,
+    "school": "Universal",
+    "baseRpCost": 10
+  },
+  "Cleric": {
+    "rank": 5,
+    "minimumClassLevel": 9,
+    "school": "Universal",
+    "baseRpCost": 10
+  },
+  "Mage": {
+    "rank": 5,
+    "minimumClassLevel": 9,
+    "school": "Universal",
+    "baseRpCost": 10
+  },
+  "Mirrorsage": {
+    "rank": 5,
+    "minimumClassLevel": 13,
+    "school": "Universal",
+    "baseRpCost": 10
+  },
+  "Tinker": {
+    "rank": 5,
+    "minimumClassLevel": 18,
+    "school": "Universal",
+    "baseRpCost": 10
+  },
+  "Wizard": {
+    "rank": 5,
+    "minimumClassLevel": 9,
+    "school": "Universal",
+    "baseRpCost": 10
+  },
+  "Paladin": {
+    "rank": 5,
+    "minimumClassLevel": 17,
+    "school": "Universal",
+    "baseRpCost": 10
+  }
+}
+```
+
+KEEP Action,100feet and SWAP positions with ANY target. NEW choose one other perceived creature or one discrete unanchored nonliving object,including a sufficient corpse,within100feet and direct caster line of effect. No arbitrary creature-type,size or mass ceiling is added: both whole destinations must actually fit. An area,empty point,indivisible terrain/structure segment,illusion without a body or part cut notionally out of a larger object is not one discrete target. A genuine container is one object with its actual contents and total geometry. Worn,fastened,embedded or absolutely anchored objects cannot be ripped free; a genuinely loose held object can be selected; every actual unwilling physical custodian makes its own CHA save. An unwilling creature makes CHA versus the original casting DC; each actual resisting loose-object custodian independently makes that same CHA save. Snapshot all actual custodians and their own consent before drawing any roll. Resolve all required saves once in stable custodian-ID order; ANY success blocks the entire swap. A willing creature/custodian may explicitly accept. An unattended eligible object requires no save. Physical shared custody is not inferred from ownership. At resolution snapshot the caster's and selected body's actual reference positions,orientation,anatomy and complete legally carried belongings. Revalidate both permissions and both destination volumes simultaneously,excluding only the departing pair's own current volumes from the occupancy check. Each arrives with its original orientation/reference point at the other's prior reference point; the whole incoming body and possessions must fit there without overlap with third bodies/solid matter. Do not solve one end by discarding gear,searching for a nearby space,shrinking a body or moving another occupant. If either destination,save,anchor or actual source prohibition fails,the whole paid attempt moves neither. No one-sided teleport,partial body,hair/gear copy or post-result substitute target occurs. Legal carried creatures may accompany only through actual anatomy,pounds/Load capacity and whole arriving-group fit; an unwilling carried passenger gains no new independent save solely from being legitimately carried,but its actual restraint/relocation defenses retain scope. A target-body identity that changes form before resolution uses the real current body; actual caster incapacity/death can prevent resolving the cast. The same physical remains may qualify as the original target body after a genuine death only if still actually present and all current object/placement predicates are met; this is no resurrection or live-target replacement. Actual support is evaluated after the atomic swap. Airborne positions can be legal if volumes fit; loss of flight/support then starts ordinary Falling from true height. Zero Speed alone does not block teleportation; ordinary grapples end only if actual reach is broken,and special teleport anchors still block. Any tether that would require severing an actually inseparable external anchor makes that participant ineligible rather than breaking material for free. Actual environmental arrival hazards resolve once under their own existing triggers. The transition grants no collision damage,attack,extra turn,free component hand,remote vision,secret target discovery or continuing portal. This proposal is same-plane relocation only;100feet through a visual projection is not planar access. All original identities,resources,conditions,concentration,owner phases and source clocks remain.
+
+DIRECTOR TR126-SHIFT: Require two disjoint physical identity graphs at lawful declaration and again at resolution, including each currently carried creature/object and recursively enclosed content. A caster carrying the target, being carried by it, or any shared member/cyclic custody cannot swap by counting the same identity twice. Known overlap fails before costs; newly hidden overlap gives paid complete failure. Independently completed release can permit a later fresh attempt; this cast never silently detaches an internal target. For an external loose held object, holders remain outside its departing graph; only atomic successful movement releases their actual grips, recording prior holder history. A failed CHA/fit check releases nothing. Both anchors are actual registered foot/base points, with each group's own rigid orientation preserved; no floor-center/body-center substitution. Actual transformed source lineage revalidates through accepted body rules, not an ordinary-object loophole.
+
+## instant-summons
+
+Actual access (unaltered):
+
+```json
+{
+  "Bard": {
+    "rank": 6,
+    "minimumClassLevel": 16,
+    "school": "Universal",
+    "baseRpCost": 13
+  },
+  "Cleric": {
+    "rank": 6,
+    "minimumClassLevel": 11,
+    "school": "Universal",
+    "baseRpCost": 13
+  },
+  "Mage": {
+    "rank": 6,
+    "minimumClassLevel": 11,
+    "school": "Universal",
+    "baseRpCost": 13
+  },
+  "Mirrorsage": {
+    "rank": 6,
+    "minimumClassLevel": 16,
+    "school": "Universal",
+    "baseRpCost": 13
+  },
+  "Wizard": {
+    "rank": 6,
+    "minimumClassLevel": 11,
+    "school": "Universal",
+    "baseRpCost": 13
+  }
+}
+```
+
+KEEP preparing one object to be summoned to the caster's hand,Action,initial60feet,V/S/F,and CONCENTRATION UP TO ONE MINUTE. NEW select one individually perceived coherent nonliving object within60feet/line of effect that the caster owns or has its actual owner's consent to retrieve. It must be unattended or in the caster's own physical custody,not held/worn/guarded in another creature's custody at preparation. A hidden ownership/permission issue resolves after legal costs without a diagnostic report;the spell grants no legal authority or theft permission. No gem,extra consumed component,attunement or permanent marking is imported.
+
+The complete initial payload must fit a5-foot cube,weigh at most50lb,and be capable of being held safely by the caster's actual available hand/anatomy without exceeding current physical carrying and Load limits at recall. A real container includes its current enclosed inanimate contents and attached parts,all counted once toward mass/size. Creatures,magically object-shaped creature-origin bodies,occupied containers,implanted items,locked restraints and objects secured to an external anchor do not become eligible merely by being called objects. Ordinary magic-item identity is not itself a ban,but actual anti-removal or transport restrictions apply. A selected lid,gem or blade cannot detach from a larger assembly for free.
+
+On preparation,the actual object gains one source-bound recall relation and the caster maintains the real concentration slot for at most60elapsed seconds. No object moves yet. NEW during that original window,the caster may spend one actual Bonus Action while able to act to attempt recall into a declared legal empty hand/holding posture. This is one activation of the existing spell,not a second cast or extraRP payment. No standing command,extra action,renewal or automated pickup occurs. A known occupied/incompatible hand or lack of capacity prevents a legal attempt until corrected;there is no invented free stow/drop operation.
+
+NEW recall can reach that same actual object within one mile5280feet on the same existing plane,without current sight or intervening line of effect. This is the explicit remote object-retrieval exception;it does not establish cross-plane travel,find a new object or override an actual transport barrier. At resolution the object must still be the same coherent eligible payload,unanchored,unattended or in the caster's own custody,and genuinely movable to the whole legal destination. Another creature's present real custody blocks it even if that creature lacks ownership;there is no opposing save to steal it through their grip. They may genuinely release it before recall. An unknown blocker,excess distance,changed mass,concealed living contents or loss of object identity causes a spent failed attempt with no cause/location report.
+
+The single legal recall attempt consumes the relation and ends its concentration whether it succeeds or fails. Suppression at the object or caster blocks that attempted transfer within its actual scope but grants no free hidden-state probe or queued later arrival. A successful attempt moves one real object/payload at rest into the declared hand,not a damaging projectile,and does not trigger a weapon attack or automatic item activation. Its actual charges,contents,damage,locks,ownership and elapsed history persist. Consumed contents do not reappear. A spilled separate item does not travel with its old container;current actual contents do. A broken object whose original coherent whole no longer exists cannot be rebuilt by recalling all its fragments. A still-coherent damaged object can return in that actual condition.
+
+Melded objects remain inaccessible and ineligible during the actual meld;claiming ownership does not remove them from another continuing body/inventory record. If they genuinely return to eligible external custody before the original deadline,that same live relation may still support its one recall. Actual destruction,source removal,expiry or concentration ending closes the relation without movement. Suppression alone advances the original minute;it does not extend preparation,and a relation not yet spent may function again only before that same deadline. Recasting pays full costs and obeys the real one-concentration transition,with no second duplicate object or restored spent-use history. The initial60-foot range and later one-mile limit remain explicit separate proposed fields for joint review.
+
+DIRECTOR TR126-SUMMONS: The initial object identity, consent basis, whole content/shape/weight record and initial anchor are fixed before the casting counter window. Actual unknown contents cannot be certified by the spell. The marked identity persists through lawful ordinary changes but the full current payload revalidates, never the original imagined inventory. The one permitted BA marks the relation spent and creates a single independent committed retrieval transaction before parent cleanup. That child revalidates same identity, current coherent contents/custody, distance, caster live anatomy/capacity and exact destination holding pose, resolves at most once, then ends the remaining parent concentration. Parent spent cleanup must not delete a successful child; genuine destruction, incapacity, prevention or expiry BEFORE commitment is not ignored. A duplicate callback cannot produce another BA debit or another item. At exactly establishment+60 the expiry occurs first and no BA is spent on the already expired relation. Actual ally consent to initial preparation is not consent to snatch through their later physical grip. No additional recall-round allowance is invented. Ordinary unpriced container contents can be removed through their real separate handling; they then stay where placed and cannot be reconstructed by recall.
+
+## mystic-gate
+
+Actual access (unaltered):
+
+```json
+{
+  "Bard": {
+    "rank": 4,
+    "minimumClassLevel": 10,
+    "school": "Universal",
+    "baseRpCost": 7
+  },
+  "Cleric": {
+    "rank": 4,
+    "minimumClassLevel": 7,
+    "school": "Universal",
+    "baseRpCost": 7
+  },
+  "Mage": {
+    "rank": 4,
+    "minimumClassLevel": 7,
+    "school": "Universal",
+    "baseRpCost": 7
+  },
+  "Mirrorsage": {
+    "rank": 4,
+    "minimumClassLevel": 10,
+    "school": "Universal",
+    "baseRpCost": 7
+  },
+  "Tinker": {
+    "rank": 4,
+    "minimumClassLevel": 14,
+    "school": "Universal",
+    "baseRpCost": 7
+  },
+  "Wizard": {
+    "rank": 4,
+    "minimumClassLevel": 7,
+    "school": "Universal",
+    "baseRpCost": 7
+  },
+  "Paladin": {
+    "rank": 4,
+    "minimumClassLevel": 13,
+    "school": "Universal",
+    "baseRpCost": 7
+  }
+}
+```
+
+Action; range 60 feet; V/S/F; KEEP a two-way portal for one minute between two points. NEW create two fixed vertical five-foot-wide, eight-foot-high apertures, each at a perceived open supported location within sixty feet of you, with originating line of effect and no more than sixty feet between them. This card is local to the same already established plane; the preserved Planar tag creates no new location or cosmological connection. Both apertures and enough real arrival space must exist at creation. Add concentration up to sixty seconds. Endpoints stay at their actual world positions, not on a moving vehicle or transferable item, and provide no physical wall, floor or support. A creature actually fitting under normal anatomy/squeezing may voluntarily cross either direction by spending five feet of its legal movement, with actual terrain adjustments. Use the whole physical body and actually carried legal belongings, including genuinely carried creatures only within the carrier’s real anatomy/pound/Load capacity and with room for the entire group. NEW an independently legal driven vehicle/puller/passenger assembly can cross only as one whole transport group if every part fits the aperture and complete arrival space; its real driver/puller Actions, movement budget, capacity and coupling remain required. No portal-created transport permission or extra drive is supplied. Loose objects cross only while actually carried or handled as part of such a moving creature/group; free projectiles, fluids, falling mass, unattended conveyor flow, areas and attacks cannot independently activate it. Resolve one crossing atomically at a time in actual initiative/committed-event order, with fixed neutral source order for genuine simultaneous ties. Both directions share the same physically occupied departure/arrival capacity; opposing groups cannot overlap or pass through each other. There is no numerical lifetime passenger limit beyond the real sixty-second deadline, movement budgets and geometry. At each crossing recheck the exact body/group, endpoint wards, actual support and unoccupied exit space immediately adjacent to the destination aperture. Use the nearest legal fitting adjacent arrival with fixed neutral tie order, never a tactical remote square or search through a barrier. A blocked transit leaves the entire group at its source, with its already committed approach/attempted movement spent; no splitting, crushing or disappearing cargo. Ordinary approach can provoke; the teleport crossing itself cannot. The portals are opaque to sight/sound and provide no attack, spell or remote-sense line through them, no free view of the far side and no momentum weapon. Successful groups retain their real physical velocity only insofar as normal local movement already permits it; the crossing adds no impact damage or extra distance. Closure/suppression is processed before any later crossing, while an already resolving legal crossing finishes atomically before that closure. No body stays half transported. Suppression disables transit without pausing the original deadline or replaying missed arrivals. Concentration loss, expiry or qualifying removal closes both apertures; actual travelers and cargo already across stay there. This identity grants none of Faction Portal’s reputation/HQ permissions, and the shorter single-transit Arcane Portal retains its separate source.
+
+DIRECTOR TR126-GATE ORIENTATION: Creation fixes each bottom-center, vertical up axis and horizontal FRONT normal. A side is usable only from its declared front: its entry direction is minus that endpoint's normal, and it exits toward plus the partner's front normal. Both endpoints have their own usable fronts, preserving two-way travel. Choose fixed mutually disjoint aperture rectangles and their required local clear receiving neighborhoods before payment; overlapping/coincident endpoint apertures fail. Actual later occupancy can block transit without erasing the field. No moving support/caster retarget changes an endpoint.
+At an attempt the whole rigid group's current minimum normal offset touches the entry plane from its front; its entire transverse projection must fit width5,height8 at both aperture frames. This is not a requirement that a long body fit in zero thickness. Its actual approach path must exist. The unique proper yaw rotation R preserves up and maps incoming travel -nEntry to outgoing +nExit (therefore entry lateral right maps to minus exit right). Preserve all internal offsets, anatomy, connected gear and relative headings under R; choose no post-result rotation. Initial exit placement is fully on the partner's front, its closest point touching the plane, with mapped transverse offset and bottom elevation. Revalidate the whole turned group, both rectangular projections, real support and the finite adjacent candidates of TR126-GEOMETRY. Front-side local placement must be structurally accessible from the aperture; no candidate behind a wall. A group can fit the entry yet fail the oriented receiving bay. Narrow turning examples must check the mapped length, not just aperture width.
+Only a real voluntary movement budget can commit crossing. Known invalid fit/ward/cooldown spends no new crossing cost, while already paid approach remains. A legal committed crossing consumes5 movement feet times actual terrain costs plus actual crawl/squeeze adjustments; hidden/late failure consumes that amount, moves nobody and is not retried automatically. No lifetime transit count exists. A mounted/vehicle/puller assembly needs its own actual source, capable driver/draft, coupled graph and lawful movement; this new permission does not supply those missing profiles. The accepted Alignment Portal's forced crossing, sight-through and planar metadata are NOT inherited.
+
+## teleport-object
+
+Actual access (unaltered):
+
+```json
+{
+  "Dragoon": {
+    "rank": 4,
+    "minimumClassLevel": 18,
+    "school": "Transmutation",
+    "baseRpCost": 7
+  },
+  "Druid": {
+    "rank": 4,
+    "minimumClassLevel": 7,
+    "school": "Transmutation",
+    "baseRpCost": 7
+  },
+  "Mage": {
+    "rank": 4,
+    "minimumClassLevel": 7,
+    "school": "Transmutation",
+    "baseRpCost": 7
+  },
+  "Monk": {
+    "rank": 4,
+    "minimumClassLevel": 18,
+    "school": "Transmutation",
+    "baseRpCost": 7
+  },
+  "Ranger": {
+    "rank": 4,
+    "minimumClassLevel": 13,
+    "school": "Transmutation",
+    "baseRpCost": 7
+  },
+  "Shaman": {
+    "rank": 4,
+    "minimumClassLevel": 10,
+    "school": "Transmutation",
+    "baseRpCost": 7
+  },
+  "Thief": {
+    "rank": 4,
+    "minimumClassLevel": 18,
+    "school": "Transmutation",
+    "baseRpCost": 7
+  },
+  "Tinker": {
+    "rank": 4,
+    "minimumClassLevel": 14,
+    "school": "Transmutation",
+    "baseRpCost": 7
+  },
+  "Wizard": {
+    "rank": 4,
+    "minimumClassLevel": 7,
+    "school": "Transmutation",
+    "baseRpCost": 7
+  }
+}
+```
+
+Action; range 100 feet; V/S/F; Instantaneous. KEEP one nonliving item of at most 500 pounds moved within 100 feet. NEW the source item must be individually perceived within 100 feet and line of effect; choose one precise perceived destination within 100 feet of the caster AND no more than 100 feet from the source item’s anchor. The destination need not have an unobstructed intervening path, but actual transport wards still apply. It must contain the whole actual item/payload at the chosen orientation, with real support at rest; no deliberate unsupported drop, insertion into a body or momentum attack is granted. One connected standalone item or real container plus its complete enclosed noncreature contents is one payload. Count all contents and attached parts toward 500 pounds; selecting a lid, gem, hinge or wall section does not detach it or make a new object. Actual assemblies bolted/built into another structure, locked/secured to an external anchor, implanted in a body, or functioning as a locked restraint are ineligible until actually released. Ordinary loose worn gear or an item merely held can qualify if moving the whole item removes no body part, breaks no external secured connection and violates no exact item/ward restriction. NEW an unwilling actual bearer/custodian holding or wearing it makes WIS against the spell DC; success prevents movement. A willing custodian may expressly waive that save. Multiple real custodians must all be willing or fail their own saves; one success blocks the indivisible transaction. Unattended items need no save. Magical identity or attunement alone is not a general immunity, but source-specific anti-removal rules still govern. No creature or living payload travels inside a container; Undead, Constructs and magically object-shaped creatures remain creatures. A genuine corpse is a nonliving body-object only where the actual life rules establish that state; its old identity, weight, decay and resource restrictions persist. Hidden weight, contents, attachment or arrival ineligibility can defeat a paid cast without revealing which fact caused failure. At resolution recheck the complete payload, custodians, endpoints and support. A failure moves nothing and opens no container. Successful placement is at rest relative to the actual destination support; it does not carry stored impact momentum, activate a device, discharge a trap as an attack or rearrange contents. Actual lawful independent consequences of moving an object remain, but no spell-supplied attack or free Sunder is added. The object’s real ownership, locks, conditions, charges and contents remain unchanged.
+
+DIRECTOR TR126-OBJECT: Fix one complete selected physical root and a separately declared precise supported destination anchor/orientation at commitment or Ready release. The origin/source and destination-anchor distances both obey100ft from the current caster anchor, and source-to-destination100ft independently. Select all actual holding/wearing custodians before dice; all unwaived WIS saves resolve once in stable ID order. One success blocks the whole payload without partial cargo or losing any holder. Only atomic success clears current holders/custodian relations and places the unchanged object at rest on its actual destination support; retain owner/prior-custody history and all contents. Loose worn means the complete unfastened article can leave without severing material, opening a locked/secured fastening or changing anatomy; an open draped cloth may qualify, a strapped buckled armor piece or locked shackle does not until actually released. Undead/Construct/creature-origin transformed bodies are not ordinary nonliving item payloads; accepted Body8 form/custody/weight predicates still apply. A real creature secretly inside produces paid failure if the caster did not have grounds to know; the failed response identifies neither creature nor cause. Ordinary harmless independent changes of object support may follow successful arrival, but no spell-delivered impact/trap attack is added.
+
+## teleportation-circle
+
+Actual access (unaltered):
+
+```json
+{
+  "Bard": {
+    "rank": 5,
+    "minimumClassLevel": 13,
+    "school": "Universal",
+    "baseRpCost": 10
+  },
+  "Cleric": {
+    "rank": 5,
+    "minimumClassLevel": 9,
+    "school": "Universal",
+    "baseRpCost": 10
+  },
+  "Mage": {
+    "rank": 5,
+    "minimumClassLevel": 9,
+    "school": "Universal",
+    "baseRpCost": 10
+  },
+  "Mirrorsage": {
+    "rank": 5,
+    "minimumClassLevel": 13,
+    "school": "Universal",
+    "baseRpCost": 10
+  },
+  "Tinker": {
+    "rank": 5,
+    "minimumClassLevel": 18,
+    "school": "Universal",
+    "baseRpCost": 10
+  },
+  "Wizard": {
+    "rank": 5,
+    "minimumClassLevel": 9,
+    "school": "Universal",
+    "baseRpCost": 10
+  },
+  "Paladin": {
+    "rank": 5,
+    "minimumClassLevel": 17,
+    "school": "Universal",
+    "baseRpCost": 10
+  }
+}
+```
+
+KEEP TEN MINUTES,range60feet,V/S/M/F,base10RP and PERMANENT circle UNTIL DISPELLED. NEW choose Create or Rebind. Create requires one perceived fixed horizontal immobile surface within60feet/line of effect supporting an unobstructed10-foot-diameter circle. No imported year-long ritual,gemstone fee or consumed chalk cost is added: the actual material/focus alternative remains,and optional real decorative marks are not free materials. Commit the spell's true costs/cadence at the start; spend ten uninterrupted minutes of actual casting work at that site,remaining within the source range/line. NEW this extended work requires concentration during casting and the caster's Action each own turn in initiative; interruption,incapacity,movement breaking the gate or failed actual damage concentration save loses the work/costs with no partly functional circle. The completed circle itself needs no concentration. Establish one visible magical circular inscription anchored to that actual surface,with a unique immutable creation ID and one custodian initially the creator. A custodian physically at the circle can spend an Action to name a present consenting creature as an additional custodian or remove an existing added custodian; this exact local source permission grants no general identity/location detection. Create may leave the circle unbound as a receiving anchor,or bind one outbound destination to one genuine known existing Teleportation Circle on the SAME plane. NEW knowledge requires ten actual minutes studying that destination's own complete inscription in person,not a guessed identifier,copy of decorative marks,remote photograph or newly invented network address. Its actual custodian must consent to accepting this origin link,recorded by a local Action at the receiving circle once the origin ID exists; until then outbound use is unaccepted and fails. A later local Action by a receiving custodian can close/reopen that origin link or all arrivals. This governs origin links,not an automatic scan of passenger loyalty; ordinary guards,law,ownership and agreements still matter. A custodian at the origin can locally close/reopen outbound use with an Action. Rebind performs this full ten-minute paid cast on an existing circle with its custodian's consent,retaining its identity/incoming links but replacing its single outbound destination only on successful completion; failure leaves the old completed configuration,apart from actual separately resolved damage/removal. Rebinding still needs genuine destination study/acceptance. A complete new replacement circle has a new ID and does not inherit the old links. No one-circle-per-caster limit is added; every independent permanent site requires its real work/payment and persists without the creator's continued life or concentration. NEW activation: one conscious willing creature wholly within the circle and able to understand the act spends its Action to activate that one fixed accepted outbound link. No per-transitRP price,spell knowledge or new cast is required. The creature and its actually legally carried belongings/creatures must fit wholly within the origin and actual carrying limits. Loose cargo cannot trigger transit itself; it must be genuinely carried/handled as that activating traveler's permitted load. The circle can attempt at most one activation per six elapsed seconds,tracked per origin including failed committed attempts; no extra-turn/caster/recipient change bypasses that cooldown. Known cooldown or closed/unbound state fails preflight without an invented charge. At commitment reserve that source opportunity and Action,then recheck origin/destination existence,operative magic,accepted binding and a whole legal receiving space inside or immediately adjacent to the fixed destination circle. Use nearest legal receiving placement with neutral board-order ties,not remote tactical selection or searching through barriers. If either endpoint/placement fails,the whole group stays at origin; spent Action/cooldown remain,no cargo is split and no remote failure diagnosis is given. A valid transit completes atomically,retaining actual identities and current states. An endpoint suppression/destruction/removal before that atomic event prevents it; after completion it cannot strand half a body or reverse arrival. Suppression temporarily disables creation/use as actually applicable and never erases stored ID/configuration; ending suppression restores only a still-existing circle and current permissions/cooldown. Actual eligible rank5dispel ends this circle,not all network sites. Destruction of the supporting surface that breaks the complete circle geometry,or moving the underlying surface to a new site,ends the effect; cosmetic scratches alone are not a new free dispel. No movable carpet/ship circle is produced. A custodian can voluntarily decommission this source with an Action at it. Incoming links to a gone ID become unusable rather than pointing to a newly drawn copy. These are physical same-plane network endpoints with no geographic travel-distance ceiling once linked,an explicit NEW network rule; they grant no planar route,cross-world target discovery,remote sensing,projectile/spell line of effect,automatic extraction/settlement or custody cleansing. Actual approach,arrival hazards,Haven procedures and work/rest clocks remain real.
+
+DIRECTOR TR126-CIRCLE ID/APPROVAL: A site gets one immutable source/creation ID only upon successful establishment. The current inscription exposes that ID through a genuine local Action to inspect its full identity mark by a creature able to perceive and understand that act. The creator knows their own ID at completion. An actual observer can accurately communicate that exact existing identity through ordinary mutually understood speech or a genuinely prepared accessible writing record, with recorded observer, source site, event/time and recipient. This communicates the origin ID only, not destination study, live safety, location discovery, custodian authority or an automatic remote registry query. A guessed label/copied decoration cannot substitute for that provenance. A forged or unavailable identity can fail an otherwise paid approval transaction without revealing a roster of real sites.
+The receiving custodian's actual local Action may accept an already-known valid origin ID even if its outbound link has not yet been created; acceptance is stored by immutable origin ID, never display name. Genuine existing open approval can be reused after a later lawful Rebind to that same destination. Revocation remains until its real local reopening Action. The destination's in-person600-active-second study is separate: the later caster must actually have studied the original site, not merely heard its address. No consent is supplied by rumor, positive standing or another user's credentials. Changes to ordinary decoration do not mint IDs. Re-creation at the same coordinates has a new ID; old approvals/incoming links do not automatically bind it. Only actual eligible living conscious local custodians can administer; absence/death supplies no new inheritance or remote administrator. Existing valid open links can persist.
+Create and Rebind freeze mode/site/studied-destination ID and the actual construction or rebind-custodian permission before the one payment/counter window. A newly created site's receiving approval cannot precede its immutable ID: Create may establish the studied outbound destination while that origin link is not yet accepted; no activation succeeds until the receiving custodian's genuine local approval of the now-existing ID. Creating or knowing the ID grants no such approval. An existing actual open approval may be reused by a later lawful Rebind; this is not a free new approval or retroactive payment permission. Rebind leaves old completed configuration operative while lawful work proceeds, except actual suppression/closure/damage, and atomically replaces only outbound config on successful completion. Interruption restores no spent costs and need not remove the old configuration. Starting source concentration displaces incompatible earlier concentration before work; the600 uninterrupted seconds supply no free parallel study, long-rest recovery or another cast. Where actual regular turns occur, use every required Action and actual start/end processing; the cast is not recommitted100times.
+CIRCLE GEOMETRY: The inscribed disk is exactly radius5 in its actual horizontal support plane; record its heading at creation. At activation require every part of the traveler's complete actual footprint inside the true disk, including carried gear/creatures, and real overhead clearance. A centered5x5square fits (corner radius sqrt12.5); a10x10square does not (sqrt50). Legal independently established squeezing does not arise merely from radius tests. Rotate the group rigidly by the fixed difference of circle headings and try the receiving center followed by TR126's finite cardinal5ft local offsets, with actual whole support/fit and no through-wall search. The arrival group need not be constrained to the receiving disk if a permitted adjacent candidate fits, but departure ALWAYS satisfies the origin disk.
+Reserve one actual activator Action and the per-origin commitTime+6 opportunity before atomic revalidation. No second actor, duplicate request, dispel/rebind or suppression resets that receipt. A known unavailable origin cannot be activated for a free remote query; a hidden/new destination failure spends the commitment without diagnostics. Hypothetical between-checkpoint changes require an actual timed source; a made-up mid-resolution Reaction is not supplied by these rules.
+

@@ -1,0 +1,1475 @@
+{
+  "schemaVersion": "1.0",
+  "version": "0.1-playtest",
+  "class": "Crimson Agent",
+  "status": "provisional-card-draft-not-balance-approved",
+  "sourceExtractSha256": "a346670f4244efe3641cfb06814819d83ffb8512153858205f0621bd8ab8a04b",
+  "protectedInterfaceOriginal": "Once per turn, spend 1 Blood Gauge while casting to prevent 1 Dissonance; the Agent routes Weave strain through blood rather than gaining free casts.",
+  "rpByClassLevel": [
+    2,
+    2,
+    4,
+    5,
+    6,
+    8,
+    9,
+    11,
+    12,
+    14,
+    15,
+    17,
+    18,
+    20,
+    21,
+    23,
+    24,
+    26,
+    27,
+    29
+  ],
+  "rpAuthority": "Explicit fallback: Cleric CoreV2 curve ×0.5, halves upward",
+  "maxSpellRankByClassLevel": [
+    0,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5,
+    6,
+    6
+  ],
+  "asiClassLevels": [
+    4,
+    8,
+    12,
+    16,
+    19
+  ],
+  "engine": [
+    "Blood Gauge (BG) starts and ends each encounter at 0, capacity 3; Spill Control raises capacity 6 while known. Once on your own regular turn, a weapon attack that damages a hostile living creature grants 1 BG. Hemorrhage Slash uses this same trigger, not an additional one. Explicit critical/kill/refund features can add more, but total BG gained is capped 2 per round. Self-inflicted damage, allies, summons, helpless captives and repeated damage to a corpse never generate BG. Blood is an encounter resource, not a currency carried into rest.",
+    "Dexterity governs weapon attacks; Intelligence governs hemomancy save DC and M. S scales from Crimson Agent class level. A weapon technique includes only its printed attacks, with normal weapon die plus Dexterity (or Strength when that weapon requires it). No free attack is implied by attack-speed wording. Class BG and RP are separate. Once per turn when casting an ordinary spell, optionally spend 1 BG to prevent 1 of that cast's Dissonance gain, minimum 0; never reduce RP this way.",
+    "Your Bleed is a physical ongoing effect on a living, non-bloodless creature: 1d4 damage at the start of each of its next 3 turns, then ends. It is not a new attack and generates no BG or procs. Refresh duration instead of stacking; Blood Echo expressly allows two independent instances, maximum. An Action by the victim or an adjacent creature using a healer's kit ends all your Bleeds on that victim. Apply physical resistance/immunity normally. Track remaining ticks and creator per instance. Allied healing versions from Bloodweaver cost RP and never count as hostile Bleeds for detonation, spreading or generation.",
+    "One Blood Mark at a time on a living target with your Bleed, except Phantom Strike, which explicitly may apply the mark without Bleed. It does not add a free Bleed. Marks last 5 of your regular turns, expire on encounter end or if the target dies, and never create damage by themselves. Rupture requires the target still within 60 ft and line of effect; it spends the mark. A mark does not defeat cover, planar boundaries or bloodlessness. Bloodtrail has its own tracking limits.",
+    "Veinweaves are self buffs unless their card expressly allows an ally. They require concentration and one may be active. Crimson Harmony is an explicit exception permitting two Veinweaves as one linked concentration burden; a failed concentration check ends both. A non-Veinweave concentration effect replaces the whole group. BG is spent on activation; no upkeep unless printed. Damage-sharing is redirection before mitigation, not extra damage: apply each recipient's own defenses once and never redirect the redirected portion again.",
+    "The healing, execution and denial text below deliberately bounds the source's vague percentage/instant-kill claims. HP sacrificed is direct loss, bypasses temporary HP and defenses, cannot be redirected, and cannot reduce the donor below 1. Only a willing ally can donate. HP sacrifice is never damage for class triggers. No class feature here restores the dead or removes Wounds.",
+    "At level 1 learn the core Blood Gauge/Bleed rules automatically. Blood Mark and Veinweaver's Core remain selections; Quickblood can be selected and used without a second unlock tax. Veinweaver's Core improves that foundation as printed. Standard scheduled acquisition applies. Bloodbound Edge is automatic 9. At 10 choose Bloodweaver, Shadow Operative or Thirstborn; its Final Cut is automatic 20. Duplicate Hemostasis names are separate Arch and Bloodweaver IDs.",
+    "Capacity clarification: Blood Gauge automatically reaches capacity 6 at class 9. Spill Control allows reaching 6 early but never raises the cap above 6. This new explicit gate ensures a later 5-BG Final Cut can be used without an optional capacity selection. Gain cap 2/round and encounter reset 0 still apply."
+  ],
+  "workedExample": [
+    "Bard-style example becomes Agent 5: DEX 16, INT 14, S 2, M 2, BG 0/cap 3, full class RP. Select Hemorrhage Slash, Quickblood, Blood Mark, Shroud at 1; Blood Tithe and Vital Targeting at 2; Rupture and Spill Control at 3. Capacity is now 6.",
+    "Turn 1: Hemorrhage Slash hits for ordinary weapon damage+2d6, applies Bleed, and gains 1 BG (not 2). Bonus Action Blood Mark pays 1 BG: balance 0. Target takes its first 1d4 Bleed on its next turn.",
+    "Turn 2: ordinary weapon attack hits and gains 1 BG. Keep the mark and save resources; Bleed ticks independently and grants no BG.",
+    "Turn 3: a second weapon hit gains 1 BG: balance 2. Bonus Action Quickblood spends 1 BG: balance 1. It gives movement, not another attack.",
+    "Turn 4: Rupture is an Action, pays 1 BG: balance 0 and consumes the mark. Target fails CON: takes(S+1)d8=3d8. Rupture is not a weapon hit, so it generates no replacement BG. Any remaining Bleed continues.",
+    "After the encounter BG becomes 0. Blood Tithe's used short-rest charge and spent RP do not refresh without an actual rest."
+  ],
+  "balanceQuestions": [
+    "Does early setup take too many turns for one mark?",
+    "Can Bloodweaver protect without sacrifice loops or infinite healing?",
+    "Are denial and execution limits sufficient against bosses and multiclass dips?"
+  ],
+  "cards": [
+    {
+      "id": "crimson-agent.base.arterial-cut",
+      "name": "Arterial Cut",
+      "className": "Crimson Agent",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Your critical weapon hit",
+      "duration": "Bleed 3 turns",
+      "frequency": "Once/own turn",
+      "effect": "A critical weapon hit applies your Bleed. If it already has your Bleed, extend one instance by 2 ticks, maximum 5 ticks remaining. This damage never generates further BG.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2126,
+        "originalText": "Arterial Cut: Critical hits apply Bleed for 3 turns; Bleed duration +2 turns."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.base.blood-tithe",
+      "name": "Blood Tithe",
+      "className": "Crimson Agent",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Triggered",
+      "cost": "1 short-rest use",
+      "rangeAndTarget": "Self after a hostile bleeding creature dies within 30 ft",
+      "duration": "Instant",
+      "frequency": "1/short rest",
+      "effect": "Regain HP equal to M+class level after a creature bearing your Bleed dies. It must have been an active hostile combatant; no ally, summon, captive or corpse farming.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2127,
+        "originalText": "Blood Tithe: Killing a bleeding target restores 10% of max HP."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.base.veinweaver-s-core",
+      "name": "Veinweaver's Core",
+      "className": "Crimson Agent",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Self",
+      "duration": "While known",
+      "frequency": "Continuous",
+      "effect": "You can dismiss a Veinweave without an action and switch to another known Veinweave using its normal activation. Once/short rest reduce the BG cost of one Veinweave by 1, minimum 1. The basic one-Veinweave capacity is part of your engine, not locked behind this selection.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2128,
+        "originalText": "Veinweaver's Core: Unlocks use of Veinweaves (1 active at a time)."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.base.vital-targeting",
+      "name": "Vital Targeting",
+      "className": "Crimson Agent",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "One weapon target",
+      "duration": "Instant",
+      "frequency": "Once/own turn",
+      "effect": "Add S damage to a weapon hit against a target that has not perceived you or is within 5 ft of another conscious hostile-to-it ally. This is flat damage, not a critical die, and requires an actual weapon hit.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2129,
+        "originalText": "Vital Targeting: +15% damage to flanked or unaware enemies."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.base.shroudstep",
+      "name": "Shroudstep",
+      "className": "Crimson Agent",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Self",
+      "duration": "Until start next turn",
+      "frequency": "Once/own turn",
+      "effect": "After taking the Hide Action and moving at least 10 ft while hidden, gain+1 AC. You still need valid concealment and a successful ordinary Stealth check; this feature does not grant invisibility.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2130,
+        "originalText": "Shroudstep: After using stealth movement, gain +10% dodge for 1 turn."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.base.hemorrhage-slash",
+      "name": "Hemorrhage Slash",
+      "className": "Crimson Agent",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "0",
+      "rangeAndTarget": "One creature in weapon reach",
+      "duration": "Instant plus Bleed",
+      "frequency": "Recharge 2",
+      "effect": "Make one weapon attack. On hit add S d6 damage of the weapon type and apply Bleed. The usual once/turn hit trigger grants 1 BG; this card grants no separate BG.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2133,
+        "originalText": "Hemorrhage Slash: A precise strike that deals moderate damage and applies Bleed status to the target, generating 1 Blood Gauge point."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.base.veinweave-quickblood",
+      "name": "Veinweave: Quickblood",
+      "className": "Crimson Agent",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "1 BG",
+      "rangeAndTarget": "Self",
+      "duration": "3 of your turns",
+      "frequency": "Recharge 3",
+      "effect": "Start a Veinweave: gain+10 ft Speed and ignore nonmagical difficult terrain. Once during its duration you may draw or stow one weapon without using your object interaction. It grants no attacks or Actions.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2134,
+        "originalText": "Veinweave: Quickblood: Consume 1 Blood Gauge point to increase your movement and attack speed by 15% for 3 turns."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.base.blood-mark",
+      "name": "Blood Mark",
+      "className": "Crimson Agent",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "1 BG",
+      "rangeAndTarget": "One living target with your Bleed within 60 ft",
+      "duration": "5 of your turns",
+      "frequency": "At will, one mark",
+      "effect": "Apply your Blood Mark. Replaces your previous mark without detonating it. The mark enables Rupture and printed mark interactions; it deals no automatic damage and does not grant vision.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2135,
+        "originalText": "Blood Mark: Apply a magical mark to a bleeding target that lasts for 5 turns. The mark can be detonated for additional effects."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.base.shroud",
+      "name": "Shroud",
+      "className": "Crimson Agent",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "2 RP",
+      "rangeAndTarget": "Self",
+      "duration": "Until end next turn or attack/cast/bright light",
+      "frequency": "2/long rest",
+      "effect": "Become invisible while in dim light or darkness. Attacking, casting a spell or entering bright light ends it. You must still Hide to conceal your location. Audible movement can reveal your position.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2136,
+        "originalText": "Shroud: Enter stealth mode, becoming invisible to enemies until you attack or move into bright light. Limited uses per encounter."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.base.vital-sense",
+      "name": "Vital Sense",
+      "className": "Crimson Agent",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "1 RP",
+      "rangeAndTarget": "Living creatures within 60 ft, excluding total cover",
+      "duration": "1 minute",
+      "frequency": "Recharge 3",
+      "effect": "Sense presence and approximate direction, not identity or thoughts. Once during this minute, gain advantage on one weapon attack against a sensed creature you can otherwise legally target. This does not change critical range.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2137,
+        "originalText": "Vital Sense: Heighten your senses for 1 minute, allowing you to detect the presence of living creatures within 60 feet and see their vital points more clearly (+10% critical hit chance)."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.arch.blood-echo",
+      "name": "Blood Echo",
+      "className": "Crimson Agent",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Targets of your Bleed",
+      "duration": "As Bleed",
+      "frequency": "Continuous",
+      "effect": "Your Bleed can have two independent instances on a creature; a third application refreshes the oldest. Once on each of your turns add 1 to one Bleed instance's next tick. Never spread or detonate more instances than actually exist.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2143,
+        "originalText": "Blood Echo: Bleeds now stack twice and deal +10% more damage."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.arch.bio-alchemical-flow",
+      "name": "Bio-Alchemical Flow",
+      "className": "Crimson Agent",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Self",
+      "duration": "On activation",
+      "frequency": "Continuous",
+      "effect": "Activating a self-only Veinweave does not itself end your hidden state or Shroud. Its normal visible effects may reveal you; attacks, spells and other hostile effects still break hiding normally.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2144,
+        "originalText": "Bio-Alchemical Flow: Veinweaves do not break stealth."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.arch.spill-control",
+      "name": "Spill Control",
+      "className": "Crimson Agent",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Self",
+      "duration": "While known",
+      "frequency": "Continuous",
+      "effect": "Blood Gauge capacity rises from 3 to 6. Gain rate is unchanged. This replaces, rather than adds to, the old cap. No BG is granted merely by learning it.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2145,
+        "originalText": "Spill Control: Max Blood Gauge increased to 6."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.arch.rupture-trigger",
+      "name": "Rupture Trigger",
+      "className": "Crimson Agent",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 5,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Up to 2 other enemies within 5 ft of ruptured mark",
+      "duration": "Bleed 3 turns",
+      "frequency": "Once/round",
+      "effect": "After Rupture damages its marked target, choose up to 2 other living enemies nearby. Each makes CON save; on failure apply one Bleed. These applications do not trigger Rupture again or grant BG.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2146,
+        "originalText": "Rupture Trigger: Detonating a Blood Mark causes AoE Bleed in a small radius."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.arch.crimson-flow",
+      "name": "Crimson Flow",
+      "className": "Crimson Agent",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Self",
+      "duration": "Until end next turn",
+      "frequency": "Once/own turn",
+      "effect": "After spending BG, gain+5 ft Speed. Your next weapon damage roll before end next turn adds 1. Repeated expenditures refresh rather than stack; no attack-speed or additional-Action benefit.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2147,
+        "originalText": "Crimson Flow: Using Blood Gauge grants +10% movement and attack speed for 2 turns."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.arch.crimson-harmony",
+      "name": "Crimson Harmony",
+      "className": "Crimson Agent",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 7,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Self or legal linked ally",
+      "duration": "While known",
+      "frequency": "Continuous",
+      "effect": "You may sustain two Veinweaves as one concentration group. Both pay full costs and use normal activations; failing concentration ends both. Identical Veinweaves never stack, and no ordinary concentration spell can join this group.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2148,
+        "originalText": "Crimson Harmony: Maintain 2 Veinweaves simultaneously."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.arch.bloodbound-edge",
+      "name": "Bloodbound Edge",
+      "className": "Crimson Agent",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 9,
+      "acquisition": "automatic",
+      "activation": "Action",
+      "cost": "3 BG; 1 short-rest use",
+      "rangeAndTarget": "Up to 3 enemies with your Bleed within 30 ft",
+      "duration": "Instant",
+      "frequency": "1/short rest",
+      "effect": "End up to 2 of your Bleed instances per target. Each takes 1d4 per remaining tick, maximum S d4 per creature, ignoring resistance but respecting immunity. This replaces their future ticks and grants no BG, healing or kill-trigger benefit.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2149,
+        "originalText": "Capstone – Bloodbound Edge: Once per rest, convert all Bleeds on enemies to instant True Damage."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.arch.veinweave-bloodshield",
+      "name": "Veinweave: Bloodshield",
+      "className": "Crimson Agent",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "2 BG",
+      "rangeAndTarget": "Self",
+      "duration": "3 of your turns",
+      "frequency": "Recharge 3",
+      "effect": "Start Bloodshield Veinweave. Gain temporary HP equal to class level+M. Once while they remain, use Reaction to reduce damage to yourself by S. No self-damage refund or BG is generated.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2152,
+        "originalText": "Veinweave: Bloodshield: Consume 2 Blood Gauge points to create a protective barrier that absorbs damage equal to 20% of your maximum health."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.arch.rupture",
+      "name": "Rupture",
+      "className": "Crimson Agent",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "1 BG; consume your mark",
+      "rangeAndTarget": "Your marked enemy within 60 ft",
+      "duration": "Instant",
+      "frequency": "Recharge 2",
+      "effect": "Target makes CON save: (S+1)d8 necrotic on failure, half on success. The mark ends either way; existing Bleed remains. Damage from this technique is not a weapon hit and grants no BG.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2153,
+        "originalText": "Rupture: Detonate a Blood Mark on a target, dealing significant damage and consuming the mark."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.arch.bloodtrail",
+      "name": "Bloodtrail",
+      "className": "Crimson Agent",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 5,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "1 BG",
+      "rangeAndTarget": "One living target with your Bleed within 30 ft",
+      "duration": "1 hour",
+      "frequency": "Recharge 3",
+      "effect": "Know the direction to the target while within 1 mile on the same plane. Total distance and a trail are not shown. Lead barriers or effects that block divination block this sense; it grants no attack advantage or targeting through cover.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2154,
+        "originalText": "Bloodtrail: Mark a bleeding target, allowing you to track them perfectly for 1 hour regardless of distance or obstacles."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.arch.veinweave-sensory-theft",
+      "name": "Veinweave: Sensory Theft",
+      "className": "Crimson Agent",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 7,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "2 BG",
+      "rangeAndTarget": "One living creature with your Bleed within 60 ft",
+      "duration": "Concentration, 1 minute",
+      "frequency": "Recharge 3",
+      "effect": "Target makes WIS save. Failure lets you see and hear through it while it remains within 1 mile on the same plane; you are blind/deaf to your own surroundings. It repeats save at the end of each of its turns and the first time each round it takes damage. No control or thought reading.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2155,
+        "originalText": "Veinweave: Sensory Theft: Consume 2 Blood Gauge points to briefly experience what a bleeding target sees and hears."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.arch.hemostasis",
+      "name": "Hemostasis",
+      "className": "Crimson Agent",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "2 RP",
+      "rangeAndTarget": "One living creature touched",
+      "duration": "Instant",
+      "frequency": "Recharge 2",
+      "effect": "End all Bleed on the target and restore S d6+M HP, regardless of number of ticks removed. You cannot create extra healing by inflicting extra Bleed. Works even if no Bleed is present, at the same RP cost.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2156,
+        "originalText": "Hemostasis: Stop all bleeding effects on yourself or an ally, converting each remaining turn of Bleed into a small amount of healing."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.hero.bloodweaver.bloodbond",
+      "name": "Bloodbond",
+      "className": "Crimson Agent",
+      "band": "Hero",
+      "path": "Bloodweaver",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "2 RP",
+      "rangeAndTarget": "One willing ally within 30 ft",
+      "duration": "Concentration, 3 of your turns",
+      "frequency": "Recharge 3",
+      "effect": "Create Bloodbond while both remain within 30 ft. When ally takes damage, you may use Reaction to redirect floor(one-quarter of pre-mitigation damage) to yourself; each recipient applies its own defenses once. Once/round when a paid technique heals you, ally gains M temporary HP. No recursive transfers.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2165,
+        "originalText": "Bloodbond: Link with an ally; share 25% incoming damage and transfer 10% healing to them."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.hero.bloodweaver.hemostasis",
+      "name": "Hemostasis",
+      "className": "Crimson Agent",
+      "band": "Hero",
+      "path": "Bloodweaver",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "1 additional RP per application",
+      "rangeAndTarget": "One willing living ally in range of your Bleed application",
+      "duration": "3 target turns",
+      "frequency": "Once/own turn",
+      "effect": "You may replace a new Bleed application on that ally with healing 1d4 at start of its next 3 turns. Pay extra RP even if original application was free. One such healing effect per target; it cannot spread, detonate, generate BG or trigger healing loops.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2166,
+        "originalText": "Hemostasis: Bleeds applied to allies now heal them instead."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.hero.bloodweaver.protective-flow",
+      "name": "Protective Flow",
+      "className": "Crimson Agent",
+      "band": "Hero",
+      "path": "Bloodweaver",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Allies actually affected by your Veinweaves",
+      "duration": "While Veinweave lasts",
+      "frequency": "Continuous",
+      "effect": "An affected ally gains+1 to saves and reduces each damage instance by 2, minimum 0. This benefit does not stack across Veinweaves or Agents. Self-only Veinweaves cannot be extended merely by this passive.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2167,
+        "originalText": "Protective Flow: Allies affected by your Veinweaves gain 10% DR and +1 to all saves."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.hero.bloodweaver.veinlock-tether",
+      "name": "Veinlock Tether",
+      "className": "Crimson Agent",
+      "band": "Hero",
+      "path": "Bloodweaver",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Reaction",
+      "cost": "1 BG",
+      "rangeAndTarget": "Willing linked ally within 30 ft being damaged",
+      "duration": "This damage only",
+      "frequency": "Once/round",
+      "effect": "While your Bloodbond or Vitality Link is active, redirect up to S+M damage to yourself before mitigation. This is an alternative to Bloodbond's quarter-sharing reaction, not an additional redirection. Redirected damage cannot be redirected again.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2168,
+        "originalText": "Veinlock Tether: Form a damage-sharing link with an ally for 3 turns."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.hero.bloodweaver.crimson-pact",
+      "name": "Crimson Pact",
+      "className": "Crimson Agent",
+      "band": "Hero",
+      "path": "Bloodweaver",
+      "sourceKind": "passive",
+      "minimumClassLevel": 20,
+      "acquisition": "automatic",
+      "activation": "Action",
+      "cost": "5 BG; 1 long-rest use",
+      "rangeAndTarget": "Up to 3 bleeding enemies and 6 living allies within 30 ft",
+      "duration": "Instant; shields 1 minute",
+      "frequency": "1/long rest",
+      "effect": "End your Bleeds on chosen enemies; each makes CON save against 4d8 necrotic, half on success. Each chosen ally regains 4d8+M HP and gains 10 temporary HP. Use one shared roll per damage/healing effect; healing does not multiply by enemies or remaining ticks.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2169,
+        "originalText": "Final Cut – Crimson Pact: Detonate all enemy Bleeds to heal nearby allies and grant them barriers. (1/day)"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.hero.bloodweaver.transfusion",
+      "name": "Transfusion",
+      "className": "Crimson Agent",
+      "band": "Hero",
+      "path": "Bloodweaver",
+      "sourceKind": "active",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "2 RP; sacrifice up to class level HP",
+      "rangeAndTarget": "One willing living ally touched",
+      "duration": "Instant",
+      "frequency": "1/short rest",
+      "effect": "Lose K real HP, at least 1, without falling below 1. Ally regains K+floor(K/2) HP. Loss bypasses defenses and cannot trigger BG, damage-sharing or healing refunds. The RP/use limit remains even if little healing is possible.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2172,
+        "originalText": "Transfusion: Transfer health from yourself to an ally, healing them for 150% of the health sacrificed."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.hero.bloodweaver.veinweave-vitality-link",
+      "name": "Veinweave: Vitality Link",
+      "className": "Crimson Agent",
+      "band": "Hero",
+      "path": "Bloodweaver",
+      "sourceKind": "active",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "3 BG",
+      "rangeAndTarget": "One willing ally within 30 ft",
+      "duration": "Concentration, 3 of your turns",
+      "frequency": "Recharge 3",
+      "effect": "Start Vitality Link Veinweave. Once/round when you restore real HP with a paid Agent technique, linked ally regains M HP if within 30 ft. This secondary healing never triggers another link. Gain+1 AC while adjacent to that ally; no spell buffs or resources are copied.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2173,
+        "originalText": "Veinweave: Vitality Link: Consume 3 Blood Gauge points to link with an ally, sharing beneficial effects and healing for 3 turns."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.hero.bloodweaver.blood-ward",
+      "name": "Blood Ward",
+      "className": "Crimson Agent",
+      "band": "Hero",
+      "path": "Bloodweaver",
+      "sourceKind": "active",
+      "minimumClassLevel": 12,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "3 RP",
+      "rangeAndTarget": "Fixed 10 ft radius centered within 30 ft, up to 3 allies",
+      "duration": "Concentration, 3 of your turns",
+      "frequency": "Recharge 4",
+      "effect": "Choose acid, cold, fire, lightning or necrotic. Selected allies within the zone gain resistance to that damage type. Leaving loses the benefit; reentering restores it. Identical resistance does not stack. This is not a Veinweave.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2174,
+        "originalText": "Blood Ward: Create a protective circle using blood magic that shields allies within from certain types of damage or effects."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.hero.bloodweaver.purify-blood",
+      "name": "Purify Blood",
+      "className": "Crimson Agent",
+      "band": "Hero",
+      "path": "Bloodweaver",
+      "sourceKind": "active",
+      "minimumClassLevel": 14,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "4 RP",
+      "rangeAndTarget": "One willing living creature touched",
+      "duration": "Instant",
+      "frequency": "Recharge 3",
+      "effect": "End Poisoned and one nonmagical disease. Magical disease needs a successful INT ability check against its stated treatment DC, or DC 15 if absent; failure spends the cost. No curse, Wound, death or Corruption removal.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2175,
+        "originalText": "Purify Blood: Remove poison, disease, or other blood-borne afflictions from a target."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.hero.bloodweaver.lifewell",
+      "name": "Lifewell",
+      "className": "Crimson Agent",
+      "band": "Hero",
+      "path": "Bloodweaver",
+      "sourceKind": "active",
+      "minimumClassLevel": 16,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "4 RP; all BG, minimum 3",
+      "rangeAndTarget": "Up to 3 living allies within 15 ft",
+      "duration": "Concentration, 3 of your turns",
+      "frequency": "1/long rest",
+      "effect": "Spend K BG. At start and on each of your next 2 turns, use Bonus Action and pay 1 RP to pulse healing: each chosen ally still within 15 ft regains 1d8+K HP. Without maintenance it ends at turn end. Total 3 pulses; no triggers create more BG.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2176,
+        "originalText": "Lifewell: Ultimate ability that converts all your remaining Blood Gauge into a powerful healing aura for allies."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.hero.shadow-operative.ghost-vein",
+      "name": "Ghost Vein",
+      "className": "Crimson Agent",
+      "band": "Hero",
+      "path": "Shadow Operative",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "One weapon target",
+      "duration": "Instant",
+      "frequency": "Once/own turn",
+      "effect": "A weapon hit made from hidden ignores resistance to that weapon's damage type for this hit. Immunity remains. This does not bypass armor or make the attack automatically hit.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2182,
+        "originalText": "Ghost Vein: Attacks from stealth ignore 25% of target resistances."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.hero.shadow-operative.blackout-agent",
+      "name": "Blackout Agent",
+      "className": "Crimson Agent",
+      "band": "Hero",
+      "path": "Shadow Operative",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Reaction",
+      "cost": "1 BG",
+      "rangeAndTarget": "Attacker within 30 ft that missed you",
+      "duration": "Until end attacker's next turn",
+      "frequency": "Once/round",
+      "effect": "Attacker makes CON save; failure Blinded. Requires it can see you. Each creature becomes immune to your Blackout Agent until encounter end after resolving this save, preventing repeated blind-lock.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2183,
+        "originalText": "Blackout Agent: Dodging an attack blinds the attacker for 1 turn."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.hero.shadow-operative.ghostflow-reflexes",
+      "name": "Ghostflow Reflexes",
+      "className": "Crimson Agent",
+      "band": "Hero",
+      "path": "Shadow Operative",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Self while sustaining a Veinweave",
+      "duration": "While active",
+      "frequency": "Once/round reset",
+      "effect": "Gain+1 AC. Once/round after a Veinweave starts, shorten one OTHER positive Agent cooldown by 1; this uses that ability's reset allowance. It grants no critical immunity, actions or per-rest uses.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2184,
+        "originalText": "Ghostflow Reflexes: While Veinweave is active: +5% dodge, cooldowns -1, +10% crit resistance."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.hero.shadow-operative.veinjammer",
+      "name": "Veinjammer",
+      "className": "Crimson Agent",
+      "band": "Hero",
+      "path": "Shadow Operative",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "One creature damaged by your Bleed",
+      "duration": "Until end target's next turn",
+      "frequency": "Once/round",
+      "effect": "After a Bleed tick, choose that victim: Speed reduced 5 ft, minimum 0, and its next concentration save takes-1. Nonstacking; does not remove an Action or prohibit spellcasting.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2185,
+        "originalText": "Veinjammer: Bleeds reduce enemy casting and action speed by 10%."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.hero.shadow-operative.total-silence",
+      "name": "Total Silence",
+      "className": "Crimson Agent",
+      "band": "Hero",
+      "path": "Shadow Operative",
+      "sourceKind": "passive",
+      "minimumClassLevel": 20,
+      "acquisition": "automatic",
+      "activation": "Action",
+      "cost": "5 BG; 1 long-rest use",
+      "rangeAndTarget": "Up to 6 enemies within 30 ft",
+      "duration": "Until end your next turn",
+      "frequency": "1/long rest",
+      "effect": "Each makes CON save. Failure prevents verbal spellcasting and Reactions, and suppresses one passive bonus to AC or attack rolls chosen from an observed effect. It never removes innate anatomy, immunities, legendary rules or class resource pools. Success prevents all effects; no whole-sheet passive disable.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2186,
+        "originalText": "Final Cut – Total Silence: AoE disables all enemy passives and silences for 2 turns."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.hero.shadow-operative.phantom-strike",
+      "name": "Phantom Strike",
+      "className": "Crimson Agent",
+      "band": "Hero",
+      "path": "Shadow Operative",
+      "sourceKind": "active",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "2 BG",
+      "rangeAndTarget": "One enemy in weapon reach; must be hidden from it",
+      "duration": "Instant",
+      "frequency": "Recharge 3",
+      "effect": "Make one weapon attack with advantage. On hit add S d6 damage and apply a mark without its usual BG cost, even if not already bleeding. The mark replaces your old mark; no free Rupture occurs. Normal hit BG gain still capped.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2189,
+        "originalText": "Phantom Strike: Attack from stealth with increased critical chance and apply a Blood Mark automatically."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.hero.shadow-operative.veinweave-shadow-meld",
+      "name": "Veinweave: Shadow Meld",
+      "className": "Crimson Agent",
+      "band": "Hero",
+      "path": "Shadow Operative",
+      "sourceKind": "active",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "3 BG",
+      "rangeAndTarget": "Self",
+      "duration": "Concentration, 1 minute",
+      "frequency": "Recharge 4",
+      "effect": "Start Shadow Meld Veinweave: advantage on Stealth and invisible while motionless in dim light/darkness. Moving removes invisibility until start next turn; attacking or casting ends the Veinweave. No concealment against blindsight or effects that expressly reveal invisibility.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2190,
+        "originalText": "Veinweave: Shadow Meld: Consume 3 Blood Gauge points to become nearly undetectable for 1 minute, gaining enhanced stealth capabilities."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.hero.shadow-operative.disrupt-flow",
+      "name": "Disrupt Flow",
+      "className": "Crimson Agent",
+      "band": "Hero",
+      "path": "Shadow Operative",
+      "sourceKind": "active",
+      "minimumClassLevel": 12,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "2 BG",
+      "rangeAndTarget": "One living enemy within 30 ft",
+      "duration": "Until end target's next turn",
+      "frequency": "Recharge 3",
+      "effect": "CON save: failure prevents Reactions and gives disadvantage on its next spell attack. If concentrating, make an additional normal concentration save versus your class DC. This never disables all special abilities or guarantees a failed concentration check.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2191,
+        "originalText": "Disrupt Flow: Temporarily disable a target's special abilities by disrupting their vital energies."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.hero.shadow-operative.blood-cipher",
+      "name": "Blood Cipher",
+      "className": "Crimson Agent",
+      "band": "Hero",
+      "path": "Shadow Operative",
+      "sourceKind": "active",
+      "minimumClassLevel": 14,
+      "acquisition": "selection",
+      "activation": "Ritual",
+      "cost": "3 RP; 10 minutes",
+      "rangeAndTarget": "One willing or restrained living target with your Bleed touched",
+      "duration": "One question",
+      "frequency": "1/short rest",
+      "effect": "Target makes WIS save unless willing. On failure learn one factual sensory memory from the last 24 hours about a stated event; the target chooses a relevant memory if several exist. Success yields no information. No beliefs, absolute truth or unrelated secrets are guaranteed.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2192,
+        "originalText": "Blood Cipher: Extract information directly from a bleeding target's blood, potentially learning secrets or weaknesses."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.hero.shadow-operative.blackout",
+      "name": "Blackout",
+      "className": "Crimson Agent",
+      "band": "Hero",
+      "path": "Shadow Operative",
+      "sourceKind": "active",
+      "minimumClassLevel": 16,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "5 RP; 2 BG",
+      "rangeAndTarget": "Fixed 15 ft-radius sphere within 60 ft",
+      "duration": "Concentration, 3 of your turns",
+      "frequency": "1/long rest",
+      "effect": "Create magical darkness blocking ordinary sight and darkvision. You can see within it up to 30 ft. Creatures can leave normally; no automatic damage, surprise or advantage when another sense locates you. Enemies still act and make saves normally.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2193,
+        "originalText": "Blackout: Ultimate ability that creates a zone of magical darkness where only you can see clearly, granting significant advantages."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.hero.thirstborn.blood-frenzy",
+      "name": "Blood Frenzy",
+      "className": "Crimson Agent",
+      "band": "Hero",
+      "path": "Thirstborn",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Self",
+      "duration": "While hostile Bleeds persist",
+      "frequency": "Continuous",
+      "effect": "Add 1 to direct weapon damage per hostile creature bearing your Bleed, maximum 3. Applies once per hit, not per Bleed instance. Secondary Bleed, copies and explosions gain no bonus.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2199,
+        "originalText": "Blood Frenzy: +5% damage per enemy actively bleeding (max +25%)."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.hero.thirstborn.hemorrhagic-plague",
+      "name": "Hemorrhagic Plague",
+      "className": "Crimson Agent",
+      "band": "Hero",
+      "path": "Thirstborn",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Triggered",
+      "cost": "1 BG",
+      "rangeAndTarget": "One new living enemy within 5 ft of a Bleed victim",
+      "duration": "Bleed 3 turns",
+      "frequency": "Once every 3 of your turns",
+      "effect": "After one of your Bleeds ticks, pay 1 BG; new target makes CON save. Failure applies one Bleed. A spread instance cannot spread again. This grants no BG and does not duplicate marks or immediate damage.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2200,
+        "originalText": "Hemorrhagic Plague: Bleeds automatically spread to nearby enemies every 3 turns."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.hero.thirstborn.pain-to-power-conduction",
+      "name": "Pain-to-Power Conduction",
+      "className": "Crimson Agent",
+      "band": "Hero",
+      "path": "Thirstborn",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Reaction",
+      "cost": "1 BG",
+      "rangeAndTarget": "One enemy within 5 ft after it damages you",
+      "duration": "Instant plus Bleed",
+      "frequency": "Once/round",
+      "effect": "End one active Veinweave. Chosen enemy makes CON save: failure takes S d4 necrotic and Bleed; success takes half immediate damage only. On failure by 10 it is Frightened until end next turn. No resource refund.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2201,
+        "originalText": "Pain-to-Power Conduction: Veinweaves explode when struck, dealing AoE Bleed and minor Fear."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.hero.thirstborn.carrion-conductor",
+      "name": "Carrion Conductor",
+      "className": "Crimson Agent",
+      "band": "Hero",
+      "path": "Thirstborn",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "2 RP",
+      "rangeAndTarget": "One fresh hostile living-combatant corpse within 30 ft",
+      "duration": "Until end next turn",
+      "frequency": "Recharge 3",
+      "effect": "Mark the corpse once; on activation or before expiry use Reaction to burst it. Up to 3 enemies within 5 ft make DEX saves: S d6 necrotic, half on success. Corpse cannot be reused, raised by this effect or provide BG/kill triggers.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2202,
+        "originalText": "Carrion Conductor: Corpses leave behind blood pools that explode for AoE damage."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.hero.thirstborn.veinburst-requiem",
+      "name": "Veinburst Requiem",
+      "className": "Crimson Agent",
+      "band": "Hero",
+      "path": "Thirstborn",
+      "sourceKind": "passive",
+      "minimumClassLevel": 20,
+      "acquisition": "automatic",
+      "activation": "Action",
+      "cost": "All BG, minimum 3; 1 long-rest use",
+      "rangeAndTarget": "Up to 6 enemies with your Bleed within 30 ft",
+      "duration": "Instant",
+      "frequency": "1/long rest",
+      "effect": "Spend K BG and end your Bleeds on targets. CON save: (S+K)d8 necrotic, half on success. A target failing by 10 with remaining HP no greater than your class level falls to 0; ordinary death rules follow. No percentage-based automatic boss execution or BG refund.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2203,
+        "originalText": "Final Cut – Veinburst Requiem: Detonates all Bleeds and Blood Gauge effects in range. Enemies under 25% HP are instantly executed. (1/day)"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.hero.thirstborn.exsanguinate",
+      "name": "Exsanguinate",
+      "className": "Crimson Agent",
+      "band": "Hero",
+      "path": "Thirstborn",
+      "sourceKind": "active",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "2 BG",
+      "rangeAndTarget": "One living creature within 30 ft",
+      "duration": "Instant",
+      "frequency": "Recharge 2",
+      "effect": "CON save: (S+1)d8 necrotic, half on success; add 1d8 if it has your Bleed. If it fails and actually takes damage, regain 1 BG within the common gain cap. The refund cannot pay activation costs retroactively.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2206,
+        "originalText": "Exsanguinate: Violently extract blood from a target, dealing heavy damage to bleeding enemies and generating additional Blood Gauge."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.hero.thirstborn.veinweave-blood-frenzy",
+      "name": "Veinweave: Blood Frenzy",
+      "className": "Crimson Agent",
+      "band": "Hero",
+      "path": "Thirstborn",
+      "sourceKind": "active",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "3 BG",
+      "rangeAndTarget": "Self",
+      "duration": "Concentration, 3 of your turns",
+      "frequency": "Recharge 4",
+      "effect": "Start Blood Frenzy Veinweave: once on your turn add S d6 to one weapon hit; gain+10 ft Speed and suffer-2 AC. No extra attacks, Actions or critical range. Ending early removes both benefit and penalty.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2207,
+        "originalText": "Veinweave: Blood Frenzy: Consume 3 Blood Gauge points to enter a frenzied state, increasing damage and attack speed but reducing defense."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.hero.thirstborn.blood-boil",
+      "name": "Blood Boil",
+      "className": "Crimson Agent",
+      "band": "Hero",
+      "path": "Thirstborn",
+      "sourceKind": "active",
+      "minimumClassLevel": 12,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "3 BG",
+      "rangeAndTarget": "One living enemy within 60 ft",
+      "duration": "Instant; control until end next turn",
+      "frequency": "Recharge 3",
+      "effect": "CON save: (S+1)d6 fire, half on success. On failure target loses Reactions; on failure by 10 also Stunned until end its next turn. The Stun uses the shared hard-denial guard across all this character’s features. If this character already hard-denied that target this encounter, only damage and the non-hard-denial rider resolve.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2208,
+        "originalText": "Blood Boil: Cause a target's blood to heat rapidly, dealing internal damage and potentially stunning them."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.hero.thirstborn.crimson-harvest",
+      "name": "Crimson Harvest",
+      "className": "Crimson Agent",
+      "band": "Hero",
+      "path": "Thirstborn",
+      "sourceKind": "active",
+      "minimumClassLevel": 14,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "2 BG; 1 short-rest use",
+      "rangeAndTarget": "One enemy in weapon reach at half HP or less",
+      "duration": "Instant",
+      "frequency": "1/short rest",
+      "effect": "Make one weapon attack; on hit add S d8 damage. If this reduces it to 0, regain S+M HP and 1 BG within gain cap. No instant kill from a percentage threshold; summoned/allied/helpless creatures yield no recovery.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2209,
+        "originalText": "Crimson Harvest: Execute a heavily wounded target, restoring health and Blood Gauge based on the target's missing health."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "crimson-agent.hero.thirstborn.bloodstorm",
+      "name": "Bloodstorm",
+      "className": "Crimson Agent",
+      "band": "Hero",
+      "path": "Thirstborn",
+      "sourceKind": "active",
+      "minimumClassLevel": 16,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "5 RP; 3 BG",
+      "rangeAndTarget": "Moving 10 ft aura around self, up to 3 enemies per pulse",
+      "duration": "Concentration, 3 of your turns",
+      "frequency": "1/long rest",
+      "effect": "On start and each later paid pulse, targets make CON saves: S d6 necrotic, half on success; failure applies one Bleed. Maintenance costs Bonus Action+1 RP. Maximum 3 pulses. Once/turn your direct weapon attack against a creature in the storm adds 1 damage; storm/bleed damage gives no BG.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2210,
+        "originalText": "Bloodstorm: Ultimate ability that creates a swirling vortex of blood, dealing continuous damage to enemies and empowering your abilities."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  ],
+  "schedule": [
+    {
+      "classLevel": 1,
+      "choose": 4,
+      "bands": [
+        "Base"
+      ],
+      "minimumActives": 2,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 2,
+      "choose": 2,
+      "bands": [
+        "Base"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 3,
+      "choose": 2,
+      "bands": [
+        "Arch"
+      ],
+      "minimumActives": 1,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 4,
+      "choose": 1,
+      "bands": [
+        "Base",
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": true
+    },
+    {
+      "classLevel": 5,
+      "choose": 1,
+      "bands": [
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 6,
+      "choose": 1,
+      "bands": [
+        "Base",
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 7,
+      "choose": 1,
+      "bands": [
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 8,
+      "choose": 1,
+      "bands": [
+        "Base",
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": true
+    },
+    {
+      "classLevel": 9,
+      "choose": 1,
+      "bands": [
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 10,
+      "choose": 2,
+      "bands": [
+        "Hero"
+      ],
+      "minimumActives": 1,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 11,
+      "choose": 1,
+      "bands": [
+        "Base",
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 12,
+      "choose": 1,
+      "bands": [
+        "Hero"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": true
+    },
+    {
+      "classLevel": 13,
+      "choose": 1,
+      "bands": [
+        "Base",
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 14,
+      "choose": 1,
+      "bands": [
+        "Hero"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 15,
+      "choose": 1,
+      "bands": [
+        "Base",
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 16,
+      "choose": 1,
+      "bands": [
+        "Hero"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": true
+    },
+    {
+      "classLevel": 17,
+      "choose": 1,
+      "bands": [
+        "Base",
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 18,
+      "choose": 1,
+      "bands": [
+        "Hero"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 19,
+      "choose": 1,
+      "bands": [
+        "Base",
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": true
+    },
+    {
+      "classLevel": 20,
+      "choose": 0,
+      "bands": [],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    }
+  ],
+  "exceptionSchedule": {},
+  "sourceFiles": [
+    "../../../data/playtest/class_sources/crimson-agent.json",
+    "../../../data/playtest/class_sources/supplements.json"
+  ],
+  "authoringNotes": "Provisional; notebook adversarial findings reconciled and source-preserving editorial review complete. Human balance testing remains."
+}

@@ -1,0 +1,13 @@
+# Magic7 corrected Return03 /129
+
+Focused case successor to the exact Return02,65,044,749 bytes,SHA256 6ae12be53766b4bbb9a1ebb9bd00ecb5779b8c0d108664d9253322c8a95ea18c.
+
+The7 operative procedures,6 shared clauses,23 dispositions, native/source/access records, actor templates, MODEL, exact procedure operations, proposed index values and retained content holds are byte-identical to Return02. This is not a procedure or feat rewrite. All14 main cases and26 branches remain complete; current state deltas cover839 events.12 main traces and22 branches are unchanged. See RETURN03_FOCUSED_CORRECTIONS.json and RETURN03_PRESERVATION_CHECKS.json.
+
+The class Dispel now commits/resolves at O6.1/6.2, and the consumed-inversion branch forks after actual removal. The known-false branch forks from the real live-image contact state8.1 during E's turn. Protective Mutations records each recipient and numbered round: T's original28-3=25 remains; P's actual acquired1RP class Arcane Bolt is paid/Readied on its6.1 turn and released with its real Reaction at8.32 for a separate8force hit, with no secondDR3. After C's legal own-turn movement into the aura, T's actual10.1 paid1RP class Arcane Bolt gives C's separate first eventDR3, reducing8to5. No new actor or acquisition is granted. Guardian Tissue retains both its once-per-round use receipt and actual spent Reaction; its transferred damage still cannot be mitigated again or generate BT.
+
+Read REVIEW_RECEIPT.json, REVIEW.md, RETURN03_FOCUSED_CORRECTIONS.json, CASEBOOK.json and VALIDATION_REPORT.json. Full native new-case evidence is in RETURN03_CLASS_CASE_SOURCES.json. EVENT_REVERSIBLE_OPERATIONS.json is refreshed for every event. RETURN03_FROM_RETURN02_OPERATIONS.json contains exact forward/inverse case-value changes. Changed prior file bytes are preserved under history/return02; all original16 input members remain exact under history/input129. The original Return02 ZIP remains unmodified separately.
+
+No supplied/historical program or game runtime was executed. Opaque historical source archives may contain historical tools as unexecuted provenance. No executable return interface is provided. Data inspection does not grant independent acceptance, canonical application, runtime/human/balance/cosmology/release approval. Counts remain616 applied,232 pending,0 accepted-unapplied;335 feats and completed cohorts stay closed.
+
+MANIFEST.json binds every other member by exact byte length andSHA256, including all preserved history. Its own hash and finalZIP hash are external delivery evidence; no self-hash cycle is claimed. After independent exact owner verification, the owner applies and supplies LifeMatter5.

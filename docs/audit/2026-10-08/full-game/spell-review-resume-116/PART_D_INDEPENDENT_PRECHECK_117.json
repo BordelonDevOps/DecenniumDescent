@@ -1,0 +1,363 @@
+{
+  "id": "R7M16-PART-D-INDEPENDENT-PRECHECK-117",
+  "recordedAtUtc": "2026-10-23T03:25:39.796493+00:00",
+  "scope": "Read historical main cases13-16 and two associated branches as text only. Independent reconstruction obligations, not published case acceptance.",
+  "sourceBindings": [
+    {
+      "path": "C:\\Github\\DecenniumDescent\\DescentReviewChanges\\ReviewBible\\data\\public\\spell_playtests\\catalog.json",
+      "sha256": "f52cf6a4a4673897615a74c7c67dcba798c431362d4357e71ee552cc7c5d31f8",
+      "pointer": "/spells/317",
+      "completeCard": {
+        "id": "charm-person",
+        "name": "Charm Person",
+        "schools": [
+          "Enchantment",
+          "Illusion"
+        ],
+        "status": "operational-playtest-draft",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Bard": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Enchantment",
+            "baseRpCost": 2
+          },
+          "Crimson Agent": {
+            "rank": 1,
+            "minimumClassLevel": 2,
+            "school": "Enchantment",
+            "baseRpCost": 2
+          },
+          "Monk": {
+            "rank": 1,
+            "minimumClassLevel": 3,
+            "school": "Illusion",
+            "baseRpCost": 2
+          },
+          "Mirrorsage": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Enchantment",
+            "baseRpCost": 2
+          },
+          "Thief": {
+            "rank": 1,
+            "minimumClassLevel": 3,
+            "school": "Enchantment",
+            "baseRpCost": 2
+          },
+          "Wizard": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Enchantment",
+            "baseRpCost": 2
+          },
+          "Paladin": {
+            "rank": 1,
+            "minimumClassLevel": 2,
+            "school": "Enchantment",
+            "baseRpCost": 2
+          }
+        },
+        "operational": {
+          "id": "charm-person",
+          "activation": "Action",
+          "rangeFeet": 30,
+          "targets": "One living person you can perceive within range",
+          "duration": "Concentration, up to 1 minute",
+          "concentration": true,
+          "components": [
+            "V",
+            "S",
+            "F"
+          ],
+          "resolution": "The target makes a Wisdom save against your spell save DC. On failure, it gains the CoreV2 Charmed condition toward you and regards you as friendly for the duration. At the end of each of its turns, and the first time each round you or your allies damage it, it repeats the Wisdom save; success ends the spell. On the initial save success, no effect.",
+          "effect": "Charm one person so it temporarily regards you as friendly. Charmed does not grant command authority, compel beliefs, reveal secrets, or force the target to obey requests.",
+          "scaling": "None.",
+          "limitations": "A player-controlled target retains full agency over choices and beliefs. The spell cannot force self-harm, confession, permanent allegiance, transfer of possessions, or actions beyond the CoreV2 Charmed restrictions. A creature that cannot be Charmed is unaffected. Only the first damage event each round grants the additional repeat save. Ranked casting causes normal Dissonance and Refrain.",
+          "designNotes": "Core V2 Action, 30-foot range, V/S/F components, and Wisdom save are retained; F is represented as an existing class casting focus. Core lists Instantaneous duration, which conflicts with 'regards caster as friendly' and 'save ends early.' Concentration up to 1 minute and repeat-save cadence are NEW provisional operational decisions. Two source school placements are preserved externally; this record does not choose class access.",
+          "authoringFile": "data/playtest/spell_drafts/batch_2.json"
+        },
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "charm-person",
+          "original": {
+            "name": "Charm Person",
+            "level": 1,
+            "resonanceRank": 1,
+            "school": "Enchantment",
+            "schools": [
+              "Enchantment",
+              "Illusion"
+            ],
+            "placements": [
+              {
+                "name": "Charm Person",
+                "school": "Enchantment",
+                "level": 1,
+                "summary": "Target regards caster as friendly (WIS save ends early)."
+              },
+              {
+                "name": "Charm Person",
+                "school": "Illusion",
+                "level": 1,
+                "summary": "Make one person regard you as a friend."
+              }
+            ],
+            "classLevels": {
+              "Bard": 1,
+              "Crimson Agent": 1,
+              "Monk": 1,
+              "Mirrorsage": 1,
+              "Thief": 1,
+              "Wizard": 1,
+              "Paladin": 1
+            },
+            "classRanks": {
+              "Bard": 1,
+              "Crimson Agent": 1,
+              "Monk": 1,
+              "Mirrorsage": 1,
+              "Thief": 1,
+              "Wizard": 1,
+              "Paladin": 1
+            },
+            "classLearnLevels": {
+              "Bard": 1,
+              "Crimson Agent": 2,
+              "Monk": 3,
+              "Mirrorsage": 1,
+              "Thief": 3,
+              "Wizard": 1,
+              "Paladin": 2
+            },
+            "classSchools": {
+              "Bard": "Enchantment",
+              "Crimson Agent": "Enchantment",
+              "Monk": "Illusion",
+              "Mirrorsage": "Enchantment",
+              "Thief": "Enchantment",
+              "Wizard": "Enchantment",
+              "Paladin": "Enchantment"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Target regards caster as friendly (WIS save ends early).",
+            "alternateSummaries": [
+              "Make one person regard you as a friend."
+            ],
+            "classes": [
+              "Bard",
+              "Crimson Agent",
+              "Monk",
+              "Mirrorsage",
+              "Thief",
+              "Wizard",
+              "Paladin"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 328,
+              "original": {
+                "school": "Enchantment",
+                "level": 1,
+                "name": "Charm Person",
+                "effect": "Target regards caster as friendly (WIS save ends early).",
+                "source_paragraph": 9388,
+                "casting_time": "1 action",
+                "range": "30 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Wisdom save",
+                "tags": [
+                  "Control"
+                ],
+                "rp_cost": 2
+              }
+            },
+            {
+              "index": 550,
+              "original": {
+                "school": "Illusion",
+                "level": 1,
+                "name": "Charm Person",
+                "effect": "Make one person regard you as a friend.",
+                "source_paragraph": 9660,
+                "casting_time": "1 action",
+                "range": "30 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Control"
+                ],
+                "rp_cost": 2
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation"
+        ]
+      }
+    }
+  ],
+  "focusedFindings": [
+    {
+      "id": "D-CHARM-ACTUAL-RANGE",
+      "cases": [
+        "R7M-14-A"
+      ],
+      "finding": "Current accepted catalog /spells/317/operational gives Charm Person30feet, not historical asserted60. Exact whole current card included. Failed preflight still holds, but must use actual30 and real caster origin."
+    },
+    {
+      "id": "D-IMAGE-MOVEMENT-AND-RANGE",
+      "cases": [
+        "R7M-14-A"
+      ],
+      "finding": "Historical [70,0,0] to[90,5,0] straight displacement sqrt425=20.615528feet is neither descriptive20 nor state21 without an actual longer path. Use exact straight length or explicit legal path (e.g.[70,0,0]->[90,0,0]->[90,5,0]=25feet). Under selected whole-body minimum separation, C5x5x6 at0 and T5x5x6 at[90,5,0] have actual minimum85feet because Y boundaries touch;87.5 is point-to-target, not minimum body separation. Either exceeds actual30. Store known clear path and refreshed real sensory scene after both moves."
+    },
+    {
+      "id": "D-SYMBOL-EARLY-VIEWER",
+      "cases": [
+        "R7M-16-B"
+      ],
+      "finding": "Historical E at[65,0,0] already intersects rune sphere center[60,0,3] radius20 at establishment1.1. If E actually sees rune it triggers before planned Antimagic2.1, consuming source. Also E on same x axis can obstruct later T sight. Need actual complete non-viewer premise or coherent scene geometry/source/timeline repair. Do not simply omit E from all-creature snapshot. Suppression must really cover rune anchor and must not make casts/perception/LoE impossible."
+    },
+    {
+      "id": "D-SYMBOL-SIGHT-WITNESS",
+      "cases": [
+        "R7M-16-A",
+        "R7M-16-B"
+      ],
+      "finding": "Specify actual disc plane/pose, real observer sight witness and unoccluded optical paths. In16A rune anchor[40,0,3] lies inside target occupied box centered40,0 withz0..6; a bare actualSight=true does not establish visible surface through an opaque body. Prefer a legal rune outside target body with genuine current view, or supply actual compatible anatomy/visual geometry. First current viewer snapshot includes all eligible caster/allies. Preserve consume-before-save, child survives parentcleanup, futureENDexcludescurrent and no repeat save."
+    },
+    {
+      "id": "D-DRUID15-COMPLETE",
+      "cases": [
+        "R7M-13-B",
+        "R7M-13-B-HIGH"
+      ],
+      "finding": "Druid15Moon needs complete actual progression/acquisitions: maxHP108=10+14*7,RP42,PB5,S3,WIS18,prior Bear20temp from34buffer leaves14 and5of6shifts; complete actual second Arch at15 and automatic Elemental Shapeshifting14 with2unused uses, not ambiguous can-be-specified text. Prior shift must lie in actual regular turn (e.g.-2.5inside[-3,-2],deadline597.5); do not copy obsolete599. Paid Moon heal1RP d8=8 gives99->107,RP42->41, marks magical technique turn without spellDissonance/history. Temp20remains, Pain persists above100. Hidden101ineligible still pays17anddisplaces oldconcentration; no save/diagnostic."
+    },
+    {
+      "id": "D-PAIN-TEMPHP-CASE-SCOPE",
+      "cases": [
+        "R7M-13-A",
+        "R7M-13-B"
+      ],
+      "finding": "13A historical0temp does not alone demonstrate exclusion of temporaryHP; rename description accordingly or retain13B actual99+20as explicit proof. 94normalHP/WIS16fails,halfSpeed15/DodgeactualAction/15walk; WIS17succeeds unpenalized. No hard-control receipt or save disadvantage."
+    },
+    {
+      "id": "D-GRAVITY-PHYSICAL-SUPPORT",
+      "cases": [
+        "R7M-15-A",
+        "R7M-15-B"
+      ],
+      "finding": "Use actual full-body collision and actual caster handhold capacity with fixed structural anchors. Explicitly identify platform and shaft cradle as fixed structural supports if they are meant not to join unsecured gravity assemblies. Actual Druid13 natural-form Transmutation caster must prepare Reverse Gravity within source capacity. Top-straddle body98..104 and shaft0..110 havezero upward captravel, no lowering/squeeze. Existing real supports can only resume if actually retained at poses."
+    },
+    {
+      "id": "D-GRAVITY-TIMING",
+      "cases": [
+        "R7M-15-A"
+      ],
+      "finding": "Upward initiated in C0..2 slot =>first marker8; bodyheight6caps after94feetfoot94. Ending9.1duringT9..10slot creates fresh ordinary descentmarker16 after cap arrest, not sameevent extra sweep. Floorimpact94 givesfloor(94/20)=4d6,raw3+4+5+6=18,94HP->76 plusProne. Localmovement/suppression cannot restart old sweep. CDEX15+2=17holds actualanchor."
+    },
+    {
+      "id": "D-IMAGE-TETHER-AND-HELD-ROUTE",
+      "cases": [
+        "R7M-14-B",
+        "R7M-14-B-ILLUSION"
+      ],
+      "finding": "At image110andcaster-30bodymin137.5>120, feed/image locallysuspend,currentlocalfallback noqueuedutterance. Next actualturnreturn0 restorescurrentfeed beforeoriginal61.1deadline; expirebothchannelandimage. IllusionSelf image-only alternative remains whole-caseconditional untilactualauthorizedacquisitionroute is supplied; ordinaryWizard Enchantment accessdoesnotgrantit."
+    }
+  ],
+  "freshArithmetic": [
+    {
+      "expression": "sqrt(20^2+5^2)",
+      "actual": 20.615528128088304,
+      "expected": 20.615528128088304,
+      "pass": true
+    },
+    {
+      "expression": "20+5 explicit orthogonal path",
+      "actual": 25,
+      "expected": 25,
+      "pass": true
+    },
+    {
+      "expression": "87.5-2.5 body gap",
+      "actual": 85.0,
+      "expected": 85,
+      "pass": true
+    },
+    {
+      "expression": "10+14*7",
+      "actual": 108,
+      "expected": 108,
+      "pass": true
+    },
+    {
+      "expression": "99+8",
+      "actual": 107,
+      "expected": 107,
+      "pass": true
+    },
+    {
+      "expression": "42-1",
+      "actual": 41,
+      "expected": 41,
+      "pass": true
+    },
+    {
+      "expression": "34-20",
+      "actual": 14,
+      "expected": 14,
+      "pass": true
+    },
+    {
+      "expression": "100-6",
+      "actual": 94,
+      "expected": 94,
+      "pass": true
+    },
+    {
+      "expression": "floor(94/20)",
+      "actual": 4,
+      "expected": 4,
+      "pass": true
+    },
+    {
+      "expression": "3+4+5+6",
+      "actual": 18,
+      "expected": 18,
+      "pass": true
+    },
+    {
+      "expression": "94-18",
+      "actual": 76,
+      "expected": 76,
+      "pass": true
+    },
+    {
+      "expression": "110-(-30+2.5)",
+      "actual": 137.5,
+      "expected": 137.5,
+      "pass": true
+    }
+  ],
+  "actuallySent": false,
+  "runtimeExecuted": false,
+  "newAcceptedIdentities": []
+}

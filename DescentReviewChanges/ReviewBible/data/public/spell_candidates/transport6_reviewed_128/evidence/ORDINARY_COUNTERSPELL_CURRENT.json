@@ -1,0 +1,704 @@
+{
+  "id": "counterspell",
+  "originalCatalogRecord": {
+    "id": "counterspell",
+    "name": "Counterspell",
+    "schools": [
+      "Abjuration",
+      "Universal"
+    ],
+    "status": "operational-playtest-draft",
+    "visibility": "public-source-review",
+    "classAccess": {
+      "Bard": {
+        "rank": 3,
+        "minimumClassLevel": 7,
+        "school": "Universal",
+        "baseRpCost": 5
+      },
+      "Cleric": {
+        "rank": 3,
+        "minimumClassLevel": 5,
+        "school": "Abjuration",
+        "baseRpCost": 5
+      },
+      "Druid": {
+        "rank": 3,
+        "minimumClassLevel": 5,
+        "school": "Abjuration",
+        "baseRpCost": 5
+      },
+      "Mage": {
+        "rank": 3,
+        "minimumClassLevel": 5,
+        "school": "Abjuration",
+        "baseRpCost": 5
+      },
+      "Monk": {
+        "rank": 3,
+        "minimumClassLevel": 13,
+        "school": "Abjuration",
+        "baseRpCost": 5
+      },
+      "Mirrorsage": {
+        "rank": 3,
+        "minimumClassLevel": 7,
+        "school": "Universal",
+        "baseRpCost": 5
+      },
+      "Tinker": {
+        "rank": 3,
+        "minimumClassLevel": 10,
+        "school": "Abjuration",
+        "baseRpCost": 5
+      },
+      "Wizard": {
+        "rank": 3,
+        "minimumClassLevel": 5,
+        "school": "Abjuration",
+        "baseRpCost": 5
+      },
+      "Paladin": {
+        "rank": 3,
+        "minimumClassLevel": 9,
+        "school": "Abjuration",
+        "baseRpCost": 5
+      }
+    },
+    "operational": {
+      "id": "counterspell",
+      "activation": "Reaction — when another creature you can perceive within range and line of effect begins casting a spell, after its casting costs and cadence are committed but before its effect resolves",
+      "rangeFeet": 60,
+      "targets": "One pending spell cast by the triggering creature. The spell needs an actual recorded rank; the Director may know that rank without revealing it to you.",
+      "duration": "Instantaneous",
+      "concentration": false,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "make a spellcasting-ability check using the actual ability for the class through which you cast Counterspell, adding PB once, against DC 10 + twice the triggering spell's actual rank (rank 0 contributes 0). Use CORE_RESOLUTION_PLAYTEST.md's fixed-DC task degrees and natural shifts: at least DC+10 Critical Success, at least DC Success, at most DC-10 Critical Failure, otherwise Failure; natural 20 improves one degree and natural 1 worsens one. Collapse both upper degrees to success and both lower degrees to failure; invent no additional critical effect. This is not a spell attack or saving throw.",
+      "effect": "Success negates the selected pending spell after its costs were committed; failure lets it continue. Every interruptible cast first commits its RP/material/other costs, components, concentration transition, Dissonance/Refrain and exact beginning/casting hooks once, then opens the interruption window. A surviving cast later resolves its effect and outcome-dependent hooks. Negation gives no refund, no successful-effect trigger and no restoration of old concentration. Counterspell is itself a spell and can be countered. Resolve nested counters last-in, first-out; if a counter is negated, the earlier pending spell resumes without paying or casting again. Resuming a parent never rewrites the later nested cast's Refrain/Dissonance history.",
+      "scaling": "None. No automatic success against lower ranks and no generic upcast.",
+      "limitations": "One attempt per creature against a particular pending cast, shared across ordinary, Wizard, Mage and other same-named Counterspell sources. An exact source that expressly grants an additional Counterspell attempt against the same pending cast overrides this default; merely granting another Reaction does not. After a failed attempt another eligible creature may react; once negated, the spell supplies no further interruption trigger. All reactions need their own legal remaining resource, components, range and current source permissions. Attempting does not reveal spell identity/rank; never treat an unassigned rank as 0 or estimate it from RP. Ready opens its cast-interruption window at preparation, not release. Countering is not whole-Action/turn hard denial and does not spend that ledger. Ordinary Counterspell requires ordinary repertoire/class access and rank-3 cost; Wizard/Mage same-named class cards keep their own separate acquisition, printed costs, ranks, recharge and text. Apply SPELL_INTEGRATION_RULES.md for actual class access and repertoire, costs before resolution, components, concentration, Dissonance/Refrain and exact source cadence. No automatic scaling or generic upcast.",
+      "designNotes": "PRESERVED: both Abjuration/Universal rank-3 placements, Reaction, 60 feet, V/S/F and instantaneous interruption. NEW: actual casting ability+PB against DC 10+2*rank, one attempt per pending cast, hidden-rank handling and nested timing. REVIEWED SOURCE CORRECTION: the earlier binary-check proposal is superseded by the existing Core fixed-DC task rule, with natural shifts and collapsed success/failure outcomes. Exact source permission may override the shared attempt limit; another Reaction alone cannot.",
+      "implementationStatus": "REVIEWED authored operational-playtest manuscript; runtime and balance validation pending",
+      "sourceCoreEntries": [
+        {
+          "index": 40,
+          "original": {
+            "school": "Abjuration",
+            "level": 3,
+            "name": "Counterspell",
+            "effect": "Interrupt a creature casting a spell.",
+            "source_paragraph": 9029,
+            "casting_time": "1 reaction",
+            "range": "60 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Utility"
+            ],
+            "rp_cost": 5
+          }
+        },
+        {
+          "index": 876,
+          "original": {
+            "school": "Universal",
+            "level": 3,
+            "name": "Counterspell",
+            "effect": "Interrupt a creature casting a spell.",
+            "source_paragraph": 10065,
+            "casting_time": "1 reaction",
+            "range": "60 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Utility"
+            ],
+            "rp_cost": 5
+          }
+        }
+      ],
+      "sourcePlacements": [
+        {
+          "name": "Counterspell",
+          "school": "Abjuration",
+          "level": 3,
+          "summary": "Interrupt a creature casting a spell."
+        },
+        {
+          "name": "Counterspell",
+          "school": "Universal",
+          "level": 3,
+          "summary": "Interrupt a creature casting a spell."
+        }
+      ],
+      "classAccessEvidence": {
+        "Bard": {
+          "rank": 3,
+          "minimumClassLevel": 7,
+          "school": "Universal",
+          "baseRpCost": 5
+        },
+        "Cleric": {
+          "rank": 3,
+          "minimumClassLevel": 5,
+          "school": "Abjuration",
+          "baseRpCost": 5
+        },
+        "Druid": {
+          "rank": 3,
+          "minimumClassLevel": 5,
+          "school": "Abjuration",
+          "baseRpCost": 5
+        },
+        "Mage": {
+          "rank": 3,
+          "minimumClassLevel": 5,
+          "school": "Abjuration",
+          "baseRpCost": 5
+        },
+        "Monk": {
+          "rank": 3,
+          "minimumClassLevel": 13,
+          "school": "Abjuration",
+          "baseRpCost": 5
+        },
+        "Mirrorsage": {
+          "rank": 3,
+          "minimumClassLevel": 7,
+          "school": "Universal",
+          "baseRpCost": 5
+        },
+        "Tinker": {
+          "rank": 3,
+          "minimumClassLevel": 10,
+          "school": "Abjuration",
+          "baseRpCost": 5
+        },
+        "Wizard": {
+          "rank": 3,
+          "minimumClassLevel": 5,
+          "school": "Abjuration",
+          "baseRpCost": 5
+        },
+        "Paladin": {
+          "rank": 3,
+          "minimumClassLevel": 9,
+          "school": "Abjuration",
+          "baseRpCost": 5
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK2_3_SOURCE_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK2_3_EXACT_REVIEW.md"
+      ],
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK2_3_EXACT_REVIEW.md"
+      ],
+      "authoringFile": "data/playtest/spell_drafts/batch_abjuration_rank2_3.json"
+    },
+    "additionalRpCost": 0,
+    "source": {
+      "catalogPath": "src/data/spells.js",
+      "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+      "catalogKey": "counterspell",
+      "original": {
+        "name": "Counterspell",
+        "level": 3,
+        "resonanceRank": 3,
+        "school": "Abjuration",
+        "schools": [
+          "Abjuration",
+          "Universal"
+        ],
+        "placements": [
+          {
+            "name": "Counterspell",
+            "school": "Abjuration",
+            "level": 3,
+            "summary": "Interrupt a creature casting a spell."
+          },
+          {
+            "name": "Counterspell",
+            "school": "Universal",
+            "level": 3,
+            "summary": "Interrupt a creature casting a spell."
+          }
+        ],
+        "classLevels": {
+          "Bard": 3,
+          "Cleric": 3,
+          "Druid": 3,
+          "Mage": 3,
+          "Monk": 3,
+          "Mirrorsage": 3,
+          "Tinker": 3,
+          "Wizard": 3,
+          "Paladin": 3
+        },
+        "classRanks": {
+          "Bard": 3,
+          "Cleric": 3,
+          "Druid": 3,
+          "Mage": 3,
+          "Monk": 3,
+          "Mirrorsage": 3,
+          "Tinker": 3,
+          "Wizard": 3,
+          "Paladin": 3
+        },
+        "classLearnLevels": {
+          "Bard": 7,
+          "Cleric": 5,
+          "Druid": 5,
+          "Mage": 5,
+          "Monk": 13,
+          "Mirrorsage": 7,
+          "Tinker": 10,
+          "Wizard": 5,
+          "Paladin": 9
+        },
+        "classSchools": {
+          "Bard": "Universal",
+          "Cleric": "Abjuration",
+          "Druid": "Abjuration",
+          "Mage": "Abjuration",
+          "Monk": "Abjuration",
+          "Mirrorsage": "Universal",
+          "Tinker": "Abjuration",
+          "Wizard": "Abjuration",
+          "Paladin": "Abjuration"
+        },
+        "castingTime": "Not specified in current rulebook",
+        "range": "Not specified in current rulebook",
+        "components": "Not specified in current rulebook",
+        "duration": "Not specified in current rulebook",
+        "description": "Interrupt a creature casting a spell.",
+        "alternateSummaries": [],
+        "classes": [
+          "Bard",
+          "Cleric",
+          "Druid",
+          "Mage",
+          "Monk",
+          "Mirrorsage",
+          "Tinker",
+          "Wizard",
+          "Paladin"
+        ],
+        "status": "canon",
+        "source": "Player Rulebook — Spell Lists"
+      },
+      "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+      "coreEntries": [
+        {
+          "index": 40,
+          "original": {
+            "school": "Abjuration",
+            "level": 3,
+            "name": "Counterspell",
+            "effect": "Interrupt a creature casting a spell.",
+            "source_paragraph": 9029,
+            "casting_time": "1 reaction",
+            "range": "60 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Utility"
+            ],
+            "rp_cost": 5
+          }
+        },
+        {
+          "index": 876,
+          "original": {
+            "school": "Universal",
+            "level": 3,
+            "name": "Counterspell",
+            "effect": "Interrupt a creature casting a spell.",
+            "source_paragraph": 10065,
+            "casting_time": "1 reaction",
+            "range": "60 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Utility"
+            ],
+            "rp_cost": 5
+          }
+        }
+      ],
+      "possibleHistoricalAliases": []
+    },
+    "reviewFlags": [
+      "Core resolution requires an explicit operational interpretation"
+    ]
+  },
+  "authoredIndexEntry": {
+    "id": "counterspell",
+    "name": "Counterspell",
+    "authoredStatus": "reviewed-authored-operational-playtest",
+    "procedureFile": "catalog.json",
+    "procedurePointer": "/spells/38/operational",
+    "wholeCardPointer": "/spells/38",
+    "sourceStatus": "operational-playtest-draft",
+    "priorCatalogSelectionStatusUnchanged": true
+  },
+  "completeCurrentProcedureCard": {
+    "id": "counterspell",
+    "name": "Counterspell",
+    "schools": [
+      "Abjuration",
+      "Universal"
+    ],
+    "status": "operational-playtest-draft",
+    "visibility": "public-source-review",
+    "classAccess": {
+      "Bard": {
+        "rank": 3,
+        "minimumClassLevel": 7,
+        "school": "Universal",
+        "baseRpCost": 5
+      },
+      "Cleric": {
+        "rank": 3,
+        "minimumClassLevel": 5,
+        "school": "Abjuration",
+        "baseRpCost": 5
+      },
+      "Druid": {
+        "rank": 3,
+        "minimumClassLevel": 5,
+        "school": "Abjuration",
+        "baseRpCost": 5
+      },
+      "Mage": {
+        "rank": 3,
+        "minimumClassLevel": 5,
+        "school": "Abjuration",
+        "baseRpCost": 5
+      },
+      "Monk": {
+        "rank": 3,
+        "minimumClassLevel": 13,
+        "school": "Abjuration",
+        "baseRpCost": 5
+      },
+      "Mirrorsage": {
+        "rank": 3,
+        "minimumClassLevel": 7,
+        "school": "Universal",
+        "baseRpCost": 5
+      },
+      "Tinker": {
+        "rank": 3,
+        "minimumClassLevel": 10,
+        "school": "Abjuration",
+        "baseRpCost": 5
+      },
+      "Wizard": {
+        "rank": 3,
+        "minimumClassLevel": 5,
+        "school": "Abjuration",
+        "baseRpCost": 5
+      },
+      "Paladin": {
+        "rank": 3,
+        "minimumClassLevel": 9,
+        "school": "Abjuration",
+        "baseRpCost": 5
+      }
+    },
+    "operational": {
+      "id": "counterspell",
+      "activation": "Reaction — when another creature you can perceive within range and line of effect begins casting a spell, after its casting costs and cadence are committed but before its effect resolves",
+      "rangeFeet": 60,
+      "targets": "One pending spell cast by the triggering creature. The spell needs an actual recorded rank; the Director may know that rank without revealing it to you.",
+      "duration": "Instantaneous",
+      "concentration": false,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "make a spellcasting-ability check using the actual ability for the class through which you cast Counterspell, adding PB once, against DC 10 + twice the triggering spell's actual rank (rank 0 contributes 0). Use CORE_RESOLUTION_PLAYTEST.md's fixed-DC task degrees and natural shifts: at least DC+10 Critical Success, at least DC Success, at most DC-10 Critical Failure, otherwise Failure; natural 20 improves one degree and natural 1 worsens one. Collapse both upper degrees to success and both lower degrees to failure; invent no additional critical effect. This is not a spell attack or saving throw.",
+      "effect": "Success negates the selected pending spell after its costs were committed; failure lets it continue. Every interruptible cast first commits its RP/material/other costs, components, concentration transition, Dissonance/Refrain and exact beginning/casting hooks once, then opens the interruption window. A surviving cast later resolves its effect and outcome-dependent hooks. Negation gives no refund, no successful-effect trigger and no restoration of old concentration. Counterspell is itself a spell and can be countered. Resolve nested counters last-in, first-out; if a counter is negated, the earlier pending spell resumes without paying or casting again. Resuming a parent never rewrites the later nested cast's Refrain/Dissonance history.",
+      "scaling": "None. No automatic success against lower ranks and no generic upcast.",
+      "limitations": "One attempt per creature against a particular pending cast, shared across ordinary, Wizard, Mage and other same-named Counterspell sources. An exact source that expressly grants an additional Counterspell attempt against the same pending cast overrides this default; merely granting another Reaction does not. After a failed attempt another eligible creature may react; once negated, the spell supplies no further interruption trigger. All reactions need their own legal remaining resource, components, range and current source permissions. Attempting does not reveal spell identity/rank; never treat an unassigned rank as 0 or estimate it from RP. Ready opens its cast-interruption window at preparation, not release. Countering is not whole-Action/turn hard denial and does not spend that ledger. Ordinary Counterspell requires ordinary repertoire/class access and rank-3 cost; Wizard/Mage same-named class cards keep their own separate acquisition, printed costs, ranks, recharge and text. Apply SPELL_INTEGRATION_RULES.md for actual class access and repertoire, costs before resolution, components, concentration, Dissonance/Refrain and exact source cadence. No automatic scaling or generic upcast.",
+      "designNotes": "PRESERVED: both Abjuration/Universal rank-3 placements, Reaction, 60 feet, V/S/F and instantaneous interruption. NEW: actual casting ability+PB against DC 10+2*rank, one attempt per pending cast, hidden-rank handling and nested timing. REVIEWED SOURCE CORRECTION: the earlier binary-check proposal is superseded by the existing Core fixed-DC task rule, with natural shifts and collapsed success/failure outcomes. Exact source permission may override the shared attempt limit; another Reaction alone cannot.",
+      "implementationStatus": "REVIEWED authored operational-playtest manuscript; runtime and balance validation pending",
+      "sourceCoreEntries": [
+        {
+          "index": 40,
+          "original": {
+            "school": "Abjuration",
+            "level": 3,
+            "name": "Counterspell",
+            "effect": "Interrupt a creature casting a spell.",
+            "source_paragraph": 9029,
+            "casting_time": "1 reaction",
+            "range": "60 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Utility"
+            ],
+            "rp_cost": 5
+          }
+        },
+        {
+          "index": 876,
+          "original": {
+            "school": "Universal",
+            "level": 3,
+            "name": "Counterspell",
+            "effect": "Interrupt a creature casting a spell.",
+            "source_paragraph": 10065,
+            "casting_time": "1 reaction",
+            "range": "60 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Utility"
+            ],
+            "rp_cost": 5
+          }
+        }
+      ],
+      "sourcePlacements": [
+        {
+          "name": "Counterspell",
+          "school": "Abjuration",
+          "level": 3,
+          "summary": "Interrupt a creature casting a spell."
+        },
+        {
+          "name": "Counterspell",
+          "school": "Universal",
+          "level": 3,
+          "summary": "Interrupt a creature casting a spell."
+        }
+      ],
+      "classAccessEvidence": {
+        "Bard": {
+          "rank": 3,
+          "minimumClassLevel": 7,
+          "school": "Universal",
+          "baseRpCost": 5
+        },
+        "Cleric": {
+          "rank": 3,
+          "minimumClassLevel": 5,
+          "school": "Abjuration",
+          "baseRpCost": 5
+        },
+        "Druid": {
+          "rank": 3,
+          "minimumClassLevel": 5,
+          "school": "Abjuration",
+          "baseRpCost": 5
+        },
+        "Mage": {
+          "rank": 3,
+          "minimumClassLevel": 5,
+          "school": "Abjuration",
+          "baseRpCost": 5
+        },
+        "Monk": {
+          "rank": 3,
+          "minimumClassLevel": 13,
+          "school": "Abjuration",
+          "baseRpCost": 5
+        },
+        "Mirrorsage": {
+          "rank": 3,
+          "minimumClassLevel": 7,
+          "school": "Universal",
+          "baseRpCost": 5
+        },
+        "Tinker": {
+          "rank": 3,
+          "minimumClassLevel": 10,
+          "school": "Abjuration",
+          "baseRpCost": 5
+        },
+        "Wizard": {
+          "rank": 3,
+          "minimumClassLevel": 5,
+          "school": "Abjuration",
+          "baseRpCost": 5
+        },
+        "Paladin": {
+          "rank": 3,
+          "minimumClassLevel": 9,
+          "school": "Abjuration",
+          "baseRpCost": 5
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK2_3_SOURCE_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK2_3_EXACT_REVIEW.md"
+      ],
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK2_3_EXACT_REVIEW.md"
+      ],
+      "authoringFile": "data/playtest/spell_drafts/batch_abjuration_rank2_3.json"
+    },
+    "additionalRpCost": 0,
+    "source": {
+      "catalogPath": "src/data/spells.js",
+      "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+      "catalogKey": "counterspell",
+      "original": {
+        "name": "Counterspell",
+        "level": 3,
+        "resonanceRank": 3,
+        "school": "Abjuration",
+        "schools": [
+          "Abjuration",
+          "Universal"
+        ],
+        "placements": [
+          {
+            "name": "Counterspell",
+            "school": "Abjuration",
+            "level": 3,
+            "summary": "Interrupt a creature casting a spell."
+          },
+          {
+            "name": "Counterspell",
+            "school": "Universal",
+            "level": 3,
+            "summary": "Interrupt a creature casting a spell."
+          }
+        ],
+        "classLevels": {
+          "Bard": 3,
+          "Cleric": 3,
+          "Druid": 3,
+          "Mage": 3,
+          "Monk": 3,
+          "Mirrorsage": 3,
+          "Tinker": 3,
+          "Wizard": 3,
+          "Paladin": 3
+        },
+        "classRanks": {
+          "Bard": 3,
+          "Cleric": 3,
+          "Druid": 3,
+          "Mage": 3,
+          "Monk": 3,
+          "Mirrorsage": 3,
+          "Tinker": 3,
+          "Wizard": 3,
+          "Paladin": 3
+        },
+        "classLearnLevels": {
+          "Bard": 7,
+          "Cleric": 5,
+          "Druid": 5,
+          "Mage": 5,
+          "Monk": 13,
+          "Mirrorsage": 7,
+          "Tinker": 10,
+          "Wizard": 5,
+          "Paladin": 9
+        },
+        "classSchools": {
+          "Bard": "Universal",
+          "Cleric": "Abjuration",
+          "Druid": "Abjuration",
+          "Mage": "Abjuration",
+          "Monk": "Abjuration",
+          "Mirrorsage": "Universal",
+          "Tinker": "Abjuration",
+          "Wizard": "Abjuration",
+          "Paladin": "Abjuration"
+        },
+        "castingTime": "Not specified in current rulebook",
+        "range": "Not specified in current rulebook",
+        "components": "Not specified in current rulebook",
+        "duration": "Not specified in current rulebook",
+        "description": "Interrupt a creature casting a spell.",
+        "alternateSummaries": [],
+        "classes": [
+          "Bard",
+          "Cleric",
+          "Druid",
+          "Mage",
+          "Monk",
+          "Mirrorsage",
+          "Tinker",
+          "Wizard",
+          "Paladin"
+        ],
+        "status": "canon",
+        "source": "Player Rulebook — Spell Lists"
+      },
+      "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+      "coreEntries": [
+        {
+          "index": 40,
+          "original": {
+            "school": "Abjuration",
+            "level": 3,
+            "name": "Counterspell",
+            "effect": "Interrupt a creature casting a spell.",
+            "source_paragraph": 9029,
+            "casting_time": "1 reaction",
+            "range": "60 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Utility"
+            ],
+            "rp_cost": 5
+          }
+        },
+        {
+          "index": 876,
+          "original": {
+            "school": "Universal",
+            "level": 3,
+            "name": "Counterspell",
+            "effect": "Interrupt a creature casting a spell.",
+            "source_paragraph": 10065,
+            "casting_time": "1 reaction",
+            "range": "60 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Utility"
+            ],
+            "rp_cost": 5
+          }
+        }
+      ],
+      "possibleHistoricalAliases": []
+    },
+    "reviewFlags": [
+      "Core resolution requires an explicit operational interpretation"
+    ]
+  },
+  "binding": {
+    "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+    "bytes": 4945319,
+    "sha256": "f52cf6a4a4673897615a74c7c67dcba798c431362d4357e71ee552cc7c5d31f8",
+    "pointer": "/spells/38"
+  },
+  "grantsNoAccessByItself": true
+}

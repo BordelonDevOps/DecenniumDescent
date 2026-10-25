@@ -1,0 +1,30 @@
+{
+  "id": "TC124-TWO-TIMESTAMP-OPERATIONS",
+  "baseline": {
+    "file": "history/CASEBOOK_BEFORE_TWO_TIMESTAMP_FIXES.json",
+    "bytes": 35082663,
+    "sha256": "db4cfc24c989b2b409cab86482bc58b3be4841c5a5773dc502b5b985e356e1ac"
+  },
+  "successor": {
+    "file": "CASEBOOK.json",
+    "bytes": 35082666,
+    "sha256": "e51acac8c8e7c0d422cf4a7f574dd968066fb437f83471b46f33dd0b5ae9ff4a"
+  },
+  "operations": [
+    {
+      "op": "replace",
+      "pointer": "/cases/2/branches/2/timeline/5/before/time",
+      "before": 2.0,
+      "after": 2.01,
+      "reason": "Explicit newly inserted event advances observation time; all other before-values already identical."
+    },
+    {
+      "op": "replace",
+      "pointer": "/cases/4/timeline/13/before/time",
+      "before": 24.0,
+      "after": 24.005,
+      "reason": "Explicit newly inserted event advances observation time; all other before-values already identical."
+    }
+  ],
+  "semanticOutcomeChanged": false
+}

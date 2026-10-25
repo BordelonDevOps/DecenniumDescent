@@ -1,0 +1,9 @@
+# Time/casting5 preauthorship conference01
+
+Read all five complete earlier procedures and original access/placement records, ten unchanged scenario obligations, full accepted counterparts, temporal scope documents, semantic delta and sixteen actual decision questions. No substantial new systemic rule is chosen in this preparation. Zero new current encounter vectors are supplied. The purpose is to decide the local rules before full source-qualified current cases and final exact artifacts are authored.
+
+Absolute Zero and Chrono Lock are finite body suspension proposals with distinct clocks, not enabled Time Loop or generic Frozen/Petrified. Time Skip is proposed absence with actual history/return, not stasis. Quicken Cast proposes two real paid child casts in its enabling Action. Contingency proposes a separately paid stored cast and new automatic release. Read each independent source boundary; do not create one global temporal engine by analogy.
+
+Current Wizard cadence corrects original Quicken D4 to D2 under the stated first-distinct prepared assumptions, while keeping RP32-10-5-5=12. The original Contingency healing example has no named legal spell; a full bounded catalog search and pending GraveGift comparison are supplied. Do not substitute a class heal, invent Cure Wounds, or describe pending direct recovery as ordinary healing. Time Skip has no automatically targetable old-anchor body during absence. Contingency damage needs explicit actual root mapping, with no new Fate disclosure entry.
+
+Return downloadable per-spell/per-question dispositions and complete exact source-linked procedure replacements when necessary. Preserve every old text/case ID. After actual decisions, current encounter authorship and exact acceptance remain necessary. No new adoption, runtime implementation, human gameplay, balance, cosmology/canon,75-domain closure, whole-game flow or release approval;480/368 remains unchanged.

@@ -1,0 +1,189 @@
+# Find the Path — reviewed authored procedure (Information8, Return03)
+
+Status: accepted for authored operational playtest and applied to the review index. This records authored procedure coverage only; runtime selection, implementation, human play, balance, cosmology, temporal and release approval remain separate.
+
+## Native source and access
+
+The exact native card/source record is preserved in the applied evidence bundle at `NATIVE_ACCESS_RECORDS.json`; the current proposal source identity and pointer are recorded below.
+
+- Source: `DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_rank6.json`
+- Source pointer: `/records/2`
+- Source SHA-256: `095250c06edfe01460e78a71ee5dc12f081814a6b77dc0e5009d485c28a2cb14`
+
+```json
+{
+  "id": "find-the-path",
+  "name": "Find the Path",
+  "schools": [
+    "Divination"
+  ],
+  "status": "blocked-pending-operational-review",
+  "visibility": "public-source-review",
+  "classAccess": {
+    "Cleric": {
+      "rank": 6,
+      "minimumClassLevel": 11,
+      "school": "Divination",
+      "baseRpCost": 13
+    },
+    "Mirrorsage": {
+      "rank": 6,
+      "minimumClassLevel": 16,
+      "school": "Divination",
+      "baseRpCost": 13
+    },
+    "Shaman": {
+      "rank": 6,
+      "minimumClassLevel": 16,
+      "school": "Divination",
+      "baseRpCost": 13
+    },
+    "Wizard": {
+      "rank": 6,
+      "minimumClassLevel": 11,
+      "school": "Divination",
+      "baseRpCost": 13
+    }
+  },
+  "operational": null,
+  "additionalRpCost": 0,
+  "source": {
+    "catalogPath": "src/data/spells.js",
+    "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+    "catalogKey": "find-the-path",
+    "original": {
+      "name": "Find the Path",
+      "level": 6,
+      "resonanceRank": 6,
+      "school": "Divination",
+      "schools": [
+        "Divination"
+      ],
+      "placements": [
+        {
+          "name": "Find the Path",
+          "school": "Divination",
+          "level": 6,
+          "summary": "Know the shortest route to a specific location."
+        }
+      ],
+      "classLevels": {
+        "Cleric": 6,
+        "Mirrorsage": 6,
+        "Shaman": 6,
+        "Wizard": 6
+      },
+      "classRanks": {
+        "Cleric": 6,
+        "Mirrorsage": 6,
+        "Shaman": 6,
+        "Wizard": 6
+      },
+      "classLearnLevels": {
+        "Cleric": 11,
+        "Mirrorsage": 16,
+        "Shaman": 16,
+        "Wizard": 11
+      },
+      "classSchools": {
+        "Cleric": "Divination",
+        "Mirrorsage": "Divination",
+        "Shaman": "Divination",
+        "Wizard": "Divination"
+      },
+      "castingTime": "Not specified in current rulebook",
+      "range": "Not specified in current rulebook",
+      "components": "Not specified in current rulebook",
+      "duration": "Not specified in current rulebook",
+      "description": "Know the shortest route to a specific location.",
+      "alternateSummaries": [],
+      "classes": [
+        "Cleric",
+        "Mirrorsage",
+        "Shaman",
+        "Wizard"
+      ],
+      "status": "canon",
+      "source": "Player Rulebook — Spell Lists"
+    },
+    "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+    "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+    "coreEntries": [
+      {
+        "index": 276,
+        "original": {
+          "school": "Divination",
+          "level": 6,
+          "name": "Find the Path",
+          "effect": "Know the shortest route to a specific location.",
+          "source_paragraph": 9321,
+          "casting_time": "1 action",
+          "range": "60 feet",
+          "duration": "Instantaneous",
+          "components": "V, S, F",
+          "resolution": "Automatic or opposed as described",
+          "tags": [
+            "Utility"
+          ],
+          "rp_cost": 13
+        }
+      }
+    ],
+    "possibleHistoricalAliases": []
+  },
+  "reviewFlags": [
+    "Core resolution requires an explicit operational interpretation",
+    "Not selectable in this spell playtest packet until individual operational review"
+  ]
+}
+```
+
+## Complete selected procedure
+
+KEEP Action,60feet,V/S/F,instantaneous and the shortest route to a specific location. NEW one willing perceived creature within60feet/line of effect, including self, receives a private route from its actual current location. Before commitment identify one fixed specific place actually known to caster or recipient by prior visit or a genuine sufficiently precise established description/map. An arbitrary category such as nearest treasure, whoever stole my sword, a moving person's present hiding place or a guessed unknown door is not a specific known location. Ordinary known invalid declarations can be rejected; hidden misidentification, an inaccurate genuine reference, absent route and protected facts resolve after legal payment and return Indeterminate without diagnostic refunds.
+
+Destination distance is not limited to60feet: that range belongs to the recipient. NEW this mechanical route is restricted to actual currently connected physical geography on the recipient's existing plane, with no invented cross-plane topology or use of portals/teleports. The destination may be remote and its connecting map concealed. The spell can reveal a real hidden passage needed by the route, so ordinary lack of map knowledge does not itself bar a result. It does not generate missing world geometry: the Director must have actual established destination/topology facts, including a privately established map or concrete scene description, sufficient to support the answer. Partial reliable information may be stated as such; no complete route is asserted through a genuinely undefined segment.
+
+SHORTEST means least total actual centerline travel distance among currently physically traversable continuous itineraries for that recipient's actual body and available locomotion, with legal whole-body clearance and load. Use the same current distance/diagonal/topology convention as ordinary travel; measure slopes, climbs and swims by actual path length. Do not optimize safety, speed, number of checks, toll cost or encounter count. A shorter dangerous climb can beat a longer level corridor if the real recipient has the ordinary ability to attempt that climb. Actual required movement checks are conditional permissions, not predicted successes. A route cannot rely on a movement mode the recipient lacks, a transformation/spell not yet activated, a future tool it does not possess, an unsupported body gap, phasing through solid walls, destroying structural barriers or magically creating a passage. Existing time-limited locomotion can support a segment only where its present real remaining duration and the actual travel/work timing permit reaching and completing that segment; do not renew it for the answer.
+
+An actual openable closed door or real climb/swim obstacle can be a traversable segment. A locked door may qualify only when a real current ordinary method available to that recipient permits an attempt to open it under the door's actual rules; the directions still require that attempt, its genuine Action/work and tool/DC permissions. No key, lock-code, success result, destructive breaching permission, consent or credential is granted. An actually impassable seal without an available opening method excludes that segment. Required checks, legal openings and available traversal methods are considered when deciding possible passage, but no future dice are rolled or compelled. Another creature's willingness is not assumed. The individual's route says nothing about whether companions, a wagon or the full expedition roster fit; a party chooses actual movement/capacity and time under EX58.
+
+Give one complete compact itinerary: ordered turns/junctions, headings and distances, required current locomotion changes and recognizable route-specific landmarks or opening points. It can specify the location of a concealed entrance it actually uses; no unrelated room inventory, traps, inhabitants, map branches, exact hidden lock DCs, secret passwords or safe timing is supplied. An actual information protection that blocks an indispensable route segment makes that portion unavailable; do not silently return a longer route as the shortest. If multiple equal-length routes exist, choose once by a stable neutral map order for those premises, not by hidden danger or caster preference after the answer. The instantaneous itinerary is a snapshot, not a moving beacon, continual recalculation, perfect-memory feature or ongoing spell that can be dispelled from memory. Writing/sharing it takes ordinary means and time.
+
+Later closures, floods, movement loss, failed checks or changed access can make the itinerary unusable. Ordinary inference may reveal that, but the spell sends no update and consumes no new costs automatically. A new materially changed route question needs another legal paid cast. Equivalent inquiries under unchanged premises return the same route, not alternate branches useful for enumerating the entire hidden map. NEW all no-route, undefined-route, hidden-reference and protected-route results use Indeterminate rather than a diagnostic classification; a completely known unreachable route can of course be recognized by ordinary knowledge. The spell does not move anyone, complete travel, grant extra Watches, repair navigation tools or bypass a forbidden cosmology branch.
+
+INFO131-PATH: NEW concrete conditional-feasibility rule: compare actual connected itineraries by full centerline distance and whole body/load fit. Attemptable ordinary climb/key/tool work may admit a conditional itinerary, but name the real method/work without forecasting its check or completing it. A timed movement source admits a segment only with a feasible complete current work/travel schedule before its unchanged expiry; unknown required delays yield conditional/Indeterminate rather than a guaranteed itinerary. If an indispensable actually protected shorter segment cannot be read, do not certify a longer itinerary as shortest. A positive protected-terrain interaction requires a genuine scoped protection source; do not invent an area ward from a creature-only title. The fixture's80ft shortcut is20up+40across+20down, versus the actual120ft ground detour; it is not an invented80ft vertical climb ending at the same level without a descent.
+
+## Shared requirements referenced by this procedure
+
+### INFO131-CAST
+
+Use each actual native class-specific school/rank/minimum/baseRP, acquired source, real prepared book and available native Action/Reaction/components. Actual Wizard prepared-family protected base D0 applies only in its actual encounter; ordinary rank base/Refrain and risk price remain when not exempt. Same-named class cards keep actual independent source/cost/rank/recharge. No generic upcast, free provider or pending dependency by proximity.
+### INFO131-CLOCK
+
+Actual seconds, original regular/virtual START/END and per-owner send cycles are distinct. Preserve original deadlines, Ready preparation/release/end, source recipient-END riders and spent histories. Enter/leave/reorder/extra turns never refresh clocks or grants. Work/travel needs real duration and complete continuous body path; no coordinate jump or banked missed event.
+### INFO131-VIEW
+
+Complete private source/world state stays separate from permitted views per recipient/controller. Public output contains only source-authorized information, never private stable record IDs/hashes/ward reasons/RNG fields. Hidden unprotected facts can support legitimate results; missing/protected facts are not fabricated or diagnosed. Prophetic warnings, telepathy, ordinary sight and native roll presentations are distinct permissions.
+### INFO131-IDENTITY
+
+Retain original creator/root dealer/controller/holder/recipient/cast/application/roll lineage. Stable equivalent queries preserve selected overlapping answers. No source/charge duplication or new roster/command/attack/material/knowledge permission from an information effect. New finite encounter fixtures are labeled, not authenticated campaign facts.
+### INFO131-SUPPRESSION
+
+Actual source classification and local geometry govern. Universal Eye/Mindlink/Lore do not become Divination by theme. Preserve current accepted Antimagic local/component behavior, same-family exception, real removal IO and no clock reset/backlog. Remote old effects are not canceled solely by ownership; no class-engine deletion inferred from generic Antimagic.
+### INFO131-EVIDENCE
+
+All8 remain pending until exact independent acceptance/application. Current actual628/220/352/173/0 and closed cohorts/holds control; historical127/126 counts/statuses remain preserved. Full original16 obligations/25 questions and all substantive adverse branches retain actual sources and whole-case unavailable qualifications. Authored expected data is not runtime/human/balance/cosmology/temporal/release approval.
+
+## Accepted source cases
+
+- `DI6-04-A`: complete original case, actual route geometry, key/door actions, movement, and full timeline are preserved in `CASEBOOK.json` and `cases/DI6-04-A.json`.
+- `DI6-04-B`: complete original case and both branches are preserved. After the actual crossbar and new paid inquiry, the recipient-facing result is exactly `Indeterminate`. The missing surrounding-topology reason remains a private qualification; no global shortest-route claim is made. The forward and inverse event operations are independently verified.
+
+## Retained qualification
+
+The 120-foot postbar route remains a possible traversable detour, not a proven global shortest path. The protected-indispensable-shorter-terrain positive case remains held because no real terrain-protection provider or complete surrounding topology was supplied. No free route-opening success, spell movement, or world-content inference is added. See `HOLDS.json` for the full retained register.
+
+## Exact source archive
+
+`DD_Information8_Director_Return03_131.zip` — 492999414 bytes, SHA-256 `007ef53858a6f5bc69d7811b58d18d19f8434821362977a4a310a831a5c8fad3`. The complete source archive and all members remain preserved unchanged in the audit directory.

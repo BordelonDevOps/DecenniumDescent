@@ -1,0 +1,168 @@
+# Rank8 Resource6 — complete proposed operational procedures
+
+Authority: 689 reviewed/applied /159 pending /0 accepted-unapplied;413 complete reviewed standalone procedures. This return is accepted=false, applied=false. Every NEW clause is spell-local proposed authorship.
+
+## Shared classification
+
+NEW completions govern only these six proposed identities. Exact accepted interfaces are included as evidence, not amended globally.
+
+## Shared casting
+
+Use the actual native classAccess row, acquired repertoire and class engine. All six are rank8/base21RP/minimum class15. Core-compatible Action/120ft/V,S,F is retained; Furnace explicitly selects its historical alias below. Perceive legal targets/point with line of effect; total cover blocks. Actual speech, usable gesture hand and owned class focus are required. No generic upcast. Preflight legality/affordability precedes Action, RP/material/use commitment, concentration transition and chronological Dissonance/Refrain. Counter windows follow; miss/save/counter/late failure refunds nothing and restores no old concentration. No created effect retroactively modifies its own creation price.
+
+## Shared geometry
+
+NEW six-spell-local geometry uses feet and the accepted horizontal grid metric extended explicitly to 3D: D=max(|dx|,|dy|,|dz|). Range uses caster position to target foot/point. Matrix membership means a positive-volume intersection of actual occupied body interior and the closed grid-metric sphere; exact mere surface contact is not membership. Center-to-body line of effect clips eligibility. No proxy/familiar origin substitutes for original casting body. This is not a global metric amendment.
+
+## Shared clock
+
+Selected one-minute effects last 60 elapsed seconds from successful application, explicit absolute endpoints retained through extra turns, death, reordering and initiative transitions. Expiry at equality precedes new eligibility. Concentration ends on actual loss/incapacitation/death; nonconcentration records persist after creator death unless their own target/lifecycle ends. Effects are magical spell applications with generating rank8 and ordinary dispel interfaces, not physical objects. Actual Wizard class Dispel is rank3/3RP, INT+PB vs18 for these effects; no assumed Greater Dispel acquisition.
+
+## Shared suppression
+
+Actual applicable suppression suspends an application, never clocks, counters, causal credit, receipt ledgers or prior outcomes. No queued RP, missed interception, retroactive waiver or delayed information. An already committed lawful payment is history. Reentry/recast requires its own current checks. Native suppression input/output and no same-cast rescan rules remain exact.
+
+## Shared resources
+
+RP pools and maxima stay per actual identity, separate from HP/temp/form buffers, RC, charges, components and uses. Positive RP charges require a real personal RP pool and actual funds. Credits clip at actual maximum; waste is recorded and not banked. No transaction is replayable by changing cast/application IDs; preserve original causal root, payer, receiver and actual price allocation. Cast copies retain their own exact no-copy/no-resource restrictions; rank8 payloads are outside accepted Fate Echo rank0..7 and cannot be copied by it.
+
+## Shared replacement
+
+For Shield/Furnace one operative same-name application per recipient; a successful new application replaces the old even with another owner, without refund or copying counters. Nullification retains one per target, successful new failure-save application replaces; success creates none and leaves prior valid record. Mastery has one per beneficiary, successful new one replaces. Matrix one concentration field per caster, overlapping fields grant one waiver total. Starting same-owner concentration replacement ends the old at commitment even if countered. Stale cleanup addresses only its exact application ID.
+
+## Shared holds
+
+Authored conditional actor encounters are not established campaign events. Missing real external damage/transfer/Null/form/hazard/defense/item/ancestry profiles remain whole-case or branch holds, with no synthetic source acquisition. All current inherited qualifications are retained verbatim in authority/latest_accepted and the exact source packet.
+
+## spell-absorption-shield
+
+**KEEP**
+
+Absorb up to 100 levels of spells, gaining RP; Action/120ft/V,S,F/base21. Instantaneous source metadata remains evidence; the ongoing ward below is a NEW completion.
+
+**NEW_application**
+
+One willing actual living creature with a real RP pool, including self; concentration up to60seconds. Create100 remaining level-units. Automatic, no save and no Reaction to absorb; willingness to this mandatory ward is fixed at application. No physical armor/AC/cover or general antimagic.
+
+**NEW_interception**
+
+After all actual cast counters and the accepted Mirror one-return protocol, before the first unresolved direct recipient payload rolls an attack/save, automatically intercept that current warded recipient branch. Eligible: a real ordinary/class/ancestry/item spell with defined generating rank0..9, hostile/beneficial/self/allied, direct sole/multiple recipient or an instantaneous area pulse actually reaching this creature. Suppress all initial recipient payload components and attachment of its ongoing child to this recipient. Other recipients/field origins remain. A field established on a point, ongoing tick, pure transfer, reflected damage event, environmental magic or nonspell is not a fresh initial recipient spell branch. An accepted Mirror acts first; a returned original remains the same root. A countered spell reaches no ward. A consumed branch does not run its damage-prevention/save/on-hit hooks.
+
+**NEW_capacity**
+
+Debit generating rank, with rank0 debiting1unit but recovering0RP. Never use paidRP/characterlevel as rank. Require enough remaining units for the whole branch; insufficient means no debit/no interception/no recovery. One interception per original cast-root and recipient identity across all these Shields, including redirects/copies that retain that root. Multi-hit initial payload to one recipient is intercepted once in full, not per die/missile. Record the root-recipient key before effect suppression. At0 end the ward. A newly paid ward has100 but cannot re-intercept a previously consumed root-recipient.
+
+**NEW_recovery**
+
+NEW shield-local actual-paid funding: initial root budget=floor(actual ordinary BASE RP truly paid for that spell root /2), excluding surcharges, protected principal, HP, uses, charges and unpaid/waived prices. Preserve actual source price replacements (class Arcane Bolt base1). Award entitlement=min(generating rank, remaining root funding budget) to ward recipient; debit that root budget once before clipping/Nullification. Rank0 awards0. Distinct eligible recipients compete in stable recipientID order for the single root budget. Multiple shields do not duplicate it. Free/waived or charge-only casts can be absorbed but fund0. A copy uses only its real independently permitted new payment, never the old original payment; an exact no-resource descendant cannot fund recovery. Recovery is after interception and prevention of this branch, not countering or healing, and cannot refund its payer. A blocked/dead/full recipient wastes entitlement; no queue. Self/allied casts are legal but at most half actual base returns globally, preventing mutual net profitable recycling through this spell alone.
+
+**NEW_priority**
+
+Accepted cast counters first; Mirrors return once under their exact source; this Shield then sees the remaining initial actual recipient. If not intercepted, real spell immunities/save/attack then ordinary mitigation/prevention/transfer/temp/form/HP follow their own timing. No global change to Mirror, Barrier or other wards.
+
+## resonance-nullification
+
+**KEEP**
+
+One target cannot use or regenerate RP for one minute; Action120ft/V,S,F/base21. Existing RP is not drained.
+
+**NEW_application**
+
+One perceived actual living creature, willing or not, WIS save vs8+actualPB+native casting modifier (own actual school bonuses only). Failure establishes60elapsed seconds without concentration; success no new record/no refund. No repeated save is added for this soft pool restriction. It does not impose Stunned, Action loss, Charmed or Null Veil; apply only independently applicable genuine protections.
+
+**NEW_transactions**
+
+While operative prohibit voluntary actual RP debit costs/transfers/maintenance/sacrifices and all RP credits: innate regeneration, spell recovery, Conduit receipts, item recovery and beneficial rest gains. Other exact hostile pool destruction/drain is not a voluntary use and retains its own scope; this spell grants no generic RP theft immunity. Other resources, independent uses and rest benefits retain their sources. Known forbidden debit/credit-only declarations fail before Action/payment/use; a later actual restriction after a donor commits loses that donor principal under Conduit with0recipient credit. Recovery spells whose other targets remain legal can commit, but blocked target credit/entitlement is lost, never deferred. There is no negative pool, alternatepool or refund.
+
+**NEW_zero_and_history**
+
+A fully final0RP ranked cast is legal if all other permissions hold. Matrix waives only its selected early buckets, so mandatory later Dampening/Burden can create positive forbidden RP. Dissonance blocks still apply at0price. No-interface charge-only/use spells keep their actual independent costs; source-specific substitutions cover only what they actually cover. An already paid Ready release, ongoing effect and a no-RP maintenance continue without a second debit; a newly due positive maintenance payment is forbidden and its own failure ending applies. Suppression permits only currently lawful new transactions; missed credit is never replayed on suppression/expiry.
+
+## resonance-furnace
+
+**KEEP**
+
+Current Resonance Furnace elemental damage taken→RP subject to listed limit. NEW explicit local alias adoption of preserved Mana Furnace Core index187: Action120ft/V,S,F/base21 and MAX PB RP PER ROUND. Both names remain evidence; no second identity or global alias registry changes.
+
+**NEW_application**
+
+One willing actual living creature with real RP pool, including self; concentration up to60elapsed seconds. Recipient actual PB, not source owner PB, controls the cap. Core Instantaneous becomes this explicit NEW duration. No mitigation/healing/immunity supplied.
+
+**NEW_funding**
+
+NEW eligible types acid,cold,fire,lightning,poison,thunder for THIS Furnace only. For each genuine damage root/recipient event, after actual immunity/resistance/prevention and legal transfer, count actual lost tempHP + actual lost finite form-bufferHP + actual normalHP lost, typed proportionally by the source-defined allocation (otherwise fixed source component order); exclude prevented points, overkill and direct HP payments. A source transferring damage without new-resource/prevention triggers retains that prohibition. Real self/allied/environmental/recurring damage can qualify, never a fictional hit or duplicate root callback. Count once by root/recipient/damage-event ID; Null nonlethal preserves actual losses but supplies no new funding permission or lethal replacement trigger.
+
+**NEW_ratio_clock**
+
+Entitlement=floor(eligible actual loss /5)RP per event; no fractional carry. NEW fixed six-second epochs floor(worldElapsedSeconds/6), initialized on the shared encounter clock and retained outside initiative. For each recipient, all Furnaces/casters/copies share one epoch ledger. Its PB cap is captured from that recipient at first eligible event of the epoch; extra turns/recasts/suppression/IDs never reset it. Claim min(event entitlement,cap minus alreadyClaimed). Claimed allowance is spent even if pool full or RP gain subsequently blocked. Next epoch alone resets claim, not prior event IDs. There is no backfill.
+
+**NEW_order**
+
+Resolve the whole actual damage/life/transform/Wound and required concentration sequence first. Then check surviving same recipient and an operative Furnace. A dead recipient or ended/suppressed Furnace earns0, with no pending reward. In a self-Furnace, damage concentration failure removes it before award; target reaching0 ordinarily incapacitates a concentrating owner. A surviving other-owner Furnace may award to a living Dying/Stable target if a real pool and no other denial permit it; recovery neither heals nor restores consciousness. Recovery cannot reverse the triggering damage or restore spent defenses. Select strongest current same-name cap eligibility, not stacked awards; recipient epoch ledger persists replacement.
+
+## resonance-matrix
+
+**KEEP**
+
+A field allows spells without expending RP; Action120ft/V,S,F/base21. Original Instantaneous metadata retained; NEW concentration field up to60elapsed seconds.
+
+**NEW_geometry**
+
+Choose a perceived fixed point in120feet/line of effect; create a nonphysical10foot-radius grid-metric sphere. All actual casting bodies with positive-volume intersection and center line of effect qualify, allies/enemies/caster alike. No following/recentering/support/cover/crafting stock/leyline topology. Capture eligibility at actual cast commitment after incompatible concentration ends, before pricing; release/movement later cannot reprice paid casts.
+
+**NEW_price**
+
+Select M02-A: waive the ordinary creditable BASE bucket and ordinary pre-Nexus extras (printed ordinary extras and Dissonance surcharge) after real class/source reductions/waivers/minima and before Nexus. This is an explicit Matrix-local waiver of those minima only; other sources retain theirs. Nexus then has0early bucket; actual later Dampening+2 and final Influence remain. Protected Barrier X/Forge cycle principal and HP/material/charge/uses are NEVER waived. Barrier receives0creditableBasePaid from a waived base; actual protectedX can still fund it. Nonspell Conduit/Forge transactions get no waiver. No-interface spells gain no fictional earlyprice; later real charges retain their exact source.
+
+**NEW_casts**
+
+No added rank/cast-count limit. Ordinary/class/ancestry/item/Reaction spell casts with a real covered RP interface may qualify, but never gain missing acquisition, pool, component, Action/use, metamagic or concentration. A free ranked spell remains ranked for Dissonance/blocks/counters. Exact copy engines keep restrictions and real inherited uses. Ready prices at actual setup, not release. Starting a self concentration replacement removes that old Matrix before its quote, so it cannot waive itself; another owner’s surviving Matrix can waive a new Matrix. This admits useful finite renewal under actual actions/history/strain, not a claim of unbounded runtime.
+
+**NEW_outputs**
+
+Intrinsic lawful recovery is not generically erased by waiver: Well/Kindle keep exact separate rest-use ledgers; Leyline keeps its NEW receipt ledger; Shield gets0paid-base funding from a free cast; Furnace observes actual taken damage and its finite shared cap. No Matrix refund on ending or repricing of paid history. Same-owner successful field has one source/deadline; failed replacement never resurrects displaced concentration.
+
+## resonance-mastery
+
+**KEEP**
+
+For one minute know exactly RP needed for any spell; Action120ft/V,S,F/base21.
+
+**NEW_application**
+
+One willing perceived creature including self;60elapsed seconds, no concentration. No RP-pool prerequisite for learning a quote. One active record per beneficiary. No arbitrary rank/query-count cap; while operative the beneficiary can form one precisely specified inquiry at a time without an Action, only during a genuine decision window, never interrupting an indivisible transaction. Responses are private to beneficiary.
+
+**NEW_query**
+
+Identify one actual source identity/version and mode plus actor/provider, class-level/rank, extras/metamagic choices, actual position/time/environment and contemplated real permissions. Own context is authorized; foreign private actor context needs actual informed cooperation. Public identified spell cost may be queried hypothetically without learning its formula or acquiring access. Missing operative source/rank/context operands returns unresolved, not an invented number. Distinguish no RP interface, exact0, known positive but unaffordable, and illegal casting with separately computable hypothetical price.
+
+**NEW_quote**
+
+At query resolution snapshot the specified current context. Return exact ordinary total after real class/minima, this Matrix waiver, Nexus, Dampening and final Influence; separately show actual protected RP principal/other costs and legality/affordability only where requester already has authorized personal/cooperative pool knowledge. Include Ready history as already paid with0new release fee. No casting, reservation, Influence consumption, use expenditure, Dissonance or prospective concentration transition occurs; hypothetical new concentration prices from the predicted post-transition state. Quote is not future lock: later movement, strain or interruption requires new actual price.
+
+**NEW_information**
+
+Reveal useful total including otherwise hidden applicable cost adjustments when the actual context is authorized; no modifier count/name/location/caster-currentRP/private repertoire/formula follows from a total. Independently genuine information defenses apply only to their real scope. If they make the requested total unreadable/unresolved, use the same neutral “No determinate quote in this context” without exposing protection existence/counts. Preserve independently authorized separate inquiries. Missing history is not0cost. Actual antimagic can suppress Mastery; pending Mind Blank is not assumed acquired or operational. No divination comparison becomes a global privacy rule.
+
+## leyline-flow
+
+**KEEP**
+
+Choose3 actual RP-using spellcasters; each recovers cost of one Tier5-or-lower spell they can cast. Explicit L01-A current-book priority; Core flat10 and broader three-spellcaster wording retained as conflicting evidence. Tier means actual native generating spell rank0..5 for this NEW local completion, never characterlevel or paidRP.
+
+**NEW_targets**
+
+Exactly three distinct willing living perceived beneficiaries with real independently acquired RP pools, within120feet and line of effect; self allowed once. Oracle RC-only is ineligible. Each must have at least one actual acquired operational spell route of rank0..5 and unused Leyline receipt entitlement. Each selects their reference at declaration; absent choice means no legal declaration. Creature names do not grant pools, repertoire, custody or cosmology.
+
+**NEW_reference**
+
+Choose one genuinely possessed legal learned/prepared/class/native temporary route with an ordinary BASE RP-price interface and actual native rank0..5. Acquisition/preparation must exist, but current depleted funds, spent Action, Dissonance/Nullification or other temporary use restriction does not remove a possessed reference; record such restriction separately. Select printed actual native base RP price, including a class card’s true replacement base, before ANY optional extra, protectedprincipal, discount, waiver, Nexus, Matrix, Influence, Dampening or strain. Rank0base0 is allowed but yields0; no-interface charge-only/RC reference is ineligible. Snapshot that source and base at commitment, revalidate actual identity/grant at resolution; reference is never cast, learned, countered, paid or exhausted.
+
+**NEW_award**
+
+NEW explicit anti-repeat receipt limit, selected L04-B: one Leyline Flow receipt attempt per actual identity across all casters/classes/copies since that identity’s actual beneficial completed long rest. This is new spell-local authorship, not inherited Well law. At legal cast commitment atomically reserve/consume each of the three actual receipt uses, even if countered or later prevented; existing uses cannot be borrowed/reset by replacement, suppression, copying or Matrix. No separate caster daily cap. At resolution independently recheck each original recipient living/consent/range/line/grant. Each remaining branch credits its snapped base once, capped at that pool maximum; lost/blocked/overfull branch is wasted, no retarget/refund or shared reservoir. Valid siblings still resolve. Self recovery happens after real21cost, not financing it retroactively.
+
+**NEW_consequences**
+
+A native paid rank5-reference cast can recover30for21 group delta+9; this is an explicit useful finite creation, not conservation. Matrix may waive the21but does not erase intrinsic recovery or receipt limit; repeated same recipients are ineligible before any second payment. Different actual unused recipients can benefit; eventual real beneficial long rests refresh only their own source-qualified ledger. Bound rest/cadence/strain and actual identities remain necessary; no infinite-loop or balance claim follows. Shield can intercept a recipient branch, spending that Leyline receipt while only actually paid root base funds bounded Shield recovery. Furnace/Conduit remain distinct transactions. Name grants no actual leyline access/map.
+

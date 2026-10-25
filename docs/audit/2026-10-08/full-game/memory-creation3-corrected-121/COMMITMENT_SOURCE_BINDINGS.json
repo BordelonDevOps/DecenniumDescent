@@ -1,0 +1,367 @@
+{
+  "id": "MC3-COMMITMENT02-LOAD-BEARING-SOURCE-BINDINGS",
+  "baselineReturn": {
+    "path": "history/DD_Memory_Creation3_Part5_Conference_Return_01.zip",
+    "bytes": 1488514,
+    "sha256": "57a6fc56c27320b349c54ff4a7b68d12978dde5bdcd295fd54a4d20324a78327"
+  },
+  "references": [
+    {
+      "id": "SC-CAST",
+      "artifact": "EXACT_CASTING_READY_AUTHORITIES.json",
+      "fileBinding": {
+        "bytes": 12340,
+        "sha256": "6dc65d304fa3dce19521d02e9f26bea81c68304da90beea658cb756831da0768"
+      },
+      "pointer": "/completeCurrentEntries/0/entry/exactAuthority",
+      "completeValue": "## Resolve a cast at the table\n\n1. Verify the available Action/Bonus Action/Reaction, its exact trigger, components, targets, range and line of effect. No legal target means no activation or payment. A target in an area still needs the card's eligibility. Total cover blocks direct targeting unless expressly overridden.\n2. Choose a spell from your actual repertoire. Determine its class-specific rank and RP cost: rank 0–9 costs **0/2/3/5/7/10/13/17/21/26**. Add explicitly printed extra costs; Resonance Shield adds 1 RP even when the caster receives it as a cantrip. Generic Overcast is excluded.\n3. Read Dissonance **before** casting. Limit = max(4, 2 + PB + max(0, casting modifier)). At limit/limit+3/limit+6, ranked spells cost +1/+2/+3 RP. At limit+6 ordinary rank-1+ casting is blocked. Cantrips have no strain surcharge but still build Refrain. An expressly granted traumatic-casting exception pays the cost and its printed trauma; it grants neither rank nor repertoire access.\n4. Commit the legal cast's RP, materials and other printed costs before any attack/save or interruption. Perform its components and establish concentration if required, ending incompatible prior concentration. An ordinary missed, saved-against or countered legal cast refunds nothing and never restores displaced concentration.\n5. At this cast's beginning, apply ordinary Dissonance and Refrain once: 0 base for rank 0, 1 for ranks 1–5, 2 for ranks 6–9; consecutive same-named casts add Refrain +1/+2/+3, capped at +3. First cast or a different name adds +0. Apply the class's exact protected reduction, routing or vent and any hook whose printed trigger is beginning/casting. Weapon or idle turns do not reset the previous name/Refrain unless the class expressly says so. This chronological commitment occurs before the Counterspell window; a later Reaction cast updates its own history, and resuming the earlier cast does not update that history again.\n6. Open legal cast-interruption Reactions, resolving nested counters last-in, first-out. A surviving cast then resolves its effect: spell attacks are d20 + PB + the actual casting ability modifier; save DC is 8 + PB + that modifier. Use the exact card's hit/failure/success results and ordinary damage/conditions. Outcome-dependent class hooks occur only at their printed timing and with the required actual result. No automatic cantrip scaling applies. A negated spell grants no success/hit/damage effect merely because its casting cost was paid.\n7. Record concentration, exact expiration, per-rest use, summon and companion command obligations. A second spell cannot supply an ungranted Action, duplicate concentration or resource reset. A readied spell commits this casting sequence at preparation; release has no second cast, cost, cadence update or Counterspell window.\n\nCountering requires an actual operational spell or class card, its repertoire/access and a legal remaining Reaction. The ordinary Counterspell is now reviewed; it is separate from the Mage and Wizard class cards. Dispel Minor, Dispel Resonance, Dispel Magic (Lesser) and Dispel Magic use their exact individual scopes. Rank-limited dispels inspect the original generating cast's spell rank, not RP cost or the dispeller's rank. Higher and unassigned source variants retain their own unfinished status.\n\n",
+      "rule": "Validate known legal targets/range/components and commit the legal paid casting before an interruption window; no refund for later interruption."
+    },
+    {
+      "id": "SC-WOVEN",
+      "artifact": "PROCEDURES.json",
+      "fileBinding": {
+        "bytes": 65900,
+        "sha256": "72044ee1709d19f812679e2a92a18180d15eb503732e9d85b6f56c3f1f0a4c41"
+      },
+      "pointer": "/spells/0/procedure",
+      "completeValue": "WOVEN THREADS — selected complete proposed procedure.\nKEEP: Divination rank5, base10RP, Action,60feet,V/S/F, one perceived creature, WIS resistance, alteration of the genuinely last minute and Instantaneous duration. Retain all six actual class routes and their exact level gates. MC3-CAST-120, MC3-READY-120, MC3-MEMORY-120 and MC3-RECOVERY-120 apply only within their written scopes.\nNEW temporal declaration: choose Erase or Replace and either FIXED absolute [a,b), 0<b-a<=60, or RELATIVE offsets [-u,-v),0<=v<u<=60. A direct cast anchors relative offsets at its legal commitment; a readied cast fixes those offsets at preparation but anchors them at its legal release. Explicit absolute timestamps never move. Freeze the resulting interval and payload before saves, private eligibility or interruption outcomes; no post-result retargeting. At the initial direct declaration or Ready preparation, the fixed interval must be within that then-eligible preceding minute; a knowingly impossible fixed plan is rejected before preparation/direct payment. A lawful fixed plan that subsequently ages is not rebound at release: its stated temporal payload check occurs at resolution after an otherwise legal release has spent its Reaction. The controller may decline release under ordinary Ready, but aging supplies no refund or replacement interval. A RELATIVE plan is instantiated at direct commitment or Ready release before private results, then remains fixed. At effect resolution t, revalidate against [t-60,t). Erase applies only the still-valid intersection and the actual experienced/event-selected portions inside it; a partly aged interval can therefore be partly erased with the same full payment. A wholly aged/empty intersection does nothing. Replace requires its ENTIRE fixed time interval still to lie inside the resolution window; partial aging makes that replacement fail wholly, because automatically trimming or retiming its narrative would change the fixed content. This asymmetry is explicit NEW scope, not a generic casting rule. A relative plan is anchored once, never slid again after a delay. Both temporal failures are paid when lawful commitment already occurred, give no new interval/target and no hidden diagnostic. Temporal validation is distinct from the recipient's private experience capacity.\nErase may select the whole interval or one clearly described event/facet predicate using at most60 ordinary whitespace-delimited words; an empty event description means the whole interval. Replace supplies one coherent first-person sensory narrative of at most60 such words covering no more than that fixed interval. Ordinary linguistic words count; identifiers/code/concatenation cannot bypass the content limit. The caster must actually know the described concepts, not the unknown original memory. It may assert false events using known concepts, but supplies no proficiency, formula, language, repertoire, genuine consent or factual omniscience. No hearing/shared language is needed for simple sensory content; semantic content the target cannot actually understand is not translated or taught. Replace changes only actual personally experienced eligible portions; absent experience/unconsciousness cannot become a training slot or an invented original. Preserve the entire declared narrative and record unsupported semantic facets privately rather than substituting a different story.\nAt resolution require actual creature, current perception/range/line of effect and memory capacity/protection eligibility. Roll one native WIS save if there is an otherwise operative mental application; success leaves recall unchanged. Failure applies the selected permissible change once. A hidden capacity/protection failure or nonexistent experience provides no readout, fallback event, prior timestamp or control effect. Actual suppression at the target prevents the local mental application before its payload; no save/overlay is invented for a fully suppressed output.\nOn successful application write a private source/owner/recipient/originalDC/root/event ledger and change accessible recollection instantly. There is no ongoing concentration, fixed expiry, repeated save or later dispellable field. Completed external events, physical records, resources, injuries, skills and independent commands persist. No caster success notification or forced future decision is added. Preserve all earlier memory provenance under later edits. Shared recovery can subsequently remove this family's supported portions against the highest relevant originalDC without restoring an independent Disrupt Memory loss. Ended or recovered history remains stored; death/revival, ordinary rest and loading are not replay/reset permissions.",
+      "rule": "Freeze chosen mode, absolute interval and <=60-word narrative before save, interruption or private eligibility outcome."
+    },
+    {
+      "id": "SC-CREATION",
+      "artifact": "PROCEDURES.json",
+      "fileBinding": {
+        "bytes": 65900,
+        "sha256": "72044ee1709d19f812679e2a92a18180d15eb503732e9d85b6f56c3f1f0a4c41"
+      },
+      "pointer": "/spells/2/procedure",
+      "completeValue": "CREATION — selected complete proposed procedure.\nKEEP: Illusion rank5,base10RP,Action,60feet,V/S/F,Instantaneous,one nonliving object of vegetable matter. Retain Bard/Crimson Agent/Mirrorsage/Wizard exact class routes. MC3-CAST-120, MC3-READY-120 and MC3-STOCK-120 apply.\nNEW permanent ordinary output: choose one coherent object or physical material lot, total mass at most100lb, complete placed shape fitting inside one5-foot cube, and ordinary undamaged material reference value at most10gp/1000cp before damage, labor/quality/standing/market discounts. ALL three ceilings apply simultaneously; exact equality is legal. Use a source's actual material valuation/units. Where only a complete finished mundane item's baseline price exists, use that full undamaged Standard price as a conservative sufficient valuation, never subtract invented labor or use a cheaper same-name alias. Unknown real composition/value/shape remains a content prerequisite, not a zero-price material.\nThe whole substance must be ordinary, nonunique, nonmagical and plant-derived, with an actual examined physical sample/composition record. It may include examined processed plant fiber/cloth/paper/rope, ordinary plant food or a genuinely established plant oil/fuel; names alone establish none of those properties. No living organism/viable seed, animal silk/tissue, metal/stone, unique/rare/magical reagent, botanical monster trait, chemical poison, free water or unknown chemical formula is made. An examined dead nonviable plant seed can qualify as ordinary stock if its real profile does. Liquid stock requires an actual compatible open container with sufficient capacity; container mass/value/custody are separate and it is not created as an extra object. No direct placement inside a living body or sealed/inaccessible container.\nChoose a crude stock lot or one complete existing wholly plant-derived mundane finished profile. A finished item additionally requires its actually applicable primary tool proficiency and a studied ordinary construction pattern. These must be source-qualified or explicitly fixture prerequisites, not inferred from knowing Creation. This source-only production exception replaces that item's ordinary raw-material input and production work, but grants no new recipe, station qualification, rare catalyst, magic effect, quality/grade bonus, extra yield or tradeXP. It cannot manufacture learned information on a blank book or credentials. Output is Standard and obeys actual profile mass, dimensions, durability and use limitations. Any later crafting, cooking, repair, use, transfer, consumption and sale is a separate lawful source transaction.\nSelect a perceived supported unoccupied actual placement within60ft and caster line of effect; require the whole planned volume to fit through actual accessible openings without object/body overlap. Choose and freeze real composition/quantity/shape/pattern before hidden results. On ordinary Ready the material plan is prepared and the real placement chosen at legal release. Revalidate the full output and its local suppression at resolution. If any essential part of this one indivisible materialization is suppressed or fails fit/support/eligibility, create NO partial stock, with no refund after paid commitment. No free unsupported falling attack or forced excavation is supplied. A successful transaction creates one new root lot exactly once; duplicate callbacks grant nothing.\nExisting actual object profiles win. Actual cloth/paper/rope use their reviewed AC11, not the draft's generic AC10; actual wood uses AC15. Retain specific item structuralHP (e.g. weapon5; targeted rope segment5; letter1) and any source-specific defense/repair. NEW fallback only for otherwise unprofiled crude stock: food/loose soft plant pulp or fiber that is NOT an existing cloth/paper/rope profile uses AC10, rigid ordinary woodAC15; maximum structuralHP5 at mass<=1lb,10 at >1 through20lb,20 at >20 through100lb. This is one stock body's budget, not HP per gram or automatic armor/building capability. Declare its real physical damage compatibility before an attack. Ordinary object poison/psychic immunity and Broken-state rules remain. No finite liquid-damage behavior is fabricated from a sword hit.\nPartition exactly by MC3-STOCK-120's capacity-aware largest-remainder algorithm. Actual cut history, leaf IDs, exact masses, damage and value provenance remain. ZeroHP/max-zero fragments remain material without functioning item benefits. An actual repair source can restore only what its source authorizes: ordinary Mending can repair a qualifying minor connection but does not supply combat durability, missing/consumed material or a destroyed mechanism. Existing mundane self-repair needs actual recoverable item, trained tools/materials, source price, work and task. The source-only crude-stock fallback supplies no automatic priceable generic repair; an applicable actual rule is still needed. Bundling/rejoining is not HP redistribution or free manufacture.\nCompleted output is ordinary lasting physical matter. Later Greater Dispel or antimagic cannot delete it, food already consumed or ordinary derivatives. Actual casting suppression/countering still prevents formation at its real checkpoint; actual separately magical later additions remain their own effects. No continuous aura, source concentration or one-object-at-a-time limit is added. Every subsequent paid legal cast can form a separate bounded lot, with actual RP/strain/actions/repertoire; no unlimited discounts or guaranteed sale are implied. Qualified ordinary edible matter supplies only its genuine food mass/preparation-grade benefits under EX58/Cooking. It creates no water, packaging, meal boon, preserved-ration classification or full Supply by assertion. Age/freshness begins at creation for genuinely new stock and follows its actual profile; no unsourced shelf-life is invented. A later recipe consumes it only where its exact material identity/grade truly matches. A buyer, actual quote, provenance, fees and scarcity remain necessary; reference10gp is not cash. Structural zero does not by itself erase composition-based nutrition or ingredient potential; actual damage, contamination, preparation and source-qualified food/recipe rules decide those uses. No functioning finished-item durability is restored by that distinction.",
+      "rule": "Freeze composition, quantity, shape and legal perceived supported unoccupied placement at the direct commitment; revalidate actual formation later."
+    },
+    {
+      "id": "SC-COMMON",
+      "artifact": "SHARED_RULES.json",
+      "fileBinding": {
+        "bytes": 12982,
+        "sha256": "7aba35067c23a8de9c446dede1c502f1abac779de8421f11233c92f71d491f0b"
+      },
+      "pointer": "/rules/0",
+      "completeValue": {
+        "id": "MC3-CAST-120",
+        "classification": "KEEP scoped accepted casting; explicit local selections below",
+        "text": "Use the actual class-access row, earned repertoire/preparation, casting ability, normal PB, current components, costs, strain and exact beginning/ending hooks. Woven Threads and Creation are rank5/base10RP; Haze is rank6/base13RP. All are Action, V/S/F and Instantaneous, with no ongoing concentration. Ordinary casting commits its Action, actual payment, components, prospective concentration consequence where relevant, first-family history and Refrain before the real counter window. Countering, invalidation after legal commitment or hidden failure refunds nothing. A known illegal declaration commits nothing. No generic upcast, additional save, actor, material, repertoire, feature or free Action is supplied. A Wizard's automatic school bonuses and first prepared-family exemption retain actual scopes; first-family exemption does not erase explicit extra strain or Refrain. Actual all-source recovery/absorption protections retain their exact scopes; no resource-generating permission follows from a memory or material receipt.",
+        "sourceKeys": [
+          "ordinary-casting",
+          "wizard",
+          "class-rules",
+          "current-registry"
+        ]
+      }
+    },
+    {
+      "id": "SC-MATERIAL",
+      "artifact": "MATERIAL_PROFILES.json",
+      "fileBinding": {
+        "bytes": 17111,
+        "sha256": "20c86cd7d8623a577cd2adb0450a7bafe6895cdb5a8b5f96e71bb6224e94d133"
+      },
+      "pointer": "/recipe90",
+      "completeValue": {
+        "recipeId": "recipe-90",
+        "name": "Field Vital Soup",
+        "visibility": "public",
+        "status": "reviewed-authored-operational-playtest",
+        "sourceSha256": "32b2bf00c28584ad259c343bc5b961126d25078c094444c05bf3caf0c9edda5e",
+        "sourceRecipeIndex": 89,
+        "sourceEffect": "After a 10-minute meal, gain 3 temporary hit points and +1 to Constitution saves. A creature can benefit from one feast at a time.",
+        "sourceMechanics": {
+          "type": "meal",
+          "tag": "Vitality",
+          "tier": 1,
+          "temporaryHP": 3,
+          "duration": "until next long rest",
+          "secondaryTag": "Vitality"
+        },
+        "sourceRecipeTags": [
+          "Vitality"
+        ],
+        "sourceLegacyFields": {
+          "legacyName": "Soup of Savory Serviceableness",
+          "legacyEffect": "Minor magical effect"
+        },
+        "sourceRequirements": {
+          "skill": "Cooking",
+          "skillLevel": 1,
+          "difficulty": 11,
+          "tier": 1,
+          "rarity": "Common",
+          "quantity": 3,
+          "craftingTime": "4 hours",
+          "workRequirements": {
+            "station": "Cookfire or Kitchen",
+            "requiredTools": [
+              "Cook's utensils",
+              "Knife",
+              "Pot or pan"
+            ],
+            "fieldCraftable": true,
+            "timeMode": "expedition",
+            "activeWorkHours": 4,
+            "maximumAssistants": 0,
+            "facilityBonusEligible": true
+          },
+          "craftingCheck": {
+            "abilityOptions": [
+              "Wisdom"
+            ],
+            "formula": "d20 + chosen ability modifier + proficiency bonus + tool bonus + facility bonus + assistant bonus",
+            "targetDC": 11,
+            "qualityOutcomes": [
+              {
+                "margin": "10+",
+                "result": "Masterwork",
+                "effect": "Increase yield by 50% or improve one item property; preserve one catalyst."
+              },
+              {
+                "margin": "5 to 9",
+                "result": "Exceptional",
+                "effect": "Increase yield by 25% or improve durability/charges."
+              },
+              {
+                "margin": "0 to 4",
+                "result": "Standard",
+                "effect": "Create the listed result."
+              },
+              {
+                "margin": "-1 to -4",
+                "result": "Flawed",
+                "effect": "Create half yield or one reduced-duration/flawed result."
+              },
+              {
+                "margin": "-5 to -9",
+                "result": "Failed",
+                "effect": "No finished item; recover 25% of non-catalyst materials."
+              },
+              {
+                "margin": "-10 or natural 1",
+                "result": "Mishap",
+                "effect": "Lose consumed materials and roll on the tradeskill mishap table."
+              }
+            ]
+          },
+          "discovery": {
+            "sources": [
+              "trainer",
+              "starter manual",
+              "common experimentation"
+            ],
+            "minimumResearchHours": 0,
+            "requiresFormula": false,
+            "formulaConsumed": false
+          },
+          "components": [
+            {
+              "id": "ing-90-0-vegetables",
+              "name": "Vegetables",
+              "tier": 1,
+              "rarity": "Common",
+              "category": "crafting_supply",
+              "value": 2,
+              "weight": 0.1,
+              "quantity": 4,
+              "properties": [
+                "substrate"
+              ],
+              "materialCategory": "substrate",
+              "consumed": true,
+              "role": "substrate"
+            },
+            {
+              "id": "drop-living_root",
+              "name": "living root",
+              "tier": 1,
+              "rarity": "Common",
+              "category": "monster_part",
+              "value": 12,
+              "weight": 0.29,
+              "quantity": 1,
+              "properties": [
+                "botanical",
+                "organic",
+                "regenerative",
+                "vital"
+              ],
+              "legacyName": "Dawnflare Heart",
+              "materialCategory": "plant",
+              "sourceMonsters": [
+                "Awakened Shrub",
+                "Corpse Flower",
+                "Gas Spore",
+                "Sporefolk Adult",
+                "Sporefolk Sovereign (and 5 more)"
+              ],
+              "dropRate": 0.62,
+              "dropQuantity": "1d4",
+              "description": "A common living root. Unusual material with various crafting applications.",
+              "consumed": true,
+              "role": "material"
+            }
+          ],
+          "economy": {
+            "consumedMaterialValue": 20,
+            "consumedWeight": 0.69,
+            "laborValue": 2.0,
+            "recommendedMarketValue": 29,
+            "commissionDepositPercent": 50,
+            "salvageRecoveryOnFailurePercent": 25
+          },
+          "skillProgression": {
+            "skillXPOnSuccess": 4,
+            "trivialAtSkillLevel": 6,
+            "firstCraftBonus": true
+          }
+        },
+        "operational": {
+          "text": "After completing and accepting this feast, offer 3 temporary HP. Gain +1 to actual Constitution saving throws until the parent feast ends, including concentration and Wound/Injury saves when they are CON saves. Other roll types are not converted.",
+          "effect": {
+            "kind": "constitution-save-bonus",
+            "recipeTags": [
+              "Vitality"
+            ],
+            "magical": true,
+            "spell": false,
+            "concentration": false,
+            "temporaryHP": 3,
+            "parentDurationSeconds": null,
+            "parentEndsAtNextBeneficialLongRest": true,
+            "riderDurationSeconds": null,
+            "riderEndsWithParent": true,
+            "shieldDepletionEndsRider": false,
+            "acceptedFeastRequired": true,
+            "saveAbility": "CON",
+            "saveBonus": 1
+          },
+          "traitRider": null,
+          "failureOverride": null,
+          "activation": {
+            "activeMinutes": 10,
+            "regularTurnActions": 100,
+            "minimumElapsedSeconds": 600,
+            "additionalActionAfterRequiredCount": false,
+            "oneEaterOrFeederThroughout": true,
+            "recipientLocked": true,
+            "consent": "willing or Incapacitated with actual helper and compatible swallowing route",
+            "servingSpentAtLegalStart": true,
+            "noBenefitBeforeCompletion": true,
+            "interruptionLeavesOldFeast": true,
+            "declineMagicStillCountsCompletedFood": true
+          },
+          "physical": {
+            "foodWeightLb": {
+              "numerator": 2,
+              "denominator": 3
+            },
+            "defaultPackagingItemId": "cooking-containers.lidded-meal-crock",
+            "defaultPackagingWeightLb": 0.5,
+            "defaultGrossWeightLb": {
+              "numerator": 7,
+              "denominator": 6
+            },
+            "servings": 1,
+            "shelfLifeSeconds": 86400,
+            "spoilsWithoutDegradedStage": true,
+            "consumptionNeedOnlyStartBeforeShelfDeadline": true
+          },
+          "nutrition": {
+            "dailySmallMediumFoodFraction": {
+              "numerator": 1,
+              "denominator": 3
+            },
+            "dailyLargeFoodFraction": {
+              "numerator": 1,
+              "denominator": 6
+            },
+            "waterFuelOrSupplyCredit": 0,
+            "nutritiveInputMassLb": 0.4,
+            "worstRetainedNutritiveCatalystLb": 0.0,
+            "supplementaryRationReferenceCpPerLb": 25,
+            "standardSupplementaryFoodLb": 1.6,
+            "maximumMasterworkSupplementaryFoodLb": 2.27,
+            "reserveRoundedUpToLb": 0.01,
+            "sourceComponents": [
+              {
+                "componentIndex": 0,
+                "componentId": "ing-90-0-vegetables",
+                "name": "Vegetables",
+                "countsAsNutritiveInput": true,
+                "countedMassLb": 0.4,
+                "basis": "ordinary edible food after actual recipe preparation; Oil means food-grade cooking oil"
+              },
+              {
+                "componentIndex": 1,
+                "componentId": "drop-living_root",
+                "name": "living root",
+                "countsAsNutritiveInput": false,
+                "countedMassLb": 0,
+                "basis": "not credited as nutritive bulk by this card; no verified edible-food profile supplied"
+              }
+            ],
+            "reserveBeforeCheck": true,
+            "genericSupplementIncorporation": "after outcome, before finished-serving creation",
+            "reservationConsumesFood": false,
+            "genericFailedOrMishapWithoutFinishedProductConsumesSupplement": false
+          },
+          "craft": {
+            "sourceActiveWorkHours": 4,
+            "operationalActiveWorkHours": 4,
+            "workTimeProvenance": "source",
+            "firstBindingPhaseMinutes": 15,
+            "phaseIncludedInWork": true,
+            "maximumYield": 4,
+            "standardQuantity": 3,
+            "flawed": {
+              "mode": "half-batch-quantity",
+              "quantity": 1
+            },
+            "durabilityOnlyDedicatedMundanePackaging": true,
+            "standardQuantityOnlyWhenDurabilityChosen": true,
+            "mealCrockQualityMaxHP": 3,
+            "potencyImproved": false,
+            "maximumYieldNutritionReservedBeforeCheck": true,
+            "maximumYieldOutputDispositionReservedBeforeCheck": true,
+            "qualityDurabilityPreservesDamageDeficit": true,
+            "mealCrockCurrentHPIncreaseOnFirstImprovement": 1,
+            "mealCrockRepeatedMaximumIncrease": 0
+          },
+          "value": {
+            "standardBatchReferenceGp": 29,
+            "unitReferenceGp": {
+              "numerator": 29,
+              "denominator": 3
+            },
+            "extraFoodAndPackagingOutsideSourceEconomics": true
+          },
+          "sharedRules": "docs/mechanics/COOKING_RECIPE_PLAYTEST.md",
+          "outputDisposition": {
+            "predeclaredBeforeCompletionCheck": true,
+            "maximumServingSlots": 4,
+            "allowedKinds": [
+              "actual compatible food-safe storage capacity",
+              "distinct immediate-consumption slot"
+            ],
+            "immediateSlotRequiresPresentCompatibleRecipientEaterOrFeederAndAccess": true,
+            "maximumSimultaneousImmediateSlotsPerRecipient": 1,
+            "immediateServingCommittedAtCraftCompletion": true,
+            "invalidImmediateSlotRequiresActualReservedStorage": true,
+            "missingFallbackPreventsValidCompletionThroughException": true
+          }
+        }
+      },
+      "unitEvidence": "COOKING_PUBLIC_RECIPE_CARDS.md recipe-90: 2 gp/unit; 0.1lb/unit. Not recipe-90 serving or magical feast."
+    }
+  ],
+  "completeExistingSourceChainFile": "SOURCE_REFERENCES.json",
+  "historicalSourceDataUnchanged": true,
+  "newRuleSelected": false
+}

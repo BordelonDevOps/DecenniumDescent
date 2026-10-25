@@ -1,0 +1,1474 @@
+{
+  "schemaVersion": "1.0",
+  "version": "0.1-playtest",
+  "class": "Dragoon",
+  "status": "provisional-card-draft-not-balance-approved",
+  "sourceExtractSha256": "a346670f4244efe3641cfb06814819d83ffb8512153858205f0621bd8ab8a04b",
+  "protectedInterfaceOriginal": "If the Dragoon moved at least 20 feet before a Weave cast, reduce that cast's Dissonance gain by 1 (minimum 0); Momentum carries the note through motion.",
+  "rpByClassLevel": [
+    1,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "rpAuthority": "Explicit fallback: Cleric CoreV2 curve ×0.35, halves upward",
+  "maxSpellRankByClassLevel": [
+    0,
+    0,
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4
+  ],
+  "asiClassLevels": [
+    4,
+    8,
+    12,
+    16,
+    19
+  ],
+  "engine": [
+    "Strength is the class ability. Momentum starts/ends encounters at 0; cap 5, rising to 7 with Momentum Overflow or automatically at class 9. On each regular turn, moving at least 15 ft under your own power grants 1 Momentum, and damaging an enemy with a weapon attack grants 1 more. These are the only default gains; all gains/refunds together cap 2 per round. Forced movement, teleportation, movement in place, allies and summons cannot farm Momentum. Movement counts actual path traveled toward a tactical destination; one threshold per turn.",
+    "A leap technique moves you through an unobstructed arc to a visible unoccupied landing space within its range, adjacent to its target when attacking. Land during the same activation. It spends movement equal to horizontal distance, unless the card expressly supplies additional movement. A leap never gives flight, indefinite airborne immunity or free attacks. You cannot leap through ceilings/walls; vertical height is at most half the printed horizontal range. Safe technique landings do not cause self-fall damage; interrupted/falling travel follows ordinary falling rules. No bonus damage is earned by repeatedly dropping from a ledge.",
+    "All attack cards use a wielded polearm unless they explicitly describe a non-weapon save effect. A technique is its own Action, not an Attack Action plus free technique. At class 5 your ordinary Attack Action makes two attacks, at most two even when multiclass features overlap; each technique still gives only printed attacks. This automatic Extra Attack is a new explicit advancement specification for the pilot.",
+    "Armor bypass means the exact printed attack bonus or resistance exception, never subtracting a percentage of the target's whole AC. Critical ranges do not stack. A Dragoon can use only one free/Bonus Action leap granted by class features per round; it cannot trigger another free leap. Extra full Actions share the suite-wide cap. Reaction intercepts require a legal path and destination and do not rewind resolved damage.",
+    "Spending Momentum pays before resolution; a hit refund cannot pay its own activation. Burn means 1d4 fire at start of target's next 2 turns, nonstacking. Bleed means 1d4 physical at start of next 2 turns; an Action with a healer's kit ends it. Do Ts give no Momentum or critical triggers. Hard denial uses the shared once-per-target/encounter guard.",
+    "When casting an ordinary spell after moving at least 20 ft this turn, reduce that cast's Dissonance gain by 1, minimum 0; no automatic RP discount. Dragoon techniques are martial unless their card specifies elemental magic. Use Core V 2 RP and the Dragoon rank gates for separate spellcasting.",
+    "Use scheduled Base/Arch/Hero choices. Skybound Assault, Momentum Engine and related passives improve the automatic engine rather than unlock basic movement or generation. Lancer's Apex is automatic 9; at 10 choose Dragon Guardian, Drake Rider or Dragon Tyrant. The corresponding Final Flight is automatic 20. Apex Assault is an active technique despite its source passive heading."
+  ],
+  "workedExample": [
+    "Dragoon 5, STR 16, PB 3, S 2, M 3; start Momentum 0. Know Dragon Leap, Momentum Surge, Wyvern's Guard and Draconic Roar at 1; Momentum Engine and Draconic Discipline at 2; Dragonflight and Momentum Overflow at 3. Capacity 7.",
+    "Turn 1: Dragon Leap spends 0 Momentum and moves 20 ft of Speed 30. Weapon attack hits: movement+hit each gain 1, ending 2. It rolls weapon damage+2d6. Land immediately.",
+    "Turn 2: Bonus Action Momentum Surge spends 2, balance 0, increases movement. Move 20 ft and use ordinary Attack Action: first successful hit and movement return 2 total, even if both attacks hit. End 2.",
+    "Turn 3: Dragonflight costs 2, balance 0. It supplies movement up to 60 ft as part of the Action; hit and movement regain 2 within the common cap. End 2; no additional normal Attack Action.",
+    "Turn 4: if knocked prone, use Aerial Recovery only if known and your Reaction is available. Its 1 Momentum still counts toward the round gain cap. A second refund cannot exceed 2 total gains.",
+    "End encounter: Momentum 0. RP, per-rest uses and other party resources do not refill."
+  ],
+  "balanceQuestions": [
+    "Does Momentum stay available without trivial back-and-forth movement?",
+    "Do Guardian intercepts compete fairly for Reactions?",
+    "Are Tyrant area attacks and Rider extra Actions bounded at high level?"
+  ],
+  "cards": [
+    {
+      "id": "dragoon.base.skybound-assault",
+      "name": "Skybound Assault",
+      "className": "Dragoon",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "One target hit by your leap",
+      "duration": "Instant",
+      "frequency": "Once/own turn",
+      "effect": "After a leap moves at least 15 ft and its attack hits, add S damage. Its hit grants ordinary Momentum, not an extra point. This benefit cannot trigger from forced movement or a leap granted by this same feature.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2277,
+        "originalText": "Skybound Assault: Leap to a target and deal +25% damage. Grants 1 Momentum."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.base.draconic-discipline",
+      "name": "Draconic Discipline",
+      "className": "Dragoon",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Self",
+      "duration": "While known",
+      "frequency": "Continuous",
+      "effect": "Gain advantage on saves against being knocked Prone or forcibly moved. It does not protect against Stunned, spell damage or grappling unless the save also imposes one of those named effects.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2278,
+        "originalText": "Draconic Discipline: Gain +10% resistance to knockback and crowd control."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.base.momentum-engine",
+      "name": "Momentum Engine",
+      "className": "Dragoon",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Self",
+      "duration": "This turn",
+      "frequency": "Once/own turn",
+      "effect": "After your first 15 ft of voluntary movement generates Momentum, ignore the next 5 ft of nonmagical difficult terrain this turn. The movement threshold itself is automatic class engine; this feature does not create another gain trigger.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2279,
+        "originalText": "Momentum Engine: Movement of 3+ tiles in a turn grants 1 Momentum (Max 5)."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.base.dragoon-s-reach",
+      "name": "Dragoon's Reach",
+      "className": "Dragoon",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Polearm weapon attacks",
+      "duration": "While known",
+      "frequency": "Continuous",
+      "effect": "Increase your wielded polearm's reach by 5 ft, maximum 15 ft. Once/own turn a natural 19 polearm attack that hits critically hits. It does not extend the range of other abilities or stack with another critical-range expansion.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2280,
+        "originalText": "Dragoon's Reach: Polearm attacks strike 1 tile further and have +5% crit chance."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.base.aerial-poise",
+      "name": "Aerial Poise",
+      "className": "Dragoon",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Reaction",
+      "cost": "0",
+      "rangeAndTarget": "Self during an actual leap",
+      "duration": "This damage instance",
+      "frequency": "Once/round",
+      "effect": "When a ranged attack hits you during your leap movement, halve its damage. You must spend the Reaction before damage resolves. Remaining airborne between turns cannot be declared to keep this protection active.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2281,
+        "originalText": "Aerial Poise: While airborne, take 25% reduced damage from ranged attacks."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.base.dragon-leap",
+      "name": "Dragon Leap",
+      "className": "Dragoon",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "0",
+      "rangeAndTarget": "One polearm enemy at landing point within 30 ft",
+      "duration": "Instant",
+      "frequency": "Recharge 2",
+      "effect": "Leap, spending normal movement, then make one polearm attack. On hit add S d6 weapon-type damage. Legal movement and a hit may each grant 1 Momentum under the common cap. Land immediately; height never adds unbounded damage.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2284,
+        "originalText": "Dragon Leap: Launch yourself into the air and come crashing down on a target up to 30 feet away, dealing damage based on your Strength and height."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.base.piercing-thrust",
+      "name": "Piercing Thrust",
+      "className": "Dragoon",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "1 Momentum",
+      "rangeAndTarget": "One enemy in polearm reach",
+      "duration": "Instant",
+      "frequency": "Recharge 2",
+      "effect": "Make one polearm attack with+2 to the attack roll. On hit add S d4 weapon damage. This is the complete armor-piercing benefit; no percentage of AC is removed and critical range is unchanged.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2285,
+        "originalText": "Piercing Thrust: A powerful spear attack that partially ignores enemy armor and has increased critical hit chance."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.base.wyvern-s-guard",
+      "name": "Wyvern's Guard",
+      "className": "Dragoon",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "1 Momentum",
+      "rangeAndTarget": "Self",
+      "duration": "Until start next turn",
+      "frequency": "Recharge 2",
+      "effect": "The next attack that damages you has damage reduced by S d6+M, minimum 0; then the guard ends. Roll the reduction only when damage occurs. This reduction cannot heal or reflect damage.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2286,
+        "originalText": "Wyvern's Guard: Enter a defensive stance that increases your resistance to damage from the next attack."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.base.momentum-surge",
+      "name": "Momentum Surge",
+      "className": "Dragoon",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "2 Momentum",
+      "rangeAndTarget": "Self",
+      "duration": "Until end current turn",
+      "frequency": "Recharge 2",
+      "effect": "Gain+15 ft Speed and+1 on your next polearm attack this turn. Spend before moving; movement may then generate normal Momentum. Grants no attack, extra Action, Bonus Action or Reaction.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2287,
+        "originalText": "Momentum Surge: Consume 2 Momentum to gain a burst of speed and +1 to your next attack roll."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.base.draconic-roar",
+      "name": "Draconic Roar",
+      "className": "Dragoon",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "1 Momentum",
+      "rangeAndTarget": "Up to 3 enemies and 3 allies within 15 ft that hear you",
+      "duration": "Until end your next turn",
+      "frequency": "Recharge 3",
+      "effect": "Enemies make WIS saves; failure Frightened of you. Chosen allies gain advantage on their next save against Frightened before duration ends. A creature may repeat the WIS save at its turn end, ending fear on success.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2288,
+        "originalText": "Draconic Roar: Release a intimidating battle cry that can frighten weaker enemies and rally allies."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.arch.crater-strike",
+      "name": "Crater Strike",
+      "className": "Dragoon",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "1 Momentum",
+      "rangeAndTarget": "Up to 2 enemies within 5 ft of your leap landing",
+      "duration": "Instant",
+      "frequency": "Once/own turn",
+      "effect": "After your leap attack hits, optionally pay 1; each selected adjacent enemy makes STR save or falls Prone. No additional weapon damage or Momentum gain. Landing on an occupied space is not permitted.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2294,
+        "originalText": "Crater Strike: Leap attack that applies knockdown in a small AoE."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.arch.momentum-overflow",
+      "name": "Momentum Overflow",
+      "className": "Dragoon",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Self",
+      "duration": "While known",
+      "frequency": "Continuous",
+      "effect": "Momentum cap becomes 7 early; cap becomes 7 for all Dragoons at 9. When starting a weapon technique with 6 or 7 Momentum, its first hit adds 1d6 damage before costs are deducted. Once/own turn, not per point above 5; no stored overflow beyond 7.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2295,
+        "originalText": "Momentum Overflow: Exceed Momentum cap (Max 7), bonus damage scales with overflow."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.arch.piercing-howl",
+      "name": "Piercing Howl",
+      "className": "Dragoon",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "1 Momentum",
+      "rangeAndTarget": "Self; next polearm attack",
+      "duration": "Until end current turn",
+      "frequency": "Recharge 3",
+      "effect": "Your next polearm attack gains+2 to hit and ignores resistance to its weapon damage type. Immunity remains. It does not ignore shields, natural armor, cover or arbitrary halves of AC.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2296,
+        "originalText": "Piercing Howl: Next polearm strike ignores 50% armor."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.arch.lance-tempo",
+      "name": "Lance Tempo",
+      "className": "Dragoon",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Self",
+      "duration": "Until start next turn",
+      "frequency": "Once/own turn",
+      "effect": "After moving 15 ft voluntarily, gain+1 AC. If you critically hit with a polearm that turn, add 1d6 weapon damage once. The added die does not double itself or create further critical triggers.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2297,
+        "originalText": "Lance Tempo: If you moved this turn, gain +10% evasion and +10% crit damage."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.arch.wyvern-s-flow",
+      "name": "Wyvern's Flow",
+      "className": "Dragoon",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 5,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Self after a damaging leap hit",
+      "duration": "Instant",
+      "frequency": "Once/round",
+      "effect": "Regain 1 Momentum within the total 2-per-round gain cap, and shorten one OTHER positive leap cooldown by 1. Shortening uses that ability's reset allowance. No free leap or Action follows.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2298,
+        "originalText": "Wyvern's Flow: Successful leaps refund 1 Momentum and reduce next cooldown by 1."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.arch.apex-assault",
+      "name": "Apex Assault",
+      "className": "Dragoon",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 7,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "All Momentum, minimum 3",
+      "rangeAndTarget": "One enemy in polearm reach after leap up to 30 ft",
+      "duration": "Instant",
+      "frequency": "Recharge 4",
+      "effect": "Spend K Momentum and leap using normal movement. Make one polearm attack; on hit add min(K, 5)d6 weapon damage. On a miss no bonus damage; expenditure remains. Gains from this activation cannot exceed the common cap.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2299,
+        "originalText": "Apex Assault: Ultimate leap: high damage finisher that consumes all Momentum."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.arch.lancer-s-apex",
+      "name": "Lancer's Apex",
+      "className": "Dragoon",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 9,
+      "acquisition": "automatic",
+      "activation": "Triggered",
+      "cost": "All Momentum at current maximum; 1 short-rest use",
+      "rangeAndTarget": "Self; one known non-Finale leap",
+      "duration": "This activation",
+      "frequency": "1/short rest",
+      "effect": "Before paying the leap's Momentum cost, spend all maximum Momentum instead and use that leap as a Bonus Action, still paying other costs. It cannot trigger another free leap. Damage and hit generation use ordinary caps; this grants no extra Bonus Action.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2300,
+        "originalText": "Capstone – Lancer's Apex: Leap attacks now cost no action if performed at max Momentum (1/encounter)."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.arch.dragonflight",
+      "name": "Dragonflight",
+      "className": "Dragoon",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "2 Momentum",
+      "rangeAndTarget": "One enemy adjacent to landing within 60 ft",
+      "duration": "Instant",
+      "frequency": "Recharge 3",
+      "effect": "Leap up to 60 ft as additional movement supplied by this Action. Make one polearm attack on landing; on hit add(S+1)d6 weapon damage. No damage scaling from distance/height and no remaining flight.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2303,
+        "originalText": "Dragonflight: An enhanced leap ability that allows you to jump twice as high and far, with increased damage based on distance traveled."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.arch.spear-cyclone",
+      "name": "Spear Cyclone",
+      "className": "Dragoon",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "2 Momentum",
+      "rangeAndTarget": "Up to 3 distinct enemies in polearm reach",
+      "duration": "Instant",
+      "frequency": "Recharge 3",
+      "effect": "Make one polearm attack against each. No target is attacked twice. Hit-based Momentum can be gained only once this turn regardless of number of hits; movement and refund caps still apply.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2304,
+        "originalText": "Spear Cyclone: Spin your polearm in a wide arc, striking all enemies within range and building Momentum for each hit."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.arch.momentum-burst",
+      "name": "Momentum Burst",
+      "className": "Dragoon",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 5,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "All Momentum, minimum 2",
+      "rangeAndTarget": "Self",
+      "duration": "Until end current turn",
+      "frequency": "Recharge 3",
+      "effect": "Spend K Momentum. Next polearm hit this turn adds min(K, 4)d6 weapon damage. If the next attack misses the effect ends. It does not widen critical range or multiply another added damage package.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2305,
+        "originalText": "Momentum Burst: Consume all Momentum to gain a significant boost to your next attack's damage and critical hit chance."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.arch.aerial-recovery",
+      "name": "Aerial Recovery",
+      "className": "Dragoon",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Reaction",
+      "cost": "0",
+      "rangeAndTarget": "Self just knocked Prone or pushed",
+      "duration": "Instant",
+      "frequency": "Recharge 2",
+      "effect": "After the triggering displacement resolves, stand from Prone without movement cost and move 5 ft to an unoccupied space without provoking opportunity attacks. Gain 1 Momentum within the round cap. Cannot prevent falling without a legal landing.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2306,
+        "originalText": "Aerial Recovery: After being knocked down or back, instantly regain your footing and gain 1 Momentum."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.arch.dragon-s-eye",
+      "name": "Dragon's Eye",
+      "className": "Dragoon",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 7,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "1 Momentum",
+      "rangeAndTarget": "One visible enemy within 60 ft",
+      "duration": "Until end next turn",
+      "frequency": "Recharge 3",
+      "effect": "Study it: your first polearm attack against it has advantage, and you learn one of its visible damage resistances if any. No automatic critical, secret full stat block or ability to attack through cover.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2307,
+        "originalText": "Dragon's Eye: Briefly gain the keen vision of a dragon, allowing you to spot weaknesses in enemy defenses and increase your critical hit range."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.hero.dragon-guardian.aegis-leap",
+      "name": "Aegis Leap",
+      "className": "Dragoon",
+      "band": "Hero",
+      "path": "Dragon Guardian",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Reaction",
+      "cost": "2 Momentum",
+      "rangeAndTarget": "Ally within 15 ft targeted by an attack",
+      "duration": "One attack",
+      "frequency": "Recharge 2",
+      "effect": "Before the attack roll, leap to an empty space adjacent to ally using this supplied movement. Become the target if the attack can reach you; resolve against your AC. Cannot be used if restrained or no path. Counts as your one intercept reaction.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2316,
+        "originalText": "Aegis Leap: Leap to an ally and intercept the next attack made against them."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.hero.dragon-guardian.wyrmhide",
+      "name": "Wyrmhide",
+      "className": "Dragoon",
+      "band": "Hero",
+      "path": "Dragon Guardian",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Self while above half maximum HP",
+      "duration": "While threshold met",
+      "frequency": "Continuous",
+      "effect": "Reduce each damage instance by 2 and gain advantage on CON saves against Bleed, Burn and Poisoned. No blanket condition immunity; effects already present persist and ordinary nonstacking reduction applies.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2317,
+        "originalText": "Wyrmhide: Gain +10% DR and immunity to Bleed/Burn/Poison while above 50% HP."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.hero.dragon-guardian.momentum-shield",
+      "name": "Momentum Shield",
+      "className": "Dragoon",
+      "band": "Hero",
+      "path": "Dragon Guardian",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Self",
+      "duration": "Until start next turn",
+      "frequency": "Once/own turn",
+      "effect": "After spending at least 1 Momentum, gain temporary HP equal to amount spent+M, maximum 10. Later expenditure replaces with the higher remaining value; no real HP restoration.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2318,
+        "originalText": "Momentum Shield: Spending Momentum grants temporary HP."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.hero.dragon-guardian.spiral-defense",
+      "name": "Spiral Defense",
+      "className": "Dragoon",
+      "band": "Hero",
+      "path": "Dragon Guardian",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Reaction",
+      "cost": "1 Momentum",
+      "rangeAndTarget": "Melee attacker in polearm reach that misses you while at maximum Momentum",
+      "duration": "Instant",
+      "frequency": "Once/round",
+      "effect": "Make one polearm attack. Pay Momentum after checking the maximum prerequisite. This counter grants no Momentum and cannot trigger another counter or leap. It consumes your ordinary Reaction.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2319,
+        "originalText": "Spiral Defense: Automatically counter melee attacks with a polearm when at max Momentum."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.hero.dragon-guardian.bastion-descent",
+      "name": "Bastion Descent",
+      "className": "Dragoon",
+      "band": "Hero",
+      "path": "Dragon Guardian",
+      "sourceKind": "passive",
+      "minimumClassLevel": 20,
+      "acquisition": "automatic",
+      "activation": "Action",
+      "cost": "5 Momentum; 1 long-rest use",
+      "rangeAndTarget": "Leap within 30 ft; up to 6 allies within 15 ft of landing",
+      "duration": "Instant; protection until start next turn",
+      "frequency": "1/long rest",
+      "effect": "Land in empty space. Chosen allies gain 4d8+M temporary HP and may end Frightened or Poisoned. They gain resistance to the next damage instance before your next turn. No healing, resurrection or removal of Wounds.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2320,
+        "originalText": "Final Flight – Bastion Descent: Slam down between allies, cleansing effects and shielding the group."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.hero.dragon-guardian.guardian-s-intercept",
+      "name": "Guardian's Intercept",
+      "className": "Dragoon",
+      "band": "Hero",
+      "path": "Dragon Guardian",
+      "sourceKind": "active",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Reaction",
+      "cost": "2 Momentum",
+      "rangeAndTarget": "Ally within 30 ft being hit by an attack",
+      "duration": "One attack",
+      "frequency": "Recharge 3",
+      "effect": "Leap adjacent before damage, becoming the target of that already successful hit; halve damage to you after normal mitigation. No new roll against your AC. Requires legal path/landing. You cannot also use Aegis Leap on the same attack.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2323,
+        "originalText": "Guardian's Intercept: Leap to an ally's position and take the next attack targeted at them, with reduced damage to yourself."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.hero.dragon-guardian.draconic-ward",
+      "name": "Draconic Ward",
+      "className": "Dragoon",
+      "band": "Hero",
+      "path": "Dragon Guardian",
+      "sourceKind": "active",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "3 Momentum",
+      "rangeAndTarget": "Self and up to 3 allies within 10 ft",
+      "duration": "Concentration, 3 of your turns",
+      "frequency": "Recharge 4",
+      "effect": "Project a ward: chosen creatures while within 10 ft reduce damage by S, minimum 0. The reduction does not stack with Wyrmhide or another flat class reduction. No passive healing or extra Actions.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2324,
+        "originalText": "Draconic Ward: Channel draconic energy to create a protective aura around yourself and nearby allies, reducing incoming damage."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.hero.dragon-guardian.wyrmscale-defense",
+      "name": "Wyrmscale Defense",
+      "className": "Dragoon",
+      "band": "Hero",
+      "path": "Dragon Guardian",
+      "sourceKind": "active",
+      "minimumClassLevel": 12,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "3 Momentum",
+      "rangeAndTarget": "Self",
+      "duration": "Until end next turn",
+      "frequency": "Recharge 4",
+      "effect": "Gain resistance to bludgeoning, piercing and slashing and advantage on saves against Poisoned, Frightened and Stunned. This is not immunity; existing conditions still require their ordinary removal.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2325,
+        "originalText": "Wyrmscale Defense: Temporarily harden your skin like dragon scales, gaining significant damage reduction and status effect resistance."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.hero.dragon-guardian.momentum-barrier",
+      "name": "Momentum Barrier",
+      "className": "Dragoon",
+      "band": "Hero",
+      "path": "Dragon Guardian",
+      "sourceKind": "active",
+      "minimumClassLevel": 14,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "All Momentum, minimum 3",
+      "rangeAndTarget": "Up to 4 allies within 15 ft",
+      "duration": "Temporary HP 1 minute",
+      "frequency": "Recharge 4",
+      "effect": "Spend K Momentum. Each gains K+S d6 temporary HP, using one shared dice roll. These HP do not stack with other shields and no unspent Momentum remains. This is not concentration.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2326,
+        "originalText": "Momentum Barrier: Convert your Momentum into a protective shield that absorbs damage for you and nearby allies."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.hero.dragon-guardian.dragon-s-sanctuary",
+      "name": "Dragon's Sanctuary",
+      "className": "Dragoon",
+      "band": "Hero",
+      "path": "Dragon Guardian",
+      "sourceKind": "active",
+      "minimumClassLevel": 16,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "4 Momentum; 1 long-rest use",
+      "rangeAndTarget": "Fixed 15 ft-radius zone centered within 30 ft; up to 6 allies",
+      "duration": "Concentration, 3 of your turns",
+      "frequency": "1/long rest",
+      "effect": "Chosen allies inside reduce damage by 5 and have advantage against Frightened/Charmed. On start and each of your next 2 turns, Bonus Action lets one ally inside repeat one save against a present Frightened, Charmed or Poisoned effect. No automatic mass cleanse each turn.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2327,
+        "originalText": "Dragon's Sanctuary: Ultimate ability that creates a zone of protection, significantly reducing damage to all allies within range and cleansing negative effects."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.hero.drake-rider.drake-mark",
+      "name": "Drake Mark",
+      "className": "Dragoon",
+      "band": "Hero",
+      "path": "Drake Rider",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "One creature hit by your leap",
+      "duration": "Until end next turn",
+      "frequency": "Once/own turn",
+      "effect": "Mark that creature; your first subsequent direct polearm hit adds S damage. A new mark replaces old. No extra damage to the triggering leap, Do Ts or copies; it is not a spell mark.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2333,
+        "originalText": "Drake Mark: Each leap attack marks enemies. Marked enemies take +10% damage from you."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.hero.drake-rider.elemental-spearcraft",
+      "name": "Elemental Spearcraft",
+      "className": "Dragoon",
+      "band": "Hero",
+      "path": "Drake Rider",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "1 Momentum",
+      "rangeAndTarget": "Wielded polearm",
+      "duration": "3 of your turns",
+      "frequency": "Recharge 3",
+      "effect": "Choose fire, cold or lightning. Once/own turn one polearm hit adds 1d6 chosen damage. Switching requires a new activation and full cost. Does not stack with Elemental Lance's bonus; use stronger.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2334,
+        "originalText": "Elemental Spearcraft: Infuse polearms with Fire, Ice, or Lightning for 3 turns (switchable)."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.hero.drake-rider.air-mastery",
+      "name": "Air Mastery",
+      "className": "Dragoon",
+      "band": "Hero",
+      "path": "Drake Rider",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Self",
+      "duration": "While known",
+      "frequency": "Once/round shortening",
+      "effect": "Increase leap range by 10 ft, not vertical ceiling penetration or flight. After a successful leap hit, shorten one OTHER positive leap cooldown by 1 using its reset allowance. Does not combine with Wyvern's Flow on the same counter in a round.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2335,
+        "originalText": "Air Mastery: Gain +20% jump range and 10% reduced cooldown on leap skills."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.hero.drake-rider.momentum-tempo",
+      "name": "Momentum Tempo",
+      "className": "Dragoon",
+      "band": "Hero",
+      "path": "Drake Rider",
+      "sourceKind": "passive",
+      "minimumClassLevel": 14,
+      "acquisition": "selection",
+      "activation": "Triggered",
+      "cost": "3 additional Momentum; 1 short-rest use",
+      "rangeAndTarget": "Self after spending at least 3 Momentum on a technique this turn",
+      "duration": "Next regular turn only",
+      "frequency": "1/short rest",
+      "effect": "Pay 3 additional Momentum now to gain one extra full Action on your next turn. Shared cap applies; it cannot grant another Action or another Momentum Tempo. Triggering technique must have been paid without this additional cost. No queued actions.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2336,
+        "originalText": "Momentum Tempo: After spending 3+ Momentum in a round, gain an extra action next turn."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.hero.drake-rider.drakestorm-dive",
+      "name": "Drakestorm Dive",
+      "className": "Dragoon",
+      "band": "Hero",
+      "path": "Drake Rider",
+      "sourceKind": "passive",
+      "minimumClassLevel": 20,
+      "acquisition": "automatic",
+      "activation": "Action",
+      "cost": "5 Momentum; 1 long-rest use",
+      "rangeAndTarget": "Leap up to 60 ft; up to 6 enemies within 15 ft of landing",
+      "duration": "Instant",
+      "frequency": "1/long rest",
+      "effect": "Choose fire/cold/lightning. DEX save:6d8 chosen damage, half on success. On failure fire applies Burn, cold reduces Speed 10 ft until end next turn, lightning prevents Reactions until then. Land in legal empty space; no additional weapon attack.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2337,
+        "originalText": "Final Flight – Drakestorm Dive: Choose an element and leap into a group, triggering a large AoE blast."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.hero.drake-rider.elemental-lance",
+      "name": "Elemental Lance",
+      "className": "Dragoon",
+      "band": "Hero",
+      "path": "Drake Rider",
+      "sourceKind": "active",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "2 Momentum",
+      "rangeAndTarget": "Your polearm",
+      "duration": "3 of your turns",
+      "frequency": "Recharge 3",
+      "effect": "Choose fire/cold/lightning. Once/own turn a hit adds S d4 damage; fire adds 1 damage, cold reduces target Speed 5 ft until end next turn, lightning denies opportunity attacks until start its next turn. Nonstacking with Spearcraft; one element rider/turn.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2340,
+        "originalText": "Elemental Lance: Infuse your weapon with elemental energy (fire, ice, or lightning), adding additional damage and effects to your attacks."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.hero.drake-rider.drake-s-agility",
+      "name": "Drake's Agility",
+      "className": "Dragoon",
+      "band": "Hero",
+      "path": "Drake Rider",
+      "sourceKind": "active",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "2 Momentum",
+      "rangeAndTarget": "Self",
+      "duration": "This turn",
+      "frequency": "Recharge 3",
+      "effect": "Gain+20 ft Speed and may replace 10 ft of normal movement with a leap of 10 ft horizontally/5 ft vertically. This is movement only, not another leap attack or technique. No new Action or attack is granted.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2341,
+        "originalText": "Drake's Agility: Channel the speed of a drake, significantly increasing your movement speed and allowing an additional leap this turn."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.hero.drake-rider.aerial-combo",
+      "name": "Aerial Combo",
+      "className": "Dragoon",
+      "band": "Hero",
+      "path": "Drake Rider",
+      "sourceKind": "active",
+      "minimumClassLevel": 12,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "3 Momentum",
+      "rangeAndTarget": "Up to 2 enemies adjacent to legal landings within 30 ft",
+      "duration": "Instant",
+      "frequency": "Recharge 3",
+      "effect": "Leap to first target, attack once, then leap up to 15 ft to second and attack once. All movement supplied by Action; two attacks maximum even with Extra Attack. Add 1d6 to each hit. Only one hit-generated Momentum per turn.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2342,
+        "originalText": "Aerial Combo: Perform a rapid series of attacks while airborne, building and consuming Momentum with each strike."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.hero.drake-rider.elemental-adaptation",
+      "name": "Elemental Adaptation",
+      "className": "Dragoon",
+      "band": "Hero",
+      "path": "Drake Rider",
+      "sourceKind": "active",
+      "minimumClassLevel": 14,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "3 Momentum",
+      "rangeAndTarget": "Self",
+      "duration": "Concentration, 3 of your turns",
+      "frequency": "Recharge 4",
+      "effect": "Choose fire/cold/lightning: gain resistance to that type and may convert normal polearm weapon damage to it. This adds no damage and cannot combine with another resistance multiplicatively. Choice fixed for duration.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2343,
+        "originalText": "Elemental Adaptation: Temporarily gain resistance to a chosen element and infuse your attacks with that element."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.hero.drake-rider.drakestorm",
+      "name": "Drakestorm",
+      "className": "Dragoon",
+      "band": "Hero",
+      "path": "Drake Rider",
+      "sourceKind": "active",
+      "minimumClassLevel": 16,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "4 Momentum; 1 long-rest use",
+      "rangeAndTarget": "Moving 10 ft aura; up to 3 enemies per pulse",
+      "duration": "Concentration, 3 of your turns",
+      "frequency": "1/long rest",
+      "effect": "Choose element. Start and on each of next 2 turns, Bonus Action pulses S d6 damage, DEX half. During duration Speed+10 ft. No free weapon attacks or Momentum from pulse damage; maximum 3 pulses.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2344,
+        "originalText": "Drakestorm: Ultimate ability that summons a swirling storm of elemental energy around you, dealing damage to nearby enemies and enhancing your mobility."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.hero.dragon-tyrant.tyrant-s-crash",
+      "name": "Tyrant's Crash",
+      "className": "Dragoon",
+      "band": "Hero",
+      "path": "Dragon Tyrant",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "1 Momentum",
+      "rangeAndTarget": "Up to 2 enemies within 5 ft of your leap landing",
+      "duration": "Until end target's next turn",
+      "frequency": "Once/own turn",
+      "effect": "After a leap hit pay 1. Targets make WIS save; on failure Frightened and-1 AC. Save repeated at each turn end ends both. This neither stacks AC penalties nor affects enemies beyond the printed area.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2350,
+        "originalText": "Tyrant's Crash: Leap attack applies Fear and Sunder Armor in an AoE."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.hero.dragon-tyrant.momentum-feeder",
+      "name": "Momentum Feeder",
+      "className": "Dragoon",
+      "band": "Hero",
+      "path": "Dragon Tyrant",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Triggered",
+      "cost": "0",
+      "rangeAndTarget": "Self on polearm critical or hostile kill",
+      "duration": "Instant",
+      "frequency": "Once/round",
+      "effect": "Gain 2 Momentum, still within total 2-per-round gain cap. A critical kill is one trigger, not two. Do Ts, copies, allies, summons and helpless creatures cannot trigger it.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2351,
+        "originalText": "Momentum Feeder: Killing or critting grants +2 Momentum."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.hero.dragon-tyrant.wyrmblood-surge",
+      "name": "Wyrmblood Surge",
+      "className": "Dragoon",
+      "band": "Hero",
+      "path": "Dragon Tyrant",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Self",
+      "duration": "Until end next turn",
+      "frequency": "Once/own turn",
+      "effect": "After spending Momentum, your next direct polearm hit adds damage equal to points spent, maximum 5. Further spending replaces rather than adds this bonus. It is flat damage and grants no resource refund.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2352,
+        "originalText": "Wyrmblood Surge: Each Momentum spent grants +5% damage for the next 2 turns."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.hero.dragon-tyrant.skypiercer-stance",
+      "name": "Skypiercer Stance",
+      "className": "Dragoon",
+      "band": "Hero",
+      "path": "Dragon Tyrant",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Self",
+      "duration": "While known",
+      "frequency": "Continuous",
+      "effect": "Increase leap vertical clearance allowance by 10 ft, never through solid obstacles. Once/own turn a natural 19 polearm hit critically hits; use the broadest critical range rather than stacking. It does not let you remain flying.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2353,
+        "originalText": "Skypiercer Stance: Gain passive +15% crit and ignore height restrictions on leaps."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.hero.dragon-tyrant.sovereign-descent",
+      "name": "Sovereign Descent",
+      "className": "Dragoon",
+      "band": "Hero",
+      "path": "Dragon Tyrant",
+      "sourceKind": "passive",
+      "minimumClassLevel": 20,
+      "acquisition": "automatic",
+      "activation": "Action",
+      "cost": "5 Momentum; 1 long-rest use",
+      "rangeAndTarget": "Leap up to 60 ft; up to 6 enemies within 15 ft",
+      "duration": "Instant; conditions as stated",
+      "frequency": "1/long rest",
+      "effect": "STR save:6d8 bludgeoning, half on success. Failure knocks Prone and applies one Bleed and Burn. Failure by 10 also Stuns until end target's next turn, subject to denial cap. Ground becomes difficult terrain for 1 minute; no destruction of structural supports.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2354,
+        "originalText": "Final Flight – Sovereign Descent: Break the ground in a large radius, stunning enemies and applying Bleed and Burn. (1/rest)"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.hero.dragon-tyrant.tyrant-s-impale",
+      "name": "Tyrant's Impale",
+      "className": "Dragoon",
+      "band": "Hero",
+      "path": "Dragon Tyrant",
+      "sourceKind": "active",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "2 Momentum",
+      "rangeAndTarget": "One enemy in polearm reach",
+      "duration": "Instant; pin until end next turn",
+      "frequency": "Recharge 3",
+      "effect": "Weapon attack; hit adds S d6 piercing. A hit creature no more than one size larger makes STR save or is Restrained and Bleeding. It may use Action STR(Athletics) or DEX(Acrobatics) versus class DC to end restraint. You must stay in reach to maintain pin.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2357,
+        "originalText": "Tyrant's Impale: A devastating attack that can pin weaker enemies to the ground, preventing movement and causing bleeding damage."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.hero.dragon-tyrant.draconic-dominance",
+      "name": "Draconic Dominance",
+      "className": "Dragoon",
+      "band": "Hero",
+      "path": "Dragon Tyrant",
+      "sourceKind": "active",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "2 Momentum",
+      "rangeAndTarget": "Up to 3 enemies within 30 ft that hear you",
+      "duration": "Until end your next turn",
+      "frequency": "Recharge 3",
+      "effect": "WIS save or Frightened; each repeats save at its turn end. On failure by 10 it must use up to 10 ft of its next normal movement away from you by a safe route, not a full Action or hazardous compulsory movement.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2358,
+        "originalText": "Draconic Dominance: Channel the terrifying presence of a dragon, causing fear in nearby enemies and potentially causing them to flee."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.hero.dragon-tyrant.momentum-rampage",
+      "name": "Momentum Rampage",
+      "className": "Dragoon",
+      "band": "Hero",
+      "path": "Dragon Tyrant",
+      "sourceKind": "active",
+      "minimumClassLevel": 12,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "3 Momentum",
+      "rangeAndTarget": "Self",
+      "duration": "3 of your turns",
+      "frequency": "Recharge 4",
+      "effect": "Once/own turn your first polearm hit adds S d6 damage. Gain+10 ft Speed but suffer-1 AC. No extra attacks, Actions, crit range or scaling from an unbounded resource count.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2359,
+        "originalText": "Momentum Rampage: Enter a state of draconic fury, gaining increased damage and attack speed based on your current Momentum."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.hero.dragon-tyrant.terrain-shatter",
+      "name": "Terrain Shatter",
+      "className": "Dragoon",
+      "band": "Hero",
+      "path": "Dragon Tyrant",
+      "sourceKind": "active",
+      "minimumClassLevel": 14,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "3 Momentum",
+      "rangeAndTarget": "Up to 4 enemies in 10 ft radius centered within polearm reach",
+      "duration": "Instant; terrain 1 minute",
+      "frequency": "Recharge 4",
+      "effect": "STR save: (S+1)d6 bludgeoning, half on success; failure Prone. Ground becomes difficult terrain, excluding reinforced structures and magical floors. This creates neither a pit nor free falling damage.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2360,
+        "originalText": "Terrain Shatter: A powerful ground strike that damages enemies in an area and creates difficult terrain."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "dragoon.hero.dragon-tyrant.wyrmking-s-wrath",
+      "name": "Wyrmking's Wrath",
+      "className": "Dragoon",
+      "band": "Hero",
+      "path": "Dragon Tyrant",
+      "sourceKind": "active",
+      "minimumClassLevel": 16,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "4 Momentum; 1 long-rest use",
+      "rangeAndTarget": "Self",
+      "duration": "3 of your turns",
+      "frequency": "1/long rest",
+      "effect": "Your first leap technique each turn costs 1 less Momentum, minimum 1, and its first hit adds 1d8 damage. Once during duration convert one non-Finale Action leap to Bonus Action, paying costs; consumes your one free/Bonus Action leap allowance and grants no extra Action.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2361,
+        "originalText": "Wyrmking's Wrath: Ultimate ability that channels pure draconic power, greatly enhancing your leap attacks and allowing rapid successive jumps for a short duration."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  ],
+  "schedule": [
+    {
+      "classLevel": 1,
+      "choose": 4,
+      "bands": [
+        "Base"
+      ],
+      "minimumActives": 2,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 2,
+      "choose": 2,
+      "bands": [
+        "Base"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 3,
+      "choose": 2,
+      "bands": [
+        "Arch"
+      ],
+      "minimumActives": 1,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 4,
+      "choose": 1,
+      "bands": [
+        "Base",
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": true
+    },
+    {
+      "classLevel": 5,
+      "choose": 1,
+      "bands": [
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 6,
+      "choose": 1,
+      "bands": [
+        "Base",
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 7,
+      "choose": 1,
+      "bands": [
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 8,
+      "choose": 1,
+      "bands": [
+        "Base",
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": true
+    },
+    {
+      "classLevel": 9,
+      "choose": 1,
+      "bands": [
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 10,
+      "choose": 2,
+      "bands": [
+        "Hero"
+      ],
+      "minimumActives": 1,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 11,
+      "choose": 1,
+      "bands": [
+        "Base",
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 12,
+      "choose": 1,
+      "bands": [
+        "Hero"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": true
+    },
+    {
+      "classLevel": 13,
+      "choose": 1,
+      "bands": [
+        "Base",
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 14,
+      "choose": 1,
+      "bands": [
+        "Hero"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 15,
+      "choose": 1,
+      "bands": [
+        "Base",
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 16,
+      "choose": 1,
+      "bands": [
+        "Hero"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": true
+    },
+    {
+      "classLevel": 17,
+      "choose": 1,
+      "bands": [
+        "Base",
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 18,
+      "choose": 1,
+      "bands": [
+        "Hero"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 19,
+      "choose": 1,
+      "bands": [
+        "Base",
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": true
+    },
+    {
+      "classLevel": 20,
+      "choose": 0,
+      "bands": [],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    }
+  ],
+  "exceptionSchedule": {},
+  "sourceFiles": [
+    "../../../data/playtest/class_sources/dragoon.json",
+    "../../../data/playtest/class_sources/supplements.json"
+  ],
+  "authoringNotes": "Draft authored; editorial review pending"
+}

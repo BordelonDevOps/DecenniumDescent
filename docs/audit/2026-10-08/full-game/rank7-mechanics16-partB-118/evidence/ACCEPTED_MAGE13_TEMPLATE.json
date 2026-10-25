@@ -1,0 +1,702 @@
+{
+  "sourceArchive": "/mnt/data/DD_Spell_Current_Context_116.zip",
+  "member": "current/docs/audit/2026-10-08/full-game/rank7-identity-casting5-part5-ready-deadline-recovery-01/MODEL.json",
+  "pointer": "/currentVectors/2/actorDefinitions/mage",
+  "completeTemplate": {
+    "kind": "Source-qualified illustrative character, not a campaign/CR claim",
+    "class": "Mage",
+    "classLevel": 13,
+    "totalLevel": 13,
+    "PB": 5,
+    "S": 3,
+    "STR": 10,
+    "DEX": 14,
+    "CON": 14,
+    "INT": 18,
+    "WIS": 12,
+    "CHA": 10,
+    "maxHp": 80,
+    "hpConstruction": "Same explicit d6/CON2 legal8+12*6 history",
+    "maxRp": 38,
+    "maxRank": 7,
+    "Limit": 11,
+    "AC": 12,
+    "speedFeet": 30,
+    "size": "Medium",
+    "bodyBoxFeet": [
+      5,
+      5,
+      5
+    ],
+    "bodyMassLb": 170,
+    "actualGear": {
+      "focus-pack": {
+        "grossWeightLb": 10,
+        "load": 1,
+        "contents": "actual ordinary focus/personal gear, no consumable or charged items"
+      }
+    },
+    "saves": {
+      "STR": 0,
+      "DEX": 2,
+      "CON": 2,
+      "INT": 9,
+      "WIS": 6,
+      "CHA": 0
+    },
+    "spellAttack": 9,
+    "spellDc": 17,
+    "concentrationSave": 4,
+    "focus": "Lightning",
+    "metaspellMode": "Reach unless a separately built Sculpt/Widen actor is declared",
+    "ordinaryKnown": [
+      "ray-of-frost",
+      "fireball",
+      "shield",
+      "counterspell",
+      "continual-flame",
+      "meta-surge"
+    ],
+    "selectedAcquisition": [
+      {
+        "classLevel": 1,
+        "cards": [
+          {
+            "id": "mage.base.arcane-insight",
+            "name": "Arcane Insight",
+            "className": "Mage",
+            "band": "Base",
+            "path": null,
+            "sourceKind": "passive",
+            "minimumClassLevel": 1,
+            "acquisition": "selection",
+            "activation": "Passive",
+            "cost": "0",
+            "rangeAndTarget": "Self",
+            "duration": "Permanent",
+            "frequency": "Always",
+            "effect": "Arcane Insight. Tags: passive, knowledge. Gain proficiency in Arcana, or expertise if already proficient. After examining a magical item, spell residue, ward or active magical effect for 1 minute, you may make an Intelligence (Arcana) check to identify its school, broad function or elemental signature. The Director sets the normal knowledge DC; failure supplies no fabricated information.",
+            "source": {
+              "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+              "line": 2892,
+              "originalText": "Arcane Insight: Identify magical effects and items with greater accuracy than non-mages."
+            },
+            "designStatus": "provisional-playtest",
+            "spellRank": null
+          },
+          {
+            "id": "mage.base.arcane-missile",
+            "name": "Arcane Missile",
+            "className": "Mage",
+            "band": "Base",
+            "path": null,
+            "sourceKind": "active",
+            "minimumClassLevel": 1,
+            "acquisition": "selection",
+            "activation": "Action",
+            "cost": "1 RP",
+            "rangeAndTarget": "One creature within 60 feet",
+            "duration": "Instantaneous",
+            "frequency": "At will while RP remains",
+            "effect": "Arcane Missile. Tags: mage-spell, arcane, damage. The missile automatically hits one creature you can perceive within range and deals S d4 + M force damage. No attack roll or saving throw is made. It is non-elemental, so casting it clears an Elemental Focus Nuke Chain. Multiple missiles are represented by the scaling dice, not separate hits or triggers.",
+            "source": {
+              "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+              "line": 2897,
+              "originalText": "Arcane Missile: Launch bolts of pure arcane energy that unerringly strike your target."
+            },
+            "designStatus": "provisional-playtest",
+            "spellRank": 1
+          },
+          {
+            "id": "mage.base.resonance-shield",
+            "name": "Resonance Shield",
+            "className": "Mage",
+            "band": "Base",
+            "path": null,
+            "sourceKind": "active",
+            "minimumClassLevel": 1,
+            "acquisition": "selection",
+            "activation": "Bonus Action",
+            "cost": "Spend X RP, where X is 1, 2 or 3",
+            "rangeAndTarget": "Self",
+            "duration": "1 minute or until temporary HP are lost",
+            "frequency": "Recharge 2 rounds",
+            "effect": "Resonance Shield. Tags: mage-spell, abjuration, protection. Spend 1-3 RP and gain temporary HP equal to X × (S + M). Temporary HP do not stack. This spell is non-elemental and therefore clears an active Elemental Nuke Chain. Its RP payment cannot be reduced below 1 by Spell Efficiency.",
+            "source": {
+              "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+              "line": 2899,
+              "originalText": "Resonance Shield: Convert a portion of your Resonance Points into a temporary protective barrier."
+            },
+            "designStatus": "provisional-playtest",
+            "spellRank": 1
+          },
+          {
+            "id": "mage.base.blink",
+            "name": "Blink",
+            "className": "Mage",
+            "band": "Base",
+            "path": null,
+            "sourceKind": "active",
+            "minimumClassLevel": 1,
+            "acquisition": "selection",
+            "activation": "Bonus Action",
+            "cost": "2 RP",
+            "rangeAndTarget": "Self",
+            "duration": "Instantaneous",
+            "frequency": "Recharge 2 rounds",
+            "effect": "Blink. Tags: mage-spell, teleportation. Teleport to an unoccupied space you can perceive within 30 feet. This movement does not provoke opportunity attacks and cannot pass through planar wards that prohibit teleportation. Blink deals no damage and is non-elemental, so using it clears an active Elemental Nuke Chain.",
+            "source": {
+              "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+              "line": 2900,
+              "originalText": "Blink: Teleport a short distance to avoid danger or reposition."
+            },
+            "designStatus": "provisional-playtest",
+            "spellRank": 1
+          }
+        ]
+      },
+      {
+        "classLevel": 2,
+        "cards": [
+          {
+            "id": "mage.base.elemental-affinity",
+            "name": "Elemental Affinity",
+            "className": "Mage",
+            "band": "Base",
+            "path": null,
+            "sourceKind": "passive",
+            "minimumClassLevel": 2,
+            "acquisition": "selection",
+            "activation": "Passive",
+            "cost": "0",
+            "rangeAndTarget": "Self",
+            "duration": "Permanent",
+            "frequency": "Always after Elemental Focus is chosen",
+            "effect": "Elemental Affinity. Tags: passive, elemental. Gain resistance to the damage type of your current Elemental Focus: fire for Fire, cold for Cold or lightning for Lightning. If Elemental Pivot temporarily changes your Focus, this resistance changes with it and returns to your original element when the Pivot ends.",
+            "source": {
+              "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+              "line": 2893,
+              "originalText": "Elemental Affinity: Gain a minor resistance to your chosen element once selected."
+            },
+            "designStatus": "provisional-playtest",
+            "spellRank": null
+          },
+          {
+            "id": "mage.base.elemental-bolt",
+            "name": "Elemental Bolt",
+            "className": "Mage",
+            "band": "Base",
+            "path": null,
+            "sourceKind": "active",
+            "minimumClassLevel": 2,
+            "acquisition": "selection",
+            "activation": "Action",
+            "cost": "1 RP",
+            "rangeAndTarget": "One creature within 60 feet",
+            "duration": "Instantaneous",
+            "frequency": "At will while RP remains",
+            "effect": "Elemental Bolt. Tags: mage-spell, elemental, focus, damage. Make a Mage spell attack. On a hit deal S d8 + M damage of your current Focus. Fire: target takes 1d4 fire at the start of its next turn. Cold: Speed -10 feet until the end of its next turn. Lightning: one different enemy within 10 feet takes S lightning damage. Secondary damage creates no new spell cast or chain credit.",
+            "source": {
+              "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+              "line": 2898,
+              "originalText": "Elemental Bolt: Cast a bolt of your chosen element (once selected) that deals additional effects based on the element."
+            },
+            "designStatus": "provisional-playtest",
+            "spellRank": 1
+          }
+        ]
+      },
+      {
+        "classLevel": 3,
+        "cards": [
+          {
+            "id": "mage.arch.arcane-stability",
+            "name": "Arcane Stability",
+            "className": "Mage",
+            "band": "Arch",
+            "path": null,
+            "sourceKind": "passive",
+            "minimumClassLevel": 3,
+            "acquisition": "selection",
+            "activation": "Passive",
+            "cost": "0",
+            "rangeAndTarget": "Self",
+            "duration": "Permanent",
+            "frequency": "Always",
+            "effect": "Arcane Stability. Tags: arcanist, passive. When damage causes you to make a concentration save for a Mage spell, add +2 to that save. This bonus does not stack with another feature named Arcane Stability and does not change the concentration DC. It does not prevent Silence, incapacitation or effects that end concentration without a save.",
+            "source": {
+              "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+              "line": 2912,
+              "originalText": "Arcane Stability: Reduce spell fizzle chance by 25%."
+            },
+            "designStatus": "provisional-playtest",
+            "spellRank": null
+          },
+          {
+            "id": "mage.arch.elemental-surge",
+            "name": "Elemental Surge",
+            "className": "Mage",
+            "band": "Arch",
+            "path": null,
+            "sourceKind": "active",
+            "minimumClassLevel": 3,
+            "acquisition": "selection",
+            "activation": "Action",
+            "cost": "3 RP",
+            "rangeAndTarget": "One creature within 60 feet",
+            "duration": "Instantaneous",
+            "frequency": "Recharge 2 rounds",
+            "effect": "Elemental Surge. Tags: mage-spell, arcanist, elemental, focus, damage. Make a Mage spell attack. On a hit deal (S+1)d8 + M damage of your current Focus. Fire also applies the Focus Burn; Cold applies the Focus Speed reduction; Lightning applies the Focus secondary arc. This is Focus-eligible and can occupy one slot in a Nuke Chain.",
+            "source": {
+              "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+              "line": 2920,
+              "originalText": "Elemental Surge: Channel a concentrated burst of your chosen element, dealing high damage to a single target."
+            },
+            "designStatus": "provisional-playtest",
+            "spellRank": 2
+          }
+        ]
+      },
+      {
+        "classLevel": 4,
+        "cards": [
+          {
+            "id": "mage.arch.arcane-barrage",
+            "name": "Arcane Barrage",
+            "className": "Mage",
+            "band": "Arch",
+            "path": null,
+            "sourceKind": "active",
+            "minimumClassLevel": 3,
+            "acquisition": "selection",
+            "activation": "Action",
+            "cost": "3 RP",
+            "rangeAndTarget": "Creatures within 60 feet",
+            "duration": "Instantaneous",
+            "frequency": "Recharge 2 rounds",
+            "effect": "Arcane Barrage. Tags: mage-spell, arcanist, arcane, damage. Create S+2 force bolts. Each bolt automatically hits one creature you can perceive within 60 feet for 1d4 force damage. Distribute bolts among any number of legal targets, but all bolts together are one spell cast. This spell is non-elemental and clears an active Nuke Chain.",
+            "source": {
+              "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+              "line": 2921,
+              "originalText": "Arcane Barrage: Launch multiple arcane projectiles that seek out different targets."
+            },
+            "designStatus": "provisional-playtest",
+            "spellRank": 2
+          }
+        ]
+      },
+      {
+        "classLevel": 5,
+        "cards": [
+          {
+            "id": "mage.arch.metaspell-access",
+            "name": "Metaspell Access",
+            "className": "Mage",
+            "band": "Arch",
+            "path": null,
+            "sourceKind": "passive",
+            "minimumClassLevel": 5,
+            "acquisition": "selection",
+            "activation": "Triggered",
+            "cost": "0",
+            "rangeAndTarget": "One Mage spell you are beginning to cast",
+            "duration": "For that spell",
+            "frequency": "1/long rest; choose one metamagic mode when this feature is acquired",
+            "effect": "Metaspell Access. Tags: arcanist, metamagic. Choose one mode permanently: Reach increases one spell's range by 30 feet; Widen increases one circular radius or cone length by 5 feet; Sculpt lets up to M creatures automatically succeed on that spell's initial area save and take no damage if success normally halves damage. Apply the chosen mode once per long rest before casting; it does not alter RP cost or create another cast.",
+            "source": {
+              "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+              "line": 2915,
+              "originalText": "Metaspell Access: Choose one Universal Metamagic effect to apply to a spell once per day."
+            },
+            "designStatus": "provisional-playtest",
+            "spellRank": null
+          }
+        ]
+      },
+      {
+        "classLevel": 6,
+        "cards": [
+          {
+            "id": "mage.arch.conjure-elemental-familiar",
+            "name": "Conjure Elemental Familiar",
+            "className": "Mage",
+            "band": "Arch",
+            "path": null,
+            "sourceKind": "active",
+            "minimumClassLevel": 5,
+            "acquisition": "selection",
+            "activation": "Action",
+            "cost": "4 RP",
+            "rangeAndTarget": "One unoccupied space within 30 feet",
+            "duration": "10 minutes",
+            "frequency": "1/long rest",
+            "effect": "Conjure Elemental Familiar. Tags: mage-spell, arcanist, summon, elemental. Summon one elemental familiar matching your current Focus using the common familiar stat block. Only one elemental familiar from this feature may exist at once; summoning another dismisses the first. It obeys the shared Companion Command rule. It disappears at 0 HP or when duration ends and leaves no corpse, XP, loot or resource trigger.",
+            "source": {
+              "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+              "line": 2922,
+              "originalText": "Conjure Elemental Familiar: Summon a minor elemental of your chosen type to assist you in combat."
+            },
+            "designStatus": "provisional-playtest",
+            "spellRank": 3
+          }
+        ]
+      },
+      {
+        "classLevel": 7,
+        "cards": [
+          {
+            "id": "mage.arch.elemental-mastery",
+            "name": "Elemental Mastery",
+            "className": "Mage",
+            "band": "Arch",
+            "path": null,
+            "sourceKind": "passive",
+            "minimumClassLevel": 7,
+            "acquisition": "selection",
+            "activation": "Passive",
+            "cost": "0",
+            "rangeAndTarget": "Your current Elemental Focus spells",
+            "duration": "Permanent",
+            "frequency": "Always",
+            "effect": "Elemental Mastery. Tags: arcanist, focus. Improve the secondary effect of your current Focus. Fire Burns from your Focus cards last one additional turn but never stack. Cold Focus Speed reductions increase by another 5 feet, minimum 0. Lightning Focus's once-per-turn secondary arc increases from S flat lightning damage to S d4 lightning damage. Pivoted Focus uses the corresponding upgraded rider.",
+            "source": {
+              "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+              "line": 2916,
+              "originalText": "Elemental Mastery: Increase the effectiveness of your chosen element's secondary effects."
+            },
+            "designStatus": "provisional-playtest",
+            "spellRank": null
+          }
+        ]
+      },
+      {
+        "classLevel": 8,
+        "cards": [
+          {
+            "id": "mage.arch.displacement",
+            "name": "Displacement",
+            "className": "Mage",
+            "band": "Arch",
+            "path": null,
+            "sourceKind": "active",
+            "minimumClassLevel": 7,
+            "acquisition": "selection",
+            "activation": "Bonus Action",
+            "cost": "3 RP",
+            "rangeAndTarget": "Self",
+            "duration": "Until start of your next regular turn",
+            "frequency": "Recharge 3 rounds",
+            "effect": "Displacement. Tags: mage-spell, arcanist, illusion, teleportation. Teleport up to 20 feet to an unoccupied space you perceive and create two illusory duplicates. Until the start of your next regular turn, the next two attack rolls made against you have disadvantage; each attack roll consumes one duplicate whether it hits or misses. Area effects ignore the duplicates. This non-elemental spell clears an active Nuke Chain.",
+            "source": {
+              "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+              "line": 2923,
+              "originalText": "Displacement: Create illusory duplicates of yourself while teleporting to safety."
+            },
+            "designStatus": "provisional-playtest",
+            "spellRank": 4
+          }
+        ]
+      },
+      {
+        "classLevel": 9,
+        "cards": [
+          {
+            "id": "mage.arch.counterspell",
+            "name": "Counterspell",
+            "className": "Mage",
+            "band": "Arch",
+            "path": null,
+            "sourceKind": "active",
+            "minimumClassLevel": 9,
+            "acquisition": "selection",
+            "activation": "Reaction",
+            "cost": "4 RP",
+            "rangeAndTarget": "One creature you perceive casting a spell within 60 feet",
+            "duration": "Instantaneous",
+            "frequency": "Recharge 3 rounds",
+            "effect": "Counterspell. Tags: mage-spell, arcanist, disruption. Trigger when a creature begins casting a spell. Make an Intelligence check adding your proficiency bonus against DC 10 + twice the spell's rank, treating rank 0 as 0. On success the triggering spell is negated after its costs are paid. On failure it proceeds normally. Counterspell is non-elemental and, because it is itself a spell, clears an active Nuke Chain.",
+            "source": {
+              "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+              "line": 2924,
+              "originalText": "Counterspell: Disrupt an enemy's spellcasting, potentially negating their spell entirely."
+            },
+            "designStatus": "provisional-playtest",
+            "spellRank": 5
+          }
+        ]
+      },
+      {
+        "classLevel": 10,
+        "cards": [
+          {
+            "id": "mage.hero.archmage.arcane-sanctuary",
+            "name": "Arcane Sanctuary",
+            "className": "Mage",
+            "band": "Hero",
+            "path": "Archmage",
+            "sourceKind": "active",
+            "minimumClassLevel": 10,
+            "acquisition": "selection",
+            "activation": "Action",
+            "cost": "6 RP to start; 1 RP maintenance",
+            "rangeAndTarget": "15-foot-radius fixed zone centered within 30 feet",
+            "duration": "Concentration, maximum 3 Mage turns",
+            "frequency": "Recharge 4 rounds",
+            "effect": "Arcane Sanctuary. Tags: mage-spell, archmage, zone, concentration. On start and each paid Bonus Action maintenance pulse, allies in the zone gain S+M temporary HP until the start of your next regular turn or effect end, whichever is first and +1 to Mage or spell attack rolls while inside. The zone grants no save-DC increase and no additional Actions. Maximum 3 pulses.",
+            "source": {
+              "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+              "line": 2939,
+              "originalText": "Arcane Sanctuary: Create a zone of protection that shields allies and enhances their magical abilities."
+            },
+            "designStatus": "provisional-playtest",
+            "spellRank": 5
+          },
+          {
+            "id": "mage.hero.archmage.purifying-beam",
+            "name": "Purifying Beam",
+            "className": "Mage",
+            "band": "Hero",
+            "path": "Archmage",
+            "sourceKind": "active",
+            "minimumClassLevel": 10,
+            "acquisition": "selection",
+            "activation": "Action",
+            "cost": "5 RP",
+            "rangeAndTarget": "60-foot-long, 5-foot-wide line",
+            "duration": "Instantaneous",
+            "frequency": "Recharge 3 rounds",
+            "effect": "Purifying Beam. Tags: mage-spell, archmage, radiant, cleansing. Enemies in the line make Dexterity saves, taking (S+1)d8 radiant damage on failure or half on success. Up to M allies in the line may each end one of Charmed, Frightened or Poisoned. Cleansing does not remove Wounds, curses or disease unless another rule expressly allows it. This non-Focus spell clears an active Nuke Chain.",
+            "source": {
+              "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+              "line": 2940,
+              "originalText": "Purifying Beam: Channel a beam of radiant arcane energy that damages enemies and cleanses negative effects from allies."
+            },
+            "designStatus": "provisional-playtest",
+            "spellRank": 5
+          }
+        ]
+      },
+      {
+        "classLevel": 11,
+        "cards": [
+          {
+            "id": "mage.arch.arcane-bypass",
+            "name": "Arcane Bypass",
+            "className": "Mage",
+            "band": "Arch",
+            "path": null,
+            "sourceKind": "passive",
+            "minimumClassLevel": 5,
+            "acquisition": "selection",
+            "activation": "Triggered",
+            "cost": "0",
+            "rangeAndTarget": "One Mage spell you are beginning to cast",
+            "duration": "For that spell",
+            "frequency": "1/long rest",
+            "effect": "Arcane Bypass. Tags: arcanist, penetration. Before paying costs for a damaging Mage spell, declare Arcane Bypass. Damage from that spell ignores resistance to its printed damage types. Immunity remains immunity. The declaration is spent once the spell is legally cast even if all attacks miss or all targets succeed on saves.",
+            "source": {
+              "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+              "line": 2914,
+              "originalText": "Arcane Bypass: Once per rest, ignore all enemy resistances for one spell."
+            },
+            "designStatus": "provisional-playtest",
+            "spellRank": null
+          }
+        ]
+      },
+      {
+        "classLevel": 12,
+        "cards": [
+          {
+            "id": "mage.hero.archmage.spell-sharing",
+            "name": "Spell Sharing",
+            "className": "Mage",
+            "band": "Hero",
+            "path": "Archmage",
+            "sourceKind": "active",
+            "minimumClassLevel": 12,
+            "acquisition": "selection",
+            "activation": "Action",
+            "cost": "4 RP plus the shared card's printed RP cost",
+            "rangeAndTarget": "One willing ally within 30 feet",
+            "duration": "Until end of ally's next regular turn",
+            "frequency": "1/short rest",
+            "effect": "Spell Sharing. Tags: archmage, spell-sharing. Choose one Base or Arch Mage spell card you know with an Action activation and printed base RP cost 4 or less. Pay both costs now. The ally may cast that card once before the end of its next turn without paying RP, using your Mage spell attack and DC. It cannot share summons, Counterspell, Hero cards, finishers, Resonance Surge or another Spell Sharing.",
+            "source": {
+              "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+              "line": 2941,
+              "originalText": "Spell Sharing: Temporarily grant an ally access to one of your spells."
+            },
+            "designStatus": "provisional-playtest",
+            "spellRank": null
+          }
+        ]
+      },
+      {
+        "classLevel": 13,
+        "cards": [
+          {
+            "id": "mage.arch.overload-crits",
+            "name": "Overload Crits",
+            "className": "Mage",
+            "band": "Arch",
+            "path": null,
+            "sourceKind": "passive",
+            "minimumClassLevel": 3,
+            "acquisition": "selection",
+            "activation": "Triggered",
+            "cost": "0",
+            "rangeAndTarget": "One enemy within 10 feet of a creature critically hit by your damaging Mage spell",
+            "duration": "Instantaneous",
+            "frequency": "At most once per turn",
+            "effect": "Overload Crits. Tags: arcanist, critical. When a damaging Mage spell scores a critical hit, choose one different enemy within 10 feet of the critically hit target. It takes damage of the same type equal to 50% of the spell's base unmodified damage dice total before critical extra dice, rounded down once, minimum 1. Flat bonuses, riders and critical extra dice are not copied again.",
+            "source": {
+              "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+              "line": 2913,
+              "originalText": "Overload Crits: Critical strikes deal +50% splash damage to nearby enemies."
+            },
+            "designStatus": "provisional-playtest",
+            "spellRank": null
+          }
+        ]
+      }
+    ],
+    "automaticCards": [
+      {
+        "id": "mage.base.spellcasting",
+        "name": "Spellcasting",
+        "className": "Mage",
+        "band": "Base",
+        "path": null,
+        "sourceKind": "passive",
+        "minimumClassLevel": 1,
+        "acquisition": "automatic",
+        "activation": "Passive",
+        "cost": "0",
+        "rangeAndTarget": "Self",
+        "duration": "Permanent",
+        "frequency": "Automatic at Mage 1",
+        "effect": "Spellcasting. Tags: core, spellcasting. You automatically gain Mage spellcasting and access to the Mage repertoire permitted by your separately reconciled spell progression, including Evocation Tier I at the level specified by Core Systems. Use Intelligence for Mage spell attacks and save DCs. This feature is never purchased with a class-feature choice.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 2890,
+          "originalText": "Spellcasting: Access to Evocation Tier I spells, focusing on direct damage."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      {
+        "id": "mage.base.resonance-pool",
+        "name": "Resonance Pool",
+        "className": "Mage",
+        "band": "Base",
+        "path": null,
+        "sourceKind": "passive",
+        "minimumClassLevel": 1,
+        "acquisition": "automatic",
+        "activation": "Passive",
+        "cost": "0",
+        "rangeAndTarget": "Self",
+        "duration": "Permanent",
+        "frequency": "Automatic at Mage 1",
+        "effect": "Resonance Pool. Tags: core, resonance. Your Mage spells and Mage class-spell cards draw from the same Core Systems V 2 Resonance Point pool. Use the authoritative Mage RP maximum by Mage level. This card creates no second pool, no spell slots and no additional recovery method. It is never purchased with a class-feature choice.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 2891,
+          "originalText": "Resonance Pool: A reservoir of arcane energy that powers your spells and recovers during rest."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      {
+        "id": "mage.base.lightning.lightning",
+        "name": "Lightning",
+        "className": "Mage",
+        "band": "Base",
+        "path": "Lightning",
+        "sourceKind": "supplement",
+        "minimumClassLevel": 2,
+        "acquisition": "automatic",
+        "activation": "Passive",
+        "cost": "0; Storm Arc costs 2 RP when primed",
+        "rangeAndTarget": "Self; finisher starts on one enemy within 60 feet and may jump twice within 15 feet",
+        "duration": "Permanent Focus; finisher instantaneous",
+        "frequency": "Choose at Mage 2; finisher recharge 3 rounds",
+        "effect": "Elemental Focus — Lightning. Tags: focus, lightning. Once on each of your turns after a Lightning Mage spell damages a creature, arc S lightning damage to one different enemy within 10 feet. FINISHER — Storm Arc: after a completed Lightning Nuke Chain, Bonus Action, 2 RP. Make separate Mage spell attacks against one enemy within 60 feet and up to two additional different enemies, each within 15 feet of the previous target. Each hit deals S d6 lightning. A target critically hit by Storm Arc makes a Constitution save; failure Stuns it until the end of its next turn.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 2909,
+          "originalText": "Lightning: +15% jump chance, arc disruption. Finisher: Storm Arc – Jumps to 3 enemies, stuns on crit"
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": 1
+      }
+    ],
+    "completeEngine": [
+      "PROVISIONAL PLAYTEST CONTRACT. Intelligence is the Mage class ability. S = 1/2/3/4 at Mage levels 1/5/11/17. M = max(1, Intelligence modifier) unless a feature explicitly says otherwise. Mage spell attack = d20 + normal character proficiency bonus + Intelligence modifier. Mage spell save DC = 8 + normal character proficiency bonus + Intelligence modifier.",
+      "Spellcasting and Resonance Pool are automatic class features, never selection taxes. Use the Mage maximum Resonance Point pool and ordinary spell-rank costs from authoritative Core Systems Known Descent V 2. All Mage card RP costs and ordinary spell RP costs come from that same pool. There are no spell slots. A long rest restores RP according to Core V 2; other existing recovery rules remain separate unless this pilot explicitly overrides them.",
+      "Named Mage cards tagged mage-spell, and the three Focus finishers are spells for Focus, Nuke Chain, Refrain, concentration, Counterspell and other spell-referencing mechanics. Their printed RP cost replaces an ordinary rank cost; do not charge both. Generic Overcast is disabled for these class-card spells during this pilot unless a card expressly enables it. They receive no extra class-level Burn or Dissonance simply for being card spells; ordinary Core V 2 spell-risk rules still apply where applicable.",
+      "Elemental Focus is gained automatically at Mage level 2. Choose Fire, Cold or Lightning and automatically gain the corresponding Focus card. Your selected Focus determines the element used by Elemental Bolt, Elemental Surge, your Focus finisher and other effects that refer to your chosen element. Unless Elemental Pivot or another explicit effect changes it, the choice is permanent in this draft.",
+      "NUKE CHAIN. Track your last three consecutive Focus-eligible spell casts. A Focus-eligible cast is a Mage or ordinary spell that deals your currently chosen Fire, Cold or Lightning damage type and is identified by a distinct spell or card name. A spell of another element or a non-elemental spell clears the chain. The last three eligible casts must have three different names. Repeating one chosen-element spell remains a legal cast but shifts the three-cast window and follows ordinary Refrain rules; repetition does not receive special protection from Dissonance.",
+      "When the third different named chosen-element spell in the current three-cast window resolves, complete the Nuke Chain, reduce Dissonance by 2 to a minimum of 0, and prime your selected Focus finisher until the end of your next regular Mage turn. Chain completion occurs whether targets hit or save, provided all three spells were legally cast and resolved. A finisher is not itself a chain-building spell. Using the finisher or allowing it to expire clears the chain and the primed state.",
+      "FOCUS FINISHERS. A primed Focus finisher is a Bonus Action Mage spell costing 2 RP and is usable once per completed Nuke Chain. Each finisher also has a 3-round recharge. A completed chain can prime a finisher whose recharge is still positive, but the primed use expires normally if the recharge does not become ready in time. Finisher recharge is subject to the universal positive-counter reset limit of once per ability per round.",
+      "RESONANCE SURGE. Once per short rest, when you begin casting a damaging Mage spell, you may spend 2 additional RP after validating the spell's normal cost. Add S d8 damage of one damage type already dealt by that spell to one of its damage rolls. Resonance Surge does not count as Overcast, does not independently alter Dissonance or Burn, does not create another spell cast, and does not advance the Nuke Chain separately.",
+      "Only one concentration effect may be maintained at a time. Starting another concentration effect ends the first. Damage prompts the current Core Systems concentration save; for this pilot any required half-damage rounding is down. Round recharge counters tick once at the start of your regular initiative turn even if incapacitated, and every uninterrupted 6 seconds outside initiative. Only positive counters may be shortened or reset and each named ability can receive at most one reset or shortening per round.",
+      "All sources share a maximum of one additional full Action per creature per round. Additional Actions cannot grant additional Actions, Bonus Actions or Reactions. Mage summons and companions do not receive independent damaging turns: all Mage-controlled conjured companions share one Companion Command per Mage regular turn. Spend one Bonus Action to command exactly one companion to move up to its Speed and use one damaging or control action from its stat block. Uncommanded companions may move to remain near you and take Dodge but cannot deal damage or impose control.",
+      "ELEMENTAL FAMILIAR. Conjure Elemental Familiar creates one familiar matching your current Focus; you may have only one elemental familiar. AC = 12 + PB; HP = 5 + Mage level + M; Speed 30 feet; Lightning familiar additionally has Fly 30 feet, Fire has resistance to fire, Cold has resistance to cold. It uses your saves and PB where required. Elemental Dart: ranged spell attack using your Mage spell attack, range 30 feet, hit S d4 damage of its element. It cannot generate RP, Dissonance, Focus casts, corpses, XP, loot or kill-trigger resources.",
+      "LICH COMPANION SYSTEM. A successful Lich transformation unlocks three unique bound elite companions: Boneflayer, Dreadblade and Wraithbound. You can maintain at most one of each, maximum three total. They return at full HP after a completed long rest unless a campaign consequence expressly prevents it. A destroyed elite leaves no usable corpse and cannot generate XP, loot, RP, Nuke Chain credit, Soul Reservoir or kill-based resources. Soulbound Ritual can return one before a long rest.",
+      "BONEFLAYER. Medium undead; AC 14; HP = 12 + 2 × Mage level; Speed 30 feet. Bone Shards: range 60 feet, your Mage spell attack, hit 2d6 + S necrotic. Fear Pulse: instead of Bone Shards, enemies of your choice within 10 feet make Wisdom saves against your Mage DC; failure causes Frightened until the end of their next turn; recharge 3 rounds. Grave Miasma: instead of Bone Shards, one 10-foot-radius point within 30 feet persists until the start of your next turn; enemies entering or starting there take 1d6 necrotic once; recharge 3 rounds.",
+      "DREADBLADE. Medium undead; AC 16; HP = 16 + 3 × Mage level; Speed 30 feet. Disrupting Blade: melee spell attack using your Mage attack bonus, reach 5 feet, hit 1d8 + S necrotic. If the target is concentrating it immediately makes its concentration save with disadvantage. On a natural 20, the target is Weakened until the end of its next turn, taking -1 to attack rolls. Dreadblade has advantage on saves against forced movement.",
+      "WRAITHBOUND. Medium undead; AC 14; HP = 10 + 2 × Mage level; Fly 40 feet and can hover. While it has not attacked or imposed control since the end of its previous turn, it is Invisible; attacking ends that state until the end of its next turn. Wraith Strike: melee spell attack using your Mage attack bonus, reach 5 feet, hit 1d8 + S necrotic. On a natural 20, the target makes a Constitution save against your Mage DC; failure Stuns it until the end of its next turn.",
+      "LICH TRANSFORMATION READINESS. At Mage level 10 a character may select Lich only after obtaining either one Soul Coin or two ritual participants, binding at least two named mini-bosses as guardians, securing a planar nexus and surviving the Director's divine-echo encounter. A third bound guardian grants +2 to the final ritual check. If both ritual participants are willing, the final ritual check has advantage.",
+      "Before the irreversible Lich roll, the Director must explicitly tell the player the historical failure stakes: permanent loss of spellcasting, transformation into a cursed melee undead NPC, hostile faction consequences, cursed-gear restriction and no further XP as that retired PC. The player must explicitly opt into that retirement risk before rolling. If the player declines, the ritual stops before the roll and the character must choose another Hero path for this playtest; no irreversible consequence is applied.",
+      "LICH RITUAL CHECK. After all readiness gates and the divine-echo encounter are completed, roll d20 + Intelligence modifier + Constitution modifier against DC 20, applying the third-guardian +2 and willing-participant advantage where applicable. Success completes the Lich transformation and unlocks its cards and elite companions. Failure after explicit consent applies the historical failure state and the Director pauses for the agreed player-to-NPC handoff before continuing play. No silent PC deletion is permitted.",
+      "PROPOSED ACQUISITION. Mage 1 automatically gains Spellcasting, Resonance Pool and Resonance Surge, then chooses 4 eligible selectable Base cards, at least 2 Active. Mage 2 automatically chooses and gains one Elemental Focus card, then chooses 2 additional Base cards. Mage 3 enters Arcanist and chooses 2 Arch cards, at least 1 Active. Levels 4 through 9 each grant one eligible unselected Base or Arch card; level 9 is an ordinary choice because the historical source has no Arch capstone.",
+      "At Mage 10 choose Archmage, Elementalist or, if its ritual succeeds, Lich; choose 2 cards from that Hero path. Levels 11, 13, 15, 17 and 19 each grant one eligible unselected Base or Arch choice. Levels 12, 14, 16 and 18 each grant one Hero-path choice. Mage 20 grants one additional Hero-path choice plus the NEW playtest level-20 class capstone in extra Cards. No historical Hero Finale is implied. ASI/feat milestones remain separate.",
+      "All acquisition gates use Mage class level, not total character level. Proficiency bonus remains the normal total-character proficiency bonus. Non-Mage levels do not unlock Elemental Focus, Arcanist, Hero cards, Nuke Chain upgrades, Lich ritual access or the level-20 Mage capstone.",
+      "Class-spell ranks are printed in the normalized card data: use the legal maximum Mage rank at that card's minimum class level, capped 9; the three Focus finishers are rank 1. Rank determines Dissonance, Counterspell and rank-limited interactions, not a second RP cost. A shared spell uses the ally's normal Action and caster-side Dissonance at the moment it is cast; it never builds the Mage's Nuke Chain remotely. Spellcasting through Fracture as Lich uses the shared direct-trauma rule."
+    ],
+    "source": {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/mage.json",
+      "pointers": [
+        "/engine",
+        "/schedule",
+        "/cards/16",
+        "/rpByClassLevel/12"
+      ]
+    },
+    "automaticAccounting": "Arcane Stability+2 applies to Mage concentration damage saves. Lightning Focus/Elemental Affinity cannot improve Cold Ray or Fireball. Those casts/non-elemental Meta clear the chain. No three distinct Lightning casts or finisher. Spell Efficiency and Spell Precision not acquired. Optional Resonance Surge, Arcane Bypass, familiar, Counterspell and Archmage abilities not invoked unless expressly stated.",
+    "creatureType": "Humanoid",
+    "profileScope": "An explicitly supplied finite class-built teaching creature profile using the complete actual class engine/cards. Not a newly rated bestiary creature, not authenticated campaign or ancestry acquisition, and not permission to fill an absent future profile.",
+    "languages": [
+      "Common"
+    ],
+    "otherIntrinsicDefenses": [],
+    "additionalSkillProficienciesClaimed": [],
+    "checks": "Use current ability modifier and actual acquired named card when applicable; save proficiency is not an ability-check proficiency. No Athletics proficiency is claimed.",
+    "actualActionsAvailable": "Each annotated actual regular START supplies the normal Action/BonusAction/Reaction/movement according to the real source; the event trace explicitly consumes each used budget. No extra action source is assumed.",
+    "repertoireHistory": {
+      "rank0": [
+        "ray-of-frost"
+      ],
+      "earlierRankedAdditions": {
+        "class1": "shield",
+        "class3": "continual-flame",
+        "class5": "fireball",
+        "class6": "counterspell"
+      },
+      "oneRankedAdditionAt13": "meta-surge",
+      "otherKnownPositions": "Unused in these cases; no other rank7 knowledge is granted. No default rest retraining to a newly unlocked rank."
+    },
+    "asiHistory": {
+      "rolledINT": 16,
+      "class4": "INT+2 to18",
+      "class8": "STR+2 from8 to10",
+      "class12": "CHA+2 from8 to10",
+      "DEX": 14,
+      "CON": 14,
+      "WIS": 12,
+      "note": "Explicit legal generated-score/ASI fixture inputs; no extra feat is claimed."
+    }
+  }
+}

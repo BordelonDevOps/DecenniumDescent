@@ -1,0 +1,306 @@
+{
+  "id": "R7M16-PART-D-GEOMETRY-01",
+  "scope": "Synthetic declared occupied volumes/ports/obstacles and direct mathematical comparisons; no native physics engine or world authenticity claim.",
+  "checks": [
+    {
+      "id": "PI exact orthogonal target25ft",
+      "passed": true,
+      "evidence": {
+        "segments": [
+          20,
+          5
+        ],
+        "withinSpeed30": true,
+        "actualTurn": [
+          3,
+          4
+        ],
+        "movedAt": 3.1
+      }
+    },
+    {
+      "id": "PI target minimum separation85",
+      "passed": true,
+      "evidence": {
+        "Cbox": [
+          [
+            -2.5,
+            -2.5,
+            0
+          ],
+          [
+            2.5,
+            2.5,
+            5
+          ]
+        ],
+        "Tbox": [
+          [
+            87.5,
+            2.5,
+            0
+          ],
+          [
+            92.5,
+            7.5,
+            6
+          ]
+        ],
+        "CharmRange": 30
+      }
+    },
+    {
+      "id": "Historical imagefinal casterline would be blocked",
+      "passed": true,
+      "evidence": {
+        "reason": "Motivates reordering existing target movement to3.1; no extra turn."
+      }
+    },
+    {
+      "id": "Selected image90 line avoids movedT",
+      "passed": true,
+      "evidence": {
+        "line": [
+          [
+            2.5,
+            0,
+            3
+          ],
+          [
+            90,
+            0,
+            3
+          ]
+        ],
+        "Tfoot": [
+          90,
+          5,
+          0
+        ]
+      }
+    },
+    {
+      "id": "PI tether broken/resumes",
+      "passed": true,
+      "evidence": {
+        "broken": 137.5,
+        "limit": 120,
+        "restored": 107.5
+      }
+    },
+    {
+      "id": "RG15A base sight and C catch clear of target",
+      "passed": true,
+      "evidence": {
+        "Tfoot": [
+          50,
+          10,
+          0
+        ],
+        "base": [
+          50,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "RG actual cap/Falling arithmetic",
+      "passed": true,
+      "evidence": {
+        "upMarker": 8,
+        "newDownMarker": 16,
+        "noImpactAtCap": true
+      }
+    },
+    {
+      "id": "RG top-straddle target witness avoids platform",
+      "passed": true,
+      "evidence": {
+        "targetHighest": 104,
+        "shaftHighest": 110,
+        "capTravelBoth": 0
+      }
+    },
+    {
+      "id": "RG supports actual load constraints",
+      "passed": true,
+      "evidence": {
+        "grip": 250,
+        "anchors": 500,
+        "creatureAndGear": 180,
+        "object": 200
+      }
+    },
+    {
+      "id": "Symbol16B entire disc occluded at baffle x64",
+      "passed": true,
+      "evidence": {
+        "projectedY": [
+          "209/62",
+          "23/6"
+        ],
+        "projectedZ": [
+          "215/62",
+          "23/6"
+        ],
+        "baffleInteriorAtX64": {
+          "y": [
+            3,
+            5
+          ],
+          "z": [
+            0,
+            6
+          ]
+        },
+        "proof": "All-disc bounding square contains circle; affine projection bounds all rays from both actual ocular witnesses."
+      }
+    },
+    {
+      "id": "Helper sees chosen AM center [66, 5.5, 4]",
+      "passed": true,
+      "evidence": {
+        "eye": [
+          66,
+          5.5,
+          4
+        ],
+        "center": [
+          65,
+          0,
+          3
+        ]
+      }
+    },
+    {
+      "id": "Helper sees chosen AM center [66.2, 5.5, 4]",
+      "passed": true,
+      "evidence": {
+        "eye": [
+          66.2,
+          5.5,
+          4
+        ],
+        "center": [
+          65,
+          0,
+          3
+        ]
+      }
+    },
+    {
+      "id": "AM point true bodyrange",
+      "passed": true,
+      "evidence": {
+        "minimum": 5.522680508593631,
+        "range": 10
+      }
+    },
+    {
+      "id": "AM entire disc inradius and clear of baffle",
+      "passed": true,
+      "evidence": {
+        "farthestDiscDistanceSquared": 25.25,
+        "center": [
+          65,
+          0,
+          3
+        ],
+        "discPlane": 60,
+        "baffleYMin": 3,
+        "raysYWithin": [
+          -0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "id": "T actual visible rune path [72.5, -0.1, 4]",
+      "passed": true,
+      "evidence": {
+        "eye": [
+          72.5,
+          -0.1,
+          4
+        ],
+        "disc": [
+          60,
+          0,
+          3
+        ]
+      }
+    },
+    {
+      "id": "T actual visible rune path [72.5, 0.1, 4]",
+      "passed": true,
+      "evidence": {
+        "eye": [
+          72.5,
+          0.1,
+          4
+        ],
+        "disc": [
+          60,
+          0,
+          3
+        ]
+      }
+    },
+    {
+      "id": "Target entire swept movement misses baffle/helper",
+      "passed": true,
+      "evidence": {
+        "targetPath": [
+          [
+            90,
+            0,
+            0
+          ],
+          [
+            75,
+            0,
+            0
+          ]
+        ],
+        "sweptY": [
+          -2.5,
+          2.5
+        ],
+        "noOtherColliders": true
+      }
+    },
+    {
+      "id": "All-creature radial eligibility16B",
+      "passed": true,
+      "evidence": {
+        "C": "outside",
+        "E": "inside but optically occluded",
+        "Tinitial": "outside",
+        "Tfinal": "inside and visible"
+      }
+    },
+    {
+      "id": "Symbol16A disc outside body",
+      "passed": true,
+      "evidence": {
+        "Tfoot": [
+          45,
+          0,
+          0
+        ],
+        "occupiedMinX": 42.5,
+        "discX": 40,
+        "eyeX": 42.5
+      }
+    },
+    {
+      "id": "All-save ally and target clear distinct views",
+      "passed": true,
+      "evidence": {
+        "bothWithin20": true,
+        "notAllyFiltered": true
+      }
+    }
+  ]
+}

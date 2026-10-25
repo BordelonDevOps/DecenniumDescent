@@ -1,0 +1,208 @@
+[
+  {
+    "id": "W135-FORTRESS-R9-GEOMETRY",
+    "status": "CONDITIONAL_STATIC_UNASSIGNED_NOT_A_CAST",
+    "nativeProfiles": {
+      "id": "resonance-fortress",
+      "name": "Resonance Fortress",
+      "schools": [
+        "Abjuration"
+      ],
+      "status": "blocked-pending-operational-review",
+      "visibility": "public-source-review",
+      "classAccess": {
+        "Cleric": {
+          "rank": 7,
+          "minimumClassLevel": 13,
+          "school": "Abjuration",
+          "baseRpCost": 17
+        },
+        "Druid": {
+          "rank": 7,
+          "minimumClassLevel": 13,
+          "school": "Abjuration",
+          "baseRpCost": 17
+        },
+        "Mage": {
+          "rank": 7,
+          "minimumClassLevel": 13,
+          "school": "Abjuration",
+          "baseRpCost": 17
+        },
+        "Wizard": {
+          "rank": 7,
+          "minimumClassLevel": 13,
+          "school": "Abjuration",
+          "baseRpCost": 17
+        }
+      },
+      "operational": null,
+      "additionalRpCost": 0,
+      "source": {
+        "catalogPath": "src/data/spells.js",
+        "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+        "catalogKey": "resonance-fortress",
+        "original": {
+          "name": "Resonance Fortress",
+          "level": 7,
+          "resonanceRank": 7,
+          "school": "Abjuration",
+          "schools": [
+            "Abjuration"
+          ],
+          "placements": [
+            {
+              "name": "Resonance Fortress",
+              "school": "Abjuration",
+              "level": 7,
+              "summary": "Create a dome that blocks all magic not cast by you or allies."
+            },
+            {
+              "name": "Resonance Fortress",
+              "school": "Abjuration",
+              "level": 9,
+              "summary": "Create impenetrable dome that blocks all magic not cast by you."
+            }
+          ],
+          "classLevels": {
+            "Cleric": 7,
+            "Druid": 7,
+            "Mage": 7,
+            "Wizard": 7
+          },
+          "classRanks": {
+            "Cleric": 7,
+            "Druid": 7,
+            "Mage": 7,
+            "Wizard": 7
+          },
+          "classLearnLevels": {
+            "Cleric": 13,
+            "Druid": 13,
+            "Mage": 13,
+            "Wizard": 13
+          },
+          "classSchools": {
+            "Cleric": "Abjuration",
+            "Druid": "Abjuration",
+            "Mage": "Abjuration",
+            "Wizard": "Abjuration"
+          },
+          "castingTime": "Not specified in current rulebook",
+          "range": "Not specified in current rulebook",
+          "components": "Not specified in current rulebook",
+          "duration": "Not specified in current rulebook",
+          "description": "Create a dome that blocks all magic not cast by you or allies.",
+          "alternateSummaries": [
+            "Create impenetrable dome that blocks all magic not cast by you."
+          ],
+          "classes": [
+            "Cleric",
+            "Druid",
+            "Mage",
+            "Wizard"
+          ],
+          "status": "canon",
+          "source": "Player Rulebook — Spell Lists"
+        },
+        "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+        "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+        "coreEntries": [
+          {
+            "index": 76,
+            "original": {
+              "school": "Abjuration",
+              "level": 7,
+              "name": "Resonance Fortress",
+              "effect": "Create a dome that blocks all magic not cast by you or allies.",
+              "source_paragraph": 9073,
+              "casting_time": "1 action",
+              "range": "120 feet",
+              "duration": "Instantaneous",
+              "components": "V, S, F",
+              "resolution": "Automatic or opposed as described",
+              "tags": [
+                "Resonance"
+              ],
+              "rp_cost": 17
+            }
+          },
+          {
+            "index": 96,
+            "original": {
+              "school": "Abjuration",
+              "level": 9,
+              "name": "Resonance Fortress",
+              "effect": "Create impenetrable dome that blocks all magic not cast by you.",
+              "source_paragraph": 9097,
+              "casting_time": "1 action",
+              "range": "120 feet",
+              "duration": "Instantaneous",
+              "components": "V, S, F",
+              "resolution": "Automatic or opposed as described",
+              "tags": [
+                "Resonance"
+              ],
+              "rp_cost": 26
+            }
+          }
+        ],
+        "possibleHistoricalAliases": []
+      },
+      "reviewFlags": [
+        "Core resolution requires an explicit operational interpretation",
+        "Not selectable in this spell playtest packet until individual operational review"
+      ]
+    },
+    "fixture": {
+      "center": [
+        0,
+        0,
+        0
+      ],
+      "radius": 20,
+      "baseDiskZ": 0,
+      "ceilingZ": 30,
+      "support": true,
+      "bodyOutside": [
+        25,
+        0,
+        0
+      ],
+      "bodyExtent": [
+        5,
+        5,
+        6
+      ],
+      "attemptedEnd": [
+        15,
+        0,
+        0
+      ]
+    },
+    "result": "Swept body intersects closed hemisphere; hypothetical rank9 blocks physical crossing. Actual acquired rank7 permits physical crossing. No class/RP/payment/runtime is asserted."
+  },
+  {
+    "id": "W135-FORTRESS-R9-CASTER-ONLY",
+    "status": "CONDITIONAL_STATIC_UNASSIGNED_NOT_A_CAST",
+    "fixture": {
+      "generator": "U",
+      "realAlly": "A",
+      "rank7Source": {
+        "price": 17,
+        "allowedCasters": [
+          "U",
+          "A"
+        ]
+      },
+      "rank9UnassignedProfile": {
+        "nativePriceMetadata": 26,
+        "allowedCasters": [
+          "U"
+        ],
+        "realClassAccess": null
+      }
+    },
+    "result": "Ally-generated spell is admitted by rank7, excluded by hypothetical rank9. A carried/controlled effect does not change original caster. No generic upcast/acquisition or free26RP cast exists."
+  }
+]

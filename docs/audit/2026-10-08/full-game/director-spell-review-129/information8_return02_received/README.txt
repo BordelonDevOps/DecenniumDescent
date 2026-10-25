@@ -1,0 +1,4 @@
+Information8 complete focused correctedReturn02. Currentactual628applied/220pending/0accepted-unapplied; noacceptance/application assumed.
+Read fullPROCEDURES/shared/native/access/25dispositions/16mains+branches/operations/holds. Correctedgeometry, completeactualnoticeaudit, realGreaterDispelcapture, seven-dayhorizon and qualifiedpostbarshortest120 are operative data, not notes over erroneous oldstate.
+Exact114-memberReturn01ZIP and deliverypreserved. Historical MANIFEST/ARTIFACT_BINDINGS live INSIDE that exactZIP; currentrootones bind currentreturn. AlloldoriginalarchivesremainexactinsideReturn01.
+Othersevenprocedureobjects/sharedrules unchanged; ArcaneEye/FactionDestiny/LegendLore/Frenzywholecaseobjects exact. Originalflight/content/unselectedtask/protectedterrain/temporal/runtime/human/balance/cosmology/release holds remain. Supplied/historicalprograms neverexecuted.

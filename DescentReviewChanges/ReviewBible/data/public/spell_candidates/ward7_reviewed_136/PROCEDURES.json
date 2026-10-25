@@ -1,0 +1,1061 @@
+[
+  {
+    "id": "arcane-aegis",
+    "spellId": "arcane-aegis",
+    "status": "PROPOSED_AUTHORED_COMPLETE_PROCEDURE_FOR_INDEPENDENT_EXACT_REVIEW",
+    "completeNativeAccessAndSource": {
+      "id": "arcane-aegis",
+      "name": "Arcane Aegis",
+      "schools": [
+        "Abjuration"
+      ],
+      "status": "blocked-pending-operational-review",
+      "visibility": "public-source-review",
+      "classAccess": {
+        "Cleric": {
+          "rank": 7,
+          "minimumClassLevel": 13,
+          "school": "Abjuration",
+          "baseRpCost": 17
+        },
+        "Druid": {
+          "rank": 7,
+          "minimumClassLevel": 13,
+          "school": "Abjuration",
+          "baseRpCost": 17
+        },
+        "Mage": {
+          "rank": 7,
+          "minimumClassLevel": 13,
+          "school": "Abjuration",
+          "baseRpCost": 17
+        },
+        "Wizard": {
+          "rank": 7,
+          "minimumClassLevel": 13,
+          "school": "Abjuration",
+          "baseRpCost": 17
+        }
+      },
+      "operational": null,
+      "additionalRpCost": 0,
+      "source": {
+        "catalogPath": "src/data/spells.js",
+        "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+        "catalogKey": "arcane-aegis",
+        "original": {
+          "name": "Arcane Aegis",
+          "level": 7,
+          "resonanceRank": 7,
+          "school": "Abjuration",
+          "schools": [
+            "Abjuration"
+          ],
+          "placements": [
+            {
+              "name": "Arcane Aegis",
+              "school": "Abjuration",
+              "level": 7,
+              "summary": "Target gains immunity to spells of 4th level or lower."
+            }
+          ],
+          "classLevels": {
+            "Cleric": 7,
+            "Druid": 7,
+            "Mage": 7,
+            "Wizard": 7
+          },
+          "classRanks": {
+            "Cleric": 7,
+            "Druid": 7,
+            "Mage": 7,
+            "Wizard": 7
+          },
+          "classLearnLevels": {
+            "Cleric": 13,
+            "Druid": 13,
+            "Mage": 13,
+            "Wizard": 13
+          },
+          "classSchools": {
+            "Cleric": "Abjuration",
+            "Druid": "Abjuration",
+            "Mage": "Abjuration",
+            "Wizard": "Abjuration"
+          },
+          "castingTime": "Not specified in current rulebook",
+          "range": "Not specified in current rulebook",
+          "components": "Not specified in current rulebook",
+          "duration": "Not specified in current rulebook",
+          "description": "Target gains immunity to spells of 4th level or lower.",
+          "alternateSummaries": [],
+          "classes": [
+            "Cleric",
+            "Druid",
+            "Mage",
+            "Wizard"
+          ],
+          "status": "canon",
+          "source": "Player Rulebook — Spell Lists"
+        },
+        "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+        "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+        "coreEntries": [
+          {
+            "index": 72,
+            "original": {
+              "school": "Abjuration",
+              "level": 7,
+              "name": "Arcane Aegis",
+              "effect": "Target gains immunity to spells of Tier 4 or lower.",
+              "source_paragraph": 9069,
+              "casting_time": "1 action",
+              "range": "120 feet",
+              "duration": "Instantaneous",
+              "components": "V, S, F",
+              "resolution": "Automatic or opposed as described",
+              "tags": [
+                "Ward"
+              ],
+              "rp_cost": 17
+            }
+          }
+        ],
+        "possibleHistoricalAliases": []
+      },
+      "reviewFlags": [
+        "Core resolution requires an explicit operational interpretation",
+        "Not selectable in this spell playtest packet until individual operational review"
+      ]
+    },
+    "sharedRuleIds": [
+      "W135-AUTHORITY",
+      "W135-COMMIT",
+      "W135-CLOCK",
+      "W135-VIEW",
+      "W135-ROOT",
+      "W135-MULTIPLICITY"
+    ],
+    "procedure": "KEEP Action,120ft,V/S/F,rank7/base17RP. NEW choose one perceived willing creature within actual range/LoE, including self. Successful resolution establishes a target-attached60-second NONCONCENTRATION ward; this explicitly replaces unresolved Instantaneous metadata rather than pretending an ongoing duration was native. A visible fine rune on the recipient is its independently addressable ongoing anchor, not an extra object or physical barrier. Immunity tests the actual generating spell rank0..4, including an explicitly spell-tagged class spell with a recorded rank; class level, RP cost/discount, item material tier and flavor never substitute. Only an actually authorized source rank change counts.\nNEW both beneficial and hostile spell applications to that creature are prevented, regardless of whether cast inside/outside, by itself, ally or enemy. A legal spell still pays and updates cadence/concentration. Areas retain their actual geometry and other recipients; only the protected creature application is absent. No damage packet/root is minted for its prevented application. Existing ongoing eligible attached spell expressions are suppressed, not removed or cured, while this ward is operative; retain original records, deadlines and consumed scheduled opportunities. They resume only if still live. A prevented new application creates no retained rider to replay. Rank5+ spells and nonspell powers/items remain subject to their actual defenses. Casting an outgoing spell is not itself an incoming application on the caster; a self-targeted eligible buff is prevented.\nThis is recipient immunity, not general Antimagic, a wall or a ban on real bodies. An independently existing summoned creature, mundane weapon, real object or completed transformed stock can approach and act under its source. A prior summon own genuinely new nonspell attack is not the summoning spell applying again. An actual ongoing spell-generated area/rider on the recipient uses its generating rank; independent physical fire, Falling and injury remain physical once genuinely created under their source. No erasing past HP loss, healing, body change or transferred equipment.\nNEW an actual spell-termination operation directly selecting/capturing this independently addressable anchor is NOT a spell application on the protected creature. It can remove the ward under its own real rank/range/perception/check contract, even if rank<=4; this explicit anchor distinction prevents an unprinted removal lock. Wizard Arch Dispel remains rank3/3RP/60ft/Recharge2 with INT+PB versus10+7 for this anchor; Greater Dispel is currently blocked-pending-operational-review with no operative procedure pointer; its historical rank5/base10RP candidate is not an acquired or operational removal route here. Retain W135-GREATER-DISPEL-UNAVAILABLE; no Greater Dispel cast, payment, capture/check or removal is authorized by this return. No removal is inferred from witnessing a cast without current perception; the selected visible rune can genuinely be perceived if geometry permits. Local Antimagic suspends the attached ward; its absolute clock runs. Expiry or lawful removal ends it, never refunds blocked casts or replays prevented events. Caster death alone does not end this nonconcentration ward. Preserve exact BAN-CLOSE-03/AC5 named terminal return exceptions and other separately accepted travel source contracts; no universal return bypass is added.",
+    "explicitNEWChoices": [
+      "NEW willing recipient,visible independent anchor,60snonconcentration",
+      "actual generating rank0..4 including rank-bearing class spells",
+      "beneficial/hostile new prevention and existing-expression suppression",
+      "anchor termination distinct from incoming creature application"
+    ],
+    "accepted": false,
+    "applied": false
+  },
+  {
+    "id": "spell-turning",
+    "spellId": "spell-turning",
+    "status": "PROPOSED_AUTHORED_COMPLETE_PROCEDURE_FOR_INDEPENDENT_EXACT_REVIEW",
+    "completeNativeAccessAndSource": {
+      "id": "spell-turning",
+      "name": "Spell Turning",
+      "schools": [
+        "Abjuration"
+      ],
+      "status": "blocked-pending-operational-review",
+      "visibility": "public-source-review",
+      "classAccess": {
+        "Cleric": {
+          "rank": 7,
+          "minimumClassLevel": 13,
+          "school": "Abjuration",
+          "baseRpCost": 17
+        },
+        "Druid": {
+          "rank": 7,
+          "minimumClassLevel": 13,
+          "school": "Abjuration",
+          "baseRpCost": 17
+        },
+        "Mage": {
+          "rank": 7,
+          "minimumClassLevel": 13,
+          "school": "Abjuration",
+          "baseRpCost": 17
+        },
+        "Wizard": {
+          "rank": 7,
+          "minimumClassLevel": 13,
+          "school": "Abjuration",
+          "baseRpCost": 17
+        }
+      },
+      "operational": null,
+      "additionalRpCost": 0,
+      "source": {
+        "catalogPath": "src/data/spells.js",
+        "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+        "catalogKey": "spell-turning",
+        "original": {
+          "name": "Spell Turning",
+          "level": 7,
+          "resonanceRank": 7,
+          "school": "Abjuration",
+          "schools": [
+            "Abjuration"
+          ],
+          "placements": [
+            {
+              "name": "Spell Turning",
+              "school": "Abjuration",
+              "level": 7,
+              "summary": "Reflect 1d4+2 spells back at caster."
+            }
+          ],
+          "classLevels": {
+            "Cleric": 7,
+            "Druid": 7,
+            "Mage": 7,
+            "Wizard": 7
+          },
+          "classRanks": {
+            "Cleric": 7,
+            "Druid": 7,
+            "Mage": 7,
+            "Wizard": 7
+          },
+          "classLearnLevels": {
+            "Cleric": 13,
+            "Druid": 13,
+            "Mage": 13,
+            "Wizard": 13
+          },
+          "classSchools": {
+            "Cleric": "Abjuration",
+            "Druid": "Abjuration",
+            "Mage": "Abjuration",
+            "Wizard": "Abjuration"
+          },
+          "castingTime": "Not specified in current rulebook",
+          "range": "Not specified in current rulebook",
+          "components": "Not specified in current rulebook",
+          "duration": "Not specified in current rulebook",
+          "description": "Reflect 1d4+2 spells back at caster.",
+          "alternateSummaries": [],
+          "classes": [
+            "Cleric",
+            "Druid",
+            "Mage",
+            "Wizard"
+          ],
+          "status": "canon",
+          "source": "Player Rulebook — Spell Lists"
+        },
+        "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+        "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+        "coreEntries": [
+          {
+            "index": 74,
+            "original": {
+              "school": "Abjuration",
+              "level": 7,
+              "name": "Spell Turning",
+              "effect": "Reflect 1d4+2 spells back at caster.",
+              "source_paragraph": 9071,
+              "casting_time": "1 action",
+              "range": "120 feet",
+              "duration": "Instantaneous",
+              "components": "V, S, F",
+              "resolution": "Automatic or opposed as described",
+              "tags": [
+                "Damage"
+              ],
+              "rp_cost": 17
+            }
+          }
+        ],
+        "possibleHistoricalAliases": []
+      },
+      "reviewFlags": [
+        "Core resolution requires an explicit operational interpretation",
+        "Not selectable in this spell playtest packet until individual operational review"
+      ]
+    },
+    "sharedRuleIds": [
+      "W135-AUTHORITY",
+      "W135-COMMIT",
+      "W135-CLOCK",
+      "W135-VIEW",
+      "W135-ROOT",
+      "W135-MULTIPLICITY"
+    ],
+    "procedure": "KEEP Action,120ft,V/S/F,rank7/base17RP and1d4+2spells returned to their actual caster. NEW one perceived willing creature including self,60elapsed seconds without concentration. Roll exactly one private d4 at successful establishment, store face and remaining face+2 capacity. No Fate visibility grant; suppression never rerolls. A genuinely paid successful replacement ends the old remainder and rolls its new source once, never banks old charges.\nNEW explicitly select a direct-sole-recipient scope: ordinary spells AND genuinely spell-tagged rank-bearing class spells, beneficial or hostile, of any actual rank. This extends only this new ward; closed Spell Mirror/Soul Mirror remain ordinary-only. Exclude area/multitarget, self-only, anchor/object, summon, channel/ongoing tick and an already redirected causal root. A Touch or willing-recipient payload can be eligible for interception; test return type/consent only after capacity is spent. After genuine counterspell resolution, before the attack/save/outcome, automatically intercept the first eligible resolving source. One source uses one capacity regardless of dice/components. No optional saving the charge after an outcome. Duplicate callbacks use the same consumed root receipt.\nSpend one charge, then attempt to substitute the original actual caster as sole recipient. Return keeps the same original spell caster, costs, rank, DC/attack and concentration owner; no free cast, borrowed resource pool, second attack/spell-begin window, new information or learned spell. A legal Touch return is magical, not new physical touch. The original targeting range remains established; there is no unlimited new remote reach: the original caster must remain within that payload original numerical range measured from the warded body, except Touch uses this explicit magical return up to the original caster/warded-body separation at original commitment. Current actual body extent and a clear return LoE from protected body to caster are required. Dead/absent/wrong-plane/type/unwilling caster, increased range beyond that bound or real barrier makes return fail. Its charge stays spent and the original effect resolves once against the original warded target with its current defenses.\nA valid return resolves fresh attack/save once on the actual new recipient, using current actual target defenses, with original owner/Null root retained. Do not reroll an already resolved attack or damage; interception occurs earlier. NEW once this ward attempts interception, stamp the root attempted-redirection even if return fails. No other Spell Turning, Spell Mirror or Soul Mirror retries that same causal root; their already-redirected exclusion is respected. Competing waiting wards on the original recipient choose earliest creation/stableID, only one spends; this local arbitration adds Spell Turning to the candidate selection without rewriting the closed wards other scope. Actual Arcane Reversal and distinct class reflected-damage sources retain their own exact trigger/payment/root contracts; no alias or global permission is inferred. Capacity0 ends the ward after the one intercepted source result. Suppression disables interception with no backlog/charge spend; expiry/removal ends remaining capacity. Caster death alone does not end it.",
+    "explicitNEWChoices": [
+      "NEW sole-recipient ordinary+actual tagged class spell scope",
+      "NEW60snonconcentration, one stored private capacity roll",
+      "attempt before outcomes; illegal return spends and leaves original",
+      "pure original-root redirection with finite cross-ward arbitration"
+    ],
+    "accepted": false,
+    "applied": false
+  },
+  {
+    "id": "dimensional-lock",
+    "spellId": "dimensional-lock",
+    "status": "PROPOSED_AUTHORED_COMPLETE_PROCEDURE_FOR_INDEPENDENT_EXACT_REVIEW",
+    "completeNativeAccessAndSource": {
+      "id": "dimensional-lock",
+      "name": "Dimensional Lock",
+      "schools": [
+        "Abjuration"
+      ],
+      "status": "blocked-pending-operational-review",
+      "visibility": "public-source-review",
+      "classAccess": {
+        "Cleric": {
+          "rank": 7,
+          "minimumClassLevel": 13,
+          "school": "Abjuration",
+          "baseRpCost": 17
+        },
+        "Druid": {
+          "rank": 7,
+          "minimumClassLevel": 13,
+          "school": "Abjuration",
+          "baseRpCost": 17
+        },
+        "Mage": {
+          "rank": 7,
+          "minimumClassLevel": 13,
+          "school": "Abjuration",
+          "baseRpCost": 17
+        },
+        "Wizard": {
+          "rank": 7,
+          "minimumClassLevel": 13,
+          "school": "Abjuration",
+          "baseRpCost": 17
+        }
+      },
+      "operational": null,
+      "additionalRpCost": 0,
+      "source": {
+        "catalogPath": "src/data/spells.js",
+        "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+        "catalogKey": "dimensional-lock",
+        "original": {
+          "name": "Dimensional Lock",
+          "level": 7,
+          "resonanceRank": 7,
+          "school": "Abjuration",
+          "schools": [
+            "Abjuration"
+          ],
+          "placements": [
+            {
+              "name": "Dimensional Lock",
+              "school": "Abjuration",
+              "level": 7,
+              "summary": "Area prevents all teleportation and planar travel."
+            }
+          ],
+          "classLevels": {
+            "Cleric": 7,
+            "Druid": 7,
+            "Mage": 7,
+            "Wizard": 7
+          },
+          "classRanks": {
+            "Cleric": 7,
+            "Druid": 7,
+            "Mage": 7,
+            "Wizard": 7
+          },
+          "classLearnLevels": {
+            "Cleric": 13,
+            "Druid": 13,
+            "Mage": 13,
+            "Wizard": 13
+          },
+          "classSchools": {
+            "Cleric": "Abjuration",
+            "Druid": "Abjuration",
+            "Mage": "Abjuration",
+            "Wizard": "Abjuration"
+          },
+          "castingTime": "Not specified in current rulebook",
+          "range": "Not specified in current rulebook",
+          "components": "Not specified in current rulebook",
+          "duration": "Not specified in current rulebook",
+          "description": "Area prevents all teleportation and planar travel.",
+          "alternateSummaries": [],
+          "classes": [
+            "Cleric",
+            "Druid",
+            "Mage",
+            "Wizard"
+          ],
+          "status": "canon",
+          "source": "Player Rulebook — Spell Lists"
+        },
+        "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+        "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+        "coreEntries": [
+          {
+            "index": 75,
+            "original": {
+              "school": "Abjuration",
+              "level": 7,
+              "name": "Dimensional Lock",
+              "effect": "Area prevents all teleportation and planar travel.",
+              "source_paragraph": 9072,
+              "casting_time": "1 action",
+              "range": "120 feet",
+              "duration": "Instantaneous",
+              "components": "V, S, F",
+              "resolution": "Automatic or opposed as described",
+              "tags": [
+                "Movement",
+                "Planar"
+              ],
+              "rp_cost": 17
+            }
+          }
+        ],
+        "possibleHistoricalAliases": []
+      },
+      "reviewFlags": [
+        "Core resolution requires an explicit operational interpretation",
+        "Not selectable in this spell playtest packet until individual operational review"
+      ]
+    },
+    "sharedRuleIds": [
+      "W135-AUTHORITY",
+      "W135-COMMIT",
+      "W135-CLOCK",
+      "W135-VIEW",
+      "W135-ROOT",
+      "W135-MULTIPLICITY"
+    ],
+    "procedure": "KEEP Action,120ft,V/S/F,rank7/base17RP and BOTH teleportation and planar-travel prevention. NEW choose a perceived immobile supported center within120/LoE; establish a fixed20ft-radius,20ft-high closed cylinder above its support plane for600elapsed seconds without concentration. It is nonphysical, transparent and gives no Speed0, force, support, damage, allegiance exception or information. Record planeID, center and exact cylinder; it does not invent matching coordinates on another plane. All bodies and their actually transported cargo are tested by their full finite occupied volumes, including positive-volume straddling of the boundary; mere tangency is not interior intersection. Ordinary movement, forced displacement and nonteleport same-plane magic pass unless another real source prevents them.\nFor an instantaneous teleport, block atomically if ANY selected transported body/cargo source footprint OR proposed destination footprint intersects an operative cylinder in its actual plane. No cutting a group/item, cargo bisection, partial free success or new position is supplied. The teleport own group/independent-child transaction contract controls which genuinely separate paid child can fail; Lock does not split one committed group. An origin and destination both wholly outside are unaffected, even if an imaginary segment between them crosses the field. No actual traversed teleport path exists. For actual physical planar portals, test the real continuous swept full body+cargo crossing footprint at either actual mouth/plane: touching an operative local volume prevents that atomic planar crossing without moving part of the traveler. Ordinary same-plane walking through the cylinder remains legal.\nKnown local illegality uses native preflight and spends nothing. A legally committed hidden-field failure pays actual source costs/actions/cadence and concentration transition, produces no traveler/destination diagnosis and changes no transported pose. An atomic crossing already completed is history, not retroactively reversed by a newly established field. An interrupted not-yet-committed traveler remains on its real source receiving surface. Existing plane/portal permissions and matching/cosmological facts must be actual source-qualified records; no new master topology is authored here.\nTransport6 Shift tests its actual connected selected graph/group footprints, Door its full actual self/cargo endpoints, Instant Summons its truly separately committed child and object eligibility, Gate its real oriented finite crossing and Circle its actual six-second source opportunity; none receives an imaginary path-line test. Faction Portal is actual teleport; Alignment Portal is actual physical planar travel. Time Skip uses only its exact accepted source return contract. Current PlanarTravel6 is applied: retain each selected Blink/Etherealness/Veiled Chest/PlaneShift/Teleport/Gate contract and named terminal placement, not the old packet pending labels. A particular source mandatory-return exception is preserved ONLY for its expressly named return operation. In particular BAN-CLOSE-03 and its two AC5 named extensions cannot be generalized to voluntary travel. Local Antimagic removes only its operative intersection; other overlapping Locks still prevent. Expiry/termination releases prevention prospectively with no stored/replayed travel, duplication, refunded cost or reset source clock. The visible casting is no automatic field-perception grant; no ward boundary is added for this transparent Lock.",
+    "explicitNEWChoices": [
+      "NEW fixed supported20radius20high cylinder,600snonconcentration",
+      "whole body/cargo source/destination and real planar swept crossing",
+      "outside-to-outside teleport never uses invented path",
+      "only exact accepted named return exceptions"
+    ],
+    "accepted": false,
+    "applied": false
+  },
+  {
+    "id": "resonance-fortress",
+    "spellId": "resonance-fortress",
+    "status": "PROPOSED_AUTHORED_COMPLETE_PROCEDURE_FOR_INDEPENDENT_EXACT_REVIEW",
+    "completeNativeAccessAndSource": {
+      "id": "resonance-fortress",
+      "name": "Resonance Fortress",
+      "schools": [
+        "Abjuration"
+      ],
+      "status": "blocked-pending-operational-review",
+      "visibility": "public-source-review",
+      "classAccess": {
+        "Cleric": {
+          "rank": 7,
+          "minimumClassLevel": 13,
+          "school": "Abjuration",
+          "baseRpCost": 17
+        },
+        "Druid": {
+          "rank": 7,
+          "minimumClassLevel": 13,
+          "school": "Abjuration",
+          "baseRpCost": 17
+        },
+        "Mage": {
+          "rank": 7,
+          "minimumClassLevel": 13,
+          "school": "Abjuration",
+          "baseRpCost": 17
+        },
+        "Wizard": {
+          "rank": 7,
+          "minimumClassLevel": 13,
+          "school": "Abjuration",
+          "baseRpCost": 17
+        }
+      },
+      "operational": null,
+      "additionalRpCost": 0,
+      "source": {
+        "catalogPath": "src/data/spells.js",
+        "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+        "catalogKey": "resonance-fortress",
+        "original": {
+          "name": "Resonance Fortress",
+          "level": 7,
+          "resonanceRank": 7,
+          "school": "Abjuration",
+          "schools": [
+            "Abjuration"
+          ],
+          "placements": [
+            {
+              "name": "Resonance Fortress",
+              "school": "Abjuration",
+              "level": 7,
+              "summary": "Create a dome that blocks all magic not cast by you or allies."
+            },
+            {
+              "name": "Resonance Fortress",
+              "school": "Abjuration",
+              "level": 9,
+              "summary": "Create impenetrable dome that blocks all magic not cast by you."
+            }
+          ],
+          "classLevels": {
+            "Cleric": 7,
+            "Druid": 7,
+            "Mage": 7,
+            "Wizard": 7
+          },
+          "classRanks": {
+            "Cleric": 7,
+            "Druid": 7,
+            "Mage": 7,
+            "Wizard": 7
+          },
+          "classLearnLevels": {
+            "Cleric": 13,
+            "Druid": 13,
+            "Mage": 13,
+            "Wizard": 13
+          },
+          "classSchools": {
+            "Cleric": "Abjuration",
+            "Druid": "Abjuration",
+            "Mage": "Abjuration",
+            "Wizard": "Abjuration"
+          },
+          "castingTime": "Not specified in current rulebook",
+          "range": "Not specified in current rulebook",
+          "components": "Not specified in current rulebook",
+          "duration": "Not specified in current rulebook",
+          "description": "Create a dome that blocks all magic not cast by you or allies.",
+          "alternateSummaries": [
+            "Create impenetrable dome that blocks all magic not cast by you."
+          ],
+          "classes": [
+            "Cleric",
+            "Druid",
+            "Mage",
+            "Wizard"
+          ],
+          "status": "canon",
+          "source": "Player Rulebook — Spell Lists"
+        },
+        "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+        "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+        "coreEntries": [
+          {
+            "index": 76,
+            "original": {
+              "school": "Abjuration",
+              "level": 7,
+              "name": "Resonance Fortress",
+              "effect": "Create a dome that blocks all magic not cast by you or allies.",
+              "source_paragraph": 9073,
+              "casting_time": "1 action",
+              "range": "120 feet",
+              "duration": "Instantaneous",
+              "components": "V, S, F",
+              "resolution": "Automatic or opposed as described",
+              "tags": [
+                "Resonance"
+              ],
+              "rp_cost": 17
+            }
+          },
+          {
+            "index": 96,
+            "original": {
+              "school": "Abjuration",
+              "level": 9,
+              "name": "Resonance Fortress",
+              "effect": "Create impenetrable dome that blocks all magic not cast by you.",
+              "source_paragraph": 9097,
+              "casting_time": "1 action",
+              "range": "120 feet",
+              "duration": "Instantaneous",
+              "components": "V, S, F",
+              "resolution": "Automatic or opposed as described",
+              "tags": [
+                "Resonance"
+              ],
+              "rp_cost": 26
+            }
+          }
+        ],
+        "possibleHistoricalAliases": []
+      },
+      "reviewFlags": [
+        "Core resolution requires an explicit operational interpretation",
+        "Not selectable in this spell playtest packet until individual operational review"
+      ]
+    },
+    "sharedRuleIds": [
+      "W135-AUTHORITY",
+      "W135-COMMIT",
+      "W135-CLOCK",
+      "W135-VIEW",
+      "W135-ROOT",
+      "W135-MULTIPLICITY"
+    ],
+    "procedure": "KEEP SEPARATE profiles: actual acquired rank7/17RP permits magic CAST BY generating caster or current actual allies; unassigned rank9/26RP permits only that caster and adds physical impenetrability. No ordinary classAccess grants rank9, no generic upcast or class-level route is invented. Both preserve Action,120ft,V/S/F and native Instantaneous metadata as provenance. NEW each profile has concentration for60elapsed seconds. The following placement is shared: perceived center on immobile approximately horizontal support within120/LoE, fixed transparent upper hemisphere radius20ft, maximum height20ft, closed by its base disk at support level. Full extent must have real room/support. Creation cannot bisect an occupied body; a body intersecting boundary at creation makes that placement observably illegal rather than pushing it.\nNEW rank7 is physically permeable and supplies no cover/collision/support. Its FULL interior and boundary filter all actual ongoing magical expressions not belonging to a spell cast by the actual generating caster or that caster current genuine allies. This includes magic generated inside, incoming magical applications and continuing attached magic carried inside; no outside-origin loophole. Spell exceptions use immutable original caster, not carrier/controller/appearance/current location. Reassess current genuine bilateral alliance at each actual application/continuing expression checkpoint; no faction membership, friendly disguise, compelled appearance or roster diagnosis substitutes. A later allegiance change prospectively changes expression, without undoing completed damage or giving hidden-score diagnostics.\nAll-magic includes explicitly magical nonspell outputs and item enhancements; these have no CAST BY exception merely because the holder is allied, unless their own actual source identifies them as an expression of a permitted original spell cast. Underlying class engines, learned/prepared records, pools, mundane equipment/current HP and independent nonmagical components persist. A mundane weapon still makes its real attack while an ineligible separate magical rider is absent. Actual summoned bodies retain their exact lifecycle classification: a continuously magical body expression cannot manifest inside while disallowed, retaining original HP/creator/deadline in suppression; independently existing nonmagical stock or a real creature prior physical body/action is not retroactively deleted because its remote creation involved a spell. No general Conjuration HP/control/snapshot identity is inferred.\nNEW a direct termination operation specifically selecting/capturing this visible dome anchor may reach/remove this source under its real dispel/rank/check contract, even from a nonally; this is a precise local anchor-removal exception, not admission of that caster other magic. The visible center rune and shell are perceived only by actual senses/paths. Lesser Antimagic can suppress actual intersecting dome expression under its exact I/O contract; two opposing filters use source application chronology and actual termination operations, not blanket restore-all. Overlapping independent domes each impose their own admitted-source test; one ending does not end another. Source concentration loss/death, removal or deadline ends that dome; suppression never refreshes its timer or replays blocked magic.\nUNASSIGNED RANK9 ONLY: use the same filter, but caster-only exception. NEW the closed hemisphere/base additionally prevents physical crossing in either direction by bodies, projectiles, matter or forced motion; ordinary light/air and actual sound pass so the dome is neither opaque nor a suffocation machine. No crushing/displacement/zero-thickness bisection at creation, HP, harvested material or infinite supporting floor is added; a supported ground disk cannot be placed as a free bridge. Teleportation has no physically traversed route; its actual endpoint/other travel blockers still govern. Actual suppression creates only the scoped inactive intersection, with safe resumption rejecting/releasing an intersecting boundary expression under the same no-crush placement rule rather than damaging a body. Only conditional static analyses demonstrate this profile; there is no actual class cast/payment/acquisition fixture.",
+    "explicitNEWChoices": [
+      "separate rank7 acquired and rank9UNASSIGNED profiles",
+      "NEW20ft supported hemisphere+base60sconcentration",
+      "full interior/boundary all-magic filter, current alliance, immutable caster",
+      "precise direct anchor-removal exception; rank9physical rule conditional only"
+    ],
+    "accepted": false,
+    "applied": false
+  },
+  {
+    "id": "faction-aegis",
+    "spellId": "faction-aegis",
+    "status": "PROPOSED_AUTHORED_COMPLETE_PROCEDURE_FOR_INDEPENDENT_EXACT_REVIEW",
+    "completeNativeAccessAndSource": {
+      "id": "faction-aegis",
+      "name": "Faction Aegis",
+      "schools": [
+        "Abjuration"
+      ],
+      "status": "blocked-pending-operational-review",
+      "visibility": "public-source-review",
+      "classAccess": {
+        "Cleric": {
+          "rank": 7,
+          "minimumClassLevel": 13,
+          "school": "Abjuration",
+          "baseRpCost": 17
+        },
+        "Druid": {
+          "rank": 7,
+          "minimumClassLevel": 13,
+          "school": "Abjuration",
+          "baseRpCost": 17
+        },
+        "Mage": {
+          "rank": 7,
+          "minimumClassLevel": 13,
+          "school": "Abjuration",
+          "baseRpCost": 17
+        },
+        "Wizard": {
+          "rank": 7,
+          "minimumClassLevel": 13,
+          "school": "Abjuration",
+          "baseRpCost": 17
+        }
+      },
+      "operational": null,
+      "additionalRpCost": 0,
+      "source": {
+        "catalogPath": "src/data/spells.js",
+        "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+        "catalogKey": "faction-aegis",
+        "original": {
+          "name": "Faction Aegis",
+          "level": 7,
+          "resonanceRank": 7,
+          "school": "Abjuration",
+          "schools": [
+            "Abjuration"
+          ],
+          "placements": [
+            {
+              "name": "Faction Aegis",
+              "school": "Abjuration",
+              "level": 7,
+              "summary": "Target gains immunity to effects from creatures with negative faction reputation."
+            }
+          ],
+          "classLevels": {
+            "Cleric": 7,
+            "Druid": 7,
+            "Mage": 7,
+            "Wizard": 7
+          },
+          "classRanks": {
+            "Cleric": 7,
+            "Druid": 7,
+            "Mage": 7,
+            "Wizard": 7
+          },
+          "classLearnLevels": {
+            "Cleric": 13,
+            "Druid": 13,
+            "Mage": 13,
+            "Wizard": 13
+          },
+          "classSchools": {
+            "Cleric": "Abjuration",
+            "Druid": "Abjuration",
+            "Mage": "Abjuration",
+            "Wizard": "Abjuration"
+          },
+          "castingTime": "Not specified in current rulebook",
+          "range": "Not specified in current rulebook",
+          "components": "Not specified in current rulebook",
+          "duration": "Not specified in current rulebook",
+          "description": "Target gains immunity to effects from creatures with negative faction reputation.",
+          "alternateSummaries": [],
+          "classes": [
+            "Cleric",
+            "Druid",
+            "Mage",
+            "Wizard"
+          ],
+          "status": "canon",
+          "source": "Player Rulebook — Spell Lists"
+        },
+        "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+        "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+        "coreEntries": [
+          {
+            "index": 77,
+            "original": {
+              "school": "Abjuration",
+              "level": 7,
+              "name": "Faction Aegis",
+              "effect": "Target gains immunity to effects from creatures with negative faction reputation.",
+              "source_paragraph": 9074,
+              "casting_time": "1 action",
+              "range": "120 feet",
+              "duration": "Instantaneous",
+              "components": "V, S, F",
+              "resolution": "Automatic or opposed as described",
+              "tags": [
+                "Ward",
+                "Faction"
+              ],
+              "rp_cost": 17
+            }
+          }
+        ],
+        "possibleHistoricalAliases": []
+      },
+      "reviewFlags": [
+        "Core resolution requires an explicit operational interpretation",
+        "Not selectable in this spell playtest packet until individual operational review"
+      ]
+    },
+    "sharedRuleIds": [
+      "W135-AUTHORITY",
+      "W135-COMMIT",
+      "W135-CLOCK",
+      "W135-VIEW",
+      "W135-ROOT",
+      "W135-MULTIPLICITY"
+    ],
+    "procedure": "KEEP Action,120ft,V/S/F,rank7/base17RP, immunity to EFFECTS from creatures with actual negative faction reputation. NEW one perceived willing creature including self,60elapsed seconds without concentration. Before commitment choose ONE exact canonical faction the caster has an actual recorded source or explicit Director campaign invocation permission to invoke, following closed Faction Seal. No permission means no eligible choice; a positive standing, membership, temporary affiliation, reputation skill or named faction alone grants no permission. Missing canonical faction/permission/standing records retain a whole positive-case qualification; a constructed fixture permission is explicitly NEW finite Director premise, never recovered campaign history.\nNEW assess current actual standing-v1 (-3,-2,-1 only) privately at each new application/continuing expression event. Zero/positive does not match; missing is unknown, not negative. Prevent direct damage, spell/technique conditions, forced movement, direct hostile OR beneficial healing/buffs and current attached expression whose actual responsible creature has that negative standing. Do not reduce scope to damage. Ordinary attacks/actions remain paid; missing application makes no damage root or diagnostic. Existing ongoing attached expression is suppressed with original source record/clock, not cured. Current standing or responsible-source change can resume only still-live expression; prior completed damage, healing, injury, displaced bodies, consumed inventory and destroyed stock remain.\nResponsibility is source-qualified, not unlimited ancestry: a genuinely new creature attack/operated device uses its actual current actor/dealer/controller under its own source. An ongoing spell/attached projectile component retains its immutable generating caster/root; an allied carrier or proxy does not launder it. A source whose actual rule genuinely transfers operation/ownership follows that exact contract prospectively; it does not rewrite original spell creator or historical root. A creature-created independently acting companion own new attack is that actual creature source, not automatically its distant summoner reputation; a direct commanded puppet/device component retains its real sourced dealer/controller. No generic conversion is inferred from names.\nThe causal boundary ends at a completed independent physical consequence: real unsupported Falling after a support is destroyed, ambient ordinary flame already genuinely ignited under its source and later unrelated structure collapse remain real and are not recursively immune because some earlier actor had negative standing. Prevent a direct forced movement only when it is that creature direct current effect; do not undo displacement already completed. Direct ward-anchor termination is separately addressable and is not a new effect application on the creature, under the same narrowly explicit anchor distinction as Arcane Aegis. Native mandatory endings/removal and exact terminal travel contracts remain. Current hostility/standing changes never alter past outcomes or disclose scores. Suppression and expiry use the original deadline; source death alone does not end this nonconcentration ward. The ward grants no faction membership, law, authority, alliance, standing changes or institutional protection.",
+    "explicitNEWChoices": [
+      "NEW one permitted faction/willing recipient60snonconcentration",
+      "all direct current effects, actual attribution and negative standing",
+      "existing expression suppressed, physical history never rewound",
+      "precise missing-world prerequisite whole-case holds"
+    ],
+    "accepted": false,
+    "applied": false
+  },
+  {
+    "id": "corruption-immunity",
+    "spellId": "corruption-immunity",
+    "status": "PROPOSED_AUTHORED_COMPLETE_PROCEDURE_FOR_INDEPENDENT_EXACT_REVIEW",
+    "completeNativeAccessAndSource": {
+      "id": "corruption-immunity",
+      "name": "Corruption Immunity",
+      "schools": [
+        "Abjuration"
+      ],
+      "status": "blocked-pending-operational-review",
+      "visibility": "public-source-review",
+      "classAccess": {
+        "Cleric": {
+          "rank": 7,
+          "minimumClassLevel": 13,
+          "school": "Abjuration",
+          "baseRpCost": 17
+        },
+        "Druid": {
+          "rank": 7,
+          "minimumClassLevel": 13,
+          "school": "Abjuration",
+          "baseRpCost": 17
+        },
+        "Mage": {
+          "rank": 7,
+          "minimumClassLevel": 13,
+          "school": "Abjuration",
+          "baseRpCost": 17
+        },
+        "Wizard": {
+          "rank": 7,
+          "minimumClassLevel": 13,
+          "school": "Abjuration",
+          "baseRpCost": 17
+        }
+      },
+      "operational": null,
+      "additionalRpCost": 0,
+      "source": {
+        "catalogPath": "src/data/spells.js",
+        "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+        "catalogKey": "corruption-immunity",
+        "original": {
+          "name": "Corruption Immunity",
+          "level": 7,
+          "resonanceRank": 7,
+          "school": "Abjuration",
+          "schools": [
+            "Abjuration"
+          ],
+          "placements": [
+            {
+              "name": "Corruption Immunity",
+              "school": "Abjuration",
+              "level": 7,
+              "summary": "Target becomes immune to corruption effects for 24 hours."
+            }
+          ],
+          "classLevels": {
+            "Cleric": 7,
+            "Druid": 7,
+            "Mage": 7,
+            "Wizard": 7
+          },
+          "classRanks": {
+            "Cleric": 7,
+            "Druid": 7,
+            "Mage": 7,
+            "Wizard": 7
+          },
+          "classLearnLevels": {
+            "Cleric": 13,
+            "Druid": 13,
+            "Mage": 13,
+            "Wizard": 13
+          },
+          "classSchools": {
+            "Cleric": "Abjuration",
+            "Druid": "Abjuration",
+            "Mage": "Abjuration",
+            "Wizard": "Abjuration"
+          },
+          "castingTime": "Not specified in current rulebook",
+          "range": "Not specified in current rulebook",
+          "components": "Not specified in current rulebook",
+          "duration": "Not specified in current rulebook",
+          "description": "Target becomes immune to corruption effects for 24 hours.",
+          "alternateSummaries": [],
+          "classes": [
+            "Cleric",
+            "Druid",
+            "Mage",
+            "Wizard"
+          ],
+          "status": "canon",
+          "source": "Player Rulebook — Spell Lists"
+        },
+        "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+        "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+        "coreEntries": [
+          {
+            "index": 79,
+            "original": {
+              "school": "Abjuration",
+              "level": 7,
+              "name": "Corruption Immunity",
+              "effect": "Target becomes immune to corruption effects for 24 hours.",
+              "source_paragraph": 9076,
+              "casting_time": "1 action",
+              "range": "120 feet",
+              "duration": "24 hours",
+              "components": "V, S, F",
+              "resolution": "Automatic or opposed as described",
+              "tags": [
+                "Ward",
+                "Corruption"
+              ],
+              "rp_cost": 17
+            }
+          }
+        ],
+        "possibleHistoricalAliases": []
+      },
+      "reviewFlags": [
+        "Core resolution requires an explicit operational interpretation",
+        "Not selectable in this spell playtest packet until individual operational review"
+      ]
+    },
+    "sharedRuleIds": [
+      "W135-AUTHORITY",
+      "W135-COMMIT",
+      "W135-CLOCK",
+      "W135-VIEW",
+      "W135-ROOT",
+      "W135-MULTIPLICITY"
+    ],
+    "procedure": "KEEP Action,120ft,V/S/F,rank7/base17RP and FULL24hours=86,400elapsed seconds, no concentration. NEW one perceived willing creature including self. Exact deadline is resolution+86400; rest/initiative/form/suppression never refreshes it. This is immunity to actual effects explicitly identified as Corruption by their current canonical mechanical source, using closed Corruption Ward/Purge eligibility. A condition currently mechanically called Corrupted is within scope; historical source prose superseded by a current non-Corruption card does not create eligibility. Ordinary necrotic/poison damage, disease, suggestive names, ancestry/alignment/faction, intrinsic Oracle Curse and independent numeric Corruption/Unity Exposure tracks are not automatically Corruption effect records. Null Veil has its own exact three purge routes; this ward grants neither a fourth purge nor a Null immunity or track reset.\nNEW prevent every qualifying NEW application/component while operative, including source-tagged damage and condition applications; unrelated components still resolve with genuine paid source, defenses and own clocks. Prevented applications create no retained effect, damage/root, Wound/save or later backlog. Existing qualifying ongoing records remain present but their currently applicable negative expression is suppressed. This includes Corrupted half-healing, its Evil-source save disadvantage and scheduled rest alteration while protected; actual scheduled opportunities that occur while blocked are consumed, not banked. Real source-specific irreversible completed body changes, class/ancestry engines and prior injuries are not undone or relabeled ongoing effects.\nA genuine legal cure while immunity suppresses an existing record can end that real record under the cure own exact source, willingness/delivery/paid cost and protection exceptions; immunity supplies neither cure permission nor a target record. A source explicitly immune to generic suppression/removal keeps its exact exception rather than being silently overridden by rank. On local suppression of this ward, retained live Corruption expressions may operate again under their own still-running clock. Leaving suppression restores only this same still-live protection; already prevented applications never replay. If a retained Corruption record expires or is genuinely cured while either source is suppressed, it never returns.\nNEW the ward remains attached to the same actual physical body through ordinary rest and compatible form changes; it is not a transfer to a duplicate/snapshot or soul. Death alone does not end this nonconcentration ward, but grants no immunity to dead-target restrictions, resurrection or missing-body reconstruction. A valid return to that same still-existing body before deadline can still use its remaining ward, under the independent actual return contract; no positive resurrection fixture is inferred. Expiry/removal ends protection prospectively, allowing only still-present unexpired records to express. Caster death does not refresh/end it. Same-family successful replacement has its own real paid source/deadline, never restores spent history. Where no canonically tagged applying source with actual acquisition/application history is supplied, retain the complete positive immunity/cure scenario as expressly conditional; do not invent a hazard, creature attack, damage injection or tag to fill that evidence gap.",
+    "explicitNEWChoices": [
+      "native full86400snonconcentration preserved",
+      "NEW willing body, new prevention versus existing-expression suppression",
+      "real scheduled consumption/cure/expiry,noExposure/Null/Curse rewrite",
+      "source-qualified provider requirement and exact unavailable-positive hold"
+    ],
+    "accepted": false,
+    "applied": false
+  },
+  {
+    "id": "summon-living-armor",
+    "spellId": "summon-living-armor",
+    "status": "PROPOSED_AUTHORED_COMPLETE_PROCEDURE_FOR_INDEPENDENT_EXACT_REVIEW",
+    "completeNativeAccessAndSource": {
+      "id": "summon-living-armor",
+      "name": "Summon Living Armor",
+      "schools": [
+        "Conjuration"
+      ],
+      "status": "blocked-pending-operational-review",
+      "visibility": "public-source-review",
+      "classAccess": {
+        "Druid": {
+          "rank": 7,
+          "minimumClassLevel": 13,
+          "school": "Conjuration",
+          "baseRpCost": 17
+        },
+        "Mage": {
+          "rank": 7,
+          "minimumClassLevel": 13,
+          "school": "Conjuration",
+          "baseRpCost": 17
+        },
+        "Shaman": {
+          "rank": 7,
+          "minimumClassLevel": 19,
+          "school": "Conjuration",
+          "baseRpCost": 17
+        },
+        "Wizard": {
+          "rank": 7,
+          "minimumClassLevel": 13,
+          "school": "Conjuration",
+          "baseRpCost": 17
+        }
+      },
+      "operational": null,
+      "additionalRpCost": 0,
+      "source": {
+        "catalogPath": "src/data/spells.js",
+        "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+        "catalogKey": "summon-living-armor",
+        "original": {
+          "name": "Summon Living Armor",
+          "level": 7,
+          "resonanceRank": 7,
+          "school": "Conjuration",
+          "schools": [
+            "Conjuration"
+          ],
+          "placements": [
+            {
+              "name": "Summon Living Armor",
+              "school": "Conjuration",
+              "level": 7,
+              "summary": "Conjure suit of magical armor (grants +4 AC to self or ally)."
+            }
+          ],
+          "classLevels": {
+            "Druid": 7,
+            "Mage": 7,
+            "Shaman": 7,
+            "Wizard": 7
+          },
+          "classRanks": {
+            "Druid": 7,
+            "Mage": 7,
+            "Shaman": 7,
+            "Wizard": 7
+          },
+          "classLearnLevels": {
+            "Druid": 13,
+            "Mage": 13,
+            "Shaman": 19,
+            "Wizard": 13
+          },
+          "classSchools": {
+            "Druid": "Conjuration",
+            "Mage": "Conjuration",
+            "Shaman": "Conjuration",
+            "Wizard": "Conjuration"
+          },
+          "castingTime": "Not specified in current rulebook",
+          "range": "Not specified in current rulebook",
+          "components": "Not specified in current rulebook",
+          "duration": "Not specified in current rulebook",
+          "description": "Conjure suit of magical armor (grants +4 AC to self or ally).",
+          "alternateSummaries": [],
+          "classes": [
+            "Druid",
+            "Mage",
+            "Shaman",
+            "Wizard"
+          ],
+          "status": "canon",
+          "source": "Player Rulebook — Spell Lists"
+        },
+        "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+        "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+        "coreEntries": [
+          {
+            "index": 178,
+            "original": {
+              "school": "Conjuration",
+              "level": 7,
+              "name": "Summon Living Armor",
+              "effect": "Conjure suit of magical armor (grants +4 AC to self or ally).",
+              "source_paragraph": 9200,
+              "casting_time": "1 action",
+              "range": "Self",
+              "duration": "Concentration, up to 1 minute",
+              "components": "V, S, F",
+              "resolution": "Automatic or opposed as described",
+              "tags": [
+                "Summoning"
+              ],
+              "rp_cost": 17
+            }
+          }
+        ],
+        "possibleHistoricalAliases": []
+      },
+      "reviewFlags": [
+        "Core resolution requires an explicit operational interpretation",
+        "Not selectable in this spell playtest packet until individual operational review"
+      ]
+    },
+    "sharedRuleIds": [
+      "W135-AUTHORITY",
+      "W135-COMMIT",
+      "W135-CLOCK",
+      "W135-VIEW",
+      "W135-ROOT",
+      "W135-MULTIPLICITY"
+    ],
+    "procedure": "KEEP Conjuration,rank7/base17RP,Action,V/S/F,concentration up to60elapsed seconds and printed+4AC to SELF OR ALLY. Explicit NEW range conflict ruling: Self OR one actual willing perceived ally within30ft/LoE. Core Self is retained as provenance, not used to erase the printed ally option. At successful resolution manifest one fitted magical SUIT expression on a compatible Small/Medium torso body with actual fit clear of held/worn gear; no handling/donning Action beyond the actual casting Action. It follows that body, never jumps to an ally by recasting an ID.\nNEW choose an inseparable magical armor OVERLAY expression, not a separately damageable object or creature. It occupies no ordinary armor slot, has0physical mass/Load, creates no inventory matter, extra hands, mind, HP, attacks, commands, Conjuration creature bonus or harvest/sale/reusable suit. Its visible fitted plates supply the printed+4 flat magical AC bonus in the same-stat flat-AC bonus family: use strongest applicable flat bonus, never add duplicate+4, Bone Armor+2, Armor of Faith+3 or a weaker matching family bonus. Actual underlying armor BASE formula, Dexterity cap, native shield exception, proficiency, Load, existing damage and ordinary Unarmored source restrictions remain their own contracts. This overlay grants no armor/shield proficiency and imposes no new ordinary armor nonproficiency penalty because no physical armor is donned.\nSmall/Medium humanoid torso with relevant gear space is the explicit compatible profile; a materially different anatomy/size is not auto-resized by a visual living label. Under accepted Body8, a genuine form change records same owner/body/gear/meld status: when the current body is incompatible or its native gear rule melds wearable expression, this source remains present but its AC output is unavailable. Compatible return before original deadline can resume the same overlay with no heal/donning/source/clock refresh; physical underlying gear remains its same real item and custody. A native class form suppressed back to compatible root can permit output only if no actual suppressor also suppresses this magical overlay; Antimagic suppresses it locally regardless of compatible anatomy. No blanket restore-all.\nBecause no separate object is created, it is not independently targeted with weapon/object HP attacks, removable for salvage or transferred as stock. Actual source dispel, concentration loss, caster death, wearer death or deadline ends it. Suppression leaves original record and deadline, and actual ordinary physical armor/gear remains usable only to the extent its own current body/fit/proficiency rules allow. After ending, preserve actual underlying equipment/current damage and all paid resources, never recreate missing former armor or grant initial HP. Unavailable form/acquisition cases retain exact qualification rather than a fabricated creature, free Polymorph or new anatomy grant.",
+    "explicitNEWChoices": [
+      "NEW Self-or30ftally delivery;native60sconcentration",
+      "inseparable0mass overlay,notobject/creature;exact+4flatfamily",
+      "compatible actualSmall/Mediumtorso and real Body8meld/suppression",
+      "underlying gear/proficiency/load preserved,no free suit"
+    ],
+    "accepted": false,
+    "applied": false
+  }
+]

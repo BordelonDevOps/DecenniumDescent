@@ -1,0 +1,73 @@
+{
+  "id": "CREATION_PARTITION_HISTORY_ADDENDUM_120",
+  "status": "New mathematical analysis of an unselected alternative; no rule adoption or actual cutting permission.",
+  "invariantProof": [
+    "Let integer original maximum M and current C satisfy0<=C<=M; exact positive mass shares wi sum1. For each piece floor(Cwi)<=floor(Mwi)<=assignedMaximum_i. Thus initial current floors never exceed assigned maximum.",
+    "Remaining capacity sums M-sum(floor(Cwi)), at least C-sum(floor(Cwi)). Each capacity-respecting residual increment decreases the finite nonnegative unallocated-current count by1. The stable scan therefore terminates with sumCurrent=C and every current<=maximum.",
+    "Each lawful local subdivision conserves parent mass,maximum,current, so a finite subdivision tree conserves root totals by telescoping. This does not prove subdivision-order independence or grant repair/merge/cutting permissions."
+  ],
+  "nonAssociativityCounterexample": {
+    "original": {
+      "massUnits": 3,
+      "maximumHP": 2,
+      "currentHP": 2
+    },
+    "stableFinalPieces": [
+      "A",
+      "B",
+      "C"
+    ],
+    "finalMasses": [
+      1,
+      1,
+      1
+    ],
+    "directThreeWay": {
+      "quotas": [
+        "2/3",
+        "2/3",
+        "2/3"
+      ],
+      "maxAndCurrent": [
+        1,
+        1,
+        0
+      ]
+    },
+    "twoStage": {
+      "firstGroups": [
+        "AB",
+        "C"
+      ],
+      "groupMasses": [
+        2,
+        1
+      ],
+      "quotas": [
+        "4/3",
+        "2/3"
+      ],
+      "firstAllocation": [
+        1,
+        1
+      ],
+      "ABSplitQuotas": [
+        "1/2",
+        "1/2"
+      ],
+      "ABAllocation": [
+        1,
+        0
+      ],
+      "finalMaxAndCurrent": [
+        1,
+        0,
+        1
+      ]
+    },
+    "result": "Both preserve totals and bounds, but pieceB versusC receives the structural point differently. A deterministic local rule is not necessarily independent of cutting history."
+  },
+  "conferenceQuestion": "Choose explicitly whether actual irreversible cut history controls allocations, or whether a root-lot global apportionment is intended. A global reallocation must not silently transfer HP/damage among surviving detached pieces. A later merge/re-cut must not be a free repair or erase damage/consumption provenance. Preserve actual physical eligibility/recipe/zeroHP-fragment gates.",
+  "canonicalApplied": false,
+  "newAcceptedIdentities": []
+}

@@ -1,0 +1,146 @@
+{
+  "id": "prismatic-conflux",
+  "status": "PROPOSED_AUTHORING_IN_PROGRESS_CASES_NOT_COMPLETE",
+  "completeNativeAndAccessUnchanged": {
+    "id": "prismatic-conflux",
+    "name": "Prismatic Conflux",
+    "schools": [
+      "Conjuration"
+    ],
+    "status": "blocked-pending-operational-review",
+    "visibility": "public-source-review",
+    "classAccess": {
+      "Druid": {
+        "rank": 7,
+        "minimumClassLevel": 13,
+        "school": "Conjuration",
+        "baseRpCost": 17
+      },
+      "Mage": {
+        "rank": 7,
+        "minimumClassLevel": 13,
+        "school": "Conjuration",
+        "baseRpCost": 17
+      },
+      "Shaman": {
+        "rank": 7,
+        "minimumClassLevel": 19,
+        "school": "Conjuration",
+        "baseRpCost": 17
+      },
+      "Wizard": {
+        "rank": 7,
+        "minimumClassLevel": 13,
+        "school": "Conjuration",
+        "baseRpCost": 17
+      }
+    },
+    "operational": null,
+    "additionalRpCost": 0,
+    "source": {
+      "catalogPath": "src/data/spells.js",
+      "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+      "catalogKey": "prismatic-conflux",
+      "original": {
+        "name": "Prismatic Conflux",
+        "level": 7,
+        "resonanceRank": 7,
+        "school": "Conjuration",
+        "schools": [
+          "Conjuration"
+        ],
+        "placements": [
+          {
+            "name": "Prismatic Conflux",
+            "school": "Conjuration",
+            "level": 7,
+            "summary": "Each enemy takes 2d8 random elemental type (roll separately)."
+          }
+        ],
+        "classLevels": {
+          "Druid": 7,
+          "Mage": 7,
+          "Shaman": 7,
+          "Wizard": 7
+        },
+        "classRanks": {
+          "Druid": 7,
+          "Mage": 7,
+          "Shaman": 7,
+          "Wizard": 7
+        },
+        "classLearnLevels": {
+          "Druid": 13,
+          "Mage": 13,
+          "Shaman": 19,
+          "Wizard": 13
+        },
+        "classSchools": {
+          "Druid": "Conjuration",
+          "Mage": "Conjuration",
+          "Shaman": "Conjuration",
+          "Wizard": "Conjuration"
+        },
+        "castingTime": "Not specified in current rulebook",
+        "range": "Not specified in current rulebook",
+        "components": "Not specified in current rulebook",
+        "duration": "Not specified in current rulebook",
+        "description": "Each enemy takes 2d8 random elemental type (roll separately).",
+        "alternateSummaries": [],
+        "classes": [
+          "Druid",
+          "Mage",
+          "Shaman",
+          "Wizard"
+        ],
+        "status": "canon",
+        "source": "Player Rulebook — Spell Lists"
+      },
+      "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+      "coreEntries": [
+        {
+          "index": 179,
+          "original": {
+            "school": "Conjuration",
+            "level": 7,
+            "name": "Prismatic Conflux",
+            "effect": "Each enemy takes 2d8 random elemental type (roll separately).",
+            "source_paragraph": 9201,
+            "casting_time": "1 action",
+            "range": "120 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Damage"
+            ],
+            "rp_cost": 17
+          }
+        }
+      ],
+      "possibleHistoricalAliases": []
+    },
+    "reviewFlags": [
+      "Core resolution requires an explicit operational interpretation",
+      "Not selectable in this spell playtest packet until individual operational review"
+    ]
+  },
+  "selectedProcedure": {
+    "activation": "KEEP Action,120feet,V-S-F,Conjuration7/base17RP and Instantaneous. NEW select one perceived point in120feet/casting-point LoE; effect is a fixed30foot-radius3D sphere on that actual plane. No weather, persistent hazard or summoned creature is created.",
+    "NEW_roster": "At resolution fix every actual current enemy with positive-volume body intersection and an actual unobstructed center-to-body witness before any type/damage draws. Enemy is an actual recorded encounter opposition relation to this caster, not hidden alignment/faction standing or the player labeling a neutral target. Allies and caster are excluded unless they are genuinely enemies under an independently supplied relation; no generic family/party roster is revealed. Actual recipient perception is not an extra restriction on this defined area, but a hidden body yields no privileged identity report. Commit geometry/roster observations privately and process immutable stable creature IDs.",
+    "NEW_random_table": {
+      "draw": "one independent fair d4 per fixed recipient",
+      "1": "fire",
+      "2": "cold",
+      "3": "acid",
+      "4": "lightning",
+      "scope": "This is a declared spell-local elemental table using existing native damage types, not a universal definition of elemental. No Light/Dark/Chaos type, Prismatic Spray control table or damage-type scan is introduced."
+    },
+    "NEW_resolution": "For each fixed recipient draw its own type first and its own independent2d8 damage dice second. No shared damage roll, attack, save, selective exclusion after seeing a type, vulnerability reroll or player choice of element; none is printed, so automatic ordinary damage is explicitly selected. Resolve actual type-specific immunity/resistance/vulnerability, tempHP, HP, half-maximum Wound/death gates and concentration once under that root. Every root records original actual casting owner/source/rank/Null and selected current defenses. Same type on multiple bodies is possible and never merges those identities.",
+    "NEW_scope_limits": "The native Conjuration school and Damage tag do not grant Evocation mastery, elemental subclass affinity or creationHP. Only a genuinely acquired separately applicable feature can modify its exact source event. No post-outcome newly recruited enemy, healing, lingering rider, control, blind/burn/freeze effect or class-resource refund is supplied. Existing Fate/presentation limits govern; this new table is not another public Fate presentation and exposes no hidden resistance roster.",
+    "case_status": "Full fixed-roster/per-recipient roots with actual native defenses still require the new main/adverse cases."
+  },
+  "accepted": false,
+  "applied": false
+}

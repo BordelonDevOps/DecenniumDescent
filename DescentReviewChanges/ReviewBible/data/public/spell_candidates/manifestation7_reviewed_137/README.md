@@ -1,0 +1,11 @@
+# Manifestation7 proposed Return01 /137
+
+Current exact applied authority655/193/0 controls. This packet proposes only the seven Manifestation identities and performs no acceptance/application or index edit. All Ward7/earlier holds remain. Next group waits for independent exact acceptance and refreshed application context.
+
+Read PROCEDURES.json with SHARED_RULES.json, all29 QUESTION_DISPOSITIONS.json records and CASEBOOK.json.14 original mains and13 branches contain248 full before/after expected events and exact full-value test/replace inverse operations. All9 Avatar alignment routes use one bounded shared full mechanical profile; each has an actual paid independent case. Case qualifications are explicit, including unsupplied caster-extraplanar, Prone-immunity, vulnerability, faction credentials and positive object-damage predicates. They are not invented by bare flags or numeric injections.
+
+The five saved original drafts remain byte-identical at history/saved-five-drafts, bound by SAVED_DRAFT_BINDINGS.json, and at their original workspace paths. Their historical in-progress/cases-pending labels remain provenance. Complete proposed counterparts add only named completion clauses; two missing procedures are newly authored. Original23 questions plus6followups and every14 original case obligation survive in full. Native28 class-access rows are unchanged. Original historical programs inside exact source archives/text are inert; none were executed.
+
+Current source availability controls over historical candidate labels. Greater Dispel stays unavailable; no fixture learns/prepares/casts it. Soulburn05 is applied, not pending, and its scoped exception is not imported as general Storm refund authority. Storm source/recipient long-rest entitlements are explicitly NEW and finite, retaining ten original1d6 pulse opportunities. Grand Reservoir is an actual automatic Wizard20 source; its waived base, caster exclusion and other-recipient intrinsic output interpretation are stated for exact review.
+
+Full cases are authored expected data. Nothing claims runtime execution, human play, numerical balance, certified challenge rating, engineering certification, cosmology or release approval. Actual game/campaign source qualifications and every existing hold remain.

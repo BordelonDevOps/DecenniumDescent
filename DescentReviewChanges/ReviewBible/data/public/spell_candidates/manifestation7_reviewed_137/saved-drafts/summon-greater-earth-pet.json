@@ -1,0 +1,451 @@
+{
+  "id": "summon-greater-earth-pet",
+  "status": "PROPOSED_AUTHORING_IN_PROGRESS_CASES_NOT_COMPLETE",
+  "completeNativeAndAccessUnchanged": {
+    "id": "summon-greater-earth-pet",
+    "name": "Summon Greater Earth Pet",
+    "schools": [
+      "Conjuration"
+    ],
+    "status": "blocked-pending-operational-review",
+    "visibility": "public-source-review",
+    "classAccess": {
+      "Druid": {
+        "rank": 7,
+        "minimumClassLevel": 13,
+        "school": "Conjuration",
+        "baseRpCost": 17
+      },
+      "Mage": {
+        "rank": 7,
+        "minimumClassLevel": 13,
+        "school": "Conjuration",
+        "baseRpCost": 17
+      },
+      "Shaman": {
+        "rank": 7,
+        "minimumClassLevel": 19,
+        "school": "Conjuration",
+        "baseRpCost": 17
+      },
+      "Wizard": {
+        "rank": 7,
+        "minimumClassLevel": 13,
+        "school": "Conjuration",
+        "baseRpCost": 17
+      }
+    },
+    "operational": null,
+    "additionalRpCost": 0,
+    "source": {
+      "catalogPath": "src/data/spells.js",
+      "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+      "catalogKey": "summon-greater-earth-pet",
+      "original": {
+        "name": "Summon Greater Earth Pet",
+        "level": 7,
+        "resonanceRank": 7,
+        "school": "Conjuration",
+        "schools": [
+          "Conjuration"
+        ],
+        "placements": [
+          {
+            "name": "Summon Greater Earth Pet",
+            "school": "Conjuration",
+            "level": 7,
+            "summary": "HP 80, AC 20, Tremor Slam (2d10, knocks prone)."
+          }
+        ],
+        "classLevels": {
+          "Druid": 7,
+          "Mage": 7,
+          "Shaman": 7,
+          "Wizard": 7
+        },
+        "classRanks": {
+          "Druid": 7,
+          "Mage": 7,
+          "Shaman": 7,
+          "Wizard": 7
+        },
+        "classLearnLevels": {
+          "Druid": 13,
+          "Mage": 13,
+          "Shaman": 19,
+          "Wizard": 13
+        },
+        "classSchools": {
+          "Druid": "Conjuration",
+          "Mage": "Conjuration",
+          "Shaman": "Conjuration",
+          "Wizard": "Conjuration"
+        },
+        "castingTime": "Not specified in current rulebook",
+        "range": "Not specified in current rulebook",
+        "components": "Not specified in current rulebook",
+        "duration": "Not specified in current rulebook",
+        "description": "HP 80, AC 20, Tremor Slam (2d10, knocks prone).",
+        "alternateSummaries": [],
+        "classes": [
+          "Druid",
+          "Mage",
+          "Shaman",
+          "Wizard"
+        ],
+        "status": "canon",
+        "source": "Player Rulebook — Spell Lists"
+      },
+      "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+      "coreEntries": [
+        {
+          "index": 176,
+          "original": {
+            "school": "Conjuration",
+            "level": 7,
+            "name": "Summon Greater Earth Pet",
+            "effect": "HP 80, AC 20, Tremor Slam (2d10, knocks prone).",
+            "source_paragraph": 9198,
+            "casting_time": "1 action",
+            "range": "120 feet",
+            "duration": "Concentration, up to 1 minute",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Damage",
+              "Summoning"
+            ],
+            "rp_cost": 17
+          }
+        }
+      ],
+      "possibleHistoricalAliases": []
+    },
+    "reviewFlags": [
+      "Core resolution requires an explicit operational interpretation",
+      "Not selectable in this spell playtest packet until individual operational review"
+    ]
+  },
+  "selectedProcedure": {
+    "activation": "KEEP rank7/base17RP, Action/120feet/V-S-F, concentration maximum60elapsed seconds. Actual Wizard/Mage/Druid13 or Shaman19 access only.",
+    "NEW_profile": {
+      "size": "Large",
+      "bodyFeet": [
+        10,
+        10,
+        10
+      ],
+      "bodyMassLb": 800,
+      "anatomy": "one torso, two solid blunt arms and two load-bearing legs; no fine grippers, mouth manipulation, wings or burrowing anatomy",
+      "abilities": {
+        "STR": 18,
+        "DEX": 8,
+        "CON": 18,
+        "INT": 4,
+        "WIS": 10,
+        "CHA": 6
+      },
+      "printedBaseHP": 80,
+      "printedAC": 20,
+      "walkingFeet": 30,
+      "otherMovement": null,
+      "ordinarySightAndHearing": true,
+      "extraordinarySenses": null,
+      "speech": null,
+      "commandUnderstanding": "owner actually perceived spoken simple commands; no language skill or telepathy",
+      "saves": "current original source-owner PB, explicitly adopting the supplied lesser Pet save interface rather than adding ability modifiers again",
+      "otherTasks": "ordinary ability modifiers only, no skills/tool proficiency",
+      "resistances": [],
+      "immunities": [],
+      "cargoCapacityLb": 200,
+      "cargoHandling": "Only real externally secured noncreature cargo within this weight/actual fit; owner supplies ropes/handling/time. Arms grant no hands/tool operation. Real body plus cargo must have actual support.",
+      "creatureClassification": "NEW finite magical elemental-shaped companion body; no native/home-plane tag supplied"
+    },
+    "NEW_formation": "Perceived unoccupied whole10x10x10 space in120feet/LoE, with actual support for800lb plus cargo. Observable impossible space rejects before commitment; changed hidden geometry can defeat a paid resolution. A truly new body is created only on successful formation. Snapshot base80HP/AC20 and any actually eligible creating Wizard Conjuration maximum-HP bonus from that real Wizard/source/class-level record. Other schools grant no creation bonus. No bonus applies merely because the ordinary spell is Conjuration, and none may later be reapplied as a fresh birth. Bind actual subsequent dynamic maxHP effects separately; later capacity adds no currentHP.",
+    "NEW_attack": "Tremor Slam is exactly one commanded melee spell attack, reach5feet measured from actual body; use the current original casting-owner source-class attack and DC. A hit deals exactly2d10 bludgeoning with no flat modifier. Ordinary critical doubles only those dice. After the actual hit a Large-or-smaller recipient separately makes STR save versus that source DC; failure applies Prone unless genuine Prone/knockdown immunity prevents it. A miss grants no save or knockdown. Zero actual damage does not erase a hit. No area tremor, extra attacks, forced displacement or grounding is added; actual hover/support/Falling follow their own source.",
+    "NEW_command_and_birth": "Use the supplied owner-wide one BonusAction command and one damaging/control companion Action per numbered round across actual acquired assets. Issue on the owner regular turn within60feet with actual command perception and LoE; execute in attached phase only after that whole turn, revalidating body/target/range. An extra turn creates no new command/offense allowance. Explicit NEW Greater-Pet birth rule: it may not execute damaging/control offense in its formation numbered round; formation supplies no free attack or command. Ordinary defensive movement/Dodge remains possible when capable, unlike the separately source-specific Auto-Raise newborn total-action prohibition. A later valid offensive command spends the shared offense even on a miss. Without a command defensive movement and Dodge only. A basic permitted nondamaging task spends the command but does not infer tools/professional work/automatic Help.",
+    "NEW_lifecycle": "One Greater Earth Pet per caster, original60second clock; genuine paid replacement has a new identity/source, not old HP restoration. Concentration transitions occur at commitment. Finite HP-only summon ends/disappears at actual0, original deadline, actual lawful source ending or concentration loss. Full suppression preserves same body/HP/cargo/creator/deadline but disables its magical manifestation actions, movement and intrinsic abilities within the exact accepted local suppression contract; no missed command is queued or replayed. Source ending while suppressed still ends it. Real external cargo is conserved and settled under actual item placement/support/Falling; no vanished cargo, corpse, quarry stock, treasure, XP or kill-resource reward.",
+    "exact_comparison_distinct_lesser_pet": {
+      "spellId": "summon-earth-pet",
+      "source": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+        "bytes": 4945319,
+        "sha256": "f52cf6a4a4673897615a74c7c67dcba798c431362d4357e71ee552cc7c5d31f8"
+      },
+      "pointer": "/spells/139",
+      "completeCurrentCard": {
+        "id": "summon-earth-pet",
+        "name": "Summon Earth Pet",
+        "schools": [
+          "Conjuration"
+        ],
+        "status": "operational-playtest-draft",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Dragoon": {
+            "rank": 3,
+            "minimumClassLevel": 13,
+            "school": "Conjuration",
+            "baseRpCost": 5
+          },
+          "Druid": {
+            "rank": 3,
+            "minimumClassLevel": 5,
+            "school": "Conjuration",
+            "baseRpCost": 5
+          },
+          "Mage": {
+            "rank": 3,
+            "minimumClassLevel": 5,
+            "school": "Conjuration",
+            "baseRpCost": 5
+          },
+          "Ranger": {
+            "rank": 3,
+            "minimumClassLevel": 9,
+            "school": "Conjuration",
+            "baseRpCost": 5
+          },
+          "Shaman": {
+            "rank": 3,
+            "minimumClassLevel": 7,
+            "school": "Conjuration",
+            "baseRpCost": 5
+          },
+          "Tinker": {
+            "rank": 3,
+            "minimumClassLevel": 10,
+            "school": "Conjuration",
+            "baseRpCost": 5
+          },
+          "Wizard": {
+            "rank": 3,
+            "minimumClassLevel": 5,
+            "school": "Conjuration",
+            "baseRpCost": 5
+          }
+        },
+        "operational": {
+          "id": "summon-earth-pet",
+          "activation": "Action",
+          "rangeFeet": 60,
+          "targets": "One unoccupied space you perceive within range and line of effect.",
+          "duration": "Concentration, up to 1 minute. In initiative, expires at the caster's tenth future regular-start marker after application; preserve the virtual phase through initiative changes, absence, death and planar travel. Outside initiative, expires 60 seconds after application, retaining that absolute deadline when entering initiative. An already-passed start does not count. Ends earlier at concentration end or pet 0 HP.",
+          "concentration": true,
+          "components": [
+            "V",
+            "S",
+            "F"
+          ],
+          "resolution": "No initial roll. Its commanded offensive Action makes one melee spell attack using your actual casting-class spell attack bonus, reach 5 feet. A hit deals 1d10 bludgeoning, with no ability damage modifier. After that hit, a Large-or-smaller target makes a Strength save against your spell DC; failure makes it Prone. A successful save prevents only knockdown. Ordinary attack, critical and defense rules apply.",
+          "effect": "Summon one Medium earth elemental companion: AC 17, HP 30, walking Speed30, body mass 300 pounds, saves equal to owner PB, other checks +0, ordinary sight/hearing. It understands your spoken commands but has no speaking language or telepathy. It acts immediately after you. Your Bonus Action, while within 60 feet and able to convey a perceived command, permits movement plus its attack or one basic legal nondamaging Action. Without a command it may move defensively and Dodge. The attack consumes the owner-wide one offensive companion Action for that numbered round even on a miss; it shares the owner-wide command allowance.",
+          "scaling": "Only the printed owner PB saves and actual class spell attack/DC change with the caster. AC 17, HP 30, 1d10 damage and one attack remain fixed; no standard S-dice progression.",
+          "limitations": "Huge/Gargantuan targets take damage normally but are ineligible for this knockdown unless an exact rule overrides that size gate. Prone immunity or an exact immunity expressly covering knockdown prevents Prone; immunity only to positional push/pull does not itself grant Prone immunity. Damage reduced to 0 does not erase a resolved hit or its separate save. Knockdown supplies no displacement, collision damage, stun or whole-Action denial; ordinary support/Falling and stand-up rules apply. One Earth Pet per caster; it vanishes at 0 HP or concentration end. No burrow, tremorsense, earth glide, resistance, immunity, hands/tool use, cargo capacity, free Help advantage, autonomous opportunity attack, spellcasting, loot, corpse or resource/death trigger. Its printed mass is real for carrying and condition accounting but cannot be harvested as permanent stone. A successful replacement has its own endpoint; stale cleanup cannot end the new application. A countered cast creates no replacement, although its concentration transition has already occurred. Actual class access, rank, preparation, V/S/F components, casting costs, Dissonance/Refrain, class hooks, concentration transitions and counter windows follow SPELL_INTEGRATION_RULES.md. Costs and beginning hooks commit before interruption, with no refunds or restoration of prior concentration. Direct target selection and local creation require the printed line of effect; expressly remote teleport destinations use their own printed rules. No generic upcast or unstated scaling.",
+          "designNotes": "PRESERVED: Action/60 feet/V,S,F/concentration 1 minute, AC 17/HP 30/1d10 bludgeoning plus knockdown. NEW: Medium/300 lb/Speed30, finite companion interface, spell attack and STR-save knockdown capped at Large. Exact-card clarification distinguishes positional forced-movement immunity from an explicit knockdown/Prone immunity.",
+          "implementationStatus": "REVIEWED authored operational-playtest manuscript; runtime, travel-system implementation, numerical balance and whole-game validation pending",
+          "sourceCoreEntries": [
+            {
+              "index": 144,
+              "original": {
+                "school": "Conjuration",
+                "level": 3,
+                "name": "Summon Earth Pet",
+                "effect": "HP 30, AC 17, 1d10 bludgeon, + knockdown.",
+                "source_paragraph": 9158,
+                "casting_time": "1 action",
+                "range": "60 feet",
+                "duration": "Concentration, up to 1 minute",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Damage",
+                  "Summoning"
+                ],
+                "rp_cost": 5
+              }
+            }
+          ],
+          "sourcePlacements": [
+            {
+              "name": "Summon Earth Pet",
+              "school": "Conjuration",
+              "level": 3,
+              "summary": "HP 30, AC 17, 1d10 bludgeon, + knockdown."
+            }
+          ],
+          "classAccessEvidence": {
+            "Dragoon": {
+              "rank": 3,
+              "minimumClassLevel": 13,
+              "school": "Conjuration",
+              "baseRpCost": 5
+            },
+            "Druid": {
+              "rank": 3,
+              "minimumClassLevel": 5,
+              "school": "Conjuration",
+              "baseRpCost": 5
+            },
+            "Mage": {
+              "rank": 3,
+              "minimumClassLevel": 5,
+              "school": "Conjuration",
+              "baseRpCost": 5
+            },
+            "Ranger": {
+              "rank": 3,
+              "minimumClassLevel": 9,
+              "school": "Conjuration",
+              "baseRpCost": 5
+            },
+            "Shaman": {
+              "rank": 3,
+              "minimumClassLevel": 7,
+              "school": "Conjuration",
+              "baseRpCost": 5
+            },
+            "Tinker": {
+              "rank": 3,
+              "minimumClassLevel": 10,
+              "school": "Conjuration",
+              "baseRpCost": 5
+            },
+            "Wizard": {
+              "rank": 3,
+              "minimumClassLevel": 5,
+              "school": "Conjuration",
+              "baseRpCost": 5
+            }
+          },
+          "sourceReview": [
+            "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK3_SOURCE_CONFERENCE.md",
+            "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK3_EXACT_REVIEW.md"
+          ],
+          "reviewEvidence": [
+            "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK3_EXACT_REVIEW.md"
+          ],
+          "authoringFile": "data/playtest/spell_drafts/batch_conjuration_rank3.json"
+        },
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "summon-earth-pet",
+          "original": {
+            "name": "Summon Earth Pet",
+            "level": 3,
+            "resonanceRank": 3,
+            "school": "Conjuration",
+            "schools": [
+              "Conjuration"
+            ],
+            "placements": [
+              {
+                "name": "Summon Earth Pet",
+                "school": "Conjuration",
+                "level": 3,
+                "summary": "HP 30, AC 17, 1d10 bludgeon, + knockdown."
+              }
+            ],
+            "classLevels": {
+              "Dragoon": 3,
+              "Druid": 3,
+              "Mage": 3,
+              "Ranger": 3,
+              "Shaman": 3,
+              "Tinker": 3,
+              "Wizard": 3
+            },
+            "classRanks": {
+              "Dragoon": 3,
+              "Druid": 3,
+              "Mage": 3,
+              "Ranger": 3,
+              "Shaman": 3,
+              "Tinker": 3,
+              "Wizard": 3
+            },
+            "classLearnLevels": {
+              "Dragoon": 13,
+              "Druid": 5,
+              "Mage": 5,
+              "Ranger": 9,
+              "Shaman": 7,
+              "Tinker": 10,
+              "Wizard": 5
+            },
+            "classSchools": {
+              "Dragoon": "Conjuration",
+              "Druid": "Conjuration",
+              "Mage": "Conjuration",
+              "Ranger": "Conjuration",
+              "Shaman": "Conjuration",
+              "Tinker": "Conjuration",
+              "Wizard": "Conjuration"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "HP 30, AC 17, 1d10 bludgeon, + knockdown.",
+            "alternateSummaries": [],
+            "classes": [
+              "Dragoon",
+              "Druid",
+              "Mage",
+              "Ranger",
+              "Shaman",
+              "Tinker",
+              "Wizard"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 144,
+              "original": {
+                "school": "Conjuration",
+                "level": 3,
+                "name": "Summon Earth Pet",
+                "effect": "HP 30, AC 17, 1d10 bludgeon, + knockdown.",
+                "source_paragraph": 9158,
+                "casting_time": "1 action",
+                "range": "60 feet",
+                "duration": "Concentration, up to 1 minute",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Damage",
+                  "Summoning"
+                ],
+                "rp_cost": 5
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation"
+        ]
+      },
+      "completeSharedRules": {},
+      "indexEntry": {
+        "id": "summon-earth-pet",
+        "name": "Summon Earth Pet",
+        "authoredStatus": "reviewed-authored-operational-playtest",
+        "procedureFile": "catalog.json",
+        "procedurePointer": "/spells/139/operational",
+        "wholeCardPointer": "/spells/139",
+        "sourceStatus": "operational-playtest-draft",
+        "priorCatalogSelectionStatusUnchanged": true
+      }
+    },
+    "case_status": "Birth, two-asset owner-wide offense and source-qualified modifiers require the new full cases; no generated case is implied."
+  },
+  "accepted": false,
+  "applied": false
+}

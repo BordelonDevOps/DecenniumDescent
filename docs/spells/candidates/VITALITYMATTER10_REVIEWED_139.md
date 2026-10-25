@@ -1,0 +1,1484 @@
+# VitalityMatter10 proposed procedures
+
+Authority668/180; accepted=false; applied=false. All NEW fields are spell-local proposals.
+
+## summon-bone-colossus
+
+{
+  "id": "summon-bone-colossus",
+  "status": "PROPOSED_FOR_EXACT_INDEPENDENT_REVIEW",
+  "completeNativeSourceAndAccessUnchanged": {
+    "id": "summon-bone-colossus",
+    "name": "Summon Bone Colossus",
+    "schools": [
+      "Necromancy"
+    ],
+    "status": "blocked-pending-operational-review",
+    "visibility": "public-source-review",
+    "classAccess": {
+      "Cleric": {
+        "rank": 7,
+        "minimumClassLevel": 13,
+        "school": "Necromancy",
+        "baseRpCost": 17
+      },
+      "Druid": {
+        "rank": 7,
+        "minimumClassLevel": 13,
+        "school": "Necromancy",
+        "baseRpCost": 17
+      },
+      "Shaman": {
+        "rank": 7,
+        "minimumClassLevel": 19,
+        "school": "Necromancy",
+        "baseRpCost": 17
+      },
+      "Wizard": {
+        "rank": 7,
+        "minimumClassLevel": 13,
+        "school": "Necromancy",
+        "baseRpCost": 17
+      }
+    },
+    "operational": null,
+    "additionalRpCost": 0,
+    "source": {
+      "catalogPath": "src/data/spells.js",
+      "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+      "catalogKey": "summon-bone-colossus",
+      "original": {
+        "name": "Summon Bone Colossus",
+        "level": 7,
+        "resonanceRank": 7,
+        "school": "Necromancy",
+        "schools": [
+          "Necromancy"
+        ],
+        "placements": [
+          {
+            "name": "Summon Bone Colossus",
+            "school": "Necromancy",
+            "level": 7,
+            "summary": "HP 140, two slam attacks, cleave AoE."
+          }
+        ],
+        "classLevels": {
+          "Cleric": 7,
+          "Druid": 7,
+          "Shaman": 7,
+          "Wizard": 7
+        },
+        "classRanks": {
+          "Cleric": 7,
+          "Druid": 7,
+          "Shaman": 7,
+          "Wizard": 7
+        },
+        "classLearnLevels": {
+          "Cleric": 13,
+          "Druid": 13,
+          "Shaman": 19,
+          "Wizard": 13
+        },
+        "classSchools": {
+          "Cleric": "Necromancy",
+          "Druid": "Necromancy",
+          "Shaman": "Necromancy",
+          "Wizard": "Necromancy"
+        },
+        "castingTime": "Not specified in current rulebook",
+        "range": "Not specified in current rulebook",
+        "components": "Not specified in current rulebook",
+        "duration": "Not specified in current rulebook",
+        "description": "HP 140, two slam attacks, cleave AoE.",
+        "alternateSummaries": [],
+        "classes": [
+          "Cleric",
+          "Druid",
+          "Shaman",
+          "Wizard"
+        ],
+        "status": "canon",
+        "source": "Player Rulebook — Spell Lists"
+      },
+      "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+      "coreEntries": [
+        {
+          "index": 696,
+          "original": {
+            "school": "Necromancy",
+            "level": 7,
+            "name": "Summon Bone Colossus",
+            "effect": "HP 140, two slam attacks, cleave AoE.",
+            "source_paragraph": 9843,
+            "casting_time": "1 action",
+            "range": "120 feet",
+            "duration": "Concentration, up to 1 minute",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Summoning"
+            ],
+            "rp_cost": 17
+          }
+        }
+      ],
+      "possibleHistoricalAliases": []
+    },
+    "reviewFlags": [
+      "Core resolution requires an explicit operational interpretation",
+      "Not selectable in this spell playtest packet until individual operational review"
+    ]
+  },
+  "procedure": {
+    "KEEP": "Action120ft,V/S/F,concentration60s,rank7/17RP;140baseHP,two slams and cleave.",
+    "NEW": "One complete Colossus profile in NEW_NATIVE_PROFILES; entire perceived empty supported body must fit before payment. One active per caster; successful recast replaces old, commitment still ends old concentration even on failure. No bones/material/corpse payment printed; it is temporary manifested body, no class minion or fuel.",
+    "offense": "Choose two independently rolled2d8+M slams OR single3d8 DEX-half cleave; not both; no recharge or extra RP. Both slams spend ONE source-specific offense; second must independently recheck range/target; first spend not refunded if second becomes illegal. All profile/DC/command rules in VM139-COMPANION expressly extended, no automatic inheritance by school name.",
+    "end": "Ordinary0HP destroys manifestation; qualifying actual Null0 gives same NullDisabled0 without dying/Wounds/death saves. Full local manifestation suppression terminates permanently, no reappearance. Concentration loss/death/incapacity/dismissal/replacement/60s deadline ends body, releases genuine cargo at current location; no corpse/harvest/refund/rest/respawn. Actual acquired creation and current-controller max modifiers are independently checked."
+  },
+  "sharedRuleIds": [
+    "VM139-CAST",
+    "VM139-CLOCK",
+    "VM139-BODY",
+    "VM139-COMPANION",
+    "VM139-LIFE",
+    "VM139-SCOPE"
+  ],
+  "accepted": false,
+  "applied": false
+}
+
+## black-reaping
+
+{
+  "id": "black-reaping",
+  "status": "PROPOSED_FOR_EXACT_INDEPENDENT_REVIEW",
+  "completeNativeSourceAndAccessUnchanged": {
+    "id": "black-reaping",
+    "name": "Black Reaping",
+    "schools": [
+      "Necromancy"
+    ],
+    "status": "blocked-pending-operational-review",
+    "visibility": "public-source-review",
+    "classAccess": {
+      "Cleric": {
+        "rank": 7,
+        "minimumClassLevel": 13,
+        "school": "Necromancy",
+        "baseRpCost": 17
+      },
+      "Druid": {
+        "rank": 7,
+        "minimumClassLevel": 13,
+        "school": "Necromancy",
+        "baseRpCost": 17
+      },
+      "Shaman": {
+        "rank": 7,
+        "minimumClassLevel": 19,
+        "school": "Necromancy",
+        "baseRpCost": 17
+      },
+      "Wizard": {
+        "rank": 7,
+        "minimumClassLevel": 13,
+        "school": "Necromancy",
+        "baseRpCost": 17
+      }
+    },
+    "operational": null,
+    "additionalRpCost": 0,
+    "source": {
+      "catalogPath": "src/data/spells.js",
+      "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+      "catalogKey": "black-reaping",
+      "original": {
+        "name": "Black Reaping",
+        "level": 7,
+        "resonanceRank": 7,
+        "school": "Necromancy",
+        "schools": [
+          "Necromancy"
+        ],
+        "placements": [
+          {
+            "name": "Black Reaping",
+            "school": "Necromancy",
+            "level": 7,
+            "summary": "All enemies in cone take 6d8 necrotic, caster heals total."
+          }
+        ],
+        "classLevels": {
+          "Cleric": 7,
+          "Druid": 7,
+          "Shaman": 7,
+          "Wizard": 7
+        },
+        "classRanks": {
+          "Cleric": 7,
+          "Druid": 7,
+          "Shaman": 7,
+          "Wizard": 7
+        },
+        "classLearnLevels": {
+          "Cleric": 13,
+          "Druid": 13,
+          "Shaman": 19,
+          "Wizard": 13
+        },
+        "classSchools": {
+          "Cleric": "Necromancy",
+          "Druid": "Necromancy",
+          "Shaman": "Necromancy",
+          "Wizard": "Necromancy"
+        },
+        "castingTime": "Not specified in current rulebook",
+        "range": "Not specified in current rulebook",
+        "components": "Not specified in current rulebook",
+        "duration": "Not specified in current rulebook",
+        "description": "All enemies in cone take 6d8 necrotic, caster heals total.",
+        "alternateSummaries": [],
+        "classes": [
+          "Cleric",
+          "Druid",
+          "Shaman",
+          "Wizard"
+        ],
+        "status": "canon",
+        "source": "Player Rulebook — Spell Lists"
+      },
+      "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+      "coreEntries": [
+        {
+          "index": 697,
+          "original": {
+            "school": "Necromancy",
+            "level": 7,
+            "name": "Black Reaping",
+            "effect": "All enemies in cone take 6d8 necrotic, caster heals total.",
+            "source_paragraph": 9844,
+            "casting_time": "1 action",
+            "range": "120 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Damage",
+              "Healing"
+            ],
+            "rp_cost": 17
+          }
+        }
+      ],
+      "possibleHistoricalAliases": []
+    },
+    "reviewFlags": [
+      "Core resolution requires an explicit operational interpretation",
+      "Not selectable in this spell playtest packet until individual operational review"
+    ]
+  },
+  "procedure": {
+    "KEEP": "6d8necrotic to all enemies in one cone, one total ordinary heal;Action,V/S/F,rank7/17RP.",
+    "NEW_geometry": "120ft is cone axial LENGTH from caster actual oral/hand focus outlet at declared pose, not remote origin; terminal diameter120,0<s<=120,r²<=(s/2)². Actual body interior/clear same-origin LoE and cover. All actual enemies at resolution are recipients, not chosen subset; allegiance is actual mutually adverse encounter intent, not species/faction title. No hidden-target report.",
+    "NEW_damage": "Each enemy CON save vs actual caster DC,full shared6d8 on failure/half floored success. One root each. Preserve defenses/transfers/protections/Null flags, Wounds/true floors/death and any independently real returned harm before heal.",
+    "NEW_total": "Explicit terminal-branch inclusion model: count retained original and transferred final branches once ONLY when the actual final recipient is a living-at-packet-start meaningful hostile nonsummoned/nonstaged creature and root is this cast, not returned independent harm. A friendly protector may take real damage but contributes0; neither that parent share nor its child double counts. Temp absorbed and actualHP loss count, overkill/prevented/damage to alreadyDead/no-resource victims do not. Each root and final branch has persistent once-funding receipt. Resolve all harm including real countereffects then if caster is still living and eligible, apply one aggregate ordinary heal with its own modifiers/blocks/Critical cap once. Caster at living0 may receive legal ordinary healing, Dead cannot. No resurrection/copy resource loop or passive regeneration."
+  },
+  "sharedRuleIds": [
+    "VM139-CAST",
+    "VM139-CLOCK",
+    "VM139-BODY",
+    "VM139-COMPANION",
+    "VM139-LIFE",
+    "VM139-SCOPE"
+  ],
+  "accepted": false,
+  "applied": false
+}
+
+## chain-of-the-grave
+
+{
+  "id": "chain-of-the-grave",
+  "status": "PROPOSED_FOR_EXACT_INDEPENDENT_REVIEW",
+  "completeNativeSourceAndAccessUnchanged": {
+    "id": "chain-of-the-grave",
+    "name": "Chain of the Grave",
+    "schools": [
+      "Necromancy"
+    ],
+    "status": "blocked-pending-operational-review",
+    "visibility": "public-source-review",
+    "classAccess": {
+      "Cleric": {
+        "rank": 7,
+        "minimumClassLevel": 13,
+        "school": "Necromancy",
+        "baseRpCost": 17
+      },
+      "Druid": {
+        "rank": 7,
+        "minimumClassLevel": 13,
+        "school": "Necromancy",
+        "baseRpCost": 17
+      },
+      "Shaman": {
+        "rank": 7,
+        "minimumClassLevel": 19,
+        "school": "Necromancy",
+        "baseRpCost": 17
+      },
+      "Wizard": {
+        "rank": 7,
+        "minimumClassLevel": 13,
+        "school": "Necromancy",
+        "baseRpCost": 17
+      }
+    },
+    "operational": null,
+    "additionalRpCost": 0,
+    "source": {
+      "catalogPath": "src/data/spells.js",
+      "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+      "catalogKey": "chain-of-the-grave",
+      "original": {
+        "name": "Chain of the Grave",
+        "level": 7,
+        "resonanceRank": 7,
+        "school": "Necromancy",
+        "schools": [
+          "Necromancy"
+        ],
+        "placements": [
+          {
+            "name": "Chain of the Grave",
+            "school": "Necromancy",
+            "level": 7,
+            "summary": "Target cannot teleport or move magically for 3 rounds."
+          }
+        ],
+        "classLevels": {
+          "Cleric": 7,
+          "Druid": 7,
+          "Shaman": 7,
+          "Wizard": 7
+        },
+        "classRanks": {
+          "Cleric": 7,
+          "Druid": 7,
+          "Shaman": 7,
+          "Wizard": 7
+        },
+        "classLearnLevels": {
+          "Cleric": 13,
+          "Druid": 13,
+          "Shaman": 19,
+          "Wizard": 13
+        },
+        "classSchools": {
+          "Cleric": "Necromancy",
+          "Druid": "Necromancy",
+          "Shaman": "Necromancy",
+          "Wizard": "Necromancy"
+        },
+        "castingTime": "Not specified in current rulebook",
+        "range": "Not specified in current rulebook",
+        "components": "Not specified in current rulebook",
+        "duration": "Not specified in current rulebook",
+        "description": "Target cannot teleport or move magically for 3 rounds.",
+        "alternateSummaries": [],
+        "classes": [
+          "Cleric",
+          "Druid",
+          "Shaman",
+          "Wizard"
+        ],
+        "status": "canon",
+        "source": "Player Rulebook — Spell Lists"
+      },
+      "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+      "coreEntries": [
+        {
+          "index": 699,
+          "original": {
+            "school": "Necromancy",
+            "level": 7,
+            "name": "Chain of the Grave",
+            "effect": "Target cannot teleport or move magically for 3 rounds.",
+            "source_paragraph": 9846,
+            "casting_time": "1 action",
+            "range": "120 feet",
+            "duration": "3 rounds",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Movement"
+            ],
+            "rp_cost": 17
+          }
+        }
+      ],
+      "possibleHistoricalAliases": []
+    },
+    "reviewFlags": [
+      "Core resolution requires an explicit operational interpretation",
+      "Not selectable in this spell playtest packet until individual operational review"
+    ]
+  },
+  "procedure": {
+    "KEEP": "Action120ft one actual perceived creature/LoE,V/S/F,17RP,three rounds; cannot teleport OR move magically.",
+    "NEW_admission": "CHA save success no record; failure creates soft movement prohibition, not full-Action denial/Restrained/Speed0/hard guard spend. No concentration/repeat saves. Expire at END of original caster regular initiative slot in third following numbered round; at outside initiative18elapsed seconds, freeze conversion on initiative entry without adding time. Same caster/target family recast pays and replaces its end marker, different owners independent; no stacking stronger effects.",
+    "NEW_scope": "Prevent all direct magical displacement of affected target including forced teleport, magical forced push/pull, magically granted flight/Speed components while natural movement remains. A real mundane carrier/conveyor can move it normally using actual capacity/actions; magical displacement of a carrier carrying it is blocked for entire atomic group. Mundane forced motion unaffected. Remove magical flight support, invoke genuine fixed Fall Marker if no independent support; no physical chain, generic antimagic/plane revelation or global return exception. Suppression makes only this source ineffective while its original marker continues, no replay.",
+    "transport": "Bind exact Transport6 source transactions: Door affected caster cannot travel; Shift checks BOTH disjoint graphs including actual carried recipient even involuntary, any prohibition blocks entire swap. Instant Summons marked ordinary object is NOT this creature: Chain on its bearer does not block retrieval of independently eligible object; creature-origin object is already ineligible; child consumed once and paid BA remains if actual other blocker. Gate creation/admin not travel; voluntary affected traveler cannot cross, no movement debit on known rejection, legal new hidden failure pays actual crossing movement5ft but moves no group. Circle creation/Rebind/ID/admin not transit; actual affected traveler blocks activation; hidden postcommit failure preserves Action and source-local commit+6 cooldown. Exact original source costs persist; no extra Counterspell window on crossing or ability to port through a terminal return rule."
+  },
+  "sharedRuleIds": [
+    "VM139-CAST",
+    "VM139-CLOCK",
+    "VM139-BODY",
+    "VM139-COMPANION",
+    "VM139-LIFE",
+    "VM139-SCOPE"
+  ],
+  "accepted": false,
+  "applied": false
+}
+
+## finger-of-death
+
+{
+  "id": "finger-of-death",
+  "status": "PROPOSED_FOR_EXACT_INDEPENDENT_REVIEW",
+  "completeNativeSourceAndAccessUnchanged": {
+    "id": "finger-of-death",
+    "name": "Finger of Death",
+    "schools": [
+      "Necromancy"
+    ],
+    "status": "blocked-pending-operational-review",
+    "visibility": "public-source-review",
+    "classAccess": {
+      "Cleric": {
+        "rank": 7,
+        "minimumClassLevel": 13,
+        "school": "Necromancy",
+        "baseRpCost": 17
+      },
+      "Druid": {
+        "rank": 7,
+        "minimumClassLevel": 13,
+        "school": "Necromancy",
+        "baseRpCost": 17
+      },
+      "Shaman": {
+        "rank": 7,
+        "minimumClassLevel": 19,
+        "school": "Necromancy",
+        "baseRpCost": 17
+      },
+      "Wizard": {
+        "rank": 7,
+        "minimumClassLevel": 13,
+        "school": "Necromancy",
+        "baseRpCost": 17
+      }
+    },
+    "operational": null,
+    "additionalRpCost": 0,
+    "source": {
+      "catalogPath": "src/data/spells.js",
+      "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+      "catalogKey": "finger-of-death",
+      "original": {
+        "name": "Finger of Death",
+        "level": 7,
+        "resonanceRank": 7,
+        "school": "Necromancy",
+        "schools": [
+          "Necromancy"
+        ],
+        "placements": [
+          {
+            "name": "Finger of Death",
+            "school": "Necromancy",
+            "level": 7,
+            "summary": "7d8+30 necrotic damage, creates zombie if humanoid dies."
+          }
+        ],
+        "classLevels": {
+          "Cleric": 7,
+          "Druid": 7,
+          "Shaman": 7,
+          "Wizard": 7
+        },
+        "classRanks": {
+          "Cleric": 7,
+          "Druid": 7,
+          "Shaman": 7,
+          "Wizard": 7
+        },
+        "classLearnLevels": {
+          "Cleric": 13,
+          "Druid": 13,
+          "Shaman": 19,
+          "Wizard": 13
+        },
+        "classSchools": {
+          "Cleric": "Necromancy",
+          "Druid": "Necromancy",
+          "Shaman": "Necromancy",
+          "Wizard": "Necromancy"
+        },
+        "castingTime": "Not specified in current rulebook",
+        "range": "Not specified in current rulebook",
+        "components": "Not specified in current rulebook",
+        "duration": "Not specified in current rulebook",
+        "description": "7d8+30 necrotic damage, creates zombie if humanoid dies.",
+        "alternateSummaries": [],
+        "classes": [
+          "Cleric",
+          "Druid",
+          "Shaman",
+          "Wizard"
+        ],
+        "status": "canon",
+        "source": "Player Rulebook — Spell Lists"
+      },
+      "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+      "coreEntries": [
+        {
+          "index": 700,
+          "original": {
+            "school": "Necromancy",
+            "level": 7,
+            "name": "Finger of Death",
+            "effect": "7d8+30 necrotic damage, creates zombie if humanoid dies.",
+            "source_paragraph": 9847,
+            "casting_time": "1 action",
+            "range": "120 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Damage"
+            ],
+            "rp_cost": 17
+          }
+        }
+      ],
+      "possibleHistoricalAliases": []
+    },
+    "reviewFlags": [
+      "Core resolution requires an explicit operational interpretation",
+      "Not selectable in this spell playtest packet until individual operational review"
+    ]
+  },
+  "procedure": {
+    "KEEP": "Action120ft,V/S/F,17RP;7d8+30necrotic, zombie only when qualifying Humanoid actually dies.",
+    "NEW_damage_gate": "CON save half on success. One original target perceived creature/LoE. After complete same-root life/prevention transaction, immediate gate only original actual recipient identity, immutable creature-origin Humanoid; transferred deaths do NOT qualify. A current form label is insufficient; living0/Dying/Stable/floor/Ward/Null not death. No deferred mark, later death or caster-disconnected copy.",
+    "NEW_claim": "If caster alive/capable at completion and unclaimed sufficient original Small/Medium actual Humanoid remains with required intact torso/head/one arm, reserve exactly that body allocation and convert at same anchor into full NEW zombie. NEW limit one active spell zombie per original caster; choose replacement before payment, old body ending on new successful rider only. Native scope narrowed explicitly for finite complete profile, not recovered restriction. All genuine same-time legal body consumers ordered by actual committed event then fixed source ID, each revalidates remaining matter; only first eligible claim can consume. Neither unacquired AutoRaise nor CorpseHarvest is granted; damage spell is not their trigger. Failure leaves actual remains, no refund or substitution.",
+    "NEW_zombie_end": "Use VM139-COMPANION, one source body HP30 plus truly acquired modifiers, same surviving corpse matter/gear/missing parts; no limb repair. Birth-turn command possible with actualBA. No concentration,60s from animation; caster death/incapacity, dismissal, replacement, full animation suppression or ordinary0HP ends animation leaving same inert consumed corpse matter at current anchor. Qualifying Null0 preserves disabled animation until independent end. Never resurrect original identity or imprison soul. Old melded gear released under ending original form and remains actual; outside equipment not copied. Legal later resurrection must independently bind dead identity, actual sufficient still-eligible body/reconstruction permission; all consumed allocation and detached-part history preserved; no new resurrection blocker or entitlement."
+  },
+  "sharedRuleIds": [
+    "VM139-CAST",
+    "VM139-CLOCK",
+    "VM139-BODY",
+    "VM139-COMPANION",
+    "VM139-LIFE",
+    "VM139-SCOPE"
+  ],
+  "accepted": false,
+  "applied": false
+}
+
+## plague-wind
+
+{
+  "id": "plague-wind",
+  "status": "PROPOSED_FOR_EXACT_INDEPENDENT_REVIEW",
+  "completeNativeSourceAndAccessUnchanged": {
+    "id": "plague-wind",
+    "name": "Plague Wind",
+    "schools": [
+      "Necromancy"
+    ],
+    "status": "blocked-pending-operational-review",
+    "visibility": "public-source-review",
+    "classAccess": {
+      "Cleric": {
+        "rank": 7,
+        "minimumClassLevel": 13,
+        "school": "Necromancy",
+        "baseRpCost": 17
+      },
+      "Druid": {
+        "rank": 7,
+        "minimumClassLevel": 13,
+        "school": "Necromancy",
+        "baseRpCost": 17
+      },
+      "Shaman": {
+        "rank": 7,
+        "minimumClassLevel": 19,
+        "school": "Necromancy",
+        "baseRpCost": 17
+      },
+      "Wizard": {
+        "rank": 7,
+        "minimumClassLevel": 13,
+        "school": "Necromancy",
+        "baseRpCost": 17
+      }
+    },
+    "operational": null,
+    "additionalRpCost": 0,
+    "source": {
+      "catalogPath": "src/data/spells.js",
+      "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+      "catalogKey": "plague-wind",
+      "original": {
+        "name": "Plague Wind",
+        "level": 7,
+        "resonanceRank": 7,
+        "school": "Necromancy",
+        "schools": [
+          "Necromancy"
+        ],
+        "placements": [
+          {
+            "name": "Plague Wind",
+            "school": "Necromancy",
+            "level": 7,
+            "summary": "30-ft cone of disease, 8d6 necrotic + ongoing effects."
+          }
+        ],
+        "classLevels": {
+          "Cleric": 7,
+          "Druid": 7,
+          "Shaman": 7,
+          "Wizard": 7
+        },
+        "classRanks": {
+          "Cleric": 7,
+          "Druid": 7,
+          "Shaman": 7,
+          "Wizard": 7
+        },
+        "classLearnLevels": {
+          "Cleric": 13,
+          "Druid": 13,
+          "Shaman": 19,
+          "Wizard": 13
+        },
+        "classSchools": {
+          "Cleric": "Necromancy",
+          "Druid": "Necromancy",
+          "Shaman": "Necromancy",
+          "Wizard": "Necromancy"
+        },
+        "castingTime": "Not specified in current rulebook",
+        "range": "Not specified in current rulebook",
+        "components": "Not specified in current rulebook",
+        "duration": "Not specified in current rulebook",
+        "description": "30-ft cone of disease, 8d6 necrotic + ongoing effects.",
+        "alternateSummaries": [],
+        "classes": [
+          "Cleric",
+          "Druid",
+          "Shaman",
+          "Wizard"
+        ],
+        "status": "canon",
+        "source": "Player Rulebook — Spell Lists"
+      },
+      "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+      "coreEntries": [
+        {
+          "index": 703,
+          "original": {
+            "school": "Necromancy",
+            "level": 7,
+            "name": "Plague Wind",
+            "effect": "30-ft cone of disease, 8d6 necrotic + ongoing effects.",
+            "source_paragraph": 9850,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Damage"
+            ],
+            "rp_cost": 17
+          }
+        }
+      ],
+      "possibleHistoricalAliases": []
+    },
+    "reviewFlags": [
+      "Core resolution requires an explicit operational interpretation",
+      "Not selectable in this spell playtest packet until individual operational review"
+    ]
+  },
+  "procedure": {
+    "KEEP": "Action30ft cone,V/S/F,17RP,one8d6necrotic plus ongoing disease; Instantaneous is packet/establishment only.",
+    "NEW_admission": "Local axial cone as above length30/terminaldiameter30. One CON save each vs casterDC; full8d6 failure/half success. Failure separately admits VM139-GraveAgue magical disease unless explicit disease immunity, regardless positive necrotic damage, breathing or Poisoned immunity. No Poisoned is applied, no inhalation route. Damage immunity never supplies disease immunity.",
+    "NEW_disease": "No concentration; absolute18s from manifestation. Immediate symptom while operative: all ordinary Speeds-10floor0 and disadvantage STR/DEX ability CHECKS only, not saves/attacks; no damage ticks, exhaustion or contagion. Repeat CON vs capturedDC at each original target regular END strictly before deadline, success cures. Fixed absolute expiry removes without another save. Same creator/target family fresh failed save replaces original record/deadline, never duplicate symptoms; all other clocks/consumed opportunities preserved. Other owners independent, strongest speed penalty/advantage arbitration.",
+    "NEW_suspension_care": "Petrified, actual applicable full suppression or later disease immunity suppress expression, do not delete or pause absolute expiry. Suppressed target-end opportunities are consumed without rolling and cannot replay. Initially immune never creates record. TreatmentDC=17 for magical disease for actual Purify Blood INT task; its4RP/recharge3/card eligibility persist. Exact Lay on Hands5points grants immediate actual CON save vs captured diseaseDC, not cure; source Healing Touch adds HP only, not a disease treatment. Stabilizing Injection consumes actual prepared serum, touches eligible living anatomy, healing+its own allowed disease save; no inferred oral route. Actual Cellular Reconstruction oneLR self stasis then cure/heal per its card. All cures may target present suspended record ONLY where their actual source target/body route is legal. Petrified cannot swallow oral remedy; retain that failed route unavailable. Purify Blood uses willing living touch and can cure magical disease on real check while stone; no generic herbal/antidote/heal/food cure. No special quest restriction added."
+  },
+  "sharedRuleIds": [
+    "VM139-CAST",
+    "VM139-CLOCK",
+    "VM139-BODY",
+    "VM139-COMPANION",
+    "VM139-LIFE",
+    "VM139-SCOPE"
+  ],
+  "accepted": false,
+  "applied": false
+}
+
+## metal-to-glass
+
+{
+  "id": "metal-to-glass",
+  "status": "PROPOSED_FOR_EXACT_INDEPENDENT_REVIEW",
+  "completeNativeSourceAndAccessUnchanged": {
+    "id": "metal-to-glass",
+    "name": "Metal to Glass",
+    "schools": [
+      "Transmutation"
+    ],
+    "status": "blocked-pending-operational-review",
+    "visibility": "public-source-review",
+    "classAccess": {
+      "Druid": {
+        "rank": 7,
+        "minimumClassLevel": 13,
+        "school": "Transmutation",
+        "baseRpCost": 17
+      },
+      "Mage": {
+        "rank": 7,
+        "minimumClassLevel": 13,
+        "school": "Transmutation",
+        "baseRpCost": 17
+      },
+      "Shaman": {
+        "rank": 7,
+        "minimumClassLevel": 19,
+        "school": "Transmutation",
+        "baseRpCost": 17
+      },
+      "Wizard": {
+        "rank": 7,
+        "minimumClassLevel": 13,
+        "school": "Transmutation",
+        "baseRpCost": 17
+      }
+    },
+    "operational": null,
+    "additionalRpCost": 0,
+    "source": {
+      "catalogPath": "src/data/spells.js",
+      "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+      "catalogKey": "metal-to-glass",
+      "original": {
+        "name": "Metal to Glass",
+        "level": 7,
+        "resonanceRank": 7,
+        "school": "Transmutation",
+        "schools": [
+          "Transmutation"
+        ],
+        "placements": [
+          {
+            "name": "Metal to Glass",
+            "school": "Transmutation",
+            "level": 7,
+            "summary": "All metal objects in 20-ft become fragile glass (DEX save to avoid dropping)."
+          }
+        ],
+        "classLevels": {
+          "Druid": 7,
+          "Mage": 7,
+          "Shaman": 7,
+          "Wizard": 7
+        },
+        "classRanks": {
+          "Druid": 7,
+          "Mage": 7,
+          "Shaman": 7,
+          "Wizard": 7
+        },
+        "classLearnLevels": {
+          "Druid": 13,
+          "Mage": 13,
+          "Shaman": 19,
+          "Wizard": 13
+        },
+        "classSchools": {
+          "Druid": "Transmutation",
+          "Mage": "Transmutation",
+          "Shaman": "Transmutation",
+          "Wizard": "Transmutation"
+        },
+        "castingTime": "Not specified in current rulebook",
+        "range": "Not specified in current rulebook",
+        "components": "Not specified in current rulebook",
+        "duration": "Not specified in current rulebook",
+        "description": "All metal objects in 20-ft become fragile glass (DEX save to avoid dropping).",
+        "alternateSummaries": [],
+        "classes": [
+          "Druid",
+          "Mage",
+          "Shaman",
+          "Wizard"
+        ],
+        "status": "canon",
+        "source": "Player Rulebook — Spell Lists"
+      },
+      "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+      "coreEntries": [
+        {
+          "index": 800,
+          "original": {
+            "school": "Transmutation",
+            "level": 7,
+            "name": "Metal to Glass",
+            "effect": "All metal objects in 20-ft become fragile glass (DEX save to avoid dropping).",
+            "source_paragraph": 9972,
+            "casting_time": "1 action",
+            "range": "20 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Dexterity save",
+            "tags": [
+              "Utility"
+            ],
+            "rp_cost": 17
+          }
+        }
+      ],
+      "possibleHistoricalAliases": []
+    },
+    "reviewFlags": [
+      "Not selectable in this spell playtest packet until individual operational review"
+    ]
+  },
+  "procedure": {
+    "KEEP": "Action,V/S/F,17RP; ALL metal OBJECTS in20ft become fragile glass;DEX avoids dropping only.",
+    "NEW_area": "20ft-radius full3Dsphere centered actual caster focus point; same-origin clear LoE to admitted metal interior. All actual objects including caster belongings, anchored/worn/held/magical objects without explicit prevention; no size/mass cap. Metal creatures/creature body parts/melded gear ineligible. Whole coherent partly-intersecting metal object converts, not clipped patch. Composite graph: each preexisting connected metal constituent with witnessed interior in sphere/LoE converts WHOLE constituent; other materials stay. Enclosed metal blocked by opaque closed container LoE is excluded without supplying secret knowledge; transparent glass still blocks physical LoE absent exact exception.",
+    "NEW_glass": "Lasting completed material conversion, no concentration or reversible layer; later dispel/suppression does not rewind it. Each converted constituent retains mass, volume, anchor, constituent identity and original missing/damaged fraction. NEW structural maximum2HP per actual lb, ceiling at original undamaged max if known,minimum1; current=floor(newMax*oldCurrent/oldMax), no repair. AC10; no generic creatureHP/weapon attack permission. Glass weapon/precision tool no longer functions as such; glass armor supplies no armor formula, compatible clothing/unarmoredAC remains. Static shape persists, no automatic collapse or unlocking. Ordinary intact support carries at most10*converted constituent currentHP lb; exceeded load creates supportConflict requiring actual independently sourced structural consequence, no invented crushing engine.",
+    "NEW_drop_break": "Each holder/item DEX save vs casterDC when conversion resolves; success keeps already-glass held item, failure releases grip and item falls under ordinary gravity. Worn/anchored/fastened items do not drop from this rule; can be removed only genuine handling. NEW local glass breakage: actual free drop>=5ft onto documented rigid stone breaks converted free glass constituent into tracked fragments at impact, no creature/collision damage; a lower/no-drop does not auto-break. Other deliberate damage requires actual Sunder or source object permission; no Arcane Bolt creature attack on objects. Fragments/consumption/crafting retain exact constituent mass/damage and no extra original metal stock, restoration, sale value or free repair. Fixed lock may remain closed until actual permitted break/open operation; BoneCage/Material8 supplies no global object law."
+  },
+  "sharedRuleIds": [
+    "VM139-CAST",
+    "VM139-CLOCK",
+    "VM139-BODY",
+    "VM139-COMPANION",
+    "VM139-LIFE",
+    "VM139-SCOPE"
+  ],
+  "accepted": false,
+  "applied": false
+}
+
+## titanic-grip
+
+{
+  "id": "titanic-grip",
+  "status": "PROPOSED_FOR_EXACT_INDEPENDENT_REVIEW",
+  "completeNativeSourceAndAccessUnchanged": {
+    "id": "titanic-grip",
+    "name": "Titanic Grip",
+    "schools": [
+      "Transmutation"
+    ],
+    "status": "blocked-pending-operational-review",
+    "visibility": "public-source-review",
+    "classAccess": {
+      "Druid": {
+        "rank": 7,
+        "minimumClassLevel": 13,
+        "school": "Transmutation",
+        "baseRpCost": 17
+      },
+      "Mage": {
+        "rank": 7,
+        "minimumClassLevel": 13,
+        "school": "Transmutation",
+        "baseRpCost": 17
+      },
+      "Shaman": {
+        "rank": 7,
+        "minimumClassLevel": 19,
+        "school": "Transmutation",
+        "baseRpCost": 17
+      },
+      "Wizard": {
+        "rank": 7,
+        "minimumClassLevel": 13,
+        "school": "Transmutation",
+        "baseRpCost": 17
+      }
+    },
+    "operational": null,
+    "additionalRpCost": 0,
+    "source": {
+      "catalogPath": "src/data/spells.js",
+      "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+      "catalogKey": "titanic-grip",
+      "original": {
+        "name": "Titanic Grip",
+        "level": 7,
+        "resonanceRank": 7,
+        "school": "Transmutation",
+        "schools": [
+          "Transmutation"
+        ],
+        "placements": [
+          {
+            "name": "Titanic Grip",
+            "school": "Transmutation",
+            "level": 7,
+            "summary": "Your size doubles, STR becomes 22 for duration; attacks deal +2d6."
+          }
+        ],
+        "classLevels": {
+          "Druid": 7,
+          "Mage": 7,
+          "Shaman": 7,
+          "Wizard": 7
+        },
+        "classRanks": {
+          "Druid": 7,
+          "Mage": 7,
+          "Shaman": 7,
+          "Wizard": 7
+        },
+        "classLearnLevels": {
+          "Druid": 13,
+          "Mage": 13,
+          "Shaman": 19,
+          "Wizard": 13
+        },
+        "classSchools": {
+          "Druid": "Transmutation",
+          "Mage": "Transmutation",
+          "Shaman": "Transmutation",
+          "Wizard": "Transmutation"
+        },
+        "castingTime": "Not specified in current rulebook",
+        "range": "Not specified in current rulebook",
+        "components": "Not specified in current rulebook",
+        "duration": "Not specified in current rulebook",
+        "description": "Your size doubles, STR becomes 22 for duration; attacks deal +2d6.",
+        "alternateSummaries": [],
+        "classes": [
+          "Druid",
+          "Mage",
+          "Shaman",
+          "Wizard"
+        ],
+        "status": "canon",
+        "source": "Player Rulebook — Spell Lists"
+      },
+      "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+      "coreEntries": [
+        {
+          "index": 801,
+          "original": {
+            "school": "Transmutation",
+            "level": 7,
+            "name": "Titanic Grip",
+            "effect": "Your size doubles, STR becomes 22 for duration; attacks deal +2d6.",
+            "source_paragraph": 9973,
+            "casting_time": "1 action",
+            "range": "120 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Damage"
+            ],
+            "rp_cost": 17
+          }
+        }
+      ],
+      "possibleHistoricalAliases": []
+    },
+    "reviewFlags": [
+      "Core resolution requires an explicit operational interpretation",
+      "Not selectable in this spell playtest packet until individual operational review"
+    ]
+  },
+  "procedure": {
+    "KEEP": "YOUR body doubles,STR becomes fixed22, attacks+2d6;17RP,Action,V/S/F.",
+    "NEW_conflict": "Self ONLY overrides preserved Core120ft. NEW concentration60s replaces Instantaneous/unspecified duration. Double current baseline linear occupied dimensions/height/reach, volume and body mass8fold, next one size category for Medium->Large/Large->Huge; carrying physical size multiplier per accepted known size only, no invented Huge capacity. Same-family recast recomputes from unmodified current anatomy, never exponential; genuine form replacement recomputes only after lawful fit/precedence. Require whole expanded body/equipment fit/support at preflight; blocked voluntary growth rejects before pay.",
+    "NEW_stats": "STR assigned22 even if actual existingSTR>22. NEW rank-stat arbitration only this spell: express current anatomy assignment then Titanic fixed22 while active; stronger permanent/higher-rank anatomy incompatible growth is not overwritten. Reevaluate current anatomy after ending/suppression without HP/refill. Equipment scales with temporary body for fit and use, sameIDs, mass scale is nonharvestable expression returning on end; external acquired incompatible gear drops genuinely. CurrentHP/maxHP/Wounds/resources unaffected.",
+    "NEW_attacks": "On EACH actual landed melee/ranged weapon, unarmed or natural attack owned/performed by subject add2d6 of that attack base damage type to its same packet. Exclude spell attacks, saves, DoTs, copies and companions. Each independent Multiattack hit qualifies; attack critical doubles added dice, not flatSTR. Extra recipients/splash only their own actual attack hit, no reapplication on sharing. No free attacks/action/round allowances. End on concentration loss/death/incapacity/60s; temporary suppression expresses baseline while original clock remains. Bounded actual body return/gear history under VM139-BODY, no growth crush/harvestable mass."
+  },
+  "sharedRuleIds": [
+    "VM139-CAST",
+    "VM139-CLOCK",
+    "VM139-BODY",
+    "VM139-COMPANION",
+    "VM139-LIFE",
+    "VM139-SCOPE"
+  ],
+  "accepted": false,
+  "applied": false
+}
+
+## flash-freeze
+
+{
+  "id": "flash-freeze",
+  "status": "PROPOSED_FOR_EXACT_INDEPENDENT_REVIEW",
+  "completeNativeSourceAndAccessUnchanged": {
+    "id": "flash-freeze",
+    "name": "Flash Freeze",
+    "schools": [
+      "Transmutation"
+    ],
+    "status": "blocked-pending-operational-review",
+    "visibility": "public-source-review",
+    "classAccess": {
+      "Druid": {
+        "rank": 7,
+        "minimumClassLevel": 13,
+        "school": "Transmutation",
+        "baseRpCost": 17
+      },
+      "Mage": {
+        "rank": 7,
+        "minimumClassLevel": 13,
+        "school": "Transmutation",
+        "baseRpCost": 17
+      },
+      "Shaman": {
+        "rank": 7,
+        "minimumClassLevel": 19,
+        "school": "Transmutation",
+        "baseRpCost": 17
+      },
+      "Wizard": {
+        "rank": 7,
+        "minimumClassLevel": 13,
+        "school": "Transmutation",
+        "baseRpCost": 17
+      }
+    },
+    "operational": null,
+    "additionalRpCost": 0,
+    "source": {
+      "catalogPath": "src/data/spells.js",
+      "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+      "catalogKey": "flash-freeze",
+      "original": {
+        "name": "Flash Freeze",
+        "level": 7,
+        "resonanceRank": 7,
+        "school": "Transmutation",
+        "schools": [
+          "Transmutation"
+        ],
+        "placements": [
+          {
+            "name": "Flash Freeze",
+            "school": "Transmutation",
+            "level": 7,
+            "summary": "Target encased in ice: 6d10 cold and restrained for 1 round."
+          }
+        ],
+        "classLevels": {
+          "Druid": 7,
+          "Mage": 7,
+          "Shaman": 7,
+          "Wizard": 7
+        },
+        "classRanks": {
+          "Druid": 7,
+          "Mage": 7,
+          "Shaman": 7,
+          "Wizard": 7
+        },
+        "classLearnLevels": {
+          "Druid": 13,
+          "Mage": 13,
+          "Shaman": 19,
+          "Wizard": 13
+        },
+        "classSchools": {
+          "Druid": "Transmutation",
+          "Mage": "Transmutation",
+          "Shaman": "Transmutation",
+          "Wizard": "Transmutation"
+        },
+        "castingTime": "Not specified in current rulebook",
+        "range": "Not specified in current rulebook",
+        "components": "Not specified in current rulebook",
+        "duration": "Not specified in current rulebook",
+        "description": "Target encased in ice: 6d10 cold and restrained for 1 round.",
+        "alternateSummaries": [],
+        "classes": [
+          "Druid",
+          "Mage",
+          "Shaman",
+          "Wizard"
+        ],
+        "status": "canon",
+        "source": "Player Rulebook — Spell Lists"
+      },
+      "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+      "coreEntries": [
+        {
+          "index": 802,
+          "original": {
+            "school": "Transmutation",
+            "level": 7,
+            "name": "Flash Freeze",
+            "effect": "Target encased in ice: 6d10 cold and restrained for 1 round.",
+            "source_paragraph": 9974,
+            "casting_time": "1 action",
+            "range": "120 feet",
+            "duration": "1 round",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Damage",
+              "Control"
+            ],
+            "rp_cost": 17
+          }
+        }
+      ],
+      "possibleHistoricalAliases": []
+    },
+    "reviewFlags": [
+      "Core resolution requires an explicit operational interpretation",
+      "Not selectable in this spell playtest packet until individual operational review"
+    ]
+  },
+  "procedure": {
+    "KEEP": "Action120ft one perceived actual creature/LoE,V/S/F,17RP,one6d10cold and Restrained1round.",
+    "NEW": "CON save full damage and source-owned Restrained failure, halfdamage/no restraint success. Restraint independent positive damage: coldimmune can fail and be Restrained, conditionimmune fails takes actualcold but no restraint. Soft immobilization, not full turn denial; actual control-immunity predicates remain. Fixed expiry end original target regular turn in following numbered round; outside initiative6s, no added duration on entry/extra turns. Same-family paid recast refreshes only its own endpoint.",
+    "NEW_manifestation": "Ice is NONINDEPENDENT magical restraint expression, no objectHP/cover/suffocation/extra creature/shell/harvestable ice. Real breathing/senses/touch/healing/attacks target original creature normally; ordinary allied carrying possible with actual capacity. NEW escape Action STR(Athletics) vs capturedDC ends THIS source on success, helper adjacent may do same; failure pays Action. No generic cutting/melting/weapon object permission. Applicable local suppression suppresses restraint while absolute endpoint continues; initialcold never replays. Loss of flight support uses real Fall Marker, no Hover granted."
+  },
+  "sharedRuleIds": [
+    "VM139-CAST",
+    "VM139-CLOCK",
+    "VM139-BODY",
+    "VM139-COMPANION",
+    "VM139-LIFE",
+    "VM139-SCOPE"
+  ],
+  "accepted": false,
+  "applied": false
+}
+
+## transmute-being
+
+{
+  "id": "transmute-being",
+  "status": "PROPOSED_FOR_EXACT_INDEPENDENT_REVIEW",
+  "completeNativeSourceAndAccessUnchanged": {
+    "id": "transmute-being",
+    "name": "Transmute Being",
+    "schools": [
+      "Transmutation"
+    ],
+    "status": "blocked-pending-operational-review",
+    "visibility": "public-source-review",
+    "classAccess": {
+      "Druid": {
+        "rank": 7,
+        "minimumClassLevel": 13,
+        "school": "Transmutation",
+        "baseRpCost": 17
+      },
+      "Mage": {
+        "rank": 7,
+        "minimumClassLevel": 13,
+        "school": "Transmutation",
+        "baseRpCost": 17
+      },
+      "Shaman": {
+        "rank": 7,
+        "minimumClassLevel": 19,
+        "school": "Transmutation",
+        "baseRpCost": 17
+      },
+      "Wizard": {
+        "rank": 7,
+        "minimumClassLevel": 13,
+        "school": "Transmutation",
+        "baseRpCost": 17
+      }
+    },
+    "operational": null,
+    "additionalRpCost": 0,
+    "source": {
+      "catalogPath": "src/data/spells.js",
+      "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+      "catalogKey": "transmute-being",
+      "original": {
+        "name": "Transmute Being",
+        "level": 7,
+        "resonanceRank": 7,
+        "school": "Transmutation",
+        "schools": [
+          "Transmutation"
+        ],
+        "placements": [
+          {
+            "name": "Transmute Being",
+            "school": "Transmutation",
+            "level": 7,
+            "summary": "Change a willing target to elemental, beast, or ooze form with stat benefits for 1 min."
+          }
+        ],
+        "classLevels": {
+          "Druid": 7,
+          "Mage": 7,
+          "Shaman": 7,
+          "Wizard": 7
+        },
+        "classRanks": {
+          "Druid": 7,
+          "Mage": 7,
+          "Shaman": 7,
+          "Wizard": 7
+        },
+        "classLearnLevels": {
+          "Druid": 13,
+          "Mage": 13,
+          "Shaman": 19,
+          "Wizard": 13
+        },
+        "classSchools": {
+          "Druid": "Transmutation",
+          "Mage": "Transmutation",
+          "Shaman": "Transmutation",
+          "Wizard": "Transmutation"
+        },
+        "castingTime": "Not specified in current rulebook",
+        "range": "Not specified in current rulebook",
+        "components": "Not specified in current rulebook",
+        "duration": "Not specified in current rulebook",
+        "description": "Change a willing target to elemental, beast, or ooze form with stat benefits for 1 min.",
+        "alternateSummaries": [],
+        "classes": [
+          "Druid",
+          "Mage",
+          "Shaman",
+          "Wizard"
+        ],
+        "status": "canon",
+        "source": "Player Rulebook — Spell Lists"
+      },
+      "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+      "coreEntries": [
+        {
+          "index": 803,
+          "original": {
+            "school": "Transmutation",
+            "level": 7,
+            "name": "Transmute Being",
+            "effect": "Change a willing target to elemental, beast, or ooze form with stat benefits for 1 min.",
+            "source_paragraph": 9975,
+            "casting_time": "1 action",
+            "range": "120 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Utility"
+            ],
+            "rp_cost": 17
+          }
+        }
+      ],
+      "possibleHistoricalAliases": []
+    },
+    "reviewFlags": [
+      "Core resolution requires an explicit operational interpretation",
+      "Not selectable in this spell playtest packet until individual operational review"
+    ]
+  },
+  "procedure": {
+    "KEEP": "Action120ft willing living perceived creature/LoE,V/S/F,17RP,all THREE Elemental/Beast/Ooze choices with stat benefits60s.",
+    "NEW": "One explicitly selected full profile in NEW_NATIVE_PROFILES, concentration60s replaces Instantaneous metadata. Willingness required at declaration and manifestation; no involuntary save route. Explicit scoped extension of transformation one-body/rank precedence: temporaryrank7 replaces only eligible lower/equal temporary anatomy, never permanentTrue or higher rank. Successful replacement ends prior body record atomically; no hidden body stack. New concentration ends own old source atcommit. No internal switch permission; different profile requires fresh paid cast, no free transition.",
+    "NEW_identity_stats": "One subject ownHP/maxHP/temp/Wounds/injuries/resources/type/ancestry/soul; form labels do not change origin or immunity. Full new expressed abilities/AC/movement only as listed. Natural attacks use SUBJECT own PB/currentSTR, dealer subject, no caster spellkill/casterderivedM. Elemental has2hands+speech and can use genuinely acquired anatomy-compatible class abilities with real external focus/hands; original meldedfocus is inaccessible. Beast/Ooze cannot supply V/S/F or humanoid weapon requirements. No secondHP, automatic class mastery or borrowed monster resources.",
+    "NEW_end": "Subject can reject using Action on original regular turn while action-capable, including suppressed.0HP/death/externalIncapacitated ends temporary form after complete packet/prevention, no healing. Suppression expresses root anatomy without closingrecord, meld remains inaccessible, original60s continues; expiry permanently ends even suppressed. Restore surviving original meld plus real externalgear, drop incompatible actual externalitems; missing matter stays missing. Actual support and bounded same-anchor reversion/pendingconflict under VM139-BODY. Druid cannot use Shapeshift through active spell-form record. Gear/class/refill/soul/CR/elemental-origin hold intact."
+  },
+  "sharedRuleIds": [
+    "VM139-CAST",
+    "VM139-CLOCK",
+    "VM139-BODY",
+    "VM139-COMPANION",
+    "VM139-LIFE",
+    "VM139-SCOPE"
+  ],
+  "accepted": false,
+  "applied": false
+}
+
+## regenerate
+
+{
+  "id": "regenerate",
+  "status": "PROPOSED_FOR_EXACT_INDEPENDENT_REVIEW",
+  "completeNativeSourceAndAccessUnchanged": {
+    "id": "regenerate",
+    "name": "Regenerate",
+    "schools": [
+      "Transmutation"
+    ],
+    "status": "blocked-pending-operational-review",
+    "visibility": "public-source-review",
+    "classAccess": {
+      "Druid": {
+        "rank": 7,
+        "minimumClassLevel": 13,
+        "school": "Transmutation",
+        "baseRpCost": 17
+      },
+      "Mage": {
+        "rank": 7,
+        "minimumClassLevel": 13,
+        "school": "Transmutation",
+        "baseRpCost": 17
+      },
+      "Shaman": {
+        "rank": 7,
+        "minimumClassLevel": 19,
+        "school": "Transmutation",
+        "baseRpCost": 17
+      },
+      "Wizard": {
+        "rank": 7,
+        "minimumClassLevel": 13,
+        "school": "Transmutation",
+        "baseRpCost": 17
+      }
+    },
+    "operational": null,
+    "additionalRpCost": 0,
+    "source": {
+      "catalogPath": "src/data/spells.js",
+      "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+      "catalogKey": "regenerate",
+      "original": {
+        "name": "Regenerate",
+        "level": 7,
+        "resonanceRank": 7,
+        "school": "Transmutation",
+        "schools": [
+          "Transmutation"
+        ],
+        "placements": [
+          {
+            "name": "Regenerate",
+            "school": "Transmutation",
+            "level": 7,
+            "summary": "Target regrows limbs and heals 4d8+15 hit points."
+          }
+        ],
+        "classLevels": {
+          "Druid": 7,
+          "Mage": 7,
+          "Shaman": 7,
+          "Wizard": 7
+        },
+        "classRanks": {
+          "Druid": 7,
+          "Mage": 7,
+          "Shaman": 7,
+          "Wizard": 7
+        },
+        "classLearnLevels": {
+          "Druid": 13,
+          "Mage": 13,
+          "Shaman": 19,
+          "Wizard": 13
+        },
+        "classSchools": {
+          "Druid": "Transmutation",
+          "Mage": "Transmutation",
+          "Shaman": "Transmutation",
+          "Wizard": "Transmutation"
+        },
+        "castingTime": "Not specified in current rulebook",
+        "range": "Not specified in current rulebook",
+        "components": "Not specified in current rulebook",
+        "duration": "Not specified in current rulebook",
+        "description": "Target regrows limbs and heals 4d8+15 hit points.",
+        "alternateSummaries": [],
+        "classes": [
+          "Druid",
+          "Mage",
+          "Shaman",
+          "Wizard"
+        ],
+        "status": "canon",
+        "source": "Player Rulebook — Spell Lists"
+      },
+      "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+      "coreEntries": [
+        {
+          "index": 806,
+          "original": {
+            "school": "Transmutation",
+            "level": 7,
+            "name": "Regenerate",
+            "effect": "Target regrows limbs and heals 4d8+15 hit points.",
+            "source_paragraph": 9978,
+            "casting_time": "1 action",
+            "range": "120 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Damage",
+              "Healing"
+            ],
+            "rp_cost": 17
+          }
+        }
+      ],
+      "possibleHistoricalAliases": []
+    },
+    "reviewFlags": [
+      "Core resolution requires an explicit operational interpretation",
+      "Not selectable in this spell playtest packet until individual operational review"
+    ]
+  },
+  "procedure": {
+    "KEEP": "Action120ft one willing living creature/LoE,V/S/F,17RP; one4d8+15ordinaryheal AND limb restoration. No concentration/repeat heal.",
+    "NEW_anatomy": "Choose one actual missing or physically unusable limb from current expressed compatible living anatomy, not head/organ/eye/scar. Restore complete functional limb at resolution; NEW one-limb percast finite scope. If same actual detached limb is present/touched by target and physically aligned, reattach same part; otherwise regrow continuing limb lineage with new source-matter segment. ActualHPgain is NOT prerequisite for separate anatomy benefit; genericHPblock does not prohibit it unless actual source expressly blocks anatomy. FullHP can receive limb effect. Intact functional limbs not duplicated.",
+    "NEW_injury": "Restore physical function only. Actual linked CoreWound/Injury records and penalties persist until independently removed; regenerated hand can hold but FineMotorTrauma still-1Dex/toolcheck. No Woundcure/resurrection/classreset. Current transformed anatomy restoration stays that same temporary part expression; ending form does not restore missing underlying original limb for free. Root injuries/missing parts remain unless specifically treated in root anatomy.",
+    "NEW_lineage": "Record immutable identity/body/limbslot,parent detachedpart and actual material quantities. Detached original stays actual at its old position if not reattached, never deleted/remote-recalled/copied. New continuing part and old part cannot both anchor duplicate return or renew perbody harvest entitlements; old detached counterpart has spent/redundant anchor status for that same identity. No permission to harvest/use/eat/animate/sell is granted; genuinely authorized consumer must bind its own actual source and retain prior consumed matter. Repeated casts on intact limb yield no extra limb or inventory. Full actualheal modifiers/block/Criticalcap once, no periodic healing."
+  },
+  "sharedRuleIds": [
+    "VM139-CAST",
+    "VM139-CLOCK",
+    "VM139-BODY",
+    "VM139-COMPANION",
+    "VM139-LIFE",
+    "VM139-SCOPE"
+  ],
+  "accepted": false,
+  "applied": false
+}

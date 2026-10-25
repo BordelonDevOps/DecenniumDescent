@@ -1,0 +1,158 @@
+{
+  "id": "symbol",
+  "status": "PROPOSED_AUTHORED_OPERATIONAL_FOR_EXACT_INDEPENDENT_REVIEW",
+  "completeNativeCardAndAccessUnchanged": {
+    "id": "symbol",
+    "name": "Symbol",
+    "schools": [
+      "Universal"
+    ],
+    "status": "blocked-pending-operational-review",
+    "visibility": "public-source-review",
+    "classAccess": {
+      "Bard": {
+        "rank": 7,
+        "minimumClassLevel": 19,
+        "school": "Universal",
+        "baseRpCost": 17
+      },
+      "Cleric": {
+        "rank": 7,
+        "minimumClassLevel": 13,
+        "school": "Universal",
+        "baseRpCost": 17
+      },
+      "Mage": {
+        "rank": 7,
+        "minimumClassLevel": 13,
+        "school": "Universal",
+        "baseRpCost": 17
+      },
+      "Mirrorsage": {
+        "rank": 7,
+        "minimumClassLevel": 19,
+        "school": "Universal",
+        "baseRpCost": 17
+      },
+      "Wizard": {
+        "rank": 7,
+        "minimumClassLevel": 13,
+        "school": "Universal",
+        "baseRpCost": 17
+      }
+    },
+    "operational": null,
+    "additionalRpCost": 0,
+    "source": {
+      "catalogPath": "src/data/spells.js",
+      "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+      "catalogKey": "symbol",
+      "original": {
+        "name": "Symbol",
+        "level": 7,
+        "resonanceRank": 7,
+        "school": "Universal",
+        "schools": [
+          "Universal"
+        ],
+        "placements": [
+          {
+            "name": "Symbol",
+            "school": "Universal",
+            "level": 7,
+            "summary": "Create harmful magical glyph."
+          }
+        ],
+        "classLevels": {
+          "Bard": 7,
+          "Cleric": 7,
+          "Mage": 7,
+          "Mirrorsage": 7,
+          "Wizard": 7
+        },
+        "classRanks": {
+          "Bard": 7,
+          "Cleric": 7,
+          "Mage": 7,
+          "Mirrorsage": 7,
+          "Wizard": 7
+        },
+        "classLearnLevels": {
+          "Bard": 19,
+          "Cleric": 13,
+          "Mage": 13,
+          "Mirrorsage": 19,
+          "Wizard": 13
+        },
+        "classSchools": {
+          "Bard": "Universal",
+          "Cleric": "Universal",
+          "Mage": "Universal",
+          "Mirrorsage": "Universal",
+          "Wizard": "Universal"
+        },
+        "castingTime": "Not specified in current rulebook",
+        "range": "Not specified in current rulebook",
+        "components": "Not specified in current rulebook",
+        "duration": "Not specified in current rulebook",
+        "description": "Create harmful magical glyph.",
+        "alternateSummaries": [],
+        "classes": [
+          "Bard",
+          "Cleric",
+          "Mage",
+          "Mirrorsage",
+          "Wizard"
+        ],
+        "status": "canon",
+        "source": "Player Rulebook — Spell Lists"
+      },
+      "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+      "coreEntries": [
+        {
+          "index": 911,
+          "original": {
+            "school": "Universal",
+            "level": 7,
+            "name": "Symbol",
+            "effect": "Create harmful magical glyph.",
+            "source_paragraph": 10108,
+            "casting_time": "1 action",
+            "range": "120 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, M/F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Utility"
+            ],
+            "rp_cost": 17
+          }
+        }
+      ],
+      "possibleHistoricalAliases": []
+    },
+    "reviewFlags": [
+      "Core resolution requires an explicit operational interpretation",
+      "Not selectable in this spell playtest packet until individual operational review"
+    ]
+  },
+  "procedure": {
+    "KEEP": "Action; range 120 feet; V/S/M-or-F; rank 7/base 17 RP. Create a harmful magical glyph. Preserve actual reusable focus substitution with no unprinted expensive component.",
+    "NEW_payload": "Select S01-A: one native payload only, a 10-foot-radius force burst. Roll one shared 6d8 force pool; each actual creature makes DEX against captured casting DC, full damage on failure and half rounded down on success. Include owner, allies, triggering entrant and initial occupants actually in the pulse. Require body-interior/clear-origin line of effect; actual half/three-quarters cover adds +2/+5 to DEX, total cover excludes. No Stun, direct kill, stored spell, external eight-symbol menu or borrowed Glyph of Warding mode.",
+    "NEW_inscription_and_trigger": "Select S02-A and S03-A, with the full shared glyph rules: one stationary face at most one square foot, a 60-second nonconcentration armed application, future genuine proximity entry or failed disarm, and one consumed-before-payload discharge. Instantaneous is inscription metadata. No initial-occupant or HP-query trigger. Snapshot original class/DC/rank/owner at casting; roll the single damage pool at discharge and one real save per recipient.",
+    "NEW_damage_boundary": "Create a separate damage root per recipient only when an actual unsuppressed payload resolves, with original glyph/cast/trigger/dealer provenance. Evaluate genuine dealer-owned Null at that root’s creation; owner labels alone grant no Veil. Apply actual defenses, one transfer, temporary HP, Instant Death, floors, Wounds, replacements, ordinary death and concentration in their accepted order. Never count parent and terminal transfer branches twice. Creator death preserves the finite glyph/source statistics but grants no new Action or dead-owner resource benefit. This procedure does not reopen the damage engine."
+  },
+  "sharedRuleIds": [
+    "GG141-AUTHORITY",
+    "GG141-CAST",
+    "GG141-GEOMETRY",
+    "GG141-GLYPH-ANCHOR",
+    "GG141-GLYPH-TRIGGER",
+    "GG141-DISPATCH",
+    "GG141-DISARM",
+    "GG141-END"
+  ],
+  "accepted": false,
+  "applied": false
+}

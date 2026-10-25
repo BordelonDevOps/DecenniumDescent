@@ -1,0 +1,143 @@
+# 05: Delayed Blast consumed deadlines and suppression.
+s=make('R7M-05-A','delayed-blast-fireball','Manual delayed detonation pays one real BA, consumes held source first',positions=[(40,0,0)]).seal()
+s.E(1,'Pay rank7 and prospective concentration',lambda x:cast(x,'C','delayed-blast-fireball','DB',conc=True))
+s.E(1.1,'Establish charge; original deadline61.1',lambda x:establish(x,'DB','delayed-blast-fireball',center=[40,0,3],charge='unspent'))
+def blast(x,manual,dice,eid='DB',suppressed=False):
+    e=x['effects'][eid];assert e['state']=='active'
+    if manual:spend(x,'C','bonusAction')
+    consume_effect(x,eid,'manual' if manual else 'automatic original deadline')
+    x['actors']['C']['concentration']=None
+    e['latch']='consumed-before-RNG';e['harmless']=suppressed
+    if suppressed:return {'consumed':True,'damageRolls':[],'BApaid':manual,'suppressed':True}
+    q=roll(x,'T','DEX',16,19)
+    out=dmg(x,'T',dice,'fire',eid+'/blast/T','C',half=q['success'])
+    return {'count':len(dice),'save':q,'damage':out,'BApaid':manual,'parentRemovedBeforePayload':True}
+s.E(13.1,'Two complete6-second increments:8d6; actual caster BA',lambda x:blast(x,True,[3,4]*4))
+s.E(13.2,'Duplicate manual callback observes consumed latch',lambda x:{'additionalPayment':0,'additionalDamage':0})
+finish(s)
+
+s=make('R7M-05-B','delayed-blast-fireball','Automatic+60 wins over a simultaneous manual request',positions=[(40,0,0)]).seal()
+s.E(1,'Pay charge preparation',lambda x:cast(x,'C','delayed-blast-fireball','DB',conc=True))
+s.E(1.1,'Charge exists',lambda x:establish(x,'DB','delayed-blast-fireball',center=[40,0,3],charge='unspent'))
+s.E(61.1,'Automatic endpoint claims the sole detonation before manual admission',lambda x:blast(x,False,[3]*12))
+s.E(61.1,'Same-time manual request and another deadline callback cannot repay/reblast',lambda x:{'latch':x['effects']['DB']['latch'],'bonusActionStillAvailable':x['actors']['C']['bonusAction'],'additionalDamage':0,'secondRNG':[]})
+p=finish(s)
+s=make('R7M-05-B-SUP','delayed-blast-fireball','Actual Lesser Antimagic at deadline consumes the charge harmlessly',positions=[(40,0,0)])
+add_actor(s,'E',wizard_def(extra=['antimagic-field-lesser']),(45,0,0))
+s.seal();s.E(1,'Pay charge',lambda x:cast(x,'C','delayed-blast-fireball','DB',conc=True))
+s.E(1.1,'Establish original61.1 deadline',lambda x:establish(x,'DB','delayed-blast-fireball',center=[40,0,3],charge='unspent'))
+s.E(60.1,'Separate caster regular START60 supplies real Lesser Antimagic Action',lambda x:cast(x,'E','antimagic-field-lesser','AM',conc=True))
+s.E(60.2,'Actual AM radius10 covers the charge anchor; deadline120.2',lambda x:establish(x,'AM','antimagic-field-lesser',owner='E',center=[40,0,3],radius=10))
+s.E(61.1,'Suppressed deadline still claims original latch, harmlessly',lambda x:blast(x,False,[],suppressed=True))
+s.E(61.2,'Ending AM cannot resurrect a consumed charge',lambda x:(end_effect(x,'AM','creator actual voluntary ending'),{'DBstate':x['effects']['DB']['state'],'newDamage':0})[-1])
+branch(s,p)
+
+# 06: all seven actual table results, independently failed and successful.
+table={1:('fire','DEX',8,6,None),2:('acid','DEX',8,6,None),3:('lightning','DEX',8,6,None),
+       4:('cold','CON',6,8,'RimeSlow'),5:('thunder','CON',6,8,'Deafened'),6:('psychic','WIS',6,6,'Frightened'),7:('force','STR',4,10,'Stunned')}
+pos=[(15,-4,0),(15,0,0),(15,4,0),(30,-8,0),(30,0,0),(30,8,0),(45,0,0)]
+for suffix,success in [('A',False),('B',True)]:
+    s=make('R7M-06-'+suffix,'prismatic-spray','All seven independent entries '+('save-success half/no-rider' if success else 'full positive damage and four distinct rider lifecycles'),mage=True,targets=7,positions=pos)
+    s.geometry.update(origin=[2.5,0,3],axis=[1,0,0],length=60,radiusAtAxial='s/2',bodyIntersections='each supplied body intersects its eligible cone volume; all paths clear')
+    s.seal();s.E(1,'Actual Mage13 sole rank7 known spell;17RP and2Dissonance',lambda x:cast(x,'C','prismatic-spray','PS'))
+    def prism(x,yes=success):
+        out=[]
+        for i,(typ,ab,n,ds,cond) in table.items():
+            aid='T'+str(i);mod=x['actors'][aid]['saveBonuses'][ab];die=(17 if yes else 16)-mod
+            q=roll(x,aid,ab,die,17)
+            packet=dmg(x,aid,[4]*n,typ,'PS/'+aid,'C',half=yes)
+            deadline=x['actors'][aid]['nextEND']
+            if cond and not yes:
+                if cond=='Stunned':x['receipts']['hard'][aid]={'source':'PS','owner':'C','spent':True,'guardFamily':'actual source hard denial','at':x['time']}
+                condition(x,aid,cond,'PS/'+aid,deadline,sourceLocation=[0,0,0] if cond=='Frightened' else None)
+            out.append({'target':aid,'privateD7':i,'save':q,'damage':packet,'rider':cond if cond and not yes else None,'deadline':deadline if cond and not yes else None})
+        resolved(x,'PS');return {'independentPrivateD7':[1,2,3,4,5,6,7],'notOneSharedDamagePool':True,'outcomes':out}
+    s.E(1.1,'Resolve native table with no sixth presentation',prism)
+    if not success:
+        for i in [4,5,6,7]:
+            tm=4+0.3*(i-1)
+            s.E(round(tm,6),'Actual next future target END ends only this rider',lambda x,j=i:(clear_source(x,'PS/T'+str(j)),{'target':'T'+str(j),'extraSave':False})[-1])
+    finish(s)
+
+# 07: horizontal elevated center, ordered bodies and an obstructed pull.
+s=make('R7M-07-A','whirlwind','Elevated center never gives a vertical displacement component',targets=2,positions=[(30,0,0),(50,0,0)])
+s.geometry.update(center=[40,0,15],radius=20,stableOrder=['T1','T2'],pullPlane='individual body current world-z')
+s.seal();s.E(1,'Commit Whirlwind',lambda x:cast(x,'C','whirlwind','WH'))
+def wind(x):
+    out=[]
+    for aid,endx in [('T1',40),('T2',45)]:
+        q=roll(x,aid,'STR',18,19)
+        hit=dmg(x,aid,[3]*10,'bludgeoning','WH/'+aid,'C')
+        before=x['actors'][aid]['position'][:]
+        x['actors'][aid]['position']=[endx,0,before[2]]
+        out.append({'target':aid,'save':q,'damage':hit,'from':before,'to':x['actors'][aid]['position'][:],
+                    'horizontalVector':[endx-before[0],0,0],'reason':'maximum10' if aid=='T1' else 'whole-body contact with T1 stops at5ft'})
+    resolved(x,'WH');return out
+s.E(1.1,'Stable recipient order; second body cannot occupy the first',wind);finish(s)
+
+s=make('R7M-07-B','whirlwind','Wall stops the horizontal whole-body pull without impact damage',positions=[(30,0,0)])
+s.geometry.update(center=[40,0,15],radius=20,obstacle={'min':[35,-5,0],'max':[36,5,10]},
+    witness=[32,0,5],lineOfEffect='center[40,0,15] to witness[32,0,5] clears wall top; displacement at ground does not')
+s.seal();s.E(1,'Commit',lambda x:cast(x,'C','whirlwind','WH'))
+def windwall(x):
+    q=roll(x,'T','STR',18,19);a=dmg(x,'T',[3]*10,'bludgeoning','WH/T','C')
+    x['actors']['T']['position']=[32.5,0,0];resolved(x,'WH')
+    return {'save':q,'damage':a,'requestedHorizontal10':True,'actualPull':2.5,'collisionDamage':0,'Prone':False,'vertical':0}
+s.E(1.1,'Damage then supported collision-limited pull',windwall);p=finish(s)
+# Complete independent success reset uses the same inputs; neither wall nor elevation causes a pull on success.
+s=make('R7M-07-B-SAVE','whirlwind','STR success halves damage and prevents displacement',positions=[(30,0,0)]).seal()
+s.E(1,'Commit',lambda x:cast(x,'C','whirlwind','WH'))
+s.E(1.1,'Successful STR',lambda x:(resolved(x,'WH'),{'save':roll(x,'T','STR',19,19),'damage':dmg(x,'T',[3]*10,'bludgeoning','WH/T','C',half=True),'pull':0})[-1])
+branch(s,p)
+save(W/'case_checkpoint_02.json',cases)
+print("mains",len(cases),"branches",sum(len(c['independentBranches']) for c in cases))
+
+STDOUT/STDERR
+mains 14 branches 2
+
+Analysis errored
+Python
+# 08: Crown seven committed shots, separate child survives terminal parent exhaustion.
+s=make('R7M-08-A','crown-of-stars','Seventh paid mote resolves before exhausted-source cleanup',positions=[(40,0,0)]).seal()
+s.E(1,'Commit Crown',lambda x:cast(x,'C','crown-of-stars','CR'))
+s.E(1.1,'Seven available motes and original61.1 maximum',lambda x:establish(x,'CR','crown-of-stars',motes=7,pendingShots={},cleanupComplete=False))
+for i in range(1,8):
+    t=1.2+6*(i-1)
+    def commitshot(x,j=i):
+        e=x['effects']['CR'];assert e['motes']>0 and e['state']=='active'
+        spend(x,'C','bonusAction');e['motes']-=1
+        eid='CR/mote'+str(j)
+        e['pendingShots'][eid]={'state':'committed','owner':'C','target':'T','sourceDeadline':61.1,'stillIndependentOfParentMoteCount':True}
+        if e['motes']==0:e['state']='exhausted-payload-pending'
+        return copy.deepcopy(e['pendingShots'][eid])
+    s.E(round(t,6),'Commit actual Bonus Action and consume mote '+str(i),commitshot)
+    def shot(x,j=i):
+        e=x['effects']['CR'];eid='CR/mote'+str(j)
+        rr=[1,2,3,4] if j<7 else [4,5,6,7]
+        attack={'d20':10,'INT':4,'PB':5,'SchoolMastery':2,'total':21,'targetAC':x['actors']['T']['AC'],'hit':True}
+        packet=dmg(x,'T',rr,'radiant',eid+'/root','C')
+        e['pendingShots'][eid]['state']='settled'
+        if j==7:e.update(state='ended',cleanupComplete=True,endedAt=x['time'],endingReason='seventh committed payload settled normally')
+        return {'attack':attack,'damage':packet,'parentZeroDoesNotDeleteChild':j==7}
+    s.E(round(t+0.01,6),'Resolve still-live committed shot '+str(i),shot)
+s.E(37.22,'Duplicate final-shot callback observes settled receipt',lambda x:{'additionalDamage':0,'additionalBA':False,'motes':x['effects']['CR']['motes'],'cleanupComplete':True})
+finish(s)
+
+s=make('R7M-08-B','crown-of-stars','Miss consumes mote; failed new Crown does not replace old')
+add_actor(s,'E',wizard_def(extra=['counterspell']),(25,10,0),start=-3,end=4)
+s.seal();s.E(1,'Pay first Crown',lambda x:cast(x,'C','crown-of-stars','CR1'))
+s.E(1.1,'Establish original source',lambda x:establish(x,'CR1','crown-of-stars',motes=7))
+def miss(x):
+    spend(x,'C','bonusAction');x['effects']['CR1']['motes']-=1
+    x['receipts']['events']['CR1/miss']={'committed':True,'settled':True,'d20':1,'damageDraw':[]}
+    return {'natural1':'miss','spentMotes':1,'remaining':6}
+s.E(1.2,'Real first shot misses',miss)
+s.E(7,'Same-family new Crown pays its own Action/RP/strain',lambda x:cast(x,'C','crown-of-stars','CR2'))
+def crcounter(x):
+    rec=cast(x,'E','counterspell','K',kind='reaction')
+    resolved(x,'K');x['receipts']['casts']['CR2']['status']='countered'
+    return {'counterPayment':rec,'task':{'d20':17,'INT':4,'PB':5,'DC':24,'total':26,'degree':'Success'},'oldCrownRetained':True}
+s.E(7.01,'Counter the new attempt, not the extant Crown',crcounter)
+s.E(61.1,'Original deadline removes six unused motes harmlessly',lambda x:(end_effect(x,'CR1','original expiry'),x['effects']['CR1'].update(motes=0),{'newShots':0,'HPunchanged':94})[-1])
+finish(s)
+

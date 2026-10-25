@@ -1,0 +1,165 @@
+{
+  "eventId": "DI6-04-B/actual-crossbar-after-snapshot:12",
+  "caseId": "DI6-04-B/actual-crossbar-after-snapshot",
+  "expectedBeforeSha256": "07123799b0087aa56477a0cc7b27d76d7a8b46279871836ef7cdb0952c3de8a8",
+  "expectedAfterSha256": "371f117f3f5feec7ee7fa8317952005f4a8fae56f668624865ffd1a780c1c5d4",
+  "fullValueChanges": [
+    {
+      "kind": "add",
+      "path": "/receipts/NEW-PATH",
+      "after": {
+        "publicResult": "Indeterminate",
+        "qualifiedPartialInformation": "The described120ft detour may be traversable, but its shorteststatus is unproved without complete actual surrounding topology.",
+        "completeShortestRouteCertified": false,
+        "oldItineraryNotUpdated": true,
+        "actualNewPaidInquiry": true,
+        "noInventedProtectedRouteOrBarrier": true
+      }
+    },
+    {
+      "kind": "replace",
+      "path": "/time",
+      "before": 6.1,
+      "after": 6.2
+    },
+    {
+      "kind": "replace",
+      "path": "/views/E",
+      "before": [
+        {
+          "at": 0.2,
+          "permittedInformation": "Follow the40ft direct hall route. The real closed door20ft ahead requires your existing matching key and ordinary opening work. A successful opening is not granted."
+        }
+      ],
+      "after": [
+        {
+          "at": 0.2,
+          "permittedInformation": "Follow the40ft direct hall route. The real closed door20ft ahead requires your existing matching key and ordinary opening work. A successful opening is not granted."
+        },
+        {
+          "at": 6.2,
+          "permittedInformation": "Indeterminate"
+        }
+      ]
+    }
+  ],
+  "forward": {
+    "absenceGuards": [
+      {
+        "path": "/receipts/NEW-PATH",
+        "mustBeAbsent": true
+      }
+    ],
+    "operations": [
+      {
+        "op": "add",
+        "path": "/receipts/NEW-PATH",
+        "value": {
+          "publicResult": "Indeterminate",
+          "qualifiedPartialInformation": "The described120ft detour may be traversable, but its shorteststatus is unproved without complete actual surrounding topology.",
+          "completeShortestRouteCertified": false,
+          "oldItineraryNotUpdated": true,
+          "actualNewPaidInquiry": true,
+          "noInventedProtectedRouteOrBarrier": true
+        }
+      },
+      {
+        "op": "test",
+        "path": "/time",
+        "value": 6.1
+      },
+      {
+        "op": "replace",
+        "path": "/time",
+        "value": 6.2
+      },
+      {
+        "op": "test",
+        "path": "/views/E",
+        "value": [
+          {
+            "at": 0.2,
+            "permittedInformation": "Follow the40ft direct hall route. The real closed door20ft ahead requires your existing matching key and ordinary opening work. A successful opening is not granted."
+          }
+        ]
+      },
+      {
+        "op": "replace",
+        "path": "/views/E",
+        "value": [
+          {
+            "at": 0.2,
+            "permittedInformation": "Follow the40ft direct hall route. The real closed door20ft ahead requires your existing matching key and ordinary opening work. A successful opening is not granted."
+          },
+          {
+            "at": 6.2,
+            "permittedInformation": "Indeterminate"
+          }
+        ]
+      }
+    ]
+  },
+  "inverse": {
+    "absenceGuards": [],
+    "operations": [
+      {
+        "op": "test",
+        "path": "/views/E",
+        "value": [
+          {
+            "at": 0.2,
+            "permittedInformation": "Follow the40ft direct hall route. The real closed door20ft ahead requires your existing matching key and ordinary opening work. A successful opening is not granted."
+          },
+          {
+            "at": 6.2,
+            "permittedInformation": "Indeterminate"
+          }
+        ]
+      },
+      {
+        "op": "replace",
+        "path": "/views/E",
+        "value": [
+          {
+            "at": 0.2,
+            "permittedInformation": "Follow the40ft direct hall route. The real closed door20ft ahead requires your existing matching key and ordinary opening work. A successful opening is not granted."
+          }
+        ]
+      },
+      {
+        "op": "test",
+        "path": "/time",
+        "value": 6.2
+      },
+      {
+        "op": "replace",
+        "path": "/time",
+        "value": 6.1
+      },
+      {
+        "op": "test",
+        "path": "/receipts/NEW-PATH",
+        "value": {
+          "publicResult": "Indeterminate",
+          "qualifiedPartialInformation": "The described120ft detour may be traversable, but its shorteststatus is unproved without complete actual surrounding topology.",
+          "completeShortestRouteCertified": false,
+          "oldItineraryNotUpdated": true,
+          "actualNewPaidInquiry": true,
+          "noInventedProtectedRouteOrBarrier": true
+        }
+      },
+      {
+        "op": "remove",
+        "path": "/receipts/NEW-PATH",
+        "removedFullValue": {
+          "publicResult": "Indeterminate",
+          "qualifiedPartialInformation": "The described120ft detour may be traversable, but its shorteststatus is unproved without complete actual surrounding topology.",
+          "completeShortestRouteCertified": false,
+          "oldItineraryNotUpdated": true,
+          "actualNewPaidInquiry": true,
+          "noInventedProtectedRouteOrBarrier": true
+        }
+      }
+    ]
+  }
+}

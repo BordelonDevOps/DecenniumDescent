@@ -1,0 +1,109 @@
+{
+  "id": "MANIFESTATION7-FOCUSED-SEMANTIC-REVIEW-137",
+  "recordedAtUtc": "2026-10-25T02:12:28.619853+00:00",
+  "status": "FAIL_REQUIRES_CORRECTION",
+  "checksPassed": 15,
+  "checksFailed": 1,
+  "failures": [
+    "Avatar all nine route profiles identical and bounded"
+  ],
+  "checks": [
+    {
+      "check": "Ward7 embedded hold register exactly matches applied Ward7 hold file",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "RESERVOIR20 actual numeric class level",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Grand Reservoir actual level-20 automatic feature",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Wizard Arch Dispel rank 3 and no Greater Dispel acquisition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "RESERVOIR20 label discrepancy explicitly isolated",
+      "passed": true,
+      "detail": "Non-operative classification string says Wizard13 while classLevel/totalLevel and Grand Reservoir source are 20; acceptance receipt will record this as a metadata correction."
+    },
+    {
+      "check": "Banishment Field remains finite with explicit new close exception",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Greater Earth Pet printed base and attack preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Volcanic Cage no solid salvage or fire replay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Prismatic Conflux uses finite native types and independent rolls",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Storm retains ten original pulses and finite source/recipient limits",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Citadel exact profile volume stays below declared bearing",
+      "passed": true,
+      "detail": {
+        "volumeFt3": 5610.5,
+        "massLb": 561050.0,
+        "averageFoundationPressureLbPerFt2": 623.3888888888889,
+        "declaredBearingLbPerFt2": 800
+      }
+    },
+    {
+      "check": "Citadel site shelter does not grant Haven/crafting completion",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Avatar all nine route profiles identical and bounded",
+      "passed": false,
+      "detail": null
+    },
+    {
+      "check": "Avatar has nine paid cast/use/ending traces",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Greater Dispel remains unavailable and has no cast",
+      "passed": true,
+      "detail": {
+        "withheldChoiceRefs": 54,
+        "unexpectedSourceRefs": [],
+        "eventCasts": []
+      }
+    },
+    {
+      "check": "All M137 new qualifications are retained",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "nonBlockingMetadataDiscrepancies": [
+    {
+      "id": "M137-RESERVOIR20-LABEL",
+      "source": "ACTOR_PROFILES.json#/RESERVOIR20/classification and repeated case profile",
+      "finding": "Classification text says Wizard13, but classLevel and totalLevel are both 20, and the exact automatic Grand Reservoir card requires level20. This is a non-operative profile label mismatch; the accepted reference model will state Wizard20 and preserve the original return as evidence."
+    }
+  ],
+  "scope": "Independent semantic review of proposed authored data only; no runtime, human play, balance, cosmology or release approval."
+}

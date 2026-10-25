@@ -1,0 +1,5016 @@
+{
+  "id": "MC3-120-PARTITION-SELECTION",
+  "status": "NEW_LOCAL_ALLOCATION_SELECTED_FOR_THIS_PROPOSAL_NOT_PHYSICAL_CUT_AUTHORITY",
+  "suppliedInvalidCounterexample": {
+    "id": "CREATION-INDEPENDENT-PARTITION-FINDING-116",
+    "status": "Concrete counterexample to an unadopted proposal; UNSENT; repair choice unselected",
+    "source": "DescentReviewChanges/ReviewBible/data/director/spell_review/creation_conference_02.json",
+    "pointer": "/completeEarlierRecordUnchanged/procedure",
+    "relatedQuestions": [
+      "CR1-Q04",
+      "CR1-Q05"
+    ],
+    "finding": "Separate floor allocation of maximum and current structuralHP with all residual assigned to the final piece can produce currentHP greater than maximumHP. Conserved totals alone do not establish valid per-piece state.",
+    "before": {
+      "massLb": 80,
+      "maximumHP": 20,
+      "currentHP": 12
+    },
+    "legalPhysicalCutStatus": "Conditional arithmetic counterexample only; no free cutting action or authored stock eligibility inferred.",
+    "proposedPiecesMassLb": [
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8
+    ],
+    "proposalResult": {
+      "maximumHP": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "currentHP": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        3
+      ],
+      "totals": {
+        "massLb": 80,
+        "maximumHP": 20,
+        "currentHP": 12
+      },
+      "invalidPiece": {
+        "index": 9,
+        "maximumHP": 2,
+        "currentHP": 3
+      }
+    },
+    "requiredRepair": "Select a finite deterministic partition rule preserving mass/value/history and sumMax/sumCurrent while ensuring0<=pieceCurrent<=pieceMax for every piece, including zero-max physical fragments and repeated subdivision. Apply it to the full procedure and all affected cases. Keep existing two-piece5/15max and3/9current outcome if compatible.",
+    "possibleApproachNotSelected": "Capacity-constrained deterministic apportionment with stable piece IDs and an explicit original-lot/subdivision ledger; allocation must be defined before damage/repair outcomes, not chosen to favor a piece.",
+    "checks": "Fresh arithmetic derivation of this new counterexample only; no historical runner executed.",
+    "semanticAcceptanceClaimed": false,
+    "canonicalApplied": false,
+    "repairProposalForConference": {
+      "status": "NEW alternative, not selected or applied",
+      "maximumAllocation": "Exact rational mass shares. Floor each maximum quota; assign remaining units in descending fractional remainder order, ties by immutable predeclared piece ID.",
+      "currentAllocation": "Floor each current quota. Allocate remaining units in descending current fractional remainder order, same tie rule, skipping pieces at their assigned maximum. Iterate the stable order only if still needed; capacities total enough because original current<=maximum.",
+      "historyScope": "Actual physical partition must already be lawful. Persist parent/child IDs, masses and chosen ordering. Zero-maximum fragments remain material, not operational finished items. No newly inferred cutting,repair,consumption or stock-generation permission.",
+      "fiveNewArithmeticVectors": [
+        {
+          "beforeMaximum": 20,
+          "beforeCurrent": 12,
+          "pieceMasses": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8
+          ],
+          "proposedMaximum": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "proposedCurrent": [
+            2,
+            2,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "beforeMaximum": 20,
+          "beforeCurrent": 12,
+          "pieceMasses": [
+            20,
+            60
+          ],
+          "proposedMaximum": [
+            5,
+            15
+          ],
+          "proposedCurrent": [
+            3,
+            9
+          ]
+        },
+        {
+          "beforeMaximum": 3,
+          "beforeCurrent": 2,
+          "pieceMasses": [
+            4,
+            4,
+            2
+          ],
+          "proposedMaximum": [
+            1,
+            1,
+            1
+          ],
+          "proposedCurrent": [
+            1,
+            1,
+            0
+          ]
+        },
+        {
+          "beforeMaximum": 2,
+          "beforeCurrent": 0,
+          "pieceMasses": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "proposedMaximum": [
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "proposedCurrent": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "beforeMaximum": 20,
+          "beforeCurrent": 20,
+          "pieceMasses": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8
+          ],
+          "proposedMaximum": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "proposedCurrent": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ]
+        }
+      ],
+      "invariantArgument": "For each positive mass share andC<=H, floor(Cshare)<=floor(Hshare)<=assignedMaximum. The available capacities sum toH-sum(floor(Cshare)), at least the remaining C-sum(floor(Cshare)) units. Bounded allocation therefore preserves totals and never exceeds any maximum. No numerical balance claim.",
+      "notSettled": "Whether this apportionment is the intended game rule, operation-order and repair consequences require the Creation conference. It is a concrete alternative to discuss, not a new accepted interface."
+    }
+  },
+  "selectedRule": "MC3-STOCK-120",
+  "fiveVectorResults": [
+    {
+      "id": "MC3-PART-01",
+      "completeSuppliedVector": {
+        "beforeMaximum": 20,
+        "beforeCurrent": 12,
+        "pieceMasses": [
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8
+        ],
+        "proposedMaximum": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "proposedCurrent": [
+          2,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "currentIndependentResult": {
+        "parent": {
+          "maximumHP": 20,
+          "currentHP": 12,
+          "mass": "80"
+        },
+        "childIds": [
+          "P000",
+          "P001",
+          "P002",
+          "P003",
+          "P004",
+          "P005",
+          "P006",
+          "P007",
+          "P008",
+          "P009"
+        ],
+        "exactMasses": [
+          "8",
+          "8",
+          "8",
+          "8",
+          "8",
+          "8",
+          "8",
+          "8",
+          "8",
+          "8"
+        ],
+        "maxQuotas": [
+          "2",
+          "2",
+          "2",
+          "2",
+          "2",
+          "2",
+          "2",
+          "2",
+          "2",
+          "2"
+        ],
+        "currentQuotas": [
+          "6/5",
+          "6/5",
+          "6/5",
+          "6/5",
+          "6/5",
+          "6/5",
+          "6/5",
+          "6/5",
+          "6/5",
+          "6/5"
+        ],
+        "maximumHP": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "currentHP": [
+          2,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "maxRemainderOrder": [
+          "P000",
+          "P001",
+          "P002",
+          "P003",
+          "P004",
+          "P005",
+          "P006",
+          "P007",
+          "P008",
+          "P009"
+        ],
+        "currentRemainderOrder": [
+          "P000",
+          "P001",
+          "P002",
+          "P003",
+          "P004",
+          "P005",
+          "P006",
+          "P007",
+          "P008",
+          "P009"
+        ],
+        "currentResidualRecipients": [
+          "P000",
+          "P001"
+        ],
+        "sumMaximum": 20,
+        "sumCurrent": 12,
+        "perPieceBounds": true,
+        "physicalCutAuthorized": false
+      },
+      "maximumMatchesSupplied": true,
+      "currentMatchesSupplied": true
+    },
+    {
+      "id": "MC3-PART-02",
+      "completeSuppliedVector": {
+        "beforeMaximum": 20,
+        "beforeCurrent": 12,
+        "pieceMasses": [
+          20,
+          60
+        ],
+        "proposedMaximum": [
+          5,
+          15
+        ],
+        "proposedCurrent": [
+          3,
+          9
+        ]
+      },
+      "currentIndependentResult": {
+        "parent": {
+          "maximumHP": 20,
+          "currentHP": 12,
+          "mass": "80"
+        },
+        "childIds": [
+          "P000",
+          "P001"
+        ],
+        "exactMasses": [
+          "20",
+          "60"
+        ],
+        "maxQuotas": [
+          "5",
+          "15"
+        ],
+        "currentQuotas": [
+          "3",
+          "9"
+        ],
+        "maximumHP": [
+          5,
+          15
+        ],
+        "currentHP": [
+          3,
+          9
+        ],
+        "maxRemainderOrder": [
+          "P000",
+          "P001"
+        ],
+        "currentRemainderOrder": [
+          "P000",
+          "P001"
+        ],
+        "currentResidualRecipients": [],
+        "sumMaximum": 20,
+        "sumCurrent": 12,
+        "perPieceBounds": true,
+        "physicalCutAuthorized": false
+      },
+      "maximumMatchesSupplied": true,
+      "currentMatchesSupplied": true
+    },
+    {
+      "id": "MC3-PART-03",
+      "completeSuppliedVector": {
+        "beforeMaximum": 3,
+        "beforeCurrent": 2,
+        "pieceMasses": [
+          4,
+          4,
+          2
+        ],
+        "proposedMaximum": [
+          1,
+          1,
+          1
+        ],
+        "proposedCurrent": [
+          1,
+          1,
+          0
+        ]
+      },
+      "currentIndependentResult": {
+        "parent": {
+          "maximumHP": 3,
+          "currentHP": 2,
+          "mass": "10"
+        },
+        "childIds": [
+          "P000",
+          "P001",
+          "P002"
+        ],
+        "exactMasses": [
+          "4",
+          "4",
+          "2"
+        ],
+        "maxQuotas": [
+          "6/5",
+          "6/5",
+          "3/5"
+        ],
+        "currentQuotas": [
+          "4/5",
+          "4/5",
+          "2/5"
+        ],
+        "maximumHP": [
+          1,
+          1,
+          1
+        ],
+        "currentHP": [
+          1,
+          1,
+          0
+        ],
+        "maxRemainderOrder": [
+          "P002",
+          "P000",
+          "P001"
+        ],
+        "currentRemainderOrder": [
+          "P000",
+          "P001",
+          "P002"
+        ],
+        "currentResidualRecipients": [
+          "P000",
+          "P001"
+        ],
+        "sumMaximum": 3,
+        "sumCurrent": 2,
+        "perPieceBounds": true,
+        "physicalCutAuthorized": false
+      },
+      "maximumMatchesSupplied": true,
+      "currentMatchesSupplied": true
+    },
+    {
+      "id": "MC3-PART-04",
+      "completeSuppliedVector": {
+        "beforeMaximum": 2,
+        "beforeCurrent": 0,
+        "pieceMasses": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "proposedMaximum": [
+          1,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "proposedCurrent": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "currentIndependentResult": {
+        "parent": {
+          "maximumHP": 2,
+          "currentHP": 0,
+          "mass": "10"
+        },
+        "childIds": [
+          "P000",
+          "P001",
+          "P002",
+          "P003",
+          "P004",
+          "P005",
+          "P006",
+          "P007",
+          "P008",
+          "P009"
+        ],
+        "exactMasses": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "maxQuotas": [
+          "1/5",
+          "1/5",
+          "1/5",
+          "1/5",
+          "1/5",
+          "1/5",
+          "1/5",
+          "1/5",
+          "1/5",
+          "1/5"
+        ],
+        "currentQuotas": [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        "maximumHP": [
+          1,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "currentHP": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "maxRemainderOrder": [
+          "P000",
+          "P001",
+          "P002",
+          "P003",
+          "P004",
+          "P005",
+          "P006",
+          "P007",
+          "P008",
+          "P009"
+        ],
+        "currentRemainderOrder": [
+          "P000",
+          "P001",
+          "P002",
+          "P003",
+          "P004",
+          "P005",
+          "P006",
+          "P007",
+          "P008",
+          "P009"
+        ],
+        "currentResidualRecipients": [],
+        "sumMaximum": 2,
+        "sumCurrent": 0,
+        "perPieceBounds": true,
+        "physicalCutAuthorized": false
+      },
+      "maximumMatchesSupplied": true,
+      "currentMatchesSupplied": true
+    },
+    {
+      "id": "MC3-PART-05",
+      "completeSuppliedVector": {
+        "beforeMaximum": 20,
+        "beforeCurrent": 20,
+        "pieceMasses": [
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8
+        ],
+        "proposedMaximum": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "proposedCurrent": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ]
+      },
+      "currentIndependentResult": {
+        "parent": {
+          "maximumHP": 20,
+          "currentHP": 20,
+          "mass": "80"
+        },
+        "childIds": [
+          "P000",
+          "P001",
+          "P002",
+          "P003",
+          "P004",
+          "P005",
+          "P006",
+          "P007",
+          "P008",
+          "P009"
+        ],
+        "exactMasses": [
+          "8",
+          "8",
+          "8",
+          "8",
+          "8",
+          "8",
+          "8",
+          "8",
+          "8",
+          "8"
+        ],
+        "maxQuotas": [
+          "2",
+          "2",
+          "2",
+          "2",
+          "2",
+          "2",
+          "2",
+          "2",
+          "2",
+          "2"
+        ],
+        "currentQuotas": [
+          "2",
+          "2",
+          "2",
+          "2",
+          "2",
+          "2",
+          "2",
+          "2",
+          "2",
+          "2"
+        ],
+        "maximumHP": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "currentHP": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "maxRemainderOrder": [
+          "P000",
+          "P001",
+          "P002",
+          "P003",
+          "P004",
+          "P005",
+          "P006",
+          "P007",
+          "P008",
+          "P009"
+        ],
+        "currentRemainderOrder": [
+          "P000",
+          "P001",
+          "P002",
+          "P003",
+          "P004",
+          "P005",
+          "P006",
+          "P007",
+          "P008",
+          "P009"
+        ],
+        "currentResidualRecipients": [],
+        "sumMaximum": 20,
+        "sumCurrent": 20,
+        "perPieceBounds": true,
+        "physicalCutAuthorized": false
+      },
+      "maximumMatchesSupplied": true,
+      "currentMatchesSupplied": true
+    }
+  ],
+  "nonAssociativity": {
+    "direct": {
+      "parent": {
+        "maximumHP": 2,
+        "currentHP": 2,
+        "mass": "3"
+      },
+      "childIds": [
+        "A",
+        "B",
+        "C"
+      ],
+      "exactMasses": [
+        "1",
+        "1",
+        "1"
+      ],
+      "maxQuotas": [
+        "2/3",
+        "2/3",
+        "2/3"
+      ],
+      "currentQuotas": [
+        "2/3",
+        "2/3",
+        "2/3"
+      ],
+      "maximumHP": [
+        1,
+        1,
+        0
+      ],
+      "currentHP": [
+        1,
+        1,
+        0
+      ],
+      "maxRemainderOrder": [
+        "A",
+        "B",
+        "C"
+      ],
+      "currentRemainderOrder": [
+        "A",
+        "B",
+        "C"
+      ],
+      "currentResidualRecipients": [
+        "A",
+        "B"
+      ],
+      "sumMaximum": 2,
+      "sumCurrent": 2,
+      "perPieceBounds": true,
+      "physicalCutAuthorized": false
+    },
+    "firstStage": {
+      "parent": {
+        "maximumHP": 2,
+        "currentHP": 2,
+        "mass": "3"
+      },
+      "childIds": [
+        "AB",
+        "C"
+      ],
+      "exactMasses": [
+        "2",
+        "1"
+      ],
+      "maxQuotas": [
+        "4/3",
+        "2/3"
+      ],
+      "currentQuotas": [
+        "4/3",
+        "2/3"
+      ],
+      "maximumHP": [
+        1,
+        1
+      ],
+      "currentHP": [
+        1,
+        1
+      ],
+      "maxRemainderOrder": [
+        "C",
+        "AB"
+      ],
+      "currentRemainderOrder": [
+        "C",
+        "AB"
+      ],
+      "currentResidualRecipients": [
+        "C"
+      ],
+      "sumMaximum": 2,
+      "sumCurrent": 2,
+      "perPieceBounds": true,
+      "physicalCutAuthorized": false
+    },
+    "ABSubdivision": {
+      "parent": {
+        "maximumHP": 1,
+        "currentHP": 1,
+        "mass": "2"
+      },
+      "childIds": [
+        "A",
+        "B"
+      ],
+      "exactMasses": [
+        "1",
+        "1"
+      ],
+      "maxQuotas": [
+        "1/2",
+        "1/2"
+      ],
+      "currentQuotas": [
+        "1/2",
+        "1/2"
+      ],
+      "maximumHP": [
+        1,
+        0
+      ],
+      "currentHP": [
+        1,
+        0
+      ],
+      "maxRemainderOrder": [
+        "A",
+        "B"
+      ],
+      "currentRemainderOrder": [
+        "A",
+        "B"
+      ],
+      "currentResidualRecipients": [
+        "A"
+      ],
+      "sumMaximum": 1,
+      "sumCurrent": 1,
+      "perPieceBounds": true,
+      "physicalCutAuthorized": false
+    },
+    "stagedFinal": {
+      "A": [
+        1,
+        1
+      ],
+      "B": [
+        0,
+        0
+      ],
+      "C": [
+        1,
+        1
+      ]
+    },
+    "selection": "Actual irreversible cut history controls. No global reallocation among existing detached leaves."
+  },
+  "mergeDamageBoundary": {
+    "startingDirectLeaves": {
+      "A": {
+        "max": 1,
+        "current": 1
+      },
+      "B": {
+        "max": 1,
+        "current": 1
+      },
+      "C": {
+        "max": 0,
+        "current": 0
+      }
+    },
+    "afterActualOnePointDamageToA": {
+      "A": {
+        "max": 1,
+        "current": 0
+      },
+      "B": {
+        "max": 1,
+        "current": 1
+      },
+      "C": {
+        "max": 0,
+        "current": 0
+      }
+    },
+    "afterOrdinaryBundleOrMendingRejoin": "Exactly the same three independent leaves and damage values. Bundling has no new HP pool. Any later physical cut operates on actual leaves, not original root totals.",
+    "noCutOrDamageAbilityGrantedByArithmetic": true
+  },
+  "finiteMathGrid": {
+    "count": 315,
+    "vectors": [
+      {
+        "M": 0,
+        "C": 0,
+        "masses": [
+          "1"
+        ],
+        "sumMaximum": 0,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 0,
+        "C": 0,
+        "masses": [
+          "1",
+          "1"
+        ],
+        "sumMaximum": 0,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 0,
+        "C": 0,
+        "masses": [
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 0,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 0,
+        "C": 0,
+        "masses": [
+          "1",
+          "2",
+          "4"
+        ],
+        "sumMaximum": 0,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 0,
+        "C": 0,
+        "masses": [
+          "1",
+          "100",
+          "1"
+        ],
+        "sumMaximum": 0,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 0,
+        "C": 0,
+        "masses": [
+          "1/3",
+          "2/7",
+          "5/11"
+        ],
+        "sumMaximum": 0,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 0,
+        "C": 0,
+        "masses": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 0,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 1,
+        "C": 0,
+        "masses": [
+          "1"
+        ],
+        "sumMaximum": 1,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 1,
+        "C": 0,
+        "masses": [
+          "1",
+          "1"
+        ],
+        "sumMaximum": 1,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 1,
+        "C": 0,
+        "masses": [
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 1,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 1,
+        "C": 0,
+        "masses": [
+          "1",
+          "2",
+          "4"
+        ],
+        "sumMaximum": 1,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 1,
+        "C": 0,
+        "masses": [
+          "1",
+          "100",
+          "1"
+        ],
+        "sumMaximum": 1,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 1,
+        "C": 0,
+        "masses": [
+          "1/3",
+          "2/7",
+          "5/11"
+        ],
+        "sumMaximum": 1,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 1,
+        "C": 0,
+        "masses": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 1,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 1,
+        "C": 1,
+        "masses": [
+          "1"
+        ],
+        "sumMaximum": 1,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 1,
+        "C": 1,
+        "masses": [
+          "1",
+          "1"
+        ],
+        "sumMaximum": 1,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 1,
+        "C": 1,
+        "masses": [
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 1,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 1,
+        "C": 1,
+        "masses": [
+          "1",
+          "2",
+          "4"
+        ],
+        "sumMaximum": 1,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 1,
+        "C": 1,
+        "masses": [
+          "1",
+          "100",
+          "1"
+        ],
+        "sumMaximum": 1,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 1,
+        "C": 1,
+        "masses": [
+          "1/3",
+          "2/7",
+          "5/11"
+        ],
+        "sumMaximum": 1,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 1,
+        "C": 1,
+        "masses": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 1,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 2,
+        "C": 0,
+        "masses": [
+          "1"
+        ],
+        "sumMaximum": 2,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 2,
+        "C": 0,
+        "masses": [
+          "1",
+          "1"
+        ],
+        "sumMaximum": 2,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 2,
+        "C": 0,
+        "masses": [
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 2,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 2,
+        "C": 0,
+        "masses": [
+          "1",
+          "2",
+          "4"
+        ],
+        "sumMaximum": 2,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 2,
+        "C": 0,
+        "masses": [
+          "1",
+          "100",
+          "1"
+        ],
+        "sumMaximum": 2,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 2,
+        "C": 0,
+        "masses": [
+          "1/3",
+          "2/7",
+          "5/11"
+        ],
+        "sumMaximum": 2,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 2,
+        "C": 0,
+        "masses": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 2,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 2,
+        "C": 1,
+        "masses": [
+          "1"
+        ],
+        "sumMaximum": 2,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 2,
+        "C": 1,
+        "masses": [
+          "1",
+          "1"
+        ],
+        "sumMaximum": 2,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 2,
+        "C": 1,
+        "masses": [
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 2,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 2,
+        "C": 1,
+        "masses": [
+          "1",
+          "2",
+          "4"
+        ],
+        "sumMaximum": 2,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 2,
+        "C": 1,
+        "masses": [
+          "1",
+          "100",
+          "1"
+        ],
+        "sumMaximum": 2,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 2,
+        "C": 1,
+        "masses": [
+          "1/3",
+          "2/7",
+          "5/11"
+        ],
+        "sumMaximum": 2,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 2,
+        "C": 1,
+        "masses": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 2,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 2,
+        "C": 2,
+        "masses": [
+          "1"
+        ],
+        "sumMaximum": 2,
+        "sumCurrent": 2,
+        "valid": true
+      },
+      {
+        "M": 2,
+        "C": 2,
+        "masses": [
+          "1",
+          "1"
+        ],
+        "sumMaximum": 2,
+        "sumCurrent": 2,
+        "valid": true
+      },
+      {
+        "M": 2,
+        "C": 2,
+        "masses": [
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 2,
+        "sumCurrent": 2,
+        "valid": true
+      },
+      {
+        "M": 2,
+        "C": 2,
+        "masses": [
+          "1",
+          "2",
+          "4"
+        ],
+        "sumMaximum": 2,
+        "sumCurrent": 2,
+        "valid": true
+      },
+      {
+        "M": 2,
+        "C": 2,
+        "masses": [
+          "1",
+          "100",
+          "1"
+        ],
+        "sumMaximum": 2,
+        "sumCurrent": 2,
+        "valid": true
+      },
+      {
+        "M": 2,
+        "C": 2,
+        "masses": [
+          "1/3",
+          "2/7",
+          "5/11"
+        ],
+        "sumMaximum": 2,
+        "sumCurrent": 2,
+        "valid": true
+      },
+      {
+        "M": 2,
+        "C": 2,
+        "masses": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 2,
+        "sumCurrent": 2,
+        "valid": true
+      },
+      {
+        "M": 3,
+        "C": 0,
+        "masses": [
+          "1"
+        ],
+        "sumMaximum": 3,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 3,
+        "C": 0,
+        "masses": [
+          "1",
+          "1"
+        ],
+        "sumMaximum": 3,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 3,
+        "C": 0,
+        "masses": [
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 3,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 3,
+        "C": 0,
+        "masses": [
+          "1",
+          "2",
+          "4"
+        ],
+        "sumMaximum": 3,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 3,
+        "C": 0,
+        "masses": [
+          "1",
+          "100",
+          "1"
+        ],
+        "sumMaximum": 3,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 3,
+        "C": 0,
+        "masses": [
+          "1/3",
+          "2/7",
+          "5/11"
+        ],
+        "sumMaximum": 3,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 3,
+        "C": 0,
+        "masses": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 3,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 3,
+        "C": 1,
+        "masses": [
+          "1"
+        ],
+        "sumMaximum": 3,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 3,
+        "C": 1,
+        "masses": [
+          "1",
+          "1"
+        ],
+        "sumMaximum": 3,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 3,
+        "C": 1,
+        "masses": [
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 3,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 3,
+        "C": 1,
+        "masses": [
+          "1",
+          "2",
+          "4"
+        ],
+        "sumMaximum": 3,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 3,
+        "C": 1,
+        "masses": [
+          "1",
+          "100",
+          "1"
+        ],
+        "sumMaximum": 3,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 3,
+        "C": 1,
+        "masses": [
+          "1/3",
+          "2/7",
+          "5/11"
+        ],
+        "sumMaximum": 3,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 3,
+        "C": 1,
+        "masses": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 3,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 3,
+        "C": 2,
+        "masses": [
+          "1"
+        ],
+        "sumMaximum": 3,
+        "sumCurrent": 2,
+        "valid": true
+      },
+      {
+        "M": 3,
+        "C": 2,
+        "masses": [
+          "1",
+          "1"
+        ],
+        "sumMaximum": 3,
+        "sumCurrent": 2,
+        "valid": true
+      },
+      {
+        "M": 3,
+        "C": 2,
+        "masses": [
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 3,
+        "sumCurrent": 2,
+        "valid": true
+      },
+      {
+        "M": 3,
+        "C": 2,
+        "masses": [
+          "1",
+          "2",
+          "4"
+        ],
+        "sumMaximum": 3,
+        "sumCurrent": 2,
+        "valid": true
+      },
+      {
+        "M": 3,
+        "C": 2,
+        "masses": [
+          "1",
+          "100",
+          "1"
+        ],
+        "sumMaximum": 3,
+        "sumCurrent": 2,
+        "valid": true
+      },
+      {
+        "M": 3,
+        "C": 2,
+        "masses": [
+          "1/3",
+          "2/7",
+          "5/11"
+        ],
+        "sumMaximum": 3,
+        "sumCurrent": 2,
+        "valid": true
+      },
+      {
+        "M": 3,
+        "C": 2,
+        "masses": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 3,
+        "sumCurrent": 2,
+        "valid": true
+      },
+      {
+        "M": 3,
+        "C": 3,
+        "masses": [
+          "1"
+        ],
+        "sumMaximum": 3,
+        "sumCurrent": 3,
+        "valid": true
+      },
+      {
+        "M": 3,
+        "C": 3,
+        "masses": [
+          "1",
+          "1"
+        ],
+        "sumMaximum": 3,
+        "sumCurrent": 3,
+        "valid": true
+      },
+      {
+        "M": 3,
+        "C": 3,
+        "masses": [
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 3,
+        "sumCurrent": 3,
+        "valid": true
+      },
+      {
+        "M": 3,
+        "C": 3,
+        "masses": [
+          "1",
+          "2",
+          "4"
+        ],
+        "sumMaximum": 3,
+        "sumCurrent": 3,
+        "valid": true
+      },
+      {
+        "M": 3,
+        "C": 3,
+        "masses": [
+          "1",
+          "100",
+          "1"
+        ],
+        "sumMaximum": 3,
+        "sumCurrent": 3,
+        "valid": true
+      },
+      {
+        "M": 3,
+        "C": 3,
+        "masses": [
+          "1/3",
+          "2/7",
+          "5/11"
+        ],
+        "sumMaximum": 3,
+        "sumCurrent": 3,
+        "valid": true
+      },
+      {
+        "M": 3,
+        "C": 3,
+        "masses": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 3,
+        "sumCurrent": 3,
+        "valid": true
+      },
+      {
+        "M": 4,
+        "C": 0,
+        "masses": [
+          "1"
+        ],
+        "sumMaximum": 4,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 4,
+        "C": 0,
+        "masses": [
+          "1",
+          "1"
+        ],
+        "sumMaximum": 4,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 4,
+        "C": 0,
+        "masses": [
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 4,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 4,
+        "C": 0,
+        "masses": [
+          "1",
+          "2",
+          "4"
+        ],
+        "sumMaximum": 4,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 4,
+        "C": 0,
+        "masses": [
+          "1",
+          "100",
+          "1"
+        ],
+        "sumMaximum": 4,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 4,
+        "C": 0,
+        "masses": [
+          "1/3",
+          "2/7",
+          "5/11"
+        ],
+        "sumMaximum": 4,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 4,
+        "C": 0,
+        "masses": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 4,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 4,
+        "C": 1,
+        "masses": [
+          "1"
+        ],
+        "sumMaximum": 4,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 4,
+        "C": 1,
+        "masses": [
+          "1",
+          "1"
+        ],
+        "sumMaximum": 4,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 4,
+        "C": 1,
+        "masses": [
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 4,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 4,
+        "C": 1,
+        "masses": [
+          "1",
+          "2",
+          "4"
+        ],
+        "sumMaximum": 4,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 4,
+        "C": 1,
+        "masses": [
+          "1",
+          "100",
+          "1"
+        ],
+        "sumMaximum": 4,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 4,
+        "C": 1,
+        "masses": [
+          "1/3",
+          "2/7",
+          "5/11"
+        ],
+        "sumMaximum": 4,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 4,
+        "C": 1,
+        "masses": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 4,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 4,
+        "C": 2,
+        "masses": [
+          "1"
+        ],
+        "sumMaximum": 4,
+        "sumCurrent": 2,
+        "valid": true
+      },
+      {
+        "M": 4,
+        "C": 2,
+        "masses": [
+          "1",
+          "1"
+        ],
+        "sumMaximum": 4,
+        "sumCurrent": 2,
+        "valid": true
+      },
+      {
+        "M": 4,
+        "C": 2,
+        "masses": [
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 4,
+        "sumCurrent": 2,
+        "valid": true
+      },
+      {
+        "M": 4,
+        "C": 2,
+        "masses": [
+          "1",
+          "2",
+          "4"
+        ],
+        "sumMaximum": 4,
+        "sumCurrent": 2,
+        "valid": true
+      },
+      {
+        "M": 4,
+        "C": 2,
+        "masses": [
+          "1",
+          "100",
+          "1"
+        ],
+        "sumMaximum": 4,
+        "sumCurrent": 2,
+        "valid": true
+      },
+      {
+        "M": 4,
+        "C": 2,
+        "masses": [
+          "1/3",
+          "2/7",
+          "5/11"
+        ],
+        "sumMaximum": 4,
+        "sumCurrent": 2,
+        "valid": true
+      },
+      {
+        "M": 4,
+        "C": 2,
+        "masses": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 4,
+        "sumCurrent": 2,
+        "valid": true
+      },
+      {
+        "M": 4,
+        "C": 3,
+        "masses": [
+          "1"
+        ],
+        "sumMaximum": 4,
+        "sumCurrent": 3,
+        "valid": true
+      },
+      {
+        "M": 4,
+        "C": 3,
+        "masses": [
+          "1",
+          "1"
+        ],
+        "sumMaximum": 4,
+        "sumCurrent": 3,
+        "valid": true
+      },
+      {
+        "M": 4,
+        "C": 3,
+        "masses": [
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 4,
+        "sumCurrent": 3,
+        "valid": true
+      },
+      {
+        "M": 4,
+        "C": 3,
+        "masses": [
+          "1",
+          "2",
+          "4"
+        ],
+        "sumMaximum": 4,
+        "sumCurrent": 3,
+        "valid": true
+      },
+      {
+        "M": 4,
+        "C": 3,
+        "masses": [
+          "1",
+          "100",
+          "1"
+        ],
+        "sumMaximum": 4,
+        "sumCurrent": 3,
+        "valid": true
+      },
+      {
+        "M": 4,
+        "C": 3,
+        "masses": [
+          "1/3",
+          "2/7",
+          "5/11"
+        ],
+        "sumMaximum": 4,
+        "sumCurrent": 3,
+        "valid": true
+      },
+      {
+        "M": 4,
+        "C": 3,
+        "masses": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 4,
+        "sumCurrent": 3,
+        "valid": true
+      },
+      {
+        "M": 4,
+        "C": 4,
+        "masses": [
+          "1"
+        ],
+        "sumMaximum": 4,
+        "sumCurrent": 4,
+        "valid": true
+      },
+      {
+        "M": 4,
+        "C": 4,
+        "masses": [
+          "1",
+          "1"
+        ],
+        "sumMaximum": 4,
+        "sumCurrent": 4,
+        "valid": true
+      },
+      {
+        "M": 4,
+        "C": 4,
+        "masses": [
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 4,
+        "sumCurrent": 4,
+        "valid": true
+      },
+      {
+        "M": 4,
+        "C": 4,
+        "masses": [
+          "1",
+          "2",
+          "4"
+        ],
+        "sumMaximum": 4,
+        "sumCurrent": 4,
+        "valid": true
+      },
+      {
+        "M": 4,
+        "C": 4,
+        "masses": [
+          "1",
+          "100",
+          "1"
+        ],
+        "sumMaximum": 4,
+        "sumCurrent": 4,
+        "valid": true
+      },
+      {
+        "M": 4,
+        "C": 4,
+        "masses": [
+          "1/3",
+          "2/7",
+          "5/11"
+        ],
+        "sumMaximum": 4,
+        "sumCurrent": 4,
+        "valid": true
+      },
+      {
+        "M": 4,
+        "C": 4,
+        "masses": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 4,
+        "sumCurrent": 4,
+        "valid": true
+      },
+      {
+        "M": 5,
+        "C": 0,
+        "masses": [
+          "1"
+        ],
+        "sumMaximum": 5,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 5,
+        "C": 0,
+        "masses": [
+          "1",
+          "1"
+        ],
+        "sumMaximum": 5,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 5,
+        "C": 0,
+        "masses": [
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 5,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 5,
+        "C": 0,
+        "masses": [
+          "1",
+          "2",
+          "4"
+        ],
+        "sumMaximum": 5,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 5,
+        "C": 0,
+        "masses": [
+          "1",
+          "100",
+          "1"
+        ],
+        "sumMaximum": 5,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 5,
+        "C": 0,
+        "masses": [
+          "1/3",
+          "2/7",
+          "5/11"
+        ],
+        "sumMaximum": 5,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 5,
+        "C": 0,
+        "masses": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 5,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 5,
+        "C": 1,
+        "masses": [
+          "1"
+        ],
+        "sumMaximum": 5,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 5,
+        "C": 1,
+        "masses": [
+          "1",
+          "1"
+        ],
+        "sumMaximum": 5,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 5,
+        "C": 1,
+        "masses": [
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 5,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 5,
+        "C": 1,
+        "masses": [
+          "1",
+          "2",
+          "4"
+        ],
+        "sumMaximum": 5,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 5,
+        "C": 1,
+        "masses": [
+          "1",
+          "100",
+          "1"
+        ],
+        "sumMaximum": 5,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 5,
+        "C": 1,
+        "masses": [
+          "1/3",
+          "2/7",
+          "5/11"
+        ],
+        "sumMaximum": 5,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 5,
+        "C": 1,
+        "masses": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 5,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 5,
+        "C": 2,
+        "masses": [
+          "1"
+        ],
+        "sumMaximum": 5,
+        "sumCurrent": 2,
+        "valid": true
+      },
+      {
+        "M": 5,
+        "C": 2,
+        "masses": [
+          "1",
+          "1"
+        ],
+        "sumMaximum": 5,
+        "sumCurrent": 2,
+        "valid": true
+      },
+      {
+        "M": 5,
+        "C": 2,
+        "masses": [
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 5,
+        "sumCurrent": 2,
+        "valid": true
+      },
+      {
+        "M": 5,
+        "C": 2,
+        "masses": [
+          "1",
+          "2",
+          "4"
+        ],
+        "sumMaximum": 5,
+        "sumCurrent": 2,
+        "valid": true
+      },
+      {
+        "M": 5,
+        "C": 2,
+        "masses": [
+          "1",
+          "100",
+          "1"
+        ],
+        "sumMaximum": 5,
+        "sumCurrent": 2,
+        "valid": true
+      },
+      {
+        "M": 5,
+        "C": 2,
+        "masses": [
+          "1/3",
+          "2/7",
+          "5/11"
+        ],
+        "sumMaximum": 5,
+        "sumCurrent": 2,
+        "valid": true
+      },
+      {
+        "M": 5,
+        "C": 2,
+        "masses": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 5,
+        "sumCurrent": 2,
+        "valid": true
+      },
+      {
+        "M": 5,
+        "C": 3,
+        "masses": [
+          "1"
+        ],
+        "sumMaximum": 5,
+        "sumCurrent": 3,
+        "valid": true
+      },
+      {
+        "M": 5,
+        "C": 3,
+        "masses": [
+          "1",
+          "1"
+        ],
+        "sumMaximum": 5,
+        "sumCurrent": 3,
+        "valid": true
+      },
+      {
+        "M": 5,
+        "C": 3,
+        "masses": [
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 5,
+        "sumCurrent": 3,
+        "valid": true
+      },
+      {
+        "M": 5,
+        "C": 3,
+        "masses": [
+          "1",
+          "2",
+          "4"
+        ],
+        "sumMaximum": 5,
+        "sumCurrent": 3,
+        "valid": true
+      },
+      {
+        "M": 5,
+        "C": 3,
+        "masses": [
+          "1",
+          "100",
+          "1"
+        ],
+        "sumMaximum": 5,
+        "sumCurrent": 3,
+        "valid": true
+      },
+      {
+        "M": 5,
+        "C": 3,
+        "masses": [
+          "1/3",
+          "2/7",
+          "5/11"
+        ],
+        "sumMaximum": 5,
+        "sumCurrent": 3,
+        "valid": true
+      },
+      {
+        "M": 5,
+        "C": 3,
+        "masses": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 5,
+        "sumCurrent": 3,
+        "valid": true
+      },
+      {
+        "M": 5,
+        "C": 4,
+        "masses": [
+          "1"
+        ],
+        "sumMaximum": 5,
+        "sumCurrent": 4,
+        "valid": true
+      },
+      {
+        "M": 5,
+        "C": 4,
+        "masses": [
+          "1",
+          "1"
+        ],
+        "sumMaximum": 5,
+        "sumCurrent": 4,
+        "valid": true
+      },
+      {
+        "M": 5,
+        "C": 4,
+        "masses": [
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 5,
+        "sumCurrent": 4,
+        "valid": true
+      },
+      {
+        "M": 5,
+        "C": 4,
+        "masses": [
+          "1",
+          "2",
+          "4"
+        ],
+        "sumMaximum": 5,
+        "sumCurrent": 4,
+        "valid": true
+      },
+      {
+        "M": 5,
+        "C": 4,
+        "masses": [
+          "1",
+          "100",
+          "1"
+        ],
+        "sumMaximum": 5,
+        "sumCurrent": 4,
+        "valid": true
+      },
+      {
+        "M": 5,
+        "C": 4,
+        "masses": [
+          "1/3",
+          "2/7",
+          "5/11"
+        ],
+        "sumMaximum": 5,
+        "sumCurrent": 4,
+        "valid": true
+      },
+      {
+        "M": 5,
+        "C": 4,
+        "masses": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 5,
+        "sumCurrent": 4,
+        "valid": true
+      },
+      {
+        "M": 5,
+        "C": 5,
+        "masses": [
+          "1"
+        ],
+        "sumMaximum": 5,
+        "sumCurrent": 5,
+        "valid": true
+      },
+      {
+        "M": 5,
+        "C": 5,
+        "masses": [
+          "1",
+          "1"
+        ],
+        "sumMaximum": 5,
+        "sumCurrent": 5,
+        "valid": true
+      },
+      {
+        "M": 5,
+        "C": 5,
+        "masses": [
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 5,
+        "sumCurrent": 5,
+        "valid": true
+      },
+      {
+        "M": 5,
+        "C": 5,
+        "masses": [
+          "1",
+          "2",
+          "4"
+        ],
+        "sumMaximum": 5,
+        "sumCurrent": 5,
+        "valid": true
+      },
+      {
+        "M": 5,
+        "C": 5,
+        "masses": [
+          "1",
+          "100",
+          "1"
+        ],
+        "sumMaximum": 5,
+        "sumCurrent": 5,
+        "valid": true
+      },
+      {
+        "M": 5,
+        "C": 5,
+        "masses": [
+          "1/3",
+          "2/7",
+          "5/11"
+        ],
+        "sumMaximum": 5,
+        "sumCurrent": 5,
+        "valid": true
+      },
+      {
+        "M": 5,
+        "C": 5,
+        "masses": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 5,
+        "sumCurrent": 5,
+        "valid": true
+      },
+      {
+        "M": 6,
+        "C": 0,
+        "masses": [
+          "1"
+        ],
+        "sumMaximum": 6,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 6,
+        "C": 0,
+        "masses": [
+          "1",
+          "1"
+        ],
+        "sumMaximum": 6,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 6,
+        "C": 0,
+        "masses": [
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 6,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 6,
+        "C": 0,
+        "masses": [
+          "1",
+          "2",
+          "4"
+        ],
+        "sumMaximum": 6,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 6,
+        "C": 0,
+        "masses": [
+          "1",
+          "100",
+          "1"
+        ],
+        "sumMaximum": 6,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 6,
+        "C": 0,
+        "masses": [
+          "1/3",
+          "2/7",
+          "5/11"
+        ],
+        "sumMaximum": 6,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 6,
+        "C": 0,
+        "masses": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 6,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 6,
+        "C": 1,
+        "masses": [
+          "1"
+        ],
+        "sumMaximum": 6,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 6,
+        "C": 1,
+        "masses": [
+          "1",
+          "1"
+        ],
+        "sumMaximum": 6,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 6,
+        "C": 1,
+        "masses": [
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 6,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 6,
+        "C": 1,
+        "masses": [
+          "1",
+          "2",
+          "4"
+        ],
+        "sumMaximum": 6,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 6,
+        "C": 1,
+        "masses": [
+          "1",
+          "100",
+          "1"
+        ],
+        "sumMaximum": 6,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 6,
+        "C": 1,
+        "masses": [
+          "1/3",
+          "2/7",
+          "5/11"
+        ],
+        "sumMaximum": 6,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 6,
+        "C": 1,
+        "masses": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 6,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 6,
+        "C": 2,
+        "masses": [
+          "1"
+        ],
+        "sumMaximum": 6,
+        "sumCurrent": 2,
+        "valid": true
+      },
+      {
+        "M": 6,
+        "C": 2,
+        "masses": [
+          "1",
+          "1"
+        ],
+        "sumMaximum": 6,
+        "sumCurrent": 2,
+        "valid": true
+      },
+      {
+        "M": 6,
+        "C": 2,
+        "masses": [
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 6,
+        "sumCurrent": 2,
+        "valid": true
+      },
+      {
+        "M": 6,
+        "C": 2,
+        "masses": [
+          "1",
+          "2",
+          "4"
+        ],
+        "sumMaximum": 6,
+        "sumCurrent": 2,
+        "valid": true
+      },
+      {
+        "M": 6,
+        "C": 2,
+        "masses": [
+          "1",
+          "100",
+          "1"
+        ],
+        "sumMaximum": 6,
+        "sumCurrent": 2,
+        "valid": true
+      },
+      {
+        "M": 6,
+        "C": 2,
+        "masses": [
+          "1/3",
+          "2/7",
+          "5/11"
+        ],
+        "sumMaximum": 6,
+        "sumCurrent": 2,
+        "valid": true
+      },
+      {
+        "M": 6,
+        "C": 2,
+        "masses": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 6,
+        "sumCurrent": 2,
+        "valid": true
+      },
+      {
+        "M": 6,
+        "C": 3,
+        "masses": [
+          "1"
+        ],
+        "sumMaximum": 6,
+        "sumCurrent": 3,
+        "valid": true
+      },
+      {
+        "M": 6,
+        "C": 3,
+        "masses": [
+          "1",
+          "1"
+        ],
+        "sumMaximum": 6,
+        "sumCurrent": 3,
+        "valid": true
+      },
+      {
+        "M": 6,
+        "C": 3,
+        "masses": [
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 6,
+        "sumCurrent": 3,
+        "valid": true
+      },
+      {
+        "M": 6,
+        "C": 3,
+        "masses": [
+          "1",
+          "2",
+          "4"
+        ],
+        "sumMaximum": 6,
+        "sumCurrent": 3,
+        "valid": true
+      },
+      {
+        "M": 6,
+        "C": 3,
+        "masses": [
+          "1",
+          "100",
+          "1"
+        ],
+        "sumMaximum": 6,
+        "sumCurrent": 3,
+        "valid": true
+      },
+      {
+        "M": 6,
+        "C": 3,
+        "masses": [
+          "1/3",
+          "2/7",
+          "5/11"
+        ],
+        "sumMaximum": 6,
+        "sumCurrent": 3,
+        "valid": true
+      },
+      {
+        "M": 6,
+        "C": 3,
+        "masses": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 6,
+        "sumCurrent": 3,
+        "valid": true
+      },
+      {
+        "M": 6,
+        "C": 4,
+        "masses": [
+          "1"
+        ],
+        "sumMaximum": 6,
+        "sumCurrent": 4,
+        "valid": true
+      },
+      {
+        "M": 6,
+        "C": 4,
+        "masses": [
+          "1",
+          "1"
+        ],
+        "sumMaximum": 6,
+        "sumCurrent": 4,
+        "valid": true
+      },
+      {
+        "M": 6,
+        "C": 4,
+        "masses": [
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 6,
+        "sumCurrent": 4,
+        "valid": true
+      },
+      {
+        "M": 6,
+        "C": 4,
+        "masses": [
+          "1",
+          "2",
+          "4"
+        ],
+        "sumMaximum": 6,
+        "sumCurrent": 4,
+        "valid": true
+      },
+      {
+        "M": 6,
+        "C": 4,
+        "masses": [
+          "1",
+          "100",
+          "1"
+        ],
+        "sumMaximum": 6,
+        "sumCurrent": 4,
+        "valid": true
+      },
+      {
+        "M": 6,
+        "C": 4,
+        "masses": [
+          "1/3",
+          "2/7",
+          "5/11"
+        ],
+        "sumMaximum": 6,
+        "sumCurrent": 4,
+        "valid": true
+      },
+      {
+        "M": 6,
+        "C": 4,
+        "masses": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 6,
+        "sumCurrent": 4,
+        "valid": true
+      },
+      {
+        "M": 6,
+        "C": 5,
+        "masses": [
+          "1"
+        ],
+        "sumMaximum": 6,
+        "sumCurrent": 5,
+        "valid": true
+      },
+      {
+        "M": 6,
+        "C": 5,
+        "masses": [
+          "1",
+          "1"
+        ],
+        "sumMaximum": 6,
+        "sumCurrent": 5,
+        "valid": true
+      },
+      {
+        "M": 6,
+        "C": 5,
+        "masses": [
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 6,
+        "sumCurrent": 5,
+        "valid": true
+      },
+      {
+        "M": 6,
+        "C": 5,
+        "masses": [
+          "1",
+          "2",
+          "4"
+        ],
+        "sumMaximum": 6,
+        "sumCurrent": 5,
+        "valid": true
+      },
+      {
+        "M": 6,
+        "C": 5,
+        "masses": [
+          "1",
+          "100",
+          "1"
+        ],
+        "sumMaximum": 6,
+        "sumCurrent": 5,
+        "valid": true
+      },
+      {
+        "M": 6,
+        "C": 5,
+        "masses": [
+          "1/3",
+          "2/7",
+          "5/11"
+        ],
+        "sumMaximum": 6,
+        "sumCurrent": 5,
+        "valid": true
+      },
+      {
+        "M": 6,
+        "C": 5,
+        "masses": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 6,
+        "sumCurrent": 5,
+        "valid": true
+      },
+      {
+        "M": 6,
+        "C": 6,
+        "masses": [
+          "1"
+        ],
+        "sumMaximum": 6,
+        "sumCurrent": 6,
+        "valid": true
+      },
+      {
+        "M": 6,
+        "C": 6,
+        "masses": [
+          "1",
+          "1"
+        ],
+        "sumMaximum": 6,
+        "sumCurrent": 6,
+        "valid": true
+      },
+      {
+        "M": 6,
+        "C": 6,
+        "masses": [
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 6,
+        "sumCurrent": 6,
+        "valid": true
+      },
+      {
+        "M": 6,
+        "C": 6,
+        "masses": [
+          "1",
+          "2",
+          "4"
+        ],
+        "sumMaximum": 6,
+        "sumCurrent": 6,
+        "valid": true
+      },
+      {
+        "M": 6,
+        "C": 6,
+        "masses": [
+          "1",
+          "100",
+          "1"
+        ],
+        "sumMaximum": 6,
+        "sumCurrent": 6,
+        "valid": true
+      },
+      {
+        "M": 6,
+        "C": 6,
+        "masses": [
+          "1/3",
+          "2/7",
+          "5/11"
+        ],
+        "sumMaximum": 6,
+        "sumCurrent": 6,
+        "valid": true
+      },
+      {
+        "M": 6,
+        "C": 6,
+        "masses": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 6,
+        "sumCurrent": 6,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 0,
+        "masses": [
+          "1"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 0,
+        "masses": [
+          "1",
+          "1"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 0,
+        "masses": [
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 0,
+        "masses": [
+          "1",
+          "2",
+          "4"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 0,
+        "masses": [
+          "1",
+          "100",
+          "1"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 0,
+        "masses": [
+          "1/3",
+          "2/7",
+          "5/11"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 0,
+        "masses": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 1,
+        "masses": [
+          "1"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 1,
+        "masses": [
+          "1",
+          "1"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 1,
+        "masses": [
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 1,
+        "masses": [
+          "1",
+          "2",
+          "4"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 1,
+        "masses": [
+          "1",
+          "100",
+          "1"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 1,
+        "masses": [
+          "1/3",
+          "2/7",
+          "5/11"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 1,
+        "masses": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 2,
+        "masses": [
+          "1"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 2,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 2,
+        "masses": [
+          "1",
+          "1"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 2,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 2,
+        "masses": [
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 2,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 2,
+        "masses": [
+          "1",
+          "2",
+          "4"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 2,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 2,
+        "masses": [
+          "1",
+          "100",
+          "1"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 2,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 2,
+        "masses": [
+          "1/3",
+          "2/7",
+          "5/11"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 2,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 2,
+        "masses": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 2,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 3,
+        "masses": [
+          "1"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 3,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 3,
+        "masses": [
+          "1",
+          "1"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 3,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 3,
+        "masses": [
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 3,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 3,
+        "masses": [
+          "1",
+          "2",
+          "4"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 3,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 3,
+        "masses": [
+          "1",
+          "100",
+          "1"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 3,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 3,
+        "masses": [
+          "1/3",
+          "2/7",
+          "5/11"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 3,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 3,
+        "masses": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 3,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 4,
+        "masses": [
+          "1"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 4,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 4,
+        "masses": [
+          "1",
+          "1"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 4,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 4,
+        "masses": [
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 4,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 4,
+        "masses": [
+          "1",
+          "2",
+          "4"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 4,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 4,
+        "masses": [
+          "1",
+          "100",
+          "1"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 4,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 4,
+        "masses": [
+          "1/3",
+          "2/7",
+          "5/11"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 4,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 4,
+        "masses": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 4,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 5,
+        "masses": [
+          "1"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 5,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 5,
+        "masses": [
+          "1",
+          "1"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 5,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 5,
+        "masses": [
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 5,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 5,
+        "masses": [
+          "1",
+          "2",
+          "4"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 5,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 5,
+        "masses": [
+          "1",
+          "100",
+          "1"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 5,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 5,
+        "masses": [
+          "1/3",
+          "2/7",
+          "5/11"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 5,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 5,
+        "masses": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 5,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 6,
+        "masses": [
+          "1"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 6,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 6,
+        "masses": [
+          "1",
+          "1"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 6,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 6,
+        "masses": [
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 6,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 6,
+        "masses": [
+          "1",
+          "2",
+          "4"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 6,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 6,
+        "masses": [
+          "1",
+          "100",
+          "1"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 6,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 6,
+        "masses": [
+          "1/3",
+          "2/7",
+          "5/11"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 6,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 6,
+        "masses": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 6,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 7,
+        "masses": [
+          "1"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 7,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 7,
+        "masses": [
+          "1",
+          "1"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 7,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 7,
+        "masses": [
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 7,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 7,
+        "masses": [
+          "1",
+          "2",
+          "4"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 7,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 7,
+        "masses": [
+          "1",
+          "100",
+          "1"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 7,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 7,
+        "masses": [
+          "1/3",
+          "2/7",
+          "5/11"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 7,
+        "valid": true
+      },
+      {
+        "M": 7,
+        "C": 7,
+        "masses": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 7,
+        "sumCurrent": 7,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 0,
+        "masses": [
+          "1"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 0,
+        "masses": [
+          "1",
+          "1"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 0,
+        "masses": [
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 0,
+        "masses": [
+          "1",
+          "2",
+          "4"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 0,
+        "masses": [
+          "1",
+          "100",
+          "1"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 0,
+        "masses": [
+          "1/3",
+          "2/7",
+          "5/11"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 0,
+        "masses": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 0,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 1,
+        "masses": [
+          "1"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 1,
+        "masses": [
+          "1",
+          "1"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 1,
+        "masses": [
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 1,
+        "masses": [
+          "1",
+          "2",
+          "4"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 1,
+        "masses": [
+          "1",
+          "100",
+          "1"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 1,
+        "masses": [
+          "1/3",
+          "2/7",
+          "5/11"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 1,
+        "masses": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 1,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 2,
+        "masses": [
+          "1"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 2,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 2,
+        "masses": [
+          "1",
+          "1"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 2,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 2,
+        "masses": [
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 2,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 2,
+        "masses": [
+          "1",
+          "2",
+          "4"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 2,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 2,
+        "masses": [
+          "1",
+          "100",
+          "1"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 2,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 2,
+        "masses": [
+          "1/3",
+          "2/7",
+          "5/11"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 2,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 2,
+        "masses": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 2,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 3,
+        "masses": [
+          "1"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 3,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 3,
+        "masses": [
+          "1",
+          "1"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 3,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 3,
+        "masses": [
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 3,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 3,
+        "masses": [
+          "1",
+          "2",
+          "4"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 3,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 3,
+        "masses": [
+          "1",
+          "100",
+          "1"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 3,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 3,
+        "masses": [
+          "1/3",
+          "2/7",
+          "5/11"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 3,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 3,
+        "masses": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 3,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 4,
+        "masses": [
+          "1"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 4,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 4,
+        "masses": [
+          "1",
+          "1"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 4,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 4,
+        "masses": [
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 4,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 4,
+        "masses": [
+          "1",
+          "2",
+          "4"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 4,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 4,
+        "masses": [
+          "1",
+          "100",
+          "1"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 4,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 4,
+        "masses": [
+          "1/3",
+          "2/7",
+          "5/11"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 4,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 4,
+        "masses": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 4,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 5,
+        "masses": [
+          "1"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 5,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 5,
+        "masses": [
+          "1",
+          "1"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 5,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 5,
+        "masses": [
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 5,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 5,
+        "masses": [
+          "1",
+          "2",
+          "4"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 5,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 5,
+        "masses": [
+          "1",
+          "100",
+          "1"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 5,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 5,
+        "masses": [
+          "1/3",
+          "2/7",
+          "5/11"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 5,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 5,
+        "masses": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 5,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 6,
+        "masses": [
+          "1"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 6,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 6,
+        "masses": [
+          "1",
+          "1"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 6,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 6,
+        "masses": [
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 6,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 6,
+        "masses": [
+          "1",
+          "2",
+          "4"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 6,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 6,
+        "masses": [
+          "1",
+          "100",
+          "1"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 6,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 6,
+        "masses": [
+          "1/3",
+          "2/7",
+          "5/11"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 6,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 6,
+        "masses": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 6,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 7,
+        "masses": [
+          "1"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 7,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 7,
+        "masses": [
+          "1",
+          "1"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 7,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 7,
+        "masses": [
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 7,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 7,
+        "masses": [
+          "1",
+          "2",
+          "4"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 7,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 7,
+        "masses": [
+          "1",
+          "100",
+          "1"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 7,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 7,
+        "masses": [
+          "1/3",
+          "2/7",
+          "5/11"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 7,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 7,
+        "masses": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 7,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 8,
+        "masses": [
+          "1"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 8,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 8,
+        "masses": [
+          "1",
+          "1"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 8,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 8,
+        "masses": [
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 8,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 8,
+        "masses": [
+          "1",
+          "2",
+          "4"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 8,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 8,
+        "masses": [
+          "1",
+          "100",
+          "1"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 8,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 8,
+        "masses": [
+          "1/3",
+          "2/7",
+          "5/11"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 8,
+        "valid": true
+      },
+      {
+        "M": 8,
+        "C": 8,
+        "masses": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "sumMaximum": 8,
+        "sumCurrent": 8,
+        "valid": true
+      }
+    ],
+    "allPass": true
+  },
+  "proof": [
+    "For positive exact weights, floor(Cw_i)<=floor(Mw_i)<=assignedMaximum_i, so current floors fit.",
+    "Residual current capacity totals M-sum(currentFloors), at least C-sum(currentFloors). Every successful increment decreases a finite nonnegative remainder; stable scan therefore terminates within capacity.",
+    "Each actual subdivision preserves parent sums. A finite local tree preserves root totals by telescoping. This is not an associativity proof and does not authorize cutting, repairing, pricing or ingredients."
+  ],
+  "zeroMaximumMeaning": "Physical material persists; zero/zero does not become a new functional finished item. A later genuine source may manufacture using the actual material with actual costs; no free repair by merge."
+}

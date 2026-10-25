@@ -1,0 +1,32 @@
+{
+  "id": "MAGIC7-DRAFT-SOURCE-CHECK-128",
+  "status": "PROVISIONAL_FINDINGS_AWAIT_EXACT_FINAL_RETURN",
+  "recordedAtUtc": "2026-10-24T01:37:06.608193+00:00",
+  "source": {
+    "path": "C:\\Github\\DecenniumDescent\\DescentReviewChanges\\ReviewBible\\data\\public\\spell_candidates\\abjuration_conjuration_rank5_reviewed_05.json",
+    "bytes": 337035,
+    "sha256": "d782569ed8ef558f4edf54634e0d8c19926e24e2437528f1769b5ef3ce594898",
+    "pointer": "/spells/0/procedure",
+    "fullProcedure": "Action; range 10 feet; V/S/F; base 10 RP. Preserve the source's 10-foot sphere and suppression promise. NEW: choose one perceived fixed point within 10 feet and line of effect; create a fixed 10-foot-radius sphere with concentration up to 60 elapsed seconds, explicitly replacing the source's insufficient Instantaneous field duration for this authored procedure. The volume is clipped by actual solid total-cover barriers from the center and never follows a creature.\n\nThe field suppresses the local expression of actual ongoing spells and explicitly magical nonspell technique expressions only where their real body/effect/anchor intersects the operative volume. It supplies no rank ceiling. It does not retroactively undo completed damage, healing, movement, transmutation, consumed items, permanent ordinary matter, HP loss or source history. It does not erase class engines, learned facts, RP pools, injuries or intrinsic nonmagical traits. A magic item keeps its mundane body/ownership/contents while its magical enhancements/actions are unavailable. A creature-attached spell buff is wholly unavailable while the creature intersects; a large wall/field loses only its intersecting portion unless its own indivisible source says otherwise.\n\nAn otherwise legal spell cast may still be committed inside: pay its real final price, Action/components/cadence and concentration transition. If the spell's relevant manifestation originates inside the field, suppress that payload at resolution; there is no queued later release and no refund. Do not invent an imaginary straight-line beam/path for teleportation or nonprojectile magic. For current Dimensional Door, an origin and endpoint both outside the field are unaffected even if a drawn line crosses it; an origin actually inside the field has its spell payload suppressed after legal commitment. A remote ongoing effect outside is not canceled merely because its concentrating caster enters the field.\n\nRanger Nature's Whisper is an explicitly magical NONSPELL technique. Inside the field its Action+1 RP+Recharge 3 commitment remains a nonspell event; the magical payload/rider is unavailable with no rank, Counterspell window or Nexus/Dampening price. A still-live Nature's Whisper rider on an actor inside the field is unusable while suppressed but its clock continues.\n\nOracle's Burden prevents generic remove/suspend of the intrinsic Oracle Curse, so this field does not erase or suspend the Curse engine. Curse Manifestation, Tongues and Consumed retain only their own exact suppression/appearance permissions and timers.\n\nInstances of Lesser Antimagic do not suppress one another; overlapping instances form the union of active volumes. This same-family exception only prevents oscillation and grants no ability to cast a new field from inside another without paying/satisfying the new cast, whose payload is itself exempt only because it is this family.\n\nFor Greater Fire Pet and Faction Champion use AC5-ANTIMAGIC-SUMMON-01. For accepted ordinary Banishment, only actual suppression of the application itself invokes its own accepted closure/end rule; merely suppressing its distant caster does not reach the generated cell/application. For Banish Elemental and Elemental Banishment, AC5-BANISH-EXT-01 expressly gives the same close-on-actual-suppression behavior.\n\nSuppression never pauses absolute/source clocks and does not bank missed attacks, aura starts, periodic damage, saves or commands. On exit/end, only still-live source expressions resume with the same remaining HP/pools/deadlines. Wall of Force uses its own safe segment-resumption rule.\n\nRepair04 incoming/output completion: use AC5-ANTIMAGIC-IO-04. An instantaneous effect cast outside is not immune merely because its source is outside: inspect the actual recipient/area/destination manifestation. Local damage/healing inside is suppressed with no packet/root; an outside-origin Dimensional Door whose destination footprint is inside fails atomically after cost, while outsideâ†’outside remains unaffected regardless of an imaginary line. A legal Greater Dispel or exact class Dispel resolves captured termination operations under AC5-ANTIMAGIC-IO-04; the target Antimagic application ignores only its own suppression, while a different Antimagic field can still suppress that termination operation; ordinary Counterspell remains only a cast-time response before the field exists. Spell Preservationâ€™s primary-book anti-destruction remains source-intrinsic even while magical book usability is suppressed."
+  },
+  "observedDraft": "MAGIC7_CONTINUATION_VISIBLE_128.txt",
+  "findings": [
+    {
+      "case": "TU6-09-B",
+      "issue": "Draft Lesser Antimagic cast plan and installed source radius20 conflicts with current accepted fixed10-foot-radius sphere.",
+      "nativeValue": 10,
+      "draftValue": 20,
+      "requiredCheck": "Inspect actual final return; if still20, correct all full state/ledger/observations/mirrors with reversible value operations. Determine whether resulting geometry still supports same observations."
+    },
+    {
+      "case": "TU6-09-B",
+      "issue": "A actual initial foot[30,15,0],extent[5,5,6] but spell sourcePoint[30,12.5,3] lies outside real body.",
+      "requiredCheck": "Inspect final actor position immediately before cast. If unchanged, use an actual body-surface origin and measured center within10 feet. Candidate [30,15,3] to [30,5,3] is exactly10feet and clear; actual field body boundary contact also needs correct suppression. Do not change selected rules to repair a case.",
+      "disposition": "WITHDRAWN_AS_DEFECT_UNDER_LATEST_EXPLICIT_CENTERED_XY_AABB; verify final convention only",
+      "correction": "Latest helper AABB uses x +/-width/2 and y +/-depth/2. Source[30,12.5,3] is on real body surface; prior min-corner assumption did not apply."
+    }
+  ],
+  "acceptanceGranted": false,
+  "canonicalMutation": false,
+  "directorNotification": "Not sent during active generation; compare completed packet first to avoid interrupting authoring."
+}

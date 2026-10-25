@@ -1,0 +1,1249 @@
+[
+  {
+    "class": "wizard",
+    "completeNativeCard": {
+      "id": "wizard.supplement.arcane-feedback",
+      "name": "Arcane Feedback",
+      "className": "Wizard",
+      "band": "Hero",
+      "path": null,
+      "sourceKind": "supplement",
+      "minimumClassLevel": 15,
+      "acquisition": "automatic",
+      "activation": "Triggered",
+      "cost": "0",
+      "rangeAndTarget": "Self",
+      "duration": "Instantaneous",
+      "frequency": "At most once per round",
+      "effect": "Source progression line 5191, converted from historical slot wording to RP. After your Counterspell successfully negates a spell, restore 1 RP, never above your normal maximum. A counter produced by a companion, reflected spell or copied Counterspell does not trigger this feature.",
+      "prerequisite": "See class engine and progression.",
+      "source": {
+        "line": 5191,
+        "reference": null,
+        "originalText": "| 15 | Arcane Feedback (after successfully countering a spell, recover 1 RP once per round) |",
+        "status": "source-derived"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    "comparison": "This source retains its own acquisition, real trigger/payment and bounded retaliation/output. It is not an ordinary sole-recipient redirect. Spell Turning preserves the original causal dealer/Null flags; genuinely new class-created damage uses its actual creating actor at that new root under its own source. No positive class activation or acquisition for any case actor is inferred by this comparison."
+  },
+  {
+    "class": "oracle",
+    "completeNativeCard": {
+      "id": "oracle.supplement.cataclysm.instability",
+      "name": "Instability",
+      "className": "Oracle",
+      "band": "Arch",
+      "path": "Cataclysm",
+      "sourceKind": "tier-ii-revelation",
+      "minimumClassLevel": 6,
+      "acquisition": "choose first at Oracle 6; a distinct second at Oracle 13",
+      "activation": "Reaction",
+      "cost": "1 RC",
+      "rangeAndTarget": "Creatures within 1 tile of you after an enemy damages you",
+      "duration": "Instantaneous; ally protection until start of your next turn",
+      "frequency": "Once per round",
+      "effect": "When an enemy deals actual damage to you, spend 1 RC. Hostile creatures within 1 tile make Strength saves. Each takes force damage equal to half the actual triggering damage rounded down, maximum Oracle level, on failure or half that amount on success; a failing creature also falls Prone. Allies within the burst take no damage and reduce their first damage before the start of your next turn by 1. Reflected damage cannot trigger another reflection, RC refund or recursive damage effect.",
+      "prerequisite": "Oracle 6; Mystery: Cataclysm; selected Tier II Revelation",
+      "source": {
+        "line": null,
+        "reference": "MYSTERIES.ORACLE_MYSTERIES[3].tierII[2]",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "MYSTERIES.ORACLE_MYSTERIES[3].tierII[2]",
+            "value": {
+              "name": "Instability",
+              "kind": "passive",
+              "description": "Passive: when you take damage from an enemy, you may spend 1 charge as a reaction to fracture the Shattered Seal's wound \u2014 deal half that damage back as force in a 1-tile burst (once per round); enemies in the burst must save or fall prone, and allies in the burst gain +5% DR until start of your next turn as the tremor passes through them."
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    "comparison": "This source retains its own acquisition, real trigger/payment and bounded retaliation/output. It is not an ordinary sole-recipient redirect. Spell Turning preserves the original causal dealer/Null flags; genuinely new class-created damage uses its actual creating actor at that new root under its own source. No positive class activation or acquisition for any case actor is inferred by this comparison."
+  },
+  {
+    "class": "mirrorsage",
+    "completeNativeCard": {
+      "id": "mirrorsage.base.reflective-pulse",
+      "name": "Reflective Pulse",
+      "className": "Mirrorsage",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Reaction",
+      "cost": "0",
+      "rangeAndTarget": "Attacker within 30 ft after its first hit this round damages you",
+      "duration": "Instant",
+      "frequency": "Once/round",
+      "effect": "Deal psychic damage equal to min(M, damage actually taken). This cannot critically hit, trigger another reflection, generate resources or prevent the original damage. No effect if you take 0.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3070,
+        "originalText": "Reflective Pulse: First hit you take each round returns 10% damage."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    "comparison": "This source retains its own acquisition, real trigger/payment and bounded retaliation/output. It is not an ordinary sole-recipient redirect. Spell Turning preserves the original causal dealer/Null flags; genuinely new class-created damage uses its actual creating actor at that new root under its own source. No positive class activation or acquisition for any case actor is inferred by this comparison."
+  },
+  {
+    "class": "mirrorsage",
+    "completeNativeCard": {
+      "id": "mirrorsage.base.reflective-shield",
+      "name": "Reflective Shield",
+      "className": "Mirrorsage",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Reaction",
+      "cost": "1 RP",
+      "rangeAndTarget": "Self when hit by an attack from within 60 ft",
+      "duration": "This attack",
+      "frequency": "Recharge 2",
+      "effect": "Gain+2 AC against triggering attack, potentially making it miss. If it misses, attacker takes M force damage. This is bounded retaliation, not copying the original attack; cannot trigger another reflection or capture.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3078,
+        "originalText": "Reflective Shield: Create a brief defensive barrier that has a chance to reflect the next attack back at the attacker."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    "comparison": "This source retains its own acquisition, real trigger/payment and bounded retaliation/output. It is not an ordinary sole-recipient redirect. Spell Turning preserves the original causal dealer/Null flags; genuinely new class-created damage uses its actual creating actor at that new root under its own source. No positive class activation or acquisition for any case actor is inferred by this comparison."
+  },
+  {
+    "class": "mirrorsage",
+    "completeNativeCard": {
+      "id": "mirrorsage.arch.mirror-shell",
+      "name": "Mirror Shell",
+      "className": "Mirrorsage",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 7,
+      "acquisition": "selection",
+      "activation": "Reaction",
+      "cost": "3 RP; 1 long-rest use",
+      "rangeAndTarget": "A hostile spell targeting only you within 60 ft",
+      "duration": "This spell",
+      "frequency": "1/long rest",
+      "effect": "After a successful save against the spell or after its spell attack misses, choose its caster; it makes WIS save or takes S d8 force. Original damage/control follow normal results. No copying arbitrary spell text or redirecting an area spell.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3088,
+        "originalText": "Mirror Shell: Once per long rest, reflect the first ability cast at you."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    "comparison": "This source retains its own acquisition, real trigger/payment and bounded retaliation/output. It is not an ordinary sole-recipient redirect. Spell Turning preserves the original causal dealer/Null flags; genuinely new class-created damage uses its actual creating actor at that new root under its own source. No positive class activation or acquisition for any case actor is inferred by this comparison."
+  },
+  {
+    "class": "mirrorsage",
+    "completeNativeCard": {
+      "id": "mirrorsage.arch.perfect-reflection",
+      "name": "Perfect Reflection",
+      "className": "Mirrorsage",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 9,
+      "acquisition": "automatic",
+      "activation": "Reaction",
+      "cost": "4 RP; 1 long-rest use",
+      "rangeAndTarget": "Creature within 60 ft whose observed ability targets you",
+      "duration": "This ability",
+      "frequency": "1/long rest",
+      "effect": "Reduce triggering damage to you by(S+1)d8+M, minimum 0. If any is prevented, source makes WIS save or takes that prevented amount as force, maximum 30. This is your release action for the round; no reflected conditions or legendary powers. Cannot recursively reflect.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3089,
+        "originalText": "Capstone \u2013 Perfect Reflection: Reflect any observed ability (spell, breath, strike) back at the caster for full effect (1/day)."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    "comparison": "This source retains its own acquisition, real trigger/payment and bounded retaliation/output. It is not an ordinary sole-recipient redirect. Spell Turning preserves the original causal dealer/Null flags; genuinely new class-created damage uses its actual creating actor at that new root under its own source. No positive class activation or acquisition for any case actor is inferred by this comparison."
+  },
+  {
+    "ordinarySource": {
+      "spellId": "spell-mirror",
+      "source": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/candidate_low_rank_136.json",
+        "bytes": 1664654,
+        "sha256": "506393b1131e3ed099effbe55b05d6b00a5193e503b02f065a5f84751a2955fe"
+      },
+      "pointer": "/spells/44",
+      "completeCurrentCard": {
+        "id": "spell-mirror",
+        "name": "Spell Mirror",
+        "status": "reviewed-authored-operational-playtest",
+        "selectionEnabled": false,
+        "visibility": "public-source-review",
+        "sourceQuestionId": "UN-19",
+        "sourceDecisionId": "LR-UN-19",
+        "sourceReceipt": {
+          "id": "spell-mirror",
+          "name": "Spell Mirror",
+          "schools": [
+            "Universal"
+          ],
+          "status": "blocked-pending-operational-review",
+          "visibility": "public-source-review",
+          "classAccess": {
+            "Bard": {
+              "rank": 2,
+              "minimumClassLevel": 4,
+              "school": "Universal",
+              "baseRpCost": 3
+            },
+            "Cleric": {
+              "rank": 2,
+              "minimumClassLevel": 3,
+              "school": "Universal",
+              "baseRpCost": 3
+            },
+            "Mage": {
+              "rank": 2,
+              "minimumClassLevel": 3,
+              "school": "Universal",
+              "baseRpCost": 3
+            },
+            "Mirrorsage": {
+              "rank": 2,
+              "minimumClassLevel": 4,
+              "school": "Universal",
+              "baseRpCost": 3
+            },
+            "Tinker": {
+              "rank": 2,
+              "minimumClassLevel": 6,
+              "school": "Universal",
+              "baseRpCost": 3
+            },
+            "Wizard": {
+              "rank": 2,
+              "minimumClassLevel": 3,
+              "school": "Universal",
+              "baseRpCost": 3
+            },
+            "Paladin": {
+              "rank": 2,
+              "minimumClassLevel": 5,
+              "school": "Universal",
+              "baseRpCost": 3
+            }
+          },
+          "operational": null,
+          "additionalRpCost": 0,
+          "source": {
+            "catalogPath": "src/data/spells.js",
+            "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+            "catalogKey": "spell-mirror",
+            "original": {
+              "name": "Spell Mirror",
+              "level": 2,
+              "resonanceRank": 2,
+              "school": "Universal",
+              "schools": [
+                "Universal"
+              ],
+              "placements": [
+                {
+                  "name": "Spell Mirror",
+                  "school": "Universal",
+                  "level": 2,
+                  "summary": "First spell that targets you is redirected to original caster."
+                }
+              ],
+              "classLevels": {
+                "Bard": 2,
+                "Cleric": 2,
+                "Mage": 2,
+                "Mirrorsage": 2,
+                "Tinker": 2,
+                "Wizard": 2,
+                "Paladin": 2
+              },
+              "classRanks": {
+                "Bard": 2,
+                "Cleric": 2,
+                "Mage": 2,
+                "Mirrorsage": 2,
+                "Tinker": 2,
+                "Wizard": 2,
+                "Paladin": 2
+              },
+              "classLearnLevels": {
+                "Bard": 4,
+                "Cleric": 3,
+                "Mage": 3,
+                "Mirrorsage": 4,
+                "Tinker": 6,
+                "Wizard": 3,
+                "Paladin": 5
+              },
+              "classSchools": {
+                "Bard": "Universal",
+                "Cleric": "Universal",
+                "Mage": "Universal",
+                "Mirrorsage": "Universal",
+                "Tinker": "Universal",
+                "Wizard": "Universal",
+                "Paladin": "Universal"
+              },
+              "castingTime": "Not specified in current rulebook",
+              "range": "Not specified in current rulebook",
+              "components": "Not specified in current rulebook",
+              "duration": "Not specified in current rulebook",
+              "description": "First spell that targets you is redirected to original caster.",
+              "alternateSummaries": [],
+              "classes": [
+                "Bard",
+                "Cleric",
+                "Mage",
+                "Mirrorsage",
+                "Tinker",
+                "Wizard",
+                "Paladin"
+              ],
+              "status": "canon",
+              "source": "Player Rulebook \u2014 Spell Lists"
+            },
+            "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+            "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+            "coreEntries": [
+              {
+                "index": 865,
+                "original": {
+                  "school": "Universal",
+                  "level": 2,
+                  "name": "Spell Mirror",
+                  "effect": "First spell that targets you is redirected to original caster.",
+                  "source_paragraph": 10052,
+                  "casting_time": "1 action",
+                  "range": "30 feet",
+                  "duration": "Instantaneous",
+                  "components": "V, S, M/F",
+                  "resolution": "Automatic or opposed as described",
+                  "tags": [
+                    "Utility"
+                  ],
+                  "rp_cost": 3
+                }
+              }
+            ],
+            "possibleHistoricalAliases": []
+          },
+          "reviewFlags": [
+            "Core resolution requires an explicit operational interpretation",
+            "Not selectable in this spell playtest packet until individual operational review"
+          ]
+        },
+        "classAccess": {
+          "Bard": {
+            "rank": 2,
+            "minimumClassLevel": 4,
+            "school": "Universal",
+            "baseRpCost": 3
+          },
+          "Cleric": {
+            "rank": 2,
+            "minimumClassLevel": 3,
+            "school": "Universal",
+            "baseRpCost": 3
+          },
+          "Mage": {
+            "rank": 2,
+            "minimumClassLevel": 3,
+            "school": "Universal",
+            "baseRpCost": 3
+          },
+          "Mirrorsage": {
+            "rank": 2,
+            "minimumClassLevel": 4,
+            "school": "Universal",
+            "baseRpCost": 3
+          },
+          "Tinker": {
+            "rank": 2,
+            "minimumClassLevel": 6,
+            "school": "Universal",
+            "baseRpCost": 3
+          },
+          "Wizard": {
+            "rank": 2,
+            "minimumClassLevel": 3,
+            "school": "Universal",
+            "baseRpCost": 3
+          },
+          "Paladin": {
+            "rank": 2,
+            "minimumClassLevel": 5,
+            "school": "Universal",
+            "baseRpCost": 3
+          }
+        },
+        "additionalRpCost": 0,
+        "bookBindings": [
+          {
+            "spellId": "spell-mirror",
+            "catalogPlacement": {
+              "name": "Spell Mirror",
+              "school": "Universal",
+              "level": 2,
+              "summary": "First spell that targets you is redirected to original caster."
+            },
+            "currentBookRow": {
+              "line": 9794,
+              "name": "Spell Mirror",
+              "school": "Universal",
+              "level": 2,
+              "summary": "First spell that targets you is redirected to original caster.",
+              "exactText": "Spell Mirror \u2013 First spell that targets you is redirected to original caster."
+            },
+            "nameDifferencePreserved": false,
+            "summaryDifferencePreserved": false,
+            "actualDocxFile": "DescentReviewChanges/ReviewBible/books/player/Decennium_Descent_Player_Rulebook_v6.docx",
+            "actualDocxZeroBasedParagraphIndices": [
+              9558
+            ]
+          }
+        ],
+        "sourceModeBindings": [
+          {
+            "coreIndex": 865,
+            "sourceSchool": "Universal",
+            "sourceRank": 2,
+            "sourceName": "Spell Mirror",
+            "sourceCastingTime": "1 action",
+            "sourceRange": "30 feet",
+            "sourceDuration": "Instantaneous",
+            "sourceComponents": "V, S, M/F",
+            "sourceEffect": "First spell that targets you is redirected to original caster.",
+            "binding": "ASSIGNED_MODE_WITH_EXPLICIT_AUTHORING_COMPLETION"
+          }
+        ],
+        "sourceBookMentionDoesNotGrantAcquisition": true,
+        "operationalCandidate": {
+          "castingTime": "1 action",
+          "range": "Self; original Core 30-ft metadata does not place this self ward on another.",
+          "components": "V, S, M/F",
+          "targets": "Self only.",
+          "duration": "Up to 1 minute or the first eligible resolving single-target spell; no concentration.",
+          "resolution": "Automatic single redirection under LR-G14.",
+          "effect": "NEW one waiting mirror applies to the first eligible direct sole-recipient ordinary spell, beneficial or hostile. Use LR-G14\u2019s one-root/one-return protocol; no player option to save it after seeing damage or a successful attack. A countered cast never reaches interception. An attack/save not yet resolved is resolved once against the legal returned recipient with the original caster\u2019s statistics.",
+          "limitations": "No new spell cast, second damage packet, rank/RC resource transfer, area splitting or reflection loop. NEW Touch-delivered spells use LR-G14's interception/return distinction: eligible sole-recipient interception spends the ward before return consent/type eligibility is tested; an illegal or blocked return leaves the original recipient. Invalid/blocked return spends the mirror and leaves the original recipient; it does not cancel the spell for free.",
+          "numericParameters": {
+            "seconds": 60,
+            "redirects": 1
+          },
+          "costProcedure": "Use the actual acquired class grant and its preserved classAccess row for rank, minimum class level, school and base RP. Apply that class\u2019s completed casting engine, current repeat history, discounts, Dissonance surcharge and this identity\u2019s additionalRpCost; use LR-G01, LR-G02 and the explicit payload/wrapper exceptions in this card. Oracle RC is separate. Sufficient resources do not grant acquisition. Pay committed costs even on a miss, successful resistance or counter. There is no generic upcast or level scaling."
+        },
+        "sharedRuleIds": [
+          "LR-G01",
+          "LR-G02",
+          "LR-G03",
+          "LR-G04",
+          "LR-G05",
+          "LR-G06",
+          "LR-G07",
+          "LR-G08",
+          "LR-G09",
+          "LR-G10",
+          "LR-G11",
+          "LR-G12",
+          "LR-G13",
+          "LR-G14",
+          "LR-G15",
+          "LR-G16",
+          "LR-G17",
+          "LR-G18",
+          "LR-G19",
+          "LR-G20"
+        ],
+        "sourceConflicts": [],
+        "operationPrerequisites": [
+          "Actual legal access/repertoire, current source and target state, components, range/line, time and resources under the stated finite procedure; these are use-time facts, not missing source-conference questions."
+        ],
+        "authoredBoundary": {
+          "kind": "Authored expectation, not executed runtime or campaign authentication",
+          "wording": "Two mirrored casters do not bounce a ray indefinitely: the first eligible mirror redirects the root once, and the other ward does not spend on that already-redirected root."
+        },
+        "newDecisionNotice": "Every concrete target bound, resistance, unsupported metadata replacement, mode, action/clock/lifecycle detail and numerical default not printed in the preserved original is NEW source-authoring direction, never a claim that it was printed. Explicit retained clauses and LR-G KEEP rules are not rewritten.",
+        "reviewEvidence": {
+          "sourceReviewId": "LR-SOURCE-2026-10-11",
+          "exactCandidateApproval": true,
+          "catalogPromotionAuthorized": true,
+          "runtimeVerified": false,
+          "humanPlaytested": false,
+          "exactReviewId": "LRX-EXACT-2026-10-11",
+          "finalReplyId": "5ece3872-cb87-4e1c-b14b-915859f41fef",
+          "finiteCorrectionsFulfilled": [
+            "LRX-01",
+            "LRX-02",
+            "LRX-03",
+            "LRX-04",
+            "LRX-05"
+          ],
+          "fulfillmentReceipt": "docs/audit/2026-10-08/full-game/LOW_RANK_136_EXACT_FULFILLMENT.json",
+          "approvalScope": "Complete authored tabletop procedure; no complete runtime adapter or human balance claim."
+        }
+      },
+      "completeSharedRules": [
+        {
+          "id": "LR-G01",
+          "disposition": "KEEP",
+          "title": "Authority, access and cost",
+          "wording": "The selected ordinary identity and its actual classAccess row control school, rank, minimum class level and base RP. Preserve the entire classAccess object, every catalog/Core original, book binding, placeholder, absent/null distinction and additionalRpCost. Enough RP does not grant access or repertoire. An already completed explicit ordinary-spell access exception, such as the actual Druid Circle always-prepared table, retains its real acquisition/rank/preparation gates once its matching payload passes exact review. Record that particular grant and use its actual class progression/cost; do not rewrite ordinary classAccess, infer a new variant from a same-named class power, or approve a pending class feature here. Rank costs remain 0/2/3/5/7/10/13/17/21/26 for ranks 0\u20139, with the actual class engine, discounts, Dissonance surcharge and additional/maintenance costs separately applied. Oracle Revelations remain RC techniques; a same-named class, ancestry or recipe permission is not this ordinary spell. No default upcast or cantrip level scaling is added. Every direction below is authoring authority only; every existing source operational:null and pending status remains untouched until separate exact review.",
+          "sourcePaths": [
+            "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+            "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json"
+          ]
+        },
+        {
+          "id": "LR-G02",
+          "disposition": "KEEP",
+          "title": "Actual casting transaction",
+          "wording": "Use the selected source Action, Bonus Action, Reaction or longer casting time and actual V/S/F or M/F requirements. V requires the caster's own presently usable voice; recordings are not V. S and a real permitted focus obey the existing hand/access rules. Unpriced M/F permits the actual focus alternative and creates no invented costly/consumed material fee. Explicit physical substrates below are real target/work prerequisites, not inferred M costs. Observable legality is checked before commitment; hidden immunity/type/meaning does not become free diagnosis. At commitment spend the actual action/resources and update actual cast/cadence history before the existing counterspell chain; a countered, missed or resisted committed cast refunds nothing. Concentration begins under the existing rule and can end the old concentration even when the new cast is countered. Long casting uses actual uninterrupted work and governing interruption/Ready rules. No successful spell roll authenticates an asserted object, voice, teacher, corpse or world permission.",
+          "sourcePaths": [
+            "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+            "DescentReviewChanges/ReviewBible/docs/mechanics/LANGUAGE_COMMUNICATION_PLAYTEST.md"
+          ]
+        },
+        {
+          "id": "LR-G03",
+          "disposition": "KEEP",
+          "title": "Native rolls and damage",
+          "wording": "Spell attacks use the actual owner's spell attack modifier versus AC: natural 1 misses, natural 20 hits and doubles damage dice of that attack, not flat modifiers or later ticks. Saves are binary total-versus-spell-DC, with no natural-die degree shift. A specified examination is an INT (Investigation) task against the creating caster's snapshotted spell DC: use Core degrees/natural shifts, then collapse Success/Critical Success versus Failure/Critical Failure unless an entry supplies distinct outcomes. For one simultaneous area effect, snapshot geometry and eligible targets before damage, roll each stated shared damage expression once, then apply each recipient's save and actual type defenses independently. Half damage floors each typed component once at the stated save stage. Follow the existing reduction, immunity/resistance/vulnerability, temporary/form buffer, actual HP loss, Wound, death and concentration pipeline. No descriptive Damage/Healing/Control tag supplies an additional attack, damage, healing or condition.",
+          "sourcePaths": [
+            "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md",
+            "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+            "DescentReviewChanges/ReviewBible/docs/mechanics/HEALING_DEATH_PLAYTEST.md"
+          ]
+        },
+        {
+          "id": "LR-G04",
+          "disposition": "KEEP; NEW explicit use where source timing is absent",
+          "title": "Clocks",
+          "wording": "A bare hostile one-round rider ends at the end of the target's next future regular turn, excluding an in-progress turn at application; a bare self/ally one-round benefit ends at the start of the caster's next future regular turn. N hostile rounds use the Nth such target end; N buff rounds use the Nth caster start. Outside initiative, those are 6N elapsed seconds. Keep the registered clock through initiative changes using the existing virtual-clock adapter; extra turns do not create expiry/tick opportunities. A NEW duration expressed in minutes/hours below uses an absolute elapsed deadline from completed resolution, including an absolute 60-second deadline for \u201c1 minute\u201d; the one-minute means neither an extra initial tick nor reset when initiative starts. Repeated round damage expressly uses future target regular-end checkpoints and its printed finite count, not one immediate tick plus that count. End-turn ticks/repeat saves precede their scheduled end-turn expiry; start expiry precedes voluntary actions. Suppression pauses eligibility/effect, not deadlines; scheduled suppressed ticks are spent, never queued. Entries that expressly use a named trigger instead of a generic clock keep that trigger.",
+          "sourcePaths": [
+            "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+            "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md"
+          ]
+        },
+        {
+          "id": "LR-G05",
+          "disposition": "KEEP; NEW entry defaults",
+          "title": "Multiplicity, effect identity and present state",
+          "wording": "Keep the existing strongest same-stat flat bonus, same-family cover arbitration, advantage/disadvantage cancellation and one eligible bonus-die spell per roll. Independent class exceptions retain their exact scopes; this is not a universal strongest-effect rule. NEW default for these previously uncompleted spells: one active instance per caster per ordinary spell ID, unless a row expressly permits more; a successfully resolved replacement ends that caster's prior instance, but an illegal/countered attempt does not replace a nonconcentration instance. Different casters retain separate source records, clocks and restrictions; identical numeric bonuses never add. A current complete record is required for every competing effect. Instantaneous completed consequences are not active-instance stock. An entry explicitly limiting waiting triggers counts only its stated waiting state; its spent playback phase never refills or occupies a waiting slot. Continual Flame explicitly permits separate paid anchors, with only its per-anchor limit; do not impose the default one-caster limit on it. Loss, repair, transfer, suppression or a new database ID cannot renew an already consumed mark, scheduled tick, trigger, command budget or source resource. Removal of one source does not erase another's independent condition. Any change in actual target/custody state is logged; it is not a new casting.",
+          "sourcePaths": [
+            "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+            "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md"
+          ]
+        },
+        {
+          "id": "LR-G06",
+          "disposition": "KEEP; NEW one-use defaults",
+          "title": "Attack/check marks",
+          "wording": "A row expressly saying attack commitment reserves and spends its mark when the beneficiary commits a legal declared attack, before a roll; cancellation after that commitment and a miss do not refund it, while an illegal declaration that never commits does not spend it. Otherwise \u201cnext attack/check\u201d marks spend on the next actual qualifying roll, including a miss/failure; unrelated rolls and passive procedures do not consume them. Mark recipients cannot choose to save a mark for a later preferred roll. A next-hit rider spends on the first qualifying hit, even if defenses reduce its damage to zero. Multiple competing next-roll marks eligible for the same event all spend, though only permitted strongest/advantage effects operate. Suppressed marks do not benefit or consume on an event while suppressed, but their deadline continues. Delivery attacks and later attacks consuming a delivered mark are different events.",
+          "sourcePaths": [
+            "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md"
+          ]
+        },
+        {
+          "id": "LR-G07",
+          "disposition": "KEEP; NEW bounded sensory examination",
+          "title": "Sight, illusions and meaning",
+          "wording": "An image is not an opaque physical barrier, creature, material, light source, safe floor, sound receiver or extra targetable body unless its row expressly creates that thing. Ordinary hearing needs a real acoustic path; sight needs the relevant illumination, range and unobstructed view. Knowing an illusion does not grant sight through a real wall. For visual/audio deceptions below that permit examination, one Action using a currently accessible relevant sense can make the LR-G03 examination; success identifies that cast as illusory for that observer, while failure permits another examination only after genuinely new evidence or method. Conclusive witnessed physical contradiction establishes the applicable false part without a roll. An ally's warning allows examination but does not globally switch every observer to knowing. These procedures do not compel belief, pursuit, an attack, trust or a sale. Current Invisible rules remain: invisibility is not automatic Hidden; observers who know location lose only the special invisibility-derived attack advantage/disadvantage, not unrelated concealment. Language samples reproduce what was heard, not meaning or credentials. Preserve LA's six-second aggregate voluntary-speech budget per numbered round and actual component/oath windows. Spell-created sounds are not the caster's later speech, but original recording speech and the caster's V are real speech.",
+          "sourcePaths": [
+            "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+            "DescentReviewChanges/ReviewBible/docs/mechanics/LANGUAGE_COMMUNICATION_PLAYTEST.md",
+            "DescentReviewChanges/ReviewBible/docs/mechanics/CONTROL_STATES_PLAYTEST.md"
+          ]
+        },
+        {
+          "id": "LR-G08",
+          "disposition": "KEEP; NEW general perception/target defaults",
+          "title": "Range, targets and geometry",
+          "wording": "Unless a specific row explicitly uses detection without sight, select an actually perceived eligible target or point within the literal Core range and with the existing line of effect. A target can be self within a creature-target range unless the source/row restricts it. \u201cWilling\u201d means current actual consent; an unwilling holder prevents a willing-only object spell without supplying an opposed-roll workaround. Detecting some magic is not necessarily perceiving a creature for targeting it. One target means one physical identity, not every same-named database row. NEW missing cone width is its length at its far end; missing line cross-section is five feet wide and five feet high. All source radii remain radii, not distances added to cast range. Area membership/cover are evaluated from the actual origin at that event; walls are not retroactively removed for a second pass. \u201cEnemies\u201d uses the caster's declared ordinary opposition set, not a supernatural alignment/intent detector. Caster/allies are included in indiscriminate areas. No range is silently replaced by an outside game's value.",
+          "sourcePaths": [
+            "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+            "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md"
+          ]
+        },
+        {
+          "id": "LR-G09",
+          "disposition": "KEEP; NEW identified control riders",
+          "title": "Conditions and hard-control guard",
+          "wording": "Use actual Blinded, Deafened, Frightened, Prone, Restrained, Incapacitated, Paralyzed and Stunned definitions without importing another game. Paralyzed/Incapacitated and other hard Action denial obey the current source-character/target/encounter allowance shared across that owner's effects; only successfully established hard control spends it, once for the effect's full allowed window. A blocked hard portion supplies no invented substitute penalty; independently printed damage, Prone or another separately allowed portion can remain. A spell's repeat save ends only the stated source. Ending laughter, restraint or paralysis does not automatically stand a Prone target. NEW \u201cflee\u201d directions below require actual safe available movement away at the next regular-turn movement opportunity, using existing Speed/cost and leaving Actions to the target; they do not force Dash, expend a Reaction or require deliberate self-harm. If no safe farther legal location exists, no movement is forced and no action is lost. Panicked is explicitly bound only in IL-23, not added as a global condition. Haste's voluntary ending cost is separately addressed in R3-12.",
+          "sourcePaths": [
+            "DescentReviewChanges/ReviewBible/docs/mechanics/CONTROL_STATES_PLAYTEST.md",
+            "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md"
+          ]
+        },
+        {
+          "id": "LR-G10",
+          "disposition": "KEEP",
+          "title": "Movement, falls and body continuity",
+          "wording": "Ordinary movement spends real movement cost and needs nonzero permitted Speed, legal support, actual space and the appropriate locomotion mode; changing a speed or mode does not reset spent cost. A spell-directed extra movement allowance expressly stated below supplies only that finite allowance. Teleportation relocates rather than traverses, does not itself provoke opportunity attacks and does not generically defeat a source that blocks relocation; no route is inferred through planes. Check destination occupancy, whole body/gear geometry and lawful carry/load. Supplying a point is not permission to materialize inside another body. Unsupported endings, launches and lost flight use the existing FallMarker and finite falling resolution, not a new immediate damage tick. Actual transformations retain original identity, own HP/resources, spent state, origin restrictions and body/equipment priority; no new monster sheet, harvest pool, HP refill, gear duplication or size-based ability increase. Actual equipment can be melded only by the stated form procedure, stays real weight/history and is unavailable while melded.",
+          "sourcePaths": [
+            "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+            "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+            "DescentReviewChanges/ReviewBible/docs/mechanics/TRANSFORMATION_SPELL_PLAYTEST.md"
+          ]
+        },
+        {
+          "id": "LR-G11",
+          "disposition": "KEEP; NEW finite assets below",
+          "title": "Summons, corpse assets and commands",
+          "wording": "Each row supplies its actual finite body, attack and lifetime rather than importing a monster. Use printed HP/AC before any new fallback. For the NEW profiles below, creating caster's class level/PB/ability at creation fixes any printed-derived maximum; attacks and saves use that same source owner's currently lawful spell attack/PB, not a transferee's or a monster's sheet. Unless stated, saves add owner's PB, ordinary ability/skill checks add 0, normal vision only, no special damage or condition immunity, no independent equipment proficiency or spellcasting. One such spell-created asset per caster per spell ID; the existing total companion/control budget still binds. Creation grants no free attack or movement. A command uses one Bonus Action on the owner's regular turn through actual visible/audible communication within 60 ft; no telepathy is invented. It acts in the attached phase after that whole turn, shares the owner's one command and one offensive companion/device allowance per numbered round, and has no independent refresh on extra turns. Uncommanded it can only ordinary Dodge and make defensive movement within speed; no automatic pursuit, work or offense. Loss of the channel means no new command, not free autonomy. A complete task needs its real appendages, capacity, instructions and paid time. At 0 HP, expiry, source dismissal (Action) or concentration end where required, the asset ends; summoned apparatus disappears without loot, corpses, ammunition, harvest or salvage. An actual corpse used as fuel retains its original finite matter/history and the stated terminal consumption; no source can reclassify it as newly obtained material. Keep Ranger's genuinely ordinary animal remains distinct from no-resource summons.",
+          "sourcePaths": [
+            "DescentReviewChanges/ReviewBible/docs/mechanics/CREATURE_LIFECYCLE_PLAYTEST.md",
+            "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+            "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md"
+          ]
+        },
+        {
+          "id": "LR-G12",
+          "disposition": "KEEP; NEW finite wards/triggers",
+          "title": "Suppression and trigger ordering",
+          "wording": "An ongoing magical object's target stays the same physical anchor; transfer or repair cannot duplicate/rearm it. Full magical suppression prevents sensing/operation while it lasts and does not queue missed triggers; duration continues. An acoustic silence can block only sound independently of a physically detected trigger. Resolve simultaneous eligible one-shot triggers in creation order then stable cast ID. Consume a triggered use before its payload, even when a later barrier, silence, immunity, cancellation or receiver state prevents useful output. A sound produced by another real spell can be a phonetic trigger if all actual constraints match, but each waiting trigger resolves at most once and cannot recreate itself or another charge. Source death/distance ends a nonconcentration effect only where the source/row says so; it does not refresh it. Suppression does not undo already completed mundane writing, moved matter, healing, damage or superficial preparation. An explicit persistent permanent spell remains a magical effect, not a manufactured item or free rechargeable device.",
+          "sourcePaths": [
+            "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+            "DescentReviewChanges/ReviewBible/docs/mechanics/LANGUAGE_COMMUNICATION_PLAYTEST.md"
+          ]
+        },
+        {
+          "id": "LR-G13",
+          "disposition": "NEW spell-specific wrapper family; existing costs/cadence kept",
+          "title": "Copying, acceleration, delay and proxies",
+          "wording": "Cantrip Echo, Echo Cast, Quick Cast and Delay Spell are the only new wrapper identities authorized here. None may take itself or any of those four as payload, nor may an already echoed/released payload become a replay source. One payload may receive at most one of these temporal/replay modifications; they do not duplicate Ready or grant an additional Bonus Action, Reaction or full Action. Existing acquired class permissions remain their own exceptions, not automatically folded into this family. Select the actual original casting record, same ordinary source class and native legal access; only that spell's normal Action version with one finite resolution is eligible, excluding long casts, Reactions, Bonus Action spells and ongoing maintenance actions. Repeating a miss or resisted but fully resolved cast permits a fresh legal cast, not copying its damage result; a countered or aborted original is not a replay source. New targets/range/components and current costs/statistics must qualify at the new commitment. No active rider, successful roll, other caster's access, expended item charge or selected resource award is copied for free. Cantrip Echo's row defines one composite ordinary-cast transaction; Echo Cast/Quick Cast/Delay Spell instead have their separately paid arming transactions and later actual payload commitments. Record parent, wrapper, payload, cost, original owner and single-use consumption. No zero-base-cost replay recursively generates resource refunds or unearned casts. A legal fresh payload still resolves its own actual damage and expressly funded healing; this guard prevents copied old awards and recursive new-cast/refund grants, not the payload\u2019s specified new outcome. Resonance Tether changes a legitimate delivery origin only, never the responsible caster or their RP/RC pool.",
+          "sourcePaths": [
+            "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+            "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md"
+          ]
+        },
+        {
+          "id": "LR-G14",
+          "disposition": "KEEP; NEW two-spell redirection family",
+          "title": "Reflection without a new cast",
+          "wording": "Spell Mirror and Soul Mirror intercept only the first actually resolving ordinary spell effect that has exactly their warded creature as its sole direct creature recipient, beneficial or hostile. Area, multitarget, self-only, anchor/object, summoning, channel/ongoing tick and already redirected effects are ineligible. NEW interception/return distinction: a Touch-delivered, healing or willing-recipient spell is eligible for interception when it satisfies the foregoing sole-recipient and scope requirements. The original caster's eligibility to receive the return, including actual consent and creature-type requirements, is tested only after that eligible ward has been spent. An ineligible original caster therefore causes a spent, unsuccessful return and leaves the original recipient, exactly as below. A legal Touch return uses this explicit magical return, not a new physical touch or Action. No rank cap is added; actual protective exceptions can still forbid redirection. After counterspell resolution but before that spell's attack/save/effect, spend the ward once and substitute the original actual caster as recipient only when it is presently a legal recipient under the payload's own type/other eligibility. The original caster remains owner and supplies DC/attack roll and costs; this creates no new casting, resources or second packet. An ineligible original caster causes the spent redirection to fail and the original spell continues against its original warded target, not automatic cancellation. An eligible redirected attack can miss normally; spend is not refunded. The original targeting distance has already been established; the explicit return uses that same causal cast, with return line blocked by an actual barrier defeating the return path, not arbitrary remote range extension. A blocked return likewise leaves the original target. A causal root can be redirected at most once by these two spells; another mirror on the new target neither redirects it again nor consumes its ward. Duplicate wards on the original target arbitrate earliest creation then stable ID; only the selected ward spends. These are NEW finite interpretations of \u201cfirst/single-target spell,\u201d not permissions for Wizard/Oracle or other reflected-damage features to use this protocol.",
+          "sourcePaths": [
+            "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+            "DescentReviewChanges/ReviewBible/docs/mechanics/DAMAGE_SHARING_PLAYTEST.md"
+          ]
+        },
+        {
+          "id": "LR-G15",
+          "disposition": "KEEP; NEW bounded drain/decay scopes",
+          "title": "Necrotic damage, healing, corpses and restrictions",
+          "wording": "Actual damage and healing follow completed Core and feat procedures. No ordinary necrotic spell gains Bleeding, disease, Oracle Decay, a curse, corpse fuel, a soul resource or a healing prohibition by name/tag. A drain's specific permitted funding is stated in its row; an unfunded heal/RP transfer cannot be manufactured from overkill, a reflected packet, an already paid award, target transfer, current permission overriding no-resource origin, or a temporary body. Existing Lifedraw, Vampiric Touch, Lifeleech, Necrotic Affinity, Soul Cage feat and class drains keep their own nonidentical source predicates; the new drain restrictions are not retrospective amendments to them. Actual independently eligible acquired feats can respond once under their completed source rules, never a second time to the resulting heal/resource transfer. A corpse interface uses actual dead identity and retained memory; it does not establish an afterlife, soul custody, truth beyond memory or current thoughts. Preserve actual death/removal clocks, condition and no-resource restrictions through stabilization, question, animation and return. A later paid question cannot retrieve information the old remains never retained; fragments are one donor history, not separate minds.",
+          "sourcePaths": [
+            "DescentReviewChanges/ReviewBible/docs/mechanics/HEALING_DEATH_PLAYTEST.md",
+            "DescentReviewChanges/ReviewBible/docs/mechanics/CREATURE_LIFECYCLE_PLAYTEST.md",
+            "DescentReviewChanges/ReviewBible/docs/mechanics/BUFFER_FEAT_PLAYTEST.md",
+            "DescentReviewChanges/ReviewBible/docs/mechanics/LANGUAGE_COMMUNICATION_PLAYTEST.md"
+          ]
+        },
+        {
+          "id": "LR-G16",
+          "disposition": "KEEP; NEW bounded physical work choices",
+          "title": "Real matter, preparations and economy",
+          "wording": "A spell moving or reshaping real matter retains the actual predecessor quantity, material, contents, owner, damage and consumed/harvest history. Count retained mass and disposed matter once. It does not change source tier, named ingredient eligibility, equipment grade, formula knowledge, rarity, assigned value, an old recovery claim or an apparatus's paid service/charges. Cosmetic temperature/color/shape does not sterilize food, undo spoilage, neutralize a poison or supply a professional crafting result. Explicit elementary structures allowed below still need real support and dimensions; no unknown material or hidden load-bearing property is authenticated by the spell. A genuine subsequently usable mundane item can enter only its actual existing rules and finite market; no automatic sale price, buyer, XP or crafting-output multiplication. Fulfilled 687/433 recipe and NWX/LA procedures remain controlling.",
+          "sourcePaths": [
+            "DescentReviewChanges/ReviewBible/docs/mechanics/CRAFTING_HARVEST_PLAYTEST.md",
+            "DescentReviewChanges/ReviewBible/docs/mechanics/ADVANCED_CRAFT_CANDIDATE_GUIDE.md",
+            "DescentReviewChanges/ReviewBible/docs/mechanics/LANGUAGE_COMMUNICATION_PLAYTEST.md"
+          ]
+        },
+        {
+          "id": "LR-G17",
+          "disposition": "KEEP; NEW duration-bearing authoring default",
+          "title": "Concentration and early termination",
+          "wording": "Where a row says concentration, it occupies the one actual concentration slot, ends under the completed damage-save/incapacitation rules and can be ended voluntarily under that rule; no new per-round maintenance RP is imposed. A source explicitly printing concentration keeps it even when an independent rider ends sooner. NEW voluntary early termination for a nonconcentration instance authored below requires the original caster's Action and actual perception of its anchor/recipient within that spell's original range; no remote recall or refund. Instant completed consequences cannot be voluntarily reversed. Named permanent Until Dispelled effects have no general voluntary end from this default; use their own source or actual dispel. Invalid physical continued operation removes only what can no longer function; full destruction of a required anchor ends its anchored instance. No repaired anchor is a new instance.",
+          "sourcePaths": [
+            "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md"
+          ]
+        },
+        {
+          "id": "LR-G18",
+          "disposition": "KEEP; NEW exact source-mode binding",
+          "title": "Aliases and unassigned variants",
+          "wording": "Uncontrollable Laughter uses the matching historical Tasha's Hideous Laughter Core metadata only through the explicit IL-18 binding; Resonance Tether analogously uses Mana Tether through UN-13. Preserve both historical names, exact effects and alias records without adding separate ordinary identities. Prestidigitation's two actual school modes are independently specified in IL-06 and selected by the cast's actual access row. Phantasmal Force rank 3, Stone Shape rank 4 and Mislead rank 5 remain preserved unassigned alternative records: no current classAccess row acquires those higher-rank modes, no chooser can buy them by paying more RP, and no new question or ordinary promotion is invented for them. The assigned lower-rank modes receive complete directions. Echo Cast's Core \u201cbase RP\u201d is the chosen operational reading of its catalog's broader shorthand. Soul Tap's catalog HP AND Resonance selects the joint operation explicitly. Unravel Spell's \u201cTier 4\u201d means the generating ordinary spell's rank\u22644, not material/equipment/creature tier. All differences stay beside unchanged competing source fields.",
+          "sourcePaths": [
+            "docs/audit/2026-10-08/full-game/LOW_RANK_SPELL_FILE_HANDOFF_PREPARATION.json"
+          ]
+        },
+        {
+          "id": "LR-G19",
+          "disposition": "KEEP",
+          "title": "Audience and comparison records",
+          "wording": "All 137 selected ordinary identities and 141 original book bindings remain preserved internally; public teaching uses only actual public fields and the resulting operational mode when later exactly reviewed. A source mention does not publish a private dossier, class membership, material source or hidden research metadata. The 54 full selected class comparisons and 114 distinct spell counterparts retain their actual IDs, resource engines, windows and statuses; matching names/words do not merge any of them. Pending feats and spell comparisons stay pending. The eight submitted proposals are separately disposed below as source directions, not adopted by their mere inclusion. No change to the fulfilled language, teaching or recipe authority is required by these ordinary directions.",
+          "sourcePaths": [
+            "docs/audit/2026-10-08/full-game/LANGUAGE_EXACT_FULFILLMENT.json"
+          ]
+        },
+        {
+          "id": "LR-G20",
+          "disposition": "KEEP receipt-only setting scope",
+          "title": "Delivery and deferred receipts",
+          "wording": "R3-04 Blink is receipt-only: retain its full original and question, current pending operational state and literal setting references; author no plane itinerary, probability, reappearance/body procedure or promotion. Other incidental literal names, including Silent Ones, Heartcell, Matrix, Voice and deep-language terms when present, remain source receipts without interpretation. Local portals/teleports below are explicitly local procedures, not a decision about cosmology. Source authority here does not certify gameplay runtime, human teaching/balance, bestiary/acquisition availability, DD01 or final systemic consistency. Owner's final whole-game flow precedes an authorized GitHub push; verified remote commit precedes careful cosmology review. No deletion/push is authorized.",
+          "sourcePaths": [
+            "docs/audit/2026-10-08/full-game/LOW_RANK_SPELL_FILE_HANDOFF_V3_SCOPE.md"
+          ]
+        }
+      ],
+      "indexEntry": {
+        "id": "spell-mirror",
+        "name": "Spell Mirror",
+        "authoredStatus": "reviewed-authored-operational-playtest",
+        "procedureFile": "candidate_low_rank_136.json",
+        "procedurePointer": "/spells/44/operationalCandidate",
+        "wholeCardPointer": "/spells/44",
+        "sharedRulesPointer": "/sharedRules",
+        "manuscript": "candidate_low_rank_136.md",
+        "reviewId": "LRX-EXACT-2026-10-11",
+        "runtimeSelectionEnabled": false
+      }
+    },
+    "comparison": "Keep LR-G14 ordinary-only scope and single original-root return; new Spell Turning additionally names actual spell-tagged rank-bearing class casts only within its own proposed procedure. No free cast, double charge or mirror recursion."
+  },
+  {
+    "ordinarySource": {
+      "spellId": "soul-mirror",
+      "source": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/candidate_low_rank_136.json",
+        "bytes": 1664654,
+        "sha256": "506393b1131e3ed099effbe55b05d6b00a5193e503b02f065a5f84751a2955fe"
+      },
+      "pointer": "/spells/124",
+      "completeCurrentCard": {
+        "id": "soul-mirror",
+        "name": "Soul Mirror",
+        "status": "reviewed-authored-operational-playtest",
+        "selectionEnabled": false,
+        "visibility": "public-source-review",
+        "sourceQuestionId": "R3-09",
+        "sourceDecisionId": "LR-R3-09",
+        "sourceReceipt": {
+          "id": "soul-mirror",
+          "name": "Soul Mirror",
+          "schools": [
+            "Necromancy"
+          ],
+          "status": "blocked-pending-operational-review",
+          "visibility": "public-source-review",
+          "classAccess": {
+            "Cleric": {
+              "rank": 3,
+              "minimumClassLevel": 5,
+              "school": "Necromancy",
+              "baseRpCost": 5
+            },
+            "Crimson Agent": {
+              "rank": 3,
+              "minimumClassLevel": 8,
+              "school": "Necromancy",
+              "baseRpCost": 5
+            },
+            "Druid": {
+              "rank": 3,
+              "minimumClassLevel": 5,
+              "school": "Necromancy",
+              "baseRpCost": 5
+            },
+            "Shaman": {
+              "rank": 3,
+              "minimumClassLevel": 7,
+              "school": "Necromancy",
+              "baseRpCost": 5
+            },
+            "Thief": {
+              "rank": 3,
+              "minimumClassLevel": 13,
+              "school": "Necromancy",
+              "baseRpCost": 5
+            },
+            "Wizard": {
+              "rank": 3,
+              "minimumClassLevel": 5,
+              "school": "Necromancy",
+              "baseRpCost": 5
+            }
+          },
+          "operational": null,
+          "additionalRpCost": 0,
+          "source": {
+            "catalogPath": "src/data/spells.js",
+            "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+            "catalogKey": "soul-mirror",
+            "original": {
+              "name": "Soul Mirror",
+              "level": 3,
+              "resonanceRank": 3,
+              "school": "Necromancy",
+              "schools": [
+                "Necromancy"
+              ],
+              "placements": [
+                {
+                  "name": "Soul Mirror",
+                  "school": "Necromancy",
+                  "level": 3,
+                  "summary": "Reflects single target spell; once only."
+                }
+              ],
+              "classLevels": {
+                "Cleric": 3,
+                "Crimson Agent": 3,
+                "Druid": 3,
+                "Shaman": 3,
+                "Thief": 3,
+                "Wizard": 3
+              },
+              "classRanks": {
+                "Cleric": 3,
+                "Crimson Agent": 3,
+                "Druid": 3,
+                "Shaman": 3,
+                "Thief": 3,
+                "Wizard": 3
+              },
+              "classLearnLevels": {
+                "Cleric": 5,
+                "Crimson Agent": 8,
+                "Druid": 5,
+                "Shaman": 7,
+                "Thief": 13,
+                "Wizard": 5
+              },
+              "classSchools": {
+                "Cleric": "Necromancy",
+                "Crimson Agent": "Necromancy",
+                "Druid": "Necromancy",
+                "Shaman": "Necromancy",
+                "Thief": "Necromancy",
+                "Wizard": "Necromancy"
+              },
+              "castingTime": "Not specified in current rulebook",
+              "range": "Not specified in current rulebook",
+              "components": "Not specified in current rulebook",
+              "duration": "Not specified in current rulebook",
+              "description": "Reflects single target spell; once only.",
+              "alternateSummaries": [],
+              "classes": [
+                "Cleric",
+                "Crimson Agent",
+                "Druid",
+                "Shaman",
+                "Thief",
+                "Wizard"
+              ],
+              "status": "canon",
+              "source": "Player Rulebook \u2014 Spell Lists"
+            },
+            "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+            "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+            "coreEntries": [
+              {
+                "index": 667,
+                "original": {
+                  "school": "Necromancy",
+                  "level": 3,
+                  "name": "Soul Mirror",
+                  "effect": "Reflects single target spell; once only.",
+                  "source_paragraph": 9806,
+                  "casting_time": "1 action",
+                  "range": "60 feet",
+                  "duration": "Instantaneous",
+                  "components": "V, S, M/F",
+                  "resolution": "Automatic or opposed as described",
+                  "tags": [
+                    "Utility"
+                  ],
+                  "rp_cost": 5
+                }
+              }
+            ],
+            "possibleHistoricalAliases": []
+          },
+          "reviewFlags": [
+            "Core resolution requires an explicit operational interpretation",
+            "Not selectable in this spell playtest packet until individual operational review"
+          ]
+        },
+        "classAccess": {
+          "Cleric": {
+            "rank": 3,
+            "minimumClassLevel": 5,
+            "school": "Necromancy",
+            "baseRpCost": 5
+          },
+          "Crimson Agent": {
+            "rank": 3,
+            "minimumClassLevel": 8,
+            "school": "Necromancy",
+            "baseRpCost": 5
+          },
+          "Druid": {
+            "rank": 3,
+            "minimumClassLevel": 5,
+            "school": "Necromancy",
+            "baseRpCost": 5
+          },
+          "Shaman": {
+            "rank": 3,
+            "minimumClassLevel": 7,
+            "school": "Necromancy",
+            "baseRpCost": 5
+          },
+          "Thief": {
+            "rank": 3,
+            "minimumClassLevel": 13,
+            "school": "Necromancy",
+            "baseRpCost": 5
+          },
+          "Wizard": {
+            "rank": 3,
+            "minimumClassLevel": 5,
+            "school": "Necromancy",
+            "baseRpCost": 5
+          }
+        },
+        "additionalRpCost": 0,
+        "bookBindings": [
+          {
+            "spellId": "soul-mirror",
+            "catalogPlacement": {
+              "name": "Soul Mirror",
+              "school": "Necromancy",
+              "level": 3,
+              "summary": "Reflects single target spell; once only."
+            },
+            "currentBookRow": {
+              "line": 9548,
+              "name": "Soul Mirror",
+              "school": "Necromancy",
+              "level": 3,
+              "summary": "Reflects single target spell; once only.",
+              "exactText": "Soul Mirror \u2013 Reflects single target spell; once only."
+            },
+            "summaryDifferencePreserved": false,
+            "actualDocxFile": "DescentReviewChanges/ReviewBible/books/player/Decennium_Descent_Player_Rulebook_v6.docx",
+            "actualDocxZeroBasedParagraphIndices": [
+              9312
+            ]
+          }
+        ],
+        "sourceModeBindings": [
+          {
+            "coreIndex": 667,
+            "sourceSchool": "Necromancy",
+            "sourceRank": 3,
+            "sourceName": "Soul Mirror",
+            "sourceCastingTime": "1 action",
+            "sourceRange": "60 feet",
+            "sourceDuration": "Instantaneous",
+            "sourceComponents": "V, S, M/F",
+            "sourceEffect": "Reflects single target spell; once only.",
+            "binding": "ASSIGNED_MODE_WITH_EXPLICIT_AUTHORING_COMPLETION"
+          }
+        ],
+        "sourceBookMentionDoesNotGrantAcquisition": true,
+        "operationalCandidate": {
+          "castingTime": "1 action",
+          "range": "60 feet",
+          "components": "V, S, M/F",
+          "targets": "One willing creature within 60 ft, including self.",
+          "duration": "Up to1 minute or one eligible spell redirection; no concentration.",
+          "resolution": "Automatic one-shot LR-G14 reflection, no additional Reaction.",
+          "effect": "NEW protect the chosen actual recipient from the first eligible resolving sole-target ordinary spell, beneficial or hostile, with the same finite return-to-original-caster and one-causal-root protocol as Spell Mirror. The ward\u2019s60-ft cast range establishes the recipient; later transfer/distance does not retarget it to another body. Countered payloads do not consume it; an invalid return spends it and leaves the original spell recipient.",
+          "limitations": "No soul custody, area immunity, nonspell class-power reflection, extra cast, borrowed caster ability, RP/refund or reflected-result duplicate. The original payload retains its actual concentration owner and any successfully established child effects on the legal returned target; no concentration slot is lent by the ward.",
+          "numericParameters": {
+            "rangeFeet": 60,
+            "seconds": 60,
+            "redirects": 1
+          },
+          "costProcedure": "Use the actual acquired class grant and its preserved classAccess row for rank, minimum class level, school and base RP. Apply that class\u2019s completed casting engine, current repeat history, discounts, Dissonance surcharge and this identity\u2019s additionalRpCost; use LR-G01, LR-G02 and the explicit payload/wrapper exceptions in this card. Oracle RC is separate. Sufficient resources do not grant acquisition. Pay committed costs even on a miss, successful resistance or counter. There is no generic upcast or level scaling."
+        },
+        "sharedRuleIds": [
+          "LR-G01",
+          "LR-G02",
+          "LR-G03",
+          "LR-G04",
+          "LR-G05",
+          "LR-G06",
+          "LR-G07",
+          "LR-G08",
+          "LR-G09",
+          "LR-G10",
+          "LR-G11",
+          "LR-G12",
+          "LR-G13",
+          "LR-G14",
+          "LR-G15",
+          "LR-G16",
+          "LR-G17",
+          "LR-G18",
+          "LR-G19",
+          "LR-G20"
+        ],
+        "sourceConflicts": [],
+        "operationPrerequisites": [
+          "Actual legal access/repertoire, current source and target state, components, range/line, time and resources under the stated finite procedure; these are use-time facts, not missing source-conference questions."
+        ],
+        "authoredBoundary": {
+          "kind": "Authored expectation, not executed runtime or campaign authentication",
+          "wording": "If a legally returned concentration spell establishes a rider on its original caster, that caster still owns and must maintain that concentration. Soul Mirror does not become its caster or hold it for them."
+        },
+        "newDecisionNotice": "Every concrete target bound, resistance, unsupported metadata replacement, mode, action/clock/lifecycle detail and numerical default not printed in the preserved original is NEW source-authoring direction, never a claim that it was printed. Explicit retained clauses and LR-G KEEP rules are not rewritten.",
+        "reviewEvidence": {
+          "sourceReviewId": "LR-SOURCE-2026-10-11",
+          "exactCandidateApproval": true,
+          "catalogPromotionAuthorized": true,
+          "runtimeVerified": false,
+          "humanPlaytested": false,
+          "exactReviewId": "LRX-EXACT-2026-10-11",
+          "finalReplyId": "5ece3872-cb87-4e1c-b14b-915859f41fef",
+          "finiteCorrectionsFulfilled": [
+            "LRX-01",
+            "LRX-02",
+            "LRX-03",
+            "LRX-04",
+            "LRX-05"
+          ],
+          "fulfillmentReceipt": "docs/audit/2026-10-08/full-game/LOW_RANK_136_EXACT_FULFILLMENT.json",
+          "approvalScope": "Complete authored tabletop procedure; no complete runtime adapter or human balance claim."
+        }
+      },
+      "completeSharedRules": [
+        {
+          "id": "LR-G01",
+          "disposition": "KEEP",
+          "title": "Authority, access and cost",
+          "wording": "The selected ordinary identity and its actual classAccess row control school, rank, minimum class level and base RP. Preserve the entire classAccess object, every catalog/Core original, book binding, placeholder, absent/null distinction and additionalRpCost. Enough RP does not grant access or repertoire. An already completed explicit ordinary-spell access exception, such as the actual Druid Circle always-prepared table, retains its real acquisition/rank/preparation gates once its matching payload passes exact review. Record that particular grant and use its actual class progression/cost; do not rewrite ordinary classAccess, infer a new variant from a same-named class power, or approve a pending class feature here. Rank costs remain 0/2/3/5/7/10/13/17/21/26 for ranks 0\u20139, with the actual class engine, discounts, Dissonance surcharge and additional/maintenance costs separately applied. Oracle Revelations remain RC techniques; a same-named class, ancestry or recipe permission is not this ordinary spell. No default upcast or cantrip level scaling is added. Every direction below is authoring authority only; every existing source operational:null and pending status remains untouched until separate exact review.",
+          "sourcePaths": [
+            "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+            "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json"
+          ]
+        },
+        {
+          "id": "LR-G02",
+          "disposition": "KEEP",
+          "title": "Actual casting transaction",
+          "wording": "Use the selected source Action, Bonus Action, Reaction or longer casting time and actual V/S/F or M/F requirements. V requires the caster's own presently usable voice; recordings are not V. S and a real permitted focus obey the existing hand/access rules. Unpriced M/F permits the actual focus alternative and creates no invented costly/consumed material fee. Explicit physical substrates below are real target/work prerequisites, not inferred M costs. Observable legality is checked before commitment; hidden immunity/type/meaning does not become free diagnosis. At commitment spend the actual action/resources and update actual cast/cadence history before the existing counterspell chain; a countered, missed or resisted committed cast refunds nothing. Concentration begins under the existing rule and can end the old concentration even when the new cast is countered. Long casting uses actual uninterrupted work and governing interruption/Ready rules. No successful spell roll authenticates an asserted object, voice, teacher, corpse or world permission.",
+          "sourcePaths": [
+            "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+            "DescentReviewChanges/ReviewBible/docs/mechanics/LANGUAGE_COMMUNICATION_PLAYTEST.md"
+          ]
+        },
+        {
+          "id": "LR-G03",
+          "disposition": "KEEP",
+          "title": "Native rolls and damage",
+          "wording": "Spell attacks use the actual owner's spell attack modifier versus AC: natural 1 misses, natural 20 hits and doubles damage dice of that attack, not flat modifiers or later ticks. Saves are binary total-versus-spell-DC, with no natural-die degree shift. A specified examination is an INT (Investigation) task against the creating caster's snapshotted spell DC: use Core degrees/natural shifts, then collapse Success/Critical Success versus Failure/Critical Failure unless an entry supplies distinct outcomes. For one simultaneous area effect, snapshot geometry and eligible targets before damage, roll each stated shared damage expression once, then apply each recipient's save and actual type defenses independently. Half damage floors each typed component once at the stated save stage. Follow the existing reduction, immunity/resistance/vulnerability, temporary/form buffer, actual HP loss, Wound, death and concentration pipeline. No descriptive Damage/Healing/Control tag supplies an additional attack, damage, healing or condition.",
+          "sourcePaths": [
+            "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md",
+            "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+            "DescentReviewChanges/ReviewBible/docs/mechanics/HEALING_DEATH_PLAYTEST.md"
+          ]
+        },
+        {
+          "id": "LR-G04",
+          "disposition": "KEEP; NEW explicit use where source timing is absent",
+          "title": "Clocks",
+          "wording": "A bare hostile one-round rider ends at the end of the target's next future regular turn, excluding an in-progress turn at application; a bare self/ally one-round benefit ends at the start of the caster's next future regular turn. N hostile rounds use the Nth such target end; N buff rounds use the Nth caster start. Outside initiative, those are 6N elapsed seconds. Keep the registered clock through initiative changes using the existing virtual-clock adapter; extra turns do not create expiry/tick opportunities. A NEW duration expressed in minutes/hours below uses an absolute elapsed deadline from completed resolution, including an absolute 60-second deadline for \u201c1 minute\u201d; the one-minute means neither an extra initial tick nor reset when initiative starts. Repeated round damage expressly uses future target regular-end checkpoints and its printed finite count, not one immediate tick plus that count. End-turn ticks/repeat saves precede their scheduled end-turn expiry; start expiry precedes voluntary actions. Suppression pauses eligibility/effect, not deadlines; scheduled suppressed ticks are spent, never queued. Entries that expressly use a named trigger instead of a generic clock keep that trigger.",
+          "sourcePaths": [
+            "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+            "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md"
+          ]
+        },
+        {
+          "id": "LR-G05",
+          "disposition": "KEEP; NEW entry defaults",
+          "title": "Multiplicity, effect identity and present state",
+          "wording": "Keep the existing strongest same-stat flat bonus, same-family cover arbitration, advantage/disadvantage cancellation and one eligible bonus-die spell per roll. Independent class exceptions retain their exact scopes; this is not a universal strongest-effect rule. NEW default for these previously uncompleted spells: one active instance per caster per ordinary spell ID, unless a row expressly permits more; a successfully resolved replacement ends that caster's prior instance, but an illegal/countered attempt does not replace a nonconcentration instance. Different casters retain separate source records, clocks and restrictions; identical numeric bonuses never add. A current complete record is required for every competing effect. Instantaneous completed consequences are not active-instance stock. An entry explicitly limiting waiting triggers counts only its stated waiting state; its spent playback phase never refills or occupies a waiting slot. Continual Flame explicitly permits separate paid anchors, with only its per-anchor limit; do not impose the default one-caster limit on it. Loss, repair, transfer, suppression or a new database ID cannot renew an already consumed mark, scheduled tick, trigger, command budget or source resource. Removal of one source does not erase another's independent condition. Any change in actual target/custody state is logged; it is not a new casting.",
+          "sourcePaths": [
+            "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+            "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md"
+          ]
+        },
+        {
+          "id": "LR-G06",
+          "disposition": "KEEP; NEW one-use defaults",
+          "title": "Attack/check marks",
+          "wording": "A row expressly saying attack commitment reserves and spends its mark when the beneficiary commits a legal declared attack, before a roll; cancellation after that commitment and a miss do not refund it, while an illegal declaration that never commits does not spend it. Otherwise \u201cnext attack/check\u201d marks spend on the next actual qualifying roll, including a miss/failure; unrelated rolls and passive procedures do not consume them. Mark recipients cannot choose to save a mark for a later preferred roll. A next-hit rider spends on the first qualifying hit, even if defenses reduce its damage to zero. Multiple competing next-roll marks eligible for the same event all spend, though only permitted strongest/advantage effects operate. Suppressed marks do not benefit or consume on an event while suppressed, but their deadline continues. Delivery attacks and later attacks consuming a delivered mark are different events.",
+          "sourcePaths": [
+            "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md"
+          ]
+        },
+        {
+          "id": "LR-G07",
+          "disposition": "KEEP; NEW bounded sensory examination",
+          "title": "Sight, illusions and meaning",
+          "wording": "An image is not an opaque physical barrier, creature, material, light source, safe floor, sound receiver or extra targetable body unless its row expressly creates that thing. Ordinary hearing needs a real acoustic path; sight needs the relevant illumination, range and unobstructed view. Knowing an illusion does not grant sight through a real wall. For visual/audio deceptions below that permit examination, one Action using a currently accessible relevant sense can make the LR-G03 examination; success identifies that cast as illusory for that observer, while failure permits another examination only after genuinely new evidence or method. Conclusive witnessed physical contradiction establishes the applicable false part without a roll. An ally's warning allows examination but does not globally switch every observer to knowing. These procedures do not compel belief, pursuit, an attack, trust or a sale. Current Invisible rules remain: invisibility is not automatic Hidden; observers who know location lose only the special invisibility-derived attack advantage/disadvantage, not unrelated concealment. Language samples reproduce what was heard, not meaning or credentials. Preserve LA's six-second aggregate voluntary-speech budget per numbered round and actual component/oath windows. Spell-created sounds are not the caster's later speech, but original recording speech and the caster's V are real speech.",
+          "sourcePaths": [
+            "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+            "DescentReviewChanges/ReviewBible/docs/mechanics/LANGUAGE_COMMUNICATION_PLAYTEST.md",
+            "DescentReviewChanges/ReviewBible/docs/mechanics/CONTROL_STATES_PLAYTEST.md"
+          ]
+        },
+        {
+          "id": "LR-G08",
+          "disposition": "KEEP; NEW general perception/target defaults",
+          "title": "Range, targets and geometry",
+          "wording": "Unless a specific row explicitly uses detection without sight, select an actually perceived eligible target or point within the literal Core range and with the existing line of effect. A target can be self within a creature-target range unless the source/row restricts it. \u201cWilling\u201d means current actual consent; an unwilling holder prevents a willing-only object spell without supplying an opposed-roll workaround. Detecting some magic is not necessarily perceiving a creature for targeting it. One target means one physical identity, not every same-named database row. NEW missing cone width is its length at its far end; missing line cross-section is five feet wide and five feet high. All source radii remain radii, not distances added to cast range. Area membership/cover are evaluated from the actual origin at that event; walls are not retroactively removed for a second pass. \u201cEnemies\u201d uses the caster's declared ordinary opposition set, not a supernatural alignment/intent detector. Caster/allies are included in indiscriminate areas. No range is silently replaced by an outside game's value.",
+          "sourcePaths": [
+            "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+            "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md"
+          ]
+        },
+        {
+          "id": "LR-G09",
+          "disposition": "KEEP; NEW identified control riders",
+          "title": "Conditions and hard-control guard",
+          "wording": "Use actual Blinded, Deafened, Frightened, Prone, Restrained, Incapacitated, Paralyzed and Stunned definitions without importing another game. Paralyzed/Incapacitated and other hard Action denial obey the current source-character/target/encounter allowance shared across that owner's effects; only successfully established hard control spends it, once for the effect's full allowed window. A blocked hard portion supplies no invented substitute penalty; independently printed damage, Prone or another separately allowed portion can remain. A spell's repeat save ends only the stated source. Ending laughter, restraint or paralysis does not automatically stand a Prone target. NEW \u201cflee\u201d directions below require actual safe available movement away at the next regular-turn movement opportunity, using existing Speed/cost and leaving Actions to the target; they do not force Dash, expend a Reaction or require deliberate self-harm. If no safe farther legal location exists, no movement is forced and no action is lost. Panicked is explicitly bound only in IL-23, not added as a global condition. Haste's voluntary ending cost is separately addressed in R3-12.",
+          "sourcePaths": [
+            "DescentReviewChanges/ReviewBible/docs/mechanics/CONTROL_STATES_PLAYTEST.md",
+            "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md"
+          ]
+        },
+        {
+          "id": "LR-G10",
+          "disposition": "KEEP",
+          "title": "Movement, falls and body continuity",
+          "wording": "Ordinary movement spends real movement cost and needs nonzero permitted Speed, legal support, actual space and the appropriate locomotion mode; changing a speed or mode does not reset spent cost. A spell-directed extra movement allowance expressly stated below supplies only that finite allowance. Teleportation relocates rather than traverses, does not itself provoke opportunity attacks and does not generically defeat a source that blocks relocation; no route is inferred through planes. Check destination occupancy, whole body/gear geometry and lawful carry/load. Supplying a point is not permission to materialize inside another body. Unsupported endings, launches and lost flight use the existing FallMarker and finite falling resolution, not a new immediate damage tick. Actual transformations retain original identity, own HP/resources, spent state, origin restrictions and body/equipment priority; no new monster sheet, harvest pool, HP refill, gear duplication or size-based ability increase. Actual equipment can be melded only by the stated form procedure, stays real weight/history and is unavailable while melded.",
+          "sourcePaths": [
+            "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+            "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+            "DescentReviewChanges/ReviewBible/docs/mechanics/TRANSFORMATION_SPELL_PLAYTEST.md"
+          ]
+        },
+        {
+          "id": "LR-G11",
+          "disposition": "KEEP; NEW finite assets below",
+          "title": "Summons, corpse assets and commands",
+          "wording": "Each row supplies its actual finite body, attack and lifetime rather than importing a monster. Use printed HP/AC before any new fallback. For the NEW profiles below, creating caster's class level/PB/ability at creation fixes any printed-derived maximum; attacks and saves use that same source owner's currently lawful spell attack/PB, not a transferee's or a monster's sheet. Unless stated, saves add owner's PB, ordinary ability/skill checks add 0, normal vision only, no special damage or condition immunity, no independent equipment proficiency or spellcasting. One such spell-created asset per caster per spell ID; the existing total companion/control budget still binds. Creation grants no free attack or movement. A command uses one Bonus Action on the owner's regular turn through actual visible/audible communication within 60 ft; no telepathy is invented. It acts in the attached phase after that whole turn, shares the owner's one command and one offensive companion/device allowance per numbered round, and has no independent refresh on extra turns. Uncommanded it can only ordinary Dodge and make defensive movement within speed; no automatic pursuit, work or offense. Loss of the channel means no new command, not free autonomy. A complete task needs its real appendages, capacity, instructions and paid time. At 0 HP, expiry, source dismissal (Action) or concentration end where required, the asset ends; summoned apparatus disappears without loot, corpses, ammunition, harvest or salvage. An actual corpse used as fuel retains its original finite matter/history and the stated terminal consumption; no source can reclassify it as newly obtained material. Keep Ranger's genuinely ordinary animal remains distinct from no-resource summons.",
+          "sourcePaths": [
+            "DescentReviewChanges/ReviewBible/docs/mechanics/CREATURE_LIFECYCLE_PLAYTEST.md",
+            "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+            "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md"
+          ]
+        },
+        {
+          "id": "LR-G12",
+          "disposition": "KEEP; NEW finite wards/triggers",
+          "title": "Suppression and trigger ordering",
+          "wording": "An ongoing magical object's target stays the same physical anchor; transfer or repair cannot duplicate/rearm it. Full magical suppression prevents sensing/operation while it lasts and does not queue missed triggers; duration continues. An acoustic silence can block only sound independently of a physically detected trigger. Resolve simultaneous eligible one-shot triggers in creation order then stable cast ID. Consume a triggered use before its payload, even when a later barrier, silence, immunity, cancellation or receiver state prevents useful output. A sound produced by another real spell can be a phonetic trigger if all actual constraints match, but each waiting trigger resolves at most once and cannot recreate itself or another charge. Source death/distance ends a nonconcentration effect only where the source/row says so; it does not refresh it. Suppression does not undo already completed mundane writing, moved matter, healing, damage or superficial preparation. An explicit persistent permanent spell remains a magical effect, not a manufactured item or free rechargeable device.",
+          "sourcePaths": [
+            "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+            "DescentReviewChanges/ReviewBible/docs/mechanics/LANGUAGE_COMMUNICATION_PLAYTEST.md"
+          ]
+        },
+        {
+          "id": "LR-G13",
+          "disposition": "NEW spell-specific wrapper family; existing costs/cadence kept",
+          "title": "Copying, acceleration, delay and proxies",
+          "wording": "Cantrip Echo, Echo Cast, Quick Cast and Delay Spell are the only new wrapper identities authorized here. None may take itself or any of those four as payload, nor may an already echoed/released payload become a replay source. One payload may receive at most one of these temporal/replay modifications; they do not duplicate Ready or grant an additional Bonus Action, Reaction or full Action. Existing acquired class permissions remain their own exceptions, not automatically folded into this family. Select the actual original casting record, same ordinary source class and native legal access; only that spell's normal Action version with one finite resolution is eligible, excluding long casts, Reactions, Bonus Action spells and ongoing maintenance actions. Repeating a miss or resisted but fully resolved cast permits a fresh legal cast, not copying its damage result; a countered or aborted original is not a replay source. New targets/range/components and current costs/statistics must qualify at the new commitment. No active rider, successful roll, other caster's access, expended item charge or selected resource award is copied for free. Cantrip Echo's row defines one composite ordinary-cast transaction; Echo Cast/Quick Cast/Delay Spell instead have their separately paid arming transactions and later actual payload commitments. Record parent, wrapper, payload, cost, original owner and single-use consumption. No zero-base-cost replay recursively generates resource refunds or unearned casts. A legal fresh payload still resolves its own actual damage and expressly funded healing; this guard prevents copied old awards and recursive new-cast/refund grants, not the payload\u2019s specified new outcome. Resonance Tether changes a legitimate delivery origin only, never the responsible caster or their RP/RC pool.",
+          "sourcePaths": [
+            "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+            "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md"
+          ]
+        },
+        {
+          "id": "LR-G14",
+          "disposition": "KEEP; NEW two-spell redirection family",
+          "title": "Reflection without a new cast",
+          "wording": "Spell Mirror and Soul Mirror intercept only the first actually resolving ordinary spell effect that has exactly their warded creature as its sole direct creature recipient, beneficial or hostile. Area, multitarget, self-only, anchor/object, summoning, channel/ongoing tick and already redirected effects are ineligible. NEW interception/return distinction: a Touch-delivered, healing or willing-recipient spell is eligible for interception when it satisfies the foregoing sole-recipient and scope requirements. The original caster's eligibility to receive the return, including actual consent and creature-type requirements, is tested only after that eligible ward has been spent. An ineligible original caster therefore causes a spent, unsuccessful return and leaves the original recipient, exactly as below. A legal Touch return uses this explicit magical return, not a new physical touch or Action. No rank cap is added; actual protective exceptions can still forbid redirection. After counterspell resolution but before that spell's attack/save/effect, spend the ward once and substitute the original actual caster as recipient only when it is presently a legal recipient under the payload's own type/other eligibility. The original caster remains owner and supplies DC/attack roll and costs; this creates no new casting, resources or second packet. An ineligible original caster causes the spent redirection to fail and the original spell continues against its original warded target, not automatic cancellation. An eligible redirected attack can miss normally; spend is not refunded. The original targeting distance has already been established; the explicit return uses that same causal cast, with return line blocked by an actual barrier defeating the return path, not arbitrary remote range extension. A blocked return likewise leaves the original target. A causal root can be redirected at most once by these two spells; another mirror on the new target neither redirects it again nor consumes its ward. Duplicate wards on the original target arbitrate earliest creation then stable ID; only the selected ward spends. These are NEW finite interpretations of \u201cfirst/single-target spell,\u201d not permissions for Wizard/Oracle or other reflected-damage features to use this protocol.",
+          "sourcePaths": [
+            "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+            "DescentReviewChanges/ReviewBible/docs/mechanics/DAMAGE_SHARING_PLAYTEST.md"
+          ]
+        },
+        {
+          "id": "LR-G15",
+          "disposition": "KEEP; NEW bounded drain/decay scopes",
+          "title": "Necrotic damage, healing, corpses and restrictions",
+          "wording": "Actual damage and healing follow completed Core and feat procedures. No ordinary necrotic spell gains Bleeding, disease, Oracle Decay, a curse, corpse fuel, a soul resource or a healing prohibition by name/tag. A drain's specific permitted funding is stated in its row; an unfunded heal/RP transfer cannot be manufactured from overkill, a reflected packet, an already paid award, target transfer, current permission overriding no-resource origin, or a temporary body. Existing Lifedraw, Vampiric Touch, Lifeleech, Necrotic Affinity, Soul Cage feat and class drains keep their own nonidentical source predicates; the new drain restrictions are not retrospective amendments to them. Actual independently eligible acquired feats can respond once under their completed source rules, never a second time to the resulting heal/resource transfer. A corpse interface uses actual dead identity and retained memory; it does not establish an afterlife, soul custody, truth beyond memory or current thoughts. Preserve actual death/removal clocks, condition and no-resource restrictions through stabilization, question, animation and return. A later paid question cannot retrieve information the old remains never retained; fragments are one donor history, not separate minds.",
+          "sourcePaths": [
+            "DescentReviewChanges/ReviewBible/docs/mechanics/HEALING_DEATH_PLAYTEST.md",
+            "DescentReviewChanges/ReviewBible/docs/mechanics/CREATURE_LIFECYCLE_PLAYTEST.md",
+            "DescentReviewChanges/ReviewBible/docs/mechanics/BUFFER_FEAT_PLAYTEST.md",
+            "DescentReviewChanges/ReviewBible/docs/mechanics/LANGUAGE_COMMUNICATION_PLAYTEST.md"
+          ]
+        },
+        {
+          "id": "LR-G16",
+          "disposition": "KEEP; NEW bounded physical work choices",
+          "title": "Real matter, preparations and economy",
+          "wording": "A spell moving or reshaping real matter retains the actual predecessor quantity, material, contents, owner, damage and consumed/harvest history. Count retained mass and disposed matter once. It does not change source tier, named ingredient eligibility, equipment grade, formula knowledge, rarity, assigned value, an old recovery claim or an apparatus's paid service/charges. Cosmetic temperature/color/shape does not sterilize food, undo spoilage, neutralize a poison or supply a professional crafting result. Explicit elementary structures allowed below still need real support and dimensions; no unknown material or hidden load-bearing property is authenticated by the spell. A genuine subsequently usable mundane item can enter only its actual existing rules and finite market; no automatic sale price, buyer, XP or crafting-output multiplication. Fulfilled 687/433 recipe and NWX/LA procedures remain controlling.",
+          "sourcePaths": [
+            "DescentReviewChanges/ReviewBible/docs/mechanics/CRAFTING_HARVEST_PLAYTEST.md",
+            "DescentReviewChanges/ReviewBible/docs/mechanics/ADVANCED_CRAFT_CANDIDATE_GUIDE.md",
+            "DescentReviewChanges/ReviewBible/docs/mechanics/LANGUAGE_COMMUNICATION_PLAYTEST.md"
+          ]
+        },
+        {
+          "id": "LR-G17",
+          "disposition": "KEEP; NEW duration-bearing authoring default",
+          "title": "Concentration and early termination",
+          "wording": "Where a row says concentration, it occupies the one actual concentration slot, ends under the completed damage-save/incapacitation rules and can be ended voluntarily under that rule; no new per-round maintenance RP is imposed. A source explicitly printing concentration keeps it even when an independent rider ends sooner. NEW voluntary early termination for a nonconcentration instance authored below requires the original caster's Action and actual perception of its anchor/recipient within that spell's original range; no remote recall or refund. Instant completed consequences cannot be voluntarily reversed. Named permanent Until Dispelled effects have no general voluntary end from this default; use their own source or actual dispel. Invalid physical continued operation removes only what can no longer function; full destruction of a required anchor ends its anchored instance. No repaired anchor is a new instance.",
+          "sourcePaths": [
+            "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md"
+          ]
+        },
+        {
+          "id": "LR-G18",
+          "disposition": "KEEP; NEW exact source-mode binding",
+          "title": "Aliases and unassigned variants",
+          "wording": "Uncontrollable Laughter uses the matching historical Tasha's Hideous Laughter Core metadata only through the explicit IL-18 binding; Resonance Tether analogously uses Mana Tether through UN-13. Preserve both historical names, exact effects and alias records without adding separate ordinary identities. Prestidigitation's two actual school modes are independently specified in IL-06 and selected by the cast's actual access row. Phantasmal Force rank 3, Stone Shape rank 4 and Mislead rank 5 remain preserved unassigned alternative records: no current classAccess row acquires those higher-rank modes, no chooser can buy them by paying more RP, and no new question or ordinary promotion is invented for them. The assigned lower-rank modes receive complete directions. Echo Cast's Core \u201cbase RP\u201d is the chosen operational reading of its catalog's broader shorthand. Soul Tap's catalog HP AND Resonance selects the joint operation explicitly. Unravel Spell's \u201cTier 4\u201d means the generating ordinary spell's rank\u22644, not material/equipment/creature tier. All differences stay beside unchanged competing source fields.",
+          "sourcePaths": [
+            "docs/audit/2026-10-08/full-game/LOW_RANK_SPELL_FILE_HANDOFF_PREPARATION.json"
+          ]
+        },
+        {
+          "id": "LR-G19",
+          "disposition": "KEEP",
+          "title": "Audience and comparison records",
+          "wording": "All 137 selected ordinary identities and 141 original book bindings remain preserved internally; public teaching uses only actual public fields and the resulting operational mode when later exactly reviewed. A source mention does not publish a private dossier, class membership, material source or hidden research metadata. The 54 full selected class comparisons and 114 distinct spell counterparts retain their actual IDs, resource engines, windows and statuses; matching names/words do not merge any of them. Pending feats and spell comparisons stay pending. The eight submitted proposals are separately disposed below as source directions, not adopted by their mere inclusion. No change to the fulfilled language, teaching or recipe authority is required by these ordinary directions.",
+          "sourcePaths": [
+            "docs/audit/2026-10-08/full-game/LANGUAGE_EXACT_FULFILLMENT.json"
+          ]
+        },
+        {
+          "id": "LR-G20",
+          "disposition": "KEEP receipt-only setting scope",
+          "title": "Delivery and deferred receipts",
+          "wording": "R3-04 Blink is receipt-only: retain its full original and question, current pending operational state and literal setting references; author no plane itinerary, probability, reappearance/body procedure or promotion. Other incidental literal names, including Silent Ones, Heartcell, Matrix, Voice and deep-language terms when present, remain source receipts without interpretation. Local portals/teleports below are explicitly local procedures, not a decision about cosmology. Source authority here does not certify gameplay runtime, human teaching/balance, bestiary/acquisition availability, DD01 or final systemic consistency. Owner's final whole-game flow precedes an authorized GitHub push; verified remote commit precedes careful cosmology review. No deletion/push is authorized.",
+          "sourcePaths": [
+            "docs/audit/2026-10-08/full-game/LOW_RANK_SPELL_FILE_HANDOFF_V3_SCOPE.md"
+          ]
+        }
+      ],
+      "indexEntry": {
+        "id": "soul-mirror",
+        "name": "Soul Mirror",
+        "authoredStatus": "reviewed-authored-operational-playtest",
+        "procedureFile": "candidate_low_rank_136.json",
+        "procedurePointer": "/spells/124/operationalCandidate",
+        "wholeCardPointer": "/spells/124",
+        "sharedRulesPointer": "/sharedRules",
+        "manuscript": "candidate_low_rank_136.md",
+        "reviewId": "LRX-EXACT-2026-10-11",
+        "runtimeSelectionEnabled": false
+      }
+    },
+    "comparison": "Keep LR-G14 ordinary-only scope and single original-root return; new Spell Turning additionally names actual spell-tagged rank-bearing class casts only within its own proposed procedure. No free cast, double charge or mirror recursion."
+  }
+]

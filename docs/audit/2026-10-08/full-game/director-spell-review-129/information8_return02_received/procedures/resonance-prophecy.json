@@ -1,0 +1,147 @@
+{
+  "id": "resonance-prophecy",
+  "spellId": "resonance-prophecy",
+  "name": "Resonance Prophecy",
+  "status": "DIRECTOR_SELECTED_PROPOSED_PENDING_INDEPENDENT_EXACT_ACCEPTANCE",
+  "completeNativeSourceAndAccess": {
+    "id": "resonance-prophecy",
+    "name": "Resonance Prophecy",
+    "schools": [
+      "Divination"
+    ],
+    "status": "blocked-pending-operational-review",
+    "visibility": "public-source-review",
+    "classAccess": {
+      "Cleric": {
+        "rank": 6,
+        "minimumClassLevel": 11,
+        "school": "Divination",
+        "baseRpCost": 13
+      },
+      "Mirrorsage": {
+        "rank": 6,
+        "minimumClassLevel": 16,
+        "school": "Divination",
+        "baseRpCost": 13
+      },
+      "Shaman": {
+        "rank": 6,
+        "minimumClassLevel": 16,
+        "school": "Divination",
+        "baseRpCost": 13
+      },
+      "Wizard": {
+        "rank": 6,
+        "minimumClassLevel": 11,
+        "school": "Divination",
+        "baseRpCost": 13
+      }
+    },
+    "operational": null,
+    "additionalRpCost": 0,
+    "source": {
+      "catalogPath": "src/data/spells.js",
+      "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+      "catalogKey": "resonance-prophecy",
+      "original": {
+        "name": "Resonance Prophecy",
+        "level": 6,
+        "resonanceRank": 6,
+        "school": "Divination",
+        "schools": [
+          "Divination"
+        ],
+        "placements": [
+          {
+            "name": "Resonance Prophecy",
+            "school": "Divination",
+            "level": 6,
+            "summary": "Predict all spell effects in an area for the next minute."
+          }
+        ],
+        "classLevels": {
+          "Cleric": 6,
+          "Mirrorsage": 6,
+          "Shaman": 6,
+          "Wizard": 6
+        },
+        "classRanks": {
+          "Cleric": 6,
+          "Mirrorsage": 6,
+          "Shaman": 6,
+          "Wizard": 6
+        },
+        "classLearnLevels": {
+          "Cleric": 11,
+          "Mirrorsage": 16,
+          "Shaman": 16,
+          "Wizard": 11
+        },
+        "classSchools": {
+          "Cleric": "Divination",
+          "Mirrorsage": "Divination",
+          "Shaman": "Divination",
+          "Wizard": "Divination"
+        },
+        "castingTime": "Not specified in current rulebook",
+        "range": "Not specified in current rulebook",
+        "components": "Not specified in current rulebook",
+        "duration": "Not specified in current rulebook",
+        "description": "Predict all spell effects in an area for the next minute.",
+        "alternateSummaries": [],
+        "classes": [
+          "Cleric",
+          "Mirrorsage",
+          "Shaman",
+          "Wizard"
+        ],
+        "status": "canon",
+        "source": "Player Rulebook — Spell Lists"
+      },
+      "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+      "coreEntries": [
+        {
+          "index": 279,
+          "original": {
+            "school": "Divination",
+            "level": 6,
+            "name": "Resonance Prophecy",
+            "effect": "Predict all spell effects in an area for the next minute.",
+            "source_paragraph": 9324,
+            "casting_time": "1 action",
+            "range": "60 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Resonance"
+            ],
+            "rp_cost": 13
+          }
+        }
+      ],
+      "possibleHistoricalAliases": []
+    },
+    "reviewFlags": [
+      "Core resolution requires an explicit operational interpretation",
+      "Not selectable in this spell playtest packet until individual operational review"
+    ]
+  },
+  "completeOriginalProcedureUnchanged": "KEEP the strong source promise to predict ALL spell effects in an area for the next minute, Action,60feet and V/S/F. SOURCE COMPLETION: Core calls this Instantaneous although the promise spans a minute. NEW propose an ongoing nonconcentration information field lasting60 elapsed seconds: a fixed20-foot-radius sphere centered at a perceived point within60feet/line of effect. The caster is its sole information recipient and must remain within60feet of that center with line of effect to it to receive an event; leaving stops reception, not the source clock. Origin-to-effect line of effect clips the readable area, so the field cannot survey effects behind solid total cover. This consciously implements advance warning of committed/pending effects, not an immutable list of all future voluntary choices. The difference requires explicit joint review; the original promise and Instantaneous field remain preserved verbatim.\n\nOn establishment, give a private forecast of ALL already established ongoing spell effects with a readable local portion that can affect this area during the next minute, including their actual still-pending scheduled occurrences. There is no numerical spell count or guessed rank ceiling: rank0 and higher actual spell sources are included, subject to actual information defenses. State their readable current local footprints and source-defined upcoming effects/timing. Where future occurrence depends on upkeep, movement, a future trigger or unresolved choice, state that actual condition rather than guarantee it. This grants no retrospective inventory of already ended casts and no new detection of dormant items, intrinsic creature traits, ordinary class engines or nonspell hazards. A class ability with an actual spell interface can qualify through that interface; calling an ability magical is insufficient.\n\nDuring the window, NEW deliver a warning whenever an actual committed spell has declared an effect whose current chosen or source-defined potential footprint intersects the readable area. At ordinary cast commitment, deliver the notice after legal costs/components/choices and exact cast-start hooks commit but before the existing Counterspell window resolves. For a prepared Ready spell whose later destination was not fixed at preparation, notify its actual preparation only insofar as current declared effects can affect the area, then notify the later real release/target choice when fixed; release is not a new cast or Counterspell window. A cast committed elsewhere that later has an actual locally arriving projectile/effect produces its local notice immediately before that effect's first local resolution, not a retroactive opportunity to counter the completed cast. Actual changes to already committed choices send one update only when material local consequences change. An unchosen future spell cannot be identified before anyone commits it.\n\nA notice contains the actual readable spell/effect identity and generating rank/school, the local area/trajectory, its declared mechanical damage/condition/creation/control categories and ordinary remaining save/attack/random resolution, plus when that committed effect is next due locally. Describe source-defined dice and conditional rider predicates; never roll them early, reveal a future face or declare hit/miss before actual resolution. A random later arc is forecast as the real potential arc procedure until its legal targets are actually fixed. Full information within this scope can warn of a hidden or silent spell, but grants no independent current location/identity of a remote caster, secret target roster, private choices not yet made, remaining resource balance or upstream provenance search. Local unprotected spell footprints can reveal an attached location by ordinary inference; that still is not actual sight of the creature and does not grant legal targeting against an unseen caster.\n\nActual defenses independently limit protected identity, footprint or other fields; meaningful readable parts remain, with Indeterminate for protected/undefined fields and no diagnostic of the reason. A defense that hides the existence of the whole local spell can prevent the whole notice. The field does not transform a specifically hidden effect into a public signal for everyone nearby. Recipients may communicate only through ordinary available means. Multiple identical Prophecy fields/overlapping portions use the same actual cast/application/event identity: one notice per material state to that caster, not several chances to reroll or extract different hidden answers. A separately established recipient can receive their own permitted reading, without creating extra source casts or outcomes.\n\nNo Action, Reaction, free movement, Counterspell attempt, advantage, damage prevention or RP refund is granted by a warning. A caster can spend an already available legally triggered Reaction; ordinary Counterspell still requires perception of the actual creature casting within its real range/line of effect, components, actual source access and its own payment/check. Advance knowledge of a fire area does not itself allow off-turn escape or counter an already finished cast. If another real interrupt negates the pending spell, its conditional warning remains an honest statement of what had been committed; no predicted damage is forced to occur. If a spell changes because of a genuine allowed interrupt, respect that actual change instead of compelling the earlier prediction.\n\nSuppression blocks readings while the original60-second deadline and every observed effect's own clock continue. Lost warnings are not queued. NEW on return or reentry into the reception range, provide the currently remaining prospective schedule for still-live readable spell effects, without past results, expired warnings or another copy of already received unchanged information. The field cannot predict its own earlier creation; it may report later genuinely committed other Prophecy casts through the same finite event procedure without recursive prophecy events, since receiving information is not casting a spell. One live field per caster; a successful new cast replaces the old field with a new paid minute, never resets other effects. Expiry, actual removal or caster death ends it. The proposal supplies a useful complete warning stream within the explicit field/defense boundary; it neither claims complete temporal-runtime support nor decides future actors' agency.",
+  "procedure": "KEEP the strong source promise to predict ALL spell effects in an area for the next minute, Action,60feet and V/S/F. SOURCE COMPLETION: Core calls this Instantaneous although the promise spans a minute. NEW propose an ongoing nonconcentration information field lasting60 elapsed seconds: a fixed20-foot-radius sphere centered at a perceived point within60feet/line of effect. The caster is its sole information recipient and must remain within60feet of that center with line of effect to it to receive an event; leaving stops reception, not the source clock. Origin-to-effect line of effect clips the readable area, so the field cannot survey effects behind solid total cover. This consciously implements advance warning of committed/pending effects, not an immutable list of all future voluntary choices. The difference requires explicit joint review; the original promise and Instantaneous field remain preserved verbatim.\n\nOn establishment, give a private forecast of ALL already established ongoing spell effects with a readable local portion that can affect this area during the next minute, including their actual still-pending scheduled occurrences. There is no numerical spell count or guessed rank ceiling: rank0 and higher actual spell sources are included, subject to actual information defenses. State their readable current local footprints and source-defined upcoming effects/timing. Where future occurrence depends on upkeep, movement, a future trigger or unresolved choice, state that actual condition rather than guarantee it. This grants no retrospective inventory of already ended casts and no new detection of dormant items, intrinsic creature traits, ordinary class engines or nonspell hazards. A class ability with an actual spell interface can qualify through that interface; calling an ability magical is insufficient.\n\nDuring the window, NEW deliver a warning whenever an actual committed spell has declared an effect whose current chosen or source-defined potential footprint intersects the readable area. At ordinary cast commitment, deliver the notice after legal costs/components/choices and exact cast-start hooks commit but before the existing Counterspell window resolves. For a prepared Ready spell whose later destination was not fixed at preparation, notify its actual preparation only insofar as current declared effects can affect the area, then notify the later real release/target choice when fixed; release is not a new cast or Counterspell window. A cast committed elsewhere with a previously declared eligible local footprint warns at that actual commitment while this field is operative. A genuinely later arrival produces a first notice only when no earlier eligible warning existed under the real timeline/readability/field conditions; unchanged arrival is not a new warning or counter window. Actual changes to already committed choices send one update only when material local consequences change. An unchosen future spell cannot be identified before anyone commits it.\n\nA notice contains the actual readable spell/effect identity and generating rank/school, the local area/trajectory, its declared mechanical damage/condition/creation/control categories and ordinary remaining save/attack/random resolution, plus when that committed effect is next due locally. Describe source-defined dice and conditional rider predicates; never roll them early, reveal a future face or declare hit/miss before actual resolution. A random later arc is forecast as the real potential arc procedure until its legal targets are actually fixed. Full information within this scope can warn of a hidden or silent spell, but grants no independent current location/identity of a remote caster, secret target roster, private choices not yet made, remaining resource balance or upstream provenance search. Local unprotected spell footprints can reveal an attached location by ordinary inference; that still is not actual sight of the creature and does not grant legal targeting against an unseen caster.\n\nActual defenses independently limit protected identity, footprint or other fields; meaningful readable parts remain, with Indeterminate for protected/undefined fields and no diagnostic of the reason. A defense that hides the existence of the whole local spell can prevent the whole notice. The field does not transform a specifically hidden effect into a public signal for everyone nearby. Recipients may communicate only through ordinary available means. Multiple identical Prophecy fields/overlapping portions use the same actual cast/application/event identity: one notice per material state to that caster, not several chances to reroll or extract different hidden answers. A separately established recipient can receive their own permitted reading, without creating extra source casts or outcomes.\n\nNo Action, Reaction, free movement, Counterspell attempt, advantage, damage prevention or RP refund is granted by a warning. A caster can spend an already available legally triggered Reaction; ordinary Counterspell still requires perception of the actual creature casting within its real range/line of effect, components, actual source access and its own payment/check. Advance knowledge of a fire area does not itself allow off-turn escape or counter an already finished cast. If another real interrupt negates the pending spell, its conditional warning remains an honest statement of what had been committed; no predicted damage is forced to occur. If a spell changes because of a genuine allowed interrupt, respect that actual change instead of compelling the earlier prediction.\n\nSuppression blocks readings while the original60-second deadline and every observed effect's own clock continue. Lost warnings are not queued. NEW on return or reentry into the reception range, provide the currently remaining prospective schedule for still-live readable spell effects, without past results, expired warnings or another copy of already received unchanged information. The field cannot predict its own earlier creation; it may report later genuinely committed other Prophecy casts through the same finite event procedure without recursive prophecy events, since receiving information is not casting a spell. One live field per caster; a successful new cast replaces the old field with a new paid minute, never resets other effects. Expiry, actual removal or caster death ends it. The proposal supplies a useful complete warning stream within the explicit field/defense boundary; it neither claims complete temporal-runtime support nor decides future actors' agency.\n\nINFO131-PROPHECY: Explicit director selection of a substantive NEW replacement: adopt the finite nonconcentration60sec/20ft-radius committed-effect warning field instead of a complete instantaneous immutable forecast of all unchosen future spells. The complete native ALL-next-minute promise and original proposal remain preserved; this is not described as recovered native wording or full future prediction. Every actually eligible readable spell/rank is included without count/rank cap.\nNEW component loci: the fixed center is this information source's emitter anchor; actual suppression of that anchor blocks the field stream, while peripheral local suppression clips only that readable portion. The original caster's receiving body is a separate discrete reception component; its actual suppression blocks receipt without ending an otherwise live remote field. All original clocks continue. On resumption reconcile still-live prospective schedules once per real unchanged application/event identity; no missed arrival or expired warning is queued or replayed.\nA commitment whose declared/source-defined potential footprint already intersects the active readable field is warned THEN, regardless of caster distance. Later local arrival does not issue a new notice for an unchanged previously declared footprint; only a genuine material update or newly readable still-pending source can require an update. Flavor projectile imagery supplies no travel duration. The exact original late-flying-projectile positive remains conditional if no native flight provider exists. The complete real instantaneous Fireball and real Acid Arrow delayed-rider/Ready branches are distinctly labeled demonstrations, never proof of an unprinted moving projectile. Ready preparation and actual later target release retain their real cast/Reaction/concentration history; release is not another cast/counter window.\n\nINFO131-RETURN02: Audit every actual eligible committed spell, including recipient-own and nested Counterspell. Its source-defined termination locus is the pending selected caster/application, never an invented area along a range line. Notice reception is not another spell and does not recurse. For an actual Ready preparation with no fixed local target, warn the genuinely established local possibility and state that its chosen local footprint is unresolved; do not disclose upstream caster position/identity, its private maximum-range envelope, owner marker or other source-private configuration. Still-pending actual expiry timing may be stated without naming its owner. Fixed release supplies its actual readable local footprint once. All range/LoE/readability gates are physical, not trueflags unsupported by the actual geometry.",
+  "source": {
+    "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_rank6.json",
+    "bytes": 4968334,
+    "sha256": "095250c06edfe01460e78a71ee5dc12f081814a6b77dc0e5009d485c28a2cb14"
+  },
+  "pointer": "/records/4",
+  "sharedRuleIds": [
+    "INFO131-CAST",
+    "INFO131-CLOCK",
+    "INFO131-VIEW",
+    "INFO131-IDENTITY",
+    "INFO131-SUPPRESSION",
+    "INFO131-EVIDENCE"
+  ]
+}

@@ -1,0 +1,201 @@
+# 13: pain threshold current HP (not temp), and later legitimate above100 healing.
+s=make('R7M-13-A','power-word-pain','NormalHP threshold excludes temporaryHP from eligibility',positions=[(30,0,0)])
+s.s['actors']['T']['tempHP']=0 # no unexplained temporary HP grant; qualifying 94 remains.
+s.seal();s.E(1,'Pay',lambda x:cast(x,'C','power-word-pain','PAIN',conc=True))
+def pain(x):
+    eligible=x['actors']['T']['HP']<=100
+    q=roll(x,'T','WIS',7,17)
+    establish(x,'PAIN','power-word-pain',recipient='T')
+    condition(x,'T','PainHalf','PAIN',61.1)
+    condition(x,'T','PainAttackCheckDisadvantage','PAIN',61.1)
+    return {'privateHPAdmission':eligible,'save':q,'hardGuardSpent':False,'noDamage':True}
+s.E(1.1,'Actual94HP passes admission; WIS fails',pain)
+s.E(3.1,'Target can still spend actual Action on Dodge and walk15feet',lambda x:(spend(x,'T','action'),x['actors']['T'].update(position=[45,0,0],movementSpent=15),{'Speed':15,'noActionDenial':True})[-1])
+s.E(4,'Ending WIS is not itself penalized by Pain',lambda x:(end_effect(x,'PAIN','successful WIS'),{'save':roll(x,'T','WIS',8,17),'saveDisadvantage':False})[-1])
+finish(s)
+
+d15=druid_def('Bear');d15.update(classLevel=15,totalLevel=15,maxHp=108,hpConstruction='d8/CON2:10+14*7=108',maxRp=classes['druid']['rpByClassLevel'][14])
+d15['shiftUses']=5;d15['bufferReserve']=14
+d15['formSource']='Actual prior Moon Bear BA consumed one of6 uses and20 of34 finite buffer; original shift deadline599. No Beast Spells18. Legitimate Moon healing1RP/d8 remains.'
+d15['acquisition']='Druid15 genuine class progress, Moon at5, independent actual second Arch can be specified but is not invoked; no new creature CR.'
+s=make('R7M-13-B','power-word-pain','Healing above100 is not an ending predicate')
+s.defs['T']=copy.deepcopy(d15);s.s['actors']['T']=act(d15,(30,0,0),start=-3,end=4);s.s['actors']['T']['HP']=99
+s.seal();s.E(1,'Commit',lambda x:cast(x,'C','power-word-pain','PAIN',conc=True))
+s.E(1.1,'99 normalHP qualifies despite20 actual form tempHP',pain)
+def healup(x):
+    a=x['actors']['T'];spend(x,'T','bonusAction');a['RP']-=1;a['HP']+=8
+    return {'source':'Actual Moon combat healing','d8':8,'RPpaid':1,'normalHP':107,'PainStillLive':True,'sourceDoesNotUseSpellComponents':True}
+s.E(3.1,'Paid source-qualified healing moves above100',healup)
+s.E(4,'Original ending save fails; threshold is not rechecked',lambda x:{'save':roll(x,'T','WIS',7,17),'HP':107,'stillPain':True})
+s.E(6.1,'Creator ends concentration; neitherHP nor paid healing rewound',lambda x:end_effect(x,'PAIN','voluntary ending'))
+p=finish(s)
+s=make('R7M-13-B-HIGH','power-word-pain','Hidden over100 eligibility consumes legal apparent attempt without diagnosis')
+s.defs['T']=copy.deepcopy(d15);s.s['actors']['T']=act(d15,(30,0,0),start=-3,end=4);s.s['actors']['T']['HP']=101
+s.seal();s.E(1,'Apparent legal target; caster does not know normalHP',lambda x:cast(x,'C','power-word-pain','PAIN',conc=True))
+def no_pain(x):
+    resolved(x,'PAIN');x['actors']['C']['concentration']=None
+    return {'actualEligibility':False,'initialSaveRolled':False,'publicFailureReason':None,'RPRefund':0,'targetUnchanged':True}
+s.E(1.1,'Private current HP101 fails; no target rider',no_pain)
+branch(s,p)
+save(W/'case_checkpoint_05.json',cases)
+print("mains",len(cases))
+
+STDOUT/STDERR
+mains 26
+
+Analyzed
+Python
+# 14A: current actual Enchantment acquisition, remote ordinary two-channel perception.
+s=make('R7M-14-A','project-image','Remote sight AND hearing, but no remote casting origin',extra=['charm-person'],positions=[(70,0,0)])
+s.geometry.update(imageInitial=[60,0,0],range=120,actualImageToCasterLoE=True,
+    information={'ordinarySign':'EXIT','targetActualUtterance':'The gate is open','notCredentialsOrPrivateThoughts':True})
+s.seal();s.E(1,'Enchantment route at actual Wizard13; pay17 and concentration',lambda x:cast(x,'C','project-image','PI',conc=True))
+def projectinit(x):
+    establish(x,'PI','project-image',schoolProfile='Enchantment',pose=[60,0,0],feed='ordinary sight AND hearing',activeChannel='remote',silentImage=True)
+    x['privateKnowledge']['C']={'currentSight':['real EXIT sign','actual T at70'],'currentHearing':['The gate is open'],'localSightAndHearingReplaced':True}
+    return {'imageIsCreature':False,'castingOrigin':'actual C body only'}
+s.E(1.1,'Actual visible/audible local scene reaches caster through image',projectinit)
+s.E(7,'Actual START6: one control Action moves the image along a known clear30ft path',lambda x:(spend(x,'C','action'),x['effects']['PI'].update(pose=[90,0,0]),{'path':[[60,0,0],[90,0,0]],'tether':90,'noRealCargo':True})[-1])
+# Actual Charm Person range in this project is60; place subject beyond that but within image senses.
+s.E(9.1,'T spends20ft actual ordinary movement to90',lambda x:x['actors']['T'].update(position=[90,5,0],movementSpent=21))
+s.E(13,'Perceived subject at90 cannot be reached by actual60ft Charm Person from C',lambda x:{
+    'actualSpell':'charm-person','actualRange':60,'perceptionObtained':True,'newOriginPermission':False,
+    'commitment':False,'ActionStillAvailable':x['actors']['C']['action'],'RPStill':x['actors']['C']['RP']},
+    {'targetBodyMinimumDistance':87.5,'pointRange':'invalid even with continuous body range'})
+s.E(13.1,'Use the still-available Action to return to local perception',lambda x:(spend(x,'C','action'),x['effects']['PI'].update(activeChannel='local'),x['privateKnowledge']['C'].update(localSightAndHearingReplaced=False),{'recordingOrReplay':False})[-1])
+s.E(13.2,'Voluntary concentration ending removes only image/link',lambda x:end_effect(x,'PI','creator ending'))
+finish(s)
+
+s=make('R7M-14-B','project-image','Real caster movement breaks tether; resumption supplies current scene, not a replay',positions=[(115,0,0)])
+s.geometry.update(imageInitial=[110,0,0],tether120=True)
+s.seal();s.E(1,'Commit Enchantment',lambda x:cast(x,'C','project-image','PI',conc=True))
+s.E(1.1,'Establish image and remote feed',lambda x:establish(x,'PI','project-image',schoolProfile='Enchantment',pose=[110,0,0],feed='sight AND hearing',activeChannel='remote',expressed=True))
+def breaktether(x):
+    x['actors']['C'].update(position=[-30,0,0],movementSpent=30)
+    x['effects']['PI'].update(expressed=False,activeChannel='local fallback',suppressionReason='actual body-to-image tether exceeds120')
+    return {'actualWalk':30,'bodyToImageMinimum':137.5,'originalDeadline':61.1,'concentrationRetained':True}
+s.E(7,'Actual C START6 and30ft supported ordinary movement',breaktether)
+s.E(8.1,'T speaks during disconnected interval',lambda x:{'actualUtterance':'unobserved phrase','deliveredToC':False,'queued':False})
+def restore(x):
+    x['actors']['C'].update(position=[0,0,0],movementSpent=30)
+    x['effects']['PI'].update(expressed=True,activeChannel='remote',suppressionReason=None)
+    x['privateKnowledge']['C']={'currentSceneOnly':True,'missedUtteranceRecovered':False}
+    return {'actualWalk':30,'tetherLegal':True,'originalDeadline':61.1,'sameImage':True}
+s.E(13,'Actual next regular turn returns C to legal tether',restore)
+s.E(61.1,'Original expiry removes image and remote channel',lambda x:end_effect(x,'PI','original expiry'))
+p=finish(s)
+s=make('R7M-14-B-ILLUSION','project-image','Complete image-only Self profile is conditional on missing authorized acquisition route')
+s.holds=[{'id':'R7M-PROJECT-ILLUSION-ROUTE','reason':'No actual current class-access row grants the Illusion source profile. This hypothetical alternative demonstration is not a cast authorized for the supplied Wizard.'}]
+s.seal();s.E(1,'CONDITIONAL authorized Illusion-route payment, only if separately supplied',lambda x:cast(x,'C','project-image','PI',conc=True,school='Illusion'),{'unprovidedRoute':True})
+s.E(1.1,'Self image-only alternative; no remote sensing',lambda x:establish(x,'PI','project-image',schoolProfile='Illusion source placement only',pose=[0,0,0],feed=None,activeChannel='local',silentImage=True))
+s.E(7,'Conditional real control Action moves silent image30ft',lambda x:(spend(x,'C','action'),x['effects']['PI'].update(pose=[30,0,0]),{'noRemoteSight':True,'noRemoteHearing':True})[-1])
+s.E(7.1,'Creator ends conditional source',lambda x:end_effect(x,'PI','voluntary'))
+branch(s,p)
+
+# 15A: actual Wizard Enchantment, inverted fall then genuine ordinary descent.
+s=make('R7M-15-A','reverse-gravity','Enchantment: upward cap then real downward Falling',positions=[(50,0,0)])
+s.geometry.update(base=[50,0,0],radius=50,top=100,
+    casterHandhold={'at':[0,0,0],'reachable':True,'unusedGrip':True,'ratedCapacityLb':500,'fixed':True},
+    upwardFirstMarker={'initiatingActor':'C','regularEND':2,'nextRoundSameEND':8},
+    laterDownwardFirstMarker={'initiatingActor':'T','regularEND':10,'followingRoundEND':16})
+s.seal();s.E(1,'Actual Wizard Enchantment payment and M replaced by reusable F',lambda x:cast(x,'C','reverse-gravity','RG',conc=True))
+def gravity_admit(x):
+    establish(x,'RG','reverse-gravity',schoolProfile='Enchantment',base=[50,0,0],radius=50,top=100,assemblies=['C','T'])
+    spend(x,'C','reaction')
+    x['actors']['C']['uses']['RGcatch']={'spent':True,'grip':'real floor anchor','DC':17,'d20':15,'DEX':2,'total':17,'heldAt':[0,0,0]}
+    x['actors']['T']['support']=None
+    x['actors']['T']['fall']={'direction':'up','nextMarker':8,'uncontrolledDistance':0,'source':'RG'}
+    return {'CcatchSuccess':True,'TnoActualHandhold':True,'TReactionNotSpent':True,'notInstantTeleport':True}
+s.E(1.1,'Whole-body intersections admitted; actual catch only where supported',gravity_admit)
+def upcap(x):
+    a=x['actors']['T'];travel=100-(a['position'][2]+a['dimensions'][2])
+    a['position'][2]+=travel;a['support']='RG source equilibrium at whole-body top100';a['fall']=None
+    x['receipts']['events']['T:gravity:8']={'sweeps':1,'travel':travel,'impact':False}
+    return {'travel':travel,'highestPoint':100,'capImpact':0,'recursiveSweep':False,'originalDeadline':61.1}
+s.E(8,'First actual upward Falling marker caps body at top',upcap)
+def releasegravity(x):
+    end_effect(x,'RG','voluntary actual source ending')
+    a=x['actors']['T'];a['support']=None;a['fall']={'direction':'down','nextMarker':16,'uncontrolledDistance':0,'source':'ordinary Falling'}
+    x['actors']['C']['uses']['RGcatch']['gripReleasedAfterNormalSupportRestored']=True
+    return {'TfootHeight':a['position'][2],'newFallMarker':16,'noDownwardSweepAt8Again':True}
+s.E(9.1,'Source ends during T regular slot9–10; cap arrest already ended old fall',releasegravity)
+def downimpact(x):
+    a=x['actors']['T'];distance=a['position'][2];a['position'][2]=0;a['support']='floor z0';a['fall']=None
+    packet=dmg(x,'T',[3,4,5,6],'bludgeoning','FALL/T/16','environment')
+    condition(x,'T','Prone','FALL/T/16')
+    x['receipts']['events']['T:gravity:16']={'sweeps':1,'travel':distance,'impactDice':4}
+    return {'distance':distance,'diceCount':min(10,math.floor(distance/20)),'damage':packet,'Prone':True}
+s.E(16,'Actual ordinary fall marker:94ft descent,4d6 impact',downimpact)
+finish(s)
+
+# Actual second-school caster, positive top-straddling and taller-object cases.
+s=make('R7M-15-B','reverse-gravity','Transmutation: top-straddling body and taller unsecured object stay at actual pose',positions=[(50,0,98)])
+cd=druid_def();s.defs['C']=cd;s.s['actors']['C']=act(cd)
+s.s['actors']['T']['support']='real narrow platform z98'
+s.s['objects']['TallShaft']={'kind':'synthetic actual unsecured object, not a granted recipe','position':[65,0,0],'dimensions':[2,2,110],
+    'support':'real broad cradle open upward, no fastening','massLb':200,'custody':None,'durabilityProfile':'not supplied; no impact requested'}
+s.geometry.update(base=[50,0,0],radius=50,top=100,
+    platform={'min':[49.5,-4,97.5],'max':[50.5,4,98]},
+    intersectionWitness=[47.6,0,99.5],LoE='base to actual T interior witness misses the narrow platform',
+    casterHandhold={'capacityLb':500,'reachable':True,'availableGrip':True})
+s.seal();s.E(1,'Actual Druid Transmutation route pays17RP and2Dissonance',lambda x:cast(x,'C','reverse-gravity','RG',conc=True))
+def topstraddle(x):
+    establish(x,'RG','reverse-gravity',schoolProfile='Transmutation',base=[50,0,0],radius=50,top=100)
+    spend(x,'C','reaction')
+    x['actors']['C']['uses']['RGcatch']={'spent':True,'d20':15,'DEX':2,'DC':17,'success':True}
+    a=x['actors']['T'];a['support']='actual-pose RG equilibrium; real platform remains underneath'
+    x['objects']['TallShaft']['support']='actual-pose RG equilibrium; cradle remains'
+    return {'bodyHighest':104,'bodyCapTravel':0,'objectHighest':110,'objectCapTravel':0,'bothActualPosesUnchanged':True,'loweringOrSqueeze':False,'newCatchForT':False}
+s.E(1.1,'Initial highest points exceed100; no artificial fit movement',topstraddle)
+s.E(8,'No pending fall exists for a zero-travel equilibrium',lambda x:{'Tposition':x['actors']['T']['position'],'objectPosition':x['objects']['TallShaft']['position'],'sweeps':0,'impact':0})
+def restore_support(x):
+    end_effect(x,'RG','voluntary')
+    x['actors']['T']['support']='real narrow platform z98'
+    x['objects']['TallShaft']['support']='real open cradle'
+    return {'noUnsupportedBodies':True,'newFall':False,'materialHPNeeded':False}
+s.E(9.1,'Original real supports remain at the actual unshifted poses',restore_support)
+p=finish(s)
+
+# 16A immediate rune discharge, independent child survival.
+s=make('R7M-16-A','symbol-of-stunning','Initial eligible viewer consumes rune; child survives parent cleanup',positions=[(40,0,0)])
+s.geometry.update(anchor=[40,0,3],radius=20,diameter=1,actualSight=True)
+s.seal();s.E(1,'Pay visible rune',lambda x:cast(x,'C','symbol-of-stunning','SYM'))
+def symbol(x,deadline=4):
+    establish(x,'SYM','symbol-of-stunning',anchor=[40,0,3],remainingDischarges=1)
+    consume_effect(x,'SYM','first real viewer snapshot')
+    x['effects']['SYM']['remainingDischarges']=0
+    q=roll(x,'T','WIS',7,17)
+    x['receipts']['hard']['T']={'source':'SYM/child/T','owner':'C','spent':True,'time':x['time']}
+    condition(x,'T','Stunned','SYM/child/T',deadline)
+    x['effects']['SYM/child/T']={'owner':'C','recipient':'T','state':'active','deadline':deadline,'independentDeliveredChild':True}
+    return {'save':q,'parentConsumedBeforeSave':True,'childDeadline':deadline,'noDamage':True}
+s.E(1.1,'Actual sight at establishment triggers one use',symbol)
+s.E(3,'Ordinary START supplies a budget but Stunned still prevents commitment',lambda x:{'actualActionPermission':False,'newSave':False,'parentNotRecreated':True})
+s.E(4,'Future regular END removes child without a repeat save',lambda x:end_effect(x,'SYM/child/T','original child endpoint'))
+s.E(4.1,'Another viewer cannot redischarge the consumed rune',lambda x:{'newStun':False,'newSave':False})
+finish(s)
+
+s=make('R7M-16-B','symbol-of-stunning','Suppressed observation lost; real persistent viewer triggers on resumption',positions=[(90,0,0)])
+add_actor(s,'E',wizard_def(extra=['antimagic-field-lesser']),(65,0,0),start=1,end=3)
+s.geometry.update(anchor=[60,0,3],radius=20,initialTargetOutside=True,AManchor=[60,0,3],AMradius=10)
+s.seal();s.E(1,'Commit Symbol',lambda x:cast(x,'C','symbol-of-stunning','SYM'))
+s.E(1.1,'Armed until61.1; no actual initial viewer in20',lambda x:establish(x,'SYM','symbol-of-stunning',anchor=[60,0,3],remainingDischarges=1))
+s.E(2,'Helper actual regular slot1–3 pays Lesser Antimagic',lambda x:cast(x,'E','antimagic-field-lesser','AM',conc=True))
+s.E(2.1,'Actual AM suppresses the rune anchor until ended; clock continues',lambda x:establish(x,'AM','antimagic-field-lesser',owner='E',center=[60,0,3],radius=10))
+s.E(3.1,'T walks15ft during actual regular turn into radius; suppressed rune queues nothing',lambda x:(x['actors']['T'].update(position=[75,0,0],movementSpent=15),{'viewObservedByRune':False,'armedRemains':True})[-1])
+def resume_symbol(x):
+    end_effect(x,'AM','actual creator voluntary ending')
+    consume_effect(x,'SYM','persistent current viewer after actual suppression ends')
+    x['effects']['SYM']['remainingDischarges']=0
+    condition(x,'T','Stunned','SYM/child/T',10)
+    x['effects']['SYM/child/T']={'state':'active','owner':'C','recipient':'T','deadline':10,'independentDeliveredChild':True}
+    x['receipts']['hard']['T']={'source':'SYM/child/T','owner':'C','spent':True}
+    return {'save':roll(x,'T','WIS',7,17),'notReplayedEntry':True,'currentPresenceAdmission':True,'nextFutureEND':10}
+s.E(5.1,'Real current viewer now triggers; prior END4 is not reused',resume_symbol)
+s.E(10,'Actual child endpoint; source parent stays consumed',lambda x:end_effect(x,'SYM/child/T','endpoint10'))
+finish(s)
+save(W/'case_checkpoint_06.json',cases)
+print("mains",len(cases),"branches",sum(len(c['independentBranches']) for c in cases),"events",sum(len(c['timeline'])+sum(len(b['timeline']) for b in c['independentBranches']) for c in cases))
+
+STDOUT/STDERR
+mains 32 branches 8 events 187

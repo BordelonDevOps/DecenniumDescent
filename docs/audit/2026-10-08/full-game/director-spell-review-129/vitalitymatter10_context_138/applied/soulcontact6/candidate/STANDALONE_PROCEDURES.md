@@ -1,0 +1,1035 @@
+# SoulContact6 proposed standalone procedures
+
+Current662applied/186pending/0accepted-unapplied. New choices below are proposed only; profile/ontology holds remain explicit.
+
+## alignment-scrying
+
+{
+  "id": "alignment-scrying",
+  "status": "PROPOSED_FOR_EXACT_INDEPENDENT_REVIEW",
+  "completeNativeAndAccessUnchanged": {
+    "id": "alignment-scrying",
+    "name": "Alignment Scrying",
+    "schools": [
+      "Divination"
+    ],
+    "status": "blocked-pending-operational-review",
+    "visibility": "public-source-review",
+    "classAccess": {
+      "Cleric": {
+        "rank": 5,
+        "minimumClassLevel": 9,
+        "school": "Divination",
+        "baseRpCost": 10
+      },
+      "Mirrorsage": {
+        "rank": 5,
+        "minimumClassLevel": 13,
+        "school": "Divination",
+        "baseRpCost": 10
+      },
+      "Ranger": {
+        "rank": 5,
+        "minimumClassLevel": 17,
+        "school": "Divination",
+        "baseRpCost": 10
+      },
+      "Shaman": {
+        "rank": 5,
+        "minimumClassLevel": 13,
+        "school": "Divination",
+        "baseRpCost": 10
+      },
+      "Wizard": {
+        "rank": 5,
+        "minimumClassLevel": 9,
+        "school": "Divination",
+        "baseRpCost": 10
+      },
+      "Paladin": {
+        "rank": 5,
+        "minimumClassLevel": 17,
+        "school": "Divination",
+        "baseRpCost": 10
+      }
+    },
+    "operational": null,
+    "additionalRpCost": 0,
+    "source": {
+      "catalogPath": "src/data/spells.js",
+      "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+      "catalogKey": "alignment-scrying",
+      "original": {
+        "name": "Alignment Scrying",
+        "level": 5,
+        "resonanceRank": 5,
+        "school": "Divination",
+        "schools": [
+          "Divination"
+        ],
+        "placements": [
+          {
+            "name": "Alignment Scrying",
+            "school": "Divination",
+            "level": 5,
+            "summary": "Spy on a location where strong alignment energy exists."
+          }
+        ],
+        "classLevels": {
+          "Cleric": 5,
+          "Mirrorsage": 5,
+          "Ranger": 5,
+          "Shaman": 5,
+          "Wizard": 5,
+          "Paladin": 5
+        },
+        "classRanks": {
+          "Cleric": 5,
+          "Mirrorsage": 5,
+          "Ranger": 5,
+          "Shaman": 5,
+          "Wizard": 5,
+          "Paladin": 5
+        },
+        "classLearnLevels": {
+          "Cleric": 9,
+          "Mirrorsage": 13,
+          "Ranger": 17,
+          "Shaman": 13,
+          "Wizard": 9,
+          "Paladin": 17
+        },
+        "classSchools": {
+          "Cleric": "Divination",
+          "Mirrorsage": "Divination",
+          "Ranger": "Divination",
+          "Shaman": "Divination",
+          "Wizard": "Divination",
+          "Paladin": "Divination"
+        },
+        "castingTime": "Not specified in current rulebook",
+        "range": "Not specified in current rulebook",
+        "components": "Not specified in current rulebook",
+        "duration": "Not specified in current rulebook",
+        "description": "Spy on a location where strong alignment energy exists.",
+        "alternateSummaries": [],
+        "classes": [
+          "Cleric",
+          "Mirrorsage",
+          "Ranger",
+          "Shaman",
+          "Wizard",
+          "Paladin"
+        ],
+        "status": "canon",
+        "source": "Player Rulebook — Spell Lists"
+      },
+      "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+      "coreEntries": [
+        {
+          "index": 270,
+          "original": {
+            "school": "Divination",
+            "level": 5,
+            "name": "Alignment Scrying",
+            "effect": "Spy on a location where strong alignment energy exists.",
+            "source_paragraph": 9313,
+            "casting_time": "1 action",
+            "range": "60 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Alignment"
+            ],
+            "rp_cost": 10
+          }
+        }
+      ],
+      "possibleHistoricalAliases": []
+    },
+    "reviewFlags": [
+      "Core resolution requires an explicit operational interpretation",
+      "Not selectable in this spell playtest packet until individual operational review"
+    ]
+  },
+  "procedure": {
+    "KEEP": "Divination5,Action,60feet,V/S/F,base10RP,Instantaneous; target is a LOCATION with strong alignment energy, not every aligned creature.",
+    "NEW_site_gate": "Declare one exact personally documented site point on the same actual plane and within60feet of actual caster body. A source-qualified authored site record must expressly mark this location as strong alignment energy; one aligned resident, class level, faction, patron title or plane name cannot substitute. This is a spell-specific documentary qualification, not a new cosmological energy scale. Unknown/absent campaign site records remain whole-case holds. No automatic search for an unseen desired alignment.",
+    "NEW_sample": "One instantaneous ordinary visual+auditory snapshot from the declared unoccupied source point, fixed30foot radius, with actual light/opaque and acoustic barriers. NEW only the caster-to-known-source-point sight/LoE requirement is relaxed for this location-scrying operation; full60foot range, same-plane identity and actual free point remain. Sensor-to-scene ordinary occlusion is never relaxed. No movable/staying sensor, through-wall view from that point, interaction, translation, darkvision, future view, character stats or hidden inventory. Delivery is a private bounded perceived image/sound sample, not teleported viewpoint/body.",
+    "NEW_failure": "Known wrong plane, beyond60, occupied source point or known missing site permission rejects before Action/RP. A legally declared but privately unsupported/changed site or actual applicable local suppression/ward yields paid generic no-sample, no diagnosis/identity/rank/roster. No extra save is invented. Compare actual protection-from-scrying/Nondetection/Seal Vision only through their exact source; creature-only exclusions remove their own scope, not necessarily the whole location. No ward source is invented merely by a name."
+  },
+  "sharedRuleIds": [
+    "SC138-AUTHORITY",
+    "SC138-COMMIT",
+    "SC138-INFORMATION",
+    "SC138-COSMOLOGY",
+    "SC138-IDENTITY",
+    "SC138-READY"
+  ],
+  "accepted": false,
+  "applied": false
+}
+
+## commune
+
+{
+  "id": "commune",
+  "status": "PROPOSED_FOR_EXACT_INDEPENDENT_REVIEW",
+  "completeNativeAndAccessUnchanged": {
+    "id": "commune",
+    "name": "Commune",
+    "schools": [
+      "Divination"
+    ],
+    "status": "blocked-pending-operational-review",
+    "visibility": "public-source-review",
+    "classAccess": {
+      "Cleric": {
+        "rank": 5,
+        "minimumClassLevel": 9,
+        "school": "Divination",
+        "baseRpCost": 10
+      },
+      "Mirrorsage": {
+        "rank": 5,
+        "minimumClassLevel": 13,
+        "school": "Divination",
+        "baseRpCost": 10
+      },
+      "Ranger": {
+        "rank": 5,
+        "minimumClassLevel": 17,
+        "school": "Divination",
+        "baseRpCost": 10
+      },
+      "Shaman": {
+        "rank": 5,
+        "minimumClassLevel": 13,
+        "school": "Divination",
+        "baseRpCost": 10
+      },
+      "Wizard": {
+        "rank": 5,
+        "minimumClassLevel": 9,
+        "school": "Divination",
+        "baseRpCost": 10
+      },
+      "Paladin": {
+        "rank": 5,
+        "minimumClassLevel": 17,
+        "school": "Divination",
+        "baseRpCost": 10
+      }
+    },
+    "operational": null,
+    "additionalRpCost": 0,
+    "source": {
+      "catalogPath": "src/data/spells.js",
+      "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+      "catalogKey": "commune",
+      "original": {
+        "name": "Commune",
+        "level": 5,
+        "resonanceRank": 5,
+        "school": "Divination",
+        "schools": [
+          "Divination"
+        ],
+        "placements": [
+          {
+            "name": "Commune",
+            "school": "Divination",
+            "level": 5,
+            "summary": "Ask 3 questions to a deity or powerful entity."
+          }
+        ],
+        "classLevels": {
+          "Cleric": 5,
+          "Mirrorsage": 5,
+          "Ranger": 5,
+          "Shaman": 5,
+          "Wizard": 5,
+          "Paladin": 5
+        },
+        "classRanks": {
+          "Cleric": 5,
+          "Mirrorsage": 5,
+          "Ranger": 5,
+          "Shaman": 5,
+          "Wizard": 5,
+          "Paladin": 5
+        },
+        "classLearnLevels": {
+          "Cleric": 9,
+          "Mirrorsage": 13,
+          "Ranger": 17,
+          "Shaman": 13,
+          "Wizard": 9,
+          "Paladin": 17
+        },
+        "classSchools": {
+          "Cleric": "Divination",
+          "Mirrorsage": "Divination",
+          "Ranger": "Divination",
+          "Shaman": "Divination",
+          "Wizard": "Divination",
+          "Paladin": "Divination"
+        },
+        "castingTime": "Not specified in current rulebook",
+        "range": "Not specified in current rulebook",
+        "components": "Not specified in current rulebook",
+        "duration": "Not specified in current rulebook",
+        "description": "Ask 3 questions to a deity or powerful entity.",
+        "alternateSummaries": [],
+        "classes": [
+          "Cleric",
+          "Mirrorsage",
+          "Ranger",
+          "Shaman",
+          "Wizard",
+          "Paladin"
+        ],
+        "status": "canon",
+        "source": "Player Rulebook — Spell Lists"
+      },
+      "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+      "coreEntries": [
+        {
+          "index": 268,
+          "original": {
+            "school": "Divination",
+            "level": 5,
+            "name": "Commune",
+            "effect": "Ask 3 questions to a deity or powerful entity.",
+            "source_paragraph": 9311,
+            "casting_time": "1 action",
+            "range": "60 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Utility"
+            ],
+            "rp_cost": 10
+          }
+        }
+      ],
+      "possibleHistoricalAliases": []
+    },
+    "reviewFlags": [
+      "Core resolution requires an explicit operational interpretation",
+      "Not selectable in this spell playtest packet until individual operational review"
+    ]
+  },
+  "procedure": {
+    "KEEP": "Divination5,Action,60feet,V/S/F,base10RP,Instantaneous; exactlyTHREE questions to a deity OR powerful entity.",
+    "NEW_contact": "Address one actual authored eligible respondent physically within60feet on same actual plane, using a personally earned known channel/name plus explicit source-qualified contact eligibility and current permission. Local reach is chosen rather than unlimited planar contact. A class/patron mask or class level alone is no entity qualification. Preserve deity alternative but no source supplies an automatic new deity/being; missing respondent/channel/ontology is a whole positive-case hold. An explicitly authored finite conditional respondent fixture may demonstrate mechanics, not setting identity.",
+    "NEW_questions_answers": "At commitment fix exactlythree single-proposition questions, each at most25words. Known multipart/unknown language rejects for revision before payment. At successful resolution relay exactlyone response per question, at most40words each, using an actual mutually understood language. This is not yes/no-only: ordinary concise facts, uncertainty, refusal or unknown are valid. No guaranteed cooperation, omniscience or magically verified truth: actual authored knowledge, motives and communication determine the response. No extra question/followup, live dialog, unearned theorem, inventory or soul identity follows. Failed contact produces generic no-response, never a fabricated negative answer.",
+    "NEW_disclosure": "Relay only actually authored permissible information. Ordinary safe questions do not trigger Hunt. An exact independently qualified Hunt-capable voluntary disclosure/operational commitment receives its existing warning and KT3 episode save before its costs; this spell adds no new Hunt category. Unsupported dangerous content is held rather than invented or silently delivered. No retroactive punishment or forced belief."
+  },
+  "sharedRuleIds": [
+    "SC138-AUTHORITY",
+    "SC138-COMMIT",
+    "SC138-INFORMATION",
+    "SC138-COSMOLOGY",
+    "SC138-IDENTITY",
+    "SC138-READY"
+  ],
+  "accepted": false,
+  "applied": false
+}
+
+## planar-binding-minor
+
+{
+  "id": "planar-binding-minor",
+  "status": "PROPOSED_FOR_EXACT_INDEPENDENT_REVIEW",
+  "completeNativeAndAccessUnchanged": {
+    "id": "planar-binding-minor",
+    "name": "Planar Binding (Minor)",
+    "schools": [
+      "Divination"
+    ],
+    "status": "blocked-pending-operational-review",
+    "visibility": "public-source-review",
+    "classAccess": {
+      "Cleric": {
+        "rank": 6,
+        "minimumClassLevel": 11,
+        "school": "Divination",
+        "baseRpCost": 13
+      },
+      "Mirrorsage": {
+        "rank": 6,
+        "minimumClassLevel": 16,
+        "school": "Divination",
+        "baseRpCost": 13
+      },
+      "Shaman": {
+        "rank": 6,
+        "minimumClassLevel": 16,
+        "school": "Divination",
+        "baseRpCost": 13
+      },
+      "Wizard": {
+        "rank": 6,
+        "minimumClassLevel": 11,
+        "school": "Divination",
+        "baseRpCost": 13
+      }
+    },
+    "operational": null,
+    "additionalRpCost": 0,
+    "source": {
+      "catalogPath": "src/data/spells.js",
+      "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+      "catalogKey": "planar-binding-minor",
+      "original": {
+        "name": "Planar Binding (Minor)",
+        "level": 6,
+        "resonanceRank": 6,
+        "school": "Divination",
+        "schools": [
+          "Divination"
+        ],
+        "placements": [
+          {
+            "name": "Planar Binding (Minor)",
+            "school": "Divination",
+            "level": 6,
+            "summary": "Compel an extraplanar creature to serve you (up to CR 8)."
+          }
+        ],
+        "classLevels": {
+          "Cleric": 6,
+          "Mirrorsage": 6,
+          "Shaman": 6,
+          "Wizard": 6
+        },
+        "classRanks": {
+          "Cleric": 6,
+          "Mirrorsage": 6,
+          "Shaman": 6,
+          "Wizard": 6
+        },
+        "classLearnLevels": {
+          "Cleric": 11,
+          "Mirrorsage": 16,
+          "Shaman": 16,
+          "Wizard": 11
+        },
+        "classSchools": {
+          "Cleric": "Divination",
+          "Mirrorsage": "Divination",
+          "Shaman": "Divination",
+          "Wizard": "Divination"
+        },
+        "castingTime": "Not specified in current rulebook",
+        "range": "Not specified in current rulebook",
+        "components": "Not specified in current rulebook",
+        "duration": "Not specified in current rulebook",
+        "description": "Compel an extraplanar creature to serve you (up to CR 8).",
+        "alternateSummaries": [],
+        "classes": [
+          "Cleric",
+          "Mirrorsage",
+          "Shaman",
+          "Wizard"
+        ],
+        "status": "canon",
+        "source": "Player Rulebook — Spell Lists"
+      },
+      "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+      "coreEntries": [
+        {
+          "index": 273,
+          "original": {
+            "school": "Divination",
+            "level": 6,
+            "name": "Planar Binding (Minor)",
+            "effect": "Compel an extraplanar creature to serve you (up to CR 8).",
+            "source_paragraph": 9318,
+            "casting_time": "1 action",
+            "range": "60 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Planar"
+            ],
+            "rp_cost": 13
+          }
+        }
+      ],
+      "possibleHistoricalAliases": []
+    },
+    "reviewFlags": [
+      "Core resolution requires an explicit operational interpretation",
+      "Not selectable in this spell playtest packet until individual operational review"
+    ]
+  },
+  "procedure": {
+    "KEEP": "Distinct Divination6 identity,Action,60feet,V/S/F,base13RP; ONE existing extraplanar creature with authoritativeCR<=8. Do not alias rank5 ordinary Planar Binding.",
+    "NEW_target_resolution": "Actual perceived full current creature/body in60feet/LoE, complete usable profile and source-qualified CR/type/extraplanar record required. A CR6 design-role summon, class level, HP or rank is not an authoritative CR. No borrowed outsider/Fiend taxonomy. Known missing qualification rejects before payment; genuinely hidden changed eligibility can defeat a paid otherwise legal declaration generically. NEW initial CHA save versus actual casting-class DC; no automatic hostile failure, and exact control immunity applies. Successful save means no service.",
+    "NEW_service": "On failed actual initial save establish concentration up to60 elapsed seconds, explicitly replacing printed Instantaneous. One binding controller per body; newest successful qualifying compulsion replaces the older controller prospectively. Apply SC138-MINOR-ORDER-01 below, scoped ONLY to planar-binding-minor; AC5-BINDING-ORDER-03 remains scoped only to planar-binding. No new body, refill, original-source extension or independent offensive turn is granted.",
+    "NEW_resistance_and_end": "No suicidal/self-destructive order, unsupported labor/proficiency or theological obedience. Repeat CHA at end of each original target regular turn and after damage from controller side; success ends compulsion. Lost communication supplies no new order, not free autonomy/offense. Full suppression of this compulsion, concentration loss/death/incapacity, expiry, actual termination or original creature ending releases it. Release restores original agency/controller subject to still-valid independent source, never teleports a pre-existing body, copies gear, heals, grants extra turn, resets RP/uses or extends its original creator deadline. No currently proved CR-qualified operational roster is asserted in this packet.",
+    "NEW_order_lifecycle_SC138_MINOR_ORDER_01": {
+      "scope_and_justification": "NEW proposal solely for planar-binding-minor. The printed compel-to-serve summary does not specify an order lifecycle. A single short-lived attached opportunity makes bounded service determinate without permanent instructions or extra turns. This is not an extension, reinterpretation or amendment of AC5-BINDING-ORDER-03. All CR/type/access, resistance, concentration and cosmology qualifications remain prerequisites; the roster whole-case hold remains unresolved.",
+      "issuance": "Only the current active unsuppressed binding controller, during its own regular turn before that turn fully ends, may spend its actual available Bonus Action to issue one immediate finite order. Require same actual plane, distance at most60feet between actual bodies, an actual shared known spoken language and actual hearing/understanding by the bound body. No telepathy or translation is granted. The instruction specifies its exact ordinary movement route/destination and at most one currently possessed permitted Action, including any target. No standing, conditional future or multiround service instruction. Known invalid delivery/content rejects before Bonus Action; a genuinely hidden failure after a legal paid attempt yields no queued order and no refund/diagnosis. Casting itself neither issues an order nor waives this Bonus Action.",
+      "permitted_behavior": "An order can specify ordinary movement up to the existing remaining movement budget and at most one basic Attack, Dodge, Disengage, Help, Interact or actually possessed at-will Action. Require the complete real profile, legal targets and actual action costs at execution. No new action/proficiency/ability is created. No compelled RP/spell expenditure, charges, recharge/per-rest uses, consumables, permanent property transfer, protected secrets, binding-oath violation, self-harm or knowingly suicidal route. Damaging/control Actions also require and consume the controller-wide one companion damaging/control allowance for that numbered round, shared with all its other assets; no substitution for missing source gates.",
+      "queue_and_timing": "Store at most one pending order keyed by binding record, controller, target body, numbered round and issuing regular-turn occurrence. It binds ONLY the attached phase immediately after that whole issuing regular turn and its normal end-of-turn resolutions, before the next scheduled regular turn. It never binds the target original regular initiative Action. Original target markers still run saves, death and independent source clocks. If binding ends before the phase, cancel the order. A skipped/missing attached phase still reaches its expiry boundary immediately after that issuing turn; do not defer it to another turn.",
+      "execution_and_budget": "At that attached phase recheck active controller/binding, unsuppressed compulsion, same plane,60feet and actual shared-language hearing/understanding, plus the specified route/action/targets and existing budgets. Treat the entire ordered movement+Action as one preflight plan: if any specified part is impossible, illegal, unaffordable or missing an original source gate, execute none of that ordered plan. One target attached behavior opportunity maximum per numbered round across all controllers; no second movement/Action opportunity on replacement, reacquisition or an extra controller turn. Original regular initiative supplies no second voluntary movement/Action/Bonus Action/Reaction while this binding controls the body. Any separate actual reaction/source permission remains subject to its own gates and existing budgets, never created by an order. Spend real movement/Action and offense allowance only when the legal plan actually executes. No reservation creates resources.",
+      "expiry_and_no_bank": "At the end of its single attached phase boundary clear the pending order whether executed, impossible, unheard, out of range, plane-separated, suppressed, budget-starved or skipped. A failed plan may use only the default below in that same opportunity if budgets permit. No refund of paid issuing Bonus Action. Orders cannot bank, persist, retry, replay, migrate to a later round/controller/source, or reappear when communication/suppression recovers. A fresh valid order requires a fresh actual Bonus Action on a later eligible regular turn.",
+      "replacement_and_end": "A later otherwise legal paid order from this same controller/record replaces and irreversibly cancels the previous pending order; it does not refund either actual cost or add an opportunity. Actual Bonus Action limits still apply; this rule grants no second Bonus Action. Any controller or binding-record change immediately discards the old pending order, even if the new controller is the same actor under a new record. It preserves completed acts, used round budgets, body identity/inventory and original creating source/deadline. New controller needs its own valid issuance and cannot recover a target opportunity already spent that round. Concentration loss, full suppression, death/incapacity of controller, successful repeat save, actual termination/expiry or body-source ending clears pending orders and releases as already specified, with no automatic resumption.",
+      "default": "While binding remains active, at its one attached opportunity with no executable order the body takes Dodge if its ordinary Action is legally available and defensively stays or moves only as needed to avoid an immediate hazard using remaining ordinary movement, chosen by the target. It makes no autonomous attacks, damaging/control actions or offensive pursuit. If unable to Dodge/move or the opportunity was already spent, it does nothing; no resource is manufactured. After binding ends original agency/controller returns subject to its still-valid independent source; this default imposes no lingering behavior or immediate extra turn."
+    }
+  },
+  "sharedRuleIds": [
+    "SC138-AUTHORITY",
+    "SC138-COMMIT",
+    "SC138-INFORMATION",
+    "SC138-COSMOLOGY",
+    "SC138-IDENTITY",
+    "SC138-READY"
+  ],
+  "accepted": false,
+  "applied": false
+}
+
+## planar-summons-lesser
+
+{
+  "id": "planar-summons-lesser",
+  "status": "PROPOSED_FOR_EXACT_INDEPENDENT_REVIEW",
+  "completeNativeAndAccessUnchanged": {
+    "id": "planar-summons-lesser",
+    "name": "Planar Summons (Lesser)",
+    "schools": [
+      "Divination"
+    ],
+    "status": "blocked-pending-operational-review",
+    "visibility": "public-source-review",
+    "classAccess": {
+      "Cleric": {
+        "rank": 5,
+        "minimumClassLevel": 9,
+        "school": "Divination",
+        "baseRpCost": 10
+      },
+      "Mirrorsage": {
+        "rank": 5,
+        "minimumClassLevel": 13,
+        "school": "Divination",
+        "baseRpCost": 10
+      },
+      "Ranger": {
+        "rank": 5,
+        "minimumClassLevel": 17,
+        "school": "Divination",
+        "baseRpCost": 10
+      },
+      "Shaman": {
+        "rank": 5,
+        "minimumClassLevel": 13,
+        "school": "Divination",
+        "baseRpCost": 10
+      },
+      "Wizard": {
+        "rank": 5,
+        "minimumClassLevel": 9,
+        "school": "Divination",
+        "baseRpCost": 10
+      },
+      "Paladin": {
+        "rank": 5,
+        "minimumClassLevel": 17,
+        "school": "Divination",
+        "baseRpCost": 10
+      }
+    },
+    "operational": null,
+    "additionalRpCost": 0,
+    "source": {
+      "catalogPath": "src/data/spells.js",
+      "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+      "catalogKey": "planar-summons-lesser",
+      "original": {
+        "name": "Planar Summons (Lesser)",
+        "level": 5,
+        "resonanceRank": 5,
+        "school": "Divination",
+        "schools": [
+          "Divination"
+        ],
+        "placements": [
+          {
+            "name": "Planar Summons (Lesser)",
+            "school": "Divination",
+            "level": 5,
+            "summary": "Summon a celestial, elemental, or outsider (CR 5 or lower)."
+          }
+        ],
+        "classLevels": {
+          "Cleric": 5,
+          "Mirrorsage": 5,
+          "Ranger": 5,
+          "Shaman": 5,
+          "Wizard": 5,
+          "Paladin": 5
+        },
+        "classRanks": {
+          "Cleric": 5,
+          "Mirrorsage": 5,
+          "Ranger": 5,
+          "Shaman": 5,
+          "Wizard": 5,
+          "Paladin": 5
+        },
+        "classLearnLevels": {
+          "Cleric": 9,
+          "Mirrorsage": 13,
+          "Ranger": 17,
+          "Shaman": 13,
+          "Wizard": 9,
+          "Paladin": 17
+        },
+        "classSchools": {
+          "Cleric": "Divination",
+          "Mirrorsage": "Divination",
+          "Ranger": "Divination",
+          "Shaman": "Divination",
+          "Wizard": "Divination",
+          "Paladin": "Divination"
+        },
+        "castingTime": "Not specified in current rulebook",
+        "range": "Not specified in current rulebook",
+        "components": "Not specified in current rulebook",
+        "duration": "Not specified in current rulebook",
+        "description": "Summon a celestial, elemental, or outsider (CR 5 or lower).",
+        "alternateSummaries": [],
+        "classes": [
+          "Cleric",
+          "Mirrorsage",
+          "Ranger",
+          "Shaman",
+          "Wizard",
+          "Paladin"
+        ],
+        "status": "canon",
+        "source": "Player Rulebook — Spell Lists"
+      },
+      "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+      "coreEntries": [
+        {
+          "index": 264,
+          "original": {
+            "school": "Divination",
+            "level": 5,
+            "name": "Planar Summons (Lesser)",
+            "effect": "Summon a celestial, elemental, or outsider (CR 5 or lower).",
+            "source_paragraph": 9307,
+            "casting_time": "1 action",
+            "range": "60 feet",
+            "duration": "Concentration, up to 1 minute",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Summoning",
+              "Planar"
+            ],
+            "rp_cost": 10
+          }
+        }
+      ],
+      "possibleHistoricalAliases": []
+    },
+    "reviewFlags": [
+      "Core resolution requires an explicit operational interpretation",
+      "Not selectable in this spell playtest packet until individual operational review"
+    ]
+  },
+  "procedure": {
+    "KEEP": "Divination,rank5,Action,60feet,V/S/F,base10RP,concentration60seconds. Exactly1 temporary manifestation, each authoritativeCR<=5.",
+    "NEW_roster": "Choose only a complete current approved native roster profile with actual authoritative CR and source provenance. Lesser retains celestial/elemental/outsider categories separately; undefined Outsider is held, never automatically Fiend. Greater requires two independently evidenced extraplanar allied profiles, not oneCR16 budget or the unproved designCR6/hour Greater Planar Ally substitute. Same roster entry can produce two distinct temporary instances only if that entry expressly permits it; no existing individual is duplicated. Missing categories/full CR profiles remain whole-case holds, not promoted workbook rows.",
+    "NEW_creation": "Explicitly choose finite source-local manifestations, not conscripting/transporting named existing persons. No home/native plane, shared soul, absence elsewhere or return itinerary is inferred. Select all whole-body supported, unoccupied disjoint poses in range/caster LoE before commitment. NEW atomic formation for Greater: if either independently required eligibility/placement fails, neither forms; no free partial/body substitution or retroactive cost refund. Known absence rejects preflight. Hidden changed legality is paid generic failure.",
+    "NEW_profile_and_commands": "Every admitted roster must supply size/height/volume/mass, six abilities, AC/HP, saves/skills, senses/language, anatomy/handling/cargo, speeds, each attack/action/defense and finite innate charges. Without those there is no operational body. Use native printed stats, actual original source-owner class attack/DC and exact creationHP gates only; Divination school is not Conjuration specialization. Both Greater bodies share the one owner BonusAction command and one damaging/control companion Action per numbered round; command on owner regular turn, execute in attached phase, no independent/free attacks or extra-turn reset. Formation gives no free action; a valid available command may be issued that round under the exact common companion interface.",
+    "NEW_lifecycle": "Original60second concentration parent measured from successful formation; independent body IDs/endings, source-owner and current controller distinct. Ordinary finite summon0HP ends that body under its profiled HP-only life; exact Null-specific exceptions require actual source evidence, not blanket import. Local full suppression preserves same still-live source/body/HP/cargo/creator/deadline but disables only its magical outputs/activity; source ending while suppressed still ends it. Expiry/concentration end/real termination removes remaining source-only bodies/anatomy, settling actual external items once at their real locations. No Banishment terminal return exception, corpse, harvest, duplicate soul, RP pool, reset innate charges or resource farm. Current no proved roster means all positive body/action/lifecycle examples remain whole-case held."
+  },
+  "sharedRuleIds": [
+    "SC138-AUTHORITY",
+    "SC138-COMMIT",
+    "SC138-INFORMATION",
+    "SC138-COSMOLOGY",
+    "SC138-IDENTITY",
+    "SC138-READY"
+  ],
+  "accepted": false,
+  "applied": false
+}
+
+## planar-summons-greater
+
+{
+  "id": "planar-summons-greater",
+  "status": "PROPOSED_FOR_EXACT_INDEPENDENT_REVIEW",
+  "completeNativeAndAccessUnchanged": {
+    "id": "planar-summons-greater",
+    "name": "Planar Summons (Greater)",
+    "schools": [
+      "Divination"
+    ],
+    "status": "blocked-pending-operational-review",
+    "visibility": "public-source-review",
+    "classAccess": {
+      "Cleric": {
+        "rank": 7,
+        "minimumClassLevel": 13,
+        "school": "Divination",
+        "baseRpCost": 17
+      },
+      "Mirrorsage": {
+        "rank": 7,
+        "minimumClassLevel": 19,
+        "school": "Divination",
+        "baseRpCost": 17
+      },
+      "Shaman": {
+        "rank": 7,
+        "minimumClassLevel": 19,
+        "school": "Divination",
+        "baseRpCost": 17
+      },
+      "Wizard": {
+        "rank": 7,
+        "minimumClassLevel": 13,
+        "school": "Divination",
+        "baseRpCost": 17
+      }
+    },
+    "operational": null,
+    "additionalRpCost": 0,
+    "source": {
+      "catalogPath": "src/data/spells.js",
+      "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+      "catalogKey": "planar-summons-greater",
+      "original": {
+        "name": "Planar Summons (Greater)",
+        "level": 7,
+        "resonanceRank": 7,
+        "school": "Divination",
+        "schools": [
+          "Divination"
+        ],
+        "placements": [
+          {
+            "name": "Planar Summons (Greater)",
+            "school": "Divination",
+            "level": 7,
+            "summary": "Summon two extraplanar allies (up to CR 8 each)."
+          }
+        ],
+        "classLevels": {
+          "Cleric": 7,
+          "Mirrorsage": 7,
+          "Shaman": 7,
+          "Wizard": 7
+        },
+        "classRanks": {
+          "Cleric": 7,
+          "Mirrorsage": 7,
+          "Shaman": 7,
+          "Wizard": 7
+        },
+        "classLearnLevels": {
+          "Cleric": 13,
+          "Mirrorsage": 19,
+          "Shaman": 19,
+          "Wizard": 13
+        },
+        "classSchools": {
+          "Cleric": "Divination",
+          "Mirrorsage": "Divination",
+          "Shaman": "Divination",
+          "Wizard": "Divination"
+        },
+        "castingTime": "Not specified in current rulebook",
+        "range": "Not specified in current rulebook",
+        "components": "Not specified in current rulebook",
+        "duration": "Not specified in current rulebook",
+        "description": "Summon two extraplanar allies (up to CR 8 each).",
+        "alternateSummaries": [],
+        "classes": [
+          "Cleric",
+          "Mirrorsage",
+          "Shaman",
+          "Wizard"
+        ],
+        "status": "canon",
+        "source": "Player Rulebook — Spell Lists"
+      },
+      "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+      "coreEntries": [
+        {
+          "index": 281,
+          "original": {
+            "school": "Divination",
+            "level": 7,
+            "name": "Planar Summons (Greater)",
+            "effect": "Summon two extraplanar allies (up to CR 8 each).",
+            "source_paragraph": 9328,
+            "casting_time": "1 action",
+            "range": "120 feet",
+            "duration": "Concentration, up to 1 minute",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Summoning",
+              "Planar"
+            ],
+            "rp_cost": 17
+          }
+        }
+      ],
+      "possibleHistoricalAliases": []
+    },
+    "reviewFlags": [
+      "Core resolution requires an explicit operational interpretation",
+      "Not selectable in this spell playtest packet until individual operational review"
+    ]
+  },
+  "procedure": {
+    "KEEP": "Divination,rank7,Action,120feet,V/S/F,base17RP,concentration60seconds. Exactly2 temporary manifestations, each authoritativeCR<=8.",
+    "NEW_roster": "Choose only a complete current approved native roster profile with actual authoritative CR and source provenance. Lesser retains celestial/elemental/outsider categories separately; undefined Outsider is held, never automatically Fiend. Greater requires two independently evidenced extraplanar allied profiles, not oneCR16 budget or the unproved designCR6/hour Greater Planar Ally substitute. Same roster entry can produce two distinct temporary instances only if that entry expressly permits it; no existing individual is duplicated. Missing categories/full CR profiles remain whole-case holds, not promoted workbook rows.",
+    "NEW_creation": "Explicitly choose finite source-local manifestations, not conscripting/transporting named existing persons. No home/native plane, shared soul, absence elsewhere or return itinerary is inferred. Select all whole-body supported, unoccupied disjoint poses in range/caster LoE before commitment. NEW atomic formation for Greater: if either independently required eligibility/placement fails, neither forms; no free partial/body substitution or retroactive cost refund. Known absence rejects preflight. Hidden changed legality is paid generic failure.",
+    "NEW_profile_and_commands": "Every admitted roster must supply size/height/volume/mass, six abilities, AC/HP, saves/skills, senses/language, anatomy/handling/cargo, speeds, each attack/action/defense and finite innate charges. Without those there is no operational body. Use native printed stats, actual original source-owner class attack/DC and exact creationHP gates only; Divination school is not Conjuration specialization. Both Greater bodies share the one owner BonusAction command and one damaging/control companion Action per numbered round; command on owner regular turn, execute in attached phase, no independent/free attacks or extra-turn reset. Formation gives no free action; a valid available command may be issued that round under the exact common companion interface.",
+    "NEW_lifecycle": "Original60second concentration parent measured from successful formation; independent body IDs/endings, source-owner and current controller distinct. Ordinary finite summon0HP ends that body under its profiled HP-only life; exact Null-specific exceptions require actual source evidence, not blanket import. Local full suppression preserves same still-live source/body/HP/cargo/creator/deadline but disables only its magical outputs/activity; source ending while suppressed still ends it. Expiry/concentration end/real termination removes remaining source-only bodies/anatomy, settling actual external items once at their real locations. No Banishment terminal return exception, corpse, harvest, duplicate soul, RP pool, reset innate charges or resource farm. Current no proved roster means all positive body/action/lifecycle examples remain whole-case held."
+  },
+  "sharedRuleIds": [
+    "SC138-AUTHORITY",
+    "SC138-COMMIT",
+    "SC138-INFORMATION",
+    "SC138-COSMOLOGY",
+    "SC138-IDENTITY",
+    "SC138-READY"
+  ],
+  "accepted": false,
+  "applied": false
+}
+
+## soul-cage
+
+{
+  "id": "soul-cage",
+  "status": "PROPOSED_FOR_EXACT_INDEPENDENT_REVIEW",
+  "completeNativeAndAccessUnchanged": {
+    "id": "soul-cage",
+    "name": "Soul Cage",
+    "schools": [
+      "Enchantment",
+      "Necromancy"
+    ],
+    "status": "blocked-pending-operational-review",
+    "visibility": "public-source-review",
+    "classAccess": {
+      "Bard": {
+        "rank": 6,
+        "minimumClassLevel": 16,
+        "school": "Enchantment",
+        "baseRpCost": 13
+      },
+      "Cleric": {
+        "rank": 6,
+        "minimumClassLevel": 11,
+        "school": "Necromancy",
+        "baseRpCost": 13
+      },
+      "Crimson Agent": {
+        "rank": 6,
+        "minimumClassLevel": 19,
+        "school": "Enchantment",
+        "baseRpCost": 13
+      },
+      "Druid": {
+        "rank": 6,
+        "minimumClassLevel": 11,
+        "school": "Necromancy",
+        "baseRpCost": 13
+      },
+      "Mirrorsage": {
+        "rank": 6,
+        "minimumClassLevel": 16,
+        "school": "Enchantment",
+        "baseRpCost": 13
+      },
+      "Shaman": {
+        "rank": 6,
+        "minimumClassLevel": 16,
+        "school": "Necromancy",
+        "baseRpCost": 13
+      },
+      "Wizard": {
+        "rank": 6,
+        "minimumClassLevel": 11,
+        "school": "Enchantment",
+        "baseRpCost": 13
+      }
+    },
+    "operational": null,
+    "additionalRpCost": 0,
+    "source": {
+      "catalogPath": "src/data/spells.js",
+      "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+      "catalogKey": "soul-cage",
+      "original": {
+        "name": "Soul Cage",
+        "level": 6,
+        "resonanceRank": 6,
+        "school": "Enchantment",
+        "schools": [
+          "Enchantment",
+          "Necromancy"
+        ],
+        "placements": [
+          {
+            "name": "Soul Cage",
+            "school": "Enchantment",
+            "level": 6,
+            "summary": "Trap dying creature's soul; use it for various effects."
+          },
+          {
+            "name": "Soul Cage",
+            "school": "Necromancy",
+            "level": 6,
+            "summary": "Trap the soul of a dying humanoid."
+          }
+        ],
+        "classLevels": {
+          "Bard": 6,
+          "Cleric": 6,
+          "Crimson Agent": 6,
+          "Druid": 6,
+          "Mirrorsage": 6,
+          "Shaman": 6,
+          "Wizard": 6
+        },
+        "classRanks": {
+          "Bard": 6,
+          "Cleric": 6,
+          "Crimson Agent": 6,
+          "Druid": 6,
+          "Mirrorsage": 6,
+          "Shaman": 6,
+          "Wizard": 6
+        },
+        "classLearnLevels": {
+          "Bard": 16,
+          "Cleric": 11,
+          "Crimson Agent": 19,
+          "Druid": 11,
+          "Mirrorsage": 16,
+          "Shaman": 16,
+          "Wizard": 11
+        },
+        "classSchools": {
+          "Bard": "Enchantment",
+          "Cleric": "Necromancy",
+          "Crimson Agent": "Enchantment",
+          "Druid": "Necromancy",
+          "Mirrorsage": "Enchantment",
+          "Shaman": "Necromancy",
+          "Wizard": "Enchantment"
+        },
+        "castingTime": "Not specified in current rulebook",
+        "range": "Not specified in current rulebook",
+        "components": "Not specified in current rulebook",
+        "duration": "Not specified in current rulebook",
+        "description": "Trap dying creature's soul; use it for various effects.",
+        "alternateSummaries": [
+          "Trap the soul of a dying humanoid."
+        ],
+        "classes": [
+          "Bard",
+          "Cleric",
+          "Crimson Agent",
+          "Druid",
+          "Mirrorsage",
+          "Shaman",
+          "Wizard"
+        ],
+        "status": "canon",
+        "source": "Player Rulebook — Spell Lists"
+      },
+      "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+      "coreEntries": [
+        {
+          "index": 383,
+          "original": {
+            "school": "Enchantment",
+            "level": 6,
+            "name": "Soul Cage",
+            "effect": "Trap dying creature's soul; use it for various effects.",
+            "source_paragraph": 9453,
+            "casting_time": "1 action",
+            "range": "60 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Utility"
+            ],
+            "rp_cost": 13
+          }
+        },
+        {
+          "index": 695,
+          "original": {
+            "school": "Necromancy",
+            "level": 6,
+            "name": "Soul Cage",
+            "effect": "Trap the soul of a dying humanoid.",
+            "source_paragraph": 9840,
+            "casting_time": "1 action",
+            "range": "60 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Utility"
+            ],
+            "rp_cost": 13
+          }
+        }
+      ],
+      "possibleHistoricalAliases": []
+    },
+    "reviewFlags": [
+      "Core resolution requires an explicit operational interpretation",
+      "Not selectable in this spell playtest packet until individual operational review"
+    ]
+  },
+  "procedure": {
+    "KEEP_modes": "Action,60feet,V/S/F,rank6/base13RP. Actual Wizard/Bard/Mirrorsage/Crimson Agent Enchantment route targets a DYING CREATURE; actual Cleric/Druid/Shaman Necromancy route targets a DYING HUMANOID. Class access selects school; no broadest-route chooser or unrelated Soul Cage feat Reaction is imported.",
+    "NEW_eligibility": "At resolution require one perceived presently living Dying significant creature in60feet/LoE, genuine continuing-identity/soul eligibility evidence, actual school creature-type predicate, and no existing custody. Stable, Dead, instant-death intermediate fiction or an expired Dying window is ineligible. Evidence does not follow from class/type alone. Unknown soul ontology is a whole-case hold. NEW initial CHA save versus actual casting-class DC; Unconscious does not automatically fail CHA. Explicit independently recorded consent may choose failure only as this new local permission, not a universal involuntary consent rule.",
+    "NEW_custody": "NEW immediate finite custody tag coexists with the SAME living Dying body without killing, stasis, healing, stabilization, soul-copy or loss of ordinary agency beyond its real condition. One globally keyed continuing identity, one nontransferable caster-owned intangible token, no physical cage stock/HP/weight, capacity one identity, nonconcentration60seconds from successful application. Competing roots resolve creation/stableID and only the first eligible success can take custody; a hidden earlier custody can defeat a paid later resolution generically. Different targets per caster successful replacement releases the old token first. Same identity cannot be duplicated.",
+    "NEW_uses": "Both school routes receive this explicitly NEW common finite menu; the Necromancy use extension is NEW, not recovered printed benefits. Two total charges shared across modes, no refill. On actual caster regular Action, within60feet/perception of own token, consume one charge BEFORE output: (1) Recall: one single-proposition question<=20words, one response<=30words from actual retained memories/language/cooperation, including unknown/refusal; (2) Witness: one named actually retained past event, one fixed<=5second ordinary visual/auditory memory excerpt, no current remote sensor, translation, objective truth/inventory/skill/class/Equation extraction. No HP/RP/Conviction/Echo, extra action, torture benefit, soul destruction or arbitrary power. An unknown/refused/warded use still spends its charge. Exhaustion releases custody immediately. Voluntary Release is an actual caster Action, not a third benefit or charge refund.",
+    "NEW_ready_and_life": "Ordinary Ready casts/pays13RP and resolves cadence/components/interruption at actual preparation, holds concentration and expires at next original regular start. It selects/rechecks target on genuine Reaction release AFTER WHOLE trigger damage/treatment/prevention event. Release is not a second cast. If Dead/Stable/Alive1 replaces an intermediate zero crossing, no Dying capture; a known illegal release spends no Reaction but held spell/cost can expire. Current whole-event Instant Death/Wound/Death Ward/would-die replacements remain exact.",
+    "NEW_ending_and_return": "Custody ends at charge exhaustion, actual caster Release Action, caster death, target regaining positive HP or becoming Stable, token-local full magical suppression, real source termination or original deadline. Suppression ends this spell permanently; it never freezes a spare soul for rearming. Death of the body alone can leave the same continuing dead identity under the remaining original token, preserving committed death/Hunted Death history. This spell creates NO new ordinary resurrection/return blocker and overrides none; any real legal return uses its own proof/body/HP/Wounds/location/custody/obligations and ends duplicate custody. Release is not resurrection, body repair, Hunt clearance or Divine/Abyssal intervention. Genuine Hunted Death and rare intervention remain independent exact source rules. No positive return attempt is invented without a complete actual source."
+  },
+  "sharedRuleIds": [
+    "SC138-AUTHORITY",
+    "SC138-COMMIT",
+    "SC138-INFORMATION",
+    "SC138-COSMOLOGY",
+    "SC138-IDENTITY",
+    "SC138-READY"
+  ],
+  "accepted": false,
+  "applied": false
+}

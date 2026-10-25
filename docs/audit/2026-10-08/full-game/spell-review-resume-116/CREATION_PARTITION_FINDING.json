@@ -1,0 +1,235 @@
+{
+  "id": "CREATION-INDEPENDENT-PARTITION-FINDING-116",
+  "status": "Concrete counterexample to an unadopted proposal; UNSENT; repair choice unselected",
+  "source": "DescentReviewChanges/ReviewBible/data/director/spell_review/creation_conference_02.json",
+  "pointer": "/completeEarlierRecordUnchanged/procedure",
+  "relatedQuestions": [
+    "CR1-Q04",
+    "CR1-Q05"
+  ],
+  "finding": "Separate floor allocation of maximum and current structuralHP with all residual assigned to the final piece can produce currentHP greater than maximumHP. Conserved totals alone do not establish valid per-piece state.",
+  "before": {
+    "massLb": 80,
+    "maximumHP": 20,
+    "currentHP": 12
+  },
+  "legalPhysicalCutStatus": "Conditional arithmetic counterexample only; no free cutting action or authored stock eligibility inferred.",
+  "proposedPiecesMassLb": [
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8
+  ],
+  "proposalResult": {
+    "maximumHP": [
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2
+    ],
+    "currentHP": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      3
+    ],
+    "totals": {
+      "massLb": 80,
+      "maximumHP": 20,
+      "currentHP": 12
+    },
+    "invalidPiece": {
+      "index": 9,
+      "maximumHP": 2,
+      "currentHP": 3
+    }
+  },
+  "requiredRepair": "Select a finite deterministic partition rule preserving mass/value/history and sumMax/sumCurrent while ensuring0<=pieceCurrent<=pieceMax for every piece, including zero-max physical fragments and repeated subdivision. Apply it to the full procedure and all affected cases. Keep existing two-piece5/15max and3/9current outcome if compatible.",
+  "possibleApproachNotSelected": "Capacity-constrained deterministic apportionment with stable piece IDs and an explicit original-lot/subdivision ledger; allocation must be defined before damage/repair outcomes, not chosen to favor a piece.",
+  "checks": "Fresh arithmetic derivation of this new counterexample only; no historical runner executed.",
+  "semanticAcceptanceClaimed": false,
+  "canonicalApplied": false,
+  "repairProposalForConference": {
+    "status": "NEW alternative, not selected or applied",
+    "maximumAllocation": "Exact rational mass shares. Floor each maximum quota; assign remaining units in descending fractional remainder order, ties by immutable predeclared piece ID.",
+    "currentAllocation": "Floor each current quota. Allocate remaining units in descending current fractional remainder order, same tie rule, skipping pieces at their assigned maximum. Iterate the stable order only if still needed; capacities total enough because original current<=maximum.",
+    "historyScope": "Actual physical partition must already be lawful. Persist parent/child IDs, masses and chosen ordering. Zero-maximum fragments remain material, not operational finished items. No newly inferred cutting,repair,consumption or stock-generation permission.",
+    "fiveNewArithmeticVectors": [
+      {
+        "beforeMaximum": 20,
+        "beforeCurrent": 12,
+        "pieceMasses": [
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8
+        ],
+        "proposedMaximum": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "proposedCurrent": [
+          2,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "beforeMaximum": 20,
+        "beforeCurrent": 12,
+        "pieceMasses": [
+          20,
+          60
+        ],
+        "proposedMaximum": [
+          5,
+          15
+        ],
+        "proposedCurrent": [
+          3,
+          9
+        ]
+      },
+      {
+        "beforeMaximum": 3,
+        "beforeCurrent": 2,
+        "pieceMasses": [
+          4,
+          4,
+          2
+        ],
+        "proposedMaximum": [
+          1,
+          1,
+          1
+        ],
+        "proposedCurrent": [
+          1,
+          1,
+          0
+        ]
+      },
+      {
+        "beforeMaximum": 2,
+        "beforeCurrent": 0,
+        "pieceMasses": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "proposedMaximum": [
+          1,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "proposedCurrent": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "beforeMaximum": 20,
+        "beforeCurrent": 20,
+        "pieceMasses": [
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8
+        ],
+        "proposedMaximum": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "proposedCurrent": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ]
+      }
+    ],
+    "invariantArgument": "For each positive mass share andC<=H, floor(Cshare)<=floor(Hshare)<=assignedMaximum. The available capacities sum toH-sum(floor(Cshare)), at least the remaining C-sum(floor(Cshare)) units. Bounded allocation therefore preserves totals and never exceeds any maximum. No numerical balance claim.",
+    "notSettled": "Whether this apportionment is the intended game rule, operation-order and repair consequences require the Creation conference. It is a concrete alternative to discuss, not a new accepted interface."
+  }
+}

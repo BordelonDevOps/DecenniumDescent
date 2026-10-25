@@ -1,0 +1,70 @@
+{
+  "id": "MAGIC7-129-AUTHORED-APPLICATION-PLAN",
+  "status": "NOT_EXECUTED_AWAITING_OWNER_INDEPENDENT_EXACT_ACCEPTANCE",
+  "preconditions": [
+    {
+      "kind": "exact_input_baseline",
+      "file": "evidence/CURRENT_INDEX_129.json",
+      "sha256": "a03b61fe6b2bbebc9b019e5576287603c6b9a84708beb361e9b9c5e5e35cc535"
+    },
+    {
+      "kind": "independent_exact_acceptance",
+      "required": true,
+      "receipt": null
+    },
+    {
+      "kind": "owner_apply_after_acceptance",
+      "authorizedBy": "Current owner instruction; still requires the independent exact acceptance the owner reserved"
+    }
+  ],
+  "orderedDataActions": [
+    {
+      "step": 1,
+      "operation": "preserve_complete_return_and_manifest",
+      "source": "this exact ZIP; do not overwrite input history"
+    },
+    {
+      "step": 2,
+      "operation": "install_exact_manuscript_tree",
+      "canonicalRoot": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/magic_modifiers7_corrected_129/",
+      "files": [
+        "MODEL.json",
+        "PROCEDURES.json",
+        "SHARED_RULES.json",
+        "QUESTION_DISPOSITIONS.json",
+        "CASEBOOK.json",
+        "ACTOR_TEMPLATES.json",
+        "HOLD_REGISTER.json",
+        "evidence/"
+      ],
+      "MODELBytes": 114496,
+      "MODELSha256": "b6c135a712025afcf6458f9b9965d5e75ff2b58513dc7b4ffa3036eb263e700d"
+    },
+    {
+      "step": 3,
+      "operation": "apply_guarded_index_values",
+      "data": "PROPOSED_INDEX_OPERATIONS.json",
+      "inverseIncluded": true,
+      "unrelatedEntriesUnchanged": 841
+    },
+    {
+      "step": 4,
+      "operation": "bind_real_receipts_and_append_standalone_envelope",
+      "requiresActualIndependentAcceptanceReceipt": true,
+      "requiresActualApplicationReceipt": true,
+      "placeholderTreatedAsAcceptance": false
+    },
+    {
+      "step": 5,
+      "operation": "record_current_queue_after_actual_application",
+      "projectionOnly": {
+        "reviewedApplied": 623,
+        "pending": 225,
+        "acceptedUnapplied": 0
+      },
+      "nextGroup": "LifeMatter5 exact prepared source packet supplied by owner"
+    }
+  ],
+  "rollback": "Restore exact before index values with inverse operations; remove only newly installed successor tree if prior path absent, otherwise restore preserved prior bytes; retain source/history and true review receipts. No runtime/catalog selection flag change.",
+  "notIncluded": "No supplied/historical code execution, automatic independent acceptance, runtime/human/balance/cosmology/release approval."
+}

@@ -1,0 +1,81 @@
+{
+  "kind": "COMPLETE_RELEVANT_RAY_AND_BODY_EXTENT_DATA_INSPECTION",
+  "NEAR": {
+    "closedBox": {
+      "min": [
+        5,
+        -10,
+        0
+      ],
+      "max": [
+        12,
+        0,
+        8
+      ]
+    },
+    "actualCasterEyes": [
+      0,
+      -30,
+      6
+    ],
+    "actualFieldPoint": [
+      20,
+      0,
+      3
+    ],
+    "eyeRayAtX12": [
+      12,
+      -12,
+      4.2
+    ],
+    "strictlyOutsideWallY": true,
+    "entireCBoxToEBoxOcclusionProof": {
+      "YAtX5UpperBound": -8.75,
+      "YAtX12LowerBound": -8.75,
+      "reason": "Every rising ray enters x[5,12] below y0 and exits above y-10, so intersects the closed opaque slab; full z0..6 lies inside wall0..8. This covers the continuous box family, not just corners."
+    },
+    "onlyActualUsableSourceEyeRayRequiredForPerceivedCenter": "Actual eye/head6->center3 is clear; no assertion that all unused C-body points are equally clear."
+  },
+  "FAR": {
+    "closedBox": {
+      "min": [
+        48,
+        -10,
+        0
+      ],
+      "max": [
+        52,
+        16,
+        8
+      ]
+    },
+    "entireCBoxToRBoxOcclusionAtPlaneX49": {
+      "YRange": [
+        6.25,
+        15.416666666666664
+      ],
+      "ZRange": [
+        0,
+        6
+      ]
+    },
+    "nativeRFireballPath": {
+      "from": [
+        60,
+        20,
+        3
+      ],
+      "to": [
+        40,
+        20,
+        3
+      ],
+      "literalDistance20": true,
+      "allY20AboveWallMaximum16": true
+    },
+    "RFullBodyOutsideWall": "R y17.5..22.5, x57.5..62.5 clears actual slab; its spell path remains clear."
+  },
+  "explosionToAllActualExposedRAndT": "Actual center40,20,3->Rbody orT30,10 remains clear of FAR; all T paths x<48 and R paths through slab y>16. Other E/H/D/C bodies outside actual radius20.",
+  "cornerPairChecks": 128,
+  "continuousIntervalProofs": true
+}

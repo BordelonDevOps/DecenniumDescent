@@ -1,0 +1,23 @@
+# LM130-CAST
+
+All five retain actual per-class native rank/school/minimum/access and base RP, not a global name-derived price. All are Action/60ft/V/S/F. Commit actual known/prepared/card availability, normal own-turn Action or genuinely paid Ready, components, RP and source charges before outcomes. Starting Bone Cage concentration ends prior concentration at commitment even if later countered. Other four keep no ongoing concentration. Use actual protected Wizard first-distinct family, class-card price exceptions, Refrain, Dissonance before/after cast and real recharge/round uses. No refund or free provider from a case.
+
+# LM130-CLOCK
+
+Future regular START/END, numbered rounds and absolute seconds are separate. Preserve all original source clocks, disease0/60/86400anniversaries/604800expiry, original body/form/field deadlines and fixed Fall Marker. Expiry precedes a due later payload where specified. A new encounter/out-of-initiative interval grants no extra paid Action, disease save, rest or clock reset. Zero-duration same-time cleanup is not a new response window.
+
+# LM130-BODY
+
+State explicit centered-XY/bottom-Z occupied geometry, mass, gear/cargo/heldBy/support/doors and full swept paths. Actual independent total cover and actual sight remain separate. No token-only fit, through-floor frame, underfloor cage material, missing body mass, free door unlock or attack from motion. Scene dimensions/initial property premises are NEW declared encounter inputs, not a new published monster or campaign authentication.
+
+# LM130-LIFE
+
+Apply complete current Core/Healing/Null/body/creature lifecycle authority. Resolve actual target-local defenses, pure sharing descendants, tempHP, Instant Death, floor prevention, Wounds/fatal gates and only then locally selected Disintegrate original-target dust. True Null overrides packet-caused creature lethal/Wound/destruction endpoints while preserving original histories and actual non-damage endings. Object destruction, permanent disease result and autonomous cognition are not retroactively erased.
+
+# LM130-IDENTITY
+
+Keep original creator, root dealer, target/application/component IDs, class acquisition, current controller, old gear and all actual source uses separate. A same-named class card is not an ordinary spell grant. Awaken changes neither prior sapience into nonsapience nor companion acquisition into an ongoing deletion gate. No recreated stock, soul ruling, duplicate remains anchor, free roster conversion, healed source body or unprinted item route.
+
+# LM130-EVIDENCE
+
+Full exact originals, native records, accepted applied current623/225 baseline,10 original scenarios,20 questions and retained holds are preserved. Synthetic fixture facts and NEW local authoring are labeled. Expected before/after timelines are serialized authored data, not observed runtime. Whole-case qualifications are explicit where a true producer/type/CR/route is absent. Independent exact acceptance, canonical application, runtime/human/balance/cosmology/release remain separate gates.

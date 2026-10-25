@@ -1,0 +1,2373 @@
+[
+  {
+    "spellId": "stoneflesh",
+    "source": {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+      "bytes": 4945319,
+      "sha256": "f52cf6a4a4673897615a74c7c67dcba798c431362d4357e71ee552cc7c5d31f8"
+    },
+    "pointer": "/spells/701",
+    "completeCurrentCard": {
+      "id": "stoneflesh",
+      "name": "Stoneflesh",
+      "schools": [
+        "Transmutation"
+      ],
+      "status": "operational-playtest-draft",
+      "visibility": "public-source-review",
+      "classAccess": {
+        "Dragoon": {
+          "rank": 1,
+          "minimumClassLevel": 3,
+          "school": "Transmutation",
+          "baseRpCost": 2
+        },
+        "Druid": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Transmutation",
+          "baseRpCost": 2
+        },
+        "Mage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Transmutation",
+          "baseRpCost": 2
+        },
+        "Monk": {
+          "rank": 1,
+          "minimumClassLevel": 3,
+          "school": "Transmutation",
+          "baseRpCost": 2
+        },
+        "Ranger": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Transmutation",
+          "baseRpCost": 2
+        },
+        "Shaman": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Transmutation",
+          "baseRpCost": 2
+        },
+        "Thief": {
+          "rank": 1,
+          "minimumClassLevel": 3,
+          "school": "Transmutation",
+          "baseRpCost": 2
+        },
+        "Tinker": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Transmutation",
+          "baseRpCost": 2
+        },
+        "Wizard": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Transmutation",
+          "baseRpCost": 2
+        }
+      },
+      "operational": {
+        "id": "stoneflesh",
+        "activation": "Action",
+        "rangeFeet": 30,
+        "targets": "One willing creature you can perceive within range",
+        "duration": "1 minute",
+        "concentration": false,
+        "components": [
+          "V",
+          "S",
+          "F"
+        ],
+        "resolution": "None.",
+        "effect": "The target gains +2 AC. Each of its movement Speeds is halved for the duration, rounding fractions down under the shared rules.",
+        "scaling": "None.",
+        "limitations": "Multiple Stoneflesh effects do not stack; a new cast refreshes duration. The AC bonus is a spell bonus and follows ordinary same-stat stacking rules. The spell grants no damage resistance, stone immunity, extra weight, natural weapon, or protection from petrification unless another rule says so. Ranked casting causes normal Dissonance and Refrain.",
+        "designNotes": "Core V2 Action, 30-foot range, 1-minute duration, V/S/F components, and the source +2 AC/halved movement are retained. No concentration requirement is added because Core metadata does not specify one.",
+        "authoringFile": "data/playtest/spell_drafts/batch_3.json"
+      },
+      "additionalRpCost": 0,
+      "source": {
+        "catalogPath": "src/data/spells.js",
+        "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+        "catalogKey": "stoneflesh",
+        "original": {
+          "name": "Stoneflesh",
+          "level": 1,
+          "resonanceRank": 1,
+          "school": "Transmutation",
+          "schools": [
+            "Transmutation"
+          ],
+          "placements": [
+            {
+              "name": "Stoneflesh",
+              "school": "Transmutation",
+              "level": 1,
+              "summary": "+2 AC for 1 minute; movement halved."
+            }
+          ],
+          "classLevels": {
+            "Dragoon": 1,
+            "Druid": 1,
+            "Mage": 1,
+            "Monk": 1,
+            "Ranger": 1,
+            "Shaman": 1,
+            "Thief": 1,
+            "Tinker": 1,
+            "Wizard": 1
+          },
+          "classRanks": {
+            "Dragoon": 1,
+            "Druid": 1,
+            "Mage": 1,
+            "Monk": 1,
+            "Ranger": 1,
+            "Shaman": 1,
+            "Thief": 1,
+            "Tinker": 1,
+            "Wizard": 1
+          },
+          "classLearnLevels": {
+            "Dragoon": 3,
+            "Druid": 1,
+            "Mage": 1,
+            "Monk": 3,
+            "Ranger": 2,
+            "Shaman": 1,
+            "Thief": 3,
+            "Tinker": 2,
+            "Wizard": 1
+          },
+          "classSchools": {
+            "Dragoon": "Transmutation",
+            "Druid": "Transmutation",
+            "Mage": "Transmutation",
+            "Monk": "Transmutation",
+            "Ranger": "Transmutation",
+            "Shaman": "Transmutation",
+            "Thief": "Transmutation",
+            "Tinker": "Transmutation",
+            "Wizard": "Transmutation"
+          },
+          "castingTime": "Not specified in current rulebook",
+          "range": "Not specified in current rulebook",
+          "components": "Not specified in current rulebook",
+          "duration": "Not specified in current rulebook",
+          "description": "+2 AC for 1 minute; movement halved.",
+          "alternateSummaries": [],
+          "classes": [
+            "Dragoon",
+            "Druid",
+            "Mage",
+            "Monk",
+            "Ranger",
+            "Shaman",
+            "Thief",
+            "Tinker",
+            "Wizard"
+          ],
+          "status": "canon",
+          "source": "Player Rulebook — Spell Lists"
+        },
+        "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+        "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+        "coreEntries": [
+          {
+            "index": 745,
+            "original": {
+              "school": "Transmutation",
+              "level": 1,
+              "name": "Stoneflesh",
+              "effect": "+2 AC for 1 minute; movement halved.",
+              "source_paragraph": 9905,
+              "casting_time": "1 action",
+              "range": "30 feet",
+              "duration": "1 minute",
+              "components": "V, S, F",
+              "resolution": "Automatic or opposed as described",
+              "tags": [
+                "Utility"
+              ],
+              "rp_cost": 2
+            }
+          }
+        ],
+        "possibleHistoricalAliases": []
+      },
+      "reviewFlags": [
+        "Core resolution requires an explicit operational interpretation"
+      ]
+    },
+    "completeSharedRules": {},
+    "indexEntry": {
+      "id": "stoneflesh",
+      "name": "Stoneflesh",
+      "authoredStatus": "reviewed-authored-operational-playtest",
+      "procedureFile": "catalog.json",
+      "procedurePointer": "/spells/701/operational",
+      "wholeCardPointer": "/spells/701",
+      "sourceStatus": "operational-playtest-draft",
+      "priorCatalogSelectionStatusUnchanged": true
+    }
+  },
+  {
+    "spellId": "shield",
+    "source": {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+      "bytes": 4945319,
+      "sha256": "f52cf6a4a4673897615a74c7c67dcba798c431362d4357e71ee552cc7c5d31f8"
+    },
+    "pointer": "/spells/16",
+    "completeCurrentCard": {
+      "id": "shield",
+      "name": "Shield",
+      "schools": [
+        "Abjuration",
+        "Universal"
+      ],
+      "status": "operational-playtest-draft",
+      "visibility": "public-source-review",
+      "classAccess": {
+        "Bard": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Universal",
+          "baseRpCost": 2
+        },
+        "Cleric": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Druid": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Mage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Monk": {
+          "rank": 1,
+          "minimumClassLevel": 3,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Mirrorsage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Universal",
+          "baseRpCost": 2
+        },
+        "Tinker": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Wizard": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Paladin": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        }
+      },
+      "operational": {
+        "id": "shield",
+        "activation": "Reaction — when the chosen creature is targeted by an attack roll or Magic Missile, before the attack or damage resolves",
+        "rangeFeet": 30,
+        "targets": "Self or one willing creature you can perceive within 30 feet",
+        "duration": "Until the start of your next regular turn",
+        "concentration": false,
+        "components": [
+          "V",
+          "S",
+          "F"
+        ],
+        "resolution": "None. Re-evaluate the triggering attack against the chosen creature's increased AC; negate Magic Missile damage to that creature while the spell lasts.",
+        "effect": "The chosen creature gains +5 AC until the start of your next regular turn. During the same duration, Magic Missile cannot deal damage to that creature.",
+        "scaling": "None. Damage dice, target count, range and duration do not automatically increase with character or class level.",
+        "limitations": "Does not protect against saving-throw effects, attacks that already resolved, or other automatically hitting effects unless explicitly named Magic Missile. Multiple Shield casts do not stack. Ranked casting causes normal Dissonance and Refrain.",
+        "designNotes": "Core V2 blocks and catalog summaries are preserved alongside this card. Components use the existing class focus where Core says F or M/F; this focus interpretation is provisional. Exact target eligibility, duration endpoints, saves where absent, concentration where unclear and anti-loop limits are provisional integration decisions.  GPT conference correction: retain Core30ft range; self-only narrowing rejected. One willing recipient is a provisional target specification.",
+        "previousDraftDesignNotes": "NEW provisional Reaction trigger and exact timing; numerical effects are preserved from both source placements.",
+        "authoringFile": "data/playtest/spell_drafts/batch_1.json"
+      },
+      "additionalRpCost": 0,
+      "source": {
+        "catalogPath": "src/data/spells.js",
+        "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+        "catalogKey": "shield",
+        "original": {
+          "name": "Shield",
+          "level": 1,
+          "resonanceRank": 1,
+          "school": "Abjuration",
+          "schools": [
+            "Abjuration",
+            "Universal"
+          ],
+          "placements": [
+            {
+              "name": "Shield",
+              "school": "Abjuration",
+              "level": 1,
+              "summary": "+5 AC and immunity to Magic Missile until your next turn."
+            },
+            {
+              "name": "Shield",
+              "school": "Universal",
+              "level": 1,
+              "summary": "+5 AC and immunity to Magic Missile until your next turn."
+            }
+          ],
+          "classLevels": {
+            "Bard": 1,
+            "Cleric": 1,
+            "Druid": 1,
+            "Mage": 1,
+            "Monk": 1,
+            "Mirrorsage": 1,
+            "Tinker": 1,
+            "Wizard": 1,
+            "Paladin": 1
+          },
+          "classRanks": {
+            "Bard": 1,
+            "Cleric": 1,
+            "Druid": 1,
+            "Mage": 1,
+            "Monk": 1,
+            "Mirrorsage": 1,
+            "Tinker": 1,
+            "Wizard": 1,
+            "Paladin": 1
+          },
+          "classLearnLevels": {
+            "Bard": 1,
+            "Cleric": 1,
+            "Druid": 1,
+            "Mage": 1,
+            "Monk": 3,
+            "Mirrorsage": 1,
+            "Tinker": 2,
+            "Wizard": 1,
+            "Paladin": 2
+          },
+          "classSchools": {
+            "Bard": "Universal",
+            "Cleric": "Abjuration",
+            "Druid": "Abjuration",
+            "Mage": "Abjuration",
+            "Monk": "Abjuration",
+            "Mirrorsage": "Universal",
+            "Tinker": "Abjuration",
+            "Wizard": "Abjuration",
+            "Paladin": "Abjuration"
+          },
+          "castingTime": "Not specified in current rulebook",
+          "range": "Not specified in current rulebook",
+          "components": "Not specified in current rulebook",
+          "duration": "Not specified in current rulebook",
+          "description": "+5 AC and immunity to Magic Missile until your next turn.",
+          "alternateSummaries": [],
+          "classes": [
+            "Bard",
+            "Cleric",
+            "Druid",
+            "Mage",
+            "Monk",
+            "Mirrorsage",
+            "Tinker",
+            "Wizard",
+            "Paladin"
+          ],
+          "status": "canon",
+          "source": "Player Rulebook — Spell Lists"
+        },
+        "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+        "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+        "coreEntries": [
+          {
+            "index": 16,
+            "original": {
+              "school": "Abjuration",
+              "level": 1,
+              "name": "Shield",
+              "effect": "+5 AC and immunity to Magic Missile until your next turn.",
+              "source_paragraph": 9001,
+              "casting_time": "1 reaction",
+              "range": "30 feet",
+              "duration": "1 round",
+              "components": "V, S, F",
+              "resolution": "Automatic or opposed as described",
+              "tags": [
+                "Ward"
+              ],
+              "rp_cost": 2
+            }
+          },
+          {
+            "index": 858,
+            "original": {
+              "school": "Universal",
+              "level": 1,
+              "name": "Shield",
+              "effect": "+5 AC and immunity to Magic Missile until your next turn.",
+              "source_paragraph": 10043,
+              "casting_time": "1 reaction",
+              "range": "30 feet",
+              "duration": "1 round",
+              "components": "V, S, F",
+              "resolution": "Automatic or opposed as described",
+              "tags": [
+                "Ward"
+              ],
+              "rp_cost": 2
+            }
+          }
+        ],
+        "possibleHistoricalAliases": []
+      },
+      "reviewFlags": [
+        "Core resolution requires an explicit operational interpretation"
+      ]
+    },
+    "completeSharedRules": {},
+    "indexEntry": {
+      "id": "shield",
+      "name": "Shield",
+      "authoredStatus": "reviewed-authored-operational-playtest",
+      "procedureFile": "catalog.json",
+      "procedurePointer": "/spells/16/operational",
+      "wholeCardPointer": "/spells/16",
+      "sourceStatus": "operational-playtest-draft",
+      "priorCatalogSelectionStatusUnchanged": true
+    }
+  },
+  {
+    "spellId": "alter-self",
+    "source": {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/candidate_low_rank_136.json",
+      "bytes": 1664654,
+      "sha256": "506393b1131e3ed099effbe55b05d6b00a5193e503b02f065a5f84751a2955fe"
+    },
+    "pointer": "/spells/74",
+    "completeCurrentCard": {
+      "id": "alter-self",
+      "name": "Alter Self",
+      "status": "reviewed-authored-operational-playtest",
+      "selectionEnabled": false,
+      "visibility": "public-source-review",
+      "sourceQuestionId": "TR-26",
+      "sourceDecisionId": "LR-TR-26",
+      "sourceReceipt": {
+        "id": "alter-self",
+        "name": "Alter Self",
+        "schools": [
+          "Transmutation"
+        ],
+        "status": "blocked-pending-operational-review",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Dragoon": {
+            "rank": 2,
+            "minimumClassLevel": 8,
+            "school": "Transmutation",
+            "baseRpCost": 3
+          },
+          "Druid": {
+            "rank": 2,
+            "minimumClassLevel": 3,
+            "school": "Transmutation",
+            "baseRpCost": 3
+          },
+          "Mage": {
+            "rank": 2,
+            "minimumClassLevel": 3,
+            "school": "Transmutation",
+            "baseRpCost": 3
+          },
+          "Monk": {
+            "rank": 2,
+            "minimumClassLevel": 8,
+            "school": "Transmutation",
+            "baseRpCost": 3
+          },
+          "Ranger": {
+            "rank": 2,
+            "minimumClassLevel": 5,
+            "school": "Transmutation",
+            "baseRpCost": 3
+          },
+          "Shaman": {
+            "rank": 2,
+            "minimumClassLevel": 4,
+            "school": "Transmutation",
+            "baseRpCost": 3
+          },
+          "Thief": {
+            "rank": 2,
+            "minimumClassLevel": 8,
+            "school": "Transmutation",
+            "baseRpCost": 3
+          },
+          "Tinker": {
+            "rank": 2,
+            "minimumClassLevel": 6,
+            "school": "Transmutation",
+            "baseRpCost": 3
+          },
+          "Wizard": {
+            "rank": 2,
+            "minimumClassLevel": 3,
+            "school": "Transmutation",
+            "baseRpCost": 3
+          }
+        },
+        "operational": null,
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "alter-self",
+          "original": {
+            "name": "Alter Self",
+            "level": 2,
+            "resonanceRank": 2,
+            "school": "Transmutation",
+            "schools": [
+              "Transmutation"
+            ],
+            "placements": [
+              {
+                "name": "Alter Self",
+                "school": "Transmutation",
+                "level": 2,
+                "summary": "Change appearance or gain adaptations like water breathing."
+              }
+            ],
+            "classLevels": {
+              "Dragoon": 2,
+              "Druid": 2,
+              "Mage": 2,
+              "Monk": 2,
+              "Ranger": 2,
+              "Shaman": 2,
+              "Thief": 2,
+              "Tinker": 2,
+              "Wizard": 2
+            },
+            "classRanks": {
+              "Dragoon": 2,
+              "Druid": 2,
+              "Mage": 2,
+              "Monk": 2,
+              "Ranger": 2,
+              "Shaman": 2,
+              "Thief": 2,
+              "Tinker": 2,
+              "Wizard": 2
+            },
+            "classLearnLevels": {
+              "Dragoon": 8,
+              "Druid": 3,
+              "Mage": 3,
+              "Monk": 8,
+              "Ranger": 5,
+              "Shaman": 4,
+              "Thief": 8,
+              "Tinker": 6,
+              "Wizard": 3
+            },
+            "classSchools": {
+              "Dragoon": "Transmutation",
+              "Druid": "Transmutation",
+              "Mage": "Transmutation",
+              "Monk": "Transmutation",
+              "Ranger": "Transmutation",
+              "Shaman": "Transmutation",
+              "Thief": "Transmutation",
+              "Tinker": "Transmutation",
+              "Wizard": "Transmutation"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Change appearance or gain adaptations like water breathing.",
+            "alternateSummaries": [],
+            "classes": [
+              "Dragoon",
+              "Druid",
+              "Mage",
+              "Monk",
+              "Ranger",
+              "Shaman",
+              "Thief",
+              "Tinker",
+              "Wizard"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 764,
+              "original": {
+                "school": "Transmutation",
+                "level": 2,
+                "name": "Alter Self",
+                "effect": "Change appearance or gain adaptations like water breathing.",
+                "source_paragraph": 9926,
+                "casting_time": "1 action",
+                "range": "Self",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Utility"
+                ],
+                "rp_cost": 3
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation",
+          "Not selectable in this spell playtest packet until individual operational review"
+        ]
+      },
+      "classAccess": {
+        "Dragoon": {
+          "rank": 2,
+          "minimumClassLevel": 8,
+          "school": "Transmutation",
+          "baseRpCost": 3
+        },
+        "Druid": {
+          "rank": 2,
+          "minimumClassLevel": 3,
+          "school": "Transmutation",
+          "baseRpCost": 3
+        },
+        "Mage": {
+          "rank": 2,
+          "minimumClassLevel": 3,
+          "school": "Transmutation",
+          "baseRpCost": 3
+        },
+        "Monk": {
+          "rank": 2,
+          "minimumClassLevel": 8,
+          "school": "Transmutation",
+          "baseRpCost": 3
+        },
+        "Ranger": {
+          "rank": 2,
+          "minimumClassLevel": 5,
+          "school": "Transmutation",
+          "baseRpCost": 3
+        },
+        "Shaman": {
+          "rank": 2,
+          "minimumClassLevel": 4,
+          "school": "Transmutation",
+          "baseRpCost": 3
+        },
+        "Thief": {
+          "rank": 2,
+          "minimumClassLevel": 8,
+          "school": "Transmutation",
+          "baseRpCost": 3
+        },
+        "Tinker": {
+          "rank": 2,
+          "minimumClassLevel": 6,
+          "school": "Transmutation",
+          "baseRpCost": 3
+        },
+        "Wizard": {
+          "rank": 2,
+          "minimumClassLevel": 3,
+          "school": "Transmutation",
+          "baseRpCost": 3
+        }
+      },
+      "additionalRpCost": 0,
+      "bookBindings": [
+        {
+          "spellId": "alter-self",
+          "catalogPlacement": {
+            "name": "Alter Self",
+            "school": "Transmutation",
+            "level": 2,
+            "summary": "Change appearance or gain adaptations like water breathing."
+          },
+          "currentBookRow": {
+            "line": 9668,
+            "name": "Alter Self",
+            "school": "Transmutation",
+            "level": 2,
+            "summary": "Change appearance or gain adaptations like water breathing.",
+            "exactText": "Alter Self – Change appearance or gain adaptations like water breathing."
+          },
+          "summaryDifferencePreserved": false,
+          "actualDocxFile": "DescentReviewChanges/ReviewBible/books/player/Decennium_Descent_Player_Rulebook_v6.docx",
+          "actualDocxZeroBasedParagraphIndices": [
+            9432
+          ]
+        }
+      ],
+      "sourceModeBindings": [
+        {
+          "coreIndex": 764,
+          "sourceSchool": "Transmutation",
+          "sourceRank": 2,
+          "sourceName": "Alter Self",
+          "sourceCastingTime": "1 action",
+          "sourceRange": "Self",
+          "sourceDuration": "Instantaneous",
+          "sourceComponents": "V, S, F",
+          "sourceEffect": "Change appearance or gain adaptations like water breathing.",
+          "binding": "ASSIGNED_MODE_WITH_EXPLICIT_AUTHORING_COMPLETION"
+        }
+      ],
+      "sourceBookMentionDoesNotGrantAcquisition": true,
+      "operationalCandidate": {
+        "castingTime": "1 action",
+        "range": "Self",
+        "components": "V, S, F",
+        "targets": "Self, one NEW minor adaptation/appearance mode at a time.",
+        "duration": "Concentration, up to 1 minute.",
+        "resolution": "Automatic bounded actual adaptation, subject to current body/equipment precedence.",
+        "effect": "NEW menu: appearance—alter existing coloration, facial surface and hair within actual anatomy, at most 10% change to any one local proportion without changing total size category/voice/limb count; aquatic—breathe water as well as ordinary air and gain swimming Speed 20 ft; climbing—gain climbing Speed 20 ft using actual hands/feet. Choose one mode at casting; a later caster Action can change mode without refreshing the original deadline. These are bounded adaptations of the same body, not a replacement full creature form.",
+        "limitations": "No extra HP/buffer, ability scores, monster sheet, language, darkvision, damage attack, new ancestry/trait selection, gear or temporary-resource refresh. Real adapted appendages/gear must fit and obey source priority; where a stronger form forbids the adaptation it does not override it. Ending aquatic/climbing support follows actual breathing/fall rules, without undoing elapsed breath or damage.",
+        "numericParameters": {
+          "seconds": 60,
+          "appearanceLocalProportionLimit": 0.1,
+          "swimSpeedFeet": 20,
+          "climbSpeedFeet": 20
+        },
+        "costProcedure": "Use the actual acquired class grant and its preserved classAccess row for rank, minimum class level, school and base RP. Apply that class’s completed casting engine, current repeat history, discounts, Dissonance surcharge and this identity’s additionalRpCost; use LR-G01, LR-G02 and the explicit payload/wrapper exceptions in this card. Oracle RC is separate. Sufficient resources do not grant acquisition. Pay committed costs even on a miss, successful resistance or counter. There is no generic upcast or level scaling."
+      },
+      "sharedRuleIds": [
+        "LR-G01",
+        "LR-G02",
+        "LR-G03",
+        "LR-G04",
+        "LR-G05",
+        "LR-G06",
+        "LR-G07",
+        "LR-G08",
+        "LR-G09",
+        "LR-G10",
+        "LR-G11",
+        "LR-G12",
+        "LR-G13",
+        "LR-G14",
+        "LR-G15",
+        "LR-G16",
+        "LR-G17",
+        "LR-G18",
+        "LR-G19",
+        "LR-G20"
+      ],
+      "sourceConflicts": [],
+      "operationPrerequisites": [
+        "Actual legal access/repertoire, current source and target state, components, range/line, time and resources under the stated finite procedure; these are use-time facts, not missing source-conference questions."
+      ],
+      "authoredBoundary": {
+        "kind": "Authored expectation, not executed runtime or campaign authentication",
+        "wording": "An aquatic adaptation gives swim20 and water breathing for the remaining minute. Changing to appearance at second50 leaves only 10 seconds and does not refill RP or supply a new set of lungs/breath-clock history."
+      },
+      "newDecisionNotice": "Every concrete target bound, resistance, unsupported metadata replacement, mode, action/clock/lifecycle detail and numerical default not printed in the preserved original is NEW source-authoring direction, never a claim that it was printed. Explicit retained clauses and LR-G KEEP rules are not rewritten.",
+      "reviewEvidence": {
+        "sourceReviewId": "LR-SOURCE-2026-10-11",
+        "exactCandidateApproval": true,
+        "catalogPromotionAuthorized": true,
+        "runtimeVerified": false,
+        "humanPlaytested": false,
+        "exactReviewId": "LRX-EXACT-2026-10-11",
+        "finalReplyId": "5ece3872-cb87-4e1c-b14b-915859f41fef",
+        "finiteCorrectionsFulfilled": [
+          "LRX-01",
+          "LRX-02",
+          "LRX-03",
+          "LRX-04",
+          "LRX-05"
+        ],
+        "fulfillmentReceipt": "docs/audit/2026-10-08/full-game/LOW_RANK_136_EXACT_FULFILLMENT.json",
+        "approvalScope": "Complete authored tabletop procedure; no complete runtime adapter or human balance claim."
+      }
+    },
+    "completeSharedRules": [
+      {
+        "id": "LR-G01",
+        "disposition": "KEEP",
+        "title": "Authority, access and cost",
+        "wording": "The selected ordinary identity and its actual classAccess row control school, rank, minimum class level and base RP. Preserve the entire classAccess object, every catalog/Core original, book binding, placeholder, absent/null distinction and additionalRpCost. Enough RP does not grant access or repertoire. An already completed explicit ordinary-spell access exception, such as the actual Druid Circle always-prepared table, retains its real acquisition/rank/preparation gates once its matching payload passes exact review. Record that particular grant and use its actual class progression/cost; do not rewrite ordinary classAccess, infer a new variant from a same-named class power, or approve a pending class feature here. Rank costs remain 0/2/3/5/7/10/13/17/21/26 for ranks 0–9, with the actual class engine, discounts, Dissonance surcharge and additional/maintenance costs separately applied. Oracle Revelations remain RC techniques; a same-named class, ancestry or recipe permission is not this ordinary spell. No default upcast or cantrip level scaling is added. Every direction below is authoring authority only; every existing source operational:null and pending status remains untouched until separate exact review.",
+        "sourcePaths": [
+          "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+          "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json"
+        ]
+      },
+      {
+        "id": "LR-G02",
+        "disposition": "KEEP",
+        "title": "Actual casting transaction",
+        "wording": "Use the selected source Action, Bonus Action, Reaction or longer casting time and actual V/S/F or M/F requirements. V requires the caster's own presently usable voice; recordings are not V. S and a real permitted focus obey the existing hand/access rules. Unpriced M/F permits the actual focus alternative and creates no invented costly/consumed material fee. Explicit physical substrates below are real target/work prerequisites, not inferred M costs. Observable legality is checked before commitment; hidden immunity/type/meaning does not become free diagnosis. At commitment spend the actual action/resources and update actual cast/cadence history before the existing counterspell chain; a countered, missed or resisted committed cast refunds nothing. Concentration begins under the existing rule and can end the old concentration even when the new cast is countered. Long casting uses actual uninterrupted work and governing interruption/Ready rules. No successful spell roll authenticates an asserted object, voice, teacher, corpse or world permission.",
+        "sourcePaths": [
+          "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+          "DescentReviewChanges/ReviewBible/docs/mechanics/LANGUAGE_COMMUNICATION_PLAYTEST.md"
+        ]
+      },
+      {
+        "id": "LR-G03",
+        "disposition": "KEEP",
+        "title": "Native rolls and damage",
+        "wording": "Spell attacks use the actual owner's spell attack modifier versus AC: natural 1 misses, natural 20 hits and doubles damage dice of that attack, not flat modifiers or later ticks. Saves are binary total-versus-spell-DC, with no natural-die degree shift. A specified examination is an INT (Investigation) task against the creating caster's snapshotted spell DC: use Core degrees/natural shifts, then collapse Success/Critical Success versus Failure/Critical Failure unless an entry supplies distinct outcomes. For one simultaneous area effect, snapshot geometry and eligible targets before damage, roll each stated shared damage expression once, then apply each recipient's save and actual type defenses independently. Half damage floors each typed component once at the stated save stage. Follow the existing reduction, immunity/resistance/vulnerability, temporary/form buffer, actual HP loss, Wound, death and concentration pipeline. No descriptive Damage/Healing/Control tag supplies an additional attack, damage, healing or condition.",
+        "sourcePaths": [
+          "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md",
+          "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+          "DescentReviewChanges/ReviewBible/docs/mechanics/HEALING_DEATH_PLAYTEST.md"
+        ]
+      },
+      {
+        "id": "LR-G04",
+        "disposition": "KEEP; NEW explicit use where source timing is absent",
+        "title": "Clocks",
+        "wording": "A bare hostile one-round rider ends at the end of the target's next future regular turn, excluding an in-progress turn at application; a bare self/ally one-round benefit ends at the start of the caster's next future regular turn. N hostile rounds use the Nth such target end; N buff rounds use the Nth caster start. Outside initiative, those are 6N elapsed seconds. Keep the registered clock through initiative changes using the existing virtual-clock adapter; extra turns do not create expiry/tick opportunities. A NEW duration expressed in minutes/hours below uses an absolute elapsed deadline from completed resolution, including an absolute 60-second deadline for “1 minute”; the one-minute means neither an extra initial tick nor reset when initiative starts. Repeated round damage expressly uses future target regular-end checkpoints and its printed finite count, not one immediate tick plus that count. End-turn ticks/repeat saves precede their scheduled end-turn expiry; start expiry precedes voluntary actions. Suppression pauses eligibility/effect, not deadlines; scheduled suppressed ticks are spent, never queued. Entries that expressly use a named trigger instead of a generic clock keep that trigger.",
+        "sourcePaths": [
+          "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+          "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md"
+        ]
+      },
+      {
+        "id": "LR-G05",
+        "disposition": "KEEP; NEW entry defaults",
+        "title": "Multiplicity, effect identity and present state",
+        "wording": "Keep the existing strongest same-stat flat bonus, same-family cover arbitration, advantage/disadvantage cancellation and one eligible bonus-die spell per roll. Independent class exceptions retain their exact scopes; this is not a universal strongest-effect rule. NEW default for these previously uncompleted spells: one active instance per caster per ordinary spell ID, unless a row expressly permits more; a successfully resolved replacement ends that caster's prior instance, but an illegal/countered attempt does not replace a nonconcentration instance. Different casters retain separate source records, clocks and restrictions; identical numeric bonuses never add. A current complete record is required for every competing effect. Instantaneous completed consequences are not active-instance stock. An entry explicitly limiting waiting triggers counts only its stated waiting state; its spent playback phase never refills or occupies a waiting slot. Continual Flame explicitly permits separate paid anchors, with only its per-anchor limit; do not impose the default one-caster limit on it. Loss, repair, transfer, suppression or a new database ID cannot renew an already consumed mark, scheduled tick, trigger, command budget or source resource. Removal of one source does not erase another's independent condition. Any change in actual target/custody state is logged; it is not a new casting.",
+        "sourcePaths": [
+          "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+          "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md"
+        ]
+      },
+      {
+        "id": "LR-G06",
+        "disposition": "KEEP; NEW one-use defaults",
+        "title": "Attack/check marks",
+        "wording": "A row expressly saying attack commitment reserves and spends its mark when the beneficiary commits a legal declared attack, before a roll; cancellation after that commitment and a miss do not refund it, while an illegal declaration that never commits does not spend it. Otherwise “next attack/check” marks spend on the next actual qualifying roll, including a miss/failure; unrelated rolls and passive procedures do not consume them. Mark recipients cannot choose to save a mark for a later preferred roll. A next-hit rider spends on the first qualifying hit, even if defenses reduce its damage to zero. Multiple competing next-roll marks eligible for the same event all spend, though only permitted strongest/advantage effects operate. Suppressed marks do not benefit or consume on an event while suppressed, but their deadline continues. Delivery attacks and later attacks consuming a delivered mark are different events.",
+        "sourcePaths": [
+          "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md"
+        ]
+      },
+      {
+        "id": "LR-G07",
+        "disposition": "KEEP; NEW bounded sensory examination",
+        "title": "Sight, illusions and meaning",
+        "wording": "An image is not an opaque physical barrier, creature, material, light source, safe floor, sound receiver or extra targetable body unless its row expressly creates that thing. Ordinary hearing needs a real acoustic path; sight needs the relevant illumination, range and unobstructed view. Knowing an illusion does not grant sight through a real wall. For visual/audio deceptions below that permit examination, one Action using a currently accessible relevant sense can make the LR-G03 examination; success identifies that cast as illusory for that observer, while failure permits another examination only after genuinely new evidence or method. Conclusive witnessed physical contradiction establishes the applicable false part without a roll. An ally's warning allows examination but does not globally switch every observer to knowing. These procedures do not compel belief, pursuit, an attack, trust or a sale. Current Invisible rules remain: invisibility is not automatic Hidden; observers who know location lose only the special invisibility-derived attack advantage/disadvantage, not unrelated concealment. Language samples reproduce what was heard, not meaning or credentials. Preserve LA's six-second aggregate voluntary-speech budget per numbered round and actual component/oath windows. Spell-created sounds are not the caster's later speech, but original recording speech and the caster's V are real speech.",
+        "sourcePaths": [
+          "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+          "DescentReviewChanges/ReviewBible/docs/mechanics/LANGUAGE_COMMUNICATION_PLAYTEST.md",
+          "DescentReviewChanges/ReviewBible/docs/mechanics/CONTROL_STATES_PLAYTEST.md"
+        ]
+      },
+      {
+        "id": "LR-G08",
+        "disposition": "KEEP; NEW general perception/target defaults",
+        "title": "Range, targets and geometry",
+        "wording": "Unless a specific row explicitly uses detection without sight, select an actually perceived eligible target or point within the literal Core range and with the existing line of effect. A target can be self within a creature-target range unless the source/row restricts it. “Willing” means current actual consent; an unwilling holder prevents a willing-only object spell without supplying an opposed-roll workaround. Detecting some magic is not necessarily perceiving a creature for targeting it. One target means one physical identity, not every same-named database row. NEW missing cone width is its length at its far end; missing line cross-section is five feet wide and five feet high. All source radii remain radii, not distances added to cast range. Area membership/cover are evaluated from the actual origin at that event; walls are not retroactively removed for a second pass. “Enemies” uses the caster's declared ordinary opposition set, not a supernatural alignment/intent detector. Caster/allies are included in indiscriminate areas. No range is silently replaced by an outside game's value.",
+        "sourcePaths": [
+          "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+          "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md"
+        ]
+      },
+      {
+        "id": "LR-G09",
+        "disposition": "KEEP; NEW identified control riders",
+        "title": "Conditions and hard-control guard",
+        "wording": "Use actual Blinded, Deafened, Frightened, Prone, Restrained, Incapacitated, Paralyzed and Stunned definitions without importing another game. Paralyzed/Incapacitated and other hard Action denial obey the current source-character/target/encounter allowance shared across that owner's effects; only successfully established hard control spends it, once for the effect's full allowed window. A blocked hard portion supplies no invented substitute penalty; independently printed damage, Prone or another separately allowed portion can remain. A spell's repeat save ends only the stated source. Ending laughter, restraint or paralysis does not automatically stand a Prone target. NEW “flee” directions below require actual safe available movement away at the next regular-turn movement opportunity, using existing Speed/cost and leaving Actions to the target; they do not force Dash, expend a Reaction or require deliberate self-harm. If no safe farther legal location exists, no movement is forced and no action is lost. Panicked is explicitly bound only in IL-23, not added as a global condition. Haste's voluntary ending cost is separately addressed in R3-12.",
+        "sourcePaths": [
+          "DescentReviewChanges/ReviewBible/docs/mechanics/CONTROL_STATES_PLAYTEST.md",
+          "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md"
+        ]
+      },
+      {
+        "id": "LR-G10",
+        "disposition": "KEEP",
+        "title": "Movement, falls and body continuity",
+        "wording": "Ordinary movement spends real movement cost and needs nonzero permitted Speed, legal support, actual space and the appropriate locomotion mode; changing a speed or mode does not reset spent cost. A spell-directed extra movement allowance expressly stated below supplies only that finite allowance. Teleportation relocates rather than traverses, does not itself provoke opportunity attacks and does not generically defeat a source that blocks relocation; no route is inferred through planes. Check destination occupancy, whole body/gear geometry and lawful carry/load. Supplying a point is not permission to materialize inside another body. Unsupported endings, launches and lost flight use the existing FallMarker and finite falling resolution, not a new immediate damage tick. Actual transformations retain original identity, own HP/resources, spent state, origin restrictions and body/equipment priority; no new monster sheet, harvest pool, HP refill, gear duplication or size-based ability increase. Actual equipment can be melded only by the stated form procedure, stays real weight/history and is unavailable while melded.",
+        "sourcePaths": [
+          "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+          "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+          "DescentReviewChanges/ReviewBible/docs/mechanics/TRANSFORMATION_SPELL_PLAYTEST.md"
+        ]
+      },
+      {
+        "id": "LR-G11",
+        "disposition": "KEEP; NEW finite assets below",
+        "title": "Summons, corpse assets and commands",
+        "wording": "Each row supplies its actual finite body, attack and lifetime rather than importing a monster. Use printed HP/AC before any new fallback. For the NEW profiles below, creating caster's class level/PB/ability at creation fixes any printed-derived maximum; attacks and saves use that same source owner's currently lawful spell attack/PB, not a transferee's or a monster's sheet. Unless stated, saves add owner's PB, ordinary ability/skill checks add 0, normal vision only, no special damage or condition immunity, no independent equipment proficiency or spellcasting. One such spell-created asset per caster per spell ID; the existing total companion/control budget still binds. Creation grants no free attack or movement. A command uses one Bonus Action on the owner's regular turn through actual visible/audible communication within 60 ft; no telepathy is invented. It acts in the attached phase after that whole turn, shares the owner's one command and one offensive companion/device allowance per numbered round, and has no independent refresh on extra turns. Uncommanded it can only ordinary Dodge and make defensive movement within speed; no automatic pursuit, work or offense. Loss of the channel means no new command, not free autonomy. A complete task needs its real appendages, capacity, instructions and paid time. At 0 HP, expiry, source dismissal (Action) or concentration end where required, the asset ends; summoned apparatus disappears without loot, corpses, ammunition, harvest or salvage. An actual corpse used as fuel retains its original finite matter/history and the stated terminal consumption; no source can reclassify it as newly obtained material. Keep Ranger's genuinely ordinary animal remains distinct from no-resource summons.",
+        "sourcePaths": [
+          "DescentReviewChanges/ReviewBible/docs/mechanics/CREATURE_LIFECYCLE_PLAYTEST.md",
+          "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+          "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md"
+        ]
+      },
+      {
+        "id": "LR-G12",
+        "disposition": "KEEP; NEW finite wards/triggers",
+        "title": "Suppression and trigger ordering",
+        "wording": "An ongoing magical object's target stays the same physical anchor; transfer or repair cannot duplicate/rearm it. Full magical suppression prevents sensing/operation while it lasts and does not queue missed triggers; duration continues. An acoustic silence can block only sound independently of a physically detected trigger. Resolve simultaneous eligible one-shot triggers in creation order then stable cast ID. Consume a triggered use before its payload, even when a later barrier, silence, immunity, cancellation or receiver state prevents useful output. A sound produced by another real spell can be a phonetic trigger if all actual constraints match, but each waiting trigger resolves at most once and cannot recreate itself or another charge. Source death/distance ends a nonconcentration effect only where the source/row says so; it does not refresh it. Suppression does not undo already completed mundane writing, moved matter, healing, damage or superficial preparation. An explicit persistent permanent spell remains a magical effect, not a manufactured item or free rechargeable device.",
+        "sourcePaths": [
+          "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+          "DescentReviewChanges/ReviewBible/docs/mechanics/LANGUAGE_COMMUNICATION_PLAYTEST.md"
+        ]
+      },
+      {
+        "id": "LR-G13",
+        "disposition": "NEW spell-specific wrapper family; existing costs/cadence kept",
+        "title": "Copying, acceleration, delay and proxies",
+        "wording": "Cantrip Echo, Echo Cast, Quick Cast and Delay Spell are the only new wrapper identities authorized here. None may take itself or any of those four as payload, nor may an already echoed/released payload become a replay source. One payload may receive at most one of these temporal/replay modifications; they do not duplicate Ready or grant an additional Bonus Action, Reaction or full Action. Existing acquired class permissions remain their own exceptions, not automatically folded into this family. Select the actual original casting record, same ordinary source class and native legal access; only that spell's normal Action version with one finite resolution is eligible, excluding long casts, Reactions, Bonus Action spells and ongoing maintenance actions. Repeating a miss or resisted but fully resolved cast permits a fresh legal cast, not copying its damage result; a countered or aborted original is not a replay source. New targets/range/components and current costs/statistics must qualify at the new commitment. No active rider, successful roll, other caster's access, expended item charge or selected resource award is copied for free. Cantrip Echo's row defines one composite ordinary-cast transaction; Echo Cast/Quick Cast/Delay Spell instead have their separately paid arming transactions and later actual payload commitments. Record parent, wrapper, payload, cost, original owner and single-use consumption. No zero-base-cost replay recursively generates resource refunds or unearned casts. A legal fresh payload still resolves its own actual damage and expressly funded healing; this guard prevents copied old awards and recursive new-cast/refund grants, not the payload’s specified new outcome. Resonance Tether changes a legitimate delivery origin only, never the responsible caster or their RP/RC pool.",
+        "sourcePaths": [
+          "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+          "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md"
+        ]
+      },
+      {
+        "id": "LR-G14",
+        "disposition": "KEEP; NEW two-spell redirection family",
+        "title": "Reflection without a new cast",
+        "wording": "Spell Mirror and Soul Mirror intercept only the first actually resolving ordinary spell effect that has exactly their warded creature as its sole direct creature recipient, beneficial or hostile. Area, multitarget, self-only, anchor/object, summoning, channel/ongoing tick and already redirected effects are ineligible. NEW interception/return distinction: a Touch-delivered, healing or willing-recipient spell is eligible for interception when it satisfies the foregoing sole-recipient and scope requirements. The original caster's eligibility to receive the return, including actual consent and creature-type requirements, is tested only after that eligible ward has been spent. An ineligible original caster therefore causes a spent, unsuccessful return and leaves the original recipient, exactly as below. A legal Touch return uses this explicit magical return, not a new physical touch or Action. No rank cap is added; actual protective exceptions can still forbid redirection. After counterspell resolution but before that spell's attack/save/effect, spend the ward once and substitute the original actual caster as recipient only when it is presently a legal recipient under the payload's own type/other eligibility. The original caster remains owner and supplies DC/attack roll and costs; this creates no new casting, resources or second packet. An ineligible original caster causes the spent redirection to fail and the original spell continues against its original warded target, not automatic cancellation. An eligible redirected attack can miss normally; spend is not refunded. The original targeting distance has already been established; the explicit return uses that same causal cast, with return line blocked by an actual barrier defeating the return path, not arbitrary remote range extension. A blocked return likewise leaves the original target. A causal root can be redirected at most once by these two spells; another mirror on the new target neither redirects it again nor consumes its ward. Duplicate wards on the original target arbitrate earliest creation then stable ID; only the selected ward spends. These are NEW finite interpretations of “first/single-target spell,” not permissions for Wizard/Oracle or other reflected-damage features to use this protocol.",
+        "sourcePaths": [
+          "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+          "DescentReviewChanges/ReviewBible/docs/mechanics/DAMAGE_SHARING_PLAYTEST.md"
+        ]
+      },
+      {
+        "id": "LR-G15",
+        "disposition": "KEEP; NEW bounded drain/decay scopes",
+        "title": "Necrotic damage, healing, corpses and restrictions",
+        "wording": "Actual damage and healing follow completed Core and feat procedures. No ordinary necrotic spell gains Bleeding, disease, Oracle Decay, a curse, corpse fuel, a soul resource or a healing prohibition by name/tag. A drain's specific permitted funding is stated in its row; an unfunded heal/RP transfer cannot be manufactured from overkill, a reflected packet, an already paid award, target transfer, current permission overriding no-resource origin, or a temporary body. Existing Lifedraw, Vampiric Touch, Lifeleech, Necrotic Affinity, Soul Cage feat and class drains keep their own nonidentical source predicates; the new drain restrictions are not retrospective amendments to them. Actual independently eligible acquired feats can respond once under their completed source rules, never a second time to the resulting heal/resource transfer. A corpse interface uses actual dead identity and retained memory; it does not establish an afterlife, soul custody, truth beyond memory or current thoughts. Preserve actual death/removal clocks, condition and no-resource restrictions through stabilization, question, animation and return. A later paid question cannot retrieve information the old remains never retained; fragments are one donor history, not separate minds.",
+        "sourcePaths": [
+          "DescentReviewChanges/ReviewBible/docs/mechanics/HEALING_DEATH_PLAYTEST.md",
+          "DescentReviewChanges/ReviewBible/docs/mechanics/CREATURE_LIFECYCLE_PLAYTEST.md",
+          "DescentReviewChanges/ReviewBible/docs/mechanics/BUFFER_FEAT_PLAYTEST.md",
+          "DescentReviewChanges/ReviewBible/docs/mechanics/LANGUAGE_COMMUNICATION_PLAYTEST.md"
+        ]
+      },
+      {
+        "id": "LR-G16",
+        "disposition": "KEEP; NEW bounded physical work choices",
+        "title": "Real matter, preparations and economy",
+        "wording": "A spell moving or reshaping real matter retains the actual predecessor quantity, material, contents, owner, damage and consumed/harvest history. Count retained mass and disposed matter once. It does not change source tier, named ingredient eligibility, equipment grade, formula knowledge, rarity, assigned value, an old recovery claim or an apparatus's paid service/charges. Cosmetic temperature/color/shape does not sterilize food, undo spoilage, neutralize a poison or supply a professional crafting result. Explicit elementary structures allowed below still need real support and dimensions; no unknown material or hidden load-bearing property is authenticated by the spell. A genuine subsequently usable mundane item can enter only its actual existing rules and finite market; no automatic sale price, buyer, XP or crafting-output multiplication. Fulfilled 687/433 recipe and NWX/LA procedures remain controlling.",
+        "sourcePaths": [
+          "DescentReviewChanges/ReviewBible/docs/mechanics/CRAFTING_HARVEST_PLAYTEST.md",
+          "DescentReviewChanges/ReviewBible/docs/mechanics/ADVANCED_CRAFT_CANDIDATE_GUIDE.md",
+          "DescentReviewChanges/ReviewBible/docs/mechanics/LANGUAGE_COMMUNICATION_PLAYTEST.md"
+        ]
+      },
+      {
+        "id": "LR-G17",
+        "disposition": "KEEP; NEW duration-bearing authoring default",
+        "title": "Concentration and early termination",
+        "wording": "Where a row says concentration, it occupies the one actual concentration slot, ends under the completed damage-save/incapacitation rules and can be ended voluntarily under that rule; no new per-round maintenance RP is imposed. A source explicitly printing concentration keeps it even when an independent rider ends sooner. NEW voluntary early termination for a nonconcentration instance authored below requires the original caster's Action and actual perception of its anchor/recipient within that spell's original range; no remote recall or refund. Instant completed consequences cannot be voluntarily reversed. Named permanent Until Dispelled effects have no general voluntary end from this default; use their own source or actual dispel. Invalid physical continued operation removes only what can no longer function; full destruction of a required anchor ends its anchored instance. No repaired anchor is a new instance.",
+        "sourcePaths": [
+          "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md"
+        ]
+      },
+      {
+        "id": "LR-G18",
+        "disposition": "KEEP; NEW exact source-mode binding",
+        "title": "Aliases and unassigned variants",
+        "wording": "Uncontrollable Laughter uses the matching historical Tasha's Hideous Laughter Core metadata only through the explicit IL-18 binding; Resonance Tether analogously uses Mana Tether through UN-13. Preserve both historical names, exact effects and alias records without adding separate ordinary identities. Prestidigitation's two actual school modes are independently specified in IL-06 and selected by the cast's actual access row. Phantasmal Force rank 3, Stone Shape rank 4 and Mislead rank 5 remain preserved unassigned alternative records: no current classAccess row acquires those higher-rank modes, no chooser can buy them by paying more RP, and no new question or ordinary promotion is invented for them. The assigned lower-rank modes receive complete directions. Echo Cast's Core “base RP” is the chosen operational reading of its catalog's broader shorthand. Soul Tap's catalog HP AND Resonance selects the joint operation explicitly. Unravel Spell's “Tier 4” means the generating ordinary spell's rank≤4, not material/equipment/creature tier. All differences stay beside unchanged competing source fields.",
+        "sourcePaths": [
+          "docs/audit/2026-10-08/full-game/LOW_RANK_SPELL_FILE_HANDOFF_PREPARATION.json"
+        ]
+      },
+      {
+        "id": "LR-G19",
+        "disposition": "KEEP",
+        "title": "Audience and comparison records",
+        "wording": "All 137 selected ordinary identities and 141 original book bindings remain preserved internally; public teaching uses only actual public fields and the resulting operational mode when later exactly reviewed. A source mention does not publish a private dossier, class membership, material source or hidden research metadata. The 54 full selected class comparisons and 114 distinct spell counterparts retain their actual IDs, resource engines, windows and statuses; matching names/words do not merge any of them. Pending feats and spell comparisons stay pending. The eight submitted proposals are separately disposed below as source directions, not adopted by their mere inclusion. No change to the fulfilled language, teaching or recipe authority is required by these ordinary directions.",
+        "sourcePaths": [
+          "docs/audit/2026-10-08/full-game/LANGUAGE_EXACT_FULFILLMENT.json"
+        ]
+      },
+      {
+        "id": "LR-G20",
+        "disposition": "KEEP receipt-only setting scope",
+        "title": "Delivery and deferred receipts",
+        "wording": "R3-04 Blink is receipt-only: retain its full original and question, current pending operational state and literal setting references; author no plane itinerary, probability, reappearance/body procedure or promotion. Other incidental literal names, including Silent Ones, Heartcell, Matrix, Voice and deep-language terms when present, remain source receipts without interpretation. Local portals/teleports below are explicitly local procedures, not a decision about cosmology. Source authority here does not certify gameplay runtime, human teaching/balance, bestiary/acquisition availability, DD01 or final systemic consistency. Owner's final whole-game flow precedes an authorized GitHub push; verified remote commit precedes careful cosmology review. No deletion/push is authorized.",
+        "sourcePaths": [
+          "docs/audit/2026-10-08/full-game/LOW_RANK_SPELL_FILE_HANDOFF_V3_SCOPE.md"
+        ]
+      }
+    ],
+    "indexEntry": {
+      "id": "alter-self",
+      "name": "Alter Self",
+      "authoredStatus": "reviewed-authored-operational-playtest",
+      "procedureFile": "candidate_low_rank_136.json",
+      "procedurePointer": "/spells/74/operationalCandidate",
+      "wholeCardPointer": "/spells/74",
+      "sharedRulesPointer": "/sharedRules",
+      "manuscript": "candidate_low_rank_136.md",
+      "reviewId": "LRX-EXACT-2026-10-11",
+      "runtimeSelectionEnabled": false
+    }
+  },
+  {
+    "spellId": "gaseous-form",
+    "source": {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/candidate_low_rank_136.json",
+      "bytes": 1664654,
+      "sha256": "506393b1131e3ed099effbe55b05d6b00a5193e503b02f065a5f84751a2955fe"
+    },
+    "pointer": "/spells/132",
+    "completeCurrentCard": {
+      "id": "gaseous-form",
+      "name": "Gaseous Form",
+      "status": "reviewed-authored-operational-playtest",
+      "selectionEnabled": false,
+      "visibility": "public-source-review",
+      "sourceQuestionId": "R3-17",
+      "sourceDecisionId": "LR-R3-17",
+      "sourceReceipt": {
+        "id": "gaseous-form",
+        "name": "Gaseous Form",
+        "schools": [
+          "Transmutation"
+        ],
+        "status": "blocked-pending-operational-review",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Dragoon": {
+            "rank": 3,
+            "minimumClassLevel": 13,
+            "school": "Transmutation",
+            "baseRpCost": 5
+          },
+          "Druid": {
+            "rank": 3,
+            "minimumClassLevel": 5,
+            "school": "Transmutation",
+            "baseRpCost": 5
+          },
+          "Mage": {
+            "rank": 3,
+            "minimumClassLevel": 5,
+            "school": "Transmutation",
+            "baseRpCost": 5
+          },
+          "Monk": {
+            "rank": 3,
+            "minimumClassLevel": 13,
+            "school": "Transmutation",
+            "baseRpCost": 5
+          },
+          "Ranger": {
+            "rank": 3,
+            "minimumClassLevel": 9,
+            "school": "Transmutation",
+            "baseRpCost": 5
+          },
+          "Shaman": {
+            "rank": 3,
+            "minimumClassLevel": 7,
+            "school": "Transmutation",
+            "baseRpCost": 5
+          },
+          "Thief": {
+            "rank": 3,
+            "minimumClassLevel": 13,
+            "school": "Transmutation",
+            "baseRpCost": 5
+          },
+          "Tinker": {
+            "rank": 3,
+            "minimumClassLevel": 10,
+            "school": "Transmutation",
+            "baseRpCost": 5
+          },
+          "Wizard": {
+            "rank": 3,
+            "minimumClassLevel": 5,
+            "school": "Transmutation",
+            "baseRpCost": 5
+          }
+        },
+        "operational": null,
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "gaseous-form",
+          "original": {
+            "name": "Gaseous Form",
+            "level": 3,
+            "resonanceRank": 3,
+            "school": "Transmutation",
+            "schools": [
+              "Transmutation"
+            ],
+            "placements": [
+              {
+                "name": "Gaseous Form",
+                "school": "Transmutation",
+                "level": 3,
+                "summary": "Transform into misty cloud."
+              }
+            ],
+            "classLevels": {
+              "Dragoon": 3,
+              "Druid": 3,
+              "Mage": 3,
+              "Monk": 3,
+              "Ranger": 3,
+              "Shaman": 3,
+              "Thief": 3,
+              "Tinker": 3,
+              "Wizard": 3
+            },
+            "classRanks": {
+              "Dragoon": 3,
+              "Druid": 3,
+              "Mage": 3,
+              "Monk": 3,
+              "Ranger": 3,
+              "Shaman": 3,
+              "Thief": 3,
+              "Tinker": 3,
+              "Wizard": 3
+            },
+            "classLearnLevels": {
+              "Dragoon": 13,
+              "Druid": 5,
+              "Mage": 5,
+              "Monk": 13,
+              "Ranger": 9,
+              "Shaman": 7,
+              "Thief": 13,
+              "Tinker": 10,
+              "Wizard": 5
+            },
+            "classSchools": {
+              "Dragoon": "Transmutation",
+              "Druid": "Transmutation",
+              "Mage": "Transmutation",
+              "Monk": "Transmutation",
+              "Ranger": "Transmutation",
+              "Shaman": "Transmutation",
+              "Thief": "Transmutation",
+              "Tinker": "Transmutation",
+              "Wizard": "Transmutation"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Transform into misty cloud.",
+            "alternateSummaries": [],
+            "classes": [
+              "Dragoon",
+              "Druid",
+              "Mage",
+              "Monk",
+              "Ranger",
+              "Shaman",
+              "Thief",
+              "Tinker",
+              "Wizard"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 774,
+              "original": {
+                "school": "Transmutation",
+                "level": 3,
+                "name": "Gaseous Form",
+                "effect": "Transform into misty cloud.",
+                "source_paragraph": 9938,
+                "casting_time": "1 action",
+                "range": "60 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Utility"
+                ],
+                "rp_cost": 5
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation",
+          "Not selectable in this spell playtest packet until individual operational review"
+        ]
+      },
+      "classAccess": {
+        "Dragoon": {
+          "rank": 3,
+          "minimumClassLevel": 13,
+          "school": "Transmutation",
+          "baseRpCost": 5
+        },
+        "Druid": {
+          "rank": 3,
+          "minimumClassLevel": 5,
+          "school": "Transmutation",
+          "baseRpCost": 5
+        },
+        "Mage": {
+          "rank": 3,
+          "minimumClassLevel": 5,
+          "school": "Transmutation",
+          "baseRpCost": 5
+        },
+        "Monk": {
+          "rank": 3,
+          "minimumClassLevel": 13,
+          "school": "Transmutation",
+          "baseRpCost": 5
+        },
+        "Ranger": {
+          "rank": 3,
+          "minimumClassLevel": 9,
+          "school": "Transmutation",
+          "baseRpCost": 5
+        },
+        "Shaman": {
+          "rank": 3,
+          "minimumClassLevel": 7,
+          "school": "Transmutation",
+          "baseRpCost": 5
+        },
+        "Thief": {
+          "rank": 3,
+          "minimumClassLevel": 13,
+          "school": "Transmutation",
+          "baseRpCost": 5
+        },
+        "Tinker": {
+          "rank": 3,
+          "minimumClassLevel": 10,
+          "school": "Transmutation",
+          "baseRpCost": 5
+        },
+        "Wizard": {
+          "rank": 3,
+          "minimumClassLevel": 5,
+          "school": "Transmutation",
+          "baseRpCost": 5
+        }
+      },
+      "additionalRpCost": 0,
+      "bookBindings": [
+        {
+          "spellId": "gaseous-form",
+          "catalogPlacement": {
+            "name": "Gaseous Form",
+            "school": "Transmutation",
+            "level": 3,
+            "summary": "Transform into misty cloud."
+          },
+          "currentBookRow": {
+            "line": 9680,
+            "name": "Gaseous Form",
+            "school": "Transmutation",
+            "level": 3,
+            "summary": "Transform into misty cloud.",
+            "exactText": "Gaseous Form – Transform into misty cloud."
+          },
+          "summaryDifferencePreserved": false,
+          "actualDocxFile": "DescentReviewChanges/ReviewBible/books/player/Decennium_Descent_Player_Rulebook_v6.docx",
+          "actualDocxZeroBasedParagraphIndices": [
+            9444
+          ]
+        }
+      ],
+      "sourceModeBindings": [
+        {
+          "coreIndex": 774,
+          "sourceSchool": "Transmutation",
+          "sourceRank": 3,
+          "sourceName": "Gaseous Form",
+          "sourceCastingTime": "1 action",
+          "sourceRange": "60 feet",
+          "sourceDuration": "Instantaneous",
+          "sourceComponents": "V, S, F",
+          "sourceEffect": "Transform into misty cloud.",
+          "binding": "ASSIGNED_MODE_WITH_EXPLICIT_AUTHORING_COMPLETION"
+        }
+      ],
+      "sourceBookMentionDoesNotGrantAcquisition": true,
+      "operationalCandidate": {
+        "castingTime": "1 action",
+        "range": "60 feet",
+        "components": "V, S, F",
+        "targets": "One willing Small/Medium/Large creature within 60 ft with actual legally handled gear.",
+        "duration": "Concentration, up to 1 minute.",
+        "resolution": "Automatic finite same-identity mist form.",
+        "effect": "NEW keep original HP, scores, saves, resources, ordinary visual/hearing senses and size-space, with flyingSpeed10 ft and hover. The mist can pass through a continuous actually open gap at least 1inch wide using its real movement cost, not through solid matter, sealed walls or liquid as though intangible. It has no usable hands/voice and cannot make weapon/natural attacks, manipulate gear or supply V/S/F. Mental features explicitly compatible with the form remain their own permissions; maintaining existing concentration still uses the one actual slot.",
+        "limitations": "Compatible worn/carried gear melds under current body/equipment rules, remains real mass/custody and unavailable, and supplies no new cargo capacity. No physical/elemental immunity, resistance, automatic stealth, suffocation exemption outside actual form requirements or alternate HP pool. NEW mist does not need ordinary respiration during this brief form, but it does not erase previously accrued suffocation damage/history. Reversion uses actual space/support and existing pending-placement rules, not a free teleport to a better space. At expiry/incapacitation/0 HP/concentration end restore the actual body with current losses; unsupported endings fall normally.",
+        "numericParameters": {
+          "rangeFeet": 60,
+          "seconds": 60,
+          "flySpeedFeet": 10,
+          "hover": true,
+          "minimumGapInches": 1
+        },
+        "costProcedure": "Use the actual acquired class grant and its preserved classAccess row for rank, minimum class level, school and base RP. Apply that class’s completed casting engine, current repeat history, discounts, Dissonance surcharge and this identity’s additionalRpCost; use LR-G01, LR-G02 and the explicit payload/wrapper exceptions in this card. Oracle RC is separate. Sufficient resources do not grant acquisition. Pay committed costs even on a miss, successful resistance or counter. There is no generic upcast or level scaling."
+      },
+      "sharedRuleIds": [
+        "LR-G01",
+        "LR-G02",
+        "LR-G03",
+        "LR-G04",
+        "LR-G05",
+        "LR-G06",
+        "LR-G07",
+        "LR-G08",
+        "LR-G09",
+        "LR-G10",
+        "LR-G11",
+        "LR-G12",
+        "LR-G13",
+        "LR-G14",
+        "LR-G15",
+        "LR-G16",
+        "LR-G17",
+        "LR-G18",
+        "LR-G19",
+        "LR-G20"
+      ],
+      "sourceConflicts": [],
+      "operationPrerequisites": [
+        "Actual legal access/repertoire, current source and target state, components, range/line, time and resources under the stated finite procedure; these are use-time facts, not missing source-conference questions."
+      ],
+      "authoredBoundary": {
+        "kind": "Authored expectation, not executed runtime or campaign authentication",
+        "wording": "A cloud can move through an actual one-inch opening but not an intact stone wall. When it reverts it gains no HP and cannot force a full body into occupied solid space."
+      },
+      "newDecisionNotice": "Every concrete target bound, resistance, unsupported metadata replacement, mode, action/clock/lifecycle detail and numerical default not printed in the preserved original is NEW source-authoring direction, never a claim that it was printed. Explicit retained clauses and LR-G KEEP rules are not rewritten.",
+      "reviewEvidence": {
+        "sourceReviewId": "LR-SOURCE-2026-10-11",
+        "exactCandidateApproval": true,
+        "catalogPromotionAuthorized": true,
+        "runtimeVerified": false,
+        "humanPlaytested": false,
+        "exactReviewId": "LRX-EXACT-2026-10-11",
+        "finalReplyId": "5ece3872-cb87-4e1c-b14b-915859f41fef",
+        "finiteCorrectionsFulfilled": [
+          "LRX-01",
+          "LRX-02",
+          "LRX-03",
+          "LRX-04",
+          "LRX-05"
+        ],
+        "fulfillmentReceipt": "docs/audit/2026-10-08/full-game/LOW_RANK_136_EXACT_FULFILLMENT.json",
+        "approvalScope": "Complete authored tabletop procedure; no complete runtime adapter or human balance claim."
+      }
+    },
+    "completeSharedRules": [
+      {
+        "id": "LR-G01",
+        "disposition": "KEEP",
+        "title": "Authority, access and cost",
+        "wording": "The selected ordinary identity and its actual classAccess row control school, rank, minimum class level and base RP. Preserve the entire classAccess object, every catalog/Core original, book binding, placeholder, absent/null distinction and additionalRpCost. Enough RP does not grant access or repertoire. An already completed explicit ordinary-spell access exception, such as the actual Druid Circle always-prepared table, retains its real acquisition/rank/preparation gates once its matching payload passes exact review. Record that particular grant and use its actual class progression/cost; do not rewrite ordinary classAccess, infer a new variant from a same-named class power, or approve a pending class feature here. Rank costs remain 0/2/3/5/7/10/13/17/21/26 for ranks 0–9, with the actual class engine, discounts, Dissonance surcharge and additional/maintenance costs separately applied. Oracle Revelations remain RC techniques; a same-named class, ancestry or recipe permission is not this ordinary spell. No default upcast or cantrip level scaling is added. Every direction below is authoring authority only; every existing source operational:null and pending status remains untouched until separate exact review.",
+        "sourcePaths": [
+          "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+          "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json"
+        ]
+      },
+      {
+        "id": "LR-G02",
+        "disposition": "KEEP",
+        "title": "Actual casting transaction",
+        "wording": "Use the selected source Action, Bonus Action, Reaction or longer casting time and actual V/S/F or M/F requirements. V requires the caster's own presently usable voice; recordings are not V. S and a real permitted focus obey the existing hand/access rules. Unpriced M/F permits the actual focus alternative and creates no invented costly/consumed material fee. Explicit physical substrates below are real target/work prerequisites, not inferred M costs. Observable legality is checked before commitment; hidden immunity/type/meaning does not become free diagnosis. At commitment spend the actual action/resources and update actual cast/cadence history before the existing counterspell chain; a countered, missed or resisted committed cast refunds nothing. Concentration begins under the existing rule and can end the old concentration even when the new cast is countered. Long casting uses actual uninterrupted work and governing interruption/Ready rules. No successful spell roll authenticates an asserted object, voice, teacher, corpse or world permission.",
+        "sourcePaths": [
+          "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+          "DescentReviewChanges/ReviewBible/docs/mechanics/LANGUAGE_COMMUNICATION_PLAYTEST.md"
+        ]
+      },
+      {
+        "id": "LR-G03",
+        "disposition": "KEEP",
+        "title": "Native rolls and damage",
+        "wording": "Spell attacks use the actual owner's spell attack modifier versus AC: natural 1 misses, natural 20 hits and doubles damage dice of that attack, not flat modifiers or later ticks. Saves are binary total-versus-spell-DC, with no natural-die degree shift. A specified examination is an INT (Investigation) task against the creating caster's snapshotted spell DC: use Core degrees/natural shifts, then collapse Success/Critical Success versus Failure/Critical Failure unless an entry supplies distinct outcomes. For one simultaneous area effect, snapshot geometry and eligible targets before damage, roll each stated shared damage expression once, then apply each recipient's save and actual type defenses independently. Half damage floors each typed component once at the stated save stage. Follow the existing reduction, immunity/resistance/vulnerability, temporary/form buffer, actual HP loss, Wound, death and concentration pipeline. No descriptive Damage/Healing/Control tag supplies an additional attack, damage, healing or condition.",
+        "sourcePaths": [
+          "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md",
+          "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+          "DescentReviewChanges/ReviewBible/docs/mechanics/HEALING_DEATH_PLAYTEST.md"
+        ]
+      },
+      {
+        "id": "LR-G04",
+        "disposition": "KEEP; NEW explicit use where source timing is absent",
+        "title": "Clocks",
+        "wording": "A bare hostile one-round rider ends at the end of the target's next future regular turn, excluding an in-progress turn at application; a bare self/ally one-round benefit ends at the start of the caster's next future regular turn. N hostile rounds use the Nth such target end; N buff rounds use the Nth caster start. Outside initiative, those are 6N elapsed seconds. Keep the registered clock through initiative changes using the existing virtual-clock adapter; extra turns do not create expiry/tick opportunities. A NEW duration expressed in minutes/hours below uses an absolute elapsed deadline from completed resolution, including an absolute 60-second deadline for “1 minute”; the one-minute means neither an extra initial tick nor reset when initiative starts. Repeated round damage expressly uses future target regular-end checkpoints and its printed finite count, not one immediate tick plus that count. End-turn ticks/repeat saves precede their scheduled end-turn expiry; start expiry precedes voluntary actions. Suppression pauses eligibility/effect, not deadlines; scheduled suppressed ticks are spent, never queued. Entries that expressly use a named trigger instead of a generic clock keep that trigger.",
+        "sourcePaths": [
+          "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+          "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md"
+        ]
+      },
+      {
+        "id": "LR-G05",
+        "disposition": "KEEP; NEW entry defaults",
+        "title": "Multiplicity, effect identity and present state",
+        "wording": "Keep the existing strongest same-stat flat bonus, same-family cover arbitration, advantage/disadvantage cancellation and one eligible bonus-die spell per roll. Independent class exceptions retain their exact scopes; this is not a universal strongest-effect rule. NEW default for these previously uncompleted spells: one active instance per caster per ordinary spell ID, unless a row expressly permits more; a successfully resolved replacement ends that caster's prior instance, but an illegal/countered attempt does not replace a nonconcentration instance. Different casters retain separate source records, clocks and restrictions; identical numeric bonuses never add. A current complete record is required for every competing effect. Instantaneous completed consequences are not active-instance stock. An entry explicitly limiting waiting triggers counts only its stated waiting state; its spent playback phase never refills or occupies a waiting slot. Continual Flame explicitly permits separate paid anchors, with only its per-anchor limit; do not impose the default one-caster limit on it. Loss, repair, transfer, suppression or a new database ID cannot renew an already consumed mark, scheduled tick, trigger, command budget or source resource. Removal of one source does not erase another's independent condition. Any change in actual target/custody state is logged; it is not a new casting.",
+        "sourcePaths": [
+          "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+          "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md"
+        ]
+      },
+      {
+        "id": "LR-G06",
+        "disposition": "KEEP; NEW one-use defaults",
+        "title": "Attack/check marks",
+        "wording": "A row expressly saying attack commitment reserves and spends its mark when the beneficiary commits a legal declared attack, before a roll; cancellation after that commitment and a miss do not refund it, while an illegal declaration that never commits does not spend it. Otherwise “next attack/check” marks spend on the next actual qualifying roll, including a miss/failure; unrelated rolls and passive procedures do not consume them. Mark recipients cannot choose to save a mark for a later preferred roll. A next-hit rider spends on the first qualifying hit, even if defenses reduce its damage to zero. Multiple competing next-roll marks eligible for the same event all spend, though only permitted strongest/advantage effects operate. Suppressed marks do not benefit or consume on an event while suppressed, but their deadline continues. Delivery attacks and later attacks consuming a delivered mark are different events.",
+        "sourcePaths": [
+          "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md"
+        ]
+      },
+      {
+        "id": "LR-G07",
+        "disposition": "KEEP; NEW bounded sensory examination",
+        "title": "Sight, illusions and meaning",
+        "wording": "An image is not an opaque physical barrier, creature, material, light source, safe floor, sound receiver or extra targetable body unless its row expressly creates that thing. Ordinary hearing needs a real acoustic path; sight needs the relevant illumination, range and unobstructed view. Knowing an illusion does not grant sight through a real wall. For visual/audio deceptions below that permit examination, one Action using a currently accessible relevant sense can make the LR-G03 examination; success identifies that cast as illusory for that observer, while failure permits another examination only after genuinely new evidence or method. Conclusive witnessed physical contradiction establishes the applicable false part without a roll. An ally's warning allows examination but does not globally switch every observer to knowing. These procedures do not compel belief, pursuit, an attack, trust or a sale. Current Invisible rules remain: invisibility is not automatic Hidden; observers who know location lose only the special invisibility-derived attack advantage/disadvantage, not unrelated concealment. Language samples reproduce what was heard, not meaning or credentials. Preserve LA's six-second aggregate voluntary-speech budget per numbered round and actual component/oath windows. Spell-created sounds are not the caster's later speech, but original recording speech and the caster's V are real speech.",
+        "sourcePaths": [
+          "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+          "DescentReviewChanges/ReviewBible/docs/mechanics/LANGUAGE_COMMUNICATION_PLAYTEST.md",
+          "DescentReviewChanges/ReviewBible/docs/mechanics/CONTROL_STATES_PLAYTEST.md"
+        ]
+      },
+      {
+        "id": "LR-G08",
+        "disposition": "KEEP; NEW general perception/target defaults",
+        "title": "Range, targets and geometry",
+        "wording": "Unless a specific row explicitly uses detection without sight, select an actually perceived eligible target or point within the literal Core range and with the existing line of effect. A target can be self within a creature-target range unless the source/row restricts it. “Willing” means current actual consent; an unwilling holder prevents a willing-only object spell without supplying an opposed-roll workaround. Detecting some magic is not necessarily perceiving a creature for targeting it. One target means one physical identity, not every same-named database row. NEW missing cone width is its length at its far end; missing line cross-section is five feet wide and five feet high. All source radii remain radii, not distances added to cast range. Area membership/cover are evaluated from the actual origin at that event; walls are not retroactively removed for a second pass. “Enemies” uses the caster's declared ordinary opposition set, not a supernatural alignment/intent detector. Caster/allies are included in indiscriminate areas. No range is silently replaced by an outside game's value.",
+        "sourcePaths": [
+          "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+          "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md"
+        ]
+      },
+      {
+        "id": "LR-G09",
+        "disposition": "KEEP; NEW identified control riders",
+        "title": "Conditions and hard-control guard",
+        "wording": "Use actual Blinded, Deafened, Frightened, Prone, Restrained, Incapacitated, Paralyzed and Stunned definitions without importing another game. Paralyzed/Incapacitated and other hard Action denial obey the current source-character/target/encounter allowance shared across that owner's effects; only successfully established hard control spends it, once for the effect's full allowed window. A blocked hard portion supplies no invented substitute penalty; independently printed damage, Prone or another separately allowed portion can remain. A spell's repeat save ends only the stated source. Ending laughter, restraint or paralysis does not automatically stand a Prone target. NEW “flee” directions below require actual safe available movement away at the next regular-turn movement opportunity, using existing Speed/cost and leaving Actions to the target; they do not force Dash, expend a Reaction or require deliberate self-harm. If no safe farther legal location exists, no movement is forced and no action is lost. Panicked is explicitly bound only in IL-23, not added as a global condition. Haste's voluntary ending cost is separately addressed in R3-12.",
+        "sourcePaths": [
+          "DescentReviewChanges/ReviewBible/docs/mechanics/CONTROL_STATES_PLAYTEST.md",
+          "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md"
+        ]
+      },
+      {
+        "id": "LR-G10",
+        "disposition": "KEEP",
+        "title": "Movement, falls and body continuity",
+        "wording": "Ordinary movement spends real movement cost and needs nonzero permitted Speed, legal support, actual space and the appropriate locomotion mode; changing a speed or mode does not reset spent cost. A spell-directed extra movement allowance expressly stated below supplies only that finite allowance. Teleportation relocates rather than traverses, does not itself provoke opportunity attacks and does not generically defeat a source that blocks relocation; no route is inferred through planes. Check destination occupancy, whole body/gear geometry and lawful carry/load. Supplying a point is not permission to materialize inside another body. Unsupported endings, launches and lost flight use the existing FallMarker and finite falling resolution, not a new immediate damage tick. Actual transformations retain original identity, own HP/resources, spent state, origin restrictions and body/equipment priority; no new monster sheet, harvest pool, HP refill, gear duplication or size-based ability increase. Actual equipment can be melded only by the stated form procedure, stays real weight/history and is unavailable while melded.",
+        "sourcePaths": [
+          "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+          "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+          "DescentReviewChanges/ReviewBible/docs/mechanics/TRANSFORMATION_SPELL_PLAYTEST.md"
+        ]
+      },
+      {
+        "id": "LR-G11",
+        "disposition": "KEEP; NEW finite assets below",
+        "title": "Summons, corpse assets and commands",
+        "wording": "Each row supplies its actual finite body, attack and lifetime rather than importing a monster. Use printed HP/AC before any new fallback. For the NEW profiles below, creating caster's class level/PB/ability at creation fixes any printed-derived maximum; attacks and saves use that same source owner's currently lawful spell attack/PB, not a transferee's or a monster's sheet. Unless stated, saves add owner's PB, ordinary ability/skill checks add 0, normal vision only, no special damage or condition immunity, no independent equipment proficiency or spellcasting. One such spell-created asset per caster per spell ID; the existing total companion/control budget still binds. Creation grants no free attack or movement. A command uses one Bonus Action on the owner's regular turn through actual visible/audible communication within 60 ft; no telepathy is invented. It acts in the attached phase after that whole turn, shares the owner's one command and one offensive companion/device allowance per numbered round, and has no independent refresh on extra turns. Uncommanded it can only ordinary Dodge and make defensive movement within speed; no automatic pursuit, work or offense. Loss of the channel means no new command, not free autonomy. A complete task needs its real appendages, capacity, instructions and paid time. At 0 HP, expiry, source dismissal (Action) or concentration end where required, the asset ends; summoned apparatus disappears without loot, corpses, ammunition, harvest or salvage. An actual corpse used as fuel retains its original finite matter/history and the stated terminal consumption; no source can reclassify it as newly obtained material. Keep Ranger's genuinely ordinary animal remains distinct from no-resource summons.",
+        "sourcePaths": [
+          "DescentReviewChanges/ReviewBible/docs/mechanics/CREATURE_LIFECYCLE_PLAYTEST.md",
+          "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+          "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md"
+        ]
+      },
+      {
+        "id": "LR-G12",
+        "disposition": "KEEP; NEW finite wards/triggers",
+        "title": "Suppression and trigger ordering",
+        "wording": "An ongoing magical object's target stays the same physical anchor; transfer or repair cannot duplicate/rearm it. Full magical suppression prevents sensing/operation while it lasts and does not queue missed triggers; duration continues. An acoustic silence can block only sound independently of a physically detected trigger. Resolve simultaneous eligible one-shot triggers in creation order then stable cast ID. Consume a triggered use before its payload, even when a later barrier, silence, immunity, cancellation or receiver state prevents useful output. A sound produced by another real spell can be a phonetic trigger if all actual constraints match, but each waiting trigger resolves at most once and cannot recreate itself or another charge. Source death/distance ends a nonconcentration effect only where the source/row says so; it does not refresh it. Suppression does not undo already completed mundane writing, moved matter, healing, damage or superficial preparation. An explicit persistent permanent spell remains a magical effect, not a manufactured item or free rechargeable device.",
+        "sourcePaths": [
+          "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+          "DescentReviewChanges/ReviewBible/docs/mechanics/LANGUAGE_COMMUNICATION_PLAYTEST.md"
+        ]
+      },
+      {
+        "id": "LR-G13",
+        "disposition": "NEW spell-specific wrapper family; existing costs/cadence kept",
+        "title": "Copying, acceleration, delay and proxies",
+        "wording": "Cantrip Echo, Echo Cast, Quick Cast and Delay Spell are the only new wrapper identities authorized here. None may take itself or any of those four as payload, nor may an already echoed/released payload become a replay source. One payload may receive at most one of these temporal/replay modifications; they do not duplicate Ready or grant an additional Bonus Action, Reaction or full Action. Existing acquired class permissions remain their own exceptions, not automatically folded into this family. Select the actual original casting record, same ordinary source class and native legal access; only that spell's normal Action version with one finite resolution is eligible, excluding long casts, Reactions, Bonus Action spells and ongoing maintenance actions. Repeating a miss or resisted but fully resolved cast permits a fresh legal cast, not copying its damage result; a countered or aborted original is not a replay source. New targets/range/components and current costs/statistics must qualify at the new commitment. No active rider, successful roll, other caster's access, expended item charge or selected resource award is copied for free. Cantrip Echo's row defines one composite ordinary-cast transaction; Echo Cast/Quick Cast/Delay Spell instead have their separately paid arming transactions and later actual payload commitments. Record parent, wrapper, payload, cost, original owner and single-use consumption. No zero-base-cost replay recursively generates resource refunds or unearned casts. A legal fresh payload still resolves its own actual damage and expressly funded healing; this guard prevents copied old awards and recursive new-cast/refund grants, not the payload’s specified new outcome. Resonance Tether changes a legitimate delivery origin only, never the responsible caster or their RP/RC pool.",
+        "sourcePaths": [
+          "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+          "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md"
+        ]
+      },
+      {
+        "id": "LR-G14",
+        "disposition": "KEEP; NEW two-spell redirection family",
+        "title": "Reflection without a new cast",
+        "wording": "Spell Mirror and Soul Mirror intercept only the first actually resolving ordinary spell effect that has exactly their warded creature as its sole direct creature recipient, beneficial or hostile. Area, multitarget, self-only, anchor/object, summoning, channel/ongoing tick and already redirected effects are ineligible. NEW interception/return distinction: a Touch-delivered, healing or willing-recipient spell is eligible for interception when it satisfies the foregoing sole-recipient and scope requirements. The original caster's eligibility to receive the return, including actual consent and creature-type requirements, is tested only after that eligible ward has been spent. An ineligible original caster therefore causes a spent, unsuccessful return and leaves the original recipient, exactly as below. A legal Touch return uses this explicit magical return, not a new physical touch or Action. No rank cap is added; actual protective exceptions can still forbid redirection. After counterspell resolution but before that spell's attack/save/effect, spend the ward once and substitute the original actual caster as recipient only when it is presently a legal recipient under the payload's own type/other eligibility. The original caster remains owner and supplies DC/attack roll and costs; this creates no new casting, resources or second packet. An ineligible original caster causes the spent redirection to fail and the original spell continues against its original warded target, not automatic cancellation. An eligible redirected attack can miss normally; spend is not refunded. The original targeting distance has already been established; the explicit return uses that same causal cast, with return line blocked by an actual barrier defeating the return path, not arbitrary remote range extension. A blocked return likewise leaves the original target. A causal root can be redirected at most once by these two spells; another mirror on the new target neither redirects it again nor consumes its ward. Duplicate wards on the original target arbitrate earliest creation then stable ID; only the selected ward spends. These are NEW finite interpretations of “first/single-target spell,” not permissions for Wizard/Oracle or other reflected-damage features to use this protocol.",
+        "sourcePaths": [
+          "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+          "DescentReviewChanges/ReviewBible/docs/mechanics/DAMAGE_SHARING_PLAYTEST.md"
+        ]
+      },
+      {
+        "id": "LR-G15",
+        "disposition": "KEEP; NEW bounded drain/decay scopes",
+        "title": "Necrotic damage, healing, corpses and restrictions",
+        "wording": "Actual damage and healing follow completed Core and feat procedures. No ordinary necrotic spell gains Bleeding, disease, Oracle Decay, a curse, corpse fuel, a soul resource or a healing prohibition by name/tag. A drain's specific permitted funding is stated in its row; an unfunded heal/RP transfer cannot be manufactured from overkill, a reflected packet, an already paid award, target transfer, current permission overriding no-resource origin, or a temporary body. Existing Lifedraw, Vampiric Touch, Lifeleech, Necrotic Affinity, Soul Cage feat and class drains keep their own nonidentical source predicates; the new drain restrictions are not retrospective amendments to them. Actual independently eligible acquired feats can respond once under their completed source rules, never a second time to the resulting heal/resource transfer. A corpse interface uses actual dead identity and retained memory; it does not establish an afterlife, soul custody, truth beyond memory or current thoughts. Preserve actual death/removal clocks, condition and no-resource restrictions through stabilization, question, animation and return. A later paid question cannot retrieve information the old remains never retained; fragments are one donor history, not separate minds.",
+        "sourcePaths": [
+          "DescentReviewChanges/ReviewBible/docs/mechanics/HEALING_DEATH_PLAYTEST.md",
+          "DescentReviewChanges/ReviewBible/docs/mechanics/CREATURE_LIFECYCLE_PLAYTEST.md",
+          "DescentReviewChanges/ReviewBible/docs/mechanics/BUFFER_FEAT_PLAYTEST.md",
+          "DescentReviewChanges/ReviewBible/docs/mechanics/LANGUAGE_COMMUNICATION_PLAYTEST.md"
+        ]
+      },
+      {
+        "id": "LR-G16",
+        "disposition": "KEEP; NEW bounded physical work choices",
+        "title": "Real matter, preparations and economy",
+        "wording": "A spell moving or reshaping real matter retains the actual predecessor quantity, material, contents, owner, damage and consumed/harvest history. Count retained mass and disposed matter once. It does not change source tier, named ingredient eligibility, equipment grade, formula knowledge, rarity, assigned value, an old recovery claim or an apparatus's paid service/charges. Cosmetic temperature/color/shape does not sterilize food, undo spoilage, neutralize a poison or supply a professional crafting result. Explicit elementary structures allowed below still need real support and dimensions; no unknown material or hidden load-bearing property is authenticated by the spell. A genuine subsequently usable mundane item can enter only its actual existing rules and finite market; no automatic sale price, buyer, XP or crafting-output multiplication. Fulfilled 687/433 recipe and NWX/LA procedures remain controlling.",
+        "sourcePaths": [
+          "DescentReviewChanges/ReviewBible/docs/mechanics/CRAFTING_HARVEST_PLAYTEST.md",
+          "DescentReviewChanges/ReviewBible/docs/mechanics/ADVANCED_CRAFT_CANDIDATE_GUIDE.md",
+          "DescentReviewChanges/ReviewBible/docs/mechanics/LANGUAGE_COMMUNICATION_PLAYTEST.md"
+        ]
+      },
+      {
+        "id": "LR-G17",
+        "disposition": "KEEP; NEW duration-bearing authoring default",
+        "title": "Concentration and early termination",
+        "wording": "Where a row says concentration, it occupies the one actual concentration slot, ends under the completed damage-save/incapacitation rules and can be ended voluntarily under that rule; no new per-round maintenance RP is imposed. A source explicitly printing concentration keeps it even when an independent rider ends sooner. NEW voluntary early termination for a nonconcentration instance authored below requires the original caster's Action and actual perception of its anchor/recipient within that spell's original range; no remote recall or refund. Instant completed consequences cannot be voluntarily reversed. Named permanent Until Dispelled effects have no general voluntary end from this default; use their own source or actual dispel. Invalid physical continued operation removes only what can no longer function; full destruction of a required anchor ends its anchored instance. No repaired anchor is a new instance.",
+        "sourcePaths": [
+          "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md"
+        ]
+      },
+      {
+        "id": "LR-G18",
+        "disposition": "KEEP; NEW exact source-mode binding",
+        "title": "Aliases and unassigned variants",
+        "wording": "Uncontrollable Laughter uses the matching historical Tasha's Hideous Laughter Core metadata only through the explicit IL-18 binding; Resonance Tether analogously uses Mana Tether through UN-13. Preserve both historical names, exact effects and alias records without adding separate ordinary identities. Prestidigitation's two actual school modes are independently specified in IL-06 and selected by the cast's actual access row. Phantasmal Force rank 3, Stone Shape rank 4 and Mislead rank 5 remain preserved unassigned alternative records: no current classAccess row acquires those higher-rank modes, no chooser can buy them by paying more RP, and no new question or ordinary promotion is invented for them. The assigned lower-rank modes receive complete directions. Echo Cast's Core “base RP” is the chosen operational reading of its catalog's broader shorthand. Soul Tap's catalog HP AND Resonance selects the joint operation explicitly. Unravel Spell's “Tier 4” means the generating ordinary spell's rank≤4, not material/equipment/creature tier. All differences stay beside unchanged competing source fields.",
+        "sourcePaths": [
+          "docs/audit/2026-10-08/full-game/LOW_RANK_SPELL_FILE_HANDOFF_PREPARATION.json"
+        ]
+      },
+      {
+        "id": "LR-G19",
+        "disposition": "KEEP",
+        "title": "Audience and comparison records",
+        "wording": "All 137 selected ordinary identities and 141 original book bindings remain preserved internally; public teaching uses only actual public fields and the resulting operational mode when later exactly reviewed. A source mention does not publish a private dossier, class membership, material source or hidden research metadata. The 54 full selected class comparisons and 114 distinct spell counterparts retain their actual IDs, resource engines, windows and statuses; matching names/words do not merge any of them. Pending feats and spell comparisons stay pending. The eight submitted proposals are separately disposed below as source directions, not adopted by their mere inclusion. No change to the fulfilled language, teaching or recipe authority is required by these ordinary directions.",
+        "sourcePaths": [
+          "docs/audit/2026-10-08/full-game/LANGUAGE_EXACT_FULFILLMENT.json"
+        ]
+      },
+      {
+        "id": "LR-G20",
+        "disposition": "KEEP receipt-only setting scope",
+        "title": "Delivery and deferred receipts",
+        "wording": "R3-04 Blink is receipt-only: retain its full original and question, current pending operational state and literal setting references; author no plane itinerary, probability, reappearance/body procedure or promotion. Other incidental literal names, including Silent Ones, Heartcell, Matrix, Voice and deep-language terms when present, remain source receipts without interpretation. Local portals/teleports below are explicitly local procedures, not a decision about cosmology. Source authority here does not certify gameplay runtime, human teaching/balance, bestiary/acquisition availability, DD01 or final systemic consistency. Owner's final whole-game flow precedes an authorized GitHub push; verified remote commit precedes careful cosmology review. No deletion/push is authorized.",
+        "sourcePaths": [
+          "docs/audit/2026-10-08/full-game/LOW_RANK_SPELL_FILE_HANDOFF_V3_SCOPE.md"
+        ]
+      }
+    ],
+    "indexEntry": {
+      "id": "gaseous-form",
+      "name": "Gaseous Form",
+      "authoredStatus": "reviewed-authored-operational-playtest",
+      "procedureFile": "candidate_low_rank_136.json",
+      "procedurePointer": "/spells/132/operationalCandidate",
+      "wholeCardPointer": "/spells/132",
+      "sharedRulesPointer": "/sharedRules",
+      "manuscript": "candidate_low_rank_136.md",
+      "reviewId": "LRX-EXACT-2026-10-11",
+      "runtimeSelectionEnabled": false
+    }
+  },
+  {
+    "spellId": "polymorph",
+    "source": {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+      "bytes": 4945319,
+      "sha256": "f52cf6a4a4673897615a74c7c67dcba798c431362d4357e71ee552cc7c5d31f8"
+    },
+    "pointer": "/spells/735",
+    "completeCurrentCard": {
+      "id": "polymorph",
+      "name": "Polymorph",
+      "schools": [
+        "Transmutation"
+      ],
+      "status": "operational-playtest-draft",
+      "visibility": "public-source-review",
+      "classAccess": {
+        "Dragoon": {
+          "rank": 4,
+          "minimumClassLevel": 18,
+          "school": "Transmutation",
+          "baseRpCost": 7
+        },
+        "Druid": {
+          "rank": 4,
+          "minimumClassLevel": 7,
+          "school": "Transmutation",
+          "baseRpCost": 7
+        },
+        "Mage": {
+          "rank": 4,
+          "minimumClassLevel": 7,
+          "school": "Transmutation",
+          "baseRpCost": 7
+        },
+        "Monk": {
+          "rank": 4,
+          "minimumClassLevel": 18,
+          "school": "Transmutation",
+          "baseRpCost": 7
+        },
+        "Ranger": {
+          "rank": 4,
+          "minimumClassLevel": 13,
+          "school": "Transmutation",
+          "baseRpCost": 7
+        },
+        "Shaman": {
+          "rank": 4,
+          "minimumClassLevel": 10,
+          "school": "Transmutation",
+          "baseRpCost": 7
+        },
+        "Thief": {
+          "rank": 4,
+          "minimumClassLevel": 18,
+          "school": "Transmutation",
+          "baseRpCost": 7
+        },
+        "Tinker": {
+          "rank": 4,
+          "minimumClassLevel": 14,
+          "school": "Transmutation",
+          "baseRpCost": 7
+        },
+        "Wizard": {
+          "rank": 4,
+          "minimumClassLevel": 7,
+          "school": "Transmutation",
+          "baseRpCost": 7
+        }
+      },
+      "operational": {
+        "id": "polymorph",
+        "activation": "Action",
+        "rangeFeet": 60,
+        "targets": "One physical creature you can perceive within 60 feet",
+        "duration": "Concentration, up to 1 minute; absolute checkpoint at casting timestamp +60 seconds, never extended by extra turns",
+        "concentration": true,
+        "components": [
+          "V",
+          "S",
+          "F"
+        ],
+        "resolution": "Choose one legal R4 spell-form profile and validate its space before payment. A willing target may waive its save. An unwilling target makes a Constitution save against your spell DC. On failure it transforms. At the end of each of its original regular turns, and once per numbered round after it suffers positive actual HP damage, it may repeat the save; success ends the transformation. Use the complete TRANSFORMATION_SPELL_PLAYTEST.md procedure and finite spell_form_profiles.json register. Preflight all targets, anatomy, space and access before committing Action/RP; commit ends your old concentration before counters or saves. A failed or countered new spell does not restore old concentration. An anatomy from another source is replaced only on actual success. No displaced form remains underneath.",
+        "effect": "Replace the target's current anatomy with the chosen R4 spell-form profile while preserving one body, current/max HP, temporary HP, Wounds, conditions, attributes, proficiency, identity, resources, initiative and condition clocks. The supplied form attack uses the original caster's current spell attack bonus and M. Equipment melds and is unavailable unless a separate anatomy-compatible passive bonus is certified. The target retains control of all decisions.",
+        "scaling": "No automatic profile, damage, target-count or duration scaling. Use only the bounded R4 spell-form register.",
+        "limitations": "No monster stat block, multiattack, class spellcasting, legendary power, new resource pool or second HP pool is gained. Speech, hands and movement come only from the selected profile. A willing target may spend its Action on its regular turn to end its own Polymorph. Actual 0 HP, death or Incapacitated after same-packet prevention resolves ends the spell without healing. Explicit transformation immunity and legendary defenses apply normally. Natural/form attacks do not automatically qualify for unrelated weapon-only features. The subject owns supplied natural-attack events; the original caster supplies attack statistics. These attacks are not spell casts or automatically caster spell-damage/kill triggers. A Druid cannot enter Shapeshift while a spell anatomy is active. Temporary lower-rank spells cannot replace higher-rank anatomy. Only a successful True Polymorph or an exact named exception can replace permanent True anatomy. Antimagic suppresses the same record while concentration and its absolute clock continue; True Polymorph can stabilize while suppressed. Suppression never frees an object-companion slot or resets gear. Creature-origin type tags remain unchanged; profile names confer no creature type. Every supplied attack has5-foot reach. Original anatomical abilities unavailable in the selected profile do not persist underneath it. A successful new transformation closes the old record and atomically restores/recaptures still-existing original gear; internal profile switches instead retain the same meld set and drop incompatible external gear. Mandatory reversion returns at the same anchor; blocked placement is referred to canonical geometry without automatic teleport or crushing damage. Original melded gear remains inaccessible under antimagic. A willing temporary creature-origin recipient can use its regular-turn rejection Action while suppressed if its root creature anatomy can act; object-origin identities gain no rejection right. No generic magical-attack bypass flag is granted.",
+        "designNotes": "PRESERVED: Polymorph identity, Transmutation Rank 4, exact class access, Action, 60 feet, V/S/F and base 7 RP. NEW: one-minute concentration, target/save/repeat-save procedure, R4 finite profile list, same-body state retention, caster-derived form attack, equipment/anatomy rules and zero-HP reversion.",
+        "implementationStatus": "REVIEWED / reference-VALIDATED operational-playtest draft",
+        "procedureReference": "docs/mechanics/TRANSFORMATION_SPELL_PLAYTEST.md",
+        "reviewEvidence": [
+          "docs/audit/2026-10-08/full-game/GPT_TRANSFORMATION_SPELL_FINAL_CLOSURE.md"
+        ],
+        "authoringFile": "data/playtest/spell_drafts/batch_transformations.json"
+      },
+      "additionalRpCost": 0,
+      "source": {
+        "catalogPath": "src/data/spells.js",
+        "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+        "catalogKey": "polymorph",
+        "original": {
+          "name": "Polymorph",
+          "level": 4,
+          "resonanceRank": 4,
+          "school": "Transmutation",
+          "schools": [
+            "Transmutation"
+          ],
+          "placements": [
+            {
+              "name": "Polymorph",
+              "school": "Transmutation",
+              "level": 4,
+              "summary": "Transform creature into new form."
+            }
+          ],
+          "classLevels": {
+            "Dragoon": 4,
+            "Druid": 4,
+            "Mage": 4,
+            "Monk": 4,
+            "Ranger": 4,
+            "Shaman": 4,
+            "Thief": 4,
+            "Tinker": 4,
+            "Wizard": 4
+          },
+          "classRanks": {
+            "Dragoon": 4,
+            "Druid": 4,
+            "Mage": 4,
+            "Monk": 4,
+            "Ranger": 4,
+            "Shaman": 4,
+            "Thief": 4,
+            "Tinker": 4,
+            "Wizard": 4
+          },
+          "classLearnLevels": {
+            "Dragoon": 18,
+            "Druid": 7,
+            "Mage": 7,
+            "Monk": 18,
+            "Ranger": 13,
+            "Shaman": 10,
+            "Thief": 18,
+            "Tinker": 14,
+            "Wizard": 7
+          },
+          "classSchools": {
+            "Dragoon": "Transmutation",
+            "Druid": "Transmutation",
+            "Mage": "Transmutation",
+            "Monk": "Transmutation",
+            "Ranger": "Transmutation",
+            "Shaman": "Transmutation",
+            "Thief": "Transmutation",
+            "Tinker": "Transmutation",
+            "Wizard": "Transmutation"
+          },
+          "castingTime": "Not specified in current rulebook",
+          "range": "Not specified in current rulebook",
+          "components": "Not specified in current rulebook",
+          "duration": "Not specified in current rulebook",
+          "description": "Transform creature into new form.",
+          "alternateSummaries": [],
+          "classes": [
+            "Dragoon",
+            "Druid",
+            "Mage",
+            "Monk",
+            "Ranger",
+            "Shaman",
+            "Thief",
+            "Tinker",
+            "Wizard"
+          ],
+          "status": "canon",
+          "source": "Player Rulebook — Spell Lists"
+        },
+        "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+        "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+        "coreEntries": [
+          {
+            "index": 780,
+            "original": {
+              "school": "Transmutation",
+              "level": 4,
+              "name": "Polymorph",
+              "effect": "Transform creature into new form.",
+              "source_paragraph": 9946,
+              "casting_time": "1 action",
+              "range": "60 feet",
+              "duration": "Instantaneous",
+              "components": "V, S, F",
+              "resolution": "Automatic or opposed as described",
+              "tags": [
+                "Utility"
+              ],
+              "rp_cost": 7
+            }
+          }
+        ],
+        "possibleHistoricalAliases": []
+      },
+      "reviewFlags": [
+        "Core resolution requires an explicit operational interpretation"
+      ]
+    },
+    "completeSharedRules": {},
+    "indexEntry": {
+      "id": "polymorph",
+      "name": "Polymorph",
+      "authoredStatus": "reviewed-authored-operational-playtest",
+      "procedureFile": "catalog.json",
+      "procedurePointer": "/spells/735/operational",
+      "wholeCardPointer": "/spells/735",
+      "sourceStatus": "operational-playtest-draft",
+      "priorCatalogSelectionStatusUnchanged": true
+    }
+  },
+  {
+    "spellId": "shapechange",
+    "source": {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+      "bytes": 4945319,
+      "sha256": "f52cf6a4a4673897615a74c7c67dcba798c431362d4357e71ee552cc7c5d31f8"
+    },
+    "pointer": "/spells/583",
+    "completeCurrentCard": {
+      "id": "shapechange",
+      "name": "Shapechange",
+      "schools": [
+        "Illusion",
+        "Transmutation"
+      ],
+      "status": "operational-playtest-draft",
+      "visibility": "public-source-review",
+      "classAccess": {
+        "Druid": {
+          "rank": 9,
+          "minimumClassLevel": 17,
+          "school": "Transmutation",
+          "baseRpCost": 26
+        },
+        "Mage": {
+          "rank": 9,
+          "minimumClassLevel": 17,
+          "school": "Transmutation",
+          "baseRpCost": 26
+        },
+        "Wizard": {
+          "rank": 9,
+          "minimumClassLevel": 17,
+          "school": "Illusion",
+          "baseRpCost": 26
+        }
+      },
+      "operational": {
+        "id": "shapechange",
+        "activation": "Action",
+        "rangeFeet": 0,
+        "targets": "Self",
+        "duration": "Concentration, up to 1 minute; absolute checkpoint at casting timestamp +60 seconds, never extended by extra turns",
+        "concentration": true,
+        "components": [
+          "V",
+          "S",
+          "F"
+        ],
+        "resolution": "Choose one legal R4 or R9 spell-form profile on cast. No save. Once on each of your original regular turns afterward, you may use a Bonus Action to switch to a different legal profile. The new anatomy must fit the available space. Use the complete TRANSFORMATION_SPELL_PLAYTEST.md procedure and finite spell_form_profiles.json register. Preflight all targets, anatomy, space and access before committing Action/RP; commit ends your old concentration before counters or saves. A failed or countered new spell does not restore old concentration. An anatomy from another source is replaced only on actual success. No displaced form remains underneath. No internal switch on the casting turn or an extra turn; first switch is the next original regular turn, then at most one on each later original regular turn.",
+        "effect": "You retain your identity, current/max HP, temporary HP, Wounds, conditions, attributes, proficiency, resources, initiative and existing effects. Only your current anatomy/profile changes. Each supplied natural attack uses your current spell attack bonus and M. Profile switching does not create a new body, heal, refresh resources, restore temporary HP or reset rest/recharge uses.",
+        "scaling": "No automatic scaling beyond the bounded R4+R9 profile register.",
+        "limitations": "Only one Shapechange anatomy exists at a time. An identical-profile switch is rejected before Bonus Action payment. Internal switches are not spell casts and do not create new Dissonance or Refrain events. Equipment remains melded through switches. Losing flight while unsupported begins ordinary falling. Actual 0 HP, death or Incapacitated after same-packet prevention ends Shapechange without healing. The spell grants no Druid Buffer Reserve, Form Surge, Shapeshift use or Druid form features. The subject owns supplied natural-attack events; the original caster supplies attack statistics. These attacks are not spell casts or automatically caster spell-damage/kill triggers. A Druid cannot enter Shapeshift while a spell anatomy is active. Temporary lower-rank spells cannot replace higher-rank anatomy. Only a successful True Polymorph or an exact named exception can replace permanent True anatomy. Antimagic suppresses the same record while concentration and its absolute clock continue; True Polymorph can stabilize while suppressed. Suppression never frees an object-companion slot or resets gear. Creature-origin type tags remain unchanged; profile names confer no creature type. Every supplied attack has5-foot reach. Original anatomical abilities unavailable in the selected profile do not persist underneath it. A successful new transformation closes the old record and atomically restores/recaptures still-existing original gear; internal profile switches instead retain the same meld set and drop incompatible external gear. Mandatory reversion returns at the same anchor; blocked placement is referred to canonical geometry without automatic teleport or crushing damage. Original melded gear remains inaccessible under antimagic. A willing temporary creature-origin recipient can use its regular-turn rejection Action while suppressed if its root creature anatomy can act; object-origin identities gain no rejection right. No generic magical-attack bypass flag is granted.",
+        "designNotes": "PRESERVED: Shapechange identity, Rank 9, Druid/Mage/Wizard access and class-specific schools, Action, source 120-foot metadata, V/S/F, base 26 RP, and the core concept of changing creature form each round. NEW: operational target narrowed to Self, one-minute concentration, Bonus Action once-per-original-regular-turn switching, finite R4/R9 profiles and same-body state rules. The original 120-foot source field remains preserved in provenance despite the self-target operational narrowing.",
+        "implementationStatus": "REVIEWED / reference-VALIDATED operational-playtest draft",
+        "procedureReference": "docs/mechanics/TRANSFORMATION_SPELL_PLAYTEST.md",
+        "reviewEvidence": [
+          "docs/audit/2026-10-08/full-game/GPT_TRANSFORMATION_SPELL_FINAL_CLOSURE.md"
+        ],
+        "authoringFile": "data/playtest/spell_drafts/batch_transformations.json"
+      },
+      "additionalRpCost": 0,
+      "source": {
+        "catalogPath": "src/data/spells.js",
+        "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+        "catalogKey": "shapechange",
+        "original": {
+          "name": "Shapechange",
+          "level": 9,
+          "resonanceRank": 9,
+          "school": "Illusion",
+          "schools": [
+            "Illusion",
+            "Transmutation"
+          ],
+          "placements": [
+            {
+              "name": "Shapechange",
+              "school": "Illusion",
+              "level": 9,
+              "summary": "Transform into different creature each round."
+            },
+            {
+              "name": "Shapechange",
+              "school": "Transmutation",
+              "level": 9,
+              "summary": "Transform into different creature each round."
+            }
+          ],
+          "classLevels": {
+            "Druid": 9,
+            "Mage": 9,
+            "Wizard": 9
+          },
+          "classRanks": {
+            "Druid": 9,
+            "Mage": 9,
+            "Wizard": 9
+          },
+          "classLearnLevels": {
+            "Druid": 17,
+            "Mage": 17,
+            "Wizard": 17
+          },
+          "classSchools": {
+            "Druid": "Transmutation",
+            "Mage": "Transmutation",
+            "Wizard": "Illusion"
+          },
+          "castingTime": "Not specified in current rulebook",
+          "range": "Not specified in current rulebook",
+          "components": "Not specified in current rulebook",
+          "duration": "Not specified in current rulebook",
+          "description": "Transform into different creature each round.",
+          "alternateSummaries": [],
+          "classes": [
+            "Druid",
+            "Mage",
+            "Wizard"
+          ],
+          "status": "canon",
+          "source": "Player Rulebook — Spell Lists"
+        },
+        "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+        "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+        "coreEntries": [
+          {
+            "index": 617,
+            "original": {
+              "school": "Illusion",
+              "level": 9,
+              "name": "Shapechange",
+              "effect": "Transform into different creature each round.",
+              "source_paragraph": 9743,
+              "casting_time": "1 action",
+              "range": "120 feet",
+              "duration": "Instantaneous",
+              "components": "V, S, F",
+              "resolution": "Automatic or opposed as described",
+              "tags": [
+                "Utility"
+              ],
+              "rp_cost": 26
+            }
+          },
+          {
+            "index": 824,
+            "original": {
+              "school": "Transmutation",
+              "level": 9,
+              "name": "Shapechange",
+              "effect": "Transform into different creature each round.",
+              "source_paragraph": 10000,
+              "casting_time": "1 action",
+              "range": "120 feet",
+              "duration": "Instantaneous",
+              "components": "V, S, F",
+              "resolution": "Automatic or opposed as described",
+              "tags": [
+                "Utility"
+              ],
+              "rp_cost": 26
+            }
+          }
+        ],
+        "possibleHistoricalAliases": []
+      },
+      "reviewFlags": [
+        "Core resolution requires an explicit operational interpretation"
+      ]
+    },
+    "completeSharedRules": {},
+    "indexEntry": {
+      "id": "shapechange",
+      "name": "Shapechange",
+      "authoredStatus": "reviewed-authored-operational-playtest",
+      "procedureFile": "catalog.json",
+      "procedurePointer": "/spells/583/operational",
+      "wholeCardPointer": "/spells/583",
+      "sourceStatus": "operational-playtest-draft",
+      "priorCatalogSelectionStatusUnchanged": true
+    }
+  },
+  {
+    "spellId": "true-polymorph",
+    "source": {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+      "bytes": 4945319,
+      "sha256": "f52cf6a4a4673897615a74c7c67dcba798c431362d4357e71ee552cc7c5d31f8"
+    },
+    "pointer": "/spells/771",
+    "completeCurrentCard": {
+      "id": "true-polymorph",
+      "name": "True Polymorph",
+      "schools": [
+        "Transmutation",
+        "Universal"
+      ],
+      "status": "operational-playtest-draft",
+      "visibility": "public-source-review",
+      "classAccess": {
+        "Cleric": {
+          "rank": 9,
+          "minimumClassLevel": 17,
+          "school": "Universal",
+          "baseRpCost": 26
+        },
+        "Druid": {
+          "rank": 9,
+          "minimumClassLevel": 17,
+          "school": "Transmutation",
+          "baseRpCost": 26
+        },
+        "Mage": {
+          "rank": 9,
+          "minimumClassLevel": 17,
+          "school": "Transmutation",
+          "baseRpCost": 26
+        },
+        "Wizard": {
+          "rank": 9,
+          "minimumClassLevel": 17,
+          "school": "Transmutation",
+          "baseRpCost": 26
+        }
+      },
+      "operational": {
+        "id": "true-polymorph",
+        "activation": "Action",
+        "rangeFeet": 120,
+        "targets": "One eligible physical creature or one eligible discrete nonmagical unattended object within 120 feet",
+        "duration": "Concentration during a 1-minute shaping period; if maintained for the full minute, the transformation persists until dispelled without further concentration; absolute checkpoint at casting timestamp +60 seconds, never extended by extra turns",
+        "concentration": true,
+        "components": [
+          "V",
+          "S",
+          "F"
+        ],
+        "resolution": "Choose creature-to-creature, willing-creature-to-object, object-to-creature, or object-to-object before payment. Creature-to-creature may affect an unwilling target on a failed Constitution save; while shaping, that target repeats the save at each original regular end and once per numbered round after positive actual HP damage. Creature-to-object requires willingness. Objects make no save. If concentration survives the full shaping minute, the result becomes persistent until dispelled. Use the complete TRANSFORMATION_SPELL_PLAYTEST.md procedure and finite spell_form_profiles.json register. Preflight all targets, anatomy, space and access before committing Action/RP; commit ends your old concentration before counters or saves. A failed or countered new spell does not restore old concentration. An anatomy from another source is replaced only on actual success. No displaced form remains underneath.",
+        "effect": "Creature transformations retain one identity and one HP/durability history. Creature-to-creature uses any legal R4 or R9 spell-form profile. Creature-to-object creates one inert mundane object anatomy without healing or a new durability pool. Object-to-creature uses the object's existing structural HP as its one durability ledger and creates a controlled no-soul companion using an eligible non-humanoid R4/R9 profile and the caster's snapshotted spell statistics. Object-to-object changes only mundane form/material within the bounded utility restrictions.",
+        "scaling": "No automatic scaling. Permanent attack/DC values supplied by this spell snapshot the original caster's spell attack, spell DC and M when cast. Snapshot PB and source class as well. All True Polymorph supplied attack/DC values use this snapshot from casting, including shaping.",
+        "limitations": "No mode creates XP, loot, a soul, resurrection entitlement, valuable material, consumable stock, ammunition, currency, medicine, food or magical properties. Carried, worn, attuned, magical, artifact, structural-terrain and undefined-durability objects are ineligible. Object-origin creatures cannot receive ordinary HP healing as a means of repairing their source object. Only one active object-origin True Polymorph creature per caster is permitted. Such a creature shares the owner's companion Bonus Action/offensive budget and gains no independent turn/resources. Permanent True Polymorph does not end at 0 HP merely to restore the original form. Death/destruction remains real; later dispelling changes anatomy only and never heals, resurrects or recreates missing matter. The subject owns supplied natural-attack events; the original caster supplies attack statistics. These attacks are not spell casts or automatically caster spell-damage/kill triggers. A Druid cannot enter Shapeshift while a spell anatomy is active. Temporary lower-rank spells cannot replace higher-rank anatomy. Only a successful True Polymorph or an exact named exception can replace permanent True anatomy. Antimagic suppresses the same record while concentration and its absolute clock continue; True Polymorph can stabilize while suppressed. Suppression never frees an object-companion slot or resets gear. Creature-origin type tags remain unchanged; profile names confer no creature type. Every supplied attack has5-foot reach. Original anatomical abilities unavailable in the selected profile do not persist underneath it. A successful new transformation closes the old record and atomically restores/recaptures still-existing original gear; internal profile switches instead retain the same meld set and drop incompatible external gear. Mandatory reversion returns at the same anchor; blocked placement is referred to canonical geometry without automatic teleport or crushing damage. Original melded gear remains inaccessible under antimagic. A willing temporary creature-origin recipient can use its regular-turn rejection Action while suppressed if its root creature anatomy can act; object-origin identities gain no rejection right. No generic magical-attack bypass flag is granted. Object origin and earliest physical identity persist through every transformation chain. Object-origin creatures never gain a humanoid profile, soul, ordinary healing, resurrection or biological/class/rest resources. Use one actual structural HP ledger; structural0 destroys the object and ends its creature manifestation. Creature-origin object anatomy is actionless, not automatically Incapacitated. Allowed object templates are barrier/slab, ramp/wedge, open-container, static-furniture or simple-one-piece-tool; no actuated mechanism, magical or valuable output. Output size Tiny..Large and within one category of input; output mass cannot exceed recorded input or earliest origin mass; value cannot exceed original documented ceiling. Corpses/remains, magical/attuned/carried/worn/attended/structural objects and undefined structural durability are ineligible. An object-creature reserves its original caster slot on successful shaping; suppression/control change never frees it. At the60-second boundary finish damage, resolve due repeat save, then stabilize only surviving links. Replacing an active True object anatomy requires legal True replacement, not fresh nonmagical/unattended outside-object admission. Creature-origin people retain their CON save against unwilling creature-profile recasts and must consent to object-profile recasts. Returning them to creature anatomy grants no companion slot.",
+        "designNotes": "PRESERVED: True Polymorph identity, Rank 9, exact class access/schools, Action, 120 feet, V/S/F, base 26 RP, creature/object scope and meaningful until-dispelled permanence. NEW: one-minute shaping/stabilization procedure, save/agency rules, bounded form register, object eligibility/size/value rules, object-origin companion contract, one controlled-object-creature cap, durability conservation and destruction/dispel semantics.",
+        "implementationStatus": "REVIEWED / reference-VALIDATED operational-playtest draft",
+        "procedureReference": "docs/mechanics/TRANSFORMATION_SPELL_PLAYTEST.md",
+        "concentrationAfterStabilization": false,
+        "reviewEvidence": [
+          "docs/audit/2026-10-08/full-game/GPT_TRANSFORMATION_SPELL_FINAL_CLOSURE.md"
+        ],
+        "authoringFile": "data/playtest/spell_drafts/batch_transformations.json"
+      },
+      "additionalRpCost": 0,
+      "source": {
+        "catalogPath": "src/data/spells.js",
+        "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+        "catalogKey": "true-polymorph",
+        "original": {
+          "name": "True Polymorph",
+          "level": 9,
+          "resonanceRank": 9,
+          "school": "Transmutation",
+          "schools": [
+            "Transmutation",
+            "Universal"
+          ],
+          "placements": [
+            {
+              "name": "True Polymorph",
+              "school": "Transmutation",
+              "level": 9,
+              "summary": "Permanently transform creature or object."
+            },
+            {
+              "name": "True Polymorph",
+              "school": "Universal",
+              "level": 9,
+              "summary": "Permanently transform creature or object."
+            }
+          ],
+          "classLevels": {
+            "Cleric": 9,
+            "Druid": 9,
+            "Mage": 9,
+            "Wizard": 9
+          },
+          "classRanks": {
+            "Cleric": 9,
+            "Druid": 9,
+            "Mage": 9,
+            "Wizard": 9
+          },
+          "classLearnLevels": {
+            "Cleric": 17,
+            "Druid": 17,
+            "Mage": 17,
+            "Wizard": 17
+          },
+          "classSchools": {
+            "Cleric": "Universal",
+            "Druid": "Transmutation",
+            "Mage": "Transmutation",
+            "Wizard": "Transmutation"
+          },
+          "castingTime": "Not specified in current rulebook",
+          "range": "Not specified in current rulebook",
+          "components": "Not specified in current rulebook",
+          "duration": "Not specified in current rulebook",
+          "description": "Permanently transform creature or object.",
+          "alternateSummaries": [],
+          "classes": [
+            "Cleric",
+            "Druid",
+            "Mage",
+            "Wizard"
+          ],
+          "status": "canon",
+          "source": "Player Rulebook — Spell Lists"
+        },
+        "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+        "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+        "coreEntries": [
+          {
+            "index": 825,
+            "original": {
+              "school": "Transmutation",
+              "level": 9,
+              "name": "True Polymorph",
+              "effect": "Permanently transform creature or object.",
+              "source_paragraph": 10001,
+              "casting_time": "1 action",
+              "range": "120 feet",
+              "duration": "Until dispelled",
+              "components": "V, S, F",
+              "resolution": "Automatic or opposed as described",
+              "tags": [
+                "Utility"
+              ],
+              "rp_cost": 26
+            }
+          },
+          {
+            "index": 935,
+            "original": {
+              "school": "Universal",
+              "level": 9,
+              "name": "True Polymorph",
+              "effect": "Permanently transform creature or object.",
+              "source_paragraph": 10136,
+              "casting_time": "1 action",
+              "range": "120 feet",
+              "duration": "Until dispelled",
+              "components": "V, S, F",
+              "resolution": "Automatic or opposed as described",
+              "tags": [
+                "Utility"
+              ],
+              "rp_cost": 26
+            }
+          }
+        ],
+        "possibleHistoricalAliases": []
+      },
+      "reviewFlags": [
+        "Core resolution requires an explicit operational interpretation"
+      ]
+    },
+    "completeSharedRules": {},
+    "indexEntry": {
+      "id": "true-polymorph",
+      "name": "True Polymorph",
+      "authoredStatus": "reviewed-authored-operational-playtest",
+      "procedureFile": "catalog.json",
+      "procedurePointer": "/spells/771/operational",
+      "wholeCardPointer": "/spells/771",
+      "sourceStatus": "operational-playtest-draft",
+      "priorCatalogSelectionStatusUnchanged": true
+    }
+  },
+  {
+    "spellId": "mass-polymorph",
+    "source": {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+      "bytes": 4945319,
+      "sha256": "f52cf6a4a4673897615a74c7c67dcba798c431362d4357e71ee552cc7c5d31f8"
+    },
+    "pointer": "/spells/773",
+    "completeCurrentCard": {
+      "id": "mass-polymorph",
+      "name": "Mass Polymorph",
+      "schools": [
+        "Transmutation"
+      ],
+      "status": "operational-playtest-draft",
+      "visibility": "public-source-review",
+      "classAccess": {
+        "Druid": {
+          "rank": 9,
+          "minimumClassLevel": 17,
+          "school": "Transmutation",
+          "baseRpCost": 26
+        },
+        "Mage": {
+          "rank": 9,
+          "minimumClassLevel": 17,
+          "school": "Transmutation",
+          "baseRpCost": 26
+        },
+        "Wizard": {
+          "rank": 9,
+          "minimumClassLevel": 17,
+          "school": "Transmutation",
+          "baseRpCost": 26
+        }
+      },
+      "operational": {
+        "id": "mass-polymorph",
+        "activation": "Action",
+        "rangeFeet": 120,
+        "targets": "Up to 10 distinct physical creatures you can perceive within 120 feet",
+        "duration": "Concentration, up to 1 minute; absolute checkpoint at casting timestamp +60 seconds, never extended by extra turns",
+        "concentration": true,
+        "components": [
+          "V",
+          "S",
+          "F"
+        ],
+        "resolution": "Before payment choose 1-10 targets and one legal R4 spell-form profile for each, validating each possible anatomy's space. Willing targets may waive saves. Each unwilling target independently makes a Constitution save. Failure creates that target's transformation link. Each hostile transformed target repeats the save at its original regular-turn end and once per numbered round after positive actual HP damage. Success ends only that target's link. Use the complete TRANSFORMATION_SPELL_PLAYTEST.md procedure and finite spell_form_profiles.json register. Preflight all targets, anatomy, space and access before committing Action/RP; commit ends your old concentration before counters or saves. A failed or countered new spell does not restore old concentration. An anatomy from another source is replaced only on actual success. No displaced form remains underneath. Before payment validate O/O, O/T, T/O and T/T footprint compatibility for every pair of targets; saves resolve independently and successful anatomy changes apply simultaneously.",
+        "effect": "Each failed/waived target gains exactly one selected R4 anatomy while retaining its own identity, current/max HP, temporary HP, Wounds, conditions, attributes, proficiency, resources, initiative and condition clocks. Each target's supplied natural attack uses the original caster's current spell attack bonus and M. All transformed targets share one concentration record but otherwise resolve their own transformation endings independently.",
+        "scaling": "Exactly up to 10 creatures. No generic three-target cap and no automatic access to the R9-only greater/elemental profiles.",
+        "limitations": "Casting range and line of effect are checked only when the spell is committed; there is no ongoing range tether. One target ending does not end another. Concentration ending removes every remaining target transformation. No target gains monster stat blocks, multiattack, resources, class features or a second HP pool. Equipment/anatomy, natural-attack taxonomy, damage/reversion and agency follow the shared spell-transformation chassis. The subject owns supplied natural-attack events; the original caster supplies attack statistics. These attacks are not spell casts or automatically caster spell-damage/kill triggers. A Druid cannot enter Shapeshift while a spell anatomy is active. Temporary lower-rank spells cannot replace higher-rank anatomy. Only a successful True Polymorph or an exact named exception can replace permanent True anatomy. Antimagic suppresses the same record while concentration and its absolute clock continue; True Polymorph can stabilize while suppressed. Suppression never frees an object-companion slot or resets gear. Creature-origin type tags remain unchanged; profile names confer no creature type. Every supplied attack has5-foot reach. Original anatomical abilities unavailable in the selected profile do not persist underneath it. A successful new transformation closes the old record and atomically restores/recaptures still-existing original gear; internal profile switches instead retain the same meld set and drop incompatible external gear. Mandatory reversion returns at the same anchor; blocked placement is referred to canonical geometry without automatic teleport or crushing damage. Original melded gear remains inaccessible under antimagic. A willing temporary creature-origin recipient can use its regular-turn rejection Action while suppressed if its root creature anatomy can act; object-origin identities gain no rejection right. No generic magical-attack bypass flag is granted.",
+        "designNotes": "PRESERVED: Mass Polymorph identity, Transmutation Rank 9, Druid/Mage/Wizard level-17 access, Action, 120 feet, V/S/F, base 26 RP and explicit up-to-10-creature scope. NEW: one-minute concentration, preselected per-target R4 profiles, independent saves/endings, no ongoing tether and shared same-body transformation rules.",
+        "implementationStatus": "REVIEWED / reference-VALIDATED operational-playtest draft",
+        "procedureReference": "docs/mechanics/TRANSFORMATION_SPELL_PLAYTEST.md",
+        "reviewEvidence": [
+          "docs/audit/2026-10-08/full-game/GPT_TRANSFORMATION_SPELL_FINAL_CLOSURE.md"
+        ],
+        "authoringFile": "data/playtest/spell_drafts/batch_transformations.json"
+      },
+      "additionalRpCost": 0,
+      "source": {
+        "catalogPath": "src/data/spells.js",
+        "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+        "catalogKey": "mass-polymorph",
+        "original": {
+          "name": "Mass Polymorph",
+          "level": 9,
+          "resonanceRank": 9,
+          "school": "Transmutation",
+          "schools": [
+            "Transmutation"
+          ],
+          "placements": [
+            {
+              "name": "Mass Polymorph",
+              "school": "Transmutation",
+              "level": 9,
+              "summary": "Transform up to 10 creatures into new forms."
+            }
+          ],
+          "classLevels": {
+            "Druid": 9,
+            "Mage": 9,
+            "Wizard": 9
+          },
+          "classRanks": {
+            "Druid": 9,
+            "Mage": 9,
+            "Wizard": 9
+          },
+          "classLearnLevels": {
+            "Druid": 17,
+            "Mage": 17,
+            "Wizard": 17
+          },
+          "classSchools": {
+            "Druid": "Transmutation",
+            "Mage": "Transmutation",
+            "Wizard": "Transmutation"
+          },
+          "castingTime": "Not specified in current rulebook",
+          "range": "Not specified in current rulebook",
+          "components": "Not specified in current rulebook",
+          "duration": "Not specified in current rulebook",
+          "description": "Transform up to 10 creatures into new forms.",
+          "alternateSummaries": [],
+          "classes": [
+            "Druid",
+            "Mage",
+            "Wizard"
+          ],
+          "status": "canon",
+          "source": "Player Rulebook — Spell Lists"
+        },
+        "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+        "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+        "coreEntries": [
+          {
+            "index": 830,
+            "original": {
+              "school": "Transmutation",
+              "level": 9,
+              "name": "Mass Polymorph",
+              "effect": "Transform up to 10 creatures into new forms.",
+              "source_paragraph": 10006,
+              "casting_time": "1 action",
+              "range": "120 feet",
+              "duration": "Instantaneous",
+              "components": "V, S, F",
+              "resolution": "Automatic or opposed as described",
+              "tags": [
+                "Utility"
+              ],
+              "rp_cost": 26
+            }
+          }
+        ],
+        "possibleHistoricalAliases": []
+      },
+      "reviewFlags": [
+        "Core resolution requires an explicit operational interpretation"
+      ]
+    },
+    "completeSharedRules": {},
+    "indexEntry": {
+      "id": "mass-polymorph",
+      "name": "Mass Polymorph",
+      "authoredStatus": "reviewed-authored-operational-playtest",
+      "procedureFile": "catalog.json",
+      "procedurePointer": "/spells/773/operational",
+      "wholeCardPointer": "/spells/773",
+      "sourceStatus": "operational-playtest-draft",
+      "priorCatalogSelectionStatusUnchanged": true
+    }
+  }
+]

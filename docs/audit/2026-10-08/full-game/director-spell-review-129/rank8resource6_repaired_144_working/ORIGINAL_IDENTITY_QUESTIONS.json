@@ -1,0 +1,938 @@
+[
+  {
+    "spellId": "spell-absorption-shield",
+    "originalQuestionSource": {
+      "path": "docs/audit/2026-10-08/full-game/ABJURATION_CONJURATION_RANK8_SOURCE_PREPARATION.json",
+      "bytes": 481251,
+      "sha256": "9aa9061439a670dea0763ba6c629902d64a80dd0d6c495396e272281da759b80"
+    },
+    "originalQuestionPointer": "/selectedSpells/3",
+    "completeOriginalSourceQuestionUnchanged": {
+      "spellId": "spell-absorption-shield",
+      "questionId": "AC8-04",
+      "scope": "pre-push mechanical source question",
+      "fullSourceAndCurrentAccessRecord": {
+        "id": "spell-absorption-shield",
+        "name": "Spell Absorption Shield",
+        "schools": [
+          "Abjuration"
+        ],
+        "status": "blocked-pending-operational-review",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Cleric": {
+            "rank": 8,
+            "minimumClassLevel": 15,
+            "school": "Abjuration",
+            "baseRpCost": 21
+          },
+          "Druid": {
+            "rank": 8,
+            "minimumClassLevel": 15,
+            "school": "Abjuration",
+            "baseRpCost": 21
+          },
+          "Mage": {
+            "rank": 8,
+            "minimumClassLevel": 15,
+            "school": "Abjuration",
+            "baseRpCost": 21
+          },
+          "Wizard": {
+            "rank": 8,
+            "minimumClassLevel": 15,
+            "school": "Abjuration",
+            "baseRpCost": 21
+          }
+        },
+        "operational": null,
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "spell-absorption-shield",
+          "original": {
+            "name": "Spell Absorption Shield",
+            "level": 8,
+            "resonanceRank": 8,
+            "school": "Abjuration",
+            "schools": [
+              "Abjuration"
+            ],
+            "placements": [
+              {
+                "name": "Spell Absorption Shield",
+                "school": "Abjuration",
+                "level": 8,
+                "summary": "Absorb up to 100 levels of spells, gaining Resonance Points."
+              }
+            ],
+            "classLevels": {
+              "Cleric": 8,
+              "Druid": 8,
+              "Mage": 8,
+              "Wizard": 8
+            },
+            "classRanks": {
+              "Cleric": 8,
+              "Druid": 8,
+              "Mage": 8,
+              "Wizard": 8
+            },
+            "classLearnLevels": {
+              "Cleric": 15,
+              "Druid": 15,
+              "Mage": 15,
+              "Wizard": 15
+            },
+            "classSchools": {
+              "Cleric": "Abjuration",
+              "Druid": "Abjuration",
+              "Mage": "Abjuration",
+              "Wizard": "Abjuration"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Absorb up to 100 levels of spells, gaining Resonance Points.",
+            "alternateSummaries": [],
+            "classes": [
+              "Cleric",
+              "Druid",
+              "Mage",
+              "Wizard"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 83,
+              "original": {
+                "school": "Abjuration",
+                "level": 8,
+                "name": "Spell Absorption Shield",
+                "effect": "Absorb up to 100 levels of spells, gaining Resonance Points.",
+                "source_paragraph": 9082,
+                "casting_time": "1 action",
+                "range": "120 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Ward",
+                  "Resonance"
+                ],
+                "rp_cost": 21
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation",
+          "Not selectable in this spell playtest packet until individual operational review"
+        ]
+      },
+      "recordSha256": "03cfd0dba6105659c6561267cc869a9c8cb4e4044a678c6cbd70617245fa9c70",
+      "individualQuestion": "Preserve absorbing UP TO100 LEVELS OF SPELLS and GAINING RESONANCE POINTS; Core Action/120ft/Instantaneous. Define recipient,finite ward duration/concentration,eligible incoming spell event,absorption timing and the relationship between source level,native rank and the100-unit capacity. Specify whole/partial absorption when remaining capacity is insufficient,cantrips,areas,multi-hit/ongoing spells and any choice/Reaction required. Set a concrete RP conversion amount and recovery cap with real payer/recipient history,including allied/self casts,echoes,free casts and multiple shields. Preserve the substantial100-level promise while preventing repeated credit from one spell event or an unbounded mutually profitable recharge loop. Absorption,damage prevention and countering are distinct unless expressly linked."
+    },
+    "completeHistoricalCommonQuestionUnchanged": "For every selected spell, settle all operational fields: actual activation and components, legal target/range/geometry, duration and concentration, resolution/DC/save or attack, full effect clauses, scaling, repeat casting/source identity, suppression/ending, limits and class-specific rank/cost access. Preserve printed clauses and every original source. Explicitly label NEW completions; no external-game import or automatic historical alias merge.",
+    "completeHistoricalScopeExceptionUnchanged": "Post-push receipts are preserved only, excluded from current mechanical authoring. Existing faction/alignment/location records do not authorize new cosmology, theology or lore.",
+    "completeCurrentBookBindings": [
+      {
+        "spellId": "spell-absorption-shield",
+        "catalogPlacement": {
+          "name": "Spell Absorption Shield",
+          "school": "Abjuration",
+          "level": 8,
+          "summary": "Absorb up to 100 levels of spells, gaining Resonance Points."
+        },
+        "currentBookRow": {
+          "line": 8824,
+          "name": "Spell Absorption Shield",
+          "school": "Abjuration",
+          "level": 8,
+          "summary": "Absorb up to 100 levels of spells, gaining Resonance Points.",
+          "exactText": "Spell Absorption Shield – Absorb up to 100 levels of spells, gaining Resonance Points."
+        },
+        "summaryDifferencePreserved": false
+      }
+    ],
+    "earlierCompleteProcedures": [],
+    "earlierOperationalWorkedCases": []
+  },
+  {
+    "spellId": "resonance-nullification",
+    "originalQuestionSource": {
+      "path": "docs/audit/2026-10-08/full-game/ABJURATION_CONJURATION_RANK8_SOURCE_PREPARATION.json",
+      "bytes": 481251,
+      "sha256": "9aa9061439a670dea0763ba6c629902d64a80dd0d6c495396e272281da759b80"
+    },
+    "originalQuestionPointer": "/selectedSpells/4",
+    "completeOriginalSourceQuestionUnchanged": {
+      "spellId": "resonance-nullification",
+      "questionId": "AC8-05",
+      "scope": "pre-push mechanical source question",
+      "fullSourceAndCurrentAccessRecord": {
+        "id": "resonance-nullification",
+        "name": "Resonance Nullification",
+        "schools": [
+          "Abjuration"
+        ],
+        "status": "blocked-pending-operational-review",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Cleric": {
+            "rank": 8,
+            "minimumClassLevel": 15,
+            "school": "Abjuration",
+            "baseRpCost": 21
+          },
+          "Druid": {
+            "rank": 8,
+            "minimumClassLevel": 15,
+            "school": "Abjuration",
+            "baseRpCost": 21
+          },
+          "Mage": {
+            "rank": 8,
+            "minimumClassLevel": 15,
+            "school": "Abjuration",
+            "baseRpCost": 21
+          },
+          "Wizard": {
+            "rank": 8,
+            "minimumClassLevel": 15,
+            "school": "Abjuration",
+            "baseRpCost": 21
+          }
+        },
+        "operational": null,
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "resonance-nullification",
+          "original": {
+            "name": "Resonance Nullification",
+            "level": 8,
+            "resonanceRank": 8,
+            "school": "Abjuration",
+            "schools": [
+              "Abjuration"
+            ],
+            "placements": [
+              {
+                "name": "Resonance Nullification",
+                "school": "Abjuration",
+                "level": 8,
+                "summary": "Target cannot use or regenerate Resonance Points for 1 minute."
+              }
+            ],
+            "classLevels": {
+              "Cleric": 8,
+              "Druid": 8,
+              "Mage": 8,
+              "Wizard": 8
+            },
+            "classRanks": {
+              "Cleric": 8,
+              "Druid": 8,
+              "Mage": 8,
+              "Wizard": 8
+            },
+            "classLearnLevels": {
+              "Cleric": 15,
+              "Druid": 15,
+              "Mage": 15,
+              "Wizard": 15
+            },
+            "classSchools": {
+              "Cleric": "Abjuration",
+              "Druid": "Abjuration",
+              "Mage": "Abjuration",
+              "Wizard": "Abjuration"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Target cannot use or regenerate Resonance Points for 1 minute.",
+            "alternateSummaries": [],
+            "classes": [
+              "Cleric",
+              "Druid",
+              "Mage",
+              "Wizard"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 84,
+              "original": {
+                "school": "Abjuration",
+                "level": 8,
+                "name": "Resonance Nullification",
+                "effect": "Target cannot use or regenerate Resonance Points for 1 minute.",
+                "source_paragraph": 9083,
+                "casting_time": "1 action",
+                "range": "120 feet",
+                "duration": "1 minute",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Resonance"
+                ],
+                "rp_cost": 21
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation",
+          "Not selectable in this spell playtest packet until individual operational review"
+        ]
+      },
+      "recordSha256": "6a9097a8a7e91098227efec0c0466e43c463065925f5a63ee0d6fba478e3a1e0",
+      "individualQuestion": "Preserve one target being UNABLE TO USE OR REGENERATE RP FOR1MINUTE; Core Action/120ft/1minute. Define target/save,concentration if NEW and exact start/end timing. Distinguish spending RP from gaining RP,zero-RP casts,already-paid effects,item activations and other named class resources. State whether recovery from spells,transfer,rest and regeneration is denied or deferred; do not bank missed recovery automatically or drain the existing pool when the text only forbids use/regeneration. Resolve resource-substitution abilities from their actual permissions. Recasts,suppression and expiration must not duplicate blocked transactions or retroactively invalidate lawful prior casts."
+    },
+    "completeHistoricalCommonQuestionUnchanged": "For every selected spell, settle all operational fields: actual activation and components, legal target/range/geometry, duration and concentration, resolution/DC/save or attack, full effect clauses, scaling, repeat casting/source identity, suppression/ending, limits and class-specific rank/cost access. Preserve printed clauses and every original source. Explicitly label NEW completions; no external-game import or automatic historical alias merge.",
+    "completeHistoricalScopeExceptionUnchanged": "Post-push receipts are preserved only, excluded from current mechanical authoring. Existing faction/alignment/location records do not authorize new cosmology, theology or lore.",
+    "completeCurrentBookBindings": [
+      {
+        "spellId": "resonance-nullification",
+        "catalogPlacement": {
+          "name": "Resonance Nullification",
+          "school": "Abjuration",
+          "level": 8,
+          "summary": "Target cannot use or regenerate Resonance Points for 1 minute."
+        },
+        "currentBookRow": {
+          "line": 8825,
+          "name": "Resonance Nullification",
+          "school": "Abjuration",
+          "level": 8,
+          "summary": "Target cannot use or regenerate Resonance Points for 1 minute.",
+          "exactText": "Resonance Nullification – Target cannot use or regenerate Resonance Points for 1 minute."
+        },
+        "summaryDifferencePreserved": false
+      }
+    ],
+    "earlierCompleteProcedures": [],
+    "earlierOperationalWorkedCases": []
+  },
+  {
+    "spellId": "resonance-furnace",
+    "originalQuestionSource": {
+      "path": "docs/audit/2026-10-08/full-game/ABJURATION_CONJURATION_RANK8_SOURCE_PREPARATION.json",
+      "bytes": 481251,
+      "sha256": "9aa9061439a670dea0763ba6c629902d64a80dd0d6c495396e272281da759b80"
+    },
+    "originalQuestionPointer": "/selectedSpells/11",
+    "completeOriginalSourceQuestionUnchanged": {
+      "spellId": "resonance-furnace",
+      "questionId": "AC8-12",
+      "scope": "pre-push mechanical source question",
+      "fullSourceAndCurrentAccessRecord": {
+        "id": "resonance-furnace",
+        "name": "Resonance Furnace",
+        "schools": [
+          "Conjuration"
+        ],
+        "status": "blocked-pending-operational-review",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Druid": {
+            "rank": 8,
+            "minimumClassLevel": 15,
+            "school": "Conjuration",
+            "baseRpCost": 21
+          },
+          "Mage": {
+            "rank": 8,
+            "minimumClassLevel": 15,
+            "school": "Conjuration",
+            "baseRpCost": 21
+          },
+          "Wizard": {
+            "rank": 8,
+            "minimumClassLevel": 15,
+            "school": "Conjuration",
+            "baseRpCost": 21
+          }
+        },
+        "operational": null,
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "resonance-furnace",
+          "original": {
+            "name": "Resonance Furnace",
+            "level": 8,
+            "resonanceRank": 8,
+            "school": "Conjuration",
+            "schools": [
+              "Conjuration"
+            ],
+            "placements": [
+              {
+                "name": "Resonance Furnace",
+                "school": "Conjuration",
+                "level": 8,
+                "summary": "Converts elemental damage taken into Resonance recovery, subject to the spell’s listed limit."
+              }
+            ],
+            "classLevels": {
+              "Druid": 8,
+              "Mage": 8,
+              "Wizard": 8
+            },
+            "classRanks": {
+              "Druid": 8,
+              "Mage": 8,
+              "Wizard": 8
+            },
+            "classLearnLevels": {
+              "Druid": 15,
+              "Mage": 15,
+              "Wizard": 15
+            },
+            "classSchools": {
+              "Druid": "Conjuration",
+              "Mage": "Conjuration",
+              "Wizard": "Conjuration"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Converts elemental damage taken into Resonance recovery, subject to the spell’s listed limit.",
+            "alternateSummaries": [],
+            "classes": [
+              "Druid",
+              "Mage",
+              "Wizard"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [],
+          "possibleHistoricalAliases": [
+            {
+              "index": 187,
+              "original": {
+                "school": "Conjuration",
+                "level": 8,
+                "name": "Mana Furnace",
+                "effect": "Convert elemental damage taken into RP recovery, to a maximum of proficiency bonus RP per round.",
+                "source_paragraph": 9211,
+                "casting_time": "1 action",
+                "range": "120 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Resonance"
+                ],
+                "rp_cost": 21
+              }
+            }
+          ]
+        },
+        "reviewFlags": [
+          "Core V2 name differs; possible alias retained for comparison, not an automatic rules merge",
+          "Not selectable in this spell playtest packet until individual operational review"
+        ]
+      },
+      "recordSha256": "779cf2c61b63d65d8cf1bdcdbb3a37710a665d728a48ac3f0fe71bbd19b65dea",
+      "individualQuestion": "Preserve current Resonance Furnace converting ELEMENTAL DAMAGE TAKEN TO RP RECOVERY SUBJECT TO ITS LISTED LIMIT. There is no exact-name Core entry: the preserved Mana Furnace historical candidate says MAXIMUM PB RP PER ROUND,Action/120ft/Instantaneous. Resolve the alias and actual limit explicitly before adopting it; do not silently discard the PB cap. Define recipient,duration,eligible elements,post-mitigation actual HP/tempHP loss,conversion rate,round ledger and sharing/redirection. Resolve self/allied damage and recurring environmental damage without refunds for prevented damage,copying one event or exceeding the RP maximum. Damage remains real and cannot be healed retroactively by calling recovery a conversion."
+    },
+    "completeHistoricalCommonQuestionUnchanged": "For every selected spell, settle all operational fields: actual activation and components, legal target/range/geometry, duration and concentration, resolution/DC/save or attack, full effect clauses, scaling, repeat casting/source identity, suppression/ending, limits and class-specific rank/cost access. Preserve printed clauses and every original source. Explicitly label NEW completions; no external-game import or automatic historical alias merge.",
+    "completeHistoricalScopeExceptionUnchanged": "Post-push receipts are preserved only, excluded from current mechanical authoring. Existing faction/alignment/location records do not authorize new cosmology, theology or lore.",
+    "completeCurrentBookBindings": [
+      {
+        "spellId": "resonance-furnace",
+        "catalogPlacement": {
+          "name": "Resonance Furnace",
+          "school": "Conjuration",
+          "level": 8,
+          "summary": "Converts elemental damage taken into Resonance recovery, subject to the spell’s listed limit."
+        },
+        "currentBookRow": {
+          "line": 8953,
+          "name": "Resonance Furnace",
+          "school": "Conjuration",
+          "level": 8,
+          "summary": "Converts elemental damage taken into Resonance recovery, subject to the spell’s listed limit.",
+          "exactText": "Resonance Furnace – Converts elemental damage taken into Resonance recovery, subject to the spell’s listed limit."
+        },
+        "summaryDifferencePreserved": false
+      }
+    ],
+    "earlierCompleteProcedures": [],
+    "earlierOperationalWorkedCases": []
+  },
+  {
+    "spellId": "resonance-matrix",
+    "originalQuestionSource": {
+      "path": "docs/audit/2026-10-08/full-game/ABJURATION_CONJURATION_RANK8_SOURCE_PREPARATION.json",
+      "bytes": 481251,
+      "sha256": "9aa9061439a670dea0763ba6c629902d64a80dd0d6c495396e272281da759b80"
+    },
+    "originalQuestionPointer": "/selectedSpells/13",
+    "completeOriginalSourceQuestionUnchanged": {
+      "spellId": "resonance-matrix",
+      "questionId": "AC8-14",
+      "scope": "pre-push mechanical source question",
+      "fullSourceAndCurrentAccessRecord": {
+        "id": "resonance-matrix",
+        "name": "Resonance Matrix",
+        "schools": [
+          "Conjuration"
+        ],
+        "status": "blocked-pending-operational-review",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Druid": {
+            "rank": 8,
+            "minimumClassLevel": 15,
+            "school": "Conjuration",
+            "baseRpCost": 21
+          },
+          "Mage": {
+            "rank": 8,
+            "minimumClassLevel": 15,
+            "school": "Conjuration",
+            "baseRpCost": 21
+          },
+          "Wizard": {
+            "rank": 8,
+            "minimumClassLevel": 15,
+            "school": "Conjuration",
+            "baseRpCost": 21
+          }
+        },
+        "operational": null,
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "resonance-matrix",
+          "original": {
+            "name": "Resonance Matrix",
+            "level": 8,
+            "resonanceRank": 8,
+            "school": "Conjuration",
+            "schools": [
+              "Conjuration"
+            ],
+            "placements": [
+              {
+                "name": "Resonance Matrix",
+                "school": "Conjuration",
+                "level": 8,
+                "summary": "Create a field where spells can be cast without expending Resonance Points."
+              }
+            ],
+            "classLevels": {
+              "Druid": 8,
+              "Mage": 8,
+              "Wizard": 8
+            },
+            "classRanks": {
+              "Druid": 8,
+              "Mage": 8,
+              "Wizard": 8
+            },
+            "classLearnLevels": {
+              "Druid": 15,
+              "Mage": 15,
+              "Wizard": 15
+            },
+            "classSchools": {
+              "Druid": "Conjuration",
+              "Mage": "Conjuration",
+              "Wizard": "Conjuration"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Create a field where spells can be cast without expending Resonance Points.",
+            "alternateSummaries": [],
+            "classes": [
+              "Druid",
+              "Mage",
+              "Wizard"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 189,
+              "original": {
+                "school": "Conjuration",
+                "level": 8,
+                "name": "Resonance Matrix",
+                "effect": "Create a field where spells can be cast without expending Resonance Points.",
+                "source_paragraph": 9213,
+                "casting_time": "1 action",
+                "range": "120 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Resonance"
+                ],
+                "rp_cost": 21
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation",
+          "Not selectable in this spell playtest packet until individual operational review"
+        ]
+      },
+      "recordSha256": "d9391a829431e8d323511b68b079ed1e100f4366b2cf2fb644598a476ac8e2e7",
+      "individualQuestion": "Preserve a FIELD WHERE SPELLS CAN BE CAST WITHOUT EXPENDING RP; Core Action/120ft/Instantaneous. Define area,duration/concentration,eligible casters and spells,cast count or finite capacity if NEW,and exact payment timing. Preserve a substantive RP waiver while distinguishing other class costs,consumed components,actions,concentration and access requirements. Resolve Matrix recasting,copy spells,RP-generating spells,absorbing free casts and movement across boundaries using actual cast lineage. Do not turn a waived charge into a paid-resource refund or silently deny every useful application. Any added rank/cap/use constraint must be a named balance decision,not a fabricated original source field."
+    },
+    "completeHistoricalCommonQuestionUnchanged": "For every selected spell, settle all operational fields: actual activation and components, legal target/range/geometry, duration and concentration, resolution/DC/save or attack, full effect clauses, scaling, repeat casting/source identity, suppression/ending, limits and class-specific rank/cost access. Preserve printed clauses and every original source. Explicitly label NEW completions; no external-game import or automatic historical alias merge.",
+    "completeHistoricalScopeExceptionUnchanged": "Post-push receipts are preserved only, excluded from current mechanical authoring. Existing faction/alignment/location records do not authorize new cosmology, theology or lore.",
+    "completeCurrentBookBindings": [
+      {
+        "spellId": "resonance-matrix",
+        "catalogPlacement": {
+          "name": "Resonance Matrix",
+          "school": "Conjuration",
+          "level": 8,
+          "summary": "Create a field where spells can be cast without expending Resonance Points."
+        },
+        "currentBookRow": {
+          "line": 8955,
+          "name": "Resonance Matrix",
+          "school": "Conjuration",
+          "level": 8,
+          "summary": "Create a field where spells can be cast without expending Resonance Points.",
+          "exactText": "Resonance Matrix – Create a field where spells can be cast without expending Resonance Points."
+        },
+        "summaryDifferencePreserved": false
+      }
+    ],
+    "earlierCompleteProcedures": [],
+    "earlierOperationalWorkedCases": []
+  },
+  {
+    "spellId": "resonance-mastery",
+    "originalQuestionSource": {
+      "path": "docs/audit/2026-10-08/full-game/DIVINATION_ENCHANTMENT_RANK8_SOURCE_PREPARATION.json",
+      "bytes": 378572,
+      "sha256": "40c6cf0cdd30fb445ee0f520f058cc6445ce0208d1f5b12cabfe660319d22929"
+    },
+    "originalQuestionPointer": "/selectedSpells/6",
+    "completeOriginalSourceQuestionUnchanged": {
+      "spellId": "resonance-mastery",
+      "questionId": "DE8-07",
+      "scope": "pre-push mechanical source question",
+      "fullSourceAndCurrentAccessRecord": {
+        "id": "resonance-mastery",
+        "name": "Resonance Mastery",
+        "schools": [
+          "Divination"
+        ],
+        "status": "blocked-pending-operational-review",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Cleric": {
+            "rank": 8,
+            "minimumClassLevel": 15,
+            "school": "Divination",
+            "baseRpCost": 21
+          },
+          "Wizard": {
+            "rank": 8,
+            "minimumClassLevel": 15,
+            "school": "Divination",
+            "baseRpCost": 21
+          }
+        },
+        "operational": null,
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "resonance-mastery",
+          "original": {
+            "name": "Resonance Mastery",
+            "level": 8,
+            "resonanceRank": 8,
+            "school": "Divination",
+            "schools": [
+              "Divination"
+            ],
+            "placements": [
+              {
+                "name": "Resonance Mastery",
+                "school": "Divination",
+                "level": 8,
+                "summary": "For 1 minute, know exactly how many Resonance Points needed for any spell."
+              }
+            ],
+            "classLevels": {
+              "Cleric": 8,
+              "Wizard": 8
+            },
+            "classRanks": {
+              "Cleric": 8,
+              "Wizard": 8
+            },
+            "classLearnLevels": {
+              "Cleric": 15,
+              "Wizard": 15
+            },
+            "classSchools": {
+              "Cleric": "Divination",
+              "Wizard": "Divination"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "For 1 minute, know exactly how many Resonance Points needed for any spell.",
+            "alternateSummaries": [],
+            "classes": [
+              "Cleric",
+              "Wizard"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 295,
+              "original": {
+                "school": "Divination",
+                "level": 8,
+                "name": "Resonance Mastery",
+                "effect": "For 1 minute, know exactly how many Resonance Points needed for any spell.",
+                "source_paragraph": 9344,
+                "casting_time": "1 action",
+                "range": "120 feet",
+                "duration": "1 minute",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Resonance"
+                ],
+                "rp_cost": 21
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation",
+          "Not selectable in this spell playtest packet until individual operational review"
+        ]
+      },
+      "recordSha256": "0f8e7d7a45ecf30be2939a47886b0ec97c6c261493938b8299db6d8ed67e51b3",
+      "individualQuestion": "Preserve KNOWING EXACT RP NEEDED FOR ANY SPELL FOR1MINUTE; Core Action/120ft/1minute. Define recipient and how a spell/query is identified,including source rank,actual class access,additional costs,metamagic,waivers and current environmental modifiers. Supply a meaningful precise-cost function without granting an unknown spell's formula,effects,hidden caster resources or casting permission. Distinguish publicly known base prices from the extra information supplied about actual lawful contexts. Unknown or unreviewed spell definitions require a truthful unresolved result rather than invented cost. No RP discount,free metamagic,automatic learning or recharge follows."
+    },
+    "completeHistoricalCommonQuestionUnchanged": "For every selected spell, settle all operational fields: actual activation and components, legal target/range/geometry, duration and concentration, resolution/DC/save or attack, full effect clauses, scaling, repeat casting/source identity, suppression/ending, limits and class-specific rank/cost access. Preserve printed clauses and every original source. Explicitly label NEW completions; no external-game import or automatic historical alias merge.",
+    "completeHistoricalScopeExceptionUnchanged": "Post-push receipts are preserved only, excluded from current mechanical authoring. Existing faction/alignment/location records do not authorize new cosmology, theology or lore.",
+    "completeCurrentBookBindings": [
+      {
+        "spellId": "resonance-mastery",
+        "catalogPlacement": {
+          "name": "Resonance Mastery",
+          "school": "Divination",
+          "level": 8,
+          "summary": "For 1 minute, know exactly how many Resonance Points needed for any spell."
+        },
+        "currentBookRow": {
+          "line": 9086,
+          "name": "Resonance Mastery",
+          "school": "Divination",
+          "level": 8,
+          "summary": "For 1 minute, know exactly how many Resonance Points needed for any spell.",
+          "exactText": "Resonance Mastery – For 1 minute, know exactly how many Resonance Points needed for any spell."
+        },
+        "summaryDifferencePreserved": false
+      }
+    ],
+    "earlierCompleteProcedures": [],
+    "earlierOperationalWorkedCases": []
+  },
+  {
+    "spellId": "leyline-flow",
+    "originalQuestionSource": {
+      "path": "docs/audit/2026-10-08/full-game/TRANSMUTATION_UNIVERSAL_RANK8_SOURCE_PREPARATION.json",
+      "bytes": 500471,
+      "sha256": "9082333ad4231589fe3ff8f32f24697acf4e39c4c50266a89499d464766df63a"
+    },
+    "originalQuestionPointer": "/selectedSpells/9",
+    "completeOriginalSourceQuestionUnchanged": {
+      "spellId": "leyline-flow",
+      "questionId": "TU8-10",
+      "scope": "pre-push mechanical source question",
+      "fullSourceAndCurrentAccessRecord": {
+        "id": "leyline-flow",
+        "name": "Leyline Flow",
+        "schools": [
+          "Universal"
+        ],
+        "status": "blocked-pending-operational-review",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Cleric": {
+            "rank": 8,
+            "minimumClassLevel": 15,
+            "school": "Universal",
+            "baseRpCost": 21
+          },
+          "Mage": {
+            "rank": 8,
+            "minimumClassLevel": 15,
+            "school": "Universal",
+            "baseRpCost": 21
+          },
+          "Wizard": {
+            "rank": 8,
+            "minimumClassLevel": 15,
+            "school": "Universal",
+            "baseRpCost": 21
+          }
+        },
+        "operational": null,
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "leyline-flow",
+          "original": {
+            "name": "Leyline Flow",
+            "level": 8,
+            "resonanceRank": 8,
+            "school": "Universal",
+            "schools": [
+              "Universal"
+            ],
+            "placements": [
+              {
+                "name": "Leyline Flow",
+                "school": "Universal",
+                "level": 8,
+                "summary": "Choose 3 Resonance-using spellcasters; each recovers RP equal to the cost of one spell of Tier 5 or lower they can cast."
+              }
+            ],
+            "classLevels": {
+              "Cleric": 8,
+              "Mage": 8,
+              "Wizard": 8
+            },
+            "classRanks": {
+              "Cleric": 8,
+              "Mage": 8,
+              "Wizard": 8
+            },
+            "classLearnLevels": {
+              "Cleric": 15,
+              "Mage": 15,
+              "Wizard": 15
+            },
+            "classSchools": {
+              "Cleric": "Universal",
+              "Mage": "Universal",
+              "Wizard": "Universal"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Choose 3 Resonance-using spellcasters; each recovers RP equal to the cost of one spell of Tier 5 or lower they can cast.",
+            "alternateSummaries": [],
+            "classes": [
+              "Cleric",
+              "Mage",
+              "Wizard"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 915,
+              "original": {
+                "school": "Universal",
+                "level": 8,
+                "name": "Leyline Flow",
+                "effect": "Choose three spellcasters; each recovers 10 RP.",
+                "source_paragraph": 10114,
+                "casting_time": "1 action",
+                "range": "120 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Utility"
+                ],
+                "rp_cost": 21
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation",
+          "Not selectable in this spell playtest packet until individual operational review"
+        ]
+      },
+      "recordSha256": "f3016548f60f49e267f11044a134ffe417da2886ba4f941d964c63451096b105",
+      "individualQuestion": "Preserve the current book choosing3 RP-USING SPELLCASTERS,each recovering RP EQUAL TO THE COST OF ONE TIER5-OR-LOWER SPELL THEY CAN CAST. Core instead says THREE SPELLCASTERS EACH RECOVER10RP,Action/120ft/Instantaneous/21RP. Resolve that literal amount/eligibility conflict explicitly,including native Tier versus rank,base versus modified cost and who selects the reference spell. Define exactly three versus up to three targets,self eligibility,current pool caps and overflow. The reference spell is not automatically cast or learned. Compare RP waivers,absorption and repeated group casting for conservation without silently changing the printed recovery; any anti-loop restriction is a NEW justified rule. No actual leyline topology or cosmology is inferred from the name."
+    },
+    "completeHistoricalCommonQuestionUnchanged": "For every selected spell, settle all operational fields: actual activation and components, legal target/range/geometry, duration and concentration, resolution/DC/save or attack, full effect clauses, scaling, repeat casting/source identity, suppression/ending, limits and class-specific rank/cost access. Preserve printed clauses and every original source. Explicitly label NEW completions; no external-game import or automatic historical alias merge.",
+    "completeHistoricalScopeExceptionUnchanged": "Post-push receipts are preserved only, excluded from current mechanical authoring. Existing faction/alignment/location records do not authorize new cosmology, theology or lore.",
+    "completeCurrentBookBindings": [
+      {
+        "spellId": "leyline-flow",
+        "catalogPlacement": {
+          "name": "Leyline Flow",
+          "school": "Universal",
+          "level": 8,
+          "summary": "Choose 3 Resonance-using spellcasters; each recovers RP equal to the cost of one spell of Tier 5 or lower they can cast."
+        },
+        "currentBookRow": {
+          "line": 9856,
+          "name": "Leyline Flow",
+          "school": "Universal",
+          "level": 8,
+          "summary": "Choose 3 Resonance-using spellcasters; each recovers RP equal to the cost of one spell of Tier 5 or lower they can cast.",
+          "exactText": "Leyline Flow – Choose 3 Resonance-using spellcasters; each recovers RP equal to the cost of one spell of Tier 5 or lower they can cast."
+        },
+        "summaryDifferencePreserved": false
+      }
+    ],
+    "earlierCompleteProcedures": [],
+    "earlierOperationalWorkedCases": []
+  }
+]

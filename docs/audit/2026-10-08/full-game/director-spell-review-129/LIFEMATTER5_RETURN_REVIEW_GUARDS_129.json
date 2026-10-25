@@ -1,0 +1,106 @@
+{
+  "id": "LIFEMATTER5-INDEPENDENT-RETURN-REVIEW-GUARDS-129",
+  "recordedAtUtc": "2026-10-24T07:51:09.747466+00:00",
+  "status": "CURRENT_SOURCE_DERIVED_EXPECTATIONS_NOT_DIRECTOR_RETURN_FINDINGS",
+  "sourceBindings": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md",
+      "bytes": 15877,
+      "sha256": "69d0e64394de58c4d86a3ec57cf282978d131a1a9c1eaa21632bb7d3b72562da"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/HEALING_DEATH_PLAYTEST.md",
+      "bytes": 23410,
+      "sha256": "8d68794687b97da70aaff9953f9724e31e9fa3c8568fd4c2f9e8fd05d34c93f7"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/DAMAGE_SHARING_PLAYTEST.md",
+      "bytes": 13112,
+      "sha256": "b298415146cba6453ec33f1310b4b668ac74e0e2d2681a08e077852c065d56e1"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COSMOLOGY_EPILOGUE_RELIC_NULL_PLAYTEST.md",
+      "bytes": 59409,
+      "sha256": "de147857b37ddf3e5632b067023e5863214e4c64bcee9d7a4f1190ab59beae83"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CREATURE_LIFECYCLE_PLAYTEST.md",
+      "bytes": 20087,
+      "sha256": "eae68470d4dba14aa74334e22270e35a8aea022d3c5013aa75a96c15d8e93b08"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+      "bytes": 67451,
+      "sha256": "55f486de8d38a6734f8f0f2f62066401504f5b1311ebe66693175876b3f7aa6d"
+    }
+  ],
+  "guards": [
+    {
+      "scenario": "EV6-06-A",
+      "expected": {
+        "rawDamage": 75,
+        "beforeHp": 50,
+        "maxHp": 100,
+        "tempAbsorbed": 10,
+        "postTempDamage": 65,
+        "excessBeyondPreHp": 15,
+        "instantDeath": false,
+        "halfMaximumWoundTrigger": true,
+        "woundDc": 32,
+        "natural20AutomaticallySucceedsOrdinarySave": false
+      },
+      "review": "Real Death Ward true floor prevents crossing but not half-maximum Wound save. With pre-event3 Wounds, failed save is fatal; with0-2, failure adds1 and margin>=5 linked injury. A source-qualified caster school bonus cannot be silently omitted; if actual Evocation damage bonus applies, original75 needs separate exact source fixture/qualification. Original has no fatal Wound premise, not no-Wound premise."
+    },
+    {
+      "scenario": "EV6-06-B",
+      "review": "Actual sharing preserves original damage root, recipient-specific defenses and native amount cap. Do not infer an arbitrary65-point transfer from desired20->10 outcome. Original sharing scenario permits its own real damage/defense fixture. Guardian one-third alone or a low-level Paladin cap cannot be inflated to meet a target number. Transfer recipient does not inherit original target-only Disintegrate rider."
+    },
+    {
+      "scenario": "Disintegrate Null branches",
+      "review": "Root flag fixed at actual damage-root creation. Pure transfer preserves flag. Living damage-created Instant Death/Wound/Maiming/body destruction skipped; newly0 Stable one real recovery deadline. AlreadyDying0 retains counters/schedule; alreadyStable0 retains deadline. No would-die use spent when death trigger absent. Separate true floor can still trigger under its actual condition. Objects remain destructible. Companion/construction lifecycle branch must be native explicit."
+    },
+    {
+      "scenario": "Disintegrate restoration scope",
+      "review": "Do not turn generic form reversion/snapshot inability to recreate destroyed body into an override of an independently explicit body-reconstruction or temporal-restoration source. HEALING_DEATH temporal dependency distinguishes Spiral-TouchedV conceptual restoration from resurrection and retains full temporal topology holds. Require exact applicable current source, no new Loop completion and no generic resurrection permission."
+    },
+    {
+      "scenario": "Awaken Beast",
+      "review": "Ranger actual minimum16 one-hour Touch ritual4RP/LR and INT<7 creation gate; same bond/life chassis persists after Awaken absent real roster conversion. No duplicate Action/turn, proportional initial-conversion HP does not repeat as healing. Ordinary monster profile cannot be inferred from name."
+    },
+    {
+      "scenario": "Contagion cure delivery",
+      "review": "One actual dose with native swallowing-compatible route. Petrified case remains qualified if no deliverable cure source; do not silently cure with unsupported potion. Recovery successes cumulative with original onset/absolute24h/7day deadlines and explicit symptom-suppression decision."
+    },
+    {
+      "scenario": "Telekinesis movement",
+      "review": "Original240lb is whole body+cargo.20 horizontal plus10 vertical path length30 with finite extent swept volume, actual range and LoE. Spell instantaneous; unsupported target gets Fall Marker at actual endpoint.10ft landing has0fall damage; no invented immediate fall/newHover."
+    },
+    {
+      "scenario": "Bone Cage finite shell",
+      "review": "Original12-foot exterior/10-foot interior proposal needs an explicit floorless supported geometry choice. Verify ground plane and target feet actually lie inside its chosen interior and no underfloor matter intersects floor. Preserve entire30HP record through permanent face opening, actual3-inch gaps and object-eligible attack source. Attack/projectile must physically fit; creature-only Arcane Bolt cannot attack the cage as an object."
+    },
+    {
+      "scenario": "Contagion operative check scope",
+      "review": "Moth Haze affects INT/WIS ability checks only. Current COMBAT_ACTION Hide rule expressly forbids unsourced passive plus/minus5 for advantage/disadvantage; do not import a foreign passive penalty. Grey Ague STR-based attacks/checks excludes saves. Actual Petrified automatically failsSTR/DEX only; itsCON recovery result requires explicit selected suspension procedure, not automatic failure."
+    },
+    {
+      "scenario": "Telekinesis multi-holder custody",
+      "review": "Director must resolve multiple actual resisting holders and resulting release/custody atomically or explicitly stage them; no naked moved object still held by a successful resisting holder. A hinged door keeps actual hinge trajectory and all moving points, never zero-length hinge pivot exemption or tools/attack grant."
+    },
+    {
+      "scenario": "TR5-07-A exact falling marker",
+      "review": "SPELL_INTEGRATION_RULES lines104-116: enterFalling immediately on support loss, but FIRST descent is END of initiating regular slot in FOLLOWING round, not arbitrary eventTime+6. Examplecast0.2 withinCaster0..1 turn/period6 => first step7.0. Reactions/extraturn use enclosingregularslot; between slots usemostrecentcompleted. At10ft ordinaryimpact0d6 andno newProne (Prone requirespositivefallingdamage). FeatherFall is Action, not a foreignReaction."
+    },
+    {
+      "scenario": "EV6-06-A actual Harmonic Bulwark buffer",
+      "review": "Current harmonic-bulwark is ordinary Universal rank3/base5RP (not a2RP arbitrary investment or Mana Shield alias). CreditedRP=actualbasepaid after realbase reductions pluschosenX0..PB; surchargesexcluded. Shield=5*creditedRP, so unmodified5RP offers25temp, not10. To demonstrate original10temp, require a real exact3RP reduction to2credit or valid earlier15damage consumption from25 with its real source/cast/geometry/concentration consequences; no fictional2RP discount/freebuffer. Buffer otherwise lasts until depletion/replacement/recipient completedLR and does not require concentration."
+    },
+    {
+      "scenario": "Awaken supplied expedition pony",
+      "review": "Director visible25m update identifies an actualINT2 expedition pony withfullbody profile but noCR. Verify exact source and retained injuredleg/currentHP; referenceLevel must not becomeCR to authorize Rangerbond. Unbound ordinaryBeast positiveAwaken doesnotneedRangerbond; keep unavailablebondcasepreciselyqualified."
+    }
+  ],
+  "canonicalChanges": false,
+  "newAcceptedIdentities": [],
+  "suppliedCodeExecuted": false
+}

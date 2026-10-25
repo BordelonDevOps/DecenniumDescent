@@ -1,0 +1,34 @@
+{
+  "id": "LIFEMATTER5-COMMITTED-CAST-SOURCE-AUDIT-129",
+  "directory": "C:\\Github\\DecenniumDescent\\docs\\audit\\2026-10-08\\full-game\\director-spell-review-129\\lifematter5_return01_received",
+  "checks": 1160,
+  "casts": 63,
+  "errors": [
+    "EV6-06-A/actual-Null-positive-zero/already-Dying:8:Prone-Unconscious-cancellation"
+  ],
+  "proneUnconsciousAttackChecks": [
+    {
+      "event": "EV6-06-A/actual-Null-positive-zero/already-Dying:8",
+      "target": "T",
+      "source": "wizard.base.arcane-bolt",
+      "plan": {
+        "advantageFaces": [
+          8,
+          13
+        ],
+        "attackBonus": 9,
+        "notWithin5FeetSoNotAutoCritical": true,
+        "dice": [
+          1,
+          1,
+          1
+        ],
+        "raw": 7
+      },
+      "expected": "straight roll; ranged Prone disadvantage cancels Unconscious advantage"
+    }
+  ],
+  "canonicalChanges": false,
+  "runtimeExecuted": false,
+  "suppliedCodeExecuted": false
+}

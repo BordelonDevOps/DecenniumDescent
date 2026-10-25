@@ -1,0 +1,183 @@
+{
+  "id": "PART_D_SYMBOL_OPTICS_ADDENDUM_118",
+  "status": "Optional coherent synthetic scene for upcoming case reconstruction; no new spell rule,not sent yet.",
+  "purpose": "Resolve original helper already in trigger radius without pretending an ally is excluded or treating a visible rune as unseen by fiat.",
+  "suggested16BScene": {
+    "rune": {
+      "center": [
+        60,
+        0,
+        3
+      ],
+      "plane": "x=60",
+      "discRadius": 0.5,
+      "appearance": "existing visible one-foot glyph in ordinary ambient light; no new concealment,one-sided-viewer exemption or perception rule"
+    },
+    "helperE": {
+      "foot": [
+        68,
+        8,
+        0
+      ],
+      "occupiedDimensions": [
+        5,
+        5,
+        5
+      ],
+      "ocularWitnesses": [
+        [
+          68,
+          7.9,
+          4
+        ],
+        [
+          68,
+          8.1,
+          4
+        ]
+      ],
+      "actualSight": "Opaque independent baffle blocks every direct ocular segment to the entire rune disc from establishment onward."
+    },
+    "opaqueBaffle": {
+      "min": [
+        63.9,
+        3,
+        0
+      ],
+      "max": [
+        64.1,
+        5,
+        6
+      ],
+      "fixture": "Actual fixed opaque scene panel rooted on the ordinary floor z0,occupying the stated full prism. No support intrusion into another sight/LoE path and no created spell ability."
+    },
+    "antimagicCenter": [
+      65,
+      0,
+      3
+    ],
+    "antimagicRadius": 10,
+    "actualCastWitness": "Helper sees chosen center along a clear segment,within10 from its actual body; field center has clear LoE to the entire rune,5..sqrt25.25 away. Same-family AM exception remains unchanged.",
+    "targetT": {
+      "initialFoot": [
+        90,
+        0,
+        0
+      ],
+      "laterFoot": [
+        75,
+        0,
+        0
+      ],
+      "dimensions": [
+        5,
+        5,
+        6
+      ],
+      "ocularWitnessesAtLaterPosition": [
+        [
+          75,
+          -0.1,
+          4
+        ],
+        [
+          75,
+          0.1,
+          4
+        ]
+      ],
+      "movement": "15ft during supplied actual regular turn; helper body and baffle do not intersect target path or later glyph sight rays."
+    },
+    "casterC": {
+      "foot": [
+        0,
+        0,
+        0
+      ],
+      "dimensions": [
+        5,
+        5,
+        5
+      ],
+      "outsideTriggerVolume": true
+    },
+    "allCreatureViewers": "At establishment E is within radius but actually occluded,T outside,C outside. While suppressed,T has actual clear sight but no queued trigger. On suppression ending,T remains a current visible viewer,E remains occluded,C outside. Re-evaluate every actual actor,not just intended T."
+  },
+  "analyticalOcclusionProof": {
+    "planeX": 64,
+    "entireDiscY": [
+      -0.5,
+      0.5
+    ],
+    "entireDiscZ": [
+      2.5,
+      3.5
+    ],
+    "bothOcularY": [
+      7.9,
+      8.1
+    ],
+    "ocularZ": 4,
+    "allProjectedYAtX64": [
+      3.7,
+      4.3
+    ],
+    "allProjectedZAtX64": [
+      3.25,
+      3.75
+    ],
+    "strictlyInsideBaffle": true
+  },
+  "optional16ARepair": "Place target foot at[45,0,0],ocular points around[45,0,4],rune unchanged[40,0,3],plane x40. Entire glyph then lies outside target occupied body; explicit clear ocular rays give actual sight,body within20. This changes disclosed fixture coordinates only.",
+  "checks": [
+    {
+      "check": "All left/right ocular rays to the disc cross baffle interior at x64",
+      "passed": true
+    },
+    {
+      "check": "Antimagic point within10 of actual helper body",
+      "passed": true
+    },
+    {
+      "check": "Antimagic center to every rune-disc point remains within10",
+      "passed": true
+    },
+    {
+      "check": "AM center-to-disc rays miss baffle y interval",
+      "passed": true
+    },
+    {
+      "check": "Helper-to-AM-center rays cannot cross baffle x interval",
+      "passed": true
+    },
+    {
+      "check": "Initial target90 outside rune20 sphere by whole body",
+      "passed": true
+    },
+    {
+      "check": "Later target75 inside rune20 sphere",
+      "passed": true
+    },
+    {
+      "check": "Target moves15 within Speed30",
+      "passed": true
+    },
+    {
+      "check": "T y0 eye-to-disc rays miss baffle and helper body",
+      "passed": true
+    },
+    {
+      "check": "Caster body outside Symbol20 volume",
+      "passed": true
+    },
+    {
+      "check": "Rune is outside all creature body interiors",
+      "passed": true
+    },
+    {
+      "check": "16A alternative rune40 outside target45 body",
+      "passed": true
+    }
+  ],
+  "notRequiredChoice": "The author may choose another complete coherent scene,provided actual optical/source/geometry proof is equally explicit. No spell predicate rewrite required."
+}

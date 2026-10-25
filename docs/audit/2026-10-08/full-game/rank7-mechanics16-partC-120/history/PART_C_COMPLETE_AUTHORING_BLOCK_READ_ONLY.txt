@@ -1,0 +1,363 @@
+# 09: Enemies are a knowledge predicate, not individually visible targets.
+s=make('R7M-09-A','mass-confusion','An already identified unseen enemy remains in area admission',targets=3,positions=[(25,0,0),(35,0,0),(30,10,0)])
+add_actor(s,'I',wizard_def(extra=['greater-invisibility']),(20,10,0),start=-6,end=-4)
+initial_paid(s,'I','greater-invisibility','GI',-4.9,conc=True)
+initial_effect(s,'GI','greater-invisibility','I',-4.8,55.2,conc=True,recipient='T1')
+s.s['actors']['T1']['visibility']='Invisible by actual GI';s.s['actors']['T1']['perceivedBy']=['position-known to C from earlier encounter; not presently seen']
+s.s['actors']['C']['knownEnemies']=['T1','T2']
+s.s['privateKnowledge']={'C':{'previouslyIdentifiedEnemies':['T1','T2'],'T3RelationNotKnown':True},'directorOnly':{'T3':'enemy; no public roster return'}}
+s.geometry.update(center=[30,0,3],radius=30,eligibleByExistingKnowledge=['T1','T2'],T1individualSightRequired=False,T3Exclusion='not already identified; no new unknown-enemy detector')
+s.seal();s.E(1,'Pay and concentrate',lambda x:cast(x,'C','mass-confusion','MC',conc=True))
+def mc_admit(x):
+    establish(x,'MC','mass-confusion',recipients=['T1','T2'])
+    out=[]
+    for aid in ['T1','T2']:
+        q=roll(x,aid,'WIS',7,17)
+        x['receipts']['hard'][aid]={'source':'MC','owner':'C','spent':True}
+        condition(x,aid,'Confused','MC',61.1)
+        out.append({'target':aid,'save':q,'hardAdmitted':True})
+    return {'admissions':out,'noT3Roll':True,'noCasterRosterDiagnostic':True}
+s.E(1.1,'Known unseen T1 and visible T2 fail; unknown T3 is not newly detected',mc_admit)
+s.E(3.1,'T1 actual START3: private d4=2 spends its ordinary Action on Dodge',lambda x:(spend(x,'T1','action'),condition(x,'T1','Dodge','MC/T1/Dodge',9),{'privateD4':2,'noExtraAction':True})[-1])
+def wander(x):
+    a=x['actors']['T2'];a['position']=[50,0,0];a['movementSpent']=15
+    return {'privateD4':4,'privateD8':3,'direction':'E','actualClearPathFeet':15,'halfActualSpeed':15,'actionRetained':True}
+s.E(3.4,'T2 actual START3.3: safe ordinary directional wandering',wander)
+s.E(4,'T1 actual END WIS succeeds and ends only its component',lambda x:(x['actors']['T1'].update(conditions=[c for c in x['actors']['T1']['conditions'] if c['source']!='MC']),{'save':roll(x,'T1','WIS',8,17)})[-1])
+s.E(4.3,'T2 actual END WIS fails; original clock continues',lambda x:{'save':roll(x,'T2','WIS',7,17)})
+s.E(6.1,'Caster genuinely ends its concentration; no replay or guard refund',lambda x:end_effect(x,'MC','creator voluntary ending'))
+finish(s)
+
+s=make('R7M-09-B','mass-confusion','Private ordinary attack result uses real target/action and no finite feature',targets=2,positions=[(30,0,0),(35,0,0)])
+s.s['actors']['C']['knownEnemies']=['T1','T2'];s.geometry.update(center=[30,0,3],radius=30,contact='two Medium bodies touch at boundary; interiors do not overlap')
+s.seal();s.E(1,'Commit',lambda x:cast(x,'C','mass-confusion','MC',conc=True))
+s.E(1.1,'Initial WIS failures and hard admission',mc_admit)
+s.E(3.1,'T1 private d4=1: retain ordinary agency; choose no action',lambda x:{'privateD4':1,'ordinaryActionStillAvailable':True})
+def randomattack(x):
+    spend(x,'T2','action')
+    # Basic unarmed ordinary action; STR0 and actual PB5. No copied form profile or resource.
+    hit=dmg(x,'T1',[1],'bludgeoning','MC/native/T2/1','T2')
+    return {'privateD4':3,'perceivedReachableOtherList':['T1'],'privateSelectionOrdinal':0,
+            'attack':{'d20':8,'STR':0,'PB':5,'total':13,'AC':12,'hit':True},'damage':hit,'RPSpent':0}
+s.E(3.4,'T2 private d4=3: one genuine ordinary unarmed attack',randomattack)
+for aid,t in [('T1',4),('T2',4.3)]:
+    s.E(t,'Actual ending save succeeds for '+aid,lambda x,a=aid:(x['actors'][a].update(conditions=[c for c in x['actors'][a]['conditions'] if c['source']!='MC']),{'save':roll(x,a,'WIS',8,17)})[-1])
+s.E(4.4,'Maintainer voluntarily ends empty component source',lambda x:end_effect(x,'MC','no applications remain; creator ends'))
+finish(s)
+save(W/'case_checkpoint_03.json',cases)
+print("mains",len(cases))
+
+---------------------------------------------------------------------------
+KeyError                                  Traceback (most recent call last)
+Cell In[19], line 70
+     66 def wander(x):
+     67     a=x['actors']['T2'];a['position']=[50,0,0];a['movementSpent']=15
+     68     return {'privateD4':4,'privateD8':3,'direction':'E','actualClearPathFeet':15,'halfActualSpeed':15,'actionRetained':True}
+     69 s.E(3.4,'T2 actual START3.3: safe ordinary directional wandering',wander)
+---> 70 s.E(4,'T1 actual END WIS succeeds and ends only its component',lambda x:(x['actors']['T1'].update(conditions=[c for c in x['actors']['T1']['conditions'] if c['source']!='MC']),{'save':roll(x,'T1','WIS',8,17)})[-1])
+     71 s.E(4.3,'T2 actual END WIS fails; original clock continues',lambda x:{'save':roll(x,'T2','WIS',7,17)})
+     72 s.E(6.1,'Caster genuinely ends its concentration; no replay or guard refund',lambda x:end_effect(x,'MC','creator voluntary ending'))
+     73 finish(s)
+
+Cell In[10], line 105, in Scene.E(self, t, label, fun, detail)
+    101     def E(self,t,label,fun=lambda s:None,detail=None):
+    102         before=copy.deepcopy(self.s)
+    103         notes=self.auto(t)
+    104         self.s['time']=t
+--> 105         result=fun(self.s)
+    106         self.timeline.append({'index':len(self.timeline),'time':t,'description':label,'before':before,'scheduledBudgetProcessing':notes,'detail':detail or {},'resolution':result,'after':copy.deepcopy(self.s)})
+    107         return result
+
+Cell In[19], line 70, in <lambda>(x)
+---> 70 s.E(4,'T1 actual END WIS succeeds and ends only its component',lambda x:(x['actors']['T1'].update(conditions=[c for c in x['actors']['T1']['conditions'] if c['source']!='MC']),{'save':roll(x,'T1','WIS',8,17)})[-1])
+
+KeyError: 'source'
+
+Analyzed
+Python
+print(len(cases),s.id,len(s.timeline),s.s['actors']['T1']['conditions'])
+print(inspect.getsource(condition),inspect.getsource(clear_source))
+# restore unfinished scene before failed event from its durable last after, then finish it correctly.
+s.s=copy.deepcopy(s.timeline[-1]['after'])
+def remove_on(x,aid,eid):
+    a=x['actors'][aid]
+    a['conditions']=[c for c in a['conditions'] if c.get('sourceId')!=eid]
+    a['Speed']=a['normalSpeed']
+    for c in a['conditions']:
+        if c['name'] in ['Slow','PainHalf']:a['Speed']=min(a['Speed'],a['normalSpeed']//2)
+        if c['name'] in ['Stunned','Grappled','MindMaze']:a['Speed']=0
+s.E(4,'T1 actual END WIS succeeds and ends only its component',lambda x:(remove_on(x,'T1','MC'),{'save':roll(x,'T1','WIS',8,17)})[-1])
+s.E(4.3,'T2 actual END WIS fails; original clock continues',lambda x:{'save':roll(x,'T2','WIS',7,17)})
+s.E(6.1,'Creator voluntary concentration ending',lambda x:end_effect(x,'MC','creator voluntary ending'))
+finish(s)
+s=make('R7M-09-B','mass-confusion','Private ordinary attack uses real target/action and no optional resource',targets=2,positions=[(30,0,0),(35,0,0)])
+s.s['actors']['C']['knownEnemies']=['T1','T2'];s.geometry.update(center=[30,0,3],radius=30,contact='two Medium bodies boundary-contact, interiors nonoverlapping')
+s.seal();s.E(1,'Commit',lambda x:cast(x,'C','mass-confusion','MC',conc=True))
+s.E(1.1,'Initial WIS failures and hard admission',mc_admit)
+s.E(3.1,'T1 d4=1 retains agency and elects no Action',lambda x:{'privateD4':1,'ordinaryActionStillAvailable':True})
+def randomattack(x):
+    spend(x,'T2','action')
+    hit=dmg(x,'T1',[1],'bludgeoning','MC/native/T2/1','T2')
+    return {'privateD4':3,'perceivedReachableOtherList':['T1'],'privateOrdinal':0,'attack':{'d20':8,'STR':0,'PB':5,'total':13,'AC':12,'hit':True},'damage':hit,'RPSpent':0}
+s.E(3.4,'T2 d4=3: actual ordinary unarmed attack',randomattack)
+for aid,t in [('T1',4),('T2',4.3)]:
+    s.E(t,'Actual successful ending WIS for '+aid,lambda x,a=aid:(remove_on(x,a,'MC'),{'save':roll(x,a,'WIS',8,17)})[-1])
+s.E(4.4,'Creator ends source after applications gone',lambda x:end_effect(x,'MC','voluntary'))
+finish(s)
+save(W/'case_checkpoint_03.json',cases)
+print("mains",len(cases))
+
+STDOUT/STDERR
+16 R7M-09-A 4 [{'name': 'Confused', 'sourceId': 'MC', 'deadline': 61.1}, {'name': 'Dodge', 'sourceId': 'MC/T1/Dodge', 'deadline': 9}]
+def condition(s,aid,name,eid,deadline=None,**fields):
+    c={'name':name,'sourceId':eid,'deadline':deadline,**fields};s['actors'][aid]['conditions'].append(c)
+    if name in ['Slow','PainHalf']:s['actors'][aid]['Speed']=s['actors'][aid]['normalSpeed']//2
+    if name=='RimeSlow':s['actors'][aid]['Speed']=max(0,s['actors'][aid]['normalSpeed']-10)
+    if name in ['Stunned','MindMaze','Grappled']:s['actors'][aid]['Speed']=0
+    if name=='Stunned' and s['actors'][aid]['concentration']:
+        end_effect(s,s['actors'][aid]['concentration'],'actual Stunned incapacity')
+    return c
+ def clear_source(s,eid):
+    for aid,a in s['actors'].items():
+        a['conditions']=[c for c in a['conditions'] if c['sourceId']!=eid]
+        speeds=[a['normalSpeed']]
+        for c in a['conditions']:
+            if c['name'] in ['Slow','PainHalf']:speeds.append(a['normalSpeed']//2)
+            elif c['name']=='RimeSlow':speeds.append(max(0,a['normalSpeed']-10))
+            elif c['name'] in ['Stunned','MindMaze','Grappled']:speeds.append(0)
+        a['Speed']=min(speeds)
+        if a['concentration']==eid:a['concentration']=None
+
+mains 18
+
+Analyzed
+Python
+# 10: Positive control workflows have an explicit whole-case missing-native-profile prerequisite.
+for suffix,attached in [('A',False),('B',True)]:
+    s=make('R7M-10-'+suffix,'dominate-greater-beast','Conditional '+('actual owner-attached phase' if attached else 'independent creature order/ending-save')+' workflow; no native Magical Beast rating supplied')
+    tdef=s.defs['T'];tdef['kind']='ILLUSTRATIVE STATE VARIABLES ONLY: no operative Magical Beast source supplied'
+    tdef['profileScope']='Druid character values are NOT converted into Beast/CR; values below only parameterize the held hypothetical workflow.'
+    tdef['requiredUnprovidedEvidence']=['operative Magical Beast identity','actual numerical CR<=12','complete body/native actions/defenses','actual independent or owner-attached lifecycle as used']
+    s.s['actors']['T']['class']='UNAUTHENTICATED_WORKFLOW_PARAMETERS'
+    s.s['actors']['T']['saveBonuses']['INT']=0
+    s.s['actors']['T']['sourceDefinitions']=[{'required':tdef['requiredUnprovidedEvidence'],'supplied':False}]
+    s.holds=[{'id':'R7M-DGB-POSITIVE-'+suffix,'reason':'No complete operative Magical Beast CR<=12 '+('attached profile with actual owner phases' if attached else 'independent profile')+' exists in supplied evidence. The following transitions require that source; they are not lawful casts on the printed Druid fixture.'}]
+    if attached:
+        add_actor(s,'O',wizard_def(),(35,5,0),start=-3,end=4)
+        s.s['actors']['O']['uses'].update(companionCommandRound1=False,companionOffenseRound1=False)
+        s.s['actors']['T']['phaseOwner']='O'
+    s.geometry.update(hypotheticalProfileAdmission='MUST be established by missing operative source before this positive trace is runnable',range=30)
+    s.seal()
+    s.E(1,'CONDITIONAL paid admission only if the missing actual native eligibility is supplied',lambda x:cast(x,'C','dominate-greater-beast','DG',conc=True),
+        {'contentPrerequisiteUnfulfilled':True,'noClassLevelToCR':True})
+    def dg_apply(x):
+        establish(x,'DG','dominate-greater-beast',recipient='T',profileEligibility='UNFULFILLED external premise')
+        x['receipts']['hard']['T']={'source':'DG','spent':True,'conditionalOnActualEstablishment':True}
+        condition(x,'T','DominatedByDG','DG',61.1)
+        return {'illustrativeInitialSave':roll(x,'T','INT',16,17),'actualEligibilitySupplied':False}
+    s.E(1.1,'Illustrative INT failure and one hard admission',dg_apply)
+    def order(x,isattached=attached):
+        if isattached:
+            x['actors']['O']['uses']['companionCommandRound1']=True
+            x['actors']['T']['attachedBehaviorUsed']=True
+        else:spend(x,'T','action')
+        condition(x,'T','Dodge','DG/dodge',9)
+        return {'issuedOrder':'Dodge','nativeMovement':0,'optionalFiniteCost':0,'hardGuardReusedNotRecharged':True,
+                'usesActualOwnerPhase':isattached,'ownerBonusActionCharged':False}
+    s.E(3.1,'CONDITIONAL future actual independent START/attached phase: one mundane defensive order',order)
+    s.E(4,'CONDITIONAL real END succeeds on INT',lambda x:(end_effect(x,'DG','successful native ending save'),{'save':roll(x,'T','INT',17,17),'noNewTurnCreated':True})[-1])
+    p=finish(s)
+    # actual source-based rejection, independently reset, not a substitute for the held positive.
+    n=make('R7M-10-'+suffix+'-UNRATED','dominate-greater-beast','Actual Druid form or character does not supply a numerical Magical Beast rating',form='Bear' if attached else 'natural').seal()
+    n.E(1,'Known absent required operative identity/CR prevents commitment',lambda x:{'knownEligible':False,'actualCR':None,'paidRP':0,'castCreated':False,'noNegativeDiagnosticOracle':True})
+    branch(n,p)
+
+# 11: six ability checks/saves, overlap and genuine whole-field removal.
+s=make('R7M-11-A','mindfog-field','Exact six INT/WIS/CHA categories, not scores/attacks/DCs',positions=[(30,0,0)])
+s.geometry.update(center=[30,0,3],radius=20,casterOutside=True)
+s.seal();s.E(1,'Commit',lambda x:cast(x,'C','mindfog-field','MF'))
+def fog(x):
+    establish(x,'MF','mindfog-field',center=[30,0,3],radius=20)
+    condition(x,'T','MindfogPenalty','MF',61.1,penalty=-2,categories=['INTcheck','WIScheck','CHAcheck','INTsave','WISsave','CHAsave'])
+    return {'initialSave':None,'changesAbilityScores':False}
+s.E(1.1,'Enter persistent field without an admission save',fog)
+def six_probes(x):
+    a=x['actors']['T'];results=[]
+    for ab in ['INT','WIS','CHA']:
+        for kind in ['check','save']:
+            native=a['abilityModifiers'][ab] if kind=='check' else a['saveBonuses'][ab]
+            results.append({'ability':ab,'kind':kind,'d20':15-native,'actualNativeModifier':native,'Fog':-2,'total':13,'comparisonDC':14,'success':False,
+                            'withoutFogTotal':15,'classification':'independent source-neutral roll-interface diagnostic; does not create six paid actions or six damaging spell sources'})
+    return {'sixIndependentRollInterfaces':results,'scoresUnchanged':True,'attackAndSpellDCUnchanged':True}
+s.E(1.2,'Independent roll-interface comparison at the actual source state',six_probes)
+s.E(3.1,'Target spends15 real feet to leave actual sphere',lambda x:(x['actors']['T'].update(position=[55,0,0],movementSpent=25),remove_on(x,'T','MF'),{'actualFeet':25,'outside':True,'ordinaryBudget30':True})[-1])
+s.E(61.1,'Original source expires without applying a final penalty',lambda x:end_effect(x,'MF','original expiry'))
+finish(s)
+
+s=make('R7M-11-B','mindfog-field','Two real fields do not sum; Greater Dispel captures both',positions=[(30,0,0)])
+add_actor(s,'B',wizard_def('mindfog-field'),(0,10,0),start=0,end=2)
+add_actor(s,'R',wizard_def(extra=['greater-dispel']),(55,0,0),start=0,end=2)
+s.geometry.update(center=[30,0,3],radius=20,dispelCasterDistance=25,dispelCasterOutside=True)
+s.seal();s.E(1,'Both owners commit separate actual Actions',lambda x:[cast(x,'C','mindfog-field','MF1'),cast(x,'B','mindfog-field','MF2')])
+def twofogs(x):
+    for eid,owner in [('MF1','C'),('MF2','B')]:
+        establish(x,eid,'mindfog-field',owner=owner,center=[30,0,3],radius=20)
+        condition(x,'T','MindfogPenalty',eid,61.1,penalty=-2)
+    return {'effectivePenalty':-2,'not':-4}
+s.E(1.1,'Separate clocks, strongest same-family penalty',twofogs)
+s.E(1.2,'Actual recipient roll uses strongest2',lambda x:{'INTcheck':{'die':15,'native':0,'penalty':-2,'total':13,'DC':14,'success':False}})
+s.E(7,'Real remover regular START6 supplies Greater Dispel Action and10RP',lambda x:cast(x,'R','greater-dispel','DISP'))
+def disp(x):
+    cap=['MF1','MF2']
+    end_effect(x,'MF2','independent Greater Dispel24 meets24')
+    resolved(x,'DISP')
+    return {'immutableCapturedSet':cap,'checks':[{'source':'MF1','d20':13,'INT':4,'PB':5,'total':22,'DC':24,'success':False},{'source':'MF2','d20':15,'INT':4,'PB':5,'total':24,'DC':24,'success':True}],'remainingEffectivePenalty':-2,'RPRefund':0}
+s.E(7.1,'Failed first source check cannot omit the second captured source',disp)
+s.E(61.1,'The remaining original field expires',lambda x:end_effect(x,'MF1','original expiry'))
+finish(s)
+save(W/'case_checkpoint_04.json',cases)
+print("mains",len(cases))
+
+STDOUT/STDERR
+mains 22
+
+Analyzed
+Python
+print(texts['lasting-control'])
+print(texts['power-word-pain'])
+print(texts['project-image'])
+print(texts['symbol-of-stunning'])
+print(ct['spells'][7]['id'] if isinstance(ct['spells'][7],dict) else '')
+for x in ct['spells']:
+    if x['id'] in ['mass-charm','geas']: print(x['id'],x['procedure'][:500])
+# True display of subject access/control source contracts.
+print(cat_by['mass-charm']['classAccess'])
+print(cat_by['slow']['classAccess']['Wizard'])
+print(druid_def()['maxRp'])
+
+STDOUT/STDERR
+Action; V/S/F;17RP; actual range120ft; concentration up to60seconds retained for this amendment controller. Preserve extending ALL current Enchantment spells by ten minutes. After real commitment, own incompatible concentration displacement and interrupts, snapshot every genuinely live finite Enchantment application with an actual affected body, discrete anchor or operative area portion in a caster-centered radius120 sphere with caster line of effect. Include other owners, allies/enemies and suppressed-but-existing applications; no perception of every source is required and no hidden roster is exposed. Use actual generating school: another school's Slow/Reverse Gravity is not Enchantment just because an alternate placement exists. Own displaced prior concentration is already ended, not captured or revived.
+NEW LC-EXTENSION-01: an original generating-cast lineage can receive one duration amendment in its lifetime, globally across extenders/controllers/reentry/encounters. Reserve one durable root receipt before callbacks. For that root, only the snapshotted live finite applications receive+600 elapsed seconds. Out-of-range siblings remain unmodified and cannot claim an extension later after moving inside; the shared root receipt is already spent. Include application IDs and their old/new endpoint records in the receipt. No successful captured application means no spent receipt for that root.
+R7M-LC-TYPED-02: absolute old deadline D becomes exactly D+600. For a typed virtual regular START/END endpoint, first retain its original marker identity, scheduled occurrence number, phase and absolute original timestamp D (under the source's existing virtual6-second schedule). Final endpoint is D+600 at the same before-START or after-END expiration stage. Preserve the original marker as provenance; reaching it no longer expires this amended application. It is NOT now+600 and not a rescheduling from a new initiative slot. The600-second tail does not grant turns. For an original endpoint not yet possessing a resolved lawful timestamp, store the expression oldEndpoint+600 and resolve from that original schedule only; no guessed clock.
+Original ongoing saves, maintenance, repeat packets and concentration continue ONLY where that source actually authorizes repetition, at their original schedules, through the new maximum; all earlier genuine endings still win. Finite tick counts, charges, one future-Action/turn-loss entitlement, already-issued orders and consumed discharges never refill. Instantaneous completed, permanent/indefinite, ended, still-held unmanifested permissions and extension-only controllers including Lasting Control receive no fabricated duration. A typed one-use entitlement can be enclosed longer but spends once and cannot create a second lost round. Source-root copying/renaming cannot reset the receipt; a genuinely different newly paid source has its own history/admission.
+The one-shot amendment survives later loss/dismissal/suppression/expiry of THIS60-second controller. That is an explicit NEW persistence choice reconciling its short concentration with the ten-minute benefit. It must really pay and establish concentration before amendment, but does not need600seconds of holding or a new ritual. Holding the inert controller longer grants no second amendment. Countering/preventing it before the checkpoint creates none. This never takes over another owner's concentration or gives another slot. Original saves/dispel/death/concentration displacement can still end the extended source; hard-history remains spent, not reopened. Completed amendment is not undone by suppressing the extinct modifier.
+Action; V/S/F;17RP; one perceived creature within120ft and line of effect. Preserve actual current normalHP<=100, excluding temporaryHP, and real crippling pain. Check hidden actualHP after a lawful apparent-target paid commitment without reporting its value or failure reason. Known ineligibility rejects before commitment. The same current body/form HP controls; no inferred living/humanoid/anatomy restriction or title-based no-save/Verbal-only privilege.
+NEW eligible recipient makes initial WIS. Failure admits soft Pain: half current Speed through actual strongest-slow arbitration and disadvantage on attacks and actually requested ability/skill/tool checks. Saves, spellDC, Actions, BA, Reactions, speech/components and HP are unchanged. No hard guard is spent; actual narrower defenses apply. Concentration lasts at most60seconds, with independent WIS ending saves at each affected actual regular END including current. Use only the declared R7M END-only/attached bridge, no extra-turn saves.
+HP is admission-only. Healing above100 does not end admitted Pain; later dropping a rejected recipient below100 does not retroactively admit it. Independent casts retain separate clocks/saves without stacking identical magnitude. Actual source suppression suspends expression while saves/clock continue. Actual removal, concentration loss, recipient death/removal or expiry ends the source. No Wound, permanent Injury, locator or blanket True Seeing cure.
+Action; V/S/F;17RP. Preserve TWO source profiles. Current Bard/Mirrorsage/Wizard access rows are Enchantment; the complete Illusion placement has NO newly granted acquisition route. NEW both concentrate at most60seconds on one nonphysical caster-appearance image. No creature/object, equipment duplicate, HP, separate turn, casting origin or teleport.
+Enchantment: choose perceived point within120ft and actual caster line of effect, displaying the current apparent body/gear at that pose. At establishment choose local or remote perception. Remote supplies ordinary sight AND hearing from the image, replacing corresponding local channels while operative; no arbitrary sight-only-or-hearing-only downgrade. Apply actual light, sound paths, cover, ordinary local perception, and owner's Blinded/Deafened. No enhanced-sense/True-Seeing relay without a source expressly granting it. Other spells may use genuinely obtained perception but still originate at the real caster and need their own range/line/components.
+Illusion: Self places the duplicate at the actual initial caster pose; image-only, no remote sight/hearing. Other visual/control/end rules match. Its positive demonstration remains conditional on an actual authorized route; no free alternate school for Wizard is supplied.
+NEW one actual control Action can change pose/orientation/gestures, switch local/remote (Enchantment only), and/or move the image up to30ft along a genuinely known unobstructed continuous path, retaining120ft actual caster tether and caster-image line of effect. No wall travel, unseen mapping, remotely commanded hidden destination or physical passenger. Overlap with creatures is allowed; solid barriers are not. Material support is unnecessary for the image and grants none to creatures.
+Same-plane/tether/line failure suppresses remote feed and image expression until lawful resumption at its retained pose/deadline; use actual local senses while unavailable, never stale frames. Image is SILENT: sensory reception does not authorize speech transmission. Visual signals convey only actual gestures, no authentication or hidden knowledge.
+Personal contradiction, actual successful Investigation Action against sourceDC or actual True Seeing identifies the false image without globally erasing another observer's perception or the owner's independently printed link. No Mirror Image interception or Spectral Army false-creature bridge. Actual information protection uses real generating school/classification, not a guessed Divination tag. Image/source suppression affects its own channel; full removal, concentration loss, creator death/removal or+60 ends image and link. No recording, replay, raw diagnostic or sixth Fate presentation.
+Action; V/S/F;17RP; perceived fixed point within120ft and line of effect. Preserve a rune that Stuns nearby creatures. NEW nonphysical visible disc diameter1ft, fixed plane/pose, visually readable from either face; radius20 spherical trigger/discharge. No paper, stone, light source, carrier item, password or identity sensor. Armed60seconds, nonconcentration, one armed rune per caster. Successful new establishment replaces the older armed source; failed/countered casts do not.
+Actual presence of at least one intersecting creature with center line of effect and real sight of the rune triggers it, including at establishment. Check genuine entry/visibility changes; include caster/allies, no enemy/faction/alignment/HP filter. No language/hearing is required. Suppressed rune observes nothing and queues no event; a real still-present viewer can trigger after resumption before expiry.
+Consume its one discharge receipt BEFORE independent WIS saves. Snapshot every eligible current viewer; failure attempts Stunned under actual immunity/hard guard, success/prevention gives no alternative. All-save still consumes. No damage, additional Action or additional cast.
+NEW delivered child riders survive the rune's consumed-parent cleanup. Each ends at the next FUTURE regular recipient END, excluding underway END, or application+6 absent actual schedule. A real original-owner attached future END may serve this local endpoint without granting a creature turn. No repeat save. Local suppression hides that rider but pauses no clock and refunds no hard history. Actual child removal/expiry affects only it. Later viewers, reload, replacement and resumed suppression cannot redischarge. Armed+60 expiry or pretrigger removal is harmless. Actual True Seeing identifies imagery but is not a blanket cancellation of this Enchantment stun. Preserve other actual Stunned sources independently.
+mass-charm
+geas Action; one perceived creature within60feet and line of effect; V/S/F; KEEP WIS-negated compulsion lasting up to30actual days, no concentration. NEW speak one comprehensible command of at most25words, one coherent objective or maintained duty with a declared finite completion criterion, no hidden future amendment clause or arbitrary list of unrelated tasks. The target must actually hear and understand the language after paid commitment; a magical communication channel may substitute only if its 
+mass-charm KEEP Action, 60 feet, V/S/F, up to six creatures, one minute and WIS ending saves. NEW declare one to six distinct creatures personally perceived within range and caster line of effect before commitment. There is no Humanoid-only gate, hearing requirement, shared-language requirement or bonus for already-friendly targets. Hidden immunity is resolved after a legal cast pays. At resolution each still-legal selected creature makes its own initial WIS save; success establishes nothing. A failed save
+{'Bard': {'rank': 6, 'minimumClassLevel': 16, 'school': 'Enchantment', 'baseRpCost': 13}, 'Crimson Agent': {'rank': 6, 'minimumClassLevel': 19, 'school': 'Enchantment', 'baseRpCost': 13}, 'Mirrorsage': {'rank': 6, 'minimumClassLevel': 16, 'school': 'Enchantment', 'baseRpCost': 13}, 'Wizard': {'rank': 6, 'minimumClassLevel': 11, 'school': 'Enchantment', 'baseRpCost': 13}}
+{'rank': 3, 'minimumClassLevel': 5, 'school': 'Enchantment', 'baseRpCost': 5}
+36
+
+Analyzed
+Python
+# 12A: one original root, two siblings; original out-of-range sibling stays unextended.
+s=make('R7M-12-A','lasting-control','One root receipt: in-range sibling+600, later entrant cannot reclaim',targets=2,positions=[(20,0,0),(130,0,0)])
+add_actor(s,'E',wizard_def(extra=['mass-charm']),(75,0,0),start=-2,end=0)
+initial_paid(s,'E','mass-charm','CHARM',-1.1)
+initial_effect(s,'CHARM','mass-charm','E',-1,59,applications={
+    'A':{'target':'T1','deadline':59,'state':'active'},'B':{'target':'T2','deadline':59,'state':'active'}},
+    actualGeneratingSchool='Enchantment')
+for aid in ['T1','T2']:condition(s.s,aid,'Charmed','CHARM',59,charmer='E',initialSave={'d20':7,'WIS':9,'total':16,'DC':17,'success':False})
+s.geometry.update(extenderCenter=[0,0,3],radius=120,originalCaster=[75,0,0],originalTargetRanges=[55,55],
+                  capture={'A':'T1 inside','B':'T2 min-distance127.5 outside'})
+s.seal();s.E(1,'Pay Lasting Control and actual new concentration',lambda x:cast(x,'C','lasting-control','LC',conc=True))
+def extend_charm(x):
+    establish(x,'LC','lasting-control')
+    root=x['effects']['CHARM'];a=root['applications']['A'];a['deadline']=659
+    for co in x['actors']['T1']['conditions']:
+        if co['sourceId']=='CHARM':co['deadline']=659
+    x['receipts']['extensions']['CHARM']={'originalCastRoot':'CHARM','spent':True,'controller':'LC','applications':[{'id':'A','old':59,'new':659}],'excludedSiblingIds':['B'],'time':x['time']}
+    return {'captured':['A'],'originalDeadline59Plus600':659,'Bdeadline':59,'globalRootReceipt':True}
+s.E(1.1,'Consume original root extension receipt before callbacks',extend_charm)
+s.E(3.4,'T2 actual START3.3:20ft ordinary movement enters range',lambda x:(x['actors']['T2'].update(position=[110,0,0],movementSpent=20),{'newExtension':False})[-1])
+for aid,tm in [('T1',4),('T2',4.3)]:
+    s.E(tm,'Original source still requires its real ending save',lambda x,a=aid:{'save':roll(x,a,'WIS',7,17),'retainedAfterFailure':True})
+s.E(7,'New paid extender displaces its own old concentration first',lambda x:cast(x,'C','lasting-control','LC2',conc=True))
+def again(x):
+    establish(x,'LC2','lasting-control')
+    return {'rootAlreadySpent':x['receipts']['extensions']['CHARM'],'Adeadline':659,'Bdeadline':59,'newAmendments':0,'noGuardOrSaveReset':True}
+s.E(7.1,'Both siblings now inside; original root is already spent',again)
+p=finish(s)
+
+# Typed Slow endpoint, plus control-only cancellation that cannot roll back the amendment.
+s=make('R7M-12-B','lasting-control','Typed before-START deadline60 becomes660, not now+600',positions=[(20,0,0)])
+s.s['actors']['C']=act(s.defs['C'],(0,0,0),start=-4,end=3)
+s.s['actors']['C']['action']=False
+add_actor(s,'E',wizard_def(extra=['slow']),(40,0,0),start=0,end=2)
+s.seal();s.E(1,'Actual Enchantment Slow commitment',lambda x:cast(x,'E','slow','SLOW',conc=True))
+def slowinit(x):
+    establish(x,'SLOW','slow',owner='E',duration=58.9,actualGeneratingSchool='Enchantment',
+              endpoint={'kind':'regularCasterSTART','owner':'E','occurrence':10,'originalTimestamp':60,'stage':'before START'})
+    condition(x,'T','Slow','SLOW',60)
+    return {'save':roll(x,'T','WIS',7,17),'deadline':60,'notCasterCurrentTimePlus60':True}
+s.E(1.1,'Real typed Slow endpoint retains original caster schedule',slowinit)
+s.E(2.1,'Actual C START2 provides Lasting Control Action',lambda x:cast(x,'C','lasting-control','LC',conc=True))
+def typed(x):
+    establish(x,'LC','lasting-control')
+    x['effects']['SLOW']['deadline']=660
+    x['effects']['SLOW']['endpoint']['amendedTimestamp']=660
+    x['receipts']['extensions']['SLOW']={'spent':True,'originalTypedEndpoint':{'owner':'E','occurrence':10,'timestamp':60,'stage':'before START'},'deltaSeconds':600,'newTimestamp':660}
+    for co in x['actors']['T']['conditions']:co['deadline']=660
+    return {'actualOldEndpoint':60,'plus600':660,'not':602.2,'oneShotRenewals':0}
+s.E(2.2,'Amend captured typed endpoint',typed)
+s.E(4,'Actual target END WIS fails; no schedule reset',lambda x:{'save':roll(x,'T','WIS',7,17)})
+s.E(5,'Creator ends inert amendment controller',lambda x:end_effect(x,'LC','voluntary controller ending'))
+s.E(10,'Genuine earlier source ending save succeeds before extended maximum',lambda x:(end_effect(x,'SLOW','actual WIS ending save'),{'save':roll(x,'T','WIS',8,17),'receiptRemainsSpent':True})[-1])
+p2=finish(s)
+
+# Full reset: own Slow is not kept alive through an incompatible LC commitment.
+s=make('R7M-12-B-OWN','lasting-control','Own prior concentration displaces before capture',extra=['slow'],positions=[(20,0,0)])
+initial_paid(s,'C','slow','OWN',-1.1,conc=True)
+initial_effect(s,'OWN','slow','C',-1,54,conc=True,actualGeneratingSchool='Enchantment')
+condition(s.s,'T','Slow','OWN',54)
+# C is already waiting for its next actual START0 after a paid earlier turn, not an extra Action.
+s.s['actors']['C'].update(previousSTART=-6,nextSTART=0,nextEND=-4)
+s.s['time']=-1
+s.auto(0) # actual omitted past END then START processing explicitly recorded in premise below
+s.s['time']=0
+s.geometry['prefix']='Earlier actual caster regular turn at-6 committed Slow at-1.1 only as supplied long-turn marker; THIS PREFIX IS REPLACED BELOW with a lawful-5.1 cast.'
+# Correct exact original prefix timestamp to real-6..-4 cast time; current source still expires54.
+s.s['receipts']['casts']['OWN']['time']=-5.1;s.s['effects']['OWN']['establishedAt']=-5
+s.geometry['prefix']='Actual caster START-6/END-4, Slow commitment-5.1/establishment-5; original tenth-future-START54. END-4 and START0 processed; no extra Action.'
+s.seal()
+s.E(1,'Pay Lasting Control; old OWN concentration ends before new payload',lambda x:cast(x,'C','lasting-control','LC',conc=True))
+s.E(1.1,'Only ended own source existed; no eligible root captured',lambda x:(establish(x,'LC','lasting-control'),{'captured':[],'newReceipts':0,'priorSourceState':x['effects']['OWN']['state']})[-1])
+branch(s,p2)
+
+# one-shot entitlement enclosure does not produce another lost turn.
+s=make('R7M-12-A-ONESHOT','lasting-control','Duration amendment does not reissue Mind Maze lost-round entitlement',extra=['mind-maze'],positions=[(20,0,0)])
+add_actor(s,'E',wizard_def(extra=['mind-maze']),(40,0,0),start=-2,end=0)
+initial_paid(s,'E','mind-maze','MM',-1.1)
+initial_effect(s,'MM','mind-maze','E',-1,4,actualGeneratingSchool='Enchantment',entitlement={'state':'awaiting future target round','count':1})
+condition(s.s,'T','MindMaze','MM',4)
+s.s['receipts']['hard']['T']={'source':'MM','owner':'E','spent':True,'initialSave':{'d20':7,'WIS':9,'DC':17,'total':16}}
+s.seal();s.E(1,'Pay LC',lambda x:cast(x,'C','lasting-control','LC',conc=True))
+def extend_one(x):
+    establish(x,'LC','lasting-control')
+    x['effects']['MM']['deadline']=604
+    for c in x['actors']['T']['conditions']:c['deadline']=604
+    x['receipts']['extensions']['MM']={'spent':True,'originalEndpoint':4,'amendedEndpoint':604,'remainingEntitlements':1}
+    return {'deadline4Plus600':604,'newEntitlements':0}
+s.E(1.1,'Extend enclosure, not one-round allowance',extend_one)
+def loseonce(x):
+    a=x['actors']['T'];a.update(action=False,bonusAction=False,reaction=False,movementSpent=0)
+    x['effects']['MM']['entitlement']={'state':'consumed','count':0,'actualRoundStart':3}
+    return {'lostRound':1,'noSubsequentRoundEntitlement':True}
+s.E(3,'Real future target START spends the only lost-round entitlement',loseonce)
+s.E(4,'Completion of actual one-round entitlement ends the rider earlier',lambda x:end_effect(x,'MM','native one-use completion; not another renewed entitlement'))
+s.E(9,'Next target START grants only normal native budgets, not a second Maze loss',lambda x:{'actionAvailable':x['actors']['T']['action'],'rootReceiptStillSpent':True})
+branch(s,p)
+

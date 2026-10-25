@@ -1,0 +1,281 @@
+{
+  "authority": {
+    "reviewedApplied": 689,
+    "pending": 159,
+    "acceptedUnapplied": 0
+  },
+  "accepted": false,
+  "applied": false,
+  "verdict": "return requires correction; do not accept or apply",
+  "confirmedDefectCategories": 6,
+  "verificationGapCategories": 5,
+  "findings": [
+    {
+      "id": "D01",
+      "classification": "confirmed-defect",
+      "title": "Live concentration effects remain after their owner concentration is cleared",
+      "detail": "Thirteen concentration-dependent applications in ten case containers have ended=false but their actual owner concentration is null. The first contradictory transition is listed for each application in CONCENTRATION_FINDINGS.json. Later effects must not be treated as operative solely because the application row remains present. Furnace denied-credit additionally omits the damage concentration save after this erroneous clear.",
+      "caseIds": [
+        "RR142-FURNACE-A/denied-credit-spends-allowance",
+        "RR142-MATRIX-A/native-well-kindle",
+        "RR142-MATRIX-A/null-plus-later-charge",
+        "RR142-MATRIX-A/protected-and-mandatory",
+        "RR142-NULL-A/conduit-late-denial",
+        "RR142-NULL-A/known-conduit-denial",
+        "RR142-SHIELD-A/mirror-priority",
+        "RR142-SHIELD-A/suppression-and-expiry",
+        "RR142-SHIELD-B/free-cast-no-credit",
+        "RR142-SHIELD-B/shared-root-two-recipients"
+      ],
+      "eventIds": [
+        "RR142-FURNACE-A/denied-credit-spends-allowance:7",
+        "RR142-MATRIX-A/native-well-kindle:7",
+        "RR142-MATRIX-A/null-plus-later-charge:6",
+        "RR142-MATRIX-A/null-plus-later-charge:10",
+        "RR142-MATRIX-A/protected-and-mandatory:6",
+        "RR142-MATRIX-A/protected-and-mandatory:9",
+        "RR142-MATRIX-A/protected-and-mandatory:12",
+        "RR142-NULL-A/conduit-late-denial:14",
+        "RR142-NULL-A/known-conduit-denial:7",
+        "RR142-SHIELD-A/mirror-priority:6",
+        "RR142-SHIELD-A/suppression-and-expiry:6",
+        "RR142-SHIELD-B/free-cast-no-credit:6",
+        "RR142-SHIELD-B/shared-root-two-recipients:6"
+      ],
+      "sourceAuthority": [
+        "SHARED_LOCAL_RULES.json /clock and /replacement",
+        "ACTOR_PROFILES.json /W16/completeClassSourceUnchanged/engine: one concentration effect",
+        "CONCENTRATION_FINDINGS.json"
+      ],
+      "requiredRepair": "Repair only the incorrect source/owner transition. Application or replacement on one recipient must not clear an unrelated actor concentration. A genuine ending must mark the exact application ended and clear only its actual owner link. Reconcile every affected downstream before/after state, missing concentration roll, mirror and reversible operation. Add an explicit bidirectional concentration/application invariant.",
+      "status": "open; no correction or acceptance performed"
+    },
+    {
+      "id": "D02",
+      "classification": "confirmed-defect",
+      "title": "Mirror-priority setup bypasses mandatory Shield interception",
+      "detail": "A has an operative 100-unit Shield at 0.2. B casts beneficial rank-3 Soul Mirror on A at 1.1, but event 6 creates Soul Mirror without intercepting that incoming initial recipient branch. Under the proposed Shield procedure, beneficial ordinary spells are automatically eligible. With no prior Mirror, Shield must intercept Soul Mirror before it can attach. The later claimed reflected Arcane Bolt is therefore not established by this history.",
+      "caseIds": [
+        "RR142-SHIELD-A/mirror-priority"
+      ],
+      "eventIds": [
+        "RR142-SHIELD-A/mirror-priority:5",
+        "RR142-SHIELD-A/mirror-priority:6",
+        "RR142-SHIELD-A/mirror-priority:9"
+      ],
+      "sourceAuthority": [
+        "PROCEDURES.json spell-absorption-shield NEW_interception, NEW_capacity, NEW_priority",
+        "EXACT_ACCEPTED_COMPARISONS.json Soul Mirror operationalCandidate and LR-G14"
+      ],
+      "requiredRepair": "Retain the selected mandatory beneficial-spell rule. Establish a source-qualified history in which both wards can actually coexist before testing their priority, or hold the entire claimed coexistence/return branch. Do not silently exempt Soul Mirror. Also explicitly establish that the chosen returned payload falls within LR-G14 ordinary-spell scope; do not infer that scope from a generic class-power name.",
+      "status": "open; no correction or acceptance performed"
+    },
+    {
+      "id": "D03",
+      "classification": "confirmed-defect",
+      "title": "Two voluntary moves end in occupied spaces",
+      "detail": "RR142-MASTERY-B event 8 moves A to [20,0,0], already occupied by E. RR142-MATRIX-A/ready-inside-leave event 7 moves B to [25,0,0], already occupied by F. Both narratives call the movement lawful/clear. All actors remain present and alive.",
+      "caseIds": [
+        "RR142-MASTERY-B",
+        "RR142-MATRIX-A/ready-inside-leave"
+      ],
+      "eventIds": [
+        "RR142-MASTERY-B:8",
+        "RR142-MATRIX-A/ready-inside-leave:7"
+      ],
+      "sourceAuthority": [
+        "evidence/source01/sources/DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md: Movement, never willingly end in occupied space"
+      ],
+      "requiredRepair": "Choose and document a legal unoccupied route/end position within the real movement budget. Preserve the intended inside-to-outside field comparison and actual spell range. Account for difficult terrain if passing through nonhostile occupied spaces. Update only dependent states/quotes/outcomes.",
+      "status": "open; no correction or acceptance performed"
+    },
+    {
+      "id": "D04",
+      "classification": "confirmed-defect",
+      "title": "Five native support deadlines use the wrong clock",
+      "detail": "The two Conduit instances record 60.2 rather than the tenth future caster start at 60. Influence records 61.2 and 67.2 in MASTERY-A rather than 61 and 67, and 64.2 in MATRIX protected-and-mandatory rather than 64. These accepted support cards retain regular-start clocks. The NEW absolute-60-second rule is scoped to the six Rank8 identities. Well correctly records 61 and is not an error.",
+      "caseIds": [
+        "RR142-MASTERY-A",
+        "RR142-MATRIX-A/protected-and-mandatory",
+        "RR142-NULL-A/conduit-late-denial",
+        "RR142-NULL-A/known-conduit-denial"
+      ],
+      "eventIds": [
+        "RR142-MASTERY-A:4",
+        "RR142-MASTERY-A:11",
+        "RR142-MATRIX-A/protected-and-mandatory:12",
+        "RR142-NULL-A/conduit-late-denial:3",
+        "RR142-NULL-A/known-conduit-denial:3"
+      ],
+      "sourceAuthority": [
+        "ACTOR_PROFILES.json nativeSupportingCards resonance-conduit and resonance-influence /operational/duration",
+        "SHARED_LOCAL_RULES.json /classification"
+      ],
+      "requiredRepair": "Use each native source deadline exactly. Correct the five application deadlines in every affected full-state copy/mirror, preserving original phase, source ID and event time. Do not globally convert accepted support clocks to absolute application+60.",
+      "status": "open; no correction or acceptance performed"
+    },
+    {
+      "id": "D05",
+      "classification": "confirmed-defect",
+      "title": "Limited uses are not committed atomically with their casts",
+      "detail": "Nine Leyline cast-commitment after-states have RP/action/cadence spent and a committed cast with its counter window open, while all three LeylineReceipt flags remain true. A separate event 0.01 seconds later consumes them. The Well and Kindle casts similarly leave their own native creation/use flag unspent at cast commitment. Labels asserting atomicity do not make these separate full-state transitions atomic.",
+      "caseIds": [
+        "RR142-LEYLINE-A",
+        "RR142-LEYLINE-A/countered-receipts",
+        "RR142-LEYLINE-A/depleted-but-possessed",
+        "RR142-LEYLINE-A/late-nullification",
+        "RR142-LEYLINE-A/overflow-and-lower-reference",
+        "RR142-LEYLINE-A/shield-intercepts-one-recovery",
+        "RR142-LEYLINE-B",
+        "RR142-LEYLINE-B/distinct-later-recipients",
+        "RR142-MATRIX-A/native-well-kindle"
+      ],
+      "eventIds": [
+        "RR142-LEYLINE-A:11",
+        "RR142-LEYLINE-A/countered-receipts:2",
+        "RR142-LEYLINE-A/depleted-but-possessed:18",
+        "RR142-LEYLINE-A/late-nullification:6",
+        "RR142-LEYLINE-A/overflow-and-lower-reference:2",
+        "RR142-LEYLINE-A/shield-intercepts-one-recovery:5",
+        "RR142-LEYLINE-B:14",
+        "RR142-LEYLINE-B/distinct-later-recipients:2",
+        "RR142-LEYLINE-B/distinct-later-recipients:6",
+        "RR142-MATRIX-A/native-well-kindle:5",
+        "RR142-MATRIX-A/native-well-kindle:12"
+      ],
+      "sourceAuthority": [
+        "leyline-flow NEW_award: atomically consume at legal cast commitment before countering",
+        "nativeSupportingCards resonance-well /operational/resolution",
+        "nativeSupportingCards resonance-kindle /operational/effect"
+      ],
+      "requiredRepair": "Commit each required use/reservation in the same logical test/replace transition as action, payment and cast beginning. Alternatively encode a genuinely indivisible transaction boundary with no exposed counter window until completion. Preserve countered-use loss and all existing no-refund choices. Update subsequent states/inverses consistently.",
+      "status": "open; no correction or acceptance performed"
+    },
+    {
+      "id": "D06",
+      "classification": "confirmed-defect",
+      "title": "Two resolved misses retain committed status in the final cast record",
+      "detail": "RR142-NULL-A and RR142-MATRIX-A each record an actual Arcane Bolt miss in their final ledger, while the same cast status remains committed. The three Ready releases flagged by the broad diagnostic were inspected: their damage resolves in the release event, so they are not being reported as missing outcomes.",
+      "caseIds": [
+        "RR142-MATRIX-A",
+        "RR142-NULL-A"
+      ],
+      "eventIds": [
+        "RR142-MATRIX-A-cast2",
+        "RR142-NULL-A-cast2"
+      ],
+      "sourceAuthority": [
+        "CASEBOOK.json matching final /casts records versus final /ledger",
+        "Complete failure-state requirement in request/NEXT_RANK8_RESOURCE6_REQUEST_141.txt"
+      ],
+      "requiredRepair": "Set the two affected final cast lifecycle records to the actual resolved-miss result in the resolution event and dependent state copies. Do not reroll or change attack/HP/resource outcomes.",
+      "status": "open; no correction or acceptance performed"
+    },
+    {
+      "id": "G01",
+      "classification": "verification-gap",
+      "title": "Area geometry and body-volume anchoring are not fully bound",
+      "detail": "SHIELD-B places B at [5,0,0] with A [0,0,0] and C [10,0,0], then claims both in one 15-foot Burning Hands cone without an origin/orientation/template proof. Other Burning Hands traces also omit a complete area footprint. Separately, the NEW Matrix test requires positive-volume body intersection, but foot plus bodyFeet does not state whether horizontal foot coordinates are body center or a corner, nor give explicit bounds. C at x=10 on a radius-10 boundary can change eligibility with that interpretation.",
+      "caseIds": [
+        "RR142-MATRIX-A/null-plus-later-charge",
+        "RR142-MATRIX-A/protected-and-mandatory",
+        "RR142-SHIELD-B",
+        "RR142-SHIELD-B/free-cast-no-credit",
+        "RR142-SHIELD-B/shared-root-two-recipients"
+      ],
+      "eventIds": [
+        "RR142-SHIELD-B:5",
+        "RR142-SHIELD-B:7"
+      ],
+      "sourceAuthority": [
+        "nativeSupportingCards burning-hands /operational/targets",
+        "SHARED_LOCAL_RULES.json /geometry",
+        "ACTOR_PROFILES.json /W16/body",
+        "COMBAT_ACTION_PLAYTEST.md grid metric: exact templates/3D require scoped review"
+      ],
+      "requiredRepair": "Bind actual cone origin, direction, dimensions and complete affected-body set. Specify the fixture coordinate convention/body bounds and source-specific membership computation as a local data convention. Use legal placements that demonstrate the intended branch. Do not claim the current opposite-side cone is valid merely because scalar range checks pass.",
+      "status": "open; no correction or acceptance performed"
+    },
+    {
+      "id": "G02",
+      "classification": "verification-gap",
+      "title": "Evocation area exclusion is omitted from all three area-cast traces",
+      "detail": "The actual W16 source includes the Evocation school passive: exclude one creature from the initial damaging area; it automatically succeeds and takes no damage if success normally halves. None of the three Burning Hands traces declares the excluded creature or reconciles that selection with Shield interception and remaining damage.",
+      "caseIds": [
+        "RR142-SHIELD-B",
+        "RR142-SHIELD-B/free-cast-no-credit",
+        "RR142-SHIELD-B/shared-root-two-recipients"
+      ],
+      "eventIds": [],
+      "sourceAuthority": [
+        "ACTOR_PROFILES.json /W16/completeClassSourceUnchanged/engine: EVOCATION school passive"
+      ],
+      "requiredRepair": "Record the actual native school-passive selection and its exact timing/recipient result in every area case. Explain how it interacts with the existing Shield branch contract using spell-local authorship if genuinely missing; do not silently remove the acquired passive or infer an unsupported waiver.",
+      "status": "open; no correction or acceptance performed"
+    },
+    {
+      "id": "G03",
+      "classification": "verification-gap",
+      "title": "Conduit late-denial Ready lacks an established perceivable trigger",
+      "detail": "The declared Ready trigger is B commits Conduit transfer. The source transfer creates a debit/pending ledger but supplies no intrinsic visible/audible commitment cue. This case records no actual communication or sensory event for D at that checkpoint. Generic Ready requires a perceivable trigger and responds after it happens. A database commitment alone does not establish perception.",
+      "caseIds": [
+        "RR142-NULL-A/conduit-late-denial"
+      ],
+      "eventIds": [
+        "RR142-NULL-A/conduit-late-denial:9",
+        "RR142-NULL-A/conduit-late-denial:11",
+        "RR142-NULL-A/conduit-late-denial:12"
+      ],
+      "sourceAuthority": [
+        "COMBAT_ACTION_PLAYTEST.md Ready",
+        "nativeSupportingCards resonance-conduit /operational/resolution and /effect"
+      ],
+      "requiredRepair": "Bind a genuine permitted observable trigger and exact post-commit/pre-credit interruption window, preserving speech/action/cadence. If the supplied sources cannot establish that window, retain the whole late-interrupt branch as conditional rather than claiming a real completed interruption.",
+      "status": "open; no correction or acceptance performed"
+    },
+    {
+      "id": "G04",
+      "classification": "verification-gap",
+      "title": "Temporary-HP grants lack explicit current grant provenance",
+      "detail": "Three Harmonic Bulwark resolutions assign a scalar tempHP=25 without a current grant/source link or recorded native long-rest/depletion/replacement endpoint on that buffer. Cast history exists, so the numerical offer is traceable by reconstruction; the current state does not itself identify which magical grant owns the surviving buffer for suppression, replacement and ending.",
+      "caseIds": [
+        "RR142-FURNACE-A/tempHP-funded",
+        "RR142-LEYLINE-A/depleted-but-possessed",
+        "RR142-SHIELD-A/capacity100"
+      ],
+      "eventIds": [
+        "RR142-FURNACE-A/tempHP-funded:6",
+        "RR142-LEYLINE-A/depleted-but-possessed:13",
+        "RR142-SHIELD-A/capacity100:46"
+      ],
+      "sourceAuthority": [
+        "nativeSupportingCards harmonic-bulwark /operational/duration and /effect",
+        "Request: preserve full provenance/resource/custody/timing/failure state"
+      ],
+      "requiredRepair": "Record the exact retained temp-HP grant identity, original source/cast, amount/remaining balance, suppression state and native ending rule. Preserve the actual 25-point offer, paid-base calculation and losses; do not convert it into prevention or a second bank.",
+      "status": "open; no correction or acceptance performed"
+    },
+    {
+      "id": "G05",
+      "classification": "verification-gap",
+      "title": "Some distinct authored boundaries are asserted without a discriminating full-state trace",
+      "detail": "No case demonstrates a genuine multi-hit initial recipient payload absorbed once in full; no Furnace case crosses an epoch boundary after spending the prior PB cap to prove the next-epoch reset; no Matrix case discriminates mere surface contact from positive-volume overlap. The known-Conduit-denial branch starts C at full 60/60 RP and names no positive amount, so it fails the native missing-RP gate independently of Nullification and does not isolate that selected restriction. These are case coverage gaps, not unanswered source questions. All 11 existing held branches remain held.",
+      "caseIds": [
+        "RR142-FURNACE-A/shared-epoch-replacement",
+        "RR142-MATRIX-A",
+        "RR142-NULL-A/known-conduit-denial",
+        "RR142-SHIELD-A"
+      ],
+      "eventIds": [],
+      "sourceAuthority": [
+        "Original question AC8-04 and RR8-A02",
+        "RR8-F03 / NEW_ratio_clock",
+        "RR8-M01 / NEW_geometry",
+        "RR8-N02",
+        "ORIGINAL_SCENARIOS_AND_OBLIGATIONS.json futureCaseRequirements"
+      ],
+      "requiredRepair": "Add only minimal source-qualified data traces for these selected rules, using actual accessible native profiles. Preserve source/physical holds where facts are absent. Give known-Conduit denial a genuinely missing-RP recipient and legal positive amount if it is meant to isolate Nullification. Do not ask the user to answer the already selected 30 dispositions again.",
+      "status": "open; no correction or acceptance performed"
+    }
+  ]
+}

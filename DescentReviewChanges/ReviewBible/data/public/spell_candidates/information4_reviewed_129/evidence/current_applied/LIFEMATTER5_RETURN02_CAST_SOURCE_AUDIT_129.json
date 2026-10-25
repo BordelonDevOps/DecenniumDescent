@@ -1,0 +1,62 @@
+{
+  "id": "LIFEMATTER5-COMMITTED-CAST-SOURCE-AUDIT-129",
+  "directory": "C:\\Github\\DecenniumDescent\\docs\\audit\\2026-10-08\\full-game\\director-spell-review-129\\lifematter5_return02_received",
+  "checks": 1222,
+  "casts": 67,
+  "errors": [],
+  "proneUnconsciousAttackChecks": [
+    {
+      "event": "EV6-06-A/actual-Null-positive-zero/already-Dying:8",
+      "target": "T",
+      "source": "wizard.base.arcane-bolt",
+      "plan": {
+        "attackD20": 8,
+        "attackBonus": 9,
+        "attackTotal": 17,
+        "attackMode": "ranged spell attack",
+        "rollMode": "straight",
+        "advantageSources": [
+          "target Unconscious"
+        ],
+        "disadvantageSources": [
+          "ranged attack against target Prone"
+        ],
+        "advantageDisadvantageCancel": true,
+        "singleGenuineDie": true,
+        "notWithin5FeetSoNotAutoCritical": true,
+        "actualNearestBodyBoundaryDistanceFeet": 7.0710678118654755,
+        "sourceBodyFoot": [
+          100,
+          -10,
+          0
+        ],
+        "targetBodyFoot": [
+          110,
+          0,
+          0
+        ],
+        "bothActualBodyExtents": [
+          5,
+          5,
+          6
+        ],
+        "AC": 13,
+        "hit": true,
+        "critical": false,
+        "S": 3,
+        "M": 4,
+        "dice": [
+          1,
+          1,
+          1
+        ],
+        "raw": 7,
+        "conditionsAuthority": "evidence/rules/CONDITIONS_PLAYTEST.md#prone and #unconscious"
+      },
+      "expected": "straight roll; ranged Prone disadvantage cancels Unconscious advantage"
+    }
+  ],
+  "canonicalChanges": false,
+  "runtimeExecuted": false,
+  "suppliedCodeExecuted": false
+}

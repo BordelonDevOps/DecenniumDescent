@@ -1,0 +1,1615 @@
+{
+  "recordedAtUtc": "2026-10-15T19:52:16.832770+00:00",
+  "status": "Read six reviewed counterpart procedures and selected expedition contract passages; no changes or new conference acceptance",
+  "sourceBindings": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+      "bytes": 5059945,
+      "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/candidate_low_rank_136.json",
+      "bytes": 1664654,
+      "sha256": "506393b1131e3ed099effbe55b05d6b00a5193e503b02f065a5f84751a2955fe"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_BOUNDARY_WALKTHROUGHS.md",
+      "bytes": 18942,
+      "sha256": "22909bfed791ac92997adfb7e8c9bca5dabb6985be43bbd5f5d8ef5b31f76b4b"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EX58_SOURCE_CONTRACTS_CORRECTED.md",
+      "bytes": 36922,
+      "sha256": "fb958ab50044d44c54cbbfedf24cffffde85d95a0039941601fbdfe19a313dcd"
+    }
+  ],
+  "wholeCurrentCatalogCards": [
+    {
+      "id": "mist-step",
+      "name": "Mist Step",
+      "schools": [
+        "Conjuration"
+      ],
+      "status": "operational-playtest-draft",
+      "visibility": "public-source-review",
+      "classAccess": {
+        "Dragoon": {
+          "rank": 1,
+          "minimumClassLevel": 3,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Druid": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Mage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Ranger": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Shaman": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Tinker": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Wizard": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        }
+      },
+      "operational": {
+        "id": "mist-step",
+        "activation": "Action",
+        "rangeFeet": 30,
+        "targets": "Self; one visible unoccupied destination within 30 feet",
+        "duration": "Instantaneous",
+        "concentration": false,
+        "components": [
+          "V",
+          "S",
+          "F"
+        ],
+        "resolution": "None.",
+        "effect": "Teleport to the chosen visible unoccupied space within 30 feet.",
+        "scaling": "None. Damage dice, target count, range and duration do not automatically increase with character or class level.",
+        "limitations": "Destination must be a space you can perceive and legally occupy. Cannot teleport through a ward explicitly blocking teleportation, across planar boundaries, into solid matter, or into an unknown/unseen room. Grants no extra movement, Action, attack, invisibility, or opportunity-attack trigger. Ranked casting causes normal Dissonance and Refrain.",
+        "designNotes": "Core V2 blocks and catalog summaries are preserved alongside this card. Components use the existing class focus where Core says F or M/F; this focus interpretation is provisional. Exact target eligibility, duration endpoints, saves where absent, concentration where unclear and anti-loop limits are provisional integration decisions. Core Action and V/S/F restored; the first draft Bonus Action/nonverbal casting was rejected.",
+        "previousDraftDesignNotes": "NEW provisional Bonus Action timing and teleport restrictions; source distance of up to 30 feet to a visible location is preserved.",
+        "authoringFile": "data/playtest/spell_drafts/batch_1.json"
+      },
+      "additionalRpCost": 0,
+      "source": {
+        "catalogPath": "src/data/spells.js",
+        "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+        "catalogKey": "mist-step",
+        "original": {
+          "name": "Mist Step",
+          "level": 1,
+          "resonanceRank": 1,
+          "school": "Conjuration",
+          "schools": [
+            "Conjuration"
+          ],
+          "placements": [
+            {
+              "name": "Mist Step",
+              "school": "Conjuration",
+              "level": 1,
+              "summary": "Teleport up to 30 ft to a visible location."
+            }
+          ],
+          "classLevels": {
+            "Dragoon": 1,
+            "Druid": 1,
+            "Mage": 1,
+            "Ranger": 1,
+            "Shaman": 1,
+            "Tinker": 1,
+            "Wizard": 1
+          },
+          "classRanks": {
+            "Dragoon": 1,
+            "Druid": 1,
+            "Mage": 1,
+            "Ranger": 1,
+            "Shaman": 1,
+            "Tinker": 1,
+            "Wizard": 1
+          },
+          "classLearnLevels": {
+            "Dragoon": 3,
+            "Druid": 1,
+            "Mage": 1,
+            "Ranger": 2,
+            "Shaman": 1,
+            "Tinker": 2,
+            "Wizard": 1
+          },
+          "classSchools": {
+            "Dragoon": "Conjuration",
+            "Druid": "Conjuration",
+            "Mage": "Conjuration",
+            "Ranger": "Conjuration",
+            "Shaman": "Conjuration",
+            "Tinker": "Conjuration",
+            "Wizard": "Conjuration"
+          },
+          "castingTime": "Not specified in current rulebook",
+          "range": "Not specified in current rulebook",
+          "components": "Not specified in current rulebook",
+          "duration": "Not specified in current rulebook",
+          "description": "Teleport up to 30 ft to a visible location.",
+          "alternateSummaries": [],
+          "classes": [
+            "Dragoon",
+            "Druid",
+            "Mage",
+            "Ranger",
+            "Shaman",
+            "Tinker",
+            "Wizard"
+          ],
+          "status": "canon",
+          "source": "Player Rulebook — Spell Lists"
+        },
+        "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+        "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+        "coreEntries": [
+          {
+            "index": 130,
+            "original": {
+              "school": "Conjuration",
+              "level": 1,
+              "name": "Mist Step",
+              "effect": "Teleport up to 30 ft to a visible location.",
+              "source_paragraph": 9140,
+              "casting_time": "1 action",
+              "range": "30 feet",
+              "duration": "Instantaneous",
+              "components": "V, S, F",
+              "resolution": "Automatic or opposed as described",
+              "tags": [
+                "Movement"
+              ],
+              "rp_cost": 2
+            }
+          }
+        ],
+        "possibleHistoricalAliases": []
+      },
+      "reviewFlags": [
+        "Core resolution requires an explicit operational interpretation"
+      ]
+    },
+    {
+      "id": "planar-ally-minor",
+      "name": "Planar Ally (Minor)",
+      "schools": [
+        "Conjuration"
+      ],
+      "status": "operational-playtest-draft",
+      "visibility": "public-source-review",
+      "classAccess": {
+        "Dragoon": {
+          "rank": 2,
+          "minimumClassLevel": 8,
+          "school": "Conjuration",
+          "baseRpCost": 3
+        },
+        "Druid": {
+          "rank": 2,
+          "minimumClassLevel": 3,
+          "school": "Conjuration",
+          "baseRpCost": 3
+        },
+        "Mage": {
+          "rank": 2,
+          "minimumClassLevel": 3,
+          "school": "Conjuration",
+          "baseRpCost": 3
+        },
+        "Ranger": {
+          "rank": 2,
+          "minimumClassLevel": 5,
+          "school": "Conjuration",
+          "baseRpCost": 3
+        },
+        "Shaman": {
+          "rank": 2,
+          "minimumClassLevel": 4,
+          "school": "Conjuration",
+          "baseRpCost": 3
+        },
+        "Tinker": {
+          "rank": 2,
+          "minimumClassLevel": 6,
+          "school": "Conjuration",
+          "baseRpCost": 3
+        },
+        "Wizard": {
+          "rank": 2,
+          "minimumClassLevel": 3,
+          "school": "Conjuration",
+          "baseRpCost": 3
+        }
+      },
+      "operational": {
+        "id": "planar-ally-minor",
+        "activation": "Action",
+        "rangeFeet": 30,
+        "targets": "One unoccupied space you can perceive within range.",
+        "duration": "10 minutes (600 seconds) after application; preserve the absolute deadline through initiative changes. Ends earlier at 0 HP, replacement or spell ending.",
+        "concentration": false,
+        "components": [
+          "V",
+          "S",
+          "F"
+        ],
+        "resolution": "No initial roll. A commanded Planar Strike makes one melee spell attack using your actual casting-class spell attack bonus, reach 5 feet. On hit deal 1d8 of bludgeoning, piercing or slashing chosen and fixed at creation, with no added ability damage modifier. The strike counts as a magical attack while retaining that physical damage type.",
+        "effect": "Summon one Medium Minor Planar Ally with AC 14, HP 24, walking Speed 30 feet, saves equal to owner PB, other checks +0, ordinary sight/hearing, and body mass 100 pounds. Its explicit tags are summoned and extraplanar; this spell supplies no additional creature-type classification or world-faction identity. It understands your spoken commands but has no speaking language or telepathy. It has ordinary hands suitable for simple object manipulation. It acts immediately after you. Within 60 feet and able to perceive your command, your Bonus Action can command movement plus its one strike or one basic legal action. Without a command it may defensively move and Dodge. It shares the owner-wide Bonus Action command and one damaging companion action per numbered round.",
+        "scaling": "Only the expressly printed owner PB saves and actual spell attack bonus change with the caster. AC14, HP24, 1d8 damage and all other profile capacities stay fixed; no S progression.",
+        "limitations": "For noncombat assistance it may carry no more than 30 pounds AND 3 Load, manipulate simple unattended objects with its hands, or Search using its actual +0 check; source-required proficiency is not granted. Ordinary object/cargo/time/action rules still apply. It has no autonomous offense or opportunity attack, free Help advantage, planar travel, flight, special senses, resistance/immunity, supernatural knowledge, telepathy, automatic scouting report, faction/legal authority, contracts, casting, free economic labor, loot, harvestable body, corpse or resource/death triggers. One ally per caster. At 0 HP, expiry or replacement it disappears; ordinary borrowed/carried property is conserved and drops at its last location under normal support/Falling rules. This is a NEW summon-only tabletop profile for the source's intended CR-1 role, not a certified CR-1 Monster Manual creature or a grant to choose any published monster. Do not relabel Umbrin Arachnid or fractional-CR creatures to qualify. A successful new application owns its own endpoint; stale cleanup of a prior application cannot end its replacement. A countered cast creates no replacement. Starting concentration still ends the caster's incompatible prior concentration before interruption. Known/prepared access, actual class rank/level, V/S/F components, line of effect, costs, concentration transitions, Dissonance/Refrain, class hooks and interruption follow SPELL_INTEGRATION_RULES.md. Total cover blocks originating line of effect and direct targeting. No generic upcast or unstated scaling.",
+        "designNotes": "PRESERVED: Action/30 feet/V/S/F, an extraplanar helper for 10 minutes, source CR1 promise retained as intended design role. SOURCE GAP: the bounded 67-entry public scan established no eligible exact-CR1 extraplanar profile. NEW: this finite Medium/AC14/HP24/Speed30/1d8 summon-only profile, nonconcentration duration, command/tasks and strict capability list; exact-card completion adds 100-pound body, usable hands, 30-pound AND3-Load carriage and conservation of ordinary cargo. CR/balance certification remains open; no canonical bestiary creature is rewritten.",
+        "implementationStatus": "REVIEWED authored operational-playtest manuscript; runtime, CR certification and numerical balance pending",
+        "sourceCoreEntries": [
+          {
+            "index": 140,
+            "original": {
+              "school": "Conjuration",
+              "level": 2,
+              "name": "Planar Ally (Minor)",
+              "effect": "Summon a CR 1 extraplanar creature to assist for 10 minutes.",
+              "source_paragraph": 9152,
+              "casting_time": "1 action",
+              "range": "30 feet",
+              "duration": "10 minutes",
+              "components": "V, S, F",
+              "resolution": "Automatic or opposed as described",
+              "tags": [
+                "Summoning",
+                "Planar"
+              ],
+              "rp_cost": 3
+            }
+          }
+        ],
+        "sourcePlacements": [
+          {
+            "name": "Planar Ally (Minor)",
+            "school": "Conjuration",
+            "level": 2,
+            "summary": "Summon a CR 1 extraplanar creature to assist for 10 minutes."
+          }
+        ],
+        "classAccessEvidence": {
+          "Dragoon": {
+            "rank": 2,
+            "minimumClassLevel": 8,
+            "school": "Conjuration",
+            "baseRpCost": 3
+          },
+          "Druid": {
+            "rank": 2,
+            "minimumClassLevel": 3,
+            "school": "Conjuration",
+            "baseRpCost": 3
+          },
+          "Mage": {
+            "rank": 2,
+            "minimumClassLevel": 3,
+            "school": "Conjuration",
+            "baseRpCost": 3
+          },
+          "Ranger": {
+            "rank": 2,
+            "minimumClassLevel": 5,
+            "school": "Conjuration",
+            "baseRpCost": 3
+          },
+          "Shaman": {
+            "rank": 2,
+            "minimumClassLevel": 4,
+            "school": "Conjuration",
+            "baseRpCost": 3
+          },
+          "Tinker": {
+            "rank": 2,
+            "minimumClassLevel": 6,
+            "school": "Conjuration",
+            "baseRpCost": 3
+          },
+          "Wizard": {
+            "rank": 2,
+            "minimumClassLevel": 3,
+            "school": "Conjuration",
+            "baseRpCost": 3
+          }
+        },
+        "sourceReview": [
+          "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK2_SOURCE_CONFERENCE.md",
+          "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK2_EXACT_REVIEW.md"
+        ],
+        "reviewEvidence": [
+          "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK2_EXACT_REVIEW.md"
+        ],
+        "authoringFile": "data/playtest/spell_drafts/batch_conjuration_rank2.json"
+      },
+      "additionalRpCost": 0,
+      "source": {
+        "catalogPath": "src/data/spells.js",
+        "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+        "catalogKey": "planar-ally-minor",
+        "original": {
+          "name": "Planar Ally (Minor)",
+          "level": 2,
+          "resonanceRank": 2,
+          "school": "Conjuration",
+          "schools": [
+            "Conjuration"
+          ],
+          "placements": [
+            {
+              "name": "Planar Ally (Minor)",
+              "school": "Conjuration",
+              "level": 2,
+              "summary": "Summon a CR 1 extraplanar creature to assist for 10 minutes."
+            }
+          ],
+          "classLevels": {
+            "Dragoon": 2,
+            "Druid": 2,
+            "Mage": 2,
+            "Ranger": 2,
+            "Shaman": 2,
+            "Tinker": 2,
+            "Wizard": 2
+          },
+          "classRanks": {
+            "Dragoon": 2,
+            "Druid": 2,
+            "Mage": 2,
+            "Ranger": 2,
+            "Shaman": 2,
+            "Tinker": 2,
+            "Wizard": 2
+          },
+          "classLearnLevels": {
+            "Dragoon": 8,
+            "Druid": 3,
+            "Mage": 3,
+            "Ranger": 5,
+            "Shaman": 4,
+            "Tinker": 6,
+            "Wizard": 3
+          },
+          "classSchools": {
+            "Dragoon": "Conjuration",
+            "Druid": "Conjuration",
+            "Mage": "Conjuration",
+            "Ranger": "Conjuration",
+            "Shaman": "Conjuration",
+            "Tinker": "Conjuration",
+            "Wizard": "Conjuration"
+          },
+          "castingTime": "Not specified in current rulebook",
+          "range": "Not specified in current rulebook",
+          "components": "Not specified in current rulebook",
+          "duration": "Not specified in current rulebook",
+          "description": "Summon a CR 1 extraplanar creature to assist for 10 minutes.",
+          "alternateSummaries": [],
+          "classes": [
+            "Dragoon",
+            "Druid",
+            "Mage",
+            "Ranger",
+            "Shaman",
+            "Tinker",
+            "Wizard"
+          ],
+          "status": "canon",
+          "source": "Player Rulebook — Spell Lists"
+        },
+        "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+        "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+        "coreEntries": [
+          {
+            "index": 140,
+            "original": {
+              "school": "Conjuration",
+              "level": 2,
+              "name": "Planar Ally (Minor)",
+              "effect": "Summon a CR 1 extraplanar creature to assist for 10 minutes.",
+              "source_paragraph": 9152,
+              "casting_time": "1 action",
+              "range": "30 feet",
+              "duration": "10 minutes",
+              "components": "V, S, F",
+              "resolution": "Automatic or opposed as described",
+              "tags": [
+                "Summoning",
+                "Planar"
+              ],
+              "rp_cost": 3
+            }
+          }
+        ],
+        "possibleHistoricalAliases": []
+      },
+      "reviewFlags": [
+        "Core resolution requires an explicit operational interpretation"
+      ]
+    },
+    {
+      "id": "faction-portal",
+      "name": "Faction Portal",
+      "schools": [
+        "Conjuration"
+      ],
+      "status": "operational-playtest-draft",
+      "visibility": "public-source-review",
+      "classAccess": {
+        "Dragoon": {
+          "rank": 3,
+          "minimumClassLevel": 13,
+          "school": "Conjuration",
+          "baseRpCost": 5
+        },
+        "Druid": {
+          "rank": 3,
+          "minimumClassLevel": 5,
+          "school": "Conjuration",
+          "baseRpCost": 5
+        },
+        "Mage": {
+          "rank": 3,
+          "minimumClassLevel": 5,
+          "school": "Conjuration",
+          "baseRpCost": 5
+        },
+        "Ranger": {
+          "rank": 3,
+          "minimumClassLevel": 9,
+          "school": "Conjuration",
+          "baseRpCost": 5
+        },
+        "Shaman": {
+          "rank": 3,
+          "minimumClassLevel": 7,
+          "school": "Conjuration",
+          "baseRpCost": 5
+        },
+        "Tinker": {
+          "rank": 3,
+          "minimumClassLevel": 10,
+          "school": "Conjuration",
+          "baseRpCost": 5
+        },
+        "Wizard": {
+          "rank": 3,
+          "minimumClassLevel": 5,
+          "school": "Conjuration",
+          "baseRpCost": 5
+        }
+      },
+      "operational": {
+        "id": "faction-portal",
+        "activation": "Action",
+        "rangeFeet": 60,
+        "targets": "One legal open local entrance space you perceive within 60 feet and line of effect, on suitable ground. Choose one exact canonical factionId with a recorded current reputation score above 0 and one specific known headquarters of that faction.",
+        "duration": "Concentration, up to 1 minute. In initiative, expires at the caster's tenth future regular-start marker after application; preserve the virtual phase through initiative changes, absence, death and planar travel. Outside initiative, expires 60 seconds after application, retaining that absolute deadline when entering initiative. An already-passed start does not count. Ends earlier if concentration ends.",
+        "concentration": true,
+        "components": [
+          "V",
+          "S",
+          "F"
+        ],
+        "resolution": "No roll. On successful casting create one visible, fixed, one-way doorway 5 feet wide and8 feet high. The destination is a known established public/default receiving point for the chosen headquarters, or, absent such a point, one specific known ordinary primary entrance/foyer. Identify it from personal experience or reliable public information; no existing portal infrastructure is needed. It may be on the same or another plane. Recheck each actual crossing against legal arrival space and exact teleport/planar blockers; failure leaves the crossing creature and belongings at the local entrance, with no split or deletion.",
+        "effect": "Any creature that physically fits the entrance under ordinary anatomy/squeezing rules may use it; passengers need no positive reputation or faction membership. Entering costs 5 feet of ordinary movement, subject to ordinary movement-cost adjustments, and atomically transports that creature and its legally carried belongings to a legal unoccupied space at or adjacent to the chosen receiving point. Ordinary carried creatures may accompany it only within the carrier's actual anatomy, pound and Load capacity and with room for the whole arriving group; this does not create willing-target immunity against being actually carried. Choose the receiving point when casting and keep it fixed. At each crossing use the nearest legal space at/adjacent to that point that fits the whole group, with a fixed neutral board order for ties, never a tactical remote choice or search through barriers. If none exists, the crossing fails and the attempted movement remains spent. Ordinary approach movement can provoke opportunity attacks; the teleport transition itself cannot. Items carried through remain the same items with actual ownership, contents, conditions and provenance. Loose unattended objects do not independently activate transit: a creature must physically carry or legally handle them as part of its own crossing; thrown projectiles, remote pushes and spells cannot deliver goods through by themselves.\n\nThe doorway is opaque to sight and sound and supplies no line of effect through it. Attacks, spells, areas, projectiles and remote sensing do not pass. There is no exit doorway or automatic return route. Complete a currently resolving legal crossing atomically before closing/suppressing the doorway; expiry never bisects a body or cargo. Later crossings require the still-active doorway. Suppression makes it unusable without pausing its endpoint. It has no physical HP, support or barrier body; when inactive there is no active transit surface. One portal per caster; a successful replacement closes the old one. Current positive reputation is checked as a creation gate at cast start and resolution, not a continuing passenger credential; a later standing change does not itself close a created portal.",
+        "scaling": "None.",
+        "limitations": "Use the actual canonical reputation record: positive means above 0, normally+1 through+3 under REPUTATION.md; missing/0/negative standing fails the gate. This card does not replace that scale with the historical Gameplay Loop's -5..+5 scale. No faction membership, Seal invocation permission, headquarters infrastructure or automatic entry authorization is added. If there are several HQs, select exactly one known site; no hidden vault, secret room, unknown HQ, location search or knowledge report. The far endpoint needs no originating line of sight/effect and has no geographic range ceiling, but actual wards and legal placement still apply. A headquarters that ceases to exist or belong to the faction cannot receive new crossings; a purely clerical name change does not move the chosen physical point. Failed crossings reveal no cause beyond failure, although ordinary observers may draw inferences. The spell can bypass a geographic route leg and deliver people to Haven when that actual HQ is there. It never automatically completes Extraction, advances or resets the Opening clock, settles cargo claims, removes contamination, changes ownership/reputation, grants credentials, ignores guards/laws/taxes or refunds cast costs. No free actions, additional capacity, object duplication or attacker path across planes. A successful replacement has its own endpoint; stale cleanup cannot end the new application. A countered cast creates no replacement, although its concentration transition has already occurred. Actual class access, rank, preparation, V/S/F components, casting costs, Dissonance/Refrain, class hooks, concentration transitions and counter windows follow SPELL_INTEGRATION_RULES.md. Costs and beginning hooks commit before interruption, with no refunds or restoration of prior concentration. Direct target selection and local creation require the printed line of effect; expressly remote teleport destinations use their own printed rules. No generic upcast or unstated scaling.",
+        "designNotes": "PRESERVED: Action/60 feet/V,S,F, doorway to a faction headquarters with positive reputation, actual planar travel supported by Planar tag. CONFLICT RULING: Core Instantaneous metadata becomes NEW 1 minute concentration for a usable doorway. NEW: known ordinary receiving-site procedure, fixed one-way 5 x 8 ft entrance, local 5 foot movement cost, whole-group atomic arrival, opaque transport-only interface, any-passenger use, no later reputation tether and exact destination legality. Canon positive predicate is retained without silently changing the reputation scale; route bypass remains possible while actual settlement procedures persist.",
+        "implementationStatus": "REVIEWED authored operational-playtest manuscript; runtime, travel-system implementation, numerical balance and whole-game validation pending",
+        "sourceCoreEntries": [
+          {
+            "index": 150,
+            "original": {
+              "school": "Conjuration",
+              "level": 3,
+              "name": "Faction Portal",
+              "effect": "Create a doorway to a faction's headquarters (requires positive reputation).",
+              "source_paragraph": 9164,
+              "casting_time": "1 action",
+              "range": "60 feet",
+              "duration": "Instantaneous",
+              "components": "V, S, F",
+              "resolution": "Automatic or opposed as described",
+              "tags": [
+                "Planar",
+                "Faction"
+              ],
+              "rp_cost": 5
+            }
+          }
+        ],
+        "sourcePlacements": [
+          {
+            "name": "Faction Portal",
+            "school": "Conjuration",
+            "level": 3,
+            "summary": "Create a doorway to a faction's headquarters (requires positive reputation)."
+          }
+        ],
+        "classAccessEvidence": {
+          "Dragoon": {
+            "rank": 3,
+            "minimumClassLevel": 13,
+            "school": "Conjuration",
+            "baseRpCost": 5
+          },
+          "Druid": {
+            "rank": 3,
+            "minimumClassLevel": 5,
+            "school": "Conjuration",
+            "baseRpCost": 5
+          },
+          "Mage": {
+            "rank": 3,
+            "minimumClassLevel": 5,
+            "school": "Conjuration",
+            "baseRpCost": 5
+          },
+          "Ranger": {
+            "rank": 3,
+            "minimumClassLevel": 9,
+            "school": "Conjuration",
+            "baseRpCost": 5
+          },
+          "Shaman": {
+            "rank": 3,
+            "minimumClassLevel": 7,
+            "school": "Conjuration",
+            "baseRpCost": 5
+          },
+          "Tinker": {
+            "rank": 3,
+            "minimumClassLevel": 10,
+            "school": "Conjuration",
+            "baseRpCost": 5
+          },
+          "Wizard": {
+            "rank": 3,
+            "minimumClassLevel": 5,
+            "school": "Conjuration",
+            "baseRpCost": 5
+          }
+        },
+        "sourceReview": [
+          "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK3_SOURCE_CONFERENCE.md",
+          "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK3_EXACT_REVIEW.md"
+        ],
+        "reviewEvidence": [
+          "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK3_EXACT_REVIEW.md"
+        ],
+        "authoringFile": "data/playtest/spell_drafts/batch_conjuration_rank3.json"
+      },
+      "additionalRpCost": 0,
+      "source": {
+        "catalogPath": "src/data/spells.js",
+        "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+        "catalogKey": "faction-portal",
+        "original": {
+          "name": "Faction Portal",
+          "level": 3,
+          "resonanceRank": 3,
+          "school": "Conjuration",
+          "schools": [
+            "Conjuration"
+          ],
+          "placements": [
+            {
+              "name": "Faction Portal",
+              "school": "Conjuration",
+              "level": 3,
+              "summary": "Create a doorway to a faction's headquarters (requires positive reputation)."
+            }
+          ],
+          "classLevels": {
+            "Dragoon": 3,
+            "Druid": 3,
+            "Mage": 3,
+            "Ranger": 3,
+            "Shaman": 3,
+            "Tinker": 3,
+            "Wizard": 3
+          },
+          "classRanks": {
+            "Dragoon": 3,
+            "Druid": 3,
+            "Mage": 3,
+            "Ranger": 3,
+            "Shaman": 3,
+            "Tinker": 3,
+            "Wizard": 3
+          },
+          "classLearnLevels": {
+            "Dragoon": 13,
+            "Druid": 5,
+            "Mage": 5,
+            "Ranger": 9,
+            "Shaman": 7,
+            "Tinker": 10,
+            "Wizard": 5
+          },
+          "classSchools": {
+            "Dragoon": "Conjuration",
+            "Druid": "Conjuration",
+            "Mage": "Conjuration",
+            "Ranger": "Conjuration",
+            "Shaman": "Conjuration",
+            "Tinker": "Conjuration",
+            "Wizard": "Conjuration"
+          },
+          "castingTime": "Not specified in current rulebook",
+          "range": "Not specified in current rulebook",
+          "components": "Not specified in current rulebook",
+          "duration": "Not specified in current rulebook",
+          "description": "Create a doorway to a faction's headquarters (requires positive reputation).",
+          "alternateSummaries": [],
+          "classes": [
+            "Dragoon",
+            "Druid",
+            "Mage",
+            "Ranger",
+            "Shaman",
+            "Tinker",
+            "Wizard"
+          ],
+          "status": "canon",
+          "source": "Player Rulebook — Spell Lists"
+        },
+        "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+        "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+        "coreEntries": [
+          {
+            "index": 150,
+            "original": {
+              "school": "Conjuration",
+              "level": 3,
+              "name": "Faction Portal",
+              "effect": "Create a doorway to a faction's headquarters (requires positive reputation).",
+              "source_paragraph": 9164,
+              "casting_time": "1 action",
+              "range": "60 feet",
+              "duration": "Instantaneous",
+              "components": "V, S, F",
+              "resolution": "Automatic or opposed as described",
+              "tags": [
+                "Planar",
+                "Faction"
+              ],
+              "rp_cost": 5
+            }
+          }
+        ],
+        "possibleHistoricalAliases": []
+      },
+      "reviewFlags": [
+        "Core resolution requires an explicit operational interpretation"
+      ]
+    },
+    {
+      "id": "planar-window",
+      "name": "Planar Window",
+      "schools": [
+        "Divination"
+      ],
+      "status": "operational-playtest-draft",
+      "visibility": "public-source-review",
+      "classAccess": {
+        "Cleric": {
+          "rank": 3,
+          "minimumClassLevel": 5,
+          "school": "Divination",
+          "baseRpCost": 5
+        },
+        "Mirrorsage": {
+          "rank": 3,
+          "minimumClassLevel": 7,
+          "school": "Divination",
+          "baseRpCost": 5
+        },
+        "Ranger": {
+          "rank": 3,
+          "minimumClassLevel": 9,
+          "school": "Divination",
+          "baseRpCost": 5
+        },
+        "Shaman": {
+          "rank": 3,
+          "minimumClassLevel": 7,
+          "school": "Divination",
+          "baseRpCost": 5
+        },
+        "Wizard": {
+          "rank": 3,
+          "minimumClassLevel": 5,
+          "school": "Divination",
+          "baseRpCost": 5
+        },
+        "Paladin": {
+          "rank": 3,
+          "minimumClassLevel": 9,
+          "school": "Divination",
+          "baseRpCost": 5
+        }
+      },
+      "operational": {
+        "id": "planar-window",
+        "activation": "Action",
+        "rangeFeet": 60,
+        "targets": "One local fixed point or surface you perceive within 60 feet and line of effect, plus one intended specific location on a known plane other than your current plane.",
+        "duration": "Concentration, up to 1 minute. In initiative, expires at the caster's tenth future regular-start marker after application; outside initiative, expires 60 elapsed seconds after application. Preserve the original virtual marker or absolute deadline through initiative changes, absence, death and planar travel. An already-passed start never counts.",
+        "concentration": true,
+        "components": [
+          "V",
+          "S",
+          "F"
+        ],
+        "resolution": "No roll. Identify the remote location through prior personal visitation or a reliable map, description or established source that uniquely identifies it. Knowing a plane alone does not identify a site; no universal corresponding coordinates are invented. After costs commit, resolve the actual destination and applicable planar/information wards. If the remote designation has no usable viewpoint or is blocked, no readable remote information is supplied and no hidden reason is diagnosed. Neither viewpoint may occupy solid matter. The local point must have room for a nonphysical 5-foot-wide by 5-foot-high window.",
+        "effect": "Create one fixed visible 5-by-5-foot viewing window. It displays ordinary vision from the fixed remote point in all directions; observers may direct their attention around that scene without moving the remote point. Anyone who can ordinarily see the local window can see the unprotected displayed scene. Local Blindness, actual visual obstructions and inability to see the window prevent this viewing. Remote light, darkness, smoke, walls and terrain work normally; the spell grants no darkvision or true sight. Separately, you privately detect the location and category of actual native beings and native ongoing effects/phenomena within 30 feet and line of effect of the remote point. Native means a genuine established native/origin relationship to that plane, supported by actual source or setting fiction. This added detection can locate a readable Hidden/Invisible native presence without providing sight of its body. A visitor or a spell merely cast there by a visitor is not thereby native. If a presence is otherwise visible through the window but its native provenance is undefined/protected, that classification is Indeterminate; it is not reported as nonnative. The additional detection does not reveal an otherwise unseen entity solely because its provenance is undefined. Protected presence/location/category fields remain protected independently.",
+        "scaling": "None. No automatic increase in range, duration, targets, uses or information.",
+        "limitations": "Only you receive native-detection reports; other observers receive the displayed ordinary vision. That private magical detection does not require your eyes or continued sight of the local window, but concentration and the remote 30-foot/line-of-effect limits still apply. Neither point moves, follows a creature/vehicle or searches rooms; ordinary translation of a chosen supporting surface does not carry the fixed window. No continuing 60-foot caster tether is added after legal placement, and no clock pauses on caster travel or suppression. One Planar Window per caster; successful recasting replaces it. Specific planar or information protections filter only their actual scope. The window is nonphysical magic, not a break in either barrier: no sound, passage, physical interaction, attack, remote target permission, line of effect or casting origin is supplied in either direction. It has no HP or harvestable surface and is affected only by an actually applicable detection/suppression/dispel rule. Suppression supplies no backlog or replay. The source’s remote visual scene is public, but it creates no recording object. A successful replacement owns its new endpoint; stale cleanup cannot remove it. A failed or countered cast creates no replacement. Actual class access, repertoire, V/S/F components, costs, Dissonance/Refrain, beginning hooks, concentration transitions and interruption follow SPELL_INTEGRATION_RULES.md. Commit costs before the counter window; failed, blocked and countered effects do not refund costs or restore prior concentration. Use the actual casting class's school and rank. Specific information protections apply to their actual subjects and generating-source scope. Hidden unprotected facts are readable; undefined facts are not invented. No automatic scaling or generic upcast.",
+        "designNotes": "PRESERVED: Action/V,S,F, vision into another plane and detection of native beings/effects. CONFLICT RULING: raw 60 feet is local placement; NEW concentration up to one minute replaces Instantaneous metadata. NEW: known remote location, fixed 5-by-5 public vision, private 30-foot native detection. Exact completions bound unknown-provenance reports to otherwise observed presences, distinguish private detection from eyesight, and add no unprinted continuing caster tether.",
+        "implementationStatus": "REVIEWED authored operational PLAYTEST manuscript; runtime, numerical balance and broader system validation pending",
+        "sourcePlacements": [
+          {
+            "name": "Planar Window",
+            "school": "Divination",
+            "level": 3,
+            "summary": "Open vision into another plane; detect native beings and effects."
+          }
+        ],
+        "sourceCoreEntries": [
+          {
+            "index": 251,
+            "original": {
+              "school": "Divination",
+              "level": 3,
+              "name": "Planar Window",
+              "effect": "Open vision into another plane; detect native beings and effects.",
+              "source_paragraph": 9290,
+              "casting_time": "1 action",
+              "range": "60 feet",
+              "duration": "Instantaneous",
+              "components": "V, S, F",
+              "resolution": "Automatic or opposed as described",
+              "tags": [
+                "Planar",
+                "Detection"
+              ],
+              "rp_cost": 5
+            }
+          }
+        ],
+        "classAccessEvidence": {
+          "Cleric": {
+            "rank": 3,
+            "minimumClassLevel": 5,
+            "school": "Divination",
+            "baseRpCost": 5
+          },
+          "Mirrorsage": {
+            "rank": 3,
+            "minimumClassLevel": 7,
+            "school": "Divination",
+            "baseRpCost": 5
+          },
+          "Ranger": {
+            "rank": 3,
+            "minimumClassLevel": 9,
+            "school": "Divination",
+            "baseRpCost": 5
+          },
+          "Shaman": {
+            "rank": 3,
+            "minimumClassLevel": 7,
+            "school": "Divination",
+            "baseRpCost": 5
+          },
+          "Wizard": {
+            "rank": 3,
+            "minimumClassLevel": 5,
+            "school": "Divination",
+            "baseRpCost": 5
+          },
+          "Paladin": {
+            "rank": 3,
+            "minimumClassLevel": 9,
+            "school": "Divination",
+            "baseRpCost": 5
+          }
+        },
+        "sourceReview": [
+          "docs/audit/2026-10-08/full-game/GPT_DIVINATION_RANK3_SOURCE_CONFERENCE.md",
+          "docs/audit/2026-10-08/full-game/GPT_DIVINATION_RANK3_EXACT_REVIEW.md"
+        ],
+        "reviewEvidence": [
+          "docs/audit/2026-10-08/full-game/GPT_DIVINATION_RANK3_EXACT_REVIEW.md"
+        ],
+        "authoringFile": "data/playtest/spell_drafts/batch_divination_rank3.json"
+      },
+      "additionalRpCost": 0,
+      "source": {
+        "catalogPath": "src/data/spells.js",
+        "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+        "catalogKey": "planar-window",
+        "original": {
+          "name": "Planar Window",
+          "level": 3,
+          "resonanceRank": 3,
+          "school": "Divination",
+          "schools": [
+            "Divination"
+          ],
+          "placements": [
+            {
+              "name": "Planar Window",
+              "school": "Divination",
+              "level": 3,
+              "summary": "Open vision into another plane; detect native beings and effects."
+            }
+          ],
+          "classLevels": {
+            "Cleric": 3,
+            "Mirrorsage": 3,
+            "Ranger": 3,
+            "Shaman": 3,
+            "Wizard": 3,
+            "Paladin": 3
+          },
+          "classRanks": {
+            "Cleric": 3,
+            "Mirrorsage": 3,
+            "Ranger": 3,
+            "Shaman": 3,
+            "Wizard": 3,
+            "Paladin": 3
+          },
+          "classLearnLevels": {
+            "Cleric": 5,
+            "Mirrorsage": 7,
+            "Ranger": 9,
+            "Shaman": 7,
+            "Wizard": 5,
+            "Paladin": 9
+          },
+          "classSchools": {
+            "Cleric": "Divination",
+            "Mirrorsage": "Divination",
+            "Ranger": "Divination",
+            "Shaman": "Divination",
+            "Wizard": "Divination",
+            "Paladin": "Divination"
+          },
+          "castingTime": "Not specified in current rulebook",
+          "range": "Not specified in current rulebook",
+          "components": "Not specified in current rulebook",
+          "duration": "Not specified in current rulebook",
+          "description": "Open vision into another plane; detect native beings and effects.",
+          "alternateSummaries": [],
+          "classes": [
+            "Cleric",
+            "Mirrorsage",
+            "Ranger",
+            "Shaman",
+            "Wizard",
+            "Paladin"
+          ],
+          "status": "canon",
+          "source": "Player Rulebook — Spell Lists"
+        },
+        "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+        "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+        "coreEntries": [
+          {
+            "index": 251,
+            "original": {
+              "school": "Divination",
+              "level": 3,
+              "name": "Planar Window",
+              "effect": "Open vision into another plane; detect native beings and effects.",
+              "source_paragraph": 9290,
+              "casting_time": "1 action",
+              "range": "60 feet",
+              "duration": "Instantaneous",
+              "components": "V, S, F",
+              "resolution": "Automatic or opposed as described",
+              "tags": [
+                "Planar",
+                "Detection"
+              ],
+              "rp_cost": 5
+            }
+          }
+        ],
+        "possibleHistoricalAliases": []
+      },
+      "reviewFlags": [
+        "Core resolution requires an explicit operational interpretation"
+      ]
+    }
+  ],
+  "wholeLowRankCandidateCards": [
+    {
+      "id": "arcane-portal",
+      "name": "Arcane Portal",
+      "status": "reviewed-authored-operational-playtest",
+      "selectionEnabled": false,
+      "visibility": "public-source-review",
+      "sourceQuestionId": "UN-18",
+      "sourceDecisionId": "LR-UN-18",
+      "sourceReceipt": {
+        "id": "arcane-portal",
+        "name": "Arcane Portal",
+        "schools": [
+          "Universal"
+        ],
+        "status": "blocked-pending-operational-review",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Bard": {
+            "rank": 2,
+            "minimumClassLevel": 4,
+            "school": "Universal",
+            "baseRpCost": 3
+          },
+          "Cleric": {
+            "rank": 2,
+            "minimumClassLevel": 3,
+            "school": "Universal",
+            "baseRpCost": 3
+          },
+          "Mage": {
+            "rank": 2,
+            "minimumClassLevel": 3,
+            "school": "Universal",
+            "baseRpCost": 3
+          },
+          "Mirrorsage": {
+            "rank": 2,
+            "minimumClassLevel": 4,
+            "school": "Universal",
+            "baseRpCost": 3
+          },
+          "Tinker": {
+            "rank": 2,
+            "minimumClassLevel": 6,
+            "school": "Universal",
+            "baseRpCost": 3
+          },
+          "Wizard": {
+            "rank": 2,
+            "minimumClassLevel": 3,
+            "school": "Universal",
+            "baseRpCost": 3
+          },
+          "Paladin": {
+            "rank": 2,
+            "minimumClassLevel": 5,
+            "school": "Universal",
+            "baseRpCost": 3
+          }
+        },
+        "operational": null,
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "arcane-portal",
+          "original": {
+            "name": "Arcane Portal",
+            "level": 2,
+            "resonanceRank": 2,
+            "school": "Universal",
+            "schools": [
+              "Universal"
+            ],
+            "placements": [
+              {
+                "name": "Arcane Portal",
+                "school": "Universal",
+                "level": 2,
+                "summary": "Open a temporary door between two seen points."
+              }
+            ],
+            "classLevels": {
+              "Bard": 2,
+              "Cleric": 2,
+              "Mage": 2,
+              "Mirrorsage": 2,
+              "Tinker": 2,
+              "Wizard": 2,
+              "Paladin": 2
+            },
+            "classRanks": {
+              "Bard": 2,
+              "Cleric": 2,
+              "Mage": 2,
+              "Mirrorsage": 2,
+              "Tinker": 2,
+              "Wizard": 2,
+              "Paladin": 2
+            },
+            "classLearnLevels": {
+              "Bard": 4,
+              "Cleric": 3,
+              "Mage": 3,
+              "Mirrorsage": 4,
+              "Tinker": 6,
+              "Wizard": 3,
+              "Paladin": 5
+            },
+            "classSchools": {
+              "Bard": "Universal",
+              "Cleric": "Universal",
+              "Mage": "Universal",
+              "Mirrorsage": "Universal",
+              "Tinker": "Universal",
+              "Wizard": "Universal",
+              "Paladin": "Universal"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Open a temporary door between two seen points.",
+            "alternateSummaries": [],
+            "classes": [
+              "Bard",
+              "Cleric",
+              "Mage",
+              "Mirrorsage",
+              "Tinker",
+              "Wizard",
+              "Paladin"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 864,
+              "original": {
+                "school": "Universal",
+                "level": 2,
+                "name": "Arcane Portal",
+                "effect": "Open a temporary door between two seen points.",
+                "source_paragraph": 10051,
+                "casting_time": "1 action",
+                "range": "30 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Planar"
+                ],
+                "rp_cost": 3
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation",
+          "Not selectable in this spell playtest packet until individual operational review"
+        ]
+      },
+      "classAccess": {
+        "Bard": {
+          "rank": 2,
+          "minimumClassLevel": 4,
+          "school": "Universal",
+          "baseRpCost": 3
+        },
+        "Cleric": {
+          "rank": 2,
+          "minimumClassLevel": 3,
+          "school": "Universal",
+          "baseRpCost": 3
+        },
+        "Mage": {
+          "rank": 2,
+          "minimumClassLevel": 3,
+          "school": "Universal",
+          "baseRpCost": 3
+        },
+        "Mirrorsage": {
+          "rank": 2,
+          "minimumClassLevel": 4,
+          "school": "Universal",
+          "baseRpCost": 3
+        },
+        "Tinker": {
+          "rank": 2,
+          "minimumClassLevel": 6,
+          "school": "Universal",
+          "baseRpCost": 3
+        },
+        "Wizard": {
+          "rank": 2,
+          "minimumClassLevel": 3,
+          "school": "Universal",
+          "baseRpCost": 3
+        },
+        "Paladin": {
+          "rank": 2,
+          "minimumClassLevel": 5,
+          "school": "Universal",
+          "baseRpCost": 3
+        }
+      },
+      "additionalRpCost": 0,
+      "bookBindings": [
+        {
+          "spellId": "arcane-portal",
+          "catalogPlacement": {
+            "name": "Arcane Portal",
+            "school": "Universal",
+            "level": 2,
+            "summary": "Open a temporary door between two seen points."
+          },
+          "currentBookRow": {
+            "line": 9793,
+            "name": "Arcane Portal",
+            "school": "Universal",
+            "level": 2,
+            "summary": "Open a temporary door between two seen points.",
+            "exactText": "Arcane Portal – Open a temporary door between two seen points."
+          },
+          "nameDifferencePreserved": false,
+          "summaryDifferencePreserved": false,
+          "actualDocxFile": "DescentReviewChanges/ReviewBible/books/player/Decennium_Descent_Player_Rulebook_v6.docx",
+          "actualDocxZeroBasedParagraphIndices": [
+            9557
+          ]
+        }
+      ],
+      "sourceModeBindings": [
+        {
+          "coreIndex": 864,
+          "sourceSchool": "Universal",
+          "sourceRank": 2,
+          "sourceName": "Arcane Portal",
+          "sourceCastingTime": "1 action",
+          "sourceRange": "30 feet",
+          "sourceDuration": "Instantaneous",
+          "sourceComponents": "V, S, F",
+          "sourceEffect": "Open a temporary door between two seen points.",
+          "binding": "ASSIGNED_MODE_WITH_EXPLICIT_AUTHORING_COMPLETION"
+        }
+      ],
+      "sourceBookMentionDoesNotGrantAcquisition": true,
+      "operationalCandidate": {
+        "castingTime": "1 action",
+        "range": "30 feet",
+        "components": "V, S, F",
+        "targets": "Two seen, line-of-effect, unoccupied endpoint apertures, each within 30 ft and no more than 30 ft apart.",
+        "duration": "Concentration, up to 1 minute or one permitted transit, whichever occurs first.",
+        "resolution": "Automatic local paired doorway; voluntary transit consumes actual movement.",
+        "effect": "NEW two vertical 5-ft-high by 3-ft-wide apertures placed against actually open supported spaces. One willing Small/Medium creature with lawfully carried cargo, combined weight at most 500 lb and actual aperture fit, may step through in either direction by spending 5 ft of permitted movement; then both apertures close. Transit requires available destination support/space and does not enlarge cargo, lift an unwilling passenger or reset movement spent. Occupied/blocked endpoints prevent crossing, not crush or displacement.",
+        "limitations": "No separate sight/attack/spell line through the door, unattended mass flow, projectiles, fluids, unlimited travelers or free transport of remote contents. No cross-plane operation is supplied by the Planar tag. Lost concentration/suppression prevents transit; it never queues a body halfway through. Treat transit atomically at the physical commitment; actual support loss afterward uses normal falling.",
+        "numericParameters": {
+          "castRangeFeet": 30,
+          "endpointSeparationFeet": 30,
+          "apertureFeet": [
+            3,
+            5
+          ],
+          "transits": 1,
+          "combinedMaxLb": 500,
+          "movementCostFeet": 5,
+          "seconds": 60
+        },
+        "costProcedure": "Use the actual acquired class grant and its preserved classAccess row for rank, minimum class level, school and base RP. Apply that class’s completed casting engine, current repeat history, discounts, Dissonance surcharge and this identity’s additionalRpCost; use LR-G01, LR-G02 and the explicit payload/wrapper exceptions in this card. Oracle RC is separate. Sufficient resources do not grant acquisition. Pay committed costs even on a miss, successful resistance or counter. There is no generic upcast or level scaling."
+      },
+      "sharedRuleIds": [
+        "LR-G01",
+        "LR-G02",
+        "LR-G03",
+        "LR-G04",
+        "LR-G05",
+        "LR-G06",
+        "LR-G07",
+        "LR-G08",
+        "LR-G09",
+        "LR-G10",
+        "LR-G11",
+        "LR-G12",
+        "LR-G13",
+        "LR-G14",
+        "LR-G15",
+        "LR-G16",
+        "LR-G17",
+        "LR-G18",
+        "LR-G19",
+        "LR-G20"
+      ],
+      "sourceConflicts": [],
+      "operationPrerequisites": [
+        "Actual legal access/repertoire, current source and target state, components, range/line, time and resources under the stated finite procedure; these are use-time facts, not missing source-conference questions."
+      ],
+      "authoredBoundary": {
+        "kind": "Authored expectation, not executed runtime or campaign authentication",
+        "wording": "A 450-lb eligible traveler and cargo fitting both openings can cross once for 5 ft movement. A 600-lb load cannot be split after declaration into free serial portal traffic."
+      },
+      "newDecisionNotice": "Every concrete target bound, resistance, unsupported metadata replacement, mode, action/clock/lifecycle detail and numerical default not printed in the preserved original is NEW source-authoring direction, never a claim that it was printed. Explicit retained clauses and LR-G KEEP rules are not rewritten.",
+      "reviewEvidence": {
+        "sourceReviewId": "LR-SOURCE-2026-10-11",
+        "exactCandidateApproval": true,
+        "catalogPromotionAuthorized": true,
+        "runtimeVerified": false,
+        "humanPlaytested": false,
+        "exactReviewId": "LRX-EXACT-2026-10-11",
+        "finalReplyId": "5ece3872-cb87-4e1c-b14b-915859f41fef",
+        "finiteCorrectionsFulfilled": [
+          "LRX-01",
+          "LRX-02",
+          "LRX-03",
+          "LRX-04",
+          "LRX-05"
+        ],
+        "fulfillmentReceipt": "docs/audit/2026-10-08/full-game/LOW_RANK_136_EXACT_FULFILLMENT.json",
+        "approvalScope": "Complete authored tabletop procedure; no complete runtime adapter or human balance claim."
+      }
+    },
+    {
+      "id": "blink-step",
+      "name": "Blink Step",
+      "status": "reviewed-authored-operational-playtest",
+      "selectionEnabled": false,
+      "visibility": "public-source-review",
+      "sourceQuestionId": "R3-18",
+      "sourceDecisionId": "LR-R3-18",
+      "sourceReceipt": {
+        "id": "blink-step",
+        "name": "Blink Step",
+        "schools": [
+          "Universal"
+        ],
+        "status": "blocked-pending-operational-review",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Bard": {
+            "rank": 3,
+            "minimumClassLevel": 7,
+            "school": "Universal",
+            "baseRpCost": 5
+          },
+          "Cleric": {
+            "rank": 3,
+            "minimumClassLevel": 5,
+            "school": "Universal",
+            "baseRpCost": 5
+          },
+          "Mage": {
+            "rank": 3,
+            "minimumClassLevel": 5,
+            "school": "Universal",
+            "baseRpCost": 5
+          },
+          "Mirrorsage": {
+            "rank": 3,
+            "minimumClassLevel": 7,
+            "school": "Universal",
+            "baseRpCost": 5
+          },
+          "Tinker": {
+            "rank": 3,
+            "minimumClassLevel": 10,
+            "school": "Universal",
+            "baseRpCost": 5
+          },
+          "Wizard": {
+            "rank": 3,
+            "minimumClassLevel": 5,
+            "school": "Universal",
+            "baseRpCost": 5
+          },
+          "Paladin": {
+            "rank": 3,
+            "minimumClassLevel": 9,
+            "school": "Universal",
+            "baseRpCost": 5
+          }
+        },
+        "operational": null,
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "blink-step",
+          "original": {
+            "name": "Blink Step",
+            "level": 3,
+            "resonanceRank": 3,
+            "school": "Universal",
+            "schools": [
+              "Universal"
+            ],
+            "placements": [
+              {
+                "name": "Blink Step",
+                "school": "Universal",
+                "level": 3,
+                "summary": "Teleport up to 60 ft as a reaction."
+              }
+            ],
+            "classLevels": {
+              "Bard": 3,
+              "Cleric": 3,
+              "Mage": 3,
+              "Mirrorsage": 3,
+              "Tinker": 3,
+              "Wizard": 3,
+              "Paladin": 3
+            },
+            "classRanks": {
+              "Bard": 3,
+              "Cleric": 3,
+              "Mage": 3,
+              "Mirrorsage": 3,
+              "Tinker": 3,
+              "Wizard": 3,
+              "Paladin": 3
+            },
+            "classLearnLevels": {
+              "Bard": 7,
+              "Cleric": 5,
+              "Mage": 5,
+              "Mirrorsage": 7,
+              "Tinker": 10,
+              "Wizard": 5,
+              "Paladin": 9
+            },
+            "classSchools": {
+              "Bard": "Universal",
+              "Cleric": "Universal",
+              "Mage": "Universal",
+              "Mirrorsage": "Universal",
+              "Tinker": "Universal",
+              "Wizard": "Universal",
+              "Paladin": "Universal"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Teleport up to 60 ft as a reaction.",
+            "alternateSummaries": [],
+            "classes": [
+              "Bard",
+              "Cleric",
+              "Mage",
+              "Mirrorsage",
+              "Tinker",
+              "Wizard",
+              "Paladin"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 872,
+              "original": {
+                "school": "Universal",
+                "level": 3,
+                "name": "Blink Step",
+                "effect": "Teleport up to 60 ft as a reaction.",
+                "source_paragraph": 10061,
+                "casting_time": "1 reaction",
+                "range": "60 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Movement"
+                ],
+                "rp_cost": 5
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation",
+          "Not selectable in this spell playtest packet until individual operational review"
+        ]
+      },
+      "classAccess": {
+        "Bard": {
+          "rank": 3,
+          "minimumClassLevel": 7,
+          "school": "Universal",
+          "baseRpCost": 5
+        },
+        "Cleric": {
+          "rank": 3,
+          "minimumClassLevel": 5,
+          "school": "Universal",
+          "baseRpCost": 5
+        },
+        "Mage": {
+          "rank": 3,
+          "minimumClassLevel": 5,
+          "school": "Universal",
+          "baseRpCost": 5
+        },
+        "Mirrorsage": {
+          "rank": 3,
+          "minimumClassLevel": 7,
+          "school": "Universal",
+          "baseRpCost": 5
+        },
+        "Tinker": {
+          "rank": 3,
+          "minimumClassLevel": 10,
+          "school": "Universal",
+          "baseRpCost": 5
+        },
+        "Wizard": {
+          "rank": 3,
+          "minimumClassLevel": 5,
+          "school": "Universal",
+          "baseRpCost": 5
+        },
+        "Paladin": {
+          "rank": 3,
+          "minimumClassLevel": 9,
+          "school": "Universal",
+          "baseRpCost": 5
+        }
+      },
+      "additionalRpCost": 0,
+      "bookBindings": [
+        {
+          "spellId": "blink-step",
+          "catalogPlacement": {
+            "name": "Blink Step",
+            "school": "Universal",
+            "level": 3,
+            "summary": "Teleport up to 60 ft as a reaction."
+          },
+          "currentBookRow": {
+            "line": 9803,
+            "name": "Blink Step",
+            "school": "Universal",
+            "level": 3,
+            "summary": "Teleport up to 60 ft as a reaction.",
+            "exactText": "Blink Step – Teleport up to 60 ft as a reaction."
+          },
+          "summaryDifferencePreserved": false,
+          "actualDocxFile": "DescentReviewChanges/ReviewBible/books/player/Decennium_Descent_Player_Rulebook_v6.docx",
+          "actualDocxZeroBasedParagraphIndices": [
+            9567
+          ]
+        }
+      ],
+      "sourceModeBindings": [
+        {
+          "coreIndex": 872,
+          "sourceSchool": "Universal",
+          "sourceRank": 3,
+          "sourceName": "Blink Step",
+          "sourceCastingTime": "1 reaction",
+          "sourceRange": "60 feet",
+          "sourceDuration": "Instantaneous",
+          "sourceComponents": "V, S, F",
+          "sourceEffect": "Teleport up to 60 ft as a reaction.",
+          "binding": "ASSIGNED_MODE_WITH_EXPLICIT_AUTHORING_COMPLETION"
+        }
+      ],
+      "sourceBookMentionDoesNotGrantAcquisition": true,
+      "operationalCandidate": {
+        "castingTime": "1 reaction",
+        "range": "60 feet",
+        "components": "V, S, F",
+        "targets": "Self, after an actual attack against the caster finishes resolving; one perceived legal destination≤60 ft.",
+        "duration": "One Reaction teleport, instantaneous.",
+        "resolution": "Automatic legal local relocation after its triggering event.",
+        "effect": "NEW trigger: immediately after an attack targeting the caster has completely resolved, hit or miss, while the caster is still conscious/able to take a Reaction. It does not undo that attack/damage, prevent its concentration save or revive an incapacitated caster. Spend the actual permitted Reaction, components and RP; then teleport to a perceived unoccupied space with actual body/gear fit and line of effect.",
+        "limitations": "No arbitrary off-turn window, pre-hit cancellation, automatic escape from an explicit anti-teleport restraint or dimensional prison, extra reaction, copied body or portal. Speed 0 alone does not prevent teleport when no independent source does. Actual legal cargo and support/fall state remain; no unseen destination/map knowledge. Countering/blocked release refunds nothing.",
+        "numericParameters": {
+          "rangeFeet": 60,
+          "reactions": 1,
+          "triggerTiming": "after attack fully resolves"
+        },
+        "costProcedure": "Use the actual acquired class grant and its preserved classAccess row for rank, minimum class level, school and base RP. Apply that class’s completed casting engine, current repeat history, discounts, Dissonance surcharge and this identity’s additionalRpCost; use LR-G01, LR-G02 and the explicit payload/wrapper exceptions in this card. Oracle RC is separate. Sufficient resources do not grant acquisition. Pay committed costs even on a miss, successful resistance or counter. There is no generic upcast or level scaling."
+      },
+      "sharedRuleIds": [
+        "LR-G01",
+        "LR-G02",
+        "LR-G03",
+        "LR-G04",
+        "LR-G05",
+        "LR-G06",
+        "LR-G07",
+        "LR-G08",
+        "LR-G09",
+        "LR-G10",
+        "LR-G11",
+        "LR-G12",
+        "LR-G13",
+        "LR-G14",
+        "LR-G15",
+        "LR-G16",
+        "LR-G17",
+        "LR-G18",
+        "LR-G19",
+        "LR-G20"
+      ],
+      "sourceConflicts": [],
+      "operationPrerequisites": [
+        "Actual legal access/repertoire, current source and target state, components, range/line, time and resources under the stated finite procedure; these are use-time facts, not missing source-conference questions."
+      ],
+      "authoredBoundary": {
+        "kind": "Authored expectation, not executed runtime or campaign authentication",
+        "wording": "An attack drops the caster to0 HP: no Blink Step Reaction is available from that incapacitated state. A surviving caster can react after the hit, keeping the damage already taken."
+      },
+      "newDecisionNotice": "Every concrete target bound, resistance, unsupported metadata replacement, mode, action/clock/lifecycle detail and numerical default not printed in the preserved original is NEW source-authoring direction, never a claim that it was printed. Explicit retained clauses and LR-G KEEP rules are not rewritten.",
+      "reviewEvidence": {
+        "sourceReviewId": "LR-SOURCE-2026-10-11",
+        "exactCandidateApproval": true,
+        "catalogPromotionAuthorized": true,
+        "runtimeVerified": false,
+        "humanPlaytested": false,
+        "exactReviewId": "LRX-EXACT-2026-10-11",
+        "finalReplyId": "5ece3872-cb87-4e1c-b14b-915859f41fef",
+        "finiteCorrectionsFulfilled": [
+          "LRX-01",
+          "LRX-02",
+          "LRX-03",
+          "LRX-04",
+          "LRX-05"
+        ],
+        "fulfillmentReceipt": "docs/audit/2026-10-08/full-game/LOW_RANK_136_EXACT_FULFILLMENT.json",
+        "approvalScope": "Complete authored tabletop procedure; no complete runtime adapter or human balance claim."
+      }
+    }
+  ],
+  "semanticRead": "Operational fields in six cards; original receipt/access wrapper was not independently re-audited as part of this reading. Expedition boundary W18 and exact contract OP-04; nearby route/physical-movement snippets were inspected, not a complete reread of every expedition module.",
+  "findings": [
+    "Faction Portal explicitly permits a known faction headquarters on the same or another plane, gated by actual positive canonical reputation, real receiving point, whole lawful payload and real wards. Do not invent a blanket no-planar-travel rule from lower-rank classification.",
+    "Faction Portal may bypass a geographic leg and reach Haven; it does not automatically settle Extraction, claims, clocks, contamination, law or taxes. This is a concrete interface requiring preservation in the plane review.",
+    "Planar Window permits remote vision and private native detection with exact origin/provenance requirements; undefined provenance is not silently classified nonnative. No physical travel, attack or casting origin is granted by the window.",
+    "Planar Ally Minor has an authored summon-only profile with summoned/extraplanar tags but no default creature type or world-faction identity. Its operation supplies no planar travel, lore omniscience, corpse or resource generation.",
+    "Mist Step is local with explicit no planar boundary crossing. Arcane Portal is a finite one-transit local doorway; its Planar tag alone does not grant cross-plane travel. Blink Step is a distinct after-attack Reaction teleport, not the unresolved spell Blink.",
+    "EX58 OP-04 requires an actual operative teleport/spatial effect and endpoint/capacity for purchased specialist service. The 1300-gp W18 quote does not create travel permission. This is compatible with using an already reviewed exact effect when its actual conditions are met."
+  ],
+  "sourceInformationDeleted": 0,
+  "newRulesAdopted": false,
+  "runtimeCertification": false
+}

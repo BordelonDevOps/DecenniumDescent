@@ -1,0 +1,70 @@
+{
+  "id": "TIME5-INDEPENDENT-VISIBLE-CASE-READ-126",
+  "recordedAtUtc": "2026-10-23T22:00:30.646430+00:00",
+  "status": "PROVISIONAL_NOT_FINAL_RETURN_ACCEPTANCE",
+  "scope": "Visible case authoring read as inert text. Arithmetic/source checks are independent; final delivered full states still required.",
+  "sourceBindings": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+      "bytes": 100635,
+      "sha256": "8ab2f4f43bcbced418fb266e5bd3216cff491b0c442c16f93438bd3556672c8b"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md",
+      "bytes": 17321,
+      "sha256": "adb2f4752b45dc70ce792a675bb30dda362aab5056588061bcde3ba31c4c8a81"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md",
+      "bytes": 15877,
+      "sha256": "69d0e64394de58c4d86a3ec57cf282978d131a1a9c1eaa21632bb7d3b72562da"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/HEALING_DEATH_PLAYTEST.md",
+      "bytes": 23410,
+      "sha256": "8d68794687b97da70aaff9953f9724e31e9fa3c8568fd4c2f9e8fd05d34c93f7"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/DAMAGE_SHARING_PLAYTEST.md",
+      "bytes": 13112,
+      "sha256": "b298415146cba6453ec33f1310b4b668ac74e0e2d2681a08e077852c065d56e1"
+    }
+  ],
+  "checks": [
+    {
+      "subject": "Wizard acquisition",
+      "result": "Declared level1four choices include2Active;level2two Base choices;level3SigilRewrite+ArchArcaneLock includes1Active. Subsequent gated selections and Spellbinder10 passive+active are legal. FloatingPreparation acquired6 permits1extra. W9book29/prepared14/HP56/RP32, W11book37/prepared16/HP68/RP40 match native progression."
+    },
+    {
+      "subject": "Absolute Zero failed CON and subsequent Wound",
+      "result": "Visible dice4,4,4,4,3,3,3,3,3,3 sum34. Against68max this meets half-max Wound threshold exactly. Initial CON12+2=14 fails DC18. Separate Wound CON15+2=17 meets DC17, so no Wound; normal HP68->34. Do not confuse the initial effect save with the Wound save."
+    },
+    {
+      "subject": "Absolute Zero success",
+      "result": "CON16+2=18 meets DC18; no damage draw or established hard guard; actual13RP paid and attempted concentration displaced under source rules."
+    },
+    {
+      "subject": "Source-native damage roots",
+      "result": "DAMAGE_SHARING_PLAYTEST.md:23 defines one damage root per original recipient under a shared cast/roll identity. The visible per-recipient root constructor is therefore not itself a defect. Actual release provenance/Null remains to check."
+    },
+    {
+      "subject": "Time Skip four installments",
+      "result": "Visible real LeechingPlague four2d6 installments each8 produce56->48->40->32->24 at original END2,8,14,20. No half-max/drop Wound triggers. Absence changes target availability only through the explicitly selected source-local route, not by retiming."
+    },
+    {
+      "subject": "Time Skip death while absent",
+      "result": "Initial4/56;first4damage gives0 and Wound8+2=10 success. Natural1atSTART6 adds2failures;2damage from0atEND8 adds third failure, so actual death ends Plague. Original remains return12; no resurrection or new optional budget. Ground-dropped focus remains separate."
+    },
+    {
+      "subject": "Critical ordinary healing ceiling",
+      "result": "Current native ceiling is max(1,effectiveMaxHP-1), not half-max. A heal cannot lower currentHP. GraveGift direct assignment is separately sourced; no generic ordinary-healing ceiling import."
+    }
+  ],
+  "pendingConcerns": [
+    "Check rank6 repeated-family baseDissonance2; visible constructor currently uses1.",
+    "Check final exact actor/case/clock/operation/mirror data; interim visible arithmetic alone is not evidence of delivered consistency.",
+    "Correct ordinary unarmed-source citation if it remains COMBAT_ACTION_PLAYTEST.md; original weapon table actually lists Unarmed strike1bludgeoning at docs/reference/Player_Rulebook_v6_source_text.txt:6776. Actual attack entitlement still needs its applicable source."
+  ],
+  "acceptanceEffect": 0,
+  "runtimeExecuted": false
+}
