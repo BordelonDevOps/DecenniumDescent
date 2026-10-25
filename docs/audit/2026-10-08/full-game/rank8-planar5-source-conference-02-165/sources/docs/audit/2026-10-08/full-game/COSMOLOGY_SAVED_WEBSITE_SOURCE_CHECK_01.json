@@ -1,0 +1,384 @@
+{
+  "checkId": "COSMOLOGY-SAVED-WEBSITE-SOURCE-01",
+  "recordedAtUtc": "2026-10-15T20:15:43.039858+00:00",
+  "trigger": "Owner reminded Codex that the cosmology website is saved in the repository.",
+  "sourceBindings": [
+    {
+      "path": "webpage.html",
+      "bytes": 7315,
+      "sha256": "3f4e6b5816ef9e98e3a2470a495013970c925d1f88eea205352141c76842c3dd"
+    },
+    {
+      "path": "src/components/CosmologyViewer.tsx",
+      "bytes": 19323,
+      "sha256": "f0e873d27414dc18687a2090187b90e05c1238de5145140cc3870e9b8a37a4b6"
+    },
+    {
+      "path": "src/data/cosmology-lore.json",
+      "bytes": 303272,
+      "sha256": "1cb25a15c5f5adda5683b84ab303967f4d1472037ccacfe95ad29e5d4e5ab7c7"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/src/components/CosmologyViewer.tsx",
+      "bytes": 19323,
+      "sha256": "f0e873d27414dc18687a2090187b90e05c1238de5145140cc3870e9b8a37a4b6"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/src/data/cosmology-lore.json",
+      "bytes": 303272,
+      "sha256": "1cb25a15c5f5adda5683b84ab303967f4d1472037ccacfe95ad29e5d4e5ab7c7"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/director-only/runtime-source/cosmology-lore-unfiltered.json",
+      "bytes": 303272,
+      "sha256": "1cb25a15c5f5adda5683b84ab303967f4d1472037ccacfe95ad29e5d4e5ab7c7"
+    },
+    {
+      "path": "The Cosmology of Decennium Descent.docx",
+      "bytes": 158625,
+      "sha256": "fc123ad86575709ae55fb2050b8c7e4df10dc321e5e4bacfef2e45db49a66aad"
+    },
+    {
+      "path": "The_World_of_Aethel_Lore.docx",
+      "bytes": 39362,
+      "sha256": "74876a384fc1409dd959195ef8c5657de10d81c61b502ebc75407869b2d5361d"
+    }
+  ],
+  "standaloneHtml": {
+    "path": "webpage.html",
+    "title": "Decennium Descent: Interactive Cosmology",
+    "wholeFileRead": true,
+    "externalModuleImports": [
+      "https://unpkg.com/three@0.150.0/build/three.module.js",
+      "https://unpkg.com/three@0.150.0/examples/jsm/controls/OrbitControls.js"
+    ],
+    "diagramLabels": [
+      "Calan'thir – Axis of the Celestial Spiral",
+      "Infernal Spiral",
+      "Elemental Ring",
+      "Primordial Mandala",
+      "Celestial Arc"
+    ],
+    "sourceLineEvidence": [
+      {
+        "lineOneBased": 70,
+        "text": "    resonanceRing.position.set(0, 90, 0);"
+      },
+      {
+        "lineOneBased": 77,
+        "text": "    glyph.position.set(0, 90, 0);"
+      },
+      {
+        "lineOneBased": 85,
+        "text": "    calanthirCore.position.set(0, 90, 0);"
+      },
+      {
+        "lineOneBased": 86,
+        "text": "    calanthirCore.userData.name = \"Calan'thir – Axis of the Celestial Spiral\";"
+      },
+      {
+        "lineOneBased": 87,
+        "text": "    calanthirCore.userData.description = \"Supreme resonance of divine harmony. All things orbit its Will.\";"
+      },
+      {
+        "lineOneBased": 108,
+        "text": "    particles.position.set(0, 90, 0);"
+      },
+      {
+        "lineOneBased": 115,
+        "text": "      { radius: 14, color: 0xff6666, label: 'Infernal Spiral' },"
+      },
+      {
+        "lineOneBased": 116,
+        "text": "      { radius: 18, color: 0x66ccff, label: 'Elemental Ring' },"
+      },
+      {
+        "lineOneBased": 117,
+        "text": "      { radius: 22, color: 0xcc99ff, label: 'Primordial Mandala' },"
+      },
+      {
+        "lineOneBased": 118,
+        "text": "      { radius: 26, color: 0x99ff99, label: 'Celestial Arc' }"
+      },
+      {
+        "lineOneBased": 134,
+        "text": "      orb.userData.name = plane.label;"
+      },
+      {
+        "lineOneBased": 135,
+        "text": "      orb.userData.description = `Outer shell of the ${plane.label}, guarding divine transitions.`;"
+      },
+      {
+        "lineOneBased": 145,
+        "text": "          if (obj.userData.name && obj.userData.name.includes(\"Calan'thir\")) {"
+      },
+      {
+        "lineOneBased": 157,
+        "text": "          obj.position.x = Math.cos(obj.userData.angle) * obj.userData.radius;"
+      },
+      {
+        "lineOneBased": 158,
+        "text": "          obj.position.z = Math.sin(obj.userData.angle) * obj.userData.radius;"
+      }
+    ],
+    "finding": "The tooltip states all things orbit Calan'thir's Will; source rendering places Calan'thir at y90 and orbit-group sphere centers around origin y0. Preserve the authored presentation without inferring a measured cosmological map from coordinates. This standalone HTML was absent from recent review source packets."
+  },
+  "companionWebsite": {
+    "source": "src/components/CosmologyViewer.tsx",
+    "mainAndReviewBibleViewerExactBytesEqual": true,
+    "dataPathsExactBytesEqual": true,
+    "planes": [
+      {
+        "name": "Material Plane",
+        "summary": "The nexus of Aethel — where the Weave is thickest and mortal stories unfold.",
+        "color": "#4fc3f7"
+      },
+      {
+        "name": "Plane of Fire",
+        "summary": "Elemental fire in orbit around the Material — Brogi's forge-echo in the Weave.",
+        "color": "#ff6b35"
+      },
+      {
+        "name": "Plane of Water",
+        "summary": "Tidal memory and depth; the pull that taught the Weave to flow.",
+        "color": "#29b6f6"
+      },
+      {
+        "name": "Plane of Air",
+        "summary": "Breath, voice, and distance — the Choir's first medium.",
+        "color": "#e1f5fe"
+      },
+      {
+        "name": "Plane of Earth",
+        "summary": "Stone patience and the weight of Stillness given form.",
+        "color": "#8d6e63"
+      },
+      {
+        "name": "Throne of Accord",
+        "summary": "Seat of divine justice above the Material — where oaths find witness.",
+        "color": "#ffffcc"
+      },
+      {
+        "name": "Nessus",
+        "summary": "The deepest hush — hell's gravity, where silence keeps its own counsel.",
+        "color": "#4e0000"
+      }
+    ],
+    "diagramSourceEvidence": [
+      {
+        "lineOneBased": 161,
+        "text": "      name: \"Material Plane\","
+      },
+      {
+        "lineOneBased": 164,
+        "text": "      position: { x: 0, y: 0, z: 0 },"
+      },
+      {
+        "lineOneBased": 165,
+        "text": "      description: \"The nexus of all existence\","
+      },
+      {
+        "lineOneBased": 167,
+        "text": "    addBody({ name: \"Plane of Fire\", color: 0xff6b35, radius: 2.1, orbitRadius: 25, speed: 0.0064 });"
+      },
+      {
+        "lineOneBased": 168,
+        "text": "    addBody({ name: \"Plane of Water\", color: 0x29b6f6, radius: 2.1, orbitRadius: 30, speed: 0.0048 });"
+      },
+      {
+        "lineOneBased": 169,
+        "text": "    addBody({ name: \"Plane of Air\", color: 0xe1f5fe, radius: 2.1, orbitRadius: 35, speed: 0.0056 });"
+      },
+      {
+        "lineOneBased": 170,
+        "text": "    addBody({ name: \"Plane of Earth\", color: 0x8d6e63, radius: 2.1, orbitRadius: 28, speed: 0.004 });"
+      },
+      {
+        "lineOneBased": 172,
+        "text": "      name: \"Throne of Accord\","
+      },
+      {
+        "lineOneBased": 175,
+        "text": "      position: { x: 0, y: 25, z: 0 },"
+      },
+      {
+        "lineOneBased": 176,
+        "text": "      description: \"Seat of divine justice\","
+      },
+      {
+        "lineOneBased": 179,
+        "text": "      name: \"Nessus\","
+      },
+      {
+        "lineOneBased": 182,
+        "text": "      position: { x: 0, y: -25, z: 0 },"
+      },
+      {
+        "lineOneBased": 183,
+        "text": "      description: \"Deepest hell\","
+      }
+    ],
+    "firstSongChapterSourceComparisons": [
+      {
+        "id": "I",
+        "title": "Chapter 1: The First Song of Resonance",
+        "jsonPointer": "/firstSongSections/0/body",
+        "normalizedCharacters": 15210,
+        "normalizedSha256": "86d3aed0e7bdec4debaa84a54c2b4640fa2796e2e032e9a51015da5b4c8ab130",
+        "matchesContiguousOriginalDocxTextAfterWhitespaceNormalization": true,
+        "draftFlag": false,
+        "draftNote": null
+      },
+      {
+        "id": "II",
+        "title": "Chapter II: The Spiral and the Seal",
+        "jsonPointer": "/firstSongSections/1/body",
+        "normalizedCharacters": 20927,
+        "normalizedSha256": "ebee29820f028840bd7088e8491125fb865c939bd85c092b0dad025020f3d663",
+        "matchesContiguousOriginalDocxTextAfterWhitespaceNormalization": true,
+        "draftFlag": false,
+        "draftNote": null
+      },
+      {
+        "id": "III",
+        "title": "Chapter III: The Binding of the Pact",
+        "jsonPointer": "/firstSongSections/2/body",
+        "normalizedCharacters": 19987,
+        "normalizedSha256": "73898de58c39da3defaf234db25793b927f3dca0a1f37d8230c271672f16d8f7",
+        "matchesContiguousOriginalDocxTextAfterWhitespaceNormalization": true,
+        "draftFlag": false,
+        "draftNote": null
+      },
+      {
+        "id": "IV",
+        "title": "Chapter IV: The Planes Ascendant",
+        "jsonPointer": "/firstSongSections/3/body",
+        "normalizedCharacters": 15994,
+        "normalizedSha256": "87d900451c091032dae2accf44cc6de5507df99c119fd8752dab0231d189e045",
+        "matchesContiguousOriginalDocxTextAfterWhitespaceNormalization": true,
+        "draftFlag": false,
+        "draftNote": null
+      },
+      {
+        "id": "V",
+        "title": "Chapter V: The Shadow of the Fall",
+        "jsonPointer": "/firstSongSections/4/body",
+        "normalizedCharacters": 29990,
+        "normalizedSha256": "a501a577c98aa26e4e2408fa30177c9b3ad57b2780bbacf7e5663ae78827f2f2",
+        "matchesContiguousOriginalDocxTextAfterWhitespaceNormalization": true,
+        "draftFlag": false,
+        "draftNote": null
+      },
+      {
+        "id": "VI",
+        "title": "Chapter VI: The Gods’ Awakening",
+        "jsonPointer": "/firstSongSections/5/body",
+        "normalizedCharacters": 27460,
+        "normalizedSha256": "7334aca99c2ea120aa145262a62107a37a452d94f66ed4f890c79461ea27056b",
+        "matchesContiguousOriginalDocxTextAfterWhitespaceNormalization": true,
+        "draftFlag": false,
+        "draftNote": null
+      },
+      {
+        "id": "VII",
+        "title": "Chapter VII: The Weave’s Refraction",
+        "jsonPointer": "/firstSongSections/6/body",
+        "normalizedCharacters": 30864,
+        "normalizedSha256": "1bea942c8041a7e9a549ad0c03dce1ea43de9e5e28e78cd3b45c6af93a949ba1",
+        "matchesContiguousOriginalDocxTextAfterWhitespaceNormalization": true,
+        "draftFlag": false,
+        "draftNote": null
+      },
+      {
+        "id": "VIII",
+        "title": "Chapter VIII: The Sentience of the Pact",
+        "jsonPointer": "/firstSongSections/7/body",
+        "normalizedCharacters": 36961,
+        "normalizedSha256": "bd00384e63d074f36b8fb367ff0aa4143d1a5f3d10f07d65761fd022b32cd59a",
+        "matchesContiguousOriginalDocxTextAfterWhitespaceNormalization": true,
+        "draftFlag": false,
+        "draftNote": null
+      },
+      {
+        "id": "IX",
+        "title": "Chapter IX: The Refraction of the Source",
+        "jsonPointer": "/firstSongSections/8/body",
+        "normalizedCharacters": 21264,
+        "normalizedSha256": "6bd077af13e22078122a3a78b0978a3c2bb613af70b2581b4119cf2ee9971840",
+        "matchesContiguousOriginalDocxTextAfterWhitespaceNormalization": true,
+        "draftFlag": true,
+        "draftNote": "Split from The_Cosmology_of_Decennium_Descent_EXTRACT.txt; author review pending."
+      },
+      {
+        "id": "X",
+        "title": "Chapter Ten The Mortal Crucible",
+        "jsonPointer": "/firstSongSections/9/body",
+        "normalizedCharacters": 27034,
+        "normalizedSha256": "4bc229041d520abdbcb2f049a2aa51b9f09e637e5e72e94c1014b3bf069f47ed",
+        "matchesContiguousOriginalDocxTextAfterWhitespaceNormalization": true,
+        "draftFlag": true,
+        "draftNote": "Split from The_Cosmology_of_Decennium_Descent_EXTRACT.txt; author review pending."
+      },
+      {
+        "id": "XI",
+        "title": "Chapter Eleven The Matrix of Oblivion",
+        "jsonPointer": "/firstSongSections/10/body",
+        "normalizedCharacters": 20719,
+        "normalizedSha256": "556369b51ee5f0bf9366567cf9d51b6d7bc8c1cb32c232895fdd063f3e409ea1",
+        "matchesContiguousOriginalDocxTextAfterWhitespaceNormalization": true,
+        "draftFlag": true,
+        "draftNote": "Split from The_Cosmology_of_Decennium_Descent_EXTRACT.txt; author review pending."
+      },
+      {
+        "id": "XII",
+        "title": "Chapter XII",
+        "jsonPointer": "/firstSongSections/11/body",
+        "normalizedCharacters": 14604,
+        "normalizedSha256": "c8fece9a22705b4f436e33a02699409b1e43befaa135f407cb92c7533f0eeb00",
+        "matchesContiguousOriginalDocxTextAfterWhitespaceNormalization": true,
+        "draftFlag": true,
+        "draftNote": "Split from The_Cosmology_of_Decennium_Descent_EXTRACT.txt; author review pending."
+      }
+    ],
+    "worldPrimer": {
+      "id": "I-VI",
+      "title": "I–VI. World primer (extract gap)",
+      "draft": true,
+      "draftNote": "The_World_of_Aethel_Lore_EXTRACT.txt line 2: '[...Existing Sections I–VI remain unchanged...]' — section bodies not in companion extract; re-ingest from rulebook docx.",
+      "bullets": [
+        "The World of Aethel: A Divine Game of Power — sections I–VI exist in the rulebook source but were omitted from the overnight extract.",
+        "Use sections VII–XV (below) for structured lore until re-ingest lands; Dungeon Guide / Encounters for tier play."
+      ],
+      "subsections": []
+    },
+    "worldPrimerQualification": "Website preserves the I-VI extract-gap placeholder; its claim that missing bodies exist in a rulebook is not independent recovery evidence. No missing original chapter is recovered by that statement.",
+    "sourceMetadata": "The Cosmology of Decennium Descent.docx + The World of Aethel Lore.docx (player rulebook canon)"
+  },
+  "gitBackup": {
+    "commit": "18c6e3ae8b3c1d391dd91121693931657ae9c98f",
+    "threeWebsiteFilesMatchCommittedBlobBytes": [
+      {
+        "path": "webpage.html",
+        "bytes": 7315,
+        "sha256": "3f4e6b5816ef9e98e3a2470a495013970c925d1f88eea205352141c76842c3dd"
+      },
+      {
+        "path": "src/components/CosmologyViewer.tsx",
+        "bytes": 19323,
+        "sha256": "f0e873d27414dc18687a2090187b90e05c1238de5145140cc3870e9b8a37a4b6"
+      },
+      {
+        "path": "src/data/cosmology-lore.json",
+        "bytes": 303272,
+        "sha256": "1cb25a15c5f5adda5683b84ab303967f4d1472037ccacfe95ad29e5d4e5ab7c7"
+      }
+    ]
+  },
+  "sourceAuthority": "Retain website text and diagram claims as source evidence; exact later owner decisions and registered authority still control. A website layout is not by itself new owner confirmation.",
+  "readingScope": "Standalone HTML and complete CosmologyViewer source; seven plane summaries and World I-VI entry; all twelve FirstSong section bodies compared programmatically to original DOCX after whitespace normalization. This is not a fresh semantic read of every website chapter or runtime/UI certification.",
+  "nextAction": "Include the standalone HTML, viewer, data and this comparison in the planes conference before further cosmology adoption.",
+  "originalSourcesModified": false,
+  "sourceInformationDeleted": 0,
+  "browserRenderingTested": false,
+  "newRulesAdopted": false
+}

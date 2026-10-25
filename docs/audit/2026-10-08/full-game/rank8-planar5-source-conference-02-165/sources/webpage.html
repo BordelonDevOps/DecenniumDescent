@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Decennium Descent: Interactive Cosmology</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #000;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    canvas {
+      display: block;
+    }
+    #tooltip {
+      position: absolute;
+      color: white;
+      background: rgba(0,0,0,0.7);
+      padding: 8px 12px;
+      border-radius: 6px;
+      pointer-events: none;
+      z-index: 1000;
+      display: none;
+      border: 2px solid transparent;
+    }
+    #tooltip.celestial {
+      border-color: gold;
+      box-shadow: 0 0 10px gold;
+    }
+    #tooltip.celestial::before {
+      content: '\266B '; /* Unicode musical note */
+      color: gold;
+      font-size: 16px;
+      margin-right: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div id="tooltip"></div>
+  <canvas id="cosmosCanvas"></canvas>
+
+  <script type="module">
+    import * as THREE from 'https://unpkg.com/three@0.150.0/build/three.module.js';
+    import { OrbitControls } from 'https://unpkg.com/three@0.150.0/examples/jsm/controls/OrbitControls.js';
+
+    const canvas = document.getElementById('cosmosCanvas');
+    const tooltip = document.getElementById('tooltip');
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 2000);
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.position.z = 100;
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+
+    const ambient = new THREE.AmbientLight(0xffffff, 1.4);
+    scene.add(ambient);
+
+    const raycaster = new THREE.Raycaster();
+    const mouse = new THREE.Vector2();
+
+    const resonanceRingGeometry = new THREE.RingGeometry(6, 6.5, 64);
+    const resonanceRingMaterial = new THREE.MeshBasicMaterial({ color: 0xffff99, side: THREE.DoubleSide, transparent: true, opacity: 0.4 });
+    const resonanceRing = new THREE.Mesh(resonanceRingGeometry, resonanceRingMaterial);
+    resonanceRing.rotation.x = Math.PI / 2;
+    resonanceRing.position.set(0, 90, 0);
+    scene.add(resonanceRing);
+
+    const glyphRing = new THREE.RingGeometry(7.5, 8, 64);
+    const glyphMat = new THREE.MeshBasicMaterial({ color: 0x33ccff, side: THREE.DoubleSide, transparent: true, opacity: 0.4 });
+    const glyph = new THREE.Mesh(glyphRing, glyphMat);
+    glyph.rotation.x = Math.PI / 2;
+    glyph.position.set(0, 90, 0);
+    scene.add(glyph);
+
+    const calanthirCore = new THREE.Mesh(
+      new THREE.SphereGeometry(3, 32, 32),
+      new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: 0xffffaa, emissiveIntensity: 1 })
+    );
+    calanthirCore.name = "Calan'thir";
+    calanthirCore.position.set(0, 90, 0);
+    calanthirCore.userData.name = "Calan'thir – Axis of the Celestial Spiral";
+    calanthirCore.userData.description = "Supreme resonance of divine harmony. All things orbit its Will.";
+    calanthirCore.userData.isCelestial = true;
+    scene.add(calanthirCore);
+
+    const particleCount = 300;
+    const particleGeometry = new THREE.BufferGeometry();
+    const positions = new Float32Array(particleCount * 3);
+    for (let i = 0; i < particleCount * 3; i++) {
+      positions[i] = (Math.random() - 0.5) * 25;
+    }
+    particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+    const particleMaterial = new THREE.PointsMaterial({
+      color: 0xfff9cc,
+      size: 0.8,
+      transparent: true,
+      opacity: 0.7
+    });
+
+    const particles = new THREE.Points(particleGeometry, particleMaterial);
+    particles.name = 'calanthirParticles';
+    particles.position.set(0, 90, 0);
+    scene.add(particles);
+
+    const orbitGroup = new THREE.Group();
+    scene.add(orbitGroup);
+
+    const orbitalPlanes = [
+      { radius: 14, color: 0xff6666, label: 'Infernal Spiral' },
+      { radius: 18, color: 0x66ccff, label: 'Elemental Ring' },
+      { radius: 22, color: 0xcc99ff, label: 'Primordial Mandala' },
+      { radius: 26, color: 0x99ff99, label: 'Celestial Arc' }
+    ];
+
+    orbitalPlanes.forEach((plane, idx) => {
+      const ringGeo = new THREE.RingGeometry(plane.radius - 0.1, plane.radius + 0.1, 128);
+      const ringMat = new THREE.MeshBasicMaterial({ color: plane.color, side: THREE.DoubleSide, transparent: true, opacity: 0.2 });
+      const ring = new THREE.Mesh(ringGeo, ringMat);
+      ring.rotation.x = Math.PI / 2;
+      orbitGroup.add(ring);
+
+      const orbGeo = new THREE.SphereGeometry(0.8, 16, 16);
+      const orbMat = new THREE.MeshStandardMaterial({ color: plane.color });
+      const orb = new THREE.Mesh(orbGeo, orbMat);
+      orb.userData.angle = Math.random() * Math.PI * 2;
+      orb.userData.radius = plane.radius;
+      orb.userData.speed = 0.001 + idx * 0.0003;
+      orb.userData.name = plane.label;
+      orb.userData.description = `Outer shell of the ${plane.label}, guarding divine transitions.`;
+      orb.userData.isCelestial = idx === 3;
+      orbitGroup.add(orb);
+    });
+
+    function animate() {
+      requestAnimationFrame(animate);
+      scene.traverse(obj => {
+        if (obj.isMesh && obj.geometry.type === 'SphereGeometry') {
+          obj.rotation.y += 0.002;
+          if (obj.userData.name && obj.userData.name.includes("Calan'thir")) {
+            obj.scale.setScalar(1 + Math.sin(Date.now() * 0.002) * 0.05);
+          }
+        }
+      });
+      particles.rotation.y += 0.001;
+      particles.material.opacity = 0.6 + 0.2 * Math.sin(Date.now() * 0.0015);
+      resonanceRing.material.opacity = 0.3 + 0.2 * Math.sin(Date.now() * 0.002);
+      glyph.rotation.z += 0.002;
+      orbitGroup.children.forEach(obj => {
+        if (obj.geometry && obj.geometry.type === 'SphereGeometry' && obj.userData.radius) {
+          obj.userData.angle += obj.userData.speed;
+          obj.position.x = Math.cos(obj.userData.angle) * obj.userData.radius;
+          obj.position.z = Math.sin(obj.userData.angle) * obj.userData.radius;
+        }
+      });
+      controls.update();
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    window.addEventListener('mousemove', (event) => {
+      mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+      mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+      raycaster.setFromCamera(mouse, camera);
+      const intersects = raycaster.intersectObjects(scene.children, true);
+      if (intersects.length > 0) {
+        const { name, description, isCelestial } = intersects[0].object.userData;
+        tooltip.style.display = 'block';
+        tooltip.innerHTML = `<strong>${name}</strong><br>${description}`;
+        tooltip.style.left = `${event.clientX + 10}px`;
+        tooltip.style.top = `${event.clientY + 10}px`;
+        tooltip.classList.toggle('celestial', !!isCelestial);
+      } else {
+        tooltip.style.display = 'none';
+        tooltip.classList.remove('celestial');
+      }
+    });
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+  </script>
+</body>
+</html>
