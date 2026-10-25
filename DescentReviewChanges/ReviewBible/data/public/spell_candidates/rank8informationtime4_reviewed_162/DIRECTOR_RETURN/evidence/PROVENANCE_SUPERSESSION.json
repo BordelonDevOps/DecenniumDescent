@@ -1,0 +1,80 @@
+{
+  "currentPacket": "Conference03",
+  "packet02Superseded": true,
+  "originalCorrectionUnchanged": {
+    "id": "INFORMATION-TIME4-PACKET02-PROVENANCE-CORRECTION",
+    "supersededArchive": {
+      "path": "DD_Rank8_Information_Time_4_Source_Conference_02.zip",
+      "bytes": 20241174,
+      "sha256": "c25ab55f2eeaf802ea400bd5ae432187e56b7abe1f38768f3403be266f27a178"
+    },
+    "reason": "Packet02's CURRENT_AUTHORITY_UPDATE.previousConference contained five sidecar paths whose byte/hash bindings did not resolve to exact members of the delivered nested historical packet archive.",
+    "correction": "Packet03 removes those five sidecar references from the controlling candidate and binds the original conference archive plus its exact archived CANDIDATE.json, SOURCE_CHECK.json, MANIFEST.json, and README.md members.",
+    "currentAuthorityUnchanged": {
+      "reviewedApplied": 726,
+      "pending": 122,
+      "acceptedUnapplied": 0,
+      "completeReviewedStandaloneProcedures": 450,
+      "scopedInterfaces": 173
+    },
+    "requestedIdsUnchanged": [
+      "alignment-revelation-mass",
+      "moment-of-prescience",
+      "telepathy",
+      "time-echo"
+    ]
+  },
+  "nestedMemberVerification": [
+    {
+      "path": "BASE_PACKET/CANDIDATE.json",
+      "bytes": 402144,
+      "sha256": "d3dfa8d75598efebbc4233c2b5f69d01b03c804b54451090aad17d87dc97d7c2",
+      "nestedMemberByteExact": true
+    },
+    {
+      "path": "BASE_PACKET/SOURCE_CHECK.json",
+      "bytes": 23299,
+      "sha256": "bbe58901a25589382854b6dc8a79dedab0a96dce3b1edf9aa0620053e9c60251",
+      "nestedMemberByteExact": true
+    },
+    {
+      "path": "BASE_PACKET/MANIFEST.json",
+      "bytes": 30877,
+      "sha256": "ae4ac6d3b1c2c0eebd7b1d4a58f611fb5575a4e547523e9ed5f5d068e78f865a",
+      "nestedMemberByteExact": true
+    },
+    {
+      "path": "BASE_PACKET/README.md",
+      "bytes": 338,
+      "sha256": "119346d4e435b6050cd26bbf0672bd1a8353fd80fe86d80715bb2bd1c1ab6116",
+      "nestedMemberByteExact": true
+    }
+  ],
+  "preservedDraftHashes": [
+    {
+      "file": "alignment-revelation-mass.json",
+      "bytes": 11439,
+      "sha256": "2f3a09fee81e07e569d14c3d1f1861282b9af99d606f892dd23a7545b158c396",
+      "role": "preserved pre-supersession draft; not an accepted deliverable"
+    },
+    {
+      "file": "moment-of-prescience.json",
+      "bytes": 12141,
+      "sha256": "19cb1684d6f65a0542c8a788fc8fef500b2e703a0c4407017b79fbb11653032b",
+      "role": "preserved pre-supersession draft; not an accepted deliverable"
+    },
+    {
+      "file": "telepathy.json",
+      "bytes": 11884,
+      "sha256": "ed0a6e0e70cbb0c396d2a726fa7e78810251f67e0f789fb16385e15c03717466",
+      "role": "preserved pre-supersession draft; not an accepted deliverable"
+    },
+    {
+      "file": "time-echo.json",
+      "bytes": 16979,
+      "sha256": "bde5165d118ceae8a056c42fe1212ea86de95a2aadb922d9dac820e4d72f8fe4",
+      "role": "preserved pre-supersession draft; not an accepted deliverable"
+    }
+  ],
+  "currentBindingBlockers": []
+}

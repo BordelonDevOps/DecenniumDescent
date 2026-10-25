@@ -1,0 +1,1 @@
+Four exact rank8 information/time sources, four placements and17 unselected questions. Mass Alignment Revelation and Moment of Prescience individually tierB; Telepathy and Time Echo tierC. Actual reviewed comparisons and separate proposed Ready corrections are supplied in full. No new rule, case, runtime, balance or cosmology adoption.

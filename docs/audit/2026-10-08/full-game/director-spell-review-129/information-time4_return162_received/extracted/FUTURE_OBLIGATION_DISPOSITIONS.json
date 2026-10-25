@@ -1,0 +1,734 @@
+[
+  {
+    "id": "IT162-F01",
+    "originalObligationUnchanged": "At least two complete deterministic cases per spell after decisions, including actual acquired access/costs, world and observer state, chosen RNG, exact clocks and final records.",
+    "procedureIds": [
+      "alignment-revelation-mass",
+      "moment-of-prescience",
+      "telepathy",
+      "time-echo"
+    ],
+    "caseIds": [
+      "IT162-ALIGNMENT-REVELATION-MASS-A",
+      "IT162-ALIGNMENT-REVELATION-MASS-B",
+      "IT162-MOMENT-OF-PRESCIENCE-A",
+      "IT162-MOMENT-OF-PRESCIENCE-B",
+      "IT162-TELEPATHY-A",
+      "IT162-TELEPATHY-B",
+      "IT162-TIME-ECHO-A",
+      "IT162-TIME-ECHO-B",
+      "IT162-ALIGNMENT-REVELATION-MASS-insufficient-rp",
+      "IT162-ALIGNMENT-REVELATION-MASS-unacquired-other-route",
+      "IT162-MOMENT-OF-PRESCIENCE-insufficient-rp",
+      "IT162-MOMENT-OF-PRESCIENCE-unacquired-other-route",
+      "IT162-TELEPATHY-insufficient-rp",
+      "IT162-TELEPATHY-unacquired-other-route",
+      "IT162-TIME-ECHO-insufficient-rp",
+      "IT162-TIME-ECHO-unacquired-other-route",
+      "IT162-ALIGNMENT-REVELATION-MASS-tangent-excluded",
+      "IT162-ALIGNMENT-REVELATION-MASS-closed-ward-detail",
+      "IT162-ALIGNMENT-REVELATION-MASS-missing-effective-axis",
+      "IT162-MOMENT-OF-PRESCIENCE-advantage-one-roll",
+      "IT162-MOMENT-OF-PRESCIENCE-disadvantage-one-roll",
+      "IT162-MOMENT-OF-PRESCIENCE-normal-one-roll",
+      "IT162-MOMENT-OF-PRESCIENCE-expired-use",
+      "IT162-MOMENT-OF-PRESCIENCE-same-name-replacement",
+      "IT162-MOMENT-OF-PRESCIENCE-non-d20-not-eligible",
+      "IT162-MOMENT-OF-PRESCIENCE-suppressed-pending",
+      "IT162-MOMENT-OF-PRESCIENCE-competing-flat-or-die",
+      "IT162-MOMENT-OF-PRESCIENCE-unsupported-policy-rewrite",
+      "IT162-MOMENT-OF-PRESCIENCE-death-save-2",
+      "IT162-MOMENT-OF-PRESCIENCE-death-save-1",
+      "IT162-MOMENT-OF-PRESCIENCE-death-save-20",
+      "IT162-TELEPATHY-opaque-path-suspension",
+      "IT162-TELEPATHY-plane-transition",
+      "IT162-TELEPATHY-suppression",
+      "IT162-TELEPATHY-simple-or-absent-mind",
+      "IT162-TELEPATHY-closed-mind-blank",
+      "IT162-TELEPATHY-extraordinary-bandwidth",
+      "IT162-TELEPATHY-unconscious-recipient",
+      "IT162-TELEPATHY-recipient-death",
+      "IT162-TIME-ECHO-child-funding-failure",
+      "IT162-TIME-ECHO-outer-countered",
+      "IT162-TIME-ECHO-ready-history-frozen",
+      "IT162-ALIGNMENT-REVELATION-MASS-ready-expired",
+      "IT162-MOMENT-OF-PRESCIENCE-ready-expired",
+      "IT162-TELEPATHY-ready-expired",
+      "IT162-TIME-ECHO-missing-full-history",
+      "IT162-TIME-ECHO-copy-descendant-adapter",
+      "IT162-TIME-ECHO-companion-command-limit",
+      "IT162-TIME-ECHO-qualified-suppression",
+      "IT162-TIME-ECHO-current-null-root",
+      "IT162-TIME-ECHO-lost-access-or-component",
+      "IT162-MOMENT-OF-PRESCIENCE-countered-replacement",
+      "IT162-TIME-ECHO-saved-committed-stage",
+      "IT162-TIME-ECHO-caster-death-after-grant",
+      "IT162-TIME-ECHO-actual-echo-lineage-excluded",
+      "IT162-TIME-ECHO-ready-child-adapter"
+    ],
+    "status": "static coverage with explicit whole-dependent-branch holds; no claim held branches executed",
+    "wholeBranchHoldLinks": [
+      {
+        "caseId": "IT162-ALIGNMENT-REVELATION-MASS-unacquired-other-route",
+        "holdIds": [
+          "IT162-H01"
+        ]
+      },
+      {
+        "caseId": "IT162-MOMENT-OF-PRESCIENCE-unacquired-other-route",
+        "holdIds": [
+          "IT162-H01"
+        ]
+      },
+      {
+        "caseId": "IT162-TELEPATHY-unacquired-other-route",
+        "holdIds": [
+          "IT162-H01"
+        ]
+      },
+      {
+        "caseId": "IT162-TIME-ECHO-unacquired-other-route",
+        "holdIds": [
+          "IT162-H01"
+        ]
+      },
+      {
+        "caseId": "IT162-ALIGNMENT-REVELATION-MASS-closed-ward-detail",
+        "holdIds": [
+          "IT162-H02",
+          "IT162-H09"
+        ]
+      },
+      {
+        "caseId": "IT162-ALIGNMENT-REVELATION-MASS-missing-effective-axis",
+        "holdIds": [
+          "IT162-H03",
+          "IT162-H13"
+        ]
+      },
+      {
+        "caseId": "IT162-MOMENT-OF-PRESCIENCE-suppressed-pending",
+        "holdIds": [
+          "IT162-H09"
+        ]
+      },
+      {
+        "caseId": "IT162-MOMENT-OF-PRESCIENCE-competing-flat-or-die",
+        "holdIds": [
+          "IT162-H01",
+          "IT162-H07"
+        ]
+      },
+      {
+        "caseId": "IT162-MOMENT-OF-PRESCIENCE-unsupported-policy-rewrite",
+        "holdIds": [
+          "IT162-H03",
+          "IT162-H10"
+        ]
+      },
+      {
+        "caseId": "IT162-TELEPATHY-plane-transition",
+        "holdIds": [
+          "IT162-H04",
+          "IT162-H13"
+        ]
+      },
+      {
+        "caseId": "IT162-TELEPATHY-suppression",
+        "holdIds": [
+          "IT162-H09"
+        ]
+      },
+      {
+        "caseId": "IT162-TELEPATHY-simple-or-absent-mind",
+        "holdIds": [
+          "IT162-H03",
+          "IT162-H04",
+          "IT162-H13"
+        ]
+      },
+      {
+        "caseId": "IT162-TELEPATHY-closed-mind-blank",
+        "holdIds": [
+          "IT162-H02",
+          "IT162-H09"
+        ]
+      },
+      {
+        "caseId": "IT162-TELEPATHY-extraordinary-bandwidth",
+        "holdIds": [
+          "IT162-H03",
+          "IT162-H04"
+        ]
+      },
+      {
+        "caseId": "IT162-TIME-ECHO-missing-full-history",
+        "holdIds": [
+          "IT162-H05"
+        ]
+      },
+      {
+        "caseId": "IT162-TIME-ECHO-copy-descendant-adapter",
+        "holdIds": [
+          "IT162-H01",
+          "IT162-H05",
+          "IT162-H08"
+        ]
+      },
+      {
+        "caseId": "IT162-TIME-ECHO-companion-command-limit",
+        "holdIds": [
+          "IT162-H01",
+          "IT162-H04",
+          "IT162-H06"
+        ]
+      },
+      {
+        "caseId": "IT162-TIME-ECHO-qualified-suppression",
+        "holdIds": [
+          "IT162-H09"
+        ]
+      },
+      {
+        "caseId": "IT162-TIME-ECHO-current-null-root",
+        "holdIds": [
+          "IT162-H01",
+          "IT162-H07",
+          "IT162-H13"
+        ]
+      },
+      {
+        "caseId": "IT162-TIME-ECHO-lost-access-or-component",
+        "holdIds": [
+          "IT162-H01",
+          "IT162-H04"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "IT162-F02",
+    "originalObligationUnchanged": "Mass revelation: mixed actual alignments and individually protected/undefined axes, all-creature snapshot, hidden body with no location leak and publicly observable sigils.",
+    "procedureIds": [
+      "alignment-revelation-mass"
+    ],
+    "caseIds": [
+      "IT162-ALIGNMENT-REVELATION-MASS-A",
+      "IT162-ALIGNMENT-REVELATION-MASS-B",
+      "IT162-ALIGNMENT-REVELATION-MASS-insufficient-rp",
+      "IT162-ALIGNMENT-REVELATION-MASS-unacquired-other-route",
+      "IT162-ALIGNMENT-REVELATION-MASS-tangent-excluded",
+      "IT162-ALIGNMENT-REVELATION-MASS-closed-ward-detail",
+      "IT162-ALIGNMENT-REVELATION-MASS-missing-effective-axis",
+      "IT162-ALIGNMENT-REVELATION-MASS-ready-expired"
+    ],
+    "status": "static coverage with explicit whole-dependent-branch holds; no claim held branches executed",
+    "wholeBranchHoldLinks": [
+      {
+        "caseId": "IT162-ALIGNMENT-REVELATION-MASS-unacquired-other-route",
+        "holdIds": [
+          "IT162-H01"
+        ]
+      },
+      {
+        "caseId": "IT162-ALIGNMENT-REVELATION-MASS-closed-ward-detail",
+        "holdIds": [
+          "IT162-H02",
+          "IT162-H09"
+        ]
+      },
+      {
+        "caseId": "IT162-ALIGNMENT-REVELATION-MASS-missing-effective-axis",
+        "holdIds": [
+          "IT162-H03",
+          "IT162-H13"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "IT162-F03",
+    "originalObligationUnchanged": "Prescience: chosen eligible roll, advantage/disadvantage and real source reroll, natural results, full+10 once, expired/suppressed use and same-name stacking.",
+    "procedureIds": [
+      "moment-of-prescience"
+    ],
+    "caseIds": [
+      "IT162-MOMENT-OF-PRESCIENCE-A",
+      "IT162-MOMENT-OF-PRESCIENCE-B",
+      "IT162-MOMENT-OF-PRESCIENCE-insufficient-rp",
+      "IT162-MOMENT-OF-PRESCIENCE-unacquired-other-route",
+      "IT162-MOMENT-OF-PRESCIENCE-advantage-one-roll",
+      "IT162-MOMENT-OF-PRESCIENCE-disadvantage-one-roll",
+      "IT162-MOMENT-OF-PRESCIENCE-normal-one-roll",
+      "IT162-MOMENT-OF-PRESCIENCE-expired-use",
+      "IT162-MOMENT-OF-PRESCIENCE-same-name-replacement",
+      "IT162-MOMENT-OF-PRESCIENCE-non-d20-not-eligible",
+      "IT162-MOMENT-OF-PRESCIENCE-suppressed-pending",
+      "IT162-MOMENT-OF-PRESCIENCE-competing-flat-or-die",
+      "IT162-MOMENT-OF-PRESCIENCE-unsupported-policy-rewrite",
+      "IT162-MOMENT-OF-PRESCIENCE-death-save-2",
+      "IT162-MOMENT-OF-PRESCIENCE-death-save-1",
+      "IT162-MOMENT-OF-PRESCIENCE-death-save-20",
+      "IT162-MOMENT-OF-PRESCIENCE-ready-expired",
+      "IT162-MOMENT-OF-PRESCIENCE-countered-replacement"
+    ],
+    "status": "static coverage with explicit whole-dependent-branch holds; no claim held branches executed",
+    "wholeBranchHoldLinks": [
+      {
+        "caseId": "IT162-MOMENT-OF-PRESCIENCE-unacquired-other-route",
+        "holdIds": [
+          "IT162-H01"
+        ]
+      },
+      {
+        "caseId": "IT162-MOMENT-OF-PRESCIENCE-suppressed-pending",
+        "holdIds": [
+          "IT162-H09"
+        ]
+      },
+      {
+        "caseId": "IT162-MOMENT-OF-PRESCIENCE-competing-flat-or-die",
+        "holdIds": [
+          "IT162-H01",
+          "IT162-H07"
+        ]
+      },
+      {
+        "caseId": "IT162-MOMENT-OF-PRESCIENCE-unsupported-policy-rewrite",
+        "holdIds": [
+          "IT162-H03",
+          "IT162-H10"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "IT162-F04",
+    "originalObligationUnchanged": "Telepathy: willing and unwilling actual creatures with different languages/cognition, ignored replies, no mind reading, real range/cover/plane/suppression and ending.",
+    "procedureIds": [
+      "telepathy"
+    ],
+    "caseIds": [
+      "IT162-TELEPATHY-A",
+      "IT162-TELEPATHY-B",
+      "IT162-TELEPATHY-insufficient-rp",
+      "IT162-TELEPATHY-unacquired-other-route",
+      "IT162-TELEPATHY-opaque-path-suspension",
+      "IT162-TELEPATHY-plane-transition",
+      "IT162-TELEPATHY-suppression",
+      "IT162-TELEPATHY-simple-or-absent-mind",
+      "IT162-TELEPATHY-closed-mind-blank",
+      "IT162-TELEPATHY-extraordinary-bandwidth",
+      "IT162-TELEPATHY-unconscious-recipient",
+      "IT162-TELEPATHY-recipient-death",
+      "IT162-TELEPATHY-ready-expired"
+    ],
+    "status": "static coverage with explicit whole-dependent-branch holds; no claim held branches executed",
+    "wholeBranchHoldLinks": [
+      {
+        "caseId": "IT162-TELEPATHY-unacquired-other-route",
+        "holdIds": [
+          "IT162-H01"
+        ]
+      },
+      {
+        "caseId": "IT162-TELEPATHY-plane-transition",
+        "holdIds": [
+          "IT162-H04",
+          "IT162-H13"
+        ]
+      },
+      {
+        "caseId": "IT162-TELEPATHY-suppression",
+        "holdIds": [
+          "IT162-H09"
+        ]
+      },
+      {
+        "caseId": "IT162-TELEPATHY-simple-or-absent-mind",
+        "holdIds": [
+          "IT162-H03",
+          "IT162-H04",
+          "IT162-H13"
+        ]
+      },
+      {
+        "caseId": "IT162-TELEPATHY-closed-mind-blank",
+        "holdIds": [
+          "IT162-H02",
+          "IT162-H09"
+        ]
+      },
+      {
+        "caseId": "IT162-TELEPATHY-extraordinary-bandwidth",
+        "holdIds": [
+          "IT162-H03",
+          "IT162-H04"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "IT162-F05",
+    "originalObligationUnchanged": "Time Echo: complete last-round logs for both recipients with Actions/BA/Reaction/movement, one exceptional full replay sequence, real present resources/source routes, changed legal targets, concentration/strain and fresh outcomes.",
+    "procedureIds": [
+      "time-echo"
+    ],
+    "caseIds": [
+      "IT162-TIME-ECHO-A",
+      "IT162-TIME-ECHO-B",
+      "IT162-TIME-ECHO-insufficient-rp",
+      "IT162-TIME-ECHO-unacquired-other-route",
+      "IT162-TIME-ECHO-child-funding-failure",
+      "IT162-TIME-ECHO-outer-countered",
+      "IT162-TIME-ECHO-ready-history-frozen",
+      "IT162-TIME-ECHO-missing-full-history",
+      "IT162-TIME-ECHO-copy-descendant-adapter",
+      "IT162-TIME-ECHO-companion-command-limit",
+      "IT162-TIME-ECHO-qualified-suppression",
+      "IT162-TIME-ECHO-current-null-root",
+      "IT162-TIME-ECHO-lost-access-or-component",
+      "IT162-TIME-ECHO-saved-committed-stage",
+      "IT162-TIME-ECHO-caster-death-after-grant",
+      "IT162-TIME-ECHO-actual-echo-lineage-excluded",
+      "IT162-TIME-ECHO-ready-child-adapter"
+    ],
+    "status": "static coverage with explicit whole-dependent-branch holds; no claim held branches executed",
+    "wholeBranchHoldLinks": [
+      {
+        "caseId": "IT162-TIME-ECHO-unacquired-other-route",
+        "holdIds": [
+          "IT162-H01"
+        ]
+      },
+      {
+        "caseId": "IT162-TIME-ECHO-missing-full-history",
+        "holdIds": [
+          "IT162-H05"
+        ]
+      },
+      {
+        "caseId": "IT162-TIME-ECHO-copy-descendant-adapter",
+        "holdIds": [
+          "IT162-H01",
+          "IT162-H05",
+          "IT162-H08"
+        ]
+      },
+      {
+        "caseId": "IT162-TIME-ECHO-companion-command-limit",
+        "holdIds": [
+          "IT162-H01",
+          "IT162-H04",
+          "IT162-H06"
+        ]
+      },
+      {
+        "caseId": "IT162-TIME-ECHO-qualified-suppression",
+        "holdIds": [
+          "IT162-H09"
+        ]
+      },
+      {
+        "caseId": "IT162-TIME-ECHO-current-null-root",
+        "holdIds": [
+          "IT162-H01",
+          "IT162-H07",
+          "IT162-H13"
+        ]
+      },
+      {
+        "caseId": "IT162-TIME-ECHO-lost-access-or-component",
+        "holdIds": [
+          "IT162-H01",
+          "IT162-H04"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "IT162-F06",
+    "originalObligationUnchanged": "Time Echo: copied/action-grant ancestors rejected, existing source-wide limits conserved, unavailable source event consumes only its opportunity, real interruption/death and save/load no double replay.",
+    "procedureIds": [
+      "time-echo"
+    ],
+    "caseIds": [
+      "IT162-TIME-ECHO-A",
+      "IT162-TIME-ECHO-B",
+      "IT162-TIME-ECHO-insufficient-rp",
+      "IT162-TIME-ECHO-unacquired-other-route",
+      "IT162-TIME-ECHO-child-funding-failure",
+      "IT162-TIME-ECHO-outer-countered",
+      "IT162-TIME-ECHO-ready-history-frozen",
+      "IT162-TIME-ECHO-missing-full-history",
+      "IT162-TIME-ECHO-copy-descendant-adapter",
+      "IT162-TIME-ECHO-companion-command-limit",
+      "IT162-TIME-ECHO-qualified-suppression",
+      "IT162-TIME-ECHO-current-null-root",
+      "IT162-TIME-ECHO-lost-access-or-component",
+      "IT162-TIME-ECHO-saved-committed-stage",
+      "IT162-TIME-ECHO-caster-death-after-grant",
+      "IT162-TIME-ECHO-actual-echo-lineage-excluded",
+      "IT162-TIME-ECHO-ready-child-adapter"
+    ],
+    "status": "static coverage with explicit whole-dependent-branch holds; no claim held branches executed",
+    "wholeBranchHoldLinks": [
+      {
+        "caseId": "IT162-TIME-ECHO-unacquired-other-route",
+        "holdIds": [
+          "IT162-H01"
+        ]
+      },
+      {
+        "caseId": "IT162-TIME-ECHO-missing-full-history",
+        "holdIds": [
+          "IT162-H05"
+        ]
+      },
+      {
+        "caseId": "IT162-TIME-ECHO-copy-descendant-adapter",
+        "holdIds": [
+          "IT162-H01",
+          "IT162-H05",
+          "IT162-H08"
+        ]
+      },
+      {
+        "caseId": "IT162-TIME-ECHO-companion-command-limit",
+        "holdIds": [
+          "IT162-H01",
+          "IT162-H04",
+          "IT162-H06"
+        ]
+      },
+      {
+        "caseId": "IT162-TIME-ECHO-qualified-suppression",
+        "holdIds": [
+          "IT162-H09"
+        ]
+      },
+      {
+        "caseId": "IT162-TIME-ECHO-current-null-root",
+        "holdIds": [
+          "IT162-H01",
+          "IT162-H07",
+          "IT162-H13"
+        ]
+      },
+      {
+        "caseId": "IT162-TIME-ECHO-lost-access-or-component",
+        "holdIds": [
+          "IT162-H01",
+          "IT162-H04"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "IT162-F07",
+    "originalObligationUnchanged": "No runtime/balance success credit from incomplete actor history, undefined source adapters, fabricated profiles or isolated arithmetic.",
+    "procedureIds": [
+      "alignment-revelation-mass",
+      "moment-of-prescience",
+      "telepathy",
+      "time-echo"
+    ],
+    "caseIds": [
+      "IT162-ALIGNMENT-REVELATION-MASS-A",
+      "IT162-ALIGNMENT-REVELATION-MASS-B",
+      "IT162-MOMENT-OF-PRESCIENCE-A",
+      "IT162-MOMENT-OF-PRESCIENCE-B",
+      "IT162-TELEPATHY-A",
+      "IT162-TELEPATHY-B",
+      "IT162-TIME-ECHO-A",
+      "IT162-TIME-ECHO-B",
+      "IT162-ALIGNMENT-REVELATION-MASS-insufficient-rp",
+      "IT162-ALIGNMENT-REVELATION-MASS-unacquired-other-route",
+      "IT162-MOMENT-OF-PRESCIENCE-insufficient-rp",
+      "IT162-MOMENT-OF-PRESCIENCE-unacquired-other-route",
+      "IT162-TELEPATHY-insufficient-rp",
+      "IT162-TELEPATHY-unacquired-other-route",
+      "IT162-TIME-ECHO-insufficient-rp",
+      "IT162-TIME-ECHO-unacquired-other-route",
+      "IT162-ALIGNMENT-REVELATION-MASS-tangent-excluded",
+      "IT162-ALIGNMENT-REVELATION-MASS-closed-ward-detail",
+      "IT162-ALIGNMENT-REVELATION-MASS-missing-effective-axis",
+      "IT162-MOMENT-OF-PRESCIENCE-advantage-one-roll",
+      "IT162-MOMENT-OF-PRESCIENCE-disadvantage-one-roll",
+      "IT162-MOMENT-OF-PRESCIENCE-normal-one-roll",
+      "IT162-MOMENT-OF-PRESCIENCE-expired-use",
+      "IT162-MOMENT-OF-PRESCIENCE-same-name-replacement",
+      "IT162-MOMENT-OF-PRESCIENCE-non-d20-not-eligible",
+      "IT162-MOMENT-OF-PRESCIENCE-suppressed-pending",
+      "IT162-MOMENT-OF-PRESCIENCE-competing-flat-or-die",
+      "IT162-MOMENT-OF-PRESCIENCE-unsupported-policy-rewrite",
+      "IT162-MOMENT-OF-PRESCIENCE-death-save-2",
+      "IT162-MOMENT-OF-PRESCIENCE-death-save-1",
+      "IT162-MOMENT-OF-PRESCIENCE-death-save-20",
+      "IT162-TELEPATHY-opaque-path-suspension",
+      "IT162-TELEPATHY-plane-transition",
+      "IT162-TELEPATHY-suppression",
+      "IT162-TELEPATHY-simple-or-absent-mind",
+      "IT162-TELEPATHY-closed-mind-blank",
+      "IT162-TELEPATHY-extraordinary-bandwidth",
+      "IT162-TELEPATHY-unconscious-recipient",
+      "IT162-TELEPATHY-recipient-death",
+      "IT162-TIME-ECHO-child-funding-failure",
+      "IT162-TIME-ECHO-outer-countered",
+      "IT162-TIME-ECHO-ready-history-frozen",
+      "IT162-ALIGNMENT-REVELATION-MASS-ready-expired",
+      "IT162-MOMENT-OF-PRESCIENCE-ready-expired",
+      "IT162-TELEPATHY-ready-expired",
+      "IT162-TIME-ECHO-missing-full-history",
+      "IT162-TIME-ECHO-copy-descendant-adapter",
+      "IT162-TIME-ECHO-companion-command-limit",
+      "IT162-TIME-ECHO-qualified-suppression",
+      "IT162-TIME-ECHO-current-null-root",
+      "IT162-TIME-ECHO-lost-access-or-component",
+      "IT162-MOMENT-OF-PRESCIENCE-countered-replacement",
+      "IT162-TIME-ECHO-saved-committed-stage",
+      "IT162-TIME-ECHO-caster-death-after-grant",
+      "IT162-TIME-ECHO-actual-echo-lineage-excluded",
+      "IT162-TIME-ECHO-ready-child-adapter"
+    ],
+    "status": "static coverage with explicit whole-dependent-branch holds; no claim held branches executed",
+    "wholeBranchHoldLinks": [
+      {
+        "caseId": "IT162-ALIGNMENT-REVELATION-MASS-unacquired-other-route",
+        "holdIds": [
+          "IT162-H01"
+        ]
+      },
+      {
+        "caseId": "IT162-MOMENT-OF-PRESCIENCE-unacquired-other-route",
+        "holdIds": [
+          "IT162-H01"
+        ]
+      },
+      {
+        "caseId": "IT162-TELEPATHY-unacquired-other-route",
+        "holdIds": [
+          "IT162-H01"
+        ]
+      },
+      {
+        "caseId": "IT162-TIME-ECHO-unacquired-other-route",
+        "holdIds": [
+          "IT162-H01"
+        ]
+      },
+      {
+        "caseId": "IT162-ALIGNMENT-REVELATION-MASS-closed-ward-detail",
+        "holdIds": [
+          "IT162-H02",
+          "IT162-H09"
+        ]
+      },
+      {
+        "caseId": "IT162-ALIGNMENT-REVELATION-MASS-missing-effective-axis",
+        "holdIds": [
+          "IT162-H03",
+          "IT162-H13"
+        ]
+      },
+      {
+        "caseId": "IT162-MOMENT-OF-PRESCIENCE-suppressed-pending",
+        "holdIds": [
+          "IT162-H09"
+        ]
+      },
+      {
+        "caseId": "IT162-MOMENT-OF-PRESCIENCE-competing-flat-or-die",
+        "holdIds": [
+          "IT162-H01",
+          "IT162-H07"
+        ]
+      },
+      {
+        "caseId": "IT162-MOMENT-OF-PRESCIENCE-unsupported-policy-rewrite",
+        "holdIds": [
+          "IT162-H03",
+          "IT162-H10"
+        ]
+      },
+      {
+        "caseId": "IT162-TELEPATHY-plane-transition",
+        "holdIds": [
+          "IT162-H04",
+          "IT162-H13"
+        ]
+      },
+      {
+        "caseId": "IT162-TELEPATHY-suppression",
+        "holdIds": [
+          "IT162-H09"
+        ]
+      },
+      {
+        "caseId": "IT162-TELEPATHY-simple-or-absent-mind",
+        "holdIds": [
+          "IT162-H03",
+          "IT162-H04",
+          "IT162-H13"
+        ]
+      },
+      {
+        "caseId": "IT162-TELEPATHY-closed-mind-blank",
+        "holdIds": [
+          "IT162-H02",
+          "IT162-H09"
+        ]
+      },
+      {
+        "caseId": "IT162-TELEPATHY-extraordinary-bandwidth",
+        "holdIds": [
+          "IT162-H03",
+          "IT162-H04"
+        ]
+      },
+      {
+        "caseId": "IT162-TIME-ECHO-missing-full-history",
+        "holdIds": [
+          "IT162-H05"
+        ]
+      },
+      {
+        "caseId": "IT162-TIME-ECHO-copy-descendant-adapter",
+        "holdIds": [
+          "IT162-H01",
+          "IT162-H05",
+          "IT162-H08"
+        ]
+      },
+      {
+        "caseId": "IT162-TIME-ECHO-companion-command-limit",
+        "holdIds": [
+          "IT162-H01",
+          "IT162-H04",
+          "IT162-H06"
+        ]
+      },
+      {
+        "caseId": "IT162-TIME-ECHO-qualified-suppression",
+        "holdIds": [
+          "IT162-H09"
+        ]
+      },
+      {
+        "caseId": "IT162-TIME-ECHO-current-null-root",
+        "holdIds": [
+          "IT162-H01",
+          "IT162-H07",
+          "IT162-H13"
+        ]
+      },
+      {
+        "caseId": "IT162-TIME-ECHO-lost-access-or-component",
+        "holdIds": [
+          "IT162-H01",
+          "IT162-H04"
+        ]
+      }
+    ]
+  }
+]

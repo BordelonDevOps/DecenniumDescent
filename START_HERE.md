@@ -1,10 +1,10 @@
-# Active ordinary spell review161 — Calibration review part6
+# Active ordinary spell review164 — Calibration review part6
 
-Environment3 Return159 was GPT director accepted, independently verified, and applied to three exact identities: **726 reviewed / 122 pending / 0 accepted-unapplied**. The return passed 10,892 static checks; independent verification replayed 35 cases, 105 events, 420 forward/inverse operations and 12 isolated proposal operations. All 15 hold categories and 18 held dependent branches remain; runtime, human-play, balance, cosmology, domain closure and release approval remain separate.
+Information/Time4 Return162 was GPT director accepted, independently audited, and applied to exactly four identities: **730 reviewed / 118 pending / 0 accepted-unapplied**. The return passed 14,095 director checks and a local exact archive/source audit. Its 16 hold categories and 20 whole-dependent-case holds remain; runtime, human-play, balance, cosmology, domain closure and release approval remain separate.
 
-Continue with **rank8-information-time4**, preparing a fresh packet against 726/122 authority and submitting it to GPT for exact director review. Apply only exact accepted IDs, continuing until all pending ordinary spell identities are resolved. Preserve closed feat335 and completed spell cohorts.
+Continue with **rank8-planar5**, preparing a fresh packet against 730/118 authority. Apply only exact accepted IDs, continuing until all pending ordinary spell identities are resolved. Preserve closed feat335 and completed spell cohorts.
 
-Read [current handoff](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_161.json), [the 122-pending audit](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT122_PENDING_IDENTITY_AUDIT_161.json), [the application validation](docs/audit/2026-10-08/full-game/director-spell-review-129/ENVIRONMENT3_APPLICATION_VALIDATION_161.json), and [snapshot status](SNAPSHOT_STATUS_2026-10-25_SPELL_REVIEW_161.md).
+Read [current handoff](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_164.json), [the 118-pending audit](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT118_PENDING_IDENTITY_AUDIT_164.json), [the application validation](docs/audit/2026-10-08/full-game/director-spell-review-129/INFORMATION_TIME4_APPLICATION_VALIDATION_164.json).
 
 **Prior checkpoint: [148](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_148.json).**
 
