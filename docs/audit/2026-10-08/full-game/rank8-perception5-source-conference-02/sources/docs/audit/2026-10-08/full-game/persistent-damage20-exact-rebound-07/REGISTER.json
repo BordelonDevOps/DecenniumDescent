@@ -1,0 +1,65 @@
+{
+  "id": "PERSISTENT-DAMAGE20-EXACT07-REGISTER",
+  "status": "PENDING actual exact acceptance; no adoption",
+  "candidate": {
+    "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/persistent_damage_20_current_07.json",
+    "bytes": 1356172,
+    "sha256": "e57f216d03aa67a5ebe653b197d70527eb3aaf957a5be8568a4355c65b6dc56f"
+  },
+  "spellIds": [
+    "inferno-wave",
+    "freezing-rain",
+    "ice-storm",
+    "wall-of-fire",
+    "vitriolic-sphere",
+    "storm-sphere",
+    "flame-typhoon",
+    "immolation",
+    "arcane-mortar",
+    "sonic-collapse",
+    "leeching-plague",
+    "aura-of-dread",
+    "blood-fog",
+    "mass-decay",
+    "enervation",
+    "crystalline-growth",
+    "rift-spiral",
+    "synaptic-static",
+    "shadow-of-moil",
+    "greater-phantasmal-killer"
+  ],
+  "placementCount": 21,
+  "originalScenarios": 40,
+  "currentCases": 57,
+  "existingPriorCaseIds": 55,
+  "newConferenceCases": 2,
+  "actualConferenceReceipt": {
+    "path": "docs/audit/2026-10-08/full-game/PERSISTENT_DAMAGE_20_CONFERENCE_06_RECEIPT.json",
+    "bytes": 3749,
+    "sha256": "f096eb2b7b9ce1d0b3c3e65bc400a90c19f6a5937bc85b4d740556fa6f33bfee"
+  },
+  "actualReplayReceipt": {
+    "path": "docs/audit/2026-10-08/full-game/PERSISTENT_DAMAGE_20_CURRENT_07_REPLAY_CHECK.json",
+    "bytes": 14543,
+    "sha256": "5c053a29dd1eb0793081e9f48cd60219eed8fb8e771d62031fc6d0354e563609"
+  },
+  "localCorrectionsRequiringConcurrence": [
+    "P20-X05: actual Ranger Beast HP-only, immediate ordinary death and bond ending; no ordinary Wound or death save.",
+    "EV6-03-B: GPT suppressor overlapped the mortar. Ccenter[20,-11,3], fieldpoint[20,-2,2.5] are clear, within10ft, cover entire mortar and keep hostile caster6ft from it for the later ranged shot.",
+    "P20-C07-02: source-derived Warrior d12 HP105 is correct; add explicit12+3+9*(7+3) derivation without numeric change."
+  ],
+  "applicationPlan": {
+    "preconditions": "Actual GPT exact acceptance of all eight supplied files, then independent preservation/current-membership checks before any byte-identical copy.",
+    "canonicalByteCopies": {
+      "SPELLS_MODEL.json": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json",
+      "CASEBOOK.json": "DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/persistent_damage_20_cases_07.json",
+      "PLAYER_CHAPTER.md": "DescentReviewChanges/ReviewBible/docs/spells/candidates/PERSISTENT_DAMAGE_20_REVIEWED_07.md",
+      "DIRECTOR_REVIEW.md": "DescentReviewChanges/ReviewBible/docs/director-only/spells/PERSISTENT_DAMAGE_20_REVIEWED_07.md"
+    },
+    "membership": "Add only these20 still-pending identities after actual acceptance. Recompute from actual live index at application time: this frozen snapshot is480 reviewed/368 pending/204 standalone; applying only this cohort would be500/348/224. A separately accepted/applied cohort changes the real baseline and cannot be ignored. No blind hardcoded counter overwrite.",
+    "acceptedSources": "No source catalog, AC5/AC6/DE4 guide or unrelated procedure rewrite. Registry/discovery updates require their own explicit byte-preserving application evidence.",
+    "runtimeSelectionEnabled": false
+  },
+  "newRuleAdoptions": 0,
+  "sourceInformationDeleted": 0
+}
