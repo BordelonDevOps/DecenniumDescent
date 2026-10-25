@@ -1,0 +1,1 @@
+Fresh Rank8 Summon/Structure5 Conference02, bound to 713 reviewed / 135 pending. Five exact pending IDs, the original 20 unselected source choices, current queue/handoff/index/catalog, and complete bound source context are preserved. Conference01 remains explicitly historical at 525/323. No procedure or rule has been adopted.
