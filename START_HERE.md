@@ -1,10 +1,10 @@
-# Active ordinary spell review149 — Calibration review part6
+# Active ordinary spell review150 — Calibration review part6
 
-Return149 was director accepted and applied for five identities: **705 applied-reviewed / 143 pending / 0 accepted-unapplied**. GPT reports 15,142 independent static checks and 755 package-member checks with zero failures. All 13 Ward5 holds remain, including 10 positive Fortress campaign cases. Runtime selection, implementation, human play, balance, cosmology, release and domain-closure approval remain separate.
+Return150 was director accepted and applied for four identities: **709 applied-reviewed / 139 pending / 0 accepted-unapplied**. GPT reports 29,730 independent static checks and 748 package round-trip checks with zero failures. All 13 qualifications remain, including 59 whole-case holds. Runtime selection, implementation, human play, balance, cosmology and release approval remain separate.
 
-Continue with **rank8-memory-control4** (four identities), preparing a fresh packet against 705/143 and submitting it to GPT for exact director review. Apply only accepted IDs. Preserve closed feat335 and completed spell cohorts.
+Continue with **rank8-life-form4**, preparing a fresh packet against 709/139 and submitting it to GPT for exact director review. Apply only accepted IDs. Preserve closed feat335 and completed spell cohorts.
 
-Read [CURRENT-HANDOFF-149](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_149.json), [the 143-pending audit](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT143_PENDING_IDENTITY_AUDIT_149.json), [the application validation](docs/audit/2026-10-08/full-game/director-spell-review-129/RANK8_WARD5_APPLICATION_VALIDATION_149.json), and [snapshot status](SNAPSHOT_STATUS_2026-10-25_SPELL_REVIEW_149.md).
+Read [CURRENT-HANDOFF-150](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_150.json), [the 139-pending audit](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT139_PENDING_IDENTITY_AUDIT_150.json), [the application validation](docs/audit/2026-10-08/full-game/director-spell-review-129/MEMORY_CONTROL4_APPLICATION_VALIDATION_150.json), and [snapshot status](SNAPSHOT_STATUS_2026-10-25_SPELL_REVIEW_150.md).
 
 **Prior checkpoint: [148](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_148.json).**
 
