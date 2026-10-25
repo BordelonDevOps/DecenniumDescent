@@ -18,7 +18,7 @@ def sha(b):return hashlib.sha256(b).hexdigest()
 def main():
  prep=read(PREP); candidate=read(CANDIDATE); index=read(INDEX); catalog=read(CATALOG)
  pending=read(AUDIT/'CURRENT118_PENDING_IDENTITY_AUDIT_164.json')
- queue=read(AUDIT/'CURRENT_SPELL_QUEUE_165.json'); handoff=read(AUDIT/'CURRENT_HANDOFF_165.json')
+ queue=read(AUDIT/'CURRENT_SPELL_QUEUE_165.json'); handoff=read(AUDIT/'CURRENT_HANDOFF_165.json'); receipt=read(AUDIT/'PLANAR5_GPT_SUBMISSION_165.json')
  checks=[]
  def ck(name,ok):
   checks.append({'check':name,'passed':bool(ok)})
@@ -46,7 +46,8 @@ def main():
   ck('All 89 embedded current source files match their hashes',exact)
   ck('Conference01 is retained as byte-exact historical evidence',z.read('historical/Conference01_ARCHIVE.zip')==(FULL/'DD_Rank8_Planar_5_Source_Conference_01.zip').read_bytes())
   ck('Request and source check are included and passing',b'730 applied-reviewed / 118 pending' in z.read('REQUEST.txt') and json.loads(z.read('SOURCE_CHECK.json'))['failures']==0)
- ck('Queue and handoff state fresh packet prepared but unsent',queue['packetStatus']=='FRESH_PLANAR5_PACKET_PREPARED_UNSENT' and handoff['status']=='PLANAR5_FRESH_PACKET_PREPARED_UNSENT' and queue['currentAuthority']==handOffAuthority(handoff)==AUTH)
+ ck('Queue and handoff show submitted and awaiting director return',queue['packetStatus']=='SUBMITTED_AWAITING_DIRECTOR_RETURN' and handoff['status']=='PLANAR5_SUBMITTED_AWAITING_DIRECTOR_RETURN' and queue['currentAuthority']==handOffAuthority(handoff)==AUTH)
+ ck('Submission receipt binds exact ZIP, conversation, and requested IDs',receipt['attachment']['sha256']==prep['archive']['sha256'] and receipt['destination']['url'].endswith('6adc506d-8770-83ea-b64c-0345d9b9b682') and receipt['reviewIds']==IDS)
  ck('No rule, runtime, human-play, balance, cosmology or release approval claimed',candidate['newRuleAdoptions']==0 and candidate['runtimeTestsExecuted']==0 and candidate['humanPlaytests']==0 and candidate['wholeGameComplete'] is False)
  report={'id':'PLANAR5-PACKET-INDEPENDENT-VERIFICATION-165','recordedAtUtc':datetime.now(timezone.utc).isoformat(),'status':'PASS','checkCount':len(checks),'failures':0,'checks':checks,'candidate':prep['candidate'],'archive':prep['archive'],'currentAuthority':AUTH,'reviewIds':IDS}
  REPORT.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')

@@ -1,7 +1,7 @@
 {
   "id": "CURRENT-HANDOFF-165",
-  "recordedAtUtc": "2026-10-25T23:12:59.886842+00:00",
-  "status": "PLANAR5_FRESH_PACKET_PREPARED_UNSENT",
+  "recordedAtUtc": "2026-10-25T23:16:26.791749+00:00",
+  "status": "PLANAR5_SUBMITTED_AWAITING_DIRECTOR_RETURN",
   "currentAuthority": {
     "reviewedApplied": 730,
     "pending": 118,
@@ -44,70 +44,68 @@
     "conversationId": "6adc506d-8770-83ea-b64c-0345d9b9b682",
     "role": "source/procedure authoring director; each return remains proposed until independently audited and exact accepted IDs applied"
   },
-  "resumePriority": "Prepare and submit a fresh Rank8 Planar5 source packet bound to current 730/118 authority, submit it to the same GPT director, independently audit the exact return, apply only exact accepted IDs, and continue until pending reaches zero.",
+  "resumePriority": "Await the GPT director’s Rank8 Planar5 Conference02 return, independently audit the exact archive and accepted IDs, apply only the exact accepted subset after the return passes, push that batch, and continue until pending reaches zero.",
   "nextPreparedRequest": {
-    "candidate": {
-      "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/rank8_planar_5_source_conference_02.json",
-      "bytes": 1022674,
-      "sha256": "f15b3154077b601b665a908ddfd7418fff2822a3ead3a2a709da19985e02b7ae"
+    "status": "submitted-awaiting-director-return",
+    "conversation": "https://chatgpt.com/g/g-p-67f17555a8dc8191a2b5b81e6d8adc12-dungeon-crawler/c/6adc506d-8770-83ea-b64c-0345d9b9b682",
+    "receipt": {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/PLANAR5_GPT_SUBMISSION_165.json",
+      "bytes": 3291,
+      "sha256": "91f4339f73cb4d49236c2cbeaa0933c955570c34a938ef5c29469638ae5aaa30"
     },
     "archive": {
       "path": "docs/audit/2026-10-08/full-game/DD_Rank8_Planar_5_Source_Conference_02.zip",
       "bytes": 22486077,
       "sha256": "1c0ea7395a9cc04b81d26b5174dc5a178204bfecc3c77cc2321d469952ad3425"
     },
-    "check": {
-      "path": "docs/audit/2026-10-08/full-game/RANK8_PLANAR_5_SOURCE_CONFERENCE_02_CHECK.json",
-      "bytes": 1813,
-      "sha256": "c0257df48545f7d317e80c1f21d932f5bbdf368096a086521794248c513e0e54"
+    "candidate": {
+      "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/rank8_planar_5_source_conference_02.json",
+      "bytes": 1022674,
+      "sha256": "f15b3154077b601b665a908ddfd7418fff2822a3ead3a2a709da19985e02b7ae"
     },
-    "preparation": {
-      "path": "docs/audit/2026-10-08/full-game/RANK8_PLANAR_5_SOURCE_CONFERENCE_02_PREPARATION.json",
-      "bytes": 1191,
-      "sha256": "10b414bd3b6cab03587c96f243dd14da79509a8732583985f27f92462ad924f5"
-    },
-    "request": {
-      "path": "docs/audit/2026-10-08/full-game/RANK8_PLANAR_5_SOURCE_CONFERENCE_02_REQUEST.txt",
-      "bytes": 1047,
-      "sha256": "2fcfac903790a9780589afc673582a6657225412e9cd5788285f5088bfc96eb9"
-    },
-    "status": "prepared-unsent"
-  },
-  "currentQueueBinding": {
-    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_SPELL_QUEUE_165.json",
-    "bytes": 31433,
-    "sha256": "4eded93a2e9eed4d03da1e452a699278d54b5c5954444f7509e2837d98ba03a8"
-  },
-  "directorSubmission": {
-    "status": "prepared-unsent",
-    "group": "rank8-planar5",
     "reviewIds": [
       "demiplane",
       "maze",
       "planar-seal",
       "seal-of-banishment",
       "gloom-bind"
-    ],
-    "candidate": {
-      "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/rank8_planar_5_source_conference_02.json",
-      "bytes": 1022674,
-      "sha256": "f15b3154077b601b665a908ddfd7418fff2822a3ead3a2a709da19985e02b7ae"
+    ]
+  },
+  "currentQueueBinding": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_SPELL_QUEUE_165.json",
+    "bytes": 33461,
+    "sha256": "0f1a8101556f109fa4325f9dcaea4185e6d1dbdf20222a30856cbed136468980"
+  },
+  "directorSubmission": {
+    "status": "submitted-awaiting-director-return",
+    "conversation": "https://chatgpt.com/g/g-p-67f17555a8dc8191a2b5b81e6d8adc12-dungeon-crawler/c/6adc506d-8770-83ea-b64c-0345d9b9b682",
+    "receipt": {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/PLANAR5_GPT_SUBMISSION_165.json",
+      "bytes": 3291,
+      "sha256": "91f4339f73cb4d49236c2cbeaa0933c955570c34a938ef5c29469638ae5aaa30"
     },
     "archive": {
       "path": "docs/audit/2026-10-08/full-game/DD_Rank8_Planar_5_Source_Conference_02.zip",
       "bytes": 22486077,
       "sha256": "1c0ea7395a9cc04b81d26b5174dc5a178204bfecc3c77cc2321d469952ad3425"
     },
-    "request": {
-      "path": "docs/audit/2026-10-08/full-game/RANK8_PLANAR_5_SOURCE_CONFERENCE_02_REQUEST.txt",
-      "bytes": 1047,
-      "sha256": "2fcfac903790a9780589afc673582a6657225412e9cd5788285f5088bfc96eb9"
-    }
+    "candidate": {
+      "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/rank8_planar_5_source_conference_02.json",
+      "bytes": 1022674,
+      "sha256": "f15b3154077b601b665a908ddfd7418fff2822a3ead3a2a709da19985e02b7ae"
+    },
+    "reviewIds": [
+      "demiplane",
+      "maze",
+      "planar-seal",
+      "seal-of-banishment",
+      "gloom-bind"
+    ]
   },
   "parentHandoff": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_156.json",
   "currentSubmissionBinding": {
-    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/RANK8_INFORMATION_TIME4_SUBMISSION_163.json",
-    "bytes": 2135,
-    "sha256": "f0f7bf47f6440a622141f11ee442de783d4e8f3b65e437150f174307fa50e4db"
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/PLANAR5_GPT_SUBMISSION_165.json",
+    "bytes": 3291,
+    "sha256": "91f4339f73cb4d49236c2cbeaa0933c955570c34a938ef5c29469638ae5aaa30"
   }
 }
