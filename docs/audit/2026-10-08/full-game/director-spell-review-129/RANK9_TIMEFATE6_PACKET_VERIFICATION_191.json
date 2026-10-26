@@ -1,0 +1,66 @@
+{
+  "id": "RANK9-TIME-FATE6-CURRENT-SOURCE-PACKET-VERIFICATION-191",
+  "recordedAtUtc": "2026-10-26T18:30:50.835972+00:00",
+  "status": "PASS",
+  "checksPassed": 7,
+  "checksFailed": 0,
+  "packet": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_timefate6_current_source_191_prepared/DD_Rank9_TimeFate6_CurrentSource_191.zip",
+    "bytes": 77607141,
+    "sha256": "ca5d64511ea8283bac32f26a29b2c1546a6e805c9890390779d9983ad1b2591d"
+  },
+  "sourceCommit": "38fec0bbf19a4480098eb10ab0d992b055790ada",
+  "sourceAuthority": {
+    "reviewedApplied": 777,
+    "pending": 71,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 501,
+    "scopedInterfaces": 173
+  },
+  "pendingIds": [
+    "time-stop",
+    "time-fracture",
+    "foresight-perfect",
+    "fate-rewrite",
+    "collapse-timeline",
+    "eternal-prophecy"
+  ],
+  "sourceBindingsVerified": 140,
+  "checks": [
+    {
+      "check": "Separate delivery manifest binds the exact packet",
+      "passed": true,
+      "detail": "77607141 bytes; SHA-256 ca5d64511ea8283bac32f26a29b2c1546a6e805c9890390779d9983ad1b2591d"
+    },
+    {
+      "check": "Packet ZIP, safe-member list, SHA-256, and CRC manifest validate",
+      "passed": true,
+      "detail": "168 unique bound members plus MANIFEST.json"
+    },
+    {
+      "check": "Packet is bound to the exact pushed commit, authority, and queue group",
+      "passed": true,
+      "detail": "codex/ordinary-spell-review-complete@38fec0bbf19a4480098eb10ab0d992b055790ada; 777 reviewed / 71 pending / 0 accepted-unapplied"
+    },
+    {
+      "check": "All historical source bindings match their archived source conference",
+      "passed": true,
+      "detail": "140 historical source files verified"
+    },
+    {
+      "check": "All refreshed source bytes match Git objects at the declared commit",
+      "passed": true,
+      "detail": "140 current source files verified byte-for-byte"
+    },
+    {
+      "check": "Reconciled Return190 acceptance and application evidence are included",
+      "passed": true,
+      "detail": "Seven accepted procedures; two held blockers remain outside this group"
+    },
+    {
+      "check": "Review questions and required case scope are complete",
+      "passed": true,
+      "detail": "34 questions including 2 focused addenda; 12 required case specifications"
+    }
+  ]
+}
