@@ -1,0 +1,150 @@
+{
+  "id": "RANK9-STORMCONTROL6-APPLICATION-VALIDATION-179",
+  "recordedAtUtc": "2026-10-26T04:57:02.287464+00:00",
+  "status": "PASS",
+  "checksPassed": 16,
+  "checksFailed": 0,
+  "checks": [
+    {
+      "check": "Return177 independent audit passed with 25 checks and no failures",
+      "passed": true
+    },
+    {
+      "check": "Exactly six director-accepted identities changed from pending to reviewed",
+      "passed": true
+    },
+    {
+      "check": "All unaccepted index entries are semantically unchanged",
+      "passed": true
+    },
+    {
+      "check": "Index operations reverse semantically to the exact prior index",
+      "passed": true
+    },
+    {
+      "check": "Canonical authoredCounts uses the two-field schema; separate authority records acceptedUnapplied=0",
+      "passed": true
+    },
+    {
+      "check": "All six native source cards, access, source status, and catalog bytes remain unchanged",
+      "passed": true
+    },
+    {
+      "check": "All 93 current pending identities still exist in the native source catalog",
+      "passed": true
+    },
+    {
+      "check": "Next queue group is a fresh Rank9 Psychic Fear7 packet",
+      "passed": true
+    },
+    {
+      "check": "Runtime selection remains disabled and no closed cohort was reopened",
+      "passed": true
+    },
+    {
+      "check": "Retained source/access, extra-turn, physical/lifecycle, and unobserved-die holds remain",
+      "passed": true
+    },
+    {
+      "check": "Candidate package binds the exact full return and accepted delivery",
+      "passed": true
+    },
+    {
+      "check": "Deterministic casebook gzip is bound to the exact returned casebook member",
+      "passed": true
+    },
+    {
+      "check": "All candidate package manifest paths, byte lengths, and SHA-256 hashes pass",
+      "passed": true,
+      "files": 23
+    },
+    {
+      "check": "Candidate gzip casebook decompresses byte-exactly to the Return177 CASEBOOK.json member",
+      "passed": true,
+      "bytesVerified": 746616545
+    },
+    {
+      "check": "Canonical authoredCounts uses the two-field schema and authority separately records zero accepted-unapplied",
+      "passed": true
+    },
+    {
+      "check": "Pending audit, queue, and handoff bindings match corrected index and pending-set records",
+      "passed": true
+    }
+  ],
+  "beforeIndex": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/authored_review_index.before_stormcontrol6_179.json",
+    "bytes": 1301889,
+    "sha256": "d7157bb971283767404868ca6e3c662feb38b3d5e5c2a73fcd3980486ca65bdb"
+  },
+  "afterIndex": {
+    "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+    "bytes": 1333132,
+    "sha256": "2beff63c466c650744a3a707a8717a1f5fb3607d566d721dad8f16007ff29843"
+  },
+  "catalog": {
+    "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+    "bytes": 5085187,
+    "sha256": "773fb0b3b0fdb501858ded33c02d90dc4db3009bd1b9f7112c244d998218f05b"
+  },
+  "changedIdentityIds": [
+    "cosmic-implosion",
+    "frozen-eternity",
+    "hellstorm",
+    "storm-of-vengeance",
+    "thunder-wrath",
+    "storm-cage"
+  ],
+  "acceptedIds": [
+    "cosmic-implosion",
+    "frozen-eternity",
+    "hellstorm",
+    "storm-of-vengeance",
+    "thunder-wrath",
+    "storm-cage"
+  ],
+  "appliedIds": [
+    "cosmic-implosion",
+    "frozen-eternity",
+    "hellstorm",
+    "storm-of-vengeance",
+    "thunder-wrath",
+    "storm-cage"
+  ],
+  "authoredCounts": {
+    "reviewed": 755,
+    "pending": 93
+  },
+  "completeReviewedStandaloneProcedures": 479,
+  "sourceStatusStillBlocked": true,
+  "sourceCatalogUnchanged": true,
+  "runtimeSelectionEnabled": false,
+  "closed335AndCompletedCohortsReopened": false,
+  "inverseSemanticReplayExact": true,
+  "pendingIdentityAudit": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT93_PENDING_IDENTITY_AUDIT_179.json",
+    "bytes": 3067,
+    "sha256": "c039b24dd2648b988104e182e1d71affd2a6158477e0b3b16e3b4370ec45ffa7"
+  },
+  "nextGroup": "rank9-psychic-fear7",
+  "nextPendingCount": 7,
+  "authority": {
+    "reviewedApplied": 755,
+    "pending": 93,
+    "acceptedUnapplied": 0,
+    "completeReviewedStandaloneProcedures": 479,
+    "scopedInterfaces": 173
+  },
+  "postApplicationBindingCorrection": {
+    "reason": "Kept authoredCounts in the canonical index schema (reviewed/pending only); acceptedUnapplied is recorded in the separate authority object. All derived index, pending-audit, queue, handoff, and operation bindings were refreshed.",
+    "beforeAuthoredCounts": {
+      "reviewed": 755,
+      "pending": 93,
+      "acceptedUnapplied": 0
+    },
+    "afterAuthoredCounts": {
+      "reviewed": 755,
+      "pending": 93
+    }
+  }
+}
