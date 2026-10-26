@@ -1,0 +1,144 @@
+{
+  "id": "RANK9-TIMEFATE6-RETURN192-INDEPENDENT-AUDIT",
+  "recordedAtUtc": "2026-10-26T20:12:37.294441+00:00",
+  "status": "PASS",
+  "checksPassed": 18,
+  "checksFailed": 0,
+  "failures": [],
+  "returnArchive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_timefate6_return192_received/DD_Rank9_TimeFate6_Director_Return192.zip",
+    "bytes": 90939303,
+    "sha256": "358e40cd8f68a5115f57d6375f178440201aac1a969c2cdf717e20acf8aa461c"
+  },
+  "deliveryManifest": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_timefate6_return192_received/DD_Rank9_TimeFate6_Director_Return192_DELIVERY.json",
+    "bytes": 96144,
+    "sha256": "5bd475ba91406d890f145385fc3fadd0abb069fd3cac5b19640094070c80a238"
+  },
+  "sourceCommit": "38fec0bbf19a4480098eb10ab0d992b055790ada",
+  "publishedCommit": "430711c04d5a566ca523b1a8037a154c32184670",
+  "sourceAuthority": {
+    "reviewedApplied": 777,
+    "pending": 71,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 501,
+    "scopedInterfaces": 173
+  },
+  "acceptedIds": [
+    "time-fracture",
+    "foresight-perfect"
+  ],
+  "unacceptedIds": [
+    "time-stop",
+    "fate-rewrite",
+    "collapse-timeline",
+    "eternal-prophecy"
+  ],
+  "applied": false,
+  "replay": {
+    "acceptedCases": 28,
+    "events": 822,
+    "forwardOperations": 1644,
+    "inverseOperations": 1644
+  },
+  "semanticScreen": {
+    "time-fracture": true,
+    "foresight-perfect": true
+  },
+  "checks": [
+    {
+      "check": "Separate delivery record binds exact return ZIP bytes",
+      "passed": true,
+      "detail": {
+        "bytes": 90939303,
+        "sha256": "358e40cd8f68a5115f57d6375f178440201aac1a969c2cdf717e20acf8aa461c"
+      }
+    },
+    {
+      "check": "Delivery record is unapplied and names exactly two accepted IDs",
+      "passed": true
+    },
+    {
+      "check": "Return ZIP members are unique, safe, CRC-clean and exactly delivery-allowlisted",
+      "passed": true,
+      "detail": {
+        "archiveMembers": 129,
+        "deliveryMembers": 129
+      }
+    },
+    {
+      "check": "Internal member manifest covers every archive member except itself",
+      "passed": true
+    },
+    {
+      "check": "All 129 outer ZIP members match independent byte, SHA-256 and CRC32 recalculation",
+      "passed": true
+    },
+    {
+      "check": "All 140 current-source bindings match Git blobs at packet anchor and current HEAD",
+      "passed": true,
+      "detail": {
+        "count": 140,
+        "sourceCommit": "38fec0bbf19a4480098eb10ab0d992b055790ada"
+      }
+    },
+    {
+      "check": "All three explicitly scoped supplemental source bindings match Git and archive bytes",
+      "passed": true
+    },
+    {
+      "check": "Nested current-source packet validates its source anchor, authority, 169 members and exact hashes",
+      "passed": true
+    },
+    {
+      "check": "Director decision, procedures and authority agree on exact partial acceptance",
+      "passed": true
+    },
+    {
+      "check": "Four nonaccepted identities retain exact named blockers",
+      "passed": true
+    },
+    {
+      "check": "Return190’s two unresolved blockers are carried forward verbatim",
+      "passed": true
+    },
+    {
+      "check": "All six exact native cards and index rows match current canonical catalog and index",
+      "passed": true
+    },
+    {
+      "check": "Only the two accepted procedures are free of acceptance blockers",
+      "passed": true
+    },
+    {
+      "check": "All 90 independent case files match their case hash bindings",
+      "passed": true
+    },
+    {
+      "check": "Every accepted identity case replays with continuous state, monotonic world time, valid hashes and exact forward/inverse patches",
+      "passed": true,
+      "detail": {
+        "cases": 28,
+        "events": 822,
+        "forwardPatchOps": 1644,
+        "inversePatchOps": 1644
+      }
+    },
+    {
+      "check": "Accepted procedures stay within their printed effect and state finite timing/source, counter and target limits",
+      "passed": true,
+      "detail": {
+        "time-fracture": true,
+        "foresight-perfect": true
+      }
+    },
+    {
+      "check": "All nine scope qualifications remain explicit; no runtime, balance, release, cosmology or closure approval is implied",
+      "passed": true
+    },
+    {
+      "check": "Next group record is still explicitly pending fresh authority",
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,1077 @@
+# Rank9 Time/Fate6 — Director Return192
+
+Authority remains777 reviewed-applied /71 pending /0 recorded accepted-unapplied. This return proposes new static acceptance for only time-fracture and foresight-perfect; applied=false for every identity. No canonical edits.
+
+## time-stop
+
+PROPOSED_UNACCEPTED_REQUIRED_BRANCH_HELD
+
+### Exact native card and access
+
+```json
+{
+  "id": "time-stop",
+  "name": "Time Stop",
+  "schools": [
+    "Illusion",
+    "Transmutation",
+    "Universal"
+  ],
+  "status": "blocked-pending-operational-review",
+  "visibility": "public-source-review",
+  "classAccess": {
+    "Cleric": {
+      "rank": 9,
+      "minimumClassLevel": 17,
+      "school": "Universal",
+      "baseRpCost": 26
+    },
+    "Druid": {
+      "rank": 9,
+      "minimumClassLevel": 17,
+      "school": "Transmutation",
+      "baseRpCost": 26
+    },
+    "Mage": {
+      "rank": 9,
+      "minimumClassLevel": 17,
+      "school": "Transmutation",
+      "baseRpCost": 26
+    },
+    "Wizard": {
+      "rank": 9,
+      "minimumClassLevel": 17,
+      "school": "Illusion",
+      "baseRpCost": 26
+    }
+  },
+  "operational": null,
+  "additionalRpCost": 0,
+  "source": {
+    "catalogPath": "src/data/spells.js",
+    "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+    "catalogKey": "time-stop",
+    "original": {
+      "name": "Time Stop",
+      "level": 9,
+      "resonanceRank": 9,
+      "school": "Illusion",
+      "schools": [
+        "Illusion",
+        "Transmutation",
+        "Universal"
+      ],
+      "placements": [
+        {
+          "name": "Time Stop",
+          "school": "Illusion",
+          "level": 9,
+          "summary": "Stop time for everyone but you for 1d4+1 rounds."
+        },
+        {
+          "name": "Time Stop",
+          "school": "Transmutation",
+          "level": 9,
+          "summary": "Stop time for everyone but you for 1d4+1 rounds."
+        },
+        {
+          "name": "Time Stop",
+          "school": "Universal",
+          "level": 9,
+          "summary": "Take 3 turns uninterrupted."
+        }
+      ],
+      "classLevels": {
+        "Cleric": 9,
+        "Druid": 9,
+        "Mage": 9,
+        "Wizard": 9
+      },
+      "classRanks": {
+        "Cleric": 9,
+        "Druid": 9,
+        "Mage": 9,
+        "Wizard": 9
+      },
+      "classLearnLevels": {
+        "Cleric": 17,
+        "Druid": 17,
+        "Mage": 17,
+        "Wizard": 17
+      },
+      "classSchools": {
+        "Cleric": "Universal",
+        "Druid": "Transmutation",
+        "Mage": "Transmutation",
+        "Wizard": "Illusion"
+      },
+      "castingTime": "Not specified in current rulebook",
+      "range": "Not specified in current rulebook",
+      "components": "Not specified in current rulebook",
+      "duration": "Not specified in current rulebook",
+      "description": "Stop time for everyone but you for 1d4+1 rounds.",
+      "alternateSummaries": [
+        "Take 3 turns uninterrupted."
+      ],
+      "classes": [
+        "Cleric",
+        "Druid",
+        "Mage",
+        "Wizard"
+      ],
+      "status": "canon",
+      "source": "Player Rulebook — Spell Lists"
+    },
+    "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+    "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+    "coreEntries": [
+      {
+        "index": 618,
+        "original": {
+          "school": "Illusion",
+          "level": 9,
+          "name": "Time Stop",
+          "effect": "Stop time for everyone but you for 1d4+1 rounds.",
+          "source_paragraph": 9744,
+          "casting_time": "1 action",
+          "range": "120 feet",
+          "duration": "Instantaneous",
+          "components": "V, S, F",
+          "resolution": "Automatic or opposed as described",
+          "tags": [
+            "Damage"
+          ],
+          "rp_cost": 26
+        }
+      },
+      {
+        "index": 826,
+        "original": {
+          "school": "Transmutation",
+          "level": 9,
+          "name": "Time Stop",
+          "effect": "Stop time for everyone but you for 1d4+1 rounds.",
+          "source_paragraph": 10002,
+          "casting_time": "1 action",
+          "range": "120 feet",
+          "duration": "Instantaneous",
+          "components": "V, S, F",
+          "resolution": "Automatic or opposed as described",
+          "tags": [
+            "Damage"
+          ],
+          "rp_cost": 26
+        }
+      },
+      {
+        "index": 921,
+        "original": {
+          "school": "Universal",
+          "level": 9,
+          "name": "Time Stop",
+          "effect": "Take 3 turns uninterrupted.",
+          "source_paragraph": 10122,
+          "casting_time": "1 reaction",
+          "range": "120 feet",
+          "duration": "Instantaneous",
+          "components": "V, S, F",
+          "resolution": "Automatic or opposed as described",
+          "tags": [
+            "Damage"
+          ],
+          "rp_cost": 26
+        }
+      }
+    ],
+    "possibleHistoricalAliases": []
+  },
+  "reviewFlags": [
+    "Core resolution requires an explicit operational interpretation",
+    "Not selectable in this spell playtest packet until individual operational review"
+  ]
+}
+```
+
+### scope
+
+NEW resolve everyone-but-you literally as a single-world scheduler pause, not a120ft-radius field. Action modes target the caster and use120ft as retained conflicting metadata, not a fabricated area. Universal120ft bounds its triggering event. Ordinary-world creatures, unattended processes, projectiles, environmental motion and remote scenes stop advancing at one committed boundary. This is an operational clock policy, not a claim about planes/cosmology. Validate every currently loaded affected clock adapter before commitment; unsupported live domains hold that scenario. Offscreen state cannot be assumed absent in a real campaign.
+
+### access
+
+Keep every native placement and classAccess row. Rank9/minimum class17/base26RP, V/S/F; Action except the actually acquired Universal Time Stop Reaction. Wizard access uses the class-mapped school, actual spellbook entry and prepared matrix; Druid uses its prepared list; Cleric/Mage use actual known choices. A class-level/rank gate or enough RP is not acquisition. Proposed spell preparations in fixtures are explicitly contingent on this static review and do not alter current catalog availability. No unprinted consumed component or generic upcasting.
+
+### commit
+
+Before commitment validate live body, actual class/repertoire, Action or exact Reaction trigger, audible V, free gesture hand, possessed focus, targets/geometry and adequate resources. Compute limit=max(4,2+PB+max(0,casting modifier)); surcharge1 at limit and2 at limit+3; ordinary ranked casting blocked at limit+6. Base strain2 for rank9; consecutive same-name Refrain1,2,3 capped; Wizard first actually prepared family waives base only. Preserve real class exceptions and mandatory hooks. Pay once, update history once, end incompatible concentration only if this cast requires it, then offer real cast-time counters. Countered, interrupted or later-invalid legal casts keep payment/cadence and never restore displaced concentration. Invalid preflight pays nothing. Ordinary eligible Wizard Arch Counterspell is rank1/3RP/Reaction/recharge2, INT+PB task vs10+2rank, not an acquired ordinary spell by name; its actual acquired feedback/bonuses still apply.
+
+### ready
+
+Only Action-time modes can use ordinary Ready. Spend Action, commit actual cast once including costs, cadence, components and counter window; hold concentration even for a normally nonconcentration spell. At release, after the actual perceivable trigger, spend legal Reaction and recheck all targets/geometry. No second cast or payment/counter window. Effect duration begins on release; Ready expires at original next regular own-start. Invalid/declined triggers spend no release Reaction, without extending that deadline. Replacing, concentration loss, expiry or countering loses the held spell without refund. Universal Time Stop cannot be generically Readied.
+
+### clocks
+
+World elapsed time is monotonic except it is paused during the explicitly authored Time Stop interval; no time is rewound by bookkeeping. Ordinary regular starts/end markers, six-second recharge, death saves, Ready, persistent pulses, source-relative duration, rest and finite-use histories remain separate clocks. Each full-state case records actor schedules and all due starts/ends, or explicit outside-initiative elapsed ticks. An administrative event is not a turn. Natural1/20 attack/save/task/opposed meanings remain exact Core rules; all dice in examples are authored inputs, not executed gameplay RNG.
+
+### physical
+
+Real occupied body volumes, support, hands, item identities, custody, focus, sight/line of effect and source range are checked at their actual stage. Fixture actors are explicit source-qualified human class builds and scene premises, not discovered campaign characters or invented creature profiles. Missing actual campaign operands create a whole dependent case/branch hold. No camera/debug knowledge, hidden identity revelation or fabricated objective fact. Default real-world/campaign input is unknown until supplied; a synthetic scene is labelled as such.
+
+### suppression
+
+Use exact accepted Antimagic Field RW149-F, not the name Null as a universal dispel. Legal originating-inside casts still pay but their ordinary payload is suppressed without banking release. Creature-attached expressions suppress on actual body intersection; clocks remain original. A current qualified dispel uses its actual source/rank/cost/check and real effect perception; Wizard Arch Dispel is rank3/3RP/60ft/recharge2/INT+PB vs10+effect rank for rank4+, not Greater Dispel. Residual Null/Null Veil affects its explicit exposure/damage-root scopes, not every temporal effect. Instantaneous completed physical/history changes are not undone by later suppression. Preserve root-dealer Null flags, no duplicated outcomes and all inherited source holds.
+
+### persistence
+
+Serialize source/cast/parent/child IDs, original clock domain/endpoint, immutable rolls and lineage, source/version references, complete bodies/resources/conditions, audit histories, custody and per-observer memories, pending transactions and obligations. Save/load and mode transitions preserve them byte-semantically; no cost, pulse, draw, award or grant replays. Copies of a document are not copies of a body, resource wallet, item, reward or guarantee. Missing engine adapters remain engineering qualifications, never false evidence of execution.
+
+### modes
+
+KEEP three placements under one identity. Wizard Illusion and Druid/Mage Transmutation use Action and one explicit d4+1 roll giving 2–5 temporal rounds. Cleric Universal uses Reaction and grants exactly three personal turns. NEW Universal trigger: immediately after a discrete, perceived other-creature Action or movement segment fully resolves within120ft and line of effect, before the next atomic event; never react to another temporal grant, administrative event or your own action. Harm already resolved stays resolved. Its real Reaction and ordinary counter window occur before the interval establishes. No free cross-school mode choice.
+
+### turns
+
+NEW each temporal round supplies one caster personal extra turn with one ordinary Action, one Bonus Action only for a genuinely acquired use, one free interaction and current Speed movement. Universal supplies three such turns. These are authentic source-granted extra turns, NEVER regular starts or extra-full-Action grants. No Reaction, recharge, death save, rest, numbered-round entitlement, Haste extra Action or finite resource refresh. Keep stance and shared numbered-round allowances. Personal Action/BA/movement wallets are separate from the interrupted ordinary wallet; retain that original wallet on resume, with actually spent shared Reaction/resource changes. World-clock endpoints and six-second pulses, including the caster’s ordinary deadlines, pause; personal turn ending can end only an explicit this-actual-turn effect. New absolute durations anchor to the paused world instant and first progress after resume. No new numbered ordinary round is fabricated.
+
+### interaction
+
+NEW actual voluntary movement, ordinary free/paid object interactions, spells and legal attacks remain useful. Move only along supported legal geometry; handles/doors/items change their same physical records, custody never duplicates. Frozen targets retain actual AC/defenses; stopping time is not Unconscious, an automatic hit/critical or a new attack advantage. A necessary passive defense/check resolves as atomic resistance, not target agency, Reaction or turn. Immediate attack/HP/condition/custody deltas settle once. Normal saves, damage roots, Wounds and concentration consequences remain required; no postponed duplicate payload. Moving a body needs an actually legal carrying/shove/grapple source, capacity and support. Autonomous delayed projectiles/environmental clocks remain paused. Unknown collision/capacity holds that branch.
+
+### immunityPeer
+
+NEW local interface proposal: an actually source-qualified Time Stop-immune participant is not frozen. Each temporal round supplies it one independent extra turn after the caster in stable prior initiative/ID order, with the same finite personal wallet and no regular refresh. It can move, act, counter during a real later cast, or end the interval through a legal effect. Universal uninterrupted excludes stopped outsiders, not a genuine specific immunity. Timeless Form’s native minute and immunity to time stop/haste/slow are preserved; immunity suppresses only this spell’s freeze/denial contribution, not all time rules. Its operative acquisition, original cast, duration and resumption profile must already be demonstrated. The current index still holds Timeless Form; this proposal does not accept it or manufacture a usable immune actor. That required positive branch is TF192-B01, so Time Stop is unaccepted in this return.
+
+### ending
+
+NEW one active interval. A nested Time Stop declaration rejects before cost; no recursive rolls/turns, extension or queued grant. At final personal turn end, dismissal, caster Incapacitated/dead, actual parent suppression or successful source-qualified dispel, close once, discard unused personal opportunities, retain costs and all completed acts, and resume exact paused queue. Suppression terminates this indivisible interval rather than parking extra turns to replay. A failed/countered opening creates no interval. Antimagic origin prevents opening after payment; entering an actually active field with caster body closes immediately. Deferred clocks resume from their original world deadlines; no simultaneous catch-up just because personal turns occurred. Due events completed before opening remain completed. Haste remains on its normal clock and grants only its actual regular-turn Action; genuine ending still imposes its accepted Stun cost once.
+
+Blockers: TF192-B01
+
+Evidence: RANK9TIMEFATE6129-TIME-STOP-A, RANK9TIMEFATE6129-TIME-STOP-A__transmutation, RANK9TIMEFATE6129-TIME-STOP-A__illusion-max, RANK9TIMEFATE6129-TIME-STOP-A__universal-reaction, RANK9TIMEFATE6129-TIME-STOP-B, RANK9TIMEFATE6129-TIME-STOP-B__timeless-independent-phase, RANK9TIMEFATE6129-TIME-STOP-B__unsupported-world-adapter, RANK9TIMEFATE6129-TIME-STOP-B__nesting-no-grant, RANK9TIMEFATE6129-TIME-STOP-B__paid-countered-exact, RANK9TIMEFATE6129-TIME-STOP-B__ready-release-exact, RANK9TIMEFATE6129-TIME-STOP-B__ready-expiry-exact, RANK9TIMEFATE6129-TIME-STOP-B__antimagic-origin-paid-failure, RANK9TIMEFATE6129-TIME-STOP-B__independent-coverage-hold, RANK9TIMEFATE6129-TIME-STOP-B__live-field-entry-termination
+
+## time-fracture
+
+STATIC_AUTHORED_ACCEPTED_WITH_QUALIFICATIONS
+
+### Exact native card and access
+
+```json
+{
+  "id": "time-fracture",
+  "name": "Time Fracture",
+  "schools": [
+    "Divination"
+  ],
+  "status": "blocked-pending-operational-review",
+  "visibility": "public-source-review",
+  "classAccess": {
+    "Cleric": {
+      "rank": 9,
+      "minimumClassLevel": 17,
+      "school": "Divination",
+      "baseRpCost": 26
+    },
+    "Wizard": {
+      "rank": 9,
+      "minimumClassLevel": 17,
+      "school": "Divination",
+      "baseRpCost": 26
+    }
+  },
+  "operational": null,
+  "additionalRpCost": 0,
+  "source": {
+    "catalogPath": "src/data/spells.js",
+    "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+    "catalogKey": "time-fracture",
+    "original": {
+      "name": "Time Fracture",
+      "level": 9,
+      "resonanceRank": 9,
+      "school": "Divination",
+      "schools": [
+        "Divination"
+      ],
+      "placements": [
+        {
+          "name": "Time Fracture",
+          "school": "Divination",
+          "level": 9,
+          "summary": "Enemies reroll all d20s at disadvantage for 1 minute."
+        }
+      ],
+      "classLevels": {
+        "Cleric": 9,
+        "Wizard": 9
+      },
+      "classRanks": {
+        "Cleric": 9,
+        "Wizard": 9
+      },
+      "classLearnLevels": {
+        "Cleric": 17,
+        "Wizard": 17
+      },
+      "classSchools": {
+        "Cleric": "Divination",
+        "Wizard": "Divination"
+      },
+      "castingTime": "Not specified in current rulebook",
+      "range": "Not specified in current rulebook",
+      "components": "Not specified in current rulebook",
+      "duration": "Not specified in current rulebook",
+      "description": "Enemies reroll all d20s at disadvantage for 1 minute.",
+      "alternateSummaries": [],
+      "classes": [
+        "Cleric",
+        "Wizard"
+      ],
+      "status": "canon",
+      "source": "Player Rulebook — Spell Lists"
+    },
+    "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+    "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+    "coreEntries": [
+      {
+        "index": 299,
+        "original": {
+          "school": "Divination",
+          "level": 9,
+          "name": "Time Fracture",
+          "effect": "Enemies reroll all d20s at disadvantage for 1 minute.",
+          "source_paragraph": 9350,
+          "casting_time": "1 action",
+          "range": "120 feet",
+          "duration": "1 minute",
+          "components": "V, S, F",
+          "resolution": "Automatic or opposed as described",
+          "tags": [
+            "Utility"
+          ],
+          "rp_cost": 26
+        }
+      }
+    ],
+    "possibleHistoricalAliases": []
+  },
+  "reviewFlags": [
+    "Core resolution requires an explicit operational interpretation",
+    "Not selectable in this spell playtest packet until individual operational review"
+  ]
+}
+```
+
+### scope
+
+Static authored Director proposal for exactly these six identities under 777 reviewed-applied / 71 pending / 0 accepted-unapplied; 501 complete standalone procedures and 173 scoped interfaces. No canonical edits, application, runtime selection, implementation, human play, balance, cosmology, domain closure, completion or release approval. All NEW clauses are local to these spells. Full Time Loop, Timeless Form and all earlier held identities remain held. Source packet and all current/historical bytes remain preserved.
+
+### access
+
+Keep every native placement and classAccess row. Rank9/minimum class17/base26RP, V/S/F; Action except the actually acquired Universal Time Stop Reaction. Wizard access uses the class-mapped school, actual spellbook entry and prepared matrix; Druid uses its prepared list; Cleric/Mage use actual known choices. A class-level/rank gate or enough RP is not acquisition. Proposed spell preparations in fixtures are explicitly contingent on this static review and do not alter current catalog availability. No unprinted consumed component or generic upcasting.
+
+### commit
+
+Before commitment validate live body, actual class/repertoire, Action or exact Reaction trigger, audible V, free gesture hand, possessed focus, targets/geometry and adequate resources. Compute limit=max(4,2+PB+max(0,casting modifier)); surcharge1 at limit and2 at limit+3; ordinary ranked casting blocked at limit+6. Base strain2 for rank9; consecutive same-name Refrain1,2,3 capped; Wizard first actually prepared family waives base only. Preserve real class exceptions and mandatory hooks. Pay once, update history once, end incompatible concentration only if this cast requires it, then offer real cast-time counters. Countered, interrupted or later-invalid legal casts keep payment/cadence and never restore displaced concentration. Invalid preflight pays nothing. Ordinary eligible Wizard Arch Counterspell is rank1/3RP/Reaction/recharge2, INT+PB task vs10+2rank, not an acquired ordinary spell by name; its actual acquired feedback/bonuses still apply.
+
+### ready
+
+Only Action-time modes can use ordinary Ready. Spend Action, commit actual cast once including costs, cadence, components and counter window; hold concentration even for a normally nonconcentration spell. At release, after the actual perceivable trigger, spend legal Reaction and recheck all targets/geometry. No second cast or payment/counter window. Effect duration begins on release; Ready expires at original next regular own-start. Invalid/declined triggers spend no release Reaction, without extending that deadline. Replacing, concentration loss, expiry or countering loses the held spell without refund. Universal Time Stop cannot be generically Readied.
+
+### clocks
+
+World elapsed time is monotonic except it is paused during the explicitly authored Time Stop interval; no time is rewound by bookkeeping. Ordinary regular starts/end markers, six-second recharge, death saves, Ready, persistent pulses, source-relative duration, rest and finite-use histories remain separate clocks. Each full-state case records actor schedules and all due starts/ends, or explicit outside-initiative elapsed ticks. An administrative event is not a turn. Natural1/20 attack/save/task/opposed meanings remain exact Core rules; all dice in examples are authored inputs, not executed gameplay RNG.
+
+### physical
+
+Real occupied body volumes, support, hands, item identities, custody, focus, sight/line of effect and source range are checked at their actual stage. Fixture actors are explicit source-qualified human class builds and scene premises, not discovered campaign characters or invented creature profiles. Missing actual campaign operands create a whole dependent case/branch hold. No camera/debug knowledge, hidden identity revelation or fabricated objective fact. Default real-world/campaign input is unknown until supplied; a synthetic scene is labelled as such.
+
+### suppression
+
+Use exact accepted Antimagic Field RW149-F, not the name Null as a universal dispel. Legal originating-inside casts still pay but their ordinary payload is suppressed without banking release. Creature-attached expressions suppress on actual body intersection; clocks remain original. A current qualified dispel uses its actual source/rank/cost/check and real effect perception; Wizard Arch Dispel is rank3/3RP/60ft/recharge2/INT+PB vs10+effect rank for rank4+, not Greater Dispel. Residual Null/Null Veil affects its explicit exposure/damage-root scopes, not every temporal effect. Instantaneous completed physical/history changes are not undone by later suppression. Preserve root-dealer Null flags, no duplicated outcomes and all inherited source holds.
+
+### persistence
+
+Serialize source/cast/parent/child IDs, original clock domain/endpoint, immutable rolls and lineage, source/version references, complete bodies/resources/conditions, audit histories, custody and per-observer memories, pending transactions and obligations. Save/load and mode transitions preserve them byte-semantically; no cost, pulse, draw, award or grant replays. Copies of a document are not copies of a body, resource wallet, item, reward or guarantee. Missing engine adapters remain engineering qualifications, never false evidence of execution.
+
+### selection
+
+NEW snapshot every distinct enemy body the caster currently perceives and ordinarily identifies as hostile within120ft and direct line of effect at resolution, no numeric target cap and no radial hidden-enemy scan. A body whose location is unknown is not acquired. Later departure, changed allegiance, caster death or initiative changes do not change that fixed set; later entrants do not join. Record individual child IDs under one cast. No initial save, concentration, Charmed/Fear/mental tag or arbitrary immunity. Divination information shields are not blanket probability immunity.
+
+### replacement
+
+KEEP an actual mandatory reroll, not mere disadvantage. At generation of every actual complete d20 procedure owned by an affected nonsuppressed child, latch eligibility/source IDs before original dice. Finish its ordinary original draw; discard its result BEFORE any hit/save/task/consequence. Once per original-event lineage, replace the complete d20 draw set using original non-d20 modifiers and an added disadvantage source, combining ordinary advantage/disadvantage once. With independent advantage, draw one replacement d20; otherwise draw two and take lower. Original modifiers/targets/payment remain. Natural result and every consequence come only from the final accepted result. No recursive replacement of replacement dice, even with overlapping casts. Initiative, attacks, task/opposed checks, ordinary saves and genuine regular-start death saves are included; d4/d6/d8 damage and every nond20 die are not. For a shared procedure use one lineage, not one per recipient.
+
+### lineage
+
+NEW finite composition scoped only while Time Fracture participates: mandatory replacement precedes optional reroll offers and sets fractureApplied=true permanently for that original lineage. It does NOT consume, reset or expand DE4-GUARD-01; Mark Omen/Fate Coin/Fate Reversal retain their combined one allowance and actual information predicates. They may alter the resulting current replacement set once under their exact unit, and fracture never rerolls it again. Already-used DE4 allowance remains used; a suppressed/prevented optional attempt follows its actual spent-use rule. Fixed substitution with a genuinely existing higher-priority source produces no new RNG die and does not become a second roll; preserve that source’s own replacement window and provenance. No generic fixed-result ability is invented: demonstrate a real bound fixed source or hold that branch TF192-H-FIXED. Class rerolls remain separate exact permissions, with finite per-source tokens and no re-entry into Fracture. Secret original/replacement draws stay private; merely owning Fracture/Coin adds no information.
+
+### lifecycle
+
+NEW one parent, fixed child roster, source-owned original t+60seconds end. Same-caster successful recast retires prior parent; failed/countered recast leaves it. Different casters retain separate records but arbitration takes one earliest active child by application sequence; losing contenders still age. At roll generation latch the winning eligible child once. Expiry/suppression after that latch does not cancel its already pending replacement; no later roll is affected. No effect on an already resolved result. Suppression before generation prevents eligibility; resumption restores only still-live children and never rerolls past events. Dispel removes only the selected application. Original endpoint survives death/mode/save/load; body death does not erase this source and revival before endpoint does not recast or refresh it. No hard-denial allowance is consumed by this roll modifier.
+
+Blockers: None within this qualified static scope.
+
+Evidence: RANK9TIMEFATE6129-TIME-FRACTURE-A, RANK9TIMEFATE6129-TIME-FRACTURE-B, RANK9TIMEFATE6129-TIME-FRACTURE-B__advantage-and-fixed-success, RANK9TIMEFATE6129-TIME-FRACTURE-B__expiry-latched-roll, RANK9TIMEFATE6129-TIME-FRACTURE-B__death-save-final-only, RANK9TIMEFATE6129-TIME-FRACTURE-B__actual-dispel, RANK9TIMEFATE6129-TIME-FRACTURE-B__real-field-suppression-resumption, RANK9TIMEFATE6129-TIME-FRACTURE-A__integrated-minute, RANK9TIMEFATE6129-TIME-FRACTURE-B__paid-countered-exact, RANK9TIMEFATE6129-TIME-FRACTURE-B__ready-release-exact, RANK9TIMEFATE6129-TIME-FRACTURE-B__ready-expiry-exact, RANK9TIMEFATE6129-TIME-FRACTURE-B__antimagic-origin-paid-failure, RANK9TIMEFATE6129-TIME-FRACTURE-B__initiative-opposed-and-overlap, RANK9TIMEFATE6129-TIME-FRACTURE-B__new-initiative-source-clock, RANK9TIMEFATE6129-TIME-FRACTURE-B__real-divination-class-reroll, RANK9TIMEFATE6129-TIME-FRACTURE-B__countered-recast-keeps-original
+
+## foresight-perfect
+
+STATIC_AUTHORED_ACCEPTED_WITH_QUALIFICATIONS
+
+### Exact native card and access
+
+```json
+{
+  "id": "foresight-perfect",
+  "name": "Foresight (Perfect)",
+  "schools": [
+    "Divination"
+  ],
+  "status": "blocked-pending-operational-review",
+  "visibility": "public-source-review",
+  "classAccess": {
+    "Cleric": {
+      "rank": 9,
+      "minimumClassLevel": 17,
+      "school": "Divination",
+      "baseRpCost": 26
+    },
+    "Wizard": {
+      "rank": 9,
+      "minimumClassLevel": 17,
+      "school": "Divination",
+      "baseRpCost": 26
+    }
+  },
+  "operational": null,
+  "additionalRpCost": 0,
+  "source": {
+    "catalogPath": "src/data/spells.js",
+    "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+    "catalogKey": "foresight-perfect",
+    "original": {
+      "name": "Foresight (Perfect)",
+      "level": 9,
+      "resonanceRank": 9,
+      "school": "Divination",
+      "schools": [
+        "Divination"
+      ],
+      "placements": [
+        {
+          "name": "Foresight (Perfect)",
+          "school": "Divination",
+          "level": 9,
+          "summary": "You cannot be surprised or critically hit for 1 hour; advantage on all saves."
+        }
+      ],
+      "classLevels": {
+        "Cleric": 9,
+        "Wizard": 9
+      },
+      "classRanks": {
+        "Cleric": 9,
+        "Wizard": 9
+      },
+      "classLearnLevels": {
+        "Cleric": 17,
+        "Wizard": 17
+      },
+      "classSchools": {
+        "Cleric": "Divination",
+        "Wizard": "Divination"
+      },
+      "castingTime": "Not specified in current rulebook",
+      "range": "Not specified in current rulebook",
+      "components": "Not specified in current rulebook",
+      "duration": "Not specified in current rulebook",
+      "description": "You cannot be surprised or critically hit for 1 hour; advantage on all saves.",
+      "alternateSummaries": [],
+      "classes": [
+        "Cleric",
+        "Wizard"
+      ],
+      "status": "canon",
+      "source": "Player Rulebook — Spell Lists"
+    },
+    "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+    "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+    "coreEntries": [
+      {
+        "index": 300,
+        "original": {
+          "school": "Divination",
+          "level": 9,
+          "name": "Foresight (Perfect)",
+          "effect": "You cannot be surprised or critically hit for 1 hour; advantage on all saves.",
+          "source_paragraph": 9351,
+          "casting_time": "1 action",
+          "range": "120 feet",
+          "duration": "1 hour",
+          "components": "V, S, F",
+          "resolution": "Automatic or opposed as described",
+          "tags": [
+            "Detection"
+          ],
+          "rp_cost": 26
+        }
+      }
+    ],
+    "possibleHistoricalAliases": []
+  },
+  "reviewFlags": [
+    "Core resolution requires an explicit operational interpretation",
+    "Not selectable in this spell playtest packet until individual operational review"
+  ]
+}
+```
+
+### scope
+
+Static authored Director proposal for exactly these six identities under 777 reviewed-applied / 71 pending / 0 accepted-unapplied; 501 complete standalone procedures and 173 scoped interfaces. No canonical edits, application, runtime selection, implementation, human play, balance, cosmology, domain closure, completion or release approval. All NEW clauses are local to these spells. Full Time Loop, Timeless Form and all earlier held identities remain held. Source packet and all current/historical bytes remain preserved.
+
+### access
+
+Keep every native placement and classAccess row. Rank9/minimum class17/base26RP, V/S/F; Action except the actually acquired Universal Time Stop Reaction. Wizard access uses the class-mapped school, actual spellbook entry and prepared matrix; Druid uses its prepared list; Cleric/Mage use actual known choices. A class-level/rank gate or enough RP is not acquisition. Proposed spell preparations in fixtures are explicitly contingent on this static review and do not alter current catalog availability. No unprinted consumed component or generic upcasting.
+
+### commit
+
+Before commitment validate live body, actual class/repertoire, Action or exact Reaction trigger, audible V, free gesture hand, possessed focus, targets/geometry and adequate resources. Compute limit=max(4,2+PB+max(0,casting modifier)); surcharge1 at limit and2 at limit+3; ordinary ranked casting blocked at limit+6. Base strain2 for rank9; consecutive same-name Refrain1,2,3 capped; Wizard first actually prepared family waives base only. Preserve real class exceptions and mandatory hooks. Pay once, update history once, end incompatible concentration only if this cast requires it, then offer real cast-time counters. Countered, interrupted or later-invalid legal casts keep payment/cadence and never restore displaced concentration. Invalid preflight pays nothing. Ordinary eligible Wizard Arch Counterspell is rank1/3RP/Reaction/recharge2, INT+PB task vs10+2rank, not an acquired ordinary spell by name; its actual acquired feedback/bonuses still apply.
+
+### ready
+
+Only Action-time modes can use ordinary Ready. Spend Action, commit actual cast once including costs, cadence, components and counter window; hold concentration even for a normally nonconcentration spell. At release, after the actual perceivable trigger, spend legal Reaction and recheck all targets/geometry. No second cast or payment/counter window. Effect duration begins on release; Ready expires at original next regular own-start. Invalid/declined triggers spend no release Reaction, without extending that deadline. Replacing, concentration loss, expiry or countering loses the held spell without refund. Universal Time Stop cannot be generically Readied.
+
+### clocks
+
+World elapsed time is monotonic except it is paused during the explicitly authored Time Stop interval; no time is rewound by bookkeeping. Ordinary regular starts/end markers, six-second recharge, death saves, Ready, persistent pulses, source-relative duration, rest and finite-use histories remain separate clocks. Each full-state case records actor schedules and all due starts/ends, or explicit outside-initiative elapsed ticks. An administrative event is not a turn. Natural1/20 attack/save/task/opposed meanings remain exact Core rules; all dice in examples are authored inputs, not executed gameplay RNG.
+
+### physical
+
+Real occupied body volumes, support, hands, item identities, custody, focus, sight/line of effect and source range are checked at their actual stage. Fixture actors are explicit source-qualified human class builds and scene premises, not discovered campaign characters or invented creature profiles. Missing actual campaign operands create a whole dependent case/branch hold. No camera/debug knowledge, hidden identity revelation or fabricated objective fact. Default real-world/campaign input is unknown until supplied; a synthetic scene is labelled as such.
+
+### suppression
+
+Use exact accepted Antimagic Field RW149-F, not the name Null as a universal dispel. Legal originating-inside casts still pay but their ordinary payload is suppressed without banking release. Creature-attached expressions suppress on actual body intersection; clocks remain original. A current qualified dispel uses its actual source/rank/cost/check and real effect perception; Wizard Arch Dispel is rank3/3RP/60ft/recharge2/INT+PB vs10+effect rank for rank4+, not Greater Dispel. Residual Null/Null Veil affects its explicit exposure/damage-root scopes, not every temporal effect. Instantaneous completed physical/history changes are not undone by later suppression. Preserve root-dealer Null flags, no duplicated outcomes and all inherited source holds.
+
+### persistence
+
+Serialize source/cast/parent/child IDs, original clock domain/endpoint, immutable rolls and lineage, source/version references, complete bodies/resources/conditions, audit histories, custody and per-observer memories, pending transactions and obligations. Save/load and mode transitions preserve them byte-semantically; no cost, pulse, draw, award or grant replays. Copies of a document are not copies of a body, resource wallet, item, reward or guarantee. Missing engine adapters remain engineering qualifications, never false evidence of execution.
+
+### target
+
+KEEP printed YOU: Self only. Preserve120ft metadata as explicit source conflict; it grants no remote recipient. Action/V/S/F/26RP rank9; nonconcentration. No detection or knowledge-grant payload despite Core Detection tag. It prevents being surprised, not being unaware, hidden-enemy locations or initiative rules.
+
+### benefits
+
+For3600 elapsed world seconds, suppress the source consequences of Surprise for this recipient, including a still-in-progress first regular turn if lawfully applied; restore no already-spent opportunity and reroll no initiative. Downgrade an otherwise actual critical hit to an ordinary hit before damage. Natural20 still hits; remove only critical-added dice and critical-only riders, retain ordinary damage, on-hit riders, defenses, concentration and any real Wound/zero-HP triggers. Expanded threat ranges and adjacent Unconscious criticals follow the same downgrade; this is not all-damage immunity or a ban on unrelated task degrees. Grant advantage on every actual saving throw, including death saves and concentration/Wound/condition saves where genuinely triggered. Ordinary save disadvantage cancels; no automatic success, altered DC, added save opportunity, task or initiative advantage. Time Fracture uses its final finite replacement pipeline with this advantage included.
+
+### lifecycle
+
+NEW continuous nonconsumable source until original application+3600seconds; no use counter. Successful recast replaces this caster’s prior same-source application with a new paid endpoint; failed/countered recast does not. Only Self is legal, so another caster cannot donate a second application. Death does not resurrect or remove this clock record; it has no effect on a dead body, but a genuinely source-qualified revival before endpoint resumes remaining benefits without resetting time. Missing actual revival source remains held rather than asserting revival. Actual suppression disables expression only, never refreshes/depletes; successful legal dispel ends that one source permanently. Expiry removes only this source and adds no retrospective Surprise or critical damage.
+
+Blockers: None within this qualified static scope.
+
+Evidence: RANK9TIMEFATE6129-FORESIGHT-PERFECT-A, RANK9TIMEFATE6129-FORESIGHT-PERFECT-B, RANK9TIMEFATE6129-FORESIGHT-PERFECT-B__actual-dispel, RANK9TIMEFATE6129-FORESIGHT-PERFECT-B__death-and-no-invented-revival, RANK9TIMEFATE6129-FORESIGHT-PERFECT-B__actual-saint-revival, RANK9TIMEFATE6129-FORESIGHT-PERFECT-B__real-field-suppression-resumption, RANK9TIMEFATE6129-FORESIGHT-PERFECT-B__paid-countered-exact, RANK9TIMEFATE6129-FORESIGHT-PERFECT-B__ready-release-exact, RANK9TIMEFATE6129-FORESIGHT-PERFECT-B__ready-expiry-exact, RANK9TIMEFATE6129-FORESIGHT-PERFECT-B__antimagic-origin-paid-failure, RANK9TIMEFATE6129-FORESIGHT-PERFECT-B__countered-recast-keeps-original, RANK9TIMEFATE6129-FORESIGHT-PERFECT-B__successful-recast-new-source
+
+## fate-rewrite
+
+PROPOSED_UNACCEPTED_REQUIRED_BRANCH_HELD
+
+### Exact native card and access
+
+```json
+{
+  "id": "fate-rewrite",
+  "name": "Fate Rewrite",
+  "schools": [
+    "Divination"
+  ],
+  "status": "blocked-pending-operational-review",
+  "visibility": "public-source-review",
+  "classAccess": {
+    "Cleric": {
+      "rank": 9,
+      "minimumClassLevel": 17,
+      "school": "Divination",
+      "baseRpCost": 26
+    },
+    "Wizard": {
+      "rank": 9,
+      "minimumClassLevel": 17,
+      "school": "Divination",
+      "baseRpCost": 26
+    }
+  },
+  "operational": null,
+  "additionalRpCost": 0,
+  "source": {
+    "catalogPath": "src/data/spells.js",
+    "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+    "catalogKey": "fate-rewrite",
+    "original": {
+      "name": "Fate Rewrite",
+      "level": 9,
+      "resonanceRank": 9,
+      "school": "Divination",
+      "schools": [
+        "Divination"
+      ],
+      "placements": [
+        {
+          "name": "Fate Rewrite",
+          "school": "Divination",
+          "level": 9,
+          "summary": "Change one past event that occurred within the last 24 hours."
+        }
+      ],
+      "classLevels": {
+        "Cleric": 9,
+        "Wizard": 9
+      },
+      "classRanks": {
+        "Cleric": 9,
+        "Wizard": 9
+      },
+      "classLearnLevels": {
+        "Cleric": 17,
+        "Wizard": 17
+      },
+      "classSchools": {
+        "Cleric": "Divination",
+        "Wizard": "Divination"
+      },
+      "castingTime": "Not specified in current rulebook",
+      "range": "Not specified in current rulebook",
+      "components": "Not specified in current rulebook",
+      "duration": "Not specified in current rulebook",
+      "description": "Change one past event that occurred within the last 24 hours.",
+      "alternateSummaries": [],
+      "classes": [
+        "Cleric",
+        "Wizard"
+      ],
+      "status": "canon",
+      "source": "Player Rulebook — Spell Lists"
+    },
+    "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+    "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+    "coreEntries": [
+      {
+        "index": 305,
+        "original": {
+          "school": "Divination",
+          "level": 9,
+          "name": "Fate Rewrite",
+          "effect": "Change one past event that occurred within the last 24 hours.",
+          "source_paragraph": 9356,
+          "casting_time": "1 action",
+          "range": "120 feet",
+          "duration": "Instantaneous",
+          "components": "V, S, F",
+          "resolution": "Automatic or opposed as described",
+          "tags": [
+            "Utility"
+          ],
+          "rp_cost": 26
+        }
+      }
+    ],
+    "possibleHistoricalAliases": []
+  },
+  "reviewFlags": [
+    "Core resolution requires an explicit operational interpretation",
+    "Not selectable in this spell playtest packet until individual operational review"
+  ]
+}
+```
+
+### scope
+
+Static authored Director proposal for exactly these six identities under 777 reviewed-applied / 71 pending / 0 accepted-unapplied; 501 complete standalone procedures and 173 scoped interfaces. No canonical edits, application, runtime selection, implementation, human play, balance, cosmology, domain closure, completion or release approval. All NEW clauses are local to these spells. Full Time Loop, Timeless Form and all earlier held identities remain held. Source packet and all current/historical bytes remain preserved.
+
+### access
+
+Keep every native placement and classAccess row. Rank9/minimum class17/base26RP, V/S/F; Action except the actually acquired Universal Time Stop Reaction. Wizard access uses the class-mapped school, actual spellbook entry and prepared matrix; Druid uses its prepared list; Cleric/Mage use actual known choices. A class-level/rank gate or enough RP is not acquisition. Proposed spell preparations in fixtures are explicitly contingent on this static review and do not alter current catalog availability. No unprinted consumed component or generic upcasting.
+
+### commit
+
+Before commitment validate live body, actual class/repertoire, Action or exact Reaction trigger, audible V, free gesture hand, possessed focus, targets/geometry and adequate resources. Compute limit=max(4,2+PB+max(0,casting modifier)); surcharge1 at limit and2 at limit+3; ordinary ranked casting blocked at limit+6. Base strain2 for rank9; consecutive same-name Refrain1,2,3 capped; Wizard first actually prepared family waives base only. Preserve real class exceptions and mandatory hooks. Pay once, update history once, end incompatible concentration only if this cast requires it, then offer real cast-time counters. Countered, interrupted or later-invalid legal casts keep payment/cadence and never restore displaced concentration. Invalid preflight pays nothing. Ordinary eligible Wizard Arch Counterspell is rank1/3RP/Reaction/recharge2, INT+PB task vs10+2rank, not an acquired ordinary spell by name; its actual acquired feedback/bonuses still apply.
+
+### ready
+
+Only Action-time modes can use ordinary Ready. Spend Action, commit actual cast once including costs, cadence, components and counter window; hold concentration even for a normally nonconcentration spell. At release, after the actual perceivable trigger, spend legal Reaction and recheck all targets/geometry. No second cast or payment/counter window. Effect duration begins on release; Ready expires at original next regular own-start. Invalid/declined triggers spend no release Reaction, without extending that deadline. Replacing, concentration loss, expiry or countering loses the held spell without refund. Universal Time Stop cannot be generically Readied.
+
+### clocks
+
+World elapsed time is monotonic except it is paused during the explicitly authored Time Stop interval; no time is rewound by bookkeeping. Ordinary regular starts/end markers, six-second recharge, death saves, Ready, persistent pulses, source-relative duration, rest and finite-use histories remain separate clocks. Each full-state case records actor schedules and all due starts/ends, or explicit outside-initiative elapsed ticks. An administrative event is not a turn. Natural1/20 attack/save/task/opposed meanings remain exact Core rules; all dice in examples are authored inputs, not executed gameplay RNG.
+
+### physical
+
+Real occupied body volumes, support, hands, item identities, custody, focus, sight/line of effect and source range are checked at their actual stage. Fixture actors are explicit source-qualified human class builds and scene premises, not discovered campaign characters or invented creature profiles. Missing actual campaign operands create a whole dependent case/branch hold. No camera/debug knowledge, hidden identity revelation or fabricated objective fact. Default real-world/campaign input is unknown until supplied; a synthetic scene is labelled as such.
+
+### suppression
+
+Use exact accepted Antimagic Field RW149-F, not the name Null as a universal dispel. Legal originating-inside casts still pay but their ordinary payload is suppressed without banking release. Creature-attached expressions suppress on actual body intersection; clocks remain original. A current qualified dispel uses its actual source/rank/cost/check and real effect perception; Wizard Arch Dispel is rank3/3RP/60ft/recharge2/INT+PB vs10+effect rank for rank4+, not Greater Dispel. Residual Null/Null Veil affects its explicit exposure/damage-root scopes, not every temporal effect. Instantaneous completed physical/history changes are not undone by later suppression. Preserve root-dealer Null flags, no duplicated outcomes and all inherited source holds.
+
+### persistence
+
+Serialize source/cast/parent/child IDs, original clock domain/endpoint, immutable rolls and lineage, source/version references, complete bodies/resources/conditions, audit histories, custody and per-observer memories, pending transactions and obligations. Save/load and mode transitions preserve them byte-semantically; no cost, pulse, draw, award or grant replays. Copies of a document are not copies of a body, resource wallet, item, reward or guarantee. Missing engine adapters remain engineering qualifications, never false evidence of execution.
+
+### declaration
+
+NEW identify one actual recorded atomic causal event with timestamp e satisfying0<=now-e<=86400seconds inclusive, plus one concrete alternative input/result that event could lawfully accept and its complete causally dependent history through now. Know the event through an actual recorded witness/information route; engine omniscience is not caster knowledge. Perceive one surviving participant/object/site anchor within120ft, same plane and direct LoE now. A vague story, unknown event, ambiguous duplicate IDs or missing consequences is a precommit unavailable case. A nontrivial legal changed attack outcome or lawful custody transfer is admissible; changing the past is real, not a future bonus, memory-only edit or healing event.
+
+### transaction
+
+NEW construct one candidate replacement history from event through present using explicit lawful alternative inputs and complete descendant decisions, dice already provided as authored alternatives, costs, bodies, custody, conditions, all observers and outsiders. Preflight every affected dependency and version. Conserve current absolute time, progression, original finite resource/cost/rest/reward receipts and this rewrite’s committed payment; old paid attempts remain sunk historical costs even when their former physical consequences disappear. If a required alternative has an additional real cost, reserve/pay it from actual current resources before atomic settlement; insufficient resources reject. Reconcile HP as temporal assignment, not healing; current maximum, genuine external max-HP/TempHP source history, Wounds and source deadlines still constrain each record. Never restore spent/expired grants or consumed material as usable while retaining the original benefit. Unknown source adapter or external descendant is a whole-case hold.
+
+### custodyMemory
+
+One body per creature and one current custody per unique item across all participants/third parties. A transaction that would create a second object/reward, violate current protected claim or invent a missing soul/body rejects atomically. Preserve original history in immutable audit, mark superseded causal edges and record the replacement path separately; one active history only. Existing witnesses retain actual already-learned original memories, explicitly tagged as their remembered prior experience, plus knowledge of changed present facts only through real perception/communication. No global memory wipe or automatic dissemination of private revised history. Current affected controller may inspect only permitted information. Nonwitnesses learn nothing for free.
+
+### boundaries
+
+NEW source IDs and a monotonic transaction registry arbitrate older rewrite ancestry; a later rewrite may target an ordinary event in the active history only with full prior ledger and conserved payments. Reject rewriting this cast’s payment/admission, unresolved transaction, reward receipt, or creation/payment/fulfilled outcome of an already committed prophecy. Accept a useful compatible descendant rewrite without breaking its predicate. Real soul/Hunt/final-death authority is not overruled: death-sensitive restoration stays TF192-H-DEATH until exact current death-instance/body/soul eligibility is proved. Positive nondeath cases remain available. Do not import Oracle Time Loop’s once-long-rest/round4 restrictions or claim its missing adapters complete. Completed instantaneous rewrites are not ongoing magical effects for retroactive dispel/Null rollback; the cast remains interruptible before atomic settlement.
+
+Blockers: TF192-B04
+
+Evidence: RANK9TIMEFATE6129-FATE-REWRITE-A__historical-original, RANK9TIMEFATE6129-FATE-REWRITE-A__historical-alternative, RANK9TIMEFATE6129-FATE-REWRITE-A, RANK9TIMEFATE6129-FATE-REWRITE-B, RANK9TIMEFATE6129-FATE-REWRITE-B__too-old, RANK9TIMEFATE6129-FATE-REWRITE-B__unknown-event, RANK9TIMEFATE6129-FATE-REWRITE-B__ambiguous-event, RANK9TIMEFATE6129-FATE-REWRITE-B__unique-custody-conflict, RANK9TIMEFATE6129-FATE-REWRITE-B__harvested-material, RANK9TIMEFATE6129-FATE-REWRITE-B__prior-rewrite-payment, RANK9TIMEFATE6129-FATE-REWRITE-B__prophecy-creation-conflict, RANK9TIMEFATE6129-FATE-REWRITE-B__missing-external-descendant, RANK9TIMEFATE6129-FATE-REWRITE-B__death-hunt-source-gate, RANK9TIMEFATE6129-FATE-REWRITE-B__paid-countered-exact, RANK9TIMEFATE6129-FATE-REWRITE-B__ready-expiry-valid-operands, RANK9TIMEFATE6129-FATE-REWRITE-B__antimagic-origin-paid-failure, RANK9TIMEFATE6129-FATE-REWRITE-B__independent-coverage-hold
+
+## collapse-timeline
+
+PROPOSED_UNACCEPTED_REQUIRED_BRANCH_HELD
+
+### Exact native card and access
+
+```json
+{
+  "id": "collapse-timeline",
+  "name": "Collapse Timeline",
+  "schools": [
+    "Universal"
+  ],
+  "status": "blocked-pending-operational-review",
+  "visibility": "public-source-review",
+  "classAccess": {
+    "Cleric": {
+      "rank": 9,
+      "minimumClassLevel": 17,
+      "school": "Universal",
+      "baseRpCost": 26
+    },
+    "Mage": {
+      "rank": 9,
+      "minimumClassLevel": 17,
+      "school": "Universal",
+      "baseRpCost": 26
+    },
+    "Wizard": {
+      "rank": 9,
+      "minimumClassLevel": 17,
+      "school": "Universal",
+      "baseRpCost": 26
+    }
+  },
+  "operational": null,
+  "additionalRpCost": 0,
+  "source": {
+    "catalogPath": "src/data/spells.js",
+    "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+    "catalogKey": "collapse-timeline",
+    "original": {
+      "name": "Collapse Timeline",
+      "level": 9,
+      "resonanceRank": 9,
+      "school": "Universal",
+      "schools": [
+        "Universal"
+      ],
+      "placements": [
+        {
+          "name": "Collapse Timeline",
+          "school": "Universal",
+          "level": 9,
+          "summary": "Force entire battlefield into alternate future: Director determines outcome."
+        }
+      ],
+      "classLevels": {
+        "Cleric": 9,
+        "Mage": 9,
+        "Wizard": 9
+      },
+      "classRanks": {
+        "Cleric": 9,
+        "Mage": 9,
+        "Wizard": 9
+      },
+      "classLearnLevels": {
+        "Cleric": 17,
+        "Mage": 17,
+        "Wizard": 17
+      },
+      "classSchools": {
+        "Cleric": "Universal",
+        "Mage": "Universal",
+        "Wizard": "Universal"
+      },
+      "castingTime": "Not specified in current rulebook",
+      "range": "Not specified in current rulebook",
+      "components": "Not specified in current rulebook",
+      "duration": "Not specified in current rulebook",
+      "description": "Force entire battlefield into alternate future: Director determines outcome.",
+      "alternateSummaries": [],
+      "classes": [
+        "Cleric",
+        "Mage",
+        "Wizard"
+      ],
+      "status": "canon",
+      "source": "Player Rulebook — Spell Lists"
+    },
+    "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+    "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+    "coreEntries": [
+      {
+        "index": 927,
+        "original": {
+          "school": "Universal",
+          "level": 9,
+          "name": "Collapse Timeline",
+          "effect": "Force entire battlefield into alternate future: GM determines outcome.",
+          "source_paragraph": 10128,
+          "casting_time": "1 action",
+          "range": "120 feet",
+          "duration": "Instantaneous",
+          "components": "V, S, F",
+          "resolution": "Automatic or opposed as described",
+          "tags": [
+            "Utility"
+          ],
+          "rp_cost": 26
+        }
+      }
+    ],
+    "possibleHistoricalAliases": []
+  },
+  "reviewFlags": [
+    "Core resolution requires an explicit operational interpretation",
+    "Not selectable in this spell playtest packet until individual operational review"
+  ]
+}
+```
+
+### scope
+
+Static authored Director proposal for exactly these six identities under 777 reviewed-applied / 71 pending / 0 accepted-unapplied; 501 complete standalone procedures and 173 scoped interfaces. No canonical edits, application, runtime selection, implementation, human play, balance, cosmology, domain closure, completion or release approval. All NEW clauses are local to these spells. Full Time Loop, Timeless Form and all earlier held identities remain held. Source packet and all current/historical bytes remain preserved.
+
+### access
+
+Keep every native placement and classAccess row. Rank9/minimum class17/base26RP, V/S/F; Action except the actually acquired Universal Time Stop Reaction. Wizard access uses the class-mapped school, actual spellbook entry and prepared matrix; Druid uses its prepared list; Cleric/Mage use actual known choices. A class-level/rank gate or enough RP is not acquisition. Proposed spell preparations in fixtures are explicitly contingent on this static review and do not alter current catalog availability. No unprinted consumed component or generic upcasting.
+
+### commit
+
+Before commitment validate live body, actual class/repertoire, Action or exact Reaction trigger, audible V, free gesture hand, possessed focus, targets/geometry and adequate resources. Compute limit=max(4,2+PB+max(0,casting modifier)); surcharge1 at limit and2 at limit+3; ordinary ranked casting blocked at limit+6. Base strain2 for rank9; consecutive same-name Refrain1,2,3 capped; Wizard first actually prepared family waives base only. Preserve real class exceptions and mandatory hooks. Pay once, update history once, end incompatible concentration only if this cast requires it, then offer real cast-time counters. Countered, interrupted or later-invalid legal casts keep payment/cadence and never restore displaced concentration. Invalid preflight pays nothing. Ordinary eligible Wizard Arch Counterspell is rank1/3RP/Reaction/recharge2, INT+PB task vs10+2rank, not an acquired ordinary spell by name; its actual acquired feedback/bonuses still apply.
+
+### ready
+
+Only Action-time modes can use ordinary Ready. Spend Action, commit actual cast once including costs, cadence, components and counter window; hold concentration even for a normally nonconcentration spell. At release, after the actual perceivable trigger, spend legal Reaction and recheck all targets/geometry. No second cast or payment/counter window. Effect duration begins on release; Ready expires at original next regular own-start. Invalid/declined triggers spend no release Reaction, without extending that deadline. Replacing, concentration loss, expiry or countering loses the held spell without refund. Universal Time Stop cannot be generically Readied.
+
+### clocks
+
+World elapsed time is monotonic except it is paused during the explicitly authored Time Stop interval; no time is rewound by bookkeeping. Ordinary regular starts/end markers, six-second recharge, death saves, Ready, persistent pulses, source-relative duration, rest and finite-use histories remain separate clocks. Each full-state case records actor schedules and all due starts/ends, or explicit outside-initiative elapsed ticks. An administrative event is not a turn. Natural1/20 attack/save/task/opposed meanings remain exact Core rules; all dice in examples are authored inputs, not executed gameplay RNG.
+
+### physical
+
+Real occupied body volumes, support, hands, item identities, custody, focus, sight/line of effect and source range are checked at their actual stage. Fixture actors are explicit source-qualified human class builds and scene premises, not discovered campaign characters or invented creature profiles. Missing actual campaign operands create a whole dependent case/branch hold. No camera/debug knowledge, hidden identity revelation or fabricated objective fact. Default real-world/campaign input is unknown until supplied; a synthetic scene is labelled as such.
+
+### suppression
+
+Use exact accepted Antimagic Field RW149-F, not the name Null as a universal dispel. Legal originating-inside casts still pay but their ordinary payload is suppressed without banking release. Creature-attached expressions suppress on actual body intersection; clocks remain original. A current qualified dispel uses its actual source/rank/cost/check and real effect perception; Wizard Arch Dispel is rank3/3RP/60ft/recharge2/INT+PB vs10+effect rank for rank4+, not Greater Dispel. Residual Null/Null Veil affects its explicit exposure/damage-root scopes, not every temporal effect. Instantaneous completed physical/history changes are not undone by later suppression. Preserve root-dealer Null flags, no duplicated outcomes and all inherited source holds.
+
+### persistence
+
+Serialize source/cast/parent/child IDs, original clock domain/endpoint, immutable rolls and lineage, source/version references, complete bodies/resources/conditions, audit histories, custody and per-observer memories, pending transactions and obligations. Save/load and mode transitions preserve them byte-semantically; no cost, pulse, draw, award or grant replays. Copies of a document are not copies of a body, resource wallet, item, reward or guarantee. Missing engine adapters remain engineering qualifications, never false evidence of execution.
+
+### declaration
+
+NEW select a perceived battlefield anchor within120ft/same plane/LoE, and an actually enumerated connected encounter boundary including caster, all participants, bodies, terrain, objects and external dependencies. The range bounds anchor selection, not a sphere secretly trimming the battlefield. Use one finite six-second future horizon selected locally for this authored version; this is a NEW limit, not native printed text. The whole declared battlefield changes, not only selected enemies. If current encounter boundary or real external interactions are incomplete, hold the whole case.
+
+### directorPolicy
+
+NEW deterministic Director policy TF192-FUTURE-01: before payment disclose six-second horizon, the set of feasible objectives and the physical/resource risk envelope from legitimately available facts; caster chooses one feasible objective, not arbitrary dice or outcomes. Director supplies a finite ordered list of complete lawful future histories from the same current paid-cast state, each with exact decisions/roll inputs and all participants’ agency. Filter by rules, actual resources, complete clock/event coverage, identity/custody and existing guarantees; select lowest authored policy priority, then stable alternative ID. Unknown private outcomes are not leaked by a diagnostic. No live LLM, omniscient player, free turns/actions or guaranteed hits. Alternative histories are proposal data, not claims that gameplay ran.
+
+### settlement
+
+NEW advance world elapsed time by exactly6seconds on successful settlement, rather than transplanting future HP into unmoved clocks. Process every actor’s actual scheduled starts/ends, automatic events, Ready expiry, recharge, death saves, injuries, cost/cadence, source expiry and ordinary actions exactly once through the horizon. Include outsiders’ due events if touched; preflight their versions, wallets and holdings. Selected future starts from AFTER this cast’s real payment and action consumption, so it cannot refund the casting. Retain all current spell/finite uses and actual future costs; only lawful recovery sources may recover. All speculative alternatives are discarded; only one complete history/body/custody/reward ledger commits in a single test/replace transaction. The full selected event trace is embedded as futureEvidence with full states and inverses, not merely asserted.
+
+### failures
+
+Revalidate complete captured versions just before payment and again before settlement. A known stale preflight rejects unpaid; a legal cast interrupted or made stale after payment fails with only actual committed cost/history retained. No partial body relocation/HP/resource write. A current prophecy obligation constrains the candidate future; reject incompatible alternatives but permit a useful compatible future. Later antimagic cannot undo already completed physical history. An active Time Stop or unknown Time Loop/temporal-parent adapter is a precise unavailable branch, not a generic permission to mix clocks. No new plane, clone, arbitrary time-travel domain or reward farming.
+
+Blockers: TF192-B05
+
+Evidence: RANK9TIMEFATE6129-COLLAPSE-TIMELINE-A__future-policy-0, RANK9TIMEFATE6129-COLLAPSE-TIMELINE-A__future-policy-1, RANK9TIMEFATE6129-COLLAPSE-TIMELINE-A, RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B, RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__external-dependency, RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__stale-preflight, RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__stale-after-payment, RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__active-time-stop, RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__unsupported-parent, RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__paid-countered-exact, RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__ready-expiry-valid-operands, RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__antimagic-origin-paid-failure, RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__independent-coverage-hold, RANK9TIMEFATE6129-COLLAPSE-TIMELINE-A__clock-future-trace, RANK9TIMEFATE6129-COLLAPSE-TIMELINE-A__clock-envelope, RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__dying-future-trace, RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__dying-actor-future-clock
+
+## eternal-prophecy
+
+PROPOSED_UNACCEPTED_REQUIRED_BRANCH_HELD
+
+### Exact native card and access
+
+```json
+{
+  "id": "eternal-prophecy",
+  "name": "Eternal Prophecy",
+  "schools": [
+    "Divination"
+  ],
+  "status": "blocked-pending-operational-review",
+  "visibility": "public-source-review",
+  "classAccess": {
+    "Cleric": {
+      "rank": 9,
+      "minimumClassLevel": 17,
+      "school": "Divination",
+      "baseRpCost": 26
+    },
+    "Wizard": {
+      "rank": 9,
+      "minimumClassLevel": 17,
+      "school": "Divination",
+      "baseRpCost": 26
+    }
+  },
+  "operational": null,
+  "additionalRpCost": 0,
+  "source": {
+    "catalogPath": "src/data/spells.js",
+    "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+    "catalogKey": "eternal-prophecy",
+    "original": {
+      "name": "Eternal Prophecy",
+      "level": 9,
+      "resonanceRank": 9,
+      "school": "Divination",
+      "schools": [
+        "Divination"
+      ],
+      "placements": [
+        {
+          "name": "Eternal Prophecy",
+          "school": "Divination",
+          "level": 9,
+          "summary": "Create a self-fulfilling prophecy that must come true within 1 year."
+        }
+      ],
+      "classLevels": {
+        "Cleric": 9,
+        "Wizard": 9
+      },
+      "classRanks": {
+        "Cleric": 9,
+        "Wizard": 9
+      },
+      "classLearnLevels": {
+        "Cleric": 17,
+        "Wizard": 17
+      },
+      "classSchools": {
+        "Cleric": "Divination",
+        "Wizard": "Divination"
+      },
+      "castingTime": "Not specified in current rulebook",
+      "range": "Not specified in current rulebook",
+      "components": "Not specified in current rulebook",
+      "duration": "Not specified in current rulebook",
+      "description": "Create a self-fulfilling prophecy that must come true within 1 year.",
+      "alternateSummaries": [],
+      "classes": [
+        "Cleric",
+        "Wizard"
+      ],
+      "status": "canon",
+      "source": "Player Rulebook — Spell Lists"
+    },
+    "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+    "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+    "coreEntries": [
+      {
+        "index": 309,
+        "original": {
+          "school": "Divination",
+          "level": 9,
+          "name": "Eternal Prophecy",
+          "effect": "Create a self-fulfilling prophecy that must come true within 1 year.",
+          "source_paragraph": 9360,
+          "casting_time": "1 action",
+          "range": "Self",
+          "duration": "Instantaneous",
+          "components": "V, S, F",
+          "resolution": "Automatic or opposed as described",
+          "tags": [
+            "Utility"
+          ],
+          "rp_cost": 26
+        }
+      }
+    ],
+    "possibleHistoricalAliases": []
+  },
+  "reviewFlags": [
+    "Core resolution requires an explicit operational interpretation",
+    "Not selectable in this spell playtest packet until individual operational review"
+  ]
+}
+```
+
+### scope
+
+Static authored Director proposal for exactly these six identities under 777 reviewed-applied / 71 pending / 0 accepted-unapplied; 501 complete standalone procedures and 173 scoped interfaces. No canonical edits, application, runtime selection, implementation, human play, balance, cosmology, domain closure, completion or release approval. All NEW clauses are local to these spells. Full Time Loop, Timeless Form and all earlier held identities remain held. Source packet and all current/historical bytes remain preserved.
+
+### access
+
+Keep every native placement and classAccess row. Rank9/minimum class17/base26RP, V/S/F; Action except the actually acquired Universal Time Stop Reaction. Wizard access uses the class-mapped school, actual spellbook entry and prepared matrix; Druid uses its prepared list; Cleric/Mage use actual known choices. A class-level/rank gate or enough RP is not acquisition. Proposed spell preparations in fixtures are explicitly contingent on this static review and do not alter current catalog availability. No unprinted consumed component or generic upcasting.
+
+### commit
+
+Before commitment validate live body, actual class/repertoire, Action or exact Reaction trigger, audible V, free gesture hand, possessed focus, targets/geometry and adequate resources. Compute limit=max(4,2+PB+max(0,casting modifier)); surcharge1 at limit and2 at limit+3; ordinary ranked casting blocked at limit+6. Base strain2 for rank9; consecutive same-name Refrain1,2,3 capped; Wizard first actually prepared family waives base only. Preserve real class exceptions and mandatory hooks. Pay once, update history once, end incompatible concentration only if this cast requires it, then offer real cast-time counters. Countered, interrupted or later-invalid legal casts keep payment/cadence and never restore displaced concentration. Invalid preflight pays nothing. Ordinary eligible Wizard Arch Counterspell is rank1/3RP/Reaction/recharge2, INT+PB task vs10+2rank, not an acquired ordinary spell by name; its actual acquired feedback/bonuses still apply.
+
+### ready
+
+Only Action-time modes can use ordinary Ready. Spend Action, commit actual cast once including costs, cadence, components and counter window; hold concentration even for a normally nonconcentration spell. At release, after the actual perceivable trigger, spend legal Reaction and recheck all targets/geometry. No second cast or payment/counter window. Effect duration begins on release; Ready expires at original next regular own-start. Invalid/declined triggers spend no release Reaction, without extending that deadline. Replacing, concentration loss, expiry or countering loses the held spell without refund. Universal Time Stop cannot be generically Readied.
+
+### clocks
+
+World elapsed time is monotonic except it is paused during the explicitly authored Time Stop interval; no time is rewound by bookkeeping. Ordinary regular starts/end markers, six-second recharge, death saves, Ready, persistent pulses, source-relative duration, rest and finite-use histories remain separate clocks. Each full-state case records actor schedules and all due starts/ends, or explicit outside-initiative elapsed ticks. An administrative event is not a turn. Natural1/20 attack/save/task/opposed meanings remain exact Core rules; all dice in examples are authored inputs, not executed gameplay RNG.
+
+### physical
+
+Real occupied body volumes, support, hands, item identities, custody, focus, sight/line of effect and source range are checked at their actual stage. Fixture actors are explicit source-qualified human class builds and scene premises, not discovered campaign characters or invented creature profiles. Missing actual campaign operands create a whole dependent case/branch hold. No camera/debug knowledge, hidden identity revelation or fabricated objective fact. Default real-world/campaign input is unknown until supplied; a synthetic scene is labelled as such.
+
+### suppression
+
+Use exact accepted Antimagic Field RW149-F, not the name Null as a universal dispel. Legal originating-inside casts still pay but their ordinary payload is suppressed without banking release. Creature-attached expressions suppress on actual body intersection; clocks remain original. A current qualified dispel uses its actual source/rank/cost/check and real effect perception; Wizard Arch Dispel is rank3/3RP/60ft/recharge2/INT+PB vs10+effect rank for rank4+, not Greater Dispel. Residual Null/Null Veil affects its explicit exposure/damage-root scopes, not every temporal effect. Instantaneous completed physical/history changes are not undone by later suppression. Preserve root-dealer Null flags, no duplicated outcomes and all inherited source holds.
+
+### persistence
+
+Serialize source/cast/parent/child IDs, original clock domain/endpoint, immutable rolls and lineage, source/version references, complete bodies/resources/conditions, audit histories, custody and per-observer memories, pending transactions and obligations. Save/load and mode transitions preserve them byte-semantically; no cost, pulse, draw, award or grant replays. Copies of a document are not copies of a body, resource wallet, item, reward or guarantee. Missing engine adapters remain engineering qualifications, never false evidence of execution.
+
+### admission
+
+KEEP an actual self-fulfilling future event within one Aethel civil year:400days*24hours*3600=34560000 elapsed world seconds. No invented epoch, equinox or primordial-Cycle conversion. NEW finite declaration grammar for this return is DELIVER(existing ordinary nonliving owned item, one known supported destination, before original one-year deadline). State exact item/owner/custodian/anchor and objective first-arrival predicate, not a vague omen, already-true statement, living death, global wealth or coerced belief. This bounded grammar and direct fate transport are NEW local spell authorship delivering a genuine future benefit, not recovered source facts. Actual caster ownership/consent, nonartifact status, legal custody, fully known protected destination and complete dependency history are required. Missing actual item/geometry/claim facts hold that case.
+
+### plan
+
+NEW proposed guarantee mechanism TF192-GUARANTEE-01: commit one unique source-owned obligation after successful Action/V/S/F/26RP cast; preserve original deadline and immutable payment. Choose a normal lawful delivery route and an alternate route with explicit owners, decisions and costs. No autonomous actor action, resources or success is fabricated. A dormant source may request those ordinary actions but cannot force a third party to comply. A bounded direct delivery contingency is therefore required for an unconditional guarantee: move the same declared ordinary item exactly once to its reserved legal destination, no body/reward/item duplication. Interventions are magical expressions subject to actual suppression and property/physical constraints. A source cannot claim it guarantees a valid arrival solely because both currently authored routes succeed.
+
+### unresolvedGuarantee
+
+BLOCKER TF192-B02. The native promise is unconditional must come true, but the available authored direct-delivery contingency cannot demonstrate fulfillment if all lawful routes and the actual magical intervention remain prevented through the deadline, or a genuine external artifact/finality/physical event removes the item or destination. This return does NOT invent indestructibility, a forceful universal preemption interrupt, global veto of future choices, or blanket antimagic immunity to hide that contradiction. Positive finite route traces, obstruction recovery, saved state and caster-death independence are demonstrated as conditional obligations, not proof of the full guarantee. The identity remains unaccepted until an explicitly authorized finite mechanism and its adversarial closure are evidenced, or the owner explicitly qualifies the promise. Preserve the exact unmet branch, no fulfilled receipt is fabricated.
+
+### conflicts
+
+NEW shared local registry across Fate Rewrite/Collapse Timeline/Eternal Prophecy: older committed source/obligation IDs win; a later declaration may not erase its creation/payment/fulfillment or make its objective impossible. Reject contradictions, recursion, already-true predicates and incompatible unique-item destinations before cost; permit ordinary compatible movement/history changes. Admission offers only generic unavailable feedback for protected facts. Caster death does not cancel an otherwise valid created obligation and cannot create a successor caster/body. Save/load preserves pending status and all route attempts. Instantaneous is creation timing, not proof the obligation is nonsuppressible; interventions retain actual magical suppression. Cancellation/failure at deadline would qualify the guarantee and is recorded as a blocker, never called successful fulfillment. Completed real delivery remains physical history despite later dispel/Null.
+
+Blockers: TF192-B02
+
+Evidence: RANK9TIMEFATE6129-ETERNAL-PROPHECY-A, RANK9TIMEFATE6129-ETERNAL-PROPHECY-A__alternate-route-obstruction, RANK9TIMEFATE6129-ETERNAL-PROPHECY-B, RANK9TIMEFATE6129-ETERNAL-PROPHECY-B__contradictory-second, RANK9TIMEFATE6129-ETERNAL-PROPHECY-B__already-true, RANK9TIMEFATE6129-ETERNAL-PROPHECY-B__recursive-promise, RANK9TIMEFATE6129-ETERNAL-PROPHECY-B__unavailable-item, RANK9TIMEFATE6129-ETERNAL-PROPHECY-B__caster-death-persistence, RANK9TIMEFATE6129-ETERNAL-PROPHECY-B__rewrite-creation-conflict, RANK9TIMEFATE6129-ETERNAL-PROPHECY-B__save-load-blocked, RANK9TIMEFATE6129-ETERNAL-PROPHECY-B__paid-countered-exact, RANK9TIMEFATE6129-ETERNAL-PROPHECY-B__ready-expiry-valid-operands, RANK9TIMEFATE6129-ETERNAL-PROPHECY-B__antimagic-origin-paid-failure, RANK9TIMEFATE6129-ETERNAL-PROPHECY-B__independent-coverage-hold
+
