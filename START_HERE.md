@@ -1,10 +1,10 @@
-# Active ordinary spell review167 — Calibration review part 6
+# Decennium Descent — start here
 
-Planar5 Return166 was accepted by the GPT director, independently audited, and applied to exactly five identities: **735 reviewed / 113 pending / 0 accepted-unapplied**. All 17 hold categories and ten whole-case holds remain; no runtime, human-play, balance, cosmology, domain closure or release approval is included.
+**Current ordinary spell-review checkpoint [170](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_170.json):** the GPT director accepted and Codex independently audited and applied exactly prismatic-wall, faction-convergence, divine-intervention-lesser, reality-patch. Authority is **739 reviewed / 109 pending / 0 accepted-unapplied**, with 463 complete reviewed standalone procedures. The exact director ZIP SHA-256 is `081aa49e33c7df0965428db6a63bbcbf656f226e3f496976a68750fb90330b0e`; local independent verification passed 29 checks.
 
-Continue with **rank8-remaining4** using a fresh packet against 735/113 authority. Apply only exact accepted IDs, pushing each applied batch to GitHub. Preserve completed feat and spell cohorts.
+All 29 holds remain, including four whole-case held branches. Native catalog/access and source status remain unchanged; procedures stay disabled for runtime selection. Runtime, human-play, balance, cosmology, and release approval remain separate. The next group is **rank9-catastrophe10** and needs a fresh 739/109 packet. Continue until pending reaches zero.
 
-Read [current handoff](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_167.json), [pending identity audit](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT113_PENDING_IDENTITY_AUDIT_167.json), [exact acceptance](docs/audit/2026-10-08/full-game/director-spell-review-129/PLANAR5_EXACT_ACCEPTANCE_166.json), and [application validation](docs/audit/2026-10-08/full-game/director-spell-review-129/PLANAR5_APPLICATION_VALIDATION_167.json).
+See [current handoff](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_170.json), [pending identity audit](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT109_PENDING_IDENTITY_AUDIT_170.json), [exact acceptance](docs/audit/2026-10-08/full-game/director-spell-review-129/REMAINING4_EXACT_ACCEPTANCE_169.json), [application](docs/audit/2026-10-08/full-game/director-spell-review-129/REMAINING4_APPLICATION_170.json), and [director return ZIP](docs/audit/2026-10-08/full-game/director-spell-review-129/remaining4_return169_received/DD_Rank8_Remaining4_Director_Return169.zip).
 
 **Prior checkpoint: [148](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_148.json).**
 

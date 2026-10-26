@@ -1,0 +1,2614 @@
+{
+  "scope": "NEW closed eight-identity invocation repertoire. Other source cards remain preserved in the exact source archive, not granted by this local catalog.",
+  "payloads": [
+    {
+      "id": "armor-of-faith",
+      "nativeCardUnchanged": {
+        "id": "armor-of-faith",
+        "name": "Armor of Faith",
+        "schools": [
+          "Abjuration"
+        ],
+        "status": "operational-playtest-draft",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Cleric": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Abjuration",
+            "baseRpCost": 2
+          },
+          "Druid": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Abjuration",
+            "baseRpCost": 2
+          },
+          "Mage": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Abjuration",
+            "baseRpCost": 2
+          },
+          "Monk": {
+            "rank": 1,
+            "minimumClassLevel": 3,
+            "school": "Abjuration",
+            "baseRpCost": 2
+          },
+          "Tinker": {
+            "rank": 1,
+            "minimumClassLevel": 2,
+            "school": "Abjuration",
+            "baseRpCost": 2
+          },
+          "Wizard": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Abjuration",
+            "baseRpCost": 2
+          },
+          "Paladin": {
+            "rank": 1,
+            "minimumClassLevel": 2,
+            "school": "Abjuration",
+            "baseRpCost": 2
+          }
+        },
+        "operational": {
+          "id": "armor-of-faith",
+          "activation": "Action",
+          "rangeFeet": 30,
+          "targets": "One willing creature you can perceive within range and line of effect, including yourself.",
+          "duration": "1 hour: expires 3,600 seconds after application. Initiative entry, exit or reorder does not reset this deadline.",
+          "concentration": false,
+          "components": [
+            "V",
+            "S",
+            "F"
+          ],
+          "resolution": "Automatic after legal casting.",
+          "effect": "Spectral armor grants the target +3 AC for the duration. Treat it as a magical flat AC bonus; use only the strongest applicable same-stat flat bonus.",
+          "scaling": "None.",
+          "limitations": "Creates no physical equipment, extra armor slot, proficiency, hand requirement, material, weight or saleable item. Does not change the target's underlying armor calculation. It cannot add to Shield, Alignment Shield, Warding Bond or another flat AC bonus; only the strongest applies. Multiple Armor of Faith applications do not add together. Known/prepared access, class-level gates, legal components, line of effect, payment before resolution, concentration transitions, Dissonance, Refrain and class cadence follow SPELL_INTEGRATION_RULES.md. No automatic scaling or generic upcast. Each independently applied Armor of Faith keeps its own deadline; expiration of one does not cancel another.",
+          "designNotes": "PRESERVED: +3 AC, Action, 30 feet, V/S/F, 1 hour without concentration. NEW: one willing recipient, fixed elapsed deadline and non-equipment spectral-bonus interpretation.",
+          "implementationStatus": "REVIEWED authored operational-playtest manuscript; runtime and balance validation pending",
+          "sourceCoreEntries": [
+            {
+              "index": 23,
+              "original": {
+                "school": "Abjuration",
+                "level": 1,
+                "name": "Armor of Faith",
+                "effect": "Spectral armor grants +3 AC for 1 hour.",
+                "source_paragraph": 9008,
+                "casting_time": "1 action",
+                "range": "30 feet",
+                "duration": "1 hour",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Utility"
+                ],
+                "rp_cost": 2
+              }
+            }
+          ],
+          "sourcePlacements": [
+            {
+              "name": "Armor of Faith",
+              "school": "Abjuration",
+              "level": 1,
+              "summary": "Spectral armor grants +3 AC for 1 hour."
+            }
+          ],
+          "classAccessEvidence": {
+            "Cleric": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Abjuration",
+              "baseRpCost": 2
+            },
+            "Druid": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Abjuration",
+              "baseRpCost": 2
+            },
+            "Mage": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Abjuration",
+              "baseRpCost": 2
+            },
+            "Monk": {
+              "rank": 1,
+              "minimumClassLevel": 3,
+              "school": "Abjuration",
+              "baseRpCost": 2
+            },
+            "Tinker": {
+              "rank": 1,
+              "minimumClassLevel": 2,
+              "school": "Abjuration",
+              "baseRpCost": 2
+            },
+            "Wizard": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Abjuration",
+              "baseRpCost": 2
+            },
+            "Paladin": {
+              "rank": 1,
+              "minimumClassLevel": 2,
+              "school": "Abjuration",
+              "baseRpCost": 2
+            }
+          },
+          "sourceReview": [
+            "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_SOURCE_CONFERENCE.md",
+            "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_EXACT_REVIEW.md"
+          ],
+          "reviewEvidence": [
+            "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_EXACT_REVIEW.md"
+          ],
+          "authoringFile": "data/playtest/spell_drafts/batch_abjuration_rank1.json"
+        },
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "armor-of-faith",
+          "original": {
+            "name": "Armor of Faith",
+            "level": 1,
+            "resonanceRank": 1,
+            "school": "Abjuration",
+            "schools": [
+              "Abjuration"
+            ],
+            "placements": [
+              {
+                "name": "Armor of Faith",
+                "school": "Abjuration",
+                "level": 1,
+                "summary": "Spectral armor grants +3 AC for 1 hour."
+              }
+            ],
+            "classLevels": {
+              "Cleric": 1,
+              "Druid": 1,
+              "Mage": 1,
+              "Monk": 1,
+              "Tinker": 1,
+              "Wizard": 1,
+              "Paladin": 1
+            },
+            "classRanks": {
+              "Cleric": 1,
+              "Druid": 1,
+              "Mage": 1,
+              "Monk": 1,
+              "Tinker": 1,
+              "Wizard": 1,
+              "Paladin": 1
+            },
+            "classLearnLevels": {
+              "Cleric": 1,
+              "Druid": 1,
+              "Mage": 1,
+              "Monk": 3,
+              "Tinker": 2,
+              "Wizard": 1,
+              "Paladin": 2
+            },
+            "classSchools": {
+              "Cleric": "Abjuration",
+              "Druid": "Abjuration",
+              "Mage": "Abjuration",
+              "Monk": "Abjuration",
+              "Tinker": "Abjuration",
+              "Wizard": "Abjuration",
+              "Paladin": "Abjuration"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Spectral armor grants +3 AC for 1 hour.",
+            "alternateSummaries": [],
+            "classes": [
+              "Cleric",
+              "Druid",
+              "Mage",
+              "Monk",
+              "Tinker",
+              "Wizard",
+              "Paladin"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 23,
+              "original": {
+                "school": "Abjuration",
+                "level": 1,
+                "name": "Armor of Faith",
+                "effect": "Spectral armor grants +3 AC for 1 hour.",
+                "source_paragraph": 9008,
+                "casting_time": "1 action",
+                "range": "30 feet",
+                "duration": "1 hour",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Utility"
+                ],
+                "rp_cost": 2
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation"
+        ]
+      },
+      "operativeSource": {
+        "kind": "current catalog",
+        "pointer": "/spells/23"
+      },
+      "operativeProcedureUnchanged": {
+        "id": "armor-of-faith",
+        "activation": "Action",
+        "rangeFeet": 30,
+        "targets": "One willing creature you can perceive within range and line of effect, including yourself.",
+        "duration": "1 hour: expires 3,600 seconds after application. Initiative entry, exit or reorder does not reset this deadline.",
+        "concentration": false,
+        "components": [
+          "V",
+          "S",
+          "F"
+        ],
+        "resolution": "Automatic after legal casting.",
+        "effect": "Spectral armor grants the target +3 AC for the duration. Treat it as a magical flat AC bonus; use only the strongest applicable same-stat flat bonus.",
+        "scaling": "None.",
+        "limitations": "Creates no physical equipment, extra armor slot, proficiency, hand requirement, material, weight or saleable item. Does not change the target's underlying armor calculation. It cannot add to Shield, Alignment Shield, Warding Bond or another flat AC bonus; only the strongest applies. Multiple Armor of Faith applications do not add together. Known/prepared access, class-level gates, legal components, line of effect, payment before resolution, concentration transitions, Dissonance, Refrain and class cadence follow SPELL_INTEGRATION_RULES.md. No automatic scaling or generic upcast. Each independently applied Armor of Faith keeps its own deadline; expiration of one does not cancel another.",
+        "designNotes": "PRESERVED: +3 AC, Action, 30 feet, V/S/F, 1 hour without concentration. NEW: one willing recipient, fixed elapsed deadline and non-equipment spectral-bonus interpretation.",
+        "implementationStatus": "REVIEWED authored operational-playtest manuscript; runtime and balance validation pending",
+        "sourceCoreEntries": [
+          {
+            "index": 23,
+            "original": {
+              "school": "Abjuration",
+              "level": 1,
+              "name": "Armor of Faith",
+              "effect": "Spectral armor grants +3 AC for 1 hour.",
+              "source_paragraph": 9008,
+              "casting_time": "1 action",
+              "range": "30 feet",
+              "duration": "1 hour",
+              "components": "V, S, F",
+              "resolution": "Automatic or opposed as described",
+              "tags": [
+                "Utility"
+              ],
+              "rp_cost": 2
+            }
+          }
+        ],
+        "sourcePlacements": [
+          {
+            "name": "Armor of Faith",
+            "school": "Abjuration",
+            "level": 1,
+            "summary": "Spectral armor grants +3 AC for 1 hour."
+          }
+        ],
+        "classAccessEvidence": {
+          "Cleric": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Abjuration",
+            "baseRpCost": 2
+          },
+          "Druid": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Abjuration",
+            "baseRpCost": 2
+          },
+          "Mage": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Abjuration",
+            "baseRpCost": 2
+          },
+          "Monk": {
+            "rank": 1,
+            "minimumClassLevel": 3,
+            "school": "Abjuration",
+            "baseRpCost": 2
+          },
+          "Tinker": {
+            "rank": 1,
+            "minimumClassLevel": 2,
+            "school": "Abjuration",
+            "baseRpCost": 2
+          },
+          "Wizard": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Abjuration",
+            "baseRpCost": 2
+          },
+          "Paladin": {
+            "rank": 1,
+            "minimumClassLevel": 2,
+            "school": "Abjuration",
+            "baseRpCost": 2
+          }
+        },
+        "sourceReview": [
+          "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_SOURCE_CONFERENCE.md",
+          "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_EXACT_REVIEW.md"
+        ],
+        "reviewEvidence": [
+          "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_EXACT_REVIEW.md"
+        ],
+        "authoringFile": "data/playtest/spell_drafts/batch_abjuration_rank1.json"
+      },
+      "eligibleNativeRows": {
+        "Cleric": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Druid": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Mage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Monk": {
+          "rank": 1,
+          "minimumClassLevel": 3,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Tinker": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Wizard": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Paladin": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        }
+      },
+      "invocationScope": "DI169 only; actual selected row is recorded per child; no permanent acquisition"
+    },
+    {
+      "id": "protection-from-scrying",
+      "nativeCardUnchanged": {
+        "id": "protection-from-scrying",
+        "name": "Protection from Scrying",
+        "schools": [
+          "Abjuration"
+        ],
+        "status": "operational-playtest-draft",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Cleric": {
+            "rank": 3,
+            "minimumClassLevel": 5,
+            "school": "Abjuration",
+            "baseRpCost": 5
+          },
+          "Druid": {
+            "rank": 3,
+            "minimumClassLevel": 5,
+            "school": "Abjuration",
+            "baseRpCost": 5
+          },
+          "Mage": {
+            "rank": 3,
+            "minimumClassLevel": 5,
+            "school": "Abjuration",
+            "baseRpCost": 5
+          },
+          "Monk": {
+            "rank": 3,
+            "minimumClassLevel": 13,
+            "school": "Abjuration",
+            "baseRpCost": 5
+          },
+          "Tinker": {
+            "rank": 3,
+            "minimumClassLevel": 10,
+            "school": "Abjuration",
+            "baseRpCost": 5
+          },
+          "Wizard": {
+            "rank": 3,
+            "minimumClassLevel": 5,
+            "school": "Abjuration",
+            "baseRpCost": 5
+          },
+          "Paladin": {
+            "rank": 3,
+            "minimumClassLevel": 9,
+            "school": "Abjuration",
+            "baseRpCost": 5
+          }
+        },
+        "operational": {
+          "id": "protection-from-scrying",
+          "activation": "Action",
+          "rangeFeet": 60,
+          "targets": "One willing creature you can perceive within range and line of effect, including yourself.",
+          "duration": "1 hour: expires 3,600 elapsed seconds after application; entering, leaving or reordering initiative does not change that deadline.",
+          "concentration": false,
+          "components": [
+            "V",
+            "S",
+            "F"
+          ],
+          "resolution": "Automatic after legal casting. Check an information-gathering effect's actual generating source classification, using its real casting-class school placement where applicable.",
+          "effect": "The target supplies no new information to effects explicitly classified as Divination or Scrying that attempt to perceive, locate, inspect, read, identify or otherwise obtain information about it. Apply this protection equally against hostile, neutral and beneficial information gathering. A multi-subject or area effect may still obtain permitted information about other subjects.",
+          "scaling": "None.",
+          "limitations": "No ordinary invisibility, concealment, false identity, attack defense, memory erasure, record deletion or retroactive protection. A class sense is blocked only insofar as its actual source classifies it as Divination/Scrying; the underlying class engine remains intact. Theme or guessed purpose is not classification. Known information remains known. Independent applications do not stack extra power and each retains its own endpoint. Apply SPELL_INTEGRATION_RULES.md for actual class access and repertoire, costs before resolution, components, concentration, Dissonance/Refrain and exact source cadence. No automatic scaling or generic upcast.",
+          "designNotes": "PRESERVED: Action, 60 feet, V/S/F and divination/scrying immunity. NEW CONFLICT RULING: ongoing 1 hour without concentration replaces Instantaneous metadata; immunity is operationally defined as prevention of new information about one willing target, not a blanket damage/benefit immunity against a school name.",
+          "implementationStatus": "REVIEWED authored operational-playtest manuscript; runtime and balance validation pending",
+          "sourceCoreEntries": [
+            {
+              "index": 45,
+              "original": {
+                "school": "Abjuration",
+                "level": 3,
+                "name": "Protection from Scrying",
+                "effect": "Target is immune to divination and scrying effects.",
+                "source_paragraph": 9034,
+                "casting_time": "1 action",
+                "range": "60 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Ward"
+                ],
+                "rp_cost": 5
+              }
+            }
+          ],
+          "sourcePlacements": [
+            {
+              "name": "Protection from Scrying",
+              "school": "Abjuration",
+              "level": 3,
+              "summary": "Target is immune to divination and scrying effects."
+            }
+          ],
+          "classAccessEvidence": {
+            "Cleric": {
+              "rank": 3,
+              "minimumClassLevel": 5,
+              "school": "Abjuration",
+              "baseRpCost": 5
+            },
+            "Druid": {
+              "rank": 3,
+              "minimumClassLevel": 5,
+              "school": "Abjuration",
+              "baseRpCost": 5
+            },
+            "Mage": {
+              "rank": 3,
+              "minimumClassLevel": 5,
+              "school": "Abjuration",
+              "baseRpCost": 5
+            },
+            "Monk": {
+              "rank": 3,
+              "minimumClassLevel": 13,
+              "school": "Abjuration",
+              "baseRpCost": 5
+            },
+            "Tinker": {
+              "rank": 3,
+              "minimumClassLevel": 10,
+              "school": "Abjuration",
+              "baseRpCost": 5
+            },
+            "Wizard": {
+              "rank": 3,
+              "minimumClassLevel": 5,
+              "school": "Abjuration",
+              "baseRpCost": 5
+            },
+            "Paladin": {
+              "rank": 3,
+              "minimumClassLevel": 9,
+              "school": "Abjuration",
+              "baseRpCost": 5
+            }
+          },
+          "sourceReview": [
+            "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK2_3_SOURCE_CONFERENCE.md",
+            "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK2_3_EXACT_REVIEW.md"
+          ],
+          "reviewEvidence": [
+            "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK2_3_EXACT_REVIEW.md"
+          ],
+          "authoringFile": "data/playtest/spell_drafts/batch_abjuration_rank2_3.json"
+        },
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "protection-from-scrying",
+          "original": {
+            "name": "Protection from Scrying",
+            "level": 3,
+            "resonanceRank": 3,
+            "school": "Abjuration",
+            "schools": [
+              "Abjuration"
+            ],
+            "placements": [
+              {
+                "name": "Protection from Scrying",
+                "school": "Abjuration",
+                "level": 3,
+                "summary": "Target is immune to divination and scrying effects."
+              }
+            ],
+            "classLevels": {
+              "Cleric": 3,
+              "Druid": 3,
+              "Mage": 3,
+              "Monk": 3,
+              "Tinker": 3,
+              "Wizard": 3,
+              "Paladin": 3
+            },
+            "classRanks": {
+              "Cleric": 3,
+              "Druid": 3,
+              "Mage": 3,
+              "Monk": 3,
+              "Tinker": 3,
+              "Wizard": 3,
+              "Paladin": 3
+            },
+            "classLearnLevels": {
+              "Cleric": 5,
+              "Druid": 5,
+              "Mage": 5,
+              "Monk": 13,
+              "Tinker": 10,
+              "Wizard": 5,
+              "Paladin": 9
+            },
+            "classSchools": {
+              "Cleric": "Abjuration",
+              "Druid": "Abjuration",
+              "Mage": "Abjuration",
+              "Monk": "Abjuration",
+              "Tinker": "Abjuration",
+              "Wizard": "Abjuration",
+              "Paladin": "Abjuration"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Target is immune to divination and scrying effects.",
+            "alternateSummaries": [],
+            "classes": [
+              "Cleric",
+              "Druid",
+              "Mage",
+              "Monk",
+              "Tinker",
+              "Wizard",
+              "Paladin"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 45,
+              "original": {
+                "school": "Abjuration",
+                "level": 3,
+                "name": "Protection from Scrying",
+                "effect": "Target is immune to divination and scrying effects.",
+                "source_paragraph": 9034,
+                "casting_time": "1 action",
+                "range": "60 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Ward"
+                ],
+                "rp_cost": 5
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation"
+        ]
+      },
+      "operativeSource": {
+        "kind": "current catalog",
+        "pointer": "/spells/43"
+      },
+      "operativeProcedureUnchanged": {
+        "id": "protection-from-scrying",
+        "activation": "Action",
+        "rangeFeet": 60,
+        "targets": "One willing creature you can perceive within range and line of effect, including yourself.",
+        "duration": "1 hour: expires 3,600 elapsed seconds after application; entering, leaving or reordering initiative does not change that deadline.",
+        "concentration": false,
+        "components": [
+          "V",
+          "S",
+          "F"
+        ],
+        "resolution": "Automatic after legal casting. Check an information-gathering effect's actual generating source classification, using its real casting-class school placement where applicable.",
+        "effect": "The target supplies no new information to effects explicitly classified as Divination or Scrying that attempt to perceive, locate, inspect, read, identify or otherwise obtain information about it. Apply this protection equally against hostile, neutral and beneficial information gathering. A multi-subject or area effect may still obtain permitted information about other subjects.",
+        "scaling": "None.",
+        "limitations": "No ordinary invisibility, concealment, false identity, attack defense, memory erasure, record deletion or retroactive protection. A class sense is blocked only insofar as its actual source classifies it as Divination/Scrying; the underlying class engine remains intact. Theme or guessed purpose is not classification. Known information remains known. Independent applications do not stack extra power and each retains its own endpoint. Apply SPELL_INTEGRATION_RULES.md for actual class access and repertoire, costs before resolution, components, concentration, Dissonance/Refrain and exact source cadence. No automatic scaling or generic upcast.",
+        "designNotes": "PRESERVED: Action, 60 feet, V/S/F and divination/scrying immunity. NEW CONFLICT RULING: ongoing 1 hour without concentration replaces Instantaneous metadata; immunity is operationally defined as prevention of new information about one willing target, not a blanket damage/benefit immunity against a school name.",
+        "implementationStatus": "REVIEWED authored operational-playtest manuscript; runtime and balance validation pending",
+        "sourceCoreEntries": [
+          {
+            "index": 45,
+            "original": {
+              "school": "Abjuration",
+              "level": 3,
+              "name": "Protection from Scrying",
+              "effect": "Target is immune to divination and scrying effects.",
+              "source_paragraph": 9034,
+              "casting_time": "1 action",
+              "range": "60 feet",
+              "duration": "Instantaneous",
+              "components": "V, S, F",
+              "resolution": "Automatic or opposed as described",
+              "tags": [
+                "Ward"
+              ],
+              "rp_cost": 5
+            }
+          }
+        ],
+        "sourcePlacements": [
+          {
+            "name": "Protection from Scrying",
+            "school": "Abjuration",
+            "level": 3,
+            "summary": "Target is immune to divination and scrying effects."
+          }
+        ],
+        "classAccessEvidence": {
+          "Cleric": {
+            "rank": 3,
+            "minimumClassLevel": 5,
+            "school": "Abjuration",
+            "baseRpCost": 5
+          },
+          "Druid": {
+            "rank": 3,
+            "minimumClassLevel": 5,
+            "school": "Abjuration",
+            "baseRpCost": 5
+          },
+          "Mage": {
+            "rank": 3,
+            "minimumClassLevel": 5,
+            "school": "Abjuration",
+            "baseRpCost": 5
+          },
+          "Monk": {
+            "rank": 3,
+            "minimumClassLevel": 13,
+            "school": "Abjuration",
+            "baseRpCost": 5
+          },
+          "Tinker": {
+            "rank": 3,
+            "minimumClassLevel": 10,
+            "school": "Abjuration",
+            "baseRpCost": 5
+          },
+          "Wizard": {
+            "rank": 3,
+            "minimumClassLevel": 5,
+            "school": "Abjuration",
+            "baseRpCost": 5
+          },
+          "Paladin": {
+            "rank": 3,
+            "minimumClassLevel": 9,
+            "school": "Abjuration",
+            "baseRpCost": 5
+          }
+        },
+        "sourceReview": [
+          "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK2_3_SOURCE_CONFERENCE.md",
+          "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK2_3_EXACT_REVIEW.md"
+        ],
+        "reviewEvidence": [
+          "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK2_3_EXACT_REVIEW.md"
+        ],
+        "authoringFile": "data/playtest/spell_drafts/batch_abjuration_rank2_3.json"
+      },
+      "eligibleNativeRows": {
+        "Cleric": {
+          "rank": 3,
+          "minimumClassLevel": 5,
+          "school": "Abjuration",
+          "baseRpCost": 5
+        },
+        "Druid": {
+          "rank": 3,
+          "minimumClassLevel": 5,
+          "school": "Abjuration",
+          "baseRpCost": 5
+        },
+        "Mage": {
+          "rank": 3,
+          "minimumClassLevel": 5,
+          "school": "Abjuration",
+          "baseRpCost": 5
+        },
+        "Monk": {
+          "rank": 3,
+          "minimumClassLevel": 13,
+          "school": "Abjuration",
+          "baseRpCost": 5
+        },
+        "Tinker": {
+          "rank": 3,
+          "minimumClassLevel": 10,
+          "school": "Abjuration",
+          "baseRpCost": 5
+        },
+        "Wizard": {
+          "rank": 3,
+          "minimumClassLevel": 5,
+          "school": "Abjuration",
+          "baseRpCost": 5
+        },
+        "Paladin": {
+          "rank": 3,
+          "minimumClassLevel": 9,
+          "school": "Abjuration",
+          "baseRpCost": 5
+        }
+      },
+      "invocationScope": "DI169 only; actual selected row is recorded per child; no permanent acquisition"
+    },
+    {
+      "id": "wall-of-force",
+      "nativeCardUnchanged": {
+        "id": "wall-of-force",
+        "name": "Wall of Force",
+        "schools": [
+          "Abjuration"
+        ],
+        "status": "blocked-pending-operational-review",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Cleric": {
+            "rank": 5,
+            "minimumClassLevel": 9,
+            "school": "Abjuration",
+            "baseRpCost": 10
+          },
+          "Druid": {
+            "rank": 5,
+            "minimumClassLevel": 9,
+            "school": "Abjuration",
+            "baseRpCost": 10
+          },
+          "Mage": {
+            "rank": 5,
+            "minimumClassLevel": 9,
+            "school": "Abjuration",
+            "baseRpCost": 10
+          },
+          "Tinker": {
+            "rank": 5,
+            "minimumClassLevel": 18,
+            "school": "Abjuration",
+            "baseRpCost": 10
+          },
+          "Wizard": {
+            "rank": 5,
+            "minimumClassLevel": 9,
+            "school": "Abjuration",
+            "baseRpCost": 10
+          },
+          "Paladin": {
+            "rank": 5,
+            "minimumClassLevel": 17,
+            "school": "Abjuration",
+            "baseRpCost": 10
+          }
+        },
+        "operational": null,
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "wall-of-force",
+          "original": {
+            "name": "Wall of Force",
+            "level": 5,
+            "resonanceRank": 5,
+            "school": "Abjuration",
+            "schools": [
+              "Abjuration"
+            ],
+            "placements": [
+              {
+                "name": "Wall of Force",
+                "school": "Abjuration",
+                "level": 5,
+                "summary": "Create an invisible, impenetrable wall."
+              }
+            ],
+            "classLevels": {
+              "Cleric": 5,
+              "Druid": 5,
+              "Mage": 5,
+              "Tinker": 5,
+              "Wizard": 5,
+              "Paladin": 5
+            },
+            "classRanks": {
+              "Cleric": 5,
+              "Druid": 5,
+              "Mage": 5,
+              "Tinker": 5,
+              "Wizard": 5,
+              "Paladin": 5
+            },
+            "classLearnLevels": {
+              "Cleric": 9,
+              "Druid": 9,
+              "Mage": 9,
+              "Tinker": 18,
+              "Wizard": 9,
+              "Paladin": 17
+            },
+            "classSchools": {
+              "Cleric": "Abjuration",
+              "Druid": "Abjuration",
+              "Mage": "Abjuration",
+              "Tinker": "Abjuration",
+              "Wizard": "Abjuration",
+              "Paladin": "Abjuration"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Create an invisible, impenetrable wall.",
+            "alternateSummaries": [],
+            "classes": [
+              "Cleric",
+              "Druid",
+              "Mage",
+              "Tinker",
+              "Wizard",
+              "Paladin"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 60,
+              "original": {
+                "school": "Abjuration",
+                "level": 5,
+                "name": "Wall of Force",
+                "effect": "Create an invisible, impenetrable wall.",
+                "source_paragraph": 9053,
+                "casting_time": "1 action",
+                "range": "60 feet",
+                "duration": "Concentration, up to 1 minute",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Utility"
+                ],
+                "rp_cost": 10
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation",
+          "Not selectable in this spell playtest packet until individual operational review"
+        ]
+      },
+      "operativeSource": {
+        "kind": "exact accepted counterpart",
+        "binding": {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank5_reviewed_05.json",
+          "bytes": 337035,
+          "sha256": "d782569ed8ef558f4edf54634e0d8c19926e24e2437528f1769b5ef3ce594898"
+        },
+        "pointer": "/spells/4/procedure"
+      },
+      "operativeProcedureUnchanged": "Action; range 60 feet; V/S/F; base 10 RP; concentration up to 60 elapsed seconds. Create one fixed invisible flat rectangular plane up to 30 feet long × 15 feet high × 1 inch thick in any chosen orientation. Every part must lie within 60 feet and the intended near surface must be perceivable with line of effect. The wall may meet existing supports but cannot overlap a creature or independent object at creation; hidden occupancy can defeat the paid placement without diagnostic or automatic reshaping.\n\nThe wall supports itself and ordinary loads on either side, including horizontal platform use. It has no AC/HP and is impenetrable to ordinary physical bodies, projectiles, liquids, gas and sound. Ordinary light/vision passes through it; it remains visually invisible, though touch or an applicable magical sense can reveal the boundary. It blocks ordinary spell/effect line of effect and other effects requiring a physical path. Its finite edges remain open routes.\n\nDo not infer a teleport path. Accepted Dimensional Door has no traversed path and may move from one legal endpoint to another even if a drawn line would intersect the wall, provided its own endpoint/knowledge rules pass. Resonance Beacon likewise uses its own teleport endpoint, not an imagined wall crossing. Dimensional Anchor remains an independent endpoint blocker. A destination footprint cannot overlap the wall itself.\n\nThe wall creates no oxygen deletion or automatic breathable volume. It never pushes/crushes at creation/end. Suppression removes only intersecting wall portions while concentration/deadline continues. On resumption recreate only clear portions; an occupied closing segment remains locally pending until clear, without severing/shoving. Expiry/removal ends support immediately and actual unsupported bodies begin ordinary Falling from their current location, one real Fall Marker.\n\nRepair04 resumption geometry uses AC5-WALL-PANELS-04: fixed 2.5-foot panels/edge remainders retain exact suppressed-portion geometry. A previously suppressed portion whose 1-inch volume is occupied remains wholly absent until clear; wall portions that were never suppressed remain solid. No push, cut, crush or arbitrary hole.",
+      "eligibleNativeRows": {
+        "Cleric": {
+          "rank": 5,
+          "minimumClassLevel": 9,
+          "school": "Abjuration",
+          "baseRpCost": 10
+        },
+        "Druid": {
+          "rank": 5,
+          "minimumClassLevel": 9,
+          "school": "Abjuration",
+          "baseRpCost": 10
+        },
+        "Mage": {
+          "rank": 5,
+          "minimumClassLevel": 9,
+          "school": "Abjuration",
+          "baseRpCost": 10
+        },
+        "Tinker": {
+          "rank": 5,
+          "minimumClassLevel": 18,
+          "school": "Abjuration",
+          "baseRpCost": 10
+        },
+        "Wizard": {
+          "rank": 5,
+          "minimumClassLevel": 9,
+          "school": "Abjuration",
+          "baseRpCost": 10
+        },
+        "Paladin": {
+          "rank": 5,
+          "minimumClassLevel": 17,
+          "school": "Abjuration",
+          "baseRpCost": 10
+        }
+      },
+      "invocationScope": "DI169 only; actual selected row is recorded per child; no permanent acquisition"
+    },
+    {
+      "id": "planar-barrier",
+      "nativeCardUnchanged": {
+        "id": "planar-barrier",
+        "name": "Planar Barrier",
+        "schools": [
+          "Abjuration"
+        ],
+        "status": "blocked-pending-operational-review",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Cleric": {
+            "rank": 6,
+            "minimumClassLevel": 11,
+            "school": "Abjuration",
+            "baseRpCost": 13
+          },
+          "Druid": {
+            "rank": 6,
+            "minimumClassLevel": 11,
+            "school": "Abjuration",
+            "baseRpCost": 13
+          },
+          "Mage": {
+            "rank": 6,
+            "minimumClassLevel": 11,
+            "school": "Abjuration",
+            "baseRpCost": 13
+          },
+          "Wizard": {
+            "rank": 6,
+            "minimumClassLevel": 11,
+            "school": "Abjuration",
+            "baseRpCost": 13
+          }
+        },
+        "operational": null,
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "planar-barrier",
+          "original": {
+            "name": "Planar Barrier",
+            "level": 6,
+            "resonanceRank": 6,
+            "school": "Abjuration",
+            "schools": [
+              "Abjuration"
+            ],
+            "placements": [
+              {
+                "name": "Planar Barrier",
+                "school": "Abjuration",
+                "level": 6,
+                "summary": "Create a wall that blocks extraplanar creatures."
+              }
+            ],
+            "classLevels": {
+              "Cleric": 6,
+              "Druid": 6,
+              "Mage": 6,
+              "Wizard": 6
+            },
+            "classRanks": {
+              "Cleric": 6,
+              "Druid": 6,
+              "Mage": 6,
+              "Wizard": 6
+            },
+            "classLearnLevels": {
+              "Cleric": 11,
+              "Druid": 11,
+              "Mage": 11,
+              "Wizard": 11
+            },
+            "classSchools": {
+              "Cleric": "Abjuration",
+              "Druid": "Abjuration",
+              "Mage": "Abjuration",
+              "Wizard": "Abjuration"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Create a wall that blocks extraplanar creatures.",
+            "alternateSummaries": [],
+            "classes": [
+              "Cleric",
+              "Druid",
+              "Mage",
+              "Wizard"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 69,
+              "original": {
+                "school": "Abjuration",
+                "level": 6,
+                "name": "Planar Barrier",
+                "effect": "Create a wall that blocks extraplanar creatures.",
+                "source_paragraph": 9064,
+                "casting_time": "1 action",
+                "range": "60 feet",
+                "duration": "Concentration, up to 1 minute",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Planar",
+                  "Ward"
+                ],
+                "rp_cost": 13
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation",
+          "Not selectable in this spell playtest packet until individual operational review"
+        ]
+      },
+      "operativeSource": {
+        "kind": "exact accepted counterpart",
+        "binding": {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank6_reviewed_06.json",
+          "bytes": 904985,
+          "sha256": "6f6fe2141e011624e585262a7de6e6a95fef75696d5d6337440f2d1dce711885"
+        },
+        "pointer": "/spells/4/procedure"
+      },
+      "operativeProcedureUnchanged": {
+        "activationAndGeometry": "KEEP Abjuration6, Action,60feet,V/S/F,base13RP and concentration up to60elapsed seconds. NEW choose a fixed vertical rectangular wall up to30feet wide and15feet high, with1foot thickness, resting on actual ground. Choose its full position/orientation before commitment; every point must be within60feet and caster line of effect at formation. Width and height use whole5foot panels, producing at most18panels. No curved dome, moving wall or physical material is supplied. The initial volume must be free of creature bodies and solid terrain; known conflict fails preflight, a hidden conflict discovered at resolution defeats the whole paid formation. The wall is visible but transparent to ordinary sight/sound and does not itself supply cover.",
+        "eligibility": "NEW PB-PRED-01, scoped only to this wall: a creature qualifies if an actual operative source explicitly classifies it as extraplanar, or an actual established native-plane relationship places its native plane elsewhere than the wall's plane. A mere current visitor is not assigned a native plane. A record that expressly changes/suppresses that classification is honored for its stated duration. Without either affirmative established basis, this wall imposes no blocking branch; that operational absence is not proof the creature is native or non-extraplanar. Elemental, Fey, Fiend, Humanoid, summoned, outsider and extraplanar are not interchangeable labels. The Director may record a genuinely NEW campaign creature classification explicitly before play, but may not claim it was recovered from cosmology or infer it from a hidden soul theory.",
+        "physicalCrossing": "An operative panel blocks a qualifying creature's attempted voluntary or forced physical crossing at its boundary, including that body carried, dragged, grappled or ridden by another. Every separately transported creature retains its own eligibility; hiding a qualifying passenger under a cloak does not turn it into gear. Stop the actual crossing transaction before any qualifying body intersects the panel; no part is severed, squeezed through by changing its name, or left behind without an independently legal release. Movement used to reach the boundary remains spent; impossible remaining movement is not performed. A nonqualifying carrier can release the passenger through its actual available action and move alone if then legal. Nonqualifying bodies, ordinary objects, air, sound and actual attacks pass under their own rules. Going around a real edge remains possible. The wall deals no damage, imposes no extra save and grants no free force or opportunity attack. CURRENT EXPLICIT VERTICAL-FALL EXCEPTION: apply fallingAndPlacement below when gravity carries a body down through a top/bottom edge; the wall supplies no horizontal supporting face. This exception does not authorize lateral passage through an otherwise operative broad vertical face.",
+        "fallingAndPlacement": "Selective wall supplies no horizontal support. Unsupported Falling continues under the ordinary Fall Marker. QUALIFICATION-CHANGE branch: if an existing body becomes qualifying while intersecting an otherwise operative fixed5x5 panel, that entire panel is pending until no qualifying body intersects it; it supplies no blocking while pending. This whole-panel rule is for a body becoming qualifying inside an operative panel, not for antimagic clipping. NEW explicit completion for the existing no-platform promise: downward Falling through a top/bottom edge is not stopped by this selective wall. If that lawful vertical entry creates actual interior body overlap with a fixed panel, mark the whole intersected panel pending until qualifying bodies clear, exactly as for qualification-change occupancy. Other operative panels still block lateral crossing. A lateral forced movement component toward an operative face stops at its boundary while the independent unsupported vertical fall keeps its original marker/distance history. No support, extra save, impact damage or new Fall Marker is supplied by the wall itself.",
+        "teleportAndTerminalReturn": "The wall checks an actual transport destination footprint against its operative thickness for qualifying creature bodies; a destination that intersects is barred by this scoped magical endpoint-prevention rule. A fitting destination beyond the wall does not cross a fictitious physical path and is permitted unless another actual rule prevents that transport. An origin alone touching the wall does not bar leaving. Apply each transport source's normal atomic failure/payment rule. Ordinary Banishment's accepted BAN-CLOSE-03 terminal return expressly overrides endpoint transport prevention: this wall cannot keep that ended cell open. It does not remove real terrain or other bodies. If that mandatory return legally places a qualifying body in the wall thickness, the occupied panel becomes pending under the rule above; no general voluntary-transit bypass is granted.",
+        "suppressionAndEnding": "The nonphysical ongoing rank6 wall has one parent and fixed5x5 panels. LOCAL-SUPPRESSION branch: a suppressor removes only the exact geometric portions it intersects while concentration/deadline continue. At resumption, each previously suppressed clear portion returns; an exact suppressed portion intersecting a qualifying body remains absent until clear. Unsuppressed portions were never removed. This clipped-portion rule is distinct from the qualification-change whole-panel pending rule. Losing actual ground support invalidates dependent panels for the remainder of this cast. One active Planar Barrier per caster. Expiry, concentration ending or eligible whole-source removal ends all panels.",
+        "currentPanelPrecision": "Fixed5ft panels remain the authored wall cells. For local suppression, preserve exact clipped intersection geometry; do not rectangularize a sphere. For qualification change in an otherwise operative panel, pending applies to the whole5ft panel. Neither branch crushes/ejects, tactically reselects a hole, or refreshes duration. For pending-panel occupancy use actual positive-volume interior overlap. Merely touching a neighboring panel face/edge does not occupy that panel. The one-foot wall thickness participates in spherical clipping; y=0 diagrams are cross-sections only."
+      },
+      "eligibleNativeRows": {
+        "Cleric": {
+          "rank": 6,
+          "minimumClassLevel": 11,
+          "school": "Abjuration",
+          "baseRpCost": 13
+        },
+        "Druid": {
+          "rank": 6,
+          "minimumClassLevel": 11,
+          "school": "Abjuration",
+          "baseRpCost": 13
+        },
+        "Mage": {
+          "rank": 6,
+          "minimumClassLevel": 11,
+          "school": "Abjuration",
+          "baseRpCost": 13
+        },
+        "Wizard": {
+          "rank": 6,
+          "minimumClassLevel": 11,
+          "school": "Abjuration",
+          "baseRpCost": 13
+        }
+      },
+      "invocationScope": "DI169 only; actual selected row is recorded per child; no permanent acquisition"
+    },
+    {
+      "id": "antimagic-field-lesser",
+      "nativeCardUnchanged": {
+        "id": "antimagic-field-lesser",
+        "name": "Antimagic Field (Lesser)",
+        "schools": [
+          "Abjuration"
+        ],
+        "status": "blocked-pending-operational-review",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Cleric": {
+            "rank": 5,
+            "minimumClassLevel": 9,
+            "school": "Abjuration",
+            "baseRpCost": 10
+          },
+          "Druid": {
+            "rank": 5,
+            "minimumClassLevel": 9,
+            "school": "Abjuration",
+            "baseRpCost": 10
+          },
+          "Mage": {
+            "rank": 5,
+            "minimumClassLevel": 9,
+            "school": "Abjuration",
+            "baseRpCost": 10
+          },
+          "Tinker": {
+            "rank": 5,
+            "minimumClassLevel": 18,
+            "school": "Abjuration",
+            "baseRpCost": 10
+          },
+          "Wizard": {
+            "rank": 5,
+            "minimumClassLevel": 9,
+            "school": "Abjuration",
+            "baseRpCost": 10
+          },
+          "Paladin": {
+            "rank": 5,
+            "minimumClassLevel": 17,
+            "school": "Abjuration",
+            "baseRpCost": 10
+          }
+        },
+        "operational": null,
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "antimagic-field-lesser",
+          "original": {
+            "name": "Antimagic Field (Lesser)",
+            "level": 5,
+            "resonanceRank": 5,
+            "school": "Abjuration",
+            "schools": [
+              "Abjuration"
+            ],
+            "placements": [
+              {
+                "name": "Antimagic Field (Lesser)",
+                "school": "Abjuration",
+                "level": 5,
+                "summary": "10-ft sphere suppresses magic effects and spells."
+              }
+            ],
+            "classLevels": {
+              "Cleric": 5,
+              "Druid": 5,
+              "Mage": 5,
+              "Tinker": 5,
+              "Wizard": 5,
+              "Paladin": 5
+            },
+            "classRanks": {
+              "Cleric": 5,
+              "Druid": 5,
+              "Mage": 5,
+              "Tinker": 5,
+              "Wizard": 5,
+              "Paladin": 5
+            },
+            "classLearnLevels": {
+              "Cleric": 9,
+              "Druid": 9,
+              "Mage": 9,
+              "Tinker": 18,
+              "Wizard": 9,
+              "Paladin": 17
+            },
+            "classSchools": {
+              "Cleric": "Abjuration",
+              "Druid": "Abjuration",
+              "Mage": "Abjuration",
+              "Tinker": "Abjuration",
+              "Wizard": "Abjuration",
+              "Paladin": "Abjuration"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "10-ft sphere suppresses magic effects and spells.",
+            "alternateSummaries": [],
+            "classes": [
+              "Cleric",
+              "Druid",
+              "Mage",
+              "Tinker",
+              "Wizard",
+              "Paladin"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 56,
+              "original": {
+                "school": "Abjuration",
+                "level": 5,
+                "name": "Antimagic Field (Lesser)",
+                "effect": "10-ft sphere suppresses magic effects and spells.",
+                "source_paragraph": 9049,
+                "casting_time": "1 action",
+                "range": "10 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Utility"
+                ],
+                "rp_cost": 10
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation",
+          "Not selectable in this spell playtest packet until individual operational review"
+        ]
+      },
+      "operativeSource": {
+        "kind": "exact accepted counterpart",
+        "binding": {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank5_reviewed_05.json",
+          "bytes": 337035,
+          "sha256": "d782569ed8ef558f4edf54634e0d8c19926e24e2437528f1769b5ef3ce594898"
+        },
+        "pointer": "/spells/0/procedure"
+      },
+      "operativeProcedureUnchanged": "Action; range 10 feet; V/S/F; base 10 RP. Preserve the source's 10-foot sphere and suppression promise. NEW: choose one perceived fixed point within 10 feet and line of effect; create a fixed 10-foot-radius sphere with concentration up to 60 elapsed seconds, explicitly replacing the source's insufficient Instantaneous field duration for this authored procedure. The volume is clipped by actual solid total-cover barriers from the center and never follows a creature.\n\nThe field suppresses the local expression of actual ongoing spells and explicitly magical nonspell technique expressions only where their real body/effect/anchor intersects the operative volume. It supplies no rank ceiling. It does not retroactively undo completed damage, healing, movement, transmutation, consumed items, permanent ordinary matter, HP loss or source history. It does not erase class engines, learned facts, RP pools, injuries or intrinsic nonmagical traits. A magic item keeps its mundane body/ownership/contents while its magical enhancements/actions are unavailable. A creature-attached spell buff is wholly unavailable while the creature intersects; a large wall/field loses only its intersecting portion unless its own indivisible source says otherwise.\n\nAn otherwise legal spell cast may still be committed inside: pay its real final price, Action/components/cadence and concentration transition. If the spell's relevant manifestation originates inside the field, suppress that payload at resolution; there is no queued later release and no refund. Do not invent an imaginary straight-line beam/path for teleportation or nonprojectile magic. For current Dimensional Door, an origin and endpoint both outside the field are unaffected even if a drawn line crosses it; an origin actually inside the field has its spell payload suppressed after legal commitment. A remote ongoing effect outside is not canceled merely because its concentrating caster enters the field.\n\nRanger Nature's Whisper is an explicitly magical NONSPELL technique. Inside the field its Action+1 RP+Recharge 3 commitment remains a nonspell event; the magical payload/rider is unavailable with no rank, Counterspell window or Nexus/Dampening price. A still-live Nature's Whisper rider on an actor inside the field is unusable while suppressed but its clock continues.\n\nOracle's Burden prevents generic remove/suspend of the intrinsic Oracle Curse, so this field does not erase or suspend the Curse engine. Curse Manifestation, Tongues and Consumed retain only their own exact suppression/appearance permissions and timers.\n\nInstances of Lesser Antimagic do not suppress one another; overlapping instances form the union of active volumes. This same-family exception only prevents oscillation and grants no ability to cast a new field from inside another without paying/satisfying the new cast, whose payload is itself exempt only because it is this family.\n\nFor Greater Fire Pet and Faction Champion use AC5-ANTIMAGIC-SUMMON-01. For accepted ordinary Banishment, only actual suppression of the application itself invokes its own accepted closure/end rule; merely suppressing its distant caster does not reach the generated cell/application. For Banish Elemental and Elemental Banishment, AC5-BANISH-EXT-01 expressly gives the same close-on-actual-suppression behavior.\n\nSuppression never pauses absolute/source clocks and does not bank missed attacks, aura starts, periodic damage, saves or commands. On exit/end, only still-live source expressions resume with the same remaining HP/pools/deadlines. Wall of Force uses its own safe segment-resumption rule.\n\nRepair04 incoming/output completion: use AC5-ANTIMAGIC-IO-04. An instantaneous effect cast outside is not immune merely because its source is outside: inspect the actual recipient/area/destination manifestation. Local damage/healing inside is suppressed with no packet/root; an outside-origin Dimensional Door whose destination footprint is inside fails atomically after cost, while outside→outside remains unaffected regardless of an imaginary line. A legal Greater Dispel or exact class Dispel resolves captured termination operations under AC5-ANTIMAGIC-IO-04; the target Antimagic application ignores only its own suppression, while a different Antimagic field can still suppress that termination operation; ordinary Counterspell remains only a cast-time response before the field exists. Spell Preservation’s primary-book anti-destruction remains source-intrinsic even while magical book usability is suppressed.",
+      "eligibleNativeRows": {
+        "Cleric": {
+          "rank": 5,
+          "minimumClassLevel": 9,
+          "school": "Abjuration",
+          "baseRpCost": 10
+        },
+        "Druid": {
+          "rank": 5,
+          "minimumClassLevel": 9,
+          "school": "Abjuration",
+          "baseRpCost": 10
+        },
+        "Mage": {
+          "rank": 5,
+          "minimumClassLevel": 9,
+          "school": "Abjuration",
+          "baseRpCost": 10
+        },
+        "Tinker": {
+          "rank": 5,
+          "minimumClassLevel": 18,
+          "school": "Abjuration",
+          "baseRpCost": 10
+        },
+        "Wizard": {
+          "rank": 5,
+          "minimumClassLevel": 9,
+          "school": "Abjuration",
+          "baseRpCost": 10
+        },
+        "Paladin": {
+          "rank": 5,
+          "minimumClassLevel": 17,
+          "school": "Abjuration",
+          "baseRpCost": 10
+        }
+      },
+      "invocationScope": "DI169 only; actual selected row is recorded per child; no permanent acquisition"
+    },
+    {
+      "id": "dispel-magic",
+      "nativeCardUnchanged": {
+        "id": "dispel-magic",
+        "name": "Dispel Magic",
+        "schools": [
+          "Abjuration",
+          "Universal"
+        ],
+        "status": "operational-playtest-draft",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Bard": {
+            "rank": 3,
+            "minimumClassLevel": 7,
+            "school": "Universal",
+            "baseRpCost": 5
+          },
+          "Cleric": {
+            "rank": 3,
+            "minimumClassLevel": 5,
+            "school": "Abjuration",
+            "baseRpCost": 5
+          },
+          "Druid": {
+            "rank": 3,
+            "minimumClassLevel": 5,
+            "school": "Abjuration",
+            "baseRpCost": 5
+          },
+          "Mage": {
+            "rank": 3,
+            "minimumClassLevel": 5,
+            "school": "Abjuration",
+            "baseRpCost": 5
+          },
+          "Monk": {
+            "rank": 3,
+            "minimumClassLevel": 13,
+            "school": "Abjuration",
+            "baseRpCost": 5
+          },
+          "Mirrorsage": {
+            "rank": 3,
+            "minimumClassLevel": 7,
+            "school": "Universal",
+            "baseRpCost": 5
+          },
+          "Tinker": {
+            "rank": 3,
+            "minimumClassLevel": 10,
+            "school": "Abjuration",
+            "baseRpCost": 5
+          },
+          "Wizard": {
+            "rank": 3,
+            "minimumClassLevel": 5,
+            "school": "Abjuration",
+            "baseRpCost": 5
+          },
+          "Paladin": {
+            "rank": 3,
+            "minimumClassLevel": 9,
+            "school": "Abjuration",
+            "baseRpCost": 5
+          }
+        },
+        "operational": {
+          "id": "dispel-magic",
+          "activation": "Action",
+          "rangeFeet": 60,
+          "targets": "One individually perceptible ongoing magical effect within range and line of effect, generated by a spell of actual recorded rank 0 through 3.",
+          "duration": "Instantaneous",
+          "concentration": false,
+          "components": [
+            "V",
+            "S",
+            "F"
+          ],
+          "resolution": "Automatic for an eligible effect; no saving throw or check.",
+          "effect": "End only the selected effect and invoke its ordinary ending procedure and dependencies. Its original generating spell rank controls, using its caster's class placement when class-cast; RP cost, discount, caster level and the dispeller's access do not alter it. Both actual Abjuration and Universal placements use this rank ceiling.",
+          "scaling": "None.",
+          "limitations": "No permanent enchantment or magic-item removal, class-engine or creature-trait removal, mass purge, retroactive healing/resource repair, or guessing an unknown spell rank. A curse qualifies only when it is itself an otherwise eligible ongoing spell effect within the rank ceiling and is not specially protected. Mere binary awareness of nearby magic does not identify a selectable individual effect. Apply SPELL_INTEGRATION_RULES.md for actual class access and repertoire, costs before resolution, components, concentration, Dissonance/Refrain and exact source cadence. No automatic scaling or generic upcast.",
+          "designNotes": "PRESERVED: Action, 60 feet, V/S/F, instantaneous and both rank-3 placements. NEW CONFLICT RULING: Core Tier 3 means spell rank at most 3; the Universal generic description grants neither unlimited-rank dispelling nor a mass purge. One selected effect per cast.",
+          "implementationStatus": "REVIEWED authored operational-playtest manuscript; runtime and balance validation pending",
+          "sourceCoreEntries": [
+            {
+              "index": 42,
+              "original": {
+                "school": "Abjuration",
+                "level": 3,
+                "name": "Dispel Magic",
+                "effect": "End magical effects of Tier 3 or lower.",
+                "source_paragraph": 9031,
+                "casting_time": "1 action",
+                "range": "60 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Utility"
+                ],
+                "rp_cost": 5
+              }
+            },
+            {
+              "index": 877,
+              "original": {
+                "school": "Universal",
+                "level": 3,
+                "name": "Dispel Magic",
+                "effect": "End magical effects.",
+                "source_paragraph": 10066,
+                "casting_time": "1 action",
+                "range": "60 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Utility"
+                ],
+                "rp_cost": 5
+              }
+            }
+          ],
+          "sourcePlacements": [
+            {
+              "name": "Dispel Magic",
+              "school": "Abjuration",
+              "level": 3,
+              "summary": "End magical effects of 3rd level or lower."
+            },
+            {
+              "name": "Dispel Magic",
+              "school": "Universal",
+              "level": 3,
+              "summary": "End magical effects."
+            }
+          ],
+          "classAccessEvidence": {
+            "Bard": {
+              "rank": 3,
+              "minimumClassLevel": 7,
+              "school": "Universal",
+              "baseRpCost": 5
+            },
+            "Cleric": {
+              "rank": 3,
+              "minimumClassLevel": 5,
+              "school": "Abjuration",
+              "baseRpCost": 5
+            },
+            "Druid": {
+              "rank": 3,
+              "minimumClassLevel": 5,
+              "school": "Abjuration",
+              "baseRpCost": 5
+            },
+            "Mage": {
+              "rank": 3,
+              "minimumClassLevel": 5,
+              "school": "Abjuration",
+              "baseRpCost": 5
+            },
+            "Monk": {
+              "rank": 3,
+              "minimumClassLevel": 13,
+              "school": "Abjuration",
+              "baseRpCost": 5
+            },
+            "Mirrorsage": {
+              "rank": 3,
+              "minimumClassLevel": 7,
+              "school": "Universal",
+              "baseRpCost": 5
+            },
+            "Tinker": {
+              "rank": 3,
+              "minimumClassLevel": 10,
+              "school": "Abjuration",
+              "baseRpCost": 5
+            },
+            "Wizard": {
+              "rank": 3,
+              "minimumClassLevel": 5,
+              "school": "Abjuration",
+              "baseRpCost": 5
+            },
+            "Paladin": {
+              "rank": 3,
+              "minimumClassLevel": 9,
+              "school": "Abjuration",
+              "baseRpCost": 5
+            }
+          },
+          "sourceReview": [
+            "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK2_3_SOURCE_CONFERENCE.md",
+            "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK2_3_EXACT_REVIEW.md"
+          ],
+          "reviewEvidence": [
+            "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK2_3_EXACT_REVIEW.md"
+          ],
+          "authoringFile": "data/playtest/spell_drafts/batch_abjuration_rank2_3.json"
+        },
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "dispel-magic",
+          "original": {
+            "name": "Dispel Magic",
+            "level": 3,
+            "resonanceRank": 3,
+            "school": "Abjuration",
+            "schools": [
+              "Abjuration",
+              "Universal"
+            ],
+            "placements": [
+              {
+                "name": "Dispel Magic",
+                "school": "Abjuration",
+                "level": 3,
+                "summary": "End magical effects of 3rd level or lower."
+              },
+              {
+                "name": "Dispel Magic",
+                "school": "Universal",
+                "level": 3,
+                "summary": "End magical effects."
+              }
+            ],
+            "classLevels": {
+              "Bard": 3,
+              "Cleric": 3,
+              "Druid": 3,
+              "Mage": 3,
+              "Monk": 3,
+              "Mirrorsage": 3,
+              "Tinker": 3,
+              "Wizard": 3,
+              "Paladin": 3
+            },
+            "classRanks": {
+              "Bard": 3,
+              "Cleric": 3,
+              "Druid": 3,
+              "Mage": 3,
+              "Monk": 3,
+              "Mirrorsage": 3,
+              "Tinker": 3,
+              "Wizard": 3,
+              "Paladin": 3
+            },
+            "classLearnLevels": {
+              "Bard": 7,
+              "Cleric": 5,
+              "Druid": 5,
+              "Mage": 5,
+              "Monk": 13,
+              "Mirrorsage": 7,
+              "Tinker": 10,
+              "Wizard": 5,
+              "Paladin": 9
+            },
+            "classSchools": {
+              "Bard": "Universal",
+              "Cleric": "Abjuration",
+              "Druid": "Abjuration",
+              "Mage": "Abjuration",
+              "Monk": "Abjuration",
+              "Mirrorsage": "Universal",
+              "Tinker": "Abjuration",
+              "Wizard": "Abjuration",
+              "Paladin": "Abjuration"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "End magical effects of 3rd level or lower.",
+            "alternateSummaries": [
+              "End magical effects."
+            ],
+            "classes": [
+              "Bard",
+              "Cleric",
+              "Druid",
+              "Mage",
+              "Monk",
+              "Mirrorsage",
+              "Tinker",
+              "Wizard",
+              "Paladin"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 42,
+              "original": {
+                "school": "Abjuration",
+                "level": 3,
+                "name": "Dispel Magic",
+                "effect": "End magical effects of Tier 3 or lower.",
+                "source_paragraph": 9031,
+                "casting_time": "1 action",
+                "range": "60 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Utility"
+                ],
+                "rp_cost": 5
+              }
+            },
+            {
+              "index": 877,
+              "original": {
+                "school": "Universal",
+                "level": 3,
+                "name": "Dispel Magic",
+                "effect": "End magical effects.",
+                "source_paragraph": 10066,
+                "casting_time": "1 action",
+                "range": "60 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Utility"
+                ],
+                "rp_cost": 5
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation"
+        ]
+      },
+      "operativeSource": {
+        "kind": "current catalog",
+        "pointer": "/spells/40"
+      },
+      "operativeProcedureUnchanged": {
+        "id": "dispel-magic",
+        "activation": "Action",
+        "rangeFeet": 60,
+        "targets": "One individually perceptible ongoing magical effect within range and line of effect, generated by a spell of actual recorded rank 0 through 3.",
+        "duration": "Instantaneous",
+        "concentration": false,
+        "components": [
+          "V",
+          "S",
+          "F"
+        ],
+        "resolution": "Automatic for an eligible effect; no saving throw or check.",
+        "effect": "End only the selected effect and invoke its ordinary ending procedure and dependencies. Its original generating spell rank controls, using its caster's class placement when class-cast; RP cost, discount, caster level and the dispeller's access do not alter it. Both actual Abjuration and Universal placements use this rank ceiling.",
+        "scaling": "None.",
+        "limitations": "No permanent enchantment or magic-item removal, class-engine or creature-trait removal, mass purge, retroactive healing/resource repair, or guessing an unknown spell rank. A curse qualifies only when it is itself an otherwise eligible ongoing spell effect within the rank ceiling and is not specially protected. Mere binary awareness of nearby magic does not identify a selectable individual effect. Apply SPELL_INTEGRATION_RULES.md for actual class access and repertoire, costs before resolution, components, concentration, Dissonance/Refrain and exact source cadence. No automatic scaling or generic upcast.",
+        "designNotes": "PRESERVED: Action, 60 feet, V/S/F, instantaneous and both rank-3 placements. NEW CONFLICT RULING: Core Tier 3 means spell rank at most 3; the Universal generic description grants neither unlimited-rank dispelling nor a mass purge. One selected effect per cast.",
+        "implementationStatus": "REVIEWED authored operational-playtest manuscript; runtime and balance validation pending",
+        "sourceCoreEntries": [
+          {
+            "index": 42,
+            "original": {
+              "school": "Abjuration",
+              "level": 3,
+              "name": "Dispel Magic",
+              "effect": "End magical effects of Tier 3 or lower.",
+              "source_paragraph": 9031,
+              "casting_time": "1 action",
+              "range": "60 feet",
+              "duration": "Instantaneous",
+              "components": "V, S, F",
+              "resolution": "Automatic or opposed as described",
+              "tags": [
+                "Utility"
+              ],
+              "rp_cost": 5
+            }
+          },
+          {
+            "index": 877,
+            "original": {
+              "school": "Universal",
+              "level": 3,
+              "name": "Dispel Magic",
+              "effect": "End magical effects.",
+              "source_paragraph": 10066,
+              "casting_time": "1 action",
+              "range": "60 feet",
+              "duration": "Instantaneous",
+              "components": "V, S, F",
+              "resolution": "Automatic or opposed as described",
+              "tags": [
+                "Utility"
+              ],
+              "rp_cost": 5
+            }
+          }
+        ],
+        "sourcePlacements": [
+          {
+            "name": "Dispel Magic",
+            "school": "Abjuration",
+            "level": 3,
+            "summary": "End magical effects of 3rd level or lower."
+          },
+          {
+            "name": "Dispel Magic",
+            "school": "Universal",
+            "level": 3,
+            "summary": "End magical effects."
+          }
+        ],
+        "classAccessEvidence": {
+          "Bard": {
+            "rank": 3,
+            "minimumClassLevel": 7,
+            "school": "Universal",
+            "baseRpCost": 5
+          },
+          "Cleric": {
+            "rank": 3,
+            "minimumClassLevel": 5,
+            "school": "Abjuration",
+            "baseRpCost": 5
+          },
+          "Druid": {
+            "rank": 3,
+            "minimumClassLevel": 5,
+            "school": "Abjuration",
+            "baseRpCost": 5
+          },
+          "Mage": {
+            "rank": 3,
+            "minimumClassLevel": 5,
+            "school": "Abjuration",
+            "baseRpCost": 5
+          },
+          "Monk": {
+            "rank": 3,
+            "minimumClassLevel": 13,
+            "school": "Abjuration",
+            "baseRpCost": 5
+          },
+          "Mirrorsage": {
+            "rank": 3,
+            "minimumClassLevel": 7,
+            "school": "Universal",
+            "baseRpCost": 5
+          },
+          "Tinker": {
+            "rank": 3,
+            "minimumClassLevel": 10,
+            "school": "Abjuration",
+            "baseRpCost": 5
+          },
+          "Wizard": {
+            "rank": 3,
+            "minimumClassLevel": 5,
+            "school": "Abjuration",
+            "baseRpCost": 5
+          },
+          "Paladin": {
+            "rank": 3,
+            "minimumClassLevel": 9,
+            "school": "Abjuration",
+            "baseRpCost": 5
+          }
+        },
+        "sourceReview": [
+          "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK2_3_SOURCE_CONFERENCE.md",
+          "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK2_3_EXACT_REVIEW.md"
+        ],
+        "reviewEvidence": [
+          "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK2_3_EXACT_REVIEW.md"
+        ],
+        "authoringFile": "data/playtest/spell_drafts/batch_abjuration_rank2_3.json"
+      },
+      "eligibleNativeRows": {
+        "Bard": {
+          "rank": 3,
+          "minimumClassLevel": 7,
+          "school": "Universal",
+          "baseRpCost": 5
+        },
+        "Cleric": {
+          "rank": 3,
+          "minimumClassLevel": 5,
+          "school": "Abjuration",
+          "baseRpCost": 5
+        },
+        "Druid": {
+          "rank": 3,
+          "minimumClassLevel": 5,
+          "school": "Abjuration",
+          "baseRpCost": 5
+        },
+        "Mage": {
+          "rank": 3,
+          "minimumClassLevel": 5,
+          "school": "Abjuration",
+          "baseRpCost": 5
+        },
+        "Monk": {
+          "rank": 3,
+          "minimumClassLevel": 13,
+          "school": "Abjuration",
+          "baseRpCost": 5
+        },
+        "Mirrorsage": {
+          "rank": 3,
+          "minimumClassLevel": 7,
+          "school": "Universal",
+          "baseRpCost": 5
+        },
+        "Tinker": {
+          "rank": 3,
+          "minimumClassLevel": 10,
+          "school": "Abjuration",
+          "baseRpCost": 5
+        },
+        "Wizard": {
+          "rank": 3,
+          "minimumClassLevel": 5,
+          "school": "Abjuration",
+          "baseRpCost": 5
+        },
+        "Paladin": {
+          "rank": 3,
+          "minimumClassLevel": 9,
+          "school": "Abjuration",
+          "baseRpCost": 5
+        }
+      },
+      "invocationScope": "DI169 only; actual selected row is recorded per child; no permanent acquisition"
+    },
+    {
+      "id": "mending",
+      "nativeCardUnchanged": {
+        "id": "mending",
+        "name": "Mending",
+        "schools": [
+          "Transmutation"
+        ],
+        "status": "operational-playtest-draft",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Dragoon": {
+            "rank": 0,
+            "minimumClassLevel": 3,
+            "school": "Transmutation",
+            "baseRpCost": 0
+          },
+          "Druid": {
+            "rank": 0,
+            "minimumClassLevel": 1,
+            "school": "Transmutation",
+            "baseRpCost": 0
+          },
+          "Mage": {
+            "rank": 0,
+            "minimumClassLevel": 1,
+            "school": "Transmutation",
+            "baseRpCost": 0
+          },
+          "Monk": {
+            "rank": 0,
+            "minimumClassLevel": 1,
+            "school": "Transmutation",
+            "baseRpCost": 0
+          },
+          "Ranger": {
+            "rank": 0,
+            "minimumClassLevel": 1,
+            "school": "Transmutation",
+            "baseRpCost": 0
+          },
+          "Shaman": {
+            "rank": 0,
+            "minimumClassLevel": 1,
+            "school": "Transmutation",
+            "baseRpCost": 0
+          },
+          "Thief": {
+            "rank": 0,
+            "minimumClassLevel": 1,
+            "school": "Transmutation",
+            "baseRpCost": 0
+          },
+          "Tinker": {
+            "rank": 0,
+            "minimumClassLevel": 1,
+            "school": "Transmutation",
+            "baseRpCost": 0
+          },
+          "Wizard": {
+            "rank": 0,
+            "minimumClassLevel": 1,
+            "school": "Transmutation",
+            "baseRpCost": 0
+          }
+        },
+        "operational": {
+          "id": "mending",
+          "activation": "Action",
+          "rangeFeet": 30,
+          "targets": "One nonliving mundane object within range containing one accessible break, tear, split seam, cracked joint, or separated mundane connection no larger than 1 foot across",
+          "duration": "Instantaneous",
+          "concentration": false,
+          "components": [
+            "V",
+            "S"
+          ],
+          "resolution": "None if the damage is within the listed repair scope.",
+          "effect": "Repair one minor physical break or tear, rejoining the affected mundane material enough for ordinary noncombat function if all required pieces are present.",
+          "scaling": "None.",
+          "limitations": "Does not restore device or construct HP, charges, ammunition, spell uses, limited resources, duration, destroyed mechanisms, magical properties, consumed materials, missing pieces, valuable raw materials, structural buildings, armor/weapon combat durability beyond the cosmetic or mundane joint repaired, or an object reduced to total destruction. It cannot manufacture a new object or repeatedly create saleable material. Cantrip repeats use Refrain.",
+          "designNotes": "Core V2 Action, 30-foot range, Instantaneous duration, and V/S components are retained. The 1-foot minor-repair scope and explicit distinction from device HP/resources are NEW provisional bounded-repair rules required for integration.",
+          "authoringFile": "data/playtest/spell_drafts/batch_3.json"
+        },
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "mending",
+          "original": {
+            "name": "Mending",
+            "level": 0,
+            "resonanceRank": 0,
+            "school": "Transmutation",
+            "schools": [
+              "Transmutation"
+            ],
+            "placements": [
+              {
+                "name": "Mending",
+                "school": "Transmutation",
+                "level": 0,
+                "summary": "Repair a single break or tear in an object."
+              }
+            ],
+            "classLevels": {
+              "Dragoon": 0,
+              "Druid": 0,
+              "Mage": 0,
+              "Monk": 0,
+              "Ranger": 0,
+              "Shaman": 0,
+              "Thief": 0,
+              "Tinker": 0,
+              "Wizard": 0
+            },
+            "classRanks": {
+              "Dragoon": 0,
+              "Druid": 0,
+              "Mage": 0,
+              "Monk": 0,
+              "Ranger": 0,
+              "Shaman": 0,
+              "Thief": 0,
+              "Tinker": 0,
+              "Wizard": 0
+            },
+            "classLearnLevels": {
+              "Dragoon": 3,
+              "Druid": 1,
+              "Mage": 1,
+              "Monk": 1,
+              "Ranger": 1,
+              "Shaman": 1,
+              "Thief": 1,
+              "Tinker": 1,
+              "Wizard": 1
+            },
+            "classSchools": {
+              "Dragoon": "Transmutation",
+              "Druid": "Transmutation",
+              "Mage": "Transmutation",
+              "Monk": "Transmutation",
+              "Ranger": "Transmutation",
+              "Shaman": "Transmutation",
+              "Thief": "Transmutation",
+              "Tinker": "Transmutation",
+              "Wizard": "Transmutation"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Repair a single break or tear in an object.",
+            "alternateSummaries": [],
+            "classes": [
+              "Dragoon",
+              "Druid",
+              "Mage",
+              "Monk",
+              "Ranger",
+              "Shaman",
+              "Thief",
+              "Tinker",
+              "Wizard"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 736,
+              "original": {
+                "school": "Transmutation",
+                "level": 0,
+                "name": "Mending",
+                "effect": "Repair a single break or tear in an object.",
+                "source_paragraph": 9894,
+                "casting_time": "1 action",
+                "range": "30 feet",
+                "duration": "Instantaneous",
+                "components": "V, S",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Utility"
+                ],
+                "rp_cost": 0
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation"
+        ]
+      },
+      "operativeSource": {
+        "kind": "current catalog",
+        "pointer": "/spells/692"
+      },
+      "operativeProcedureUnchanged": {
+        "id": "mending",
+        "activation": "Action",
+        "rangeFeet": 30,
+        "targets": "One nonliving mundane object within range containing one accessible break, tear, split seam, cracked joint, or separated mundane connection no larger than 1 foot across",
+        "duration": "Instantaneous",
+        "concentration": false,
+        "components": [
+          "V",
+          "S"
+        ],
+        "resolution": "None if the damage is within the listed repair scope.",
+        "effect": "Repair one minor physical break or tear, rejoining the affected mundane material enough for ordinary noncombat function if all required pieces are present.",
+        "scaling": "None.",
+        "limitations": "Does not restore device or construct HP, charges, ammunition, spell uses, limited resources, duration, destroyed mechanisms, magical properties, consumed materials, missing pieces, valuable raw materials, structural buildings, armor/weapon combat durability beyond the cosmetic or mundane joint repaired, or an object reduced to total destruction. It cannot manufacture a new object or repeatedly create saleable material. Cantrip repeats use Refrain.",
+        "designNotes": "Core V2 Action, 30-foot range, Instantaneous duration, and V/S components are retained. The 1-foot minor-repair scope and explicit distinction from device HP/resources are NEW provisional bounded-repair rules required for integration.",
+        "authoringFile": "data/playtest/spell_drafts/batch_3.json"
+      },
+      "eligibleNativeRows": {
+        "Dragoon": {
+          "rank": 0,
+          "minimumClassLevel": 3,
+          "school": "Transmutation",
+          "baseRpCost": 0
+        },
+        "Druid": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Transmutation",
+          "baseRpCost": 0
+        },
+        "Mage": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Transmutation",
+          "baseRpCost": 0
+        },
+        "Monk": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Transmutation",
+          "baseRpCost": 0
+        },
+        "Ranger": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Transmutation",
+          "baseRpCost": 0
+        },
+        "Shaman": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Transmutation",
+          "baseRpCost": 0
+        },
+        "Thief": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Transmutation",
+          "baseRpCost": 0
+        },
+        "Tinker": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Transmutation",
+          "baseRpCost": 0
+        },
+        "Wizard": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Transmutation",
+          "baseRpCost": 0
+        }
+      },
+      "invocationScope": "DI169 only; actual selected row is recorded per child; no permanent acquisition"
+    },
+    {
+      "id": "faction-divination",
+      "nativeCardUnchanged": {
+        "id": "faction-divination",
+        "name": "Faction Divination",
+        "schools": [
+          "Divination"
+        ],
+        "status": "operational-playtest-draft",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Cleric": {
+            "rank": 3,
+            "minimumClassLevel": 5,
+            "school": "Divination",
+            "baseRpCost": 5
+          },
+          "Mirrorsage": {
+            "rank": 3,
+            "minimumClassLevel": 7,
+            "school": "Divination",
+            "baseRpCost": 5
+          },
+          "Ranger": {
+            "rank": 3,
+            "minimumClassLevel": 9,
+            "school": "Divination",
+            "baseRpCost": 5
+          },
+          "Shaman": {
+            "rank": 3,
+            "minimumClassLevel": 7,
+            "school": "Divination",
+            "baseRpCost": 5
+          },
+          "Wizard": {
+            "rank": 3,
+            "minimumClassLevel": 5,
+            "school": "Divination",
+            "baseRpCost": 5
+          },
+          "Paladin": {
+            "rank": 3,
+            "minimumClassLevel": 9,
+            "school": "Divination",
+            "baseRpCost": 5
+          }
+        },
+        "operational": {
+          "id": "faction-divination",
+          "activation": "Action",
+          "rangeFeet": 0,
+          "targets": "Self; choose one exact known canonical factionId.",
+          "duration": "Instantaneous private institutional inquiry",
+          "concentration": false,
+          "components": [
+            "V",
+            "S",
+            "F"
+          ],
+          "resolution": "No roll. Privately learn one actual current major institutional objective of the chosen faction. No physical representative, positive reputation, membership, Faction Seal permission, geographic distance or planar anchor is required.",
+          "effect": "A qualifying objective is a concrete established goal pursued or prioritized by the institution or its recognized governing authority, such as securing a trade route, recovering a stolen archive or removing a named governor from office. A member’s private wish, reputation inference or the Director’s preferred plot is not an institutional objective. If several objectives are genuinely coequal, the Director records one stable priority selection while that institutional state remains materially unchanged. Equivalent repeat casts across casters/rephrasing do not rotate through hidden coequal goals. Report No Current Major Objective only for genuine established absence; undefined or specifically protected institutional information reports Indeterminate. Independently readable portions of a meaningful goal may be stated while protected details remain Indeterminate, without identifying which ward or hidden record caused the limit.",
+          "scaling": "None. No automatic increase in range, duration, targets, uses or information.",
+          "limitations": "Protection of one leader’s personal information does not erase an independently established institutional objective, and a protected private plan does not become institutional merely to evade protection. A subfaction must have its own actual canonical identity to be selected separately; invented subdivisions are not extra inquiries. The spell does not directly reveal an operational plan, member list, exact locations, timetable, secret agents, resources or every subordinate objective. A goal can naturally mention a readable subject as necessary to make it concrete, but supplies no additional dossier. It changes neither reputation nor faction intent and forces no action. Actual class access, repertoire, V/S/F components, costs, Dissonance/Refrain, beginning hooks, concentration transitions and interruption follow SPELL_INTEGRATION_RULES.md. Commit costs before the counter window; failed, blocked and countered effects do not refund costs or restore prior concentration. Use the actual casting class's school and rank. Specific information protections apply to their actual subjects and generating-source scope. Hidden unprotected facts are readable; undefined facts are not invented. No automatic scaling or generic upcast.",
+          "designNotes": "PRESERVED: Action/V,S,F/instantaneous and one current major faction objective. CONFLICT RULING: Self abstract informational casting replaces raw 60-foot metadata. NEW: exact institutional predicate, no geographic/planar anchor, stable coequal objective, and truthful absence versus undefined/protected output.",
+          "implementationStatus": "REVIEWED authored operational PLAYTEST manuscript; runtime, numerical balance and broader system validation pending",
+          "sourcePlacements": [
+            {
+              "name": "Faction Divination",
+              "school": "Divination",
+              "level": 3,
+              "summary": "Learn a faction's current major objective."
+            }
+          ],
+          "sourceCoreEntries": [
+            {
+              "index": 253,
+              "original": {
+                "school": "Divination",
+                "level": 3,
+                "name": "Faction Divination",
+                "effect": "Learn a faction's current major objective.",
+                "source_paragraph": 9292,
+                "casting_time": "1 action",
+                "range": "60 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Faction"
+                ],
+                "rp_cost": 5
+              }
+            }
+          ],
+          "classAccessEvidence": {
+            "Cleric": {
+              "rank": 3,
+              "minimumClassLevel": 5,
+              "school": "Divination",
+              "baseRpCost": 5
+            },
+            "Mirrorsage": {
+              "rank": 3,
+              "minimumClassLevel": 7,
+              "school": "Divination",
+              "baseRpCost": 5
+            },
+            "Ranger": {
+              "rank": 3,
+              "minimumClassLevel": 9,
+              "school": "Divination",
+              "baseRpCost": 5
+            },
+            "Shaman": {
+              "rank": 3,
+              "minimumClassLevel": 7,
+              "school": "Divination",
+              "baseRpCost": 5
+            },
+            "Wizard": {
+              "rank": 3,
+              "minimumClassLevel": 5,
+              "school": "Divination",
+              "baseRpCost": 5
+            },
+            "Paladin": {
+              "rank": 3,
+              "minimumClassLevel": 9,
+              "school": "Divination",
+              "baseRpCost": 5
+            }
+          },
+          "sourceReview": [
+            "docs/audit/2026-10-08/full-game/GPT_DIVINATION_RANK3_SOURCE_CONFERENCE.md",
+            "docs/audit/2026-10-08/full-game/GPT_DIVINATION_RANK3_EXACT_REVIEW.md"
+          ],
+          "reviewEvidence": [
+            "docs/audit/2026-10-08/full-game/GPT_DIVINATION_RANK3_EXACT_REVIEW.md"
+          ],
+          "authoringFile": "data/playtest/spell_drafts/batch_divination_rank3.json"
+        },
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "faction-divination",
+          "original": {
+            "name": "Faction Divination",
+            "level": 3,
+            "resonanceRank": 3,
+            "school": "Divination",
+            "schools": [
+              "Divination"
+            ],
+            "placements": [
+              {
+                "name": "Faction Divination",
+                "school": "Divination",
+                "level": 3,
+                "summary": "Learn a faction's current major objective."
+              }
+            ],
+            "classLevels": {
+              "Cleric": 3,
+              "Mirrorsage": 3,
+              "Ranger": 3,
+              "Shaman": 3,
+              "Wizard": 3,
+              "Paladin": 3
+            },
+            "classRanks": {
+              "Cleric": 3,
+              "Mirrorsage": 3,
+              "Ranger": 3,
+              "Shaman": 3,
+              "Wizard": 3,
+              "Paladin": 3
+            },
+            "classLearnLevels": {
+              "Cleric": 5,
+              "Mirrorsage": 7,
+              "Ranger": 9,
+              "Shaman": 7,
+              "Wizard": 5,
+              "Paladin": 9
+            },
+            "classSchools": {
+              "Cleric": "Divination",
+              "Mirrorsage": "Divination",
+              "Ranger": "Divination",
+              "Shaman": "Divination",
+              "Wizard": "Divination",
+              "Paladin": "Divination"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Learn a faction's current major objective.",
+            "alternateSummaries": [],
+            "classes": [
+              "Cleric",
+              "Mirrorsage",
+              "Ranger",
+              "Shaman",
+              "Wizard",
+              "Paladin"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 253,
+              "original": {
+                "school": "Divination",
+                "level": 3,
+                "name": "Faction Divination",
+                "effect": "Learn a faction's current major objective.",
+                "source_paragraph": 9292,
+                "casting_time": "1 action",
+                "range": "60 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Faction"
+                ],
+                "rp_cost": 5
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation"
+        ]
+      },
+      "operativeSource": {
+        "kind": "current catalog",
+        "pointer": "/spells/244"
+      },
+      "operativeProcedureUnchanged": {
+        "id": "faction-divination",
+        "activation": "Action",
+        "rangeFeet": 0,
+        "targets": "Self; choose one exact known canonical factionId.",
+        "duration": "Instantaneous private institutional inquiry",
+        "concentration": false,
+        "components": [
+          "V",
+          "S",
+          "F"
+        ],
+        "resolution": "No roll. Privately learn one actual current major institutional objective of the chosen faction. No physical representative, positive reputation, membership, Faction Seal permission, geographic distance or planar anchor is required.",
+        "effect": "A qualifying objective is a concrete established goal pursued or prioritized by the institution or its recognized governing authority, such as securing a trade route, recovering a stolen archive or removing a named governor from office. A member’s private wish, reputation inference or the Director’s preferred plot is not an institutional objective. If several objectives are genuinely coequal, the Director records one stable priority selection while that institutional state remains materially unchanged. Equivalent repeat casts across casters/rephrasing do not rotate through hidden coequal goals. Report No Current Major Objective only for genuine established absence; undefined or specifically protected institutional information reports Indeterminate. Independently readable portions of a meaningful goal may be stated while protected details remain Indeterminate, without identifying which ward or hidden record caused the limit.",
+        "scaling": "None. No automatic increase in range, duration, targets, uses or information.",
+        "limitations": "Protection of one leader’s personal information does not erase an independently established institutional objective, and a protected private plan does not become institutional merely to evade protection. A subfaction must have its own actual canonical identity to be selected separately; invented subdivisions are not extra inquiries. The spell does not directly reveal an operational plan, member list, exact locations, timetable, secret agents, resources or every subordinate objective. A goal can naturally mention a readable subject as necessary to make it concrete, but supplies no additional dossier. It changes neither reputation nor faction intent and forces no action. Actual class access, repertoire, V/S/F components, costs, Dissonance/Refrain, beginning hooks, concentration transitions and interruption follow SPELL_INTEGRATION_RULES.md. Commit costs before the counter window; failed, blocked and countered effects do not refund costs or restore prior concentration. Use the actual casting class's school and rank. Specific information protections apply to their actual subjects and generating-source scope. Hidden unprotected facts are readable; undefined facts are not invented. No automatic scaling or generic upcast.",
+        "designNotes": "PRESERVED: Action/V,S,F/instantaneous and one current major faction objective. CONFLICT RULING: Self abstract informational casting replaces raw 60-foot metadata. NEW: exact institutional predicate, no geographic/planar anchor, stable coequal objective, and truthful absence versus undefined/protected output.",
+        "implementationStatus": "REVIEWED authored operational PLAYTEST manuscript; runtime, numerical balance and broader system validation pending",
+        "sourcePlacements": [
+          {
+            "name": "Faction Divination",
+            "school": "Divination",
+            "level": 3,
+            "summary": "Learn a faction's current major objective."
+          }
+        ],
+        "sourceCoreEntries": [
+          {
+            "index": 253,
+            "original": {
+              "school": "Divination",
+              "level": 3,
+              "name": "Faction Divination",
+              "effect": "Learn a faction's current major objective.",
+              "source_paragraph": 9292,
+              "casting_time": "1 action",
+              "range": "60 feet",
+              "duration": "Instantaneous",
+              "components": "V, S, F",
+              "resolution": "Automatic or opposed as described",
+              "tags": [
+                "Faction"
+              ],
+              "rp_cost": 5
+            }
+          }
+        ],
+        "classAccessEvidence": {
+          "Cleric": {
+            "rank": 3,
+            "minimumClassLevel": 5,
+            "school": "Divination",
+            "baseRpCost": 5
+          },
+          "Mirrorsage": {
+            "rank": 3,
+            "minimumClassLevel": 7,
+            "school": "Divination",
+            "baseRpCost": 5
+          },
+          "Ranger": {
+            "rank": 3,
+            "minimumClassLevel": 9,
+            "school": "Divination",
+            "baseRpCost": 5
+          },
+          "Shaman": {
+            "rank": 3,
+            "minimumClassLevel": 7,
+            "school": "Divination",
+            "baseRpCost": 5
+          },
+          "Wizard": {
+            "rank": 3,
+            "minimumClassLevel": 5,
+            "school": "Divination",
+            "baseRpCost": 5
+          },
+          "Paladin": {
+            "rank": 3,
+            "minimumClassLevel": 9,
+            "school": "Divination",
+            "baseRpCost": 5
+          }
+        },
+        "sourceReview": [
+          "docs/audit/2026-10-08/full-game/GPT_DIVINATION_RANK3_SOURCE_CONFERENCE.md",
+          "docs/audit/2026-10-08/full-game/GPT_DIVINATION_RANK3_EXACT_REVIEW.md"
+        ],
+        "reviewEvidence": [
+          "docs/audit/2026-10-08/full-game/GPT_DIVINATION_RANK3_EXACT_REVIEW.md"
+        ],
+        "authoringFile": "data/playtest/spell_drafts/batch_divination_rank3.json"
+      },
+      "eligibleNativeRows": {
+        "Cleric": {
+          "rank": 3,
+          "minimumClassLevel": 5,
+          "school": "Divination",
+          "baseRpCost": 5
+        },
+        "Mirrorsage": {
+          "rank": 3,
+          "minimumClassLevel": 7,
+          "school": "Divination",
+          "baseRpCost": 5
+        },
+        "Ranger": {
+          "rank": 3,
+          "minimumClassLevel": 9,
+          "school": "Divination",
+          "baseRpCost": 5
+        },
+        "Shaman": {
+          "rank": 3,
+          "minimumClassLevel": 7,
+          "school": "Divination",
+          "baseRpCost": 5
+        },
+        "Wizard": {
+          "rank": 3,
+          "minimumClassLevel": 5,
+          "school": "Divination",
+          "baseRpCost": 5
+        },
+        "Paladin": {
+          "rank": 3,
+          "minimumClassLevel": 9,
+          "school": "Divination",
+          "baseRpCost": 5
+        }
+      },
+      "invocationScope": "DI169 only; actual selected row is recorded per child; no permanent acquisition"
+    }
+  ],
+  "explicitExclusions": [
+    {
+      "id": "echo-cast",
+      "reason": "casting-copy mechanism; lineage ceiling"
+    },
+    {
+      "id": "arcane-echo",
+      "reason": "creates future cast permission; lineage ceiling"
+    },
+    {
+      "id": "fate-echo",
+      "reason": "rank7 exceeds6"
+    },
+    {
+      "id": "divine-intervention-lesser",
+      "reason": "rank8 exceeds6 and recursive invocation"
+    }
+  ],
+  "extensionHold": "H169-INVOCATION"
+}
