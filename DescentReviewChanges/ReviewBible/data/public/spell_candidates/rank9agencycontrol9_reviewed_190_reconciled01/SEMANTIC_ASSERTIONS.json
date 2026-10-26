@@ -1,0 +1,766 @@
+[
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-COMMAND-REALITY-A",
+    "label": "Task is finite and complete",
+    "path": [
+      "effects",
+      "RANK9AGENCYCONTROL9129-COMMAND-REALITY-A/cast1",
+      "status"
+    ],
+    "expected": "ended",
+    "actual": "ended",
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-COMMAND-REALITY-A",
+    "label": "No permanent ownership transfer",
+    "path": [
+      "objectiveFacts",
+      "ownership",
+      "marker"
+    ],
+    "expected": "scene-custodian",
+    "actual": "scene-custodian",
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-COMMAND-REALITY-B",
+    "label": "Only one paid cast",
+    "path": [
+      "actors",
+      "C",
+      "resources",
+      "RP"
+    ],
+    "expected": 38,
+    "actual": 38,
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-COMMAND-REALITY-B/impossible-resource",
+    "label": "No illegal payment",
+    "path": [
+      "actors",
+      "C",
+      "resources",
+      "RP"
+    ],
+    "expected": 64,
+    "actual": 64,
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-COMMAND-REALITY-B/earlier-mandate",
+    "label": "Only actual one Action spent",
+    "path": [
+      "actors",
+      "T",
+      "budget",
+      "Action"
+    ],
+    "expected": 0,
+    "actual": 0,
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-ERASE-SOUL-A",
+    "label": "Original target concentration never restored",
+    "path": [
+      "actors",
+      "T",
+      "concentration"
+    ],
+    "expected": null,
+    "actual": null,
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-ERASE-SOUL-B/current-turn-early-save",
+    "label": "Future deadline excludes current turn",
+    "path": [
+      "effects",
+      "RANK9AGENCYCONTROL9129-ERASE-SOUL-B/current-turn-early-save/cast1",
+      "endExpiry"
+    ],
+    "expected": [
+      "T",
+      209
+    ],
+    "actual": [
+      "T",
+      209
+    ],
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-ERASE-SOUL-B/used-hard-history",
+    "label": "Only identity admitted",
+    "path": [
+      "effects",
+      "RANK9AGENCYCONTROL9129-ERASE-SOUL-B/used-hard-history/cast2",
+      "components",
+      "T"
+    ],
+    "expected": [
+      "identity"
+    ],
+    "actual": [
+      "identity"
+    ],
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-REWRITE-LOYALTY-A",
+    "label": "Original autobiography intact",
+    "path": [
+      "actors",
+      "T",
+      "memories",
+      "baseline"
+    ],
+    "expected": [
+      "Born in the fixture town.",
+      "Previously served no caster cause.",
+      "Owns the recorded focus."
+    ],
+    "actual": [
+      "Born in the fixture town.",
+      "Previously served no caster cause.",
+      "Owns the recorded focus."
+    ],
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-REWRITE-LOYALTY-A",
+    "label": "External institution unchanged",
+    "path": [
+      "objectiveFacts",
+      "institutionalAllegiance",
+      "T"
+    ],
+    "expected": "unchanged",
+    "actual": "unchanged",
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-REWRITE-LOYALTY-B",
+    "label": "Belief removed, actual new memory retained",
+    "path": [
+      "actors",
+      "T",
+      "memories",
+      "subjectiveService"
+    ],
+    "expected": null,
+    "actual": null,
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-REWRITE-LOYALTY-B/suppression-resumption",
+    "label": "Belief source survives",
+    "path": [
+      "effects",
+      "RANK9AGENCYCONTROL9129-REWRITE-LOYALTY-B/suppression-resumption/cast1",
+      "status"
+    ],
+    "expected": "live",
+    "actual": "live",
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-REWRITE-LOYALTY-B/later-cause",
+    "label": "True baseline never overwritten",
+    "path": [
+      "actors",
+      "T",
+      "memories",
+      "baseline"
+    ],
+    "expected": [
+      "Born in the fixture town.",
+      "Previously served no caster cause.",
+      "Owns the recorded focus."
+    ],
+    "actual": [
+      "Born in the fixture town.",
+      "Previously served no caster cause.",
+      "Owns the recorded focus."
+    ],
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-REWRITE-LOYALTY-B/failed-replacement",
+    "label": "CHA20-1 meets DC19 and preserves old source",
+    "path": [
+      "actors",
+      "T",
+      "memories",
+      "subjectiveService",
+      "source"
+    ],
+    "expected": "RANK9AGENCYCONTROL9129-REWRITE-LOYALTY-B/failed-replacement/cast1",
+    "actual": "RANK9AGENCYCONTROL9129-REWRITE-LOYALTY-B/failed-replacement/cast1",
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-OVERWHELMING-PRESENCE-B",
+    "label": "Animal profile did not invent creature type",
+    "path": [
+      "actors",
+      "T",
+      "type"
+    ],
+    "expected": "Humanoid",
+    "actual": "Humanoid",
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-PERFECT-MESMERIZE-A",
+    "label": "Old concentration remains lost",
+    "path": [
+      "actors",
+      "T",
+      "concentration"
+    ],
+    "expected": null,
+    "actual": null,
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-PERFECT-MESMERIZE-B",
+    "label": "Positive tempHP loss breaks source",
+    "path": [
+      "effects",
+      "RANK9AGENCYCONTROL9129-PERFECT-MESMERIZE-B/cast2",
+      "status"
+    ],
+    "expected": "ended",
+    "actual": "ended",
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-PERFECT-MESMERIZE-B",
+    "label": "Normal HP preserved",
+    "path": [
+      "actors",
+      "T",
+      "HP"
+    ],
+    "expected": 104,
+    "actual": 104,
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-PERFECT-MESMERIZE-B/full-prevention",
+    "label": "No damage, no false break",
+    "path": [
+      "effects",
+      "RANK9AGENCYCONTROL9129-PERFECT-MESMERIZE-B/full-prevention/cast1",
+      "status"
+    ],
+    "expected": "live",
+    "actual": "live",
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-PERFECT-MESMERIZE-B/redirected-away",
+    "label": "T not damaged",
+    "path": [
+      "actors",
+      "T",
+      "HP"
+    ],
+    "expected": 104,
+    "actual": 104,
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-PERFECT-MESMERIZE-B/redirected-away",
+    "label": "No false break",
+    "path": [
+      "effects",
+      "RANK9AGENCYCONTROL9129-PERFECT-MESMERIZE-B/redirected-away/cast1",
+      "status"
+    ],
+    "expected": "live",
+    "actual": "live",
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-PERFECT-MESMERIZE-B/damage-while-suppressed",
+    "label": "Actual damage ends underlying source",
+    "path": [
+      "effects",
+      "RANK9AGENCYCONTROL9129-PERFECT-MESMERIZE-B/damage-while-suppressed/cast1",
+      "status"
+    ],
+    "expected": "ended",
+    "actual": "ended",
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-PERFECT-MESMERIZE-B/stunned-only-immunity",
+    "label": "No hard component banked",
+    "path": [
+      "effects",
+      "RANK9AGENCYCONTROL9129-PERFECT-MESMERIZE-B/stunned-only-immunity/cast1",
+      "components",
+      "T"
+    ],
+    "expected": [
+      "silence",
+      "defenseless"
+    ],
+    "actual": [
+      "silence",
+      "defenseless"
+    ],
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-PERFECT-MESMERIZE-B/incoming-transfer",
+    "label": "Transfer actually broke soft components",
+    "path": [
+      "effects",
+      "RANK9AGENCYCONTROL9129-PERFECT-MESMERIZE-B/incoming-transfer/cast3",
+      "status"
+    ],
+    "expected": "ended",
+    "actual": "ended",
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-PERFECT-MESMERIZE-B/incoming-transfer",
+    "label": "Bond concentration survived exact check",
+    "path": [
+      "actors",
+      "A",
+      "concentration"
+    ],
+    "expected": "RANK9AGENCYCONTROL9129-PERFECT-MESMERIZE-B/incoming-transfer/cast2",
+    "actual": "RANK9AGENCYCONTROL9129-PERFECT-MESMERIZE-B/incoming-transfer/cast2",
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-ABSOLUTE-DOMINATION-B",
+    "label": "Hard record retained",
+    "path": [
+      "hardHistory",
+      "C|K1",
+      "refunded"
+    ],
+    "expected": false,
+    "actual": false,
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-DOMINATE-LEGION-A",
+    "label": "One26RP payment for all ten",
+    "path": [
+      "actors",
+      "C",
+      "resources",
+      "RP"
+    ],
+    "expected": 38,
+    "actual": 38,
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-DOMINATE-LEGION-A/independent-initial-resistance",
+    "label": "Saved target never receives control",
+    "path": [
+      "effects",
+      "RANK9AGENCYCONTROL9129-DOMINATE-LEGION-A/independent-initial-resistance/cast1",
+      "components",
+      "T2"
+    ],
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-DOMINATE-LEGION-B/known-action-spell-resource",
+    "label": "Target really pays known source",
+    "path": [
+      "actors",
+      "T",
+      "resources",
+      "RP"
+    ],
+    "expected": 63,
+    "actual": 63,
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-PROPHECY-FULFILLED-A",
+    "label": "Real RP payment",
+    "path": [
+      "actors",
+      "T",
+      "resources",
+      "RP"
+    ],
+    "expected": 63,
+    "actual": 63,
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-PROPHECY-FULFILLED-B/unavailable-real-RP",
+    "label": "Actual ledger totals64RP spent",
+    "path": [
+      "actors",
+      "T",
+      "resources",
+      "RP"
+    ],
+    "expected": 0,
+    "actual": 0,
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-PUPPETMASTER-S-REALM-A",
+    "label": "Paid Dash retained",
+    "path": [
+      "actors",
+      "T",
+      "budget",
+      "Action"
+    ],
+    "expected": 0,
+    "actual": 0,
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-PUPPETMASTER-S-REALM-A",
+    "label": "No untraveled movement charged",
+    "path": [
+      "actors",
+      "T",
+      "budget",
+      "movementFeet"
+    ],
+    "expected": 60,
+    "actual": 60,
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-PUPPETMASTER-S-REALM-B",
+    "label": "Actual rank7 Teleport cost17",
+    "path": [
+      "actors",
+      "T",
+      "resources",
+      "RP"
+    ],
+    "expected": 47,
+    "actual": 47,
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-PUPPETMASTER-S-REALM-B/two-realms-terminal-turning",
+    "label": "Original target never hit",
+    "path": [
+      "actors",
+      "B",
+      "HP"
+    ],
+    "expected": 104,
+    "actual": 104,
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-ABSOLUTE-DOMINATION-B/paid-countered-ready",
+    "label": "Paid subject cast and earlier Heroism retained as costs",
+    "path": [
+      "actors",
+      "C",
+      "resources",
+      "RP"
+    ],
+    "expected": 36,
+    "actual": 36,
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-ABSOLUTE-DOMINATION-B/mind-blank-initial-prevention",
+    "label": "No blocked component banked",
+    "path": [
+      "effects",
+      "RANK9AGENCYCONTROL9129-ABSOLUTE-DOMINATION-B/mind-blank-initial-prevention/cast2",
+      "components",
+      "T"
+    ],
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-COMMAND-REALITY-B/paid-countered-ready",
+    "label": "Paid subject cast and earlier Heroism retained as costs",
+    "path": [
+      "actors",
+      "C",
+      "resources",
+      "RP"
+    ],
+    "expected": 36,
+    "actual": 36,
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-COMMAND-REALITY-B/mind-blank-initial-prevention",
+    "label": "No blocked component banked",
+    "path": [
+      "effects",
+      "RANK9AGENCYCONTROL9129-COMMAND-REALITY-B/mind-blank-initial-prevention/cast2",
+      "components",
+      "T"
+    ],
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-DOMINATE-LEGION-B/paid-countered-ready",
+    "label": "Paid subject cast and earlier Heroism retained as costs",
+    "path": [
+      "actors",
+      "C",
+      "resources",
+      "RP"
+    ],
+    "expected": 36,
+    "actual": 36,
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-DOMINATE-LEGION-B/mind-blank-initial-prevention",
+    "label": "No blocked component banked",
+    "path": [
+      "effects",
+      "RANK9AGENCYCONTROL9129-DOMINATE-LEGION-B/mind-blank-initial-prevention/cast2",
+      "components",
+      "T"
+    ],
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-ERASE-SOUL-B/paid-countered-ready",
+    "label": "Paid subject cast and earlier Heroism retained as costs",
+    "path": [
+      "actors",
+      "C",
+      "resources",
+      "RP"
+    ],
+    "expected": 36,
+    "actual": 36,
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-ERASE-SOUL-B/mind-blank-initial-prevention",
+    "label": "No blocked component banked",
+    "path": [
+      "effects",
+      "RANK9AGENCYCONTROL9129-ERASE-SOUL-B/mind-blank-initial-prevention/cast2",
+      "components",
+      "T"
+    ],
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-OVERWHELMING-PRESENCE-B/paid-countered-ready",
+    "label": "Paid subject cast and earlier Heroism retained as costs",
+    "path": [
+      "actors",
+      "C",
+      "resources",
+      "RP"
+    ],
+    "expected": 36,
+    "actual": 36,
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-OVERWHELMING-PRESENCE-B/mind-blank-initial-prevention",
+    "label": "No blocked component banked",
+    "path": [
+      "effects",
+      "RANK9AGENCYCONTROL9129-OVERWHELMING-PRESENCE-B/mind-blank-initial-prevention/cast2",
+      "components",
+      "T"
+    ],
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-PERFECT-MESMERIZE-B/paid-countered-ready",
+    "label": "Paid subject cast and earlier Heroism retained as costs",
+    "path": [
+      "actors",
+      "C",
+      "resources",
+      "RP"
+    ],
+    "expected": 36,
+    "actual": 36,
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-PERFECT-MESMERIZE-B/mind-blank-initial-prevention",
+    "label": "No blocked component banked",
+    "path": [
+      "effects",
+      "RANK9AGENCYCONTROL9129-PERFECT-MESMERIZE-B/mind-blank-initial-prevention/cast2",
+      "components",
+      "T"
+    ],
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-PROPHECY-FULFILLED-B/paid-countered-ready",
+    "label": "Paid subject cast and earlier Heroism retained as costs",
+    "path": [
+      "actors",
+      "C",
+      "resources",
+      "RP"
+    ],
+    "expected": 36,
+    "actual": 36,
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-PROPHECY-FULFILLED-B/mind-blank-initial-prevention",
+    "label": "No blocked component banked",
+    "path": [
+      "effects",
+      "RANK9AGENCYCONTROL9129-PROPHECY-FULFILLED-B/mind-blank-initial-prevention/cast2",
+      "components",
+      "T"
+    ],
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-PUPPETMASTER-S-REALM-B/paid-countered-ready",
+    "label": "Paid subject cast and earlier Heroism retained as costs",
+    "path": [
+      "actors",
+      "C",
+      "resources",
+      "RP"
+    ],
+    "expected": 36,
+    "actual": 36,
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-REWRITE-LOYALTY-B/paid-countered-ready",
+    "label": "Paid subject cast and earlier Heroism retained as costs",
+    "path": [
+      "actors",
+      "C",
+      "resources",
+      "RP"
+    ],
+    "expected": 36,
+    "actual": 36,
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-REWRITE-LOYALTY-B/mind-blank-initial-prevention",
+    "label": "No blocked component banked",
+    "path": [
+      "effects",
+      "RANK9AGENCYCONTROL9129-REWRITE-LOYALTY-B/mind-blank-initial-prevention/cast2",
+      "components",
+      "T"
+    ],
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-ERASE-SOUL-B/stun-immunity-not-incapacitated",
+    "label": "Both components established before actual early ending",
+    "path": [
+      "effects",
+      "RANK9AGENCYCONTROL9129-ERASE-SOUL-B/stun-immunity-not-incapacitated/cast1",
+      "components",
+      "T"
+    ],
+    "expected": [
+      "identity",
+      "denial"
+    ],
+    "actual": [
+      "identity",
+      "denial"
+    ],
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-DOMINATE-LEGION-A/independent-source-removal",
+    "label": "Other recipient still controlled",
+    "path": [
+      "effects",
+      "RANK9AGENCYCONTROL9129-DOMINATE-LEGION-A/independent-source-removal/cast1",
+      "components",
+      "T1"
+    ],
+    "expected": [
+      "control"
+    ],
+    "actual": [
+      "control"
+    ],
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-DOMINATE-LEGION-B/outside-transition-budget",
+    "label": "No duplicated ordinary Action",
+    "path": [
+      "actors",
+      "T",
+      "budget",
+      "Action"
+    ],
+    "expected": 0,
+    "actual": 0,
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-ABSOLUTE-DOMINATION-A/actual-regular-END",
+    "label": "Native actual-turn save ended the application",
+    "path": [
+      "effects",
+      "RANK9AGENCYCONTROL9129-ABSOLUTE-DOMINATION-A/actual-regular-END/cast1",
+      "status"
+    ],
+    "expected": "ended",
+    "actual": "ended",
+    "passed": true
+  },
+  {
+    "caseId": "RANK9AGENCYCONTROL9129-ABSOLUTE-DOMINATION-A/current-turn-END",
+    "label": "Current actual END save, without a created order",
+    "path": [
+      "actors",
+      "T",
+      "orders"
+    ],
+    "expected": [],
+    "actual": [],
+    "passed": true
+  }
+]
