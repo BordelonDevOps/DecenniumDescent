@@ -1,0 +1,4272 @@
+{
+  "id": "P5-GLOOM-B",
+  "spellId": "gloom-bind",
+  "kind": "main",
+  "description": "Persistent binding suppression, actual corpse/source expiry, custody, Hunt and independent return provider",
+  "wholeCaseHeld": true,
+  "classification": "Held data-only obligation",
+  "questionIds": [
+    "R8PL-SOURCE",
+    "R8PL-TRANSACTIONS",
+    "R8PL-CLOCKS",
+    "R8PL-GLOOM-NAME",
+    "R8PL-GLOOM-BINDING",
+    "R8PL-GLOOM-RELEASE",
+    "R8PL-GLOOM-DEATH"
+  ],
+  "holdIds": [
+    "P5-H-PHYSICAL",
+    "P5-H-ACCESS",
+    "P5-H-EQUIPMENT",
+    "P5-H-RUNTIME",
+    "P5-H-HUMAN-PLAY",
+    "P5-H-BALANCE",
+    "P5-H-RELEASE",
+    "P5-H-GLOOM-NAME",
+    "P5-H-GLOOM-SITE",
+    "P5-H-COSMOLOGY",
+    "P5-H-LIFECYCLE"
+  ],
+  "sourceActors": {
+    "W": "P5-FIXTURE-WIZARD15-DIVINATION",
+    "T": "P5-FIXTURE-WIZARD15-DIVINATION"
+  },
+  "profileSHA256": "a2e2bdc700d75e75a7bedc8b058e4d922c137ac9597f44774d6622aff384ee08",
+  "assumptions": "Exact declared geometry and source-legal character build are conditional fixture inputs. Unknown campaign facts are not inferred.",
+  "initialState": {
+    "schema": "P5-full-case-state-v1",
+    "time": -0.001,
+    "encounter": "fixture-encounter",
+    "relationships": [
+      {
+        "a": "T",
+        "b": "W",
+        "attitude": "nonhostile for occupancy; targets may deliberately resist the declared fixture spell"
+      }
+    ],
+    "actors": {
+      "W": {
+        "profileId": "P5-FIXTURE-WIZARD15-DIVINATION",
+        "profileSHA256": "a2e2bdc700d75e75a7bedc8b058e4d922c137ac9597f44774d6622aff384ee08",
+        "sourceCharacter": "W",
+        "declaredAdmissionIntent": {
+          "maze": "RESIST",
+          "seal-of-banishment": "RESIST",
+          "gloom-bind": "RESIST"
+        },
+        "classLevel": 15,
+        "position": {
+          "plane": "P",
+          "feet": [
+            0,
+            0,
+            0
+          ]
+        },
+        "body": {
+          "size": "Medium",
+          "width": 5,
+          "depth": 5,
+          "height": 6,
+          "pounds": 150,
+          "rootKind": "ordinary living PC body",
+          "nativePlane": null
+        },
+        "HP": 92,
+        "maxHP": 92,
+        "tempHP": 0,
+        "Wounds": 0,
+        "injuries": [],
+        "life": "alive",
+        "deathSaves": {
+          "success": 0,
+          "failure": 0,
+          "stable": false,
+          "recoveryAt": null
+        },
+        "conditions": [],
+        "RP": 56,
+        "maxRP": 56,
+        "Dissonance": 0,
+        "lastFamily": null,
+        "Refrain": 0,
+        "preparedFamilyUsed": [],
+        "resourceHistory": [],
+        "concentration": null,
+        "readied": null,
+        "recharge": {},
+        "restUses": {
+          "divinationReroll": 1,
+          "dualCast": 1,
+          "overchannel": 1,
+          "spellbookStudy": 1
+        },
+        "budget": {
+          "Action": 0,
+          "BonusAction": 0,
+          "Reaction": 0,
+          "movement": 0,
+          "movementCap": 0,
+          "movementSpent": 0,
+          "interaction": 0,
+          "additionalActionUsed": false
+        },
+        "phaseOffset": 0,
+        "lastRegularStart": null,
+        "inventory": [
+          "W-focus"
+        ],
+        "hands": {
+          "right": "W-focus",
+          "left": "free"
+        },
+        "components": {
+          "audibleVoice": true,
+          "somaticHand": true,
+          "focusUsable": true
+        },
+        "carriedPounds": 1,
+        "carriedLoad": 0.1,
+        "physicalCapacityPounds": 150,
+        "loadCapacity": 10,
+        "Burdened": false,
+        "travelHistory": [],
+        "entryAnchors": {},
+        "placementConflict": null,
+        "expressedFootprint": true,
+        "nativePlane": null,
+        "immunities": [],
+        "resistances": [
+          "force"
+        ],
+        "knowledge": {
+          "planeIds": [
+            "P"
+          ],
+          "sites": []
+        },
+        "sourceExpiry": null,
+        "Hunt": {
+          "initiated": false,
+          "deathException": null
+        },
+        "taint": 0,
+        "claims": []
+      },
+      "T": {
+        "profileId": "P5-FIXTURE-WIZARD15-DIVINATION",
+        "profileSHA256": "a2e2bdc700d75e75a7bedc8b058e4d922c137ac9597f44774d6622aff384ee08",
+        "sourceCharacter": "T",
+        "declaredAdmissionIntent": {
+          "maze": "RESIST",
+          "seal-of-banishment": "RESIST",
+          "gloom-bind": "RESIST"
+        },
+        "classLevel": 15,
+        "position": {
+          "plane": "P",
+          "feet": [
+            20,
+            0,
+            0
+          ]
+        },
+        "body": {
+          "size": "Medium",
+          "width": 5,
+          "depth": 5,
+          "height": 6,
+          "pounds": 150,
+          "rootKind": "ordinary living PC body",
+          "nativePlane": null
+        },
+        "HP": 92,
+        "maxHP": 92,
+        "tempHP": 0,
+        "Wounds": 0,
+        "injuries": [],
+        "life": "alive",
+        "deathSaves": {
+          "success": 0,
+          "failure": 0,
+          "stable": false,
+          "recoveryAt": null
+        },
+        "conditions": [],
+        "RP": 56,
+        "maxRP": 56,
+        "Dissonance": 0,
+        "lastFamily": null,
+        "Refrain": 0,
+        "preparedFamilyUsed": [],
+        "resourceHistory": [],
+        "concentration": null,
+        "readied": null,
+        "recharge": {},
+        "restUses": {
+          "divinationReroll": 1,
+          "dualCast": 1,
+          "overchannel": 1,
+          "spellbookStudy": 1
+        },
+        "budget": {
+          "Action": 0,
+          "BonusAction": 0,
+          "Reaction": 0,
+          "movement": 0,
+          "movementCap": 0,
+          "movementSpent": 0,
+          "interaction": 0,
+          "additionalActionUsed": false
+        },
+        "phaseOffset": 2,
+        "lastRegularStart": null,
+        "inventory": [
+          "T-focus"
+        ],
+        "hands": {
+          "right": "T-focus",
+          "left": "free"
+        },
+        "components": {
+          "audibleVoice": true,
+          "somaticHand": true,
+          "focusUsable": true
+        },
+        "carriedPounds": 1,
+        "carriedLoad": 0.1,
+        "physicalCapacityPounds": 150,
+        "loadCapacity": 10,
+        "Burdened": false,
+        "travelHistory": [],
+        "entryAnchors": {},
+        "placementConflict": null,
+        "expressedFootprint": true,
+        "nativePlane": null,
+        "immunities": [],
+        "resistances": [
+          "force"
+        ],
+        "knowledge": {
+          "planeIds": [
+            "P"
+          ],
+          "sites": []
+        },
+        "sourceExpiry": null,
+        "Hunt": {
+          "initiated": false,
+          "deathException": null
+        },
+        "taint": 0,
+        "claims": []
+      }
+    },
+    "items": {
+      "W-focus": {
+        "id": "W-focus",
+        "provenance": "Conditional ordinary class focus supplied under current V/S/F interface; no costly component or magic item claim.",
+        "pounds": 1,
+        "Load": 0.1,
+        "holder": "W",
+        "position": null,
+        "expiresAt": null,
+        "status": "extant"
+      },
+      "T-focus": {
+        "id": "T-focus",
+        "provenance": "Conditional ordinary class focus supplied under current V/S/F interface; no costly component or magic item claim.",
+        "pounds": 1,
+        "Load": 0.1,
+        "holder": "T",
+        "position": null,
+        "expiresAt": null,
+        "status": "extant"
+      }
+    },
+    "planes": {
+      "P": {
+        "classification": "Unmapped conditional ordinary scene operand; not a cosmology/native assertion",
+        "support": "Level unobstructed floor z=0 except explicit case obstacles",
+        "environment": "Ordinary breathable fixture medium",
+        "bodies": {}
+      }
+    },
+    "spaces": {},
+    "connections": {},
+    "effects": {},
+    "hardControl": [],
+    "RNG": {
+      "mode": "explicit predetermined data; not random execution",
+      "consumed": []
+    },
+    "sourceCounter": 0,
+    "auditLog": [],
+    "phaseHistory": [],
+    "observations": [],
+    "pendingSettlements": [],
+    "holds": [],
+    "obstacles": [],
+    "campaign": {
+      "HuntStarted": false,
+      "OpeningDeadline": 10000,
+      "HornAt": 5000,
+      "ExtractionCompleted": false,
+      "researchElapsedSeconds": 0,
+      "cosmologyMapping": null
+    },
+    "caseOutcome": "not-yet-resolved"
+  },
+  "events": [
+    {
+      "id": "P5-GLOOM-B:1",
+      "time": 0,
+      "label": "Whole-case source prerequisite hold",
+      "evidence": {},
+      "before": {
+        "schema": "P5-full-case-state-v1",
+        "time": -0.001,
+        "encounter": "fixture-encounter",
+        "relationships": [
+          {
+            "a": "T",
+            "b": "W",
+            "attitude": "nonhostile for occupancy; targets may deliberately resist the declared fixture spell"
+          }
+        ],
+        "actors": {
+          "W": {
+            "profileId": "P5-FIXTURE-WIZARD15-DIVINATION",
+            "profileSHA256": "a2e2bdc700d75e75a7bedc8b058e4d922c137ac9597f44774d6622aff384ee08",
+            "sourceCharacter": "W",
+            "declaredAdmissionIntent": {
+              "maze": "RESIST",
+              "seal-of-banishment": "RESIST",
+              "gloom-bind": "RESIST"
+            },
+            "classLevel": 15,
+            "position": {
+              "plane": "P",
+              "feet": [
+                0,
+                0,
+                0
+              ]
+            },
+            "body": {
+              "size": "Medium",
+              "width": 5,
+              "depth": 5,
+              "height": 6,
+              "pounds": 150,
+              "rootKind": "ordinary living PC body",
+              "nativePlane": null
+            },
+            "HP": 92,
+            "maxHP": 92,
+            "tempHP": 0,
+            "Wounds": 0,
+            "injuries": [],
+            "life": "alive",
+            "deathSaves": {
+              "success": 0,
+              "failure": 0,
+              "stable": false,
+              "recoveryAt": null
+            },
+            "conditions": [],
+            "RP": 56,
+            "maxRP": 56,
+            "Dissonance": 0,
+            "lastFamily": null,
+            "Refrain": 0,
+            "preparedFamilyUsed": [],
+            "resourceHistory": [],
+            "concentration": null,
+            "readied": null,
+            "recharge": {},
+            "restUses": {
+              "divinationReroll": 1,
+              "dualCast": 1,
+              "overchannel": 1,
+              "spellbookStudy": 1
+            },
+            "budget": {
+              "Action": 0,
+              "BonusAction": 0,
+              "Reaction": 0,
+              "movement": 0,
+              "movementCap": 0,
+              "movementSpent": 0,
+              "interaction": 0,
+              "additionalActionUsed": false
+            },
+            "phaseOffset": 0,
+            "lastRegularStart": null,
+            "inventory": [
+              "W-focus"
+            ],
+            "hands": {
+              "right": "W-focus",
+              "left": "free"
+            },
+            "components": {
+              "audibleVoice": true,
+              "somaticHand": true,
+              "focusUsable": true
+            },
+            "carriedPounds": 1,
+            "carriedLoad": 0.1,
+            "physicalCapacityPounds": 150,
+            "loadCapacity": 10,
+            "Burdened": false,
+            "travelHistory": [],
+            "entryAnchors": {},
+            "placementConflict": null,
+            "expressedFootprint": true,
+            "nativePlane": null,
+            "immunities": [],
+            "resistances": [
+              "force"
+            ],
+            "knowledge": {
+              "planeIds": [
+                "P"
+              ],
+              "sites": []
+            },
+            "sourceExpiry": null,
+            "Hunt": {
+              "initiated": false,
+              "deathException": null
+            },
+            "taint": 0,
+            "claims": []
+          },
+          "T": {
+            "profileId": "P5-FIXTURE-WIZARD15-DIVINATION",
+            "profileSHA256": "a2e2bdc700d75e75a7bedc8b058e4d922c137ac9597f44774d6622aff384ee08",
+            "sourceCharacter": "T",
+            "declaredAdmissionIntent": {
+              "maze": "RESIST",
+              "seal-of-banishment": "RESIST",
+              "gloom-bind": "RESIST"
+            },
+            "classLevel": 15,
+            "position": {
+              "plane": "P",
+              "feet": [
+                20,
+                0,
+                0
+              ]
+            },
+            "body": {
+              "size": "Medium",
+              "width": 5,
+              "depth": 5,
+              "height": 6,
+              "pounds": 150,
+              "rootKind": "ordinary living PC body",
+              "nativePlane": null
+            },
+            "HP": 92,
+            "maxHP": 92,
+            "tempHP": 0,
+            "Wounds": 0,
+            "injuries": [],
+            "life": "alive",
+            "deathSaves": {
+              "success": 0,
+              "failure": 0,
+              "stable": false,
+              "recoveryAt": null
+            },
+            "conditions": [],
+            "RP": 56,
+            "maxRP": 56,
+            "Dissonance": 0,
+            "lastFamily": null,
+            "Refrain": 0,
+            "preparedFamilyUsed": [],
+            "resourceHistory": [],
+            "concentration": null,
+            "readied": null,
+            "recharge": {},
+            "restUses": {
+              "divinationReroll": 1,
+              "dualCast": 1,
+              "overchannel": 1,
+              "spellbookStudy": 1
+            },
+            "budget": {
+              "Action": 0,
+              "BonusAction": 0,
+              "Reaction": 0,
+              "movement": 0,
+              "movementCap": 0,
+              "movementSpent": 0,
+              "interaction": 0,
+              "additionalActionUsed": false
+            },
+            "phaseOffset": 2,
+            "lastRegularStart": null,
+            "inventory": [
+              "T-focus"
+            ],
+            "hands": {
+              "right": "T-focus",
+              "left": "free"
+            },
+            "components": {
+              "audibleVoice": true,
+              "somaticHand": true,
+              "focusUsable": true
+            },
+            "carriedPounds": 1,
+            "carriedLoad": 0.1,
+            "physicalCapacityPounds": 150,
+            "loadCapacity": 10,
+            "Burdened": false,
+            "travelHistory": [],
+            "entryAnchors": {},
+            "placementConflict": null,
+            "expressedFootprint": true,
+            "nativePlane": null,
+            "immunities": [],
+            "resistances": [
+              "force"
+            ],
+            "knowledge": {
+              "planeIds": [
+                "P"
+              ],
+              "sites": []
+            },
+            "sourceExpiry": null,
+            "Hunt": {
+              "initiated": false,
+              "deathException": null
+            },
+            "taint": 0,
+            "claims": []
+          }
+        },
+        "items": {
+          "W-focus": {
+            "id": "W-focus",
+            "provenance": "Conditional ordinary class focus supplied under current V/S/F interface; no costly component or magic item claim.",
+            "pounds": 1,
+            "Load": 0.1,
+            "holder": "W",
+            "position": null,
+            "expiresAt": null,
+            "status": "extant"
+          },
+          "T-focus": {
+            "id": "T-focus",
+            "provenance": "Conditional ordinary class focus supplied under current V/S/F interface; no costly component or magic item claim.",
+            "pounds": 1,
+            "Load": 0.1,
+            "holder": "T",
+            "position": null,
+            "expiresAt": null,
+            "status": "extant"
+          }
+        },
+        "planes": {
+          "P": {
+            "classification": "Unmapped conditional ordinary scene operand; not a cosmology/native assertion",
+            "support": "Level unobstructed floor z=0 except explicit case obstacles",
+            "environment": "Ordinary breathable fixture medium",
+            "bodies": {}
+          }
+        },
+        "spaces": {},
+        "connections": {},
+        "effects": {},
+        "hardControl": [],
+        "RNG": {
+          "mode": "explicit predetermined data; not random execution",
+          "consumed": []
+        },
+        "sourceCounter": 0,
+        "auditLog": [],
+        "phaseHistory": [],
+        "observations": [],
+        "pendingSettlements": [],
+        "holds": [],
+        "obstacles": [],
+        "campaign": {
+          "HuntStarted": false,
+          "OpeningDeadline": 10000,
+          "HornAt": 5000,
+          "ExtractionCompleted": false,
+          "researchElapsedSeconds": 0,
+          "cosmologyMapping": null
+        },
+        "caseOutcome": "not-yet-resolved"
+      },
+      "after": {
+        "schema": "P5-full-case-state-v1",
+        "time": 0,
+        "encounter": "fixture-encounter",
+        "relationships": [
+          {
+            "a": "T",
+            "b": "W",
+            "attitude": "nonhostile for occupancy; targets may deliberately resist the declared fixture spell"
+          }
+        ],
+        "actors": {
+          "W": {
+            "profileId": "P5-FIXTURE-WIZARD15-DIVINATION",
+            "profileSHA256": "a2e2bdc700d75e75a7bedc8b058e4d922c137ac9597f44774d6622aff384ee08",
+            "sourceCharacter": "W",
+            "declaredAdmissionIntent": {
+              "maze": "RESIST",
+              "seal-of-banishment": "RESIST",
+              "gloom-bind": "RESIST"
+            },
+            "classLevel": 15,
+            "position": {
+              "plane": "P",
+              "feet": [
+                0,
+                0,
+                0
+              ]
+            },
+            "body": {
+              "size": "Medium",
+              "width": 5,
+              "depth": 5,
+              "height": 6,
+              "pounds": 150,
+              "rootKind": "ordinary living PC body",
+              "nativePlane": null
+            },
+            "HP": 92,
+            "maxHP": 92,
+            "tempHP": 0,
+            "Wounds": 0,
+            "injuries": [],
+            "life": "alive",
+            "deathSaves": {
+              "success": 0,
+              "failure": 0,
+              "stable": false,
+              "recoveryAt": null
+            },
+            "conditions": [],
+            "RP": 56,
+            "maxRP": 56,
+            "Dissonance": 0,
+            "lastFamily": null,
+            "Refrain": 0,
+            "preparedFamilyUsed": [],
+            "resourceHistory": [],
+            "concentration": null,
+            "readied": null,
+            "recharge": {},
+            "restUses": {
+              "divinationReroll": 1,
+              "dualCast": 1,
+              "overchannel": 1,
+              "spellbookStudy": 1
+            },
+            "budget": {
+              "Action": 1,
+              "BonusAction": 1,
+              "Reaction": 1,
+              "movement": 30,
+              "movementCap": 30,
+              "movementSpent": 0,
+              "interaction": 1,
+              "additionalActionUsed": false
+            },
+            "phaseOffset": 0,
+            "lastRegularStart": 0,
+            "inventory": [
+              "W-focus"
+            ],
+            "hands": {
+              "right": "W-focus",
+              "left": "free"
+            },
+            "components": {
+              "audibleVoice": true,
+              "somaticHand": true,
+              "focusUsable": true
+            },
+            "carriedPounds": 1,
+            "carriedLoad": 0.1,
+            "physicalCapacityPounds": 150,
+            "loadCapacity": 10,
+            "Burdened": false,
+            "travelHistory": [],
+            "entryAnchors": {},
+            "placementConflict": null,
+            "expressedFootprint": true,
+            "nativePlane": null,
+            "immunities": [],
+            "resistances": [
+              "force"
+            ],
+            "knowledge": {
+              "planeIds": [
+                "P"
+              ],
+              "sites": []
+            },
+            "sourceExpiry": null,
+            "Hunt": {
+              "initiated": false,
+              "deathException": null
+            },
+            "taint": 0,
+            "claims": []
+          },
+          "T": {
+            "profileId": "P5-FIXTURE-WIZARD15-DIVINATION",
+            "profileSHA256": "a2e2bdc700d75e75a7bedc8b058e4d922c137ac9597f44774d6622aff384ee08",
+            "sourceCharacter": "T",
+            "declaredAdmissionIntent": {
+              "maze": "RESIST",
+              "seal-of-banishment": "RESIST",
+              "gloom-bind": "RESIST"
+            },
+            "classLevel": 15,
+            "position": {
+              "plane": "P",
+              "feet": [
+                20,
+                0,
+                0
+              ]
+            },
+            "body": {
+              "size": "Medium",
+              "width": 5,
+              "depth": 5,
+              "height": 6,
+              "pounds": 150,
+              "rootKind": "ordinary living PC body",
+              "nativePlane": null
+            },
+            "HP": 92,
+            "maxHP": 92,
+            "tempHP": 0,
+            "Wounds": 0,
+            "injuries": [],
+            "life": "alive",
+            "deathSaves": {
+              "success": 0,
+              "failure": 0,
+              "stable": false,
+              "recoveryAt": null
+            },
+            "conditions": [],
+            "RP": 56,
+            "maxRP": 56,
+            "Dissonance": 0,
+            "lastFamily": null,
+            "Refrain": 0,
+            "preparedFamilyUsed": [],
+            "resourceHistory": [],
+            "concentration": null,
+            "readied": null,
+            "recharge": {},
+            "restUses": {
+              "divinationReroll": 1,
+              "dualCast": 1,
+              "overchannel": 1,
+              "spellbookStudy": 1
+            },
+            "budget": {
+              "Action": 0,
+              "BonusAction": 0,
+              "Reaction": 0,
+              "movement": 0,
+              "movementCap": 0,
+              "movementSpent": 0,
+              "interaction": 0,
+              "additionalActionUsed": false
+            },
+            "phaseOffset": 2,
+            "lastRegularStart": null,
+            "inventory": [
+              "T-focus"
+            ],
+            "hands": {
+              "right": "T-focus",
+              "left": "free"
+            },
+            "components": {
+              "audibleVoice": true,
+              "somaticHand": true,
+              "focusUsable": true
+            },
+            "carriedPounds": 1,
+            "carriedLoad": 0.1,
+            "physicalCapacityPounds": 150,
+            "loadCapacity": 10,
+            "Burdened": false,
+            "travelHistory": [],
+            "entryAnchors": {},
+            "placementConflict": null,
+            "expressedFootprint": true,
+            "nativePlane": null,
+            "immunities": [],
+            "resistances": [
+              "force"
+            ],
+            "knowledge": {
+              "planeIds": [
+                "P"
+              ],
+              "sites": []
+            },
+            "sourceExpiry": null,
+            "Hunt": {
+              "initiated": false,
+              "deathException": null
+            },
+            "taint": 0,
+            "claims": []
+          }
+        },
+        "items": {
+          "W-focus": {
+            "id": "W-focus",
+            "provenance": "Conditional ordinary class focus supplied under current V/S/F interface; no costly component or magic item claim.",
+            "pounds": 1,
+            "Load": 0.1,
+            "holder": "W",
+            "position": null,
+            "expiresAt": null,
+            "status": "extant"
+          },
+          "T-focus": {
+            "id": "T-focus",
+            "provenance": "Conditional ordinary class focus supplied under current V/S/F interface; no costly component or magic item claim.",
+            "pounds": 1,
+            "Load": 0.1,
+            "holder": "T",
+            "position": null,
+            "expiresAt": null,
+            "status": "extant"
+          }
+        },
+        "planes": {
+          "P": {
+            "classification": "Unmapped conditional ordinary scene operand; not a cosmology/native assertion",
+            "support": "Level unobstructed floor z=0 except explicit case obstacles",
+            "environment": "Ordinary breathable fixture medium",
+            "bodies": {}
+          }
+        },
+        "spaces": {},
+        "connections": {},
+        "effects": {},
+        "hardControl": [],
+        "RNG": {
+          "mode": "explicit predetermined data; not random execution",
+          "consumed": []
+        },
+        "sourceCounter": 0,
+        "auditLog": [],
+        "phaseHistory": [
+          {
+            "actor": "W",
+            "regularStart": 0,
+            "budgetRefreshed": true
+          }
+        ],
+        "observations": [],
+        "pendingSettlements": [],
+        "holds": [
+          {
+            "id": "P5-H-GLOOM-SITE",
+            "missing": [
+              "Exact authoritative Veiled planeRef",
+              "Actual arrival site and legal body geometry",
+              "Support/environment and surviving body-source facts"
+            ],
+            "castCommitted": false,
+            "RPSpent": 0,
+            "bodyRelocated": false,
+            "bindingEstablished": false,
+            "policyOnly": "Procedure selects local Veiled label; no realm equivalence or fabricated positive outcome."
+          }
+        ],
+        "obstacles": [],
+        "campaign": {
+          "HuntStarted": false,
+          "OpeningDeadline": 10000,
+          "HornAt": 5000,
+          "ExtractionCompleted": false,
+          "researchElapsedSeconds": 0,
+          "cosmologyMapping": null
+        },
+        "caseOutcome": "not-yet-resolved"
+      },
+      "beforeSHA256": "2643c7f51d690d0990b88b9a519936dcd82342b5d6ccdcff4372a6502a730235",
+      "afterSHA256": "dcc6829a6cb9e6284d7e55318f554f0d2636c43e29835d414154ec512fbadaac",
+      "forward": [
+        {
+          "op": "test",
+          "path": "",
+          "value": {
+            "schema": "P5-full-case-state-v1",
+            "time": -0.001,
+            "encounter": "fixture-encounter",
+            "relationships": [
+              {
+                "a": "T",
+                "b": "W",
+                "attitude": "nonhostile for occupancy; targets may deliberately resist the declared fixture spell"
+              }
+            ],
+            "actors": {
+              "W": {
+                "profileId": "P5-FIXTURE-WIZARD15-DIVINATION",
+                "profileSHA256": "a2e2bdc700d75e75a7bedc8b058e4d922c137ac9597f44774d6622aff384ee08",
+                "sourceCharacter": "W",
+                "declaredAdmissionIntent": {
+                  "maze": "RESIST",
+                  "seal-of-banishment": "RESIST",
+                  "gloom-bind": "RESIST"
+                },
+                "classLevel": 15,
+                "position": {
+                  "plane": "P",
+                  "feet": [
+                    0,
+                    0,
+                    0
+                  ]
+                },
+                "body": {
+                  "size": "Medium",
+                  "width": 5,
+                  "depth": 5,
+                  "height": 6,
+                  "pounds": 150,
+                  "rootKind": "ordinary living PC body",
+                  "nativePlane": null
+                },
+                "HP": 92,
+                "maxHP": 92,
+                "tempHP": 0,
+                "Wounds": 0,
+                "injuries": [],
+                "life": "alive",
+                "deathSaves": {
+                  "success": 0,
+                  "failure": 0,
+                  "stable": false,
+                  "recoveryAt": null
+                },
+                "conditions": [],
+                "RP": 56,
+                "maxRP": 56,
+                "Dissonance": 0,
+                "lastFamily": null,
+                "Refrain": 0,
+                "preparedFamilyUsed": [],
+                "resourceHistory": [],
+                "concentration": null,
+                "readied": null,
+                "recharge": {},
+                "restUses": {
+                  "divinationReroll": 1,
+                  "dualCast": 1,
+                  "overchannel": 1,
+                  "spellbookStudy": 1
+                },
+                "budget": {
+                  "Action": 0,
+                  "BonusAction": 0,
+                  "Reaction": 0,
+                  "movement": 0,
+                  "movementCap": 0,
+                  "movementSpent": 0,
+                  "interaction": 0,
+                  "additionalActionUsed": false
+                },
+                "phaseOffset": 0,
+                "lastRegularStart": null,
+                "inventory": [
+                  "W-focus"
+                ],
+                "hands": {
+                  "right": "W-focus",
+                  "left": "free"
+                },
+                "components": {
+                  "audibleVoice": true,
+                  "somaticHand": true,
+                  "focusUsable": true
+                },
+                "carriedPounds": 1,
+                "carriedLoad": 0.1,
+                "physicalCapacityPounds": 150,
+                "loadCapacity": 10,
+                "Burdened": false,
+                "travelHistory": [],
+                "entryAnchors": {},
+                "placementConflict": null,
+                "expressedFootprint": true,
+                "nativePlane": null,
+                "immunities": [],
+                "resistances": [
+                  "force"
+                ],
+                "knowledge": {
+                  "planeIds": [
+                    "P"
+                  ],
+                  "sites": []
+                },
+                "sourceExpiry": null,
+                "Hunt": {
+                  "initiated": false,
+                  "deathException": null
+                },
+                "taint": 0,
+                "claims": []
+              },
+              "T": {
+                "profileId": "P5-FIXTURE-WIZARD15-DIVINATION",
+                "profileSHA256": "a2e2bdc700d75e75a7bedc8b058e4d922c137ac9597f44774d6622aff384ee08",
+                "sourceCharacter": "T",
+                "declaredAdmissionIntent": {
+                  "maze": "RESIST",
+                  "seal-of-banishment": "RESIST",
+                  "gloom-bind": "RESIST"
+                },
+                "classLevel": 15,
+                "position": {
+                  "plane": "P",
+                  "feet": [
+                    20,
+                    0,
+                    0
+                  ]
+                },
+                "body": {
+                  "size": "Medium",
+                  "width": 5,
+                  "depth": 5,
+                  "height": 6,
+                  "pounds": 150,
+                  "rootKind": "ordinary living PC body",
+                  "nativePlane": null
+                },
+                "HP": 92,
+                "maxHP": 92,
+                "tempHP": 0,
+                "Wounds": 0,
+                "injuries": [],
+                "life": "alive",
+                "deathSaves": {
+                  "success": 0,
+                  "failure": 0,
+                  "stable": false,
+                  "recoveryAt": null
+                },
+                "conditions": [],
+                "RP": 56,
+                "maxRP": 56,
+                "Dissonance": 0,
+                "lastFamily": null,
+                "Refrain": 0,
+                "preparedFamilyUsed": [],
+                "resourceHistory": [],
+                "concentration": null,
+                "readied": null,
+                "recharge": {},
+                "restUses": {
+                  "divinationReroll": 1,
+                  "dualCast": 1,
+                  "overchannel": 1,
+                  "spellbookStudy": 1
+                },
+                "budget": {
+                  "Action": 0,
+                  "BonusAction": 0,
+                  "Reaction": 0,
+                  "movement": 0,
+                  "movementCap": 0,
+                  "movementSpent": 0,
+                  "interaction": 0,
+                  "additionalActionUsed": false
+                },
+                "phaseOffset": 2,
+                "lastRegularStart": null,
+                "inventory": [
+                  "T-focus"
+                ],
+                "hands": {
+                  "right": "T-focus",
+                  "left": "free"
+                },
+                "components": {
+                  "audibleVoice": true,
+                  "somaticHand": true,
+                  "focusUsable": true
+                },
+                "carriedPounds": 1,
+                "carriedLoad": 0.1,
+                "physicalCapacityPounds": 150,
+                "loadCapacity": 10,
+                "Burdened": false,
+                "travelHistory": [],
+                "entryAnchors": {},
+                "placementConflict": null,
+                "expressedFootprint": true,
+                "nativePlane": null,
+                "immunities": [],
+                "resistances": [
+                  "force"
+                ],
+                "knowledge": {
+                  "planeIds": [
+                    "P"
+                  ],
+                  "sites": []
+                },
+                "sourceExpiry": null,
+                "Hunt": {
+                  "initiated": false,
+                  "deathException": null
+                },
+                "taint": 0,
+                "claims": []
+              }
+            },
+            "items": {
+              "W-focus": {
+                "id": "W-focus",
+                "provenance": "Conditional ordinary class focus supplied under current V/S/F interface; no costly component or magic item claim.",
+                "pounds": 1,
+                "Load": 0.1,
+                "holder": "W",
+                "position": null,
+                "expiresAt": null,
+                "status": "extant"
+              },
+              "T-focus": {
+                "id": "T-focus",
+                "provenance": "Conditional ordinary class focus supplied under current V/S/F interface; no costly component or magic item claim.",
+                "pounds": 1,
+                "Load": 0.1,
+                "holder": "T",
+                "position": null,
+                "expiresAt": null,
+                "status": "extant"
+              }
+            },
+            "planes": {
+              "P": {
+                "classification": "Unmapped conditional ordinary scene operand; not a cosmology/native assertion",
+                "support": "Level unobstructed floor z=0 except explicit case obstacles",
+                "environment": "Ordinary breathable fixture medium",
+                "bodies": {}
+              }
+            },
+            "spaces": {},
+            "connections": {},
+            "effects": {},
+            "hardControl": [],
+            "RNG": {
+              "mode": "explicit predetermined data; not random execution",
+              "consumed": []
+            },
+            "sourceCounter": 0,
+            "auditLog": [],
+            "phaseHistory": [],
+            "observations": [],
+            "pendingSettlements": [],
+            "holds": [],
+            "obstacles": [],
+            "campaign": {
+              "HuntStarted": false,
+              "OpeningDeadline": 10000,
+              "HornAt": 5000,
+              "ExtractionCompleted": false,
+              "researchElapsedSeconds": 0,
+              "cosmologyMapping": null
+            },
+            "caseOutcome": "not-yet-resolved"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "",
+          "value": {
+            "schema": "P5-full-case-state-v1",
+            "time": 0,
+            "encounter": "fixture-encounter",
+            "relationships": [
+              {
+                "a": "T",
+                "b": "W",
+                "attitude": "nonhostile for occupancy; targets may deliberately resist the declared fixture spell"
+              }
+            ],
+            "actors": {
+              "W": {
+                "profileId": "P5-FIXTURE-WIZARD15-DIVINATION",
+                "profileSHA256": "a2e2bdc700d75e75a7bedc8b058e4d922c137ac9597f44774d6622aff384ee08",
+                "sourceCharacter": "W",
+                "declaredAdmissionIntent": {
+                  "maze": "RESIST",
+                  "seal-of-banishment": "RESIST",
+                  "gloom-bind": "RESIST"
+                },
+                "classLevel": 15,
+                "position": {
+                  "plane": "P",
+                  "feet": [
+                    0,
+                    0,
+                    0
+                  ]
+                },
+                "body": {
+                  "size": "Medium",
+                  "width": 5,
+                  "depth": 5,
+                  "height": 6,
+                  "pounds": 150,
+                  "rootKind": "ordinary living PC body",
+                  "nativePlane": null
+                },
+                "HP": 92,
+                "maxHP": 92,
+                "tempHP": 0,
+                "Wounds": 0,
+                "injuries": [],
+                "life": "alive",
+                "deathSaves": {
+                  "success": 0,
+                  "failure": 0,
+                  "stable": false,
+                  "recoveryAt": null
+                },
+                "conditions": [],
+                "RP": 56,
+                "maxRP": 56,
+                "Dissonance": 0,
+                "lastFamily": null,
+                "Refrain": 0,
+                "preparedFamilyUsed": [],
+                "resourceHistory": [],
+                "concentration": null,
+                "readied": null,
+                "recharge": {},
+                "restUses": {
+                  "divinationReroll": 1,
+                  "dualCast": 1,
+                  "overchannel": 1,
+                  "spellbookStudy": 1
+                },
+                "budget": {
+                  "Action": 1,
+                  "BonusAction": 1,
+                  "Reaction": 1,
+                  "movement": 30,
+                  "movementCap": 30,
+                  "movementSpent": 0,
+                  "interaction": 1,
+                  "additionalActionUsed": false
+                },
+                "phaseOffset": 0,
+                "lastRegularStart": 0,
+                "inventory": [
+                  "W-focus"
+                ],
+                "hands": {
+                  "right": "W-focus",
+                  "left": "free"
+                },
+                "components": {
+                  "audibleVoice": true,
+                  "somaticHand": true,
+                  "focusUsable": true
+                },
+                "carriedPounds": 1,
+                "carriedLoad": 0.1,
+                "physicalCapacityPounds": 150,
+                "loadCapacity": 10,
+                "Burdened": false,
+                "travelHistory": [],
+                "entryAnchors": {},
+                "placementConflict": null,
+                "expressedFootprint": true,
+                "nativePlane": null,
+                "immunities": [],
+                "resistances": [
+                  "force"
+                ],
+                "knowledge": {
+                  "planeIds": [
+                    "P"
+                  ],
+                  "sites": []
+                },
+                "sourceExpiry": null,
+                "Hunt": {
+                  "initiated": false,
+                  "deathException": null
+                },
+                "taint": 0,
+                "claims": []
+              },
+              "T": {
+                "profileId": "P5-FIXTURE-WIZARD15-DIVINATION",
+                "profileSHA256": "a2e2bdc700d75e75a7bedc8b058e4d922c137ac9597f44774d6622aff384ee08",
+                "sourceCharacter": "T",
+                "declaredAdmissionIntent": {
+                  "maze": "RESIST",
+                  "seal-of-banishment": "RESIST",
+                  "gloom-bind": "RESIST"
+                },
+                "classLevel": 15,
+                "position": {
+                  "plane": "P",
+                  "feet": [
+                    20,
+                    0,
+                    0
+                  ]
+                },
+                "body": {
+                  "size": "Medium",
+                  "width": 5,
+                  "depth": 5,
+                  "height": 6,
+                  "pounds": 150,
+                  "rootKind": "ordinary living PC body",
+                  "nativePlane": null
+                },
+                "HP": 92,
+                "maxHP": 92,
+                "tempHP": 0,
+                "Wounds": 0,
+                "injuries": [],
+                "life": "alive",
+                "deathSaves": {
+                  "success": 0,
+                  "failure": 0,
+                  "stable": false,
+                  "recoveryAt": null
+                },
+                "conditions": [],
+                "RP": 56,
+                "maxRP": 56,
+                "Dissonance": 0,
+                "lastFamily": null,
+                "Refrain": 0,
+                "preparedFamilyUsed": [],
+                "resourceHistory": [],
+                "concentration": null,
+                "readied": null,
+                "recharge": {},
+                "restUses": {
+                  "divinationReroll": 1,
+                  "dualCast": 1,
+                  "overchannel": 1,
+                  "spellbookStudy": 1
+                },
+                "budget": {
+                  "Action": 0,
+                  "BonusAction": 0,
+                  "Reaction": 0,
+                  "movement": 0,
+                  "movementCap": 0,
+                  "movementSpent": 0,
+                  "interaction": 0,
+                  "additionalActionUsed": false
+                },
+                "phaseOffset": 2,
+                "lastRegularStart": null,
+                "inventory": [
+                  "T-focus"
+                ],
+                "hands": {
+                  "right": "T-focus",
+                  "left": "free"
+                },
+                "components": {
+                  "audibleVoice": true,
+                  "somaticHand": true,
+                  "focusUsable": true
+                },
+                "carriedPounds": 1,
+                "carriedLoad": 0.1,
+                "physicalCapacityPounds": 150,
+                "loadCapacity": 10,
+                "Burdened": false,
+                "travelHistory": [],
+                "entryAnchors": {},
+                "placementConflict": null,
+                "expressedFootprint": true,
+                "nativePlane": null,
+                "immunities": [],
+                "resistances": [
+                  "force"
+                ],
+                "knowledge": {
+                  "planeIds": [
+                    "P"
+                  ],
+                  "sites": []
+                },
+                "sourceExpiry": null,
+                "Hunt": {
+                  "initiated": false,
+                  "deathException": null
+                },
+                "taint": 0,
+                "claims": []
+              }
+            },
+            "items": {
+              "W-focus": {
+                "id": "W-focus",
+                "provenance": "Conditional ordinary class focus supplied under current V/S/F interface; no costly component or magic item claim.",
+                "pounds": 1,
+                "Load": 0.1,
+                "holder": "W",
+                "position": null,
+                "expiresAt": null,
+                "status": "extant"
+              },
+              "T-focus": {
+                "id": "T-focus",
+                "provenance": "Conditional ordinary class focus supplied under current V/S/F interface; no costly component or magic item claim.",
+                "pounds": 1,
+                "Load": 0.1,
+                "holder": "T",
+                "position": null,
+                "expiresAt": null,
+                "status": "extant"
+              }
+            },
+            "planes": {
+              "P": {
+                "classification": "Unmapped conditional ordinary scene operand; not a cosmology/native assertion",
+                "support": "Level unobstructed floor z=0 except explicit case obstacles",
+                "environment": "Ordinary breathable fixture medium",
+                "bodies": {}
+              }
+            },
+            "spaces": {},
+            "connections": {},
+            "effects": {},
+            "hardControl": [],
+            "RNG": {
+              "mode": "explicit predetermined data; not random execution",
+              "consumed": []
+            },
+            "sourceCounter": 0,
+            "auditLog": [],
+            "phaseHistory": [
+              {
+                "actor": "W",
+                "regularStart": 0,
+                "budgetRefreshed": true
+              }
+            ],
+            "observations": [],
+            "pendingSettlements": [],
+            "holds": [
+              {
+                "id": "P5-H-GLOOM-SITE",
+                "missing": [
+                  "Exact authoritative Veiled planeRef",
+                  "Actual arrival site and legal body geometry",
+                  "Support/environment and surviving body-source facts"
+                ],
+                "castCommitted": false,
+                "RPSpent": 0,
+                "bodyRelocated": false,
+                "bindingEstablished": false,
+                "policyOnly": "Procedure selects local Veiled label; no realm equivalence or fabricated positive outcome."
+              }
+            ],
+            "obstacles": [],
+            "campaign": {
+              "HuntStarted": false,
+              "OpeningDeadline": 10000,
+              "HornAt": 5000,
+              "ExtractionCompleted": false,
+              "researchElapsedSeconds": 0,
+              "cosmologyMapping": null
+            },
+            "caseOutcome": "not-yet-resolved"
+          }
+        }
+      ],
+      "inverse": [
+        {
+          "op": "test",
+          "path": "",
+          "value": {
+            "schema": "P5-full-case-state-v1",
+            "time": 0,
+            "encounter": "fixture-encounter",
+            "relationships": [
+              {
+                "a": "T",
+                "b": "W",
+                "attitude": "nonhostile for occupancy; targets may deliberately resist the declared fixture spell"
+              }
+            ],
+            "actors": {
+              "W": {
+                "profileId": "P5-FIXTURE-WIZARD15-DIVINATION",
+                "profileSHA256": "a2e2bdc700d75e75a7bedc8b058e4d922c137ac9597f44774d6622aff384ee08",
+                "sourceCharacter": "W",
+                "declaredAdmissionIntent": {
+                  "maze": "RESIST",
+                  "seal-of-banishment": "RESIST",
+                  "gloom-bind": "RESIST"
+                },
+                "classLevel": 15,
+                "position": {
+                  "plane": "P",
+                  "feet": [
+                    0,
+                    0,
+                    0
+                  ]
+                },
+                "body": {
+                  "size": "Medium",
+                  "width": 5,
+                  "depth": 5,
+                  "height": 6,
+                  "pounds": 150,
+                  "rootKind": "ordinary living PC body",
+                  "nativePlane": null
+                },
+                "HP": 92,
+                "maxHP": 92,
+                "tempHP": 0,
+                "Wounds": 0,
+                "injuries": [],
+                "life": "alive",
+                "deathSaves": {
+                  "success": 0,
+                  "failure": 0,
+                  "stable": false,
+                  "recoveryAt": null
+                },
+                "conditions": [],
+                "RP": 56,
+                "maxRP": 56,
+                "Dissonance": 0,
+                "lastFamily": null,
+                "Refrain": 0,
+                "preparedFamilyUsed": [],
+                "resourceHistory": [],
+                "concentration": null,
+                "readied": null,
+                "recharge": {},
+                "restUses": {
+                  "divinationReroll": 1,
+                  "dualCast": 1,
+                  "overchannel": 1,
+                  "spellbookStudy": 1
+                },
+                "budget": {
+                  "Action": 1,
+                  "BonusAction": 1,
+                  "Reaction": 1,
+                  "movement": 30,
+                  "movementCap": 30,
+                  "movementSpent": 0,
+                  "interaction": 1,
+                  "additionalActionUsed": false
+                },
+                "phaseOffset": 0,
+                "lastRegularStart": 0,
+                "inventory": [
+                  "W-focus"
+                ],
+                "hands": {
+                  "right": "W-focus",
+                  "left": "free"
+                },
+                "components": {
+                  "audibleVoice": true,
+                  "somaticHand": true,
+                  "focusUsable": true
+                },
+                "carriedPounds": 1,
+                "carriedLoad": 0.1,
+                "physicalCapacityPounds": 150,
+                "loadCapacity": 10,
+                "Burdened": false,
+                "travelHistory": [],
+                "entryAnchors": {},
+                "placementConflict": null,
+                "expressedFootprint": true,
+                "nativePlane": null,
+                "immunities": [],
+                "resistances": [
+                  "force"
+                ],
+                "knowledge": {
+                  "planeIds": [
+                    "P"
+                  ],
+                  "sites": []
+                },
+                "sourceExpiry": null,
+                "Hunt": {
+                  "initiated": false,
+                  "deathException": null
+                },
+                "taint": 0,
+                "claims": []
+              },
+              "T": {
+                "profileId": "P5-FIXTURE-WIZARD15-DIVINATION",
+                "profileSHA256": "a2e2bdc700d75e75a7bedc8b058e4d922c137ac9597f44774d6622aff384ee08",
+                "sourceCharacter": "T",
+                "declaredAdmissionIntent": {
+                  "maze": "RESIST",
+                  "seal-of-banishment": "RESIST",
+                  "gloom-bind": "RESIST"
+                },
+                "classLevel": 15,
+                "position": {
+                  "plane": "P",
+                  "feet": [
+                    20,
+                    0,
+                    0
+                  ]
+                },
+                "body": {
+                  "size": "Medium",
+                  "width": 5,
+                  "depth": 5,
+                  "height": 6,
+                  "pounds": 150,
+                  "rootKind": "ordinary living PC body",
+                  "nativePlane": null
+                },
+                "HP": 92,
+                "maxHP": 92,
+                "tempHP": 0,
+                "Wounds": 0,
+                "injuries": [],
+                "life": "alive",
+                "deathSaves": {
+                  "success": 0,
+                  "failure": 0,
+                  "stable": false,
+                  "recoveryAt": null
+                },
+                "conditions": [],
+                "RP": 56,
+                "maxRP": 56,
+                "Dissonance": 0,
+                "lastFamily": null,
+                "Refrain": 0,
+                "preparedFamilyUsed": [],
+                "resourceHistory": [],
+                "concentration": null,
+                "readied": null,
+                "recharge": {},
+                "restUses": {
+                  "divinationReroll": 1,
+                  "dualCast": 1,
+                  "overchannel": 1,
+                  "spellbookStudy": 1
+                },
+                "budget": {
+                  "Action": 0,
+                  "BonusAction": 0,
+                  "Reaction": 0,
+                  "movement": 0,
+                  "movementCap": 0,
+                  "movementSpent": 0,
+                  "interaction": 0,
+                  "additionalActionUsed": false
+                },
+                "phaseOffset": 2,
+                "lastRegularStart": null,
+                "inventory": [
+                  "T-focus"
+                ],
+                "hands": {
+                  "right": "T-focus",
+                  "left": "free"
+                },
+                "components": {
+                  "audibleVoice": true,
+                  "somaticHand": true,
+                  "focusUsable": true
+                },
+                "carriedPounds": 1,
+                "carriedLoad": 0.1,
+                "physicalCapacityPounds": 150,
+                "loadCapacity": 10,
+                "Burdened": false,
+                "travelHistory": [],
+                "entryAnchors": {},
+                "placementConflict": null,
+                "expressedFootprint": true,
+                "nativePlane": null,
+                "immunities": [],
+                "resistances": [
+                  "force"
+                ],
+                "knowledge": {
+                  "planeIds": [
+                    "P"
+                  ],
+                  "sites": []
+                },
+                "sourceExpiry": null,
+                "Hunt": {
+                  "initiated": false,
+                  "deathException": null
+                },
+                "taint": 0,
+                "claims": []
+              }
+            },
+            "items": {
+              "W-focus": {
+                "id": "W-focus",
+                "provenance": "Conditional ordinary class focus supplied under current V/S/F interface; no costly component or magic item claim.",
+                "pounds": 1,
+                "Load": 0.1,
+                "holder": "W",
+                "position": null,
+                "expiresAt": null,
+                "status": "extant"
+              },
+              "T-focus": {
+                "id": "T-focus",
+                "provenance": "Conditional ordinary class focus supplied under current V/S/F interface; no costly component or magic item claim.",
+                "pounds": 1,
+                "Load": 0.1,
+                "holder": "T",
+                "position": null,
+                "expiresAt": null,
+                "status": "extant"
+              }
+            },
+            "planes": {
+              "P": {
+                "classification": "Unmapped conditional ordinary scene operand; not a cosmology/native assertion",
+                "support": "Level unobstructed floor z=0 except explicit case obstacles",
+                "environment": "Ordinary breathable fixture medium",
+                "bodies": {}
+              }
+            },
+            "spaces": {},
+            "connections": {},
+            "effects": {},
+            "hardControl": [],
+            "RNG": {
+              "mode": "explicit predetermined data; not random execution",
+              "consumed": []
+            },
+            "sourceCounter": 0,
+            "auditLog": [],
+            "phaseHistory": [
+              {
+                "actor": "W",
+                "regularStart": 0,
+                "budgetRefreshed": true
+              }
+            ],
+            "observations": [],
+            "pendingSettlements": [],
+            "holds": [
+              {
+                "id": "P5-H-GLOOM-SITE",
+                "missing": [
+                  "Exact authoritative Veiled planeRef",
+                  "Actual arrival site and legal body geometry",
+                  "Support/environment and surviving body-source facts"
+                ],
+                "castCommitted": false,
+                "RPSpent": 0,
+                "bodyRelocated": false,
+                "bindingEstablished": false,
+                "policyOnly": "Procedure selects local Veiled label; no realm equivalence or fabricated positive outcome."
+              }
+            ],
+            "obstacles": [],
+            "campaign": {
+              "HuntStarted": false,
+              "OpeningDeadline": 10000,
+              "HornAt": 5000,
+              "ExtractionCompleted": false,
+              "researchElapsedSeconds": 0,
+              "cosmologyMapping": null
+            },
+            "caseOutcome": "not-yet-resolved"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "",
+          "value": {
+            "schema": "P5-full-case-state-v1",
+            "time": -0.001,
+            "encounter": "fixture-encounter",
+            "relationships": [
+              {
+                "a": "T",
+                "b": "W",
+                "attitude": "nonhostile for occupancy; targets may deliberately resist the declared fixture spell"
+              }
+            ],
+            "actors": {
+              "W": {
+                "profileId": "P5-FIXTURE-WIZARD15-DIVINATION",
+                "profileSHA256": "a2e2bdc700d75e75a7bedc8b058e4d922c137ac9597f44774d6622aff384ee08",
+                "sourceCharacter": "W",
+                "declaredAdmissionIntent": {
+                  "maze": "RESIST",
+                  "seal-of-banishment": "RESIST",
+                  "gloom-bind": "RESIST"
+                },
+                "classLevel": 15,
+                "position": {
+                  "plane": "P",
+                  "feet": [
+                    0,
+                    0,
+                    0
+                  ]
+                },
+                "body": {
+                  "size": "Medium",
+                  "width": 5,
+                  "depth": 5,
+                  "height": 6,
+                  "pounds": 150,
+                  "rootKind": "ordinary living PC body",
+                  "nativePlane": null
+                },
+                "HP": 92,
+                "maxHP": 92,
+                "tempHP": 0,
+                "Wounds": 0,
+                "injuries": [],
+                "life": "alive",
+                "deathSaves": {
+                  "success": 0,
+                  "failure": 0,
+                  "stable": false,
+                  "recoveryAt": null
+                },
+                "conditions": [],
+                "RP": 56,
+                "maxRP": 56,
+                "Dissonance": 0,
+                "lastFamily": null,
+                "Refrain": 0,
+                "preparedFamilyUsed": [],
+                "resourceHistory": [],
+                "concentration": null,
+                "readied": null,
+                "recharge": {},
+                "restUses": {
+                  "divinationReroll": 1,
+                  "dualCast": 1,
+                  "overchannel": 1,
+                  "spellbookStudy": 1
+                },
+                "budget": {
+                  "Action": 0,
+                  "BonusAction": 0,
+                  "Reaction": 0,
+                  "movement": 0,
+                  "movementCap": 0,
+                  "movementSpent": 0,
+                  "interaction": 0,
+                  "additionalActionUsed": false
+                },
+                "phaseOffset": 0,
+                "lastRegularStart": null,
+                "inventory": [
+                  "W-focus"
+                ],
+                "hands": {
+                  "right": "W-focus",
+                  "left": "free"
+                },
+                "components": {
+                  "audibleVoice": true,
+                  "somaticHand": true,
+                  "focusUsable": true
+                },
+                "carriedPounds": 1,
+                "carriedLoad": 0.1,
+                "physicalCapacityPounds": 150,
+                "loadCapacity": 10,
+                "Burdened": false,
+                "travelHistory": [],
+                "entryAnchors": {},
+                "placementConflict": null,
+                "expressedFootprint": true,
+                "nativePlane": null,
+                "immunities": [],
+                "resistances": [
+                  "force"
+                ],
+                "knowledge": {
+                  "planeIds": [
+                    "P"
+                  ],
+                  "sites": []
+                },
+                "sourceExpiry": null,
+                "Hunt": {
+                  "initiated": false,
+                  "deathException": null
+                },
+                "taint": 0,
+                "claims": []
+              },
+              "T": {
+                "profileId": "P5-FIXTURE-WIZARD15-DIVINATION",
+                "profileSHA256": "a2e2bdc700d75e75a7bedc8b058e4d922c137ac9597f44774d6622aff384ee08",
+                "sourceCharacter": "T",
+                "declaredAdmissionIntent": {
+                  "maze": "RESIST",
+                  "seal-of-banishment": "RESIST",
+                  "gloom-bind": "RESIST"
+                },
+                "classLevel": 15,
+                "position": {
+                  "plane": "P",
+                  "feet": [
+                    20,
+                    0,
+                    0
+                  ]
+                },
+                "body": {
+                  "size": "Medium",
+                  "width": 5,
+                  "depth": 5,
+                  "height": 6,
+                  "pounds": 150,
+                  "rootKind": "ordinary living PC body",
+                  "nativePlane": null
+                },
+                "HP": 92,
+                "maxHP": 92,
+                "tempHP": 0,
+                "Wounds": 0,
+                "injuries": [],
+                "life": "alive",
+                "deathSaves": {
+                  "success": 0,
+                  "failure": 0,
+                  "stable": false,
+                  "recoveryAt": null
+                },
+                "conditions": [],
+                "RP": 56,
+                "maxRP": 56,
+                "Dissonance": 0,
+                "lastFamily": null,
+                "Refrain": 0,
+                "preparedFamilyUsed": [],
+                "resourceHistory": [],
+                "concentration": null,
+                "readied": null,
+                "recharge": {},
+                "restUses": {
+                  "divinationReroll": 1,
+                  "dualCast": 1,
+                  "overchannel": 1,
+                  "spellbookStudy": 1
+                },
+                "budget": {
+                  "Action": 0,
+                  "BonusAction": 0,
+                  "Reaction": 0,
+                  "movement": 0,
+                  "movementCap": 0,
+                  "movementSpent": 0,
+                  "interaction": 0,
+                  "additionalActionUsed": false
+                },
+                "phaseOffset": 2,
+                "lastRegularStart": null,
+                "inventory": [
+                  "T-focus"
+                ],
+                "hands": {
+                  "right": "T-focus",
+                  "left": "free"
+                },
+                "components": {
+                  "audibleVoice": true,
+                  "somaticHand": true,
+                  "focusUsable": true
+                },
+                "carriedPounds": 1,
+                "carriedLoad": 0.1,
+                "physicalCapacityPounds": 150,
+                "loadCapacity": 10,
+                "Burdened": false,
+                "travelHistory": [],
+                "entryAnchors": {},
+                "placementConflict": null,
+                "expressedFootprint": true,
+                "nativePlane": null,
+                "immunities": [],
+                "resistances": [
+                  "force"
+                ],
+                "knowledge": {
+                  "planeIds": [
+                    "P"
+                  ],
+                  "sites": []
+                },
+                "sourceExpiry": null,
+                "Hunt": {
+                  "initiated": false,
+                  "deathException": null
+                },
+                "taint": 0,
+                "claims": []
+              }
+            },
+            "items": {
+              "W-focus": {
+                "id": "W-focus",
+                "provenance": "Conditional ordinary class focus supplied under current V/S/F interface; no costly component or magic item claim.",
+                "pounds": 1,
+                "Load": 0.1,
+                "holder": "W",
+                "position": null,
+                "expiresAt": null,
+                "status": "extant"
+              },
+              "T-focus": {
+                "id": "T-focus",
+                "provenance": "Conditional ordinary class focus supplied under current V/S/F interface; no costly component or magic item claim.",
+                "pounds": 1,
+                "Load": 0.1,
+                "holder": "T",
+                "position": null,
+                "expiresAt": null,
+                "status": "extant"
+              }
+            },
+            "planes": {
+              "P": {
+                "classification": "Unmapped conditional ordinary scene operand; not a cosmology/native assertion",
+                "support": "Level unobstructed floor z=0 except explicit case obstacles",
+                "environment": "Ordinary breathable fixture medium",
+                "bodies": {}
+              }
+            },
+            "spaces": {},
+            "connections": {},
+            "effects": {},
+            "hardControl": [],
+            "RNG": {
+              "mode": "explicit predetermined data; not random execution",
+              "consumed": []
+            },
+            "sourceCounter": 0,
+            "auditLog": [],
+            "phaseHistory": [],
+            "observations": [],
+            "pendingSettlements": [],
+            "holds": [],
+            "obstacles": [],
+            "campaign": {
+              "HuntStarted": false,
+              "OpeningDeadline": 10000,
+              "HornAt": 5000,
+              "ExtractionCompleted": false,
+              "researchElapsedSeconds": 0,
+              "cosmologyMapping": null
+            },
+            "caseOutcome": "not-yet-resolved"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P5-GLOOM-B:2",
+      "time": 0,
+      "label": "Record scoped case disposition",
+      "evidence": {},
+      "before": {
+        "schema": "P5-full-case-state-v1",
+        "time": 0,
+        "encounter": "fixture-encounter",
+        "relationships": [
+          {
+            "a": "T",
+            "b": "W",
+            "attitude": "nonhostile for occupancy; targets may deliberately resist the declared fixture spell"
+          }
+        ],
+        "actors": {
+          "W": {
+            "profileId": "P5-FIXTURE-WIZARD15-DIVINATION",
+            "profileSHA256": "a2e2bdc700d75e75a7bedc8b058e4d922c137ac9597f44774d6622aff384ee08",
+            "sourceCharacter": "W",
+            "declaredAdmissionIntent": {
+              "maze": "RESIST",
+              "seal-of-banishment": "RESIST",
+              "gloom-bind": "RESIST"
+            },
+            "classLevel": 15,
+            "position": {
+              "plane": "P",
+              "feet": [
+                0,
+                0,
+                0
+              ]
+            },
+            "body": {
+              "size": "Medium",
+              "width": 5,
+              "depth": 5,
+              "height": 6,
+              "pounds": 150,
+              "rootKind": "ordinary living PC body",
+              "nativePlane": null
+            },
+            "HP": 92,
+            "maxHP": 92,
+            "tempHP": 0,
+            "Wounds": 0,
+            "injuries": [],
+            "life": "alive",
+            "deathSaves": {
+              "success": 0,
+              "failure": 0,
+              "stable": false,
+              "recoveryAt": null
+            },
+            "conditions": [],
+            "RP": 56,
+            "maxRP": 56,
+            "Dissonance": 0,
+            "lastFamily": null,
+            "Refrain": 0,
+            "preparedFamilyUsed": [],
+            "resourceHistory": [],
+            "concentration": null,
+            "readied": null,
+            "recharge": {},
+            "restUses": {
+              "divinationReroll": 1,
+              "dualCast": 1,
+              "overchannel": 1,
+              "spellbookStudy": 1
+            },
+            "budget": {
+              "Action": 1,
+              "BonusAction": 1,
+              "Reaction": 1,
+              "movement": 30,
+              "movementCap": 30,
+              "movementSpent": 0,
+              "interaction": 1,
+              "additionalActionUsed": false
+            },
+            "phaseOffset": 0,
+            "lastRegularStart": 0,
+            "inventory": [
+              "W-focus"
+            ],
+            "hands": {
+              "right": "W-focus",
+              "left": "free"
+            },
+            "components": {
+              "audibleVoice": true,
+              "somaticHand": true,
+              "focusUsable": true
+            },
+            "carriedPounds": 1,
+            "carriedLoad": 0.1,
+            "physicalCapacityPounds": 150,
+            "loadCapacity": 10,
+            "Burdened": false,
+            "travelHistory": [],
+            "entryAnchors": {},
+            "placementConflict": null,
+            "expressedFootprint": true,
+            "nativePlane": null,
+            "immunities": [],
+            "resistances": [
+              "force"
+            ],
+            "knowledge": {
+              "planeIds": [
+                "P"
+              ],
+              "sites": []
+            },
+            "sourceExpiry": null,
+            "Hunt": {
+              "initiated": false,
+              "deathException": null
+            },
+            "taint": 0,
+            "claims": []
+          },
+          "T": {
+            "profileId": "P5-FIXTURE-WIZARD15-DIVINATION",
+            "profileSHA256": "a2e2bdc700d75e75a7bedc8b058e4d922c137ac9597f44774d6622aff384ee08",
+            "sourceCharacter": "T",
+            "declaredAdmissionIntent": {
+              "maze": "RESIST",
+              "seal-of-banishment": "RESIST",
+              "gloom-bind": "RESIST"
+            },
+            "classLevel": 15,
+            "position": {
+              "plane": "P",
+              "feet": [
+                20,
+                0,
+                0
+              ]
+            },
+            "body": {
+              "size": "Medium",
+              "width": 5,
+              "depth": 5,
+              "height": 6,
+              "pounds": 150,
+              "rootKind": "ordinary living PC body",
+              "nativePlane": null
+            },
+            "HP": 92,
+            "maxHP": 92,
+            "tempHP": 0,
+            "Wounds": 0,
+            "injuries": [],
+            "life": "alive",
+            "deathSaves": {
+              "success": 0,
+              "failure": 0,
+              "stable": false,
+              "recoveryAt": null
+            },
+            "conditions": [],
+            "RP": 56,
+            "maxRP": 56,
+            "Dissonance": 0,
+            "lastFamily": null,
+            "Refrain": 0,
+            "preparedFamilyUsed": [],
+            "resourceHistory": [],
+            "concentration": null,
+            "readied": null,
+            "recharge": {},
+            "restUses": {
+              "divinationReroll": 1,
+              "dualCast": 1,
+              "overchannel": 1,
+              "spellbookStudy": 1
+            },
+            "budget": {
+              "Action": 0,
+              "BonusAction": 0,
+              "Reaction": 0,
+              "movement": 0,
+              "movementCap": 0,
+              "movementSpent": 0,
+              "interaction": 0,
+              "additionalActionUsed": false
+            },
+            "phaseOffset": 2,
+            "lastRegularStart": null,
+            "inventory": [
+              "T-focus"
+            ],
+            "hands": {
+              "right": "T-focus",
+              "left": "free"
+            },
+            "components": {
+              "audibleVoice": true,
+              "somaticHand": true,
+              "focusUsable": true
+            },
+            "carriedPounds": 1,
+            "carriedLoad": 0.1,
+            "physicalCapacityPounds": 150,
+            "loadCapacity": 10,
+            "Burdened": false,
+            "travelHistory": [],
+            "entryAnchors": {},
+            "placementConflict": null,
+            "expressedFootprint": true,
+            "nativePlane": null,
+            "immunities": [],
+            "resistances": [
+              "force"
+            ],
+            "knowledge": {
+              "planeIds": [
+                "P"
+              ],
+              "sites": []
+            },
+            "sourceExpiry": null,
+            "Hunt": {
+              "initiated": false,
+              "deathException": null
+            },
+            "taint": 0,
+            "claims": []
+          }
+        },
+        "items": {
+          "W-focus": {
+            "id": "W-focus",
+            "provenance": "Conditional ordinary class focus supplied under current V/S/F interface; no costly component or magic item claim.",
+            "pounds": 1,
+            "Load": 0.1,
+            "holder": "W",
+            "position": null,
+            "expiresAt": null,
+            "status": "extant"
+          },
+          "T-focus": {
+            "id": "T-focus",
+            "provenance": "Conditional ordinary class focus supplied under current V/S/F interface; no costly component or magic item claim.",
+            "pounds": 1,
+            "Load": 0.1,
+            "holder": "T",
+            "position": null,
+            "expiresAt": null,
+            "status": "extant"
+          }
+        },
+        "planes": {
+          "P": {
+            "classification": "Unmapped conditional ordinary scene operand; not a cosmology/native assertion",
+            "support": "Level unobstructed floor z=0 except explicit case obstacles",
+            "environment": "Ordinary breathable fixture medium",
+            "bodies": {}
+          }
+        },
+        "spaces": {},
+        "connections": {},
+        "effects": {},
+        "hardControl": [],
+        "RNG": {
+          "mode": "explicit predetermined data; not random execution",
+          "consumed": []
+        },
+        "sourceCounter": 0,
+        "auditLog": [],
+        "phaseHistory": [
+          {
+            "actor": "W",
+            "regularStart": 0,
+            "budgetRefreshed": true
+          }
+        ],
+        "observations": [],
+        "pendingSettlements": [],
+        "holds": [
+          {
+            "id": "P5-H-GLOOM-SITE",
+            "missing": [
+              "Exact authoritative Veiled planeRef",
+              "Actual arrival site and legal body geometry",
+              "Support/environment and surviving body-source facts"
+            ],
+            "castCommitted": false,
+            "RPSpent": 0,
+            "bodyRelocated": false,
+            "bindingEstablished": false,
+            "policyOnly": "Procedure selects local Veiled label; no realm equivalence or fabricated positive outcome."
+          }
+        ],
+        "obstacles": [],
+        "campaign": {
+          "HuntStarted": false,
+          "OpeningDeadline": 10000,
+          "HornAt": 5000,
+          "ExtractionCompleted": false,
+          "researchElapsedSeconds": 0,
+          "cosmologyMapping": null
+        },
+        "caseOutcome": "not-yet-resolved"
+      },
+      "after": {
+        "schema": "P5-full-case-state-v1",
+        "time": 0,
+        "encounter": "fixture-encounter",
+        "relationships": [
+          {
+            "a": "T",
+            "b": "W",
+            "attitude": "nonhostile for occupancy; targets may deliberately resist the declared fixture spell"
+          }
+        ],
+        "actors": {
+          "W": {
+            "profileId": "P5-FIXTURE-WIZARD15-DIVINATION",
+            "profileSHA256": "a2e2bdc700d75e75a7bedc8b058e4d922c137ac9597f44774d6622aff384ee08",
+            "sourceCharacter": "W",
+            "declaredAdmissionIntent": {
+              "maze": "RESIST",
+              "seal-of-banishment": "RESIST",
+              "gloom-bind": "RESIST"
+            },
+            "classLevel": 15,
+            "position": {
+              "plane": "P",
+              "feet": [
+                0,
+                0,
+                0
+              ]
+            },
+            "body": {
+              "size": "Medium",
+              "width": 5,
+              "depth": 5,
+              "height": 6,
+              "pounds": 150,
+              "rootKind": "ordinary living PC body",
+              "nativePlane": null
+            },
+            "HP": 92,
+            "maxHP": 92,
+            "tempHP": 0,
+            "Wounds": 0,
+            "injuries": [],
+            "life": "alive",
+            "deathSaves": {
+              "success": 0,
+              "failure": 0,
+              "stable": false,
+              "recoveryAt": null
+            },
+            "conditions": [],
+            "RP": 56,
+            "maxRP": 56,
+            "Dissonance": 0,
+            "lastFamily": null,
+            "Refrain": 0,
+            "preparedFamilyUsed": [],
+            "resourceHistory": [],
+            "concentration": null,
+            "readied": null,
+            "recharge": {},
+            "restUses": {
+              "divinationReroll": 1,
+              "dualCast": 1,
+              "overchannel": 1,
+              "spellbookStudy": 1
+            },
+            "budget": {
+              "Action": 1,
+              "BonusAction": 1,
+              "Reaction": 1,
+              "movement": 30,
+              "movementCap": 30,
+              "movementSpent": 0,
+              "interaction": 1,
+              "additionalActionUsed": false
+            },
+            "phaseOffset": 0,
+            "lastRegularStart": 0,
+            "inventory": [
+              "W-focus"
+            ],
+            "hands": {
+              "right": "W-focus",
+              "left": "free"
+            },
+            "components": {
+              "audibleVoice": true,
+              "somaticHand": true,
+              "focusUsable": true
+            },
+            "carriedPounds": 1,
+            "carriedLoad": 0.1,
+            "physicalCapacityPounds": 150,
+            "loadCapacity": 10,
+            "Burdened": false,
+            "travelHistory": [],
+            "entryAnchors": {},
+            "placementConflict": null,
+            "expressedFootprint": true,
+            "nativePlane": null,
+            "immunities": [],
+            "resistances": [
+              "force"
+            ],
+            "knowledge": {
+              "planeIds": [
+                "P"
+              ],
+              "sites": []
+            },
+            "sourceExpiry": null,
+            "Hunt": {
+              "initiated": false,
+              "deathException": null
+            },
+            "taint": 0,
+            "claims": []
+          },
+          "T": {
+            "profileId": "P5-FIXTURE-WIZARD15-DIVINATION",
+            "profileSHA256": "a2e2bdc700d75e75a7bedc8b058e4d922c137ac9597f44774d6622aff384ee08",
+            "sourceCharacter": "T",
+            "declaredAdmissionIntent": {
+              "maze": "RESIST",
+              "seal-of-banishment": "RESIST",
+              "gloom-bind": "RESIST"
+            },
+            "classLevel": 15,
+            "position": {
+              "plane": "P",
+              "feet": [
+                20,
+                0,
+                0
+              ]
+            },
+            "body": {
+              "size": "Medium",
+              "width": 5,
+              "depth": 5,
+              "height": 6,
+              "pounds": 150,
+              "rootKind": "ordinary living PC body",
+              "nativePlane": null
+            },
+            "HP": 92,
+            "maxHP": 92,
+            "tempHP": 0,
+            "Wounds": 0,
+            "injuries": [],
+            "life": "alive",
+            "deathSaves": {
+              "success": 0,
+              "failure": 0,
+              "stable": false,
+              "recoveryAt": null
+            },
+            "conditions": [],
+            "RP": 56,
+            "maxRP": 56,
+            "Dissonance": 0,
+            "lastFamily": null,
+            "Refrain": 0,
+            "preparedFamilyUsed": [],
+            "resourceHistory": [],
+            "concentration": null,
+            "readied": null,
+            "recharge": {},
+            "restUses": {
+              "divinationReroll": 1,
+              "dualCast": 1,
+              "overchannel": 1,
+              "spellbookStudy": 1
+            },
+            "budget": {
+              "Action": 0,
+              "BonusAction": 0,
+              "Reaction": 0,
+              "movement": 0,
+              "movementCap": 0,
+              "movementSpent": 0,
+              "interaction": 0,
+              "additionalActionUsed": false
+            },
+            "phaseOffset": 2,
+            "lastRegularStart": null,
+            "inventory": [
+              "T-focus"
+            ],
+            "hands": {
+              "right": "T-focus",
+              "left": "free"
+            },
+            "components": {
+              "audibleVoice": true,
+              "somaticHand": true,
+              "focusUsable": true
+            },
+            "carriedPounds": 1,
+            "carriedLoad": 0.1,
+            "physicalCapacityPounds": 150,
+            "loadCapacity": 10,
+            "Burdened": false,
+            "travelHistory": [],
+            "entryAnchors": {},
+            "placementConflict": null,
+            "expressedFootprint": true,
+            "nativePlane": null,
+            "immunities": [],
+            "resistances": [
+              "force"
+            ],
+            "knowledge": {
+              "planeIds": [
+                "P"
+              ],
+              "sites": []
+            },
+            "sourceExpiry": null,
+            "Hunt": {
+              "initiated": false,
+              "deathException": null
+            },
+            "taint": 0,
+            "claims": []
+          }
+        },
+        "items": {
+          "W-focus": {
+            "id": "W-focus",
+            "provenance": "Conditional ordinary class focus supplied under current V/S/F interface; no costly component or magic item claim.",
+            "pounds": 1,
+            "Load": 0.1,
+            "holder": "W",
+            "position": null,
+            "expiresAt": null,
+            "status": "extant"
+          },
+          "T-focus": {
+            "id": "T-focus",
+            "provenance": "Conditional ordinary class focus supplied under current V/S/F interface; no costly component or magic item claim.",
+            "pounds": 1,
+            "Load": 0.1,
+            "holder": "T",
+            "position": null,
+            "expiresAt": null,
+            "status": "extant"
+          }
+        },
+        "planes": {
+          "P": {
+            "classification": "Unmapped conditional ordinary scene operand; not a cosmology/native assertion",
+            "support": "Level unobstructed floor z=0 except explicit case obstacles",
+            "environment": "Ordinary breathable fixture medium",
+            "bodies": {}
+          }
+        },
+        "spaces": {},
+        "connections": {},
+        "effects": {},
+        "hardControl": [],
+        "RNG": {
+          "mode": "explicit predetermined data; not random execution",
+          "consumed": []
+        },
+        "sourceCounter": 0,
+        "auditLog": [],
+        "phaseHistory": [
+          {
+            "actor": "W",
+            "regularStart": 0,
+            "budgetRefreshed": true
+          }
+        ],
+        "observations": [],
+        "pendingSettlements": [],
+        "holds": [
+          {
+            "id": "P5-H-GLOOM-SITE",
+            "missing": [
+              "Exact authoritative Veiled planeRef",
+              "Actual arrival site and legal body geometry",
+              "Support/environment and surviving body-source facts"
+            ],
+            "castCommitted": false,
+            "RPSpent": 0,
+            "bodyRelocated": false,
+            "bindingEstablished": false,
+            "policyOnly": "Procedure selects local Veiled label; no realm equivalence or fabricated positive outcome."
+          }
+        ],
+        "obstacles": [],
+        "campaign": {
+          "HuntStarted": false,
+          "OpeningDeadline": 10000,
+          "HornAt": 5000,
+          "ExtractionCompleted": false,
+          "researchElapsedSeconds": 0,
+          "cosmologyMapping": null
+        },
+        "caseOutcome": "WHOLE-CASE HELD. No positive arrival/binding/freeing/death outcome certified. Procedure is conditional; packet contains no site evidence to instantiate this obligation."
+      },
+      "beforeSHA256": "dcc6829a6cb9e6284d7e55318f554f0d2636c43e29835d414154ec512fbadaac",
+      "afterSHA256": "a9f663054b6115e78c05283274d0a2f01d8caa2c64e01a9d80e667f73fa4bd96",
+      "forward": [
+        {
+          "op": "test",
+          "path": "",
+          "value": {
+            "schema": "P5-full-case-state-v1",
+            "time": 0,
+            "encounter": "fixture-encounter",
+            "relationships": [
+              {
+                "a": "T",
+                "b": "W",
+                "attitude": "nonhostile for occupancy; targets may deliberately resist the declared fixture spell"
+              }
+            ],
+            "actors": {
+              "W": {
+                "profileId": "P5-FIXTURE-WIZARD15-DIVINATION",
+                "profileSHA256": "a2e2bdc700d75e75a7bedc8b058e4d922c137ac9597f44774d6622aff384ee08",
+                "sourceCharacter": "W",
+                "declaredAdmissionIntent": {
+                  "maze": "RESIST",
+                  "seal-of-banishment": "RESIST",
+                  "gloom-bind": "RESIST"
+                },
+                "classLevel": 15,
+                "position": {
+                  "plane": "P",
+                  "feet": [
+                    0,
+                    0,
+                    0
+                  ]
+                },
+                "body": {
+                  "size": "Medium",
+                  "width": 5,
+                  "depth": 5,
+                  "height": 6,
+                  "pounds": 150,
+                  "rootKind": "ordinary living PC body",
+                  "nativePlane": null
+                },
+                "HP": 92,
+                "maxHP": 92,
+                "tempHP": 0,
+                "Wounds": 0,
+                "injuries": [],
+                "life": "alive",
+                "deathSaves": {
+                  "success": 0,
+                  "failure": 0,
+                  "stable": false,
+                  "recoveryAt": null
+                },
+                "conditions": [],
+                "RP": 56,
+                "maxRP": 56,
+                "Dissonance": 0,
+                "lastFamily": null,
+                "Refrain": 0,
+                "preparedFamilyUsed": [],
+                "resourceHistory": [],
+                "concentration": null,
+                "readied": null,
+                "recharge": {},
+                "restUses": {
+                  "divinationReroll": 1,
+                  "dualCast": 1,
+                  "overchannel": 1,
+                  "spellbookStudy": 1
+                },
+                "budget": {
+                  "Action": 1,
+                  "BonusAction": 1,
+                  "Reaction": 1,
+                  "movement": 30,
+                  "movementCap": 30,
+                  "movementSpent": 0,
+                  "interaction": 1,
+                  "additionalActionUsed": false
+                },
+                "phaseOffset": 0,
+                "lastRegularStart": 0,
+                "inventory": [
+                  "W-focus"
+                ],
+                "hands": {
+                  "right": "W-focus",
+                  "left": "free"
+                },
+                "components": {
+                  "audibleVoice": true,
+                  "somaticHand": true,
+                  "focusUsable": true
+                },
+                "carriedPounds": 1,
+                "carriedLoad": 0.1,
+                "physicalCapacityPounds": 150,
+                "loadCapacity": 10,
+                "Burdened": false,
+                "travelHistory": [],
+                "entryAnchors": {},
+                "placementConflict": null,
+                "expressedFootprint": true,
+                "nativePlane": null,
+                "immunities": [],
+                "resistances": [
+                  "force"
+                ],
+                "knowledge": {
+                  "planeIds": [
+                    "P"
+                  ],
+                  "sites": []
+                },
+                "sourceExpiry": null,
+                "Hunt": {
+                  "initiated": false,
+                  "deathException": null
+                },
+                "taint": 0,
+                "claims": []
+              },
+              "T": {
+                "profileId": "P5-FIXTURE-WIZARD15-DIVINATION",
+                "profileSHA256": "a2e2bdc700d75e75a7bedc8b058e4d922c137ac9597f44774d6622aff384ee08",
+                "sourceCharacter": "T",
+                "declaredAdmissionIntent": {
+                  "maze": "RESIST",
+                  "seal-of-banishment": "RESIST",
+                  "gloom-bind": "RESIST"
+                },
+                "classLevel": 15,
+                "position": {
+                  "plane": "P",
+                  "feet": [
+                    20,
+                    0,
+                    0
+                  ]
+                },
+                "body": {
+                  "size": "Medium",
+                  "width": 5,
+                  "depth": 5,
+                  "height": 6,
+                  "pounds": 150,
+                  "rootKind": "ordinary living PC body",
+                  "nativePlane": null
+                },
+                "HP": 92,
+                "maxHP": 92,
+                "tempHP": 0,
+                "Wounds": 0,
+                "injuries": [],
+                "life": "alive",
+                "deathSaves": {
+                  "success": 0,
+                  "failure": 0,
+                  "stable": false,
+                  "recoveryAt": null
+                },
+                "conditions": [],
+                "RP": 56,
+                "maxRP": 56,
+                "Dissonance": 0,
+                "lastFamily": null,
+                "Refrain": 0,
+                "preparedFamilyUsed": [],
+                "resourceHistory": [],
+                "concentration": null,
+                "readied": null,
+                "recharge": {},
+                "restUses": {
+                  "divinationReroll": 1,
+                  "dualCast": 1,
+                  "overchannel": 1,
+                  "spellbookStudy": 1
+                },
+                "budget": {
+                  "Action": 0,
+                  "BonusAction": 0,
+                  "Reaction": 0,
+                  "movement": 0,
+                  "movementCap": 0,
+                  "movementSpent": 0,
+                  "interaction": 0,
+                  "additionalActionUsed": false
+                },
+                "phaseOffset": 2,
+                "lastRegularStart": null,
+                "inventory": [
+                  "T-focus"
+                ],
+                "hands": {
+                  "right": "T-focus",
+                  "left": "free"
+                },
+                "components": {
+                  "audibleVoice": true,
+                  "somaticHand": true,
+                  "focusUsable": true
+                },
+                "carriedPounds": 1,
+                "carriedLoad": 0.1,
+                "physicalCapacityPounds": 150,
+                "loadCapacity": 10,
+                "Burdened": false,
+                "travelHistory": [],
+                "entryAnchors": {},
+                "placementConflict": null,
+                "expressedFootprint": true,
+                "nativePlane": null,
+                "immunities": [],
+                "resistances": [
+                  "force"
+                ],
+                "knowledge": {
+                  "planeIds": [
+                    "P"
+                  ],
+                  "sites": []
+                },
+                "sourceExpiry": null,
+                "Hunt": {
+                  "initiated": false,
+                  "deathException": null
+                },
+                "taint": 0,
+                "claims": []
+              }
+            },
+            "items": {
+              "W-focus": {
+                "id": "W-focus",
+                "provenance": "Conditional ordinary class focus supplied under current V/S/F interface; no costly component or magic item claim.",
+                "pounds": 1,
+                "Load": 0.1,
+                "holder": "W",
+                "position": null,
+                "expiresAt": null,
+                "status": "extant"
+              },
+              "T-focus": {
+                "id": "T-focus",
+                "provenance": "Conditional ordinary class focus supplied under current V/S/F interface; no costly component or magic item claim.",
+                "pounds": 1,
+                "Load": 0.1,
+                "holder": "T",
+                "position": null,
+                "expiresAt": null,
+                "status": "extant"
+              }
+            },
+            "planes": {
+              "P": {
+                "classification": "Unmapped conditional ordinary scene operand; not a cosmology/native assertion",
+                "support": "Level unobstructed floor z=0 except explicit case obstacles",
+                "environment": "Ordinary breathable fixture medium",
+                "bodies": {}
+              }
+            },
+            "spaces": {},
+            "connections": {},
+            "effects": {},
+            "hardControl": [],
+            "RNG": {
+              "mode": "explicit predetermined data; not random execution",
+              "consumed": []
+            },
+            "sourceCounter": 0,
+            "auditLog": [],
+            "phaseHistory": [
+              {
+                "actor": "W",
+                "regularStart": 0,
+                "budgetRefreshed": true
+              }
+            ],
+            "observations": [],
+            "pendingSettlements": [],
+            "holds": [
+              {
+                "id": "P5-H-GLOOM-SITE",
+                "missing": [
+                  "Exact authoritative Veiled planeRef",
+                  "Actual arrival site and legal body geometry",
+                  "Support/environment and surviving body-source facts"
+                ],
+                "castCommitted": false,
+                "RPSpent": 0,
+                "bodyRelocated": false,
+                "bindingEstablished": false,
+                "policyOnly": "Procedure selects local Veiled label; no realm equivalence or fabricated positive outcome."
+              }
+            ],
+            "obstacles": [],
+            "campaign": {
+              "HuntStarted": false,
+              "OpeningDeadline": 10000,
+              "HornAt": 5000,
+              "ExtractionCompleted": false,
+              "researchElapsedSeconds": 0,
+              "cosmologyMapping": null
+            },
+            "caseOutcome": "not-yet-resolved"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "",
+          "value": {
+            "schema": "P5-full-case-state-v1",
+            "time": 0,
+            "encounter": "fixture-encounter",
+            "relationships": [
+              {
+                "a": "T",
+                "b": "W",
+                "attitude": "nonhostile for occupancy; targets may deliberately resist the declared fixture spell"
+              }
+            ],
+            "actors": {
+              "W": {
+                "profileId": "P5-FIXTURE-WIZARD15-DIVINATION",
+                "profileSHA256": "a2e2bdc700d75e75a7bedc8b058e4d922c137ac9597f44774d6622aff384ee08",
+                "sourceCharacter": "W",
+                "declaredAdmissionIntent": {
+                  "maze": "RESIST",
+                  "seal-of-banishment": "RESIST",
+                  "gloom-bind": "RESIST"
+                },
+                "classLevel": 15,
+                "position": {
+                  "plane": "P",
+                  "feet": [
+                    0,
+                    0,
+                    0
+                  ]
+                },
+                "body": {
+                  "size": "Medium",
+                  "width": 5,
+                  "depth": 5,
+                  "height": 6,
+                  "pounds": 150,
+                  "rootKind": "ordinary living PC body",
+                  "nativePlane": null
+                },
+                "HP": 92,
+                "maxHP": 92,
+                "tempHP": 0,
+                "Wounds": 0,
+                "injuries": [],
+                "life": "alive",
+                "deathSaves": {
+                  "success": 0,
+                  "failure": 0,
+                  "stable": false,
+                  "recoveryAt": null
+                },
+                "conditions": [],
+                "RP": 56,
+                "maxRP": 56,
+                "Dissonance": 0,
+                "lastFamily": null,
+                "Refrain": 0,
+                "preparedFamilyUsed": [],
+                "resourceHistory": [],
+                "concentration": null,
+                "readied": null,
+                "recharge": {},
+                "restUses": {
+                  "divinationReroll": 1,
+                  "dualCast": 1,
+                  "overchannel": 1,
+                  "spellbookStudy": 1
+                },
+                "budget": {
+                  "Action": 1,
+                  "BonusAction": 1,
+                  "Reaction": 1,
+                  "movement": 30,
+                  "movementCap": 30,
+                  "movementSpent": 0,
+                  "interaction": 1,
+                  "additionalActionUsed": false
+                },
+                "phaseOffset": 0,
+                "lastRegularStart": 0,
+                "inventory": [
+                  "W-focus"
+                ],
+                "hands": {
+                  "right": "W-focus",
+                  "left": "free"
+                },
+                "components": {
+                  "audibleVoice": true,
+                  "somaticHand": true,
+                  "focusUsable": true
+                },
+                "carriedPounds": 1,
+                "carriedLoad": 0.1,
+                "physicalCapacityPounds": 150,
+                "loadCapacity": 10,
+                "Burdened": false,
+                "travelHistory": [],
+                "entryAnchors": {},
+                "placementConflict": null,
+                "expressedFootprint": true,
+                "nativePlane": null,
+                "immunities": [],
+                "resistances": [
+                  "force"
+                ],
+                "knowledge": {
+                  "planeIds": [
+                    "P"
+                  ],
+                  "sites": []
+                },
+                "sourceExpiry": null,
+                "Hunt": {
+                  "initiated": false,
+                  "deathException": null
+                },
+                "taint": 0,
+                "claims": []
+              },
+              "T": {
+                "profileId": "P5-FIXTURE-WIZARD15-DIVINATION",
+                "profileSHA256": "a2e2bdc700d75e75a7bedc8b058e4d922c137ac9597f44774d6622aff384ee08",
+                "sourceCharacter": "T",
+                "declaredAdmissionIntent": {
+                  "maze": "RESIST",
+                  "seal-of-banishment": "RESIST",
+                  "gloom-bind": "RESIST"
+                },
+                "classLevel": 15,
+                "position": {
+                  "plane": "P",
+                  "feet": [
+                    20,
+                    0,
+                    0
+                  ]
+                },
+                "body": {
+                  "size": "Medium",
+                  "width": 5,
+                  "depth": 5,
+                  "height": 6,
+                  "pounds": 150,
+                  "rootKind": "ordinary living PC body",
+                  "nativePlane": null
+                },
+                "HP": 92,
+                "maxHP": 92,
+                "tempHP": 0,
+                "Wounds": 0,
+                "injuries": [],
+                "life": "alive",
+                "deathSaves": {
+                  "success": 0,
+                  "failure": 0,
+                  "stable": false,
+                  "recoveryAt": null
+                },
+                "conditions": [],
+                "RP": 56,
+                "maxRP": 56,
+                "Dissonance": 0,
+                "lastFamily": null,
+                "Refrain": 0,
+                "preparedFamilyUsed": [],
+                "resourceHistory": [],
+                "concentration": null,
+                "readied": null,
+                "recharge": {},
+                "restUses": {
+                  "divinationReroll": 1,
+                  "dualCast": 1,
+                  "overchannel": 1,
+                  "spellbookStudy": 1
+                },
+                "budget": {
+                  "Action": 0,
+                  "BonusAction": 0,
+                  "Reaction": 0,
+                  "movement": 0,
+                  "movementCap": 0,
+                  "movementSpent": 0,
+                  "interaction": 0,
+                  "additionalActionUsed": false
+                },
+                "phaseOffset": 2,
+                "lastRegularStart": null,
+                "inventory": [
+                  "T-focus"
+                ],
+                "hands": {
+                  "right": "T-focus",
+                  "left": "free"
+                },
+                "components": {
+                  "audibleVoice": true,
+                  "somaticHand": true,
+                  "focusUsable": true
+                },
+                "carriedPounds": 1,
+                "carriedLoad": 0.1,
+                "physicalCapacityPounds": 150,
+                "loadCapacity": 10,
+                "Burdened": false,
+                "travelHistory": [],
+                "entryAnchors": {},
+                "placementConflict": null,
+                "expressedFootprint": true,
+                "nativePlane": null,
+                "immunities": [],
+                "resistances": [
+                  "force"
+                ],
+                "knowledge": {
+                  "planeIds": [
+                    "P"
+                  ],
+                  "sites": []
+                },
+                "sourceExpiry": null,
+                "Hunt": {
+                  "initiated": false,
+                  "deathException": null
+                },
+                "taint": 0,
+                "claims": []
+              }
+            },
+            "items": {
+              "W-focus": {
+                "id": "W-focus",
+                "provenance": "Conditional ordinary class focus supplied under current V/S/F interface; no costly component or magic item claim.",
+                "pounds": 1,
+                "Load": 0.1,
+                "holder": "W",
+                "position": null,
+                "expiresAt": null,
+                "status": "extant"
+              },
+              "T-focus": {
+                "id": "T-focus",
+                "provenance": "Conditional ordinary class focus supplied under current V/S/F interface; no costly component or magic item claim.",
+                "pounds": 1,
+                "Load": 0.1,
+                "holder": "T",
+                "position": null,
+                "expiresAt": null,
+                "status": "extant"
+              }
+            },
+            "planes": {
+              "P": {
+                "classification": "Unmapped conditional ordinary scene operand; not a cosmology/native assertion",
+                "support": "Level unobstructed floor z=0 except explicit case obstacles",
+                "environment": "Ordinary breathable fixture medium",
+                "bodies": {}
+              }
+            },
+            "spaces": {},
+            "connections": {},
+            "effects": {},
+            "hardControl": [],
+            "RNG": {
+              "mode": "explicit predetermined data; not random execution",
+              "consumed": []
+            },
+            "sourceCounter": 0,
+            "auditLog": [],
+            "phaseHistory": [
+              {
+                "actor": "W",
+                "regularStart": 0,
+                "budgetRefreshed": true
+              }
+            ],
+            "observations": [],
+            "pendingSettlements": [],
+            "holds": [
+              {
+                "id": "P5-H-GLOOM-SITE",
+                "missing": [
+                  "Exact authoritative Veiled planeRef",
+                  "Actual arrival site and legal body geometry",
+                  "Support/environment and surviving body-source facts"
+                ],
+                "castCommitted": false,
+                "RPSpent": 0,
+                "bodyRelocated": false,
+                "bindingEstablished": false,
+                "policyOnly": "Procedure selects local Veiled label; no realm equivalence or fabricated positive outcome."
+              }
+            ],
+            "obstacles": [],
+            "campaign": {
+              "HuntStarted": false,
+              "OpeningDeadline": 10000,
+              "HornAt": 5000,
+              "ExtractionCompleted": false,
+              "researchElapsedSeconds": 0,
+              "cosmologyMapping": null
+            },
+            "caseOutcome": "WHOLE-CASE HELD. No positive arrival/binding/freeing/death outcome certified. Procedure is conditional; packet contains no site evidence to instantiate this obligation."
+          }
+        }
+      ],
+      "inverse": [
+        {
+          "op": "test",
+          "path": "",
+          "value": {
+            "schema": "P5-full-case-state-v1",
+            "time": 0,
+            "encounter": "fixture-encounter",
+            "relationships": [
+              {
+                "a": "T",
+                "b": "W",
+                "attitude": "nonhostile for occupancy; targets may deliberately resist the declared fixture spell"
+              }
+            ],
+            "actors": {
+              "W": {
+                "profileId": "P5-FIXTURE-WIZARD15-DIVINATION",
+                "profileSHA256": "a2e2bdc700d75e75a7bedc8b058e4d922c137ac9597f44774d6622aff384ee08",
+                "sourceCharacter": "W",
+                "declaredAdmissionIntent": {
+                  "maze": "RESIST",
+                  "seal-of-banishment": "RESIST",
+                  "gloom-bind": "RESIST"
+                },
+                "classLevel": 15,
+                "position": {
+                  "plane": "P",
+                  "feet": [
+                    0,
+                    0,
+                    0
+                  ]
+                },
+                "body": {
+                  "size": "Medium",
+                  "width": 5,
+                  "depth": 5,
+                  "height": 6,
+                  "pounds": 150,
+                  "rootKind": "ordinary living PC body",
+                  "nativePlane": null
+                },
+                "HP": 92,
+                "maxHP": 92,
+                "tempHP": 0,
+                "Wounds": 0,
+                "injuries": [],
+                "life": "alive",
+                "deathSaves": {
+                  "success": 0,
+                  "failure": 0,
+                  "stable": false,
+                  "recoveryAt": null
+                },
+                "conditions": [],
+                "RP": 56,
+                "maxRP": 56,
+                "Dissonance": 0,
+                "lastFamily": null,
+                "Refrain": 0,
+                "preparedFamilyUsed": [],
+                "resourceHistory": [],
+                "concentration": null,
+                "readied": null,
+                "recharge": {},
+                "restUses": {
+                  "divinationReroll": 1,
+                  "dualCast": 1,
+                  "overchannel": 1,
+                  "spellbookStudy": 1
+                },
+                "budget": {
+                  "Action": 1,
+                  "BonusAction": 1,
+                  "Reaction": 1,
+                  "movement": 30,
+                  "movementCap": 30,
+                  "movementSpent": 0,
+                  "interaction": 1,
+                  "additionalActionUsed": false
+                },
+                "phaseOffset": 0,
+                "lastRegularStart": 0,
+                "inventory": [
+                  "W-focus"
+                ],
+                "hands": {
+                  "right": "W-focus",
+                  "left": "free"
+                },
+                "components": {
+                  "audibleVoice": true,
+                  "somaticHand": true,
+                  "focusUsable": true
+                },
+                "carriedPounds": 1,
+                "carriedLoad": 0.1,
+                "physicalCapacityPounds": 150,
+                "loadCapacity": 10,
+                "Burdened": false,
+                "travelHistory": [],
+                "entryAnchors": {},
+                "placementConflict": null,
+                "expressedFootprint": true,
+                "nativePlane": null,
+                "immunities": [],
+                "resistances": [
+                  "force"
+                ],
+                "knowledge": {
+                  "planeIds": [
+                    "P"
+                  ],
+                  "sites": []
+                },
+                "sourceExpiry": null,
+                "Hunt": {
+                  "initiated": false,
+                  "deathException": null
+                },
+                "taint": 0,
+                "claims": []
+              },
+              "T": {
+                "profileId": "P5-FIXTURE-WIZARD15-DIVINATION",
+                "profileSHA256": "a2e2bdc700d75e75a7bedc8b058e4d922c137ac9597f44774d6622aff384ee08",
+                "sourceCharacter": "T",
+                "declaredAdmissionIntent": {
+                  "maze": "RESIST",
+                  "seal-of-banishment": "RESIST",
+                  "gloom-bind": "RESIST"
+                },
+                "classLevel": 15,
+                "position": {
+                  "plane": "P",
+                  "feet": [
+                    20,
+                    0,
+                    0
+                  ]
+                },
+                "body": {
+                  "size": "Medium",
+                  "width": 5,
+                  "depth": 5,
+                  "height": 6,
+                  "pounds": 150,
+                  "rootKind": "ordinary living PC body",
+                  "nativePlane": null
+                },
+                "HP": 92,
+                "maxHP": 92,
+                "tempHP": 0,
+                "Wounds": 0,
+                "injuries": [],
+                "life": "alive",
+                "deathSaves": {
+                  "success": 0,
+                  "failure": 0,
+                  "stable": false,
+                  "recoveryAt": null
+                },
+                "conditions": [],
+                "RP": 56,
+                "maxRP": 56,
+                "Dissonance": 0,
+                "lastFamily": null,
+                "Refrain": 0,
+                "preparedFamilyUsed": [],
+                "resourceHistory": [],
+                "concentration": null,
+                "readied": null,
+                "recharge": {},
+                "restUses": {
+                  "divinationReroll": 1,
+                  "dualCast": 1,
+                  "overchannel": 1,
+                  "spellbookStudy": 1
+                },
+                "budget": {
+                  "Action": 0,
+                  "BonusAction": 0,
+                  "Reaction": 0,
+                  "movement": 0,
+                  "movementCap": 0,
+                  "movementSpent": 0,
+                  "interaction": 0,
+                  "additionalActionUsed": false
+                },
+                "phaseOffset": 2,
+                "lastRegularStart": null,
+                "inventory": [
+                  "T-focus"
+                ],
+                "hands": {
+                  "right": "T-focus",
+                  "left": "free"
+                },
+                "components": {
+                  "audibleVoice": true,
+                  "somaticHand": true,
+                  "focusUsable": true
+                },
+                "carriedPounds": 1,
+                "carriedLoad": 0.1,
+                "physicalCapacityPounds": 150,
+                "loadCapacity": 10,
+                "Burdened": false,
+                "travelHistory": [],
+                "entryAnchors": {},
+                "placementConflict": null,
+                "expressedFootprint": true,
+                "nativePlane": null,
+                "immunities": [],
+                "resistances": [
+                  "force"
+                ],
+                "knowledge": {
+                  "planeIds": [
+                    "P"
+                  ],
+                  "sites": []
+                },
+                "sourceExpiry": null,
+                "Hunt": {
+                  "initiated": false,
+                  "deathException": null
+                },
+                "taint": 0,
+                "claims": []
+              }
+            },
+            "items": {
+              "W-focus": {
+                "id": "W-focus",
+                "provenance": "Conditional ordinary class focus supplied under current V/S/F interface; no costly component or magic item claim.",
+                "pounds": 1,
+                "Load": 0.1,
+                "holder": "W",
+                "position": null,
+                "expiresAt": null,
+                "status": "extant"
+              },
+              "T-focus": {
+                "id": "T-focus",
+                "provenance": "Conditional ordinary class focus supplied under current V/S/F interface; no costly component or magic item claim.",
+                "pounds": 1,
+                "Load": 0.1,
+                "holder": "T",
+                "position": null,
+                "expiresAt": null,
+                "status": "extant"
+              }
+            },
+            "planes": {
+              "P": {
+                "classification": "Unmapped conditional ordinary scene operand; not a cosmology/native assertion",
+                "support": "Level unobstructed floor z=0 except explicit case obstacles",
+                "environment": "Ordinary breathable fixture medium",
+                "bodies": {}
+              }
+            },
+            "spaces": {},
+            "connections": {},
+            "effects": {},
+            "hardControl": [],
+            "RNG": {
+              "mode": "explicit predetermined data; not random execution",
+              "consumed": []
+            },
+            "sourceCounter": 0,
+            "auditLog": [],
+            "phaseHistory": [
+              {
+                "actor": "W",
+                "regularStart": 0,
+                "budgetRefreshed": true
+              }
+            ],
+            "observations": [],
+            "pendingSettlements": [],
+            "holds": [
+              {
+                "id": "P5-H-GLOOM-SITE",
+                "missing": [
+                  "Exact authoritative Veiled planeRef",
+                  "Actual arrival site and legal body geometry",
+                  "Support/environment and surviving body-source facts"
+                ],
+                "castCommitted": false,
+                "RPSpent": 0,
+                "bodyRelocated": false,
+                "bindingEstablished": false,
+                "policyOnly": "Procedure selects local Veiled label; no realm equivalence or fabricated positive outcome."
+              }
+            ],
+            "obstacles": [],
+            "campaign": {
+              "HuntStarted": false,
+              "OpeningDeadline": 10000,
+              "HornAt": 5000,
+              "ExtractionCompleted": false,
+              "researchElapsedSeconds": 0,
+              "cosmologyMapping": null
+            },
+            "caseOutcome": "WHOLE-CASE HELD. No positive arrival/binding/freeing/death outcome certified. Procedure is conditional; packet contains no site evidence to instantiate this obligation."
+          }
+        },
+        {
+          "op": "replace",
+          "path": "",
+          "value": {
+            "schema": "P5-full-case-state-v1",
+            "time": 0,
+            "encounter": "fixture-encounter",
+            "relationships": [
+              {
+                "a": "T",
+                "b": "W",
+                "attitude": "nonhostile for occupancy; targets may deliberately resist the declared fixture spell"
+              }
+            ],
+            "actors": {
+              "W": {
+                "profileId": "P5-FIXTURE-WIZARD15-DIVINATION",
+                "profileSHA256": "a2e2bdc700d75e75a7bedc8b058e4d922c137ac9597f44774d6622aff384ee08",
+                "sourceCharacter": "W",
+                "declaredAdmissionIntent": {
+                  "maze": "RESIST",
+                  "seal-of-banishment": "RESIST",
+                  "gloom-bind": "RESIST"
+                },
+                "classLevel": 15,
+                "position": {
+                  "plane": "P",
+                  "feet": [
+                    0,
+                    0,
+                    0
+                  ]
+                },
+                "body": {
+                  "size": "Medium",
+                  "width": 5,
+                  "depth": 5,
+                  "height": 6,
+                  "pounds": 150,
+                  "rootKind": "ordinary living PC body",
+                  "nativePlane": null
+                },
+                "HP": 92,
+                "maxHP": 92,
+                "tempHP": 0,
+                "Wounds": 0,
+                "injuries": [],
+                "life": "alive",
+                "deathSaves": {
+                  "success": 0,
+                  "failure": 0,
+                  "stable": false,
+                  "recoveryAt": null
+                },
+                "conditions": [],
+                "RP": 56,
+                "maxRP": 56,
+                "Dissonance": 0,
+                "lastFamily": null,
+                "Refrain": 0,
+                "preparedFamilyUsed": [],
+                "resourceHistory": [],
+                "concentration": null,
+                "readied": null,
+                "recharge": {},
+                "restUses": {
+                  "divinationReroll": 1,
+                  "dualCast": 1,
+                  "overchannel": 1,
+                  "spellbookStudy": 1
+                },
+                "budget": {
+                  "Action": 1,
+                  "BonusAction": 1,
+                  "Reaction": 1,
+                  "movement": 30,
+                  "movementCap": 30,
+                  "movementSpent": 0,
+                  "interaction": 1,
+                  "additionalActionUsed": false
+                },
+                "phaseOffset": 0,
+                "lastRegularStart": 0,
+                "inventory": [
+                  "W-focus"
+                ],
+                "hands": {
+                  "right": "W-focus",
+                  "left": "free"
+                },
+                "components": {
+                  "audibleVoice": true,
+                  "somaticHand": true,
+                  "focusUsable": true
+                },
+                "carriedPounds": 1,
+                "carriedLoad": 0.1,
+                "physicalCapacityPounds": 150,
+                "loadCapacity": 10,
+                "Burdened": false,
+                "travelHistory": [],
+                "entryAnchors": {},
+                "placementConflict": null,
+                "expressedFootprint": true,
+                "nativePlane": null,
+                "immunities": [],
+                "resistances": [
+                  "force"
+                ],
+                "knowledge": {
+                  "planeIds": [
+                    "P"
+                  ],
+                  "sites": []
+                },
+                "sourceExpiry": null,
+                "Hunt": {
+                  "initiated": false,
+                  "deathException": null
+                },
+                "taint": 0,
+                "claims": []
+              },
+              "T": {
+                "profileId": "P5-FIXTURE-WIZARD15-DIVINATION",
+                "profileSHA256": "a2e2bdc700d75e75a7bedc8b058e4d922c137ac9597f44774d6622aff384ee08",
+                "sourceCharacter": "T",
+                "declaredAdmissionIntent": {
+                  "maze": "RESIST",
+                  "seal-of-banishment": "RESIST",
+                  "gloom-bind": "RESIST"
+                },
+                "classLevel": 15,
+                "position": {
+                  "plane": "P",
+                  "feet": [
+                    20,
+                    0,
+                    0
+                  ]
+                },
+                "body": {
+                  "size": "Medium",
+                  "width": 5,
+                  "depth": 5,
+                  "height": 6,
+                  "pounds": 150,
+                  "rootKind": "ordinary living PC body",
+                  "nativePlane": null
+                },
+                "HP": 92,
+                "maxHP": 92,
+                "tempHP": 0,
+                "Wounds": 0,
+                "injuries": [],
+                "life": "alive",
+                "deathSaves": {
+                  "success": 0,
+                  "failure": 0,
+                  "stable": false,
+                  "recoveryAt": null
+                },
+                "conditions": [],
+                "RP": 56,
+                "maxRP": 56,
+                "Dissonance": 0,
+                "lastFamily": null,
+                "Refrain": 0,
+                "preparedFamilyUsed": [],
+                "resourceHistory": [],
+                "concentration": null,
+                "readied": null,
+                "recharge": {},
+                "restUses": {
+                  "divinationReroll": 1,
+                  "dualCast": 1,
+                  "overchannel": 1,
+                  "spellbookStudy": 1
+                },
+                "budget": {
+                  "Action": 0,
+                  "BonusAction": 0,
+                  "Reaction": 0,
+                  "movement": 0,
+                  "movementCap": 0,
+                  "movementSpent": 0,
+                  "interaction": 0,
+                  "additionalActionUsed": false
+                },
+                "phaseOffset": 2,
+                "lastRegularStart": null,
+                "inventory": [
+                  "T-focus"
+                ],
+                "hands": {
+                  "right": "T-focus",
+                  "left": "free"
+                },
+                "components": {
+                  "audibleVoice": true,
+                  "somaticHand": true,
+                  "focusUsable": true
+                },
+                "carriedPounds": 1,
+                "carriedLoad": 0.1,
+                "physicalCapacityPounds": 150,
+                "loadCapacity": 10,
+                "Burdened": false,
+                "travelHistory": [],
+                "entryAnchors": {},
+                "placementConflict": null,
+                "expressedFootprint": true,
+                "nativePlane": null,
+                "immunities": [],
+                "resistances": [
+                  "force"
+                ],
+                "knowledge": {
+                  "planeIds": [
+                    "P"
+                  ],
+                  "sites": []
+                },
+                "sourceExpiry": null,
+                "Hunt": {
+                  "initiated": false,
+                  "deathException": null
+                },
+                "taint": 0,
+                "claims": []
+              }
+            },
+            "items": {
+              "W-focus": {
+                "id": "W-focus",
+                "provenance": "Conditional ordinary class focus supplied under current V/S/F interface; no costly component or magic item claim.",
+                "pounds": 1,
+                "Load": 0.1,
+                "holder": "W",
+                "position": null,
+                "expiresAt": null,
+                "status": "extant"
+              },
+              "T-focus": {
+                "id": "T-focus",
+                "provenance": "Conditional ordinary class focus supplied under current V/S/F interface; no costly component or magic item claim.",
+                "pounds": 1,
+                "Load": 0.1,
+                "holder": "T",
+                "position": null,
+                "expiresAt": null,
+                "status": "extant"
+              }
+            },
+            "planes": {
+              "P": {
+                "classification": "Unmapped conditional ordinary scene operand; not a cosmology/native assertion",
+                "support": "Level unobstructed floor z=0 except explicit case obstacles",
+                "environment": "Ordinary breathable fixture medium",
+                "bodies": {}
+              }
+            },
+            "spaces": {},
+            "connections": {},
+            "effects": {},
+            "hardControl": [],
+            "RNG": {
+              "mode": "explicit predetermined data; not random execution",
+              "consumed": []
+            },
+            "sourceCounter": 0,
+            "auditLog": [],
+            "phaseHistory": [
+              {
+                "actor": "W",
+                "regularStart": 0,
+                "budgetRefreshed": true
+              }
+            ],
+            "observations": [],
+            "pendingSettlements": [],
+            "holds": [
+              {
+                "id": "P5-H-GLOOM-SITE",
+                "missing": [
+                  "Exact authoritative Veiled planeRef",
+                  "Actual arrival site and legal body geometry",
+                  "Support/environment and surviving body-source facts"
+                ],
+                "castCommitted": false,
+                "RPSpent": 0,
+                "bodyRelocated": false,
+                "bindingEstablished": false,
+                "policyOnly": "Procedure selects local Veiled label; no realm equivalence or fabricated positive outcome."
+              }
+            ],
+            "obstacles": [],
+            "campaign": {
+              "HuntStarted": false,
+              "OpeningDeadline": 10000,
+              "HornAt": 5000,
+              "ExtractionCompleted": false,
+              "researchElapsedSeconds": 0,
+              "cosmologyMapping": null
+            },
+            "caseOutcome": "not-yet-resolved"
+          }
+        }
+      ]
+    }
+  ],
+  "finalState": {
+    "schema": "P5-full-case-state-v1",
+    "time": 0,
+    "encounter": "fixture-encounter",
+    "relationships": [
+      {
+        "a": "T",
+        "b": "W",
+        "attitude": "nonhostile for occupancy; targets may deliberately resist the declared fixture spell"
+      }
+    ],
+    "actors": {
+      "W": {
+        "profileId": "P5-FIXTURE-WIZARD15-DIVINATION",
+        "profileSHA256": "a2e2bdc700d75e75a7bedc8b058e4d922c137ac9597f44774d6622aff384ee08",
+        "sourceCharacter": "W",
+        "declaredAdmissionIntent": {
+          "maze": "RESIST",
+          "seal-of-banishment": "RESIST",
+          "gloom-bind": "RESIST"
+        },
+        "classLevel": 15,
+        "position": {
+          "plane": "P",
+          "feet": [
+            0,
+            0,
+            0
+          ]
+        },
+        "body": {
+          "size": "Medium",
+          "width": 5,
+          "depth": 5,
+          "height": 6,
+          "pounds": 150,
+          "rootKind": "ordinary living PC body",
+          "nativePlane": null
+        },
+        "HP": 92,
+        "maxHP": 92,
+        "tempHP": 0,
+        "Wounds": 0,
+        "injuries": [],
+        "life": "alive",
+        "deathSaves": {
+          "success": 0,
+          "failure": 0,
+          "stable": false,
+          "recoveryAt": null
+        },
+        "conditions": [],
+        "RP": 56,
+        "maxRP": 56,
+        "Dissonance": 0,
+        "lastFamily": null,
+        "Refrain": 0,
+        "preparedFamilyUsed": [],
+        "resourceHistory": [],
+        "concentration": null,
+        "readied": null,
+        "recharge": {},
+        "restUses": {
+          "divinationReroll": 1,
+          "dualCast": 1,
+          "overchannel": 1,
+          "spellbookStudy": 1
+        },
+        "budget": {
+          "Action": 1,
+          "BonusAction": 1,
+          "Reaction": 1,
+          "movement": 30,
+          "movementCap": 30,
+          "movementSpent": 0,
+          "interaction": 1,
+          "additionalActionUsed": false
+        },
+        "phaseOffset": 0,
+        "lastRegularStart": 0,
+        "inventory": [
+          "W-focus"
+        ],
+        "hands": {
+          "right": "W-focus",
+          "left": "free"
+        },
+        "components": {
+          "audibleVoice": true,
+          "somaticHand": true,
+          "focusUsable": true
+        },
+        "carriedPounds": 1,
+        "carriedLoad": 0.1,
+        "physicalCapacityPounds": 150,
+        "loadCapacity": 10,
+        "Burdened": false,
+        "travelHistory": [],
+        "entryAnchors": {},
+        "placementConflict": null,
+        "expressedFootprint": true,
+        "nativePlane": null,
+        "immunities": [],
+        "resistances": [
+          "force"
+        ],
+        "knowledge": {
+          "planeIds": [
+            "P"
+          ],
+          "sites": []
+        },
+        "sourceExpiry": null,
+        "Hunt": {
+          "initiated": false,
+          "deathException": null
+        },
+        "taint": 0,
+        "claims": []
+      },
+      "T": {
+        "profileId": "P5-FIXTURE-WIZARD15-DIVINATION",
+        "profileSHA256": "a2e2bdc700d75e75a7bedc8b058e4d922c137ac9597f44774d6622aff384ee08",
+        "sourceCharacter": "T",
+        "declaredAdmissionIntent": {
+          "maze": "RESIST",
+          "seal-of-banishment": "RESIST",
+          "gloom-bind": "RESIST"
+        },
+        "classLevel": 15,
+        "position": {
+          "plane": "P",
+          "feet": [
+            20,
+            0,
+            0
+          ]
+        },
+        "body": {
+          "size": "Medium",
+          "width": 5,
+          "depth": 5,
+          "height": 6,
+          "pounds": 150,
+          "rootKind": "ordinary living PC body",
+          "nativePlane": null
+        },
+        "HP": 92,
+        "maxHP": 92,
+        "tempHP": 0,
+        "Wounds": 0,
+        "injuries": [],
+        "life": "alive",
+        "deathSaves": {
+          "success": 0,
+          "failure": 0,
+          "stable": false,
+          "recoveryAt": null
+        },
+        "conditions": [],
+        "RP": 56,
+        "maxRP": 56,
+        "Dissonance": 0,
+        "lastFamily": null,
+        "Refrain": 0,
+        "preparedFamilyUsed": [],
+        "resourceHistory": [],
+        "concentration": null,
+        "readied": null,
+        "recharge": {},
+        "restUses": {
+          "divinationReroll": 1,
+          "dualCast": 1,
+          "overchannel": 1,
+          "spellbookStudy": 1
+        },
+        "budget": {
+          "Action": 0,
+          "BonusAction": 0,
+          "Reaction": 0,
+          "movement": 0,
+          "movementCap": 0,
+          "movementSpent": 0,
+          "interaction": 0,
+          "additionalActionUsed": false
+        },
+        "phaseOffset": 2,
+        "lastRegularStart": null,
+        "inventory": [
+          "T-focus"
+        ],
+        "hands": {
+          "right": "T-focus",
+          "left": "free"
+        },
+        "components": {
+          "audibleVoice": true,
+          "somaticHand": true,
+          "focusUsable": true
+        },
+        "carriedPounds": 1,
+        "carriedLoad": 0.1,
+        "physicalCapacityPounds": 150,
+        "loadCapacity": 10,
+        "Burdened": false,
+        "travelHistory": [],
+        "entryAnchors": {},
+        "placementConflict": null,
+        "expressedFootprint": true,
+        "nativePlane": null,
+        "immunities": [],
+        "resistances": [
+          "force"
+        ],
+        "knowledge": {
+          "planeIds": [
+            "P"
+          ],
+          "sites": []
+        },
+        "sourceExpiry": null,
+        "Hunt": {
+          "initiated": false,
+          "deathException": null
+        },
+        "taint": 0,
+        "claims": []
+      }
+    },
+    "items": {
+      "W-focus": {
+        "id": "W-focus",
+        "provenance": "Conditional ordinary class focus supplied under current V/S/F interface; no costly component or magic item claim.",
+        "pounds": 1,
+        "Load": 0.1,
+        "holder": "W",
+        "position": null,
+        "expiresAt": null,
+        "status": "extant"
+      },
+      "T-focus": {
+        "id": "T-focus",
+        "provenance": "Conditional ordinary class focus supplied under current V/S/F interface; no costly component or magic item claim.",
+        "pounds": 1,
+        "Load": 0.1,
+        "holder": "T",
+        "position": null,
+        "expiresAt": null,
+        "status": "extant"
+      }
+    },
+    "planes": {
+      "P": {
+        "classification": "Unmapped conditional ordinary scene operand; not a cosmology/native assertion",
+        "support": "Level unobstructed floor z=0 except explicit case obstacles",
+        "environment": "Ordinary breathable fixture medium",
+        "bodies": {}
+      }
+    },
+    "spaces": {},
+    "connections": {},
+    "effects": {},
+    "hardControl": [],
+    "RNG": {
+      "mode": "explicit predetermined data; not random execution",
+      "consumed": []
+    },
+    "sourceCounter": 0,
+    "auditLog": [],
+    "phaseHistory": [
+      {
+        "actor": "W",
+        "regularStart": 0,
+        "budgetRefreshed": true
+      }
+    ],
+    "observations": [],
+    "pendingSettlements": [],
+    "holds": [
+      {
+        "id": "P5-H-GLOOM-SITE",
+        "missing": [
+          "Exact authoritative Veiled planeRef",
+          "Actual arrival site and legal body geometry",
+          "Support/environment and surviving body-source facts"
+        ],
+        "castCommitted": false,
+        "RPSpent": 0,
+        "bodyRelocated": false,
+        "bindingEstablished": false,
+        "policyOnly": "Procedure selects local Veiled label; no realm equivalence or fabricated positive outcome."
+      }
+    ],
+    "obstacles": [],
+    "campaign": {
+      "HuntStarted": false,
+      "OpeningDeadline": 10000,
+      "HornAt": 5000,
+      "ExtractionCompleted": false,
+      "researchElapsedSeconds": 0,
+      "cosmologyMapping": null
+    },
+    "caseOutcome": "WHOLE-CASE HELD. No positive arrival/binding/freeing/death outcome certified. Procedure is conditional; packet contains no site evidence to instantiate this obligation."
+  },
+  "finalSHA256": "a9f663054b6115e78c05283274d0a2f01d8caa2c64e01a9d80e667f73fa4bd96",
+  "disposition": "WHOLE-CASE HELD. No positive arrival/binding/freeing/death outcome certified. Procedure is conditional; packet contains no site evidence to instantiate this obligation."
+}

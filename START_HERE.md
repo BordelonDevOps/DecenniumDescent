@@ -1,10 +1,10 @@
-# Active ordinary spell review164 — Calibration review part6
+# Active ordinary spell review167 — Calibration review part 6
 
-Information/Time4 Return162 was GPT director accepted, independently audited, and applied to exactly four identities: **730 reviewed / 118 pending / 0 accepted-unapplied**. The return passed 14,095 director checks and a local exact archive/source audit. Its 16 hold categories and 20 whole-dependent-case holds remain; runtime, human-play, balance, cosmology, domain closure and release approval remain separate.
+Planar5 Return166 was accepted by the GPT director, independently audited, and applied to exactly five identities: **735 reviewed / 113 pending / 0 accepted-unapplied**. All 17 hold categories and ten whole-case holds remain; no runtime, human-play, balance, cosmology, domain closure or release approval is included.
 
-Continue with **rank8-planar5**, preparing a fresh packet against 730/118 authority. Apply only exact accepted IDs, continuing until all pending ordinary spell identities are resolved. Preserve closed feat335 and completed spell cohorts.
+Continue with **rank8-remaining4** using a fresh packet against 735/113 authority. Apply only exact accepted IDs, pushing each applied batch to GitHub. Preserve completed feat and spell cohorts.
 
-Read [current handoff](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_164.json), [the 118-pending audit](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT118_PENDING_IDENTITY_AUDIT_164.json), [the application validation](docs/audit/2026-10-08/full-game/director-spell-review-129/INFORMATION_TIME4_APPLICATION_VALIDATION_164.json).
+Read [current handoff](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_167.json), [pending identity audit](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT113_PENDING_IDENTITY_AUDIT_167.json), [exact acceptance](docs/audit/2026-10-08/full-game/director-spell-review-129/PLANAR5_EXACT_ACCEPTANCE_166.json), and [application validation](docs/audit/2026-10-08/full-game/director-spell-review-129/PLANAR5_APPLICATION_VALIDATION_167.json).
 
 **Prior checkpoint: [148](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_148.json).**
 
