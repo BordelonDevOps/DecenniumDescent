@@ -1,0 +1,774 @@
+{
+  "id": "WC188-INDEPENDENT-DATA-CHECK",
+  "method": "Fresh separate read-only checker; no import or execution of authored constructor or supplied/historical/game programs. Tests exact complete states and source-relative calendars, not a runtime implementation.",
+  "checksByCategory": {
+    "unique-events": 5182,
+    "state-continuity": 5182,
+    "state-hash": 10364,
+    "monotone-time": 5182,
+    "operation-shape": 20728,
+    "replay-test": 10364,
+    "replay-result": 10364,
+    "resource-bounds": 15733,
+    "body-life-bounds": 15733,
+    "recharge-bounds": 15733,
+    "budget-bounds": 15733,
+    "scheduled-start": 4202,
+    "recharge-tick": 2101,
+    "ready-expiry": 2101,
+    "death-save-obligation": 2101,
+    "cast-price": 155,
+    "cast-cadence": 155,
+    "cast-budget": 155,
+    "native-rank9": 155,
+    "class-dispel": 155,
+    "class-counter": 155,
+    "source-deadline-retention": 7002,
+    "removed-component-retention": 7002,
+    "ended-source-terminal": 7002,
+    "scheduled-end": 4094,
+    "final-state": 60,
+    "clock-completeness": 179,
+    "long-cast-600seconds": 5,
+    "held-case-no-fabrication": 6,
+    "case-count": 1,
+    "event-count": 1
+  },
+  "totalChecks": 167085,
+  "failureCount": 0,
+  "failures": [],
+  "caseIndex": [
+    {
+      "id": "RANK9WARDCONTROL6129-ETERNAL-WARD-A/counter-interruption",
+      "spellId": "eternal-ward",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "ET-real-interruption",
+        "ET-costs-retained",
+        "ET-no-free-ritual",
+        "CLOCK-counter-recharge2-1-0"
+      ],
+      "holdIds": [],
+      "events": 20
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-ETERNAL-WARD-A/damage-interruption",
+      "spellId": "eternal-ward",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "ET-damage-concentration-interruption",
+        "ET-no-established-benefits"
+      ],
+      "holdIds": [],
+      "events": 14
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-ETERNAL-WARD-A",
+      "spellId": "eternal-ward",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "ET-600seconds-100Actions",
+        "ET-E1",
+        "ET-E2",
+        "ET-E3",
+        "ET-E4",
+        "ET-E5",
+        "ET-E6",
+        "ET-credential-revocation",
+        "ET-permanent-no-maintenance",
+        "PAIR-Anchor-Eternal"
+      ],
+      "holdIds": [],
+      "events": 785
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-ETERNAL-WARD-B/overlap",
+      "spellId": "eternal-ward",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "ET-paid-overlap",
+        "ET-nonstacking",
+        "ET-component-ownership"
+      ],
+      "holdIds": [],
+      "events": 1421
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-ETERNAL-WARD-B",
+      "spellId": "eternal-ward",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "ET-owner-death",
+        "ET-owner-absence",
+        "ET-steward-edit",
+        "ET-removed-function-persistence",
+        "ET-local-suppression",
+        "ET-damaged-site",
+        "ET-worldfixed-center"
+      ],
+      "holdIds": [],
+      "events": 779
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-GREATER-SPELL-TURNING-A/rank9-direct-death",
+      "spellId": "greater-spell-turning",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "GST-rank9-no-ceiling",
+        "GST-direct-death-return"
+      ],
+      "holdIds": [],
+      "events": 8
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-GREATER-SPELL-TURNING-A/targeted-multirecipient",
+      "spellId": "greater-spell-turning",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "GST-targeted",
+        "GST-multi-recipient",
+        "GST-shared-die"
+      ],
+      "holdIds": [],
+      "events": 14
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-GREATER-SPELL-TURNING-A",
+      "spellId": "greater-spell-turning",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "GST-full-minute",
+        "GST-area",
+        "GST-recurring",
+        "GST-other-recipient",
+        "GST-no-new-cast",
+        "GST-duplicate",
+        "GST-original-concentration"
+      ],
+      "holdIds": [],
+      "events": 140
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-GREATER-SPELL-TURNING-B/class-spell",
+      "spellId": "greater-spell-turning",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "GST-class-spell",
+        "GST-costs-retained",
+        "GST-no-original-hit"
+      ],
+      "holdIds": [],
+      "events": 13
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-GREATER-SPELL-TURNING-B/countered-replacement",
+      "spellId": "greater-spell-turning",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "GST-countered-recast",
+        "GST-original-deadline-retained",
+        "GST-repeat-cost-cadence"
+      ],
+      "holdIds": [],
+      "events": 67
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-GREATER-SPELL-TURNING-B/dead-owner-conditional",
+      "spellId": "greater-spell-turning",
+      "status": "HELD_NO_POSITIVE_CLAIM",
+      "claims": [],
+      "holdIds": [
+        "WC188-H-DEAD-OWNER"
+      ],
+      "events": 0
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-GREATER-SPELL-TURNING-B/ordinary-return-terminal",
+      "spellId": "greater-spell-turning",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "GST-ordinary-pair-terminal",
+        "GST-no-ordinary-charge-duplication"
+      ],
+      "holdIds": [],
+      "events": 14
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-GREATER-SPELL-TURNING-B/physical-Shove",
+      "spellId": "greater-spell-turning",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "GST-nonspell-boundary"
+      ],
+      "holdIds": [],
+      "events": 11
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-GREATER-SPELL-TURNING-B/preexisting-buff-removal",
+      "spellId": "greater-spell-turning",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "GST-existing-buff",
+        "GST-source-removal",
+        "DISPEL-real-rank3-cost3-DC19"
+      ],
+      "holdIds": [],
+      "events": 22
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-GREATER-SPELL-TURNING-B/reciprocal",
+      "spellId": "greater-spell-turning",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "GST-reciprocal",
+        "GST-costs-retained",
+        "GST-no-original-hit"
+      ],
+      "holdIds": [],
+      "events": 14
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-GREATER-SPELL-TURNING-B/same-recipient-priority",
+      "spellId": "greater-spell-turning",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "GST-same-recipient-priority",
+        "GST-ordinary-capacity-retained"
+      ],
+      "holdIds": [],
+      "events": 15
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-GREATER-SPELL-TURNING-B/self-directed",
+      "spellId": "greater-spell-turning",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "GST-self-directed",
+        "GST-costs-retained",
+        "GST-no-original-hit"
+      ],
+      "holdIds": [],
+      "events": 12
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-GREATER-SPELL-TURNING-B/suppressed-expiry",
+      "spellId": "greater-spell-turning",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "GST-suppression-clock",
+        "GST-no-expired-resumption"
+      ],
+      "holdIds": [],
+      "events": 70
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-GREATER-SPELL-TURNING-B/unwilling-return",
+      "spellId": "greater-spell-turning",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "GST-unwilling-return",
+        "GST-costs-retained",
+        "GST-no-original-hit"
+      ],
+      "holdIds": [],
+      "events": 13
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-GREATER-SPELL-TURNING-B",
+      "spellId": "greater-spell-turning",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "GST-beneficial",
+        "GST-persistent-return",
+        "GST-original-deadline",
+        "GST-no-original-hit",
+        "GST-expiry"
+      ],
+      "holdIds": [],
+      "events": 81
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-NULLIFICATION-WAVE-A/actual-summon-ending",
+      "spellId": "nullification-wave",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "NW-actual-summon-lifecycle",
+        "NW-attached-phase-accounting",
+        "NW-no-corpse-loot"
+      ],
+      "holdIds": [],
+      "events": 17
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-NULLIFICATION-WAVE-A/permanent-suite-protected-book",
+      "spellId": "nullification-wave",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "NW-permanent-continuing-effect",
+        "NW-Spell-Preservation-exception"
+      ],
+      "holdIds": [],
+      "events": 719
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-NULLIFICATION-WAVE-A",
+      "spellId": "nullification-wave",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "NW-own-allied-enemy",
+        "NW-tempHP",
+        "NW-form-gear-lifecycle",
+        "NW-Haste-ending-cost",
+        "NW-no-save-no-check",
+        "NW-history-preserved"
+      ],
+      "holdIds": [],
+      "events": 33
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-NULLIFICATION-WAVE-B/blocked-behind-wall",
+      "spellId": "nullification-wave",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "NW-hidden-effects-not-recaptured",
+        "NW-source-cost-history"
+      ],
+      "holdIds": [],
+      "events": 27
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-NULLIFICATION-WAVE-B/mandatory-reversion-conflict",
+      "spellId": "nullification-wave",
+      "status": "HELD_NO_POSITIVE_CLAIM",
+      "claims": [],
+      "holdIds": [
+        "WC188-H-REVERSION"
+      ],
+      "events": 0
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-NULLIFICATION-WAVE-B/two-suppressors",
+      "spellId": "nullification-wave",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "NW-antimagic-immutable-admission",
+        "NW-no-recapture",
+        "NW-two-fields"
+      ],
+      "holdIds": [],
+      "events": 23
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-NULLIFICATION-WAVE-B/unique-permanent-item-qualification",
+      "spellId": "nullification-wave",
+      "status": "HELD_NO_POSITIVE_CLAIM",
+      "claims": [],
+      "holdIds": [
+        "WC188-H-SOURCE",
+        "WC188-H-UNIQUE-PROPERTY"
+      ],
+      "events": 0
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-NULLIFICATION-WAVE-B",
+      "spellId": "nullification-wave",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "NW-antimagic-immutable-admission",
+        "NW-no-recapture",
+        "NW-live-resumption"
+      ],
+      "holdIds": [],
+      "events": 23
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-PRISMATIC-SPHERE-A/L2-object",
+      "spellId": "prismatic-sphere",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "PS-L2",
+        "PS-actual-object-source",
+        "PS-no-invented-weapon"
+      ],
+      "holdIds": [
+        "WC188-H-PHYSICAL"
+      ],
+      "events": 21
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-PRISMATIC-SPHERE-A/L3-medium",
+      "spellId": "prismatic-sphere",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "PS-L3",
+        "PS-actual-water-moving-source",
+        "PS-Ready-paid-release"
+      ],
+      "holdIds": [
+        "WC188-H-PHYSICAL"
+      ],
+      "events": 19
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-PRISMATIC-SPHERE-A/L4-information",
+      "spellId": "prismatic-sphere",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "PS-L4",
+        "PS-information-boundary"
+      ],
+      "holdIds": [],
+      "events": 17
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-PRISMATIC-SPHERE-A/L5-targeted",
+      "spellId": "prismatic-sphere",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "PS-L5",
+        "PS-distinct-layer-removal",
+        "PS-unaffected-outside-recipient"
+      ],
+      "holdIds": [],
+      "events": 32
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-PRISMATIC-SPHERE-A/L6-area",
+      "spellId": "prismatic-sphere",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "PS-L6",
+        "PS-real-area-source"
+      ],
+      "holdIds": [],
+      "events": 17
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-PRISMATIC-SPHERE-A/L7-transit",
+      "spellId": "prismatic-sphere",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "PS-L7",
+        "PS-real-Teleport",
+        "PS-nine-endpoint-candidates",
+        "PS-Ready-before-resolution"
+      ],
+      "holdIds": [],
+      "events": 22
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-PRISMATIC-SPHERE-A/authorized-exit-reentry",
+      "spellId": "prismatic-sphere",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "PS-authorized-exit",
+        "PS-authorized-reentry",
+        "PS-cargo-closure",
+        "PS-source-qualified-flight"
+      ],
+      "holdIds": [
+        "WC188-H-PHYSICAL"
+      ],
+      "events": 28
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-PRISMATIC-SPHERE-A",
+      "spellId": "prismatic-sphere",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "PS-L1",
+        "PS-closed-geometry",
+        "PS-real-interior-support",
+        "PS-full-body-sweep",
+        "PAIR-Ultimate-Sphere"
+      ],
+      "holdIds": [],
+      "events": 18
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-PRISMATIC-SPHERE-B/Anchor-source-pair",
+      "spellId": "prismatic-sphere",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "PAIR-Anchor-Sphere",
+        "PS-source-preserving-suppression"
+      ],
+      "holdIds": [],
+      "events": 30
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-PRISMATIC-SPHERE-B/mandatory-planar-return",
+      "spellId": "prismatic-sphere",
+      "status": "HELD_NO_POSITIVE_CLAIM",
+      "claims": [],
+      "holdIds": [
+        "WC188-H-PLANAR"
+      ],
+      "events": 0
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-PRISMATIC-SPHERE-B/occupied-creation",
+      "spellId": "prismatic-sphere",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "PS-known-occupied-admission"
+      ],
+      "holdIds": [],
+      "events": 3
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-PRISMATIC-SPHERE-B/overlapping-sources",
+      "spellId": "prismatic-sphere",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "PS-paid-overlap",
+        "PS-source-ownership",
+        "PS-no-recursive-field-maintenance"
+      ],
+      "holdIds": [],
+      "events": 30
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-PRISMATIC-SPHERE-B/parent-removal",
+      "spellId": "prismatic-sphere",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "PS-parent-removal",
+        "PS-independent-support-survives"
+      ],
+      "holdIds": [],
+      "events": 23
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-PRISMATIC-SPHERE-B",
+      "spellId": "prismatic-sphere",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "PS-partial-suppression",
+        "PS-occupied-return",
+        "PS-real-Shove",
+        "PS-real-Gust",
+        "PS-no-crush",
+        "PS-no-layer-regeneration",
+        "PS-support-loss-no-invented-fall"
+      ],
+      "holdIds": [],
+      "events": 47
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-REALITY-ANCHOR-A/transmutation-placement",
+      "spellId": "reality-anchor",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "RA-both-placements",
+        "RA-actual-school-classification",
+        "RA-no-new-access",
+        "RA-live-form-suppression",
+        "RA-nonTransmutation-allowed"
+      ],
+      "holdIds": [],
+      "events": 74
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-REALITY-ANCHOR-A",
+      "spellId": "reality-anchor",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "RA-permission-positive-allow",
+        "RA-permission-positive-deny",
+        "RA-policy-edit-Action",
+        "RA-tempHP-suppression-no-refill"
+      ],
+      "holdIds": [],
+      "events": 38
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-REALITY-ANCHOR-B/creation-denied",
+      "spellId": "reality-anchor",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "RA-no-creation-bootstrap"
+      ],
+      "holdIds": [],
+      "events": 12
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-REALITY-ANCHOR-B/external-antimagic",
+      "spellId": "reality-anchor",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "RA-external-antimagic",
+        "RA-clipped-overlap",
+        "RA-no-remote-cancel"
+      ],
+      "holdIds": [],
+      "events": 73
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-REALITY-ANCHOR-B/owner-death",
+      "spellId": "reality-anchor",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "RA-owner-death",
+        "RA-no-fake-damage",
+        "RA-lifecycle-cleanup"
+      ],
+      "holdIds": [],
+      "events": 7
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-REALITY-ANCHOR-B/unknown-item-innate-profile",
+      "spellId": "reality-anchor",
+      "status": "HELD_NO_POSITIVE_CLAIM",
+      "claims": [],
+      "holdIds": [
+        "WC188-H-UNIQUE-PROPERTY"
+      ],
+      "events": 0
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-REALITY-ANCHOR-B/wave-source-pair",
+      "spellId": "reality-anchor",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "PAIR-Wave-Anchor",
+        "RA-no-retroactive-removal"
+      ],
+      "holdIds": [],
+      "events": 23
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-REALITY-ANCHOR-B",
+      "spellId": "reality-anchor",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "RA-opposite-fields",
+        "RA-deny-union",
+        "RA-self-maintenance-finite",
+        "RA-separate-deadlines",
+        "RA-no-replayed-payload"
+      ],
+      "holdIds": [],
+      "events": 79
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-ULTIMATE-WARD-A/control-and-mixed-consent",
+      "spellId": "ultimate-ward",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "UW-control",
+        "UW-mixed-consent",
+        "UW-Haste-cost-exception"
+      ],
+      "holdIds": [],
+      "events": 23
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-ULTIMATE-WARD-A/direct-death-100",
+      "spellId": "ultimate-ward",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "UW-real-direct-death",
+        "UW-no-fake-damage"
+      ],
+      "holdIds": [],
+      "events": 12
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-ULTIMATE-WARD-A/direct-death-101",
+      "spellId": "ultimate-ward",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "UW-threshold101",
+        "UW-no-fake-damage"
+      ],
+      "holdIds": [],
+      "events": 12
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-ULTIMATE-WARD-A/forced-movement",
+      "spellId": "ultimate-ward",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "UW-forced-movement"
+      ],
+      "holdIds": [],
+      "events": 12
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-ULTIMATE-WARD-A",
+      "spellId": "ultimate-ward",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "UW-damage",
+        "UW-RP-loss",
+        "UW-body-prevention",
+        "UW-costs-not-refunded"
+      ],
+      "holdIds": [],
+      "events": 25
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-ULTIMATE-WARD-B/24hour-clock",
+      "spellId": "ultimate-ward",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "UW-full24hours",
+        "UW-no-time-reset",
+        "UW-no-rest-refund"
+      ],
+      "holdIds": [
+        "WC188-H-WORLD-CONTINUATION"
+      ],
+      "events": 12
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-ULTIMATE-WARD-B/nullification-removes-source",
+      "spellId": "ultimate-ward",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "PAIR-Wave-Ultimate",
+        "UW-not-self-removal-immune"
+      ],
+      "holdIds": [],
+      "events": 15
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-ULTIMATE-WARD-B/old-harm-suppression-expiry",
+      "spellId": "ultimate-ward",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "UW-preexisting-harm",
+        "UW-suppression-not-cure",
+        "UW-source-removal",
+        "UW-original-clock"
+      ],
+      "holdIds": [],
+      "events": 74
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-ULTIMATE-WARD-B/unpreventable-death-or-Hunt",
+      "spellId": "ultimate-ward",
+      "status": "HELD_NO_POSITIVE_CLAIM",
+      "claims": [],
+      "holdIds": [
+        "WC188-H-ABSOLUTE-CONFLICT"
+      ],
+      "events": 0
+    },
+    {
+      "id": "RANK9WARDCONTROL6129-ULTIMATE-WARD-B",
+      "spellId": "ultimate-ward",
+      "status": "AUTHORED_STATIC_TRACE",
+      "claims": [
+        "UW-actual-post-defense-transfer",
+        "UW-bypass-scoped",
+        "UW-direct-versus-share"
+      ],
+      "holdIds": [],
+      "events": 29
+    }
+  ],
+  "runtimeExecuted": false,
+  "historicalProgramsExecuted": false
+}

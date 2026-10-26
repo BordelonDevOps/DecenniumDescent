@@ -1,0 +1,222 @@
+{
+  "id": "RANK9-WARDCONTROL6-RETURN188-INDEPENDENT-AUDIT",
+  "recordedAtUtc": "2026-10-26T16:10:12.797009+00:00",
+  "status": "PASS",
+  "checkCount": 30,
+  "checksPassed": 30,
+  "checksFailed": 0,
+  "failures": [],
+  "checks": [
+    {
+      "check": "Downloaded Return188 ZIP matches the director delivery size and SHA-256",
+      "passed": true,
+      "detail": {
+        "bytes": 141721055,
+        "sha256": "93e609e4a11b428cbb99de7da42dded65879274ebdc50c7a8696b137c576c190"
+      }
+    },
+    {
+      "check": "Downloaded delivery JSON is present and independently hashed",
+      "passed": true,
+      "detail": {
+        "bytes": 64978,
+        "sha256": "af6a86f32579eb66958ce8ddc3b27977e543bffc6a2c01e9a4c24c73d0f0907a"
+      }
+    },
+    {
+      "check": "Return188 binds the exact current-source and publishing commits",
+      "passed": true
+    },
+    {
+      "check": "Exact source-anchor and publishing commits exist locally",
+      "passed": true
+    },
+    {
+      "check": "Return188 ZIP CRC scan passes and member names are unique",
+      "passed": true,
+      "detail": {
+        "members": 229
+      }
+    },
+    {
+      "check": "Return188 has no traversal, hidden, or temporary members",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "Internal manifest is exact and self-excluding",
+      "passed": true
+    },
+    {
+      "check": "Delivery manifest binds the full ZIP and every unique member",
+      "passed": true
+    },
+    {
+      "check": "All 229 members match independent size/SHA-256/CRC checks and the delivery bindings",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "All 228 payload members match the internal manifest",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "Embedded input packet and manifest match the locally prepared 187 packet byte-for-byte",
+      "passed": true
+    },
+    {
+      "check": "All original current-source packet members are preserved exactly under packet187/",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "Current-source candidate binds the exact source anchor and queue state",
+      "passed": true
+    },
+    {
+      "check": "All 91 refreshed source bindings reproduce exact Git bytes and blob IDs",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "All 15 current context snapshots reproduce exact Git bytes",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "All supplemental source records reproduce their exact Git blobs",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "All source-evidence manifest entries bind exact archive members",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "Source and publishing labels remain separate and canonical files are unchanged",
+      "passed": true
+    },
+    {
+      "check": "Director, delivery, and semantic check agree on the six per-identity rulings",
+      "passed": true
+    },
+    {
+      "check": "Exact four acceptances/two narrow holds and static-only/native-card scope agree",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "Both retained blockers are exact and narrowly scoped",
+      "passed": true
+    },
+    {
+      "check": "Canonical authority remains 766/82/0 with 490 procedures and 173 interfaces",
+      "passed": true
+    },
+    {
+      "check": "Director reports zero failures in semantic, data, and final document checks",
+      "passed": true
+    },
+    {
+      "check": "Reported case/event/operation counts match the required six-spell scope",
+      "passed": true
+    },
+    {
+      "check": "All 60 casebook rows mirror the case index and stay within the six requested identities",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "All 5,182 event states pass independent forward/inverse and monotone-clock replay",
+      "passed": true,
+      "detail": {
+        "cases": 60,
+        "events": 5182,
+        "forwardOperations": 10364,
+        "inverseOperations": 10364,
+        "errors": []
+      }
+    },
+    {
+      "check": "Every accepted case is present, source-scoped, replayed, and has no blocking hold",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "Noncanonical proposal operations have exact inverse patches and remain unapplied",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "Next queue group is exactly the current nine-identity Agency/Control cohort",
+      "passed": true
+    },
+    {
+      "check": "Runtime, human-play, balance, cosmology, closure, and release approval remain explicitly out of scope",
+      "passed": true
+    }
+  ],
+  "sourceAnchorCommit": "9624930ad8ac3a06c7e4bda1b84c8a730ae69bd3",
+  "publishingCommit": "1774828baf0f8610437030613d34112f4307efba",
+  "returnArchive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_wardcontrol6_return188_received/DD_Rank9_WardControl6_Director_Return188.zip",
+    "bytes": 141721055,
+    "sha256": "93e609e4a11b428cbb99de7da42dded65879274ebdc50c7a8696b137c576c190",
+    "memberCount": 229
+  },
+  "deliveryManifest": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_wardcontrol6_return188_received/DD_Rank9_WardControl6_Director_Return188_DELIVERY.json",
+    "bytes": 64978,
+    "sha256": "af6a86f32579eb66958ce8ddc3b27977e543bffc6a2c01e9a4c24c73d0f0907a"
+  },
+  "acceptedIds": [
+    "greater-spell-turning",
+    "eternal-ward",
+    "ultimate-ward",
+    "prismatic-sphere"
+  ],
+  "unacceptedIds": [
+    "nullification-wave",
+    "reality-anchor"
+  ],
+  "applied": false,
+  "blockers": {
+    "nullification-wave": [
+      "WC188-B01"
+    ],
+    "reality-anchor": [
+      "WC188-B02"
+    ]
+  },
+  "canonicalAuthorityStill": {
+    "reviewedApplied": 766,
+    "pending": 82,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 490,
+    "scopedInterfaces": 173
+  },
+  "replay": {
+    "cases": 60,
+    "events": 5182,
+    "forwardOperations": 10364,
+    "inverseOperations": 10364,
+    "allExactReplaysPass": true
+  },
+  "nextQueueGroup": {
+    "group": "rank9-agency-control9",
+    "pendingIds": [
+      "absolute-domination",
+      "command-reality",
+      "dominate-legion",
+      "erase-soul",
+      "overwhelming-presence",
+      "perfect-mesmerize",
+      "prophecy-fulfilled",
+      "puppetmaster-s-realm",
+      "rewrite-loyalty"
+    ],
+    "pendingCount": 9
+  }
+}
