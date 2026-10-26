@@ -1,0 +1,9 @@
+# Ordinary spell review snapshot — Rank9 Catastrophe10 Conference02
+
+Current authored ordinary-spell authority is **739 reviewed / 109 pending / 0 accepted-unapplied**, with 463 complete standalone procedures. Rank8 Remaining4 was accepted by the GPT director, independently audited, and applied to exactly prismatic-wall, faction-convergence, divine-intervention-lesser, and reality-patch.
+
+The next group is exactly ten pending Rank9 Catastrophe identities. Its fresh Conference02 packet is bound to the live 739/109 index, catalog, queue, handoff, pending audit, and latest application. It contains 86 current source bindings and preserves all 25 original source questions as unselected. The source preparation check and independent verifier pass 9 and 15 checks respectively. The packet has not yet been submitted to the director.
+
+The prior Conference01 candidate and archive are preserved as exact historical evidence; its old 525/323 labels do not determine present authority. No source rules, global rules, runtime behavior, human-play, balance, cosmology, or release state are approved by this packet. Continue with the GPT director, apply only the exact IDs it accepts, push each application, and continue until pending reaches zero.
+
+See [current handoff](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_171.json), [pending identity audit](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT109_PENDING_IDENTITY_AUDIT_171.json), [candidate](DescentReviewChanges/ReviewBible/data/director/spell_review/rank9_catastrophe_10_source_conference_02.json), [source packet](docs/audit/2026-10-08/full-game/DD_Rank9_Catastrophe_10_Source_Conference_02.zip), and [independent verification](docs/audit/2026-10-08/full-game/RANK9_CATASTROPHE_10_SOURCE_CONFERENCE_02_VERIFICATION_171.json).
