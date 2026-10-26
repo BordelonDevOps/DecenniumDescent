@@ -1,0 +1,211 @@
+{
+  "id": "MD196-DIRECTOR-DECISION",
+  "authorityBaseline": {
+    "reviewedApplied": 782,
+    "pending": 66,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 506,
+    "scopedInterfaces": 173
+  },
+  "counts": {
+    "procedures": 6,
+    "acceptedProcedures": 4,
+    "blockedProcedures": 2,
+    "nativePlacements": 6,
+    "classAccessRows": 8,
+    "originalQuestions": 28,
+    "focusedAddenda": 2,
+    "questionDispositions": 30,
+    "originalPerIdentityQuestionEnvelopes": 6,
+    "mainCases": 12,
+    "branches": 68,
+    "cases": 80,
+    "events": 1650,
+    "forwardEventOperations": 3300,
+    "inverseEventOperations": 3300,
+    "eventOperations": 6600,
+    "proposalOperations": 24,
+    "futureObligations": 10,
+    "holdRecords": 141,
+    "uniqueHoldDisplayIds": 141,
+    "inherited194HoldRecords": 56,
+    "newHoldRecords": 10,
+    "comparisonHoldRecords": 75,
+    "refreshedSourceBindings": 120,
+    "additionalSourceBindings": 32,
+    "sourceChecks": 1158,
+    "profileChecks": 564,
+    "dataIntegrityChecks": 59435,
+    "clockChecks": 1028,
+    "scopedSemanticChecks": 6616,
+    "acceptanceBlockers": 2
+  },
+  "acceptedIds": [
+    "mass-willbreaker",
+    "mind-prison-mass",
+    "mind-wipe",
+    "unmake-spell"
+  ],
+  "unacceptedIds": [
+    "mind-collapse",
+    "unravel-identity"
+  ],
+  "decisions": [
+    {
+      "id": "mass-willbreaker",
+      "accepted": true,
+      "applied": false,
+      "blockerIds": []
+    },
+    {
+      "id": "mind-collapse",
+      "accepted": false,
+      "applied": false,
+      "blockerIds": [
+        "MD196-B01"
+      ]
+    },
+    {
+      "id": "mind-prison-mass",
+      "accepted": true,
+      "applied": false,
+      "blockerIds": []
+    },
+    {
+      "id": "mind-wipe",
+      "accepted": true,
+      "applied": false,
+      "blockerIds": []
+    },
+    {
+      "id": "unmake-spell",
+      "accepted": true,
+      "applied": false,
+      "blockerIds": []
+    },
+    {
+      "id": "unravel-identity",
+      "accepted": false,
+      "applied": false,
+      "blockerIds": [
+        "MD196-B02"
+      ]
+    }
+  ],
+  "blockers": [
+    {
+      "id": "MD196-B01",
+      "blockingForIds": [
+        "mind-collapse"
+      ],
+      "kind": "acceptance blocker / whole positive branch hold",
+      "status": "OPEN",
+      "caseIds": [
+        "RANK9MEMORYDENIAL6129-MIND-COLLAPSE-B/extra-action-not-turn"
+      ],
+      "questionIds": [
+        "MD9-Q07",
+        "MD9-Q09",
+        "MD9-Q28",
+        "MEM129-ADD02"
+      ],
+      "futureObligationIds": [
+        "MD9-COLLAPSE"
+      ],
+      "missing": "The preserved obligation includes an extra-turn trace. No exact acquired source granting a genuine full extra turn and complete legal actor has been bound for that positive branch. Current demonstrated regular and attached phases do not prove it. Wizard extra Actions, echoes, initiative reordering and Oracle restricted additional action are not a full turn.",
+      "minimalCorrection": "Bind the genuine full-turn grant and acquired actor and demonstrate unchanged original three-regular-END clock/recharge/Ready history, or obtain an explicit director revision of that positive-evidence obligation. Keep all other passing Mind Collapse evidence unchanged."
+    },
+    {
+      "id": "MD196-B02",
+      "blockingForIds": [
+        "unravel-identity"
+      ],
+      "kind": "acceptance blocker / incomplete required dependency witness",
+      "status": "OPEN",
+      "caseIds": [
+        "RANK9MEMORYDENIAL6129-UNRAVEL-IDENTITY-A",
+        "RANK9MEMORYDENIAL6129-UNRAVEL-IDENTITY-B/multiclass-form-dependency-held"
+      ],
+      "questionIds": [
+        "MD9-Q23",
+        "MD9-Q24",
+        "MEM129-ADD01",
+        "MEM129-ADD02"
+      ],
+      "futureObligationIds": [
+        "MD9-CLASS-LOSS"
+      ],
+      "missing": "The complete single-class Wizard/Conjuration-Familiar projection is demonstrated, but the requested actual multiclass/class-form/maxima dependency witness is not complete. The 16 supplied class files are preserved; this is missing reviewed integration/evidence in this return, not a claim those sources do not exist. No positive class-form/zero-state reversion or multiclass resource projection has been certified.",
+      "minimalCorrection": "Bind and enumerate one complete source-legal multiclass actor plus the actual accepted affected class-form/life/maxima/companion interfaces; trace every disabled Base/Arch/Hero/passive and derived maximum through suppression, source-ending callbacks and exact recovery, with no free refill or resurrected effect. Resolve any genuinely missing source profile as a narrow hold, not invented mechanics."
+    }
+  ],
+  "carriedNamedBlockersUnchanged": {
+    "AG190": {
+      "ids": [
+        "absolute-domination",
+        "puppetmaster-s-realm"
+      ],
+      "blockers": [
+        "AG190-B01",
+        "AG190-B02"
+      ]
+    },
+    "TF192": {
+      "ids": [
+        "time-stop",
+        "eternal-prophecy",
+        "fate-rewrite",
+        "collapse-timeline"
+      ],
+      "blockers": [
+        "TF192-B01",
+        "TF192-B02",
+        "TF192-B04",
+        "TF192-B05"
+      ]
+    },
+    "CC194": {
+      "ids": [
+        "perfect-spell",
+        "unholy-ascendance"
+      ],
+      "blockers": [
+        "CC194-B01",
+        "CC194-B04"
+      ]
+    }
+  },
+  "nextQueueGroup": {
+    "group": "rank9-knowledge-revelation5",
+    "pendingIds": [
+      "cosmic-awareness",
+      "cosmic-revelation",
+      "divine-truth",
+      "oracle-of-eternity",
+      "faction-omniscience-supreme"
+    ],
+    "pendingCount": 5,
+    "historicalPhase": "source-conference-prepared-unsent",
+    "candidate": {
+      "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/rank9_knowledge_revelation_5_source_conference_01.json",
+      "bytes": 611769,
+      "sha256": "a68d1cad8def6fc7396740c29539a5ca2f7117f22e7ece70fc79cfe4921b8888"
+    },
+    "archive": {
+      "path": "docs/audit/2026-10-08/full-game/DD_Rank9_Knowledge_Revelation_5_Source_Conference_01.zip",
+      "bytes": 51396329,
+      "sha256": "c9f985fbcabd3c572aee44ff7763c1a5999e638c66ba249459e4c5b5787ba0e0"
+    },
+    "freshPacketRequiredForCurrentAuthority": true,
+    "status": "PENDING_FRESH_PACKET_FOR_CURRENT_AUTHORITY"
+  },
+  "application": "No canonical writes or application. Owner independent audit/application and fresh authority are required before continuing the next exact group.",
+  "qualification": [
+    "Static authored procedure review only. No runtime selection, execution, implementation, human play/playtest, balance, cosmology, domain closure, completion or release approval.",
+    "Applied=false. Canonical index, catalog, queue and handoff remain byte unchanged. Authority baseline remains 782 applied / 66 pending / 0 previously accepted-unapplied.",
+    "All NEW selections below are local to the named spell. They do not amend accepted class acquisition, condition, Ready, companion, memory, casting or cosmology interfaces.",
+    "Actors and scenes are explicit source-legal conditional fixtures, not authenticated campaign persons, histories, equipment or world facts. Actual campaign application requires those actual prerequisites.",
+    "Unavailable source identities, physical facts and acquired permissions remain specific holds. Saved audit knowledge is private evidence, not in-world recollection or character access.",
+    "Closed cohorts and feats are comparisons within their exact recorded acceptance only. AG190, TF192 and CC194 blockers remain unchanged."
+  ]
+}

@@ -1,0 +1,338 @@
+{
+  "id": "RANK9-MEMORYDENIAL6-RETURN196-INDEPENDENT-AUDIT",
+  "status": "PASS",
+  "checksPassed": 20,
+  "checksFailed": 0,
+  "checks": [
+    {
+      "check": "Director return archive matches delivery byte count and SHA-256",
+      "passed": true,
+      "detail": {
+        "bytes": 234272866,
+        "sha256": "bc00b730c195ae835c560fd06945d04ae58359a5cbf8dccf6f72f7873d078ee4"
+      }
+    },
+    {
+      "check": "Director says this is unapplied with exact four approvals and two holds",
+      "passed": true,
+      "detail": {
+        "acceptedIds": [
+          "mass-willbreaker",
+          "mind-prison-mass",
+          "mind-wipe",
+          "unmake-spell"
+        ],
+        "unacceptedIds": [
+          "mind-collapse",
+          "unravel-identity"
+        ]
+      }
+    },
+    {
+      "check": "Director package-level manifest checks pass",
+      "passed": true,
+      "detail": {
+        "packageAllPass": true,
+        "finalMetadataChecks": 275,
+        "packageChecks": 608,
+        "savedArtifactVerification": {
+          "status": "PASS",
+          "libraryFileId": "libfile_0346d3b820e081918aba4c094ef0ddd0",
+          "savedFileId": "file_0000000019e481f69dcdc0c345ae1917",
+          "bytes": 234272866,
+          "sha256": "bc00b730c195ae835c560fd06945d04ae58359a5cbf8dccf6f72f7873d078ee4",
+          "byteForByteEqualToLocal": true,
+          "memberCount": 151,
+          "exactAllowlist": true,
+          "allMemberSizesSHA256AndCRCPass": true,
+          "hiddenOrTemporaryMembers": 0,
+          "checkCount": 458,
+          "scope": "Saved ZIP materialized and independently streamed against the local sealed ZIP and its exact delivery member table; no authored source or state changes."
+        }
+      }
+    },
+    {
+      "check": "ZIP has unique safe member paths",
+      "passed": true,
+      "detail": {
+        "members": 151,
+        "unique": 151
+      }
+    },
+    {
+      "check": "Archive membership equals both delivery and package member manifests",
+      "passed": true,
+      "detail": {
+        "archive": 151,
+        "delivery": 151,
+        "memberManifest": 150
+      }
+    },
+    {
+      "check": "Every archive member streams cleanly and matches byte, SHA-256, and CRC bindings",
+      "passed": true,
+      "detail": {
+        "checked": 151,
+        "uncompressedBytes": 1648959239,
+        "failures": []
+      }
+    },
+    {
+      "check": "Return binds to the requested current source commit and baseline authority",
+      "passed": true,
+      "detail": {
+        "sourceCommit": "6018e1a2181791ec559456638e46dd3d98e0afe6",
+        "authorityBaseline": {
+          "reviewedApplied": 782,
+          "pending": 66,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 506,
+          "scopedInterfaces": 173
+        }
+      }
+    },
+    {
+      "check": "Director's saved source verification has 120 source bindings and 1,158 passing checks",
+      "passed": true,
+      "detail": {
+        "bindings": 120,
+        "additionalBindings": 32,
+        "checkCount": 1158,
+        "checks": 1158
+      }
+    },
+    {
+      "check": "All 120 source bindings independently match Git blobs at the bound commit",
+      "passed": true,
+      "detail": {
+        "checked": 120,
+        "failures": []
+      }
+    },
+    {
+      "check": "All 32 additional source copies match their declared byte and SHA-256 bindings",
+      "passed": true,
+      "detail": {
+        "checked": 32,
+        "failures": []
+      }
+    },
+    {
+      "check": "Return embeds the exact submitted Memory/Denial6 source packet",
+      "passed": true,
+      "detail": {
+        "embeddedBytes": 154534518,
+        "expectedBytes": 154534518,
+        "embeddedSHA256": "d836a1588168384d947f720e0f253745cc4b3eb33f975a8af7d48c357f73b66c",
+        "expectedSHA256": "d836a1588168384d947f720e0f253745cc4b3eb33f975a8af7d48c357f73b66c"
+      }
+    },
+    {
+      "check": "Director decision, procedures, and model agree on exact approvals and blocks",
+      "passed": true,
+      "detail": {
+        "acceptedIds": [
+          "mass-willbreaker",
+          "mind-prison-mass",
+          "mind-wipe",
+          "unmake-spell"
+        ],
+        "unacceptedIds": [
+          "mind-collapse",
+          "unravel-identity"
+        ]
+      }
+    },
+    {
+      "check": "All four approved procedures are accepted, unapplied, and have no blockers",
+      "passed": true,
+      "detail": {
+        "mass-willbreaker": {
+          "decision": {
+            "id": "mass-willbreaker",
+            "accepted": true,
+            "applied": false,
+            "blockerIds": []
+          },
+          "procedure": {
+            "accepted": true,
+            "applied": false,
+            "status": "STATIC_AUTHORING_ACCEPTED_UNAPPLIED",
+            "blockerIds": []
+          }
+        },
+        "mind-prison-mass": {
+          "decision": {
+            "id": "mind-prison-mass",
+            "accepted": true,
+            "applied": false,
+            "blockerIds": []
+          },
+          "procedure": {
+            "accepted": true,
+            "applied": false,
+            "status": "STATIC_AUTHORING_ACCEPTED_UNAPPLIED",
+            "blockerIds": []
+          }
+        },
+        "mind-wipe": {
+          "decision": {
+            "id": "mind-wipe",
+            "accepted": true,
+            "applied": false,
+            "blockerIds": []
+          },
+          "procedure": {
+            "accepted": true,
+            "applied": false,
+            "status": "STATIC_AUTHORING_ACCEPTED_UNAPPLIED",
+            "blockerIds": []
+          }
+        },
+        "unmake-spell": {
+          "decision": {
+            "id": "unmake-spell",
+            "accepted": true,
+            "applied": false,
+            "blockerIds": []
+          },
+          "procedure": {
+            "accepted": true,
+            "applied": false,
+            "status": "STATIC_AUTHORING_ACCEPTED_UNAPPLIED",
+            "blockerIds": []
+          }
+        }
+      }
+    },
+    {
+      "check": "Both rejected procedures stay blocked with named blockers and precise unresolved conditions",
+      "passed": true,
+      "detail": {
+        "mind-collapse": {
+          "blockerIds": [
+            "MD196-B01"
+          ],
+          "decision": {
+            "id": "mind-collapse",
+            "accepted": false,
+            "applied": false,
+            "blockerIds": [
+              "MD196-B01"
+            ]
+          }
+        },
+        "unravel-identity": {
+          "blockerIds": [
+            "MD196-B02"
+          ],
+          "decision": {
+            "id": "unravel-identity",
+            "accepted": false,
+            "applied": false,
+            "blockerIds": [
+              "MD196-B02"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "check": "The package's own data, clock, and scoped semantic gates pass; blockers remain explicit",
+      "passed": true,
+      "detail": {
+        "sourcePass": true,
+        "dataPass": true,
+        "clockPass": true,
+        "scopedSemanticChecksPass": true,
+        "completeBatchPass": false
+      }
+    },
+    {
+      "check": "Bound source catalog has exact committed bytes and expected SHA",
+      "passed": true,
+      "detail": {
+        "bytes": 4945319,
+        "sha256": "f52cf6a4a4673897615a74c7c67dcba798c431362d4357e71ee552cc7c5d31f8"
+      }
+    },
+    {
+      "check": "All 80 indexed cases have unique, matching case-hash bindings",
+      "passed": true,
+      "detail": {
+        "cases": 80,
+        "events": 1650,
+        "mainCases": 12,
+        "branches": 68
+      }
+    },
+    {
+      "check": "All 80 case states and 1,650 event chains replay with exact reversible patches, hashes, and monotone clocks",
+      "passed": true,
+      "detail": {
+        "cases": 80,
+        "events": 1650,
+        "forwardOperations": 3300,
+        "inverseOperations": 3300,
+        "failures": []
+      }
+    },
+    {
+      "check": "All 12 main-case disposition rows are present and remain static, non-runtime evidence",
+      "passed": true,
+      "detail": {
+        "rows": 12
+      }
+    },
+    {
+      "check": "Director identifies the next five-spell group and requires a fresh packet",
+      "passed": true,
+      "detail": {
+        "group": "rank9-knowledge-revelation5",
+        "pendingIds": [
+          "cosmic-awareness",
+          "cosmic-revelation",
+          "divine-truth",
+          "oracle-of-eternity",
+          "faction-omniscience-supreme"
+        ],
+        "pendingCount": 5,
+        "historicalPhase": "source-conference-prepared-unsent",
+        "candidate": {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/rank9_knowledge_revelation_5_source_conference_01.json",
+          "bytes": 611769,
+          "sha256": "a68d1cad8def6fc7396740c29539a5ca2f7117f22e7ece70fc79cfe4921b8888"
+        },
+        "archive": {
+          "path": "docs/audit/2026-10-08/full-game/DD_Rank9_Knowledge_Revelation_5_Source_Conference_01.zip",
+          "bytes": 51396329,
+          "sha256": "c9f985fbcabd3c572aee44ff7763c1a5999e638c66ba249459e4c5b5787ba0e0"
+        },
+        "freshPacketRequiredForCurrentAuthority": true,
+        "status": "PENDING_FRESH_PACKET_FOR_CURRENT_AUTHORITY"
+      }
+    }
+  ],
+  "sourceCommit": "6018e1a2181791ec559456638e46dd3d98e0afe6",
+  "returnArchive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_memorydenial6_return196_received/DD_Rank9_MemoryDenial6_Director_Return196.zip",
+    "bytes": 234272866,
+    "sha256": "bc00b730c195ae835c560fd06945d04ae58359a5cbf8dccf6f72f7873d078ee4"
+  },
+  "delivery": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_memorydenial6_return196_received/DD_Rank9_MemoryDenial6_Director_Return196_DELIVERY.json",
+    "bytes": 42640,
+    "sha256": "125982b862b73a5df0cf7ce8c17516664cb9f5d30311fa757cfe54fbcdf7bc4e"
+  },
+  "acceptedIds": [
+    "mass-willbreaker",
+    "mind-prison-mass",
+    "mind-wipe",
+    "unmake-spell"
+  ],
+  "unacceptedIds": [
+    "mind-collapse",
+    "unravel-identity"
+  ],
+  "applied": false
+}
