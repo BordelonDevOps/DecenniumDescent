@@ -1,0 +1,173 @@
+{
+  "id": "RANK9-PSYCHICFEAR7-RETURN182-INDEPENDENT-AUDIT",
+  "recordedAtUtc": "2026-10-26T08:28:51.692992+00:00",
+  "status": "PASS",
+  "accepted": true,
+  "applied": false,
+  "acceptedIds": [
+    "phantom-armageddon",
+    "phantom-cataclysm",
+    "frightful-sovereignty",
+    "reality-break"
+  ],
+  "unacceptedIds": [
+    "psychic-scream",
+    "mass-phantom-killer",
+    "weird"
+  ],
+  "authority": {
+    "reviewedApplied": 755,
+    "pending": 93,
+    "acceptedUnapplied": 0,
+    "completeReviewedStandaloneProcedures": 479,
+    "scopedInterfaces": 173
+  },
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_psychicfear7_return182_received/DD_Rank9_PsychicFear7_Director_Return182.zip",
+    "bytes": 86442040,
+    "sha256": "f36d4b42dcc1803c27e57af96b71e31b016a141ce95ebaf307c946091273bb56",
+    "memberCount": 175
+  },
+  "counts": {
+    "cases": 100,
+    "events": 3851,
+    "eventOperations": 15404,
+    "proposalOperations": 28,
+    "reversibleOperations": 15432,
+    "dataChecks": 48108,
+    "sourceChecks": 307,
+    "metadataChecks": 600,
+    "packageChecks": 765,
+    "savedArtifactChecks": 534
+  },
+  "independentAcceptedCaseReplay": {
+    "cases": 53,
+    "events": 1387,
+    "forwardAndInverseOperations": 5548,
+    "failures": []
+  },
+  "checksPassed": 17,
+  "checksFailed": 0,
+  "blockers": [],
+  "checks": [
+    {
+      "check": "Return182 ZIP matches the director's delivered byte count and SHA-256",
+      "passed": true,
+      "detail": {
+        "bytes": 86442040,
+        "sha256": "f36d4b42dcc1803c27e57af96b71e31b016a141ce95ebaf307c946091273bb56"
+      }
+    },
+    {
+      "check": "ZIP CRC scan succeeds and member names are unique",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ZIP contains exactly 175 safe, non-hidden, non-temporary members",
+      "passed": true,
+      "detail": {
+        "members": 175,
+        "unsafe": []
+      }
+    },
+    {
+      "check": "Internal member manifest is the exact 174-member self-excluding allowlist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "All 174 non-self members match manifest byte counts, SHA-256 and CRC32",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "Director's partial decision accepts exactly four named identities and applies none",
+      "passed": true,
+      "detail": {
+        "acceptedIds": [
+          "phantom-armageddon",
+          "phantom-cataclysm",
+          "frightful-sovereignty",
+          "reality-break"
+        ],
+        "unacceptedIds": [
+          "psychic-scream",
+          "mass-phantom-killer",
+          "weird"
+        ],
+        "blockers": [
+          "PF182-B01",
+          "PF182-B02"
+        ]
+      }
+    },
+    {
+      "check": "Semantic failure check agrees with the four-ID partial acceptance and two explicit blocker groups",
+      "passed": true,
+      "detail": {
+        "checks": 15,
+        "held": {
+          "Death Ward, Null and head consequence": "PARTIAL_HELD",
+          "Genuine full extra turn": "HELD"
+        }
+      }
+    },
+    {
+      "check": "All seven procedure and proposal rows remain unapplied proposals; the decision overlay is separate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Data validation reports 48,108 checks, 3,851 events, 15,404 operations and no failures",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Source and metadata validations pass every recorded source/metadata check",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "The return binds the exact current 94-source conference candidate and ZIP",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original question, focused-question, hold and case counts match the final return",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Return authority is frozen at 755/93/0",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Live index/catalog/queue/handoff remain byte-bound to the return's 755/93 checkpoint",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Each of the four accepted source cards is unchanged and was pending in the bound index",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "All seven noncanonical proposal operations replay and invert exactly",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "Accepted-identity case records independently replay all forward/inverse state hashes",
+      "passed": true,
+      "detail": {
+        "cases": 53,
+        "events": 1387,
+        "operations": 5548,
+        "failures": []
+      }
+    }
+  ],
+  "limits": "Exact partial static authored acceptance only for the four named identities. The other three identities remain blocked and unapplied; no runtime, human-play, balance, cosmology, domain-closure, or release approval is claimed."
+}
