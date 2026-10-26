@@ -1,0 +1,11 @@
+# Ordinary spell review snapshot — Rank9 Storm Control6 Conference02 submitted
+
+The current authored spell authority remains **749 reviewed/applied, 99 pending, and 0 accepted-unapplied**, with 473 complete reviewed standalone procedures and 173 scoped interfaces. The last applied batch remains the exact ten Rank9 Catastrophe identities. No authority counts changed in this submission.
+
+The exact six pending Storm Control IDs are `cosmic-implosion`, `frozen-eternity`, `hellstorm`, `storm-of-vengeance`, `thunder-wrath`, and `storm-cage`. Their fresh Conference02 packet was published and submitted to **Calibration review part 6**. It contains 27 source questions, 12 required main-case obligations, and 89 live Git-blob source bindings. The packet audit passed 26/26 checks. Archive SHA-256: `00f539c422a318a45f2db3b49d96604f11fe3468493a6fb7d001ef6bb2c6c660`.
+
+The exact archive attachment and request are visible in the director conversation, which is currently working. GPT stated it would verify both commits, then review all six spells, 27 questions, and required cases, with timing and available actions checked separately. No acceptance decision has arrived; none of these IDs has been applied.
+
+Wait for the director's complete return, independently audit the saved response and exact accepted IDs, apply only IDs that pass, and push the batch. Continue from the refreshed queue until pending reaches zero. Keep feats and completed spell cohorts closed. Runtime, human-play, balance, cosmology, domain-closure, and release approval remain separate.
+
+Current controls: [handoff](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_176.json), [queue](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_SPELL_QUEUE_176.json), [pending identity audit](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT99_PENDING_IDENTITY_AUDIT_176.json), [submission receipt](docs/audit/2026-10-08/full-game/director-spell-review-129/RANK9_STORM_CONTROL6_GPT_SUBMISSION_176.json), [packet](docs/audit/2026-10-08/full-game/DD_Rank9_Storm_Control_6_Source_Conference_02_175.zip), and [independent packet verifier](docs/audit/2026-10-08/full-game/director-spell-review-129/verify_stormcontrol6_conference02_175.py).
