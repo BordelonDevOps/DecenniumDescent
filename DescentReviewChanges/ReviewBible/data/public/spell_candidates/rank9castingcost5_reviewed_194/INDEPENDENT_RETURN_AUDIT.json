@@ -1,0 +1,201 @@
+{
+  "id": "RANK9-CASTINGCOST5-RETURN194-INDEPENDENT-AUDIT",
+  "recordedAtUtc": "2026-10-26T21:29:47.661811+00:00",
+  "status": "PASS",
+  "checksPassed": 24,
+  "checksFailed": 0,
+  "failures": [],
+  "returnArchive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_castingcost5_return194_received/DD_Rank9_CastingCost5_Director_Return194.zip",
+    "bytes": 131568634,
+    "sha256": "f6caf05f6677213059762119b07a5eb0add983a5cc5f152fd317d04f328af90c"
+  },
+  "deliveryManifest": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_castingcost5_return194_received/DD_Rank9_CastingCost5_Director_Return194_DELIVERY.json",
+    "bytes": 132742,
+    "sha256": "96e970dbc29a4c2dd2a8e771fd8461cd02077ad0e39bf0a36e946bd3ad2ee07a"
+  },
+  "sourceCommit": "a67af2f14b50a399d26f6059b6ad4918d4c2c1fa",
+  "authority": {
+    "reviewedApplied": 779,
+    "pending": 69,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 503,
+    "scopedInterfaces": 173
+  },
+  "acceptedIds": [
+    "ritual-mastery",
+    "world-rewrite",
+    "resonance-perfection"
+  ],
+  "unacceptedIds": [
+    "perfect-spell",
+    "unholy-ascendance"
+  ],
+  "applied": false,
+  "replay": {
+    "cases": 63,
+    "events": 1427,
+    "forwardPatchOps": 2854,
+    "inversePatchOps": 2854
+  },
+  "semanticScreen": {
+    "batchSemanticResult": "FAIL_TWO_IDENTITIES_RETAINED",
+    "acceptedIds": [
+      "ritual-mastery",
+      "world-rewrite",
+      "resonance-perfection"
+    ],
+    "unacceptedIds": [
+      "perfect-spell",
+      "unholy-ascendance"
+    ],
+    "blockers": {
+      "perfect-spell": [
+        "CC194-B01"
+      ],
+      "unholy-ascendance": [
+        "CC194-B04"
+      ]
+    },
+    "checkCount": 750
+  },
+  "checks": [
+    {
+      "check": "External delivery binds exact ZIP length and SHA-256",
+      "passed": true,
+      "detail": {
+        "bytes": 131568634,
+        "sha256": "f6caf05f6677213059762119b07a5eb0add983a5cc5f152fd317d04f328af90c"
+      }
+    },
+    {
+      "check": "Delivery records exact partial acceptance as unapplied",
+      "passed": true
+    },
+    {
+      "check": "Outer ZIP safe, unique, CRC-clean and exactly delivery-allowlisted",
+      "passed": true,
+      "detail": {
+        "members": 109,
+        "allowlisted": 109
+      }
+    },
+    {
+      "check": "Internal manifest covers every member except itself",
+      "passed": true
+    },
+    {
+      "check": "All 109 member byte counts, SHA-256 hashes and CRC32 values independently recalculate",
+      "passed": true
+    },
+    {
+      "check": "Current authority, source anchor and five-ID group are exact",
+      "passed": true
+    },
+    {
+      "check": "External delivery claims same authority and anchor",
+      "passed": true
+    },
+    {
+      "check": "All 117 refreshed source files match the nested packet, anchor Git blobs, and current HEAD",
+      "passed": true,
+      "detail": {
+        "rows": 117,
+        "sourceCommit": "a67af2f14b50a399d26f6059b6ad4918d4c2c1fa"
+      }
+    },
+    {
+      "check": "Nested source packet itself is byte/hash-bound, 144 members, and CRC-clean",
+      "passed": true,
+      "detail": {
+        "bytes": 93905624,
+        "sha256": "8ae03f6ed23eeb5350200c9b2074ab00195eb10f467734d6938f15e82027eced",
+        "members": 144
+      }
+    },
+    {
+      "check": "All five supplemental accepted-source bindings match exact Git blob bytes",
+      "passed": true,
+      "detail": {
+        "bindings": 5
+      }
+    },
+    {
+      "check": "Decision, delivery and procedures agree on the exact 3/2 split and applied=false",
+      "passed": true
+    },
+    {
+      "check": "Both current holds retain exact blocker IDs",
+      "passed": true
+    },
+    {
+      "check": "All Return190/Return192 named blockers are carried exactly",
+      "passed": true,
+      "detail": {
+        "carried": [
+          "AG190-B01",
+          "AG190-B02",
+          "TF192-B01",
+          "TF192-B02",
+          "TF192-B04",
+          "TF192-B05"
+        ]
+      }
+    },
+    {
+      "check": "All five current canonical cards and pending index entries match exact source snapshots",
+      "passed": true
+    },
+    {
+      "check": "Native placements and class access rows reconcile to packet totals",
+      "passed": true,
+      "detail": {
+        "nativePlacements": 5,
+        "classAccessRows": 14
+      }
+    },
+    {
+      "check": "Acceptance is per identity and qualifications preserve static-only, no-runtime and campaign-evidence boundaries",
+      "passed": true
+    },
+    {
+      "check": "Question census records 32 numbered originals plus two focused addenda",
+      "passed": true
+    },
+    {
+      "check": "All 63 external case files exactly mirror CASEBOOK and match the internal hash bindings",
+      "passed": true
+    },
+    {
+      "check": "All 63 case histories independently replay with state hashes, monotonic world time and exact inverse patches",
+      "passed": true,
+      "detail": {
+        "cases": 63,
+        "events": 1427,
+        "forwardPatchOps": 2854,
+        "inversePatchOps": 2854
+      }
+    },
+    {
+      "check": "Advertised case/event/proposal/hold counts reconcile",
+      "passed": true
+    },
+    {
+      "check": "Independent data-integrity and clock ledgers contain their stated passing checks",
+      "passed": true
+    },
+    {
+      "check": "Independent semantic and final metadata check counts are internally consistent",
+      "passed": true
+    },
+    {
+      "check": "Validation summary consistently reports source/data PASS and partial semantic result",
+      "passed": true
+    },
+    {
+      "check": "Next group is the six-spell Memory/Denial6 group and still gated on refreshed authority",
+      "passed": true
+    }
+  ]
+}
