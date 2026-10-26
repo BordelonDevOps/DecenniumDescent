@@ -1,0 +1,111 @@
+{
+  "id": "RANK9-WARD-CONTROL6-SOURCE-PREPARATION-187",
+  "recordedAtUtc": "2026-10-26T13:54:16.411571+00:00",
+  "status": "CURRENT_SOURCE_PACKET_PREPARED_UNSENT",
+  "sourceCommit": "9624930ad8ac3a06c7e4bda1b84c8a730ae69bd3",
+  "sourceBranch": "codex/ordinary-spell-review-complete",
+  "sourceAuthority": {
+    "reviewedApplied": 766,
+    "pending": 82,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 490,
+    "scopedInterfaces": 173
+  },
+  "group": "rank9-ward-control6",
+  "pendingIds": [
+    "greater-spell-turning",
+    "nullification-wave",
+    "eternal-ward",
+    "ultimate-ward",
+    "reality-anchor",
+    "prismatic-sphere"
+  ],
+  "historicalCandidate": {
+    "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/rank9_ward_control_6_source_conference_01.json",
+    "bytes": 779623,
+    "sha256": "308e8e32a1eaa67dca2e289ee1e6005633f992c5c16da65bb9179815416e943d"
+  },
+  "queueCandidateBinding": {
+    "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/rank9_ward_control_6_source_conference_01.json",
+    "bytes": 779623,
+    "sha256": "308e8e32a1eaa67dca2e289ee1e6005633f992c5c16da65bb9179815416e943d"
+  },
+  "historicalSourceArchive": {
+    "path": "docs/audit/2026-10-08/full-game/DD_Rank9_Ward_Control_6_Source_Conference_01.zip",
+    "bytes": 31639171,
+    "sha256": "e7e4a014cff71c06a18a7cdf5b06ede659c8b33f6a7d6fd0e6d69c941a6f7ca8"
+  },
+  "currentDerivedCandidate": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_wardcontrol6_return187_prepared/CURRENT_SOURCE_CONFERENCE_CANDIDATE_187.json",
+    "bytes": 807199,
+    "sha256": "e84ca2a102ae9dbc84fe02615ae58c39f0fb85ee318e13ae5caf7f4e680b34bf"
+  },
+  "sourceFileCount": 91,
+  "changedSinceHistoricalCandidate": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+      "historicalBytes": 484779,
+      "historicalSha256": "6f9b86e21f6a69c7ba2469aba89d5907aa08da567226a2c4bd3ced9e09409857",
+      "currentBytes": 1396505,
+      "currentSha256": "63ff2f4e282fc4df89362bc81a4f2995bc2d40848fd9f590dc0dccc759ead062"
+    }
+  ],
+  "packet": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_wardcontrol6_return187_prepared/DD_Rank9_WardControl6_CurrentSource_187.zip",
+    "bytes": 66260517,
+    "sha256": "16ee2936c8be8b20a5ba700de7955880e229b95a468607575c907edaba7139eb"
+  },
+  "deliveryManifest": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_wardcontrol6_return187_prepared/DD_Rank9_WardControl6_CurrentSource_187_DELIVERY.json",
+    "bytes": 2045,
+    "sha256": "c801a031e8988d2b49d08b9d04e0ce77473b2f9c64ea7f68b2ecb89eb6b74757"
+  },
+  "memberCount": 113,
+  "checksPassed": 9,
+  "checksFailed": 0,
+  "checks": [
+    {
+      "check": "Current handoff, queue, pending audit, authored index and catalog agree on 766/82/0",
+      "passed": true
+    },
+    {
+      "check": "Exactly the six queue-selected Ward/Control6 IDs remain pending",
+      "passed": true
+    },
+    {
+      "check": "Historical archive matches the current queue archive binding and passes CRC/safety checks",
+      "passed": true
+    },
+    {
+      "check": "All 91 historical source bindings match their exact archive members",
+      "passed": true
+    },
+    {
+      "check": "All 91 source files are refreshed from the exact current Git commit",
+      "passed": true
+    },
+    {
+      "check": "Only the authored review index differs from the historical candidate bindings",
+      "passed": true
+    },
+    {
+      "check": "All six live catalog cards and pending index entries are preserved exactly",
+      "passed": true
+    },
+    {
+      "check": "Current accepted context, latest model, casebook, holds and receipts are included",
+      "passed": true
+    },
+    {
+      "check": "Packet ZIP is CRC-clean; all unique safe members match its SHA-256/CRC manifest",
+      "passed": true,
+      "detail": {
+        "memberCount": 113,
+        "bytes": 66260517,
+        "sha256": "16ee2936c8be8b20a5ba700de7955880e229b95a468607575c907edaba7139eb"
+      }
+    }
+  ],
+  "canonicalChangesBeforePreparation": false,
+  "request": "GPT director — review exactly the six current pending Rank9 Ward/Control6 identities in this packet.\n\nSource branch/commit: codex/ordinary-spell-review-complete / 9624930ad8ac3a06c7e4bda1b84c8a730ae69bd3. Current authority: 766 reviewed-applied / 82 pending / 0 accepted-unapplied; 490 complete reviewed standalone procedures; 173 scoped interfaces.\n\nScope only: greater-spell-turning, nullification-wave, eternal-ward, ultimate-ward, reality-anchor, prismatic-sphere. Use the attached current handoff, queue, pending audit, index and catalog as authority. The queue candidate binding matches the current committed candidate exactly. The packet refreshes all 91 source files from the exact current Git commit; only the authored review index differs from the historical candidate's source binding set. Use sources_current/ and current/ for present authority; preserve the original conference ZIP and candidate as provenance.\n\nRecheck all 24 original unselected questions against the current sources. The two additional questions and twelve case requirements from the 129-era notes are targeted historical coverage proposals, not selected rules; include them only where still source-relevant. Preserve each native card and access route, both Reality Anchor placements, all-spell reflection, no-save Nullification Wave, full Eternal Ward site suite, the full 24-hour Ultimate Ward scope, and all seven Prismatic Sphere functions. Resolve source-pair conflicts explicitly and keep each unresolved identity held on exact evidence gaps. Do not weaken benefits silently, import external mechanics, or infer a global rank rule.\n\nReturn one complete source-faithful procedure and complete reversible cases for each identity. Mark only individually passing IDs accepted=true/applied=false; keep every other ID unaccepted with exact blocker/qualification IDs. Preserve original question dispositions, all source and future obligations, full event/state/cost/provenance histories, and deterministic cleanup. Report procedures, questions, cases, events, forward/inverse operations, holds and validation counts. Include a member manifest with exact hashes and a separate delivery JSON bound to the returned ZIP. Keep runtime, implementation, playtest, balance, cosmology, completion and release gates separate. Do not edit canonical files or execute supplied/historical programs. After I independently audit the return, apply only exact accepted IDs and continue in queue order until pending reaches zero."
+}
