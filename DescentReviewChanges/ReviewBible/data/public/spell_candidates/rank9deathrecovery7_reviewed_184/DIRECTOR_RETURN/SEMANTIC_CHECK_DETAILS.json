@@ -1,0 +1,1024 @@
+{
+  "checks": [
+    {
+      "caseIds": [],
+      "expected": {
+        "Cleric": "Necromancy",
+        "Druid": "Necromancy",
+        "Wizard": "Necromancy"
+      },
+      "id": "DR184-S001",
+      "name": "Exact native class-school routes and prices",
+      "pass": true,
+      "sourceReference": "PROCEDURES.json nativeCardUnchanged + exact current catalog",
+      "spellIds": [
+        "doom"
+      ]
+    },
+    {
+      "caseIds": [],
+      "expected": {
+        "Cleric": "Necromancy",
+        "Druid": "Necromancy",
+        "Wizard": "Necromancy"
+      },
+      "id": "DR184-S002",
+      "name": "Exact native class-school routes and prices",
+      "pass": true,
+      "sourceReference": "PROCEDURES.json nativeCardUnchanged + exact current catalog",
+      "spellIds": [
+        "soul-harvest"
+      ]
+    },
+    {
+      "caseIds": [],
+      "expected": {
+        "Cleric": "Necromancy",
+        "Druid": "Necromancy",
+        "Wizard": "Necromancy"
+      },
+      "id": "DR184-S003",
+      "name": "Exact native class-school routes and prices",
+      "pass": true,
+      "sourceReference": "PROCEDURES.json nativeCardUnchanged + exact current catalog",
+      "spellIds": [
+        "final-word"
+      ]
+    },
+    {
+      "caseIds": [],
+      "expected": {
+        "Cleric": "Necromancy",
+        "Druid": "Necromancy",
+        "Wizard": "Necromancy"
+      },
+      "id": "DR184-S004",
+      "name": "Exact native class-school routes and prices",
+      "pass": true,
+      "sourceReference": "PROCEDURES.json nativeCardUnchanged + exact current catalog",
+      "spellIds": [
+        "eternal-pact"
+      ]
+    },
+    {
+      "caseIds": [],
+      "expected": {
+        "Cleric": "Necromancy",
+        "Druid": "Necromancy",
+        "Mage": "Evocation",
+        "Wizard": "Enchantment"
+      },
+      "id": "DR184-S005",
+      "name": "Exact native class-school routes and prices",
+      "pass": true,
+      "sourceReference": "PROCEDURES.json nativeCardUnchanged + exact current catalog",
+      "spellIds": [
+        "power-word-kill"
+      ]
+    },
+    {
+      "caseIds": [],
+      "expected": {
+        "Cleric": "Divination",
+        "Wizard": "Divination"
+      },
+      "id": "DR184-S006",
+      "name": "Exact native class-school routes and prices",
+      "pass": true,
+      "sourceReference": "PROCEDURES.json nativeCardUnchanged + exact current catalog",
+      "spellIds": [
+        "thread-severance"
+      ]
+    },
+    {
+      "caseIds": [],
+      "expected": {
+        "Cleric": "Necromancy",
+        "Druid": "Necromancy",
+        "Wizard": "Necromancy"
+      },
+      "id": "DR184-S007",
+      "name": "Exact native class-school routes and prices",
+      "pass": true,
+      "sourceReference": "PROCEDURES.json nativeCardUnchanged + exact current catalog",
+      "spellIds": [
+        "wail-of-the-banshee"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-DOOM-A-FIVE-PULSES"
+      ],
+      "expected": "10d6 total; no sixth pulse; expiry30.21",
+      "id": "DR184-S008",
+      "name": "Exactly five2d6 packets and +30 prohibition endpoint",
+      "pass": true,
+      "sourceReference": "SOURCE_CONFERENCE_CANDIDATE_01.json#DR9-Q02/Q03",
+      "spellIds": [
+        "doom"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-DOOM-B-HEAL-BLOCK-AND-SUPPRESSION"
+      ],
+      "expected": "Rite2RP/4d8+5;12.21/18.21 suppressed; no replay",
+      "id": "DR184-S009",
+      "name": "Real paid Healing Rite fails; suppressed pulses consumed",
+      "pass": true,
+      "sourceReference": "evidence/current/DescentReviewChanges/ReviewBible/data/public/class_playtests/cleric.json#/cards/12; COMPARISON_BOUNDARIES exact AMF",
+      "spellIds": [
+        "doom"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-DOOM-TEMP-HP-AND-TRUE-FLOOR-ARE-NOT-HEALING"
+      ],
+      "expected": "Paid FalseLife absorbs5; ordinary DeathWard prevents one eligible crossing; later zero-HP/death-save clock fully retained",
+      "id": "DR184-S010",
+      "name": "Cannot-heal preserves actual temporary HP and true floor",
+      "pass": true,
+      "sourceReference": "evidence/current/DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md; complete actual False Life/Death Ward cards",
+      "spellIds": [
+        "doom"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-DOOM-PER-PACKET-BOND-SHARING-ROOTS"
+      ],
+      "expected": "One source/Null lineage, four later separately shared pulse packets; no parent/child duplicate",
+      "id": "DR184-S011",
+      "name": "Packet sharing guard stays distinct from source/Null lineage",
+      "pass": true,
+      "sourceReference": "evidence/current/DescentReviewChanges/ReviewBible/docs/mechanics/DAMAGE_SHARING_PLAYTEST.md#One root, one operation",
+      "spellIds": [
+        "doom"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-DOOM-CASTER-DEATH-CLOCK-PERSISTS"
+      ],
+      "expected": {
+        "targetFinalHP": 70
+      },
+      "id": "DR184-S012",
+      "name": "Doom lifecycle/clock: CASTER-DEATH-CLOCK-PERSISTS",
+      "pass": true,
+      "sourceReference": "SOURCE_CONFERENCE_CANDIDATE_01.json#DR9-Q04; named counterpart source",
+      "spellIds": [
+        "doom"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-DOOM-CURRENT-FORM-PRESERVES-ONE-HP"
+      ],
+      "expected": {
+        "targetFinalHP": 70
+      },
+      "id": "DR184-S013",
+      "name": "Doom lifecycle/clock: CURRENT-FORM-PRESERVES-ONE-HP",
+      "pass": true,
+      "sourceReference": "SOURCE_CONFERENCE_CANDIDATE_01.json#DR9-Q04; named counterpart source",
+      "spellIds": [
+        "doom"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-DOOM-INITIATIVE-FUTURE-ECHO"
+      ],
+      "expected": {
+        "targetFinalHP": 70
+      },
+      "id": "DR184-S014",
+      "name": "Doom lifecycle/clock: INITIATIVE-FUTURE-ECHO",
+      "pass": true,
+      "sourceReference": "SOURCE_CONFERENCE_CANDIDATE_01.json#DR9-Q04; named counterpart source",
+      "spellIds": [
+        "doom"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-DOOM-SAVELOAD-AND-MODE-PRESERVATION"
+      ],
+      "expected": {
+        "targetFinalHP": 70
+      },
+      "id": "DR184-S015",
+      "name": "Doom lifecycle/clock: SAVELOAD-AND-MODE-PRESERVATION",
+      "pass": true,
+      "sourceReference": "SOURCE_CONFERENCE_CANDIDATE_01.json#DR9-Q04; named counterpart source",
+      "spellIds": [
+        "doom"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-DOOM-MULTIPLE-OWNERS"
+      ],
+      "expected": {
+        "targetFinalHP": 90
+      },
+      "id": "DR184-S016",
+      "name": "Doom lifecycle/clock: MULTIPLE-OWNERS",
+      "pass": true,
+      "sourceReference": "SOURCE_CONFERENCE_CANDIDATE_01.json#DR9-Q04; named counterpart source",
+      "spellIds": [
+        "doom"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-DOOM-ACTUAL-ARCH-DISPEL-RANK3"
+      ],
+      "expected": {
+        "targetFinalHP": 102
+      },
+      "id": "DR184-S017",
+      "name": "Doom lifecycle/clock: ACTUAL-ARCH-DISPEL-RANK3",
+      "pass": true,
+      "sourceReference": "SOURCE_CONFERENCE_CANDIDATE_01.json#DR9-Q04; named counterpart source",
+      "spellIds": [
+        "doom"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-SOUL-HARVEST-A-SPLIT-TEMP-PREVENTION"
+      ],
+      "expected": "15 from T (8temp+7HP),4 true-floor loss fromU,5 overkill-limited V; friendly protector15 excluded; exactly one24HP heal",
+      "id": "DR184-S018",
+      "name": "Harvest numeric terminal accounting",
+      "pass": true,
+      "sourceReference": "evidence/current/DescentReviewChanges/ReviewBible/docs/mechanics/DAMAGE_SHARING_PLAYTEST.md#Physical totals and consumer totals",
+      "spellIds": [
+        "soul-harvest"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-SOUL-HARVEST-CASTER-ACTUAL-DEATH-REACTION"
+      ],
+      "expected": "Actual paid Hellish Rebuke fatal-Wound death; remaining admitted U still takes30; heal0",
+      "id": "DR184-S019",
+      "name": "Harvest adverse branch: CASTER-ACTUAL-DEATH-REACTION",
+      "pass": true,
+      "sourceReference": "evidence/current/DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md; named source cards and conditional Null field",
+      "spellIds": [
+        "soul-harvest"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-SOUL-HARVEST-B-HEAL-PROHIBITED"
+      ],
+      "expected": "Doom prohibition blocks numeric heal without undoing resolved damage",
+      "id": "DR184-S020",
+      "name": "Harvest adverse branch: B-HEAL-PROHIBITED",
+      "pass": true,
+      "sourceReference": "evidence/current/DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md; named source cards and conditional Null field",
+      "spellIds": [
+        "soul-harvest"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-SOUL-HARVEST-CON-SUCCESS-CRITICAL-CEILING"
+      ],
+      "expected": "CON success15 damage, Critical ceiling109 and actual Speed20",
+      "id": "DR184-S021",
+      "name": "Harvest adverse branch: CON-SUCCESS-CRITICAL-CEILING",
+      "pass": true,
+      "sourceReference": "evidence/current/DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md; named source cards and conditional Null field",
+      "spellIds": [
+        "soul-harvest"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-SOUL-HARVEST-NULL-NONLETHAL-STILL-HEALS"
+      ],
+      "expected": "Creation-qualified Null: actual5 damage, no damage-caused death/Wound; one5HP heal",
+      "id": "DR184-S022",
+      "name": "Harvest adverse branch: NULL-NONLETHAL-STILL-HEALS",
+      "pass": true,
+      "sourceReference": "evidence/current/DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md; named source cards and conditional Null field",
+      "spellIds": [
+        "soul-harvest"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-SOUL-HARVEST-REAL-BASTION-DAMAGE-IMMUNITY-PREVENTS-DAMAGE"
+      ],
+      "expected": "Actual paid Bastion all-damage immunity: no HP loss or healing entitlement",
+      "id": "DR184-S023",
+      "name": "Harvest adverse branch: REAL-BASTION-DAMAGE-IMMUNITY-PREVENTS-DAMAGE",
+      "pass": true,
+      "sourceReference": "evidence/current/DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md; named source cards and conditional Null field",
+      "spellIds": [
+        "soul-harvest"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-POWER-WORD-KILL-A-QUALIFYING-THRESHOLD",
+        "DR184-POWER-WORD-KILL-B-FAILED-THRESHOLD"
+      ],
+      "expected": {
+        "boundary": 100,
+        "inequality": "<=",
+        "thresholdFailureNoSave": true
+      },
+      "id": "DR184-S024",
+      "name": "Exact qualifying and failed threshold",
+      "pass": true,
+      "sourceReference": "SOURCE_CONFERENCE_CANDIDATE_01.json native card/DR9-Q08,Q10,Q18",
+      "spellIds": [
+        "power-word-kill"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-POWER-WORD-KILL-ORDINARY-DEATH-WARD-NOT-DIRECT-DEATH"
+      ],
+      "expected": {
+        "damageDeathConflated": false,
+        "life": "Dead",
+        "normalHP": null
+      },
+      "id": "DR184-S025",
+      "name": "Source-qualified direct death: ORDINARY-DEATH-WARD-NOT-DIRECT-DEATH",
+      "pass": true,
+      "sourceReference": "evidence/current/DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md; actual Death Ward/Ritual/Monk/Null sources",
+      "spellIds": [
+        "power-word-kill"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-POWER-WORD-KILL-RITUAL-REAL-WOULD-DIE-PREVENTION"
+      ],
+      "expected": {
+        "damageDeathConflated": false,
+        "life": "Alive",
+        "normalHP": 1
+      },
+      "id": "DR184-S026",
+      "name": "Source-qualified direct death: RITUAL-REAL-WOULD-DIE-PREVENTION",
+      "pass": true,
+      "sourceReference": "evidence/current/DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md; actual Death Ward/Ritual/Monk/Null sources",
+      "spellIds": [
+        "power-word-kill"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-POWER-WORD-KILL-TEMP-HP-IGNORED"
+      ],
+      "expected": {
+        "damageDeathConflated": false,
+        "life": "Dead",
+        "normalHP": null
+      },
+      "id": "DR184-S027",
+      "name": "Source-qualified direct death: TEMP-HP-IGNORED",
+      "pass": true,
+      "sourceReference": "evidence/current/DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md; actual Death Ward/Ritual/Monk/Null sources",
+      "spellIds": [
+        "power-word-kill"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-POWER-WORD-KILL-NULL-IS-NOT-DIRECT-DEATH-CONVERSION"
+      ],
+      "expected": {
+        "damageDeathConflated": false,
+        "life": "Dead",
+        "normalHP": null
+      },
+      "id": "DR184-S028",
+      "name": "Source-qualified direct death: NULL-IS-NOT-DIRECT-DEATH-CONVERSION",
+      "pass": true,
+      "sourceReference": "evidence/current/DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md; actual Death Ward/Ritual/Monk/Null sources",
+      "spellIds": [
+        "power-word-kill"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-POWER-WORD-KILL-REAL-BASTION-DAMAGE-IMMUNITY-NOT-DEATH-IMMUNITY"
+      ],
+      "expected": {
+        "damageDeathConflated": false,
+        "life": "Dead",
+        "normalHP": 24
+      },
+      "id": "DR184-S029",
+      "name": "Source-qualified direct death: REAL-BASTION-DAMAGE-IMMUNITY-NOT-DEATH-IMMUNITY",
+      "pass": true,
+      "sourceReference": "evidence/current/DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md; actual Death Ward/Ritual/Monk/Null sources",
+      "spellIds": [
+        "power-word-kill"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-FINAL-WORD-A-QUALIFYING-THRESHOLD",
+        "DR184-FINAL-WORD-B-FAILED-THRESHOLD"
+      ],
+      "expected": {
+        "boundary": 50,
+        "inequality": "<",
+        "thresholdFailureNoSave": true
+      },
+      "id": "DR184-S030",
+      "name": "Exact qualifying and failed threshold",
+      "pass": true,
+      "sourceReference": "SOURCE_CONFERENCE_CANDIDATE_01.json native card/DR9-Q08,Q10,Q18",
+      "spellIds": [
+        "final-word"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-FINAL-WORD-ORDINARY-DEATH-WARD-NOT-DIRECT-DEATH"
+      ],
+      "expected": {
+        "damageDeathConflated": false,
+        "life": "Dead",
+        "normalHP": null
+      },
+      "id": "DR184-S031",
+      "name": "Source-qualified direct death: ORDINARY-DEATH-WARD-NOT-DIRECT-DEATH",
+      "pass": true,
+      "sourceReference": "evidence/current/DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md; actual Death Ward/Ritual/Monk/Null sources",
+      "spellIds": [
+        "final-word"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-FINAL-WORD-RITUAL-REAL-WOULD-DIE-PREVENTION"
+      ],
+      "expected": {
+        "damageDeathConflated": false,
+        "life": "Alive",
+        "normalHP": 1
+      },
+      "id": "DR184-S032",
+      "name": "Source-qualified direct death: RITUAL-REAL-WOULD-DIE-PREVENTION",
+      "pass": true,
+      "sourceReference": "evidence/current/DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md; actual Death Ward/Ritual/Monk/Null sources",
+      "spellIds": [
+        "final-word"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-FINAL-WORD-TEMP-HP-IGNORED"
+      ],
+      "expected": {
+        "damageDeathConflated": false,
+        "life": "Dead",
+        "normalHP": null
+      },
+      "id": "DR184-S033",
+      "name": "Source-qualified direct death: TEMP-HP-IGNORED",
+      "pass": true,
+      "sourceReference": "evidence/current/DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md; actual Death Ward/Ritual/Monk/Null sources",
+      "spellIds": [
+        "final-word"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-FINAL-WORD-NULL-IS-NOT-DIRECT-DEATH-CONVERSION"
+      ],
+      "expected": {
+        "damageDeathConflated": false,
+        "life": "Dead",
+        "normalHP": null
+      },
+      "id": "DR184-S034",
+      "name": "Source-qualified direct death: NULL-IS-NOT-DIRECT-DEATH-CONVERSION",
+      "pass": true,
+      "sourceReference": "evidence/current/DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md; actual Death Ward/Ritual/Monk/Null sources",
+      "spellIds": [
+        "final-word"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-FINAL-WORD-REAL-BASTION-DAMAGE-IMMUNITY-NOT-DEATH-IMMUNITY"
+      ],
+      "expected": {
+        "damageDeathConflated": false,
+        "life": "Dead",
+        "normalHP": 24
+      },
+      "id": "DR184-S035",
+      "name": "Source-qualified direct death: REAL-BASTION-DAMAGE-IMMUNITY-NOT-DEATH-IMMUNITY",
+      "pass": true,
+      "sourceReference": "evidence/current/DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md; actual Death Ward/Ritual/Monk/Null sources",
+      "spellIds": [
+        "final-word"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-THREAD-SEVERANCE-A-QUALIFYING-THRESHOLD",
+        "DR184-THREAD-SEVERANCE-B-FAILED-THRESHOLD"
+      ],
+      "expected": {
+        "boundary": 25,
+        "inequality": "<",
+        "thresholdFailureNoSave": true
+      },
+      "id": "DR184-S036",
+      "name": "Exact qualifying and failed threshold",
+      "pass": true,
+      "sourceReference": "SOURCE_CONFERENCE_CANDIDATE_01.json native card/DR9-Q08,Q10,Q18",
+      "spellIds": [
+        "thread-severance"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-THREAD-SEVERANCE-ORDINARY-DEATH-WARD-NOT-DIRECT-DEATH"
+      ],
+      "expected": {
+        "damageDeathConflated": false,
+        "life": "Dead",
+        "normalHP": null
+      },
+      "id": "DR184-S037",
+      "name": "Source-qualified direct death: ORDINARY-DEATH-WARD-NOT-DIRECT-DEATH",
+      "pass": true,
+      "sourceReference": "evidence/current/DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md; actual Death Ward/Ritual/Monk/Null sources",
+      "spellIds": [
+        "thread-severance"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-THREAD-SEVERANCE-RITUAL-REAL-WOULD-DIE-PREVENTION"
+      ],
+      "expected": {
+        "damageDeathConflated": false,
+        "life": "Alive",
+        "normalHP": 1
+      },
+      "id": "DR184-S038",
+      "name": "Source-qualified direct death: RITUAL-REAL-WOULD-DIE-PREVENTION",
+      "pass": true,
+      "sourceReference": "evidence/current/DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md; actual Death Ward/Ritual/Monk/Null sources",
+      "spellIds": [
+        "thread-severance"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-THREAD-SEVERANCE-TEMP-HP-IGNORED"
+      ],
+      "expected": {
+        "damageDeathConflated": false,
+        "life": "Dead",
+        "normalHP": null
+      },
+      "id": "DR184-S039",
+      "name": "Source-qualified direct death: TEMP-HP-IGNORED",
+      "pass": true,
+      "sourceReference": "evidence/current/DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md; actual Death Ward/Ritual/Monk/Null sources",
+      "spellIds": [
+        "thread-severance"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-THREAD-SEVERANCE-NULL-IS-NOT-DIRECT-DEATH-CONVERSION"
+      ],
+      "expected": {
+        "damageDeathConflated": false,
+        "life": "Dead",
+        "normalHP": null
+      },
+      "id": "DR184-S040",
+      "name": "Source-qualified direct death: NULL-IS-NOT-DIRECT-DEATH-CONVERSION",
+      "pass": true,
+      "sourceReference": "evidence/current/DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md; actual Death Ward/Ritual/Monk/Null sources",
+      "spellIds": [
+        "thread-severance"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-THREAD-SEVERANCE-REAL-BASTION-DAMAGE-IMMUNITY-NOT-DEATH-IMMUNITY"
+      ],
+      "expected": {
+        "damageDeathConflated": false,
+        "life": "Dead",
+        "normalHP": 24
+      },
+      "id": "DR184-S041",
+      "name": "Source-qualified direct death: REAL-BASTION-DAMAGE-IMMUNITY-NOT-DEATH-IMMUNITY",
+      "pass": true,
+      "sourceReference": "evidence/current/DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md; actual Death Ward/Ritual/Monk/Null sources",
+      "spellIds": [
+        "thread-severance"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-POWER-WORD-KILL-MAGE-EVOCATION-ROUTE"
+      ],
+      "expected": "Mage53-26=27RP; first cast2Dissonance; no Wizard exemption",
+      "id": "DR184-S042",
+      "name": "PWK Mage route has real Mage strain",
+      "pass": true,
+      "sourceReference": "evidence/current/DescentReviewChanges/ReviewBible/data/public/class_playtests/mage.json and native PWK access",
+      "spellIds": [
+        "power-word-kill"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-THREAD-SEVERANCE-CHA-SUCCESS-USES-ACTUAL-DIVINATION-DC"
+      ],
+      "expected": "Wizard Divination DC21; Cleric CHA20+6 succeeds",
+      "id": "DR184-S043",
+      "name": "Thread useful broad removal/death boundary: CHA-SUCCESS-USES-ACTUAL-DIVINATION-DC",
+      "pass": true,
+      "sourceReference": "SOURCE_CONFERENCE_CANDIDATE_01.json#DR9-Q17,Q18; exact current comparison card",
+      "spellIds": [
+        "thread-severance"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-THREAD-SEVERANCE-BROAD-RANK9-APPLICATION-REMOVAL"
+      ],
+      "expected": "A real paid rank9 Doom application fully ends after one packet",
+      "id": "DR184-S044",
+      "name": "Thread useful broad removal/death boundary: BROAD-RANK9-APPLICATION-REMOVAL",
+      "pass": true,
+      "sourceReference": "SOURCE_CONFERENCE_CANDIDATE_01.json#DR9-Q17,Q18; exact current comparison card",
+      "spellIds": [
+        "thread-severance"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-THREAD-SEVERANCE-SHARED-AREA-COMPLETE-CLEANUP"
+      ],
+      "expected": "Complete actual Silence area closure, not one selected listener symptom",
+      "id": "DR184-S045",
+      "name": "Thread useful broad removal/death boundary: SHARED-AREA-COMPLETE-CLEANUP",
+      "pass": true,
+      "sourceReference": "SOURCE_CONFERENCE_CANDIDATE_01.json#DR9-Q17,Q18; exact current comparison card",
+      "spellIds": [
+        "thread-severance"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-THREAD-SEVERANCE-ACTUAL-FORM-REVERSION-GEAR-CLEANUP"
+      ],
+      "expected": "Actual finite Polymorph closes with one HP ledger and restored existing gear",
+      "id": "DR184-S046",
+      "name": "Thread useful broad removal/death boundary: ACTUAL-FORM-REVERSION-GEAR-CLEANUP",
+      "pass": true,
+      "sourceReference": "SOURCE_CONFERENCE_CANDIDATE_01.json#DR9-Q17,Q18; exact current comparison card",
+      "spellIds": [
+        "thread-severance"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-THREAD-SEVERANCE-ACTUAL-SOUL-BIND-APPLICATION-CLEANUP"
+      ],
+      "expected": "Actual bound Soul Bind application/custody ends at body anchor; no invented capture/return eligibility",
+      "id": "DR184-S047",
+      "name": "Thread useful broad removal/death boundary: ACTUAL-SOUL-BIND-APPLICATION-CLEANUP",
+      "pass": true,
+      "sourceReference": "SOURCE_CONFERENCE_CANDIDATE_01.json#DR9-Q17,Q18; exact current comparison card",
+      "spellIds": [
+        "thread-severance"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-WAIL-OF-THE-BANSHEE-A-ALL-HEARERS-INCLUDING-SELF"
+      ],
+      "expected": "Actual friendly listener included; self independently saves",
+      "id": "DR184-S048",
+      "name": "Wail source-qualified listeners: A-ALL-HEARERS-INCLUDING-SELF",
+      "pass": true,
+      "sourceReference": "SOURCE_CONFERENCE_CANDIDATE_01.json#DR9-Q19,Q20; exact actual counterpart cards",
+      "spellIds": [
+        "wail-of-the-banshee"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-WAIL-OF-THE-BANSHEE-EMITTED-WAVE-AFTER-CASTER-DEATH"
+      ],
+      "expected": "Frozen wave finishes after C dies first",
+      "id": "DR184-S049",
+      "name": "Wail source-qualified listeners: EMITTED-WAVE-AFTER-CASTER-DEATH",
+      "pass": true,
+      "sourceReference": "SOURCE_CONFERENCE_CANDIDATE_01.json#DR9-Q19,Q20; exact actual counterpart cards",
+      "spellIds": [
+        "wail-of-the-banshee"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-WAIL-OF-THE-BANSHEE-SOURCE-CAST-DEAFENED-LISTENER"
+      ],
+      "expected": "Real BlindnessDeafness cast/save; Deafened listener excluded",
+      "id": "DR184-S050",
+      "name": "Wail source-qualified listeners: SOURCE-CAST-DEAFENED-LISTENER",
+      "pass": true,
+      "sourceReference": "SOURCE_CONFERENCE_CANDIDATE_01.json#DR9-Q19,Q20; exact actual counterpart cards",
+      "spellIds": [
+        "wail-of-the-banshee"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-WAIL-OF-THE-BANSHEE-SOURCE-CAST-SILENCE-UNHEARD"
+      ],
+      "expected": "Actual Silence acoustic gate excludes unheard body",
+      "id": "DR184-S051",
+      "name": "Wail source-qualified listeners: SOURCE-CAST-SILENCE-UNHEARD",
+      "pass": true,
+      "sourceReference": "SOURCE_CONFERENCE_CANDIDATE_01.json#DR9-Q19,Q20; exact actual counterpart cards",
+      "spellIds": [
+        "wail-of-the-banshee"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-WAIL-OF-THE-BANSHEE-READY-VOICE-LOST-NO-ILLEGAL-RELEASE"
+      ],
+      "expected": "Actual Silence after preparation blocks voice-dependent release, expires once, no Reaction spent",
+      "id": "DR184-S052",
+      "name": "Wail source-qualified listeners: READY-VOICE-LOST-NO-ILLEGAL-RELEASE",
+      "pass": true,
+      "sourceReference": "SOURCE_CONFERENCE_CANDIDATE_01.json#DR9-Q19,Q20; exact actual counterpart cards",
+      "spellIds": [
+        "wail-of-the-banshee"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-WAIL-OF-THE-BANSHEE-NULL-IS-NOT-DIRECT-DEATH-CONVERSION"
+      ],
+      "expected": "Null damage conversion does not convert direct death",
+      "id": "DR184-S053",
+      "name": "Wail source-qualified listeners: NULL-IS-NOT-DIRECT-DEATH-CONVERSION",
+      "pass": true,
+      "sourceReference": "SOURCE_CONFERENCE_CANDIDATE_01.json#DR9-Q19,Q20; exact actual counterpart cards",
+      "spellIds": [
+        "wail-of-the-banshee"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-DOOM-CLASS-COUNTERSPELL-PAID-FAILURE",
+        "DR184-DOOM-READY-EXPIRES-PAID",
+        "DR184-DOOM-READY-LEGAL-RELEASE-ONE-CAST"
+      ],
+      "expected": "Counter rank1/3RP/INT+PB DC28, actual successful-feedback1RP, two legal recharge ticks; one Ready cast/Reaction release",
+      "id": "DR184-S054",
+      "name": "Actual counter and Ready budgets: doom",
+      "pass": true,
+      "sourceReference": "evidence/current/DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json; evidence/current/DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+      "spellIds": [
+        "doom"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-SOUL-HARVEST-CLASS-COUNTERSPELL-PAID-FAILURE",
+        "DR184-SOUL-HARVEST-READY-EXPIRES-PAID",
+        "DR184-SOUL-HARVEST-READY-LEGAL-RELEASE-ONE-CAST"
+      ],
+      "expected": "Counter rank1/3RP/INT+PB DC28, actual successful-feedback1RP, two legal recharge ticks; one Ready cast/Reaction release",
+      "id": "DR184-S055",
+      "name": "Actual counter and Ready budgets: soul-harvest",
+      "pass": true,
+      "sourceReference": "evidence/current/DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json; evidence/current/DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+      "spellIds": [
+        "soul-harvest"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-FINAL-WORD-CLASS-COUNTERSPELL-PAID-FAILURE",
+        "DR184-FINAL-WORD-READY-EXPIRES-PAID",
+        "DR184-FINAL-WORD-READY-LEGAL-RELEASE-ONE-CAST"
+      ],
+      "expected": "Counter rank1/3RP/INT+PB DC28, actual successful-feedback1RP, two legal recharge ticks; one Ready cast/Reaction release",
+      "id": "DR184-S056",
+      "name": "Actual counter and Ready budgets: final-word",
+      "pass": true,
+      "sourceReference": "evidence/current/DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json; evidence/current/DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+      "spellIds": [
+        "final-word"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-ETERNAL-PACT-CLASS-COUNTERSPELL-PAID-FAILURE",
+        "DR184-ETERNAL-PACT-READY-EXPIRES-PAID",
+        "DR184-ETERNAL-PACT-READY-LEGAL-RELEASE-ONE-CAST"
+      ],
+      "expected": "Counter rank1/3RP/INT+PB DC28, actual successful-feedback1RP, two legal recharge ticks; one Ready cast/Reaction release",
+      "id": "DR184-S057",
+      "name": "Actual counter and Ready budgets: eternal-pact",
+      "pass": true,
+      "sourceReference": "evidence/current/DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json; evidence/current/DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+      "spellIds": [
+        "eternal-pact"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-POWER-WORD-KILL-CLASS-COUNTERSPELL-PAID-FAILURE",
+        "DR184-POWER-WORD-KILL-READY-EXPIRES-PAID",
+        "DR184-POWER-WORD-KILL-READY-LEGAL-RELEASE-ONE-CAST"
+      ],
+      "expected": "Counter rank1/3RP/INT+PB DC28, actual successful-feedback1RP, two legal recharge ticks; one Ready cast/Reaction release",
+      "id": "DR184-S058",
+      "name": "Actual counter and Ready budgets: power-word-kill",
+      "pass": true,
+      "sourceReference": "evidence/current/DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json; evidence/current/DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+      "spellIds": [
+        "power-word-kill"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-THREAD-SEVERANCE-CLASS-COUNTERSPELL-PAID-FAILURE",
+        "DR184-THREAD-SEVERANCE-READY-EXPIRES-PAID",
+        "DR184-THREAD-SEVERANCE-READY-LEGAL-RELEASE-ONE-CAST"
+      ],
+      "expected": "Counter rank1/3RP/INT+PB DC28, actual successful-feedback1RP, two legal recharge ticks; one Ready cast/Reaction release",
+      "id": "DR184-S059",
+      "name": "Actual counter and Ready budgets: thread-severance",
+      "pass": true,
+      "sourceReference": "evidence/current/DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json; evidence/current/DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+      "spellIds": [
+        "thread-severance"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-WAIL-OF-THE-BANSHEE-CLASS-COUNTERSPELL-PAID-FAILURE",
+        "DR184-WAIL-OF-THE-BANSHEE-READY-EXPIRES-PAID",
+        "DR184-WAIL-OF-THE-BANSHEE-READY-LEGAL-RELEASE-ONE-CAST"
+      ],
+      "expected": "Counter rank1/3RP/INT+PB DC28, actual successful-feedback1RP, two legal recharge ticks; one Ready cast/Reaction release",
+      "id": "DR184-S060",
+      "name": "Actual counter and Ready budgets: wail-of-the-banshee",
+      "pass": true,
+      "sourceReference": "evidence/current/DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json; evidence/current/DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+      "spellIds": [
+        "wail-of-the-banshee"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-ETERNAL-PACT-DEATH-IN-ANTIMAGIC-LOST-TRIGGER"
+      ],
+      "expected": "Actual20ft impact at fixed next-slot12.8;1d6=6, Critical Wound die1+CON2-3 fails; real death consumes suppressed pact with0RP restoration",
+      "id": "DR184-S061",
+      "name": "Pact actual physical fatal-root under real antimagic",
+      "pass": true,
+      "sourceReference": "evidence/current/DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md#Falling bridge; evidence/current/DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md; exact AMF",
+      "spellIds": [
+        "eternal-pact"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-ETERNAL-PACT-B-DISINTEGRATE-NO-VIABLE-BODY"
+      ],
+      "expected": "DEX fail;10d6+40=60 force, resistance30; Wound save succeeds; still-living zero checkpoint then dust/death; existing independent gear released",
+      "id": "DR184-S062",
+      "name": "Exact Disintegrate aftermath blocks Pact",
+      "pass": true,
+      "sourceReference": "evidence/current/DescentReviewChanges/ReviewBible/data/public/spell_candidates/disintegrate_reviewed_129/MODEL.json#LM130-03",
+      "spellIds": [
+        "eternal-pact"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-DOOM-GENUINE-EXTRA-TURN-UNAVAILABLE",
+        "DR184-FINAL-WORD-A-QUALIFYING-THRESHOLD",
+        "DR184-FINAL-WORD-ORDINARY-DEATH-WARD-NOT-DIRECT-DEATH",
+        "DR184-FINAL-WORD-TEMP-HP-IGNORED",
+        "DR184-FINAL-WORD-NULL-IS-NOT-DIRECT-DEATH-CONVERSION",
+        "DR184-FINAL-WORD-POSITIVE-RESERVE-PAYMENT",
+        "DR184-FINAL-WORD-COUNTERED-FUNDED-CAST",
+        "DR184-FINAL-WORD-CONCURRENT-TOKENS-AND-ORIGINAL-REST-EXPIRY",
+        "DR184-FINAL-WORD-SUMMON-RESOURCE-FARM-DENIED",
+        "DR184-ETERNAL-PACT-A-POSITIVE-RETURN-ELIGIBILITY-HELD",
+        "DR184-ETERNAL-PACT-HUNT-ACTUAL-ADMISSION-HELD",
+        "DR184-ETERNAL-PACT-SUCCESSFUL-REPEAT-CYCLE-HELD",
+        "DR184-ETERNAL-PACT-LETHAL-TRACK-AND-NONRP-PRESERVATION-HELD",
+        "DR184-ETERNAL-PACT-COMPETING-RETURN-IDENTITY-HELD",
+        "DR184-FINAL-WORD-REAL-BASTION-DAMAGE-IMMUNITY-NOT-DEATH-IMMUNITY",
+        "DR184-FINAL-WORD-READY-LEGAL-RELEASE-ONE-CAST"
+      ],
+      "expected": "True source facts remain required; held branches create neither tokens nor RP recovery",
+      "id": "DR184-S063",
+      "name": "No positive soul capture or resurrection fabricated",
+      "pass": true,
+      "sourceReference": "evidence/current/DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md#Dead; SOURCE_CONFERENCE_CANDIDATE_01.json",
+      "spellIds": [
+        "final-word",
+        "eternal-pact"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-POWER-WORD-KILL-REAL-BASTION-DAMAGE-IMMUNITY-NOT-DEATH-IMMUNITY"
+      ],
+      "expected": "Five real native10ft Ray misses; one off-turn Ki each; same Echoing Guard refresh through next turn, final30.8; Bastion spends5Ki and1Dissonance",
+      "id": "DR184-S064",
+      "name": "Correct actual next-turn expiry and Ki cadence: power-word-kill",
+      "pass": true,
+      "sourceReference": "evidence/current/DescentReviewChanges/ReviewBible/data/public/class_playtests/monk.json#/cards/1,/cards/22,/cards/23; native Ray of Frost",
+      "spellIds": [
+        "power-word-kill"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-FINAL-WORD-REAL-BASTION-DAMAGE-IMMUNITY-NOT-DEATH-IMMUNITY"
+      ],
+      "expected": "Five real native10ft Ray misses; one off-turn Ki each; same Echoing Guard refresh through next turn, final30.8; Bastion spends5Ki and1Dissonance",
+      "id": "DR184-S065",
+      "name": "Correct actual next-turn expiry and Ki cadence: final-word",
+      "pass": true,
+      "sourceReference": "evidence/current/DescentReviewChanges/ReviewBible/data/public/class_playtests/monk.json#/cards/1,/cards/22,/cards/23; native Ray of Frost",
+      "spellIds": [
+        "final-word"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-THREAD-SEVERANCE-REAL-BASTION-DAMAGE-IMMUNITY-NOT-DEATH-IMMUNITY"
+      ],
+      "expected": "Five real native10ft Ray misses; one off-turn Ki each; same Echoing Guard refresh through next turn, final30.8; Bastion spends5Ki and1Dissonance",
+      "id": "DR184-S066",
+      "name": "Correct actual next-turn expiry and Ki cadence: thread-severance",
+      "pass": true,
+      "sourceReference": "evidence/current/DescentReviewChanges/ReviewBible/data/public/class_playtests/monk.json#/cards/1,/cards/22,/cards/23; native Ray of Frost",
+      "spellIds": [
+        "thread-severance"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-WAIL-OF-THE-BANSHEE-REAL-BASTION-DAMAGE-IMMUNITY-NOT-DEATH-IMMUNITY"
+      ],
+      "expected": "Five real native10ft Ray misses; one off-turn Ki each; same Echoing Guard refresh through next turn, final30.8; Bastion spends5Ki and1Dissonance",
+      "id": "DR184-S067",
+      "name": "Correct actual next-turn expiry and Ki cadence: wail-of-the-banshee",
+      "pass": true,
+      "sourceReference": "evidence/current/DescentReviewChanges/ReviewBible/data/public/class_playtests/monk.json#/cards/1,/cards/22,/cards/23; native Ray of Frost",
+      "spellIds": [
+        "wail-of-the-banshee"
+      ]
+    },
+    {
+      "caseIds": [
+        "DR184-SOUL-HARVEST-REAL-BASTION-DAMAGE-IMMUNITY-PREVENTS-DAMAGE"
+      ],
+      "expected": "Five real native10ft Ray misses; one off-turn Ki each; same Echoing Guard refresh through next turn, final30.8; Bastion spends5Ki and1Dissonance",
+      "id": "DR184-S068",
+      "name": "Correct actual next-turn expiry and Ki cadence: soul-harvest",
+      "pass": true,
+      "sourceReference": "evidence/current/DescentReviewChanges/ReviewBible/data/public/class_playtests/monk.json#/cards/1,/cards/22,/cards/23; native Ray of Frost",
+      "spellIds": [
+        "soul-harvest"
+      ]
+    }
+  ],
+  "checksRun": 68,
+  "failed": 0,
+  "failures": [],
+  "method": "Separate skeptical source-to-state audit using named expected results and current source text, independent of author functions. This is an assistant static director audit, not a second human reviewer, engine execution, or empirical game test.",
+  "passed": 68
+}

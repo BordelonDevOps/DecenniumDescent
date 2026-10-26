@@ -1,0 +1,258 @@
+{
+  "id": "RANK9-DEATHRECOVERY7-RETURN184-INDEPENDENT-AUDIT",
+  "recordedAtUtc": "2026-10-26T11:04:03.524307+00:00",
+  "status": "PASS",
+  "accepted": true,
+  "applied": false,
+  "acceptedIds": [
+    "soul-harvest",
+    "power-word-kill",
+    "thread-severance",
+    "wail-of-the-banshee"
+  ],
+  "unacceptedIds": [
+    "doom",
+    "final-word",
+    "eternal-pact"
+  ],
+  "unacceptedBlockers": {
+    "doom": "DR184-B03",
+    "final-word": "DR184-B01",
+    "eternal-pact": "DR184-B02"
+  },
+  "sourceAuthority": {
+    "acceptedUnapplied": 0,
+    "completeReviewedStandaloneProcedures": 483,
+    "pending": 89,
+    "reviewedApplied": 759,
+    "scopedInterfaces": 173
+  },
+  "sourceCommit": "25273775f16cf9877c758b3b923f672e60d6a44b",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_deathrecovery7_return184_received/DD_Rank9_DeathRecovery7_Director_Return184.zip",
+    "bytes": 82015677,
+    "sha256": "6947b89ae83eb724d2954666ea7e9f351ba1ff857c05250f1dc3157e87db98c7",
+    "members": 190
+  },
+  "independentReplay": {
+    "acceptedCases": 58,
+    "acceptedEvents": 1031,
+    "forwardOperations": 2062,
+    "inverseOperations": 2062,
+    "failures": []
+  },
+  "checksPassed": 42,
+  "checksFailed": 0,
+  "failures": [],
+  "checks": [
+    {
+      "check": "Return184 archive matches delivery byte count and SHA-256",
+      "passed": true,
+      "detail": {
+        "bytes": 82015677,
+        "sha256": "6947b89ae83eb724d2954666ea7e9f351ba1ff857c05250f1dc3157e87db98c7"
+      }
+    },
+    {
+      "check": "ZIP CRC scan succeeds and member names are unique",
+      "passed": true,
+      "detail": {
+        "members": 190
+      }
+    },
+    {
+      "check": "ZIP members contain no traversal, hidden, or temporary paths",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "Delivery manifest binds every unique archive member exactly once",
+      "passed": true,
+      "detail": {
+        "archiveMembers": 190,
+        "bindings": 190
+      }
+    },
+    {
+      "check": "Every archive member matches delivered size, SHA-256, and CRC32",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "Internal manifest is an exact self-excluding 189-member binding",
+      "passed": true,
+      "detail": {
+        "internal": 189,
+        "external": 189
+      }
+    },
+    {
+      "check": "Internal member hashes, sizes and CRCs match the external delivery manifest",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "Internal manifest SHA-256 matches the delivery manifest",
+      "passed": true
+    },
+    {
+      "check": "Director package checks report full pass",
+      "passed": true
+    },
+    {
+      "check": "Delivery manifest is explicit that nothing was applied and canonical files were not edited",
+      "passed": true
+    },
+    {
+      "check": "Director delivery and local source are bound to the current reviewed commit",
+      "passed": true
+    },
+    {
+      "check": "Bound source record identifies the exact current commit",
+      "passed": true
+    },
+    {
+      "check": "All 50 evidence snapshots match their byte/hash bindings and all Git-bound sources match the exact commit",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "All fresh Git source fetch bindings reproduce from the pinned commit",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "Source conference ZIP and candidate are byte-exact copies of current Git source",
+      "passed": true
+    },
+    {
+      "check": "All 74 original source-conference member bindings verify",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "The fresh source conference covers exactly the seven queued identities",
+      "passed": true
+    },
+    {
+      "check": "Director decided the exact seven queued identities and accepted exactly four",
+      "passed": true
+    },
+    {
+      "check": "No director decision claims application or canonical mutation",
+      "passed": true
+    },
+    {
+      "check": "No accepted identity carries a blocker; the three held identities have their exact blocker IDs",
+      "passed": true
+    },
+    {
+      "check": "Procedure dossier identities and per-identity decisions agree",
+      "passed": true
+    },
+    {
+      "check": "Delivery and embedded director decision agree exactly per identity",
+      "passed": true
+    },
+    {
+      "check": "Independent semantic check has no semantic failures and preserves exactly three required-evidence holds",
+      "passed": true
+    },
+    {
+      "check": "All 103 case entries report passed data-integrity checks",
+      "passed": true
+    },
+    {
+      "check": "Coverage inventory preserves every original question and future obligation",
+      "passed": true
+    },
+    {
+      "check": "soul-harvest: complete source-bound procedure has no held cases",
+      "passed": true
+    },
+    {
+      "check": "power-word-kill: complete source-bound procedure has no held cases",
+      "passed": true
+    },
+    {
+      "check": "thread-severance: complete source-bound procedure has no held cases",
+      "passed": true
+    },
+    {
+      "check": "wail-of-the-banshee: complete source-bound procedure has no held cases",
+      "passed": true
+    },
+    {
+      "check": "Accepted cases are unique and all belong to the exact four accepted identities",
+      "passed": true
+    },
+    {
+      "check": "All case files match their index identities, statuses, events and member hashes",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "All accepted cases independently replay forward and inverse with full state hashes and assertions",
+      "passed": true,
+      "detail": {
+        "cases": 58,
+        "events": 1031,
+        "forwardOperations": 2062,
+        "inverseOperations": 2062
+      }
+    },
+    {
+      "check": "Case and reversible-operation counts match the delivered package",
+      "passed": true,
+      "detail": {
+        "cases": 103,
+        "events": 2074,
+        "reversibleEventOperations": 8296
+      }
+    },
+    {
+      "check": "Accepted trace count and delivered total reversible operations reconcile",
+      "passed": true
+    },
+    {
+      "check": "Current handoff, queue and pending audit agree on 759/89/0",
+      "passed": true
+    },
+    {
+      "check": "DeathRecovery7 is exactly the next seven pending IDs in the current queue",
+      "passed": true
+    },
+    {
+      "check": "The previous three Psychic Fear identities remain pending and are not in this packet",
+      "passed": true
+    },
+    {
+      "check": "Canonical authored index and catalog are still bound to the exact source commit",
+      "passed": true
+    },
+    {
+      "check": "All seven in-scope identities remain in the current catalog",
+      "passed": true
+    },
+    {
+      "check": "All seven decisions target pending authored statuses with unchanged native/source status",
+      "passed": true
+    },
+    {
+      "check": "Director return retains the actual pre-application authority",
+      "passed": true
+    },
+    {
+      "check": "Static acceptance is not runtime/source/balance/release approval",
+      "passed": true
+    }
+  ],
+  "qualifications": [
+    "Exact source/native access and acquisition gates retained; runtime catalog selection is unchanged.",
+    "Conditional authored physical/body/hearing profiles are not observed campaign facts; unavailable qualifying source facts remain held.",
+    "NEW choices are spell-local and do not amend accepted global/interface scopes.",
+    "No game/runtime or supplied/historical source program was executed. Fresh static document/packaging checks alone are reported.",
+    "No human playtest, balance, cosmology, domain-closure or release approval.",
+    "No canonical index/catalog/queue/handoff mutation or application; source authority remains759/89/0."
+  ]
+}
