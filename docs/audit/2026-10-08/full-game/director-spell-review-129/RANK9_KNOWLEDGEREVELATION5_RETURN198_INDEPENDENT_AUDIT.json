@@ -1,0 +1,330 @@
+{
+  "id": "RANK9-KNOWLEDGEREVELATION5-RETURN198-INDEPENDENT-AUDIT",
+  "status": "PASS",
+  "checksPassed": 18,
+  "checksFailed": 0,
+  "checks": [
+    {
+      "check": "Return ZIP matches delivery bytes and SHA-256",
+      "passed": true,
+      "detail": {
+        "bytes": 113662026,
+        "sha256": "2da202eaab4542d7b3bef90e03e75b5276f8396b8a8e3e535a1245d20d87afca"
+      }
+    },
+    {
+      "check": "Delivery preserves exact source packet and baseline authority",
+      "passed": true,
+      "detail": {
+        "sourcePacketSHA256": "a55e76efc14e2dc43f4e2b16ff3d176ac65ee33b0d5aee53fdf624cd4b674c04",
+        "sourceDeliverySHA256": "62457741946a9c0c10bc41884146b20e8501df30e5be6050e7528594c408aa61",
+        "authorityBaselineUnchanged": {
+          "reviewedApplied": 786,
+          "pending": 62,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 510,
+          "scopedInterfaces": 173
+        }
+      }
+    },
+    {
+      "check": "Director and delivery show exact four acceptances, one hold, and no application",
+      "passed": true,
+      "detail": {
+        "acceptedIds": [
+          "cosmic-awareness",
+          "cosmic-revelation",
+          "divine-truth",
+          "oracle-of-eternity"
+        ],
+        "unacceptedIds": [
+          "faction-omniscience-supreme"
+        ],
+        "counts": {
+          "procedures": 5,
+          "acceptedProcedures": 4,
+          "unacceptedProcedures": 1,
+          "originalQuestions": 26,
+          "focusedAddenda": 2,
+          "answeredDispositions": 28,
+          "requiredMainCases": 10,
+          "mainCases": 10,
+          "branches": 67,
+          "cases": 77,
+          "passingStaticCases": 69,
+          "heldCases": 8,
+          "events": 1693,
+          "forwardEventOperations": 3386,
+          "inverseEventOperations": 3386,
+          "eventOperations": 6772,
+          "proposalOperations": 20,
+          "futureObligations": 9,
+          "refreshedSourceBindings": 126,
+          "additionalCurrentSourceBindings": 10,
+          "boundInputArchiveMembers": 157,
+          "newHoldRecords": 7,
+          "inheritedHoldRecords": 141,
+          "totalHoldRecords": 148,
+          "distinctHoldIds": 148,
+          "newAcceptanceBlockers": 1,
+          "carriedNamedBlockerIds": 10,
+          "sourceVerificationChecks": 1142,
+          "profileSourceChecks": 270,
+          "supplementalSourceChecks": 20,
+          "dataIntegrityChecks": 74752,
+          "semanticChecks": 47,
+          "finalBindingChecks": 96,
+          "stateHashFields": 3540,
+          "totalPrePackagingChecks": 76327
+        }
+      }
+    },
+    {
+      "check": "ZIP has 128 unique safe members and exact outer allowlist",
+      "passed": true,
+      "detail": {
+        "members": 128,
+        "outerManifestMembers": 128
+      }
+    },
+    {
+      "check": "All 128 streamed ZIP members match byte, SHA-256, CRC, and compressed-size bindings",
+      "passed": true,
+      "detail": {
+        "checked": 128,
+        "uncompressedBytes": 487883093,
+        "failures": []
+      }
+    },
+    {
+      "check": "ZIP central directory and CRC test pass",
+      "passed": true,
+      "detail": {
+        "centralDirectoryEntries": 128
+      }
+    },
+    {
+      "check": "Internal member manifest lists exactly all members except itself",
+      "passed": true,
+      "detail": {
+        "internalListed": 127,
+        "archiveMembers": 128
+      }
+    },
+    {
+      "check": "Return embeds the byte-exact submitted source ZIP and delivery JSON",
+      "passed": true,
+      "detail": {
+        "embeddedPacketBytes": 103797987,
+        "embeddedPacketSHA256": "a55e76efc14e2dc43f4e2b16ff3d176ac65ee33b0d5aee53fdf624cd4b674c04",
+        "embeddedDeliveryBytes": 2369
+      }
+    },
+    {
+      "check": "Bound source commit, tree traversal, and 1,142 declared checks are complete",
+      "passed": true,
+      "detail": {
+        "sourceCommit": "1880dc5cea9faf3aa764300162751973c2bee7dd",
+        "publicationCommit": "77625c617db8d177a09d27a372173dc910119caf",
+        "gitBindings": 148,
+        "sourceChecks": 1142
+      }
+    },
+    {
+      "check": "All 148 refreshed source-tree entries independently match Git blobs",
+      "passed": true,
+      "detail": {
+        "checked": 148,
+        "failures": []
+      }
+    },
+    {
+      "check": "All ten additional current-source copies match exact Git blobs and package members",
+      "passed": true,
+      "detail": {
+        "checked": 10,
+        "failures": []
+      }
+    },
+    {
+      "check": "Director, model, validation, and delivery agree on per-identity decisions",
+      "passed": true,
+      "detail": {
+        "acceptedIds": [
+          "cosmic-awareness",
+          "cosmic-revelation",
+          "divine-truth",
+          "oracle-of-eternity"
+        ],
+        "heldIds": [
+          "faction-omniscience-supreme"
+        ]
+      }
+    },
+    {
+      "check": "KR198-B01 narrowly blocks only faction omniscience for missing canonical history/forecast evidence",
+      "passed": true,
+      "detail": {
+        "blocker": {
+          "id": "KR198-B01",
+          "spellIds": [
+            "faction-omniscience-supreme"
+          ],
+          "status": "OPEN",
+          "blocking": true,
+          "scope": "Required whole positive dossier/forecast witness, not general existence of factions",
+          "caseIds": [
+            "RANK9KNOWLEDGEREVELATION5129-FACTION-OMNISCIENCE-SUPREME-A",
+            "RANK9KNOWLEDGEREVELATION5129-FACTION-OMNISCIENCE-SUPREME-B"
+          ],
+          "questionIds": [
+            "KR9-Q07",
+            "KR9-Q08",
+            "KR9-Q10",
+            "KR9-Q26"
+          ],
+          "futureObligationIds": [
+            "KR9-DOSSIER"
+          ],
+          "missing": "Current book names canonical factions and gives broad institutional descriptions, but no exact complete past/present/distant-branch ledger or sufficiently concrete future premises for the required exhaustive positive witness was bound. No branch roster, actualmember privatehistory or split/dissolution event is invented. A general source tendency is not a complete campaign forecast.",
+          "minimalCorrection": "Supply exact established canonical-faction institutional history/current branches and source-qualified forecast inputs, including protected/private/absence controls and actual continuity events; instantiate the preserved full procedure against those records and demonstrate the required positive/branch traces.",
+          "linkedCaseIds": [
+            "RANK9KNOWLEDGEREVELATION5129-FACTION-OMNISCIENCE-SUPREME-A",
+            "RANK9KNOWLEDGEREVELATION5129-FACTION-OMNISCIENCE-SUPREME-A/actual-cleric-route",
+            "RANK9KNOWLEDGEREVELATION5129-FACTION-OMNISCIENCE-SUPREME-A/counter-failure",
+            "RANK9KNOWLEDGEREVELATION5129-FACTION-OMNISCIENCE-SUPREME-A/counter-success",
+            "RANK9KNOWLEDGEREVELATION5129-FACTION-OMNISCIENCE-SUPREME-A/invalid-access-and-component-boundary",
+            "RANK9KNOWLEDGEREVELATION5129-FACTION-OMNISCIENCE-SUPREME-A/ready-expiry",
+            "RANK9KNOWLEDGEREVELATION5129-FACTION-OMNISCIENCE-SUPREME-A/ready-valid-release",
+            "RANK9KNOWLEDGEREVELATION5129-FACTION-OMNISCIENCE-SUPREME-B"
+          ],
+          "linkedQuestionIds": [
+            "KNOW129-ADD01",
+            "KR9-Q01",
+            "KR9-Q06",
+            "KR9-Q07",
+            "KR9-Q08",
+            "KR9-Q09",
+            "KR9-Q10",
+            "KR9-Q25",
+            "KR9-Q26"
+          ]
+        },
+        "semanticChecks": 47,
+        "wholeBatchPass": false
+      }
+    },
+    {
+      "check": "All ten inherited named blockers and prior accepted Memory/Denial context remain unchanged",
+      "passed": true,
+      "detail": {
+        "carriedNamedBlockers": {
+          "AG190": [
+            "AG190-B01",
+            "AG190-B02"
+          ],
+          "TF192": [
+            "TF192-B01",
+            "TF192-B02",
+            "TF192-B04",
+            "TF192-B05"
+          ],
+          "CC194": [
+            "CC194-B01",
+            "CC194-B04"
+          ],
+          "MD196": [
+            "MD196-B01",
+            "MD196-B02"
+          ]
+        },
+        "recordCount": 141,
+        "inherited194Records": 56
+      }
+    },
+    {
+      "check": "Question, future-obligation, case-disposition, and count totals match the required cohort",
+      "passed": true,
+      "detail": {
+        "questions": 28,
+        "futureObligations": 9,
+        "mainDispositions": 10
+      }
+    },
+    {
+      "check": "Package, saved-artifact, final-binding, and prepackage integrity gates all report pass",
+      "passed": true,
+      "detail": {
+        "packagingChecks": 644,
+        "savedReadbackChecks": 390,
+        "checksBeforeSavedReadback": 77246,
+        "checksIncludingSavedReadback": 77636
+      }
+    },
+    {
+      "check": "All 77 case states, 1,693 event chains, reversible patches, hashes, and clocks independently replay",
+      "passed": true,
+      "detail": {
+        "cases": 77,
+        "mainCases": 10,
+        "events": 1693,
+        "forwardOperations": 3386,
+        "inverseOperations": 3386,
+        "statusCounts": {
+          "STATIC_AUTHORED_CASE_PASSED": 69,
+          "HELD_REQUIRED_CONTENT": 8
+        },
+        "failures": []
+      }
+    },
+    {
+      "check": "Director names the next exact five-identity group and requires a fresh current-authority packet",
+      "passed": true,
+      "detail": {
+        "group": "rank9-planar-gates5",
+        "pendingIds": [
+          "gate",
+          "absolute-gate",
+          "banishment-gate",
+          "planar-sanctuary",
+          "conjure-demiplane-fortress"
+        ],
+        "pendingCount": 5,
+        "historicalPhase": "source-conference-prepared-unsent",
+        "candidate": {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/rank9_planar_gates_5_source_conference_01.json",
+          "bytes": 839777,
+          "sha256": "337d9fcdffbaa22e6e661cd2a7479e81664998420c4ba66eb9f5ce2efb767c06"
+        },
+        "archive": {
+          "path": "docs/audit/2026-10-08/full-game/DD_Rank9_Planar_Gates_5_Source_Conference_01.zip",
+          "bytes": 56376787,
+          "sha256": "37dd1b61a3b04c0173201a0b63ae754f249c559d469ca374379b838b5135d8b5"
+        },
+        "freshPacketRequiredForCurrentAuthority": true,
+        "status": "PENDING_FRESH_PACKET_FOR_CURRENT_AUTHORITY"
+      }
+    }
+  ],
+  "sourceCommit": "1880dc5cea9faf3aa764300162751973c2bee7dd",
+  "returnArchive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_knowledgerevelation5_return198_received/DD_Rank9_KnowledgeRevelation5_Director_Return198.zip",
+    "bytes": 113662026,
+    "sha256": "2da202eaab4542d7b3bef90e03e75b5276f8396b8a8e3e535a1245d20d87afca"
+  },
+  "delivery": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_knowledgerevelation5_return198_received/DD_Rank9_KnowledgeRevelation5_Director_Return198_DELIVERY.json",
+    "bytes": 171848,
+    "sha256": "c10034d353f184cc15aee5968256ddbeaf2cd2f302e418479df0ebc7e2ea04e8"
+  },
+  "acceptedIds": [
+    "cosmic-awareness",
+    "cosmic-revelation",
+    "divine-truth",
+    "oracle-of-eternity"
+  ],
+  "unacceptedIds": [
+    "faction-omniscience-supreme"
+  ],
+  "applied": false
+}

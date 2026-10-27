@@ -1,3 +1,5 @@
+**Current ordinary spell-review handoff [198](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_198.json):** Applied exactly cosmic-awareness, cosmic-revelation, divine-truth, oracle-of-eternity. Authority is **790 reviewed / 58 pending / 0 accepted-unapplied**. Faction Omniscience Supreme remains pending under KR198-B01. Next group: Rank9 Planar Gates5.
+
 **Current ordinary spell-review handoff [197](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_197.json):** Authority is **786 reviewed / 62 pending / 0 accepted-unapplied**. Memory/Denial6 applied four exact acceptances and retained two named blockers. Next group: Rank9 Knowledge/Revelation5; fresh packet was submitted to GPT; director response is pending.
 
 **Current ordinary spell-review handoff [196](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_196.json):** Applied exactly mass-willbreaker, mind-prison-mass, mind-wipe, unmake-spell. Authority is **786 reviewed / 62 pending / 0 accepted-unapplied**. Mind Collapse and Unravel Identity remain pending under MD196-B01 and MD196-B02. Next group: Rank9 Knowledge/Revelation5.
