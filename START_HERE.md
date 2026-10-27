@@ -1,3 +1,7 @@
+**Current ordinary spell-review handoff [203](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_203.json):** Authority is **795 reviewed / 53 pending / 0 accepted-unapplied**. The fresh Rank9 Impact/Exile4 packet is prepared for the GPT director. Summon Elemental Avatar, Summon Herald of the Planes and Summon Avatar of Decay remain pending under SH202-B01/B02/B03.
+
+**Current ordinary spell-review handoff [203](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_203.json):** Authority is **795 reviewed / 53 pending / 0 accepted-unapplied**. The fresh Rank9 Impact/Exile4 packet is prepared for the GPT director. Summon Elemental Avatar, Summon Herald of the Planes and Summon Avatar of Decay remain pending under SH202-B01/B02/B03.
+
 **Current ordinary spell-review handoff [202](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_202.json):** Applied exactly conjure-magmatic-wyrm, planar-army. Authority is **795 reviewed / 53 pending / 0 accepted-unapplied**. Summon Elemental Avatar, Summon Herald of the Planes, and Summon Avatar of Decay remain pending under SH202-B01/B02/B03. Next group: Rank9 Impact/Exile4.
 
 **Current ordinary spell-review handoff [201](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_201.json):** Authority is **793 reviewed / 55 pending / 0 accepted-unapplied**. The fresh Rank9 Summon Hosts5 packet is prepared for the GPT director. Banishment Gate and Conjure Demiplane Fortress remain pending under PG200-B03/B04/B06.
