@@ -1,3 +1,5 @@
+**Current ordinary spell-review handoff [205](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_205.json):** Applied exactly eternal-anvil, transmute-flesh-to-energy, planar-collapse. Authority is **798 reviewed / 50 pending / 0 accepted-unapplied**. Reverse Gravity Field remains pending under IE204-B02. Next group: Rank9 Illusion/Reality5.
+
 **Current ordinary spell-review handoff [203](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_203.json):** Authority is **795 reviewed / 53 pending / 0 accepted-unapplied**. The fresh Rank9 Impact/Exile4 packet is prepared for the GPT director. Summon Elemental Avatar, Summon Herald of the Planes and Summon Avatar of Decay remain pending under SH202-B01/B02/B03.
 
 **Current ordinary spell-review handoff [203](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_203.json):** Authority is **795 reviewed / 53 pending / 0 accepted-unapplied**. The fresh Rank9 Impact/Exile4 packet is prepared for the GPT director. Summon Elemental Avatar, Summon Herald of the Planes and Summon Avatar of Decay remain pending under SH202-B01/B02/B03.
