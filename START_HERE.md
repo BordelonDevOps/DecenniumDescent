@@ -1,3 +1,5 @@
+**Current ordinary spell-review handoff [201](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_201.json):** Authority is **793 reviewed / 55 pending / 0 accepted-unapplied**. The fresh Rank9 Summon Hosts5 packet is prepared for the GPT director. Banishment Gate and Conjure Demiplane Fortress remain pending under PG200-B03/B04/B06.
+
 **Current ordinary spell-review handoff [200](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_200.json):** Applied exactly gate, absolute-gate, planar-sanctuary. Authority is **793 reviewed / 55 pending / 0 accepted-unapplied**. Banishment Gate remains pending under PG200-B03/B04; Conjure Demiplane Fortress remains pending under PG200-B06. Next group: Rank9 Summon Hosts5.
 
 **Current ordinary spell-review handoff [199](docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_199.json):** Authority is **790 reviewed / 58 pending / 0 accepted-unapplied**. The fresh Rank9 Planar Gates5 packet has been submitted to the GPT director. Faction Omniscience Supreme remains pending under KR198-B01.
