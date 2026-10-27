@@ -1,0 +1,257 @@
+{
+  "id": "RANK9-PLANARGATES5-RETURN200-INDEPENDENT-AUDIT",
+  "status": "PASS",
+  "checksPassed": 21,
+  "checksFailed": 0,
+  "checks": [
+    {
+      "check": "Return200 ZIP exact byte count and SHA-256 match delivery",
+      "passed": true,
+      "detail": {
+        "bytes": 171541716,
+        "sha256": "8afda34a91bad329273753232e02a76136bff01a3d1da95416b573c9f4fb284c"
+      }
+    },
+    {
+      "check": "Submitted source ZIP and source delivery are exact local byte matches",
+      "passed": true,
+      "detail": {
+        "sourceBytes": 115991966,
+        "sourceSHA256": "b2ae3bfc026a8b43406eac8c9d641b097dbee9c6c6e44959469f9b34258b2a3f"
+      }
+    },
+    {
+      "check": "Source commit, submission commit, and authority baseline match the current review",
+      "passed": true,
+      "detail": {
+        "sourceCommit": "21241139fccc612fa40b83a047e9a11b4a55a14e",
+        "submissionCommit": "e7f9fe3632aec76ecc761b69395a7520af889bd9",
+        "currentHead": "7ce06639bd07a6cc25f4991d79ab86419eb43692"
+      }
+    },
+    {
+      "check": "Current index, prior queue, handoff, and pending audit agree at 790/58/514",
+      "passed": true,
+      "detail": {
+        "pending": 58,
+        "targetIdsPresent": true
+      }
+    },
+    {
+      "check": "Working authoritative index is byte-identical to the source-commit index",
+      "passed": true,
+      "detail": {
+        "sourceIndexBytes": 1503568,
+        "sourceIndexSHA256": "2e742d68e549f16b0d982e63382e182549ab5e57b7a04b8ed43a3a2f7d9fee38"
+      }
+    },
+    {
+      "check": "ZIP has 125 unique safe members and exactly matches the delivery allowlist",
+      "passed": true,
+      "detail": {
+        "archiveMembers": 125,
+        "deliveryMembers": 125,
+        "safeNames": true
+      }
+    },
+    {
+      "check": "All archive members independently match exact bytes, SHA-256, and CRC32",
+      "passed": true,
+      "detail": {
+        "checked": 125,
+        "uncompressedBytes": 1230776298,
+        "failures": []
+      }
+    },
+    {
+      "check": "Internal member manifest is exact and excludes only itself",
+      "passed": true,
+      "detail": {
+        "internalMembers": 124,
+        "archiveMembers": 125
+      }
+    },
+    {
+      "check": "Return200 embeds the exact source ZIP submitted for review",
+      "passed": true,
+      "detail": {
+        "embeddedBytes": 115991966,
+        "embeddedSHA256": "b2ae3bfc026a8b43406eac8c9d641b097dbee9c6c6e44959469f9b34258b2a3f"
+      }
+    },
+    {
+      "check": "Return200 embeds the byte-exact source delivery JSON",
+      "passed": true,
+      "detail": {
+        "embeddedDeliveryBytes": 2297
+      }
+    },
+    {
+      "check": "All source proof Git blobs and trees independently resolve at the named commit",
+      "passed": true,
+      "detail": {
+        "leaves": 152,
+        "leafFailures": [],
+        "trees": 46,
+        "treeFailures": []
+      }
+    },
+    {
+      "check": "All 17 supplemental source copies match their declared Git blobs and hashes",
+      "passed": true,
+      "detail": {
+        "bindings": 17,
+        "failures": []
+      }
+    },
+    {
+      "check": "Refreshed-source verification reports 1,353 passing checks",
+      "passed": true,
+      "detail": {
+        "status": "PASS",
+        "checks": 1353
+      }
+    },
+    {
+      "check": "Director disposition is exactly three accepted and two held, with no application",
+      "passed": true,
+      "detail": {
+        "acceptedIds": [
+          "gate",
+          "absolute-gate",
+          "planar-sanctuary"
+        ],
+        "heldIds": [
+          "banishment-gate",
+          "conjure-demiplane-fortress"
+        ]
+      }
+    },
+    {
+      "check": "All five procedures bind to the exact pending index entries and preserve native-card status",
+      "passed": true,
+      "detail": {
+        "failures": []
+      }
+    },
+    {
+      "check": "Declared counts and independent semantic check preserve the three-only acceptance boundary",
+      "passed": true,
+      "detail": {
+        "dataIntegrity": "PASS",
+        "semantic": "PASS_WITH_EXPLICIT_BLOCKED_IDENTITIES",
+        "semanticChecks": 1209,
+        "failedChecks": 0
+      }
+    },
+    {
+      "check": "All 49 accepted cases are demonstrated; all 23 held traces remain explicitly incomplete",
+      "passed": true,
+      "detail": {
+        "acceptedCases": 49,
+        "heldCases": 23
+      }
+    },
+    {
+      "check": "Banishment Gate and Demiplane Fortress retain their named evidence blockers",
+      "passed": true,
+      "detail": {
+        "heldIds": [
+          "banishment-gate",
+          "conjure-demiplane-fortress"
+        ],
+        "blockerIds": {
+          "banishment-gate": [
+            "PG200-B03",
+            "PG200-B04"
+          ],
+          "conjure-demiplane-fortress": [
+            "PG200-B06"
+          ]
+        },
+        "holdRecords": 161
+      }
+    },
+    {
+      "check": "CASEBOOK byte digest matches its standalone data-integrity binding",
+      "passed": true,
+      "detail": {
+        "bytes": 549968664,
+        "sha256": "1e7ace46216785749b942b587acb748d2b3d5c9e9a08b3a45147ea8d1619c5c4",
+        "crc32": "37e750a7"
+      }
+    },
+    {
+      "check": "All 72 cases and 4,159 events independently replay with reversible patches and monotone clocks",
+      "passed": true,
+      "detail": {
+        "cases": 72,
+        "main": 10,
+        "branches": 62,
+        "events": 4159,
+        "forwardOps": 8318,
+        "inverseOps": 8318,
+        "statuses": {
+          "STATIC_TRACE": 49,
+          "HELD_TYPE_CONTROL": 1,
+          "HELD_LIFECYCLE_COVERAGE": 2,
+          "HELD_NATIVE_TYPE_CONTROL": 1,
+          "HELD_RULE_WITNESS_NOT_DEMONSTRATED": 3,
+          "HELD_MISSING_POSITIVE_BRANCH": 15,
+          "HELD_WORK_STRUCTURE_COVERAGE": 1
+        },
+        "failures": []
+      }
+    },
+    {
+      "check": "Return200 requires a fresh authority packet for the exact next five-spell group",
+      "passed": true,
+      "detail": {
+        "group": "rank9-summon-hosts5",
+        "pendingIds": [
+          "summon-elemental-avatar",
+          "conjure-magmatic-wyrm",
+          "planar-army",
+          "summon-herald-of-the-planes",
+          "summon-avatar-of-decay"
+        ],
+        "pendingCount": 5,
+        "historicalPhase": "source-conference-prepared-unsent",
+        "candidate": {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/rank9_summon_hosts_5_source_conference_01.json",
+          "bytes": 1106185,
+          "sha256": "11ead112cd61f5b69048b2698afe104f15708e24df9699bdfdde22ab1dba238b"
+        },
+        "archive": {
+          "path": "docs/audit/2026-10-08/full-game/DD_Rank9_Summon_Hosts_5_Source_Conference_01.zip",
+          "bytes": 27330505,
+          "sha256": "02d1eca0d1dcceb63fbcfa31b6d5161244fab539454defbc3cac837d6292e7e0"
+        },
+        "freshPacketRequiredForCurrentAuthority": true,
+        "status": "PENDING_FRESH_PACKET_FOR_CURRENT_AUTHORITY"
+      }
+    }
+  ],
+  "sourceCommit": "21241139fccc612fa40b83a047e9a11b4a55a14e",
+  "submissionCommit": "e7f9fe3632aec76ecc761b69395a7520af889bd9",
+  "returnArchive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_planargates5_return200_received/DD_Rank9_PlanarGates5_Director_Return200.zip",
+    "bytes": 171541716,
+    "sha256": "8afda34a91bad329273753232e02a76136bff01a3d1da95416b573c9f4fb284c"
+  },
+  "delivery": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_planargates5_return200_received/DD_Rank9_PlanarGates5_Director_Return200_DELIVERY.json",
+    "bytes": 31554,
+    "sha256": "8e9f39ef9a3bdb9df2e99f4dc6b5d3d2290a7ef6453d6e46094ff1494248d580"
+  },
+  "acceptedIds": [
+    "gate",
+    "absolute-gate",
+    "planar-sanctuary"
+  ],
+  "unacceptedIds": [
+    "banishment-gate",
+    "conjure-demiplane-fortress"
+  ],
+  "applied": false
+}
