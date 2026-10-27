@@ -1,0 +1,2554 @@
+{
+  "id": "RANK9-IMPACTEXILE4-RETURN204-INDEPENDENT-AUDIT",
+  "status": "PASS",
+  "recordedAtUtc": "2026-10-27T06:18:03.549398+00:00",
+  "sourceCommit": "3bce65038b561b10aa572d7bb42c99bc98e770dc",
+  "submissionCommit": "d5e32c3bd3897a1dacb47944cd4c463b933ff601",
+  "branch": "codex/ordinary-spell-review-complete",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_impactexile4_return204_received/DD_Rank9_ImpactExile4_Director_Return204_UNACCEPTED.zip",
+    "bytes": 78297741,
+    "sha256": "b0e79fd8ca0b61730ba2ba6e04e3b4cb553147e091a0b20b57317c0d86905b3f"
+  },
+  "delivery": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_impactexile4_return204_received/DD_Rank9_ImpactExile4_Director_Return204_UNACCEPTED_DELIVERY.json",
+    "bytes": 41085,
+    "sha256": "7b10619f523aa14ca06778c93a08f8ce86d79d3a383021633535b0eaccd30793"
+  },
+  "authorityUnchanged": {
+    "reviewedApplied": 795,
+    "pending": 53,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 519,
+    "scopedInterfaces": 173
+  },
+  "acceptedIds": [],
+  "unacceptedIds": [
+    "eternal-anvil",
+    "reverse-gravity-field",
+    "transmute-flesh-to-energy",
+    "planar-collapse"
+  ],
+  "blockers": [
+    {
+      "id": "IE204-B01",
+      "spellId": "eternal-anvil",
+      "missing": "suppression/resumption and complete manifestation geometry"
+    },
+    {
+      "id": "IE204-B02",
+      "spellId": "reverse-gravity-field",
+      "missing": "sourced object aftermath and rated attachment evidence"
+    },
+    {
+      "id": "IE204-B03",
+      "spellId": "transmute-flesh-to-energy",
+      "missing": "corpse-recast and changed-form anatomy traces"
+    },
+    {
+      "id": "IE204-B04",
+      "spellId": "planar-collapse",
+      "missing": "warded return, immunity, removal, and admitted-body lifecycle"
+    }
+  ],
+  "counts": {
+    "procedures": 0,
+    "originalQuestions": 26,
+    "focusedAddenda": 2,
+    "totalDispositions": 28,
+    "requiredMainCases": 8,
+    "mainCases": 8,
+    "branches": 28,
+    "cases": 36,
+    "events": 1255,
+    "forwardOperations": 2510,
+    "inverseOperations": 2510,
+    "proposalOperations": 0,
+    "futureObligations": 7,
+    "sourceChecks": 354,
+    "dataIntegrityChecks": 33013,
+    "eventOperations": 5020,
+    "localHoldRecords": 19,
+    "inheritedHoldRecords": 176,
+    "holdRecords": 195,
+    "blockingIdentityDecisions": 4,
+    "acceptedIds": 0,
+    "appliedIds": 0,
+    "supplementalSourceFiles": 9,
+    "refreshedSourceBindings": 149,
+    "actorProfiles": 4,
+    "untracedCaseObligations": 9,
+    "semanticChecks": 16,
+    "semanticChecksPassed": 12,
+    "semanticChecksFailed": 4,
+    "passingProceduresReturned": 0,
+    "auditedDraftProceduresPreserved": 4,
+    "auditedDraftProposalOperations": 16,
+    "warriorSourceAndTraceChecks": 33
+  },
+  "sourceProofPathsChecked": 177,
+  "refreshedSourceBindingsChecked": 149,
+  "supplementalBindingsChecked": 9,
+  "checksPassed": 614,
+  "checksFailed": 0,
+  "checks": [
+    {
+      "check": "outer ZIP length and SHA-256 match delivery",
+      "passed": true
+    },
+    {
+      "check": "four exact pending identities returned with no acceptance/application",
+      "passed": true
+    },
+    {
+      "check": "delivery counts record 26 questions, 2 addenda, 8 cases, 36 total, and 7 future obligations",
+      "passed": true
+    },
+    {
+      "check": "delivery records zero procedures and four blocking identities",
+      "passed": true
+    },
+    {
+      "check": "archive member names are unique and exactly match delivery allowlist",
+      "passed": true
+    },
+    {
+      "check": "archive paths contain no traversal",
+      "passed": true
+    },
+    {
+      "check": "ZIP central-directory CRC test passes",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: ACTOR_PROFILES.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: CASE_DISPOSITIONS.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: CASE_INDEX.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: CLOCK_AND_INVERSE_RESULTS.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: COUNTS.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: DATA_INTEGRITY_CHECK.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: DIRECTOR_DECISION.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: HOLD_REGISTER.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: INDEPENDENT_SEMANTIC_FAILURE_CHECK.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: INHERITED_BLOCKERS_UNCHANGED.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: ORIGINAL_OBLIGATIONS.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: OUTSTANDING_CASE_OBLIGATIONS.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: PRIOR_CONTEXT_PRESERVATION.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: PROCEDURES.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: PROPOSAL_OPERATIONS.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: QUESTION_DISPOSITIONS.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: README.md",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: RETURN202_ACCEPTED_MODEL_UNCHANGED.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: RETURN202_HOLD_REGISTER_UNCHANGED.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: SOURCE_AND_INTERFACE_BOUNDARIES.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: SOURCE_CONFERENCE_NOTES_UNCHANGED.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: SOURCE_CONTEXT_UNCHANGED.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: SOURCE_DELIVERY_203.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: SOURCE_PACKET_203.zip",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: SOURCE_VERIFICATION.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: STANDALONE_PROCEDURES.md",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: VALIDATION.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: WARRIOR_SOURCE_AND_TRACE_CHECK.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: WITHHELD_DRAFT_BINDINGS.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: source_proofs/GIT_SOURCE_PROOF.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: source_proofs/SUPPLEMENTAL_GIT_PROOF.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: supplemental_sources/DescentReviewChanges/ReviewBible/data/playtest/ancestry_background_candidate.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: supplemental_sources/DescentReviewChanges/ReviewBible/data/playtest/class_sources/warrior.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: supplemental_sources/DescentReviewChanges/ReviewBible/data/public/spell_candidates/magic7_reviewed_129/MODEL.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: supplemental_sources/DescentReviewChanges/ReviewBible/data/public/spell_candidates/planartravel6_reviewed_133/MODEL.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: supplemental_sources/DescentReviewChanges/ReviewBible/docs/mechanics/ANCESTRY_BACKGROUND_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: supplemental_sources/DescentReviewChanges/ReviewBible/docs/mechanics/classes/warrior.md",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: supplemental_sources/docs/audit/2026-10-08/full-game/director-spell-review-129/MAGIC7_APPLICATION_129.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: supplemental_sources/docs/audit/2026-10-08/full-game/director-spell-review-129/MAGIC7_EXACT_ACCEPTANCE_129.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: supplemental_sources/docs/audit/2026-10-08/full-game/director-spell-review-129/PLANARTRAVEL6_EXACT_ACCEPTANCE_133.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: cases/RANK9IMPACTEXILE4129-TRANSMUTE-FLESH-TO-ENERGY-B__wardborn-pipeline.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: cases/RANK9IMPACTEXILE4129-ETERNAL-ANVIL-B__condition-immunity.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: cases/RANK9IMPACTEXILE4129-ETERNAL-ANVIL-B__GreaterDispel-immutable-area.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: cases/RANK9IMPACTEXILE4129-ETERNAL-ANVIL-B__acquired-Counterspell.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: cases/RANK9IMPACTEXILE4129-ETERNAL-ANVIL-A.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: cases/RANK9IMPACTEXILE4129-ETERNAL-ANVIL-B.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: cases/RANK9IMPACTEXILE4129-ETERNAL-ANVIL-B__miss.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: cases/RANK9IMPACTEXILE4129-ETERNAL-ANVIL-B__save.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: cases/RANK9IMPACTEXILE4129-ETERNAL-ANVIL-B__immunity.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: cases/RANK9IMPACTEXILE4129-ETERNAL-ANVIL-B__guard.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: cases/RANK9IMPACTEXILE4129-REVERSE-GRAVITY-FIELD-A.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: cases/RANK9IMPACTEXILE4129-REVERSE-GRAVITY-FIELD-B.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: cases/RANK9IMPACTEXILE4129-REVERSE-GRAVITY-FIELD-B__anchored.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: cases/RANK9IMPACTEXILE4129-REVERSE-GRAVITY-FIELD-B__feather.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: cases/RANK9IMPACTEXILE4129-REVERSE-GRAVITY-FIELD-B__overlap.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: cases/RANK9IMPACTEXILE4129-TRANSMUTE-FLESH-TO-ENERGY-A.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: cases/RANK9IMPACTEXILE4129-TRANSMUTE-FLESH-TO-ENERGY-B.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: cases/RANK9IMPACTEXILE4129-TRANSMUTE-FLESH-TO-ENERGY-B__save.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: cases/RANK9IMPACTEXILE4129-TRANSMUTE-FLESH-TO-ENERGY-B__immunity.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: cases/RANK9IMPACTEXILE4129-TRANSMUTE-FLESH-TO-ENERGY-B__rebind.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: cases/RANK9IMPACTEXILE4129-TRANSMUTE-FLESH-TO-ENERGY-B__tempHP.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: cases/RANK9IMPACTEXILE4129-TRANSMUTE-FLESH-TO-ENERGY-B__zero.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: cases/RANK9IMPACTEXILE4129-TRANSMUTE-FLESH-TO-ENERGY-B__death.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: cases/RANK9IMPACTEXILE4129-TRANSMUTE-FLESH-TO-ENERGY-B__null.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: cases/RANK9IMPACTEXILE4129-TRANSMUTE-FLESH-TO-ENERGY-B__already-dying-Null.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: cases/RANK9IMPACTEXILE4129-TRANSMUTE-FLESH-TO-ENERGY-B__already-stable-Null.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: cases/RANK9IMPACTEXILE4129-PLANAR-COLLAPSE-A.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: cases/RANK9IMPACTEXILE4129-PLANAR-COLLAPSE-B.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: cases/RANK9IMPACTEXILE4129-PLANAR-COLLAPSE-B__save.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: cases/RANK9IMPACTEXILE4129-PLANAR-COLLAPSE-B__anchor.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: cases/RANK9IMPACTEXILE4129-PLANAR-COLLAPSE-B__conflict.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: cases/RANK9IMPACTEXILE4129-PLANAR-COLLAPSE-B__fatal.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: cases/RANK9IMPACTEXILE4129-ETERNAL-ANVIL-B__ready-ray-concentration.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: cases/RANK9IMPACTEXILE4129-REVERSE-GRAVITY-FIELD-B__ready-ray-concentration.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: cases/RANK9IMPACTEXILE4129-TRANSMUTE-FLESH-TO-ENERGY-B__ready-ray-concentration.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: cases/RANK9IMPACTEXILE4129-PLANAR-COLLAPSE-B__ready-ray-concentration.json",
+      "passed": true
+    },
+    {
+      "check": "member size/SHA/CRC verified: MANIFEST.json",
+      "passed": true
+    },
+    {
+      "check": "embedded manifest excludes only itself and matches delivery entries",
+      "passed": true
+    },
+    {
+      "check": "director decision agrees with delivery and preserves 795/53",
+      "passed": true
+    },
+    {
+      "check": "all four exact IE204 blockers are present",
+      "passed": true
+    },
+    {
+      "check": "all 28 question dispositions are explicit and acceptance remains false",
+      "passed": true
+    },
+    {
+      "check": "case index covers 8 main cases plus 28 branches and 1,255 events",
+      "passed": true
+    },
+    {
+      "check": "semantic gate correctly blocks all four identities",
+      "passed": true
+    },
+    {
+      "check": "four unaccepted drafts are preserved only by hash bindings",
+      "passed": true
+    },
+    {
+      "check": "source verification summary passes 354 checks and binds expected source commit",
+      "passed": true
+    },
+    {
+      "check": "input packet delivery remains the prepared packet 203 at 795/53",
+      "passed": true
+    },
+    {
+      "check": "nested packet bytes match the packet 203 delivery record",
+      "passed": true
+    },
+    {
+      "check": "nested packet central-directory CRC test passes",
+      "passed": true
+    },
+    {
+      "check": "all 149 refreshed candidate bindings exist in sources_current",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/data/director/spell_review/remaining_work_queue_51.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_06.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/data/playtest/game_development_coverage.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: docs/audit/2026-10-08/full-game/TRANSMUTATION_UNIVERSAL_RANK9_SOURCE_PREPARATION.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/tools/prepare_rank9_impact_exile_4_source_conference_01.py",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/tools/rank9_impact_exile_4_questions_01.py",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: docs/audit/2026-10-08/full-game/ACTIVE_AUTHORING_CHECKPOINT_RANK9_SUMMON_HOSTS_63.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: docs/audit/2026-10-08/full-game/PERTINENT_GPT_DECISIONS_2026_10_20_02.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: docs/audit/2026-10-08/full-game/GPT_PART5_PERTINENT_OWNER_CHOICES_2026_10_20_NATIVE.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: docs/audit/2026-10-08/full-game/GPT_UNITY_DEVELOPMENT_SETUP_2026_10_20_NATIVE.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: docs/audit/2026-10-20/github-snapshot-planar-gates61/PUSH_RECEIPT.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: docs/mechanics/LEVEL_97_OLD_GOD_Q6_OPEN.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/rulebook_output.txt",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: docs/reference/Player_Rulebook_v6_source_text.txt",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/books/player/Decennium_Descent_Player_Rulebook_v6.docx",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/src/data/spells.js",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/data/public/class_playtests/druid.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/data/public/class_playtests/mage.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/data/public/class_playtests/cleric.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/docs/mechanics/VIDEO_GAME_ONLY_DIRECTIVE.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/docs/mechanics/CONTROL_STATES_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/docs/mechanics/CREATURE_LIFECYCLE_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/docs/mechanics/HEALING_DEATH_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/docs/mechanics/DAMAGE_SHARING_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/docs/mechanics/TRANSFORMATION_SPELL_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/docs/mechanics/FORM_TEMP_HP_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/docs/mechanics/MAXIMUM_HP_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/docs/mechanics/RESONANCE_CANON.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/docs/mechanics/COSMOLOGY_EPILOGUE_RELIC_NULL_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/docs/mechanics/ENCHANTMENT_CONTROL_INTEGRATION_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/docs/mechanics/ENCHANTMENT_RANK3_INTEGRATION_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/docs/mechanics/REPUTATION.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/docs/mechanics/CUSTOM_CONDITION_BINDINGS.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/docs/mechanics/CONTROL_SOURCE_BINDINGS.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/docs/mechanics/CHARACTER_CREATION_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/docs/mechanics/CHARACTER_FOUNDATION_TABLES.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/docs/mechanics/CHARACTER_FOUNDATION_REVIEW_STATUS.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/docs/mechanics/XP_ADVANCEMENT_CANON.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/docs/mechanics/STRAIN_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/tools/healing_playtest_rules.py",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/tools/form_temphp_playtest_rules.py",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/data/playtest/control_state_bindings.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/docs/mechanics/WORLD_DUNGEON_LOOP.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/docs/mechanics/CRAFTING_HARVEST_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/docs/mechanics/EQUIPMENT_ITEM_PROCEDURES.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/docs/mechanics/EXPEDITION_STRUCTURE_CANON.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_PLAYER_BOOK.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_DIRECTOR_BOOK.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_REVIEW_STATUS.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: docs/audit/2026-10-08/full-game/COSMOLOGY_PLANES_SOURCE_CONCORDANCE_01.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: docs/audit/2026-10-08/full-game/COSMOLOGY_SAVED_WEBSITE_SOURCE_CHECK_01.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/data/public/class_playtests/paladin.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/data/public/class_playtests/oracle.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/data/public/class_playtests/monk.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/data/public/class_playtests/warrior.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/data/public/class_playtests/manifest.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/candidate.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/shared_rules.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/supplements.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank4_reviewed_03.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank5_reviewed_05.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/data/public/spell_candidates/banishment_exact_model_04.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank6_reviewed_06.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: docs/audit/2026-10-08/full-game/AC6_EXACT_ACCEPTANCE_06_RECEIPT.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: docs/audit/2026-10-08/full-game/ac6-semantic-current-06/REGISTER.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/abjuration_conjuration_rank6_cases_06.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_SOURCE_CONFERENCE.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_EXACT_REVIEW.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/data/playtest/spell_drafts/batch_conjuration_rank1.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/data/public/spell_playtests/candidate_low_rank_136.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_SOURCE_CONFERENCE.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_AUTHORING_CLARIFICATION.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_EXACT_REVIEW.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/data/playtest/spell_drafts/batch_evocation_rank1.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: docs/audit/2026-10-08/full-game/DAMAGE_CONTROL_25_EXACT10_APPLICATION_RECEIPT.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/damage_control_25_cases_10.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: docs/audit/2026-10-08/full-game/damage-control25-exact-rebound-10/REGISTER.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/data/public/spell_candidates/banishment_reviewed_04.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: docs/audit/2026-10-08/full-game/BANISHMENT_EXACT_ACCEPTANCE_04_RECEIPT.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: docs/audit/2026-10-08/full-game/AC5_EXACT_ACCEPTANCE_05_RECEIPT.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: docs/audit/2026-10-08/full-game/ac5-local-final-05-candidate/REGISTER.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/abjuration_conjuration_rank5_cases_05.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: docs/audit/2026-10-08/full-game/AC4_EXACT_ACCEPTANCE_03_RECEIPT.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: docs/audit/2026-10-08/full-game/PERSISTENT_DAMAGE_20_EXACT07_APPLICATION_RECEIPT.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/persistent_damage_20_cases_07.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: docs/audit/2026-10-08/full-game/persistent-damage20-exact-rebound-07/REGISTER.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: The Cosmology of Decennium Descent.docx",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: The Decennium Descent and the Matrix of Oblivion.docx",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: The_World_of_Aethel_Lore.docx",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: webpage.html",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: docs/mechanics/OWNER_COSMOLOGY_LOCKS_2026-07-30.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/docs/director-only/cosmology/CURRENT_COSMOLOGY_READ_FIRST.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/docs/director-only/cosmology/PLANES_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/docs/director-only/cosmology/OWNER_RECONCILIATION_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/docs/director-only/cosmology/HEARTCELL_OWNER_UPDATE_02.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/docs/director-only/cosmology/SOULS_RESEARCH_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/docs/director-only/cosmology/EPILOGUE_RELIC_NULL_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/docs/director-only/cosmology/Q6_LATER_LOCK_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/docs/director-only/cosmology/CREATION_ORIGINS_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/docs/director-only/cosmology/GODS_PANTHEONS_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/docs/director-only/cosmology/CHRONOLOGY_SOURCE_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/docs/director-only/cosmology/CHRONOLOGY_RESEARCH_ROUTE_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/docs/director-only/cosmology/EQUATION_LIBRARY_SOURCE_INVENTORY_01.md",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/data/director/cosmology/planes_reviewed_01.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/data/director/cosmology/owner_reconciliation_reviewed_01.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/data/director/cosmology/heartcell_owner_update_02.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/data/director/cosmology/souls_research_reviewed_01.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/data/director/cosmology/epilogue_relic_null_reviewed_01.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/data/director/cosmology/q6_later_lock_reviewed_01.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/data/director/cosmology/creation_origins_reviewed_01.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/data/director/cosmology/gods_pantheons_reviewed_01.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/data/director/cosmology/chronology_source_reviewed_01.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/data/director/cosmology/chronology_research_route_reviewed_01.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/data/director/cosmology/equation_library_source_inventory_01.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/data/director/spell_review/rank7_mechanics_16_source_conference_01.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: docs/audit/2026-10-08/full-game/DD_Rank7_Mechanics_16_Source_Conference_01.zip",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/data/director/spell_review/life_matter_5_conference_01.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: docs/audit/2026-10-08/full-game/DD_Life_Matter_5_Conference_01.zip",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/data/director/spell_review/rank9_catastrophe_10_source_conference_01.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: docs/audit/2026-10-08/full-game/DD_Rank9_Catastrophe_10_Source_Conference_01.zip",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: DescentReviewChanges/ReviewBible/data/director/spell_review/rank9_storm_control_6_source_conference_01.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: docs/audit/2026-10-08/full-game/DD_Rank9_Storm_Control_6_Source_Conference_01.zip",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: docs/audit/2026-10-08/full-game/DD_Rank8_Damage_6_Part5_Conference_Return_01.zip",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: docs/audit/2026-10-08/full-game/rank8-damage6-part5-conference-return-01/MODEL.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: docs/audit/2026-10-08/full-game/RANK8_DAMAGE6_PART5_RETURN_01_LOCAL_PREFLIGHT.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: docs/audit/2026-10-08/full-game/RANK8_DAMAGE6_PART5_RETURN_01_SEMANTIC_REVIEW_59.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: docs/audit/2026-10-08/full-game/DD_Rank8_Damage6_Local_Corrections_01.zip",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: docs/audit/2026-10-08/full-game/RANK8_DAMAGE6_LOCAL_CORRECTIONS_01_PREPARATION.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: docs/audit/2026-10-08/full-game/GPT_PART5_RANK8_DAMAGE_CORRECTIONS_11_REQUEST.txt",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: docs/audit/2026-10-08/full-game/GPT_PART5_RANK8_DAMAGE_RETURN_01_NATIVE.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: docs/audit/2026-10-08/full-game/illusion-perception14-exact-13/SPELLS_MODEL.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: docs/audit/2026-10-08/full-game/GPT_PART5_PERTINENT_RETURNS_01_RECEIPT.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: docs/audit/2026-10-08/full-game/copy-ready-preparation-only-part5-successor-01/successor/CONTROL15_READY_REFERENCE_SUCCESSOR14.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: docs/audit/2026-10-08/full-game/CONTROL15_PART5_FULL_RETURN_02_LOCAL_RECEIPT.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: docs/audit/2026-10-08/full-game/copy-ready-preparation-only-part5-successor-01/POLICY_SELECTION.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: docs/audit/2026-10-08/full-game/COPY_READY_PREPARATION_ONLY_PART5_01_LOCAL_PREFLIGHT.json",
+      "passed": true
+    },
+    {
+      "check": "refreshed source binding verified: docs/audit/2026-10-08/full-game/feat335-copy-release-source-addendum-01/FEAT335_COPY_RELEASE_SOURCE_ADDENDUM_01.json",
+      "passed": true
+    },
+    {
+      "check": "candidate binds source commit and current group",
+      "passed": true
+    },
+    {
+      "check": "GitHub source proof has 177 paths and no errors",
+      "passed": true
+    },
+    {
+      "check": "all 177 source proof paths resolve in the local Git commit",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: START_HERE.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: The Cosmology of Decennium Descent.docx",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: The Decennium Descent and the Matrix of Oblivion.docx",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: The_World_of_Aethel_Lore.docx",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: webpage.html",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/rulebook_output.txt",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/mechanics/LEVEL_97_OLD_GOD_Q6_OPEN.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/mechanics/OWNER_COSMOLOGY_LOCKS_2026-07-30.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/reference/Player_Rulebook_v6_source_text.txt",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/tools/form_temphp_playtest_rules.py",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/tools/healing_playtest_rules.py",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/tools/prepare_rank9_impact_exile_4_source_conference_01.py",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/tools/rank9_impact_exile_4_questions_01.py",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/books/player/Decennium_Descent_Player_Rulebook_v6.docx",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/playtest/control_state_bindings.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/playtest/game_development_coverage.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/docs/mechanics/CHARACTER_CREATION_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/docs/mechanics/CHARACTER_FOUNDATION_REVIEW_STATUS.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/docs/mechanics/CHARACTER_FOUNDATION_TABLES.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/docs/mechanics/CONTROL_SOURCE_BINDINGS.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/docs/mechanics/CONTROL_STATES_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/docs/mechanics/COSMOLOGY_EPILOGUE_RELIC_NULL_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/docs/mechanics/CRAFTING_HARVEST_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/docs/mechanics/CREATURE_LIFECYCLE_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/docs/mechanics/CUSTOM_CONDITION_BINDINGS.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/docs/mechanics/DAMAGE_SHARING_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/docs/mechanics/ENCHANTMENT_CONTROL_INTEGRATION_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/docs/mechanics/ENCHANTMENT_RANK3_INTEGRATION_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/docs/mechanics/EQUIPMENT_ITEM_PROCEDURES.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/docs/mechanics/EXPEDITION_STRUCTURE_CANON.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/docs/mechanics/FORM_TEMP_HP_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/docs/mechanics/HEALING_DEATH_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/docs/mechanics/MAXIMUM_HP_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/docs/mechanics/REPUTATION.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/docs/mechanics/RESONANCE_CANON.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/docs/mechanics/STRAIN_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/docs/mechanics/TRANSFORMATION_SPELL_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/docs/mechanics/VIDEO_GAME_ONLY_DIRECTIVE.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/docs/mechanics/WORLD_DUNGEON_LOOP.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/docs/mechanics/XP_ADVANCEMENT_CANON.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/src/data/spells.js",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/AC4_EXACT_ACCEPTANCE_03_RECEIPT.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/AC5_EXACT_ACCEPTANCE_05_RECEIPT.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/AC6_EXACT_ACCEPTANCE_06_RECEIPT.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/ACTIVE_AUTHORING_CHECKPOINT_RANK9_SUMMON_HOSTS_63.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/BANISHMENT_EXACT_ACCEPTANCE_04_RECEIPT.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/CONTROL15_PART5_FULL_RETURN_02_LOCAL_RECEIPT.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/COPY_READY_PREPARATION_ONLY_PART5_01_LOCAL_PREFLIGHT.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/COSMOLOGY_PLANES_SOURCE_CONCORDANCE_01.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/COSMOLOGY_SAVED_WEBSITE_SOURCE_CHECK_01.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/DAMAGE_CONTROL_25_EXACT10_APPLICATION_RECEIPT.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/DD_Life_Matter_5_Conference_01.zip",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/DD_Rank7_Mechanics_16_Source_Conference_01.zip",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/DD_Rank8_Damage6_Local_Corrections_01.zip",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/DD_Rank8_Damage_6_Part5_Conference_Return_01.zip",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/DD_Rank9_Catastrophe_10_Source_Conference_01.zip",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/DD_Rank9_Storm_Control_6_Source_Conference_01.zip",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_EXACT_REVIEW.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_SOURCE_CONFERENCE.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_AUTHORING_CLARIFICATION.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_EXACT_REVIEW.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_SOURCE_CONFERENCE.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/GPT_PART5_PERTINENT_OWNER_CHOICES_2026_10_20_NATIVE.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/GPT_PART5_PERTINENT_RETURNS_01_RECEIPT.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/GPT_PART5_RANK8_DAMAGE_CORRECTIONS_11_REQUEST.txt",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/GPT_PART5_RANK8_DAMAGE_RETURN_01_NATIVE.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/GPT_UNITY_DEVELOPMENT_SETUP_2026_10_20_NATIVE.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/PERSISTENT_DAMAGE_20_EXACT07_APPLICATION_RECEIPT.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/PERTINENT_GPT_DECISIONS_2026_10_20_02.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/RANK8_DAMAGE6_LOCAL_CORRECTIONS_01_PREPARATION.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/RANK8_DAMAGE6_PART5_RETURN_01_LOCAL_PREFLIGHT.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/RANK8_DAMAGE6_PART5_RETURN_01_SEMANTIC_REVIEW_59.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/TRANSMUTATION_UNIVERSAL_RANK9_SOURCE_PREPARATION.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-20/github-snapshot-planar-gates61/PUSH_RECEIPT.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/director/cosmology/chronology_research_route_reviewed_01.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/director/cosmology/chronology_source_reviewed_01.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/director/cosmology/creation_origins_reviewed_01.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/director/cosmology/epilogue_relic_null_reviewed_01.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/director/cosmology/equation_library_source_inventory_01.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/director/cosmology/gods_pantheons_reviewed_01.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/director/cosmology/heartcell_owner_update_02.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/director/cosmology/owner_reconciliation_reviewed_01.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/director/cosmology/planes_reviewed_01.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/director/cosmology/q6_later_lock_reviewed_01.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/director/cosmology/souls_research_reviewed_01.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_06.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/director/spell_review/life_matter_5_conference_01.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/director/spell_review/rank7_mechanics_16_source_conference_01.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/director/spell_review/rank9_catastrophe_10_source_conference_01.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/director/spell_review/rank9_storm_control_6_source_conference_01.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/director/spell_review/remaining_work_queue_51.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/abjuration_conjuration_rank5_cases_05.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/abjuration_conjuration_rank6_cases_06.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/damage_control_25_cases_10.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/persistent_damage_20_cases_07.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/playtest/spell_drafts/batch_conjuration_rank1.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/playtest/spell_drafts/batch_evocation_rank1.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/public/class_playtests/cleric.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/public/class_playtests/druid.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/public/class_playtests/mage.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/public/class_playtests/manifest.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/public/class_playtests/monk.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/public/class_playtests/oracle.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/public/class_playtests/paladin.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/public/class_playtests/warrior.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank4_reviewed_03.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank5_reviewed_05.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank6_reviewed_06.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/public/spell_candidates/banishment_exact_model_04.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/public/spell_candidates/banishment_reviewed_04.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/public/spell_playtests/candidate_low_rank_136.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/docs/director-only/cosmology/CHRONOLOGY_RESEARCH_ROUTE_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/docs/director-only/cosmology/CHRONOLOGY_SOURCE_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/docs/director-only/cosmology/CREATION_ORIGINS_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/docs/director-only/cosmology/CURRENT_COSMOLOGY_READ_FIRST.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/docs/director-only/cosmology/EPILOGUE_RELIC_NULL_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/docs/director-only/cosmology/EQUATION_LIBRARY_SOURCE_INVENTORY_01.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/docs/director-only/cosmology/GODS_PANTHEONS_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/docs/director-only/cosmology/HEARTCELL_OWNER_UPDATE_02.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/docs/director-only/cosmology/OWNER_RECONCILIATION_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/docs/director-only/cosmology/PLANES_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/docs/director-only/cosmology/Q6_LATER_LOCK_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/docs/director-only/cosmology/SOULS_RESEARCH_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_DIRECTOR_BOOK.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_PLAYER_BOOK.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_REVIEW_STATUS.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/ac5-local-final-05-candidate/REGISTER.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/ac6-semantic-current-06/REGISTER.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/copy-ready-preparation-only-part5-successor-01/POLICY_SELECTION.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/damage-control25-exact-rebound-10/REGISTER.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT53_PENDING_IDENTITY_AUDIT_202.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_202.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_SPELL_QUEUE_202.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/director-spell-review-129/RANK9_KNOWLEDGEREVELATION5_APPLICATION_198.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/director-spell-review-129/RANK9_KNOWLEDGEREVELATION5_EXACT_ACCEPTANCE_198.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/director-spell-review-129/RANK9_MEMORYDENIAL6_APPLICATION_196.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/director-spell-review-129/RANK9_MEMORYDENIAL6_EXACT_ACCEPTANCE_196.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/director-spell-review-129/RANK9_PLANARGATES5_APPLICATION_200.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/director-spell-review-129/RANK9_PLANARGATES5_EXACT_ACCEPTANCE_200.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/director-spell-review-129/RANK9_PLANARGATES5_RETURN200_INDEPENDENT_AUDIT.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/director-spell-review-129/RANK9_PLANARGATES5_RETURN200_RECEIPT.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/director-spell-review-129/RANK9_SUMMONHOSTS5_APPLICATION_202.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/director-spell-review-129/RANK9_SUMMONHOSTS5_EXACT_ACCEPTANCE_202.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/director-spell-review-129/RANK9_SUMMONHOSTS5_RETURN202_INDEPENDENT_AUDIT.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/director-spell-review-129/RANK9_SUMMONHOSTS5_RETURN202_RECEIPT.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/feat335-copy-release-source-addendum-01/FEAT335_COPY_RELEASE_SOURCE_ADDENDUM_01.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/illusion-perception14-exact-13/SPELLS_MODEL.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/persistent-damage20-exact-rebound-07/REGISTER.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/rank8-damage6-part5-conference-return-01/MODEL.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/candidate.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/shared_rules.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/supplements.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9knowledgerevelation5_reviewed_198/MODEL.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9memorydenial6_reviewed_196/MODEL.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9planargates5_reviewed_200/CANDIDATE_PACKAGE_MANIFEST.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9planargates5_reviewed_200/MODEL.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9planargates5_reviewed_200/STANDALONE_PROCEDURES.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9summonhosts5_reviewed_202/MODEL.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9summonhosts5_reviewed_202/STANDALONE_PROCEDURES.md",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/public/spell_candidates/transport6_reviewed_128/HOLD_REGISTER.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/public/spell_candidates/transport6_reviewed_128/MODEL.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/public/spell_candidates/transport6_reviewed_128/PROCEDURES.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/public/spell_candidates/transport6_reviewed_128/REVIEW_RECEIPT.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: DescentReviewChanges/ReviewBible/data/public/spell_candidates/transport6_reviewed_128/SHARED_RULES.json",
+      "passed": true
+    },
+    {
+      "check": "Git tree object ID matches proof: docs/audit/2026-10-08/full-game/copy-ready-preparation-only-part5-successor-01/successor/CONTROL15_READY_REFERENCE_SUCCESSOR14.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: START_HERE.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: The Cosmology of Decennium Descent.docx",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: The Decennium Descent and the Matrix of Oblivion.docx",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: The_World_of_Aethel_Lore.docx",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: webpage.html",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/rulebook_output.txt",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/mechanics/LEVEL_97_OLD_GOD_Q6_OPEN.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/mechanics/OWNER_COSMOLOGY_LOCKS_2026-07-30.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/reference/Player_Rulebook_v6_source_text.txt",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/tools/form_temphp_playtest_rules.py",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/tools/healing_playtest_rules.py",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/tools/prepare_rank9_impact_exile_4_source_conference_01.py",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/tools/rank9_impact_exile_4_questions_01.py",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/books/player/Decennium_Descent_Player_Rulebook_v6.docx",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/playtest/control_state_bindings.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/playtest/game_development_coverage.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/docs/mechanics/CHARACTER_CREATION_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/docs/mechanics/CHARACTER_FOUNDATION_REVIEW_STATUS.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/docs/mechanics/CHARACTER_FOUNDATION_TABLES.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/docs/mechanics/CONTROL_SOURCE_BINDINGS.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/docs/mechanics/CONTROL_STATES_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/docs/mechanics/COSMOLOGY_EPILOGUE_RELIC_NULL_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/docs/mechanics/CRAFTING_HARVEST_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/docs/mechanics/CREATURE_LIFECYCLE_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/docs/mechanics/CUSTOM_CONDITION_BINDINGS.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/docs/mechanics/DAMAGE_SHARING_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/docs/mechanics/ENCHANTMENT_CONTROL_INTEGRATION_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/docs/mechanics/ENCHANTMENT_RANK3_INTEGRATION_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/docs/mechanics/EQUIPMENT_ITEM_PROCEDURES.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/docs/mechanics/EXPEDITION_STRUCTURE_CANON.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/docs/mechanics/FORM_TEMP_HP_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/docs/mechanics/HEALING_DEATH_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/docs/mechanics/MAXIMUM_HP_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/docs/mechanics/REPUTATION.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/docs/mechanics/RESONANCE_CANON.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/docs/mechanics/STRAIN_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/docs/mechanics/TRANSFORMATION_SPELL_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/docs/mechanics/VIDEO_GAME_ONLY_DIRECTIVE.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/docs/mechanics/WORLD_DUNGEON_LOOP.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/docs/mechanics/XP_ADVANCEMENT_CANON.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/src/data/spells.js",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/AC4_EXACT_ACCEPTANCE_03_RECEIPT.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/AC5_EXACT_ACCEPTANCE_05_RECEIPT.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/AC6_EXACT_ACCEPTANCE_06_RECEIPT.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/ACTIVE_AUTHORING_CHECKPOINT_RANK9_SUMMON_HOSTS_63.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/BANISHMENT_EXACT_ACCEPTANCE_04_RECEIPT.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/CONTROL15_PART5_FULL_RETURN_02_LOCAL_RECEIPT.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/COPY_READY_PREPARATION_ONLY_PART5_01_LOCAL_PREFLIGHT.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/COSMOLOGY_PLANES_SOURCE_CONCORDANCE_01.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/COSMOLOGY_SAVED_WEBSITE_SOURCE_CHECK_01.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/DAMAGE_CONTROL_25_EXACT10_APPLICATION_RECEIPT.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/DD_Life_Matter_5_Conference_01.zip",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/DD_Rank7_Mechanics_16_Source_Conference_01.zip",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/DD_Rank8_Damage6_Local_Corrections_01.zip",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/DD_Rank8_Damage_6_Part5_Conference_Return_01.zip",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/DD_Rank9_Catastrophe_10_Source_Conference_01.zip",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/DD_Rank9_Storm_Control_6_Source_Conference_01.zip",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_EXACT_REVIEW.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_SOURCE_CONFERENCE.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_AUTHORING_CLARIFICATION.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_EXACT_REVIEW.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK1_SOURCE_CONFERENCE.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/GPT_PART5_PERTINENT_OWNER_CHOICES_2026_10_20_NATIVE.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/GPT_PART5_PERTINENT_RETURNS_01_RECEIPT.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/GPT_PART5_RANK8_DAMAGE_CORRECTIONS_11_REQUEST.txt",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/GPT_PART5_RANK8_DAMAGE_RETURN_01_NATIVE.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/GPT_UNITY_DEVELOPMENT_SETUP_2026_10_20_NATIVE.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/PERSISTENT_DAMAGE_20_EXACT07_APPLICATION_RECEIPT.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/PERTINENT_GPT_DECISIONS_2026_10_20_02.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/RANK8_DAMAGE6_LOCAL_CORRECTIONS_01_PREPARATION.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/RANK8_DAMAGE6_PART5_RETURN_01_LOCAL_PREFLIGHT.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/RANK8_DAMAGE6_PART5_RETURN_01_SEMANTIC_REVIEW_59.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/TRANSMUTATION_UNIVERSAL_RANK9_SOURCE_PREPARATION.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-20/github-snapshot-planar-gates61/PUSH_RECEIPT.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/director/cosmology/chronology_research_route_reviewed_01.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/director/cosmology/chronology_source_reviewed_01.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/director/cosmology/creation_origins_reviewed_01.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/director/cosmology/epilogue_relic_null_reviewed_01.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/director/cosmology/equation_library_source_inventory_01.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/director/cosmology/gods_pantheons_reviewed_01.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/director/cosmology/heartcell_owner_update_02.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/director/cosmology/owner_reconciliation_reviewed_01.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/director/cosmology/planes_reviewed_01.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/director/cosmology/q6_later_lock_reviewed_01.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/director/cosmology/souls_research_reviewed_01.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_06.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/director/spell_review/life_matter_5_conference_01.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/director/spell_review/rank7_mechanics_16_source_conference_01.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/director/spell_review/rank9_catastrophe_10_source_conference_01.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/director/spell_review/rank9_storm_control_6_source_conference_01.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/director/spell_review/remaining_work_queue_51.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/abjuration_conjuration_rank5_cases_05.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/abjuration_conjuration_rank6_cases_06.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/damage_control_25_cases_10.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/persistent_damage_20_cases_07.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/playtest/spell_drafts/batch_conjuration_rank1.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/playtest/spell_drafts/batch_evocation_rank1.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/public/class_playtests/cleric.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/public/class_playtests/druid.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/public/class_playtests/mage.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/public/class_playtests/manifest.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/public/class_playtests/monk.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/public/class_playtests/oracle.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/public/class_playtests/paladin.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/public/class_playtests/warrior.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank4_reviewed_03.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank5_reviewed_05.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank6_reviewed_06.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/public/spell_candidates/banishment_exact_model_04.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/public/spell_candidates/banishment_reviewed_04.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/public/spell_playtests/candidate_low_rank_136.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/docs/director-only/cosmology/CHRONOLOGY_RESEARCH_ROUTE_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/docs/director-only/cosmology/CHRONOLOGY_SOURCE_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/docs/director-only/cosmology/CREATION_ORIGINS_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/docs/director-only/cosmology/CURRENT_COSMOLOGY_READ_FIRST.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/docs/director-only/cosmology/EPILOGUE_RELIC_NULL_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/docs/director-only/cosmology/EQUATION_LIBRARY_SOURCE_INVENTORY_01.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/docs/director-only/cosmology/GODS_PANTHEONS_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/docs/director-only/cosmology/HEARTCELL_OWNER_UPDATE_02.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/docs/director-only/cosmology/OWNER_RECONCILIATION_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/docs/director-only/cosmology/PLANES_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/docs/director-only/cosmology/Q6_LATER_LOCK_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/docs/director-only/cosmology/SOULS_RESEARCH_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_DIRECTOR_BOOK.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_PLAYER_BOOK.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_REVIEW_STATUS.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/ac5-local-final-05-candidate/REGISTER.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/ac6-semantic-current-06/REGISTER.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/copy-ready-preparation-only-part5-successor-01/POLICY_SELECTION.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/damage-control25-exact-rebound-10/REGISTER.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT53_PENDING_IDENTITY_AUDIT_202.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_202.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_SPELL_QUEUE_202.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/director-spell-review-129/RANK9_KNOWLEDGEREVELATION5_APPLICATION_198.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/director-spell-review-129/RANK9_KNOWLEDGEREVELATION5_EXACT_ACCEPTANCE_198.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/director-spell-review-129/RANK9_MEMORYDENIAL6_APPLICATION_196.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/director-spell-review-129/RANK9_MEMORYDENIAL6_EXACT_ACCEPTANCE_196.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/director-spell-review-129/RANK9_PLANARGATES5_APPLICATION_200.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/director-spell-review-129/RANK9_PLANARGATES5_EXACT_ACCEPTANCE_200.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/director-spell-review-129/RANK9_PLANARGATES5_RETURN200_INDEPENDENT_AUDIT.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/director-spell-review-129/RANK9_PLANARGATES5_RETURN200_RECEIPT.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/director-spell-review-129/RANK9_SUMMONHOSTS5_APPLICATION_202.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/director-spell-review-129/RANK9_SUMMONHOSTS5_EXACT_ACCEPTANCE_202.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/director-spell-review-129/RANK9_SUMMONHOSTS5_RETURN202_INDEPENDENT_AUDIT.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/director-spell-review-129/RANK9_SUMMONHOSTS5_RETURN202_RECEIPT.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/feat335-copy-release-source-addendum-01/FEAT335_COPY_RELEASE_SOURCE_ADDENDUM_01.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/illusion-perception14-exact-13/SPELLS_MODEL.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/persistent-damage20-exact-rebound-07/REGISTER.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/rank8-damage6-part5-conference-return-01/MODEL.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/candidate.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/shared_rules.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/supplements.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9knowledgerevelation5_reviewed_198/MODEL.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9memorydenial6_reviewed_196/MODEL.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9planargates5_reviewed_200/CANDIDATE_PACKAGE_MANIFEST.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9planargates5_reviewed_200/MODEL.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9planargates5_reviewed_200/STANDALONE_PROCEDURES.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9summonhosts5_reviewed_202/MODEL.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9summonhosts5_reviewed_202/STANDALONE_PROCEDURES.md",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/public/spell_candidates/transport6_reviewed_128/HOLD_REGISTER.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/public/spell_candidates/transport6_reviewed_128/MODEL.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/public/spell_candidates/transport6_reviewed_128/PROCEDURES.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/public/spell_candidates/transport6_reviewed_128/REVIEW_RECEIPT.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: DescentReviewChanges/ReviewBible/data/public/spell_candidates/transport6_reviewed_128/SHARED_RULES.json",
+      "passed": true
+    },
+    {
+      "check": "local Git blob bytes match source proof: docs/audit/2026-10-08/full-game/copy-ready-preparation-only-part5-successor-01/successor/CONTROL15_READY_REFERENCE_SUCCESSOR14.json",
+      "passed": true
+    },
+    {
+      "check": "nine supplemental source blobs are bound to the same source commit",
+      "passed": true
+    },
+    {
+      "check": "supplemental source bytes match Git proof: DescentReviewChanges/ReviewBible/data/playtest/ancestry_background_candidate.json",
+      "passed": true
+    },
+    {
+      "check": "supplemental source bytes match Git proof: DescentReviewChanges/ReviewBible/data/playtest/class_sources/warrior.json",
+      "passed": true
+    },
+    {
+      "check": "supplemental source bytes match Git proof: DescentReviewChanges/ReviewBible/data/public/spell_candidates/planartravel6_reviewed_133/MODEL.json",
+      "passed": true
+    },
+    {
+      "check": "supplemental source bytes match Git proof: DescentReviewChanges/ReviewBible/data/public/spell_candidates/magic7_reviewed_129/MODEL.json",
+      "passed": true
+    },
+    {
+      "check": "supplemental source bytes match Git proof: DescentReviewChanges/ReviewBible/docs/mechanics/ANCESTRY_BACKGROUND_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "check": "supplemental source bytes match Git proof: docs/audit/2026-10-08/full-game/director-spell-review-129/MAGIC7_APPLICATION_129.json",
+      "passed": true
+    },
+    {
+      "check": "supplemental source bytes match Git proof: docs/audit/2026-10-08/full-game/director-spell-review-129/MAGIC7_EXACT_ACCEPTANCE_129.json",
+      "passed": true
+    },
+    {
+      "check": "supplemental source bytes match Git proof: docs/audit/2026-10-08/full-game/director-spell-review-129/PLANARTRAVEL6_EXACT_ACCEPTANCE_133.json",
+      "passed": true
+    },
+    {
+      "check": "supplemental source bytes match Git proof: DescentReviewChanges/ReviewBible/docs/mechanics/classes/warrior.md",
+      "passed": true
+    },
+    {
+      "check": "no canonical edits, supplied program execution, or broader approval claimed",
+      "passed": true
+    },
+    {
+      "check": "submission commit is the pushed current branch head",
+      "passed": true,
+      "detail": "local=d5e32c3bd3897a1dacb47944cd4c463b933ff601; remote=d5e32c3bd3897a1dacb47944cd4c463b933ff601"
+    }
+  ],
+  "decision": "Unaccepted and unapplied. No identities qualify for application; preserve all four drafts and exact holds."
+}

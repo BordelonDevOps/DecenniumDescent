@@ -1,0 +1,52 @@
+{
+  "id": "RANK9-IMPACTEXILE4-RETURN204-CARRY-FORWARD-AUDIT",
+  "status": "PASS",
+  "recordedAtUtc": "2026-10-27T06:20:16.704584+00:00",
+  "checksPassed": 6,
+  "checksFailed": 0,
+  "checks": [
+    {
+      "check": "Return202 source archive byte length and SHA-256 match Return204 binding",
+      "passed": true
+    },
+    {
+      "check": "Return202 HOLD_REGISTER member length, SHA-256, and CRC match its binding",
+      "passed": true
+    },
+    {
+      "check": "Return202 applied IDs remain exactly Wyrm and Army",
+      "passed": true
+    },
+    {
+      "check": "Return202's 176 hold records and 15 local holds are retained",
+      "passed": true
+    },
+    {
+      "check": "all seven pre-Return202 named blocker groups are unchanged",
+      "passed": true
+    },
+    {
+      "check": "all three Return202 blockers are carried forward with identical reasons",
+      "passed": true
+    }
+  ],
+  "return202AcceptedIds": [
+    "conjure-magmatic-wyrm",
+    "planar-army"
+  ],
+  "return202HeldIds": [
+    "summon-elemental-avatar",
+    "summon-herald-of-the-planes",
+    "summon-avatar-of-decay"
+  ],
+  "retainedPriorBlockerGroups": [
+    "retainedReturn188Blockers",
+    "retainedReturn190Blockers",
+    "retainedReturn192Blockers",
+    "retainedReturn194Blockers",
+    "retainedReturn196Blockers",
+    "retainedReturn198Blockers",
+    "retainedReturn200Blockers"
+  ],
+  "qualification": "Independent byte comparison of Return202 archive and its named hold register; prior blocker carry-forward only. No identity is accepted by this audit."
+}
