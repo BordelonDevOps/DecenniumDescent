@@ -1,0 +1,918 @@
+{
+  "id": "PG328-W03-BENEFICIAL-SHORT-REST-366-TESTONLY",
+  "targetId": "conjure-demiplane-fortress",
+  "blockerId": "PG328-W03",
+  "status": "CONDITIONAL_TEST_ONLY_FOR_DIRECTOR_ADJUDICATION",
+  "purpose": "Exercise an ordinary RP recovery path during a hypothetical short rest in the persistent Fortress while preserving actual source clocks.",
+  "notCampaignOccurrence": true,
+  "notCanonicalOrRuntimeImplementation": true,
+  "sourceBindings": [
+    {
+      "file": "sources/PLAYER_RULEBOOK_V6_SOURCE_TEXT.txt",
+      "sha256": "a346670f4244efe3641cfb06814819d83ffb8512153858205f0621bd8ab8a04b",
+      "pointer": "line 8391",
+      "supports": "ordinary short-rest RP recovery: one quarter of max RP plus primary spellcasting modifier"
+    },
+    {
+      "file": "sources/RETURN284_WIZARD20_PROFILE_TESTONLY.json",
+      "sha256": "a3a3ce0a714c1fa35523719c8c8a0297fc457d5b5f097f6a20a00aad6cd7be55",
+      "pointer": "/rpMaximum,/abilityScores/INT,/modifiers/INT",
+      "supports": "conditional Wizard20 profile: max RP80, INT20/modifier+5"
+    },
+    {
+      "file": "sources/wizard.json",
+      "sha256": "8ab2f4f43bcbced418fb266e5bd3216cff491b0c442c16f93438bd3556672c8b",
+      "pointer": "/cards[id=wizard.base.arcane-recovery]",
+      "supports": "Arcane Recovery exists but is not invoked"
+    },
+    {
+      "file": "rules/PG328_PROCEDURE_CURRENT.json",
+      "sha256": "aace60a0f276bcb1647c0ed7f20c7383225fecfe5a6628938c1f4034018dd5f0",
+      "pointer": "/procedure/sharedContract; PG9-Q26/Q28",
+      "supports": "Fortress provides no food/water, is not a universal safe haven, and source clocks/rest limits persist"
+    }
+  ],
+  "baselineCase": {
+    "archive": "authority/PG328_HELD_ARCHIVE.zip",
+    "member": "evidence/packet328/prior/Return284_cases/RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A__beneficial-short-rest.json",
+    "event": "END at 0.9; baseline branch previously ended without a rest",
+    "actorA_RP": 54,
+    "maxRP": 80,
+    "shortRestsSinceLong": 0,
+    "lastBeneficialLongRestSeconds": -86400,
+    "arcaneRecoveryUsed": false,
+    "fortressSpaceId": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1/space",
+    "worldElapsedSecondsAtBranchStart": 1.0
+  },
+  "testOnlyInputs": {
+    "restDurationSeconds": 3600,
+    "durationStatus": "TEST_ONLY interval; bound sources do not state a numeric short-rest duration. Director must determine whether it is sufficient.",
+    "shortRestEligibility": "UNADJUDICATED; no claim that this hypothetical interval meets the operative definition.",
+    "lastBeneficialLongRestAgeAtStartSeconds": 86401.0,
+    "shortRestsSinceLongAtStart": 0,
+    "actualSupplies": {
+      "REST-FOOD-366-A": {
+        "type": "mundane ration",
+        "quantity": 1,
+        "source": "explicit TEST_ONLY starting-inventory fact",
+        "notConjured": true
+      },
+      "REST-WATER-366-A": {
+        "type": "mundane drinking water",
+        "quantity": "one sealed test container",
+        "source": "explicit TEST_ONLY starting-inventory fact",
+        "notConjured": true
+      }
+    },
+    "safety": "No hostile creature/hazard is present during the hypothetical interval; this does not imply Fortress grants safety.",
+    "noOtherRecovery": "No Arcane Recovery, meditation, Retune, long-rest recovery, or additional RP source is invoked. Arcane Recovery flag stays false.",
+    "stacking": "Uses only the explicit ordinary short-rest formula, avoiding any assumed additive/override interaction with Arcane Recovery."
+  },
+  "calculation": {
+    "maxRP": 80,
+    "oneQuarterMaximum": 20,
+    "primarySpellcastingModifier": 5,
+    "ordinaryRecovery": 25,
+    "RPBefore": 54,
+    "RPAfter": 79,
+    "capApplied": false,
+    "ArcaneRecoveryApplied": false
+  },
+  "before": {
+    "worldClockSeconds": 1.0,
+    "actor": {
+      "id": "A",
+      "profileId": "Wizard20",
+      "profileSha256": "ebb96b340b94c3c6a98f8005e6fd6d0d6c93b1dc4abd1b584a7528c5cb459223",
+      "class": "Wizard",
+      "classLevel": 20,
+      "spaceId": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1/space",
+      "presence": "inside Fortress keep; same body and position",
+      "RP": 54,
+      "maxRP": 80,
+      "INTModifier": 5,
+      "Dissonance": 0,
+      "shortRestsSinceLong": 0,
+      "lastBeneficialLongRestSeconds": -86400,
+      "arcaneRecoveryUsed": false,
+      "HP": 122,
+      "wounds": 0,
+      "conditions": [],
+      "concentration": null
+    },
+    "fortress": {
+      "spaceId": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1/space",
+      "exists": true,
+      "duration": "Until Dispelled",
+      "concentration": false
+    },
+    "otherActiveEffects": {
+      "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1": {
+        "id": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1",
+        "spellId": "conjure-demiplane-fortress",
+        "owner": "A",
+        "rootPlane": "fixture:origin",
+        "rootCastId": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1",
+        "rank": 9,
+        "active": true,
+        "suppressed": false,
+        "deadline": null,
+        "concentration": false,
+        "target": null,
+        "createdAt": 0.1,
+        "terminalReceipt": null,
+        "visibleBoundary": false,
+        "space": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1/space",
+        "originPlane": "fixture:origin",
+        "originAnchor": [
+          10,
+          0,
+          0
+        ],
+        "open": true,
+        "operators": [
+          "A"
+        ],
+        "travelerPolicy": "public",
+        "apertures": [
+          {
+            "plane": "fixture:origin",
+            "center": [
+              10,
+              0,
+              0
+            ],
+            "width": 10,
+            "height": 15
+          },
+          {
+            "plane": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1/space",
+            "center": [
+              10,
+              10,
+              0
+            ],
+            "width": 10,
+            "height": 15
+          }
+        ]
+      }
+    },
+    "sourceClocks": {
+      "worldElapsedSeconds": 1.0,
+      "OpeningRemainingSeconds": 8639999.0,
+      "HornRemainingSeconds": 4319999.0,
+      "Hunt": null
+    },
+    "supplies": {
+      "foodItemId": "REST-FOOD-366-A",
+      "waterItemId": "REST-WATER-366-A",
+      "presentAtRestStart": true,
+      "physicallyImportedAndCarriedBy": "A",
+      "consumedAtCompletion": false,
+      "qualification": "TEST_ONLY mundane inventory premises; not created or replenished by Fortress"
+    },
+    "restSafetyPremise": {
+      "noHostileActorOrHazardAtStart": true,
+      "noInterruptionAttackLaborTravelCastingOrWeaveAbilityDuringInterval": true,
+      "scope": "conditional fixture input only; Fortress is not asserted universally safe"
+    }
+  },
+  "transitions": [
+    {
+      "id": "PG328-W03-366-E1",
+      "event": "REST_START",
+      "timeSeconds": 1.0,
+      "before": {
+        "worldClockSeconds": 1.0,
+        "actor": {
+          "id": "A",
+          "profileId": "Wizard20",
+          "profileSha256": "ebb96b340b94c3c6a98f8005e6fd6d0d6c93b1dc4abd1b584a7528c5cb459223",
+          "class": "Wizard",
+          "classLevel": 20,
+          "spaceId": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1/space",
+          "presence": "inside Fortress keep; same body and position",
+          "RP": 54,
+          "maxRP": 80,
+          "INTModifier": 5,
+          "Dissonance": 0,
+          "shortRestsSinceLong": 0,
+          "lastBeneficialLongRestSeconds": -86400,
+          "arcaneRecoveryUsed": false,
+          "HP": 122,
+          "wounds": 0,
+          "conditions": [],
+          "concentration": null
+        },
+        "fortress": {
+          "spaceId": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1/space",
+          "exists": true,
+          "duration": "Until Dispelled",
+          "concentration": false
+        },
+        "otherActiveEffects": {
+          "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1": {
+            "id": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1",
+            "spellId": "conjure-demiplane-fortress",
+            "owner": "A",
+            "rootPlane": "fixture:origin",
+            "rootCastId": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1",
+            "rank": 9,
+            "active": true,
+            "suppressed": false,
+            "deadline": null,
+            "concentration": false,
+            "target": null,
+            "createdAt": 0.1,
+            "terminalReceipt": null,
+            "visibleBoundary": false,
+            "space": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1/space",
+            "originPlane": "fixture:origin",
+            "originAnchor": [
+              10,
+              0,
+              0
+            ],
+            "open": true,
+            "operators": [
+              "A"
+            ],
+            "travelerPolicy": "public",
+            "apertures": [
+              {
+                "plane": "fixture:origin",
+                "center": [
+                  10,
+                  0,
+                  0
+                ],
+                "width": 10,
+                "height": 15
+              },
+              {
+                "plane": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1/space",
+                "center": [
+                  10,
+                  10,
+                  0
+                ],
+                "width": 10,
+                "height": 15
+              }
+            ]
+          }
+        },
+        "sourceClocks": {
+          "worldElapsedSeconds": 1.0,
+          "OpeningRemainingSeconds": 8639999.0,
+          "HornRemainingSeconds": 4319999.0,
+          "Hunt": null
+        },
+        "supplies": {
+          "foodItemId": "REST-FOOD-366-A",
+          "waterItemId": "REST-WATER-366-A",
+          "presentAtRestStart": true,
+          "physicallyImportedAndCarriedBy": "A",
+          "consumedAtCompletion": false,
+          "qualification": "TEST_ONLY mundane inventory premises; not created or replenished by Fortress"
+        },
+        "restSafetyPremise": {
+          "noHostileActorOrHazardAtStart": true,
+          "noInterruptionAttackLaborTravelCastingOrWeaveAbilityDuringInterval": true,
+          "scope": "conditional fixture input only; Fortress is not asserted universally safe"
+        }
+      },
+      "after": {
+        "worldClockSeconds": 1.0,
+        "actor": {
+          "id": "A",
+          "profileId": "Wizard20",
+          "profileSha256": "ebb96b340b94c3c6a98f8005e6fd6d0d6c93b1dc4abd1b584a7528c5cb459223",
+          "class": "Wizard",
+          "classLevel": 20,
+          "spaceId": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1/space",
+          "presence": "inside Fortress keep; same body and position",
+          "RP": 54,
+          "maxRP": 80,
+          "INTModifier": 5,
+          "Dissonance": 0,
+          "shortRestsSinceLong": 0,
+          "lastBeneficialLongRestSeconds": -86400,
+          "arcaneRecoveryUsed": false,
+          "HP": 122,
+          "wounds": 0,
+          "conditions": [],
+          "concentration": null
+        },
+        "fortress": {
+          "spaceId": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1/space",
+          "exists": true,
+          "duration": "Until Dispelled",
+          "concentration": false
+        },
+        "otherActiveEffects": {
+          "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1": {
+            "id": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1",
+            "spellId": "conjure-demiplane-fortress",
+            "owner": "A",
+            "rootPlane": "fixture:origin",
+            "rootCastId": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1",
+            "rank": 9,
+            "active": true,
+            "suppressed": false,
+            "deadline": null,
+            "concentration": false,
+            "target": null,
+            "createdAt": 0.1,
+            "terminalReceipt": null,
+            "visibleBoundary": false,
+            "space": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1/space",
+            "originPlane": "fixture:origin",
+            "originAnchor": [
+              10,
+              0,
+              0
+            ],
+            "open": true,
+            "operators": [
+              "A"
+            ],
+            "travelerPolicy": "public",
+            "apertures": [
+              {
+                "plane": "fixture:origin",
+                "center": [
+                  10,
+                  0,
+                  0
+                ],
+                "width": 10,
+                "height": 15
+              },
+              {
+                "plane": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1/space",
+                "center": [
+                  10,
+                  10,
+                  0
+                ],
+                "width": 10,
+                "height": 15
+              }
+            ]
+          }
+        },
+        "sourceClocks": {
+          "worldElapsedSeconds": 1.0,
+          "OpeningRemainingSeconds": 8639999.0,
+          "HornRemainingSeconds": 4319999.0,
+          "Hunt": null
+        },
+        "supplies": {
+          "foodItemId": "REST-FOOD-366-A",
+          "waterItemId": "REST-WATER-366-A",
+          "presentAtRestStart": true,
+          "physicallyImportedAndCarriedBy": "A",
+          "consumedAtCompletion": false,
+          "qualification": "TEST_ONLY mundane inventory premises; not created or replenished by Fortress"
+        },
+        "restSafetyPremise": {
+          "noHostileActorOrHazardAtStart": true,
+          "noInterruptionAttackLaborTravelCastingOrWeaveAbilityDuringInterval": true,
+          "scope": "conditional fixture input only; Fortress is not asserted universally safe"
+        }
+      },
+      "rule": "PG9-Q26/Q28 plus conditional supplies/safety inputs"
+    },
+    {
+      "id": "PG328-W03-366-E2",
+      "event": "ELAPSED_REST_INTERVAL",
+      "timeSeconds": 3601.0,
+      "before": {
+        "worldClockSeconds": 1.0,
+        "actor": {
+          "id": "A",
+          "profileId": "Wizard20",
+          "profileSha256": "ebb96b340b94c3c6a98f8005e6fd6d0d6c93b1dc4abd1b584a7528c5cb459223",
+          "class": "Wizard",
+          "classLevel": 20,
+          "spaceId": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1/space",
+          "presence": "inside Fortress keep; same body and position",
+          "RP": 54,
+          "maxRP": 80,
+          "INTModifier": 5,
+          "Dissonance": 0,
+          "shortRestsSinceLong": 0,
+          "lastBeneficialLongRestSeconds": -86400,
+          "arcaneRecoveryUsed": false,
+          "HP": 122,
+          "wounds": 0,
+          "conditions": [],
+          "concentration": null
+        },
+        "fortress": {
+          "spaceId": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1/space",
+          "exists": true,
+          "duration": "Until Dispelled",
+          "concentration": false
+        },
+        "otherActiveEffects": {
+          "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1": {
+            "id": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1",
+            "spellId": "conjure-demiplane-fortress",
+            "owner": "A",
+            "rootPlane": "fixture:origin",
+            "rootCastId": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1",
+            "rank": 9,
+            "active": true,
+            "suppressed": false,
+            "deadline": null,
+            "concentration": false,
+            "target": null,
+            "createdAt": 0.1,
+            "terminalReceipt": null,
+            "visibleBoundary": false,
+            "space": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1/space",
+            "originPlane": "fixture:origin",
+            "originAnchor": [
+              10,
+              0,
+              0
+            ],
+            "open": true,
+            "operators": [
+              "A"
+            ],
+            "travelerPolicy": "public",
+            "apertures": [
+              {
+                "plane": "fixture:origin",
+                "center": [
+                  10,
+                  0,
+                  0
+                ],
+                "width": 10,
+                "height": 15
+              },
+              {
+                "plane": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1/space",
+                "center": [
+                  10,
+                  10,
+                  0
+                ],
+                "width": 10,
+                "height": 15
+              }
+            ]
+          }
+        },
+        "sourceClocks": {
+          "worldElapsedSeconds": 1.0,
+          "OpeningRemainingSeconds": 8639999.0,
+          "HornRemainingSeconds": 4319999.0,
+          "Hunt": null
+        },
+        "supplies": {
+          "foodItemId": "REST-FOOD-366-A",
+          "waterItemId": "REST-WATER-366-A",
+          "presentAtRestStart": true,
+          "physicallyImportedAndCarriedBy": "A",
+          "consumedAtCompletion": false,
+          "qualification": "TEST_ONLY mundane inventory premises; not created or replenished by Fortress"
+        },
+        "restSafetyPremise": {
+          "noHostileActorOrHazardAtStart": true,
+          "noInterruptionAttackLaborTravelCastingOrWeaveAbilityDuringInterval": true,
+          "scope": "conditional fixture input only; Fortress is not asserted universally safe"
+        }
+      },
+      "after": {
+        "worldClockSeconds": 3601.0,
+        "actor": {
+          "id": "A",
+          "profileId": "Wizard20",
+          "profileSha256": "ebb96b340b94c3c6a98f8005e6fd6d0d6c93b1dc4abd1b584a7528c5cb459223",
+          "class": "Wizard",
+          "classLevel": 20,
+          "spaceId": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1/space",
+          "presence": "inside Fortress keep; same body and position",
+          "RP": 54,
+          "maxRP": 80,
+          "INTModifier": 5,
+          "Dissonance": 0,
+          "shortRestsSinceLong": 0,
+          "lastBeneficialLongRestSeconds": -86400,
+          "arcaneRecoveryUsed": false,
+          "HP": 122,
+          "wounds": 0,
+          "conditions": [],
+          "concentration": null
+        },
+        "fortress": {
+          "spaceId": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1/space",
+          "exists": true,
+          "duration": "Until Dispelled",
+          "concentration": false
+        },
+        "otherActiveEffects": {
+          "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1": {
+            "id": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1",
+            "spellId": "conjure-demiplane-fortress",
+            "owner": "A",
+            "rootPlane": "fixture:origin",
+            "rootCastId": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1",
+            "rank": 9,
+            "active": true,
+            "suppressed": false,
+            "deadline": null,
+            "concentration": false,
+            "target": null,
+            "createdAt": 0.1,
+            "terminalReceipt": null,
+            "visibleBoundary": false,
+            "space": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1/space",
+            "originPlane": "fixture:origin",
+            "originAnchor": [
+              10,
+              0,
+              0
+            ],
+            "open": true,
+            "operators": [
+              "A"
+            ],
+            "travelerPolicy": "public",
+            "apertures": [
+              {
+                "plane": "fixture:origin",
+                "center": [
+                  10,
+                  0,
+                  0
+                ],
+                "width": 10,
+                "height": 15
+              },
+              {
+                "plane": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1/space",
+                "center": [
+                  10,
+                  10,
+                  0
+                ],
+                "width": 10,
+                "height": 15
+              }
+            ]
+          }
+        },
+        "sourceClocks": {
+          "worldElapsedSeconds": 3601.0,
+          "OpeningRemainingSeconds": 8636399.0,
+          "HornRemainingSeconds": 4316399.0,
+          "Hunt": null
+        },
+        "supplies": {
+          "foodItemId": "REST-FOOD-366-A",
+          "waterItemId": "REST-WATER-366-A",
+          "presentAtRestStart": true,
+          "physicallyImportedAndCarriedBy": "A",
+          "consumedAtCompletion": false,
+          "qualification": "TEST_ONLY mundane inventory premises; not created or replenished by Fortress"
+        },
+        "restSafetyPremise": {
+          "noHostileActorOrHazardAtStart": true,
+          "noInterruptionAttackLaborTravelCastingOrWeaveAbilityDuringInterval": true,
+          "scope": "conditional fixture input only; Fortress is not asserted universally safe"
+        }
+      },
+      "rule": "1:1 global clocks; Fortress source has no duration deadline"
+    },
+    {
+      "id": "PG328-W03-366-E3",
+      "event": "SHORT_REST_COMPLETION_AND_NORMAL_RP_RECOVERY",
+      "timeSeconds": 3601.0,
+      "before": {
+        "worldClockSeconds": 3601.0,
+        "actor": {
+          "id": "A",
+          "profileId": "Wizard20",
+          "profileSha256": "ebb96b340b94c3c6a98f8005e6fd6d0d6c93b1dc4abd1b584a7528c5cb459223",
+          "class": "Wizard",
+          "classLevel": 20,
+          "spaceId": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1/space",
+          "presence": "inside Fortress keep; same body and position",
+          "RP": 54,
+          "maxRP": 80,
+          "INTModifier": 5,
+          "Dissonance": 0,
+          "shortRestsSinceLong": 0,
+          "lastBeneficialLongRestSeconds": -86400,
+          "arcaneRecoveryUsed": false,
+          "HP": 122,
+          "wounds": 0,
+          "conditions": [],
+          "concentration": null
+        },
+        "fortress": {
+          "spaceId": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1/space",
+          "exists": true,
+          "duration": "Until Dispelled",
+          "concentration": false
+        },
+        "otherActiveEffects": {
+          "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1": {
+            "id": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1",
+            "spellId": "conjure-demiplane-fortress",
+            "owner": "A",
+            "rootPlane": "fixture:origin",
+            "rootCastId": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1",
+            "rank": 9,
+            "active": true,
+            "suppressed": false,
+            "deadline": null,
+            "concentration": false,
+            "target": null,
+            "createdAt": 0.1,
+            "terminalReceipt": null,
+            "visibleBoundary": false,
+            "space": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1/space",
+            "originPlane": "fixture:origin",
+            "originAnchor": [
+              10,
+              0,
+              0
+            ],
+            "open": true,
+            "operators": [
+              "A"
+            ],
+            "travelerPolicy": "public",
+            "apertures": [
+              {
+                "plane": "fixture:origin",
+                "center": [
+                  10,
+                  0,
+                  0
+                ],
+                "width": 10,
+                "height": 15
+              },
+              {
+                "plane": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1/space",
+                "center": [
+                  10,
+                  10,
+                  0
+                ],
+                "width": 10,
+                "height": 15
+              }
+            ]
+          }
+        },
+        "sourceClocks": {
+          "worldElapsedSeconds": 3601.0,
+          "OpeningRemainingSeconds": 8636399.0,
+          "HornRemainingSeconds": 4316399.0,
+          "Hunt": null
+        },
+        "supplies": {
+          "foodItemId": "REST-FOOD-366-A",
+          "waterItemId": "REST-WATER-366-A",
+          "presentAtRestStart": true,
+          "physicallyImportedAndCarriedBy": "A",
+          "consumedAtCompletion": false,
+          "qualification": "TEST_ONLY mundane inventory premises; not created or replenished by Fortress"
+        },
+        "restSafetyPremise": {
+          "noHostileActorOrHazardAtStart": true,
+          "noInterruptionAttackLaborTravelCastingOrWeaveAbilityDuringInterval": true,
+          "scope": "conditional fixture input only; Fortress is not asserted universally safe"
+        }
+      },
+      "after": {
+        "worldClockSeconds": 3601.0,
+        "actor": {
+          "id": "A",
+          "profileId": "Wizard20",
+          "profileSha256": "ebb96b340b94c3c6a98f8005e6fd6d0d6c93b1dc4abd1b584a7528c5cb459223",
+          "class": "Wizard",
+          "classLevel": 20,
+          "spaceId": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1/space",
+          "presence": "inside Fortress keep; same body and position",
+          "RP": 79,
+          "maxRP": 80,
+          "INTModifier": 5,
+          "Dissonance": 0,
+          "shortRestsSinceLong": 1,
+          "lastBeneficialLongRestSeconds": -86400,
+          "arcaneRecoveryUsed": false,
+          "HP": 122,
+          "wounds": 0,
+          "conditions": [],
+          "concentration": null
+        },
+        "fortress": {
+          "spaceId": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1/space",
+          "exists": true,
+          "duration": "Until Dispelled",
+          "concentration": false
+        },
+        "otherActiveEffects": {
+          "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1": {
+            "id": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1",
+            "spellId": "conjure-demiplane-fortress",
+            "owner": "A",
+            "rootPlane": "fixture:origin",
+            "rootCastId": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1",
+            "rank": 9,
+            "active": true,
+            "suppressed": false,
+            "deadline": null,
+            "concentration": false,
+            "target": null,
+            "createdAt": 0.1,
+            "terminalReceipt": null,
+            "visibleBoundary": false,
+            "space": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1/space",
+            "originPlane": "fixture:origin",
+            "originAnchor": [
+              10,
+              0,
+              0
+            ],
+            "open": true,
+            "operators": [
+              "A"
+            ],
+            "travelerPolicy": "public",
+            "apertures": [
+              {
+                "plane": "fixture:origin",
+                "center": [
+                  10,
+                  0,
+                  0
+                ],
+                "width": 10,
+                "height": 15
+              },
+              {
+                "plane": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1/space",
+                "center": [
+                  10,
+                  10,
+                  0
+                ],
+                "width": 10,
+                "height": 15
+              }
+            ]
+          }
+        },
+        "sourceClocks": {
+          "worldElapsedSeconds": 3601.0,
+          "OpeningRemainingSeconds": 8636399.0,
+          "HornRemainingSeconds": 4316399.0,
+          "Hunt": null
+        },
+        "supplies": {
+          "foodItemId": "REST-FOOD-366-A",
+          "waterItemId": "REST-WATER-366-A",
+          "presentAtRestStart": true,
+          "physicallyImportedAndCarriedBy": "A",
+          "consumedAtCompletion": true,
+          "qualification": "TEST_ONLY mundane inventory premises; not created or replenished by Fortress"
+        },
+        "restSafetyPremise": {
+          "noHostileActorOrHazardAtStart": true,
+          "noInterruptionAttackLaborTravelCastingOrWeaveAbilityDuringInterval": true,
+          "scope": "conditional fixture input only; Fortress is not asserted universally safe"
+        }
+      },
+      "rule": "PLAYER_RULEBOOK_V6_SOURCE_TEXT.txt line 8391; Arcane Recovery not invoked"
+    }
+  ],
+  "after": {
+    "worldClockSeconds": 3601.0,
+    "actor": {
+      "id": "A",
+      "profileId": "Wizard20",
+      "profileSha256": "ebb96b340b94c3c6a98f8005e6fd6d0d6c93b1dc4abd1b584a7528c5cb459223",
+      "class": "Wizard",
+      "classLevel": 20,
+      "spaceId": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1/space",
+      "presence": "inside Fortress keep; same body and position",
+      "RP": 79,
+      "maxRP": 80,
+      "INTModifier": 5,
+      "Dissonance": 0,
+      "shortRestsSinceLong": 1,
+      "lastBeneficialLongRestSeconds": -86400,
+      "arcaneRecoveryUsed": false,
+      "HP": 122,
+      "wounds": 0,
+      "conditions": [],
+      "concentration": null
+    },
+    "fortress": {
+      "spaceId": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1/space",
+      "exists": true,
+      "duration": "Until Dispelled",
+      "concentration": false
+    },
+    "otherActiveEffects": {
+      "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1": {
+        "id": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1",
+        "spellId": "conjure-demiplane-fortress",
+        "owner": "A",
+        "rootPlane": "fixture:origin",
+        "rootCastId": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1",
+        "rank": 9,
+        "active": true,
+        "suppressed": false,
+        "deadline": null,
+        "concentration": false,
+        "target": null,
+        "createdAt": 0.1,
+        "terminalReceipt": null,
+        "visibleBoundary": false,
+        "space": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1/space",
+        "originPlane": "fixture:origin",
+        "originAnchor": [
+          10,
+          0,
+          0
+        ],
+        "open": true,
+        "operators": [
+          "A"
+        ],
+        "travelerPolicy": "public",
+        "apertures": [
+          {
+            "plane": "fixture:origin",
+            "center": [
+              10,
+              0,
+              0
+            ],
+            "width": 10,
+            "height": 15
+          },
+          {
+            "plane": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/beneficial-short-rest/cast1/space",
+            "center": [
+              10,
+              10,
+              0
+            ],
+            "width": 10,
+            "height": 15
+          }
+        ]
+      }
+    },
+    "sourceClocks": {
+      "worldElapsedSeconds": 3601.0,
+      "OpeningRemainingSeconds": 8636399.0,
+      "HornRemainingSeconds": 4316399.0,
+      "Hunt": null
+    },
+    "supplies": {
+      "foodItemId": "REST-FOOD-366-A",
+      "waterItemId": "REST-WATER-366-A",
+      "presentAtRestStart": true,
+      "physicallyImportedAndCarriedBy": "A",
+      "consumedAtCompletion": true,
+      "qualification": "TEST_ONLY mundane inventory premises; not created or replenished by Fortress"
+    },
+    "restSafetyPremise": {
+      "noHostileActorOrHazardAtStart": true,
+      "noInterruptionAttackLaborTravelCastingOrWeaveAbilityDuringInterval": true,
+      "scope": "conditional fixture input only; Fortress is not asserted universally safe"
+    }
+  },
+  "directorQuestions": [
+    "Does the applicable source set accept the explicit 3600-second TEST_ONLY interval as a completed short rest, or is a duration source missing?",
+    "If eligibility is accepted, does the ordinary rulebook recovery path close PG328-W03 without invoking Arcane Recovery?",
+    "What exact residual predicates remain for PG328-W03?"
+  ],
+  "disposition": {
+    "acceptedIds": [],
+    "appliedIds": [],
+    "heldIds": [
+      "conjure-demiplane-fortress"
+    ],
+    "blockerIds": [
+      "PG200-B06"
+    ],
+    "closedBlockerIds": [],
+    "applicationAuthorized": false
+  }
+}

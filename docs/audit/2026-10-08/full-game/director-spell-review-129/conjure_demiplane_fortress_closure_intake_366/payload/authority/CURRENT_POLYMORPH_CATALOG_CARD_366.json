@@ -1,0 +1,207 @@
+{
+  "sourceFile": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+  "sourceFileSha256": "773fb0b3b0fdb501858ded33c02d90dc4db3009bd1b9f7112c244d998218f05b",
+  "jsonPointer": "/spells/735",
+  "row": {
+    "id": "polymorph",
+    "name": "Polymorph",
+    "schools": [
+      "Transmutation"
+    ],
+    "status": "operational-playtest-draft",
+    "visibility": "public-source-review",
+    "classAccess": {
+      "Dragoon": {
+        "rank": 4,
+        "minimumClassLevel": 18,
+        "school": "Transmutation",
+        "baseRpCost": 7
+      },
+      "Druid": {
+        "rank": 4,
+        "minimumClassLevel": 7,
+        "school": "Transmutation",
+        "baseRpCost": 7
+      },
+      "Mage": {
+        "rank": 4,
+        "minimumClassLevel": 7,
+        "school": "Transmutation",
+        "baseRpCost": 7
+      },
+      "Monk": {
+        "rank": 4,
+        "minimumClassLevel": 18,
+        "school": "Transmutation",
+        "baseRpCost": 7
+      },
+      "Ranger": {
+        "rank": 4,
+        "minimumClassLevel": 13,
+        "school": "Transmutation",
+        "baseRpCost": 7
+      },
+      "Shaman": {
+        "rank": 4,
+        "minimumClassLevel": 10,
+        "school": "Transmutation",
+        "baseRpCost": 7
+      },
+      "Thief": {
+        "rank": 4,
+        "minimumClassLevel": 18,
+        "school": "Transmutation",
+        "baseRpCost": 7
+      },
+      "Tinker": {
+        "rank": 4,
+        "minimumClassLevel": 14,
+        "school": "Transmutation",
+        "baseRpCost": 7
+      },
+      "Wizard": {
+        "rank": 4,
+        "minimumClassLevel": 7,
+        "school": "Transmutation",
+        "baseRpCost": 7
+      }
+    },
+    "operational": {
+      "id": "polymorph",
+      "activation": "Action",
+      "rangeFeet": 60,
+      "targets": "One physical creature you can perceive within 60 feet",
+      "duration": "Concentration, up to 1 minute; absolute checkpoint at casting timestamp +60 seconds, never extended by extra turns",
+      "concentration": true,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "Choose one legal R4 spell-form profile and validate its space before payment. A willing target may waive its save. An unwilling target makes a Constitution save against your spell DC. On failure it transforms. At the end of each of its original regular turns, and once per numbered round after it suffers positive actual HP damage, it may repeat the save; success ends the transformation. Use the complete TRANSFORMATION_SPELL_PLAYTEST.md procedure and finite spell_form_profiles.json register. Preflight all targets, anatomy, space and access before committing Action/RP; commit ends your old concentration before counters or saves. A failed or countered new spell does not restore old concentration. An anatomy from another source is replaced only on actual success. No displaced form remains underneath.",
+      "effect": "Replace the target's current anatomy with the chosen R4 spell-form profile while preserving one body, current/max HP, temporary HP, Wounds, conditions, attributes, proficiency, identity, resources, initiative and condition clocks. The supplied form attack uses the original caster's current spell attack bonus and M. Equipment melds and is unavailable unless a separate anatomy-compatible passive bonus is certified. The target retains control of all decisions.",
+      "scaling": "No automatic profile, damage, target-count or duration scaling. Use only the bounded R4 spell-form register.",
+      "limitations": "No monster stat block, multiattack, class spellcasting, legendary power, new resource pool or second HP pool is gained. Speech, hands and movement come only from the selected profile. A willing target may spend its Action on its regular turn to end its own Polymorph. Actual 0 HP, death or Incapacitated after same-packet prevention resolves ends the spell without healing. Explicit transformation immunity and legendary defenses apply normally. Natural/form attacks do not automatically qualify for unrelated weapon-only features. The subject owns supplied natural-attack events; the original caster supplies attack statistics. These attacks are not spell casts or automatically caster spell-damage/kill triggers. A Druid cannot enter Shapeshift while a spell anatomy is active. Temporary lower-rank spells cannot replace higher-rank anatomy. Only a successful True Polymorph or an exact named exception can replace permanent True anatomy. Antimagic suppresses the same record while concentration and its absolute clock continue; True Polymorph can stabilize while suppressed. Suppression never frees an object-companion slot or resets gear. Creature-origin type tags remain unchanged; profile names confer no creature type. Every supplied attack has5-foot reach. Original anatomical abilities unavailable in the selected profile do not persist underneath it. A successful new transformation closes the old record and atomically restores/recaptures still-existing original gear; internal profile switches instead retain the same meld set and drop incompatible external gear. Mandatory reversion returns at the same anchor; blocked placement is referred to canonical geometry without automatic teleport or crushing damage. Original melded gear remains inaccessible under antimagic. A willing temporary creature-origin recipient can use its regular-turn rejection Action while suppressed if its root creature anatomy can act; object-origin identities gain no rejection right. No generic magical-attack bypass flag is granted.",
+      "designNotes": "PRESERVED: Polymorph identity, Transmutation Rank 4, exact class access, Action, 60 feet, V/S/F and base 7 RP. NEW: one-minute concentration, target/save/repeat-save procedure, R4 finite profile list, same-body state retention, caster-derived form attack, equipment/anatomy rules and zero-HP reversion.",
+      "implementationStatus": "REVIEWED / reference-VALIDATED operational-playtest draft",
+      "procedureReference": "docs/mechanics/TRANSFORMATION_SPELL_PLAYTEST.md",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_TRANSFORMATION_SPELL_FINAL_CLOSURE.md"
+      ],
+      "authoringFile": "data/playtest/spell_drafts/batch_transformations.json"
+    },
+    "additionalRpCost": 0,
+    "source": {
+      "catalogPath": "src/data/spells.js",
+      "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+      "catalogKey": "polymorph",
+      "original": {
+        "name": "Polymorph",
+        "level": 4,
+        "resonanceRank": 4,
+        "school": "Transmutation",
+        "schools": [
+          "Transmutation"
+        ],
+        "placements": [
+          {
+            "name": "Polymorph",
+            "school": "Transmutation",
+            "level": 4,
+            "summary": "Transform creature into new form."
+          }
+        ],
+        "classLevels": {
+          "Dragoon": 4,
+          "Druid": 4,
+          "Mage": 4,
+          "Monk": 4,
+          "Ranger": 4,
+          "Shaman": 4,
+          "Thief": 4,
+          "Tinker": 4,
+          "Wizard": 4
+        },
+        "classRanks": {
+          "Dragoon": 4,
+          "Druid": 4,
+          "Mage": 4,
+          "Monk": 4,
+          "Ranger": 4,
+          "Shaman": 4,
+          "Thief": 4,
+          "Tinker": 4,
+          "Wizard": 4
+        },
+        "classLearnLevels": {
+          "Dragoon": 18,
+          "Druid": 7,
+          "Mage": 7,
+          "Monk": 18,
+          "Ranger": 13,
+          "Shaman": 10,
+          "Thief": 18,
+          "Tinker": 14,
+          "Wizard": 7
+        },
+        "classSchools": {
+          "Dragoon": "Transmutation",
+          "Druid": "Transmutation",
+          "Mage": "Transmutation",
+          "Monk": "Transmutation",
+          "Ranger": "Transmutation",
+          "Shaman": "Transmutation",
+          "Thief": "Transmutation",
+          "Tinker": "Transmutation",
+          "Wizard": "Transmutation"
+        },
+        "castingTime": "Not specified in current rulebook",
+        "range": "Not specified in current rulebook",
+        "components": "Not specified in current rulebook",
+        "duration": "Not specified in current rulebook",
+        "description": "Transform creature into new form.",
+        "alternateSummaries": [],
+        "classes": [
+          "Dragoon",
+          "Druid",
+          "Mage",
+          "Monk",
+          "Ranger",
+          "Shaman",
+          "Thief",
+          "Tinker",
+          "Wizard"
+        ],
+        "status": "canon",
+        "source": "Player Rulebook — Spell Lists"
+      },
+      "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+      "coreEntries": [
+        {
+          "index": 780,
+          "original": {
+            "school": "Transmutation",
+            "level": 4,
+            "name": "Polymorph",
+            "effect": "Transform creature into new form.",
+            "source_paragraph": 9946,
+            "casting_time": "1 action",
+            "range": "60 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Utility"
+            ],
+            "rp_cost": 7
+          }
+        }
+      ],
+      "possibleHistoricalAliases": []
+    },
+    "reviewFlags": [
+      "Core resolution requires an explicit operational interpretation"
+    ]
+  }
+}

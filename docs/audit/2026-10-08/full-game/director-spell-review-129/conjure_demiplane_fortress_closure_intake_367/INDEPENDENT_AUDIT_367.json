@@ -1,0 +1,82 @@
+{
+  "id": "PG200-B06_CLOSURE_INTAKE_367_INDEPENDENT_AUDIT",
+  "archiveFile": "DD_Rank9_ConjureDemiplaneFortress_PG200B06_ClosureIntake367.zip",
+  "archiveBytes": 3110050,
+  "archiveSha256": "0d515e9e123cc9aa82fe139d161ed47e213d26be6d62607e28f6d45bcea611ee",
+  "archiveUniqueMembers": 37,
+  "manifestPayloadFilesVerified": 36,
+  "zipTest": "PASS",
+  "payloadHashes": "PASS",
+  "sourceBindings": "PASS; all exact hashes and JSON/text locators resolve",
+  "coverageMapParts": 13,
+  "fixture": {
+    "file": "fixtures/PG328-W03_BENEFICIAL_SHORT_REST_367_TESTONLY.json",
+    "sha256CanonicalJson": "b195491107d10045f80f670c669935e4a77e26f4cd7c1d72aa5ca34ad64fcfa2",
+    "parentBaselineFinalStateSha256": "a3eb7d4295b85e8354c85156516c52123cfc5255e476ecec04c4f4f01c85632e",
+    "forkBeforeStateSha256": "5b89a714e5c3a61465feaf488dccd2fb3b06da83fab17ba81897760dfe4ad503",
+    "finalStateSha256": "993c21f689a3c2fa7623d94ba91a97637a021c1c57a8b9850b328bd997c9ce54",
+    "parentStateAndTestInventoryForkReversesExactly": true,
+    "actorsPreserved": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "inventoryCountBeforeFork": 12,
+    "inventoryCountAtCandidateRest": 14,
+    "supplyItems": [
+      "REST-FOOD-367-A",
+      "REST-WATER-367-A"
+    ],
+    "supplyQuantitiesRemainExplicit": true,
+    "supplyConsumptionClaimed": false,
+    "transitionCount": 3,
+    "transitionStateHashes": "PASS",
+    "forwardReplay": "PASS",
+    "inverseReplayExactRestoration": "PASS",
+    "changedJsonPatchPaths": [
+      "/actors/A/spellEfficiency",
+      "/clock/HornRemaining",
+      "/clock/OpeningRemaining",
+      "/clock/elapsedSeconds",
+      "/mode"
+    ],
+    "modeBridge": "PASS; operative outside-initiative elapsed clock; all inherited regularSchedule markers preserved",
+    "virtualDeadline": {
+      "scheduleMarker": 6.9,
+      "worldElapsedSeconds": 7.0,
+      "effectExpired": true
+    },
+    "testOnlyIntervalSeconds": 3600,
+    "durationQualification": "UNADJUDICATED_TEST_ONLY_INPUT",
+    "conditionalOrdinaryRPRecovery": 25,
+    "RPBefore": 54,
+    "RPAfterIfQualified": 79,
+    "RPSettlementApplied": false,
+    "shortRestsSinceLongAtEnd": 0,
+    "ArcaneRecoveryUsed": false,
+    "worldClockAdvanceSeconds": 3600.0,
+    "OpeningClockAdvanceSeconds": 3600.0,
+    "HornClockAdvanceSeconds": 3600.0,
+    "FortressPersists": true
+  },
+  "priorDirectorFindings": {
+    "PG366-W03-R1": "UNRESOLVED: accepted operative rest definition with minimum duration and activity/interruption conditions is absent.",
+    "PG366-W03-R2": "Revised for fresh review: complete inherited state, actors, inventory, schedules, effect and source-clock obligations are retained; mode bridge is explicit.",
+    "PG366-W03-R3": "Revised for fresh review: every transition has deterministic hashes and scoped reversible patches with exact restoration.",
+    "PG366-W03-R4": "Revised for fresh review: source locators are split and resolvable; source hashes match.",
+    "PG366-M01": "Corrected: payload count is 36; total ZIP members are 37 including the self-excluded manifest."
+  },
+  "limitations": [
+    "No accepted rest-duration or eligibility source is supplied.",
+    "The candidate interval and supply inventory are TEST_ONLY premises, not campaign facts.",
+    "No recovery or short-rest counter change is applied while eligibility is unadjudicated.",
+    "No W03 or other witness part is claimed sealed by Intake367."
+  ],
+  "authorityAssertions": {
+    "fortressAcceptedIds": [],
+    "fortressAppliedIds": [],
+    "applicationAuthorized": false,
+    "banishmentGateHeld": true
+  }
+}
