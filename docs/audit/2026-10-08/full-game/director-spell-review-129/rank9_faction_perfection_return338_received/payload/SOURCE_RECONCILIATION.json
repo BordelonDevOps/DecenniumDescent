@@ -1,0 +1,161 @@
+{
+  "sourcePacket": {
+    "fileName": "DD_Rank9_FactionPerfection_Review338.zip",
+    "bytes": 70134,
+    "sha256": "238e022860530119327696f3a5da17fbcc09c510b28b2b9c531bdaadc3508926",
+    "crc32": "86b2f9cb"
+  },
+  "sourceDelivery": {
+    "fileName": "DD_Rank9_FactionPerfection_Review338_DELIVERY.json",
+    "bytes": 8638,
+    "sha256": "48910f6391f7e4d68c9da2f1cef765603c9c6135cedf435a70291867a01d7899",
+    "crc32": "abed1df4"
+  },
+  "fullCurrentFilesVerified": [
+    {
+      "role": "index",
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+      "bytes": 1697606,
+      "sha256": "c6dd6d30703911864a3e2784d8abb3d79835b39bc01804c4335f80a1c4bea7b2",
+      "crc32": "ae581c7e"
+    },
+    {
+      "role": "catalog",
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+      "bytes": 5085187,
+      "sha256": "773fb0b3b0fdb501858ded33c02d90dc4db3009bd1b9f7112c244d998218f05b",
+      "crc32": "f06243cf"
+    },
+    {
+      "role": "core",
+      "path": "DescentReviewChanges/ReviewBible/data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "bytes": 450543,
+      "sha256": "842718b9f016294529bdffefca9c81cca9a37670dd5e66a3c893ad313d79dd51",
+      "crc32": "e1996164"
+    }
+  ],
+  "embeddedCurrentSourcesVerified": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/REPUTATION.md",
+      "bytes": 2110,
+      "sha256": "173214fcdcc9db23d3ed981391cd884bd1d3b065aaeed7dd88a5df1492defdf6",
+      "crc32": "f955d0fa",
+      "packetMember": "sources/00_REPUTATION.md"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/src/data/reputation.js",
+      "bytes": 15296,
+      "sha256": "8938ef1305072dcd8ebac9e72a73a8bcb593065dfc5dcc75d344ecb4d82e10da",
+      "crc32": "d9058a88",
+      "packetMember": "sources/01_reputation.js"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/src/data/resonance-economy.js",
+      "bytes": 25126,
+      "sha256": "f3c7317d3fb66c790ce0025309e338faf5237bbafff1bc22bf8099e2b5ce3acc",
+      "crc32": "71374341",
+      "packetMember": "sources/02_resonance-economy.js"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+      "bytes": 67451,
+      "sha256": "55f486de8d38a6734f8f0f2f62066401504f5b1311ebe66693175876b3f7aa6d",
+      "crc32": "9fb65271",
+      "packetMember": "sources/03_SPELL_INTEGRATION_RULES.md"
+    }
+  ],
+  "targetExactRowComparisons": true,
+  "findings": [
+    {
+      "id": "FP338-SOURCE-01",
+      "status": "ESTABLISHED",
+      "anchors": [
+        "evidence/sources/00_REPUTATION.md:7",
+        "evidence/sources/01_reputation.js:10",
+        "evidence/sources/01_reputation.js:422"
+      ],
+      "finding": "The selected standing-v1 maximum is+3; Honored begins at+2, so its label alone is not maximization. Do not migrate to a percentage/100-point reputation scale."
+    },
+    {
+      "id": "FP338-SOURCE-02",
+      "status": "ESTABLISHED",
+      "anchors": [
+        "evidence/sources/00_REPUTATION.md:21",
+        "evidence/sources/02_resonance-economy.js:555",
+        "evidence/sources/02_resonance-economy.js:573",
+        "evidence/sources/02_resonance-economy.js:589"
+      ],
+      "finding": "Automatic reputation modifiers to maxRP, spell cost and Retune return0. No new rank, Dissonance or intrinsic resource benefit follows from maximum standing. Helpers inspected as text only, not executed."
+    },
+    {
+      "id": "FP338-SOURCE-03",
+      "status": "BOUNDARY_ESTABLISHED_CONTENT_MISSING",
+      "anchors": [
+        "evidence/sources/00_REPUTATION.md:11",
+        "evidence/sources/01_reputation.js:19"
+      ],
+      "finding": "Faction keys/descriptions, background starts and categories of institutional response are real source data. They establish no named available service, provider obligation, benefit quantity or finite entitlement for this spell."
+    },
+    {
+      "id": "FP338-SOURCE-04",
+      "status": "SELECTED_DIRECTION_RETAINED",
+      "anchors": [
+        "evidence/input/03_CURRENT_CORE_FACTION_PERFECTION_ROW.json#",
+        "evidence/input/05_RETURN287_TARGET_SOURCE_PROPOSAL.json#/incompleteProcedureProposal/selectedSpellLocalContract"
+      ],
+      "finding": "Instantaneous standing update is completed, not an ongoing aura. Genuine later events still change standing and remain in history; recast never resets consumed one-time benefits."
+    },
+    {
+      "id": "FP338-SOURCE-05",
+      "status": "IMPLEMENTATION_BOUNDARY",
+      "anchors": [
+        "evidence/sources/01_reputation.js:427",
+        "evidence/sources/01_reputation.js:463",
+        "evidence/sources/01_reputation.js:499",
+        "evidence/input/05_RETURN287_TARGET_SOURCE_PROPOSAL.json#/incompleteProcedureProposal/selectedSpellLocalContract/standing"
+      ],
+      "finding": "Existing normalization/UI helpers can coerce or describe unset values as0. That display/persistence behavior supplies no missing factual Neutral/nonmembership/permission record for an authored witness. Preserve exact original field presence/nulls and unrelated records; no helper is called or changed."
+    }
+  ],
+  "closedComparatorBoundary": {
+    "id": "AFP211-E01",
+    "status": "CLOSED",
+    "reopened": false,
+    "comparators": [
+      {
+        "id": "alignment-avatar",
+        "scope": "Exact accepted comparison only; no transfer of spell-local profiles, powers, permission or cure authority.",
+        "reopened": false
+      },
+      {
+        "id": "faction-paragon",
+        "scope": "Exact accepted comparison only; no transfer of spell-local profiles, powers, permission or cure authority.",
+        "reopened": false
+      },
+      {
+        "id": "corruption-immunity",
+        "scope": "Exact accepted comparison only; no transfer of spell-local profiles, powers, permission or cure authority.",
+        "reopened": false
+      },
+      {
+        "id": "alignment-immunity",
+        "scope": "Exact accepted comparison only; no transfer of spell-local profiles, powers, permission or cure authority.",
+        "reopened": false
+      },
+      {
+        "id": "faction-aegis",
+        "scope": "Exact accepted comparison only; no transfer of spell-local profiles, powers, permission or cure authority.",
+        "reopened": false
+      },
+      {
+        "id": "faction-citadel",
+        "scope": "Exact accepted comparison only; no transfer of spell-local profiles, powers, permission or cure authority.",
+        "reopened": false
+      }
+    ]
+  },
+  "comparisonScope": "AFP211-E01 closure and six exact comparator scopes are carried without reopening or freshly re-auditing their envelopes/cases. Return336/337 archive bindings and decision summaries match the existing sealed outputs; no substantive re-review.",
+  "historicalSourceAccounting": "Four embedded source files and three full current catalog/index/Core files verified here. No fresh130-file historical comparison claimed.",
+  "nativeProvenanceQualification": "Unchanged native catalog retains historical catalogSha256/coreSha256 provenance. Current full Core binding is separately verified and exact entry100 matches; historical whole-file hashes are not asserted as current.",
+  "inputManifestScope": "Internal manifest has20 data members, excluding REQUEST_338.md and itself. The external delivery correctly binds all22 actual members."
+}

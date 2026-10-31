@@ -1,0 +1,324 @@
+{
+  "caseIds": [
+    "AFP211-FP-maximum",
+    "AFP211-FP-independent-gates"
+  ],
+  "cases": {
+    "AFP211-FP-maximum": {
+      "id": "AFP211-FP-maximum",
+      "spellId": "faction-perfection",
+      "title": "Useful actual maximum component without automatic benefits",
+      "kind": "conditional-component-trace",
+      "completeSpellWitness": false,
+      "scope": "Full states for this explicitly bounded component only; not full actor/world state, paid cast, clock or gameplay witness.",
+      "source": "Current REPUTATION.md scale and native Faction Perfection promise; not full cast",
+      "events": [
+        {
+          "id": "AFP211-FP-maximum:1",
+          "before": {
+            "format": "standing-v1",
+            "standing": {
+              "arcane-guilds": -3
+            },
+            "membership": false,
+            "invocationPermission": false,
+            "alliedStatus": false,
+            "history": [
+              "prior-adverse-act-retained"
+            ],
+            "benefits": [],
+            "sourceOperation": "conditional native maximization component only"
+          },
+          "after": {
+            "format": "standing-v1",
+            "standing": {
+              "arcane-guilds": 3
+            },
+            "membership": false,
+            "invocationPermission": false,
+            "alliedStatus": false,
+            "history": [
+              "prior-adverse-act-retained",
+              {
+                "operation": "proposed-faction-perfection-standing-component",
+                "old": -3,
+                "new": 3
+              }
+            ],
+            "benefits": [],
+            "sourceOperation": "conditional native maximization component only"
+          },
+          "beforeSHA256": "f66424763cac663a1e52bf1ac604cd9521d6665b26ab451861f8ace0f2935924",
+          "afterSHA256": "27f572cbd22a70f52f6809eca3070cebe268dbeca0311568a7f3a881dca1d753",
+          "forward": [
+            {
+              "op": "test",
+              "path": "",
+              "value": {
+                "format": "standing-v1",
+                "standing": {
+                  "arcane-guilds": -3
+                },
+                "membership": false,
+                "invocationPermission": false,
+                "alliedStatus": false,
+                "history": [
+                  "prior-adverse-act-retained"
+                ],
+                "benefits": [],
+                "sourceOperation": "conditional native maximization component only"
+              }
+            },
+            {
+              "op": "replace",
+              "path": "",
+              "value": {
+                "format": "standing-v1",
+                "standing": {
+                  "arcane-guilds": 3
+                },
+                "membership": false,
+                "invocationPermission": false,
+                "alliedStatus": false,
+                "history": [
+                  "prior-adverse-act-retained",
+                  {
+                    "operation": "proposed-faction-perfection-standing-component",
+                    "old": -3,
+                    "new": 3
+                  }
+                ],
+                "benefits": [],
+                "sourceOperation": "conditional native maximization component only"
+              }
+            }
+          ],
+          "inverse": [
+            {
+              "op": "test",
+              "path": "",
+              "value": {
+                "format": "standing-v1",
+                "standing": {
+                  "arcane-guilds": 3
+                },
+                "membership": false,
+                "invocationPermission": false,
+                "alliedStatus": false,
+                "history": [
+                  "prior-adverse-act-retained",
+                  {
+                    "operation": "proposed-faction-perfection-standing-component",
+                    "old": -3,
+                    "new": 3
+                  }
+                ],
+                "benefits": [],
+                "sourceOperation": "conditional native maximization component only"
+              }
+            },
+            {
+              "op": "replace",
+              "path": "",
+              "value": {
+                "format": "standing-v1",
+                "standing": {
+                  "arcane-guilds": -3
+                },
+                "membership": false,
+                "invocationPermission": false,
+                "alliedStatus": false,
+                "history": [
+                  "prior-adverse-act-retained"
+                ],
+                "benefits": [],
+                "sourceOperation": "conditional native maximization component only"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "AFP211-FP-independent-gates": {
+      "id": "AFP211-FP-independent-gates",
+      "spellId": "faction-perfection",
+      "title": "Positive standing passes; Champion permission/membership not manufactured",
+      "kind": "conditional-component-trace",
+      "completeSpellWitness": false,
+      "scope": "Full states for this explicitly bounded component only; not full actor/world state, paid cast, clock or gameplay witness.",
+      "source": "AC5-CHAMPION-ALLY-01 plus current reputation rules",
+      "events": [
+        {
+          "id": "AFP211-FP-independent-gates:1",
+          "before": {
+            "format": "standing-v1",
+            "standing": {
+              "arcane-guilds": 3
+            },
+            "membership": false,
+            "invocationPermission": false,
+            "alliedStatus": false,
+            "history": [
+              "prior-adverse-act-retained",
+              {
+                "operation": "proposed-faction-perfection-standing-component",
+                "old": -3,
+                "new": 3
+              }
+            ],
+            "benefits": [],
+            "sourceOperation": "conditional native maximization component only",
+            "evaluations": null
+          },
+          "after": {
+            "format": "standing-v1",
+            "standing": {
+              "arcane-guilds": 3
+            },
+            "membership": false,
+            "invocationPermission": false,
+            "alliedStatus": false,
+            "history": [
+              "prior-adverse-act-retained",
+              {
+                "operation": "proposed-faction-perfection-standing-component",
+                "old": -3,
+                "new": 3
+              }
+            ],
+            "benefits": [],
+            "sourceOperation": "conditional native maximization component only",
+            "evaluations": {
+              "standingGreaterThanZero": true,
+              "honoredTier": true,
+              "nativeMaximum": true,
+              "AC5ChampionAdmission": false,
+              "automaticRPCostModifier": 0,
+              "automaticMaxRPModifier": 0
+            }
+          },
+          "beforeSHA256": "ce871aa5141462a9420e6b61d3dddd081dc6eacec0c47a732db5a24ca9c46874",
+          "afterSHA256": "2a48240d9f2cd7c9227cb0e92c5b3716602f13a6154a44fa960b2877177e563e",
+          "forward": [
+            {
+              "op": "test",
+              "path": "",
+              "value": {
+                "format": "standing-v1",
+                "standing": {
+                  "arcane-guilds": 3
+                },
+                "membership": false,
+                "invocationPermission": false,
+                "alliedStatus": false,
+                "history": [
+                  "prior-adverse-act-retained",
+                  {
+                    "operation": "proposed-faction-perfection-standing-component",
+                    "old": -3,
+                    "new": 3
+                  }
+                ],
+                "benefits": [],
+                "sourceOperation": "conditional native maximization component only",
+                "evaluations": null
+              }
+            },
+            {
+              "op": "replace",
+              "path": "",
+              "value": {
+                "format": "standing-v1",
+                "standing": {
+                  "arcane-guilds": 3
+                },
+                "membership": false,
+                "invocationPermission": false,
+                "alliedStatus": false,
+                "history": [
+                  "prior-adverse-act-retained",
+                  {
+                    "operation": "proposed-faction-perfection-standing-component",
+                    "old": -3,
+                    "new": 3
+                  }
+                ],
+                "benefits": [],
+                "sourceOperation": "conditional native maximization component only",
+                "evaluations": {
+                  "standingGreaterThanZero": true,
+                  "honoredTier": true,
+                  "nativeMaximum": true,
+                  "AC5ChampionAdmission": false,
+                  "automaticRPCostModifier": 0,
+                  "automaticMaxRPModifier": 0
+                }
+              }
+            }
+          ],
+          "inverse": [
+            {
+              "op": "test",
+              "path": "",
+              "value": {
+                "format": "standing-v1",
+                "standing": {
+                  "arcane-guilds": 3
+                },
+                "membership": false,
+                "invocationPermission": false,
+                "alliedStatus": false,
+                "history": [
+                  "prior-adverse-act-retained",
+                  {
+                    "operation": "proposed-faction-perfection-standing-component",
+                    "old": -3,
+                    "new": 3
+                  }
+                ],
+                "benefits": [],
+                "sourceOperation": "conditional native maximization component only",
+                "evaluations": {
+                  "standingGreaterThanZero": true,
+                  "honoredTier": true,
+                  "nativeMaximum": true,
+                  "AC5ChampionAdmission": false,
+                  "automaticRPCostModifier": 0,
+                  "automaticMaxRPModifier": 0
+                }
+              }
+            },
+            {
+              "op": "replace",
+              "path": "",
+              "value": {
+                "format": "standing-v1",
+                "standing": {
+                  "arcane-guilds": 3
+                },
+                "membership": false,
+                "invocationPermission": false,
+                "alliedStatus": false,
+                "history": [
+                  "prior-adverse-act-retained",
+                  {
+                    "operation": "proposed-faction-perfection-standing-component",
+                    "old": -3,
+                    "new": 3
+                  }
+                ],
+                "benefits": [],
+                "sourceOperation": "conditional native maximization component only",
+                "evaluations": null
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dataReplayPreviouslyPassed": true,
+  "completePositiveSpellWitness": false,
+  "completeActorClockWitness": false,
+  "replayedOrReauditedFor338": false
+}
