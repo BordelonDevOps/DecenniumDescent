@@ -1,0 +1,2548 @@
+{
+  "parentArchive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_summonhosts5_return285_received/DD_Rank9_SummonHosts5_Director_Return285_HELD.zip",
+    "bytes": 41200157,
+    "sha256": "66ca7f3bc84c96ded94055747841ce767ddd2100f40e289ad13ae3b2e9e5fc21",
+    "crc32": "164dca67"
+  },
+  "parentMember": "ACTOR_PROFILES.json",
+  "parentBinding": {
+    "bytes": 330691,
+    "sha256": "aa5adb89627c43350ad0bdbab5864a0832b61249a92c64bd7b2a4882f575c9d1",
+    "crc32": "59d6009e"
+  },
+  "pointer": "/W17D",
+  "profile": {
+    "M": 5,
+    "PB": 6,
+    "S": 4,
+    "abilityScores": {
+      "CHA": 10,
+      "CON": 14,
+      "DEX": 14,
+      "INT": 20,
+      "STR": 12,
+      "WIS": 16
+    },
+    "acquisitionLedger": [
+      {
+        "choices": [
+          {
+            "acquisition": "selection",
+            "activation": "Action",
+            "band": "Base",
+            "className": "Wizard",
+            "cost": "1 RP",
+            "designStatus": "provisional-playtest",
+            "duration": "Instantaneous",
+            "effect": "Arcane Bolt. Tags: base, active, wizard-spell, universal, damage. Make a Wizard spell attack. On a hit deal S d6 + M force damage. Arcane Bolt is an always-prepared class matrix once acquired and uses the normal first-distinct-matrix and Refrain rules.",
+            "frequency": "At will while RP remains",
+            "id": "wizard.base.arcane-bolt",
+            "minimumClassLevel": 1,
+            "name": "Arcane Bolt",
+            "path": null,
+            "rangeAndTarget": "One creature within 60 feet",
+            "source": {
+              "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+              "line": 5203,
+              "originalText": "Arcane Bolt: Launch a bolt of pure arcane energy that deals force damage to a single target."
+            },
+            "sourceKind": "active",
+            "spellRank": 1
+          },
+          {
+            "acquisition": "selection",
+            "activation": "Action",
+            "band": "Base",
+            "className": "Wizard",
+            "cost": "1 RP",
+            "designStatus": "provisional-playtest",
+            "duration": "1 hour",
+            "effect": "Minor Conjuration. Tags: base, active, wizard-spell, conjuration. Create one nonmagical unattended object that fits inside a 1-foot cube, weighs no more than 10 pounds and is made of common nonvaluable material such as wood, cloth, clay, iron or glass. It cannot be food, poison, currency, a spell component with listed cost, ammunition with special properties or a functional complex mechanism. Creating another dismisses the first.",
+            "frequency": "At will while RP remains; one object at a time",
+            "id": "wizard.base.minor-conjuration",
+            "minimumClassLevel": 1,
+            "name": "Minor Conjuration",
+            "path": null,
+            "rangeAndTarget": "One unoccupied space within 10 feet",
+            "source": {
+              "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+              "line": 5204,
+              "originalText": "Minor Conjuration: Create a temporary, small inanimate object that lasts for 1 hour."
+            },
+            "sourceKind": "active",
+            "spellRank": 1
+          },
+          {
+            "acquisition": "selection",
+            "activation": "Passive",
+            "band": "Base",
+            "className": "Wizard",
+            "cost": "0",
+            "designStatus": "provisional-playtest",
+            "duration": "Instantaneous during a completed short rest",
+            "effect": "Arcane Recovery. Tags: base, passive, resonance. Once between long rests when you complete a short rest, restore RP equal to half your Wizard class level rounded up, never above your normal maximum. This is RP recovery, not a second pool, and cannot trigger spell-cast, Refrain or Dissonance effects.",
+            "frequency": "1/long rest",
+            "id": "wizard.base.arcane-recovery",
+            "minimumClassLevel": 1,
+            "name": "Arcane Recovery",
+            "path": null,
+            "rangeAndTarget": "Self",
+            "source": {
+              "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+              "line": 5196,
+              "originalText": "Arcane Recovery: Once per day during a short rest, recover RP equal to half your Wizard level (rounded up), up to your normal maximum."
+            },
+            "sourceKind": "passive",
+            "spellRank": null
+          },
+          {
+            "acquisition": "selection",
+            "activation": "Passive",
+            "band": "Base",
+            "className": "Wizard",
+            "cost": "0",
+            "designStatus": "provisional-playtest",
+            "duration": "Permanent",
+            "effect": "Spell Scribing. Tags: base, passive, spellbook. Copying a legal found Wizard spell into your spellbook requires 1 hour and 25 gp of inks and components per spell rank, treating rank 0 as rank 1 for this calculation, instead of the pilot baseline 2 hours and 50 gp. Level-up spells remain free.",
+            "frequency": "Always",
+            "id": "wizard.base.spell-scribing",
+            "minimumClassLevel": 1,
+            "name": "Spell Scribing",
+            "path": null,
+            "rangeAndTarget": "Your spellbook",
+            "source": {
+              "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+              "line": 5197,
+              "originalText": "Spell Scribing: Copy spells into your spellbook at half the normal cost and time."
+            },
+            "sourceKind": "passive",
+            "spellRank": null
+          }
+        ],
+        "level": 1,
+        "sourceSchedule": {
+          "asiOrFeat": false,
+          "bands": [
+            "Base"
+          ],
+          "choose": 4,
+          "classLevel": 1,
+          "minimumActives": 2
+        }
+      },
+      {
+        "choices": [
+          {
+            "acquisition": "selection",
+            "activation": "Reaction",
+            "band": "Base",
+            "className": "Wizard",
+            "cost": "2 RP",
+            "designStatus": "provisional-playtest",
+            "duration": "Until start of your next regular turn",
+            "effect": "Arcane Shield. Tags: base, active, wizard-spell, abjuration, protection. Trigger when an attack roll would hit you. Gain +2 AC against the triggering attack and until the start of your next regular turn, potentially causing the attack to miss. Temporary AC from another Arcane Shield does not stack.",
+            "frequency": "Recharge 2 rounds",
+            "id": "wizard.base.arcane-shield",
+            "minimumClassLevel": 1,
+            "name": "Arcane Shield",
+            "path": null,
+            "rangeAndTarget": "Self",
+            "source": {
+              "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+              "line": 5205,
+              "originalText": "Arcane Shield: Create a barrier of magical force that provides temporary protection."
+            },
+            "sourceKind": "active",
+            "spellRank": 1
+          },
+          {
+            "acquisition": "selection",
+            "activation": "Action",
+            "band": "Base",
+            "className": "Wizard",
+            "cost": "1 RP",
+            "designStatus": "provisional-playtest",
+            "duration": "Instantaneous",
+            "effect": "Analyze Magic. Tags: base, active, wizard-spell, divination, knowledge. Make an Intelligence (Arcana) check against DC 10 + the effect's spell rank, treating a non-spell effect's Director-assigned tier as rank. On success learn its school or magical category, one active mechanical property and whether it is currently sustained, cursed or bound to another effect. Failure reveals only that magic is present.",
+            "frequency": "Recharge 1 round",
+            "id": "wizard.base.analyze-magic",
+            "minimumClassLevel": 1,
+            "name": "Analyze Magic",
+            "path": null,
+            "rangeAndTarget": "One magical creature, object or effect within 30 feet",
+            "source": {
+              "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+              "line": 5206,
+              "originalText": "Analyze Magic: Study a magical effect or item to gain insight into its properties and function."
+            },
+            "sourceKind": "active",
+            "spellRank": 1
+          }
+        ],
+        "level": 2,
+        "sourceSchedule": {
+          "asiOrFeat": false,
+          "bands": [
+            "Base"
+          ],
+          "choose": 2,
+          "classLevel": 2,
+          "minimumActives": 0
+        }
+      },
+      {
+        "choices": [
+          {
+            "acquisition": "selection",
+            "activation": "Action",
+            "band": "Arch",
+            "className": "Wizard",
+            "cost": "2 RP",
+            "designStatus": "provisional-playtest",
+            "duration": "8 hours",
+            "effect": "Arcane Lock. Tags: arch, active, wizard-spell, abjuration. Magically seal the target. Opening it without your permission requires a Strength check or thieves'/arcane-tool check against your Wizard spell DC. Dispel Magic can end the lock. You can designate up to M creatures who can bypass it. This does not make the object physically indestructible.",
+            "frequency": "Recharge 2 rounds",
+            "id": "wizard.arch.arcane-lock",
+            "minimumClassLevel": 3,
+            "name": "Arcane Lock",
+            "path": null,
+            "rangeAndTarget": "One door, chest, portal or unattended object within touch",
+            "source": {
+              "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+              "line": 5223,
+              "originalText": "Arcane Lock: Create a magical barrier that prevents entry or access to an object or area."
+            },
+            "sourceKind": "active",
+            "spellRank": 2
+          },
+          {
+            "acquisition": "selection",
+            "activation": "Action",
+            "band": "Arch",
+            "className": "Wizard",
+            "cost": "2 RP",
+            "designStatus": "provisional-playtest",
+            "duration": "Concentration, maximum 10 minutes",
+            "effect": "Arcane Sight. Tags: arch, active, wizard-spell, divination, concentration. While active you perceive magical auras within 60 feet and automatically know each visible aura's school or broad magical category. As an Action on a later turn, examine one aura to learn whether it is concentrated, summoned, cursed, warded or linked to another visible magical effect. Total cover blocks sight.",
+            "frequency": "Recharge 2 rounds",
+            "id": "wizard.arch.arcane-sight",
+            "minimumClassLevel": 3,
+            "name": "Arcane Sight",
+            "path": null,
+            "rangeAndTarget": "Self; 60-foot sight",
+            "source": {
+              "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+              "line": 5226,
+              "originalText": "Arcane Sight: See magical auras and effects for a short duration."
+            },
+            "sourceKind": "active",
+            "spellRank": 2
+          }
+        ],
+        "level": 3,
+        "sourceSchedule": {
+          "asiOrFeat": false,
+          "bands": [
+            "Arch"
+          ],
+          "choose": 2,
+          "classLevel": 3,
+          "minimumActives": 1
+        }
+      },
+      {
+        "choices": [
+          {
+            "acquisition": "selection",
+            "activation": "Passive",
+            "band": "Base",
+            "className": "Wizard",
+            "cost": "0",
+            "designStatus": "provisional-playtest",
+            "duration": "Permanent",
+            "effect": "Scholarly Mind. Tags: base, passive, knowledge. You have advantage on Intelligence checks whose primary purpose is recalling, researching or analyzing arcane theory, magical history, planar magical principles or constructed spell formulae. It does not grant advantage on spell attacks, Counterspell checks or general Investigation unrelated to arcane scholarship.",
+            "frequency": "Always",
+            "id": "wizard.base.scholarly-mind",
+            "minimumClassLevel": 1,
+            "name": "Scholarly Mind",
+            "path": null,
+            "rangeAndTarget": "Self",
+            "source": {
+              "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+              "line": 5200,
+              "originalText": "Scholarly Mind: Gain advantage on Intelligence checks related to arcane knowledge."
+            },
+            "sourceKind": "passive",
+            "spellRank": null
+          }
+        ],
+        "level": 4,
+        "sourceSchedule": {
+          "asiOrFeat": true,
+          "bands": [
+            "Base",
+            "Arch"
+          ],
+          "choose": 1,
+          "classLevel": 4,
+          "minimumActives": 0
+        }
+      },
+      {
+        "choices": [
+          {
+            "acquisition": "selection",
+            "activation": "Triggered",
+            "band": "Arch",
+            "className": "Wizard",
+            "cost": "3 RP",
+            "designStatus": "provisional-playtest",
+            "duration": "Maximum 3 rounds",
+            "effect": "Spell Tether. Tags: arch, passive-upgrade, concentration, tether. When you begin a second concentration spell that targets only yourself while already concentrating on a self-only spell, spend 3 additional RP. For up to 3 rounds you may maintain both. Whenever damage requires a concentration save, make one save; failure ends BOTH spells. Starting a third concentration effect ends both tethered spells before the new one begins. Spell Tether and Tethered Cast cannot be combined; maximum two sustained concentration effects total. Only one Spell Tether can exist at a time.",
+            "frequency": "1/long rest",
+            "id": "wizard.arch.spell-tether",
+            "minimumClassLevel": 5,
+            "name": "Spell Tether",
+            "path": null,
+            "rangeAndTarget": "Self",
+            "source": {
+              "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+              "line": 5215,
+              "originalText": "Spell Tether: Maintain 2 self-buff spells without concentration (1/rest)"
+            },
+            "sourceKind": "passive",
+            "spellRank": null
+          }
+        ],
+        "level": 5,
+        "sourceSchedule": {
+          "asiOrFeat": false,
+          "bands": [
+            "Arch"
+          ],
+          "choose": 1,
+          "classLevel": 5,
+          "minimumActives": 0
+        }
+      },
+      {
+        "choices": [
+          {
+            "acquisition": "selection",
+            "activation": "Passive",
+            "band": "Arch",
+            "className": "Wizard",
+            "cost": "0",
+            "designStatus": "provisional-playtest",
+            "duration": "Daily preparation",
+            "effect": "Matrix Mastery. Tags: arch, passive, matrix. During preparation you may assign at most one common Matrix Mastery modification to each ordinary prepared spell: Quick Substitution, Component Enhancement, Matrix Linking or Stability Reinforcement, using the exact common definitions in the Wizard engine. Always-prepared class-card matrices cannot receive these modifications unless a card explicitly says otherwise.",
+            "frequency": "Always",
+            "id": "wizard.arch.matrix-mastery",
+            "minimumClassLevel": 5,
+            "name": "Matrix Mastery",
+            "path": null,
+            "rangeAndTarget": "Prepared matrices",
+            "source": {
+              "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+              "line": 5216,
+              "originalText": "Matrix Mastery: Modify spell matrices to change minor aspects of prepared spells."
+            },
+            "sourceKind": "passive",
+            "spellRank": null
+          }
+        ],
+        "level": 6,
+        "sourceSchedule": {
+          "asiOrFeat": false,
+          "bands": [
+            "Base",
+            "Arch"
+          ],
+          "choose": 1,
+          "classLevel": 6,
+          "minimumActives": 0
+        }
+      },
+      {
+        "choices": [
+          {
+            "acquisition": "selection",
+            "activation": "Passive",
+            "band": "Arch",
+            "className": "Wizard",
+            "cost": "0",
+            "designStatus": "provisional-playtest",
+            "duration": "While concentrating",
+            "effect": "Improved Concentration. Tags: arch, passive, concentration. You have advantage on Constitution saving throws made because damage threatens your concentration on a Wizard spell. This does not alter the DC, protect a Tether from rules that explicitly end both effects, or prevent Silence, incapacitation and other non-damage concentration failures.",
+            "frequency": "Always",
+            "id": "wizard.arch.improved-concentration",
+            "minimumClassLevel": 7,
+            "name": "Improved Concentration",
+            "path": null,
+            "rangeAndTarget": "Self",
+            "source": {
+              "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+              "line": 5219,
+              "originalText": "Improved Concentration: Advantage on concentration checks when taking damage."
+            },
+            "sourceKind": "passive",
+            "spellRank": null
+          }
+        ],
+        "level": 7,
+        "sourceSchedule": {
+          "asiOrFeat": false,
+          "bands": [
+            "Arch"
+          ],
+          "choose": 1,
+          "classLevel": 7,
+          "minimumActives": 0
+        }
+      },
+      {
+        "choices": [
+          {
+            "acquisition": "selection",
+            "activation": "Passive",
+            "band": "Arch",
+            "className": "Wizard",
+            "cost": "0",
+            "designStatus": "provisional-playtest",
+            "duration": "Daily preparation",
+            "effect": "Floating Preparation. Tags: arch, passive, matrix. Increase your maximum prepared Spell Matrix count by 1. The extra matrix can come from any school and obeys all ordinary spellbook and rank restrictions. It is a prepared matrix for every rule, including protected strain, duplicate-family tracking and Matrix Mastery modifications.",
+            "frequency": "Always",
+            "id": "wizard.arch.floating-preparation",
+            "minimumClassLevel": 3,
+            "name": "Floating Preparation",
+            "path": null,
+            "rangeAndTarget": "Self",
+            "source": {
+              "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+              "line": 5213,
+              "originalText": "Floating Preparation: Prepare 1 extra spell from any school each day"
+            },
+            "sourceKind": "passive",
+            "spellRank": null
+          }
+        ],
+        "level": 8,
+        "sourceSchedule": {
+          "asiOrFeat": true,
+          "bands": [
+            "Base",
+            "Arch"
+          ],
+          "choose": 1,
+          "classLevel": 8,
+          "minimumActives": 0
+        }
+      },
+      {
+        "choices": [
+          {
+            "acquisition": "selection",
+            "activation": "Action",
+            "band": "Arch",
+            "className": "Wizard",
+            "cost": "3 RP",
+            "designStatus": "provisional-playtest",
+            "duration": "Instantaneous",
+            "effect": "Dispel Magic. Tags: arch, active, wizard-spell, abjuration. Choose one ongoing spell effect you can perceive. If its rank is 3 or lower, end it. If it is rank 4 or higher, make an Intelligence check adding proficiency against DC 10 + spell rank; success ends it. Permanent artifact properties and effects explicitly immune to dispelling are unaffected.",
+            "frequency": "Recharge 2 rounds",
+            "id": "wizard.arch.dispel-magic",
+            "minimumClassLevel": 5,
+            "name": "Dispel Magic",
+            "path": null,
+            "rangeAndTarget": "One creature, object or magical effect within 60 feet",
+            "source": {
+              "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+              "line": 5224,
+              "originalText": "Dispel Magic: End magical effects in an area or on a target."
+            },
+            "sourceKind": "active",
+            "spellRank": 3
+          }
+        ],
+        "level": 9,
+        "sourceSchedule": {
+          "asiOrFeat": false,
+          "bands": [
+            "Arch"
+          ],
+          "choose": 1,
+          "classLevel": 9,
+          "minimumActives": 0
+        }
+      },
+      {
+        "choices": [
+          {
+            "acquisition": "selection",
+            "activation": "Passive",
+            "band": "Hero",
+            "className": "Wizard",
+            "cost": "0",
+            "designStatus": "provisional-playtest",
+            "duration": "Permanent",
+            "effect": "Spell Preservation. Tags: hero, spellbinder, passive, spellbook. Your primary spellbook cannot be destroyed, erased or rendered permanently unreadable by non-artifact mundane or magical means. It can still be stolen, hidden, transported, suppressed, sealed by an artifact-level effect or voluntarily abandoned. Copies and backup books do not automatically receive this protection.",
+            "frequency": "Always",
+            "id": "wizard.hero.spellbinder.spell-preservation",
+            "minimumClassLevel": 10,
+            "name": "Spell Preservation",
+            "path": "Spellbinder",
+            "rangeAndTarget": "Your spellbook",
+            "source": {
+              "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+              "line": 5243,
+              "originalText": "Spell Preservation: Your spellbook cannot be destroyed by non-artifact means."
+            },
+            "sourceKind": "passive",
+            "spellRank": null
+          },
+          {
+            "acquisition": "selection",
+            "activation": "Action",
+            "band": "Hero",
+            "className": "Wizard",
+            "cost": "4 RP",
+            "designStatus": "provisional-playtest",
+            "duration": "Maximum 3 rounds",
+            "effect": "Seal Magic. Tags: hero, spellbinder, wizard-spell, control. Choose one of the eight schools and target one creature. It makes a Wisdom save. On failure it cannot cast spells of the chosen school. At the end of each of its turns it repeats the save, ending the Seal on success. The effect ends automatically after 3 rounds and never prevents non-spell class techniques merely because they are magical.",
+            "frequency": "Recharge 3 rounds",
+            "id": "wizard.hero.spellbinder.seal-magic",
+            "minimumClassLevel": 10,
+            "name": "Seal Magic",
+            "path": "Spellbinder",
+            "rangeAndTarget": "One creature within 60 feet",
+            "source": {
+              "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+              "line": 5249,
+              "originalText": "Seal Magic: Prevent a target from casting spells of a specific school (WIS save, 3 rounds)"
+            },
+            "sourceKind": "active",
+            "spellRank": 5
+          }
+        ],
+        "level": 10,
+        "sourceSchedule": {
+          "asiOrFeat": false,
+          "bands": [
+            "Hero"
+          ],
+          "choose": 2,
+          "classLevel": 10,
+          "minimumActives": 1
+        }
+      },
+      {
+        "choices": [
+          {
+            "acquisition": "selection",
+            "activation": "Ritual",
+            "band": "Base",
+            "className": "Wizard",
+            "cost": "0 RP",
+            "designStatus": "provisional-playtest",
+            "duration": "10 minutes",
+            "effect": "Spellbook Study. Tags: base, active, matrix, ritual. Replace one currently prepared matrix with one legal spell recorded in your spellbook. The replacement must be within your Wizard rank limit. This is the normal midday substitution permission; it does not alter the spellbook, create another prepared-matrix position or reset first-cast/Refrain history for an underlying matrix family already cast this encounter.",
+            "frequency": "1/long rest",
+            "id": "wizard.base.spellbook-study",
+            "minimumClassLevel": 1,
+            "name": "Spellbook Study",
+            "path": null,
+            "rangeAndTarget": "Self and spellbook",
+            "source": {
+              "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+              "line": 5207,
+              "originalText": "Spellbook Study: Spend time studying your spellbook to prepare a different selection of spells."
+            },
+            "sourceKind": "active",
+            "spellRank": null
+          }
+        ],
+        "level": 11,
+        "sourceSchedule": {
+          "asiOrFeat": false,
+          "bands": [
+            "Base",
+            "Arch"
+          ],
+          "choose": 1,
+          "classLevel": 11,
+          "minimumActives": 0
+        }
+      },
+      {
+        "choices": [
+          {
+            "acquisition": "selection",
+            "activation": "Action",
+            "band": "Hero",
+            "className": "Wizard",
+            "cost": "3 RP",
+            "designStatus": "provisional-playtest",
+            "duration": "Until triggered or 1 minute",
+            "effect": "Runic Snare. Tags: hero, spellbinder, wizard-spell, glyph, control. Place a visible-to-you glyph. The first hostile creature entering the square makes a Dexterity save. Failure deals S d6 force damage, causes Restrained until the end of its next turn and makes it drop one non-attuned held item of its choice. Success takes half damage with no restraint or drop. A Restrained target may repeat a Strength save at the end of its turn.",
+            "frequency": "Recharge 3 rounds",
+            "id": "wizard.hero.spellbinder.runic-snare",
+            "minimumClassLevel": 10,
+            "name": "Runic Snare",
+            "path": "Spellbinder",
+            "rangeAndTarget": "One 10-foot square within 30 feet",
+            "source": {
+              "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+              "line": 5250,
+              "originalText": "Runic Snare: Glyph trap explodes in a 2x2 root + disarm on trigger"
+            },
+            "sourceKind": "active",
+            "spellRank": 5
+          }
+        ],
+        "level": 12,
+        "sourceSchedule": {
+          "asiOrFeat": true,
+          "bands": [
+            "Hero"
+          ],
+          "choose": 1,
+          "classLevel": 12,
+          "minimumActives": 0
+        }
+      },
+      {
+        "choices": [
+          {
+            "acquisition": "selection",
+            "activation": "Bonus Action",
+            "band": "Arch",
+            "className": "Wizard",
+            "cost": "0",
+            "designStatus": "provisional-playtest",
+            "duration": "Instantaneous",
+            "effect": "Sigil Rewrite. Tags: arch, passive-upgrade, matrix. Replace one prepared matrix with a different spell from your spellbook of exactly the same rank without performing the normal 10-minute ritual. The replacement receives no special Dissonance reset for a matrix family already used this encounter and must obey current Wizard rank eligibility.",
+            "frequency": "1/long rest",
+            "id": "wizard.arch.sigil-rewrite",
+            "minimumClassLevel": 3,
+            "name": "Sigil Rewrite",
+            "path": null,
+            "rangeAndTarget": "Self and spellbook",
+            "source": {
+              "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+              "line": 5214,
+              "originalText": "Sigil Rewrite: Once/day, instantly swap a spell you know for another of the same tier"
+            },
+            "sourceKind": "passive",
+            "spellRank": null
+          }
+        ],
+        "level": 13,
+        "sourceSchedule": {
+          "asiOrFeat": false,
+          "bands": [
+            "Base",
+            "Arch"
+          ],
+          "choose": 1,
+          "classLevel": 13,
+          "minimumActives": 0
+        }
+      },
+      {
+        "choices": [
+          {
+            "acquisition": "selection",
+            "activation": "Passive",
+            "band": "Hero",
+            "className": "Wizard",
+            "cost": "0",
+            "designStatus": "provisional-playtest",
+            "duration": "Until start of your next regular turn",
+            "effect": "Knowledge Shield. Tags: hero, spellbinder, passive, protection. When you cast an Abjuration spell that grants AC, temporary HP, resistance or a saving-throw benefit to an ally, that ally also gains +2 on its next saving throw before the start of your next regular turn. Multiple Knowledge Shields do not stack.",
+            "frequency": "At most once per ally per round",
+            "id": "wizard.hero.spellbinder.knowledge-shield",
+            "minimumClassLevel": 12,
+            "name": "Knowledge Shield",
+            "path": "Spellbinder",
+            "rangeAndTarget": "Allies directly protected by one of your Abjuration Wizard spells",
+            "source": {
+              "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+              "line": 5244,
+              "originalText": "Knowledge Shield: When you cast a protective spell, allies gain +2 to saving throws."
+            },
+            "sourceKind": "passive",
+            "spellRank": null
+          }
+        ],
+        "level": 14,
+        "sourceSchedule": {
+          "asiOrFeat": false,
+          "bands": [
+            "Hero"
+          ],
+          "choose": 1,
+          "classLevel": 14,
+          "minimumActives": 0
+        }
+      },
+      {
+        "choices": [
+          {
+            "acquisition": "selection",
+            "activation": "Passive",
+            "band": "Base",
+            "className": "Wizard",
+            "cost": "0",
+            "designStatus": "provisional-playtest",
+            "duration": "Permanent",
+            "effect": "Arcane Insight. Tags: base, passive, knowledge. Gain proficiency in Arcana, or expertise if already proficient. When examining an active magical effect, spell residue, magic item or arcane construction, you may make an Intelligence (Arcana) check to determine its broad school, function or unusual matrix behavior. The Director sets the normal knowledge DC; failure supplies no invented fact.",
+            "frequency": "Always",
+            "id": "wizard.base.arcane-insight",
+            "minimumClassLevel": 1,
+            "name": "Arcane Insight",
+            "path": null,
+            "rangeAndTarget": "Self",
+            "source": {
+              "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+              "line": 5198,
+              "originalText": "Arcane Insight: Identify magical effects and items with greater accuracy than non-wizards."
+            },
+            "sourceKind": "passive",
+            "spellRank": null
+          }
+        ],
+        "level": 15,
+        "sourceSchedule": {
+          "asiOrFeat": false,
+          "bands": [
+            "Base",
+            "Arch"
+          ],
+          "choose": 1,
+          "classLevel": 15,
+          "minimumActives": 0
+        }
+      },
+      {
+        "choices": [
+          {
+            "acquisition": "selection",
+            "activation": "Action",
+            "band": "Hero",
+            "className": "Wizard",
+            "cost": "2 RP",
+            "designStatus": "provisional-playtest",
+            "duration": "1 hour",
+            "effect": "Knowledge Transfer. Tags: hero, spellbinder, knowledge. Choose one language you can speak or one skill in which you are proficient. The ally gains proficiency in that language or skill for 1 hour. Expertise is never transferred. The feature conveys functional knowledge, not memories, secrets, class features, spellcasting or tool ownership.",
+            "frequency": "1/short rest",
+            "id": "wizard.hero.spellbinder.knowledge-transfer",
+            "minimumClassLevel": 16,
+            "name": "Knowledge Transfer",
+            "path": "Spellbinder",
+            "rangeAndTarget": "One willing ally you touch",
+            "source": {
+              "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+              "line": 5253,
+              "originalText": "Knowledge Transfer: Temporarily grant an ally knowledge of a skill or language you possess."
+            },
+            "sourceKind": "active",
+            "spellRank": null
+          }
+        ],
+        "level": 16,
+        "sourceSchedule": {
+          "asiOrFeat": true,
+          "bands": [
+            "Hero"
+          ],
+          "choose": 1,
+          "classLevel": 16,
+          "minimumActives": 0
+        }
+      },
+      {
+        "choices": [
+          {
+            "acquisition": "selection",
+            "activation": "Ritual",
+            "band": "Arch",
+            "className": "Wizard",
+            "cost": "3 RP",
+            "designStatus": "provisional-playtest",
+            "duration": "8 hours",
+            "effect": "Dimensional Pocket. Tags: arch, active, wizard-spell, conjuration, ritual. Create an extradimensional storage space holding up to 100 pounds or 10 cubic feet of unattended nonliving material. Retrieving or placing an item while adjacent to the opening uses an object interaction. Living creatures cannot enter. When duration ends, remaining contents appear harmlessly in the nearest unoccupied space.",
+            "frequency": "1/long rest",
+            "id": "wizard.arch.dimensional-pocket",
+            "minimumClassLevel": 7,
+            "name": "Dimensional Pocket",
+            "path": null,
+            "rangeAndTarget": "One point within 5 feet",
+            "source": {
+              "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+              "line": 5225,
+              "originalText": "Dimensional Pocket: Create a small extradimensional space to store items."
+            },
+            "sourceKind": "active",
+            "spellRank": 4
+          }
+        ],
+        "level": 17,
+        "sourceSchedule": {
+          "asiOrFeat": false,
+          "bands": [
+            "Base",
+            "Arch"
+          ],
+          "choose": 1,
+          "classLevel": 17,
+          "minimumActives": 0
+        }
+      }
+    ],
+    "alwaysPrepared": [
+      "wizard.base.arcane-bolt",
+      "wizard.base.minor-conjuration",
+      "wizard.base.arcane-shield",
+      "wizard.base.analyze-magic",
+      "wizard.arch.arcane-lock",
+      "wizard.arch.arcane-sight",
+      "wizard.arch.dispel-magic",
+      "wizard.hero.spellbinder.seal-magic",
+      "wizard.hero.spellbinder.runic-snare",
+      "wizard.arch.dimensional-pocket",
+      "wizard.base.counterspell"
+    ],
+    "arcaneWard": "force",
+    "automaticCards": [
+      {
+        "id": "wizard.arch.arcane-tradition",
+        "name": "Arcane Tradition",
+        "className": "Wizard",
+        "band": "Arch",
+        "path": null,
+        "sourceKind": "passive",
+        "minimumClassLevel": 3,
+        "acquisition": "automatic",
+        "activation": "Passive",
+        "cost": "0",
+        "rangeAndTarget": "Your level-1 Arcane School",
+        "duration": "Permanent",
+        "frequency": "Automatic at Wizard 3; not a selection",
+        "effect": "Arcane Tradition. Tags: arch, school, automatic. Your level-1 Arcane School becomes your Arcanist tradition; do not choose a second school. Prepare one additional matrix from that same school each day without counting it against your normal prepared-matrix maximum. It otherwise obeys all ordinary rank, spellbook, Dissonance and duplicate-family rules.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 5217,
+          "originalText": "Arcane Tradition: Choose a school of magic to specialize in, gaining bonuses to spells of that school."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      {
+        "id": "wizard.base.counterspell",
+        "name": "Counterspell",
+        "className": "Wizard",
+        "band": "Base",
+        "path": null,
+        "sourceKind": "active",
+        "minimumClassLevel": 2,
+        "acquisition": "automatic",
+        "activation": "Reaction",
+        "cost": "3 RP",
+        "rangeAndTarget": "One creature you perceive casting a spell within 60 feet",
+        "duration": "Instantaneous",
+        "frequency": "Automatic at Wizard 2; recharge 2 rounds",
+        "effect": "Counterspell. Tags: arch-source, automatic, wizard-spell, abjuration, disruption. Trigger when a creature begins casting a spell. Make an Intelligence check adding proficiency against DC 10 + twice the spell's rank, treating rank 0 as 0. Success negates the triggering spell after its costs are paid; failure lets it resolve. This is gained automatically at Wizard 2 and is never also selected from the Arch pool.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 5222,
+          "originalText": "Counterspell: Disrupt an enemy's spellcasting, potentially negating their spell entirely."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": 1
+      },
+      {
+        "id": "wizard.supplement.ritual-casting",
+        "name": "Ritual Casting",
+        "className": "Wizard",
+        "band": "Base",
+        "path": null,
+        "sourceKind": "supplement",
+        "minimumClassLevel": 2,
+        "acquisition": "automatic",
+        "activation": "Ritual",
+        "cost": "0 RP unless the individual ritual explicitly states otherwise",
+        "rangeAndTarget": "As the ritual spell",
+        "duration": "As the ritual spell",
+        "frequency": "At will outside encounters with sufficient time",
+        "effect": "Source progression line 5184. Cast a Wizard spell bearing the Ritual tag directly from your spellbook without preparing it. Increase its casting time by at least 10 minutes. Ritual Casting cannot be completed during an encounter, does not use an ordinary prepared-matrix position and does not generate or vent normal casting Dissonance.",
+        "prerequisite": "See class engine and progression.",
+        "source": {
+          "line": 5184,
+          "reference": null,
+          "originalText": "| 2 | Counterspell Reaction, Ritual Casting |",
+          "status": "source-derived"
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      {
+        "id": "wizard.supplement.school-mastery",
+        "name": "School Mastery",
+        "className": "Wizard",
+        "band": "Arch",
+        "path": null,
+        "sourceKind": "supplement",
+        "minimumClassLevel": 5,
+        "acquisition": "automatic",
+        "activation": "Passive",
+        "cost": "0",
+        "rangeAndTarget": "Your level-1 Arcane School",
+        "duration": "Permanent",
+        "frequency": "Automatic at Wizard 5",
+        "effect": "Source progression line 5186. This is the one School Mastery progression grant, not a second school choice or duplicate feat. Increase the level-1 Arcane School spell-attack and spell-save bonus from +1 to +2 total. Its school passive and bonus-spell rules otherwise remain unchanged.",
+        "prerequisite": "See class engine and progression.",
+        "source": {
+          "line": 5186,
+          "reference": null,
+          "originalText": "| 5 | Bonus Feat: School Mastery |",
+          "status": "source-derived"
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      {
+        "id": "wizard.supplement.arcane-ward",
+        "name": "Arcane Ward",
+        "className": "Wizard",
+        "band": "Arch",
+        "path": null,
+        "sourceKind": "supplement",
+        "minimumClassLevel": 6,
+        "acquisition": "automatic",
+        "activation": "Passive",
+        "cost": "0",
+        "rangeAndTarget": "Self",
+        "duration": "Until next long rest",
+        "frequency": "Choose after each long rest",
+        "effect": "Source progression line 5187. After preparing spells, choose one of acid, cold, fire, force, lightning, necrotic, psychic, radiant or thunder that is dealt by at least one prepared spell of your Arcane School. Gain resistance to that damage type until your next long rest. If none of your prepared school spells deals a damage type, choose force. This is provisional completion of the source's ambiguous 'chosen school's element' wording.",
+        "prerequisite": "See class engine and progression.",
+        "source": {
+          "line": 5187,
+          "reference": null,
+          "originalText": "| 6 | Arcane Ward (resistance to chosen school's element) |",
+          "status": "source-derived"
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      {
+        "id": "wizard.supplement.dual-cast",
+        "name": "Dual Cast",
+        "className": "Wizard",
+        "band": "Arch",
+        "path": null,
+        "sourceKind": "supplement",
+        "minimumClassLevel": 9,
+        "acquisition": "automatic",
+        "activation": "Action",
+        "cost": "Pay the complete RP costs of both spells",
+        "rangeAndTarget": "As each spell",
+        "duration": "As each spell",
+        "frequency": "1/short rest",
+        "effect": "Source progression line 5188. Choose two DIFFERENT prepared Wizard spells of rank 1 or 2, neither of which summons a creature or grants an additional Action. Cast both sequentially as one Action, paying both RP costs. They cannot both require concentration. Each matrix separately updates first-cast/Refrain history. Features that trigger merely from 'casting a spell' may trigger once for each actual matrix unless that feature itself says once per turn; no trigger may create another Dual Cast or additional full Action.",
+        "prerequisite": "See class engine and progression.",
+        "source": {
+          "line": 5188,
+          "reference": null,
+          "originalText": "| 9 | Dual Cast (cast 2 Tier 1–2 spells in a round) |",
+          "status": "source-derived"
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      {
+        "id": "wizard.supplement.overchannel",
+        "name": "Overchannel",
+        "className": "Wizard",
+        "band": "Hero",
+        "path": null,
+        "sourceKind": "supplement",
+        "minimumClassLevel": 13,
+        "acquisition": "automatic",
+        "activation": "Triggered",
+        "cost": "Pay the Core V 2 RP cost for one rank above the spell's normal cast rank",
+        "rangeAndTarget": "One prepared spell you are beginning to cast",
+        "duration": "For that cast",
+        "frequency": "1/long rest",
+        "effect": "Source progression line 5190. Cast one prepared spell as though it were one rank higher than the highest rank at which you could normally cast that SAME spell, provided the spell has an explicit higher-rank scaling rule. Overchannel does not teach or prepare a higher-rank spell, cannot exceed effective rank 9 and cannot be combined with another generic Overcast rule during this pilot. All normal Dissonance/Refrain rules still apply.",
+        "prerequisite": "See class engine and progression.",
+        "source": {
+          "line": 5190,
+          "reference": null,
+          "originalText": "| 13 | Overchannel (cast a spell 1 tier higher once/day) |",
+          "status": "source-derived"
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      {
+        "id": "wizard.supplement.arcane-feedback",
+        "name": "Arcane Feedback",
+        "className": "Wizard",
+        "band": "Hero",
+        "path": null,
+        "sourceKind": "supplement",
+        "minimumClassLevel": 15,
+        "acquisition": "automatic",
+        "activation": "Triggered",
+        "cost": "0",
+        "rangeAndTarget": "Self",
+        "duration": "Instantaneous",
+        "frequency": "At most once per round",
+        "effect": "Source progression line 5191, converted from historical slot wording to RP. After your Counterspell successfully negates a spell, restore 1 RP, never above your normal maximum. A counter produced by a companion, reflected spell or copied Counterspell does not trigger this feature.",
+        "prerequisite": "See class engine and progression.",
+        "source": {
+          "line": 5191,
+          "reference": null,
+          "originalText": "| 15 | Arcane Feedback (after successfully countering a spell, recover 1 RP once per round) |",
+          "status": "source-derived"
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      {
+        "id": "wizard.supplement.tethered-cast",
+        "name": "Tethered Cast",
+        "className": "Wizard",
+        "band": "Hero",
+        "path": null,
+        "sourceKind": "supplement",
+        "minimumClassLevel": 17,
+        "acquisition": "automatic",
+        "activation": "Bonus Action",
+        "cost": "2 RP",
+        "rangeAndTarget": "One concentration Wizard spell you cast this turn that targets only yourself or one willing ally",
+        "duration": "Maximum 3 rounds",
+        "frequency": "At most once per round; only one Tethered Cast active at a time",
+        "effect": "Source progression line 5192. After casting the qualifying spell, tether it. The tethered spell no longer occupies your one normal concentration slot for up to 3 rounds. When damage would require a concentration save for the tethered spell, make the save normally; failure ends only the tether. Starting another Tethered Cast ends the existing tether first. A Tethered Cast cannot itself tether Spell Tether's second spell or permit more than two simultaneously sustained Wizard effects.",
+        "prerequisite": "See class engine and progression.",
+        "source": {
+          "line": 5192,
+          "reference": null,
+          "originalText": "| 17 | Tethered Cast (bonus action spell link 1/round) |",
+          "status": "source-derived"
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      }
+    ],
+    "campaignExistenceVerified": false,
+    "cantrips": [
+      "ray-of-frost",
+      "acid-splash",
+      "alignment-empathy",
+      "arcane-echo",
+      "arcane-mark"
+    ],
+    "castingAbility": "INT",
+    "class": "Wizard",
+    "classLevel": 17,
+    "dissonanceLimit": 13,
+    "heroPath": "Spellbinder",
+    "hpFormula": "6 +16*4 +17*2 =104, fixed Wizard progression",
+    "hpMaximum": 104,
+    "id": "W17D",
+    "matrixModifications": {},
+    "modifiers": {
+      "CHA": 0,
+      "CON": 2,
+      "DEX": 2,
+      "INT": 5,
+      "STR": 1,
+      "WIS": 3
+    },
+    "optionalFeaturesUsedOnlyWhenExplicit": true,
+    "ordinaryLearning": [
+      {
+        "level": 1,
+        "permission": "Wizard engine free level-up spellbook additions",
+        "selected": [
+          "summon-familiar",
+          "armor-of-faith",
+          "burning-hands",
+          "detect-magic",
+          "alarm",
+          "resonance-influence"
+        ]
+      },
+      {
+        "level": 2,
+        "permission": "Wizard engine free level-up spellbook additions",
+        "selected": [
+          "shield",
+          "protective-sphere"
+        ]
+      },
+      {
+        "level": 3,
+        "permission": "Wizard engine free level-up spellbook additions",
+        "selected": [
+          "alarm-ward",
+          "dispel-resonance"
+        ]
+      },
+      {
+        "level": 4,
+        "permission": "Wizard engine free level-up spellbook additions",
+        "selected": [
+          "elemental-resistance",
+          "sanctuary"
+        ]
+      },
+      {
+        "level": 5,
+        "permission": "Wizard engine free level-up spellbook additions",
+        "selected": [
+          "binding-circle",
+          "purify-food-and-drink",
+          "repulsion-field"
+        ]
+      },
+      {
+        "level": 6,
+        "permission": "Wizard engine free level-up spellbook additions",
+        "selected": [
+          "warding-bond",
+          "alignment-shield",
+          "corruption-ward"
+        ]
+      },
+      {
+        "level": 7,
+        "permission": "Wizard engine free level-up spellbook additions",
+        "selected": [
+          "dimensional-anchor",
+          "faction-seal",
+          "arcane-lock"
+        ]
+      },
+      {
+        "level": 8,
+        "permission": "Wizard engine free level-up spellbook additions",
+        "selected": [
+          "dispel-magic-lesser",
+          "protection-from-energy",
+          "barrier-of-faith"
+        ]
+      },
+      {
+        "level": 9,
+        "permission": "Wizard engine free level-up spellbook additions",
+        "selected": [
+          "corruption-cleanse",
+          "faction-ward",
+          "counterspell",
+          "magic-circle"
+        ]
+      },
+      {
+        "level": 10,
+        "permission": "Wizard engine free level-up spellbook additions",
+        "selected": [
+          "dispel-magic",
+          "barrier-field",
+          "remove-curse",
+          "resonance-anchor"
+        ]
+      },
+      {
+        "level": 11,
+        "permission": "Wizard engine free level-up spellbook additions",
+        "selected": [
+          "alignment-sanctuary",
+          "protection-from-scrying",
+          "summon-fire-pet",
+          "burning-sands"
+        ]
+      },
+      {
+        "level": 12,
+        "permission": "Wizard engine free level-up spellbook additions",
+        "selected": [
+          "shockwave",
+          "earthen-grip",
+          "summon-mod-rod",
+          "summon-minor-weapon"
+        ]
+      },
+      {
+        "level": 13,
+        "permission": "Wizard engine free level-up spellbook additions",
+        "selected": [
+          "spell-turning",
+          "heat-metal-conjured",
+          "conjure-rope",
+          "mist-step",
+          "elemental-bolt"
+        ]
+      },
+      {
+        "level": 14,
+        "permission": "Wizard engine free level-up spellbook additions",
+        "selected": [
+          "resonance-bridge",
+          "faction-messenger",
+          "spell-resistance",
+          "alignment-essence",
+          "corruption-sensor"
+        ]
+      },
+      {
+        "level": 15,
+        "permission": "Wizard engine free level-up spellbook additions",
+        "selected": [
+          "antimagic-field",
+          "demiplane",
+          "mind-blank",
+          "elemental-barrage",
+          "conjure-shield-of-sparks"
+        ]
+      },
+      {
+        "level": 16,
+        "permission": "Wizard engine free level-up spellbook additions",
+        "selected": [
+          "summon-weaponry-satchel",
+          "planar-ally-minor",
+          "resonance-well",
+          "faction-emblem-greater",
+          "alignment-weapon"
+        ]
+      },
+      {
+        "level": 17,
+        "permission": "Wizard engine free level-up spellbook additions",
+        "selected": [
+          "summon-elemental-avatar",
+          "conjure-magmatic-wyrm",
+          "planar-army",
+          "summon-herald-of-the-planes",
+          "summon-avatar-of-decay",
+          "summon-water-pet"
+        ]
+      }
+    ],
+    "prepared": [
+      "summon-elemental-avatar",
+      "conjure-magmatic-wyrm",
+      "planar-army",
+      "summon-herald-of-the-planes",
+      "summon-avatar-of-decay",
+      "antimagic-field",
+      "elemental-resistance",
+      "summon-water-pet",
+      "protection-from-energy",
+      "dimensional-anchor",
+      "heat-metal-conjured",
+      "mind-blank"
+    ],
+    "qualification": "NEW conditional source-qualified level17 build, revalidated against current sources; not a real campaign actor or permission to execute pending spells.",
+    "rpMaximum": 64,
+    "school": "Divination",
+    "schoolBonus": 2,
+    "speed": 30,
+    "spellAttack": 11,
+    "spellDC": 19,
+    "spellbook": [
+      "alarm",
+      "alarm-ward",
+      "alignment-essence",
+      "alignment-sanctuary",
+      "alignment-shield",
+      "alignment-weapon",
+      "antimagic-field",
+      "arcane-lock",
+      "armor-of-faith",
+      "barrier-field",
+      "barrier-of-faith",
+      "binding-circle",
+      "burning-hands",
+      "burning-sands",
+      "conjure-magmatic-wyrm",
+      "conjure-rope",
+      "conjure-shield-of-sparks",
+      "corruption-cleanse",
+      "corruption-sensor",
+      "corruption-ward",
+      "counterspell",
+      "demiplane",
+      "detect-magic",
+      "dimensional-anchor",
+      "dispel-magic",
+      "dispel-magic-lesser",
+      "dispel-resonance",
+      "earthen-grip",
+      "elemental-barrage",
+      "elemental-bolt",
+      "elemental-resistance",
+      "faction-emblem-greater",
+      "faction-messenger",
+      "faction-seal",
+      "faction-ward",
+      "heat-metal-conjured",
+      "identify",
+      "magic-circle",
+      "mind-blank",
+      "mist-step",
+      "planar-ally-minor",
+      "planar-army",
+      "protection-from-energy",
+      "protection-from-scrying",
+      "protective-sphere",
+      "purify-food-and-drink",
+      "remove-curse",
+      "repulsion-field",
+      "resonance-anchor",
+      "resonance-bridge",
+      "resonance-influence",
+      "resonance-well",
+      "sanctuary",
+      "shield",
+      "shockwave",
+      "spell-resistance",
+      "spell-turning",
+      "summon-avatar-of-decay",
+      "summon-elemental-avatar",
+      "summon-familiar",
+      "summon-fire-pet",
+      "summon-herald-of-the-planes",
+      "summon-minor-weapon",
+      "summon-mod-rod",
+      "summon-water-pet",
+      "summon-weaponry-satchel",
+      "warding-bond"
+    ],
+    "schoolBonusSpell": {
+      "level": 1,
+      "id": "identify",
+      "permission": "Wizard engine level1 bonus spell"
+    },
+    "sourceBindings": [
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+        "bytes": 100635,
+        "sha256": "8ab2f4f43bcbced418fb266e5bd3216cff491b0c442c16f93438bd3556672c8b",
+        "gitBlobSHA1": "cba2bdbbe964e9597011ed59f0c934bd09350a93"
+      }
+    ],
+    "characterFoundation": {
+      "kind": "human conditional body",
+      "size": "Medium",
+      "occupiedBoxFeet": [
+        5,
+        5,
+        6
+      ],
+      "hpChoice": "fixed progression 6+19*4+20*2=122",
+      "abilityScoresMethod": {
+        "method": "optional reviewed27point buy",
+        "starting": {
+          "STR": 9,
+          "DEX": 13,
+          "CON": 12,
+          "INT": 15,
+          "WIS": 12,
+          "CHA": 9
+        },
+        "costs": [
+          1,
+          5,
+          4,
+          9,
+          4,
+          1
+        ],
+        "spent": 24,
+        "afterAncestry": {
+          "STR": 10,
+          "DEX": 14,
+          "CON": 14,
+          "INT": 16,
+          "WIS": 14,
+          "CHA": 10
+        },
+        "ASIs": [
+          {
+            "level": 4,
+            "INT": 2
+          },
+          {
+            "level": 8,
+            "INT": 2
+          },
+          {
+            "level": 12,
+            "WIS": 2
+          },
+          {
+            "level": 16,
+            "STR": 2
+          }
+        ]
+      },
+      "languages": [
+        "Common",
+        "Draconic"
+      ],
+      "languagePermission": "Human Common+one selected language Draconic; no variant/background added language",
+      "skills": {
+        "Arcana": {
+          "proficiency": true,
+          "expertise": true,
+          "source": "Wizard initial Arcana choice plus acquired Arcane Insight"
+        },
+        "Investigation": {
+          "proficiency": true,
+          "expertise": false,
+          "source": "Wizard initial skill choice"
+        },
+        "History": {
+          "proficiency": true,
+          "source": "Human Versatility"
+        },
+        "Survival": {
+          "proficiency": true,
+          "source": "Nomadic Human Survival Instinct"
+        },
+        "Athletics": {
+          "proficiency": true,
+          "source": "Former City Guard"
+        },
+        "Insight": {
+          "proficiency": true,
+          "source": "Former City Guard"
+        }
+      },
+      "savingThrowProficiencies": [
+        "INT",
+        "WIS"
+      ],
+      "equipment": {
+        "focus": "ordinary Wizard focus actually held in left hand",
+        "rightHand": "free usable hand",
+        "book": "actual spellbook carried in satchel",
+        "armor": "none",
+        "weapon": "none"
+      },
+      "AC": 12,
+      "speed": 30,
+      "feats": [],
+      "multiclass": [],
+      "ancestry": {
+        "id": "human",
+        "name": "Human",
+        "abilityBonuses": {
+          "STR": 1,
+          "DEX": 1,
+          "CON": 1,
+          "INT": 1,
+          "WIS": 1,
+          "CHA": 1
+        },
+        "traits": [
+          {
+            "name": "Ability Score Increase",
+            "sourceLine": 1100,
+            "text": "Your ability scores each increase by 1.",
+            "id": "human--ability-score-increase",
+            "status": "original-source-preserved; apply-reviewed-integration-guide"
+          },
+          {
+            "name": "Size",
+            "sourceLine": 1106,
+            "text": "Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.",
+            "id": "human--size",
+            "status": "original-source-preserved; apply-reviewed-integration-guide"
+          },
+          {
+            "name": "Speed",
+            "sourceLine": 1108,
+            "text": "Your base walking speed is 30 feet.",
+            "id": "human--speed",
+            "status": "original-source-preserved; apply-reviewed-integration-guide"
+          },
+          {
+            "name": "Versatility",
+            "sourceLine": 1110,
+            "text": "You gain proficiency in one skill of your choice.",
+            "id": "human--versatility",
+            "status": "original-source-preserved; apply-reviewed-integration-guide"
+          },
+          {
+            "name": "Languages",
+            "sourceLine": 1112,
+            "text": "You can speak, read, and write Common and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, including obscure dialects.",
+            "id": "human--languages",
+            "status": "original-source-preserved; apply-reviewed-integration-guide"
+          }
+        ],
+        "variants": [
+          {
+            "id": "imperial-human",
+            "name": "Imperial Human",
+            "abilityBonuses": {
+              "CHA": 1
+            },
+            "combinedAbilityBonuses": {
+              "STR": 1,
+              "DEX": 1,
+              "CON": 1,
+              "INT": 1,
+              "WIS": 1,
+              "CHA": 2
+            },
+            "traits": [
+              {
+                "name": "Ability Score Increase",
+                "sourceLine": 1122,
+                "text": "Your Charisma score increases by 1 (for a total of +2 to Charisma).",
+                "id": "imperial-human--ability-score-increase",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              },
+              {
+                "name": "Social Intuition",
+                "sourceLine": 1124,
+                "text": "You have proficiency in the Persuasion skill. If you already have this proficiency, you gain proficiency in one of the following skills of your choice: Deception, Insight, or Intimidation.",
+                "id": "imperial-human--social-intuition",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              },
+              {
+                "name": "Diplomatic Training",
+                "sourceLine": 1126,
+                "text": "You know one additional language of your choice.",
+                "id": "imperial-human--diplomatic-training",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              },
+              {
+                "name": "Natural Leader",
+                "sourceLine": 1128,
+                "text": "Once per short rest, when you or an ally within 30 feet of you rolls a 1 on an attack roll, ability check, or saving throw, you can call out a warning or offer quick advice, allowing the roll to be rerolled. The second roll must be used.",
+                "id": "imperial-human--natural-leader",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              }
+            ]
+          },
+          {
+            "id": "nomadic-human",
+            "name": "Nomadic Human",
+            "abilityBonuses": {
+              "CON": 1,
+              "WIS": 1
+            },
+            "combinedAbilityBonuses": {
+              "STR": 1,
+              "DEX": 1,
+              "CON": 2,
+              "INT": 1,
+              "WIS": 2,
+              "CHA": 1
+            },
+            "traits": [
+              {
+                "name": "Ability Score Increase",
+                "sourceLine": 1134,
+                "text": "Your Constitution score increases by 1, and your Wisdom score increases by 1 (for a total of +2 to Constitution and +2 to Wisdom).",
+                "id": "nomadic-human--ability-score-increase",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              },
+              {
+                "name": "Environmental Adaptation",
+                "sourceLine": 1136,
+                "text": "You have advantage on saving throws against extreme heat and cold.",
+                "id": "nomadic-human--environmental-adaptation",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              },
+              {
+                "name": "Survival Instinct",
+                "sourceLine": 1138,
+                "text": "You have proficiency in the Survival skill. If you already have this proficiency, you gain proficiency in one of the following skills of your choice: Animal Handling, Medicine, or Nature.",
+                "id": "nomadic-human--survival-instinct",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              },
+              {
+                "name": "Wayfinder",
+                "sourceLine": 1140,
+                "text": "You always know which way is north, and you have advantage on Wisdom (Survival) checks to avoid becoming lost.",
+                "id": "nomadic-human--wayfinder",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              }
+            ]
+          },
+          {
+            "id": "scholarly-human",
+            "name": "Scholarly Human",
+            "abilityBonuses": {
+              "INT": 1
+            },
+            "combinedAbilityBonuses": {
+              "STR": 1,
+              "DEX": 1,
+              "CON": 1,
+              "INT": 2,
+              "WIS": 1,
+              "CHA": 1
+            },
+            "traits": [
+              {
+                "name": "Ability Score Increase",
+                "sourceLine": 1146,
+                "text": "Your Intelligence score increases by 1 (for a total of +2 to Intelligence).",
+                "id": "scholarly-human--ability-score-increase",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              },
+              {
+                "name": "Knowledge Seeker",
+                "sourceLine": 1148,
+                "text": "You have proficiency in the History skill. If you already have this proficiency, you gain proficiency in one of the following skills of your choice: Arcana, Investigation, or Religion.",
+                "id": "scholarly-human--knowledge-seeker",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              },
+              {
+                "name": "Quick Learner",
+                "sourceLine": 1150,
+                "text": "You gain proficiency with one set of tools of your choice.",
+                "id": "scholarly-human--quick-learner",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              },
+              {
+                "name": "Lore Master",
+                "sourceLine": 1152,
+                "text": "When you make an Intelligence check to recall information about something you've studied, you can add double your proficiency bonus instead of any proficiency bonus you normally apply.",
+                "id": "scholarly-human--lore-master",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              }
+            ]
+          }
+        ],
+        "size": "Medium",
+        "baseWalkFeet": 30
+      },
+      "selectedVariant": {
+        "id": "nomadic-human",
+        "name": "Nomadic Human",
+        "abilityBonuses": {
+          "CON": 1,
+          "WIS": 1
+        },
+        "combinedAbilityBonuses": {
+          "STR": 1,
+          "DEX": 1,
+          "CON": 2,
+          "INT": 1,
+          "WIS": 2,
+          "CHA": 1
+        },
+        "traits": [
+          {
+            "name": "Ability Score Increase",
+            "sourceLine": 1134,
+            "text": "Your Constitution score increases by 1, and your Wisdom score increases by 1 (for a total of +2 to Constitution and +2 to Wisdom).",
+            "id": "nomadic-human--ability-score-increase",
+            "status": "original-source-preserved; apply-reviewed-integration-guide"
+          },
+          {
+            "name": "Environmental Adaptation",
+            "sourceLine": 1136,
+            "text": "You have advantage on saving throws against extreme heat and cold.",
+            "id": "nomadic-human--environmental-adaptation",
+            "status": "original-source-preserved; apply-reviewed-integration-guide"
+          },
+          {
+            "name": "Survival Instinct",
+            "sourceLine": 1138,
+            "text": "You have proficiency in the Survival skill. If you already have this proficiency, you gain proficiency in one of the following skills of your choice: Animal Handling, Medicine, or Nature.",
+            "id": "nomadic-human--survival-instinct",
+            "status": "original-source-preserved; apply-reviewed-integration-guide"
+          },
+          {
+            "name": "Wayfinder",
+            "sourceLine": 1140,
+            "text": "You always know which way is north, and you have advantage on Wisdom (Survival) checks to avoid becoming lost.",
+            "id": "nomadic-human--wayfinder",
+            "status": "original-source-preserved; apply-reviewed-integration-guide"
+          }
+        ]
+      },
+      "background": {
+        "id": "aethel-city-guard-veteran",
+        "name": "Aethel City Guard Veteran",
+        "status": "source-package-reviewed; integration-guide-and-stated-equipment-dependencies-apply",
+        "source": [
+          {
+            "line": 5686,
+            "text": "Skill Proficiencies: Athletics, Insight"
+          },
+          {
+            "line": 5687,
+            "text": "Tool Proficiencies: One type of gaming set, Vehicles (Land)"
+          },
+          {
+            "line": 5688,
+            "text": "Equipment: A piece of your old uniform (e.g., a dented helmet or worn insignia), a map of Aethel's main districts, a set of common clothes, manacles, and a belt pouch containing 10 gp."
+          },
+          {
+            "line": 5689,
+            "text": "Feature: Watchman's Eye: You are adept at noticing suspicious behavior and navigating urban environments. You gain advantage on Wisdom (Perception) checks made to spot trouble within city limits and on checks made to navigate or find locations within Aethel. Your time in the Guard grants you Neutral starting Reputation with Aethel authorities and Liked starting Reputation among the city's common folk."
+          }
+        ],
+        "skillsSource": "Athletics, Insight",
+        "toolsSource": "One type of gaming set, Vehicles (Land)",
+        "equipmentSource": "A piece of your old uniform (e.g., a dented helmet or worn insignia), a map of Aethel's main districts, a set of common clothes, manacles, and a belt pouch containing 10 gp.",
+        "featureSource": "Watchman's Eye: You are adept at noticing suspicious behavior and navigating urban environments. You gain advantage on Wisdom (Perception) checks made to spot trouble within city limits and on checks made to navigate or find locations within Aethel. Your time in the Guard grants you Neutral starting Reputation with Aethel authorities and Liked starting Reputation among the city's common folk."
+      },
+      "ancestrySkillChoices": {
+        "Versatility": "History",
+        "Nomadic Survival Instinct": "Survival"
+      },
+      "backgroundToolChoices": [
+        "chess gaming set",
+        "Vehicles (Land)"
+      ],
+      "backgroundPhysicalPackage": "A piece of your old uniform (e.g., a dented helmet or worn insignia), a map of Aethel's main districts, a set of common clothes, manacles, and a belt pouch containing 10 gp.",
+      "backgroundFeatureScope": "Watchman’s Eye; city-specific checks and starting standings only, not applied to generic hall",
+      "completeSkillList": [
+        "Arcana expertise",
+        "Investigation proficiency",
+        "History proficiency",
+        "Survival proficiency",
+        "Athletics proficiency",
+        "Insight proficiency"
+      ],
+      "completeToolList": [
+        "Arcana tools",
+        "scribe supplies",
+        "chess gaming set",
+        "Vehicles (Land)"
+      ],
+      "bodyMassPounds": 180
+    },
+    "allAcquiredClassCapabilities": [
+      {
+        "acquisition": "selection",
+        "activation": "Action",
+        "band": "Base",
+        "className": "Wizard",
+        "cost": "1 RP",
+        "designStatus": "provisional-playtest",
+        "duration": "Instantaneous",
+        "effect": "Arcane Bolt. Tags: base, active, wizard-spell, universal, damage. Make a Wizard spell attack. On a hit deal S d6 + M force damage. Arcane Bolt is an always-prepared class matrix once acquired and uses the normal first-distinct-matrix and Refrain rules.",
+        "frequency": "At will while RP remains",
+        "id": "wizard.base.arcane-bolt",
+        "minimumClassLevel": 1,
+        "name": "Arcane Bolt",
+        "path": null,
+        "rangeAndTarget": "One creature within 60 feet",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 5203,
+          "originalText": "Arcane Bolt: Launch a bolt of pure arcane energy that deals force damage to a single target."
+        },
+        "sourceKind": "active",
+        "spellRank": 1
+      },
+      {
+        "acquisition": "selection",
+        "activation": "Action",
+        "band": "Base",
+        "className": "Wizard",
+        "cost": "1 RP",
+        "designStatus": "provisional-playtest",
+        "duration": "1 hour",
+        "effect": "Minor Conjuration. Tags: base, active, wizard-spell, conjuration. Create one nonmagical unattended object that fits inside a 1-foot cube, weighs no more than 10 pounds and is made of common nonvaluable material such as wood, cloth, clay, iron or glass. It cannot be food, poison, currency, a spell component with listed cost, ammunition with special properties or a functional complex mechanism. Creating another dismisses the first.",
+        "frequency": "At will while RP remains; one object at a time",
+        "id": "wizard.base.minor-conjuration",
+        "minimumClassLevel": 1,
+        "name": "Minor Conjuration",
+        "path": null,
+        "rangeAndTarget": "One unoccupied space within 10 feet",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 5204,
+          "originalText": "Minor Conjuration: Create a temporary, small inanimate object that lasts for 1 hour."
+        },
+        "sourceKind": "active",
+        "spellRank": 1
+      },
+      {
+        "acquisition": "selection",
+        "activation": "Passive",
+        "band": "Base",
+        "className": "Wizard",
+        "cost": "0",
+        "designStatus": "provisional-playtest",
+        "duration": "Instantaneous during a completed short rest",
+        "effect": "Arcane Recovery. Tags: base, passive, resonance. Once between long rests when you complete a short rest, restore RP equal to half your Wizard class level rounded up, never above your normal maximum. This is RP recovery, not a second pool, and cannot trigger spell-cast, Refrain or Dissonance effects.",
+        "frequency": "1/long rest",
+        "id": "wizard.base.arcane-recovery",
+        "minimumClassLevel": 1,
+        "name": "Arcane Recovery",
+        "path": null,
+        "rangeAndTarget": "Self",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 5196,
+          "originalText": "Arcane Recovery: Once per day during a short rest, recover RP equal to half your Wizard level (rounded up), up to your normal maximum."
+        },
+        "sourceKind": "passive",
+        "spellRank": null
+      },
+      {
+        "acquisition": "selection",
+        "activation": "Passive",
+        "band": "Base",
+        "className": "Wizard",
+        "cost": "0",
+        "designStatus": "provisional-playtest",
+        "duration": "Permanent",
+        "effect": "Spell Scribing. Tags: base, passive, spellbook. Copying a legal found Wizard spell into your spellbook requires 1 hour and 25 gp of inks and components per spell rank, treating rank 0 as rank 1 for this calculation, instead of the pilot baseline 2 hours and 50 gp. Level-up spells remain free.",
+        "frequency": "Always",
+        "id": "wizard.base.spell-scribing",
+        "minimumClassLevel": 1,
+        "name": "Spell Scribing",
+        "path": null,
+        "rangeAndTarget": "Your spellbook",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 5197,
+          "originalText": "Spell Scribing: Copy spells into your spellbook at half the normal cost and time."
+        },
+        "sourceKind": "passive",
+        "spellRank": null
+      },
+      {
+        "acquisition": "selection",
+        "activation": "Reaction",
+        "band": "Base",
+        "className": "Wizard",
+        "cost": "2 RP",
+        "designStatus": "provisional-playtest",
+        "duration": "Until start of your next regular turn",
+        "effect": "Arcane Shield. Tags: base, active, wizard-spell, abjuration, protection. Trigger when an attack roll would hit you. Gain +2 AC against the triggering attack and until the start of your next regular turn, potentially causing the attack to miss. Temporary AC from another Arcane Shield does not stack.",
+        "frequency": "Recharge 2 rounds",
+        "id": "wizard.base.arcane-shield",
+        "minimumClassLevel": 1,
+        "name": "Arcane Shield",
+        "path": null,
+        "rangeAndTarget": "Self",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 5205,
+          "originalText": "Arcane Shield: Create a barrier of magical force that provides temporary protection."
+        },
+        "sourceKind": "active",
+        "spellRank": 1
+      },
+      {
+        "acquisition": "selection",
+        "activation": "Action",
+        "band": "Base",
+        "className": "Wizard",
+        "cost": "1 RP",
+        "designStatus": "provisional-playtest",
+        "duration": "Instantaneous",
+        "effect": "Analyze Magic. Tags: base, active, wizard-spell, divination, knowledge. Make an Intelligence (Arcana) check against DC 10 + the effect's spell rank, treating a non-spell effect's Director-assigned tier as rank. On success learn its school or magical category, one active mechanical property and whether it is currently sustained, cursed or bound to another effect. Failure reveals only that magic is present.",
+        "frequency": "Recharge 1 round",
+        "id": "wizard.base.analyze-magic",
+        "minimumClassLevel": 1,
+        "name": "Analyze Magic",
+        "path": null,
+        "rangeAndTarget": "One magical creature, object or effect within 30 feet",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 5206,
+          "originalText": "Analyze Magic: Study a magical effect or item to gain insight into its properties and function."
+        },
+        "sourceKind": "active",
+        "spellRank": 1
+      },
+      {
+        "acquisition": "selection",
+        "activation": "Action",
+        "band": "Arch",
+        "className": "Wizard",
+        "cost": "2 RP",
+        "designStatus": "provisional-playtest",
+        "duration": "8 hours",
+        "effect": "Arcane Lock. Tags: arch, active, wizard-spell, abjuration. Magically seal the target. Opening it without your permission requires a Strength check or thieves'/arcane-tool check against your Wizard spell DC. Dispel Magic can end the lock. You can designate up to M creatures who can bypass it. This does not make the object physically indestructible.",
+        "frequency": "Recharge 2 rounds",
+        "id": "wizard.arch.arcane-lock",
+        "minimumClassLevel": 3,
+        "name": "Arcane Lock",
+        "path": null,
+        "rangeAndTarget": "One door, chest, portal or unattended object within touch",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 5223,
+          "originalText": "Arcane Lock: Create a magical barrier that prevents entry or access to an object or area."
+        },
+        "sourceKind": "active",
+        "spellRank": 2
+      },
+      {
+        "acquisition": "selection",
+        "activation": "Action",
+        "band": "Arch",
+        "className": "Wizard",
+        "cost": "2 RP",
+        "designStatus": "provisional-playtest",
+        "duration": "Concentration, maximum 10 minutes",
+        "effect": "Arcane Sight. Tags: arch, active, wizard-spell, divination, concentration. While active you perceive magical auras within 60 feet and automatically know each visible aura's school or broad magical category. As an Action on a later turn, examine one aura to learn whether it is concentrated, summoned, cursed, warded or linked to another visible magical effect. Total cover blocks sight.",
+        "frequency": "Recharge 2 rounds",
+        "id": "wizard.arch.arcane-sight",
+        "minimumClassLevel": 3,
+        "name": "Arcane Sight",
+        "path": null,
+        "rangeAndTarget": "Self; 60-foot sight",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 5226,
+          "originalText": "Arcane Sight: See magical auras and effects for a short duration."
+        },
+        "sourceKind": "active",
+        "spellRank": 2
+      },
+      {
+        "acquisition": "selection",
+        "activation": "Passive",
+        "band": "Base",
+        "className": "Wizard",
+        "cost": "0",
+        "designStatus": "provisional-playtest",
+        "duration": "Permanent",
+        "effect": "Scholarly Mind. Tags: base, passive, knowledge. You have advantage on Intelligence checks whose primary purpose is recalling, researching or analyzing arcane theory, magical history, planar magical principles or constructed spell formulae. It does not grant advantage on spell attacks, Counterspell checks or general Investigation unrelated to arcane scholarship.",
+        "frequency": "Always",
+        "id": "wizard.base.scholarly-mind",
+        "minimumClassLevel": 1,
+        "name": "Scholarly Mind",
+        "path": null,
+        "rangeAndTarget": "Self",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 5200,
+          "originalText": "Scholarly Mind: Gain advantage on Intelligence checks related to arcane knowledge."
+        },
+        "sourceKind": "passive",
+        "spellRank": null
+      },
+      {
+        "acquisition": "selection",
+        "activation": "Triggered",
+        "band": "Arch",
+        "className": "Wizard",
+        "cost": "3 RP",
+        "designStatus": "provisional-playtest",
+        "duration": "Maximum 3 rounds",
+        "effect": "Spell Tether. Tags: arch, passive-upgrade, concentration, tether. When you begin a second concentration spell that targets only yourself while already concentrating on a self-only spell, spend 3 additional RP. For up to 3 rounds you may maintain both. Whenever damage requires a concentration save, make one save; failure ends BOTH spells. Starting a third concentration effect ends both tethered spells before the new one begins. Spell Tether and Tethered Cast cannot be combined; maximum two sustained concentration effects total. Only one Spell Tether can exist at a time.",
+        "frequency": "1/long rest",
+        "id": "wizard.arch.spell-tether",
+        "minimumClassLevel": 5,
+        "name": "Spell Tether",
+        "path": null,
+        "rangeAndTarget": "Self",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 5215,
+          "originalText": "Spell Tether: Maintain 2 self-buff spells without concentration (1/rest)"
+        },
+        "sourceKind": "passive",
+        "spellRank": null
+      },
+      {
+        "acquisition": "selection",
+        "activation": "Passive",
+        "band": "Arch",
+        "className": "Wizard",
+        "cost": "0",
+        "designStatus": "provisional-playtest",
+        "duration": "Daily preparation",
+        "effect": "Matrix Mastery. Tags: arch, passive, matrix. During preparation you may assign at most one common Matrix Mastery modification to each ordinary prepared spell: Quick Substitution, Component Enhancement, Matrix Linking or Stability Reinforcement, using the exact common definitions in the Wizard engine. Always-prepared class-card matrices cannot receive these modifications unless a card explicitly says otherwise.",
+        "frequency": "Always",
+        "id": "wizard.arch.matrix-mastery",
+        "minimumClassLevel": 5,
+        "name": "Matrix Mastery",
+        "path": null,
+        "rangeAndTarget": "Prepared matrices",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 5216,
+          "originalText": "Matrix Mastery: Modify spell matrices to change minor aspects of prepared spells."
+        },
+        "sourceKind": "passive",
+        "spellRank": null
+      },
+      {
+        "acquisition": "selection",
+        "activation": "Passive",
+        "band": "Arch",
+        "className": "Wizard",
+        "cost": "0",
+        "designStatus": "provisional-playtest",
+        "duration": "While concentrating",
+        "effect": "Improved Concentration. Tags: arch, passive, concentration. You have advantage on Constitution saving throws made because damage threatens your concentration on a Wizard spell. This does not alter the DC, protect a Tether from rules that explicitly end both effects, or prevent Silence, incapacitation and other non-damage concentration failures.",
+        "frequency": "Always",
+        "id": "wizard.arch.improved-concentration",
+        "minimumClassLevel": 7,
+        "name": "Improved Concentration",
+        "path": null,
+        "rangeAndTarget": "Self",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 5219,
+          "originalText": "Improved Concentration: Advantage on concentration checks when taking damage."
+        },
+        "sourceKind": "passive",
+        "spellRank": null
+      },
+      {
+        "acquisition": "selection",
+        "activation": "Passive",
+        "band": "Arch",
+        "className": "Wizard",
+        "cost": "0",
+        "designStatus": "provisional-playtest",
+        "duration": "Daily preparation",
+        "effect": "Floating Preparation. Tags: arch, passive, matrix. Increase your maximum prepared Spell Matrix count by 1. The extra matrix can come from any school and obeys all ordinary spellbook and rank restrictions. It is a prepared matrix for every rule, including protected strain, duplicate-family tracking and Matrix Mastery modifications.",
+        "frequency": "Always",
+        "id": "wizard.arch.floating-preparation",
+        "minimumClassLevel": 3,
+        "name": "Floating Preparation",
+        "path": null,
+        "rangeAndTarget": "Self",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 5213,
+          "originalText": "Floating Preparation: Prepare 1 extra spell from any school each day"
+        },
+        "sourceKind": "passive",
+        "spellRank": null
+      },
+      {
+        "acquisition": "selection",
+        "activation": "Action",
+        "band": "Arch",
+        "className": "Wizard",
+        "cost": "3 RP",
+        "designStatus": "provisional-playtest",
+        "duration": "Instantaneous",
+        "effect": "Dispel Magic. Tags: arch, active, wizard-spell, abjuration. Choose one ongoing spell effect you can perceive. If its rank is 3 or lower, end it. If it is rank 4 or higher, make an Intelligence check adding proficiency against DC 10 + spell rank; success ends it. Permanent artifact properties and effects explicitly immune to dispelling are unaffected.",
+        "frequency": "Recharge 2 rounds",
+        "id": "wizard.arch.dispel-magic",
+        "minimumClassLevel": 5,
+        "name": "Dispel Magic",
+        "path": null,
+        "rangeAndTarget": "One creature, object or magical effect within 60 feet",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 5224,
+          "originalText": "Dispel Magic: End magical effects in an area or on a target."
+        },
+        "sourceKind": "active",
+        "spellRank": 3
+      },
+      {
+        "acquisition": "selection",
+        "activation": "Passive",
+        "band": "Hero",
+        "className": "Wizard",
+        "cost": "0",
+        "designStatus": "provisional-playtest",
+        "duration": "Permanent",
+        "effect": "Spell Preservation. Tags: hero, spellbinder, passive, spellbook. Your primary spellbook cannot be destroyed, erased or rendered permanently unreadable by non-artifact mundane or magical means. It can still be stolen, hidden, transported, suppressed, sealed by an artifact-level effect or voluntarily abandoned. Copies and backup books do not automatically receive this protection.",
+        "frequency": "Always",
+        "id": "wizard.hero.spellbinder.spell-preservation",
+        "minimumClassLevel": 10,
+        "name": "Spell Preservation",
+        "path": "Spellbinder",
+        "rangeAndTarget": "Your spellbook",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 5243,
+          "originalText": "Spell Preservation: Your spellbook cannot be destroyed by non-artifact means."
+        },
+        "sourceKind": "passive",
+        "spellRank": null
+      },
+      {
+        "acquisition": "selection",
+        "activation": "Action",
+        "band": "Hero",
+        "className": "Wizard",
+        "cost": "4 RP",
+        "designStatus": "provisional-playtest",
+        "duration": "Maximum 3 rounds",
+        "effect": "Seal Magic. Tags: hero, spellbinder, wizard-spell, control. Choose one of the eight schools and target one creature. It makes a Wisdom save. On failure it cannot cast spells of the chosen school. At the end of each of its turns it repeats the save, ending the Seal on success. The effect ends automatically after 3 rounds and never prevents non-spell class techniques merely because they are magical.",
+        "frequency": "Recharge 3 rounds",
+        "id": "wizard.hero.spellbinder.seal-magic",
+        "minimumClassLevel": 10,
+        "name": "Seal Magic",
+        "path": "Spellbinder",
+        "rangeAndTarget": "One creature within 60 feet",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 5249,
+          "originalText": "Seal Magic: Prevent a target from casting spells of a specific school (WIS save, 3 rounds)"
+        },
+        "sourceKind": "active",
+        "spellRank": 5
+      },
+      {
+        "acquisition": "selection",
+        "activation": "Ritual",
+        "band": "Base",
+        "className": "Wizard",
+        "cost": "0 RP",
+        "designStatus": "provisional-playtest",
+        "duration": "10 minutes",
+        "effect": "Spellbook Study. Tags: base, active, matrix, ritual. Replace one currently prepared matrix with one legal spell recorded in your spellbook. The replacement must be within your Wizard rank limit. This is the normal midday substitution permission; it does not alter the spellbook, create another prepared-matrix position or reset first-cast/Refrain history for an underlying matrix family already cast this encounter.",
+        "frequency": "1/long rest",
+        "id": "wizard.base.spellbook-study",
+        "minimumClassLevel": 1,
+        "name": "Spellbook Study",
+        "path": null,
+        "rangeAndTarget": "Self and spellbook",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 5207,
+          "originalText": "Spellbook Study: Spend time studying your spellbook to prepare a different selection of spells."
+        },
+        "sourceKind": "active",
+        "spellRank": null
+      },
+      {
+        "acquisition": "selection",
+        "activation": "Action",
+        "band": "Hero",
+        "className": "Wizard",
+        "cost": "3 RP",
+        "designStatus": "provisional-playtest",
+        "duration": "Until triggered or 1 minute",
+        "effect": "Runic Snare. Tags: hero, spellbinder, wizard-spell, glyph, control. Place a visible-to-you glyph. The first hostile creature entering the square makes a Dexterity save. Failure deals S d6 force damage, causes Restrained until the end of its next turn and makes it drop one non-attuned held item of its choice. Success takes half damage with no restraint or drop. A Restrained target may repeat a Strength save at the end of its turn.",
+        "frequency": "Recharge 3 rounds",
+        "id": "wizard.hero.spellbinder.runic-snare",
+        "minimumClassLevel": 10,
+        "name": "Runic Snare",
+        "path": "Spellbinder",
+        "rangeAndTarget": "One 10-foot square within 30 feet",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 5250,
+          "originalText": "Runic Snare: Glyph trap explodes in a 2x2 root + disarm on trigger"
+        },
+        "sourceKind": "active",
+        "spellRank": 5
+      },
+      {
+        "acquisition": "selection",
+        "activation": "Bonus Action",
+        "band": "Arch",
+        "className": "Wizard",
+        "cost": "0",
+        "designStatus": "provisional-playtest",
+        "duration": "Instantaneous",
+        "effect": "Sigil Rewrite. Tags: arch, passive-upgrade, matrix. Replace one prepared matrix with a different spell from your spellbook of exactly the same rank without performing the normal 10-minute ritual. The replacement receives no special Dissonance reset for a matrix family already used this encounter and must obey current Wizard rank eligibility.",
+        "frequency": "1/long rest",
+        "id": "wizard.arch.sigil-rewrite",
+        "minimumClassLevel": 3,
+        "name": "Sigil Rewrite",
+        "path": null,
+        "rangeAndTarget": "Self and spellbook",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 5214,
+          "originalText": "Sigil Rewrite: Once/day, instantly swap a spell you know for another of the same tier"
+        },
+        "sourceKind": "passive",
+        "spellRank": null
+      },
+      {
+        "acquisition": "selection",
+        "activation": "Passive",
+        "band": "Hero",
+        "className": "Wizard",
+        "cost": "0",
+        "designStatus": "provisional-playtest",
+        "duration": "Until start of your next regular turn",
+        "effect": "Knowledge Shield. Tags: hero, spellbinder, passive, protection. When you cast an Abjuration spell that grants AC, temporary HP, resistance or a saving-throw benefit to an ally, that ally also gains +2 on its next saving throw before the start of your next regular turn. Multiple Knowledge Shields do not stack.",
+        "frequency": "At most once per ally per round",
+        "id": "wizard.hero.spellbinder.knowledge-shield",
+        "minimumClassLevel": 12,
+        "name": "Knowledge Shield",
+        "path": "Spellbinder",
+        "rangeAndTarget": "Allies directly protected by one of your Abjuration Wizard spells",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 5244,
+          "originalText": "Knowledge Shield: When you cast a protective spell, allies gain +2 to saving throws."
+        },
+        "sourceKind": "passive",
+        "spellRank": null
+      },
+      {
+        "acquisition": "selection",
+        "activation": "Passive",
+        "band": "Base",
+        "className": "Wizard",
+        "cost": "0",
+        "designStatus": "provisional-playtest",
+        "duration": "Permanent",
+        "effect": "Arcane Insight. Tags: base, passive, knowledge. Gain proficiency in Arcana, or expertise if already proficient. When examining an active magical effect, spell residue, magic item or arcane construction, you may make an Intelligence (Arcana) check to determine its broad school, function or unusual matrix behavior. The Director sets the normal knowledge DC; failure supplies no invented fact.",
+        "frequency": "Always",
+        "id": "wizard.base.arcane-insight",
+        "minimumClassLevel": 1,
+        "name": "Arcane Insight",
+        "path": null,
+        "rangeAndTarget": "Self",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 5198,
+          "originalText": "Arcane Insight: Identify magical effects and items with greater accuracy than non-wizards."
+        },
+        "sourceKind": "passive",
+        "spellRank": null
+      },
+      {
+        "acquisition": "selection",
+        "activation": "Action",
+        "band": "Hero",
+        "className": "Wizard",
+        "cost": "2 RP",
+        "designStatus": "provisional-playtest",
+        "duration": "1 hour",
+        "effect": "Knowledge Transfer. Tags: hero, spellbinder, knowledge. Choose one language you can speak or one skill in which you are proficient. The ally gains proficiency in that language or skill for 1 hour. Expertise is never transferred. The feature conveys functional knowledge, not memories, secrets, class features, spellcasting or tool ownership.",
+        "frequency": "1/short rest",
+        "id": "wizard.hero.spellbinder.knowledge-transfer",
+        "minimumClassLevel": 16,
+        "name": "Knowledge Transfer",
+        "path": "Spellbinder",
+        "rangeAndTarget": "One willing ally you touch",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 5253,
+          "originalText": "Knowledge Transfer: Temporarily grant an ally knowledge of a skill or language you possess."
+        },
+        "sourceKind": "active",
+        "spellRank": null
+      },
+      {
+        "acquisition": "selection",
+        "activation": "Ritual",
+        "band": "Arch",
+        "className": "Wizard",
+        "cost": "3 RP",
+        "designStatus": "provisional-playtest",
+        "duration": "8 hours",
+        "effect": "Dimensional Pocket. Tags: arch, active, wizard-spell, conjuration, ritual. Create an extradimensional storage space holding up to 100 pounds or 10 cubic feet of unattended nonliving material. Retrieving or placing an item while adjacent to the opening uses an object interaction. Living creatures cannot enter. When duration ends, remaining contents appear harmlessly in the nearest unoccupied space.",
+        "frequency": "1/long rest",
+        "id": "wizard.arch.dimensional-pocket",
+        "minimumClassLevel": 7,
+        "name": "Dimensional Pocket",
+        "path": null,
+        "rangeAndTarget": "One point within 5 feet",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 5225,
+          "originalText": "Dimensional Pocket: Create a small extradimensional space to store items."
+        },
+        "sourceKind": "active",
+        "spellRank": 4
+      },
+      {
+        "id": "wizard.arch.arcane-tradition",
+        "name": "Arcane Tradition",
+        "className": "Wizard",
+        "band": "Arch",
+        "path": null,
+        "sourceKind": "passive",
+        "minimumClassLevel": 3,
+        "acquisition": "automatic",
+        "activation": "Passive",
+        "cost": "0",
+        "rangeAndTarget": "Your level-1 Arcane School",
+        "duration": "Permanent",
+        "frequency": "Automatic at Wizard 3; not a selection",
+        "effect": "Arcane Tradition. Tags: arch, school, automatic. Your level-1 Arcane School becomes your Arcanist tradition; do not choose a second school. Prepare one additional matrix from that same school each day without counting it against your normal prepared-matrix maximum. It otherwise obeys all ordinary rank, spellbook, Dissonance and duplicate-family rules.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 5217,
+          "originalText": "Arcane Tradition: Choose a school of magic to specialize in, gaining bonuses to spells of that school."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      {
+        "id": "wizard.base.counterspell",
+        "name": "Counterspell",
+        "className": "Wizard",
+        "band": "Base",
+        "path": null,
+        "sourceKind": "active",
+        "minimumClassLevel": 2,
+        "acquisition": "automatic",
+        "activation": "Reaction",
+        "cost": "3 RP",
+        "rangeAndTarget": "One creature you perceive casting a spell within 60 feet",
+        "duration": "Instantaneous",
+        "frequency": "Automatic at Wizard 2; recharge 2 rounds",
+        "effect": "Counterspell. Tags: arch-source, automatic, wizard-spell, abjuration, disruption. Trigger when a creature begins casting a spell. Make an Intelligence check adding proficiency against DC 10 + twice the spell's rank, treating rank 0 as 0. Success negates the triggering spell after its costs are paid; failure lets it resolve. This is gained automatically at Wizard 2 and is never also selected from the Arch pool.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 5222,
+          "originalText": "Counterspell: Disrupt an enemy's spellcasting, potentially negating their spell entirely."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": 1
+      },
+      {
+        "id": "wizard.supplement.ritual-casting",
+        "name": "Ritual Casting",
+        "className": "Wizard",
+        "band": "Base",
+        "path": null,
+        "sourceKind": "supplement",
+        "minimumClassLevel": 2,
+        "acquisition": "automatic",
+        "activation": "Ritual",
+        "cost": "0 RP unless the individual ritual explicitly states otherwise",
+        "rangeAndTarget": "As the ritual spell",
+        "duration": "As the ritual spell",
+        "frequency": "At will outside encounters with sufficient time",
+        "effect": "Source progression line 5184. Cast a Wizard spell bearing the Ritual tag directly from your spellbook without preparing it. Increase its casting time by at least 10 minutes. Ritual Casting cannot be completed during an encounter, does not use an ordinary prepared-matrix position and does not generate or vent normal casting Dissonance.",
+        "prerequisite": "See class engine and progression.",
+        "source": {
+          "line": 5184,
+          "reference": null,
+          "originalText": "| 2 | Counterspell Reaction, Ritual Casting |",
+          "status": "source-derived"
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      {
+        "id": "wizard.supplement.school-mastery",
+        "name": "School Mastery",
+        "className": "Wizard",
+        "band": "Arch",
+        "path": null,
+        "sourceKind": "supplement",
+        "minimumClassLevel": 5,
+        "acquisition": "automatic",
+        "activation": "Passive",
+        "cost": "0",
+        "rangeAndTarget": "Your level-1 Arcane School",
+        "duration": "Permanent",
+        "frequency": "Automatic at Wizard 5",
+        "effect": "Source progression line 5186. This is the one School Mastery progression grant, not a second school choice or duplicate feat. Increase the level-1 Arcane School spell-attack and spell-save bonus from +1 to +2 total. Its school passive and bonus-spell rules otherwise remain unchanged.",
+        "prerequisite": "See class engine and progression.",
+        "source": {
+          "line": 5186,
+          "reference": null,
+          "originalText": "| 5 | Bonus Feat: School Mastery |",
+          "status": "source-derived"
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      {
+        "id": "wizard.supplement.arcane-ward",
+        "name": "Arcane Ward",
+        "className": "Wizard",
+        "band": "Arch",
+        "path": null,
+        "sourceKind": "supplement",
+        "minimumClassLevel": 6,
+        "acquisition": "automatic",
+        "activation": "Passive",
+        "cost": "0",
+        "rangeAndTarget": "Self",
+        "duration": "Until next long rest",
+        "frequency": "Choose after each long rest",
+        "effect": "Source progression line 5187. After preparing spells, choose one of acid, cold, fire, force, lightning, necrotic, psychic, radiant or thunder that is dealt by at least one prepared spell of your Arcane School. Gain resistance to that damage type until your next long rest. If none of your prepared school spells deals a damage type, choose force. This is provisional completion of the source's ambiguous 'chosen school's element' wording.",
+        "prerequisite": "See class engine and progression.",
+        "source": {
+          "line": 5187,
+          "reference": null,
+          "originalText": "| 6 | Arcane Ward (resistance to chosen school's element) |",
+          "status": "source-derived"
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      {
+        "id": "wizard.supplement.dual-cast",
+        "name": "Dual Cast",
+        "className": "Wizard",
+        "band": "Arch",
+        "path": null,
+        "sourceKind": "supplement",
+        "minimumClassLevel": 9,
+        "acquisition": "automatic",
+        "activation": "Action",
+        "cost": "Pay the complete RP costs of both spells",
+        "rangeAndTarget": "As each spell",
+        "duration": "As each spell",
+        "frequency": "1/short rest",
+        "effect": "Source progression line 5188. Choose two DIFFERENT prepared Wizard spells of rank 1 or 2, neither of which summons a creature or grants an additional Action. Cast both sequentially as one Action, paying both RP costs. They cannot both require concentration. Each matrix separately updates first-cast/Refrain history. Features that trigger merely from 'casting a spell' may trigger once for each actual matrix unless that feature itself says once per turn; no trigger may create another Dual Cast or additional full Action.",
+        "prerequisite": "See class engine and progression.",
+        "source": {
+          "line": 5188,
+          "reference": null,
+          "originalText": "| 9 | Dual Cast (cast 2 Tier 1–2 spells in a round) |",
+          "status": "source-derived"
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      {
+        "id": "wizard.supplement.overchannel",
+        "name": "Overchannel",
+        "className": "Wizard",
+        "band": "Hero",
+        "path": null,
+        "sourceKind": "supplement",
+        "minimumClassLevel": 13,
+        "acquisition": "automatic",
+        "activation": "Triggered",
+        "cost": "Pay the Core V 2 RP cost for one rank above the spell's normal cast rank",
+        "rangeAndTarget": "One prepared spell you are beginning to cast",
+        "duration": "For that cast",
+        "frequency": "1/long rest",
+        "effect": "Source progression line 5190. Cast one prepared spell as though it were one rank higher than the highest rank at which you could normally cast that SAME spell, provided the spell has an explicit higher-rank scaling rule. Overchannel does not teach or prepare a higher-rank spell, cannot exceed effective rank 9 and cannot be combined with another generic Overcast rule during this pilot. All normal Dissonance/Refrain rules still apply.",
+        "prerequisite": "See class engine and progression.",
+        "source": {
+          "line": 5190,
+          "reference": null,
+          "originalText": "| 13 | Overchannel (cast a spell 1 tier higher once/day) |",
+          "status": "source-derived"
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      {
+        "id": "wizard.supplement.arcane-feedback",
+        "name": "Arcane Feedback",
+        "className": "Wizard",
+        "band": "Hero",
+        "path": null,
+        "sourceKind": "supplement",
+        "minimumClassLevel": 15,
+        "acquisition": "automatic",
+        "activation": "Triggered",
+        "cost": "0",
+        "rangeAndTarget": "Self",
+        "duration": "Instantaneous",
+        "frequency": "At most once per round",
+        "effect": "Source progression line 5191, converted from historical slot wording to RP. After your Counterspell successfully negates a spell, restore 1 RP, never above your normal maximum. A counter produced by a companion, reflected spell or copied Counterspell does not trigger this feature.",
+        "prerequisite": "See class engine and progression.",
+        "source": {
+          "line": 5191,
+          "reference": null,
+          "originalText": "| 15 | Arcane Feedback (after successfully countering a spell, recover 1 RP once per round) |",
+          "status": "source-derived"
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      {
+        "id": "wizard.supplement.tethered-cast",
+        "name": "Tethered Cast",
+        "className": "Wizard",
+        "band": "Hero",
+        "path": null,
+        "sourceKind": "supplement",
+        "minimumClassLevel": 17,
+        "acquisition": "automatic",
+        "activation": "Bonus Action",
+        "cost": "2 RP",
+        "rangeAndTarget": "One concentration Wizard spell you cast this turn that targets only yourself or one willing ally",
+        "duration": "Maximum 3 rounds",
+        "frequency": "At most once per round; only one Tethered Cast active at a time",
+        "effect": "Source progression line 5192. After casting the qualifying spell, tether it. The tethered spell no longer occupies your one normal concentration slot for up to 3 rounds. When damage would require a concentration save for the tethered spell, make the save normally; failure ends only the tether. Starting another Tethered Cast ends the existing tether first. A Tethered Cast cannot itself tether Spell Tether's second spell or permit more than two simultaneously sustained Wizard effects.",
+        "prerequisite": "See class engine and progression.",
+        "source": {
+          "line": 5192,
+          "reference": null,
+          "originalText": "| 17 | Tethered Cast (bonus action spell link 1/round) |",
+          "status": "source-derived"
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      }
+    ],
+    "classEngineCapabilities": [
+      {
+        "id": "wizard.engine.spell-matrix",
+        "classification": "class active spellcasting/preparation"
+      },
+      {
+        "id": "wizard.engine.spellbook-study",
+        "classification": "class active learning"
+      },
+      {
+        "id": "wizard.engine.specialization",
+        "classification": "class continuous bonus"
+      },
+      {
+        "id": "wizard.engine.first-family",
+        "classification": "class automatic spell strain rule"
+      },
+      {
+        "id": "wizard.engine.companion-command",
+        "classification": "class activated owner command"
+      },
+      {
+        "id": "wizard.engine.spellbook",
+        "classification": "external physical knowledge record; not deleted"
+      },
+      {
+        "id": "wizard.engine.base-RP-table",
+        "classification": "progression table; not class ability to remove"
+      },
+      {
+        "id": "wizard.engine.hit-dice-levels",
+        "classification": "progression; not level loss"
+      },
+      {
+        "id": "wizard.engine.PB",
+        "classification": "character progression"
+      },
+      {
+        "id": "wizard.engine.ASI",
+        "classification": "completed advancement score acquisition"
+      }
+    ],
+    "sourceClassBinding": {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+      "bytes": 100635,
+      "sha256": "8ab2f4f43bcbced418fb266e5bd3216cff491b0c442c16f93438bd3556672c8b",
+      "gitBlobSHA1": "cba2bdbbe964e9597011ed59f0c934bd09350a93",
+      "verified": true,
+      "sourceCommit": "0a7778f059bbeeba7e4a998c83bc3562a96abd52"
+    },
+    "saves": {
+      "CHA": 0,
+      "CON": 2,
+      "DEX": 2,
+      "INT": 11,
+      "STR": 1,
+      "WIS": 9
+    },
+    "schoolAttack": 13,
+    "schoolDC": 21,
+    "initiativeModifier": 2,
+    "spellExecutionQualification": "Only pending spells in this return may be authored as conditional fixtures. Other spells require current accepted procedure evidence or class card. Learning metadata never grants operational acceptance.",
+    "profileHashEncoding": "SHA256 sorted compact UTF8 JSON excluding profileSHA256BeforeOwnHash only",
+    "profileSHA256BeforeOwnHash": "6f4ed377d037ce434a3eaed80dfc8044f4269d64fddf7b3d441b68fd771eeed1"
+  },
+  "scope": "Existing conditional caster source/acquisition context, not a new actual campaign actor or call."
+}
