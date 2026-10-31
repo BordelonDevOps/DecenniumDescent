@@ -1,0 +1,79 @@
+{
+  "id": "GPT-DIRECTOR-RETURN-SH202-B01-CLOSURE349",
+  "recordedAtUtc": "2026-10-31T12:56:24+00:00",
+  "boundCommit": "ef1d8aa35d84fa660e8854821418cfb1716c7b9a",
+  "disposition": {
+    "status": "SEALED_HOLD",
+    "scopeIds": [
+      "summon-elemental-avatar"
+    ],
+    "blockerIds": [
+      "SH202-B01"
+    ],
+    "acceptedIds": [],
+    "appliedIds": [],
+    "heldIds": [
+      "summon-elemental-avatar"
+    ],
+    "openBlockerIds": [
+      "SH202-B01"
+    ],
+    "closedBlockerIds": [],
+    "closedResidualIds": [
+      "SH348-R1",
+      "SH348-R2"
+    ],
+    "openResidualIds": [
+      "SH348-R3"
+    ],
+    "applicationAuthorized": false
+  },
+  "archiveSha256": "3c500e083ac838b77dc84ab6f5477f6325a8f5b6984674e796a9851eac0715c6",
+  "independentReview": {
+    "scenarioCount": 18,
+    "transitionCount": 65,
+    "forwardOperations": 113,
+    "inverseOperations": 113,
+    "fullyReversedScenarioCount": 18,
+    "sourceForkHashesMatch": true,
+    "archiveMemberBindingsMatch": 26,
+    "mirroredGitBlobsMatch": 8
+  },
+  "residuals": [
+    {
+      "id": "SH348-R1",
+      "status": "CLOSED",
+      "ruling": "Round-22 retains three reservations, zero attempts and cancellation of slots [1,2,3]; capacity remains consumed without refund, transfer or restored order."
+    },
+    {
+      "id": "SH348-R2",
+      "status": "CLOSED",
+      "ruling": "Coincidence agrees with each declared calendar; all declared markers are processed once. The noncoincident branches preserve due=6000 without catch-up."
+    },
+    {
+      "id": "SH348-R3",
+      "status": "PARTIALLY_CORRECTED_OPEN",
+      "testId": "SH330-T06",
+      "exactDefect": "Both T06 startingState/sourceBodyVolume records use halfExtentsFeet [0.5,0.5,0.5] and bounds [-0.5,0.5] on each axis, representing a one-foot cube. Source body A:cast1:body1, profile SH202-ELEMENTAL, binds the preserved Large box [10,10,10] at Return285 event RANK9SUMMONHOSTS5129-SUMMON-ELEMENTAL-AVATAR-B:6, /after/bodies/A:cast1:body1/box.",
+      "requiredCorrection": "At center [0,0,0], use native-profile half-extents [5,5,5] and bounds [-5,5] on each axis. Update both scenarios’ dependent states, observed volume fields, hashes and reversal evidence. Independently compare source volume against the bound native dimensions. Preserve the declared synthetic-recipient qualification; no additional timing branch or external-source hunt is required."
+    }
+  ],
+  "retainedCredit": [
+    "T01",
+    "T02",
+    "T04",
+    "T03 control restoration",
+    "T05 calendar chronology",
+    "T06 movement, clipping calculations, intervening markers, expiry at 60000 and no revival at 66000"
+  ],
+  "nextPriority": "Correct only the remaining T06 native Avatar geometry issue under SH202-B01 / SH348-R3. SH202-B02 Summon Herald of the Planes is successor after SH202-B01 closure.",
+  "authority": {
+    "reviewedApplied": 825,
+    "pending": 23,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 549,
+    "scopedInterfaces": 173
+  },
+  "otherDispositionsUnchanged": true,
+  "runtimeAndDownstreamGatesClosed": true
+}

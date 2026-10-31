@@ -1,0 +1,876 @@
+{
+  "id": "SH202-B01-SH330-INDEPENDENT-TRANSITION-AUDIT-350",
+  "recordedAtUtc": "2026-10-31T12:56:25+00:00",
+  "status": "PASS",
+  "checks": [
+    {
+      "check": "exact six SH330 tests with conditional fixtures",
+      "passed": true,
+      "evidence": [
+        "SH330-T01",
+        "SH330-T02",
+        "SH330-T03",
+        "SH330-T04",
+        "SH330-T05",
+        "SH330-T06"
+      ]
+    },
+    {
+      "check": "every scenario has complete start/end states and a full reversible hash chain",
+      "passed": true,
+      "evidence": {
+        "scenarios": 18,
+        "transitions": 65
+      }
+    },
+    {
+      "check": "all event before/after hashes and ordered forward/inverse patches agree",
+      "passed": true,
+      "evidence": 65
+    },
+    {
+      "check": "T01 canceled reserved slots consume three; extra turn/fourth strike/no-command controls do not reset",
+      "passed": true,
+      "evidence": [
+        {
+          "cancelledSlots": [
+            2,
+            3
+          ],
+          "capacityConsumed": 3,
+          "refund": 0
+        },
+        {
+          "notificationObserved": true,
+          "newCommand": false,
+          "regularStartOrAttachedPhase": false,
+          "budgetReset": false,
+          "sourceDeadlineMs": 60000
+        },
+        {
+          "accepted": false,
+          "reason": "THREE_RESERVED_SLOTS_ALREADY_CONSUMED",
+          "stateMutation": false
+        },
+        {
+          "actualNumberedRoundObserved": true,
+          "roundKey": "round-18",
+          "commandOrActionGranted": false
+        },
+        {
+          "accepted": false,
+          "reason": "NO_COMMAND_OR_OFFENSIVE_ACTION_TOKEN",
+          "stateMutation": false
+        },
+        {
+          "accepted": false,
+          "reason": "NO_AUTHORIZED_PROVIDER_BOUND",
+          "stateMutation": false
+        }
+      ]
+    },
+    {
+      "check": "T02 exact Avatar recipient and fire6/force8 one-root correction resolves once",
+      "passed": true,
+      "evidence": {
+        "rootId": "SH330-T02-COMPOSITE-6F8F",
+        "resolvedComponents": [
+          {
+            "componentId": "fire-6",
+            "damageType": "fire",
+            "rawAmount": 6,
+            "resolvedAmount": 3,
+            "defense": "resistance-half-floor",
+            "rootId": "SH330-T02-COMPOSITE-6F8F",
+            "dealerRootId": "TEST_ONLY:single-composite-root"
+          },
+          {
+            "componentId": "force-8",
+            "damageType": "force",
+            "rawAmount": 8,
+            "resolvedAmount": 8,
+            "defense": "none",
+            "rootId": "SH330-T02-COMPOSITE-6F8F",
+            "dealerRootId": "TEST_ONLY:single-composite-root"
+          }
+        ],
+        "totalResolvedOnce": 11,
+        "tempHPAbsorbed": 0,
+        "hpDamage": 11,
+        "hpAfter": 186,
+        "tempHPAfter": 0,
+        "lifeAfter": "Active",
+        "settlementCountAfter": 1,
+        "distinctRootCountAfter": 1
+      }
+    },
+    {
+      "check": "T02 SH330 fire11/force8 requirement and tempHP/HP settlement pass",
+      "passed": true,
+      "evidence": {
+        "fire11_force8": {
+          "rootId": "SH330-T02-CONTRACT-11F8F",
+          "resolvedComponents": [
+            {
+              "componentId": "fire-11",
+              "damageType": "fire",
+              "rawAmount": 11,
+              "resolvedAmount": 5,
+              "defense": "resistance-half-floor",
+              "rootId": "SH330-T02-CONTRACT-11F8F",
+              "dealerRootId": "TEST_ONLY:single-contract-root"
+            },
+            {
+              "componentId": "force-8",
+              "damageType": "force",
+              "rawAmount": 8,
+              "resolvedAmount": 8,
+              "defense": "none",
+              "rootId": "SH330-T02-CONTRACT-11F8F",
+              "dealerRootId": "TEST_ONLY:single-contract-root"
+            }
+          ],
+          "totalResolvedOnce": 13,
+          "tempHPAbsorbed": 0,
+          "hpDamage": 13,
+          "hpAfter": 184,
+          "tempHPAfter": 0,
+          "lifeAfter": "Active",
+          "settlementCountAfter": 1,
+          "distinctRootCountAfter": 1
+        },
+        "tempHP_overlay": {
+          "rootId": "SH330-T02-CONTRACT-11F8F",
+          "resolvedComponents": [
+            {
+              "componentId": "fire-11",
+              "damageType": "fire",
+              "rawAmount": 11,
+              "resolvedAmount": 5,
+              "defense": "resistance-half-floor",
+              "rootId": "SH330-T02-CONTRACT-11F8F",
+              "dealerRootId": "TEST_ONLY:single-contract-root"
+            },
+            {
+              "componentId": "force-8",
+              "damageType": "force",
+              "rawAmount": 8,
+              "resolvedAmount": 8,
+              "defense": "none",
+              "rootId": "SH330-T02-CONTRACT-11F8F",
+              "dealerRootId": "TEST_ONLY:single-contract-root"
+            }
+          ],
+          "totalResolvedOnce": 13,
+          "tempHPAbsorbed": 3,
+          "hpDamage": 10,
+          "hpAfter": 20,
+          "tempHPAfter": 0,
+          "lifeAfter": "Active",
+          "settlementCountAfter": 1,
+          "distinctRootCountAfter": 1
+        }
+      }
+    },
+    {
+      "check": "T02 distinct roots remain ordered with two settlements",
+      "passed": true,
+      "evidence": [
+        {
+          "rootId": "SH330-T02-SEPARATE-FIRE-ROOT",
+          "resolvedComponents": [
+            {
+              "componentId": "fire-6",
+              "damageType": "fire",
+              "rawAmount": 6,
+              "resolvedAmount": 3,
+              "defense": "resistance-half-floor",
+              "rootId": "SH330-T02-SEPARATE-FIRE-ROOT",
+              "dealerRootId": "TEST_ONLY:fire-root"
+            }
+          ],
+          "totalResolvedOnce": 3,
+          "tempHPAbsorbed": 3,
+          "hpDamage": 0,
+          "hpAfter": 30,
+          "tempHPAfter": 0,
+          "lifeAfter": "Active",
+          "settlementCountAfter": 1,
+          "distinctRootCountAfter": 1
+        },
+        {
+          "rootId": "SH330-T02-SEPARATE-FORCE-ROOT",
+          "resolvedComponents": [
+            {
+              "componentId": "force-8",
+              "damageType": "force",
+              "rawAmount": 8,
+              "resolvedAmount": 8,
+              "defense": "none",
+              "rootId": "SH330-T02-SEPARATE-FORCE-ROOT",
+              "dealerRootId": "TEST_ONLY:force-root"
+            }
+          ],
+          "totalResolvedOnce": 8,
+          "tempHPAbsorbed": 0,
+          "hpDamage": 8,
+          "hpAfter": 22,
+          "tempHPAfter": 0,
+          "lifeAfter": "Active",
+          "settlementCountAfter": 2,
+          "distinctRootCountAfter": 2
+        }
+      ]
+    },
+    {
+      "check": "T03 Return331 reservedSlots3/attempts2 cancellation consumes third slot without refund",
+      "passed": true,
+      "evidence": {
+        "controllerAfter": "controller-B",
+        "oldOrderCancelled": true,
+        "cancelledSlots": [
+          3
+        ],
+        "capacityConsumed": 3,
+        "thirdStrikeAccepted": false,
+        "fourthStrikeAccepted": false,
+        "sourceOwnerChanged": false,
+        "strikeCapReset": false,
+        "refund": 0
+      }
+    },
+    {
+      "check": "T03 later command requires and uses a lawful actual turn, allowance, and original owner phase",
+      "passed": true,
+      "evidence": {
+        "order": {
+          "accepted": true,
+          "checks": {
+            "isCurrentController": true,
+            "actualRegularTurn": true,
+            "bonusAction": true,
+            "sharedAllowance": true,
+            "conscious": true,
+            "perception": true,
+            "samePlane": true,
+            "audibleCommon": true,
+            "lineOfEffect": true,
+            "within60FeetAtIssuanceAndExecution": true,
+            "futureOwnerPhaseBeforeDeadline": true
+          },
+          "order": {
+            "orderId": "order-B-22",
+            "controllerId": "controller-B",
+            "bodyId": "avatar-A",
+            "targetId": "target-C",
+            "status": "pending-original-owner-attached-phase",
+            "roundKey": "round-22"
+          }
+        },
+        "execution": {
+          "executed": true,
+          "phaseId": "owner-A-attached-22",
+          "phaseOwner": "owner-A",
+          "attackActionReservedSlots": 3,
+          "currentControllerId": "controller-B",
+          "sourceOwnerId": "owner-A"
+        }
+      }
+    },
+    {
+      "check": "T03 control restoration cancels every unattempted reserved round-22 slot without refund or transfer",
+      "passed": true,
+      "evidence": {
+        "ledger": {
+          "reservedSlots": 3,
+          "attemptedSlots": 0,
+          "consumedSlots": [],
+          "cancelledSlots": [
+            1,
+            2,
+            3
+          ],
+          "sourceOwnerId": "owner-A",
+          "controllerId": "controller-B"
+        },
+        "result": {
+          "controllerRestored": true,
+          "oldOrderRestored": false,
+          "pendingOrderAfter": null,
+          "cancelledSlots": [
+            1,
+            2,
+            3
+          ],
+          "reservedSlots": 3,
+          "attemptedSlots": 0,
+          "capacityConsumed": 3,
+          "refund": 0,
+          "strikeCapReset": false,
+          "hpBefore": 197,
+          "resourcesBefore": {
+            "RPSpent": 26,
+            "cadenceSpent": true,
+            "paidHistoryId": "cast-A"
+          },
+          "restorationGrantedHPOrResource": false
+        }
+      }
+    },
+    {
+      "check": "T03 exhausted post-spend controller change cannot create fourth strike",
+      "passed": true,
+      "evidence": {
+        "controllerAfter": "controller-B",
+        "oldOrderCancelled": false,
+        "cancelledSlots": [],
+        "capacityConsumed": 3,
+        "thirdStrikeAccepted": false,
+        "fourthStrikeAccepted": false,
+        "sourceOwnerChanged": false,
+        "strikeCapReset": false,
+        "refund": 0
+      }
+    },
+    {
+      "check": "T04 max pool and deterministic tie rules select only the correct source",
+      "passed": true,
+      "evidence": [
+        "avatar-B-test-only",
+        "avatar-A",
+        "avatar-A",
+        "avatar-A"
+      ]
+    },
+    {
+      "check": "T04 one packet only, source metadata bound, due opportunities consumed, no replay",
+      "passed": true,
+      "evidence": [
+        {
+          "winner": {
+            "sourceId": "avatar-B-test-only",
+            "dealerId": "TEST_ONLY:avatar-B",
+            "rootId": "SH330-T04-root-B",
+            "dc": 23,
+            "rolledPoolBeforeRecipientDefense": 9,
+            "saveType": "DEX",
+            "saveTotal": 18,
+            "saveSucceeded": false,
+            "afterSaveDamage": 9,
+            "fireResistanceAppliedOnce": false,
+            "damageAfterDefense": 9,
+            "tempHPAbsorbed": 0,
+            "hpDamage": 9,
+            "hpAfter": 95,
+            "tempHPAfter": 0
+          },
+          "packetsApplied": 1,
+          "consumedDueSourceIds": [
+            "avatar-A",
+            "avatar-B-test-only"
+          ],
+          "losingOrSuppressedOpportunitiesConsumed": true
+        },
+        {
+          "winner": {
+            "sourceId": "avatar-A",
+            "dealerId": "A:cast1:body1",
+            "rootId": "SH330-T04-root-A",
+            "dc": 21,
+            "rolledPoolBeforeRecipientDefense": 9,
+            "saveType": "DEX",
+            "saveTotal": 18,
+            "saveSucceeded": false,
+            "afterSaveDamage": 9,
+            "fireResistanceAppliedOnce": false,
+            "damageAfterDefense": 9,
+            "tempHPAbsorbed": 0,
+            "hpDamage": 9,
+            "hpAfter": 95,
+            "tempHPAfter": 0
+          },
+          "packetsApplied": 1,
+          "consumedDueSourceIds": [
+            "avatar-A",
+            "avatar-B-test-only"
+          ],
+          "losingOrSuppressedOpportunitiesConsumed": true
+        },
+        {
+          "winner": {
+            "sourceId": "avatar-A",
+            "dealerId": "TEST_ONLY:avatar-B",
+            "rootId": "SH330-T04-root-B",
+            "dc": 23,
+            "rolledPoolBeforeRecipientDefense": 9,
+            "saveType": "DEX",
+            "saveTotal": 18,
+            "saveSucceeded": false,
+            "afterSaveDamage": 9,
+            "fireResistanceAppliedOnce": false,
+            "damageAfterDefense": 9,
+            "tempHPAbsorbed": 0,
+            "hpDamage": 9,
+            "hpAfter": 95,
+            "tempHPAfter": 0
+          },
+          "packetsApplied": 1,
+          "consumedDueSourceIds": [
+            "avatar-Z",
+            "avatar-A"
+          ],
+          "losingOrSuppressedOpportunitiesConsumed": true
+        },
+        {
+          "winner": {
+            "sourceId": "avatar-A",
+            "dealerId": "A:cast1:body1",
+            "rootId": "SH330-T04-root-A",
+            "dc": 21,
+            "rolledPoolBeforeRecipientDefense": 7,
+            "saveType": "DEX",
+            "saveTotal": 18,
+            "saveSucceeded": false,
+            "afterSaveDamage": 7,
+            "fireResistanceAppliedOnce": false,
+            "damageAfterDefense": 7,
+            "tempHPAbsorbed": 0,
+            "hpDamage": 7,
+            "hpAfter": 97,
+            "tempHPAfter": 0
+          },
+          "packetsApplied": 1,
+          "consumedDueSourceIds": [
+            "avatar-A",
+            "avatar-B-test-only"
+          ],
+          "losingOrSuppressedOpportunitiesConsumed": true
+        }
+      ]
+    },
+    {
+      "check": "T05 initiative entry preserves due6; every ordinary marker is calendar-bound; the coincident due/start resolves once",
+      "passed": true,
+      "evidence": {
+        "dueTimestampMs": 6000,
+        "opportunityConsumed": true,
+        "pulse": true,
+        "coalescedCoincidentRegularStart": true,
+        "coincidenceDerivedFromCalendar": true,
+        "pulseCountAfter": 1,
+        "actorBudgetOrSourceClockChanged": false
+      }
+    },
+    {
+      "check": "T05 later actual markers and outside/clipped/dead-source branches have no catchup",
+      "passed": true,
+      "evidence": [
+        {
+          "regularStartMs": 16000,
+          "calendarBound": true,
+          "strictlyLaterThanCarriedDue": true,
+          "pulse": true,
+          "pulseCountAfter": 3,
+          "noExposureCatchup": true
+        },
+        {
+          "regularStartMs": 10000,
+          "calendarBound": true,
+          "strictlyLaterThanCarriedDue": true,
+          "pulse": true,
+          "pulseCountAfter": 1,
+          "noExposureCatchup": true
+        },
+        {
+          "regularStartMs": 10000,
+          "calendarBound": true,
+          "strictlyLaterThanCarriedDue": true,
+          "pulse": true,
+          "pulseCountAfter": 1,
+          "noExposureCatchup": true
+        },
+        {
+          "regularStartMs": 10000,
+          "calendarBound": true,
+          "strictlyLaterThanCarriedDue": true,
+          "pulse": false,
+          "pulseCountAfter": 0,
+          "noExposureCatchup": true
+        }
+      ]
+    },
+    {
+      "check": "T05-outside-at-due-no-catchup: declared noncoincident calendar processes every ordinary marker and derives due coincidence",
+      "passed": true,
+      "evidence": {
+        "calendar": [
+          4000,
+          10000
+        ],
+        "ordinaryMarkers": [
+          4000,
+          10000
+        ],
+        "due": {
+          "dueTimestampMs": 6000,
+          "opportunityConsumed": true,
+          "pulse": false,
+          "coalescedCoincidentRegularStart": false,
+          "coincidenceDerivedFromCalendar": true,
+          "pulseCountAfter": 0,
+          "actorBudgetOrSourceClockChanged": false
+        }
+      }
+    },
+    {
+      "check": "T05-clipped-at-due-no-catchup: declared noncoincident calendar processes every ordinary marker and derives due coincidence",
+      "passed": true,
+      "evidence": {
+        "calendar": [
+          4000,
+          10000
+        ],
+        "ordinaryMarkers": [
+          4000,
+          10000
+        ],
+        "due": {
+          "dueTimestampMs": 6000,
+          "opportunityConsumed": true,
+          "pulse": false,
+          "coalescedCoincidentRegularStart": false,
+          "coincidenceDerivedFromCalendar": true,
+          "pulseCountAfter": 0,
+          "actorBudgetOrSourceClockChanged": false
+        }
+      }
+    },
+    {
+      "check": "T05-source-ended-at-due: declared noncoincident calendar processes every ordinary marker and derives due coincidence",
+      "passed": true,
+      "evidence": {
+        "calendar": [
+          4000,
+          10000
+        ],
+        "ordinaryMarkers": [
+          4000,
+          10000
+        ],
+        "due": {
+          "dueTimestampMs": 6000,
+          "opportunityConsumed": true,
+          "pulse": false,
+          "coalescedCoincidentRegularStart": false,
+          "coincidenceDerivedFromCalendar": true,
+          "pulseCountAfter": 0,
+          "actorBudgetOrSourceClockChanged": false
+        }
+      }
+    },
+    {
+      "check": "T06 source volume exactly matches the bound native 10-foot Avatar profile box",
+      "passed": true,
+      "evidence": {
+        "kind": "BOUND_NATIVE_PROFILE_BOX",
+        "profileId": "SH202-ELEMENTAL",
+        "profileBoxFeet": [
+          10,
+          10,
+          10
+        ],
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "halfExtentsFeet": [
+          5.0,
+          5.0,
+          5.0
+        ],
+        "bounds": {
+          "x": [
+            -5.0,
+            5.0
+          ],
+          "y": [
+            -5.0,
+            5.0
+          ],
+          "z": [
+            -5.0,
+            5.0
+          ]
+        }
+      }
+    },
+    {
+      "check": "T06 explicit source/recipient AABBs prove only the recipient intersects the local field at due6",
+      "passed": true,
+      "evidence": {
+        "markerId": "recipient-B-start-6",
+        "pulse": false,
+        "bodySuppressed": false,
+        "bodyPersists": true,
+        "sourceVolumeIntersectsSuppressionField": false,
+        "recipientVolumeIntersectsSuppressionField": true,
+        "sourceVolumeBounds": {
+          "x": [
+            -5.0,
+            5.0
+          ],
+          "y": [
+            -5.0,
+            5.0
+          ],
+          "z": [
+            -5.0,
+            5.0
+          ]
+        },
+        "recipientVolumeBounds": {
+          "x": [
+            7.5,
+            8.5
+          ],
+          "y": [
+            -0.5,
+            0.5
+          ],
+          "z": [
+            -0.5,
+            0.5
+          ]
+        },
+        "fieldBounds": {
+          "x": [
+            7,
+            9
+          ],
+          "y": [
+            -1,
+            1
+          ],
+          "z": [
+            -1,
+            1
+          ]
+        },
+        "recipientDistanceToSourceFeet": 8,
+        "recipientWithinAura": true,
+        "strikeLedgerUnchanged": true,
+        "dueOpportunityConsumed": true
+      }
+    },
+    {
+      "check": "T06 surviving branch records actual movement out of field while remaining inside the aura, then resolves only at t12",
+      "passed": true,
+      "evidence": {
+        "exit": {
+          "leftSuppressionRegion": true,
+          "recipientPositionAfter": [
+            6,
+            0,
+            0
+          ],
+          "recipientVolumeBoundsAfter": {
+            "x": [
+              5.5,
+              6.5
+            ],
+            "y": [
+              -0.5,
+              0.5
+            ],
+            "z": [
+              -0.5,
+              0.5
+            ]
+          },
+          "sourceVolumeBounds": {
+            "x": [
+              -5.0,
+              5.0
+            ],
+            "y": [
+              -5.0,
+              5.0
+            ],
+            "z": [
+              -5.0,
+              5.0
+            ]
+          },
+          "fieldBounds": {
+            "x": [
+              7,
+              9
+            ],
+            "y": [
+              -1,
+              1
+            ],
+            "z": [
+              -1,
+              1
+            ]
+          },
+          "sourceVolumeIntersectsSuppressionField": false,
+          "recipientVolumeIntersectsSuppressionFieldAfter": false,
+          "recipientDistanceToSourceFeet": 6.0,
+          "recipientStillWithinAura": true,
+          "pulseOnLeaving": false
+        },
+        "nextMarker": {
+          "markerId": "recipient-B-start-12",
+          "pulse": true,
+          "sourceBodyActive": true,
+          "sourceVolumeIntersectsSuppressionField": false,
+          "recipientVolumeIntersectsSuppressionField": false,
+          "calendarBound": true,
+          "pulseCountAfter": 1
+        }
+      }
+    },
+    {
+      "check": "T06 expiry branch accounts for every clipped marker through t54, consumes coincident t60 at original expiry, exits at t61, and cannot resume at t66",
+      "passed": true,
+      "evidence": {
+        "calendar": [
+          6000,
+          12000,
+          18000,
+          24000,
+          30000,
+          36000,
+          42000,
+          48000,
+          54000,
+          60000,
+          66000
+        ],
+        "suppressedTimes": [
+          6000,
+          12000,
+          18000,
+          24000,
+          30000,
+          36000,
+          42000,
+          48000,
+          54000
+        ],
+        "expiry": {
+          "sourceExpiredAtOriginalDeadline": true,
+          "deadlineRewritten": false,
+          "coincidentMarkerId": "recipient-B-start-60",
+          "dueOpportunityConsumed": true,
+          "pulse": false,
+          "expiryPrecedesCoincidentMarker": true
+        },
+        "exit": {
+          "leftSuppressionRegion": true,
+          "recipientPositionAfter": [
+            6,
+            0,
+            0
+          ],
+          "recipientVolumeBoundsAfter": {
+            "x": [
+              5.5,
+              6.5
+            ],
+            "y": [
+              -0.5,
+              0.5
+            ],
+            "z": [
+              -0.5,
+              0.5
+            ]
+          },
+          "sourceVolumeBounds": {
+            "x": [
+              -5.0,
+              5.0
+            ],
+            "y": [
+              -5.0,
+              5.0
+            ],
+            "z": [
+              -5.0,
+              5.0
+            ]
+          },
+          "fieldBounds": {
+            "x": [
+              7,
+              9
+            ],
+            "y": [
+              -1,
+              1
+            ],
+            "z": [
+              -1,
+              1
+            ]
+          },
+          "sourceVolumeIntersectsSuppressionField": false,
+          "recipientVolumeIntersectsSuppressionFieldAfter": false,
+          "recipientDistanceToSourceFeet": 6.0,
+          "recipientStillWithinAura": true,
+          "pulseOnLeaving": false
+        },
+        "finalMarker": {
+          "markerId": "recipient-B-start-66",
+          "pulse": false,
+          "sourceBodyActive": false,
+          "sourceVolumeIntersectsSuppressionField": false,
+          "recipientVolumeIntersectsSuppressionField": false,
+          "calendarBound": true,
+          "pulseCountAfter": 0
+        }
+      }
+    },
+    {
+      "check": "no real acquisition, gameplay occurrence, runtime execution, or application is claimed",
+      "passed": true,
+      "evidence": {
+        "fixtureType": "TEST_ONLY_CONDITIONAL_INPUT",
+        "runtimeExecuted": false,
+        "applicationAuthorized": false
+      }
+    }
+  ],
+  "checkCount": 23,
+  "passedChecks": 23,
+  "failedChecks": 0,
+  "scenarioCount": 18,
+  "transitionCount": 65,
+  "fullInverseTraversals": 18,
+  "independentReplayVerification": {
+    "path": "SH202_B01_SH330_REPLAY_VERIFICATION_350.json",
+    "status": "PASS",
+    "checkCount": 966,
+    "passedChecks": 966,
+    "sha256": "f76032c39ae772071c23281709c7d0c278f7131264ab1034cb4e5be7549954be"
+  },
+  "acceptedIds": [],
+  "appliedIds": [],
+  "applicationAuthorizedIds": [],
+  "blockerIds": [
+    "SH202-B01"
+  ],
+  "authority": {
+    "reviewedApplied": 825,
+    "pending": 23,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 549,
+    "scopedInterfaces": 173
+  },
+  "runtimeExecuted": false,
+  "canonicalFilesChanged": false
+}
