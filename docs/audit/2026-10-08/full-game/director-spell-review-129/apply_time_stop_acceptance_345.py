@@ -731,6 +731,8 @@ def main() -> None:
         "currentBlocker": None,
         "nextPendingGroup": None,
         "nextStep": "Ask GPT to prioritize a changed closure delta among the 24 remaining tasks; preserve all unrelated holds and CLOSED dispositions.",
+        "closureTasksRemaining": 24,
+        "firstReviewTasksRemaining": 0,
         "directorConnectionStatus": "GPT returned SEALED ACCEPT for Time Stop / TF192-B01 only and explicitly authorized canonical authored-index application.",
         "directorReturnDecision": decision_ref,
         "directorReturnArchive": archive_ref,
@@ -769,6 +771,7 @@ def main() -> None:
         ("Runtime and downstream gates remain disabled", model["runtimeSelectionEnabled"] is False and model["implementationApproved"] is False and model["releaseApproved"] is False),
         ("Backup restores exact pre-application index bytes", BACKUP.read_bytes() == before_raw),
         ("Pending audit, queue and handoff bind final index and authority", pending1["indexBinding"]["sha256"] == index_ref["sha256"] and queue1["currentIndexBinding"]["sha256"] == index_ref["sha256"] and handoff1["indexBinding"]["sha256"] == index_ref["sha256"] and handoff1["queueBinding"]["sha256"] == queue1_ref["sha256"]),
+        ("Handoff closure and first-review counts match Queue344 and its pending audit", handoff1["closureTasksRemaining"] == queue1["closureTasksRemaining"] == pending1["closureTasksRemaining"] == 24 and handoff1["firstReviewTasksRemaining"] == queue1["firstReviewTasksRemaining"] == pending1["firstReviewTasksRemaining"] == 0),
         ("Preserved and new conditional case counts are 14 and 3", len(preserved_case_refs) == 14 and len(new_case_refs) == 3 and case_coverage["acceptedConditionalWitnessCases"]["newEvents"] == 179),
         ("No other spell was accepted or applied", acceptance["acceptedIds"] == acceptance["closedBlockerIds"][:0] + [ID] and application["appliedIds"] == [ID] and len(live1) == 24),
     ]
