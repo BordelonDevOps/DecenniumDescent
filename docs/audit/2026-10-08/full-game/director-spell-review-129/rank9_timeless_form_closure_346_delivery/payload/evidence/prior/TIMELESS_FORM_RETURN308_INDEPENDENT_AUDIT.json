@@ -1,0 +1,99 @@
+{
+  "id": "TIMELESS-FORM-RETURN308-INDEPENDENT-AUDIT",
+  "recordedAtUtc": "2026-10-31T03:39:32+00:00",
+  "status": "PASS",
+  "checkCount": 14,
+  "passedChecks": 14,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "check": "return archive outer byte/hash/CRC binding",
+      "passed": true,
+      "detail": "420750 bytes; SHA-256 8ac8a340bf8281f0ad8d61bc17cb60f54764e548650b1139c86c954431a2ad37; CRC32 aafdba7c"
+    },
+    {
+      "check": "return ZIP integrity, unique safe names and member count",
+      "passed": true,
+      "detail": "40 members; testzip passed"
+    },
+    {
+      "check": "outer exact allowlist and member bindings",
+      "passed": true,
+      "detail": "all return members are listed exactly once"
+    },
+    {
+      "check": "member manifest binding and self-exclusion",
+      "passed": true,
+      "detail": "MEMBER_MANIFEST.json binds 39 non-self members"
+    },
+    {
+      "check": "all delivery and internal manifest payload hashes/CRCs",
+      "passed": true,
+      "detail": "40 external and 39 internal payload rows checked"
+    },
+    {
+      "check": "scope and exact Director disposition",
+      "passed": true,
+      "detail": "only Timeless Form held under DF218-B03"
+    },
+    {
+      "check": "authority remains unchanged",
+      "passed": true,
+      "detail": "{\"acceptedUnapplied\": 0, \"completeStandaloneProcedures\": 546, \"pending\": 26, \"reviewedApplied\": 822, \"scopedInterfaces\": 173}"
+    },
+    {
+      "check": "quantitative replay is accurately scoped",
+      "passed": true,
+      "detail": "replay checks do not constitute a positive Time Stop encounter"
+    },
+    {
+      "check": "Director validation and semantic blocker agree",
+      "passed": true,
+      "detail": "5,063 supplied checks pass; DF218-B03 remains open"
+    },
+    {
+      "check": "external Packet308 source archive binding",
+      "passed": true,
+      "detail": "13044807 bytes; SHA-256 5b5fc37a0687435900a56f67fd75d97f4823738a8af6a1c346ad68936c64e4f1"
+    },
+    {
+      "check": "87 current source rows match Packet308 and the worktree",
+      "passed": true,
+      "detail": "exact byte length, SHA-256 and CRC32 checked per row"
+    },
+    {
+      "check": "all 11 prior cases and the procedure remain byte-exact",
+      "passed": true,
+      "detail": "compared with Packet308 history/Return218 members"
+    },
+    {
+      "check": "current spell state supports the hold",
+      "passed": true,
+      "detail": "Time Stop remains pending with operational=null and no accepted procedure pointer"
+    },
+    {
+      "check": "pending set and next Director priority reconcile",
+      "passed": true,
+      "detail": "26 pending unchanged; Invulnerable Sphere is next"
+    }
+  ],
+  "returnArchive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_defenseform8_return308_received/DD_Rank9_DefenseForm8_Director_Return308_HELD.zip",
+    "bytes": 420750,
+    "sha256": "8ac8a340bf8281f0ad8d61bc17cb60f54764e548650b1139c86c954431a2ad37",
+    "crc32": "aafdba7c"
+  },
+  "returnDelivery": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_defenseform8_return308_received/DD_Rank9_DefenseForm8_Director_Return308_HELD_DELIVERY.json",
+    "bytes": 41105,
+    "sha256": "89add6ae2b5279a361891920e8ec02d0309c13005fc3a88998f3785ceac3f17c",
+    "crc32": "396851db"
+  },
+  "sourcePacket": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_defenseform8_current_source_308_prepared/DD_Rank9_DefenseForm8_CurrentSource_308.zip",
+    "bytes": 13044807,
+    "sha256": "5b5fc37a0687435900a56f67fd75d97f4823738a8af6a1c346ad68936c64e4f1",
+    "crc32": "2f906f4e"
+  },
+  "interpretation": "Director HOLD verified; no acceptance, application, canonical index/catalog mutation, or positive Time Stop encounter is claimed."
+}
