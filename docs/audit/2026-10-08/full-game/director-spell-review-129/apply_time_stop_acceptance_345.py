@@ -718,6 +718,7 @@ def main() -> None:
         "status": "TIME_STOP_TF192_B01_ACCEPTED_AND_APPLIED_824_24_0",
         "authority": AFTER,
         "currentAuthority": AFTER,
+        "continuingPriorityOrder": [item for item in handoff0.get("continuingPriorityOrder", []) if item != ID],
         "scopeIds": [ID],
         "blockerIds": [],
         "indexBinding": index_ref,
@@ -772,6 +773,7 @@ def main() -> None:
         ("Backup restores exact pre-application index bytes", BACKUP.read_bytes() == before_raw),
         ("Pending audit, queue and handoff bind final index and authority", pending1["indexBinding"]["sha256"] == index_ref["sha256"] and queue1["currentIndexBinding"]["sha256"] == index_ref["sha256"] and handoff1["indexBinding"]["sha256"] == index_ref["sha256"] and handoff1["queueBinding"]["sha256"] == queue1_ref["sha256"]),
         ("Handoff closure and first-review counts match Queue344 and its pending audit", handoff1["closureTasksRemaining"] == queue1["closureTasksRemaining"] == pending1["closureTasksRemaining"] == 24 and handoff1["firstReviewTasksRemaining"] == queue1["firstReviewTasksRemaining"] == pending1["firstReviewTasksRemaining"] == 0),
+        ("Applied Time Stop is removed from the continuing priority order", ID not in handoff1["continuingPriorityOrder"] and handoff1["continuingPriorityOrder"] == queue1["continuingPriorityOrder"]),
         ("Preserved and new conditional case counts are 14 and 3", len(preserved_case_refs) == 14 and len(new_case_refs) == 3 and case_coverage["acceptedConditionalWitnessCases"]["newEvents"] == 179),
         ("No other spell was accepted or applied", acceptance["acceptedIds"] == acceptance["closedBlockerIds"][:0] + [ID] and application["appliedIds"] == [ID] and len(live1) == 24),
     ]
