@@ -1,0 +1,66 @@
+# SH330-LOCAL-CLOSURE-CONTRACT-01
+
+Director decision: CORRECTION AUTHORIZED; Summon Elemental Avatar remains HELD under SH202-B01 until the six focused tests below pass. This contract is NEW, spell-local review authorship. It is neither a recovered source nor an actual gameplay encounter.
+
+Scope: summon-elemental-avatar only. Authority stays 823 applied / 25 pending / 0 accepted-unapplied, with 547 complete procedures and 173 scoped interfaces. No application is authorized by this correction. Queue329's status and next target are supplied by the user; the exact Queue329 bytes were not available in this workspace. Exact Queue328/current-index evidence is bound separately and agrees with those counts. No queue is edited.
+
+## 1. Native operation and existing positive evidence
+
+Keep Druid/Mage/Wizard Conjuration rank 9, minimum class level 17, base 26 RP, Action, 120-foot formation range, V/S/F, concentration up to 60 elapsed seconds, native HP180, three attacks per round, elemental resistances and damaging aura. Preserve actual class modifiers, payment/cadence/counter history, formation/clearance, original-owner phase, finite-summon zero/Null and property settlement. Preserve the exact SH202-ELEMENTAL profile and all 13 Return285 target records unchanged. Their 1,438 events and 2,876 forward/2,876 inverse operations are previously verified evidence, not a new replay in this decision. Main A and 11 branches remain demonstrated; main B remains incomplete.
+
+## 2. Replace the external-provider review obligation
+
+For this identity's authored-procedure review only, a real acquired full-extra-turn grant, mixed fire/force attack, competing external control provider, or rider-only suppressor is no longer required to exercise its response interface. Complete conditional test operands may stand in for those incoming events. They must be labelled TEST_ONLY_CONDITIONAL_INPUT, with no invented grantor, acquisition, activation, payment, campaign occurrence or capability attributed to a real actor.
+
+This does not create a gameplay provider or waive source legality. Actual gameplay requires the external source's exact acquisition, eligible grantor/recipient, activation, permissions, costs and clocks. Extra Actions, initiative reordering and duration changes remain distinct from full turns. Unknown or invalid gameplay inputs are refused before changing Avatar state. No other spell's obligation changes. Retain SH202-H01 through H12 and add SH330-Q-EXTERNAL-INPUTS and SH330-Q-TEST-PROVENANCE.
+
+## 3. Immutable identity and three-strike accounting
+
+Use (formationSourceId, originalBodyId, numberedRoundId) as the canonical strike-cap key. Store source owner and current controller as separate provenance fields, not keys whose mutation can open a fresh allowance. Views, aliases and test projections of that same body refer to the same cap. A legal offensive execution reserves all three slots immediately. Each attempted strike or canceled later component consumes its reserved slot; no banking or reissue follows an illegal later target, interruption, death or suppression. Three strikes are components of one commanded offensive Action, never three Actions.
+
+Controller changes, extra-turn operands, attached-phase callbacks, initiative changes, suppression/resumption and save/load do not reset that key. A fourth attempted strike under the same key is denied. Only the next actual numbered round can open a new cap; it does not itself supply a command, Action or phase. A genuinely separately paid new creation is not manufactured by this interface; existing owner-wide command/offensive limits still prevent recast abuse. No new Avatar root, body, duration, HP or resource balance is created by any correction test.
+
+## 4. Opportunity and controller interface
+
+A conditional extra-turn notification grants no command opportunity, regular START/END, attached phase, aura pulse, Action/Bonus Action/Reaction refresh, recharge tick, death save, Ready extension or resource recovery. The Avatar contract consumes only explicitly authorized existing opportunities. Tests preserve the actual phase calendar and process every ordinary marker that elapses; they must not invoke a full regular-turn routine for a test notification.
+
+An externally validated controller-change result may change currentControllerId only, plus the following explicit command cleanup. Keep original source owner, casting class/stat lineage, formation time, original deadline, original-owner attached schedule, HP/conditions/cargo and spent ledgers. Invalidate any old controller's unexecuted order without refund or transfer. A new order requires the new controller's actual regular turn, available Bonus Action, shared command/offensive allowance, consciousness, perception, same plane, audible Common, line of effect and distance within 60 feet at issuance and execution. Execution uses the existing original-owner attached phase. If no such lawful future phase exists before expiry, no execution occurs. A changed controller or later restoration never revives an old order or a spent strike budget. This bridge does not decide priority between competing control sources; tests supply a clearly conditional, already-resolved winner and preserve the external relation record.
+
+## 5. Typed damage interface
+
+Avatar has fire/cold/lightning/thunder resistance, not force resistance. For one admitted composite damage input, snapshot the actual recipient's defenses and separate its typed components. Apply each applicable immunity/resistance once, rounding each resistant component down, then aggregate the resolved components once before tempHP/HP and one lifecycle settlement. Do not turn two independently rooted hits into one composite event or create a gameplay attack source.
+
+The required conditional calculation uses fire11 plus force8 with no other defense: floor(11/2)+8=13. An explicitly synthetic calculation snapshot with tempHP3 and HP30 resolves to tempHP0 and HP20; this is an interface oracle, not a claim that such wounds or an attacker existed in the preserved encounter. In a preserved-case fork use that fork's actual recipient values instead. Original ordinary/qualifying-Null settlement and dealer provenance remain unchanged. Unsupported bypass or dealer flags are not inferred.
+
+## 6. Same-family aura and suppression
+
+Preserve the 10-foot aura, 2d6 fire, DEX save, actual original class DC, all-other-creature inclusion, line of effect and exact body-volume intersection. Preserve the independent source roots of actually existing Avatar bodies; this contract creates no extra body. At a shared recipient marker, compare the rolled unsuppressed pools before recipient defenses. The greatest pool wins; ties use earlier application, then sourceId. The winning source supplies its own dealer/DC/root metadata. Every losing due opportunity is consumed. Resolve only the winning packet for this family; another spell family remains a separate packet. A canceled/suppressed opportunity cannot become a later catch-up pulse.
+
+For a validated aura-only suppression operand, clip only the stated aura intersection. An outside Avatar body keeps its existing physical state, command eligibility and unspent strike capability. The recipient's due aura opportunity is still consumed while clipped. Leaving the clipped region does not pulse or refill; the next independently scheduled eligible marker may resolve. Whole-body suppression remains the separate existing SH202-SUPPRESS rule. Ending the source during either suppression ends it permanently; removing suppression cannot resurrect it. Tests of this bridge grant no real suppression field or ability.
+
+## 7. Exposure-clock handoff
+
+Outside initiative, establish the recipient's source-relative exposure clock on first exposure; the first due opportunity is six elapsed seconds later. Carry its immutable nextDue timestamp and consumed-opportunity identity into initiative. Entering initiative creates neither a pulse nor a turn and does not restart the six-second exposure interval.
+
+NEW precise handoff: resolve that one already-pending due opportunity at its original timestamp, subject to actual presence, source survival and suppression. It is an exposure callback, not an actor START. If a regular START coincides, coalesce them into one family/recipient opportunity. Regular STARTs before the carried due timestamp create no replacement pulse. After the carried opportunity is consumed, switch to the recipient's actual regular START markers strictly later than that timestamp, using the existing companion/original-owner marker rule where applicable. Do not catch up missed exposure or invent a universal pulse schedule. No actor budget, recharge, Ready or source deadline changes during this handoff.
+
+## 8. Exact completion delta — six tests, no new source hunt
+
+Every test must identify its preserved fork or separately labelled synthetic operand, complete before/after values, timestamps, affected paths, forward/inverse patches and hashes. All unrelated fields must remain equal. Conditional imported state is not relabelled as an observed campaign event. Preserve all existing paid history and original expiry. Tests are REQUIRED_NOT_EXECUTED by this decision.
+
+* SH330-T01 — Extra-turn/strike cap. Fork after a valid offensive Action reserves three slots. Submit the conditional turn notification and an attempted fourth strike; both leave the cap, budgets, original phase, resources, recharge, Ready and deadline unchanged. Include canceled later strike slots and a next-numbered-round control to distinguish a fresh round from a refreshed opportunity. The gameplay path without an authorized provider must reject without mutation.
+* SH330-T02 — Typed damage. Demonstrate the fire11/force8 calculation and once-only tempHP/HP settlement above. Keep an unknown-provider gameplay attempt unavailable. Show that separate actual roots remain separate. This replaces only the missing mixed-source witness, not existing ordinary/Null lifecycle evidence.
+* SH330-T03 — Controller change. Test before execution and after all three slots were reserved/spent, with a conditional resolved new controller. Cancel the old order, retain spent caps/phase/stat lineage, reject an out-of-turn replacement, and admit a new command only when its actual existing budgets/calendar allow it. Returning control restores no order, HP or resource.
+* SH330-T04 — Aura arbitration. Use two declared conditional source operands with pools7 and9: only9 wins and both due entries are consumed. Include equal-pool earlier-application/sourceId ties, suppression of a would-be winner before resolution, and no later replay of a losing/canceled opportunity. Bind the winning DC/dealer separately; do not claim an actual second summon was cast.
+* SH330-T05 — Exposure/initiative handoff. Enter exposure at t0, carry due=t0+6, enter initiative at t0+2, and demonstrate no new pulse at entry or an earlier regular START. Resolve exactly once at the carried due marker, including a coincident-START fork; later pulses follow actual later regular markers. Outside/clipped/dead-source at due consumes or ends the pending opportunity without catch-up. Preserve all actor and source clocks.
+* SH330-T06 — Aura-only suppression. With body outside and an actually specified recipient/aura intersection clipped by a conditional suppression operand, preserve body/strikes while losing the due aura opportunity. Leaving before the next marker causes no pulse. Show next-marker resumption for a surviving source and no resumption if the original deadline passed while suppressed.
+
+No extra test is added for already demonstrated Main A, ordinary-zero, Null-zero, acquired dispel, suppression-expiry, countered/invalid formation, cargo/Falling, out-of-turn command or healing guard. Their exact records and qualifications remain. The successor completion packet need only bind this contract, unchanged prior evidence, the six new results and current authority.
+
+## 9. Terminal decision and application
+
+The absence of a recovered external turn provider or hypothetical mixed attacker is now a retained actual-use qualification, not an authoring acceptance prerequisite. The remaining SH202-B01 gate is completion and independent semantic/inverse verification of SH330-T01 through T06. No missing campaign fact or additional user permission is needed to build these explicitly conditional tests. The supplied records do not contain their complete results, so the identity is not accepted today.
+
+acceptedIds=[]; appliedIds=[]; heldIds=[summon-elemental-avatar]; applicationAuthorizedIds=[]. Authority remains 823/25/0; 25 closure tasks and zero first-review tasks. The next listed queue identity after this scoped correction is summon-herald-of-the-planes / SH202-B02. Immediate work on this identity is the six-test delta, not resubmitting an unchanged source packet.
+
+All runtime, implementation, human-play, playtest, balance, cosmology, domain-closure, whole-game completion and release gates stay closed. Native cards and canonical data remain unchanged. Preserved fixtures are authored review evidence; their individual original authors are not established and are not attributed to the user. This document's new rulings are authored by the Director in this response.

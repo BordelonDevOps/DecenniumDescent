@@ -1,0 +1,49 @@
+{
+  "authority": {
+    "reviewedApplied": 823,
+    "pending": 25,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 547,
+    "scopedInterfaces": 173
+  },
+  "sourceQueue": "input/CURRENT_SPELL_QUEUE_329.json",
+  "pendingAudit": "input/CURRENT25_PENDING_IDENTITY_AUDIT_329.json",
+  "indexBinding": {
+    "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+    "bytes": 1697606,
+    "sha256": "c6dd6d30703911864a3e2784d8abb3d79835b39bc01804c4335f80a1c4bea7b2",
+    "crc32": "ae581c7e"
+  },
+  "catalogBinding": {
+    "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+    "bytes": 5085187,
+    "sha256": "773fb0b3b0fdb501858ded33c02d90dc4db3009bd1b9f7112c244d998218f05b",
+    "crc32": "f06243cf"
+  },
+  "targetIndexRow": {
+    "id": "summon-elemental-avatar",
+    "name": "Summon Elemental Avatar",
+    "authoredStatus": "pending-authored-procedure",
+    "procedureFile": "catalog.json",
+    "procedurePointer": null,
+    "wholeCardPointer": "/spells/184",
+    "sourceStatus": "blocked-pending-operational-review",
+    "priorCatalogSelectionStatusUnchanged": true
+  },
+  "queueFields": {
+    "activeReview": {
+      "spellId": "summon-elemental-avatar",
+      "blockerIds": [
+        "SH202-B01"
+      ],
+      "packet": null,
+      "status": "DIRECTOR_AUTHORIZED_NEXT_AFTER_FORTRESS_HOLD"
+    },
+    "next": "summon-elemental-avatar",
+    "staleLegacyNextGroup": "rank9-planar-gates5",
+    "staleLegacyNextPendingIds": [
+      "conjure-demiplane-fortress"
+    ]
+  },
+  "resolution": "User scope, next and activeReview identify Avatar. Legacy nextGroup/nextPendingIds still identify Fortress and are nonblocking stale metadata. No queue edited."
+}
