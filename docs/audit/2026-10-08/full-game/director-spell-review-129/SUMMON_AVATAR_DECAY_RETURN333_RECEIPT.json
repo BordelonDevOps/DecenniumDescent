@@ -1,0 +1,108 @@
+{
+  "id": "SUMMON-AVATAR-DECAY-RETURN333-RECEIPT",
+  "recordedAtUtc": "2026-10-31T08:01:09+00:00",
+  "decision": "HOLD",
+  "blockerIds": [
+    "SH202-B03"
+  ],
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_summon_avatar_of_decay_return333_received/DD_SummonAvatarOfDecay_Director_Return333_HELD.zip",
+    "bytes": 180837,
+    "sha256": "93c63971f08e74f2526b050e9301b80ccff9746d4089e9d638306acdcef16f44",
+    "crc32": "926fb885"
+  },
+  "delivery": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_summon_avatar_of_decay_return333_received/DD_SummonAvatarOfDecay_Director_Return333_HELD_DELIVERY.json",
+    "bytes": 11596,
+    "sha256": "f7dcc30f7b02203d4704fc5e2c6f761b4c5118f30063692b1ba73f8e83950700",
+    "crc32": "f9e84d78"
+  },
+  "directorDecision": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_summon_avatar_of_decay_return333_received/payload/DIRECTOR_DECISION.json",
+    "bytes": 2986,
+    "sha256": "446254d4c4d562a25107c4f129e896117598cf69401f8b122907840602196b37",
+    "crc32": "40159c82"
+  },
+  "residualBranchDispositions": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_summon_avatar_of_decay_return333_received/payload/RESIDUAL_BRANCH_DISPOSITIONS.json",
+    "bytes": 4932,
+    "sha256": "2806b9b785dc98da47a47e5063b39bcf98ad6dbbabb02b4c6f2cefc7dee8a264",
+    "crc32": "cf701102"
+  },
+  "semanticFailureCheck": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_summon_avatar_of_decay_return333_received/payload/INDEPENDENT_SEMANTIC_FAILURE_CHECK.json",
+    "bytes": 1821,
+    "sha256": "f0d85d1fb7235ab249d39953431e1290e2049e92da78e59d8a73cf099b1f70c8",
+    "crc32": "46f33e0d"
+  },
+  "independentAudit": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/SUMMON_AVATAR_DECAY_RETURN333_INDEPENDENT_AUDIT.json",
+    "bytes": 9024,
+    "sha256": "edb7e9492b41d5659d99aed0d71e6b1d782a5248b32476cf5ff673f3f63f81ac",
+    "crc32": "3991ebc7"
+  },
+  "acceptedIds": [],
+  "appliedIds": [],
+  "heldIds": [
+    "summon-avatar-of-decay"
+  ],
+  "applicationAuthorizedIds": [],
+  "authority": {
+    "reviewedApplied": 823,
+    "pending": 25,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 547,
+    "scopedInterfaces": 173
+  },
+  "nextIdentity": "reverse-gravity-field",
+  "nextBlockerIds": [
+    "IE204-B02"
+  ],
+  "openResidualBranchIds": [
+    "SH333-R01",
+    "SH333-R02",
+    "SH333-R03",
+    "SH333-R04"
+  ],
+  "priorAvatarFindingsRemainOpen": [
+    "SH331-C01",
+    "SH331-C02",
+    "SH331-C03"
+  ],
+  "priorHeraldWitnessesRemainOpen": [
+    "SH332-W01",
+    "SH332-W02",
+    "SH332-W03",
+    "SH332-W04"
+  ],
+  "inputManifestFinding": {
+    "id": "SH333-E01",
+    "semanticBlocker": false,
+    "archiveSizeHashCrc": "PASS",
+    "zipCrc": "PASS",
+    "nineDataMembers": "PASS",
+    "internalManifest": "STALE_SELF_ROW_AND_UNLISTED_REQUEST",
+    "mismatches": [
+      {
+        "path": "MEMBER_MANIFEST.json",
+        "expected": {
+          "path": "MEMBER_MANIFEST.json",
+          "bytes": 1944,
+          "sha256": "50fcf1a17c1060e37ecd0ec747802826cfba73640d5faa7f36e01d513369ffc0",
+          "crc32": "9213031f"
+        },
+        "observed": {
+          "bytes": 2133,
+          "sha256": "6cdc155094f3719b66703401b59b579b8ff959d9e37e8f75ba576806ab40bd7c",
+          "crc32": "174617b2"
+        }
+      }
+    ],
+    "unlistedMembers": [
+      "REQUEST_333.md"
+    ],
+    "explanation": "The input manifest includes a previous 1944-byte self record, but its actual current size is2133. REQUEST_333.md is omitted. The external whole-ZIP binding protects both actual members. Original inputs are preserved unchanged and the Return333 output manifest lists every output payload; no semantic source fact is inferred from the mismatch. Correct the source package manifest on its next successor; no unchanged review needs resubmission."
+  },
+  "canonicalFilesChanged": false,
+  "applicationPerformed": false
+}

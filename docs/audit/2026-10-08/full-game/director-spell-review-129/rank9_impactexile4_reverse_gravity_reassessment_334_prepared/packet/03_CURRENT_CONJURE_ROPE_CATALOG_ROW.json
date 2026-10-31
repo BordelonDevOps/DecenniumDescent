@@ -1,0 +1,256 @@
+{
+  "id": "conjure-rope",
+  "name": "Conjure Rope",
+  "schools": [
+    "Conjuration"
+  ],
+  "status": "operational-playtest-draft",
+  "visibility": "public-source-review",
+  "classAccess": {
+    "Dragoon": {
+      "rank": 1,
+      "minimumClassLevel": 3,
+      "school": "Conjuration",
+      "baseRpCost": 2
+    },
+    "Druid": {
+      "rank": 1,
+      "minimumClassLevel": 1,
+      "school": "Conjuration",
+      "baseRpCost": 2
+    },
+    "Mage": {
+      "rank": 1,
+      "minimumClassLevel": 1,
+      "school": "Conjuration",
+      "baseRpCost": 2
+    },
+    "Ranger": {
+      "rank": 1,
+      "minimumClassLevel": 2,
+      "school": "Conjuration",
+      "baseRpCost": 2
+    },
+    "Shaman": {
+      "rank": 1,
+      "minimumClassLevel": 1,
+      "school": "Conjuration",
+      "baseRpCost": 2
+    },
+    "Tinker": {
+      "rank": 1,
+      "minimumClassLevel": 2,
+      "school": "Conjuration",
+      "baseRpCost": 2
+    },
+    "Wizard": {
+      "rank": 1,
+      "minimumClassLevel": 1,
+      "school": "Conjuration",
+      "baseRpCost": 2
+    }
+  },
+  "operational": {
+    "id": "conjure-rope",
+    "activation": "Action",
+    "rangeFeet": 50,
+    "targets": "One unoccupied space you perceive within range, initially containing the conjured rope as a coil.",
+    "duration": "10 minutes (600 seconds) after application; preserve this absolute deadline through initiative changes.",
+    "concentration": false,
+    "components": [
+      "V",
+      "S",
+      "F"
+    ],
+    "resolution": "Automatic creation. A command is a separate Bonus Action in initiative while you are within 50 feet of the rope and have line of effect to the portion you command. Outside initiative, each brief command and its operation takes one 6-second interval; commands cannot be multiplied at zero elapsed time.",
+    "effect": "Create one 50-foot physical magical rope weighing 10 pounds, with AC 11 and 5 HP for the entire rope, not per segment. It supports at most 300 pounds total static load, including creatures and carried gear, when actually secured to a real support that can bear the load. Each command can coil/uncoil; slither up to 20 feet along existing supporting surfaces; tie or untie itself around an unattended object or actual fixed anchor within 5 feet of part of the rope; form/loosen a simple loop or knot; or draw in its own loose slack. Its actual length, unobstructed path and slack must permit the operation. Afterward it stays physically arranged and can be used as ordinary rope even outside command range.",
+    "scaling": "None.",
+    "limitations": "One rope per caster; a successful new application ends the old. It cannot create an anchor, fly, levitate, attack, automatically grapple/Restrain a resisting creature, haul or forcibly move a creature/load, operate weapons/traps, or secure unlimited cargo with one command. Tightening or drawing slack cannot lift/drag an attached load for free. Ordinary climbing, knot/support and cargo interactions remain required as appropriate. The command uses the available Bonus Action and grants no additional action or companion-command budget. A commanded untie can remove support, after which ordinary Falling applies. Exceeding 300 pounds causes immediate failure/disappearance rather than a discretionary caster veto; count actual load including applicable mass changes and gear. At 0 HP, spell end or overload the whole rope vanishes and unsupported loads fall. Cutting it into pieces cannot duplicate HP or leave persistent rope/material. It is not saleable or reusable crafting stock. This is an HP object, not an Integrity object. Apply only damage/effects whose actual rules can affect this object; no HP/Integrity conversion, automatic creature condition, unstated resistance or immunity is supplied. An effect requiring an organic creature cannot affect it merely because it has HP. A successful new application owns its own endpoint; stale cleanup of an older application cannot end its replacement. A countered cast creates no replacement. Starting a concentration spell still ends the caster's incompatible prior concentration before interruption. Known/prepared access, actual class rank/level, components, line of effect, RP and other costs, Dissonance/Refrain, class hooks and interruption follow SPELL_INTEGRATION_RULES.md. Total cover blocks direct targeting and originating line of effect. No automatic upcast or level scaling unless this card explicitly prints companion-profile scaling.",
+    "designNotes": "PRESERVED: Action/50 feet/V/S/F and 50-foot rope obeying commands; 10-pound mass matches V6 ordinary hempen rope evidence. NEW: 10-minute nonconcentration duration, exact command actions/6-second outside cadence, 20-foot supported movement, 300-pound load, AC11/HP5 single-object profile and actual support/cargo limits. Instantaneous metadata is reconciled as creation of a finite object.",
+    "implementationStatus": "REVIEWED authored operational-playtest manuscript; runtime and balance validation pending",
+    "sourceCoreEntries": [
+      {
+        "index": 128,
+        "original": {
+          "school": "Conjuration",
+          "level": 1,
+          "name": "Conjure Rope",
+          "effect": "Create 50 ft of magical rope that obeys commands.",
+          "source_paragraph": 9138,
+          "casting_time": "1 action",
+          "range": "50 feet",
+          "duration": "Instantaneous",
+          "components": "V, S, F",
+          "resolution": "Automatic or opposed as described",
+          "tags": [
+            "Summoning"
+          ],
+          "rp_cost": 2
+        }
+      }
+    ],
+    "sourcePlacements": [
+      {
+        "name": "Conjure Rope",
+        "school": "Conjuration",
+        "level": 1,
+        "summary": "Create 50 ft of magical rope that obeys commands."
+      }
+    ],
+    "classAccessEvidence": {
+      "Dragoon": {
+        "rank": 1,
+        "minimumClassLevel": 3,
+        "school": "Conjuration",
+        "baseRpCost": 2
+      },
+      "Druid": {
+        "rank": 1,
+        "minimumClassLevel": 1,
+        "school": "Conjuration",
+        "baseRpCost": 2
+      },
+      "Mage": {
+        "rank": 1,
+        "minimumClassLevel": 1,
+        "school": "Conjuration",
+        "baseRpCost": 2
+      },
+      "Ranger": {
+        "rank": 1,
+        "minimumClassLevel": 2,
+        "school": "Conjuration",
+        "baseRpCost": 2
+      },
+      "Shaman": {
+        "rank": 1,
+        "minimumClassLevel": 1,
+        "school": "Conjuration",
+        "baseRpCost": 2
+      },
+      "Tinker": {
+        "rank": 1,
+        "minimumClassLevel": 2,
+        "school": "Conjuration",
+        "baseRpCost": 2
+      },
+      "Wizard": {
+        "rank": 1,
+        "minimumClassLevel": 1,
+        "school": "Conjuration",
+        "baseRpCost": 2
+      }
+    },
+    "sourceReview": [
+      "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_SOURCE_CONFERENCE.md",
+      "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_EXACT_REVIEW.md"
+    ],
+    "reviewEvidence": [
+      "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_EXACT_REVIEW.md"
+    ],
+    "authoringFile": "data/playtest/spell_drafts/batch_conjuration_rank1.json"
+  },
+  "additionalRpCost": 0,
+  "source": {
+    "catalogPath": "src/data/spells.js",
+    "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+    "catalogKey": "conjure-rope",
+    "original": {
+      "name": "Conjure Rope",
+      "level": 1,
+      "resonanceRank": 1,
+      "school": "Conjuration",
+      "schools": [
+        "Conjuration"
+      ],
+      "placements": [
+        {
+          "name": "Conjure Rope",
+          "school": "Conjuration",
+          "level": 1,
+          "summary": "Create 50 ft of magical rope that obeys commands."
+        }
+      ],
+      "classLevels": {
+        "Dragoon": 1,
+        "Druid": 1,
+        "Mage": 1,
+        "Ranger": 1,
+        "Shaman": 1,
+        "Tinker": 1,
+        "Wizard": 1
+      },
+      "classRanks": {
+        "Dragoon": 1,
+        "Druid": 1,
+        "Mage": 1,
+        "Ranger": 1,
+        "Shaman": 1,
+        "Tinker": 1,
+        "Wizard": 1
+      },
+      "classLearnLevels": {
+        "Dragoon": 3,
+        "Druid": 1,
+        "Mage": 1,
+        "Ranger": 2,
+        "Shaman": 1,
+        "Tinker": 2,
+        "Wizard": 1
+      },
+      "classSchools": {
+        "Dragoon": "Conjuration",
+        "Druid": "Conjuration",
+        "Mage": "Conjuration",
+        "Ranger": "Conjuration",
+        "Shaman": "Conjuration",
+        "Tinker": "Conjuration",
+        "Wizard": "Conjuration"
+      },
+      "castingTime": "Not specified in current rulebook",
+      "range": "Not specified in current rulebook",
+      "components": "Not specified in current rulebook",
+      "duration": "Not specified in current rulebook",
+      "description": "Create 50 ft of magical rope that obeys commands.",
+      "alternateSummaries": [],
+      "classes": [
+        "Dragoon",
+        "Druid",
+        "Mage",
+        "Ranger",
+        "Shaman",
+        "Tinker",
+        "Wizard"
+      ],
+      "status": "canon",
+      "source": "Player Rulebook — Spell Lists"
+    },
+    "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+    "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+    "coreEntries": [
+      {
+        "index": 128,
+        "original": {
+          "school": "Conjuration",
+          "level": 1,
+          "name": "Conjure Rope",
+          "effect": "Create 50 ft of magical rope that obeys commands.",
+          "source_paragraph": 9138,
+          "casting_time": "1 action",
+          "range": "50 feet",
+          "duration": "Instantaneous",
+          "components": "V, S, F",
+          "resolution": "Automatic or opposed as described",
+          "tags": [
+            "Summoning"
+          ],
+          "rp_cost": 2
+        }
+      }
+    ],
+    "possibleHistoricalAliases": []
+  },
+  "reviewFlags": [
+    "Core resolution requires an explicit operational interpretation"
+  ]
+}

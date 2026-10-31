@@ -1,0 +1,565 @@
+{
+  "id": "SH333-AURA-SUPPRESSED_HIGHER",
+  "provenance": "NEW Director-authored conditional component test; no campaign event or user authorship asserted.",
+  "scope": "Conditional aura resolver component only. No extra regular marker, free formation, full encounter or campaign existence is established.",
+  "providerActivationOrPaidEncounterDemonstrated": false,
+  "initialState": {
+    "conditional": true,
+    "sourceInputs": "Two same-family candidate pools at one recipient regular-start marker; no second caster acquisition/payment/formation claim. Each pool is within the native 2d6 completion. Geometry and eligibility are explicit predicate inputs, not located creatures.",
+    "clock": {
+      "recipient": "B",
+      "regularMarker": 100,
+      "extraTicks": 0
+    },
+    "recipient": {
+      "HP": 104,
+      "maxHP": 104,
+      "tempHP": 0,
+      "CON": 2,
+      "saveD20": 1,
+      "DC": 19,
+      "resistanceApplies": false,
+      "concentration": null,
+      "Wounds": 0,
+      "equipmentUnchanged": true
+    },
+    "pools": [
+      {
+        "id": "A:cast1",
+        "family": "summon-avatar-of-decay",
+        "application": 20,
+        "raw": 5,
+        "suppressed": false,
+        "consumed": false
+      },
+      {
+        "id": "B:conditional1",
+        "family": "summon-avatar-of-decay",
+        "application": 120,
+        "raw": 9,
+        "suppressed": true,
+        "consumed": false
+      }
+    ],
+    "allocation": {
+      "winner": null,
+      "damage": 0,
+      "familyMarkerConsumed": false,
+      "replayDenied": false
+    },
+    "resources": {
+      "RP": 64,
+      "Action": 1,
+      "BA": 1,
+      "Reaction": 1,
+      "recharge": {},
+      "ready": null
+    },
+    "custody": {
+      "transfers": []
+    }
+  },
+  "initialSHA256": "042d29f23a2cd8432361209f745f2b4dd50cc5851f1093c2a38294ac5cdda03c",
+  "events": [
+    {
+      "label": "One winning unsuppressed pool; consume all due opportunities including suppressed/losing roots",
+      "anchors": [
+        "input/05_RETURN285_AVATAR_PROCEDURE.json#/commonProcedure/aura"
+      ],
+      "before": {
+        "conditional": true,
+        "sourceInputs": "Two same-family candidate pools at one recipient regular-start marker; no second caster acquisition/payment/formation claim. Each pool is within the native 2d6 completion. Geometry and eligibility are explicit predicate inputs, not located creatures.",
+        "clock": {
+          "recipient": "B",
+          "regularMarker": 100,
+          "extraTicks": 0
+        },
+        "recipient": {
+          "HP": 104,
+          "maxHP": 104,
+          "tempHP": 0,
+          "CON": 2,
+          "saveD20": 1,
+          "DC": 19,
+          "resistanceApplies": false,
+          "concentration": null,
+          "Wounds": 0,
+          "equipmentUnchanged": true
+        },
+        "pools": [
+          {
+            "id": "A:cast1",
+            "family": "summon-avatar-of-decay",
+            "application": 20,
+            "raw": 5,
+            "suppressed": false,
+            "consumed": false
+          },
+          {
+            "id": "B:conditional1",
+            "family": "summon-avatar-of-decay",
+            "application": 120,
+            "raw": 9,
+            "suppressed": true,
+            "consumed": false
+          }
+        ],
+        "allocation": {
+          "winner": null,
+          "damage": 0,
+          "familyMarkerConsumed": false,
+          "replayDenied": false
+        },
+        "resources": {
+          "RP": 64,
+          "Action": 1,
+          "BA": 1,
+          "Reaction": 1,
+          "recharge": {},
+          "ready": null
+        },
+        "custody": {
+          "transfers": []
+        }
+      },
+      "after": {
+        "conditional": true,
+        "sourceInputs": "Two same-family candidate pools at one recipient regular-start marker; no second caster acquisition/payment/formation claim. Each pool is within the native 2d6 completion. Geometry and eligibility are explicit predicate inputs, not located creatures.",
+        "clock": {
+          "recipient": "B",
+          "regularMarker": 100,
+          "extraTicks": 0
+        },
+        "recipient": {
+          "HP": 99,
+          "maxHP": 104,
+          "tempHP": 0,
+          "CON": 2,
+          "saveD20": 1,
+          "DC": 19,
+          "resistanceApplies": false,
+          "concentration": null,
+          "Wounds": 0,
+          "equipmentUnchanged": true
+        },
+        "pools": [
+          {
+            "id": "A:cast1",
+            "family": "summon-avatar-of-decay",
+            "application": 20,
+            "raw": 5,
+            "suppressed": false,
+            "consumed": true
+          },
+          {
+            "id": "B:conditional1",
+            "family": "summon-avatar-of-decay",
+            "application": 120,
+            "raw": 9,
+            "suppressed": true,
+            "consumed": true
+          }
+        ],
+        "allocation": {
+          "winner": "A:cast1",
+          "damage": 5,
+          "familyMarkerConsumed": true,
+          "replayDenied": false
+        },
+        "resources": {
+          "RP": 64,
+          "Action": 1,
+          "BA": 1,
+          "Reaction": 1,
+          "recharge": {},
+          "ready": null
+        },
+        "custody": {
+          "transfers": []
+        }
+      },
+      "beforeSHA256": "042d29f23a2cd8432361209f745f2b4dd50cc5851f1093c2a38294ac5cdda03c",
+      "afterSHA256": "179c57227013f5951608fa2e93973ab44bdbbaa79bcfbdf65cf1ccbb62f3da40",
+      "forward": [
+        {
+          "op": "test",
+          "path": "/pools",
+          "value": [
+            {
+              "id": "A:cast1",
+              "family": "summon-avatar-of-decay",
+              "application": 20,
+              "raw": 5,
+              "suppressed": false,
+              "consumed": false
+            },
+            {
+              "id": "B:conditional1",
+              "family": "summon-avatar-of-decay",
+              "application": 120,
+              "raw": 9,
+              "suppressed": true,
+              "consumed": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/pools",
+          "value": [
+            {
+              "id": "A:cast1",
+              "family": "summon-avatar-of-decay",
+              "application": 20,
+              "raw": 5,
+              "suppressed": false,
+              "consumed": true
+            },
+            {
+              "id": "B:conditional1",
+              "family": "summon-avatar-of-decay",
+              "application": 120,
+              "raw": 9,
+              "suppressed": true,
+              "consumed": true
+            }
+          ]
+        },
+        {
+          "op": "test",
+          "path": "/recipient/HP",
+          "value": 104
+        },
+        {
+          "op": "replace",
+          "path": "/recipient/HP",
+          "value": 99
+        },
+        {
+          "op": "test",
+          "path": "/allocation",
+          "value": {
+            "winner": null,
+            "damage": 0,
+            "familyMarkerConsumed": false,
+            "replayDenied": false
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/allocation",
+          "value": {
+            "winner": "A:cast1",
+            "damage": 5,
+            "familyMarkerConsumed": true,
+            "replayDenied": false
+          }
+        }
+      ],
+      "inverse": [
+        {
+          "op": "test",
+          "path": "/allocation",
+          "value": {
+            "winner": "A:cast1",
+            "damage": 5,
+            "familyMarkerConsumed": true,
+            "replayDenied": false
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/allocation",
+          "value": {
+            "winner": null,
+            "damage": 0,
+            "familyMarkerConsumed": false,
+            "replayDenied": false
+          }
+        },
+        {
+          "op": "test",
+          "path": "/recipient/HP",
+          "value": 99
+        },
+        {
+          "op": "replace",
+          "path": "/recipient/HP",
+          "value": 104
+        },
+        {
+          "op": "test",
+          "path": "/pools",
+          "value": [
+            {
+              "id": "A:cast1",
+              "family": "summon-avatar-of-decay",
+              "application": 20,
+              "raw": 5,
+              "suppressed": false,
+              "consumed": true
+            },
+            {
+              "id": "B:conditional1",
+              "family": "summon-avatar-of-decay",
+              "application": 120,
+              "raw": 9,
+              "suppressed": true,
+              "consumed": true
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/pools",
+          "value": [
+            {
+              "id": "A:cast1",
+              "family": "summon-avatar-of-decay",
+              "application": 20,
+              "raw": 5,
+              "suppressed": false,
+              "consumed": false
+            },
+            {
+              "id": "B:conditional1",
+              "family": "summon-avatar-of-decay",
+              "application": 120,
+              "raw": 9,
+              "suppressed": true,
+              "consumed": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Reject replay at the same family/recipient marker; no second damage",
+      "anchors": [
+        "input/05_RETURN285_AVATAR_PROCEDURE.json#/commonProcedure/aura"
+      ],
+      "before": {
+        "conditional": true,
+        "sourceInputs": "Two same-family candidate pools at one recipient regular-start marker; no second caster acquisition/payment/formation claim. Each pool is within the native 2d6 completion. Geometry and eligibility are explicit predicate inputs, not located creatures.",
+        "clock": {
+          "recipient": "B",
+          "regularMarker": 100,
+          "extraTicks": 0
+        },
+        "recipient": {
+          "HP": 99,
+          "maxHP": 104,
+          "tempHP": 0,
+          "CON": 2,
+          "saveD20": 1,
+          "DC": 19,
+          "resistanceApplies": false,
+          "concentration": null,
+          "Wounds": 0,
+          "equipmentUnchanged": true
+        },
+        "pools": [
+          {
+            "id": "A:cast1",
+            "family": "summon-avatar-of-decay",
+            "application": 20,
+            "raw": 5,
+            "suppressed": false,
+            "consumed": true
+          },
+          {
+            "id": "B:conditional1",
+            "family": "summon-avatar-of-decay",
+            "application": 120,
+            "raw": 9,
+            "suppressed": true,
+            "consumed": true
+          }
+        ],
+        "allocation": {
+          "winner": "A:cast1",
+          "damage": 5,
+          "familyMarkerConsumed": true,
+          "replayDenied": false
+        },
+        "resources": {
+          "RP": 64,
+          "Action": 1,
+          "BA": 1,
+          "Reaction": 1,
+          "recharge": {},
+          "ready": null
+        },
+        "custody": {
+          "transfers": []
+        }
+      },
+      "after": {
+        "conditional": true,
+        "sourceInputs": "Two same-family candidate pools at one recipient regular-start marker; no second caster acquisition/payment/formation claim. Each pool is within the native 2d6 completion. Geometry and eligibility are explicit predicate inputs, not located creatures.",
+        "clock": {
+          "recipient": "B",
+          "regularMarker": 100,
+          "extraTicks": 0
+        },
+        "recipient": {
+          "HP": 99,
+          "maxHP": 104,
+          "tempHP": 0,
+          "CON": 2,
+          "saveD20": 1,
+          "DC": 19,
+          "resistanceApplies": false,
+          "concentration": null,
+          "Wounds": 0,
+          "equipmentUnchanged": true
+        },
+        "pools": [
+          {
+            "id": "A:cast1",
+            "family": "summon-avatar-of-decay",
+            "application": 20,
+            "raw": 5,
+            "suppressed": false,
+            "consumed": true
+          },
+          {
+            "id": "B:conditional1",
+            "family": "summon-avatar-of-decay",
+            "application": 120,
+            "raw": 9,
+            "suppressed": true,
+            "consumed": true
+          }
+        ],
+        "allocation": {
+          "winner": "A:cast1",
+          "damage": 5,
+          "familyMarkerConsumed": true,
+          "replayDenied": true
+        },
+        "resources": {
+          "RP": 64,
+          "Action": 1,
+          "BA": 1,
+          "Reaction": 1,
+          "recharge": {},
+          "ready": null
+        },
+        "custody": {
+          "transfers": []
+        }
+      },
+      "beforeSHA256": "179c57227013f5951608fa2e93973ab44bdbbaa79bcfbdf65cf1ccbb62f3da40",
+      "afterSHA256": "13422889cc053b947987ba37813d194b38ec8c904fd1740f21dc970173e9e3db",
+      "forward": [
+        {
+          "op": "test",
+          "path": "/allocation",
+          "value": {
+            "winner": "A:cast1",
+            "damage": 5,
+            "familyMarkerConsumed": true,
+            "replayDenied": false
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/allocation",
+          "value": {
+            "winner": "A:cast1",
+            "damage": 5,
+            "familyMarkerConsumed": true,
+            "replayDenied": true
+          }
+        }
+      ],
+      "inverse": [
+        {
+          "op": "test",
+          "path": "/allocation",
+          "value": {
+            "winner": "A:cast1",
+            "damage": 5,
+            "familyMarkerConsumed": true,
+            "replayDenied": true
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/allocation",
+          "value": {
+            "winner": "A:cast1",
+            "damage": 5,
+            "familyMarkerConsumed": true,
+            "replayDenied": false
+          }
+        }
+      ]
+    }
+  ],
+  "finalState": {
+    "conditional": true,
+    "sourceInputs": "Two same-family candidate pools at one recipient regular-start marker; no second caster acquisition/payment/formation claim. Each pool is within the native 2d6 completion. Geometry and eligibility are explicit predicate inputs, not located creatures.",
+    "clock": {
+      "recipient": "B",
+      "regularMarker": 100,
+      "extraTicks": 0
+    },
+    "recipient": {
+      "HP": 99,
+      "maxHP": 104,
+      "tempHP": 0,
+      "CON": 2,
+      "saveD20": 1,
+      "DC": 19,
+      "resistanceApplies": false,
+      "concentration": null,
+      "Wounds": 0,
+      "equipmentUnchanged": true
+    },
+    "pools": [
+      {
+        "id": "A:cast1",
+        "family": "summon-avatar-of-decay",
+        "application": 20,
+        "raw": 5,
+        "suppressed": false,
+        "consumed": true
+      },
+      {
+        "id": "B:conditional1",
+        "family": "summon-avatar-of-decay",
+        "application": 120,
+        "raw": 9,
+        "suppressed": true,
+        "consumed": true
+      }
+    ],
+    "allocation": {
+      "winner": "A:cast1",
+      "damage": 5,
+      "familyMarkerConsumed": true,
+      "replayDenied": true
+    },
+    "resources": {
+      "RP": 64,
+      "Action": 1,
+      "BA": 1,
+      "Reaction": 1,
+      "recharge": {},
+      "ready": null
+    },
+    "custody": {
+      "transfers": []
+    }
+  },
+  "finalSHA256": "13422889cc053b947987ba37813d194b38ec8c904fd1740f21dc970173e9e3db",
+  "unchangedPaths": [
+    "/clock",
+    "/resources",
+    "/custody"
+  ],
+  "observedReplay": "PASS",
+  "fullReverseTraversal": true
+}

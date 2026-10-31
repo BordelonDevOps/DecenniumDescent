@@ -1,0 +1,28 @@
+{
+  "id": "SH333-E01",
+  "semanticBlocker": false,
+  "archiveSizeHashCrc": "PASS",
+  "zipCrc": "PASS",
+  "nineDataMembers": "PASS",
+  "internalManifest": "STALE_SELF_ROW_AND_UNLISTED_REQUEST",
+  "mismatches": [
+    {
+      "path": "MEMBER_MANIFEST.json",
+      "expected": {
+        "path": "MEMBER_MANIFEST.json",
+        "bytes": 1944,
+        "sha256": "50fcf1a17c1060e37ecd0ec747802826cfba73640d5faa7f36e01d513369ffc0",
+        "crc32": "9213031f"
+      },
+      "observed": {
+        "bytes": 2133,
+        "sha256": "6cdc155094f3719b66703401b59b579b8ff959d9e37e8f75ba576806ab40bd7c",
+        "crc32": "174617b2"
+      }
+    }
+  ],
+  "unlistedMembers": [
+    "REQUEST_333.md"
+  ],
+  "explanation": "The input manifest includes a previous 1944-byte self record, but its actual current size is2133. REQUEST_333.md is omitted. The external whole-ZIP binding protects both actual members. Original inputs are preserved unchanged and the Return333 output manifest lists every output payload; no semantic source fact is inferred from the mismatch. Correct the source package manifest on its next successor; no unchanged review needs resubmission."
+}
