@@ -1,0 +1,5 @@
+# W01 Faction Champion Gate Witness — TEST_ONLY
+
+This packet submits only PG327-B03/W01 evidence. The case forks the preserved Return327 case A final state with both previously admitted matching Elementals intact. It adds a separately labeled hypothetical Wizard 9 and accepted AC5 Faction Champion, then records a paid Bonus Action command and 20-foot movement of a finite Humanoid body through the existing 10-by-15-foot aperture of an Elemental-selected Gate. No Gate exile, save, new cell, or new hard-denial claim occurs for the nonmatching Humanoid.
+
+Faction identity, allied status, standing, permission, acquisition/preparation, coordinates and party role labels are explicitly TEST_ONLY premises, not campaign facts. The unknown-type control is included unchanged and remains nondiagnostic. The exact AC5 model is extracted from the accepted archive, not taken from a later working copy. Repack01 was corrected before submission and is preserved as an unsubmitted superseded build. This packet is not accepted or applied; Gate identity remains HOLD and queue counts are unchanged.

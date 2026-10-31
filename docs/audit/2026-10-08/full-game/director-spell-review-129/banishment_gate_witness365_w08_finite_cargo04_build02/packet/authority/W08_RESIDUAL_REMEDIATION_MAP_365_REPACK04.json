@@ -1,0 +1,113 @@
+{
+  "id": "PG327-W08-REPACK04-RESIDUAL-REMEDIATION-MAP",
+  "priorRuling": "PG327-W08-365-REPACK03-DIRECTOR-HOLD",
+  "newWitnessStatus": "REPACK04_SUBMITTED; FRESH_DIRECTOR_REVIEW_REQUIRED",
+  "closedResidualIdsByPriorRuling": [
+    "W08-365-R1",
+    "W08-365-R2",
+    "W08-365-R4",
+    "W08-365-R5",
+    "W08-365-R6",
+    "W08-365-R7",
+    "W08-365-R8"
+  ],
+  "remainingResidualIdsFromPriorRuling": [
+    "W08-365-R3"
+  ],
+  "residuals": [
+    {
+      "id": "W08-365-R1",
+      "artifact": "sources/W08_CASTER_PROFILES_365_TESTONLY.json",
+      "evidence": [
+        "source-bound Mage17/Mage9 class levels and class histories",
+        "derived PB/M/S/spell attack/DC/Dissonance limit/RP",
+        "RP 50->24 and 26->16",
+        "spell selections and ready-to-cast profile records",
+        "currentStanding=3",
+        "conditions and concentration"
+      ]
+    },
+    {
+      "id": "W08-365-R2",
+      "artifact": "commonPrefix/events W08-E05 through W08-E14",
+      "evidence": [
+        "PG9-Q01 operative Mage Conjuration recorded while catalog Abjuration metadata remains unchanged",
+        "actual V/S/F and focus custody",
+        "cast range/perception/line-of-effect",
+        "Action consumption and RP payment",
+        "Dissonance/Refrain and concentration",
+        "both Counterspell windows; self explicitly no-attempt with eligibility not adjudicated; other participant declines"
+      ]
+    },
+    {
+      "id": "W08-365-R3",
+      "artifact": "commonPrefix/events and timeModel.scheduledMarkers",
+      "evidence": [
+        "chronological event time is nondecreasing from initial t=-10",
+        "both Mages receive every regular start at -6,0,...,66",
+        "the owner's -6 slot completes before the Gate caster's -6 slot; no active turns overlap",
+        "source-bound Guarded stance selection/expiry cites line 115; effects cite line 120; AC/Speed and movement allowances are derived",
+        "once-only refresh and unused allowance expiration",
+        "owner turn end before attached phase",
+        "command eligibility/global allowance",
+        "unused commanded Action expires; no damage branch",
+        "latest movement-phase ledger preserved with historical crossing expenditure",
+        "t60 expiry and t66 closure before equal-time starts"
+      ]
+    },
+    {
+      "id": "W08-365-R4",
+      "artifact": "W08-E21-LANTERN-LOAN, W08-E26-GATE-CROSSING, W08-E28-CHAMPION-SOURCE-EXPIRY",
+      "evidence": [
+        "consistent left-hand custody",
+        "explicit 0.5-foot cargo volume and [2,0,3] carried offset",
+        "numeric BAN-CELL-03 [-7.5,-7.5,0]..[7.5,7.5,15]",
+        "complete body/cargo admission sweep",
+        "admission cargo envelope preserved separately from dropped current envelope at [2,0,0.25]"
+      ]
+    },
+    {
+      "id": "W08-365-R5",
+      "artifact": "W08-E26-GATE-CROSSING and every closure projection",
+      "evidence": [
+        "fixed originAnchor=[105,100,0] from the actual admission endpoint",
+        "cargo projection=[107,100,0.25]"
+      ]
+    },
+    {
+      "id": "W08-365-R6",
+      "artifact": "terminalForks[*].finalState.world.terminalGeometryFixture",
+      "evidence": [
+        "continuous item envelope and floor support",
+        "stationary occupant and physical barrier AABBs",
+        "unique nearest adjacent corridor candidate",
+        "sealed pending bay with tiled neighbor volumes",
+        "no displacement, wall passage, or false creature conflict"
+      ]
+    },
+    {
+      "id": "W08-365-R7",
+      "artifact": "W08_SOURCE_BINDINGS_365.json, event sourcePointers and ARCHIVE_DELIVERY_365_W08_REPACK04.json",
+      "evidence": [
+        "Gate pointer /procedure and separate PG9 labels",
+        "equipment catalog /records/169",
+        "actual rules/BODY_EQUIPMENT.md member",
+        "resolvable procedure pointers",
+        "root ARCHIVE_MANIFEST.json path",
+        "replay/semantic review distinction; W08 remains outstanding in delivery metadata"
+      ]
+    },
+    {
+      "id": "W08-365-R8",
+      "artifact": "commonPrefix/events W08-E24 through W08-E27",
+      "evidence": [
+        "Champion Strike and 20HP training target removed",
+        "commanded Action recorded unused and expired at phase end",
+        "no damage, wound, save, target-turn, or opportunity-attack branch introduced"
+      ]
+    }
+  ],
+  "identityDisposition": "HOLD",
+  "applicationAuthorized": false,
+  "freshDirectorDecisionRequired": true
+}

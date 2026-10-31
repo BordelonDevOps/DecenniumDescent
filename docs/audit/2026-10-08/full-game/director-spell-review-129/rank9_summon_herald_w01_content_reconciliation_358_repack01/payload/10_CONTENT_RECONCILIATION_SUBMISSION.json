@@ -1,0 +1,186 @@
+{
+  "id": "SH202-W01-CONTENT-RECONCILIATION-SUBMISSION-358",
+  "recordedAtUtc": "2026-10-31T15:36:55+00:00",
+  "status": "SOURCE_BOUND_PROPOSAL_SUBMITTED_FOR_DIRECTOR_RULING_NOT_APPROVED",
+  "spellId": "summon-herald-of-the-planes",
+  "blockerId": "SH202-B02",
+  "minimumWitnessId": "SH332-W01",
+  "targetIdentity": "Lumen of the Shattered Thread",
+  "authorityRequested": "GPT serving as Director-integration authority; GPT confirmed in the live conversation that it can serve in this role, and this submission requests its explicit W01 ruling.",
+  "sourceBindingRefs": {
+    "structuredRoot": {
+      "path": "src/bestiary_data_full.json",
+      "sourceCommit": "33c12135dcdf21a089a4ec962ca7d8935db3f9eb",
+      "bytes": 1313090,
+      "sha256": "5717861200b3c229be4248fc67f1b7c6903da63747bd5b0d4d6b4ea892057b55",
+      "gitBlobSHA1": "ddd3bcf88e79b101b09602ea77261f0366850cbb"
+    },
+    "structuredReviewBibleMirror": {
+      "path": "DescentReviewChanges/ReviewBible/src/bestiary_data_full.json",
+      "sourceCommit": "33c12135dcdf21a089a4ec962ca7d8935db3f9eb",
+      "bytes": 1313090,
+      "sha256": "5717861200b3c229be4248fc67f1b7c6903da63747bd5b0d4d6b4ea892057b55",
+      "gitBlobSHA1": "ddd3bcf88e79b101b09602ea77261f0366850cbb"
+    },
+    "directorSealedSource": {
+      "path": "docs/bestiary/Decennium_Descent_Monster_Manual_Canon_Rewrite_Source_Pack/Directors_Sealed_Bestiary_Source/entries/lumen-of-the-shattered-thread.md",
+      "sourceCommit": "33c12135dcdf21a089a4ec962ca7d8935db3f9eb",
+      "bytes": 5809,
+      "sha256": "7c48f180f467638943fd138a837f61caebef300b8ee055d67e7935a5771dee66",
+      "gitBlobSHA1": "5de6ef2cada069f81f7147823ec182c20001a502"
+    },
+    "publicHistoricalRecord": {
+      "path": "docs/bestiary/Decennium_Descent_Monster_Manual_Canon_Rewrite_Source_Pack/Monster_Manual_of_the_Known_Descent_Source/entries/lumen-sixth-gate-disaster-record.md",
+      "sourceCommit": "33c12135dcdf21a089a4ec962ca7d8935db3f9eb",
+      "bytes": 3106,
+      "sha256": "7881166850db75979572e1c6532449d05e942ee4aac404e9f617de63478bc47e",
+      "gitBlobSHA1": "23eaa33db66343a80b4bcfee57823cd13f596a81"
+    },
+    "canonManifest": {
+      "path": "docs/canon/CANON_MANIFEST.json",
+      "sourceCommit": "33c12135dcdf21a089a4ec962ca7d8935db3f9eb",
+      "bytes": 24525,
+      "sha256": "87fbe5800daaf8e263c540d6bbe40c178cf88633f6a07738ab6f23f53957e61e",
+      "gitBlobSHA1": "1d2e305ef233b75495bbcdfbd0d16129343a8ac9"
+    }
+  },
+  "conflictResolutionProposal": {
+    "governingAbilities": {
+      "STR": 19,
+      "DEX": 16,
+      "CON": 22,
+      "INT": 9,
+      "WIS": 12,
+      "CHA": 11
+    },
+    "governingResistances": [
+      "poison"
+    ],
+    "governingConditionImmunities": [
+      "poisoned"
+    ],
+    "reason": "The canon manifest names Directors_Sealed_Bestiary_Source as the canonical Director-domain authority. Preserve the structured entry unchanged as a non-authoritative conflicting ingest record; its gate-guardian-trusted/non-draft metadata is provenance, not a supersession decision.",
+    "structuredConflictsPreserved": {
+      "abilities": {
+        "strength": 20,
+        "dexterity": 18,
+        "constitution": 18,
+        "intelligence": 18,
+        "wisdom": 20,
+        "charisma": 24
+      },
+      "resistances": [],
+      "conditionImmunities": []
+    }
+  },
+  "sourceFactsAndUnresolvedFields": {
+    "threadLance": {
+      "sourceAttack": {
+        "id": "thread-lance",
+        "name": "Thread Lance",
+        "kind": "attack",
+        "actionCost": "action",
+        "usage": "atWill",
+        "count": 3,
+        "targets": {
+          "count": 1,
+          "scope": "creature"
+        },
+        "damage": [
+          {
+            "dice": "4d10+10",
+            "average": 32.0,
+            "type": "radiant"
+          }
+        ],
+        "attackBonus": 11
+      },
+      "sealedDescription": "One target; +11 to hit; 4d10+10 radiant; reach/range absent."
+    },
+    "threadBind": {
+      "sourceAttack": {
+        "id": "thread-bind",
+        "name": "Thread Bind",
+        "kind": "attack",
+        "actionCost": "action",
+        "usage": "atWill",
+        "count": 1,
+        "targets": {
+          "count": 1,
+          "scope": "creature"
+        },
+        "damage": [
+          {
+            "dice": "3d10+8",
+            "average": 24.5,
+            "type": "force"
+          }
+        ],
+        "attackBonus": 11
+      },
+      "sealedDescription": "One target; +11 to hit; 3d10+8 force; reach/range absent."
+    },
+    "threadShatter": {
+      "sourceAttack": {
+        "id": "thread-shatter",
+        "name": "Thread Shatter",
+        "kind": "save",
+        "actionCost": "action",
+        "usage": "recharge",
+        "recharge": {
+          "minimumRoll": 5,
+          "dieSides": 6
+        },
+        "targets": {
+          "scope": "creatures-in-area"
+        },
+        "damage": [
+          {
+            "dice": "8d10",
+            "average": 44.0,
+            "type": "force"
+          }
+        ],
+        "save": {
+          "ability": "dexterity",
+          "dc": 21,
+          "onSuccess": "half"
+        },
+        "range": {
+          "radiusFt": 20
+        }
+      },
+      "sourcedRadiusFt": 20,
+      "authorityQuestion": "Adopt the source-bound 20-foot radius? The exact origin/placement is not specified by either record."
+    },
+    "body": {
+      "sourceSize": "Large",
+      "preciseOccupiedDimensions": null,
+      "authorityQuestion": "Specify the occupied spatial envelope/fit rule without silently treating the size label as exact dimensions."
+    },
+    "seal": {
+      "sourceRule": "Gate-Bound: cannot be permanently displaced from its arena while the Seal remains active.",
+      "authorityQuestion": "Define whether and under what bounded call/return rule a temporary call can coexist with this constraint; no second Lumen/body/projection may be created."
+    },
+    "arena": {
+      "sourceRule": "The Guardian's body, Seal, and terrain operate as one examination.",
+      "authorityQuestion": "Bound the test call so it cannot transport/move the Seal or arena, open the Gate, or assert a campaign event."
+    },
+    "phase": {
+      "sourceRules": [
+        "Escalation Pulse; Thread Shatter recharges on 5–6; visible signs precede its first use.",
+        "The entry says the Guardian escalates by phase and uses a Seal Pulse."
+      ],
+      "authorityQuestion": "Specify state/phase/uses preservation and any phase boundary while called; do not invent an unrecorded phase schedule."
+    }
+  },
+  "proposedNewRulesRequiringExplicitDirectorAuthorship": [
+    "Exact Thread Lance and Thread Bind reach/range values, since neither bound profile supplies them.",
+    "Thread Shatter origin and placement, if the 20-foot radius is adopted.",
+    "Lumen occupied geometry/body-fit semantics required for arrival and return.",
+    "The temporary call's interaction with Gate-Bound, unique-body custody, and blocked return.",
+    "Phase, use/recharge, Seal, arena, and return-state preservation needed for W03/W04."
+  ],
+  "w02Boundary": "Owner has authorized a hypothetical TEST_ONLY W02 state only after W01 approval. No W02 state has been created in this packet; no campaign consent, availability, resources, or permissions are asserted.",
+  "requestedDirectorDisposition": "Please complete the exact SH332-W01 source reconciliation with explicit choices for every requiredRulings field, identify which values are source facts versus new Director-authored spell-local rules, and issue W01 APPROVED or list the remaining exact null paths. W01 approval is a separate decision from W02, W03, W04, and whole-identity acceptance."
+}

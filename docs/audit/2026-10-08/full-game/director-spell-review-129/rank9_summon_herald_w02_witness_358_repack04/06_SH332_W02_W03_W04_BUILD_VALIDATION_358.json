@@ -1,0 +1,103 @@
+{
+  "id": "SH332-W02-W03-W04-BUILD-VALIDATION-358",
+  "recordedAtUtc": "2026-10-31T16:36:30+00:00",
+  "status": "PASS",
+  "checks": [
+    {
+      "id": "W01_CLEAN_REPACK_BINDING",
+      "passed": true,
+      "detail": "W01 remains approved and bound to exact clean Repack01 SHA-256."
+    },
+    {
+      "id": "W02_OWNER_AUTHORIZATION",
+      "passed": true,
+      "detail": "Owner authorization applies only after W01 approval and only to W02/W03/W04."
+    },
+    {
+      "id": "W02_NO_CAMPAIGN_ASSERTION",
+      "passed": true,
+      "detail": "All synthetic state facts are expressly hypothetical."
+    },
+    {
+      "id": "W17D_LEGAL_ROUTE",
+      "passed": true,
+      "detail": "The extracted evidence file is bound at /profile; /W17D is explicitly preserved as the pointer within its parent ACTOR_PROFILES.json archive member."
+    },
+    {
+      "id": "GEOMETRY_SAME_ARENA",
+      "passed": true,
+      "detail": "Caster target, body-to-body line and 10-cube fit remain within same hypothetical bounded arena."
+    },
+    {
+      "id": "ONE_LUMEN_PER_RUN",
+      "passed": true,
+      "detail": "Each serial scenario uses the same unique Lumen key and never duplicates the body."
+    },
+    {
+      "id": "PAID_CALL_COSTS",
+      "passed": true,
+      "detail": "Every paid cast attempt uses the approved 26 RP cost."
+    },
+    {
+      "id": "USEFUL_AID_ON_ORIGINAL_TURN",
+      "passed": true,
+      "detail": "Each primary positive witness records useful aid on Lumen's original regular initiative."
+    },
+    {
+      "id": "FULL_INVERSE_TRAVERSAL",
+      "passed": true,
+      "detail": "Each event carries complete pre/post states, forward and field-scoped inverse patches; full terminal state reverses to an equal, hash-matched starting state in exact reverse order."
+    },
+    {
+      "id": "ORDERED_NONOVERLAPPING_SIX_SECOND_TURN_CALENDAR",
+      "passed": true,
+      "detail": "All W03/W04 starts follow distinct ordered initiative phases; each slot ends immediately before the next, each refresh occurs once, and every end through the witness endpoint is replayed."
+    },
+    {
+      "id": "SOURCE_LEGAL_READY_COMPETING_CALL",
+      "passed": true,
+      "detail": "B pays and casts at Ready preparation, holds concentration, declines Counterspell at the later cast trigger, spends one Reaction to release before later events, manifests the call at release while preserving the sealed W01 preparation+60000ms deadline (59000ms remaining), and wins the unique reservation before A resolves."
+    },
+    {
+      "id": "FULL_STATE_UNIQUE_IDENTITY",
+      "passed": true,
+      "detail": "Every full replay state carries exactly one Lumen identity/body."
+    },
+    {
+      "id": "LIFECYCLE_COVERAGE",
+      "passed": true,
+      "detail": "Normal/blocked returns, suppression, death/corpse, cargo and concurrent-call exclusion covered."
+    },
+    {
+      "id": "COUNTERSPELL_WINDOWS",
+      "passed": true,
+      "detail": "Each W03 casting window records exact Counterspell ineligibility; both W04 opposite-caster windows record automatic feature, perception, range, available Reaction/recharge and explicit no-cost declines."
+    },
+    {
+      "id": "DEATH_ENDS_AT_TRIGGER",
+      "passed": true,
+      "detail": "Confirmed death ends concentration/call and returns the same corpse at 12000ms; 12001ms is a record-only note, not a later termination."
+    },
+    {
+      "id": "GATE_BOUND_SCOPE",
+      "passed": true,
+      "detail": "Full terminal states remain inside the same TEST_ONLY home arena and plane, at the recorded origin; Seal remains active."
+    }
+  ],
+  "witnessCount": 4,
+  "coverage": {
+    "W03_normal_return": true,
+    "W03_suppression": true,
+    "W03_death_corpse": true,
+    "W04_paid_concurrent_exclusion": true,
+    "W04_blocked_return_and_independent_recovery": true,
+    "cargo": true,
+    "usefulAid": true,
+    "forwardInverse": true
+  },
+  "limitations": [
+    "Builder sanity checks only; a separate replay verifier runs below.",
+    "Conditional TEST_ONLY evidence is not identity acceptance.",
+    "No canonical catalog, runtime, public spell procedure, or campaign history is modified."
+  ]
+}

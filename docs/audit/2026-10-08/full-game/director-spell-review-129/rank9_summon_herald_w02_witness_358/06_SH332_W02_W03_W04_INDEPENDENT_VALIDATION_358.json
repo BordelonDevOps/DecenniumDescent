@@ -1,0 +1,88 @@
+{
+  "id": "SH332-W02-W03-W04-INDEPENDENT-VALIDATION-358",
+  "recordedAtUtc": "2026-10-31T16:01:46+00:00",
+  "status": "PASS",
+  "checks": [
+    {
+      "id": "W01_CLEAN_REPACK_BINDING",
+      "passed": true,
+      "detail": "W01 remains approved and bound to exact clean Repack01 SHA-256."
+    },
+    {
+      "id": "W02_OWNER_AUTHORIZATION",
+      "passed": true,
+      "detail": "Owner authorization applies only after W01 approval and only to W02/W03/W04."
+    },
+    {
+      "id": "W02_NO_CAMPAIGN_ASSERTION",
+      "passed": true,
+      "detail": "All synthetic state facts are expressly hypothetical."
+    },
+    {
+      "id": "W17D_LEGAL_ROUTE",
+      "passed": true,
+      "detail": "Bound W17D has exact acquired, spellbook and prepared route for rank-9 Herald."
+    },
+    {
+      "id": "GEOMETRY_SAME_ARENA",
+      "passed": true,
+      "detail": "Caster target, body-to-body line and 10-cube fit remain within same hypothetical bounded arena."
+    },
+    {
+      "id": "ONE_LUMEN_PER_RUN",
+      "passed": true,
+      "detail": "Each serial scenario uses the same unique Lumen key and never duplicates the body."
+    },
+    {
+      "id": "PAID_CALL_COSTS",
+      "passed": true,
+      "detail": "Every paid cast attempt uses the approved 26 RP cost."
+    },
+    {
+      "id": "USEFUL_AID_ON_ORIGINAL_TURN",
+      "passed": true,
+      "detail": "Each primary positive witness records useful aid on Lumen's original regular initiative."
+    },
+    {
+      "id": "FULL_INVERSE_TRAVERSAL",
+      "passed": true,
+      "detail": "Each scenario supplies full pre/post states, executable reversible patches, exact reverse order and baseline hash equality."
+    },
+    {
+      "id": "SIX_SECOND_TURN_CALENDAR",
+      "passed": true,
+      "detail": "All scripted regular slots repeat on a six-second cycle; caster B's phase is 10ms within round0, and the blocker moves at 12s and 66s nine rounds apart."
+    },
+    {
+      "id": "FULL_STATE_UNIQUE_IDENTITY",
+      "passed": true,
+      "detail": "Every full replay state carries exactly one Lumen identity/body."
+    },
+    {
+      "id": "LIFECYCLE_COVERAGE",
+      "passed": true,
+      "detail": "Normal/blocked returns, suppression, death/corpse, cargo and concurrent-call exclusion covered."
+    },
+    {
+      "id": "GATE_BOUND_SCOPE",
+      "passed": true,
+      "detail": "All terminal endpoints are within the one TEST_ONLY home arena; no permanent displacement or Seal mutation."
+    }
+  ],
+  "witnessCount": 4,
+  "coverage": {
+    "W03_normal_return": true,
+    "W03_suppression": true,
+    "W03_death_corpse": true,
+    "W04_paid_concurrent_exclusion": true,
+    "W04_blocked_return_and_independent_recovery": true,
+    "cargo": true,
+    "usefulAid": true,
+    "forwardInverse": true
+  },
+  "limitations": [
+    "This is a conditional TEST_ONLY witness package, not identity acceptance.",
+    "The separate second-caster premise and lethal-death classification are expressly submitted for Director validation.",
+    "No canonical catalog, runtime, public spell procedure, or campaign history is modified."
+  ]
+}

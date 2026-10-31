@@ -1,0 +1,226 @@
+{
+  "id": "W08-CASTER-PROFILES-365-TESTONLY-REPACK02",
+  "evidenceClass": "explicit conditional TEST_ONLY actor profiles; not campaign characters",
+  "profileSourceBindings": {
+    "mageClass": {
+      "member": "sources/MAGE_CLASS_PLAYTEST.json",
+      "sha256": "c64782e192e2e63e5abed5728f9213c9d4cf956bce1a75da7a156dbfd1141e0b",
+      "enginePointer": "/engine",
+      "rpLevel9Pointer": "/rpByClassLevel/8",
+      "rpLevel17Pointer": "/rpByClassLevel/16",
+      "counterspellPointer": "/cards/23"
+    },
+    "rulebook": {
+      "member": "sources/PLAYER_RULEBOOK_V6_SOURCE.txt",
+      "proficiencyRuleLine": 142,
+      "dissonanceLimitLine": 8424,
+      "rankDissonanceLine": 8425
+    },
+    "gateAccess": {
+      "member": "authority/CURRENT_BANISHMENT_GATE_CATALOG_CARD.json",
+      "pointer": "/classAccess/Mage",
+      "record": {
+        "rank": 9,
+        "minimumClassLevel": 17,
+        "school": "Abjuration",
+        "baseRpCost": 26
+      }
+    },
+    "factionChampion": {
+      "archiveMember": "candidate/SPELLS_MODEL.json",
+      "bytes": 337035,
+      "sha256": "d782569ed8ef558f4edf54634e0d8c19926e24e2437528f1769b5ef3ce594898",
+      "sourceJsonPointer": "/spells/14",
+      "profilePointer": "/profiles/AC5-PROFILE-FACTION-CHAMPION-01",
+      "sharedRulePointer": "/sharedRules/AC5-CHAMPION-ALLY-01"
+    },
+    "focusItem": {
+      "member": "sources/EQUIPMENT_SOURCE_CATALOG.json",
+      "pointer": "/records/111",
+      "recordId": "arcane-focuses.wand"
+    }
+  },
+  "derivedFormulas": {
+    "spellAttack": "normal total-character PB + Intelligence modifier",
+    "spellSaveDC": "8 + normal total-character PB + Intelligence modifier",
+    "MageM": "max(1, Intelligence modifier)",
+    "MageS": "1/2/3/4 at Mage levels 1/5/11/17",
+    "dissonanceLimit": "2 + PB + positive spellcasting ability modifier",
+    "rankDissonance": "rank1-5 +1; rank6-9 +2; immediate repeats add Refrain"
+  },
+  "profiles": [
+    {
+      "profileId": "W08-MAGE17-GATECASTER-TESTONLY",
+      "actorId": "actor-gate-caster-w08",
+      "class": "Mage",
+      "classLevel": 17,
+      "totalCharacterLevel": 17,
+      "classPathHistory": [
+        {
+          "level": 3,
+          "path": "Arcanist"
+        },
+        {
+          "level": 10,
+          "path": "Archmage"
+        }
+      ],
+      "abilityScores": {
+        "STR": 10,
+        "DEX": 14,
+        "CON": 14,
+        "INT": 18,
+        "WIS": 12,
+        "CHA": 10
+      },
+      "derived": {
+        "PB": 6,
+        "IntModifier": 4,
+        "M": 4,
+        "S": 4,
+        "RPMaximum": 50,
+        "spellAttack": 10,
+        "spellSaveDC": 18,
+        "dissonanceLimit": 12
+      },
+      "testOnlyVitals": {
+        "hp": 100,
+        "ac": 15,
+        "usedByW08Predicates": false
+      },
+      "conditions": [],
+      "conscious": true,
+      "incapacitated": false,
+      "silenced": false,
+      "concentrationBeforeGate": null,
+      "classCardHistory": [
+        {
+          "cardId": "mage.arch.counterspell",
+          "selectedAtMageLevel": 9,
+          "selectionMethod": "Mage class-card choice; card minimum level 9",
+          "selected": true,
+          "sourcePointer": "/cards/23"
+        }
+      ],
+      "spellbookHistory": [
+        {
+          "spellId": "mage.arch.counterspell",
+          "kind": "Mage class card",
+          "acquiredAtMageLevel": 9,
+          "preparedForWitness": true,
+          "sourcePointer": "/cards/23"
+        },
+        {
+          "spellId": "banishment-gate",
+          "kind": "ordinary Mage spell",
+          "acquiredAtMageLevel": 17,
+          "preparedForWitness": true,
+          "sourceAccess": {
+            "rank": 9,
+            "minimumClassLevel": 17,
+            "school": "Abjuration",
+            "baseRpCost": 26
+          },
+          "acquisitionFact": "explicit TEST_ONLY spellbook history; no automatic Wizard access assumed"
+        }
+      ],
+      "focus": {
+        "objectId": "object-mage-focus-w08-gate-01",
+        "recordId": "arcane-focuses.wand",
+        "heldIn": "right hand",
+        "custody": "actor-gate-caster-w08",
+        "somaticHand": "left hand",
+        "verbalAvailable": true
+      }
+    },
+    {
+      "profileId": "W08-MAGE9-CHAMPION-OWNER-TESTONLY",
+      "actorId": "actor-champion-owner-w08",
+      "class": "Mage",
+      "classLevel": 9,
+      "totalCharacterLevel": 9,
+      "classPathHistory": [
+        {
+          "level": 3,
+          "path": "Arcanist"
+        }
+      ],
+      "abilityScores": {
+        "STR": 10,
+        "DEX": 14,
+        "CON": 14,
+        "INT": 18,
+        "WIS": 12,
+        "CHA": 10
+      },
+      "derived": {
+        "PB": 4,
+        "IntModifier": 4,
+        "M": 4,
+        "S": 2,
+        "RPMaximum": 26,
+        "spellAttack": 8,
+        "spellSaveDC": 16,
+        "dissonanceLimit": 10
+      },
+      "testOnlyVitals": {
+        "hp": 80,
+        "ac": 15,
+        "usedByW08Predicates": false
+      },
+      "conditions": [],
+      "conscious": true,
+      "incapacitated": false,
+      "silenced": false,
+      "concentrationBeforeChampion": null,
+      "classCardHistory": [
+        {
+          "cardId": "mage.arch.counterspell",
+          "selectedAtMageLevel": 9,
+          "selectionMethod": "Mage class-card choice; card minimum level 9",
+          "selected": true,
+          "sourcePointer": "/cards/23"
+        }
+      ],
+      "spellbookHistory": [
+        {
+          "spellId": "mage.arch.counterspell",
+          "kind": "Mage class card",
+          "acquiredAtMageLevel": 9,
+          "preparedForWitness": true,
+          "sourcePointer": "/cards/23"
+        },
+        {
+          "spellId": "faction-champion",
+          "kind": "ordinary Mage spell",
+          "acquiredAtMageLevel": 9,
+          "preparedForWitness": true,
+          "sourceAccess": {
+            "rank": 5,
+            "minimumClassLevel": 9,
+            "school": "Conjuration",
+            "baseRpCost": 10
+          },
+          "acquisitionFact": "explicit TEST_ONLY spellbook history; class access and minimum level are source-bound"
+        }
+      ],
+      "factionEligibility": {
+        "factionId": "FACTION-W08-TEST-A",
+        "alliedStatus": true,
+        "currentStanding": 3,
+        "invocationPermission": true,
+        "aidProhibition": false,
+        "membershipInferred": false
+      },
+      "focus": {
+        "objectId": "object-mage-focus-w08-owner-01",
+        "recordId": "arcane-focuses.wand",
+        "heldIn": "right hand",
+        "custody": "actor-champion-owner-w08",
+        "somaticHand": "left hand",
+        "verbalAvailable": true
+      }
+    }
+  ],
+  "scopeNote": "The selected-elemental focus is Fire only as an explicit profile field; neither test spell is elemental, so no Nuke Chain benefit is invoked. No actual HP/AC-derived result is tested."
+}

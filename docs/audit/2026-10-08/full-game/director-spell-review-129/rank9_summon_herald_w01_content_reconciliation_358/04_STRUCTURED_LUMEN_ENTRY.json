@@ -1,0 +1,173 @@
+{
+  "id": "SH202-W01-STRUCTURED-LUMEN-ENTRY-358",
+  "sourcePath": "src/bestiary_data_full.json",
+  "sourceCommit": "33c12135dcdf21a089a4ec962ca7d8935db3f9eb",
+  "sourceBinding": {
+    "path": "src/bestiary_data_full.json",
+    "sourceCommit": "33c12135dcdf21a089a4ec962ca7d8935db3f9eb",
+    "bytes": 1313090,
+    "sha256": "5717861200b3c229be4248fc67f1b7c6903da63747bd5b0d4d6b4ea892057b55",
+    "gitBlobSHA1": "ddd3bcf88e79b101b09602ea77261f0366850cbb"
+  },
+  "entryIndex": 397,
+  "record": {
+    "name": "Lumen of the Shattered Thread",
+    "type": "Elemental",
+    "size": "Large",
+    "challengeRating": "22",
+    "xp": 41000,
+    "alignment": "Chaotic Neutral",
+    "zoneFound": "Crossroads of the Shattered Thread",
+    "description": "Shattered-Weave elemental seal of Time at the Lumen Gate (Floor 60, Crossroads of the Shattered Thread).",
+    "loot": {
+      "tier1": {
+        "drop": "Spectral Essence (Tier 1)",
+        "rate": "1",
+        "value": "40"
+      },
+      "tier2": {
+        "drop": "Preserved Bone (Tier 2)",
+        "rate": "1",
+        "value": "80"
+      },
+      "tier3": {
+        "drop": "Death Energy (Tier 3)",
+        "rate": "0.9",
+        "value": "160"
+      },
+      "tier4": {
+        "drop": "Cursed Remains (Tier 4)",
+        "rate": "0.68",
+        "value": "320"
+      },
+      "tier5": {
+        "drop": "Cursed Remains (Tier 5)",
+        "rate": "0.45",
+        "value": "640"
+      },
+      "tier6": {
+        "drop": "Cursed Remains (Tier 6)",
+        "rate": "0.23",
+        "value": "1280"
+      }
+    },
+    "ingestSource": "Bestiary.xlsx:Monsters",
+    "tags": "Gate Guardian",
+    "lootTable": [
+      {
+        "item": "Fragment of Time",
+        "tier": 5,
+        "chance": 0.1,
+        "drop_location": "Leg",
+        "kill_with": "Cleaving",
+        "reagent_type": "Bone"
+      },
+      {
+        "item": "Fatewoven Lens",
+        "tier": 6,
+        "chance": 0.08,
+        "drop_location": "Leg",
+        "kill_with": "Piercing",
+        "reagent_type": "Essence"
+      }
+    ],
+    "armorClass": 19,
+    "hitPoints": 528,
+    "speed": "40 ft., fly 80 ft.",
+    "saveDc": 21,
+    "combat": {
+      "schemaVersion": 1,
+      "draft": false,
+      "source": "gate-guardian-trusted",
+      "defaultActionId": "thread-lance",
+      "defenses": {
+        "resistances": [],
+        "immunities": [],
+        "conditionImmunities": []
+      },
+      "attacks": [
+        {
+          "id": "thread-lance",
+          "name": "Thread Lance",
+          "kind": "attack",
+          "actionCost": "action",
+          "usage": "atWill",
+          "count": 3,
+          "targets": {
+            "count": 1,
+            "scope": "creature"
+          },
+          "damage": [
+            {
+              "dice": "4d10+10",
+              "average": 32.0,
+              "type": "radiant"
+            }
+          ],
+          "attackBonus": 11
+        },
+        {
+          "id": "thread-bind",
+          "name": "Thread Bind",
+          "kind": "attack",
+          "actionCost": "action",
+          "usage": "atWill",
+          "count": 1,
+          "targets": {
+            "count": 1,
+            "scope": "creature"
+          },
+          "damage": [
+            {
+              "dice": "3d10+8",
+              "average": 24.5,
+              "type": "force"
+            }
+          ],
+          "attackBonus": 11
+        },
+        {
+          "id": "thread-shatter",
+          "name": "Thread Shatter",
+          "kind": "save",
+          "actionCost": "action",
+          "usage": "recharge",
+          "recharge": {
+            "minimumRoll": 5,
+            "dieSides": 6
+          },
+          "targets": {
+            "scope": "creatures-in-area"
+          },
+          "damage": [
+            {
+              "dice": "8d10",
+              "average": 44.0,
+              "type": "force"
+            }
+          ],
+          "save": {
+            "ability": "dexterity",
+            "dc": 21,
+            "onSuccess": "half"
+          },
+          "range": {
+            "radiusFt": 20
+          }
+        }
+      ],
+      "saveDc": 21
+    },
+    "skills": "Insight +11, Perception +11, Religion +10",
+    "senses": "Truesight 120 ft., passive Perception 21",
+    "languages": "All, telepathy 120 ft.",
+    "abilities": {
+      "strength": 20,
+      "dexterity": 18,
+      "constitution": 18,
+      "intelligence": 18,
+      "wisdom": 20,
+      "charisma": 24
+    }
+  }
+}

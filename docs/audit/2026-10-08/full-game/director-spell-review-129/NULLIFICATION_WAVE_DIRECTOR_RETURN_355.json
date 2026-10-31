@@ -1,0 +1,69 @@
+{
+  "id": "NULLIFICATION-WAVE-DIRECTOR-RETURN-355",
+  "recordedAtUtc": "2026-10-31T15:16:00Z",
+  "source": "GPT Director browser conversation: Review Time Stop Witness Evidence",
+  "sourceConversationUrl": "https://chatgpt.com/g/g-p-67f17555a8dc8191a2b5b81e6d8adc12-dungeon-crawler/c/6ae5c784-afec-83e9-a2ca-5e2638b95750",
+  "submittedPacket": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_nullification_wave_closure355_delivery/DD_Rank9_NullificationWave_WC188B01_Closure355.zip",
+    "bytes": 2311794,
+    "sha256": "56047a5bf2c71aa20da3091f4ede979672c00d82ff5cd4415bacb37a102c7315"
+  },
+  "scopeIds": ["nullification-wave"],
+  "sealedDisposition": {
+    "decision": "HOLD",
+    "acceptedIds": [],
+    "appliedIds": [],
+    "heldIds": ["nullification-wave"],
+    "blockerIds": ["WC188-B01"],
+    "closedBlockerIds": [],
+    "applicationAuthorized": false
+  },
+  "authority": {
+    "reviewedApplied": 826,
+    "pending": 22,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 550,
+    "scopedInterfaces": 173,
+    "firstReviewsRemaining": 0,
+    "closureTasksRemaining": 22
+  },
+  "independentFindings": [
+    "All 18 manifested packet members passed byte/hash/CRC verification.",
+    "The 19-event Forge replay reached exact pre-E20 snapshot f02c265c02e1046278d53dc8b4945b0bd138edd3f70ae9ea9197c88dcd328eb0.",
+    "All 12 Wave events replayed forward and backward, and all 18 historical Wave case hashes were preserved.",
+    "The imprint-only ending preserved the damaged bracelet, custody, and spent charge."
+  ],
+  "residuals": [
+    {
+      "id": "NW355-R1",
+      "title": "Counterspell eligibility",
+      "defect": "E05 excludes A because ordinary prepared Counterspell is absent, although A's acquired profile contains automatic wizard.base.counterspell. The bound Wizard source at /cards/17 and /engine/12 makes this class matrix always prepared.",
+      "requiredCorrection": "Correct the responder record, counterOutcome, eligible responders, E05 description, and response ledgers. Evaluate perception/range, components, Reaction, RP, and recharge. A TEST_ONLY explicit decline to counter is sufficient; no countercast is mandatory."
+    },
+    {
+      "id": "NW355-R2",
+      "title": "Stale per-turn casting flag",
+      "defect": "E11 starts WC355's next regular turn without resetting turnCast, leaving the flag true in the event after-state and encounter final state despite no cast in that turn.",
+      "requiredCorrection": "Reset turnCast at the next regular turn start and preserve cumulative cast, family, payment, and Refrain history."
+    },
+    {
+      "id": "NW355-R3",
+      "title": "Incorrect inherited Action history",
+      "defect": "The branch-opening ledger says B passed without action. Source event MF247-F-W2-E18-B-HIDE-CHARGE already records B's Hide check and charge expenditure; branchInitialState rolls[2] contains hideW2.",
+      "requiredCorrection": "Record the already-spent Hide Action and item charge at the branch boundary. Do not alter or replay the historical Action."
+    },
+    {
+      "id": "NW355-R4",
+      "title": "Conflicting geometry records",
+      "defect": "The capture record says the covered sample distance is 15 feet; the actual distance from [10,0,0] to [25,0,3] is sqrt(234), or 15.297058540778355 feet. The scene field has the correct distance. sceneWallsAtSnapshot=[] also conflicts with the opaque wall used in the capture snapshot.",
+      "requiredCorrection": "Correct the capture distance and reconcile the initial scene wall list with the actual capture snapshot, or explicitly distinguish original source walls from the authored test wall."
+    }
+  ],
+  "nextAction": "Submit a focused correction of NW355-R1 through NW355-R4 for the same identity.",
+  "unchanged": {
+    "otherPendingIdentities": 21,
+    "allUnrelatedDispositions": true,
+    "runtimeAndDownstreamGates": true,
+    "lumenW02AuthorizationConditionalOnW01": true
+  }
+}

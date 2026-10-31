@@ -1,0 +1,160 @@
+{
+  "id": "PG327-W03-W06-W07-SOURCE-AUDIT-362",
+  "recordedAtUtc": "2026-10-31T17:10:00Z",
+  "classification": "Director-sealed source reconciliation; no campaign facts; not a witness or acceptance",
+  "authority": {
+    "sourceCommit": "351fe708ab21d1d63e5301f16336adf3712bfbf0",
+    "currentQueue": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_SPELL_QUEUE_361.json",
+    "applied": 828,
+    "pending": 20,
+    "acceptedUnapplied": 0,
+    "completeProcedures": 552,
+    "scopedInterfaces": 173,
+    "firstReviews": 0,
+    "closureTasks": 20,
+    "spellId": "banishment-gate",
+    "decision": "HOLD",
+    "blockerIds": [
+      "PG200-B03",
+      "PG200-B04"
+    ],
+    "applicationAuthorized": false
+  },
+  "directorPacketVerification": {
+    "archive": "docs/audit/2026-10-08/full-game/director-spell-review-129/banishment_gate_current_authority_361/DD_Rank9_BanishmentGate_CurrentAuthority361.zip",
+    "bytes": 756663,
+    "sha256": "b1d563dd199af72db5b8836c7d758cc58f90af0935af9a0e3f996d846ece4958",
+    "uniqueMembers": 16,
+    "payloadMembers": 15,
+    "manifestMember": "MANIFEST.json",
+    "exactMemberSet": "PASS",
+    "sizesSha256Crcs": "PASS",
+    "zipDecompressionCrcs": "PASS",
+    "metadataDisposition": "PASS: Queue361, audit361, handoff361 agree on Gate/PG200-B03/PG200-B04 and identical W01-W08; Herald and Nullification Wave removed from active holds; Lumen354 historical only"
+  },
+  "witnessSources": {
+    "W03": {
+      "status": "SOURCE_HOLD_NO_QUALIFYING_ACCEPTED_SOURCE_FOUND",
+      "negativeReview": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+        "sha256": "f52cf6a4a4673897615a74c7c67dcba798c431362d4357e71ee552cc7c5d31f8",
+        "pointers": [
+          "/spells/583/operational",
+          "/spells/735/operational",
+          "/spells/771/operational",
+          "/spells/773/operational"
+        ],
+        "additionalChecked": [
+          "Transmute Being preserves type",
+          "Perfect Form does not change taxonomy"
+        ]
+      },
+      "requiredPredicate": "Approved operative source explicitly changes the same extant creature body’s mechanical type, with acquisition, payment, duration and body/cargo mapping; stationary position; no new crossing, admission or claim.",
+      "testOnlyTypeAssignmentSubstituteAllowed": false
+    },
+    "W06": {
+      "status": "SOURCE_ROUTE_APPROVED_WITNESS_OUTSTANDING",
+      "source": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/planartravel6_reviewed_133/MODEL.json",
+        "sha256": "a4791f21855ff420a27ed07bdaa3eaf7778e56f475cd7d67f7cc39b40ccdcd6a",
+        "procedurePointer": "/spells/4/procedure",
+        "accessPointer": "/spells/4/completeSourceAndAccess/classAccess/Wizard",
+        "sharedRulesPointer": "/sharedRules",
+        "route": "Wizard class level 13; Conjuration rank 7; Action; V/S/F; 17 RP; Instantaneous; one personally documented different-plane site."
+      },
+      "acquisitionPreparation": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/planartravel6_reviewed_133/ACTOR_PROFILES.json",
+        "sha256": "c4f8fe65fea86cd1834498bda33add6ab47945343ab1bef91303366e1732c539",
+        "pointers": [
+          "/WP13/spellbook/41",
+          "/WP13/prepared",
+          "/WP13/preparationHistory"
+        ]
+      },
+      "acceptanceReceipt": {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/PLANARTRAVEL6_EXACT_ACCEPTANCE_133.json",
+        "sha256": "49945ee734ddc7c24438b6eefc963b57c425251c333ef060d69da79886c17a6a"
+      },
+      "requiredWitness": "Actual admission; legal paid escape to documented authorized different-plane destination; costs, components, opportunity, geometry and blockers; only that primary’s cell closes; remaining contents settle once; Gate, other cells and independent clocks remain unchanged."
+    },
+    "W07": {
+      "status": "SOURCE_ROUTE_APPROVED_WITNESS_OUTSTANDING",
+      "profile": {
+        "path": "DescentReviewChanges/ReviewBible/src/bestiary_data_full.json",
+        "jsonPointer": "/326",
+        "sha256": "5717861200b3c229be4248fc67f1b7c6903da63747bd5b0d4d6b4ea892057b55",
+        "gitBlob": "ddd3bcf88e79b101b09602ea77261f0366850cbb",
+        "fields": {
+          "name": "Guard",
+          "type": "Humanoid",
+          "size": "Medium",
+          "hitPoints": 112,
+          "armorClass": 15,
+          "speed": "40 ft.",
+          "combat.draft": false,
+          "combat.source": "band-trusted"
+        }
+      },
+      "operativeLifecycleSources": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md",
+          "sha256": "69d0e64394de58c4d86a3ec57cf282978d131a1a9c1eaa21632bb7d3b72562da",
+          "pointers": [
+            "ordinary monster damage/death",
+            "ordered damage steps",
+            "Instant Death",
+            "Wound processing",
+            "Dead/corpse consequences"
+          ]
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/HEALING_DEATH_PLAYTEST.md",
+          "sha256": "8d68794687b97da70aaff9953f9724e31e9fa3c8568fd4c2f9e8fd05d34c93f7",
+          "pointers": [
+            "/lines/37-48"
+          ]
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CREATURE_LIFECYCLE_PLAYTEST.md",
+          "sha256": "eae68470d4dba14aa74334e22270e35a8aea022d3c5013aa75a96c15d8e93b08",
+          "pointers": [
+            "/line/45",
+            "/lines/67-69"
+          ]
+        }
+      ],
+      "directorFinding": "Ordinary sourced Humanoid Guard plus existing death/body rules qualifies. No additional lifecycle rule, Create Undead profile or corpse-use/consumption effect is required.",
+      "fixtureRequirements": [
+        "ordinary nonfinite TEST_ONLY Guard",
+        "fixture-only position and measured body geometry",
+        "complete relevant state",
+        "individually identified equipment/cargo",
+        "lawful Gate crossing and admission",
+        "sourced lethal/zero-HP event through applicable defenses and prevention/save windows, leaving body intact",
+        "same corpse and genuine items through PG200-CELL-EXT fixed-anchor return or placement conflict",
+        "complete forward/inverse evidence"
+      ],
+      "noArbitraryGuardAbilityScores": true
+    }
+  },
+  "boundaries": {
+    "requiredScope": "W01-W08; no W09",
+    "historicalReturn327AndNineCases": "preserve byte-for-byte",
+    "allFixtures": "TEST_ONLY; no campaign event or real-world fact asserted",
+    "heraldLumenAuthorization": "Existing explicit TEST_ONLY authorization is already represented in OWNER_LUMEN_W02_TEST_AUTHORIZATION_358.json and sealed Repack04; do not reopen or duplicate that applied identity."
+  },
+  "directorRuling": {
+    "decision": "HOLD",
+    "acceptedIds": [],
+    "appliedIds": [],
+    "heldIds": [
+      "banishment-gate"
+    ],
+    "blockerIds": [
+      "PG200-B03",
+      "PG200-B04"
+    ],
+    "closedBlockerIdsThisReview": [],
+    "applicationAuthorized": false
+  }
+}

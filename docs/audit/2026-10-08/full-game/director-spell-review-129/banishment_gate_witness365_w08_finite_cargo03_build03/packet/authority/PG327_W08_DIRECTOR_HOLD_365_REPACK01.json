@@ -1,0 +1,97 @@
+{
+  "rulingId": "PG327-W08-365-DIRECTOR-HOLD",
+  "sourceChat": "Review Time Stop Witness Evidence",
+  "sourceSurface": "GPT browser review response, read 2026-10-31",
+  "witnessId": "W08",
+  "witnessDisposition": "HOLD",
+  "acceptedIds": [],
+  "appliedIds": [],
+  "heldIds": [
+    "banishment-gate"
+  ],
+  "blockerIds": [
+    "PG200-B03",
+    "PG200-B04"
+  ],
+  "closedBlockerIds": [],
+  "closedResidualIds": [],
+  "remainingResidualIds": [
+    "W08-365-R1",
+    "W08-365-R2",
+    "W08-365-R3",
+    "W08-365-R4",
+    "W08-365-R5",
+    "W08-365-R6",
+    "W08-365-R7"
+  ],
+  "applicationAuthorized": false,
+  "queueAuthority": {
+    "applied": 828,
+    "pending": 20,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 552,
+    "scopedInterfaces": 173,
+    "firstReviews": 0,
+    "closureTasks": 20
+  },
+  "priorArchive": {
+    "name": "DD_Rank9_BanishmentGate_W08_FiniteCargo_365_TESTONLY.zip",
+    "bytes": 467545,
+    "sha256": "988183e5eaadb73948d4d76c8e4a2324e034b9f7c878f25220b5a9a1a6f94e8c"
+  },
+  "integrityFindings": {
+    "uniqueMembers": 22,
+    "payloadHashesAndCrcs": 21,
+    "includedMemberBindings": 14,
+    "forwardEvents": 15,
+    "inverseEvents": 15,
+    "lifecycleReplay": "PASS",
+    "semanticPredicates": "NOT_ESTABLISHED_BY_REPLAY"
+  },
+  "residuals": [
+    {
+      "id": "W08-365-R1",
+      "title": "Actor/source qualification",
+      "defect": "Profiles lacked source-bound legal acquisition/preparation histories, class engine, derived resources, conditions, repertoires and spell histories. RP exceeded Mage maxima (60 vs 50 at level17; 40 vs 26 at level9), and standing 5 exceeded the ordinary -3..+3 range.",
+      "required": "Use the exact Mage table and bind full TEST_ONLY caster profiles; Mage17 RP 50->24, Mage9 RP 26->16; use sourced valid standing."
+    },
+    {
+      "id": "W08-365-R2",
+      "title": "Actual casting predicates",
+      "defect": "Gate/Champion casts lacked V/S/F availability, identified held focus and hand custody, Gate caster position/range/LoE, Champion Action consumption, Conjuration/class history, Dissonance/Refrain, concentration and participant Counterspell eligibility/decision.",
+      "required": "Record commitment, windows and resolution, spell components, focus custody, distances, source-bound spell access, class history and every participant's selected Mage Counterspell eligibility/decision."
+    },
+    {
+      "id": "W08-365-R3",
+      "title": "Scheduled opportunities and command phase",
+      "defect": "Regular starts/ends, once-only refreshes, stance choices, allowance expiry and t66 equal-time ordering were absent; attached movement lacked the owner's whole-turn end and phase start/end; command eligibility was not bound.",
+      "required": "Replay all six-second turn markers through t66, command predicates/global allowance, turn/phase order, and expiration of unused movement."
+    },
+    {
+      "id": "W08-365-R4",
+      "title": "Cargo custody and occupied geometry",
+      "defect": "Hand snapshot contradicted carriedSlot and no numeric cargo envelope/offset, full admission sweep, cell-local map or BAN-CELL-03 dimensions were present.",
+      "required": "Bind one consistent hand/custody record, occupied item volume and offset, full body/cargo sweep, cell-local mapping and numeric bounds."
+    },
+    {
+      "id": "W08-365-R5",
+      "title": "Wrong fixed origin anchor",
+      "defect": "The cell anchor was portal-plane [100,100,0], but the recorded admission endpoint was [105,100,0].",
+      "required": "Fix the anchor at the actual admission endpoint and recompute all projections and receipts."
+    },
+    {
+      "id": "W08-365-R6",
+      "title": "Placement conclusions lack geometry",
+      "defect": "Placement forks used occupancy booleans and grid centers without occupant volumes, barrier/support geometry, lantern fit, displacement or unobstructed-region proof.",
+      "required": "Provide continuous TEST_ONLY physical geometry, derive candidate fit/nearest position, and prove no legal adjacent placement in the pending branch without displacement or wall passage."
+    },
+    {
+      "id": "W08-365-R7",
+      "title": "Broken locators and overstated coverage",
+      "defect": "Some source locators were malformed or pointed to nonexistent records, delivery named a staging manifest path, and coverage blurred replay integrity with unresolved semantics.",
+      "required": "Use exact JSON pointers plus separate paragraph labels, actual packet member paths, ARCHIVE_MANIFEST.json delivery path, and retain W08 as outstanding until sealed."
+    }
+  ],
+  "lifecycleFinding": "The submitted lifecycle ordering correctly removed body/intrinsic gear at t60, retained genuine lantern cargo, kept the cell until t66, destroyed it with pending cargo, and made duplicate closure a no-op. That does not close the seven residuals.",
+  "scopeFinding": "No AC5-BANISH-EXT/AC5-X17 mechanics or magical endpoint-blocker exception were exercised. W01 stays sealed; W05 follows W08; W03 stays on its separate source HOLD."
+}

@@ -1,0 +1,87 @@
+{
+  "id": "SH332-W02-W03-W04-INDEPENDENT-REPLAY-VALIDATION-358",
+  "recordedAtUtc": "2026-10-31T16:11:37+00:00",
+  "status": "PASS",
+  "independentOfBuilder": true,
+  "checks": [
+    {
+      "id": "W01_REBOUND_ARCHIVE",
+      "passed": true,
+      "detail": "Recomputed the W01 clean Repack01 hash and verified the sealed W01 approval binding."
+    },
+    {
+      "id": "OWNER_W02_AUTHORITY",
+      "passed": true,
+      "detail": "Owner authorization and approved W01 prerequisite bind the exact TEST_ONLY fixture."
+    },
+    {
+      "id": "NO_CAMPAIGN_ASSERTIONS",
+      "passed": true,
+      "detail": "W02 labels state, location, availability and consent as hypothetical only."
+    },
+    {
+      "id": "HP_NOT_INFERRED",
+      "passed": true,
+      "detail": "W02 supplies an explicit test current HP separate from printed maximum HP."
+    },
+    {
+      "id": "W17D_SOURCE_HASH_AND_ROUTE",
+      "passed": true,
+      "detail": "Independently reopened the extracted W17D evidence at /profile, verified its parent ACTOR_PROFILES.json#/W17D archive lineage, and checked acquisition/preparation/source hash."
+    },
+    {
+      "id": "FULL_STATE_FORWARD_AND_INVERSE_REPLAY",
+      "passed": true,
+      "detail": "Replayed 266 full-state forward transitions and 266 inverse transitions; errors=[]."
+    },
+    {
+      "id": "CONCURRENT_CALL_TWO_STAGE_ADMISSION",
+      "passed": true,
+      "detail": "Both paid declarations pass initial eligibility while unreserved; A resolves first; B then fails final recheck with its paid 26 RP and Action spent and no second body."
+    },
+    {
+      "id": "COUNTERSPELL_ELIGIBILITY_AND_NONUSE",
+      "passed": true,
+      "detail": "W04 records both eligible opposite-caster windows and explicit declines with reaction/recharge unchanged; every W03 spell-start window gives exact ineligibility bases."
+    },
+    {
+      "id": "COMPLETE_REGULAR_TURN_CALENDAR",
+      "passed": true,
+      "detail": "Validated all 6-second phased starts, budget refreshes, and regular ends through witness endpoints; errors=[]."
+    },
+    {
+      "id": "DEATH_ENDS_CALL_AT_TRIGGER",
+      "passed": true,
+      "detail": "The 12000ms death transition ends concentration/call and returns the corpse at that exact trigger; 12001ms is only a logging event."
+    },
+    {
+      "id": "BLOCKER_REGULAR_TURN_CADENCE",
+      "passed": true,
+      "detail": "The blocker enters and clears on regular starts nine six-second rounds apart; no 61-second turn is used."
+    },
+    {
+      "id": "W03_LIFECYCLE_BRANCHES",
+      "passed": true,
+      "detail": "W03 covers normal return, suppression with no revival, death/corpse, carried cargo, and independent recovery."
+    },
+    {
+      "id": "TEST_ONLY_DEATH_BOUNDARY",
+      "passed": true,
+      "detail": "Death behavior is expressly a bounded test premise using the core default and remains non-campaign evidence."
+    }
+  ],
+  "replayedForwardTransitions": 266,
+  "replayedInverseTransitions": 266,
+  "directorDisposition": "Not supplied by this validator; GPT Director ruling remains controlling.",
+  "identityDisposition": {
+    "decision": "HOLD",
+    "acceptedIds": [],
+    "appliedIds": [],
+    "applicationAuthorized": false
+  },
+  "limits": [
+    "Conditional TEST_ONLY evidence only.",
+    "Does not assert any campaign event, consent, or actual current state.",
+    "Does not accept or apply the Herald identity."
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "id": "SH332-W02-W03-W04-INDEPENDENT-REPLAY-VALIDATION-358",
+  "recordedAtUtc": "2026-10-31T16:33:37+00:00",
+  "status": "PASS",
+  "independentOfBuilder": true,
+  "checks": [
+    {
+      "id": "W01_REBOUND_ARCHIVE",
+      "passed": true,
+      "detail": "Recomputed the W01 clean Repack01 hash and verified the sealed W01 approval binding."
+    },
+    {
+      "id": "OWNER_W02_AUTHORITY",
+      "passed": true,
+      "detail": "Owner authorization and approved W01 prerequisite bind the exact TEST_ONLY fixture."
+    },
+    {
+      "id": "READY_RULE_SOURCE_BOUND",
+      "passed": true,
+      "detail": "Independently reopened the exact Ready rule source text and verified its source hash, excerpt and correction-revision record."
+    },
+    {
+      "id": "NO_CAMPAIGN_ASSERTIONS",
+      "passed": true,
+      "detail": "W02 labels state, location, availability and consent as hypothetical only."
+    },
+    {
+      "id": "HP_NOT_INFERRED",
+      "passed": true,
+      "detail": "W02 supplies an explicit test current HP separate from printed maximum HP."
+    },
+    {
+      "id": "W17D_SOURCE_HASH_AND_ROUTE",
+      "passed": true,
+      "detail": "Independently reopened the extracted W17D evidence at /profile, verified its parent ACTOR_PROFILES.json#/W17D archive lineage, and checked acquisition/preparation/source hash."
+    },
+    {
+      "id": "FULL_STATE_FORWARD_AND_INVERSE_REPLAY",
+      "passed": true,
+      "detail": "Replayed 281 full-state forward transitions and 281 inverse transitions; errors=[]."
+    },
+    {
+      "id": "SOURCE_LEGAL_READY_COMPETITION",
+      "passed": true,
+      "detail": "B pays/casts with Ready on its earlier ordered turn, holds concentration to the next-turn trigger, then uses one Reaction release. A's later ordinary Action starts first; B wins the unique reservation before A resolves, without simultaneous ordinary Actions or an invalid paid declaration."
+    },
+    {
+      "id": "COUNTERSPELL_ELIGIBILITY_AND_NONUSE",
+      "passed": true,
+      "detail": "W04 records the preparation-time Ready cast and A ordinary cast-start windows; both cost-free declines are distinct from B's later Reaction release. Ready release creates no second counter window; W03 bases remain exact."
+    },
+    {
+      "id": "COMPLETE_ORDERED_REGULAR_TURN_CALENDAR",
+      "passed": true,
+      "detail": "Validated unique six-second phases, non-overlapping ordered slot boundaries, one exact refresh per start, and replayed all slot ends through each witness endpoint; errors=[]."
+    },
+    {
+      "id": "DEATH_ENDS_CALL_AT_TRIGGER",
+      "passed": true,
+      "detail": "The 12000ms death transition ends concentration/call and returns the corpse at that exact trigger; 12001ms is only a logging event."
+    },
+    {
+      "id": "BLOCKER_REGULAR_TURN_CADENCE",
+      "passed": true,
+      "detail": "The blocker enters and clears on its own phase-4000 regular slots nine six-second rounds apart."
+    },
+    {
+      "id": "W03_LIFECYCLE_BRANCHES",
+      "passed": true,
+      "detail": "W03 covers normal return, suppression with no revival, death/corpse, carried cargo, and independent recovery."
+    },
+    {
+      "id": "TEST_ONLY_DEATH_BOUNDARY",
+      "passed": true,
+      "detail": "Death behavior is expressly a bounded test premise using the core default and remains non-campaign evidence."
+    }
+  ],
+  "replayedForwardTransitions": 281,
+  "replayedInverseTransitions": 281,
+  "directorDisposition": "Not supplied by this validator; GPT Director ruling remains controlling.",
+  "identityDisposition": {
+    "decision": "HOLD",
+    "acceptedIds": [],
+    "appliedIds": [],
+    "applicationAuthorized": false
+  },
+  "limits": [
+    "Conditional TEST_ONLY evidence only.",
+    "Does not assert any campaign event, consent, or actual current state.",
+    "Does not accept or apply the Herald identity."
+  ]
+}

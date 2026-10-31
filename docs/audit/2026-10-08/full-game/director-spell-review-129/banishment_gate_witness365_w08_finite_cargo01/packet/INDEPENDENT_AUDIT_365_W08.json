@@ -1,0 +1,130 @@
+{
+  "id": "PG327-W08-INDEPENDENT-AUDIT-365-01",
+  "verifiedAtUtc": "2026-10-31T20:08:23+00:00",
+  "status": "PASS_TEST_ONLY_STATIC_WITNESS; DIRECTOR_DECISION_PENDING",
+  "scope": "W08 only; no identity acceptance/application or whole Gate completion",
+  "sourceAudit": {
+    "checkedBindings": [
+      {
+        "member": "sources/RETURN327_banishment-gate.json",
+        "bytes": 34990,
+        "sha256": "39c216e978e1c06da3dbea7fb27a60f8611ce08b36143c403fbca989f155fb00"
+      },
+      {
+        "member": "rules/BODY_EQUIPMENT.md",
+        "bytes": 22726,
+        "sha256": "d93f9cb0ec8a8398560511f23029d38d9b9a8b901e816373579c8f72b0bec1f3"
+      },
+      {
+        "member": "sources/COMBAT_ACTION_PLAYTEST.md",
+        "bytes": 30409,
+        "sha256": "f90d039142145fbd31c37992ebece70d7926dc4b6081e340f9a2fd9dc7237bc6"
+      },
+      {
+        "member": "sources/AC5_ACCEPTED_SPELLS_MODEL.json",
+        "bytes": 337035,
+        "sha256": "d782569ed8ef558f4edf54634e0d8c19926e24e2437528f1769b5ef3ce594898"
+      },
+      {
+        "member": "sources/AC5_ACCEPTED_CASEBOOK.json",
+        "bytes": 301245,
+        "sha256": "9f35f59083b87ca85b40b123150266db71236dbed6d0d216d1760abd22345b58"
+      },
+      {
+        "member": "authority/AC5_EXACT_ACCEPTANCE_05_RECEIPT.json",
+        "bytes": 7657,
+        "sha256": "c5d2b1e48c4caa62306b4134c7fe32931e887013075e1198ac7c348c87afd6b0"
+      },
+      {
+        "member": "sources/EQUIPMENT_SOURCE_CATALOG.json",
+        "bytes": 130807,
+        "sha256": "ff22f5974a1c95b4fb4e2a49b460726b956c093ce7990470c31eaa51238cf5c4"
+      },
+      {
+        "member": "sources/PLAYER_RULEBOOK_V6_SOURCE.txt",
+        "bytes": 776711,
+        "sha256": "a346670f4244efe3641cfb06814819d83ffb8512153858205f0621bd8ab8a04b"
+      },
+      {
+        "member": "authority/CURRENT_BANISHMENT_GATE_CATALOG_CARD.json",
+        "bytes": 3487,
+        "sha256": "a71f3a5054f9e0b42b059b1eedfbaf2f4c6637b58aff0798b8b6e66596e3cbd0"
+      },
+      {
+        "member": "authority/PG327_W01_DIRECTOR_SEAL_365_REPACK04.json",
+        "bytes": 2175,
+        "sha256": "1772ada32219e29f2f436ac85b00ea618371fdce4f94395a5f898372ec01691e"
+      },
+      {
+        "member": "authority/PG327_W01_W08_WITNESS_PLAN_361.json",
+        "bytes": 6527,
+        "sha256": "4c2ed98a4680eb527081ede35cc0f46978e93ca46201f533580413c04f72b347"
+      },
+      {
+        "member": "authority/CURRENT_SPELL_QUEUE_361.json",
+        "bytes": 23168,
+        "sha256": "f193bb6cf128ba413b4c6b1783a4950b7ceb107d81ddb8ad2e4bc57f2fe16777"
+      },
+      {
+        "member": "authority/PG327_W03_W06_W07_SOURCE_AUDIT_362.json",
+        "bytes": 7256,
+        "sha256": "c04d1ca6aa011aa0622efa765ea5c126a804c1ee80c8b976ba2c23ec0f9dfa56"
+      },
+      {
+        "member": "authority/PG327_W08_TERMINAL_SETTLEMENT_SOURCE_CLARIFICATION_365.json",
+        "bytes": 2322,
+        "sha256": "c0c079ea5eab5f7f9fdfff67f4343aa505e86ae3d9c21084e01027745dded81a"
+      }
+    ],
+    "gateRulePointersPass": true,
+    "bodyEquipmentRulesPass": true,
+    "acceptedAc5ProfileAndCasePass": true,
+    "equipmentSourcePass": true,
+    "authorityUnchangedPass": true
+  },
+  "semanticAudit": {
+    "commonPrefixEventCount": 6,
+    "forkCount": 3,
+    "branchAudits": [
+      {
+        "branchId": "W08-DIRECT-ANCHOR-PLACEMENT",
+        "terminalSha256": "2451c5d0cd26482034de5609471115ec51fc23a4595ed4e9a14fb8f6c2488549",
+        "outcome": "placed-at-origin-anchor",
+        "closureCount": 1,
+        "restoresExactFork": true
+      },
+      {
+        "branchId": "W08-OCCUPIED-ANCHOR-ADJACENT-DROP",
+        "terminalSha256": "18165fe88d57e8553752f204a7930b607e93ac6699a797d9b287dd09dbe4d28e",
+        "outcome": "placed-at-nearest-legal-adjacent-position",
+        "closureCount": 1,
+        "restoresExactFork": true
+      },
+      {
+        "branchId": "W08-OCCUPIED-AND-BLOCKED-PENDING-ITEM",
+        "terminalSha256": "bdb2070919bd73f38203b5ffb6fbc4770ef2f27e2d35c38dd73238c1556d4a3b",
+        "outcome": "pending-origin-plane-item-placement",
+        "closureCount": 1,
+        "restoresExactFork": true
+      }
+    ],
+    "forwardInverseReplayPass": true,
+    "bodyExpiryBeforeCellDeadlinePass": true,
+    "cargoIdentityAndExactlyOncePass": true,
+    "gateAndQueueHoldPreserved": true
+  },
+  "archiveAudit": null,
+  "decisionBoundary": {
+    "banishmentGate": "HOLD",
+    "applicationAuthorized": false,
+    "queueAuthority": {
+      "applied": 828,
+      "pending": 20,
+      "acceptedUnapplied": 0,
+      "completeStandaloneProcedures": 552,
+      "scopedInterfaces": 173,
+      "firstReviews": 0,
+      "closureTasks": 20
+    }
+  }
+}

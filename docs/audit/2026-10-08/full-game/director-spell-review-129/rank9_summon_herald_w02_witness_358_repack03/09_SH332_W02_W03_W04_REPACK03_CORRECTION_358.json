@@ -1,0 +1,39 @@
+{
+  "id": "SH332-W02-W03-W04-REPACK03-CORRECTION-358",
+  "status": "READY_FOR_DIRECTOR_RECHECK",
+  "supersedesArchive": "DD_Rank9_SummonHerald_SH332_W02_W03_W04_TESTONLY_358_Repack02.zip",
+  "supersededArchiveSHA256": "85c6238debc0d8245704402126a10cee464804f66b3de4cb5e3acd691eb0864d",
+  "directorResidualsAddressed": [
+    "SH358-R4: distinct synthetic initiative phases, non-overlapping turn end before next ordered start, one budget refresh per start, equal-time precedence, regenerated states/patches/hashes and mirrored W02 calendars",
+    "SH358-R5: B's source-bound Ready preparation and paid cast on its earlier turn, held concentration and trigger; A's later ordinary Action; B's single Reaction release before later events; target and effect clock begin at release; A's final admission fails after B's reservation"
+  ],
+  "sourceBinding": {
+    "sourcePath": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+    "sourceSHA256": "9118101f0907e0cd52a78cef83affa9e6fcae1b3d958c8a576499dfddc424f60",
+    "sourceLines": [
+      97,
+      111
+    ],
+    "sourceExcerpt": "## Ready\n\nSpend an Action to declare a perceivable trigger and one legal Action-time action or movement. It expires next regular own-turn start. **NEW:** only one pending Ready per creature; replacing it loses the prior setup and any paid held-spell costs. No Bonus Action/Reaction ability, long ritual or multi-minute activity can be prepared by generic Ready.\n\nThe trigger happens first, then the readied response immediately follows before later events, unless a specific effect explicitly interrupts. On release spend the normal Reaction and recheck target, range, sight/perception, line of effect, ammunition and other prerequisites. An invalid or declined occurrence spends no release resource; the Ready can wait for another valid occurrence before expiry. This does not undo setup costs. Once released, it is consumed.\n\nFor ordinary nonspell actions, feature/ammunition costs are paid on release unless text charges setup. A readied **Attack Action** gets its legally available ordinary attack count; a feature limited to your own turn does not thereby work off-turn. Core Overwatch is explicitly one ranged attack, not that full Attack Action and not Soldier's distinct engine.\n\nA readied spell is actually **cast at preparation**: choose spell/mode, verify legality, pay RP/material/other costs, provide components, resolve Dissonance/Refrain and cast-trigger effects once. Counterspell/cast-interruption opportunity occurs then, not again at release. Every held spell requires concentration, even ordinarily non-concentration spells; incompatible prior concentration ends. Lost concentration loses the held spell and costs. NEW: select the legal target/area point at release and recheck legality without repaying. At release the hold continues as ordinary spell concentration if required, otherwise ends after resolution. Expired/replaced/countered held spells do not refund paid costs.\n\nReady movement grants a separate current-Speed budget on release, pays terrain costs and can provoke ordinary opportunity attacks. It grants no extra Action, Bonus Action or interaction.\n\nFocused stance's Reaction restriction also blocks an ordinary Ready release; Ready does not create a Counterspell exception. Holding a spell does not waive any current Reaction prohibition.\n\n**Spell-effect duration begins at release.** Its normal duration is anchored when the effect manifests, while Ready expiry and held concentration already run from preparation. A source explicitly tying a particular consequence to casting/preparation retains that consequence's stated clock. No casting cost, Refrain, Dissonance or cast trigger occurs a second time merely from release.",
+    "rulesApplied": {
+      "preparation": "Ready spends the caster's Action, declares a perceivable trigger and casts the spell at preparation; verify legality, pay costs, provide components, resolve cast triggers and Counterspell opportunity once.",
+      "hold": "Every held spell requires concentration from preparation; Ready expires at the caster's next regular own-turn start.",
+      "release": "The trigger occurs first; the readied response immediately follows before later events. Release spends the normal Reaction and rechecks target and other prerequisites.",
+      "targetAndClock": "Select the legal target at release; recheck without repaying. Spell effect duration begins at release. A concentration spell continues as ordinary concentration after release.",
+      "counterspell": "Counterspell opportunity occurs at preparation, not again at release."
+    }
+  },
+  "unchangedBoundaries": [
+    "W01 approval and clean Repack01 hash are unchanged",
+    "owner-authorized W02 state remains explicitly TEST_ONLY and limited to W03/W04",
+    "no campaign event, actual consent, runtime procedure, canonical publication, unrelated identity or application is asserted"
+  ],
+  "builderValidationStatus": "PASS",
+  "independentValidation": "pending builder execution",
+  "identityDisposition": {
+    "decision": "HOLD_PENDING_DIRECTOR_R4_R5_RECHECK",
+    "acceptedIds": [],
+    "appliedIds": [],
+    "applicationAuthorized": false
+  }
+}

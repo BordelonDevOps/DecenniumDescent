@@ -1,0 +1,9 @@
+# Banishment Gate W02 TEST_ONLY boundary witness 364 Repack02
+
+This packet submits only W02: lawful movement reaches the portal boundary without crossing. W07 was separately sealed PASS as a TEST_ONLY witness in Repack01 and is included byte-for-byte as prior evidence. Gate remains HOLD under PG200-B03/PG200-B04. This packet grants no identity acceptance, application, campaign fact, runtime execution, type-change mechanic or escape mechanic.
+
+W20 legally commits Banishment Gate using its source-bound Wizard acquisition and preparation, Action, 26 RP, V/S/F, held focus, concentration, range and eligible Counterspell window. The opposing Wizard's cost-free TEST_ONLY decline is recorded. A fresh living Guard opens at 112/112 HP, Humanoid, Medium, Speed 40 feet, with no movement-preventing condition. The Gate is fixed to Humanoid at x=0 with opening y=[-5,5], z=[0,15].
+
+On the Guard's actual scheduled regular turn at 2.0 seconds, its movement wallet refreshes to 40 feet once. It spends 5 feet walking +x from center -7.5 to -2.5. Its measured standing body changes from x=[-10,-5] to x=[-5,0], with y=[-2.5,2.5], z=[0,6]. The leading face touches the Gate plane; no occupied interior passes x=0. The Guard remains on the origin plane. No crossing receipt, admission, cell, or hard-denial claim is created. Gate concentration then ends at 2.1 seconds after all scheduled markers due through that endpoint.
+
+All nine events carry full before/after snapshots and deterministic hashes. Forward and inverse operations are field-scoped JSON Patch with precondition tests. The independent verifier checks every changed field, source binding, geometry, turn calendar, movement cost, zero-admission result, exact reverse restoration, nested W07 archive, manifest and CRCs.
