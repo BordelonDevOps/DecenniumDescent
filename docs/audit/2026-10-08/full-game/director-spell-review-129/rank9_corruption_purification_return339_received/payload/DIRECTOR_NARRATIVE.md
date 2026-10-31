@@ -1,0 +1,23 @@
+# Return339 — Corruption Purification
+
+**HOLD — AFP211-B05.** acceptedIds=[], appliedIds=[], heldIds=[corruption-purification]. Application is not authorized. Authority remains **823 reviewed/applied /25 pending /0 accepted-unapplied**, with547 standalone procedures/173 interfaces:25 closure tasks,0 first-review tasks.
+
+Core entry99, paragraph9100 promises permanent removal of all corruption from an area or creature. Preserve Abjuration rank9, Cleric/Druid/Mage/Wizard class17, Action,120feet,V/S/F,base26RP and the unchanged Core duration Until dispelled. A lower-rank cure, temporary suppression or a few-point reduction does not fulfill that native promise.
+
+Three sections remain missing under the existing blocker:
+
+1. **AFP339-W01 — cure matrix and dependencies.** Define exact operations across ordinary Corrupted, other tagged applications, numeric corruption/exposure, KT knowledge/stages, PT stages/history and symptoms, with actual protected/intrinsic exceptions and parent/child teardown. Souls/Research6-8 establishes the distinctions and explicitly leaves Purification pending. No knowledge erasure, inferred track reset or rank-based protection bypass follows. Preserve completed HP/Wounds/death/anatomy/history/custody unless an exact removed source owns a change.
+2. **AFP339-W02 — admission and geometry.** Retain separate willing-creature and environmental modes but supply their exact admission, hidden-occupant and occupied-volume/line-of-effect rules, useful finite shape/extent, divisible/indivisible boundaries, remote-source limits and persistent cleaned-region provenance. Native120feet is reach, not radius. Cleanse's10foot cylinder and Purge's20foot sphere and CON procedure do not transfer.
+3. **AFP339-W03 — permanent result and Until dispelled.** Completed permanent removal remains the selected direction, but the duration-field reconciliation is still unspecified. Explicitly identify what, if anything, remains dispellable and its ending settlement. Do not invent an ongoing ward, future immunity, automatic corruption reinstatement or knowledge/history reversal to resolve the field. Genuinely new authorized exposure remains possible and is distinct from reviving an old removed application.
+
+Then provide two useful complete paid witnesses: one real creature cure and one multi-source area cure, including protected exceptions, dependency extents, future exposure and actual dispel settlement. Bind legal acquisition/actors, actual corruption sources, geometry, Action/finalRP/cadence/counter history, original clocks, custody and reversible states. No such complete witness is supplied here.
+
+The source-level boundaries are concrete. Lower Purge removes actual qualifying active records, including major nonintrinsic effects, and preserves explicit source exceptions; calling a source permanent does not alone protect it from that Purge. Its scoped spatial intersection and dependency rules remain its own. Cleanse, Ward and Corruption Immunity do not supply the rank9 cure matrix. Incoming Corruption resistance, symptom mitigation, numeric recovery and source removal are different operations.
+
+**Null Veil keeps exactly three purge routes:** eligible mask confession; an actual EPI06 Temporary Blessing grant; and actual Bittersap Antidote administration. Ordinary field exit does not purge it; its exposure clocks and history remain. Corruption Purification gains no fourth route, and keeping Veil does not shield a distinct actually eligible corruption record on the same bearer. These boundaries are established; they are not missing permissions this return proposes to override.
+
+AFP211-E01 remains **CLOSED**. Return336/337/338 identity holds remain OPEN and unapplied; the input context's shorthand that prior holds remain closed is read as completed reviews/closed E01, not acceptance or blocker closure. No comparator or unrelated identity is reopened.
+
+AFP211-CP-ordinary-removal and AFP211-CP-new-exposure are preserved without replay or re-audit. Their historical PASS reports cover bounded conditional review components, not actual paid casts, complete actor clocks or positive rank9 cure encounters. Fresh case/forward/inverse/clock operation counts are zero. They are not campaign or user events; original event authorship is not established here.
+
+Next: **astral-projection / PC232-B01**, rank9-projection-confinement2; then imprisonment, divine-intervention-greater and wish in the current continuing tail. Other retained closures stay pending. No canonical, runtime, implementation, human-play, playtest, balance, cosmology, domain-closure, completion or release approval is issued.

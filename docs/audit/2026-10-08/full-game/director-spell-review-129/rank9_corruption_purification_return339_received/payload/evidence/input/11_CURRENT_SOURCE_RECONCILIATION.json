@@ -1,0 +1,587 @@
+{
+  "fullCurrentSourceFilesVerified": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+      "bytes": 5085187,
+      "sha256": "773fb0b3b0fdb501858ded33c02d90dc4db3009bd1b9f7112c244d998218f05b",
+      "crc32": "f06243cf"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+      "bytes": 1697606,
+      "sha256": "c6dd6d30703911864a3e2784d8abb3d79835b39bc01804c4335f80a1c4bea7b2",
+      "crc32": "ae581c7e"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "bytes": 450543,
+      "sha256": "842718b9f016294529bdffefca9c81cca9a37670dd5e66a3c893ad313d79dd51",
+      "crc32": "e1996164"
+    }
+  ],
+  "targetExactCatalogRowComparedToReturn287": true,
+  "targetExactIndexRowComparedToReturn287": true,
+  "sourceSetBindings": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/director-only/cosmology/SOULS_RESEARCH_REVIEWED_01.md",
+      "bytes": 23925,
+      "sha256": "01e141c7b4c1d63f2ee1e82169d869378571428269500df749e3188a31545121",
+      "crc32": "01891452",
+      "packetMember": "sources/00_SOULS_RESEARCH_REVIEWED_01.md"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COSMOLOGY_EPILOGUE_RELIC_NULL_PLAYTEST.md",
+      "bytes": 59823,
+      "sha256": "8ff5422a3adc8aeec5a6b70ae79608def0cc924f0ae7487040c99da2f6ca3980",
+      "crc32": "e1e02f7b",
+      "packetMember": "sources/01_COSMOLOGY_EPILOGUE_RELIC_NULL_PLAYTEST.md"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CREATURE_LIFECYCLE_PLAYTEST.md",
+      "bytes": 20087,
+      "sha256": "eae68470d4dba14aa74334e22270e35a8aea022d3c5013aa75a96c15d8e93b08",
+      "crc32": "32c9236f",
+      "packetMember": "sources/02_CREATURE_LIFECYCLE_PLAYTEST.md"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+      "bytes": 67451,
+      "sha256": "55f486de8d38a6734f8f0f2f62066401504f5b1311ebe66693175876b3f7aa6d",
+      "crc32": "9fb65271",
+      "packetMember": "sources/03_SPELL_INTEGRATION_RULES.md"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank6_reviewed_06.json",
+      "bytes": 904985,
+      "sha256": "6f6fe2141e011624e585262a7de6e6a95fef75696d5d6337440f2d1dce711885",
+      "crc32": "5cb9d549",
+      "packetMember": "sources/04_abjuration_conjuration_rank6_reviewed_06.json"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/spells/candidates/ABJURATION_CONJURATION_RANK6_REVIEWED_06.md",
+      "bytes": 107956,
+      "sha256": "e63a1713c6e0386d4504828e8a59b4a0d9e155a1073eaed5a31b43c86efd3b0c",
+      "crc32": "106def56",
+      "packetMember": "sources/05_ABJURATION_CONJURATION_RANK6_REVIEWED_06.md"
+    }
+  ],
+  "comparisonOnlyRows": {
+    "corruption-cleanse": {
+      "id": "corruption-cleanse",
+      "name": "Corruption Cleanse",
+      "schools": [
+        "Abjuration"
+      ],
+      "status": "operational-playtest-draft",
+      "visibility": "public-source-review",
+      "classAccess": {
+        "Cleric": {
+          "rank": 2,
+          "minimumClassLevel": 3,
+          "school": "Abjuration",
+          "baseRpCost": 3
+        },
+        "Druid": {
+          "rank": 2,
+          "minimumClassLevel": 3,
+          "school": "Abjuration",
+          "baseRpCost": 3
+        },
+        "Mage": {
+          "rank": 2,
+          "minimumClassLevel": 3,
+          "school": "Abjuration",
+          "baseRpCost": 3
+        },
+        "Monk": {
+          "rank": 2,
+          "minimumClassLevel": 8,
+          "school": "Abjuration",
+          "baseRpCost": 3
+        },
+        "Tinker": {
+          "rank": 2,
+          "minimumClassLevel": 6,
+          "school": "Abjuration",
+          "baseRpCost": 3
+        },
+        "Wizard": {
+          "rank": 2,
+          "minimumClassLevel": 3,
+          "school": "Abjuration",
+          "baseRpCost": 3
+        },
+        "Paladin": {
+          "rank": 2,
+          "minimumClassLevel": 5,
+          "school": "Abjuration",
+          "baseRpCost": 3
+        }
+      },
+      "operational": {
+        "id": "corruption-cleanse",
+        "activation": "Action",
+        "rangeFeet": 30,
+        "targets": "Either one willing creature you perceive within range and line of effect, or a fixed 10-foot-radius, 10-foot-high area centered on a point you perceive within range and line of effect.",
+        "duration": "Instantaneous",
+        "concentration": false,
+        "components": [
+          "V",
+          "S",
+          "F"
+        ],
+        "resolution": "No saving throw. Select one actual qualifying condition or environmental effect; this is removal, not HP healing.",
+        "effect": "Creature mode removes one ordinary Corrupted condition record without explicit special protection. The reviewed ordinary Corrupted condition counts as a minor corruption effect for this spell. Area mode removes one environmental Corruption effect whose actual source explicitly calls it minor and permits cleansing. REVIEWED SCOPE CLARIFICATION: that environmental effect's entire active extent must fit within the selected area, unless its own source expressly permits cleansing just the bounded portion; in that case cleanse only the portion inside.",
+        "scaling": "None.",
+        "limitations": "Does not invent minor status for unknown effects, reduce Unity Exposure or any numeric Corruption/Exposure track, restore former alignment or undo a historical shift, heal HP/Wounds/death, or remove an intrinsic Oracle Curse/Burden. Removing a symptom does not end its major/protected cause. No immunity to a later legal reapplication is granted. If a source continuously reapplies Corrupted, its own timing continues without a fabricated grace period. Apply SPELL_INTEGRATION_RULES.md for actual class access and repertoire, costs before resolution, components, concentration, Dissonance/Refrain and exact source cadence. No automatic scaling or generic upcast.",
+        "designNotes": "PRESERVED: Action, 30 feet, V/S/F and instantaneous minor-corruption cleansing on creature/area. NEW: ordinary Corrupted as one eligible minor effect, willing creature, one effect per casting, bounded environmental area and explicit no numeric-track reduction.",
+        "implementationStatus": "REVIEWED authored operational-playtest manuscript; runtime and balance validation pending",
+        "sourceCoreEntries": [
+          {
+            "index": 37,
+            "original": {
+              "school": "Abjuration",
+              "level": 2,
+              "name": "Corruption Cleanse",
+              "effect": "Remove minor corruption effects from an area or creature.",
+              "source_paragraph": 9024,
+              "casting_time": "1 action",
+              "range": "30 feet",
+              "duration": "Instantaneous",
+              "components": "V, S, F",
+              "resolution": "Automatic or opposed as described",
+              "tags": [
+                "Restoration",
+                "Corruption"
+              ],
+              "rp_cost": 3
+            }
+          }
+        ],
+        "sourcePlacements": [
+          {
+            "name": "Corruption Cleanse",
+            "school": "Abjuration",
+            "level": 2,
+            "summary": "Remove minor corruption effects from an area or creature."
+          }
+        ],
+        "classAccessEvidence": {
+          "Cleric": {
+            "rank": 2,
+            "minimumClassLevel": 3,
+            "school": "Abjuration",
+            "baseRpCost": 3
+          },
+          "Druid": {
+            "rank": 2,
+            "minimumClassLevel": 3,
+            "school": "Abjuration",
+            "baseRpCost": 3
+          },
+          "Mage": {
+            "rank": 2,
+            "minimumClassLevel": 3,
+            "school": "Abjuration",
+            "baseRpCost": 3
+          },
+          "Monk": {
+            "rank": 2,
+            "minimumClassLevel": 8,
+            "school": "Abjuration",
+            "baseRpCost": 3
+          },
+          "Tinker": {
+            "rank": 2,
+            "minimumClassLevel": 6,
+            "school": "Abjuration",
+            "baseRpCost": 3
+          },
+          "Wizard": {
+            "rank": 2,
+            "minimumClassLevel": 3,
+            "school": "Abjuration",
+            "baseRpCost": 3
+          },
+          "Paladin": {
+            "rank": 2,
+            "minimumClassLevel": 5,
+            "school": "Abjuration",
+            "baseRpCost": 3
+          }
+        },
+        "sourceReview": [
+          "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK2_3_SOURCE_CONFERENCE.md",
+          "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK2_3_EXACT_REVIEW.md"
+        ],
+        "reviewEvidence": [
+          "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK2_3_EXACT_REVIEW.md"
+        ],
+        "authoringFile": "data/playtest/spell_drafts/batch_abjuration_rank2_3.json"
+      },
+      "additionalRpCost": 0,
+      "source": {
+        "catalogPath": "src/data/spells.js",
+        "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+        "catalogKey": "corruption-cleanse",
+        "original": {
+          "name": "Corruption Cleanse",
+          "level": 2,
+          "resonanceRank": 2,
+          "school": "Abjuration",
+          "schools": [
+            "Abjuration"
+          ],
+          "placements": [
+            {
+              "name": "Corruption Cleanse",
+              "school": "Abjuration",
+              "level": 2,
+              "summary": "Remove minor corruption effects from an area or creature."
+            }
+          ],
+          "classLevels": {
+            "Cleric": 2,
+            "Druid": 2,
+            "Mage": 2,
+            "Monk": 2,
+            "Tinker": 2,
+            "Wizard": 2,
+            "Paladin": 2
+          },
+          "classRanks": {
+            "Cleric": 2,
+            "Druid": 2,
+            "Mage": 2,
+            "Monk": 2,
+            "Tinker": 2,
+            "Wizard": 2,
+            "Paladin": 2
+          },
+          "classLearnLevels": {
+            "Cleric": 3,
+            "Druid": 3,
+            "Mage": 3,
+            "Monk": 8,
+            "Tinker": 6,
+            "Wizard": 3,
+            "Paladin": 5
+          },
+          "classSchools": {
+            "Cleric": "Abjuration",
+            "Druid": "Abjuration",
+            "Mage": "Abjuration",
+            "Monk": "Abjuration",
+            "Tinker": "Abjuration",
+            "Wizard": "Abjuration",
+            "Paladin": "Abjuration"
+          },
+          "castingTime": "Not specified in current rulebook",
+          "range": "Not specified in current rulebook",
+          "components": "Not specified in current rulebook",
+          "duration": "Not specified in current rulebook",
+          "description": "Remove minor corruption effects from an area or creature.",
+          "alternateSummaries": [],
+          "classes": [
+            "Cleric",
+            "Druid",
+            "Mage",
+            "Monk",
+            "Tinker",
+            "Wizard",
+            "Paladin"
+          ],
+          "status": "canon",
+          "source": "Player Rulebook — Spell Lists"
+        },
+        "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+        "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+        "coreEntries": [
+          {
+            "index": 37,
+            "original": {
+              "school": "Abjuration",
+              "level": 2,
+              "name": "Corruption Cleanse",
+              "effect": "Remove minor corruption effects from an area or creature.",
+              "source_paragraph": 9024,
+              "casting_time": "1 action",
+              "range": "30 feet",
+              "duration": "Instantaneous",
+              "components": "V, S, F",
+              "resolution": "Automatic or opposed as described",
+              "tags": [
+                "Restoration",
+                "Corruption"
+              ],
+              "rp_cost": 3
+            }
+          }
+        ],
+        "possibleHistoricalAliases": []
+      },
+      "reviewFlags": [
+        "Core resolution requires an explicit operational interpretation"
+      ]
+    },
+    "corruption-ward": {
+      "id": "corruption-ward",
+      "name": "Corruption Ward",
+      "schools": [
+        "Abjuration"
+      ],
+      "status": "operational-playtest-draft",
+      "visibility": "public-source-review",
+      "classAccess": {
+        "Cleric": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Druid": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Mage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Monk": {
+          "rank": 1,
+          "minimumClassLevel": 3,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Tinker": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Wizard": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Paladin": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        }
+      },
+      "operational": {
+        "id": "corruption-ward",
+        "activation": "Action",
+        "rangeFeet": 30,
+        "targets": "One willing creature you can perceive within range and line of effect, including yourself.",
+        "duration": "1 hour: expires 3,600 seconds after application. Initiative entry, exit or reorder does not reset this deadline.",
+        "concentration": false,
+        "components": [
+          "V",
+          "S",
+          "F"
+        ],
+        "resolution": "Automatic after legal casting.",
+        "effect": "The target has advantage on saving throws against effects explicitly identified as Corruption by their current canonical mechanical source. This advantage can apply to each qualifying save while the ward lasts.",
+        "scaling": "None.",
+        "limitations": "Does not invent a save for an effect that grants none, cure or lower existing Corruption, remove a curse, or grant immunity. Theme, ancestry, appearance, alignment and faction are not Corruption tags. Advantage never stacks. Known/prepared access, class-level gates, legal components, line of effect, payment before resolution, concentration transitions, Dissonance, Refrain and class cadence follow SPELL_INTEGRATION_RULES.md. No automatic scaling or generic upcast. Only one Corruption Ward can be active on a target across all casters. A later application replaces the previous ward with its own 3,600-second deadline; stale cleanup of the old application cannot remove the replacement.",
+        "designNotes": "PRESERVED: Action, 30 feet, 1 hour and advantage against Corruption; M/F uses the existing class-focus alternative. NEW: willing target, exact source-tag eligibility and elapsed deadline.",
+        "implementationStatus": "REVIEWED authored operational-playtest manuscript; runtime and balance validation pending",
+        "sourceCoreEntries": [
+          {
+            "index": 29,
+            "original": {
+              "school": "Abjuration",
+              "level": 1,
+              "name": "Corruption Ward",
+              "effect": "Target gains advantage on saves against corruption effects for 1 hour.",
+              "source_paragraph": 9014,
+              "casting_time": "1 action",
+              "range": "30 feet",
+              "duration": "1 hour",
+              "components": "V, S, M/F",
+              "resolution": "Automatic or opposed as described",
+              "tags": [
+                "Ward",
+                "Corruption"
+              ],
+              "rp_cost": 2
+            }
+          }
+        ],
+        "sourcePlacements": [
+          {
+            "name": "Corruption Ward",
+            "school": "Abjuration",
+            "level": 1,
+            "summary": "Target gains advantage on saves against corruption effects for 1 hour."
+          }
+        ],
+        "classAccessEvidence": {
+          "Cleric": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Abjuration",
+            "baseRpCost": 2
+          },
+          "Druid": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Abjuration",
+            "baseRpCost": 2
+          },
+          "Mage": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Abjuration",
+            "baseRpCost": 2
+          },
+          "Monk": {
+            "rank": 1,
+            "minimumClassLevel": 3,
+            "school": "Abjuration",
+            "baseRpCost": 2
+          },
+          "Tinker": {
+            "rank": 1,
+            "minimumClassLevel": 2,
+            "school": "Abjuration",
+            "baseRpCost": 2
+          },
+          "Wizard": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Abjuration",
+            "baseRpCost": 2
+          },
+          "Paladin": {
+            "rank": 1,
+            "minimumClassLevel": 2,
+            "school": "Abjuration",
+            "baseRpCost": 2
+          }
+        },
+        "sourceReview": [
+          "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_SOURCE_CONFERENCE.md",
+          "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_EXACT_REVIEW.md"
+        ],
+        "reviewEvidence": [
+          "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_EXACT_REVIEW.md"
+        ],
+        "authoringFile": "data/playtest/spell_drafts/batch_abjuration_rank1.json"
+      },
+      "additionalRpCost": 0,
+      "source": {
+        "catalogPath": "src/data/spells.js",
+        "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+        "catalogKey": "corruption-ward",
+        "original": {
+          "name": "Corruption Ward",
+          "level": 1,
+          "resonanceRank": 1,
+          "school": "Abjuration",
+          "schools": [
+            "Abjuration"
+          ],
+          "placements": [
+            {
+              "name": "Corruption Ward",
+              "school": "Abjuration",
+              "level": 1,
+              "summary": "Target gains advantage on saves against corruption effects for 1 hour."
+            }
+          ],
+          "classLevels": {
+            "Cleric": 1,
+            "Druid": 1,
+            "Mage": 1,
+            "Monk": 1,
+            "Tinker": 1,
+            "Wizard": 1,
+            "Paladin": 1
+          },
+          "classRanks": {
+            "Cleric": 1,
+            "Druid": 1,
+            "Mage": 1,
+            "Monk": 1,
+            "Tinker": 1,
+            "Wizard": 1,
+            "Paladin": 1
+          },
+          "classLearnLevels": {
+            "Cleric": 1,
+            "Druid": 1,
+            "Mage": 1,
+            "Monk": 3,
+            "Tinker": 2,
+            "Wizard": 1,
+            "Paladin": 2
+          },
+          "classSchools": {
+            "Cleric": "Abjuration",
+            "Druid": "Abjuration",
+            "Mage": "Abjuration",
+            "Monk": "Abjuration",
+            "Tinker": "Abjuration",
+            "Wizard": "Abjuration",
+            "Paladin": "Abjuration"
+          },
+          "castingTime": "Not specified in current rulebook",
+          "range": "Not specified in current rulebook",
+          "components": "Not specified in current rulebook",
+          "duration": "Not specified in current rulebook",
+          "description": "Target gains advantage on saves against corruption effects for 1 hour.",
+          "alternateSummaries": [],
+          "classes": [
+            "Cleric",
+            "Druid",
+            "Mage",
+            "Monk",
+            "Tinker",
+            "Wizard",
+            "Paladin"
+          ],
+          "status": "canon",
+          "source": "Player Rulebook — Spell Lists"
+        },
+        "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+        "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+        "coreEntries": [
+          {
+            "index": 29,
+            "original": {
+              "school": "Abjuration",
+              "level": 1,
+              "name": "Corruption Ward",
+              "effect": "Target gains advantage on saves against corruption effects for 1 hour.",
+              "source_paragraph": 9014,
+              "casting_time": "1 action",
+              "range": "30 feet",
+              "duration": "1 hour",
+              "components": "V, S, M/F",
+              "resolution": "Automatic or opposed as described",
+              "tags": [
+                "Ward",
+                "Corruption"
+              ],
+              "rp_cost": 2
+            }
+          }
+        ],
+        "possibleHistoricalAliases": []
+      },
+      "reviewFlags": [
+        "Core resolution requires an explicit operational interpretation"
+      ]
+    }
+  },
+  "sourceInterpretation": "SOULS_RESEARCH_REVIEWED_01.md §8 expressly leaves Purification pending. The exact Corruption Purge/Cleanse, Corruption Ward, Null Veil and Corruption Immunity scopes remain boundaries only; their procedures do not fill the rank9 cure matrix."
+}
