@@ -1,0 +1,861 @@
+{
+  "id": "W17N",
+  "profileId": null,
+  "level": null,
+  "class": "Wizard",
+  "acquisitionLedger": [
+    {
+      "choices": [
+        {
+          "acquisition": "selection",
+          "activation": "Action",
+          "band": "Base",
+          "className": "Wizard",
+          "cost": "1 RP",
+          "designStatus": "provisional-playtest",
+          "duration": "Instantaneous",
+          "effect": "Arcane Bolt. Tags: base, active, wizard-spell, universal, damage. Make a Wizard spell attack. On a hit deal S d6 + M force damage. Arcane Bolt is an always-prepared class matrix once acquired and uses the normal first-distinct-matrix and Refrain rules.",
+          "frequency": "At will while RP remains",
+          "id": "wizard.base.arcane-bolt",
+          "minimumClassLevel": 1,
+          "name": "Arcane Bolt",
+          "path": null,
+          "rangeAndTarget": "One creature within 60 feet",
+          "source": {
+            "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+            "line": 5203,
+            "originalText": "Arcane Bolt: Launch a bolt of pure arcane energy that deals force damage to a single target."
+          },
+          "sourceKind": "active",
+          "spellRank": 1
+        },
+        {
+          "acquisition": "selection",
+          "activation": "Action",
+          "band": "Base",
+          "className": "Wizard",
+          "cost": "1 RP",
+          "designStatus": "provisional-playtest",
+          "duration": "1 hour",
+          "effect": "Minor Conjuration. Tags: base, active, wizard-spell, conjuration. Create one nonmagical unattended object that fits inside a 1-foot cube, weighs no more than 10 pounds and is made of common nonvaluable material such as wood, cloth, clay, iron or glass. It cannot be food, poison, currency, a spell component with listed cost, ammunition with special properties or a functional complex mechanism. Creating another dismisses the first.",
+          "frequency": "At will while RP remains; one object at a time",
+          "id": "wizard.base.minor-conjuration",
+          "minimumClassLevel": 1,
+          "name": "Minor Conjuration",
+          "path": null,
+          "rangeAndTarget": "One unoccupied space within 10 feet",
+          "source": {
+            "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+            "line": 5204,
+            "originalText": "Minor Conjuration: Create a temporary, small inanimate object that lasts for 1 hour."
+          },
+          "sourceKind": "active",
+          "spellRank": 1
+        },
+        {
+          "acquisition": "selection",
+          "activation": "Passive",
+          "band": "Base",
+          "className": "Wizard",
+          "cost": "0",
+          "designStatus": "provisional-playtest",
+          "duration": "Instantaneous during a completed short rest",
+          "effect": "Arcane Recovery. Tags: base, passive, resonance. Once between long rests when you complete a short rest, restore RP equal to half your Wizard class level rounded up, never above your normal maximum. This is RP recovery, not a second pool, and cannot trigger spell-cast, Refrain or Dissonance effects.",
+          "frequency": "1/long rest",
+          "id": "wizard.base.arcane-recovery",
+          "minimumClassLevel": 1,
+          "name": "Arcane Recovery",
+          "path": null,
+          "rangeAndTarget": "Self",
+          "source": {
+            "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+            "line": 5196,
+            "originalText": "Arcane Recovery: Once per day during a short rest, recover RP equal to half your Wizard level (rounded up), up to your normal maximum."
+          },
+          "sourceKind": "passive",
+          "spellRank": null
+        },
+        {
+          "acquisition": "selection",
+          "activation": "Passive",
+          "band": "Base",
+          "className": "Wizard",
+          "cost": "0",
+          "designStatus": "provisional-playtest",
+          "duration": "Permanent",
+          "effect": "Spell Scribing. Tags: base, passive, spellbook. Copying a legal found Wizard spell into your spellbook requires 1 hour and 25 gp of inks and components per spell rank, treating rank 0 as rank 1 for this calculation, instead of the pilot baseline 2 hours and 50 gp. Level-up spells remain free.",
+          "frequency": "Always",
+          "id": "wizard.base.spell-scribing",
+          "minimumClassLevel": 1,
+          "name": "Spell Scribing",
+          "path": null,
+          "rangeAndTarget": "Your spellbook",
+          "source": {
+            "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+            "line": 5197,
+            "originalText": "Spell Scribing: Copy spells into your spellbook at half the normal cost and time."
+          },
+          "sourceKind": "passive",
+          "spellRank": null
+        }
+      ],
+      "level": 1,
+      "sourceSchedule": {
+        "asiOrFeat": false,
+        "bands": [
+          "Base"
+        ],
+        "choose": 4,
+        "classLevel": 1,
+        "minimumActives": 2
+      }
+    },
+    {
+      "choices": [
+        {
+          "acquisition": "selection",
+          "activation": "Reaction",
+          "band": "Base",
+          "className": "Wizard",
+          "cost": "2 RP",
+          "designStatus": "provisional-playtest",
+          "duration": "Until start of your next regular turn",
+          "effect": "Arcane Shield. Tags: base, active, wizard-spell, abjuration, protection. Trigger when an attack roll would hit you. Gain +2 AC against the triggering attack and until the start of your next regular turn, potentially causing the attack to miss. Temporary AC from another Arcane Shield does not stack.",
+          "frequency": "Recharge 2 rounds",
+          "id": "wizard.base.arcane-shield",
+          "minimumClassLevel": 1,
+          "name": "Arcane Shield",
+          "path": null,
+          "rangeAndTarget": "Self",
+          "source": {
+            "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+            "line": 5205,
+            "originalText": "Arcane Shield: Create a barrier of magical force that provides temporary protection."
+          },
+          "sourceKind": "active",
+          "spellRank": 1
+        },
+        {
+          "acquisition": "selection",
+          "activation": "Action",
+          "band": "Base",
+          "className": "Wizard",
+          "cost": "1 RP",
+          "designStatus": "provisional-playtest",
+          "duration": "Instantaneous",
+          "effect": "Analyze Magic. Tags: base, active, wizard-spell, divination, knowledge. Make an Intelligence (Arcana) check against DC 10 + the effect's spell rank, treating a non-spell effect's Director-assigned tier as rank. On success learn its school or magical category, one active mechanical property and whether it is currently sustained, cursed or bound to another effect. Failure reveals only that magic is present.",
+          "frequency": "Recharge 1 round",
+          "id": "wizard.base.analyze-magic",
+          "minimumClassLevel": 1,
+          "name": "Analyze Magic",
+          "path": null,
+          "rangeAndTarget": "One magical creature, object or effect within 30 feet",
+          "source": {
+            "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+            "line": 5206,
+            "originalText": "Analyze Magic: Study a magical effect or item to gain insight into its properties and function."
+          },
+          "sourceKind": "active",
+          "spellRank": 1
+        }
+      ],
+      "level": 2,
+      "sourceSchedule": {
+        "asiOrFeat": false,
+        "bands": [
+          "Base"
+        ],
+        "choose": 2,
+        "classLevel": 2,
+        "minimumActives": 0
+      }
+    },
+    {
+      "choices": [
+        {
+          "acquisition": "selection",
+          "activation": "Action",
+          "band": "Arch",
+          "className": "Wizard",
+          "cost": "2 RP",
+          "designStatus": "provisional-playtest",
+          "duration": "8 hours",
+          "effect": "Arcane Lock. Tags: arch, active, wizard-spell, abjuration. Magically seal the target. Opening it without your permission requires a Strength check or thieves'/arcane-tool check against your Wizard spell DC. Dispel Magic can end the lock. You can designate up to M creatures who can bypass it. This does not make the object physically indestructible.",
+          "frequency": "Recharge 2 rounds",
+          "id": "wizard.arch.arcane-lock",
+          "minimumClassLevel": 3,
+          "name": "Arcane Lock",
+          "path": null,
+          "rangeAndTarget": "One door, chest, portal or unattended object within touch",
+          "source": {
+            "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+            "line": 5223,
+            "originalText": "Arcane Lock: Create a magical barrier that prevents entry or access to an object or area."
+          },
+          "sourceKind": "active",
+          "spellRank": 2
+        },
+        {
+          "acquisition": "selection",
+          "activation": "Action",
+          "band": "Arch",
+          "className": "Wizard",
+          "cost": "2 RP",
+          "designStatus": "provisional-playtest",
+          "duration": "Concentration, maximum 10 minutes",
+          "effect": "Arcane Sight. Tags: arch, active, wizard-spell, divination, concentration. While active you perceive magical auras within 60 feet and automatically know each visible aura's school or broad magical category. As an Action on a later turn, examine one aura to learn whether it is concentrated, summoned, cursed, warded or linked to another visible magical effect. Total cover blocks sight.",
+          "frequency": "Recharge 2 rounds",
+          "id": "wizard.arch.arcane-sight",
+          "minimumClassLevel": 3,
+          "name": "Arcane Sight",
+          "path": null,
+          "rangeAndTarget": "Self; 60-foot sight",
+          "source": {
+            "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+            "line": 5226,
+            "originalText": "Arcane Sight: See magical auras and effects for a short duration."
+          },
+          "sourceKind": "active",
+          "spellRank": 2
+        }
+      ],
+      "level": 3,
+      "sourceSchedule": {
+        "asiOrFeat": false,
+        "bands": [
+          "Arch"
+        ],
+        "choose": 2,
+        "classLevel": 3,
+        "minimumActives": 1
+      }
+    },
+    {
+      "choices": [
+        {
+          "acquisition": "selection",
+          "activation": "Passive",
+          "band": "Base",
+          "className": "Wizard",
+          "cost": "0",
+          "designStatus": "provisional-playtest",
+          "duration": "Permanent",
+          "effect": "Scholarly Mind. Tags: base, passive, knowledge. You have advantage on Intelligence checks whose primary purpose is recalling, researching or analyzing arcane theory, magical history, planar magical principles or constructed spell formulae. It does not grant advantage on spell attacks, Counterspell checks or general Investigation unrelated to arcane scholarship.",
+          "frequency": "Always",
+          "id": "wizard.base.scholarly-mind",
+          "minimumClassLevel": 1,
+          "name": "Scholarly Mind",
+          "path": null,
+          "rangeAndTarget": "Self",
+          "source": {
+            "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+            "line": 5200,
+            "originalText": "Scholarly Mind: Gain advantage on Intelligence checks related to arcane knowledge."
+          },
+          "sourceKind": "passive",
+          "spellRank": null
+        }
+      ],
+      "level": 4,
+      "sourceSchedule": {
+        "asiOrFeat": true,
+        "bands": [
+          "Base",
+          "Arch"
+        ],
+        "choose": 1,
+        "classLevel": 4,
+        "minimumActives": 0
+      }
+    },
+    {
+      "choices": [
+        {
+          "acquisition": "selection",
+          "activation": "Triggered",
+          "band": "Arch",
+          "className": "Wizard",
+          "cost": "3 RP",
+          "designStatus": "provisional-playtest",
+          "duration": "Maximum 3 rounds",
+          "effect": "Spell Tether. Tags: arch, passive-upgrade, concentration, tether. When you begin a second concentration spell that targets only yourself while already concentrating on a self-only spell, spend 3 additional RP. For up to 3 rounds you may maintain both. Whenever damage requires a concentration save, make one save; failure ends BOTH spells. Starting a third concentration effect ends both tethered spells before the new one begins. Spell Tether and Tethered Cast cannot be combined; maximum two sustained concentration effects total. Only one Spell Tether can exist at a time.",
+          "frequency": "1/long rest",
+          "id": "wizard.arch.spell-tether",
+          "minimumClassLevel": 5,
+          "name": "Spell Tether",
+          "path": null,
+          "rangeAndTarget": "Self",
+          "source": {
+            "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+            "line": 5215,
+            "originalText": "Spell Tether: Maintain 2 self-buff spells without concentration (1/rest)"
+          },
+          "sourceKind": "passive",
+          "spellRank": null
+        }
+      ],
+      "level": 5,
+      "sourceSchedule": {
+        "asiOrFeat": false,
+        "bands": [
+          "Arch"
+        ],
+        "choose": 1,
+        "classLevel": 5,
+        "minimumActives": 0
+      }
+    },
+    {
+      "choices": [
+        {
+          "acquisition": "selection",
+          "activation": "Passive",
+          "band": "Arch",
+          "className": "Wizard",
+          "cost": "0",
+          "designStatus": "provisional-playtest",
+          "duration": "Daily preparation",
+          "effect": "Matrix Mastery. Tags: arch, passive, matrix. During preparation you may assign at most one common Matrix Mastery modification to each ordinary prepared spell: Quick Substitution, Component Enhancement, Matrix Linking or Stability Reinforcement, using the exact common definitions in the Wizard engine. Always-prepared class-card matrices cannot receive these modifications unless a card explicitly says otherwise.",
+          "frequency": "Always",
+          "id": "wizard.arch.matrix-mastery",
+          "minimumClassLevel": 5,
+          "name": "Matrix Mastery",
+          "path": null,
+          "rangeAndTarget": "Prepared matrices",
+          "source": {
+            "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+            "line": 5216,
+            "originalText": "Matrix Mastery: Modify spell matrices to change minor aspects of prepared spells."
+          },
+          "sourceKind": "passive",
+          "spellRank": null
+        }
+      ],
+      "level": 6,
+      "sourceSchedule": {
+        "asiOrFeat": false,
+        "bands": [
+          "Base",
+          "Arch"
+        ],
+        "choose": 1,
+        "classLevel": 6,
+        "minimumActives": 0
+      }
+    },
+    {
+      "choices": [
+        {
+          "acquisition": "selection",
+          "activation": "Passive",
+          "band": "Arch",
+          "className": "Wizard",
+          "cost": "0",
+          "designStatus": "provisional-playtest",
+          "duration": "While concentrating",
+          "effect": "Improved Concentration. Tags: arch, passive, concentration. You have advantage on Constitution saving throws made because damage threatens your concentration on a Wizard spell. This does not alter the DC, protect a Tether from rules that explicitly end both effects, or prevent Silence, incapacitation and other non-damage concentration failures.",
+          "frequency": "Always",
+          "id": "wizard.arch.improved-concentration",
+          "minimumClassLevel": 7,
+          "name": "Improved Concentration",
+          "path": null,
+          "rangeAndTarget": "Self",
+          "source": {
+            "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+            "line": 5219,
+            "originalText": "Improved Concentration: Advantage on concentration checks when taking damage."
+          },
+          "sourceKind": "passive",
+          "spellRank": null
+        }
+      ],
+      "level": 7,
+      "sourceSchedule": {
+        "asiOrFeat": false,
+        "bands": [
+          "Arch"
+        ],
+        "choose": 1,
+        "classLevel": 7,
+        "minimumActives": 0
+      }
+    },
+    {
+      "choices": [
+        {
+          "acquisition": "selection",
+          "activation": "Passive",
+          "band": "Arch",
+          "className": "Wizard",
+          "cost": "0",
+          "designStatus": "provisional-playtest",
+          "duration": "Daily preparation",
+          "effect": "Floating Preparation. Tags: arch, passive, matrix. Increase your maximum prepared Spell Matrix count by 1. The extra matrix can come from any school and obeys all ordinary spellbook and rank restrictions. It is a prepared matrix for every rule, including protected strain, duplicate-family tracking and Matrix Mastery modifications.",
+          "frequency": "Always",
+          "id": "wizard.arch.floating-preparation",
+          "minimumClassLevel": 3,
+          "name": "Floating Preparation",
+          "path": null,
+          "rangeAndTarget": "Self",
+          "source": {
+            "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+            "line": 5213,
+            "originalText": "Floating Preparation: Prepare 1 extra spell from any school each day"
+          },
+          "sourceKind": "passive",
+          "spellRank": null
+        }
+      ],
+      "level": 8,
+      "sourceSchedule": {
+        "asiOrFeat": true,
+        "bands": [
+          "Base",
+          "Arch"
+        ],
+        "choose": 1,
+        "classLevel": 8,
+        "minimumActives": 0
+      }
+    },
+    {
+      "choices": [
+        {
+          "acquisition": "selection",
+          "activation": "Action",
+          "band": "Arch",
+          "className": "Wizard",
+          "cost": "3 RP",
+          "designStatus": "provisional-playtest",
+          "duration": "Instantaneous",
+          "effect": "Dispel Magic. Tags: arch, active, wizard-spell, abjuration. Choose one ongoing spell effect you can perceive. If its rank is 3 or lower, end it. If it is rank 4 or higher, make an Intelligence check adding proficiency against DC 10 + spell rank; success ends it. Permanent artifact properties and effects explicitly immune to dispelling are unaffected.",
+          "frequency": "Recharge 2 rounds",
+          "id": "wizard.arch.dispel-magic",
+          "minimumClassLevel": 5,
+          "name": "Dispel Magic",
+          "path": null,
+          "rangeAndTarget": "One creature, object or magical effect within 60 feet",
+          "source": {
+            "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+            "line": 5224,
+            "originalText": "Dispel Magic: End magical effects in an area or on a target."
+          },
+          "sourceKind": "active",
+          "spellRank": 3
+        }
+      ],
+      "level": 9,
+      "sourceSchedule": {
+        "asiOrFeat": false,
+        "bands": [
+          "Arch"
+        ],
+        "choose": 1,
+        "classLevel": 9,
+        "minimumActives": 0
+      }
+    },
+    {
+      "choices": [
+        {
+          "id": "wizard.hero.necromancer.corpse-harvest",
+          "name": "Corpse Harvest",
+          "className": "Wizard",
+          "band": "Hero",
+          "path": "Necromancer",
+          "sourceKind": "active",
+          "minimumClassLevel": 10,
+          "acquisition": "selection",
+          "activation": "Action",
+          "cost": "4 RP",
+          "rangeAndTarget": "One eligible humanoid corpse within 30 feet",
+          "duration": "Until destroyed, dismissed or your next long rest",
+          "frequency": "Recharge 2 rounds; standard-minion cap 3",
+          "effect": "Corpse Harvest. Tags: hero, necromancer, wizard-spell, undead, summon. Raise the corpse as a Skeleton or Zombie using the common standard-undead statistics; a goblinoid corpse may instead become a Goblin Thrall. The corpse is consumed into that minion state. The creature obeys the shared Bonus Action Companion Command rule. Creating a fourth standard minion requires dismissing one existing standard minion first.",
+          "source": {
+            "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+            "line": 5305,
+            "originalText": "Corpse Harvest: Raise skeletons/goblins/zombies from slain humanoids"
+          },
+          "designStatus": "provisional-playtest",
+          "spellRank": 5
+        },
+        {
+          "id": "wizard.hero.necromancer.flesh-ascendant",
+          "name": "Flesh Ascendant",
+          "className": "Wizard",
+          "band": "Hero",
+          "path": "Necromancer",
+          "sourceKind": "passive",
+          "minimumClassLevel": 10,
+          "acquisition": "selection",
+          "activation": "Passive",
+          "cost": "0",
+          "rangeAndTarget": "Undead creatures you control",
+          "duration": "Permanent while active",
+          "frequency": "Always",
+          "effect": "Flesh Ascendant. Tags: hero, necromancer, passive, undead. Each undead creature you control gains +2 maximum HP per Wizard class level. While at least two of your undead creatures are active, each also gains +1 AC and +1 on saving throws. These bonuses apply after the common standard-minion and elite-pet statistics and do not increase companion caps or command frequency.",
+          "source": {
+            "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+            "line": 5298,
+            "originalText": "Flesh Ascendant: All undead gain +2 HP per Wizard level, if 2+ undead are active, gain +1 AC and Save"
+          },
+          "designStatus": "provisional-playtest",
+          "spellRank": null
+        }
+      ],
+      "level": 10,
+      "sourceSchedule": {
+        "asiOrFeat": false,
+        "bands": [
+          "Hero"
+        ],
+        "choose": 2,
+        "classLevel": 10,
+        "minimumActives": 1
+      }
+    },
+    {
+      "choices": [
+        {
+          "acquisition": "selection",
+          "activation": "Ritual",
+          "band": "Base",
+          "className": "Wizard",
+          "cost": "0 RP",
+          "designStatus": "provisional-playtest",
+          "duration": "10 minutes",
+          "effect": "Spellbook Study. Tags: base, active, matrix, ritual. Replace one currently prepared matrix with one legal spell recorded in your spellbook. The replacement must be within your Wizard rank limit. This is the normal midday substitution permission; it does not alter the spellbook, create another prepared-matrix position or reset first-cast/Refrain history for an underlying matrix family already cast this encounter.",
+          "frequency": "1/long rest",
+          "id": "wizard.base.spellbook-study",
+          "minimumClassLevel": 1,
+          "name": "Spellbook Study",
+          "path": null,
+          "rangeAndTarget": "Self and spellbook",
+          "source": {
+            "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+            "line": 5207,
+            "originalText": "Spellbook Study: Spend time studying your spellbook to prepare a different selection of spells."
+          },
+          "sourceKind": "active",
+          "spellRank": null
+        }
+      ],
+      "level": 11,
+      "sourceSchedule": {
+        "asiOrFeat": false,
+        "bands": [
+          "Base",
+          "Arch"
+        ],
+        "choose": 1,
+        "classLevel": 11,
+        "minimumActives": 0
+      }
+    },
+    {
+      "choices": [
+        {
+          "id": "wizard.hero.necromancer.ghoul-lash",
+          "name": "Ghoul Lash",
+          "className": "Wizard",
+          "band": "Hero",
+          "path": "Necromancer",
+          "sourceKind": "active",
+          "minimumClassLevel": 10,
+          "acquisition": "selection",
+          "activation": "Bonus Action",
+          "cost": "2 RP",
+          "rangeAndTarget": "One of your standard undead minions with another allied undead within 5 feet",
+          "duration": "For this command",
+          "frequency": "At most once per round",
+          "effect": "Ghoul Lash. Tags: hero, necromancer, undead, command. Use your shared Companion Command on the chosen standard minion. If another undead you control is within 5 feet of it when commanded, it makes TWO copies of its normal damaging attack instead of one. Both attacks are part of the same single shared damaging command and cannot create additional commands, Actions or auto-raise events beyond the common once-per-round Auto-Raise limit.",
+          "source": {
+            "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+            "line": 5306,
+            "originalText": "Ghoul Lash: Minions within 1 tile of each other gain bonus attacks"
+          },
+          "designStatus": "provisional-playtest",
+          "spellRank": null
+        }
+      ],
+      "level": 12,
+      "sourceSchedule": {
+        "asiOrFeat": true,
+        "bands": [
+          "Hero"
+        ],
+        "choose": 1,
+        "classLevel": 12,
+        "minimumActives": 0
+      }
+    },
+    {
+      "choices": [
+        {
+          "acquisition": "selection",
+          "activation": "Bonus Action",
+          "band": "Arch",
+          "className": "Wizard",
+          "cost": "0",
+          "designStatus": "provisional-playtest",
+          "duration": "Instantaneous",
+          "effect": "Sigil Rewrite. Tags: arch, passive-upgrade, matrix. Replace one prepared matrix with a different spell from your spellbook of exactly the same rank without performing the normal 10-minute ritual. The replacement receives no special Dissonance reset for a matrix family already used this encounter and must obey current Wizard rank eligibility.",
+          "frequency": "1/long rest",
+          "id": "wizard.arch.sigil-rewrite",
+          "minimumClassLevel": 3,
+          "name": "Sigil Rewrite",
+          "path": null,
+          "rangeAndTarget": "Self and spellbook",
+          "source": {
+            "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+            "line": 5214,
+            "originalText": "Sigil Rewrite: Once/day, instantly swap a spell you know for another of the same tier"
+          },
+          "sourceKind": "passive",
+          "spellRank": null
+        }
+      ],
+      "level": 13,
+      "sourceSchedule": {
+        "asiOrFeat": false,
+        "bands": [
+          "Base",
+          "Arch"
+        ],
+        "choose": 1,
+        "classLevel": 13,
+        "minimumActives": 0
+      }
+    },
+    {
+      "choices": [
+        {
+          "id": "wizard.hero.necromancer.mind-matrix",
+          "name": "Mind Matrix",
+          "className": "Wizard",
+          "band": "Hero",
+          "path": "Necromancer",
+          "sourceKind": "passive",
+          "minimumClassLevel": 10,
+          "acquisition": "selection",
+          "activation": "Passive",
+          "cost": "0",
+          "rangeAndTarget": "Your Enchantment Wizard spells",
+          "duration": "Permanent",
+          "frequency": "Always",
+          "effect": "Mind Matrix. Tags: hero, necromancer, passive, enchantment. Increase your Wizard save DC by 2 for Enchantment spells. This stacks with your level-1 school bonus only if Enchantment is your Arcane School. It does not increase DCs for non-spell class techniques merely because they influence a creature's mind.",
+          "source": {
+            "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+            "line": 5299,
+            "originalText": "Mind Matrix: Your enchantment spells are harder to resist (+2 to save DC)."
+          },
+          "designStatus": "provisional-playtest",
+          "spellRank": null
+        }
+      ],
+      "level": 14,
+      "sourceSchedule": {
+        "asiOrFeat": false,
+        "bands": [
+          "Hero"
+        ],
+        "choose": 1,
+        "classLevel": 14,
+        "minimumActives": 0
+      }
+    },
+    {
+      "choices": [
+        {
+          "acquisition": "selection",
+          "activation": "Passive",
+          "band": "Base",
+          "className": "Wizard",
+          "cost": "0",
+          "designStatus": "provisional-playtest",
+          "duration": "Permanent",
+          "effect": "Arcane Insight. Tags: base, passive, knowledge. Gain proficiency in Arcana, or expertise if already proficient. When examining an active magical effect, spell residue, magic item or arcane construction, you may make an Intelligence (Arcana) check to determine its broad school, function or unusual matrix behavior. The Director sets the normal knowledge DC; failure supplies no invented fact.",
+          "frequency": "Always",
+          "id": "wizard.base.arcane-insight",
+          "minimumClassLevel": 1,
+          "name": "Arcane Insight",
+          "path": null,
+          "rangeAndTarget": "Self",
+          "source": {
+            "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+            "line": 5198,
+            "originalText": "Arcane Insight: Identify magical effects and items with greater accuracy than non-wizards."
+          },
+          "sourceKind": "passive",
+          "spellRank": null
+        }
+      ],
+      "level": 15,
+      "sourceSchedule": {
+        "asiOrFeat": false,
+        "bands": [
+          "Base",
+          "Arch"
+        ],
+        "choose": 1,
+        "classLevel": 15,
+        "minimumActives": 0
+      }
+    },
+    {
+      "choices": [
+        {
+          "id": "wizard.hero.necromancer.mental-binding",
+          "name": "Mental Binding",
+          "className": "Wizard",
+          "band": "Hero",
+          "path": "Necromancer",
+          "sourceKind": "active",
+          "minimumClassLevel": 14,
+          "acquisition": "selection",
+          "activation": "Action",
+          "cost": "4 RP",
+          "rangeAndTarget": "One creature within 60 feet",
+          "duration": "Concentration, maximum 3 rounds",
+          "frequency": "Recharge 3 rounds",
+          "effect": "Mental Binding. Tags: hero, necromancer, wizard-spell, enchantment, control, concentration. Target WIS save; failure becomes Charmed for at most 3 rounds, repeat save at end each turn and on damage. On its first affected turn only, choose Approach, Retreat, Drop, Kneel or Strike; target uses up to half Speed, one object interaction or one ordinary weapon attack as appropriate, consuming its normal Action only if an attack is made. This command replaces at most one normal Action/turn and uses the shared hard-denial mark. Later turns retain normal actions, but while Charmed it cannot willingly attack you. No self-harm, compelled beliefs, resource expenditure or permanent allegiance. The player chooses the safest legal interpretation for a PC.",
+          "source": {
+            "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+            "line": 5308,
+            "originalText": "Mental Binding: Force a creature to obey a simple command for a short duration."
+          },
+          "designStatus": "provisional-playtest",
+          "spellRank": 7
+        }
+      ],
+      "level": 16,
+      "sourceSchedule": {
+        "asiOrFeat": true,
+        "bands": [
+          "Hero"
+        ],
+        "choose": 1,
+        "classLevel": 16,
+        "minimumActives": 0
+      }
+    },
+    {
+      "choices": [
+        {
+          "acquisition": "selection",
+          "activation": "Ritual",
+          "band": "Arch",
+          "className": "Wizard",
+          "cost": "3 RP",
+          "designStatus": "provisional-playtest",
+          "duration": "8 hours",
+          "effect": "Dimensional Pocket. Tags: arch, active, wizard-spell, conjuration, ritual. Create an extradimensional storage space holding up to 100 pounds or 10 cubic feet of unattended nonliving material. Retrieving or placing an item while adjacent to the opening uses an object interaction. Living creatures cannot enter. When duration ends, remaining contents appear harmlessly in the nearest unoccupied space.",
+          "frequency": "1/long rest",
+          "id": "wizard.arch.dimensional-pocket",
+          "minimumClassLevel": 7,
+          "name": "Dimensional Pocket",
+          "path": null,
+          "rangeAndTarget": "One point within 5 feet",
+          "source": {
+            "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+            "line": 5225,
+            "originalText": "Dimensional Pocket: Create a small extradimensional space to store items."
+          },
+          "sourceKind": "active",
+          "spellRank": 4
+        }
+      ],
+      "level": 17,
+      "sourceSchedule": {
+        "asiOrFeat": false,
+        "bands": [
+          "Base",
+          "Arch"
+        ],
+        "choose": 1,
+        "classLevel": 17,
+        "minimumActives": 0
+      }
+    }
+  ],
+  "allAcquiredClassCapabilities": [
+    {
+      "id": "wizard.hero.necromancer.flesh-ascendant",
+      "name": "Flesh Ascendant",
+      "className": "Wizard",
+      "band": "Hero",
+      "path": "Necromancer",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Undead creatures you control",
+      "duration": "Permanent while active",
+      "frequency": "Always",
+      "effect": "Flesh Ascendant. Tags: hero, necromancer, passive, undead. Each undead creature you control gains +2 maximum HP per Wizard class level. While at least two of your undead creatures are active, each also gains +1 AC and +1 on saving throws. These bonuses apply after the common standard-minion and elite-pet statistics and do not increase companion caps or command frequency.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 5298,
+        "originalText": "Flesh Ascendant: All undead gain +2 HP per Wizard level, if 2+ undead are active, gain +1 AC and Save"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "wizard.hero.necromancer.ghoul-lash",
+      "name": "Ghoul Lash",
+      "className": "Wizard",
+      "band": "Hero",
+      "path": "Necromancer",
+      "sourceKind": "active",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "2 RP",
+      "rangeAndTarget": "One of your standard undead minions with another allied undead within 5 feet",
+      "duration": "For this command",
+      "frequency": "At most once per round",
+      "effect": "Ghoul Lash. Tags: hero, necromancer, undead, command. Use your shared Companion Command on the chosen standard minion. If another undead you control is within 5 feet of it when commanded, it makes TWO copies of its normal damaging attack instead of one. Both attacks are part of the same single shared damaging command and cannot create additional commands, Actions or auto-raise events beyond the common once-per-round Auto-Raise limit.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 5306,
+        "originalText": "Ghoul Lash: Minions within 1 tile of each other gain bonus attacks"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "wizard.hero.necromancer.mental-binding",
+      "name": "Mental Binding",
+      "className": "Wizard",
+      "band": "Hero",
+      "path": "Necromancer",
+      "sourceKind": "active",
+      "minimumClassLevel": 14,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "4 RP",
+      "rangeAndTarget": "One creature within 60 feet",
+      "duration": "Concentration, maximum 3 rounds",
+      "frequency": "Recharge 3 rounds",
+      "effect": "Mental Binding. Tags: hero, necromancer, wizard-spell, enchantment, control, concentration. Target WIS save; failure becomes Charmed for at most 3 rounds, repeat save at end each turn and on damage. On its first affected turn only, choose Approach, Retreat, Drop, Kneel or Strike; target uses up to half Speed, one object interaction or one ordinary weapon attack as appropriate, consuming its normal Action only if an attack is made. This command replaces at most one normal Action/turn and uses the shared hard-denial mark. Later turns retain normal actions, but while Charmed it cannot willingly attack you. No self-harm, compelled beliefs, resource expenditure or permanent allegiance. The player chooses the safest legal interpretation for a PC.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 5308,
+        "originalText": "Mental Binding: Force a creature to obey a simple command for a short duration."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": 7
+    }
+  ],
+  "profileSourceBinding": {
+    "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+    "bytes": 100635,
+    "sha256": "8ab2f4f43bcbced418fb266e5bd3216cff491b0c442c16f93438bd3556672c8b",
+    "gitBlobSHA1": "cba2bdbbe964e9597011ed59f0c934bd09350a93",
+    "archiveMember": "sources_current/DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+    "crc32": "88ed1ecc"
+  }
+}
