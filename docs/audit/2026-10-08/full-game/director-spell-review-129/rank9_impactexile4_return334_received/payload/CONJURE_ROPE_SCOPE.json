@@ -1,0 +1,50 @@
+{
+  "id": "IE334-ROPE-SCOPE",
+  "source": "input/03_CURRENT_CONJURE_ROPE_CATALOG_ROW.json#/operational",
+  "sourceFacts": {
+    "activation": "Action",
+    "rangeFeet": 50,
+    "components": [
+      "V",
+      "S",
+      "F"
+    ],
+    "baseRpCost": 2,
+    "durationSeconds": 600,
+    "concentration": false,
+    "lengthFeet": 50,
+    "massLb": 10,
+    "AC": 11,
+    "HP": 5,
+    "staticLoadLb": 300,
+    "supportMustActuallyBearLoad": true,
+    "commands": "Separate Bonus Action in initiative; outside initiative one6second interval per brief command/operation; actual range/LoE/length/path/slack."
+  },
+  "sourceEnding": "Exceeding300lb causes immediate failure/disappearance;0HP,spell ending or overload removes whole rope and unsupported loads fall. This requires an applicable load, not an invented dynamic-force conversion.",
+  "noInferredPermission": [
+    "No conjured anchor or anchor rating",
+    "No command that hauls/forcibly moves a creature or load",
+    "No tightening/slack command that lifts/drags a load for free",
+    "No automatic restraint of a resisting creature",
+    "No conversion of static capacity into an unstated dynamic/upward-force rating",
+    "No new immunity from Reverse Gravity; indeterminate interaction stays held"
+  ],
+  "scopeDistinction": "The no-haul limit prevents rope-command lifting; it is not by itself a rule that all passive restraint fails. Neither success nor failure under this particular upward load is specified.",
+  "otherLeads": [
+    {
+      "source": "input/11_EQUIPMENT_ITEM_PROCEDURES.md:51",
+      "fact": "Hunting trap: suitable actual anchor,3ft tether,printed escape procedure.",
+      "limit": "No rating for this upward spell load."
+    },
+    {
+      "source": "input/11_EQUIPMENT_ITEM_PROCEDURES.md:61",
+      "fact": "Climber kit: sound intact anchor and actual geometry; fall stops within25ft.",
+      "limit": "Downward fall-catch contract does not establish this zero-length upward restraint or anchor strength."
+    },
+    {
+      "source": "input/11_EQUIPMENT_ITEM_PROCEDURES.md:62",
+      "fact": "Block/tackle:10minutes rigging at actual sound anchor,4x ordinary pound lifting.",
+      "limit": "No flight or invented anchor/path/helper/upward-force rating."
+    }
+  ]
+}

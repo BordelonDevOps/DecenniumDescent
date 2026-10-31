@@ -1,0 +1,74 @@
+{
+  "id": "RETURN286-IE204-B02-REASSESSMENT",
+  "authority": {
+    "reviewedApplied": 816,
+    "pending": 32,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 540,
+    "scopedInterfaces": 173
+  },
+  "targetId": "reverse-gravity-field",
+  "findings": [
+    {
+      "id": "IE286-S01",
+      "source": "NATIVE_SOURCE_AND_ACCESS.json",
+      "finding": "Native Core818 supplies Action,60ft cast range,Instantaneous,V/S/F,base26RP; full60ft-radius lift60ft then falling promise. One Transmutation placement with Druid/Mage/Wizard rank9 class17 access. It gives no crate material,structuralHP,impact breakage or tether force law. Native card remains unchanged."
+    },
+    {
+      "id": "IE286-S02",
+      "source": "SOURCE_ANCHORS.json; COMBAT_ACTION_PLAYTEST.md lines25,95,136",
+      "finding": "Current Sunder and cargo rules require the actual item durability/capacity/attachment; they explicitly leave unspecified durability dependent. Source establishes the dependency, not the missing crate values."
+    },
+    {
+      "id": "IE286-S03",
+      "source": "SOURCE_ROWS.json /rows/1/value/operational",
+      "finding": "Conjure Rope does provide a real50ft10lb AC11HP5 rope with300lb total STATIC-load support and a real load-bearing anchor. It supplies neither the zero-length tether fixture nor its anchor rating nor a rule translating the proposed upward lift into that load. Not treated as absent rope content and not silently installed as a replacement."
+    },
+    {
+      "id": "IE286-S04",
+      "source": "EQUIPMENT_ITEM_PROCEDURES.md lines51,55,61-64; CONTROL_STATES_PLAYTEST.md159",
+      "finding": "Hunting trap3ft tether, sound Climber-kit anchor/25ftfall catch, and block/tackle4x ordinary lifting are limited contracts. None certifies this zero-length upward restraint; object/tether durability beyond printed nets remains open."
+    },
+    {
+      "id": "IE286-S05",
+      "source": "BODY_EQUIPMENT_PLAYTEST.md88-111; CRAFTING_HARVEST_PLAYTEST.md74-76",
+      "finding": "Known20lb mass and5x5x5ft fixture volume are not material/structuralHP/breakage rules. Quality multiplier requires existing explicit structuralHP; cannot supply an unknown maximum. No conversion from creatureHP, Load or another object profile."
+    },
+    {
+      "id": "IE286-S06",
+      "source": "SPELL_INTEGRATION_RULES.md100-128",
+      "finding": "Creature Falling has source-relative fixed markers and20ft/d6 descent formula. This preserves60ft3d6,120ft6d6 and real Feather Fall Action; it does not independently give the crate a structural-damage,fracture or salvage contract."
+    },
+    {
+      "id": "IE286-S07",
+      "source": "ACTOR_PROFILES.json#/W17D; current wizard cards",
+      "finding": "Selected conditional Wizard17 class cards/acquisition levels match current source; maxRP64 and base26RP paid once per valid gravity cast. A conditional actor build is not certification of a campaign individual or unprovided equipment."
+    }
+  ],
+  "minimumMissingWitnesses": [
+    {
+      "id": "IE286-W1",
+      "blockerId": "IE204-B02",
+      "required": "Bind the exact20lb crate identity, material and structural durability/defenses; applicable60ft and120ft impact damage/breakage rules and exact post-impact body/contents/ownership/custody settlement. Then complete A,B,feather and overlap aftermath without inferred intactness, destruction or salvage.",
+      "pointers": [
+        "cases/RANK9IMPACTEXILE4129-REVERSE-GRAVITY-FIELD-A.json#/events/28/after/items/crate",
+        "cases/RANK9IMPACTEXILE4129-REVERSE-GRAVITY-FIELD-B.json#/events/28/after/items/crate",
+        "cases/RANK9IMPACTEXILE4129-REVERSE-GRAVITY-FIELD-B__overlap.json#/events/33/after/items/crate"
+      ],
+      "currentGap": "physicalDamageHeld=true; durability explicitly unprovided. exists=true is preservation of identity, not a verified intactness result."
+    },
+    {
+      "id": "IE286-W2",
+      "blockerId": "IE204-B02",
+      "required": "Bind an actual tether AND anchor, their legal attachment/acquisition, geometry/slack and rated strength, and the applicable upward-force/load rule. Replay actual stop,stretch,break or release and resulting support/fall/cargo without a fabricated resistance or indestructibility premise.",
+      "pointers": [
+        "cases/RANK9IMPACTEXILE4129-REVERSE-GRAVITY-FIELD-B__anchored.json#/events/0/after/geometry/attachments/0",
+        "cases/RANK9IMPACTEXILE4129-REVERSE-GRAVITY-FIELD-B__anchored.json#/events/5"
+      ],
+      "currentGap": "Zero-length tether is explicitly NEW conditional unbreakable-without-separate-strength-rule; breakPermission=false does not prove physical strength."
+    }
+  ],
+  "currentEvidenceClosesBlocker": false,
+  "scopeDecision": "Both required positive main cases include objects, with B including real obstruction/attachment. Creature-only numerical success does not satisfy the broad native everything promise or exact positive object/attachment obligations. Preserve passing components and narrow incomplete branches; the identity remains held until required integrated witnesses exist. No automatic carry-forward or new physical values authorized.",
+  "unrelatedAcceptancesAndHolds": "Preserved without reopening."
+}
