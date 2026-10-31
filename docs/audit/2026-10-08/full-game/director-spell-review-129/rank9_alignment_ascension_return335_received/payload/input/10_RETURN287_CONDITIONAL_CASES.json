@@ -1,0 +1,265 @@
+{
+  "caseBindings": {
+    "AFP211-AA-effective-read": {
+      "path": "cases/AFP211-AA-effective-read.json",
+      "bytes": 3420,
+      "sha256": "dc3fa23c28dec8f60e2277d2f1eaff8488b8dccd35ec70d250ae1aad77d762a1",
+      "crc32": "c1637504"
+    },
+    "AFP211-AA-protected-information": {
+      "path": "cases/AFP211-AA-protected-information.json",
+      "bytes": 2856,
+      "sha256": "419c76af9a480756a2ca048052b8ed71e42c16186bf5e3a77e420c6348fd61c7",
+      "crc32": "633d07ae"
+    }
+  },
+  "cases": {
+    "AFP211-AA-effective-read": {
+      "id": "AFP211-AA-effective-read",
+      "spellId": "alignment-ascension",
+      "title": "Existing Lock controls effective read without erasing history",
+      "kind": "conditional-component-trace",
+      "completeSpellWitness": false,
+      "scope": "Full states for this explicitly bounded component only; not full actor/world state, paid cast, clock or gameplay witness.",
+      "source": "COMPARISON_EVIDENCE.json: alignment-lock / AC4-ALIGN-01",
+      "events": [
+        {
+          "id": "AFP211-AA-effective-read:1",
+          "before": {
+            "underlying": {
+              "order": "Chaotic",
+              "ethic": "Good"
+            },
+            "lock": {
+              "order": "Lawful",
+              "active": true
+            },
+            "query": null,
+            "history": [
+              "original-underlying-record"
+            ],
+            "knowledge": []
+          },
+          "after": {
+            "underlying": {
+              "order": "Chaotic",
+              "ethic": "Good"
+            },
+            "lock": {
+              "order": "Lawful",
+              "active": true
+            },
+            "query": {
+              "effectiveOrder": "Lawful",
+              "effectiveEthic": "Good"
+            },
+            "history": [
+              "original-underlying-record"
+            ],
+            "knowledge": []
+          },
+          "beforeSHA256": "76191e367fddb7bf69ec074587352e3e9b6749eaf1adf309b32a84f338af00cb",
+          "afterSHA256": "3fb7bd707fae00a322cf5d58a0637f39f849894615189c417328d5f72af3ed1b",
+          "forward": [
+            {
+              "op": "test",
+              "path": "",
+              "value": {
+                "underlying": {
+                  "order": "Chaotic",
+                  "ethic": "Good"
+                },
+                "lock": {
+                  "order": "Lawful",
+                  "active": true
+                },
+                "query": null,
+                "history": [
+                  "original-underlying-record"
+                ],
+                "knowledge": []
+              }
+            },
+            {
+              "op": "replace",
+              "path": "",
+              "value": {
+                "underlying": {
+                  "order": "Chaotic",
+                  "ethic": "Good"
+                },
+                "lock": {
+                  "order": "Lawful",
+                  "active": true
+                },
+                "query": {
+                  "effectiveOrder": "Lawful",
+                  "effectiveEthic": "Good"
+                },
+                "history": [
+                  "original-underlying-record"
+                ],
+                "knowledge": []
+              }
+            }
+          ],
+          "inverse": [
+            {
+              "op": "test",
+              "path": "",
+              "value": {
+                "underlying": {
+                  "order": "Chaotic",
+                  "ethic": "Good"
+                },
+                "lock": {
+                  "order": "Lawful",
+                  "active": true
+                },
+                "query": {
+                  "effectiveOrder": "Lawful",
+                  "effectiveEthic": "Good"
+                },
+                "history": [
+                  "original-underlying-record"
+                ],
+                "knowledge": []
+              }
+            },
+            {
+              "op": "replace",
+              "path": "",
+              "value": {
+                "underlying": {
+                  "order": "Chaotic",
+                  "ethic": "Good"
+                },
+                "lock": {
+                  "order": "Lawful",
+                  "active": true
+                },
+                "query": null,
+                "history": [
+                  "original-underlying-record"
+                ],
+                "knowledge": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "AFP211-AA-protected-information": {
+      "id": "AFP211-AA-protected-information",
+      "spellId": "alignment-ascension",
+      "title": "Undefined and protected remain distinct internally, no secret disclosure",
+      "kind": "conditional-component-trace",
+      "completeSpellWitness": false,
+      "scope": "Full states for this explicitly bounded component only; not full actor/world state, paid cast, clock or gameplay witness.",
+      "source": "COMPARISON_EVIDENCE.json: alignment-revelation; analogy only, not a granted Ascension insight effect",
+      "events": [
+        {
+          "id": "AFP211-AA-protected-information:1",
+          "before": {
+            "actualAxes": {
+              "order": null,
+              "ethic": "Good"
+            },
+            "protection": {
+              "order": false,
+              "ethic": true
+            },
+            "disclosure": null
+          },
+          "after": {
+            "actualAxes": {
+              "order": null,
+              "ethic": "Good"
+            },
+            "protection": {
+              "order": false,
+              "ethic": true
+            },
+            "disclosure": {
+              "order": "Indeterminate",
+              "ethic": "Indeterminate"
+            }
+          },
+          "beforeSHA256": "e281b1305987a7feb2a506fddffe40d772da01a6c047d46b1cf41b8a7de93c4b",
+          "afterSHA256": "8e0ac5f63760ce0a86ff60640efb8e8db47aab1fec065ee56cb3ab0506329dd5",
+          "forward": [
+            {
+              "op": "test",
+              "path": "",
+              "value": {
+                "actualAxes": {
+                  "order": null,
+                  "ethic": "Good"
+                },
+                "protection": {
+                  "order": false,
+                  "ethic": true
+                },
+                "disclosure": null
+              }
+            },
+            {
+              "op": "replace",
+              "path": "",
+              "value": {
+                "actualAxes": {
+                  "order": null,
+                  "ethic": "Good"
+                },
+                "protection": {
+                  "order": false,
+                  "ethic": true
+                },
+                "disclosure": {
+                  "order": "Indeterminate",
+                  "ethic": "Indeterminate"
+                }
+              }
+            }
+          ],
+          "inverse": [
+            {
+              "op": "test",
+              "path": "",
+              "value": {
+                "actualAxes": {
+                  "order": null,
+                  "ethic": "Good"
+                },
+                "protection": {
+                  "order": false,
+                  "ethic": true
+                },
+                "disclosure": {
+                  "order": "Indeterminate",
+                  "ethic": "Indeterminate"
+                }
+              }
+            },
+            {
+              "op": "replace",
+              "path": "",
+              "value": {
+                "actualAxes": {
+                  "order": null,
+                  "ethic": "Good"
+                },
+                "protection": {
+                  "order": false,
+                  "ethic": true
+                },
+                "disclosure": null
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "notReplayed": true
+}
