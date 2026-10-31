@@ -1,0 +1,1341 @@
+{
+  "status": "PLAYTEST — REVIEWED / MANUSCRIPT-APPROVED after the two specified textual repairs; runtime and balance validation pending",
+  "scope": "Twelve ordinary identities with rank-1 Abjuration access, including preserved cross-school placements",
+  "spells": [
+    {
+      "id": "protective-sphere",
+      "activation": "Action",
+      "rangeFeet": 10,
+      "targets": "One fixed point you can perceive within range and line of effect; a stationary sphere extends 10 feet in every direction from it.",
+      "duration": "Concentration, up to 1 minute. In initiative, expires at the caster's tenth future regular-start marker after application; retain that virtual marker through initiative changes, departure or death. Outside initiative, expires 60 seconds after application; entering initiative preserves that absolute deadline. An already-passed start never counts. Ends earlier when concentration ends.",
+      "concentration": true,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "Automatic after legal placement. The boundary cannot initially intersect a Tiny or Small creature's occupied space; such creatures may start wholly inside or outside. No creature is displaced or damaged on creation.",
+      "effect": "The boundary blocks physical projectiles and Tiny/Small creatures crossing in either direction. Physical projectiles are discrete objects fired, thrown, launched or explicitly propelled as projectiles. They stop at the boundary and then obey ordinary gravity. Medium or larger creatures can cross normally with their worn, held and carried objects; carrying a Tiny/Small creature does not bypass that creature's boundary restriction.",
+      "scaling": "None.",
+      "limitations": "Rays, beams, gas, sound, ordinary falling debris and non-projectile spell effects are not blocked. This grants no cover, concealment, structural support, floor, platform or one-way firing privilege. NEW REVIEWED CLARIFICATION: unsupported ordinary Falling crosses the boundary without being arrested or creating support; the restriction cannot suspend a creature in midair. Walking, flying, jumping or carried/forced bodily travel otherwise obeys the size restriction. The stationary boundary does not follow its caster. Known/prepared access, class-level gates, legal components, line of effect, payment before resolution, concentration transitions, Dissonance, Refrain and class cadence follow SPELL_INTEGRATION_RULES.md. No automatic scaling or generic upcast.",
+      "designNotes": "PRESERVED: Action, 10-foot casting range, 10-foot radius, V/S/F and concentration 1 minute. NEW: fixed geometry, two-way crossing, explicit projectile/custody and initial-overlap rules. Falling exception reconciles no support with Small-creature boundary blocking.",
+      "implementationStatus": "REVIEWED authored operational-playtest manuscript; runtime and balance validation pending",
+      "sourceCoreEntries": [
+        {
+          "index": 17,
+          "original": {
+            "school": "Abjuration",
+            "level": 1,
+            "name": "Protective Sphere",
+            "effect": "10-ft radius barrier blocks projectiles and small creatures.",
+            "source_paragraph": 9002,
+            "casting_time": "1 action",
+            "range": "10 feet",
+            "duration": "Concentration, up to 1 minute",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Ward"
+            ],
+            "rp_cost": 2
+          }
+        }
+      ],
+      "sourcePlacements": [
+        {
+          "name": "Protective Sphere",
+          "school": "Abjuration",
+          "level": 1,
+          "summary": "10-ft radius barrier blocks projectiles and small creatures."
+        }
+      ],
+      "classAccessEvidence": {
+        "Cleric": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Druid": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Mage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Monk": {
+          "rank": 1,
+          "minimumClassLevel": 3,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Tinker": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Wizard": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Paladin": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_SOURCE_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_EXACT_REVIEW.md"
+      ],
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_EXACT_REVIEW.md"
+      ]
+    },
+    {
+      "id": "dispel-resonance",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One perceptible ongoing magical effect created by a rank-0 or rank-1 spell within range and line of effect.",
+      "duration": "Instantaneous",
+      "concentration": false,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "Automatic for an eligible effect; no spell attack, save or opposed check.",
+      "effect": "End the selected ongoing effect. Eligibility uses its original generating cast's actual recorded spell rank, using that caster's class placement when class-cast, not its RP cost or your own access rank. Ending an effect invokes only that effect's ordinary end procedure and releases only its own dependencies.",
+      "scaling": "None.",
+      "limitations": "Does not end permanent enchantments, magic items, class engines, creature traits, instantaneous effects or historical consequences, or effects expressly protected from dispelling. It cannot dispel an unknown-rank effect by guessing. Core's Tier 1 is resolved here as spell rank 1, not a multi-rank character tier. A perception effect that reports only unspecified magic presence does not identify a selectable individual effect. Known/prepared access, class-level gates, legal components, line of effect, payment before resolution, concentration transitions, Dissonance, Refrain and class cadence follow SPELL_INTEGRATION_RULES.md. No automatic scaling or generic upcast. A curse is eligible only if it is itself an otherwise eligible ongoing rank-0/1 spell effect; permanent curses and expressly protected effects are not dispellable here.",
+      "designNotes": "PRESERVED: Action, 30 feet, V/S/F, instantaneous, one low-rank magical effect. NEW CONFLICT RULING: catalog's 1st level governs the ambiguous Core Tier 1; exact ongoing-effect eligibility and generating-cast rank.",
+      "implementationStatus": "REVIEWED authored operational-playtest manuscript; runtime and balance validation pending",
+      "sourceCoreEntries": [
+        {
+          "index": 19,
+          "original": {
+            "school": "Abjuration",
+            "level": 1,
+            "name": "Dispel Resonance",
+            "effect": "End one magical effect of Tier 1 or lower.",
+            "source_paragraph": 9004,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Resonance"
+            ],
+            "rp_cost": 2
+          }
+        }
+      ],
+      "sourcePlacements": [
+        {
+          "name": "Dispel Resonance",
+          "school": "Abjuration",
+          "level": 1,
+          "summary": "End one magical effect of 1st level or lower."
+        }
+      ],
+      "classAccessEvidence": {
+        "Cleric": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Druid": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Mage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Monk": {
+          "rank": 1,
+          "minimumClassLevel": 3,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Tinker": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Wizard": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Paladin": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_SOURCE_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_EXACT_REVIEW.md"
+      ],
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_EXACT_REVIEW.md"
+      ]
+    },
+    {
+      "id": "binding-circle",
+      "activation": "Action",
+      "rangeFeet": 5,
+      "targets": "One fixed point on solid ground or another approximately horizontal immobile solid surface that can contain the 5-foot-radius circle, within range and line of effect.",
+      "duration": "Concentration, up to 1 minute. In initiative, expires at the caster's tenth future regular-start marker after application; retain that virtual marker through initiative changes, departure or death. Outside initiative, expires 60 seconds after application; entering initiative preserves that absolute deadline. An already-passed start never counts. Ends earlier when concentration ends.",
+      "concentration": true,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "Automatic after legal placement; no saving throw. The circular boundary cannot initially intersect the occupied space of a creature it would affect.",
+      "effect": "Create a visible 5-foot-radius circle with a boundary extending 10 feet vertically above its surface. Creatures with an explicit current source-authorized extraplanar record or tag cannot physically cross that boundary. They can move normally wholly inside or outside and retain their legal Actions, attacks and magic.",
+      "scaling": "None.",
+      "limitations": "No creature type is inferred from species name, apparent form, ancestry, faction or guessed lore. Other creatures, objects, projectiles, spells and attacks are not blocked. The boundary is a finite side wall with no magical cap or floor: travel wholly above or below it is outside this spell. Teleportation or planar relocation does not physically cross the wall and is not prevented. It causes no damage, forced relocation, Action loss, magic suppression or support. Known/prepared access, class-level gates, legal components, line of effect, payment before resolution, concentration transitions, Dissonance, Refrain and class cadence follow SPELL_INTEGRATION_RULES.md. No automatic scaling or generic upcast.",
+      "designNotes": "PRESERVED: Action, 5-foot casting range and extraplanar-crossing restriction; M/F uses the existing focus alternative. NEW CONFLICT RULING: source's ambiguous 5-foot circle is a 5-foot radius with 10-foot vertical boundary; ongoing concentration 1 minute replaces Instantaneous metadata. Initial placement, exact-tag and relocation rules are provisional.",
+      "implementationStatus": "REVIEWED authored operational-playtest manuscript; runtime and balance validation pending",
+      "sourceCoreEntries": [
+        {
+          "index": 22,
+          "original": {
+            "school": "Abjuration",
+            "level": 1,
+            "name": "Binding Circle",
+            "effect": "Create 5-ft circle that extraplanar creatures cannot cross.",
+            "source_paragraph": 9007,
+            "casting_time": "1 action",
+            "range": "5 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, M/F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Planar"
+            ],
+            "rp_cost": 2
+          }
+        }
+      ],
+      "sourcePlacements": [
+        {
+          "name": "Binding Circle",
+          "school": "Abjuration",
+          "level": 1,
+          "summary": "Create 5-ft circle that extraplanar creatures cannot cross."
+        }
+      ],
+      "classAccessEvidence": {
+        "Cleric": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Druid": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Mage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Monk": {
+          "rank": 1,
+          "minimumClassLevel": 3,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Tinker": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Wizard": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Paladin": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_SOURCE_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_EXACT_REVIEW.md"
+      ],
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_EXACT_REVIEW.md"
+      ]
+    },
+    {
+      "id": "armor-of-faith",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One willing creature you can perceive within range and line of effect, including yourself.",
+      "duration": "1 hour: expires 3,600 seconds after application. Initiative entry, exit or reorder does not reset this deadline.",
+      "concentration": false,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "Automatic after legal casting.",
+      "effect": "Spectral armor grants the target +3 AC for the duration. Treat it as a magical flat AC bonus; use only the strongest applicable same-stat flat bonus.",
+      "scaling": "None.",
+      "limitations": "Creates no physical equipment, extra armor slot, proficiency, hand requirement, material, weight or saleable item. Does not change the target's underlying armor calculation. It cannot add to Shield, Alignment Shield, Warding Bond or another flat AC bonus; only the strongest applies. Multiple Armor of Faith applications do not add together. Known/prepared access, class-level gates, legal components, line of effect, payment before resolution, concentration transitions, Dissonance, Refrain and class cadence follow SPELL_INTEGRATION_RULES.md. No automatic scaling or generic upcast. Each independently applied Armor of Faith keeps its own deadline; expiration of one does not cancel another.",
+      "designNotes": "PRESERVED: +3 AC, Action, 30 feet, V/S/F, 1 hour without concentration. NEW: one willing recipient, fixed elapsed deadline and non-equipment spectral-bonus interpretation.",
+      "implementationStatus": "REVIEWED authored operational-playtest manuscript; runtime and balance validation pending",
+      "sourceCoreEntries": [
+        {
+          "index": 23,
+          "original": {
+            "school": "Abjuration",
+            "level": 1,
+            "name": "Armor of Faith",
+            "effect": "Spectral armor grants +3 AC for 1 hour.",
+            "source_paragraph": 9008,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "1 hour",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Utility"
+            ],
+            "rp_cost": 2
+          }
+        }
+      ],
+      "sourcePlacements": [
+        {
+          "name": "Armor of Faith",
+          "school": "Abjuration",
+          "level": 1,
+          "summary": "Spectral armor grants +3 AC for 1 hour."
+        }
+      ],
+      "classAccessEvidence": {
+        "Cleric": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Druid": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Mage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Monk": {
+          "rank": 1,
+          "minimumClassLevel": 3,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Tinker": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Wizard": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Paladin": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_SOURCE_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_EXACT_REVIEW.md"
+      ],
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_EXACT_REVIEW.md"
+      ]
+    },
+    {
+      "id": "purify-food-and-drink",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One discrete batch or container of actual food weighing at most 5 pounds, OR one discrete batch or container of actual drink holding at most 1 gallon, outside any creature, within range and line of effect.",
+      "duration": "Instantaneous",
+      "concentration": false,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "Automatic for the eligible consumable.",
+      "effect": "Remove ordinary nonmagical poison and disease-causing contamination or pathogens from the selected food or drink. Mundane alchemical poison deliberately mixed into valid food or drink qualifies. Removed contaminants are destroyed and cannot be recovered as reagents.",
+      "scaling": "None.",
+      "limitations": "The batch must already be physically separated from any larger continuous volume. Does not remove magical poison, supernatural contamination, curses, Corruption or enchantments, cure a creature already affected, turn poison stock into food, create food/water/medicine or restore spent abstract expedition resources. The food or drink remains its ordinary quantity and type; ordinary expedition consumption/accounting rules still apply. No crafting stock or medicinal product is created. Known/prepared access, class-level gates, legal components, line of effect, payment before resolution, concentration transitions, Dissonance, Refrain and class cadence follow SPELL_INTEGRATION_RULES.md. No automatic scaling or generic upcast.",
+      "designNotes": "PRESERVED: Action, 30 feet, V/S/F, instantaneous and poison/disease removal from consumables. NEW: 5-pound OR 1-gallon finite capacity, separated batch, nonmagical contamination boundary and no reagent recovery.",
+      "implementationStatus": "REVIEWED authored operational-playtest manuscript; runtime and balance validation pending",
+      "sourceCoreEntries": [
+        {
+          "index": 24,
+          "original": {
+            "school": "Abjuration",
+            "level": 1,
+            "name": "Purify Food and Drink",
+            "effect": "Remove poison and disease from consumables.",
+            "source_paragraph": 9009,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Restoration"
+            ],
+            "rp_cost": 2
+          }
+        }
+      ],
+      "sourcePlacements": [
+        {
+          "name": "Purify Food and Drink",
+          "school": "Abjuration",
+          "level": 1,
+          "summary": "Remove poison and disease from consumables."
+        }
+      ],
+      "classAccessEvidence": {
+        "Cleric": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Druid": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Mage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Monk": {
+          "rank": 1,
+          "minimumClassLevel": 3,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Tinker": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Wizard": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Paladin": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_SOURCE_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_EXACT_REVIEW.md"
+      ],
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_EXACT_REVIEW.md"
+      ]
+    },
+    {
+      "id": "detect-poison",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "Choose the mode determined by your casting class's preserved school/rank: Divination rank 0 targets one perceived object or creature within 30 feet; Abjuration rank 1 surveys the area within 30 feet of you. Both require line of effect.",
+      "duration": "Instantaneous",
+      "concentration": false,
+      "components": [
+        "V",
+        "S"
+      ],
+      "resolution": "Automatic after legal casting; Abjuration mode additionally requires your ordinary class casting focus F.",
+      "effect": "Divination rank 0: learn only whether the selected creature or object currently contains or is affected by an explicit poison record. Abjuration rank 1: learn whether such poison is present and its actual source-authorized type, name or category records. This area report does not identify which creature or object carries which poison or give their location.",
+      "scaling": "None. Casting through another class requires that class's own actual repertoire and level access; paying extra RP never changes the mode.",
+      "limitations": "Uses existing mechanical poison records; it cannot invent a poison, hidden creature taxonomy or diagnosis from theme. Does not identify disease, Corruption, curses or the cause of unrelated symptoms, prescribe an antidote, reveal statistics, cure anything, or look through total cover. Where no precise poison type is source-defined, Abjuration reports unknown poison rather than inventing a formula or secret identity. Known/prepared access, class-level gates, legal components, line of effect, payment before resolution, concentration transitions, Dissonance, Refrain and class cadence follow SPELL_INTEGRATION_RULES.md. No automatic scaling or generic upcast. A generic Poisoned condition qualifies only if its actual provenance is poison-linked. Neither mode reports dose, save DC, severity, onset, duration, cure or unrelated medical conditions. Divination never reports poison type or identity; ordinary deductions from an authorized result remain possible.",
+      "designNotes": "PRESERVED: both school placements and per-class costs/gates, Action, 30 feet, instantaneous, V/S in Divination and V/S/F in Abjuration. NEW CONFLICT RULING: explicit casting-class modes retain the rank-0 single-subject yes/no and rank-1 area/type distinction.",
+      "implementationStatus": "REVIEWED authored operational-playtest manuscript; runtime and balance validation pending",
+      "sourceCoreEntries": [
+        {
+          "index": 25,
+          "original": {
+            "school": "Abjuration",
+            "level": 1,
+            "name": "Detect Poison",
+            "effect": "Sense presence and type of poison within 30 ft.",
+            "source_paragraph": 9010,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Detection"
+            ],
+            "rp_cost": 2
+          }
+        },
+        {
+          "index": 216,
+          "original": {
+            "school": "Divination",
+            "level": 0,
+            "name": "Detect Poison",
+            "effect": "Determine if an object or creature is poisoned.",
+            "source_paragraph": 9249,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Instantaneous",
+            "components": "V, S",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Detection"
+            ],
+            "rp_cost": 0
+          }
+        }
+      ],
+      "sourcePlacements": [
+        {
+          "name": "Detect Poison",
+          "school": "Abjuration",
+          "level": 1,
+          "summary": "Sense presence and type of poison within 30 ft."
+        },
+        {
+          "name": "Detect Poison",
+          "school": "Divination",
+          "level": 0,
+          "summary": "Determine if an object or creature is poisoned."
+        }
+      ],
+      "classAccessEvidence": {
+        "Cleric": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Divination",
+          "baseRpCost": 0
+        },
+        "Druid": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Mage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Monk": {
+          "rank": 1,
+          "minimumClassLevel": 3,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Mirrorsage": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Divination",
+          "baseRpCost": 0
+        },
+        "Ranger": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Divination",
+          "baseRpCost": 0
+        },
+        "Shaman": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Divination",
+          "baseRpCost": 0
+        },
+        "Tinker": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Wizard": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Divination",
+          "baseRpCost": 0
+        },
+        "Paladin": {
+          "rank": 0,
+          "minimumClassLevel": 2,
+          "school": "Divination",
+          "baseRpCost": 0
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_SOURCE_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_EXACT_REVIEW.md"
+      ],
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_EXACT_REVIEW.md"
+      ]
+    },
+    {
+      "id": "repulsion-field",
+      "activation": "Action",
+      "rangeFeet": 5,
+      "targets": "Self; eligible unattended, unsecured objects currently within a 5-foot radius of you and line of effect, each no larger than Small and no heavier than 10 pounds.",
+      "duration": "Instantaneous",
+      "concentration": false,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "Automatic for eligible objects; no spell attack or saving throw.",
+      "effect": "Push each eligible object up to 5 feet directly away from you, stopping before solid terrain or an illegal occupied space. The pulse grants no collision damage. Loss of support starts ordinary Falling.",
+      "scaling": "None. The preserved rank-6 variant is not an upgrade or selectable mode.",
+      "limitations": "Cannot move creatures or objects worn, held, attached, restrained, locked or secured. Ordinary ground, table or shelf support alone does not secure an object. No chain pushes, disarm, projectile interception or retroactive interruption of an already resolving attack. Current class-access records all grant the rank-1 object pulse; the distinct rank-6 creature/Charisma-save source placement remains preserved and pending its own access/operational review. Known/prepared access, class-level gates, legal components, line of effect, payment before resolution, concentration transitions, Dissonance, Refrain and class cadence follow SPELL_INTEGRATION_RULES.md. No automatic scaling or generic upcast.",
+      "designNotes": "PRESERVED: rank-1 small-object pulse, Action, 5 feet, V/S/F and instantaneous. NEW: 10-pound ceiling, Small size, 5-foot displacement and custody/obstacle limits. CONFLICT RULING: rank-6 creature approach prohibition supplies no power to the rank-1 entry.",
+      "implementationStatus": "REVIEWED authored operational-playtest manuscript; runtime and balance validation pending",
+      "sourceCoreEntries": [
+        {
+          "index": 26,
+          "original": {
+            "school": "Abjuration",
+            "level": 1,
+            "name": "Repulsion Field",
+            "effect": "5-ft radius around you pushes small objects away.",
+            "source_paragraph": 9011,
+            "casting_time": "1 action",
+            "range": "5 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Utility"
+            ],
+            "rp_cost": 2
+          }
+        },
+        {
+          "index": 67,
+          "original": {
+            "school": "Abjuration",
+            "level": 6,
+            "name": "Repulsion Field",
+            "effect": "Creatures must make CHA save to approach within 30 ft.",
+            "source_paragraph": 9062,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Charisma save",
+            "tags": [
+              "Utility"
+            ],
+            "rp_cost": 13
+          }
+        }
+      ],
+      "sourcePlacements": [
+        {
+          "name": "Repulsion Field",
+          "school": "Abjuration",
+          "level": 1,
+          "summary": "5-ft radius around you pushes small objects away."
+        },
+        {
+          "name": "Repulsion Field",
+          "school": "Abjuration",
+          "level": 6,
+          "summary": "Creatures must make CHA save to approach within 30 ft."
+        }
+      ],
+      "classAccessEvidence": {
+        "Cleric": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Druid": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Mage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Monk": {
+          "rank": 1,
+          "minimumClassLevel": 3,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Tinker": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Wizard": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Paladin": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_SOURCE_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_EXACT_REVIEW.md"
+      ],
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_EXACT_REVIEW.md"
+      ]
+    },
+    {
+      "id": "warding-bond",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One willing ally other than yourself, perceived within range and line of effect. Neither participant may already participate in another Warding Bond, as caster or protected ally.",
+      "duration": "Concentration, up to 1 minute. In initiative, expires at the caster's tenth future regular-start marker after application; retain that virtual marker through initiative changes, departure or death. Outside initiative, expires 60 seconds after application; entering initiative preserves that absolute deadline. An already-passed start never counts. Ends earlier when concentration ends. Also ends if either participant dies. Reaching 0 HP alone is not a separate ending condition; ordinary Incapacitated/concentration rules still apply.",
+      "concentration": true,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "Automatic on legal casting. On each eligible positive incoming damage packet to the ally, apply the mandatory post-defense transfer described below; a rounded-zero transfer claims no transfer operation.",
+      "effect": "The ally gains +1 AC and +1 to saves, subject separately to the strongest applicable flat bonus. After the ally's defenses and legal prevention, before temporary HP, transfer floor(remaining damage / 2) to you and leave the remainder on the ally. Keep the damage type. Your transferred share skips a second mitigation/prevention stage and cannot transfer again; apply your temporary HP, HP, applicable life-state protections, Wounds and concentration consequences normally. The ally retains the hit, failed-save, critical and attached-rider identity; you were not hit and did not fail that save merely because damage transferred.",
+      "scaling": "None. The rank-2 duplicate grants no upgrade or extra effect.",
+      "limitations": "Use DAMAGE_SHARING_PLAYTEST.md: one transfer operation per original-recipient damage root, across all owners. A prior pre-mitigation split preempts this transfer; competing positive mandatory post-defense claims are chosen by the original target. The retained ally portion cannot subsequently be transferred again after this split. Complete the current packet's split and life consequences before concentration failure caused by that packet ends the bond; never undo a committed share. One Warding Bond per participating creature across all casters; casting cannot create chains or cycles. Initial range/line of effect are required, but no continuing distance or line-of-effect tether is imposed. This ordinary spell neither consumes nor increases the Paladin class redirection round ledger and grants none of its named healing/resource riders or proc permissions. Unrelated downstream triggers still require their own exact source authorization. Direct HP payments are not damage and cannot be transferred. Known/prepared access, class-level gates, legal components, line of effect, payment before resolution, concentration transitions, Dissonance, Refrain and class cadence follow SPELL_INTEGRATION_RULES.md. No automatic scaling or generic upcast.",
+      "designNotes": "PRESERVED: Action, 30 feet, concentration 1 minute, +1 AC/saves and half-damage sharing; M/F uses focus. NEW: willing ally, conserved mandatory post-defense split, rounding, participation and life endpoints, no continued tether and ordinary-spell/class-engine separation. CONFLICT RULING: source-derived class access is rank 1; duplicate rank-2 block is retained as evidence only.",
+      "implementationStatus": "REVIEWED authored operational-playtest manuscript; runtime and balance validation pending",
+      "sourceCoreEntries": [
+        {
+          "index": 27,
+          "original": {
+            "school": "Abjuration",
+            "level": 1,
+            "name": "Warding Bond",
+            "effect": "Link with ally; they gain +1 AC and saves, you take half their damage.",
+            "source_paragraph": 9012,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Concentration, up to 1 minute",
+            "components": "V, S, M/F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Damage",
+              "Ward"
+            ],
+            "rp_cost": 2
+          }
+        },
+        {
+          "index": 35,
+          "original": {
+            "school": "Abjuration",
+            "level": 2,
+            "name": "Warding Bond",
+            "effect": "Link with ally; they gain +1 AC and saves, you take half their damage.",
+            "source_paragraph": 9022,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Concentration, up to 1 minute",
+            "components": "V, S, M/F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Damage",
+              "Ward"
+            ],
+            "rp_cost": 3
+          }
+        }
+      ],
+      "sourcePlacements": [
+        {
+          "name": "Warding Bond",
+          "school": "Abjuration",
+          "level": 1,
+          "summary": "Link with ally; they gain +1 AC and saves, you take half their damage."
+        },
+        {
+          "name": "Warding Bond",
+          "school": "Abjuration",
+          "level": 2,
+          "summary": "Link with ally; they gain +1 AC and saves, you take half their damage."
+        }
+      ],
+      "classAccessEvidence": {
+        "Cleric": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Druid": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Mage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Monk": {
+          "rank": 1,
+          "minimumClassLevel": 3,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Tinker": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Wizard": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Paladin": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_SOURCE_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_EXACT_REVIEW.md"
+      ],
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_EXACT_REVIEW.md"
+      ]
+    },
+    {
+      "id": "alignment-shield",
+      "activation": "Action",
+      "rangeFeet": 60,
+      "targets": "One willing creature you can perceive with line of effect, including yourself. Actual range is 30 feet when cast through Abjuration rank 1, or 60 feet through Conjuration rank 3; the 60-foot header is the maximum across these modes.",
+      "duration": "Concentration, up to 1 minute. In initiative, expires at the caster's tenth future regular-start marker after application; retain that virtual marker through initiative changes, departure or death. Outside initiative, expires 60 seconds after application; entering initiative preserves that absolute deadline. An already-passed start never counts. Ends earlier when concentration ends.",
+      "concentration": true,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "Automatic after legal casting. For each incoming attack roll, compare the attacker's explicit current canonical alignment with the protected recipient's explicit current canonical alignment.",
+      "effect": "Grant +2 AC against attack rolls from a creature explicitly opposed to the protected recipient on at least one alignment axis: Lawful versus Chaotic, or Good versus Evil. Neutral is not opposite to any value. An unknown or missing axis supplies no opposition; a known exact opposite on another axis still qualifies. Both class-specific modes use this same bounded bonus.",
+      "scaling": "None. Only your casting class's listed school/rank mode is available; higher level or extra RP cannot switch modes.",
+      "limitations": "Never infer alignment from ancestry, faction, reputation, faith, appearance or behavior. The bonus does not identify or announce the attacker's alignment; observers may make ordinary deductions from visible results. The spectral shield creates no equipment, item HP, hand requirement, cover, projectile blocking, saleable object or immunity. It does not affect saving throws or automatically hitting effects. Use only the strongest applicable flat AC bonus. Other concurrent shields retain their own endpoints and concentration dependencies. Known/prepared access, class-level gates, legal components, line of effect, payment before resolution, concentration transitions, Dissonance, Refrain and class cadence follow SPELL_INTEGRATION_RULES.md. No automatic scaling or generic upcast.",
+      "designNotes": "PRESERVED: Action, V/S/F, +2 AC from Abjuration, class-specific 30/60-foot ranges and Conjuration concentration 1 minute. NEW CONFLICT RULINGS: Abjuration Instantaneous becomes concentration 1 minute; Conjuration blocks-attacks prose uses +2 AC rather than immunity. NEW: explicit recipient-versus-attacker axis comparison and spectral-only effect.",
+      "implementationStatus": "REVIEWED authored operational-playtest manuscript; runtime and balance validation pending",
+      "sourceCoreEntries": [
+        {
+          "index": 28,
+          "original": {
+            "school": "Abjuration",
+            "level": 1,
+            "name": "Alignment Shield",
+            "effect": "Gain +2 AC against creatures of opposing alignment.",
+            "source_paragraph": 9013,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Ward",
+              "Alignment"
+            ],
+            "rp_cost": 2
+          }
+        },
+        {
+          "index": 151,
+          "original": {
+            "school": "Conjuration",
+            "level": 3,
+            "name": "Alignment Shield",
+            "effect": "Summon a shield that blocks attacks from creatures of opposing alignment.",
+            "source_paragraph": 9165,
+            "casting_time": "1 action",
+            "range": "60 feet",
+            "duration": "Concentration, up to 1 minute",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Summoning",
+              "Ward",
+              "Alignment"
+            ],
+            "rp_cost": 5
+          }
+        }
+      ],
+      "sourcePlacements": [
+        {
+          "name": "Alignment Shield",
+          "school": "Abjuration",
+          "level": 1,
+          "summary": "Gain +2 AC against creatures of opposing alignment."
+        },
+        {
+          "name": "Alignment Shield",
+          "school": "Conjuration",
+          "level": 3,
+          "summary": "Summon a shield that blocks attacks from creatures of opposing alignment."
+        }
+      ],
+      "classAccessEvidence": {
+        "Cleric": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Dragoon": {
+          "rank": 3,
+          "minimumClassLevel": 13,
+          "school": "Conjuration",
+          "baseRpCost": 5
+        },
+        "Druid": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Mage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Monk": {
+          "rank": 1,
+          "minimumClassLevel": 3,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Ranger": {
+          "rank": 3,
+          "minimumClassLevel": 9,
+          "school": "Conjuration",
+          "baseRpCost": 5
+        },
+        "Shaman": {
+          "rank": 3,
+          "minimumClassLevel": 7,
+          "school": "Conjuration",
+          "baseRpCost": 5
+        },
+        "Tinker": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Wizard": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Paladin": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_SOURCE_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_EXACT_REVIEW.md"
+      ],
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_EXACT_REVIEW.md"
+      ]
+    },
+    {
+      "id": "corruption-ward",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One willing creature you can perceive within range and line of effect, including yourself.",
+      "duration": "1 hour: expires 3,600 seconds after application. Initiative entry, exit or reorder does not reset this deadline.",
+      "concentration": false,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "Automatic after legal casting.",
+      "effect": "The target has advantage on saving throws against effects explicitly identified as Corruption by their current canonical mechanical source. This advantage can apply to each qualifying save while the ward lasts.",
+      "scaling": "None.",
+      "limitations": "Does not invent a save for an effect that grants none, cure or lower existing Corruption, remove a curse, or grant immunity. Theme, ancestry, appearance, alignment and faction are not Corruption tags. Advantage never stacks. Known/prepared access, class-level gates, legal components, line of effect, payment before resolution, concentration transitions, Dissonance, Refrain and class cadence follow SPELL_INTEGRATION_RULES.md. No automatic scaling or generic upcast. Only one Corruption Ward can be active on a target across all casters. A later application replaces the previous ward with its own 3,600-second deadline; stale cleanup of the old application cannot remove the replacement.",
+      "designNotes": "PRESERVED: Action, 30 feet, 1 hour and advantage against Corruption; M/F uses the existing class-focus alternative. NEW: willing target, exact source-tag eligibility and elapsed deadline.",
+      "implementationStatus": "REVIEWED authored operational-playtest manuscript; runtime and balance validation pending",
+      "sourceCoreEntries": [
+        {
+          "index": 29,
+          "original": {
+            "school": "Abjuration",
+            "level": 1,
+            "name": "Corruption Ward",
+            "effect": "Target gains advantage on saves against corruption effects for 1 hour.",
+            "source_paragraph": 9014,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "1 hour",
+            "components": "V, S, M/F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Ward",
+              "Corruption"
+            ],
+            "rp_cost": 2
+          }
+        }
+      ],
+      "sourcePlacements": [
+        {
+          "name": "Corruption Ward",
+          "school": "Abjuration",
+          "level": 1,
+          "summary": "Target gains advantage on saves against corruption effects for 1 hour."
+        }
+      ],
+      "classAccessEvidence": {
+        "Cleric": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Druid": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Mage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Monk": {
+          "rank": 1,
+          "minimumClassLevel": 3,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Tinker": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Wizard": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Paladin": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_SOURCE_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_EXACT_REVIEW.md"
+      ],
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_EXACT_REVIEW.md"
+      ]
+    },
+    {
+      "id": "resonance-lock",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One creature you can perceive within range and line of effect.",
+      "duration": "On a failed save, until the target's first future regular-end marker after application; the current in-progress turn end does not count. Preserve the virtual target-end marker through initiative changes. Outside initiative, expires 6 seconds after application; entering initiative preserves that absolute deadline.",
+      "concentration": false,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "The target makes a Wisdom saving throw against your spell DC. Success: no effect. Failure: the RP-spending prohibition applies.",
+      "effect": "The target cannot make a payment spending any positive amount of Resonance Points while locked. It can still use legal actions and effects whose final payable RP cost is zero. An RP-upkeep payment due during the lock cannot be paid; resolve the originating effect's printed failure-to-pay rule without inventing a new consequence.",
+      "scaling": "None.",
+      "limitations": "Does not drain RP, alter maximum RP, undo completed payments, stop ongoing concentration merely because it once cost RP, or block RC and unrelated class resources. A cantrip with an explicit positive additional RP cost is blocked; a truly zero-RP cast is not. This is not whole-Action hard denial and does not consume that combined ledger. Record a separate source-character/target/encounter Resonance Lock guard when this target actually fails this character's Resonance Lock save. After that failure, this character cannot impose this spell on that target again in the encounter; later casts cannot refresh or extend the old lock. Successful saves do not spend the guard. Boss immunities, save defenses and other exact source protections remain effective. Known/prepared access, class-level gates, legal components, line of effect, payment before resolution, concentration transitions, Dissonance, Refrain and class cadence follow SPELL_INTEGRATION_RULES.md. No automatic scaling or generic upcast.",
+      "designNotes": "PRESERVED: Action, 30 feet, Wisdom save, 1 round, V/S/F and RP-use prevention. NEW: target-end clock, exact RP-payment boundary, upkeep handling and distinct source-character/target/encounter successful-lock guard.",
+      "implementationStatus": "REVIEWED authored operational-playtest manuscript; runtime and balance validation pending",
+      "sourceCoreEntries": [
+        {
+          "index": 30,
+          "original": {
+            "school": "Abjuration",
+            "level": 1,
+            "name": "Resonance Lock",
+            "effect": "Prevent target from using Resonance Points for 1 round (WIS save negates).",
+            "source_paragraph": 9015,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "1 round",
+            "components": "V, S, F",
+            "resolution": "Wisdom save",
+            "tags": [
+              "Resonance"
+            ],
+            "rp_cost": 2
+          }
+        }
+      ],
+      "sourcePlacements": [
+        {
+          "name": "Resonance Lock",
+          "school": "Abjuration",
+          "level": 1,
+          "summary": "Prevent target from using Resonance Points for 1 round (WIS save negates)."
+        }
+      ],
+      "classAccessEvidence": {
+        "Cleric": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Druid": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Mage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Monk": {
+          "rank": 1,
+          "minimumClassLevel": 3,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Tinker": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Wizard": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Paladin": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_SOURCE_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_EXACT_REVIEW.md"
+      ],
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_EXACT_REVIEW.md"
+      ]
+    },
+    {
+      "id": "faction-seal",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One fixed point on an immobile solid surface you can perceive within range and line of effect; designate one exact canonical factionId the campaign permits you to invoke.",
+      "duration": "1 hour: expires 3,600 seconds after application. Initiative changes do not reset the deadline.",
+      "concentration": false,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "Automatic after legal casting. Before using this spell, the Director records which existing canonical factions this caster is permitted to invoke, using an established source permission or an explicit campaign permission. No listed permission means that faction is not an eligible choice.",
+      "effect": "Place a visible seal and a fixed area extending 10 feet in radius and 10 feet above its surface. The seal flares while at least one creature occupying the area, with line of effect to the seal, has an actual reputation score of -3, -2 or -1 for the selected faction. It stops flaring when no qualifying creature remains. Its only direct report is that at least one qualifying negative-standing creature is present.",
+      "scaling": "None.",
+      "limitations": "Zero or positive standing does not trigger; missing reputation is unknown and does not trigger. Hidden or invisible creatures can trigger it, but the flare reveals no creature, square, disguise, true identity, alignment, intent, statistics or exact score, and does not cancel invisibility. Teleportation counts only when the creature actually occupies the area. Ordinary observers can draw mundane conclusions from the signal. Naming or invoking a faction grants no membership, credentials, legal authority, standing change or institutional protection. Overlapping seals do not grant extra information beyond each seal's own binary result. Known/prepared access, class-level gates, legal components, line of effect, payment before resolution, concentration transitions, Dissonance, Refrain and class cadence follow SPELL_INTEGRATION_RULES.md. No automatic scaling or generic upcast.",
+      "designNotes": "PRESERVED: Action, 30 feet, V/S/F, faction marker and negative-reputation detection. NEW CONFLICT RULING: fixed 10-foot-radius/10-foot-high area, visible binary flare, explicit invocation permission and 1 hour without concentration replace unresolved Instantaneous area metadata. Campaign permission procedure is an explicit reviewed playtest completion; no existing source permission is fabricated.",
+      "implementationStatus": "REVIEWED authored operational-playtest manuscript; runtime and balance validation pending",
+      "sourceCoreEntries": [
+        {
+          "index": 31,
+          "original": {
+            "school": "Abjuration",
+            "level": 1,
+            "name": "Faction Seal",
+            "effect": "Mark an area as protected by a specific faction; intruders with negative reputation are revealed.",
+            "source_paragraph": 9016,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Ward",
+              "Detection",
+              "Faction"
+            ],
+            "rp_cost": 2
+          }
+        }
+      ],
+      "sourcePlacements": [
+        {
+          "name": "Faction Seal",
+          "school": "Abjuration",
+          "level": 1,
+          "summary": "Mark an area as protected by a specific faction; intruders with negative reputation are revealed."
+        }
+      ],
+      "classAccessEvidence": {
+        "Cleric": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Druid": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Mage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Monk": {
+          "rank": 1,
+          "minimumClassLevel": 3,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Tinker": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Wizard": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Paladin": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_SOURCE_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_EXACT_REVIEW.md"
+      ],
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_EXACT_REVIEW.md"
+      ]
+    }
+  ],
+  "reviewEvidence": [
+    "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_SOURCE_CONFERENCE.md",
+    "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_EXACT_REVIEW.md"
+  ]
+}

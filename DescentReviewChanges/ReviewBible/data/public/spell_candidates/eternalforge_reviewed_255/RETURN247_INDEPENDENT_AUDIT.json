@@ -1,0 +1,303 @@
+{
+  "id": "RANK9MATERIALFORGING2-RETURN247-INDEPENDENT-AUDIT",
+  "status": "PASS",
+  "checkedAtUtc": "2026-10-30T08:20:42.144207+00:00",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_materialforging2_return247_received/DD_Rank9_MaterialForging2_Director_Return247_HELD.zip",
+    "bytes": 1119148,
+    "sha256": "f3bc9232bcc265d87c019ee75b0c7c12bc2bc237495f4f487807711c35659aea",
+    "crc32": "3c374748"
+  },
+  "delivery": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_materialforging2_return247_received/DD_Rank9_MaterialForging2_Director_Return247_DELIVERY.json",
+    "bytes": 62533,
+    "sha256": "fd58800713e3536cdfd5db5dcc16d767f23c76461781370aa12d037d34939add",
+    "crc32": "633243d8"
+  },
+  "sourcePacket": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_materialforging2_current_source_247_prepared/DD_Rank9_MaterialForging2_CurrentSource_247.zip",
+    "bytes": 242224199,
+    "sha256": "1ec8c39b891787eeac925fafe1b78f80bb67b2208ae29cd80986264f3f4aed71"
+  },
+  "authority": {
+    "reviewedApplied": 811,
+    "pending": 37,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 535,
+    "scopedInterfaces": 173
+  },
+  "targetIds": [
+    "eternal-forge",
+    "matter-conversion"
+  ],
+  "acceptedIds": [],
+  "appliedIds": [],
+  "heldIds": [
+    "eternal-forge",
+    "matter-conversion"
+  ],
+  "blockerIds": [
+    "MF210-B01",
+    "MF210-B02"
+  ],
+  "counts": {
+    "procedures": 2,
+    "originalQuestions": 24,
+    "focusedAddenda": 2,
+    "selectedDispositions": 26,
+    "requiredMainCases": 4,
+    "completeRequiredMainCases": 0,
+    "futureRequirements": 5,
+    "cases": 27,
+    "sourceLinkedCastTraces": 9,
+    "conditionalKernels": 18,
+    "events": 50,
+    "forwardOperations": 100,
+    "inverseOperations": 100,
+    "refreshedSourceBindings": 174,
+    "reconciledProvenanceReferences": 42,
+    "freshChecks": 3015,
+    "freshPassed": 3015,
+    "freshFailures": 0,
+    "checksByCategory": {
+      "source": 1623,
+      "authority": 5,
+      "preservation": 207,
+      "coverage": 5,
+      "actor": 235,
+      "data": 527,
+      "clock": 310,
+      "resource": 78,
+      "semantic-data": 25
+    },
+    "semanticCrossChecks": 18,
+    "semanticCrossCheckFailures": 0,
+    "blockingRecords": 2,
+    "qualificationRecords": 8,
+    "acceptedIdentities": 0,
+    "appliedIdentities": 0,
+    "heldIdentities": 2
+  },
+  "nextPendingGroup": {
+    "group": "rank9-alignment-faction-purification5",
+    "pendingIds": [
+      "alignment-ascension",
+      "alignment-perfection",
+      "faction-incarnate",
+      "faction-perfection",
+      "corruption-purification"
+    ]
+  },
+  "checkCount": 19,
+  "passedChecks": 19,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "check": "Return247 archive bytes/SHA-256/CRC32 match the final repaired delivery binding",
+      "passed": true,
+      "detail": {
+        "bytes": 1119148,
+        "sha256": "f3bc9232bcc265d87c019ee75b0c7c12bc2bc237495f4f487807711c35659aea",
+        "crc32": "3c374748",
+        "compression": "ZIP method14 LZMA; readable by Python zipfile and 7-Zip.",
+        "repair": "Replaced confirmed truncated first saved ZIP with compact LZMA ZIP. Included the preserved prior/MEMBER_MANIFEST.json that the first local filename-based exclusion had omitted. No source,procedure,case,state,operation or decision semantics changed. Recomputed exact allowlist and all member bindings."
+      }
+    },
+    {
+      "check": "Return247 external delivery manifest is intact and parsed from the received file",
+      "passed": true,
+      "detail": {
+        "bytes": 62533,
+        "sha256": "fd58800713e3536cdfd5db5dcc16d767f23c76461781370aa12d037d34939add",
+        "crc32": "633243d8"
+      }
+    },
+    {
+      "check": "Return247 binds to the exact independently audited Packet247 archive and delivery",
+      "passed": true,
+      "detail": {
+        "sourceBytes": 242224199,
+        "sourceSha256": "1ec8c39b891787eeac925fafe1b78f80bb67b2208ae29cd80986264f3f4aed71",
+        "packetChecks": 16
+      }
+    },
+    {
+      "check": "ZIP has exactly 84 unique safe members matching the delivery allowlist",
+      "passed": true,
+      "detail": {
+        "members": 84,
+        "allowlist": 84,
+        "unsafePaths": []
+      }
+    },
+    {
+      "check": "All 84 members independently match delivery size/SHA/CRC and central CRC",
+      "passed": true,
+      "detail": {
+        "checked": 84,
+        "failures": []
+      }
+    },
+    {
+      "check": "Internal manifest inventories all 83 payload members and binds to external delivery",
+      "passed": true,
+      "detail": {
+        "payloadMembers": 83,
+        "manifestRows": 83,
+        "manifestSha256": "b28e4f77d9cc24228bec3601e45577b56634b3caf344e3e8d48c1425d1c4b048"
+      }
+    },
+    {
+      "check": "Every payload member also matches the internal manifest",
+      "passed": true,
+      "detail": {
+        "checked": 83,
+        "failures": []
+      }
+    },
+    {
+      "check": "Both exact identities remain held; none is accepted or applied",
+      "passed": true,
+      "detail": {
+        "authority": {
+          "reviewedApplied": 811,
+          "pending": 37,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 535,
+          "scopedInterfaces": 173
+        },
+        "heldIds": [
+          "eternal-forge",
+          "matter-conversion"
+        ],
+        "blockers": [
+          "MF210-B01",
+          "MF210-B02"
+        ]
+      }
+    },
+    {
+      "check": "MF210 blockers retain four distinct incomplete minimum-witness records",
+      "passed": true,
+      "detail": {
+        "witnesses": {
+          "eternal-forge": [
+            "MF247-F-W1",
+            "MF247-F-W2"
+          ],
+          "matter-conversion": [
+            "MF247-M-W1",
+            "MF247-M-W2"
+          ]
+        }
+      }
+    },
+    {
+      "check": "Source reassessment preserves proven item and casting facts separately from missing lifecycle coverage",
+      "passed": true,
+      "detail": {
+        "sourceBindings": 174,
+        "sourceAnchors": 9,
+        "reassessmentBlockers": [
+          "MF210-B01",
+          "MF210-B02"
+        ]
+      }
+    },
+    {
+      "check": "All 27 preserved traces replay, with 50 events and 100 reversible operations each way",
+      "passed": true,
+      "detail": {
+        "cases": 27,
+        "events": 50,
+        "forward": 100,
+        "inverse": 100
+      }
+    },
+    {
+      "check": "All four required end-to-end main witnesses remain explicitly incomplete",
+      "passed": true,
+      "detail": {
+        "mainCases": [
+          "RANK9MATERIALFORGING2129-ETERNAL-FORGE-A",
+          "RANK9MATERIALFORGING2129-ETERNAL-FORGE-B",
+          "RANK9MATERIALFORGING2129-MATTER-CONVERSION-A",
+          "RANK9MATERIALFORGING2129-MATTER-CONVERSION-B"
+        ],
+        "complete": 0
+      }
+    },
+    {
+      "check": "All 24 original questions, two addenda and five future requirements remain present",
+      "passed": true,
+      "detail": {
+        "questions": 24,
+        "addenda": 2,
+        "futureRequirements": 5
+      }
+    },
+    {
+      "check": "Fresh data audit and independent semantic pass have no failures",
+      "passed": true,
+      "detail": {
+        "dataChecks": 3015,
+        "semanticCrossChecks": 18,
+        "wholeSpellAcceptance": "FAIL_REQUIRED_WITNESSES_INCOMPLETE"
+      }
+    },
+    {
+      "check": "All 344 package checks pass, and the final repaired ZIP opens as LZMA-compressed archive",
+      "passed": true,
+      "detail": {
+        "packageChecks": 344,
+        "compression": "ZIP method14 LZMA; readable by Python zipfile and 7-Zip."
+      }
+    },
+    {
+      "check": "All 174 refreshed source bindings match Packet247 and current working-tree bytes",
+      "passed": true,
+      "detail": {
+        "checked": 174,
+        "failures": []
+      }
+    },
+    {
+      "check": "Return210 external archive binding and all 40 preserved members match byte-for-byte",
+      "passed": true,
+      "detail": {
+        "priorBytes": 61207901,
+        "priorSha256": "240273668b502376012d228015e4a4f278546442313942b2c0049d5ec7a2ffab",
+        "preservedMembers": 40,
+        "failures": []
+      }
+    },
+    {
+      "check": "Next pending group and queue snapshot pointer are exact",
+      "passed": true,
+      "detail": {
+        "queueHash": "e1b530202b8ff59867dd4262a1fb94d177a3232e09166ca40b89930d270a61e2",
+        "nextGroup": "rank9-alignment-faction-purification5",
+        "nextIds": [
+          "alignment-ascension",
+          "alignment-perfection",
+          "faction-incarnate",
+          "faction-perfection",
+          "corruption-purification"
+        ]
+      }
+    },
+    {
+      "check": "Soul Reflection hold from independently audited Return246 remains preserved outside scope",
+      "passed": true,
+      "detail": {
+        "previousHeld": [
+          "soul-reflection"
+        ],
+        "previousBlockers": [
+          "IR207-B02"
+        ],
+        "return246Sha256": "d5bb0e984b5016ea810e3ffbdcc3727f2f440e6f37f7d3ad6998274f76a2c075"
+      }
+    }
+  ]
+}

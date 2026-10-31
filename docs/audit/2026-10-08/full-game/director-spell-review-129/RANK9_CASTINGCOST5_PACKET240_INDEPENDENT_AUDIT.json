@@ -1,0 +1,183 @@
+{
+  "id": "RANK9-CASTING-COST5-PACKET240-INDEPENDENT-AUDIT",
+  "recordedAtUtc": "2026-10-30T05:29:48.849691+00:00",
+  "status": "PASS",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_castingcost5_current_source_240_prepared/DD_Rank9_CastingCost5_CurrentSource_240.zip",
+    "bytes": 105330943,
+    "sha256": "bef42941d4e08292ef1e2ab7ba279a8a8212b1e245164062a9f33eba7b3f7618",
+    "crc32": "fd25b4e3"
+  },
+  "deliveryManifest": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_castingcost5_current_source_240_prepared/DD_Rank9_CastingCost5_CurrentSource_240_DELIVERY.json",
+    "bytes": 28810,
+    "sha256": "f58462b6447f52e21a2de96b787fc23ce68cb561aac14827acc60b28bc2c6635",
+    "crc32": "c485cdb6"
+  },
+  "sourceAuthority": {
+    "reviewedApplied": 811,
+    "pending": 37,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 535,
+    "scopedInterfaces": 173
+  },
+  "group": "rank9-casting-cost5",
+  "pendingIds": [
+    "unholy-ascendance"
+  ],
+  "sourceBindingsVerified": 117,
+  "checkCount": 17,
+  "checksPassed": 17,
+  "checksFailed": 0,
+  "checks": [
+    {
+      "id": "packet bytes/hash/CRC match delivery sidecar",
+      "passed": true,
+      "details": {
+        "bytes": 105330943,
+        "sha256": "bef42941d4e08292ef1e2ab7ba279a8a8212b1e245164062a9f33eba7b3f7618",
+        "crc32": "fd25b4e3"
+      }
+    },
+    {
+      "id": "authority is current at 811/37/0 and 535/173",
+      "passed": true,
+      "details": {
+        "reviewedApplied": 811,
+        "pending": 37,
+        "acceptedUnapplied": 0,
+        "completeStandaloneProcedures": 535,
+        "scopedInterfaces": 173
+      }
+    },
+    {
+      "id": "only unholy-ascendance is the pending Casting/Cost5 target",
+      "passed": true,
+      "details": {
+        "group": "rank9-casting-cost5",
+        "ids": [
+          "unholy-ascendance"
+        ]
+      }
+    },
+    {
+      "id": "target remains pending and non-operational; perfect-spell is outside pending",
+      "passed": true,
+      "details": {
+        "target": "pending-authored-procedure",
+        "perfectSpellPending": false
+      }
+    },
+    {
+      "id": "Return222 preserves perfect-spell acceptance and CC194-B04 hold",
+      "passed": true,
+      "details": {
+        "unholy-ascendance": [
+          "CC194-B04"
+        ]
+      }
+    },
+    {
+      "id": "Return239 and Return238 independent audits preserve latest holds",
+      "passed": true,
+      "details": {
+        "timefate": [
+          "time-stop",
+          "fate-rewrite",
+          "collapse-timeline",
+          "eternal-prophecy"
+        ],
+        "agency": [
+          "absolute-domination",
+          "puppetmaster-s-realm"
+        ]
+      }
+    },
+    {
+      "id": "ZIP CRC is clean, paths are safe and unique",
+      "passed": true,
+      "details": {
+        "members": 203
+      }
+    },
+    {
+      "id": "manifest exactly covers every payload member",
+      "passed": true,
+      "details": {
+        "rows": 202,
+        "names": 203
+      }
+    },
+    {
+      "id": "all payload members match manifest size/SHA/CRC",
+      "passed": true,
+      "details": []
+    },
+    {
+      "id": "current candidate and context bind exact identity, authority and branch",
+      "passed": true,
+      "details": {
+        "authority": {
+          "reviewedApplied": 811,
+          "pending": 37,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 535,
+          "scopedInterfaces": 173
+        },
+        "group": {
+          "group": "rank9-casting-cost5",
+          "spellIds": [
+            "unholy-ascendance"
+          ],
+          "count": 1
+        }
+      }
+    },
+    {
+      "id": "only accepted/applied counterparts are excluded from this review",
+      "passed": true,
+      "details": [
+        "perfect-spell",
+        "ritual-mastery",
+        "world-rewrite",
+        "resonance-perfection"
+      ]
+    },
+    {
+      "id": "all 117 refreshed source bindings match packet, manifest and working-tree bytes",
+      "passed": true,
+      "details": {
+        "matched": 117,
+        "errors": []
+      }
+    },
+    {
+      "id": "current authority and pending-hold snapshots are included byte-exactly",
+      "passed": true,
+      "details": []
+    },
+    {
+      "id": "prior Packet222 context is preserved byte-exactly under a historical namespace",
+      "passed": true,
+      "details": []
+    },
+    {
+      "id": "Return222, Return239 and Return238 audited records are included byte-exactly",
+      "passed": true,
+      "details": []
+    },
+    {
+      "id": "request scopes review to unholy-ascendance, preserves CC194-B04 and forbids application",
+      "passed": true,
+      "details": {
+        "requestBytes": 2093
+      }
+    },
+    {
+      "id": "candidate carries the independently audited Return222, Return239 and Return238 bindings",
+      "passed": true,
+      "details": null
+    }
+  ],
+  "scopeLimitation": "Validates source transfer, identity scope, current authority, preserved historical decisions and packet integrity; it does not independently adjudicate the underlying game rules."
+}

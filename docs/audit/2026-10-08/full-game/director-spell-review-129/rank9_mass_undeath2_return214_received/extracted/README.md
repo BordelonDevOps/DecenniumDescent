@@ -1,0 +1,9 @@
+# Director Return214 — Mass Undeath2 correction continuation
+
+Read DIRECTOR_DECISION_214.json, PROCEDURES_214.json, STANDALONE_PROCEDURES_214.md and BLOCKER_REASSESSMENT_214.json as the current decision/procedure. Both exact targets are accepted for static authored scope, applied=false. Original Return213 decisions remain historical held decisions, never silently overwritten.
+
+The unchanged original Return213 ZIP is included once at prior/Return213.zip. It contains the original source archive, 17 complete cases, original profiles, questions, evidence and checks byte-exactly. Its unchanged matching delivery record is also included. Nested notation `prior/Return213.zip!path` identifies the member inside that preserved archive. Its source archive itself retains all supplied bytes. No old program was executed.
+
+CASEBOOK_214.json indexes 13 complete new cases plus the preserved17. Each new event stores full before/after state, hashes and reversible test/replace operations. Stipulated dice and physical fixture facts are test inputs, not observed runtime. PRESERVED_TRACE_INPUT_ADDENDUM_214.json supplies four explicit disadvantage die pairs without changing any original selected roll or case byte. Source-root paths in original RULE_SOURCE_MAP.json resolve inside the preserved archive; SOURCE_VERIFICATION_214.json records current rechecks and exact indexed recovered comparator bytes in evidence/.
+
+Only these two new static director acceptances are issued. Canonical authority remains804 applied/44pending/0accepted-unapplied until the owner audits/applies. Seven Return210/211 holds, historical exact-CR2 and other whole-case holds remain unchanged. Consumed-remains resurrection and recognized constructed-corpse eligibility remain narrowly conditional; neither is a successful case claim. No runtime, implementation, human-play, balance, cosmology, domain-closure, completion or release approval.

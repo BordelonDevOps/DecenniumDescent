@@ -1,0 +1,332 @@
+{
+  "id": "RANK9ALIGNFACTIONPURIFICATION5_RETURN287_INDEPENDENT_AUDIT",
+  "createdAtUtc": "2026-10-30T23:33:08.075619+00:00",
+  "status": "PASS",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_alignmentfactionpurification5_return287_received/DD_Rank9_AlignmentFactionPurification5_Director_Return287_HELD.zip",
+    "bytes": 2453374,
+    "sha256": "f46b0bd2216274667aa8909721adabb4b819e491e28f9835d90cf0c0f6edf96e",
+    "crc32": "9e5da252"
+  },
+  "deliveryManifest": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_alignmentfactionpurification5_return287_received/DD_Rank9_AlignmentFactionPurification5_Director_Return287_HELD_DELIVERY.json",
+    "bytes": 86150,
+    "sha256": "37ae35c3cda02bc6a6be32f761f6c964ff16e0a18ccfc1ff62abaa892a8b90b7",
+    "crc32": "215de892"
+  },
+  "authority": {
+    "reviewedApplied": 816,
+    "pending": 32,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 540,
+    "scopedInterfaces": 173
+  },
+  "targetIds": [
+    "alignment-ascension",
+    "alignment-perfection",
+    "faction-incarnate",
+    "faction-perfection",
+    "corruption-purification"
+  ],
+  "acceptedIds": [],
+  "appliedIds": [],
+  "heldIds": [
+    "alignment-ascension",
+    "alignment-perfection",
+    "faction-incarnate",
+    "faction-perfection",
+    "corruption-purification"
+  ],
+  "blockers": {
+    "alignment-ascension": [
+      "AFP211-B01"
+    ],
+    "alignment-perfection": [
+      "AFP211-B02"
+    ],
+    "faction-incarnate": [
+      "AFP211-B03"
+    ],
+    "faction-perfection": [
+      "AFP211-B04"
+    ],
+    "corruption-purification": [
+      "AFP211-B05"
+    ]
+  },
+  "nextPendingGroup": {
+    "group": "rank9-projection-confinement2",
+    "pendingIds": [
+      "astral-projection",
+      "imprisonment"
+    ],
+    "source": "context/CURRENT_SPELL_QUEUE_287.json#/currentPendingGroups/13",
+    "reviewStarted": false
+  },
+  "memberCount": 110,
+  "checkCount": 21,
+  "passedChecks": 21,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "check": "Return287 ZIP size/SHA/CRC match DELIVERY and the Director-reported seal",
+      "passed": true,
+      "detail": {
+        "bytes": 2453374,
+        "sha256": "f46b0bd2216274667aa8909721adabb4b819e491e28f9835d90cf0c0f6edf96e",
+        "crc32": "9e5da252"
+      }
+    },
+    {
+      "check": "Downloaded DELIVERY size/SHA/CRC match the Director-reported seal",
+      "passed": true,
+      "detail": {
+        "bytes": 86150,
+        "sha256": "37ae35c3cda02bc6a6be32f761f6c964ff16e0a18ccfc1ff62abaa892a8b90b7",
+        "crc32": "215de892"
+      }
+    },
+    {
+      "check": "Current Packet287 independent audit and submission both bind the reviewed source archive",
+      "passed": true,
+      "detail": {
+        "packetAudit": "PASS",
+        "checks": 16,
+        "sourcePacketSha256": "c91a4096bf3520504c648b6ed6e9ff355fce18cbdabd63c81a9aa9c5e064ec2d"
+      }
+    },
+    {
+      "check": "Sealed decision authority is unchanged and no spell is accepted or applied",
+      "passed": true,
+      "detail": {
+        "authority": {
+          "reviewedApplied": 816,
+          "pending": 32,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 540,
+          "scopedInterfaces": 173
+        },
+        "acceptedIds": [],
+        "appliedIds": [],
+        "heldIds": [
+          "alignment-ascension",
+          "alignment-perfection",
+          "faction-incarnate",
+          "faction-perfection",
+          "corruption-purification"
+        ]
+      }
+    },
+    {
+      "check": "Return ZIP has 110 unique safe members and passes CRC integrity",
+      "passed": true,
+      "detail": {
+        "members": 110,
+        "unsafe": []
+      }
+    },
+    {
+      "check": "External DELIVERY roster and internal manifest cover the exact ZIP members",
+      "passed": true,
+      "detail": {
+        "externalMembers": 110,
+        "payloadMembers": 109
+      }
+    },
+    {
+      "check": "All member sizes/SHA/CRC independently match both manifests",
+      "passed": true,
+      "detail": {
+        "externalFailures": [],
+        "internalFailures": [],
+        "checked": 109
+      }
+    },
+    {
+      "check": "Director decision covers exactly the five submitted identities as holds under AFP211-B01..B05",
+      "passed": true,
+      "detail": {
+        "decisions": {
+          "alignment-ascension": [
+            "AFP211-B01"
+          ],
+          "alignment-perfection": [
+            "AFP211-B02"
+          ],
+          "faction-incarnate": [
+            "AFP211-B03"
+          ],
+          "faction-perfection": [
+            "AFP211-B04"
+          ],
+          "corruption-purification": [
+            "AFP211-B05"
+          ]
+        }
+      }
+    },
+    {
+      "check": "Hold register binds each exact identity to its blocker and missing witness",
+      "passed": true,
+      "detail": {
+        "blockers": [
+          "AFP211-B01",
+          "AFP211-B02",
+          "AFP211-B03",
+          "AFP211-B04",
+          "AFP211-B05"
+        ]
+      }
+    },
+    {
+      "check": "Before/after authority and current-authority payload match 816/32/0",
+      "passed": true,
+      "detail": {
+        "counts": {
+          "targetIdentities": 5,
+          "nativePlacements": 6,
+          "classAccessRows": 19,
+          "procedureContracts": 5,
+          "completeOperationalProcedures": 0,
+          "originalQuestions": 28,
+          "selectedQuestionDispositions": 28,
+          "futureRequirements": 7,
+          "futureDispositions": 7,
+          "componentCases": 10,
+          "conditionalComponentCases": 7,
+          "heldContentGateCases": 3,
+          "completePositiveSpellCases": 0,
+          "completeActorClockCases": 0,
+          "events": 10,
+          "forwardOperations": 20,
+          "inverseOperations": 20,
+          "fullReverseTraversals": 10,
+          "currentSourceBindings": 130,
+          "verifiedComparatorEnvelopes": 6,
+          "openIdentityBlockers": 5,
+          "retainedConditionalQualifications": 7,
+          "closedSharedEvidenceFindings": 1,
+          "acceptedIds": 0,
+          "appliedIds": 0,
+          "heldIds": 5,
+          "sourceDataReplayChecks": 1838,
+          "scopedSemanticChecks": 72,
+          "sourceDataReplaySemanticChecks": 1910
+        }
+      }
+    },
+    {
+      "check": "All 28 original questions and seven future requirements are preserved and dispositioned exactly once",
+      "passed": true,
+      "detail": {
+        "questions": 28,
+        "futureRequirements": 7
+      }
+    },
+    {
+      "check": "All 130 Return source bindings match the independently audited Packet287 and live source tree",
+      "passed": true,
+      "detail": {
+        "bindings": 130,
+        "mismatches": []
+      }
+    },
+    {
+      "check": "All five returned native cards match current catalog cards and preserve 19 access rows",
+      "passed": true,
+      "detail": {
+        "cards": 5,
+        "nativePlacements": 6,
+        "classAccessRows": 19
+      }
+    },
+    {
+      "check": "AFP211-E01 remains closed using the six exact comparator envelopes",
+      "passed": true,
+      "detail": {
+        "comparators": [
+          "alignment-avatar",
+          "alignment-immunity",
+          "corruption-immunity",
+          "faction-aegis",
+          "faction-citadel",
+          "faction-paragon"
+        ],
+        "closed": [
+          "AFP211-E01"
+        ]
+      }
+    },
+    {
+      "check": "All ten component traces pass with exact 10 events and 20 forward/inverse operations",
+      "passed": true,
+      "detail": {
+        "cases": 10,
+        "events": 10,
+        "forward": 20,
+        "inverse": 20
+      }
+    },
+    {
+      "check": "No complete spell or actor-clock positive witness is claimed",
+      "passed": true,
+      "detail": {
+        "completeProcedures": 0,
+        "completeSpellCases": 0,
+        "completeActorClockCases": 0
+      }
+    },
+    {
+      "check": "Next Projection/Confinement2 group is the exact still-pending queue row",
+      "passed": true,
+      "detail": {
+        "next": {
+          "group": "rank9-projection-confinement2",
+          "pendingIds": [
+            "astral-projection",
+            "imprisonment"
+          ],
+          "source": "context/CURRENT_SPELL_QUEUE_287.json#/currentPendingGroups/13",
+          "reviewStarted": false
+        }
+      }
+    },
+    {
+      "check": "All returned package checks, 32 artifact checks and 72 semantic checks pass; validator correction is documented",
+      "passed": true,
+      "detail": {
+        "packageChecks": 447,
+        "artifactChecks": 32,
+        "semanticChecks": 72,
+        "correction": null
+      }
+    },
+    {
+      "check": "All three external source, prior-return and comparator archives match their exact bound bytes",
+      "passed": true,
+      "detail": {
+        "externalArchives": 3,
+        "failures": []
+      }
+    },
+    {
+      "check": "Return284, Return285 and Return286 prior holds remain unchanged outside scope",
+      "passed": true,
+      "detail": {
+        "checks": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "check": "No canonical edit, application, runtime execution or downstream gate approval occurred",
+      "passed": true,
+      "detail": {
+        "canonicalChanges": false,
+        "runtimeExecuted": false
+      }
+    }
+  ]
+}

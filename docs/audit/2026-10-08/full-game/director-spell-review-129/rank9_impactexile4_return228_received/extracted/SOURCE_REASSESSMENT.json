@@ -1,0 +1,176 @@
+{
+  "id": "RETURN228-IE204-B02-REASSESSMENT",
+  "scope": [
+    "reverse-gravity-field"
+  ],
+  "sourcePacket": {
+    "path": "DD_Rank9_ImpactExile4_CurrentSource_228.zip",
+    "bytes": 278709812,
+    "sha256": "3f2b1d7d6b0731c5c170e7a8a2ec9d627483b8576796be1156d322f17134e246",
+    "crc32": "25ca0393"
+  },
+  "currentAuthority": {
+    "reviewedApplied": 811,
+    "pending": 37,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 535,
+    "scopedInterfaces": 173
+  },
+  "findings": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "binding": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+        "bytes": 450543,
+        "sha256": "842718b9f016294529bdffefca9c81cca9a37670dd5e66a3c893ad313d79dd51",
+        "gitBlobSHA1": "f16bf2f09d27998945bbc3884d3e635290519da9"
+      },
+      "anchor": "/spells/818; source_paragraph9994",
+      "finding": "Action;60-foot range;Instantaneous;V/S/F;rank9/base26RP; everything in60-foot radius floats60feet up, fall damage after. No crate HP, material, attachment strength or force equation."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+      "binding": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+        "bytes": 5085187,
+        "sha256": "773fb0b3b0fdb501858ded33c02d90dc4db3009bd1b9f7112c244d998218f05b",
+        "gitBlobSHA1": "6a8e0ba3be835b358720b43180312d07cf61d560"
+      },
+      "anchor": "/spells/766; /spells/123/operational",
+      "finding": "Reverse Gravity pending; Conjure Rope has50ft physical rope,10lb,AC11,HP5,300lb total static load, actual sound anchor. No automatic hauling, flying, anchoring, creature damage conversion or dynamic attachment certification."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+      "binding": {
+        "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+        "bytes": 30597,
+        "sha256": "9118101f0907e0cd52a78cef83affa9e6fcae1b3d958c8a576499dfddc424f60",
+        "gitBlobSHA1": "7cc951dd244571cfa3d364326737c91492b6b398"
+      },
+      "anchor": "lines25,95,136,162",
+      "finding": "Object/cargo dependencies explicitly open. Sunder uses actual durability, not creature HP; Secure Cargo requires actual capacity/custody/harness/durability. Forced movement stops at obstacles; removing support starts Falling."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CONTROL_STATES_PLAYTEST.md",
+      "binding": {
+        "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CONTROL_STATES_PLAYTEST.md",
+        "bytes": 28382,
+        "sha256": "f2c6263c7385d4a1487c0563227f537ea64e80da48fb8f3cd2255935a415e1f2",
+        "gitBlobSHA1": "ac60434e28708540f61fcc4c7ae3dabac7fb17e8"
+      },
+      "anchor": "line159, Still open",
+      "finding": "Object/tether durability beyond printed nets explicitly remains open; no generic tether immunity/strength."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/EQUIPMENT_ITEM_PROCEDURES.md",
+      "binding": {
+        "path": "DescentReviewChanges/ReviewBible/docs/mechanics/EQUIPMENT_ITEM_PROCEDURES.md",
+        "bytes": 15196,
+        "sha256": "ea0b6c89191160c9e56a97563d55e9f1022bd1b7b732c648fd0c3882aab2a050",
+        "gitBlobSHA1": "f6388ce6a78fce5b8a04f6978d928a25e3229312"
+      },
+      "anchor": "lines55,61-64",
+      "finding": "Generic object destruction requires applicable actual durability. Climber kit requires sound intact anchor; block/tackle multiplies user ordinary lifting capacity only; ram supplies no automatic damage. These do not certify the current tether."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+      "binding": {
+        "path": "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+        "bytes": 22891,
+        "sha256": "5fa622f43b6948e7e991f1ca5a237de584900e92cfd4f37eed47586d73222039",
+        "gitBlobSHA1": "f8de90d6caf17bcbdac71e57edee0b396207579a"
+      },
+      "anchor": "Carrying and Load, lines88-125",
+      "finding": "Physical pounds, Load and Extraction Class remain distinct. Count container and contents once. Weight/burden does not establish material, structuralHP, fracture or attachment strength."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CRAFTING_HARVEST_PLAYTEST.md",
+      "binding": {
+        "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CRAFTING_HARVEST_PLAYTEST.md",
+        "bytes": 42906,
+        "sha256": "b8adb3ac6eb51f333fdb8f2d68ecc7e9c6511e7ee3aded1bfe54cd4728c93479",
+        "gitBlobSHA1": "b2c15e1bd56bb62e0f1729f4f6d68413e62f9be9"
+      },
+      "anchor": "lines74-76,109-113",
+      "finding": "Quality multiplier requires explicitly known structuralHP; no undefined maximum may be supplied. Recipe component provenance and actual compatible physical form remain required; no crate/salvage substitution follows."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+      "binding": {
+        "path": "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+        "bytes": 67451,
+        "sha256": "55f486de8d38a6734f8f0f2f62066401504f5b1311ebe66693175876b3f7aa6d",
+        "gitBlobSHA1": "771a8e5a35124d6ab3521a4c9a6538f00b4519e6"
+      },
+      "anchor": "Falling bridge, lines100-128",
+      "finding": "Preserve regular-slot first Fall Marker, ordinary300ft step and floor(descent/20)d6. Feather Fall is Action,60ft/step,impact cap3d6,not automatic immunity. Ordinary physical aftermath has no invented object damage table."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+      "binding": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+        "bytes": 100635,
+        "sha256": "8ab2f4f43bcbced418fb266e5bd3216cff491b0c442c16f93438bd3556672c8b",
+        "gitBlobSHA1": "cba2bdbbe964e9597011ed59f0c934bd09350a93"
+      },
+      "anchor": "cards; acquisitionLedger compared to current cards; source own hash",
+      "finding": "The conditional W17D actor profile and all selected class cards match current source bytes; target prepared/learned at class17,rank9,base26RP. Campaign existence and possessions remain conditional."
+    }
+  ],
+  "blocker": {
+    "blocking": true,
+    "id": "IE204-B02",
+    "inspectionReport": "SOURCE_REASSESSMENT.json",
+    "minimalCorrection": "Supply an actual object/attachment profile and applicable impact/durability procedure, or explicitly authorize a bounded local completion, then settle exact damage, breakage and custody without fabricating matter, travel or unsupported salvage. Preserve demonstrated creature60ft/3d6 and overlap120ft/6d6 outcomes.",
+    "noInventedObjectHPOrSalvage": true,
+    "preciseRemainingWitnesses": [
+      "actual20lb crate material/durability and60ft/120ft impact/breakage/custody rules",
+      "actual tether/anchor rated attachment strength and relevant upward force/load rule"
+    ],
+    "scope": "Whole-body selection now includes the caster and D, and all creature lifts/falls/markers are explicit. However items.crate.physicalDamageHeld remains true at landing: its actual damage/destruction/custody aftermath has not been resolved from a sourced object profile. The anchored fixture supplies only a conditional tether, not a bound actual attachment/strength profile. These are whole object/attachment branch holds, not object immunity.",
+    "spellIds": [
+      "reverse-gravity-field"
+    ],
+    "status": "REASSESSED_RETAINED_UNRESOLVED_RETURN228",
+    "minimumMissingWitnesses": [
+      "actual20lb crate material/durability and60ft/120ft impact/breakage/custody rules",
+      "actual tether/anchor rated attachment strength and relevant upward force/load rule"
+    ],
+    "affectedExistingCaseIds": [
+      "RANK9IMPACTEXILE4129-REVERSE-GRAVITY-FIELD-A",
+      "RANK9IMPACTEXILE4129-REVERSE-GRAVITY-FIELD-B",
+      "RANK9IMPACTEXILE4129-REVERSE-GRAVITY-FIELD-B/anchored",
+      "RANK9IMPACTEXILE4129-REVERSE-GRAVITY-FIELD-B/feather",
+      "RANK9IMPACTEXILE4129-REVERSE-GRAVITY-FIELD-B/overlap"
+    ],
+    "requiredMainCasesIncomplete": [
+      "RANK9IMPACTEXILE4129-REVERSE-GRAVITY-FIELD-A",
+      "RANK9IMPACTEXILE4129-REVERSE-GRAVITY-FIELD-B"
+    ],
+    "missingWitnessCaseIds": [
+      "RANK9IMPACTEXILE4129-REVERSE-GRAVITY-FIELD-A/complete-object-aftermath",
+      "RANK9IMPACTEXILE4129-REVERSE-GRAVITY-FIELD-B/source-bound-attachment"
+    ],
+    "currentFinding": "Current Sunder rules explicitly leave unspecified durability dependent on equipment; reviewed handling rules do not define this 20-pound crate material/HP/impact/breakage. The preserved tether is expressly conditional and unbreakable without a separate strength rule. Conjure Rope supplies one real rope profile but only a static-load contract and a separately sound anchor. It does not resolve this zero-length attachment or an upward-force comparison. No source-grounded replacement is demonstrated."
+  },
+  "disallowedSubstitutions": [
+    "A25lb equipment chest is not the20lb crate; weight alone is not material or durability.",
+    "Transport-frame, net, creature or conjured-rope HP cannot be copied to the crate.",
+    "A static300lb support rating is not a complete dynamic upward-force attachment/anchor rule.",
+    "Cannot certify crate intactness/destruction or salvage from exists=true while physicalDamageHeld=true.",
+    "No new object immunity, arbitrary strength/DC, fracture, matter, item value or custody transfer."
+  ],
+  "scopeDecision": "IE204-B02 is a required whole-spell acceptance gate here because the exact native promise includes everything and required main A explicitly calls for real objects and their aftermath; main B requires actual attachment/obstruction. The current positive body-only evidence cannot substitute for those exact required witnesses. Retain the narrower object/attachment branches as incomplete; do not invalidate passing creature-only transitions.",
+  "observations": [
+    {
+      "id": "IE228-O01",
+      "blocking": false,
+      "finding": "REQUEST_228 refers to queue228/handoff228, but the ZIP actually carries current-bound CURRENT_SPELL_QUEUE_227 and CURRENT_HANDOFF_227, plus CURRENT_CONTEXT_228 and CURRENT37_PENDING_IDENTITY_AUDIT_228. Authority and target agree. Next group is read from the preserved queue order after Impact/Exile, not its historical next pointer. No absent queue228 bytes are claimed."
+    },
+    {
+      "id": "IE228-O02",
+      "blocking": false,
+      "finding": "Return204/205 withheld the complete unaccepted Gravity draft and preserved hash-only references. Those old scratch paths are unavailable. This return supplies an explicitly labeled held procedure restatement from exact delivered source/questions/cases; it does not pretend to recover or byte-preserve the absent draft. All delivered target cases remain byte-exact Return205 members."
+    }
+  ]
+}

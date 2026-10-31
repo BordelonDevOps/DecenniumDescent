@@ -1,0 +1,599 @@
+{
+  "status": "PREPARED NOT SENT; unresolved named-creature evidence",
+  "spellIds": [
+    "create-undead",
+    "command-undeath",
+    "summon-soul-wraith"
+  ],
+  "basePreparation": "ILLUSION_NECROMANCY_RANK6_SOURCE_PREPARATION.json",
+  "basePreparationSha256": "53e560c448a08b22c15ca248f091fb1559e715b419e507280c8c40e8b7d89247",
+  "searches": [
+    {
+      "file": "DescentReviewChanges/ReviewBible/data/director/bestiary_source_candidate_internal.json",
+      "sha256": "66d3d54ec0e70d9515f14789a697b379c648dc604af9f1035194c5230f09663c",
+      "searchedRecords": 67,
+      "exactCaseInsensitiveNameMatches": {
+        "Ghoul": [],
+        "Ghast": [],
+        "Wight": [],
+        "Mummy": [],
+        "Soul Wraith": [],
+        "Wraith": []
+      }
+    },
+    {
+      "file": "DescentReviewChanges/ReviewBible/data/playtest/bestiary_public_source_candidate.json",
+      "sha256": "a9c86af89b900b1c5426757d3eb31d4992cf2b66bbbd2c3d465abab29d4c2af1",
+      "searchedRecords": 26,
+      "exactCaseInsensitiveNameMatches": {
+        "Ghoul": [],
+        "Ghast": [],
+        "Wight": [],
+        "Mummy": [],
+        "Soul Wraith": [],
+        "Wraith": []
+      }
+    },
+    {
+      "file": "src/bestiary_data_full.json",
+      "sha256": "5717861200b3c229be4248fc67f1b7c6903da63747bd5b0d4d6b4ea892057b55",
+      "searchedRecords": 707,
+      "exactCaseInsensitiveNameMatches": {
+        "Ghoul": [
+          270
+        ],
+        "Ghast": [
+          268
+        ],
+        "Wight": [
+          674
+        ],
+        "Mummy": [
+          426
+        ],
+        "Soul Wraith": [],
+        "Wraith": [
+          682
+        ]
+      }
+    },
+    {
+      "file": "src/bestiary_data.json",
+      "sha256": "515ddba44cca8244953daca8b9c186eafd4e26ce8af09f24fd60c4e67194095d",
+      "searchedRecords": 50,
+      "exactCaseInsensitiveNameMatches": {
+        "Ghoul": [],
+        "Ghast": [],
+        "Wight": [],
+        "Mummy": [],
+        "Soul Wraith": [],
+        "Wraith": []
+      }
+    }
+  ],
+  "completeMatches": [
+    {
+      "searchedName": "Ghoul",
+      "file": "src/bestiary_data_full.json",
+      "index": 270,
+      "fullOriginalRecord": {
+        "name": "Ghoul",
+        "type": "Undead",
+        "size": "Large",
+        "challengeRating": "1",
+        "xp": 200,
+        "alignment": "Chaotic Neutral",
+        "zoneFound": "Duskshard Pools",
+        "description": "A large undead found in Duskshard Pools.",
+        "loot": {
+          "tier1": {
+            "drop": "Magical Seed (Tier 1)",
+            "rate": "0.5",
+            "value": "11"
+          },
+          "tier2": {
+            "drop": "Rare Pollen (Tier 2)",
+            "rate": "0.41",
+            "value": "22"
+          }
+        },
+        "ingestSource": "Bestiary.xlsx:Monsters",
+        "armorClass": 13,
+        "hitPoints": 52,
+        "speed": "40 ft.",
+        "combat": {
+          "schemaVersion": 1,
+          "draft": false,
+          "source": "t6-10-trusted",
+          "defaultActionId": "death-chill",
+          "defenses": {
+            "resistances": [],
+            "immunities": [],
+            "conditionImmunities": []
+          },
+          "attacks": [
+            {
+              "id": "death-chill",
+              "name": "Death Chill",
+              "kind": "attack",
+              "actionCost": "action",
+              "usage": "atWill",
+              "count": 1,
+              "targets": {
+                "count": 1,
+                "scope": "creature"
+              },
+              "damage": [
+                {
+                  "dice": "1d8+2",
+                  "average": 6.5,
+                  "type": "cold"
+                }
+              ],
+              "attackBonus": 4
+            }
+          ]
+        }
+      },
+      "scope": "Unreviewed source comparison only; no automatic summoning,creation,CR,control or public-projection approval."
+    },
+    {
+      "searchedName": "Ghast",
+      "file": "src/bestiary_data_full.json",
+      "index": 268,
+      "fullOriginalRecord": {
+        "name": "Ghast",
+        "type": "Fey",
+        "size": "Gargantuan",
+        "challengeRating": "23",
+        "xp": 50000,
+        "alignment": "Chaotic Evil",
+        "zoneFound": "Aethel Forests",
+        "description": "A gargantuan fey found in Aethel Forests.",
+        "loot": {
+          "tier1": {
+            "drop": "Fey Dust (Tier 1)",
+            "rate": "1",
+            "value": "33"
+          },
+          "tier2": {
+            "drop": "Enchanted Leaf (Tier 2)",
+            "rate": "1",
+            "value": "66"
+          },
+          "tier3": {
+            "drop": "Magical Pollen (Tier 3)",
+            "rate": "0.9",
+            "value": "132"
+          },
+          "tier4": {
+            "drop": "Fey Essence (Tier 4)",
+            "rate": "0.68",
+            "value": "264"
+          },
+          "tier5": {
+            "drop": "Fey Essence (Tier 5)",
+            "rate": "0.45",
+            "value": "528"
+          },
+          "tier6": {
+            "drop": "Fey Essence (Tier 6)",
+            "rate": "0.23",
+            "value": "1056"
+          }
+        },
+        "ingestSource": "Bestiary.xlsx:Monsters",
+        "armorClass": 20,
+        "hitPoints": 918,
+        "speed": "40 ft.",
+        "saveDc": 22,
+        "combat": {
+          "schemaVersion": 1,
+          "draft": false,
+          "source": "band-trusted",
+          "defaultActionId": "fey-whisper",
+          "defenses": {
+            "resistances": [],
+            "immunities": [],
+            "conditionImmunities": []
+          },
+          "attacks": [
+            {
+              "id": "fey-whisper",
+              "name": "Fey Whisper",
+              "kind": "attack",
+              "actionCost": "action",
+              "usage": "atWill",
+              "count": 4,
+              "targets": {
+                "count": 1,
+                "scope": "creature"
+              },
+              "damage": [
+                {
+                  "dice": "4d10+16",
+                  "average": 38.0,
+                  "type": "psychic"
+                }
+              ],
+              "attackBonus": 12
+            },
+            {
+              "id": "mislead-strike",
+              "name": "Mislead Strike",
+              "kind": "attack",
+              "actionCost": "action",
+              "usage": "atWill",
+              "count": 1,
+              "targets": {
+                "count": 1,
+                "scope": "creature"
+              },
+              "damage": [
+                {
+                  "dice": "4d10+15",
+                  "average": 37.0,
+                  "type": "psychic"
+                }
+              ],
+              "attackBonus": 12
+            }
+          ],
+          "saveDc": 22
+        }
+      },
+      "scope": "Unreviewed source comparison only; no automatic summoning,creation,CR,control or public-projection approval."
+    },
+    {
+      "searchedName": "Wight",
+      "file": "src/bestiary_data_full.json",
+      "index": 674,
+      "fullOriginalRecord": {
+        "name": "Wight",
+        "type": "Undead",
+        "size": "Large",
+        "challengeRating": "17",
+        "xp": 18000,
+        "alignment": "Chaotic Neutral",
+        "zoneFound": "Null Zones",
+        "description": "A large undead found in Null Zones.",
+        "loot": {
+          "tier1": {
+            "drop": "Spectral Essence (Tier 1)",
+            "rate": "1",
+            "value": "27"
+          },
+          "tier2": {
+            "drop": "Preserved Bone (Tier 2)",
+            "rate": "1",
+            "value": "54"
+          },
+          "tier3": {
+            "drop": "Death Energy (Tier 3)",
+            "rate": "0.81",
+            "value": "108"
+          },
+          "tier4": {
+            "drop": "Cursed Remains (Tier 4)",
+            "rate": "0.61",
+            "value": "216"
+          },
+          "tier5": {
+            "drop": "Cursed Remains (Tier 5)",
+            "rate": "0.41",
+            "value": "432"
+          }
+        },
+        "ingestSource": "Bestiary.xlsx:Monsters",
+        "armorClass": 19,
+        "hitPoints": 416,
+        "speed": "40 ft.",
+        "saveDc": 19,
+        "combat": {
+          "schemaVersion": 1,
+          "draft": false,
+          "source": "band-trusted",
+          "defaultActionId": "bone-rake",
+          "defenses": {
+            "resistances": [],
+            "immunities": [],
+            "conditionImmunities": []
+          },
+          "attacks": [
+            {
+              "id": "bone-rake",
+              "name": "Bone Rake",
+              "kind": "attack",
+              "actionCost": "action",
+              "usage": "atWill",
+              "count": 3,
+              "targets": {
+                "count": 1,
+                "scope": "creature"
+              },
+              "damage": [
+                {
+                  "dice": "3d10+9",
+                  "average": 25.5,
+                  "type": "slashing"
+                }
+              ],
+              "attackBonus": 10
+            },
+            {
+              "id": "life-drain",
+              "name": "Life Drain",
+              "kind": "attack",
+              "actionCost": "action",
+              "usage": "atWill",
+              "count": 1,
+              "targets": {
+                "count": 1,
+                "scope": "creature"
+              },
+              "damage": [
+                {
+                  "dice": "3d10+8",
+                  "average": 24.5,
+                  "type": "necrotic"
+                }
+              ],
+              "attackBonus": 10
+            }
+          ],
+          "saveDc": 19
+        }
+      },
+      "scope": "Unreviewed source comparison only; no automatic summoning,creation,CR,control or public-projection approval."
+    },
+    {
+      "searchedName": "Mummy",
+      "file": "src/bestiary_data_full.json",
+      "index": 426,
+      "fullOriginalRecord": {
+        "name": "Mummy",
+        "type": "Undead",
+        "size": "Gargantuan",
+        "challengeRating": "20",
+        "xp": 25000,
+        "alignment": "Chaotic Good",
+        "zoneFound": "Veiled Iron Spiral",
+        "description": "A gargantuan undead found in Veiled Iron Spiral.",
+        "loot": {
+          "tier1": {
+            "drop": "Spectral Essence (Tier 1)",
+            "rate": "1",
+            "value": "30"
+          },
+          "tier2": {
+            "drop": "Preserved Bone (Tier 2)",
+            "rate": "1",
+            "value": "60"
+          },
+          "tier3": {
+            "drop": "Death Energy (Tier 3)",
+            "rate": "0.9",
+            "value": "120"
+          },
+          "tier4": {
+            "drop": "Cursed Remains (Tier 4)",
+            "rate": "0.68",
+            "value": "240"
+          },
+          "tier5": {
+            "drop": "Cursed Remains (Tier 5)",
+            "rate": "0.45",
+            "value": "480"
+          },
+          "tier6": {
+            "drop": "Cursed Remains (Tier 6)",
+            "rate": "0.23",
+            "value": "960"
+          }
+        },
+        "ingestSource": "Bestiary.xlsx:Monsters",
+        "armorClass": 19,
+        "hitPoints": 805,
+        "speed": "40 ft.",
+        "saveDc": 20,
+        "combat": {
+          "schemaVersion": 1,
+          "draft": false,
+          "source": "t6-10-trusted",
+          "defaultActionId": "bone-rake",
+          "defenses": {
+            "resistances": [],
+            "immunities": [],
+            "conditionImmunities": []
+          },
+          "attacks": [
+            {
+              "id": "bone-rake",
+              "name": "Bone Rake",
+              "kind": "attack",
+              "actionCost": "action",
+              "usage": "atWill",
+              "count": 4,
+              "targets": {
+                "count": 1,
+                "scope": "creature"
+              },
+              "damage": [
+                {
+                  "dice": "3d12+16",
+                  "average": 35.5,
+                  "type": "slashing"
+                }
+              ],
+              "attackBonus": 11
+            },
+            {
+              "id": "life-drain",
+              "name": "Life Drain",
+              "kind": "attack",
+              "actionCost": "action",
+              "usage": "atWill",
+              "count": 1,
+              "targets": {
+                "count": 1,
+                "scope": "creature"
+              },
+              "damage": [
+                {
+                  "dice": "3d12+15",
+                  "average": 34.5,
+                  "type": "necrotic"
+                }
+              ],
+              "attackBonus": 11
+            }
+          ],
+          "saveDc": 20
+        }
+      },
+      "scope": "Unreviewed source comparison only; no automatic summoning,creation,CR,control or public-projection approval."
+    },
+    {
+      "searchedName": "Wraith",
+      "file": "src/bestiary_data_full.json",
+      "index": 682,
+      "fullOriginalRecord": {
+        "name": "Wraith",
+        "type": "Undead",
+        "size": "Gargantuan",
+        "challengeRating": "25",
+        "xp": 75000,
+        "alignment": "True Neutral",
+        "zoneFound": "Aethel Caves",
+        "description": "A gargantuan undead found in Aethel Caves.",
+        "loot": {
+          "tier1": {
+            "drop": "Spectral Essence (Tier 1)",
+            "rate": "1",
+            "value": "35"
+          },
+          "tier2": {
+            "drop": "Preserved Bone (Tier 2)",
+            "rate": "1",
+            "value": "70"
+          },
+          "tier3": {
+            "drop": "Death Energy (Tier 3)",
+            "rate": "0.9",
+            "value": "140"
+          },
+          "tier4": {
+            "drop": "Cursed Remains (Tier 4)",
+            "rate": "0.68",
+            "value": "280"
+          },
+          "tier5": {
+            "drop": "Cursed Remains (Tier 5)",
+            "rate": "0.45",
+            "value": "560"
+          },
+          "tier6": {
+            "drop": "Cursed Remains (Tier 6)",
+            "rate": "0.23",
+            "value": "1120"
+          }
+        },
+        "ingestSource": "Bestiary.xlsx:Monsters",
+        "armorClass": 21,
+        "hitPoints": 992,
+        "speed": "40 ft.",
+        "saveDc": 23,
+        "combat": {
+          "schemaVersion": 1,
+          "draft": false,
+          "source": "band-trusted",
+          "defaultActionId": "grave-touch",
+          "defenses": {
+            "resistances": [],
+            "immunities": [],
+            "conditionImmunities": []
+          },
+          "attacks": [
+            {
+              "id": "grave-touch",
+              "name": "Grave Touch",
+              "kind": "attack",
+              "actionCost": "action",
+              "usage": "atWill",
+              "count": 4,
+              "targets": {
+                "count": 1,
+                "scope": "creature"
+              },
+              "damage": [
+                {
+                  "dice": "4d12+18",
+                  "average": 44.0,
+                  "type": "necrotic"
+                }
+              ],
+              "attackBonus": 12
+            },
+            {
+              "id": "life-drain",
+              "name": "Life Drain",
+              "kind": "attack",
+              "actionCost": "action",
+              "usage": "atWill",
+              "count": 1,
+              "targets": {
+                "count": 1,
+                "scope": "creature"
+              },
+              "damage": [
+                {
+                  "dice": "4d12+17",
+                  "average": 43.0,
+                  "type": "necrotic"
+                }
+              ],
+              "attackBonus": 12
+            }
+          ],
+          "saveDc": 23
+        }
+      },
+      "scope": "Unreviewed source comparison only; no automatic summoning,creation,CR,control or public-projection approval."
+    }
+  ],
+  "questions": [
+    "Create Undead names all four Ghoul/Ghast/Wight/Mummy forms, but none has an exact-name dossier in the current67-record source candidate. Resolve the intended profiles jointly; do not silently substitute generic minions or an external game.",
+    "The707-row runtime includes Ghoul Large Undead CR1 HP52 AC13; Ghast Gargantuan Fey CR23 HP918 AC20; Wight Large Undead CR17 HP416 AC19; Mummy Gargantuan Undead CR20 HP805 AC19. Ghast's Fey type conflicts with treating that runtime identity as an undead outcome. These facts require adjudication,not a guessed correction.",
+    "Command Undeath explicitly says up to2 CR2 undead. None of these four matched runtime candidates is exactly CR2. Decide the spell's exact rank predicate from its source; do not use this list to silently change the cap or infer intended eligibility.",
+    "No exact Soul Wraith name occurs in these four registries. Ordinary Wraith exists only in the707-row runtime and is Gargantuan Undead CR25 HP992 AC21, unlike the spell's HP100/AC18. Preserve it as a non-identical comparison; neither name similarity nor the spell title authorizes merging them."
+  ],
+  "checks": [
+    {
+      "name": "Exact named search over67 internal dossiers,26 public dossiers,707 current runtime rows and50 alternate rows",
+      "pass": true
+    },
+    {
+      "name": "All five matched runtime records retained complete and byte-source bound",
+      "pass": true
+    },
+    {
+      "name": "Original13-spell source preparation remains unchanged",
+      "pass": true
+    },
+    {
+      "name": "All five protected files unchanged",
+      "pass": true
+    }
+  ],
+  "protectedFiles": {
+    "DescentReviewChanges/ReviewBible/data/director/bestiary_source_candidate_internal.json": "66d3d54ec0e70d9515f14789a697b379c648dc604af9f1035194c5230f09663c",
+    "DescentReviewChanges/ReviewBible/data/playtest/bestiary_public_source_candidate.json": "a9c86af89b900b1c5426757d3eb31d4992cf2b66bbbd2c3d465abab29d4c2af1",
+    "src/bestiary_data_full.json": "5717861200b3c229be4248fc67f1b7c6903da63747bd5b0d4d6b4ea892057b55",
+    "src/bestiary_data.json": "515ddba44cca8244953daca8b9c186eafd4e26ce8af09f24fd60c4e67194095d",
+    "docs/audit/2026-10-08/full-game/ILLUSION_NECROMANCY_RANK6_SOURCE_PREPARATION.json": "53e560c448a08b22c15ca248f091fb1559e715b419e507280c8c40e8b7d89247"
+  },
+  "sourceInformationDeleted": 0,
+  "spellsApproved": 0,
+  "cosmology": "No cosmology reviewed; historical descriptions are retained without adjudication",
+  "dispatchInstruction": "Rebase and send this complete addendum with the rank-six Illusion/Necromancy source packet; all missing or conflicting creature profiles require explicit source reconciliation before candidate authorship."
+}

@@ -1,0 +1,227 @@
+{
+  "id": "RANK9-PLANARGATES5-RETURN243-INDEPENDENT-AUDIT",
+  "status": "PASS",
+  "checksPassed": 17,
+  "checksFailed": 0,
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_planargates5_return243_received/DD_Rank9_PlanarGates2_Director_Return243_HELD.zip",
+    "bytes": 1050027,
+    "sha256": "e900c849f0fe54b55f363d247966f7125aac77355b06d5591fcd723ee6c49ded",
+    "crc32": "80704286"
+  },
+  "delivery": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_planargates5_return243_received/DD_Rank9_PlanarGates2_Director_Return243_HELD_DELIVERY.json",
+    "bytes": 43254,
+    "sha256": "00525c0c6c89edcbfd7fa2111c6d8716cd79e97469713b0178ab729c986eebc8",
+    "crc32": "ef1100f2"
+  },
+  "sourcePacket": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_planargates5_current_source_243_prepared/DD_Rank9_PlanarGates5_CurrentSource_243.zip",
+    "bytes": 142129196,
+    "sha256": "d9a8736523ef1d194e3e5a5c824e6c190321086ff367dbd09f57b0d9a9b84c9e",
+    "crc32": "ce22608f"
+  },
+  "authority": {
+    "reviewedApplied": 811,
+    "pending": 37,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 535,
+    "scopedInterfaces": 173
+  },
+  "heldIds": [
+    "banishment-gate",
+    "conjure-demiplane-fortress"
+  ],
+  "blockerIds": {
+    "banishment-gate": [
+      "PG200-B03",
+      "PG200-B04"
+    ],
+    "conjure-demiplane-fortress": [
+      "PG200-B06"
+    ]
+  },
+  "checks": [
+    {
+      "check": "Downloaded Return243 archive matches sealed byte, SHA-256, and CRC32 binding",
+      "passed": true,
+      "detail": {
+        "bytes": 1050027,
+        "sha256": "e900c849f0fe54b55f363d247966f7125aac77355b06d5591fcd723ee6c49ded",
+        "crc32": "80704286"
+      }
+    },
+    {
+      "check": "Matching delivery manifest is byte-bound and identifies the submitted Packet243",
+      "passed": true,
+      "detail": {
+        "deliveryBytes": 43254,
+        "deliverySHA256": "00525c0c6c89edcbfd7fa2111c6d8716cd79e97469713b0178ab729c986eebc8",
+        "sourcePacketSHA256": "d9a8736523ef1d194e3e5a5c824e6c190321086ff367dbd09f57b0d9a9b84c9e"
+      }
+    },
+    {
+      "check": "ZIP has 73 unique safe members and the exact delivery allowlist",
+      "passed": true,
+      "detail": {
+        "memberCount": 73,
+        "deliveryRows": 73,
+        "safeNames": true
+      }
+    },
+    {
+      "check": "Every payload member independently matches delivery byte/SHA/CRC values",
+      "passed": true,
+      "detail": {
+        "checked": 73,
+        "failures": []
+      }
+    },
+    {
+      "check": "Internal manifest and self-binding reconcile all 72 payload files",
+      "passed": true,
+      "detail": {
+        "innerRows": 72,
+        "mismatches": []
+      }
+    },
+    {
+      "check": "Director ruling and delivery hold exactly the two scoped spells at authority 811/37/0",
+      "passed": true,
+      "detail": {
+        "heldIds": [
+          "banishment-gate",
+          "conjure-demiplane-fortress"
+        ],
+        "blockerIds": {
+          "banishment-gate": [
+            "PG200-B03",
+            "PG200-B04"
+          ],
+          "conjure-demiplane-fortress": [
+            "PG200-B06"
+          ]
+        },
+        "authority": {
+          "reviewedApplied": 811,
+          "pending": 37,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 535,
+          "scopedInterfaces": 173
+        }
+      }
+    },
+    {
+      "check": "All three exact blockers remain open with concrete source-qualified missing witnesses",
+      "passed": true,
+      "detail": {
+        "PG200-B03": "Complete one actually source-legal non-Elemental actor and acquired creation/access route, then demonstrate matching ally/enemy and nonmatching crossings. The indexed Faction Envoy now supplies an explicit Humanoid profile lead, but using it requires actual caster acquisition plus canonical-faction membership and invocation permission; those are not established in the preserved actors/cases.",
+        "PG200-B04": "Instantiate the concrete touch-only, stationary-type-change, already-claimed/guard-contention and independent occupied-cell lifecycle witnesses. Supply the actual sources/actors/anatomy/custody for separate carried bodies, primary escape, dead-primary/corpse handling and finite summon expiry with loose cargo; demonstrate cell-local cleanup and terminal placement. Rule-only labels and a hypothetical ending are not completed witnesses.",
+        "PG200-B06": "Complete the actual panel/support and movement graph with a compatible acquired damaging source; legitimate productive-work/rest inputs and outcomes; a commanded companion job; creator-death persistence; and nonempty acquired-removal, suppression, corpse, expired-summon cargo, reversion and nested-space settlements. Bind the surviving nested entrance/anchor contract. Existing layout and hypothetical source termination do not establish these branches."
+      }
+    },
+    {
+      "check": "Faction Envoy Humanoid lead is bound without claiming acquisition or invocation permission",
+      "passed": true,
+      "detail": {
+        "profileType": "Humanoid for mechanical targeting only; no new ancestry or setting origin.",
+        "profileStatus": "NEW summon-only profile for the source’s nominal CR 3 role; no human CR/balance certification.",
+        "remaining": "No preserved actor has Faction Ally acquired. Its actual canonical-faction membership AND invocation permission are not supplied by favorable standing, and no nonmatching crossing has been instantiated. No acquisition, membership, permission or campaign summon is inferred."
+      }
+    },
+    {
+      "check": "All 161 return source bindings reconcile to the independently audited Packet243 candidate",
+      "passed": true,
+      "detail": {
+        "returnRows": 161,
+        "candidateRows": 161,
+        "mismatches": []
+      }
+    },
+    {
+      "check": "All 23 cases and their 267 state-hash event chains replay and bind to exact case bytes",
+      "passed": true,
+      "detail": {
+        "cases": 23,
+        "events": 267,
+        "forward": 534,
+        "inverse": 534,
+        "proposalOperations": 8,
+        "caseFailures": []
+      }
+    },
+    {
+      "check": "All 23 case files remain byte-exact with the prior sealed Return226 evidence",
+      "passed": true,
+      "detail": {
+        "currentCases": 23,
+        "priorCases": 23
+      }
+    },
+    {
+      "check": "All 23 case dispositions retain PG200-H01 through H10 and their spell-specific blocker",
+      "passed": true,
+      "detail": {
+        "dispositions": 23
+      }
+    },
+    {
+      "check": "Sealed validation reports 10,983 checks and all 223 package checks pass",
+      "passed": true,
+      "detail": {
+        "freshChecks": 10983,
+        "packageChecks": 223,
+        "packageFailures": 0
+      }
+    },
+    {
+      "check": "The package retains 30 original questions, two addenda, and all nine future obligations",
+      "passed": true,
+      "detail": {
+        "questions": 30,
+        "addenda": 2,
+        "futureObligations": 9,
+        "targetFutureDispositions": 6
+      }
+    },
+    {
+      "check": "Return200 applied gate identities are preserved against their archived source bytes",
+      "passed": true,
+      "detail": {
+        "acceptedAppliedIds": [
+          "gate",
+          "absolute-gate",
+          "planar-sanctuary"
+        ],
+        "priorArchiveSHA256": "8afda34a91bad329273753232e02a76136bff01a3d1da95416b573c9f4fb284c"
+      }
+    },
+    {
+      "check": "Return242 Knowledge/Revelation hold remains unchanged outside this review",
+      "passed": true,
+      "detail": {
+        "heldIds": [
+          "faction-omniscience-supreme"
+        ],
+        "next": {
+          "group": "rank9-summon-hosts5",
+          "pendingIds": [
+            "summon-elemental-avatar",
+            "summon-herald-of-the-planes",
+            "summon-avatar-of-decay"
+          ]
+        }
+      }
+    },
+    {
+      "check": "Planar candidate procedures are limited to the two pending identities",
+      "passed": true,
+      "detail": {
+        "procedures": [
+          "procedures/banishment-gate.json",
+          "procedures/conjure-demiplane-fortress.json"
+        ]
+      }
+    }
+  ]
+}

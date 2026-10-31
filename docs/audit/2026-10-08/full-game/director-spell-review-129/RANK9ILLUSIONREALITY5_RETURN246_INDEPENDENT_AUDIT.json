@@ -1,0 +1,241 @@
+{
+  "id": "RANK9ILLUSIONREALITY5-RETURN246-INDEPENDENT-AUDIT",
+  "status": "PASS",
+  "checkedAtUtc": "2026-10-30T07:59:40.872291+00:00",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_illusionreality5_return246_received/DD_Rank9_SoulReflection_Director_Return246_HELD.zip",
+    "bytes": 10312710,
+    "sha256": "d5bb0e984b5016ea810e3ffbdcc3727f2f440e6f37f7d3ad6998274f76a2c075",
+    "crc32": "b0c94d8d"
+  },
+  "delivery": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_illusionreality5_return246_received/DD_Rank9_SoulReflection_Director_Return246_DELIVERY.json",
+    "bytes": 57451,
+    "sha256": "086c45c579b07c7bcfc7d14b95a40fdd885e2ccb3970717a0acaf32ccea727cc",
+    "crc32": "9456339f"
+  },
+  "sourcePacket": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_illusionreality5_current_source_246_prepared/DD_Rank9_IllusionReality5_CurrentSource_246.zip",
+    "bytes": 341533861,
+    "sha256": "071e3bd908607ce58f907b7f11635db4f5041c8b2673ef8e47f3e6f2ae7459ec"
+  },
+  "authority": {
+    "reviewedApplied": 811,
+    "pending": 37,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 535,
+    "scopedInterfaces": 173
+  },
+  "targetIds": [
+    "soul-reflection"
+  ],
+  "acceptedIds": [],
+  "appliedIds": [],
+  "heldIds": [
+    "soul-reflection"
+  ],
+  "blockerIds": [
+    "IR207-B02"
+  ],
+  "counts": {
+    "procedures": 1,
+    "nativePlacements": 1,
+    "nativeClassRoutes": 2,
+    "originalQuestionsPreserved": 31,
+    "focusedAddendaPreserved": 2,
+    "targetOriginalQuestions": 7,
+    "targetFocusedAddenda": 2,
+    "targetQuestionDispositions": 9,
+    "originalRequiredMainCasesPreserved": 10,
+    "targetMainCasesReplayed": 2,
+    "targetBranchesReplayed": 8,
+    "targetCasesReplayed": 10,
+    "targetEvents": 331,
+    "targetForwardOperations": 662,
+    "targetInverseOperations": 662,
+    "targetEventOperations": 1324,
+    "auxiliaryNullHistoryEvents": 2,
+    "auxiliaryNullForwardOperations": 4,
+    "auxiliaryNullInverseOperations": 4,
+    "proposalForwardOperations": 2,
+    "proposalInverseOperations": 2,
+    "futureRequirementsPreserved": 5,
+    "sourceBindingsVerified": 157,
+    "localBlockers": 1,
+    "conditionalQualifications": 13,
+    "freshAuditChecks": 14505,
+    "freshAuditPassed": 14505,
+    "freshAuditFailures": 0
+  },
+  "nextPendingGroup": {
+    "group": "rank9-material-forging2",
+    "pendingIds": [
+      "eternal-forge",
+      "matter-conversion"
+    ]
+  },
+  "checkCount": 16,
+  "passedChecks": 16,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "check": "Return246 archive bytes, SHA-256 and CRC32 match its delivery binding",
+      "passed": true,
+      "detail": {
+        "bytes": 10312710,
+        "sha256": "d5bb0e984b5016ea810e3ffbdcc3727f2f440e6f37f7d3ad6998274f76a2c075",
+        "crc32": "b0c94d8d"
+      }
+    },
+    {
+      "check": "The submitted delivery manifest is preserved and independently hashed",
+      "passed": true,
+      "detail": {
+        "bytes": 57451,
+        "sha256": "086c45c579b07c7bcfc7d14b95a40fdd885e2ccb3970717a0acaf32ccea727cc",
+        "crc32": "9456339f"
+      }
+    },
+    {
+      "check": "Return246 is bound to the independently audited and received Packet246 source archive",
+      "passed": true,
+      "detail": {
+        "sourceBytes": 341533861,
+        "sourceSha256": "071e3bd908607ce58f907b7f11635db4f5041c8b2673ef8e47f3e6f2ae7459ec",
+        "packetAudit": "PASS",
+        "sourceDeliverySha256": "a30a02e032f786a9f6b44c9dc872d511fc91aa7d45b953cdcaac7e32429e2d8f"
+      }
+    },
+    {
+      "check": "ZIP contains exactly 71 unique safe members matching the sealed allowlist",
+      "passed": true,
+      "detail": {
+        "members": 71,
+        "allowlist": 71,
+        "unsafePaths": []
+      }
+    },
+    {
+      "check": "Every archive member matches the external delivery size/SHA/CRC and ZIP CRC",
+      "passed": true,
+      "detail": {
+        "checked": 71,
+        "failures": []
+      }
+    },
+    {
+      "check": "Internal manifest has an exact payload inventory and valid self-binding",
+      "passed": true,
+      "detail": {
+        "payload": 70,
+        "manifestRows": 70,
+        "selfSha256": "df48c7880e4654f09170c6d894f6ad4f3015f756628db8076375f1b196977324"
+      }
+    },
+    {
+      "check": "Every payload member also matches the internal manifest",
+      "passed": true,
+      "detail": {
+        "checked": 70,
+        "failures": []
+      }
+    },
+    {
+      "check": "Decision holds only Soul Reflection with no acceptance or application and unchanged authority",
+      "passed": true,
+      "detail": {
+        "authority": {
+          "reviewedApplied": 811,
+          "pending": 37,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 535,
+          "scopedInterfaces": 173
+        },
+        "heldIds": [
+          "soul-reflection"
+        ],
+        "blockers": [
+          "IR207-B02"
+        ]
+      }
+    },
+    {
+      "check": "IR207-B02 remains grounded in the five exact missing lifecycle witnesses",
+      "passed": true,
+      "detail": {
+        "witnessComponents": [
+          "changed-form recipient",
+          "attached/no-phase recipients",
+          "original target zero/death settlement",
+          "concentration ending",
+          "entrusted original cargo"
+        ]
+      }
+    },
+    {
+      "check": "All ten preserved cases replay with no replay failures while the whole spell stays held",
+      "passed": true,
+      "detail": {
+        "cases": 10,
+        "allPassed": true
+      }
+    },
+    {
+      "check": "Main case event and reversible-operation totals reconcile",
+      "passed": true,
+      "detail": {
+        "events": 331,
+        "forward": 662,
+        "inverse": 662
+      }
+    },
+    {
+      "check": "Fresh data/source/clock checks and independent package checks all pass",
+      "passed": true,
+      "detail": {
+        "dataChecks": 14505,
+        "packageChecks": 292
+      }
+    },
+    {
+      "check": "Original questions, addenda, main cases and future requirements remain preserved",
+      "passed": true,
+      "detail": {
+        "questions": 31,
+        "addenda": 2,
+        "mainCases": 10,
+        "futureRequirements": 5
+      }
+    },
+    {
+      "check": "Return246 binds the correct next pending group and current queue position",
+      "passed": true,
+      "detail": {
+        "nextGroup": "rank9-material-forging2",
+        "nextIds": [
+          "eternal-forge",
+          "matter-conversion"
+        ]
+      }
+    },
+    {
+      "check": "The named group is the actual next row in the packet-bound current queue",
+      "passed": true,
+      "detail": {
+        "queueNext": "rank9-material-forging2",
+        "queueIds": [
+          "eternal-forge",
+          "matter-conversion"
+        ]
+      }
+    },
+    {
+      "check": "Packet246 source archive and delivery are self-consistent with Return246 source reassessment",
+      "passed": true,
+      "detail": {
+        "sourceBindings": 157,
+        "sourcePacketSha256": "071e3bd908607ce58f907b7f11635db4f5041c8b2673ef8e47f3e6f2ae7459ec"
+      }
+    }
+  ]
+}

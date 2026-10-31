@@ -1,0 +1,89 @@
+{
+  "id": "RANK9-MEMORY-DENIAL6-SOURCE-PREPARATION-276",
+  "recordedAtUtc": "2026-10-30T19:59:52.553610+00:00",
+  "status": "SOURCE_AND_ACQUISITION_QUALIFICATION_PACKET_PREPARED_UNSENT",
+  "sourceCommit": "197366eae0c786415de55a0e4739e83f49f1a65f",
+  "sourceBranch": "main",
+  "sourceAuthority": {
+    "reviewedApplied": 816,
+    "pending": 32,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 540,
+    "scopedInterfaces": 173
+  },
+  "group": "rank9-memory-denial6",
+  "pendingIds": [
+    "mind-collapse"
+  ],
+  "sourceFileCount": 120,
+  "changedSincePacket224": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+      "priorBytes": 1594359,
+      "priorSha256": "3d46192597fb4d4e88b2466e202d78350bd924e7537e21f9708a0502721e6596",
+      "currentBytes": 1634916,
+      "currentSha256": "f5ae112aa4e7233761a008b3ffbda58c94e1d5fa562932ffe4df505b1d8407b0"
+    }
+  ],
+  "packet": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_memorydenial6_current_source_276_prepared/DD_Rank9_MemoryDenial6_CurrentSource_276.zip",
+    "bytes": 78294583,
+    "sha256": "a3d003b5c22cdd2552071c6c8e82893dfba1b91bb4ea627d448719a6345b2006",
+    "crc32": "907143c1"
+  },
+  "deliveryManifest": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_memorydenial6_current_source_276_prepared/DD_Rank9_MemoryDenial6_CurrentSource_276_DELIVERY.json",
+    "bytes": 2040,
+    "sha256": "8a73b5012dab08048d5dcca9d16f38b0ee3a089121afc9a0f170d6b990290673",
+    "crc32": "a563b138"
+  },
+  "memberCount": 147,
+  "canonicalSpellCardChangesDuringPreparation": false,
+  "directorFindings": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_memorydenial6_current_source_276_prepared/MIND_COLLAPSE_DIRECTOR_FINDINGS_275.json",
+  "directorFindingsBinding": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_memorydenial6_current_source_276_prepared/MIND_COLLAPSE_DIRECTOR_FINDINGS_275.json",
+    "bytes": 6360,
+    "sha256": "dc2cea6870836ae61061cac305e90ac62584786ff380508f061afe3140c127aa",
+    "crc32": "79138cb1"
+  },
+  "checksPassed": 9,
+  "checksFailed": 0,
+  "checks": [
+    {
+      "check": "Branch is main and current authority matches index/queue/handoff at 816/32/0 and 540/173.",
+      "passed": true
+    },
+    {
+      "check": "Mind Collapse is the sole pending identity in the selected Memory/Denial6 group; all 32 pending IDs remain in the complete audit.",
+      "passed": true
+    },
+    {
+      "check": "All 120 source bindings are refreshed from the exact current workspace snapshot and match actual files.",
+      "passed": true
+    },
+    {
+      "check": "The correct 816/32 current queue, pending audit and handoff are included; stale Unholy Ascendance activeReview/status labels are cleared.",
+      "passed": true
+    },
+    {
+      "check": "Mind Collapse source entry, catalog pointer and native spell text remain exact and pending.",
+      "passed": true
+    },
+    {
+      "check": "Prior Memory/Denial6 candidate history and focused 28-question/addendum/future-case context are preserved.",
+      "passed": true
+    },
+    {
+      "check": "Director findings and exact source/actor evidence requirements are bound in the request and packet.",
+      "passed": true
+    },
+    {
+      "check": "Archive member paths are safe and every member size/SHA-256/CRC validates on readback.",
+      "passed": true
+    },
+    {
+      "check": "Preparation does not alter canonical spell cards or claim acceptance/application.",
+      "passed": true
+    }
+  ]
+}

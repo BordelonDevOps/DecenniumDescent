@@ -1,0 +1,221 @@
+{
+  "id": "RANK9-PLANARGATES5-PACKET243-INDEPENDENT-AUDIT",
+  "status": "PASS",
+  "checksPassed": 14,
+  "checksFailed": 0,
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_planargates5_current_source_243_prepared/DD_Rank9_PlanarGates5_CurrentSource_243.zip",
+    "bytes": 142129196,
+    "sha256": "d9a8736523ef1d194e3e5a5c824e6c190321086ff367dbd09f57b0d9a9b84c9e",
+    "crc32": "ce22608f"
+  },
+  "delivery": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_planargates5_current_source_243_prepared/DD_Rank9_PlanarGates5_CurrentSource_243_DELIVERY.json",
+    "bytes": 1579,
+    "sha256": "ddeffa73f14fbc16186c64797d20f018162dae692bb230b0886ee500d764c958"
+  },
+  "authority": {
+    "reviewedApplied": 811,
+    "pending": 37,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 535,
+    "scopedInterfaces": 173
+  },
+  "pendingIds": [
+    "banishment-gate",
+    "conjure-demiplane-fortress"
+  ],
+  "closedAcceptedIds": [
+    "gate",
+    "absolute-gate",
+    "planar-sanctuary"
+  ],
+  "checks": [
+    {
+      "check": "Current packet archive matches delivery byte/SHA/CRC binding",
+      "passed": true,
+      "detail": {
+        "bytes": 142129196,
+        "sha256": "d9a8736523ef1d194e3e5a5c824e6c190321086ff367dbd09f57b0d9a9b84c9e",
+        "crc32": "ce22608f"
+      }
+    },
+    {
+      "check": "Exact scope and authority are bound across delivery, context, candidate, queue, and handoff",
+      "passed": true,
+      "detail": {
+        "target": [
+          "banishment-gate",
+          "conjure-demiplane-fortress"
+        ],
+        "authority": {
+          "reviewedApplied": 811,
+          "pending": 37,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 535,
+          "scopedInterfaces": 173
+        }
+      }
+    },
+    {
+      "check": "Return200 applied Planar identities remain closed and only the two pending identities are scoped",
+      "passed": true,
+      "detail": {
+        "closed": [
+          "gate",
+          "absolute-gate",
+          "planar-sanctuary"
+        ],
+        "records": [
+          "banishment-gate",
+          "conjure-demiplane-fortress"
+        ]
+      }
+    },
+    {
+      "check": "Current pending audit has 37 rows and selected targets are pending in the authored index",
+      "passed": true,
+      "detail": {
+        "pendingCount": 37,
+        "targets": [
+          "banishment-gate",
+          "conjure-demiplane-fortress"
+        ]
+      }
+    },
+    {
+      "check": "Return242 is independently audited, held only outside this scope, and selects this exact next group",
+      "passed": true,
+      "detail": {
+        "return": 242,
+        "group": "rank9-knowledge-revelation5",
+        "acceptedIds": [],
+        "appliedIds": [],
+        "heldIds": [
+          "faction-omniscience-supreme"
+        ],
+        "blockerIds": [
+          "KR198-B01"
+        ],
+        "archive": {
+          "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_knowledgerevelation5_return242_received/DD_Rank9_FactionOmniscienceSupreme_Director_Return242_HELD.zip",
+          "bytes": 556562,
+          "sha256": "60901687f023aa078876fb31976c8d9bee58aded88569b1717365a61da08cd2f",
+          "crc32": "31c93afb"
+        },
+        "delivery": {
+          "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_knowledgerevelation5_return242_received/DD_Rank9_FactionOmniscienceSupreme_Director_Return242_HELD_DELIVERY.json",
+          "bytes": 29527,
+          "sha256": "40c5204abd94cba3639cc72fa52e86dbce1680330d7f855cb8ef01e982030df3",
+          "crc32": "6479ca94"
+        },
+        "independentAudit": {
+          "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/RANK9_KNOWLEDGEREVELATION5_RETURN242_INDEPENDENT_AUDIT.json",
+          "bytes": 9632,
+          "sha256": "e83aff9cea4e72dc3f3b496cc3d92d4030b22b0e0ed8bdaaddaeb907e5c8b895",
+          "crc32": "666cd06e"
+        },
+        "receipt": {
+          "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/RANK9_KNOWLEDGEREVELATION5_RETURN242_RECEIPT.json",
+          "bytes": 2082,
+          "sha256": "c77b8f7aa3b2fe4389746c879af163acfbf53bd2863756ef9adfd128fb697b6a",
+          "crc32": "7bff8831"
+        }
+      }
+    },
+    {
+      "check": "Candidate preserves all 30 questions and nine future obligations while scoping two records",
+      "passed": true,
+      "detail": {
+        "questions": 30,
+        "futureRequirements": 9
+      }
+    },
+    {
+      "check": "ZIP CRCs, unique safe paths, and internal manifest pass",
+      "passed": true,
+      "detail": {
+        "memberCount": 222,
+        "unsafe": []
+      }
+    },
+    {
+      "check": "Every ZIP member matches internal byte/SHA/CRC manifest",
+      "passed": true,
+      "detail": {
+        "members": 221,
+        "failures": []
+      }
+    },
+    {
+      "check": "Candidate, context, and request in ZIP are byte-identical to prepared files",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "All bound current source files match embedded byte/SHA/Git-blob identities",
+      "passed": true,
+      "detail": {
+        "rows": 161,
+        "failures": []
+      }
+    },
+    {
+      "check": "Return242 audit and Return200 planar audit/application are embedded and consistent",
+      "passed": true,
+      "detail": {
+        "return242": "PASS",
+        "return242Checks": 15,
+        "return200": "PASS",
+        "closedApplied": [
+          "gate",
+          "absolute-gate",
+          "planar-sanctuary"
+        ]
+      }
+    },
+    {
+      "check": "Current handoff and queue snapshots match local packet inputs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Embedded index preserves the two pending targets and three accepted Planar identities",
+      "passed": true,
+      "detail": {
+        "banishment-gate": "pending-authored-procedure",
+        "conjure-demiplane-fortress": "pending-authored-procedure",
+        "gate": "reviewed-authored-operational-playtest",
+        "absolute-gate": "reviewed-authored-operational-playtest",
+        "planar-sanctuary": "reviewed-authored-operational-playtest"
+      }
+    },
+    {
+      "check": "Queue and handoff select only two Planar spells and retain Return242 hold",
+      "passed": true,
+      "detail": {
+        "next": {
+          "group": "rank9-planar-gates5",
+          "pendingIds": [
+            "banishment-gate",
+            "conjure-demiplane-fortress"
+          ],
+          "pendingCount": 2,
+          "status": "CURRENT_SOURCE_PACKET_PREPARED_UNSENT",
+          "freshPacketRequiredForCurrentAuthority": true,
+          "historicalCandidate": {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/rank9_planar_gates_5_source_conference_01.json",
+            "bytes": 839777,
+            "sha256": "337d9fcdffbaa22e6e661cd2a7479e81664998420c4ba66eb9f5ce2efb767c06"
+          },
+          "historicalArchive": {
+            "path": "docs/audit/2026-10-08/full-game/DD_Rank9_Planar_Gates_5_Source_Conference_01.zip",
+            "bytes": 56376787,
+            "sha256": "37dd1b61a3b04c0173201a0b63ae754f249c559d469ca374379b838b5135d8b5"
+          }
+        },
+        "sourceRows": 161
+      }
+    }
+  ]
+}

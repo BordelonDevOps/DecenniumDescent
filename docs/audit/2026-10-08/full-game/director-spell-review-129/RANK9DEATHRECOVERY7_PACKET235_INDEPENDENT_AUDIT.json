@@ -1,0 +1,240 @@
+{
+  "id": "RANK9DEATHRECOVERY7-PACKET235-INDEPENDENT-AUDIT",
+  "checkedAtUtc": "2026-10-30T03:25:30.506026+00:00",
+  "status": "PASS",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_deathrecovery7_current_source_235_prepared/DD_Rank9_DeathRecovery7_CurrentSource_235.zip",
+    "bytes": 20419396,
+    "sha256": "1d26af565cd77a295cb49f34838a439e43c3836388c98c4c7d9f7b4150872c91",
+    "crc32": "e421b040"
+  },
+  "deliveryManifest": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_deathrecovery7_current_source_235_prepared/DD_Rank9_DeathRecovery7_CurrentSource_235_DELIVERY.json",
+    "bytes": 64654,
+    "sha256": "309fc1651fa87a9ccdcd65c7552a04dada839c6caa090b375914aff7799a0f3f",
+    "crc32": "f6ee65cc"
+  },
+  "authority": {
+    "reviewedApplied": 811,
+    "pending": 37,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 535,
+    "scopedInterfaces": 173
+  },
+  "targetIds": [
+    "final-word"
+  ],
+  "sourceBindings": 74,
+  "checkCount": 19,
+  "passedChecks": 19,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "check": "outer archive identity and size/SHA-256/CRC32 match exact delivery",
+      "passed": true,
+      "detail": {
+        "actual": {
+          "bytes": 20419396,
+          "sha256": "1d26af565cd77a295cb49f34838a439e43c3836388c98c4c7d9f7b4150872c91",
+          "crc32": "e421b040"
+        },
+        "expected": {
+          "fileName": "DD_Rank9_DeathRecovery7_CurrentSource_235.zip",
+          "bytes": 20419396,
+          "sha256": "1d26af565cd77a295cb49f34838a439e43c3836388c98c4c7d9f7b4150872c91",
+          "crc32": "e421b040"
+        }
+      }
+    },
+    {
+      "check": "packet scope and authority are exactly final-word at 811/37/0",
+      "passed": true,
+      "detail": {
+        "group": "rank9-death-recovery7",
+        "targetIds": [
+          "final-word"
+        ],
+        "authority": {
+          "reviewedApplied": 811,
+          "pending": 37,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 535,
+          "scopedInterfaces": 173
+        },
+        "canonicalChanges": false,
+        "githubChanges": false,
+        "sourceProgramsExecuted": false,
+        "runtimeExecuted": false
+      }
+    },
+    {
+      "check": "ZIP integrity passes and member names are unique and safe",
+      "passed": true,
+      "detail": {
+        "members": 140,
+        "unique": 140
+      }
+    },
+    {
+      "check": "delivery allowlist and member map exactly cover ZIP",
+      "passed": true,
+      "detail": {
+        "archive": 140,
+        "allowlist": 140,
+        "memberCount": 140
+      }
+    },
+    {
+      "check": "every member matches external byte/hash/CRC binding",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "embedded manifest is externally bound and excludes itself",
+      "passed": true,
+      "detail": {
+        "manifestEntries": 139,
+        "payloadCount": 139
+      }
+    },
+    {
+      "check": "every payload member matches embedded byte/hash/CRC binding",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "current index and catalog retain exactly 811 reviewed / 37 pending with final-word pending",
+      "passed": true,
+      "detail": {
+        "authoredCounts": {
+          "reviewed": 811,
+          "pending": 37
+        },
+        "targetStatus": "pending-authored-procedure"
+      }
+    },
+    {
+      "check": "queue, handoff and pending audit agree on current authority and sole target",
+      "passed": true,
+      "detail": {
+        "queue": {
+          "reviewedApplied": 811,
+          "pending": 37,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 535,
+          "scopedInterfaces": 173
+        },
+        "handoff": {
+          "reviewedApplied": 811,
+          "pending": 37,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 535,
+          "scopedInterfaces": 173
+        },
+        "pending": {
+          "reviewedApplied": 811,
+          "pending": 37,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 535,
+          "scopedInterfaces": 173
+        }
+      }
+    },
+    {
+      "check": "candidate and prompt restrict this review to final-word",
+      "passed": true,
+      "detail": {
+        "group": {
+          "group": "rank9-death-recovery7",
+          "spellIds": [
+            "final-word"
+          ],
+          "count": 1
+        },
+        "targets": [
+          "final-word"
+        ]
+      }
+    },
+    {
+      "check": "all 74 historical source paths were refreshed and included byte-exactly",
+      "passed": true,
+      "detail": {
+        "bindings": 74,
+        "failures": []
+      }
+    },
+    {
+      "check": "refreshed source bindings still match current working-tree source files",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "embedded CURRENT_SPELL_QUEUE_235.json matches its prepared local snapshot",
+      "passed": true,
+      "detail": {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_SPELL_QUEUE_235.json",
+        "bytes": 66794
+      }
+    },
+    {
+      "check": "embedded CURRENT_HANDOFF_235.json matches its prepared local snapshot",
+      "passed": true,
+      "detail": {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_235.json",
+        "bytes": 22546
+      }
+    },
+    {
+      "check": "embedded CURRENT37_PENDING_IDENTITY_AUDIT_235.json matches its prepared local snapshot",
+      "passed": true,
+      "detail": {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT37_PENDING_IDENTITY_AUDIT_235.json",
+        "bytes": 60186
+      }
+    },
+    {
+      "check": "prior Return184 and Return217 audit receipts are PASS",
+      "passed": true,
+      "detail": {
+        "return184": "PASS",
+        "return217": "PASS",
+        "accepted184": [
+          "soul-harvest",
+          "power-word-kill",
+          "thread-severance",
+          "wail-of-the-banshee"
+        ]
+      }
+    },
+    {
+      "check": "Return217 confirms only doom and eternal-pact accepted/applied while final-word is held DR217-B01",
+      "passed": true,
+      "detail": {
+        "accepted": [
+          "doom",
+          "eternal-pact"
+        ],
+        "held": [
+          "final-word"
+        ],
+        "blocker": "DR217-B01"
+      }
+    },
+    {
+      "check": "all 16 preserved final-word cases match exact Return217 archive members",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "no canonical, GitHub, runtime or supplied-program changes are part of this packet",
+      "passed": true,
+      "detail": {
+        "canonicalChanges": false,
+        "githubChanges": false,
+        "runtimeExecuted": false,
+        "sourceProgramsExecuted": false
+      }
+    }
+  ]
+}

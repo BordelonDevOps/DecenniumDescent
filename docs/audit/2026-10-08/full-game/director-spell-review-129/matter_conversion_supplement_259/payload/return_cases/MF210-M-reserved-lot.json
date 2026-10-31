@@ -1,0 +1,102 @@
+{
+  "id": "MF210-M-reserved-lot",
+  "spellId": "matter-conversion",
+  "title": "Lot already reserved by another work order.",
+  "kind": "isolated-conditional-state-kernel",
+  "endToEndWitness": false,
+  "prerequisitesNotDemonstrated": [
+    "The underlying concrete scene facts are prerequisites; no completed conversion is demonstrated."
+  ],
+  "procedureClause": "matter.physicalContract",
+  "clockScope": "No elapsed time or actor turn is modeled; this kernel cannot certify regular-turn accounting.",
+  "events": [
+    {
+      "id": "MF210-M-reserved-lot:1",
+      "before": {
+        "request": "reserved-lot",
+        "payment": {
+          "RP": 0,
+          "Action": 0
+        },
+        "inputUnchanged": true,
+        "output": null,
+        "status": "preflight"
+      },
+      "after": {
+        "request": "reserved-lot",
+        "payment": {
+          "RP": 0,
+          "Action": 0
+        },
+        "inputUnchanged": true,
+        "output": null,
+        "status": "rejected-before-payment",
+        "reason": "Lot already reserved by another work order."
+      },
+      "beforeSHA256": "fc3cbffa8b35db304897c6077e1f01b731778875d7863a27d038e948f7bfc2f7",
+      "afterSHA256": "6aabdcd1bedf2d6a19b535597f8ca245e5f485b965a6db542e9899317118c367",
+      "forward": [
+        {
+          "op": "test",
+          "path": "",
+          "value": {
+            "request": "reserved-lot",
+            "payment": {
+              "RP": 0,
+              "Action": 0
+            },
+            "inputUnchanged": true,
+            "output": null,
+            "status": "preflight"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "",
+          "value": {
+            "request": "reserved-lot",
+            "payment": {
+              "RP": 0,
+              "Action": 0
+            },
+            "inputUnchanged": true,
+            "output": null,
+            "status": "rejected-before-payment",
+            "reason": "Lot already reserved by another work order."
+          }
+        }
+      ],
+      "inverse": [
+        {
+          "op": "test",
+          "path": "",
+          "value": {
+            "request": "reserved-lot",
+            "payment": {
+              "RP": 0,
+              "Action": 0
+            },
+            "inputUnchanged": true,
+            "output": null,
+            "status": "rejected-before-payment",
+            "reason": "Lot already reserved by another work order."
+          }
+        },
+        {
+          "op": "replace",
+          "path": "",
+          "value": {
+            "request": "reserved-lot",
+            "payment": {
+              "RP": 0,
+              "Action": 0
+            },
+            "inputUnchanged": true,
+            "output": null,
+            "status": "preflight"
+          }
+        }
+      ]
+    }
+  ]
+}

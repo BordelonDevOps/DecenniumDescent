@@ -1,0 +1,130 @@
+{
+  "id": "RANK9-TIMEFATE6-SOURCE-PREPARATION-239",
+  "recordedAtUtc": "2026-10-30T05:04:40.789423+00:00",
+  "status": "CURRENT_SOURCE_PACKET_PREPARED_UNSENT",
+  "sourceAuthority": {
+    "reviewedApplied": 811,
+    "pending": 37,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 535,
+    "scopedInterfaces": 173
+  },
+  "sourceSnapshot": {
+    "kind": "working-tree",
+    "headCommit": "197366eae0c786415de55a0e4739e83f49f1a65f",
+    "branch": "main",
+    "indexBinding": {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+      "bytes": 1594359,
+      "sha256": "3d46192597fb4d4e88b2466e202d78350bd924e7537e21f9708a0502721e6596",
+      "crc32": "d14aee00"
+    },
+    "catalogBinding": {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+      "bytes": 5085187,
+      "sha256": "773fb0b3b0fdb501858ded33c02d90dc4db3009bd1b9f7112c244d998218f05b",
+      "crc32": "f06243cf"
+    }
+  },
+  "group": "rank9-time-fate6",
+  "pendingIds": [
+    "time-stop",
+    "fate-rewrite",
+    "collapse-timeline",
+    "eternal-prophecy"
+  ],
+  "priorTimeFateReturn221": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_timefate6_return221_received/DD_Rank9_TimeFate4_Director_Return221_HELD.zip",
+    "bytes": 1957626,
+    "sha256": "98a3a88a184c25ee7dff226c49a11c3629d66ea6dccd2a3b154056aeb05cb984",
+    "crc32": "a94f7c4b"
+  },
+  "priorTimeFateReturn221Audit": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/RANK9_TIMEFATE6_RETURN221_INDEPENDENT_AUDIT.json",
+    "bytes": 13194,
+    "sha256": "a24f317e353714f34b187f34df1dede8b21d2ff362ea0ccd37a8f473167a0efc",
+    "crc32": "2db13331"
+  },
+  "latestReturn238": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_agencycontrol9_return238_received/DD_Rank9_AgencyControl2_Director_Return238.zip",
+    "bytes": 1665816,
+    "sha256": "29c275dbc39b65ae5c6fa5ad20eabe6a4a062020a66963ca693af453cbf9361f",
+    "crc32": "6cdae32a"
+  },
+  "latestReturn238Audit": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/RANK9_AGENCYCONTROL9_RETURN238_INDEPENDENT_AUDIT.json",
+    "bytes": 10799,
+    "sha256": "085ddb3ebd2e8c816ac1b4e202647cb6f5536474d3be34102a04d92864aa13cb",
+    "crc32": "4aa3b14b"
+  },
+  "sourceFilesRefreshed": 140,
+  "changedSinceTimeFateSourcePacket221": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+      "previousPacketSha256": "cbbef89e7197061f6b6facbd6414027a87626d9fbffa0742c1d6b1ad05b913cd",
+      "currentSha256": "3d46192597fb4d4e88b2466e202d78350bd924e7537e21f9708a0502721e6596",
+      "currentBytes": 1594359
+    }
+  ],
+  "packet": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_timefate6_current_source_239_prepared/DD_Rank9_TimeFate6_CurrentSource_239.zip",
+    "bytes": 124678790,
+    "sha256": "6ceba0299c13b6072ae43889b71467a39ef277a21932d592a708b61e13711ae0",
+    "crc32": "7db06278"
+  },
+  "deliveryManifest": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_timefate6_current_source_239_prepared/DD_Rank9_TimeFate6_CurrentSource_239_DELIVERY.json",
+    "bytes": 2335,
+    "sha256": "2c4ffeb0e3c65e6f00ef60097a7bfa4d5d191770407e1b29c5693679271a363c",
+    "crc32": "4a5d9140"
+  },
+  "payloadMemberCount": 220,
+  "checksPassed": 10,
+  "checksFailed": 0,
+  "checks": [
+    {
+      "check": "Authority 811/37/0 and 535/173 counts agree across index, queue, handoff and pending audit",
+      "passed": true
+    },
+    {
+      "check": "Exactly four Time/Fate6 targets remain pending; already accepted identities remain excluded",
+      "passed": true
+    },
+    {
+      "check": "Return238 is independently audited and selects this exact next group without changing authority",
+      "passed": true
+    },
+    {
+      "check": "Return221 all-held archive, delivery, audit and receipt are bound into the current packet",
+      "passed": true
+    },
+    {
+      "check": "All 140 Time/Fate6 source bindings are refreshed from current working-tree bytes",
+      "passed": true
+    },
+    {
+      "check": "Current index/catalog status for every target matches the pending queue",
+      "passed": true
+    },
+    {
+      "check": "Current index, catalog, queue, handoff and pending audit plus 238 source archive evidence are included",
+      "passed": true
+    },
+    {
+      "check": "Request carries forward all four prior blocker IDs and prohibits unrelated re-review/application",
+      "passed": true
+    },
+    {
+      "check": "All packet member paths are safe and unique; archive manifest and all SHA/CRC/size rows verify",
+      "passed": true
+    },
+    {
+      "check": "No canonical changes, acceptances, applications or program execution occurred during preparation",
+      "passed": true
+    }
+  ],
+  "canonicalChangesBeforePreparation": false,
+  "accepted": false,
+  "applied": false,
+  "request": "GPT director — continue the ordinary-spell review at current authority 811 reviewed/applied / 37 pending / 0 accepted-unapplied, with 535 complete standalone procedures and 173 scoped interfaces. Review only the four pending Rank9 Time/Fate6 identities: time-stop, fate-rewrite, collapse-timeline, and eternal-prophecy. Do not re-review completed feats, time-fracture, foresight-perfect, other accepted spells, or any other pending cohort.\n\nCurrent source snapshot: branch main, HEAD 197366eae0c786415de55a0e4739e83f49f1a65f; current index/catalog and queue238, handoff238, pending-audit238, plus the independently audited Return238 and its source packet are included. Return238 held only absolute-domination and puppetmaster-s-realm; it did not change spell authority. GPT selected Time/Fate6 as the next group.\n\nReassess only the four current Time/Fate6 pending identities against refreshed source. The prior sealed Return221 independently retained TF192-B01 for time-stop, TF192-B04 for fate-rewrite, TF192-B05 for collapse-timeline, and TF192-B02 for eternal-prophecy. The complete Return221 archive, delivery manifest, independent audit and receipt are attached alongside the earlier detailed evidence in historical_packet_221. Close a blocker only with the exact source-grounded witness; preserve conditional qualifications and unrelated holds.\n\nReturn explicit accepted/held rulings for only those four IDs, exact blocker and qualification IDs, source-faithful procedures, reversible before/after traces, exact costs/deadlines/resource and custody histories, and a verifiable ZIP plus delivery manifest bound to this packet. Keep all acceptances unapplied; do not edit canonical files or execute supplied programs. Preserve runtime, implementation, human-play, balance, cosmology, domain-closure, completion and release gates. I will independently audit and apply only exact acceptances."
+}

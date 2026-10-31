@@ -1,0 +1,19 @@
+# Final Pending Spell Review Conference 249
+
+GPT reconciled the Returns232–248 chain and confirmed all **37 current pending identities have completed sealed reviews exactly once**. All 17 return audits pass; all 37 remain held, with zero accepted and zero applied. There is no unreviewed pending identity. Return248’s pointer to Projection/Confinement was stale because that group was already held in Return232 and Miracle/Reality was held in Return233.
+
+**Recommended first closure task:** Eternal Forge (MF210-B01). Complete an actual weapon-damage then lawful repair witness using acquired Smith-tools proficiency, tools, materials, checks and work clocks. Also complete the charged item’s transfer, dawn, suppression/ending and paid new-creation lifecycle. A finite buyer is needed only if choosing the alternative sale route.
+
+**Next:** Unravel Identity (MD196-B02). Build one source-legal multiclass acquisition history that integrates class form, maxima, companion, Base/Arch/Hero capabilities, passives and suppression callbacks. Demonstrate recovery without refilling spent resources or reviving ended effects; the class source files are already present.
+
+**Other concrete witness work:** Soul Reflection needs its changed-form, attached/no-phase recipient, original-target zero/death, copied-concentration and entrusted-cargo branches integrated. Conjure Demiplane Fortress needs its support/damage, work/rest, companion, creator-death and occupied-ending cases, plus any still-missing nested entrance/anchor contract. Banishment Gate needs a lawful non-Elemental acquisition/permission history and its complete crossing/occupied-cell lifecycle.
+
+**Spell-local contracts or decisions, followed by witnesses:** Alignment Ascension, Alignment Perfection, Faction Incarnate, Corruption Purification, Imprisonment, Astral Projection, Greater Divine Intervention, Wish and Unholy Ascendance. Specify only the missing operation, profile, permission and lifecycle contract identified for each spell; a local spell decision cannot establish an external permission or an existing creature/campaign fact.
+
+**Shared dependencies:** obtain one real inserted-full-turn provider/acquisition history, then prove each affected spell’s distinct timing behavior; coordinate Time Stop with Timeless Form without circularly treating either as accepted; and resolve the guaranteed-prophecy/history-change source promise before building its compatible/incompatible timeline cases.
+
+**Narrow source facts still needed:** elemental damage and actual companion phases; lawful planar source/receiving point; native multiattack reach/range; continuing-item termination and generating-school evidence; current anatomy and remains; capture-eligible victim/custody facts; physical crate and tether specifications; stone/mithril physical and recipe facts; summon identity/control profiles and permissions; faction history/privacy/forecast records; and the concrete Faction Perfection benefit provider/terms. The per-spell audit report records the exact blocker and minimum witness for every identity.
+
+The remaining gates are (1) exact source fact, authorized spell-local contract or permission; (2) positive and adverse integrated witnesses with legal acquisition, costs, clocks, resources and custody; (3) semantic and forward/inverse integrity validation; (4) a new exact per-identity decision; and (5) independent audit before applying only explicit acceptances. Runtime, implementation, human play, balance, cosmology, domain closure, completion and release remain separate gates. No decision or canonical file changed in this conference.
+
+See the [independent 37-identity reconciliation](ALL37_PENDING_SPELL_REVIEW_CONFERENCE_249.json), [receipt](ALL37_PENDING_SPELL_REVIEW_CONFERENCE_249_RECEIPT.json), and [request sent to GPT](ALL37_PENDING_SPELL_REVIEW_CONFERENCE_249_REQUEST.txt).

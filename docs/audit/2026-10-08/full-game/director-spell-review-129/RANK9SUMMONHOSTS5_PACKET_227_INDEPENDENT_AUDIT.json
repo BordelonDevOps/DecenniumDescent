@@ -1,0 +1,177 @@
+{
+  "id": "RANK9SUMMONHOSTS5-PACKET-227-INDEPENDENT-AUDIT",
+  "status": "PASS",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_summonhosts5_current_source_227_prepared/DD_Rank9_SummonHosts5_CurrentSource_227.zip",
+    "bytes": 59700261,
+    "sha256": "bbd2b1b3ac0bac990f6cb79847d79e8b50fe8e63938a2eb2919e04bca8107731",
+    "crc32": "b4cb47d7"
+  },
+  "delivery": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_summonhosts5_current_source_227_prepared/DD_Rank9_SummonHosts5_CurrentSource_227_DELIVERY.json",
+    "bytes": 1777,
+    "sha256": "bf160f87567c6c171a909867c04c39b6dd30c0813e39d842860d5b945c53f570",
+    "crc32": "9c2bf347"
+  },
+  "sourceAuthority": {
+    "reviewedApplied": 811,
+    "pending": 37,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 535,
+    "scopedInterfaces": 173
+  },
+  "targetIds": [
+    "summon-elemental-avatar",
+    "summon-herald-of-the-planes",
+    "summon-avatar-of-decay"
+  ],
+  "closedAcceptedIds": [
+    "conjure-magmatic-wyrm",
+    "planar-army"
+  ],
+  "checkCount": 12,
+  "passedChecks": 12,
+  "failedChecks": [],
+  "checks": [
+    {
+      "check": "Packet ZIP exact bytes/SHA/CRC match delivery manifest",
+      "passed": true,
+      "detail": {
+        "bytes": 59700261,
+        "sha256": "bbd2b1b3ac0bac990f6cb79847d79e8b50fe8e63938a2eb2919e04bca8107731",
+        "crc32": "b4cb47d7"
+      }
+    },
+    {
+      "check": "323 unique safe members match internal manifest allowlist",
+      "passed": true,
+      "detail": {
+        "archiveMembers": 323,
+        "manifestMembers": 322,
+        "safe": true
+      }
+    },
+    {
+      "check": "All 322 nonmanifest ZIP members match their independent byte/SHA/CRC hashes",
+      "passed": true,
+      "detail": {
+        "checked": 322,
+        "failures": []
+      }
+    },
+    {
+      "check": "Internal manifest self-exclusion and authority/scope are exact",
+      "passed": true,
+      "detail": {
+        "count": 322,
+        "scope": [
+          "summon-elemental-avatar",
+          "summon-herald-of-the-planes",
+          "summon-avatar-of-decay"
+        ]
+      }
+    },
+    {
+      "check": "Candidate, context, and request in ZIP equal the submitted sidecars",
+      "passed": true,
+      "detail": {
+        "requestBytes": 1833
+      }
+    },
+    {
+      "check": "All refreshed source rows independently match local bytes and ZIP copies",
+      "passed": true,
+      "detail": {
+        "sourceBindings": 238,
+        "failures": []
+      }
+    },
+    {
+      "check": "Embedded queue/handoff/pending audit agree on 811/37/0 and exact target group",
+      "passed": true,
+      "detail": {
+        "next": {
+          "group": "rank9-summon-hosts5",
+          "pendingIds": [
+            "summon-elemental-avatar",
+            "summon-herald-of-the-planes",
+            "summon-avatar-of-decay"
+          ],
+          "pendingCount": 3,
+          "status": "CURRENT_SOURCE_PACKET_PREPARED_UNSENT",
+          "freshPacketRequiredForCurrentAuthority": true,
+          "historicalCandidate": {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/rank9_summon_hosts_5_source_conference_01.json",
+            "bytes": 1106185,
+            "sha256": "11ead112cd61f5b69048b2698afe104f15708e24df9699bdfdde22ab1dba238b"
+          },
+          "historicalArchive": {
+            "path": "docs/audit/2026-10-08/full-game/DD_Rank9_Summon_Hosts_5_Source_Conference_01.zip",
+            "bytes": 27330505,
+            "sha256": "02d1eca0d1dcceb63fbcfa31b6d5161244fab539454defbc3cac837d6292e7e0"
+          },
+          "packetPath": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_summonhosts5_current_source_227_prepared/DD_Rank9_SummonHosts5_CurrentSource_227.zip"
+        },
+        "pendingCount": 37
+      }
+    },
+    {
+      "check": "Only three pending identities are adjudicated; prior Return202 acceptances are closed",
+      "passed": true,
+      "detail": {
+        "scope": [
+          "summon-elemental-avatar",
+          "summon-herald-of-the-planes",
+          "summon-avatar-of-decay"
+        ],
+        "closedAccepted": [
+          "conjure-magmatic-wyrm",
+          "planar-army"
+        ]
+      }
+    },
+    {
+      "check": "All three target rows bind current pending entries and native catalog rows",
+      "passed": true,
+      "detail": {
+        "targetRows": 3
+      }
+    },
+    {
+      "check": "Current files contain Return202 acceptances, blockers, and audited Return226 scope bindings",
+      "passed": true,
+      "detail": {
+        "return202Accepted": [
+          "conjure-magmatic-wyrm",
+          "planar-army"
+        ],
+        "return226OutsideScope": [
+          "banishment-gate",
+          "conjure-demiplane-fortress"
+        ]
+      }
+    },
+    {
+      "check": "All required prior director decisions, audits, receipts, and acceptance records are present",
+      "passed": true,
+      "detail": {
+        "evidenceFiles": 10
+      }
+    },
+    {
+      "check": "Live index confirms three targets pending and two Return202 identities already reviewed/applied",
+      "passed": true,
+      "detail": {
+        "pending": [
+          "summon-elemental-avatar",
+          "summon-herald-of-the-planes",
+          "summon-avatar-of-decay"
+        ],
+        "closed": [
+          "conjure-magmatic-wyrm",
+          "planar-army"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,277 @@
+{
+  "id": "RANK9-KNOWLEDGEREVELATION5-RETURN242-INDEPENDENT-AUDIT",
+  "recordedAtUtc": "2026-10-30T06:18:41.492987+00:00",
+  "status": "PASS",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_knowledgerevelation5_return242_received/DD_Rank9_FactionOmniscienceSupreme_Director_Return242_HELD.zip",
+    "bytes": 556562,
+    "sha256": "60901687f023aa078876fb31976c8d9bee58aded88569b1717365a61da08cd2f",
+    "crc32": "31c93afb"
+  },
+  "deliveryManifest": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_knowledgerevelation5_return242_received/DD_Rank9_FactionOmniscienceSupreme_Director_Return242_HELD_DELIVERY.json",
+    "bytes": 29527,
+    "sha256": "40c5204abd94cba3639cc72fa52e86dbce1680330d7f855cb8ef01e982030df3",
+    "crc32": "6479ca94"
+  },
+  "sourcePacket": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_knowledgerevelation5_current_source_242_prepared/DD_Rank9_KnowledgeRevelation5_CurrentSource_242.zip",
+    "bytes": 116475215,
+    "sha256": "41de1efa1f1fe9d27c6e230b89be9e84a8e0945399349f725a0bb3dde0c3a837",
+    "crc32": "aa2d79c0"
+  },
+  "authority": {
+    "reviewedApplied": 811,
+    "pending": 37,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 535,
+    "scopedInterfaces": 173
+  },
+  "group": "rank9-knowledge-revelation5",
+  "targetIds": [
+    "faction-omniscience-supreme"
+  ],
+  "acceptedIds": [],
+  "appliedIds": [],
+  "heldIds": [
+    "faction-omniscience-supreme"
+  ],
+  "blockers": [
+    "KR198-B01"
+  ],
+  "conditionalQualifications": [
+    "KR198-H01",
+    "KR198-H02",
+    "KR198-H03",
+    "KR198-H04",
+    "KR198-H05",
+    "KR198-H06"
+  ],
+  "nextGroup": {
+    "group": "rank9-planar-gates5",
+    "pendingIds": [
+      "banishment-gate",
+      "conjure-demiplane-fortress"
+    ]
+  },
+  "sourceBindingsVerified": 126,
+  "cases": 8,
+  "events": 140,
+  "forwardOperations": 280,
+  "inverseOperations": 280,
+  "checksPassed": 15,
+  "checksFailed": 0,
+  "checkCount": 15,
+  "checks": [
+    {
+      "id": "Downloaded archive matches delivered bytes, SHA-256 and CRC32",
+      "passed": true,
+      "details": {
+        "bytes": 556562,
+        "sha256": "60901687f023aa078876fb31976c8d9bee58aded88569b1717365a61da08cd2f",
+        "crc32": "31c93afb"
+      }
+    },
+    {
+      "id": "Exact submitted packet and witness supplement match their local delivery manifests",
+      "passed": true,
+      "details": {
+        "sourcePacket": {
+          "bytes": 116475215,
+          "sha256": "41de1efa1f1fe9d27c6e230b89be9e84a8e0945399349f725a0bb3dde0c3a837",
+          "crc32": "aa2d79c0"
+        },
+        "supplement": {
+          "bytes": 376863,
+          "sha256": "e4eb16bd1ce04bf9cf569d9288a177b67460e2a3414445f66915e3ea06f063c5",
+          "crc32": "1c70671e"
+        }
+      }
+    },
+    {
+      "id": "Delivery records one held identity at authority 811/37/0 with exact blocker and qualifications",
+      "passed": true,
+      "details": {
+        "authority": {
+          "reviewedApplied": 811,
+          "pending": 37,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 535,
+          "scopedInterfaces": 173
+        },
+        "held": [
+          "faction-omniscience-supreme"
+        ],
+        "blockers": [
+          "KR198-B01"
+        ],
+        "next": {
+          "group": "rank9-planar-gates5",
+          "pendingIds": [
+            "banishment-gate",
+            "conjure-demiplane-fortress"
+          ]
+        }
+      }
+    },
+    {
+      "id": "50-member ZIP has safe unique paths and every payload row matches outer and inner byte/SHA/CRC manifests",
+      "passed": true,
+      "details": {
+        "members": 50,
+        "payload": 49,
+        "failures": []
+      }
+    },
+    {
+      "id": "All 154 package checks passed",
+      "passed": true,
+      "details": {
+        "count": 154,
+        "failures": 0
+      }
+    },
+    {
+      "id": "Sealed decision is held and unapplied, with KR198-B01 and H01-H06 retained",
+      "passed": true,
+      "details": {
+        "decision": {
+          "id": "faction-omniscience-supreme",
+          "accepted": false,
+          "applied": false,
+          "held": true,
+          "status": "HELD_REQUIRED_POSITIVE_CONTENT",
+          "blockerIds": [
+            "KR198-B01"
+          ],
+          "conditionalQualificationIds": [
+            "KR198-H01",
+            "KR198-H02",
+            "KR198-H03",
+            "KR198-H04",
+            "KR198-H05",
+            "KR198-H06"
+          ],
+          "minimumMissingWitness": "One source-established exact canonical faction identity and observation epoch, with its complete relevant past/present/distant-branch ledger; provenance and privacy/absence controls for the required member and institutional fields; actual continuity evidence for split/dissolution or repeated inquiry branches; and concrete likely-future premises supporting a useful forecast within the retained 168-hour horizon, with assumptions, alternatives and qualitative uncertainty. Demonstrate the two positive/adverse main obligations without inventing records or treating missing records as absence.",
+          "procedureFile": "procedures/faction-omniscience-supreme.json",
+          "sourceReassessment": "SOURCE_REASSESSMENT.json",
+          "caseResults": "CASE_REPLAY.json"
+        },
+        "qualifications": [
+          "KR198-H01",
+          "KR198-H02",
+          "KR198-H03",
+          "KR198-H04",
+          "KR198-H05",
+          "KR198-H06"
+        ]
+      }
+    },
+    {
+      "id": "Decision explicitly reports no canonical change or supplied program execution",
+      "passed": true,
+      "details": {
+        "canonicalChanged": false,
+        "programsExecuted": false
+      }
+    },
+    {
+      "id": "Director-selected next group is Planar Gates5 with the exact two identities",
+      "passed": true,
+      "details": {
+        "group": "rank9-planar-gates5",
+        "pendingIds": [
+          "banishment-gate",
+          "conjure-demiplane-fortress"
+        ]
+      }
+    },
+    {
+      "id": "Delivery counts reconcile the one held spell, 126 sources, 8 cases and 4,567 passing checks",
+      "passed": true,
+      "details": {
+        "procedures": 1,
+        "sourceBindings": 126,
+        "cases": 8,
+        "events": 140,
+        "forwardOperations": 280,
+        "inverseOperations": 280,
+        "totalFreshChecksBeforePackaging": 4567
+      }
+    },
+    {
+      "id": "All 126 source rows resolve to the submitted Packet242 bytes and Git blob IDs",
+      "passed": true,
+      "details": {
+        "rows": 126,
+        "errors": []
+      }
+    },
+    {
+      "id": "Compact witness supplement and original Return198 archive are exactly bound",
+      "passed": true,
+      "details": {
+        "supplement": {
+          "path": "CURRENT_RETURN198_TARGET_WITNESS_SUPPLEMENT_242.zip",
+          "bytes": 376863,
+          "sha256": "e4eb16bd1ce04bf9cf569d9288a177b67460e2a3414445f66915e3ea06f063c5",
+          "crc32": "1c70671e"
+        },
+        "priorReturn198": {
+          "bytes": 113662026,
+          "sha256": "2da202eaab4542d7b3bef90e03e75b5276f8396b8a8e3e535a1245d20d87afca"
+        }
+      }
+    },
+    {
+      "id": "Return238–241 sealed decisions are preserved with identical JSON values in the context records",
+      "passed": true,
+      "details": {
+        "records": [
+          "Return238_DIRECTOR_DECISION.json",
+          "Return239_DIRECTOR_DECISION.json",
+          "Return240_DIRECTOR_DECISION.json",
+          "Return241_DIRECTOR_DECISION.json"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "id": "Original procedure and all eight Return198 cases are preserved byte-exactly and replay with reversible operations",
+      "passed": true,
+      "details": {
+        "procedureExact": true,
+        "caseFiles": 8,
+        "events": 140,
+        "forward": 280,
+        "inverse": 280,
+        "errors": []
+      }
+    },
+    {
+      "id": "All eight detailed validation categories pass and sum to 4,567 fresh checks",
+      "passed": true,
+      "details": {
+        "checks": 4567,
+        "failures": []
+      }
+    },
+    {
+      "id": "Held blocker has a concrete minimum missing witness and exact six linked qualifications",
+      "passed": true,
+      "details": {
+        "holdIds": [
+          "KR198-B01",
+          "KR198-H01",
+          "KR198-H02",
+          "KR198-H03",
+          "KR198-H04",
+          "KR198-H05",
+          "KR198-H06"
+        ],
+        "minimumMissingWitness": "One source-established exact canonical faction identity and observation epoch, with its complete relevant past/present/distant-branch ledger; provenance and privacy/absence controls for the required member and institutional fields; actual continuity evidence for split/dissolution or repeated inquiry branches; and concrete likely-future premises supporting a useful forecast within the retained 168-hour horizon, with assumptions, alternatives and qualitative uncertainty. Demonstrate the two positive/adverse main obligations without inventing records or treating missing records as absence."
+      }
+    }
+  ],
+  "scopeLimitation": "Verifies sealed-package integrity, exact source and prior-case bindings, decision metadata, replay and validation ledgers; it does not independently adjudicate underlying game-rule semantics."
+}

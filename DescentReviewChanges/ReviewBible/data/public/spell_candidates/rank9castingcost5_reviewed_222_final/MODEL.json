@@ -1,0 +1,798 @@
+{
+  "schemaVersion": 1,
+  "moduleId": "rank9-castingcost5-reviewed-222",
+  "status": "ONE_EXACT_AUTHORED_PROCEDURE_ACCEPTED_AND_APPLIED_WITH_ONE_BLOCKER",
+  "scope": "Only Perfect Spell's exact static authored procedure is accepted and applied to the review index. Unholy Ascendance remains pending under CC194-B04. Native cards, class routes and source catalog remain unchanged; runtime and downstream approvals remain disabled.",
+  "acceptedIds": [
+    "perfect-spell"
+  ],
+  "unacceptedIds": [
+    "unholy-ascendance"
+  ],
+  "excludedPendingIds": [
+    "absolute-domination",
+    "alignment-ascension",
+    "alignment-perfection",
+    "astral-projection",
+    "banishment-gate",
+    "collapse-timeline",
+    "conjure-demiplane-fortress",
+    "corruption-purification",
+    "divine-intervention-greater",
+    "elemental-shell",
+    "eternal-forge",
+    "eternal-prophecy",
+    "faction-incarnate",
+    "faction-omniscience-supreme",
+    "faction-perfection",
+    "fate-rewrite",
+    "final-word",
+    "imprisonment",
+    "invulnerable-sphere",
+    "mass-phantom-killer",
+    "matter-conversion",
+    "mind-collapse",
+    "nullification-wave",
+    "psychic-scream",
+    "puppetmaster-s-realm",
+    "reality-anchor",
+    "reverse-gravity-field",
+    "soul-reflection",
+    "summon-avatar-of-decay",
+    "summon-elemental-avatar",
+    "summon-herald-of-the-planes",
+    "time-stop",
+    "timeless-form",
+    "unholy-ascendance",
+    "unravel-identity",
+    "weird",
+    "wish"
+  ],
+  "unacceptedHolds": {
+    "unholy-ascendance": {
+      "blockerIds": [
+        "CC194-B04"
+      ],
+      "holdIds": [
+        "CC194-H01",
+        "CC194-H02",
+        "CC194-H07",
+        "CC194-H08"
+      ],
+      "blockerRecords": [
+        {
+          "id": "CC194-B04",
+          "blockingForIds": [
+            "unholy-ascendance"
+          ],
+          "status": "OPEN_REASSESSED_CURRENT_BYTES",
+          "caseIds": [
+            "RANK9CASTINGCOST5129-UNHOLY-ASCENDANCE-B/null-body-lifecycle-held"
+          ],
+          "missing": "A source-grounded recipient lifecycle for the newly authored same-identity Undead caster form, including ordinary zero HP versus qualifying Null zero HP, legal healing/type checks, actual death and ending/suppression over an existing form. Current Null explicitly enumerates ordinary living recipients, named companion/minion/projection/Construct lifecycles and actual Undying Spellform. It does not define this new caster Undead overlay.",
+          "requiredWitnesses": [
+            "Explicitly establish the caster-form living/nonliving/type/recipientLifecycle contract without borrowing Wizard minion or Mage Lich destruction rules; identify the source permission for that bridge.",
+            "Show actual normal lethal/zero damage and qualifying same-dealer Null root histories, pre-event recipient snapshot, defenses/tempHP, HP/Wounds/death state, counters/recovery markers, no would-die trigger when Null skips death, and later independent non-damage source ending.",
+            "Show legally acquired living-only versus applicable Undead healing sources, eligibility recheck while operative/suppressed/reverted, actual paid/blocked/successful transitions and retained HP/Wounds/gear.",
+            "Show an already-operative real other form, suppression/resumption, original deadline, actual death/expiry and exact original body/equipment custody restoration; no refresh, new corpse, immortality or Hunt finality inference."
+          ],
+          "whyWholeSpellGate": "The proposed form explicitly changes operative type to Undead. Its own ordinary damage, healing and zero-HP behavior must be resolved before the complete procedure can be accepted; this is not merely an optional outside campaign actor. The missing external Hunt facts remain a separate conditional qualification, not a demand to close cosmology.",
+          "anchors": [
+            "sources_current/DescentReviewChanges/ReviewBible/docs/mechanics/COSMOLOGY_EPILOGUE_RELIC_NULL_PLAYTEST.md#Recipient lifecycles for qualifying Null damage",
+            "sources_current/DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md#Zero HP and recovery",
+            "sources_current/DescentReviewChanges/ReviewBible/docs/mechanics/CREATURE_LIFECYCLE_PLAYTEST.md#Wizard corpses, standard minions and Auto-Raise",
+            "sources_current/DescentReviewChanges/ReviewBible/docs/mechanics/HEALING_DEATH_PLAYTEST.md#Actual resurrection and retained consequences",
+            "sources_current/DescentReviewChanges/ReviewBible/docs/mechanics/TRANSFORMATION_SPELL_PLAYTEST.md (four selected transformation profiles only; not global Undead permission)"
+          ]
+        }
+      ]
+    }
+  },
+  "inheritedNamedBlockerIds": [
+    "AG190-B01",
+    "AG190-B02",
+    "TF192-B01",
+    "TF192-B02",
+    "TF192-B04",
+    "TF192-B05"
+  ],
+  "sharedRequirements": {
+    "scope": "No global/shared rule changes; native cards and class routes unchanged.",
+    "runtimeSelectionEnabled": false
+  },
+  "spells": [
+    {
+      "id": "perfect-spell",
+      "name": "Perfect Spell",
+      "position": 0,
+      "procedure": {
+        "id": "CC222-STATIC-PERFECT-SPELL",
+        "spellId": "perfect-spell",
+        "status": "director-accepted static authored procedure; applied to authored review index; runtime disabled",
+        "accepted": true,
+        "applied": false,
+        "nativeCardUnchanged": {
+          "id": "perfect-spell",
+          "name": "Perfect Spell",
+          "schools": [
+            "Universal"
+          ],
+          "status": "blocked-pending-operational-review",
+          "visibility": "public-source-review",
+          "classAccess": {
+            "Cleric": {
+              "rank": 9,
+              "minimumClassLevel": 17,
+              "school": "Universal",
+              "baseRpCost": 26
+            },
+            "Mage": {
+              "rank": 9,
+              "minimumClassLevel": 17,
+              "school": "Universal",
+              "baseRpCost": 26
+            },
+            "Wizard": {
+              "rank": 9,
+              "minimumClassLevel": 17,
+              "school": "Universal",
+              "baseRpCost": 26
+            }
+          },
+          "operational": null,
+          "additionalRpCost": 0,
+          "source": {
+            "catalogPath": "src/data/spells.js",
+            "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+            "catalogKey": "perfect-spell",
+            "original": {
+              "name": "Perfect Spell",
+              "level": 9,
+              "resonanceRank": 9,
+              "school": "Universal",
+              "schools": [
+                "Universal"
+              ],
+              "placements": [
+                {
+                  "name": "Perfect Spell",
+                  "school": "Universal",
+                  "level": 9,
+                  "summary": "Cast any spell ignoring components, costs, and casting time."
+                }
+              ],
+              "classLevels": {
+                "Cleric": 9,
+                "Mage": 9,
+                "Wizard": 9
+              },
+              "classRanks": {
+                "Cleric": 9,
+                "Mage": 9,
+                "Wizard": 9
+              },
+              "classLearnLevels": {
+                "Cleric": 17,
+                "Mage": 17,
+                "Wizard": 17
+              },
+              "classSchools": {
+                "Cleric": "Universal",
+                "Mage": "Universal",
+                "Wizard": "Universal"
+              },
+              "castingTime": "Not specified in current rulebook",
+              "range": "Not specified in current rulebook",
+              "components": "Not specified in current rulebook",
+              "duration": "Not specified in current rulebook",
+              "description": "Cast any spell ignoring components, costs, and casting time.",
+              "alternateSummaries": [],
+              "classes": [
+                "Cleric",
+                "Mage",
+                "Wizard"
+              ],
+              "status": "canon",
+              "source": "Player Rulebook — Spell Lists"
+            },
+            "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+            "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+            "coreEntries": [
+              {
+                "index": 924,
+                "original": {
+                  "school": "Universal",
+                  "level": 9,
+                  "name": "Perfect Spell",
+                  "effect": "Cast any spell ignoring components, costs, and casting time.",
+                  "source_paragraph": 10125,
+                  "casting_time": "1 action",
+                  "range": "120 feet",
+                  "duration": "Instantaneous",
+                  "components": "V, S, F",
+                  "resolution": "Automatic or opposed as described",
+                  "tags": [
+                    "Utility"
+                  ],
+                  "rp_cost": 26
+                }
+              }
+            ],
+            "possibleHistoricalAliases": []
+          },
+          "reviewFlags": [
+            "Core resolution requires an explicit operational interpretation",
+            "Not selectable in this spell playtest packet until individual operational review"
+          ]
+        },
+        "procedureContent": "Select any one completely defined spell identity and exact mode, including genuinely off-list/unprepared spells and true long casts. There is no printed rank cap or requirement that the payload was once known. A named nonspell technique, undefined spell, unavailable formula requiring missing effect facts, or invented creature profile is not a supplied spell. Root casting still requires acquired Perfect Spell and its actual26RP/Action/components.\nNEW PS194-WAIVER: waive the embedded spell's entire casting price: baseRP, mandatory casting extras/surcharge, selected finite optional casting costs except expressly non-discountable output principal, HP sacrifice, consumed material price, charge/finite-use expenditure and casting components/time. These are recorded as waived, not paid. Optional ordinary waived costs cannot create paid credit; source-protected conversion principal follows PS222-FUNDED. Do not waive the root's price, later upkeep or independently performed nonspell transactions. A true target/substrate (corpse, prepared actual object, physical support, consenting participant, already-existing identity/link or actual ritual readiness) is not a cost merely because later consumed. No body, subject, target, knowledge prerequisite of another wrapper, legal title, permission or outcome is conjured by paying nothing.\nThe payload's former ten-minute casting work is removed, including concentration used solely for that now-absent work; actual continuing effect concentration remains. RootAction resolves the invocation once. A native Reaction's triggering event remains a declared eligibility premise; Perfect supplies no arbitrary interrupt. It can be ordinarily Readied to a real trigger, with the one paid root counter window at preparation and its actual Reaction at release. Bonus-Action native time supplies no spare Action. Actual payload range, targeting, dice and non-time checks remain; use the root actor's real casting ability/PB and the payload's actual school for school-specific attack/DC bonuses, but rootrank9 for counter/removal and no generic upcast.\nUseful distinct nesting is allowed: Perfect→Ritual Mastery compresses Mastery's outer ten-minute work and waives its casting price, but the separately owned target ritual still retains its independent non-time payment/use/participant requirements. Perfect→World Rewrite still needs World Rewrite's real ever-known evidence; World→Perfect requires historical knowledge of Perfect before Perfect can select its otherwise off-list payload. One repeated ancestor identity is a rejected cycle, not infinite free casts.\nNEW PS222-FUNDED (Perfect Spell only): distinguish waived activation price from protected conversion principal. Perfect ignores the embedded base RP, discountable casting extras, components and casting time. A source-defined RP amount that is expressly non-discountable and whose actual expenditure directly funds the output remains an actual payment at the root commitment. For Harmonic Bulwark only the chosen X (integer 0..actual PB) is this protected principal: base paid=0, base waived=5, X paid=X, creditedRP=X, offer=5X. Root26 and all root/leaf surcharges supply zero leaf credit. X=0 has zero credit and is rejected before any root Action/RP is spent. Choose X, recipient and geometry before commitment; require available root quote plus X, commit both once, then counter/arbitrate. Countering or losing to an equal/stronger buffer refunds neither. X is not another cast, Action, root strain event or recovery trigger. Self is a legal willing recipient within both root120ft and Bulwark60ft; all ordinary source eligibility remains. No nominal credit, completed-buffer copy, Mana Shield alias or globally changed Bulwark interface is authorized. Resonance Forge's later protected nonspell production principal and all actual crafting obligations remain under their existing exact holds.\n\nNEW proposed Soulburn interaction, separately scoped from the owner-approved Reservoir exception: waive its7RP and20HP casting price, and the associated at-least21HP affordability test only insofar as it exists to pay that waived price; the caster must remain alive and otherwise eligible. Successful intrinsic0..3RP recovery may occur once into the actual pool; actual recovery blockers remain and countering yields0. Record HP unchanged, never falsely claim20HP paid. This consequential spell-local choice and its demonstrated finite Perfection/zero-root combinations are included in the Perfect-only static decision; the owner-approved Grand Reservoir combination is unchanged. Actual source access, recovery prohibitions and distinct actual-damage/non-damage predicates remain required.",
+        "sharedRequirements": "Use only the exact native classAccess row and a real acquired casting profile; sufficient RP or class level alone is not acquisition. The five root spells are rank9/base26/class17. Preserve all native rows and Core cards in completeSourceAndAccess. Four roots use Action/V,S,F; Ritual Mastery uses ten minutes/V,S,M/F. The focus alternative supplies no otherwise required target/substrate. Root120feet metadata is retained: Perfect/World are caster-origin authorizations with payload targets satisfying BOTH the root120-foot anchor limit and the payload's own actual geometry; this is NEW local completion, not teleporting an origin. Perfection/Ascendance are NEW Self benefits;120feet does not grant ally transfer. Mastery targets a real ritual/leader within120feet and line of effect throughout work.\nPreflight actual body/voice/usable hand/focus, permitted action, known restrictions, range/line, targets and current quote. Reject known illegality before any expenditure; hidden/intervening failure after commitment spends the costs, reveals no hidden reason, supplies no substitute, and restores no previous concentration. Freeze identities, mode, payload graph, price-source versions and selected optional amounts. Commit once: Action (or start long work), RP and other charges, source-specific finite uses, prospective concentration transition, actual class protected cadence, Refrain and beginning hooks. Then open the one actual cast-interruption window. A counter pays its own costs/history; a resumed parent never overwrites that later history. Spell rank for a root interrupt is9: DC28 for the actual Wizard Counterspell card (rank1,3RP,Reaction,60feet,recharge2), using INT+PB and Core task degrees/natural shifts. Root rejection isn't a counter, and immunity to damage is not a casting permission.\nNEW local invocation graph for Perfect/World/Mastery: an explicit finite directed path/tree of source IDs, with every wrapper selection and one terminal spell or ritual action named before commitment. Reject a repeated wrapper identity on one ancestor path before paying; a distinct useful nesting is legal. Do not ban rank9 payloads or count an Action, echo, reordered initiative or pulse as a new turn. Each real paid spell cast has one history/root; embedded invocation nodes are not extra Actions/casts/refund generators. Preserve payload provenance for each actual damage, healing, payment, recovery, condition and custody event. Hooks inspect their exact predicate once: actual cast, actual amount paid, successful resolution, actual damage or actual recovery are distinct. No universal anti-proc rule removes an independently satisfied source trigger. One wrapper never grants an unacquired passive class engine, item, soul, body or reaction opportunity.\nUse source-specific clocks. A minute here is60 elapsed seconds from manifestation, never from each target's next turn. Each actor keeps its own regular starts/ends, budget refresh/spend, recharge ticks and Ready expiry. Idle regular turns can vent1 Dissonance only under the actual class rule; continuing magical work is not idle. Starting a root at a regular phase does not reset that phase. On death, concentration and these temporary Self benefits end; revival does not renew them. Suppression blocks only its actual scope, preserves original deadlines, causes no automatic recast, and never refunds prior payment. Actual removal requires a real acquired dispel, real rank/check/range/perception and spend; no Greater Dispel is assumed. Missing external suppression/Null/copy source facts keep that branch held, not a fabricated positive event.\nOrdinary Ready uses one real Action spell cast at preparation, full payment/components/cadence/countering and held concentration, expiring at the next own regular START. A real perceived trigger and Reaction release it without a second payment/casting history; target/range revalidate at release and an effect's duration begins there. Ten-minute work cannot be ordinary Readied. The already-accepted seven-profile copied-feat Ready preparation-only allowance is preserved without extending it to these rank9 spells: no positive copied branch exists unless the exact copy source permits that rank/identity. Serialization preserves every clock, source root, resource receipt, acquisition/custody record and pending decision; loading is no in-world action or clock reset.",
+        "newChoices": "All clauses marked NEW and all local completions above are proposed spell-local authorship, not global authority.",
+        "qualifications": [
+          "Static authored review only; no canonical application or runtime selection.",
+          "No runtime execution, implementation certification, human-play/playtest, balance, cosmology, domain-closure, whole-game completion or release approval.",
+          "Actual campaign acquisition, bodies, matter, equipment, targets, geometry, custodians and information require their own evidence. Fixture premises are conditional operands, never authenticated campaign facts.",
+          "Exact current applied index selects accepted comparison scope. Later source edits and historical proposal labels are not independent acceptance.",
+          "No newly authored spell-local choice is a global rule, permission to reopen a completed cohort, or permission to change the canonical index/catalog/queue/handoff."
+        ],
+        "caseIds": [
+          "RANK9CASTINGCOST5129-PERFECT-SPELL-A",
+          "RANK9CASTINGCOST5129-PERFECT-SPELL-A/off-list-class-blink",
+          "RANK9CASTINGCOST5129-PERFECT-SPELL-A/missing-support",
+          "RANK9CASTINGCOST5129-PERFECT-SPELL-A/not-a-spell",
+          "RANK9CASTINGCOST5129-PERFECT-SPELL-B",
+          "RANK9CASTINGCOST5129-PERFECT-SPELL-B/cycle",
+          "RANK9CASTINGCOST5129-PERFECT-SPELL-B/funded-bulwark",
+          "RANK9CASTINGCOST5129-PERFECT-SPELL-B/soulburn-new-waiver",
+          "RANK9CASTINGCOST5129-PERFECT-SPELL-B/soulburn-countered",
+          "RANK9CASTINGCOST5129-PERFECT-SPELL-B/root-counter",
+          "RANK9CASTINGCOST5129-PERFECT-SPELL-A/ordinary-ready-release",
+          "RANK9CASTINGCOST5129-PERFECT-SPELL-A/ordinary-ready-expiry",
+          "RANK9CASTINGCOST5129-PERFECT-SPELL-B/copy-eligibility-held",
+          "RANK9CASTINGCOST5129-PERFECT-SPELL-B/perfection-soulburn-finite-chain",
+          "CC222-PS-funded-X2",
+          "CC222-PS-funded-PB6",
+          "CC222-PS-zero-credit-rejected",
+          "CC222-PS-over-cap-rejected",
+          "CC222-PS-insufficient-RP-rejected",
+          "CC222-PS-equal-offer-retained",
+          "CC222-PS-weaker-offer-retained",
+          "CC222-PS-stronger-offer-replaces",
+          "CC222-PS-countered-paid-X"
+        ],
+        "questionIds": [
+          "CC9-Q01",
+          "CC9-Q02",
+          "CC9-Q03",
+          "CC9-Q04",
+          "CC9-Q05",
+          "CC9-Q06",
+          "CC9-Q07",
+          "CC9-Q28",
+          "CC9-Q29",
+          "CC9-Q30",
+          "CC9-Q31",
+          "CC9-Q32",
+          "COST129-ADD01",
+          "COST129-ADD02"
+        ],
+        "holdIds": [
+          "CC194-H01",
+          "CC194-H02",
+          "CC194-H05",
+          "CC194-H06",
+          "CC194-H07",
+          "CC194-H08"
+        ],
+        "resolvedBlockerIds": [
+          "CC194-B01"
+        ],
+        "directorDecisionId": "RANK9-CASTINGCOST2-DIRECTOR-DECISION-222"
+      },
+      "directorProcedureRecord": {
+        "accepted": true,
+        "applied": false,
+        "blockerIds": [],
+        "commonProcedure": "Use only the exact native classAccess row and a real acquired casting profile; sufficient RP or class level alone is not acquisition. The five root spells are rank9/base26/class17. Preserve all native rows and Core cards in completeSourceAndAccess. Four roots use Action/V,S,F; Ritual Mastery uses ten minutes/V,S,M/F. The focus alternative supplies no otherwise required target/substrate. Root120feet metadata is retained: Perfect/World are caster-origin authorizations with payload targets satisfying BOTH the root120-foot anchor limit and the payload's own actual geometry; this is NEW local completion, not teleporting an origin. Perfection/Ascendance are NEW Self benefits;120feet does not grant ally transfer. Mastery targets a real ritual/leader within120feet and line of effect throughout work.\nPreflight actual body/voice/usable hand/focus, permitted action, known restrictions, range/line, targets and current quote. Reject known illegality before any expenditure; hidden/intervening failure after commitment spends the costs, reveals no hidden reason, supplies no substitute, and restores no previous concentration. Freeze identities, mode, payload graph, price-source versions and selected optional amounts. Commit once: Action (or start long work), RP and other charges, source-specific finite uses, prospective concentration transition, actual class protected cadence, Refrain and beginning hooks. Then open the one actual cast-interruption window. A counter pays its own costs/history; a resumed parent never overwrites that later history. Spell rank for a root interrupt is9: DC28 for the actual Wizard Counterspell card (rank1,3RP,Reaction,60feet,recharge2), using INT+PB and Core task degrees/natural shifts. Root rejection isn't a counter, and immunity to damage is not a casting permission.\nNEW local invocation graph for Perfect/World/Mastery: an explicit finite directed path/tree of source IDs, with every wrapper selection and one terminal spell or ritual action named before commitment. Reject a repeated wrapper identity on one ancestor path before paying; a distinct useful nesting is legal. Do not ban rank9 payloads or count an Action, echo, reordered initiative or pulse as a new turn. Each real paid spell cast has one history/root; embedded invocation nodes are not extra Actions/casts/refund generators. Preserve payload provenance for each actual damage, healing, payment, recovery, condition and custody event. Hooks inspect their exact predicate once: actual cast, actual amount paid, successful resolution, actual damage or actual recovery are distinct. No universal anti-proc rule removes an independently satisfied source trigger. One wrapper never grants an unacquired passive class engine, item, soul, body or reaction opportunity.\nUse source-specific clocks. A minute here is60 elapsed seconds from manifestation, never from each target's next turn. Each actor keeps its own regular starts/ends, budget refresh/spend, recharge ticks and Ready expiry. Idle regular turns can vent1 Dissonance only under the actual class rule; continuing magical work is not idle. Starting a root at a regular phase does not reset that phase. On death, concentration and these temporary Self benefits end; revival does not renew them. Suppression blocks only its actual scope, preserves original deadlines, causes no automatic recast, and never refunds prior payment. Actual removal requires a real acquired dispel, real rank/check/range/perception and spend; no Greater Dispel is assumed. Missing external suppression/Null/copy source facts keep that branch held, not a fabricated positive event.\nOrdinary Ready uses one real Action spell cast at preparation, full payment/components/cadence/countering and held concentration, expiring at the next own regular START. A real perceived trigger and Reaction release it without a second payment/casting history; target/range revalidate at release and an effect's duration begins there. Ten-minute work cannot be ordinary Readied. The already-accepted seven-profile copied-feat Ready preparation-only allowance is preserved without extending it to these rank9 spells: no positive copied branch exists unless the exact copy source permits that rank/identity. Serialization preserves every clock, source root, resource receipt, acquisition/custody record and pending decision; loading is no in-world action or clock reset.",
+        "completeSourceAndAccess": {
+          "id": "perfect-spell",
+          "name": "Perfect Spell",
+          "schools": [
+            "Universal"
+          ],
+          "status": "blocked-pending-operational-review",
+          "visibility": "public-source-review",
+          "classAccess": {
+            "Cleric": {
+              "rank": 9,
+              "minimumClassLevel": 17,
+              "school": "Universal",
+              "baseRpCost": 26
+            },
+            "Mage": {
+              "rank": 9,
+              "minimumClassLevel": 17,
+              "school": "Universal",
+              "baseRpCost": 26
+            },
+            "Wizard": {
+              "rank": 9,
+              "minimumClassLevel": 17,
+              "school": "Universal",
+              "baseRpCost": 26
+            }
+          },
+          "operational": null,
+          "additionalRpCost": 0,
+          "source": {
+            "catalogPath": "src/data/spells.js",
+            "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+            "catalogKey": "perfect-spell",
+            "original": {
+              "name": "Perfect Spell",
+              "level": 9,
+              "resonanceRank": 9,
+              "school": "Universal",
+              "schools": [
+                "Universal"
+              ],
+              "placements": [
+                {
+                  "name": "Perfect Spell",
+                  "school": "Universal",
+                  "level": 9,
+                  "summary": "Cast any spell ignoring components, costs, and casting time."
+                }
+              ],
+              "classLevels": {
+                "Cleric": 9,
+                "Mage": 9,
+                "Wizard": 9
+              },
+              "classRanks": {
+                "Cleric": 9,
+                "Mage": 9,
+                "Wizard": 9
+              },
+              "classLearnLevels": {
+                "Cleric": 17,
+                "Mage": 17,
+                "Wizard": 17
+              },
+              "classSchools": {
+                "Cleric": "Universal",
+                "Mage": "Universal",
+                "Wizard": "Universal"
+              },
+              "castingTime": "Not specified in current rulebook",
+              "range": "Not specified in current rulebook",
+              "components": "Not specified in current rulebook",
+              "duration": "Not specified in current rulebook",
+              "description": "Cast any spell ignoring components, costs, and casting time.",
+              "alternateSummaries": [],
+              "classes": [
+                "Cleric",
+                "Mage",
+                "Wizard"
+              ],
+              "status": "canon",
+              "source": "Player Rulebook — Spell Lists"
+            },
+            "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+            "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+            "coreEntries": [
+              {
+                "index": 924,
+                "original": {
+                  "school": "Universal",
+                  "level": 9,
+                  "name": "Perfect Spell",
+                  "effect": "Cast any spell ignoring components, costs, and casting time.",
+                  "source_paragraph": 10125,
+                  "casting_time": "1 action",
+                  "range": "120 feet",
+                  "duration": "Instantaneous",
+                  "components": "V, S, F",
+                  "resolution": "Automatic or opposed as described",
+                  "tags": [
+                    "Utility"
+                  ],
+                  "rp_cost": 26
+                }
+              }
+            ],
+            "possibleHistoricalAliases": []
+          },
+          "reviewFlags": [
+            "Core resolution requires an explicit operational interpretation",
+            "Not selectable in this spell playtest packet until individual operational review"
+          ]
+        },
+        "id": "perfect-spell",
+        "newChoices": "All clauses marked NEW and all local completions above are proposed spell-local authorship, not global authority.",
+        "procedure": "Select any one completely defined spell identity and exact mode, including genuinely off-list/unprepared spells and true long casts. There is no printed rank cap or requirement that the payload was once known. A named nonspell technique, undefined spell, unavailable formula requiring missing effect facts, or invented creature profile is not a supplied spell. Root casting still requires acquired Perfect Spell and its actual26RP/Action/components.\nNEW PS194-WAIVER: waive the embedded spell's entire casting price: baseRP, mandatory casting extras/surcharge, selected finite optional casting costs except expressly non-discountable output principal, HP sacrifice, consumed material price, charge/finite-use expenditure and casting components/time. These are recorded as waived, not paid. Optional ordinary waived costs cannot create paid credit; source-protected conversion principal follows PS222-FUNDED. Do not waive the root's price, later upkeep or independently performed nonspell transactions. A true target/substrate (corpse, prepared actual object, physical support, consenting participant, already-existing identity/link or actual ritual readiness) is not a cost merely because later consumed. No body, subject, target, knowledge prerequisite of another wrapper, legal title, permission or outcome is conjured by paying nothing.\nThe payload's former ten-minute casting work is removed, including concentration used solely for that now-absent work; actual continuing effect concentration remains. RootAction resolves the invocation once. A native Reaction's triggering event remains a declared eligibility premise; Perfect supplies no arbitrary interrupt. It can be ordinarily Readied to a real trigger, with the one paid root counter window at preparation and its actual Reaction at release. Bonus-Action native time supplies no spare Action. Actual payload range, targeting, dice and non-time checks remain; use the root actor's real casting ability/PB and the payload's actual school for school-specific attack/DC bonuses, but rootrank9 for counter/removal and no generic upcast.\nUseful distinct nesting is allowed: Perfect→Ritual Mastery compresses Mastery's outer ten-minute work and waives its casting price, but the separately owned target ritual still retains its independent non-time payment/use/participant requirements. Perfect→World Rewrite still needs World Rewrite's real ever-known evidence; World→Perfect requires historical knowledge of Perfect before Perfect can select its otherwise off-list payload. One repeated ancestor identity is a rejected cycle, not infinite free casts.\nNEW PS222-FUNDED (Perfect Spell only): distinguish waived activation price from protected conversion principal. Perfect ignores the embedded base RP, discountable casting extras, components and casting time. A source-defined RP amount that is expressly non-discountable and whose actual expenditure directly funds the output remains an actual payment at the root commitment. For Harmonic Bulwark only the chosen X (integer 0..actual PB) is this protected principal: base paid=0, base waived=5, X paid=X, creditedRP=X, offer=5X. Root26 and all root/leaf surcharges supply zero leaf credit. X=0 has zero credit and is rejected before any root Action/RP is spent. Choose X, recipient and geometry before commitment; require available root quote plus X, commit both once, then counter/arbitrate. Countering or losing to an equal/stronger buffer refunds neither. X is not another cast, Action, root strain event or recovery trigger. Self is a legal willing recipient within both root120ft and Bulwark60ft; all ordinary source eligibility remains. No nominal credit, completed-buffer copy, Mana Shield alias or globally changed Bulwark interface is authorized. Resonance Forge's later protected nonspell production principal and all actual crafting obligations remain under their existing exact holds.\n\nNEW proposed Soulburn interaction, separately scoped from the owner-approved Reservoir exception: waive its7RP and20HP casting price, and the associated at-least21HP affordability test only insofar as it exists to pay that waived price; the caster must remain alive and otherwise eligible. Successful intrinsic0..3RP recovery may occur once into the actual pool; actual recovery blockers remain and countering yields0. Record HP unchanged, never falsely claim20HP paid. This consequential spell-local choice and its demonstrated finite Perfection/zero-root combinations are included in the Perfect-only static decision; the owner-approved Grand Reservoir combination is unchanged. Actual source access, recovery prohibitions and distinct actual-damage/non-damage predicates remain required.",
+        "qualifications": [
+          "Static authored review only; no canonical application or runtime selection.",
+          "No runtime execution, implementation certification, human-play/playtest, balance, cosmology, domain-closure, whole-game completion or release approval.",
+          "Actual campaign acquisition, bodies, matter, equipment, targets, geometry, custodians and information require their own evidence. Fixture premises are conditional operands, never authenticated campaign facts.",
+          "Exact current applied index selects accepted comparison scope. Later source edits and historical proposal labels are not independent acceptance.",
+          "No newly authored spell-local choice is a global rule, permission to reopen a completed cohort, or permission to change the canonical index/catalog/queue/handoff."
+        ],
+        "questionIds": [
+          "CC9-Q01",
+          "CC9-Q02",
+          "CC9-Q03",
+          "CC9-Q04",
+          "CC9-Q05",
+          "CC9-Q06",
+          "CC9-Q07",
+          "CC9-Q28",
+          "CC9-Q29",
+          "CC9-Q30",
+          "CC9-Q31",
+          "CC9-Q32",
+          "COST129-ADD01",
+          "COST129-ADD02"
+        ],
+        "status": "ACCEPTED_STATIC_AUTHORING_UNAPPLIED",
+        "localRuling": {
+          "id": "PS222-FUNDED",
+          "status": "SELECTED_SPELL_LOCAL",
+          "text": "NEW PS222-FUNDED (Perfect Spell only): distinguish waived activation price from protected conversion principal. Perfect ignores the embedded base RP, discountable casting extras, components and casting time. A source-defined RP amount that is expressly non-discountable and whose actual expenditure directly funds the output remains an actual payment at the root commitment. For Harmonic Bulwark only the chosen X (integer 0..actual PB) is this protected principal: base paid=0, base waived=5, X paid=X, creditedRP=X, offer=5X. Root26 and all root/leaf surcharges supply zero leaf credit. X=0 has zero credit and is rejected before any root Action/RP is spent. Choose X, recipient and geometry before commitment; require available root quote plus X, commit both once, then counter/arbitrate. Countering or losing to an equal/stronger buffer refunds neither. X is not another cast, Action, root strain event or recovery trigger. Self is a legal willing recipient within both root120ft and Bulwark60ft; all ordinary source eligibility remains. No nominal credit, completed-buffer copy, Mana Shield alias or globally changed Bulwark interface is authorized.",
+          "reason": "The accepted Bulwark source separately calls X conversion RP, requires actual payment, prohibits discounting X and forbids zero-credit creation. Preserving this specific output-funding condition while waiving base activation cost reconciles the payload promise without minting RP or modifying the accepted interface. The broader Return194 waiver of X is superseded only here; this does not license changing other accepted payload rules."
+        },
+        "resolvedBlockerIds": [
+          "CC194-B01"
+        ],
+        "sourceAuthority": {
+          "reviewedApplied": 810,
+          "pending": 38,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 534,
+          "scopedInterfaces": 173
+        },
+        "sourcePacket": {
+          "path": "DD_Rank9_CastingCost5_CurrentSource_222.zip",
+          "bytes": 100862572,
+          "sha256": "fd28704b4f79063f828ed2abc3a6c22a9254bea1828194b9db4e057da473f9b9",
+          "crc32": "2d5d0b9a"
+        },
+        "reviewVersion": "Return222",
+        "commonProcedureScope": "Shared text is retained as dependency context only. This return reviews only Perfect Spell and Unholy Ascendance; already-applied wrappers are not reconsidered.",
+        "provenance": {
+          "originalProcedureMember": {
+            "path": "director_history/castingcost5_return194/procedures/perfect-spell.json",
+            "bytes": 12968,
+            "sha256": "307e0340a59a0d7cb2a4a13a25804a68d82312791cf97f20464d4dc64472234a",
+            "crc32": "950bee1e"
+          },
+          "currentNativePointer": "/spells/844",
+          "currentBackingHashes": "SOURCE_BINDING.json"
+        },
+        "caseIds": [
+          "RANK9CASTINGCOST5129-PERFECT-SPELL-A",
+          "RANK9CASTINGCOST5129-PERFECT-SPELL-A/off-list-class-blink",
+          "RANK9CASTINGCOST5129-PERFECT-SPELL-A/missing-support",
+          "RANK9CASTINGCOST5129-PERFECT-SPELL-A/not-a-spell",
+          "RANK9CASTINGCOST5129-PERFECT-SPELL-B",
+          "RANK9CASTINGCOST5129-PERFECT-SPELL-B/cycle",
+          "RANK9CASTINGCOST5129-PERFECT-SPELL-B/funded-bulwark",
+          "RANK9CASTINGCOST5129-PERFECT-SPELL-B/soulburn-new-waiver",
+          "RANK9CASTINGCOST5129-PERFECT-SPELL-B/soulburn-countered",
+          "RANK9CASTINGCOST5129-PERFECT-SPELL-B/root-counter",
+          "RANK9CASTINGCOST5129-PERFECT-SPELL-A/ordinary-ready-release",
+          "RANK9CASTINGCOST5129-PERFECT-SPELL-A/ordinary-ready-expiry",
+          "RANK9CASTINGCOST5129-PERFECT-SPELL-B/copy-eligibility-held",
+          "RANK9CASTINGCOST5129-PERFECT-SPELL-B/perfection-soulburn-finite-chain",
+          "CC222-PS-funded-X2",
+          "CC222-PS-funded-PB6",
+          "CC222-PS-zero-credit-rejected",
+          "CC222-PS-over-cap-rejected",
+          "CC222-PS-insufficient-RP-rejected",
+          "CC222-PS-equal-offer-retained",
+          "CC222-PS-weaker-offer-retained",
+          "CC222-PS-stronger-offer-replaces",
+          "CC222-PS-countered-paid-X"
+        ]
+      },
+      "nativeCardUnchanged": {
+        "id": "perfect-spell",
+        "name": "Perfect Spell",
+        "schools": [
+          "Universal"
+        ],
+        "status": "blocked-pending-operational-review",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Cleric": {
+            "rank": 9,
+            "minimumClassLevel": 17,
+            "school": "Universal",
+            "baseRpCost": 26
+          },
+          "Mage": {
+            "rank": 9,
+            "minimumClassLevel": 17,
+            "school": "Universal",
+            "baseRpCost": 26
+          },
+          "Wizard": {
+            "rank": 9,
+            "minimumClassLevel": 17,
+            "school": "Universal",
+            "baseRpCost": 26
+          }
+        },
+        "operational": null,
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "perfect-spell",
+          "original": {
+            "name": "Perfect Spell",
+            "level": 9,
+            "resonanceRank": 9,
+            "school": "Universal",
+            "schools": [
+              "Universal"
+            ],
+            "placements": [
+              {
+                "name": "Perfect Spell",
+                "school": "Universal",
+                "level": 9,
+                "summary": "Cast any spell ignoring components, costs, and casting time."
+              }
+            ],
+            "classLevels": {
+              "Cleric": 9,
+              "Mage": 9,
+              "Wizard": 9
+            },
+            "classRanks": {
+              "Cleric": 9,
+              "Mage": 9,
+              "Wizard": 9
+            },
+            "classLearnLevels": {
+              "Cleric": 17,
+              "Mage": 17,
+              "Wizard": 17
+            },
+            "classSchools": {
+              "Cleric": "Universal",
+              "Mage": "Universal",
+              "Wizard": "Universal"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Cast any spell ignoring components, costs, and casting time.",
+            "alternateSummaries": [],
+            "classes": [
+              "Cleric",
+              "Mage",
+              "Wizard"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 924,
+              "original": {
+                "school": "Universal",
+                "level": 9,
+                "name": "Perfect Spell",
+                "effect": "Cast any spell ignoring components, costs, and casting time.",
+                "source_paragraph": 10125,
+                "casting_time": "1 action",
+                "range": "120 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Utility"
+                ],
+                "rp_cost": 26
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation",
+          "Not selectable in this spell playtest packet until individual operational review"
+        ]
+      },
+      "caseIds": [
+        "RANK9CASTINGCOST5129-PERFECT-SPELL-A",
+        "RANK9CASTINGCOST5129-PERFECT-SPELL-A/off-list-class-blink",
+        "RANK9CASTINGCOST5129-PERFECT-SPELL-A/missing-support",
+        "RANK9CASTINGCOST5129-PERFECT-SPELL-A/not-a-spell",
+        "RANK9CASTINGCOST5129-PERFECT-SPELL-B",
+        "RANK9CASTINGCOST5129-PERFECT-SPELL-B/cycle",
+        "RANK9CASTINGCOST5129-PERFECT-SPELL-B/funded-bulwark",
+        "RANK9CASTINGCOST5129-PERFECT-SPELL-B/soulburn-new-waiver",
+        "RANK9CASTINGCOST5129-PERFECT-SPELL-B/soulburn-countered",
+        "RANK9CASTINGCOST5129-PERFECT-SPELL-B/root-counter",
+        "RANK9CASTINGCOST5129-PERFECT-SPELL-A/ordinary-ready-release",
+        "RANK9CASTINGCOST5129-PERFECT-SPELL-A/ordinary-ready-expiry",
+        "RANK9CASTINGCOST5129-PERFECT-SPELL-B/copy-eligibility-held",
+        "RANK9CASTINGCOST5129-PERFECT-SPELL-B/perfection-soulburn-finite-chain",
+        "CC222-PS-funded-X2",
+        "CC222-PS-funded-PB6",
+        "CC222-PS-zero-credit-rejected",
+        "CC222-PS-over-cap-rejected",
+        "CC222-PS-insufficient-RP-rejected",
+        "CC222-PS-equal-offer-retained",
+        "CC222-PS-weaker-offer-retained",
+        "CC222-PS-stronger-offer-replaces",
+        "CC222-PS-countered-paid-X"
+      ],
+      "questionIds": [
+        "CC9-Q01",
+        "CC9-Q02",
+        "CC9-Q03",
+        "CC9-Q04",
+        "CC9-Q05",
+        "CC9-Q06",
+        "CC9-Q07",
+        "CC9-Q28",
+        "CC9-Q29",
+        "CC9-Q30",
+        "CC9-Q31",
+        "CC9-Q32",
+        "COST129-ADD01",
+        "COST129-ADD02"
+      ],
+      "holdIds": [
+        "CC194-H01",
+        "CC194-H02",
+        "CC194-H05",
+        "CC194-H06",
+        "CC194-H07",
+        "CC194-H08"
+      ],
+      "runtimeSelectionEnabled": false
+    }
+  ],
+  "caseCoverage": {
+    "caseCount": 23,
+    "caseIds": [
+      "RANK9CASTINGCOST5129-PERFECT-SPELL-A",
+      "RANK9CASTINGCOST5129-PERFECT-SPELL-A/off-list-class-blink",
+      "RANK9CASTINGCOST5129-PERFECT-SPELL-A/missing-support",
+      "RANK9CASTINGCOST5129-PERFECT-SPELL-A/not-a-spell",
+      "RANK9CASTINGCOST5129-PERFECT-SPELL-B",
+      "RANK9CASTINGCOST5129-PERFECT-SPELL-B/cycle",
+      "RANK9CASTINGCOST5129-PERFECT-SPELL-B/funded-bulwark",
+      "RANK9CASTINGCOST5129-PERFECT-SPELL-B/soulburn-new-waiver",
+      "RANK9CASTINGCOST5129-PERFECT-SPELL-B/soulburn-countered",
+      "RANK9CASTINGCOST5129-PERFECT-SPELL-B/root-counter",
+      "RANK9CASTINGCOST5129-PERFECT-SPELL-A/ordinary-ready-release",
+      "RANK9CASTINGCOST5129-PERFECT-SPELL-A/ordinary-ready-expiry",
+      "RANK9CASTINGCOST5129-PERFECT-SPELL-B/copy-eligibility-held",
+      "RANK9CASTINGCOST5129-PERFECT-SPELL-B/perfection-soulburn-finite-chain",
+      "CC222-PS-funded-X2",
+      "CC222-PS-funded-PB6",
+      "CC222-PS-zero-credit-rejected",
+      "CC222-PS-over-cap-rejected",
+      "CC222-PS-insufficient-RP-rejected",
+      "CC222-PS-equal-offer-retained",
+      "CC222-PS-weaker-offer-retained",
+      "CC222-PS-stronger-offer-replaces",
+      "CC222-PS-countered-paid-X"
+    ],
+    "eventCount": 205,
+    "allCaseReplay": {
+      "cases": 34,
+      "events": 522,
+      "forwardPatchOps": 1044,
+      "inversePatchOps": 1044
+    },
+    "newFocusedCaseIds": [
+      "CC222-PS-countered-paid-X",
+      "CC222-PS-equal-offer-retained",
+      "CC222-PS-funded-PB6",
+      "CC222-PS-funded-X2",
+      "CC222-PS-insufficient-RP-rejected",
+      "CC222-PS-over-cap-rejected",
+      "CC222-PS-stronger-offer-replaces",
+      "CC222-PS-weaker-offer-retained",
+      "CC222-PS-zero-credit-rejected"
+    ]
+  },
+  "returnCounts": {
+    "procedures": 2,
+    "questionDispositions": 20,
+    "originalNumberedQuestions": 18,
+    "focusedAddenda": 2,
+    "nativePlacements": 2,
+    "classAccessRows": 6,
+    "preservedCases": 25,
+    "newFocusedCases": 9,
+    "cases": 34,
+    "mainCases": 4,
+    "branches": 30,
+    "events": 522,
+    "forwardOperations": 1044,
+    "inverseOperations": 1044,
+    "eventOperations": 2088,
+    "sourceChecks": 969,
+    "dataIntegrityChecks": 2714,
+    "clockChecks": 3465,
+    "semanticChecks": 83,
+    "acceptanceBlockers": 1,
+    "resolvedBlockers": 1,
+    "acceptedIds": 1,
+    "heldIds": 1,
+    "appliedIds": 0,
+    "futureObligations": 8,
+    "archiveMembers": 29,
+    "payloadMembers": 28,
+    "packageChecks": 119
+  },
+  "sourceArchive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_castingcost5_return222_received/DD_Rank9_CastingCost2_Director_Return222.zip",
+    "bytes": 4737535,
+    "sha256": "6884e7b0c564383355754cc325371b36bfbd0b3fd3113519c1fb00a6e3381af8",
+    "crc32": "d611d529"
+  },
+  "deliveryManifest": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_castingcost5_return222_received/DD_Rank9_CastingCost2_Director_Return222_DELIVERY.json",
+    "bytes": 22115,
+    "sha256": "04a9ea15361ac8cc8d742861181e266e7e1a40eab292114ac9a9b7c414ada3ab",
+    "crc32": "19be9d35"
+  },
+  "independentAudit": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/RANK9_CASTINGCOST5_RETURN222_INDEPENDENT_AUDIT.json",
+    "bytes": 5006,
+    "sha256": "a7ff598811e8e1af9c12950488669ed238e77ad67f42f8da6930ab3db77d315d",
+    "crc32": "bd346bfc"
+  },
+  "directorReceipt": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/RANK9_CASTINGCOST5_RETURN222_INDEPENDENT_RECEIPT.json",
+    "bytes": 1693,
+    "sha256": "a033ec9d3a15167e2cb3a5e3dc9dd6729633a8ead7911357f610235b8f6bcf64",
+    "crc32": "e29c40a7"
+  },
+  "sourceConferencePacket": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_castingcost5_current_source_222_prepared_retry1/DD_Rank9_CastingCost5_CurrentSource_222.zip",
+    "bytes": 100862572,
+    "sha256": "fd28704b4f79063f828ed2abc3a6c22a9254bea1828194b9db4e057da473f9b9"
+  },
+  "casebookFile": "PRESERVED_CASEBOOK.json.gz",
+  "casebookSourceArchiveMemberBinding": {
+    "path": "PRESERVED_CASEBOOK.json.gz",
+    "bytes": 5094518,
+    "sha256": "40f6c022d2a61bc52ce2e8124e29266568b9708c1c1d2de6451cbc4332adbc6d",
+    "crc32": "926fec04"
+  },
+  "casebookBinding": {
+    "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9castingcost5_reviewed_222_final.staging/PRESERVED_CASEBOOK.json.gz",
+    "bytes": 5094518,
+    "sha256": "40f6c022d2a61bc52ce2e8124e29266568b9708c1c1d2de6451cbc4332adbc6d",
+    "crc32": "926fec04"
+  },
+  "focusedCaseFile": "FOCUSED_CASES.json.gz",
+  "focusedCasesBinding": {
+    "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9castingcost5_reviewed_222_final.staging/FOCUSED_CASES.json.gz",
+    "bytes": 568009,
+    "sha256": "da2f95884fd9f83539410899011c2a2704a8a78cc721ba56063856b0de1ab712",
+    "crc32": "dcf234ff"
+  },
+  "runtimeSelectionEnabled": false,
+  "runtimeTestsExecuted": false,
+  "sourceProgramsExecuted": false,
+  "implementationApproved": false,
+  "humanPlaytested": false,
+  "balanceApproved": false,
+  "cosmologyModified": false,
+  "releaseApproved": false,
+  "domainClosure": false
+}

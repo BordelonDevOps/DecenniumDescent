@@ -1,0 +1,391 @@
+{
+  "id": "UNRAVEL-IDENTITY-MD196-B02-WITNESS-PLAN-251-AUDIT",
+  "recordedAtUtc": "2026-10-30T11:39:55Z",
+  "status": "PASS",
+  "checksPassed": 14,
+  "checkCount": 14,
+  "checksFailed": 0,
+  "checks": [
+    {
+      "id": "post-application index binding is current across plan, handoff, queue and correction",
+      "passed": true,
+      "details": {
+        "actual": {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+          "bytes": 1600663,
+          "sha256": "565b5fce6c4797d96d2c6d8377ca152be38990216f63414cca7cff472f7993ce",
+          "crc32": "9043d5a3"
+        },
+        "declaredReferences": [
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+            "bytes": 1600663,
+            "sha256": "565b5fce6c4797d96d2c6d8377ca152be38990216f63414cca7cff472f7993ce",
+            "crc32": "9043d5a3"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+            "bytes": 1600663,
+            "sha256": "565b5fce6c4797d96d2c6d8377ca152be38990216f63414cca7cff472f7993ce",
+            "crc32": "9043d5a3"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+            "bytes": 1600663,
+            "sha256": "565b5fce6c4797d96d2c6d8377ca152be38990216f63414cca7cff472f7993ce",
+            "crc32": "9043d5a3"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+            "bytes": 1600663,
+            "sha256": "565b5fce6c4797d96d2c6d8377ca152be38990216f63414cca7cff472f7993ce",
+            "crc32": "9043d5a3"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+            "bytes": 1600663,
+            "sha256": "565b5fce6c4797d96d2c6d8377ca152be38990216f63414cca7cff472f7993ce",
+            "crc32": "9043d5a3"
+          }
+        ]
+      }
+    },
+    {
+      "id": "authority is 812 reviewed/applied, 36 pending and 0 accepted-unapplied",
+      "passed": true,
+      "details": {
+        "planAuthority": {
+          "reviewedApplied": 812,
+          "pending": 36,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 536,
+          "scopedInterfaces": 173,
+          "currentIndexBinding": {
+            "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+            "bytes": 1600663,
+            "sha256": "565b5fce6c4797d96d2c6d8377ca152be38990216f63414cca7cff472f7993ce",
+            "crc32": "9043d5a3"
+          },
+          "catalogBinding": {
+            "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+            "bytes": 5085187,
+            "sha256": "773fb0b3b0fdb501858ded33c02d90dc4db3009bd1b9f7112c244d998218f05b",
+            "crc32": "f06243cf"
+          },
+          "pendingIdentityAudit": {
+            "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT36_PENDING_IDENTITY_AUDIT_250.json",
+            "bytes": 46116,
+            "sha256": "ad2ff45d3f348543986b4857e2d2cd09b620d4c0a2ef769a577f232d774aec37",
+            "crc32": "3d1c9aed"
+          }
+        },
+        "pendingAuditCount": 36,
+        "pendingIds": 36
+      }
+    },
+    {
+      "id": "handoff preserves the exact 36 pending IDs and queue binds the exact pending audit/count",
+      "passed": true,
+      "details": {
+        "auditCount": 36,
+        "handoffCount": 36,
+        "queuePendingCount": 36,
+        "queueAuditBinding": {
+          "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT36_PENDING_IDENTITY_AUDIT_250.json",
+          "bytes": 46116,
+          "sha256": "ad2ff45d3f348543986b4857e2d2cd09b620d4c0a2ef769a577f232d774aec37",
+          "crc32": "3d1c9aed"
+        },
+        "queueNextPendingIds": []
+      }
+    },
+    {
+      "id": "Eternal Forge is applied once and removed from unaccepted; Matter Conversion remains held",
+      "passed": true,
+      "details": {
+        "applied": {
+          "reviewId": "ETERNAL-FORGE-EXACT-AUTHORED-ACCEPTANCE-255",
+          "ids": [
+            "eternal-forge"
+          ],
+          "applicationReceipt": "ETERNAL_FORGE_APPLICATION_255.json",
+          "accepted": true,
+          "applied": true,
+          "acceptedIds": [
+            "eternal-forge"
+          ],
+          "appliedIds": [
+            "eternal-forge"
+          ]
+        },
+        "unaccepted": [],
+        "heldOutside": [
+          "matter-conversion"
+        ]
+      }
+    },
+    {
+      "id": "Packet248 and Queue249 pointers remain historical; no current/next packet is selected",
+      "passed": true,
+      "details": {
+        "handoffCurrentPacket": null,
+        "handoffCurrentPreparation": null,
+        "handoffNextPreparedRequest": null,
+        "queueNextGroup": null,
+        "queueNext": {
+          "group": null,
+          "pendingIds": [],
+          "pendingCount": 0,
+          "status": "BLOCKER_WITNESS_PLAN_AWAITING_DIRECTOR_LEGALITY_CHECK",
+          "nextAction": "SEND_UNRAVEL_IDENTITY_MD196_B02_WITNESS_PLAN_TO_GPT_DIRECTOR"
+        },
+        "historyStatus": "PACKET248_PREPARED_UNAUDITED_UNSENT; preserved as history, not current or next."
+      }
+    },
+    {
+      "id": "plan binding is synchronized in correction, handoff and queue",
+      "passed": true,
+      "details": {
+        "actual": {
+          "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/UNRAVEL_IDENTITY_MD196_B02_WITNESS_PLAN_251.json",
+          "bytes": 17651,
+          "sha256": "cfa59e43e123bd71d618f7dfc36c1912bd52cf8e5edd8719a4868709d52b73f0",
+          "crc32": "e68682f6"
+        },
+        "refs": [
+          {
+            "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/UNRAVEL_IDENTITY_MD196_B02_WITNESS_PLAN_251.json",
+            "bytes": 17651,
+            "sha256": "cfa59e43e123bd71d618f7dfc36c1912bd52cf8e5edd8719a4868709d52b73f0",
+            "crc32": "e68682f6"
+          },
+          {
+            "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/UNRAVEL_IDENTITY_MD196_B02_WITNESS_PLAN_251.json",
+            "bytes": 17651,
+            "sha256": "cfa59e43e123bd71d618f7dfc36c1912bd52cf8e5edd8719a4868709d52b73f0",
+            "crc32": "e68682f6"
+          },
+          {
+            "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/UNRAVEL_IDENTITY_MD196_B02_WITNESS_PLAN_251.json",
+            "bytes": 17651,
+            "sha256": "cfa59e43e123bd71d618f7dfc36c1912bd52cf8e5edd8719a4868709d52b73f0",
+            "crc32": "e68682f6"
+          }
+        ]
+      }
+    },
+    {
+      "id": "witness plan remains prepared only; no acceptance/application claim",
+      "passed": true,
+      "details": {
+        "status": "PREPARED_FOR_DIRECTOR_LEGALITY_AND_CALLBACK_CHECK",
+        "accepted": false,
+        "applied": false
+      }
+    },
+    {
+      "id": "explicitly bound class/interface source files match local workspace and Packet241",
+      "passed": true,
+      "details": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/druid.json",
+          "archiveMembers": [
+            "sources_current/DescentReviewChanges/ReviewBible/data/public/class_playtests/druid.json"
+          ],
+          "archiveMemberMatches": true,
+          "localMatches": true
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/FORM_TEMP_HP_PLAYTEST.md",
+          "archiveMembers": [
+            "sources_current/DescentReviewChanges/ReviewBible/docs/mechanics/FORM_TEMP_HP_PLAYTEST.md"
+          ],
+          "archiveMemberMatches": true,
+          "localMatches": true
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/mage.json",
+          "archiveMembers": [
+            "sources_current/DescentReviewChanges/ReviewBible/data/public/class_playtests/mage.json"
+          ],
+          "archiveMemberMatches": true,
+          "localMatches": true
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CREATURE_LIFECYCLE_PLAYTEST.md",
+          "archiveMembers": [
+            "sources_current/DescentReviewChanges/ReviewBible/docs/mechanics/CREATURE_LIFECYCLE_PLAYTEST.md"
+          ],
+          "archiveMemberMatches": true,
+          "localMatches": true
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/MAXIMUM_HP_PLAYTEST.md",
+          "archiveMembers": [
+            "sources_current/DescentReviewChanges/ReviewBible/docs/mechanics/MAXIMUM_HP_PLAYTEST.md"
+          ],
+          "archiveMemberMatches": true,
+          "localMatches": true
+        }
+      ]
+    },
+    {
+      "id": "local form register is disclosed as supplemental and excluded from Packet241-bound evidence",
+      "passed": true,
+      "details": {
+        "declared": {
+          "path": "DescentReviewChanges/ReviewBible/data/playtest/druid_form_profiles.json",
+          "bytes": 54719,
+          "sha256": "6be62be56c63f96d5657597f98cf62cc68c087ba17626c8a6ce4648386403783",
+          "crc32": "393aedb9",
+          "status": "PRESENT_IN_WORKTREE_BUT_NOT_A_MEMBER_OF_RETURN241_PACKET; not treated as Packet241-bound or accepted evidence. The specific Earth Warden card and reviewed form interface remain separately bound."
+        },
+        "actual": {
+          "bytes": 54719,
+          "sha256": "6be62be56c63f96d5657597f98cf62cc68c087ba17626c8a6ce4648386403783",
+          "crc32": "393aedb9"
+        },
+        "isExplicitSourceBinding": false
+      }
+    },
+    {
+      "id": "all historical handoff/queue/packet records named by the correction remain present",
+      "passed": true,
+      "details": {
+        "recordsPresent": {
+          "CURRENT_HANDOFF_250.json": true,
+          "CURRENT_SPELL_QUEUE_250.json": true,
+          "CURRENT_SPELL_QUEUE_249.json": true,
+          "rank9_alignmentfactionpurification5_current_source_248_prepared/DD_Rank9_AlignmentFactionPurification5_CurrentSource_248.zip": true
+        }
+      }
+    },
+    {
+      "id": "form suppression, familiar lifecycle, and packet-source sufficiency remain director questions",
+      "passed": true,
+      "details": [
+        "Is the Human Druid 15/Mage 5 actor and its class-level/ASI/acquisition sequence source-legal at current authority?",
+        "Which exact accepted rule ends (or preserves) an active Earth Warden form when its Druid class capability is suppressed by Unravel Identity? If none, keep that branch held rather than inventing reversion.",
+        "When Mage Conjure Elemental Familiar is suppressed, does the existing Fire familiar persist under its original 10-minute/HP lifecycle with command removed, or does an exact source-ending callback terminate it? Please name the controlling source and event point.",
+        "Does the current Character Creation / Resonance / Form / Maximum HP / Creature Lifecycle source set supply the required integrated callback evidence, or is there a narrower additional interface you require?",
+        "Confirm the exact source-qualified suppression/removal branch to use while preserving the existing Return241 case set.",
+        "Return241 Packet241 omits the workspace Druid form-profile register referenced by the form overlay. Is the bound Druid class card plus bound form interface sufficient for this plan, or should the form register be included in a new current-source binding before the replay?"
+      ]
+    },
+    {
+      "id": "Return241 held cases and original blocker are preserved",
+      "passed": true,
+      "details": [
+        "RANK9MEMORYDENIAL6129-UNRAVEL-IDENTITY-A",
+        "RANK9MEMORYDENIAL6129-UNRAVEL-IDENTITY-B/multiclass-form-dependency-held"
+      ]
+    },
+    {
+      "id": "current plan binding synchronized in the correction log",
+      "passed": true,
+      "details": {
+        "logged": {
+          "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/UNRAVEL_IDENTITY_MD196_B02_WITNESS_PLAN_251.json",
+          "bytes": 17651,
+          "sha256": "cfa59e43e123bd71d618f7dfc36c1912bd52cf8e5edd8719a4868709d52b73f0",
+          "crc32": "e68682f6"
+        },
+        "actual": {
+          "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/UNRAVEL_IDENTITY_MD196_B02_WITNESS_PLAN_251.json",
+          "bytes": 17651,
+          "sha256": "cfa59e43e123bd71d618f7dfc36c1912bd52cf8e5edd8719a4868709d52b73f0",
+          "crc32": "e68682f6"
+        }
+      }
+    },
+    {
+      "id": "state correction seal matches every bound artifact",
+      "passed": true,
+      "details": {
+        "correction": {
+          "passed": true,
+          "declared": {
+            "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_REVIEW_STATE_CORRECTION_251.json",
+            "bytes": 4674,
+            "sha256": "0b3483d9757db8fb6109c27cd2fb42e1831717d3412e6c084a9b53e74e1f591d",
+            "crc32": "f81961b4"
+          },
+          "actual": {
+            "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_REVIEW_STATE_CORRECTION_251.json",
+            "bytes": 4674,
+            "sha256": "0b3483d9757db8fb6109c27cd2fb42e1831717d3412e6c084a9b53e74e1f591d",
+            "crc32": "f81961b4"
+          }
+        },
+        "handoff": {
+          "passed": true,
+          "declared": {
+            "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_251.json",
+            "bytes": 16929,
+            "sha256": "cc252d496dd961ce5520a1be3c3dc488c42dc92e2f0405a27353b2c585bafc7f",
+            "crc32": "cc4f6b76"
+          },
+          "actual": {
+            "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_251.json",
+            "bytes": 16929,
+            "sha256": "cc252d496dd961ce5520a1be3c3dc488c42dc92e2f0405a27353b2c585bafc7f",
+            "crc32": "cc4f6b76"
+          }
+        },
+        "queue": {
+          "passed": true,
+          "declared": {
+            "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_SPELL_QUEUE_251.json",
+            "bytes": 63432,
+            "sha256": "d6ca1079159236f014c532c046c9e7613376c0edd71269978b696c993f4c6b60",
+            "crc32": "f3edc601"
+          },
+          "actual": {
+            "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_SPELL_QUEUE_251.json",
+            "bytes": 63432,
+            "sha256": "d6ca1079159236f014c532c046c9e7613376c0edd71269978b696c993f4c6b60",
+            "crc32": "f3edc601"
+          }
+        },
+        "plan": {
+          "passed": true,
+          "declared": {
+            "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/UNRAVEL_IDENTITY_MD196_B02_WITNESS_PLAN_251.json",
+            "bytes": 17651,
+            "sha256": "cfa59e43e123bd71d618f7dfc36c1912bd52cf8e5edd8719a4868709d52b73f0",
+            "crc32": "e68682f6"
+          },
+          "actual": {
+            "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/UNRAVEL_IDENTITY_MD196_B02_WITNESS_PLAN_251.json",
+            "bytes": 17651,
+            "sha256": "cfa59e43e123bd71d618f7dfc36c1912bd52cf8e5edd8719a4868709d52b73f0",
+            "crc32": "e68682f6"
+          }
+        },
+        "index": {
+          "passed": true,
+          "declared": {
+            "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+            "bytes": 1600663,
+            "sha256": "565b5fce6c4797d96d2c6d8377ca152be38990216f63414cca7cff472f7993ce",
+            "crc32": "9043d5a3"
+          },
+          "actual": {
+            "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+            "bytes": 1600663,
+            "sha256": "565b5fce6c4797d96d2c6d8377ca152be38990216f63414cca7cff472f7993ce",
+            "crc32": "9043d5a3"
+          }
+        }
+      }
+    }
+  ],
+  "failures": [],
+  "planBinding": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/UNRAVEL_IDENTITY_MD196_B02_WITNESS_PLAN_251.json",
+    "bytes": 17651,
+    "sha256": "cfa59e43e123bd71d618f7dfc36c1912bd52cf8e5edd8719a4868709d52b73f0",
+    "crc32": "e68682f6"
+  },
+  "decisionBoundary": "Independent legality-plan and provenance audit only. Does not accept/apply Unravel Identity or decide unresolved callback rules."
+}

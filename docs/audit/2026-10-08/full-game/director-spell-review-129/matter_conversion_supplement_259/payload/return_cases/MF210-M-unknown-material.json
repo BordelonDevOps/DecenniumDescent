@@ -1,0 +1,102 @@
+{
+  "id": "MF210-M-unknown-material",
+  "spellId": "matter-conversion",
+  "title": "No legitimately known and Director-authorized output profile.",
+  "kind": "isolated-conditional-state-kernel",
+  "endToEndWitness": false,
+  "prerequisitesNotDemonstrated": [
+    "The underlying concrete scene facts are prerequisites; no completed conversion is demonstrated."
+  ],
+  "procedureClause": "matter.physicalContract",
+  "clockScope": "No elapsed time or actor turn is modeled; this kernel cannot certify regular-turn accounting.",
+  "events": [
+    {
+      "id": "MF210-M-unknown-material:1",
+      "before": {
+        "request": "unknown-material",
+        "payment": {
+          "RP": 0,
+          "Action": 0
+        },
+        "inputUnchanged": true,
+        "output": null,
+        "status": "preflight"
+      },
+      "after": {
+        "request": "unknown-material",
+        "payment": {
+          "RP": 0,
+          "Action": 0
+        },
+        "inputUnchanged": true,
+        "output": null,
+        "status": "rejected-before-payment",
+        "reason": "No legitimately known and Director-authorized output profile."
+      },
+      "beforeSHA256": "b085882b136778949b0986b9310c49b6ceb311546fca3f25312fd8c0b87a8687",
+      "afterSHA256": "bea3c5409c6caaf060cbde7b3ebab8f626529ec9b3ad5fed83d5b964eae90420",
+      "forward": [
+        {
+          "op": "test",
+          "path": "",
+          "value": {
+            "request": "unknown-material",
+            "payment": {
+              "RP": 0,
+              "Action": 0
+            },
+            "inputUnchanged": true,
+            "output": null,
+            "status": "preflight"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "",
+          "value": {
+            "request": "unknown-material",
+            "payment": {
+              "RP": 0,
+              "Action": 0
+            },
+            "inputUnchanged": true,
+            "output": null,
+            "status": "rejected-before-payment",
+            "reason": "No legitimately known and Director-authorized output profile."
+          }
+        }
+      ],
+      "inverse": [
+        {
+          "op": "test",
+          "path": "",
+          "value": {
+            "request": "unknown-material",
+            "payment": {
+              "RP": 0,
+              "Action": 0
+            },
+            "inputUnchanged": true,
+            "output": null,
+            "status": "rejected-before-payment",
+            "reason": "No legitimately known and Director-authorized output profile."
+          }
+        },
+        {
+          "op": "replace",
+          "path": "",
+          "value": {
+            "request": "unknown-material",
+            "payment": {
+              "RP": 0,
+              "Action": 0
+            },
+            "inputUnchanged": true,
+            "output": null,
+            "status": "preflight"
+          }
+        }
+      ]
+    }
+  ]
+}

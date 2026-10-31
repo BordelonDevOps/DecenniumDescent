@@ -1,0 +1,122 @@
+{
+  "id": "SOUL-REFLECTION-DELTA-264-INDEPENDENT-AUDIT",
+  "recordedAtUtc": "2026-10-30T16:03:06.787952+00:00",
+  "status": "PASS",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_illusionreality5_delta_264_prepared/DD_Rank9_SoulReflection_Delta_264.zip",
+    "bytes": 12888270,
+    "sha256": "e9da1447e7328b9a07d5416ef3dda99ca5083ee6e494af23a97923453ad62e35",
+    "crc32": "e1f67a3f"
+  },
+  "delivery": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_illusionreality5_delta_264_prepared/DD_Rank9_SoulReflection_Delta_264_DELIVERY.json",
+    "bytes": 11727,
+    "sha256": "88b7a3dac2a5d1ea192321951b97b5599df46732ac324be43c0e8c494f38dd42"
+  },
+  "authority": {
+    "reviewedApplied": 814,
+    "pending": 34,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 538,
+    "scopedInterfaces": 173
+  },
+  "targetIds": [
+    "soul-reflection"
+  ],
+  "checkCount": 14,
+  "passedChecks": 14,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "check": "The packet binds every payload member exactly once with size, SHA256 and CRC32.",
+      "passed": true
+    },
+    {
+      "check": "All five event cases replay with exact before/after state, reversible root patches, and monotonic event clocks.",
+      "passed": true,
+      "detail": [
+        {
+          "id": "RANK9ILLUSIONREALITY5264-SOUL-REFLECTION-FORM",
+          "events": 21,
+          "forwardInverseOperations": 84,
+          "failures": []
+        },
+        {
+          "id": "RANK9ILLUSIONREALITY5264-SOUL-REFLECTION-CONCENTRATION",
+          "events": 20,
+          "forwardInverseOperations": 80,
+          "failures": []
+        },
+        {
+          "id": "RANK9ILLUSIONREALITY5264-SOUL-REFLECTION-ORIGINAL-ZERO",
+          "events": 14,
+          "forwardInverseOperations": 56,
+          "failures": []
+        },
+        {
+          "id": "RANK9ILLUSIONREALITY5264-SOUL-REFLECTION-CARGO",
+          "events": 27,
+          "forwardInverseOperations": 108,
+          "failures": []
+        },
+        {
+          "id": "RANK9ILLUSIONREALITY5264-SOUL-REFLECTION-ATTACHED-CAVE-BEAR",
+          "events": 22,
+          "forwardInverseOperations": 88,
+          "failures": []
+        }
+      ]
+    },
+    {
+      "check": "All four legacy cases have only exact authored actor turns; CARGO includes D at3/3.9 and9/9.9.",
+      "passed": true
+    },
+    {
+      "check": "No case leaves a scheduled event in missed-unresolved state.",
+      "passed": true
+    },
+    {
+      "check": "C01 clocks, phase calendars and event after-times align.",
+      "passed": true
+    },
+    {
+      "check": "Concentration trace records A regular starts at 0, 6, and 12 seconds; zero conditions arise only at the 5.91-second zero resolution.",
+      "passed": true
+    },
+    {
+      "check": "C02 admission saves, counter windows and once-only hard guards are recorded.",
+      "passed": true
+    },
+    {
+      "check": "C03 Gaseous Form changes and restores effective actor capabilities and equipment state.",
+      "passed": true
+    },
+    {
+      "check": "C04 concentration save has both advantage dice and the selected higher result.",
+      "passed": true
+    },
+    {
+      "check": "Copied Gaseous Form pays exactly 5 RP, and the level-16 Ranger has the source-bound 28-RP maximum and pays 4 RP for the bond.",
+      "passed": true
+    },
+    {
+      "check": "C05 attack is disadvantaged against Dodge, zero HP consequences and death roll are complete.",
+      "passed": true
+    },
+    {
+      "check": "C06 R1 source/equipment is finite and one original T-map retains owner and ground custody.",
+      "passed": true
+    },
+    {
+      "check": "Attached candidate uses Cave Bear INT3/CR2, explicit legal bond and three actual attached markers without target regular turns.",
+      "passed": true
+    },
+    {
+      "check": "No acceptance, application, canonical edit or GitHub change is represented.",
+      "passed": true
+    }
+  ],
+  "acceptanceOrApplicationPerformed": false,
+  "canonicalChanges": false,
+  "githubChanges": false
+}

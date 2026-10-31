@@ -1,0 +1,148 @@
+{
+  "id": "RANK9DEFENSEFORM8-SUPPLEMENT236-INDEPENDENT-AUDIT",
+  "recordedAtUtc": "2026-10-30T04:03:57.707136+00:00",
+  "status": "PASS",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_defenseform8_source_supplement_236/DD_Rank9_DefenseForm8_SourceSupplement_236.zip",
+    "bytes": 3756393,
+    "sha256": "04d7acb05b17c829d5ea43a86ef48a9d66c5980894226127a39ca504dec677e2",
+    "crc32": "08e7ee01"
+  },
+  "delivery": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_defenseform8_source_supplement_236/DD_Rank9_DefenseForm8_SourceSupplement_236_DELIVERY.json",
+    "bytes": 7567,
+    "sha256": "d1105bc33ee1c3e2344d2aa2e5ae991cf595d9cf9ec580a29eddc49554e02b6a",
+    "crc32": "bcfcab5d"
+  },
+  "authority": {
+    "reviewedApplied": 811,
+    "pending": 37,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 535,
+    "scopedInterfaces": 173
+  },
+  "checkCount": 10,
+  "passedChecks": 10,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "check": "supplement archive and delivery bind exact bytes and current authority",
+      "passed": true,
+      "detail": {
+        "bytes": 3756393,
+        "sha256": "04d7acb05b17c829d5ea43a86ef48a9d66c5980894226127a39ca504dec677e2",
+        "crc32": "08e7ee01"
+      }
+    },
+    {
+      "check": "current index distinguishes accepted standalone Volcanic Cage/Deep Crust Spike from pending Time Stop",
+      "passed": true,
+      "detail": {
+        "volcanic-cage": "reviewed-authored-operational-playtest",
+        "deep-crust-spike": "reviewed-authored-operational-playtest",
+        "time-stop": "pending-authored-procedure"
+      }
+    },
+    {
+      "check": "catalog still leaves all three operational pointers null and preserves their source statuses",
+      "passed": true,
+      "detail": {
+        "volcanic-cage": {
+          "status": "blocked-pending-operational-review",
+          "operational": null
+        },
+        "deep-crust-spike": {
+          "status": "blocked-pending-operational-review",
+          "operational": null
+        },
+        "time-stop": {
+          "status": "blocked-pending-operational-review",
+          "operational": null
+        }
+      }
+    },
+    {
+      "check": "ZIP is CRC-valid, unique and contains exactly the external allowlist",
+      "passed": true,
+      "detail": {
+        "members": 19,
+        "memberCount": 19
+      }
+    },
+    {
+      "check": "all supplement members match external byte/SHA/CRC bindings",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "internal self-excluding member manifest covers every payload and matches its external record",
+      "passed": true,
+      "detail": 18
+    },
+    {
+      "check": "all supplement payloads match internal manifest",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "all 15 copied sources equal their current worktree bytes",
+      "passed": true,
+      "detail": {
+        "sourceCount": 15,
+        "errors": []
+      }
+    },
+    {
+      "check": "Volcanic Cage current procedure and receipt match their exact authored-index bindings",
+      "passed": true,
+      "detail": {
+        "candidate": {
+          "bytes": 1254598,
+          "sha256": "6a1a4e186d4456891d74fd20113611295d34ba55b9f6d2576b21b0d85d58c413",
+          "crc32": "826a4da4"
+        },
+        "receipt": {
+          "bytes": 13449,
+          "sha256": "d6a05416196bbdc037332cdc461015bcc4afa25dce94de89663f39fba65e6364",
+          "crc32": "e31a6a2b"
+        }
+      }
+    },
+    {
+      "check": "Deep Crust Spike LF normalization matches the exact indexed candidate and receipt Git blobs",
+      "passed": true,
+      "detail": {
+        "currentCandidate": {
+          "bytes": 1797407,
+          "sha256": "3b5b5e63c1725fbddd4ac8b2f15608a856b490f2a28ad32593f6944e062869ca",
+          "crc32": "37e68bad"
+        },
+        "normalizedCandidate": {
+          "bytes": 1762437,
+          "sha256": "07e508c7135a65db2cabc98d6c8aa97b7f5feb4bc108b499f11b697aa904e656",
+          "crc32": "87346713"
+        },
+        "indexedCandidate": {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank8_damage6_reviewed_122.json",
+          "bytes": 1762437,
+          "sha256": "07e508c7135a65db2cabc98d6c8aa97b7f5feb4bc108b499f11b697aa904e656"
+        },
+        "currentReceipt": {
+          "bytes": 3594,
+          "sha256": "ca9e3ff3415c6c4abf5c887642dbb2239464e421de86946486748938d6ce742e",
+          "crc32": "c5a408db"
+        },
+        "normalizedReceipt": {
+          "bytes": 3513,
+          "sha256": "155b96b63ae9aee707a3f5780cd2204c3857c2a6562c79bb5ad3c26ccf43efd3",
+          "crc32": "c4977c55"
+        },
+        "indexedReceipt": {
+          "path": "docs/audit/2026-10-08/full-game/RANK8_DAMAGE6_PART5_EXACT_AUTHORING_ACCEPTANCE_75.json",
+          "bytes": 3513,
+          "sha256": "155b96b63ae9aee707a3f5780cd2204c3857c2a6562c79bb5ad3c26ccf43efd3"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,388 @@
+{
+  "id": "RANK9ALIGNFACTIONPURIFICATION5-RETURN231-INDEPENDENT-AUDIT",
+  "status": "PASS",
+  "checkedAtUtc": "2026-10-30T01:46:25.915592+00:00",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_alignment_faction_purification5_return231_received/DD_Rank9_AlignmentFactionPurification5_Director_Return231_HELD.zip",
+    "bytes": 8669896,
+    "sha256": "a530511eb370a673b2deccb724efc7de4251a91c3a2b510eac514fde4f2a5f1a",
+    "crc32": "cb4240c3"
+  },
+  "delivery": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_alignment_faction_purification5_return231_received/DD_Rank9_AlignmentFactionPurification5_Director_Return231_HELD_DELIVERY.json",
+    "bytes": 333464,
+    "sha256": "7ab3881745ec8a166c9252627349f43790249100cca5fe34ea73a82744456de3",
+    "crc32": "4da53611"
+  },
+  "authority": {
+    "reviewedApplied": 811,
+    "pending": 37,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 535,
+    "scopedInterfaces": 173
+  },
+  "targetIds": [
+    "alignment-ascension",
+    "alignment-perfection",
+    "faction-incarnate",
+    "faction-perfection",
+    "corruption-purification"
+  ],
+  "acceptedIds": [],
+  "appliedIds": [],
+  "heldIds": [
+    "alignment-ascension",
+    "alignment-perfection",
+    "faction-incarnate",
+    "faction-perfection",
+    "corruption-purification"
+  ],
+  "blockerIds": [
+    "AFP211-B01",
+    "AFP211-B02",
+    "AFP211-B03",
+    "AFP211-B04",
+    "AFP211-B05"
+  ],
+  "closedEvidenceFinding": {
+    "id": "AFP211-E01",
+    "status": "CLOSED",
+    "missingComparatorClausesRemoved": true
+  },
+  "counts": {
+    "targetIdentities": 5,
+    "acceptedIdentities": 0,
+    "heldIdentities": 5,
+    "nativePlacements": 6,
+    "nativeClassAccessRows": 19,
+    "proposedProcedureContracts": 5,
+    "completeOperationalProcedures": 0,
+    "originalQuestions": 28,
+    "questionDispositions": 28,
+    "futureRequirements": 7,
+    "futureRequirementsComplete": 0,
+    "preservedCases": 10,
+    "conditionalComponentCases": 7,
+    "heldContentGateCases": 3,
+    "completePositiveSpellCases": 0,
+    "events": 10,
+    "forwardOperations": 20,
+    "inverseOperations": 20,
+    "totalEventOperations": 40,
+    "proposalOperations": 0,
+    "freshSourceBindings": 130,
+    "exactAcceptedComparatorsVerified": 6,
+    "closedEvidenceFindings": 1,
+    "openIdentityBlockers": 5,
+    "returnQualificationIds": 7,
+    "freshSourceDataReplayChecks": 1584,
+    "freshSourceDataReplayFailures": 0,
+    "semanticCriteria": 33,
+    "semanticPassingCriteria": 23,
+    "semanticBlockedCriteria": 10,
+    "clockCertifiedCases": 0
+  },
+  "nextPendingGroup": {
+    "group": "rank9-projection-confinement2",
+    "pendingIds": [
+      "astral-projection",
+      "imprisonment"
+    ]
+  },
+  "checkCount": 26,
+  "passedChecks": 26,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "check": "Return231 downloaded ZIP size/SHA/CRC and filename match DELIVERY",
+      "passed": true,
+      "detail": {
+        "bytes": 8669896,
+        "sha256": "a530511eb370a673b2deccb724efc7de4251a91c3a2b510eac514fde4f2a5f1a",
+        "crc32": "cb4240c3"
+      }
+    },
+    {
+      "check": "Return231 authority and delivery decision preserve all five holds",
+      "passed": true,
+      "detail": {
+        "authority": {
+          "reviewedApplied": 811,
+          "pending": 37,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 535,
+          "scopedInterfaces": 173
+        },
+        "heldIds": [
+          "alignment-ascension",
+          "alignment-perfection",
+          "faction-incarnate",
+          "faction-perfection",
+          "corruption-purification"
+        ]
+      }
+    },
+    {
+      "check": "Downloaded source packet and delivery still match the submitted, independently audited Packet231",
+      "passed": true,
+      "detail": {
+        "sourcePacketSha256": "7b07dadb2f2433c9df78d54c6c7a0a2032718d803629c208091f6f44fd6aa1ec",
+        "sourceDeliverySha256": "a570aa34b41b665076e486d9e109233ddda64d53891055553da2ad817924010e",
+        "packetAuditStatus": "PASS"
+      }
+    },
+    {
+      "check": "Return ZIP has exactly 257 unique safe members matching the exact allowlist",
+      "passed": true,
+      "detail": {
+        "members": 257,
+        "unsafe": []
+      }
+    },
+    {
+      "check": "Every Return231 member independently matches DELIVERY size/SHA/CRC",
+      "passed": true,
+      "detail": {
+        "checked": 257,
+        "failures": []
+      }
+    },
+    {
+      "check": "Internal member manifest binds the external manifest row and exact 256-member payload",
+      "passed": true,
+      "detail": {
+        "payloadMembers": 256,
+        "manifestSha256": "7591873d1031fa83277b08332ce8aee3166498422a6935a31e6be9a6d2695f97"
+      }
+    },
+    {
+      "check": "Every payload member independently matches MEMBER_MANIFEST",
+      "passed": true,
+      "detail": {
+        "checked": 256,
+        "failures": []
+      }
+    },
+    {
+      "check": "Director decision independently matches delivery, authority, target IDs and closed AFP211-E01",
+      "passed": true,
+      "detail": {
+        "closedEvidenceFinding": {
+          "id": "AFP211-E01",
+          "status": "CLOSED",
+          "missingComparatorClausesRemoved": true
+        }
+      }
+    },
+    {
+      "check": "Five spell-local blockers retain exact IDs and explicitly mark comparator evidence closed",
+      "passed": true,
+      "detail": {
+        "blockers": [
+          "AFP211-B01",
+          "AFP211-B02",
+          "AFP211-B03",
+          "AFP211-B04",
+          "AFP211-B05"
+        ],
+        "closedEvidence": "CLOSED"
+      }
+    },
+    {
+      "check": "Minimum missing-witness and required-content records match between delivery and director decision",
+      "passed": true,
+      "detail": {
+        "alignment-ascension": "Supply/authorize the complete Ascension form, insight and lifecycle specification; then demonstrate one full useful transformed-body encounter and one useful insight encounter across the two actual school routes, including alignment change/Lock/protection, gear, suppression, expiry and fit cleanup.",
+        "alignment-perfection": "Supply/authorize the exact cleansing operation and complete axis-dependent benefits/lifecycle; then demonstrate actual purification and useful benefits across supported, Neutral and undefined axes, with refusal/protection/overlap/ending and retained oath history.",
+        "faction-incarnate": "Supply/authorize the Incarnate profile, concrete faction-dependent actions/resources, invocation and lifecycle; bind actual faction and caster facts and demonstrate two useful encounters, full companion budgets, healing/Null/zero, suppression/expiry and custody.",
+        "faction-perfection": "Supply a concrete supported benefit with eligibility, terms, actual availability and finite entitlement; demonstrate its real use after maximum standing and a later interaction with independent permissions, consumption and original history intact.",
+        "corruption-purification": "Supply/authorize the complete cure matrix, creature/area geometry and permanent-result/Until-dispelled lifecycle; demonstrate a real creature cure and a multi-source area cure with exact protected exceptions, dependency extents, future exposure and dispel settlement."
+      }
+    },
+    {
+      "check": "All five procedures remain explicitly incomplete proposals, with zero complete operational procedures",
+      "passed": true,
+      "detail": {
+        "procedureStatuses": [
+          "source-conditioned-proposal-INCOMPLETE-NOT-OPERATIONAL",
+          "source-conditioned-proposal-INCOMPLETE-NOT-OPERATIONAL",
+          "source-conditioned-proposal-INCOMPLETE-NOT-OPERATIONAL",
+          "source-conditioned-proposal-INCOMPLETE-NOT-OPERATIONAL",
+          "source-conditioned-proposal-INCOMPLETE-NOT-OPERATIONAL"
+        ]
+      }
+    },
+    {
+      "check": "All 28 original questions have preserved dispositions and seven future requirements remain incomplete",
+      "passed": true,
+      "detail": {
+        "questions": 28,
+        "futureRequirements": 7
+      }
+    },
+    {
+      "check": "Current source data audit reports 1,584 passing checks and no failures",
+      "passed": true,
+      "detail": {
+        "checks": 1584,
+        "failed": 0
+      }
+    },
+    {
+      "check": "All ten preserved component cases replay and reversible-operation totals reconcile",
+      "passed": true,
+      "detail": {
+        "cases": 10,
+        "events": 10,
+        "forward": 20,
+        "inverse": 20
+      }
+    },
+    {
+      "check": "Six accepted comparator envelopes close AFP211-E01 without widening scope",
+      "passed": true,
+      "detail": {
+        "comparators": [
+          "alignment-avatar",
+          "alignment-immunity",
+          "corruption-immunity",
+          "faction-aegis",
+          "faction-citadel",
+          "faction-paragon"
+        ]
+      }
+    },
+    {
+      "check": "Semantic and clock checks distinguish data replay from missing full positive histories",
+      "passed": true,
+      "detail": {
+        "clock": {
+          "status": "NOT-DEMONSTRATED",
+          "passed": false,
+          "failedDataReplayCases": 0,
+          "fullActorTimelineCases": 0,
+          "componentReplayCases": 10,
+          "reason": "The preserved records are single bounded component events with no full cast payment/regular-turn/Ready/recharge/expiry/death-save history. No complete clock check is claimed. Missing positive procedures prevent end-to-end clock certification.",
+          "sourceRelativeRequirement": "Retain actual actor starts/ends and resource histories, Incarnate concentration up to one minute, individual source clocks, and real suppression/expiry. No pulse-as-turn substitution."
+        },
+        "semanticBlockedCriteria": 10,
+        "missingComparatorBlockers": 0
+      }
+    },
+    {
+      "check": "Pre-seal and package audit summaries report complete passes",
+      "passed": true,
+      "detail": {
+        "presealChecks": 213,
+        "packageChecks": 1545
+      }
+    },
+    {
+      "check": "No application, canonical/GitHub changes, supplied-program execution or runtime execution",
+      "passed": true,
+      "detail": {
+        "canonicalChanges": false,
+        "githubChanges": false,
+        "runtimeExecuted": false,
+        "authorityChange": 0
+      }
+    },
+    {
+      "check": "Return binds exact current-source, Return211 and comparator-supplement archives",
+      "passed": true,
+      "detail": {
+        "sourceArchive": "7b07dadb2f2433c9df78d54c6c7a0a2032718d803629c208091f6f44fd6aa1ec",
+        "priorArchive": "a5acae246fd72b288280d56c6f41e975e350f6f6a22b4322230f3bdebe19ae95",
+        "comparatorSupplement": "b4e20789d48daed1bea73e348c4ace626c265015ab73320e655f328023aa6a99"
+      }
+    },
+    {
+      "check": "All 40 Return211 members are byte-exactly preserved directly or through Packet231 historical binding",
+      "passed": true,
+      "detail": {
+        "members": 40,
+        "directCopies": 39,
+        "packetHistoricalBindings": [
+          {
+            "priorMember": "evidence/DD_Rank9_Alignment_Faction_Purification_5_Source_Conference_02.zip",
+            "packetMember": "historical/DD_Rank9_Alignment_Faction_Purification_5_Source_Conference_02.zip"
+          }
+        ],
+        "failures": []
+      }
+    },
+    {
+      "check": "All 17 comparator-supplement members are embedded byte-exactly and match their bindings",
+      "passed": true,
+      "detail": {
+        "members": 17,
+        "failures": []
+      }
+    },
+    {
+      "check": "All 130 current-source bindings match both the submitted Packet231 and embedded Return bytes",
+      "passed": true,
+      "detail": {
+        "bindings": 130,
+        "failures": []
+      }
+    },
+    {
+      "check": "Original questions, future requirements, casebook and all ten case files remain byte-exact to Return211",
+      "passed": true,
+      "detail": {
+        "questions": 28,
+        "futureRequirements": 7,
+        "cases": 10
+      }
+    },
+    {
+      "check": "Return names the actual next group in current queue order",
+      "passed": true,
+      "detail": {
+        "nextGroup": "rank9-projection-confinement2",
+        "pendingIds": [
+          "astral-projection",
+          "imprisonment"
+        ]
+      }
+    },
+    {
+      "check": "Packet231 queue-member SHA/CRC matches NEXT_GROUP and local pending order is unchanged",
+      "passed": true,
+      "detail": {
+        "packetQueueSha256": "212aeae725873e30f3c3eb02b56eb572139dbae45afd9cf68916b917eeec6941",
+        "localMatchesPacketOrder": true,
+        "actualNext": {
+          "group": "rank9-projection-confinement2",
+          "pendingIds": [
+            "astral-projection",
+            "imprisonment"
+          ],
+          "pendingCount": 2,
+          "historicalPhase": "source-conference-prepared-unsent",
+          "candidate": {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/rank9_projection_confinement_2_source_conference_01.json",
+            "bytes": 1018151,
+            "sha256": "381cf31c7b645c088695e7f3900c8a1008348df710bba4254d60d8e13a42070c"
+          },
+          "archive": {
+            "path": "docs/audit/2026-10-08/full-game/DD_Rank9_Projection_Confinement_2_Source_Conference_01.zip",
+            "bytes": 15331894,
+            "sha256": "b734429e7011e16abcf9662447a4622dd09b6542dc0d193bde1c6c1e2cf888eb"
+          },
+          "freshPacketRequiredForCurrentAuthority": true,
+          "status": "PENDING_FRESH_DIRECTOR_PACKET_AT_AUTHORITY_810_38_0"
+        }
+      }
+    },
+    {
+      "check": "Return explicitly leaves the next group unreviewed and requires a fresh packet",
+      "passed": true,
+      "detail": {
+        "reviewStarted": false,
+        "freshPacketRequired": true
+      }
+    }
+  ]
+}

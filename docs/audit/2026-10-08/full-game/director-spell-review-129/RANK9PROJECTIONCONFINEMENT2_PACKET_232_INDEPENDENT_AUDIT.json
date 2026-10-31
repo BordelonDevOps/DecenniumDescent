@@ -1,0 +1,242 @@
+{
+  "id": "RANK9PROJECTIONCONFINEMENT2-PACKET232-INDEPENDENT-AUDIT",
+  "status": "PASS",
+  "checkedAtUtc": "2026-10-30T01:53:52.173656+00:00",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_projectionconfinement2_current_source_232_prepared/DD_Rank9_ProjectionConfinement2_CurrentSource_232.zip",
+    "bytes": 58326051,
+    "sha256": "04db770603d7eb2a6de0c3231b45bfc5c4a454ddcfe621f06adc7d583792dc19",
+    "crc32": "2c27d057"
+  },
+  "delivery": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_projectionconfinement2_current_source_232_prepared/DD_Rank9_ProjectionConfinement2_CurrentSource_232_DELIVERY.json",
+    "bytes": 44503,
+    "sha256": "1f21c757e6947a767f1f0aa24a0369273500cd7cffcab84b15f6b5ca6f4be583",
+    "crc32": "c6f4b969"
+  },
+  "authority": {
+    "reviewedApplied": 811,
+    "pending": 37,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 535,
+    "scopedInterfaces": 173
+  },
+  "targetIds": [
+    "astral-projection",
+    "imprisonment"
+  ],
+  "questions": 26,
+  "requiredMainCases": 4,
+  "futureRequirements": 8,
+  "sourceBindings": 135,
+  "changedHistoricalBindings": 96,
+  "preservedReturns": [
+    228,
+    229,
+    230,
+    231
+  ],
+  "checkCount": 15,
+  "passedChecks": 15,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "check": "Packet232 archive size/SHA/CRC and filename match its DELIVERY manifest",
+      "passed": true,
+      "detail": {
+        "bytes": 58326051,
+        "sha256": "04db770603d7eb2a6de0c3231b45bfc5c4a454ddcfe621f06adc7d583792dc19",
+        "crc32": "2c27d057"
+      }
+    },
+    {
+      "check": "Packet is bound to current main authority 811/37/0 and exact two still-pending IDs",
+      "passed": true,
+      "detail": {
+        "authority": {
+          "reviewedApplied": 811,
+          "pending": 37,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 535,
+          "scopedInterfaces": 173
+        },
+        "targets": [
+          "astral-projection",
+          "imprisonment"
+        ]
+      }
+    },
+    {
+      "check": "Current index and catalog contain both targets as pending with exact current counts",
+      "passed": true,
+      "detail": {
+        "targetStatuses": [
+          [
+            "astral-projection",
+            "pending-authored-procedure"
+          ],
+          [
+            "imprisonment",
+            "pending-authored-procedure"
+          ]
+        ]
+      }
+    },
+    {
+      "check": "Historical conference and source-conference packet are explicitly prepared-only, not prior decisions",
+      "passed": true,
+      "detail": {
+        "conference129": "PREPARED_NOT_SENT",
+        "sourceConference01": "PREPARED_UNSENT"
+      }
+    },
+    {
+      "check": "Preserved question, main-case and future-requirement counts reconcile",
+      "passed": true,
+      "detail": {
+        "originalQuestions": 24,
+        "focusedAdditions": 2,
+        "totalQuestions": 26,
+        "mainCases": 4,
+        "futureRequirements": 8
+      }
+    },
+    {
+      "check": "Prepared candidate adopts no new rules and retains the exact two source records",
+      "passed": true,
+      "detail": {
+        "newRuleAdoptions": 0,
+        "recordIds": [
+          "astral-projection",
+          "imprisonment"
+        ]
+      }
+    },
+    {
+      "check": "ZIP contains exactly 183 unique safe members matching the internal manifest",
+      "passed": true,
+      "detail": {
+        "members": 183,
+        "payloadMembers": 182,
+        "manifestBytes": 46464,
+        "manifestSha256": "0f817fd384844ce6b3f2cc23eb02173680f1719463bfc295fb28960042ef322a",
+        "unsafe": []
+      }
+    },
+    {
+      "check": "Every payload member independently matches the internal manifest",
+      "passed": true,
+      "detail": {
+        "checked": 182,
+        "failures": []
+      }
+    },
+    {
+      "check": "Historical source-conference archive is embedded byte-exactly",
+      "passed": true,
+      "detail": {
+        "bytes": 15331894,
+        "sha256": "b734429e7011e16abcf9662447a4622dd09b6542dc0d193bde1c6c1e2cf888eb",
+        "members": 139
+      }
+    },
+    {
+      "check": "All 135 historical bindings and refreshed current source bytes reconcile",
+      "passed": true,
+      "detail": {
+        "bindings": 135,
+        "changedBindings": 96,
+        "failures": []
+      }
+    },
+    {
+      "check": "Historical notes, packet record, preparation, check and request are included byte-exactly",
+      "passed": true,
+      "detail": {
+        "questions": 26,
+        "priorStatus": "PREPARED_NOT_SENT"
+      }
+    },
+    {
+      "check": "Return228–231 archives, matching deliveries, independent audits and receipts are embedded byte-exactly",
+      "passed": true,
+      "detail": {
+        "returns": [
+          228,
+          229,
+          230,
+          231
+        ],
+        "failures": []
+      }
+    },
+    {
+      "check": "Queue, handoff and pending audit retain authority and identify only the next two IDs",
+      "passed": true,
+      "detail": {
+        "authority": {
+          "reviewedApplied": 811,
+          "pending": 37,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 535,
+          "scopedInterfaces": 173
+        },
+        "targetIds": [
+          "astral-projection",
+          "imprisonment"
+        ]
+      }
+    },
+    {
+      "check": "Return231 submission record and queue preserve the five held decisions",
+      "passed": true,
+      "detail": {
+        "submissionStatus": "RETURN231_AUDITED_HELD_811_37_0",
+        "heldIds": [
+          "alignment-ascension",
+          "alignment-perfection",
+          "faction-incarnate",
+          "faction-perfection",
+          "corruption-purification"
+        ]
+      }
+    },
+    {
+      "check": "Packet requests only target 232 and carries all prior holds without canonical/application changes",
+      "passed": true,
+      "detail": {
+        "preservedHolds": [
+          [
+            228,
+            [
+              "reverse-gravity-field"
+            ]
+          ],
+          [
+            229,
+            [
+              "soul-reflection"
+            ]
+          ],
+          [
+            230,
+            [
+              "eternal-forge",
+              "matter-conversion"
+            ]
+          ],
+          [
+            231,
+            [
+              "alignment-ascension",
+              "alignment-perfection",
+              "faction-incarnate",
+              "faction-perfection",
+              "corruption-purification"
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

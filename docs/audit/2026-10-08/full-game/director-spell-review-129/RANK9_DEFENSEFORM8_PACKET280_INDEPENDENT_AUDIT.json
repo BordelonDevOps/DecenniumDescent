@@ -1,0 +1,371 @@
+{
+  "id": "RANK9DEFENSEFORM8-PACKET280-INDEPENDENT-AUDIT",
+  "recordedAtUtc": "2026-10-30T20:50:58.832833+00:00",
+  "status": "PASS",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_defenseform8_current_source_280_prepared/DD_Rank9_DefenseForm8_CurrentSource_280.zip",
+    "bytes": 13868595,
+    "sha256": "79861940855e4af46088b19305307718897b95c2c7c3136daa2825900e0b2592",
+    "crc32": "e52f4d0c"
+  },
+  "delivery": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_defenseform8_current_source_280_prepared/DD_Rank9_DefenseForm8_CurrentSource_280_DELIVERY.json",
+    "bytes": 83201,
+    "sha256": "f1d969b715bceea76aa953bfbfb4d48028ad5b1894db32db35481a2002cabbb9",
+    "crc32": "38f590eb"
+  },
+  "authority": {
+    "reviewedApplied": 816,
+    "pending": 32,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 540,
+    "scopedInterfaces": 173
+  },
+  "targetIds": [
+    "elemental-shell",
+    "timeless-form",
+    "invulnerable-sphere"
+  ],
+  "currentSourceBindingCount": 87,
+  "priorReturnExcerptCount": 56,
+  "targetCaseCount": 46,
+  "checkCount": 21,
+  "passedChecks": 21,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "check": "outer archive and external delivery identify Packet280 and exact archive bytes",
+      "passed": true,
+      "detail": {
+        "actual": {
+          "bytes": 13868595,
+          "sha256": "79861940855e4af46088b19305307718897b95c2c7c3136daa2825900e0b2592",
+          "crc32": "e52f4d0c"
+        },
+        "expected": {
+          "fileName": "DD_Rank9_DefenseForm8_CurrentSource_280.zip",
+          "path": "DD_Rank9_DefenseForm8_CurrentSource_280.zip",
+          "bytes": 13868595,
+          "sha256": "79861940855e4af46088b19305307718897b95c2c7c3136daa2825900e0b2592",
+          "crc32": "e52f4d0c"
+        }
+      }
+    },
+    {
+      "check": "delivery authority and target scope are exactly current 816/32/0 and the three pending Defense/Form8 identities",
+      "passed": true,
+      "detail": {
+        "authority": {
+          "reviewedApplied": 816,
+          "pending": 32,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 540,
+          "scopedInterfaces": 173
+        },
+        "targetIds": [
+          "elemental-shell",
+          "timeless-form",
+          "invulnerable-sphere"
+        ],
+        "group": "rank9-defense-form8"
+      }
+    },
+    {
+      "check": "current queue/handoff/pending snapshots and native index agree on unchanged authority",
+      "passed": true,
+      "detail": {
+        "queue": {
+          "reviewedApplied": 816,
+          "pending": 32,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 540,
+          "scopedInterfaces": 173
+        },
+        "handoff": {
+          "reviewedApplied": 816,
+          "pending": 32,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 540,
+          "scopedInterfaces": 173
+        },
+        "pendingCount": 32,
+        "index": {
+          "reviewed": 816,
+          "pending": 32
+        }
+      }
+    },
+    {
+      "check": "all requested targets remain pending/non-operational and prior Return218 acceptances are applied",
+      "passed": true,
+      "detail": {
+        "elemental-shell": {
+          "index": "pending-authored-procedure",
+          "operational": false
+        },
+        "timeless-form": {
+          "index": "pending-authored-procedure",
+          "operational": false
+        },
+        "invulnerable-sphere": {
+          "index": "pending-authored-procedure",
+          "operational": false
+        },
+        "absolute-immunity": {
+          "index": "reviewed-authored-operational-playtest",
+          "operational": false
+        },
+        "body-to-void": {
+          "index": "reviewed-authored-operational-playtest",
+          "operational": false
+        }
+      }
+    },
+    {
+      "check": "ZIP integrity passes and member paths are unique, safe ordinary files",
+      "passed": true,
+      "detail": {
+        "members": 177,
+        "unique": 177,
+        "unsafe": []
+      }
+    },
+    {
+      "check": "external allowlist and member inventory exactly cover the archive",
+      "passed": true,
+      "detail": {
+        "archive": 177,
+        "allowlist": 177,
+        "memberRecords": 177,
+        "memberCount": 177
+      }
+    },
+    {
+      "check": "every archive member matches external bytes/SHA/CRC",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "embedded manifest covers every payload member exactly and is self-excluding",
+      "passed": true,
+      "detail": {
+        "payload": 176,
+        "payloadCount": 176
+      }
+    },
+    {
+      "check": "every payload member matches the internal manifest",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "all 87 refreshed sources bind exact packet bytes and current worktree files",
+      "passed": true,
+      "detail": {
+        "bindingCount": 87,
+        "errors": []
+      }
+    },
+    {
+      "check": "current candidate is structurally equal to the queue-bound historical candidate with byte difference disclosed",
+      "passed": true,
+      "detail": {
+        "currentPendingGroup": {
+          "group": "rank9-defense-form8",
+          "spellIds": [
+            "elemental-shell",
+            "timeless-form",
+            "invulnerable-sphere"
+          ],
+          "count": 3,
+          "alreadyAcceptedAppliedIds": [
+            "absolute-immunity",
+            "body-to-void"
+          ]
+        },
+        "reconciliation": {
+          "id": "RANK9-DEFENSEFORM8-CANDIDATE-BINDING-RECONCILIATION-280",
+          "recordedAtUtc": "2026-10-30T20:50:46.601987+00:00",
+          "queueCandidateBinding": {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/rank9_defense_form_8_source_conference_01.json",
+            "bytes": 680557,
+            "sha256": "38750334893c7b4f4eeb1d945e13a60582bef207595d6cab401ef5e855568922"
+          },
+          "historicalArchiveCandidateBinding": {
+            "path": "CANDIDATE.json",
+            "bytes": 680557,
+            "sha256": "38750334893c7b4f4eeb1d945e13a60582bef207595d6cab401ef5e855568922",
+            "crc32": "0c606623"
+          },
+          "currentWorktreeCandidateBinding": {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/rank9_defense_form_8_source_conference_01.json",
+            "bytes": 690765,
+            "sha256": "3cc9782b1ef233fd6b521885fc9a75cfd70480e06e967811a4e60eda1dc78bc7",
+            "crc32": "da685ac4"
+          },
+          "sourceArchiveBinding": {
+            "path": "docs/audit/2026-10-08/full-game/DD_Rank9_Defense_Form_8_Source_Conference_01.zip",
+            "bytes": 5579476,
+            "sha256": "c5f73c5d1912d1364a018449a86db23cd18bc3a93443c1135c43af2213fc0c44",
+            "crc32": "7cd6c2d7"
+          },
+          "jsonStructuralEquality": true,
+          "fieldDifferences": 0,
+          "byteEqualityQueueCandidateToCurrent": false,
+          "differenceType": "Current worktree candidate is byte-distinct from the queue-bound conference candidate but JSON-structurally identical.",
+          "authority": {
+            "reviewedApplied": 816,
+            "pending": 32,
+            "acceptedUnapplied": 0,
+            "completeStandaloneProcedures": 540,
+            "scopedInterfaces": 173
+          },
+          "scope": [
+            "elemental-shell",
+            "timeless-form",
+            "invulnerable-sphere"
+          ]
+        }
+      }
+    },
+    {
+      "check": "source-search candidates are explicitly leads, not silently promoted witnesses",
+      "passed": true,
+      "detail": {
+        "id": "DEFENSEFORM8-280-CURRENT-SOURCE-LEADS",
+        "authority": {
+          "reviewedApplied": 816,
+          "pending": 32,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 540,
+          "scopedInterfaces": 173
+        },
+        "scopeIds": [
+          "elemental-shell",
+          "timeless-form",
+          "invulnerable-sphere"
+        ],
+        "leadsAreNotFindings": true,
+        "leads": [
+          {
+            "source": "catalog.json",
+            "pointer": "/spells (id=faction-portal)/operational",
+            "lead": "Faction Portal currently defines one-way transit to a specific known same- or other-plane faction headquarters and rechecks exact teleport/planar blockers at crossing. Reassess whether an actually lawful exact route and current actor are source-established against Invulnerable Sphere; do not infer that a source exists just from the procedure."
+          },
+          {
+            "source": "catalog.json",
+            "pointer": "/spells (id=summon-spectral-steed)/operational",
+            "lead": "Spectral Steed has one commanded planar crossing attempt to a specific known other-plane site, but is a noncombat mount with no damaging Action. Assess it only if it meets the exact blocked branch; do not treat its name as a valid companion attacker."
+          },
+          {
+            "source": "catalog.json",
+            "pointer": "/spells (id=time-stop)/operational",
+            "lead": "Current card remains blocked-pending-operational-review with operational=null. Check the complete current bound sources for any later accepted operational Time Stop interface; class access alone is not a positive source."
+          },
+          {
+            "source": "catalog.json",
+            "pointer": "/spells (id=volcanic-cage or deep-crust-spike)/operational",
+            "lead": "Both are blocked-pending-operational-review with operational=null. Their printed descriptions are not automatically an instantiated noncreature environmental damage source."
+          },
+          {
+            "source": "catalog.json",
+            "pointer": "/spells (id=dominate-beast)/operational",
+            "lead": "Current Dominate Beast includes an owner-attached companion execution bridge. Reassess whether any complete current source actually instantiates the companion/proxy body, equipment, native attack, controller acquisition, command payment and attached phase required by DF218-B02."
+          }
+        ]
+      }
+    },
+    {
+      "check": "all exact prior Return218 target procedures and cases are preserved under dual source delivery bindings",
+      "passed": true,
+      "detail": {
+        "excerpts": 56,
+        "sourceArchive": {
+          "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_defenseform8_return218_received/DD_Rank9_DefenseForm5_Director_Return218.zip",
+          "bytes": 72072047,
+          "sha256": "09e592f58e66975933f3feb8fe8779c215d5a70d5f00623a23da6ede351d8875",
+          "crc32": "f38d5a61"
+        },
+        "errors": []
+      }
+    },
+    {
+      "check": "all 46 carried Return218 case records are limited to the three held target spells",
+      "passed": true,
+      "detail": {
+        "targetCases": 46,
+        "spellIds": [
+          "elemental-shell",
+          "invulnerable-sphere",
+          "timeless-form"
+        ]
+      }
+    },
+    {
+      "check": "previous held decisions and four precise blocker IDs are retained without reopening accepted spells",
+      "passed": true,
+      "detail": {
+        "acceptedIds": [
+          "absolute-immunity",
+          "body-to-void"
+        ],
+        "heldIds": [
+          "elemental-shell",
+          "timeless-form",
+          "invulnerable-sphere"
+        ],
+        "blockerIds": [
+          "DF218-B01",
+          "DF218-B02",
+          "DF218-B03",
+          "DF218-B04"
+        ]
+      }
+    },
+    {
+      "check": "latest Return235 is independently audited and preserved with final-word held",
+      "passed": true,
+      "detail": {
+        "auditStatus": "PASS",
+        "heldIds": [
+          "final-word"
+        ]
+      }
+    },
+    {
+      "check": "Return279 text-only hold and Packet279 audit/receipt are preserved without reopening Final Word",
+      "passed": true,
+      "detail": {
+        "heldIds": [
+          "final-word"
+        ],
+        "blockers": [
+          "DR217-B01"
+        ],
+        "crosscheck": "PASS",
+        "packetAudit": "PASS",
+        "packetReceipt": "PASS"
+      }
+    },
+    {
+      "check": "Parent279 checkpoint artifact is present: history/Parent279/CURRENT_HANDOFF_279.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Parent279 checkpoint artifact is present: history/Parent279/CURRENT_SPELL_QUEUE_279.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Parent279 checkpoint artifact is present: history/Parent279/CURRENT32_PENDING_IDENTITY_AUDIT_279.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Parent279 checkpoint artifact is present: history/Parent279/CURRENT_SPELL_REVIEW_SNAPSHOT_279.md",
+      "passed": true,
+      "detail": null
+    }
+  ]
+}

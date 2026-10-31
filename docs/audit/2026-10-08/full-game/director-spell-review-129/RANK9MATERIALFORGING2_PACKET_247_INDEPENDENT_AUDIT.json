@@ -1,0 +1,215 @@
+{
+  "id": "RANK9MATERIALFORGING2-PACKET-247-INDEPENDENT-AUDIT",
+  "status": "PASS",
+  "checkedAtUtc": "2026-10-30T08:01:56.878673+00:00",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_materialforging2_current_source_247_prepared/DD_Rank9_MaterialForging2_CurrentSource_247.zip",
+    "bytes": 242224199,
+    "sha256": "1ec8c39b891787eeac925fafe1b78f80bb67b2208ae29cd80986264f3f4aed71",
+    "crc32": "c50ebf70"
+  },
+  "delivery": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_materialforging2_current_source_247_prepared/DD_Rank9_MaterialForging2_CurrentSource_247_DELIVERY.json",
+    "bytes": 4343,
+    "sha256": "046ffa45bae9e3bdc8eaabeb7fdb52b04bbfc27e849ce9e4c5d67bb1cadea020",
+    "crc32": "3cb9f166"
+  },
+  "sourceCommit": "197366eae0c786415de55a0e4739e83f49f1a65f",
+  "sourceBranch": "main",
+  "authority": {
+    "reviewedApplied": 811,
+    "pending": 37,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 535,
+    "scopedInterfaces": 173
+  },
+  "targetIds": [
+    "eternal-forge",
+    "matter-conversion"
+  ],
+  "previousBlockers": [
+    "MF210-B01",
+    "MF210-B02"
+  ],
+  "previousOutsideScopeHolds": [
+    "soul-reflection"
+  ],
+  "sourceBindingsVerified": 174,
+  "checkCount": 16,
+  "passedChecks": 16,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "check": "Packet247 archive and delivery bind exact bytes/SHA/CRC and label",
+      "passed": true,
+      "detail": {
+        "bytes": 242224199,
+        "sha256": "1ec8c39b891787eeac925fafe1b78f80bb67b2208ae29cd80986264f3f4aed71",
+        "crc32": "c50ebf70"
+      }
+    },
+    {
+      "check": "Candidate/context/request sidecars match independent delivery bindings",
+      "passed": true,
+      "detail": {
+        "candidate": {
+          "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_materialforging2_current_source_247_prepared/CURRENT_SOURCE_CONFERENCE_CANDIDATE_247.json",
+          "bytes": 954228,
+          "sha256": "e808357f339162f6d68a3a001f9c7073da6feaf8f9811a1e08dcdf35be6d8f0a"
+        },
+        "context": {
+          "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_materialforging2_current_source_247_prepared/CURRENT_CONTEXT_247.json",
+          "bytes": 5265,
+          "sha256": "eccc6dfdffcd96029c0e72dc39b658cf1f27b1100da996f44dab4f45a2a1a2f1"
+        },
+        "request": {
+          "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_materialforging2_current_source_247_prepared/REQUEST_247.txt",
+          "bytes": 1977,
+          "sha256": "50b182b2c77032e8a218df3ac4a97e3f7e00332eaa8cccbd4b6d9625466b6a91"
+        }
+      }
+    },
+    {
+      "check": "Archive has exact unique safe allowlisted members and valid ZIP CRCs",
+      "passed": true,
+      "detail": {
+        "members": 215,
+        "manifestRows": 214,
+        "unsafe": []
+      }
+    },
+    {
+      "check": "Every archive member matches external delivery size/SHA/CRC",
+      "passed": true,
+      "detail": {
+        "checked": 214,
+        "failures": []
+      }
+    },
+    {
+      "check": "Internal manifest has the exact payload allowlist and agrees with delivery counts",
+      "passed": true,
+      "detail": {
+        "payload": 214,
+        "internalRows": 214
+      }
+    },
+    {
+      "check": "Every payload member matches internal manifest",
+      "passed": true,
+      "detail": {
+        "checked": 214,
+        "failures": []
+      }
+    },
+    {
+      "check": "Fresh packet scope and authority match current index/catalog and queue",
+      "passed": true,
+      "detail": {
+        "targetIds": [
+          "eternal-forge",
+          "matter-conversion"
+        ],
+        "authority": {
+          "reviewedApplied": 811,
+          "pending": 37,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 535,
+          "scopedInterfaces": 173
+        }
+      }
+    },
+    {
+      "check": "Both target identities remain pending with exact native access and no accepted procedure",
+      "passed": true,
+      "detail": {
+        "targets": [
+          "eternal-forge",
+          "matter-conversion"
+        ]
+      }
+    },
+    {
+      "check": "Twenty-four original questions, both addenda, four new main cases and five future requirements are preserved",
+      "passed": true,
+      "detail": {
+        "questions": 24,
+        "addenda": 2,
+        "mainCases": 4,
+        "futureRequirements": 5
+      }
+    },
+    {
+      "check": "Historical source candidate/archive and all 174 original source rows remain exact",
+      "passed": true,
+      "detail": {
+        "archiveBytes": 52110282,
+        "archiveSha256": "ed9ee8a693ceabebe10cbd9e3763cd2a999bfb588c35a34987759f1a804092d3",
+        "sourceRows": 174,
+        "failures": []
+      }
+    },
+    {
+      "check": "All 174 refreshed source bindings match both packet copies and current working-tree bytes",
+      "passed": true,
+      "detail": {
+        "checked": 174,
+        "failures": []
+      }
+    },
+    {
+      "check": "Queue order is Illusion/Reality5 then Material Forging2 and exactly these two pending IDs",
+      "passed": true,
+      "detail": {
+        "previous": "rank9-illusion-reality5",
+        "current": "rank9-material-forging2",
+        "pendingIds": [
+          "eternal-forge",
+          "matter-conversion"
+        ]
+      }
+    },
+    {
+      "check": "Return210 prior decision is independently checked and retains exact per-spell blockers",
+      "passed": true,
+      "detail": {
+        "heldIds": [
+          "eternal-forge",
+          "matter-conversion"
+        ],
+        "blockers": [
+          "MF210-B01",
+          "MF210-B02"
+        ],
+        "sourceAuditChecks": 19
+      }
+    },
+    {
+      "check": "Return246 hold remains preserved outside the two-identity packet scope",
+      "passed": true,
+      "detail": {
+        "return246Held": [
+          "soul-reflection"
+        ],
+        "blocker": [
+          "IR207-B02"
+        ]
+      }
+    },
+    {
+      "check": "Packet does not apply changes or open runtime, implementation, play, balance or release gates",
+      "passed": true,
+      "detail": {
+        "canonicalChanges": false,
+        "applicationChanges": false
+      }
+    },
+    {
+      "check": "Pending audit equals all 37 pending authored-index IDs and includes both targets",
+      "passed": true,
+      "detail": {
+        "pendingCount": 37
+      }
+    }
+  ]
+}

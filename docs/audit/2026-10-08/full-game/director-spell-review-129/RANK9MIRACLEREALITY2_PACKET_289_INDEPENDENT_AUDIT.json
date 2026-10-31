@@ -1,0 +1,254 @@
+{
+  "id": "RANK9MIRACLEREALITY2-PACKET289-INDEPENDENT-AUDIT",
+  "createdAtUtc": "2026-10-31T00:00:49.520916+00:00",
+  "status": "PASS",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_miraclereality2_current_source_289_prepared/DD_Rank9_MiracleReality2_CurrentSource_289.zip",
+    "bytes": 41188005,
+    "sha256": "913c81c3b6bf7bf5e96202c3d284015c264832d4cbf44dc27ce871b804880b06",
+    "crc32": "8fc3ee9c"
+  },
+  "deliveryManifest": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_miraclereality2_current_source_289_prepared/DD_Rank9_MiracleReality2_CurrentSource_289_DELIVERY.json",
+    "bytes": 101593,
+    "sha256": "55b61bec8eb2e9a8b294bc024dc786c7f265ac79f8a3b2ca0bfa06b99e41f53b",
+    "crc32": "3afd9c4e"
+  },
+  "authority": {
+    "reviewedApplied": 816,
+    "pending": 32,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 540,
+    "scopedInterfaces": 173
+  },
+  "targetIds": [
+    "divine-intervention-greater",
+    "wish"
+  ],
+  "priorTargetRuling": {
+    "heldIds": [
+      "divine-intervention-greater",
+      "wish"
+    ],
+    "blockerIds": {
+      "divine-intervention-greater": [
+        "MR233-B01"
+      ],
+      "wish": [
+        "MR233-B02"
+      ]
+    },
+    "authority": {
+      "reviewedApplied": 811,
+      "pending": 37
+    }
+  },
+  "nextPendingGroup": null,
+  "memberCount": 200,
+  "sourceBindings": 153,
+  "changedSourceBindings": 108,
+  "checkCount": 18,
+  "passedChecks": 18,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "check": "Packet289 ZIP and DELIVERY agree on exact bytes and tracked preparation status",
+      "passed": true,
+      "detail": {
+        "archive": {
+          "bytes": 41188005,
+          "sha256": "913c81c3b6bf7bf5e96202c3d284015c264832d4cbf44dc27ce871b804880b06",
+          "crc32": "8fc3ee9c"
+        },
+        "delivery": {
+          "bytes": 101593,
+          "sha256": "55b61bec8eb2e9a8b294bc024dc786c7f265ac79f8a3b2ca0bfa06b99e41f53b",
+          "crc32": "3afd9c4e"
+        },
+        "packetStatus": "PREPARED_AUDITED_UNSENT",
+        "preparationStatus": "PREPARED_AUDITED_UNSENT"
+      }
+    },
+    {
+      "check": "Packet289 names exact current main authority and only the Director-selected targets",
+      "passed": true,
+      "detail": {
+        "authority": {
+          "reviewedApplied": 816,
+          "pending": 32,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 540,
+          "scopedInterfaces": 173
+        },
+        "targets": [
+          "divine-intervention-greater",
+          "wish"
+        ]
+      }
+    },
+    {
+      "check": "Return233 target history is exact, held at 811/37/0, and independently PASS 30/30",
+      "passed": true,
+      "detail": {
+        "priorAuthority": {
+          "reviewedApplied": 811,
+          "pending": 37,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 535,
+          "scopedInterfaces": 173
+        },
+        "blockers": {
+          "divine-intervention-greater": [
+            "MR233-B01"
+          ],
+          "wish": [
+            "MR233-B02"
+          ]
+        },
+        "audit": "PASS",
+        "checks": 30
+      }
+    },
+    {
+      "check": "Packet289 contains 200 unique safe members and passes ZIP CRC validation",
+      "passed": true,
+      "detail": {
+        "members": 200,
+        "unsafe": []
+      }
+    },
+    {
+      "check": "Delivery and internal MANIFEST cover exactly all 199 non-manifest files",
+      "passed": true,
+      "detail": {
+        "payload": 199,
+        "internal": 199,
+        "external": 199
+      }
+    },
+    {
+      "check": "Every Packet289 member matches its exact size/SHA/CRC roster",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "Candidate and context bind the exact 816/32/0 Miracle/Reality2 review",
+      "passed": true,
+      "detail": {
+        "authority": {
+          "reviewedApplied": 816,
+          "pending": 32,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 540,
+          "scopedInterfaces": 173
+        },
+        "group": {
+          "group": "rank9-miracle-reality2",
+          "spellIds": [
+            "divine-intervention-greater",
+            "wish"
+          ],
+          "count": 2
+        }
+      }
+    },
+    {
+      "check": "The packet preserves 24 original questions, two focused additions, four main cases and eight future requirements",
+      "passed": true,
+      "detail": {
+        "questions": 24,
+        "focused": 2,
+        "mainCases": 4,
+        "future": 8,
+        "placements": 3
+      }
+    },
+    {
+      "check": "Prior Return233 is disclosed as historical ruling and requires a current-source reassessment",
+      "passed": true,
+      "detail": {
+        "conference129": "PREPARED_NOT_SENT",
+        "sourceConference01": "PREPARED_UNSENT",
+        "priorDirectorRuling": "Return233 held both identities at 811/37/0; see priorTargetRuling."
+      }
+    },
+    {
+      "check": "All 153 refreshed source bindings match Packet289 and the current live tree",
+      "passed": true,
+      "detail": {
+        "bindings": 153,
+        "failures": []
+      }
+    },
+    {
+      "check": "Historical source refresh transparently lists every changed binding",
+      "passed": true,
+      "detail": {
+        "changed": 108,
+        "examples": [
+          "DescentReviewChanges/ReviewBible/tools/feat335_copy_capture.py",
+          "DescentReviewChanges/ReviewBible/tools/feat335_copy_release.py",
+          "DescentReviewChanges/ReviewBible/tools/feat335_copy_payloads.py",
+          "DescentReviewChanges/ReviewBible/tools/feat335_copy_class_release.py",
+          "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+          "DescentReviewChanges/ReviewBible/data/director/spell_review/remaining_work_queue_66.json",
+          "DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_06.json"
+        ]
+      }
+    },
+    {
+      "check": "Current 289 queue, handoff and pending audit in the packet retain exact target and authority",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Exact Return233 ZIP, delivery, audit and receipt are attached",
+      "passed": true,
+      "detail": {
+        "priorArchive": {
+          "bytes": 13128859,
+          "sha256": "75d844ac9e6ae496ce59d8b1334ba5b3d48ed9e74a774d4a40b30a5b274cdcbf",
+          "crc32": "348d220f"
+        }
+      }
+    },
+    {
+      "check": "Return284–288 delivery/audit records preserve all exact unrelated holds",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "Return288 sealed current-source audit and receipt are bound and report 27/27 PASS",
+      "passed": true,
+      "detail": {
+        "audit": "PASS",
+        "checks": 27
+      }
+    },
+    {
+      "check": "Packet288 source audit and submission status are preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Both current target index rows remain pending with exact catalog records",
+      "passed": true,
+      "detail": {
+        "authoredCounts": {
+          "reviewed": 816,
+          "pending": 32
+        }
+      }
+    },
+    {
+      "check": "Packet preparation makes no canonical, application, runtime or GitHub changes",
+      "passed": true,
+      "detail": {
+        "canonicalChanges": false,
+        "applicationChanges": false,
+        "runtimeExecuted": false
+      }
+    }
+  ]
+}

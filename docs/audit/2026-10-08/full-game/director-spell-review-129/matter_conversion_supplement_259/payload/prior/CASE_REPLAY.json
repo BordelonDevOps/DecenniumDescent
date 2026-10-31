@@ -1,0 +1,1042 @@
+{
+  "cases": [
+    {
+      "id": "MF210-F-bracelet-instantiate",
+      "spellId": "eternal-forge",
+      "kind": "isolated-conditional-state-kernel",
+      "title": "Useful complete item instantiation, conditional on legal paid creation",
+      "file": "cases/MF210-F-bracelet-instantiate.json",
+      "bytes": 4959,
+      "sha256": "41f8dd024060f02b8cdaca8e94606ce3418b9f2c3b7bb5ab7f1488de41005059",
+      "crc32": "0b3bcbd6",
+      "events": 1,
+      "forwardOperations": 2,
+      "inverseOperations": 2,
+      "freshReplay": "PASS",
+      "prerequisitesNotDemonstrated": [
+        "Legal actor/cast commitment, component, placement and counter window not represented by this isolated item kernel."
+      ],
+      "endToEndWitness": false,
+      "eventResults": [
+        {
+          "eventId": "MF210-F-bracelet-instantiate:1",
+          "beforeSHA256": "2165847bc989f994ffc93c50df4e7ce72fdf31293bf4105841e6da26b98ef4f8",
+          "afterSHA256": "34614dbd5fdf96ec80b782fed7c7c2ea6ebd75480c81f5257adaa9faa9bc26cc",
+          "clockQualification": "No elapsed time or actor turn is modeled; this kernel cannot certify regular-turn accounting."
+        }
+      ]
+    },
+    {
+      "id": "MF210-F-charge",
+      "spellId": "eternal-forge",
+      "kind": "isolated-conditional-state-kernel",
+      "title": "Pre-roll charge spend",
+      "file": "cases/MF210-F-charge.json",
+      "bytes": 8938,
+      "sha256": "19e52ab16f6cc7d4642413665e263331b1919b11a9240f7132c05e0cd83540e3",
+      "crc32": "20d3f1c7",
+      "events": 1,
+      "forwardOperations": 2,
+      "inverseOperations": 2,
+      "freshReplay": "PASS",
+      "prerequisitesNotDemonstrated": [
+        "Actual legal hide opportunity and wearer action ledger must be supplied; this kernel does not fabricate a roll result."
+      ],
+      "endToEndWitness": false,
+      "eventResults": [
+        {
+          "eventId": "MF210-F-charge:1",
+          "beforeSHA256": "bf6b137d9e0a086acd3a19562bdad2795431394998b5d4c50eab63a8eb3c48df",
+          "afterSHA256": "04ae94d786759de75a025be945350458c302c7f21d3d3b4efeab7b7028c22815",
+          "clockQualification": "No elapsed time or actor turn is modeled; this kernel cannot certify regular-turn accounting."
+        }
+      ]
+    },
+    {
+      "id": "MF210-F-counter-false",
+      "spellId": "eternal-forge",
+      "kind": "source-linked-static-cast-trace",
+      "title": "Actual acquired Wizard class Counterspell fails",
+      "file": "cases/MF210-F-counter-false.json",
+      "bytes": 5240200,
+      "sha256": "8a6ba74f3710fb28f4d988969422adf36d092d798d4e91fbc5b501f3bf018479",
+      "crc32": "8f3b8e1a",
+      "events": 4,
+      "forwardOperations": 8,
+      "inverseOperations": 8,
+      "freshReplay": "PASS",
+      "prerequisitesNotDemonstrated": [],
+      "endToEndWitness": false,
+      "eventResults": [
+        {
+          "eventId": "MF210-F-counter-false:1",
+          "kind": "Forge-commitment",
+          "time": 0.1,
+          "beforeSHA256": "9f5b609352cf43ba884db105e078146206996928015e4ab0ae3ea7ab16dd89f0",
+          "afterSHA256": "e77d6e6af0fddb8094cdb10d7f281b289f04ae1ebafe55560d76c555bc108f81",
+          "observedRP": {
+            "A": 38,
+            "B": 64
+          },
+          "observedCustody": {}
+        },
+        {
+          "eventId": "MF210-F-counter-false:2",
+          "kind": "actual-counterspell-Reaction-3RP",
+          "time": 0.11,
+          "beforeSHA256": "e77d6e6af0fddb8094cdb10d7f281b289f04ae1ebafe55560d76c555bc108f81",
+          "afterSHA256": "d2135df8b9769562504413b11bfc5c3dca2a865300ff1d8b477833cfe7aeea74",
+          "observedRP": {
+            "A": 38,
+            "B": 61
+          },
+          "observedCustody": {}
+        },
+        {
+          "eventId": "MF210-F-counter-false:3",
+          "kind": "counter-check",
+          "time": 0.12,
+          "beforeSHA256": "d2135df8b9769562504413b11bfc5c3dca2a865300ff1d8b477833cfe7aeea74",
+          "afterSHA256": "6c7c814c881d01eb346cdc93827bfb0a24204cd68453020abefef4302178a15a",
+          "observedRP": {
+            "A": 38,
+            "B": 61
+          },
+          "observedCustody": {}
+        },
+        {
+          "eventId": "MF210-F-counter-false:4",
+          "kind": "surviving-parent-resolves-without-repay",
+          "time": 0.2,
+          "beforeSHA256": "6c7c814c881d01eb346cdc93827bfb0a24204cd68453020abefef4302178a15a",
+          "afterSHA256": "2941e5a6f902dacea37692e7938f9303a7ea321f24df8f76aacc86e6b63b16c9",
+          "observedRP": {
+            "A": 38,
+            "B": 61
+          },
+          "observedCustody": {
+            "sword-1": "floor"
+          }
+        }
+      ]
+    },
+    {
+      "id": "MF210-F-counter-true",
+      "spellId": "eternal-forge",
+      "kind": "source-linked-static-cast-trace",
+      "title": "Actual acquired Wizard class Counterspell negates",
+      "file": "cases/MF210-F-counter-true.json",
+      "bytes": 3923755,
+      "sha256": "e4aa469a33697e082c2727e003b48e2b81d54a416fb873a80e8d9f0821b8c388",
+      "crc32": "a5c121eb",
+      "events": 3,
+      "forwardOperations": 6,
+      "inverseOperations": 6,
+      "freshReplay": "PASS",
+      "prerequisitesNotDemonstrated": [],
+      "endToEndWitness": false,
+      "eventResults": [
+        {
+          "eventId": "MF210-F-counter-true:1",
+          "kind": "Forge-commitment",
+          "time": 0.1,
+          "beforeSHA256": "9f5b609352cf43ba884db105e078146206996928015e4ab0ae3ea7ab16dd89f0",
+          "afterSHA256": "dd54e8bc52f970ab440a2d4547a416272f6fb396bb4e775fd3ae7a680e800e88",
+          "observedRP": {
+            "A": 38,
+            "B": 64
+          },
+          "observedCustody": {}
+        },
+        {
+          "eventId": "MF210-F-counter-true:2",
+          "kind": "actual-counterspell-Reaction-3RP",
+          "time": 0.11,
+          "beforeSHA256": "dd54e8bc52f970ab440a2d4547a416272f6fb396bb4e775fd3ae7a680e800e88",
+          "afterSHA256": "57cf20083a17b2bb48f91d6326fb526854a7dc2609c80a37c285fce4a818650d",
+          "observedRP": {
+            "A": 38,
+            "B": 61
+          },
+          "observedCustody": {}
+        },
+        {
+          "eventId": "MF210-F-counter-true:3",
+          "kind": "counter-check",
+          "time": 0.12,
+          "beforeSHA256": "57cf20083a17b2bb48f91d6326fb526854a7dc2609c80a37c285fce4a818650d",
+          "afterSHA256": "2f05ad678f22f9eb3d92c177e332e8a1a8818d37d88eb30dadc302491e8973f2",
+          "observedRP": {
+            "A": 38,
+            "B": 62
+          },
+          "observedCustody": {}
+        }
+      ]
+    },
+    {
+      "id": "MF210-F-dispel",
+      "spellId": "eternal-forge",
+      "kind": "isolated-conditional-state-kernel",
+      "title": "Forge-only imprint termination leaves real body",
+      "file": "cases/MF210-F-dispel.json",
+      "bytes": 6400,
+      "sha256": "970d0c7d7b57ada712fca4e4f2f067ab4f2180066c56c9f98c84abe44b94a85a",
+      "crc32": "36261587",
+      "events": 1,
+      "forwardOperations": 2,
+      "inverseOperations": 2,
+      "freshReplay": "PASS",
+      "prerequisitesNotDemonstrated": [
+        "Actual acquired paid dispel with immutable capture and successful rank9 check is not demonstrated."
+      ],
+      "endToEndWitness": false,
+      "eventResults": [
+        {
+          "eventId": "MF210-F-dispel:1",
+          "beforeSHA256": "c5f1843dd22c4d0d6c611d146328b11d6de7f7ce71548277f2d31fb0499d131e",
+          "afterSHA256": "ab306d5b4cd3e156b403cccac4c5d1453ccbe947d98f943b80435b6dca6a87ba",
+          "clockQualification": "No elapsed time or actor turn is modeled; this kernel cannot certify regular-turn accounting."
+        }
+      ]
+    },
+    {
+      "id": "MF210-F-functional-dawn",
+      "spellId": "eternal-forge",
+      "kind": "isolated-conditional-state-kernel",
+      "title": "Actual eligible later dawn refills once",
+      "file": "cases/MF210-F-functional-dawn.json",
+      "bytes": 8268,
+      "sha256": "0a833b3636c841ead897021424a0b99c5aa6a4edc182e218f87318bc4aa290ff",
+      "crc32": "3bd448b5",
+      "events": 1,
+      "forwardOperations": 2,
+      "inverseOperations": 2,
+      "freshReplay": "PASS",
+      "prerequisitesNotDemonstrated": [
+        "Full elapsed lifecycle/opportunity ledger required; no implied rest or free action."
+      ],
+      "endToEndWitness": false,
+      "eventResults": [
+        {
+          "eventId": "MF210-F-functional-dawn:1",
+          "beforeSHA256": "81e1abfaba5af5a40956b69213755a825d3cbe1498237e7155fdb12bffd103cb",
+          "afterSHA256": "0294190b063af938575ca52b14d1023d3308f460b96ed244646ed60b220fa63b",
+          "clockQualification": "No elapsed time or actor turn is modeled; this kernel cannot certify regular-turn accounting."
+        }
+      ]
+    },
+    {
+      "id": "MF210-F-greater-dispel",
+      "spellId": "eternal-forge",
+      "kind": "source-linked-static-cast-trace",
+      "title": "Actual paid removal of Forge-only root via greater-dispel",
+      "file": "cases/MF210-F-greater-dispel.json",
+      "bytes": 5248002,
+      "sha256": "38d461244202d96e2cd8e921d657bc55b8f80cb90c2977f6780a820e4a825e74",
+      "crc32": "a1fe92e1",
+      "events": 4,
+      "forwardOperations": 8,
+      "inverseOperations": 8,
+      "freshReplay": "PASS",
+      "prerequisitesNotDemonstrated": [],
+      "endToEndWitness": false,
+      "eventResults": [
+        {
+          "eventId": "MF210-F-greater-dispel:1",
+          "kind": "Forge-commitment",
+          "time": 0.1,
+          "beforeSHA256": "9f5b609352cf43ba884db105e078146206996928015e4ab0ae3ea7ab16dd89f0",
+          "afterSHA256": "de75c4d965faac0a3725c2fb81edb4760459211f340e32edb99914f1451fb1a5",
+          "observedRP": {
+            "A": 38,
+            "B": 64
+          },
+          "observedCustody": {}
+        },
+        {
+          "eventId": "MF210-F-greater-dispel:2",
+          "kind": "Forge-created",
+          "time": 0.2,
+          "beforeSHA256": "de75c4d965faac0a3725c2fb81edb4760459211f340e32edb99914f1451fb1a5",
+          "afterSHA256": "3183ac94e0b7fb13ea8ccc5adb69703e24afd31b4523f20f6a2b05310c4f7878",
+          "observedRP": {
+            "A": 38,
+            "B": 64
+          },
+          "observedCustody": {
+            "sword-1": "floor"
+          }
+        },
+        {
+          "eventId": "MF210-F-greater-dispel:3",
+          "kind": "actual-paid-dispel",
+          "time": 0.3,
+          "beforeSHA256": "3183ac94e0b7fb13ea8ccc5adb69703e24afd31b4523f20f6a2b05310c4f7878",
+          "afterSHA256": "d815373145c00af359b632794d8937d39881dfcda5f6028fa012c85a21a4494a",
+          "observedRP": {
+            "A": 38,
+            "B": 54
+          },
+          "observedCustody": {
+            "sword-1": "floor"
+          }
+        },
+        {
+          "eventId": "MF210-F-greater-dispel:4",
+          "kind": "capture-and-remove-only-Forge-imprint",
+          "time": 0.4,
+          "beforeSHA256": "d815373145c00af359b632794d8937d39881dfcda5f6028fa012c85a21a4494a",
+          "afterSHA256": "26473b527796b5359cdb381cbd6a092e02e01b8ba38c576659265b39082ddfc9",
+          "observedRP": {
+            "A": 38,
+            "B": 54
+          },
+          "observedCustody": {
+            "sword-1": "floor"
+          }
+        }
+      ]
+    },
+    {
+      "id": "MF210-F-idempotent",
+      "spellId": "eternal-forge",
+      "kind": "isolated-conditional-state-kernel",
+      "title": "Replay does not duplicate existing item",
+      "file": "cases/MF210-F-idempotent.json",
+      "bytes": 7477,
+      "sha256": "515b4bbc11bf40abeefa37303849c5df26c4af53b3fbdeb84ceb9dc9d4abb633",
+      "crc32": "6039a980",
+      "events": 1,
+      "forwardOperations": 2,
+      "inverseOperations": 2,
+      "freshReplay": "PASS",
+      "prerequisitesNotDemonstrated": [
+        "Original lawful creation must exist."
+      ],
+      "endToEndWitness": false,
+      "eventResults": [
+        {
+          "eventId": "MF210-F-idempotent:1",
+          "beforeSHA256": "6ea7acaf66de78f669b0acc1b2275d5dd3cbc0cc6ecb00918204a12b15c86aa1",
+          "afterSHA256": "6ea7acaf66de78f669b0acc1b2275d5dd3cbc0cc6ecb00918204a12b15c86aa1",
+          "clockQualification": "No elapsed time or actor turn is modeled; this kernel cannot certify regular-turn accounting."
+        }
+      ]
+    },
+    {
+      "id": "MF210-F-late-fit",
+      "spellId": "eternal-forge",
+      "kind": "source-linked-static-cast-trace",
+      "title": "Paid late occupied placement has no output",
+      "file": "cases/MF210-F-late-fit.json",
+      "bytes": 1318327,
+      "sha256": "13bf7217ba7f2cf09d8b519c396922398b26ba549abc5d6336ea5b25af7917ad",
+      "crc32": "c350b6d0",
+      "events": 2,
+      "forwardOperations": 4,
+      "inverseOperations": 4,
+      "freshReplay": "PASS",
+      "prerequisitesNotDemonstrated": [],
+      "endToEndWitness": false,
+      "eventResults": [
+        {
+          "eventId": "MF210-F-late-fit:1",
+          "kind": "Forge-commitment",
+          "time": 0.1,
+          "beforeSHA256": "6b879e2d8b0f094bc43f93e2b66c96d3bffc7d42f474fc07ac60e6b99680e127",
+          "afterSHA256": "0bf4329d9a83dce62a7ed75b1c98b2f4f8bb3f3203ca7441e9cd9b3fb92869a0",
+          "observedRP": {
+            "A": 38
+          },
+          "observedCustody": {}
+        },
+        {
+          "eventId": "MF210-F-late-fit:2",
+          "kind": "atomic-late-failure",
+          "time": 0.2,
+          "beforeSHA256": "0bf4329d9a83dce62a7ed75b1c98b2f4f8bb3f3203ca7441e9cd9b3fb92869a0",
+          "afterSHA256": "0c8e966dbfe7a46c27bea74ffefc7d09a8018918c997989757b424af8958d83c",
+          "observedRP": {
+            "A": 38
+          },
+          "observedCustody": {}
+        }
+      ]
+    },
+    {
+      "id": "MF210-F-missed-dawn",
+      "spellId": "eternal-forge",
+      "kind": "isolated-conditional-state-kernel",
+      "title": "Suppressed dawn records no recharge",
+      "file": "cases/MF210-F-missed-dawn.json",
+      "bytes": 7905,
+      "sha256": "773e82b89da69417e10318411ca910c1cc5afb49a63c69914ca4f0d24ec3f198",
+      "crc32": "1124124d",
+      "events": 1,
+      "forwardOperations": 2,
+      "inverseOperations": 2,
+      "freshReplay": "PASS",
+      "prerequisitesNotDemonstrated": [
+        "Actual source clock and intervening actor opportunities required."
+      ],
+      "endToEndWitness": false,
+      "eventResults": [
+        {
+          "eventId": "MF210-F-missed-dawn:1",
+          "beforeSHA256": "1a976a6a956837c155ef1a15fd86429ea5addd9df5df06df4cd065ce27b7c9db",
+          "afterSHA256": "99e46e0627a6eb5cae3154a4060ad508773c935fa110b834dc44f971908634bf",
+          "clockQualification": "No elapsed time or actor turn is modeled; this kernel cannot certify regular-turn accounting."
+        }
+      ]
+    },
+    {
+      "id": "MF210-F-ready-expire",
+      "spellId": "eternal-forge",
+      "kind": "source-linked-static-cast-trace",
+      "title": "Actual Ready paid once expiry",
+      "file": "cases/MF210-F-ready-expire.json",
+      "bytes": 1318641,
+      "sha256": "60a6ee8aa1947132035c6c03479cddaafcdf4f343697f9d243fb3132bc1adbb4",
+      "crc32": "b0d6b885",
+      "events": 2,
+      "forwardOperations": 4,
+      "inverseOperations": 4,
+      "freshReplay": "PASS",
+      "prerequisitesNotDemonstrated": [],
+      "endToEndWitness": false,
+      "eventResults": [
+        {
+          "eventId": "MF210-F-ready-expire:1",
+          "kind": "Ready-paid-setup-counter-window-uncontested",
+          "time": 0.1,
+          "beforeSHA256": "6b879e2d8b0f094bc43f93e2b66c96d3bffc7d42f474fc07ac60e6b99680e127",
+          "afterSHA256": "01183a824df6be23973c0ebffe322806148dc05eef03f8a6f21cb7362b4c691c",
+          "observedRP": {
+            "A": 38
+          },
+          "observedCustody": {}
+        },
+        {
+          "eventId": "MF210-F-ready-expire:2",
+          "kind": "regular-start-expires-hold-no-refund",
+          "time": 6,
+          "beforeSHA256": "01183a824df6be23973c0ebffe322806148dc05eef03f8a6f21cb7362b4c691c",
+          "afterSHA256": "6606e501fad8494ff96ccef4a9d069870bcf0481b22488fb4a6800deb7cde010",
+          "observedRP": {
+            "A": 38
+          },
+          "observedCustody": {}
+        }
+      ]
+    },
+    {
+      "id": "MF210-F-ready-release",
+      "spellId": "eternal-forge",
+      "kind": "source-linked-static-cast-trace",
+      "title": "Actual Ready paid once release",
+      "file": "cases/MF210-F-ready-release.json",
+      "bytes": 1322345,
+      "sha256": "3379bc302777772e34bb8a12c83234563659678cab5965e98a94bfd91da778f4",
+      "crc32": "4b86a319",
+      "events": 2,
+      "forwardOperations": 4,
+      "inverseOperations": 4,
+      "freshReplay": "PASS",
+      "prerequisitesNotDemonstrated": [],
+      "endToEndWitness": false,
+      "eventResults": [
+        {
+          "eventId": "MF210-F-ready-release:1",
+          "kind": "Ready-paid-setup-counter-window-uncontested",
+          "time": 0.1,
+          "beforeSHA256": "6b879e2d8b0f094bc43f93e2b66c96d3bffc7d42f474fc07ac60e6b99680e127",
+          "afterSHA256": "8f745a3ad10d57d0dcffd9203a6c96f3942ede86f8fa7100ec26199cefa4034c",
+          "observedRP": {
+            "A": 38
+          },
+          "observedCustody": {}
+        },
+        {
+          "eventId": "MF210-F-ready-release:2",
+          "kind": "cue-then-source-legal-release-no-repayment",
+          "time": 1,
+          "beforeSHA256": "8f745a3ad10d57d0dcffd9203a6c96f3942ede86f8fa7100ec26199cefa4034c",
+          "afterSHA256": "aebf0ca718001bd3fdb2c1e712dbabcd03922cced990a9dbf8243f12a28ed176",
+          "observedRP": {
+            "A": 38
+          },
+          "observedCustody": {
+            "sword-1": "floor"
+          }
+        }
+      ]
+    },
+    {
+      "id": "MF210-F-repair",
+      "spellId": "eternal-forge",
+      "kind": "isolated-conditional-state-kernel",
+      "title": "Conditional lawful repair cannot refill charge",
+      "file": "cases/MF210-F-repair.json",
+      "bytes": 7086,
+      "sha256": "f0bda6dce97d76d7daafe0286fc4eaf5a0721ce8ddbeee344ee0b99881d827e1",
+      "crc32": "1d10a20b",
+      "events": 1,
+      "forwardOperations": 2,
+      "inverseOperations": 2,
+      "freshReplay": "PASS",
+      "prerequisitesNotDemonstrated": [
+        "Source-qualified artisan, station, material payment, full work clock and actual check outcome required; no repair is claimed to have occurred."
+      ],
+      "endToEndWitness": false,
+      "eventResults": [
+        {
+          "eventId": "MF210-F-repair:1",
+          "beforeSHA256": "1e3efb914ba47ad39b69b80412f3d88a861c9e93d9f6e3981beaf8b43c4822c2",
+          "afterSHA256": "0638de06f7efe7a442a803f251fdd81b2dffff15ed0f6ea49ac625459c5590fe",
+          "clockQualification": "No elapsed time or actor turn is modeled; this kernel cannot certify regular-turn accounting."
+        }
+      ]
+    },
+    {
+      "id": "MF210-F-resume",
+      "spellId": "eternal-forge",
+      "kind": "isolated-conditional-state-kernel",
+      "title": "Resume gives no catch-up recharge",
+      "file": "cases/MF210-F-resume.json",
+      "bytes": 7332,
+      "sha256": "7c551d3244f5d527e2f0cdc0979e89d31614428760856bc41d736be240811032",
+      "crc32": "c1552bae",
+      "events": 1,
+      "forwardOperations": 2,
+      "inverseOperations": 2,
+      "freshReplay": "PASS",
+      "prerequisitesNotDemonstrated": [
+        "Actual suppression ending evidence required."
+      ],
+      "endToEndWitness": false,
+      "eventResults": [
+        {
+          "eventId": "MF210-F-resume:1",
+          "beforeSHA256": "d44d2931dc1181544f9b5c1fd3fdbe58d02043e61d6d808001d6f5364cc42f5f",
+          "afterSHA256": "b2bad78eaa390f3c8fede1c88a6880f8503d23c97dc59e55fafd1591043facc4",
+          "clockQualification": "No elapsed time or actor turn is modeled; this kernel cannot certify regular-turn accounting."
+        }
+      ]
+    },
+    {
+      "id": "MF210-F-suppress",
+      "spellId": "eternal-forge",
+      "kind": "isolated-conditional-state-kernel",
+      "title": "Suppression preserves body and spent charge",
+      "file": "cases/MF210-F-suppress.json",
+      "bytes": 7015,
+      "sha256": "981588acaa81baa65b87da5a9934af8d1abc33b2e7fcd4fc1c3b482b68becfc5",
+      "crc32": "16b5f5b9",
+      "events": 1,
+      "forwardOperations": 2,
+      "inverseOperations": 2,
+      "freshReplay": "PASS",
+      "prerequisitesNotDemonstrated": [
+        "Actual acquired paid suppression source and intersection geometry required."
+      ],
+      "endToEndWitness": false,
+      "eventResults": [
+        {
+          "eventId": "MF210-F-suppress:1",
+          "beforeSHA256": "afcf1d4eb5ffb146176ee863f606739d1ce01ba6c2d6319c1b29cf9c35cdb633",
+          "afterSHA256": "2ff418562392f56a54eb0a9af9de047ba778f10414fe751ded149fc283e4cf17",
+          "clockQualification": "No elapsed time or actor turn is modeled; this kernel cannot certify regular-turn accounting."
+        }
+      ]
+    },
+    {
+      "id": "MF210-F-transfer",
+      "spellId": "eternal-forge",
+      "kind": "isolated-conditional-state-kernel",
+      "title": "Transfer does not recharge",
+      "file": "cases/MF210-F-transfer.json",
+      "bytes": 6972,
+      "sha256": "86c4cdbfb8f09aafbf6233b1b7e00bf63db260ee681328e0128faded6ad01eb0",
+      "crc32": "5b43efd5",
+      "events": 1,
+      "forwardOperations": 2,
+      "inverseOperations": 2,
+      "freshReplay": "PASS",
+      "prerequisitesNotDemonstrated": [
+        "Legal handoff/transfer action timing not supplied."
+      ],
+      "endToEndWitness": false,
+      "eventResults": [
+        {
+          "eventId": "MF210-F-transfer:1",
+          "beforeSHA256": "0638de06f7efe7a442a803f251fdd81b2dffff15ed0f6ea49ac625459c5590fe",
+          "afterSHA256": "afcf1d4eb5ffb146176ee863f606739d1ce01ba6c2d6319c1b29cf9c35cdb633",
+          "clockQualification": "No elapsed time or actor turn is modeled; this kernel cannot certify regular-turn accounting."
+        }
+      ]
+    },
+    {
+      "id": "MF210-F-weapon-instantiate",
+      "spellId": "eternal-forge",
+      "kind": "isolated-conditional-state-kernel",
+      "title": "Useful complete item instantiation, conditional on legal paid creation",
+      "file": "cases/MF210-F-weapon-instantiate.json",
+      "bytes": 4496,
+      "sha256": "65d45cbc6e1b7a7790696e3a842ce20766c7ea979699094274984eb64bc9cda3",
+      "crc32": "3aa3443d",
+      "events": 1,
+      "forwardOperations": 2,
+      "inverseOperations": 2,
+      "freshReplay": "PASS",
+      "prerequisitesNotDemonstrated": [
+        "Legal actor/cast commitment, component, placement and counter window not represented by this isolated item kernel."
+      ],
+      "endToEndWitness": false,
+      "eventResults": [
+        {
+          "eventId": "MF210-F-weapon-instantiate:1",
+          "beforeSHA256": "2165847bc989f994ffc93c50df4e7ce72fdf31293bf4105841e6da26b98ef4f8",
+          "afterSHA256": "0b05d6d23889adbdee3efbdfd82b63eee19ae46a2df9d0c6526ee65f6e070154",
+          "clockQualification": "No elapsed time or actor turn is modeled; this kernel cannot certify regular-turn accounting."
+        }
+      ]
+    },
+    {
+      "id": "MF210-F-wizard-arch-dispel-magic",
+      "spellId": "eternal-forge",
+      "kind": "source-linked-static-cast-trace",
+      "title": "Actual paid removal of Forge-only root via wizard.arch.dispel-magic",
+      "file": "cases/MF210-F-wizard-arch-dispel-magic.json",
+      "bytes": 5248920,
+      "sha256": "599d1ec91f2fbac73cd142d4a2f073d46b0d5ebf99bef00fe2b6148dcb657328",
+      "crc32": "75a43067",
+      "events": 4,
+      "forwardOperations": 8,
+      "inverseOperations": 8,
+      "freshReplay": "PASS",
+      "prerequisitesNotDemonstrated": [],
+      "endToEndWitness": false,
+      "eventResults": [
+        {
+          "eventId": "MF210-F-wizard-arch-dispel-magic:1",
+          "kind": "Forge-commitment",
+          "time": 0.1,
+          "beforeSHA256": "9f5b609352cf43ba884db105e078146206996928015e4ab0ae3ea7ab16dd89f0",
+          "afterSHA256": "02d885253ab1ab0722c2734f06454df4880eb40fb46a038021d99c5ce398d881",
+          "observedRP": {
+            "A": 38,
+            "B": 64
+          },
+          "observedCustody": {}
+        },
+        {
+          "eventId": "MF210-F-wizard-arch-dispel-magic:2",
+          "kind": "Forge-created",
+          "time": 0.2,
+          "beforeSHA256": "02d885253ab1ab0722c2734f06454df4880eb40fb46a038021d99c5ce398d881",
+          "afterSHA256": "f8f2daaf77f4317ed00d50ae510279ceb9dc22baa1662637f376b93fa285fe60",
+          "observedRP": {
+            "A": 38,
+            "B": 64
+          },
+          "observedCustody": {
+            "sword-1": "floor"
+          }
+        },
+        {
+          "eventId": "MF210-F-wizard-arch-dispel-magic:3",
+          "kind": "actual-paid-dispel",
+          "time": 0.3,
+          "beforeSHA256": "f8f2daaf77f4317ed00d50ae510279ceb9dc22baa1662637f376b93fa285fe60",
+          "afterSHA256": "57fb52d75dfe4e3ccbae0820501ebcd8c9756807d1018ec7bb47c11f7a075c80",
+          "observedRP": {
+            "A": 38,
+            "B": 61
+          },
+          "observedCustody": {
+            "sword-1": "floor"
+          }
+        },
+        {
+          "eventId": "MF210-F-wizard-arch-dispel-magic:4",
+          "kind": "capture-and-remove-only-Forge-imprint",
+          "time": 0.4,
+          "beforeSHA256": "57fb52d75dfe4e3ccbae0820501ebcd8c9756807d1018ec7bb47c11f7a075c80",
+          "afterSHA256": "c75c83e45c7464c94c0b00740fdfdf6f865c52462ca187aed4dc561e8df11bfe",
+          "observedRP": {
+            "A": 38,
+            "B": 61
+          },
+          "observedCustody": {
+            "sword-1": "floor"
+          }
+        }
+      ]
+    },
+    {
+      "id": "MF210-F01",
+      "spellId": "eternal-forge",
+      "kind": "source-linked-static-cast-trace",
+      "title": "Paid weapon creation followed by real unproficient weapon attack",
+      "file": "cases/MF210-F01.json",
+      "bytes": 6550127,
+      "sha256": "882d28a61712378d90b0a359dc4cb7515609c38fa996e552e1847ed26c6fd964",
+      "crc32": "0a4fbe01",
+      "events": 5,
+      "forwardOperations": 10,
+      "inverseOperations": 10,
+      "freshReplay": "PASS",
+      "prerequisitesNotDemonstrated": [],
+      "endToEndWitness": false,
+      "eventResults": [
+        {
+          "eventId": "MF210-F01:1",
+          "kind": "legal-paid-Forge",
+          "time": 0.1,
+          "beforeSHA256": "9f5b609352cf43ba884db105e078146206996928015e4ab0ae3ea7ab16dd89f0",
+          "afterSHA256": "a344d94be5fe53dabebe1ab2892c0b238f06d439a2668aa9e96403e40a5b23c2",
+          "observedRP": {
+            "A": 38,
+            "B": 64
+          },
+          "observedCustody": {}
+        },
+        {
+          "eventId": "MF210-F01:2",
+          "kind": "resolve-create-standard-sword",
+          "time": 0.2,
+          "beforeSHA256": "a344d94be5fe53dabebe1ab2892c0b238f06d439a2668aa9e96403e40a5b23c2",
+          "afterSHA256": "958bcb6c666ed5bcf628e054856153ace7a9f1d6bcf4863e866fbe777551a334",
+          "observedRP": {
+            "A": 38,
+            "B": 64
+          },
+          "observedCustody": {
+            "sword-1": "floor"
+          }
+        },
+        {
+          "eventId": "MF210-F01:3",
+          "kind": "actual-regular-starts",
+          "time": 6,
+          "beforeSHA256": "958bcb6c666ed5bcf628e054856153ace7a9f1d6bcf4863e866fbe777551a334",
+          "afterSHA256": "e1c1b5c2cc788edfbfcd0f4489a9737d4679865f27ee3f24af8efd06499bdb0b",
+          "observedRP": {
+            "A": 38,
+            "B": 64
+          },
+          "observedCustody": {
+            "sword-1": "floor"
+          }
+        },
+        {
+          "eventId": "MF210-F01:4",
+          "kind": "free-interaction-pick-up-sword",
+          "time": 6.1,
+          "beforeSHA256": "e1c1b5c2cc788edfbfcd0f4489a9737d4679865f27ee3f24af8efd06499bdb0b",
+          "afterSHA256": "bd830132d540ce469f817f5030eb2f773abeee134f5344c4ace422933e08445c",
+          "observedRP": {
+            "A": 38,
+            "B": 64
+          },
+          "observedCustody": {
+            "sword-1": "A-right-hand"
+          }
+        },
+        {
+          "eventId": "MF210-F01:5",
+          "kind": "weapon-attack-not-spell",
+          "time": 6.2,
+          "beforeSHA256": "bd830132d540ce469f817f5030eb2f773abeee134f5344c4ace422933e08445c",
+          "afterSHA256": "196061d8c7039a7e5e1fdf4598974adf955ca9e4a1d837add93419947f12475b",
+          "observedRP": {
+            "A": 38,
+            "B": 64
+          },
+          "observedCustody": {
+            "sword-1": "A-right-hand"
+          }
+        }
+      ]
+    },
+    {
+      "id": "MF210-F02",
+      "spellId": "eternal-forge",
+      "kind": "source-linked-static-cast-trace",
+      "title": "Paid bracelet creation, donning, and real pre-roll charge use",
+      "file": "cases/MF210-F02.json",
+      "bytes": 3997684,
+      "sha256": "bef26903b994697cd1552bd21a97e7663b863ff33304657288df2e7703bb978c",
+      "crc32": "188fb725",
+      "events": 6,
+      "forwardOperations": 12,
+      "inverseOperations": 12,
+      "freshReplay": "PASS",
+      "prerequisitesNotDemonstrated": [],
+      "endToEndWitness": false,
+      "eventResults": [
+        {
+          "eventId": "MF210-F02:1",
+          "kind": "legal-paid-Forge",
+          "time": 0.1,
+          "beforeSHA256": "d613cda434fef79c62a6cb241c6630b351d988937fcca47117b1dc634da5516e",
+          "afterSHA256": "3ac836354b65eb6b63de5af3135fa0ea96428dd9ef474350d10341589fba3a37",
+          "observedRP": {
+            "A": 38
+          },
+          "observedCustody": {}
+        },
+        {
+          "eventId": "MF210-F02:2",
+          "kind": "resolve-create-one-bracelet",
+          "time": 0.2,
+          "beforeSHA256": "3ac836354b65eb6b63de5af3135fa0ea96428dd9ef474350d10341589fba3a37",
+          "afterSHA256": "762fbd5b3a223cb6f78a73b1679bbd2065b85b64e31c4ea5eb5a84a0d7f8ef64",
+          "observedRP": {
+            "A": 38
+          },
+          "observedCustody": {
+            "bracelet-1": "floor"
+          }
+        },
+        {
+          "eventId": "MF210-F02:3",
+          "kind": "regular-start",
+          "time": 6,
+          "beforeSHA256": "762fbd5b3a223cb6f78a73b1679bbd2065b85b64e31c4ea5eb5a84a0d7f8ef64",
+          "afterSHA256": "a17b2babeac68a02f33eb5d9b15018adf2c622a34a754816d7692812194c2995",
+          "observedRP": {
+            "A": 38
+          },
+          "observedCustody": {
+            "bracelet-1": "floor"
+          }
+        },
+        {
+          "eventId": "MF210-F02:4",
+          "kind": "source-one-Action-don",
+          "time": 6.1,
+          "beforeSHA256": "a17b2babeac68a02f33eb5d9b15018adf2c622a34a754816d7692812194c2995",
+          "afterSHA256": "d5ccaa893a405eab06b8a06b80231f3b372dcc63c8830904f3102cd87e0d0f72",
+          "observedRP": {
+            "A": 38
+          },
+          "observedCustody": {
+            "bracelet-1": "A-wrist"
+          }
+        },
+        {
+          "eventId": "MF210-F02:5",
+          "kind": "regular-start",
+          "time": 12,
+          "beforeSHA256": "d5ccaa893a405eab06b8a06b80231f3b372dcc63c8830904f3102cd87e0d0f72",
+          "afterSHA256": "593039c714ca5f31fb3fa23f1cd7047d8e52e4933377495d9a851f2c17a2f06b",
+          "observedRP": {
+            "A": 38
+          },
+          "observedCustody": {
+            "bracelet-1": "A-wrist"
+          }
+        },
+        {
+          "eventId": "MF210-F02:6",
+          "kind": "legal-charge-before-hide-roll",
+          "time": 12.1,
+          "beforeSHA256": "593039c714ca5f31fb3fa23f1cd7047d8e52e4933377495d9a851f2c17a2f06b",
+          "afterSHA256": "6f992a8d479304fab081a2f520e8b7c4a6439e3065e15a251dbf3ac5c39efa76",
+          "observedRP": {
+            "A": 38
+          },
+          "observedCustody": {
+            "bracelet-1": "A-wrist"
+          }
+        }
+      ]
+    },
+    {
+      "id": "MF210-M-hostile-custody",
+      "spellId": "matter-conversion",
+      "kind": "isolated-conditional-state-kernel",
+      "title": "Nonconsenting carried target under explicitly NEW local consent rule.",
+      "file": "cases/MF210-M-hostile-custody.json",
+      "bytes": 2925,
+      "sha256": "dda364e1ea7e59a15bd901eb15019f9716348fff786dc7b49e2c84142b2dcd9b",
+      "crc32": "6d52a165",
+      "events": 1,
+      "forwardOperations": 2,
+      "inverseOperations": 2,
+      "freshReplay": "PASS",
+      "prerequisitesNotDemonstrated": [
+        "The underlying concrete scene facts are prerequisites; no completed conversion is demonstrated."
+      ],
+      "endToEndWitness": false,
+      "eventResults": [
+        {
+          "eventId": "MF210-M-hostile-custody:1",
+          "beforeSHA256": "8b2c952628060661cbe23bc52b40e3a33d0c275da61ee420fdb28ff52c74ca1c",
+          "afterSHA256": "da3082d8a62c6ab8e25a86b57bbfbbb704c1efbf9c2caaace955ab2f2444e725",
+          "clockQualification": "No elapsed time or actor turn is modeled; this kernel cannot certify regular-turn accounting."
+        }
+      ]
+    },
+    {
+      "id": "MF210-M-instantaneous",
+      "spellId": "matter-conversion",
+      "kind": "isolated-conditional-state-kernel",
+      "title": "Conditional completed matter is not reverted by later suppression",
+      "file": "cases/MF210-M-instantaneous.json",
+      "bytes": 2686,
+      "sha256": "a31eeb5bb6f396cbb727c00426297b93313674f90c62fb516ecc515ae20da45c",
+      "crc32": "3545235f",
+      "events": 1,
+      "forwardOperations": 2,
+      "inverseOperations": 2,
+      "freshReplay": "PASS",
+      "prerequisitesNotDemonstrated": [
+        "A lawful complete stone-to-mithril conversion is not established by this hypothetical aftermath kernel."
+      ],
+      "endToEndWitness": false,
+      "eventResults": [
+        {
+          "eventId": "MF210-M-instantaneous:1",
+          "beforeSHA256": "160a00b9d362993dcaa98e96e37416401f34e889cbd795a681365f41f24f6dab",
+          "afterSHA256": "06b6dcd77f58afa339add95badd5652b55a13af285527fc3e6abfe980ee00031",
+          "clockQualification": "No elapsed time or actor turn is modeled; this kernel cannot certify regular-turn accounting."
+        }
+      ]
+    },
+    {
+      "id": "MF210-M-late-fit",
+      "spellId": "matter-conversion",
+      "kind": "isolated-conditional-state-kernel",
+      "title": "Paid late invalidation preserves input and no output",
+      "file": "cases/MF210-M-late-fit.json",
+      "bytes": 3437,
+      "sha256": "e7ab71fcc3268c267c02f32c033f7bb3faa30672a8e8cdb0e7aef4719df1d964",
+      "crc32": "9449a9c9",
+      "events": 1,
+      "forwardOperations": 2,
+      "inverseOperations": 2,
+      "freshReplay": "PASS",
+      "prerequisitesNotDemonstrated": [
+        "Actual prior legal caster commitment and complete output profile required."
+      ],
+      "endToEndWitness": false,
+      "eventResults": [
+        {
+          "eventId": "MF210-M-late-fit:1",
+          "beforeSHA256": "4b843eb7776e95f0d2adea3f1f2351c73a7d258a9212183d291b1d11929bb4e5",
+          "afterSHA256": "9939ac89ab9ecbf15bfb77b3eefebfde8f587f5b223d9fcf54563e30ffedc765",
+          "clockQualification": "No elapsed time or actor turn is modeled; this kernel cannot certify regular-turn accounting."
+        }
+      ]
+    },
+    {
+      "id": "MF210-M-magical-input",
+      "spellId": "matter-conversion",
+      "kind": "isolated-conditional-state-kernel",
+      "title": "Selected target has an actual magical imprint.",
+      "file": "cases/MF210-M-magical-input.json",
+      "bytes": 2817,
+      "sha256": "b534effdde7c537c41903ebe0eb9e8c5fe4668c56471c8f0e7fd5e0a9a63675c",
+      "crc32": "7e252f19",
+      "events": 1,
+      "forwardOperations": 2,
+      "inverseOperations": 2,
+      "freshReplay": "PASS",
+      "prerequisitesNotDemonstrated": [
+        "The underlying concrete scene facts are prerequisites; no completed conversion is demonstrated."
+      ],
+      "endToEndWitness": false,
+      "eventResults": [
+        {
+          "eventId": "MF210-M-magical-input:1",
+          "beforeSHA256": "3e216ca08d082279d83bcf457fd4b91c2b556535291d54753f8e56ca5ed2dd4d",
+          "afterSHA256": "c44a3d20b836fca10598a1eb256ea7da2dfb788382334d3fd299f30a0a9179c3",
+          "clockQualification": "No elapsed time or actor turn is modeled; this kernel cannot certify regular-turn accounting."
+        }
+      ]
+    },
+    {
+      "id": "MF210-M-mithril-profile",
+      "spellId": "matter-conversion",
+      "kind": "isolated-conditional-state-kernel",
+      "title": "No authorized complete mithril physical profile;250gp/lb does not supply density or structural mapping.",
+      "file": "cases/MF210-M-mithril-profile.json",
+      "bytes": 3067,
+      "sha256": "dfadb5704827d6f33784abdb54116f48adf84a956cdb51025a057ad76b859878",
+      "crc32": "edb56af5",
+      "events": 1,
+      "forwardOperations": 2,
+      "inverseOperations": 2,
+      "freshReplay": "PASS",
+      "prerequisitesNotDemonstrated": [
+        "The underlying concrete scene facts are prerequisites; no completed conversion is demonstrated."
+      ],
+      "endToEndWitness": false,
+      "eventResults": [
+        {
+          "eventId": "MF210-M-mithril-profile:1",
+          "beforeSHA256": "bbf5de372f2468a092f845812bd7abb699e7d9fcac54d4230302f7f84b1e55c4",
+          "afterSHA256": "f1b4edeb4dd0337d4d6354cf1d36ee6e801b2071e7f36e4e570ab834b6c7b98b",
+          "clockQualification": "No elapsed time or actor turn is modeled; this kernel cannot certify regular-turn accounting."
+        }
+      ]
+    },
+    {
+      "id": "MF210-M-reserved-lot",
+      "spellId": "matter-conversion",
+      "kind": "isolated-conditional-state-kernel",
+      "title": "Lot already reserved by another work order.",
+      "file": "cases/MF210-M-reserved-lot.json",
+      "bytes": 2803,
+      "sha256": "3f556fca3b2b3cf52e08a4560714f1dcc30a032caca11a8df517d9979cc7b7e5",
+      "crc32": "3c70713f",
+      "events": 1,
+      "forwardOperations": 2,
+      "inverseOperations": 2,
+      "freshReplay": "PASS",
+      "prerequisitesNotDemonstrated": [
+        "The underlying concrete scene facts are prerequisites; no completed conversion is demonstrated."
+      ],
+      "endToEndWitness": false,
+      "eventResults": [
+        {
+          "eventId": "MF210-M-reserved-lot:1",
+          "beforeSHA256": "fc3cbffa8b35db304897c6077e1f01b731778875d7863a27d038e948f7bfc2f7",
+          "afterSHA256": "6aabdcd1bedf2d6a19b535597f8ca245e5f485b965a6db542e9899317118c367",
+          "clockQualification": "No elapsed time or actor turn is modeled; this kernel cannot certify regular-turn accounting."
+        }
+      ]
+    },
+    {
+      "id": "MF210-M-unknown-material",
+      "spellId": "matter-conversion",
+      "kind": "isolated-conditional-state-kernel",
+      "title": "No legitimately known and Director-authorized output profile.",
+      "file": "cases/MF210-M-unknown-material.json",
+      "bytes": 2907,
+      "sha256": "45b27670bd6eb583c3d36365528576d216b53368c9166c54004c59465b3f72e3",
+      "crc32": "4436d6b0",
+      "events": 1,
+      "forwardOperations": 2,
+      "inverseOperations": 2,
+      "freshReplay": "PASS",
+      "prerequisitesNotDemonstrated": [
+        "The underlying concrete scene facts are prerequisites; no completed conversion is demonstrated."
+      ],
+      "endToEndWitness": false,
+      "eventResults": [
+        {
+          "eventId": "MF210-M-unknown-material:1",
+          "beforeSHA256": "b085882b136778949b0986b9310c49b6ceb311546fca3f25312fd8c0b87a8687",
+          "afterSHA256": "bea3c5409c6caaf060cbde7b3ebab8f626529ec9b3ad5fed83d5b964eae90420",
+          "clockQualification": "No elapsed time or actor turn is modeled; this kernel cannot certify regular-turn accounting."
+        }
+      ]
+    }
+  ],
+  "wholePositiveMainCasesComplete": 0,
+  "qualification": "PASS means exact numerical state preservation and inverse replay. All four required main witnesses remain incomplete; component success does not discharge a whole-spell gate."
+}

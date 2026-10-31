@@ -1,0 +1,178 @@
+{
+  "id": "RANK9SUMMONHOSTS5-PACKET-285-INDEPENDENT-AUDIT",
+  "status": "PASS",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_summonhosts5_current_source_285_prepared/DD_Rank9_SummonHosts5_CurrentSource_285.zip",
+    "bytes": 393888641,
+    "sha256": "f3689af898ad103689a839a3a3af46f94946f9b85a7ff3153253443d64a17540",
+    "crc32": "5ca8c412"
+  },
+  "delivery": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_summonhosts5_current_source_285_prepared/DD_Rank9_SummonHosts5_CurrentSource_285_DELIVERY.json",
+    "bytes": 2252,
+    "sha256": "7430e1e5e2bea988bda68ea2436cacaa17f0a09d9fddede1b92789160e2633d2",
+    "crc32": "7cecb44c"
+  },
+  "sourceAuthority": {
+    "reviewedApplied": 816,
+    "pending": 32,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 540,
+    "scopedInterfaces": 173
+  },
+  "targetIds": [
+    "summon-elemental-avatar",
+    "summon-herald-of-the-planes",
+    "summon-avatar-of-decay"
+  ],
+  "closedAcceptedIds": [
+    "conjure-magmatic-wyrm",
+    "planar-army"
+  ],
+  "checkCount": 14,
+  "passedChecks": 14,
+  "failedChecks": [],
+  "checks": [
+    {
+      "check": "Packet285 ZIP exact byte/SHA/CRC values match its delivery manifest",
+      "passed": true,
+      "detail": {
+        "bytes": 393888641,
+        "sha256": "f3689af898ad103689a839a3a3af46f94946f9b85a7ff3153253443d64a17540",
+        "crc32": "5ca8c412"
+      }
+    },
+    {
+      "check": "428 unique safe members match the archive manifest",
+      "passed": true,
+      "detail": {
+        "archiveMembers": 428,
+        "manifestMembers": 427,
+        "safe": true
+      }
+    },
+    {
+      "check": "All 427 nonmanifest members match their byte/SHA/CRC manifest rows",
+      "passed": true,
+      "detail": {
+        "checked": 427,
+        "failures": []
+      }
+    },
+    {
+      "check": "Manifest declares the exact current authority, target scope, and closed acceptances",
+      "passed": true,
+      "detail": {
+        "authority": {
+          "reviewedApplied": 816,
+          "pending": 32,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 540,
+          "scopedInterfaces": 173
+        },
+        "scope": [
+          "summon-elemental-avatar",
+          "summon-herald-of-the-planes",
+          "summon-avatar-of-decay"
+        ],
+        "closed": [
+          "conjure-magmatic-wyrm",
+          "planar-army"
+        ]
+      }
+    },
+    {
+      "check": "Candidate, context, and request inside ZIP equal the sidecars",
+      "passed": true,
+      "detail": {
+        "requestBytes": 1714
+      }
+    },
+    {
+      "check": "All 280 source bindings independently match current working-tree bytes and ZIP copies",
+      "passed": true,
+      "detail": {
+        "sourceBindings": 280,
+        "failures": []
+      }
+    },
+    {
+      "check": "Embedded queue, handoff, and pending audit agree on 816/32/0 and the three target IDs",
+      "passed": true,
+      "detail": {
+        "nextGroup": "rank9-summon-hosts5",
+        "pendingCount": 32
+      }
+    },
+    {
+      "check": "Only three pending Summon Hosts identities are in scope; Return202 acceptances remain closed",
+      "passed": true,
+      "detail": {
+        "scope": [
+          "summon-elemental-avatar",
+          "summon-herald-of-the-planes",
+          "summon-avatar-of-decay"
+        ],
+        "closedAccepted": [
+          "conjure-magmatic-wyrm",
+          "planar-army"
+        ]
+      }
+    },
+    {
+      "check": "All target rows bind current pending index entries and native catalog records",
+      "passed": true,
+      "detail": {
+        "targetRows": 3
+      }
+    },
+    {
+      "check": "Return284 was independently audited and its two Planar holds remain explicitly out of scope",
+      "passed": true,
+      "detail": {
+        "return284Status": "PASS",
+        "heldIds": [
+          "banishment-gate",
+          "conjure-demiplane-fortress"
+        ]
+      }
+    },
+    {
+      "check": "Sealed prior returns, audits, receipts, and acceptance/application records are present",
+      "passed": true,
+      "detail": {
+        "evidenceFiles": 17
+      }
+    },
+    {
+      "check": "Live index confirms 816 reviewed and 32 pending, with target/closed identities in expected states",
+      "passed": true,
+      "detail": {
+        "targetPending": [
+          "summon-elemental-avatar",
+          "summon-herald-of-the-planes",
+          "summon-avatar-of-decay"
+        ],
+        "closed": [
+          "conjure-magmatic-wyrm",
+          "planar-army"
+        ]
+      }
+    },
+    {
+      "check": "Packet source binding reports current main branch and current checkout commit",
+      "passed": true,
+      "detail": {
+        "branch": "main",
+        "head": "197366eae0c786415de55a0e4739e83f49f1a65f"
+      }
+    },
+    {
+      "check": "Return284 audit remains PASS in the current repository record",
+      "passed": true,
+      "detail": {
+        "audit": "RANK9_PLANARGATES5_RETURN284_INDEPENDENT_AUDIT.json"
+      }
+    }
+  ]
+}

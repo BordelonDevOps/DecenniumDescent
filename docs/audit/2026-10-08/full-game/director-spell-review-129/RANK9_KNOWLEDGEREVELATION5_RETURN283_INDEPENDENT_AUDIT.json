@@ -1,0 +1,423 @@
+{
+  "id": "RANK9-KNOWLEDGEREVELATION5-RETURN283-INDEPENDENT-AUDIT",
+  "recordedAtUtc": "2026-10-30T22:00:24.735432+00:00",
+  "status": "PASS",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_knowledgerevelation5_return283_received/DD_Rank9_KnowledgeRevelation5_Director_Return283_HELD.zip",
+    "bytes": 594198,
+    "sha256": "a9e2faca6c33701f24a6086a71170b827a90df3615ef9765eddde1f23fb5eed5",
+    "crc32": "71fac63b"
+  },
+  "deliveryManifest": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_knowledgerevelation5_return283_received/DD_Rank9_KnowledgeRevelation5_Director_Return283_HELD_DELIVERY.json",
+    "bytes": 44036,
+    "sha256": "a57cf7f59fc2f724e58c5186a0152fa975150140b13cb9c1954d29edec79f1c1",
+    "crc32": "784816e2"
+  },
+  "sourcePacket": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_knowledgerevelation5_current_source_283_prepared/DD_Rank9_KnowledgeRevelation5_CurrentSource_283.zip",
+    "bytes": 114891082,
+    "sha256": "ee24665fcd15a2c476782972f6a66be275a83b33e793f51d1a5f2db80947cb61",
+    "crc32": "8f58fe0c"
+  },
+  "authority": {
+    "reviewedApplied": 816,
+    "pending": 32,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 540,
+    "scopedInterfaces": 173
+  },
+  "group": "rank9-knowledge-revelation5",
+  "targetIds": [
+    "faction-omniscience-supreme"
+  ],
+  "acceptedIds": [],
+  "appliedIds": [],
+  "heldIds": [
+    "faction-omniscience-supreme"
+  ],
+  "blockers": [
+    "KR198-B01"
+  ],
+  "qualifications": [
+    "KR198-H01",
+    "KR198-H02",
+    "KR198-H03",
+    "KR198-H04",
+    "KR198-H05",
+    "KR198-H06"
+  ],
+  "nextGroup": {
+    "groupId": "rank9-planar-gates5",
+    "pendingIds": [
+      "banishment-gate",
+      "conjure-demiplane-fortress"
+    ],
+    "requiresFreshAuthorityPacket": true
+  },
+  "sourceBindingsVerified": 126,
+  "cases": 8,
+  "events": 140,
+  "forwardOperations": 280,
+  "inverseOperations": 280,
+  "checksPassed": 14,
+  "checksFailed": 0,
+  "checkCount": 14,
+  "checks": [
+    {
+      "id": "Downloaded Return283 archive matches exact delivery bytes, SHA-256 and CRC32",
+      "passed": true,
+      "details": {
+        "bytes": 594198,
+        "sha256": "a9e2faca6c33701f24a6086a71170b827a90df3615ef9765eddde1f23fb5eed5",
+        "crc32": "71fac63b"
+      }
+    },
+    {
+      "id": "Packet283 and Return198 witness supplement bind to their exact local delivery manifests and Return283 references",
+      "passed": true,
+      "details": {
+        "packet": {
+          "bytes": 114891082,
+          "sha256": "ee24665fcd15a2c476782972f6a66be275a83b33e793f51d1a5f2db80947cb61",
+          "crc32": "8f58fe0c"
+        },
+        "supplement": {
+          "bytes": 376858,
+          "sha256": "575cba75369eddb5116a951400a7a521c45117cffd2ed1555abd3a9a358f43dd",
+          "crc32": "a78e41b7"
+        }
+      }
+    },
+    {
+      "id": "Return283 delivery is the exact one-spell hold at authority 816/32/0",
+      "passed": true,
+      "details": {
+        "authority": {
+          "reviewedApplied": 816,
+          "pending": 32,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 540,
+          "scopedInterfaces": 173
+        },
+        "heldIds": [
+          "faction-omniscience-supreme"
+        ],
+        "blockers": [
+          "KR198-B01"
+        ],
+        "next": {
+          "groupId": "rank9-planar-gates5",
+          "pendingIds": [
+            "banishment-gate",
+            "conjure-demiplane-fortress"
+          ],
+          "requiresFreshAuthorityPacket": true
+        }
+      }
+    },
+    {
+      "id": "Return283 ZIP has 63 unique safe members and all inner/outer size-SHA-CRC rows pass",
+      "passed": true,
+      "details": {
+        "members": 63,
+        "payload": 62,
+        "errors": []
+      }
+    },
+    {
+      "id": "All sealed packaging checks pass",
+      "passed": true,
+      "details": {
+        "checks": 256,
+        "failed": 0,
+        "total": 4653
+      }
+    },
+    {
+      "id": "Sealed decision holds only faction-omniscience-supreme under KR198-B01/H01-H06",
+      "passed": true,
+      "details": {
+        "decision": {
+          "id": "faction-omniscience-supreme",
+          "decision": "HOLD",
+          "accepted": false,
+          "applied": false,
+          "held": true,
+          "blockerIds": [
+            "KR198-B01"
+          ],
+          "qualificationIds": [
+            "KR198-H01",
+            "KR198-H02",
+            "KR198-H03",
+            "KR198-H04",
+            "KR198-H05",
+            "KR198-H06"
+          ],
+          "reason": "Current sources establish factions and general institutional facts but no complete canonical-faction past/current/distant-branch ledger and concrete source-qualified likely-future witness. All8 prior cases retain their content hold.",
+          "minimumMissingWitness": [
+            {
+              "id": "KR198-B01-W1",
+              "required": "One exact already-established canonical faction, with source-authorized identity and complete finite historical/current institutional record at the cast timestamp: dated events, governance, actual business, resources, decisions, projects, and local plus distant branches. Bind field provenance, versions, coverage boundaries and authorized audiences; no invented branch roster or private member history.",
+              "reason": "Names and broad institutional descriptions establish existence and tendencies, not the required complete whole-dossier input."
+            },
+            {
+              "id": "KR198-B01-W2",
+              "required": "Concrete source-qualified plans, constraints and established facts supporting likely developments over the selected168elapsed-hour horizon, with observation timestamp, source premises, competing alternatives, assumptions and qualitative uncertainty. Preserve missing forecast input as unavailable rather than certainty; do not force decisions or add probabilities.",
+              "reason": "General statements such as the Merchant League opposing trade-disrupting conflict do not establish a complete current campaign forecast."
+            },
+            {
+              "id": "KR198-B01-W3",
+              "required": "Actual institutional/private/protected-member field examples, separately sourced true absence and missing-record states, and source-authorized faction continuity/split/dissolution operands for the required B branch. Bind protection source, audience, exact actor and event clocks; do not manufacture a split or dissolution event.",
+              "reason": "Current component cases stop at the content hold. Their empty delivered arrays are not successful privacy filtering or certified absence."
+            },
+            {
+              "id": "KR198-B01-W4",
+              "required": "Instantiate those records through the existing admitted Cleric/Wizard route, actual acquisition/preparation, paid Action/V/S/F/26RP and cast interruption history, willing recipient within120ft/LoE, complete permitted dossier delivery, retrieval, later-memory/protection/recast lifecycle and full reversible histories. Preserve the original costs, knowledge versions, custody, deadlines and no membership/reputation benefits.",
+              "reason": "Existing counter, Ready, rejection and cost traces replay, but neither required main case supplies a complete positive dossier/forecast."
+            }
+          ]
+        },
+        "qualifications": [
+          "KR198-H01",
+          "KR198-H02",
+          "KR198-H03",
+          "KR198-H04",
+          "KR198-H05",
+          "KR198-H06"
+        ]
+      }
+    },
+    {
+      "id": "Minimum missing witness lists the complete faction ledger, forecast, privacy/continuity and positive lifecycle inputs",
+      "passed": true,
+      "details": [
+        {
+          "id": "KR198-B01-W1",
+          "required": "One exact already-established canonical faction, with source-authorized identity and complete finite historical/current institutional record at the cast timestamp: dated events, governance, actual business, resources, decisions, projects, and local plus distant branches. Bind field provenance, versions, coverage boundaries and authorized audiences; no invented branch roster or private member history.",
+          "reason": "Names and broad institutional descriptions establish existence and tendencies, not the required complete whole-dossier input."
+        },
+        {
+          "id": "KR198-B01-W2",
+          "required": "Concrete source-qualified plans, constraints and established facts supporting likely developments over the selected168elapsed-hour horizon, with observation timestamp, source premises, competing alternatives, assumptions and qualitative uncertainty. Preserve missing forecast input as unavailable rather than certainty; do not force decisions or add probabilities.",
+          "reason": "General statements such as the Merchant League opposing trade-disrupting conflict do not establish a complete current campaign forecast."
+        },
+        {
+          "id": "KR198-B01-W3",
+          "required": "Actual institutional/private/protected-member field examples, separately sourced true absence and missing-record states, and source-authorized faction continuity/split/dissolution operands for the required B branch. Bind protection source, audience, exact actor and event clocks; do not manufacture a split or dissolution event.",
+          "reason": "Current component cases stop at the content hold. Their empty delivered arrays are not successful privacy filtering or certified absence."
+        },
+        {
+          "id": "KR198-B01-W4",
+          "required": "Instantiate those records through the existing admitted Cleric/Wizard route, actual acquisition/preparation, paid Action/V/S/F/26RP and cast interruption history, willing recipient within120ft/LoE, complete permitted dossier delivery, retrieval, later-memory/protection/recast lifecycle and full reversible histories. Preserve the original costs, knowledge versions, custody, deadlines and no membership/reputation benefits.",
+          "reason": "Existing counter, Ready, rejection and cost traces replay, but neither required main case supplies a complete positive dossier/forecast."
+        }
+      ]
+    },
+    {
+      "id": "Return283 preserves all downstream gates and makes no canonical/GitHub/application/runtime changes",
+      "passed": true,
+      "details": {
+        "canonicalFilesModified": false,
+        "applicationPerformed": false,
+        "GitHubModified": false,
+        "runtimeExecuted": false,
+        "allUnrelatedHoldsUnchanged": true
+      }
+    },
+    {
+      "id": "Next group is exactly Planar Gates5 with two pending identities",
+      "passed": true,
+      "details": {
+        "groupId": "rank9-planar-gates5",
+        "pendingIds": [
+          "banishment-gate",
+          "conjure-demiplane-fortress"
+        ],
+        "requiresFreshAuthorityPacket": true
+      }
+    },
+    {
+      "id": "Decision counts reconcile 126 sources, eight cases, reversible traces and all review checks",
+      "passed": true,
+      "details": {
+        "procedures": 1,
+        "sourceBindings": 126,
+        "cases": 8,
+        "events": 140,
+        "forwardOperations": 280,
+        "inverseOperations": 280,
+        "sourceChecks": 1295,
+        "dataChecks": 877,
+        "clockChecks": 2048,
+        "semanticInvariantChecks": 166,
+        "semanticManualChecks": 11,
+        "preSealChecks": 4397,
+        "acceptedIds": 0,
+        "appliedIds": 0,
+        "heldIds": 1
+      }
+    },
+    {
+      "id": "All 126 current source bindings match Packet283 bytes, Git blob IDs and exact candidate rows",
+      "passed": true,
+      "details": {
+        "sources": 126,
+        "candidateRows": 126,
+        "errors": []
+      }
+    },
+    {
+      "id": "Source, data, clock and semantic reports pass while the required whole-positive witness stays incomplete",
+      "passed": true,
+      "details": {
+        "reports": {
+          "SOURCE_VERIFICATION.json": {
+            "count": 1295,
+            "failures": 0
+          },
+          "DATA_INTEGRITY_CHECK.json": {
+            "count": 877,
+            "failures": 0
+          },
+          "CLOCK_CHECK.json": {
+            "count": 2048,
+            "failures": 0
+          },
+          "SEMANTIC_INVARIANT_CHECKS.json": {
+            "count": 166,
+            "failures": 0
+          }
+        },
+        "semanticDecision": "HOLD",
+        "requiredWitnessFailures": [
+          {
+            "id": "KR198-B01",
+            "spellIds": [
+              "faction-omniscience-supreme"
+            ],
+            "status": "OPEN",
+            "blocking": true,
+            "scope": "Required whole positive dossier/forecast witness, not general existence of factions",
+            "caseIds": [
+              "RANK9KNOWLEDGEREVELATION5129-FACTION-OMNISCIENCE-SUPREME-A",
+              "RANK9KNOWLEDGEREVELATION5129-FACTION-OMNISCIENCE-SUPREME-B"
+            ],
+            "questionIds": [
+              "KR9-Q07",
+              "KR9-Q08",
+              "KR9-Q10",
+              "KR9-Q26"
+            ],
+            "futureObligationIds": [
+              "KR9-DOSSIER"
+            ],
+            "missing": "Current book names canonical factions and gives broad institutional descriptions, but no exact complete past/present/distant-branch ledger or sufficiently concrete future premises for the required exhaustive positive witness was bound. No branch roster, actualmember privatehistory or split/dissolution event is invented. A general source tendency is not a complete campaign forecast.",
+            "minimalCorrection": "Supply exact established canonical-faction institutional history/current branches and source-qualified forecast inputs, including protected/private/absence controls and actual continuity events; instantiate the preserved full procedure against those records and demonstrate the required positive/branch traces.",
+            "linkedCaseIds": [
+              "RANK9KNOWLEDGEREVELATION5129-FACTION-OMNISCIENCE-SUPREME-A",
+              "RANK9KNOWLEDGEREVELATION5129-FACTION-OMNISCIENCE-SUPREME-A/actual-cleric-route",
+              "RANK9KNOWLEDGEREVELATION5129-FACTION-OMNISCIENCE-SUPREME-A/counter-failure",
+              "RANK9KNOWLEDGEREVELATION5129-FACTION-OMNISCIENCE-SUPREME-A/counter-success",
+              "RANK9KNOWLEDGEREVELATION5129-FACTION-OMNISCIENCE-SUPREME-A/invalid-access-and-component-boundary",
+              "RANK9KNOWLEDGEREVELATION5129-FACTION-OMNISCIENCE-SUPREME-A/ready-expiry",
+              "RANK9KNOWLEDGEREVELATION5129-FACTION-OMNISCIENCE-SUPREME-A/ready-valid-release",
+              "RANK9KNOWLEDGEREVELATION5129-FACTION-OMNISCIENCE-SUPREME-B"
+            ],
+            "linkedQuestionIds": [
+              "KNOW129-ADD01",
+              "KR9-Q01",
+              "KR9-Q06",
+              "KR9-Q07",
+              "KR9-Q08",
+              "KR9-Q09",
+              "KR9-Q10",
+              "KR9-Q25",
+              "KR9-Q26"
+            ],
+            "reassessment283": {
+              "result": "STILL_OPEN",
+              "scope": "Required complete positive dossier and forecast witness; not general faction existence, not a prohibition on source-grounded procedural authoring.",
+              "currentSourceEvidence": [
+                {
+                  "path": "evidence/CURRENT_TARGET_ROWS.json#/catalogCard",
+                  "finding": "Native promise, Divination placement, Cleric/Wizard rank9 at class17,26RP, Core Action/120feet/Instantaneous/V,S,F retained."
+                },
+                {
+                  "path": "evidence/FACTION_SOURCE_EXCERPTS.json",
+                  "sourcePath": "sources_current/docs/reference/Player_Rulebook_v6_source_text.txt",
+                  "lines": [
+                    10575,
+                    10603
+                  ],
+                  "finding": "Unbound, Arcane Concord, Planar Wardens, Merchant League, Circle of the Ancient Way and Veiled Court have broad source descriptions; these are real source facts, not complete dated branch/member/forecast records."
+                },
+                {
+                  "path": "evidence/FACTION_SOURCE_EXCERPTS.json",
+                  "sourcePath": "sources_current/docs/reference/Player_Rulebook_v6_source_text.txt",
+                  "lines": [
+                    10378,
+                    10404
+                  ],
+                  "finding": "Planar faction descriptions are preserved with current source/cosmology qualifications. They grant no new cross-plane observation permission or topology."
+                },
+                {
+                  "path": "procedures/faction-omniscience-supreme.json#/procedureContent",
+                  "finding": "Prior spell-local admission/dossier168hour forecast/protection/instantaneous-memory lifecycle preserved exactly."
+                },
+                {
+                  "path": "prior/Return198Target/SOURCE_OBLIGATIONS.json#/requiredCases",
+                  "finding": "Two required main obligations demand complete canonical faction dossier/forecast and real privacy/continuity boundaries."
+                }
+              ],
+              "minimumMissingWitness": [
+                {
+                  "id": "KR198-B01-W1",
+                  "required": "One exact already-established canonical faction, with source-authorized identity and complete finite historical/current institutional record at the cast timestamp: dated events, governance, actual business, resources, decisions, projects, and local plus distant branches. Bind field provenance, versions, coverage boundaries and authorized audiences; no invented branch roster or private member history.",
+                  "reason": "Names and broad institutional descriptions establish existence and tendencies, not the required complete whole-dossier input."
+                },
+                {
+                  "id": "KR198-B01-W2",
+                  "required": "Concrete source-qualified plans, constraints and established facts supporting likely developments over the selected168elapsed-hour horizon, with observation timestamp, source premises, competing alternatives, assumptions and qualitative uncertainty. Preserve missing forecast input as unavailable rather than certainty; do not force decisions or add probabilities.",
+                  "reason": "General statements such as the Merchant League opposing trade-disrupting conflict do not establish a complete current campaign forecast."
+                },
+                {
+                  "id": "KR198-B01-W3",
+                  "required": "Actual institutional/private/protected-member field examples, separately sourced true absence and missing-record states, and source-authorized faction continuity/split/dissolution operands for the required B branch. Bind protection source, audience, exact actor and event clocks; do not manufacture a split or dissolution event.",
+                  "reason": "Current component cases stop at the content hold. Their empty delivered arrays are not successful privacy filtering or certified absence."
+                },
+                {
+                  "id": "KR198-B01-W4",
+                  "required": "Instantiate those records through the existing admitted Cleric/Wizard route, actual acquisition/preparation, paid Action/V/S/F/26RP and cast interruption history, willing recipient within120ft/LoE, complete permitted dossier delivery, retrieval, later-memory/protection/recast lifecycle and full reversible histories. Preserve the original costs, knowledge versions, custody, deadlines and no membership/reputation benefits.",
+                  "reason": "Existing counter, Ready, rejection and cost traces replay, but neither required main case supplies a complete positive dossier/forecast."
+                }
+              ],
+              "noNewSourceFactInvented": true,
+              "notMechanicalCarryForward": "Rechecked current native card, source book institutional descriptions, current target index status, all126 source bindings and exact preserved target cases. No new complete ledger/forecast witness is bound."
+            }
+          }
+        ],
+        "validation": "INCOMPLETE_KR198-B01"
+      }
+    },
+    {
+      "id": "Original procedure and eight Return198 cases remain byte-exact and replay reversibly",
+      "passed": true,
+      "details": {
+        "procedureExact": true,
+        "cases": 8,
+        "events": 140,
+        "forward": 280,
+        "inverse": 280,
+        "errors": []
+      }
+    },
+    {
+      "id": "Return283 embeds exact local Packet283 delivery, supplement delivery and independent packet audit records",
+      "passed": true,
+      "details": []
+    }
+  ],
+  "scopeLimitation": "Verifies package integrity, current source and prior-case byte bindings, decision metadata, replay and review ledgers; it does not independently adjudicate game-rule semantics."
+}

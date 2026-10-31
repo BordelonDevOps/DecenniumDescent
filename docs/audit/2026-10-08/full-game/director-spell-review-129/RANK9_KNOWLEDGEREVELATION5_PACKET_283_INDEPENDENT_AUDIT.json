@@ -1,0 +1,146 @@
+{
+  "id": "RANK9-KNOWLEDGEREVELATION5-PACKET283-INDEPENDENT-AUDIT",
+  "status": "PASS",
+  "checksPassed": 9,
+  "checksFailed": 0,
+  "packet": {
+    "path": "docs\\audit\\2026-10-08\\full-game\\director-spell-review-129\\rank9_knowledgerevelation5_current_source_283_prepared\\DD_Rank9_KnowledgeRevelation5_CurrentSource_283.zip",
+    "bytes": 114891082,
+    "sha256": "ee24665fcd15a2c476782972f6a66be275a83b33e793f51d1a5f2db80947cb61",
+    "crc32": "8f58fe0c"
+  },
+  "delivery": {
+    "path": "docs\\audit\\2026-10-08\\full-game\\director-spell-review-129\\rank9_knowledgerevelation5_current_source_283_prepared\\DD_Rank9_KnowledgeRevelation5_CurrentSource_283_DELIVERY.json",
+    "sha256": "d0de756a4f0190cb2a54f38049dace15eab6ef3a1b6854ac4a59d2aa810ec7e0"
+  },
+  "supplement": {
+    "path": "docs\\audit\\2026-10-08\\full-game\\director-spell-review-129\\rank9_knowledgerevelation5_return198_witness_supplement_283\\DD_Rank9_KnowledgeRevelation5_Return198_TargetWitness_283.zip",
+    "bytes": 376858,
+    "sha256": "575cba75369eddb5116a951400a7a521c45117cffd2ed1555abd3a9a358f43dd",
+    "crc32": "a78e41b7"
+  },
+  "authority": {
+    "reviewedApplied": 816,
+    "pending": 32,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 540,
+    "scopedInterfaces": 173
+  },
+  "acceptedIds": [],
+  "heldIds": [
+    "faction-omniscience-supreme"
+  ],
+  "checks": [
+    {
+      "check": "Packet and supplement archive byte/hash bindings match delivery",
+      "passed": true,
+      "detail": {
+        "packet": {
+          "bytes": 114891082,
+          "sha256": "ee24665fcd15a2c476782972f6a66be275a83b33e793f51d1a5f2db80947cb61",
+          "crc32": "8f58fe0c"
+        },
+        "supplement": {
+          "bytes": 376858,
+          "sha256": "575cba75369eddb5116a951400a7a521c45117cffd2ed1555abd3a9a358f43dd",
+          "crc32": "a78e41b7"
+        }
+      }
+    },
+    {
+      "check": "ZIP CRCs pass and paths are unique and safe",
+      "passed": true,
+      "detail": {
+        "packetMembers": 186,
+        "supplementMembers": 28
+      }
+    },
+    {
+      "check": "All packet and supplement members match their internal byte/SHA/CRC manifests",
+      "passed": true,
+      "detail": {
+        "packet": 185,
+        "supplement": 27
+      }
+    },
+    {
+      "check": "Packet covers exactly one still-pending identity at authority 816/32/0",
+      "passed": true,
+      "detail": {
+        "authority": {
+          "reviewedApplied": 816,
+          "pending": 32,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 540,
+          "scopedInterfaces": 173
+        },
+        "pendingCount": 32,
+        "target": "faction-omniscience-supreme",
+        "indexStatus": "pending-authored-procedure"
+      }
+    },
+    {
+      "check": "Packets 238 through 282 and their audited decision records are carried byte-for-byte",
+      "passed": true,
+      "detail": {
+        "records": 36,
+        "errors": [],
+        "return282Held": [
+          "time-stop",
+          "fate-rewrite",
+          "collapse-timeline",
+          "eternal-prophecy"
+        ]
+      }
+    },
+    {
+      "check": "All 126 refreshed source rows match packed bytes, SHA-256, and Git blob IDs",
+      "passed": true,
+      "detail": {
+        "rows": 126,
+        "failures": []
+      }
+    },
+    {
+      "check": "Prior procedure and all eight exact target cases are preserved and case traces replay",
+      "passed": true,
+      "detail": {
+        "procedureExact": true,
+        "cases": 8,
+        "events": 140,
+        "forwardOperations": 280,
+        "inverseOperations": 280,
+        "failures": []
+      }
+    },
+    {
+      "check": "KR198-B01 and its six qualification holds are preserved without reopening prior acceptances",
+      "passed": true,
+      "detail": {
+        "targetHoldIds": [
+          "KR198-B01",
+          "KR198-H01",
+          "KR198-H02",
+          "KR198-H03",
+          "KR198-H04",
+          "KR198-H05",
+          "KR198-H06"
+        ],
+        "priorAcceptedIds": [
+          "cosmic-awareness",
+          "cosmic-revelation",
+          "divine-truth",
+          "oracle-of-eternity"
+        ]
+      }
+    },
+    {
+      "check": "Current packet embeds the same bound Return198 witness supplement",
+      "passed": true,
+      "detail": {
+        "bytes": 376858,
+        "sha256": "575cba75369eddb5116a951400a7a521c45117cffd2ed1555abd3a9a358f43dd"
+      }
+    }
+  ]
+}

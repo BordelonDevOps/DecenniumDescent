@@ -1,0 +1,132 @@
+{
+  "id": "RANK9PROJECTIONCONFINEMENT2-PACKET288-HISTORY-CORRECTION-INDEPENDENT-AUDIT",
+  "checkedAtUtc": "2026-10-30T23:41:59.336757+00:00",
+  "status": "PASS",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_projectionconfinement2_packet288_history_correction/DD_Rank9_ProjectionConfinement2_Packet288_HistoryCorrection.zip",
+    "bytes": 12891939,
+    "sha256": "9e8d480f004614ad4fa8189af4dc37289afc814a6e5657448fcd98ed27a8eaee",
+    "crc32": "4246da15"
+  },
+  "delivery": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_projectionconfinement2_packet288_history_correction/DD_Rank9_ProjectionConfinement2_Packet288_HistoryCorrection_DELIVERY.json",
+    "bytes": 2750,
+    "sha256": "f0648097e330bc7a2912e636327e4c8727da58653f9d6eed292390ad08ea6457",
+    "crc32": "f0a4820e"
+  },
+  "priorReturn232": {
+    "acceptedIds": [],
+    "appliedIds": [],
+    "heldIds": [
+      "astral-projection",
+      "imprisonment"
+    ],
+    "blockerIds": {
+      "astral-projection": [
+        "PC232-B01"
+      ],
+      "imprisonment": [
+        "PC232-B02"
+      ]
+    },
+    "auditChecks": 35,
+    "failedChecks": 0
+  },
+  "currentAuthority": {
+    "reviewedApplied": 816,
+    "pending": 32,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 540,
+    "scopedInterfaces": 173
+  },
+  "checkCount": 8,
+  "passedChecks": 8,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "check": "Correction ZIP matches its external DELIVERY size/SHA/CRC and local archive binding",
+      "passed": true,
+      "detail": {
+        "bytes": 12891939,
+        "sha256": "9e8d480f004614ad4fa8189af4dc37289afc814a6e5657448fcd98ed27a8eaee",
+        "crc32": "4246da15"
+      }
+    },
+    {
+      "check": "Correction archive has 11 safe unique members and passes CRC",
+      "passed": true,
+      "detail": {
+        "members": 11
+      }
+    },
+    {
+      "check": "External and internal manifests verify every correction member",
+      "passed": true,
+      "detail": {
+        "externalFailures": [],
+        "internalFailures": []
+      }
+    },
+    {
+      "check": "Return232 delivery records explicit prior holds, no acceptance/application, authority 811/37/0 and blockers PC232-B01/B02",
+      "passed": true,
+      "detail": {
+        "heldIds": [
+          "astral-projection",
+          "imprisonment"
+        ],
+        "blockers": {
+          "astral-projection": [
+            "PC232-B01"
+          ],
+          "imprisonment": [
+            "PC232-B02"
+          ]
+        }
+      }
+    },
+    {
+      "check": "Prior Return232 independent audit and receipt both pass 35/35",
+      "passed": true,
+      "detail": {
+        "checks": 35,
+        "status": "PASS"
+      }
+    },
+    {
+      "check": "Corrective note precisely supersedes the no-prior-ruling claim and preserves current scope/authority",
+      "passed": true,
+      "detail": {
+        "supersedesOnlyThatStatement": true,
+        "currentAuthority": {
+          "reviewedApplied": 816,
+          "pending": 32,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 540,
+          "scopedInterfaces": 173
+        }
+      }
+    },
+    {
+      "check": "Corrected request plus original Packet288 request transparently identify the history correction",
+      "passed": true,
+      "detail": {
+        "currentRequest": "corrective history attached"
+      }
+    },
+    {
+      "check": "Current queue/index still show only a historical hold and both identities pending at 816/32/0",
+      "passed": true,
+      "detail": {
+        "pending": 32,
+        "authority": {
+          "reviewedApplied": 816,
+          "pending": 32,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 540,
+          "scopedInterfaces": 173
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,132 @@
+{
+  "id": "RANK9-KNOWLEDGEREVELATION5-PACKET225-INDEPENDENT-AUDIT",
+  "status": "PASS",
+  "checksPassed": 8,
+  "checksFailed": 0,
+  "packet": {
+    "path": "docs\\audit\\2026-10-08\\full-game\\director-spell-review-129\\rank9_knowledgerevelation5_current_source_225_prepared\\DD_Rank9_KnowledgeRevelation5_CurrentSource_225.zip",
+    "bytes": 104034646,
+    "sha256": "28fc1518c288fd86b9d97c63d673c41dd28bb671330066bcd7eb80a1155771da",
+    "crc32": "5c6667d9"
+  },
+  "delivery": {
+    "path": "docs\\audit\\2026-10-08\\full-game\\director-spell-review-129\\rank9_knowledgerevelation5_current_source_225_prepared\\DD_Rank9_KnowledgeRevelation5_CurrentSource_225_DELIVERY.json",
+    "sha256": "1761bf2ea4a32d0634573a8f60ddf08cebe8e2b1b3b8888544c1017645b36eee"
+  },
+  "supplement": {
+    "path": "docs\\audit\\2026-10-08\\full-game\\director-spell-review-129\\rank9_knowledgerevelation5_return198_witness_supplement_225\\DD_Rank9_KnowledgeRevelation5_Return198_TargetWitness_225.zip",
+    "bytes": 376856,
+    "sha256": "b1f7d3748a418f8f6665e1ebb7c9161507038aa852c557fb4cda1def779927f4",
+    "crc32": "792167a5"
+  },
+  "authority": {
+    "reviewedApplied": 811,
+    "pending": 37,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 535,
+    "scopedInterfaces": 173
+  },
+  "acceptedIds": [],
+  "heldIds": [
+    "faction-omniscience-supreme"
+  ],
+  "checks": [
+    {
+      "check": "Packet and supplement archive byte/hash bindings match delivery",
+      "passed": true,
+      "detail": {
+        "packet": {
+          "bytes": 104034646,
+          "sha256": "28fc1518c288fd86b9d97c63d673c41dd28bb671330066bcd7eb80a1155771da",
+          "crc32": "5c6667d9"
+        },
+        "supplement": {
+          "bytes": 376856,
+          "sha256": "b1f7d3748a418f8f6665e1ebb7c9161507038aa852c557fb4cda1def779927f4",
+          "crc32": "792167a5"
+        }
+      }
+    },
+    {
+      "check": "ZIP CRCs pass and paths are unique and safe",
+      "passed": true,
+      "detail": {
+        "packetMembers": 153,
+        "supplementMembers": 28
+      }
+    },
+    {
+      "check": "All packet and supplement members match their internal byte/SHA/CRC manifests",
+      "passed": true,
+      "detail": {
+        "packet": 152,
+        "supplement": 27
+      }
+    },
+    {
+      "check": "Packet covers exactly one still-pending identity at authority 811/37/0",
+      "passed": true,
+      "detail": {
+        "authority": {
+          "reviewedApplied": 811,
+          "pending": 37,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 535,
+          "scopedInterfaces": 173
+        },
+        "pendingCount": 37,
+        "target": "faction-omniscience-supreme",
+        "indexStatus": "pending-authored-procedure"
+      }
+    },
+    {
+      "check": "All 126 refreshed source rows match packed bytes, SHA-256, and Git blob IDs",
+      "passed": true,
+      "detail": {
+        "rows": 126,
+        "failures": []
+      }
+    },
+    {
+      "check": "Prior procedure and all eight exact target cases are preserved and case traces replay",
+      "passed": true,
+      "detail": {
+        "procedureExact": true,
+        "cases": 8,
+        "events": 140,
+        "forwardOperations": 280,
+        "inverseOperations": 280,
+        "failures": []
+      }
+    },
+    {
+      "check": "KR198-B01 and its six qualification holds are preserved without reopening prior acceptances",
+      "passed": true,
+      "detail": {
+        "targetHoldIds": [
+          "KR198-B01",
+          "KR198-H01",
+          "KR198-H02",
+          "KR198-H03",
+          "KR198-H04",
+          "KR198-H05",
+          "KR198-H06"
+        ],
+        "priorAcceptedIds": [
+          "cosmic-awareness",
+          "cosmic-revelation",
+          "divine-truth",
+          "oracle-of-eternity"
+        ]
+      }
+    },
+    {
+      "check": "Current packet embeds the same bound Return198 witness supplement",
+      "passed": true,
+      "detail": {
+        "bytes": 376856,
+        "sha256": "b1f7d3748a418f8f6665e1ebb7c9161507038aa852c557fb4cda1def779927f4"
+      }
+    }
+  ]
+}

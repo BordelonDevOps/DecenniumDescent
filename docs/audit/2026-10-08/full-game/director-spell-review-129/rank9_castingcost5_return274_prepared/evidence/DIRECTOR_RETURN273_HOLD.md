@@ -1,0 +1,3 @@
+# Director Return273 HOLD
+
+Return273 director HOLD for Unholy Ascendance / CC194-B04. Corrected in Return274: (C01) restore flySpeed 30 and hover at field exit, and record movementRemaining 0 after the 30-foot movement; (C02) keep Spell Efficiency pending to regular END24 and recalculate its downstream state; (C03) record Arcane Sight recharge 2->1 at START8 and 1->0 at START14, and start Arch Dispel at2 after14.1; (C04) synchronize all event-after Action/bonus/reaction endpoint mirrors; (C05) record T's first regular START at2.0, move its cast/hit to2.1/2.32, and rebase the death fork at2.32.

@@ -1,0 +1,177 @@
+{
+  "id": "RETURN214-DELTA-SEMANTIC-INDEPENDENT-AUDIT",
+  "status": "PASS",
+  "acceptedIds": [
+    "field-of-endless-dead",
+    "plague-of-undeath"
+  ],
+  "applied": false,
+  "authorityBeforeApplication": {
+    "reviewedApplied": 804,
+    "pending": 44,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 528,
+    "scopedInterfaces": 173
+  },
+  "counts": {
+    "sourceRuleBindings": 13,
+    "newCases": 13,
+    "preservedCases": 17,
+    "newEvents": 409,
+    "preservedEvents": 438,
+    "events": 847,
+    "operations": 3388
+  },
+  "checks": [
+    {
+      "check": "delta outer binding exact",
+      "passed": true,
+      "detail": {
+        "bytes": 73870874,
+        "sha256": "897c2cc997fd10f242d8e4b53389adf2f12ac52e1a910954355862f62c756faf",
+        "crc32": "5a23a20a"
+      }
+    },
+    {
+      "check": "delta delivery manifest bound to archive",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "original delivery manifest byte binding",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "delta ZIP CRC integrity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "exact unique allowlist",
+      "passed": true,
+      "detail": {
+        "actual": 40,
+        "allowlist": 40
+      }
+    },
+    {
+      "check": "all 40 archive members match byte/hash/CRC allowlist",
+      "passed": true,
+      "detail": {
+        "passed": 40,
+        "total": 40
+      }
+    },
+    {
+      "check": "external Return213 binding exact local archive",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Source Conference 02 archive exact",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "all RULE_SOURCE_MAP sources match local and conference archive",
+      "passed": true,
+      "detail": {
+        "passed": 13,
+        "total": 13
+      }
+    },
+    {
+      "check": "four named rule sources match user-supplied byte bindings",
+      "passed": true,
+      "detail": {
+        "passed": 4,
+        "total": 4
+      }
+    },
+    {
+      "check": "all 13 new case traces replay and invert exactly",
+      "passed": true,
+      "detail": {
+        "cases": 13,
+        "passed": 13,
+        "events": 409,
+        "operations": 1636
+      }
+    },
+    {
+      "check": "all preserved Return213 case traces replay and invert exactly",
+      "passed": true,
+      "detail": {
+        "cases": 17,
+        "passed": 17,
+        "events": 438,
+        "operations": 1752
+      }
+    },
+    {
+      "check": "aggregate case/event/operation counts match decision",
+      "passed": true,
+      "detail": {
+        "distinctCases": 30,
+        "events": 847,
+        "ops": 3388
+      }
+    },
+    {
+      "check": "director exact acceptance and unapplied state",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Return214 independent machine reports pass",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Null exposure/save/unsuppressed same-dealer root verified in both spells",
+      "passed": true,
+      "detail": {
+        "passed": 2,
+        "total": 2,
+        "keyFacts": "exact field; WIS9, d20=4, 13<15; residual 2s after exit; same B dealer, minion recipient"
+      }
+    },
+    {
+      "check": "only two stated missing external boundaries retained conditionally",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "required Null and Denial histories have explicit event witnesses",
+      "passed": true,
+      "detail": {
+        "passed": 8,
+        "total": 8
+      }
+    },
+    {
+      "check": "seven inherited pending holds and prior source questions retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "current review index remains at submitted 804/44 baseline and both exact targets pending",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "catalog remains unchanged at its source-bound exact hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "accepted procedure preserves each pending native card and all three access routes",
+      "passed": true,
+      "detail": {
+        "passed": 2,
+        "total": 2
+      }
+    }
+  ]
+}

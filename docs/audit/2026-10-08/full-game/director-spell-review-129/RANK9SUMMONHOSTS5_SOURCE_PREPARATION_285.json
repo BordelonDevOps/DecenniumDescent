@@ -1,0 +1,86 @@
+{
+  "id": "RANK9-SUMMON-HOSTS5-SOURCE-PREPARATION-285",
+  "recordedAtUtc": "2026-10-30T22:29:56.315506+00:00",
+  "status": "PASS",
+  "sourceBranch": "main",
+  "sourceCommit": "197366eae0c786415de55a0e4739e83f49f1a65f",
+  "sourceAuthority": {
+    "reviewedApplied": 816,
+    "pending": 32,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 540,
+    "scopedInterfaces": 173
+  },
+  "targetGroup": "rank9-summon-hosts5",
+  "pendingIds": [
+    "summon-elemental-avatar",
+    "summon-herald-of-the-planes",
+    "summon-avatar-of-decay"
+  ],
+  "closedAcceptedIds": [
+    "conjure-magmatic-wyrm",
+    "planar-army"
+  ],
+  "historicalSourceBindingCount": 210,
+  "priorCurrentSourceBindingCount": 260,
+  "refreshedSourceBindingCount": 280,
+  "changedSincePriorSummonHostsCandidate": [
+    "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+    "START_HERE.md",
+    "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT37_PENDING_IDENTITY_AUDIT_244.json",
+    "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_244.json",
+    "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_SPELL_QUEUE_244.json"
+  ],
+  "latestPacket284SourceBindingCount": 175,
+  "packet": {
+    "path": "DD_Rank9_SummonHosts5_CurrentSource_285.zip",
+    "bytes": 393888641,
+    "sha256": "f3689af898ad103689a839a3a3af46f94946f9b85a7ff3153253443d64a17540",
+    "crc32": "5ca8c412"
+  },
+  "deliveryManifest": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_summonhosts5_current_source_285_prepared/DD_Rank9_SummonHosts5_CurrentSource_285_DELIVERY.json",
+    "bytes": 2252,
+    "sha256": "7430e1e5e2bea988bda68ea2436cacaa17f0a09d9fddede1b92789160e2633d2",
+    "crc32": "7cecb44c"
+  },
+  "return284Audit": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/RANK9_PLANARGATES5_RETURN284_INDEPENDENT_AUDIT.json",
+    "bytes": 8883,
+    "sha256": "116eb84adca99ac40d9233835005bf96dec001f4b4ec98fdd4f38d8d112022e9",
+    "crc32": "36f0ec22"
+  },
+  "return244Audit": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/RANK9SUMMONHOSTS5_RETURN244_INDEPENDENT_AUDIT.json",
+    "bytes": 45872,
+    "sha256": "08d5ad947d21ac4c11645fa1f6e9305637cc373c5a31c849fd9c7ba89321f928",
+    "crc32": "1c1b7487"
+  },
+  "checks": [
+    {
+      "check": "Current authored index and pending set match authority 816/32/0",
+      "passed": true
+    },
+    {
+      "check": "Only the three pending Summon Hosts identities are in review scope",
+      "passed": true
+    },
+    {
+      "check": "Return202 acceptances remain applied, excluded, and closed",
+      "passed": true
+    },
+    {
+      "check": "Return284 passed 18 independent checks and its two Planar holds remain outside scope",
+      "passed": true
+    },
+    {
+      "check": "All source paths exist and are rebound to current bytes",
+      "passed": true
+    },
+    {
+      "check": "Packet ZIP is readable, unique, and bound by matching delivery",
+      "passed": true
+    }
+  ],
+  "canonicalChanges": false
+}

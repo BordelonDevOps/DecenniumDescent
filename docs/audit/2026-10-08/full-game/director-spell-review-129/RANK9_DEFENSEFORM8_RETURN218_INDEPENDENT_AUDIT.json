@@ -1,0 +1,155 @@
+{
+  "id": "RANK9-DEFENSEFORM8-RETURN218-INDEPENDENT-AUDIT",
+  "recordedAtUtc": "2026-10-29T20:50:06.642895+00:00",
+  "status": "PASS",
+  "checksPassed": 22,
+  "checksFailed": 0,
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_defenseform8_return218_received/DD_Rank9_DefenseForm5_Director_Return218.zip",
+    "bytes": 72072047,
+    "sha256": "09e592f58e66975933f3feb8fe8779c215d5a70d5f00623a23da6ede351d8875",
+    "crc32": "f38d5a61"
+  },
+  "deliveryManifest": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_defenseform8_return218_received/DD_Rank9_DefenseForm5_Director_Return218_DELIVERY.json",
+    "bytes": 71659,
+    "sha256": "5334a9701ec86d997ede173c184509fa8d3b20c932845648e2b12fa1c9f3e658"
+  },
+  "acceptedIds": [
+    "absolute-immunity",
+    "body-to-void"
+  ],
+  "heldIds": [
+    "elemental-shell",
+    "timeless-form",
+    "invulnerable-sphere"
+  ],
+  "blockerIds": {
+    "elemental-shell": [
+      "DF218-B01",
+      "DF218-B02"
+    ],
+    "timeless-form": [
+      "DF218-B03"
+    ],
+    "invulnerable-sphere": [
+      "DF218-B04"
+    ]
+  },
+  "authority": {
+    "reviewedApplied": 808,
+    "pending": 40,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 532,
+    "scopedInterfaces": 173
+  },
+  "preservedCasesVerified": 69,
+  "newCasesReplayed": 3,
+  "checks": [
+    {
+      "check": "Outer archive size/SHA-256/CRC match the external delivery record",
+      "passed": true
+    },
+    {
+      "check": "External delivery identifies the exact group return and leaves it unapplied",
+      "passed": true
+    },
+    {
+      "check": "ZIP CRC scan passes and member names are unique",
+      "passed": true
+    },
+    {
+      "check": "Archive has no traversal, hidden, or absolute paths",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "External allowlist and delivery member inventory exactly equal archive names",
+      "passed": true
+    },
+    {
+      "check": "Every archive member independently matches delivered bytes/SHA/CRC and central-directory CRC",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "Internal manifest covers exactly all 114 payload members",
+      "passed": true
+    },
+    {
+      "check": "Every payload member matches the internal self-excluding manifest",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "Delivery, director decision, and authority records agree on 808/40/0 and 532/173",
+      "passed": true
+    },
+    {
+      "check": "Exactly Absolute Immunity and Body to Void are accepted, with no application",
+      "passed": true
+    },
+    {
+      "check": "Exactly the other three Defense/Form8 identities remain held",
+      "passed": true
+    },
+    {
+      "check": "Five identity decisions, procedure dispositions, per-identity blocker IDs, and procedure files agree",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "Four held blockers map to the prior exact source blockers",
+      "passed": true
+    },
+    {
+      "check": "Director package audit reports exactly 470 passing checks and no failures",
+      "passed": true
+    },
+    {
+      "check": "All 33 independent semantic assertions pass",
+      "passed": true
+    },
+    {
+      "check": "Return186 baseline evidence is reused without replay: 19,517 checks and 69 cases remain unchanged",
+      "passed": true
+    },
+    {
+      "check": "All 69 preserved case objects are unchanged from the prior Return186 casebook",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "Three added cases independently replay forward/inverse with exact state hashes",
+      "passed": true,
+      "detail": {
+        "caseIds": [
+          "DF218-SHELL-NULL-POSITIVE-HP",
+          "DF218-SHELL-NULL-STABLE-ZERO",
+          "DF218-SPHERE-ACTUAL-CROWN-COMMAND"
+        ],
+        "cases": 3,
+        "events": 72,
+        "forwardOperations": 144,
+        "inverseOperations": 144,
+        "errors": []
+      }
+    },
+    {
+      "check": "Case index totals reconcile to 72 cases, 1,568 events and 3 added traces",
+      "passed": true
+    },
+    {
+      "check": "Embedded source packet is byte-exact to the locally prepared authority-808 packet",
+      "passed": true
+    },
+    {
+      "check": "Candidate serialization reconciliation is unchanged and records zero structural differences",
+      "passed": true
+    },
+    {
+      "check": "Source check covers 87 refreshed bindings and stays at current authority",
+      "passed": true
+    }
+  ]
+}

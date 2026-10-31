@@ -1,0 +1,174 @@
+{
+  "id": "SOUL-REFLECTION-DELTA-269-INDEPENDENT-AUDIT",
+  "recordedAtUtc": "2026-10-30T17:08:35.068666+00:00",
+  "status": "PASS",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_illusionreality5_delta_269_prepared/DD_Rank9_SoulReflection_Delta_269.zip",
+    "bytes": 14111384,
+    "sha256": "35a762f0b590bc34e9f2eda70b937cb282bc9fd0df48ba919c7618bafe533efd",
+    "crc32": "0fca8e57"
+  },
+  "delivery": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_illusionreality5_delta_269_prepared/DD_Rank9_SoulReflection_Delta_269_DELIVERY.json",
+    "bytes": 11728,
+    "sha256": "24012d5fcd82908e458ec3b49c09d3e3660ed5c082d45653a9136e15ba01472b"
+  },
+  "authority": {
+    "reviewedApplied": 814,
+    "pending": 34,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 538,
+    "scopedInterfaces": 173
+  },
+  "targetIds": [
+    "soul-reflection"
+  ],
+  "checkCount": 27,
+  "passedChecks": 27,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "check": "The packet binds every payload member exactly once with size, SHA256 and CRC32.",
+      "passed": true
+    },
+    {
+      "check": "All five event cases replay with exact before/after state, reversible root patches, and monotonic event clocks.",
+      "passed": true,
+      "detail": [
+        {
+          "id": "RANK9ILLUSIONREALITY5269-SOUL-REFLECTION-FORM",
+          "events": 27,
+          "forwardInverseOperations": 108,
+          "failures": []
+        },
+        {
+          "id": "RANK9ILLUSIONREALITY5269-SOUL-REFLECTION-CONCENTRATION",
+          "events": 24,
+          "forwardInverseOperations": 96,
+          "failures": []
+        },
+        {
+          "id": "RANK9ILLUSIONREALITY5269-SOUL-REFLECTION-ORIGINAL-ZERO",
+          "events": 14,
+          "forwardInverseOperations": 56,
+          "failures": []
+        },
+        {
+          "id": "RANK9ILLUSIONREALITY5269-SOUL-REFLECTION-CARGO",
+          "events": 28,
+          "forwardInverseOperations": 112,
+          "failures": []
+        },
+        {
+          "id": "RANK9ILLUSIONREALITY5269-SOUL-REFLECTION-ATTACHED-CAVE-BEAR",
+          "events": 25,
+          "forwardInverseOperations": 100,
+          "failures": []
+        }
+      ]
+    },
+    {
+      "check": "All four legacy cases have only exact authored actor turns; CARGO includes D at3/3.9 and9/9.9.",
+      "passed": true
+    },
+    {
+      "check": "No case leaves a scheduled event in missed-unresolved state.",
+      "passed": true
+    },
+    {
+      "check": "C01 clocks, phase calendars and event after-times align.",
+      "passed": true
+    },
+    {
+      "check": "Concentration processes A regular start at 18 seconds after the finite effect; zero conditions arise only at the 5.91-second zero resolution.",
+      "passed": true
+    },
+    {
+      "check": "C02 admission saves, counter windows and once-only hard guards are recorded.",
+      "passed": true
+    },
+    {
+      "check": "C03 Gaseous Form changes and restores effective actor capabilities and equipment state.",
+      "passed": true
+    },
+    {
+      "check": "C04 concentration save has both advantage dice and the selected higher result.",
+      "passed": true
+    },
+    {
+      "check": "Copied Gaseous Form pays exactly 5 RP, and the level-16 Ranger has the source-bound 28-RP maximum and pays 4 RP for the bond.",
+      "passed": true
+    },
+    {
+      "check": "C05 attack is disadvantaged against Dodge, zero HP consequences and death roll are complete.",
+      "passed": true
+    },
+    {
+      "check": "C06 R1 source/equipment is finite and one original T-map retains owner and ground custody.",
+      "passed": true
+    },
+    {
+      "check": "Attached candidate uses Cave Bear INT3/CR2, explicit legal bond and three actual attached markers without target regular turns.",
+      "passed": true
+    },
+    {
+      "check": "Every source-bound Soul Reflection save uses Divination School Mastery DC21; Counterspell eligibility includes automatic Wizard access, range, perception, Reaction, RP and recharge, with explicit declines.",
+      "passed": true
+    },
+    {
+      "check": "Each later cast has its own cast-before-resolution window, director-specified eligible observers, explicit declines, triggering rank and Counterspell check DC.",
+      "passed": true
+    },
+    {
+      "check": "Each cast-window actor list exactly matches the actor set in the first event that commits the cast; FORM, Concentration, and Zero reproduce their reviewed local snapshots.",
+      "passed": true
+    },
+    {
+      "check": "All Action casts spend a real Action, toggle magicalThisTurn, and record actual matrix family, first-distinct, Dissonance, Refrain, and paid-RP results.",
+      "passed": true
+    },
+    {
+      "check": "Q27 uses the director schema: consumed-awaiting-execution at admission, consumed-executed after the target Action, case ID encounter key, and synchronized actor/effect mirrors; attached-only stays inapplicable.",
+      "passed": true
+    },
+    {
+      "check": "Every before/after event state uses its exact case ID as encounter, and every Q27 admission state records consumed-awaiting-execution before the later consumed-executed state.",
+      "passed": true
+    },
+    {
+      "check": "Ordinary phase ENDs are separate bounded events before the next independent slot; action, bonus action and movement expire, Reaction and cast flag carry through END, and the cast flag resets at next reflection START.",
+      "passed": true
+    },
+    {
+      "check": "Form and concentration traces process A START18 and END18.9; target Dodge expires at the next actual T START; finite Reflection deadline and phase-END clocks close in order.",
+      "passed": true
+    },
+    {
+      "check": "Every resolved reflection movement budget records pre-action source speed and post-action effective speed separately, including Gaseous Form speed10 and the Large Cave Bear speed40.",
+      "passed": true
+    },
+    {
+      "check": "Form IDs resolve consistently to Delta269 and ended forms/copies are marked ended; no active form remains after its source deadline or failed concentration save.",
+      "passed": true
+    },
+    {
+      "check": "The zero-HP event records a resolved Ray of Frost Action and one complete disadvantaged attack result, followed by unconsciousness and the later actual death save.",
+      "passed": true
+    },
+    {
+      "check": "Attached target shows an unbonded Cave Bear before the one-hour ritual, AC13/68 HP to AC14/35 HP conversion, lawful level16 selection and bond payment/use.",
+      "passed": true
+    },
+    {
+      "check": "Attached R1 is a separate nonoverlapping Large body at [25,0,0], carries no live Ranger bond, attached-phase history, or Wizard gear/hands, and the target receives no independent regular turn.",
+      "passed": true
+    },
+    {
+      "check": "No acceptance, application, canonical edit or GitHub change is represented.",
+      "passed": true
+    }
+  ],
+  "acceptanceOrApplicationPerformed": false,
+  "canonicalChanges": false,
+  "githubChanges": false
+}

@@ -1,0 +1,102 @@
+{
+  "id": "MF210-M-magical-input",
+  "spellId": "matter-conversion",
+  "title": "Selected target has an actual magical imprint.",
+  "kind": "isolated-conditional-state-kernel",
+  "endToEndWitness": false,
+  "prerequisitesNotDemonstrated": [
+    "The underlying concrete scene facts are prerequisites; no completed conversion is demonstrated."
+  ],
+  "procedureClause": "matter.categories",
+  "clockScope": "No elapsed time or actor turn is modeled; this kernel cannot certify regular-turn accounting.",
+  "events": [
+    {
+      "id": "MF210-M-magical-input:1",
+      "before": {
+        "request": "magical-input",
+        "payment": {
+          "RP": 0,
+          "Action": 0
+        },
+        "inputUnchanged": true,
+        "output": null,
+        "status": "preflight"
+      },
+      "after": {
+        "request": "magical-input",
+        "payment": {
+          "RP": 0,
+          "Action": 0
+        },
+        "inputUnchanged": true,
+        "output": null,
+        "status": "rejected-before-payment",
+        "reason": "Selected target has an actual magical imprint."
+      },
+      "beforeSHA256": "3e216ca08d082279d83bcf457fd4b91c2b556535291d54753f8e56ca5ed2dd4d",
+      "afterSHA256": "c44a3d20b836fca10598a1eb256ea7da2dfb788382334d3fd299f30a0a9179c3",
+      "forward": [
+        {
+          "op": "test",
+          "path": "",
+          "value": {
+            "request": "magical-input",
+            "payment": {
+              "RP": 0,
+              "Action": 0
+            },
+            "inputUnchanged": true,
+            "output": null,
+            "status": "preflight"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "",
+          "value": {
+            "request": "magical-input",
+            "payment": {
+              "RP": 0,
+              "Action": 0
+            },
+            "inputUnchanged": true,
+            "output": null,
+            "status": "rejected-before-payment",
+            "reason": "Selected target has an actual magical imprint."
+          }
+        }
+      ],
+      "inverse": [
+        {
+          "op": "test",
+          "path": "",
+          "value": {
+            "request": "magical-input",
+            "payment": {
+              "RP": 0,
+              "Action": 0
+            },
+            "inputUnchanged": true,
+            "output": null,
+            "status": "rejected-before-payment",
+            "reason": "Selected target has an actual magical imprint."
+          }
+        },
+        {
+          "op": "replace",
+          "path": "",
+          "value": {
+            "request": "magical-input",
+            "payment": {
+              "RP": 0,
+              "Action": 0
+            },
+            "inputUnchanged": true,
+            "output": null,
+            "status": "preflight"
+          }
+        }
+      ]
+    }
+  ]
+}

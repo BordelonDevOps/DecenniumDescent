@@ -1,0 +1,227 @@
+{
+  "id": "MATTER-CONVERSION-DIRECTOR-FIXTURE-AUTHORIZATION-260",
+  "recordedAtUtc": "2026-10-30T13:54:14Z",
+  "service": "ChatGPT",
+  "conversation": "Calibration review part 6",
+  "conversationUrl": "https://chatgpt.com/g/g-p-67f17555a8dc8191a2b5b81e6d8adc12-dungeon-crawler/c/6adc506d-8770-83ea-b64c-0345d9b9b682",
+  "packetReviewed": "DD_Rank9_MatterConversion_MF210-B02_Supplement_259.zip",
+  "target": "matter-conversion",
+  "blocker": "MF210-B02",
+  "decision": "HOLD",
+  "accepted": false,
+  "applied": false,
+  "authorizedNewScopedGameData": true,
+  "authorizationScope": "Only bounded fixtures for MF247-M-W1 and MF247-M-W2; these are new director-authored parameters, not source facts, campaign events or global material/economy rules.",
+  "packet259PayloadBindingsPassed": 26,
+  "preservedKernelChecks": {
+    "kernels": 7,
+    "forwardOperations": 14,
+    "inverseOperations": 14,
+    "status": "PASS; remain conditional"
+  },
+  "anchors": [
+    "spell_catalog.json#/spells/768",
+    "Core Matter Conversion row",
+    "Player Rulebook v6 lines 9738, 6578, 6542"
+  ],
+  "quantityConservation": {
+    "maxMassLbPerCast": 100,
+    "massConservedExactly": true,
+    "marketValueConserved": false,
+    "geometry": "Preserve topology and relative shape; V=m/rho; uniform linear scale s=(Vout/Vin)^(1/3).",
+    "damage": "Preserve missing parts, workmanship, contamination and absolute damage deficit; outputHP=max(0,outputMaxHP-inputDamageDeficit).",
+    "resolution": "Revalidate authorization, revision, reservation, geometry and support. No partial output or paid-failure refund.",
+    "permanence": "Successful output is ordinary persistent matter; cast lineage is provenance, not a dispellable effect."
+  },
+  "profiles": {
+    "W1": {
+      "id": "MF247-M-W1",
+      "purpose": "Stone-to-mithril conversion and one finite sale",
+      "inputId": "MC259-STONE-LOT-1",
+      "inputMaterial": "Homogeneous, uncontaminated, ordinary nonmagical stone",
+      "geometryInches": [
+        2,
+        2,
+        2
+      ],
+      "volumeIn3": "8/1",
+      "densityLbPerIn3": "1/8",
+      "massLb": "1/1",
+      "inputDurability": {
+        "AC": 17,
+        "HP": 8,
+        "maxHP": 8,
+        "damageDeficit": 0
+      },
+      "outputId": "MC259-MITHRIL-1",
+      "outputMaterial": "Homogeneous nonmagical mithril, ordinary uncertified bulk grade",
+      "outputDurability": {
+        "AC": 19,
+        "HP": 12,
+        "maxHP": 12
+      },
+      "geometryUnchanged": true,
+      "noAdditionalProperties": [
+        "enchantment",
+        "charges",
+        "workmanship bonus",
+        "certification",
+        "recipe equivalence"
+      ],
+      "remainder": "Zero unconverted selected mass; no byproduct",
+      "ownerAtOpening": "A",
+      "station": {
+        "id": "MC259-STATION-1",
+        "owner": "B",
+        "surfaceInches": [
+          24,
+          24
+        ],
+        "loadLimitLb": 100,
+        "cubeCenteredAndFullySupported": true,
+        "clearanceInches": 6,
+        "BPermitsConversionAndContinuedCustody": true,
+        "otherLoadAttachmentHazardOrOverlap": false
+      },
+      "transaction": {
+        "id": "MC259-QUOTE-1",
+        "buyer": "B",
+        "originAndUncertifiedGradeDisclosed": true,
+        "priceGp": 250,
+        "exactOutputMassLb": "1/1",
+        "expiresAtSeconds": 12,
+        "openingTradingReserveGp": 300,
+        "fixturePropertyNotClassStartingWealth": true,
+        "settlementReserveAfterGp": 50,
+        "outputOwnerAfterSale": "B",
+        "paymentOwner": "A",
+        "paymentLocation": "A-labeled settlement tray",
+        "paymentCustodian": "B",
+        "physicalCoinLocationsRecorded": true,
+        "totalCoinQuantityUnchanged": true,
+        "repeatSettlementCannotPayAgain": true,
+        "noRecipeRequired": true,
+        "noFutureMarketOrRepeatBuyer": true
+      }
+    },
+    "W2": {
+      "id": "MF247-M-W2",
+      "purpose": "Convert damaged opaque inspection cover to clear material while preserving damage",
+      "physicalBodyId": "MC259-PANEL-2",
+      "inputAllocationId": "MC259-CERAMIC-LOT-2",
+      "inputMaterial": "Homogeneous, uncontaminated, ordinary nonmagical ceramic",
+      "geometryInches": "12 × 12 × 1/4, existing 1 × 1 × 1/4 corner absent",
+      "volumeIn3": "143/4",
+      "densityLbPerIn3": "1/8",
+      "massLb": "143/32",
+      "inputDurability": {
+        "AC": 13,
+        "HP": 6,
+        "maxHP": 10,
+        "damageDeficit": 4
+      },
+      "outputAllocationId": "MC259-GLASS-1",
+      "outputMaterial": "Ordinary nonmagical clear glass, transparent through intact portions",
+      "outputDurability": {
+        "AC": 13,
+        "HP": 4,
+        "maxHP": 8,
+        "damageDeficit": 4
+      },
+      "geometryUnchangedIncludingNotch": true,
+      "noAdditionalProperties": [
+        "enchantment",
+        "self-repair",
+        "optical magnification",
+        "special resistance"
+      ],
+      "remainder": "Zero unconverted selected mass; no replacement missing corner or salvage",
+      "ownerAtOpening": "A",
+      "custodianAtOpening": "B",
+      "missingCornerAndDamageAreOpeningConditions": true,
+      "noInventedPriorAttackOrDetachedFragment": true,
+      "frame": {
+        "id": "MC259-FRAME-2",
+        "geometryInches": [
+          14,
+          14
+        ],
+        "centralOpeningInches": [
+          10,
+          10
+        ],
+        "panelCenteredWithIntactPerimeterOnRim": true,
+        "staticPanelLoadLimitLb": 20,
+        "noPressureCarriedLoadFluidSealOrStructuralBuildingFunction": true,
+        "knownNonsecretColoredMarkerBelowOpening": true,
+        "visibilityThroughIntactGlassUseful": true,
+        "notchRemainsOpen": true
+      },
+      "reservation": {
+        "id": "MC259-RESERVATION-2",
+        "establishedBeforeEncounter": true,
+        "holder": "B",
+        "scope": "Custody/work reservation only, not recipe, spell or material-consumption entitlement",
+        "AConsentRecorded": true
+      },
+      "sequence": [
+        "Reject A preflight while reservation active before payment; no RP/Action/casting-history expenditure.",
+        "B explicitly releases reservation during own lawful turn.",
+        "A makes new declaration against current revision and pays 26-RP Action.",
+        "Successful conversion preserves physical body identity, ownership and custody; retires ceramic allocation and creates glass successor.",
+        "Show 6/10 to 4/8 HP, unchanged notch and mass, no repair.",
+        "Leave result in frame, A-owned and B-custodied, reservation cleared; show useful viewing and ordinary existence after caster turn. No sale value."
+      ]
+    }
+  },
+  "schedule": {
+    "ARegularStarts": [
+      0,
+      6,
+      12
+    ],
+    "BRegularStarts": [
+      1,
+      7,
+      13
+    ],
+    "W1": "A commits/resolves first turn; B settles sale during B turn.",
+    "W2": "Reservation preflight during A first turn; B releases on B first turn; A commits next regular turn.",
+    "allDueStartsAndEnds": true,
+    "trackActionDissonanceRefrainReservationsCustodyAndTerminalCastRecords": true,
+    "noRestHealingOrRecovery": true,
+    "noLateFailureWithoutLawfulInterveningCause": true
+  },
+  "remaining": {
+    "integratedWitnesses": [
+      "MF247-M-W1",
+      "MF247-M-W2"
+    ],
+    "acceptanceRequires": "Complete independently audited traces covering semantics, clock, conservation, transaction, forward and inverse checks.",
+    "blockerRemainsOpen": true
+  },
+  "packagingCorrection": {
+    "Packet259ArchiveMembers": 28,
+    "nonSelfMembersToBind": 27,
+    "unlistedMember": "REQUEST.txt",
+    "requestSha256": "c460c42d1f3ce15299938ee946bc68df4af944fd6b02b31c2c034968268d7a6f",
+    "instruction": "Preserve Packet259 unchanged and correct the next package."
+  },
+  "authority": {
+    "reviewedApplied": 813,
+    "pending": 35,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 537,
+    "scopedInterfaces": 173
+  },
+  "stillClosedGates": [
+    "runtime",
+    "implementation",
+    "human-play",
+    "balance",
+    "cosmology",
+    "domain-closure",
+    "completion",
+    "release"
+  ]
+}

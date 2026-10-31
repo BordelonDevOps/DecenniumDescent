@@ -1,0 +1,176 @@
+{
+  "id": "RANK9-TIMEFATE6-PACKET282-INDEPENDENT-AUDIT",
+  "checkedAtUtc": "2026-10-30T21:28:07.424806+00:00",
+  "status": "PASS",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_timefate6_current_source_282_prepared/DD_Rank9_TimeFate6_CurrentSource_282.zip",
+    "bytes": 149484200,
+    "sha256": "8b2ee76baf5c489a117279c96da8f0b857068bd641d137955b2ea10771c248c7",
+    "crc32": "16f00810"
+  },
+  "deliveryManifest": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_timefate6_current_source_282_prepared/DD_Rank9_TimeFate6_CurrentSource_282_DELIVERY.json",
+    "bytes": 2335,
+    "sha256": "d3884e1b74c8692ec0e7a7ec6391c12ba427c43b3b3ba517b2336a77fc83fbbe",
+    "crc32": "043aaffe"
+  },
+  "authority": {
+    "reviewedApplied": 816,
+    "pending": 32,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 540,
+    "scopedInterfaces": 173
+  },
+  "group": "rank9-time-fate6",
+  "pendingIds": [
+    "time-stop",
+    "fate-rewrite",
+    "collapse-timeline",
+    "eternal-prophecy"
+  ],
+  "sourceBindingsVerified": 140,
+  "checkCount": 12,
+  "passedChecks": 12,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "check": "Packet282 ZIP matches its delivery size, SHA-256 and CRC32",
+      "passed": true,
+      "detail": {
+        "actual": {
+          "bytes": 149484200,
+          "sha256": "8b2ee76baf5c489a117279c96da8f0b857068bd641d137955b2ea10771c248c7",
+          "crc32": "16f00810"
+        },
+        "expected": {
+          "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_timefate6_current_source_282_prepared/DD_Rank9_TimeFate6_CurrentSource_282.zip",
+          "bytes": 149484200,
+          "sha256": "8b2ee76baf5c489a117279c96da8f0b857068bd641d137955b2ea10771c248c7",
+          "crc32": "16f00810"
+        }
+      }
+    },
+    {
+      "check": "delivery, queue, handoff and pending audit agree on exact 816/32/0 scope",
+      "passed": true,
+      "detail": {
+        "authority": {
+          "reviewedApplied": 816,
+          "pending": 32,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 540,
+          "scopedInterfaces": 173
+        },
+        "pendingIds": [
+          "time-stop",
+          "fate-rewrite",
+          "collapse-timeline",
+          "eternal-prophecy"
+        ]
+      }
+    },
+    {
+      "check": "four targets remain pending and non-operational; excluded identities stay excluded",
+      "passed": true,
+      "detail": {
+        "indexCounts": {
+          "reviewed": 816,
+          "pending": 32
+        }
+      }
+    },
+    {
+      "check": "ZIP directory is sound and member paths are unique and safe",
+      "passed": true,
+      "detail": {
+        "members": 223,
+        "unique": 223
+      }
+    },
+    {
+      "check": "embedded manifest covers every payload member and exact Time/Fate scope",
+      "passed": true,
+      "detail": {
+        "payload": 222,
+        "zipMembers": 223,
+        "authority": {
+          "reviewedApplied": 816,
+          "pending": 32,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 540,
+          "scopedInterfaces": 173
+        }
+      }
+    },
+    {
+      "check": "every payload member matches embedded byte, SHA-256 and CRC32",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "candidate and context bind the exact current group, 140 sources and latest Return281",
+      "passed": true,
+      "detail": {
+        "sources": 140,
+        "authority": {
+          "reviewedApplied": 816,
+          "pending": 32,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 540,
+          "scopedInterfaces": 173
+        },
+        "pendingIds": [
+          "time-stop",
+          "fate-rewrite",
+          "collapse-timeline",
+          "eternal-prophecy"
+        ]
+      }
+    },
+    {
+      "check": "all 140 refreshed source files match both packet bindings and working-tree bytes",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "Return221, Return281 and Packet281 source evidence are bundled byte-exactly",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "request confines review to four IDs, retains exact blockers and forbids unrelated re-review/application",
+      "passed": true,
+      "detail": {
+        "requestBytes": 1979
+      }
+    },
+    {
+      "check": "preparation records ten passing checks and no canonical changes or applications",
+      "passed": true,
+      "detail": {
+        "status": "CURRENT_SOURCE_PACKET_PREPARED_UNSENT",
+        "checks": [
+          10,
+          0
+        ]
+      }
+    },
+    {
+      "check": "Return281 is independently audited as held with unchanged authority and exact Time/Fate next group",
+      "passed": true,
+      "detail": {
+        "returnAudit": "PASS",
+        "next": {
+          "group": "rank9-time-fate6",
+          "pendingIds": [
+            "time-stop",
+            "fate-rewrite",
+            "collapse-timeline",
+            "eternal-prophecy"
+          ]
+        }
+      }
+    }
+  ],
+  "scopeLimitation": "Validates transfer, source/member bindings, authority and prior ruling evidence; it does not adjudicate game rules."
+}

@@ -1,0 +1,304 @@
+{
+  "id": "RANK9IMPACTEXILE4-RETURN286-INDEPENDENT-AUDIT",
+  "status": "PASS",
+  "checkedAtUtc": "2026-10-30T23:06:13.022187+00:00",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_impactexile4_return286_received/DD_Rank9_ImpactExile4_Director_Return286_HELD.zip",
+    "bytes": 1310426,
+    "sha256": "4927c4b2e541417f1e01ea47da115c7cf2aec7bd9664a3d0c5b45f33351e8b62",
+    "crc32": "f4cdb127"
+  },
+  "delivery": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_impactexile4_return286_received/DD_Rank9_ImpactExile4_Director_Return286_HELD_DELIVERY.json",
+    "bytes": 64140,
+    "sha256": "9f0399f5c14af0065c9fa41ebae2a1dc76b0b5df5db31ad9beda7e916c12c68e",
+    "crc32": "40eee0c6"
+  },
+  "authority": {
+    "reviewedApplied": 816,
+    "pending": 32,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 540,
+    "scopedInterfaces": 173
+  },
+  "targetIds": [
+    "reverse-gravity-field"
+  ],
+  "acceptedIds": [],
+  "appliedIds": [],
+  "heldIds": [
+    "reverse-gravity-field"
+  ],
+  "blockerIds": {
+    "reverse-gravity-field": [
+      "IE204-B02"
+    ]
+  },
+  "counts": {
+    "targetIdentities": 1,
+    "proposedHeldProcedures": 1,
+    "completePassingProcedures": 0,
+    "nativePlacements": 1,
+    "nativeClassRoutes": 3,
+    "originalQuestionsPreserved": 26,
+    "focusedAddendaPreserved": 2,
+    "targetOriginalQuestions": 7,
+    "targetFocusedAddenda": 1,
+    "targetQuestionDispositions": 8,
+    "originalRequiredMainCasesPreserved": 8,
+    "targetMainCases": 2,
+    "branches": 4,
+    "cases": 6,
+    "componentCompleteCases": 1,
+    "incompleteCases": 5,
+    "incompleteMainCases": 2,
+    "events": 224,
+    "forwardOperations": 448,
+    "inverseOperations": 448,
+    "reversibleOperations": 896,
+    "fullReverseTraversals": 6,
+    "newEvents": 0,
+    "proposalOperations": 0,
+    "futureRequirementsPreserved": 7,
+    "currentSourceBindings": 386,
+    "sourceArchiveMembers": 451,
+    "activeBlockers": 1,
+    "conditionalQualifications": 13,
+    "acceptedIdentities": 0,
+    "appliedIdentities": 0,
+    "heldIdentities": 1,
+    "dataSourceSemanticCheckCount": 17907
+  },
+  "nextPendingGroup": {
+    "group": "rank9-alignment-faction-purification5",
+    "pendingIds": [
+      "alignment-ascension",
+      "alignment-perfection",
+      "faction-incarnate",
+      "faction-perfection",
+      "corruption-purification"
+    ]
+  },
+  "checkCount": 16,
+  "passedChecks": 16,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "check": "Downloaded Return286 ZIP matches external size, SHA-256, CRC32 and filename",
+      "passed": true,
+      "detail": {
+        "bytes": 1310426,
+        "sha256": "4927c4b2e541417f1e01ea47da115c7cf2aec7bd9664a3d0c5b45f33351e8b62",
+        "crc32": "f4cdb127",
+        "filename": "DD_Rank9_ImpactExile4_Director_Return286_HELD.zip"
+      }
+    },
+    {
+      "check": "Return286 binds the exact locally prepared, independently audited Packet286 archive",
+      "passed": true,
+      "detail": {
+        "sourceBytes": 359065350,
+        "sourceSha256": "ded4071e5d4b0c09e938ca71491ddccb908f20c3f8db0b6b79674cb2ac8eb401",
+        "sourceCrc32": "405ef8a7",
+        "packetAudit": "PASS",
+        "packetChecks": 16
+      }
+    },
+    {
+      "check": "Archive has 80 unique safe members matching the delivery member allowlist",
+      "passed": true,
+      "detail": {
+        "members": 80,
+        "unsafe": []
+      }
+    },
+    {
+      "check": "Every archive member independently matches the external size/hash/CRC manifest",
+      "passed": true,
+      "detail": {
+        "checked": 80,
+        "failures": []
+      }
+    },
+    {
+      "check": "Internal exact-member manifest and external self-binding reconcile",
+      "passed": true,
+      "detail": {
+        "payloadMembers": 79,
+        "manifestSelfBinding": {
+          "path": "MEMBER_MANIFEST.json",
+          "bytes": 16323,
+          "sha256": "743c36f9d01489ac34b519bdd5ad1c64da6ef86243ce7f0212d29fe3e7faa3f9",
+          "crc32": "2a3ec2b3"
+        }
+      }
+    },
+    {
+      "check": "Every payload member independently matches the internal manifest",
+      "passed": true,
+      "detail": {
+        "checked": 79,
+        "failures": []
+      }
+    },
+    {
+      "check": "External and internal rulings hold only reverse-gravity-field at unchanged authority",
+      "passed": true,
+      "detail": {
+        "heldIds": [
+          "reverse-gravity-field"
+        ],
+        "blockers": {
+          "reverse-gravity-field": [
+            "IE204-B02"
+          ]
+        },
+        "authority": {
+          "reviewedApplied": 816,
+          "pending": 32,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 540,
+          "scopedInterfaces": 173
+        }
+      }
+    },
+    {
+      "check": "IE204-B02 names both concrete missing physical witnesses without inventing object/tether rules",
+      "passed": true,
+      "detail": [
+        {
+          "id": "IE286-W1",
+          "blockerId": "IE204-B02",
+          "required": "Bind the exact20lb crate identity, material and structural durability/defenses; applicable60ft and120ft impact damage/breakage rules and exact post-impact body/contents/ownership/custody settlement. Then complete A,B,feather and overlap aftermath without inferred intactness, destruction or salvage.",
+          "pointers": [
+            "cases/RANK9IMPACTEXILE4129-REVERSE-GRAVITY-FIELD-A.json#/events/28/after/items/crate",
+            "cases/RANK9IMPACTEXILE4129-REVERSE-GRAVITY-FIELD-B.json#/events/28/after/items/crate",
+            "cases/RANK9IMPACTEXILE4129-REVERSE-GRAVITY-FIELD-B__overlap.json#/events/33/after/items/crate"
+          ],
+          "currentGap": "physicalDamageHeld=true; durability explicitly unprovided. exists=true is preservation of identity, not a verified intactness result."
+        },
+        {
+          "id": "IE286-W2",
+          "blockerId": "IE204-B02",
+          "required": "Bind an actual tether AND anchor, their legal attachment/acquisition, geometry/slack and rated strength, and the applicable upward-force/load rule. Replay actual stop,stretch,break or release and resulting support/fall/cargo without a fabricated resistance or indestructibility premise.",
+          "pointers": [
+            "cases/RANK9IMPACTEXILE4129-REVERSE-GRAVITY-FIELD-B__anchored.json#/events/0/after/geometry/attachments/0",
+            "cases/RANK9IMPACTEXILE4129-REVERSE-GRAVITY-FIELD-B__anchored.json#/events/5"
+          ],
+          "currentGap": "Zero-length tether is explicitly NEW conditional unbreakable-without-separate-strength-rule; breakPermission=false does not prove physical strength."
+        }
+      ]
+    },
+    {
+      "check": "All six preserved cases replay with 224 events and 448 forward plus 448 inverse operations",
+      "passed": true,
+      "detail": {
+        "cases": 6,
+        "events": 224,
+        "forward": 448,
+        "inverse": 448
+      }
+    },
+    {
+      "check": "All six reviewed case files are byte-exact to the independently audited Return228 cases",
+      "passed": true,
+      "detail": {
+        "cases": [
+          "cases/RANK9IMPACTEXILE4129-REVERSE-GRAVITY-FIELD-A.json",
+          "cases/RANK9IMPACTEXILE4129-REVERSE-GRAVITY-FIELD-B.json",
+          "cases/RANK9IMPACTEXILE4129-REVERSE-GRAVITY-FIELD-B__anchored.json",
+          "cases/RANK9IMPACTEXILE4129-REVERSE-GRAVITY-FIELD-B__feather.json",
+          "cases/RANK9IMPACTEXILE4129-REVERSE-GRAVITY-FIELD-B__overlap.json",
+          "cases/RANK9IMPACTEXILE4129-REVERSE-GRAVITY-FIELD-B__ready-ray-concentration.json"
+        ],
+        "priorAudit": "PASS"
+      }
+    },
+    {
+      "check": "Return286 retains the narrow source/semantic hold and all 13 release qualifications",
+      "passed": true,
+      "detail": [
+        "IE204-H-SOURCE",
+        "IE204-H-ACCESS",
+        "IE204-H-PHYSICAL",
+        "IE204-H-CONTENT",
+        "IE204-H-OBJECT-DURABILITY",
+        "IE204-H-RUNTIME",
+        "IE204-H-IMPLEMENTATION",
+        "IE204-H-PLAY",
+        "IE204-H-BALANCE",
+        "IE204-H-COSMOLOGY",
+        "IE204-H-DOMAIN",
+        "IE204-H-COMPLETION",
+        "IE204-H-RELEASE"
+      ]
+    },
+    {
+      "check": "All 386 current source bindings in Return286 match exact members of Packet286",
+      "passed": true,
+      "detail": {
+        "bindings": 386,
+        "sourceArchiveMembers": 451,
+        "failures": []
+      }
+    },
+    {
+      "check": "Return286 next group matches the next nonempty current queue group",
+      "passed": true,
+      "detail": {
+        "return": {
+          "group": "rank9-alignment-faction-purification5",
+          "pendingIds": [
+            "alignment-ascension",
+            "alignment-perfection",
+            "faction-incarnate",
+            "faction-perfection",
+            "corruption-purification"
+          ]
+        },
+        "queue": {
+          "group": "rank9-alignment-faction-purification5",
+          "pendingIds": [
+            "alignment-ascension",
+            "alignment-perfection",
+            "faction-incarnate",
+            "faction-perfection",
+            "corruption-purification"
+          ]
+        }
+      }
+    },
+    {
+      "check": "Return286 embeds the current Packet286 audit and preserves Return285 holds without editing them",
+      "passed": true,
+      "detail": {
+        "nestedEvidence": 4,
+        "failures": [],
+        "return285Audit": "PASS"
+      }
+    },
+    {
+      "check": "Return285 Summon/Hosts holds remain unchanged and outside the Return286 scope",
+      "passed": true,
+      "detail": {
+        "summon-elemental-avatar": [
+          "SH202-B01"
+        ],
+        "summon-herald-of-the-planes": [
+          "SH202-B02"
+        ],
+        "summon-avatar-of-decay": [
+          "SH202-B03"
+        ]
+      }
+    },
+    {
+      "check": "Package checks report complete success and no canonical/runtime/application side effects",
+      "passed": true,
+      "detail": {
+        "packageChecks": 578,
+        "allChecks": 18485
+      }
+    }
+  ]
+}

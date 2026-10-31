@@ -1,0 +1,248 @@
+{
+  "id": "RANK9ALIGNFACTIONPURIFICATION5_PACKET_287_INDEPENDENT_AUDIT",
+  "createdAtUtc": "2026-10-30T23:14:58.252033+00:00",
+  "status": "PASS",
+  "archive": {
+    "path": "docs\\audit\\2026-10-08\\full-game\\director-spell-review-129\\rank9_alignmentfactionpurification5_current_source_287_prepared\\DD_Rank9_AlignmentFactionPurification5_CurrentSource_287.zip",
+    "bytes": 63853344,
+    "sha256": "c91a4096bf3520504c648b6ed6e9ff355fce18cbdabd63c81a9aa9c5e064ec2d",
+    "crc32": "c22d7961"
+  },
+  "deliveryManifest": {
+    "path": "docs\\audit\\2026-10-08\\full-game\\director-spell-review-129\\rank9_alignmentfactionpurification5_current_source_287_prepared\\DD_Rank9_AlignmentFactionPurification5_CurrentSource_287_DELIVERY.json",
+    "bytes": 5828,
+    "sha256": "2ce8de6650486f12f309421605d5f8c1d6b7db78417f55d0bf9dcb5e24d9bd3a",
+    "crc32": "b70d69aa"
+  },
+  "authority": {
+    "reviewedApplied": 816,
+    "pending": 32,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 540,
+    "scopedInterfaces": 173
+  },
+  "targetIds": [
+    "alignment-ascension",
+    "alignment-perfection",
+    "faction-incarnate",
+    "faction-perfection",
+    "corruption-purification"
+  ],
+  "sourceBindings": 130,
+  "originalQuestions": 28,
+  "futureRequirements": 7,
+  "memberCount": 166,
+  "checkCount": 16,
+  "passedChecks": 16,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "check": "Packet287 ZIP size/SHA/CRC/filename match its delivery manifest",
+      "passed": true,
+      "detail": {
+        "bytes": 63853344,
+        "sha256": "c91a4096bf3520504c648b6ed6e9ff355fce18cbdabd63c81a9aa9c5e064ec2d",
+        "crc32": "c22d7961"
+      }
+    },
+    {
+      "check": "Delivery and context bind main/816-32 authority and exact five target IDs",
+      "passed": true,
+      "detail": {
+        "authority": {
+          "reviewedApplied": 816,
+          "pending": 32,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 540,
+          "scopedInterfaces": 173
+        },
+        "targets": [
+          "alignment-ascension",
+          "alignment-perfection",
+          "faction-incarnate",
+          "faction-perfection",
+          "corruption-purification"
+        ]
+      }
+    },
+    {
+      "check": "ZIP has 166 unique safe members matching its internal allowlist",
+      "passed": true,
+      "detail": {
+        "members": 166,
+        "unsafe": []
+      }
+    },
+    {
+      "check": "Every ZIP member independently matches delivery size/SHA/CRC",
+      "passed": true,
+      "detail": {
+        "checked": 165,
+        "failures": []
+      }
+    },
+    {
+      "check": "Internal manifest, member count, authority, branch and group reconcile",
+      "passed": true,
+      "detail": {
+        "members": 165
+      }
+    },
+    {
+      "check": "Every payload member independently matches internal manifest",
+      "passed": true,
+      "detail": {
+        "checked": 165,
+        "failures": []
+      }
+    },
+    {
+      "check": "Embedded fresh candidate preserves all identities, 28 original questions and seven future requirements",
+      "passed": true,
+      "detail": {
+        "records": 5,
+        "questions": 28,
+        "futureRequirements": 7
+      }
+    },
+    {
+      "check": "All target entries remain pending and embedded catalog/access rows match exactly",
+      "passed": true,
+      "detail": {
+        "targetIds": [
+          "alignment-ascension",
+          "alignment-perfection",
+          "corruption-purification",
+          "faction-incarnate",
+          "faction-perfection"
+        ]
+      }
+    },
+    {
+      "check": "All 130 refreshed source-binding bytes are present and the only source change is the current authored index",
+      "passed": true,
+      "detail": {
+        "sourceBindings": 130,
+        "changed": [
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+            "historicalBytes": 1563431,
+            "historicalSha256": "3a548fb968198eb3d7eda7dbc0f807e7e3ddef5adf830cecc940b6596e6b4284",
+            "currentBytes": 1634916,
+            "currentSha256": "f5ae112aa4e7233761a008b3ffbda58c94e1d5fa562932ffe4df505b1d8407b0"
+          }
+        ],
+        "missingOrBad": []
+      }
+    },
+    {
+      "check": "Historical source conference02 archive is byte-bound to packet and candidate",
+      "passed": true,
+      "detail": {
+        "bytes": 16824112,
+        "sha256": "64db392962e7c26205429bb8df119de3718cf85fdbbacd70ad3e5a3b6e66ccb6"
+      }
+    },
+    {
+      "check": "Current queue, handoff and pending-audit snapshots match their embedded bindings",
+      "passed": true,
+      "detail": {
+        "snapshotBindings": {
+          "currentQueue": {
+            "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_SPELL_QUEUE_287.json",
+            "bytes": 131854,
+            "sha256": "16c090f84322715683ecbcd14c4d57d11d4c7bc565b4a635e702e9a2c88bf1cf",
+            "crc32": "1cd4b8e9"
+          },
+          "currentHandoff": {
+            "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_287.json",
+            "bytes": 15405,
+            "sha256": "e0d8695f40aa4f4761d53e6bff0594ab2178a1b9d4d418511445e47acdaddba0",
+            "crc32": "fbacb182"
+          },
+          "currentPendingIdentityAudit": {
+            "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT32_PENDING_IDENTITY_AUDIT_287.json",
+            "bytes": 59983,
+            "sha256": "b00be65b123059305a5cb5ac2ba5ad261536fe45a7b376477d747a8725878033",
+            "crc32": "09b291ab"
+          }
+        }
+      }
+    },
+    {
+      "check": "Return286, Return285 and Return284 archives match their preserved embedded decision bindings",
+      "passed": true,
+      "detail": {
+        "returns": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "check": "All three prior held returns retain exact blocker identities and external archive, delivery, audit and receipt bytes",
+      "passed": true,
+      "detail": {
+        "returns": [
+          {
+            "return": "RETURN286",
+            "passed": true,
+            "archive": true,
+            "audit": true,
+            "delivery": true,
+            "receipt": true,
+            "heldAndBlockers": true
+          },
+          {
+            "return": "RETURN285",
+            "passed": true,
+            "archive": true,
+            "audit": true,
+            "delivery": true,
+            "receipt": true,
+            "heldAndBlockers": true
+          },
+          {
+            "return": "RETURN284",
+            "passed": true,
+            "archive": true,
+            "audit": true,
+            "delivery": true,
+            "receipt": true,
+            "heldAndBlockers": true
+          }
+        ]
+      }
+    },
+    {
+      "check": "Director request restricts scope, blocks invention/application and requires sealed ZIP plus DELIVERY",
+      "passed": true,
+      "detail": {
+        "requestBytes": 2094
+      }
+    },
+    {
+      "check": "Packet and candidate preserve prior AFP211 blockers and closed shared-evidence status",
+      "passed": true,
+      "detail": {
+        "contentBlockers": [
+          "AFP211-B01",
+          "AFP211-B02",
+          "AFP211-B03",
+          "AFP211-B04",
+          "AFP211-B05"
+        ]
+      }
+    },
+    {
+      "check": "Package remains review-only and has no accepted/applied result",
+      "passed": true,
+      "detail": {
+        "status": "PREPARED_UNAUDITED_UNSENT",
+        "accepted": false,
+        "applied": false
+      }
+    }
+  ]
+}

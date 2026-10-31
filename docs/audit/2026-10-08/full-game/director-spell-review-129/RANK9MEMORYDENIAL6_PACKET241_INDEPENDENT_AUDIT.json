@@ -1,0 +1,164 @@
+{
+  "id": "RANK9-MEMORYDENIAL6-PACKET241-INDEPENDENT-AUDIT",
+  "recordedAtUtc": "2026-10-30T05:46:58.616964+00:00",
+  "status": "PASS",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_memorydenial6_current_source_241_prepared/DD_Rank9_MemoryDenial6_CurrentSource_241.zip",
+    "bytes": 175700171,
+    "sha256": "8a4aeeaa5d19470004dc7518cb0d986644c3f846fde43729c726823c47da018e",
+    "crc32": "379b4c0c"
+  },
+  "deliveryManifest": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_memorydenial6_current_source_241_prepared/DD_Rank9_MemoryDenial6_CurrentSource_241_DELIVERY.json",
+    "bytes": 1868,
+    "sha256": "6233b35cfed8d9fac961c2a85b84e449ba1e9559de573cf5b0aa2200792a2235",
+    "crc32": "a5b38e70"
+  },
+  "sourceAuthority": {
+    "reviewedApplied": 811,
+    "pending": 37,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 535,
+    "scopedInterfaces": 173
+  },
+  "group": "rank9-memory-denial6",
+  "pendingIds": [
+    "mind-collapse",
+    "unravel-identity"
+  ],
+  "sourceBindingsVerified": 120,
+  "checkCount": 13,
+  "checksPassed": 13,
+  "checksFailed": 0,
+  "checks": [
+    {
+      "id": "packet file matches delivery byte count and SHA-256",
+      "passed": true,
+      "details": {
+        "bytes": 175700171,
+        "sha256": "8a4aeeaa5d19470004dc7518cb0d986644c3f846fde43729c726823c47da018e",
+        "crc32": "379b4c0c"
+      }
+    },
+    {
+      "id": "delivery binds prepared two-identity group and exact authority",
+      "passed": true,
+      "details": {
+        "group": "rank9-memory-denial6",
+        "ids": [
+          "mind-collapse",
+          "unravel-identity"
+        ],
+        "authority": {
+          "reviewedApplied": 811,
+          "pending": 37,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 535,
+          "scopedInterfaces": 173
+        }
+      }
+    },
+    {
+      "id": "queue, handoff and pending audit agree on current authority and director-selected group",
+      "passed": true,
+      "details": {
+        "next": "rank9-memory-denial6",
+        "ids": [
+          "mind-collapse",
+          "unravel-identity"
+        ]
+      }
+    },
+    {
+      "id": "ZIP CRC, safe member names, uniqueness and packet count",
+      "passed": true,
+      "details": {
+        "members": 180,
+        "testzip": null
+      }
+    },
+    {
+      "id": "manifest exactly covers packet payload and binds the same authority/scope",
+      "passed": true,
+      "details": {
+        "manifestRows": 179,
+        "archiveMembers": 180
+      }
+    },
+    {
+      "id": "every packet payload member matches manifest size/SHA/CRC",
+      "passed": true,
+      "details": []
+    },
+    {
+      "id": "candidate and context bind only the pending two identities on main at current authority",
+      "passed": true,
+      "details": {
+        "authority": {
+          "reviewedApplied": 811,
+          "pending": 37,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 535,
+          "scopedInterfaces": 173
+        },
+        "group": {
+          "group": "rank9-memory-denial6",
+          "spellIds": [
+            "mind-collapse",
+            "unravel-identity"
+          ],
+          "count": 2
+        }
+      }
+    },
+    {
+      "id": "candidate current source snapshot is the disclosed preparation commit",
+      "passed": true,
+      "details": {
+        "branch": "main",
+        "head": "197366eae0c786415de55a0e4739e83f49f1a65f"
+      }
+    },
+    {
+      "id": "both targeted identities remain pending in current native index and catalog",
+      "passed": true,
+      "details": {
+        "mind-collapse": "pending-authored-procedure",
+        "unravel-identity": "pending-authored-procedure"
+      }
+    },
+    {
+      "id": "Packet241 preserves current Return240, Return239 and Return238 held evidence",
+      "passed": true,
+      "details": {
+        "return240": true,
+        "return239": true,
+        "return238": true
+      }
+    },
+    {
+      "id": "request preserves MD196 blockers and scopes review to the two selected identities",
+      "passed": true,
+      "details": {
+        "requestBytes": 3088
+      }
+    },
+    {
+      "id": "all 120 refreshed source bindings match packet, manifest and working-tree files",
+      "passed": true,
+      "details": {
+        "verified": 120,
+        "errors": []
+      }
+    },
+    {
+      "id": "all captured current overlay files match their packet bindings",
+      "passed": true,
+      "details": {
+        "overlays": 50,
+        "errors": []
+      }
+    }
+  ],
+  "scopeLimitation": "Verifies packet integrity, authority, scope and source transfer; it does not independently adjudicate game-rule semantics."
+}

@@ -1,0 +1,251 @@
+{
+  "id": "RANK9-WARD-CONTROL6-RETURN237-INDEPENDENT-AUDIT",
+  "checkedAtUtc": "2026-10-30T04:46:54.719953+00:00",
+  "status": "PASS",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_wardcontrol6_return237_received/DD_Rank9_WardControl2_Director_Return237.zip",
+    "bytes": 699487,
+    "sha256": "fe2858c9d9379b1d135d74d022afdcaf8b1ad8f7f69f2c9a194532dff1cda67b",
+    "crc32": "41bebc7b"
+  },
+  "deliveryManifest": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_wardcontrol6_return237_received/DD_Rank9_WardControl2_Director_Return237_DELIVERY.json",
+    "bytes": 21493,
+    "sha256": "4593fe4ef19d2d0592ef78c0e4f060126c8b154eb17731cad89b7465fdd70af8",
+    "crc32": "d8ee71cc"
+  },
+  "authority": {
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 535,
+    "pending": 37,
+    "reviewedApplied": 811,
+    "scopedInterfaces": 173
+  },
+  "acceptedIds": [],
+  "appliedIds": [],
+  "heldIds": [
+    "nullification-wave",
+    "reality-anchor"
+  ],
+  "blockerIds": [
+    "WC188-B01",
+    "WC188-B02"
+  ],
+  "nextPendingGroup": {
+    "group": "rank9-agency-control9",
+    "spellIds": [
+      "absolute-domination",
+      "puppetmaster-s-realm"
+    ]
+  },
+  "checkCount": 17,
+  "passedChecks": 17,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "check": "downloaded Return237 ZIP exactly matches its delivery size, SHA-256 and CRC32",
+      "passed": true,
+      "detail": {
+        "actual": {
+          "bytes": 699487,
+          "sha256": "fe2858c9d9379b1d135d74d022afdcaf8b1ad8f7f69f2c9a194532dff1cda67b",
+          "crc32": "41bebc7b"
+        },
+        "expected": {
+          "bytes": 699487,
+          "crc32": "41bebc7b",
+          "path": "DD_Rank9_WardControl2_Director_Return237.zip",
+          "sha256": "fe2858c9d9379b1d135d74d022afdcaf8b1ad8f7f69f2c9a194532dff1cda67b"
+        }
+      }
+    },
+    {
+      "check": "repeated browser downloads of the delivery JSON are byte-identical",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "ZIP central directory is valid and all names are unique and safe",
+      "passed": true,
+      "detail": {
+        "members": 50,
+        "unique": 50
+      }
+    },
+    {
+      "check": "delivery allowlist, external member list and ZIP exactly agree",
+      "passed": true,
+      "detail": {
+        "zip": 50,
+        "allowlist": 50,
+        "external": 50,
+        "declared": 50
+      }
+    },
+    {
+      "check": "every ZIP member matches external delivery SHA-256/size/CRC32",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "embedded manifest covers exactly the 49 non-self ZIP members",
+      "passed": true,
+      "detail": {
+        "manifestCount": 49,
+        "declared": 49
+      }
+    },
+    {
+      "check": "every non-self ZIP member matches embedded hash, size and CRC32",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "decision remains held and unapplied for only the two requested identities",
+      "passed": true,
+      "detail": {
+        "acceptedIds": [],
+        "appliedIds": [],
+        "heldIds": [
+          "nullification-wave",
+          "reality-anchor"
+        ]
+      }
+    },
+    {
+      "check": "both retained blockers alias the exact Return188 gates",
+      "passed": true,
+      "detail": {
+        "decision": {
+          "nullification-wave": "WC188-B01",
+          "reality-anchor": "WC188-B02"
+        },
+        "holds": {
+          "nullification-wave": "WC188-B01",
+          "reality-anchor": "WC188-B02"
+        },
+        "delivery": [
+          "WC188-B01",
+          "WC188-B02"
+        ]
+      }
+    },
+    {
+      "check": "authority is unchanged and next group is Agency Control9",
+      "passed": true,
+      "detail": {
+        "before": {
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 535,
+          "pending": 37,
+          "reviewedApplied": 811,
+          "scopedInterfaces": 173
+        },
+        "after": {
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 535,
+          "pending": 37,
+          "reviewedApplied": 811,
+          "scopedInterfaces": 173
+        },
+        "next": {
+          "group": "rank9-agency-control9",
+          "spellIds": [
+            "absolute-domination",
+            "puppetmaster-s-realm"
+          ]
+        }
+      }
+    },
+    {
+      "check": "canonical files, application and downstream approvals remain explicitly out of scope",
+      "passed": true,
+      "detail": {
+        "canonicalChanged": false,
+        "applied": false,
+        "qualification": "Sealed static-authored held decision. No application, canonical change or runtime/implementation/human-play/balance/cosmology/domain/completion/release approval."
+      }
+    },
+    {
+      "check": "the sealed package reports all 153 integrity checks passing",
+      "passed": true,
+      "detail": {
+        "status": "PASS",
+        "checkCount": 153,
+        "failedCount": 0
+      }
+    },
+    {
+      "check": "14 preserved and two corrected trace members reconcile with the case index",
+      "passed": true,
+      "detail": {
+        "cases": 16,
+        "preserved": 14,
+        "corrected": [
+          "cases/corrected/WC237-NW-COUNTER.json",
+          "cases/corrected/WC237-NW-HELPER.json"
+        ],
+        "aggregates": {
+          "events": 324,
+          "forwardOperations": 648,
+          "inverseOperations": 648
+        },
+        "preservationBindingFailures": []
+      }
+    },
+    {
+      "check": "data, clock, actor-access and source checks all pass at their declared counts",
+      "passed": true,
+      "detail": {
+        "data": 3936,
+        "clock": 2412,
+        "actorAccess": 125,
+        "source": 561
+      }
+    },
+    {
+      "check": "published counts agree with the case index and both spell-specific procedures",
+      "passed": true,
+      "detail": {
+        "counts": {
+          "caseFiles": 16,
+          "events": 324,
+          "forwardOperations": 648,
+          "inverseOperations": 648,
+          "sourceBindingsVerified": 91,
+          "procedures": 2,
+          "heldIds": 2
+        }
+      }
+    },
+    {
+      "check": "return binds the exact independently audited Packet237 and its 91 current source files",
+      "passed": true,
+      "detail": {
+        "packet": {
+          "bytes": 64430218,
+          "sha256": "d2dca5ad670a8b93f5ec67e12ddfd81647b30091ef47260b08a9534138d19c26",
+          "crc32": "f9d56a96"
+        },
+        "declaredPacket": {
+          "bytes": 64430218,
+          "crc32": "f9d56a96",
+          "path": "DD_Rank9_WardControl6_CurrentSource_237.zip",
+          "sha256": "d2dca5ad670a8b93f5ec67e12ddfd81647b30091ef47260b08a9534138d19c26"
+        },
+        "sourceRows": 91,
+        "failures": []
+      }
+    },
+    {
+      "check": "Return219 provenance is identified as inline-only rather than misrepresented as a sealed base archive",
+      "passed": true,
+      "detail": {
+        "status": "INLINE_DIRECTOR_RULING_RECEIVED_NO_SEALED_ARCHIVE",
+        "receiptScope": "Transcript capture only. This is not a director ZIP, delivery manifest, independent trace replay, or canonical application.",
+        "note": "The 14 case files self-match Return237's preservation manifest; exact byte-for-byte comparison against a Return219 sealed archive is unavailable because Return219 has no sealed archive."
+      }
+    }
+  ],
+  "scopeLimitation": "The prior Return219 has no sealed archive, so its 14 original trace bytes cannot be independently compared to the preservation copies. Return237's own preservation hashes, manifest hashes, and case-index bindings pass."
+}

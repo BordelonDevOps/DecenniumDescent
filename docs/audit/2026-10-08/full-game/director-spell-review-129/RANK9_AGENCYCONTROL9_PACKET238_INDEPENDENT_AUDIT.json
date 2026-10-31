@@ -1,0 +1,263 @@
+{
+  "id": "RANK9-AGENCY-CONTROL9-PACKET238-INDEPENDENT-AUDIT",
+  "checkedAtUtc": "2026-10-30T04:49:01.192277+00:00",
+  "status": "PASS",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_agencycontrol9_current_source_238_prepared/DD_Rank9_AgencyControl9_CurrentSource_238.zip",
+    "bytes": 40845331,
+    "sha256": "1c84def4bef54a6a0ad4661268d1cbfc158c4131df24fdb23bb27ba0861a82f8",
+    "crc32": "bf73f777"
+  },
+  "deliveryManifest": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_agencycontrol9_current_source_238_prepared/DD_Rank9_AgencyControl9_CurrentSource_238_DELIVERY.json",
+    "bytes": 22135,
+    "sha256": "06b2007635142c58c36a58cdbf692aa8df14da474a3abd4dbb3675df4948c6d1",
+    "crc32": "49029529"
+  },
+  "authority": {
+    "reviewedApplied": 811,
+    "pending": 37,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 535,
+    "scopedInterfaces": 173
+  },
+  "group": "rank9-agency-control9",
+  "pendingIds": [
+    "absolute-domination",
+    "puppetmaster-s-realm"
+  ],
+  "sourceBindingsVerified": 96,
+  "checkCount": 16,
+  "passedChecks": 16,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "check": "outer ZIP matches DELIVERY bytes, SHA-256 and CRC32",
+      "passed": true,
+      "detail": {
+        "actual": {
+          "bytes": 40845331,
+          "sha256": "1c84def4bef54a6a0ad4661268d1cbfc158c4131df24fdb23bb27ba0861a82f8",
+          "crc32": "bf73f777"
+        },
+        "expected": {
+          "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_agencycontrol9_current_source_238_prepared/DD_Rank9_AgencyControl9_CurrentSource_238.zip",
+          "bytes": 40845331,
+          "sha256": "1c84def4bef54a6a0ad4661268d1cbfc158c4131df24fdb23bb27ba0861a82f8",
+          "crc32": "bf73f777"
+        }
+      }
+    },
+    {
+      "check": "delivery, candidate and preparation bind exact authority, group and target IDs",
+      "passed": true,
+      "detail": {
+        "authority": {
+          "reviewedApplied": 811,
+          "pending": 37,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 535,
+          "scopedInterfaces": 173
+        },
+        "group": "rank9-agency-control9",
+        "ids": [
+          "absolute-domination",
+          "puppetmaster-s-realm"
+        ],
+        "prepChecks": [
+          10,
+          0
+        ]
+      }
+    },
+    {
+      "check": "ZIP integrity, unique member paths and safe paths pass",
+      "passed": true,
+      "detail": {
+        "members": 232,
+        "unique": 232
+      }
+    },
+    {
+      "check": "embedded manifest exactly covers all payload members",
+      "passed": true,
+      "detail": {
+        "manifestMembers": 231,
+        "zipMembers": 232,
+        "deliveryCount": 232
+      }
+    },
+    {
+      "check": "every payload member matches embedded size, SHA-256 and CRC32",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "candidate records only the selected exact two pending IDs at current authority",
+      "passed": true,
+      "detail": {
+        "authority": {
+          "reviewedApplied": 811,
+          "pending": 37,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 535,
+          "scopedInterfaces": 173
+        },
+        "pendingIds": [
+          "absolute-domination",
+          "puppetmaster-s-realm"
+        ],
+        "currentPending": [
+          "absolute-domination",
+          "puppetmaster-s-realm"
+        ],
+        "wardArchiveDelivered": true
+      }
+    },
+    {
+      "check": "current candidate and director context bind index, catalog, queue, handoff and pending snapshot",
+      "passed": true,
+      "detail": {
+        "target": {
+          "group": "rank9-agency-control9",
+          "pendingIds": [
+            "absolute-domination",
+            "puppetmaster-s-realm"
+          ],
+          "count": 2
+        },
+        "sourceCount": 96
+      }
+    },
+    {
+      "check": "all 96 source files match packet bindings and current working-tree bytes",
+      "passed": true,
+      "detail": {
+        "sourceRows": 96,
+        "failures": []
+      }
+    },
+    {
+      "check": "current index/catalog confirm both identities remain pending and unoperational",
+      "passed": true,
+      "detail": {
+        "counts": {
+          "reviewed": 811,
+          "pending": 37
+        },
+        "pending": 37
+      }
+    },
+    {
+      "check": "prior queue/handoff/pending audit agree on 811/37 authority and agency identities pending",
+      "passed": true,
+      "detail": {
+        "q": {
+          "reviewedApplied": 811,
+          "pending": 37,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 535,
+          "scopedInterfaces": 173
+        },
+        "h": {
+          "reviewedApplied": 811,
+          "pending": 37,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 535,
+          "scopedInterfaces": 173
+        },
+        "pending": {
+          "reviewedApplied": 811,
+          "pending": 37,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 535,
+          "scopedInterfaces": 173
+        }
+      }
+    },
+    {
+      "check": "sealed Return237 ZIP, matching delivery, audit and receipt are embedded byte-identically to local records",
+      "passed": true,
+      "detail": {
+        "returnHash": {
+          "bytes": 699487,
+          "sha256": "fe2858c9d9379b1d135d74d022afdcaf8b1ad8f7f69f2c9a194532dff1cda67b",
+          "crc32": "41bebc7b"
+        },
+        "deliveryHash": {
+          "bytes": 21493,
+          "sha256": "4593fe4ef19d2d0592ef78c0e4f060126c8b154eb17731cad89b7465fdd70af8",
+          "crc32": "d8ee71cc"
+        },
+        "auditStatus": "PASS"
+      }
+    },
+    {
+      "check": "Return237 is held/unapplied, PASS 17/17, and selected this exact Agency group",
+      "passed": true,
+      "detail": {
+        "held": [
+          "nullification-wave",
+          "reality-anchor"
+        ],
+        "next": {
+          "group": "rank9-agency-control9",
+          "spellIds": [
+            "absolute-domination",
+            "puppetmaster-s-realm"
+          ]
+        },
+        "audit": "PASS"
+      }
+    },
+    {
+      "check": "Return237 source packet link still matches independently reviewed Packet237 archive and delivery",
+      "passed": true,
+      "detail": {
+        "packet": {
+          "bytes": 64430218,
+          "sha256": "d2dca5ad670a8b93f5ec67e12ddfd81647b30091ef47260b08a9534138d19c26",
+          "crc32": "f9d56a96"
+        },
+        "deliveryArchive": {
+          "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_wardcontrol6_source_packet_237_refreshed/DD_Rank9_WardControl6_CurrentSource_237.zip",
+          "bytes": 64430218,
+          "sha256": "d2dca5ad670a8b93f5ec67e12ddfd81647b30091ef47260b08a9534138d19c26"
+        }
+      }
+    },
+    {
+      "check": "the two exact prior Agency blockers and qualifications are retained",
+      "passed": true,
+      "detail": {
+        "ids": [
+          "absolute-domination",
+          "puppetmaster-s-realm"
+        ],
+        "blockers": {
+          "absolute-domination": [
+            "AG190-B01"
+          ],
+          "puppetmaster-s-realm": [
+            "AG190-B02"
+          ]
+        }
+      }
+    },
+    {
+      "check": "the request asks for only the two pending identities and preserves no-application gates",
+      "passed": true,
+      "detail": {
+        "requestBytes": 2040
+      }
+    },
+    {
+      "check": "packet delivery and authority explicitly prohibit acceptance/application before GPT review",
+      "passed": true,
+      "detail": {
+        "accepted": false,
+        "applied": false
+      }
+    }
+  ]
+}

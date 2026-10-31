@@ -1,0 +1,99 @@
+{
+  "id": "MF210-M-instantaneous",
+  "spellId": "matter-conversion",
+  "title": "Conditional completed matter is not reverted by later suppression",
+  "kind": "isolated-conditional-state-kernel",
+  "endToEndWitness": false,
+  "prerequisitesNotDemonstrated": [
+    "A lawful complete stone-to-mithril conversion is not established by this hypothetical aftermath kernel."
+  ],
+  "procedureClause": "matter.instantaneous",
+  "clockScope": "No elapsed time or actor turn is modeled; this kernel cannot certify regular-turn accounting.",
+  "events": [
+    {
+      "id": "MF210-M-instantaneous:1",
+      "before": {
+        "lot": {
+          "id": "converted1",
+          "parent": "stone1",
+          "massLb": 1,
+          "material": "mithril",
+          "ongoingSpell": null
+        },
+        "suppressionContact": false
+      },
+      "after": {
+        "lot": {
+          "id": "converted1",
+          "parent": "stone1",
+          "massLb": 1,
+          "material": "mithril",
+          "ongoingSpell": null
+        },
+        "suppressionContact": true
+      },
+      "beforeSHA256": "160a00b9d362993dcaa98e96e37416401f34e889cbd795a681365f41f24f6dab",
+      "afterSHA256": "06b6dcd77f58afa339add95badd5652b55a13af285527fc3e6abfe980ee00031",
+      "forward": [
+        {
+          "op": "test",
+          "path": "",
+          "value": {
+            "lot": {
+              "id": "converted1",
+              "parent": "stone1",
+              "massLb": 1,
+              "material": "mithril",
+              "ongoingSpell": null
+            },
+            "suppressionContact": false
+          }
+        },
+        {
+          "op": "replace",
+          "path": "",
+          "value": {
+            "lot": {
+              "id": "converted1",
+              "parent": "stone1",
+              "massLb": 1,
+              "material": "mithril",
+              "ongoingSpell": null
+            },
+            "suppressionContact": true
+          }
+        }
+      ],
+      "inverse": [
+        {
+          "op": "test",
+          "path": "",
+          "value": {
+            "lot": {
+              "id": "converted1",
+              "parent": "stone1",
+              "massLb": 1,
+              "material": "mithril",
+              "ongoingSpell": null
+            },
+            "suppressionContact": true
+          }
+        },
+        {
+          "op": "replace",
+          "path": "",
+          "value": {
+            "lot": {
+              "id": "converted1",
+              "parent": "stone1",
+              "massLb": 1,
+              "material": "mithril",
+              "ongoingSpell": null
+            },
+            "suppressionContact": false
+          }
+        }
+      ]
+    }
+  ]
+}

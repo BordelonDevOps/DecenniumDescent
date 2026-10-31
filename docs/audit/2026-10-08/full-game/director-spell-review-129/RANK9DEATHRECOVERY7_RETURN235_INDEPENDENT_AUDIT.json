@@ -1,0 +1,431 @@
+{
+  "id": "RANK9DEATHRECOVERY7-RETURN235-INDEPENDENT-AUDIT",
+  "checkedAtUtc": "2026-10-30T03:41:55.847325+00:00",
+  "status": "PASS",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_deathrecovery7_return235_received/DD_Rank9_FinalWord_Director_Return235_HELD.zip",
+    "bytes": 9810836,
+    "sha256": "5df68ed0f134898ce1f8e999a309d958c587f6a75bf0d0c788d6441240c9d758",
+    "crc32": "19441809"
+  },
+  "delivery": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_deathrecovery7_return235_received/DD_Rank9_FinalWord_Director_Return235_HELD_DELIVERY.json",
+    "bytes": 199741,
+    "sha256": "a0762f32385c63d6c29c0ad3995767358244ab2b5cb6f80ba87960995441e380",
+    "crc32": "26cf707f"
+  },
+  "sourcePacket": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_deathrecovery7_current_source_235_prepared/DD_Rank9_DeathRecovery7_CurrentSource_235.zip",
+    "bytes": 20419396,
+    "sha256": "1d26af565cd77a295cb49f34838a439e43c3836388c98c4c7d9f7b4150872c91",
+    "crc32": "e421b040"
+  },
+  "authority": {
+    "reviewedApplied": 811,
+    "pending": 37,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 535,
+    "scopedInterfaces": 173
+  },
+  "heldIds": [
+    "final-word"
+  ],
+  "blockerIds": {
+    "final-word": [
+      "DR217-B01"
+    ]
+  },
+  "nextGroup": {
+    "group": "rank9-defense-form8",
+    "pendingIds": [
+      "elemental-shell",
+      "timeless-form",
+      "invulnerable-sphere"
+    ],
+    "basis": "Next group after current rank9-death-recovery7 in exact currentPendingGroups queue235. Earlier Psychic/Fear group remains held under auditedReturn234; do not reopen in this return.",
+    "queueFile": "evidence/current/docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_SPELL_QUEUE_235.json",
+    "queueBinding": {
+      "bytes": 66794,
+      "sha256": "868154a107b162d1f59317471808d26b7906adb32ddbdb12fdd68d05eb6b72e7",
+      "crc32": "9a1fefec"
+    },
+    "freshPacketRequiredBeforeReview": true,
+    "authorityUnchanged": {
+      "reviewedApplied": 811,
+      "pending": 37,
+      "acceptedUnapplied": 0,
+      "completeStandaloneProcedures": 535,
+      "scopedInterfaces": 173
+    }
+  },
+  "caseCount": 16,
+  "checkCount": 19,
+  "passedChecks": 19,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "check": "archive SHA-256/size/CRC32 and exact delivery identity match",
+      "passed": true,
+      "detail": {
+        "actual": {
+          "bytes": 9810836,
+          "sha256": "5df68ed0f134898ce1f8e999a309d958c587f6a75bf0d0c788d6441240c9d758",
+          "crc32": "19441809"
+        },
+        "expected": {
+          "fileName": "DD_Rank9_FinalWord_Director_Return235_HELD.zip",
+          "bytes": 9810836,
+          "sha256": "5df68ed0f134898ce1f8e999a309d958c587f6a75bf0d0c788d6441240c9d758",
+          "crc32": "19441809"
+        }
+      }
+    },
+    {
+      "check": "external delivery hash matches the GPT-stated exact manifest hash",
+      "passed": true,
+      "detail": {
+        "bytes": 199741,
+        "sha256": "a0762f32385c63d6c29c0ad3995767358244ab2b5cb6f80ba87960995441e380",
+        "crc32": "26cf707f"
+      }
+    },
+    {
+      "check": "authority remains 811/37/0 and the return accepts or applies nothing",
+      "passed": true,
+      "detail": {
+        "authority": {
+          "reviewedApplied": 811,
+          "pending": 37,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 535,
+          "scopedInterfaces": 173
+        },
+        "accepted": false,
+        "applied": false,
+        "acceptedIds": [],
+        "appliedIds": [],
+        "heldIds": [
+          "final-word"
+        ]
+      }
+    },
+    {
+      "check": "delivered source packet binding matches the exact audited Packet235",
+      "passed": true,
+      "detail": {
+        "archive": {
+          "bytes": 20419396,
+          "sha256": "1d26af565cd77a295cb49f34838a439e43c3836388c98c4c7d9f7b4150872c91",
+          "crc32": "e421b040"
+        },
+        "delivery": {
+          "bytes": 64654,
+          "sha256": "309fc1651fa87a9ccdcd65c7552a04dada839c6caa090b375914aff7799a0f3f",
+          "crc32": "f6ee65cc"
+        }
+      }
+    },
+    {
+      "check": "ZIP integrity passes; all member paths are unique, safe and ordinary files",
+      "passed": true,
+      "detail": {
+        "members": 165,
+        "unique": 165,
+        "unsafe": []
+      }
+    },
+    {
+      "check": "external exact allowlist and byte bindings cover all ZIP members",
+      "passed": true,
+      "detail": {
+        "archive": 165,
+        "allowlist": 165,
+        "memberMap": 165,
+        "memberCount": 165
+      }
+    },
+    {
+      "check": "every ZIP member matches the external byte/SHA/CRC binding",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "embedded manifest is externally bound and covers every other member exactly",
+      "passed": true,
+      "detail": {
+        "manifestMembers": 164,
+        "payloadCount": 164
+      }
+    },
+    {
+      "check": "every payload member matches embedded byte/SHA/CRC bindings",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "sealed decision holds only final-word under DR217-B01",
+      "passed": true,
+      "detail": {
+        "id": "RANK9-DEATHRECOVERY7-DIRECTOR-RETURN235",
+        "reviewer": "GPT design/review director",
+        "scopeIds": [
+          "final-word"
+        ],
+        "authority": {
+          "reviewedApplied": 811,
+          "pending": 37,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 535,
+          "scopedInterfaces": 173
+        },
+        "accepted": false,
+        "applied": false,
+        "acceptedIds": [],
+        "appliedIds": [],
+        "heldIds": [
+          "final-word"
+        ],
+        "rejectedIds": [],
+        "perIdentity": [
+          {
+            "id": "final-word",
+            "accepted": false,
+            "applied": false,
+            "held": true,
+            "status": "HELD_REQUIRED_SOURCE_WITNESS",
+            "blockerIds": [
+              "DR217-B01"
+            ],
+            "conditionalQualificationIds": [
+              "DR217-H-SOURCE",
+              "DR217-H-RUNTIME",
+              "DR217-H-BALANCE",
+              "DR217-H-COSMOLOGY",
+              "DR217-H-RELEASE"
+            ],
+            "legacyCaseHoldIds": [
+              "DR184-H03"
+            ],
+            "minimumMissingWitness": {
+              "sourceFact": "One exact independent victim identity with source-established life/soul lifecycle and capture eligibility at the actual Final Word death, with custody/capture bars, Hunt/HuntedDeath and origin/summon no-resource-farm facts resolved. Absence of a recorded bar, personhood, a class route or an empty custody array does not establish availability.",
+              "requiredPositiveTrace": "A legally acquired cast and actual final death producing one valid token; actual eligible one-spell base-RP payment, unused remainder loss, counter/nonrefund, distinct concurrent tokens and original next-completed-long-rest expiry. Bind the required identity/cast/death/resource/custody histories.",
+              "notRequired": "No complete universal afterlife map, true-name prerequisite, soul destruction, capture permission invented for all creatures, or reopening of approved Pact/Doom procedures."
+            },
+            "procedureFile": "procedures/final-word.json",
+            "namedSourceLead": "GORTHAN_SOURCE_LEAD.json"
+          }
+        ],
+        "counts": {
+          "procedures": 1,
+          "newProcedures": 0,
+          "acceptedProcedures": 0,
+          "heldProcedures": 1,
+          "originalGroupQuestionsPreserved": 22,
+          "targetQuestionDispositions": 7,
+          "focusedAddendumDispositions": 1,
+          "futureRequirementsPreserved": 9,
+          "targetRelevantFutureRequirements": 4,
+          "mainCases": 2,
+          "branchCases": 14,
+          "cases": 16,
+          "completeConditionalCases": 6,
+          "heldCases": 10,
+          "newCases": 0,
+          "events": 223,
+          "forwardOperations": 446,
+          "inverseOperations": 446,
+          "reversibleOperations": 892,
+          "newOperations": 0,
+          "proposalOperations": 0,
+          "currentSourceBindings": 74,
+          "nativePlacements": 1,
+          "classAccessRoutes": 3,
+          "sourcePreservationChecks": 1173,
+          "dataIntegrityChecks": 1402,
+          "clockChecks": 317,
+          "scopedSemanticPredicates": 48,
+          "semanticCriteria": 14,
+          "semanticPasses": 13,
+          "semanticBlocked": 1,
+          "wholeSpellBlockers": 1,
+          "conditionalQualifications": 5,
+          "newIntegrityDefects": 0,
+          "sourceLeadChecks": 3
+        },
+        "qualifications": [
+          "Static authored proposal/evidence reassessment only; no application or change to canonical index/catalog/queue/handoff/GitHub.",
+          "No source/historical program or game runtime executed. Local integrity/replay scripts inspect JSON data only.",
+          "No implementation, runtime, human-play/playtest, balance, cosmology, domain closure, completion or release approval.",
+          "All closed/applied cohorts and unrelated holds remain unchanged. No complete universal afterlife or soul ownership premise is selected.",
+          "Prior trace authority fields759/89 and Return217 metadata806/42 are preserved exact historical evidence; current authority is811/37/0."
+        ],
+        "nextPendingGroup": "rank9-defense-form8",
+        "nextPendingIds": [
+          "elemental-shell",
+          "timeless-form",
+          "invulnerable-sphere"
+        ]
+      }
+    },
+    {
+      "check": "blocker accurately retains the source-qualified victim, soul-availability and capture-history gap",
+      "passed": true,
+      "detail": {
+        "id": "DR217-B01",
+        "status": "OPEN",
+        "missingEvidence": "One exact source-qualified independent victim identity/lifecycle whose soul is available for this capture, with actual custody/capture-bar/Hunt and summon-no-resource-farm facts. Current source-bound ordinary actors have UNKNOWN availability; a legal ordinary body or class is not that fact."
+      }
+    },
+    {
+      "check": "Gorthan is explicitly assessed without inferring current body, HP, soul availability or custody",
+      "passed": true,
+      "detail": {
+        "established": [
+          "Named identity Archpriest Gorthan, associated with Zeharra; overseer of Vaskurhollow.",
+          "Lore reports three prior deaths and returns by soulbinding. This is a real source lead, not an invented NPC."
+        ],
+        "notEstablished": [
+          "A complete currently applicable living body/profile, current form/lifecycle and actual normalHP below50 at a lawful120-foot cast.",
+          "Current soul availability for Final Word capture; exact soulbinding operation, holder, duration, release or continuing custody. The phrase soulbinding is not automatically the accepted Soul Bind spell.",
+          "Actual present capture bars, Hunt/HuntedDeath status and origin/summon/no-resource-farm facts.",
+          "A legally timed current death attributable to Final Word and the resulting token creation/payment/concurrency/original-rest-expiry history."
+        ],
+        "decision": "Insufficient to close DR217-B01. Prior returns neither prove present availability nor permanent unavailability. Do not infer a current death, body, HP, free soul, active binding, specific spell procedure or permission from the title/lore."
+      }
+    },
+    {
+      "check": "all 16 prior cases replay and preserve exact classifications and operations",
+      "passed": true,
+      "detail": {
+        "cases": 16,
+        "completeConditionalCases": 6,
+        "heldCases": 10,
+        "events": 223,
+        "forwardOperations": 446,
+        "inverseOperations": 446
+      }
+    },
+    {
+      "check": "all 16 preserved final-word case files equal the prior Return217 case records as JSON",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "source verification, data replay, clock and preseal checks pass with no failures",
+      "passed": true,
+      "detail": {
+        "source": {
+          "checkCount": 1173,
+          "passedChecks": 1173,
+          "failedChecks": 0
+        },
+        "integrity": {
+          "checkCount": 1402,
+          "passedChecks": 1402,
+          "failedChecks": 0
+        },
+        "clock": {
+          "checkCount": 317,
+          "passedChecks": 317,
+          "failedChecks": 0
+        },
+        "preseal": {
+          "checkCount": 119,
+          "passedChecks": 119,
+          "failedChecks": 0
+        },
+        "package": {
+          "checkCount": 993,
+          "passedChecks": 993,
+          "failedChecks": 0
+        }
+      }
+    },
+    {
+      "check": "next group is Defense/Form8 with exactly its three pending IDs and unchanged authority",
+      "passed": true,
+      "detail": {
+        "group": "rank9-defense-form8",
+        "pendingIds": [
+          "elemental-shell",
+          "timeless-form",
+          "invulnerable-sphere"
+        ],
+        "basis": "Next group after current rank9-death-recovery7 in exact currentPendingGroups queue235. Earlier Psychic/Fear group remains held under auditedReturn234; do not reopen in this return.",
+        "queueFile": "evidence/current/docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_SPELL_QUEUE_235.json",
+        "queueBinding": {
+          "bytes": 66794,
+          "sha256": "868154a107b162d1f59317471808d26b7906adb32ddbdb12fdd68d05eb6b72e7",
+          "crc32": "9a1fefec"
+        },
+        "freshPacketRequiredBeforeReview": true,
+        "authorityUnchanged": {
+          "reviewedApplied": 811,
+          "pending": 37,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 535,
+          "scopedInterfaces": 173
+        }
+      }
+    },
+    {
+      "check": "next-group queue reference binds its embedded pre-submission queue snapshot",
+      "passed": true,
+      "detail": {
+        "embedded": {
+          "bytes": 66794,
+          "sha256": "868154a107b162d1f59317471808d26b7906adb32ddbdb12fdd68d05eb6b72e7",
+          "crc32": "9a1fefec"
+        },
+        "expected": {
+          "bytes": 66794,
+          "sha256": "868154a107b162d1f59317471808d26b7906adb32ddbdb12fdd68d05eb6b72e7",
+          "crc32": "9a1fefec"
+        }
+      }
+    },
+    {
+      "check": "newer local queue records Packet235 submission and the same next pending group",
+      "passed": true,
+      "detail": {
+        "status": "PACKET235_SUBMITTED_GPT_PENDING_811_37_0",
+        "authority": {
+          "reviewedApplied": 811,
+          "pending": 37,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 535,
+          "scopedInterfaces": 173
+        },
+        "nextTargetIds": [
+          "elemental-shell",
+          "timeless-form",
+          "invulnerable-sphere"
+        ]
+      }
+    },
+    {
+      "check": "current-source reassessment preserves authority and confirms no positive capture witness was found",
+      "passed": true,
+      "detail": {
+        "authority": {
+          "reviewedApplied": 811,
+          "pending": 37,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 535,
+          "scopedInterfaces": 173
+        },
+        "sourceBindingsVerified": 74,
+        "captureWitnessFound": false,
+        "findings": [
+          "Current native Final Word card/access/Core row exactly preserve the printed reward and do not establish a particular victim eligibility record.",
+          "Current soul/owner records retain agency, source-scoped return/custody, immutable Hunt/death and unknown topology; broad mortal soul descriptions do not establish this actual capture.",
+          "Actual Soul Bind branch demonstrates a bar. Bind expiry alone does not demonstrate the new living/actual-death/capturehistory required by Final Word.",
+          "Prior ordinary actors deliberately retain UNKNOWN availability. Advance participant consent for approved Eternal Pact return does not establish an unrelated capture.",
+          "No substantive source change since frozen conference bytes supplies the missing positive witness; only indexcontent advanced.",
+          "Missing witness cannot be scoped away without leaving native reserve benefit unproven. The spell-local rule is selected, so this is not a generic authorship permission hold.",
+          "Gorthan paragraph25 explicitly assessed: named history of three deaths and soulbinding returns is retained; currentbody/normalHP/current captureavailability/custody/Hunt/origin remain unspecified. Neither eligible nor ineligible status is invented."
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "id": "RANK9DEATHRECOVERY3-POST-APPLICATION-INDEPENDENT-AUDIT-217",
+  "status": "PASS",
+  "acceptedIds": [
+    "doom",
+    "eternal-pact"
+  ],
+  "heldIds": [
+    "final-word"
+  ],
+  "authority": {
+    "reviewedApplied": 808,
+    "pending": 40,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 532,
+    "scopedInterfaces": 173
+  },
+  "index": {
+    "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+    "bytes": 1577675,
+    "sha256": "ec3b58d507a54be605b07129d558282bd199347ac5efe457fb57587e0599b870",
+    "crc32": "08ddd137"
+  },
+  "catalog": {
+    "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+    "bytes": 5085187,
+    "sha256": "773fb0b3b0fdb501858ded33c02d90dc4db3009bd1b9f7112c244d998218f05b",
+    "crc32": "f06243cf"
+  },
+  "checks": [
+    {
+      "check": "Return217 independent archive audit passed",
+      "passed": true
+    },
+    {
+      "check": "exact 808/40/0 authority in index, queue, handoff and application",
+      "passed": true,
+      "detail": {
+        "reviewedApplied": 808,
+        "pending": 40,
+        "acceptedUnapplied": 0,
+        "completeStandaloneProcedures": 532,
+        "scopedInterfaces": 173
+      }
+    },
+    {
+      "check": "index and handoff bind exact current index bytes",
+      "passed": true,
+      "detail": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+        "bytes": 1577675,
+        "sha256": "ec3b58d507a54be605b07129d558282bd199347ac5efe457fb57587e0599b870",
+        "crc32": "08ddd137"
+      }
+    },
+    {
+      "check": "catalog unchanged and bound at queue216 digest",
+      "passed": true,
+      "detail": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+        "bytes": 5085187,
+        "sha256": "773fb0b3b0fdb501858ded33c02d90dc4db3009bd1b9f7112c244d998218f05b",
+        "crc32": "f06243cf"
+      }
+    },
+    {
+      "check": "only exact accepted identities have Return217 reviewed-authored rows",
+      "passed": true,
+      "detail": {
+        "doom": "reviewed-authored-operational-playtest",
+        "final-word": "pending-authored-procedure",
+        "eternal-pact": "reviewed-authored-operational-playtest"
+      }
+    },
+    {
+      "check": "accepted native source statuses and catalog rows remain unchanged",
+      "passed": true
+    },
+    {
+      "check": "complete standalone procedure count reconciles to exact 532 reviewed noncatalog entries",
+      "passed": true,
+      "detail": {
+        "stored": 532,
+        "recounted": 532
+      }
+    },
+    {
+      "check": "pending audit and queue list exactly the 40 pending index identities",
+      "passed": true,
+      "detail": {
+        "auditCount": 40,
+        "queueCount": 40,
+        "missing": [],
+        "extra": []
+      }
+    },
+    {
+      "check": "held Final Word remains the only Death/Recovery pending identity",
+      "passed": true
+    },
+    {
+      "check": "next actionable group skips held batches and is Defense/Form8",
+      "passed": true
+    },
+    {
+      "check": "application validation is PASS with every check passing",
+      "passed": true
+    },
+    {
+      "check": "operation inverse restores exact prior index object",
+      "passed": true
+    },
+    {
+      "check": "replayed index inverse exactly restores byte-baseline semantics",
+      "passed": true
+    },
+    {
+      "check": "candidate pointers resolve and procedures match accepted archive records",
+      "passed": true
+    },
+    {
+      "check": "unrelated Psychic/Fear holds remain pending",
+      "passed": true
+    }
+  ]
+}

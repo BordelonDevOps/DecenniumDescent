@@ -1,0 +1,194 @@
+{
+  "id": "RANK9PSYCHICFEAR7-PACKET278-INDEPENDENT-AUDIT",
+  "checkedAtUtc": "2026-10-30T20:18:31.759882+00:00",
+  "status": "PASS",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_psychicfear7_current_source_278_prepared_review1/DD_Rank9_PsychicFear7_CurrentSource_278.zip",
+    "bytes": 38456021,
+    "sha256": "a2d847006c5be000c1be21fd039af985bd2fecc0622ac132784087f517757a58",
+    "crc32": "8f91f544"
+  },
+  "delivery": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_psychicfear7_current_source_278_prepared_review1/DD_Rank9_PsychicFear7_CurrentSource_278_DELIVERY.json",
+    "bytes": 50887,
+    "sha256": "4aa5308549027501ba8842463a6be000dd2c991a3a163cec20988629d2c2797a",
+    "crc32": "e8aa43ba"
+  },
+  "authority": {
+    "reviewedApplied": 816,
+    "pending": 32,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 540,
+    "scopedInterfaces": 173
+  },
+  "group": "rank9-psychic-fear7",
+  "targetIds": [
+    "psychic-scream",
+    "mass-phantom-killer",
+    "weird"
+  ],
+  "checkCount": 16,
+  "passedChecks": 16,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "check": "archive digest matches delivery",
+      "passed": true,
+      "detail": {
+        "bytes": 38456021,
+        "sha256": "a2d847006c5be000c1be21fd039af985bd2fecc0622ac132784087f517757a58",
+        "crc32": "8f91f544"
+      }
+    },
+    {
+      "check": "delivery binds target group and exact 816/32 authority",
+      "passed": true,
+      "detail": {
+        "group": "rank9-psychic-fear7",
+        "targets": [
+          "psychic-scream",
+          "mass-phantom-killer",
+          "weird"
+        ],
+        "authority": {
+          "reviewedApplied": 816,
+          "pending": 32,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 540,
+          "scopedInterfaces": 173
+        }
+      }
+    },
+    {
+      "check": "archive paths are unique, safe, and contain no directories",
+      "passed": true,
+      "detail": {
+        "members": 103
+      }
+    },
+    {
+      "check": "delivery allowlist covers every member exactly",
+      "passed": true,
+      "detail": {
+        "members": 103,
+        "allowlist": 103
+      }
+    },
+    {
+      "check": "all payloads match external SHA/size/CRC",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "embedded manifest matches delivery",
+      "passed": true,
+      "detail": {
+        "bytes": 26129,
+        "sha256": "89d5b23566744f80741b7515810bc4708e469aaea482f5f0a6197e1c4535b078",
+        "crc32": "2bd44e85"
+      }
+    },
+    {
+      "check": "embedded manifest covers every payload and verifies each",
+      "passed": true,
+      "detail": {
+        "manifestPayloads": 102,
+        "archivePayloads": 102
+      }
+    },
+    {
+      "check": "candidate and context scope only current Psychic/Fear7 group",
+      "passed": true,
+      "detail": {
+        "group": {
+          "group": "rank9-psychic-fear7",
+          "pendingIds": [
+            "psychic-scream",
+            "mass-phantom-killer",
+            "weird"
+          ],
+          "count": 3
+        },
+        "authority": {
+          "reviewedApplied": 816,
+          "pending": 32,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 540,
+          "scopedInterfaces": 173
+        }
+      }
+    },
+    {
+      "check": "request preserves evidence thresholds and excludes acceptance/application",
+      "passed": true,
+      "detail": "GPT Director — fresh ordinary-spell source review at 816 applied / 32 pending / 0 accepted-unapplied (540 complete standalone procedures; 173 scoped interfaces). Review ONLY psychic-scream, mass-phantom-killer, weird in rank9-psychic-fear7. The exact current index/catalog/access registry, 84 current source bindings, parent queue/handoff/pending audit, SnapshotCorrection277, and the prior independently audited Return234 are attached.\n\nReturn234 held these targets at historical 811/37/0: psychic-scream PF182-B01; mass-phantom-killer PF182-B02; weird PF182-B02. Reassess those findings against the"
+    },
+    {
+      "check": "candidate carries 84 refreshed source bindings",
+      "passed": true,
+      "detail": 84
+    },
+    {
+      "check": "every refreshed source binding matches archive and current working tree",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "current index/catalog preserve all three as pending and non-operational",
+      "passed": true,
+      "detail": {
+        "psychic-scream": "pending-authored-procedure",
+        "mass-phantom-killer": "pending-authored-procedure",
+        "weird": "pending-authored-procedure"
+      }
+    },
+    {
+      "check": "only target records are carried and retain PF182 blocker mapping",
+      "passed": true,
+      "detail": {
+        "records": [
+          "psychic-scream",
+          "mass-phantom-killer",
+          "weird"
+        ],
+        "priorBlockers": {
+          "psychic-scream": [
+            "PF182-B01"
+          ],
+          "mass-phantom-killer": [
+            "PF182-B02"
+          ],
+          "weird": [
+            "PF182-B02"
+          ]
+        }
+      }
+    },
+    {
+      "check": "candidate source branch/base match delivery",
+      "passed": true,
+      "detail": {
+        "branch": "main",
+        "base": "197366eae0c786415de55a0e4739e83f49f1a65f"
+      }
+    },
+    {
+      "check": "external queue/handoff/pending snapshot agree on authority and 3-ID next group",
+      "passed": true,
+      "detail": {
+        "queue": "rank9-psychic-fear7",
+        "pending": 32
+      }
+    },
+    {
+      "check": "no canonical or application state is claimed changed",
+      "passed": true,
+      "detail": {
+        "canonicalChanges": false,
+        "applicationChanges": false,
+        "runtimeExecuted": false,
+        "githubChanges": false
+      }
+    }
+  ]
+}

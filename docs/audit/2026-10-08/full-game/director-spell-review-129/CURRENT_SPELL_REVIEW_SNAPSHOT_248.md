@@ -1,0 +1,7 @@
+# Current Ordinary Spell Review Snapshot 248
+
+Return248 was independently audited PASS 24/24. Alignment Ascension, Alignment Perfection, Faction Incarnate, Faction Perfection, and Corruption Purification remain held under AFP211-B01 through B05. The six comparator gaps are resolved and AFP211-E01 remains closed. Their remaining witnesses are spell-local definitions and complete positive encounters: Ascension form/insight and lifecycle; Perfection's exact purification operation and axis-dependent benefit lifecycle; Incarnate's manifestation profile, actions/resources, invocation and lifecycle; Faction Perfection's concrete significant benefit with eligibility and finite entitlements; and Purification's complete cure matrix, geometry, and permanent-removal/Until-dispelled reconciliation. Ten component traces pass (10 events, 20 forward/20 inverse operations), but none is a complete positive spell encounter.
+
+Authority remains **811 reviewed-applied / 37 pending / 0 accepted-unapplied** (535 complete standalone procedures; 173 scoped interfaces). GPT selected **Rank9 Projection/Confinement2** next: astral-projection and imprisonment. No acceptance or application occurred. All unrelated holds remain preserved.
+
+No canonical changes, GitHub changes, runtime execution, implementation approval, human playtest, balance, cosmology, domain closure, completion, or release approval are inferred.

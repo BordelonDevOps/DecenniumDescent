@@ -1,0 +1,972 @@
+{
+  "id": "RANK9-MEMORYDENIAL6-RETURN241-INDEPENDENT-AUDIT",
+  "recordedAtUtc": "2026-10-30T06:00:57.125207+00:00",
+  "status": "PASS",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_memorydenial6_return241_received/DD_Rank9_MemoryDenial2_Director_Return241_HELD.zip",
+    "bytes": 6019078,
+    "sha256": "bb972286a55bbb7ebaf9965f8d8ca1cfdc64a3f0ffe1b05067473dcdbbddb3a5",
+    "crc32": "67c0ddd1"
+  },
+  "deliveryManifest": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_memorydenial6_return241_received/DD_Rank9_MemoryDenial2_Director_Return241_HELD_DELIVERY.json",
+    "bytes": 32555,
+    "sha256": "ca029430b71ca857eb5d6eb6aa624fda2f730385e439f63c8c205da8cf7479ff",
+    "crc32": "3dfcc839"
+  },
+  "sourcePacket": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_memorydenial6_current_source_241_prepared/DD_Rank9_MemoryDenial6_CurrentSource_241.zip",
+    "bytes": 175700171,
+    "sha256": "8a4aeeaa5d19470004dc7518cb0d986644c3f846fde43729c726823c47da018e",
+    "crc32": "379b4c0c"
+  },
+  "sourceAuthority": {
+    "reviewedApplied": 811,
+    "pending": 37,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 535,
+    "scopedInterfaces": 173
+  },
+  "group": "rank9-memory-denial6",
+  "targetIds": [
+    "mind-collapse",
+    "unravel-identity"
+  ],
+  "acceptedIds": [],
+  "appliedIds": [],
+  "heldIds": [
+    "mind-collapse",
+    "unravel-identity"
+  ],
+  "blockers": {
+    "mind-collapse": [
+      "MD196-B01"
+    ],
+    "unravel-identity": [
+      "MD196-B02"
+    ]
+  },
+  "conditionalQualifications": {
+    "mind-collapse": [
+      "MD196-H01",
+      "MD196-H02",
+      "MD196-H03",
+      "MD196-H04",
+      "MD196-H06",
+      "MD196-H08"
+    ],
+    "unravel-identity": [
+      "MD196-H01",
+      "MD196-H02",
+      "MD196-H03",
+      "MD196-H06",
+      "MD196-H08"
+    ]
+  },
+  "nextPendingGroup": {
+    "group": "rank9-knowledge-revelation5",
+    "pendingIds": [
+      "faction-omniscience-supreme"
+    ],
+    "count": 1
+  },
+  "currentSourceBindingsVerified": 120,
+  "caseCount": 28,
+  "events": 553,
+  "forwardOperations": 1106,
+  "inverseOperations": 1106,
+  "checkCount": 13,
+  "checksPassed": 13,
+  "checksFailed": 0,
+  "checks": [
+    {
+      "id": "downloaded Return241 matches delivery size, SHA-256 and CRC32",
+      "passed": true,
+      "details": {
+        "bytes": 6019078,
+        "sha256": "bb972286a55bbb7ebaf9965f8d8ca1cfdc64a3f0ffe1b05067473dcdbbddb3a5",
+        "crc32": "67c0ddd1"
+      }
+    },
+    {
+      "id": "downloaded source Packet241 matches its delivery and passing independent receipt",
+      "passed": true,
+      "details": {
+        "packet": {
+          "bytes": 175700171,
+          "sha256": "8a4aeeaa5d19470004dc7518cb0d986644c3f846fde43729c726823c47da018e",
+          "crc32": "379b4c0c"
+        },
+        "audit": "PASS",
+        "checks": 13
+      }
+    },
+    {
+      "id": "Return241 ZIP is CRC-clean, unique, safe, and every member matches both manifests",
+      "passed": true,
+      "details": {
+        "members": 58,
+        "payload": 57,
+        "failures": []
+      }
+    },
+    {
+      "id": "sealed ruling holds exactly the two requested identities without acceptance or application",
+      "passed": true,
+      "details": {
+        "authority": {
+          "reviewedApplied": 811,
+          "pending": 37,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 535,
+          "scopedInterfaces": 173
+        },
+        "accepted": false,
+        "held": [
+          "mind-collapse",
+          "unravel-identity"
+        ]
+      }
+    },
+    {
+      "id": "exact blockers and conditional qualifications are retained for each held identity",
+      "passed": true,
+      "details": {
+        "mind-collapse": {
+          "blockers": [
+            "MD196-B01"
+          ],
+          "qualifications": [
+            "MD196-H01",
+            "MD196-H02",
+            "MD196-H03",
+            "MD196-H04",
+            "MD196-H06",
+            "MD196-H08"
+          ]
+        },
+        "unravel-identity": {
+          "blockers": [
+            "MD196-B02"
+          ],
+          "qualifications": [
+            "MD196-H01",
+            "MD196-H02",
+            "MD196-H03",
+            "MD196-H06",
+            "MD196-H08"
+          ]
+        }
+      }
+    },
+    {
+      "id": "GPT selected the exact next one-spell Knowledge/Revelation5 group",
+      "passed": true,
+      "details": {
+        "decision": {
+          "group": "rank9-knowledge-revelation5",
+          "pendingIds": [
+            "faction-omniscience-supreme"
+          ]
+        },
+        "delivery": {
+          "group": "rank9-knowledge-revelation5",
+          "pendingIds": [
+            "faction-omniscience-supreme"
+          ]
+        }
+      }
+    },
+    {
+      "id": "all 120 source bindings match Packet241 manifest and current workspace files",
+      "passed": true,
+      "details": {
+        "verified": 120,
+        "errors": []
+      }
+    },
+    {
+      "id": "working-tree overlay captures match Packet241 and local bytes",
+      "passed": true,
+      "details": {
+        "bindings": 50,
+        "errors": []
+      }
+    },
+    {
+      "id": "Return241 is bound to Packet241 source authority and exact main commit",
+      "passed": true,
+      "details": {
+        "branch": "main",
+        "commit": "197366eae0c786415de55a0e4739e83f49f1a65f"
+      }
+    },
+    {
+      "id": "all 28 retained cases replay with exact state hashes and reversible operations",
+      "passed": true,
+      "details": {
+        "cases": 28,
+        "events": 553,
+        "forward": 1106,
+        "inverse": 1106,
+        "statuses": {
+          "AUTHORED_STATIC_EVIDENCE_WITH_QUALIFICATIONS": 13,
+          "BLOCKED_REQUIRED_BRANCH": 15
+        },
+        "failures": []
+      }
+    },
+    {
+      "id": "all six detailed validation ledgers pass and reconcile to the 17,045 reported checks",
+      "passed": true,
+      "details": {
+        "checks": 17045,
+        "byLedger": {
+          "CLOCK_CHECK.json": 6375,
+          "SOURCE_CHECK.json": 1289,
+          "PRESERVATION_CHECK.json": 100,
+          "INTEGRITY_CHECK.json": 8022,
+          "INDEPENDENT_SEMANTIC_FAILURE_CHECK.json": 12,
+          "COVERAGE_CHECK.json": 35,
+          "SOURCERECONCILIATION_CHECK.json": 1212
+        },
+        "failures": []
+      }
+    },
+    {
+      "id": "delivery package validation reports all 178 checks passed",
+      "passed": true,
+      "details": {
+        "status": "PASS",
+        "checkCount": 178,
+        "failureCount": 0,
+        "checks": [
+          {
+            "id": "exact-safe-allowlist",
+            "pass": true
+          },
+          {
+            "id": "CRC-all-members",
+            "pass": true
+          },
+          {
+            "id": "CASEBOOK.json.gz:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "CASEBOOK.json.gz:SHA256",
+            "pass": true
+          },
+          {
+            "id": "CASEBOOK.json.gz:CRC32",
+            "pass": true
+          },
+          {
+            "id": "CASE_DISPOSITIONS.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "CASE_DISPOSITIONS.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "CASE_DISPOSITIONS.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "CLASS_SOURCE_REASSESSMENT.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "CLASS_SOURCE_REASSESSMENT.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "CLASS_SOURCE_REASSESSMENT.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "CLOCK_CHECK.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "CLOCK_CHECK.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "CLOCK_CHECK.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "COUNTS.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "COUNTS.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "COUNTS.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "COVERAGE_CHECK.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "COVERAGE_CHECK.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "COVERAGE_CHECK.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "DIRECTOR_DECISION.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "DIRECTOR_DECISION.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "DIRECTOR_DECISION.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "FULL_TURN_SOURCE_REASSESSMENT.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "FULL_TURN_SOURCE_REASSESSMENT.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "FULL_TURN_SOURCE_REASSESSMENT.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "FUTURE_OBLIGATION_DISPOSITIONS.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "FUTURE_OBLIGATION_DISPOSITIONS.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "FUTURE_OBLIGATION_DISPOSITIONS.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "HOLD_REGISTER.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "HOLD_REGISTER.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "HOLD_REGISTER.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "INDEPENDENT_SEMANTIC_FAILURE_CHECK.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "INDEPENDENT_SEMANTIC_FAILURE_CHECK.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "INDEPENDENT_SEMANTIC_FAILURE_CHECK.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "INTEGRITY_CHECK.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "INTEGRITY_CHECK.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "INTEGRITY_CHECK.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "MEMBER_MANIFEST.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "MEMBER_MANIFEST.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "MEMBER_MANIFEST.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "NATIVE_SOURCE_RECONCILIATION.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "NATIVE_SOURCE_RECONCILIATION.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "NATIVE_SOURCE_RECONCILIATION.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "PRESERVATION_CHECK.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "PRESERVATION_CHECK.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "PRESERVATION_CHECK.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "QUALIFICATIONS.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "QUALIFICATIONS.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "QUALIFICATIONS.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "QUESTION_DISPOSITIONS.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "QUESTION_DISPOSITIONS.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "QUESTION_DISPOSITIONS.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "README.md:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "README.md:SHA256",
+            "pass": true
+          },
+          {
+            "id": "README.md:CRC32",
+            "pass": true
+          },
+          {
+            "id": "RESOURCE_AND_CUSTODY_HISTORY.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "RESOURCE_AND_CUSTODY_HISTORY.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "RESOURCE_AND_CUSTODY_HISTORY.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "SOURCERECONCILIATION_CHECK.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "SOURCERECONCILIATION_CHECK.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "SOURCERECONCILIATION_CHECK.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "SOURCE_ANCHORS.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "SOURCE_ANCHORS.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "SOURCE_ANCHORS.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "SOURCE_BINDING.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "SOURCE_BINDING.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "SOURCE_BINDING.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "SOURCE_CHECK.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "SOURCE_CHECK.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "SOURCE_CHECK.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "SOURCE_RECONCILIATION.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "SOURCE_RECONCILIATION.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "SOURCE_RECONCILIATION.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "STANDALONE_PROCEDURES.md:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "STANDALONE_PROCEDURES.md:SHA256",
+            "pass": true
+          },
+          {
+            "id": "STANDALONE_PROCEDURES.md:CRC32",
+            "pass": true
+          },
+          {
+            "id": "TRACE_INDEX.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "TRACE_INDEX.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "TRACE_INDEX.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "VALIDATION.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "VALIDATION.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "VALIDATION.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "evidence/CURRENT37_PENDING_IDENTITY_AUDIT_240.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "evidence/CURRENT37_PENDING_IDENTITY_AUDIT_240.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "evidence/CURRENT37_PENDING_IDENTITY_AUDIT_240.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "evidence/CURRENT_CONTEXT_241.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "evidence/CURRENT_CONTEXT_241.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "evidence/CURRENT_CONTEXT_241.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "evidence/CURRENT_HANDOFF_240.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "evidence/CURRENT_HANDOFF_240.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "evidence/CURRENT_HANDOFF_240.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "evidence/CURRENT_SPELL_QUEUE_240.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "evidence/CURRENT_SPELL_QUEUE_240.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "evidence/CURRENT_SPELL_QUEUE_240.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "evidence/DD_Rank9_MemoryDenial6_CurrentSource_241_DELIVERY.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "evidence/DD_Rank9_MemoryDenial6_CurrentSource_241_DELIVERY.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "evidence/DD_Rank9_MemoryDenial6_CurrentSource_241_DELIVERY.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "evidence/MANIFEST.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "evidence/MANIFEST.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "evidence/MANIFEST.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "evidence/ORIGINAL_OBLIGATIONS_AND_ADDENDA.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "evidence/ORIGINAL_OBLIGATIONS_AND_ADDENDA.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "evidence/ORIGINAL_OBLIGATIONS_AND_ADDENDA.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "evidence/RANK9MEMORYDENIAL6_PACKET241_INDEPENDENT_AUDIT.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "evidence/RANK9MEMORYDENIAL6_PACKET241_INDEPENDENT_AUDIT.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "evidence/RANK9MEMORYDENIAL6_PACKET241_INDEPENDENT_AUDIT.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "evidence/RANK9MEMORYDENIAL6_PACKET241_RECEIPT.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "evidence/RANK9MEMORYDENIAL6_PACKET241_RECEIPT.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "evidence/RANK9MEMORYDENIAL6_PACKET241_RECEIPT.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "evidence/RANK9_MEMORYDENIAL6_RETURN224_INDEPENDENT_AUDIT.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "evidence/RANK9_MEMORYDENIAL6_RETURN224_INDEPENDENT_AUDIT.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "evidence/RANK9_MEMORYDENIAL6_RETURN224_INDEPENDENT_AUDIT.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "evidence/RANK9_MEMORYDENIAL6_RETURN224_RECEIPT.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "evidence/RANK9_MEMORYDENIAL6_RETURN224_RECEIPT.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "evidence/RANK9_MEMORYDENIAL6_RETURN224_RECEIPT.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "evidence/REQUEST_241.txt:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "evidence/REQUEST_241.txt:SHA256",
+            "pass": true
+          },
+          {
+            "id": "evidence/REQUEST_241.txt:CRC32",
+            "pass": true
+          },
+          {
+            "id": "prior/ACTOR_PROFILES.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "prior/ACTOR_PROFILES.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "prior/ACTOR_PROFILES.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "prior/CASE_HASH_BINDINGS.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "prior/CASE_HASH_BINDINGS.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "prior/CASE_HASH_BINDINGS.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "prior/CLASS_CAPABILITY_SOURCE_INDEX.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "prior/CLASS_CAPABILITY_SOURCE_INDEX.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "prior/CLASS_CAPABILITY_SOURCE_INDEX.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "prior/COMMON_PROCEDURE.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "prior/COMMON_PROCEDURE.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "prior/COMMON_PROCEDURE.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "prior/PROFILE_SOURCE_CHECK.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "prior/PROFILE_SOURCE_CHECK.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "prior/PROFILE_SOURCE_CHECK.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "prior224/CASE_REPLAY.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "prior224/CASE_REPLAY.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "prior224/CASE_REPLAY.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "prior224/DIRECTOR_DECISION.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "prior224/DIRECTOR_DECISION.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "prior224/DIRECTOR_DECISION.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "prior224/HOLD_REGISTER.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "prior224/HOLD_REGISTER.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "prior224/HOLD_REGISTER.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "prior224/MEMBER_MANIFEST.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "prior224/MEMBER_MANIFEST.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "prior224/MEMBER_MANIFEST.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "prior224/procedures/mind-collapse.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "prior224/procedures/mind-collapse.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "prior224/procedures/mind-collapse.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "prior224/procedures/unravel-identity.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "prior224/procedures/unravel-identity.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "prior224/procedures/unravel-identity.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "prior238/DIRECTOR_DECISION.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "prior238/DIRECTOR_DECISION.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "prior238/DIRECTOR_DECISION.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "prior238/HOLD_REGISTER.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "prior238/HOLD_REGISTER.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "prior238/HOLD_REGISTER.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "prior239/DIRECTOR_DECISION.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "prior239/DIRECTOR_DECISION.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "prior239/DIRECTOR_DECISION.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "prior239/HOLD_REGISTER.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "prior239/HOLD_REGISTER.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "prior239/HOLD_REGISTER.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "prior240/DIRECTOR_DECISION.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "prior240/DIRECTOR_DECISION.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "prior240/DIRECTOR_DECISION.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "prior240/HOLD_REGISTER.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "prior240/HOLD_REGISTER.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "prior240/HOLD_REGISTER.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "procedures/mind-collapse.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "procedures/mind-collapse.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "procedures/mind-collapse.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "procedures/unravel-identity.json:exact-size-bytes",
+            "pass": true
+          },
+          {
+            "id": "procedures/unravel-identity.json:SHA256",
+            "pass": true
+          },
+          {
+            "id": "procedures/unravel-identity.json:CRC32",
+            "pass": true
+          },
+          {
+            "id": "payload-manifest-binding",
+            "pass": true
+          },
+          {
+            "id": "saved-complete-bytes",
+            "pass": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "Return224 held decision is locally present and was independently audited",
+      "passed": true,
+      "details": {
+        "status": "PASS",
+        "held": [
+          "mind-collapse",
+          "unravel-identity"
+        ]
+      }
+    }
+  ],
+  "scopeLimitation": "Verifies sealed package integrity, exact source bindings, decision metadata, retained case replay and validation ledgers; it does not independently adjudicate game-rule semantics."
+}

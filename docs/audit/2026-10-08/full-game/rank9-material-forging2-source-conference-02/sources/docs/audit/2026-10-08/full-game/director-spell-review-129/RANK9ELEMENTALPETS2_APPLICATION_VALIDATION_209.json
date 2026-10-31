@@ -1,0 +1,76 @@
+{
+  "id": "RANK9ELEMENTALPETS2-APPLICATION-VALIDATION-209",
+  "status": "PASS",
+  "checks": [
+    {
+      "check": "Exact Return209 delivery hash and byte count",
+      "pass": true
+    },
+    {
+      "check": "All 96 allowlisted members match byte count, SHA-256 and CRC32",
+      "pass": true
+    },
+    {
+      "check": "Director accepted exactly two identities, none applied before this step",
+      "pass": true
+    },
+    {
+      "check": "Current packet, handoff and index bindings match authority 802/46",
+      "pass": true
+    },
+    {
+      "check": "Both exact pending entries changed only to their proposed authored-review records",
+      "pass": true
+    },
+    {
+      "check": "All remaining 44 pending identities still exist in the source catalog",
+      "pass": true
+    },
+    {
+      "check": "Review-index operations invert exactly to the prior index",
+      "pass": true
+    },
+    {
+      "check": "Source catalog bytes and canonical runtime selection remain unchanged",
+      "pass": true
+    }
+  ],
+  "countsBefore": {
+    "reviewed": 802,
+    "pending": 46
+  },
+  "countsAfter": {
+    "reviewed": 804,
+    "pending": 44
+  },
+  "currentAuthorityAfter": {
+    "reviewedApplied": 804,
+    "pending": 44,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 528,
+    "scopedInterfaces": 173
+  },
+  "pendingIdentityAudit": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT44_PENDING_IDENTITY_AUDIT_209.json",
+    "bytes": 14586,
+    "sha256": "322ff51b3a81fb82d624e184de0a0dd55a9ca5a409cf0dc86445db328416fee3"
+  },
+  "indexAfter": {
+    "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+    "bytes": 1563431,
+    "sha256": "3a548fb968198eb3d7eda7dbc0f807e7e3ddef5adf830cecc940b6596e6b4284"
+  },
+  "catalogAfter": {
+    "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+    "bytes": 5085187,
+    "sha256": "773fb0b3b0fdb501858ded33c02d90dc4db3009bd1b9f7112c244d998218f05b"
+  },
+  "applicationReceipt": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/RANK9ELEMENTALPETS2_APPLICATION_209.json",
+    "bytes": 3054,
+    "sha256": "9dd187f37712a7d63c31fb7013d207b204c0cb5ea492875bfd48b94fb5a55982"
+  },
+  "runtimeSelectionEnabled": false,
+  "runtimeExecuted": false,
+  "githubChanges": false
+}

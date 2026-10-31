@@ -1,0 +1,330 @@
+{
+  "id": "RANK9-MEMORYDENIAL6-RETURN224-INDEPENDENT-AUDIT",
+  "status": "PASS",
+  "returnArchive": {
+    "path": "docs\\audit\\2026-10-08\\full-game\\director-spell-review-129\\rank9_memorydenial6_return224_received\\DD_Rank9_MemoryDenial2_Director_Return224.zip",
+    "bytes": 9800442,
+    "sha256": "73492f690237e3fa5db413eed8494f0e3107bd9cdcde46df15a3e2bfb269df91",
+    "crc32": "a9dcfc8b"
+  },
+  "deliveryManifest": {
+    "path": "docs\\audit\\2026-10-08\\full-game\\director-spell-review-129\\rank9_memorydenial6_return224_received\\DD_Rank9_MemoryDenial2_Director_Return224_DELIVERY.json",
+    "sha256": "5913c39b3fcb8a3ca8f955fcede459a986645c798499643cf2037538fdf090cb"
+  },
+  "sourceArchive": {
+    "path": "docs\\audit\\2026-10-08\\full-game\\director-spell-review-129\\rank9_memorydenial6_current_source_224_prepared\\DD_Rank9_MemoryDenial6_CurrentSource_224.zip",
+    "bytes": 154928005,
+    "sha256": "90d17e48d5e3a35f26586fc048a176e644424e272df9d90ec0f7c199b7b2d9c7",
+    "crc32": "0175ebff"
+  },
+  "supplementArchive": {
+    "path": "docs\\audit\\2026-10-08\\full-game\\director-spell-review-129\\rank9_memorydenial6_return196_witness_supplement_224\\DD_Rank9_MemoryDenial6_Return196_TargetWitnesses_224.zip",
+    "bytes": 11356746,
+    "sha256": "07387cd46e8ada7d32c6205ab46b94b1adcd303900f4f1d77be0885de00d6508",
+    "crc32": "0eed9573"
+  },
+  "authority": {
+    "reviewedApplied": 811,
+    "pending": 37,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 535,
+    "scopedInterfaces": 173
+  },
+  "decisions": {
+    "mind-collapse": {
+      "accepted": false,
+      "applied": false,
+      "blockerIds": [
+        "MD196-B01"
+      ]
+    },
+    "unravel-identity": {
+      "accepted": false,
+      "applied": false,
+      "blockerIds": [
+        "MD196-B02"
+      ]
+    }
+  },
+  "checksPassed": 17,
+  "checksFailed": 0,
+  "checks": [
+    {
+      "check": "Return224 archive bytes, SHA-256, and CRC32 match delivery",
+      "passed": true,
+      "detail": {
+        "bytes": 9800442,
+        "sha256": "73492f690237e3fa5db413eed8494f0e3107bd9cdcde46df15a3e2bfb269df91",
+        "crc32": "a9dcfc8b"
+      }
+    },
+    {
+      "check": "Current-source archive bytes and SHA-256 match its delivery",
+      "passed": true,
+      "detail": {
+        "bytes": 154928005,
+        "sha256": "90d17e48d5e3a35f26586fc048a176e644424e272df9d90ec0f7c199b7b2d9c7",
+        "crc32": "0175ebff"
+      }
+    },
+    {
+      "check": "Return196 witness supplement bytes and SHA-256 match its delivery",
+      "passed": true,
+      "detail": {
+        "bytes": 11356746,
+        "sha256": "07387cd46e8ada7d32c6205ab46b94b1adcd303900f4f1d77be0885de00d6508",
+        "crc32": "0eed9573"
+      }
+    },
+    {
+      "check": "Return224 decisions are exactly two held, unapplied identities at the submitted authority",
+      "passed": true,
+      "detail": {
+        "authority": {
+          "reviewedApplied": 811,
+          "pending": 37,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 535,
+          "scopedInterfaces": 173
+        },
+        "heldIds": [
+          "mind-collapse",
+          "unravel-identity"
+        ],
+        "decisions": [
+          {
+            "id": "mind-collapse",
+            "accepted": false,
+            "applied": false,
+            "status": "HELD_REQUIRED_POSITIVE_WITNESS",
+            "blockerIds": [
+              "MD196-B01"
+            ],
+            "holdIds": [
+              "MD196-B01",
+              "MD196-H01",
+              "MD196-H02",
+              "MD196-H03",
+              "MD196-H04",
+              "MD196-H06",
+              "MD196-H08"
+            ],
+            "conditionalQualificationIds": [
+              "MD196-H01",
+              "MD196-H02",
+              "MD196-H03",
+              "MD196-H04",
+              "MD196-H06",
+              "MD196-H08"
+            ]
+          },
+          {
+            "id": "unravel-identity",
+            "accepted": false,
+            "applied": false,
+            "status": "HELD_REQUIRED_POSITIVE_WITNESS",
+            "blockerIds": [
+              "MD196-B02"
+            ],
+            "holdIds": [
+              "MD196-B02",
+              "MD196-H01",
+              "MD196-H02",
+              "MD196-H03",
+              "MD196-H06",
+              "MD196-H08"
+            ],
+            "conditionalQualificationIds": [
+              "MD196-H01",
+              "MD196-H02",
+              "MD196-H03",
+              "MD196-H06",
+              "MD196-H08"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "check": "Return224 external source archives bind to the exact locally submitted packets",
+      "passed": true,
+      "detail": [
+        {
+          "path": "DD_Rank9_MemoryDenial6_CurrentSource_224.zip",
+          "passed": true,
+          "bytes": 154928005,
+          "sha256": "90d17e48d5e3a35f26586fc048a176e644424e272df9d90ec0f7c199b7b2d9c7",
+          "crc32": "0175ebff"
+        },
+        {
+          "path": "DD_Rank9_MemoryDenial6_Return196_TargetWitnesses_224.zip",
+          "passed": true,
+          "bytes": 11356746,
+          "sha256": "07387cd46e8ada7d32c6205ab46b94b1adcd303900f4f1d77be0885de00d6508",
+          "crc32": "0eed9573"
+        }
+      ]
+    },
+    {
+      "check": "Return224 ZIP paths are unique, safe, and CRC-clean",
+      "passed": true,
+      "detail": {
+        "members": 68,
+        "unique": 68,
+        "testzip": null
+      }
+    },
+    {
+      "check": "All 68 Return224 members match outer delivery rows and exact 67-member inner manifest",
+      "passed": true,
+      "detail": {
+        "members": 68,
+        "innerMembers": 67,
+        "failures": []
+      }
+    },
+    {
+      "check": "Input packet and supplement ZIP members match their own delivery manifests",
+      "passed": true,
+      "detail": [
+        {
+          "archive": "current-source",
+          "members": 154,
+          "manifestRows": 153,
+          "passed": true,
+          "failures": [],
+          "expectedFilename": "DD_Rank9_MemoryDenial6_CurrentSource_224.zip"
+        },
+        {
+          "archive": "witness-supplement",
+          "members": 50,
+          "manifestRows": 49,
+          "passed": true,
+          "failures": [],
+          "expectedFilename": "DD_Rank9_MemoryDenial6_Return196_TargetWitnesses_224.zip"
+        }
+      ]
+    },
+    {
+      "check": "All 120 current source rows match their packed bytes, SHA-256, and Git blob IDs",
+      "passed": true,
+      "detail": {
+        "rows": 120,
+        "failures": []
+      }
+    },
+    {
+      "check": "All 28 Return196 target cases are preserved byte-for-byte in Return224",
+      "passed": true,
+      "detail": {
+        "returnCases": 28,
+        "supplementCases": 28,
+        "differences": []
+      }
+    },
+    {
+      "check": "All 28 case chains independently replay with exact forward/inverse patches, hashes, and clocks",
+      "passed": true,
+      "detail": {
+        "cases": 28,
+        "events": 553,
+        "forwardOperations": 1106,
+        "inverseOperations": 1106,
+        "statusCounts": {
+          "AUTHORED_STATIC_EVIDENCE_WITH_QUALIFICATIONS": 13,
+          "BLOCKED_REQUIRED_BRANCH": 15
+        },
+        "totals": {
+          "forwardOperations": 1106,
+          "inverseOperations": 1106,
+          "events": 553
+        },
+        "failures": []
+      }
+    },
+    {
+      "check": "Warrior cache mismatch is independently reconciled across all 126 indexed card fields",
+      "passed": true,
+      "detail": {
+        "cardsCompared": 126,
+        "actualCurrentSHA256": "d6e2c9be96e3177fb705f858f9a39d0e4405294b726f2207f6bfbfacf096420a",
+        "recordedHistoricalSHA256": "b695808e3ad03411f0c482af40da964c8d2bac3235eb7c5f8953d27ed73a11b7",
+        "differences": []
+      }
+    },
+    {
+      "check": "The retained Mind Collapse blocker is tied to the complete 16-class source scan",
+      "passed": true,
+      "detail": {
+        "filesInspected": 16,
+        "matches": 39,
+        "conclusion": "No complete acquired genuine inserted-full-turn actor witness has been demonstrated. Extra Actions, echoes, initiative reordering, duration extension, restricted Actions and attached companion phases are not full turns. Required positive branch remains held."
+      }
+    },
+    {
+      "check": "Exact blocker and qualification records remain attached to each held spell",
+      "passed": true,
+      "detail": {
+        "mind-collapse": {
+          "blockerIds": [
+            "MD196-B01"
+          ],
+          "holdIds": [
+            "MD196-B01",
+            "MD196-H01",
+            "MD196-H02",
+            "MD196-H03",
+            "MD196-H04",
+            "MD196-H06",
+            "MD196-H08"
+          ]
+        },
+        "unravel-identity": {
+          "blockerIds": [
+            "MD196-B02"
+          ],
+          "holdIds": [
+            "MD196-B02",
+            "MD196-H01",
+            "MD196-H02",
+            "MD196-H03",
+            "MD196-H06",
+            "MD196-H08"
+          ]
+        }
+      }
+    },
+    {
+      "check": "Both exact Return196 procedures match the independently delivered witness supplement",
+      "passed": true,
+      "detail": {
+        "procedures": {
+          "mind-collapse": true,
+          "unravel-identity": true
+        }
+      }
+    },
+    {
+      "check": "Director names a single next queue group without changing authority",
+      "passed": true,
+      "detail": {
+        "group": "rank9-knowledge-revelation5",
+        "pendingIds": [
+          "faction-omniscience-supreme"
+        ],
+        "reviewStarted": false,
+        "qualification": "Separate fresh request/authority required; no other spell reviewed in this return."
+      }
+    },
+    {
+      "check": "GPT package checks contain 343 passing assertions and no failures",
+      "passed": true,
+      "detail": {
+        "declaredCount": 343,
+        "rows": 343,
+        "failed": 0,
+        "nonPassingRows": []
+      }
+    }
+  ]
+}

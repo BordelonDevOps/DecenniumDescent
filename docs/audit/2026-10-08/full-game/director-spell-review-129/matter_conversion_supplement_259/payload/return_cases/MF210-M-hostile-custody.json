@@ -1,0 +1,102 @@
+{
+  "id": "MF210-M-hostile-custody",
+  "spellId": "matter-conversion",
+  "title": "Nonconsenting carried target under explicitly NEW local consent rule.",
+  "kind": "isolated-conditional-state-kernel",
+  "endToEndWitness": false,
+  "prerequisitesNotDemonstrated": [
+    "The underlying concrete scene facts are prerequisites; no completed conversion is demonstrated."
+  ],
+  "procedureClause": "matter.categories",
+  "clockScope": "No elapsed time or actor turn is modeled; this kernel cannot certify regular-turn accounting.",
+  "events": [
+    {
+      "id": "MF210-M-hostile-custody:1",
+      "before": {
+        "request": "hostile-custody",
+        "payment": {
+          "RP": 0,
+          "Action": 0
+        },
+        "inputUnchanged": true,
+        "output": null,
+        "status": "preflight"
+      },
+      "after": {
+        "request": "hostile-custody",
+        "payment": {
+          "RP": 0,
+          "Action": 0
+        },
+        "inputUnchanged": true,
+        "output": null,
+        "status": "rejected-before-payment",
+        "reason": "Nonconsenting carried target under explicitly NEW local consent rule."
+      },
+      "beforeSHA256": "8b2c952628060661cbe23bc52b40e3a33d0c275da61ee420fdb28ff52c74ca1c",
+      "afterSHA256": "da3082d8a62c6ab8e25a86b57bbfbbb704c1efbf9c2caaace955ab2f2444e725",
+      "forward": [
+        {
+          "op": "test",
+          "path": "",
+          "value": {
+            "request": "hostile-custody",
+            "payment": {
+              "RP": 0,
+              "Action": 0
+            },
+            "inputUnchanged": true,
+            "output": null,
+            "status": "preflight"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "",
+          "value": {
+            "request": "hostile-custody",
+            "payment": {
+              "RP": 0,
+              "Action": 0
+            },
+            "inputUnchanged": true,
+            "output": null,
+            "status": "rejected-before-payment",
+            "reason": "Nonconsenting carried target under explicitly NEW local consent rule."
+          }
+        }
+      ],
+      "inverse": [
+        {
+          "op": "test",
+          "path": "",
+          "value": {
+            "request": "hostile-custody",
+            "payment": {
+              "RP": 0,
+              "Action": 0
+            },
+            "inputUnchanged": true,
+            "output": null,
+            "status": "rejected-before-payment",
+            "reason": "Nonconsenting carried target under explicitly NEW local consent rule."
+          }
+        },
+        {
+          "op": "replace",
+          "path": "",
+          "value": {
+            "request": "hostile-custody",
+            "payment": {
+              "RP": 0,
+              "Action": 0
+            },
+            "inputUnchanged": true,
+            "output": null,
+            "status": "preflight"
+          }
+        }
+      ]
+    }
+  ]
+}

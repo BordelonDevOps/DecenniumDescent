@@ -1,0 +1,227 @@
+{
+  "id": "RANK9DEFENSEFORM8-RETURN236-INDEPENDENT-AUDIT",
+  "recordedAtUtc": "2026-10-30T04:23:34.440865+00:00",
+  "status": "PASS",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_defenseform8_return236_received/DD_Rank9_DefenseForm3_Director_Return236_HELD.zip",
+    "bytes": 12481495,
+    "sha256": "df248b3dd6bd7bf36dd9bb7bbfb4d89d877814fb8fb7ab752d35d1f16d7784d5",
+    "crc32": "ea9e4a9b"
+  },
+  "delivery": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_defenseform8_return236_received/DD_Rank9_DefenseForm3_Director_Return236_HELD_DELIVERY.json",
+    "bytes": 283655,
+    "sha256": "76adbfc06fe5d036eb9f82b43b9535275192390076ba98efc066b6af837604d2",
+    "crc32": "d8a9433b"
+  },
+  "segmentManifest": {
+    "path": "C:\\Users\\cbord\\Downloads\\Return236_SEGMENTS.json",
+    "bytes": 2222,
+    "sha256": "168fdb8503e64b3ce2c96c4d7638ed751dff1c202b67dd0d5f3269a4c642e0f9",
+    "crc32": "9e4d1ecd"
+  },
+  "authority": {
+    "reviewedApplied": 811,
+    "pending": 37,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 535,
+    "scopedInterfaces": 173
+  },
+  "checkCount": 12,
+  "passedChecks": 12,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "check": "three ordered binary segments match their manifest byte, offset and SHA-256 bindings",
+      "passed": true,
+      "detail": [
+        {
+          "file": "Return236.part00.bin",
+          "actual": {
+            "bytes": 4500000,
+            "sha256": "d7cf302a6b7c7b8f69ab81229ac41873604d1b616bdcb255208fede854ba6fac",
+            "crc32": "0e9e9c5d"
+          },
+          "manifest": {
+            "order": 0,
+            "fileName": "Return236.part00.bin",
+            "offsetBytes": 0,
+            "bytes": 4500000,
+            "sha256": "d7cf302a6b7c7b8f69ab81229ac41873604d1b616bdcb255208fede854ba6fac"
+          }
+        },
+        {
+          "file": "Return236.part01.bin",
+          "actual": {
+            "bytes": 4500000,
+            "sha256": "c6e9b37e9b3d7127cd34bb823b57dc9b0bd4fab4016e9386525a223e42b092d6",
+            "crc32": "bf081213"
+          },
+          "manifest": {
+            "order": 1,
+            "fileName": "Return236.part01.bin",
+            "offsetBytes": 4500000,
+            "bytes": 4500000,
+            "sha256": "c6e9b37e9b3d7127cd34bb823b57dc9b0bd4fab4016e9386525a223e42b092d6"
+          }
+        },
+        {
+          "file": "Return236.part02.bin",
+          "actual": {
+            "bytes": 3481495,
+            "sha256": "fde6da94137599a1ca50b81555fbbe2d6f59a8f66accc55211a7480bf0971ea6",
+            "crc32": "d6252345"
+          },
+          "manifest": {
+            "order": 2,
+            "fileName": "Return236.part02.bin",
+            "offsetBytes": 9000000,
+            "bytes": 3481495,
+            "sha256": "fde6da94137599a1ca50b81555fbbe2d6f59a8f66accc55211a7480bf0971ea6"
+          }
+        }
+      ]
+    },
+    {
+      "check": "segment manifest and delivery agree on exact sealed archive identity",
+      "passed": true,
+      "detail": {
+        "rebuilt": {
+          "bytes": 12481495,
+          "sha256": "df248b3dd6bd7bf36dd9bb7bbfb4d89d877814fb8fb7ab752d35d1f16d7784d5",
+          "crc32": "ea9e4a9b"
+        },
+        "delivery": {
+          "fileName": "DD_Rank9_DefenseForm3_Director_Return236_HELD.zip",
+          "bytes": 12481495,
+          "sha256": "df248b3dd6bd7bf36dd9bb7bbfb4d89d877814fb8fb7ab752d35d1f16d7784d5",
+          "crc32": "ea9e4a9b"
+        },
+        "segments": {
+          "fileName": "DD_Rank9_DefenseForm3_Director_Return236_HELD.zip",
+          "bytes": 12481495,
+          "sha256": "df248b3dd6bd7bf36dd9bb7bbfb4d89d877814fb8fb7ab752d35d1f16d7784d5",
+          "crc32": "ea9e4a9b"
+        }
+      }
+    },
+    {
+      "check": "downloaded decision delivery SHA-256 matches the segment manifest binding",
+      "passed": true,
+      "detail": {
+        "segmentManifest": {
+          "bytes": 2222,
+          "sha256": "168fdb8503e64b3ce2c96c4d7638ed751dff1c202b67dd0d5f3269a4c642e0f9",
+          "crc32": "9e4d1ecd"
+        },
+        "deliveryManifest": {
+          "bytes": 283655,
+          "sha256": "76adbfc06fe5d036eb9f82b43b9535275192390076ba98efc066b6af837604d2",
+          "crc32": "d8a9433b"
+        },
+        "expected": {
+          "fileName": "DD_Rank9_DefenseForm3_Director_Return236_HELD_DELIVERY.json",
+          "bytes": 283655,
+          "sha256": "76adbfc06fe5d036eb9f82b43b9535275192390076ba98efc066b6af837604d2"
+        }
+      }
+    },
+    {
+      "check": "previous truncated browser download is an exact prefix of the recovered sealed archive",
+      "passed": true,
+      "detail": {
+        "truncatedBytes": 8030772,
+        "truncatedSha256": "e77f59aba5a394b95feebf82be0f9b6caf881086869f3f4d571087d911237040",
+        "prefixMatches": true
+      }
+    },
+    {
+      "check": "reconstructed sealed archive has valid ZIP structure and CRCs",
+      "passed": true,
+      "detail": {
+        "memberCount": 229,
+        "testZip": null
+      }
+    },
+    {
+      "check": "ZIP members exactly match the delivery allowlist with no duplicates",
+      "passed": true,
+      "detail": {
+        "actual": 229,
+        "expected": 229,
+        "allowlist": 229
+      }
+    },
+    {
+      "check": "every member matches the external delivery byte, SHA-256 and CRC bindings",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "internal self-excluding manifest covers all other members and binds exactly",
+      "passed": true,
+      "detail": {
+        "internalCount": 228,
+        "archiveCount": 229,
+        "memberManifest": {
+          "path": "MEMBER_MANIFEST.json",
+          "bytes": 55532,
+          "sha256": "be80732c77e98ce0247b498677c11d3c07db3ec9f831e87611a5132f69d6211a",
+          "crc32": "49e75f74"
+        }
+      }
+    },
+    {
+      "check": "every payload matches the internal manifest",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "director decision holds exactly the three reviewed identities without acceptance or application",
+      "passed": true,
+      "detail": {
+        "acceptedIds": [],
+        "appliedIds": [],
+        "heldIds": [
+          "elemental-shell",
+          "timeless-form",
+          "invulnerable-sphere"
+        ],
+        "authority": {
+          "reviewedApplied": 811,
+          "pending": 37,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 535,
+          "scopedInterfaces": 173
+        }
+      }
+    },
+    {
+      "check": "next pending group is Ward Control 6 with only Nullification Wave and Reality Anchor",
+      "passed": true,
+      "detail": {
+        "group": "rank9-ward-control6",
+        "pendingIds": [
+          "nullification-wave",
+          "reality-anchor"
+        ],
+        "queueBinding": {
+          "bytes": 66565,
+          "sha256": "b71028f30c5fc0564075621b4f928b217768c932c52d75db3583f873bd5f6867",
+          "crc32": "aaca8331"
+        },
+        "queueMember": "evidence/current/docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_SPELL_QUEUE_236.json",
+        "basis": "Next group in currentPendingGroups immediately after rank9-defense-form8; earlier groups remain held, not reopened.",
+        "freshCurrentAuthorityPacketRequired": true
+      }
+    },
+    {
+      "check": "sealed archive preserves expected 46-case replay and exact current binding reconciliation",
+      "passed": true,
+      "detail": {
+        "caseMembers": 46,
+        "supplementIncluded": true
+      }
+    }
+  ]
+}

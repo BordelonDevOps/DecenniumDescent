@@ -1,0 +1,142 @@
+{
+  "id": "RANK9-TIME-FATE6-PACKET239-INDEPENDENT-AUDIT",
+  "checkedAtUtc": "2026-10-30T05:16:45.630247+00:00",
+  "status": "PASS",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_timefate6_current_source_239_prepared/DD_Rank9_TimeFate6_CurrentSource_239.zip",
+    "bytes": 124678790,
+    "sha256": "6ceba0299c13b6072ae43889b71467a39ef277a21932d592a708b61e13711ae0",
+    "crc32": "7db06278"
+  },
+  "deliveryManifest": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_timefate6_current_source_239_prepared/DD_Rank9_TimeFate6_CurrentSource_239_DELIVERY.json",
+    "bytes": 2335,
+    "sha256": "2c4ffeb0e3c65e6f00ef60097a7bfa4d5d191770407e1b29c5693679271a363c",
+    "crc32": "4a5d9140"
+  },
+  "authority": {
+    "reviewedApplied": 811,
+    "pending": 37,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 535,
+    "scopedInterfaces": 173
+  },
+  "group": "rank9-time-fate6",
+  "pendingIds": [
+    "time-stop",
+    "fate-rewrite",
+    "collapse-timeline",
+    "eternal-prophecy"
+  ],
+  "sourceBindingsVerified": 140,
+  "checkCount": 12,
+  "passedChecks": 12,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "check": "Packet239 ZIP matches delivery bytes, SHA-256 and CRC32",
+      "passed": true,
+      "detail": {
+        "bytes": 124678790,
+        "sha256": "6ceba0299c13b6072ae43889b71467a39ef277a21932d592a708b61e13711ae0",
+        "crc32": "7db06278"
+      }
+    },
+    {
+      "check": "delivery, queue, handoff and pending snapshot agree on 811/37/0 authority and exact Time/Fate IDs",
+      "passed": true,
+      "detail": {
+        "authority": {
+          "reviewedApplied": 811,
+          "pending": 37,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 535,
+          "scopedInterfaces": 173
+        },
+        "pendingIds": [
+          "time-stop",
+          "fate-rewrite",
+          "collapse-timeline",
+          "eternal-prophecy"
+        ]
+      }
+    },
+    {
+      "check": "all four targets remain pending and non-operational in current index/catalog",
+      "passed": true,
+      "detail": {
+        "indexCounts": {
+          "reviewed": 811,
+          "pending": 37
+        }
+      }
+    },
+    {
+      "check": "ZIP directory is sound, paths are safe, unique, and manifest is exact",
+      "passed": true,
+      "detail": {
+        "members": 221,
+        "unique": 221
+      }
+    },
+    {
+      "check": "embedded manifest covers every payload member and declares current packet scope",
+      "passed": true,
+      "detail": {
+        "payload": 220,
+        "zip": 221
+      }
+    },
+    {
+      "check": "every payload member matches embedded size, SHA-256 and CRC32",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "candidate and director context bind exact current group, authority, 140 sources and Return238",
+      "passed": true,
+      "detail": {
+        "sources": 140,
+        "authority": {
+          "reviewedApplied": 811,
+          "pending": 37,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 535,
+          "scopedInterfaces": 173
+        }
+      }
+    },
+    {
+      "check": "all 140 source bindings verify against packet and current working-tree bytes",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "Return221, Return238 and Packet238 source evidence are bundled byte-exactly",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "previous Time/Fate ruling remains all-held; Return238 is audited and selects this exact next group",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "request confines GPT review to four pending IDs, carries forward blockers, and forbids application",
+      "passed": true,
+      "detail": {
+        "requestBytes": 1895
+      }
+    },
+    {
+      "check": "preparation record passes declared checks and records no canonical changes or application",
+      "passed": true,
+      "detail": {
+        "status": "CURRENT_SOURCE_PACKET_PREPARED_UNSENT",
+        "passed": 10,
+        "failed": 0
+      }
+    }
+  ],
+  "scopeLimitation": "Validates packet transfer, source/member binding, authority scope and preserved prior decision evidence; it does not independently adjudicate the underlying game rules."
+}

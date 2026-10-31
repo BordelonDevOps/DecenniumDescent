@@ -1,0 +1,36 @@
+{
+  "id": "RANK9DEATHRECOVERY3-REPRESENTATION-COUNT-RECONCILIATION-217",
+  "recordedAtUtc": "2026-10-29T20:05:13.003375+00:00",
+  "sourceIndexBindingBefore": {
+    "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+    "bytes": 1567434,
+    "sha256": "493f7f9f98badc2ad6925d9863c42b191e4c0d55bc1337c48845c178a212c819",
+    "crc32": "eca894ff"
+  },
+  "queueAuthorityBefore": {
+    "reviewedApplied": 806,
+    "pending": 42,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 530,
+    "scopedInterfaces": 173
+  },
+  "indexStoredCompleteReviewedStandaloneProceduresBefore": 528,
+  "recountedReviewedNonCatalogProcedureEntriesBefore": 530,
+  "priorAppliedBatchEvidence": "docs\\audit\\2026-10-08\\full-game\\director-spell-review-129\\RANK9MASSUNDEATH2_APPLICATION_214.json",
+  "priorAppliedBatchClaim": {
+    "before": 528,
+    "after": 530,
+    "acceptedIds": [
+      "field-of-endless-dead",
+      "plague-of-undeath"
+    ]
+  },
+  "currentBatchAcceptedIds": [
+    "doom",
+    "eternal-pact"
+  ],
+  "recountedReviewedNonCatalogProcedureEntriesAfter": 532,
+  "indexStoredCompleteReviewedStandaloneProceduresAfter": 532,
+  "resolution": "The current queue and handoff authority already recorded 530 complete standalone procedures, and the index contains exactly 530 reviewed entries whose procedureFile is not catalog.json. The index's separate representationCounts field remained at the prior 528 value after Return214. This application reconciles that stale field to the observed 530 baseline plus the two newly applied procedures (532). No identities beyond the exact Return217 acceptances were changed.",
+  "catalogChanged": false
+}

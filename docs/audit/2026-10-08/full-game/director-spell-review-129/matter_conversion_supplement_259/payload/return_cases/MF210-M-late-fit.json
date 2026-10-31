@@ -1,0 +1,135 @@
+{
+  "id": "MF210-M-late-fit",
+  "spellId": "matter-conversion",
+  "title": "Paid late invalidation preserves input and no output",
+  "kind": "isolated-conditional-state-kernel",
+  "endToEndWitness": false,
+  "prerequisitesNotDemonstrated": [
+    "Actual prior legal caster commitment and complete output profile required."
+  ],
+  "procedureClause": "matter.fit",
+  "clockScope": "No elapsed time or actor turn is modeled; this kernel cannot certify regular-turn accounting.",
+  "events": [
+    {
+      "id": "MF210-M-late-fit:1",
+      "before": {
+        "input": {
+          "id": "lot1",
+          "massLb": 1,
+          "revision": 1
+        },
+        "request": {
+          "committed": true,
+          "paidRP": 26,
+          "paidAction": 1
+        },
+        "output": null,
+        "reservation": "cast1",
+        "status": "pending",
+        "lateFitValid": false
+      },
+      "after": {
+        "input": {
+          "id": "lot1",
+          "massLb": 1,
+          "revision": 1
+        },
+        "request": {
+          "committed": true,
+          "paidRP": 26,
+          "paidAction": 1
+        },
+        "output": null,
+        "reservation": null,
+        "status": "failed-no-refund",
+        "lateFitValid": false
+      },
+      "beforeSHA256": "4b843eb7776e95f0d2adea3f1f2351c73a7d258a9212183d291b1d11929bb4e5",
+      "afterSHA256": "9939ac89ab9ecbf15bfb77b3eefebfde8f587f5b223d9fcf54563e30ffedc765",
+      "forward": [
+        {
+          "op": "test",
+          "path": "",
+          "value": {
+            "input": {
+              "id": "lot1",
+              "massLb": 1,
+              "revision": 1
+            },
+            "request": {
+              "committed": true,
+              "paidRP": 26,
+              "paidAction": 1
+            },
+            "output": null,
+            "reservation": "cast1",
+            "status": "pending",
+            "lateFitValid": false
+          }
+        },
+        {
+          "op": "replace",
+          "path": "",
+          "value": {
+            "input": {
+              "id": "lot1",
+              "massLb": 1,
+              "revision": 1
+            },
+            "request": {
+              "committed": true,
+              "paidRP": 26,
+              "paidAction": 1
+            },
+            "output": null,
+            "reservation": null,
+            "status": "failed-no-refund",
+            "lateFitValid": false
+          }
+        }
+      ],
+      "inverse": [
+        {
+          "op": "test",
+          "path": "",
+          "value": {
+            "input": {
+              "id": "lot1",
+              "massLb": 1,
+              "revision": 1
+            },
+            "request": {
+              "committed": true,
+              "paidRP": 26,
+              "paidAction": 1
+            },
+            "output": null,
+            "reservation": null,
+            "status": "failed-no-refund",
+            "lateFitValid": false
+          }
+        },
+        {
+          "op": "replace",
+          "path": "",
+          "value": {
+            "input": {
+              "id": "lot1",
+              "massLb": 1,
+              "revision": 1
+            },
+            "request": {
+              "committed": true,
+              "paidRP": 26,
+              "paidAction": 1
+            },
+            "output": null,
+            "reservation": "cast1",
+            "status": "pending",
+            "lateFitValid": false
+          }
+        }
+      ]
+    }
+  ]
+}

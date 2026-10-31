@@ -1,0 +1,189 @@
+{
+  "id": "RETURN211-INDEPENDENT-AUDIT",
+  "archive": "DD_Rank9_AlignmentFactionPurification5_Director_Return211_HELD.zip",
+  "deliveryManifest": "DD_Rank9_AlignmentFactionPurification5_Director_Return211_HELD_DELIVERY.json",
+  "archiveBytes": 17371720,
+  "archiveSha256": "a5acae246fd72b288280d56c6f41e975e350f6f6a22b4322230f3bdebe19ae95",
+  "deliveryManifestSha256": "fd29d1280bda04b091458571cc2120063423337aa7e70231964d406708ca4ae4",
+  "checks": [
+    {
+      "check": "delivery archive size/hash",
+      "passed": true,
+      "detail": {
+        "actualBytes": 17371720,
+        "actualSha256": "a5acae246fd72b288280d56c6f41e975e350f6f6a22b4322230f3bdebe19ae95",
+        "expectedBytes": 17371720,
+        "expectedSha256": "a5acae246fd72b288280d56c6f41e975e350f6f6a22b4322230f3bdebe19ae95"
+      }
+    },
+    {
+      "check": "central directory and CRC",
+      "passed": true,
+      "detail": {
+        "memberCount": 40,
+        "testzip": null
+      }
+    },
+    {
+      "check": "safe unique member names",
+      "passed": true,
+      "detail": {
+        "uniqueCount": 40,
+        "safePaths": true
+      }
+    },
+    {
+      "check": "delivery member manifest binding",
+      "passed": true,
+      "detail": {
+        "bytes": 6646,
+        "sha256": "fd76b0856aa9c9fae66c07c6fcb51f1578d31787a9488e064ab99494fb5a6b8f"
+      }
+    },
+    {
+      "check": "exact complete archive allowlist",
+      "passed": true,
+      "detail": {
+        "archiveMembers": 40,
+        "manifestPayloadMembers": 39,
+        "extra": [],
+        "missing": []
+      }
+    },
+    {
+      "check": "all payload sizes hashes and CRCs",
+      "passed": true,
+      "detail": {
+        "checked": 39,
+        "failed": []
+      }
+    },
+    {
+      "check": "exact held decision scope",
+      "passed": true,
+      "detail": {
+        "acceptedIds": [],
+        "heldIds": [
+          "alignment-ascension",
+          "alignment-perfection",
+          "faction-incarnate",
+          "faction-perfection",
+          "corruption-purification"
+        ],
+        "appliedIds": null
+      }
+    },
+    {
+      "check": "authority preserved",
+      "passed": true,
+      "detail": {
+        "reviewedApplied": 804,
+        "pending": 44,
+        "acceptedUnapplied": 0,
+        "completeStandaloneProcedures": 528,
+        "scopedInterfaces": 173
+      }
+    },
+    {
+      "check": "semantic hold counts",
+      "passed": true,
+      "detail": {
+        "identities": 5,
+        "nativePlacements": 6,
+        "selectedDispositions": 28,
+        "proposedProcedureContracts": 5,
+        "completeOperationalProcedures": 0,
+        "acceptedIds": 0,
+        "heldIds": 5,
+        "originalFutureRequirements": 7,
+        "completePositiveSpellCases": 0,
+        "componentCases": 10,
+        "events": 10,
+        "forwardOperations": 20,
+        "inverseOperations": 20,
+        "currentSourceBindings": 130,
+        "sourceChecks": 425,
+        "componentIntegrityChecks": 70,
+        "semanticChecks": 6,
+        "identityBlockers": 5,
+        "sharedEvidenceFindings": 1
+      }
+    },
+    {
+      "check": "five procedure contracts are non-operational proposals",
+      "passed": true,
+      "detail": [
+        "alignment-ascension",
+        "alignment-perfection",
+        "faction-incarnate",
+        "faction-perfection",
+        "corruption-purification"
+      ]
+    },
+    {
+      "check": "five explicit blocker records",
+      "passed": true,
+      "detail": [
+        "AFP211-B01",
+        "AFP211-B02",
+        "AFP211-B03",
+        "AFP211-B04",
+        "AFP211-B05"
+      ]
+    },
+    {
+      "check": "six missing accepted comparator records",
+      "passed": true,
+      "detail": [
+        "alignment-avatar",
+        "alignment-immunity",
+        "corruption-immunity",
+        "faction-aegis",
+        "faction-citadel",
+        "faction-paragon"
+      ]
+    },
+    {
+      "check": "independent semantic failure remains explicit",
+      "passed": true,
+      "detail": {
+        "passed": false,
+        "blockers": 5
+      }
+    }
+  ],
+  "passed": true,
+  "decision": {
+    "acceptedIds": [],
+    "heldIds": [
+      "alignment-ascension",
+      "alignment-perfection",
+      "faction-incarnate",
+      "faction-perfection",
+      "corruption-purification"
+    ],
+    "appliedIds": null,
+    "authority": {
+      "reviewedApplied": 804,
+      "pending": 44,
+      "acceptedUnapplied": 0,
+      "completeStandaloneProcedures": 528,
+      "scopedInterfaces": 173
+    },
+    "blockers": [
+      "AFP211-B01",
+      "AFP211-B02",
+      "AFP211-B03",
+      "AFP211-B04",
+      "AFP211-B05"
+    ],
+    "missingComparators": [
+      "alignment-avatar",
+      "alignment-immunity",
+      "corruption-immunity",
+      "faction-aegis",
+      "faction-citadel",
+      "faction-paragon"
+    ]
+  }
+}

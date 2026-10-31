@@ -1,0 +1,206 @@
+{
+  "id": "RANK9IMPACTEXILE4-PACKET-245-INDEPENDENT-AUDIT",
+  "status": "PASS",
+  "checkedAtUtc": "2026-10-30T07:11:38.523097+00:00",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_impactexile4_current_source_245_prepared/DD_Rank9_ImpactExile4_CurrentSource_245.zip",
+    "bytes": 326438456,
+    "sha256": "1e850b66637dc5ae6e437f3b0e6282618dd4e2e0d63b4dc722994663c1006a8b",
+    "crc32": "eadac540"
+  },
+  "delivery": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_impactexile4_current_source_245_prepared/DD_Rank9_ImpactExile4_CurrentSource_245_DELIVERY.json",
+    "bytes": 12071,
+    "sha256": "ed1527c008a3dbf40d868a8bc4e64f0008c5f61bf8a0410560cbae189c7bbef4"
+  },
+  "authority": {
+    "reviewedApplied": 811,
+    "pending": 37,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 535,
+    "scopedInterfaces": 173
+  },
+  "acceptedIds": [],
+  "targetIds": [
+    "reverse-gravity-field"
+  ],
+  "checkCount": 14,
+  "passedChecks": 14,
+  "failedChecks": [],
+  "checks": [
+    {
+      "check": "Packet ZIP exact byte/SHA/CRC match delivery",
+      "passed": true,
+      "detail": {
+        "archive": [
+          326438456,
+          "1e850b66637dc5ae6e437f3b0e6282618dd4e2e0d63b4dc722994663c1006a8b",
+          "eadac540"
+        ]
+      }
+    },
+    {
+      "check": "Preparation record is PASS with all preparation checks passing",
+      "passed": true,
+      "detail": {
+        "checks": 9
+      }
+    },
+    {
+      "check": "Archive has unique safe paths, valid CRC, and exact internal manifest allowlist",
+      "passed": true,
+      "detail": {
+        "members": 437,
+        "manifestRows": 436,
+        "unsafe": []
+      }
+    },
+    {
+      "check": "Every internal manifest member independently matches bytes/SHA/CRC",
+      "passed": true,
+      "detail": {
+        "checked": 436,
+        "failures": []
+      }
+    },
+    {
+      "check": "Packet scope, authority, closed IDs and commit match delivery",
+      "passed": true,
+      "detail": {
+        "scope": [
+          "reverse-gravity-field"
+        ],
+        "authority": {
+          "reviewedApplied": 811,
+          "pending": 37,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 535,
+          "scopedInterfaces": 173
+        }
+      }
+    },
+    {
+      "check": "Candidate/context/request in ZIP match submitted sidecars and exact target scope",
+      "passed": true,
+      "detail": {
+        "scope": [
+          "reverse-gravity-field"
+        ],
+        "targetQuestions": 26,
+        "futureRequirements": 7
+      }
+    },
+    {
+      "check": "Original 26 questions, two focused addenda, eight cases and seven future requirements are retained",
+      "passed": true,
+      "detail": {
+        "questions": 26,
+        "addenda": 2,
+        "futureRequirements": 7
+      }
+    },
+    {
+      "check": "All refreshed source bindings independently match current files and packet copies",
+      "passed": true,
+      "detail": {
+        "bindings": 380,
+        "localFailures": [],
+        "zipFailures": []
+      }
+    },
+    {
+      "check": "Return205 accepted IDs are closed and current target blocker remains IE204-B02",
+      "passed": true,
+      "detail": {
+        "closed": [
+          "eternal-anvil",
+          "transmute-flesh-to-energy",
+          "planar-collapse"
+        ],
+        "blocker": [
+          "IE204-B02"
+        ]
+      }
+    },
+    {
+      "check": "Return244 holds remain outside scope and are independently audited",
+      "passed": true,
+      "detail": {
+        "heldIds": [
+          "summon-elemental-avatar",
+          "summon-herald-of-the-planes",
+          "summon-avatar-of-decay"
+        ],
+        "audit": {
+          "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/RANK9SUMMONHOSTS5_RETURN244_INDEPENDENT_AUDIT.json",
+          "bytes": 45872,
+          "sha256": "08d5ad947d21ac4c11645fa1f6e9305637cc373c5a31c849fd9c7ba89321f928",
+          "crc32": "1c1b7487"
+        },
+        "receipt": {
+          "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/RANK9SUMMONHOSTS5_RETURN244_RECEIPT.json",
+          "bytes": 914,
+          "sha256": "bd14ab633fdb32c3290f67e6123eeb5f9af9c28eb00481d7bacbff38e4d4de04",
+          "crc32": "13022dd9"
+        }
+      }
+    },
+    {
+      "check": "Prior Return228 same-identity hold and IE204-B02 are explicit and outside the new adjudication",
+      "passed": true,
+      "detail": {
+        "heldIds": [
+          "reverse-gravity-field"
+        ],
+        "blockers": {
+          "reverse-gravity-field": [
+            "IE204-B02"
+          ]
+        }
+      }
+    },
+    {
+      "check": "All six active sealed hold packages Returns238–243 and their audits/receipts are carried forward",
+      "passed": true,
+      "detail": {
+        "requiredFiles": 24,
+        "missing": []
+      }
+    },
+    {
+      "check": "Return228 and Return244 sealed archives, manifests, audits and receipts are package-bound",
+      "passed": true,
+      "detail": {
+        "Return228": [
+          "reverse-gravity-field"
+        ],
+        "Return244": [
+          "summon-elemental-avatar",
+          "summon-herald-of-the-planes",
+          "summon-avatar-of-decay"
+        ]
+      }
+    },
+    {
+      "check": "The current-source candidate names only the pending target at 811/37/0 on main",
+      "passed": true,
+      "detail": {
+        "branch": "main",
+        "pendingGroup": {
+          "group": "rank9-impact-exile4",
+          "spellIds": [
+            "reverse-gravity-field"
+          ],
+          "count": 1
+        },
+        "authority": {
+          "reviewedApplied": 811,
+          "pending": 37,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 535,
+          "scopedInterfaces": 173
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,401 @@
+{
+  "id": "RANK9PSYCHICFEAR7-PACKET234-INDEPENDENT-AUDIT",
+  "checkedAtUtc": "2026-10-30T02:57:09.937547+00:00",
+  "status": "PASS",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_psychicfear7_current_source_234_prepared/DD_Rank9_PsychicFear7_CurrentSource_234.zip",
+    "bytes": 76813418,
+    "sha256": "27b76304ec2f5a15b6d837be3521532989051596857f464702351f685a7e6f8a",
+    "crc32": "e643e2d6"
+  },
+  "delivery": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_psychicfear7_current_source_234_prepared/DD_Rank9_PsychicFear7_CurrentSource_234_DELIVERY.json",
+    "bytes": 80026,
+    "sha256": "93d12f555ce83dfe4412269cf6126d17c0d7bcfd3998c1fecbab58d18a375eb3",
+    "crc32": "f05a429a"
+  },
+  "authority": {
+    "reviewedApplied": 811,
+    "pending": 37,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 535,
+    "scopedInterfaces": 173
+  },
+  "group": "rank9-psychic-fear7",
+  "targetIds": [
+    "psychic-scream",
+    "mass-phantom-killer",
+    "weird"
+  ],
+  "checkCount": 27,
+  "passedChecks": 27,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "check": "archive byte count, SHA-256 and CRC32 match DELIVERY",
+      "passed": true,
+      "detail": {
+        "bytes": 76813418,
+        "sha256": "27b76304ec2f5a15b6d837be3521532989051596857f464702351f685a7e6f8a",
+        "crc32": "e643e2d6"
+      }
+    },
+    {
+      "check": "delivery names exact Packet234 archive and scope",
+      "passed": true,
+      "detail": {
+        "group": "rank9-psychic-fear7",
+        "targetIds": [
+          "psychic-scream",
+          "mass-phantom-killer",
+          "weird"
+        ]
+      }
+    },
+    {
+      "check": "delivery binds exact 811/37/0 and 535/173 authority",
+      "passed": true,
+      "detail": {
+        "reviewedApplied": 811,
+        "pending": 37,
+        "acceptedUnapplied": 0,
+        "completeStandaloneProcedures": 535,
+        "scopedInterfaces": 173
+      }
+    },
+    {
+      "check": "ZIP has unique safe paths and no directory entries",
+      "passed": true,
+      "detail": {
+        "members": 172,
+        "unique": 172
+      }
+    },
+    {
+      "check": "delivery allowlist exactly covers every archive member",
+      "passed": true,
+      "detail": {
+        "members": 172,
+        "delivery": 172
+      }
+    },
+    {
+      "check": "all archive members match external byte/SHA/CRC bindings",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "embedded manifest is bound by delivery",
+      "passed": true,
+      "detail": {
+        "bytes": 41316,
+        "sha256": "0f4bd3d35786820b644c9c4d0de45370d4c378d7887104e73e98204f2abd57b7",
+        "crc32": "19955a31"
+      }
+    },
+    {
+      "check": "internal manifest exactly covers all payload members",
+      "passed": true,
+      "detail": {
+        "manifest": 171,
+        "archivePayload": 171
+      }
+    },
+    {
+      "check": "all payload members match internal manifest",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "current context identifies only GPT-selected psychic/fear identities",
+      "passed": true,
+      "detail": {
+        "group": "rank9-psychic-fear7",
+        "pendingIds": [
+          "psychic-scream",
+          "mass-phantom-killer",
+          "weird"
+        ],
+        "count": 3
+      }
+    },
+    {
+      "check": "context and candidate bind exact current authority and main base",
+      "passed": true,
+      "detail": {
+        "authority": {
+          "reviewedApplied": 811,
+          "pending": 37,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 535,
+          "scopedInterfaces": 173
+        },
+        "base": "197366eae0c786415de55a0e4739e83f49f1a65f",
+        "branch": "main"
+      }
+    },
+    {
+      "check": "request scopes only three identities and preserves explicit exclusions",
+      "passed": true,
+      "detail": "GPT director — continue the ordinary spell review at authority 811 reviewed/applied / 37 pending / 0 accepted-unapplied (535 complete standalone procedures; 173 scoped interfaces). You selected rank9-psychic-fear7 for Packet234. Review ONLY psychic-scream, mass-phantom-killer and weird.\n\nThis current packet is based on main HEAD 197366eae0c786415de55a0e4739e83f49f1a65f plus current working-tree source bytes and refreshes all 84 source bindings from the historical conference. The three exact targets remain pending at 811/37/0. Packet215 and Return216 show a historical 806/42/0 review; its PF182-B01/B02 blockers are evidence to reassess, not automatic current decisions. The earlier queue row's 'prepared-unsent' label is stale: Packet215 was submitted and Return216 was sealed.\n\nReconcile the "
+    },
+    {
+      "check": "prior 806/42/0 blockers are marked historical for reassessment",
+      "passed": true,
+      "detail": {
+        "priorBlockerIds": [
+          "PF182-B01",
+          "PF182-B02"
+        ]
+      }
+    },
+    {
+      "check": "previous questions, selected dispositions, obligations and cases are preserved",
+      "passed": true,
+      "detail": {
+        "originalQuestionsUnchanged": 23,
+        "targetRelevantOriginalQuestionIds": 13,
+        "focusedAdditionalQuestionsUnchanged": 2,
+        "priorSelectedQuestionDispositions": 15,
+        "priorTargetMainCaseObligations": 6
+      }
+    },
+    {
+      "check": "candidate lists exactly the three target records with current index/catalog values",
+      "passed": true,
+      "detail": [
+        "psychic-scream",
+        "mass-phantom-killer",
+        "weird"
+      ]
+    },
+    {
+      "check": "context’s queue, handoff and pending-audit bindings resolve to exact archived snapshots",
+      "passed": true,
+      "detail": {
+        "queue": {
+          "bytes": 72518,
+          "sha256": "979e7f5e8930611cfd0171cb8e6864a491507b8d79f4753b1c73bb9c7084a36e",
+          "crc32": "807368e5"
+        },
+        "handoff": {
+          "bytes": 20911,
+          "sha256": "3a5bb09ebd971c65ed444004add0744615e513e38fd42fef07394034ffa60d11",
+          "crc32": "498e8c7b"
+        },
+        "pending": {
+          "bytes": 56586,
+          "sha256": "b1543c7edd3616a5b000b92fa4a58e657ad951d25b3602d4fc5f1ffa4f19526e",
+          "crc32": "e78573f6"
+        }
+      }
+    },
+    {
+      "check": "embedded queue and pending audit preserve all 37 pending identities and 17 groups",
+      "passed": true,
+      "detail": {
+        "groups": 17,
+        "queuePending": 37,
+        "auditPending": 37
+      }
+    },
+    {
+      "check": "queue target row reflects corrected Return216 history and GPT’s Packet234 priority",
+      "passed": true,
+      "detail": {
+        "group": "rank9-psychic-fear7",
+        "pendingIds": [
+          "psychic-scream",
+          "mass-phantom-killer",
+          "weird"
+        ],
+        "pendingCount": 3,
+        "historicalPhase": "prior-director-return-216-held",
+        "candidate": {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/rank9_psychic_fear_7_source_conference_01.json",
+          "bytes": 662057,
+          "sha256": "3414fc5f41c3f9e7365182484e9623c2dcabeb60870b23a2c72440143e2011b6"
+        },
+        "archive": {
+          "path": "docs/audit/2026-10-08/full-game/DD_Rank9_Psychic_Fear_7_Source_Conference_01.zip",
+          "bytes": 5604603,
+          "sha256": "88a6346b2737cd1d51d2e7f0637a94a6aa8a21baceb01b3c9a04dbdd2b9d4040"
+        },
+        "freshPacketRequiredForCurrentAuthority": true,
+        "status": "FRESH_PACKET234_PREPARATION_IN_PROGRESS_811_37_0",
+        "blockingReturn": {
+          "decision": "docs/audit/2026-10-08/full-game/director-spell-review-129/RANK9_PSYCHICFEAR7_GPT_RETURN_182.json",
+          "blockers": [
+            "PF182-B01",
+            "PF182-B02"
+          ],
+          "ids": [
+            "psychic-scream",
+            "mass-phantom-killer",
+            "weird"
+          ]
+        },
+        "lastDirectorReturn": {
+          "return": 216,
+          "acceptedIds": [],
+          "appliedIds": [],
+          "heldIds": [
+            "psychic-scream",
+            "mass-phantom-killer",
+            "weird"
+          ],
+          "blockers": [
+            "PF182-B01",
+            "PF182-B02"
+          ],
+          "independentAudit": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_psychicfear7_return216_received/RETURN216_INDEPENDENT_AUDIT.json"
+        },
+        "currentAuthority": {
+          "reviewedApplied": 811,
+          "pending": 37,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 535,
+          "scopedInterfaces": 173
+        },
+        "previousHeldBatch": {
+          "ids": [
+            "psychic-scream",
+            "mass-phantom-killer",
+            "weird"
+          ],
+          "blockers": [
+            "PF182-B01",
+            "PF182-B02"
+          ],
+          "acceptedIds": [],
+          "appliedIds": []
+        },
+        "historicalPhaseCorrection": "Packet215 was submitted and Return216 held these targets at 806/42/0; this is a fresh current-authority review.",
+        "directorPriority": "GPT confirmed this group for Packet234."
+      }
+    },
+    {
+      "check": "Return233 is recorded as latest completed held batch with its audit receipt",
+      "passed": true,
+      "detail": {
+        "group": "rank9-miracle-reality2",
+        "acceptedIds": [],
+        "appliedIds": [],
+        "heldIds": [
+          "divine-intervention-greater",
+          "wish"
+        ],
+        "blockerIds": {
+          "divine-intervention-greater": [
+            "MR233-B01"
+          ],
+          "wish": [
+            "MR233-B02"
+          ]
+        },
+        "returnArchive": {
+          "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_miraclereality2_return233_received/DD_Rank9_MiracleReality2_Director_Return233_HELD.zip",
+          "bytes": 13128859,
+          "sha256": "75d844ac9e6ae496ce59d8b1334ba5b3d48ed9e74a774d4a40b30a5b274cdcbf",
+          "crc32": "348d220f"
+        },
+        "returnDelivery": {
+          "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_miraclereality2_return233_received/DD_Rank9_MiracleReality2_Director_Return233_HELD_DELIVERY.json",
+          "bytes": 325551,
+          "sha256": "4a0aaddc9cb1a161f4d55b5b9dd681116797b58c063ac885d513849961c541b1",
+          "crc32": "0d034165"
+        },
+        "independentAudit": {
+          "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/RANK9MIRACLEREALITY2_RETURN233_INDEPENDENT_AUDIT.json",
+          "bytes": 19634,
+          "sha256": "f20adb2d3d0728cc84980c8c90ca74183e3da29e206958877b3f8f6bf60f2a34",
+          "crc32": "a6ba0589"
+        },
+        "receipt": {
+          "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/RANK9MIRACLEREALITY2_RETURN233_RECEIPT.json",
+          "bytes": 1428,
+          "sha256": "f434ea762fc5cac2dfded1908cc47d080933fcdb6fd1c7614b4469ce72b9f02d",
+          "crc32": "fbaee968"
+        }
+      }
+    },
+    {
+      "check": "current archived index and catalog retain all three pending IDs exactly",
+      "passed": true,
+      "detail": {
+        "pendingCount": 37,
+        "targets": {
+          "psychic-scream": "pending-authored-procedure",
+          "mass-phantom-killer": "pending-authored-procedure",
+          "weird": "pending-authored-procedure"
+        }
+      }
+    },
+    {
+      "check": "all 84 refreshed historical source bindings match archived current-source bytes",
+      "passed": true,
+      "detail": {
+        "bindings": 84,
+        "failures": [],
+        "changed": 56
+      }
+    },
+    {
+      "check": "historical candidate and conference archive are preserved byte-exactly",
+      "passed": true,
+      "detail": {
+        "records": 7,
+        "sourceBindings": 84
+      }
+    },
+    {
+      "check": "historical Packet215 archive matches its preserved delivery and remains labeled historical",
+      "passed": true,
+      "detail": {
+        "bytes": 6294485,
+        "authority": {
+          "reviewedApplied": 806,
+          "pending": 42,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 530,
+          "scopedInterfaces": 173
+        }
+      }
+    },
+    {
+      "check": "Return216 excerpt members are byte-exact to the bound original archive",
+      "passed": true,
+      "detail": {
+        "copied": 23,
+        "failures": []
+      }
+    },
+    {
+      "check": "prior Return216 decision, blockers and audit are preserved exactly",
+      "passed": true,
+      "detail": {
+        "blockers": [
+          "PF182-B01",
+          "PF182-B02"
+        ]
+      }
+    },
+    {
+      "check": "Returns228–233 ZIPs, delivery manifests, independent audits and receipts are preserved byte-exactly",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "Packet234 declares no acceptance, application, canonical, runtime or GitHub changes",
+      "passed": true,
+      "detail": {
+        "accepted": false,
+        "applied": false,
+        "canonicalChanges": false,
+        "applicationChanges": false,
+        "runtimeExecuted": false,
+        "githubChanges": false
+      }
+    }
+  ]
+}

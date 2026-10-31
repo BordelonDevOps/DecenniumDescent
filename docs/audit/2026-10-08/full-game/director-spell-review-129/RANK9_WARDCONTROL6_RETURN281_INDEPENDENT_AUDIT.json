@@ -1,0 +1,345 @@
+{
+  "id": "RANK9-WARDCONTROL6-RETURN281-INDEPENDENT-AUDIT",
+  "checkedAtUtc": "2026-10-30T21:24:41.071041+00:00",
+  "status": "PASS",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_wardcontrol6_return281_received/DD_Rank9_WardControl6_Director_Return281_HELD.zip",
+    "bytes": 1420713,
+    "sha256": "2fc77fab986ff7185748259a53cbe1bba12f246548fb821778820ebb8f329fba",
+    "crc32": "490ebc29"
+  },
+  "deliveryManifest": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_wardcontrol6_return281_received/DD_Rank9_WardControl6_Director_Return281_HELD_DELIVERY.json",
+    "bytes": 30786,
+    "sha256": "d226349b3329208a4e7b3629b4ab30d9bff21330ca9ea8bb2c90c8ea8f0b2514",
+    "crc32": "7853f815"
+  },
+  "authority": {
+    "reviewedApplied": 816,
+    "pending": 32,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 540,
+    "scopedInterfaces": 173
+  },
+  "acceptedIds": [],
+  "appliedIds": [],
+  "heldIds": [
+    "nullification-wave",
+    "reality-anchor"
+  ],
+  "blockerIds": [
+    "WC188-B01",
+    "WC188-B02"
+  ],
+  "nextPendingGroup": {
+    "group": "rank9-time-fate6",
+    "pendingIds": [
+      "time-stop",
+      "fate-rewrite",
+      "collapse-timeline",
+      "eternal-prophecy"
+    ]
+  },
+  "checkCount": 17,
+  "passedChecks": 17,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "check": "Return281 archive exactly matches the delivery byte, SHA-256 and CRC32 binding",
+      "passed": true,
+      "detail": {
+        "actual": {
+          "bytes": 1420713,
+          "sha256": "2fc77fab986ff7185748259a53cbe1bba12f246548fb821778820ebb8f329fba",
+          "crc32": "490ebc29"
+        },
+        "expected": {
+          "path": "DD_Rank9_WardControl6_Director_Return281_HELD.zip",
+          "bytes": 1420713,
+          "sha256": "2fc77fab986ff7185748259a53cbe1bba12f246548fb821778820ebb8f329fba",
+          "crc32": "490ebc29"
+        }
+      }
+    },
+    {
+      "check": "ZIP directory is valid and all member paths are unique and safe",
+      "passed": true,
+      "detail": {
+        "members": 87,
+        "unique": 87
+      }
+    },
+    {
+      "check": "delivery allowlist exactly matches the 87 ZIP members",
+      "passed": true,
+      "detail": {
+        "zip": 87,
+        "allowlist": 87,
+        "declared": 87
+      }
+    },
+    {
+      "check": "embedded manifest covers the 86 non-self members exactly",
+      "passed": true,
+      "detail": {
+        "manifestRows": 86,
+        "declared": 86
+      }
+    },
+    {
+      "check": "all payload members match embedded size, SHA-256 and CRC32",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "decision and delivery hold exactly both requested identities with no acceptance or application",
+      "passed": true,
+      "detail": {
+        "accepted": [],
+        "applied": [],
+        "held": [
+          "nullification-wave",
+          "reality-anchor"
+        ]
+      }
+    },
+    {
+      "check": "per-identity whole-spell blockers remain WC188-B01 and WC188-B02 with explicit missing witnesses",
+      "passed": true,
+      "detail": {
+        "blockers": {
+          "nullification-wave": [
+            "WC188-B01"
+          ],
+          "reality-anchor": [
+            "WC188-B02"
+          ]
+        }
+      }
+    },
+    {
+      "check": "authority is unchanged and Time/Fate6 is the exact next group",
+      "passed": true,
+      "detail": {
+        "before": {
+          "reviewedApplied": 816,
+          "pending": 32,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 540,
+          "scopedInterfaces": 173
+        },
+        "after": {
+          "reviewedApplied": 816,
+          "pending": 32,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 540,
+          "scopedInterfaces": 173
+        },
+        "next": {
+          "group": "rank9-time-fate6",
+          "pendingIds": [
+            "time-stop",
+            "fate-rewrite",
+            "collapse-timeline",
+            "eternal-prophecy"
+          ]
+        }
+      }
+    },
+    {
+      "check": "semantic validation passes its data assertions while explicitly holding both acceptances",
+      "passed": true,
+      "detail": {
+        "status": "HOLD_FOR_BOTH_IDENTITY_ACCEPTANCES",
+        "checks": [
+          69,
+          69
+        ],
+        "failed": []
+      }
+    },
+    {
+      "check": "fresh source-binding checks all pass for the 91 bound current source files",
+      "passed": true,
+      "detail": {
+        "checks": 594,
+        "failed": 0,
+        "bindings": 91
+      }
+    },
+    {
+      "check": "32 preserved cases replay all 1,472 events with no failure",
+      "passed": true,
+      "detail": {
+        "counts": {
+          "caseFiles": 32,
+          "events": 1472,
+          "forwardOperations": 2944,
+          "inverseOperations": 2944,
+          "checks": {
+            "prior-package": 4,
+            "preservation": 150,
+            "replay": 7472,
+            "operations": 13248,
+            "clock": 11968
+          },
+          "checkCount": 32842,
+          "failures": 0,
+          "caseSets": {
+            "188": {
+              "caseFiles": 16,
+              "events": 1148,
+              "forwardOperations": 2296,
+              "inverseOperations": 2296
+            },
+            "237": {
+              "caseFiles": 16,
+              "events": 324,
+              "forwardOperations": 648,
+              "inverseOperations": 648
+            }
+          },
+          "evidenceStatusCounts": {
+            "FINITE_STATIC_COMPONENT_EVIDENCE": 25,
+            "HELD_NOT_POSITIVE_WITNESS": 5,
+            "SUPERSEDED_HISTORICAL": 2
+          }
+        }
+      }
+    },
+    {
+      "check": "case evidence statuses preserve 25 finite, five held and two superseded records",
+      "passed": true,
+      "detail": {
+        "evidenceStatusCounts": {
+          "FINITE_STATIC_COMPONENT_EVIDENCE": 25,
+          "HELD_NOT_POSITIVE_WITNESS": 5,
+          "SUPERSEDED_HISTORICAL": 2
+        }
+      }
+    },
+    {
+      "check": "prepared packet, delivery, independent audit and receipt are bound into Return281 inputs",
+      "passed": true,
+      "detail": {
+        "packetAudit": "PASS",
+        "packetAuditChecks": 17
+      }
+    },
+    {
+      "check": "exact 32-identity ordered remainder preserves Final Word and Return280 holds",
+      "passed": true,
+      "detail": {
+        "count": 32,
+        "matchesPendingSet": true,
+        "matchesQueueOrder": true,
+        "next": {
+          "group": "rank9-time-fate6",
+          "pendingIds": [
+            "time-stop",
+            "fate-rewrite",
+            "collapse-timeline",
+            "eternal-prophecy"
+          ]
+        }
+      }
+    },
+    {
+      "check": "embedded Packet281 authority inputs agree on 816/32 and the exact Ward/Control6 review scope",
+      "passed": true,
+      "detail": {
+        "queueAuthority": {
+          "reviewedApplied": 816,
+          "pending": 32,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 540,
+          "scopedInterfaces": 173
+        },
+        "handoffAuthority": {
+          "reviewedApplied": 816,
+          "pending": 32,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 540,
+          "scopedInterfaces": 173
+        },
+        "pendingAuthority": {
+          "reviewedApplied": 816,
+          "pending": 32,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 540,
+          "scopedInterfaces": 173
+        }
+      }
+    },
+    {
+      "check": "no canonical edits, GitHub changes, or downstream gates are claimed as completed",
+      "passed": true,
+      "detail": {
+        "canonicalChanged": false,
+        "githubChanged": false,
+        "closedGates": [
+          "runtime",
+          "implementation",
+          "human-play",
+          "playtest",
+          "balance",
+          "cosmology",
+          "domain-closure",
+          "completion",
+          "release"
+        ]
+      }
+    },
+    {
+      "check": "validation report agrees with published counts and records zero failed checks",
+      "passed": true,
+      "detail": {
+        "status": "PASS_DATA_AND_PRESERVATION_WITH_SEMANTIC_HOLDS",
+        "failedChecks": 0,
+        "counts": {
+          "procedures": 2,
+          "originalQuestionsPreserved": 24,
+          "originalQuestionsInScope": 8,
+          "focusedAddendaPreserved": 2,
+          "focusedAddendaInScope": 1,
+          "selectedTargetDispositions": 9,
+          "futureRequirementsPreserved": 8,
+          "futureRequirementsInScope": 4,
+          "requiredMainCases": 4,
+          "additionalAlternativeMainCases": 4,
+          "nativePlacements": 3,
+          "nativeClassAccessRows": 8,
+          "sourceBindingsVerified": 91,
+          "caseFiles": 32,
+          "events": 1472,
+          "forwardOperations": 2944,
+          "inverseOperations": 2944,
+          "caseSets": {
+            "188": {
+              "caseFiles": 16,
+              "events": 1148,
+              "forwardOperations": 2296,
+              "inverseOperations": 2296
+            },
+            "237": {
+              "caseFiles": 16,
+              "events": 324,
+              "forwardOperations": 648,
+              "inverseOperations": 648
+            }
+          },
+          "finiteComponentCases": 25,
+          "heldCaseRecords": 5,
+          "supersededHistoricalCases": 2,
+          "wholeIdentityBlockers": 2,
+          "listedQualificationIds": 18,
+          "sourceChecks": 594,
+          "replayPreservationAndClockChecks": 32842,
+          "semanticAssertions": 69,
+          "validationChecksBeforePackaging": 33505
+        }
+      }
+    }
+  ],
+  "scopeLimitation": "Independently verifies the sealed package, source/authority bindings, replay claims and Director decision fields; the game-rule adjudication remains the Director's ruling."
+}

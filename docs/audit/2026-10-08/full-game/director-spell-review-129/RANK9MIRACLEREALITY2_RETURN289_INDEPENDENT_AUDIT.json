@@ -1,0 +1,450 @@
+{
+  "id": "RANK9MIRACLEREALITY2-RETURN289-INDEPENDENT-AUDIT",
+  "checkedAtUtc": "2026-10-31T00:14:05.400668+00:00",
+  "status": "PASS",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_miraclereality2_return289_received/DD_Rank9_MiracleReality2_Director_Return289_HELD.zip",
+    "bytes": 2521417,
+    "sha256": "bb8123ad2bf4cd4b1616c892c90b7b6a62f93bf88ebe7dbda653f273b7cf791c",
+    "crc32": "f2ceb843"
+  },
+  "delivery": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_miraclereality2_return289_received/DD_Rank9_MiracleReality2_Director_Return289_HELD_DELIVERY.json",
+    "bytes": 95027,
+    "sha256": "5424dcdd5e0df5854ddd2bb9bff33cefa5dbce46a681f15429ce8754576c4855",
+    "crc32": "22c5acf8"
+  },
+  "sourceArchive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_miraclereality2_current_source_289_prepared/DD_Rank9_MiracleReality2_CurrentSource_289.zip",
+    "bytes": 41188005,
+    "sha256": "913c81c3b6bf7bf5e96202c3d284015c264832d4cbf44dc27ce871b804880b06",
+    "crc32": "8fc3ee9c"
+  },
+  "priorReturn233Archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_miraclereality2_return233_received/DD_Rank9_MiracleReality2_Director_Return233_HELD.zip",
+    "bytes": 13128859,
+    "sha256": "75d844ac9e6ae496ce59d8b1334ba5b3d48ed9e74a774d4a40b30a5b274cdcbf",
+    "crc32": "348d220f"
+  },
+  "authority": {
+    "reviewedApplied": 816,
+    "pending": 32,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 540,
+    "scopedInterfaces": 173
+  },
+  "acceptedIds": [],
+  "appliedIds": [],
+  "heldIds": [
+    "divine-intervention-greater",
+    "wish"
+  ],
+  "blockerIds": {
+    "divine-intervention-greater": [
+      "MR233-B01"
+    ],
+    "wish": [
+      "MR233-B02"
+    ]
+  },
+  "next": {
+    "nextPendingGroup": "rank9-memory-denial6",
+    "pendingIds": [
+      "mind-collapse"
+    ],
+    "blockerIds": [
+      "MD196-B01"
+    ],
+    "queueBucket": "qualification-holds",
+    "purpose": "Closure priority only, conditional on new source/acquisition evidence; no automatic repetition of completed held reviews.",
+    "followingPriorities": [
+      {
+        "group": "rank9-agency-control9",
+        "pendingIds": [
+          "absolute-domination"
+        ],
+        "blockerIds": [
+          "AG190-B01"
+        ]
+      },
+      {
+        "group": "rank9-agency-control9",
+        "pendingIds": [
+          "puppetmaster-s-realm"
+        ],
+        "blockerIds": [
+          "AG190-B02"
+        ]
+      }
+    ],
+    "firstReviewTasksRemaining": 0,
+    "remainingPending": 32,
+    "reason": "Miracle/Reality is the final group of the current reassessment sweep. Resume closure work at recommendedClosureOrder rank1 rather than treating stale queue next=Projection/Confinement or activeReview=Psychic Scream as a new instruction.",
+    "sourceQueueMember": "evidence/current/docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_SPELL_QUEUE_289.json",
+    "sourcePointer": "/recommendedClosureOrder/0"
+  },
+  "checkCount": 27,
+  "passedChecks": 27,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "check": "delivery archive binding matches the received ZIP",
+      "passed": true,
+      "detail": {
+        "bytes": 2521417,
+        "sha256": "bb8123ad2bf4cd4b1616c892c90b7b6a62f93bf88ebe7dbda653f273b7cf791c",
+        "crc32": "f2ceb843"
+      }
+    },
+    {
+      "check": "delivery ID and authority match the active 816/32/0 ledger",
+      "passed": true,
+      "detail": {
+        "reviewedApplied": 816,
+        "pending": 32,
+        "acceptedUnapplied": 0,
+        "completeStandaloneProcedures": 540,
+        "scopedInterfaces": 173
+      }
+    },
+    {
+      "check": "delivery records exactly the two held targets and no acceptance/application",
+      "passed": true,
+      "detail": {
+        "heldIds": [
+          "divine-intervention-greater",
+          "wish"
+        ],
+        "acceptedIds": [],
+        "appliedIds": [],
+        "accepted": false,
+        "applied": false
+      }
+    },
+    {
+      "check": "ZIP CRC test passes",
+      "passed": true,
+      "detail": {
+        "members": 132
+      }
+    },
+    {
+      "check": "archive paths are unique, safe and regular files",
+      "passed": true,
+      "detail": {
+        "members": 132,
+        "unique": 132
+      }
+    },
+    {
+      "check": "delivery member table exactly covers the complete ZIP",
+      "passed": true,
+      "detail": {
+        "zip": 132,
+        "members": 132,
+        "zipMemberCount": 132
+      }
+    },
+    {
+      "check": "each payload matches its delivered SHA, byte count and CRC binding",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "embedded member manifest matches the same complete payload allowlist",
+      "passed": true,
+      "detail": {
+        "payloadCount": 131,
+        "entries": 131
+      }
+    },
+    {
+      "check": "manifest scope is Return289",
+      "passed": true,
+      "detail": "RETURN289-EXACT-MEMBER-MANIFEST"
+    },
+    {
+      "check": "sealed Director decision mirrors authority, scope and no-change limits",
+      "passed": true,
+      "detail": {
+        "id": "RANK9-MIRACLEREALITY2-DIRECTOR-RETURN289",
+        "acceptedIds": [],
+        "appliedIds": [],
+        "heldIds": [
+          "divine-intervention-greater",
+          "wish"
+        ],
+        "noCanonicalChanges": true,
+        "noRuntimeExecution": true
+      }
+    },
+    {
+      "check": "each target has a specific held decision, blocker and minimum witness",
+      "passed": true,
+      "detail": [
+        {
+          "spellId": "divine-intervention-greater",
+          "decision": "HOLD",
+          "blockerIds": [
+            "MR233-B01"
+          ],
+          "minimumMissingWitness": "Supply a complete Director-determined useful question answer and an independent substantive task, each tied to actual source facts and recipient/faith context, with specified outcome limits and protected/uncertain/interrupt/repeat/conflict/lifecycle behavior; demonstrate actual acquired Cleric and Wizard actors and fully paid reversible states. The missing evidence is the instantiated operational contract and positive encounters, not a universal deity genealogy or a success percentage."
+        },
+        {
+          "spellId": "wish",
+          "decision": "HOLD",
+          "blockerIds": [
+            "MR233-B02"
+          ],
+          "minimumMissingWitness": "Supply source-authorized finite operational contracts and physical/identity inputs for multiple substantive reality changes and one composite, plus exact consent/opposition, sequencing, costs, aftermath and protected-source limits. Demonstrate two legal acquired rank9 actors/casts with full paid states, meaningful adverse branches, independent clocks and conserved consumed/unique resource histories. No request for D&D restrictions or an arbitrary fixed power cap."
+        }
+      ]
+    },
+    {
+      "check": "current authority snapshot matches delivery and records no application",
+      "passed": true,
+      "detail": {
+        "authority": {
+          "reviewedApplied": 816,
+          "pending": 32,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 540,
+          "scopedInterfaces": 173
+        },
+        "acceptedIds": [],
+        "appliedIds": [],
+        "heldIds": [
+          "divine-intervention-greater",
+          "wish"
+        ],
+        "sourceIndexBinding": {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+          "bytes": 1634916,
+          "sha256": "f5ae112aa4e7233761a008b3ffbda58c94e1d5fa562932ffe4df505b1d8407b0",
+          "gitBlobSHA1": "1998f42044bf9931041716b60373910e3c8aa7ff"
+        },
+        "scope": "Current authority unchanged; no application or acceptance."
+      }
+    },
+    {
+      "check": "two blocker IDs and nine qualifications are preserved; only MR233-E01 closes",
+      "passed": true,
+      "detail": {
+        "targetBlockers": [
+          "MR233-B01",
+          "MR233-B02"
+        ],
+        "qualifications": 9,
+        "closed": [
+          "MR233-E01"
+        ]
+      }
+    },
+    {
+      "check": "24 original and two focused questions each have one disposition",
+      "passed": true,
+      "detail": {
+        "original": 24,
+        "focused": 2,
+        "dispositions": 26
+      }
+    },
+    {
+      "check": "all four required main cases remain held and incomplete",
+      "passed": true,
+      "detail": [
+        {
+          "id": "RANK9MIRACLEREALITY2129-DIVINE-INTERVENTION-GREATER-A",
+          "status": "HELD-NOT-DEMONSTRATED",
+          "blockerIds": [
+            "MR233-B01"
+          ],
+          "completeSpellWitness": false,
+          "actorClockComplete": false
+        },
+        {
+          "id": "RANK9MIRACLEREALITY2129-DIVINE-INTERVENTION-GREATER-B",
+          "status": "HELD-NOT-DEMONSTRATED",
+          "blockerIds": [
+            "MR233-B01"
+          ],
+          "completeSpellWitness": false,
+          "actorClockComplete": false
+        },
+        {
+          "id": "RANK9MIRACLEREALITY2129-WISH-A",
+          "status": "HELD-NOT-DEMONSTRATED",
+          "blockerIds": [
+            "MR233-B02"
+          ],
+          "completeSpellWitness": false,
+          "actorClockComplete": false
+        },
+        {
+          "id": "RANK9MIRACLEREALITY2129-WISH-B",
+          "status": "HELD-NOT-DEMONSTRATED",
+          "blockerIds": [
+            "MR233-B02"
+          ],
+          "completeSpellWitness": false,
+          "actorClockComplete": false
+        }
+      ]
+    },
+    {
+      "check": "all eight future requirements remain held without positive encounters",
+      "passed": true,
+      "detail": {
+        "count": 8,
+        "positive": []
+      }
+    },
+    {
+      "check": "six component-only cases match six archived files and replay results",
+      "passed": true,
+      "detail": {
+        "cases": 6,
+        "files": 6,
+        "results": 6
+      }
+    },
+    {
+      "check": "replay has six audit events, 12 forward/inverse operations and no gameplay or complete actor clocks",
+      "passed": true,
+      "detail": {
+        "auditEvents": 6,
+        "gameplayEvents": 0,
+        "forwardOperations": 12,
+        "inverseOperations": 12,
+        "fullReverseTraversals": 6,
+        "completeActorClockCases": 0,
+        "completePositiveSpellCases": 0
+      }
+    },
+    {
+      "check": "3,344 source/data/replay checks pass with no failures",
+      "passed": true,
+      "detail": {
+        "sourceVerification": [
+          3344,
+          3344,
+          0
+        ],
+        "counts": [
+          3344,
+          3344,
+          0
+        ]
+      }
+    },
+    {
+      "check": "533 package checks and all pre-seal checks pass",
+      "passed": true,
+      "detail": {
+        "package": 533,
+        "preseal": [
+          47,
+          47,
+          0
+        ]
+      }
+    },
+    {
+      "check": "semantic audit has 23 criteria: 17 pass, 6 blocked, none failed",
+      "passed": true,
+      "detail": {
+        "semanticCriteria": 23,
+        "semanticPassing": 17,
+        "semanticBlocked": 6,
+        "semanticFailed": 0
+      }
+    },
+    {
+      "check": "153 source bindings show only the authored review index changed since Return233",
+      "passed": true,
+      "detail": {
+        "bindings": 153,
+        "changed": [
+          "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json"
+        ]
+      }
+    },
+    {
+      "check": "Return289 binds the independently prepared Packet289 source ZIP",
+      "passed": true,
+      "detail": {
+        "bytes": 41188005,
+        "sha256": "913c81c3b6bf7bf5e96202c3d284015c264832d4cbf44dc27ce871b804880b06",
+        "crc32": "8fc3ee9c"
+      }
+    },
+    {
+      "check": "prior Return233 archive is bound byte-exactly and retained as history",
+      "passed": true,
+      "detail": {
+        "bytes": 13128859,
+        "sha256": "75d844ac9e6ae496ce59d8b1334ba5b3d48ed9e74a774d4a40b30a5b274cdcbf",
+        "crc32": "348d220f"
+      }
+    },
+    {
+      "check": "embedded Packet289 preparation audit is PASS 18/18",
+      "passed": true,
+      "detail": {
+        "status": "PASS",
+        "checkCount": 18,
+        "passedChecks": 18,
+        "failedChecks": 0
+      }
+    },
+    {
+      "check": "next closure priority is mind-collapse under MD196-B01 and avoids stale queue repetition",
+      "passed": true,
+      "detail": {
+        "nextPendingGroup": "rank9-memory-denial6",
+        "pendingIds": [
+          "mind-collapse"
+        ],
+        "blockerIds": [
+          "MD196-B01"
+        ],
+        "queueBucket": "qualification-holds",
+        "purpose": "Closure priority only, conditional on new source/acquisition evidence; no automatic repetition of completed held reviews.",
+        "followingPriorities": [
+          {
+            "group": "rank9-agency-control9",
+            "pendingIds": [
+              "absolute-domination"
+            ],
+            "blockerIds": [
+              "AG190-B01"
+            ]
+          },
+          {
+            "group": "rank9-agency-control9",
+            "pendingIds": [
+              "puppetmaster-s-realm"
+            ],
+            "blockerIds": [
+              "AG190-B02"
+            ]
+          }
+        ],
+        "firstReviewTasksRemaining": 0,
+        "remainingPending": 32,
+        "reason": "Miracle/Reality is the final group of the current reassessment sweep. Resume closure work at recommendedClosureOrder rank1 rather than treating stale queue next=Projection/Confinement or activeReview=Psychic Scream as a new instruction.",
+        "sourceQueueMember": "evidence/current/docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_SPELL_QUEUE_289.json",
+        "sourcePointer": "/recommendedClosureOrder/0"
+      }
+    },
+    {
+      "check": "no canonical, runtime or application changes are declared",
+      "passed": true,
+      "detail": {
+        "noCanonicalChanges": true,
+        "noRuntime": true,
+        "noApplication": true
+      }
+    }
+  ]
+}

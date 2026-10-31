@@ -1,0 +1,372 @@
+{
+  "id": "RANK9PROJECTIONCONFINEMENT2-RETURN288-INDEPENDENT-AUDIT",
+  "createdAtUtc": "2026-10-30T23:54:26.672069+00:00",
+  "status": "PASS",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_projectionconfinement2_return288_received/DD_Rank9_ProjectionConfinement2_Director_Return288_HELD.zip",
+    "bytes": 2248706,
+    "sha256": "5bae4c955f92b73a1544922ac0a6188076411a2dce10db26be6cc41d64378f98",
+    "crc32": "ba30c2f0"
+  },
+  "deliveryManifest": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_projectionconfinement2_return288_received/DD_Rank9_ProjectionConfinement2_Director_Return288_HELD_DELIVERY.json",
+    "bytes": 89110,
+    "sha256": "d02ce6bcbf1f3a2bf55f207db374cf6242e31f1d7fa8e257730665f359b6b284",
+    "crc32": "225a6d92"
+  },
+  "authority": {
+    "reviewedApplied": 816,
+    "pending": 32,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 540,
+    "scopedInterfaces": 173
+  },
+  "targetIds": [
+    "astral-projection",
+    "imprisonment"
+  ],
+  "acceptedIds": [],
+  "appliedIds": [],
+  "heldIds": [
+    "astral-projection",
+    "imprisonment"
+  ],
+  "blockers": {
+    "astral-projection": [
+      "PC232-B01"
+    ],
+    "imprisonment": [
+      "PC232-B02"
+    ]
+  },
+  "nextPendingGroup": {
+    "group": "rank9-miracle-reality2",
+    "pendingIds": [
+      "divine-intervention-greater",
+      "wish"
+    ],
+    "source": "context/CURRENT_SPELL_QUEUE_288.json#/currentPendingGroups/14",
+    "reviewStarted": false
+  },
+  "memberCount": 120,
+  "checkCount": 27,
+  "passedChecks": 27,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "check": "Return288 archive matches the exact Director-reported size, SHA-256 and CRC32",
+      "passed": true,
+      "detail": {
+        "bytes": 2248706,
+        "sha256": "5bae4c955f92b73a1544922ac0a6188076411a2dce10db26be6cc41d64378f98",
+        "crc32": "ba30c2f0"
+      }
+    },
+    {
+      "check": "Return288 DELIVERY matches its downloaded size, SHA-256 and CRC32",
+      "passed": true,
+      "detail": {
+        "bytes": 89110,
+        "sha256": "d02ce6bcbf1f3a2bf55f207db374cf6242e31f1d7fa8e257730665f359b6b284",
+        "crc32": "225a6d92"
+      }
+    },
+    {
+      "check": "Delivery names the received archive and reports the sealed 120-member package",
+      "passed": true,
+      "detail": {
+        "archive": {
+          "path": "DD_Rank9_ProjectionConfinement2_Director_Return288_HELD.zip",
+          "bytes": 2248706,
+          "sha256": "5bae4c955f92b73a1544922ac0a6188076411a2dce10db26be6cc41d64378f98",
+          "crc32": "ba30c2f0"
+        },
+        "members": 120,
+        "payloads": 119
+      }
+    },
+    {
+      "check": "Outer delivery preserves current authority and no acceptance or application",
+      "passed": true,
+      "detail": {
+        "authority": {
+          "reviewedApplied": 816,
+          "pending": 32,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 540,
+          "scopedInterfaces": 173
+        },
+        "acceptedIds": [],
+        "appliedIds": [],
+        "heldIds": [
+          "astral-projection",
+          "imprisonment"
+        ]
+      }
+    },
+    {
+      "check": "Three external evidence archives match their exact sealed byte bindings",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "Packet288 submitted source is independently audited and bound byte-exactly",
+      "passed": true,
+      "detail": {
+        "packetAudit": "PASS",
+        "checks": 15,
+        "sourceSha256": "974a6a66ae19d54fe2503e63c07b249cf7aa7ced78bfa6a503feb47ae8ed25c7",
+        "submission": "PACKET288_SUBMITTED_GPT_PENDING_816_32_0"
+      }
+    },
+    {
+      "check": "Return288 archive has 120 unique safe paths and passes ZIP CRC validation",
+      "passed": true,
+      "detail": {
+        "members": 120,
+        "unsafe": []
+      }
+    },
+    {
+      "check": "Delivery allowlist and embedded manifest cover the exact ZIP member set",
+      "passed": true,
+      "detail": {
+        "external": 120,
+        "internal": 119
+      }
+    },
+    {
+      "check": "Every ZIP member matches the external and internal size/SHA/CRC manifests",
+      "passed": true,
+      "detail": {
+        "externalFailures": [],
+        "internalFailures": []
+      }
+    },
+    {
+      "check": "Sealed Director ruling holds exactly both submitted identities under PC232-B01/B02",
+      "passed": true,
+      "detail": {
+        "astral-projection": [
+          "PC232-B01"
+        ],
+        "imprisonment": [
+          "PC232-B02"
+        ]
+      }
+    },
+    {
+      "check": "Decision, current-authority payload and delivery all match 816/32/0 with no side effects",
+      "passed": true,
+      "detail": {
+        "authority": {
+          "reviewedApplied": 816,
+          "pending": 32,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 540,
+          "scopedInterfaces": 173
+        },
+        "canonicalChanges": false,
+        "githubChanges": false,
+        "runtimeExecuted": false
+      }
+    },
+    {
+      "check": "Open blocker register and procedure mirror preserve PC232-B01/B02 as incomplete",
+      "passed": true,
+      "detail": {
+        "blockers": [
+          "PC232-B01",
+          "PC232-B02"
+        ],
+        "procedures": 2
+      }
+    },
+    {
+      "check": "Both held identities retain the seven qualified scope limitations",
+      "passed": true,
+      "detail": [
+        "PC232-Q01",
+        "PC232-Q02",
+        "PC232-Q03",
+        "PC232-Q04",
+        "PC232-Q05",
+        "PC232-Q06",
+        "PC232-Q07"
+      ]
+    },
+    {
+      "check": "All 24 original questions and two focused additions have one disposition each",
+      "passed": true,
+      "detail": {
+        "original": 24,
+        "focused": 2,
+        "dispositions": 26
+      }
+    },
+    {
+      "check": "All four required main cases remain held without complete spell or actor-clock witnesses",
+      "passed": true,
+      "detail": {
+        "cases": 4,
+        "held": 4,
+        "complete": 0
+      }
+    },
+    {
+      "check": "All eight future requirements are dispositioned with no positive completion witness",
+      "passed": true,
+      "detail": {
+        "future": 8,
+        "statuses": [
+          "HELD-NOT-DEMONSTRATED",
+          "HELD-NOT-DEMONSTRATED",
+          "HELD-NOT-DEMONSTRATED",
+          "HELD-NOT-DEMONSTRATED",
+          "HELD-NOT-DEMONSTRATED",
+          "HELD-NOT-DEMONSTRATED",
+          "HELD-NOT-DEMONSTRATED",
+          "EVIDENCE_BOUNDARY_OBSERVED"
+        ]
+      }
+    },
+    {
+      "check": "Eight preserved audit traces pass with 8 events and 16 forward/inverse operations",
+      "passed": true,
+      "detail": {
+        "auditEvents": 8,
+        "gameplayEvents": 0,
+        "forwardOperations": 16,
+        "inverseOperations": 16,
+        "fullReverseTraversals": 8
+      }
+    },
+    {
+      "check": "Clock check explicitly leaves complete actor-clock witnesses absent",
+      "passed": true,
+      "detail": {
+        "status": "NOT_DEMONSTRATED_FOR_MAIN_CASES",
+        "completeActorClockCases": 0,
+        "reason": "Eight preserved records classify audit evidence; they contain no instantiated actors, paid casts or actual calendar. Replay does not prove the required arrival/confinement/return/rescue clocks.",
+        "requiredPreservedClocks": [
+          "actual scheduled regular phases and budgets",
+          "source-relative durations and suppression deadlines",
+          "outside elapsed time",
+          "Opening 2400 hours and Horn 1200 hours",
+          "rest eligibility without free refill",
+          "Ready/recharge and paid cast family histories"
+        ]
+      }
+    },
+    {
+      "check": "All 135 current source bindings match Packet288, Git blob IDs and the live tree",
+      "passed": true,
+      "detail": {
+        "bindings": 135,
+        "failures": []
+      }
+    },
+    {
+      "check": "Source delta from Return232 is exactly 134 unchanged files plus the authored review index",
+      "passed": true,
+      "detail": {
+        "unchanged": 134,
+        "changed": [
+          "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json"
+        ]
+      }
+    },
+    {
+      "check": "History correction is resolved, independently audited, and changes no current source or decision authority",
+      "passed": true,
+      "detail": {
+        "workflow": "RESOLVED_IN_RETURN_CONTEXT",
+        "historyChecks": 48,
+        "correctionAudit": "PASS",
+        "correctionAuditChecks": 8
+      }
+    },
+    {
+      "check": "Return232 exact prior HOLD and its independent PASS audit are preserved",
+      "passed": true,
+      "detail": {
+        "priorAudit": "PASS",
+        "checks": 35,
+        "blockers": {
+          "astral-projection": [
+            "PC232-B01"
+          ],
+          "imprisonment": [
+            "PC232-B02"
+          ]
+        }
+      }
+    },
+    {
+      "check": "Every Return232 member named by the preservation manifest remains byte-exact",
+      "passed": true,
+      "detail": {
+        "preserved": 24,
+        "failures": []
+      }
+    },
+    {
+      "check": "Return284-287 holds match Packet288 history and remain unchanged outside scope",
+      "passed": true,
+      "detail": {
+        "failures": [],
+        "unrelatedHolds": [
+          "AFP211-B01",
+          "AFP211-B02",
+          "AFP211-B03",
+          "AFP211-B04",
+          "AFP211-B05",
+          "IE204-B02",
+          "PG200-B03",
+          "PG200-B04",
+          "PG200-B06",
+          "SH202-B01",
+          "SH202-B02",
+          "SH202-B03"
+        ],
+        "closed": [
+          "AFP211-E01"
+        ]
+      }
+    },
+    {
+      "check": "Next group is exactly the still-pending Miracle/Reality pair",
+      "passed": true,
+      "detail": {
+        "group": "rank9-miracle-reality2",
+        "pendingIds": [
+          "divine-intervention-greater",
+          "wish"
+        ],
+        "source": "context/CURRENT_SPELL_QUEUE_288.json#/currentPendingGroups/14",
+        "reviewStarted": false
+      }
+    },
+    {
+      "check": "Package, source replay, artifact, focused semantics and history checks all pass",
+      "passed": true,
+      "detail": {
+        "packageChecks": 487,
+        "sourceChecks": 2177,
+        "artifactChecks": 30,
+        "semanticChecks": 55,
+        "historyCorrectionChecks": 48
+      }
+    },
+    {
+      "check": "No spell, canonical file, runtime, source program or GitHub change is reported",
+      "passed": true,
+      "detail": {
+        "accepted": false,
+        "applied": false,
+        "canonicalChanges": false,
+        "runtimeExecuted": false
+      }
+    }
+  ]
+}

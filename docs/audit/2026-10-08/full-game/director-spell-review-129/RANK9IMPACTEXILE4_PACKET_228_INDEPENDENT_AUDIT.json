@@ -1,0 +1,149 @@
+{
+  "id": "RANK9IMPACTEXILE4-PACKET-228-INDEPENDENT-AUDIT",
+  "status": "PASS",
+  "checkedAtUtc": "2026-10-30T00:19:28.622157+00:00",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_impactexile4_current_source_228_prepared/DD_Rank9_ImpactExile4_CurrentSource_228.zip",
+    "bytes": 278709812,
+    "sha256": "3f2b1d7d6b0731c5c170e7a8a2ec9d627483b8576796be1156d322f17134e246",
+    "crc32": "25ca0393"
+  },
+  "delivery": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_impactexile4_current_source_228_prepared/DD_Rank9_ImpactExile4_CurrentSource_228_DELIVERY.json",
+    "bytes": 12071,
+    "sha256": "bc7e66b93761e95619e56c1cccbe1ab6e446c873ae74d616f7ad3dd7b0d42b5d"
+  },
+  "authority": {
+    "reviewedApplied": 811,
+    "pending": 37,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 535,
+    "scopedInterfaces": 173
+  },
+  "acceptedIds": [],
+  "targetIds": [
+    "reverse-gravity-field"
+  ],
+  "checkCount": 10,
+  "passedChecks": 10,
+  "failedChecks": [],
+  "checks": [
+    {
+      "check": "Packet ZIP exact byte/SHA/CRC match delivery",
+      "passed": true,
+      "detail": {
+        "archive": [
+          278709812,
+          "3f2b1d7d6b0731c5c170e7a8a2ec9d627483b8576796be1156d322f17134e246",
+          "25ca0393"
+        ]
+      }
+    },
+    {
+      "check": "Preparation record is PASS with all preparation checks passing",
+      "passed": true,
+      "detail": {
+        "checks": 8
+      }
+    },
+    {
+      "check": "Archive has unique safe paths, valid CRC, and exact internal manifest allowlist",
+      "passed": true,
+      "detail": {
+        "members": 389,
+        "manifestRows": 388,
+        "unsafe": []
+      }
+    },
+    {
+      "check": "Every internal manifest member independently matches bytes/SHA/CRC",
+      "passed": true,
+      "detail": {
+        "checked": 388,
+        "failures": []
+      }
+    },
+    {
+      "check": "Packet scope, authority, closed IDs and commit match delivery",
+      "passed": true,
+      "detail": {
+        "scope": [
+          "reverse-gravity-field"
+        ],
+        "authority": {
+          "reviewedApplied": 811,
+          "pending": 37,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 535,
+          "scopedInterfaces": 173
+        }
+      }
+    },
+    {
+      "check": "Candidate/context/request in ZIP match submitted sidecars and exact target scope",
+      "passed": true,
+      "detail": {
+        "scope": [
+          "reverse-gravity-field"
+        ],
+        "targetQuestions": 26,
+        "futureRequirements": 7
+      }
+    },
+    {
+      "check": "Original 26 questions, two focused addenda, eight cases and seven future requirements are retained",
+      "passed": true,
+      "detail": {
+        "questions": 26,
+        "addenda": 2,
+        "futureRequirements": 7
+      }
+    },
+    {
+      "check": "All refreshed source bindings independently match current files and packet copies",
+      "passed": true,
+      "detail": {
+        "bindings": 364,
+        "localFailures": [],
+        "zipFailures": []
+      }
+    },
+    {
+      "check": "Return205 accepted IDs are closed and current target blocker remains IE204-B02",
+      "passed": true,
+      "detail": {
+        "closed": [
+          "eternal-anvil",
+          "transmute-flesh-to-energy",
+          "planar-collapse"
+        ],
+        "blocker": [
+          "IE204-B02"
+        ]
+      }
+    },
+    {
+      "check": "Return227 holds remain outside scope and are independently audited",
+      "passed": true,
+      "detail": {
+        "heldIds": [
+          "summon-elemental-avatar",
+          "summon-herald-of-the-planes",
+          "summon-avatar-of-decay"
+        ],
+        "audit": {
+          "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/RANK9SUMMONHOSTS5_RETURN227_INDEPENDENT_AUDIT.json",
+          "bytes": 9495,
+          "sha256": "d456c422919fef8dc0f6ec39e84c682f2efba6dfbf6717ed82372b98cca5821c",
+          "crc32": "34e21bbb"
+        },
+        "receipt": {
+          "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/RANK9SUMMONHOSTS5_RETURN227_RECEIPT.json",
+          "bytes": 914,
+          "sha256": "1498ee6c5e0380a188e320315bbe54fa73d0f09903cb8308ebdbd9db8705a6bb",
+          "crc32": "1babf7db"
+        }
+      }
+    }
+  ]
+}

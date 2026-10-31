@@ -1,0 +1,56 @@
+{
+  "id": "MATTER-CONVERSION-CASE-COVERAGE-262",
+  "sourceProcedure": {
+    "path": "DD_Rank9_MatterConversion_MF210-B02_Supplement_261.zip!payload/DD_Rank9_MatterConversion_MF210-B02_Supplement_260_corrected.zip!payload/prior/Return247_HELD.zip!PROCEDURES.json#matter-conversion",
+    "bytes": 45342,
+    "sha256": "7603d454127dc0a3177421af55c249e641164186eeb32947622888dc69c616b8",
+    "crc32": "7f2a2eb0"
+  },
+  "witnessCases": [
+    {
+      "id": "MF247-M-W1",
+      "source": {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/matter_conversion_witnesses_261/MF259-M-W1.json",
+        "bytes": 21279991,
+        "sha256": "5cec2de3647b3847a76a0b3ec67ce195c662fb31b133a7fb42b6da79b915fd16",
+        "crc32": "54c1b67a"
+      },
+      "acceptedResult": "1 lb stone converted to 1 lb mithril; finite sale settles 250 gp from B's 300 gp reserve to A before quote expiry; input retires exactly once; custody and coin totals reconcile."
+    },
+    {
+      "id": "MF247-M-W2",
+      "source": {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/matter_conversion_witnesses_261/MF259-M-W2.json",
+        "bytes": 21144161,
+        "sha256": "e4fed91c0e2fe1d04fef6537f60c2fc3c7304daf74d000d912af70a8585ad954",
+        "crc32": "ddaff5f0"
+      },
+      "acceptedResult": "Active custody/work hold rejects preflight without payment; release on B's turn; A's next legal cast preserves 143/32 lb, missing corner, HP deficit, identity, ownership and custody, then ordinary glass persists."
+    }
+  ],
+  "replay": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/matter_conversion_witnesses_261/CASE_REPLAY_261.json",
+    "bytes": 1007,
+    "sha256": "0f49c13e3dd3442420f4c72bdd3238359a0b644cd9590f74a913cd09d51c594e",
+    "crc32": "87096258"
+  },
+  "independentAudit": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/matter_conversion_witnesses_261/MATTER_CONVERSION_INDEPENDENT_AUDIT_261.json",
+    "bytes": 26782,
+    "sha256": "024d6e1710d4835e17bcd4674eaf8238349d6b9ef3e19748794c950282064d0b",
+    "crc32": "bc84148e"
+  },
+  "events": 30,
+  "forwardOperations": 60,
+  "inverseOperations": 60,
+  "conditionalKernelIds": [
+    "MF210-M-mithril-profile",
+    "MF210-M-hostile-custody",
+    "MF210-M-magical-input",
+    "MF210-M-reserved-lot",
+    "MF210-M-unknown-material",
+    "MF210-M-late-fit",
+    "MF210-M-instantaneous"
+  ],
+  "boundedFixturesOnly": true
+}

@@ -1,0 +1,363 @@
+{
+  "id": "RANK9PSYCHICFEAR7-RETURN234-INDEPENDENT-AUDIT",
+  "checkedAtUtc": "2026-10-30T03:18:58.276412+00:00",
+  "status": "PASS",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_psychicfear7_return234_received/DD_Rank9_PsychicFear3_Director_Return234_HELD.zip",
+    "bytes": 33702375,
+    "sha256": "63e296b33902eb5066788f665f2abdcd24604a825c556290700511d35202c3aa",
+    "crc32": "541ba0e9"
+  },
+  "delivery": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_psychicfear7_return234_received/DD_Rank9_PsychicFear3_Director_Return234_HELD_DELIVERY.json",
+    "bytes": 318370,
+    "sha256": "e23b8c4d6ee6fd82cffb42c62bbe42ce2956dba6a3b32b9bcac76c0c002dd89a",
+    "crc32": "e56823b5"
+  },
+  "sourceArchive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_psychicfear7_current_source_234_prepared/DD_Rank9_PsychicFear7_CurrentSource_234.zip",
+    "bytes": 76813418,
+    "sha256": "27b76304ec2f5a15b6d837be3521532989051596857f464702351f685a7e6f8a",
+    "crc32": "e643e2d6"
+  },
+  "authority": {
+    "reviewedApplied": 811,
+    "pending": 37,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 535,
+    "scopedInterfaces": 173
+  },
+  "heldIds": [
+    "psychic-scream",
+    "mass-phantom-killer",
+    "weird"
+  ],
+  "blockerIds": {
+    "psychic-scream": [
+      "PF182-B01"
+    ],
+    "mass-phantom-killer": [
+      "PF182-B02"
+    ],
+    "weird": [
+      "PF182-B02"
+    ]
+  },
+  "nextGroup": {
+    "group": "rank9-death-recovery7",
+    "pendingIds": [
+      "final-word"
+    ],
+    "queueBinding": {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_SPELL_QUEUE_234.json",
+      "bytes": 72518,
+      "sha256": "979e7f5e8930611cfd0171cb8e6864a491507b8d79f4753b1c73bb9c7084a36e",
+      "crc32": "807368e5"
+    },
+    "reviewStarted": false,
+    "requiresFreshCurrentAuthorityPacket": true,
+    "qualification": "doom and eternal-pact are already applied and remain closed; only final-word is pending in this next group."
+  },
+  "checkCount": 22,
+  "passedChecks": 22,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "check": "delivery identity and archive bytes/SHA-256/CRC32 match",
+      "passed": true,
+      "detail": {
+        "actual": {
+          "bytes": 33702375,
+          "sha256": "63e296b33902eb5066788f665f2abdcd24604a825c556290700511d35202c3aa",
+          "crc32": "541ba0e9"
+        },
+        "expected": {
+          "fileName": "DD_Rank9_PsychicFear3_Director_Return234_HELD.zip",
+          "bytes": 33702375,
+          "sha256": "63e296b33902eb5066788f665f2abdcd24604a825c556290700511d35202c3aa",
+          "crc32": "541ba0e9"
+        }
+      }
+    },
+    {
+      "check": "delivery carries exact current source archive binding",
+      "passed": true,
+      "detail": {
+        "actual": {
+          "bytes": 76813418,
+          "sha256": "27b76304ec2f5a15b6d837be3521532989051596857f464702351f685a7e6f8a",
+          "crc32": "e643e2d6"
+        },
+        "expected": {
+          "fileName": "DD_Rank9_PsychicFear7_CurrentSource_234.zip",
+          "bytes": 76813418,
+          "sha256": "27b76304ec2f5a15b6d837be3521532989051596857f464702351f685a7e6f8a",
+          "crc32": "e643e2d6"
+        }
+      }
+    },
+    {
+      "check": "delivery authority remains 811/37/0",
+      "passed": true,
+      "detail": {
+        "reviewedApplied": 811,
+        "pending": 37,
+        "acceptedUnapplied": 0,
+        "completeStandaloneProcedures": 535,
+        "scopedInterfaces": 173
+      }
+    },
+    {
+      "check": "delivery holds exactly the three submitted identities",
+      "passed": true,
+      "detail": {
+        "heldIds": [
+          "psychic-scream",
+          "mass-phantom-killer",
+          "weird"
+        ],
+        "acceptedIds": [],
+        "appliedIds": [],
+        "accepted": false,
+        "applied": false
+      }
+    },
+    {
+      "check": "ZIP CRC test passes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "archive members are unique, safe regular paths",
+      "passed": true,
+      "detail": {
+        "members": 245,
+        "unique": 245,
+        "unsafe": []
+      }
+    },
+    {
+      "check": "external allowlist exactly matches archive members",
+      "passed": true,
+      "detail": {
+        "archive": 245,
+        "listed": 245,
+        "memberCount": 245,
+        "allowlistCount": 245
+      }
+    },
+    {
+      "check": "every archive member matches exact external byte/hash/CRC binding",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "embedded manifest matches external binding",
+      "passed": true,
+      "detail": {
+        "bytes": 58187,
+        "sha256": "1e5c9e6e9486cd6b909833b665804ed14b6ebc4ada1cae8d3a119cd748fc42a2",
+        "crc32": "bb954ddc"
+      }
+    },
+    {
+      "check": "embedded manifest covers every non-manifest member exactly",
+      "passed": true,
+      "detail": {
+        "listed": 244,
+        "payloadCount": 244,
+        "archivePayload": 244
+      }
+    },
+    {
+      "check": "every payload member matches embedded byte/hash/CRC binding",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "sealed decision authority and target IDs are exact",
+      "passed": true,
+      "detail": {
+        "decision": [
+          "psychic-scream",
+          "mass-phantom-killer",
+          "weird"
+        ],
+        "authority": {
+          "authority": {
+            "reviewedApplied": 811,
+            "pending": 37,
+            "acceptedUnapplied": 0,
+            "completeStandaloneProcedures": 535,
+            "scopedInterfaces": 173
+          },
+          "targetIds": [
+            "psychic-scream",
+            "mass-phantom-killer",
+            "weird"
+          ],
+          "acceptedIds": [],
+          "appliedIds": [],
+          "canonicalChanges": false,
+          "historicalPhaseCorrection": "Packet215 was sent and Return216 held the three targets at 806/42/0; queue233's earlier prepared-unsent label is stale.",
+          "historicalAuthority806_42_0NotCurrent": true
+        }
+      }
+    },
+    {
+      "check": "all per-identity decisions are held with the reported blockers and witnesses",
+      "passed": true,
+      "detail": [
+        {
+          "id": "psychic-scream",
+          "decision": "HELD",
+          "blockerIds": [
+            "PF182-B01"
+          ],
+          "minimumMissingWitness": "Bind an actual eligible recipient current body/form with enumerated heads/headCount, destructibility, vital-head relationship and exact reversion/remains lifecycle. Demonstrate the Enchantment14d6 event causing final death only after real survival/Null/form rules, followed by the supported head consequence and retained remains/custody. Also supply explicit source-qualified headless/multihead/current-form branch operands. Humanoid, ancestry or bird-form names and AABB geometry alone do not supply these facts."
+        },
+        {
+          "id": "mass-phantom-killer",
+          "decision": "HELD",
+          "blockerIds": [
+            "PF182-B02"
+          ],
+          "minimumMissingWitness": "Bind one currently operational genuine full-extra-turn grant with complete activation/cost/limits/timing, lawful acquired actor and relevant unlock/repertoire history. Use it in both the Mass Phantom Killer and Weird held branches, recording the inserted turn relative to regular START/END and attached phases without extra damage exposure, ending save, recharge, Ready reset or clock extension. Chrono Collapse must first have its actual prerequisites, Temporal Tower unlock and complete capstone operation established; Time Stop requires exact operational acceptance and actual acquisition. An extra Action, echo, initiative reorder, duration extension or attached familiar phase does not meet this witness."
+        },
+        {
+          "id": "weird",
+          "decision": "HELD",
+          "blockerIds": [
+            "PF182-B02"
+          ],
+          "minimumMissingWitness": "Bind one currently operational genuine full-extra-turn grant with complete activation/cost/limits/timing, lawful acquired actor and relevant unlock/repertoire history. Use it in both the Mass Phantom Killer and Weird held branches, recording the inserted turn relative to regular START/END and attached phases without extra damage exposure, ending save, recharge, Ready reset or clock extension. Chrono Collapse must first have its actual prerequisites, Temporal Tower unlock and complete capstone operation established; Time Stop requires exact operational acceptance and actual acquisition. An extra Action, echo, initiative reorder, duration extension or attached familiar phase does not meet this witness."
+        }
+      ]
+    },
+    {
+      "check": "no canonical, GitHub, application, supplied-program or runtime changes",
+      "passed": true,
+      "detail": {
+        "canonicalChanges": false,
+        "githubChanges": false,
+        "suppliedProgramsExecuted": false,
+        "runtimeExecuted": false
+      }
+    },
+    {
+      "check": "preserved evidence totals reconcile to 47 cases, 2,464 events and clean calendar checks",
+      "passed": true,
+      "detail": {
+        "caseRecordsPreserved": 47,
+        "completeConditionalCases": 43,
+        "heldCases": 4,
+        "eventsReplayed": 2464,
+        "eventForwardOperations": 4928,
+        "eventInverseOperations": 4928,
+        "proposalOperations": 12
+      }
+    },
+    {
+      "check": "forward/inverse replay checks pass without changing accepted/applied authority",
+      "passed": true,
+      "detail": {
+        "checkCount": 12520,
+        "passed": 12520,
+        "failed": 0,
+        "forwardOperations": null,
+        "inverseOperations": null
+      }
+    },
+    {
+      "check": "Return216/Return183 recovery is byte-exact for all 47 preserved cases",
+      "passed": true,
+      "detail": {
+        "status": "RECOVERED_BYTE_EXACT",
+        "caseCount": 47,
+        "listed": 47
+      }
+    },
+    {
+      "check": "all source and preseal verification totals report zero failures",
+      "passed": true,
+      "detail": {
+        "source": {
+          "checkCount": 1322,
+          "passed": 1322,
+          "failed": 0
+        },
+        "package": {
+          "count": 1471,
+          "passed": 1471,
+          "failed": 0
+        },
+        "preseal": {
+          "checkCount": null,
+          "passed": 332,
+          "failed": 0
+        }
+      }
+    },
+    {
+      "check": "director points to final-word as the sole next pending Death/Recovery identity",
+      "passed": true,
+      "detail": {
+        "group": "rank9-death-recovery7",
+        "pendingIds": [
+          "final-word"
+        ],
+        "queueBinding": {
+          "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_SPELL_QUEUE_234.json",
+          "bytes": 72518,
+          "sha256": "979e7f5e8930611cfd0171cb8e6864a491507b8d79f4753b1c73bb9c7084a36e",
+          "crc32": "807368e5"
+        },
+        "reviewStarted": false,
+        "requiresFreshCurrentAuthorityPacket": true,
+        "qualification": "doom and eternal-pact are already applied and remain closed; only final-word is pending in this next group."
+      }
+    },
+    {
+      "check": "next-group binding matches the packet's embedded pre-submission queue snapshot",
+      "passed": true,
+      "detail": {
+        "embeddedDigest": {
+          "bytes": 72518,
+          "sha256": "979e7f5e8930611cfd0171cb8e6864a491507b8d79f4753b1c73bb9c7084a36e",
+          "crc32": "807368e5"
+        },
+        "expectedBinding": {
+          "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_SPELL_QUEUE_234.json",
+          "bytes": 72518,
+          "sha256": "979e7f5e8930611cfd0171cb8e6864a491507b8d79f4753b1c73bb9c7084a36e",
+          "crc32": "807368e5"
+        }
+      }
+    },
+    {
+      "check": "embedded current queue, handoff and pending audit are present",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "newer local queue records Packet234 submission at unchanged authority",
+      "passed": true,
+      "detail": {
+        "id": "SPELL-REVIEW-QUEUE-234",
+        "status": "PACKET234_SUBMITTED_GPT_PENDING_811_37_0",
+        "authority": {
+          "reviewedApplied": 811,
+          "pending": 37,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 535,
+          "scopedInterfaces": 173
+        },
+        "digest": {
+          "bytes": 76206,
+          "sha256": "975fd997218f4e51d6f32b058e652fe86efdc4e587e4ccecc2be8bf9fe80f2f6",
+          "crc32": "8427bd0c"
+        }
+      }
+    }
+  ]
+}

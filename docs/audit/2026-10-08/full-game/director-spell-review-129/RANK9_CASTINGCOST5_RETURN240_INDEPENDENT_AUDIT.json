@@ -1,0 +1,211 @@
+{
+  "id": "RANK9-CASTINGCOST5-RETURN240-INDEPENDENT-AUDIT",
+  "recordedAtUtc": "2026-10-30T05:38:31.025314+00:00",
+  "status": "PASS_PACKAGE_BINDING_AND_SCOPE; UNHOLY_ASCENDANCE_HELD_CC194_B04",
+  "returnArchive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_castingcost5_return240_received/DD_Rank9_UnholyAscendance_Director_Return240_HELD.zip",
+    "bytes": 3370052,
+    "sha256": "afc02f24a7df5640e3300037551676a2099f26058e399df242c69a4473ca9a77",
+    "crc32": "f3633c4e"
+  },
+  "deliveryManifest": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_castingcost5_return240_received/DD_Rank9_UnholyAscendance_Director_Return240_HELD_DELIVERY.json",
+    "bytes": 31829,
+    "sha256": "39147cc80e081acf714174c0a6af2463010b8d14f99612e44b9f1842ac5764ae",
+    "crc32": "2c95a602"
+  },
+  "sourcePacket": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_castingcost5_current_source_240_prepared/DD_Rank9_CastingCost5_CurrentSource_240.zip",
+    "bytes": 105330943,
+    "sha256": "bef42941d4e08292ef1e2ab7ba279a8a8212b1e245164062a9f33eba7b3f7618",
+    "crc32": "fd25b4e3"
+  },
+  "sourceDeliveryManifest": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_castingcost5_current_source_240_prepared/DD_Rank9_CastingCost5_CurrentSource_240_DELIVERY.json",
+    "bytes": 28810,
+    "sha256": "f58462b6447f52e21a2de96b787fc23ce68cb561aac14827acc60b28bc2c6635",
+    "crc32": "c485cdb6"
+  },
+  "sourceAuthority": {
+    "reviewedApplied": 811,
+    "pending": 37,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 535,
+    "scopedInterfaces": 173
+  },
+  "reviewedIds": [
+    "unholy-ascendance"
+  ],
+  "acceptedIds": [],
+  "appliedIds": [],
+  "heldIds": [
+    "unholy-ascendance"
+  ],
+  "blockerIds": [
+    "CC194-B04"
+  ],
+  "nextPendingGroup": {
+    "group": "rank9-memory-denial6",
+    "pendingIds": [
+      "mind-collapse",
+      "unravel-identity"
+    ]
+  },
+  "checkCount": 15,
+  "checksPassed": 15,
+  "checksFailed": 0,
+  "checks": [
+    {
+      "id": "downloaded return bytes match sidecar size/SHA/CRC",
+      "passed": true,
+      "details": {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_castingcost5_return240_received/DD_Rank9_UnholyAscendance_Director_Return240_HELD.zip",
+        "bytes": 3370052,
+        "sha256": "afc02f24a7df5640e3300037551676a2099f26058e399df242c69a4473ca9a77",
+        "crc32": "f3633c4e"
+      }
+    },
+    {
+      "id": "sealed sidecar binds Return240, current authority and exact source packet",
+      "passed": true,
+      "details": {
+        "source": {
+          "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_castingcost5_current_source_240_prepared/DD_Rank9_CastingCost5_CurrentSource_240.zip",
+          "bytes": 105330943,
+          "sha256": "bef42941d4e08292ef1e2ab7ba279a8a8212b1e245164062a9f33eba7b3f7618",
+          "crc32": "fd25b4e3"
+        },
+        "authority": {
+          "reviewedApplied": 811,
+          "pending": 37,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 535,
+          "scopedInterfaces": 173
+        }
+      }
+    },
+    {
+      "id": "ZIP integrity, safe unique names and exact 59-member scope",
+      "passed": true,
+      "details": {
+        "members": 59
+      }
+    },
+    {
+      "id": "external and internal member manifests reconcile",
+      "passed": true,
+      "details": {
+        "external": 59,
+        "internal": 58,
+        "zip": 59
+      }
+    },
+    {
+      "id": "all 59 ZIP members match sidecar size/SHA/CRC",
+      "passed": true,
+      "details": []
+    },
+    {
+      "id": "all 58 payload members match internal manifest",
+      "passed": true,
+      "details": []
+    },
+    {
+      "id": "only unholy-ascendance was reviewed and remains unapplied/held",
+      "passed": true,
+      "details": {
+        "accepted": [],
+        "applied": [],
+        "held": [
+          "unholy-ascendance"
+        ]
+      }
+    },
+    {
+      "id": "CC194-B04 and all eight retained qualification IDs match the sealed ruling",
+      "passed": true,
+      "details": {
+        "blocker": [
+          "CC194-B04"
+        ],
+        "conditional": [
+          "CC194-H01",
+          "CC194-H02",
+          "CC194-H07",
+          "CC194-H08"
+        ],
+        "linked": [
+          "CC194-H05",
+          "CC194-H06"
+        ]
+      }
+    },
+    {
+      "id": "exact next pending group is Memory/Denial6",
+      "passed": true,
+      "details": {
+        "group": "rank9-memory-denial6",
+        "pendingIds": [
+          "mind-collapse",
+          "unravel-identity"
+        ]
+      }
+    },
+    {
+      "id": "case files and event/operation totals reconcile",
+      "passed": true,
+      "details": {
+        "cases": 11,
+        "events": 317,
+        "forward": 634,
+        "inverse": 634
+      }
+    },
+    {
+      "id": "all reported replay, preservation, semantic and packaging checks pass structurally",
+      "passed": true,
+      "details": {
+        "integrity": 4547,
+        "clock": 2428,
+        "source": 1168,
+        "preservation": 43,
+        "semantic": "HELD_CC194_B04",
+        "packageValidation": 181
+      }
+    },
+    {
+      "id": "all 117 current source bindings match candidate, packet, manifest, return and working tree",
+      "passed": true,
+      "details": {
+        "candidate": 117,
+        "returned": 117,
+        "errors": []
+      }
+    },
+    {
+      "id": "return snapshot agrees with Packet240 main branch, commit and current indexes",
+      "passed": true,
+      "details": {
+        "branch": "main",
+        "headCommit": "197366eae0c786415de55a0e4739e83f49f1a65f"
+      }
+    },
+    {
+      "id": "prior Return222 unholy decision and Return239 holds are preserved byte-exactly",
+      "passed": true,
+      "details": []
+    },
+    {
+      "id": "decision explicitly preserves accepted/application and downstream gates",
+      "passed": true,
+      "details": {
+        "canonicalChanges": false,
+        "runtimeExecuted": false
+      }
+    }
+  ],
+  "limitations": [
+    "Independently checked the downloaded return and delivery bytes, all 59 members, exact scope and ruling, current authority and source-packet binding, all 117 refreshed source files, carried Return222/Return239 decisions, and reported check-record consistency.",
+    "Reported replay totals and individual reported integrity/clock/source/preservation checks were checked for internal consistency; GPT-supplied replay code was not executed and the 317-event semantic replay was not independently reproduced."
+  ]
+}

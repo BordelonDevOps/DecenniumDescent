@@ -1,0 +1,1382 @@
+{
+  "schemaVersion": "1.0",
+  "version": "0.1-playtest",
+  "class": "Mirrorsage",
+  "status": "provisional-card-draft-not-balance-approved",
+  "sourceExtractSha256": "a346670f4244efe3641cfb06814819d83ffb8512153858205f0621bd8ab8a04b",
+  "protectedInterfaceOriginal": "The first replay of a newly Mirrorbound Echo ignores Refrain Dissonance; repeating the same stored Echo builds Refrain normally.",
+  "rpByClassLevel": [
+    2,
+    3,
+    5,
+    7,
+    9,
+    11,
+    14,
+    17,
+    20,
+    23,
+    26,
+    29,
+    32,
+    35,
+    38,
+    41,
+    44,
+    47,
+    50,
+    54
+  ],
+  "rpAuthority": "Direct Core Systems V2 table",
+  "maxSpellRankByClassLevel": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    6,
+    6,
+    6,
+    7,
+    7
+  ],
+  "asiClassLevels": [
+    4,
+    8,
+    12,
+    16,
+    19
+  ],
+  "engine": [
+    "Intelligence is the class ability; use d8 Hit Die from the detailed book, recording the older runtime d6 as superseded for this draft. You begin with 3 empty Echo Slots. Expansion II raises ordinary capacity 5; Sacred/Floating memory features may add one restricted slot, but total concurrent stored Echoes never exceeds 6. Slots are storage, not spell slots. Releasing normally empties that record. Rest restores RP, not spent Echoes. Starting a new encounter does not duplicate the archive.",
+    "Mirrorbind is an Action, once per encounter, against a creature within 60 ft whose eligible ability you saw resolve since the start of your previous turn. Target must have INT 6 or lower, not be a boss or possess unique/legendary status unless an encounter script explicitly permits copying. It makes WIS save versus class DC; failure captures one witnessed ability into an empty slot. No copying from allies, your companions, another copy, a corpse, a recharge-limited legendary power or an at-will source that itself restores resources. You can voluntarily erase a slot without an action on your turn, permanently losing its record.",
+    "Record source creature/name, witnessed ability, category, damage type, allowed rank, capture encounter and whether first release has occurred. For this pilot, capture copies the observed role into ONE bounded profile: Strike=one target 60 ft class spell attack S d8 observed damage type; Burst=up to 3 enemies in 10 ft radius within 30 ft DEX save S d6, half on success; Mend=one living ally 30 ft S d6+M HP; Ward=one ally 30 ft S d6+M temporary HP for 1 minute; Hindrance=one enemy 30 ft WIS save or Speed-10 ft and no Reactions until end its next turn. Choose only a profile actually expressed by the observed source; physical attack cannot become healing. Rank is max(1, ceil(source challenge rating/2)); if source lacks a rating the Director assigns a rank before the encounter, not after seeing a desirable ability. Rank cannot exceed your Mirrorsage learnable rank; no copying character levels from a creature. Damage/targets/control are capped by these profiles, not source boss dice.",
+    "Echo Release costs the Core V 2 RP cost of the recorded rank, minimum 2, consumes its record and counts as a spell for Dissonance and Refrain. Spell attack/DC use your own stats. First release of a newly captured record ignores Refrain addition only; base strain remains. Any preserved subsequent release uses ordinary repeated-spell strain. All released Echoes, pet replays, fusions and reflections share ONE release action per round; a specifically combined package counts once but pays for every component and has its printed damage cap. Copies cannot create resources or recursive Echoes.",
+    "One Mirror Beast OR Reflective Companion, never both. Mirror Beast uses standard companion stats, initially copies appearance only, and costs a Bonus Action to command. You may command it to make its normal attack OR originate your round's Echo Release from its position, paying RP and consuming the record normally; not both. You still supply an Action for release unless a feature specifically changes that action cost. A shifted appearance grants no extra actions/stats. Destroying/dismissing it grants no capture, corpse, XP or recovery. Charm Bind is 1/long rest, 3 rounds, concentration, INT 6-or-lower target WIS save and repeat at each turn end/when harmed by your side; never a player character or boss without explicit encounter permission. A charmed companion uses its own ordinary attack with damage capped at standard companion S d6; unique spells/powers remain unavailable.",
+    "Focus Point is a separate resource: when Mimicry Focus is known, receive 1 at encounter start, maximum 1, lost at encounter end. It can modify one Echo without generating another release, recapture or resource refund. No stacking damage doublings; use the printed modest die/range boost. Healing/support copies always consume RP and cannot restore RP or duplicate limited-use features.",
+    "Standard acquisition applies; baseline Mirrorbind, Echo Release and summon procedure become usable by selecting their cards. Echo Channeling and Mirrorcall are upgrades, not duplicate mandatory unlocks. The contradiction between source initial 3 slots and Expansion I 2→3 is reconciled as an archive-safety upgrade below. Perfect Reflection automatic 9, Hero choice 10, corresponding Final 20. The finale does not override copy eligibility or the shared release cap."
+  ],
+  "workedExample": [
+    "Mirrorsage 5, INT 16, PB 3, S 2, M 3, RP 9, three slots; know Mirrorbind, Echo Release, Mirror Beast Summon, Reflective Shield at 1, Beast Instinct and Reflective Pulse at 2; Mimicry Focus and Reflective Analysis at 3. Begin with Focus 1.",
+    "Turn 1: witness an eligible serpent's rank 1 poison cone, then Mirrorbind on your turn. It fails WIS save; store Burst/poison/rank 1. RP stays 9; one encounter capture spent.",
+    "Turn 2: Echo Release is Action and 2 RP, RP 9→7; empty the stored slot. Up to 3 enemies roll DEX against 14 for 2d6 poison, half on success. First release ignores Refrain but still adds 1 base Dissonance.",
+    "Turn 3: without another stored Echo you cannot simply release again. Use a weapon or ordinary legal spell. A short rest restores RP but not the consumed record.",
+    "Alternative turn 2: summon Mirror Beast for 2 RP, leaving RP 7 and the Echo stored. On turn 3 use Action Echo Release plus Bonus Action command to originate it from the Beast, pay 2 RP, ending 5; the Beast cannot also attack that round.",
+    "A failed Mirrorbind capture still expends its encounter attempt. Beast Instinct's limited retry may help if known; a boss excluded by eligibility cannot be made eligible with a high roll."
+  ],
+  "balanceQuestions": [
+    "Is the initial capture dependency enjoyable with an empty archive?",
+    "Are bounded profiles diverse enough without importing boss actions?",
+    "Does the shared release/companion budget keep fusions and clones manageable?"
+  ],
+  "cards": [
+    {
+      "id": "mirrorsage.base.echo-channeling",
+      "name": "Echo Channeling",
+      "className": "Mirrorsage",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Your own Echo Release",
+      "duration": "Instant",
+      "frequency": "Once/short rest",
+      "effect": "After releasing an Echo, add M to one target's damage or healing. No modifier to resource effects; this upgrade does not grant another release or repeat the source's rider.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3067,
+        "originalText": "Echo Channeling: Cast a stored Echo ability. Consumes a slot."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "mirrorsage.base.mirrorcall",
+      "name": "Mirrorcall",
+      "className": "Mirrorsage",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Your Mirror Beast",
+      "duration": "While it exists",
+      "frequency": "Continuous",
+      "effect": "Beast gains+M maximum/current HP when summoned and+5 ft Speed. Echo Release or Mirror Beast Summon already provides its base procedure; this is an optional enhancement, not a second required unlock.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3068,
+        "originalText": "Mirrorcall: Summon a Mirror Beast that mimics one stored Echo ability."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "mirrorsage.base.echo-slot-expansion-i",
+      "name": "Echo Slot Expansion I",
+      "className": "Mirrorsage",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "One newly bound record",
+      "duration": "Until your next long rest",
+      "frequency": "1/long rest",
+      "effect": "If an ordinary slot is full, replace one record while preserving its name/profile in an inert backup. Once before next long rest, after a slot empties, restore that backup without an Action. Total usable records remain at your capacity; backup cannot be cast directly or backed up again. An inert backup counts toward the absolute six-record archive ceiling. A backup cannot be created if usable records plus inert backups would exceed six.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3069,
+        "originalText": "Echo Slot Expansion I: Increase slots from 2 → 3."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "mirrorsage.base.reflective-pulse",
+      "name": "Reflective Pulse",
+      "className": "Mirrorsage",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Reaction",
+      "cost": "0",
+      "rangeAndTarget": "Attacker within 30 ft after its first hit this round damages you",
+      "duration": "Instant",
+      "frequency": "Once/round",
+      "effect": "Deal psychic damage equal to min(M, damage actually taken). This cannot critically hit, trigger another reflection, generate resources or prevent the original damage. No effect if you take 0.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3070,
+        "originalText": "Reflective Pulse: First hit you take each round returns 10% damage."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "mirrorsage.base.beast-instinct",
+      "name": "Beast Instinct",
+      "className": "Mirrorsage",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Triggered",
+      "cost": "1 short-rest use",
+      "rangeAndTarget": "A failed Mirrorbind against eligible INT 6-or-lower source",
+      "duration": "Immediate retry",
+      "frequency": "1/short rest",
+      "effect": "Force that target to reroll its successful save; use the second result. Eligibility, line of effect and an empty slot still required. Does not create a second captured record or a new encounter attempt.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3071,
+        "originalText": "Beast Instinct: +10% chance to capture Echoes from INT ≤ 6 creatures."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "mirrorsage.base.mirrorbind",
+      "name": "Mirrorbind",
+      "className": "Mirrorsage",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "0; encounter attempt",
+      "rangeAndTarget": "One eligible witnessed creature within 60 ft",
+      "duration": "Stored until released/erased",
+      "frequency": "1/encounter",
+      "effect": "Apply the engine's exact capture procedure: WIS save or store a bounded profile for the witnessed ability. State category/rank before save. Success prevents capture but consumes attempt; no target can be mirrored outside eligibility restrictions.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3074,
+        "originalText": "Mirrorbind: Attempt to capture an ability you've just witnessed, storing it in an Echo Slot if successful."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "mirrorsage.base.echo-release",
+      "name": "Echo Release",
+      "className": "Mirrorsage",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "Recorded rank RP cost; consume 1 Echo",
+      "rangeAndTarget": "Profile target/range",
+      "duration": "Profile duration",
+      "frequency": "One release action/round",
+      "effect": "Resolve the stored Strike/Burst/Mend/Ward/Hindrance profile, using current S and INT. Pay before release; empty slot even if resisted. First release ignores only Refrain addition. No original source extra actions/resources/procs.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3075,
+        "originalText": "Echo Release: Cast a stored Echo ability, consuming the slot."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "mirrorsage.base.mirror-beast-summon",
+      "name": "Mirror Beast Summon",
+      "className": "Mirrorsage",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "2 RP",
+      "rangeAndTarget": "One empty space within 15 ft",
+      "duration": "1 minute",
+      "frequency": "Recharge 3",
+      "effect": "Summon one standard Mirror Beast; replaces any prior Beast/Reflective Companion. Choose appearance of a stored source. It attacks only on Bonus Action command or originates your paid release with Action+command, never both. No copied anatomy, regeneration or immortality.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3076,
+        "originalText": "Mirror Beast Summon: Call forth a Mirror Beast that can use one of your stored Echo abilities."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "mirrorsage.base.charm-creature",
+      "name": "Charm Creature",
+      "className": "Mirrorsage",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "3 RP; 1 long-rest use",
+      "rangeAndTarget": "One eligible INT 6-or-lower creature within 30 ft",
+      "duration": "Concentration, at most 3 rounds",
+      "frequency": "1/long rest",
+      "effect": "WIS save or become Reflective Companion under engine restrictions. It repeats save at turn end and when harmed by your side. Replaces Mirror Beast; on end original disposition returns. Requires no suicidal orders; cannot force beliefs or permanently enslave.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3077,
+        "originalText": "Charm Creature: Attempt to temporarily charm a low-intelligence creature to fight alongside you."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "mirrorsage.base.reflective-shield",
+      "name": "Reflective Shield",
+      "className": "Mirrorsage",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Reaction",
+      "cost": "1 RP",
+      "rangeAndTarget": "Self when hit by an attack from within 60 ft",
+      "duration": "This attack",
+      "frequency": "Recharge 2",
+      "effect": "Gain+2 AC against triggering attack, potentially making it miss. If it misses, attacker takes M force damage. This is bounded retaliation, not copying the original attack; cannot trigger another reflection or capture.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3078,
+        "originalText": "Reflective Shield: Create a brief defensive barrier that has a chance to reflect the next attack back at the attacker."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "mirrorsage.arch.advanced-mirrorcall",
+      "name": "Advanced Mirrorcall",
+      "className": "Mirrorsage",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Your Mirror Beast",
+      "duration": "While summoned",
+      "frequency": "Once/encounter",
+      "effect": "You may change Beast appearance to another stored source as a Bonus Action without resummoning or restoring HP. It gains either+10 ft swim or climb Speed until it ends. No new release, attack or capture.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3084,
+        "originalText": "Advanced Mirrorcall: Mirror Beast can now shift once per fight into a new form based on a second Echo."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "mirrorsage.arch.echo-slot-expansion-ii",
+      "name": "Echo Slot Expansion II",
+      "className": "Mirrorsage",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Your archive",
+      "duration": "While known",
+      "frequency": "Continuous",
+      "effect": "Ordinary Echo storage capacity becomes 5, replacing 3. Restricted extra slots still obey total 6. New slots are empty; the feature creates no Echo records or spell access.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3085,
+        "originalText": "Echo Slot Expansion II: Max Echo Slots: 5"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "mirrorsage.arch.dual-echo-cast",
+      "name": "Dual Echo Cast",
+      "className": "Mirrorsage",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 5,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "RP for each of 2 Echoes; consume both",
+      "rangeAndTarget": "One target per eligible profile",
+      "duration": "Immediate; riders at most 1 turn",
+      "frequency": "Recharge 3",
+      "effect": "Release two records captured from different creatures as ONE combined release. Each deals/heals half its profile's rolled amount, round once per component. At most one Hindrance rider; no duplicated resources or additional release this round.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3086,
+        "originalText": "Dual Echo Cast: Spend 2 Echoes in one turn; must be from different creatures."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "mirrorsage.arch.mimicry-focus",
+      "name": "Mimicry Focus",
+      "className": "Mirrorsage",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Self",
+      "duration": "Encounter",
+      "frequency": "Once/encounter",
+      "effect": "At genuine encounter start gain 1 Focus Point, cap 1; any previous point is replaced. Spend on Focus Channel or pay 1 Focus during a release to add 1d6 to one damage/healing target. No point generation from staged combat.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3087,
+        "originalText": "Mimicry Focus: Gain +1 Focus Point per battle. Can spend Focus to empower Echoes (double duration/damage)."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "mirrorsage.arch.mirror-shell",
+      "name": "Mirror Shell",
+      "className": "Mirrorsage",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 7,
+      "acquisition": "selection",
+      "activation": "Reaction",
+      "cost": "3 RP; 1 long-rest use",
+      "rangeAndTarget": "A hostile spell targeting only you within 60 ft",
+      "duration": "This spell",
+      "frequency": "1/long rest",
+      "effect": "After a successful save against the spell or after its spell attack misses, choose its caster; it makes WIS save or takes S d8 force. Original damage/control follow normal results. No copying arbitrary spell text or redirecting an area spell.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3088,
+        "originalText": "Mirror Shell: Once per long rest, reflect the first ability cast at you."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "mirrorsage.arch.perfect-reflection",
+      "name": "Perfect Reflection",
+      "className": "Mirrorsage",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 9,
+      "acquisition": "automatic",
+      "activation": "Reaction",
+      "cost": "4 RP; 1 long-rest use",
+      "rangeAndTarget": "Creature within 60 ft whose observed ability targets you",
+      "duration": "This ability",
+      "frequency": "1/long rest",
+      "effect": "Reduce triggering damage to you by(S+1)d8+M, minimum 0. If any is prevented, source makes WIS save or takes that prevented amount as force, maximum 30. This is your release action for the round; no reflected conditions or legendary powers. Cannot recursively reflect.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3089,
+        "originalText": "Capstone – Perfect Reflection: Reflect any observed ability (spell, breath, strike) back at the caster for full effect (1/day)."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "mirrorsage.arch.echo-fusion",
+      "name": "Echo Fusion",
+      "className": "Mirrorsage",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "RP for 2 Echoes; consume both",
+      "rangeAndTarget": "Up to 2 profile targets within 30 ft",
+      "duration": "Instant or 1 turn",
+      "frequency": "Recharge 3",
+      "effect": "Choose two stored profiles. Resolve one at full dice and the other at half dice to one target each. Only one may be healing; at most one Hindrance rider. Counts as one combined release and cannot receive Dual Echo Cast simultaneously.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3092,
+        "originalText": "Echo Fusion: Temporarily combine two stored Echoes to create a hybrid ability with properties of both."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "mirrorsage.arch.mirror-shift",
+      "name": "Mirror Shift",
+      "className": "Mirrorsage",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "1 RP",
+      "rangeAndTarget": "Your Mirror Beast within 60 ft",
+      "duration": "Remaining summon duration",
+      "frequency": "Recharge 2",
+      "effect": "Switch its appearance to a stored source and choose swim 30 ft or climb 30 ft until next shift. Restore no HP or attacks; no flight, incorporeality or copied creature special actions. Does not release or consume the Echo.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3093,
+        "originalText": "Mirror Shift: Command your Mirror Beast to change form, adopting a different stored Echo ability."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "mirrorsage.arch.focus-channel",
+      "name": "Focus Channel",
+      "className": "Mirrorsage",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "1 Focus",
+      "rangeAndTarget": "Self; next release this turn",
+      "duration": "This turn",
+      "frequency": "Once/encounter via Focus cap",
+      "effect": "Next Echo release adds 1d6 to one damage/healing amount OR adds 30 ft range, chosen now. Cannot multiply duration, bypass concentration, add targets or override release caps. If no release occurs this turn the point remains spent.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3094,
+        "originalText": "Focus Channel: Spend a Focus Point to significantly enhance your next Echo cast or Mirror Beast ability."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "mirrorsage.arch.reflective-analysis",
+      "name": "Reflective Analysis",
+      "className": "Mirrorsage",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "0",
+      "rangeAndTarget": "One observed creature within 60 ft",
+      "duration": "Until end next turn",
+      "frequency": "Recharge 2",
+      "effect": "Learn whether it is capture-eligible and one visible ability's bounded profile/rank before attempting. The next Mirrorbind save it makes against you has-1. Nonstacking; does not reveal private thoughts or permit boss copying.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3095,
+        "originalText": "Reflective Analysis: Study a creature to gain insight into its abilities and weaknesses, increasing your chance to successfully bind its Echoes."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "mirrorsage.arch.mirror-dimension",
+      "name": "Mirror Dimension",
+      "className": "Mirrorsage",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 7,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "4 RP",
+      "rangeAndTarget": "Fixed 10 ft-radius zone within 30 ft; up to 3 enemies",
+      "duration": "Concentration, 3 of your turns",
+      "frequency": "Recharge 4",
+      "effect": "On entry activation and each of next 2 turns with Bonus Action maintenance, selected enemies make WIS save; failure gives disadvantage on next attack before your next turn. Inside, your Mirrorbind range extends 30 ft. No additional capture attempts/releases or pocket escape route.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3096,
+        "originalText": "Mirror Dimension: Create a small pocket dimension of reflective surfaces that confuses enemies and enhances your mimicry abilities."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "mirrorsage.hero.light-weaver.blessed-copy",
+      "name": "Blessed Copy",
+      "className": "Mirrorsage",
+      "band": "Hero",
+      "path": "Light Weaver",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "1 additional RP",
+      "rangeAndTarget": "Second living ally within 15 ft of original Mend/Ward target",
+      "duration": "Same healing/shield duration",
+      "frequency": "Once/round",
+      "effect": "When releasing Mend or Ward, pay 1 extra RP to give a second ally half the rolled amount, rounded once. This is within the same release, no new source or healing proc. No duplication of concentration or resources.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3105,
+        "originalText": "Blessed Copy: Echoed heals or buffs also affect a second ally."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "mirrorsage.hero.light-weaver.luminant-bond",
+      "name": "Luminant Bond",
+      "className": "Mirrorsage",
+      "band": "Hero",
+      "path": "Light Weaver",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Allies/enemies within 10 ft of your Beast/Companion",
+      "duration": "While companion exists",
+      "frequency": "Continuous",
+      "effect": "Allies gain+1 to WIS saves. Invisible enemies in aura shed faint outlines and cannot gain advantage solely from invisibility, but concealment/cover still apply. This grants neither full True Sight nor targeting through walls.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3106,
+        "originalText": "Luminant Bond: Charmed/Beast emits aura that reveals invisible and grants +5% saves."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "mirrorsage.hero.light-weaver.sacred-echo-slot",
+      "name": "Sacred Echo Slot",
+      "className": "Mirrorsage",
+      "band": "Hero",
+      "path": "Light Weaver",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "One restricted archive slot",
+      "duration": "While known",
+      "frequency": "Continuous",
+      "effect": "Add one slot usable only for Mend or Ward, total storage cap 6. If already at 6, designate one existing slot sacred instead; once/short rest its release costs 1 less RP, minimum 1. No duplicate slot or free record.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3107,
+        "originalText": "Sacred Echo Slot: +1 additional slot for healing/support abilities."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "mirrorsage.hero.light-weaver.radiant-archive",
+      "name": "Radiant Archive",
+      "className": "Mirrorsage",
+      "band": "Hero",
+      "path": "Light Weaver",
+      "sourceKind": "passive",
+      "minimumClassLevel": 20,
+      "acquisition": "automatic",
+      "activation": "Action",
+      "cost": "RP for 3 support Echoes; consume all 3; 1 long-rest use",
+      "rangeAndTarget": "Up to 3 legal allies within 30 ft",
+      "duration": "Instant/shield 1 minute",
+      "frequency": "1/long rest",
+      "effect": "Release three stored Mend/Ward records as ONE package; assign each to one ally. No ally receives more than two components and temporary HP never stack. All costs paid; no extra release or resurrection. Missing records cannot be invented.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3108,
+        "originalText": "Final – Radiant Archive: Cast 3 stored divine Echoes at once (once/day)."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "mirrorsage.hero.light-weaver.divine-reflection",
+      "name": "Divine Reflection",
+      "className": "Mirrorsage",
+      "band": "Hero",
+      "path": "Light Weaver",
+      "sourceKind": "active",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Reaction",
+      "cost": "2 RP; 1 long-rest use",
+      "rangeAndTarget": "Willing allied caster within 30 ft just used an eligible healing/protection spell",
+      "duration": "Store until spent",
+      "frequency": "1/long rest",
+      "effect": "Capture a Mend or Ward profile of rank at most your learnable rank into empty slot. This explicit exception permits an allied source but excludes resurrection/resource/action generation. No extra captured use for the ally and no copying a copy.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3111,
+        "originalText": "Divine Reflection: Capture and enhance beneficial abilities, increasing their healing or protective power."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "mirrorsage.hero.light-weaver.radiant-mirror-beast",
+      "name": "Radiant Mirror Beast",
+      "className": "Mirrorsage",
+      "band": "Hero",
+      "path": "Light Weaver",
+      "sourceKind": "active",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "4 RP",
+      "rangeAndTarget": "Empty space within 15 ft",
+      "duration": "Concentration, 3 of your turns",
+      "frequency": "Recharge 4",
+      "effect": "Summon radiant standard Beast. Bonus Action command chooses normal attack or healing S d4 to one living ally within 5 ft, paying 1 RP per heal. It may instead originate your paid Echo release under common limits. Cannot perform two options in one round.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3112,
+        "originalText": "Radiant Mirror Beast: Summon a Mirror Beast infused with divine energy, capable of healing allies and revealing hidden threats."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "mirrorsage.hero.light-weaver.blessing-echo",
+      "name": "Blessing Echo",
+      "className": "Mirrorsage",
+      "band": "Hero",
+      "path": "Light Weaver",
+      "sourceKind": "active",
+      "minimumClassLevel": 12,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "Recorded RP cost+1; consume offensive Echo",
+      "rangeAndTarget": "One living ally within 30 ft",
+      "duration": "Instant or 1 minute shield",
+      "frequency": "Recharge 3",
+      "effect": "Convert a stored Strike/Burst record to Mend/Ward for this release, chosen on activation; heal S d6+M or grant same temporary HP. This explicit conversion cannot also deal offensive damage or copy a condition.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3113,
+        "originalText": "Blessing Echo: Transform a captured offensive Echo into a beneficial effect that can heal or protect allies."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "mirrorsage.hero.light-weaver.light-binding",
+      "name": "Light Binding",
+      "className": "Mirrorsage",
+      "band": "Hero",
+      "path": "Light Weaver",
+      "sourceKind": "active",
+      "minimumClassLevel": 14,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "4 RP",
+      "rangeAndTarget": "Up to 2 creatures within 30 ft",
+      "duration": "Until end your next turn",
+      "frequency": "Recharge 3",
+      "effect": "Choose mode: enemies make STR save or Restrained; they repeat save at turn end. OR up to 2 allies gain S d6+M temporary HP. No mixed modes; bonds are magical and not permanent objects.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3114,
+        "originalText": "Light Binding: Create bonds of radiant energy that can restrain enemies or create protective barriers for allies."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "mirrorsage.hero.light-weaver.purifying-reflection",
+      "name": "Purifying Reflection",
+      "className": "Mirrorsage",
+      "band": "Hero",
+      "path": "Light Weaver",
+      "sourceKind": "active",
+      "minimumClassLevel": 16,
+      "acquisition": "selection",
+      "activation": "Reaction",
+      "cost": "5 RP; 1 long-rest use",
+      "rangeAndTarget": "Ally within 30 ft failing save against Charmed/Frightened/Poisoned",
+      "duration": "Instant",
+      "frequency": "1/long rest",
+      "effect": "Ally rerolls that save with advantage; use new result. If it succeeds, it regains S d6 HP. No arbitrary curse or death reversal; costs remain if it fails. This is not a captured Echo and creates no record.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3115,
+        "originalText": "Purifying Reflection: Reflect and purify harmful effects, potentially converting them into healing or beneficial effects."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "mirrorsage.hero.mirror-mage.mirror-double",
+      "name": "Mirror Double",
+      "className": "Mirrorsage",
+      "band": "Hero",
+      "path": "Mirror Mage",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "2 RP",
+      "rangeAndTarget": "One damage Echo you released this turn",
+      "duration": "Resolves start next turn",
+      "frequency": "Recharge 3",
+      "effect": "Create one illusory double; it repeats half the unmodified immediate damage dice to one original enemy still within 30 ft, without roll or conditions. Declare Mirror Double before the current turn ends; its pending copy remains part of this turn’s one release package and does not consume a later release allowance. Only one pending copy; cannot copy copies/healing.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3121,
+        "originalText": "Mirror Double: Create a copy of yourself for 1 turn. It casts your last Echo at 50% power."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "mirrorsage.hero.mirror-mage.fused-echo",
+      "name": "Fused Echo",
+      "className": "Mirrorsage",
+      "band": "Hero",
+      "path": "Mirror Mage",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "1 long-rest use",
+      "rangeAndTarget": "One use of Echo Fusion",
+      "duration": "This release",
+      "frequency": "1/long rest",
+      "effect": "Increase Fusion's half-strength component to full dice. Still two sources, full RP, one combined release and normal target limits. This never adds a third component or doubles resources, control duration or already copied damage.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3122,
+        "originalText": "Fused Echo: Combine two Echoes to create a custom hybrid. Once per long rest."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "mirrorsage.hero.mirror-mage.floating-memory-slot",
+      "name": "Floating Memory Slot",
+      "className": "Mirrorsage",
+      "band": "Hero",
+      "path": "Mirror Mage",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "One temporary archive slot",
+      "duration": "Until encounter end",
+      "frequency": "Continuous during encounter",
+      "effect": "Capacity becomes 6 if below 6; temporary slot is erased at encounter end. If already 6, choose one existing slot instead and its release gains+5 ft range. Never exceed 6 or preserve a seventh via a backup.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3123,
+        "originalText": "Floating Memory Slot: Temporarily store a 6th Echo. Auto-erases after combat."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "mirrorsage.hero.mirror-mage.reflected-repertoire",
+      "name": "Reflected Repertoire",
+      "className": "Mirrorsage",
+      "band": "Hero",
+      "path": "Mirror Mage",
+      "sourceKind": "passive",
+      "minimumClassLevel": 20,
+      "acquisition": "automatic",
+      "activation": "Bonus Action",
+      "cost": "8 RP; 1 long-rest use",
+      "rangeAndTarget": "Up to 3 records currently in your archive",
+      "duration": "Next 3 releases within 1 minute",
+      "frequency": "1/long rest",
+      "effect": "Mark up to 3 distinct existing records. Each one's next release keeps its record instead of consuming it; still pay release RP and obey one release/round. No restoration of already empty slots, no invented records, no reuse-preservation after its marked use.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3124,
+        "originalText": "Final – Reflected Repertoire: Reset all Echo slots. Next 3 Echoes cast without consuming slots."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "mirrorsage.hero.mirror-mage.echo-manipulation",
+      "name": "Echo Manipulation",
+      "className": "Mirrorsage",
+      "band": "Hero",
+      "path": "Mirror Mage",
+      "sourceKind": "active",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "1 RP",
+      "rangeAndTarget": "One stored Echo",
+      "duration": "Next release before end next turn",
+      "frequency": "Recharge 2",
+      "effect": "Choose +30 ft range OR change damage to acid/cold/fire/lightning/thunder. No change to category, rank, targets, save ability, copied conditions or eligibility. Nonstacking modifications; record reverts after release/expiry.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3127,
+        "originalText": "Echo Manipulation: Modify a stored Echo, changing its element, range, or effect."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "mirrorsage.hero.mirror-mage.mirror-image",
+      "name": "Mirror Image",
+      "className": "Mirrorsage",
+      "band": "Hero",
+      "path": "Mirror Mage",
+      "sourceKind": "active",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "3 RP",
+      "rangeAndTarget": "Self",
+      "duration": "Concentration, 3 of your turns",
+      "frequency": "Recharge 3",
+      "effect": "Create two decoys. When an attack hits you, use Reaction to erase one and impose disadvantage on that attack's reroll. Decoys do not cast, attack, intercept area damage or create Echo records. At most one decoy erased per round.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3128,
+        "originalText": "Mirror Image: Create multiple illusory duplicates of yourself that can confuse enemies and potentially cast Echo abilities."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "mirrorsage.hero.mirror-mage.prismatic-reflection",
+      "name": "Prismatic Reflection",
+      "className": "Mirrorsage",
+      "band": "Hero",
+      "path": "Mirror Mage",
+      "sourceKind": "active",
+      "minimumClassLevel": 12,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "Recorded RP cost+2; consume Strike Echo",
+      "rangeAndTarget": "Up to 3 enemies within 30 ft",
+      "duration": "Instant",
+      "frequency": "Recharge 3",
+      "effect": "Replace Strike's attack with separate spell attacks; divide its S d8 dice among targets with at least 1 die each. At S 2 only 2 targets. Total dice do not increase. One combined release; no full-damage copy per target.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3129,
+        "originalText": "Prismatic Reflection: Split a single-target Echo into multiple weaker versions that can affect several targets."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "mirrorsage.hero.mirror-mage.echo-preservation",
+      "name": "Echo Preservation",
+      "className": "Mirrorsage",
+      "band": "Hero",
+      "path": "Mirror Mage",
+      "sourceKind": "active",
+      "minimumClassLevel": 14,
+      "acquisition": "selection",
+      "activation": "Triggered",
+      "cost": "2 RP; 1 short-rest use",
+      "rangeAndTarget": "One Echo you are about to release",
+      "duration": "This use",
+      "frequency": "1/short rest",
+      "effect": "Preserve that record after release instead of consuming it. Pay normal RP plus 2 and obey all limits. Does not stack with Repertoire or preserve more records in Fusion; choose one. Its next release is no longer a first replay.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3130,
+        "originalText": "Echo Preservation: Prevent an Echo from being consumed when cast, allowing it to be used again."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "mirrorsage.hero.mirror-mage.reality-fracture",
+      "name": "Reality Fracture",
+      "className": "Mirrorsage",
+      "band": "Hero",
+      "path": "Mirror Mage",
+      "sourceKind": "active",
+      "minimumClassLevel": 16,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "6 RP; 1 long-rest use",
+      "rangeAndTarget": "Fixed 10 ft-radius zone within 30 ft",
+      "duration": "Concentration, 3 of your turns",
+      "frequency": "1/long rest",
+      "effect": "While you stand inside, once/turn add 1d6 to one Echo damage/healing amount or impose-1 on one target's Echo save. Choose before resolving. No free releases, random recasts, resource refunds or extra targets.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3131,
+        "originalText": "Reality Fracture: Create a zone where Echo abilities are enhanced and have a chance to trigger additional effects."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "mirrorsage.hero.shattered-one.corrupted-mirrorcall",
+      "name": "Corrupted Mirrorcall",
+      "className": "Mirrorsage",
+      "band": "Hero",
+      "path": "Shattered One",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Your Beast on summoning",
+      "duration": "Summon duration",
+      "frequency": "Once/summon",
+      "effect": "Roll d2:1 Ember grants its one commanded attack+1d4 fire; 2 Barbs grants+1d4 piercing. Extra dice apply once/round only. Mutation grants no aura damage, poison supply, resource gain or separate creature.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3137,
+        "originalText": "Corrupted Mirrorcall: Mirror Beast gains a random mutation (e.g., Burn Aura, Bleed Burst)."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "mirrorsage.hero.shattered-one.shatterbind",
+      "name": "Shatterbind",
+      "className": "Mirrorsage",
+      "band": "Hero",
+      "path": "Shattered One",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Record captured from undead/demon/aberration",
+      "duration": "That release",
+      "frequency": "Once/round",
+      "effect": "You may change its damage type to necrotic or psychic on release. Category/eligibility/rank stay unchanged; high-INT undead and bosses remain excluded unless an encounter explicitly permits them.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3138,
+        "originalText": "Shatterbind: Echoes from undead/demons/aberrations gain necrotic or psychic damage tags."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "mirrorsage.hero.shattered-one.fractured-echo",
+      "name": "Fractured Echo",
+      "className": "Mirrorsage",
+      "band": "Hero",
+      "path": "Shattered One",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Triggered",
+      "cost": "2 RP; 1 short-rest use",
+      "rangeAndTarget": "One damage Echo just released",
+      "duration": "Start next turn",
+      "frequency": "1/short rest",
+      "effect": "Create one pending half-dice repeat against one original target still within 30 ft. No conditions, procs, crits, resource changes or additional capture. Replaces any pending Mirror Double/Fractured copy. Deterministic limited use replaces the old random 25% trigger.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3139,
+        "originalText": "Fractured Echo: 25% chance each Echo triggers again randomly the next round."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "mirrorsage.hero.shattered-one.fractured-dominion",
+      "name": "Fractured Dominion",
+      "className": "Mirrorsage",
+      "band": "Hero",
+      "path": "Shattered One",
+      "sourceKind": "passive",
+      "minimumClassLevel": 20,
+      "acquisition": "automatic",
+      "activation": "Bonus Action",
+      "cost": "8 RP; 1 long-rest use",
+      "rangeAndTarget": "Self",
+      "duration": "2 of your turns",
+      "frequency": "1/long rest",
+      "effect": "Your first damage release on each of these 2 turns adds one half-dice component against a DIFFERENT enemy within 10 ft of an original target. Same package and shared copy cap; excludes healing/control. Never recursively copies a copy or adds a release action.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3140,
+        "originalText": "Final – Fractured Dominion: For 2 turns, every Echo cast also generates a Glitched Clone Echo that strikes a nearby enemy."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "mirrorsage.hero.shattered-one.corrupt-echo",
+      "name": "Corrupt Echo",
+      "className": "Mirrorsage",
+      "band": "Hero",
+      "path": "Shattered One",
+      "sourceKind": "active",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "2 RP",
+      "rangeAndTarget": "Your next damage Echo",
+      "duration": "Before end current turn",
+      "frequency": "Recharge 3",
+      "effect": "Add 1d6 necrotic to one target on release OR force one damaged target to make WIS save or lose Reactions until end its next turn. No double rider or additional release. Added die is excluded from later copies.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3143,
+        "originalText": "Corrupt Echo: Twist a captured ability into a more destructive or debilitating version."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "mirrorsage.hero.shattered-one.shattered-mirror-beast",
+      "name": "Shattered Mirror Beast",
+      "className": "Mirrorsage",
+      "band": "Hero",
+      "path": "Shattered One",
+      "sourceKind": "active",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "4 RP",
+      "rangeAndTarget": "Empty space within 15 ft",
+      "duration": "Concentration, 3 of your turns",
+      "frequency": "Recharge 4",
+      "effect": "Summon standard corrupted Beast. On commanded hit add 1d6 necrotic once/round; after that hit, each other creature within 5 ft of Beast, including allies, takes 1 psychic damage. This splash has no procs and cannot trigger another splash. Normal companion cap applies.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3144,
+        "originalText": "Shattered Mirror Beast: Summon a corrupted Mirror Beast with unstable, mutated abilities that can harm both enemies and allies."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "mirrorsage.hero.shattered-one.echo-leech",
+      "name": "Echo Leech",
+      "className": "Mirrorsage",
+      "band": "Hero",
+      "path": "Shattered One",
+      "sourceKind": "active",
+      "minimumClassLevel": 12,
+      "acquisition": "selection",
+      "activation": "Triggered",
+      "cost": "1 RP",
+      "rangeAndTarget": "Self after direct Echo damages a hostile creature",
+      "duration": "Instant",
+      "frequency": "Once/round",
+      "effect": "Pay 1 RP to regain HP equal to min(M, actual damage dealt to one target). Copies, Do Ts and companion attacks do not trigger it. Healing has no secondary healing/resource procs; no damage means no heal.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3145,
+        "originalText": "Echo Leech: Drain life force from a target when casting certain Echo abilities, healing yourself."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "mirrorsage.hero.shattered-one.fractured-reality",
+      "name": "Fractured Reality",
+      "className": "Mirrorsage",
+      "band": "Hero",
+      "path": "Shattered One",
+      "sourceKind": "active",
+      "minimumClassLevel": 14,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "5 RP",
+      "rangeAndTarget": "Fixed 10 ft-radius zone within 30 ft; up to 3 enemies/pulse",
+      "duration": "Concentration, 3 of your turns",
+      "frequency": "Recharge 4",
+      "effect": "On start and each later Bonus Action+1 RP pulse, WIS save: S d6 psychic, half on success. Failure also loses Reactions until start your next turn. At most 3 pulses. Zone is not an Echo source or resource generator.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3146,
+        "originalText": "Fractured Reality: Create a zone of broken reflections that confuses and damages creatures within it."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "mirrorsage.hero.shattered-one.mind-shatter",
+      "name": "Mind Shatter",
+      "className": "Mirrorsage",
+      "band": "Hero",
+      "path": "Shattered One",
+      "sourceKind": "active",
+      "minimumClassLevel": 16,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "6 RP; consume 1 offensive Echo; 1 long-rest use",
+      "rangeAndTarget": "One enemy within 60 ft",
+      "duration": "Instant; control until end next turn",
+      "frequency": "1/long rest",
+      "effect": "WIS save: (S+2)d8 psychic, half on success. Failure imposes disadvantage on next attack; failure by 10 also Stunned until end its next turn within denial cap. No permanent mental illness or control of the player's beliefs.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3147,
+        "originalText": "Mind Shatter: Use corrupted Echo energy to attack a creature's mind, potentially causing confusion or temporary insanity."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  ],
+  "schedule": [
+    {
+      "classLevel": 1,
+      "choose": 4,
+      "bands": [
+        "Base"
+      ],
+      "minimumActives": 2,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 2,
+      "choose": 2,
+      "bands": [
+        "Base"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 3,
+      "choose": 2,
+      "bands": [
+        "Arch"
+      ],
+      "minimumActives": 1,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 4,
+      "choose": 1,
+      "bands": [
+        "Base",
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": true
+    },
+    {
+      "classLevel": 5,
+      "choose": 1,
+      "bands": [
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 6,
+      "choose": 1,
+      "bands": [
+        "Base",
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 7,
+      "choose": 1,
+      "bands": [
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 8,
+      "choose": 1,
+      "bands": [
+        "Base",
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": true
+    },
+    {
+      "classLevel": 9,
+      "choose": 1,
+      "bands": [
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 10,
+      "choose": 2,
+      "bands": [
+        "Hero"
+      ],
+      "minimumActives": 1,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 11,
+      "choose": 1,
+      "bands": [
+        "Base",
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 12,
+      "choose": 1,
+      "bands": [
+        "Hero"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": true
+    },
+    {
+      "classLevel": 13,
+      "choose": 1,
+      "bands": [
+        "Base",
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 14,
+      "choose": 1,
+      "bands": [
+        "Hero"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 15,
+      "choose": 1,
+      "bands": [
+        "Base",
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 16,
+      "choose": 1,
+      "bands": [
+        "Hero"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": true
+    },
+    {
+      "classLevel": 17,
+      "choose": 1,
+      "bands": [
+        "Base",
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 18,
+      "choose": 1,
+      "bands": [
+        "Hero"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 19,
+      "choose": 1,
+      "bands": [
+        "Base",
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": true
+    },
+    {
+      "classLevel": 20,
+      "choose": 0,
+      "bands": [],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    }
+  ],
+  "exceptionSchedule": {},
+  "sourceFiles": [
+    "../../../data/playtest/class_sources/mirrorsage.json",
+    "../../../data/playtest/class_sources/supplements.json"
+  ],
+  "authoringNotes": "Provisional; notebook adversarial findings reconciled and source-preserving editorial review complete. Human balance testing remains."
+}

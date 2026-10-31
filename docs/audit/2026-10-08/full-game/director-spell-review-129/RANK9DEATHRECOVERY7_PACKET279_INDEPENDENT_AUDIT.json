@@ -1,0 +1,218 @@
+{
+  "id": "RANK9DEATHRECOVERY7-PACKET279-INDEPENDENT-AUDIT",
+  "checkedAtUtc": "2026-10-30T20:33:41.910320+00:00",
+  "status": "PASS",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_deathrecovery7_current_source_279_prepared_review2/DD_Rank9_DeathRecovery7_CurrentSource_279.zip",
+    "bytes": 73810574,
+    "sha256": "6a42a7d5791dc16928f92bdb08688ba1010ebd62dfdf4a7bd573b0940ef3c656",
+    "crc32": "e38ba6fc"
+  },
+  "delivery": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_deathrecovery7_current_source_279_prepared_review2/DD_Rank9_DeathRecovery7_CurrentSource_279_DELIVERY.json",
+    "bytes": 88887,
+    "sha256": "fd70b55a13651ef2dd150dc3af137f9f034df8cc9b2e1a132315738a1827ac2a",
+    "crc32": "3f3ab8d6"
+  },
+  "authority": {
+    "reviewedApplied": 816,
+    "pending": 32,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 540,
+    "scopedInterfaces": 173
+  },
+  "group": "rank9-death-recovery7",
+  "targetIds": [
+    "final-word"
+  ],
+  "checkCount": 23,
+  "passedChecks": 23,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "check": "archive byte count, SHA-256 and CRC32 match delivery",
+      "passed": true,
+      "detail": {
+        "bytes": 73810574,
+        "sha256": "6a42a7d5791dc16928f92bdb08688ba1010ebd62dfdf4a7bd573b0940ef3c656",
+        "crc32": "e38ba6fc"
+      }
+    },
+    {
+      "check": "delivery exact scope/authority and no acceptance/application",
+      "passed": true,
+      "detail": {
+        "group": "rank9-death-recovery7",
+        "targetIds": [
+          "final-word"
+        ],
+        "authority": {
+          "reviewedApplied": 816,
+          "pending": 32,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 540,
+          "scopedInterfaces": 173
+        },
+        "acceptedIds": [],
+        "appliedIds": []
+      }
+    },
+    {
+      "check": "archive is below GitHub's regular 100 MB blob limit",
+      "passed": true,
+      "detail": 73810574
+    },
+    {
+      "check": "ZIP integrity and unique safe member names",
+      "passed": true,
+      "detail": {
+        "members": 139
+      }
+    },
+    {
+      "check": "exact delivery allowlist and member binding cover all ZIP entries",
+      "passed": true,
+      "detail": {
+        "archive": 139,
+        "deliveryMembers": 139
+      }
+    },
+    {
+      "check": "all archive members match external byte/SHA/CRC",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "embedded manifest is externally bound and covers all payload members",
+      "passed": true,
+      "detail": {
+        "manifest": 138,
+        "payload": 138
+      }
+    },
+    {
+      "check": "all payload members match embedded manifest",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "candidate/context scope only final-word at 816/32",
+      "passed": true,
+      "detail": {
+        "group": "rank9-death-recovery7",
+        "pendingIds": [
+          "final-word"
+        ],
+        "count": 1
+      }
+    },
+    {
+      "check": "request states exact current snapshot split and no other identity scope",
+      "passed": true,
+      "detail": "REQUEST_279 — CURRENT-SOURCE REVIEW OF FINAL WORD ONLY\n\nDirector: GPT in Calibration review part 6.\nAuthority: 816 reviewed/applied, 32 pending, 0 accepted-unapplied; 540 complete standalone procedures; 173 scoped interfaces.\nExact target: final-word. No other identity is in scope.\n\nPlease review the candidate, the 74 refreshed current sources, audited Return184/Return217/Return235 history, and the exact preserved final-word cases. The ZIP carries the parent queue/handoff/pending snapshots 278 and the Return278 ruling; the separately attached final queue/handoff/pending snapshots 279 are authoritative for the current next target. Return235 is historical 811/37 and held final-word under DR217"
+    },
+    {
+      "check": "candidate contains 74 refreshed source bindings",
+      "passed": true,
+      "detail": 74
+    },
+    {
+      "check": "all refreshed sources match archive and current working tree",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "current index/catalog contain 32 pending and final-word remains non-operational",
+      "passed": true,
+      "detail": {
+        "id": "final-word",
+        "name": "Final Word",
+        "authoredStatus": "pending-authored-procedure",
+        "procedureFile": "catalog.json",
+        "procedurePointer": null,
+        "wholeCardPointer": "/spells/675",
+        "sourceStatus": "blocked-pending-operational-review",
+        "priorCatalogSelectionStatusUnchanged": true
+      }
+    },
+    {
+      "check": "current target record equals current index/catalog bytes",
+      "passed": true,
+      "detail": "final-word"
+    },
+    {
+      "check": "parent snapshot CURRENT_SPELL_QUEUE_278.json is explicitly named and bound",
+      "passed": true,
+      "detail": {
+        "bytes": 126183,
+        "sha256": "bafa4d4a1b1220946da37cc05ca33eb7fed5f0947ef8420ae3f45f456a1ca856",
+        "crc32": "099f3245"
+      }
+    },
+    {
+      "check": "parent snapshot CURRENT_HANDOFF_278.json is explicitly named and bound",
+      "passed": true,
+      "detail": {
+        "bytes": 9467,
+        "sha256": "dc976c0fca15573a0e372e089f0ce0370e6592a1e82fc08823f314537bad80fc",
+        "crc32": "8b72e6be"
+      }
+    },
+    {
+      "check": "parent snapshot CURRENT32_PENDING_IDENTITY_AUDIT_278.json is explicitly named and bound",
+      "passed": true,
+      "detail": {
+        "bytes": 50470,
+        "sha256": "60ec966976c3bbbda0f054e6a4b9b89861ace54dd651c4565c28fd4f47d995fe",
+        "crc32": "2ab49f88"
+      }
+    },
+    {
+      "check": "archive carries the Return278 ruling and check, not stale final snapshots",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Return217 history retains only doom/eternal-pact acceptance and final-word DR217-B01 hold",
+      "passed": true,
+      "detail": [
+        "final-word"
+      ]
+    },
+    {
+      "check": "all 16 preserved final-word cases are byte-exact to Return217 archive",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "prior Return235 audits and receipt are preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "separate final queue/handoff/pending snapshots agree on authority and final-word",
+      "passed": true,
+      "detail": {
+        "queue": "rank9-death-recovery7",
+        "handoff": "rank9-death-recovery7",
+        "pending": 32
+      }
+    },
+    {
+      "check": "external snapshots bind this exact Packet279 archive and delivery",
+      "passed": true,
+      "detail": {
+        "archive": {
+          "bytes": 73810574,
+          "sha256": "6a42a7d5791dc16928f92bdb08688ba1010ebd62dfdf4a7bd573b0940ef3c656",
+          "crc32": "e38ba6fc"
+        },
+        "delivery": {
+          "bytes": 88887,
+          "sha256": "fd70b55a13651ef2dd150dc3af137f9f034df8cc9b2e1a132315738a1827ac2a",
+          "crc32": "3f3ab8d6"
+        }
+      }
+    }
+  ]
+}

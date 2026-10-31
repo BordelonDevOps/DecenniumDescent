@@ -1,0 +1,353 @@
+{
+  "id": "RANK9ALIGNFACTIONPURIFICATION5-RETURN248-INDEPENDENT-AUDIT",
+  "status": "PASS",
+  "checkedAtUtc": "2026-10-30T08:41:37.753849+00:00",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_alignmentfactionpurification5_return248_received/DD_Rank9_AlignmentFactionPurification5_Director_Return248_HELD.zip",
+    "bytes": 1684840,
+    "sha256": "af323ba561f3f17f98338f93deca737bd8dda6d463b3edeeb0121f02391a2faf",
+    "crc32": "967c04bc"
+  },
+  "delivery": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_alignmentfactionpurification5_return248_received/DD_Rank9_AlignmentFactionPurification5_Director_Return248_HELD_DELIVERY.json",
+    "bytes": 81677,
+    "sha256": "8e84a203ecc1e37bab8a5b47f42982aa48e3d46385b155d1c00895867ada3a0d",
+    "crc32": "777f33d6"
+  },
+  "authority": {
+    "reviewedApplied": 811,
+    "pending": 37,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 535,
+    "scopedInterfaces": 173
+  },
+  "targetIds": [
+    "alignment-ascension",
+    "alignment-perfection",
+    "faction-incarnate",
+    "faction-perfection",
+    "corruption-purification"
+  ],
+  "acceptedIds": [],
+  "appliedIds": [],
+  "heldIds": [
+    "alignment-ascension",
+    "alignment-perfection",
+    "faction-incarnate",
+    "faction-perfection",
+    "corruption-purification"
+  ],
+  "blockerIds": [
+    "AFP211-B01",
+    "AFP211-B02",
+    "AFP211-B03",
+    "AFP211-B04",
+    "AFP211-B05"
+  ],
+  "closedEvidenceFinding": {
+    "id": "AFP211-E01",
+    "status": "CLOSED"
+  },
+  "counts": {
+    "targetIdentities": 5,
+    "acceptedIdentities": 0,
+    "appliedIdentities": 0,
+    "heldIdentities": 5,
+    "nativePlacements": 6,
+    "nativeClassAccessRows": 19,
+    "proposedProcedureContracts": 5,
+    "completeOperationalProcedures": 0,
+    "originalQuestions": 28,
+    "questionDispositions": 28,
+    "futureRequirements": 7,
+    "futureRequirementsComplete": 0,
+    "preservedCases": 10,
+    "conditionalComponentCases": 7,
+    "heldContentGateCases": 3,
+    "completePositiveSpellCases": 0,
+    "events": 10,
+    "forwardOperations": 20,
+    "inverseOperations": 20,
+    "totalEventOperations": 40,
+    "proposalOperations": 0,
+    "freshSourceBindings": 130,
+    "unchangedHistoricalSourceBindings": 129,
+    "exactAcceptedComparatorsVerified": 6,
+    "closedEvidenceFindings": 1,
+    "openIdentityBlockers": 5,
+    "returnQualificationIds": 7,
+    "freshSourceDataReplayChecks": 2817,
+    "freshSourceDataReplayFailures": 0,
+    "semanticCriteria": 30,
+    "semanticPassingCriteria": 20,
+    "semanticBlockedCriteria": 10,
+    "clockCertifiedCases": 0,
+    "presealConsistencyChecks": 183,
+    "presealConsistencyFailures": 0
+  },
+  "nextPendingGroup": {
+    "group": "rank9-projection-confinement2",
+    "pendingIds": [
+      "astral-projection",
+      "imprisonment"
+    ]
+  },
+  "checkCount": 24,
+  "passedChecks": 24,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "check": "Return248 ZIP size/SHA/CRC and path match DELIVERY",
+      "passed": true,
+      "detail": {
+        "bytes": 1684840,
+        "sha256": "af323ba561f3f17f98338f93deca737bd8dda6d463b3edeeb0121f02391a2faf",
+        "crc32": "967c04bc"
+      }
+    },
+    {
+      "check": "Return248 authority is unchanged and all five identities are held",
+      "passed": true,
+      "detail": {
+        "authority": {
+          "reviewedApplied": 811,
+          "pending": 37,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 535,
+          "scopedInterfaces": 173
+        },
+        "heldIds": [
+          "alignment-ascension",
+          "alignment-perfection",
+          "faction-incarnate",
+          "faction-perfection",
+          "corruption-purification"
+        ],
+        "blockers": [
+          "AFP211-B01",
+          "AFP211-B02",
+          "AFP211-B03",
+          "AFP211-B04",
+          "AFP211-B05"
+        ]
+      }
+    },
+    {
+      "check": "Submitted Packet248 and independent packet audit bind local source archive and delivery",
+      "passed": true,
+      "detail": {
+        "packetSha256": "60e93c1e801214e17657e967767227a10f9e41671d763dd3ec05ca1dc2ff872b",
+        "packetAudit": "PASS"
+      }
+    },
+    {
+      "check": "Return ZIP has exactly 105 unique safe members matching DELIVERY",
+      "passed": true,
+      "detail": {
+        "members": 105,
+        "unsafe": []
+      }
+    },
+    {
+      "check": "Every Return248 member independently matches DELIVERY size/SHA/CRC",
+      "passed": true,
+      "detail": {
+        "checked": 105,
+        "failures": []
+      }
+    },
+    {
+      "check": "Internal manifest binds DELIVERY and all 104 payload members",
+      "passed": true,
+      "detail": {
+        "payload": 104,
+        "manifestSha256": "3b121ed474f227c7ecf7c29302db198a5e0b0058ccd2c9ed7d8893bceb903858"
+      }
+    },
+    {
+      "check": "Every payload member independently matches MEMBER_MANIFEST",
+      "passed": true,
+      "detail": {
+        "checked": 104,
+        "failures": []
+      }
+    },
+    {
+      "check": "Director decision preserves five holds, unchanged authority and closed AFP211-E01",
+      "passed": true,
+      "detail": {
+        "closedEvidenceFinding": {
+          "id": "AFP211-E01",
+          "status": "CLOSED",
+          "missingComparatorClausesRemoved": true,
+          "currentEvidence": "COMPARATOR_VERIFICATION.json",
+          "reopened": false
+        }
+      }
+    },
+    {
+      "check": "Five spell-local blockers retain exact target mapping and closed comparator gap",
+      "passed": true,
+      "detail": {
+        "blockers": [
+          "AFP211-B01",
+          "AFP211-B02",
+          "AFP211-B03",
+          "AFP211-B04",
+          "AFP211-B05"
+        ]
+      }
+    },
+    {
+      "check": "Each held spell has a concrete minimum missing witness and required-content list",
+      "passed": true,
+      "detail": {
+        "alignment-ascension": "Supply/authorize the complete Ascension form, insight and lifecycle specification; then demonstrate one full useful transformed-body encounter and one useful insight encounter across the two actual school routes, including alignment change/Lock/protection, gear, suppression, expiry and fit cleanup.",
+        "alignment-perfection": "Supply/authorize the exact cleansing operation and complete axis-dependent benefits/lifecycle; then demonstrate actual purification and useful benefits across supported, Neutral and undefined axes, with refusal/protection/overlap/ending and retained oath history.",
+        "faction-incarnate": "Supply/authorize the Incarnate profile, concrete faction-dependent actions/resources, invocation and lifecycle; bind actual faction and caster facts and demonstrate two useful encounters, full companion budgets, healing/Null/zero, suppression/expiry and custody.",
+        "faction-perfection": "Supply a concrete supported benefit with eligibility, terms, actual availability and finite entitlement; demonstrate its real use after maximum standing and a later interaction with independent permissions, consumption and original history intact.",
+        "corruption-purification": "Supply/authorize the complete cure matrix, creature/area geometry and permanent-result/Until-dispelled lifecycle; demonstrate a real creature cure and a multi-source area cure with exact protected exceptions, dependency extents, future exposure and dispel settlement."
+      }
+    },
+    {
+      "check": "All five proposals remain incomplete with zero complete positive witnesses",
+      "passed": true,
+      "detail": {
+        "procedures": 5,
+        "completePositiveSpellCases": 0
+      }
+    },
+    {
+      "check": "All 28 question dispositions and seven future-case requirements are retained",
+      "passed": true,
+      "detail": {
+        "questions": 28,
+        "futureRequirements": 7
+      }
+    },
+    {
+      "check": "All 2,817 fresh source-data checks pass with zero failures",
+      "passed": true,
+      "detail": {
+        "checks": 2817,
+        "failures": 0
+      }
+    },
+    {
+      "check": "Ten component cases reconcile to 10 events and 20 forward/20 inverse operations",
+      "passed": true,
+      "detail": {
+        "cases": 10,
+        "events": 10,
+        "forward": 20,
+        "inverse": 20
+      }
+    },
+    {
+      "check": "AFP211-E01 closes all six comparator checks without reopening spell scope",
+      "passed": true,
+      "detail": {
+        "comparators": [
+          "alignment-avatar",
+          "alignment-immunity",
+          "corruption-immunity",
+          "faction-aegis",
+          "faction-citadel",
+          "faction-paragon"
+        ]
+      }
+    },
+    {
+      "check": "Semantic and clock audits distinguish reversible components from incomplete histories",
+      "passed": true,
+      "detail": {
+        "clock": {
+          "status": "NOT_DEMONSTRATED_FOR_COMPLETE_SPELLS",
+          "componentCasesChecked": 10,
+          "completeActorClockCases": 0,
+          "paidCastHistories": 0,
+          "nativeDeadlinesPreserved": true,
+          "notes": [
+            "Incarnate native concentration up to one minute remains unchanged; no fabricated actual cast clock.",
+            "Ascension Core Instantaneous versus temporary continuing form remains unresolved.",
+            "Perfection completed operations do not license invented persistent benefit duration.",
+            "Purification Until dispelled versus permanent removal remains unresolved.",
+            "Ten bounded component records contain no full legal actor start/end/Ready/recharge/resource timeline. None is certified as a complete encounter."
+          ]
+        },
+        "semanticBlockedCriteria": 10
+      }
+    },
+    {
+      "check": "Preseal and all 424 package checks pass",
+      "passed": true,
+      "detail": {
+        "preseal": 183,
+        "packageChecks": 424
+      }
+    },
+    {
+      "check": "Return explicitly records no canonical changes, runtime execution or authority shift",
+      "passed": true,
+      "detail": {
+        "acceptedUnappliedDelta": 0,
+        "runtimeExecuted": false
+      }
+    },
+    {
+      "check": "All four external input archives match exact local bytes",
+      "passed": true,
+      "detail": {
+        "sourcePacket": "60e93c1e801214e17657e967767227a10f9e41671d763dd3ec05ca1dc2ff872b",
+        "priorTargetReturn": "a5acae246fd72b288280d56c6f41e975e350f6f6a22b4322230f3bdebe19ae95",
+        "correctedPriorReturn": "a530511eb370a673b2deccb724efc7de4251a91c3a2b510eac514fde4f2a5f1a",
+        "comparatorSupplement": "b4e20789d48daed1bea73e348c4ace626c265015ab73320e655f328023aa6a99"
+      }
+    },
+    {
+      "check": "130 source bindings resolve to byte-exact Packet248 members",
+      "passed": true,
+      "detail": {
+        "bindings": 130
+      }
+    },
+    {
+      "check": "All ten component case files are byte-exact to corrected Return231",
+      "passed": true,
+      "detail": {
+        "cases": 10,
+        "failures": []
+      }
+    },
+    {
+      "check": "Original questions, future requirements and casebook remain byte-exact to Return231",
+      "passed": true,
+      "detail": {
+        "preserved": {
+          "ORIGINAL_QUESTIONS.json": true,
+          "ORIGINAL_FUTURE_REQUIREMENTS.json": true,
+          "CASEBOOK.json": true
+        }
+      }
+    },
+    {
+      "check": "Return names the exact next current pending group and identities",
+      "passed": true,
+      "detail": {
+        "nextGroup": "rank9-projection-confinement2",
+        "pendingIds": [
+          "astral-projection",
+          "imprisonment"
+        ]
+      }
+    },
+    {
+      "check": "Packet248 queue member remains the source of the next pointer",
+      "passed": true,
+      "detail": {
+        "pointer": "/currentPendingGroups/15",
+        "queueIndex": 15
+      }
+    }
+  ]
+}

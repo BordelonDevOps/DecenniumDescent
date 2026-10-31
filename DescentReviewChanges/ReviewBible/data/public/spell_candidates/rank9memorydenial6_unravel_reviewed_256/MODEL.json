@@ -1,0 +1,613 @@
+{
+  "schemaVersion": 1,
+  "moduleId": "rank9memorydenial6-unravel-reviewed-256",
+  "status": "ONE_EXACT_STATIC_AUTHORED_PROCEDURE_APPLIED_WITH_FIVE_RETAINED_QUALIFICATIONS",
+  "scope": "Unravel Identity only; the preserved procedure is accepted with Packet256 witness/replay. Tested form-loss and capability callbacks are spell-local; no global class-suppression rule or catalog/class change.",
+  "acceptedIds": [
+    "unravel-identity"
+  ],
+  "unacceptedIds": [],
+  "excludedPendingIds": [
+    "absolute-domination",
+    "alignment-ascension",
+    "alignment-perfection",
+    "astral-projection",
+    "banishment-gate",
+    "collapse-timeline",
+    "conjure-demiplane-fortress",
+    "corruption-purification",
+    "divine-intervention-greater",
+    "elemental-shell",
+    "eternal-prophecy",
+    "faction-incarnate",
+    "faction-omniscience-supreme",
+    "faction-perfection",
+    "fate-rewrite",
+    "final-word",
+    "imprisonment",
+    "invulnerable-sphere",
+    "mass-phantom-killer",
+    "matter-conversion",
+    "mind-collapse",
+    "nullification-wave",
+    "psychic-scream",
+    "puppetmaster-s-realm",
+    "reality-anchor",
+    "reverse-gravity-field",
+    "soul-reflection",
+    "summon-avatar-of-decay",
+    "summon-elemental-avatar",
+    "summon-herald-of-the-planes",
+    "time-stop",
+    "timeless-form",
+    "unholy-ascendance",
+    "weird",
+    "wish"
+  ],
+  "unresolvedQualifications": {
+    "unravel-identity": [
+      "MD196-H01",
+      "MD196-H02",
+      "MD196-H03",
+      "MD196-H06",
+      "MD196-H08"
+    ]
+  },
+  "sharedRequirements": {
+    "scope": "No global/shared rule changes; native card, catalog and class route unchanged.",
+    "runtimeSelectionEnabled": false
+  },
+  "spells": [
+    {
+      "id": "unravel-identity",
+      "name": "Unravel Identity",
+      "position": 0,
+      "procedure": {
+        "id": "MD196-STATIC-UNRAVEL_IDENTITY",
+        "spellId": "unravel-identity",
+        "status": "director-accepted static authored procedure; applied to authored review index; runtime disabled",
+        "accepted": true,
+        "applied": false,
+        "nativeCardUnchanged": {
+          "id": "unravel-identity",
+          "name": "Unravel Identity",
+          "schools": [
+            "Illusion"
+          ],
+          "status": "blocked-pending-operational-review",
+          "visibility": "public-source-review",
+          "classAccess": {
+            "Wizard": {
+              "rank": 9,
+              "minimumClassLevel": 17,
+              "school": "Illusion",
+              "baseRpCost": 26
+            }
+          },
+          "operational": null,
+          "additionalRpCost": 0,
+          "source": {
+            "catalogPath": "src/data/spells.js",
+            "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+            "catalogKey": "unravel-identity",
+            "original": {
+              "name": "Unravel Identity",
+              "level": 9,
+              "resonanceRank": 9,
+              "school": "Illusion",
+              "schools": [
+                "Illusion"
+              ],
+              "placements": [
+                {
+                  "name": "Unravel Identity",
+                  "school": "Illusion",
+                  "level": 9,
+                  "summary": "Target loses all class abilities for 1 round, believes they are someone else."
+                }
+              ],
+              "classLevels": {
+                "Wizard": 9
+              },
+              "classRanks": {
+                "Wizard": 9
+              },
+              "classLearnLevels": {
+                "Wizard": 17
+              },
+              "classSchools": {
+                "Wizard": "Illusion"
+              },
+              "castingTime": "Not specified in current rulebook",
+              "range": "Not specified in current rulebook",
+              "components": "Not specified in current rulebook",
+              "duration": "Not specified in current rulebook",
+              "description": "Target loses all class abilities for 1 round, believes they are someone else.",
+              "alternateSummaries": [],
+              "classes": [
+                "Wizard"
+              ],
+              "status": "canon",
+              "source": "Player Rulebook — Spell Lists"
+            },
+            "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+            "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+            "coreEntries": [
+              {
+                "index": 614,
+                "original": {
+                  "school": "Illusion",
+                  "level": 9,
+                  "name": "Unravel Identity",
+                  "effect": "Target loses all class abilities for 1 round, believes they are someone else.",
+                  "source_paragraph": 9740,
+                  "casting_time": "1 action",
+                  "range": "120 feet",
+                  "duration": "1 round",
+                  "components": "V, S, F",
+                  "resolution": "Automatic or opposed as described",
+                  "tags": [
+                    "Utility"
+                  ],
+                  "rp_cost": 26
+                }
+              }
+            ],
+            "possibleHistoricalAliases": []
+          },
+          "reviewFlags": [
+            "Core resolution requires an explicit operational interpretation",
+            "Not selectable in this spell playtest packet until individual operational review"
+          ]
+        },
+        "procedureContent": "NEW UI196-CAPABILITY: for one round disable all currently operative capabilities whose provenance is an acquired class feature/card or class spellcasting, including Base/Arch/Hero, passives/automatic triggers, multiclass, class-granted feat abilities and command links. Preserve underlying acquisitions, level, XP, fixed progression HP/RP tables, PB and already acquired ASI score changes as progression records, not subtracting levels. Nonclass ancestry/independently acquired feat abilities and mundane functions remain. This distinction is explicit local authorship; a class-derived ongoing modifier must be projected out, never kept merely because passive.\n\nUI196-DEPENDENCY: enumerate every acquired feature and dependent expression before projecting availability. Remove actual class passive bonuses/resistances/capacity modifiers; class spell knowledge remains recorded but unavailable. NEW class-maintained concentration/Ready ends once when its maintenance capability is lost; independent already-established nonconcentration spell effects/items remain. Remove class-owned command permission; a companion's own default/lifecycle follows exact source, not deletion by name. If capacity/maxima actually fall, clamp current to new maximum and record lost excess; increasing maximum later never refills. Preserve HP deficit for reversible nonhealing maxHP modifiers only where the current accepted maximum-HP interface permits; missing form/life profiles hold that branch. Exact class-derived bodily transformations and multiclass feature dependency need their own accepted source evidence; no invented reversion, creature, second pool or restored minion.\n\nNEW UI196-SELF: caster selects a short public-description persona (name/role, at most30words) at commitment, never secrets or a real person's memories. Target believes this is its subjective self for the same round and autonomously chooses meaningfully consistent behavior; no forced allegiance, attack, obedience, transferred ownership, physical transformation or counterfeit soul. Other original memories remain, interpreted as anomalous memories; contradictory evidence does not automatically grant a save. Recognition by others and objective identity remain unchanged. A persona cannot grant skills, equipment, language or access.\n\nUI196-CLOCK: no initial save or concentration is added to this automatic native card. Independently admit mental class-loss and belief components under exact defenses. Both end at first future target regular END excluding current turn; outside initiative+6seconds; attached future phase when needed. No extra-turn expiry. No hard guard because ordinary Actions and agency remain; a genuinely narrower source defense can prevent only what it covers, but absent an actual named source that split positive branch is held. Mind Blank blocks/suppresses both. Same-identity successful recast replaces its two components after current defense checks; no banked duration. End/suppression exposes underlying current capability state, never refunds/refreshes or resurrects terminated concentration. Other independent class blocks remain.",
+        "sharedRequirements": "MD196-COMMON — KEEP all six exact native cards and eight class-access rows. Each root is Action,120 feet,V/S/F,rank9,base26RP,minimum actual casting-class level17. Five are Wizard only; Unmake also Cleric and Mage. Actual Wizard/Mage INT or Cleric WIS and acquired school bonuses determine DC. A legal source profile, real known/prepared route, voice, usable somatic hand, focus and permitted Action are prerequisites. Sufficient level/RP alone grants no spell. No generic upcast, extra targets, higher rank or automatic school union.\nPreflight known illegality before paying. Freeze targets, mode, source identity, hostility/knowledge selectors and optional choices. Commit actual Action, RP and non-RP costs once, update protected class cadence and Refrain, make any genuine concentration transition, then permit the actual cast-time counter window. A failed save, absent privately selected spell, immunity, counter or later loss after legal commitment refunds nothing. An already committed parent does not overwrite a later interrupt's resource history. Source effects resolve only after surviving interruption. Wizard class Counterspell is acquired rank1/3RP/Reaction60feet/recharge2, INT+PB versus DC28 for these rank9 roots; Wizard Arch Dispel is rank3/3RP/Action60feet/recharge2 and INT+PB versus DC19 for an actual perceivable rank9 ongoing effect. These are different checks; no Greater Dispel acquisition is assumed.\nDirect single-target casts require a known perceived body and caster line of effect within120feet, not visual sight unless the source demands it. Total cover excludes direct paths; no targeting through an opaque wall because a location is known. Mass Willbreaker's explicit all-enemy query is the separately selected area rule below. Actual mental defenses are component-specific. None of the six inherently inflicts Charmed or Frightened. Mind Blank's current Abjuration mode covers their actual mental spell components, including native mental Stunned; psychic damage immunity alone does not. True Seeing recognizes actual false perception, not every Illusion-school effect. Source class grants, physiological life, objective identity, soul and original history are distinct from current subjective belief and accessible memory.\nAll actor regular starts/ends are independently recorded. Regular starts refresh permitted budgets and tick positive recharge exactly once even if unable to act; ending idle turns vent only under the actual class rule. Spent budgets remain spent when a prohibition ends. Explicit elapsed deadlines continue during absence, suppression or loading. Bare hostile rounds use future target regular END markers excluding the current in-progress turn, end triggers phase10 and expiry phase20. Attached companions use their genuine future attached phase endpoints with the owner's preserved regular cycle, not an invented independent turn; outside initiative use6seconds/round. True extra turns neither advance regular clocks nor create recharge/Ready resets; an extra Action is not a turn. A positive inserted-turn actor remains held without its acquired source. No pulse scheduler is introduced.\nOrdinary Ready actually casts/pays/provides components and starts concentration at preparation. Expiry is next own regular START; release needs the actual trigger, current legal Reaction, target/range/line and hold. No second cast/payment/counter window occurs. The distinct new gates below expressly state whether completed release is blocked. Ending a cast restriction does not restore an expired hold. Full commitment and release histories survive serialization.\nSame-caster new concentration independently displaces the old concentration at commitment, before any save/counter. No failed replacement restores it. Repeated legal applications need new costs and actual defenses; blocked admission creates no latent application. Hard denial is claimed only by a successfully established whole-Action-equivalent component. Mind Collapse Stunned claims it. These proposed Willbreaker, private boundary prison, knowledge loss, single-spell prohibition and class-availability/belief components preserve basic Actions and voluntary agency, so do not claim that guard. Making a future implementation remove all Actions would require new review, not this classification. A spent guard never refunds after removal/suppression.\nStore complete source-owned components, full underlying capability and memory versions, application order, original deadlines, costs, resources, custody, concentration endings and per-recipient decisions. Suppression never rewinds physical consequences, repeats an initial save, replays commands or restores ended sources. When an actual source is unavailable, record an unavailable branch with no invented acquisition, event outcome or cure. No spell here supplies a soul operation, a real plane, global memory access, or a time/history rewrite.",
+        "spellLocalRequirements": "All clauses marked NEW are spell-local proposed authorship. No global rule adoption.",
+        "qualifications": [
+          "Static authored procedure accepted and applied to authored review index only; runtime disabled.",
+          "MD196-H01, H02, H03, H06 and H08 remain applicable qualifications.",
+          "Mind Blank remains conditional; no successful suppression interval is accepted.",
+          "The tested form-loss and capability callback is spell-local; no global class-suppression rule is established.",
+          "No implementation, play, balance, cosmology, domain closure, completion or release approval is implied."
+        ],
+        "retainedQualificationIds": [
+          "MD196-H01",
+          "MD196-H02",
+          "MD196-H03",
+          "MD196-H06",
+          "MD196-H08"
+        ],
+        "closedBlockerIds": [
+          "MD196-B02"
+        ],
+        "questionIds": [
+          "MD9-Q01",
+          "MD9-Q23",
+          "MD9-Q24",
+          "MD9-Q25",
+          "MD9-Q26",
+          "MD9-Q27",
+          "MD9-Q28",
+          "MEM129-ADD01",
+          "MEM129-ADD02"
+        ],
+        "caseIds": [
+          "RANK9MEMORYDENIAL6129-UNRAVEL-IDENTITY-A",
+          "RANK9MEMORYDENIAL6129-UNRAVEL-IDENTITY-B",
+          "RANK9MEMORYDENIAL6129-UNRAVEL-IDENTITY-B/suppressed-component-projection",
+          "RANK9MEMORYDENIAL6129-UNRAVEL-IDENTITY-B/mind-blank-before-admission",
+          "RANK9MEMORYDENIAL6129-UNRAVEL-IDENTITY-B/multiclass-form-dependency-held",
+          "RANK9MEMORYDENIAL6129-UNRAVEL-IDENTITY-A/countered-cast",
+          "RANK9MEMORYDENIAL6129-UNRAVEL-IDENTITY-A/native-no-initial-save",
+          "RANK9MEMORYDENIAL6129-UNRAVEL-IDENTITY-B/qualified-dispel",
+          "RANK9MEMORYDENIAL6129-UNRAVEL-IDENTITY-B/preexisting-mind-blank",
+          "RANK9MEMORYDENIAL6129-UNRAVEL-IDENTITY-A/known-illegal-access",
+          "RANK9MEMORYDENIAL6129-UNRAVEL-IDENTITY-B/ready-current-turn-suppression",
+          "RANK9MEMORYDENIAL6129-UNRAVEL-IDENTITY-B/ready-current-turn-dispel",
+          "RANK9MEMORYDENIAL6129-UNRAVEL-IDENTITY-A/same-caster-reapplication",
+          "RANK9MEMORYDENIAL6129-UNRAVEL-IDENTITY-B/different-caster-reapplication"
+        ],
+        "directorDecisionId": "RANK9-MEMORYDENIAL6-UNRAVEL-IDENTITY-GPT-DIRECTOR-DECISION-256",
+        "directorDecisionBinding": {
+          "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/RANK9_MEMORYDENIAL6_UNRAVEL_IDENTITY_DIRECTOR_DECISION_256.json",
+          "bytes": 4522,
+          "sha256": "db097f127200ff03971a60b387672b139f5b1c03453f4858aad38b105434bea7",
+          "crc32": "05af24bf"
+        },
+        "evidenceBindingsFile": "EVIDENCE_BINDINGS.json",
+        "caseCoverageFile": "CASE_COVERAGE.json"
+      },
+      "directorProcedureRecord": {
+        "id": "unravel-identity",
+        "accepted": true,
+        "applied": false,
+        "status": "DIRECTOR_ACCEPTED_STATIC_AUTHORED_PROCEDURE_APPLIED_TO_AUTHORED_REVIEW_INDEX_RUNTIME_DISABLED",
+        "completeSourceAndAccess": {
+          "id": "unravel-identity",
+          "name": "Unravel Identity",
+          "schools": [
+            "Illusion"
+          ],
+          "status": "blocked-pending-operational-review",
+          "visibility": "public-source-review",
+          "classAccess": {
+            "Wizard": {
+              "rank": 9,
+              "minimumClassLevel": 17,
+              "school": "Illusion",
+              "baseRpCost": 26
+            }
+          },
+          "operational": null,
+          "additionalRpCost": 0,
+          "source": {
+            "catalogPath": "src/data/spells.js",
+            "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+            "catalogKey": "unravel-identity",
+            "original": {
+              "name": "Unravel Identity",
+              "level": 9,
+              "resonanceRank": 9,
+              "school": "Illusion",
+              "schools": [
+                "Illusion"
+              ],
+              "placements": [
+                {
+                  "name": "Unravel Identity",
+                  "school": "Illusion",
+                  "level": 9,
+                  "summary": "Target loses all class abilities for 1 round, believes they are someone else."
+                }
+              ],
+              "classLevels": {
+                "Wizard": 9
+              },
+              "classRanks": {
+                "Wizard": 9
+              },
+              "classLearnLevels": {
+                "Wizard": 17
+              },
+              "classSchools": {
+                "Wizard": "Illusion"
+              },
+              "castingTime": "Not specified in current rulebook",
+              "range": "Not specified in current rulebook",
+              "components": "Not specified in current rulebook",
+              "duration": "Not specified in current rulebook",
+              "description": "Target loses all class abilities for 1 round, believes they are someone else.",
+              "alternateSummaries": [],
+              "classes": [
+                "Wizard"
+              ],
+              "status": "canon",
+              "source": "Player Rulebook — Spell Lists"
+            },
+            "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+            "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+            "coreEntries": [
+              {
+                "index": 614,
+                "original": {
+                  "school": "Illusion",
+                  "level": 9,
+                  "name": "Unravel Identity",
+                  "effect": "Target loses all class abilities for 1 round, believes they are someone else.",
+                  "source_paragraph": 9740,
+                  "casting_time": "1 action",
+                  "range": "120 feet",
+                  "duration": "1 round",
+                  "components": "V, S, F",
+                  "resolution": "Automatic or opposed as described",
+                  "tags": [
+                    "Utility"
+                  ],
+                  "rp_cost": 26
+                }
+              }
+            ],
+            "possibleHistoricalAliases": []
+          },
+          "reviewFlags": [
+            "Core resolution requires an explicit operational interpretation",
+            "Not selectable in this spell playtest packet until individual operational review"
+          ]
+        },
+        "currentIndexEntryUnchanged": {
+          "id": "unravel-identity",
+          "name": "Unravel Identity",
+          "authoredStatus": "pending-authored-procedure",
+          "procedureFile": "catalog.json",
+          "procedurePointer": null,
+          "wholeCardPointer": "/spells/581",
+          "sourceStatus": "blocked-pending-operational-review",
+          "priorCatalogSelectionStatusUnchanged": true
+        },
+        "commonProcedure": "MD196-COMMON — KEEP all six exact native cards and eight class-access rows. Each root is Action,120 feet,V/S/F,rank9,base26RP,minimum actual casting-class level17. Five are Wizard only; Unmake also Cleric and Mage. Actual Wizard/Mage INT or Cleric WIS and acquired school bonuses determine DC. A legal source profile, real known/prepared route, voice, usable somatic hand, focus and permitted Action are prerequisites. Sufficient level/RP alone grants no spell. No generic upcast, extra targets, higher rank or automatic school union.\nPreflight known illegality before paying. Freeze targets, mode, source identity, hostility/knowledge selectors and optional choices. Commit actual Action, RP and non-RP costs once, update protected class cadence and Refrain, make any genuine concentration transition, then permit the actual cast-time counter window. A failed save, absent privately selected spell, immunity, counter or later loss after legal commitment refunds nothing. An already committed parent does not overwrite a later interrupt's resource history. Source effects resolve only after surviving interruption. Wizard class Counterspell is acquired rank1/3RP/Reaction60feet/recharge2, INT+PB versus DC28 for these rank9 roots; Wizard Arch Dispel is rank3/3RP/Action60feet/recharge2 and INT+PB versus DC19 for an actual perceivable rank9 ongoing effect. These are different checks; no Greater Dispel acquisition is assumed.\nDirect single-target casts require a known perceived body and caster line of effect within120feet, not visual sight unless the source demands it. Total cover excludes direct paths; no targeting through an opaque wall because a location is known. Mass Willbreaker's explicit all-enemy query is the separately selected area rule below. Actual mental defenses are component-specific. None of the six inherently inflicts Charmed or Frightened. Mind Blank's current Abjuration mode covers their actual mental spell components, including native mental Stunned; psychic damage immunity alone does not. True Seeing recognizes actual false perception, not every Illusion-school effect. Source class grants, physiological life, objective identity, soul and original history are distinct from current subjective belief and accessible memory.\nAll actor regular starts/ends are independently recorded. Regular starts refresh permitted budgets and tick positive recharge exactly once even if unable to act; ending idle turns vent only under the actual class rule. Spent budgets remain spent when a prohibition ends. Explicit elapsed deadlines continue during absence, suppression or loading. Bare hostile rounds use future target regular END markers excluding the current in-progress turn, end triggers phase10 and expiry phase20. Attached companions use their genuine future attached phase endpoints with the owner's preserved regular cycle, not an invented independent turn; outside initiative use6seconds/round. True extra turns neither advance regular clocks nor create recharge/Ready resets; an extra Action is not a turn. A positive inserted-turn actor remains held without its acquired source. No pulse scheduler is introduced.\nOrdinary Ready actually casts/pays/provides components and starts concentration at preparation. Expiry is next own regular START; release needs the actual trigger, current legal Reaction, target/range/line and hold. No second cast/payment/counter window occurs. The distinct new gates below expressly state whether completed release is blocked. Ending a cast restriction does not restore an expired hold. Full commitment and release histories survive serialization.\nSame-caster new concentration independently displaces the old concentration at commitment, before any save/counter. No failed replacement restores it. Repeated legal applications need new costs and actual defenses; blocked admission creates no latent application. Hard denial is claimed only by a successfully established whole-Action-equivalent component. Mind Collapse Stunned claims it. These proposed Willbreaker, private boundary prison, knowledge loss, single-spell prohibition and class-availability/belief components preserve basic Actions and voluntary agency, so do not claim that guard. Making a future implementation remove all Actions would require new review, not this classification. A spent guard never refunds after removal/suppression.\nStore complete source-owned components, full underlying capability and memory versions, application order, original deadlines, costs, resources, custody, concentration endings and per-recipient decisions. Suppression never rewinds physical consequences, repeats an initial save, replays commands or restores ended sources. When an actual source is unavailable, record an unavailable branch with no invented acquisition, event outcome or cure. No spell here supplies a soul operation, a real plane, global memory access, or a time/history rewrite.",
+        "procedure": "NEW UI196-CAPABILITY: for one round disable all currently operative capabilities whose provenance is an acquired class feature/card or class spellcasting, including Base/Arch/Hero, passives/automatic triggers, multiclass, class-granted feat abilities and command links. Preserve underlying acquisitions, level, XP, fixed progression HP/RP tables, PB and already acquired ASI score changes as progression records, not subtracting levels. Nonclass ancestry/independently acquired feat abilities and mundane functions remain. This distinction is explicit local authorship; a class-derived ongoing modifier must be projected out, never kept merely because passive.\n\nUI196-DEPENDENCY: enumerate every acquired feature and dependent expression before projecting availability. Remove actual class passive bonuses/resistances/capacity modifiers; class spell knowledge remains recorded but unavailable. NEW class-maintained concentration/Ready ends once when its maintenance capability is lost; independent already-established nonconcentration spell effects/items remain. Remove class-owned command permission; a companion's own default/lifecycle follows exact source, not deletion by name. If capacity/maxima actually fall, clamp current to new maximum and record lost excess; increasing maximum later never refills. Preserve HP deficit for reversible nonhealing maxHP modifiers only where the current accepted maximum-HP interface permits; missing form/life profiles hold that branch. Exact class-derived bodily transformations and multiclass feature dependency need their own accepted source evidence; no invented reversion, creature, second pool or restored minion.\n\nNEW UI196-SELF: caster selects a short public-description persona (name/role, at most30words) at commitment, never secrets or a real person's memories. Target believes this is its subjective self for the same round and autonomously chooses meaningfully consistent behavior; no forced allegiance, attack, obedience, transferred ownership, physical transformation or counterfeit soul. Other original memories remain, interpreted as anomalous memories; contradictory evidence does not automatically grant a save. Recognition by others and objective identity remain unchanged. A persona cannot grant skills, equipment, language or access.\n\nUI196-CLOCK: no initial save or concentration is added to this automatic native card. Independently admit mental class-loss and belief components under exact defenses. Both end at first future target regular END excluding current turn; outside initiative+6seconds; attached future phase when needed. No extra-turn expiry. No hard guard because ordinary Actions and agency remain; a genuinely narrower source defense can prevent only what it covers, but absent an actual named source that split positive branch is held. Mind Blank blocks/suppresses both. Same-identity successful recast replaces its two components after current defense checks; no banked duration. End/suppression exposes underlying current capability state, never refunds/refreshes or resurrects terminated concentration. Other independent class blocks remain.",
+        "questionIds": [
+          "MD9-Q01",
+          "MD9-Q23",
+          "MD9-Q24",
+          "MD9-Q25",
+          "MD9-Q26",
+          "MD9-Q27",
+          "MD9-Q28",
+          "MEM129-ADD01",
+          "MEM129-ADD02"
+        ],
+        "newChoices": "All clauses marked NEW are spell-local proposed authorship. No global rule adoption.",
+        "qualifications": [
+          "Static authored procedure accepted and applied to authored review index only; runtime disabled.",
+          "MD196-H01, H02, H03, H06 and H08 remain applicable qualifications.",
+          "Mind Blank remains conditional; no successful suppression interval is accepted.",
+          "The tested form-loss and capability callback is spell-local; no global class-suppression rule is established.",
+          "No implementation, play, balance, cosmology, domain closure, completion or release approval is implied."
+        ],
+        "blockerIds": [],
+        "holdIds": [
+          "MD196-H01",
+          "MD196-H02",
+          "MD196-H03",
+          "MD196-H06",
+          "MD196-H08"
+        ],
+        "closedBlockerIds": [
+          "MD196-B02"
+        ],
+        "historicalQualificationsFromReturn196": [
+          "Static authored procedure review only. No runtime selection, execution, implementation, human play/playtest, balance, cosmology, domain closure, completion or release approval.",
+          "Applied=false. Canonical index, catalog, queue and handoff remain byte unchanged. Authority baseline remains 782 applied / 66 pending / 0 previously accepted-unapplied.",
+          "All NEW selections below are local to the named spell. They do not amend accepted class acquisition, condition, Ready, companion, memory, casting or cosmology interfaces.",
+          "Actors and scenes are explicit source-legal conditional fixtures, not authenticated campaign persons, histories, equipment or world facts. Actual campaign application requires those actual prerequisites.",
+          "Unavailable source identities, physical facts and acquired permissions remain specific holds. Saved audit knowledge is private evidence, not in-world recollection or character access.",
+          "Closed cohorts and feats are comparisons within their exact recorded acceptance only. AG190, TF192 and CC194 blockers remain unchanged."
+        ],
+        "currentIndexEntryBeforeApplication": {
+          "id": "unravel-identity",
+          "name": "Unravel Identity",
+          "authoredStatus": "pending-authored-procedure",
+          "procedureFile": "catalog.json",
+          "procedurePointer": null,
+          "wholeCardPointer": "/spells/581",
+          "sourceStatus": "blocked-pending-operational-review",
+          "priorCatalogSelectionStatusUnchanged": true
+        },
+        "directorDecisionBinding": {
+          "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/RANK9_MEMORYDENIAL6_UNRAVEL_IDENTITY_DIRECTOR_DECISION_256.json",
+          "bytes": 4522,
+          "sha256": "db097f127200ff03971a60b387672b139f5b1c03453f4858aad38b105434bea7",
+          "crc32": "05af24bf"
+        },
+        "packet256Binding": {
+          "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/DD_Rank9_MemoryDenial6_UnravelIdentity_IntegratedWitness_256.zip",
+          "bytes": 113352,
+          "sha256": "34d4224b4b7717193bc8ac352d128fcba517485de96b3c3c20ad6263f165f75d",
+          "crc32": "4c684152"
+        },
+        "witnessPlanBinding": {
+          "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/UNRAVEL_IDENTITY_MD196_B02_INTEGRATED_WITNESS_256.json",
+          "bytes": 105903,
+          "sha256": "48513e5a76e9db1cf13da96e21da76b87ef990350c70370f46d90afe77d0c965",
+          "crc32": "d9f54269"
+        },
+        "witnessAuditBinding": {
+          "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/UNRAVEL_IDENTITY_MD196_B02_INTEGRATED_WITNESS_256_AUDIT.json",
+          "bytes": 47708,
+          "sha256": "a6649996677e758553406831c128a2b3ffc8a0ff3b35c1d567d9d567d0226661",
+          "crc32": "2f227e63"
+        },
+        "integratedReplayBinding": {
+          "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/UNRAVEL_IDENTITY_MD196_B02_FORWARD_INVERSE_REPLAY_256.json",
+          "bytes": 735655,
+          "sha256": "4514925f33d39299bdd9bcf129aa7b7fac24b40a21adc9425a7d6150f9b44e2d",
+          "crc32": "42990737"
+        },
+        "replayAuditBinding": {
+          "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/UNRAVEL_IDENTITY_MD196_B02_FORWARD_INVERSE_REPLAY_256_AUDIT.json",
+          "bytes": 46852,
+          "sha256": "20fd03ee102b4a58c7d6b680cfbb29d0747e55966bb0b1e3b93b360dae617b23",
+          "crc32": "b788f532"
+        },
+        "priorProcedureRecordBinding": {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9memorydenial6_reviewed_196/procedures/unravel-identity.json",
+          "bytes": 13024,
+          "sha256": "a344794fea1c4f0b26ea9108ebf22b348fcefb995f9c88f25a0355e04215205f",
+          "crc32": "19990c5b"
+        },
+        "priorCandidatePackageManifestBinding": {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9memorydenial6_reviewed_196/CANDIDATE_PACKAGE_MANIFEST.json",
+          "bytes": 20864,
+          "sha256": "d0d17f4b28d98c16d29f4b848b48301f3740b1db882eddb4c36de79fbf6b392c",
+          "crc32": "12b50293"
+        }
+      },
+      "nativeCardUnchanged": {
+        "id": "unravel-identity",
+        "name": "Unravel Identity",
+        "schools": [
+          "Illusion"
+        ],
+        "status": "blocked-pending-operational-review",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Wizard": {
+            "rank": 9,
+            "minimumClassLevel": 17,
+            "school": "Illusion",
+            "baseRpCost": 26
+          }
+        },
+        "operational": null,
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "unravel-identity",
+          "original": {
+            "name": "Unravel Identity",
+            "level": 9,
+            "resonanceRank": 9,
+            "school": "Illusion",
+            "schools": [
+              "Illusion"
+            ],
+            "placements": [
+              {
+                "name": "Unravel Identity",
+                "school": "Illusion",
+                "level": 9,
+                "summary": "Target loses all class abilities for 1 round, believes they are someone else."
+              }
+            ],
+            "classLevels": {
+              "Wizard": 9
+            },
+            "classRanks": {
+              "Wizard": 9
+            },
+            "classLearnLevels": {
+              "Wizard": 17
+            },
+            "classSchools": {
+              "Wizard": "Illusion"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Target loses all class abilities for 1 round, believes they are someone else.",
+            "alternateSummaries": [],
+            "classes": [
+              "Wizard"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 614,
+              "original": {
+                "school": "Illusion",
+                "level": 9,
+                "name": "Unravel Identity",
+                "effect": "Target loses all class abilities for 1 round, believes they are someone else.",
+                "source_paragraph": 9740,
+                "casting_time": "1 action",
+                "range": "120 feet",
+                "duration": "1 round",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Utility"
+                ],
+                "rp_cost": 26
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation",
+          "Not selectable in this spell playtest packet until individual operational review"
+        ]
+      },
+      "caseIds": [
+        "RANK9MEMORYDENIAL6129-UNRAVEL-IDENTITY-A",
+        "RANK9MEMORYDENIAL6129-UNRAVEL-IDENTITY-B",
+        "RANK9MEMORYDENIAL6129-UNRAVEL-IDENTITY-B/suppressed-component-projection",
+        "RANK9MEMORYDENIAL6129-UNRAVEL-IDENTITY-B/mind-blank-before-admission",
+        "RANK9MEMORYDENIAL6129-UNRAVEL-IDENTITY-B/multiclass-form-dependency-held",
+        "RANK9MEMORYDENIAL6129-UNRAVEL-IDENTITY-A/countered-cast",
+        "RANK9MEMORYDENIAL6129-UNRAVEL-IDENTITY-A/native-no-initial-save",
+        "RANK9MEMORYDENIAL6129-UNRAVEL-IDENTITY-B/qualified-dispel",
+        "RANK9MEMORYDENIAL6129-UNRAVEL-IDENTITY-B/preexisting-mind-blank",
+        "RANK9MEMORYDENIAL6129-UNRAVEL-IDENTITY-A/known-illegal-access",
+        "RANK9MEMORYDENIAL6129-UNRAVEL-IDENTITY-B/ready-current-turn-suppression",
+        "RANK9MEMORYDENIAL6129-UNRAVEL-IDENTITY-B/ready-current-turn-dispel",
+        "RANK9MEMORYDENIAL6129-UNRAVEL-IDENTITY-A/same-caster-reapplication",
+        "RANK9MEMORYDENIAL6129-UNRAVEL-IDENTITY-B/different-caster-reapplication"
+      ],
+      "questionIds": [
+        "MD9-Q01",
+        "MD9-Q23",
+        "MD9-Q24",
+        "MD9-Q25",
+        "MD9-Q26",
+        "MD9-Q27",
+        "MD9-Q28",
+        "MEM129-ADD01",
+        "MEM129-ADD02"
+      ],
+      "holdIds": [
+        "MD196-H01",
+        "MD196-H02",
+        "MD196-H03",
+        "MD196-H06",
+        "MD196-H08"
+      ],
+      "runtimeSelectionEnabled": false
+    }
+  ],
+  "caseCoverage": {
+    "caseCount": 14,
+    "caseIds": [
+      "RANK9MEMORYDENIAL6129-UNRAVEL-IDENTITY-A",
+      "RANK9MEMORYDENIAL6129-UNRAVEL-IDENTITY-B",
+      "RANK9MEMORYDENIAL6129-UNRAVEL-IDENTITY-B/suppressed-component-projection",
+      "RANK9MEMORYDENIAL6129-UNRAVEL-IDENTITY-B/mind-blank-before-admission",
+      "RANK9MEMORYDENIAL6129-UNRAVEL-IDENTITY-B/multiclass-form-dependency-held",
+      "RANK9MEMORYDENIAL6129-UNRAVEL-IDENTITY-A/countered-cast",
+      "RANK9MEMORYDENIAL6129-UNRAVEL-IDENTITY-A/native-no-initial-save",
+      "RANK9MEMORYDENIAL6129-UNRAVEL-IDENTITY-B/qualified-dispel",
+      "RANK9MEMORYDENIAL6129-UNRAVEL-IDENTITY-B/preexisting-mind-blank",
+      "RANK9MEMORYDENIAL6129-UNRAVEL-IDENTITY-A/known-illegal-access",
+      "RANK9MEMORYDENIAL6129-UNRAVEL-IDENTITY-B/ready-current-turn-suppression",
+      "RANK9MEMORYDENIAL6129-UNRAVEL-IDENTITY-B/ready-current-turn-dispel",
+      "RANK9MEMORYDENIAL6129-UNRAVEL-IDENTITY-A/same-caster-reapplication",
+      "RANK9MEMORYDENIAL6129-UNRAVEL-IDENTITY-B/different-caster-reapplication"
+    ],
+    "file": "CASE_COVERAGE.json"
+  },
+  "evidenceBindings": {
+    "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9memorydenial6_unravel_reviewed_256/EVIDENCE_BINDINGS.json",
+    "bytes": 4050,
+    "sha256": "bbde19a2ae82823168160c11b5d86eb71c2cbbf33f704d6d4c5681f72ecdec31",
+    "crc32": "b70b26ae"
+  },
+  "directorDecision": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/RANK9_MEMORYDENIAL6_UNRAVEL_IDENTITY_DIRECTOR_DECISION_256.json",
+    "bytes": 4522,
+    "sha256": "db097f127200ff03971a60b387672b139f5b1c03453f4858aad38b105434bea7",
+    "crc32": "05af24bf"
+  },
+  "sourcePacket": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/DD_Rank9_MemoryDenial6_UnravelIdentity_IntegratedWitness_256.zip",
+    "bytes": 113352,
+    "sha256": "34d4224b4b7717193bc8ac352d128fcba517485de96b3c3c20ad6263f165f75d",
+    "crc32": "4c684152"
+  },
+  "witnessPlan": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/UNRAVEL_IDENTITY_MD196_B02_INTEGRATED_WITNESS_256.json",
+    "bytes": 105903,
+    "sha256": "48513e5a76e9db1cf13da96e21da76b87ef990350c70370f46d90afe77d0c965",
+    "crc32": "d9f54269"
+  },
+  "integratedReplay": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/UNRAVEL_IDENTITY_MD196_B02_FORWARD_INVERSE_REPLAY_256.json",
+    "bytes": 735655,
+    "sha256": "4514925f33d39299bdd9bcf129aa7b7fac24b40a21adc9425a7d6150f9b44e2d",
+    "crc32": "42990737"
+  },
+  "runtimeSelectionEnabled": false,
+  "runtimeTestsExecuted": false,
+  "implementationApproved": false,
+  "humanPlaytested": false,
+  "balanceApproved": false,
+  "cosmologyModified": false,
+  "releaseApproved": false,
+  "domainClosure": false
+}

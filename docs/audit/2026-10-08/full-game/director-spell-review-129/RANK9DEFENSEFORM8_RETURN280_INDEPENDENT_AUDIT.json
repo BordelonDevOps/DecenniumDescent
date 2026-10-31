@@ -1,0 +1,325 @@
+{
+  "id": "RANK9DEFENSEFORM8-RETURN280-INDEPENDENT-AUDIT",
+  "recordedAtUtc": "2026-10-30T21:06:30.689226+00:00",
+  "status": "PASS",
+  "archive": {
+    "downloadName": "DD_Rank9_DefenseForm8_Director_Return280_HELD.zip",
+    "bytes": 1214664,
+    "sha256": "1a49741bc259e2a64dca7a3bb87a1057af8ca4269b246714652119e3edaeed81",
+    "crc32": "36f4056e",
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_defenseform8_return280_received/DD_Rank9_DefenseForm8_Director_Return280_HELD.zip"
+  },
+  "delivery": {
+    "downloadName": "DD_Rank9_DefenseForm8_Director_Return280_HELD_DELIVERY.json",
+    "bytes": 26770,
+    "sha256": "9f3a7aed54b4f127a5817070982590483658eaf4250340e5c78eb6b6b7dc8d74",
+    "crc32": "10428716",
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_defenseform8_return280_received/DD_Rank9_DefenseForm8_Director_Return280_HELD_DELIVERY.json"
+  },
+  "authority": {
+    "reviewedApplied": 816,
+    "pending": 32,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 540,
+    "scopedInterfaces": 173
+  },
+  "targetIds": [
+    "elemental-shell",
+    "timeless-form",
+    "invulnerable-sphere"
+  ],
+  "checkCount": 15,
+  "passedChecks": 15,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "check": "delivery identifies the Defense/Form8 Return280 artifact",
+      "passed": true,
+      "detail": {
+        "deliveryId": "RANK9-DEFENSEFORM8-DIRECTOR-RETURN280-DELIVERY",
+        "archiveName": "DD_Rank9_DefenseForm8_Director_Return280_HELD.zip"
+      }
+    },
+    {
+      "check": "downloaded archive matches its external SHA-256, byte length and CRC",
+      "passed": true,
+      "detail": {
+        "actual": {
+          "bytes": 1214664,
+          "sha256": "1a49741bc259e2a64dca7a3bb87a1057af8ca4269b246714652119e3edaeed81",
+          "crc32": "36f4056e"
+        },
+        "expected": {
+          "path": "DD_Rank9_DefenseForm8_Director_Return280_HELD.zip",
+          "bytes": 1214664,
+          "sha256": "1a49741bc259e2a64dca7a3bb87a1057af8ca4269b246714652119e3edaeed81",
+          "crc32": "36f4056e"
+        }
+      }
+    },
+    {
+      "check": "scope, decision sets, blocker map and 816/32 authority reconcile exactly",
+      "passed": true,
+      "detail": {
+        "acceptedIds": [],
+        "appliedIds": [],
+        "heldIds": [
+          "elemental-shell",
+          "timeless-form",
+          "invulnerable-sphere"
+        ],
+        "perIdentity": [
+          {
+            "id": "elemental-shell",
+            "decision": "HOLD",
+            "accepted": false,
+            "applied": false,
+            "held": true,
+            "blockerIds": [
+              "DF218-B01",
+              "DF218-B02"
+            ],
+            "qualificationIds": [
+              "DF186-QH-SOURCE-ACCESS",
+              "DF186-QH-CONTENT-PHYSICAL",
+              "DF186-QH-RUNTIME",
+              "DF186-QH-HUMAN-PLAY",
+              "DF186-QH-BALANCE",
+              "DF186-QH-COSMOLOGY",
+              "DF186-QH-DOMAIN-CLOSURE",
+              "DF186-QH-RELEASE",
+              "DF186-QH-INHERITED",
+              "DF218-Q-IMPLEMENTATION"
+            ],
+            "conditionalQualificationIds": [],
+            "procedure": "procedures/elemental-shell.json",
+            "procedureBytesPreserved": true
+          },
+          {
+            "id": "timeless-form",
+            "decision": "HOLD",
+            "accepted": false,
+            "applied": false,
+            "held": true,
+            "blockerIds": [
+              "DF218-B03"
+            ],
+            "qualificationIds": [
+              "DF186-QH-SOURCE-ACCESS",
+              "DF186-QH-CONTENT-PHYSICAL",
+              "DF186-QH-RUNTIME",
+              "DF186-QH-HUMAN-PLAY",
+              "DF186-QH-BALANCE",
+              "DF186-QH-COSMOLOGY",
+              "DF186-QH-DOMAIN-CLOSURE",
+              "DF186-QH-RELEASE",
+              "DF186-QH-INHERITED",
+              "DF218-Q-IMPLEMENTATION"
+            ],
+            "conditionalQualificationIds": [
+              "DF218-Q-AGING"
+            ],
+            "procedure": "procedures/timeless-form.json",
+            "procedureBytesPreserved": true
+          },
+          {
+            "id": "invulnerable-sphere",
+            "decision": "HOLD",
+            "accepted": false,
+            "applied": false,
+            "held": true,
+            "blockerIds": [
+              "DF218-B04"
+            ],
+            "qualificationIds": [
+              "DF186-QH-SOURCE-ACCESS",
+              "DF186-QH-CONTENT-PHYSICAL",
+              "DF186-QH-RUNTIME",
+              "DF186-QH-HUMAN-PLAY",
+              "DF186-QH-BALANCE",
+              "DF186-QH-COSMOLOGY",
+              "DF186-QH-DOMAIN-CLOSURE",
+              "DF186-QH-RELEASE",
+              "DF186-QH-INHERITED",
+              "DF218-Q-IMPLEMENTATION"
+            ],
+            "conditionalQualificationIds": [],
+            "procedure": "procedures/invulnerable-sphere.json",
+            "procedureBytesPreserved": true
+          }
+        ]
+      }
+    },
+    {
+      "check": "next group and exact 32-identity ordered remainder match the Director checkpoint",
+      "passed": true,
+      "detail": {
+        "nextPendingGroup": "rank9-ward-control6",
+        "nextPendingIds": [
+          "nullification-wave",
+          "reality-anchor"
+        ],
+        "remainingCount": 32
+      }
+    },
+    {
+      "check": "ordered remainder preserves Return279's complete 32-identity order",
+      "passed": true,
+      "detail": {
+        "matches": true
+      }
+    },
+    {
+      "check": "source and replay totals match the Director's visible report with zero failures",
+      "passed": true,
+      "detail": {
+        "procedures": 3,
+        "acceptedIdentities": 0,
+        "appliedIdentities": 0,
+        "heldIdentities": 3,
+        "wholeIdentityBlockers": 4,
+        "sourceBindings": 87,
+        "originalQuestionsPreserved": 26,
+        "focusedAddendaPreserved": 2,
+        "futureRequirementsPreserved": 11,
+        "cases": 46,
+        "events": 993,
+        "forwardOperations": 1986,
+        "inverseOperations": 1986,
+        "caseStatuses": {
+          "DEMONSTRATED_STATIC_FIXTURE": 40,
+          "HELD_NOT_POSITIVE_EVIDENCE": 6
+        },
+        "freshChecks": {
+          "package": 1067,
+          "source": 272,
+          "preservation": 504,
+          "authority": 5,
+          "replay": 14086,
+          "clock": 8662
+        },
+        "freshCheckTotal": 24596,
+        "freshCheckFailures": 0,
+        "newCases": 0,
+        "newEvents": 0,
+        "newRules": 0
+      }
+    },
+    {
+      "check": "no canonical edit, application, runtime or supplied-program execution is claimed",
+      "passed": true,
+      "detail": {
+        "canonicalChanges": false,
+        "applicationPerformed": false
+      }
+    },
+    {
+      "check": "ZIP CRC scan, unique safe member names and exact allowlist pass",
+      "passed": true,
+      "detail": {
+        "testzip": null,
+        "memberCount": 81,
+        "unique": 81,
+        "externalMemberCount": 81
+      }
+    },
+    {
+      "check": "all 81 archive members match external delivery and embedded exact manifests",
+      "passed": true,
+      "detail": {
+        "mismatchCount": 0,
+        "mismatches": [],
+        "externalRows": 81,
+        "internalRows": 80
+      }
+    },
+    {
+      "check": "internal decision agrees with delivery sets, blockers and authority",
+      "passed": true,
+      "detail": {
+        "decisionId": "RANK9-DEFENSEFORM8-DIRECTOR-RETURN280",
+        "heldIds": [
+          "elemental-shell",
+          "timeless-form",
+          "invulnerable-sphere"
+        ]
+      }
+    },
+    {
+      "check": "internal remaining queue agrees exactly with the external delivery remainder and next group",
+      "passed": true,
+      "detail": {
+        "orderedCount": 32,
+        "next": "rank9-ward-control6"
+      }
+    },
+    {
+      "check": "semantic failure check confirms hold-required witnesses and data integrity",
+      "passed": true,
+      "detail": {
+        "result": "HOLD_REQUIRED_WITNESSES",
+        "integrity": true,
+        "findingCount": 4
+      }
+    },
+    {
+      "check": "validation and next-group members are present and agree with the delivery",
+      "passed": true,
+      "detail": {
+        "validation": {
+          "authority": {
+            "reviewedApplied": 816,
+            "pending": 32,
+            "acceptedUnapplied": 0,
+            "completeStandaloneProcedures": 540,
+            "scopedInterfaces": 173
+          },
+          "freshChecks": {
+            "package": 1067,
+            "source": 272,
+            "preservation": 504,
+            "authority": 5,
+            "replay": 14086,
+            "clock": 8662
+          },
+          "freshCheckTotal": 24596,
+          "failures": [],
+          "method": "Fresh data-only ZIP/hash/CRC checks, exact source/excerpt bindings, canonical-state SHA256, forward/inverse tests, reverse-chain replay and bounded clock-ledger checks. No supplied program or game runtime executed.",
+          "clockScope": "Serialized event times, monotonic chronology, no future recorded starts/ends, final next-start/next-end markers. Does not claim an absent Time Stop or planar event."
+        },
+        "nextGroupMemberPresent": true
+      }
+    },
+    {
+      "check": "exact 46 source-bound case records and three procedures are present",
+      "passed": true,
+      "detail": {
+        "cases": 46,
+        "procedures": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "check": "Return280 binds the local independently audited Packet280 source delivery",
+      "passed": true,
+      "detail": {
+        "sourceAuthority": {
+          "reviewedApplied": 816,
+          "pending": 32,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 540,
+          "scopedInterfaces": 173
+        },
+        "sourcePacket": {
+          "path": "DD_Rank9_DefenseForm8_CurrentSource_280(1).zip",
+          "bytes": 13868595,
+          "sha256": "79861940855e4af46088b19305307718897b95c2c7c3136daa2825900e0b2592",
+          "crc32": "e52f4d0c"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,293 @@
+{
+  "id": "RANK9IMPACTEXILE4-RETURN228-INDEPENDENT-AUDIT",
+  "status": "PASS",
+  "checkedAtUtc": "2026-10-30T00:37:10.353172+00:00",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_impactexile4_return228_received/DD_Rank9_ImpactExile1_Director_Return228.zip",
+    "bytes": 986511,
+    "sha256": "60b4ca3404b1cf0e17a8fa6d5a06a35b0d8cd1e743e1e233fd4be7569883fbef",
+    "crc32": "d331cc84"
+  },
+  "delivery": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_impactexile4_return228_received/DD_Rank9_ImpactExile1_Director_Return228_DELIVERY.json",
+    "bytes": 46263,
+    "sha256": "e76474f39b3baaaa8968b5989f5a68587077bb084aeec6ca3806b2dd9f7f6dee",
+    "crc32": "6adfeba3"
+  },
+  "authority": {
+    "reviewedApplied": 811,
+    "pending": 37,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 535,
+    "scopedInterfaces": 173
+  },
+  "targetIds": [
+    "reverse-gravity-field"
+  ],
+  "acceptedIds": [],
+  "appliedIds": [],
+  "heldIds": [
+    "reverse-gravity-field"
+  ],
+  "blockerIds": [
+    "IE204-B02"
+  ],
+  "counts": {
+    "targetIdentities": 1,
+    "procedureRestatements": 1,
+    "completePassingProcedures": 0,
+    "nativePlacements": 1,
+    "nativeClassRoutes": 3,
+    "originalQuestionsPreserved": 26,
+    "focusedAddendaPreserved": 2,
+    "currentTargetOriginalQuestions": 7,
+    "currentTargetFocusedAddenda": 1,
+    "currentTargetDispositions": 8,
+    "originalRequiredMainCasesPreserved": 8,
+    "currentTargetMainCases": 2,
+    "branches": 4,
+    "cases": 6,
+    "completeCases": 1,
+    "incompleteCases": 5,
+    "incompleteMainCases": 2,
+    "events": 224,
+    "forwardOperations": 448,
+    "inverseOperations": 448,
+    "reversibleOperations": 896,
+    "proposalOperations": 0,
+    "futureRequirementsPreserved": 7,
+    "sourceBindingsVerified": 364,
+    "sourceArchiveMembersVerified": 389,
+    "dataSourceClockIntegrityChecks": 10477,
+    "semanticChecks": 16,
+    "activeLocalBlockers": 1,
+    "conditionalQualifications": 13,
+    "acceptedIdentities": 0,
+    "appliedIdentities": 0
+  },
+  "nextPendingGroup": {
+    "group": "rank9-illusion-reality5",
+    "pendingIds": [
+      "soul-reflection"
+    ]
+  },
+  "checkCount": 14,
+  "passedChecks": 14,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "check": "Return228 ZIP bytes, SHA-256 and CRC32 match the external delivery manifest",
+      "passed": true,
+      "detail": {
+        "bytes": 986511,
+        "sha256": "60b4ca3404b1cf0e17a8fa6d5a06a35b0d8cd1e743e1e233fd4be7569883fbef",
+        "crc32": "d331cc84"
+      }
+    },
+    {
+      "check": "Return228 binds the exact independently audited current-source packet",
+      "passed": true,
+      "detail": {
+        "sourcePacketBytes": 278709812,
+        "sourcePacketSha256": "3f2b1d7d6b0731c5c170e7a8a2ec9d627483b8576796be1156d322f17134e246"
+      }
+    },
+    {
+      "check": "Archive has unique safe members and exactly matches the delivery allowlist",
+      "passed": true,
+      "detail": {
+        "archiveMembers": 66,
+        "deliveryMembers": 66,
+        "unsafe": []
+      }
+    },
+    {
+      "check": "Every archive member independently matches external delivery bytes/SHA/CRC",
+      "passed": true,
+      "detail": {
+        "checked": 66,
+        "failures": []
+      }
+    },
+    {
+      "check": "Internal exact-member manifest matches all non-self members and its external self-binding",
+      "passed": true,
+      "detail": {
+        "internalRows": 65,
+        "payloadCount": 65
+      }
+    },
+    {
+      "check": "Every non-self member independently matches the internal exact-member manifest",
+      "passed": true,
+      "detail": {
+        "checked": 65,
+        "failures": []
+      }
+    },
+    {
+      "check": "External and internal decisions are scoped only to reverse-gravity-field and preserve authority",
+      "passed": true,
+      "detail": {
+        "authority": {
+          "reviewedApplied": 811,
+          "pending": 37,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 535,
+          "scopedInterfaces": 173
+        },
+        "heldIds": [
+          "reverse-gravity-field"
+        ],
+        "blockers": [
+          "IE204-B02"
+        ]
+      }
+    },
+    {
+      "check": "Per-identity ruling retains IE204-B02 with both minimum missing witnesses",
+      "passed": true,
+      "detail": {
+        "minimumMissingWitnesses": [
+          "actual20lb crate material/durability and60ft/120ft impact/breakage/custody rules",
+          "actual tether/anchor rated attachment strength and relevant upward force/load rule"
+        ]
+      }
+    },
+    {
+      "check": "Case replay contains six successful replays, one complete case and five retained incomplete cases",
+      "passed": true,
+      "detail": {
+        "summary": {
+          "checkCount": 10477,
+          "countsByCategory": {
+            "source": 2659,
+            "coverage": 4,
+            "preservation": 54,
+            "profile": 33,
+            "data": 3384,
+            "clock": 1475,
+            "operations": 2688,
+            "semantic": 173,
+            "geometry": 7
+          },
+          "failures": [],
+          "cases": 6,
+          "mainCases": 2,
+          "branches": 4,
+          "events": 224,
+          "forwardOperations": 448,
+          "inverseOperations": 448,
+          "sourceBindings": 364,
+          "sourceArchiveMembers": 389,
+          "completeCases": 1,
+          "incompleteCases": 5
+        },
+        "caseStatuses": [
+          [
+            "RANK9IMPACTEXILE4129-REVERSE-GRAVITY-FIELD-A",
+            false
+          ],
+          [
+            "RANK9IMPACTEXILE4129-REVERSE-GRAVITY-FIELD-B",
+            false
+          ],
+          [
+            "RANK9IMPACTEXILE4129-REVERSE-GRAVITY-FIELD-B/anchored",
+            false
+          ],
+          [
+            "RANK9IMPACTEXILE4129-REVERSE-GRAVITY-FIELD-B/feather",
+            false
+          ],
+          [
+            "RANK9IMPACTEXILE4129-REVERSE-GRAVITY-FIELD-B/overlap",
+            false
+          ],
+          [
+            "RANK9IMPACTEXILE4129-REVERSE-GRAVITY-FIELD-B/ready-ray-concentration",
+            true
+          ]
+        ]
+      }
+    },
+    {
+      "check": "Case replay events and forward/inverse operation totals reconcile independently",
+      "passed": true,
+      "detail": {
+        "events": 224,
+        "forward": 448,
+        "inverse": 448
+      }
+    },
+    {
+      "check": "Data/source/clock replay and semantic/package checks report no failures",
+      "passed": true,
+      "detail": {
+        "dataSourceClockIntegrityChecks": 10477,
+        "packageChecks": 270
+      }
+    },
+    {
+      "check": "Previously accepted identities stay closed and all Return227 holds remain unchanged",
+      "passed": true,
+      "detail": {
+        "closedAcceptedIds": [
+          "eternal-anvil",
+          "transmute-flesh-to-energy",
+          "planar-collapse"
+        ],
+        "Return227Unchanged": {
+          "summon-elemental-avatar": [
+            "SH202-B01"
+          ],
+          "summon-herald-of-the-planes": [
+            "SH202-B02"
+          ],
+          "summon-avatar-of-decay": [
+            "SH202-B03"
+          ]
+        }
+      }
+    },
+    {
+      "check": "Application, canonical, GitHub and downstream approval gates remain closed",
+      "passed": true,
+      "detail": {
+        "applied": false,
+        "canonicalFilesEdited": false,
+        "githubChanged": false,
+        "runtimeApproved": false,
+        "gameExecuted": false,
+        "sourceProgramsExecuted": false,
+        "historicalProgramsExecuted": false,
+        "implementationApproved": false,
+        "humanPlaytested": false,
+        "balanceApproved": false,
+        "cosmologyApproved": false,
+        "domainClosure": false,
+        "completionClaim": false,
+        "releaseApproved": false,
+        "scope": "Static authored review and independent data-only audit; no campaign existence certification."
+      }
+    },
+    {
+      "check": "Return's next pending group agrees with the exact current queue order",
+      "passed": true,
+      "detail": {
+        "return": {
+          "group": "rank9-illusion-reality5",
+          "pendingIds": [
+            "soul-reflection"
+          ]
+        },
+        "queueNext": {
+          "group": "rank9-illusion-reality5",
+          "pendingIds": [
+            "soul-reflection"
+          ]
+        }
+      }
+    }
+  ]
+}

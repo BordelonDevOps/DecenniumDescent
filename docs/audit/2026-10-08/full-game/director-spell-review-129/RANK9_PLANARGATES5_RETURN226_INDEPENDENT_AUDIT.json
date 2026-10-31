@@ -1,0 +1,226 @@
+{
+  "id": "RANK9PLANARGATES5-RETURN226-INDEPENDENT-AUDIT",
+  "status": "PASS",
+  "checkedAtUtc": "2026-10-29T23:48:54.255098+00:00",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_planargates5_return226_received/DD_Rank9_PlanarGates2_Director_Return226.zip",
+    "bytes": 1097803,
+    "sha256": "413fe37608fec5a675872a0aad4078a55d8e73d6fc7712752327fca2dc1d6c24",
+    "crc32": "4418595c"
+  },
+  "delivery": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_planargates5_return226_received/DD_Rank9_PlanarGates2_Director_Return226_DELIVERY.json",
+    "bytes": 67801,
+    "sha256": "6ba88659f13495422bc8dbcdc51800cd23eb7502796971b81c4d4a3ab5682193",
+    "crc32": "ae5a9c9a"
+  },
+  "authority": {
+    "reviewedApplied": 811,
+    "pending": 37,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 535,
+    "scopedInterfaces": 173
+  },
+  "acceptedIds": [],
+  "heldIds": [
+    "banishment-gate",
+    "conjure-demiplane-fortress"
+  ],
+  "nextPendingGroup": {
+    "group": "rank9-summon-hosts5",
+    "pendingIds": [
+      "summon-elemental-avatar",
+      "summon-herald-of-the-planes",
+      "summon-avatar-of-decay"
+    ]
+  },
+  "checkCount": 18,
+  "passedChecks": 18,
+  "failedChecks": [],
+  "checks": [
+    {
+      "check": "Sealed Return226 archive bytes, SHA-256 and CRC32 match its delivery manifest",
+      "passed": true,
+      "detail": {
+        "bytes": 1097803,
+        "sha256": "413fe37608fec5a675872a0aad4078a55d8e73d6fc7712752327fca2dc1d6c24",
+        "crc32": "4418595c"
+      }
+    },
+    {
+      "check": "Return226 has 76 unique safe ZIP members and an exact manifest allowlist",
+      "passed": true,
+      "detail": {
+        "archiveMembers": 76,
+        "manifestMembers": 76,
+        "safeNames": true
+      }
+    },
+    {
+      "check": "All 76 ZIP members independently match delivery byte, SHA-256 and CRC32 bindings",
+      "passed": true,
+      "detail": {
+        "checked": 76,
+        "failures": []
+      }
+    },
+    {
+      "check": "ZIP decompression and CRC test reports no corrupt member",
+      "passed": true,
+      "detail": {
+        "testzip": null
+      }
+    },
+    {
+      "check": "Internal manifest binds every outer member other than itself",
+      "passed": true,
+      "detail": {
+        "innerRows": 75,
+        "selfExclusion": "Only MEMBER_MANIFEST.json excludes itself. Delivery binds it and the complete ZIP."
+      }
+    },
+    {
+      "check": "Director package self-report contains 386 passing package checks and no failures",
+      "passed": true,
+      "detail": {
+        "checkCount": 386,
+        "failures": []
+      }
+    },
+    {
+      "check": "Director disposition is exactly the two scoped holds with no acceptance or application",
+      "passed": true,
+      "detail": {
+        "scope": [
+          "banishment-gate",
+          "conjure-demiplane-fortress"
+        ],
+        "heldIds": [
+          "banishment-gate",
+          "conjure-demiplane-fortress"
+        ],
+        "authority": {
+          "reviewedApplied": 811,
+          "pending": 37,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 535,
+          "scopedInterfaces": 173
+        }
+      }
+    },
+    {
+      "check": "Both per-identity hold/blocker decisions and PG200-H01 through H10 qualifications match",
+      "passed": true,
+      "detail": {
+        "banishment-gate": [
+          "PG200-B03",
+          "PG200-B04"
+        ],
+        "conjure-demiplane-fortress": [
+          "PG200-B06"
+        ]
+      }
+    },
+    {
+      "check": "Three open blockers include the required source-qualified positive-witness gaps",
+      "passed": true,
+      "detail": {
+        "blockerIds": [
+          "PG200-B03",
+          "PG200-B04",
+          "PG200-B06"
+        ],
+        "reassessmentStatus": {
+          "PG200-B03": "OPEN_REQUIRED_WITNESS",
+          "PG200-B04": "OPEN_REQUIRED_WITNESS",
+          "PG200-B06": "OPEN_REQUIRED_WITNESS"
+        }
+      }
+    },
+    {
+      "check": "Case replay, clock/inverse replay, and 14,462 data/scoped checks reconcile with zero failures",
+      "passed": true,
+      "detail": {
+        "cases": 23,
+        "events": 267,
+        "forward": 534,
+        "inverse": 534,
+        "proposals": 8,
+        "checks": 14462,
+        "failures": []
+      }
+    },
+    {
+      "check": "All 23 case files match their bindings and each represented state-hash timeline joins exactly",
+      "passed": true,
+      "detail": {
+        "caseFiles": 23,
+        "failures": []
+      }
+    },
+    {
+      "check": "All 23 case dispositions remain explicitly scoped and none converts a hold into acceptance",
+      "passed": true,
+      "detail": {
+        "dispositions": 23
+      }
+    },
+    {
+      "check": "Eight proposal operations are retained but unapplied",
+      "passed": true,
+      "detail": {
+        "proposalRecords": 2,
+        "reversibleOperations": 8,
+        "applied": false
+      }
+    },
+    {
+      "check": "All 30 original questions, two focused addenda, and nine future requirements remain preserved",
+      "passed": true,
+      "detail": {
+        "questions": 30,
+        "addenda": 2,
+        "futureRequirements": 9
+      }
+    },
+    {
+      "check": "Return reports data pass with semantic holds, and explicitly closes runtime/canonical execution",
+      "passed": true,
+      "detail": {
+        "status": "DATA_PASS_SEMANTIC_HOLD",
+        "failures": [],
+        "canonicalChanges": false
+      }
+    },
+    {
+      "check": "Current-source packet and manifest exactly match the files actually submitted",
+      "passed": true,
+      "detail": {
+        "sourceBytes": 117174189,
+        "sourceSHA256": "db0c43f77222075d37c049581974828955f7d256e30ca22e7e1a7fe9333402e4",
+        "sourceDeliverySHA256": "d9a326e9dc9bbf9136cfd5871b9ad58565faf7137d9d4b361db12e9b4336722f"
+      }
+    },
+    {
+      "check": "Prior Return200 archive hash is unchanged and matches Return226's recorded context binding",
+      "passed": true,
+      "detail": {
+        "priorBytes": 171541716,
+        "priorSHA256": "8afda34a91bad329273753232e02a76136bff01a3d1da95416b573c9f4fb284c",
+        "priorCRC32": "ba548e46"
+      }
+    },
+    {
+      "check": "Next group is exactly the three still-pending Rank9 Summon Hosts identities",
+      "passed": true,
+      "detail": {
+        "group": "rank9-summon-hosts5",
+        "pendingIds": [
+          "summon-elemental-avatar",
+          "summon-herald-of-the-planes",
+          "summon-avatar-of-decay"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "id": "MF210-M-mithril-profile",
+  "spellId": "matter-conversion",
+  "title": "No authorized complete mithril physical profile;250gp/lb does not supply density or structural mapping.",
+  "kind": "isolated-conditional-state-kernel",
+  "endToEndWitness": false,
+  "prerequisitesNotDemonstrated": [
+    "The underlying concrete scene facts are prerequisites; no completed conversion is demonstrated."
+  ],
+  "procedureClause": "matter.physicalContract",
+  "clockScope": "No elapsed time or actor turn is modeled; this kernel cannot certify regular-turn accounting.",
+  "events": [
+    {
+      "id": "MF210-M-mithril-profile:1",
+      "before": {
+        "request": "mithril-profile",
+        "payment": {
+          "RP": 0,
+          "Action": 0
+        },
+        "inputUnchanged": true,
+        "output": null,
+        "status": "preflight"
+      },
+      "after": {
+        "request": "mithril-profile",
+        "payment": {
+          "RP": 0,
+          "Action": 0
+        },
+        "inputUnchanged": true,
+        "output": null,
+        "status": "rejected-before-payment",
+        "reason": "No authorized complete mithril physical profile;250gp/lb does not supply density or structural mapping."
+      },
+      "beforeSHA256": "bbf5de372f2468a092f845812bd7abb699e7d9fcac54d4230302f7f84b1e55c4",
+      "afterSHA256": "f1b4edeb4dd0337d4d6354cf1d36ee6e801b2071e7f36e4e570ab834b6c7b98b",
+      "forward": [
+        {
+          "op": "test",
+          "path": "",
+          "value": {
+            "request": "mithril-profile",
+            "payment": {
+              "RP": 0,
+              "Action": 0
+            },
+            "inputUnchanged": true,
+            "output": null,
+            "status": "preflight"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "",
+          "value": {
+            "request": "mithril-profile",
+            "payment": {
+              "RP": 0,
+              "Action": 0
+            },
+            "inputUnchanged": true,
+            "output": null,
+            "status": "rejected-before-payment",
+            "reason": "No authorized complete mithril physical profile;250gp/lb does not supply density or structural mapping."
+          }
+        }
+      ],
+      "inverse": [
+        {
+          "op": "test",
+          "path": "",
+          "value": {
+            "request": "mithril-profile",
+            "payment": {
+              "RP": 0,
+              "Action": 0
+            },
+            "inputUnchanged": true,
+            "output": null,
+            "status": "rejected-before-payment",
+            "reason": "No authorized complete mithril physical profile;250gp/lb does not supply density or structural mapping."
+          }
+        },
+        {
+          "op": "replace",
+          "path": "",
+          "value": {
+            "request": "mithril-profile",
+            "payment": {
+              "RP": 0,
+              "Action": 0
+            },
+            "inputUnchanged": true,
+            "output": null,
+            "status": "preflight"
+          }
+        }
+      ]
+    }
+  ]
+}

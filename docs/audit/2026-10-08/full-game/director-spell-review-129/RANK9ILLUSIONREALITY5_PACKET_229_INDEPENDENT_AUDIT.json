@@ -1,0 +1,198 @@
+{
+  "id": "RANK9ILLUSIONREALITY5-PACKET-229-INDEPENDENT-AUDIT",
+  "status": "PASS",
+  "checkedAtUtc": "2026-10-30T00:43:55.009288+00:00",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_illusionreality5_current_source_229_prepared/DD_Rank9_IllusionReality5_CurrentSource_229.zip",
+    "bytes": 337505015,
+    "sha256": "130d5d4934dc92bd8834bfa482e97a0fcf7af02cb15fbe7fc3e398c56b5a8e05",
+    "crc32": "4b492321"
+  },
+  "delivery": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_illusionreality5_current_source_229_prepared/DD_Rank9_IllusionReality5_CurrentSource_229_DELIVERY.json",
+    "bytes": 42952,
+    "sha256": "08b89b1190286371d844f72048cb54494dcac222f3ebc2b4348c2d086a3176a0",
+    "crc32": "151ce5b9"
+  },
+  "sourceCommit": "197366eae0c786415de55a0e4739e83f49f1a65f",
+  "sourceBranch": "main",
+  "authority": {
+    "reviewedApplied": 811,
+    "pending": 37,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 535,
+    "scopedInterfaces": 173
+  },
+  "targetIds": [
+    "soul-reflection"
+  ],
+  "closedAcceptedAppliedIds": [
+    "supreme-illusion",
+    "mirrored-world",
+    "ethereal-disjunction",
+    "illusory-reality"
+  ],
+  "priorBlocker": "IR207-B02",
+  "checkCount": 15,
+  "passedChecks": 15,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "check": "Archive bytes/SHA/CRC and label match the external packet delivery",
+      "passed": true,
+      "detail": {
+        "bytes": 337505015,
+        "sha256": "130d5d4934dc92bd8834bfa482e97a0fcf7af02cb15fbe7fc3e398c56b5a8e05",
+        "crc32": "4b492321"
+      }
+    },
+    {
+      "check": "Candidate, context and request sidecars match their delivery bindings",
+      "passed": true,
+      "detail": {
+        "candidate": {
+          "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_illusionreality5_current_source_229_prepared/CURRENT_SOURCE_CONFERENCE_CANDIDATE_229.json",
+          "bytes": 1131725,
+          "sha256": "4ac75c5ca0f23da46773bea98e543af0014e3c6d93cd04556ad49ce8550074ba"
+        },
+        "context": {
+          "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_illusionreality5_current_source_229_prepared/CURRENT_CONTEXT_229.json",
+          "bytes": 43939,
+          "sha256": "9b788cd07bc17359971b4a7db147e3f422a1bbd95304cc131b2f16f23e03e5d1"
+        },
+        "request": {
+          "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_illusionreality5_current_source_229_prepared/REQUEST_229.txt",
+          "bytes": 1926,
+          "sha256": "fc6576a4b654d90988ee87f0353c2ca9a2c7d5352bc01c69120c4c0890f8bca7"
+        }
+      }
+    },
+    {
+      "check": "Archive has exact unique safe members and valid ZIP CRCs",
+      "passed": true,
+      "detail": {
+        "members": 222,
+        "unsafe": []
+      }
+    },
+    {
+      "check": "Internal manifest is exact and names the current group/authority",
+      "passed": true,
+      "detail": {
+        "payloadMembers": 221,
+        "manifestRows": 221
+      }
+    },
+    {
+      "check": "Every packet member matches its independent size/SHA/CRC manifest row",
+      "passed": true,
+      "detail": {
+        "checked": 221,
+        "failures": []
+      }
+    },
+    {
+      "check": "Current candidate, context and packet delivery agree on the exact one-identity scope and authority",
+      "passed": true,
+      "detail": {
+        "scope": [
+          "soul-reflection"
+        ],
+        "authority": {
+          "reviewedApplied": 811,
+          "pending": 37,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 535,
+          "scopedInterfaces": 173
+        }
+      }
+    },
+    {
+      "check": "All 31 original questions, two focused addenda, 10 required cases and five future requirements are retained",
+      "passed": true,
+      "detail": {
+        "questions": 31,
+        "addenda": 2,
+        "mainCases": 10,
+        "futureRequirements": 5
+      }
+    },
+    {
+      "check": "Pending audit and current index agree on all 37 pending identities and Soul Reflection remains pending",
+      "passed": true,
+      "detail": {
+        "pendingCount": 37,
+        "target": [
+          "soul-reflection"
+        ]
+      }
+    },
+    {
+      "check": "Return207 accepted/applied identities stay closed and Soul Reflection remains held on its exact prior blocker",
+      "passed": true,
+      "detail": {
+        "acceptedAppliedClosed": [
+          "supreme-illusion",
+          "mirrored-world",
+          "ethereal-disjunction",
+          "illusory-reality"
+        ],
+        "held": [
+          "soul-reflection"
+        ],
+        "blocker": "IR207-B02"
+      }
+    },
+    {
+      "check": "Return228 is independently audited held and outside Soul Reflection scope",
+      "passed": true,
+      "detail": {
+        "return228Held": [
+          "reverse-gravity-field"
+        ]
+      }
+    },
+    {
+      "check": "The current queue order places Soul Reflection after Impact/Exile4 and before Material Forging2",
+      "passed": true,
+      "detail": {
+        "previous": "rank9-impact-exile4",
+        "current": "rank9-illusion-reality5",
+        "next": "rank9-material-forging2"
+      }
+    },
+    {
+      "check": "Historical source candidate and exact archive remain bound to queue provenance",
+      "passed": true,
+      "detail": {
+        "historicalRecords": 5,
+        "historicalSourceBindings": 157
+      }
+    },
+    {
+      "check": "All 157 refreshed source bindings match current files and packet copies",
+      "passed": true,
+      "detail": {
+        "checked": 157,
+        "failures": []
+      }
+    },
+    {
+      "check": "All historical source bindings remain intact in the original source conference archive",
+      "passed": true,
+      "detail": {
+        "checked": 157,
+        "failures": []
+      }
+    },
+    {
+      "check": "Application, canonical and downstream approval gates remain closed",
+      "passed": true,
+      "detail": {
+        "canonicalChanges": false,
+        "accepted": false,
+        "applied": false
+      }
+    }
+  ]
+}
