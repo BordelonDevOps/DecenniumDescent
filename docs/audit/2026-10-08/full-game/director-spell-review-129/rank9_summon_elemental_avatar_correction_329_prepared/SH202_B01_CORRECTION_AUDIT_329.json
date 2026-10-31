@@ -1,0 +1,114 @@
+{
+  "id": "SH202-B01-CORRECTION-329-INDEPENDENT-AUDIT",
+  "recordedAtUtc": "2026-10-31T07:23:34+00:00",
+  "status": "PASS",
+  "checks": [
+    {
+      "check": "exactly six focused conditional test fixtures",
+      "passed": true,
+      "detail": 6
+    },
+    {
+      "check": "conditional full-turn input grants no fourth strike or reset",
+      "passed": true,
+      "detail": {
+        "fourthStrikeAccepted": false,
+        "attemptedStrikesAfter": 3,
+        "ownerAllowanceReset": false,
+        "newDamageRootCreated": false,
+        "budgetReset": false
+      }
+    },
+    {
+      "check": "damage components stay typed and separate through resistance",
+      "passed": true,
+      "detail": {
+        "fireAfterResistance": 3,
+        "forceAfterResistance": 8,
+        "totalAppliedOnce": 11,
+        "componentRootsRemainDistinct": true,
+        "forceTreatedAsAvatarSource": false
+      }
+    },
+    {
+      "check": "controller transition preserves owner and strike budget",
+      "passed": true,
+      "detail": {
+        "thirdStrikeAccepted": true,
+        "fourthStrikeAccepted": false,
+        "attemptedAfterThird": 3,
+        "sourceOwnerChanged": false,
+        "strikeCapReset": false
+      }
+    },
+    {
+      "check": "aura arbitration applies one greatest pool and consumes the losing due marker",
+      "passed": true,
+      "detail": {
+        "appliedPool": 10,
+        "appliedSourceId": "avatar-A",
+        "packetsApplied": 1,
+        "loserDueOpportunityConsumed": true,
+        "tieWinner": "earlier-application-then-sourceId",
+        "laterReplay": false
+      }
+    },
+    {
+      "check": "outside-initiative clock survives initiative entry without immediate pulse",
+      "passed": true,
+      "detail": {
+        "pulseAtInitiativeEntry": false,
+        "dueMarkerAfterEntrySeconds": 6,
+        "pulseAtNextRegularStart": true,
+        "pulseCountAtSixSeconds": 1,
+        "extraTurnPulse": false
+      }
+    },
+    {
+      "check": "local and rider suppression do not delete body, reset command, or replay pulses",
+      "passed": true,
+      "detail": {
+        "sourceBodyPersists": true,
+        "strikeAttemptsAfter": 1,
+        "ownerBudgetChanged": false,
+        "missedLocalPulseReplayed": false,
+        "outsideRecipientUnaffected": true,
+        "riderSuppressionRemovesBody": false
+      }
+    },
+    {
+      "check": "current authority is unchanged and the spell remains unaccepted pending Director decision",
+      "passed": true,
+      "detail": {
+        "reviewedApplied": 823,
+        "pending": 25,
+        "acceptedUnapplied": 0,
+        "completeStandaloneProcedures": 547,
+        "scopedInterfaces": 173
+      }
+    },
+    {
+      "check": "no canon, runtime, or actual gameplay claim is made",
+      "passed": true,
+      "detail": {
+        "conditionalFixturesAreGameplay": false,
+        "userAuthorshipClaim": false,
+        "canonicalMutation": false,
+        "runtimeExecuted": false
+      }
+    }
+  ],
+  "checkCount": 9,
+  "passedChecks": 9,
+  "failedChecks": 0,
+  "acceptedIds": [],
+  "appliedIds": [],
+  "scopeIds": [
+    "summon-elemental-avatar"
+  ],
+  "blockerIds": [
+    "SH202-B01"
+  ],
+  "runtimeExecuted": false,
+  "canonicalFilesChanged": false
+}

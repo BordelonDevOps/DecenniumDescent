@@ -1,0 +1,59 @@
+{
+  "id": "PG328-ARCH-DISPEL-ROUTE",
+  "sourceCard": {
+    "id": "wizard.arch.dispel-magic",
+    "name": "Dispel Magic",
+    "className": "Wizard",
+    "band": "Arch",
+    "path": null,
+    "sourceKind": "active",
+    "minimumClassLevel": 5,
+    "acquisition": "selection",
+    "activation": "Action",
+    "cost": "3 RP",
+    "rangeAndTarget": "One creature, object or magical effect within 60 feet",
+    "duration": "Instantaneous",
+    "frequency": "Recharge 2 rounds",
+    "effect": "Dispel Magic. Tags: arch, active, wizard-spell, abjuration. Choose one ongoing spell effect you can perceive. If its rank is 3 or lower, end it. If it is rank 4 or higher, make an Intelligence check adding proficiency against DC 10 + spell rank; success ends it. Permanent artifact properties and effects explicitly immune to dispelling are unaffected.",
+    "source": {
+      "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+      "line": 5224,
+      "originalText": "Dispel Magic: End magical effects in an area or on a target."
+    },
+    "designStatus": "provisional-playtest",
+    "spellRank": 3
+  },
+  "selectedActor": "evidence/RETURN284_WIZARD20_PROFILE.json",
+  "selectionPointer": "/acquisitionLedger/8/choices/0",
+  "selectedAtWizardLevel": 9,
+  "minimumWizardLevel": 5,
+  "alwaysPreparedPointer": "/alwaysPrepared/6",
+  "profileStateHash": "ebb96b340b94c3c6a98f8005e6fd6d0d6c93b1dc4abd1b584a7528c5cb459223",
+  "legalSourceAndSelectedAcquisition": "VERIFIED_CONDITIONAL_PROFILE",
+  "availableAction": "Must be demonstrated at actual event; none added here",
+  "baseRpCost": 3,
+  "rangeFeet": 60,
+  "target": "One ongoing spell effect actually perceived",
+  "targetRank": 9,
+  "checkDc": 19,
+  "INTModifier": 5,
+  "PB": 6,
+  "totalCheckModifier": 11,
+  "arithmeticControls": [
+    {
+      "stipulatedFace": 8,
+      "total": 19,
+      "expected": "success if all admission/activation prerequisites hold"
+    },
+    {
+      "stipulatedFace": 7,
+      "total": 18,
+      "expected": "failed paid check; effect remains"
+    }
+  ],
+  "controlsAreNewEncounterTraces": false,
+  "recharge": "2 after paid activation; ticks only actual regular STARTs 2→1→0",
+  "perceptionQualification": "Perceiving ordinary walls or knowing Fortress exists is not by itself a proven perception of the ongoing magical effect. Bind actual visible-effect/aura/detection source and its own range/time/activation if used.",
+  "failureToClose": "No event in the supplied real-dispel branch commits this source, pays3RP, records a check or performs the occupied result. Main B SOURCE_END is hypothetical.",
+  "noGreaterDispelSubstitution": true
+}

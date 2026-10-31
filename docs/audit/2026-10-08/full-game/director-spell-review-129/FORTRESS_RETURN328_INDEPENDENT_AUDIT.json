@@ -1,0 +1,209 @@
+{
+  "id": "FORTRESS-RETURN328-INDEPENDENT-AUDIT",
+  "recordedAtUtc": "2026-10-31T07:23:34+00:00",
+  "status": "PASS",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/conjure_demiplane_fortress_return328_received/DD_Rank9_ConjureDemiplaneFortress_Director_Return328_HELD.zip",
+    "bytes": 2237857,
+    "sha256": "47af8e23be318210229f7fd2b360be809b2b7ed5d73b08abcbeaf7a078c3f1f4",
+    "crc32": "8f47593d"
+  },
+  "delivery": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/conjure_demiplane_fortress_return328_received/DD_Rank9_ConjureDemiplaneFortress_Director_Return328_HELD_DELIVERY.json",
+    "bytes": 30426,
+    "sha256": "ba085a89c5235b0561acae9dcfa899d54fe59b193cc47b97b7d22e294dcdd68b",
+    "crc32": "3491e395"
+  },
+  "memberCount": 67,
+  "checkCount": 12,
+  "passedChecks": 12,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "check": "downloaded Director archive and delivery match sealed SHA-256 bindings",
+      "passed": true,
+      "detail": {
+        "archive": {
+          "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/conjure_demiplane_fortress_return328_received/DD_Rank9_ConjureDemiplaneFortress_Director_Return328_HELD.zip",
+          "bytes": 2237857,
+          "sha256": "47af8e23be318210229f7fd2b360be809b2b7ed5d73b08abcbeaf7a078c3f1f4",
+          "crc32": "8f47593d"
+        },
+        "delivery": {
+          "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/conjure_demiplane_fortress_return328_received/DD_Rank9_ConjureDemiplaneFortress_Director_Return328_HELD_DELIVERY.json",
+          "bytes": 30426,
+          "sha256": "ba085a89c5235b0561acae9dcfa899d54fe59b193cc47b97b7d22e294dcdd68b",
+          "crc32": "3491e395"
+        }
+      }
+    },
+    {
+      "check": "delivery records an exact one-spell HOLD with no acceptance or application",
+      "passed": true,
+      "detail": {
+        "semanticStatus": "HOLD",
+        "heldIds": [
+          "conjure-demiplane-fortress"
+        ],
+        "blockerIds": [
+          "PG200-B06"
+        ],
+        "acceptedIds": [],
+        "appliedIds": [],
+        "canonicalFilesChanged": false
+      }
+    },
+    {
+      "check": "sealed authority and next identity match the current queue",
+      "passed": true,
+      "detail": {
+        "authorityUnchanged": {
+          "reviewedApplied": 823,
+          "pending": 25,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 547,
+          "scopedInterfaces": 173
+        },
+        "closureTasksRemaining": 25,
+        "nextIdentity": "summon-elemental-avatar",
+        "nextBlockerIds": [
+          "SH202-B01"
+        ]
+      }
+    },
+    {
+      "check": "ZIP CRC, unique members, allowlist and declared member count pass",
+      "passed": true,
+      "detail": {
+        "members": 67
+      }
+    },
+    {
+      "check": "external delivery seals every archive member byte-for-byte",
+      "passed": true,
+      "detail": {
+        "sealedMembers": 67
+      }
+    },
+    {
+      "check": "internal manifest seals all 66 non-manifest archive members",
+      "passed": true,
+      "detail": {
+        "payloadMembers": 66
+      }
+    },
+    {
+      "check": "inner decision preserves Fortress-only HOLD and unchanged authority",
+      "passed": true,
+      "detail": {
+        "decision": "HOLD",
+        "targetIds": [
+          "conjure-demiplane-fortress"
+        ],
+        "blockerIds": [
+          "PG200-B06"
+        ],
+        "nextIdentity": "summon-elemental-avatar",
+        "nextBlockerIds": [
+          "SH202-B01"
+        ]
+      }
+    },
+    {
+      "check": "PG200-B06 remains open with exactly the 13 recorded witness parts",
+      "passed": true,
+      "detail": {
+        "openWitnessParts": 13,
+        "sourceGains": [
+          "PG328-G01",
+          "PG328-G02",
+          "PG328-G03",
+          "PG328-G04"
+        ]
+      }
+    },
+    {
+      "check": "only the verified conditional Arch Dispel acquisition/source subpart is closed",
+      "passed": true,
+      "detail": {
+        "closedSourceSubparts": [
+          "PG328-G01"
+        ],
+        "gainStatus": "SOURCE_AND_SELECTED_ACQUISITION_VERIFIED"
+      }
+    },
+    {
+      "check": "replay/integrity counts and semantic HOLD match the sealed summary",
+      "passed": true,
+      "detail": {
+        "cases": 14,
+        "events": 138,
+        "forwardOperations": 276,
+        "inverseOperations": 276,
+        "dataIntegrityChecks": 1398,
+        "dataFailures": 0,
+        "openWitnessParts": 13
+      }
+    },
+    {
+      "check": "conditional fixture provenance is explicit and no user-event authorship is claimed",
+      "passed": true,
+      "detail": {
+        "actualGameplayClaim": false,
+        "userEventAuthorshipClaim": false,
+        "wholeIdentityAccepted": false
+      }
+    },
+    {
+      "check": "embedded next queue retains the 25 pending identities and names Summon Elemental Avatar",
+      "passed": true,
+      "detail": {
+        "closureTasksRemaining": 25,
+        "nextIdentity": "summon-elemental-avatar",
+        "nextBlockerIds": [
+          "SH202-B01"
+        ]
+      }
+    }
+  ],
+  "acceptedIds": [],
+  "appliedIds": [],
+  "heldIds": [
+    "conjure-demiplane-fortress"
+  ],
+  "blockerIds": [
+    "PG200-B06"
+  ],
+  "closedSourceSubparts": [
+    "PG328-G01"
+  ],
+  "openWitnessIds": [
+    "PG328-W01",
+    "PG328-W02",
+    "PG328-W03",
+    "PG328-W04",
+    "PG328-W05",
+    "PG328-W06",
+    "PG328-W07",
+    "PG328-W08",
+    "PG328-W09",
+    "PG328-W10",
+    "PG328-W11",
+    "PG328-W12",
+    "PG328-W13"
+  ],
+  "nextIdentity": "summon-elemental-avatar",
+  "nextBlockerIds": [
+    "SH202-B01"
+  ],
+  "authority": {
+    "reviewedApplied": 823,
+    "pending": 25,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 547,
+    "scopedInterfaces": 173
+  },
+  "canonicalFilesChanged": false,
+  "applicationPerformed": false,
+  "runtimeExecuted": false
+}

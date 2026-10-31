@@ -1,0 +1,242 @@
+{
+  "id": "RANK9-PLANARGATES5-RETURN284-INDEPENDENT-AUDIT",
+  "status": "PASS",
+  "checksPassed": 18,
+  "checksFailed": 0,
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_planargates5_return284_received/DD_Rank9_PlanarGates5_Director_Return284_HELD.zip",
+    "bytes": 1101950,
+    "sha256": "32bd4aefadb49b5ccc6cfba306825f2d50c45a76b6bdeeebb63937b78fd53fd0",
+    "crc32": "ad1d121b"
+  },
+  "delivery": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_planargates5_return284_received/DD_Rank9_PlanarGates5_Director_Return284_HELD_DELIVERY.json",
+    "bytes": 67299,
+    "sha256": "37785c25a536975a6fa4d3e81a57948b3605b2ccdd7b29a44fe2c57b2f24cd02",
+    "crc32": "fcb00d5f"
+  },
+  "sourcePacket": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_planargates5_current_source_284_prepared/DD_Rank9_PlanarGates5_CurrentSource_284.zip",
+    "bytes": 151012730,
+    "sha256": "629a3a0e04758256e0da3c31ef32a341d73da3ba8dca42e5ac7c0259c5bfc1b3",
+    "crc32": "6e9eec8f"
+  },
+  "authority": {
+    "reviewedApplied": 816,
+    "pending": 32,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 540,
+    "scopedInterfaces": 173
+  },
+  "heldIds": [
+    "banishment-gate",
+    "conjure-demiplane-fortress"
+  ],
+  "blockerIds": {
+    "banishment-gate": [
+      "PG200-B03",
+      "PG200-B04"
+    ],
+    "conjure-demiplane-fortress": [
+      "PG200-B06"
+    ]
+  },
+  "semanticDisposition": "Director holds all targeted identities; integrity and replay checks do not establish semantic closure.",
+  "checks": [
+    {
+      "check": "Downloaded Return284 archive matches its sealed byte, SHA-256, and CRC32 binding",
+      "passed": true,
+      "detail": {
+        "bytes": 1101950,
+        "sha256": "32bd4aefadb49b5ccc6cfba306825f2d50c45a76b6bdeeebb63937b78fd53fd0",
+        "crc32": "ad1d121b"
+      }
+    },
+    {
+      "check": "Delivery JSON and current-source archive match independent and attached bindings",
+      "passed": true,
+      "detail": {
+        "deliveryBytes": 67299,
+        "deliverySHA256": "37785c25a536975a6fa4d3e81a57948b3605b2ccdd7b29a44fe2c57b2f24cd02",
+        "sourcePacketSHA256": "629a3a0e04758256e0da3c31ef32a341d73da3ba8dca42e5ac7c0259c5bfc1b3"
+      }
+    },
+    {
+      "check": "Packet284 source packet was independently audited before the Director submission",
+      "passed": true,
+      "detail": {
+        "status": "PASS",
+        "checksPassed": 14,
+        "checksFailed": 0
+      }
+    },
+    {
+      "check": "Return284 has 83 unique safe members and the exact delivery allowlist",
+      "passed": true,
+      "detail": {
+        "archiveMembers": 83,
+        "deliveryRows": 83,
+        "safeNames": true
+      }
+    },
+    {
+      "check": "Every Return284 member independently matches delivery byte/SHA/CRC values",
+      "passed": true,
+      "detail": {
+        "checked": 83,
+        "failures": []
+      }
+    },
+    {
+      "check": "Internal self-excluding manifest and delivery reconcile all 82 payload members",
+      "passed": true,
+      "detail": {
+        "manifestRows": 82,
+        "mismatches": []
+      }
+    },
+    {
+      "check": "Director holds exactly the two scoped spells at authority 816/32/0",
+      "passed": true,
+      "detail": {
+        "heldIds": [
+          "banishment-gate",
+          "conjure-demiplane-fortress"
+        ],
+        "blockerIds": {
+          "banishment-gate": [
+            "PG200-B03",
+            "PG200-B04"
+          ],
+          "conjure-demiplane-fortress": [
+            "PG200-B06"
+          ]
+        },
+        "authority": {
+          "reviewedApplied": 816,
+          "pending": 32,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 540,
+          "scopedInterfaces": 173
+        }
+      }
+    },
+    {
+      "check": "Three concrete source-qualified blockers remain open, preserving all ten qualifications",
+      "passed": true,
+      "detail": {
+        "PG200-B03": "Complete one actually source-legal non-Elemental actor and acquired creation/access route, then demonstrate matching ally/enemy and nonmatching crossings. The indexed Faction Envoy now supplies an explicit Humanoid profile lead, but using it requires actual caster acquisition plus canonical-faction membership and invocation permission; those are not established in the preserved actors/cases.",
+        "PG200-B04": "Instantiate the concrete touch-only, stationary-type-change, already-claimed/guard-contention and independent occupied-cell lifecycle witnesses. Supply the actual sources/actors/anatomy/custody for separate carried bodies, primary escape, dead-primary/corpse handling and finite summon expiry with loose cargo; demonstrate cell-local cleanup and terminal placement. Rule-only labels and a hypothetical ending are not completed witnesses.",
+        "PG200-B06": "Complete the actual panel/support and movement graph with a compatible acquired damaging source; legitimate productive-work/rest inputs and outcomes; a commanded companion job; creator-death persistence; and nonempty acquired-removal, suppression, corpse, expired-summon cargo, reversion and nested-space settlements. Bind the surviving nested entrance/anchor contract. Existing layout and hypothetical source termination do not establish these branches. The bound Wizard Arch Dispel card offers a candidate removal route: Action/3RP/60ft/Recharge2, perceived ongoing rank9 effect, INT+PB vsDC19; demonstrate acquisition and the actual whole-source occupied transition rather than assume removal."
+      }
+    },
+    {
+      "check": "All 175 live source bindings match the candidate and source bytes embedded in Packet284",
+      "passed": true,
+      "detail": {
+        "returnRows": 175,
+        "candidateRows": 175,
+        "mismatches": []
+      }
+    },
+    {
+      "check": "All 250 Packet284 archive members match its internal manifest",
+      "passed": true,
+      "detail": {
+        "archiveMembers": 250,
+        "manifestPayloadMembers": 249,
+        "mismatches": []
+      }
+    },
+    {
+      "check": "All 23 preserved case byte streams contain 267 canonical state-hash-verified events",
+      "passed": true,
+      "detail": {
+        "cases": 23,
+        "events": 267,
+        "stateHashFailures": [],
+        "summaryFailures": []
+      }
+    },
+    {
+      "check": "All 23 Return284 case files remain byte-exact with sealed Return243 evidence",
+      "passed": true,
+      "detail": {
+        "currentCases": 23,
+        "priorCases": 23
+      }
+    },
+    {
+      "check": "All retained cases remain explicitly incomplete with relevant held blocker and qualifications",
+      "passed": true,
+      "detail": {
+        "dispositions": 23
+      }
+    },
+    {
+      "check": "Return284 reports 16,689 pre-seal checks without failures and all 419 seal checks pass",
+      "passed": true,
+      "detail": {
+        "freshChecks": 16689,
+        "failedChecks": 0,
+        "sealChecks": 419,
+        "totalIncludingSeal": 17108
+      }
+    },
+    {
+      "check": "All original questions and obligations are preserved through the reassessment",
+      "passed": true,
+      "detail": {
+        "questions": 30,
+        "addenda": 2,
+        "futureObligations": 9,
+        "dispositions": 6
+      }
+    },
+    {
+      "check": "Return200 applied gate identities stay source-bound and closed",
+      "passed": true,
+      "detail": {
+        "closedAppliedIds": [
+          "gate",
+          "absolute-gate",
+          "planar-sanctuary"
+        ],
+        "priorReturn200SHA256": "8afda34a91bad329273753232e02a76136bff01a3d1da95416b573c9f4fb284c"
+      }
+    },
+    {
+      "check": "Return283 hold remains unchanged and Director selects the exact Summon Hosts5 next group",
+      "passed": true,
+      "detail": {
+        "priorHold": [
+          "faction-omniscience-supreme"
+        ],
+        "nextPendingGroup": {
+          "group": "rank9-summon-hosts5",
+          "ids": [
+            "summon-elemental-avatar",
+            "summon-herald-of-the-planes",
+            "summon-avatar-of-decay"
+          ],
+          "blockerIds": [
+            "SH202-B01",
+            "SH202-B02",
+            "SH202-B03"
+          ],
+          "condition": "Next separate current-authority packet; not reviewed or accepted here."
+        }
+      }
+    },
+    {
+      "check": "Return284 procedures are limited to the two scoped pending identities",
+      "passed": true,
+      "detail": {
+        "procedures": [
+          "procedures/banishment-gate.json",
+          "procedures/conjure-demiplane-fortress.json"
+        ]
+      }
+    }
+  ]
+}

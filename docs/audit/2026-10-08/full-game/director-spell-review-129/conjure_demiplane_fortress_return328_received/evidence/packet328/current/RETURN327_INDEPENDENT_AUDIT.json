@@ -1,0 +1,204 @@
+{
+  "id": "BANISHMENT-GATE-RETURN327-INDEPENDENT-AUDIT",
+  "recordedAtUtc": "2026-10-31T06:52:49+00:00",
+  "status": "PASS",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/banishment_gate_return327_received/DD_Rank9_BanishmentGate_Director_Return327_HELD.zip",
+    "bytes": 757821,
+    "sha256": "3bd6b2f192c4e63fcee587b234e0d6877ce20c152ab99891ca797030e32755c7",
+    "crc32": "dc50d4c4"
+  },
+  "delivery": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/banishment_gate_return327_received/DD_Rank9_BanishmentGate_Director_Return327_HELD_DELIVERY.json",
+    "bytes": 21207,
+    "sha256": "3531c6c1d96486dcadc40faa71caf81040002ab876ac934441d31526628ac5d5",
+    "crc32": "d85ee9dc"
+  },
+  "memberCount": 48,
+  "checkCount": 13,
+  "passedChecks": 13,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "check": "archive matches Director delivery byte count, SHA-256 and CRC32",
+      "passed": true,
+      "detail": {
+        "path": "DD_Rank9_BanishmentGate_Director_Return327_HELD.zip",
+        "bytes": 757821,
+        "sha256": "3bd6b2f192c4e63fcee587b234e0d6877ce20c152ab99891ca797030e32755c7",
+        "crc32": "dc50d4c4"
+      }
+    },
+    {
+      "check": "delivery records a one-spell sealed HOLD with exact blockers and no application",
+      "passed": true,
+      "detail": {
+        "semanticStatus": "HOLD",
+        "heldIds": [
+          "banishment-gate"
+        ],
+        "blockerIds": [
+          "PG200-B03",
+          "PG200-B04"
+        ],
+        "application": false,
+        "canonicalFilesChanged": false
+      }
+    },
+    {
+      "check": "authority, closure counts and next identity match the sealed queue",
+      "passed": true,
+      "detail": {
+        "authorityUnchanged": {
+          "reviewedApplied": 823,
+          "pending": 25,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 547,
+          "scopedInterfaces": 173
+        },
+        "closureTasksRemaining": 25,
+        "nextIdentity": "conjure-demiplane-fortress",
+        "nextBlockerIds": [
+          "PG200-B06"
+        ]
+      }
+    },
+    {
+      "check": "ZIP CRC, unique members, exact allowlist and declared count",
+      "passed": true,
+      "detail": {
+        "members": 48
+      }
+    },
+    {
+      "check": "delivery seals every archive member byte count, SHA-256 and CRC32",
+      "passed": true,
+      "detail": {
+        "sealedMembers": 48
+      }
+    },
+    {
+      "check": "internal manifest seals the 46 manifest-bound payload members; nested source manifest is outer-sealed",
+      "passed": true,
+      "detail": {
+        "payloadMembers": 46
+      }
+    },
+    {
+      "check": "inner decision is Banishment Gate-only HOLD; authority and other gates are unchanged",
+      "passed": true,
+      "detail": {
+        "decision": "HOLD",
+        "targetIds": [
+          "banishment-gate"
+        ],
+        "blockerIds": [
+          "PG200-B03",
+          "PG200-B04"
+        ],
+        "nextIdentity": "conjure-demiplane-fortress"
+      }
+    },
+    {
+      "check": "both source-level gains are narrow and leave encounter blockers open",
+      "passed": true,
+      "detail": {
+        "PG327-B03-SOURCE-PROFILE": "CLOSED_SOURCE_AVAILABILITY_SUBPART_ONLY",
+        "PG327-B04-FINITE-CARGO-CONTRACT": "CLOSED_SOURCE_RULE_AVAILABILITY_SUBPART_ONLY"
+      }
+    },
+    {
+      "check": "all ten inherited PG200 qualifications remain retained",
+      "passed": true,
+      "detail": {
+        "qualificationCount": 10
+      }
+    },
+    {
+      "check": "all 1,096 integrity checks pass while the two semantic blockers stay held",
+      "passed": true,
+      "detail": {
+        "dataChecks": 1096,
+        "semanticHolds": [
+          "PG200-B03",
+          "PG200-B04"
+        ]
+      }
+    },
+    {
+      "check": "nine preserved cases and all reversible event operations match the sealed summary",
+      "passed": true,
+      "detail": {
+        "preservedCases": 9,
+        "events": 129,
+        "forwardOperations": 258,
+        "inverseOperations": 258,
+        "ruleOnlyBranchRecords": 7
+      }
+    },
+    {
+      "check": "PG200-B03/B04 remain open with exact eight minimum witnesses; only source subparts close",
+      "passed": true,
+      "detail": {
+        "minimumWitnessIds": [
+          "PG327-W01",
+          "PG327-W02",
+          "PG327-W03",
+          "PG327-W04",
+          "PG327-W05",
+          "PG327-W06",
+          "PG327-W07",
+          "PG327-W08"
+        ]
+      }
+    },
+    {
+      "check": "priority queue remains unchanged and Conjure Demiplane Fortress is next",
+      "passed": true,
+      "detail": {
+        "closureTasksRemaining": 25,
+        "nextIdentity": "conjure-demiplane-fortress",
+        "nextBlockerIds": [
+          "PG200-B06"
+        ]
+      }
+    }
+  ],
+  "acceptedIds": [],
+  "appliedIds": [],
+  "heldIds": [
+    "banishment-gate"
+  ],
+  "blockerIds": [
+    "PG200-B03",
+    "PG200-B04"
+  ],
+  "sourceLevelGains": [
+    "PG327-B03-SOURCE-PROFILE",
+    "PG327-B04-FINITE-CARGO-CONTRACT"
+  ],
+  "minimumWitnessIds": [
+    "PG327-W01",
+    "PG327-W02",
+    "PG327-W03",
+    "PG327-W04",
+    "PG327-W05",
+    "PG327-W06",
+    "PG327-W07",
+    "PG327-W08"
+  ],
+  "nextIdentity": "conjure-demiplane-fortress",
+  "nextBlockerIds": [
+    "PG200-B06"
+  ],
+  "authority": {
+    "reviewedApplied": 823,
+    "pending": 25,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 547,
+    "scopedInterfaces": 173
+  },
+  "canonicalFilesChanged": false,
+  "applicationPerformed": false,
+  "runtimeExecuted": false
+}
