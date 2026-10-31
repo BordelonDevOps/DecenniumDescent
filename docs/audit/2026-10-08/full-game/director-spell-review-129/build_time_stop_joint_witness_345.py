@@ -12,8 +12,8 @@ from typing import Any
 
 ROOT = pathlib.Path(__file__).resolve().parents[5]
 AUDIT = pathlib.Path(__file__).resolve().parent
-OUT = AUDIT / "rank9_time_stop_joint_witness_345_build_output_r3"
-PUBLISH = AUDIT / "rank9_time_stop_joint_witness_345_delivery_r3"
+OUT = AUDIT / "rank9_time_stop_joint_witness_345_build_output_r4"
+PUBLISH = AUDIT / "rank9_time_stop_joint_witness_345_delivery_r4"
 RETURN318 = AUDIT / "rank9_time_stop_return318_received"
 SOURCES = {
     "catalog": ROOT / "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
@@ -242,7 +242,7 @@ def build(actor_id: str, class_name: str, level: int, role: str, target_spell: s
               "sourcePath": "wizard.json#/engine/27"},
              {"id": "wizard.supplement.school-mastery", "acquiredAtClassLevel": 5, "kind": "automatic", "schoolBonusTotal": 2,
               "sourcePath": "wizard.json#/engine/27"},
-             {"id": "wizard.supplement.arcane-ward", "acquiredAtClassLevel": 6, "kind": "automatic", "resistanceChoice": "force",
+             {"id": "wizard.supplement.arcane-ward", "acquiredAtClassLevel": 6, "kind": "automatic",
               "sourcePath": "wizard.json#/engine/27"},
              {"id": "wizard.supplement.dual-cast", "acquiredAtClassLevel": 9, "kind": "automatic", "availability": "acquired-uninvoked",
               "invoked": False, "sourcePath": "wizard.json#/engine/27"}]
@@ -395,6 +395,8 @@ def build(actor_id: str, class_name: str, level: int, role: str, target_spell: s
         actor["resistances"] = [ward_type]
         actor["arcaneWardChoice"] = {"damageType": ward_type, "reason": ward_reason,
             "sourcePath": "wizard.json#/cards/" + str(next(i for i, card in enumerate(wizard_source["cards"]) if card["id"] == "wizard.supplement.arcane-ward"))}
+        ward_feature = next(row for row in actor["automaticFeatures"] if row["id"] == "wizard.supplement.arcane-ward")
+        ward_feature["resistanceChoice"] = ward_type
     if not (is_wizard and casting_school == "Divination"):
         actor["finiteUses"].pop("divinationFailedSaveReroll", None)
     return actor

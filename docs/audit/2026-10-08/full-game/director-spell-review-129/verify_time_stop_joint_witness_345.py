@@ -13,8 +13,8 @@ from typing import Any
 ROOT = pathlib.Path(__file__).resolve().parents[5]
 AUDIT = pathlib.Path(__file__).resolve().parent
 RETURN318 = AUDIT / "rank9_time_stop_return318_received"
-BUILD = AUDIT / "rank9_time_stop_joint_witness_345_build_output_r3"
-DELIVERY = AUDIT / "rank9_time_stop_joint_witness_345_delivery_r3"
+BUILD = AUDIT / "rank9_time_stop_joint_witness_345_build_output_r4"
+DELIVERY = AUDIT / "rank9_time_stop_joint_witness_345_delivery_r4"
 SOURCES = {
     "catalog": ROOT / "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
     "index": ROOT / "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
@@ -248,6 +248,7 @@ def main() -> int:
                 wizard_checks_ok &= "divinationFailedSaveReroll" not in actor.get("finiteUses", {})
                 expected_resistance = expected_ward(catalog, actor)
                 wizard_checks_ok &= actor.get("resistances") == [expected_resistance] and actor.get("arcaneWardChoice", {}).get("damageType") == expected_resistance
+                wizard_checks_ok &= auto.get("wizard.supplement.arcane-ward", {}).get("resistanceChoice") == expected_resistance
 
                 known = set(ids)
                 for row in book:
