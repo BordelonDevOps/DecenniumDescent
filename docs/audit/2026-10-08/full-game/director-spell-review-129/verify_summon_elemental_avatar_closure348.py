@@ -1,0 +1,214 @@
+from __future__ import annotations
+
+import copy
+import hashlib
+import json
+from pathlib import Path
+
+
+AUDIT = Path(__file__).resolve().parent
+OUT = AUDIT / "rank9_summon_elemental_avatar_closure_348_delivery"
+DELTA_PATH = OUT / "SH202_B01_SH330_CONDITIONAL_TRANSITION_DELTA_348.json"
+REPORT_PATH = OUT / "SH202_B01_SH330_REPLAY_VERIFICATION_348.json"
+
+
+def canonical(value: object) -> bytes:
+    return json.dumps(value, sort_keys=True, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
+
+
+def digest(value: object) -> str:
+    return hashlib.sha256(canonical(value)).hexdigest()
+
+
+def parts(pointer: str) -> list[str]:
+    if pointer == "":
+        return []
+    if not pointer.startswith("/"):
+        raise AssertionError(f"invalid JSON pointer: {pointer}")
+    return [x.replace("~1", "/").replace("~0", "~") for x in pointer[1:].split("/")]
+
+
+def get(state: object, pointer: str):
+    value = state
+    for part in parts(pointer):
+        value = value[int(part)] if isinstance(value, list) else value[part]
+    return value
+
+
+def set_value(state: object, pointer: str, value: object) -> None:
+    path = parts(pointer)
+    parent = state
+    for part in path[:-1]:
+        parent = parent[int(part)] if isinstance(parent, list) else parent[part]
+    if isinstance(parent, list):
+        parent[int(path[-1])] = copy.deepcopy(value)
+    else:
+        parent[path[-1]] = copy.deepcopy(value)
+
+
+def main() -> None:
+    delta = json.loads(DELTA_PATH.read_text(encoding="utf-8"))
+    checks: list[dict] = []
+
+    def ck(label: str, ok: bool, evidence: object = None) -> None:
+        checks.append({"check": label, "passed": bool(ok), "evidence": evidence})
+        if not ok:
+            raise AssertionError(f"{label}: {evidence}")
+
+    expected_tests = [f"SH330-T0{i}" for i in range(1, 7)]
+    ck("only the six SH330 tests are in scope", [row["testId"] for row in delta["cases"]] == expected_tests, [row["testId"] for row in delta["cases"]])
+    ck("authority is still 825 applied / 23 pending / 0 accepted-unapplied", delta["authorityBefore"] == delta["authorityAfter"] == {"reviewedApplied": 825, "pending": 23, "acceptedUnapplied": 0, "completeStandaloneProcedures": 549, "scopedInterfaces": 173}, delta["authorityAfter"])
+    ck("packet does not accept, apply, or authorize an identity", delta["acceptedIds"] == delta["appliedIds"] == delta["applicationAuthorizedIds"] == [] and delta["heldIds"] == ["summon-elemental-avatar"], {k: delta[k] for k in ["acceptedIds", "appliedIds", "applicationAuthorizedIds", "heldIds"]})
+    ck("current queue reclassifies DF218-B03 as historical and closed", delta["queueMetadataCorrection"]["fieldAfter"] == {"linkedPendingComparisonId": None, "linkedPendingBlockerIds": [], "linkedHistoricalComparisonId": "timeless-form", "linkedHistoricalBlockerIds": ["DF218-B03"], "linkedHistoricalDisposition": "SEALED_ACCEPT_APPLIED_CLOSURE346", "linkClassification": "HISTORICAL_CLOSED_NOT_PENDING"}, delta["queueMetadataCorrection"]["fieldAfter"])
+
+    scenario_lookup = {}
+    transition_total = 0
+    reverse_total = 0
+    for case in delta["cases"]:
+        for scenario in case["scenarios"]:
+            sid = scenario["scenarioId"]
+            scenario_lookup[sid] = scenario
+            state = copy.deepcopy(scenario["startingState"])
+            ck(f"{sid}: starting state hash", digest(state) == scenario["startingStateSha256"], scenario["startingStateSha256"])
+            all_ops = []
+            for transition in scenario["transitions"]:
+                transition_total += 1
+                ck(f"{sid}: ordered pre-state {transition['ordinal']}", state == transition["beforeState"] and digest(state) == transition["beforeStateSha256"], transition["beforeStateSha256"])
+                for op in transition["forwardOperations"]:
+                    before = copy.deepcopy(get(state, op["path"]))
+                    if before != op["before"]:
+                        raise AssertionError(f"{sid}: forward precondition mismatch at {op['path']}")
+                    set_value(state, op["path"], op["after"])
+                ck(f"{sid}: ordered post-state {transition['ordinal']}", state == transition["afterState"] and digest(state) == transition["afterStateSha256"], transition["afterStateSha256"])
+                expected_inverse = [{"path": op["path"], "before": op["after"], "after": op["before"]} for op in reversed(transition["forwardOperations"])]
+                ck(f"{sid}: exact inverse patch {transition['ordinal']}", transition["inverseOperations"] == expected_inverse, transition["inverseOperations"])
+                all_ops.append(transition["forwardOperations"])
+                for pointer in scenario["unchangedPaths"]:
+                    ck(f"{sid}: unaffected path {pointer} after event {transition['ordinal']}", get(state, pointer) == get(scenario["startingState"], pointer), {"path": pointer, "value": get(state, pointer)})
+            ck(f"{sid}: final state", state == scenario["finalState"] and digest(state) == scenario["finalStateSha256"], scenario["finalStateSha256"])
+            reverse_state = copy.deepcopy(state)
+            for operations in reversed(all_ops):
+                for op in reversed(operations):
+                    if get(reverse_state, op["path"]) != op["after"]:
+                        raise AssertionError(f"{sid}: inverse precondition mismatch at {op['path']}")
+                    set_value(reverse_state, op["path"], op["before"])
+            reverse_total += 1
+            ck(f"{sid}: full inverse traversal restores exact starting state", reverse_state == scenario["startingState"] and digest(reverse_state) == scenario["startingStateSha256"], digest(reverse_state))
+
+    # Independently derive damage resistance, root settlement, tempHP/HP and finite-summon lifecycle.
+    t02 = delta["cases"][1]["scenarios"]
+    fork = delta["preservedSourceFork"]
+    ck("T02 binds the preserved Return285 Avatar body/profile", fork["avatarBodyId"] == "A:cast1:body1" and fork["avatarProfileId"] == "SH202-ELEMENTAL" and fork["inheritedFixtureStatus"] == "CONDITIONAL_AUTHORED_FIXTURE_NOT_GAMEPLAY", fork)
+    for scenario in t02:
+        for transition in scenario["transitions"]:
+            if transition["event"]["type"] != "resolve_avatar_damage_root":
+                continue
+            before_avatar = transition["beforeState"]["avatar"]
+            root = transition["event"]["root"]
+            calculated = []
+            for component in root["components"]:
+                if component["damageType"] in before_avatar["immunities"]:
+                    resolved = 0
+                    defense = "immune"
+                elif component["damageType"] in before_avatar["resistances"]:
+                    resolved = component["amount"] // 2
+                    defense = "resistance-half-floor"
+                else:
+                    resolved = component["amount"]
+                    defense = "none"
+                calculated.append({"componentId": component["componentId"], "damageType": component["damageType"], "rawAmount": component["amount"], "resolvedAmount": resolved, "defense": defense, "rootId": root["rootId"], "dealerRootId": component["dealerRootId"]})
+            total = sum(row["resolvedAmount"] for row in calculated)
+            temp_used = min(before_avatar["tempHP"], total)
+            hp_damage = max(0, total - temp_used)
+            hp_after = max(0, before_avatar["HP"] - hp_damage)
+            temp_after = before_avatar["tempHP"] - temp_used
+            observed = transition["observedResult"]
+            after_avatar = transition["afterState"]["avatar"]
+            ck(f"{scenario['scenarioId']}: independently derived typed damage", observed["resolvedComponents"] == calculated and observed["totalResolvedOnce"] == total, calculated)
+            ck(f"{scenario['scenarioId']}: independently derived one-time HP/tempHP settlement", after_avatar["HP"] == hp_after and after_avatar["tempHP"] == temp_after and observed["hpAfter"] == hp_after and observed["tempHPAfter"] == temp_after, {"expectedHP": hp_after, "expectedTempHP": temp_after})
+            ck(f"{scenario['scenarioId']}: one root creates one lifecycle settlement", len(transition["afterState"]["lifecycleSettlements"]) == len(transition["beforeState"]["lifecycleSettlements"]) + 1 and transition["afterState"]["lifecycleSettlements"][-1]["rootId"] == root["rootId"], root["rootId"])
+    c06 = t02[0]["transitions"][0]["observedResult"]
+    c08 = t02[1]["transitions"][0]["observedResult"]
+    temp = t02[2]["transitions"][0]["observedResult"]
+    ck("Return331's same-root fire6->3 plus force8 totals11", c06["resolvedComponents"][0]["resolvedAmount"] == 3 and c06["resolvedComponents"][1]["resolvedAmount"] == 8 and c06["totalResolvedOnce"] == 11 and c06["settlementCountAfter"] == 1, c06)
+    ck("SH330-T02 fire11/force8 totals13", c08["resolvedComponents"][0]["resolvedAmount"] == 5 and c08["resolvedComponents"][1]["resolvedAmount"] == 8 and c08["totalResolvedOnce"] == 13, c08)
+    ck("synthetic HP30/tempHP3 overlay settles to HP20/tempHP0", temp["hpAfter"] == 20 and temp["tempHPAfter"] == 0 and temp["settlementCountAfter"] == 1, temp)
+    separate = t02[3]["transitions"]
+    ck("separate damage roots retain ordered independent settlements", separate[0]["event"]["root"]["rootId"] != separate[1]["event"]["root"]["rootId"] and separate[1]["observedResult"]["settlementCountAfter"] == 2 and separate[1]["observedResult"]["hpAfter"] == 22, [t["observedResult"] for t in separate])
+
+    # Independently verify the controller reservation/cancellation correction.
+    t03 = delta["cases"][2]["scenarios"]
+    change = t03[0]["transitions"][0]
+    initial_ledger = change["beforeState"]["strikeLedgers"]["round-21"]
+    post_ledger = change["afterState"]["strikeLedgers"]["round-21"]
+    ck("T03 C03 binds reservedSlots3/attempts2 and cancels slot3 without refund", initial_ledger["reservedSlots"] == 3 and initial_ledger["attemptedSlots"] == 2 and post_ledger["attemptedSlots"] == 3 and post_ledger["cancelledSlots"] == [3] and change["observedResult"]["thirdStrikeAccepted"] is False and change["observedResult"]["fourthStrikeAccepted"] is False and change["observedResult"]["refund"] == 0, {"before": initial_ledger, "after": post_ledger, "result": change["observedResult"]})
+    issue = next(t for t in t03[0]["transitions"] if t["event"]["type"] == "issue_new_controller_order")
+    execute = next(t for t in t03[0]["transitions"] if t["event"]["type"] == "execute_at_original_owner_attached_phase")
+    restore = t03[0]["transitions"][-1]
+    ck("T03 later controller order satisfies every stated issuance gate", issue["observedResult"]["accepted"] is True and all(issue["observedResult"]["checks"].values()), issue["observedResult"]["checks"])
+    ck("T03 new order executes only on original owner's scheduled attached phase", execute["observedResult"]["executed"] is True and execute["observedResult"]["phaseOwner"] == "owner-A" and execute["observedResult"]["phaseId"] == "owner-A-attached-22", execute["observedResult"])
+    ck("T03 return of control restores no old order, HP, or resources", restore["observedResult"]["oldOrderRestored"] is False and restore["observedResult"]["restorationGrantedHPOrResource"] is False and restore["afterState"]["pendingOrder"] is None and restore["afterState"]["hp"] == restore["beforeState"]["hp"] and restore["afterState"]["resourceHistory"] == restore["beforeState"]["resourceHistory"], restore["observedResult"])
+    spent = t03[1]["transitions"][0]
+    ck("T03 control change after three spent slots does not refresh cap", spent["afterState"]["strikeLedgers"]["round-21"]["attemptedSlots"] == 3 and t03[1]["transitions"][1]["observedResult"]["accepted"] is False, spent["afterState"]["strikeLedgers"]["round-21"])
+
+    # Independently choose same-family aura winners and calculate packet defenses.
+    t04 = delta["cases"][3]["scenarios"]
+    for scenario in t04:
+        transition = scenario["transitions"][0]
+        before = transition["beforeState"]
+        due = [s for s in before["auraSources"] if s["due"] and not s["consumed"]]
+        eligible = [s for s in due if s["sourceAlive"] and s["withinAura"] and not s["auraIntersectionSuppressed"]]
+        winner = min(eligible, key=lambda s: (-s["rolledPool"], s["applicationOrder"], s["sourceId"])) if eligible else None
+        observed = transition["observedResult"]
+        ck(f"{scenario['scenarioId']}: independent pool/tie winner", (observed["winner"]["sourceId"] if observed["winner"] else None) == (winner["sourceId"] if winner else None), {"expected": winner, "observed": observed["winner"]})
+        ck(f"{scenario['scenarioId']}: every due source consumed", all(s["consumed"] for s in transition["afterState"]["auraSources"] if s["due"]), transition["afterState"]["auraSources"])
+        if winner:
+            saved = transition["event"]["dexSaveTotal"] >= winner["dc"]
+            after_save = winner["rolledPool"] // 2 if saved else winner["rolledPool"]
+            fire_after_resist = after_save // 2 if "fire" in before["recipient"]["resistances"] else after_save
+            packet = observed["winner"]
+            ck(f"{scenario['scenarioId']}: winning dealer/DC/root metadata", (packet["dealerId"], packet["dc"], packet["rootId"]) == (winner["dealerId"], winner["dc"], winner["rootId"]), packet)
+            ck(f"{scenario['scenarioId']}: winning pool resolves save then fire resistance once", packet["damageAfterDefense"] == fire_after_resist and packet["saveSucceeded"] == saved, packet)
+    ck("T04 packet application counts are one and later losing/suppressed work is never replayed", all(s["transitions"][0]["observedResult"]["packetsApplied"] == 1 and (len(s["transitions"]) < 2 or s["transitions"][1]["observedResult"]["priorLosingOrSuppressedPacketReplayed"] is False) for s in t04), [s["scenarioId"] for s in t04])
+
+    # Clocks: no due-time drift or synthesized actor/source budget updates.
+    t05 = delta["cases"][4]["scenarios"]
+    standard = t05[0]["transitions"]
+    ck("T05 immutable due6 survives initiative t2 and regular START t4", standard[0]["afterState"]["nextDueMs"] == 6000 and standard[1]["afterState"]["nextDueMs"] == 6000 and standard[1]["observedResult"]["auraPulse"] is False, [standard[0]["afterState"]["nextDueMs"], standard[1]["afterState"]["nextDueMs"]])
+    due = standard[2]
+    ck("T05 due callback at original timestamp is consumed/coalesced once", due["observedResult"]["dueTimestampMs"] == 6000 and due["observedResult"]["pulse"] is True and due["observedResult"]["coalescedCoincidentRegularStart"] is True and due["afterState"]["consumedOpportunityIds"].count("avatar-A/recipient-B/exposure-due-6000") == 1, due["observedResult"])
+    ck("T05 later actual START markers are strictly after due and independently pulse", standard[3]["observedResult"]["strictlyLaterThanCarriedDue"] and standard[4]["observedResult"]["strictlyLaterThanCarriedDue"] and standard[4]["observedResult"]["pulseCountAfter"] == 3, [standard[3]["observedResult"], standard[4]["observedResult"]])
+    for scenario in t05[1:]:
+        callback = next(t for t in scenario["transitions"] if t["event"]["type"] == "resolve_carried_exposure_due")
+        ck(f"{scenario['scenarioId']}: outside/clipped/dead due is consumed without a pulse", callback["observedResult"]["opportunityConsumed"] is True and callback["observedResult"]["pulse"] is False and callback["afterState"]["pendingExposureDue"] is False, callback["observedResult"])
+
+    # A local field clips only the aura intersection; body identity and strike/command capacity remain.
+    t06 = delta["cases"][5]["scenarios"]
+    for scenario in t06:
+        start = scenario["startingState"]
+        x0, x1 = start["sourceBody"]["position"][0], start["recipientPosition"][0]
+        region = start["suppressionRegion"]["boundsX"]
+        ck(f"{scenario['scenarioId']}: recipient lies inside 10ft aura while body stays outside local field", start["auraRadiusFeet"] == 10 and abs(x1 - x0) <= start["auraRadiusFeet"] and not (region[0] <= x0 <= region[1]) and (region[0] <= x1 <= region[1]), {"sourceX": x0, "recipientX": x1, "auraRadiusFeet": start["auraRadiusFeet"], "field": region})
+        due = scenario["transitions"][0]
+        ck(f"{scenario['scenarioId']}: local due opportunity is consumed without body/strike/command loss", due["observedResult"]["dueOpportunityConsumed"] and due["observedResult"]["bodyPersists"] and due["observedResult"]["bodySuppressed"] is False and due["afterState"]["strikeLedger"] == due["beforeState"]["strikeLedger"] and due["afterState"]["commandEligible"] == due["beforeState"]["commandEligible"], due["observedResult"])
+    ck("T06 exit does not pulse; next marker resumes only if original source remains active", t06[0]["transitions"][1]["observedResult"]["pulseOnLeaving"] is False and t06[0]["transitions"][2]["observedResult"]["pulse"] is True and t06[1]["transitions"][-1]["observedResult"]["pulse"] is False, [s["transitions"][-1]["observedResult"] for s in t06])
+    ck("fixtures are conditional and do not claim runtime/gameplay or extra providers", delta["provenance"] == {"conditionalFixturesAreGameplay": False, "userAuthorshipClaim": False, "canonicalMutation": False, "runtimeExecuted": False, "identityAccepted": False, "applicationPerformed": False}, delta["provenance"])
+
+    report = {
+        "id": "SH202-B01-SH330-INDEPENDENT-REPLAY-VERIFICATION-348",
+        "status": "PASS" if all(row["passed"] for row in checks) else "FAIL",
+        "sourceDelta": {"path": DELTA_PATH.relative_to(AUDIT.parents[4]).as_posix(), "bytes": DELTA_PATH.stat().st_size, "sha256": hashlib.sha256(DELTA_PATH.read_bytes()).hexdigest()},
+        "checkCount": len(checks), "passedChecks": sum(row["passed"] for row in checks), "failedChecks": sum(not row["passed"] for row in checks),
+        "scenarioCount": len(scenario_lookup), "transitionCount": transition_total, "fullyReversedScenarioCount": reverse_total,
+        "checks": checks,
+        "scopeIds": ["summon-elemental-avatar"], "blockerIds": ["SH202-B01"],
+        "runtimeExecuted": False, "canonicalFilesChanged": False, "acceptedIds": [], "appliedIds": [],
+    }
+    REPORT_PATH.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
+    print(json.dumps({"status": report["status"], "checks": report["checkCount"], "passed": report["passedChecks"], "scenarios": report["scenarioCount"], "transitions": report["transitionCount"], "fullyReversed": report["fullyReversedScenarioCount"]}, indent=2))
+    if report["status"] != "PASS":
+        raise SystemExit(1)
+
+
+if __name__ == "__main__":
+    main()

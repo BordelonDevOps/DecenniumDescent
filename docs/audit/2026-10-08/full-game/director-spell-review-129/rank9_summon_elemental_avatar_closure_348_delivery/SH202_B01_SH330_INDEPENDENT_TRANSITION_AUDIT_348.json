@@ -1,0 +1,525 @@
+{
+  "id": "SH202-B01-SH330-INDEPENDENT-TRANSITION-AUDIT-348",
+  "recordedAtUtc": "2026-10-31T12:31:33+00:00",
+  "status": "PASS",
+  "checks": [
+    {
+      "check": "exact six SH330 tests with conditional fixtures",
+      "passed": true,
+      "evidence": [
+        "SH330-T01",
+        "SH330-T02",
+        "SH330-T03",
+        "SH330-T04",
+        "SH330-T05",
+        "SH330-T06"
+      ]
+    },
+    {
+      "check": "every scenario has complete start/end states and a full reversible hash chain",
+      "passed": true,
+      "evidence": {
+        "scenarios": 18,
+        "transitions": 54
+      }
+    },
+    {
+      "check": "all event before/after hashes and ordered forward/inverse patches agree",
+      "passed": true,
+      "evidence": 54
+    },
+    {
+      "check": "T01 canceled reserved slots consume three; extra turn/fourth strike/no-command controls do not reset",
+      "passed": true,
+      "evidence": [
+        {
+          "cancelledSlots": [
+            2,
+            3
+          ],
+          "capacityConsumed": 3,
+          "refund": 0
+        },
+        {
+          "notificationObserved": true,
+          "newCommand": false,
+          "regularStartOrAttachedPhase": false,
+          "budgetReset": false,
+          "sourceDeadlineMs": 60000
+        },
+        {
+          "accepted": false,
+          "reason": "THREE_RESERVED_SLOTS_ALREADY_CONSUMED",
+          "stateMutation": false
+        },
+        {
+          "actualNumberedRoundObserved": true,
+          "roundKey": "round-18",
+          "commandOrActionGranted": false
+        },
+        {
+          "accepted": false,
+          "reason": "NO_COMMAND_OR_OFFENSIVE_ACTION_TOKEN",
+          "stateMutation": false
+        },
+        {
+          "accepted": false,
+          "reason": "NO_AUTHORIZED_PROVIDER_BOUND",
+          "stateMutation": false
+        }
+      ]
+    },
+    {
+      "check": "T02 exact Avatar recipient and fire6/force8 one-root correction resolves once",
+      "passed": true,
+      "evidence": {
+        "rootId": "SH330-T02-COMPOSITE-6F8F",
+        "resolvedComponents": [
+          {
+            "componentId": "fire-6",
+            "damageType": "fire",
+            "rawAmount": 6,
+            "resolvedAmount": 3,
+            "defense": "resistance-half-floor",
+            "rootId": "SH330-T02-COMPOSITE-6F8F",
+            "dealerRootId": "TEST_ONLY:single-composite-root"
+          },
+          {
+            "componentId": "force-8",
+            "damageType": "force",
+            "rawAmount": 8,
+            "resolvedAmount": 8,
+            "defense": "none",
+            "rootId": "SH330-T02-COMPOSITE-6F8F",
+            "dealerRootId": "TEST_ONLY:single-composite-root"
+          }
+        ],
+        "totalResolvedOnce": 11,
+        "tempHPAbsorbed": 0,
+        "hpDamage": 11,
+        "hpAfter": 186,
+        "tempHPAfter": 0,
+        "lifeAfter": "Active",
+        "settlementCountAfter": 1,
+        "distinctRootCountAfter": 1
+      }
+    },
+    {
+      "check": "T02 SH330 fire11/force8 requirement and tempHP/HP settlement pass",
+      "passed": true,
+      "evidence": {
+        "fire11_force8": {
+          "rootId": "SH330-T02-CONTRACT-11F8F",
+          "resolvedComponents": [
+            {
+              "componentId": "fire-11",
+              "damageType": "fire",
+              "rawAmount": 11,
+              "resolvedAmount": 5,
+              "defense": "resistance-half-floor",
+              "rootId": "SH330-T02-CONTRACT-11F8F",
+              "dealerRootId": "TEST_ONLY:single-contract-root"
+            },
+            {
+              "componentId": "force-8",
+              "damageType": "force",
+              "rawAmount": 8,
+              "resolvedAmount": 8,
+              "defense": "none",
+              "rootId": "SH330-T02-CONTRACT-11F8F",
+              "dealerRootId": "TEST_ONLY:single-contract-root"
+            }
+          ],
+          "totalResolvedOnce": 13,
+          "tempHPAbsorbed": 0,
+          "hpDamage": 13,
+          "hpAfter": 184,
+          "tempHPAfter": 0,
+          "lifeAfter": "Active",
+          "settlementCountAfter": 1,
+          "distinctRootCountAfter": 1
+        },
+        "tempHP_overlay": {
+          "rootId": "SH330-T02-CONTRACT-11F8F",
+          "resolvedComponents": [
+            {
+              "componentId": "fire-11",
+              "damageType": "fire",
+              "rawAmount": 11,
+              "resolvedAmount": 5,
+              "defense": "resistance-half-floor",
+              "rootId": "SH330-T02-CONTRACT-11F8F",
+              "dealerRootId": "TEST_ONLY:single-contract-root"
+            },
+            {
+              "componentId": "force-8",
+              "damageType": "force",
+              "rawAmount": 8,
+              "resolvedAmount": 8,
+              "defense": "none",
+              "rootId": "SH330-T02-CONTRACT-11F8F",
+              "dealerRootId": "TEST_ONLY:single-contract-root"
+            }
+          ],
+          "totalResolvedOnce": 13,
+          "tempHPAbsorbed": 3,
+          "hpDamage": 10,
+          "hpAfter": 20,
+          "tempHPAfter": 0,
+          "lifeAfter": "Active",
+          "settlementCountAfter": 1,
+          "distinctRootCountAfter": 1
+        }
+      }
+    },
+    {
+      "check": "T02 distinct roots remain ordered with two settlements",
+      "passed": true,
+      "evidence": [
+        {
+          "rootId": "SH330-T02-SEPARATE-FIRE-ROOT",
+          "resolvedComponents": [
+            {
+              "componentId": "fire-6",
+              "damageType": "fire",
+              "rawAmount": 6,
+              "resolvedAmount": 3,
+              "defense": "resistance-half-floor",
+              "rootId": "SH330-T02-SEPARATE-FIRE-ROOT",
+              "dealerRootId": "TEST_ONLY:fire-root"
+            }
+          ],
+          "totalResolvedOnce": 3,
+          "tempHPAbsorbed": 3,
+          "hpDamage": 0,
+          "hpAfter": 30,
+          "tempHPAfter": 0,
+          "lifeAfter": "Active",
+          "settlementCountAfter": 1,
+          "distinctRootCountAfter": 1
+        },
+        {
+          "rootId": "SH330-T02-SEPARATE-FORCE-ROOT",
+          "resolvedComponents": [
+            {
+              "componentId": "force-8",
+              "damageType": "force",
+              "rawAmount": 8,
+              "resolvedAmount": 8,
+              "defense": "none",
+              "rootId": "SH330-T02-SEPARATE-FORCE-ROOT",
+              "dealerRootId": "TEST_ONLY:force-root"
+            }
+          ],
+          "totalResolvedOnce": 8,
+          "tempHPAbsorbed": 0,
+          "hpDamage": 8,
+          "hpAfter": 22,
+          "tempHPAfter": 0,
+          "lifeAfter": "Active",
+          "settlementCountAfter": 2,
+          "distinctRootCountAfter": 2
+        }
+      ]
+    },
+    {
+      "check": "T03 Return331 reservedSlots3/attempts2 cancellation consumes third slot without refund",
+      "passed": true,
+      "evidence": {
+        "controllerAfter": "controller-B",
+        "oldOrderCancelled": true,
+        "cancelledSlots": [
+          3
+        ],
+        "capacityConsumed": 3,
+        "thirdStrikeAccepted": false,
+        "fourthStrikeAccepted": false,
+        "sourceOwnerChanged": false,
+        "strikeCapReset": false,
+        "refund": 0
+      }
+    },
+    {
+      "check": "T03 later command requires and uses a lawful actual turn, allowance, and original owner phase",
+      "passed": true,
+      "evidence": {
+        "order": {
+          "accepted": true,
+          "checks": {
+            "isCurrentController": true,
+            "actualRegularTurn": true,
+            "bonusAction": true,
+            "sharedAllowance": true,
+            "conscious": true,
+            "perception": true,
+            "samePlane": true,
+            "audibleCommon": true,
+            "lineOfEffect": true,
+            "within60FeetAtIssuanceAndExecution": true,
+            "futureOwnerPhaseBeforeDeadline": true
+          },
+          "order": {
+            "orderId": "order-B-22",
+            "controllerId": "controller-B",
+            "bodyId": "avatar-A",
+            "targetId": "target-C",
+            "status": "pending-original-owner-attached-phase",
+            "roundKey": "round-22"
+          }
+        },
+        "execution": {
+          "executed": true,
+          "phaseId": "owner-A-attached-22",
+          "phaseOwner": "owner-A",
+          "attackActionReservedSlots": 3,
+          "currentControllerId": "controller-B",
+          "sourceOwnerId": "owner-A"
+        }
+      }
+    },
+    {
+      "check": "T03 exhausted post-spend controller change cannot create fourth strike",
+      "passed": true,
+      "evidence": {
+        "controllerAfter": "controller-B",
+        "oldOrderCancelled": false,
+        "cancelledSlots": [],
+        "capacityConsumed": 3,
+        "thirdStrikeAccepted": false,
+        "fourthStrikeAccepted": false,
+        "sourceOwnerChanged": false,
+        "strikeCapReset": false,
+        "refund": 0
+      }
+    },
+    {
+      "check": "T04 max pool and deterministic tie rules select only the correct source",
+      "passed": true,
+      "evidence": [
+        "avatar-B-test-only",
+        "avatar-A",
+        "avatar-A",
+        "avatar-A"
+      ]
+    },
+    {
+      "check": "T04 one packet only, source metadata bound, due opportunities consumed, no replay",
+      "passed": true,
+      "evidence": [
+        {
+          "winner": {
+            "sourceId": "avatar-B-test-only",
+            "dealerId": "TEST_ONLY:avatar-B",
+            "rootId": "SH330-T04-root-B",
+            "dc": 23,
+            "rolledPoolBeforeRecipientDefense": 9,
+            "saveType": "DEX",
+            "saveTotal": 18,
+            "saveSucceeded": false,
+            "afterSaveDamage": 9,
+            "fireResistanceAppliedOnce": false,
+            "damageAfterDefense": 9,
+            "tempHPAbsorbed": 0,
+            "hpDamage": 9,
+            "hpAfter": 95,
+            "tempHPAfter": 0
+          },
+          "packetsApplied": 1,
+          "consumedDueSourceIds": [
+            "avatar-A",
+            "avatar-B-test-only"
+          ],
+          "losingOrSuppressedOpportunitiesConsumed": true
+        },
+        {
+          "winner": {
+            "sourceId": "avatar-A",
+            "dealerId": "A:cast1:body1",
+            "rootId": "SH330-T04-root-A",
+            "dc": 21,
+            "rolledPoolBeforeRecipientDefense": 9,
+            "saveType": "DEX",
+            "saveTotal": 18,
+            "saveSucceeded": false,
+            "afterSaveDamage": 9,
+            "fireResistanceAppliedOnce": false,
+            "damageAfterDefense": 9,
+            "tempHPAbsorbed": 0,
+            "hpDamage": 9,
+            "hpAfter": 95,
+            "tempHPAfter": 0
+          },
+          "packetsApplied": 1,
+          "consumedDueSourceIds": [
+            "avatar-A",
+            "avatar-B-test-only"
+          ],
+          "losingOrSuppressedOpportunitiesConsumed": true
+        },
+        {
+          "winner": {
+            "sourceId": "avatar-A",
+            "dealerId": "TEST_ONLY:avatar-B",
+            "rootId": "SH330-T04-root-B",
+            "dc": 23,
+            "rolledPoolBeforeRecipientDefense": 9,
+            "saveType": "DEX",
+            "saveTotal": 18,
+            "saveSucceeded": false,
+            "afterSaveDamage": 9,
+            "fireResistanceAppliedOnce": false,
+            "damageAfterDefense": 9,
+            "tempHPAbsorbed": 0,
+            "hpDamage": 9,
+            "hpAfter": 95,
+            "tempHPAfter": 0
+          },
+          "packetsApplied": 1,
+          "consumedDueSourceIds": [
+            "avatar-Z",
+            "avatar-A"
+          ],
+          "losingOrSuppressedOpportunitiesConsumed": true
+        },
+        {
+          "winner": {
+            "sourceId": "avatar-A",
+            "dealerId": "A:cast1:body1",
+            "rootId": "SH330-T04-root-A",
+            "dc": 21,
+            "rolledPoolBeforeRecipientDefense": 7,
+            "saveType": "DEX",
+            "saveTotal": 18,
+            "saveSucceeded": false,
+            "afterSaveDamage": 7,
+            "fireResistanceAppliedOnce": false,
+            "damageAfterDefense": 7,
+            "tempHPAbsorbed": 0,
+            "hpDamage": 7,
+            "hpAfter": 97,
+            "tempHPAfter": 0
+          },
+          "packetsApplied": 1,
+          "consumedDueSourceIds": [
+            "avatar-A",
+            "avatar-B-test-only"
+          ],
+          "losingOrSuppressedOpportunitiesConsumed": true
+        }
+      ]
+    },
+    {
+      "check": "T05 initiative entry preserves due6; early start is empty; coincident due/start resolves exactly once",
+      "passed": true,
+      "evidence": {
+        "dueTimestampMs": 6000,
+        "opportunityConsumed": true,
+        "pulse": true,
+        "coalescedCoincidentRegularStart": true,
+        "pulseCountAfter": 1,
+        "actorBudgetOrSourceClockChanged": false
+      }
+    },
+    {
+      "check": "T05 later actual markers and outside/clipped/dead-source branches have no catchup",
+      "passed": true,
+      "evidence": [
+        {
+          "regularStartMs": 16000,
+          "strictlyLaterThanCarriedDue": true,
+          "pulse": true,
+          "pulseCountAfter": 3,
+          "noExposureCatchup": true
+        },
+        {
+          "regularStartMs": 10000,
+          "strictlyLaterThanCarriedDue": true,
+          "pulse": true,
+          "pulseCountAfter": 1,
+          "noExposureCatchup": true
+        },
+        {
+          "regularStartMs": 10000,
+          "strictlyLaterThanCarriedDue": true,
+          "pulse": true,
+          "pulseCountAfter": 1,
+          "noExposureCatchup": true
+        },
+        {
+          "regularStartMs": 10000,
+          "strictlyLaterThanCarriedDue": true,
+          "pulse": false,
+          "pulseCountAfter": 0,
+          "noExposureCatchup": true
+        }
+      ]
+    },
+    {
+      "check": "T06 source body is outside local field; only due aura intersection is clipped and consumed",
+      "passed": true,
+      "evidence": {
+        "markerId": "recipient-B-start-6",
+        "pulse": false,
+        "bodySuppressed": false,
+        "bodyPersists": true,
+        "strikeLedgerUnchanged": true,
+        "dueOpportunityConsumed": true
+      }
+    },
+    {
+      "check": "T06 leaving local field does not replay; next independent marker resumes only before original expiry",
+      "passed": true,
+      "evidence": [
+        {
+          "markerId": "recipient-B-start-12",
+          "pulse": true,
+          "sourceBodyActive": true,
+          "pulseCountAfter": 1
+        },
+        {
+          "markerId": "recipient-B-start-12",
+          "pulse": false,
+          "sourceBodyActive": false,
+          "pulseCountAfter": 0
+        }
+      ]
+    },
+    {
+      "check": "no real acquisition, gameplay occurrence, runtime execution, or application is claimed",
+      "passed": true,
+      "evidence": {
+        "fixtureType": "TEST_ONLY_CONDITIONAL_INPUT",
+        "runtimeExecuted": false,
+        "applicationAuthorized": false
+      }
+    }
+  ],
+  "checkCount": 17,
+  "passedChecks": 17,
+  "failedChecks": 0,
+  "scenarioCount": 18,
+  "transitionCount": 54,
+  "fullInverseTraversals": 18,
+  "independentReplayVerification": {
+    "path": "SH202_B01_SH330_REPLAY_VERIFICATION_348.json",
+    "status": "PASS",
+    "checkCount": 771,
+    "passedChecks": 771,
+    "sha256": "899dd852e98ea1ee0f3c447da87ccb2ca54b3525353804b1e9d3b3e7e2157fbd"
+  },
+  "acceptedIds": [],
+  "appliedIds": [],
+  "applicationAuthorizedIds": [],
+  "blockerIds": [
+    "SH202-B01"
+  ],
+  "authority": {
+    "reviewedApplied": 825,
+    "pending": 23,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 549,
+    "scopedInterfaces": 173
+  },
+  "runtimeExecuted": false,
+  "canonicalFilesChanged": false
+}
