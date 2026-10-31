@@ -1,0 +1,126 @@
+{
+  "id": "COLLAPSE-TIMELINE-PACKET-322-INDEPENDENT-AUDIT",
+  "recordedAtUtc": "2026-10-31T06:07:41+00:00",
+  "status": "PASS",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_current_source_322_prepared/DD_Rank9_CollapseTimeline_CurrentSource_322.zip",
+    "bytes": 676024,
+    "sha256": "2d3bd8e3101b5f46acc17aa72a8416ac3c61b17dd2eb4ac3ebcecdfdfabc5685",
+    "crc32": "12786e72"
+  },
+  "memberCount": 55,
+  "scopeIds": [
+    "collapse-timeline"
+  ],
+  "authority": {
+    "reviewedApplied": 823,
+    "pending": 25,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 547,
+    "scopedInterfaces": 173
+  },
+  "caseCount": 17,
+  "linkedProphecyCases": 14,
+  "sourceInventory": {
+    "total": 140,
+    "unchanged": 139,
+    "changed": 1,
+    "changedPaths": [
+      "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json"
+    ]
+  },
+  "checkCount": 12,
+  "passedChecks": 12,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "check": "ZIP CRC, safe unique paths and exact allowlist",
+      "passed": true,
+      "detail": {
+        "members": 55
+      }
+    },
+    {
+      "check": "every packed member SHA matches prepared bytes",
+      "passed": true,
+      "detail": 55
+    },
+    {
+      "check": "current authority and queue321 identify Collapse Timeline as only next target",
+      "passed": true,
+      "detail": {
+        "reviewedApplied": 823,
+        "pending": 25,
+        "acceptedUnapplied": 0,
+        "completeStandaloneProcedures": 547,
+        "scopedInterfaces": 173
+      }
+    },
+    {
+      "check": "Fate Rewrite Return320 sealed hold remains unchanged",
+      "passed": true,
+      "detail": {
+        "held": [
+          "fate-rewrite"
+        ]
+      }
+    },
+    {
+      "check": "Collapse Timeline procedure targets TF192-B05 and depends on TF192-B02",
+      "passed": true,
+      "detail": [
+        "TF192-B05"
+      ]
+    },
+    {
+      "check": "current FRewrite/EProp/C-Timeline index rows remain pending and unaccepted",
+      "passed": true,
+      "detail": {
+        "Fate": "pending-authored-procedure",
+        "EProp": "pending-authored-procedure"
+      }
+    },
+    {
+      "check": "Return282 current source comparison is exact 140/139/1 index-only",
+      "passed": true,
+      "detail": [
+        "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json"
+      ]
+    },
+    {
+      "check": "all 17 Collapse Timeline cases match exact reviewed procedure case IDs",
+      "passed": true,
+      "detail": 17
+    },
+    {
+      "check": "14 linked EProp cases are marked linked context only",
+      "passed": true,
+      "detail": {
+        "cases": 14,
+        "linkedOnly": true
+      }
+    },
+    {
+      "check": "questions and five future obligations match target set",
+      "passed": true,
+      "detail": {
+        "questions": 7,
+        "obligations": 5
+      }
+    },
+    {
+      "check": "all current source paths unaffected except authored index",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "no identity accepted/applied or canonical/runtime changes during packet build",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "canonicalFilesChanged": false,
+  "runtimeExecuted": false,
+  "acceptedIds": [],
+  "appliedIds": []
+}

@@ -1,0 +1,89 @@
+{
+  "id": "INVULNERABLE-SPHERE-RETURN310-INDEPENDENT-AUDIT",
+  "recordedAtUtc": "2026-10-31T03:59:29+00:00",
+  "status": "PASS",
+  "checkCount": 14,
+  "passedChecks": 14,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "check": "outer return archive matches sealed delivery",
+      "passed": true,
+      "detail": "598929 bytes; SHA-256 562640185a83b9b5b48b1a28a830e29fbd56a90d1219c6a72446c8a9936e0b60"
+    },
+    {
+      "check": "return decision scope and authority are held without acceptance/application",
+      "passed": true,
+      "detail": "822/26/0, one scoped hold, 26 closure tasks, zero first-review tasks"
+    },
+    {
+      "check": "return decision binds the exact submitted Packet310 archive",
+      "passed": true,
+      "detail": "Packet310 SHA-256 7dc723bc9d8612a9ece5df613d250231010bad3d64e82d58ec5fa0158e42d15c"
+    },
+    {
+      "check": "ZIP integrity, safe unique names and exact member count",
+      "passed": true,
+      "detail": "48 unique members; CRC test passed"
+    },
+    {
+      "check": "internal/external allowlists and self-excluding manifest agree",
+      "passed": true,
+      "detail": "47 payload members plus the bound manifest"
+    },
+    {
+      "check": "all internal and external member hashes/CRCs",
+      "passed": true,
+      "detail": "48 external rows; 47 internal payload rows"
+    },
+    {
+      "check": "Director package-check stream reports all 290 checks passing",
+      "passed": true,
+      "detail": "This checks the supplied validation stream in addition to recomputing archive hashes above."
+    },
+    {
+      "check": "Director return validation reports 6,818/6,818 checks passing",
+      "passed": true,
+      "detail": "Supplied return validation is internally consistent; it is not treated as independent semantic proof."
+    },
+    {
+      "check": "sealed decision and blocker record agree on DF218-B04 HOLD",
+      "passed": true,
+      "detail": "No acceptance, application, or blocker revision"
+    },
+    {
+      "check": "missing witness is specific and does not invent route evidence",
+      "passed": true,
+      "detail": "Five narrow source/actor/endpoint/subject/integrated-witness requirements"
+    },
+    {
+      "check": "87 source bindings match Packet310 and current worktree bytes",
+      "passed": true,
+      "detail": "Per-path byte length, SHA-256 and CRC32"
+    },
+    {
+      "check": "Sphere procedure and all 14 cases are byte-preserved and correctly summarized",
+      "passed": true,
+      "detail": "14 cases; 327 events; 654 forward and 654 inverse operations"
+    },
+    {
+      "check": "next identity and remaining work are explicit",
+      "passed": true,
+      "detail": "Nullification Wave / WC188-B01, then Reality Anchor / WC188-B02"
+    },
+    {
+      "check": "prior holds are recorded as separate and unchanged",
+      "passed": true,
+      "detail": "Final Word, Elemental Shell and Timeless Form remain held"
+    }
+  ],
+  "returnArchive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_defenseform8_return310_received/DD_Rank9_DefenseForm8_Director_Return310_HELD.zip",
+    "bytes": 598929,
+    "sha256": "562640185a83b9b5b48b1a28a830e29fbd56a90d1219c6a72446c8a9936e0b60",
+    "crc32": "6c392598"
+  },
+  "deliveryPath": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_defenseform8_return310_received/DD_Rank9_DefenseForm8_Director_Return310_HELD_DELIVERY.json",
+  "submittedPacketSHA256": "7dc723bc9d8612a9ece5df613d250231010bad3d64e82d58ec5fa0158e42d15c",
+  "interpretiveLimit": "This audit verifies package bindings, exact preservation, current source bytes, decision scope and the Director-supplied validation stream. It does not supply the missing planar-crossing witness or independently certify the semantics of a fictional encounter."
+}

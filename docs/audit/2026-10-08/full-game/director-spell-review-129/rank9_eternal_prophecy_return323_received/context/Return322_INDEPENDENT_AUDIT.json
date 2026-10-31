@@ -1,0 +1,312 @@
+{
+  "id": "COLLAPSE-TIMELINE-RETURN322-INDEPENDENT-AUDIT",
+  "recordedAtUtc": "2026-10-31T06:14:35+00:00",
+  "status": "PASS",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/DD_Rank9_CollapseTimeline_Director_Return322_HELD.zip",
+    "bytes": 218305,
+    "sha256": "4c052e3308cfb03c1c6bc593bfee8c7a5c5c7f345a17ea24f5e0c682f808e338",
+    "crc32": "130b30d1"
+  },
+  "delivery": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/DD_Rank9_CollapseTimeline_Director_Return322_HELD_DELIVERY.json",
+    "bytes": 13153,
+    "sha256": "c40dcce0b8e369887bc080f9f7fc858dd5c62f3a87fd706c6da873112cfa904e",
+    "crc32": "11fe8b24"
+  },
+  "memberCount": 43,
+  "checkCount": 15,
+  "passedChecks": 15,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "check": "outer archive matches sealed bytes/SHA-256/CRC32",
+      "passed": true,
+      "detail": {
+        "filename": "DD_Rank9_CollapseTimeline_Director_Return322_HELD.zip",
+        "bytes": 218305,
+        "sha256": "4c052e3308cfb03c1c6bc593bfee8c7a5c5c7f345a17ea24f5e0c682f808e338",
+        "crc32": "130b30d1"
+      }
+    },
+    {
+      "check": "sealed scope holds only Collapse Timeline, with no acceptance/application",
+      "passed": true,
+      "detail": {
+        "status": "SEALED_HELD",
+        "acceptedIds": [],
+        "appliedIds": [],
+        "heldIds": [
+          "collapse-timeline"
+        ],
+        "blockerIds": [
+          "TF192-B05"
+        ],
+        "dependencyIds": [
+          "TF192-B02"
+        ]
+      }
+    },
+    {
+      "check": "authority, task counts and next identity match current queue",
+      "passed": true,
+      "detail": {
+        "authority": {
+          "reviewedApplied": 823,
+          "pending": 25,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 547,
+          "scopedInterfaces": 173
+        },
+        "remainingClosureTasks": 25,
+        "firstReviewTasks": 0,
+        "nextIdentity": "eternal-prophecy",
+        "nextBlocker": "TF192-B02"
+      }
+    },
+    {
+      "check": "ZIP CRC, paths, unique names and exact allowlist pass",
+      "passed": true,
+      "detail": {
+        "members": 43
+      }
+    },
+    {
+      "check": "delivery manifest binds every member by exact bytes/SHA/CRC",
+      "passed": true,
+      "detail": {
+        "bound": 43
+      }
+    },
+    {
+      "check": "inner manifest binds all 42 non-manifest members",
+      "passed": true,
+      "detail": {
+        "bound": 42
+      }
+    },
+    {
+      "check": "inner decision holds only Collapse Timeline at B05",
+      "passed": true,
+      "detail": {
+        "id": "RANK9-COLLAPSETIMELINE-DIRECTOR-RETURN322",
+        "status": "HOLD",
+        "scopeIds": [
+          "collapse-timeline"
+        ],
+        "acceptedIds": [],
+        "appliedIds": [],
+        "heldIds": [
+          "collapse-timeline"
+        ],
+        "decisions": [
+          {
+            "spellId": "collapse-timeline",
+            "accepted": false,
+            "applied": false,
+            "held": true,
+            "blockerIds": [
+              "TF192-B05"
+            ],
+            "dependencyIds": [
+              "TF192-B02"
+            ],
+            "qualificationIds": [
+              "TF192-H-HISTORY",
+              "TF192-Q-BALANCE",
+              "TF192-Q-COMPLETION",
+              "TF192-Q-COSMOLOGY",
+              "TF192-Q-DOMAIN",
+              "TF192-Q-PHYSICAL",
+              "TF192-Q-PLAY",
+              "TF192-Q-RELEASE",
+              "TF192-Q-RUNTIME",
+              "TF192-Q-SOURCE"
+            ],
+            "minimumWitnessFile": "BLOCKER_REASSESSMENT.json"
+          }
+        ],
+        "authorityBefore": {
+          "reviewedApplied": 823,
+          "pending": 25,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 547,
+          "scopedInterfaces": 173
+        },
+        "authorityAfter": {
+          "reviewedApplied": 823,
+          "pending": 25,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 547,
+          "scopedInterfaces": 173
+        },
+        "sourcePacket": {
+          "filename": "DD_Rank9_CollapseTimeline_CurrentSource_322.zip",
+          "bytes": 676024,
+          "sha256": "2d3bd8e3101b5f46acc17aa72a8416ac3c61b17dd2eb4ac3ebcecdfdfabc5685",
+          "crc32": "12786e72"
+        },
+        "counts": {
+          "sourceBindings": 140,
+          "unchangedSources": 139,
+          "changedSources": 1,
+          "inputMembers": 55,
+          "targetCases": 17,
+          "targetEvents": 156,
+          "forwardOperations": 312,
+          "inverseOperations": 312,
+          "fullReverseTraversals": 17,
+          "linkedContextCasesByteVerifiedOnly": 14,
+          "originalQuestions": 7,
+          "focusedAddenda": 1,
+          "futureRequirements": 5
+        },
+        "dataCheckCount": 1102,
+        "remainingClosureTasks": 25,
+        "firstReviewTasks": 0,
+        "preservedOutsideScopeBlockerIds": [
+          "TF192-B02",
+          "TF192-B04"
+        ],
+        "allOtherAcceptancesAndHoldsUnchanged": true,
+        "nextIdentity": "eternal-prophecy",
+        "nextBlocker": "TF192-B02",
+        "nextGroup": "rank9-time-fate6",
+        "nextScope": "Eternal Prophecy-only current-authority review of its guarantee mechanism and exact adverse branches; no implied acceptance or promise weakening.",
+        "applicationPerformed": false,
+        "canonicalEdits": false,
+        "githubChanges": false,
+        "suppliedProgramsExecuted": false,
+        "runtimeExecuted": false,
+        "gatesClosed": [
+          "runtime",
+          "implementation",
+          "human-play",
+          "balance",
+          "cosmology",
+          "domain-closure",
+          "completion",
+          "release"
+        ]
+      }
+    },
+    {
+      "check": "B05 missing-witness and out-of-scope holds are preserved",
+      "passed": true,
+      "detail": {
+        "blocker": "TF192-B05",
+        "dependencies": [
+          "TF192-B02"
+        ],
+        "preserved": [
+          "TF192-B02",
+          "TF192-B04"
+        ]
+      }
+    },
+    {
+      "check": "1,102 data checks pass",
+      "passed": true,
+      "detail": {
+        "checks": 1102,
+        "passed": 1102,
+        "failed": 0
+      }
+    },
+    {
+      "check": "12 package checks pass",
+      "passed": true,
+      "detail": {
+        "count": 12
+      }
+    },
+    {
+      "check": "17 target cases replay 156 events and 312 forward/inverse operations",
+      "passed": true,
+      "detail": {
+        "sourceBindings": 140,
+        "unchangedSources": 139,
+        "changedSources": 1,
+        "inputMembers": 55,
+        "targetCases": 17,
+        "targetEvents": 156,
+        "forwardOperations": 312,
+        "inverseOperations": 312,
+        "fullReverseTraversals": 17,
+        "linkedContextCasesByteVerifiedOnly": 14,
+        "originalQuestions": 7,
+        "focusedAddenda": 1,
+        "futureRequirements": 5
+      }
+    },
+    {
+      "check": "140 source bindings verify with 139 unchanged and one index-only delta",
+      "passed": true,
+      "detail": {
+        "sourceBindings": 140,
+        "unchangedSources": 139,
+        "changedSources": 1,
+        "inputMembers": 55,
+        "targetCases": 17,
+        "targetEvents": 156,
+        "forwardOperations": 312,
+        "inverseOperations": 312,
+        "fullReverseTraversals": 17,
+        "linkedContextCasesByteVerifiedOnly": 14,
+        "originalQuestions": 7,
+        "focusedAddenda": 1,
+        "futureRequirements": 5
+      }
+    },
+    {
+      "check": "Eternal Prophecy remains context-only and B02 stays open",
+      "passed": true,
+      "detail": {
+        "contextCases": 14,
+        "dependencies": [
+          "TF192-B02"
+        ]
+      }
+    },
+    {
+      "check": "all 25 pending identities remain and next is Eternal Prophecy/B02",
+      "passed": true,
+      "detail": {
+        "next": "eternal-prophecy",
+        "blocker": "TF192-B02"
+      }
+    },
+    {
+      "check": "embedded authority inputs match queue321 and explicit prior next",
+      "passed": true,
+      "detail": {
+        "queue": "SPELL-REVIEW-QUEUE-321",
+        "handoff": "SPELL-REVIEW-HANDOFF-321",
+        "audit": "SPELL-REVIEW-CURRENT25-PENDING-IDENTITY-AUDIT-321"
+      }
+    }
+  ],
+  "acceptedIds": [],
+  "appliedIds": [],
+  "heldIds": [
+    "collapse-timeline"
+  ],
+  "blockerIds": [
+    "TF192-B05"
+  ],
+  "dependencyIds": [
+    "TF192-B02"
+  ],
+  "nextIdentity": "eternal-prophecy",
+  "nextBlocker": "TF192-B02",
+  "authority": {
+    "reviewedApplied": 823,
+    "pending": 25,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 547,
+    "scopedInterfaces": 173
+  },
+  "canonicalFilesChanged": false,
+  "applicationPerformed": false,
+  "runtimeExecuted": false
+}

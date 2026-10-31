@@ -1,0 +1,99 @@
+{
+  "id": "NULLIFICATION-WAVE-RETURN312-INDEPENDENT-AUDIT",
+  "recordedAtUtc": "2026-10-31T04:23:48+00:00",
+  "status": "PASS",
+  "checkCount": 14,
+  "passedChecks": 14,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "check": "sealed Return312 archive matches its exact delivery record",
+      "passed": true,
+      "detail": "1050380 bytes; SHA-256 176044eff2d987629128af792af9e6e0ea93adec98112a1d089e358523f6c692"
+    },
+    {
+      "check": "submitted Packet312 and its independent audit are the bound source",
+      "passed": true,
+      "detail": "Packet312 SHA-256 84603d169e85c35ede0edcff9558e496441f02d68f0754f4ffe9552850ec236c"
+    },
+    {
+      "check": "decision is limited to a held Wave identity with no acceptance/application",
+      "passed": true,
+      "detail": "822 applied / 26 pending / 0 accepted-unapplied; Wave only"
+    },
+    {
+      "check": "ZIP CRCs, unique safe paths and exact outer member count",
+      "passed": true,
+      "detail": "66 distinct members; ZIP CRC scan passed"
+    },
+    {
+      "check": "internal and external member allowlists/manifests agree",
+      "passed": true,
+      "detail": "65 payload members plus the separately bound internal manifest"
+    },
+    {
+      "check": "all external and internal member byte/hash/CRC bindings recompute",
+      "passed": true,
+      "detail": "Every archive member was checked against applicable manifests"
+    },
+    {
+      "check": "sealed decision agrees with delivery and retains WC188-B01 only",
+      "passed": true,
+      "detail": "No canonical change, acceptance, application or blocker closure"
+    },
+    {
+      "check": "missing Wave evidence is an explicit paid, integrated positive witness",
+      "passed": true,
+      "detail": "The exact Forge imprint is source-grounded; the integrated paid Wave encounter is absent"
+    },
+    {
+      "check": "Director validation stream has no failed assertions and discloses input warnings",
+      "passed": true,
+      "detail": "Two preserved non-standard input sentinels are documented; source history is not rewritten"
+    },
+    {
+      "check": "semantic review agrees that no new Wave positive witness exists",
+      "passed": true,
+      "detail": "Return312 distinguishes source contract from whole-identity Wave completion"
+    },
+    {
+      "check": "91 refreshed source bindings match the exact Packet312 archive and worktree",
+      "passed": true,
+      "detail": "Each current source is checked in Packet312 and again against the live worktree"
+    },
+    {
+      "check": "11 direct component-source bindings match Return312 payload bytes",
+      "passed": true,
+      "detail": "Included Forge and Glove evidence is checked against exact byte/hash/CRC bindings"
+    },
+    {
+      "check": "18 Wave case records are byte-preserved from Packet312 and count consistently",
+      "passed": true,
+      "detail": "18 cases; 967 events; 1934 forward and 1934 inverse operations"
+    },
+    {
+      "check": "next separate task and priority order are explicit and match Director response",
+      "passed": true,
+      "detail": "Reality Anchor / WC188-B02 is next; Time Stop → Fate Rewrite → Collapse Timeline → Eternal Prophecy follow"
+    }
+  ],
+  "returnArchive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_wardcontrol6_return312_received/DD_Rank9_WardControl6_Director_Return312_HELD.zip",
+    "bytes": 1050380,
+    "sha256": "176044eff2d987629128af792af9e6e0ea93adec98112a1d089e358523f6c692",
+    "crc32": "63a64d69"
+  },
+  "delivery": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_wardcontrol6_return312_received/DD_Rank9_WardControl6_Director_Return312_HELD_DELIVERY.json",
+    "bytes": 42681,
+    "sha256": "98240bc7ebd0e35efca1d77e88dc75a45180c02fb921296231ab151983493a2c",
+    "crc32": "55ad06bd"
+  },
+  "submittedPacket": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_wardcontrol6_source_packet_312_prepared/DD_Rank9_WardControl6_CurrentSource_312.zip",
+    "bytes": 34288227,
+    "sha256": "84603d169e85c35ede0edcff9558e496441f02d68f0754f4ffe9552850ec236c",
+    "crc32": "f457fd4a"
+  },
+  "interpretiveLimit": "This verifies sealed decision bindings, archive integrity, exact preservation, current source bytes, and consistency with the Director-supplied validation stream. It does not create the missing integrated paid Wave witness or independently validate fictional encounter semantics."
+}

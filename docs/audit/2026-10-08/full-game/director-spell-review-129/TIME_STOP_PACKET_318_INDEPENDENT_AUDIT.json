@@ -1,0 +1,142 @@
+{
+  "id": "TIME-STOP-PACKET-318-INDEPENDENT-AUDIT",
+  "recordedAtUtc": "2026-10-31T05:41:53+00:00",
+  "status": "PASS",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_time_stop_current_source_318_prepared/DD_Rank9_TimeStop_CurrentSource_318.zip",
+    "bytes": 3004804,
+    "sha256": "9d2cbae3e0e5b0616838363903fb29d563ab8ad9af9b445bfcb5767b856e01e5",
+    "crc32": "015733e1"
+  },
+  "memberCount": 53,
+  "sourceInventoryCount": 140,
+  "unchangedSourceBindings": 139,
+  "changedSourceBindings": 1,
+  "changedPaths": [
+    "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json"
+  ],
+  "timeStopCases": 14,
+  "scopeIds": [
+    "time-stop"
+  ],
+  "authority": {
+    "reviewedApplied": 823,
+    "pending": 25,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 547,
+    "scopedInterfaces": 173
+  },
+  "checkCount": 11,
+  "passedChecks": 11,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "check": "ZIP member list is unique/safe and exactly matches prepared allowlist",
+      "passed": true,
+      "detail": {
+        "members": 53,
+        "unsafe": []
+      }
+    },
+    {
+      "check": "ZIP CRC and every embedded member SHA-256 match prepared bytes",
+      "passed": true,
+      "detail": {
+        "count": 53
+      }
+    },
+    {
+      "check": "Packet282 140-source comparison has 139 unchanged and only the authored index changed",
+      "passed": true,
+      "detail": {
+        "changedPaths": [
+          "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json"
+        ]
+      }
+    },
+    {
+      "check": "changed current authored index is supplied byte-exactly",
+      "passed": true,
+      "detail": {
+        "bytes": 1697606,
+        "sha256": "c6dd6d30703911864a3e2784d8abb3d79835b39bc01804c4335f80a1c4bea7b2"
+      }
+    },
+    {
+      "check": "current index/catalog/queue/handoff/pending audit bind 823/25/0",
+      "passed": true,
+      "detail": {
+        "reviewedApplied": 823,
+        "pending": 25,
+        "acceptedUnapplied": 0,
+        "completeStandaloneProcedures": 547,
+        "scopedInterfaces": 173
+      }
+    },
+    {
+      "check": "Time Stop is the only adjudication target and remains pending/non-operational",
+      "passed": true,
+      "detail": {
+        "index": "pending-authored-procedure",
+        "operational": null
+      }
+    },
+    {
+      "check": "Timeless Form remains a separate pending blocker, not accepted authority",
+      "passed": true,
+      "detail": {
+        "index": "pending-authored-procedure",
+        "procedurePointer": null,
+        "operational": null
+      }
+    },
+    {
+      "check": "exact latest Time Stop procedure binds TF192-B01 and all 14 case IDs",
+      "passed": true,
+      "detail": {
+        "caseCount": 14
+      }
+    },
+    {
+      "check": "questions/obligations exactly include Q01-Q07, Q32, ADD01 and four Time Stop requirements",
+      "passed": true,
+      "detail": {
+        "questions": [
+          "TF9-Q01",
+          "TF9-Q02",
+          "TF9-Q03",
+          "TF9-Q04",
+          "TF9-Q05",
+          "TF9-Q06",
+          "TF9-Q07",
+          "TF9-Q32",
+          "TIME129-ADD01"
+        ],
+        "obligations": 4
+      }
+    },
+    {
+      "check": "Reality Anchor acceptance/application is the only new applied identity",
+      "passed": true,
+      "detail": {
+        "accepted": [
+          "reality-anchor"
+        ],
+        "applied": [
+          "reality-anchor"
+        ]
+      }
+    },
+    {
+      "check": "no program execution or application occurred while preparing Time Stop packet",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "acceptedIds": [],
+  "appliedIds": [],
+  "heldIds": [],
+  "canonicalFilesChanged": false,
+  "runtimeExecuted": false,
+  "immunityFinding": "Only the pending Timeless Form native row contains explicit Time Stop immunity wording; no accepted independent immunity source was located by the focused search. No positive immune-peer witness is claimed."
+}

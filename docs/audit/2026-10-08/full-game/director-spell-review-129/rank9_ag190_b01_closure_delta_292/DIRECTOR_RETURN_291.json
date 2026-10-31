@@ -1,0 +1,43 @@
+{
+  "schema": "DD-AG190-B01-director-return-v1",
+  "observedAtUtc": "2026-10-31T01:30:51.327482Z",
+  "identity": "absolute-domination",
+  "currentDisposition": {
+    "status": "HOLD",
+    "accepted": false,
+    "applied": false,
+    "authority": {
+      "applied": 817,
+      "pending": 31,
+      "acceptedUnapplied": 0,
+      "completeStandaloneProcedures": 541,
+      "scopedInterfaces": 173
+    }
+  },
+  "exactFinding": "In AG190-B01-CI-INSERTED-END-SUCCESS.json, /finalState/actors/C/concentration still references the application that the successful save ended.",
+  "requiredCorrection": {
+    "case": "AG190-B01-CI-INSERTED-END-SUCCESS.json",
+    "forwardOperation": {
+      "op": "replace",
+      "path": "/actors/C/concentration",
+      "value": null
+    },
+    "inverse": "restore the original concentration reference",
+    "requiredRefresh": [
+      "affected state hashes",
+      "inverse test",
+      "case binding",
+      "audit",
+      "manifest"
+    ],
+    "preservedAnalogue": "RANK9AGENCYCONTROL9129-ABSOLUTE-DOMINATION-A/actual-regular-END, /events/8/after/actors/C/concentration is null",
+    "noRefundOrRefresh": true
+  },
+  "selectedObligationRevision": {
+    "id": "AG291-OBLIGATION-REVISION-01",
+    "scope": "Absolute Domination only",
+    "ruling": "Conditional END-save tests may satisfy the external-provider review obligation. Actual gameplay still requires a separately authorized grant, acquisition, activation and eligible recipient under AG190-H-SOURCE. The native each-actual-turn END save remains unchanged; all other AG190 qualifications and blockers remain retained."
+  },
+  "nextIdentity": "puppetmaster-s-realm / AG190-B02",
+  "noCanonicalChange": true
+}

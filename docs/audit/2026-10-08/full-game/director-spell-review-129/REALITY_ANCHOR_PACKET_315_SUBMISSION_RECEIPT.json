@@ -1,0 +1,85 @@
+{
+  "id": "REALITY-ANCHOR-PACKET-315-SUBMISSION-RECEIPT",
+  "recordedAtUtc": "2026-10-31T04:44:37+00:00",
+  "status": "SUBMITTED_PENDING_DIRECTOR_REVIEW",
+  "packet": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_wardcontrol6_reality_anchor_packet_315_prepared_build07/DD_Rank9_WardControl6_RealityAnchor_315.zip",
+    "bytes": 34266142,
+    "sha256": "88fd5d703baaa3b8d46eb5e22b8aec242392b1cfea9cd5a3f4ccd27489bd8934",
+    "crc32": "6a6b59d2"
+  },
+  "delivery": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_wardcontrol6_reality_anchor_packet_315_prepared_build07/DD_Rank9_WardControl6_RealityAnchor_315_DELIVERY.json",
+    "bytes": 1410,
+    "sha256": "e96a2cfb6e7040b929673f767105d0769f45465ad4c95ed0fffc417627206b65",
+    "crc32": "79d574ce"
+  },
+  "scopeIds": [
+    "reality-anchor"
+  ],
+  "blockerIds": [
+    "WC188-B02"
+  ],
+  "authority": {
+    "reviewedApplied": 822,
+    "pending": 26,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 546,
+    "scopedInterfaces": 173
+  },
+  "branch": "main",
+  "baseCommit": "4391773a626cb91dbb2913670a4e396aae701ba3",
+  "sourceRefreshChangedCount": 0,
+  "sourceRefreshChanges": [],
+  "archiveMemberCount": 148,
+  "historicalRARecordCount": 14,
+  "witnessBranchCount": 2,
+  "witnessEventCount": 49,
+  "startingEndpointSHA256": "684d5206f81ad473ef4b61a1b84d104a02fb18a8ef2d884f5b9e133c40e7109e",
+  "outerZipTest": "PASS",
+  "allMemberHashes": "PASS",
+  "forwardInverseReplay": "PASS",
+  "canonicalChanges": false,
+  "applicationPerformed": false,
+  "independentAudit": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/REALITY_ANCHOR_PACKET_315_INDEPENDENT_AUDIT.json",
+    "bytes": 2608,
+    "sha256": "c41e3a15572fb59caaef7c208ad06e5c067d2c6ee16bc2bbe3b98433cb49285e",
+    "crc32": "19b06e44"
+  },
+  "deliveryFile": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_wardcontrol6_reality_anchor_packet_315_prepared_build07/DD_Rank9_WardControl6_RealityAnchor_315_DELIVERY.json",
+    "bytes": 1410,
+    "sha256": "e96a2cfb6e7040b929673f767105d0769f45465ad4c95ed0fffc417627206b65",
+    "crc32": "79d574ce"
+  },
+  "submittedAtUtc": "2026-10-31T04:54:53+00:00",
+  "destinationConversation": "https://chatgpt.com/g/g-p-67f17555a8dc8191a2b5b81e6d8adc12-dungeon-crawler/c/6adc506d-8770-83ea-b64c-0345d9b9b682",
+  "attachmentNames": [
+    "DD_Rank9_WardControl6_RealityAnchor_315.zip",
+    "DD_Rank9_WardControl6_RealityAnchor_315_DELIVERY.json",
+    "REALITY_ANCHOR_PACKET_315_INDEPENDENT_AUDIT.json"
+  ],
+  "submissionMessages": [
+    "Reality Anchor WC188-B02 packet315 is attached with its independent audit (PASS, 7 checks). Please adjudicate only WC188-B02 using the 91-row Packet312 source refresh, exact Return281 RA history, accepted Forge W2 endpoint, and the two separate lifecycle branches. Confirm whether the evidence closes the identity or identify the precise remaining evidence; preserve the separate Nullification Wave hold and all other states. Return the sealed decision ZIP and exact DELIVERY.json, with acceptedIds/appliedIds/heldIds, authority, next order, and remaining count. No application unless you accept this identity.",
+    "Director ping: Packet315 and the three attachments are already present. Please resume/finish the Reality Anchor-only adjudication now. If any exact blocker remains, name it precisely; otherwise seal the decision ZIP and DELIVERY.json and report the updated queue.",
+    "Director status ping: I found the same ledger gap in the source rules: each A regular turn without a spell or magical class ability loses 1 Dissonance, and the per-turn cast flag must refresh. Please finalize Return315 with the exact corrected A state/cost at each event, hold or accept WC188-B02, and attach the sealed decision ZIP and exact DELIVERY.json.",
+    "Director status ping: I’ve recorded your HOLD finding and will correct the witness. Please finish sealing Return315 now with the event-by-event cast/Dissonance correction sheet and exact DELIVERY.json; this return should leave authority at 822/26/0 and WC188-B02 next."
+  ],
+  "directorProgress": {
+    "observedAtUtc": "2026-10-31T04:57:49+00:00",
+    "directorStatus": "Return315 HOLD confirmed in progress; sealed archive not yet visible.",
+    "confirmedAuthority": {
+      "reviewedApplied": 822,
+      "pending": 26,
+      "acceptedUnapplied": 0
+    },
+    "confirmedNext": "reality-anchor / WC188-B02; Time Stop remains next after RA.",
+    "requiredCorrections": [
+      "A’s regular-turn cast flag and Dissonance recovery must be recorded; two nonmagical turns take Dissonance 2→1→0 before Greater Dispel.",
+      "Greater Dispel costs 10 RP in the corrected state; A ends at 3 RP.",
+      "Greater Dispel captures overlapping area effects; include castRA1 with castF3 or establish a source-supported exclusion."
+    ],
+    "scope": "No acceptance/application; Nullification Wave hold unchanged."
+  }
+}

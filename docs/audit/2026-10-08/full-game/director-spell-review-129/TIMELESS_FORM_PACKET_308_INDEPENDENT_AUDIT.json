@@ -1,0 +1,186 @@
+{
+  "id": "TIMELESS-FORM-PACKET-308-INDEPENDENT-AUDIT",
+  "recordedAtUtc": "2026-10-31T03:26:39+00:00",
+  "status": "PASS",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_defenseform8_current_source_308_prepared/DD_Rank9_DefenseForm8_CurrentSource_308.zip",
+    "bytes": 13044807,
+    "sha256": "5b5fc37a0687435900a56f67fd75d97f4823738a8af6a1c346ad68936c64e4f1",
+    "crc32": "2f906f4e"
+  },
+  "delivery": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_defenseform8_current_source_308_prepared/DD_Rank9_DefenseForm8_CurrentSource_308_DELIVERY.json",
+    "bytes": 71373,
+    "sha256": "96471c34368ba2a6cb55cf779c3680a2eeb8bcea0828804f32fdc0e2c3f10290",
+    "crc32": "d683ea27"
+  },
+  "authority": {
+    "reviewedApplied": 822,
+    "pending": 26,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 546,
+    "scopedInterfaces": 173
+  },
+  "targetIds": [
+    "timeless-form"
+  ],
+  "checkCount": 15,
+  "passedChecks": 15,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "check": "outer archive matches delivery bytes/hash/CRC",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ZIP integrity, unique safe names, exact allowlist",
+      "passed": true,
+      "detail": {
+        "members": 143,
+        "unsafe": []
+      }
+    },
+    {
+      "check": "every archive member binds externally and every payload binds internally",
+      "passed": true,
+      "detail": {
+        "externalErrors": [],
+        "internalErrors": []
+      }
+    },
+    {
+      "check": "87 current source bindings match archive and worktree",
+      "passed": true,
+      "detail": {
+        "count": 87,
+        "errors": []
+      }
+    },
+    {
+      "check": "single changed source since Return218 packet is disclosed exactly",
+      "passed": true,
+      "detail": [
+        "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json"
+      ]
+    },
+    {
+      "check": "authority and Timeless Form pending/non-operational state exact",
+      "passed": true,
+      "detail": {
+        "authority": {
+          "reviewedApplied": 822,
+          "pending": 26,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 546,
+          "scopedInterfaces": 173
+        },
+        "timelessStatus": "pending-authored-procedure",
+        "operational": null
+      }
+    },
+    {
+      "check": "Time Stop remains pending/non-operational and pending audit includes it",
+      "passed": true,
+      "detail": {
+        "timeStopStatus": "pending-authored-procedure",
+        "operational": null
+      }
+    },
+    {
+      "check": "only Timeless Form is in adjudication scope",
+      "passed": true,
+      "detail": [
+        "timeless-form"
+      ]
+    },
+    {
+      "check": "current 307 queue/handoff/pending inputs and authority bind; parent files remain exact",
+      "passed": true,
+      "detail": {
+        "authority": {
+          "reviewedApplied": 822,
+          "pending": 26,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 546,
+          "scopedInterfaces": 173
+        },
+        "next": [
+          "timeless-form",
+          "invulnerable-sphere"
+        ]
+      }
+    },
+    {
+      "check": "Final Word and Elemental Shell holds remain preserved with no acceptance/application",
+      "passed": true,
+      "detail": {
+        "finalWord": [
+          "final-word"
+        ],
+        "shell": [
+          "elemental-shell"
+        ]
+      }
+    },
+    {
+      "check": "all 11 prior Timeless Form cases are byte-exact to both Return218 manifests",
+      "passed": true,
+      "detail": {
+        "count": 11,
+        "errors": []
+      }
+    },
+    {
+      "check": "prior Timeless Form procedure and qualifications are preserved",
+      "passed": true,
+      "detail": {
+        "holds": [
+          "DF218-B03"
+        ],
+        "conditional": [
+          "DF218-Q-AGING"
+        ],
+        "cases": 11
+      }
+    },
+    {
+      "check": "Director requirements and packet request match exact DF218-B03 minimum evidence and scope",
+      "passed": true,
+      "detail": {
+        "scope": [
+          "timeless-form"
+        ],
+        "blocker": [
+          "DF218-B03"
+        ],
+        "requestBytes": 2840
+      }
+    },
+    {
+      "check": "packet records no acceptance/application, canonical change, or runtime claim",
+      "passed": true,
+      "detail": {
+        "canonicalChanges": false,
+        "githubChanges": false,
+        "runtimeExecuted": false,
+        "sourceProgramsExecuted": false
+      }
+    },
+    {
+      "check": "prep record matches one target, 87 sources, 11 cases and current authority",
+      "passed": true,
+      "detail": {
+        "targets": [
+          "timeless-form"
+        ],
+        "sources": 87,
+        "cases": 11
+      }
+    }
+  ],
+  "acceptedIds": [],
+  "appliedIds": [],
+  "canonicalChanges": false,
+  "runtimeExecuted": false
+}

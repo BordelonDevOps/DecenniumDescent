@@ -1,0 +1,202 @@
+{
+  "id": "TIME-STOP-PACKET-318-READBACK-AUDIT",
+  "recordedAtUtc": "2026-10-31T05:42:28+00:00",
+  "status": "PASS",
+  "packet": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_time_stop_current_source_318_prepared/DD_Rank9_TimeStop_CurrentSource_318.zip",
+    "bytes": 3004804,
+    "sha256": "9d2cbae3e0e5b0616838363903fb29d563ab8ad9af9b445bfcb5767b856e01e5",
+    "crc32": "015733e1"
+  },
+  "deliveryBindingMatches": true,
+  "checkCount": 16,
+  "passedChecks": 16,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "check": "delivery binds exact Packet318 archive size and SHA-256",
+      "passed": true,
+      "detail": {
+        "bytes": 3004804,
+        "sha256": "9d2cbae3e0e5b0616838363903fb29d563ab8ad9af9b445bfcb5767b856e01e5"
+      }
+    },
+    {
+      "check": "Packet282 archive binding matches current historical source archive",
+      "passed": true,
+      "detail": {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_timefate6_current_source_282_prepared/DD_Rank9_TimeFate6_CurrentSource_282.zip",
+        "bytes": 149484200,
+        "sha256": "8b2ee76baf5c489a117279c96da8f0b857068bd641d137955b2ea10771c248c7",
+        "crc32": "16f00810"
+      }
+    },
+    {
+      "check": "ZIP central directory is valid and every member name is unique/safe",
+      "passed": true,
+      "detail": {
+        "members": 53
+      }
+    },
+    {
+      "check": "all 14 preserved case records match their canonical byte/hash manifest",
+      "passed": true,
+      "detail": {
+        "caseCount": 14,
+        "errors": []
+      }
+    },
+    {
+      "check": "authority and single target are 823/25/0 and time-stop only",
+      "passed": true,
+      "detail": {
+        "reviewedApplied": 823,
+        "pending": 25,
+        "acceptedUnapplied": 0,
+        "completeStandaloneProcedures": 547,
+        "scopedInterfaces": 173
+      }
+    },
+    {
+      "check": "current Time Stop remains pending with no procedure pointer or operational card",
+      "passed": true,
+      "detail": {
+        "id": "time-stop",
+        "name": "Time Stop",
+        "authoredStatus": "pending-authored-procedure",
+        "procedureFile": "catalog.json",
+        "procedurePointer": null,
+        "wholeCardPointer": "/spells/584",
+        "sourceStatus": "blocked-pending-operational-review",
+        "priorCatalogSelectionStatusUnchanged": true
+      }
+    },
+    {
+      "check": "Timeless Form remains pending under separate DF218-B03 dependency",
+      "passed": true,
+      "detail": {
+        "id": "timeless-form",
+        "name": "Timeless Form",
+        "authoredStatus": "pending-authored-procedure",
+        "procedureFile": "catalog.json",
+        "procedurePointer": null,
+        "wholeCardPointer": "/spells/765",
+        "sourceStatus": "blocked-pending-operational-review",
+        "priorCatalogSelectionStatusUnchanged": true
+      }
+    },
+    {
+      "check": "queue317, handoff317 and pending audit317 agree on current 25-pending authority",
+      "passed": true,
+      "detail": {
+        "queue": {
+          "reviewedApplied": 823,
+          "pending": 25,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 547,
+          "scopedInterfaces": 173
+        },
+        "pending": 25
+      }
+    },
+    {
+      "check": "historical sourceQueue316 provenance is retained while queue317 is current",
+      "passed": true,
+      "detail": {
+        "historical": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_SPELL_QUEUE_316.json",
+        "current": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_SPELL_QUEUE_317.json"
+      }
+    },
+    {
+      "check": "Packet282 inventory has 140 rows, 139 unchanged, one changed and no missing files",
+      "passed": true,
+      "detail": {
+        "unchanged": 139,
+        "changed": [
+          "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json"
+        ],
+        "missing": 0
+      }
+    },
+    {
+      "check": "139 unchanged source rows still match exact Packet282 archive members; changed index is current and supplied",
+      "passed": true,
+      "detail": {
+        "unchangedVerified": 139,
+        "changedVerified": 1
+      }
+    },
+    {
+      "check": "exact procedure and hold record bind TF192-B01 only",
+      "passed": true,
+      "detail": {
+        "blocker": "TF192-B01",
+        "caseIds": 14
+      }
+    },
+    {
+      "check": "all three native Time Stop placements/modes are preserved",
+      "passed": true,
+      "detail": [
+        {
+          "name": "Time Stop",
+          "school": "Illusion",
+          "level": 9,
+          "summary": "Stop time for everyone but you for 1d4+1 rounds."
+        },
+        {
+          "name": "Time Stop",
+          "school": "Transmutation",
+          "level": 9,
+          "summary": "Stop time for everyone but you for 1d4+1 rounds."
+        },
+        {
+          "name": "Time Stop",
+          "school": "Universal",
+          "level": 9,
+          "summary": "Take 3 turns uninterrupted."
+        }
+      ]
+    },
+    {
+      "check": "Time Stop question and obligation scope is complete",
+      "passed": true,
+      "detail": {
+        "questionIds": [
+          "TF9-Q01",
+          "TF9-Q02",
+          "TF9-Q03",
+          "TF9-Q04",
+          "TF9-Q05",
+          "TF9-Q06",
+          "TF9-Q07",
+          "TF9-Q32",
+          "TIME129-ADD01"
+        ],
+        "obligations": [
+          "TF9-CAST",
+          "TF9-PERSISTENCE",
+          "TF9-STOP-MODES",
+          "TF9-STOP-WORLD"
+        ]
+      }
+    },
+    {
+      "check": "Return316 acceptance and application receipts record Reality Anchor only",
+      "passed": true,
+      "detail": {
+        "accepted": [
+          "reality-anchor"
+        ],
+        "applied": [
+          "reality-anchor"
+        ]
+      }
+    },
+    {
+      "check": "no Time Stop acceptance, application, runtime execution, or broader scope is asserted",
+      "passed": true,
+      "detail": null
+    }
+  ]
+}

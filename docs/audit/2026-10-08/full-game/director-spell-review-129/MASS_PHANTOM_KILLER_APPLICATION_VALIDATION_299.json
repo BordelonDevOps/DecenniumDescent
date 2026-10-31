@@ -1,0 +1,109 @@
+{
+  "id": "MASS-PHANTOM-KILLER-APPLICATION-VALIDATION-299",
+  "status": "PASS",
+  "checks": [
+    {
+      "check": "acceptance and archive hashes match Director",
+      "passed": true
+    },
+    {
+      "check": "only MPK changed in authored index",
+      "passed": true
+    },
+    {
+      "check": "exact pending set is 27 with Weird still pending",
+      "passed": true
+    },
+    {
+      "check": "queue/handoff/pending audit agree on 821/27/0 and next Weird",
+      "passed": true
+    },
+    {
+      "check": "native catalog remains byte-exact and runtime disabled",
+      "passed": true
+    },
+    {
+      "check": "13 cases / 1,183 events / reversible CI traces remain bound",
+      "passed": true
+    },
+    {
+      "check": "pre-application index backup restores byte-exact source",
+      "passed": true
+    }
+  ],
+  "checkCount": 7,
+  "failedChecks": 0,
+  "acceptedIds": [
+    "mass-phantom-killer"
+  ],
+  "appliedIds": [
+    "mass-phantom-killer"
+  ],
+  "closedBlockerIds": [
+    "PF182-B02"
+  ],
+  "authority": {
+    "reviewedApplied": 821,
+    "pending": 27,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 545,
+    "scopedInterfaces": 173
+  },
+  "index": {
+    "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+    "bytes": 1680493,
+    "sha256": "59d51b901a157267f77ab1f46c26650a499968c1ebb38bf8edf12a551b2b0f9b",
+    "crc32": "3fbe0c04"
+  },
+  "application": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/MASS_PHANTOM_KILLER_APPLICATION_299.json",
+    "bytes": 5066,
+    "sha256": "07330cd3632f1f8691a27bd69d5ddfa5f99b6115ec434278862514c8f8b01891",
+    "crc32": "a2ef3b8e"
+  },
+  "acceptance": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/MASS_PHANTOM_KILLER_ACCEPTANCE_299.json",
+    "bytes": 2326,
+    "sha256": "635b9596906b37d33fd136bc20ffac155858bc51494e3fbc0cdd0f09a7ccd502",
+    "crc32": "fc2b3f61"
+  },
+  "pendingIdentityAudit": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT27_PENDING_IDENTITY_AUDIT_299.json",
+    "bytes": 71990,
+    "sha256": "ee49a5ab7897d10f35f2deefd5393f42d74aa68d71fec33e7a77148a6a13168c",
+    "crc32": "a763cbcd"
+  },
+  "queue": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_SPELL_QUEUE_299.json",
+    "bytes": 137625,
+    "sha256": "45c4e0c0e8969cc5f26d36b9c6f6d602aac59bd9490a1deb27f97b549bfd75f5",
+    "crc32": "8a678862"
+  },
+  "handoff": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_299.json",
+    "bytes": 39629,
+    "sha256": "5193b4aa5275b27a371f216315cc8b47328036d5806e05f5728f3f12a6a11c9b",
+    "crc32": "30e7febe"
+  },
+  "indexOperations": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/MASS_PHANTOM_KILLER_INDEX_OPERATIONS_299.json",
+    "bytes": 7861,
+    "sha256": "be1286b43297db9db45febae8f1dd3ae232d2877dd845e6acfc0c86c9fee1bc0",
+    "crc32": "db2b5cdb"
+  },
+  "candidatePackage": {
+    "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9massphantomkiller_reviewed_299/MODEL.json",
+    "bytes": 66893,
+    "sha256": "8449833a91b898721c29ce0799824ff1117079061cc99c4b3a1c7bee03dd42c7",
+    "crc32": "6964143a"
+  },
+  "candidatePackageManifest": {
+    "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9massphantomkiller_reviewed_299/CANDIDATE_PACKAGE_MANIFEST.json",
+    "bytes": 3142,
+    "sha256": "0f71dce965deaee4318341683774a78d2f79a4f95720796766a455a236d088df",
+    "crc32": "3a636109"
+  },
+  "catalogByteExact": true,
+  "sourceStatusPreservedAsBlocked": true,
+  "runtimeSelectionEnabled": false
+}

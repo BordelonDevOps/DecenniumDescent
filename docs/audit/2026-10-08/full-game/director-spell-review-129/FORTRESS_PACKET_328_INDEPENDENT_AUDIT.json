@@ -1,0 +1,68 @@
+{
+  "id": "FORTRESS-PACKET-328-INDEPENDENT-AUDIT",
+  "recordedAtUtc": "2026-10-31T06:55:23+00:00",
+  "status": "PASS",
+  "archive": {
+    "path": "DD_Rank9_ConjureDemiplaneFortress_CurrentSource_328.zip",
+    "bytes": 2032358,
+    "sha256": "39bce479a6f9b70b82b02c666ccef9572a7609d7bb61b0eeaa4e2ece6d8f7b9e",
+    "crc32": "eebb5f4d"
+  },
+  "delivery": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_conjure_demiplane_fortress_current_source_328_prepared/DD_Rank9_ConjureDemiplaneFortress_CurrentSource_328_DELIVERY.json",
+    "bytes": 11760,
+    "sha256": "d0f7f66579d14cc53ce52aaec924519d5e1178d741a80b8ee47b149e424bbf54",
+    "crc32": "8f52ea90"
+  },
+  "scopeIds": [
+    "conjure-demiplane-fortress"
+  ],
+  "blockerIds": [
+    "PG200-B06"
+  ],
+  "authority": {
+    "reviewedApplied": 823,
+    "pending": 25,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 547,
+    "scopedInterfaces": 173
+  },
+  "caseCount": 14,
+  "memberCount": 43,
+  "checks": [
+    {
+      "check": "current authority and next identity bind to verified Return327 handoff",
+      "passed": true
+    },
+    {
+      "check": "exact one-spell scope, current Fortress procedure and pending authored index",
+      "passed": true
+    },
+    {
+      "check": "Return200 original B06 decision and Return284 reassessment are included",
+      "passed": true
+    },
+    {
+      "check": "all 14 preserved Fortress case traces are included from Return284",
+      "passed": true,
+      "caseCount": 14
+    },
+    {
+      "check": "current Wizard Dispel source and accepted AC5 finite-body/cargo context are included with transfer limits",
+      "passed": true
+    },
+    {
+      "check": "archive exact member allowlist and byte-for-byte readback",
+      "passed": true,
+      "memberCount": 43
+    },
+    {
+      "check": "payload manifest verifies all payload members",
+      "passed": true,
+      "payloadEntryCount": 42
+    }
+  ],
+  "checkCount": 7,
+  "passedChecks": 7,
+  "failedChecks": 0
+}

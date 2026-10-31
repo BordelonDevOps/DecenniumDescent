@@ -1,0 +1,179 @@
+{
+  "id": "PF182-B01-BOUNDED-ANATOMY-LIFECYCLE-CONTRACT-01",
+  "status": "PROPOSED_FOR_DIRECTOR_ADJUDICATION_NOT_ACCEPTED_NOT_SOURCE_EVIDENCE",
+  "scope": "Psychic Scream / Wizard Enchantment authored procedure only. The Mage Evocation stun route and the historical Illusion placement are unchanged.",
+  "existingSourceFacts": "None of the new anatomy values below are represented as existing creature facts. The current Hydra record is insufficient.",
+  "proposedAuthoredFields": [
+    {
+      "field": "bodyInstanceId",
+      "meaning": "Stable identity of the one actual body throughout the case.",
+      "kind": "NEW authored case field"
+    },
+    {
+      "field": "formTimeline[]",
+      "meaning": "Ordered formId/formEpoch transitions with eventId, exact effective stage, and explicit death-time behavior.",
+      "kind": "NEW authored case field"
+    },
+    {
+      "field": "formTimeline[].headCount",
+      "meaning": "Exact integer head count for that body/form epoch; zero is an explicit headless body, null/unknown blocks the positive rider.",
+      "kind": "NEW authored case field"
+    },
+    {
+      "field": "formTimeline[].heads[]",
+      "meaning": "Unique head IDs enumerated for the current form, with explicit destructible, vitalRelationship, bodyAttachment, and remainsPartId values.",
+      "kind": "NEW authored case field"
+    },
+    {
+      "field": "formTimeline[].sourceOrFixtureBinding",
+      "meaning": "Each anatomy value is tagged source-defined with exact path/hash/pointer, or authored synthetic fixture only; the two evidence classes may not be conflated.",
+      "kind": "NEW provenance field"
+    },
+    {
+      "field": "resolution.deathFormSnapshot",
+      "meaning": "At the instant final death is established after damage, defenses, Null, survival and form rules, freeze bodyInstanceId, current form epoch, and enumerated head IDs.",
+      "kind": "NEW authored ordering field"
+    },
+    {
+      "field": "resolution.headConsequence[]",
+      "meaning": "Only after final death, enumerate the snapshot's explicitly destructible heads and mark their remains part destroyed; this produces no extra damage, save, death event, severance while alive, or revival bypass.",
+      "kind": "NEW authored ordering field"
+    },
+    {
+      "field": "resolution.postDeathFormSettlement",
+      "meaning": "Apply only a separately supplied form/death/reversion rule after the death-form snapshot and head consequence. Missing ordering or destination remains unresolved and blocks the positive branch.",
+      "kind": "NEW authored ordering field"
+    },
+    {
+      "field": "remainsAndCustody",
+      "meaning": "Record location, support, each intact/destroyed body part, and every equipment owner/custodian; explosion changes only enumerated head parts and never silently transfers or deletes equipment.",
+      "kind": "NEW authored case field"
+    }
+  ],
+  "proposedRules": [
+    "Resolve the committed Wizard Enchantment cast and all 14d6 inputs through actual damage defenses, temporary HP, Wounds, Null, survival and final death first.",
+    "If and only if that event establishes final death, snapshot the actual current body/form and explicitly enumerated heads at that exact terminal stage; apply the native possible-head-consequence only to snapshot heads whose supplied field explicitly says destructible=true.",
+    "An explicit headCount=0 yields no head consequence. More than one head is processed by its unique IDs, not by an inferred template. Unknown count, destructibility, vitality, form order, or remains mapping holds the positive branch.",
+    "The selected contract does not define a monster, change the Bestiary, infer anatomy from type/name/geometry, add a third Illusion access route, or affect Mage Evocation stun.",
+    "All proposal-only numeric fixture values remain synthetic and conditional. They demonstrate the proposed data contract, not an acquired campaign actor or source fact."
+  ],
+  "proposedSyntheticFixtureOnly": {
+    "positiveFinalDeath": {
+      "bodyInstanceId": "SYNTHETIC-BODY-01",
+      "formId": "SYNTHETIC-FORM-ONE-HEAD",
+      "headCount": 1,
+      "heads": [
+        {
+          "id": "H1",
+          "destructible": true,
+          "vitalRelationship": "vital",
+          "bodyAttachment": "attached",
+          "remainsPartId": "PART-H1"
+        }
+      ],
+      "sourceOrFixtureBinding": "authored fixture only; not an existing creature source",
+      "damageInputs": [
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6
+      ],
+      "damageTotal": 84,
+      "initialHP": 70,
+      "temporaryHP": 0,
+      "nullOrSurvivalPrevention": false,
+      "afterDamage": "final death",
+      "afterDeathHeadState": {
+        "H1": "destroyed"
+      },
+      "equipmentOwnerAndCustodianUnchanged": true
+    },
+    "headlessFinalDeath": {
+      "bodyInstanceId": "SYNTHETIC-BODY-02",
+      "formId": "SYNTHETIC-FORM-HEADLESS",
+      "headCount": 0,
+      "heads": [],
+      "sourceOrFixtureBinding": "authored fixture only; not an existing creature source",
+      "expectedHeadConsequence": "none"
+    },
+    "multiheadFinalDeath": {
+      "bodyInstanceId": "SYNTHETIC-BODY-03",
+      "formId": "SYNTHETIC-FORM-THREE-HEADS",
+      "headCount": 3,
+      "heads": [
+        {
+          "id": "H1",
+          "destructible": true,
+          "vitalRelationship": "vital",
+          "bodyAttachment": "attached",
+          "remainsPartId": "PART-H1"
+        },
+        {
+          "id": "H2",
+          "destructible": true,
+          "vitalRelationship": "nonvital",
+          "bodyAttachment": "attached",
+          "remainsPartId": "PART-H2"
+        },
+        {
+          "id": "H3",
+          "destructible": false,
+          "vitalRelationship": "nonvital",
+          "bodyAttachment": "attached",
+          "remainsPartId": "PART-H3"
+        }
+      ],
+      "sourceOrFixtureBinding": "authored fixture only; not an existing creature source",
+      "expectedHeadConsequence": {
+        "H1": "destroyed",
+        "H2": "destroyed",
+        "H3": "intact"
+      }
+    },
+    "changedFormFinalDeath": {
+      "bodyInstanceId": "SYNTHETIC-BODY-04",
+      "formTimeline": [
+        {
+          "formId": "SYNTHETIC-FORM-A",
+          "formEpoch": 1,
+          "headCount": 1,
+          "heads": [
+            {
+              "id": "A-H1",
+              "destructible": true
+            }
+          ]
+        },
+        {
+          "formId": "SYNTHETIC-FORM-B",
+          "formEpoch": 2,
+          "headCount": 2,
+          "heads": [
+            {
+              "id": "B-H1",
+              "destructible": true
+            },
+            {
+              "id": "B-H2",
+              "destructible": true
+            }
+          ]
+        }
+      ],
+      "deathFormSnapshot": "SYNTHETIC-FORM-B/formEpoch-2",
+      "postDeathFormSettlement": "explicit fixture rule after the death-form consequence",
+      "sourceOrFixtureBinding": "authored fixture only; not an existing creature source"
+    }
+  },
+  "retainedSourceQualification": "Actual campaign use remains source-qualified: a real target's current body/form anatomy and lifecycle must be supplied; synthetic fixtures do not satisfy this requirement."
+}

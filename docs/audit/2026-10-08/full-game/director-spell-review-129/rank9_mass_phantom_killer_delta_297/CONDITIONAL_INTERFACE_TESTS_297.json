@@ -1,0 +1,57 @@
+{
+  "id": "PF182-B02-CONDITIONAL-INSERTED-TURN-INTERFACE-TESTS-297",
+  "status": "PROPOSED_CONDITIONAL_TESTS_ONLY_NO_ACCEPTANCE",
+  "precondition": "Tests run only after a separately source-qualified provider object is supplied. Provider fields are required inputs, not invented facts.",
+  "requiredProviderFields": [
+    "exactSourcePointer",
+    "trigger",
+    "eligibleGrantor",
+    "eligibleRecipient",
+    "recipientIncapacitationEligibility",
+    "activationMethod",
+    "resourceCost",
+    "timingRelativeToRegularPhases",
+    "duration",
+    "usesAndLimits",
+    "prerequisites",
+    "acquisitionAndRepertoireHistory",
+    "currentAvailability",
+    "activationHistory"
+  ],
+  "tests": [
+    {
+      "id": "PF182-B02-CI-01",
+      "name": "provider gate and lawful acquisition",
+      "expected": "Without every source pointer, eligibility, prerequisites, acquisition, repertoire, cost and availability field, remain held; with a valid witness, record the separately authorized inserted-turn event without inventing source facts."
+    },
+    {
+      "id": "PF182-B02-CI-02",
+      "name": "Mass Phantom Killer integrated timeline",
+      "expected": "Fork a preserved active application. Place the provider interval between explicit regular START/END markers; preserve original expiry, concentration, family exposure, recharge, Reaction and Ready. The inserted interval creates no extra 6d6 opportunity, regular-END save, recharge tick, Ready reset or duration extension."
+    },
+    {
+      "id": "PF182-B02-CI-03",
+      "name": "Weird recipient and incapacity gate",
+      "expected": "Record whether source permits a grant to an Unconscious recipient. Do not let an incapacitated recipient activate an ability. The inserted interval creates no extra 4d10 opportunity, regular-END save, recharge tick, Ready reset or duration extension."
+    },
+    {
+      "id": "PF182-B02-CI-04",
+      "name": "Attached recipient phase non-duplication",
+      "expected": "Preserve the actual companion/controller link and one attached START/END checkpoint; an inserted turn never creates another attached phase or exposure."
+    }
+  ],
+  "requiredReplay": [
+    "complete fork states",
+    "forward and inverse operations",
+    "state hashes",
+    "monotonic elapsed clock",
+    "regular phase history",
+    "custody/resource and Ready ledgers",
+    "full reverse traversal"
+  ],
+  "qualifications": [
+    "Conditional authored fixtures do not prove an actual source provider or campaign actor acquisition.",
+    "No shared mechanic is changed; grant benefit stays distinct from ordinary regular-clock processing.",
+    "PF181-H05 and all other existing PF181 holds remain unless separately revised by the Director."
+  ]
+}

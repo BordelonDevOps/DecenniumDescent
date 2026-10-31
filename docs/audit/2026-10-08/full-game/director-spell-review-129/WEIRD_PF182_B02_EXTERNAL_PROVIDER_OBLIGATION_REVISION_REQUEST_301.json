@@ -1,0 +1,102 @@
+{
+  "id": "WEIRD-PF182-B02-EXTERNAL-PROVIDER-OBLIGATION-REVISION-REQUEST-301",
+  "recordedAtUtc": "2026-10-31T02:42:35Z",
+  "status": "PROPOSED_FOR_DIRECTOR_ADJUDICATION_NOT_ACCEPTED_NOT_APPLIED",
+  "scope": "weird / PF182-B02 only",
+  "request": "Because the currently bound source/actor records do not establish a qualifying acquired provider for the preserved Weird held branch, authorize a Weird-only revision of PF182-B02 external-provider review to permit static authored-procedure review with explicitly conditional, non-gameplay grant inputs. This request changes no Weird incapacity rule and supplies no actual provider, actor acquisition or activation.",
+  "retainedRequirements": {
+    "PF181-H05": "Retain the source-qualified actual-gameplay provider/acquisition/activation requirement without exception.",
+    "incapacity": "Do not infer consent, willingness, grant receipt, self-activation, or permission to take an Action, Bonus Action, Reaction, speak or move while Unconscious. Distinguish external delivery/receipt from recipient activation and from permission to act on a scheduled turn.",
+    "allOtherHolds": "PF181-H01, H02, H08, H09, H10 and H11 and all current Weird qualifications remain unchanged."
+  },
+  "proposedConditionalTests": [
+    {
+      "id": "WCI-01_PROVIDERLESS_GAMEPLAY_ACTIVATION_DENIAL",
+      "input": "No source-qualified grant/provider is bound.",
+      "expected": "Deny gameplay activation before payment or state mutation; preserve source status/runtime gate."
+    },
+    {
+      "id": "WCI-02_CONDITIONAL_INSERTED_TURN_LIFECYCLE",
+      "input": "Inject a clearly labeled non-gameplay conditional inserted-turn event into the exact preserved Weird active branch; do not assert any actual provider or acquisition.",
+      "expected": "Preserve the existing 4d10 Weird family exposure, actual regular target START packet, regular-END WIS save, concentration and original absolute expiry. The conditional inserted interval adds no recurring packet, END save, recharge tick, Reaction refresh, Ready reset, resource refund or deadline extension. Subsequent ordinary and attached markers resolve once in their original order; full before/after state history, exact fork hashes, reversible operations and reverse traversal included."
+    },
+    {
+      "id": "WCI-03_UNCONSCIOUS_RECIPIENT_BOUNDARY",
+      "input": "Keep the preserved recipient actually Unconscious. Supply an explicit conditional external source-policy input for whether that source permits grant receipt; test both deny and permits-as-source-input branches without making either a campaign/source finding. Separately test recipient-initiated activation while Unconscious.",
+      "expected": "A deny policy yields no receipt. A permitted external receipt does not itself wake the recipient, remove Incapacitated/Unconscious, imply consent, refresh budgets or permit voluntary Actions/Bonus Actions/Reactions/speech/movement. Any activation requiring recipient participation is denied before payment. Only an independently explicit provider rule may define a passive or externally scheduled resolution; no such rule is claimed."
+    },
+    {
+      "id": "WCI-04_ATTACHED_PHASE_AND_EXPOSURE_DEDUPLICATION",
+      "input": "Reuse exact preserved Weird attached-familiar/controller-phase branch plus the conditional inserted interval.",
+      "expected": "No duplicate attached START/END or family exposure; retain actual controller relationship and next scheduled attached checkpoint. No independent familiar turn is created."
+    }
+  ],
+  "nonEffects": [
+    "does not accept or apply Weird",
+    "does not revise PF181-H05 or any unconscious/incapacity rule",
+    "does not modify Mass Phantom Killer or extend PF297-MPK-EXTERNAL-PROVIDER-REVIEW-REVISION-01 to Weird",
+    "does not operationalize Chrono Collapse or Time Stop or claim that any current actor has acquired/activated a full-turn provider",
+    "does not change shared timing rules, native catalog, source status or runtime selection",
+    "does not adjudicate Final Word or DR217-B01"
+  ],
+  "remainingOrder": "Weird / PF182-B02, then Final Word / DR217-B01; after those, request the Director’s refreshed pending queue.",
+  "authority": {
+    "reviewedApplied": 821,
+    "pending": 27,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 545,
+    "scopedInterfaces": 173
+  },
+  "evidence": {
+    "currentIndex": {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+      "bytes": 1680493,
+      "sha256": "59d51b901a157267f77ab1f46c26650a499968c1ebb38bf8edf12a551b2b0f9b",
+      "crc32": "3fbe0c04"
+    },
+    "currentCatalog": {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+      "bytes": 5085187,
+      "sha256": "773fb0b3b0fdb501858ded33c02d90dc4db3009bd1b9f7112c244d998218f05b",
+      "crc32": "f06243cf"
+    },
+    "preservedReturn234Archive": {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_psychicfear7_return234_received/DD_Rank9_PsychicFear3_Director_Return234_HELD.zip",
+      "bytes": 33702375,
+      "sha256": "63e296b33902eb5066788f665f2abdcd24604a825c556290700511d35202c3aa",
+      "crc32": "541ba0e9"
+    },
+    "rulebook": {
+      "path": "docs/reference/Player_Rulebook_v6_source_text.txt",
+      "bytes": 776711,
+      "sha256": "a346670f4244efe3641cfb06814819d83ffb8512153858205f0621bd8ab8a04b",
+      "crc32": "6e0366bf",
+      "pointer": "lines 7408-7424",
+      "finding": "Chrono Collapse is described as the capstone taking three turns back-to-back; this is not a contract granting a turn to another creature and does not supply activation limits/history."
+    },
+    "lorebook": {
+      "path": "DescentReviewChanges/ReviewBible/src/data/prestige-lorebook.json",
+      "bytes": 36466,
+      "sha256": "5f69b6e6ff1262e992abbecde8460f070df053a1f8bfacce48a8380f6dfb650c",
+      "crc32": "1044270e",
+      "pointer": "Chronomancer entry",
+      "draftCapstone": true,
+      "capstone": "Draft — unleash the banked beats in the Temporal Tower's clockwork core: take three full turns back-to-back (once/long rest). Allies within 15 ft gain +2 initiative for 1 round, then the stolen seconds settle on you as 2 Fatigue stacks; the clockwork afterimage is presentation only, not a new timing system.",
+      "requirements": "- Base Class: Mage or Arcanist (Lv 10+) - Feats: Arcane Calculus, Temporal Theory, Quickened Thought - Skills: Arcana, Knowledge: Planar",
+      "unlock": "Solve the Paradox Puzzle in Aethel's Temporal Tower and bind your soul to its clockwork core — the Weave reads stolen beats as Chronomancer proof."
+    },
+    "timeConference": {
+      "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/time_cast_5_conference_01.json",
+      "bytes": 661147,
+      "sha256": "4e81e7a7c0781456f015cade6ab6f636e2d05e49badc4df181b45b4be409ed5a",
+      "crc32": "b7820498",
+      "pointer": "TC5-Q10",
+      "conferenceStatus": "PREAUTHORSHIP_CONFERENCE_PREPARED_UNSENT",
+      "questionStatus": false,
+      "options": "A: prior same-anchor/squeeze/nearest-unobstructed-adjacent/pending-conflict return and one immediately used/lost BA excluding TimeSkip and action/turn generation. B: grant a full extra turn, banked BA or remote safe square.",
+      "finding": "Full extra-turn option is unselected in a prepared-unsent preauthorship conference, not an operational provider."
+    },
+    "timeStop": "Director confirmed current Time Stop record remains pending, procedurePointer=null, operational=null."
+  },
+  "adjudicationQuestion": "Please authorize or reject this Weird-only PF182-B02 authored-review obligation revision. If authorized, confirm WCI-01 through WCI-04 as the required conditional interface tests and whether the stated result boundaries need adjustment. This is a request for a ruling only; no Weird acceptance or application is claimed."
+}

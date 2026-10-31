@@ -1,0 +1,122 @@
+{
+  "id": "WEIRD-APPLICATION-VALIDATION-302",
+  "recordedAtUtc": "2026-10-31T02:58:39+00:00",
+  "status": "PASS",
+  "checks": [
+    {
+      "check": "Exact Weird-only Director acceptance and PF301 archive binding",
+      "passed": true
+    },
+    {
+      "check": "WCI-01 through WCI-04 and independent replay audit pass",
+      "passed": true
+    },
+    {
+      "check": "All 18 preserved Weird source cases and 1,054 events restore exact initial states",
+      "passed": true
+    },
+    {
+      "check": "Only Weird leaves the pending authored-procedure set",
+      "passed": true
+    },
+    {
+      "check": "Authority advances exactly to 822/26/0 and 546/173",
+      "passed": true
+    },
+    {
+      "check": "Native catalog remains byte-exact and Weird source remains blocked",
+      "passed": true
+    },
+    {
+      "check": "Runtime selection and downstream approval gates remain closed",
+      "passed": true
+    },
+    {
+      "check": "Director priority advances to Final Word / DR217-B01",
+      "passed": true
+    },
+    {
+      "check": "Queue, pending audit, and handoff bind the same index and authority",
+      "passed": true
+    },
+    {
+      "check": "Backup restores exact pre-application index bytes",
+      "passed": true
+    }
+  ],
+  "checkCount": 10,
+  "failedChecks": 0,
+  "acceptedIds": [
+    "weird"
+  ],
+  "appliedIds": [
+    "weird"
+  ],
+  "closedBlockerIds": [
+    "PF182-B02"
+  ],
+  "authority": {
+    "reviewedApplied": 822,
+    "pending": 26,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 546,
+    "scopedInterfaces": 173
+  },
+  "index": {
+    "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+    "bytes": 1688021,
+    "sha256": "bc17b53a5260e0df579c5695aca0df5c9dd6ad711200ba40dc56a0a12d0681a7",
+    "crc32": "e952d8b5"
+  },
+  "application": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/WEIRD_APPLICATION_302.json",
+    "bytes": 4880,
+    "sha256": "dc4774ebadb0b47189770f730eeb87816cb511724f7b09cd0088073844437320",
+    "crc32": "9496b8d3"
+  },
+  "acceptance": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/WEIRD_ACCEPTANCE_302.json",
+    "bytes": 2254,
+    "sha256": "601ca27f421b6954e0838601fadf69d36b7626ea70814211e17fc378f771b80b",
+    "crc32": "83897a90"
+  },
+  "pendingIdentityAudit": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT26_PENDING_IDENTITY_AUDIT_302.json",
+    "bytes": 68416,
+    "sha256": "09ea317ee131916a2afdee24cc0ab809362a7d3f7d7148e26f40b71c13d6e7e3",
+    "crc32": "b21bcdd7"
+  },
+  "queue": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_SPELL_QUEUE_302.json",
+    "bytes": 133548,
+    "sha256": "bb21fb157297d0dbf98d1fc695b25916c1a056b8114c41ec53f994b0d1fa2b4d",
+    "crc32": "7fbbce07"
+  },
+  "handoff": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_302.json",
+    "bytes": 39902,
+    "sha256": "ac01ca3b8075f378d3ccd3cd1a8fdfa01dbdb1426bfa6ccd0acf22eb78e068be",
+    "crc32": "6f9ac283"
+  },
+  "indexOperations": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/WEIRD_INDEX_OPERATIONS_302.json",
+    "bytes": 7531,
+    "sha256": "d93e4f1f77838f93917729cc22e806a9623352afea937cea13d5c35350652558",
+    "crc32": "de929d52"
+  },
+  "candidatePackage": {
+    "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9weird_reviewed_302/MODEL.json",
+    "bytes": 79286,
+    "sha256": "2b45ffc58a1c68afa939dff262fc28a69701a672dd14f39608ba0e3e73270c58",
+    "crc32": "f9f19290"
+  },
+  "candidatePackageManifest": {
+    "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9weird_reviewed_302/CANDIDATE_PACKAGE_MANIFEST.json",
+    "bytes": 3865,
+    "sha256": "042a248393953876820553303ade5582c00058b91c6cd0a46f5834593b355820",
+    "crc32": "45e79187"
+  },
+  "catalogByteExact": true,
+  "sourceStatusPreservedAsBlocked": true,
+  "runtimeSelectionEnabled": false
+}

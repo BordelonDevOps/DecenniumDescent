@@ -1,0 +1,114 @@
+{
+  "id": "REALITY-ANCHOR-RETURN315-INDEPENDENT-AUDIT",
+  "recordedAtUtc": "2026-10-31T05:04:17.982359+00:00",
+  "status": "PASS",
+  "returnArchive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_wardcontrol6_return315_received/DD_Rank9_WardControl6_Director_Return315_HELD.zip",
+    "bytes": 1083326,
+    "sha256": "7950d2b41a0694307e382cc404f139aecc85c049a573abadc79f48c1fe29ffca",
+    "crc32": "ce216ca6"
+  },
+  "returnDelivery": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_wardcontrol6_return315_received/DD_Rank9_WardControl6_Director_Return315_HELD_DELIVERY.json",
+    "bytes": 59242,
+    "sha256": "8b1d0df9a8a071d9dcbc4b70d802bb479cad11662c58059c3e9b19ab4dc125e7",
+    "crc32": "4748a980"
+  },
+  "submittedPacket315": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_wardcontrol6_reality_anchor_packet_315_prepared_build07/DD_Rank9_WardControl6_RealityAnchor_315.zip",
+    "bytes": 34266142,
+    "sha256": "88fd5d703baaa3b8d46eb5e22b8aec242392b1cfea9cd5a3f4ccd27489bd8934",
+    "crc32": "6a6b59d2"
+  },
+  "checkCount": 12,
+  "passed": 12,
+  "failed": 0,
+  "checks": [
+    {
+      "id": "R315-01",
+      "status": "PASS",
+      "detail": "Downloaded ZIP byte/hash/CRC/member count matches exact delivery manifest."
+    },
+    {
+      "id": "R315-02",
+      "status": "PASS",
+      "detail": "Return is bound to the exact submitted Packet315 archive."
+    },
+    {
+      "id": "R315-03",
+      "status": "PASS",
+      "detail": "ZIP CRC integrity, unique names, and 65-member count pass."
+    },
+    {
+      "id": "R315-04",
+      "status": "PASS",
+      "detail": "All member names, byte counts, SHA-256 and CRC32 values match Return315 manifest."
+    },
+    {
+      "id": "R315-05",
+      "status": "PASS",
+      "detail": "Director package data replay has 10,699 checks, zero failures; semantic review remains separate."
+    },
+    {
+      "id": "R315-06",
+      "status": "PASS",
+      "detail": "Decision is RA-only HOLD; authority preserved at 822/26/0 with no canonical edit or application."
+    },
+    {
+      "id": "R315-07",
+      "status": "PASS",
+      "detail": "Five correction findings and every-event ledger for both submitted branches are present."
+    },
+    {
+      "id": "R315-08",
+      "status": "PASS",
+      "detail": "C01 gives exact idle-vent, Greater Dispel cost, remaining RP and post-cast strain."
+    },
+    {
+      "id": "R315-09",
+      "status": "PASS",
+      "detail": "C04 requires capture and a separate failure outcome for the overlapping Anchor field."
+    },
+    {
+      "id": "R315-10",
+      "status": "PASS",
+      "detail": "C05 requires full Hide outcomes, bounded observer evidence, and no charge/bonus for denied or ended source."
+    },
+    {
+      "id": "R315-11",
+      "status": "PASS",
+      "detail": "Ledger records A’s idle D2→D1→D0, then the 10-RP spell leaves RP3/D1 with cast flag true."
+    },
+    {
+      "id": "R315-12",
+      "status": "PASS",
+      "detail": "Next remains Reality Anchor then Time Stop; narrow hold and unrelated retained holds persist."
+    }
+  ],
+  "decision": "HOLD",
+  "acceptedIds": [],
+  "appliedIds": [],
+  "heldIds": [
+    "reality-anchor"
+  ],
+  "authority": {
+    "reviewedApplied": 822,
+    "pending": 26,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 546,
+    "scopedInterfaces": 173
+  },
+  "correctionIds": [
+    "RA315-C01",
+    "RA315-C02",
+    "RA315-C03",
+    "RA315-C04",
+    "RA315-C05"
+  ],
+  "next": [
+    "reality-anchor correction",
+    "time-stop"
+  ],
+  "canonicalFilesChanged": false,
+  "applicationPerformed": false
+}

@@ -1,0 +1,232 @@
+{
+  "schema": "DD-AG190-B02-closure-review-audit-v1",
+  "createdAtUtc": "2026-10-31T01:37:53.731681Z",
+  "status": "PASS",
+  "checkCount": 15,
+  "passedChecks": 15,
+  "failedChecks": [],
+  "checks": [
+    {
+      "check": "current index is 818 applied / 30 pending / 0 accepted-unapplied",
+      "passed": true,
+      "detail": {
+        "reviewedApplied": 818,
+        "pending": 30,
+        "acceptedUnapplied": 0,
+        "completeStandaloneProcedures": 542,
+        "scopedInterfaces": 173,
+        "indexBinding": {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+          "bytes": 1654579,
+          "sha256": "70db794fb7e89d8de640eff7bdd7938486e8dbd8d140f2db689a9feaa83c95ef"
+        },
+        "absoluteDominationApplicationReceipt": {
+          "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/ABSOLUTE_DOMINATION_APPLICATION_292.json",
+          "bytes": 4857,
+          "sha256": "a64d5ef8bdd6a688d40afba5feda0a55f9e464c96121a25a2d13cd83a5fa3bda"
+        }
+      }
+    },
+    {
+      "check": "Absolute Domination application receipt binds current authority",
+      "passed": true,
+      "detail": {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/ABSOLUTE_DOMINATION_APPLICATION_292.json",
+        "bytes": 4857,
+        "sha256": "a64d5ef8bdd6a688d40afba5feda0a55f9e464c96121a25a2d13cd83a5fa3bda"
+      }
+    },
+    {
+      "check": "AG190-B02 hold remains open with exact case/source blocker",
+      "passed": true,
+      "detail": {
+        "blockingForIds": [
+          "puppetmaster-s-realm"
+        ],
+        "caseIds": [
+          "RANK9AGENCYCONTROL9129-PUPPETMASTER-S-REALM-B",
+          "RANK9AGENCYCONTROL9129-PUPPETMASTER-S-REALM-B/native-multiattack-held"
+        ],
+        "id": "AG190-B02",
+        "kind": "acceptance blocker / whole native Multiattack case hold",
+        "minimalCorrection": "Supply exact complete accepted accessible profile/attack reach, or an explicitly authorized replacement of the native-Multiattack obligation. Real Ghoul Lash attack copies are additional evidence, not a relabelled NPC Multiattack.",
+        "missing": "Source-complete operational native Multiattack body, including actual attack reach. Exact Cave Bear source lacks Claws reach and references unlisted Bite; H150-ROSTER is retained.",
+        "status": "OPEN"
+      }
+    },
+    {
+      "check": "all 42 inspected Multiattack entries have no explicit numeric reach/range",
+      "passed": true,
+      "detail": {
+        "entryCount": 42,
+        "explicitNumericReachCount": 0
+      }
+    },
+    {
+      "check": "Cave Bear actions omit numerical reach and narrative Bite is not an action",
+      "passed": true,
+      "detail": {
+        "source": {
+          "path": "docs/bestiary/Decennium_Descent_Monster_Manual_Canon_Rewrite_Source_Pack/Monster_Manual_of_the_Known_Descent_Source/entries/cave-bear.md",
+          "bytes": 4520,
+          "sha256": "e96e90c42030dfbe2906c30171ea5fa523b02c5dec9b1c94bb457a1710268379"
+        },
+        "multiattack": "The creature makes 2 attacks using the actions below.",
+        "declaredActions": [
+          "Mauling Claws"
+        ],
+        "actionText": "Mauling Claws attack line gives +5 to hit and damage but no numerical reach/range. Bite appears in How It Fights narrative but is absent from the Actions list.",
+        "directorBlocker": "Source-complete operational native Multiattack body, including actual attack reach. Exact Cave Bear source lacks Claws reach and references unlisted Bite; H150-ROSTER is retained.",
+        "minimumCorrection": "Supply exact complete accepted accessible profile/attack reach, or an explicitly authorized replacement of the native-Multiattack obligation. Real Ghoul Lash attack copies are additional evidence, not a relabelled NPC Multiattack."
+      }
+    },
+    {
+      "check": "current Cave Bear combat record does not supply native Multiattack",
+      "passed": true,
+      "detail": {
+        "source": {
+          "path": "src/bestiary_data_full.json",
+          "bytes": 1369470,
+          "sha256": "f67751fbc393c6c0454db1cbc566041436dc03b3bb9d82ab4864770df612e16d"
+        },
+        "entry": {
+          "name": "Cave Bear",
+          "type": "Beast",
+          "size": "Medium",
+          "challengeRating": "2",
+          "xp": 450,
+          "alignment": "Unaligned",
+          "zoneFound": "Aethel Forests",
+          "description": "A medium beast found in Aethel Forests.",
+          "loot": {
+            "tier1": {
+              "drop": "Bear meat",
+              "rate": "0.54",
+              "value": "12"
+            },
+            "tier2": {
+              "drop": "Bear bone shard",
+              "rate": "0.45",
+              "value": "24"
+            }
+          },
+          "ingestSource": "Bestiary.xlsx:Monsters",
+          "armorClass": 13,
+          "hitPoints": 68,
+          "speed": "40 ft.",
+          "combat": {
+            "schemaVersion": 1,
+            "draft": false,
+            "source": "band-trusted",
+            "defaultActionId": "goring-horn",
+            "defenses": {
+              "resistances": [],
+              "immunities": [],
+              "conditionImmunities": []
+            },
+            "attacks": [
+              {
+                "id": "goring-horn",
+                "name": "Goring Horn",
+                "kind": "attack",
+                "actionCost": "action",
+                "usage": "atWill",
+                "count": 1,
+                "targets": {
+                  "count": 1,
+                  "scope": "creature"
+                },
+                "damage": [
+                  {
+                    "dice": "1d10+2",
+                    "average": 7.5,
+                    "type": "piercing"
+                  }
+                ],
+                "attackBonus": 5
+              }
+            ]
+          }
+        },
+        "finding": "Cave Bear combat data has one Goring Horn attack, count=1, and no Multiattack or explicit reach/range; it does not repair the manual source."
+      }
+    },
+    {
+      "check": "actual Ghoul Lash case is distinct and remains labeled as class-member evidence",
+      "passed": true,
+      "detail": {
+        "status": "AUTHORED_STATIC_TRACE",
+        "purpose": "Actual Ghoul Lash two copies of Bone Shot supplies useful independent-member routing evidence, explicitly not a substitute for held native NPC Multiattack."
+      }
+    },
+    {
+      "check": "no NPC profile or attack reach is invented",
+      "passed": true,
+      "detail": "Do not infer Claws reach, add Bite to Actions, or relabel Ghoul Lash as NPC Multiattack."
+    },
+    {
+      "check": "case byte binding RANK9AGENCYCONTROL9129-PUPPETMASTER-S-REALM-A.json",
+      "passed": true,
+      "detail": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9agencycontrol9_reviewed_190_reconciled01/cases/RANK9AGENCYCONTROL9129-PUPPETMASTER-S-REALM-A.json",
+        "bytes": 1146187,
+        "sha256": "546dd48c3c90cb10f26063ba24c253ef0e3b6e2b2929baae0d9be140fa2204c8"
+      }
+    },
+    {
+      "check": "case byte binding RANK9AGENCYCONTROL9129-PUPPETMASTER-S-REALM-B.json",
+      "passed": true,
+      "detail": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9agencycontrol9_reviewed_190_reconciled01/cases/RANK9AGENCYCONTROL9129-PUPPETMASTER-S-REALM-B.json",
+        "bytes": 1100665,
+        "sha256": "4cf35574fb3b08293e271c0acd9109cbbac308bc56e05e5429c16f3b4d7371f3"
+      }
+    },
+    {
+      "check": "case byte binding RANK9AGENCYCONTROL9129-PUPPETMASTER-S-REALM-B__native-multiattack-held.json",
+      "passed": true,
+      "detail": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9agencycontrol9_reviewed_190_reconciled01/cases/RANK9AGENCYCONTROL9129-PUPPETMASTER-S-REALM-B__native-multiattack-held.json",
+        "bytes": 54265,
+        "sha256": "60e98dcfd314e1f497b9fd7812603319f209cad61669fb3ab15253d85ef7a79e"
+      }
+    },
+    {
+      "check": "case byte binding RANK9AGENCYCONTROL9129-PUPPETMASTER-S-REALM-B__actual-two-attack-command.json",
+      "passed": true,
+      "detail": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9agencycontrol9_reviewed_190_reconciled01/cases/RANK9AGENCYCONTROL9129-PUPPETMASTER-S-REALM-B__actual-two-attack-command.json",
+        "bytes": 3969907,
+        "sha256": "671f367e3c326bc3017967bcabbdc482d2a9ad7f3f885375bcdf70c9c5d20841"
+      }
+    },
+    {
+      "check": "case byte binding RANK9AGENCYCONTROL9129-PUPPETMASTER-S-REALM-B__two-realms-terminal-turning.json",
+      "passed": true,
+      "detail": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9agencycontrol9_reviewed_190_reconciled01/cases/RANK9AGENCYCONTROL9129-PUPPETMASTER-S-REALM-B__two-realms-terminal-turning.json",
+        "bytes": 2605809,
+        "sha256": "c9b27932eff8c5bf2873fc6fcc163782790284f63a710afb284c1dd49dc67d77"
+      }
+    },
+    {
+      "check": "case byte binding RANK9AGENCYCONTROL9129-PUPPETMASTER-S-REALM-B__paid-countered-ready.json",
+      "passed": true,
+      "detail": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9agencycontrol9_reviewed_190_reconciled01/cases/RANK9AGENCYCONTROL9129-PUPPETMASTER-S-REALM-B__paid-countered-ready.json",
+        "bytes": 948423,
+        "sha256": "d5a892dc69f01e6d577db48a59d4b00428b63a4538863e7e189c2078a7743d01"
+      }
+    },
+    {
+      "check": "case byte binding RANK9AGENCYCONTROL9129-PUPPETMASTER-S-REALM-B__no-hidden-event-oracle.json",
+      "passed": true,
+      "detail": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9agencycontrol9_reviewed_190_reconciled01/cases/RANK9AGENCYCONTROL9129-PUPPETMASTER-S-REALM-B__no-hidden-event-oracle.json",
+        "bytes": 515953,
+        "sha256": "0db7946a88fa168c573444d9f2c40fdd3e46f47a1818183d843b2ae2b77f7ec5"
+      }
+    }
+  ],
+  "scopeLimitation": "Static source inventory, case binding and decision-request audit. It does not authorize a source change, close AG190-B02, or claim a native NPC Multiattack witness."
+}

@@ -1,0 +1,62 @@
+{
+  "id": "PF182-B01-BOUNDED-ANATOMY-LIFECYCLE-CONTRACT-01",
+  "revision": 295,
+  "status": "PROPOSED_FOR_DIRECTOR_ADJUDICATION_NOT_ACCEPTED_NOT_SOURCE_EVIDENCE",
+  "scope": "Psychic Scream Wizard/Enchantment authored procedure only. Mage/Evocation stun, three printed placements, and two source access routes remain unchanged; Illusion placement creates no access route.",
+  "newAuthoredFields": [
+    "bodyInstanceId",
+    "formTimeline[] with exact event/time/formEpoch and terminal/death behavior",
+    "headCount",
+    "heads[] with unique IDs/destructible/vitalRelationship/bodyAttachment/remainsPartId",
+    "sourceOrFixtureBinding",
+    "damageAndDefenseSettlement",
+    "survivalAndNullSettlement",
+    "deathFormSnapshot",
+    "postDeathHeadConsequence[]",
+    "postDeathFormSettlement",
+    "remains location/support/part state",
+    "equipment owner/custodian ledger"
+  ],
+  "ordering": [
+    "Commit the paid Wizard Enchantment cast and settle each 14d6 input.",
+    "Apply actual damage defenses and temporary HP; settle Wounds, Null, survival and every pre-existing form/lifecycle rule.",
+    "Only if that exact damage event establishes final death, snapshot the same body instance's terminal form epoch and enumerated heads.",
+    "After the snapshot and final-death event, apply the head consequence solely to snapshot heads explicitly marked destructible=true.",
+    "Apply only an explicitly supplied post-death form rule; never delay a source-mandated earlier reversion. Remains and equipment custody are retained by explicit IDs."
+  ],
+  "syntheticFixtureChoice": {
+    "HP": 7,
+    "maxHP": 70,
+    "tempHP": 0,
+    "damageDice": [
+      6,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6
+    ],
+    "damage": 84,
+    "defenses": "none",
+    "Null": false,
+    "survivalReplacement": null,
+    "overflowPastZero": 77,
+    "instantDeathThreshold": 70,
+    "calculation": "84 - 7 = 77; 77 >= 70, so Instant Death under the selected existing rule",
+    "classification": "newly authored conditional fixture inputs, not source-qualified creature values"
+  },
+  "postDeathFormSettlementRuleForChangedFormFixture": "Fixture 04 explicitly has no death-triggered reversion: Form B epoch 2 remains the terminal form and remains form. This fixture does not impose ordering on actual source rules.",
+  "notDefinedAsSourceFacts": true,
+  "retainedActualTargetQualification": "PF181-H03 remains. Actual campaign use still requires source-qualified current body/form anatomy, enumerated heads, destructibility/vitality, and exact reversion/remains lifecycle. These synthetic fixtures cannot satisfy that actual-target requirement.",
+  "supersedesOnlyIfAccepted": [
+    "two held Psychic Scream anatomy records; exact IDs in request"
+  ]
+}

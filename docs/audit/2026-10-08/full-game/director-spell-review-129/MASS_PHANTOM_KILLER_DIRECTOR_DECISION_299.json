@@ -1,0 +1,65 @@
+{
+  "id": "RANK9-MASS-PHANTOM-KILLER-PF182-B02-DIRECTOR-DECISION-299",
+  "recordedAtUtc": "2026-10-31T02:35:21+00:00",
+  "decision": "EXACT_ACCEPT_MASS_PHANTOM_KILLER_AUTHORED_PROCEDURE_ONLY",
+  "identity": "mass-phantom-killer",
+  "blocker": "PF182-B02",
+  "accepted": true,
+  "appliedAtDecision": false,
+  "source": {
+    "service": "ChatGPT",
+    "conversationTitle": "Calibration review part 6",
+    "url": "https://chatgpt.com/g/g-p-67f17555a8dc8191a2b5b81e6d8adc12-dungeon-crawler/c/6adc506d-8770-83ea-b64c-0345d9b9b682"
+  },
+  "exactDirectorResponse": "ACCEPT — mass-phantom-killer only. accepted=true, applied=false. PF298-C01 is closed, and PF182-B02 is satisfied for MPK authored-procedure review under PF297-MPK-EXTERNAL-PROVIDER-REVIEW-REVISION-01. CI-01, CI-02 and corrected CI-04 pass. I verified the unique exposure keys, unchanged replay states/hashes/operations, all 24 payload bindings, 25-member allowlist, CRCs and unchanged authority bindings. The 13 cases / 1,183 events / 2,366 forward and 2,366 inverse operations remain preserved. Delta299 ZIP: 5,333,543 bytes; SHA-256 0353ee3afb4e8dfca9cfa0a66cbd14e358d08c1ac6552471c429dbfb402d8cef; internal manifest SHA-256 a5589196e3bdf09def8e3e61ae3ec242b78c206cca438d2a2f34f414cdcd65d7. PF181-H05 and all other qualifications remain. Conditional tests create no gameplay provider, acquisition, extra turn or shared timing rule. Downstream gates remain closed. Codex may independently audit and apply this exact acceptance only. Nothing was applied. Counts 820/28/1; after application 821/27/0 and procedures/interfaces 545/173. Next Weird / PF182-B02, then Final Word / DR217-B01. Weird receives no ruling or obligation revision.",
+  "acceptedRevision": {
+    "id": "PF297-MPK-EXTERNAL-PROVIDER-REVIEW-REVISION-01",
+    "scope": "Mass Phantom Killer authored-procedure review under PF182-B02 only",
+    "acceptedArchive": {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_mass_phantom_killer_delta_299/DD_Rank9_MassPhantomKiller_ReviewDelta_299.zip",
+      "bytes": 5333543,
+      "sha256": "0353ee3afb4e8dfca9cfa0a66cbd14e358d08c1ac6552471c429dbfb402d8cef",
+      "crc32": "38e872e4"
+    },
+    "internalManifestSHA256": "a5589196e3bdf09def8e3e61ae3ec242b78c206cca438d2a2f34f414cdcd65d7",
+    "correctedAssertion": "/assertions/noDuplicateFamilyExposure = true, derived from unique family/recipient/numbered-round keys"
+  },
+  "closedCorrectionIds": [
+    "PF298-C01"
+  ],
+  "acceptedCaseTests": [
+    "CI-01",
+    "CI-02",
+    "CI-04"
+  ],
+  "excludedIdentity": "weird",
+  "countsBeforeApplication": {
+    "reviewedApplied": 820,
+    "pending": 28,
+    "acceptedUnapplied": 1,
+    "completeStandaloneProcedures": 544,
+    "scopedInterfaces": 173
+  },
+  "forecastAfterApplication": {
+    "reviewedApplied": 821,
+    "pending": 27,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 545,
+    "scopedInterfaces": 173
+  },
+  "retainedQualifications": [
+    "Acceptance is limited to Mass Phantom Killer authored-procedure review under PF182-B02 and PF297-MPK-EXTERNAL-PROVIDER-REVIEW-REVISION-01.",
+    "PF181-H05 remains: actual gameplay still requires source-qualified provider evidence, lawful acquisition, activation history, and an eligible actor. Conditional inputs are static-review only.",
+    "No provider, acquired ability, gameplay turn, shared timing rule, or gameplay benefit is established by the tests.",
+    "CI-04 preserves the lawful attached relationship and single scheduled START/END; no duplicate round-0 exposure occurs, and the later round-1 exposure at 8.3 remains exactly once.",
+    "CI-03/Weird is outside this acceptance. No Weird obligation or incapacity rule is revised.",
+    "Native catalog stays unchanged and runtime selection disabled; all downstream gates remain closed."
+  ],
+  "noOtherIdentityAcceptedOrApplied": true,
+  "nativeCatalogChanged": false,
+  "runtimeSelectionEnabled": false,
+  "nextPriority": [
+    "weird / PF182-B02",
+    "final-word / DR217-B01"
+  ]
+}

@@ -1,0 +1,202 @@
+{
+  "id": "TIME-STOP-RETURN318-INDEPENDENT-AUDIT",
+  "recordedAtUtc": "2026-10-31T05:53:30+00:00",
+  "status": "PASS",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_time_stop_return318_received/DD_Rank9_TimeStop_Director_Return318_HELD.zip",
+    "bytes": 220741,
+    "sha256": "11d07c033f7affbe76a0347aa0d1c444598febef80f849a0541f7d22764499bf",
+    "crc32": "091e79ad"
+  },
+  "delivery": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_time_stop_return318_received/DD_Rank9_TimeStop_Director_Return318_HELD_DELIVERY.json",
+    "bytes": 12650,
+    "sha256": "d339481f9a46dc03a5697576d7ca4ed909e38e18ee5b71705e4f2c12f0199870",
+    "crc32": "2cd9f0ae"
+  },
+  "jointContract": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_time_stop_return318_received/TF318_JOINT_INTERFACE_CONTRACT.md",
+    "bytes": 16778,
+    "sha256": "91175833123419760b9d05be985584c5ad0782a559da8cc4b6e09dfb64467923",
+    "crc32": "46e49020"
+  },
+  "memberCount": 42,
+  "checkCount": 13,
+  "passedChecks": 13,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "check": "outer archive matches sealed DELIVERY size, SHA-256 and CRC32",
+      "passed": true,
+      "detail": {
+        "filename": "DD_Rank9_TimeStop_Director_Return318_HELD.zip",
+        "bytes": 220741,
+        "sha256": "11d07c033f7affbe76a0347aa0d1c444598febef80f849a0541f7d22764499bf",
+        "crc32": "091e79ad"
+      }
+    },
+    {
+      "check": "Director delivery scope/status is exact Time Stop HOLD",
+      "passed": true,
+      "detail": {
+        "status": "SEALED_HELD",
+        "acceptedIds": [],
+        "appliedIds": [],
+        "heldIds": [
+          "time-stop"
+        ],
+        "blockerIds": [
+          "TF192-B01"
+        ]
+      }
+    },
+    {
+      "check": "ZIP CRC, unique member names, exact allowlist and safe paths",
+      "passed": true,
+      "detail": {
+        "count": 42,
+        "unsafe": []
+      }
+    },
+    {
+      "check": "all member bytes, SHA-256 and CRC32 match the sealed manifest",
+      "passed": true,
+      "detail": {
+        "errors": []
+      }
+    },
+    {
+      "check": "standalone contract download exactly matches sealed archive contract",
+      "passed": true,
+      "detail": {
+        "bytes": 16778,
+        "sha256": "91175833123419760b9d05be985584c5ad0782a559da8cc4b6e09dfb64467923"
+      }
+    },
+    {
+      "check": "sealed decision binds exact Time Stop-only HOLD and unchanged 823/25/0",
+      "passed": true,
+      "detail": {
+        "authority": {
+          "reviewedApplied": 823,
+          "pending": 25,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 547,
+          "scopedInterfaces": 173
+        },
+        "next": "fate-rewrite"
+      }
+    },
+    {
+      "check": "joint interface is authorized only for conditional witness construction; both blockers stay open",
+      "passed": true,
+      "detail": {
+        "status": "AUTHORIZED_FOR_CONDITIONAL_WITNESS_CONSTRUCTION_ONLY",
+        "blockers": [
+          "TF192-B01",
+          "DF218-B03"
+        ]
+      }
+    },
+    {
+      "check": "all 12 Director package checks and 1,266 data checks pass",
+      "passed": true,
+      "detail": {
+        "checks": 12,
+        "data": 1266
+      }
+    },
+    {
+      "check": "14 cases replay across 216 events and 432 forward/432 inverse operations",
+      "passed": true,
+      "detail": {
+        "sourceBindings": 140,
+        "unchangedSources": 139,
+        "changedSources": 1,
+        "supplementalBindings": 3,
+        "inputMembers": 53,
+        "cases": 14,
+        "events": 216,
+        "forwardOperations": 432,
+        "inverseOperations": 432,
+        "fullReverseTraversals": 14
+      }
+    },
+    {
+      "check": "the sealed queue retains all 25 pending identities and directs Fate Rewrite next",
+      "passed": true,
+      "detail": {
+        "next": "fate-rewrite",
+        "pending": 25
+      }
+    },
+    {
+      "check": "five unrelated holds and all downstream approval gates remain preserved/closed",
+      "passed": true,
+      "detail": {
+        "separateHolds": [
+          "final-word",
+          "elemental-shell",
+          "timeless-form",
+          "invulnerable-sphere",
+          "nullification-wave"
+        ],
+        "application": false,
+        "gatesClosed": [
+          "runtime",
+          "implementation",
+          "human-play",
+          "balance",
+          "cosmology",
+          "domain-closure",
+          "completion",
+          "release"
+        ]
+      }
+    },
+    {
+      "check": "sealed Return318 input queue317 is byte-exact to the local authority record",
+      "passed": true,
+      "detail": {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_SPELL_QUEUE_317.json",
+        "bytes": 5257,
+        "sha256": "9b800bb03c57f7e9428cf97925d3467162693e589543b4909c7ab885d3d341d7",
+        "crc32": "a82aca94"
+      }
+    },
+    {
+      "check": "Return318 confirms canonical index/catalog were unchanged and current snapshots remain unchanged",
+      "passed": true,
+      "detail": {
+        "indexSha256": "c6dd6d30703911864a3e2784d8abb3d79835b39bc01804c4335f80a1c4bea7b2",
+        "catalogBytes": 5085187
+      }
+    }
+  ],
+  "decision": {
+    "acceptedIds": [],
+    "appliedIds": [],
+    "heldIds": [
+      "time-stop"
+    ],
+    "blockerIds": [
+      "TF192-B01"
+    ]
+  },
+  "authority": {
+    "reviewedApplied": 823,
+    "pending": 25,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 547,
+    "scopedInterfaces": 173
+  },
+  "remainingClosureTasks": 25,
+  "firstReviewTasks": 0,
+  "nextIdentity": "fate-rewrite",
+  "nextBlocker": "TF192-B04",
+  "jointInterfaceId": "TF318-JOINT-INTERFACE-01",
+  "jointInterfaceStatus": "AUTHORIZED_FOR_CONDITIONAL_WITNESS_CONSTRUCTION_ONLY",
+  "canonicalFilesChanged": false,
+  "applicationPerformed": false,
+  "runtimeExecuted": false
+}

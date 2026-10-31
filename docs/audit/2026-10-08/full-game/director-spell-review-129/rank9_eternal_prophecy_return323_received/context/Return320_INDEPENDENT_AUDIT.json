@@ -1,0 +1,219 @@
+{
+  "id": "FATE-REWRITE-RETURN320-INDEPENDENT-AUDIT",
+  "recordedAtUtc": "2026-10-31T06:06:31+00:00",
+  "status": "PASS",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_fate_rewrite_return320_received/DD_Rank9_FateRewrite_Director_Return320_HELD.zip",
+    "bytes": 202173,
+    "sha256": "6d98ac67fd5b31fb48ac7ba3527977429e97e633f2645418ed6d8cce6835fe92",
+    "crc32": "a3bb0c13"
+  },
+  "delivery": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_fate_rewrite_return320_received/DD_Rank9_FateRewrite_Director_Return320_HELD_DELIVERY.json",
+    "bytes": 12913,
+    "sha256": "db2dbde322e956edc5dec61361c92ff1b5752b662eb9f78751abcaae3dee60ca",
+    "crc32": "a2cae88b"
+  },
+  "memberCount": 43,
+  "checkCount": 16,
+  "passedChecks": 16,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "check": "downloaded ZIP exactly matches Director delivery byte/hash/CRC binding",
+      "passed": true,
+      "detail": {
+        "filename": "DD_Rank9_FateRewrite_Director_Return320_HELD.zip",
+        "bytes": 202173,
+        "sha256": "6d98ac67fd5b31fb48ac7ba3527977429e97e633f2645418ed6d8cce6835fe92",
+        "crc32": "a3bb0c13"
+      }
+    },
+    {
+      "check": "sealed return scope and IDs are Fate Rewrite hold only",
+      "passed": true,
+      "detail": {
+        "held": [
+          "fate-rewrite"
+        ],
+        "blockers": [
+          "TF192-B04"
+        ],
+        "deps": [
+          "TF192-B02"
+        ]
+      }
+    },
+    {
+      "check": "authority, task counts, and instructed next identity match current queue",
+      "passed": true,
+      "detail": {
+        "reviewedApplied": 823,
+        "pending": 25,
+        "acceptedUnapplied": 0,
+        "completeStandaloneProcedures": 547,
+        "scopedInterfaces": 173
+      }
+    },
+    {
+      "check": "ZIP CRC and all member paths are safe and unique",
+      "passed": true,
+      "detail": {
+        "memberCount": 43
+      }
+    },
+    {
+      "check": "archive member count and exact allowlist match delivery",
+      "passed": true,
+      "detail": {
+        "actual": 43,
+        "manifestPayload": 42
+      }
+    },
+    {
+      "check": "manifest binds every non-manifest member by exact bytes/hash/CRC",
+      "passed": true,
+      "detail": {
+        "boundMembers": 42
+      }
+    },
+    {
+      "check": "sealed Director decision holds only Fate Rewrite and no apply/accept",
+      "passed": true,
+      "detail": [
+        {
+          "spellId": "fate-rewrite",
+          "accepted": false,
+          "applied": false,
+          "held": true,
+          "blockerIds": [
+            "TF192-B04"
+          ],
+          "dependencyIds": [
+            "TF192-B02"
+          ],
+          "qualificationIds": [
+            "TF192-H-DEATH",
+            "TF192-H-HISTORY",
+            "TF192-Q-BALANCE",
+            "TF192-Q-COMPLETION",
+            "TF192-Q-COSMOLOGY",
+            "TF192-Q-DOMAIN",
+            "TF192-Q-PHYSICAL",
+            "TF192-Q-PLAY",
+            "TF192-Q-RELEASE",
+            "TF192-Q-RUNTIME",
+            "TF192-Q-SOURCE"
+          ],
+          "missingWitnessFile": "BLOCKER_REASSESSMENT.json"
+        }
+      ]
+    },
+    {
+      "check": "B04 remains open, depends on B02, and retains H-HISTORY/H-DEATH",
+      "passed": true,
+      "detail": {
+        "TF192-H-HISTORY": "Unknown consumed-material/harvested/transferred-item and external-descendant histories remain conditional; missing operands are not invented.",
+        "TF192-H-DEATH": "Actual death-instance/body/soul/Hunt eligibility is required only for the affected branch; no revival or cosmology permission inferred."
+      }
+    },
+    {
+      "check": "990 data validation checks pass",
+      "passed": true,
+      "detail": {
+        "checkCount": 990,
+        "passed": 990,
+        "failed": 0
+      }
+    },
+    {
+      "check": "12 package checks pass",
+      "passed": true,
+      "detail": 12
+    },
+    {
+      "check": "17 target cases replay 140 events with forward/inverse symmetry and full reversals",
+      "passed": true,
+      "detail": {
+        "sourceBindings": 140,
+        "unchangedSources": 139,
+        "changedSources": 1,
+        "inputMembers": 58,
+        "targetCases": 17,
+        "targetEvents": 140,
+        "forwardOperations": 280,
+        "inverseOperations": 280,
+        "fullReverseTraversals": 17,
+        "linkedContextCasesByteVerifiedOnly": 14,
+        "originalQuestions": 9,
+        "focusedAddenda": 1,
+        "futureRequirements": 6
+      }
+    },
+    {
+      "check": "all 140 source bindings verify and 139/1 source delta is unchanged/index-only",
+      "passed": true,
+      "detail": {
+        "sourceBindings": 140,
+        "unchangedSources": 139,
+        "changedSources": 1,
+        "inputMembers": 58,
+        "targetCases": 17,
+        "targetEvents": 140,
+        "forwardOperations": 280,
+        "inverseOperations": 280,
+        "fullReverseTraversals": 17,
+        "linkedContextCasesByteVerifiedOnly": 14,
+        "originalQuestions": 9,
+        "focusedAddenda": 1,
+        "futureRequirements": 6
+      }
+    },
+    {
+      "check": "linked Eternal Prophecy remains context only and no mechanism/waiver is authorized",
+      "passed": true,
+      "detail": "Prior TF192-B02 retained as dependency context only; no new whole-identity adjudication."
+    },
+    {
+      "check": "sealed remaining queue directs Collapse Timeline / TF192-B05 with 25 pending",
+      "passed": true,
+      "detail": {
+        "next": "collapse-timeline",
+        "blocker": "TF192-B05"
+      }
+    },
+    {
+      "check": "packet319 is exact authority basis for Return320",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "no canonical edits, application, or downstream gate closure",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "acceptedIds": [],
+  "appliedIds": [],
+  "heldIds": [
+    "fate-rewrite"
+  ],
+  "blockerIds": [
+    "TF192-B04"
+  ],
+  "dependencyIds": [
+    "TF192-B02"
+  ],
+  "nextIdentity": "collapse-timeline",
+  "nextBlocker": "TF192-B05",
+  "authority": {
+    "reviewedApplied": 823,
+    "pending": 25,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 547,
+    "scopedInterfaces": 173
+  },
+  "canonicalFilesChanged": false,
+  "applicationPerformed": false,
+  "runtimeExecuted": false
+}

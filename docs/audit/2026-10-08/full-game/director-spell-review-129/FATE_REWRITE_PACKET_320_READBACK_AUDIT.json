@@ -1,0 +1,154 @@
+{
+  "id": "FATE-REWRITE-PACKET-320-INDEPENDENT-READBACK-AUDIT",
+  "recordedAtUtc": "2026-10-31T06:01:19+00:00",
+  "status": "PASS",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_fate_rewrite_current_source_320_prepared/DD_Rank9_FateRewrite_CurrentSource_320.zip",
+    "bytes": 3198601,
+    "sha256": "a264584c8fe23809f865aff38bb0ce95c5a777584d58699724166255b58b6437",
+    "crc32": "66b47c32"
+  },
+  "memberCount": 58,
+  "checks": [
+    {
+      "check": "ZIP CRC passes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "unique path-safe exact member list",
+      "passed": true,
+      "detail": {
+        "memberCount": 58
+      }
+    },
+    {
+      "check": "archive matches delivery binding",
+      "passed": true,
+      "detail": {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_fate_rewrite_current_source_320_prepared/DD_Rank9_FateRewrite_CurrentSource_320.zip",
+        "bytes": 3198601,
+        "sha256": "a264584c8fe23809f865aff38bb0ce95c5a777584d58699724166255b58b6437",
+        "crc32": "66b47c32"
+      }
+    },
+    {
+      "check": "source comparison independently reports 140/139/1/0 and only authored index changed",
+      "passed": true,
+      "detail": [
+        "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json"
+      ]
+    },
+    {
+      "check": "queue/handoff/audit are embedded and 823/25/0 authority matches",
+      "passed": true,
+      "detail": {
+        "reviewedApplied": 823,
+        "pending": 25,
+        "acceptedUnapplied": 0,
+        "completeStandaloneProcedures": 547,
+        "scopedInterfaces": 173
+      }
+    },
+    {
+      "check": "Fate Rewrite alone is adjudication scope",
+      "passed": true,
+      "detail": [
+        "fate-rewrite"
+      ]
+    },
+    {
+      "check": "Fate Rewrite and Eternal Prophecy both remain held/pending",
+      "passed": true,
+      "detail": {
+        "fate": [
+          "TF192-B04"
+        ],
+        "prophecy": [
+          "TF192-B02"
+        ]
+      }
+    },
+    {
+      "check": "17 preserved Fate Rewrite cases match procedure IDs and manifests",
+      "passed": true,
+      "detail": [
+        "RANK9TIMEFATE6129-FATE-REWRITE-A__historical-original",
+        "RANK9TIMEFATE6129-FATE-REWRITE-A__historical-alternative",
+        "RANK9TIMEFATE6129-FATE-REWRITE-A",
+        "RANK9TIMEFATE6129-FATE-REWRITE-B",
+        "RANK9TIMEFATE6129-FATE-REWRITE-B__too-old",
+        "RANK9TIMEFATE6129-FATE-REWRITE-B__unknown-event",
+        "RANK9TIMEFATE6129-FATE-REWRITE-B__ambiguous-event",
+        "RANK9TIMEFATE6129-FATE-REWRITE-B__unique-custody-conflict",
+        "RANK9TIMEFATE6129-FATE-REWRITE-B__harvested-material",
+        "RANK9TIMEFATE6129-FATE-REWRITE-B__prior-rewrite-payment",
+        "RANK9TIMEFATE6129-FATE-REWRITE-B__prophecy-creation-conflict",
+        "RANK9TIMEFATE6129-FATE-REWRITE-B__missing-external-descendant",
+        "RANK9TIMEFATE6129-FATE-REWRITE-B__death-hunt-source-gate",
+        "RANK9TIMEFATE6129-FATE-REWRITE-B__paid-countered-exact",
+        "RANK9TIMEFATE6129-FATE-REWRITE-B__ready-expiry-valid-operands",
+        "RANK9TIMEFATE6129-FATE-REWRITE-B__antimagic-origin-paid-failure",
+        "RANK9TIMEFATE6129-FATE-REWRITE-B__independent-coverage-hold"
+      ]
+    },
+    {
+      "check": "14 linked Eternal Prophecy cases match procedure IDs and manifests",
+      "passed": true,
+      "detail": 14
+    },
+    {
+      "check": "conflict case is not a paid/fulfilled guarantee",
+      "passed": true,
+      "detail": {
+        "initialObligations": [],
+        "outcomes": [
+          {
+            "RPSpent": 0,
+            "declaration": "prophecy-creation-conflict",
+            "partialWrites": false,
+            "reason": "A committed earlier prophecy creation/payment is protected by the scoped obligation registry; no later rewrite may erase it.",
+            "status": "unavailable-before-payment"
+          }
+        ]
+      }
+    },
+    {
+      "check": "B02 and B04 dependency records preserve exact blockers",
+      "passed": true,
+      "detail": {
+        "B02": "OPEN",
+        "B04DependsOn": [
+          "TF192-B02"
+        ]
+      }
+    },
+    {
+      "check": "Director authorization is limited to preparing/evaluating interface; no mechanism certified",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "all selected case member hashes verify against decoded source Return282",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "no identity accepted/applied and no canonical/runtime change claimed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ZIP contains distinct Director-reviewed and current 192 draft procedure versions",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "checkCount": 15,
+  "passedChecks": 15,
+  "failedChecks": 0,
+  "canonicalFilesChanged": false,
+  "runtimeExecuted": false,
+  "acceptedIds": [],
+  "appliedIds": []
+}

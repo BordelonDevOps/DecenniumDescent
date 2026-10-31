@@ -1,0 +1,121 @@
+{
+  "id": "FACTION-OMNISCIENCE-SUPREME-PACKET-326-INDEPENDENT-AUDIT",
+  "recordedAtUtc": "2026-10-31T06:27:23+00:00",
+  "status": "PASS",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_faction_omniscience_supreme_current_source_326_build03_prepared/DD_Rank9_FactionOmniscienceSupreme_CurrentSource_326.zip",
+    "bytes": 1919329,
+    "sha256": "926158f02df3012c24c1fffced99856a75f6b9e54719f37dbe4798fdaabfbd5e",
+    "crc32": "64f40d3e"
+  },
+  "memberCount": 68,
+  "scopeIds": [
+    "faction-omniscience-supreme"
+  ],
+  "authority": {
+    "reviewedApplied": 823,
+    "pending": 25,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 547,
+    "scopedInterfaces": 173
+  },
+  "targetCaseCount": 8,
+  "sourceInventory": {
+    "total": 140,
+    "unchanged": 139,
+    "changed": 1,
+    "changedPaths": [
+      "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json"
+    ]
+  },
+  "unadjudicatedSeasonalFiles": 20,
+  "checkCount": 11,
+  "passedChecks": 11,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "check": "archive CRC, exact unique allowlist and safe member paths",
+      "passed": true,
+      "detail": {
+        "members": 68
+      }
+    },
+    {
+      "check": "all packed member hashes match prepared inputs",
+      "passed": true,
+      "detail": 68
+    },
+    {
+      "check": "queue325 directs exact FOS identity at current 823/25/0 authority",
+      "passed": true,
+      "detail": {
+        "next": "faction-omniscience-supreme",
+        "authority": {
+          "reviewedApplied": 823,
+          "pending": 25,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 547,
+          "scopedInterfaces": 173
+        }
+      }
+    },
+    {
+      "check": "current FOS source remains pending and unoperational",
+      "passed": true,
+      "detail": {
+        "entry": "pending-authored-procedure",
+        "operational": null
+      }
+    },
+    {
+      "check": "exact FOS hold remains KR198-B01 with eight preserved target cases",
+      "passed": true,
+      "detail": {
+        "blocker": "KR198-B01",
+        "cases": 8
+      }
+    },
+    {
+      "check": "all 140 current source rows match their current bytes and hashes",
+      "passed": true,
+      "detail": {
+        "rows": 140
+      }
+    },
+    {
+      "check": "140-source comparison remains 139 unchanged / one index-only delta",
+      "passed": true,
+      "detail": [
+        "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json"
+      ]
+    },
+    {
+      "check": "Return283 is a prior FOS-only sealed hold; no acceptance/application",
+      "passed": true,
+      "detail": [
+        "faction-omniscience-supreme"
+      ]
+    },
+    {
+      "check": "seasonal records are bound as candidates with explicit source-gap notes",
+      "passed": true,
+      "detail": {
+        "files": 20
+      }
+    },
+    {
+      "check": "no seasonal simulation was promoted to canon or current campaign truth",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "no acceptance/application/canonical edit/runtime during packet build",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "canonicalFilesChanged": false,
+  "runtimeExecuted": false,
+  "acceptedIds": [],
+  "appliedIds": []
+}

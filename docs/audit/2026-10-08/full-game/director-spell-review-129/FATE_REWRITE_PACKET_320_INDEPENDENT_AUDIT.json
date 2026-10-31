@@ -1,0 +1,150 @@
+{
+  "id": "FATE-REWRITE-PACKET-320-INDEPENDENT-AUDIT",
+  "recordedAtUtc": "2026-10-31T05:58:47+00:00",
+  "status": "PASS",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_fate_rewrite_current_source_320_prepared/DD_Rank9_FateRewrite_CurrentSource_320.zip",
+    "bytes": 3198601,
+    "sha256": "a264584c8fe23809f865aff38bb0ce95c5a777584d58699724166255b58b6437",
+    "crc32": "66b47c32"
+  },
+  "memberCount": 58,
+  "scopeIds": [
+    "fate-rewrite"
+  ],
+  "linkedContextIds": [
+    "eternal-prophecy"
+  ],
+  "authority": {
+    "reviewedApplied": 823,
+    "pending": 25,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 547,
+    "scopedInterfaces": 173
+  },
+  "sourceInventoryCount": 140,
+  "unchangedSourceBindings": 139,
+  "changedSourceBindings": 1,
+  "changedPaths": [
+    "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json"
+  ],
+  "fateRewriteCases": 17,
+  "eternalProphecyCases": 14,
+  "checkCount": 12,
+  "passedChecks": 12,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "check": "archive has a unique safe exact allowlist",
+      "passed": true,
+      "detail": {
+        "members": 58
+      }
+    },
+    {
+      "check": "archive CRC and member SHA readback",
+      "passed": true,
+      "detail": {
+        "members": 58
+      }
+    },
+    {
+      "check": "current queue, handoff and pending audit agree at 823/25/0 and Fate Rewrite next",
+      "passed": true,
+      "detail": {
+        "reviewedApplied": 823,
+        "pending": 25,
+        "acceptedUnapplied": 0,
+        "completeStandaloneProcedures": 547,
+        "scopedInterfaces": 173
+      }
+    },
+    {
+      "check": "current FRewrite and EProp remain pending with exact active blockers",
+      "passed": true,
+      "detail": {
+        "fate": "pending-authored-procedure",
+        "prophecy": "pending-authored-procedure"
+      }
+    },
+    {
+      "check": "Packet282 source inventory has only the index delta",
+      "passed": true,
+      "detail": [
+        "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json"
+      ]
+    },
+    {
+      "check": "all 17 preserved Fate Rewrite cases exactly match current procedure IDs",
+      "passed": true,
+      "detail": [
+        "RANK9TIMEFATE6129-FATE-REWRITE-A__historical-original",
+        "RANK9TIMEFATE6129-FATE-REWRITE-A__historical-alternative",
+        "RANK9TIMEFATE6129-FATE-REWRITE-A",
+        "RANK9TIMEFATE6129-FATE-REWRITE-B",
+        "RANK9TIMEFATE6129-FATE-REWRITE-B__too-old",
+        "RANK9TIMEFATE6129-FATE-REWRITE-B__unknown-event",
+        "RANK9TIMEFATE6129-FATE-REWRITE-B__ambiguous-event",
+        "RANK9TIMEFATE6129-FATE-REWRITE-B__unique-custody-conflict",
+        "RANK9TIMEFATE6129-FATE-REWRITE-B__harvested-material",
+        "RANK9TIMEFATE6129-FATE-REWRITE-B__prior-rewrite-payment",
+        "RANK9TIMEFATE6129-FATE-REWRITE-B__prophecy-creation-conflict",
+        "RANK9TIMEFATE6129-FATE-REWRITE-B__missing-external-descendant",
+        "RANK9TIMEFATE6129-FATE-REWRITE-B__death-hunt-source-gate",
+        "RANK9TIMEFATE6129-FATE-REWRITE-B__paid-countered-exact",
+        "RANK9TIMEFATE6129-FATE-REWRITE-B__ready-expiry-valid-operands",
+        "RANK9TIMEFATE6129-FATE-REWRITE-B__antimagic-origin-paid-failure",
+        "RANK9TIMEFATE6129-FATE-REWRITE-B__independent-coverage-hold"
+      ]
+    },
+    {
+      "check": "all linked Eternal Prophecy cases exactly match its procedure IDs",
+      "passed": true,
+      "detail": 14
+    },
+    {
+      "check": "FateRewrite prophecy-creation conflict has no preexisting obligation and is unpaid refusal",
+      "passed": true,
+      "detail": {
+        "initialObligations": [],
+        "finalOutcomes": [
+          {
+            "RPSpent": 0,
+            "declaration": "prophecy-creation-conflict",
+            "partialWrites": false,
+            "reason": "A committed earlier prophecy creation/payment is protected by the scoped obligation registry; no later rewrite may erase it.",
+            "status": "unavailable-before-payment"
+          }
+        ]
+      }
+    },
+    {
+      "check": "linked Eternal Prophecy plan retains explicit TF192-B02 unresolvedGuarantee",
+      "passed": true,
+      "detail": "BLOCKER TF192-B02. The native promise is unconditional must come true, but the available authored direct-delivery contingency cannot demonstrate fulfillment if all lawful routes and the actual magical intervention remain prevented through the deadline, or a genuine external artifact/finality/physical event removes the item or destination. This return does NOT invent indestructibility, a forceful universal preemption interrupt, global veto of future choices, or blanket antimagic immunity to hide "
+    },
+    {
+      "check": "Director contract authorizes interface construction only and leaves both spells pending",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "scope contains Fate Rewrite alone; Eternal Prophecy is linked context only",
+      "passed": true,
+      "detail": [
+        "fate-rewrite"
+      ]
+    },
+    {
+      "check": "no acceptance, application, canonical change or runtime execution",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "criticalFinding": "No source-complete paid/fulfilled guarantee exists in current linked evidence; the existing FRewrite prophecy-conflict case has no starting obligation and refuses pre-payment. Eternal Prophecy TF192-GUARANTEE-01 remains unresolved for all-routes-prevented and unavailable item/destination branches.",
+  "acceptedIds": [],
+  "appliedIds": [],
+  "heldIds": [],
+  "canonicalFilesChanged": false,
+  "runtimeExecuted": false
+}

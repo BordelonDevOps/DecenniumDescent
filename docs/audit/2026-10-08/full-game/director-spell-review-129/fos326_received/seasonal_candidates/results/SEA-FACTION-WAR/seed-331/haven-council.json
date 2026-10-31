@@ -1,0 +1,66 @@
+{
+  "pack": "04-seasonal-decennial-persistence",
+  "scenarioId": "SEA-FACTION-WAR",
+  "agentId": "haven-council",
+  "seed": 331,
+  "observations": [
+    "District end-state: {'Seal Exchange': 'captured', 'Gateward Caravan Yards': 'contested'}.",
+    "Haven civic core assumed permanent unless destroyed (bible \u00a720); damage scenarios recovered over 1\u20132 ten-year advances.",
+    "Political memory (debts, decrees, contested provenance) persisted even when markets reset.",
+    "Sponsor contest kept Seal Exchange / Gateward contested across Cycles; institutions remembered liens."
+  ],
+  "metrics": {
+    "wealthTrajectory": [
+      48,
+      48,
+      48
+    ],
+    "mapChamberFidelity": [
+      0.77,
+      0.54,
+      0.31
+    ],
+    "securedPrincipleValue": [
+      0.69,
+      0.72,
+      0.59
+    ],
+    "newPlayerAccess": [
+      0.65,
+      0.65,
+      0.65
+    ],
+    "anyExplorationTrivial": false,
+    "runawayWealthRisk": false,
+    "gepAlwaysCausedByPriorRecord": true,
+    "publicCanonLeaks": [],
+    "cyclesRun": 3,
+    "stress": false,
+    "finalDistricts": {
+      "Seal Exchange": "captured",
+      "Gateward Caravan Yards": "contested"
+    },
+    "finalDepthPublic": "Haven",
+    "seed": 331,
+    "sourceGaps": [
+      "docs/mechanics/GAMEPLAY_LOOP_CANON.md (not on main; used GAMEPLAY_LOOP_BIBLE_v1_EXTRACT.txt \u00a720 as pending-review stand-in)",
+      "docs/mechanics/DESIGN_DOCTRINE.md (not on main; doctrine text present in bible extract header)",
+      "docs/director-only/continuity/ (not on main tree; used ReviewBible/docs/director-only/continuity/ + MM CANON_BOUNDARY.md)"
+    ],
+    "authorityNote": "Gameplay Loop Bible v1 extract \u00a720 + haven.json + dungeon-mechanics.json cycle; Director boundary from CANON_BOUNDARY / LEVEL_97 dual-layer. No silent canon edits.",
+    "cycleLedger": [
+      "Opening 1: depth=Haven; wealth=48; mapFidelity=0.77; principle=0.69; GEP={G:flood opens a new lower gallery near a s...}",
+      "Opening 2: depth=Haven; wealth=48; mapFidelity=0.54; principle=0.72; GEP={G:earthshift reorients a Haven approach co...}",
+      "Opening 3: depth=Haven; wealth=48; mapFidelity=0.31; principle=0.59; GEP={G:earthshift reorients a Haven approach co...}"
+    ],
+    "priorMattersWithoutTrivialExploration": true
+  },
+  "rulesQuestions": [],
+  "exploits": [
+    "If provenance liens never expire, faction war can lock auction liquidity for multiple Openings."
+  ],
+  "recommendations": [
+    "Add optional Haven district condition track (Intact / Strained / Damaged / Captured) for Cycle Records."
+  ],
+  "confidence": "medium"
+}

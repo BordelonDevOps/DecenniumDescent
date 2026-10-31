@@ -1,0 +1,51 @@
+{
+  "id": "RETURN320-SEMANTIC-FAILURE-CHECK",
+  "status": "HOLD_REQUIRED_GUARANTEE_WITNESS",
+  "openBlockerIds": [
+    "TF192-B04"
+  ],
+  "dependencyIds": [
+    "TF192-B02"
+  ],
+  "dataChecks": 990,
+  "findings": [
+    {
+      "id": "FR320-S01",
+      "status": "PASS_SOURCE_CHECK",
+      "finding": "All140 comparison rows verify;139 unchanged plus authored index changed. No new gameplay mechanism appears in the comparison."
+    },
+    {
+      "id": "FR320-S02",
+      "status": "OPEN_DEPENDENCY",
+      "finding": "Current guarantee plan remains explicitly unresolved for prevented routes/intervention and unavailable item/destination. Neither successful conditional routes nor saved pending obligations closes B02.",
+      "anchor": "Packet320/evidence/eternal_prophecy/current_authored_candidate_procedure_192.json#/procedure/unresolvedGuarantee"
+    },
+    {
+      "id": "FR320-S03",
+      "status": "INCOMPLETE_REQUIRED_WITNESS",
+      "finding": "Prophecy-creation-conflict begins and ends with obligations={}, pays0 and refuses before payment. Its narrative is not an actual paid/fulfilled guarantee history.",
+      "anchor": "Packet320/evidence/cases/fate_rewrite/RANK9TIMEFATE6129-FATE-REWRITE-B__prophecy-creation-conflict.json#/initialState/obligations"
+    },
+    {
+      "id": "FR320-S04",
+      "status": "PRESERVE_CONDITIONAL_COVERAGE",
+      "finding": "17 target cases replay, including useful nondeath past-change components and exact rejected/held boundary records. No case is promoted into complete guarantee interoperability."
+    },
+    {
+      "id": "FR320-S05",
+      "status": "RETAIN_NARROW_BRANCH_HOLDS",
+      "finding": "TF192-H-HISTORY and TF192-H-DEATH remain separate; missing material/body/soul/Hunt operands are not global rejection rules or fabricated facts."
+    },
+    {
+      "id": "FR320-S06",
+      "status": "PRESERVE_CONSTRUCTION_ONLY_AUTHORITY",
+      "finding": "FR-EP-WITNESS-CONSTRUCTION-01 allows paired construction/evaluation, supplies no guarantee, and does not weaken must-come-true or authorize immunity/forced-compliance/universal override."
+    },
+    {
+      "id": "FR320-S07",
+      "status": "PASS_SCOPE",
+      "finding": "Only Fate Rewrite receives a current HOLD; all25 pending and all prior accepted identities unchanged. Collapse Timeline is next, with dependency retained."
+    }
+  ],
+  "numericalReplayNotSemanticCompletion": true
+}

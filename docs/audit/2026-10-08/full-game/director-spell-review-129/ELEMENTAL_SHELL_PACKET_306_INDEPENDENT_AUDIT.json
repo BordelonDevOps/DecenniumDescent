@@ -1,0 +1,183 @@
+{
+  "id": "ELEMENTAL-SHELL-PACKET-306-INDEPENDENT-AUDIT",
+  "recordedAtUtc": "2026-10-31T03:16:01+00:00",
+  "status": "PASS",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_defenseform8_current_source_306_prepared/DD_Rank9_DefenseForm8_CurrentSource_306.zip",
+    "bytes": 13255922,
+    "sha256": "d165cd0f44d728a5cdb27c5dcdbdbdec0f1cf1ae4220be8efea94649566ca45b",
+    "crc32": "290c4eaa"
+  },
+  "delivery": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_defenseform8_current_source_306_prepared/DD_Rank9_DefenseForm8_CurrentSource_306_DELIVERY.json",
+    "bytes": 74214,
+    "sha256": "96d4b7c8519ec44a7f6e8ca57260904e180eaae7196151151b882d000cedbfc7",
+    "crc32": "47e19316"
+  },
+  "authority": {
+    "reviewedApplied": 822,
+    "pending": 26,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 546,
+    "scopedInterfaces": 173
+  },
+  "targetIds": [
+    "elemental-shell"
+  ],
+  "checkCount": 15,
+  "passedChecks": 15,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "check": "outer archive bytes, SHA-256, CRC32 match delivery",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ZIP integrity and unique safe member paths",
+      "passed": true,
+      "detail": {
+        "members": 151,
+        "unsafe": []
+      }
+    },
+    {
+      "check": "outer exact allowlist covers every archive member",
+      "passed": true,
+      "detail": {
+        "archive": 151,
+        "allowlist": 151
+      }
+    },
+    {
+      "check": "every ZIP member matches the outer delivery binding",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "internal manifest covers and verifies every payload member",
+      "passed": true,
+      "detail": {
+        "payload": 150,
+        "errors": []
+      }
+    },
+    {
+      "check": "87 refreshed source bindings match archive and current worktree",
+      "passed": true,
+      "detail": {
+        "count": 87,
+        "errors": []
+      }
+    },
+    {
+      "check": "refresh difference is explicitly disclosed and exactly one source",
+      "passed": true,
+      "detail": {
+        "changedPaths": [
+          "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json"
+        ],
+        "oldBindings": 87
+      }
+    },
+    {
+      "check": "current authority and target pending/non-operational state are exact",
+      "passed": true,
+      "detail": {
+        "authority": {
+          "reviewedApplied": 822,
+          "pending": 26,
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 546,
+          "scopedInterfaces": 173
+        },
+        "entry": "pending-authored-procedure",
+        "operational": null
+      }
+    },
+    {
+      "check": "packet adjudication target is Elemental Shell only",
+      "passed": true,
+      "detail": [
+        "elemental-shell"
+      ]
+    },
+    {
+      "check": "handoff pointer correction and queue/pending binding pass; Final Word remains held",
+      "passed": true,
+      "detail": {
+        "next": "rank9-defense-form8",
+        "held": [
+          "final-word"
+        ]
+      }
+    },
+    {
+      "check": "all 21 prior Elemental Shell case records are preserved byte-exact",
+      "passed": true,
+      "detail": {
+        "caseCount": 21,
+        "errors": []
+      }
+    },
+    {
+      "check": "packet retains both required completed CH07 Null case records",
+      "passed": true,
+      "detail": [
+        "DF218-SHELL-NULL-POSITIVE-HP",
+        "DF218-SHELL-NULL-STABLE-ZERO",
+        "RANK9DEFENSEFORM8129-ELEMENTAL-SHELL-A",
+        "RANK9DEFENSEFORM8129-ELEMENTAL-SHELL-A1-RESISTANCE",
+        "RANK9DEFENSEFORM8129-ELEMENTAL-SHELL-A2-INDEPENDENT-IMMUNITY",
+        "RANK9DEFENSEFORM8129-ELEMENTAL-SHELL-A3-FLAT-DR",
+        "RANK9DEFENSEFORM8129-ELEMENTAL-SHELL-A4-REBIND",
+        "RANK9DEFENSEFORM8129-ELEMENTAL-SHELL-A5-MIXED",
+        "RANK9DEFENSEFORM8129-ELEMENTAL-SHELL-B",
+        "RANK9DEFENSEFORM8129-ELEMENTAL-SHELL-B1-NULL",
+        "RANK9DEFENSEFORM8129-ELEMENTAL-SHELL-B2-ENVIRONMENT",
+        "RANK9DEFENSEFORM8129-ELEMENTAL-SHELL-B3-PROXY",
+        "RANK9DEFENSEFORM8129-ELEMENTAL-SHELL-B4-TRANSFER",
+        "RANK9DEFENSEFORM8129-ELEMENTAL-SHELL-B5-REPLACEMENT",
+        "RANK9DEFENSEFORM8129-ELEMENTAL-SHELL-COUNTER",
+        "RANK9DEFENSEFORM8129-ELEMENTAL-SHELL-GATE-access",
+        "RANK9DEFENSEFORM8129-ELEMENTAL-SHELL-GATE-components",
+        "RANK9DEFENSEFORM8129-ELEMENTAL-SHELL-GATE-range",
+        "RANK9DEFENSEFORM8129-ELEMENTAL-SHELL-GATE-resource",
+        "RANK9DEFENSEFORM8129-ELEMENTAL-SHELL-READY-EXPIRES",
+        "RANK9DEFENSEFORM8129-ELEMENTAL-SHELL-SUPPRESSION"
+      ]
+    },
+    {
+      "check": "request scopes the two Elemental Shell blockers and forbids inferred/synthetic witnesses",
+      "passed": true,
+      "detail": {
+        "requestBytes": 3288
+      }
+    },
+    {
+      "check": "packet makes no canonical changes or runtime/application claims",
+      "passed": true,
+      "detail": {
+        "canonicalChanges": false,
+        "githubChanges": false,
+        "runtimeExecuted": false,
+        "sourceProgramsExecuted": false
+      }
+    },
+    {
+      "check": "source-preparation record matches target, source count, case count, and authority",
+      "passed": true,
+      "detail": {
+        "pendingIds": [
+          "elemental-shell"
+        ],
+        "sources": 87,
+        "cases": 21
+      }
+    }
+  ],
+  "acceptedIds": [],
+  "appliedIds": [],
+  "canonicalChanges": false,
+  "runtimeExecuted": false
+}

@@ -1,0 +1,11 @@
+# Director request: Fate Rewrite / TF192-B04 only (Packet320)
+
+Please adjudicate only `fate-rewrite` / `TF192-B04` at current authority **823 applied / 25 pending / 0 accepted-unapplied** (547 complete standalone procedures / 173 scoped interfaces). The other identities are context only. Do not accept or apply Eternal Prophecy as part of this decision.
+
+This packet follows your authorization `FR-EP-WITNESS-CONSTRUCTION-01`. It binds the current queue319, handoff319, pending identity audit, current authored index and catalog rows, and a fresh 140-source comparison against Packet282 (139 unchanged; only the authored review index changed). It includes the exact current Fate Rewrite and linked Eternal Prophecy procedures, the TF192-B02/B04 hold records, questions TF9-Q01, Q17–Q22, Q31–Q32 and TIME129-ADD02, six linked future-case obligations, and all 17 preserved Fate Rewrite cases plus the linked Eternal Prophecy cases.
+
+The existing `FATE-REWRITE-B__prophecy-creation-conflict` is not the required guarantee witness: its initial `obligations` map is empty and it ends with `unavailable-before-payment`, `RPSpent: 0`. The current Eternal Prophecy procedure explicitly records `TF192-GUARANTEE-01` as unresolved when all routes and magical intervention remain prevented or the item/destination becomes unavailable. The interface authorization does not supply this mechanism. No source-complete, actually paid and fulfilled guarantee has been found in the current linked evidence.
+
+Please confirm whether the evidence identifies any lawful current source/mechanism that closes `TF192-B02` without qualifying or overriding the native unconditional promise. If not, seal Fate Rewrite as held at TF192-B04, state the minimum missing witness, keep TF192-H-HISTORY / TF192-H-DEATH separate, and say whether we should proceed to the next queued identity, Collapse Timeline, while preserving this dependency. No identity is accepted or applied by this submission.
+
+Preserve all other holds and qualifications. No runtime, canonical application, implementation, balance, playtest, cosmology, domain, completion or release approval is requested. Return acceptedIds, appliedIds, heldIds, exact blockers, current authority, closure-task count and next identity.

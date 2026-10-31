@@ -1,0 +1,104 @@
+{
+  "id": "INVULNERABLE-SPHERE-PACKET310-INDEPENDENT-AUDIT",
+  "recordedAtUtc": "2026-10-31T03:47:56+00:00",
+  "status": "PASS",
+  "checkCount": 13,
+  "passedChecks": 13,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "check": "outer archive binding",
+      "passed": true,
+      "detail": "13481379 bytes; SHA-256 7dc723bc9d8612a9ece5df613d250231010bad3d64e82d58ec5fa0158e42d15c; CRC32 8c95accf"
+    },
+    {
+      "check": "ZIP integrity, safe unique names and exact member count",
+      "passed": true,
+      "detail": "142 unique members"
+    },
+    {
+      "check": "exact payload allowlist and self-excluding manifest",
+      "passed": true,
+      "detail": "141 internal payload rows"
+    },
+    {
+      "check": "all external and internal member hashes/CRCs",
+      "passed": true,
+      "detail": "142 external rows; 141 internal rows"
+    },
+    {
+      "check": "exact current scope and unchanged authority",
+      "passed": true,
+      "detail": "Sphere / DF218-B04 only at 822/26/0, 546/173"
+    },
+    {
+      "check": "Sphere and Time Stop remain pending/non-operational",
+      "passed": true,
+      "detail": "no operational card or acceptance is inferred"
+    },
+    {
+      "check": "current queue selects Sphere first and preserves parent bindings",
+      "passed": true,
+      "detail": "queue309 and handoff309 are the packet inputs"
+    },
+    {
+      "check": "source-search leads are explicitly non-findings",
+      "passed": true,
+      "detail": "no route, actor, or positive encounter is invented"
+    },
+    {
+      "check": "87 current sources match Packet310, Packet308 and the worktree",
+      "passed": true,
+      "detail": "byte length, SHA-256 and CRC32 checked on each path"
+    },
+    {
+      "check": "Return218 Sphere procedure, all 14 case IDs and selected dispositions are byte-preserved",
+      "passed": true,
+      "detail": "Crown-command case included; exact Return218 internal/external bindings checked"
+    },
+    {
+      "check": "Return280 B04 blocker context is exact",
+      "passed": true,
+      "detail": "historical B04 evidence is context, not a new ruling"
+    },
+    {
+      "check": "Return308 held context is bound and audit passed",
+      "passed": true,
+      "detail": "prior Timeless Form hold preserved without widening scope"
+    },
+    {
+      "check": "base commit and working-tree overlay are explicitly separated",
+      "passed": true,
+      "detail": "base 4391773a626cb91dbb2913670a4e396aae701ba3; current index SHA-256 bc17b53a5260e0df579c5695aca0df5c9dd6ad711200ba40dc56a0a12d0681a7"
+    }
+  ],
+  "packet": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_defenseform8_current_source_310_prepared/DD_Rank9_DefenseForm8_CurrentSource_310.zip",
+    "bytes": 13481379,
+    "sha256": "7dc723bc9d8612a9ece5df613d250231010bad3d64e82d58ec5fa0158e42d15c",
+    "crc32": "8c95accf"
+  },
+  "delivery": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_defenseform8_current_source_310_prepared/DD_Rank9_DefenseForm8_CurrentSource_310_DELIVERY.json",
+    "bytes": 71490,
+    "sha256": "93d8c4656fba495daa1dc806471a16600e9ff4e9851621f8c0b261717b551117",
+    "crc32": "409595d9"
+  },
+  "scopeIds": [
+    "invulnerable-sphere"
+  ],
+  "blockerIds": [
+    "DF218-B04"
+  ],
+  "authority": {
+    "reviewedApplied": 822,
+    "pending": 26,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 546,
+    "scopedInterfaces": 173
+  },
+  "acceptedIds": [],
+  "appliedIds": [],
+  "canonicalChanges": false,
+  "note": "Preparation packet only. No acceptance, application, new crossing route, or positive encounter is claimed."
+}

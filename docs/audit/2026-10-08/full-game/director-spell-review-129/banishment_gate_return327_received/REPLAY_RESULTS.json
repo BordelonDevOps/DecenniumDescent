@@ -1,0 +1,3030 @@
+{
+  "id": "PG327-REPLAY",
+  "status": "PASS",
+  "counts": {
+    "preservedCases": 9,
+    "mainCases": 2,
+    "branches": 7,
+    "events": 129,
+    "forwardOperations": 258,
+    "inverseOperations": 258,
+    "fullReverseTraversals": 9,
+    "regularClockMarkers": 46,
+    "wholeRequiredMainCasesComplete": 0,
+    "ruleOnlyBranchRecords": 7,
+    "ac5AcceptedExampleRecords": 5,
+    "ac5ExamplesWithNewFullStateReplay": 0,
+    "targetQuestionDispositions": 10,
+    "targetFutureObligations": 5
+  },
+  "stateHashSerialization": {
+    "hash": "SHA-256",
+    "encoding": "UTF-8",
+    "serialization": "Python standard JSON: sort_keys=True, separators=(comma,colon), ensure_ascii=False; no trailing newline. Preserve JSON integer/float values. This is not a claimed RFC8785/JCS implementation.",
+    "scope": "Event before/after, case initial/final, actor-profile object bindings and proposal-state hashes. File/member hashes instead cover exact stored bytes."
+  },
+  "cases": [
+    {
+      "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A",
+      "statusPreserved": "HELD_TYPE_CONTROL",
+      "eventCount": 41,
+      "forwardOperationCount": 82,
+      "inverseOperationCount": 82,
+      "replay": "PASS",
+      "wholeRequiredCaseComplete": false,
+      "initialSHA256": "0c0ce87d9a855a9e91b9837e34468d28cab76294fa8c48878cd519bddd27b55b",
+      "finalSHA256": "0506dcac0b49edfa99685801b76f4e864b7152a9f5e28daa2e94a068f76138a1",
+      "events": [
+        {
+          "index": 0,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A:1",
+          "time": 0,
+          "kind": "START",
+          "source": "COMBAT_ACTION_PLAYTEST.md / class current engine",
+          "narrative": "A scheduled regular START; no pulse creates a turn",
+          "beforeSHA256": "0c0ce87d9a855a9e91b9837e34468d28cab76294fa8c48878cd519bddd27b55b",
+          "afterSHA256": "bd68e565fd4bb1bbbc5a9833998c456baea7e3f0693c191dddd31f11423b4113",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 1,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A:2",
+          "time": 0.1,
+          "kind": "ELAPSED",
+          "source": null,
+          "narrative": "Actual elapsed time; all existing deadlines retained",
+          "beforeSHA256": "bd68e565fd4bb1bbbc5a9833998c456baea7e3f0693c191dddd31f11423b4113",
+          "afterSHA256": "2450e2083921020b911747b01ffeb84f25fc810cc8c328fa280e1ee94e6f273f",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 2,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A:3",
+          "time": 0.1,
+          "kind": "CAST_COMMIT",
+          "source": "banishment-gate",
+          "narrative": "A pays and commits banishment-gate",
+          "beforeSHA256": "2450e2083921020b911747b01ffeb84f25fc810cc8c328fa280e1ee94e6f273f",
+          "afterSHA256": "3b85a96942bb68e05e575a4d8b5ccdf17892c204dd78abb7a9ac15f0b82f5b82",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 3,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A:4",
+          "time": 0.1,
+          "kind": "CAST_RESOLVE",
+          "source": "banishment-gate",
+          "narrative": "No counter declared in this explicit branch; actual source establishes",
+          "beforeSHA256": "3b85a96942bb68e05e575a4d8b5ccdf17892c204dd78abb7a9ac15f0b82f5b82",
+          "afterSHA256": "d05f932e5af8a00bb8832a4958949c31e278f877110309d4b84b0f47e001655f",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 4,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A:5",
+          "time": 0.12,
+          "kind": "GATE_CONFIG",
+          "source": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/cast1",
+          "narrative": "Choose one actual type Elemental;10x15aperture; no enemy-only restriction",
+          "beforeSHA256": "d05f932e5af8a00bb8832a4958949c31e278f877110309d4b84b0f47e001655f",
+          "afterSHA256": "3803bb656af6031e270500894bb78d0487b234d3bf021a7044f6b3406350ae32",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 5,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A:6",
+          "time": 0.9,
+          "kind": "END",
+          "source": "COMBAT_ACTION_PLAYTEST.md / class current engine",
+          "narrative": "A scheduled regular END; no pulse creates a turn",
+          "beforeSHA256": "3803bb656af6031e270500894bb78d0487b234d3bf021a7044f6b3406350ae32",
+          "afterSHA256": "a2da2679c4e1261553ccd66ddb9d888025912e612a0f2b83a1a8dd68e55150b9",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 6,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A:7",
+          "time": 1,
+          "kind": "START",
+          "source": "COMBAT_ACTION_PLAYTEST.md / class current engine",
+          "narrative": "B scheduled regular START; no pulse creates a turn",
+          "beforeSHA256": "a2da2679c4e1261553ccd66ddb9d888025912e612a0f2b83a1a8dd68e55150b9",
+          "afterSHA256": "e7c6749256873323ca842585e9025e93a57834b61e352a6e26d9bb8171370546",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 7,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A:8",
+          "time": 1.1,
+          "kind": "ELAPSED",
+          "source": null,
+          "narrative": "Actual elapsed time; all existing deadlines retained",
+          "beforeSHA256": "e7c6749256873323ca842585e9025e93a57834b61e352a6e26d9bb8171370546",
+          "afterSHA256": "3704246f70225d765724b02cf35a8499bc51817106c0ae150e11de2646579c9a",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 8,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A:9",
+          "time": 1.1,
+          "kind": "CAST_COMMIT",
+          "source": "summon-water-pet",
+          "narrative": "B pays and commits summon-water-pet",
+          "beforeSHA256": "3704246f70225d765724b02cf35a8499bc51817106c0ae150e11de2646579c9a",
+          "afterSHA256": "c946ca51984cea03fcb7f58d82fee4b689897fc5deddfba2460efa2d0034bf63",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 9,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A:10",
+          "time": 1.1,
+          "kind": "CAST_RESOLVE",
+          "source": "summon-water-pet",
+          "narrative": "No counter declared in this explicit branch; actual source establishes",
+          "beforeSHA256": "c946ca51984cea03fcb7f58d82fee4b689897fc5deddfba2460efa2d0034bf63",
+          "afterSHA256": "9b582718e2a661cca3c3fc3045ef1f245c9af9c6d3ac7399e9e7bb868ae96123",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 10,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A:11",
+          "time": 1.12,
+          "kind": "SUMMON",
+          "source": "summon-water-pet",
+          "narrative": "Exact accepted finite companion profile; no invented type for Spectral Steed",
+          "beforeSHA256": "9b582718e2a661cca3c3fc3045ef1f245c9af9c6d3ac7399e9e7bb868ae96123",
+          "afterSHA256": "bbefb567bdb41a4045262c87bfdd153f037ce712c56757c9a76849d2c7c18593",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 11,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A:12",
+          "time": 1.9,
+          "kind": "END",
+          "source": "COMBAT_ACTION_PLAYTEST.md / class current engine",
+          "narrative": "B scheduled regular END; no pulse creates a turn",
+          "beforeSHA256": "bbefb567bdb41a4045262c87bfdd153f037ce712c56757c9a76849d2c7c18593",
+          "afterSHA256": "067bebf7cb22298cdeff6625d5f03744410f4003bf49a3f381ea68ca6b2ef997",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 12,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A:13",
+          "time": 1.9,
+          "kind": "ATTACHED_PHASE",
+          "source": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/cast2",
+          "narrative": "Actual companion phase after its owner regular END; default defensive movement/Dodge when uncommanded",
+          "beforeSHA256": "067bebf7cb22298cdeff6625d5f03744410f4003bf49a3f381ea68ca6b2ef997",
+          "afterSHA256": "2f2b446816b38d5d943b5c353cf91f3f37cea4aefd2c637850748b578a1ae03c",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 13,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A:14",
+          "time": 2,
+          "kind": "START",
+          "source": "COMBAT_ACTION_PLAYTEST.md / class current engine",
+          "narrative": "C scheduled regular START; no pulse creates a turn",
+          "beforeSHA256": "2f2b446816b38d5d943b5c353cf91f3f37cea4aefd2c637850748b578a1ae03c",
+          "afterSHA256": "5e39d5de9a9b439024e27fe2ea045ff3a18aa00921ffb3c79363ca922e47b917",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 14,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A:15",
+          "time": 2.9,
+          "kind": "END",
+          "source": "COMBAT_ACTION_PLAYTEST.md / class current engine",
+          "narrative": "C scheduled regular END; no pulse creates a turn",
+          "beforeSHA256": "5e39d5de9a9b439024e27fe2ea045ff3a18aa00921ffb3c79363ca922e47b917",
+          "afterSHA256": "6d6cfd83eb4b55076f8450839c2c70392ceb9e37f9372ef55e7bb4075272a3b4",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 15,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A:16",
+          "time": 3,
+          "kind": "START",
+          "source": "COMBAT_ACTION_PLAYTEST.md / class current engine",
+          "narrative": "D scheduled regular START; no pulse creates a turn",
+          "beforeSHA256": "6d6cfd83eb4b55076f8450839c2c70392ceb9e37f9372ef55e7bb4075272a3b4",
+          "afterSHA256": "cf4f5692cf72a754f7331a2d7f5917dd0c1696d3ccab8c1e006a5156d072983a",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 16,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A:17",
+          "time": 3.1,
+          "kind": "ELAPSED",
+          "source": null,
+          "narrative": "Actual elapsed time; all existing deadlines retained",
+          "beforeSHA256": "cf4f5692cf72a754f7331a2d7f5917dd0c1696d3ccab8c1e006a5156d072983a",
+          "afterSHA256": "3faa899e6bfb3c27f52f9fdade63c210daa2368311ce16b7e1daeb38a7dc62e9",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 17,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A:18",
+          "time": 3.1,
+          "kind": "CAST_COMMIT",
+          "source": "summon-water-pet",
+          "narrative": "D pays and commits summon-water-pet",
+          "beforeSHA256": "3faa899e6bfb3c27f52f9fdade63c210daa2368311ce16b7e1daeb38a7dc62e9",
+          "afterSHA256": "76af9708a65cd95aece3822261d92a7a3e56c057478ea57c29e11457e2d7677e",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 18,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A:19",
+          "time": 3.1,
+          "kind": "CAST_RESOLVE",
+          "source": "summon-water-pet",
+          "narrative": "No counter declared in this explicit branch; actual source establishes",
+          "beforeSHA256": "76af9708a65cd95aece3822261d92a7a3e56c057478ea57c29e11457e2d7677e",
+          "afterSHA256": "c74f29c7a1dc5468fdabcc803049afd1749ef5a65d8dc0ab18810c09abf34925",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 19,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A:20",
+          "time": 3.12,
+          "kind": "SUMMON",
+          "source": "summon-water-pet",
+          "narrative": "Exact accepted finite companion profile; no invented type for Spectral Steed",
+          "beforeSHA256": "c74f29c7a1dc5468fdabcc803049afd1749ef5a65d8dc0ab18810c09abf34925",
+          "afterSHA256": "c7736a927f985975beb27356db981af84e2ef2434bb94192cdb2d05410f17ab7",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 20,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A:21",
+          "time": 3.9,
+          "kind": "END",
+          "source": "COMBAT_ACTION_PLAYTEST.md / class current engine",
+          "narrative": "D scheduled regular END; no pulse creates a turn",
+          "beforeSHA256": "c7736a927f985975beb27356db981af84e2ef2434bb94192cdb2d05410f17ab7",
+          "afterSHA256": "3c97d7a74b3ad84c70233247bc8ab20369947bc6359c9140024bd8818beba14e",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 21,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A:22",
+          "time": 3.9,
+          "kind": "ATTACHED_PHASE",
+          "source": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/cast3",
+          "narrative": "Actual companion phase after its owner regular END; default defensive movement/Dodge when uncommanded",
+          "beforeSHA256": "3c97d7a74b3ad84c70233247bc8ab20369947bc6359c9140024bd8818beba14e",
+          "afterSHA256": "ad652f0d135825a2cee77327d8fc2988657e173a5922483aefdd0f29fa90a872",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 22,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A:23",
+          "time": 6,
+          "kind": "START",
+          "source": "COMBAT_ACTION_PLAYTEST.md / class current engine",
+          "narrative": "A scheduled regular START; no pulse creates a turn",
+          "beforeSHA256": "ad652f0d135825a2cee77327d8fc2988657e173a5922483aefdd0f29fa90a872",
+          "afterSHA256": "d73691d793e36534c4798e65af7a0db83ee6beb44e9f4065347a2d0a17146672",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 23,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A:24",
+          "time": 6.9,
+          "kind": "END",
+          "source": "COMBAT_ACTION_PLAYTEST.md / class current engine",
+          "narrative": "A scheduled regular END; no pulse creates a turn",
+          "beforeSHA256": "d73691d793e36534c4798e65af7a0db83ee6beb44e9f4065347a2d0a17146672",
+          "afterSHA256": "b7b2dcc4532a361bbeacbc637b61a819d9375eb1185ea6c5a009fbffb2e76a8c",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 24,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A:25",
+          "time": 7,
+          "kind": "START",
+          "source": "COMBAT_ACTION_PLAYTEST.md / class current engine",
+          "narrative": "B scheduled regular START; no pulse creates a turn",
+          "beforeSHA256": "b7b2dcc4532a361bbeacbc637b61a819d9375eb1185ea6c5a009fbffb2e76a8c",
+          "afterSHA256": "76407c1c363c276450b18c3a9fb219ecdb039f7b956877b87ec27736bac174d8",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 25,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A:26",
+          "time": 7.8,
+          "kind": "ELAPSED",
+          "source": null,
+          "narrative": "Actual elapsed time; all existing deadlines retained",
+          "beforeSHA256": "76407c1c363c276450b18c3a9fb219ecdb039f7b956877b87ec27736bac174d8",
+          "afterSHA256": "7ccf85db4756f828a09c450bdfa9ae9bd5cdc982f2a9271647a8db56cd2cb4ed",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 26,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A:27",
+          "time": 7.8,
+          "kind": "COMPANION_COMMAND",
+          "source": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/cast2",
+          "narrative": "Real owner Bonus Action during owner regular turn; command must reach the actual companion",
+          "beforeSHA256": "7ccf85db4756f828a09c450bdfa9ae9bd5cdc982f2a9271647a8db56cd2cb4ed",
+          "afterSHA256": "d28eeba856626e5375f541436fc75f7bdcf33188635c4ddbaf9acb30eaef1ea1",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 27,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A:28",
+          "time": 7.9,
+          "kind": "END",
+          "source": "COMBAT_ACTION_PLAYTEST.md / class current engine",
+          "narrative": "B scheduled regular END; no pulse creates a turn",
+          "beforeSHA256": "d28eeba856626e5375f541436fc75f7bdcf33188635c4ddbaf9acb30eaef1ea1",
+          "afterSHA256": "284a9f3c6ae93bf4861fb3af19a7102a1d9299694dbbbe7c69520f2fe4825168",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 28,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A:29",
+          "time": 7.9,
+          "kind": "ATTACHED_PHASE",
+          "source": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/cast2",
+          "narrative": "Actual companion phase after its owner regular END; default defensive movement/Dodge when uncommanded",
+          "beforeSHA256": "284a9f3c6ae93bf4861fb3af19a7102a1d9299694dbbbe7c69520f2fe4825168",
+          "afterSHA256": "c6dc7016f64639e3d34e056756506d4ecd7d0dccdb85b1e07d89cd16acea3c8e",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 29,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A:30",
+          "time": 7.91,
+          "kind": "ELAPSED",
+          "source": null,
+          "narrative": "Actual elapsed time; all existing deadlines retained",
+          "beforeSHA256": "c6dc7016f64639e3d34e056756506d4ecd7d0dccdb85b1e07d89cd16acea3c8e",
+          "afterSHA256": "4dbdb9cc6a1ec67b75d99863c8af1918f38673e080b695729e6780396098b27d",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 30,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A:31",
+          "time": 7.91,
+          "kind": "AUTO_EXILE",
+          "source": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/cast1",
+          "narrative": "Actual Elemental whole crossing; automatic, no save, guard claimed only now",
+          "beforeSHA256": "4dbdb9cc6a1ec67b75d99863c8af1918f38673e080b695729e6780396098b27d",
+          "afterSHA256": "509a02930249d4fed0957af9fda4ded63876ba1604052034377907e014f608df",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 31,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A:32",
+          "time": 8,
+          "kind": "START",
+          "source": "COMBAT_ACTION_PLAYTEST.md / class current engine",
+          "narrative": "C scheduled regular START; no pulse creates a turn",
+          "beforeSHA256": "509a02930249d4fed0957af9fda4ded63876ba1604052034377907e014f608df",
+          "afterSHA256": "a45b629400311182845947d8cd4db9ce67c0fafb685b5e3520b0b3d82c7fd7a1",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 32,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A:33",
+          "time": 8.9,
+          "kind": "END",
+          "source": "COMBAT_ACTION_PLAYTEST.md / class current engine",
+          "narrative": "C scheduled regular END; no pulse creates a turn",
+          "beforeSHA256": "a45b629400311182845947d8cd4db9ce67c0fafb685b5e3520b0b3d82c7fd7a1",
+          "afterSHA256": "19edc78b5ed1f02d93c3c884ee9393cbb12763bda49e118b1e4971e326111415",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 33,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A:34",
+          "time": 9,
+          "kind": "START",
+          "source": "COMBAT_ACTION_PLAYTEST.md / class current engine",
+          "narrative": "D scheduled regular START; no pulse creates a turn",
+          "beforeSHA256": "19edc78b5ed1f02d93c3c884ee9393cbb12763bda49e118b1e4971e326111415",
+          "afterSHA256": "509170f0375dee7ff68ddde497091910386071cfcfce04ad613657e4b51c570e",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 34,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A:35",
+          "time": 9.8,
+          "kind": "ELAPSED",
+          "source": null,
+          "narrative": "Actual elapsed time; all existing deadlines retained",
+          "beforeSHA256": "509170f0375dee7ff68ddde497091910386071cfcfce04ad613657e4b51c570e",
+          "afterSHA256": "b76bb25c67669f4dd84e18a4cfb4b2d7aafd4a70e5140279fbedef6357f34cbb",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 35,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A:36",
+          "time": 9.8,
+          "kind": "COMPANION_COMMAND",
+          "source": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/cast3",
+          "narrative": "Real owner Bonus Action during owner regular turn; command must reach the actual companion",
+          "beforeSHA256": "b76bb25c67669f4dd84e18a4cfb4b2d7aafd4a70e5140279fbedef6357f34cbb",
+          "afterSHA256": "173431935addca5c88ae910b7bd215bc63547c5451c8a5f1a4dff7ec7edce89b",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 36,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A:37",
+          "time": 9.9,
+          "kind": "END",
+          "source": "COMBAT_ACTION_PLAYTEST.md / class current engine",
+          "narrative": "D scheduled regular END; no pulse creates a turn",
+          "beforeSHA256": "173431935addca5c88ae910b7bd215bc63547c5451c8a5f1a4dff7ec7edce89b",
+          "afterSHA256": "2f9baf2d3a80bf32dbbc84582f53bbf9a147a82b25005f039e301ea700184bf1",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 37,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A:38",
+          "time": 9.9,
+          "kind": "ATTACHED_PHASE",
+          "source": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/cast3",
+          "narrative": "Actual companion phase after its owner regular END; default defensive movement/Dodge when uncommanded",
+          "beforeSHA256": "2f9baf2d3a80bf32dbbc84582f53bbf9a147a82b25005f039e301ea700184bf1",
+          "afterSHA256": "5a31e418396576552c7f4c89cb03666740680d13a853e95b7a00320a87fab25c",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 38,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A:39",
+          "time": 9.91,
+          "kind": "ELAPSED",
+          "source": null,
+          "narrative": "Actual elapsed time; all existing deadlines retained",
+          "beforeSHA256": "5a31e418396576552c7f4c89cb03666740680d13a853e95b7a00320a87fab25c",
+          "afterSHA256": "d1dca9faab7f26be5d50341407f69c9734486d7bc8e8aa45bdc4e5ba1c0f9479",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 39,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A:40",
+          "time": 9.91,
+          "kind": "AUTO_EXILE",
+          "source": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/cast1",
+          "narrative": "Actual Elemental whole crossing; automatic, no save, guard claimed only now",
+          "beforeSHA256": "d1dca9faab7f26be5d50341407f69c9734486d7bc8e8aa45bdc4e5ba1c0f9479",
+          "afterSHA256": "64fcc5a37c3db0cf3892dccc8b6a71600e290bf8d0373973d84c6a1def39d98c",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 40,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A:41",
+          "time": 10.9,
+          "kind": "ELAPSED",
+          "source": null,
+          "narrative": "Actual elapsed time; all existing deadlines retained",
+          "beforeSHA256": "64fcc5a37c3db0cf3892dccc8b6a71600e290bf8d0373973d84c6a1def39d98c",
+          "afterSHA256": "0506dcac0b49edfa99685801b76f4e864b7152a9f5e28daa2e94a068f76138a1",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        }
+      ],
+      "finalActorClocksAndResources": [
+        {
+          "actorId": "A",
+          "starts": [
+            0,
+            6
+          ],
+          "ends": [
+            0.9,
+            6.9
+          ],
+          "nextStart": 12,
+          "nextEnd": 12.9,
+          "budgetHistory": [
+            {
+              "time": 0,
+              "action": 1,
+              "BA": 1,
+              "Reaction": 1,
+              "Move": 30,
+              "recharge": {}
+            },
+            {
+              "time": 6,
+              "action": 1,
+              "BA": 1,
+              "Reaction": 1,
+              "Move": 30,
+              "recharge": {}
+            }
+          ],
+          "recharge": {},
+          "action": 1,
+          "bonusAction": 1,
+          "reaction": 1,
+          "movement": 30,
+          "RP": 54,
+          "Dissonance": 0,
+          "magicThisTurn": false,
+          "resourceHistory": [
+            {
+              "event": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/cast1",
+              "RP": -26,
+              "poolAfter": 54,
+              "discount": false
+            }
+          ],
+          "spellHistory": [
+            {
+              "castId": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/cast1",
+              "spellId": "banishment-gate",
+              "class": "Wizard",
+              "school": "Abjuration",
+              "rank": 9,
+              "time": 0.1,
+              "cost": 26,
+              "firstPreparedFamily": true,
+              "baseDissonance": 0,
+              "Refrain": 0,
+              "originPlane": "fixture:origin",
+              "target": null,
+              "components": [
+                "V",
+                "S",
+                "F"
+              ]
+            }
+          ],
+          "concentration": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/cast1"
+        },
+        {
+          "actorId": "B",
+          "starts": [
+            1,
+            7
+          ],
+          "ends": [
+            1.9,
+            7.9
+          ],
+          "nextStart": 13,
+          "nextEnd": 13.9,
+          "budgetHistory": [
+            {
+              "time": 1,
+              "action": 1,
+              "BA": 1,
+              "Reaction": 1,
+              "Move": 30,
+              "recharge": {}
+            },
+            {
+              "time": 7,
+              "action": 1,
+              "BA": 1,
+              "Reaction": 1,
+              "Move": 30,
+              "recharge": {}
+            }
+          ],
+          "recharge": {},
+          "action": 1,
+          "bonusAction": 0,
+          "reaction": 1,
+          "movement": 30,
+          "RP": 73,
+          "Dissonance": 0,
+          "magicThisTurn": false,
+          "resourceHistory": [
+            {
+              "event": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/cast2",
+              "RP": -7,
+              "poolAfter": 73,
+              "discount": false
+            }
+          ],
+          "spellHistory": [
+            {
+              "castId": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/cast2",
+              "spellId": "summon-water-pet",
+              "class": "Wizard",
+              "school": "Conjuration",
+              "rank": 4,
+              "time": 1.1,
+              "cost": 7,
+              "firstPreparedFamily": true,
+              "baseDissonance": 0,
+              "Refrain": 0,
+              "originPlane": "fixture:origin",
+              "target": null,
+              "components": [
+                "V",
+                "S",
+                "F"
+              ]
+            }
+          ],
+          "concentration": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/cast2"
+        },
+        {
+          "actorId": "C",
+          "starts": [
+            2,
+            8
+          ],
+          "ends": [
+            2.9,
+            8.9
+          ],
+          "nextStart": 14,
+          "nextEnd": 14.9,
+          "budgetHistory": [
+            {
+              "time": 2,
+              "action": 1,
+              "BA": 1,
+              "Reaction": 1,
+              "Move": 30,
+              "recharge": {}
+            },
+            {
+              "time": 8,
+              "action": 1,
+              "BA": 1,
+              "Reaction": 1,
+              "Move": 30,
+              "recharge": {}
+            }
+          ],
+          "recharge": {},
+          "action": 1,
+          "bonusAction": 1,
+          "reaction": 1,
+          "movement": 30,
+          "RP": 58,
+          "Dissonance": 0,
+          "magicThisTurn": false,
+          "resourceHistory": [],
+          "spellHistory": [],
+          "concentration": null
+        },
+        {
+          "actorId": "D",
+          "starts": [
+            3,
+            9
+          ],
+          "ends": [
+            3.9,
+            9.9
+          ],
+          "nextStart": 15,
+          "nextEnd": 15.9,
+          "budgetHistory": [
+            {
+              "time": 3,
+              "action": 1,
+              "BA": 1,
+              "Reaction": 1,
+              "Move": 30,
+              "recharge": {}
+            },
+            {
+              "time": 9,
+              "action": 1,
+              "BA": 1,
+              "Reaction": 1,
+              "Move": 30,
+              "recharge": {}
+            }
+          ],
+          "recharge": {},
+          "action": 1,
+          "bonusAction": 0,
+          "reaction": 1,
+          "movement": 30,
+          "RP": 73,
+          "Dissonance": 0,
+          "magicThisTurn": false,
+          "resourceHistory": [
+            {
+              "event": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/cast3",
+              "RP": -7,
+              "poolAfter": 73,
+              "discount": false
+            }
+          ],
+          "spellHistory": [
+            {
+              "castId": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/cast3",
+              "spellId": "summon-water-pet",
+              "class": "Wizard",
+              "school": "Conjuration",
+              "rank": 4,
+              "time": 3.1,
+              "cost": 7,
+              "firstPreparedFamily": true,
+              "baseDissonance": 0,
+              "Refrain": 0,
+              "originPlane": "fixture:origin",
+              "target": null,
+              "components": [
+                "V",
+                "S",
+                "F"
+              ]
+            }
+          ],
+          "concentration": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/cast3"
+        }
+      ],
+      "qualification": "Exact authored states replayed; numeric success does not establish missing positive branch premises, acquisition or campaign facts."
+    },
+    {
+      "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/already-claimed",
+      "statusPreserved": "HELD_RULE_WITNESS_NOT_DEMONSTRATED",
+      "eventCount": 6,
+      "forwardOperationCount": 12,
+      "inverseOperationCount": 12,
+      "replay": "PASS",
+      "wholeRequiredCaseComplete": false,
+      "initialSHA256": "0c0ce87d9a855a9e91b9837e34468d28cab76294fa8c48878cd519bddd27b55b",
+      "finalSHA256": "d18e9be46166276b7c6586dc96e1724cd7aea944ab0b52a960a36f7c82546da6",
+      "events": [
+        {
+          "index": 0,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/already-claimed:1",
+          "time": 0,
+          "kind": "START",
+          "source": "COMBAT_ACTION_PLAYTEST.md / class current engine",
+          "narrative": "A scheduled regular START; no pulse creates a turn",
+          "beforeSHA256": "0c0ce87d9a855a9e91b9837e34468d28cab76294fa8c48878cd519bddd27b55b",
+          "afterSHA256": "92ad2fc674bb5557d7534a933183e06cf54c54f32a90c24f28e801248624ae2f",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 1,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/already-claimed:2",
+          "time": 0.1,
+          "kind": "ELAPSED",
+          "source": null,
+          "narrative": "Actual elapsed time; all existing deadlines retained",
+          "beforeSHA256": "92ad2fc674bb5557d7534a933183e06cf54c54f32a90c24f28e801248624ae2f",
+          "afterSHA256": "4ab99c12f8b0b1b14fc607831c0c5a97f457e0674a030c41274fccd51ed564e0",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 2,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/already-claimed:3",
+          "time": 0.1,
+          "kind": "CAST_COMMIT",
+          "source": "banishment-gate",
+          "narrative": "A pays and commits banishment-gate",
+          "beforeSHA256": "4ab99c12f8b0b1b14fc607831c0c5a97f457e0674a030c41274fccd51ed564e0",
+          "afterSHA256": "878c30326b8c71177b772151945d056fc353013e63b06beb83b7e5df9bc79dc0",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 3,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/already-claimed:4",
+          "time": 0.1,
+          "kind": "CAST_RESOLVE",
+          "source": "banishment-gate",
+          "narrative": "No counter declared in this explicit branch; actual source establishes",
+          "beforeSHA256": "878c30326b8c71177b772151945d056fc353013e63b06beb83b7e5df9bc79dc0",
+          "afterSHA256": "9786f4c7f678892db4a6f13b473cc5bbd01f528e0164a8b12b290388610b37ed",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 4,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/already-claimed:5",
+          "time": 0.2,
+          "kind": "QUALIFIED_RULE_INPUT",
+          "source": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/already-claimed/cast1",
+          "narrative": "already-claimed has no fabricated positive resolution; exact missing/negative preconditions retained",
+          "beforeSHA256": "9786f4c7f678892db4a6f13b473cc5bbd01f528e0164a8b12b290388610b37ed",
+          "afterSHA256": "e3367a0095c113019f6281613afedc3af26dc2c39886ef115d0cda77df420424",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 5,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/already-claimed:6",
+          "time": 0.9,
+          "kind": "END",
+          "source": "COMBAT_ACTION_PLAYTEST.md / class current engine",
+          "narrative": "A scheduled regular END; no pulse creates a turn",
+          "beforeSHA256": "e3367a0095c113019f6281613afedc3af26dc2c39886ef115d0cda77df420424",
+          "afterSHA256": "d18e9be46166276b7c6586dc96e1724cd7aea944ab0b52a960a36f7c82546da6",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        }
+      ],
+      "finalActorClocksAndResources": [
+        {
+          "actorId": "A",
+          "starts": [
+            0
+          ],
+          "ends": [
+            0.9
+          ],
+          "nextStart": 6,
+          "nextEnd": 6.9,
+          "budgetHistory": [
+            {
+              "time": 0,
+              "action": 1,
+              "BA": 1,
+              "Reaction": 1,
+              "Move": 30,
+              "recharge": {}
+            }
+          ],
+          "recharge": {},
+          "action": 0,
+          "bonusAction": 1,
+          "reaction": 1,
+          "movement": 30,
+          "RP": 54,
+          "Dissonance": 0,
+          "magicThisTurn": true,
+          "resourceHistory": [
+            {
+              "event": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/already-claimed/cast1",
+              "RP": -26,
+              "poolAfter": 54,
+              "discount": false
+            }
+          ],
+          "spellHistory": [
+            {
+              "castId": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/already-claimed/cast1",
+              "spellId": "banishment-gate",
+              "class": "Wizard",
+              "school": "Abjuration",
+              "rank": 9,
+              "time": 0.1,
+              "cost": 26,
+              "firstPreparedFamily": true,
+              "baseDissonance": 0,
+              "Refrain": 0,
+              "originPlane": "fixture:origin",
+              "target": null,
+              "components": [
+                "V",
+                "S",
+                "F"
+              ]
+            }
+          ],
+          "concentration": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/already-claimed/cast1"
+        },
+        {
+          "actorId": "B",
+          "starts": [],
+          "ends": [],
+          "nextStart": 1,
+          "nextEnd": 1.9,
+          "budgetHistory": [],
+          "recharge": {},
+          "action": 0,
+          "bonusAction": 0,
+          "reaction": 1,
+          "movement": 0,
+          "RP": 80,
+          "Dissonance": 0,
+          "magicThisTurn": false,
+          "resourceHistory": [],
+          "spellHistory": [],
+          "concentration": null
+        },
+        {
+          "actorId": "C",
+          "starts": [],
+          "ends": [],
+          "nextStart": 2,
+          "nextEnd": 2.9,
+          "budgetHistory": [],
+          "recharge": {},
+          "action": 0,
+          "bonusAction": 0,
+          "reaction": 1,
+          "movement": 0,
+          "RP": 58,
+          "Dissonance": 0,
+          "magicThisTurn": false,
+          "resourceHistory": [],
+          "spellHistory": [],
+          "concentration": null
+        },
+        {
+          "actorId": "D",
+          "starts": [],
+          "ends": [],
+          "nextStart": 3,
+          "nextEnd": 3.9,
+          "budgetHistory": [],
+          "recharge": {},
+          "action": 0,
+          "bonusAction": 0,
+          "reaction": 1,
+          "movement": 0,
+          "RP": 80,
+          "Dissonance": 0,
+          "magicThisTurn": false,
+          "resourceHistory": [],
+          "spellHistory": [],
+          "concentration": null
+        }
+      ],
+      "qualification": "Exact authored states replayed; numeric success does not establish missing positive branch premises, acquisition or campaign facts."
+    },
+    {
+      "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/stationary-type-change",
+      "statusPreserved": "HELD_RULE_WITNESS_NOT_DEMONSTRATED",
+      "eventCount": 6,
+      "forwardOperationCount": 12,
+      "inverseOperationCount": 12,
+      "replay": "PASS",
+      "wholeRequiredCaseComplete": false,
+      "initialSHA256": "0c0ce87d9a855a9e91b9837e34468d28cab76294fa8c48878cd519bddd27b55b",
+      "finalSHA256": "7e20b6a3fcb8afbf0d80a32445e446d4826a4e4962366b7431ece53ec62d744b",
+      "events": [
+        {
+          "index": 0,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/stationary-type-change:1",
+          "time": 0,
+          "kind": "START",
+          "source": "COMBAT_ACTION_PLAYTEST.md / class current engine",
+          "narrative": "A scheduled regular START; no pulse creates a turn",
+          "beforeSHA256": "0c0ce87d9a855a9e91b9837e34468d28cab76294fa8c48878cd519bddd27b55b",
+          "afterSHA256": "2f992d330e565fdf9436fd56ce628bfffd0df1f9ec03606fd265d03e6ce2f323",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 1,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/stationary-type-change:2",
+          "time": 0.1,
+          "kind": "ELAPSED",
+          "source": null,
+          "narrative": "Actual elapsed time; all existing deadlines retained",
+          "beforeSHA256": "2f992d330e565fdf9436fd56ce628bfffd0df1f9ec03606fd265d03e6ce2f323",
+          "afterSHA256": "db68ea9587b0abf1215caeeea90a79c9bdb003983076b0cb7f6340c05fa8bf6d",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 2,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/stationary-type-change:3",
+          "time": 0.1,
+          "kind": "CAST_COMMIT",
+          "source": "banishment-gate",
+          "narrative": "A pays and commits banishment-gate",
+          "beforeSHA256": "db68ea9587b0abf1215caeeea90a79c9bdb003983076b0cb7f6340c05fa8bf6d",
+          "afterSHA256": "dcacf99847d49fe6a00402477cf5a516b187f4a5e5829638304774e6b373abfa",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 3,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/stationary-type-change:4",
+          "time": 0.1,
+          "kind": "CAST_RESOLVE",
+          "source": "banishment-gate",
+          "narrative": "No counter declared in this explicit branch; actual source establishes",
+          "beforeSHA256": "dcacf99847d49fe6a00402477cf5a516b187f4a5e5829638304774e6b373abfa",
+          "afterSHA256": "b570af6e29bc307b160b757d7bfbe098ed663b8ae1f77220ca1f89b065be7421",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 4,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/stationary-type-change:5",
+          "time": 0.2,
+          "kind": "QUALIFIED_RULE_INPUT",
+          "source": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/stationary-type-change/cast1",
+          "narrative": "stationary-type-change has no fabricated positive resolution; exact missing/negative preconditions retained",
+          "beforeSHA256": "b570af6e29bc307b160b757d7bfbe098ed663b8ae1f77220ca1f89b065be7421",
+          "afterSHA256": "bba86b431dd293bd10897c01844da52382d3826459e32edbb0c7ec7c67b45dcd",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 5,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/stationary-type-change:6",
+          "time": 0.9,
+          "kind": "END",
+          "source": "COMBAT_ACTION_PLAYTEST.md / class current engine",
+          "narrative": "A scheduled regular END; no pulse creates a turn",
+          "beforeSHA256": "bba86b431dd293bd10897c01844da52382d3826459e32edbb0c7ec7c67b45dcd",
+          "afterSHA256": "7e20b6a3fcb8afbf0d80a32445e446d4826a4e4962366b7431ece53ec62d744b",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        }
+      ],
+      "finalActorClocksAndResources": [
+        {
+          "actorId": "A",
+          "starts": [
+            0
+          ],
+          "ends": [
+            0.9
+          ],
+          "nextStart": 6,
+          "nextEnd": 6.9,
+          "budgetHistory": [
+            {
+              "time": 0,
+              "action": 1,
+              "BA": 1,
+              "Reaction": 1,
+              "Move": 30,
+              "recharge": {}
+            }
+          ],
+          "recharge": {},
+          "action": 0,
+          "bonusAction": 1,
+          "reaction": 1,
+          "movement": 30,
+          "RP": 54,
+          "Dissonance": 0,
+          "magicThisTurn": true,
+          "resourceHistory": [
+            {
+              "event": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/stationary-type-change/cast1",
+              "RP": -26,
+              "poolAfter": 54,
+              "discount": false
+            }
+          ],
+          "spellHistory": [
+            {
+              "castId": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/stationary-type-change/cast1",
+              "spellId": "banishment-gate",
+              "class": "Wizard",
+              "school": "Abjuration",
+              "rank": 9,
+              "time": 0.1,
+              "cost": 26,
+              "firstPreparedFamily": true,
+              "baseDissonance": 0,
+              "Refrain": 0,
+              "originPlane": "fixture:origin",
+              "target": null,
+              "components": [
+                "V",
+                "S",
+                "F"
+              ]
+            }
+          ],
+          "concentration": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/stationary-type-change/cast1"
+        },
+        {
+          "actorId": "B",
+          "starts": [],
+          "ends": [],
+          "nextStart": 1,
+          "nextEnd": 1.9,
+          "budgetHistory": [],
+          "recharge": {},
+          "action": 0,
+          "bonusAction": 0,
+          "reaction": 1,
+          "movement": 0,
+          "RP": 80,
+          "Dissonance": 0,
+          "magicThisTurn": false,
+          "resourceHistory": [],
+          "spellHistory": [],
+          "concentration": null
+        },
+        {
+          "actorId": "C",
+          "starts": [],
+          "ends": [],
+          "nextStart": 2,
+          "nextEnd": 2.9,
+          "budgetHistory": [],
+          "recharge": {},
+          "action": 0,
+          "bonusAction": 0,
+          "reaction": 1,
+          "movement": 0,
+          "RP": 58,
+          "Dissonance": 0,
+          "magicThisTurn": false,
+          "resourceHistory": [],
+          "spellHistory": [],
+          "concentration": null
+        },
+        {
+          "actorId": "D",
+          "starts": [],
+          "ends": [],
+          "nextStart": 3,
+          "nextEnd": 3.9,
+          "budgetHistory": [],
+          "recharge": {},
+          "action": 0,
+          "bonusAction": 0,
+          "reaction": 1,
+          "movement": 0,
+          "RP": 80,
+          "Dissonance": 0,
+          "magicThisTurn": false,
+          "resourceHistory": [],
+          "spellHistory": [],
+          "concentration": null
+        }
+      ],
+      "qualification": "Exact authored states replayed; numeric success does not establish missing positive branch premises, acquisition or campaign facts."
+    },
+    {
+      "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/touch-only",
+      "statusPreserved": "HELD_RULE_WITNESS_NOT_DEMONSTRATED",
+      "eventCount": 6,
+      "forwardOperationCount": 12,
+      "inverseOperationCount": 12,
+      "replay": "PASS",
+      "wholeRequiredCaseComplete": false,
+      "initialSHA256": "0c0ce87d9a855a9e91b9837e34468d28cab76294fa8c48878cd519bddd27b55b",
+      "finalSHA256": "14ef1a1a1aaed8ffa380d9b02696ac9a8c297b75735b180adf43aa30603da94b",
+      "events": [
+        {
+          "index": 0,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/touch-only:1",
+          "time": 0,
+          "kind": "START",
+          "source": "COMBAT_ACTION_PLAYTEST.md / class current engine",
+          "narrative": "A scheduled regular START; no pulse creates a turn",
+          "beforeSHA256": "0c0ce87d9a855a9e91b9837e34468d28cab76294fa8c48878cd519bddd27b55b",
+          "afterSHA256": "bbeb517e7cf02b429f64ab3fd72824ce650887a56bdd1192351c48fea3fd5b2c",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 1,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/touch-only:2",
+          "time": 0.1,
+          "kind": "ELAPSED",
+          "source": null,
+          "narrative": "Actual elapsed time; all existing deadlines retained",
+          "beforeSHA256": "bbeb517e7cf02b429f64ab3fd72824ce650887a56bdd1192351c48fea3fd5b2c",
+          "afterSHA256": "ad213fd117340c1aa152b7728fddc0ac835193b8ca427d8747f5d90d6edab7df",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 2,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/touch-only:3",
+          "time": 0.1,
+          "kind": "CAST_COMMIT",
+          "source": "banishment-gate",
+          "narrative": "A pays and commits banishment-gate",
+          "beforeSHA256": "ad213fd117340c1aa152b7728fddc0ac835193b8ca427d8747f5d90d6edab7df",
+          "afterSHA256": "8378a3b9e862995da07356fe14057cead1659dc0e8e403fd5d021d0556e0b83a",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 3,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/touch-only:4",
+          "time": 0.1,
+          "kind": "CAST_RESOLVE",
+          "source": "banishment-gate",
+          "narrative": "No counter declared in this explicit branch; actual source establishes",
+          "beforeSHA256": "8378a3b9e862995da07356fe14057cead1659dc0e8e403fd5d021d0556e0b83a",
+          "afterSHA256": "23742aa2091ed8a5eff408500d2a065ca39e897eebfe42416b7c24ccf4146c44",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 4,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/touch-only:5",
+          "time": 0.2,
+          "kind": "QUALIFIED_RULE_INPUT",
+          "source": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/touch-only/cast1",
+          "narrative": "touch-only has no fabricated positive resolution; exact missing/negative preconditions retained",
+          "beforeSHA256": "23742aa2091ed8a5eff408500d2a065ca39e897eebfe42416b7c24ccf4146c44",
+          "afterSHA256": "b4aaed64ee3e047633ed86480f9028ae2c4e515ab850f2cfb529f738c33f4c15",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 5,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/touch-only:6",
+          "time": 0.9,
+          "kind": "END",
+          "source": "COMBAT_ACTION_PLAYTEST.md / class current engine",
+          "narrative": "A scheduled regular END; no pulse creates a turn",
+          "beforeSHA256": "b4aaed64ee3e047633ed86480f9028ae2c4e515ab850f2cfb529f738c33f4c15",
+          "afterSHA256": "14ef1a1a1aaed8ffa380d9b02696ac9a8c297b75735b180adf43aa30603da94b",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        }
+      ],
+      "finalActorClocksAndResources": [
+        {
+          "actorId": "A",
+          "starts": [
+            0
+          ],
+          "ends": [
+            0.9
+          ],
+          "nextStart": 6,
+          "nextEnd": 6.9,
+          "budgetHistory": [
+            {
+              "time": 0,
+              "action": 1,
+              "BA": 1,
+              "Reaction": 1,
+              "Move": 30,
+              "recharge": {}
+            }
+          ],
+          "recharge": {},
+          "action": 0,
+          "bonusAction": 1,
+          "reaction": 1,
+          "movement": 30,
+          "RP": 54,
+          "Dissonance": 0,
+          "magicThisTurn": true,
+          "resourceHistory": [
+            {
+              "event": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/touch-only/cast1",
+              "RP": -26,
+              "poolAfter": 54,
+              "discount": false
+            }
+          ],
+          "spellHistory": [
+            {
+              "castId": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/touch-only/cast1",
+              "spellId": "banishment-gate",
+              "class": "Wizard",
+              "school": "Abjuration",
+              "rank": 9,
+              "time": 0.1,
+              "cost": 26,
+              "firstPreparedFamily": true,
+              "baseDissonance": 0,
+              "Refrain": 0,
+              "originPlane": "fixture:origin",
+              "target": null,
+              "components": [
+                "V",
+                "S",
+                "F"
+              ]
+            }
+          ],
+          "concentration": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/touch-only/cast1"
+        },
+        {
+          "actorId": "B",
+          "starts": [],
+          "ends": [],
+          "nextStart": 1,
+          "nextEnd": 1.9,
+          "budgetHistory": [],
+          "recharge": {},
+          "action": 0,
+          "bonusAction": 0,
+          "reaction": 1,
+          "movement": 0,
+          "RP": 80,
+          "Dissonance": 0,
+          "magicThisTurn": false,
+          "resourceHistory": [],
+          "spellHistory": [],
+          "concentration": null
+        },
+        {
+          "actorId": "C",
+          "starts": [],
+          "ends": [],
+          "nextStart": 2,
+          "nextEnd": 2.9,
+          "budgetHistory": [],
+          "recharge": {},
+          "action": 0,
+          "bonusAction": 0,
+          "reaction": 1,
+          "movement": 0,
+          "RP": 58,
+          "Dissonance": 0,
+          "magicThisTurn": false,
+          "resourceHistory": [],
+          "spellHistory": [],
+          "concentration": null
+        },
+        {
+          "actorId": "D",
+          "starts": [],
+          "ends": [],
+          "nextStart": 3,
+          "nextEnd": 3.9,
+          "budgetHistory": [],
+          "recharge": {},
+          "action": 0,
+          "bonusAction": 0,
+          "reaction": 1,
+          "movement": 0,
+          "RP": 80,
+          "Dissonance": 0,
+          "magicThisTurn": false,
+          "resourceHistory": [],
+          "spellHistory": [],
+          "concentration": null
+        }
+      ],
+      "qualification": "Exact authored states replayed; numeric success does not establish missing positive branch premises, acquisition or campaign facts."
+    },
+    {
+      "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/unknown-type",
+      "statusPreserved": "HELD_NATIVE_TYPE_CONTROL",
+      "eventCount": 6,
+      "forwardOperationCount": 12,
+      "inverseOperationCount": 12,
+      "replay": "PASS",
+      "wholeRequiredCaseComplete": false,
+      "initialSHA256": "0c0ce87d9a855a9e91b9837e34468d28cab76294fa8c48878cd519bddd27b55b",
+      "finalSHA256": "86d9dec1685f7302c0bedbad95861dc06be256aac2f74a5e52758c24df309137",
+      "events": [
+        {
+          "index": 0,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/unknown-type:1",
+          "time": 0,
+          "kind": "START",
+          "source": "COMBAT_ACTION_PLAYTEST.md / class current engine",
+          "narrative": "A scheduled regular START; no pulse creates a turn",
+          "beforeSHA256": "0c0ce87d9a855a9e91b9837e34468d28cab76294fa8c48878cd519bddd27b55b",
+          "afterSHA256": "1c243c8284323676e8f45e4956c35ffe2d55060174c7b26e50f4e396c1bc5140",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 1,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/unknown-type:2",
+          "time": 0.1,
+          "kind": "ELAPSED",
+          "source": null,
+          "narrative": "Actual elapsed time; all existing deadlines retained",
+          "beforeSHA256": "1c243c8284323676e8f45e4956c35ffe2d55060174c7b26e50f4e396c1bc5140",
+          "afterSHA256": "e9d0568ae34d599a9735f8c1ee93625f23ea5abef7f17b24987aec4fd7f44dac",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 2,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/unknown-type:3",
+          "time": 0.1,
+          "kind": "CAST_COMMIT",
+          "source": "banishment-gate",
+          "narrative": "A pays and commits banishment-gate",
+          "beforeSHA256": "e9d0568ae34d599a9735f8c1ee93625f23ea5abef7f17b24987aec4fd7f44dac",
+          "afterSHA256": "d43fd8205b3dc792c0282910d93f983467d06068c711d1d4679b6688699dfcf1",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 3,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/unknown-type:4",
+          "time": 0.1,
+          "kind": "CAST_RESOLVE",
+          "source": "banishment-gate",
+          "narrative": "No counter declared in this explicit branch; actual source establishes",
+          "beforeSHA256": "d43fd8205b3dc792c0282910d93f983467d06068c711d1d4679b6688699dfcf1",
+          "afterSHA256": "c8e9aa2d6e61cdabeb45e29e867c528e1774e033d70fa6a4393eb3e73a23b5c5",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 4,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/unknown-type:5",
+          "time": 0.2,
+          "kind": "QUALIFIED_RULE_INPUT",
+          "source": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/unknown-type/cast1",
+          "narrative": "unknown-type has no fabricated positive resolution; exact missing/negative preconditions retained",
+          "beforeSHA256": "c8e9aa2d6e61cdabeb45e29e867c528e1774e033d70fa6a4393eb3e73a23b5c5",
+          "afterSHA256": "bad66e6339b7bba5b97a0f1abb91582d28d04bb0f159b2d2fc76de63ea6e1057",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 5,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/unknown-type:6",
+          "time": 0.9,
+          "kind": "END",
+          "source": "COMBAT_ACTION_PLAYTEST.md / class current engine",
+          "narrative": "A scheduled regular END; no pulse creates a turn",
+          "beforeSHA256": "bad66e6339b7bba5b97a0f1abb91582d28d04bb0f159b2d2fc76de63ea6e1057",
+          "afterSHA256": "86d9dec1685f7302c0bedbad95861dc06be256aac2f74a5e52758c24df309137",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        }
+      ],
+      "finalActorClocksAndResources": [
+        {
+          "actorId": "A",
+          "starts": [
+            0
+          ],
+          "ends": [
+            0.9
+          ],
+          "nextStart": 6,
+          "nextEnd": 6.9,
+          "budgetHistory": [
+            {
+              "time": 0,
+              "action": 1,
+              "BA": 1,
+              "Reaction": 1,
+              "Move": 30,
+              "recharge": {}
+            }
+          ],
+          "recharge": {},
+          "action": 0,
+          "bonusAction": 1,
+          "reaction": 1,
+          "movement": 30,
+          "RP": 54,
+          "Dissonance": 0,
+          "magicThisTurn": true,
+          "resourceHistory": [
+            {
+              "event": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/unknown-type/cast1",
+              "RP": -26,
+              "poolAfter": 54,
+              "discount": false
+            }
+          ],
+          "spellHistory": [
+            {
+              "castId": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/unknown-type/cast1",
+              "spellId": "banishment-gate",
+              "class": "Wizard",
+              "school": "Abjuration",
+              "rank": 9,
+              "time": 0.1,
+              "cost": 26,
+              "firstPreparedFamily": true,
+              "baseDissonance": 0,
+              "Refrain": 0,
+              "originPlane": "fixture:origin",
+              "target": null,
+              "components": [
+                "V",
+                "S",
+                "F"
+              ]
+            }
+          ],
+          "concentration": "RANK9PLANARGATES5129-BANISHMENT-GATE-A/unknown-type/cast1"
+        },
+        {
+          "actorId": "B",
+          "starts": [],
+          "ends": [],
+          "nextStart": 1,
+          "nextEnd": 1.9,
+          "budgetHistory": [],
+          "recharge": {},
+          "action": 0,
+          "bonusAction": 0,
+          "reaction": 1,
+          "movement": 0,
+          "RP": 80,
+          "Dissonance": 0,
+          "magicThisTurn": false,
+          "resourceHistory": [],
+          "spellHistory": [],
+          "concentration": null
+        },
+        {
+          "actorId": "C",
+          "starts": [],
+          "ends": [],
+          "nextStart": 2,
+          "nextEnd": 2.9,
+          "budgetHistory": [],
+          "recharge": {},
+          "action": 0,
+          "bonusAction": 0,
+          "reaction": 1,
+          "movement": 0,
+          "RP": 58,
+          "Dissonance": 0,
+          "magicThisTurn": false,
+          "resourceHistory": [],
+          "spellHistory": [],
+          "concentration": null
+        },
+        {
+          "actorId": "D",
+          "starts": [],
+          "ends": [],
+          "nextStart": 3,
+          "nextEnd": 3.9,
+          "budgetHistory": [],
+          "recharge": {},
+          "action": 0,
+          "bonusAction": 0,
+          "reaction": 1,
+          "movement": 0,
+          "RP": 80,
+          "Dissonance": 0,
+          "magicThisTurn": false,
+          "resourceHistory": [],
+          "spellHistory": [],
+          "concentration": null
+        }
+      ],
+      "qualification": "Exact authored states replayed; numeric success does not establish missing positive branch premises, acquisition or campaign facts."
+    },
+    {
+      "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B",
+      "statusPreserved": "HELD_LIFECYCLE_COVERAGE",
+      "eventCount": 46,
+      "forwardOperationCount": 92,
+      "inverseOperationCount": 92,
+      "replay": "PASS",
+      "wholeRequiredCaseComplete": false,
+      "initialSHA256": "0c0ce87d9a855a9e91b9837e34468d28cab76294fa8c48878cd519bddd27b55b",
+      "finalSHA256": "7fbe91a12dc411f3c4045fe8ec29ec30f8d8b3a9e16f2c40d9c2fa3245350cab",
+      "events": [
+        {
+          "index": 0,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B:1",
+          "time": 0,
+          "kind": "START",
+          "source": "COMBAT_ACTION_PLAYTEST.md / class current engine",
+          "narrative": "A scheduled regular START; no pulse creates a turn",
+          "beforeSHA256": "0c0ce87d9a855a9e91b9837e34468d28cab76294fa8c48878cd519bddd27b55b",
+          "afterSHA256": "3bc851a043c08146e6374dfa09b8986485fe597f29f74b9cf25550a8c9d24145",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 1,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B:2",
+          "time": 0.1,
+          "kind": "ELAPSED",
+          "source": null,
+          "narrative": "Actual elapsed time; all existing deadlines retained",
+          "beforeSHA256": "3bc851a043c08146e6374dfa09b8986485fe597f29f74b9cf25550a8c9d24145",
+          "afterSHA256": "48c92365d22c8fa99c8f54dd541655584ea85db22069b194e06199fa9cceaf83",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 2,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B:3",
+          "time": 0.1,
+          "kind": "CAST_COMMIT",
+          "source": "banishment-gate",
+          "narrative": "A pays and commits banishment-gate",
+          "beforeSHA256": "48c92365d22c8fa99c8f54dd541655584ea85db22069b194e06199fa9cceaf83",
+          "afterSHA256": "533f2ffdaec348449f0774f6dbb39fd2d4d75d8e4a2b424d1236c90b175305aa",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 3,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B:4",
+          "time": 0.1,
+          "kind": "CAST_RESOLVE",
+          "source": "banishment-gate",
+          "narrative": "No counter declared in this explicit branch; actual source establishes",
+          "beforeSHA256": "533f2ffdaec348449f0774f6dbb39fd2d4d75d8e4a2b424d1236c90b175305aa",
+          "afterSHA256": "7c40cfeff09b0de5d77a3f9c9925e41c4a1fe0fd3e37f56edd027436afe40680",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 4,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B:5",
+          "time": 0.12,
+          "kind": "GATE_CONFIG",
+          "source": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/cast1",
+          "narrative": "Actual selectedElementaltype and fixed10x15aperture",
+          "beforeSHA256": "7c40cfeff09b0de5d77a3f9c9925e41c4a1fe0fd3e37f56edd027436afe40680",
+          "afterSHA256": "d5a8186395ed68ce6053822e175fed9a71049ab274c01eee192a875a5f769286",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 5,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B:6",
+          "time": 0.9,
+          "kind": "END",
+          "source": "COMBAT_ACTION_PLAYTEST.md / class current engine",
+          "narrative": "A scheduled regular END; no pulse creates a turn",
+          "beforeSHA256": "d5a8186395ed68ce6053822e175fed9a71049ab274c01eee192a875a5f769286",
+          "afterSHA256": "0b317b6cb048c3fb42956ae0598dc5b302a3f6880f389317826e5c12215cd253",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 6,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B:7",
+          "time": 1,
+          "kind": "START",
+          "source": "COMBAT_ACTION_PLAYTEST.md / class current engine",
+          "narrative": "B scheduled regular START; no pulse creates a turn",
+          "beforeSHA256": "0b317b6cb048c3fb42956ae0598dc5b302a3f6880f389317826e5c12215cd253",
+          "afterSHA256": "cdf17a23216c17994637f693eef16ce6fc4b3c05fce971f12317746d9cd2361b",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 7,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B:8",
+          "time": 1.1,
+          "kind": "ELAPSED",
+          "source": null,
+          "narrative": "Actual elapsed time; all existing deadlines retained",
+          "beforeSHA256": "cdf17a23216c17994637f693eef16ce6fc4b3c05fce971f12317746d9cd2361b",
+          "afterSHA256": "347c39281ccb3a8665a29ea8e8d42fc47bdbe70b8682ec6581cdf06947540cf5",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 8,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B:9",
+          "time": 1.1,
+          "kind": "CAST_COMMIT",
+          "source": "summon-water-pet",
+          "narrative": "B pays and commits summon-water-pet",
+          "beforeSHA256": "347c39281ccb3a8665a29ea8e8d42fc47bdbe70b8682ec6581cdf06947540cf5",
+          "afterSHA256": "f058c85f99a9a6332295038f04f7a0b9afa4ee4578ecde15879c2117d5bccae7",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 9,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B:10",
+          "time": 1.1,
+          "kind": "CAST_RESOLVE",
+          "source": "summon-water-pet",
+          "narrative": "No counter declared in this explicit branch; actual source establishes",
+          "beforeSHA256": "f058c85f99a9a6332295038f04f7a0b9afa4ee4578ecde15879c2117d5bccae7",
+          "afterSHA256": "af48d7e9ebab639ac6c9f6b2d66aac07343fe05107eccf42589a4d98ca9b1af5",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 10,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B:11",
+          "time": 1.12,
+          "kind": "SUMMON",
+          "source": "summon-water-pet",
+          "narrative": "Exact accepted finite companion profile; no invented type for Spectral Steed",
+          "beforeSHA256": "af48d7e9ebab639ac6c9f6b2d66aac07343fe05107eccf42589a4d98ca9b1af5",
+          "afterSHA256": "a162b8b177fb03947b9729a1600feafd6e1b1d16d31632497551c9887a85298a",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 11,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B:12",
+          "time": 1.9,
+          "kind": "END",
+          "source": "COMBAT_ACTION_PLAYTEST.md / class current engine",
+          "narrative": "B scheduled regular END; no pulse creates a turn",
+          "beforeSHA256": "a162b8b177fb03947b9729a1600feafd6e1b1d16d31632497551c9887a85298a",
+          "afterSHA256": "5cb4c6b0ce53f0f1801f0e35fcf521fffd2a35ae162101c730c41924bbafdb6a",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 12,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B:13",
+          "time": 1.9,
+          "kind": "ATTACHED_PHASE",
+          "source": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/cast2",
+          "narrative": "Actual companion phase after its owner regular END; default defensive movement/Dodge when uncommanded",
+          "beforeSHA256": "5cb4c6b0ce53f0f1801f0e35fcf521fffd2a35ae162101c730c41924bbafdb6a",
+          "afterSHA256": "68da5af5951c4f2f13a4cc9f71339a6c308a4feeb8e0f526be1bef96f71367d0",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 13,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B:14",
+          "time": 2,
+          "kind": "START",
+          "source": "COMBAT_ACTION_PLAYTEST.md / class current engine",
+          "narrative": "C scheduled regular START; no pulse creates a turn",
+          "beforeSHA256": "68da5af5951c4f2f13a4cc9f71339a6c308a4feeb8e0f526be1bef96f71367d0",
+          "afterSHA256": "3c36577333f7bfb226b107e16ed01683a76e3e594bcfdaf50db0e1dc3a4a5592",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 14,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B:15",
+          "time": 2.9,
+          "kind": "END",
+          "source": "COMBAT_ACTION_PLAYTEST.md / class current engine",
+          "narrative": "C scheduled regular END; no pulse creates a turn",
+          "beforeSHA256": "3c36577333f7bfb226b107e16ed01683a76e3e594bcfdaf50db0e1dc3a4a5592",
+          "afterSHA256": "e518e4075f1240e4405510f4132da8835348b380e0779901c319189e26a28629",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 15,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B:16",
+          "time": 3,
+          "kind": "START",
+          "source": "COMBAT_ACTION_PLAYTEST.md / class current engine",
+          "narrative": "D scheduled regular START; no pulse creates a turn",
+          "beforeSHA256": "e518e4075f1240e4405510f4132da8835348b380e0779901c319189e26a28629",
+          "afterSHA256": "a85245cf44395d9ec1221c8558696c4972e940d2f845b4e404dbe8529b500599",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 16,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B:17",
+          "time": 3.1,
+          "kind": "ELAPSED",
+          "source": null,
+          "narrative": "Actual elapsed time; all existing deadlines retained",
+          "beforeSHA256": "a85245cf44395d9ec1221c8558696c4972e940d2f845b4e404dbe8529b500599",
+          "afterSHA256": "5062fa855d294c8089029201940bb4c222865d26b23e942683afac2b4c5d05d0",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 17,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B:18",
+          "time": 3.1,
+          "kind": "CAST_COMMIT",
+          "source": "summon-water-pet",
+          "narrative": "D pays and commits summon-water-pet",
+          "beforeSHA256": "5062fa855d294c8089029201940bb4c222865d26b23e942683afac2b4c5d05d0",
+          "afterSHA256": "c8b1efa8db9b3366e0645c6d346fcb3408afea8b1f69949e68c8db7f01cfa560",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 18,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B:19",
+          "time": 3.1,
+          "kind": "CAST_RESOLVE",
+          "source": "summon-water-pet",
+          "narrative": "No counter declared in this explicit branch; actual source establishes",
+          "beforeSHA256": "c8b1efa8db9b3366e0645c6d346fcb3408afea8b1f69949e68c8db7f01cfa560",
+          "afterSHA256": "2b62b36aab74b7bf904361d3c780b4edf7d5aac7eb9eb9f78e56d14b16d6fd60",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 19,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B:20",
+          "time": 3.12,
+          "kind": "SUMMON",
+          "source": "summon-water-pet",
+          "narrative": "Exact accepted finite companion profile; no invented type for Spectral Steed",
+          "beforeSHA256": "2b62b36aab74b7bf904361d3c780b4edf7d5aac7eb9eb9f78e56d14b16d6fd60",
+          "afterSHA256": "f639f06a101f28b9e477ec92bb6f588ae5c98c4e1334eeab0d625661cc13d325",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 20,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B:21",
+          "time": 3.9,
+          "kind": "END",
+          "source": "COMBAT_ACTION_PLAYTEST.md / class current engine",
+          "narrative": "D scheduled regular END; no pulse creates a turn",
+          "beforeSHA256": "f639f06a101f28b9e477ec92bb6f588ae5c98c4e1334eeab0d625661cc13d325",
+          "afterSHA256": "be7a7b77ff677b3be24693154bea406b41c5fc95d37d9c82ec94f59a763d0628",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 21,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B:22",
+          "time": 3.9,
+          "kind": "ATTACHED_PHASE",
+          "source": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/cast3",
+          "narrative": "Actual companion phase after its owner regular END; default defensive movement/Dodge when uncommanded",
+          "beforeSHA256": "be7a7b77ff677b3be24693154bea406b41c5fc95d37d9c82ec94f59a763d0628",
+          "afterSHA256": "2b2e0226cbf93b044ea68595d59041caec149bc95cc28d650446b90df1860d90",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 22,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B:23",
+          "time": 6,
+          "kind": "START",
+          "source": "COMBAT_ACTION_PLAYTEST.md / class current engine",
+          "narrative": "A scheduled regular START; no pulse creates a turn",
+          "beforeSHA256": "2b2e0226cbf93b044ea68595d59041caec149bc95cc28d650446b90df1860d90",
+          "afterSHA256": "dbbc0c3816a6a8a0a4db1e618fd57e1ad5ab8bc537a5e9b016a54744278d0b53",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 23,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B:24",
+          "time": 6.9,
+          "kind": "END",
+          "source": "COMBAT_ACTION_PLAYTEST.md / class current engine",
+          "narrative": "A scheduled regular END; no pulse creates a turn",
+          "beforeSHA256": "dbbc0c3816a6a8a0a4db1e618fd57e1ad5ab8bc537a5e9b016a54744278d0b53",
+          "afterSHA256": "e47620f5917bd0ec544fe675ea6d9debd68d63941356eef697b42f4d28a8ece7",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 24,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B:25",
+          "time": 7,
+          "kind": "START",
+          "source": "COMBAT_ACTION_PLAYTEST.md / class current engine",
+          "narrative": "B scheduled regular START; no pulse creates a turn",
+          "beforeSHA256": "e47620f5917bd0ec544fe675ea6d9debd68d63941356eef697b42f4d28a8ece7",
+          "afterSHA256": "49c8f713404670b9d579c6e855cf86e49689440ad75a021a589193969fb35654",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 25,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B:26",
+          "time": 7.8,
+          "kind": "ELAPSED",
+          "source": null,
+          "narrative": "Actual elapsed time; all existing deadlines retained",
+          "beforeSHA256": "49c8f713404670b9d579c6e855cf86e49689440ad75a021a589193969fb35654",
+          "afterSHA256": "b527439e964c0fe33500c3080c1b8735728f3921bebd97897b141905498673c0",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 26,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B:27",
+          "time": 7.8,
+          "kind": "COMPANION_COMMAND",
+          "source": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/cast2",
+          "narrative": "Real owner Bonus Action during owner regular turn; command must reach the actual companion",
+          "beforeSHA256": "b527439e964c0fe33500c3080c1b8735728f3921bebd97897b141905498673c0",
+          "afterSHA256": "fa2a38d80728d7ab6c440d97bdf3b6f38c150ffaa23cc354f2b521307b57a032",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 27,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B:28",
+          "time": 7.9,
+          "kind": "END",
+          "source": "COMBAT_ACTION_PLAYTEST.md / class current engine",
+          "narrative": "B scheduled regular END; no pulse creates a turn",
+          "beforeSHA256": "fa2a38d80728d7ab6c440d97bdf3b6f38c150ffaa23cc354f2b521307b57a032",
+          "afterSHA256": "1f6caa40284191b23717c2faf77a69f43733bcecc15b4a8c4333060ce88b7cc4",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 28,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B:29",
+          "time": 7.9,
+          "kind": "ATTACHED_PHASE",
+          "source": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/cast2",
+          "narrative": "Actual companion phase after its owner regular END; default defensive movement/Dodge when uncommanded",
+          "beforeSHA256": "1f6caa40284191b23717c2faf77a69f43733bcecc15b4a8c4333060ce88b7cc4",
+          "afterSHA256": "93ac2fa83d56e3ec8fa2bd44611a2960f9b4ac29a8716db5a6046dad02beef22",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 29,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B:30",
+          "time": 7.91,
+          "kind": "ELAPSED",
+          "source": null,
+          "narrative": "Actual elapsed time; all existing deadlines retained",
+          "beforeSHA256": "93ac2fa83d56e3ec8fa2bd44611a2960f9b4ac29a8716db5a6046dad02beef22",
+          "afterSHA256": "d21ec3e83c6335165aa85a6882b4df1ad70b7540109bef4f25413d182ca10ad8",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 30,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B:31",
+          "time": 7.91,
+          "kind": "AUTO_EXILE",
+          "source": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/cast1",
+          "narrative": "Actual Elemental whole crossing; automatic, no save, guard claimed only now",
+          "beforeSHA256": "d21ec3e83c6335165aa85a6882b4df1ad70b7540109bef4f25413d182ca10ad8",
+          "afterSHA256": "a3c6f914076e948193e4b1e2dd9e0289db80d637bd8c6e359ec4b8c5f6c0c8d7",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 31,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B:32",
+          "time": 8,
+          "kind": "START",
+          "source": "COMBAT_ACTION_PLAYTEST.md / class current engine",
+          "narrative": "C scheduled regular START; no pulse creates a turn",
+          "beforeSHA256": "a3c6f914076e948193e4b1e2dd9e0289db80d637bd8c6e359ec4b8c5f6c0c8d7",
+          "afterSHA256": "f587b9bae73fb08b685741dfab0209e4cc33ff4d5beb33d8b85b52d9939a32df",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 32,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B:33",
+          "time": 8.9,
+          "kind": "END",
+          "source": "COMBAT_ACTION_PLAYTEST.md / class current engine",
+          "narrative": "C scheduled regular END; no pulse creates a turn",
+          "beforeSHA256": "f587b9bae73fb08b685741dfab0209e4cc33ff4d5beb33d8b85b52d9939a32df",
+          "afterSHA256": "2db50fcb87ce94ba4ed8782c2cc6b37010a515362f29b22e25b871b9efe601a2",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 33,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B:34",
+          "time": 9,
+          "kind": "START",
+          "source": "COMBAT_ACTION_PLAYTEST.md / class current engine",
+          "narrative": "D scheduled regular START; no pulse creates a turn",
+          "beforeSHA256": "2db50fcb87ce94ba4ed8782c2cc6b37010a515362f29b22e25b871b9efe601a2",
+          "afterSHA256": "83da09183a9b7a672803bcc7ce12af414bc440223f4c9f64cbf32727e077e43d",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 34,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B:35",
+          "time": 9.8,
+          "kind": "ELAPSED",
+          "source": null,
+          "narrative": "Actual elapsed time; all existing deadlines retained",
+          "beforeSHA256": "83da09183a9b7a672803bcc7ce12af414bc440223f4c9f64cbf32727e077e43d",
+          "afterSHA256": "cbdd95618ef2f52815c97e27ecc0d2698bf1fb2b91807a973d34dba2aa0598f8",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 35,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B:36",
+          "time": 9.8,
+          "kind": "COMPANION_COMMAND",
+          "source": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/cast3",
+          "narrative": "Real owner Bonus Action during owner regular turn; command must reach the actual companion",
+          "beforeSHA256": "cbdd95618ef2f52815c97e27ecc0d2698bf1fb2b91807a973d34dba2aa0598f8",
+          "afterSHA256": "4bd165b45dec38878e484b20872c73f501c1667d26ed0cca837dfbb44888be05",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 36,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B:37",
+          "time": 9.9,
+          "kind": "END",
+          "source": "COMBAT_ACTION_PLAYTEST.md / class current engine",
+          "narrative": "D scheduled regular END; no pulse creates a turn",
+          "beforeSHA256": "4bd165b45dec38878e484b20872c73f501c1667d26ed0cca837dfbb44888be05",
+          "afterSHA256": "e2dd56aef1aacd3dab993ce02163c24513eda10b31b8f957c73af44c8d6526ae",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 37,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B:38",
+          "time": 9.9,
+          "kind": "ATTACHED_PHASE",
+          "source": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/cast3",
+          "narrative": "Actual companion phase after its owner regular END; default defensive movement/Dodge when uncommanded",
+          "beforeSHA256": "e2dd56aef1aacd3dab993ce02163c24513eda10b31b8f957c73af44c8d6526ae",
+          "afterSHA256": "d429e522c1171cbcfb652cc6d019b19c0aab51964f393d825472a695220d762d",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 38,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B:39",
+          "time": 9.91,
+          "kind": "ELAPSED",
+          "source": null,
+          "narrative": "Actual elapsed time; all existing deadlines retained",
+          "beforeSHA256": "d429e522c1171cbcfb652cc6d019b19c0aab51964f393d825472a695220d762d",
+          "afterSHA256": "1110392aa6aebef45f07be918d99bb147835d40525e91f0e356926a768b6ff4e",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 39,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B:40",
+          "time": 9.91,
+          "kind": "AUTO_EXILE",
+          "source": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/cast1",
+          "narrative": "Actual Elemental whole crossing; automatic, no save, guard claimed only now",
+          "beforeSHA256": "1110392aa6aebef45f07be918d99bb147835d40525e91f0e356926a768b6ff4e",
+          "afterSHA256": "9096b36f1406447023473f89d3ff2d757517976306acf2f01e1db52f787d8f34",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 40,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B:41",
+          "time": 10.1,
+          "kind": "ELAPSED",
+          "source": null,
+          "narrative": "Actual elapsed time; all existing deadlines retained",
+          "beforeSHA256": "9096b36f1406447023473f89d3ff2d757517976306acf2f01e1db52f787d8f34",
+          "afterSHA256": "f5737f7a2758c415dfd27af90405e578b0809a721a0048c674a90e0c420b6c92",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 41,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B:42",
+          "time": 10.1,
+          "kind": "BLOCK_ORIGIN",
+          "source": null,
+          "narrative": "Actual origin region blocked for terminal fit; no protected reservation",
+          "beforeSHA256": "f5737f7a2758c415dfd27af90405e578b0809a721a0048c674a90e0c420b6c92",
+          "afterSHA256": "3aa11d2c15fa258430ac2c26dbbf5277e995fea9e7636b7c77929df38b19c88b",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 42,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B:43",
+          "time": 10.2,
+          "kind": "SOURCE_END",
+          "source": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/cast1/cell/B-pet",
+          "narrative": "gate closing begins stable cell settlement; finite terminal state, no refund",
+          "beforeSHA256": "3aa11d2c15fa258430ac2c26dbbf5277e995fea9e7636b7c77929df38b19c88b",
+          "afterSHA256": "e3d28c21a82c460b711b4af218cbcb68de2a466007058d05d8257fc8d14edeb7",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 43,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B:44",
+          "time": 10.2,
+          "kind": "SOURCE_END",
+          "source": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/cast1/cell/D-pet",
+          "narrative": "second independent cell settles at its own origin; finite terminal state, no refund",
+          "beforeSHA256": "e3d28c21a82c460b711b4af218cbcb68de2a466007058d05d8257fc8d14edeb7",
+          "afterSHA256": "330bd9a98d252c07566d5e54bd6748e51792278dd199b740feeedb38d487936b",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 44,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B:45",
+          "time": 10.2,
+          "kind": "SOURCE_END",
+          "source": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/cast1",
+          "narrative": "gate concentration ends; finite terminal state, no refund",
+          "beforeSHA256": "330bd9a98d252c07566d5e54bd6748e51792278dd199b740feeedb38d487936b",
+          "afterSHA256": "fcd22e2db33518445f636b24fec5d56336786b1bed550564460cbf42bb24fcf3",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 45,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B:46",
+          "time": 10.9,
+          "kind": "ELAPSED",
+          "source": null,
+          "narrative": "Actual elapsed time; all existing deadlines retained",
+          "beforeSHA256": "fcd22e2db33518445f636b24fec5d56336786b1bed550564460cbf42bb24fcf3",
+          "afterSHA256": "7fbe91a12dc411f3c4045fe8ec29ec30f8d8b3a9e16f2c40d9c2fa3245350cab",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        }
+      ],
+      "finalActorClocksAndResources": [
+        {
+          "actorId": "A",
+          "starts": [
+            0,
+            6
+          ],
+          "ends": [
+            0.9,
+            6.9
+          ],
+          "nextStart": 12,
+          "nextEnd": 12.9,
+          "budgetHistory": [
+            {
+              "time": 0,
+              "action": 1,
+              "BA": 1,
+              "Reaction": 1,
+              "Move": 30,
+              "recharge": {}
+            },
+            {
+              "time": 6,
+              "action": 1,
+              "BA": 1,
+              "Reaction": 1,
+              "Move": 30,
+              "recharge": {}
+            }
+          ],
+          "recharge": {},
+          "action": 1,
+          "bonusAction": 1,
+          "reaction": 1,
+          "movement": 30,
+          "RP": 54,
+          "Dissonance": 0,
+          "magicThisTurn": false,
+          "resourceHistory": [
+            {
+              "event": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/cast1",
+              "RP": -26,
+              "poolAfter": 54,
+              "discount": false
+            }
+          ],
+          "spellHistory": [
+            {
+              "castId": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/cast1",
+              "spellId": "banishment-gate",
+              "class": "Wizard",
+              "school": "Abjuration",
+              "rank": 9,
+              "time": 0.1,
+              "cost": 26,
+              "firstPreparedFamily": true,
+              "baseDissonance": 0,
+              "Refrain": 0,
+              "originPlane": "fixture:origin",
+              "target": null,
+              "components": [
+                "V",
+                "S",
+                "F"
+              ]
+            }
+          ],
+          "concentration": null
+        },
+        {
+          "actorId": "B",
+          "starts": [
+            1,
+            7
+          ],
+          "ends": [
+            1.9,
+            7.9
+          ],
+          "nextStart": 13,
+          "nextEnd": 13.9,
+          "budgetHistory": [
+            {
+              "time": 1,
+              "action": 1,
+              "BA": 1,
+              "Reaction": 1,
+              "Move": 30,
+              "recharge": {}
+            },
+            {
+              "time": 7,
+              "action": 1,
+              "BA": 1,
+              "Reaction": 1,
+              "Move": 30,
+              "recharge": {}
+            }
+          ],
+          "recharge": {},
+          "action": 1,
+          "bonusAction": 0,
+          "reaction": 1,
+          "movement": 30,
+          "RP": 73,
+          "Dissonance": 0,
+          "magicThisTurn": false,
+          "resourceHistory": [
+            {
+              "event": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/cast2",
+              "RP": -7,
+              "poolAfter": 73,
+              "discount": false
+            }
+          ],
+          "spellHistory": [
+            {
+              "castId": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/cast2",
+              "spellId": "summon-water-pet",
+              "class": "Wizard",
+              "school": "Conjuration",
+              "rank": 4,
+              "time": 1.1,
+              "cost": 7,
+              "firstPreparedFamily": true,
+              "baseDissonance": 0,
+              "Refrain": 0,
+              "originPlane": "fixture:origin",
+              "target": null,
+              "components": [
+                "V",
+                "S",
+                "F"
+              ]
+            }
+          ],
+          "concentration": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/cast2"
+        },
+        {
+          "actorId": "C",
+          "starts": [
+            2,
+            8
+          ],
+          "ends": [
+            2.9,
+            8.9
+          ],
+          "nextStart": 14,
+          "nextEnd": 14.9,
+          "budgetHistory": [
+            {
+              "time": 2,
+              "action": 1,
+              "BA": 1,
+              "Reaction": 1,
+              "Move": 30,
+              "recharge": {}
+            },
+            {
+              "time": 8,
+              "action": 1,
+              "BA": 1,
+              "Reaction": 1,
+              "Move": 30,
+              "recharge": {}
+            }
+          ],
+          "recharge": {},
+          "action": 1,
+          "bonusAction": 1,
+          "reaction": 1,
+          "movement": 30,
+          "RP": 58,
+          "Dissonance": 0,
+          "magicThisTurn": false,
+          "resourceHistory": [],
+          "spellHistory": [],
+          "concentration": null
+        },
+        {
+          "actorId": "D",
+          "starts": [
+            3,
+            9
+          ],
+          "ends": [
+            3.9,
+            9.9
+          ],
+          "nextStart": 15,
+          "nextEnd": 15.9,
+          "budgetHistory": [
+            {
+              "time": 3,
+              "action": 1,
+              "BA": 1,
+              "Reaction": 1,
+              "Move": 30,
+              "recharge": {}
+            },
+            {
+              "time": 9,
+              "action": 1,
+              "BA": 1,
+              "Reaction": 1,
+              "Move": 30,
+              "recharge": {}
+            }
+          ],
+          "recharge": {},
+          "action": 1,
+          "bonusAction": 0,
+          "reaction": 1,
+          "movement": 30,
+          "RP": 73,
+          "Dissonance": 0,
+          "magicThisTurn": false,
+          "resourceHistory": [
+            {
+              "event": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/cast3",
+              "RP": -7,
+              "poolAfter": 73,
+              "discount": false
+            }
+          ],
+          "spellHistory": [
+            {
+              "castId": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/cast3",
+              "spellId": "summon-water-pet",
+              "class": "Wizard",
+              "school": "Conjuration",
+              "rank": 4,
+              "time": 3.1,
+              "cost": 7,
+              "firstPreparedFamily": true,
+              "baseDissonance": 0,
+              "Refrain": 0,
+              "originPlane": "fixture:origin",
+              "target": null,
+              "components": [
+                "V",
+                "S",
+                "F"
+              ]
+            }
+          ],
+          "concentration": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/cast3"
+        }
+      ],
+      "qualification": "Exact authored states replayed; numeric success does not establish missing positive branch premises, acquisition or campaign facts."
+    },
+    {
+      "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/primary-independent-escape",
+      "statusPreserved": "HELD_MISSING_POSITIVE_BRANCH",
+      "eventCount": 6,
+      "forwardOperationCount": 12,
+      "inverseOperationCount": 12,
+      "replay": "PASS",
+      "wholeRequiredCaseComplete": false,
+      "initialSHA256": "0c0ce87d9a855a9e91b9837e34468d28cab76294fa8c48878cd519bddd27b55b",
+      "finalSHA256": "062e1f15772ecbf3e9d7ed3b71face6361545d468279009a5b3c214067b886dc",
+      "events": [
+        {
+          "index": 0,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/primary-independent-escape:1",
+          "time": 0,
+          "kind": "START",
+          "source": "COMBAT_ACTION_PLAYTEST.md / class current engine",
+          "narrative": "A scheduled regular START; no pulse creates a turn",
+          "beforeSHA256": "0c0ce87d9a855a9e91b9837e34468d28cab76294fa8c48878cd519bddd27b55b",
+          "afterSHA256": "c7609baad0ec1123b9bd949e662a36f7094931a1eb7036d867b10564b15a9844",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 1,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/primary-independent-escape:2",
+          "time": 0.1,
+          "kind": "ELAPSED",
+          "source": null,
+          "narrative": "Actual elapsed time; all existing deadlines retained",
+          "beforeSHA256": "c7609baad0ec1123b9bd949e662a36f7094931a1eb7036d867b10564b15a9844",
+          "afterSHA256": "7824a7a724a65561a3da69ae7b1b296b978ff15975d4bb75fe45f63dc7efa50f",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 2,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/primary-independent-escape:3",
+          "time": 0.1,
+          "kind": "CAST_COMMIT",
+          "source": "banishment-gate",
+          "narrative": "A pays and commits banishment-gate",
+          "beforeSHA256": "7824a7a724a65561a3da69ae7b1b296b978ff15975d4bb75fe45f63dc7efa50f",
+          "afterSHA256": "2977c0abff44b8ae1ae7ff820959733eed4ec95047f599494d16b9f55c8918c7",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 3,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/primary-independent-escape:4",
+          "time": 0.1,
+          "kind": "CAST_RESOLVE",
+          "source": "banishment-gate",
+          "narrative": "No counter declared in this explicit branch; actual source establishes",
+          "beforeSHA256": "2977c0abff44b8ae1ae7ff820959733eed4ec95047f599494d16b9f55c8918c7",
+          "afterSHA256": "2803773754f5fde4e9639e0163af249ff914b9bba6f03fd0c37bf8f30bc64202",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 4,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/primary-independent-escape:5",
+          "time": 0.2,
+          "kind": "QUALIFIED_RULE_INPUT",
+          "source": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/primary-independent-escape/cast1",
+          "narrative": "primary-independent-escape has no fabricated positive resolution; exact missing/negative preconditions retained",
+          "beforeSHA256": "2803773754f5fde4e9639e0163af249ff914b9bba6f03fd0c37bf8f30bc64202",
+          "afterSHA256": "2f5a01e67a6e67895d0aa1f0e36e372c863c3857cd8c4dfa7c56ed6877d82b5c",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 5,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/primary-independent-escape:6",
+          "time": 0.9,
+          "kind": "END",
+          "source": "COMBAT_ACTION_PLAYTEST.md / class current engine",
+          "narrative": "A scheduled regular END; no pulse creates a turn",
+          "beforeSHA256": "2f5a01e67a6e67895d0aa1f0e36e372c863c3857cd8c4dfa7c56ed6877d82b5c",
+          "afterSHA256": "062e1f15772ecbf3e9d7ed3b71face6361545d468279009a5b3c214067b886dc",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        }
+      ],
+      "finalActorClocksAndResources": [
+        {
+          "actorId": "A",
+          "starts": [
+            0
+          ],
+          "ends": [
+            0.9
+          ],
+          "nextStart": 6,
+          "nextEnd": 6.9,
+          "budgetHistory": [
+            {
+              "time": 0,
+              "action": 1,
+              "BA": 1,
+              "Reaction": 1,
+              "Move": 30,
+              "recharge": {}
+            }
+          ],
+          "recharge": {},
+          "action": 0,
+          "bonusAction": 1,
+          "reaction": 1,
+          "movement": 30,
+          "RP": 54,
+          "Dissonance": 0,
+          "magicThisTurn": true,
+          "resourceHistory": [
+            {
+              "event": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/primary-independent-escape/cast1",
+              "RP": -26,
+              "poolAfter": 54,
+              "discount": false
+            }
+          ],
+          "spellHistory": [
+            {
+              "castId": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/primary-independent-escape/cast1",
+              "spellId": "banishment-gate",
+              "class": "Wizard",
+              "school": "Abjuration",
+              "rank": 9,
+              "time": 0.1,
+              "cost": 26,
+              "firstPreparedFamily": true,
+              "baseDissonance": 0,
+              "Refrain": 0,
+              "originPlane": "fixture:origin",
+              "target": null,
+              "components": [
+                "V",
+                "S",
+                "F"
+              ]
+            }
+          ],
+          "concentration": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/primary-independent-escape/cast1"
+        },
+        {
+          "actorId": "B",
+          "starts": [],
+          "ends": [],
+          "nextStart": 1,
+          "nextEnd": 1.9,
+          "budgetHistory": [],
+          "recharge": {},
+          "action": 0,
+          "bonusAction": 0,
+          "reaction": 1,
+          "movement": 0,
+          "RP": 80,
+          "Dissonance": 0,
+          "magicThisTurn": false,
+          "resourceHistory": [],
+          "spellHistory": [],
+          "concentration": null
+        },
+        {
+          "actorId": "C",
+          "starts": [],
+          "ends": [],
+          "nextStart": 2,
+          "nextEnd": 2.9,
+          "budgetHistory": [],
+          "recharge": {},
+          "action": 0,
+          "bonusAction": 0,
+          "reaction": 1,
+          "movement": 0,
+          "RP": 58,
+          "Dissonance": 0,
+          "magicThisTurn": false,
+          "resourceHistory": [],
+          "spellHistory": [],
+          "concentration": null
+        },
+        {
+          "actorId": "D",
+          "starts": [],
+          "ends": [],
+          "nextStart": 3,
+          "nextEnd": 3.9,
+          "budgetHistory": [],
+          "recharge": {},
+          "action": 0,
+          "bonusAction": 0,
+          "reaction": 1,
+          "movement": 0,
+          "RP": 80,
+          "Dissonance": 0,
+          "magicThisTurn": false,
+          "resourceHistory": [],
+          "spellHistory": [],
+          "concentration": null
+        }
+      ],
+      "qualification": "Exact authored states replayed; numeric success does not establish missing positive branch premises, acquisition or campaign facts."
+    },
+    {
+      "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/separate-carried-creature",
+      "statusPreserved": "HELD_MISSING_POSITIVE_BRANCH",
+      "eventCount": 6,
+      "forwardOperationCount": 12,
+      "inverseOperationCount": 12,
+      "replay": "PASS",
+      "wholeRequiredCaseComplete": false,
+      "initialSHA256": "0c0ce87d9a855a9e91b9837e34468d28cab76294fa8c48878cd519bddd27b55b",
+      "finalSHA256": "d5874b917417056d259ecc7eb0f2a7edf0999a493b9d3b26e436ebfd7e73ca44",
+      "events": [
+        {
+          "index": 0,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/separate-carried-creature:1",
+          "time": 0,
+          "kind": "START",
+          "source": "COMBAT_ACTION_PLAYTEST.md / class current engine",
+          "narrative": "A scheduled regular START; no pulse creates a turn",
+          "beforeSHA256": "0c0ce87d9a855a9e91b9837e34468d28cab76294fa8c48878cd519bddd27b55b",
+          "afterSHA256": "f30e96ae1cbfd608e43523aec458efa18a3ac98e87751c28726cca32625cb8a3",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 1,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/separate-carried-creature:2",
+          "time": 0.1,
+          "kind": "ELAPSED",
+          "source": null,
+          "narrative": "Actual elapsed time; all existing deadlines retained",
+          "beforeSHA256": "f30e96ae1cbfd608e43523aec458efa18a3ac98e87751c28726cca32625cb8a3",
+          "afterSHA256": "72da4c6b72c0107dc55040bcdd2013e11b70be2062623754b763d26e748ac807",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 2,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/separate-carried-creature:3",
+          "time": 0.1,
+          "kind": "CAST_COMMIT",
+          "source": "banishment-gate",
+          "narrative": "A pays and commits banishment-gate",
+          "beforeSHA256": "72da4c6b72c0107dc55040bcdd2013e11b70be2062623754b763d26e748ac807",
+          "afterSHA256": "216dc43768670e40292aa3f6f8274295c67808c28660d9872fc4392a886a0824",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 3,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/separate-carried-creature:4",
+          "time": 0.1,
+          "kind": "CAST_RESOLVE",
+          "source": "banishment-gate",
+          "narrative": "No counter declared in this explicit branch; actual source establishes",
+          "beforeSHA256": "216dc43768670e40292aa3f6f8274295c67808c28660d9872fc4392a886a0824",
+          "afterSHA256": "fe61b9cd61acee049cb5510bb76b380d50c0cb38da054bcc8bed8a765994571b",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 4,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/separate-carried-creature:5",
+          "time": 0.2,
+          "kind": "QUALIFIED_RULE_INPUT",
+          "source": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/separate-carried-creature/cast1",
+          "narrative": "separate-carried-creature has no fabricated positive resolution; exact missing/negative preconditions retained",
+          "beforeSHA256": "fe61b9cd61acee049cb5510bb76b380d50c0cb38da054bcc8bed8a765994571b",
+          "afterSHA256": "115f9572dc06c4e2c6b22e5c2bbfb9ec99f9b5567c9952a90cf4c25b60a7db9f",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 5,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/separate-carried-creature:6",
+          "time": 0.9,
+          "kind": "END",
+          "source": "COMBAT_ACTION_PLAYTEST.md / class current engine",
+          "narrative": "A scheduled regular END; no pulse creates a turn",
+          "beforeSHA256": "115f9572dc06c4e2c6b22e5c2bbfb9ec99f9b5567c9952a90cf4c25b60a7db9f",
+          "afterSHA256": "d5874b917417056d259ecc7eb0f2a7edf0999a493b9d3b26e436ebfd7e73ca44",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        }
+      ],
+      "finalActorClocksAndResources": [
+        {
+          "actorId": "A",
+          "starts": [
+            0
+          ],
+          "ends": [
+            0.9
+          ],
+          "nextStart": 6,
+          "nextEnd": 6.9,
+          "budgetHistory": [
+            {
+              "time": 0,
+              "action": 1,
+              "BA": 1,
+              "Reaction": 1,
+              "Move": 30,
+              "recharge": {}
+            }
+          ],
+          "recharge": {},
+          "action": 0,
+          "bonusAction": 1,
+          "reaction": 1,
+          "movement": 30,
+          "RP": 54,
+          "Dissonance": 0,
+          "magicThisTurn": true,
+          "resourceHistory": [
+            {
+              "event": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/separate-carried-creature/cast1",
+              "RP": -26,
+              "poolAfter": 54,
+              "discount": false
+            }
+          ],
+          "spellHistory": [
+            {
+              "castId": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/separate-carried-creature/cast1",
+              "spellId": "banishment-gate",
+              "class": "Wizard",
+              "school": "Abjuration",
+              "rank": 9,
+              "time": 0.1,
+              "cost": 26,
+              "firstPreparedFamily": true,
+              "baseDissonance": 0,
+              "Refrain": 0,
+              "originPlane": "fixture:origin",
+              "target": null,
+              "components": [
+                "V",
+                "S",
+                "F"
+              ]
+            }
+          ],
+          "concentration": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/separate-carried-creature/cast1"
+        },
+        {
+          "actorId": "B",
+          "starts": [],
+          "ends": [],
+          "nextStart": 1,
+          "nextEnd": 1.9,
+          "budgetHistory": [],
+          "recharge": {},
+          "action": 0,
+          "bonusAction": 0,
+          "reaction": 1,
+          "movement": 0,
+          "RP": 80,
+          "Dissonance": 0,
+          "magicThisTurn": false,
+          "resourceHistory": [],
+          "spellHistory": [],
+          "concentration": null
+        },
+        {
+          "actorId": "C",
+          "starts": [],
+          "ends": [],
+          "nextStart": 2,
+          "nextEnd": 2.9,
+          "budgetHistory": [],
+          "recharge": {},
+          "action": 0,
+          "bonusAction": 0,
+          "reaction": 1,
+          "movement": 0,
+          "RP": 58,
+          "Dissonance": 0,
+          "magicThisTurn": false,
+          "resourceHistory": [],
+          "spellHistory": [],
+          "concentration": null
+        },
+        {
+          "actorId": "D",
+          "starts": [],
+          "ends": [],
+          "nextStart": 3,
+          "nextEnd": 3.9,
+          "budgetHistory": [],
+          "recharge": {},
+          "action": 0,
+          "bonusAction": 0,
+          "reaction": 1,
+          "movement": 0,
+          "RP": 80,
+          "Dissonance": 0,
+          "magicThisTurn": false,
+          "resourceHistory": [],
+          "spellHistory": [],
+          "concentration": null
+        }
+      ],
+      "qualification": "Exact authored states replayed; numeric success does not establish missing positive branch premises, acquisition or campaign facts."
+    },
+    {
+      "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/summon-expiry",
+      "statusPreserved": "HELD_MISSING_POSITIVE_BRANCH",
+      "eventCount": 6,
+      "forwardOperationCount": 12,
+      "inverseOperationCount": 12,
+      "replay": "PASS",
+      "wholeRequiredCaseComplete": false,
+      "initialSHA256": "0c0ce87d9a855a9e91b9837e34468d28cab76294fa8c48878cd519bddd27b55b",
+      "finalSHA256": "24d8ea57f62969593cace1a7cc699e075460c30c8614788b938b317b097a46c6",
+      "events": [
+        {
+          "index": 0,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/summon-expiry:1",
+          "time": 0,
+          "kind": "START",
+          "source": "COMBAT_ACTION_PLAYTEST.md / class current engine",
+          "narrative": "A scheduled regular START; no pulse creates a turn",
+          "beforeSHA256": "0c0ce87d9a855a9e91b9837e34468d28cab76294fa8c48878cd519bddd27b55b",
+          "afterSHA256": "d59c33cd5bf86d234a817059b310f45fb2893d5d9c0ba55c1813d9066b6d8fde",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 1,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/summon-expiry:2",
+          "time": 0.1,
+          "kind": "ELAPSED",
+          "source": null,
+          "narrative": "Actual elapsed time; all existing deadlines retained",
+          "beforeSHA256": "d59c33cd5bf86d234a817059b310f45fb2893d5d9c0ba55c1813d9066b6d8fde",
+          "afterSHA256": "8e38c76ef6cc18f28536a5bb1535dc89b290cd9546fcb3f222357c8371f30d15",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 2,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/summon-expiry:3",
+          "time": 0.1,
+          "kind": "CAST_COMMIT",
+          "source": "banishment-gate",
+          "narrative": "A pays and commits banishment-gate",
+          "beforeSHA256": "8e38c76ef6cc18f28536a5bb1535dc89b290cd9546fcb3f222357c8371f30d15",
+          "afterSHA256": "cc7237560e4094978221789b9592beee193ccfad52baa81fe7da7f6f3d3af269",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 3,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/summon-expiry:4",
+          "time": 0.1,
+          "kind": "CAST_RESOLVE",
+          "source": "banishment-gate",
+          "narrative": "No counter declared in this explicit branch; actual source establishes",
+          "beforeSHA256": "cc7237560e4094978221789b9592beee193ccfad52baa81fe7da7f6f3d3af269",
+          "afterSHA256": "0e2f93580c4c0a70e09a5417042b858afa098925867346ece8de8abe22c889ba",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 4,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/summon-expiry:5",
+          "time": 0.2,
+          "kind": "QUALIFIED_RULE_INPUT",
+          "source": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/summon-expiry/cast1",
+          "narrative": "summon-expiry has no fabricated positive resolution; exact missing/negative preconditions retained",
+          "beforeSHA256": "0e2f93580c4c0a70e09a5417042b858afa098925867346ece8de8abe22c889ba",
+          "afterSHA256": "205fbfc4e73f8bf40ceade43f5b168ff90b40042c54d2c7c93326192dec2fe54",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        },
+        {
+          "index": 5,
+          "id": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/summon-expiry:6",
+          "time": 0.9,
+          "kind": "END",
+          "source": "COMBAT_ACTION_PLAYTEST.md / class current engine",
+          "narrative": "A scheduled regular END; no pulse creates a turn",
+          "beforeSHA256": "205fbfc4e73f8bf40ceade43f5b168ff90b40042c54d2c7c93326192dec2fe54",
+          "afterSHA256": "24d8ea57f62969593cace1a7cc699e075460c30c8614788b938b317b097a46c6",
+          "forwardOperationCount": 2,
+          "inverseOperationCount": 2
+        }
+      ],
+      "finalActorClocksAndResources": [
+        {
+          "actorId": "A",
+          "starts": [
+            0
+          ],
+          "ends": [
+            0.9
+          ],
+          "nextStart": 6,
+          "nextEnd": 6.9,
+          "budgetHistory": [
+            {
+              "time": 0,
+              "action": 1,
+              "BA": 1,
+              "Reaction": 1,
+              "Move": 30,
+              "recharge": {}
+            }
+          ],
+          "recharge": {},
+          "action": 0,
+          "bonusAction": 1,
+          "reaction": 1,
+          "movement": 30,
+          "RP": 54,
+          "Dissonance": 0,
+          "magicThisTurn": true,
+          "resourceHistory": [
+            {
+              "event": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/summon-expiry/cast1",
+              "RP": -26,
+              "poolAfter": 54,
+              "discount": false
+            }
+          ],
+          "spellHistory": [
+            {
+              "castId": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/summon-expiry/cast1",
+              "spellId": "banishment-gate",
+              "class": "Wizard",
+              "school": "Abjuration",
+              "rank": 9,
+              "time": 0.1,
+              "cost": 26,
+              "firstPreparedFamily": true,
+              "baseDissonance": 0,
+              "Refrain": 0,
+              "originPlane": "fixture:origin",
+              "target": null,
+              "components": [
+                "V",
+                "S",
+                "F"
+              ]
+            }
+          ],
+          "concentration": "RANK9PLANARGATES5129-BANISHMENT-GATE-B/summon-expiry/cast1"
+        },
+        {
+          "actorId": "B",
+          "starts": [],
+          "ends": [],
+          "nextStart": 1,
+          "nextEnd": 1.9,
+          "budgetHistory": [],
+          "recharge": {},
+          "action": 0,
+          "bonusAction": 0,
+          "reaction": 1,
+          "movement": 0,
+          "RP": 80,
+          "Dissonance": 0,
+          "magicThisTurn": false,
+          "resourceHistory": [],
+          "spellHistory": [],
+          "concentration": null
+        },
+        {
+          "actorId": "C",
+          "starts": [],
+          "ends": [],
+          "nextStart": 2,
+          "nextEnd": 2.9,
+          "budgetHistory": [],
+          "recharge": {},
+          "action": 0,
+          "bonusAction": 0,
+          "reaction": 1,
+          "movement": 0,
+          "RP": 58,
+          "Dissonance": 0,
+          "magicThisTurn": false,
+          "resourceHistory": [],
+          "spellHistory": [],
+          "concentration": null
+        },
+        {
+          "actorId": "D",
+          "starts": [],
+          "ends": [],
+          "nextStart": 3,
+          "nextEnd": 3.9,
+          "budgetHistory": [],
+          "recharge": {},
+          "action": 0,
+          "bonusAction": 0,
+          "reaction": 1,
+          "movement": 0,
+          "RP": 80,
+          "Dissonance": 0,
+          "magicThisTurn": false,
+          "resourceHistory": [],
+          "spellHistory": [],
+          "concentration": null
+        }
+      ],
+      "qualification": "Exact authored states replayed; numeric success does not establish missing positive branch premises, acquisition or campaign facts."
+    }
+  ]
+}

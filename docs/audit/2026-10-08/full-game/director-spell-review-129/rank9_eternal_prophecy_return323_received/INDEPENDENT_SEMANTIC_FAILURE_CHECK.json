@@ -1,0 +1,58 @@
+{
+  "id": "RETURN323-SEMANTIC-FAILURE-CHECK",
+  "status": "HOLD_REQUIRED_WITNESS",
+  "openBlockerIds": [
+    "TF192-B02"
+  ],
+  "dataCheckCount": 1180,
+  "findingCount": 8,
+  "findings": [
+    {
+      "id": "EP323-S01",
+      "status": "PASS",
+      "finding": "140 raw source bindings and current authority/catalog/index verified;139 unchanged and only index updated."
+    },
+    {
+      "id": "EP323-S02",
+      "status": "PASS_CONDITIONAL_COMPONENT",
+      "finding": "Two paid same-item deliveries with original deadline and truthful objective completion; not an exhaustive guarantee.",
+      "anchors": [
+        "cases/RANK9TIMEFATE6129-ETERNAL-PROPHECY-A.json#/finalState/obligations",
+        "cases/RANK9TIMEFATE6129-ETERNAL-PROPHECY-A__alternate-route-obstruction.json#/finalState/obligations"
+      ]
+    },
+    {
+      "id": "EP323-S03",
+      "status": "OPEN_B02",
+      "finding": "B ends at100ms with original deadline34560000100ms and pending guaranteeProved=false. No all-routes/intervention-prevented fulfillment through deadline.",
+      "anchor": "cases/RANK9TIMEFATE6129-ETERNAL-PROPHECY-B.json#/finalState/obligations"
+    },
+    {
+      "id": "EP323-S04",
+      "status": "OPEN_B02",
+      "finding": "Unavailable-item precommit refusal is not post-commit loss of an item/destination; no authorized replacement/indestructibility/intervention override supplied.",
+      "anchor": "cases/RANK9TIMEFATE6129-ETERNAL-PROPHECY-B__unavailable-item.json#/events/4"
+    },
+    {
+      "id": "EP323-S05",
+      "status": "OPEN_B02_HISTORY",
+      "finding": "Exact external/parent dependencies remain necessary; transport/pending serialization does not confer source legality or permission to overwrite protected history."
+    },
+    {
+      "id": "EP323-S06",
+      "status": "PASS_COMPONENT_DATA",
+      "finding": "14cases/116events/232forward/232inverse and full reverse chains pass.41actor-clock markers verify; numeric success does not close the native promise."
+    },
+    {
+      "id": "EP323-S07",
+      "status": "PRESERVE_CONSTRUCTION_LIMIT",
+      "finding": "FR-EP-WITNESS-CONSTRUCTION-01 authorizes evaluation only. No mechanism, waiver, forced future, blanket immunity or promise qualification authorized."
+    },
+    {
+      "id": "EP323-S08",
+      "status": "PASS_SCOPE",
+      "finding": "Only Eternal Prophecy held; B04/B05 and all other holds/acceptances remain unchanged. No application or downstream approval."
+    }
+  ],
+  "numericReplayNotSemanticCompletion": true
+}
