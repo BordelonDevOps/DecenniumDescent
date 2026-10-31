@@ -1,0 +1,220 @@
+{
+  "caseBindings": {
+    "AFP211-AP-underlying-removal": {
+      "path": "cases/AFP211-AP-underlying-removal.json",
+      "bytes": 2929,
+      "sha256": "6ad12afa83b9a198db94ec82291baa99514037cf736438463808fb23061fdf7e",
+      "crc32": "0375a424"
+    },
+    "AFP211-AP-undefined-benefit": {
+      "path": "cases/AFP211-AP-undefined-benefit.json",
+      "bytes": 2349,
+      "sha256": "3faaff75d66131654f7b6aabdd57f62bc05c594f763e5f6594f6f5bcc142e8ca",
+      "crc32": "3d1dc47c"
+    }
+  },
+  "cases": {
+    "AFP211-AP-underlying-removal": {
+      "id": "AFP211-AP-underlying-removal",
+      "spellId": "alignment-perfection",
+      "title": "Conditional authorized imposed-record removal does not erase Lock",
+      "kind": "conditional-component-trace",
+      "completeSpellWitness": false,
+      "scope": "Full states for this explicitly bounded component only; not full actor/world state, paid cast, clock or gameplay witness.",
+      "source": "Proposed AP purification with existing AC4 Lock boundary; removal authorization is a conditional premise",
+      "events": [
+        {
+          "id": "AFP211-AP-underlying-removal:1",
+          "before": {
+            "underlying": "Chaotic",
+            "imposedRecord": {
+              "id": "imposed1",
+              "removalAuthorized": true
+            },
+            "lock": "Lawful",
+            "effective": "Lawful",
+            "oathHistory": [
+              "retained"
+            ],
+            "removed": []
+          },
+          "after": {
+            "underlying": "Chaotic",
+            "imposedRecord": null,
+            "lock": "Lawful",
+            "effective": "Lawful",
+            "oathHistory": [
+              "retained"
+            ],
+            "removed": [
+              "imposed1"
+            ]
+          },
+          "beforeSHA256": "9f03bd51e5f21db7c7cba7ce5a6951d043fb33228f42a840bf6255c3319fb470",
+          "afterSHA256": "d97b49113f8cd45bd32b87ce8471c592d151005f8b260007e48b3b8be9c79234",
+          "forward": [
+            {
+              "op": "test",
+              "path": "",
+              "value": {
+                "underlying": "Chaotic",
+                "imposedRecord": {
+                  "id": "imposed1",
+                  "removalAuthorized": true
+                },
+                "lock": "Lawful",
+                "effective": "Lawful",
+                "oathHistory": [
+                  "retained"
+                ],
+                "removed": []
+              }
+            },
+            {
+              "op": "replace",
+              "path": "",
+              "value": {
+                "underlying": "Chaotic",
+                "imposedRecord": null,
+                "lock": "Lawful",
+                "effective": "Lawful",
+                "oathHistory": [
+                  "retained"
+                ],
+                "removed": [
+                  "imposed1"
+                ]
+              }
+            }
+          ],
+          "inverse": [
+            {
+              "op": "test",
+              "path": "",
+              "value": {
+                "underlying": "Chaotic",
+                "imposedRecord": null,
+                "lock": "Lawful",
+                "effective": "Lawful",
+                "oathHistory": [
+                  "retained"
+                ],
+                "removed": [
+                  "imposed1"
+                ]
+              }
+            },
+            {
+              "op": "replace",
+              "path": "",
+              "value": {
+                "underlying": "Chaotic",
+                "imposedRecord": {
+                  "id": "imposed1",
+                  "removalAuthorized": true
+                },
+                "lock": "Lawful",
+                "effective": "Lawful",
+                "oathHistory": [
+                  "retained"
+                ],
+                "removed": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "AFP211-AP-undefined-benefit": {
+      "id": "AFP211-AP-undefined-benefit",
+      "spellId": "alignment-perfection",
+      "title": "No invented benefit for Neutral/undefined axes",
+      "kind": "held-content-gate",
+      "completeSpellWitness": false,
+      "scope": "Full states for this explicitly bounded component only; not full actor/world state, paid cast, clock or gameplay witness.",
+      "source": "CANDIDATE AP9-10",
+      "events": [
+        {
+          "id": "AFP211-AP-undefined-benefit:1",
+          "before": {
+            "orderAxis": "Neutral",
+            "ethicAxis": null,
+            "benefitProfile": null,
+            "history": [
+              "retained"
+            ],
+            "status": "proposal"
+          },
+          "after": {
+            "orderAxis": "Neutral",
+            "ethicAxis": null,
+            "benefitProfile": null,
+            "history": [
+              "retained"
+            ],
+            "status": "held-benefit-profile-missing"
+          },
+          "beforeSHA256": "edfd1fff64520ff342c1b0b0e35a8869f4b473fa98c74a9a9c189396dc779025",
+          "afterSHA256": "d01fff010648dee10e253ded8e156382c08a42f799fe62874fd2db6f9609fcf4",
+          "forward": [
+            {
+              "op": "test",
+              "path": "",
+              "value": {
+                "orderAxis": "Neutral",
+                "ethicAxis": null,
+                "benefitProfile": null,
+                "history": [
+                  "retained"
+                ],
+                "status": "proposal"
+              }
+            },
+            {
+              "op": "replace",
+              "path": "",
+              "value": {
+                "orderAxis": "Neutral",
+                "ethicAxis": null,
+                "benefitProfile": null,
+                "history": [
+                  "retained"
+                ],
+                "status": "held-benefit-profile-missing"
+              }
+            }
+          ],
+          "inverse": [
+            {
+              "op": "test",
+              "path": "",
+              "value": {
+                "orderAxis": "Neutral",
+                "ethicAxis": null,
+                "benefitProfile": null,
+                "history": [
+                  "retained"
+                ],
+                "status": "held-benefit-profile-missing"
+              }
+            },
+            {
+              "op": "replace",
+              "path": "",
+              "value": {
+                "orderAxis": "Neutral",
+                "ethicAxis": null,
+                "benefitProfile": null,
+                "history": [
+                  "retained"
+                ],
+                "status": "proposal"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "notReplayed": true
+}
