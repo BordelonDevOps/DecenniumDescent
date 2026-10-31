@@ -1,0 +1,114 @@
+{
+  "closedEvidenceFinding": {
+    "id": "AFP211-E01",
+    "status": "CLOSED",
+    "reopened": false
+  },
+  "exactComparatorBindings": [
+    {
+      "id": "faction-paragon",
+      "source": "input/sources/09_MODEL.json",
+      "pointer": "/spells/2/procedure",
+      "completeEnvelopeBinding": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank8summonstructure5_reviewed_153/MODEL.json",
+        "bytes": 1670987,
+        "sha256": "1ee4d776ff6d5cc54959e740d0319c4edc8d6bb95db387f041ea09b2668c41a1"
+      },
+      "exactCurrentComparisonVerified": true,
+      "casesReplayed": false,
+      "acceptanceReopened": false,
+      "transferToIncarnate": false
+    },
+    {
+      "id": "faction-aegis",
+      "source": "input/sources/07_MODEL.json",
+      "pointer": "/spells/4",
+      "completeEnvelopeBinding": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/ward7_reviewed_136/MODEL.json",
+        "bytes": 309348,
+        "sha256": "8c7d939e87a83823dde17cbfd44b44b4a7aa64dfe129b559056a823356737294"
+      },
+      "exactCurrentComparisonVerified": true,
+      "casesReplayed": false,
+      "acceptanceReopened": false,
+      "transferToIncarnate": false
+    },
+    {
+      "id": "faction-citadel",
+      "source": "input/sources/08_MODEL.json",
+      "pointer": "/spells/5/procedure",
+      "completeEnvelopeBinding": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/manifestation7_reviewed_137/MODEL.json",
+        "bytes": 1254598,
+        "sha256": "6a1a4e186d4456891d74fd20113611295d34ba55b9f6d2576b21b0d85d58c413"
+      },
+      "exactCurrentComparisonVerified": true,
+      "casesReplayed": false,
+      "acceptanceReopened": false,
+      "transferToIncarnate": false
+    }
+  ],
+  "findings": [
+    {
+      "id": "generic-companion-framework",
+      "anchor": [
+        "input/sources/02_CREATURE_LIFECYCLE_PLAYTEST.md:9",
+        "input/sources/03_SPELL_INTEGRATION_RULES.md:80"
+      ],
+      "established": "Attached phases, shared command/offense limits and default behavior; actual source-derived clocks/resources retained.",
+      "doesNotSupply": "A faction-specific manifestation, native useful actions or automatically imported class-companion stats/healing/Null rules."
+    },
+    {
+      "id": "faction-data",
+      "anchor": [
+        "input/sources/00_REPUTATION.md:7",
+        "input/sources/01_reputation.js:19"
+      ],
+      "established": "Faction IDs, named categories and standing schema. Documentation standing normally -3..+3; tier Honored starts at2 in data, not a new Incarnate threshold.",
+      "doesNotSupply": "Present affiliation, permission, resource, institutional member/history or an Incarnate gate. Missing fields are not false/Neutral/zero."
+    },
+    {
+      "id": "faction-ally",
+      "anchor": [
+        "input/sources/05_abjuration_conjuration_rank4_reviewed_03.json#/spells/14/procedure"
+      ],
+      "established": "Ally-specific membership/invocation and finite Envoy framework; healing/Null scoped to its exact summons.",
+      "doesNotSupply": "Incarnate admission, body, healing eligibility or equipment."
+    },
+    {
+      "id": "faction-champion",
+      "anchor": [
+        "input/sources/06_abjuration_conjuration_rank5_reviewed_05.json#/spells/14/procedure",
+        "input/sources/03_SPELL_INTEGRATION_RULES.md:317"
+      ],
+      "established": "AC5-specific alliedStatus, positive standing, invocation permission, no aid ban and finite Champion rules.",
+      "doesNotSupply": "Incarnate permission/profile or general healing/Null/custody permission."
+    },
+    {
+      "id": "faction-paragon",
+      "anchor": [
+        "input/sources/09_MODEL.json#/spells/2/procedure"
+      ],
+      "established": "Explicitly authored finite Paragon body/actions and champion designation with its own gate.",
+      "doesNotSupply": "Rank9 embodiment powers, copied NPC resources, designation or Incarnate admission."
+    },
+    {
+      "id": "faction-aegis",
+      "anchor": [
+        "input/sources/07_MODEL.json#/spells/4/procedure"
+      ],
+      "established": "Exact faction-invocation selection and privately evaluated negative-standing effects protection within Aegis.",
+      "doesNotSupply": "Manifestation immunity, reputation effect or new faction permission."
+    },
+    {
+      "id": "faction-citadel",
+      "anchor": [
+        "input/sources/08_MODEL.json#/spells/5/procedure"
+      ],
+      "established": "Citadel-specific affiliation/invocation, physical structure and custody/ending.",
+      "doesNotSupply": "Incarnate profile, shelter powers, institutional resources,24hour clock or permissions."
+    }
+  ],
+  "comparatorCasesReplayed": false,
+  "comparatorAcceptanceReopened": false
+}
