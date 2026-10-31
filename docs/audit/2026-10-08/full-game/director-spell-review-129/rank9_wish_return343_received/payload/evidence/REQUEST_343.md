@@ -1,0 +1,11 @@
+# Review343 request — Wish / MR233-B02 only
+
+The sole current target is **Wish** (`wish`) / **MR233-B02**. Reassess it from the exact current-source bindings and the Return289-to-current source delta. The current authority is **823 reviewed/applied, 25 pending, 0 accepted-unapplied; 547 complete standalone procedures, 173 scoped interfaces**.
+
+The packet binds both current Wish Core placements and all four current class routes: Cleric/Universal, Druid/Transmutation, Mage/Transmutation, and Wizard/Transmutation. Preserve the exact one-action, 120-foot, V/S/F, Instantaneous, 26-RP Core facts and the native broad promise. Do not add a D&D-style fixed power cap, ritual, price, spell slot, class gate, or frequency absent from the sources.
+
+Return233 and Return289 Wish holds and their 18 Wish-relevant question records are historical evidence for this exact target; reassess only against current bindings. Preserve Return336–342 holds, AFP211-E01 CLOSED, MR233-E01 CLOSED, and all unrelated accepted/held records. Do not re-adjudicate Divine Intervention Greater or any other spell, replay prior cases, infer actual actors/casts from authored fixtures, or change canonical game files.
+
+Determine whether the packet actually supplies complete finite operational contracts for multiple substantive outcomes and one composite, including target/geometry/consent/resistance, physical/material/resource premises, outcome ordering, interruption, partial settlement, persistent aftermath, source conflict/suppression/termination, and irreversible resource/custody history. Also require actual acquired, legal paid rank-9 witnesses for the requested routes and meaningful adverse branches; conditional review fixtures are not gameplay evidence.
+
+If every source and paid-use requirement is satisfied, seal a one-identity ACCEPT with application authorization for Wish only. Otherwise seal the exact one-identity HOLD, open contracts, witness gaps, unchanged authority, and the remaining queue state (including whether a first-review identity remains after Wish). Return the sealed decision ZIP and matching DELIVERY JSON.

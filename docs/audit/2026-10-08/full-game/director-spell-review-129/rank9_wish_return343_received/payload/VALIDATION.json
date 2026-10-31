@@ -1,0 +1,2354 @@
+{
+  "status": "PASS_SOURCE_AND_DATA_INTEGRITY_ONLY",
+  "counts": {
+    "targetIdentities": 1,
+    "acceptedIdentities": 0,
+    "appliedIdentities": 0,
+    "heldIdentities": 1,
+    "inputArchiveMembers": 30,
+    "currentEmbeddedSourceBindingsVerified": 14,
+    "historicalSourceDeltaRows": 153,
+    "historicalSourceRowsVerified": 153,
+    "currentDeltaRowsIndependentlyVerified": 12,
+    "additionalCurrentComparatorBindingsVerified": 2,
+    "currentNonembeddedComparisonRowsNotIndependentlyVerified": 141,
+    "sourceDataChecks": 464,
+    "sourceDataPassed": 464,
+    "sourceDataFailed": 0,
+    "questionDispositions": 18,
+    "resolvedSourceQuestions": 5,
+    "heldOutcomeWitnessQuestions": 13,
+    "qualificationCount": 9,
+    "openContractWitnessRecords": 3,
+    "freshCaseReplays": 0,
+    "freshEvents": 0,
+    "freshForwardOperations": 0,
+    "freshInverseOperations": 0,
+    "freshActorClockChecks": 0
+  },
+  "checks": [
+    {
+      "id": "R343-D001",
+      "check": "input archive size SHA256 CRC32",
+      "passed": true
+    },
+    {
+      "id": "R343-D002",
+      "check": "unique safe file paths",
+      "passed": true
+    },
+    {
+      "id": "R343-D003",
+      "check": "ZIP CRC readback",
+      "passed": true
+    },
+    {
+      "id": "R343-D004",
+      "check": "delivery exact allowlist and member count",
+      "passed": true
+    },
+    {
+      "id": "R343-D005",
+      "check": "delivery member table exact coverage",
+      "passed": true
+    },
+    {
+      "id": "R343-D006",
+      "check": "input member REQUEST_343.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D007",
+      "check": "extracted exact bytes REQUEST_343.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D008",
+      "check": "input member packet/context/CURRENT25_PENDING_IDENTITY_AUDIT_342.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D009",
+      "check": "extracted exact bytes packet/context/CURRENT25_PENDING_IDENTITY_AUDIT_342.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D010",
+      "check": "input member packet/context/CURRENT_HANDOFF_342.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D011",
+      "check": "extracted exact bytes packet/context/CURRENT_HANDOFF_342.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D012",
+      "check": "input member packet/context/CURRENT_SPELL_QUEUE_342.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D013",
+      "check": "extracted exact bytes packet/context/CURRENT_SPELL_QUEUE_342.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D014",
+      "check": "input member packet/context/CURRENT_SPELL_REVIEW_SNAPSHOT_342.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D015",
+      "check": "extracted exact bytes packet/context/CURRENT_SPELL_REVIEW_SNAPSHOT_342.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D016",
+      "check": "input member packet/input/00_CURRENT_AUTHORITY_AND_QUEUE_342.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D017",
+      "check": "extracted exact bytes packet/input/00_CURRENT_AUTHORITY_AND_QUEUE_342.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D018",
+      "check": "input member packet/input/01_CURRENT_WISH_CATALOG_ROW.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D019",
+      "check": "extracted exact bytes packet/input/01_CURRENT_WISH_CATALOG_ROW.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D020",
+      "check": "input member packet/input/02_CURRENT_WISH_INDEX_ROW.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D021",
+      "check": "extracted exact bytes packet/input/02_CURRENT_WISH_INDEX_ROW.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D022",
+      "check": "input member packet/input/03_CURRENT_CORE_WISH_ROWS.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D023",
+      "check": "extracted exact bytes packet/input/03_CURRENT_CORE_WISH_ROWS.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D024",
+      "check": "input member packet/input/04_RETURN289_PRIOR_WISH_HOLD.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D025",
+      "check": "extracted exact bytes packet/input/04_RETURN289_PRIOR_WISH_HOLD.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D026",
+      "check": "input member packet/input/05_RETURN233_PRIOR_WISH_HOLD.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D027",
+      "check": "extracted exact bytes packet/input/05_RETURN233_PRIOR_WISH_HOLD.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D028",
+      "check": "input member packet/input/06_RETURN289_RELEVANT_QUESTION_DISPOSITIONS.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D029",
+      "check": "extracted exact bytes packet/input/06_RETURN289_RELEVANT_QUESTION_DISPOSITIONS.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D030",
+      "check": "input member packet/input/07_RETURN289_QUALIFICATIONS.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D031",
+      "check": "extracted exact bytes packet/input/07_RETURN289_QUALIFICATIONS.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D032",
+      "check": "input member packet/input/08_CURRENT_PRESERVED_HOLDS_342.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D033",
+      "check": "extracted exact bytes packet/input/08_CURRENT_PRESERVED_HOLDS_342.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D034",
+      "check": "input member packet/input/09_RETURN289_TO_CURRENT_SOURCE_DELTA.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D035",
+      "check": "extracted exact bytes packet/input/09_RETURN289_TO_CURRENT_SOURCE_DELTA.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D036",
+      "check": "input member packet/MEMBER_MANIFEST.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D037",
+      "check": "extracted exact bytes packet/MEMBER_MANIFEST.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D038",
+      "check": "input member packet/sources/00_catalog.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D039",
+      "check": "extracted exact bytes packet/sources/00_catalog.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D040",
+      "check": "input member packet/sources/01_authored_review_index.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D041",
+      "check": "extracted exact bytes packet/sources/01_authored_review_index.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D042",
+      "check": "input member packet/sources/02_Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D043",
+      "check": "extracted exact bytes packet/sources/02_Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D044",
+      "check": "input member packet/sources/03_rulebook_output.txt",
+      "passed": true
+    },
+    {
+      "id": "R343-D045",
+      "check": "extracted exact bytes packet/sources/03_rulebook_output.txt",
+      "passed": true
+    },
+    {
+      "id": "R343-D046",
+      "check": "input member packet/sources/04_SPELL_INTEGRATION_RULES.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D047",
+      "check": "extracted exact bytes packet/sources/04_SPELL_INTEGRATION_RULES.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D048",
+      "check": "input member packet/sources/05_GODS_PANTHEONS_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D049",
+      "check": "extracted exact bytes packet/sources/05_GODS_PANTHEONS_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D050",
+      "check": "input member packet/sources/06_SOULS_RESEARCH_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D051",
+      "check": "extracted exact bytes packet/sources/06_SOULS_RESEARCH_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D052",
+      "check": "input member packet/sources/07_cleric.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D053",
+      "check": "extracted exact bytes packet/sources/07_cleric.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D054",
+      "check": "input member packet/sources/08_druid.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D055",
+      "check": "extracted exact bytes packet/sources/08_druid.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D056",
+      "check": "input member packet/sources/09_mage.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D057",
+      "check": "extracted exact bytes packet/sources/09_mage.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D058",
+      "check": "input member packet/sources/10_wizard.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D059",
+      "check": "extracted exact bytes packet/sources/10_wizard.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D060",
+      "check": "input member packet/sources/11_RESONANCE_CANON.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D061",
+      "check": "extracted exact bytes packet/sources/11_RESONANCE_CANON.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D062",
+      "check": "input member packet/sources/12_RANK9_CASTINGCOST5_REVIEWED_222.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D063",
+      "check": "extracted exact bytes packet/sources/12_RANK9_CASTINGCOST5_REVIEWED_222.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D064",
+      "check": "input member packet/sources/13_RANK9_RESONANCE3_REVIEWED_122.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D065",
+      "check": "extracted exact bytes packet/sources/13_RANK9_RESONANCE3_REVIEWED_122.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D066",
+      "check": "internal manifest exact coverage",
+      "passed": true
+    },
+    {
+      "id": "R343-D067",
+      "check": "internal input payload context/CURRENT25_PENDING_IDENTITY_AUDIT_342.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D068",
+      "check": "internal input payload context/CURRENT_HANDOFF_342.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D069",
+      "check": "internal input payload context/CURRENT_SPELL_QUEUE_342.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D070",
+      "check": "internal input payload context/CURRENT_SPELL_REVIEW_SNAPSHOT_342.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D071",
+      "check": "internal input payload input/00_CURRENT_AUTHORITY_AND_QUEUE_342.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D072",
+      "check": "internal input payload input/01_CURRENT_WISH_CATALOG_ROW.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D073",
+      "check": "internal input payload input/02_CURRENT_WISH_INDEX_ROW.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D074",
+      "check": "internal input payload input/03_CURRENT_CORE_WISH_ROWS.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D075",
+      "check": "internal input payload input/04_RETURN289_PRIOR_WISH_HOLD.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D076",
+      "check": "internal input payload input/05_RETURN233_PRIOR_WISH_HOLD.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D077",
+      "check": "internal input payload input/06_RETURN289_RELEVANT_QUESTION_DISPOSITIONS.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D078",
+      "check": "internal input payload input/07_RETURN289_QUALIFICATIONS.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D079",
+      "check": "internal input payload input/08_CURRENT_PRESERVED_HOLDS_342.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D080",
+      "check": "internal input payload input/09_RETURN289_TO_CURRENT_SOURCE_DELTA.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D081",
+      "check": "internal input payload sources/00_catalog.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D082",
+      "check": "internal input payload sources/01_authored_review_index.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D083",
+      "check": "internal input payload sources/02_Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D084",
+      "check": "internal input payload sources/03_rulebook_output.txt",
+      "passed": true
+    },
+    {
+      "id": "R343-D085",
+      "check": "internal input payload sources/04_SPELL_INTEGRATION_RULES.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D086",
+      "check": "internal input payload sources/05_GODS_PANTHEONS_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D087",
+      "check": "internal input payload sources/06_SOULS_RESEARCH_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D088",
+      "check": "internal input payload sources/07_cleric.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D089",
+      "check": "internal input payload sources/08_druid.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D090",
+      "check": "internal input payload sources/09_mage.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D091",
+      "check": "internal input payload sources/10_wizard.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D092",
+      "check": "internal input payload sources/11_RESONANCE_CANON.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D093",
+      "check": "internal input payload sources/12_RANK9_CASTINGCOST5_REVIEWED_222.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D094",
+      "check": "internal input payload sources/13_RANK9_RESONANCE3_REVIEWED_122.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D095",
+      "check": "14 embedded current source bindings",
+      "passed": true
+    },
+    {
+      "id": "R343-D096",
+      "check": "embedded current source DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D097",
+      "check": "embedded current source DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D098",
+      "check": "embedded current source DescentReviewChanges/ReviewBible/data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D099",
+      "check": "embedded current source DescentReviewChanges/ReviewBible/rulebook_output.txt",
+      "passed": true
+    },
+    {
+      "id": "R343-D100",
+      "check": "embedded current source DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D101",
+      "check": "embedded current source DescentReviewChanges/ReviewBible/docs/director-only/cosmology/GODS_PANTHEONS_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D102",
+      "check": "embedded current source DescentReviewChanges/ReviewBible/docs/director-only/cosmology/SOULS_RESEARCH_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D103",
+      "check": "embedded current source DescentReviewChanges/ReviewBible/data/public/class_playtests/cleric.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D104",
+      "check": "embedded current source DescentReviewChanges/ReviewBible/data/public/class_playtests/druid.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D105",
+      "check": "embedded current source DescentReviewChanges/ReviewBible/data/public/class_playtests/mage.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D106",
+      "check": "embedded current source DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D107",
+      "check": "embedded current source DescentReviewChanges/ReviewBible/docs/mechanics/RESONANCE_CANON.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D108",
+      "check": "embedded current source DescentReviewChanges/ReviewBible/docs/spells/candidates/RANK9_CASTINGCOST5_REVIEWED_222.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D109",
+      "check": "embedded current source DescentReviewChanges/ReviewBible/docs/spells/candidates/RANK9_RESONANCE3_REVIEWED_122.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D110",
+      "check": "153 distinct source comparison rows",
+      "passed": true
+    },
+    {
+      "id": "R343-D111",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/tools/feat335_copy_capture.py",
+      "passed": true
+    },
+    {
+      "id": "R343-D112",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/tools/feat335_copy_release.py",
+      "passed": true
+    },
+    {
+      "id": "R343-D113",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/tools/feat335_copy_payloads.py",
+      "passed": true
+    },
+    {
+      "id": "R343-D114",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/tools/feat335_copy_class_release.py",
+      "passed": true
+    },
+    {
+      "id": "R343-D115",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D116",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D117",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/data/director/spell_review/remaining_work_queue_66.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D118",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_06.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D119",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/ACTIVE_AUTHORING_CHECKPOINT_RANK7_RECOVERY_ACCEPTED_79.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D120",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/data/playtest/game_development_coverage.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D121",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/PERTINENT_GPT_DECISIONS_2026_10_20_02.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D122",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/tools/prepare_rank9_miracle_reality_2_source_conference_01.py",
+      "passed": true
+    },
+    {
+      "id": "R343-D123",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/tools/rank9_miracle_reality_2_questions_01.py",
+      "passed": true
+    },
+    {
+      "id": "R343-D124",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/tools/prepare_rank9_alignment_faction_purification_5_source_conference_01.py",
+      "passed": true
+    },
+    {
+      "id": "R343-D125",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/tools/rank9_alignment_faction_purification_5_questions_01.py",
+      "passed": true
+    },
+    {
+      "id": "R343-D126",
+      "check": "source-delta metadata consistency CANON_MANIFEST.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D127",
+      "check": "source-delta metadata consistency docs/canon/CANON_MANIFEST.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D128",
+      "check": "source-delta metadata consistency docs/canon/REPOSITORY_PROMOTION.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D129",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/GPT_PART5_PERTINENT_OWNER_CHOICES_2026_10_20_NATIVE.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D130",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/GPT_PART5_STATUS_SYNC_16_COMPLETED_NATIVE.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D131",
+      "check": "source-delta metadata consistency docs/audit/2026-10-20/github-snapshot-material-forging72/PUSH_RECEIPT.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D132",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/rulebook_output.txt",
+      "passed": true
+    },
+    {
+      "id": "R343-D133",
+      "check": "source-delta metadata consistency docs/reference/Player_Rulebook_v6_source_text.txt",
+      "passed": true
+    },
+    {
+      "id": "R343-D134",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/books/player/Decennium_Descent_Player_Rulebook_v6.docx",
+      "passed": true
+    },
+    {
+      "id": "R343-D135",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/DIVINATION_RANK9_SOURCE_PREPARATION.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D136",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/src/data/spells.js",
+      "passed": true
+    },
+    {
+      "id": "R343-D137",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D138",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/TRANSMUTATION_UNIVERSAL_RANK9_SOURCE_PREPARATION.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D139",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/docs/mechanics/VIDEO_GAME_ONLY_DIRECTIVE.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D140",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D141",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D142",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D143",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D144",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D145",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/docs/mechanics/CONDITION_RECOVERY_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D146",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/docs/mechanics/CONTROL_STATES_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D147",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D148",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/docs/mechanics/CREATURE_LIFECYCLE_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D149",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/docs/mechanics/CREATURE_LIFECYCLE_SOURCE_BINDINGS.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D150",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/docs/mechanics/MAXIMUM_HP_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D151",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/docs/mechanics/HEALING_DEATH_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D152",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/docs/mechanics/TRANSFORMATION_SPELL_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D153",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/docs/mechanics/RESONANCE_CANON.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D154",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/docs/mechanics/COSMOLOGY_EPILOGUE_RELIC_NULL_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D155",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/docs/mechanics/CHARACTER_CREATION_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D156",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/docs/mechanics/CHARACTER_FOUNDATION_TABLES.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D157",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/docs/mechanics/XP_ADVANCEMENT_CANON.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D158",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/docs/mechanics/STRAIN_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D159",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/docs/mechanics/CUSTOM_CONDITION_BINDINGS.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D160",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/docs/mechanics/CONTROL_SOURCE_BINDINGS.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D161",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/docs/mechanics/EQUIPMENT_ITEM_PROCEDURES.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D162",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/docs/mechanics/EQUIPMENT_ACQUISITION_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D163",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/docs/mechanics/WORLD_DUNGEON_LOOP.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D164",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/docs/mechanics/EXPEDITION_STRUCTURE_CANON.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D165",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/docs/mechanics/COSMOLOGY_EPILOGUE_CHARACTER_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D166",
+      "check": "source-delta metadata consistency docs/mechanics/OWNER_COSMOLOGY_LOCKS_2026-07-30.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D167",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/docs/mechanics/APPENDIX_B_FOLK_RELIGION.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D168",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/data/playtest/creature_lifecycle_bindings.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D169",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/data/playtest/control_state_bindings.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D170",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/data/playtest/condition_playtests.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D171",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/data/playtest/equipment_acquisition_candidate.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D172",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/data/playtest/equipment_source_catalog.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D173",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/src/data/resonance-economy.js",
+      "passed": true
+    },
+    {
+      "id": "R343-D174",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/candidate.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D175",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/shared_rules.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D176",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/supplements.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D177",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/docs/canon/PLAYER_DIRECTOR_BOUNDARY.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D178",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/data/public/class_playtests/cleric.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D179",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/data/public/class_playtests/druid.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D180",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/data/public/class_playtests/mage.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D181",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D182",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/data/public/class_playtests/mirrorsage.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D183",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/data/public/class_playtests/oracle.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D184",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/data/public/class_playtests/monk.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D185",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank4_reviewed_03.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D186",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank5_reviewed_05.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D187",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/data/public/spell_candidates/banishment_exact_model_04.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D188",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank6_reviewed_06.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D189",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/data/public/spell_candidates/divination_enchantment_rank4_reviewed_07.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D190",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D191",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D192",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/GPT_DIVINATION_RANK2_SOURCE_CONFERENCE.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D193",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/GPT_DIVINATION_RANK2_EXACT_REVIEW.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D194",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/GPT_DIVINATION_RANK2_FINAL_CLARIFICATION.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D195",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/data/playtest/spell_drafts/batch_divination_rank2.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D196",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/GPT_DIVINATION_RANK3_SOURCE_CONFERENCE.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D197",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/GPT_DIVINATION_RANK3_EXACT_REVIEW.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D198",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/data/playtest/spell_drafts/batch_divination_rank3.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D199",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/DE4_EXACT_ACCEPTANCE_07_RECEIPT.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D200",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/divination_enchantment_rank4_cases_07.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D201",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/de4-exact-rebound-07/REGISTER.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D202",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK2_3_SOURCE_CONFERENCE.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D203",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK2_3_EXACT_REVIEW.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D204",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/data/playtest/spell_drafts/batch_abjuration_rank2_3.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D205",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/data/public/spell_playtests/candidate_low_rank_136.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D206",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/GPT_HEALING_FINAL_CLOSURE.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D207",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/data/playtest/spell_drafts/batch_healing_death.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D208",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/AC5_EXACT_ACCEPTANCE_05_RECEIPT.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D209",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/ac5-local-final-05-candidate/REGISTER.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D210",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/abjuration_conjuration_rank5_cases_05.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D211",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/AC4_EXACT_ACCEPTANCE_03_RECEIPT.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D212",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK3_SOURCE_CONFERENCE.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D213",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK3_EXACT_REVIEW.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D214",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/data/playtest/spell_drafts/batch_conjuration_rank3.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D215",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/docs/director-only/cosmology/CURRENT_COSMOLOGY_READ_FIRST.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D216",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/docs/director-only/cosmology/GODS_PANTHEONS_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D217",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/docs/director-only/cosmology/EPILOGUE_CHARACTER_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D218",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/docs/director-only/cosmology/PLANES_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D219",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/docs/director-only/cosmology/HEARTCELL_OWNER_UPDATE_02.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D220",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/docs/director-only/cosmology/Q6_LATER_LOCK_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D221",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/docs/director-only/cosmology/SOULS_RESEARCH_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D222",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/docs/director-only/cosmology/EPILOGUE_RELIC_NULL_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D223",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/data/director/cosmology/planes_reviewed_01.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D224",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/data/director/cosmology/gods_pantheons_reviewed_01.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D225",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/data/director/cosmology/epilogue_character_reviewed_01.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D226",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/data/director/cosmology/epilogue_character_cases_01.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D227",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/data/director/cosmology/heartcell_owner_update_02.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D228",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/data/director/cosmology/q6_later_lock_reviewed_01.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D229",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/data/director/cosmology/souls_research_reviewed_01.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D230",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/data/director/cosmology/epilogue_relic_null_reviewed_01.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D231",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/COSMOLOGY_PLANES_SOURCE_CONCORDANCE_01.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D232",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/COSMOLOGY_PLANES_01_APPLICATION_CHECK.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D233",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/COSMOLOGY_SOULS_RESEARCH_01_APPLICATION_CHECK.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D234",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/COSMOLOGY_PLANES_TRANSIT_DEPENDENCY_READING_01.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D235",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/DD_Cosmology_Planes_01.zip",
+      "passed": true
+    },
+    {
+      "id": "R343-D236",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/DD_Cosmology_Gods_Pantheons_01.zip",
+      "passed": true
+    },
+    {
+      "id": "R343-D237",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/DD_Cosmology_Gods_Pantheons_Followup_01.zip",
+      "passed": true
+    },
+    {
+      "id": "R343-D238",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/COSMOLOGY_GODS_PANTHEONS_FOLLOWUP_01_Addendum_and_Evidence.zip",
+      "passed": true
+    },
+    {
+      "id": "R343-D239",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/cosmology-gods-pantheons-followup-01-received/COSMOLOGY_GODS_PANTHEONS_01_REGISTER_CORRECTED.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D240",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/cosmology-gods-pantheons-followup-01-received/FOLLOWUP_DISPOSITIONS.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D241",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/COSMOLOGY_GODS_PANTHEONS_FOLLOWUP_01_RECEIVED_DECISION.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D242",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/RANK7_IDENTITY_CASTING5_PART5_EXACT_AUTHORING_ACCEPTANCE_79.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D243",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/rank7-identity-casting5-part5-ready-deadline-recovery-01/MODEL.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D244",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/rank7-identity-casting5-part5-ready-deadline-recovery-01/HOLD_REGISTER.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D245",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/rank7-identity-casting5-part5-ready-deadline-recovery-01/SPELL_DISPOSITIONS.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D246",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/rank7-identity-casting5-part5-ready-deadline-recovery-01/QUESTION_DISPOSITIONS.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D247",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/rank7-identity-casting5-part5-ready-deadline-recovery-01/CASE_DISPOSITIONS.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D248",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/rank7-identity-casting5-part5-ready-deadline-recovery-01/PLAYER_CHAPTER.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D249",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/rank7-identity-casting5-part5-ready-deadline-recovery-01/DIRECTOR_REVIEW.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D250",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/rank7-identity-casting5-part5-ready-deadline-recovery-01/evidence/shared_rules.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D251",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/rank7-identity-casting5-part5-ready-deadline-recovery-01/evidence/procedures.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D252",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/data/director/spell_review/rank9_resonance_fields_3_source_conference_01.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D253",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/data/director/spell_review/rank9_material_forging_2_source_conference_01.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D254",
+      "check": "source-delta metadata consistency DescentReviewChanges/ReviewBible/data/director/spell_review/rank9_knowledge_revelation_5_source_conference_01.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D255",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/RANK7_READY_DEADLINE_RECOVERY_01_SEMANTIC_RECONCILIATION_79.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D256",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/RANK8_DAMAGE6_PART5_EXACT_AUTHORING_ACCEPTANCE_75.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D257",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/rank8-damage6-part5-cast-history-return-03/MODEL.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D258",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/rank8-damage6-part5-cast-history-return-03/HOLD_REGISTER.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D259",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/copy-ready-preparation-only-part5-successor-01/POLICY_SELECTION.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D260",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/COPY_READY_PREPARATION_ONLY_PART5_01_LOCAL_PREFLIGHT.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D261",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/copy-ready-preparation-only-part5-successor-01/successor/CONTROL15_READY_REFERENCE_SUCCESSOR14.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D262",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/CONTROL15_PART5_FULL_RETURN_02_LOCAL_RECEIPT.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D263",
+      "check": "source-delta metadata consistency docs/audit/2026-10-08/full-game/UNITY_DEVELOPMENT_DIRECTIONS_INTAKE_75.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D264",
+      "check": "only authored index reported changed",
+      "passed": true
+    },
+    {
+      "id": "R343-D265",
+      "check": "current embedded bytes agree with comparison DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D266",
+      "check": "current embedded bytes agree with comparison DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D267",
+      "check": "current embedded bytes agree with comparison DescentReviewChanges/ReviewBible/data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D268",
+      "check": "current embedded bytes agree with comparison DescentReviewChanges/ReviewBible/rulebook_output.txt",
+      "passed": true
+    },
+    {
+      "id": "R343-D269",
+      "check": "current embedded bytes agree with comparison DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D270",
+      "check": "current embedded bytes agree with comparison DescentReviewChanges/ReviewBible/docs/director-only/cosmology/GODS_PANTHEONS_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D271",
+      "check": "current embedded bytes agree with comparison DescentReviewChanges/ReviewBible/docs/director-only/cosmology/SOULS_RESEARCH_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D272",
+      "check": "current embedded bytes agree with comparison DescentReviewChanges/ReviewBible/data/public/class_playtests/cleric.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D273",
+      "check": "current embedded bytes agree with comparison DescentReviewChanges/ReviewBible/data/public/class_playtests/druid.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D274",
+      "check": "current embedded bytes agree with comparison DescentReviewChanges/ReviewBible/data/public/class_playtests/mage.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D275",
+      "check": "current embedded bytes agree with comparison DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D276",
+      "check": "current embedded bytes agree with comparison DescentReviewChanges/ReviewBible/docs/mechanics/RESONANCE_CANON.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D277",
+      "check": "two additional current comparator bindings outside historical inventory",
+      "passed": true
+    },
+    {
+      "id": "R343-D278",
+      "check": "historical source archive exact binding",
+      "passed": true
+    },
+    {
+      "id": "R343-D279",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/tools/feat335_copy_capture.py",
+      "passed": true
+    },
+    {
+      "id": "R343-D280",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/tools/feat335_copy_release.py",
+      "passed": true
+    },
+    {
+      "id": "R343-D281",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/tools/feat335_copy_payloads.py",
+      "passed": true
+    },
+    {
+      "id": "R343-D282",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/tools/feat335_copy_class_release.py",
+      "passed": true
+    },
+    {
+      "id": "R343-D283",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D284",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D285",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/data/director/spell_review/remaining_work_queue_66.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D286",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_06.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D287",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/ACTIVE_AUTHORING_CHECKPOINT_RANK7_RECOVERY_ACCEPTED_79.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D288",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/data/playtest/game_development_coverage.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D289",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/PERTINENT_GPT_DECISIONS_2026_10_20_02.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D290",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/tools/prepare_rank9_miracle_reality_2_source_conference_01.py",
+      "passed": true
+    },
+    {
+      "id": "R343-D291",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/tools/rank9_miracle_reality_2_questions_01.py",
+      "passed": true
+    },
+    {
+      "id": "R343-D292",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/tools/prepare_rank9_alignment_faction_purification_5_source_conference_01.py",
+      "passed": true
+    },
+    {
+      "id": "R343-D293",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/tools/rank9_alignment_faction_purification_5_questions_01.py",
+      "passed": true
+    },
+    {
+      "id": "R343-D294",
+      "check": "historical source bytes CANON_MANIFEST.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D295",
+      "check": "historical source bytes docs/canon/CANON_MANIFEST.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D296",
+      "check": "historical source bytes docs/canon/REPOSITORY_PROMOTION.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D297",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/GPT_PART5_PERTINENT_OWNER_CHOICES_2026_10_20_NATIVE.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D298",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/GPT_PART5_STATUS_SYNC_16_COMPLETED_NATIVE.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D299",
+      "check": "historical source bytes docs/audit/2026-10-20/github-snapshot-material-forging72/PUSH_RECEIPT.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D300",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/rulebook_output.txt",
+      "passed": true
+    },
+    {
+      "id": "R343-D301",
+      "check": "historical source bytes docs/reference/Player_Rulebook_v6_source_text.txt",
+      "passed": true
+    },
+    {
+      "id": "R343-D302",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/books/player/Decennium_Descent_Player_Rulebook_v6.docx",
+      "passed": true
+    },
+    {
+      "id": "R343-D303",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/DIVINATION_RANK9_SOURCE_PREPARATION.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D304",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/src/data/spells.js",
+      "passed": true
+    },
+    {
+      "id": "R343-D305",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D306",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/TRANSMUTATION_UNIVERSAL_RANK9_SOURCE_PREPARATION.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D307",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/docs/mechanics/VIDEO_GAME_ONLY_DIRECTIVE.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D308",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D309",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D310",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D311",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D312",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D313",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/docs/mechanics/CONDITION_RECOVERY_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D314",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/docs/mechanics/CONTROL_STATES_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D315",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D316",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/docs/mechanics/CREATURE_LIFECYCLE_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D317",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/docs/mechanics/CREATURE_LIFECYCLE_SOURCE_BINDINGS.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D318",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/docs/mechanics/MAXIMUM_HP_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D319",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/docs/mechanics/HEALING_DEATH_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D320",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/docs/mechanics/TRANSFORMATION_SPELL_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D321",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/docs/mechanics/RESONANCE_CANON.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D322",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/docs/mechanics/COSMOLOGY_EPILOGUE_RELIC_NULL_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D323",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/docs/mechanics/CHARACTER_CREATION_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D324",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/docs/mechanics/CHARACTER_FOUNDATION_TABLES.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D325",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/docs/mechanics/XP_ADVANCEMENT_CANON.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D326",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/docs/mechanics/STRAIN_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D327",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/docs/mechanics/CUSTOM_CONDITION_BINDINGS.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D328",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/docs/mechanics/CONTROL_SOURCE_BINDINGS.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D329",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/docs/mechanics/EQUIPMENT_ITEM_PROCEDURES.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D330",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/docs/mechanics/EQUIPMENT_ACQUISITION_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D331",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/docs/mechanics/WORLD_DUNGEON_LOOP.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D332",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/docs/mechanics/EXPEDITION_STRUCTURE_CANON.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D333",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/docs/mechanics/COSMOLOGY_EPILOGUE_CHARACTER_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D334",
+      "check": "historical source bytes docs/mechanics/OWNER_COSMOLOGY_LOCKS_2026-07-30.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D335",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/docs/mechanics/APPENDIX_B_FOLK_RELIGION.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D336",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/data/playtest/creature_lifecycle_bindings.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D337",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/data/playtest/control_state_bindings.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D338",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/data/playtest/condition_playtests.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D339",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/data/playtest/equipment_acquisition_candidate.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D340",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/data/playtest/equipment_source_catalog.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D341",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/src/data/resonance-economy.js",
+      "passed": true
+    },
+    {
+      "id": "R343-D342",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/candidate.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D343",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/shared_rules.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D344",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/supplements.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D345",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/docs/canon/PLAYER_DIRECTOR_BOUNDARY.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D346",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/data/public/class_playtests/cleric.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D347",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/data/public/class_playtests/druid.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D348",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/data/public/class_playtests/mage.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D349",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D350",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/data/public/class_playtests/mirrorsage.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D351",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/data/public/class_playtests/oracle.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D352",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/data/public/class_playtests/monk.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D353",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank4_reviewed_03.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D354",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank5_reviewed_05.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D355",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/data/public/spell_candidates/banishment_exact_model_04.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D356",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank6_reviewed_06.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D357",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/data/public/spell_candidates/divination_enchantment_rank4_reviewed_07.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D358",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D359",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D360",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/GPT_DIVINATION_RANK2_SOURCE_CONFERENCE.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D361",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/GPT_DIVINATION_RANK2_EXACT_REVIEW.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D362",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/GPT_DIVINATION_RANK2_FINAL_CLARIFICATION.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D363",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/data/playtest/spell_drafts/batch_divination_rank2.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D364",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/GPT_DIVINATION_RANK3_SOURCE_CONFERENCE.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D365",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/GPT_DIVINATION_RANK3_EXACT_REVIEW.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D366",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/data/playtest/spell_drafts/batch_divination_rank3.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D367",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/DE4_EXACT_ACCEPTANCE_07_RECEIPT.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D368",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/divination_enchantment_rank4_cases_07.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D369",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/de4-exact-rebound-07/REGISTER.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D370",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK2_3_SOURCE_CONFERENCE.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D371",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK2_3_EXACT_REVIEW.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D372",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/data/playtest/spell_drafts/batch_abjuration_rank2_3.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D373",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/data/public/spell_playtests/candidate_low_rank_136.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D374",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/GPT_HEALING_FINAL_CLOSURE.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D375",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/data/playtest/spell_drafts/batch_healing_death.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D376",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/AC5_EXACT_ACCEPTANCE_05_RECEIPT.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D377",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/ac5-local-final-05-candidate/REGISTER.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D378",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/abjuration_conjuration_rank5_cases_05.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D379",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/AC4_EXACT_ACCEPTANCE_03_RECEIPT.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D380",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK3_SOURCE_CONFERENCE.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D381",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK3_EXACT_REVIEW.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D382",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/data/playtest/spell_drafts/batch_conjuration_rank3.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D383",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/docs/director-only/cosmology/CURRENT_COSMOLOGY_READ_FIRST.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D384",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/docs/director-only/cosmology/GODS_PANTHEONS_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D385",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/docs/director-only/cosmology/EPILOGUE_CHARACTER_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D386",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/docs/director-only/cosmology/PLANES_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D387",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/docs/director-only/cosmology/HEARTCELL_OWNER_UPDATE_02.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D388",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/docs/director-only/cosmology/Q6_LATER_LOCK_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D389",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/docs/director-only/cosmology/SOULS_RESEARCH_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D390",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/docs/director-only/cosmology/EPILOGUE_RELIC_NULL_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D391",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/data/director/cosmology/planes_reviewed_01.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D392",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/data/director/cosmology/gods_pantheons_reviewed_01.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D393",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/data/director/cosmology/epilogue_character_reviewed_01.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D394",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/data/director/cosmology/epilogue_character_cases_01.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D395",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/data/director/cosmology/heartcell_owner_update_02.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D396",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/data/director/cosmology/q6_later_lock_reviewed_01.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D397",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/data/director/cosmology/souls_research_reviewed_01.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D398",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/data/director/cosmology/epilogue_relic_null_reviewed_01.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D399",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/COSMOLOGY_PLANES_SOURCE_CONCORDANCE_01.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D400",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/COSMOLOGY_PLANES_01_APPLICATION_CHECK.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D401",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/COSMOLOGY_SOULS_RESEARCH_01_APPLICATION_CHECK.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D402",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/COSMOLOGY_PLANES_TRANSIT_DEPENDENCY_READING_01.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D403",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/DD_Cosmology_Planes_01.zip",
+      "passed": true
+    },
+    {
+      "id": "R343-D404",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/DD_Cosmology_Gods_Pantheons_01.zip",
+      "passed": true
+    },
+    {
+      "id": "R343-D405",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/DD_Cosmology_Gods_Pantheons_Followup_01.zip",
+      "passed": true
+    },
+    {
+      "id": "R343-D406",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/COSMOLOGY_GODS_PANTHEONS_FOLLOWUP_01_Addendum_and_Evidence.zip",
+      "passed": true
+    },
+    {
+      "id": "R343-D407",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/cosmology-gods-pantheons-followup-01-received/COSMOLOGY_GODS_PANTHEONS_01_REGISTER_CORRECTED.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D408",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/cosmology-gods-pantheons-followup-01-received/FOLLOWUP_DISPOSITIONS.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D409",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/COSMOLOGY_GODS_PANTHEONS_FOLLOWUP_01_RECEIVED_DECISION.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D410",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/RANK7_IDENTITY_CASTING5_PART5_EXACT_AUTHORING_ACCEPTANCE_79.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D411",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/rank7-identity-casting5-part5-ready-deadline-recovery-01/MODEL.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D412",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/rank7-identity-casting5-part5-ready-deadline-recovery-01/HOLD_REGISTER.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D413",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/rank7-identity-casting5-part5-ready-deadline-recovery-01/SPELL_DISPOSITIONS.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D414",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/rank7-identity-casting5-part5-ready-deadline-recovery-01/QUESTION_DISPOSITIONS.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D415",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/rank7-identity-casting5-part5-ready-deadline-recovery-01/CASE_DISPOSITIONS.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D416",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/rank7-identity-casting5-part5-ready-deadline-recovery-01/PLAYER_CHAPTER.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D417",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/rank7-identity-casting5-part5-ready-deadline-recovery-01/DIRECTOR_REVIEW.md",
+      "passed": true
+    },
+    {
+      "id": "R343-D418",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/rank7-identity-casting5-part5-ready-deadline-recovery-01/evidence/shared_rules.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D419",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/rank7-identity-casting5-part5-ready-deadline-recovery-01/evidence/procedures.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D420",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/data/director/spell_review/rank9_resonance_fields_3_source_conference_01.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D421",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/data/director/spell_review/rank9_material_forging_2_source_conference_01.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D422",
+      "check": "historical source bytes DescentReviewChanges/ReviewBible/data/director/spell_review/rank9_knowledge_revelation_5_source_conference_01.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D423",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/RANK7_READY_DEADLINE_RECOVERY_01_SEMANTIC_RECONCILIATION_79.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D424",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/RANK8_DAMAGE6_PART5_EXACT_AUTHORING_ACCEPTANCE_75.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D425",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/rank8-damage6-part5-cast-history-return-03/MODEL.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D426",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/rank8-damage6-part5-cast-history-return-03/HOLD_REGISTER.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D427",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/copy-ready-preparation-only-part5-successor-01/POLICY_SELECTION.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D428",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/COPY_READY_PREPARATION_ONLY_PART5_01_LOCAL_PREFLIGHT.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D429",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/copy-ready-preparation-only-part5-successor-01/successor/CONTROL15_READY_REFERENCE_SUCCESSOR14.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D430",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/CONTROL15_PART5_FULL_RETURN_02_LOCAL_RECEIPT.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D431",
+      "check": "historical source bytes docs/audit/2026-10-08/full-game/UNITY_DEVELOPMENT_DIRECTIONS_INTAKE_75.json",
+      "passed": true
+    },
+    {
+      "id": "R343-D432",
+      "check": "native target row unchanged from historical source",
+      "passed": true
+    },
+    {
+      "id": "R343-D433",
+      "check": "current authority across input delivery delta queue pending",
+      "passed": true
+    },
+    {
+      "id": "R343-D434",
+      "check": "current context queue",
+      "passed": true
+    },
+    {
+      "id": "R343-D435",
+      "check": "current context pendingAudit",
+      "passed": true
+    },
+    {
+      "id": "R343-D436",
+      "check": "current context handoff",
+      "passed": true
+    },
+    {
+      "id": "R343-D437",
+      "check": "exact full catalog target",
+      "passed": true
+    },
+    {
+      "id": "R343-D438",
+      "check": "exact full index target",
+      "passed": true
+    },
+    {
+      "id": "R343-D439",
+      "check": "pending nonoperational target",
+      "passed": true
+    },
+    {
+      "id": "R343-D440",
+      "check": "index counts",
+      "passed": true
+    },
+    {
+      "id": "R343-D441",
+      "check": "exact25 pending index agrees with audit",
+      "passed": true
+    },
+    {
+      "id": "R343-D442",
+      "check": "two native placements and four exact class routes",
+      "passed": true
+    },
+    {
+      "id": "R343-D443",
+      "check": "rank9 class17 base26 all routes",
+      "passed": true
+    },
+    {
+      "id": "R343-D444",
+      "check": "two exact Core pointers",
+      "passed": true
+    },
+    {
+      "id": "R343-D445",
+      "check": "exact Core source row /spells/827",
+      "passed": true
+    },
+    {
+      "id": "R343-D446",
+      "check": "exact Core source row /spells/928",
+      "passed": true
+    },
+    {
+      "id": "R343-D447",
+      "check": "both native promises and exact cast fields",
+      "passed": true
+    },
+    {
+      "id": "R343-D448",
+      "check": "catalog LF binding matches index",
+      "passed": true
+    },
+    {
+      "id": "R343-D449",
+      "check": "line ending normalization no semantic change",
+      "passed": true
+    },
+    {
+      "id": "R343-D450",
+      "check": "Wish current and last in continuing order",
+      "passed": true
+    },
+    {
+      "id": "R343-D451",
+      "check": "25 closure zero first review",
+      "passed": true
+    },
+    {
+      "id": "R343-D452",
+      "check": "18 target shared question/addendum records",
+      "passed": true
+    },
+    {
+      "id": "R343-D453",
+      "check": "nine exact qualifications",
+      "passed": true
+    },
+    {
+      "id": "R343-D454",
+      "check": "prior B02 historical not current decision",
+      "passed": true
+    },
+    {
+      "id": "R343-D455",
+      "check": "required unrelated holds preserved",
+      "passed": true
+    },
+    {
+      "id": "R343-D456",
+      "check": "class file supplies engine and rank17 gate Cleric",
+      "passed": true
+    },
+    {
+      "id": "R343-D457",
+      "check": "class file has no separate Wish operational card Cleric",
+      "passed": true
+    },
+    {
+      "id": "R343-D458",
+      "check": "class file supplies engine and rank17 gate Druid",
+      "passed": true
+    },
+    {
+      "id": "R343-D459",
+      "check": "class file has no separate Wish operational card Druid",
+      "passed": true
+    },
+    {
+      "id": "R343-D460",
+      "check": "class file supplies engine and rank17 gate Mage",
+      "passed": true
+    },
+    {
+      "id": "R343-D461",
+      "check": "class file has no separate Wish operational card Mage",
+      "passed": true
+    },
+    {
+      "id": "R343-D462",
+      "check": "class file supplies engine and rank17 gate Wizard",
+      "passed": true
+    },
+    {
+      "id": "R343-D463",
+      "check": "class file has no separate Wish operational card Wizard",
+      "passed": true
+    },
+    {
+      "id": "R343-D464",
+      "check": "rulebook Wish native placements present",
+      "passed": true
+    }
+  ],
+  "semanticAcceptanceGate": "NOT_PASSED_MR233_B02",
+  "notAnAcceptanceOrGameplayReplay": true,
+  "suppliedProgramsExecuted": false
+}
