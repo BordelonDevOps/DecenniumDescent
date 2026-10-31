@@ -1,0 +1,21 @@
+# Return336 — Alignment Perfection
+
+**HOLD — AFP211-B02.** acceptedIds=[], appliedIds=[], heldIds=[alignment-perfection]. No application is authorized. Authority stays **823 reviewed/applied /25 pending /0 accepted-unapplied**, with547 complete standalone procedures and173 interfaces;25 closure tasks and0 first-review tasks.
+
+Current Core entry98 (paragraph9099) preserves the native promise: the target's alignment becomes purified and the target gains benefits based on alignment. Action/120feet/V,S,F/Instantaneous, rank9/class17/base26RP and Cleric/Druid/Mage/Wizard Abjuration remain unchanged. Willing-only admission remains the selected proposed direction. No forced Good/Lawful conversion, superiority rule or hostile save is imported.
+
+Three spell-local decisions still govern the whole positive promise:
+
+1. **Cleansing permission:** identify the exact imposed source components eligible for removal, recipient/source/protection predicates and the terminal callback. Preserve legitimate underlying conduct, development, oaths, source history and protected Lock/Anchor snapshots. Merely naming an imposed record does not make it removable by this spell.
+2. **Useful benefits:** supply actual effects, amounts, eligibility, costs/uses and stacking for the selected axis model, including both Neutral labels, defined combinations and partial/fully undefined inputs. The existing no-invented-benefit component is a review gate, not a permanent rule that Neutral receives no benefit.
+3. **Benefit lifecycle:** keep completed lawful purification distinct from its separately bounded benefit source. Explicitly supply live/snapshot policy, duration/concentration, suppression/resumption, ending/recast and no-refill accounting. Native Instantaneous supports no inferred permanent or comparator-duration benefit; benefit ending never recreates lawfully removed history.
+
+These are unresolved authored mechanics and permissions, not a demand for fictional campaign history. One explicitly authorized Perfection-only contract can resolve them. This source-reconciliation return selects no missing numbers, powers or durations. Once the contract exists, demonstrate a paid useful cleansing/benefit encounter and a distinct useful benefit encounter, covering supported and Neutral categories plus undefined, refusal/protection, overlap and lifecycle branches. Actors, payment, source lineage, original clocks, custody/history and reversible operations must be complete. Conditional review fixtures remain labelled as such.
+
+**Source-level boundaries are established.** AC4-ALIGN-01 evaluates lawful underlying/Suggestion/Purge records before active Lock/Anchor snapshots and preserves the underlying records. AP-AS-01 is specific to Purge/Suggestion; it is not a universal cleansing or priority engine. Alignment Immunity can prevent beneficial as well as harmful alignment-dependent components and suppresses designated still-live overlays without curing them. None provides the rank9 benefit table or Perfection removal permission. Exact current AC4/DI7 source bytes and LF-normalized indexed bindings agree; draft labels preserved inside applied cards do not reopen their accepted context or enable runtime.
+
+**AFP211-E01 remains CLOSED.** Return335's exact bound Immunity comparison is reused without reopening it. Both Return287 components are preserved without replay or re-audit: conditional removal retains the protected Lock/oath history; undefined-benefit grants nothing invented. Neither is a paid cast or complete positive encounter. No new forward/inverse or clock replay was performed, no campaign event is asserted, and the packet does not establish who originally authored each conditional event.
+
+The internal input manifest covers12 data files; the external manifest correctly covers all14 actual members including the request and internal manifest. No input binding discrepancy was found. The output manifest excludes itself explicitly and the separate delivery binds every archive member.
+
+Next priority: **faction-incarnate / AFP211-B03**, within rank9-alignment-faction-purification5. All unrelated holds and prior acceptances remain unchanged. No canonical, index, catalog, queue, handoff, GitHub, runtime, implementation, human-play, playtest, balance, cosmology, domain-closure, completion or release change is made or authorized.
