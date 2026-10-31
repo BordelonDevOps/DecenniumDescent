@@ -13,8 +13,8 @@ from typing import Any
 ROOT = pathlib.Path(__file__).resolve().parents[5]
 AUDIT = pathlib.Path(__file__).resolve().parent
 RETURN318 = AUDIT / "rank9_time_stop_return318_received"
-BUILD = AUDIT / "rank9_time_stop_joint_witness_345_build_output_r4"
-DELIVERY = AUDIT / "rank9_time_stop_joint_witness_345_delivery_r4"
+BUILD = AUDIT / "rank9_time_stop_joint_witness_345_build_output_r6"
+DELIVERY = AUDIT / "rank9_time_stop_joint_witness_345_delivery_r6"
 SOURCES = {
     "catalog": ROOT / "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
     "index": ROOT / "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
@@ -275,6 +275,8 @@ def main() -> int:
         perception_ok = True
         clock_ok = True
         custody_ok = True
+        queue_ok = True
+        dispel_range_ok = True
         for case_name, case in cases.items():
             kinds = [event["kind"] for event in case["events"]]
             tf = [kinds.index("TIMELESS_FORM_CAST_COMMIT"), kinds.index("TIMELESS_FORM_COUNTER_WINDOW"),
@@ -287,6 +289,40 @@ def main() -> int:
             expected_anchor = 0 if "UNIVERSAL" in case_name else 100
             clock_ok &= anchor == expected_anchor
             final = case["finalState"]
+            history_queue = []
+            for actor in final["actors"].values():
+                history_queue.extend({key: row[key] for key in ("slotId", "actor", "round", "initiativeOrder", "queueOrder",
+                    "startWorldMs", "endWorldMs", "startCount", "endCount", "status")}
+                    for row in actor.get("regularSlotHistory", []))
+            history_queue.sort(key=lambda row: row["queueOrder"])
+            ordinary_queue = case.get("ordinaryTurnQueue", [])
+            queue_ok &= ordinary_queue == history_queue
+            queue_ids = [row.get("slotId") for row in ordinary_queue]
+            queue_orders = [row.get("queueOrder") for row in ordinary_queue]
+            queue_ok &= len(queue_ids) == len(set(queue_ids)) and queue_orders == list(range(1, len(ordinary_queue) + 1))
+            queue_ok &= all(row.get("startCount") == 1 and row.get("endCount") == 1 and row.get("status") == "processed"
+                            and row.get("startWorldMs") is not None and row.get("endWorldMs") is not None for row in ordinary_queue)
+            regular_ledger = final.get("clockLedger", [])
+            for slot in ordinary_queue:
+                starts = [row for row in regular_ledger if row.get("kind") == "REGULAR_START" and row.get("slotId") == slot["slotId"]]
+                ends = [row for row in regular_ledger if row.get("kind") in ("REGULAR_END", "REGULAR_TURN_RESUMED_AND_ENDED")
+                        and row.get("slotId") == slot["slotId"]]
+                queue_ok &= len(starts) == len(ends) == 1
+                if starts and ends:
+                    queue_ok &= starts[0].get("atWorldMs") == slot["startWorldMs"] and ends[0].get("atWorldMs") == slot["endWorldMs"]
+            if "UNIVERSAL" in case_name:
+                opened_interval = opened["after"]["world"]["temporalInterval"]
+                queue_ok &= case["initialState"]["actors"]["C"].get("nextRegularStart") == 0
+                queue_ok &= case["initialState"]["actors"]["C"].get("regularSchedule", {}).get("nextStartMs") == 0
+                queue_ok &= opened_interval["originalRegularMarkers"].get("C") == 0
+                queue_ok &= opened_interval["ordinaryClockCursor"]["nextRegularStart"].get("C") == 0
+                queue_ok &= [(row["slotId"], row["startWorldMs"]) for row in ordinary_queue[:4]] == [
+                    ("R1-P", 0), ("R1-C", 0), ("R2-P", 6000), ("R2-C", 6000)]
+                start_events = {event["inputs"].get("slotId"): index for index, event in enumerate(case["events"])
+                                if event["kind"] == "REGULAR_START"}
+                queue_ok &= start_events.get("R1-C", 10**6) < start_events.get("R2-P", -1)
+                c_first_refresh = next((row for row in final["actors"]["C"].get("reactionRefreshHistory", []) if row.get("slotId") == "R1-C"), {})
+                queue_ok &= c_first_refresh.get("atWorldMs") == 0 and c_first_refresh.get("before") == 0 and c_first_refresh.get("after") == 1
             source = final["effects"].get("timeless-form-P", {})
             clock_ok &= source.get("originalDeadlineWorldMs") == 60000 and source.get("expiredAtWorldMs") == 60000
             clock_ok &= final["world"].get("ordinaryRound") == 10
@@ -338,6 +374,15 @@ def main() -> int:
                     cast_semantics_ok &= commit["after"]["casts"][-1].get("spellRank") == 3 and commit["after"]["casts"][-1].get("targetEffectRank") == 9
                     ordering_ok &= case["events"].index(commit) < case["events"].index(window) < case["events"].index(resolution)
                     cast_semantics_ok &= resolution["after"]["casts"][-1].get("check", {}).get("modifier") is None
+                    cast = commit["after"]["casts"][-1]
+                    resource = commit["after"]["actors"][cast["actor"]]["resourceHistory"][-1]
+                    perceived = next((row for row in commit["before"]["perception"].get("perceivedEffects", [])
+                                      if row.get("observer") == cast["actor"] and row.get("effectId") == case["id"] + "-TS-APP"), {})
+                    source_position = commit["before"]["actors"]["C"]["position"]
+                    actor_position = commit["before"]["actors"][cast["actor"]]["position"]
+                    actual_distance = round(sum((a - b) ** 2 for a, b in zip(actor_position, source_position)) ** 0.5)
+                    dispel_range_ok &= (commit["inputs"].get("targetDistanceFeet") == actual_distance == cast.get("rangeFeet") ==
+                        cast.get("targetDistanceFeet") == resource.get("rangeFeet") == resource.get("targetDistanceFeet") == perceived.get("distanceFeet"))
                 rolls = [event["after"]["casts"][-1]["check"] for event in resolutions]
                 cast_semantics_ok &= ([(row.get("die"), row.get("total"), row.get("outcome")) for row in rolls] ==
                     [(1, 13, "failure"), (8, 20, "success")])
@@ -355,6 +400,10 @@ def main() -> int:
               "Wizard first-family casts apply zero base Dissonance; Cleric Time Stop applies ordinary base strain; Dispel ranks and checks are correct.")
         check(checks, "world-clock-and-reaction-refresh", clock_ok,
               "World anchors, regular schedules, round progression, and source-bound Reaction refreshes are consistent.")
+        check(checks, "ordered-regular-slot-queue", queue_ok,
+              "Every regular slot has one ordered start and end; Universal C's pending round-one slot and Reaction refresh precede P's round-two slot.")
+        check(checks, "dispel-target-distance", dispel_range_ok,
+              "Each Dispel's cast/resource range record matches its perceived target's measured geometry, including C's self-origin 0-foot target.")
         check(checks, "focus-custody-follows-position", custody_ok,
               "Both carried focus positions remain bound to their custodians through every snapshot.")
 

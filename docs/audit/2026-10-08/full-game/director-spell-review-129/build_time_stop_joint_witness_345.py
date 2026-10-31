@@ -12,8 +12,8 @@ from typing import Any
 
 ROOT = pathlib.Path(__file__).resolve().parents[5]
 AUDIT = pathlib.Path(__file__).resolve().parent
-OUT = AUDIT / "rank9_time_stop_joint_witness_345_build_output_r4"
-PUBLISH = AUDIT / "rank9_time_stop_joint_witness_345_delivery_r4"
+OUT = AUDIT / "rank9_time_stop_joint_witness_345_build_output_r6"
+PUBLISH = AUDIT / "rank9_time_stop_joint_witness_345_delivery_r6"
 RETURN318 = AUDIT / "rank9_time_stop_return318_received"
 SOURCES = {
     "catalog": ROOT / "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
@@ -345,6 +345,7 @@ def build(actor_id: str, class_name: str, level: int, role: str, target_spell: s
         "currentRegularStart": None,
         "regularStarts": [],
         "regularEnds": [],
+        "regularSlotHistory": [],
         "recharge": {},
         "resistances": [],
         "concentration": None,
@@ -448,10 +449,12 @@ def root_state(caster: dict[str, Any], peer: dict[str, Any], mode: str, wizard_s
     peer["regularSchedule"]["startMarkersMs"] = [0]
     peer["nextRegularStart"] = 6000
     peer["regularSchedule"]["nextStartMs"] = 6000
+    peer["regularSlotHistory"] = [{"slotId": "R1-P", "actor": "P", "round": 1, "initiativeOrder": 1,
+        "queueOrder": 1, "startWorldMs": 0, "endWorldMs": None, "startCount": 1, "endCount": 0, "status": "in-progress"}]
     caster["budget"] = {"Action": 1, "BonusAction": 1, "Reaction": 1, "extraAction": 0, "interaction": 1, "movement": 30}
     caster["currentRegularStart"] = None
-    caster["nextRegularStart"] = 6000
-    caster["regularSchedule"]["nextStartMs"] = 6000
+    caster["nextRegularStart"] = 0 if mode == "Universal" else 6000
+    caster["regularSchedule"]["nextStartMs"] = caster["nextRegularStart"]
     peer["initiative"] = {"score": 15, "tieBreakerActorId": "P", "order": 1}
     caster["initiative"] = {"score": 12, "tieBreakerActorId": "C", "order": 2}
     precasts = [prepare_arcane_sight_before_encounter(actor, wizard_source) for actor in (caster, peer)]
@@ -462,8 +465,8 @@ def root_state(caster: dict[str, Any], peer: dict[str, Any], mode: str, wizard_s
     clock_ledger = [{"kind": "PRE_ENCOUNTER_PAID_ACTION_CAST", "actor": row[0]["actor"], "sourceCastId": row[0]["id"],
         "atWorldMs": -60000, "effectDeadlineWorldMs": 540000, "outsideEncounter": True, "sourcePath": row[0]["sourcePath"]}
         for row in precasts]
-    clock_ledger.append({"kind": "REGULAR_START", "actor": "P", "atWorldMs": 0, "scheduleRound": 1,
-        "initiativeOrder": 1, "sourcePath": "COMBAT_ACTION_PLAYTEST.md#L60"})
+    clock_ledger.append({"kind": "REGULAR_START", "actor": "P", "slotId": "R1-P", "queueOrder": 1,
+        "atWorldMs": 0, "scheduleRound": 1, "initiativeOrder": 1, "sourcePath": "COMBAT_ACTION_PLAYTEST.md#L60"})
     return {
         "actors": {caster["id"]: caster, peer["id"]: peer},
         "auditHistory": [], "awards": [], "casts": pre_casts, "causalHistory": [], "clockLedger": clock_ledger,
@@ -595,6 +598,8 @@ def start_case(case_id: str, scope: str, caster_class: str, mode: str, catalog: 
         p = s["actors"]["P"]
         p["regularEnds"].append(50)
         p["regularSchedule"]["endMarkersMs"].append(50)
+        p_slot = next(row for row in p["regularSlotHistory"] if row["slotId"] == "R1-P")
+        p_slot.update({"endWorldMs": 50, "endCount": 1, "status": "processed"})
         p["currentRegularStart"] = None
         p["budget"] = {"Action": 0, "BonusAction": 0, "Reaction": 1, "extraAction": 0, "interaction": 0, "movement": 0}
         p["regularTurnMagicalCastFlag"] = True
@@ -603,7 +608,8 @@ def start_case(case_id: str, scope: str, caster_class: str, mode: str, catalog: 
             "triggerCastId": case_id + "-TF", "expiresAt": 50, "status": "expired-at-regular-turn-end"}
         p["nextRegularStart"] = 6000
         s["world"]["nowMs"] = 50
-        s["clockLedger"].append({"kind": "REGULAR_END", "actor": "P", "atWorldMs": 50, "candidateCastFlagRetained": True,
+        s["clockLedger"].append({"kind": "REGULAR_END", "actor": "P", "slotId": "R1-P", "queueOrder": 1,
+            "scheduleRound": 1, "initiativeOrder": 1, "atWorldMs": 50, "candidateCastFlagRetained": True,
             "transmutationSpeedBonusExpired": True, "sourcePath": "wizard.json#/engine/10"})
     if mode == "Action":
         add_event(case, state, "REGULAR_TURN_END", {"actor": "P", "atWorldMs": 50}, "P ends the ordinary turn; unused wallet is discarded and the actual regular cast flag remains set.", end_peer_regular)
@@ -615,6 +621,10 @@ def start_case(case_id: str, scope: str, caster_class: str, mode: str, catalog: 
         if mode == "Action":
             c["regularStarts"].append(100)
             c["regularSchedule"]["startMarkersMs"].append(100)
+            c["regularSlotHistory"].append({"slotId": "R1-C", "actor": "C", "round": 1, "initiativeOrder": 2,
+                "queueOrder": 2, "startWorldMs": 100, "endWorldMs": None, "startCount": 1, "endCount": 0, "status": "in-progress"})
+            c["nextRegularStart"] = 6000
+            c["regularSchedule"]["nextStartMs"] = 6000
             c["budget"] = {"Action": 1, "BonusAction": 1, "Reaction": 1, "extraAction": 0, "interaction": 1, "movement": 30}
         else:
             c["currentRegularStart"] = None
@@ -622,8 +632,9 @@ def start_case(case_id: str, scope: str, caster_class: str, mode: str, catalog: 
         s["clockLedger"].append({"kind": "WORLD_ADVANCE", "fromWorldMs": 50, "toWorldMs": 100,
             "dueMarkersProcessed": [], "ordinaryRound": 1})
         if mode == "Action":
-            s["clockLedger"].append({"kind": "REGULAR_START", "actor": "C", "atWorldMs": 100,
-                "scheduleRound": 1, "ordinaryRound": 1, "sourcePath": "COMBAT_ACTION_PLAYTEST.md#L60"})
+            s["clockLedger"].append({"kind": "REGULAR_START", "actor": "C", "slotId": "R1-C", "queueOrder": 2,
+                "atWorldMs": 100, "scheduleRound": 1, "ordinaryRound": 1, "initiativeOrder": 2,
+                "sourcePath": "COMBAT_ACTION_PLAYTEST.md#L60"})
     if mode == "Action":
         add_event(case, state, "ADVANCE_TO_CAST", {"fromWorldMs": 50, "toWorldMs": 100}, "Advance to the next resolved cast window; no source marker is due.", advance_to_caster)
 
@@ -806,6 +817,12 @@ def commit_arch_dispel(case: dict[str, Any], state: dict[str, Any], actor_id: st
                    for row in state["perception"].get("perceivedEffects", []))
     if not observed:
         raise ValueError("Arch Dispel cannot commit before lawful effect-specific perception")
+    source_position = state["actors"]["C"]["position"]
+    target_distance = round(sum((a - b) ** 2 for a, b in zip(actor["position"], source_position)) ** 0.5)
+    perception = next(row for row in state["perception"]["perceivedEffects"]
+                      if row.get("observer") == actor_id and row.get("effectId") == case["id"] + "-TS-APP")
+    if perception.get("distanceFeet") != target_distance:
+        raise ValueError("Dispel target geometry disagrees with the already-recorded perception route")
     def mutate(s: dict[str, Any]) -> None:
         a = s["actors"][actor_id]
         a["budget"]["Action"] = 0
@@ -834,7 +851,8 @@ def commit_arch_dispel(case: dict[str, Any], state: dict[str, Any], actor_id: st
             "DissonanceBefore": dissonance_before, "baseDissonanceApplied": base_dissonance, "DissonanceAfter": a["Dissonance"],
             "RefrainBefore": refrain_before, "RefrainAfter": a["Refrain"], "firstSameNameFamilyCast": first_family,
             "firstPreparedMatrixFamilyCast": first_family, "dissonanceRule": "wizard.json#/engine/11",
-            "activation": "Action", "rangeFeet": 50, "targetPerceived": True, "perceivedBeforeActionCommit": True,
+            "activation": "Action", "rangeFeet": target_distance, "targetDistanceFeet": target_distance,
+            "targetPerceived": True, "perceivedBeforeActionCommit": True,
             "perceptionSourceEffectId": f"arcane-sight-{actor_id}", "lineOfEffect": True,
             "counterWindow": "pending", "status": "candidate-cast-committed-review-fixture", "check": None,
             "components": ["V", "S", "F"], "focusItemId": f"focus-{actor_id}", "candidateAcquisitionOnly": True}
@@ -843,12 +861,14 @@ def commit_arch_dispel(case: dict[str, Any], state: dict[str, Any], actor_id: st
         s["transactions"].append({"id": cast_id + "-PAY", "actor": actor_id, "kind": "RP_COMMIT", "amount": 3,
             "before": before, "after": a["RP"], "worldTimeMs": s["world"]["nowMs"]})
         s["clockLedger"].append({"kind": "ARCH_DISPEL_CAST_COMMITMENT", "actor": actor_id, "round": round_no,
-            "castId": cast_id, "worldTimeMs": s["world"]["nowMs"], "outcome": "pending", "rechargeTicks": 0})
+            "castId": cast_id, "targetDistanceFeet": target_distance, "worldTimeMs": s["world"]["nowMs"],
+            "outcome": "pending", "rechargeTicks": 0})
         s.setdefault("custodyHistory", []).append({"itemId": f"focus-{actor_id}", "from": actor_id, "to": actor_id,
             "atWorldMs": s["world"]["nowMs"], "event": "used as F for Arch Dispel; remains in custody; not consumed"})
     before_count = len(state["casts"])
     add_event(case, state, "ARCH_DISPEL_CAST_COMMIT", {"actor": actor_id, "targetEffectId": case["id"] + "-TS-APP",
-        "spellRank": 3, "targetEffectRank": 9, "baseRP": 3, "counterWindow": "pending"},
+        "spellRank": 3, "targetEffectRank": 9, "targetDistanceFeet": target_distance,
+        "baseRP": 3, "counterWindow": "pending"},
         f"{actor_id} commits the selected rank-3 Wizard Arch Dispel after lawful perception. Costs and Recharge2 commit before Counterspell decisions; the check and effect have not resolved.", mutate)
     if len(state["casts"]) != before_count + 1:
         raise ValueError("Arch Dispel commitment did not append exactly one cast")
@@ -946,10 +966,14 @@ def resume_and_expire(case: dict[str, Any], state: dict[str, Any], deadline: int
             def finish_open_turn(s: dict[str, Any], aid=actor_id) -> None:
                 a = s["actors"][aid]
                 anchor = s["world"]["nowMs"]
+                slot = next((row for row in reversed(a["regularSlotHistory"]) if row["status"] == "in-progress"), None)
+                if slot is None or slot["endCount"] != 0:
+                    raise ValueError(f"{aid} has no unique open regular slot to resume and end")
                 a["budget"] = {"Action": 0, "BonusAction": 0, "Reaction": a["budget"]["Reaction"],
                     "extraAction": 0, "interaction": 0, "movement": 0}
                 a["regularEnds"].append(anchor)
                 a["regularSchedule"]["endMarkersMs"].append(anchor)
+                slot.update({"endWorldMs": anchor, "endCount": 1, "status": "processed"})
                 a["currentRegularStart"] = None
                 if a.get("turnScopedSpeedBonus", {}).get("status") == "active":
                     a["speed"] = 30
@@ -957,54 +981,96 @@ def resume_and_expire(case: dict[str, Any], state: dict[str, Any], deadline: int
                     a["turnScopedSpeedBonus"]["expiresAt"] = anchor
                 a["nextRegularStart"] = 6000
                 a["regularSchedule"]["nextStartMs"] = 6000
-                s["clockLedger"].append({"kind": "REGULAR_TURN_RESUMED_AND_ENDED", "actor": aid,
+                s["clockLedger"].append({"kind": "REGULAR_TURN_RESUMED_AND_ENDED", "actor": aid, "slotId": slot["slotId"],
+                    "queueOrder": slot["queueOrder"], "scheduleRound": slot["round"], "initiativeOrder": slot["initiativeOrder"],
                     "atWorldMs": anchor, "resumedFromSameCursor": True, "unusedOrdinaryWalletDiscarded": True,
                     "sourcePath": "COMBAT_ACTION_PLAYTEST.md#L60"})
             add_event(case, state, "REGULAR_TURN_RESUMED_AND_ENDED", {"actor": actor_id, "atWorldMs": state["world"]["nowMs"]},
                 "Resume the interrupted ordinary turn at its saved cursor, then close it before the next scheduled START.", finish_open_turn)
+    def process_regular_start(actor_id: str, when: int) -> None:
+        actor = state["actors"][actor_id]
+        round_no = when // 6000 + 1
+        initiative_order = actor["initiative"]["order"]
+        queue_order = (round_no - 1) * 2 + initiative_order
+        slot_id = f"R{round_no}-{actor_id}"
+        def regular_start(s: dict[str, Any]) -> None:
+            a = s["actors"][actor_id]
+            if a["currentRegularStart"] is not None or any(row["slotId"] == slot_id for row in a["regularSlotHistory"]):
+                raise ValueError(f"{slot_id} regular start would be processed more than once")
+            if a["regularTurnMagicalCastFlag"]:
+                a["spellsThisTurn"] = 0
+                a["regularTurnMagicalCastFlag"] = False
+            reaction_before = a["budget"]["Reaction"]
+            a["budget"] = {"Action": 1, "BonusAction": 1, "Reaction": 1, "extraAction": 0, "interaction": 1, "movement": a["speed"]}
+            a.setdefault("reactionRefreshHistory", []).append({"atWorldMs": when, "before": reaction_before, "after": 1,
+                "slotId": slot_id, "rule": "refresh at each regular own-turn start", "sourcePath": "COMBAT_ACTION_PLAYTEST.md#L35"})
+            a["currentRegularStart"] = when
+            a["regularStarts"].append(when)
+            a["regularSchedule"]["startMarkersMs"].append(when)
+            a["regularSchedule"]["nextStartMs"] = when + 6000
+            a["nextRegularStart"] = when + 6000
+            a["regularSlotHistory"].append({"slotId": slot_id, "actor": actor_id, "round": round_no,
+                "initiativeOrder": initiative_order, "queueOrder": queue_order, "startWorldMs": when,
+                "endWorldMs": None, "startCount": 1, "endCount": 0, "status": "in-progress"})
+            s["world"]["nowMs"] = when
+            s["world"]["ordinaryRound"] = round_no
+            recharge_before = copy.deepcopy(a["recharge"])
+            for record in a["recharge"].values():
+                if isinstance(record, dict) and record.get("roundsRemaining", 0) > 0:
+                    record["roundsRemaining"] -= 1
+                    record.setdefault("ticksAtRegularStarts", []).append(when)
+            s["clockLedger"].append({"kind": "REGULAR_START", "actor": actor_id, "slotId": slot_id,
+                "queueOrder": queue_order, "initiativeOrder": initiative_order, "atWorldMs": when, "scheduleRound": round_no,
+                "rechargeTick": True, "rechargeBefore": recharge_before, "rechargeAfter": copy.deepcopy(a["recharge"]),
+                "phaseDomain": "ordinary-world", "reactionRefresh": {"before": reaction_before, "after": 1,
+                    "sourcePath": "COMBAT_ACTION_PLAYTEST.md#L35"}})
+        add_event(case, state, "REGULAR_START", {"actor": actor_id, "slotId": slot_id, "queueOrder": queue_order,
+            "atWorldMs": when, "scheduleRound": round_no},
+            "Process the next source-scheduled regular START exactly once in stable initiative order; temporal turns create no ordinary marker.", regular_start)
+
+    def process_regular_end(actor_id: str, when: int) -> None:
+        actor = state["actors"][actor_id]
+        slot = next((row for row in reversed(actor["regularSlotHistory"]) if row["status"] == "in-progress"), None)
+        if slot is None or slot["endCount"] != 0:
+            raise ValueError(f"{actor_id} has no unique open regular slot to end")
+        def regular_end(s: dict[str, Any]) -> None:
+            a = s["actors"][actor_id]
+            current_slot = next(row for row in reversed(a["regularSlotHistory"]) if row["slotId"] == slot["slotId"])
+            if current_slot["endCount"] != 0:
+                raise ValueError(f"{slot['slotId']} regular end would be processed more than once")
+            a["budget"] = {"Action": 0, "BonusAction": 0, "Reaction": a["budget"]["Reaction"], "extraAction": 0, "interaction": 0, "movement": 0}
+            a["regularEnds"].append(when)
+            a["regularSchedule"]["endMarkersMs"].append(when)
+            current_slot.update({"endWorldMs": when, "endCount": 1, "status": "processed"})
+            a["currentRegularStart"] = None
+            if a.get("turnScopedSpeedBonus", {}).get("status") == "active":
+                a["speed"] = 30
+                a["turnScopedSpeedBonus"]["status"] = "expired-at-regular-turn-end"
+                a["turnScopedSpeedBonus"]["expiresAt"] = when
+            s["world"]["nowMs"] = when
+            s["clockLedger"].append({"kind": "REGULAR_END", "actor": actor_id, "slotId": slot["slotId"],
+                "queueOrder": slot["queueOrder"], "initiativeOrder": slot["initiativeOrder"], "atWorldMs": when,
+                "scheduleRound": slot["round"], "sourcePath": "COMBAT_ACTION_PLAYTEST.md#L60"})
+        add_event(case, state, "REGULAR_END", {"actor": actor_id, "slotId": slot["slotId"], "queueOrder": slot["queueOrder"],
+            "atWorldMs": when, "scheduleRound": slot["round"]},
+            "Close this exact ordinary slot once without altering a source deadline or replaying an action.", regular_end)
+
+    # Resume any pre-existing marker due at the restored cursor before advancing
+    # to the following numbered round. In Universal mode, C's round-one slot is
+    # still due at the anchor and precedes P's round-two slot.
+    due_slots = []
+    for actor_id in ("P", "C"):
+        actor = state["actors"][actor_id]
+        if actor["currentRegularStart"] is None and actor["nextRegularStart"] <= state["world"]["nowMs"]:
+            due_slots.append((actor["nextRegularStart"], actor["initiative"]["order"], actor_id))
+    for when, _, actor_id in sorted(due_slots):
+        process_regular_start(actor_id, when)
+        process_regular_end(actor_id, when)
+
     for tick in range(6000, deadline, 6000):
         for actor_id in ("P", "C"):
-            def regular_start(s: dict[str, Any], aid=actor_id, when=tick) -> None:
-                a = s["actors"][aid]
-                if a["regularTurnMagicalCastFlag"]:
-                    a["spellsThisTurn"] = 0
-                    a["regularTurnMagicalCastFlag"] = False
-                reaction_before = a["budget"]["Reaction"]
-                a["budget"] = {"Action": 1, "BonusAction": 1, "Reaction": 1, "extraAction": 0, "interaction": 1, "movement": a["speed"]}
-                a.setdefault("reactionRefreshHistory", []).append({"atWorldMs": when, "before": reaction_before, "after": 1,
-                    "rule": "refresh at each regular own-turn start", "sourcePath": "COMBAT_ACTION_PLAYTEST.md#L35"})
-                a["currentRegularStart"] = when
-                a["regularStarts"].append(when)
-                a["regularSchedule"]["startMarkersMs"].append(when)
-                a["regularSchedule"]["nextStartMs"] = when + 6000
-                a["nextRegularStart"] = when + 6000
-                s["world"]["nowMs"] = when
-                s["world"]["ordinaryRound"] = when // 6000 + 1
-                recharge_before = copy.deepcopy(a["recharge"])
-                for key, record in a["recharge"].items():
-                    if isinstance(record, dict) and record.get("roundsRemaining", 0) > 0:
-                        record["roundsRemaining"] -= 1
-                        record.setdefault("ticksAtRegularStarts", []).append(when)
-                s["clockLedger"].append({"kind": "REGULAR_START", "actor": aid, "atWorldMs": when, "scheduleRound": when // 6000 + 1,
-                    "rechargeTick": True, "rechargeBefore": recharge_before, "rechargeAfter": copy.deepcopy(a["recharge"]),
-                    "phaseDomain": "ordinary-world", "reactionRefresh": {"before": reaction_before, "after": 1,
-                        "sourcePath": "COMBAT_ACTION_PLAYTEST.md#L35"}})
-            add_event(case, state, "REGULAR_START", {"actor": actor_id, "atWorldMs": tick},
-                      "Process one actual regular START in stable initiative order after resumption; temporal turns did not create this tick.", regular_start)
-            def regular_end(s: dict[str, Any], aid=actor_id, when=tick) -> None:
-                a = s["actors"][aid]
-                a["budget"] = {"Action": 0, "BonusAction": 0, "Reaction": a["budget"]["Reaction"], "extraAction": 0, "interaction": 0, "movement": 0}
-                a["regularEnds"].append(when)
-                a["regularSchedule"]["endMarkersMs"].append(when)
-                a["currentRegularStart"] = None
-                if a.get("turnScopedSpeedBonus", {}).get("status") == "active":
-                    a["speed"] = 30
-                    a["turnScopedSpeedBonus"]["status"] = "expired-at-regular-turn-end"
-                    a["turnScopedSpeedBonus"]["expiresAt"] = when
-                s["clockLedger"].append({"kind": "REGULAR_END", "actor": aid, "atWorldMs": when,
-                    "scheduleRound": when // 6000 + 1, "sourcePath": "COMBAT_ACTION_PLAYTEST.md#L60"})
-            add_event(case, state, "REGULAR_END", {"actor": actor_id, "atWorldMs": tick},
-                      "Close this ordinary turn without altering any source deadline or replaying an action.", regular_end)
+            process_regular_start(actor_id, tick)
+            process_regular_end(actor_id, tick)
     def expire(s: dict[str, Any]) -> None:
         s["world"]["nowMs"] = deadline
         effect = s["effects"]["timeless-form-P"]
@@ -1020,6 +1086,12 @@ def resume_and_expire(case: dict[str, Any], state: dict[str, Any], deadline: int
 
 def finish_case(case: dict[str, Any], state: dict[str, Any], final_status: str) -> dict[str, Any]:
     case["finalState"] = copy.deepcopy(state)
+    queue = []
+    for actor_id, actor in state["actors"].items():
+        for slot in actor.get("regularSlotHistory", []):
+            queue.append({key: slot[key] for key in ("slotId", "actor", "round", "initiativeOrder", "queueOrder",
+                "startWorldMs", "endWorldMs", "startCount", "endCount", "status")})
+    case["ordinaryTurnQueue"] = sorted(queue, key=lambda row: row["queueOrder"])
     case["status"] = final_status
     case["counts"] = {"events": len(case["events"]),
         "forwardOperations": sum(len(event["forward"]) for event in case["events"]),
@@ -1104,6 +1176,12 @@ def make_failed_then_interrupted(catalog: dict[str, Any], wizard: dict[str, Any]
                         "C": {"die": 8, "modifier": 12, "total": 20, "DC": 19, "outcome": "success"}}}
     resume_and_expire(case, state, 60000)
     case["finalState"] = copy.deepcopy(state)
+    queue = []
+    for actor_id, actor in state["actors"].items():
+        for slot in actor.get("regularSlotHistory", []):
+            queue.append({key: slot[key] for key in ("slotId", "actor", "round", "initiativeOrder", "queueOrder",
+                "startWorldMs", "endWorldMs", "startCount", "endCount", "status")})
+    case["ordinaryTurnQueue"] = sorted(queue, key=lambda row: row["queueOrder"])
     case["status"] = "DEMONSTRATED_CONDITIONAL_FIXTURE"
     case["counts"] = {"events": len(case["events"]), "forwardOperations": sum(len(e["forward"]) for e in case["events"]),
         "inverseOperations": sum(len(e["inverse"]) for e in case["events"])}
