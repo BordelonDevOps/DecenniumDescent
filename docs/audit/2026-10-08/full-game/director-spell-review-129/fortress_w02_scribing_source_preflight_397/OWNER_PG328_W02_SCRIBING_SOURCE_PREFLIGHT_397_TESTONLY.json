@@ -145,9 +145,9 @@
       "requiredEvidence": [
         "One-hour-per-effective-rank work interval with start, end, interruptions, and concurrent clocks",
         "Cost and material consumption against recorded quantities",
-        "Authorized resulting spellbook entry with provenance, or a properly recorded incomplete attempt"
+        "Authorized completed spellbook entry with provenance. An incomplete attempt may document interruption and material loss, but cannot satisfy W02’s required productive-work/output witness."
       ],
-      "finding": "Not established. The branch has null work and no scribing event, consumed materials, or output."
+      "finding": "Not established. The branch records no scribing work or output. The positive W02 witness requires completed productive work and an authorized entry with provenance; an incomplete attempt alone is insufficient."
     }
   ],
   "preflightFinding": {
@@ -155,7 +155,7 @@
     "remainingPredicates": [
       "Bind one exact legal found Wizard spell copy with identity, rank, source, permission, provenance, and custody.",
       "Map the profile-stated spellbook carried in the satchel to an item ID/custody record in the branch; bind scribing tools and finite inks/components with identities, owners, custody, quantities, and cost sufficiency.",
-      "Specify the authorized TEST_ONLY work/output or incomplete attempt, with interval, interruption, clock, and consumption accounting."
+      "Demonstrate completed productive TEST_ONLY scribing over a properly bound interval, with interruption and cost/material accounting, and bind the authorized resulting spellbook entry and provenance. An incomplete attempt alone cannot satisfy W02."
     ],
     "closesW02Residual": false
   },
@@ -182,16 +182,21 @@
       "changed": false
     }
   },
-  "nextAction": "Submit this read-only source/input sufficiency finding for Director review. Do not add missing premises to the fixture or construct W02 without a separate authorized scope change.",
+  "nextAction": "Continue read-only evidence matching for one legal found Wizard copy, the profile-stated receiving book, tools, and finite materials. Record exact source/item pointers where available; otherwise retain the missing-input findings. Do not supply absent inputs through fixture assumptions or construct W02.",
   "bindingBase": "docs/audit/2026-10-08/full-game/director-spell-review-129/conjure_demiplane_fortress_closure_intake_367/",
   "directorReviewOfPriorVersion": {
     "reviewedCommit": "d74c108a",
-    "decision": "SOURCE_HASHES_AND_EVENTS7_FINDING_CONFIRMED_ONE_PROFILE_EQUIPMENT_CORRECTION_REQUIRED",
-    "correction": "The profile states at /characterFoundation/equipment/book that an actual spellbook is carried in a satchel. The W02 branch still lacks an item-level identity and custody mapping for that book.",
-    "preservedFindings": [
+    "reviewedBytes": 9788,
+    "reviewedSha256": "0cdf04e4acfa7e2379fbdf31079140decf02ee8e3050794db86f8581b4b8cd59",
+    "decision": "BINDING_CHECKS_PASS_WITH_TWO_WORDING_CORRECTIONS",
+    "correctionsApplied": [
+      "The profile states at /characterFoundation/equipment/book that an actual spellbook is carried in a satchel; the missing predicate is its unique item identity and mapping into branch custody/inventory, not whether any book exists.",
+      "An incomplete attempt can document interruption and material accounting but cannot replace the required productive-work/output witness; require a completed authorized spellbook entry with provenance."
+    ],
+    "confirmedFindings": [
       "Declared source hashes match.",
-      "/events/7 is a retained-obligation marker, not a scribing event.",
-      "A found-copy source, tools/materials, work, and output remain unproved."
+      "/events/7 is an empty retained-obligation marker at time 0.3, with authoredInputs={}; initial and final work are null.",
+      "No exact found-copy source, itemized writing tools/materials, completed work history, or resulting entry is established."
     ]
   }
 }
