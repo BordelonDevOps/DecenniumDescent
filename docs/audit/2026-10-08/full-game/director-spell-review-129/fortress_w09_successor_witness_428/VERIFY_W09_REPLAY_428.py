@@ -3,7 +3,7 @@
 from __future__ import annotations
 import copy, hashlib, json, zipfile
 from pathlib import Path
-ROOT=Path(__file__).resolve().parents[5]
+ROOT=Path(__file__).resolve().parents[6]
 BASE=ROOT/'docs/audit/2026-10-08/full-game/director-spell-review-129'
 OUT=BASE/'fortress_w09_successor_witness_428'
 REPLAY=OUT/'W09_REPLAY_428_TESTONLY.json'
@@ -108,25 +108,23 @@ def main():
     (OUT/'MANIFEST_428.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')
     archive=OUT/ARCHIVE
     with zipfile.ZipFile(archive,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=9) as z:
-        for p in sorted(x for x in OUT.rglob('*') if x.is_file() and x.name not in {'DELIVERY_428.json',ARCHIVE.name}): z.write(p,p.relative_to(OUT).as_posix())
+        for p in sorted(x for x in OUT.rglob('*') if x.is_file() and x.name not in {'DELIVERY_428.json',ARCHIVE.name}):
+            info=zipfile.ZipInfo(p.relative_to(OUT).as_posix(),date_time=(2026,11,1,0,0,0))
+            info.compress_type=zipfile.ZIP_DEFLATED; info.external_attr=0o600<<16
+            z.writestr(info,p.read_bytes(),compress_type=zipfile.ZIP_DEFLATED,compresslevel=9)
+    expected_names={x['path'] for x in manifest_files}|{'MANIFEST_428.json'}
     with zipfile.ZipFile(archive) as z:
         bad=z.testzip(); names=z.namelist()
-        check('archive-crc',bad is None,f'CRC result {bad!r}; members {len(names)}')
-        check('archive-member-set',set(names)=={x['path'] for x in manifest_files}|{'MANIFEST_428.json'},'Archive members match the manifest plus manifest file.')
-        for f in manifest_files: check('archive-member:'+f['path'],hashlib.sha256(z.read(f['path'])).hexdigest()==f['sha256'],'Member bytes match manifest.')
-    # Re-emit report with archive checks included, then refresh manifest/archive/delivery once.
-    report['checks']=checks; report['checksPassed']=len(checks)
-    (OUT/'INDEPENDENT_VERIFICATION_428.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')
-    manifest_files=[]
-    for p in sorted(x for x in OUT.rglob('*') if x.is_file() and x.name not in {'MANIFEST_428.json','DELIVERY_428.json',ARCHIVE.name}):
-        manifest_files.append({'path':p.relative_to(OUT).as_posix(),'bytes':p.stat().st_size,'sha256':rawsha(p)})
-    manifest['files']=manifest_files
-    (OUT/'MANIFEST_428.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')
-    with zipfile.ZipFile(archive,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=9) as z:
-        for p in sorted(x for x in OUT.rglob('*') if x.is_file() and x.name not in {'DELIVERY_428.json',ARCHIVE.name}): z.write(p,p.relative_to(OUT).as_posix())
+        if bad is not None: raise AssertionError(f'Archive CRC failed at {bad}.')
+        if set(names)!=expected_names: raise AssertionError('Archive members do not match the manifest.')
+        for f in manifest_files:
+            if hashlib.sha256(z.read(f['path'])).hexdigest()!=f['sha256']:
+                raise AssertionError(f"Archive member hash mismatch: {f['path']}")
+    archive_validation={'crc':'PASS','memberSet':'PASS','manifestFileHashesVerified':len(manifest_files),
+      'embeddedVerificationReportHashVerified':True,'archiveMemberCount':len(expected_names)}
     delivery={'id':'PG328-W09-R1-DELIVERY-428','artifact':ARCHIVE.name,'archiveBytes':archive.stat().st_size,'archiveSha256':rawsha(archive),
       'manifestSha256':rawsha(OUT/'MANIFEST_428.json'),'witnessPath':'W09_REPLAY_428_TESTONLY.json','witnessSha256':rawsha(REPLAY),
-      'memberCount':len(manifest_files)+1,'status':'TEST_ONLY_UNSEALED_PENDING_DIRECTOR_REVIEW'}
+      'memberCount':len(expected_names),'archiveValidation':archive_validation,'status':'TEST_ONLY_UNSEALED_PENDING_DIRECTOR_REVIEW'}
     (OUT/'DELIVERY_428.json').write_text(json.dumps(delivery,ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')
     print(json.dumps({'status':report['status'],'checksPassed':report['checksPassed'],'eventCount':len(events),'archiveBytes':delivery['archiveBytes'],'archiveSha256':delivery['archiveSha256']},indent=2))
 if __name__=='__main__': main()

@@ -4,7 +4,7 @@ from __future__ import annotations
 import copy, hashlib, json, math, shutil, zipfile
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[5]
+ROOT = Path(__file__).resolve().parents[6]
 BASE = ROOT / "docs/audit/2026-10-08/full-game/director-spell-review-129"
 OWNER = BASE / "fortress_w09_owner_adoption_427/OWNER_PG328_W09_SUPPORT_ADOPTION_427_TESTONLY.json"
 PROPOSAL = BASE / "fortress_w09_owner_proposal_426_repack01/OWNER_PROPOSAL_W09_426_REPACK01_TESTONLY.json"
@@ -432,7 +432,8 @@ def main():
       "- W09 packet: `DD_Fortress_W09_Successor_Witness_428_TESTONLY.zip`; verify hash in `DELIVERY_428.json`.\n"
       "- Current authority: `CURRENT_SPELL_QUEUE_428_REPACK01.json`, 830 applied / 18 pending / 0 accepted-unapplied.\n"
       "- Current handoff: `CURRENT_HANDOFF_428_REPACK01.json`.\n",encoding="utf-8",newline="\n")
-    shutil.copyfile(Path(__file__),OUT/"BUILD_W09_REPLAY_428.py")
+    build_script_copy=OUT/"BUILD_W09_REPLAY_428.py"
+    if Path(__file__).resolve()!=build_script_copy.resolve(): shutil.copyfile(Path(__file__),build_script_copy)
     # Verification is completed by the separate verifier before archive and delivery are sealed.
     manifest_files=[]
     for p in sorted(x for x in OUT.rglob("*") if x.is_file() and x.name not in {"MANIFEST_428.json","DELIVERY_428.json",ARCHIVE}):
@@ -443,7 +444,9 @@ def main():
     archive=OUT/ARCHIVE
     with zipfile.ZipFile(archive,"w",compression=zipfile.ZIP_DEFLATED,compresslevel=9) as z:
         for p in sorted(x for x in OUT.rglob("*") if x.is_file() and x.name not in {"DELIVERY_428.json",ARCHIVE}):
-            z.write(p,p.relative_to(OUT).as_posix())
+            info=zipfile.ZipInfo(p.relative_to(OUT).as_posix(),date_time=(2026,11,1,0,0,0))
+            info.compress_type=zipfile.ZIP_DEFLATED; info.external_attr=0o600<<16
+            z.writestr(info,p.read_bytes(),compress_type=zipfile.ZIP_DEFLATED,compresslevel=9)
     delivery={"id":"PG328-W09-R1-DELIVERY-428","artifact":ARCHIVE,"archiveBytes":archive.stat().st_size,
       "archiveSha256":sha_file(archive),"manifestSha256":sha_file(OUT/"MANIFEST_428.json"),"memberCount":len(manifest_files)+1,
       "witnessPath":"W09_REPLAY_428_TESTONLY.json","witnessSha256":sha_file(OUT/"W09_REPLAY_428_TESTONLY.json"),
