@@ -1,0 +1,209 @@
+{
+  "id": "PG328-W08-Q27-CARRIER-BOUNDS-PROPOSAL-386",
+  "createdAtUtc": "2026-11-01T02:03:28Z",
+  "status": "PROPOSED_TEST_ONLY_PLACEMENT_INPUT_PENDING_DIRECTOR_REVIEW",
+  "scope": "Candidate Q27 projection for the same W08 branch only; no terminal state is executed.",
+  "sourceCaseSha256": "f12414164a641a6b8912b43e8f426f027772f3a58d92dbadfcbd45b4f5b14900",
+  "sourceFields": "final.actors.A.position/bodyBox/orientation/equipment; final.items.focus-A/pack-A/cargo-A sizeFeet/owner/custodian; effects.<Fortress>.apertures; spaces.fixture:origin.support",
+  "bodyConvention": "Proposed fixture convention: A's feet anchor is [15,0,0], horizontal footprint is centered on x/y and bodyBox [5,5,6] occupies z=[0,6].",
+  "candidateAnchorFeet": [
+    15,
+    0,
+    0
+  ],
+  "bodyRelativeBoundsFeet": {
+    "x": [
+      -2.5,
+      2.5
+    ],
+    "y": [
+      -2.5,
+      2.5
+    ],
+    "z": [
+      0,
+      6
+    ]
+  },
+  "carriedItems": [
+    {
+      "id": "focus-A",
+      "owner": "A",
+      "custodian": "A",
+      "sizeFeet": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "relativeBoundsFeet": {
+        "x": [
+          2.5,
+          3.0
+        ],
+        "y": [
+          -0.25,
+          0.25
+        ],
+        "z": [
+          1.0,
+          1.5
+        ]
+      }
+    },
+    {
+      "id": "pack-A",
+      "owner": "A",
+      "custodian": "A",
+      "sizeFeet": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "relativeBoundsFeet": {
+        "x": [
+          3.0,
+          3.5
+        ],
+        "y": [
+          -0.25,
+          0.25
+        ],
+        "z": [
+          1.0,
+          1.5
+        ]
+      }
+    },
+    {
+      "id": "cargo-A",
+      "owner": "A",
+      "custodian": "A",
+      "sizeFeet": [
+        1,
+        1,
+        1
+      ],
+      "relativeBoundsFeet": {
+        "x": [
+          3.5,
+          4.5
+        ],
+        "y": [
+          -0.5,
+          0.5
+        ],
+        "z": [
+          1.0,
+          2.0
+        ]
+      }
+    }
+  ],
+  "worldBoundsAtCandidateAnchor": {
+    "A": {
+      "x": [
+        12.5,
+        17.5
+      ],
+      "y": [
+        -2.5,
+        2.5
+      ],
+      "z": [
+        0,
+        6
+      ]
+    },
+    "focus-A": {
+      "x": [
+        17.5,
+        18.0
+      ],
+      "y": [
+        -0.25,
+        0.25
+      ],
+      "z": [
+        1,
+        1.5
+      ]
+    },
+    "pack-A": {
+      "x": [
+        18.0,
+        18.5
+      ],
+      "y": [
+        -0.25,
+        0.25
+      ],
+      "z": [
+        1,
+        1.5
+      ]
+    },
+    "cargo-A": {
+      "x": [
+        18.5,
+        19.5
+      ],
+      "y": [
+        -0.5,
+        0.5
+      ],
+      "z": [
+        1,
+        2
+      ]
+    }
+  },
+  "combinedConflictCheck": {
+    "outsideBodies": {
+      "B": {
+        "x": [
+          -2.5,
+          2.5
+        ],
+        "y": [
+          12.5,
+          17.5
+        ],
+        "z": [
+          0,
+          6
+        ]
+      },
+      "C": {
+        "x": [
+          -2.5,
+          2.5
+        ],
+        "y": [
+          -2.5,
+          2.5
+        ],
+        "z": [
+          0,
+          6
+        ]
+      },
+      "D": {
+        "x": [
+          2.5,
+          7.5
+        ],
+        "y": [
+          2.5,
+          7.5
+        ],
+        "z": [
+          0,
+          6
+        ]
+      }
+    },
+    "result": "Candidate body and three carried-item boxes have no positive-volume overlap with B/C/D under the stated geometry convention; boundaries may touch. All item identities and A custody are retained.",
+    "terrainSupport": "fixture:origin support plane z=0 and bounds [-200,200]x[-200,200] contain A and all proposed carried boxes.",
+    "reviewLimit": "Relative item slots and feet-anchor convention are new test fixture placement inputs; Director review is required before any terminal placement is certified."
+  }
+}

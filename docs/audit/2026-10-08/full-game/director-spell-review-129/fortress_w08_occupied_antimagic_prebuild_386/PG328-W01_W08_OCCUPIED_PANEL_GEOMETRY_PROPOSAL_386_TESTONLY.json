@@ -1,0 +1,212 @@
+{
+  "id": "PG328-W01-W08-OCCUPIED-PANEL-GEOMETRY-PROPOSAL-386",
+  "createdAtUtc": "2026-11-01T02:03:28Z",
+  "status": "PROPOSED_TEST_ONLY_INPUT_PENDING_OWNER_ADOPTION_AND_DIRECTOR_REVIEW",
+  "scope": {
+    "witnessId": "PG328-W08",
+    "subWitnessId": "PG328-W01",
+    "case": "Return284 occupied-antimagic case only",
+    "fixtureMutated": false,
+    "canonicalGeometryChanged": false,
+    "W01CompatibleDamageObligationCompleted": false
+  },
+  "sourceBindings": [
+    {
+      "path": "PG328_QUESTION_DISPOSITIONS.json#/questions/2/answer",
+      "use": "Q23 authored 5x5 floor-panel dimensions, 120-foot enclosure, courtyard bounds and named elevations; it explicitly leaves the exact support graph unresolved."
+    },
+    {
+      "path": "Return284 occupied-antimagic case#/final/actors/A",
+      "sha256": "f12414164a641a6b8912b43e8f426f027772f3a58d92dbadfcbd45b4f5b14900",
+      "use": "A position [15,10,0], Medium bodyBox [5,5,6], and ground contact at z=0."
+    },
+    {
+      "path": "Return284 occupied-antimagic case#/final/spaces/<Fortress-space>/support",
+      "sha256": "f12414164a641a6b8912b43e8f426f027772f3a58d92dbadfcbd45b4f5b14900",
+      "use": "Aggregate support plane z=0 only; does not supply named panel IDs or connections."
+    },
+    {
+      "path": "ANTIMAGIC_FIELD_MODEL_149.json#/spells/2/procedure",
+      "use": "Fixed center [20,10,8] candidate, 20-foot radius, actual-solid-total-cover clipping."
+    }
+  ],
+  "proposedCoordinates": {
+    "plane": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-B/occupied-antimagic/cast1/space",
+    "units": "feet",
+    "AFeetPositionConvention": "The inherited Medium [5,5,6] body occupies x/y ±2.5 about position and z=[position.z, position.z+6]; Director must confirm this interpretation."
+  },
+  "AOccupancy": {
+    "position": [
+      15,
+      10,
+      0
+    ],
+    "bodyBounds": {
+      "x": [
+        12.5,
+        17.5
+      ],
+      "y": [
+        7.5,
+        12.5
+      ],
+      "z": [
+        0,
+        6
+      ]
+    },
+    "fullFootprintCoveredByPanels": true,
+    "contactSurfaceZ": 0
+  },
+  "proposedPanelPremise": {
+    "panelPlanSizeFeet": [
+      5,
+      5
+    ],
+    "panelThicknessFeet": 0.5,
+    "panelThicknessStatus": "new fixture premise, not specified by Q23; owner adoption and Director review required",
+    "panelHP": 60,
+    "panelAC": 17,
+    "topSurfaceZ": 0,
+    "bottomSurfaceZ": -0.5,
+    "supportBase": "inherited test fixture support datum z=0 is not reinterpreted; a rigid test-only footing/contact premise beneath the four panels is proposed but is not a campaign fact"
+  },
+  "panels": [
+    {
+      "id": "W08-FLOOR-10-05",
+      "boundsFeet": {
+        "x": [
+          10,
+          15
+        ],
+        "y": [
+          5,
+          10
+        ],
+        "z": [
+          -0.5,
+          0
+        ]
+      },
+      "supportsAContactFootprint": true,
+      "coverFromFieldCenter": false
+    },
+    {
+      "id": "W08-FLOOR-15-05",
+      "boundsFeet": {
+        "x": [
+          15,
+          20
+        ],
+        "y": [
+          5,
+          10
+        ],
+        "z": [
+          -0.5,
+          0
+        ]
+      },
+      "supportsAContactFootprint": true,
+      "coverFromFieldCenter": false
+    },
+    {
+      "id": "W08-FLOOR-10-10",
+      "boundsFeet": {
+        "x": [
+          10,
+          15
+        ],
+        "y": [
+          10,
+          15
+        ],
+        "z": [
+          -0.5,
+          0
+        ]
+      },
+      "supportsAContactFootprint": true,
+      "coverFromFieldCenter": false
+    },
+    {
+      "id": "W08-FLOOR-15-10",
+      "boundsFeet": {
+        "x": [
+          15,
+          20
+        ],
+        "y": [
+          10,
+          15
+        ],
+        "z": [
+          -0.5,
+          0
+        ]
+      },
+      "supportsAContactFootprint": true,
+      "coverFromFieldCenter": false
+    }
+  ],
+  "supportAndConnectionGraph": {
+    "AContactSupportEdges": [
+      "W08-FLOOR-10-05 -> A",
+      "W08-FLOOR-15-05 -> A",
+      "W08-FLOOR-10-10 -> A",
+      "W08-FLOOR-15-10 -> A"
+    ],
+    "panelAdjacencyEdges": [
+      [
+        "W08-FLOOR-10-05",
+        "W08-FLOOR-15-05",
+        "shared edge x=15, y=5..10"
+      ],
+      [
+        "W08-FLOOR-10-05",
+        "W08-FLOOR-10-10",
+        "shared edge y=10, x=10..15"
+      ],
+      [
+        "W08-FLOOR-15-05",
+        "W08-FLOOR-15-10",
+        "shared edge y=10, x=15..20"
+      ],
+      [
+        "W08-FLOOR-10-10",
+        "W08-FLOOR-15-10",
+        "shared edge x=15, y=10..15"
+      ]
+    ],
+    "supportModelStatus": "proposed local fixture graph only; it does not bind or complete the campaign W01 structural graph"
+  },
+  "fieldIntersectionAndCover": {
+    "centerFeet": [
+      20,
+      10,
+      8
+    ],
+    "radiusFeet": 20,
+    "placementRangeFromAFeet": 9.433981,
+    "farthestRelevantPanelCornerFeet": 13.747727,
+    "farthestPoint": [
+      10,
+      5,
+      0
+    ],
+    "rayEnvironment": "All proposed panel cells and center-to-panel segments remain in the authored open courtyard bounds [5,115]x[5,115]; no wall/door is crossed by these proposed rays. The enclosure is open above the courtyard. This is conditional on the proposed geometry and no additional instantiated obstruction.",
+    "secondaryWestWallCheck": {
+      "point": [
+        5,
+        10,
+        15
+      ],
+      "distanceFeet": 16.552945,
+      "calculation": "sqrt(274)",
+      "role": "nominal corroboration only, not an occupied-panel target"
+    },
+    "sphereContainsAllFourProposedPanelVolumes": true
+  },
+  "Q27TriggerQuestion": "If owner-adopted and Director-verified, does suppression of the four proposed panels bearing A's full footprint constitute suppression of an occupied structural region under PG9-Q27? This proposal does not answer that rule question itself.",
+  "adoptionBoundary": "This geometry is a new, scoped TEST_ONLY fixture premise. It is not source-backed campaign geometry, does not prove compatible structural damage, does not clear PG200-B06, and cannot be used in an integrated W08 witness until separately owner-adopted and Director-reviewed."
+}
