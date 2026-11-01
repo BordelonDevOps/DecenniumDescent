@@ -1,0 +1,9 @@
+# Director review request: PG328-W01 damage sub-witness 402
+
+Repack 402 addresses the exact residuals from your review of 400 and the follow-on 401 attempt. Source rows use individual JSON pointers or text locators, and the preflight is bound to Git HEAD bytes. Paid cast commitment, the Counterspell window, B's explicit eligible decline and spell resolution are separate ordered events; all actual responders are dispositioned. The Wizard component contract and test-only voice/free-hand/focus availability are recorded without inventing a consumed material.
+
+Every new regular turn in this branch, including idle turns, records a Mobile choice. End snapshots clear processed end markers, expire unused Action/Bonus Action/movement, and preserve off-turn Reaction. The replay carries the old Fortress Spell Efficiency marker through 6.9 and a new Minor Conjuration marker through 12.9; this separate-family TEST_ONLY ledger applies no discount and adopts no canonical overlap rule. Geometry binds the minimum-corner body convention, unoccupied tile creation, carried-item sweep and exact panel contact without wall penetration.
+
+Please verify all source rows, commit/window/decision/resolution order, responder and component evidence, turn and stance records, marker lifecycle, geometry, snapshot references, hashes, reverse replay and restoration. The 17-vs-17 hit remains 5 bludgeoning damage, reducing the panel from 60 to 55 HP.
+
+This remains PARTIAL_WITNESS; NO_SEAL. The complete panel/support map, support validity, whole-structure navigation and Q23 keep-stair/landing connection remain open. No support/collapse rule, Q23 repair, Fortress acceptance/application, hold/seal, source/canonical/fixture mutation, or Queue361 change is requested. Please identify any remaining W01 defects, whether the bounded efficiency ledger is acceptable for TEST_ONLY review, and the exact residual W01 predicates.
