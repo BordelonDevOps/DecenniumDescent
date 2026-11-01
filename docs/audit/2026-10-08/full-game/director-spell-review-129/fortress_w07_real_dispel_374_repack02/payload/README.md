@@ -1,0 +1,3 @@
+# Fortress W07 real Dispel witness 374 — Repack02
+
+This is a reversible TEST_ONLY branch from the exact Return284 Fortress-B/real-dispel final state. It records Arcane Sight, a failed then successful rank-9 Dispel check, all inherited regular START/END markers through initiative 19.1, responder decisions, resource/recharge/strain bookkeeping, TEST_ONLY carrier-relative occupied bounds, checked targeting rays, and whole-source terminal settlement. This packet repairs Director HOLD items R1-R4 from Repack01. No campaign events or rolls are asserted. The historical parent case and W03 fixture remain unchanged. No acceptance, seal, or application is claimed.
