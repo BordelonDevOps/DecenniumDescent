@@ -1,0 +1,563 @@
+{
+  "schemaVersion": 1,
+  "id": "OWNER-PG328-W11-ADOPTION-PROPOSAL-433",
+  "classification": "TEST_ONLY_BRANCH_OWNER_ADOPTION_PROPOSAL",
+  "status": "PROPOSED_NOT_ADOPTED",
+  "recordedLocalDate": "2026-11-01",
+  "scope": {
+    "spellIdentity": "conjure-demiplane-fortress",
+    "holdId": "PG200-B06",
+    "integrationId": "PG328-W11",
+    "branchId": "PG328-W11-R1",
+    "branchOnly": true,
+    "noCampaignOccurrence": true
+  },
+  "parent": {
+    "path": "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+    "snapshot": "S030",
+    "sha256": "2b60ae35d828bd6028d71f202c1dd61c823d6212bb45c7f633ecd8f6b51d44fb",
+    "mutated": false,
+    "timeSeconds": 12.9,
+    "cargoA": {
+      "id": "cargo-A",
+      "owner": "A",
+      "custodian": "A",
+      "massLb": 10,
+      "load": 1,
+      "dimensionsFeet": [
+        1,
+        1,
+        1
+      ],
+      "positionWithinA": {
+        "x": [
+          26,
+          27
+        ],
+        "y": [
+          6,
+          7
+        ],
+        "z": [
+          3,
+          4
+        ]
+      },
+      "admissionReceipt": "/stateSnapshots/S030/transitReceipts/0",
+      "origin": "fixture:origin"
+    }
+  },
+  "directorFindings": {
+    "mage9HistoryCount": 10,
+    "cantripCount": 4,
+    "existingCargoAdmissionSufficient": true,
+    "separateCargoFixtureNeeded": false,
+    "petCreatedInside": true,
+    "queue": "830 applied / 18 pending / 0 accepted-unapplied"
+  },
+  "historyPremise": {
+    "actorId": "actor-w11-firepet-owner",
+    "derivativeId": "W11-MAGE9-FIREPET-OWNER-TESTONLY",
+    "path": "Arcanist at Mage 3; Fire Focus at Mage 2; 10 ordinary spells and 4 cantrips per W11_SELECTION_EVIDENCE_433.json; complete 14-card Mage selection schedule listed there.",
+    "currentRP": 26,
+    "maxRP": 26,
+    "Dissonance": 0,
+    "Refrain": 0,
+    "noPriorRankedCastFamilies": true,
+    "noConcentration": true,
+    "focus": {
+      "massLb": 1,
+      "rightHand": true,
+      "leftSomaticHandFree": true
+    },
+    "body": {
+      "size": "Medium",
+      "boxFeet": [
+        5,
+        5,
+        6
+      ],
+      "massLb": 150
+    },
+    "noW08FactionOrCampaignEntitlementImported": true,
+    "W05ProfileUnchanged": true
+  },
+  "entryPremise": {
+    "permission": "A grants this W11-only Mage explicit entry permission.",
+    "externalSpace": "fixture:origin",
+    "startPositionFeet": [
+      55,
+      -5,
+      0
+    ],
+    "destinationPositionFeet": [
+      55,
+      5,
+      0
+    ],
+    "movementFeet": 10,
+    "openingId": "main-gate",
+    "openingBoundsFeet": {
+      "x": [
+        55,
+        65
+      ],
+      "y": [
+        0,
+        5
+      ],
+      "z": [
+        0,
+        15
+      ]
+    },
+    "openingState": "OPEN_TEST_ONLY_GEOMETRY",
+    "doorLeafBoundsFeet": {
+      "x": [
+        55,
+        65
+      ],
+      "y": [
+        2.25,
+        2.5
+      ],
+      "z": [
+        15,
+        30
+      ]
+    },
+    "doorAction": "none; already open",
+    "route": [
+      {
+        "positionFeet": [
+          55,
+          5,
+          0
+        ],
+        "movementFeet": 10,
+        "turn": 1,
+        "segment": "from external start [55,-5,0] through already-open main gate"
+      },
+      {
+        "positionFeet": [
+          35,
+          5,
+          0
+        ],
+        "movementFeet": 20,
+        "turn": 1,
+        "segment": "west along supported interior floor"
+      },
+      {
+        "positionFeet": [
+          30,
+          5,
+          0
+        ],
+        "movementFeet": 5,
+        "turn": 2,
+        "segment": "west"
+      },
+      {
+        "positionFeet": [
+          30,
+          10,
+          0
+        ],
+        "movementFeet": 5,
+        "turn": 2,
+        "segment": "north"
+      },
+      {
+        "positionFeet": [
+          25,
+          10,
+          0
+        ],
+        "movementFeet": 5,
+        "turn": 2,
+        "segment": "west"
+      },
+      {
+        "positionFeet": [
+          25,
+          11,
+          0
+        ],
+        "movementFeet": 1,
+        "turn": 2,
+        "segment": "north to casting pose"
+      }
+    ],
+    "castHandlerPoseFeet": [
+      25,
+      11,
+      0
+    ],
+    "wholeBodyClearance": "Medium 5x5x6 body fits the opening and every route segment; each turn stays within 30-foot Speed; only boundary contact with A/pet and no positive-volume overlap.",
+    "turnSchedule": [
+      {
+        "turn": 1,
+        "startSeconds": 18.0,
+        "movementFeet": 30,
+        "endPositionFeet": [
+          35,
+          5,
+          0
+        ]
+      },
+      {
+        "turn": 2,
+        "startSeconds": 24.0,
+        "movementFeet": 16,
+        "endPositionFeet": [
+          25,
+          11,
+          0
+        ]
+      },
+      {
+        "turn": 3,
+        "startSeconds": 30.0,
+        "actionAtSeconds": 31.1,
+        "action": "cast Summon Greater Fire Pet"
+      }
+    ],
+    "movementTotalFeet": 46
+  },
+  "supportPremise": {
+    "id": "PG328-W11-SUPPORT-01",
+    "status": "PROPOSED_TEST_ONLY_NEW_SCOPE",
+    "floorZ": 0,
+    "boundsFeet": {
+      "x": [
+        25,
+        60
+      ],
+      "y": [
+        -5,
+        16
+      ]
+    },
+    "ratedLoadPer5x5FootprintLb": 200,
+    "supportsMageRouteAndPetCargoAndChangedAConfiguration": true,
+    "noExtensionOfW01SupportAdoption": true,
+    "noGeneralStructuralRule": true
+  },
+  "creation": {
+    "sourceSpell": "summon-greater-fire-pet",
+    "sourcePointer": "/spells/8/procedure",
+    "castTimeSeconds": 31.1,
+    "interruptWindowSeconds": 31.2,
+    "successAndCreationSeconds": 31.3,
+    "casterPositionFeet": [
+      25,
+      11,
+      0
+    ],
+    "targetBodyId": "PG328-W11-R1:greater-fire-pet-1",
+    "targetPositionFeet": [
+      30,
+      6,
+      0
+    ],
+    "targetBodyBoxFeet": [
+      5,
+      5,
+      6
+    ],
+    "targetBounds": {
+      "x": [
+        30,
+        35
+      ],
+      "y": [
+        6,
+        11
+      ],
+      "z": [
+        0,
+        6
+      ]
+    },
+    "casterCenterDistanceFeet": 7.0711,
+    "rangeFeet": 60,
+    "components": "V/S/F",
+    "startingRP": 26,
+    "baseAndFinalCostRP": 10,
+    "endingRP": 16,
+    "dissonanceStart": 0,
+    "dissonanceAfter": 1,
+    "counterspellResponses": [
+      {
+        "actor": "A",
+        "decision": "declines"
+      },
+      {
+        "actor": "B",
+        "decision": "declines"
+      },
+      {
+        "actors": [
+          "C",
+          "D"
+        ],
+        "disposition": "off-plane"
+      }
+    ],
+    "concentrationStartsAfterInterruptionResolution": true,
+    "expirySeconds": 91.3,
+    "expiryRule": "60 elapsed seconds from successful creation"
+  },
+  "cargoHandling": {
+    "extractionClass": {
+      "value": 0,
+      "status": "PROPOSED_TEST_ONLY_FIXTURE_CLASSIFICATION",
+      "notInferredFromWeight": true,
+      "category": "ordinary trade goods (W11-only test classification)",
+      "tags": []
+    },
+    "handler": "A, owner/custodian, permitted",
+    "at18Seconds": {
+      "freeObjectInteraction": "set clay tile down at x[25,26],y[5,6],z[0,0.25]",
+      "action": "retrieve accessible top-level cargo-A into right hand",
+      "AWeightLb": 12,
+      "ALoad": 1.2
+    },
+    "at36Seconds": {
+      "action": "A uses one Secure Cargo Action",
+      "cargoAttachedBounds": {
+        "x": [
+          31,
+          32
+        ],
+        "y": [
+          11,
+          12
+        ],
+        "z": [
+          3,
+          4
+        ]
+      },
+      "petSurface": {
+        "northFaceY": 11,
+        "x": [
+          31,
+          32
+        ],
+        "z": [
+          3,
+          4
+        ]
+      },
+      "method": "integral nonmagnetic passive clamp included within cargo-A existing 1x1x1 ft, 10 lb, 1 Load",
+      "owner": "A",
+      "AWeightAfterLb": 2,
+      "ALoadAfter": 0.2,
+      "petPlusCargoWeightLb": 110,
+      "petCarriedLoad": 1,
+      "petCapacity": {
+        "weightLb": 210,
+        "load": 14,
+        "speedFt": 30
+      },
+      "noPetHandsToolsHeatImmunityOrExtraCapacity": true
+    }
+  },
+  "expiry": {
+    "timeSeconds": 91.3,
+    "bodyRemoved": true,
+    "concentrationEnded": true,
+    "cargoAStillExists": true,
+    "cargoAOwner": "A",
+    "looseBounds": {
+      "x": [
+        31,
+        32
+      ],
+      "y": [
+        11,
+        12
+      ],
+      "z": [
+        0,
+        1
+      ]
+    },
+    "fallFeet": 3,
+    "support": "PG328-W11-SUPPORT-01",
+    "resolveOnlyActualItemImpactRules": true
+  },
+  "closure": {
+    "timeSeconds": 102.3,
+    "proposedActor": "A",
+    "sourceRoute": "wizard.arch.dispel-magic, Action, 3 RP, 60 ft, Recharge 2; proposed current class source /cards/19; verify this binds to exact W01-A profile.",
+    "target": "same perceived rank-9 Fortress spell effect",
+    "proposedCheck": {
+      "d20": 12,
+      "INT": 5,
+      "PB": 6,
+      "total": 23,
+      "DC": 19,
+      "result": "success",
+      "newW11TestInputNotCampaignRoll": true
+    },
+    "B": "declines interruption",
+    "RPBefore": 53,
+    "RPAfter": 50,
+    "directorMustConfirm": [
+      "whether source-bound Wizard20 lineage links W01 S030 actor A to the preserved Dispel selection despite the distinct replay-binding and derived-profile hash domains",
+      "sufficient target perception"
+    ],
+    "settlement": "PG9-Q27 mandatory events, bodies in admission order, then loose items by stable ID; return cargo-A once via retained W01 transitReceipts/0 provenance; pet absent.",
+    "profileBinding": {
+      "W01ParentActorPointer": "W01_REPLAY_403.json#/stateSnapshots/S030/actors/A/profileSHA",
+      "W01ParentActorProfileSHA256": "ebb96b340b94c3c6a98f8005e6fd6d0d6c93b1dc4abd1b584a7528c5cb459223",
+      "sourceBindingPath": "docs/audit/2026-10-08/full-game/director-spell-review-129/conjure_demiplane_fortress_closure_intake_367/payload/authority/PG328_SOURCE_BINDINGS.json",
+      "sourceBindingPointer": "/Wizard20Profile",
+      "sourceBoundProfileSHA256": "ebb96b340b94c3c6a98f8005e6fd6d0d6c93b1dc4abd1b584a7528c5cb459223",
+      "preservedProfilePath": "docs/audit/2026-10-08/full-game/director-spell-review-129/conjure_demiplane_fortress_closure_intake_367/payload/sources/RETURN284_WIZARD20_PROFILE_TESTONLY.json",
+      "preservedProfilePointer": "/acquisitionLedger/8/choices/0",
+      "preservedProfileFileSHA256": "a3a3ce0a714c1fa35523719c8c8a0297fc457d5b5f097f6a20a00aad6cd7be55",
+      "preservedProfileSelfHashPointer": "/profileSHA256BeforeOwnHash",
+      "preservedProfileSelfHash": "28e6ab554f7f6bbfd839d5bf637826414867f1984f08def1ed410e56cf171aa9",
+      "bindingQuestion": "Director must confirm whether source-bound Wizard20 lineage links the replay actor A and the preserved Dispel selection despite these two hash domains; do not silently equate them."
+    }
+  },
+  "authority": {
+    "currentQueue": "830 applied / 18 pending / 0 accepted-unapplied",
+    "queueChangeAuthorized": false,
+    "FortressAcceptanceOrApplicationAuthorized": false,
+    "sealAuthorized": false,
+    "canonChangeAuthorized": false,
+    "witnessConstructionAuthorized": false
+  },
+  "requestedOwnerDecision": "After Director confirms the two closure bindings above, adopt these exact terms for PG328-W11-R1 only. Adoption would authorize construction of a hypothetical witness only; it would not authorize sealing, Fortress acceptance/application, canon change or queue change.",
+  "statusBoundary": {
+    "allTermsTestOnly": true,
+    "campaignEventsAsserted": false,
+    "parentW01Mutated": false,
+    "W05Mutated": false,
+    "W04OrW09Changed": false
+  },
+  "sourceBindings": [
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w01_w13_coverage_readback_429/FORTRESS_W01_W13_COVERAGE_READBACK_429_BINDING_RECONCILED.json",
+      "pointer": "/rows/10",
+      "workingTreeBytes": 76037,
+      "workingTreeSha256": "3b52ab2479da5be1b61e4ff192a1326a870c57f55a0120bc8480f524b8dbc647",
+      "gitBlobSha1": "d433d546649306e4e85c222aee3f45c27480c022",
+      "representation": "working-tree bytes; Git blob identity recorded separately",
+      "note": "Corrected W11 row."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+      "pointer": "/stateSnapshots/S030,/stateSnapshots/S030/transitReceipts/0",
+      "workingTreeBytes": 22891,
+      "workingTreeSha256": "5fa622f43b6948e7e991f1ca5a237de584900e92cfd4f37eed47586d73222039",
+      "gitBlobSha1": "60f81c5706857c5528d9d19e3da9ac15dcd7fb85",
+      "representation": "working-tree bytes; Git blob identity recorded separately",
+      "note": "Exact parent and prior item entry."
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/conjure_demiplane_fortress_closure_intake_367/payload/sources/AC5_ACCEPTED_SOURCE_MODEL.json",
+      "pointer": "/spells/8/procedure,/profiles/AC5-PROFILE-GREATER-FIRE-PET-01",
+      "workingTreeBytes": 337035,
+      "workingTreeSha256": "d782569ed8ef558f4edf54634e0d8c19926e24e2437528f1769b5ef3ce594898",
+      "gitBlobSha1": "2eba7979199c9e861dda812357182c1b2b2b2686",
+      "representation": "working-tree bytes; Git blob identity recorded separately",
+      "note": "Pet procedure and body profile."
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/banishment_gate_witness365_w05_separation365_repack03_build01/packet/sources/MAGE_CLASS_PLAYTEST.json",
+      "pointer": "/engine,/cards",
+      "workingTreeBytes": 80394,
+      "workingTreeSha256": "c64782e192e2e63e5abed5728f9213c9d4cf956bce1a75da7a156dbfd1141e0b",
+      "gitBlobSha1": "8867e525bb121150e563bd4632a6f3b2bf536e4f",
+      "representation": "working-tree bytes; Git blob identity recorded separately",
+      "note": "Mage class history and card selections."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md",
+      "pointer": "/Spell repertoires and acquisition",
+      "workingTreeBytes": 17321,
+      "workingTreeSha256": "adb2f4752b45dc70ce792a675bb30dda362aab5056588061bcde3ba31c4c8a81",
+      "gitBlobSha1": "5a446dd0dabae096e51f419b5e71756e0169bb3b",
+      "representation": "working-tree bytes; Git blob identity recorded separately",
+      "note": "Ordinary spell learning schedule."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+      "pointer": "/spells",
+      "workingTreeBytes": 5085187,
+      "workingTreeSha256": "773fb0b3b0fdb501858ded33c02d90dc4db3009bd1b9f7112c244d998218f05b",
+      "gitBlobSha1": "2d243b311cded8484630c12b6fcc2ae7f70cfddf",
+      "representation": "working-tree bytes; Git blob identity recorded separately",
+      "note": "Selected spell identities and access."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+      "pointer": "/lines/88-145",
+      "workingTreeBytes": 22891,
+      "workingTreeSha256": "5fa622f43b6948e7e991f1ca5a237de584900e92cfd4f37eed47586d73222039",
+      "gitBlobSha1": "60f81c5706857c5528d9d19e3da9ac15dcd7fb85",
+      "representation": "working-tree bytes; Git blob identity recorded separately",
+      "note": "Capacity and Secure Cargo Action."
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w01_successor_overlays_425/evidence/GEOMETRY_405.json",
+      "pointer": "/openings/main-gate,/regions/courtyard",
+      "workingTreeBytes": 1335900,
+      "workingTreeSha256": "2ec0b2448eb4dd03a028a2c3edfd78c262fbef0309eb3e6ff49a41ca8850a147",
+      "gitBlobSha1": "332fb5fd95231075a186055f03c68b78d6f3e688",
+      "representation": "working-tree bytes; Git blob identity recorded separately",
+      "note": "Existing gate and fortress geometry."
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w01_successor_overlays_425/SUPPORT_OVERLAY_425_TESTONLY.json",
+      "pointer": "/mechanicalSupport",
+      "workingTreeBytes": 603110,
+      "workingTreeSha256": "cde07da38418e1402d794b90c0daea91c19af8daf9c8168cc00c254a0d437af3",
+      "gitBlobSha1": "eee5e1dd3c36602bec0d4560e6a5e4c28236d112",
+      "representation": "working-tree bytes; Git blob identity recorded separately",
+      "note": "W01 support scope; W11 support remains new proposal."
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/conjure_demiplane_fortress_closure_intake_367/payload/authority/PG328_BLOCKER_REASSESSMENT.json",
+      "pointer": "/remainingWitnessParts/10,/sourceLevelGains/3",
+      "workingTreeBytes": 18926,
+      "workingTreeSha256": "8f50b284846ef373ada5bae610c2a8d584cf695c3922cf9c30f34bb48fc4bd4b",
+      "gitBlobSha1": "ce97704ed5aee3d43911dcca624aca576b45f49b",
+      "representation": "working-tree bytes; Git blob identity recorded separately",
+      "note": "W11 predicate and closure route."
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/conjure_demiplane_fortress_closure_intake_367/payload/authority/PG328_SOURCE_BINDINGS.json",
+      "pointer": "/Wizard20Profile",
+      "workingTreeBytes": 10347,
+      "workingTreeSha256": "2c7c1ff46b4c9e370e2a666817a2b0ceaef6dbdf8fbc87a278b6fc0235aaa15c",
+      "gitBlobSha1": "e45191a7c938cb084d69637fd75d0311f0102cfe",
+      "representation": "working-tree bytes; Git blob identity recorded separately",
+      "note": "W01 Wizard20 profile provenance."
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/conjure_demiplane_fortress_closure_intake_367/payload/sources/RETURN284_WIZARD20_PROFILE_TESTONLY.json",
+      "pointer": "/alwaysPrepared,/acquisitionLedger",
+      "workingTreeBytes": 116341,
+      "workingTreeSha256": "a3a3ce0a714c1fa35523719c8c8a0297fc457d5b5f097f6a20a00aad6cd7be55",
+      "gitBlobSha1": "51c7dd621f749444a70aeb30700c3e611bac73b3",
+      "representation": "working-tree bytes; Git blob identity recorded separately",
+      "note": "Wizard Dispel profile source; W01 actor match remains for Director check."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+      "pointer": "/cards/19",
+      "workingTreeBytes": 100635,
+      "workingTreeSha256": "8ab2f4f43bcbced418fb266e5bd3216cff491b0c442c16f93438bd3556672c8b",
+      "gitBlobSha1": "cba2bdbbe964e9597011ed59f0c934bd09350a93",
+      "representation": "working-tree bytes; Git blob identity recorded separately",
+      "note": "Arch Dispel procedure interface."
+    }
+  ]
+}
