@@ -1,0 +1,1 @@
+Repack03 incorporates taxonomy and the enumerated NEW ritual mechanics as one indivisible owner-review source proposal. It remains unaccepted and does not authorize W03 construction.
