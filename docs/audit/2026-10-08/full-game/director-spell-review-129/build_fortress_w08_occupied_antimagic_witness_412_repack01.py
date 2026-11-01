@@ -750,7 +750,7 @@ def main() -> None:
         "change canon, or alter the 829/19/0 queue. The identity remains pending.\n",encoding="utf-8")
 
     manifest_files=[]
-    for p in sorted(x for x in out.rglob("*") if x.is_file() and x.name not in (ZIPNAME,"DELIVERY_412_REPACK01.json","MANIFEST_412_REPACK01.json","INDEPENDENT_VERIFICATION_412_REPACK01.json")):
+    for p in sorted(x for x in out.rglob("*") if x.is_file() and x.name not in (ZIPNAME,"DELIVERY_412_REPACK01.json","MANIFEST_412_REPACK01.json","INDEPENDENT_VERIFICATION_412_REPACK01.json","W08_TESTONLY_EVIDENCE_SEAL_412_REPACK01.json")):
         data=p.read_bytes(); manifest_files.append({"path":p.relative_to(out).as_posix(),"bytes":len(data),"sha256":sha(data)})
     manifest={"id":"MANIFEST-PG328-W08-WITNESS-412-REPACK01","artifact":ZIPNAME,"status":verification["status"],
               "files":manifest_files,"sourceBindings":bindings}
@@ -758,7 +758,7 @@ def main() -> None:
 
     zippath=out/ZIPNAME
     with zipfile.ZipFile(zippath,"w",compression=zipfile.ZIP_DEFLATED,compresslevel=9) as package:
-        for p in sorted(x for x in out.rglob("*") if x.is_file() and x.name not in (ZIPNAME,"DELIVERY_412_REPACK01.json","INDEPENDENT_VERIFICATION_412_REPACK01.json")):
+        for p in sorted(x for x in out.rglob("*") if x.is_file() and x.name not in (ZIPNAME,"DELIVERY_412_REPACK01.json","INDEPENDENT_VERIFICATION_412_REPACK01.json","W08_TESTONLY_EVIDENCE_SEAL_412_REPACK01.json")):
             info=zipfile.ZipInfo(p.relative_to(out).as_posix(),date_time=(2026,11,1,0,0,0))
             info.compress_type=zipfile.ZIP_DEFLATED; info.external_attr=0o100644<<16
             package.writestr(info,p.read_bytes())

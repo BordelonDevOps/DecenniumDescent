@@ -6,6 +6,7 @@ sys.path.insert(0,str(ROOT))
 import build_fortress_closure_intake_367 as intake
 OUT=ROOT/"fortress_w08_occupied_antimagic_witness_412_repack01"
 ZIP=OUT/"DD_Rank9_ConjureDemiplaneFortress_PG328_W08_OccupiedAntimagicWitness_412_Repack01_TESTONLY.zip"
+SEAL=OUT/"W08_TESTONLY_EVIDENCE_SEAL_412_REPACK01.json"
 SPACE="RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-B/occupied-antimagic/cast1/space"
 FORTRESS="RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-B/occupied-antimagic/cast1"
 FIELD="PG328-W08/occupied-antimagic/antimagic-field-cast1"
@@ -35,9 +36,19 @@ def segment_hits_box(a,b,box,eps=1e-9):
 def main():
     delivery=json.loads((OUT/"DELIVERY_412_REPACK01.json").read_text(encoding="utf-8-sig"))
     assert sha(ZIP.read_bytes())==delivery["sha256"] and ZIP.stat().st_size==delivery["bytes"]
+    seal_bytes=SEAL.read_bytes()
+    seal=json.loads(seal_bytes.decode("utf-8-sig"))
+    assert seal["status"]=="TEST_ONLY_W08_EVIDENCE_SEAL_ISSUED"
+    assert seal["directorReview"]["reviewedPacketSha256"]==delivery["sha256"]
+    assert seal["deliveryRecord"]["sha256"]==sha((OUT/"DELIVERY_412_REPACK01.json").read_bytes())
+    assert seal["evidenceSeal"]["terminalStateSha256"]==delivery["finalStateSha256"]
+    assert seal["stateEffects"]["fortressIdentityAcceptedOrApplied"] is False
+    assert seal["stateEffects"]["fixtureMutated"] is False and seal["stateEffects"]["canonicalRulesChanged"] is False
+    assert seal["stateEffects"]["spellQueueChanged"] is False
     with zipfile.ZipFile(ZIP) as z:
         assert z.testzip() is None
         names=set(z.namelist())
+        assert SEAL.name not in names
         manifest=readj(z,"MANIFEST_412_REPACK01.json")
         listed={f["path"] for f in manifest["files"]}
         assert names==listed|{"MANIFEST_412_REPACK01.json"}
@@ -123,6 +134,9 @@ def main():
         assert case["final"]["actors"]["A"]["spellHistory"][:len(case["initial"]["actors"]["A"]["spellHistory"])]==case["initial"]["actors"]["A"]["spellHistory"]
         assert case["final"]["actors"]["A"]["lastArrivedFromPlaneKey"]==SPACE
         assert case["final"]["actors"]["A"]["lastArrivedFromEventId"]==Q27_EVENT_ID
+        assert seal["directorReview"]["terminalStateSha256"]==case["finalSHA256"]
+        assert seal["scope"]["queue"]=={"reviewedApplied":829,"pending":19,"acceptedUnapplied":0}
+        assert seal["acceptedIds"]==[] and seal["appliedIds"]==[]
         actor=s["actors"]["A"]
         assert actor["plane"]==ORIGIN and actor["position"]==[15.0,0.0,0.0]
         assert actor["RP"]==33 and actor["lastSpell"]=="antimagic-field" and actor["concentration"] is None
@@ -155,6 +169,7 @@ def main():
             "forwardReplay":True,"fullReverseRestoration":True,"parentImmutable":True,
             "geometryAndTerminalState":"PASS","arrivalProvenance":"PASS",
             "reviewRepairs":["W08-412-R1","W08-412-R2","W08-412-R3"],
+            "evidenceSealRecord":"PASS_W08_ONLY_TESTONLY","sealRecordSha256":sha(seal_bytes),
             "queue":"829/19/0 unchanged"}
     (OUT/"INDEPENDENT_VERIFICATION_412_REPACK01.json").write_text(json.dumps(result,indent=2)+"\n",encoding="utf-8")
     print(json.dumps(result,indent=2))
