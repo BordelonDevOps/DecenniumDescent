@@ -1,0 +1,132 @@
+{
+  "id": "PG328-W03-SUPPLY-CONTRACT-PROPOSAL-382",
+  "recordedAtLocal": "2026-10-31",
+  "status": "PROPOSED_PENDING_EXPLICIT_OWNER_ADOPTION_AND_DIRECTOR_REVIEW",
+  "supersedes": {
+    "path": "OWNER_PG328_W03_SUPPLY_CONTRACT_PROPOSAL_380_TESTONLY.json",
+    "sha256": "79c49c3f8d3c70818ed871036a5de33ffe5c6f57b01643d91230d37327c79c8a",
+    "reason": "Director pre-review found proposal 380 incorrectly mapped the fixture’s recorded 8 lb water item to a canonical 5 lb full Waterskin."
+  },
+  "preReviewRecord": {
+    "path": "DIRECTOR_PG328_W03_SUPPLY_CONTRACT_PRE_REVIEW_380.json",
+    "decision": "PRE_REVIEW_ONLY_CONCRETE_WATER_MASS_MISMATCH"
+  },
+  "scope": {
+    "residualId": "PG328-W03",
+    "eligibilityResidual": "PG366-W03-R1",
+    "spellId": "conjure-demiplane-fortress",
+    "identityHold": "PG200-B06",
+    "testOnlyRule": "P368-BINDING",
+    "fixturePath": "payload/fixtures/PG328-W03_BENEFICIAL_SHORT_REST_367_TESTONLY.json",
+    "fixtureSha256": "d0ef9a698b2fdfd0c18b5b881b7e3448cc5b314d9306a9b70fd4c795eed547f7",
+    "character": "A",
+    "interval": {
+      "clock": "worldElapsedSeconds",
+      "startInclusive": 1.0,
+      "endExclusive": 3601.0,
+      "durationSeconds": 3600
+    }
+  },
+  "classification": {
+    "testOnly": true,
+    "campaignOccurrence": false,
+    "canonicalRuleChange": false,
+    "fixtureMutation": false,
+    "runtimeStateMutation": false,
+    "restCompletionOrBenefit": false,
+    "settlementExecuted": false,
+    "FortressAcceptedOrApplied": false
+  },
+  "preservedRule": "Q26 remains in force: rest uses real supplies; Fortress creates no food or water; imported supplies retain actual ownership, custody, and quantity.",
+  "proposedSupplyContract": {
+    "contractId": "PG328-W03-REAL-SUPPLIES-TESTONLY-382",
+    "scopeLimit": "Only A’s candidate 3600-second short-rest branch in fixture 367 for PG366-W03-R1. No general rest, supply, or Fortress rule is created.",
+    "minimumAtIntervalStart": [
+      {
+        "fixtureItemId": "REST-FOOD-367-A",
+        "requiredIdentity": "One canonical Player Rulebook v6 Rations (1 day) item, 2 lb",
+        "requiredQuantity": 1,
+        "testOnlyMappingPremise": "For this branch only, the fixture’s one real imported 2 lb food unit is identified as one Rations (1 day) item."
+      },
+      {
+        "fixtureItemId": "REST-WATER-367-A",
+        "requiredIdentity": "The exact existing fixture item of mundane drinking water, recorded at 8 lb and 0.5×0.5×1 ft",
+        "requiredQuantity": 1,
+        "testOnlyMappingPremise": "For this branch only, the exact existing REST-WATER-367-A item qualifies as one potable-water supply unit. Preserve its recorded kind, identity, 8 lb mass, 0.8 load, 0.5×0.5×1 ft dimensions, quantity, ownership, and custody. No vessel type or canonical Waterskin identity is assigned."
+      }
+    ],
+    "sufficiencyRule": "At worldElapsedSeconds 1.0, A’s actual availability, ownership, and custody of one canonical one-day ration plus the exact existing 8 lb REST-WATER-367-A potable-water item satisfy Q26’s real-supplies prerequisite for this one 3600-second TEST_ONLY rest interval. This scoped contract defines one such 8 lb water item as sufficient for this branch. The Fortress contributes none. This does not map REST-WATER-367-A to the canonical 5 lb full Waterskin entry.",
+    "consumptionRule": "No food or water consumption is required for eligibility or completion of this one-hour TEST_ONLY short rest. This contract does not assert consumption. Any actual consumption, if separately introduced in a future proposal, must be explicitly recorded and deducted from the real inventory; it is not implied here.",
+    "custodyRule": "A remains the real owner and custodian of both imported items throughout the recorded interval. Fixture 367’s unchanged custody and quantity-preservation transitions govern; no item is created, copied, replenished, or transferred by this contract.",
+    "durationAndSafety": "P368-BINDING eligibility is established by Director review 377. Safety for this declared interval is established by Director review 379 only. This supply contract adds no duration, activity, interruption, or safety rule.",
+    "recoveryAndBenefits": "No RP formula, recovery cap, Dissonance rule, rest counter, or other benefit is added or modified. Any benefit still requires a separate reviewed, reversible completion/settlement proposal and applicable recovery-limit checks."
+  },
+  "evidenceBinding": {
+    "fixture367": {
+      "path": "payload/fixtures/PG328-W03_BENEFICIAL_SHORT_REST_367_TESTONLY.json",
+      "sha256": "d0ef9a698b2fdfd0c18b5b881b7e3448cc5b314d9306a9b70fd4c795eed547f7",
+      "waterItemPointer": "/before/items/REST-WATER-367-A",
+      "waterInventoryPointer": "/testOnlyInputs/supplyInventory/1",
+      "waterItem": {
+        "id": "REST-WATER-367-A",
+        "kind": "mundane drinking water",
+        "massLb": 8,
+        "load": 0.8,
+        "sizeFeet": [0.5, 0.5, 1],
+        "owner": "A",
+        "custodian": "A",
+        "quantity": 1,
+        "quantityConsumed": 0,
+        "quantityRemaining": 1
+      },
+      "warning": "These observed fixture attributes remain unchanged. The supply identity and sufficiency are hypothetical branch-only rule premises, not fixture edits or canonical Waterskin classification."
+    },
+    "itemReference": {
+      "source": "docs/reference/Player_Rulebook_v6_source_text.txt",
+      "sha256": "a346670f4244efe3641cfb06814819d83ffb8512153858205f0621bd8ab8a04b",
+      "rationPointer": "line 6995: Rations (1 day), 5 sp, 2 lb",
+      "waterskinPointer": "line 7013: Waterskin, 2 sp, 5 lb (full) — mismatch comparison only; not mapped to REST-WATER-367-A",
+      "authorityLimit": "The equipment entries identify item descriptions only; they establish no one-hour rest sufficiency or consumption rule. The 5 lb Waterskin entry does not describe the fixture’s 8 lb water item."
+    },
+    "questionSource": {
+      "path": "payload/rules/PG328_QUESTION_DISPOSITIONS.json",
+      "sha256": "149d4098591799f51afa37837ccca722eb9ae08c3ea437c640d943f33b1bb637",
+      "Q26Pointer": "/questions/5/answer",
+      "Q28Pointer": "/questions/7/answer"
+    },
+    "eligibilityRecords": [
+      {"path": "OWNER_P368_W03_TESTONLY_AUTHORIZATION_372.json", "sha256": "eac0f0760c6c3e29b13e0cd1a73b2e21855e814d8aeb854f2b1468d6ad72a6d5"},
+      {"path": "OWNER_P368_W03_ELIGIBILITY_PREMISE_PROPOSAL_376_TESTONLY.json", "sha256": "9d0b1c66f86b115a69b5dc0ef75a4aa421cba88642f635ec7ac9c6a087f2265b"},
+      {"path": "DIRECTOR_P368_W03_ELIGIBILITY_REVIEW_377.json", "sha256": "78ec8589fc176038a33f9d5e2fcea5c3ca96955279cd5b91a793bf9613080b1c"},
+      {"path": "DIRECTOR_PG328_W03_SAFETY_SUPPLY_REVIEW_379.json", "sha256": "5a13db7b81c70bfabfcdf763d75e52e6998ede7901c1df25793e40efc9db0563"}
+    ],
+    "supersededDraftPreReview": {
+      "path": "DIRECTOR_PG328_W03_SUPPLY_CONTRACT_PRE_REVIEW_380.json",
+      "sha256": "c9e36d06b649c85d0372cde3c48bd9c42e203ce8f35044c20001394b3d8dc5ee"
+    }
+  },
+  "ownerAdoption": {
+    "required": true,
+    "status": "NOT_YET_ADOPTED",
+    "exactRequestedAuthorization": "Yes—adopt PG328-W03-REAL-SUPPLIES-TESTONLY-382 for A’s PG366-W03-R1 branch and unchanged fixture 367 only.",
+    "note": "This corrected proposal removes draft 380’s incorrect canonical Waterskin mapping while preserving fixture 367 exactly."
+  },
+  "requestedDirectorReviewAfterOwnerAdoption": {
+    "reviewQuestions": [
+      "Confirm or reject that the exact existing 8 lb REST-WATER-367-A object, with all recorded physical attributes preserved and no vessel type assigned, may serve as one potable-water supply unit solely for this TEST_ONLY branch.",
+      "Confirm or reject the sufficiency rule: the one-day ration and one exact 8 lb potable-water item held by A at interval start satisfy Q26 for this single one-hour rest.",
+      "Confirm or reject the explicit no-consumption-required term while preserving actual inventory accounting and Q26’s real-supplies requirement.",
+      "If accepted, state whether supply sufficiency is established only for this test branch; do not construct or execute settlement in this review."
+    ],
+    "prohibitedEffects": [
+      "Do not mutate fixture 367.",
+      "Do not infer a campaign occurrence or general supply/rest rule.",
+      "Do not execute settlement or grant any rest benefit.",
+      "Do not add recovery sources or change recovery limits.",
+      "Do not seal W03 or close PG200-B06.",
+      "Do not accept or apply the Fortress identity.",
+      "Do not alter other holds, seals, or queue counts (828/20/0)."
+    ]
+  },
+  "directorConversation": "https://chatgpt.com/g/g-p-67f17555a8dc8191a2b5b81e6d8adc12-dungeon-crawler/c/6ae66c6d-2d08-83ea-a1fa-042d649855a2"
+}
