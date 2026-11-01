@@ -1,0 +1,44 @@
+{
+  "id": "GPT-DIRECTOR-READBACK-W05-W10-452",
+  "classification": "DIRECTOR_COMPONENT_REVIEW_DISPOSITION",
+  "source": "GPT browser conversation Calibration review part 6",
+  "witness452": {
+    "W05": "HOLD",
+    "W10": "HOLD",
+    "sufficientUnderProposal443": false
+  },
+  "integrity": "PASS",
+  "findings": [
+    {
+      "id": "W452-C01",
+      "component": "W05",
+      "location": "/eventTrace/events/{5,29,52,75,98,121,144,167,190} and dependent replay records",
+      "finding": "Resolved Bolts remain PENDING_RESOLUTION.",
+      "minimumCorrection": "Clear pending cast when each Bolt finishes resolving, preserving paid-cast history. For Bolt nine, finish Wound and zero-HP callbacks through event 192 before cast closure."
+    },
+    {
+      "id": "W452-C02",
+      "component": "W10",
+      "location": "event 224 ARCANE_SIGHT_COMMIT at 127.1 and event 226 resolution at 127.2",
+      "finding": "Concentration starts too late.",
+      "minimumCorrection": "Establish Arcane Sight concentration at 127.1 before interruption, with deadline 727.1. Aura perception begins only after successful resolution at 127.2. Update downstream concentration records and hashes."
+    },
+    {
+      "id": "W452-C03",
+      "component": "W05+W10",
+      "location": "all eleven Counterspell windows, /details/actualResponderChecks/1",
+      "finding": "Unsupported categorical claim that the caster cannot Counterspell its own pending spell.",
+      "minimumCorrection": "Record B makes no attempt; leave self-counter eligibility unadjudicated and preserve all resources/outcomes."
+    }
+  ],
+  "responderBasis": "A has acquired automatic Wizard Counterspell. At 13.2 both hands are occupied. After focus setdown at 18.1, later Bolt windows show a free hand, available Reaction, 53 RP, same-plane distance 10.77033 ft, and an explicit decline. A is Dead at Sight/Dispel; C/D remain across the plane boundary. B makes no attempt; self-counter eligibility is not adjudicated.",
+  "verification": "ZIP/hash/CRC/payload bindings pass; 242 events, 2,157 forward and inverse operations, exact S030 reverse restoration.",
+  "queue": {
+    "reviewedApplied": 830,
+    "pending": 18,
+    "acceptedUnapplied": 0,
+    "mutation": false
+  },
+  "wholeFortress": "HELD_UNDER_PG200-B06",
+  "noSealAcceptanceApplicationCanonOrCampaignChange": true
+}

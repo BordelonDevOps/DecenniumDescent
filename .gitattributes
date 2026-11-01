@@ -233,3 +233,10 @@ docs/audit/**/*.zip filter=lfs diff=lfs merge=lfs -text
 /docs/audit/2026-10-08/full-game/director-spell-review-129/conjure_demiplane_fortress_closure_intake_367/OWNER_PG328_W03_TESTONLY_EVIDENCE_SEAL_395.json -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
 # Keep W03 Repack02 manifest-bound files and embedded source bytes exact on Windows.
 /docs/audit/2026-10-08/full-game/director-spell-review-129/banishment_gate_w03_lich_taxonomy_witness400_repack02/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+
+# Keep W05/W10 witness 453 byte-hash bindings stable across Windows checkouts.
+/docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w05_w10_joint_witness_453/*.json text eol=lf
+/docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w05_w10_joint_witness_453/*.py text eol=lf
+/docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w05_w10_joint_witness_453/*.md text eol=lf
+/docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w05_w10_joint_witness_453/*.zip -text
+/docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_REVIEW_PACKET_453_REPACK01.md text eol=lf
