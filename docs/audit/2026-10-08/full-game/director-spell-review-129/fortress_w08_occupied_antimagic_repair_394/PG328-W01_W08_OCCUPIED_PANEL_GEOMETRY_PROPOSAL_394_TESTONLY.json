@@ -1,0 +1,468 @@
+{
+  "id": "PG328-W01-W08-OCCUPIED-PANEL-GEOMETRY-PROPOSAL-394",
+  "createdAtUtc": "2026-11-01T02:42:17Z",
+  "status": "PROPOSED_TEST_ONLY_INPUT_PENDING_OWNER_ADOPTION_AND_DIRECTOR_REVIEW",
+  "supersedes": "PG328-W01-W08-OCCUPIED-PANEL-GEOMETRY-PROPOSAL-386",
+  "scope": {
+    "witnessId": "PG328-W08",
+    "subWitnessId": "PG328-W01",
+    "caseId": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-B/occupied-antimagic",
+    "fixtureMutated": false,
+    "canonicalGeometryChanged": false,
+    "actualCastPerformed": false,
+    "W01CompatibleDamageObligationCompleted": false,
+    "ownerAdoptionRequired": true
+  },
+  "sourceBindings": [
+    {
+      "path": "payload/rules/PG328_QUESTION_DISPOSITIONS.json#/questions/2/answer",
+      "sha256": "149d4098591799f51afa37837ccca722eb9ae08c3ea437c640d943f33b1bb637",
+      "use": "Q23 defines the existing Fortress envelope, 20x20 corner towers, stairs, floors and 5x5 structural panels, while keeping the exact support graph unresolved."
+    },
+    {
+      "path": "Return284_HELD.zip#cases/RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-B__occupied-antimagic.json#/final/actors/A",
+      "sha256": "f12414164a641a6b8912b43e8f426f027772f3a58d92dbadfcbd45b4f5b14900",
+      "use": "A at [15,10,0], Medium bodyBox [5,5,6], two hands, focus accessible, and focus-A/pack-A/cargo-A equipment."
+    },
+    {
+      "path": "Return284_HELD.zip#cases/RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-B__occupied-antimagic.json#/final/spaces/RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-B~1occupied-antimagic~1cast1~1space/support",
+      "sha256": "f12414164a641a6b8912b43e8f426f027772f3a58d92dbadfcbd45b4f5b14900",
+      "use": "Inherited aggregate support z=0 over [0,120]x[0,120]; proposed local panel must instantiate this existing patch, not add an independent footing."
+    },
+    {
+      "path": "payload/sources/ANTIMAGIC_FIELD_MODEL_149.json#/spells/2/procedure",
+      "sha256": "ceeff51cb3b9e8000bf845e299d4d9e66b46792133ae5931ad823ce98ea51e57",
+      "use": "Fixed-center 20ft field; actual-solid total-cover clipping is checked against explicit local geometry."
+    }
+  ],
+  "spaceEnvelope": {
+    "spaceId": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-B/occupied-antimagic/cast1/space",
+    "inheritedBoundsFeet": [
+      0,
+      120,
+      0,
+      120,
+      0,
+      40
+    ],
+    "inheritedSupport": {
+      "z": 0,
+      "boundsXY": [
+        0,
+        120,
+        0,
+        120
+      ]
+    },
+    "courtyardBoundsXY": [
+      5,
+      115,
+      5,
+      115
+    ],
+    "noBoundsOrSupportExpansion": true,
+    "panelOutsideEnvelope": false
+  },
+  "proposedLocalFortressInstantiation": {
+    "status": "Scoped test-only local layout; not an unbound campaign fact.",
+    "partOfExistingSource": "The existing PG200 Fortress effect and generated space in the bound case; no new space or spell source.",
+    "towerPlacementsFeet": {
+      "southwest": {
+        "x": [
+          5,
+          25
+        ],
+        "y": [
+          5,
+          25
+        ],
+        "z": [
+          0,
+          40
+        ]
+      },
+      "southeast": {
+        "x": [
+          95,
+          115
+        ],
+        "y": [
+          5,
+          25
+        ],
+        "z": [
+          0,
+          40
+        ]
+      },
+      "northwest": {
+        "x": [
+          5,
+          25
+        ],
+        "y": [
+          95,
+          115
+        ],
+        "z": [
+          0,
+          40
+        ]
+      },
+      "northeast": {
+        "x": [
+          95,
+          115
+        ],
+        "y": [
+          95,
+          115
+        ],
+        "z": [
+          0,
+          40
+        ]
+      }
+    },
+    "southwestTower": {
+      "id": "W08-SW-TOWER",
+      "boundsFeet": {
+        "x": [
+          5,
+          25
+        ],
+        "y": [
+          5,
+          25
+        ],
+        "z": [
+          0,
+          40
+        ]
+      },
+      "wallThicknessFeet": 5,
+      "wallSolids": [
+        {
+          "id": "W08-SW-WALL-W",
+          "x": [
+            5,
+            10
+          ],
+          "y": [
+            5,
+            25
+          ],
+          "z": [
+            0,
+            40
+          ]
+        },
+        {
+          "id": "W08-SW-WALL-E",
+          "x": [
+            20,
+            25
+          ],
+          "y": [
+            5,
+            25
+          ],
+          "z": [
+            0,
+            40
+          ]
+        },
+        {
+          "id": "W08-SW-WALL-N",
+          "x": [
+            5,
+            25
+          ],
+          "y": [
+            20,
+            25
+          ],
+          "z": [
+            0,
+            40
+          ]
+        },
+        {
+          "id": "W08-SW-WALL-S",
+          "x": [
+            5,
+            25
+          ],
+          "y": [
+            5,
+            10
+          ],
+          "z": [
+            0,
+            40
+          ],
+          "subtract": "W08-SW-DOOR-S"
+        }
+      ],
+      "southDoor": {
+        "id": "W08-SW-DOOR-S",
+        "clearApertureFeet": {
+          "x": [
+            12.5,
+            17.5
+          ],
+          "y": [
+            5,
+            10
+          ],
+          "z": [
+            0,
+            8
+          ]
+        },
+        "sizeFeet": [
+          5,
+          8
+        ],
+        "state": "open; no door leaf occupies aperture in proposed branch"
+      },
+      "openInterior": {
+        "x": [
+          10,
+          20
+        ],
+        "y": [
+          10,
+          20
+        ],
+        "z": [
+          0,
+          40
+        ]
+      },
+      "floorSurfacesFeet": [
+        0,
+        10,
+        20,
+        30,
+        40
+      ],
+      "stairPath": {
+        "boundsFeet": {
+          "x": [
+            15,
+            20
+          ],
+          "y": [
+            15,
+            20
+          ],
+          "z": [
+            0,
+            40
+          ]
+        },
+        "widthFeet": 5,
+        "reserved": true,
+        "intersectsPanelRays": false
+      }
+    },
+    "perimeterAndOtherStructures": {
+      "outerWalls": "Q23 perimeter walls are 5ft thick and 30ft high at x/y 0..5 and 115..120; none of the candidate panel rays reaches them.",
+      "otherTowers": "The other three towers are at the listed opposite corners and do not intersect the panel rays.",
+      "otherLocalSolids": [],
+      "noUnlistedObstructionAssumed": true
+    }
+  },
+  "occupiedPanel": {
+    "id": "W08-FLOOR-PANEL-A-01",
+    "partOf": "W08-SW-TOWER / existing PG200 Fortress source",
+    "planSizeFeet": [
+      5,
+      5
+    ],
+    "surfaceBoundsFeet": {
+      "x": [
+        12.5,
+        17.5
+      ],
+      "y": [
+        7.5,
+        12.5
+      ],
+      "z": 0
+    },
+    "areaSquareFeet": 25,
+    "AC": 17,
+    "HP": 60,
+    "thickness": "Q23 does not specify floor-panel thickness. No positive-thickness prism is asserted; the panel is proposed only as a structural surface on the inherited z=0 support datum.",
+    "AContactFootprint": {
+      "x": [
+        12.5,
+        17.5
+      ],
+      "y": [
+        7.5,
+        12.5
+      ]
+    },
+    "supportGraph": {
+      "existingGeneratedSpace": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-B/occupied-antimagic/cast1/space",
+      "existingAggregateSupportPointer": "/final/spaces/RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-B~1occupied-antimagic~1cast1~1space/support",
+      "testOnlyInstantiation": "The panel is proposed as the 25 sq ft structural floor patch represented by the matching region of the existing aggregate z=0 support plane.",
+      "edges": [
+        {
+          "from": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-B/occupied-antimagic/cast1/space",
+          "to": "W08-SW-TOWER",
+          "relation": "existing Fortress source contains proposed corner tower"
+        },
+        {
+          "from": "W08-SW-TOWER",
+          "to": "W08-FLOOR-PANEL-A-01",
+          "relation": "tower contains the named ground-floor structural panel"
+        },
+        {
+          "from": "existing aggregate support patch z=0",
+          "to": "W08-FLOOR-PANEL-A-01",
+          "relation": "same inherited support datum; no additional footing or support plane"
+        },
+        {
+          "from": "W08-FLOOR-PANEL-A-01",
+          "to": "A",
+          "relation": "supports A's full 5x5 ground-contact footprint"
+        }
+      ],
+      "noIndependentFooting": true,
+      "noNewSpace": true
+    },
+    "occupancy": {
+      "AFeetPosition": [
+        15,
+        10,
+        0
+      ],
+      "bodyBoundsFeet": {
+        "x": [
+          12.5,
+          17.5
+        ],
+        "y": [
+          7.5,
+          12.5
+        ],
+        "z": [
+          0,
+          6
+        ]
+      },
+      "groundContactZ": 0,
+      "doorwayFit": "A's footprint aligns with the 5x8 south aperture; body height 0..6 fits within aperture height 0..8."
+    }
+  },
+  "fieldIntersectionAndCover": {
+    "centerFeet": [
+      16,
+      12,
+      8
+    ],
+    "centerCandidateRevision": "Moved from 386's [20,10,8], which lay on the proposed east wall, into the proposed open interior.",
+    "centerRangeFromAFeet": 8.306624,
+    "radiusFeet": 20,
+    "panelCornerPointsFeet": [
+      [
+        12.5,
+        7.5,
+        0
+      ],
+      [
+        17.5,
+        7.5,
+        0
+      ],
+      [
+        12.5,
+        12.5,
+        0
+      ],
+      [
+        17.5,
+        12.5,
+        0
+      ]
+    ],
+    "panelCornerDistancesFeet": [
+      9.823441,
+      9.300538,
+      8.746428,
+      8.154753
+    ],
+    "farthestPanelPointFeet": [
+      12.5,
+      7.5,
+      0
+    ],
+    "farthestPanelDistanceFeet": 9.823441,
+    "sphereContainsWholePanelSurface": true,
+    "southWallCrossings": [
+      {
+        "target": [
+          12.5,
+          7.5,
+          0
+        ],
+        "crossingAtY10": {
+          "x": 14.444444,
+          "z": 4.444444
+        }
+      },
+      {
+        "target": [
+          17.5,
+          7.5,
+          0
+        ],
+        "crossingAtY10": {
+          "x": 16.666667,
+          "z": 4.444444
+        }
+      },
+      {
+        "target": [
+          12.5,
+          12.5,
+          0
+        ],
+        "crossingAtY10": null
+      },
+      {
+        "target": [
+          17.5,
+          12.5,
+          0
+        ],
+        "crossingAtY10": null
+      }
+    ],
+    "solidReview": "For targets with y<10, the line crosses the south wall only inside x=12.5..17.5,z=0..8 aperture; all other line portions remain inside open interior. Rays do not intersect other tower walls, reserved stair path, upper floors, or perimeter walls. The ground floor is the target surface itself; no penetration through a separate solid is assumed.",
+    "solidsEnumerated": [
+      "four 5ft tower walls, z=0..40, with the exact 5x8 south opening",
+      "tower floor surfaces z=0,10,20,30,40",
+      "reserved 5ft internal stair path",
+      "Q23 perimeter walls"
+    ],
+    "AIsIntendedOccupant": "A is the expressly declared occupant; its own body is not treated as an architectural total-cover solid. Director should flag any contrary interpretation.",
+    "secondaryWestWallCheck": {
+      "pointFeet": [
+        5,
+        10,
+        15
+      ],
+      "distanceTo394CenterFeet": 13.190906,
+      "calculation": "sqrt((16-5)^2+(12-10)^2+(8-15)^2)=sqrt(174)=13.190906ft",
+      "historical386Comparison": "Old center [20,10,8] gave sqrt(274)=16.552945ft; not the candidate center in 394."
+    },
+    "fieldClippingConclusion": "Only the named panel's surface intersection is assessed; no field penetration through a wall is inferred."
+  },
+  "Q27TriggerQuestion": "If this geometry is adopted and Director-reviewed, does suppression of the surface panel under A's full footprint satisfy PG9-Q27's occupied-structural-region trigger? This proposal does not decide the rule.",
+  "adoptionBoundary": "Test-only geometry premise; not campaign fact, no W01 compatible-damage completion, no PG200-B06 clearance, no W08 acceptance."
+}
