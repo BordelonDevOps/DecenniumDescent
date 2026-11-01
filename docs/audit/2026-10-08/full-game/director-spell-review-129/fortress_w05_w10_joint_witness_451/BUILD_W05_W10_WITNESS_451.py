@@ -30,6 +30,10 @@ def sha(path: Path) -> str:
     return sha_bytes(path.read_bytes())
 
 
+def rel(path: Path) -> str:
+    return path.relative_to(REVIEW).as_posix()
+
+
 def dump(path: Path, value: object) -> None:
     path.write_text(json.dumps(value, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
@@ -102,16 +106,16 @@ def main() -> None:
         "hypotheticalOnly": True,
         "campaignOccurrenceAsserted": False,
         "adoption": {
-            "path": str(ADOPTION_PATH.relative_to(REVIEW)),
+            "path": rel(ADOPTION_PATH),
             "sha256": sha(ADOPTION_PATH),
-            "proposalPath": str(PROPOSAL_PATH.relative_to(REVIEW)),
+            "proposalPath": rel(PROPOSAL_PATH),
             "proposalSha256": sha(PROPOSAL_PATH),
             "exactProposalAdopted": adoption["scope"]["proposalSha256"] == sha(PROPOSAL_PATH),
             "ownerAuthorization": adoption["ownerAuthorization"]["verbatim"],
             "directorStatus": adoption["directorReview"]["status"],
         },
         "parent": {
-            "path": str(PARENT_PATH.relative_to(REVIEW)),
+            "path": rel(PARENT_PATH),
             "pointer": "#/stateSnapshots/S030",
             "replaySha256": sha(PARENT_PATH),
             "snapshotSha256": snap_sha,
@@ -166,7 +170,7 @@ def main() -> None:
         "id": "PG328-W05-W10-BUILD-VALIDATION-451",
         "classification": "TEST_ONLY_WITNESS_BUILD_VALIDATION",
         "status": "PASS" if all(checks.values()) else "FAIL",
-        "witnessPath": str(WITNESS_PATH.relative_to(REVIEW)),
+        "witnessPath": rel(WITNESS_PATH),
         "witnessSha256": sha(WITNESS_PATH),
         "eventCount": len(events),
         "checks": checks,
@@ -200,7 +204,7 @@ def main() -> None:
         "id": "PG328-W05-W10-MANIFEST-451",
         "classification": "TEST_ONLY_REVIEW_PACKAGE",
         "files": [
-            {"path": str(path.relative_to(REVIEW)), "bytes": path.stat().st_size, "sha256": sha(path)}
+            {"path": rel(path), "bytes": path.stat().st_size, "sha256": sha(path)}
             for path in package_files
         ],
     }
@@ -212,14 +216,14 @@ def main() -> None:
     dump(DELIVERY_PATH, {
         "id": "PG328-W05-W10-DELIVERY-451",
         "classification": "TEST_ONLY_UNSEALED_PENDING_DIRECTOR_REVIEW",
-        "witnessPath": str(WITNESS_PATH.relative_to(REVIEW)),
+        "witnessPath": rel(WITNESS_PATH),
         "witnessBytes": WITNESS_PATH.stat().st_size,
         "witnessSha256": sha(WITNESS_PATH),
-        "archivePath": str(ARCHIVE_PATH.relative_to(REVIEW)),
+        "archivePath": rel(ARCHIVE_PATH),
         "archiveBytes": ARCHIVE_PATH.stat().st_size,
         "archiveSha256": sha(ARCHIVE_PATH),
-        "manifestPath": str(MANIFEST_PATH.relative_to(REVIEW)),
-        "validationPath": str(VALIDATION_PATH.relative_to(REVIEW)),
+        "manifestPath": rel(MANIFEST_PATH),
+        "validationPath": rel(VALIDATION_PATH),
         "validationSha256": sha(VALIDATION_PATH),
         "queue": {"reviewedApplied": 830, "pending": 18, "acceptedUnapplied": 0, "changed": False},
         "directorReviewRequested": True,
