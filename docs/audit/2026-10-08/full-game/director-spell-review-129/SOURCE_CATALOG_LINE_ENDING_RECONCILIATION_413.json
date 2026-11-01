@@ -1,0 +1,187 @@
+{
+  "id": "SPELL-QUEUE-404-SOURCE-CATALOG-LINE-ENDING-RECONCILIATION-413",
+  "recordedAtUtc": "2026-11-01T13:28:08Z",
+  "reviewedCommit": "6836c190f22774d736921300c3bc0649fb3396ae",
+  "scope": "Read-only source binding reconciliation for Queue404; does not alter the queue, authored index, catalog, canonical rules, or spell dispositions.",
+  "queue": {
+    "path": "docs\\audit\\2026-10-08\\full-game\\director-spell-review-129\\CURRENT_SPELL_QUEUE_404.json",
+    "bytes": 3172,
+    "sha256": "9346663e8858c720c9b453921984d9af7925feb5f8c263d31e5b19a72b364b60",
+    "authority": {
+      "reviewedApplied": 829,
+      "pending": 19,
+      "acceptedUnapplied": 0,
+      "completeStandaloneProcedures": 553,
+      "scopedInterfaces": 173
+    }
+  },
+  "authoredReviewIndex": {
+    "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+    "bytes": 1749292,
+    "sha256": "3186236a711c1d798eef3df0a4b784ba2a6cf76f69997df969b383502fe799ee",
+    "expectedSha256": "3186236a711c1d798eef3df0a4b784ba2a6cf76f69997df969b383502fe799ee",
+    "bindingMatches": true
+  },
+  "catalogBinding": {
+    "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+    "declaredBytes": 4945319,
+    "declaredSha256": "f52cf6a4a4673897615a74c7c67dcba798c431362d4357e71ee552cc7c5d31f8",
+    "rawTrackedMainBytes": 5085187,
+    "rawTrackedMainSha256": "773fb0b3b0fdb501858ded33c02d90dc4db3009bd1b9f7112c244d998218f05b",
+    "unversionedSourceCopyBytes": 4945319,
+    "unversionedSourceCopySha256": "f52cf6a4a4673897615a74c7c67dcba798c431362d4357e71ee552cc7c5d31f8",
+    "lineEndingNormalization": {
+      "operation": "Decode tracked UTF-8 text, replace CRLF with LF, re-encode UTF-8 without BOM",
+      "normalizedBytes": 4945319,
+      "normalizedSha256": "f52cf6a4a4673897615a74c7c67dcba798c431362d4357e71ee552cc7c5d31f8",
+      "normalizedMatchesQueueBinding": true,
+      "normalizedMatchesSourceCopy": true
+    }
+  },
+  "checks": {
+    "pendingIdentityCount": 19,
+    "allPendingRowsIdenticalAcrossCatalogRepresentations": true,
+    "pendingRowChecks": [
+      {
+        "spellId": "alignment-perfection",
+        "identical": true,
+        "presentInBoth": true
+      },
+      {
+        "spellId": "corruption-purification",
+        "identical": true,
+        "presentInBoth": true
+      },
+      {
+        "spellId": "faction-perfection",
+        "identical": true,
+        "presentInBoth": true
+      },
+      {
+        "spellId": "invulnerable-sphere",
+        "identical": true,
+        "presentInBoth": true
+      },
+      {
+        "spellId": "faction-incarnate",
+        "identical": true,
+        "presentInBoth": true
+      },
+      {
+        "spellId": "alignment-ascension",
+        "identical": true,
+        "presentInBoth": true
+      },
+      {
+        "spellId": "conjure-demiplane-fortress",
+        "identical": true,
+        "presentInBoth": true
+      },
+      {
+        "spellId": "divine-intervention-greater",
+        "identical": true,
+        "presentInBoth": true
+      },
+      {
+        "spellId": "fate-rewrite",
+        "identical": true,
+        "presentInBoth": true
+      },
+      {
+        "spellId": "faction-omniscience-supreme",
+        "identical": true,
+        "presentInBoth": true
+      },
+      {
+        "spellId": "eternal-prophecy",
+        "identical": true,
+        "presentInBoth": true
+      },
+      {
+        "spellId": "astral-projection",
+        "identical": true,
+        "presentInBoth": true
+      },
+      {
+        "spellId": "summon-avatar-of-decay",
+        "identical": true,
+        "presentInBoth": true
+      },
+      {
+        "spellId": "final-word",
+        "identical": true,
+        "presentInBoth": true
+      },
+      {
+        "spellId": "imprisonment",
+        "identical": true,
+        "presentInBoth": true
+      },
+      {
+        "spellId": "reverse-gravity-field",
+        "identical": true,
+        "presentInBoth": true
+      },
+      {
+        "spellId": "elemental-shell",
+        "identical": true,
+        "presentInBoth": true
+      },
+      {
+        "spellId": "wish",
+        "identical": true,
+        "presentInBoth": true
+      },
+      {
+        "spellId": "collapse-timeline",
+        "identical": true,
+        "presentInBoth": true
+      }
+    ],
+    "flameArmorRowIdentical": true,
+    "flameArmorId": "flame-armor",
+    "flameArmorCurrentCatalogPointer": "/spells/121",
+    "flameArmorAuthoredIndexPointer": "/entries/121"
+  },
+  "directorDisposition": {
+    "conversation": "https://chatgpt.com/g/g-p-67f17555a8dc8191a2b5b81e6d8adc12-dungeon-crawler/c/6adc506d-8770-83ea-b64c-0345d9b9b682",
+    "finding": "Queue404 catalog hash difference is due only to CRLF vs LF; the normalized tracked-main catalog matches the declared binding. A separate reconciliation record is sufficient; Queue404 need not be reissued."
+  },
+  "preservation": {
+    "queueUnchanged": true,
+    "authoredReviewIndexUnchanged": true,
+    "catalogUnchanged": true,
+    "canonicalRulesChanged": false,
+    "acceptanceCreated": false,
+    "applicationAuthorized": false,
+    "runtimeChanged": false,
+    "authority": {
+      "reviewedApplied": 829,
+      "pending": 19,
+      "acceptedUnapplied": 0,
+      "completeStandaloneProcedures": 553,
+      "scopedInterfaces": 173
+    },
+    "pendingIds": [
+      "alignment-perfection",
+      "corruption-purification",
+      "faction-perfection",
+      "invulnerable-sphere",
+      "faction-incarnate",
+      "alignment-ascension",
+      "conjure-demiplane-fortress",
+      "divine-intervention-greater",
+      "fate-rewrite",
+      "faction-omniscience-supreme",
+      "eternal-prophecy",
+      "astral-projection",
+      "summon-avatar-of-decay",
+      "final-word",
+      "imprisonment",
+      "reverse-gravity-field",
+      "elemental-shell",
+      "wish",
+      "collapse-timeline"
+    ]
+  }
+}
