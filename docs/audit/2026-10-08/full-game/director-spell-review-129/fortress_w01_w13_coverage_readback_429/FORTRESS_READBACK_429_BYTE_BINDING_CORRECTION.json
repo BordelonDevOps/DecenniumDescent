@@ -1,0 +1,497 @@
+{
+  "id": "FORTRESS-429-BYTE-BINDING-RECONCILIATION-01",
+  "status": "BINDING_CLARIFICATION_ONLY_NO_SEAL_ACCEPTANCE_APPLICATION",
+  "pinnedCommit": "158219a844102b0f0069b0e311abb9b8bda014ff",
+  "originalReadbacks": [
+    {
+      "filename": "FORTRESS_W01_W13_COVERAGE_READBACK_429.json",
+      "bytes": 49608,
+      "sha256": "dc41c01b2f840ecd89deb20e971d81761a0ee76644276cf1837538adbfa01931"
+    },
+    {
+      "filename": "FORTRESS_W01_W13_COVERAGE_READBACK_429.md",
+      "bytes": 34298,
+      "sha256": "72753f7e3eb42777bd75e7b362eebf530c6e9fa86d67153c5ef5d80354e652fa"
+    }
+  ],
+  "revisedReadbacks": [
+    {
+      "filename": "FORTRESS_W01_W13_COVERAGE_READBACK_429_BINDING_RECONCILED.json",
+      "bytes": 76037,
+      "sha256": "3b52ab2479da5be1b61e4ff192a1326a870c57f55a0120bc8480f524b8dbc647"
+    },
+    {
+      "filename": "FORTRESS_W01_W13_COVERAGE_READBACK_429_BINDING_RECONCILED.md",
+      "bytes": 40856,
+      "sha256": "a84e83a7b1030e2e680a394cb0832e693d24cd30d0e732619077040230bf1403"
+    }
+  ],
+  "finding": "All original 23 record byte lengths/SHA-256 values and seven primary component hashes match the pinned Git objects/LFS payloads. Eight reported checkout hashes are exactly reproduced by LF→CRLF conversion. No source content conflict exists.",
+  "method": "Binding reconciliation at pinned commit 158219a844102b0f0069b0e311abb9b8bda014ff: re-fetched all 23 verifiedRecordBindings as unmodified raw byte streams; recalculated byte lengths and SHA-256, and checked each computed Git blob SHA-1 against the repository file identity returned by GitHub. All 23 original values match the exact committed bytes. Independently fetched all seven primary component evidence files; the two ZIP payloads were resolved through their committed Git LFS pointers and verified against LFS OID and size. All seven match the prior evidence hashes. The eight user-reported checkout values are reproduced exactly by changing LF to CRLF only; reverse conversion reproduces every committed byte. The user workstation was not accessed. Those checkout hashes are recorded as a separate representation and are not substituted for Git-blob hashes. No semantic re-review, historical replay, supplied verifier, new witness or W09 test was executed.",
+  "all23ExactGitBindings": [
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/conjure_demiplane_fortress_closure_intake_367/payload/COVERAGE_MAP_367.json",
+      "bytes": 16948,
+      "sha256": "e7643116b934d3ec1b35e52c7a4aa6e32523f1d0e90eb98c16b618c5522f0237",
+      "gitBlobSha1": "b07f146b0d01cc5fad76b0237445ee188e2307e9",
+      "byteDomain": "exact committed Git blob",
+      "gitBlobIdentityVerified": true,
+      "crlfCount": 0,
+      "lfCount": 255,
+      "matchesOriginalReadback": true,
+      "reportedCheckoutRepresentation": {
+        "byteDomain": "CRLF representation matching user-reported local checkout; local workstation not directly inspected",
+        "bytes": 17203,
+        "sha256": "eb7a1271120e96f72020ac2536eae1b22351324090bb2a7f601c2c271fe246ae",
+        "transformation": "Every LF byte replaced by CRLF, no other byte changed",
+        "roundTripReproducesExactGitBlob": true,
+        "matchesUserReportedSizeAndHash": true
+      }
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/conjure_demiplane_fortress_closure_intake_367/DIRECTOR_REVIEW_367.json",
+      "bytes": 5585,
+      "sha256": "7291d7153f8b2991392143d27d08b9f9715e66b1fb8cd03946c349aa46cbfa37",
+      "gitBlobSha1": "c976236c501c02a845b2abb753eca312b385cdfe",
+      "byteDomain": "exact committed Git blob",
+      "gitBlobIdentityVerified": true,
+      "crlfCount": 0,
+      "lfCount": 113,
+      "matchesOriginalReadback": true,
+      "reportedCheckoutRepresentation": {
+        "byteDomain": "CRLF representation matching user-reported local checkout; local workstation not directly inspected",
+        "bytes": 5698,
+        "sha256": "4b57f2c4eee81545efacc66597a5cfd742909695680672cafb965eed5e3e93c5",
+        "transformation": "Every LF byte replaced by CRLF, no other byte changed",
+        "roundTripReproducesExactGitBlob": true,
+        "matchesUserReportedSizeAndHash": true
+      }
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/conjure_demiplane_fortress_closure_intake_367/DIRECTOR_PG328_W03_TESTONLY_SEAL395_REVIEW_READBACK.json",
+      "bytes": 3485,
+      "sha256": "db3a73ff22e15fc6a8910d256af8c9db9e5399728c42765539a6af7e3588e337",
+      "gitBlobSha1": "673ba4287eb351793dd18b3ae0b124e2d0e8391e",
+      "byteDomain": "exact committed Git blob",
+      "gitBlobIdentityVerified": true,
+      "crlfCount": 0,
+      "lfCount": 98,
+      "matchesOriginalReadback": true,
+      "reportedCheckoutRepresentation": {
+        "byteDomain": "CRLF representation matching user-reported local checkout; local workstation not directly inspected",
+        "bytes": 3583,
+        "sha256": "427f3a960221188ee29d7a98b22aad2722d6be0e2be10b8f452fbbc650220883",
+        "transformation": "Every LF byte replaced by CRLF, no other byte changed",
+        "roundTripReproducesExactGitBlob": true,
+        "matchesUserReportedSizeAndHash": true
+      }
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/conjure_demiplane_fortress_closure_intake_367/OWNER_PG328_W03_TESTONLY_EVIDENCE_SEAL_395.json",
+      "bytes": 5036,
+      "sha256": "e6f90938a3a609d74b9b82e47177db5a8064d6e70397a12ca12f7306ee881c39",
+      "gitBlobSha1": "15a4a9d5d51dc6a553617d0da2f026dda2bb237d",
+      "byteDomain": "exact committed Git blob",
+      "gitBlobIdentityVerified": true,
+      "crlfCount": 100,
+      "lfCount": 100,
+      "matchesOriginalReadback": true
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/conjure_demiplane_fortress_closure_intake_367/DIRECTOR_PG328_W03_COMPLETION_SETTLEMENT_REVIEW_391.json",
+      "bytes": 4220,
+      "sha256": "ee5da9c9b98dc602c691f82bdcf0c9870cfecb1e9dffdeafba94d12372aedbb2",
+      "gitBlobSha1": "5254337c9d303ef36f25a64b41fc3e57e1a7f31b",
+      "byteDomain": "exact committed Git blob",
+      "gitBlobIdentityVerified": true,
+      "crlfCount": 0,
+      "lfCount": 62,
+      "matchesOriginalReadback": true
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/conjure_demiplane_fortress_closure_intake_367/DIRECTOR_PG328_W03_WITNESS_SEAL_REVIEW_393.json",
+      "bytes": 3482,
+      "sha256": "dcc2ddf2441d4f57c92f6dc94f03ad6b81ad66e0763236e2b51bdda0a1f2c7a8",
+      "gitBlobSha1": "2d61a9ad30d172397159683153f126e0d02fc8d1",
+      "byteDomain": "exact committed Git blob",
+      "gitBlobIdentityVerified": true,
+      "crlfCount": 0,
+      "lfCount": 57,
+      "matchesOriginalReadback": true
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w06_permissions_reentry_375_repack03/DIRECTOR_SEAL_375_REPACK03.json",
+      "bytes": 2584,
+      "sha256": "7a8d751e2fca437a5b822180152fe8415cf163e8318f2e2ac8d0dfde72f2be29",
+      "gitBlobSha1": "bc0b9bdfdd65d27449374035d76e139ecb85ec13",
+      "byteDomain": "exact committed Git blob",
+      "gitBlobIdentityVerified": true,
+      "crlfCount": 0,
+      "lfCount": 42,
+      "matchesOriginalReadback": true
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w07_real_dispel_374_repack02/DIRECTOR_SEAL_374_REPACK02.json",
+      "bytes": 1837,
+      "sha256": "c7cd10cbe84bfd0f954eda3f9d5a264c0086b430778114d5de32bfa639ad4086",
+      "gitBlobSha1": "89b3a366de44c5d060349fc6416927efb376e11e",
+      "byteDomain": "exact committed Git blob",
+      "gitBlobIdentityVerified": true,
+      "crlfCount": 0,
+      "lfCount": 34,
+      "matchesOriginalReadback": true
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w08_occupied_antimagic_witness_412_repack01/W08_TESTONLY_EVIDENCE_SEAL_412_REPACK01.json",
+      "bytes": 3253,
+      "sha256": "285ddd72a9e135a9399ebca6ff1f0cc2545cb2c83c84eb9ec095ee2c4903ba45",
+      "gitBlobSha1": "586556816a65d7ec2acc7c2ec70dfd8d7c03539f",
+      "byteDomain": "exact committed Git blob",
+      "gitBlobIdentityVerified": true,
+      "crlfCount": 0,
+      "lfCount": 72,
+      "matchesOriginalReadback": true,
+      "reportedCheckoutRepresentation": {
+        "byteDomain": "CRLF representation matching user-reported local checkout; local workstation not directly inspected",
+        "bytes": 3325,
+        "sha256": "896c7a9046a85eef50c4f54564fc4ea607025b45b7226e842dc5b90244f92b77",
+        "transformation": "Every LF byte replaced by CRLF, no other byte changed",
+        "roundTripReproducesExactGitBlob": true,
+        "matchesUserReportedSizeAndHash": true
+      }
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w08_occupied_antimagic_witness_412_repack01/payload/reviews/DIRECTOR_PG328_W08_WITNESS_REVIEW_412.json",
+      "bytes": 3170,
+      "sha256": "051cc712589f1ffd9f30dd0c1beade4ba7293502387291b7ba597f8e7c44662c",
+      "gitBlobSha1": "7740dc109524c9ef688872733ce9b47033132812",
+      "byteDomain": "exact committed Git blob",
+      "gitBlobIdentityVerified": true,
+      "crlfCount": 0,
+      "lfCount": 1,
+      "matchesOriginalReadback": true
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w02_scribing_witness_420_repack02/DELIVERY_420.json",
+      "bytes": 701,
+      "sha256": "196ebf18c195caca5302130009c2e0dc1d62564806616171d3aaab5719a32c2f",
+      "gitBlobSha1": "3df2621524a2f4276c7b0cdc0767afdc8c843c8a",
+      "byteDomain": "exact committed Git blob",
+      "gitBlobIdentityVerified": true,
+      "crlfCount": 0,
+      "lfCount": 17,
+      "matchesOriginalReadback": true,
+      "reportedCheckoutRepresentation": {
+        "byteDomain": "CRLF representation matching user-reported local checkout; local workstation not directly inspected",
+        "bytes": 718,
+        "sha256": "05c5513f5d5bbd3901ce5b3e78950a3420f28d8d87b44af714e29006ff8f7f8d",
+        "transformation": "Every LF byte replaced by CRLF, no other byte changed",
+        "roundTripReproducesExactGitBlob": true,
+        "matchesUserReportedSizeAndHash": true
+      }
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/conjure_demiplane_fortress_return328_received/BLOCKER_REASSESSMENT.json",
+      "bytes": 18926,
+      "sha256": "8f50b284846ef373ada5bae610c2a8d584cf695c3922cf9c30f34bb48fc4bd4b",
+      "gitBlobSha1": "ce97704ed5aee3d43911dcca624aca576b45f49b",
+      "byteDomain": "exact committed Git blob",
+      "gitBlobIdentityVerified": true,
+      "crlfCount": 0,
+      "lfCount": 302,
+      "matchesOriginalReadback": true
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/conjure_demiplane_fortress_return328_received/PROCEDURE_CURRENT.json",
+      "bytes": 39916,
+      "sha256": "aace60a0f276bcb1647c0ed7f20c7383225fecfe5a6628938c1f4034018dd5f0",
+      "gitBlobSha1": "ffe0d39fab4befd27ce40576d97fbc7ed908f18c",
+      "byteDomain": "exact committed Git blob",
+      "gitBlobIdentityVerified": true,
+      "crlfCount": 0,
+      "lfCount": 354,
+      "matchesOriginalReadback": true
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/conjure_demiplane_fortress_return328_received/QUALIFICATIONS.json",
+      "bytes": 6254,
+      "sha256": "fcea757e73ce01d3ac2112bacea6ba25cb8eb5a35cff0d99aa1fb9b2b3efccbf",
+      "gitBlobSha1": "06925c3dcd17ce0fb1814e8e8ab5528188430b73",
+      "byteDomain": "exact committed Git blob",
+      "gitBlobIdentityVerified": true,
+      "crlfCount": 0,
+      "lfCount": 106,
+      "matchesOriginalReadback": true
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/W09_RECONCILIATION_429.json",
+      "bytes": 3819,
+      "sha256": "a6bd5ac101ebdf933d4155bf5be124a988d537a2cc6d4825937b31859710ad68",
+      "gitBlobSha1": "b395fa85ff01a0b4556f394d4f83ee16d343835b",
+      "byteDomain": "exact committed Git blob",
+      "gitBlobIdentityVerified": true,
+      "crlfCount": 0,
+      "lfCount": 72,
+      "matchesOriginalReadback": true
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/conjure_demiplane_fortress_closure_intake_367/payload/sources/RETURN284_WIZARD20_PROFILE_TESTONLY.json",
+      "bytes": 116341,
+      "sha256": "a3a3ce0a714c1fa35523719c8c8a0297fc457d5b5f097f6a20a00aad6cd7be55",
+      "gitBlobSha1": "51c7dd621f749444a70aeb30700c3e611bac73b3",
+      "byteDomain": "exact committed Git blob",
+      "gitBlobIdentityVerified": true,
+      "crlfCount": 0,
+      "lfCount": 2792,
+      "matchesOriginalReadback": true
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/conjure_demiplane_fortress_closure_intake_367/payload/sources/AC5_ACCEPTED_SOURCE_MODEL.json",
+      "bytes": 337035,
+      "sha256": "d782569ed8ef558f4edf54634e0d8c19926e24e2437528f1769b5ef3ce594898",
+      "gitBlobSha1": "2eba7979199c9e861dda812357182c1b2b2b2686",
+      "byteDomain": "exact committed Git blob",
+      "gitBlobIdentityVerified": true,
+      "crlfCount": 0,
+      "lfCount": 5445,
+      "matchesOriginalReadback": true
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/conjure_demiplane_fortress_closure_intake_367/payload/sources/DEMIPLANE_MODEL_166.json",
+      "bytes": 742020,
+      "sha256": "81f7aedb637ff66f2a5e2380bc790963d28def77bff9fa40a505df4707c3c87b",
+      "gitBlobSha1": "097b058a9da50836ff0a3bb77b798302dcbea3cc",
+      "byteDomain": "exact committed Git blob",
+      "gitBlobIdentityVerified": true,
+      "crlfCount": 0,
+      "lfCount": 12177,
+      "matchesOriginalReadback": true,
+      "reportedCheckoutRepresentation": {
+        "byteDomain": "CRLF representation matching user-reported local checkout; local workstation not directly inspected",
+        "bytes": 754197,
+        "sha256": "c32615820f441f5bcf4e1946b5117f9e1f2c78fbfd56e890f87d4587ede675ea",
+        "transformation": "Every LF byte replaced by CRLF, no other byte changed",
+        "roundTripReproducesExactGitBlob": true,
+        "matchesUserReportedSizeAndHash": true
+      }
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/conjure_demiplane_fortress_closure_intake_367/payload/sources/PLANAR5_EXACT_ACCEPTANCE_166.json",
+      "bytes": 14199,
+      "sha256": "664a9a348d9007407379d0869d88ac8011a312b967e1c38611b2aefb69ec3b3b",
+      "gitBlobSha1": "719da56ce46014c820158c9564d5e606b2fa4054",
+      "byteDomain": "exact committed Git blob",
+      "gitBlobIdentityVerified": true,
+      "crlfCount": 0,
+      "lfCount": 405,
+      "matchesOriginalReadback": true
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/playtest/spell_form_profiles.json",
+      "bytes": 11952,
+      "sha256": "6bf641487b429201e7d0d01c725acb1c975949d902687c6cdf3be9d13e25b3d3",
+      "gitBlobSha1": "66a638624b923f65ccaa01f7f693d10df29419e3",
+      "byteDomain": "exact committed Git blob",
+      "gitBlobIdentityVerified": true,
+      "crlfCount": 441,
+      "lfCount": 441,
+      "matchesOriginalReadback": true
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/TRANSFORMATION_SPELL_PLAYTEST.md",
+      "bytes": 20171,
+      "sha256": "b0551148795953c4435cd2e528fcfca84f9cfae97a6684f2b7334a10955dde23",
+      "gitBlobSha1": "afe6232ba976eb007d260661fa80585768edcf52",
+      "byteDomain": "exact committed Git blob",
+      "gitBlobIdentityVerified": true,
+      "crlfCount": 123,
+      "lfCount": 123,
+      "matchesOriginalReadback": true
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+      "bytes": 22726,
+      "sha256": "d93f9cb0ec8a8398560511f23029d38d9b9a8b901e816373579c8f72b0bec1f3",
+      "gitBlobSha1": "60f81c5706857c5528d9d19e3da9ac15dcd7fb85",
+      "byteDomain": "exact committed Git blob",
+      "gitBlobIdentityVerified": true,
+      "crlfCount": 0,
+      "lfCount": 165,
+      "matchesOriginalReadback": true,
+      "reportedCheckoutRepresentation": {
+        "byteDomain": "CRLF representation matching user-reported local checkout; local workstation not directly inspected",
+        "bytes": 22891,
+        "sha256": "5fa622f43b6948e7e991f1ca5a237de584900e92cfd4f37eed47586d73222039",
+        "transformation": "Every LF byte replaced by CRLF, no other byte changed",
+        "roundTripReproducesExactGitBlob": true,
+        "matchesUserReportedSizeAndHash": true
+      }
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+      "bytes": 4945319,
+      "sha256": "f52cf6a4a4673897615a74c7c67dcba798c431362d4357e71ee552cc7c5d31f8",
+      "gitBlobSha1": "2d243b311cded8484630c12b6fcc2ae7f70cfddf",
+      "byteDomain": "exact committed Git blob",
+      "gitBlobIdentityVerified": true,
+      "crlfCount": 0,
+      "lfCount": 139868,
+      "matchesOriginalReadback": true,
+      "reportedCheckoutRepresentation": {
+        "byteDomain": "CRLF representation matching user-reported local checkout; local workstation not directly inspected",
+        "bytes": 5085187,
+        "sha256": "773fb0b3b0fdb501858ded33c02d90dc4db3009bd1b9f7112c244d998218f05b",
+        "transformation": "Every LF byte replaced by CRLF, no other byte changed",
+        "roundTripReproducesExactGitBlob": true,
+        "matchesUserReportedSizeAndHash": true
+      }
+    }
+  ],
+  "sevenPrimaryComponentBindings": [
+    {
+      "id": "PG328-W01",
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w01_successor_overlays_425/DD_Fortress_W01_Successor_Overlays_425_TESTONLY.zip",
+      "commit": "158219a844102b0f0069b0e311abb9b8bda014ff",
+      "bytes": 431737,
+      "sha256": "8d1857bcedc412181d90ab2cb6347b2f40b0694c648a081ca2af40f58ad4200e",
+      "previousSha256": "8d1857bcedc412181d90ab2cb6347b2f40b0694c648a081ca2af40f58ad4200e",
+      "hashMatchesPrevious": true,
+      "gitBlobSha1": "c942024d6db4b260c7aeb066801b94f6f9cda16c",
+      "lfs": {
+        "version": "https://git-lfs.github.com/spec/v1",
+        "oid": "sha256:8d1857bcedc412181d90ab2cb6347b2f40b0694c648a081ca2af40f58ad4200e",
+        "size": "431737"
+      },
+      "crlfCount": 7,
+      "lfCount": 1423
+    },
+    {
+      "id": "PG328-W02",
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w02_scribing_witness_420_repack02/DD_Rank9_ConjureDemiplaneFortress_W02_Scribing_420_Repack02_TESTONLY.zip",
+      "commit": "158219a844102b0f0069b0e311abb9b8bda014ff",
+      "bytes": 3485580,
+      "sha256": "5988ffd1c6b3fc5e36c626ec8ebc64410db627cc838486a5ecfaef62691a36d5",
+      "previousSha256": "5988ffd1c6b3fc5e36c626ec8ebc64410db627cc838486a5ecfaef62691a36d5",
+      "hashMatchesPrevious": true,
+      "gitBlobSha1": "6a4f76f5d7724d38ad95b5c2add8d3f6c8331e76",
+      "lfs": {
+        "version": "https://git-lfs.github.com/spec/v1",
+        "oid": "sha256:5988ffd1c6b3fc5e36c626ec8ebc64410db627cc838486a5ecfaef62691a36d5",
+        "size": "3485580"
+      },
+      "crlfCount": 50,
+      "lfCount": 12988
+    },
+    {
+      "id": "PG328-W03",
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/conjure_demiplane_fortress_closure_intake_367/OWNER_PG328_W03_TESTONLY_EVIDENCE_SEAL_395.json",
+      "commit": "158219a844102b0f0069b0e311abb9b8bda014ff",
+      "bytes": 5036,
+      "sha256": "e6f90938a3a609d74b9b82e47177db5a8064d6e70397a12ca12f7306ee881c39",
+      "previousSha256": "e6f90938a3a609d74b9b82e47177db5a8064d6e70397a12ca12f7306ee881c39",
+      "hashMatchesPrevious": true,
+      "gitBlobSha1": "15a4a9d5d51dc6a553617d0da2f026dda2bb237d",
+      "lfs": null,
+      "crlfCount": 100,
+      "lfCount": 100
+    },
+    {
+      "id": "PG328-W06",
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w06_permissions_reentry_375_repack03/DIRECTOR_SEAL_375_REPACK03.json",
+      "commit": "158219a844102b0f0069b0e311abb9b8bda014ff",
+      "bytes": 2584,
+      "sha256": "7a8d751e2fca437a5b822180152fe8415cf163e8318f2e2ac8d0dfde72f2be29",
+      "previousSha256": "7a8d751e2fca437a5b822180152fe8415cf163e8318f2e2ac8d0dfde72f2be29",
+      "hashMatchesPrevious": true,
+      "gitBlobSha1": "bc0b9bdfdd65d27449374035d76e139ecb85ec13",
+      "lfs": null,
+      "crlfCount": 0,
+      "lfCount": 42
+    },
+    {
+      "id": "PG328-W07",
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w07_real_dispel_374_repack02/DIRECTOR_SEAL_374_REPACK02.json",
+      "commit": "158219a844102b0f0069b0e311abb9b8bda014ff",
+      "bytes": 1837,
+      "sha256": "c7cd10cbe84bfd0f954eda3f9d5a264c0086b430778114d5de32bfa639ad4086",
+      "previousSha256": "c7cd10cbe84bfd0f954eda3f9d5a264c0086b430778114d5de32bfa639ad4086",
+      "hashMatchesPrevious": true,
+      "gitBlobSha1": "89b3a366de44c5d060349fc6416927efb376e11e",
+      "lfs": null,
+      "crlfCount": 0,
+      "lfCount": 34
+    },
+    {
+      "id": "PG328-W08",
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w08_occupied_antimagic_witness_412_repack01/W08_TESTONLY_EVIDENCE_SEAL_412_REPACK01.json",
+      "commit": "158219a844102b0f0069b0e311abb9b8bda014ff",
+      "bytes": 3253,
+      "sha256": "285ddd72a9e135a9399ebca6ff1f0cc2545cb2c83c84eb9ec095ee2c4903ba45",
+      "previousSha256": "285ddd72a9e135a9399ebca6ff1f0cc2545cb2c83c84eb9ec095ee2c4903ba45",
+      "hashMatchesPrevious": true,
+      "gitBlobSha1": "586556816a65d7ec2acc7c2ec70dfd8d7c03539f",
+      "lfs": null,
+      "crlfCount": 0,
+      "lfCount": 72
+    },
+    {
+      "id": "PG328-W09",
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w09_successor_witness_428/W09_REPLAY_428_TESTONLY.json",
+      "commit": "158219a844102b0f0069b0e311abb9b8bda014ff",
+      "bytes": 4312729,
+      "sha256": "173d1decaaa2d706f4266261600aba15bbc6eb01cf90628dd2b83e124a09f48a",
+      "previousSha256": "173d1decaaa2d706f4266261600aba15bbc6eb01cf90628dd2b83e124a09f48a",
+      "hashMatchesPrevious": true,
+      "gitBlobSha1": "65fc536a8956cd7217accd228c6a27655699dd28",
+      "lfs": null,
+      "crlfCount": 0,
+      "lfCount": 130319
+    }
+  ],
+  "checks": {
+    "exactGitBlobIdentities": {
+      "passed": 23,
+      "failed": 0
+    },
+    "originalRecordByteBindings": {
+      "passed": 23,
+      "failed": 0
+    },
+    "primaryComponentBindings": {
+      "passed": 7,
+      "failed": 0
+    },
+    "reportedCheckoutRepresentationsAndReverseConversions": {
+      "passed": 8,
+      "failed": 0
+    },
+    "reviewConclusionsAndOwnerTermsUnchanged": true
+  },
+  "authority": {
+    "reviewedApplied": 830,
+    "pending": 18,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 554,
+    "scopedInterfaces": 173,
+    "firstReviewTasks": 0,
+    "changed": false
+  },
+  "scope": {
+    "spellId": "conjure-demiplane-fortress",
+    "blockerId": "PG200-B06",
+    "acceptedIds": [],
+    "appliedIds": [],
+    "heldIds": [
+      "conjure-demiplane-fortress"
+    ],
+    "applicationAuthorized": false
+  },
+  "nonEffects": [
+    "No new witness, seal, spell acceptance or application.",
+    "No canonical, catalog, fixture, parent, queue or repository file changes.",
+    "Queue404 and prior receipts remain unchanged history; current authority remains 830/18/0.",
+    "All unrelated holds, qualifications and runtime/implementation/human-play/balance/cosmology/domain/completion/release gates remain unchanged.",
+    "Hypothetical review fixtures are not campaign events and are not attributed to the user as played events."
+  ],
+  "changedFields": "Clarified method; explicit byte domains, Git blob identities and checkout correspondence; verification metadata only. Existing Git hashes retained because exact bytes verify. All semantic row fields and proposed terms were compared unchanged."
+}
