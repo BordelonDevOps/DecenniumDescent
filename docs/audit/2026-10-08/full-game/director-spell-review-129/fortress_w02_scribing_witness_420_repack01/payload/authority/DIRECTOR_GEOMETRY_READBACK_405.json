@@ -1,0 +1,159 @@
+{
+  "id": "DIRECTOR-PG328-W01-GEOMETRY-405",
+  "decision": "PARTIAL_GEOMETRY_VERIFIED_W01_OPEN_NO_SEAL",
+  "sourceCommit": "aaa6fff1f83ac41e24243a75b11147e4672901c6",
+  "constructionAuthority": {
+    "source": "sources/AUTHORIZATION403.json",
+    "pointers": [
+      "/scope",
+      "/directorAuthorization",
+      "/authorizedActs",
+      "/notAuthorized"
+    ],
+    "latestOwnerDirection": "Complete source-bound named panel/opening/connection geometry and body/cargo clearance under authorization403; distinguish contacts from support; do not repair Q23."
+  },
+  "verifiedArtifacts": {
+    "GEOMETRY_405.json": "2ec0b2448eb4dd03a028a2c3edfd78c262fbef0309eb3e6ff49a41ca8850a147",
+    "GEOMETRIC_CONNECTIONS_405.json": "f4d7c35f3276d88b472cc0ff339ca57e0bd17749856662555e38f36080c7ab1f",
+    "VERIFICATION_405.json": "787425caaada10e127f56f8b54dbd159759d6184cc37d9924edbd458bd89819f"
+  },
+  "closesGeometrySubpredicates": [
+    {
+      "id": "PG328-W01-GEOM405-01",
+      "scope": "Named finite TEST_ONLY geometry registry",
+      "paths": [
+        "GEOMETRY_405.json#/panels",
+        "GEOMETRY_405.json#/doorLeaves",
+        "GEOMETRY_405.json#/openings",
+        "GEOMETRY_405.json#/regions"
+      ],
+      "result": "2660 structural primitives, 10 separately identified open door leaves and apertures. Geometry choices explicit; selected source bytes unchanged."
+    },
+    {
+      "id": "PG328-W01-GEOM405-02",
+      "scope": "Contact/connection inventory, expressly non-mechanical",
+      "paths": [
+        "GEOMETRIC_CONNECTIONS_405.json#/connections"
+      ],
+      "result": "4904 geometric face/joint connections; no load-bearing edges inferred."
+    },
+    {
+      "id": "PG328-W01-GEOM405-03",
+      "scope": "Keep stair, keep roof and tower routes through z30; inherited A/B clearance",
+      "paths": [
+        "GEOMETRY_405.json#/navigationPaths",
+        "VERIFICATION_405.json#/routes"
+      ],
+      "result": "54 route records and 1532 continuous swept segments checked. No solid collisions. All world-contained route records connect to inherited A courtyard pose; 5416 connectivity nodes. Four z30-to-z40 tower ascents fail world containment. No physical actor traversal or payment history created."
+    }
+  ],
+  "remainsOpen": [
+    {
+      "id": "PG328-W01-GEOM405-SUPPORT",
+      "paths": [
+        "GEOMETRY_405.json#/mechanicalSupport",
+        "GEOMETRY_405.json#/panels",
+        "GEOMETRIC_CONNECTIONS_405.json#/mechanicalMeaning"
+      ],
+      "sourcePointers": [
+        "sources/Q23.json#/questions/2/answer",
+        "sources/Q23.json#/questions/6/answer",
+        "sources/W01_CONTRACT.json#/remainingWitnessParts/0",
+        "sources/AUTHORIZATION403.json#/notAuthorized/1"
+      ],
+      "missing": "An expressly adopted Fortress-local mapping from named contacts/connections to load-bearing dependencies, including which surviving supports are sufficient (all/any or another explicit predicate), ground/root support and applicable body/cargo load conditions. Q27 supplies the consequence for actual dependent support loss but does not identify these edges or their sufficiency. A geometric joint alone supplies none of them. No real-world engineering simulation, density or arbitrary strength formula is inferred.",
+      "requiredAuthority": "Owner adoption or an already accepted operative source establishing that finite support contract. Director construction authorization403 expressly excludes introducing a mechanical support/collapse rule."
+    },
+    {
+      "id": "PG328-W01-GEOM405-Z40",
+      "paths": [
+        "VERIFICATION_405.json#/towerRoofCertificate",
+        "VERIFICATION_405.json#/worldBoundFailureRoutes"
+      ],
+      "sourcePointers": [
+        "sources/Q23.json#/questions/2/answer",
+        "sources/PARENT.json#/final/spaces/RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A~1cast1~1space/bounds"
+      ],
+      "missing": "Each tower has a floor/roof at z40, but the inherited generated-space maximum is z40. The defined 6-ft body requires top z46 when standing there; the four upper flights first exceed the bound before arrival. All structure coordinates remain within the inherited bounds.",
+      "requiredAuthority": "Explicit source/parent reconciliation by the owner: distinguish structure height from usable space height with an adopted bound, or provide another source-compliant access outcome. No ceiling enlargement, smaller body, clipping or inaccessible-roof waiver is adopted here."
+    }
+  ],
+  "W01": "OPEN_UNSEALED",
+  "W02": {
+    "status": "READ_ONLY_OPEN",
+    "witnessConstructionAuthorized": false,
+    "noMissingInputsCreated": true
+  },
+  "preserved": [
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/conjure_demiplane_fortress_closure_intake_367/OWNER_PG328_W03_TESTONLY_EVIDENCE_SEAL_395.json",
+      "sha256": "e6f90938a3a609d74b9b82e47177db5a8064d6e70397a12ca12f7306ee881c39",
+      "bytes": 5036,
+      "changed": false
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w06_permissions_reentry_375_repack03/DIRECTOR_SEAL_375_REPACK03.json",
+      "sha256": "7a8d751e2fca437a5b822180152fe8415cf163e8318f2e2ac8d0dfde72f2be29",
+      "bytes": 2584,
+      "changed": false
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w07_real_dispel_374_repack02/DIRECTOR_SEAL_374_REPACK02.json",
+      "sha256": "c7cd10cbe84bfd0f954eda3f9d5a264c0086b430778114d5de32bfa639ad4086",
+      "bytes": 1837,
+      "changed": false
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_SPELL_QUEUE_404.json",
+      "sha256": "9346663e8858c720c9b453921984d9af7925feb5f8c263d31e5b19a72b364b60",
+      "bytes": 3172,
+      "changed": false
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_404.json",
+      "sha256": "f0eb4b80d3a2eb8b75d3137026aae3542e4d78974133e8016f90812f9512a807",
+      "bytes": 1728,
+      "changed": false
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w02_scribing_source_preflight_397/OWNER_PG328_W02_SCRIBING_SOURCE_PREFLIGHT_397_TESTONLY.json",
+      "sha256": "c64bd0c12c47ebfbd3a62e693b0505c01df62c23d3ec3bfec18ceec1cdd24f3d",
+      "bytes": 12001,
+      "changed": false
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w02_scribing_source_preflight_397/DIRECTOR_PG328_W02_SOURCE_MATCH_READBACK_398.json",
+      "sha256": "5cbeccfb028525c9f8a5f948e7a3d6ad3a85c936d86aeca8ef45e8079c8ea9d1",
+      "bytes": 4543,
+      "changed": false
+    }
+  ],
+  "acceptedIds": [],
+  "appliedIds": [],
+  "heldIds": [
+    "conjure-demiplane-fortress"
+  ],
+  "blockerIds": [
+    "PG200-B06"
+  ],
+  "closedBlockerIds": [],
+  "applicationAuthorized": false,
+  "authority": {
+    "queue": "CURRENT_SPELL_QUEUE_404.json",
+    "applied": 829,
+    "pending": 19,
+    "acceptedUnapplied": 0,
+    "procedures": 553,
+    "interfaces": 173,
+    "firstReviews": 0,
+    "closureTasks": 19
+  },
+  "nextAction": {
+    "identity": "invulnerable-sphere",
+    "blockerIds": [
+      "DF218-B04"
+    ],
+    "action": "Continue source/access review of the exact paid planar-denial requirement; accepted Plane Shift and WP13 located. No identity acceptance or witness assumed."
+  },
+  "cargoQualification": "All four carried items include the conjured tile. Preserve the exact 403 attack-pose sweep; the map also declares an interior hand-carry pose for route clearance, with no actual reposition, action, traversal or lifetime extension awarded."
+}

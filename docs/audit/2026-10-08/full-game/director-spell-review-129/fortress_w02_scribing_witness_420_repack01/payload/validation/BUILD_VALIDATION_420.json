@@ -1,0 +1,60 @@
+{
+  "recordId": "PG328-W02-REPACK420-BUILD-VALIDATION",
+  "classification": "AUTHOR_BUILD_AND_STATIC_REPLAY_VALIDATION_TEST_ONLY",
+  "status": "PASS_PENDING_DIRECTOR_REVIEW",
+  "checkCount": 13,
+  "checks": {
+    "exactOwnerAdoptedProposal415AndAdoption419": true,
+    "immutableParentForkStateVerified": true,
+    "sourceProfileSpellbookBaselineBound": true,
+    "completionFourFullStateForwardInverseEventsReplay": true,
+    "abandonmentFourFullStateForwardInverseEventsReplay": true,
+    "allForwardAndInverseStateHashesMatch": true,
+    "completeReverseTraversalRestoresEachScenarioInitial": true,
+    "completionAddsExactlyOneProvenanceLinkedEntry": true,
+    "abandonmentAddsNoEntryRefundOrWorkCredit": true,
+    "worldClocksActorResourcesPositionAndScheduleReconcile": true,
+    "parentItemsEffectsSpacesUnchanged": true,
+    "queue404Unchanged829_19_0": true,
+    "parentFixtureCanonAndAcceptanceApplicationUnchanged": true
+  },
+  "branches": {
+    "completion": {
+      "status": "FORWARD_AND_INVERSE_REPLAY_PASS",
+      "fullStateSnapshots": true,
+      "eventCount": 4,
+      "forwardOperations": 40,
+      "inverseOperations": 40,
+      "allForwardHashesMatch": true,
+      "allInverseHashesMatch": true,
+      "inverseTraversalRestoresScenarioInitialExactly": true,
+      "scenarioInitialExtendsButDoesNotMutateParentFork": true,
+      "terminalOutcomeMatchesExistingBranchAssertions": true
+    },
+    "abandonment": {
+      "status": "FORWARD_AND_INVERSE_REPLAY_PASS",
+      "fullStateSnapshots": true,
+      "eventCount": 4,
+      "forwardOperations": 39,
+      "inverseOperations": 39,
+      "allForwardHashesMatch": true,
+      "allInverseHashesMatch": true,
+      "inverseTraversalRestoresScenarioInitialExactly": true,
+      "scenarioInitialExtendsButDoesNotMutateParentFork": true,
+      "terminalOutcomeMatchesExistingBranchAssertions": true
+    }
+  },
+  "ownerAdoption": {
+    "proposalSha256": "b817816f040898cdbe290275fd13007670c0ef455d357ac12f0fc457c5665930",
+    "adoptionSha256": "bef75796830b5b43aa80e8f1b09d611bc7ad18b91b7079ef81ec6da6b70bec32"
+  },
+  "queue": {
+    "reviewedApplied": 829,
+    "pending": 19,
+    "acceptedUnapplied": 0
+  },
+  "runtimeExecuted": false,
+  "canonicalRulesChanged": false,
+  "fixtureMutated": false,
+  "acceptanceOrApplication": false
+}
