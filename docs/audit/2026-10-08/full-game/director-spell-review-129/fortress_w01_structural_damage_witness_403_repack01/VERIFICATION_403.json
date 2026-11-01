@@ -1,0 +1,189 @@
+{
+  "id": "PG328-W01-DAMAGE-SUBWITNESS-VERIFICATION-403",
+  "status": "PASS_PARTIAL_TEST_ONLY_REPLAY; W01_OPEN",
+  "checks": {
+    "sourceHashesAndPointers": "PASS; Rulebook v6 and Combat Action bind exact Git HEAD blob bytes; Git HEAD preflight pinned; every JSON pointer resolved individually; text lines stored as text locators",
+    "historicalParentFinalHash": "PASS",
+    "forwardPatchesInOrder": "PASS",
+    "inversePatchesReverseOrder": "PASS",
+    "fullParentRestoration": "PASS",
+    "minorConjurationCost": "1 RP; PASS",
+    "tileWithinCardSizeAndWeight": "PASS",
+    "firstDistinctMatrixBaseDissonance": "0; PASS",
+    "turnAndInteractionBudgets": "PASS for branch turns; spent/unused closeouts recorded; processed nextEnd markers cleared; off-turn Reaction preserved",
+    "turnStancesAndMobileAllowance": "PASS; A chooses Mobile at 6.05 before cast, allowance 5→4→0 and movement 30→29→24; prior stance/allowance resets at 12.0; inherited parent turns unchanged",
+    "counterspellEligibilityAndDecision": "PASS bounded; A makes no TEST_ONLY attempt with eligibility unadjudicated; B is eligible at 10 ft and explicitly declines; C/D dispositions recorded; no cost/reaction/recharge change",
+    "componentAvailability": "PASS as TEST_ONLY premise; A free hand/voice/focus and B left focus-B/right free/voice are mapped; omitted card list does not create an exemption or material cost",
+    "spellEfficiencyLifecycle": "PASS TEST_ONLY ledger; old marker ends 6.9, new Minor Conjuration marker ends 12.9; no repeat, discount or canonical overlap rule asserted",
+    "bodyAndObjectGeometry": "PASS local predicates; unoccupied creation volume, body/tile sweeps, carried-item occupancy/containment/sweeps and panel contact computed with positive-volume overlap checks",
+    "eventSnapshotReferences": "PASS; every event before/after ID exists",
+    "attackArithmetic": "17 vs AC17; hit; PASS",
+    "damageArithmetic": "5 bludgeoning; 60 to 55; PASS",
+    "unresolvedSupportAndNavigationMarkedOpen": "PASS",
+    "witnessSeal": "NOT ISSUED",
+    "fortressAcceptanceApplication": "NOT AUTHORIZED",
+    "queueMutation": "NONE; 828/20/0 preserved"
+  },
+  "eventCount": 30,
+  "stateSnapshotCount": 31,
+  "eventHashes": [
+    {
+      "eventId": "PG328-W01-403:CLOSE-PARENT-TURN-BUDGETS-A-B",
+      "before": "f6080e9b95cd432d2f07121769d254f60c4f74cc00b09f0db65f880050762de3",
+      "after": "58adc05729271ab17147512deae487a9b552a6713e8335b5fe0031698a6213c7"
+    },
+    {
+      "eventId": "PG328-W01-403:TURN-START-C-2",
+      "before": "58adc05729271ab17147512deae487a9b552a6713e8335b5fe0031698a6213c7",
+      "after": "4606ed5c4bce8780fc6bdb92b63efcea098ff80bce89c56e165abbf0edcbcf6c"
+    },
+    {
+      "eventId": "PG328-W01-403:STANCE-MOBILE-C-2.8",
+      "before": "4606ed5c4bce8780fc6bdb92b63efcea098ff80bce89c56e165abbf0edcbcf6c",
+      "after": "6b11dac5212519a4975f97c43acd628563421c00bdaf3878e176cced41315161"
+    },
+    {
+      "eventId": "PG328-W01-403:TURN-END-C-2.9",
+      "before": "6b11dac5212519a4975f97c43acd628563421c00bdaf3878e176cced41315161",
+      "after": "f84e1e48a9f0d62943f003a70892fe8e87f444accb980f734a682a84b57efa22"
+    },
+    {
+      "eventId": "PG328-W01-403:TURN-START-D-3",
+      "before": "f84e1e48a9f0d62943f003a70892fe8e87f444accb980f734a682a84b57efa22",
+      "after": "c3f456a29a1fc13b79113288598e94c5893d2460ecde12b9d69b895f05b9a744"
+    },
+    {
+      "eventId": "PG328-W01-403:STANCE-MOBILE-D-3.8",
+      "before": "c3f456a29a1fc13b79113288598e94c5893d2460ecde12b9d69b895f05b9a744",
+      "after": "84dd467484f631d288e71dfaca90687189ac8effae0667262fb5ba682a32b437"
+    },
+    {
+      "eventId": "PG328-W01-403:TURN-END-D-3.9",
+      "before": "84dd467484f631d288e71dfaca90687189ac8effae0667262fb5ba682a32b437",
+      "after": "44fc4f776dcc1c31dd7f839e54e87611523e0821303b6d611d04455322adb8cc"
+    },
+    {
+      "eventId": "PG328-W01-403:TURN-START-A-6",
+      "before": "44fc4f776dcc1c31dd7f839e54e87611523e0821303b6d611d04455322adb8cc",
+      "after": "bb9e28c57107d96faafb3a1ee6ff8c02fc0eb1b4056fd027cfef3b1b17a75d7f"
+    },
+    {
+      "eventId": "PG328-W01-403:STANCE-MOBILE-A-6.05",
+      "before": "bb9e28c57107d96faafb3a1ee6ff8c02fc0eb1b4056fd027cfef3b1b17a75d7f",
+      "after": "36bc1cc792c48f99f9e4cd14c49ebb098d566636eb1a8505e6b676960ec381f6"
+    },
+    {
+      "eventId": "PG328-W01-403:MINOR-CONJURATION-1:COMMIT",
+      "before": "36bc1cc792c48f99f9e4cd14c49ebb098d566636eb1a8505e6b676960ec381f6",
+      "after": "c168d82a0956376109a3bbf2d0fa5ad93172acbb50d78d95ef6c0081c18e31bf"
+    },
+    {
+      "eventId": "PG328-W01-403:MINOR-CONJURATION-1:COUNTERSPELL-WINDOW-OPEN",
+      "before": "c168d82a0956376109a3bbf2d0fa5ad93172acbb50d78d95ef6c0081c18e31bf",
+      "after": "a41a151beb6fa05e0e916089107575efbaf6b0c0559177fb9d8c20356dce207a"
+    },
+    {
+      "eventId": "PG328-W01-403:MINOR-CONJURATION-1:B-DECLINES-COUNTERSPELL",
+      "before": "a41a151beb6fa05e0e916089107575efbaf6b0c0559177fb9d8c20356dce207a",
+      "after": "212e976b3171b47dc20193973aeaa5137ffda7946f49fde8ac7bc324a94bdc70"
+    },
+    {
+      "eventId": "PG328-W01-403:MINOR-CONJURATION-1:RESOLVE",
+      "before": "212e976b3171b47dc20193973aeaa5137ffda7946f49fde8ac7bc324a94bdc70",
+      "after": "5c6ddd740720bc3864d39d4c73ccdb6972b4b9b766403660aeac2a0a0da6f1c1"
+    },
+    {
+      "eventId": "PG328-W01-403:PICKUP-CLAY-TILE",
+      "before": "5c6ddd740720bc3864d39d4c73ccdb6972b4b9b766403660aeac2a0a0da6f1c1",
+      "after": "d998f1d41a53f6b6be09e7981d753de386e424b49c3efd2bec975991eecf65d7"
+    },
+    {
+      "eventId": "PG328-W01-403:MOVE-1FT-CARRIED-TILE",
+      "before": "d998f1d41a53f6b6be09e7981d753de386e424b49c3efd2bec975991eecf65d7",
+      "after": "80269874ab659a6d4493f31d63cd9d38756a18c0dfeef46c49ce3b71862581c5"
+    },
+    {
+      "eventId": "PG328-W01-403:MOVE-5FT-TO-PANEL",
+      "before": "80269874ab659a6d4493f31d63cd9d38756a18c0dfeef46c49ce3b71862581c5",
+      "after": "f8096285ddae03760bfda49b8bad5050875a90d429bca4da320b85fcf71a3cfc"
+    },
+    {
+      "eventId": "PG328-W01-403:TURN-END-A-6.9",
+      "before": "f8096285ddae03760bfda49b8bad5050875a90d429bca4da320b85fcf71a3cfc",
+      "after": "c466376def65ba5bc98cf188dc5cb3c0f75430008d377b40a1187433444df92a"
+    },
+    {
+      "eventId": "PG328-W01-403:TURN-START-B-7",
+      "before": "c466376def65ba5bc98cf188dc5cb3c0f75430008d377b40a1187433444df92a",
+      "after": "13900dcc7f869803d917ac739acf637fe12ab4f93621609665d94dd8102c11a8"
+    },
+    {
+      "eventId": "PG328-W01-403:STANCE-MOBILE-B-7.8",
+      "before": "13900dcc7f869803d917ac739acf637fe12ab4f93621609665d94dd8102c11a8",
+      "after": "f0275e0a59074ee7bf1836bbb59e5560afaf587cc7c7e3cc22cfd45e5353d9e6"
+    },
+    {
+      "eventId": "PG328-W01-403:TURN-END-B-7.9",
+      "before": "f0275e0a59074ee7bf1836bbb59e5560afaf587cc7c7e3cc22cfd45e5353d9e6",
+      "after": "ea1361c56ac68186db5203dcc038d04f5ff71acb37e8635bea28c2c9c1ad25fa"
+    },
+    {
+      "eventId": "PG328-W01-403:TURN-START-C-8",
+      "before": "ea1361c56ac68186db5203dcc038d04f5ff71acb37e8635bea28c2c9c1ad25fa",
+      "after": "4169747e7ebc428a4d1a17918c0fae2a4eb1eade13c666e70201de7985425fa7"
+    },
+    {
+      "eventId": "PG328-W01-403:STANCE-MOBILE-C-8.8",
+      "before": "4169747e7ebc428a4d1a17918c0fae2a4eb1eade13c666e70201de7985425fa7",
+      "after": "bc72ae3c6a3acaa3f72704b0960acb0c52f105c71e458d0827f196b551d4c4f9"
+    },
+    {
+      "eventId": "PG328-W01-403:TURN-END-C-8.9",
+      "before": "bc72ae3c6a3acaa3f72704b0960acb0c52f105c71e458d0827f196b551d4c4f9",
+      "after": "f193c392da5e428ae633d3334df8cbb8c14f25272cb39d1cffc6154f2a0135fd"
+    },
+    {
+      "eventId": "PG328-W01-403:TURN-START-D-9",
+      "before": "f193c392da5e428ae633d3334df8cbb8c14f25272cb39d1cffc6154f2a0135fd",
+      "after": "1571c745338f53789bfa43a37f924cb0eb7fb0b4977e701cadae99d34d88afbe"
+    },
+    {
+      "eventId": "PG328-W01-403:STANCE-MOBILE-D-9.8",
+      "before": "1571c745338f53789bfa43a37f924cb0eb7fb0b4977e701cadae99d34d88afbe",
+      "after": "4574977392892b6652417d6f536436fcdf7e137b588b9680b99624e8eecd5c36"
+    },
+    {
+      "eventId": "PG328-W01-403:TURN-END-D-9.9",
+      "before": "4574977392892b6652417d6f536436fcdf7e137b588b9680b99624e8eecd5c36",
+      "after": "b6c8cff17400c71b61809c22a9129894ba3ccbfe96481a44cc053f00488dc1c0"
+    },
+    {
+      "eventId": "PG328-W01-403:TURN-START-A-12",
+      "before": "b6c8cff17400c71b61809c22a9129894ba3ccbfe96481a44cc053f00488dc1c0",
+      "after": "50e5a9175f30b3967ee6acea0a735d0c2e8b11cd39d28498ad3a404b26d4edd2"
+    },
+    {
+      "eventId": "PG328-W01-403:STANCE-MOBILE-A-12.05",
+      "before": "50e5a9175f30b3967ee6acea0a735d0c2e8b11cd39d28498ad3a404b26d4edd2",
+      "after": "9eb50966e4348454401960d5bee45d110c0bedb26d59c0aae4314f8bc696071c"
+    },
+    {
+      "eventId": "PG328-W01-403:ATTACK-SUNDER-SOUTH-PANEL",
+      "before": "9eb50966e4348454401960d5bee45d110c0bedb26d59c0aae4314f8bc696071c",
+      "after": "284fd1ef073049573aebea6d63b975a53854fcf3761a9f8cd6285a079bf5a345"
+    },
+    {
+      "eventId": "PG328-W01-403:TURN-END-A-12.9",
+      "before": "284fd1ef073049573aebea6d63b975a53854fcf3761a9f8cd6285a079bf5a345",
+      "after": "6270321d6f07a55173f01fb353142d6bfb537d8e044cd313ef8fdd956baeff6c"
+    }
+  ],
+  "openPredicates": [
+    "complete panel/support map",
+    "mechanical support validity",
+    "whole-structure legal navigation",
+    "keep-stair/landing geometry under PG9-Q23",
+    "inherited parent A/B stance records are not rewritten",
+    "canonical Spell Efficiency overlap semantics remain outside this TEST_ONLY packet"
+  ]
+}
