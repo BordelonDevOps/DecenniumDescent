@@ -305,11 +305,22 @@ def main():
                 assert b is not None and b["startedAt"]==t-0.1 and a["action"]==1
                 a["action"]=0; b["actionSpent"]=True
                 hp_before=f["targetPanel"]["hp"]; f["targetPanel"]["hp"]=max(0,hp_before-damage)
+                carry_world=carry_bounds(a["position"]); strike_bounds=[45,46,60,61,4.75,5.0]
+                swing=[
+                  {"id":"tile-to-strike","fromBoundsFeet":carry_world,"toBoundsFeet":strike_bounds,
+                    "forwardPatch":[{"op":"replace","path":"/boundsFeet","value":strike_bounds}],
+                    "inversePatch":[{"op":"replace","path":"/boundsFeet","value":carry_world}]},
+                  {"id":"tile-return-to-carry","fromBoundsFeet":strike_bounds,"toBoundsFeet":carry_world,
+                    "forwardPatch":[{"op":"replace","path":"/boundsFeet","value":carry_world}],
+                    "inversePatch":[{"op":"replace","path":"/boundsFeet","value":strike_bounds}]}
+                ]
                 record={"index":attack_index,"time":t,"targetPanelId":target,"d20":16,"strengthModifier":1,"proficiency":0,
                   "attackTotal":17,"targetAC":17,"hit":True,"damageDie":4,"damageDieResult":4,"damage":damage,
                   "panelHpBefore":hp_before,"panelHpAfter":f["targetPanel"]["hp"],"action":"ordinary Attack/Sunder","rpSpent":0,
-                  "tileId":tile_id,"heldBy":"A:right","strikeBoundsFeet":[45,46,60,61,4.75,5.0],
-                  "tileReturnsToCarryBoundsFeet":carry_bounds(a["position"])}
+                  "tileId":tile_id,"heldBy":"A:right","tileBoundsBeforeStrikeFeet":carry_world,
+                  "strikeBoundsFeet":strike_bounds,"tileBoundsAfterReturnFeet":carry_world,
+                  "tileSwingSubmotions":swing,"oneOrdinaryActionIncludesStrikeAndReturn":True,
+                  "extraMovementFeet":0,"tileConsumed":False}
                 f["attackHistory"].append(record)
                 if attack_index==12:
                     assert f["targetPanel"]["hp"]==0
@@ -321,7 +332,16 @@ def main():
             emit(f"PG328-W09-R1:ATTACK-{attack_index:02d}-{t:g}",t,"TEST_ONLY_ORDINARY_ATTACK_SUNDER",{
               "actor":"A","targetPanelId":target,"roll":{"d20":16,"strengthModifier":1,"proficiency":0,"total":17,"AC":17},
               "damage":{"d4":4,"strengthModifier":1,"total":damage},"actionCost":1,"rpCost":0,
-              "tileStrikeBoundsFeet":[45,46,60,61,4.75,5.0],"positiveVolumePenetration":False,
+              "tileStrikeBoundsFeet":[45,46,60,61,4.75,5.0],
+              "tileBoundsBeforeStrikeFeet":carry_bounds([45,59.5,4.5]),"tileBoundsAfterReturnFeet":carry_bounds([45,59.5,4.5]),
+              "tileSwingSubmotions":[
+                {"id":"tile-to-strike","fromBoundsFeet":carry_bounds([45,59.5,4.5]),"toBoundsFeet":[45,46,60,61,4.75,5.0],
+                 "forwardPatch":[{"op":"replace","path":"/boundsFeet","value":[45,46,60,61,4.75,5.0]}],
+                 "inversePatch":[{"op":"replace","path":"/boundsFeet","value":carry_bounds([45,59.5,4.5])}]},
+                {"id":"tile-return-to-carry","fromBoundsFeet":[45,46,60,61,4.75,5.0],"toBoundsFeet":carry_bounds([45,59.5,4.5]),
+                 "forwardPatch":[{"op":"replace","path":"/boundsFeet","value":carry_bounds([45,59.5,4.5])}],
+                 "inversePatch":[{"op":"replace","path":"/boundsFeet","value":[45,46,60,61,4.75,5.0]}]}
+              ],"positiveVolumePenetration":False,
               "targetHpBefore":target_hp_before,"targetHpAfter":max(0,target_hp_before-damage),
               "stipulatedInputNotAnActualRoll":True,"structuralCollapseOnFinalHitOnly":attack_index==12},attack,priority)
         elif kind=="FALL_LAND":
@@ -396,15 +416,22 @@ def main():
     (OUT/"W09_REPLAY_428_TESTONLY.json").write_text(json.dumps(replay,ensure_ascii=False,indent=2)+"\n",encoding="utf-8",newline="\n")
     (OUT/"SOURCE_BINDINGS_428.json").write_text(json.dumps({"id":"PG328-W09-R1-SOURCE-BINDINGS-428","bindings":bindings},ensure_ascii=False,indent=2)+"\n",encoding="utf-8",newline="\n")
     (OUT/"DIRECTOR_REVIEW_REQUEST_428.md").write_text(
-      "# Director review request — Fortress W09-R1 (TEST_ONLY)\n\n"
-      "Please review the exact owner-adopted W09 proposal and reversible successor witness in this packet. "
-      "The branch starts from W01-403 terminal S030, uses the corrected 18.01 tile reposition, four movement turns, twelve stipulated attacks, "
-      "and the specified structural/fall result. This is a hypothetical branch only. Please return a finding for each source binding, marker, "
-      "movement leg, attack, collapse, fall, reversibility check, and non-effect. Do not treat it as a seal, Fortress acceptance/application, "
-      "campaign occurrence, canonical change, or queue change. Current queue authority is 830 applied / 18 pending / 0 accepted-unapplied.\n\n"
-      "Witness: `W09_REPLAY_428_TESTONLY.json`\n"
-      "Owner adoption SHA-256: `"+sha_file(OWNER)+"`\n"
-      "Witness SHA-256: `"+sha_bytes((OUT/"W09_REPLAY_428_TESTONLY.json").read_bytes())+"`\n",encoding="utf-8",newline="\n")
+      "# Director review request — Fortress W01 overlays and W09-R1 (TEST_ONLY)\n\n"
+      "Please review the exact owner-adopted W01 successor overlays 425 and PG328-W09-R1 reversible witness 428. "
+      "The owner adopted both W01 proposals exactly (record 424) and adopted W09 Repack01 by exact proposal hash "
+      "(record 427; proposal SHA-256 `f4dfbf3403c63f603ef188be972c4425cc627309d4fb77cc86934afecd6b8a9d`).\n\n"
+      "W01 overlays 425: static verifier PASS, 8,134 checks, 0 failures; independent verification 9/9. "
+      "W09 witness 428: reversible replay PASS, 146 events including 128 regular-turn markers, 100-foot route, 12 stipulated attacks, "
+      "18 dependent stair parts and the specified 4-foot hypothetical fall. The entire unchanged S030 parent snapshot is embedded and bound by hash. "
+      "Each attack explicitly traces the held tile from carry bounds to the strike bounds and back with inverse operations. No actual campaign occurrence is asserted.\n\n"
+      "Please return precise findings on the W01 support/z46 overlays, each W09 source binding and event sequence, all movement/carry/contact "
+      "geometry, attack submotions and inputs, support loss, falling result, reversibility, and non-effects. State explicitly whether any correction remains and whether "
+      "Fortress is ready for identity acceptance. Do not treat this packet as a seal, campaign event, canonical change, or application.\n\n"
+      "- W01 package: `fortress_w01_successor_overlays_425/DD_Fortress_W01_Successor_Overlays_425_TESTONLY.zip` (SHA-256 `8d1857bcedc412181d90ab2cb6347b2f40b0694c648a081ca2af40f58ad4200e`)\n"
+      "- W09 witness: `W09_REPLAY_428_TESTONLY.json` (SHA-256 `"+sha_bytes((OUT/"W09_REPLAY_428_TESTONLY.json").read_bytes())+"`)\n"
+      "- W09 packet: `DD_Fortress_W09_Successor_Witness_428_TESTONLY.zip`; verify hash in `DELIVERY_428.json`.\n"
+      "- Current authority: `CURRENT_SPELL_QUEUE_428_REPACK01.json`, 830 applied / 18 pending / 0 accepted-unapplied.\n"
+      "- Current handoff: `CURRENT_HANDOFF_428_REPACK01.json`.\n",encoding="utf-8",newline="\n")
     shutil.copyfile(Path(__file__),OUT/"BUILD_W09_REPLAY_428.py")
     # Verification is completed by the separate verifier before archive and delivery are sealed.
     manifest_files=[]
@@ -427,5 +454,3 @@ def main():
       "archiveBytes":archive.stat().st_size,"archiveSha256":sha_file(archive)},indent=2))
 
 if __name__=="__main__": main()
-
-

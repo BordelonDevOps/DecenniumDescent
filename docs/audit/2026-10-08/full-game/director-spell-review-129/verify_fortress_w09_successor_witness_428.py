@@ -53,6 +53,19 @@ def main():
         check('forward-after:'+e['eventId'],digest(after)==e['afterStateSha256'],'Forward patch reproduces event after hash.')
         restored=apply_patch(after,e['inversePatch'])
         check('inverse:'+e['eventId'],digest(restored)==digest(state),'Inverse patch restores exact prior canonical bytes.')
+        if e['kind']=='TEST_ONLY_ORDINARY_ATTACK_SUNDER':
+            held=state['tile']['heldBoundsFeet']
+            bounds={'x':held['x'],'y':held['y'],'z':held['z']}
+            flat=[bounds['x'][0],bounds['x'][1],bounds['y'][0],bounds['y'][1],bounds['z'][0],bounds['z'][1]]
+            sim={'boundsFeet':flat}; initial=copy.deepcopy(sim)
+            for sub in e['authoredInputs']['tileSwingSubmotions']:
+                check('swing-from:'+e['eventId']+':'+sub['id'],sim['boundsFeet']==sub['fromBoundsFeet'],'Swing submotion starts at current tile bounds.')
+                nxt=apply_patch(sim,sub['forwardPatch'])
+                check('swing-to:'+e['eventId']+':'+sub['id'],nxt['boundsFeet']==sub['toBoundsFeet'],'Swing submotion reaches its recorded bounds.')
+                back=apply_patch(nxt,sub['inversePatch'])
+                check('swing-inverse:'+e['eventId']+':'+sub['id'],back==sim,'Submotion inverse restores its exact prior bounds.')
+                sim=nxt
+            check('swing-return:'+e['eventId'],sim==initial and after['tile']['heldBoundsFeet']==held,'Object returns to its held carry bounds within the same ordinary attack action.')
         state=after
     check('terminal-hash',digest(state)==w['terminalStateSha256'] and digest(state)==digest(w['stateSnapshots'][w['terminalStateId']]),'Final replay state matches the terminal snapshot.')
     events=w['events']
