@@ -1,0 +1,1 @@
+Proposal 398 is a NEW owner-review source proposal for Banishment Gate W03. It is not accepted, operative, canonical, or applied. See the JSON for exact source bindings and scoped terms.

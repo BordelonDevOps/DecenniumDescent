@@ -1,0 +1,133 @@
+{
+  "id": "OWNER-PG327-W03-LICH-TAXONOMY-SOURCE-PROPOSAL-398",
+  "recordedAtUtc": "2026-10-31T00:00:00Z",
+  "status": "NEW_OWNER_REVIEW_PROPOSAL_NOT_ACCEPTED",
+  "proposalKind": "scoped operative-source addition for separate review and acceptance",
+  "scope": {
+    "spellId": "banishment-gate",
+    "witnessId": "W03",
+    "blockerIds": ["PG200-B03", "PG200-B04"],
+    "intendedUse": "After separate source acceptance, support one stationary, source-bound W03 creature-type witness only.",
+    "outOfScope": ["all other witnesses", "other spells", "canonical promotion", "runtime implementation", "campaign event", "fixture mutation", "witness seal", "spell acceptance or application", "queue changes"]
+  },
+  "authorityAndState": {
+    "directorInstruction": "Director approved preparing this narrow proposal for owner review only; Director expressly stated it is not yet an accepted W03 source.",
+    "directorThread": "Review Time Stop Witness Evidence",
+    "ownerAcceptance": "Not yet given for this proposal. Separate explicit owner acceptance must bind this exact proposal before it can qualify as a W03 source.",
+    "repositoryCommitBound": "39b1fc64d7e8bc224a45cef8e05db438a18915e6",
+    "sourceAuthorityCaveat": "The cited Mage and ancestry files are in DescentReviewChanges/ReviewBible, an assembled review build. They are not thereby promoted to canonical main. This proposal is a new scoped rule for owner review, not a claim that the existing files already establish the proposed Lich taxonomy change."
+  },
+  "sourceBindings": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/classes/mage.md",
+      "version": "No explicit document version; bind by repository commit and byte hash.",
+      "bytes": 63602,
+      "sha256": "08643cfdef39016b1882ea9efd2e03077ced71db97bf0b048271570e356d0d0b",
+      "operativeLocators": ["lines 50-54", "lines 52-54"],
+      "relevantContent": "Lich readiness, pre-roll disclosure and explicit consent, ritual check, success and historical failure branch."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/mage.json",
+      "version": "No explicit document version; bind by repository commit and byte hash.",
+      "bytes": 80394,
+      "sha256": "c64782e192e2e63e5abed5728f9213c9d4cf956bce1a75da7a156dbfd1141e0b",
+      "operativeLocators": ["/engine/11", "/engine/15", "/engine/17", "/engine/19", "/engine/20", "/cards/45"],
+      "relevantContent": "Lich companion system, readiness, ritual check, Mage 10 Lich path and later acquisition gates, and separately selected Mage 16 Undead Immunities card."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/ANCESTRY_BACKGROUND_PLAYTEST.md",
+      "version": "No explicit document version; bind by repository commit and byte hash.",
+      "bytes": 34771,
+      "sha256": "2bb46707d22caee6e669f6d5978db0ef30211d61049c7a88818f92cf7461e384",
+      "operativeLocators": ["line 131"],
+      "relevantContent": "An active Undead PC is alive as a life-state character with Humanoid and Undead creature types; either type qualifies for an effect requiring it, while an explicit exclusion of either excludes the character; this rule grants no unprinted monster immunities and does not make the PC a corpse."
+    },
+    {
+      "path": "docs/canon/CANON_MANIFEST.json",
+      "version": "1.0",
+      "bytes": 25007,
+      "sha256": "3d7854a98520fe7ce178724d17d27cb2028fd233567d2bc6a15e0b9c7432b1fd",
+      "operativeLocators": ["/mainCutover", "/description", "/pendingDeliveries"],
+      "relevantContent": "Main cutover is complete; ReviewBible remains an assembled review-build mirror; V7 deliveries remain pending review."
+    },
+    {
+      "path": "docs/canon/REPOSITORY_PROMOTION.md",
+      "version": "Owner lock 2026-08-05",
+      "bytes": 2551,
+      "sha256": "4bc74fd39c2e40cf59ec53ada0fdcb285e0b0d9963c10f78fd15406a0385c913",
+      "operativeLocators": ["Layers", "Promotion path for new bible packs", "Main ↔ ReviewBible sync"],
+      "relevantContent": "ReviewBible is an assembled review build; proposed rules require review; promotion to main requires explicit owner approval and additional promotion artifacts."
+    }
+  ],
+  "sourceGap": "No cited operative passage currently states that successful Lich transformation changes the character's mechanical creature type. The separately selected Mage 16 Undead Immunities card does not itself grant taxonomy. This proposal supplies a clearly labeled NEW candidate rule only.",
+  "proposedRule": {
+    "label": "NEW — proposed for owner review; not accepted or operative",
+    "eligibility": {
+      "subject": "An active Humanoid Mage at Mage class level 10 or higher who does not already have the Undead creature type.",
+      "readiness": [
+        "Obtain either one Soul Coin or two ritual participants.",
+        "Bind at least two named mini-bosses as guardians.",
+        "Secure a planar nexus.",
+        "Survive the Director's divine-echo encounter."
+      ],
+      "existingModifiers": [
+        "A third bound guardian grants +2 to the final ritual check.",
+        "If both ritual participants are willing, the final ritual check has advantage."
+      ],
+      "accessAndTiming": "All readiness conditions must be satisfied before the final Lich ritual check. The Director must disclose the historical failure stakes and obtain the player's explicit opt-in before the irreversible roll. If the player declines, stop before rolling and follow the existing alternative-Hero-path instruction."
+    },
+    "paymentAndConsumptionClarification": {
+      "status": "NEW proposal to make the existing readiness wording deterministic; requires separate owner review.",
+      "soulCoinRoute": "The acquired Soul Coin is a readiness prerequisite checked before the final roll. This proposed addition does not consume, destroy, transfer or spend it, and adds no RP, casting Action, component or other payment for the taxonomy change.",
+      "participantRoute": "The two participants must be available to participate in the ritual at the final check. Their participation is not itself a consumable payment under this proposal. The existing willingness condition and advantage rule remain unchanged.",
+      "failureTiming": "No additional cost is introduced by this taxonomy proposal on a failed check. Existing historical failure consequences remain exactly as the cited source states; this proposal does not override them."
+    },
+    "checkAndResolution": {
+      "check": "After all readiness gates and the divine-echo encounter are complete, roll d20 + Intelligence modifier + Constitution modifier against DC 20, applying the existing third-guardian +2 and willing-participant advantage where applicable.",
+      "successTiming": "Immediately after successful resolution of the final check, add Undead to the same character's creature-type set. The type update is one atomic rules-state update; it does not create a second creature or body.",
+      "failure": "The existing historical failure state and agreed player-to-NPC handoff remain unchanged. The proposed taxonomy addition does not occur on failure."
+    },
+    "identityAndBodyMapping": {
+      "identity": "Preserve the same creature identity and character record.",
+      "bodyAndLifeState": "Continue the same extant body and same active creature life state; the character is alive, not a corpse. Do not create a replacement body, death, corpse, resurrection or separate creature.",
+      "positionOrientationAndVolume": "Preserve the exact position, orientation, occupied volume and current spatial relation before and after the type update. No movement, crossing, admission or cell transition occurs.",
+      "hpConditionsEquipmentCargoAndCustody": "This type update changes none of current HP, maximum HP, conditions, equipment, carried items, cargo ownership or custody.",
+      "fitRequirement": "Occupied volume is unchanged, so this proposed rule requires no changed-volume fit calculation and does not displace any creature or object."
+    },
+    "taxonomyAndInteractions": {
+      "before": ["Humanoid"],
+      "after": ["Humanoid", "Undead"],
+      "duration": "Propose permanent taxonomy after successful transformation, with no concentration requirement and no automatic expiry or reversion.",
+      "terminationAndReversion": "This proposal defines no separate termination or reversion mechanism; no automatic removal occurs. Any dispel, voluntary removal, death-state or future reversion rule is outside this proposal and must come from an accepted source.",
+      "targeting": "Propose the existing ancestry interaction at ANCESTRY_BACKGROUND_PLAYTEST.md line 131: an effect requiring either type may apply; an explicit exclusion of either type excludes the character.",
+      "lifeState": "Describe the result as the same active creature life state, not a corpse; do not exempt the character from Undead targeting."
+    },
+    "abilitiesAndAcquisition": {
+      "taxonomyAloneGrants": [],
+      "excludedAutomaticGrants": ["ancestry package", "Lichborn traits", "immunities", "resource recovery", "automatic card selection", "automatic Mage 16 Undead Immunities card"],
+      "existingUnlocks": "Preserve only the ritual's existing successful Lich path and elite-companion unlocks. Each card, companion and feature retains its printed acquisition and use requirements; taxonomy does not grant or accelerate any of them."
+    }
+  },
+  "w03WitnessBoundaryAfterAcceptance": {
+    "precondition": "Only after separate explicit acceptance of this exact NEW source proposal.",
+    "test": "A fixed Undead-selected Banishment Gate target changes from Humanoid to Humanoid+Undead while remaining stationary at one unchanged position, with the same identity/body and no crossing, admission, cell transition or new hard-denial claim.",
+    "witnessStatusNow": "NOT CONSTRUCTED; source acceptance has not occurred."
+  },
+  "reviewAndStateControls": {
+    "directorReviewRequested": true,
+    "ownerReviewRequested": true,
+    "sourceAcceptance": "NOT GRANTED",
+    "acceptedIds": [],
+    "appliedIds": [],
+    "heldIds": ["banishment-gate"],
+    "blockerIds": ["PG200-B03", "PG200-B04"],
+    "closedBlockerIds": [],
+    "applicationAuthorized": false,
+    "queueCounts": "828 applied / 20 pending / 0 accepted-unapplied; 552 procedures / 173 interfaces / 0 first reviews / 20 closure tasks",
+    "fixtureMutation": false,
+    "campaignEventAsserted": false,
+    "canonicalRuleChanged": false,
+    "spellQueueChanged": false,
+    "existingWitnessSealsChanged": false
+  }
+}
