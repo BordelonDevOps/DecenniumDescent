@@ -1,0 +1,144 @@
+{
+  "id": "PG328-W12-BUILD-VALIDATION-445",
+  "status": "PROPOSAL_SOURCE_SCHEDULE_AND_GEOMETRY_VALIDATION_ONLY",
+  "readAtCommit": "f1a58b32640d327bb2abbc0372bc80577d212fce",
+  "proposalId": "PG328-W12-REVERSION-OWNER-PROPOSAL-445",
+  "scope": {
+    "spell": "conjure-demiplane-fortress",
+    "hold": "PG200-B06",
+    "component": "PG328-W12",
+    "branch": "PG328-W12-R1",
+    "parent": "docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w01_structural_damage_witness_403_repack02/W01_REPLAY_403.json#S030",
+    "parentSha256": "2b60ae35d828bd6028d71f202c1dd61c823d6212bb45c7f633ecd8f6b51d44fb",
+    "parentStateSha256": "6270321d6f07a55173f01fb353142d6bfb537d8e044cd313ef8fdd956baeff6c",
+    "parentTime": 12.9,
+    "hypotheticalOnly": true
+  },
+  "sourceCount": 18,
+  "sourceBindingsVerified": true,
+  "queueAtProposal": {
+    "applied": 830,
+    "pending": 18,
+    "acceptedUnapplied": 0,
+    "acceptedIds": [
+      "invulnerable-sphere"
+    ],
+    "appliedIds": [
+      "invulnerable-sphere"
+    ],
+    "mutated": false
+  },
+  "checks": [
+    {
+      "id": "SOURCE_BINDINGS",
+      "pass": true,
+      "detail": "18 exact Git blobs verified at f1a58b32640d327bb2abbc0372bc80577d212fce, including SPELL_INTEGRATION_RULES.md and CLASS_PLAYTEST_RULES.md."
+    },
+    {
+      "id": "POLYMORPH_ACCESS",
+      "pass": true,
+      "detail": "Level-18 ordinaryLearning entry, prepared index, spellbook index and R4/7RP current card are bound."
+    },
+    {
+      "id": "HAND_COMPONENTS",
+      "pass": true,
+      "detail": "Tile set-down precedes commitment; focus-A remains in left hand, free right hand supplies S, voice supplies V; load/weight updates to1.2/12lb."
+    },
+    {
+      "id": "LIFECYCLE_ORDER",
+      "pass": true,
+      "detail": "Sight13.1/13.2/13.3; Polymorph18.1/18.2/18.3; expiry78.1; Dispel79.1/79.2/79.3; Q27 settlement79.31."
+    },
+    {
+      "id": "SCHEDULE_BOOKKEEPING",
+      "pass": true,
+      "detail": "Computed 45 STARTs and 44 ENDs through79.31; no marker omitted."
+    },
+    {
+      "id": "EXTERIOR_COLLISION",
+      "pass": true,
+      "detail": "15 strict positive-volume pair tests across C,D,A,B,cargo-B and tile pass; A/B gear boxes are contained and non-overlapping."
+    },
+    {
+      "id": "INTERIOR_GEOMETRY",
+      "pass": true,
+      "detail": "Prior Director verified both stationary body boxes and the two rays clear all 2,694 Geometry405 fragments; source binding preserved. New tile-floor local support is explicitly proposed for Director confirmation."
+    },
+    {
+      "id": "QUEUE",
+      "pass": true,
+      "detail": "Current source remains830/18/0; no queue mutation."
+    },
+    {
+      "id": "WITNESS_EXECUTION",
+      "pass": false,
+      "detail": "Not run; requires Director readiness and exact owner adoption."
+    }
+  ],
+  "noWitnessConstructed": true,
+  "noSealAcceptanceApplicationOrQueueChange": true,
+  "geometryPairsChecked": [
+    [
+      "C",
+      "D"
+    ],
+    [
+      "C",
+      "A"
+    ],
+    [
+      "C",
+      "B"
+    ],
+    [
+      "C",
+      "cargo-B"
+    ],
+    [
+      "C",
+      "tile"
+    ],
+    [
+      "D",
+      "A"
+    ],
+    [
+      "D",
+      "B"
+    ],
+    [
+      "D",
+      "cargo-B"
+    ],
+    [
+      "D",
+      "tile"
+    ],
+    [
+      "A",
+      "B"
+    ],
+    [
+      "A",
+      "cargo-B"
+    ],
+    [
+      "A",
+      "tile"
+    ],
+    [
+      "B",
+      "cargo-B"
+    ],
+    [
+      "B",
+      "tile"
+    ],
+    [
+      "cargo-B",
+      "tile"
+    ]
+  ],
+  "proposalFileSha256": "93d31941e6a6d4d059cb3a108d0e247d07cc8e6cce395712f1c0ad45523df14c",
+  "markdownFileSha256": "93ebfe372e69529e8f41c1cc7f171593a47b2f77858fb5531fea437c744836f7"
+}

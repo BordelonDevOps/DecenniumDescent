@@ -1,0 +1,34 @@
+# PG328-W12 owner-adoption proposal 445 (TEST_ONLY)
+
+**Status:** Director review requested; not adopted; no witness built. This supersedes proposal 444 after four Director corrections.
+
+The branch begins from exact W01-403 Repack02 terminal `S030` at 12.9. B commits Arcane Sight at 13.1, its Counterspell window is 13.2 and it resolves at 13.3. A uses a free object interaction at 18.05 to set down the existing clay tile at its existing held bounds `[25,26]×[5,6]×[0,0.25]`; it remains owned by none, ground-custodied, and expires at 3606.13. A keeps focus-A in the left hand and uses the now-free right hand for S when it commits willing self-Polymorph at 18.1. B declines at 18.2; Polymorph resolves at 18.3 and its absolute 60-second deadline remains 78.1 from commitment. Only focus-A, pack-A and cargo-A meld. A automatically reverts at the same anchor at 78.1.
+
+B commits Rank-3 Arch Dispel at 79.1; A declines its legal Counterspell window at 79.2; the TEST_ONLY check `12 + INT 5 + PB 6 = 23 vs. DC 19` resolves at 79.3. Apply Q27 at 79.31 only after that. Full Initiative processing from S030 through settlement contains **45 STARTs and 44 ENDs**. The packet records family history, lastSpell, magicThisTurn, budgets, recharge, Spell Efficiency and concentration through the endpoint.
+
+The terminal closure lists living A/B body bounds; translates A’s exact S030 body-relative focus/pack/cargo bounds; declares B’s exact contained focus/pack bounds; projects existing loose cargo-B and the unexpired clay tile to their Q27 positions; binds C/D in the minimum-XY convention; and supplies exact ground patches. The external six-box collision check has no positive-volume intersections. The W05/W10 artifact is used only for the already reviewed interior rays and coordinate frame; none of its events or outcomes is imported.
+
+This remains one branch-local TEST_ONLY proposal. The tile drop, predator body box, return poses and support are not promoted to general rules. Current authority remains **830 applied / 18 pending / 0 accepted-unapplied**. No campaign occurrence, witness, seal, Fortress acceptance/application, canon change or queue mutation is claimed.
+
+## Exact committed source bindings
+
+- `docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w01_structural_damage_witness_403_repack02/W01_REPLAY_403.json` — SHA-256 `2b60ae35d828bd6028d71f202c1dd61c823d6212bb45c7f633ecd8f6b51d44fb` (Exact W01-403 Repack02 parent and S030 state.)
+- `docs/audit/2026-10-08/full-game/director-spell-review-129/conjure_demiplane_fortress_closure_intake_367/payload/sources/RETURN284_WIZARD20_PROFILE_TESTONLY.json` — SHA-256 `a3a3ce0a714c1fa35523719c8c8a0297fc457d5b5f097f6a20a00aad6cd7be55` (PG200-W20 profile and acquired/learned/prepared matrices.)
+- `DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json` — SHA-256 `f52cf6a4a4673897615a74c7c67dcba798c431362d4357e71ee552cc7c5d31f8` (Operational Polymorph identity and mechanics.)
+- `DescentReviewChanges/ReviewBible/data/playtest/spell_form_profiles.json` — SHA-256 `6bf641487b429201e7d0d01c725acb1c975949d902687c6cdf3be9d13e25b3d3` (Finite reviewed spell-form profiles.)
+- `DescentReviewChanges/ReviewBible/docs/mechanics/TRANSFORMATION_SPELL_PLAYTEST.md` — SHA-256 `b0551148795953c4435cd2e528fcfca84f9cfae97a6684f2b7334a10955dde23` (Transformation clock, concentration, equipment and reversion rules.)
+- `docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w07_real_dispel_374_repack02/payload/sources/WIZARD_ARCH_DISPEL_SOURCE.json` — SHA-256 `903b741323445cda855c0c49e887287971f0f1eeefda88a8003204043c86dda5` (Arcane Sight and Dispel Magic source cards.)
+- `docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w07_real_dispel_374_repack02/payload/sources/wizard.json` — SHA-256 `8ab2f4f43bcbced418fb266e5bd3216cff491b0c442c16f93438bd3556672c8b` (Wizard class access and casting rules.)
+- `docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w07_real_dispel_374_repack02/payload/sources/COMBAT_ACTION_PLAYTEST.md` — SHA-256 `9118101f0907e0cd52a78cef83affa9e6fcae1b3d958c8a576499dfddc424f60` (Scheduled turns, action and Counterspell rules.)
+- `docs/audit/2026-10-08/full-game/director-spell-review-129/conjure_demiplane_fortress_closure_intake_367/payload/sources/BODY_EQUIPMENT_PLAYTEST.md` — SHA-256 `d93f9cb0ec8a8398560511f23029d38d9b9a8b901e816373579c8f72b0bec1f3` (Equipment, body and custody rules.)
+- `docs/audit/2026-10-08/full-game/director-spell-review-129/conjure_demiplane_fortress_return328_received/PROCEDURE_CURRENT.json` — SHA-256 `aace60a0f276bcb1647c0ed7f20c7383225fecfe5a6628938c1f4034018dd5f0` (Current Fortress PG9-Q27 closure and terminal settlement.)
+- `docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w01_geometry_405/GEOMETRY_405.json` — SHA-256 `2ec0b2448eb4dd03a028a2c3edfd78c262fbef0309eb3e6ff49a41ca8850a147` (Exact Fortress interior geometry.)
+- `docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w01_geometry_405/DIRECTOR_GEOMETRY_READBACK_405.json` — SHA-256 `1bc2d997fff53272d363555c17f682728cc0b753594ae9d6cb710b0b4612fc12` (Director geometry/support readback.)
+- `docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w05_w10_joint_preflight_443/PG328_W05_W10_JOINT_PROPOSAL_443_TESTONLY.json` — SHA-256 `130feefa67af3366cfc57f4eee98880edbebe795c2e4c4a7bf93d289506c2dad` (Director-reviewed interior B perception ray and fixed Q27 reference frame; geometry only, no W05/W10 outcomes.)
+- `docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_SPELL_QUEUE_423_REPACK01.json` — SHA-256 `bb6c97b89bf4777fb0b7f38074b2b39bea9674fc07cddea5e4592b2e67a0caf6` (Current queue authority snapshot; no mutation.)
+- `docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w01_w13_coverage_readback_429/FORTRESS_W01_W13_COVERAGE_READBACK_429_BINDING_RECONCILED.json` — SHA-256 `3b52ab2479da5be1b61e4ff192a1326a870c57f55a0120bc8480f524b8dbc647` (W12 coverage obligation and current scope.)
+- `DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md` — SHA-256 `55f486de8d38a6734f8f0f2f62066401504f5b1311ebe66693175876b3f7aa6d` (Exact component/hand rules and free object interaction; W12-444-C01.)
+- `DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md` — SHA-256 `adb2f4752b45dc70ce792a675bb30dda362aab5056588061bcde3ba31c4c8a81` (Dissonance, Refrain, spell-family history and Spell Efficiency cadence; W12-444-C03.)
+- `docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w12_reversion_owner_proposal_444/PG328_W12_REVERSION_OWNER_PROPOSAL_444_TESTONLY.json` — SHA-256 `7583f37813c0eabbd809d538d35e279bafc8ce60ecb6318f0512558c2fcb7f4d` (Superseded exact proposal 444 and its correction history.)
+
+See the JSON for source pointers, exact timeline, item custody, geometry and owner boundaries.
