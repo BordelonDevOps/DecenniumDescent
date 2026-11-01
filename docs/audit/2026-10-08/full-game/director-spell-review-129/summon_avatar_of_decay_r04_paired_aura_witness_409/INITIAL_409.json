@@ -1,0 +1,529 @@
+{
+  "id": "SH333-R04-PAIRED-409",
+  "classification": "CONDITIONAL_TEST_ONLY",
+  "tick": 0,
+  "tickUnitSeconds": 0.01,
+  "worldElapsedSeconds": 0.0,
+  "round": 1,
+  "scene": {
+    "plane": "SH409-TEST-PLANE",
+    "bounds": [
+      -100,
+      100,
+      -100,
+      100,
+      0,
+      30
+    ],
+    "floorZ": 0,
+    "floorCapacityLbPerSqFt": 1000,
+    "ceilingZ": 30,
+    "solids": [],
+    "light": "bright",
+    "hazards": [],
+    "wards": [],
+    "suppressionSources": [],
+    "outsideActors": []
+  },
+  "initiative": [
+    {
+      "actor": "P",
+      "die": 18,
+      "modifier": 2,
+      "total": 20,
+      "phase": 0
+    },
+    {
+      "actor": "Q",
+      "die": 14,
+      "modifier": 2,
+      "total": 16,
+      "phase": 100
+    },
+    {
+      "actor": "F",
+      "die": 10,
+      "modifier": 2,
+      "total": 12,
+      "phase": 200
+    }
+  ],
+  "actors": {
+    "P": {
+      "id": "P",
+      "profileRef": "sources/W17D.json#",
+      "sourceIdentity": "W17D",
+      "classLevel": 17,
+      "school": "Divination",
+      "heroPath": "Spellbinder",
+      "decaySaveDC": 19,
+      "openingRPBinding": "sources/W17D.json#/rpMaximum",
+      "conditional": true,
+      "plane": "SH409-TEST-PLANE",
+      "pos": [
+        -30,
+        -35,
+        0
+      ],
+      "box": [
+        5,
+        5,
+        6
+      ],
+      "facing": "+y",
+      "type": "Humanoid",
+      "size": "Medium",
+      "massLb": 180,
+      "hp": 104,
+      "maxHP": 104,
+      "tempHP": 0,
+      "AC": 12,
+      "speed": 30,
+      "conditions": [],
+      "wounds": 0,
+      "resistances": [
+        "force"
+      ],
+      "arcaneWardSelection": "force",
+      "immunities": [],
+      "conditionImmunities": [],
+      "saveCON": 2,
+      "nullDealer": false,
+      "nullRecipient": false,
+      "dead": false,
+      "originalOwner": "P",
+      "controller": "P",
+      "concentration": null,
+      "RP": 64,
+      "Dissonance": 0,
+      "Refrain": 0,
+      "lastCast": null,
+      "preparedFamiliesUsed": [],
+      "magicThisTurn": false,
+      "recharge": {
+        "wizard.base.counterspell": 0
+      },
+      "castHistory": [],
+      "voiceAvailable": true,
+      "hands": {
+        "left": "focus-P",
+        "right": null
+      },
+      "perception": {
+        "ordinarySight": true,
+        "ordinaryHearing": true,
+        "observersVisible": [
+          "P",
+          "Q",
+          "F"
+        ],
+        "eyeHeight": 5.5
+      },
+      "budget": {
+        "Action": 0,
+        "BonusAction": 0,
+        "Reaction": 1,
+        "Movement": 0,
+        "Interaction": 0
+      },
+      "turn": {
+        "active": false,
+        "phase": 0,
+        "nextStart": 0,
+        "nextEnd": 80,
+        "startsConsumed": [],
+        "endsConsumed": [],
+        "refreshCount": 0
+      },
+      "stance": null,
+      "stanceExpires": null,
+      "mobileAllowance": 0,
+      "commandEntitlement": {
+        "round": 1,
+        "commandSpent": false,
+        "offenseSpent": false
+      },
+      "carriedItems": [
+        "focus-P",
+        "book-P",
+        "kit-P"
+      ],
+      "carriedMassLb": 10,
+      "load": 1,
+      "capacityLb": 180,
+      "loadCapacity": 12,
+      "optionalTechniquesUsed": []
+    },
+    "Q": {
+      "id": "Q",
+      "profileRef": "sources/W17N.json#",
+      "sourceIdentity": "W17N",
+      "classLevel": 17,
+      "school": "Necromancy",
+      "heroPath": "Necromancer",
+      "decaySaveDC": 21,
+      "openingRPBinding": "sources/W17N.json#/rpMaximum",
+      "conditional": true,
+      "plane": "SH409-TEST-PLANE",
+      "pos": [
+        30,
+        -35,
+        0
+      ],
+      "box": [
+        5,
+        5,
+        6
+      ],
+      "facing": "+y",
+      "type": "Humanoid",
+      "size": "Medium",
+      "massLb": 180,
+      "hp": 104,
+      "maxHP": 104,
+      "tempHP": 0,
+      "AC": 12,
+      "speed": 30,
+      "conditions": [],
+      "wounds": 0,
+      "resistances": [
+        "necrotic"
+      ],
+      "arcaneWardSelection": "necrotic",
+      "immunities": [],
+      "conditionImmunities": [],
+      "saveCON": 2,
+      "nullDealer": false,
+      "nullRecipient": false,
+      "dead": false,
+      "originalOwner": "Q",
+      "controller": "Q",
+      "concentration": null,
+      "RP": 64,
+      "Dissonance": 0,
+      "Refrain": 0,
+      "lastCast": null,
+      "preparedFamiliesUsed": [],
+      "magicThisTurn": false,
+      "recharge": {
+        "wizard.base.counterspell": 0
+      },
+      "castHistory": [],
+      "voiceAvailable": true,
+      "hands": {
+        "left": "focus-Q",
+        "right": null
+      },
+      "perception": {
+        "ordinarySight": true,
+        "ordinaryHearing": true,
+        "observersVisible": [
+          "P",
+          "Q",
+          "F"
+        ],
+        "eyeHeight": 5.5
+      },
+      "budget": {
+        "Action": 0,
+        "BonusAction": 0,
+        "Reaction": 1,
+        "Movement": 0,
+        "Interaction": 0
+      },
+      "turn": {
+        "active": false,
+        "phase": 100,
+        "nextStart": 100,
+        "nextEnd": 180,
+        "startsConsumed": [],
+        "endsConsumed": [],
+        "refreshCount": 0
+      },
+      "stance": null,
+      "stanceExpires": null,
+      "mobileAllowance": 0,
+      "commandEntitlement": {
+        "round": 1,
+        "commandSpent": false,
+        "offenseSpent": false
+      },
+      "carriedItems": [
+        "focus-Q",
+        "book-Q",
+        "kit-Q"
+      ],
+      "carriedMassLb": 10,
+      "load": 1,
+      "capacityLb": 180,
+      "loadCapacity": 12,
+      "optionalTechniquesUsed": []
+    },
+    "F": {
+      "id": "F",
+      "profileRef": "sources/FERRY333.json#",
+      "sourceIdentity": "FERRY333",
+      "classLevel": null,
+      "school": null,
+      "heroPath": null,
+      "decaySaveDC": null,
+      "openingRPBinding": null,
+      "conditional": true,
+      "plane": "SH409-TEST-PLANE",
+      "pos": [
+        0,
+        0,
+        0
+      ],
+      "box": [
+        5,
+        5,
+        6
+      ],
+      "facing": "+y",
+      "type": "Undead",
+      "size": "Medium",
+      "massLb": 90,
+      "hp": 9,
+      "maxHP": 9,
+      "tempHP": 0,
+      "AC": 10,
+      "speed": 40,
+      "conditions": [],
+      "wounds": 0,
+      "resistances": [
+        "necrotic"
+      ],
+      "arcaneWardSelection": null,
+      "immunities": [
+        "poison"
+      ],
+      "conditionImmunities": [
+        "poisoned"
+      ],
+      "saveCON": 2,
+      "nullDealer": false,
+      "nullRecipient": false,
+      "dead": false,
+      "originalOwner": "F",
+      "controller": "F",
+      "concentration": null,
+      "RP": null,
+      "Dissonance": null,
+      "Refrain": null,
+      "lastCast": null,
+      "preparedFamiliesUsed": [],
+      "magicThisTurn": false,
+      "recharge": {},
+      "castHistory": [],
+      "voiceAvailable": true,
+      "hands": {
+        "left": null,
+        "right": null
+      },
+      "perception": {
+        "ordinarySight": true,
+        "ordinaryHearing": true,
+        "observersVisible": [
+          "P",
+          "Q",
+          "F"
+        ],
+        "eyeHeight": 5.5
+      },
+      "budget": {
+        "Action": 0,
+        "BonusAction": 0,
+        "Reaction": 1,
+        "Movement": 0,
+        "Interaction": 0
+      },
+      "turn": {
+        "active": false,
+        "phase": 200,
+        "nextStart": 200,
+        "nextEnd": 280,
+        "startsConsumed": [],
+        "endsConsumed": [],
+        "refreshCount": 0
+      },
+      "stance": null,
+      "stanceExpires": null,
+      "mobileAllowance": 0,
+      "commandEntitlement": {
+        "round": 1,
+        "commandSpent": false,
+        "offenseSpent": false
+      },
+      "carriedItems": [
+        "seal-F"
+      ],
+      "carriedMassLb": 0.1,
+      "load": 0.1,
+      "capacityLb": 180,
+      "loadCapacity": 12,
+      "optionalTechniquesUsed": []
+    }
+  },
+  "items": {
+    "focus-P": {
+      "id": "focus-P",
+      "custodian": "P",
+      "massLb": 1,
+      "location": "leftHand",
+      "bounds": [
+        -30.875,
+        -30.625,
+        -34.625,
+        -34.375,
+        3,
+        4
+      ],
+      "conditionalDimensionsAndMass": true,
+      "consumed": false,
+      "contents": [],
+      "sourceRef": "sources/W17D.json#/characterFoundation/equipment"
+    },
+    "book-P": {
+      "id": "book-P",
+      "custodian": "P",
+      "massLb": 3,
+      "location": "carried",
+      "bounds": [
+        -30.5,
+        -29.5,
+        -36.0,
+        -35.5,
+        2,
+        3
+      ],
+      "conditionalDimensionsAndMass": true,
+      "consumed": false,
+      "contents": [],
+      "sourceRef": "sources/W17D.json#/characterFoundation/equipment"
+    },
+    "kit-P": {
+      "id": "kit-P",
+      "custodian": "P",
+      "massLb": 6,
+      "location": "carried",
+      "bounds": [
+        -29.75,
+        -28.75,
+        -36.0,
+        -35.0,
+        2,
+        3
+      ],
+      "conditionalDimensionsAndMass": true,
+      "consumed": false,
+      "contents": [
+        "satchel",
+        "worn clothing",
+        "uniform piece",
+        "map",
+        "manacles",
+        "belt pouch with 10gp"
+      ],
+      "sourceRef": "sources/W17D.json#/characterFoundation/equipment"
+    },
+    "focus-Q": {
+      "id": "focus-Q",
+      "custodian": "Q",
+      "massLb": 1,
+      "location": "leftHand",
+      "bounds": [
+        29.125,
+        29.375,
+        -34.625,
+        -34.375,
+        3,
+        4
+      ],
+      "conditionalDimensionsAndMass": true,
+      "consumed": false,
+      "contents": [],
+      "sourceRef": "sources/W17N.json#/characterFoundation/equipment"
+    },
+    "book-Q": {
+      "id": "book-Q",
+      "custodian": "Q",
+      "massLb": 3,
+      "location": "carried",
+      "bounds": [
+        29.5,
+        30.5,
+        -36.0,
+        -35.5,
+        2,
+        3
+      ],
+      "conditionalDimensionsAndMass": true,
+      "consumed": false,
+      "contents": [],
+      "sourceRef": "sources/W17N.json#/characterFoundation/equipment"
+    },
+    "kit-Q": {
+      "id": "kit-Q",
+      "custodian": "Q",
+      "massLb": 6,
+      "location": "carried",
+      "bounds": [
+        30.25,
+        31.25,
+        -36.0,
+        -35.0,
+        2,
+        3
+      ],
+      "conditionalDimensionsAndMass": true,
+      "consumed": false,
+      "contents": [
+        "satchel",
+        "worn clothing",
+        "uniform piece",
+        "map",
+        "manacles",
+        "belt pouch with 10gp"
+      ],
+      "sourceRef": "sources/W17N.json#/characterFoundation/equipment"
+    },
+    "seal-F": {
+      "id": "seal-F",
+      "custodian": "F",
+      "location": "carried",
+      "massLb": 0.1,
+      "bounds": [
+        -0.25,
+        0.25,
+        -0.25,
+        0.25,
+        3,
+        3.1
+      ],
+      "intact": true,
+      "consumed": false,
+      "contentsKnown": false,
+      "authorityExercised": false,
+      "conditionalDimensionsAndMass": true,
+      "sourceRef": "sources/FERRY333.json#/authorizedExistingLocalCompletion/equipment"
+    }
+  },
+  "sources": {},
+  "bodies": {},
+  "pendingCast": null,
+  "counterWindows": [],
+  "aura": {
+    "checks": [],
+    "roots": {},
+    "settlements": [],
+    "familyMarkerReceipts": {},
+    "duplicateChecks": []
+  },
+  "phaseLedger": [],
+  "commandHistory": [],
+  "relations": {},
+  "hardGuards": {},
+  "ownerHistory": [],
+  "eventHistory": []
+}
