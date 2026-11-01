@@ -77,7 +77,9 @@
     "profileMemberSha256": "a3a3ce0a714c1fa35523719c8c8a0297fc457d5b5f097f6a20a00aad6cd7be55",
     "actor": "A",
     "qualification": "Conditional TEST_ONLY Wizard20 actor. No campaign event or campaign occurrence is asserted.",
-    "finding": "The profile's spellbook array is a list of recorded spell identities; it does not identify a physical receiving book, custody, or a newly found copy."
+    "finding": "The profile expressly states that the conditional actor has an actual spellbook carried in a satchel. The W02 branch still needs an item-level identity and custody mapping for that book; the profile statement alone does not add it to the branch item graph.",
+    "equipmentBookPointer": "/characterFoundation/equipment/book",
+    "equipmentBookStatement": "actual spellbook carried in satchel"
   },
   "scenarioEvidence": {
     "archiveFile": "payload/authority/PG328_HELD_ARCHIVE.zip",
@@ -112,7 +114,7 @@
       "narrative": "Exact actual-scribing-work branch remains distinct and not demonstrated by empty closure",
       "authoredInputs": {}
     },
-    "finding": "The branch has no itemized spellbook, found copy, inks/components, or scribing tools. Its work field remains null; /events/7 is a retained obligation, not a scribing event. Generic focus/pack/cargo entries do not establish their contents."
+    "finding": "The branch item graph has only generic focus, pack, and cargo objects and does not map the profile-stated satchel book to a distinct item ID/custody record. It contains no found copy, inks/components, or scribing tools. Its work field remains null; /events/7 is a retained obligation, not a scribing event. Generic pack/cargo entries do not establish their contents."
   },
   "candidateAssessment": [
     {
@@ -132,11 +134,11 @@
     {
       "candidate": "Receiving spellbook and imported tools/materials",
       "requiredEvidence": [
-        "Physical receiving spellbook identity and custody",
+        "Map the profile-stated actual spellbook carried in a satchel to a distinct item ID and custody record in the W02 branch",
         "Scribing tool identities and custody",
         "Inks/components identities, finite quantity, provenance, and sufficiency for the chosen spell rank"
       ],
-      "finding": "Not established. The actual-scribing branch itemizes only generic focus, pack, and cargo objects; the Fortress creates no tools or reagents."
+      "finding": "Partially established: the profile states that an actual spellbook is carried in a satchel. The W02 branch does not map it to an item ID/custody record, and the required tools and finite inks/components are not established."
     },
     {
       "candidate": "Work interval and output",
@@ -149,10 +151,10 @@
     }
   ],
   "preflightFinding": {
-    "summary": "The legitimate Spell Scribing rule and the conditional actor's acquired ability are present. The required copy/source, receiving book, tools, finite materials, work history, and exact output are absent from the bound branch. The existing branch does not witness actual scribing.",
+    "summary": "The legitimate Spell Scribing rule and the conditional actor’s acquired ability are present, and the profile says an actual spellbook is carried in a satchel. The W02 branch does not map that book into its item/custody graph and lacks the legal found-copy source, tools, finite materials, work history, and exact output. The existing branch does not witness actual scribing.",
     "remainingPredicates": [
       "Bind one exact legal found Wizard spell copy with identity, rank, source, permission, provenance, and custody.",
-      "Bind the receiving spellbook, scribing tools, and finite inks/components with identities, owners, custody, quantities, and cost sufficiency.",
+      "Map the profile-stated spellbook carried in the satchel to an item ID/custody record in the branch; bind scribing tools and finite inks/components with identities, owners, custody, quantities, and cost sufficiency.",
       "Specify the authorized TEST_ONLY work/output or incomplete attempt, with interval, interruption, clock, and consumption accounting."
     ],
     "closesW02Residual": false
@@ -181,5 +183,15 @@
     }
   },
   "nextAction": "Submit this read-only source/input sufficiency finding for Director review. Do not add missing premises to the fixture or construct W02 without a separate authorized scope change.",
-  "bindingBase": "docs/audit/2026-10-08/full-game/director-spell-review-129/conjure_demiplane_fortress_closure_intake_367/"
+  "bindingBase": "docs/audit/2026-10-08/full-game/director-spell-review-129/conjure_demiplane_fortress_closure_intake_367/",
+  "directorReviewOfPriorVersion": {
+    "reviewedCommit": "d74c108a",
+    "decision": "SOURCE_HASHES_AND_EVENTS7_FINDING_CONFIRMED_ONE_PROFILE_EQUIPMENT_CORRECTION_REQUIRED",
+    "correction": "The profile states at /characterFoundation/equipment/book that an actual spellbook is carried in a satchel. The W02 branch still lacks an item-level identity and custody mapping for that book.",
+    "preservedFindings": [
+      "Declared source hashes match.",
+      "/events/7 is a retained-obligation marker, not a scribing event.",
+      "A found-copy source, tools/materials, work, and output remain unproved."
+    ]
+  }
 }
