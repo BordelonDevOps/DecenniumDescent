@@ -1,0 +1,631 @@
+{
+  "id": "PG328-W01-W08-OCCUPIED-PANEL-GEOMETRY-PROPOSAL-396",
+  "createdAtUtc": "2026-11-01T03:06:05Z",
+  "status": "DIRECTOR_REVIEWED_SUPPORT_AND_CONTACT_PROPOSAL_PENDING_OWNER_ADOPTION; FIXED_ANCHOR_CORRECTION_396",
+  "supersedes": "PG328-W01-W08-OCCUPIED-PANEL-GEOMETRY-PROPOSAL-395",
+  "scope": {
+    "witnessId": "PG328-W08",
+    "subWitnessId": "PG328-W01",
+    "caseId": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-B/occupied-antimagic",
+    "fixtureMutated": false,
+    "canonicalGeometryChanged": false,
+    "actualCastPerformed": false,
+    "W01CompatibleDamageObligationCompleted": false,
+    "ownerAdoptionRequired": true
+  },
+  "sourceBindings": [
+    {
+      "path": "payload/rules/PG328_QUESTION_DISPOSITIONS.json#/questions/2/answer",
+      "sha256": "149d4098591799f51afa37837ccca722eb9ae08c3ea437c640d943f33b1bb637",
+      "use": "Q23 bounds the existing Fortress envelope and structural panels but leaves the panel/support model unresolved."
+    },
+    {
+      "path": "payload/cases/RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-B__occupied-antimagic.json#/final/actors/A",
+      "sha256": "f12414164a641a6b8912b43e8f426f027772f3a58d92dbadfcbd45b4f5b14900",
+      "use": "Exact inherited actor A member and body, position, and carried-load fields."
+    },
+    {
+      "path": "payload/cases/RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-B__occupied-antimagic.json#/final/spaces/RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-B~1occupied-antimagic~1cast1~1space/support",
+      "sha256": "f12414164a641a6b8912b43e8f426f027772f3a58d92dbadfcbd45b4f5b14900",
+      "use": "Exact inherited aggregate support datum z=0; this proposal places the slab lower face on that datum."
+    },
+    {
+      "path": "payload/sources/ANTIMAGIC_FIELD_MODEL_149.json#/spells/2/procedure",
+      "sha256": "ceeff51cb3b9e8000bf845e299d4d9e66b46792133ae5931ad823ce98ea51e57",
+      "use": "Fixed-center 20-ft field clipped by actual-solid total cover; proposal checks an exposed slab-side contact without assuming penetration."
+    }
+  ],
+  "spaceEnvelope": {
+    "spaceId": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-B/occupied-antimagic/cast1/space",
+    "inheritedBoundsFeet": [
+      0,
+      120,
+      0,
+      120,
+      0,
+      40
+    ],
+    "inheritedSupport": {
+      "z": 0,
+      "boundsXY": [
+        0,
+        120,
+        0,
+        120
+      ]
+    },
+    "courtyardBoundsXY": [
+      5,
+      115,
+      5,
+      115
+    ],
+    "noBoundsOrSupportExpansion": true,
+    "panelOutsideEnvelope": false
+  },
+  "proposedLocalFortressInstantiation": {
+    "status": "Scoped test-only local layout; not an unbound campaign fact.",
+    "partOfExistingSource": "The existing PG200 Fortress effect and generated space in the bound case; no new space or spell source.",
+    "towerPlacementsFeet": {
+      "southwest": {
+        "x": [
+          5,
+          25
+        ],
+        "y": [
+          5,
+          25
+        ],
+        "z": [
+          0,
+          40
+        ]
+      },
+      "southeast": {
+        "x": [
+          95,
+          115
+        ],
+        "y": [
+          5,
+          25
+        ],
+        "z": [
+          0,
+          40
+        ]
+      },
+      "northwest": {
+        "x": [
+          5,
+          25
+        ],
+        "y": [
+          95,
+          115
+        ],
+        "z": [
+          0,
+          40
+        ]
+      },
+      "northeast": {
+        "x": [
+          95,
+          115
+        ],
+        "y": [
+          95,
+          115
+        ],
+        "z": [
+          0,
+          40
+        ]
+      }
+    },
+    "southwestTower": {
+      "id": "W08-SW-TOWER",
+      "boundsFeet": {
+        "x": [
+          5,
+          25
+        ],
+        "y": [
+          5,
+          25
+        ],
+        "z": [
+          0,
+          40
+        ]
+      },
+      "wallThicknessFeet": 5,
+      "wallSolids": [
+        {
+          "id": "W08-SW-WALL-W",
+          "x": [
+            5,
+            10
+          ],
+          "y": [
+            5,
+            25
+          ],
+          "z": [
+            0,
+            40
+          ]
+        },
+        {
+          "id": "W08-SW-WALL-E",
+          "x": [
+            20,
+            25
+          ],
+          "y": [
+            5,
+            25
+          ],
+          "z": [
+            0,
+            40
+          ]
+        },
+        {
+          "id": "W08-SW-WALL-N",
+          "x": [
+            5,
+            25
+          ],
+          "y": [
+            20,
+            25
+          ],
+          "z": [
+            0,
+            40
+          ]
+        },
+        {
+          "id": "W08-SW-WALL-S",
+          "x": [
+            5,
+            25
+          ],
+          "y": [
+            5,
+            10
+          ],
+          "z": [
+            0,
+            40
+          ],
+          "subtract": "W08-SW-DOOR-S"
+        }
+      ],
+      "southDoor": {
+        "id": "W08-SW-DOOR-S",
+        "clearApertureFeet": {
+          "x": [
+            12.5,
+            17.5
+          ],
+          "y": [
+            5,
+            10
+          ],
+          "z": [
+            0,
+            8
+          ]
+        },
+        "sizeFeet": [
+          5,
+          8
+        ],
+        "state": "open; no door leaf occupies aperture in proposed branch"
+      },
+      "openInterior": {
+        "x": [
+          10,
+          20
+        ],
+        "y": [
+          10,
+          20
+        ],
+        "z": [
+          0,
+          40
+        ]
+      },
+      "floorSurfacesFeet": [
+        0,
+        10,
+        20,
+        30,
+        40
+      ],
+      "stairPath": {
+        "boundsFeet": {
+          "x": [
+            15,
+            20
+          ],
+          "y": [
+            15,
+            20
+          ],
+          "z": [
+            0,
+            40
+          ]
+        },
+        "widthFeet": 5,
+        "reserved": true,
+        "intersectsPanelRays": false
+      },
+      "namedGroundPanel": "W08-FLOOR-PANEL-A-01, z=0..1/12"
+    },
+    "perimeterAndOtherStructures": {
+      "outerWalls": "Q23 perimeter walls are 5ft thick and 30ft high at x/y 0..5 and 115..120; none of the candidate panel rays reaches them.",
+      "otherTowers": "The other three towers are at the listed opposite corners and do not intersect the panel rays.",
+      "otherLocalSolids": [],
+      "noUnlistedObstructionAssumed": true
+    }
+  },
+  "occupiedPanel": {
+    "id": "W08-FLOOR-PANEL-A-01",
+    "partOf": "W08-SW-TOWER / existing PG200 Fortress source",
+    "planSizeFeet": [
+      5,
+      5
+    ],
+    "surfaceBoundsFeet": {
+      "x": [
+        12.5,
+        17.5
+      ],
+      "y": [
+        7.5,
+        12.5
+      ],
+      "z": [
+        0,
+        0.08333333333333333
+      ]
+    },
+    "areaSquareFeet": 25,
+    "AC": 17,
+    "HP": 60,
+    "thickness": "A one-inch vertical prism is a new, scoped TEST_ONLY support premise proposed for owner adoption; it is not inferred from Q23 or treated as canonical floor physics.",
+    "AContactFootprint": {
+      "x": [
+        12.5,
+        17.5
+      ],
+      "y": [
+        7.5,
+        12.5
+      ]
+    },
+    "supportGraph": {
+      "existingGeneratedSpace": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-B/occupied-antimagic/cast1/space",
+      "existingAggregateSupportPointer": "/final/spaces/RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-B~1occupied-antimagic~1cast1~1space/support",
+      "testOnlyInstantiation": "The slab lower face rests exactly on the inherited z=0 aggregate support datum; the named one-inch magical panel is a part of the existing Fortress source, not an independent footing or new support plane.",
+      "loadBearingPremise": {
+        "supportedMassLb": 162,
+        "components": {
+          "A_body": 150,
+          "A_carriedEquipment": 12
+        },
+        "contact": "A's complete 5x5 footprint rests on the slab top surface at z=1/12."
+      },
+      "edges": [
+        {
+          "from": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-B/occupied-antimagic/cast1/space",
+          "to": "W08-SW-TOWER",
+          "relation": "existing Fortress source contains proposed corner tower"
+        },
+        {
+          "from": "W08-SW-TOWER",
+          "to": "W08-FLOOR-PANEL-A-01",
+          "relation": "tower contains the named ground-floor structural panel"
+        },
+        {
+          "from": "inherited aggregate support patch z=0",
+          "to": "W08-FLOOR-PANEL-A-01 lower face z=0",
+          "relation": "the panel prism bears directly on the existing support datum"
+        },
+        {
+          "from": "W08-FLOOR-PANEL-A-01 top face z=1/12",
+          "to": "A and carried equipment",
+          "relation": "supports A's complete 5x5 footprint and 162 lb combined load"
+        }
+      ],
+      "noIndependentFooting": true,
+      "noNewSpace": true,
+      "ownerAdoptionRequired": true
+    },
+    "occupancy": {
+      "AFeetPosition": [
+        15,
+        10,
+        0.08333333333333333
+      ],
+      "bodyBoundsFeet": {
+        "x": [
+          12.5,
+          17.5
+        ],
+        "y": [
+          7.5,
+          12.5
+        ],
+        "z": [
+          0.08333333333333333,
+          6.083333333333333
+        ]
+      },
+      "groundContactZ": 0.08333333333333333,
+      "doorwayFit": "The 5x5 footprint remains inside the 5x8 south opening; body height 1/12..73/12 fits below opening top z=8.",
+      "carriedMassLb": 12,
+      "combinedSupportedMassLb": 162
+    },
+    "volumeBoundsFeet": {
+      "x": [
+        12.5,
+        17.5
+      ],
+      "y": [
+        7.5,
+        12.5
+      ],
+      "z": [
+        0,
+        0.08333333333333333
+      ]
+    },
+    "thicknessFeet": 0.08333333333333333,
+    "branchInitialization396": {
+      "status": "SEPARATE_NEW_BRANCH_PREMISE_PENDING_OWNER_ADOPTION",
+      "afterRetainedAdmissionPointer": "/events/6",
+      "actorAFeetBefore": [
+        15,
+        10,
+        0
+      ],
+      "actorAFeetInProposedRaisedBranch": [
+        15,
+        10,
+        0.08333333333333333
+      ],
+      "carriedItemsRaisedByFeet": 0.08333333333333333,
+      "purpose": "Place A's complete footprint on the proposed one-inch support panel for this W08 TEST_ONLY branch.",
+      "changesHistoricalEntryOrFixedClosureAnchor": false,
+      "ownerAdoptionRequired": true
+    }
+  },
+  "fieldIntersectionAndCover": {
+    "centerFeet": [
+      18.5,
+      14,
+      0.041666666666666664
+    ],
+    "centerCandidateRevision": "Director-suggested side approach outside A's raised body and the panel prism footprint.",
+    "centerRangeFromAFeet": 5.315236223,
+    "radiusFeet": 20,
+    "panelPrismBoundsFeet": {
+      "x": [
+        12.5,
+        17.5
+      ],
+      "y": [
+        7.5,
+        12.5
+      ],
+      "z": [
+        0,
+        0.08333333333333333
+      ]
+    },
+    "panelCornerPointsFeet": [
+      [
+        12.5,
+        7.5,
+        0
+      ],
+      [
+        12.5,
+        7.5,
+        0.08333333333333333
+      ],
+      [
+        12.5,
+        12.5,
+        0
+      ],
+      [
+        12.5,
+        12.5,
+        0.08333333333333333
+      ],
+      [
+        17.5,
+        7.5,
+        0
+      ],
+      [
+        17.5,
+        7.5,
+        0.08333333333333333
+      ],
+      [
+        17.5,
+        12.5,
+        0
+      ],
+      [
+        17.5,
+        12.5,
+        0.08333333333333333
+      ]
+    ],
+    "panelCornerDistancesFeet": [
+      8.846001137,
+      8.846001137,
+      6.184798793,
+      6.184798793,
+      6.576605212,
+      6.576605212,
+      1.803257084,
+      1.803257084
+    ],
+    "farthestPanelPointFeet": [
+      12.5,
+      7.5,
+      0
+    ],
+    "farthestPanelDistanceFeet": 8.846001137,
+    "sphereContainsWholePanelPrismGeometrically": true,
+    "candidateExposedSuppressionLocusPointFeet": [
+      17.5,
+      12.25,
+      0.041666666666666664
+    ],
+    "centerToPanelSideRay": {
+      "fromFeet": [
+        18.5,
+        14,
+        0.041666666666666664
+      ],
+      "toFeet": [
+        17.5,
+        12.25,
+        0.041666666666666664
+      ],
+      "zConstant": true,
+      "xRange": [
+        17.5,
+        18.5
+      ],
+      "yRange": [
+        12.25,
+        14
+      ],
+      "clearOfRaisedABody": true,
+      "remainsOutsidePanelUntilEndpoint": true,
+      "endpointOnEastFace": true,
+      "obstructionCheck": "The segment lies in the open interior, below A's raised body, outside the panel prism until the exposed east-face endpoint, clear of the tower walls and reserved stair path."
+    },
+    "architecturalSolids": [
+      "southwest tower walls with declared open 5x8 doorway",
+      "reserved stair path",
+      "upper floor surfaces",
+      "Q23 perimeter walls"
+    ],
+    "actualTotalCoverRuleBound": true,
+    "creatureCoverClassificationAssumed": false,
+    "panelPenetrationAssumed": false,
+    "fieldContactConclusion": "A direct ray to the exposed east face is geometrically clear. This proposes surface contact only; it does not assert penetration through the panel or establish that surface contact satisfies Q27's occupied-structural-region predicate.",
+    "Q27TriggerQuestion": "Does contact at this exposed face establish suppression of W08-FLOOR-PANEL-A-01 for Q27, or is a narrower structural expression or source rule required?"
+  },
+  "Q27TriggerQuestion": "If this unadopted support/contact premise is accepted, does the exposed face contact satisfy Q27's occupied-structural-region trigger, while W01 compatible damage remains open?",
+  "adoptionBoundary": "Unadopted TEST_ONLY geometry and support/contact proposal only; no campaign fact, cast, Q27 settlement, W01 compatible-damage completion, PG200-B06 clearance, or W08 acceptance.",
+  "directorReview395": {
+    "path": "DIRECTOR_PG328_W08_SUPPORT_COVER_REVIEW_395.json",
+    "sha256": "92c38342ac45b11724fc533236ca300e09a474c2bdbaa2e94461bdc4887f5488",
+    "decision": "Support/contact pass as proposed TEST_ONLY inputs; apply exact anchor correction."
+  },
+  "fixedClosureAnchor396": {
+    "status": "DIRECTOR_CONFIRMED_FIXED_ADMISSION_CLOSURE_ANCHOR; BRANCH_PREMISE_REMAINS_UNADOPTED",
+    "historicalAdmission": {
+      "caseMember": "payload/cases/RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-B__occupied-antimagic.json",
+      "jsonPointer": "/events/6",
+      "eventId": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-B/occupied-antimagic:7",
+      "eventKind": "CROSSING",
+      "eventTimeSeconds": 0.2,
+      "transitReceiptId": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-B/occupied-antimagic/transit1",
+      "before": {
+        "plane": "fixture:origin",
+        "feet": [
+          5,
+          0,
+          0
+        ]
+      },
+      "after": {
+        "plane": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-B/occupied-antimagic/cast1/space",
+        "feet": [
+          15,
+          10,
+          0
+        ]
+      },
+      "committedMovementFeet": 5,
+      "inheritedCaseBytesMutated": false
+    },
+    "q27AnchorDerivation": {
+      "ruleSource": "payload/rules/PG328_PROCEDURE_CURRENT.json#/sharedContract/cellExtension/closure/secondaryAnchors",
+      "retainedInteriorEntryFeet": [
+        15,
+        10,
+        0
+      ],
+      "interiorEntranceReferenceFeet": [
+        10,
+        10,
+        0
+      ],
+      "stableAdmissionOffsetFeet": [
+        5,
+        0,
+        0
+      ],
+      "exteriorEntranceAnchorFeet": [
+        10,
+        0,
+        0
+      ],
+      "fixedClosureAnchorFeet": [
+        15,
+        0,
+        0
+      ],
+      "derivation": "Project the retained cell-local admission offset [5,0,0] onto the primary fixed world axes at exterior entrance [10,0,0]. The later W08 branch initialization does not redefine this recorded anchor.",
+      "notAGroundProjection": true,
+      "verticalAdjustmentFeet": 0,
+      "directorFinding": "Q27 supplies no general projection-to-ground permission; this closure anchor is fixed by retained admission history. No falling episode follows merely from the interior/exterior height difference."
+    },
+    "testOnlyBranchInitialization": {
+      "status": "SEPARATE_NEW_BRANCH_PREMISE_PENDING_OWNER_ADOPTION",
+      "afterRetainedAdmissionPointer": "/events/6",
+      "actorAFeetBefore": [
+        15,
+        10,
+        0
+      ],
+      "actorAFeetInProposedRaisedBranch": [
+        15,
+        10,
+        0.08333333333333333
+      ],
+      "carriedItemsRaisedByFeet": 0.08333333333333333,
+      "purpose": "Place A's complete footprint on the proposed one-inch support panel for this W08 TEST_ONLY branch.",
+      "changesHistoricalEntryOrFixedClosureAnchor": false,
+      "ownerAdoptionRequired": true
+    },
+    "q27TerminalPlacement": {
+      "fixedAnchorFeet": [
+        15,
+        0,
+        0
+      ],
+      "sourcePlane": "fixture:origin",
+      "sourceSupportZ": 0,
+      "verticalProjectionOrSnap": false,
+      "sourcePlacementAndCollisionChecksRequired": true
+    }
+  }
+}
