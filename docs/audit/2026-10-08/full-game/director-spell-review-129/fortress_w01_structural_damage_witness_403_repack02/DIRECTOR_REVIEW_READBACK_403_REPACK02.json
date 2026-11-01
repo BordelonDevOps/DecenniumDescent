@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "recordId": "PG328-W01-DAMAGE-SUBWITNESS-DIRECTOR-READBACK-403-REPACK02",
+  "createdLocalDate": "2026-11-01",
+  "classification": "DIRECTOR_PARTIAL_TEST_ONLY_WITNESS_REVIEW",
+  "reviewSource": {
+    "reviewer": "GPT Director",
+    "threadTitle": "Review SH202 B02 Archive",
+    "threadUrl": "https://chatgpt.com/g/g-p-67f17555a8dc8191a2b5b81e6d8adc12-dungeon-crawler/c/6ae66c6d-2d08-83ea-a1fa-042d649855a2",
+    "decisionText": "PASS — the W01 partial damage witness meets the source/access, creation/custody, and attack predicates. R6 is resolved. PG328-W01 remains open and unsealed."
+  },
+  "binding": {
+    "archivePath": "DD_Rank9_ConjureDemiplaneFortress_PG328W01_Witness403_Repack02_TESTONLY.zip",
+    "archiveSha256": "b3f5ff519bb16f91d184ff0021f42f32378f70fc92dcacaab9f0db1370b00b1b",
+    "terminalStateSha256": "6270321d6f07a55173f01fb353142d6bfb537d8e044cd313ef8fdd956baeff6c",
+    "queueAuthority": "Queue404: 829 applied / 19 pending / 0 accepted-unapplied"
+  },
+  "reviewFindings": {
+    "status": "PASS_PARTIAL_TEST_ONLY_REPLAY; W01_OPEN; NO_SEAL",
+    "independentChecks": {
+      "archiveAndManifest": "PASS",
+      "sourceBindings": "PASS",
+      "forwardEvents": 30,
+      "stateSnapshots": 31,
+      "inversePatches": "PASS; restoration to immutable parent after removing declared branch additions",
+      "sourceAccess": "PASS; acquired always-prepared Minor Conjuration combined with a wieldable improvised object and Sunder; Summon Minor Weapon is not required",
+      "castingAndResources": "PASS; 1 RP paid, 54 to 53; components and Counterspell handling recorded",
+      "objectCreationAndCustody": "PASS; specified clay tile created and picked up lawfully; right-hand custody, carried load, original expiry and movement are consistent",
+      "correctedR6Sweeps": {
+        "focusAY": [6, 11.5],
+        "packAY": [6, 11.5],
+        "cargoAY": [6, 12],
+        "poseCoverage": "All three recorded poses, including the intermediate pose",
+        "wallClearance": "PASS"
+      },
+      "attack": "16 + STR 1 + proficiency 0 = 17 vs AC 17; hit",
+      "damage": "4 + STR 1 = 5 bludgeoning; selected panel 60 to 55 HP",
+      "destructionSupportOrNavigationOpening": "NOT DEMONSTRATED"
+    },
+    "remainingQ23Predicates": [
+      {
+        "id": "COMPLETE_PANEL_MAP",
+        "requirement": "Name wall, floor and roof panels, doors, gate, openings and geometry across the entire Fortress, not only the four local panel instances."
+      },
+      {
+        "id": "MECHANICAL_SUPPORT_VALIDITY",
+        "requirement": "Resolve W01_GEOMETRY_403.json#/mechanicalSupportGraph. Shared-face contacts alone establish no load-bearing dependencies or damage/destruction consequences."
+      },
+      {
+        "id": "WHOLE_STRUCTURE_NAVIGATION",
+        "requirement": "Resolve W01_GEOMETRY_403.json#/wholeStructureNavigation with continuous supported routes and body/cargo clearance through rooms, corridors, towers, stairs and openings."
+      },
+      {
+        "id": "PG328-W01-KEEP-STAIR-LANDING-GEOMETRY",
+        "requirement": "Reconcile the 5x15 stairwell, thirty half-foot treads and two 5x5 landings, demonstrating a continuous supported route for the 5x5x6 body. Geometry405 remains proposal-only and unadopted."
+      }
+    ]
+  },
+  "statePreservation": {
+    "fortressIdentityAccepted": false,
+    "fortressIdentityApplied": false,
+    "blockerPG200B06": "HELD",
+    "witnessSealed": false,
+    "canonicalMutation": false,
+    "fixtureMutation": false,
+    "liveStateMutation": false,
+    "queueMutation": false,
+    "otherHoldsOrSealsChanged": false
+  }
+}
