@@ -1,0 +1,59 @@
+{
+  "id": "SPELL-QUEUE-404-SOURCE-CATALOG-GIT-BLOB-CLARIFICATION-414",
+  "recordedAtUtc": "2026-11-01T13:40:00Z",
+  "scope": "Clarifies record 413 by distinguishing the CRLF checkout worktree representation from the LF GitHub Git blob. No queue, index, catalog, canonical rule, spell disposition, acceptance, or application is changed.",
+  "authority": {
+    "queuePath": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_SPELL_QUEUE_404.json",
+    "queueSha256": "9346663e8858c720c9b453921984d9af7925feb5f8c263d31e5b19a72b364b60",
+    "reviewedApplied": 829,
+    "pending": 19,
+    "acceptedUnapplied": 0
+  },
+  "catalog": {
+    "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+    "reviewedCommit": "6836c190f22774d736921300c3bc0649fb3396ae",
+    "committedGitBlob": {
+      "objectId": "2d243b311cded8484630c12b6fcc2ae7f70cfddf",
+      "bytes": 4945319,
+      "sha256": "f52cf6a4a4673897615a74c7c67dcba798c431362d4357e71ee552cc7c5d31f8",
+      "lineEndings": "LF",
+      "matchesQueue404DeclaredBinding": true,
+      "queueBindingMatches": true
+    },
+    "checkoutWorktreeRepresentation": {
+      "bytes": 5085187,
+      "sha256": "773fb0b3b0fdb501858ded33c02d90dc4db3009bd1b9f7112c244d998218f05b",
+      "lineEndings": "CRLF",
+      "isGitBlobObject": false
+    },
+    "verifiedConversion": {
+      "operation": "Replace CRLF with LF and encode UTF-8 without BOM",
+      "resultBytes": 4945319,
+      "resultSha256": "f52cf6a4a4673897615a74c7c67dcba798c431362d4357e71ee552cc7c5d31f8",
+      "matchesCommittedGitBlobAndQueueBinding": true,
+      "committedBlobObjectId": "2d243b311cded8484630c12b6fcc2ae7f70cfddf"
+    },
+    "queue404DeclaredBinding": {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+      "bytes": 4945319,
+      "sha256": "f52cf6a4a4673897615a74c7c67dcba798c431362d4357e71ee552cc7c5d31f8",
+      "crc32": "75a4fd7c"
+    }
+  },
+  "relationshipTo413": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/SOURCE_CATALOG_LINE_ENDING_RECONCILIATION_413.json",
+    "clarification": "Record 413 rawTrackedMainBytes/rawTrackedMainSha256 describe the checkout worktree bytes. They are not the committed Git blob bytes. The committed object above is LF and matches Queue404 exactly."
+  },
+  "directorDisposition": "The line-ending discrepancy does not block W02 evidence construction. A separate reconciliation record is sufficient; Queue404 need not be reissued. It does not authorize Fortress acceptance or application.",
+  "preservation": {
+    "queueUnchanged": true,
+    "catalogUnchanged": true,
+    "authoredReviewIndexUnchanged": true,
+    "canonicalRulesChanged": false,
+    "acceptanceCreated": false,
+    "applicationAuthorized": false,
+    "reviewedApplied": 829,
+    "pending": 19,
+    "acceptedUnapplied": 0
+  }
+}
