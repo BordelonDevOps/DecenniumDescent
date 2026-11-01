@@ -1,0 +1,100 @@
+{
+  "id": "DIRECTOR-PG328-W02-SOURCE-MATCH-READBACK-398",
+  "recordedAtUtc": "2026-11-01T04:19:34Z",
+  "recordingMethod": "Owner readback of the visible Director browser response; no Director-authored attachment was returned.",
+  "directorThread": {
+    "id": "6ae5c784-afec-83e9-a2ca-5e2638b95750",
+    "title": "Review Time Stop Witness Evidence",
+    "url": "https://chatgpt.com/g/g-p-67f17555a8dc8191a2b5b81e6d8adc12-dungeon-crawler/c/6ae5c784-afec-83e9-a2ca-5e2638b95750"
+  },
+  "reviewedCommit": "9941864d4bfb265a09715ba32fad591a2c5e84aa",
+  "reviewedRecord": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w02_scribing_source_preflight_397/OWNER_PG328_W02_SCRIBING_SOURCE_PREFLIGHT_397_TESTONLY.json",
+    "sha256": "6029cca46dd3a456f5a2aee71149ba245bcc5c7098ebb9bda3c3bc9ebafae027"
+  },
+  "decision": "W02_SOURCE_MATCH_EXHAUSTED_WITHIN_BOUND_PACKET_RESIDUAL_OPEN",
+  "scope": {
+    "witnessId": "PG328-W02",
+    "blockerId": "PG200-B06",
+    "caseId": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/actual-scribing-work",
+    "sourceMatchBound": "Supplied PG328 held archive and the identified W02 profile and branch members only.",
+    "boundedFindingCaveat": "This does not claim that evidence cannot exist outside the supplied packet."
+  },
+  "searchedArchiveMembers": [
+    "evidence/RETURN284_WIZARD20_PROFILE.json",
+    "evidence/packet328/prior/Return284_cases/RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A__actual-scribing-work.json"
+  ],
+  "findings": {
+    "spellScribingCapability": {
+      "status": "PRESENT",
+      "pointers": [
+        "profile:/acquisitionLedger/0/choices/3",
+        "profile:/allAcquiredClassCapabilities/3"
+      ]
+    },
+    "legalFoundSpellCopy": {
+      "status": "NOT_IDENTIFIED",
+      "detail": "Profile /spellbook is an existing repertoire and does not establish a separate found copy, source, permission, provenance, or custody."
+    },
+    "receivingBook": {
+      "status": "PROFILE_STATEMENT_PRESENT_BRANCH_MAPPING_ABSENT",
+      "profilePointer": "/characterFoundation/equipment/book",
+      "profileStatement": "actual spellbook carried in a satchel",
+      "branchPointers": [
+        "/initial/items/pack-A",
+        "/initial/items/cargo-A"
+      ],
+      "detail": "The generic pack and cargo items do not identify book contents or provide a distinct book item identity/custody mapping."
+    },
+    "scribingTools": {
+      "status": "NONE_IDENTIFIED_IN_BOUND_ITEM_RECORDS"
+    },
+    "finiteInksOrComponents": {
+      "status": "NONE_IDENTIFIED",
+      "missing": [
+        "qualifying item identity",
+        "quantity",
+        "custody",
+        "cost sufficiency"
+      ]
+    },
+    "completedWorkAndAuthorizedOutput": {
+      "status": "ABSENT",
+      "branchPointers": [
+        "/initial/work",
+        "/final/work",
+        "/events/7",
+        "/events/7/authoredInputs"
+      ],
+      "detail": "Initial and final work are null. Event 7 is a RETAINED_OBLIGATION at time 0.3 with authoredInputs={} and is not a scribing event or completed output."
+    }
+  },
+  "directorConclusion": {
+    "w02Status": "OPEN",
+    "closedResidualIds": [],
+    "noFurtherClosureProducingReadOnlyActionInBoundPacket": true,
+    "nextRequirement": "New evidence or an explicitly authorized scope change is needed before proceeding beyond this bounded finding.",
+    "witnessConstructionAuthorized": false,
+    "applicationAuthorized": false
+  },
+  "statePreservation": {
+    "fixtureMutated": false,
+    "workOrMaterialsSimulated": false,
+    "outputAwarded": false,
+    "w02WitnessConstructedOrSealed": false,
+    "fortressAcceptedOrApplied": false,
+    "PG200B06": "remains held",
+    "W03Seal395": "unchanged",
+    "otherHoldsOrSealsChanged": false,
+    "spellQueueChanged": false,
+    "queue": {
+      "procedures": 552,
+      "interfaces": 173,
+      "firstReviewTasks": 0,
+      "closureTasks": 20,
+      "reviewedApplied": 828,
+      "pending": 20,
+      "acceptedUnapplied": 0
+    }
+  }
+}
