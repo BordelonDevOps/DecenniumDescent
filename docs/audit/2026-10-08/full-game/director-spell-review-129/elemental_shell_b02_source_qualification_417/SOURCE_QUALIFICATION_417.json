@@ -31,7 +31,28 @@
       "queue404": "829 applied / 19 pending / 0 accepted-unapplied",
       "reviewedQualificationSha256": "d0007d6b28a297858ce112e5bf30800a53d4532e974ffee87ef35dbc7e5fd3ff",
       "correctionRequested": "Add the exact Return285 BODY_PROFILES.json and procedures/summon-elemental-avatar.json member bindings; correct the equipment assessment while retaining native-attack and integrated-Shell gaps.",
-      "correctionStatus": "APPLIED_WAITING_DIRECTOR_READBACK"
+      "correctionStatus": "DIRECTOR_VERIFIED_NO_FURTHER_CORRECTION"
+    },
+    "sourceQualification417FinalReadback": {
+      "recordedAtUtc": "2026-11-01T14:26:57Z",
+      "reviewedCommit": "4520f3e89f7b0b971b3e933e49bbaf8b2eee6b48",
+      "reviewedFile": "docs/audit/2026-10-08/full-game/director-spell-review-129/elemental_shell_b02_source_qualification_417/SOURCE_QUALIFICATION_417.json",
+      "reviewedBytes": 19969,
+      "reviewedSha256": "1f41b45cb92a1e41b0030961df28b17a799238d1dfc8ae3c697aeec47336f58b",
+      "decision": "Verified. The corrected equipment assessment is accurate for the preserved fork; no further correction is needed. This verifies source qualification only.",
+      "findings": [
+        "BODY_PROFILES.json#/SH202-ELEMENTAL/equipment binds intrinsic armament, separate genuine cargo and no loot; the body instance records cargo=[], cargoLb=0 and load=0.",
+        "procedures/summon-elemental-avatar.json#/commonProcedure/removalAndProperty binds intrinsic-gear disappearance and genuine-property settlement.",
+        "The Avatar fire aura remains creature-attributed elemental damage, but is neither the native bludgeoning attack required by B02 nor a dealerless environmental event for B01.",
+        "The missing instance-level equipment field is not an unresolved source-equipment gap for this preserved fork; later equipment transfers remain unproven."
+      ],
+      "remainingB02": [
+        "A source-qualified native elemental attack.",
+        "A legally acquired/prepared Shell caster and actual paid Shell application, with consenting bearer, placement, line of effect, selected element, interruption history and deadline.",
+        "Incoming-component defenses and one correctly attributed reflection to the companion dealer, with range/line of effect, causal-root provenance and Null handling.",
+        "Complete reflected-damage, HP/lifecycle, resource, clock and custody settlement."
+      ],
+      "decisionState": "DF218-B01 and DF218-B02 remain held; Queue404 remains 829 applied / 19 pending / 0 accepted-unapplied. No witness, obligation revision, acceptance, application, fixture mutation or queue change occurred."
     }
   },
   "sourceBindings": {
