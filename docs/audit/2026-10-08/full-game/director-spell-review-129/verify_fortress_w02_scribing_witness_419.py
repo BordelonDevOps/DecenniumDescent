@@ -167,10 +167,16 @@ def main() -> None:
         "worldClockOffsetPreserved": True,
         "noAcceptanceApplicationOrQueueMutation": True,
     }
+    audit_path = OUT / "INDEPENDENT_AUDIT_419.json"
+    recorded_at = datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+    if audit_path.exists():
+        prior_audit = json.loads(audit_path.read_text(encoding="utf-8"))
+        if prior_audit.get("packetSha256") == sha(packet_bytes):
+            recorded_at = prior_audit.get("recordedAtUtc", recorded_at)
     audit = {
         "schemaVersion": 1,
         "recordId": "PG328-W02-INDEPENDENT-AUDIT-419",
-        "recordedAtUtc": datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
+        "recordedAtUtc": recorded_at,
         "classification": "INDEPENDENT_PACKAGE_AND_BRANCH_VALIDATION_TEST_ONLY",
         "status": "PASS_DIRECTOR_REVIEW_PENDING",
         "packetPath": PACKET.name,
@@ -186,8 +192,8 @@ def main() -> None:
         "witnessSealed": False,
         "fortressAcceptedOrApplied": False,
     }
-    (OUT / "INDEPENDENT_AUDIT_419.json").write_text(json.dumps(audit, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps({"status": audit["status"], "checks": len(checks), "packetSha256": audit["packetSha256"], "auditPath": str(OUT / "INDEPENDENT_AUDIT_419.json")}, indent=2))
+    audit_path.write_text(json.dumps(audit, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print(json.dumps({"status": audit["status"], "checks": len(checks), "packetSha256": audit["packetSha256"], "auditPath": str(audit_path)}, indent=2))
 
 
 if __name__ == "__main__":
