@@ -1,0 +1,126 @@
+{
+  "id": "OWNER-PG328-W03-SUPPLY-CONTRACT-ADOPTION-388",
+  "recordedAtUtc": "2026-11-01T02:11:53Z",
+  "status": "OWNER_ADOPTED_SCOPED_TEST_ONLY_SUPPLY_CONTRACT_PENDING_DIRECTOR_CONFIRMATION",
+  "authorizationSource": {
+    "type": "explicit user reply in Codex conversation",
+    "question": "May I adopt the corrected supply contract 382 for A’s PG366-W03-R1 branch in unchanged fixture 367 only? It defines the existing 8 lb REST-WATER-367-A item as one potable-water unit, treats one unit plus one 2 lb day ration as sufficient for this one-hour test, and requires no consumption. It does not change canonical rules, fixture bytes, rest benefits, settlement, W03 seal, Fortress disposition, or the 828/20/0 queue. Proposal SHA-256: 43412bff9d9795cc766eff42f09b7c52eef7488129c7bea2475e37b32d98b40f.",
+    "answer": "Yes, adopt 382 for this branch only"
+  },
+  "adoptedProposal": {
+    "id": "PG328-W03-SUPPLY-CONTRACT-PROPOSAL-382",
+    "path": "OWNER_PG328_W03_SUPPLY_CONTRACT_PROPOSAL_382_TESTONLY.json",
+    "sha256": "43412bff9d9795cc766eff42f09b7c52eef7488129c7bea2475e37b32d98b40f",
+    "statusAtAdoption": "PROPOSED_PENDING_EXPLICIT_OWNER_ADOPTION_AND_DIRECTOR_REVIEW",
+    "scope": {
+      "residualId": "PG328-W03",
+      "eligibilityResidual": "PG366-W03-R1",
+      "spellId": "conjure-demiplane-fortress",
+      "identityHold": "PG200-B06",
+      "testOnlyRule": "P368-BINDING",
+      "fixturePath": "payload/fixtures/PG328-W03_BENEFICIAL_SHORT_REST_367_TESTONLY.json",
+      "fixtureSha256": "d0ef9a698b2fdfd0c18b5b881b7e3448cc5b314d9306a9b70fd4c795eed547f7",
+      "character": "A",
+      "interval": {
+        "clock": "worldElapsedSeconds",
+        "startInclusive": 1.0,
+        "endExclusive": 3601.0,
+        "durationSeconds": 3600
+      }
+    },
+    "exactTerms": {
+      "contractId": "PG328-W03-REAL-SUPPLIES-TESTONLY-382",
+      "scopeLimit": "Only A’s candidate 3600-second short-rest branch in fixture 367 for PG366-W03-R1. No general rest, supply, or Fortress rule is created.",
+      "minimumAtIntervalStart": [
+        {
+          "fixtureItemId": "REST-FOOD-367-A",
+          "requiredIdentity": "One canonical Player Rulebook v6 Rations (1 day) item, 2 lb",
+          "requiredQuantity": 1,
+          "testOnlyMappingPremise": "For this branch only, the fixture’s one real imported 2 lb food unit is identified as one Rations (1 day) item."
+        },
+        {
+          "fixtureItemId": "REST-WATER-367-A",
+          "requiredIdentity": "The exact existing fixture item of mundane drinking water, recorded at 8 lb and 0.5×0.5×1 ft",
+          "requiredQuantity": 1,
+          "testOnlyMappingPremise": "For this branch only, the exact existing REST-WATER-367-A item qualifies as one potable-water supply unit. Preserve its recorded kind, identity, 8 lb mass, 0.8 load, 0.5×0.5×1 ft dimensions, quantity, ownership, and custody. No vessel type or canonical Waterskin identity is assigned."
+        }
+      ],
+      "sufficiencyRule": "At worldElapsedSeconds 1.0, A’s actual availability, ownership, and custody of one canonical one-day ration plus the exact existing 8 lb REST-WATER-367-A potable-water item satisfy Q26’s real-supplies prerequisite for this one 3600-second TEST_ONLY rest interval. This scoped contract defines one such 8 lb water item as sufficient for this branch. The Fortress contributes none. This does not map REST-WATER-367-A to the canonical 5 lb full Waterskin entry.",
+      "consumptionRule": "No food or water consumption is required for eligibility or completion of this one-hour TEST_ONLY short rest. This contract does not assert consumption. Any actual consumption, if separately introduced in a future proposal, must be explicitly recorded and deducted from the real inventory; it is not implied here.",
+      "custodyRule": "A remains the real owner and custodian of both imported items throughout the recorded interval. Fixture 367’s unchanged custody and quantity-preservation transitions govern; no item is created, copied, replenished, or transferred by this contract.",
+      "durationAndSafety": "P368-BINDING eligibility is established by Director review 377. Safety for this declared interval is established by Director review 379 only. This supply contract adds no duration, activity, interruption, or safety rule.",
+      "recoveryAndBenefits": "No RP formula, recovery cap, Dissonance rule, rest counter, or other benefit is added or modified. Any benefit still requires a separate reviewed, reversible completion/settlement proposal and applicable recovery-limit checks."
+    }
+  },
+  "supersession": {
+    "supersededProposalPath": "OWNER_PG328_W03_SUPPLY_CONTRACT_PROPOSAL_380_TESTONLY.json",
+    "supersededProposalSha256": "79c49c3f8d3c70818ed871036a5de33ffe5c6f57b01643d91230d37327c79c8a",
+    "reason": "Proposal 382 supersedes proposal 380 and removes its incorrect mapping of the fixture’s 8 lb water item to a canonical 5 lb full Waterskin. Only corrected proposal 382 is operative for this branch.",
+    "priorOwnerReplyFor380": "Yes, adopt proposal 380 for fixture 367 only"
+  },
+  "scope": {
+    "residualId": "PG328-W03",
+    "eligibilityResidualId": "PG366-W03-R1",
+    "witnessId": "PG328-W03",
+    "spellId": "conjure-demiplane-fortress",
+    "identityHold": "PG200-B06",
+    "character": "A",
+    "fixturePath": "payload/fixtures/PG328-W03_BENEFICIAL_SHORT_REST_367_TESTONLY.json",
+    "fixtureSha256": "d0ef9a698b2fdfd0c18b5b881b7e3448cc5b314d9306a9b70fd4c795eed547f7",
+    "interval": {
+      "clock": "worldElapsedSeconds",
+      "startInclusive": 1.0,
+      "endExclusive": 3601.0,
+      "durationSeconds": 3600
+    }
+  },
+  "adoptedTestOnlyPremises": {
+    "suppliesAtStart": [
+      {
+        "fixtureItemId": "REST-FOOD-367-A",
+        "mapping": "one canonical one-day ration, 2 lb",
+        "quantity": 1
+      },
+      {
+        "fixtureItemId": "REST-WATER-367-A",
+        "mapping": "one potable-water supply unit for this branch only; preserve mundane identity, 8 lb mass, 0.8 load, 0.5x0.5x1 ft size, quantity 1",
+        "quantity": 1
+      }
+    ],
+    "sufficiency": "Together the one-day ration and exact existing 8 lb water item satisfy Q26 real-supplies prerequisite for this one-hour TEST_ONLY branch; Fortress contributes no supplies.",
+    "consumption": "No consumption is required or recorded; preserve all quantities, identities, ownership and custody.",
+    "previousDirectorRecords": {
+      "eligibility": "DIRECTOR_P368_W03_ELIGIBILITY_REVIEW_377.json — ELIGIBILITY_ESTABLISHED_TEST_ONLY",
+      "safety": "DIRECTOR_PG328_W03_SAFETY_SUPPLY_REVIEW_379.json — safety established for declared interval only",
+      "transport": "DIRECTOR_PG328_W03_SOURCE_BYTE_TRANSPORT_REVIEW_384.json — exact bindings and transport confirmed"
+    }
+  },
+  "explicitLimits": {
+    "canonicalRuleChange": false,
+    "fixtureMutation": false,
+    "runtimeStateMutation": false,
+    "campaignOccurrence": false,
+    "restCompletionOrBenefit": false,
+    "settlementExecuted": false,
+    "RPRecoveryApplied": false,
+    "DissonanceResetApplied": false,
+    "restCounterUpdated": false,
+    "ArcaneRecoveryChanged": false,
+    "W03Sealed": false,
+    "FortressAcceptedOrApplied": false,
+    "PG200B06Closed": false,
+    "otherHoldsOrSealsChanged": false,
+    "spellQueueChanged": false,
+    "queueCounts": "828 applied / 20 pending / 0 accepted-unapplied"
+  },
+  "directorReviewRequest": {
+    "status": "PENDING",
+    "questions": [
+      "Confirm that owner adoption 388 binds only exact proposal 382 to A’s PG366-W03-R1 branch and unchanged fixture 367, with proposal 380 superseded.",
+      "Confirm supply sufficiency only for this TEST_ONLY branch: one 2 lb one-day ration plus the exact existing 8 lb REST-WATER-367-A water item; no vessel or canonical Waterskin mapping, no consumption.",
+      "With P368 eligibility review 377 and safety review 379 already on record, state what artifact or independent witness remains before any explicit W03 completion/settlement proposal; do not execute settlement or grant benefits in this review.",
+      "Keep fixture 367, Fortress identity hold, W03 seal state, other holds/seals, and queue 828/20/0 unchanged."
+    ]
+  },
+  "directorConversation": "https://chatgpt.com/g/g-p-67f17555a8dc8191a2b5b81e6d8adc12-dungeon-crawler/c/6ae66c6d-2d08-83ea-a1fa-042d649855a2"
+}
