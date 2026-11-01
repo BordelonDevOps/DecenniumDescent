@@ -1,0 +1,114 @@
+{
+  "id": "PG328-W03-P368-ELIGIBILITY-PREMISE-PROPOSAL-376",
+  "status": "PROPOSED_TEST_ONLY_PREMISES_PENDING_DIRECTOR_REVIEW",
+  "recordedAtLocal": "2026-10-31",
+  "scope": {
+    "residualId": "PG366-W03-R1",
+    "witnessId": "PG328-W03",
+    "spellId": "conjure-demiplane-fortress",
+    "fixturePath": "payload/fixtures/PG328-W03_BENEFICIAL_SHORT_REST_367_TESTONLY.json",
+    "fixtureSha256": "d0ef9a698b2fdfd0c18b5b881b7e3448cc5b314d9306a9b70fd4c795eed547f7",
+    "ownerRuleAuthorization": "OWNER_P368_W03_TESTONLY_AUTHORIZATION_372.json",
+    "priorDirectorReview": "DIRECTOR_P368_W03_ELIGIBILITY_REVIEW_373.json"
+  },
+  "classification": {
+    "testOnly": true,
+    "hypotheticalPremisesForDirectorReview": true,
+    "campaignOccurrence": false,
+    "canonicalRuleChange": false,
+    "runtimeStateMutation": false,
+    "fixtureMutation": false
+  },
+  "proposedEvidence": {
+    "characterId": "A",
+    "interval": {
+      "clock": "worldElapsedSeconds",
+      "startInclusive": 1.0,
+      "endExclusive": 3601.0,
+      "durationSeconds": 3600,
+      "continuous": true
+    },
+    "wakefulness": {
+      "premise": "A remains awake continuously for the complete interval.",
+      "sourceKind": "owner-authorized hypothetical TEST_ONLY premise; not an observed campaign event"
+    },
+    "activitySequence": [
+      {
+        "startInclusive": 1.0,
+        "endExclusive": 301.0,
+        "activity": "reading",
+        "permittedBy": "P368-BINDING"
+      },
+      {
+        "startInclusive": 301.0,
+        "endExclusive": 1201.0,
+        "activity": "quiet conversation",
+        "permittedBy": "P368-BINDING"
+      },
+      {
+        "startInclusive": 1201.0,
+        "endExclusive": 1501.0,
+        "activity": "eating or drinking",
+        "permittedBy": "P368-BINDING"
+      },
+      {
+        "startInclusive": 1501.0,
+        "endExclusive": 2401.0,
+        "activity": "reading",
+        "permittedBy": "P368-BINDING"
+      },
+      {
+        "startInclusive": 2401.0,
+        "endExclusive": 2701.0,
+        "activity": "personal care",
+        "permittedBy": "P368-BINDING"
+      },
+      {
+        "startInclusive": 2701.0,
+        "endExclusive": 3601.0,
+        "activity": "quiet conversation",
+        "permittedBy": "P368-BINDING"
+      }
+    ],
+    "interruptionPremise": {
+      "premise": "No combat, hostile attack or damage, travel, strenuous labor, spellcasting, Weave activity, or other strenuous activity interrupts the interval.",
+      "sourceKind": "owner-authorized hypothetical TEST_ONLY premise; subject to Director adjudication",
+      "consequenceIfFalse": "The qualifying interval resets and a new uninterrupted 3600-second interval is required."
+    },
+    "clockHandling": "Use the already-bound fixture clock transitions without modification: world, effect, and source clocks continue normally and inherited deadlines are processed.",
+    "supplyAndSafety": "Not established by this proposal; retain as separate Director checks under the existing bound procedure."
+  },
+  "ruleAppliedForProposalOnly": {
+    "proposalId": "P368-BINDING",
+    "scope": "PG366-W03-R1 and the unchanged fixture hash named above only",
+    "minimumDuration": "3600 consecutive in-world seconds per character",
+    "wakefulness": "awake throughout",
+    "permittedActivities": [
+      "eating or drinking",
+      "reading",
+      "quiet conversation",
+      "personal care"
+    ],
+    "disallowedActivities": [
+      "travel",
+      "strenuous labor",
+      "combat",
+      "spellcasting",
+      "Weave activity"
+    ],
+    "interruptionAndReset": "Combat, hostile attack or damage, travel, strenuous labor, spellcasting, Weave activity, or other strenuous activity interrupts and resets that character's qualifying interval.",
+    "benefitAndLimits": "Eligibility alone grants no benefit. No RP recovery, Dissonance reset, rest counter update, settlement, or spell acceptance/application is proposed."
+  },
+  "requestedDirectorDecision": {
+    "adjudicate": "Whether the proposed TEST_ONLY wakefulness and complete permitted-activity sequence, together with unchanged fixture 367 and P368-BINDING, establish only W03 short-rest eligibility for A.",
+    "ifInsufficient": "Return exact missing evidence/predicate.",
+    "prohibitedEffects": [
+      "Do not mutate fixture 367.",
+      "Do not grant or settle any benefit.",
+      "Do not seal W03 or close PG200-B06.",
+      "Do not accept or apply the spell identity.",
+      "Do not change any other hold, seal, or queue count."
+    ],
+    "queueAuthority": "828 applied / 20 pending / 0 accepted-unapplied"
+  }
+}
