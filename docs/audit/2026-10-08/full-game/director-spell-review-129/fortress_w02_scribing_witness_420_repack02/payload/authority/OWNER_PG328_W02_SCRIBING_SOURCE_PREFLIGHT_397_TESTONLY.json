@@ -1,0 +1,202 @@
+{
+  "schemaVersion": 1,
+  "recordId": "PG328-W02-SOURCE-PREFLIGHT-397",
+  "createdLocalDate": "2026-10-31",
+  "classification": "TEST_ONLY_READ_ONLY_SOURCE_PREFLIGHT",
+  "scope": {
+    "witnessId": "PG328-W02",
+    "blockerId": "PG200-B06",
+    "caseId": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/actual-scribing-work",
+    "workType": "Source/access sufficiency review for actual Wizard spell-scribing work",
+    "explicitNonScope": [
+      "No fixture creation or mutation",
+      "No spell-copy selection, scribing simulation, work interval, material consumption, or output award",
+      "No W02 witness construction or seal",
+      "No Fortress or Gate source adoption, acceptance, or application",
+      "No Queue361 changes"
+    ]
+  },
+  "decision": "SPELL_SCRIBING_ACCESS_ESTABLISHED_BUT_REQUIRED_INPUTS_AND_WORK_ABSENT_W02_OPEN",
+  "obligationBinding": {
+    "file": "payload/authority/PG328_BLOCKER_REASSESSMENT.json",
+    "sha256": "8f50b284846ef373ada5bae610c2a8d584cf695c3922cf9c30f34bb48fc4bd4b",
+    "pointer": "/remainingWitnessParts/1",
+    "valueBinding": {
+      "id": "PG328-W02",
+      "blockerId": "PG200-B06",
+      "caseId": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/actual-scribing-work",
+      "classification": "MISSING_INTEGRATED_WORK_INPUTS",
+      "status": "OPEN"
+    },
+    "statedGap": "No actual scribing work or product is recorded."
+  },
+  "localRuleAuthority": {
+    "file": "payload/rules/PG328_QUESTION_DISPOSITIONS.json",
+    "sha256": "149d4098591799f51afa37837ccca722eb9ae08c3ea437c640d943f33b1bb637",
+    "pointer": "/questions/5/answer",
+    "questionId": "PG9-Q26",
+    "finding": "The Fortress creates no tools, reagents, or workers. Imported tools and materials remain real and require individual ownership, custody, and quantity records. Legitimate work requires actual skills, tools, inputs, time, real hands, and commands. Workshop occupancy supplies no completed product."
+  },
+  "sourceRulesScreened": [
+    {
+      "file": "payload/sources/wizard.json",
+      "sha256": "8ab2f4f43bcbced418fb266e5bd3216cff491b0c442c16f93438bd3556672c8b",
+      "pointer": "/cards/1",
+      "rule": "Spell Scribing copies a legal found Wizard spell to the Wizard's spellbook for one hour and 25 gp of inks/components per spell rank, treating rank 0 as rank 1. Level-up additions are free but are not this found-copy case."
+    },
+    {
+      "archiveFile": "payload/authority/PG328_HELD_ARCHIVE.zip",
+      "archiveSha256": "47af8e23be318210229f7fd2b360be809b2b7ed5d73b08abcbeaf7a078c3f1f4",
+      "archiveMember": "evidence/current_bound_wizard.json",
+      "memberSha256": "8ab2f4f43bcbced418fb266e5bd3216cff491b0c442c16f93438bd3556672c8b",
+      "pointer": "/cards/1",
+      "finding": "Bound card confirms the one-hour/25-gp-per-rank operation and the legal-found-Wizard-spell prerequisite."
+    },
+    {
+      "archiveFile": "payload/authority/PG328_HELD_ARCHIVE.zip",
+      "archiveSha256": "47af8e23be318210229f7fd2b360be809b2b7ed5d73b08abcbeaf7a078c3f1f4",
+      "archiveMember": "evidence/current_bound_wizard.json",
+      "memberSha256": "8ab2f4f43bcbced418fb266e5bd3216cff491b0c442c16f93438bd3556672c8b",
+      "pointer": "/engine/7",
+      "rule": "Baseline scribing is two hours and 50 gp per rank; Spell Scribing halves both. An incomplete attempt does not create a spellbook entry; already expended materials are lost."
+    },
+    {
+      "file": "payload/sources/RETURN284_WIZARD20_PROFILE_TESTONLY.json",
+      "sha256": "a3a3ce0a714c1fa35523719c8c8a0297fc457d5b5f097f6a20a00aad6cd7be55",
+      "pointers": [
+        "/acquisitionLedger/0/choices/3",
+        "/allAcquiredClassCapabilities/3"
+      ],
+      "finding": "Spell Scribing is acquired by the conditional Wizard20 profile. This establishes capability only, not a found-copy source, current items, or completed work."
+    }
+  ],
+  "actorProfileScreen": {
+    "archiveFile": "payload/authority/PG328_HELD_ARCHIVE.zip",
+    "archiveSha256": "47af8e23be318210229f7fd2b360be809b2b7ed5d73b08abcbeaf7a078c3f1f4",
+    "profileMember": "evidence/RETURN284_WIZARD20_PROFILE.json",
+    "profileMemberSha256": "a3a3ce0a714c1fa35523719c8c8a0297fc457d5b5f097f6a20a00aad6cd7be55",
+    "actor": "A",
+    "qualification": "Conditional TEST_ONLY Wizard20 actor. No campaign event or campaign occurrence is asserted.",
+    "finding": "The profile expressly states that the conditional actor has an actual spellbook carried in a satchel. The W02 branch still needs an item-level identity and custody mapping for that book; the profile statement alone does not add it to the branch item graph.",
+    "equipmentBookPointer": "/characterFoundation/equipment/book",
+    "equipmentBookStatement": "actual spellbook carried in satchel"
+  },
+  "scenarioEvidence": {
+    "archiveFile": "payload/authority/PG328_HELD_ARCHIVE.zip",
+    "archiveSha256": "47af8e23be318210229f7fd2b360be809b2b7ed5d73b08abcbeaf7a078c3f1f4",
+    "archiveMember": "evidence/packet328/prior/Return284_cases/RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A__actual-scribing-work.json",
+    "memberBytes": 588908,
+    "memberSha256": "4388bba9816199c8979f1b3cbfa60e3f97fa8ac380d43d420535ba382dea3576",
+    "branchStatus": "HELD_MISSING_POSITIVE_BRANCH",
+    "branchHoldIds": [
+      "PG200-B06"
+    ],
+    "initialItemIds": [
+      "focus-A",
+      "pack-A",
+      "cargo-A",
+      "focus-B",
+      "pack-B",
+      "cargo-B",
+      "focus-C",
+      "pack-C",
+      "cargo-C",
+      "focus-D",
+      "pack-D",
+      "cargo-D"
+    ],
+    "initialWork": null,
+    "retainedObligationPointer": "/events/7",
+    "retainedObligationEvent": {
+      "id": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/actual-scribing-work:8",
+      "time": 0.3,
+      "kind": "RETAINED_OBLIGATION",
+      "narrative": "Exact actual-scribing-work branch remains distinct and not demonstrated by empty closure",
+      "authoredInputs": {}
+    },
+    "finding": "The branch item graph has only generic focus, pack, and cargo objects and does not map the profile-stated satchel book to a distinct item ID/custody record. It contains no found copy, inks/components, or scribing tools. Its work field remains null; /events/7 is a retained obligation, not a scribing event. Generic pack/cargo entries do not establish their contents."
+  },
+  "candidateAssessment": [
+    {
+      "candidate": "Spell Scribing capability",
+      "exactEvidence": "Conditional Wizard profile /acquisitionLedger/0/choices/3 and /allAcquiredClassCapabilities/3; held archive current_bound_wizard.json#/cards/1 and /engine/7.",
+      "finding": "Established as a conditional actor capability and rule."
+    },
+    {
+      "candidate": "One legal found Wizard spell copy",
+      "requiredEvidence": [
+        "Exact spell identity and rank",
+        "Operative source and copy/repertoire permission",
+        "Found-copy provenance and custody"
+      ],
+      "finding": "Not established. A spellbook identity list is not evidence of a separately found copy."
+    },
+    {
+      "candidate": "Receiving spellbook and imported tools/materials",
+      "requiredEvidence": [
+        "Map the profile-stated actual spellbook carried in a satchel to a distinct item ID and custody record in the W02 branch",
+        "Scribing tool identities and custody",
+        "Inks/components identities, finite quantity, provenance, and sufficiency for the chosen spell rank"
+      ],
+      "finding": "Partially established: the profile states that an actual spellbook is carried in a satchel. The W02 branch does not map it to an item ID/custody record, and the required tools and finite inks/components are not established."
+    },
+    {
+      "candidate": "Work interval and output",
+      "requiredEvidence": [
+        "One-hour-per-effective-rank work interval with start, end, interruptions, and concurrent clocks",
+        "Cost and material consumption against recorded quantities",
+        "Authorized completed spellbook entry with provenance. An incomplete attempt may document interruption and material loss, but cannot satisfy W02’s required productive-work/output witness."
+      ],
+      "finding": "Not established. The branch records no scribing work or output. The positive W02 witness requires completed productive work and an authorized entry with provenance; an incomplete attempt alone is insufficient."
+    }
+  ],
+  "preflightFinding": {
+    "summary": "The legitimate Spell Scribing rule and the conditional actor’s acquired ability are present, and the profile says an actual spellbook is carried in a satchel. The W02 branch does not map that book into its item/custody graph and lacks the legal found-copy source, tools, finite materials, work history, and exact output. The existing branch does not witness actual scribing.",
+    "remainingPredicates": [
+      "Bind one exact legal found Wizard spell copy with identity, rank, source, permission, provenance, and custody.",
+      "Map the profile-stated spellbook carried in the satchel to an item ID/custody record in the branch; bind scribing tools and finite inks/components with identities, owners, custody, quantities, and cost sufficiency.",
+      "Demonstrate completed productive TEST_ONLY scribing over a properly bound interval, with interruption and cost/material accounting, and bind the authorized resulting spellbook entry and provenance. An incomplete attempt alone cannot satisfy W02."
+    ],
+    "closesW02Residual": false
+  },
+  "immutableParentBinding": {
+    "archiveMember": "evidence/packet328/prior/Return284_cases/RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A__actual-scribing-work.json",
+    "sha256": "4388bba9816199c8979f1b3cbfa60e3f97fa8ac380d43d420535ba382dea3576",
+    "pointer": "/events/7",
+    "handling": "Read-only source inspection. The held archive and its parent branch remain byte-identical and unchanged."
+  },
+  "statePreservation": {
+    "fixtureCreatedOrMutated": false,
+    "scribingSimulatedOrPerformed": false,
+    "toolsOrMaterialsConsumed": false,
+    "spellbookOutputAwarded": false,
+    "w02WitnessConstructed": false,
+    "w02Sealed": false,
+    "sourceAdoptedOrPromoted": false,
+    "fortressAcceptedOrApplied": false,
+    "blockerPG200B06": "remains held",
+    "queue361": {
+      "sourceFile": "payload/authority/CURRENT_SPELL_QUEUE_361.json",
+      "sha256": "f193bb6cf128ba413b4c6b1783a4950b7ceb107d81ddb8ad2e4bc57f2fe16777",
+      "counts": "828 applied / 20 pending / 0 accepted-unapplied",
+      "changed": false
+    }
+  },
+  "nextAction": "Continue read-only evidence matching for one legal found Wizard copy, the profile-stated receiving book, tools, and finite materials. Record exact source/item pointers where available; otherwise retain the missing-input findings. Do not supply absent inputs through fixture assumptions or construct W02.",
+  "bindingBase": "docs/audit/2026-10-08/full-game/director-spell-review-129/conjure_demiplane_fortress_closure_intake_367/",
+  "directorReviewOfPriorVersion": {
+    "reviewedCommit": "d74c108a",
+    "reviewedBytes": 9788,
+    "reviewedSha256": "0cdf04e4acfa7e2379fbdf31079140decf02ee8e3050794db86f8581b4b8cd59",
+    "decision": "BINDING_CHECKS_PASS_WITH_TWO_WORDING_CORRECTIONS",
+    "correctionsApplied": [
+      "The profile states at /characterFoundation/equipment/book that an actual spellbook is carried in a satchel; the missing predicate is its unique item identity and mapping into branch custody/inventory, not whether any book exists.",
+      "An incomplete attempt can document interruption and material accounting but cannot replace the required productive-work/output witness; require a completed authorized spellbook entry with provenance."
+    ],
+    "confirmedFindings": [
+      "Declared source hashes match.",
+      "/events/7 is an empty retained-obligation marker at time 0.3, with authoredInputs={}; initial and final work are null.",
+      "No exact found-copy source, itemized writing tools/materials, completed work history, or resulting entry is established."
+    ]
+  }
+}
