@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "id": "PG328-W12-WITNESS-BUILD-VALIDATION-450",
+  "classification": "TEST_ONLY_BRANCH_WITNESS_VALIDATION",
+  "status": "PASS",
+  "proposalSha256": "93d31941e6a6d4d059cb3a108d0e247d07cc8e6cce395712f1c0ad45523df14c",
+  "adoptionSha256": "83d25ca677ea8d910575a3bcc87be6a29837553112d3445e1c50cc954a8f4c60",
+  "parentReplaySha256": "2b60ae35d828bd6028d71f202c1dd61c823d6212bb45c7f633ecd8f6b51d44fb",
+  "s030SnapshotSha256": "6270321d6f07a55173f01fb353142d6bfb537d8e044cd313ef8fdd956baeff6c",
+  "sourceBindingsVerified": 18,
+  "pinnedCommit": "f1a58b32640d327bb2abbc0372bc80577d212fce",
+  "witnessSha256": "0cbcd37186973879e01db62096fd2c09cd31a663bf81f3d38503ef16dafc0cae",
+  "checks": [
+    {
+      "name": "exact proposal owner adopted",
+      "status": "PASS",
+      "evidence": "Proposal SHA-256 93d31941e6a6d4d059cb3a108d0e247d07cc8e6cce395712f1c0ad45523df14c; adoption SHA-256 83d25ca677ea8d910575a3bcc87be6a29837553112d3445e1c50cc954a8f4c60."
+    },
+    {
+      "name": "Director readiness and corrected successor",
+      "status": "PASS",
+      "evidence": "GPT Director passed exact proposal 445 for owner adoption; 444 preserved as superseded."
+    },
+    {
+      "name": "parent W01-403 S030 hash and state pin",
+      "status": "PASS",
+      "evidence": "Parent SHA-256 2b60ae35d828bd6028d71f202c1dd61c823d6212bb45c7f633ecd8f6b51d44fb; S030 snapshot SHA-256 6270321d6f07a55173f01fb353142d6bfb537d8e044cd313ef8fdd956baeff6c."
+    },
+    {
+      "name": "all pinned source bindings verified",
+      "status": "PASS",
+      "evidence": "18/18 source bindings match exact Git blobs at f1a58b32640d327bb2abbc0372bc80577d212fce."
+    },
+    {
+      "name": "event ordering through Q27",
+      "status": "PASS",
+      "evidence": "12 ordered events through 79.31 terminal Q27."
+    },
+    {
+      "name": "scheduled turn coverage",
+      "status": "PASS",
+      "evidence": "45 START and 44 END markers reconciled through the declared endpoint."
+    },
+    {
+      "name": "resource, transform, body, and terminal closure inputs bound",
+      "status": "PASS",
+      "evidence": "All exact proposal fields are copied to the adopted witness."
+    },
+    {
+      "name": "no acceptance, canon, campaign, or queue effects",
+      "status": "PASS",
+      "evidence": "All prohibited effect flags are false; TEST_ONLY is true and queue mutation is false."
+    }
+  ],
+  "result": {
+    "passed": 8,
+    "failed": 0,
+    "directorReviewRequired": true,
+    "sealPresent": false,
+    "FortressAcceptedOrApplied": false,
+    "spellIdentityAcceptedOrApplied": false,
+    "canonChanged": false,
+    "queueChanged": false,
+    "queue": "830 applied / 18 pending / 0 accepted-unapplied"
+  }
+}
