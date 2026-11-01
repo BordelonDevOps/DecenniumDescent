@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "PG328-W01-SOURCE-TRANSPORT-CORRESPONDENCE-425",
+  "classification": "READ_ONLY_DIRECTOR_QUALIFICATION",
+  "directorFinding": "The 425 copy of DIRECTOR_REVIEW_READBACK_403_REPACK02.json has a final CRLF and hashes differently from the original LF byte stream. Record this correspondence; do not describe the byte streams as identical. No geometry or replay change is needed.",
+  "source": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w01_structural_damage_witness_403_repack02/DIRECTOR_REVIEW_READBACK_403_REPACK02.json",
+    "gitBlobBytes": 3614,
+    "gitBlobSha256": "8ae5b636a6189bd643b1d11098e84877822228f144173f0bb93c9d5b81eb3566"
+  },
+  "transportedCopy": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w01_successor_overlays_425/evidence/DIRECTOR_REVIEW_READBACK_403_REPACK02.json",
+    "bytes": 3615,
+    "sha256": "685a84e6234eeab638c03720e8451fee7f4451e7ff91e1b79597dc2bb6c48735",
+    "difference": "The transported copy has one final CRLF (bytes 0x0D 0x0A); the Git source ends with LF (0x0A)."
+  },
+  "correspondenceCheck": {
+    "operation": "Replace the final CRLF with one LF, leaving all preceding bytes unchanged.",
+    "normalizedBytes": 3614,
+    "normalizedSha256": "8ae5b636a6189bd643b1d11098e84877822228f144173f0bb93c9d5b81eb3566",
+    "normalizedBytesEqualGitBlob": true,
+    "jsonValuesEqual": true
+  },
+  "effect": {
+    "geometryChanged": false,
+    "replayChanged": false,
+    "W01Sufficiency": "PASS under Adoption424, subject to this transport qualification",
+    "sealed": false,
+    "fortressAccepted": false,
+    "queue404": {"applied": 829, "pending": 19, "acceptedUnapplied": 0}
+  }
+}

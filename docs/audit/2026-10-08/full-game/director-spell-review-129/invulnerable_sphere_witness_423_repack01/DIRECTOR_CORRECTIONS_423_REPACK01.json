@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "id": "DF218-B04-WITNESS-423-DIRECTOR-CORRECTIONS-REPACK01",
+  "classification": "TEST_ONLY_DIRECTOR_READBACK_CORRECTIONS",
+  "priorPacketSha256": "683ec5b8a6be33ba244c948dff958641b5fc1e69617ea065acac8fb326cb19fa",
+  "directorReadback": "GPT Calibration Review Part 6 requested three state corrections; no new scene premise or B4 repair.",
+  "corrections": [
+    {
+      "id": "SP423-C01",
+      "eventIndicesZeroBased": [
+        10,
+        16,
+        25
+      ],
+      "change": "S1 is unburdened at creation and after dismount (60-ft speed); mounting O's 170-lb/7-Load payload sets burdened true and speed 50 ft; dismount restores unburdened/60-ft state."
+    },
+    {
+      "id": "SP423-C02",
+      "eventIndicesZeroBased": [
+        3
+      ],
+      "change": "O bookAccess.repackedAfterStudy is true in the O_STUDY_COMPLETE afterState and remains true thereafter."
+    },
+    {
+      "id": "SP423-C03",
+      "eventIndicesZeroBased": [
+        20
+      ],
+      "change": "At crossing-attempt commit, consume and clear the pending command and S1 command; preserve the full command as a historical transaction commandReceipt and on the crossingAttempt. Later Steed phases default to Dodge."
+    }
+  ],
+  "limits": {
+    "newPremises": false,
+    "parentChanged": false,
+    "fixtureChanged": false,
+    "canonicalRuleChanged": false,
+    "queueChanged": false,
+    "accepted": false,
+    "applied": false,
+    "sealed": false
+  },
+  "authority": {
+    "applied": 829,
+    "pending": 19,
+    "acceptedUnapplied": 0
+  }
+}
