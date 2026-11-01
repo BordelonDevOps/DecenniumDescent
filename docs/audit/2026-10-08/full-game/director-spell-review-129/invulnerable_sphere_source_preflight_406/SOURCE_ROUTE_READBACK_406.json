@@ -1,0 +1,148 @@
+{
+  "id": "SPHERE-DF218-B04-SOURCE-READBACK-406",
+  "classification": "READ_ONLY_SOURCE_ROUTE_AUDIT_NO_WITNESS",
+  "authority": "Queue404 829 applied / 19 pending / 0 accepted-unapplied",
+  "sources": [
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/INVULNERABLE_SPHERE_DIRECTOR_DECISION_310.json",
+      "commit": "aaa6fff1f83ac41e24243a75b11147e4672901c6",
+      "bytes": 4766,
+      "sha256": "e39d494415e4cff87f2895a91d307403e404ee4373e144d1c8d4f1477031d003",
+      "pointers": [
+        "/decisions/0/blockerIds",
+        "/decisions/0/minimumMissingWitness"
+      ]
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9defenseform8_reviewed_218/DIRECTOR_RETURN/procedures/invulnerable-sphere.json",
+      "commit": "aaa6fff1f83ac41e24243a75b11147e4672901c6",
+      "bytes": 22451,
+      "sha256": "abbbb625186c4476ae3a0bcd57cb406065ed73b68955abce6010fad7ea4c8f0f",
+      "pointers": [
+        "/selectedRules/1/rule",
+        "/selectedRules/2/rule"
+      ]
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/planartravel6_reviewed_133/MODEL.json",
+      "commit": "aaa6fff1f83ac41e24243a75b11147e4672901c6",
+      "bytes": 186516,
+      "sha256": "a4791f21855ff420a27ed07bdaa3eaf7778e56f475cd7d67f7cc39b40ccdcd6a",
+      "pointers": [
+        "/spells/4/procedure",
+        "/spells/4/completeSourceAndAccess/classAccess/Wizard",
+        "/sharedRules/3/rule",
+        "/sharedRules/5/rule"
+      ]
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/planartravel6_reviewed_133/ACTOR_PROFILES.json",
+      "commit": "aaa6fff1f83ac41e24243a75b11147e4672901c6",
+      "bytes": 673412,
+      "sha256": "c4f8fe65fea86cd1834498bda33add6ab47945343ab1bef91303366e1732c539",
+      "pointers": [
+        "/WP13/spellbook/41",
+        "/WP13/prepared/0",
+        "/WP13/preparationHistory",
+        "/WP13/body",
+        "/WP13/syntheticEquipmentPremise"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/PLANARTRAVEL6_EXACT_ACCEPTANCE_133.json",
+      "commit": "aaa6fff1f83ac41e24243a75b11147e4672901c6",
+      "bytes": 7278,
+      "sha256": "49945ee734ddc7c24438b6eefc963b57c425251c333ef060d69da79886c17a6a",
+      "pointers": [
+        "/status",
+        "/acceptedIdentities",
+        "/scope"
+      ]
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+      "commit": "aaa6fff1f83ac41e24243a75b11147e4672901c6",
+      "bytes": 1749292,
+      "sha256": "3186236a711c1d798eef3df0a4b784ba2a6cf76f69997df969b383502fe799ee",
+      "pointers": [
+        "/entries/172",
+        "/entries/96",
+        "/entries/143"
+      ]
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+      "commit": "aaa6fff1f83ac41e24243a75b11147e4672901c6",
+      "bytes": 4945319,
+      "sha256": "f52cf6a4a4673897615a74c7c67dcba798c431362d4357e71ee552cc7c5d31f8",
+      "pointers": [
+        "/spells/143/operational/resolution",
+        "/spells/143/operational/effect",
+        "/spells/143/operational/limitations",
+        "/spells/145/operational/resolution"
+      ]
+    }
+  ],
+  "preservedCase": {
+    "archivePath": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_defenseform8_return310_received/DD_Rank9_DefenseForm8_Director_Return310_HELD.zip",
+    "archiveSha256": "562640185a83b9b5b48b1a28a830e29fbd56a90d1219c6a72446c8a9936e0b60",
+    "member": "cases/RANK9DEFENSEFORM8129-INVULNERABLE-SPHERE-B4-PLANAR.json",
+    "memberSha256": "fc646a10dc7df8bdac967caf6c9233fe08752a783162fce7f2057a1d0cd559f8",
+    "pointers": [
+      "/events/13/evidence",
+      "/events/14/evidence",
+      "/finalState/scene/sphere",
+      "/finalState/applications/0"
+    ]
+  },
+  "findings": [
+    {
+      "id": "SP406-SOURCE",
+      "result": "Plane Shift is an accepted authored operational procedure, with exact acceptance133 and current index entry172. This is not an absent-source finding."
+    },
+    {
+      "id": "SP406-ACCESS",
+      "result": "WP13 acquired Plane Shift at class level13, /WP13/spellbook/41; it is prepared at /WP13/prepared/0 with a completed preparation history. Wizard Conjuration rank7, Action, V/S/F, base17RP, mandatory caster travel."
+    },
+    {
+      "id": "SP406-ORDER",
+      "result": "A known impossible ward is rejected before payment by /spells/4/procedure and PT133-TRANSACTION. Simply placing WP13 knowingly inside a complete Sphere and deducting17RP would fail this source. A paid witness must establish a genuinely source-permitted hidden or later blocker, or use an accepted route with a committed per-attempt cost. Neither hidden knowledge nor a later ward is assumed here."
+    },
+    {
+      "id": "SP406-STEED",
+      "result": "Current catalog /spells/143/operational/resolution explicitly spends the Steed Action and one crossing attempt at attempt start and retains both on ward-caused failure. This is an operative alternative to inspect, not proof of an acquired/instantiated owner, lawful command, endpoint or full body/cargo witness."
+    },
+    {
+      "id": "SP406-PARENT",
+      "result": "The preserved B4 parent already uses separately paid Levitate to support the enclosed creature; it does not create a floor in Sphere. Its /events/14 still records the missing destination/acquired attempt. No generic source-blocked flag closes it."
+    }
+  ],
+  "nextConcreteAction": {
+    "identity": "invulnerable-sphere",
+    "blockerIds": [
+      "DF218-B04"
+    ],
+    "action": "Bind the exact acquired planar actor and complete source-qualified endpoint to the preserved Sphere obligation; select a route whose payment ordering permits the intended denial. Inspect accepted Spectral Steed owner/command/acquisition records next before constructing that alternative; do not claim that ordinary known-blocked Plane Shift is a paid cast.",
+    "missingWitnessInputs": [
+      "complete current body/equipment/custody and component/budget state",
+      "source-qualified different-plane site and reliable prior knowledge, full bounded terrain/formation/arrival support",
+      "Sphere acquisition/payment/consent and uninterrupted complete boundary",
+      "source-permitted commitment, exact Sphere denial and no-refund terminal settlement",
+      "ordered clocks/turns/Counterspell decisions and full forward/inverse restoration"
+    ],
+    "sourceAdoptionRequiredForPlaneShift": false,
+    "newSiteOrActorPremisesCreated": false
+  },
+  "acceptedIds": [],
+  "appliedIds": [],
+  "heldIds": [
+    "invulnerable-sphere"
+  ],
+  "blockerIds": [
+    "DF218-B04"
+  ],
+  "closedBlockerIds": [],
+  "applicationAuthorized": false,
+  "fixtureChanged": false,
+  "queueChanged": false
+}
