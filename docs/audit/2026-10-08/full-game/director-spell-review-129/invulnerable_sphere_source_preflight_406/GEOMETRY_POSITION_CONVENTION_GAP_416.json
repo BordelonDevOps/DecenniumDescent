@@ -20,12 +20,26 @@
       "uncompressedBytes": 869467,
       "sha256": "fc646a10dc7df8bdac967caf6c9233fe08752a783162fce7f2057a1d0cd559f8",
       "fields": {
-        "positionFeet": [10, 0, 10],
-        "bodySizeFeet": [5, 5, 6],
-        "declaredSphereCenterFeet": [12.5, 5.8, 13],
+        "positionFeet": [
+          10,
+          0,
+          10
+        ],
+        "bodySizeFeet": [
+          5,
+          5,
+          6
+        ],
+        "declaredSphereCenterFeet": [
+          12.5,
+          5.8,
+          13
+        ],
         "sphereRadiusFeet": 10,
         "sphereThicknessFeet": 0.08333333333333333,
-        "sphereInsideRoster": ["T"],
+        "sphereInsideRoster": [
+          "T"
+        ],
         "parentClockTick": 62,
         "tickUnitSeconds": 0.1
       },
@@ -44,6 +58,13 @@
     "priorDirectorReconciliation": {
       "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/invulnerable_sphere_source_preflight_406/DIRECTOR_RECONCILIATION_406.json",
       "sha256": "85de33ad0b42e8ac6e7da3000c9150c009d084e87a0bab85d04a661870233072"
+    },
+    "wizard18ActorProfile": {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9defenseform8_reviewed_186/ACTOR_PROFILES.json",
+      "sha256": "05f523187a27ee8d46938b7db9e48ff930782533d2ae23e8da9f0b4ab65e686d",
+      "jsonPointer": "/Wizard18/physicalPremise",
+      "physicalPremise": "Authored medium humanoid test character: occupied box5ft*5ft*6ft, base weight180lb, root walk30ft, usable eyes/ears/voice/hands; no ancestry/feat/item bonus. This is a declared measured fixture, not an authoritative campaign identity.",
+      "positionAnchorDeclared": false
     }
   },
   "conventionDependency": {
@@ -57,22 +78,48 @@
     {
       "assumption": "B4 positionFeet x/y are the body center; z is the bottom",
       "bodyBoundsFeet": {
-        "x": [7.5, 12.5],
-        "y": [-2.5, 2.5],
-        "z": [10, 16]
+        "x": [
+          7.5,
+          12.5
+        ],
+        "y": [
+          -2.5,
+          2.5
+        ],
+        "z": [
+          10,
+          16
+        ]
       },
-      "farthestCornerFromSphereCenterFeet": [7.5, -2.5, 16],
+      "farthestCornerFromSphereCenterFeet": [
+        7.5,
+        -2.5,
+        16
+      ],
       "maximumRadiusFeet": 10.143471,
       "result": "Exceeds the 10-foot radius; body-to-boundary clearance is not proven and the stated Q23 nonintersection condition would fail under this convention."
     },
     {
       "assumption": "B4 positionFeet x/y are the minimum corner; z is the bottom",
       "bodyBoundsFeet": {
-        "x": [10, 15],
-        "y": [0, 5],
-        "z": [10, 16]
+        "x": [
+          10,
+          15
+        ],
+        "y": [
+          0,
+          5
+        ],
+        "z": [
+          10,
+          16
+        ]
       },
-      "farthestCornerFromSphereCenterFeet": [15, 0, 16],
+      "farthestCornerFromSphereCenterFeet": [
+        15,
+        0,
+        16
+      ],
       "maximumRadiusFeet": 6.992138,
       "result": "Fits inside the 10-foot radius with positive clearance."
     }
@@ -94,5 +141,19 @@
     "queueChanged": false,
     "queueAuthority": "Queue404: 829 applied / 19 pending / 0 accepted-unapplied",
     "blockerDF218B04": "HELD"
+  },
+  "directorReadback": {
+    "threadTitle": "Calibration review part 6",
+    "threadUrl": "https://chatgpt.com/g/g-p-67f17555a8dc8191a2b5b81e6d8adc12-dungeon-crawler/c/6adc506d-8770-83ea-b64c-0345d9b9b682",
+    "recordedAtUtc": "2026-11-01T14:10:32Z",
+    "decision": "DF218-B04 remains held; the preserved B4 parent does not prove DF9-Q23 clearance.",
+    "findings": [
+      "The exact B4 case hash was verified; its positionFeet and bodySizeFeet fields do not state an XY anchor.",
+      "The bound Wizard18 physicalPremise declares a 5x5x6-foot occupied box but does not bind the positionFeet anchor.",
+      "The Sphere shared geometry rule requires declared bodies and anchors but supplies no default convention; DF9-Q23 requires Sphere boundary volume to avoid bodies and independent solids at establishment.",
+      "The conditional geometry values 10.143471 feet under center anchoring and 6.992138 feet under minimum-corner anchoring are correct; roster membership, placement=legal, and numeric replay do not substitute for full-body clearance."
+    ],
+    "requiredEvidence": "An explicit authoritative clarification tied to the exact B4 case hash that identifies T’s coordinate anchor, followed by complete occupied-volume versus shell clearance verification.",
+    "statePreservation": "No parent relocation, repair, fixture construction, witness construction, acceptance, application, or queue change."
   }
 }
