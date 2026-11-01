@@ -1,0 +1,142 @@
+{
+  "id": "PG328-W01-LOCAL-GEOMETRY-400",
+  "classification": "TEST_ONLY_BRANCH_GEOMETRY_PARTIAL_SUBWITNESS",
+  "source": {
+    "path": "conjure_demiplane_fortress_closure_intake_367\\payload\\rules\\PG328_QUESTION_DISPOSITIONS.json",
+    "sha256": "149d4098591799f51afa37837ccca722eb9ae08c3ea437c640d943f33b1bb637",
+    "pointer": "/questions/2/answer"
+  },
+  "preservedQ23": {
+    "outerWallThicknessFeet": 5,
+    "outerWallHeightFeet": 30,
+    "panelBoundsFeet": [
+      5,
+      5,
+      5
+    ],
+    "panelAC": 17,
+    "panelHP": 60,
+    "courtyardBoundsFeet": [
+      5,
+      115,
+      5,
+      115
+    ]
+  },
+  "branchChoices": {
+    "wallOrientation": "south wall at y=0..5",
+    "selectedPanelId": "W01-SOUTH-WALL-X25-Z0",
+    "selectedPanelBoundsFeet": {
+      "x": [
+        25,
+        30
+      ],
+      "y": [
+        0,
+        5
+      ],
+      "z": [
+        0,
+        5
+      ]
+    },
+    "adjacentActorEndPosition": [
+      25,
+      5,
+      0
+    ],
+    "actorBodyFeet": [
+      5,
+      5,
+      6
+    ],
+    "mainGateCoordinateChoice": "Not used for this local approach; the historical aperture and entry path are preserved from the parent."
+  },
+  "contactGraph": [
+    {
+      "a": "W01-SOUTH-WALL-X25-Z0",
+      "b": "W01-SOUTH-WALL-X20-Z0",
+      "surface": "shared x=25 plane",
+      "mechanicalMeaning": "none inferred"
+    },
+    {
+      "a": "W01-SOUTH-WALL-X25-Z0",
+      "b": "W01-SOUTH-WALL-X30-Z0",
+      "surface": "shared x=30 plane",
+      "mechanicalMeaning": "none inferred"
+    },
+    {
+      "a": "W01-SOUTH-WALL-X25-Z0",
+      "b": "W01-SOUTH-WALL-X25-Z5",
+      "surface": "shared z=5 plane",
+      "mechanicalMeaning": "none inferred"
+    },
+    {
+      "a": "W01-SOUTH-WALL-X25-Z0",
+      "b": "Q23-GROUND-SUPPORT-z0",
+      "surface": "shared z=0 plane",
+      "mechanicalMeaning": "none inferred"
+    }
+  ],
+  "mechanicalSupportGraph": "UNADJUDICATED. Contacts are not support edges; no threshold, capacity, collapse propagation or Falling rule is introduced.",
+  "localNavigation": {
+    "actorStart": [
+      25,
+      10,
+      0
+    ],
+    "actorBodyFeet": [
+      5,
+      5,
+      6
+    ],
+    "openCourtyardBounds": [
+      5,
+      115,
+      5,
+      115
+    ],
+    "selectedPanelInteriorFace": {
+      "y": 5,
+      "x": [
+        25,
+        30
+      ],
+      "z": [
+        0,
+        5
+      ]
+    },
+    "approachPath": [
+      [
+        25,
+        10,
+        0
+      ],
+      [
+        25,
+        5,
+        0
+      ]
+    ],
+    "approachDistanceFeet": 5,
+    "endBodyBoundsFeet": {
+      "x": [
+        25,
+        30
+      ],
+      "y": [
+        5,
+        10
+      ],
+      "z": [
+        0,
+        6
+      ]
+    },
+    "bodyPanelIntersection": false,
+    "status": "LOCAL COURTYARD APPROACH REPRESENTED; WHOLE FORTRESS NAVIGATION NOT VALIDATED"
+  },
+  "wholeStructureNavigation": "UNADJUDICATED; not a complete Fortress map. The keep-stair contradiction remains open under Q23, and no source repair is adopted.",
+  "sealEligibility": false
+}
