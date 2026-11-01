@@ -1,0 +1,370 @@
+{
+  "id": "OWNER-PG327-W03-LICH-TAXONOMY-SOURCE-PROPOSAL-398-REPACK02",
+  "recordedAtUtc": "2026-11-01T03:38:59Z",
+  "status": "NEW_OWNER_REVIEW_PROPOSAL_NOT_ACCEPTED",
+  "proposalKind": "scoped operative-source addition for separate review and acceptance",
+  "scope": {
+    "spellId": "banishment-gate",
+    "witnessId": "W03",
+    "blockerIds": [
+      "PG200-B03",
+      "PG200-B04"
+    ],
+    "intendedUse": "After separate source acceptance, support one stationary, source-bound W03 creature-type witness only.",
+    "outOfScope": [
+      "all other witnesses",
+      "other spells",
+      "canonical promotion",
+      "runtime implementation",
+      "campaign event",
+      "fixture mutation",
+      "witness seal",
+      "spell acceptance or application",
+      "queue changes"
+    ]
+  },
+  "authorityAndState": {
+    "directorInstruction": "Director approved preparing this narrow proposal for owner review only; Director expressly stated it is not yet an accepted W03 source.",
+    "directorThread": "Review Time Stop Witness Evidence",
+    "ownerAcceptance": "Not yet given for this proposal. Separate explicit owner acceptance must bind this exact proposal before it can qualify as a W03 source.",
+    "repositoryCommitBound": "4633fd045c9fbd5116056677694e924238f460ec",
+    "sourceAuthorityCaveat": "The cited Mage and ancestry files are in DescentReviewChanges/ReviewBible, an assembled review build. They are not thereby promoted to canonical main. This proposal is a new scoped rule for owner review, not a claim that the existing files already establish the proposed Lich taxonomy change."
+  },
+  "sourceBindings": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/classes/mage.md",
+      "version": "Mage class playtest v0.1 (Markdown header)",
+      "bytes": 63602,
+      "sha256": "08643cfdef39016b1882ea9efd2e03077ced71db97bf0b048271570e356d0d0b",
+      "operativeLocators": [
+        "lines 50-54",
+        "lines 52-54"
+      ],
+      "relevantContent": "Lich readiness, pre-roll disclosure and explicit consent, ritual check, success and historical failure branch."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/mage.json",
+      "version": "0.1-playtest",
+      "bytes": 80394,
+      "sha256": "c64782e192e2e63e5abed5728f9213c9d4cf956bce1a75da7a156dbfd1141e0b",
+      "operativeLocators": [
+        "/engine/15",
+        "/engine/16",
+        "/engine/17",
+        "/engine/19",
+        "/engine/20",
+        "/engine/21",
+        "/cards/45"
+      ],
+      "relevantContent": "Lich readiness, ritual check, Mage 10 path and later acquisition gates, the existing /engine/21 insertion anchor, and separately selected Mage 16 Undead Immunities card.",
+      "designStatus": "provisional-card-draft-not-balance-approved"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/ANCESTRY_BACKGROUND_PLAYTEST.md",
+      "version": "No explicit document version; bind by repository commit and byte hash.",
+      "bytes": 34771,
+      "sha256": "2bb46707d22caee6e669f6d5978db0ef30211d61049c7a88818f92cf7461e384",
+      "operativeLocators": [
+        "line 131"
+      ],
+      "relevantContent": "An active Undead PC is alive as a life-state character with Humanoid and Undead creature types; either type qualifies for an effect requiring it, while an explicit exclusion of either excludes the character; this rule grants no unprinted monster immunities and does not make the PC a corpse."
+    },
+    {
+      "path": "docs/canon/CANON_MANIFEST.json",
+      "version": "1.0",
+      "bytes": 24525,
+      "sha256": "87fbe5800daaf8e263c540d6bbe40c178cf88633f6a07738ab6f23f53957e61e",
+      "operativeLocators": [
+        "/mainCutover",
+        "/description",
+        "/pendingDeliveries"
+      ],
+      "relevantContent": "Main cutover is complete; ReviewBible remains an assembled review-build mirror; V7 deliveries remain pending review.",
+      "workingCopyProvenance": {
+        "bytes": 25007,
+        "representation": "CRLF working-copy bytes",
+        "sha256": "3d7854a98520fe7ce178724d17d27cb2028fd233567d2bc6a15e0b9c7432b1fd"
+      }
+    },
+    {
+      "path": "docs/canon/REPOSITORY_PROMOTION.md",
+      "version": "Owner lock 2026-08-05",
+      "bytes": 2503,
+      "sha256": "5fbc12c03f38b6447e28e0a5f0fcad72ff5797fc2fa2d13cd23d1266b82c0a6b",
+      "operativeLocators": [
+        "Layers",
+        "Promotion path for new bible packs",
+        "Main ↔ ReviewBible sync"
+      ],
+      "relevantContent": "ReviewBible is an assembled review build; proposed rules require review; promotion to main requires explicit owner approval and additional promotion artifacts.",
+      "workingCopyProvenance": {
+        "bytes": 2551,
+        "representation": "CRLF working-copy bytes",
+        "sha256": "4bc74fd39c2e40cf59ec53ada0fdcb285e0b0d9963c10f78fd15406a0385c913"
+      }
+    }
+  ],
+  "sourceGap": "No cited operative passage currently states that successful Lich transformation changes the character's mechanical creature type. The separately selected Mage 16 Undead Immunities card does not itself grant taxonomy. This proposal supplies a clearly labeled NEW candidate rule only.",
+  "proposedRule": {
+    "label": "NEW — proposed for owner review; not accepted or operative",
+    "eligibility": {
+      "subject": "An active Mage at Mage class level 10 or higher whose pre-transformation mechanical creature-type set is exactly [\"Humanoid\"], with lawful access to a level-10 Lich Hero-path acquisition opportunity under the bound progression, and who does not already have Undead. Mage level 10 alone does not grant a second Hero path or authorize respec; any later acquisition or respec requires its own accepted source or a separately labeled NEW rule.",
+      "readiness": [
+        "Obtain either one Soul Coin or two ritual participants.",
+        "Bind at least two named mini-bosses as guardians.",
+        "Secure a planar nexus.",
+        "Survive the Director's divine-echo encounter."
+      ],
+      "existingModifiers": [
+        "A third bound guardian grants +2 to the final ritual check.",
+        "If both ritual participants are willing, the final ritual check has advantage."
+      ],
+      "accessAndTiming": "This is a NEW timing and scheduling proposal, not an existing source rule and not derived from any short-rest rule. All lawful Mage-level, Hero-path acquisition and ritual-readiness requirements must be true before the final ritual step begins and rechecked immediately before the final roll. The final Lich ritual step occupies one continuous 60-minute elapsed-world-time interval at the secured planar nexus. It is a scheduled ritual activity, not a spell cast or regular Action; it grants no turn, Action, Reaction, resource refresh or paused clock, and the Mage cannot take another voluntary activity during the interval. Explain the historical failure stakes and obtain explicit player opt-in before the interval begins; consent may be withdrawn before the final roll, which aborts the step without a check or failure consequence. The type addition applies once, only immediately after actual successful resolution of the final check; preparation, declaration, declining, interruption or failure never triggers it."
+    },
+    "paymentAndConsumptionClarification": {
+      "status": "NEW proposal to make the existing readiness wording deterministic; requires separate owner review.",
+      "soulCoinRoute": "NEW proposed ritual cost, separate from any taxonomy cost: the Soul Coin option is checked as an acquired and available readiness prerequisite before the ritual step and again immediately before the final roll. If the roll is attempted, one qualifying Soul Coin is committed and consumed immediately before the roll, whether the transformation succeeds or fails. If the step is interrupted before the roll, no coin is consumed. This is a proposed completion, not an inference from the word obtaining.",
+      "participantRoute": "NEW proposed alternate route: two participants remain available to complete the ritual step; they are not consumed or killed by this proposal. If both are willing at the final check, apply the source-stated advantage. The participant route substitutes for the Soul Coin route; no additional RP, spell slot or material payment is added.",
+      "failureTiming": "The selected Soul Coin is spent immediately before any final roll and is not refunded on a failed roll. The participant route incurs no consumable payment. Interruption before the roll consumes no coin and does not trigger the historical roll-failure outcome. All of these cost-timing clauses are NEW proposed mechanics pending separate owner review.",
+      "taxonomyCost": "No separate cost is charged for adding Undead taxonomy; the ritual cost for the successful Lich transformation is distinct and is governed by the NEW proposed coin-or-participants terms above."
+    },
+    "checkAndResolution": {
+      "check": "After all readiness gates and the divine-echo encounter are complete, roll d20 + Intelligence modifier + Constitution modifier against DC 20, applying the existing third-guardian +2 and willing-participant advantage where applicable.",
+      "successTiming": "Immediately after successful resolution of the final check, add Undead to the same character's creature-type set. The type update is one atomic rules-state update; it does not create a second creature or body.",
+      "failure": "The existing historical failure state and agreed player-to-NPC handoff remain unchanged. The proposed taxonomy addition does not occur on failure."
+    },
+    "identityAndBodyMapping": {
+      "identity": "Preserve the same creature identity and character record.",
+      "bodyAndLifeState": "Continue the same extant body and same active creature life state; the character is alive, not a corpse. Do not create a replacement body, death, corpse, resurrection or separate creature.",
+      "positionOrientationAndVolume": "Preserve the exact position, orientation, occupied volume and current spatial relation before and after the type update. No movement, crossing, admission or cell transition occurs.",
+      "hpConditionsEquipmentCargoAndCustody": "This type update changes none of current HP, maximum HP, conditions, equipment, carried items, cargo ownership or custody.",
+      "fitRequirement": "Occupied volume is unchanged, so this proposed rule requires no changed-volume fit calculation and does not displace any creature or object.",
+      "resourcesAndBudgets": "The taxonomy addition itself changes no RP, Dissonance, class resources, turn/action budgets, rest counters or other resources."
+    },
+    "taxonomyAndInteractions": {
+      "before": [
+        "Humanoid"
+      ],
+      "after": [
+        "Humanoid",
+        "Undead"
+      ],
+      "duration": "Propose permanent taxonomy after successful transformation, with no concentration requirement and no automatic expiry or reversion.",
+      "terminationAndReversion": "Propose permanent taxonomy, with no concentration, automatic expiry or automatic reversion. Removal requires an expressly applicable accepted rule; this proposal grants no removal mechanism. The proposal does not invent a dispel, voluntary removal, death-state or reversion procedure.",
+      "targeting": "A requirement for either Humanoid or Undead may qualify; an explicit exclusion of either excludes the character. All other targeting predicates remain necessary.",
+      "lifeState": "Describe the result as the same active creature life state, not a corpse; do not exempt the character from Undead targeting.",
+      "setSemantics": "Require exact initial set [Humanoid]. On success, add Undead while retaining Humanoid; no other pre-existing type is removed or rewritten."
+    },
+    "abilitiesAndAcquisition": {
+      "taxonomyAloneGrants": [],
+      "excludedAutomaticGrants": [
+        "ancestry package",
+        "Lichborn traits",
+        "immunities",
+        "poison/disease/charm/fear/sleep immunities",
+        "breathing or rest exemptions",
+        "resource recovery",
+        "automatic card selection",
+        "automatic Mage 16 Undead Immunities card"
+      ],
+      "existingUnlocks": "Preserve existing successful Lich path and elite-companion unlocks. Each card, companion and feature retains its printed acquisition and use requirements. Undead Immunities remains a separately selected Mage 16 card; taxonomy does not grant or accelerate it."
+    },
+    "proposedInsertionText": "NEW — proposed, not operative unless separately accepted: For an active Mage who lawfully acquires the Lich Hero path at a permitted level-10 Hero-path opportunity and whose pre-transformation type set is exactly [Humanoid], successful resolution of the bound Lich ritual adds Undead once while retaining Humanoid. No second Hero path or unsupported respec is granted. Apply only after the final check succeeds; preparation, declaration, decline, interruption and failure do not trigger this rule. Use the same active creature and extant body, preserving identity, ancestry, variant, position, orientation, occupied volume, HP, conditions, resources, equipment, cargo identities and custody. No death, corpse, resurrection, movement, replacement, duplication, crossing, admission or cell transition results. The proposed taxonomy is permanent, with no concentration, automatic expiry or automatic reversion; removal requires an expressly applicable accepted rule, and no removal mechanism is granted. A requirement for either Humanoid or Undead may qualify; an explicit exclusion of either excludes, with all other targeting predicates still required. Type membership alone grants no ancestry package, Lichborn traits, immunities, breathing/rest exemptions, resource recovery or unselected card; Undead Immunities remains separately selected at Mage 16. Existing ritual requirements and failure outcomes remain in force. Final ritual duration, scheduling, interruption, prerequisite recheck and cost timing are separately labeled NEW proposal terms and are not inferred from existing sources.",
+    "ritualTimingAndInterruption": {
+      "status": "NEW proposed terms requiring separate owner review; not an established Lich rule.",
+      "durationSeconds": 3600,
+      "scheduling": "One continuous 60-minute scheduled activity at the secured planar nexus, measured on the ordinary elapsed-world-time clock. No initiative turn, Action, Reaction, spell casting, refresh or clock pause is created; the Mage is occupied and cannot take another voluntary activity.",
+      "readinessRecheck": "Check all level/path, readiness, nexus, bound-guardian, selected cost-route and consent conditions immediately before beginning and immediately before the final roll. Resolve +2 only if at least three named guardians remain bound at the final roll; apply advantage only if both ritual participants are actually willing then.",
+      "interruptions": [
+        "Mage becomes incapacitated before the final roll.",
+        "Mage leaves or is forced away from the secured nexus ritual site.",
+        "The planar nexus ceases to be secured.",
+        "Fewer than two named mini-boss guardians remain bound.",
+        "The selected Soul Coin route no longer has one qualifying Soul Coin available immediately before the final roll.",
+        "The selected participant route no longer has two participants available to complete the ritual step.",
+        "The player withdraws explicit consent before the final roll."
+      ],
+      "otherEvents": "An event interrupts only if it meets one listed condition; damage alone does not interrupt unless it causes a listed condition. Ordinary world effects and clocks continue.",
+      "interruptionOutcome": "Abort before rolling; no transformation or taxonomy change, no historical roll-failure consequence, and no Soul Coin committed. No partial duration resumes; a new attempt requires full duration, fresh prerequisite recheck and fresh disclosure/consent.",
+      "paymentCommit": "Immediately after final prerequisite recheck and immediately before the d20 roll.",
+      "newRuleNotice": "Every duration, scheduling, interruption and recheck detail in this object is NEW and requires explicit owner review. It does not claim existing Mage sources establish these mechanics."
+    }
+  },
+  "w03WitnessBoundaryAfterAcceptance": {
+    "precondition": "Only after separate explicit acceptance of this exact NEW source proposal.",
+    "test": "Only after separate owner and Director source acceptance and closure of any remaining ritual-dependency residuals, a fixed Undead-selected Banishment Gate target changes from exact [Humanoid] to [Humanoid, Undead] at the same unchanged position, with the same active creature and extant body. No new crossing, admission, cell transition or hard-denial claim is made. The Gate crossing rule is unchanged.",
+    "witnessStatusNow": "NOT CONSTRUCTED; source acceptance has not occurred."
+  },
+  "reviewAndStateControls": {
+    "directorReviewRequested": true,
+    "ownerReviewRequested": true,
+    "sourceAcceptance": "NOT GRANTED",
+    "acceptedIds": [],
+    "appliedIds": [],
+    "heldIds": [
+      "banishment-gate"
+    ],
+    "blockerIds": [
+      "PG200-B03",
+      "PG200-B04"
+    ],
+    "closedBlockerIds": [],
+    "applicationAuthorized": false,
+    "queueCounts": "828 applied / 20 pending / 0 accepted-unapplied; 552 procedures / 173 interfaces / 0 first reviews / 20 closure tasks",
+    "fixtureMutation": false,
+    "campaignEventAsserted": false,
+    "canonicalRuleChanged": false,
+    "spellQueueChanged": false,
+    "existingWitnessSealsChanged": false
+  },
+  "supersedes": {
+    "committedSha256": "e61af31c245d3274ba28a5daafa1aa118fad6d40a7b16d28881b1808b8b91db2",
+    "path": "repack01/OWNER_PG327_W03_LICH_TAXONOMY_SOURCE_PROPOSAL_398_REPACK01.json",
+    "id": "OWNER-PG327-W03-LICH-TAXONOMY-SOURCE-PROPOSAL-398-REPACK01",
+    "committedBytes": 24966
+  },
+  "preservedOriginals": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/classes/mage.md",
+      "sourceSha256": "08643cfdef39016b1882ea9efd2e03077ced71db97bf0b048271570e356d0d0b",
+      "locator": "line 50",
+      "verbatim": "LICH TRANSFORMATION READINESS. At Mage level 10 a character may select Lich only after obtaining either one Soul Coin or two ritual participants, binding at least two named mini-bosses as guardians, securing a planar nexus and surviving the Director's divine-echo encounter. A third bound guardian grants +2 to the final ritual check. If both ritual participants are willing, the final ritual check has advantage."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/classes/mage.md",
+      "sourceSha256": "08643cfdef39016b1882ea9efd2e03077ced71db97bf0b048271570e356d0d0b",
+      "locator": "line 52",
+      "verbatim": "Before the irreversible Lich roll, the Director must explicitly tell the player the historical failure stakes: permanent loss of spellcasting, transformation into a cursed melee undead NPC, hostile faction consequences, cursed-gear restriction and no further XP as that retired PC. The player must explicitly opt into that retirement risk before rolling. If the player declines, the ritual stops before the roll and the character must choose another Hero path for this playtest; no irreversible consequence is applied."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/classes/mage.md",
+      "sourceSha256": "08643cfdef39016b1882ea9efd2e03077ced71db97bf0b048271570e356d0d0b",
+      "locator": "line 54",
+      "verbatim": "LICH RITUAL CHECK. After all readiness gates and the divine-echo encounter are completed, roll d20 + Intelligence modifier + Constitution modifier against DC 20, applying the third-guardian +2 and willing-participant advantage where applicable. Success completes the Lich transformation and unlocks its cards and elite companions. Failure after explicit consent applies the historical failure state and the Director pauses for the agreed player-to-NPC handoff before continuing play. No silent PC deletion is permitted."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/mage.json",
+      "sourceSha256": "c64782e192e2e63e5abed5728f9213c9d4cf956bce1a75da7a156dbfd1141e0b",
+      "locator": "/engine/15",
+      "verbatim": "LICH TRANSFORMATION READINESS. At Mage level 10 a character may select Lich only after obtaining either one Soul Coin or two ritual participants, binding at least two named mini-bosses as guardians, securing a planar nexus and surviving the Director's divine-echo encounter. A third bound guardian grants +2 to the final ritual check. If both ritual participants are willing, the final ritual check has advantage."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/mage.json",
+      "sourceSha256": "c64782e192e2e63e5abed5728f9213c9d4cf956bce1a75da7a156dbfd1141e0b",
+      "locator": "/engine/16",
+      "verbatim": "Before the irreversible Lich roll, the Director must explicitly tell the player the historical failure stakes: permanent loss of spellcasting, transformation into a cursed melee undead NPC, hostile faction consequences, cursed-gear restriction and no further XP as that retired PC. The player must explicitly opt into that retirement risk before rolling. If the player declines, the ritual stops before the roll and the character must choose another Hero path for this playtest; no irreversible consequence is applied."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/mage.json",
+      "sourceSha256": "c64782e192e2e63e5abed5728f9213c9d4cf956bce1a75da7a156dbfd1141e0b",
+      "locator": "/engine/17",
+      "verbatim": "LICH RITUAL CHECK. After all readiness gates and the divine-echo encounter are completed, roll d20 + Intelligence modifier + Constitution modifier against DC 20, applying the third-guardian +2 and willing-participant advantage where applicable. Success completes the Lich transformation and unlocks its cards and elite companions. Failure after explicit consent applies the historical failure state and the Director pauses for the agreed player-to-NPC handoff before continuing play. No silent PC deletion is permitted."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/mage.json",
+      "sourceSha256": "c64782e192e2e63e5abed5728f9213c9d4cf956bce1a75da7a156dbfd1141e0b",
+      "locator": "/engine/19",
+      "verbatim": "At Mage 10 choose Archmage, Elementalist or, if its ritual succeeds, Lich; choose 2 cards from that Hero path. Levels 11, 13, 15, 17 and 19 each grant one eligible unselected Base or Arch choice. Levels 12, 14, 16 and 18 each grant one Hero-path choice. Mage 20 grants one additional Hero-path choice plus the NEW playtest level-20 class capstone in extra Cards. No historical Hero Finale is implied. ASI/feat milestones remain separate."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/mage.json",
+      "sourceSha256": "c64782e192e2e63e5abed5728f9213c9d4cf956bce1a75da7a156dbfd1141e0b",
+      "locator": "/engine/20",
+      "verbatim": "All acquisition gates use Mage class level, not total character level. Proficiency bonus remains the normal total-character proficiency bonus. Non-Mage levels do not unlock Elemental Focus, Arcanist, Hero cards, Nuke Chain upgrades, Lich ritual access or the level-20 Mage capstone."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/mage.json",
+      "sourceSha256": "c64782e192e2e63e5abed5728f9213c9d4cf956bce1a75da7a156dbfd1141e0b",
+      "locator": "/engine/21",
+      "verbatim": "Class-spell ranks are printed in the normalized card data: use the legal maximum Mage rank at that card's minimum class level, capped 9; the three Focus finishers are rank 1. Rank determines Dissonance, Counterspell and rank-limited interactions, not a second RP cost. A shared spell uses the ally's normal Action and caster-side Dissonance at the moment it is cast; it never builds the Mage's Nuke Chain remotely. Spellcasting through Fracture as Lich uses the shared direct-trauma rule."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/mage.json",
+      "sourceSha256": "c64782e192e2e63e5abed5728f9213c9d4cf956bce1a75da7a156dbfd1141e0b",
+      "locator": "/cards/45",
+      "verbatim": {
+        "id": "mage.hero.lich.undead-immunities",
+        "name": "Undead Immunities",
+        "className": "Mage",
+        "band": "Hero",
+        "path": "Lich",
+        "sourceKind": "passive",
+        "minimumClassLevel": 16,
+        "acquisition": "selection",
+        "activation": "Passive",
+        "cost": "0",
+        "rangeAndTarget": "Self",
+        "duration": "Permanent after successful Lich transformation",
+        "frequency": "Always",
+        "effect": "Undead Immunities. Tags: lich, undead. You are immune to poison damage, the Poisoned condition, disease, Frightened, Charmed and magical sleep. You no longer need to breathe. You still require the normal rest schedule for mechanical recovery and can still be affected by abilities that specifically target undead unless another feature says otherwise.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 2982,
+          "originalText": "Undead Immunities: Become immune to poison, disease, fear, sleep, and mind control."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      }
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/ANCESTRY_BACKGROUND_PLAYTEST.md",
+      "sourceSha256": "2bb46707d22caee6e669f6d5978db0ef30211d61049c7a88818f92cf7461e384",
+      "locator": "line 131",
+      "verbatim": "An active Undead PC is alive as a life-state character while having both Humanoid and Undead creature types. An effect requiring either type may apply; an explicit exclusion of either type excludes it. The ancestry adds no unprinted monster immunities and does not make an active PC a corpse. Actual death is a separate state."
+    }
+  ],
+  "sourceInsertionAndPrecedence": {
+    "proposedInsertionPoints": [
+      {
+        "beforeLine": 56,
+        "afterLine": 54,
+        "path": "DescentReviewChanges/ReviewBible/docs/mechanics/classes/mage.md",
+        "anchor": "Immediately after the unchanged LICH RITUAL CHECK paragraph and before PROPOSED ACQUISITION."
+      },
+      {
+        "appendAt": "/engine/22",
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/mage.json",
+        "anchor": "Append a new engine entry after unchanged current /engine/21; current engine array has 22 entries indexed 0-21."
+      }
+    ],
+    "noSourceMutation": "This packet proposes text only. It does not edit Mage, ancestry, card or Gate source files.",
+    "precedence": [
+      "The existing Mage source remains controlling for Mage-level eligibility, readiness, consent, check, failure and all established ritual outcomes. The proposed clause overlays only the successful-ritual creature-type result.",
+      "The reviewed ancestry dual-type rule at line 131 governs interactions of the resulting Humanoid+Undead type set.",
+      "The Mage 16 Undead Immunities card at /cards/45 remains separately acquired and selected; it is not granted by taxonomy.",
+      "The Banishment Gate crossing and all other spell rules remain unchanged; this is proposed only as a source for Banishment W03 after separate acceptance.",
+      "The Canon Manifest and repository promotion hierarchy remain controlling. This proposal is not canonical or promoted to main; any owner acceptance must be expressly limited to the exact W03 source scope described here."
+    ],
+    "preservation": "All quoted source passages above are preserved verbatim with their file hashes and locators. No existing source bytes are edited."
+  },
+  "directorDesignReview": {
+    "thread": "Review Time Stop Witness Evidence",
+    "disposition": "SUITABLE_FOR_PROPOSAL_ONLY",
+    "requirementsAddressed": [
+      "active Humanoid Mage lacking Undead; exact existing Mage-level/readiness/acquisition gates",
+      "one-time successful-only trigger; no preparation/declaration/decline/failure trigger; preserve failure branch",
+      "Humanoid retained and Undead added; same active creature/extant body/identity/ancestry/variant",
+      "unchanged position/orientation/volume/equipment/cargo/custody and no HP/condition/resource/budget effects",
+      "permanent taxonomy; no automatic expiry/reversion; no removal mechanism invented",
+      "dual-type targeting with all other predicates preserved",
+      "no automatic ancestry, Lichborn, immunity, breathing/rest, recovery or unselected card grants; Undead Immunities remains separately selected Mage 16",
+      "source versions/commit/hashes, preserved originals, proposed insertion points, explicit precedence",
+      "missing existing ritual payment/consumption remains explicitly unresolved or separately NEW; Soul Coin consumption is not inferred",
+      "Gate crossing rule unchanged; stationary W03 test only after separate acceptance"
+    ],
+    "sourceAcceptance": "Not granted by the design review."
+  },
+  "directorReview398": {
+    "closedResidualIds": [
+      "PG398-R1"
+    ],
+    "remainingResidualIds": [
+      "PG398-R2",
+      "PG398-R3",
+      "PG398-R4",
+      "PG398-R5",
+      "PG398-R6"
+    ],
+    "requestedCorrections": "Repack02 proposes explicit new ritual timing/cost terms; exact Humanoid-only starting type; committed governance-byte hashes; explicit source versions and engine/16; identical proposal bytes in external file and ZIP member."
+  }
+}

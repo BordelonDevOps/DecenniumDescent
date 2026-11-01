@@ -1,0 +1,1 @@
+Proposal 398 Repack02 is an owner-review proposal only. New ritual procedure/payment clauses are explicitly NEW; no Lich source, W03, fixture or campaign state is accepted or changed.
