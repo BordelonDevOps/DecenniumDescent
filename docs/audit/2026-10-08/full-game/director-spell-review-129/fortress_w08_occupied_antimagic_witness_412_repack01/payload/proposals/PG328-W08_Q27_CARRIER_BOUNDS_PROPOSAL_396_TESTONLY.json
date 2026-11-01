@@ -1,0 +1,442 @@
+{
+  "id": "PG328-W08-Q27-CARRIER-BOUNDS-PROPOSAL-396",
+  "createdAtUtc": "2026-11-01T03:06:05Z",
+  "status": "DIRECTOR_REVIEWED_CARRIER_CHECKS_PASS; FIXED_ADMISSION_ANCHOR_AND_BRANCH_PLACEMENT_PENDING_OWNER_ADOPTION",
+  "supersedes": "PG328-W08-Q27-CARRIER-BOUNDS-PROPOSAL-395",
+  "scope": {
+    "witnessId": "PG328-W08",
+    "caseId": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-B/occupied-antimagic",
+    "candidateQ27ProjectionOnly": true,
+    "fixtureMutated": false,
+    "terminalStateExecuted": false,
+    "ownerAdoptionRequired": true
+  },
+  "sourceBindings": [
+    {
+      "path": "payload/cases/RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-B__occupied-antimagic.json#/final/actors/A",
+      "sha256": "f12414164a641a6b8912b43e8f426f027772f3a58d92dbadfcbd45b4f5b14900",
+      "use": "Exact actor A position, orientation, body bounds, hands, equipment and load fields."
+    },
+    {
+      "path": "payload/cases/RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-B__occupied-antimagic.json#/final/items/focus-A",
+      "sha256": "f12414164a641a6b8912b43e8f426f027772f3a58d92dbadfcbd45b4f5b14900",
+      "use": "Exact 0.5-ft cube, A custody; held in left hand."
+    },
+    {
+      "path": "payload/cases/RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-B__occupied-antimagic.json#/final/items/pack-A",
+      "sha256": "f12414164a641a6b8912b43e8f426f027772f3a58d92dbadfcbd45b4f5b14900",
+      "use": "Exact 0.5-ft cube, A custody; independently clipped to harness."
+    },
+    {
+      "path": "payload/cases/RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-B__occupied-antimagic.json#/final/items/cargo-A",
+      "sha256": "f12414164a641a6b8912b43e8f426f027772f3a58d92dbadfcbd45b4f5b14900",
+      "use": "Exact 1-ft cube, A custody; independently clipped to belt point."
+    },
+    {
+      "path": "payload/sources/BODY_EQUIPMENT_PLAYTEST.md#Placement and involuntary endings; #Carrying and Load",
+      "sha256": "5fa622f43b6948e7e991f1ca5a237de584900e92cfd4f37eed47586d73222039",
+      "use": "Exact bundled rule headings for item identity, custody, placement and load."
+    },
+    {
+      "path": "payload/proposals/PG328-W01_W08_OCCUPIED_PANEL_GEOMETRY_PROPOSAL_396_TESTONLY.json",
+      "sha256": "c9c2bb62446c84b36d4692fa7f3a5e1037dc601359af98769184747ae073efe3",
+      "use": "Director-reviewed one-inch support panel, separate raised TEST_ONLY branch initialization, and fixed Q27 admission anchor."
+    }
+  ],
+  "bodyConvention": {
+    "plane": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-B/occupied-antimagic/cast1/space",
+    "feetAnchor": [
+      15,
+      10,
+      0.08333333333333333
+    ],
+    "orientation": [
+      1,
+      0,
+      0
+    ],
+    "bodyBoundsFeet": {
+      "x": [
+        12.5,
+        17.5
+      ],
+      "y": [
+        7.5,
+        12.5
+      ],
+      "z": [
+        0.08333333333333333,
+        6.083333333333333
+      ]
+    },
+    "relativeAxes": "x forward; y left; z up."
+  },
+  "arrangement": [
+    {
+      "id": "focus-A",
+      "owner": "A",
+      "custodian": "A",
+      "sizeFeet": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "relativeBoundsFeet": {
+        "x": [
+          2.5,
+          3.0
+        ],
+        "y": [
+          0.75,
+          1.25
+        ],
+        "z": [
+          3.0,
+          3.5
+        ]
+      },
+      "relation": "Held in left hand at forward-left reach point; focus accessible. Right hand remains free for somatic components.",
+      "preCastWorldBoundsFeet": {
+        "x": [
+          17.5,
+          18.0
+        ],
+        "y": [
+          10.75,
+          11.25
+        ],
+        "z": [
+          3.0833333333333335,
+          3.5833333333333335
+        ]
+      },
+      "postReturnWorldBoundsFeet": {
+        "x": [
+          17.5,
+          18.0
+        ],
+        "y": [
+          0.75,
+          1.25
+        ],
+        "z": [
+          3.0,
+          3.5
+        ]
+      }
+    },
+    {
+      "id": "pack-A",
+      "owner": "A",
+      "custodian": "A",
+      "sizeFeet": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "relativeBoundsFeet": {
+        "x": [
+          -0.25,
+          0.25
+        ],
+        "y": [
+          2.5,
+          3.0
+        ],
+        "z": [
+          2.0,
+          2.5
+        ]
+      },
+      "relation": "Independently clipped to left-side torso harness; not supported by contact with cargo-A.",
+      "preCastWorldBoundsFeet": {
+        "x": [
+          14.75,
+          15.25
+        ],
+        "y": [
+          12.5,
+          13.0
+        ],
+        "z": [
+          2.0833333333333335,
+          2.5833333333333335
+        ]
+      },
+      "postReturnWorldBoundsFeet": {
+        "x": [
+          14.75,
+          15.25
+        ],
+        "y": [
+          2.5,
+          3.0
+        ],
+        "z": [
+          2.0,
+          2.5
+        ]
+      }
+    },
+    {
+      "id": "cargo-A",
+      "owner": "A",
+      "custodian": "A",
+      "sizeFeet": [
+        1,
+        1,
+        1
+      ],
+      "relativeBoundsFeet": {
+        "x": [
+          0.25,
+          1.25
+        ],
+        "y": [
+          2.5,
+          3.5
+        ],
+        "z": [
+          1.0,
+          2.0
+        ]
+      },
+      "relation": "Independently clipped to belt loop; not supported by contact with pack-A.",
+      "preCastWorldBoundsFeet": {
+        "x": [
+          15.25,
+          16.25
+        ],
+        "y": [
+          12.5,
+          13.5
+        ],
+        "z": [
+          1.0833333333333333,
+          2.0833333333333335
+        ]
+      },
+      "postReturnWorldBoundsFeet": {
+        "x": [
+          15.25,
+          16.25
+        ],
+        "y": [
+          2.5,
+          3.5
+        ],
+        "z": [
+          1.0,
+          2.0
+        ]
+      }
+    }
+  ],
+  "insideFortressCheck": {
+    "towerInteriorBoundsFeet": {
+      "x": [
+        10,
+        20
+      ],
+      "y": [
+        10,
+        20
+      ],
+      "z": [
+        0,
+        40
+      ]
+    },
+    "doorOpeningFeet": {
+      "x": [
+        12.5,
+        17.5
+      ],
+      "y": [
+        5,
+        10
+      ],
+      "z": [
+        0,
+        8
+      ]
+    },
+    "AWholeFootprintFitsDoorway": true,
+    "itemsInsideClearInterior": true,
+    "itemsAvoidWallsAndStairs": true,
+    "noPositiveVolumeItemBodyOverlap": true,
+    "noPositiveVolumeItemItemOverlap": true,
+    "allItemAttachmentsExplicit": true,
+    "AFeetRestOnProposedPanelTop": true,
+    "raisedByFeet": 0.08333333333333333
+  },
+  "postReturnCheck": {
+    "exteriorFeetAnchor": [
+      15,
+      0,
+      0
+    ],
+    "bodyBoundsFeet": {
+      "x": [
+        12.5,
+        17.5
+      ],
+      "y": [
+        -2.5,
+        2.5
+      ],
+      "z": [
+        0,
+        6
+      ]
+    },
+    "outsideBodies": {
+      "B": {
+        "x": [
+          -2.5,
+          2.5
+        ],
+        "y": [
+          12.5,
+          17.5
+        ],
+        "z": [
+          0,
+          6
+        ]
+      },
+      "C": {
+        "x": [
+          -2.5,
+          2.5
+        ],
+        "y": [
+          -2.5,
+          2.5
+        ],
+        "z": [
+          0,
+          6
+        ]
+      },
+      "D": {
+        "x": [
+          2.5,
+          7.5
+        ],
+        "y": [
+          2.5,
+          7.5
+        ],
+        "z": [
+          0,
+          6
+        ]
+      }
+    },
+    "allItemsAvoidPositiveVolumeOverlapWithBody": true,
+    "allItemsAvoidPositiveVolumeOverlapWithB_C_D": true,
+    "custody": "Same item IDs and A custody; no item created, lost, consumed or transferred.",
+    "sourcePlaneSupportZ": 0
+  },
+  "loadAndHands": {
+    "carriedLoad": 1.2,
+    "carriedWeightLb": 12,
+    "loadChanged": false,
+    "hands": 2,
+    "leftHandHoldsFocus": true,
+    "rightSomaticHandFree": true,
+    "castOrTerminalEventExecuted": false
+  },
+  "reviewLimit": "Carrier placement and the fixed closure anchor are Director-reviewed candidate inputs; owner adoption is still required. No case mutation, cast, settlement, or integration is authorized.",
+  "fixedAdmissionAnchor396": {
+    "status": "DIRECTOR_CONFIRMED_FIXED_ADMISSION_CLOSURE_ANCHOR; BRANCH_PREMISE_REMAINS_UNADOPTED",
+    "historicalAdmission": {
+      "caseMember": "payload/cases/RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-B__occupied-antimagic.json",
+      "jsonPointer": "/events/6",
+      "eventId": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-B/occupied-antimagic:7",
+      "eventKind": "CROSSING",
+      "eventTimeSeconds": 0.2,
+      "transitReceiptId": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-B/occupied-antimagic/transit1",
+      "before": {
+        "plane": "fixture:origin",
+        "feet": [
+          5,
+          0,
+          0
+        ]
+      },
+      "after": {
+        "plane": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-B/occupied-antimagic/cast1/space",
+        "feet": [
+          15,
+          10,
+          0
+        ]
+      },
+      "committedMovementFeet": 5,
+      "inheritedCaseBytesMutated": false
+    },
+    "q27AnchorDerivation": {
+      "ruleSource": "payload/rules/PG328_PROCEDURE_CURRENT.json#/sharedContract/cellExtension/closure/secondaryAnchors",
+      "retainedInteriorEntryFeet": [
+        15,
+        10,
+        0
+      ],
+      "interiorEntranceReferenceFeet": [
+        10,
+        10,
+        0
+      ],
+      "stableAdmissionOffsetFeet": [
+        5,
+        0,
+        0
+      ],
+      "exteriorEntranceAnchorFeet": [
+        10,
+        0,
+        0
+      ],
+      "fixedClosureAnchorFeet": [
+        15,
+        0,
+        0
+      ],
+      "derivation": "Project the retained cell-local admission offset [5,0,0] onto the primary fixed world axes at exterior entrance [10,0,0]. The later W08 branch initialization does not redefine this recorded anchor.",
+      "notAGroundProjection": true,
+      "verticalAdjustmentFeet": 0,
+      "directorFinding": "Q27 supplies no general projection-to-ground permission; this closure anchor is fixed by retained admission history. No falling episode follows merely from the interior/exterior height difference."
+    },
+    "testOnlyBranchInitialization": {
+      "status": "SEPARATE_NEW_BRANCH_PREMISE_PENDING_OWNER_ADOPTION",
+      "afterRetainedAdmissionPointer": "/events/6",
+      "actorAFeetBefore": [
+        15,
+        10,
+        0
+      ],
+      "actorAFeetInProposedRaisedBranch": [
+        15,
+        10,
+        0.08333333333333333
+      ],
+      "carriedItemsRaisedByFeet": 0.08333333333333333,
+      "purpose": "Place A's complete footprint on the proposed one-inch support panel for this W08 TEST_ONLY branch.",
+      "changesHistoricalEntryOrFixedClosureAnchor": false,
+      "ownerAdoptionRequired": true
+    },
+    "q27TerminalPlacement": {
+      "fixedAnchorFeet": [
+        15,
+        0,
+        0
+      ],
+      "sourcePlane": "fixture:origin",
+      "sourceSupportZ": 0,
+      "verticalProjectionOrSnap": false,
+      "sourcePlacementAndCollisionChecksRequired": true
+    }
+  }
+}
