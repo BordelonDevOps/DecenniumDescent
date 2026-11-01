@@ -7,5 +7,6 @@ This is a successor replay for the already owner-adopted exact proposal 430. It 
 - Adopted proposal SHA-256: `c80c91547ee4a07c687c0ba346ce0bcde861d3dda84a0389d12aeb48b7588d41`
 - Reversible transition records: 104
 - Forward replay and inverse restoration: PASS
-- Validation: 16 passed, 0 failed; awaiting Director review.
+- Validation: 16 passed, 0 failed.
+- Director review: PASS; W04-R1 component sufficiency confirmed with no remaining field defects. See `DIRECTOR_READBACK_440.json`.
 - No seal, Fortress acceptance/application, canon, or queue change; queue remains 830/18/0.

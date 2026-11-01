@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "PG328-W04-DIRECTOR-READBACK-440",
+  "classification": "DIRECTOR_REVIEW_RECEIPT",
+  "status": "PASS_COMPONENT_SUFFICIENCY",
+  "source": {
+    "director": "GPT Director",
+    "conversation": "Calibration review part 6"
+  },
+  "reviewedArtifacts": {
+    "adoptionProposalSha256": "c80c91547ee4a07c687c0ba346ce0bcde861d3dda84a0389d12aeb48b7588d41",
+    "adoptionRecordSha256": "6c6ddfd3770fb1358af1917338db19e2b8f4047c55e46e7a455540431577b422",
+    "replayPath": "W04_REPLAY_440_TESTONLY.json",
+    "replaySha256": "b4e85f014f52ea8af95dd714c37973834e0a77d0ba0b4be760697be6cce943e5",
+    "correctionRecordPath": "W04_DIRECTOR_CORRECTIONS_440.json",
+    "validationPath": "BUILD_VALIDATION_440.json"
+  },
+  "directorFindings": {
+    "ruling": "PASS — W04 successor 440 is sufficient as the adopted TEST_ONLY witness record. C01-C04 are resolved; no remaining field defects were identified.",
+    "transitionCount": 104,
+    "forwardOperationCount": 937,
+    "inverseOperationCount": 937,
+    "stateHashChecks": "all pass; inverse application restores the initial projection exactly",
+    "sharedCommandLedger": "At 18.05, A spends the Bonus Action and records companionCommandRound=18.0.",
+    "commandExecution": "At 18.9, pendingCommand becomes null and one consumed_and_executed receipt remains; later phases do not replay the command or add movement.",
+    "offensiveCompanionAllowance": "companionOffenseRound remains null throughout.",
+    "timeline": "44 STARTs and 43 ENDs through 78.0 reconcile; END78.9 remains future-only.",
+    "validation": "16/16 checks pass."
+  },
+  "scope": {
+    "componentSufficiencyOnly": true,
+    "sealPresent": false,
+    "fortressAcceptanceOrApplication": false,
+    "canonChanged": false,
+    "queueChanged": false,
+    "queue": "830 applied / 18 pending / 0 accepted-unapplied"
+  }
+}
