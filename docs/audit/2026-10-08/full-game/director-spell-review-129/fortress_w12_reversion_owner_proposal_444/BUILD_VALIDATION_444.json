@@ -1,0 +1,82 @@
+{
+  "id": "PG328-W12-BUILD-VALIDATION-444",
+  "status": "PROPOSAL_SOURCE_AND_INTEGRITY_VALIDATION_ONLY",
+  "readAtCommit": "69e0a07f737c0a0419a1173c2c70bbdd28a5f638",
+  "proposalId": "PG328-W12-REVERSION-OWNER-PROPOSAL-444",
+  "scope": {
+    "spell": "conjure-demiplane-fortress",
+    "hold": "PG200-B06",
+    "component": "PG328-W12",
+    "branch": "PG328-W12-R1",
+    "parent": "docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w01_structural_damage_witness_403_repack02/W01_REPLAY_403.json#S030",
+    "parentSha256": "2b60ae35d828bd6028d71f202c1dd61c823d6212bb45c7f633ecd8f6b51d44fb",
+    "parentStateSha256": "6270321d6f07a55173f01fb353142d6bfb537d8e044cd313ef8fdd956baeff6c",
+    "parentTime": 12.9,
+    "hypotheticalOnly": true
+  },
+  "sourceCount": 15,
+  "sourceBindingsVerified": true,
+  "queueAtProposal": {
+    "applied": 830,
+    "pending": 18,
+    "acceptedUnapplied": 0,
+    "acceptedIds": [
+      "invulnerable-sphere"
+    ],
+    "appliedIds": [
+      "invulnerable-sphere"
+    ],
+    "mutated": false
+  },
+  "checks": [
+    {
+      "id": "PARENT_BINDING",
+      "pass": true,
+      "detail": "All exact Git source hashes rechecked; W01-403 Repack02 terminal is S030 at 12.9 with the bound state hash and A/B starting anchors."
+    },
+    {
+      "id": "POLYMORPH_ACCESS",
+      "pass": true,
+      "detail": "PG200-W20 ordinaryLearning level 18 includes Polymorph; it is also present in the prepared list and spellbook."
+    },
+    {
+      "id": "SIGHT_AND_DISPEL_ACCESS",
+      "pass": true,
+      "detail": "PG200-W20 alwaysPrepared includes wizard.arch.arcane-sight and wizard.arch.dispel-magic."
+    },
+    {
+      "id": "SPELL_AND_FORM_SOURCE",
+      "pass": true,
+      "detail": "Committed spell catalog binds Wizard Polymorph to R4/7 RP; the finite form register binds spellform.predator to R4 Medium, without hands or speech."
+    },
+    {
+      "id": "REVERSION_RULE",
+      "pass": true,
+      "detail": "Transformation source is bound; proposed checkpoint is casting time +60 seconds with same-anchor return."
+    },
+    {
+      "id": "QUEUE_AUTHORITY",
+      "pass": true,
+      "detail": "The pinned queue source remains 830 applied / 18 pending / 0 accepted-unapplied."
+    },
+    {
+      "id": "SOURCE_BLOBS",
+      "pass": true,
+      "detail": "15 exact source blobs verify against pinned commit 69e0a07f737c0a0419a1173c2c70bbdd28a5f638."
+    },
+    {
+      "id": "WITNESS_EXECUTION",
+      "pass": false,
+      "detail": "Not run; owner adoption and Director readiness are required before witness construction."
+    },
+    {
+      "id": "NEW_GEOMETRY_REPLAY",
+      "pass": false,
+      "detail": "Not run; Director must review the living-body reversion/closure variant and attached-item collisions after adoption."
+    }
+  ],
+  "noWitnessConstructed": true,
+  "noSealAcceptanceApplicationOrQueueChange": true,
+  "proposalFileSha256": "7583f37813c0eabbd809d538d35e279bafc8ce60ecb6318f0512558c2fcb7f4d",
+  "markdownFileSha256": "48ded02962113bdc3b3448a6340a8701c274730ab18140b99fb39ad7e6a640fc"
+}
