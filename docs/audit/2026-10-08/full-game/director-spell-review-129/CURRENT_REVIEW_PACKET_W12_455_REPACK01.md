@@ -1,0 +1,14 @@
+# Focused Director review — W12 witness 450
+
+GPT passed W05/W10 witness 453 within adopted TEST_ONLY scope. W11 witness 449 is HOLD for four inherited inconsistencies; its exact adopted Proposal 438 and adoption record remain unchanged. The Director’s next queued component is W12/450, followed by W13/447 readiness. Fortress remains HELD under PG200-B06; authority remains **830 applied / 18 pending / 0 accepted-unapplied**.
+
+Please review W12 witness 450 against exact owner-adopted Proposal 445. Return **PASS or HOLD** for component PG328-W12 and exact corrections if held. Check the adopted reversion schedule, 18 historical source bindings, unchanged S030 parent, geometry, required outcomes, and endpoint.
+
+- [W12 witness 450](https://github.com/BordelonDevOps/DecenniumDescent/blob/main/docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w12_reversion_owner_proposal_445/W12_WITNESS_450_TESTONLY.json) — SHA-256 `0cbcd37186973879e01db62096fd2c09cd31a663bf81f3d38503ef16dafc0cae`.
+- [Build validation 450](https://github.com/BordelonDevOps/DecenniumDescent/blob/main/docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w12_reversion_owner_proposal_445/BUILD_VALIDATION_450.json) — SHA-256 `ffe21168f0be6fbc6ebb83762517848fa2d6bc0e17eb4c4c9f82edf3cac7b979`; status PASS.
+- [Exact adopted Proposal 445](https://github.com/BordelonDevOps/DecenniumDescent/blob/main/docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w12_reversion_owner_proposal_445/PG328_W12_REVERSION_OWNER_PROPOSAL_445_TESTONLY.json) — SHA-256 `93d31941e6a6d4d059cb3a108d0e247d07cc8e6cce395712f1c0ad45523df14c`.
+- [Owner adoption record](https://github.com/BordelonDevOps/DecenniumDescent/blob/main/docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w12_reversion_owner_proposal_445/OWNER_PG328_W12_ADOPTION_445_TESTONLY.json) — SHA-256 `83d25ca677ea8d910575a3bcc87be6a29837553112d3445e1c50cc954a8f4c60`.
+- [Independent verifier](https://github.com/BordelonDevOps/DecenniumDescent/blob/main/docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w12_reversion_owner_proposal_445/VERIFY_W12_WITNESS_450.py) — 8/8 checks pass.
+- [W11/449 Director HOLD and exact corrections](https://github.com/BordelonDevOps/DecenniumDescent/blob/main/docs/audit/2026-10-08/full-game/director-spell-review-129/DIRECTOR_READBACK_454.json).
+
+W12 records 45 regular START and 44 END markers, 12 ordered authored steps through endpoint 79.31, and verifies all 18 historical source bindings. It is an adopted hypothetical PG328-W12-R1 branch bound to unchanged W01-403 S030. This request is component review only. Do not infer campaign occurrence, seal, whole-Fortress identity acceptance/application, canon change, or queue mutation. Preserve W01/W09 and W05/W10 PASS and W11 HOLD.
