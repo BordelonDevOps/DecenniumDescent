@@ -1,0 +1,259 @@
+{
+  "sourcePath": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+  "sourceSha256": "f52cf6a4a4673897615a74c7c67dcba798c431362d4357e71ee552cc7c5d31f8",
+  "pointer": "/spells/121",
+  "entry": {
+    "id": "flame-armor",
+    "name": "Flame Armor",
+    "schools": [
+      "Conjuration"
+    ],
+    "status": "operational-playtest-draft",
+    "visibility": "public-source-review",
+    "classAccess": {
+      "Dragoon": {
+        "rank": 1,
+        "minimumClassLevel": 3,
+        "school": "Conjuration",
+        "baseRpCost": 2
+      },
+      "Druid": {
+        "rank": 1,
+        "minimumClassLevel": 1,
+        "school": "Conjuration",
+        "baseRpCost": 2
+      },
+      "Mage": {
+        "rank": 1,
+        "minimumClassLevel": 1,
+        "school": "Conjuration",
+        "baseRpCost": 2
+      },
+      "Ranger": {
+        "rank": 1,
+        "minimumClassLevel": 2,
+        "school": "Conjuration",
+        "baseRpCost": 2
+      },
+      "Shaman": {
+        "rank": 1,
+        "minimumClassLevel": 1,
+        "school": "Conjuration",
+        "baseRpCost": 2
+      },
+      "Tinker": {
+        "rank": 1,
+        "minimumClassLevel": 2,
+        "school": "Conjuration",
+        "baseRpCost": 2
+      },
+      "Wizard": {
+        "rank": 1,
+        "minimumClassLevel": 1,
+        "school": "Conjuration",
+        "baseRpCost": 2
+      }
+    },
+    "operational": {
+      "id": "flame-armor",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One willing creature you can perceive within range, including yourself.",
+      "duration": "Concentration, up to 1 minute. If applied in initiative, expires at the caster's tenth future regular-start marker after application; preserve that virtual phase through initiative changes, departure or death. Outside initiative, expires 60 seconds after application and preserves that absolute deadline on entering initiative. An already-passed start never counts. Ends earlier if concentration ends.",
+      "concentration": true,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "Automatic ward application. Whenever a creature actually resolves a melee attack roll against the protected target while this ward is active, queue the stated retaliation once that attack finishes, hit or miss. A mere declaration canceled before any roll does not qualify.",
+      "effect": "The target gains +2 AC, subject to the strongest applicable flat-AC-bonus rule. A qualifying melee attacker takes 1 fire damage after its attack finishes, including normal damage/interception/concentration/death resolution. This queued retaliation is captured when the attack roll resolves against the active ward; a later ending caused by that attack does not erase the already queued packet. A reach attack remains melee. The limit is once per protected-target/attacking-creature/numbered-round across Flame Armor applications; replacement or another caster does not reset that round record.",
+      "scaling": "None.",
+      "limitations": "Only one Flame Armor can affect a target across all casters. A successful replacement ends the prior application and releases only its old concentration dependency. Retaliation is a new damage packet, not an attack or hit by the protected creature. Apply ordinary defenses, temporary HP, concentration checks and death consequences. This packet cannot start another Flame Armor, reflection/retaliation chain, resource gain, copied damage, derived healing, free Action/attack or generic on-hit rider unless an exact source explicitly names this retaliation. No Burn, illumination, heat aura or armor object is created. A successful new application owns its own endpoint; stale cleanup of an older application cannot end its replacement. A countered cast creates no replacement. Starting a concentration spell still ends the caster's incompatible prior concentration before interruption. Known/prepared access, actual class rank/level, components, line of effect, RP and other costs, Dissonance/Refrain, class hooks and interruption follow SPELL_INTEGRATION_RULES.md. Total cover blocks direct targeting and originating line of effect. No automatic upcast or level scaling unless this card explicitly prints companion-profile scaling.",
+      "designNotes": "PRESERVED: +2 AC and 1 fire to melee attackers, Action/30 feet/V/S/F. CONFLICT RULING: concentration up to 1 minute and willing ward target replace mismatched Instantaneous/Spell-attack metadata. NEW: hit-or-miss roll trigger, after-attack packet, per-attacker/round limit and anti-chain rules. Exact-card completion captures an earned retaliation before attack-caused concentration loss and preserves the protected-target/attacker round cap across replacement.",
+      "implementationStatus": "REVIEWED authored operational-playtest manuscript; runtime and balance validation pending",
+      "sourceCoreEntries": [
+        {
+          "index": 126,
+          "original": {
+            "school": "Conjuration",
+            "level": 1,
+            "name": "Flame Armor",
+            "effect": "+2 AC; melee attackers take 1 fire damage.",
+            "source_paragraph": 9136,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Spell attack",
+            "tags": [
+              "Damage"
+            ],
+            "rp_cost": 2
+          }
+        }
+      ],
+      "sourcePlacements": [
+        {
+          "name": "Flame Armor",
+          "school": "Conjuration",
+          "level": 1,
+          "summary": "+2 AC; melee attackers take 1 fire damage."
+        }
+      ],
+      "classAccessEvidence": {
+        "Dragoon": {
+          "rank": 1,
+          "minimumClassLevel": 3,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Druid": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Mage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Ranger": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Shaman": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Tinker": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Wizard": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_SOURCE_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_EXACT_REVIEW.md"
+      ],
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_EXACT_REVIEW.md"
+      ],
+      "authoringFile": "data/playtest/spell_drafts/batch_conjuration_rank1.json"
+    },
+    "additionalRpCost": 0,
+    "source": {
+      "catalogPath": "src/data/spells.js",
+      "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+      "catalogKey": "flame-armor",
+      "original": {
+        "name": "Flame Armor",
+        "level": 1,
+        "resonanceRank": 1,
+        "school": "Conjuration",
+        "schools": [
+          "Conjuration"
+        ],
+        "placements": [
+          {
+            "name": "Flame Armor",
+            "school": "Conjuration",
+            "level": 1,
+            "summary": "+2 AC; melee attackers take 1 fire damage."
+          }
+        ],
+        "classLevels": {
+          "Dragoon": 1,
+          "Druid": 1,
+          "Mage": 1,
+          "Ranger": 1,
+          "Shaman": 1,
+          "Tinker": 1,
+          "Wizard": 1
+        },
+        "classRanks": {
+          "Dragoon": 1,
+          "Druid": 1,
+          "Mage": 1,
+          "Ranger": 1,
+          "Shaman": 1,
+          "Tinker": 1,
+          "Wizard": 1
+        },
+        "classLearnLevels": {
+          "Dragoon": 3,
+          "Druid": 1,
+          "Mage": 1,
+          "Ranger": 2,
+          "Shaman": 1,
+          "Tinker": 2,
+          "Wizard": 1
+        },
+        "classSchools": {
+          "Dragoon": "Conjuration",
+          "Druid": "Conjuration",
+          "Mage": "Conjuration",
+          "Ranger": "Conjuration",
+          "Shaman": "Conjuration",
+          "Tinker": "Conjuration",
+          "Wizard": "Conjuration"
+        },
+        "castingTime": "Not specified in current rulebook",
+        "range": "Not specified in current rulebook",
+        "components": "Not specified in current rulebook",
+        "duration": "Not specified in current rulebook",
+        "description": "+2 AC; melee attackers take 1 fire damage.",
+        "alternateSummaries": [],
+        "classes": [
+          "Dragoon",
+          "Druid",
+          "Mage",
+          "Ranger",
+          "Shaman",
+          "Tinker",
+          "Wizard"
+        ],
+        "status": "canon",
+        "source": "Player Rulebook — Spell Lists"
+      },
+      "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+      "coreEntries": [
+        {
+          "index": 126,
+          "original": {
+            "school": "Conjuration",
+            "level": 1,
+            "name": "Flame Armor",
+            "effect": "+2 AC; melee attackers take 1 fire damage.",
+            "source_paragraph": 9136,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Spell attack",
+            "tags": [
+              "Damage"
+            ],
+            "rp_cost": 2
+          }
+        }
+      ],
+      "possibleHistoricalAliases": []
+    },
+    "reviewFlags": []
+  }
+}
