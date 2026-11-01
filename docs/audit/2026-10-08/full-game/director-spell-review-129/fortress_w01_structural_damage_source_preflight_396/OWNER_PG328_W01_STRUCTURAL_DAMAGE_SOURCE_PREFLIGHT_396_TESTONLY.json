@@ -1,0 +1,176 @@
+{
+  "schemaVersion": 1,
+  "recordId": "PG328-W01-SOURCE-PREFLIGHT-396",
+  "createdLocalDate": "2026-10-31",
+  "classification": "TEST_ONLY_READ_ONLY_SOURCE_PREFLIGHT",
+  "scope": {
+    "witnessId": "PG328-W01",
+    "blockerId": "PG200-B06",
+    "workType": "read-only source and actor-access screening",
+    "explicitNonScope": [
+      "No attack, spell, or damage event is simulated.",
+      "No panel map, support graph, navigation graph, or structural witness is instantiated.",
+      "No source rule is adopted, changed, or promoted.",
+      "No witness is sealed, and no spell, queue item, or hold is accepted or applied."
+    ]
+  },
+  "decision": "NO_SOURCE_COMPLETE_OBJECT_DAMAGE_CANDIDATE_ESTABLISHED",
+  "obligationBinding": {
+    "file": "payload/authority/PG328_BLOCKER_REASSESSMENT.json",
+    "sha256": "8f50b284846ef373ada5bae610c2a8d584cf695c3922cf9c30f34bb48fc4bd4b",
+    "pointer": "/remainingWitnessParts/0",
+    "valueBinding": {
+      "id": "PG328-W01",
+      "blockerId": "PG200-B06",
+      "classification": "INTEGRATION_PLUS_COMPATIBLE_DAMAGE_SOURCE"
+    },
+    "statedGap": "Panel/support and complete navigation graph plus an actual legal damaging source."
+  },
+  "layoutAndDurabilityAuthority": {
+    "questionDispositionFile": "payload/rules/PG328_QUESTION_DISPOSITIONS.json",
+    "questionDispositionSha256": "149d4098591799f51afa37837ccca722eb9ae08c3ea437c640d943f33b1bb637",
+    "questionPointer": "/questions/2/answer",
+    "questionId": "PG9-Q23",
+    "layoutSourceFile": "payload/authority/PG328_BLOCKER_REASSESSMENT.json",
+    "layoutSourceSha256": "8f50b284846ef373ada5bae610c2a8d584cf695c3922cf9c30f34bb48fc4bd4b",
+    "layoutPointer": "/sourceLevelGains/3",
+    "layoutGainId": "PG328-G04",
+    "selectedLocalProfile": {
+      "bounds": "120-foot square, 40-foot-high enclosure with authored towers, keep, rooms, halls, stairs, and roof elevations.",
+      "panelDurability": "Each 5-by-5 wall/floor panel AC 17, HP 60; doors AC 15, HP 30; main gate AC 17, HP 60.",
+      "damagePermission": "No blanket immunity; structural damage requires an actually legal object-compatible source. No free weapon authorization.",
+      "supportAndNavigation": "The support graph and integrated navigation consequences remain untested."
+    }
+  },
+  "sourceRulesScreened": [
+    {
+      "file": "payload/sources/COMBAT_ACTION_PLAYTEST.md",
+      "sha256": "9118101f0907e0cd52a78cef83affa9e6fcae1b3d958c8a576499dfddc424f60",
+      "line": 76,
+      "rule": "Attack: make attacks legally granted by class and weapon; replacing one attack does not replace the entire Action unless specified.",
+      "finding": "This action rule does not by itself authorize an attack against a structure or establish a weapon."
+    },
+    {
+      "file": "payload/sources/COMBAT_ACTION_PLAYTEST.md",
+      "sha256": "9118101f0907e0cd52a78cef83affa9e6fcae1b3d958c8a576499dfddc424f60",
+      "line": 136,
+      "rule": "Sunder attacks an object, shield, armor component, or construct joint using its actual durability system; unspecified durability remains an equipment dependency.",
+      "finding": "Sunder supplies no independent attack source, weapon, acquisition, or permission to convert a creature-only spell into object damage."
+    }
+  ],
+  "actorProfileScreen": {
+    "profileFile": "payload/sources/RETURN284_WIZARD20_PROFILE_TESTONLY.json",
+    "profileSha256": "a3a3ce0a714c1fa35523719c8c8a0297fc457d5b5f097f6a20a00aad6cd7be55",
+    "archiveFile": "payload/authority/PG328_HELD_ARCHIVE.zip",
+    "archiveSha256": "47af8e23be318210229f7fd2b360be809b2b7ed5d73b08abcbeaf7a078c3f1f4",
+    "profileArchiveMember": "evidence/RETURN284_WIZARD20_PROFILE.json",
+    "profileArchiveMemberSha256": "a3a3ce0a714c1fa35523719c8c8a0297fc457d5b5f097f6a20a00aad6cd7be55",
+    "profileFacts": {
+      "id": "PG200-W20",
+      "class": "Wizard",
+      "classLevel": 20,
+      "heroPath": "Spellbinder",
+      "qualification": "NEW conditional human Wizard20 build; historical class selection data rechecked against exact current wizard.json. No campaign existence or acquired rank9 runtime access is asserted.",
+      "campaignExistenceVerified": false,
+      "equipment": {
+        "focus": "ordinary Wizard focus held in left hand",
+        "rightHand": "free usable hand",
+        "book": "actual spellbook carried in satchel",
+        "weapon": "none"
+      },
+      "preparedSpellIds": [
+        "gate",
+        "absolute-gate",
+        "banishment-gate",
+        "planar-sanctuary",
+        "conjure-demiplane-fortress",
+        "summon-water-pet",
+        "summon-earth-pet",
+        "summon-spectral-steed",
+        "polymorph",
+        "armor-of-faith",
+        "spell-turning",
+        "spell-theft",
+        "dimensional-anchor",
+        "planar-protection",
+        "planar-barrier",
+        "antimagic-field",
+        "demiplane",
+        "detect-magic",
+        "identify"
+      ],
+      "spellbookRelevantIds": [
+        "elemental-bolt",
+        "elemental-barrage",
+        "dispel-magic"
+      ]
+    },
+    "candidateCardsArchiveMember": "evidence/current_bound_wizard.json",
+    "candidateCardsMemberSha256": "8ab2f4f43bcbced418fb266e5bd3216cff491b0c442c16f93438bd3556672c8b",
+    "candidateCardPointer": "/cards/5"
+  },
+  "candidateAssessment": [
+    {
+      "candidate": "wizard.base.arcane-bolt",
+      "profileBasis": "Listed in the profile acquisition ledger; exact candidate bound at current_bound_wizard.json#/cards/5.",
+      "targetAndEffect": "One creature within 60 feet; spell attack; force damage on hit.",
+      "result": "EXCLUDED",
+      "reason": "Creature-only targeting does not permit damage to a fortress panel or other object."
+    },
+    {
+      "candidate": "wizard.hero.spellbinder.runic-snare",
+      "profileBasis": "Listed in the profile acquisition ledger for the Spellbinder path.",
+      "targetAndEffect": "Places a glyph in a 10-foot square; the first hostile creature entering it makes a save and may take force damage.",
+      "result": "EXCLUDED",
+      "reason": "Its damage trigger and save target are a hostile creature, not the panel/object."
+    },
+    {
+      "candidate": "wizard.arch.dispel-magic",
+      "profileBasis": "Listed in the profile acquisition ledger and profile spellbook.",
+      "targetAndEffect": "Can select a creature, object, or magical effect, then ends an ongoing spell effect subject to rank/check rules.",
+      "result": "EXCLUDED",
+      "reason": "It does not deal structural HP damage or resolve the selected panel durability."
+    },
+    {
+      "candidate": "elemental-bolt / elemental-barrage",
+      "profileBasis": "IDs appear in the spellbook but not in the profile's current prepared list.",
+      "result": "UNRESOLVED",
+      "reason": "This profile snapshot does not establish current prepared access or bind an exact object-compatible target/damage passage for either identity."
+    },
+    {
+      "candidate": "Ordinary weapon or improvised-object attack",
+      "profileBasis": "The source action rule requires attacks legally granted by class and weapon; profile equipment says weapon none; PG9-Q23 says no free weapon authorization.",
+      "result": "UNRESOLVED",
+      "reason": "No named acquired weapon/tool/object, custody, proficiency, permitted improvised use, or source-backed object-damage permission is established. A free hand alone supplies none of these."
+    }
+  ],
+  "preflightFinding": {
+    "summary": "No source-complete object-compatible damaging option with established lawful actor access is supported by the bound W01 inputs. This finding is limited to the supplied test profile and screened source entries; it does not claim that no future source or lawful acquisition could ever satisfy W01.",
+    "remainingPredicates": [
+      "Exact attack/effect source and version/hash with a target rule allowing the selected structure/object.",
+      "Named actor's campaign existence and lawful access to the level-9 procedure at the witness state.",
+      "Lawful acquisition, current availability/preparation, custody, proficiency, range/reach, action and resource payment as applicable.",
+      "Object damage resolution against Q23 AC/HP and the separately required named panel/support/navigation graph."
+    ]
+  },
+  "immutableParentBinding": {
+    "archiveMember": "evidence/packet328/prior/Return284_cases/RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A.json",
+    "sha256": "b18e7c3b7acc9867d6448a8a58d98f2d45eeea629144b1a696ef0d7c76844e54",
+    "pointer": "/final",
+    "handling": "Bind the historical /final as preserved input; do not modify its bytes or derive an attack permission from it."
+  },
+  "statePreservation": {
+    "attackOrDamageEventSimulated": false,
+    "w01WitnessConstructed": false,
+    "witnessSealed": false,
+    "sourceAdoptedOrPromoted": false,
+    "fortressAcceptedOrApplied": false,
+    "blockerPG200B06": "HELD",
+    "queue361": {
+      "applied": 828,
+      "pending": 20,
+      "acceptedUnapplied": 0
+    }
+  },
+  "nextAction": "Director review of this read-only preflight; if a lawful source/access binding is supplied, reassess only the missing W01 predicates. Otherwise retain PG200-B06 and W01 held."
+}
