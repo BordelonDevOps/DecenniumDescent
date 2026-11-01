@@ -1,0 +1,1 @@
+Proposal 398 Repack01 preserves the exact bound source passages and adds proposed insertion points and precedence for GPT/owner review. It remains NEW, unaccepted and non-operative.
