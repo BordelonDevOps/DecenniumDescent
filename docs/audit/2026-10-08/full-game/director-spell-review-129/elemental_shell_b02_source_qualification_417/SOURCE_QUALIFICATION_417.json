@@ -15,7 +15,24 @@
     "threadUrl": "https://chatgpt.com/g/g-p-67f17555a8dc8191a2b5b81e6d8adc12-dungeon-crawler/c/6adc506d-8770-83ea-b64c-0345d9b9b682",
     "decision": "Elemental Shell remains held under DF218-B01 and DF218-B02; no later record closes either blocker.",
     "nextAction": "Read-only B02 source-qualification pass over Closure350 /preservedSourceFork and its Return285 source. It may establish a usable source foundation but cannot itself demonstrate the missing Shell encounter.",
-    "queue404": "829 applied / 19 pending / 0 accepted-unapplied; 553 procedures / 173 interfaces"
+    "queue404": "829 applied / 19 pending / 0 accepted-unapplied; 553 procedures / 173 interfaces",
+    "sourceQualification417Review": {
+      "recordedAtUtc": "2026-11-01T14:23:29Z",
+      "decision": "The source cross-bind verifies. The equipment assessment is corrected. DF218-B01 and DF218-B02 remain held.",
+      "findings": [
+        "BODY_PROFILES.json#/SH202-ELEMENTAL/equipment binds intrinsic armament, separate genuine cargo and no loot; the body instance records cargo=[], cargoLb=0 and load=0.",
+        "procedures/summon-elemental-avatar.json#/commonProcedure/removalAndProperty defines intrinsic-gear disappearance and settlement of genuine property.",
+        "The Avatar fire aura is valid creature-attributed elemental damage but is not its commanded native attack and does not close B01.",
+        "The native strike is 2d6+S bludgeoning at 5-foot reach; the aura is a separate passive 2d6 fire effect.",
+        "W17C, W17D and W17N have no elemental-shell acquisition/preparation in their bound spellbooks; do not insert it."
+      ],
+      "remainingB02": "A qualifying native elemental attack; a lawful Shell caster and paid application; consenting bearer, placement/LoE, selected element, costs/interruption and deadline; incoming save/defense/reflection basis; one reflection to the actual Avatar dealer within range/LoE; reflection-root and Null provenance; recipient defense/HP/lifecycle settlement, preserved command/resources/deadlines and custody.",
+      "nextAction": "Correct Qualification417 with these existing member bindings; retain native-attack and integrated-Shell gaps. No witness construction or obligation revision is authorized.",
+      "queue404": "829 applied / 19 pending / 0 accepted-unapplied",
+      "reviewedQualificationSha256": "d0007d6b28a297858ce112e5bf30800a53d4532e974ffee87ef35dbc7e5fd3ff",
+      "correctionRequested": "Add the exact Return285 BODY_PROFILES.json and procedures/summon-elemental-avatar.json member bindings; correct the equipment assessment while retaining native-attack and integrated-Shell gaps.",
+      "correctionStatus": "APPLIED_WAITING_DIRECTOR_READBACK"
+    }
   },
   "sourceBindings": {
     "currentQueue404": {
@@ -104,6 +121,21 @@
       "recipientActorProfileId": "W17D",
       "recipientActorSha256": "4def831ee59a8f20da3a8014df3b6749e3104c5214ef02e5df8dd9099e010c13",
       "inheritedFixtureStatus": "CONDITIONAL_AUTHORED_FIXTURE_NOT_GAMEPLAY"
+    },
+    "avatarBodyProfilesMember": {
+      "memberPath": "BODY_PROFILES.json",
+      "bytes": 9500,
+      "sha256": "3accb289c5881ce6e57c7d1eac0cf9345cfe5ea038d82afb98c0cf46e0ac7a60",
+      "jsonPointer": "/SH202-ELEMENTAL",
+      "equipmentPointer": "/SH202-ELEMENTAL/equipment",
+      "equipmentRule": "intrinsic anatomy/armament cannot detach or supply loot; all genuine cargo is separate"
+    },
+    "avatarProcedureMember": {
+      "memberPath": "procedures/summon-elemental-avatar.json",
+      "bytes": 29429,
+      "sha256": "fd5fff5f22c60ed4f85664894aa9288d6e3f1d5b3c48774bbd3c717a57c3f340",
+      "jsonPointer": "/commonProcedure/removalAndProperty",
+      "propertySettlementRule": "NEW generated parent is one rank9 ongoing source with individually addressable body expressions. A legal single-effect dispel aimed at one body ends that body only; targeting the perceptible parent casting anchor ends every remaining body. Single-body spells have the same body/parent ending. NEW parent locus is caster's fixed formation point, with a faint visible rune that reveals no hidden spell/owner metadata; a perceived body is also a legal expression target. Real Wizard Arch Dispel is rank3, Action3RP/range60/recharge2, INT+PB vs19, not a rank5 substitute. Capture legality/suppression before removal. Counterspell is cast-time only. At actual ending, intrinsic anatomy/gear vanishes; real property retains its recorded actual world position when the generated body ends; apply actual support and Falling without relocation. No new nearest-space teleport or generic terminal Pending-placement privilege is selected. Existing source-qualified Pending records remain unchanged. If a necessary physical support/placement fact is unavailable, retain the entire affected branch as a physical hold with property conserved; do not fabricate an empty square or an obstruction. Real riders/cargo never teleport/vanish with a generated body. Unsupported real bodies/items follow actual support/Falling; keep custody, mass, Load, claims and clocks. No terminal transport/return, resurrection, harvesting or manufactured loot is granted. Existing Transport6 terminal settlements are used only for their own exact sources. Carried property retains its actual recorded attachment offset during carrier movement; a separate relocation requires its own legal action."
     }
   },
   "sourceFacts": {
@@ -156,7 +188,12 @@
       "parentSourceId": "A:cast1",
       "physicalSupport": "floor",
       "cargo": [],
-      "equipmentFieldPresent": false
+      "equipmentFieldPresent": false,
+      "profileEquipmentBound": true,
+      "profileEquipmentPointer": "/SH202-ELEMENTAL/equipment",
+      "profileEquipmentRule": "intrinsic anatomy/armament cannot detach or supply loot; all genuine cargo is separate",
+      "cargoLb": 0,
+      "load": 0
     },
     "nativeAttack": {
       "attackProfile": {
@@ -229,7 +266,10 @@
         "postTemp": 5,
         "critical": false
       },
-      "finding": "A separate passive fire aura produces a source-attributed fire damage packet. It is not the declared native attack and was not applied to an Elemental Shell bearer in this case."
+      "finding": "A separate passive fire aura produces a source-attributed fire damage packet. It is not the declared native attack and was not applied to an Elemental Shell bearer in this case.",
+      "qualifiesAsCreatureAttributedElementalDamage": true,
+      "qualifiesAsNativeElementalAttack": false,
+      "qualifiesAsB01DealerlessEnvironment": false
     },
     "commandAndPhase": {
       "commandEventIndexZeroBased": 7,
@@ -265,21 +305,35 @@
       ],
       "syntheticRecipientLimitation": "All recipients are synthetic conditional test fixtures; no gameplay occurrence or authenticated campaign recipient is claimed.",
       "noElementalShellAcceptance": true
+    },
+    "procedureRemovalAndProperty": {
+      "pointer": "/commonProcedure/removalAndProperty",
+      "rule": "NEW generated parent is one rank9 ongoing source with individually addressable body expressions. A legal single-effect dispel aimed at one body ends that body only; targeting the perceptible parent casting anchor ends every remaining body. Single-body spells have the same body/parent ending. NEW parent locus is caster's fixed formation point, with a faint visible rune that reveals no hidden spell/owner metadata; a perceived body is also a legal expression target. Real Wizard Arch Dispel is rank3, Action3RP/range60/recharge2, INT+PB vs19, not a rank5 substitute. Capture legality/suppression before removal. Counterspell is cast-time only. At actual ending, intrinsic anatomy/gear vanishes; real property retains its recorded actual world position when the generated body ends; apply actual support and Falling without relocation. No new nearest-space teleport or generic terminal Pending-placement privilege is selected. Existing source-qualified Pending records remain unchanged. If a necessary physical support/placement fact is unavailable, retain the entire affected branch as a physical hold with property conserved; do not fabricate an empty square or an obstruction. Real riders/cargo never teleport/vanish with a generated body. Unsupported real bodies/items follow actual support/Falling; keep custody, mass, Load, claims and clocks. No terminal transport/return, resurrection, harvesting or manufactured loot is granted. Existing Transport6 terminal settlements are used only for their own exact sources. Carried property retains its actual recorded attachment offset during carrier movement; a separate relocation requires its own legal action."
+    },
+    "shellCasterAvailability": {
+      "profileIds": [
+        "W17C",
+        "W17D",
+        "W17N"
+      ],
+      "elementalShellInAnyBoundSpellbook": false,
+      "elementalShellPreparedByAny": false,
+      "insertionAuthorized": false
     }
   },
   "requirementsAssessment": {
     "controllerSpellAcquisitionAndPreparation": "Bound in W17C authored profile and current Wizard class source, within a conditional test fixture.",
     "paidCreationAndBodyInstantiation": "Bound in Return285 events 3 and 5 and closure350 preserved source fork.",
     "ownerPaidCommandAndAttachedPhase": "Bound in Return285 events 7 and 11.",
-    "nativeElementalAttack": "Missing. The native attack is bludgeoning; fire is a separate passive aura.",
-    "nativeFireDealerEvent": "Present as source-attributed fire aura damage to synthetic recipient B at event 23; this is not a Shell encounter.",
-    "fullEquipmentBinding": "Incomplete. Body record has empty cargo but no equipment field or separate equipment binding.",
-    "ElementalShellBearerAndPaidShellHistory": "Absent.",
+    "nativeElementalAttack": "Missing. The native attack is bludgeoning; the fire aura is a separate passive effect and does not satisfy the unchanged native elemental attack requirement.",
+    "nativeFireDealerEvent": "Present as source-attributed fire aura damage to synthetic recipient B; valid creature-attributed elemental damage to which Shell rules could apply, but not a native attack or a Shell encounter.",
+    "fullEquipmentBinding": "Bound for the preserved source fork. BODY_PROFILES.json defines intrinsic armament and genuine cargo separately; this body has cargo=[], cargoLb=0, load=0. The procedure binds intrinsic gear and genuine-property settlement. This does not establish later equipment transfers.",
+    "ElementalShellBearerAndPaidShellHistory": "Absent. W17C/W17D/W17N do not have elemental-shell in their bound spellbooks or prepared lists; no insertion is permitted.",
     "ElementalShellIncomingRootAndReflectionToAvatarDealer": "Absent.",
     "ReflectionDamageResourceClockAndCustodySettlement": "Absent.",
     "B01NoncreatureEnvironmentWitness": "Not assessed by this B02 pass and remains independently held."
   },
-  "conclusion": "Return285/Closure350 supplies a bounded source foundation for the Avatar controller, paid finite body, command, phase, bludgeoning attack and passive fire-aura dealer. It does not meet DF218-B02: no native elemental attack is declared, equipment is not fully bound, and no Elemental Shell bearer, Shell payment, incoming Shell root, reflection, or terminal Shell settlement exists. The Avatar acceptance is identity-specific and all recipients are synthetic conditional fixtures.",
+  "conclusion": "Return285/Closure350 supplies a bounded conditional source foundation for the Avatar controller, paid finite body, profile, intrinsic armament, zero cargo, command, phase, bludgeoning attack and passive fire-aura dealer. The equipment assessment is now source-complete for this preserved fork. It still does not meet DF218-B02: no native elemental attack, no lawful Shell caster/application, no Shell bearer or incoming Shell root, no reflection, and no integrated terminal Shell settlement. The Avatar acceptance is identity-specific and all recipients remain synthetic conditional fixtures.",
   "statePreservation": {
     "sourceArchiveChanged": false,
     "caseMemberChanged": false,
@@ -293,6 +347,8 @@
     "blockers": [
       "DF218-B01",
       "DF218-B02"
-    ]
+    ],
+    "bodyProfileMemberChanged": false,
+    "avatarProcedureMemberChanged": false
   }
 }
