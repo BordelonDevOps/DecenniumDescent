@@ -1,0 +1,154 @@
+{
+  "id": "PG328-W13-BUILD-VALIDATION-446",
+  "status": "PROPOSAL_SOURCE_SCHEDULE_AND_GEOMETRY_VALIDATION_ONLY",
+  "readAtCommit": "4546a7c967422ef4f3285f19d912445d37181eb5",
+  "proposalId": "PG328-W13-NESTED-SPACE-OWNER-PROPOSAL-446",
+  "scope": {
+    "spell": "conjure-demiplane-fortress",
+    "hold": "PG200-B06",
+    "component": "PG328-W13",
+    "branch": "PG328-W13-R1",
+    "parent": "docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w01_structural_damage_witness_403_repack02/W01_REPLAY_403.json#stateSnapshots/S030",
+    "parentSha256": "2b60ae35d828bd6028d71f202c1dd61c823d6212bb45c7f633ecd8f6b51d44fb",
+    "parentStateSha256": "6270321d6f07a55173f01fb353142d6bfb537d8e044cd313ef8fdd956baeff6c",
+    "parentTime": 12.9,
+    "hypotheticalOnly": true
+  },
+  "sourceCount": 17,
+  "sourceBindingsVerified": true,
+  "queueAtProposal": {
+    "applied": 830,
+    "pending": 18,
+    "acceptedUnapplied": 0,
+    "acceptedIds": [
+      "invulnerable-sphere"
+    ],
+    "appliedIds": [
+      "invulnerable-sphere"
+    ],
+    "mutated": false
+  },
+  "checks": [
+    {
+      "id": "SOURCE_BINDINGS",
+      "pass": true,
+      "detail": "17 exact Git blobs verified at 4546a7c967422ef4f3285f19d912445d37181eb5; includes Model166, Application167, W20, W01 S030, Q27, Geometry405, current queue."
+    },
+    {
+      "id": "DEMI_PLANE_STATUS",
+      "pass": true,
+      "detail": "Catalog status and operational:null are disclosed; Model166/167 are accepted/applied static procedure with retained holds, runtime selection disabled; this is only a branch-local TEST_ONLY instantiation."
+    },
+    {
+      "id": "ACCESS_AND_COMPONENTS",
+      "pass": true,
+      "detail": "B is Wizard20 with Demiplane learned/prepared and Arch Dispel acquired/always-prepared; rank8/21RP/V/S/F. Parent and child Arch Dispel use the documented TEST_ONLY V/S declaration; branch hand/voice states are explicit."
+    },
+    {
+      "id": "CHILD_ENTRY_GEOMETRY",
+      "pass": true,
+      "detail": "Parent courtyard anchor [35,15,0] is inside 120x120 parent/outside keep. B route is 25ft including the source-defined 5ft physical crossing; child body fits 30x30x15."
+    },
+    {
+      "id": "CHILD_DISPEL_AND_ORDER",
+      "pass": true,
+      "detail": "B targets perceived room interior from inside; DC18 check 23; child ends at19.3 and P5-CLOSE settles at19.31 before parent ending."
+    },
+    {
+      "id": "COUNTERSPELL_WINDOWS",
+      "pass": true,
+      "detail": "At13.2 A is hand-ineligible; at19.2 outside A cannot perceive through opaque door; at24.2 B is eligible and declines."
+    },
+    {
+      "id": "SCHEDULE_BOOKKEEPING",
+      "pass": true,
+      "detail": "Computed 8 STARTs and7 ENDs through24.31; A 24.9 END is outside branch."
+    },
+    {
+      "id": "RESOURCE_AND_CADENCE",
+      "pass": true,
+      "detail": "A 53->50 RP, B 80->56 RP; two Arch Dispel recharge2s are pending at terminal; no room concentration."
+    },
+    {
+      "id": "EXTERIOR_COLLISION",
+      "pass": true,
+      "detail": "15 strict positive-volume pair checks over C,D,A,B,cargo-B,PG328-W01-403:CLAY-TILE-1; attached equipment boxes are contained and nonoverlapping."
+    },
+    {
+      "id": "QUEUE",
+      "pass": true,
+      "detail": "Authority remains830/18/0; no mutation."
+    },
+    {
+      "id": "WITNESS_EXECUTION",
+      "pass": false,
+      "detail": "Not run; requires Director readiness and exact owner adoption."
+    }
+  ],
+  "noWitnessConstructed": true,
+  "noSealAcceptanceApplicationOrQueueChange": true,
+  "geometryPairsChecked": [
+    [
+      "C",
+      "D"
+    ],
+    [
+      "C",
+      "A"
+    ],
+    [
+      "C",
+      "B"
+    ],
+    [
+      "C",
+      "cargo-B"
+    ],
+    [
+      "C",
+      "PG328-W01-403:CLAY-TILE-1"
+    ],
+    [
+      "D",
+      "A"
+    ],
+    [
+      "D",
+      "B"
+    ],
+    [
+      "D",
+      "cargo-B"
+    ],
+    [
+      "D",
+      "PG328-W01-403:CLAY-TILE-1"
+    ],
+    [
+      "A",
+      "B"
+    ],
+    [
+      "A",
+      "cargo-B"
+    ],
+    [
+      "A",
+      "PG328-W01-403:CLAY-TILE-1"
+    ],
+    [
+      "B",
+      "cargo-B"
+    ],
+    [
+      "B",
+      "PG328-W01-403:CLAY-TILE-1"
+    ],
+    [
+      "cargo-B",
+      "PG328-W01-403:CLAY-TILE-1"
+    ]
+  ],
+  "proposalFileSha256": "61b559867d7a5ccc49c3a03f92be173a4e02a946a8c2d7194a6cb2674df4a717",
+  "markdownFileSha256": "dfaa479b8ec7e3d8e0b34688cf4f865aa212ee1ba5779208e118364739d5535b"
+}
