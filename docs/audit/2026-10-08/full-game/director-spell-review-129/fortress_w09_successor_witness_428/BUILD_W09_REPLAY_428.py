@@ -146,6 +146,13 @@ def main():
     dep=copy.deepcopy(pre["supportGraph"]["dependentStairParts"])
     contacts=copy.deepcopy(pre["supportGraph"]["actorFootContactPartsBeforeTargetRemoval"])
     assert len(dep)==18
+    support_after_move={18:["origin-ground-face"],24:["origin-ground-face"],
+      30:["origin-ground-face","keep-F0-0-2","keep-F0-1-2"],
+      36:[x["partId"] for x in contacts]}
+    assert support_after_move[36]==["keep-tread-0-9","keep-riser-0-9"]
+    geometry_part_ids={x["id"] for x in geom["panels"]}
+    assert {part_id for ids in support_after_move.values() for part_id in ids} <= geometry_part_ids
+    assert {"keep-tread-0-1","keep-riser-0-1"} <= geometry_part_ids
 
     actors={k:actor_projection(v) for k,v in initial_parent["actors"].items()}
     tile_id="PG328-W01-403:CLAY-TILE-1"
@@ -158,7 +165,7 @@ def main():
       "supportOverlayPath":rel(SUPPORT),"supportOverlaySha256":sha_file(SUPPORT),
       "rootId":"origin-ground-face","targetPanel":{"id":target,"boundsFeet":pre["attackGeometry"]["targetBoundsFeet"],"ac":17,"hp":60,"originalHp":60,"destroyed":False},
       "dependentStairPartsOnTargetRemoval":dep,"destroyedParts":[],
-      "actorABottomSupportPartIds":[x["partId"] for x in contacts],"actorAHasBottomSupport":True,
+      "actorABottomSupportPartIds":["origin-ground-face"],"actorAHasBottomSupport":True,
       "historicalW01SouthPanelHp":55,"routeTotalFeet":100,"routeProgressFeet":0,"movementLegs":[],"attackHistory":[],"fall":None}
     state={"time":initial_parent["time"],"mode":initial_parent["mode"],"actors":actors,
       "inheritedParentState":copy.deepcopy(initial_parent),
@@ -276,6 +283,7 @@ def main():
         elif kind=="MOVE":
             tstart=spends[move_index][0]; spend=spends[move_index][1]
             assert abs(t-(18.01 if tstart==18 else tstart))<1e-7
+            support_parts=copy.deepcopy(support_after_move[int(round(tstart))])
             start_progress=route_progress; end_progress=route_progress+spend
             path=route_slice(route,start_progress,end_progress); move_index+=1
             newpos=path[-1]; newbounds=carry_bounds(newpos)
@@ -283,19 +291,22 @@ def main():
             for p in path:
                 b=carry_bounds(p)
                 assert b[0]>=p[0] and b[1]<=p[0]+5 and b[2]>=p[1] and b[3]<=p[1]+5 and b[4]>=p[2] and b[5]<=p[2]+6
-            def move(s,newpos=newpos,newbounds=newbounds,spend=spend,start_progress=start_progress,end_progress=end_progress,path=path,tstart=tstart):
+            def move(s,newpos=newpos,newbounds=newbounds,spend=spend,start_progress=start_progress,end_progress=end_progress,path=path,tstart=tstart,support_parts=support_parts):
                 a=s["actors"]["A"]; b=s["turnBudgets"]["A"]
                 assert b is not None and abs(b["startedAt"]-tstart)<1e-7 and a["movement"]>=spend
                 a["position"]=copy.deepcopy(newpos); a["movement"]=num(a["movement"]-spend)
                 b["movementSpentFeet"]=num(b["movementSpentFeet"]+spend)
                 s["tile"]["heldBoundsFeet"]=bounds_obj(newbounds)
                 s["fortressW09"]["routeProgressFeet"]=end_progress
+                s["fortressW09"]["actorABottomSupportPartIds"]=copy.deepcopy(support_parts)
+                s["fortressW09"]["actorAHasBottomSupport"]=True
                 s["fortressW09"]["movementLegs"].append({"turnStart":tstart,"spentFeet":spend,"routeProgressBefore":start_progress,
                   "routeProgressAfter":end_progress,"positions":path,"tileBoundsAtEndFeet":newbounds,"dash":False})
             emit(f"PG328-W09-R1:MOVE-{int(tstart)}",t,"REGULAR_MOVEMENT",{
               "actor":"A","turnStart":tstart,"grantedFeet":30,"spentFeet":spend,"noDash":True,"routePoints":path,
               "routeFeetBefore":start_progress,"routeFeetAfter":end_progress,"tileRelativeBoundsFeet":relative,
-              "bodyEnvelopeContainment":"PASS for each listed route point"},move,priority)
+              "bodyEnvelopeContainment":"PASS for each listed route point",
+              "supportAfter":{"partIds":support_parts,"supported":True}},move,priority)
             route_progress=end_progress
         elif kind=="ATTACK":
             attack_index=data; t=num(t); damage=5
@@ -332,6 +343,7 @@ def main():
             emit(f"PG328-W09-R1:ATTACK-{attack_index:02d}-{t:g}",t,"TEST_ONLY_ORDINARY_ATTACK_SUNDER",{
               "actor":"A","targetPanelId":target,"roll":{"d20":16,"strengthModifier":1,"proficiency":0,"total":17,"AC":17},
               "damage":{"d4":4,"strengthModifier":1,"total":damage},"actionCost":1,"rpCost":0,
+              "supportAfter":{"partIds":([] if attack_index==12 else copy.deepcopy(state["fortressW09"]["actorABottomSupportPartIds"])),"supported":attack_index!=12},
               "tileStrikeBoundsFeet":[45,46,60,61,4.75,5.0],
               "tileBoundsBeforeStrikeFeet":carry_bounds([45,59.5,4.5]),"tileBoundsAfterReturnFeet":carry_bounds([45,59.5,4.5]),
               "tileSwingSubmotions":[
@@ -349,15 +361,20 @@ def main():
                 a=s["actors"]["A"]; f=s["fortressW09"]
                 assert f["fall"] and f["targetPanel"]["hp"]==0 and not f["actorAHasBottomSupport"]
                 a["position"]=[45,59.5,0.5]; s["tile"]["heldBoundsFeet"]=bounds_obj(carry_bounds(a["position"]))
+                f["actorABottomSupportPartIds"]=["keep-tread-0-1","keep-riser-0-1"]
+                f["actorAHasBottomSupport"]=True
                 f["fall"].update({"status":"LANDED_TEST_ONLY","landedAt":108.9,"landingPartId":"keep-tread-0-1",
                   "landingFeetZ":0.5,"distanceFeet":4.0,"damage":0,"proneFromFallingDamage":False})
             emit("PG328-W09-R1:FALL-LAND-108.9",108.9,"TEST_ONLY_FALL_LANDING",{
               "afterRegularMarkersThroughAEnd":True,"fixedXY":[45,59.5],"firstSupportingSurface":"keep-tread-0-1 top face z=0.5 ft",
-              "fallDistanceFeet":4.0,"damage":0,"proneFromFallingDamage":False,"campaignOccurrence":False},land,priority)
+              "fallDistanceFeet":4.0,"damage":0,"proneFromFallingDamage":False,"campaignOccurrence":False,
+              "supportAfter":{"partIds":["keep-tread-0-1","keep-riser-0-1"],"supported":True}},land,priority)
 
     assert move_index==4 and attack_index==12
     assert state["actors"]["A"]["position"]==[45,59.5,0.5]
     assert state["actors"]["A"]["HP"]==122 and state["actors"]["A"]["RP"]==53
+    assert state["fortressW09"]["actorABottomSupportPartIds"]==["keep-tread-0-1","keep-riser-0-1"]
+    assert state["fortressW09"]["actorAHasBottomSupport"] is True
     assert state["fortressW09"]["targetPanel"]["hp"]==0 and len(state["fortressW09"]["destroyedParts"])==18
     assert state["fortressW09"]["fall"]["distanceFeet"]==4.0
     assert state["tile"]["expiresAtEventTime"]==3606.13 and not state["tile"]["consumed"]
@@ -415,6 +432,25 @@ def main():
     shutil.copyfile(OWNER,OUT/"OWNER_PG328_W09_SUPPORT_ADOPTION_427_TESTONLY.json")
     (OUT/"W09_REPLAY_428_TESTONLY.json").write_text(json.dumps(replay,ensure_ascii=False,indent=2)+"\n",encoding="utf-8",newline="\n")
     (OUT/"SOURCE_BINDINGS_428.json").write_text(json.dumps({"id":"PG328-W09-R1-SOURCE-BINDINGS-428","bindings":bindings},ensure_ascii=False,indent=2)+"\n",encoding="utf-8",newline="\n")
+    correction={"schemaVersion":1,"id":"PG328-W09-R1-DIRECTOR-C01-RESOLUTION-428",
+      "classification":"DIRECTOR_REQUESTED_TEST_ONLY_STATE_LEDGER_CORRECTION",
+      "sourceDirectorResponse":{"service":"ChatGPT","conversationTitle":"Calibration review part 6",
+        "conversationId":"6adc506d-8770-83ea-b64c-0345d9b9b682","messageId":"6c6faa34-1e1d-56f7-b9e7-05f094583410",
+        "reviewedCommit":"3db1e4241f83d99462fc8eaab985a0ff3080fc60","priorArchiveSha256":"bf6ca5730e0a0f40d7e217d04ce5d8f678d4e944e474e8af629430e3030658c2"},
+      "findingId":"W09-428-C01","finding":"Synchronize actor A's live bottom-support IDs and supported flag with the existing adopted geometry at each named state/event.",
+      "noAdditionalOwnerPremiseRequired":True,
+      "expectedSupportStates":[
+        {"state":"branchInitialStateId","actorAPositionFeet":[25,6,0],"supportPartIds":["origin-ground-face"],"hasBottomSupport":True},
+        {"eventIndex":8,"eventId":"PG328-W09-R1:MOVE-18","actorAPositionFeet":[49,10,0],"supportPartIds":["origin-ground-face"],"hasBottomSupport":True},
+        {"eventIndex":17,"eventId":"PG328-W09-R1:MOVE-24","actorAPositionFeet":[55,34,0],"supportPartIds":["origin-ground-face"],"hasBottomSupport":True},
+        {"eventIndex":26,"eventId":"PG328-W09-R1:MOVE-30","actorAPositionFeet":[46,55,0],"supportPartIds":["origin-ground-face","keep-F0-0-2","keep-F0-1-2"],"hasBottomSupport":True},
+        {"eventIndex":35,"eventId":"PG328-W09-R1:MOVE-36","actorAPositionFeet":[45,59.5,4.5],"supportPartIds":["keep-tread-0-9","keep-riser-0-9"],"hasBottomSupport":True},
+        {"eventIndex":135,"eventId":"PG328-W09-R1:ATTACK-12-102.1","actorAPositionFeet":[45,59.5,4.5],"supportPartIds":[],"hasBottomSupport":False},
+        {"eventIndex":145,"eventId":"PG328-W09-R1:FALL-LAND-108.9","actorAPositionFeet":[45,59.5,0.5],"supportPartIds":["keep-tread-0-1","keep-riser-0-1"],"hasBottomSupport":True}],
+      "regenerated":{"affectedEventStateHashes":True,"forwardPatches":True,"inversePatches":True,"independentSupportAssertions":True},
+      "nonEffects":["No campaign event or gameplay occurrence is asserted.","No new owner premise or canonical rule is introduced.",
+        "No seal, Fortress acceptance/application, fixture mutation or queue change is authorized."]}
+    (OUT/"DIRECTOR_C01_CORRECTION_428.json").write_text(json.dumps(correction,ensure_ascii=False,indent=2)+"\n",encoding="utf-8",newline="\n")
     (OUT/"DIRECTOR_REVIEW_REQUEST_428.md").write_text(
       "# Director review request — Fortress W01 overlays and W09-R1 (TEST_ONLY)\n\n"
       "Please review the exact owner-adopted W01 successor overlays 425 and PG328-W09-R1 reversible witness 428. "
@@ -424,6 +460,7 @@ def main():
       "W09 witness 428: reversible replay PASS, 146 events including 128 regular-turn markers, 100-foot route, 12 stipulated attacks, "
       "18 dependent stair parts and the specified 4-foot hypothetical fall. The entire unchanged S030 parent snapshot is embedded and bound by hash. "
       "Each attack explicitly traces the held tile from carry bounds to the strike bounds and back with inverse operations. No actual campaign occurrence is asserted.\n\n"
+      "Director finding W09-428-C01 is addressed in `DIRECTOR_C01_CORRECTION_428.json`: A's bottom-support ledger now matches the existing adopted geometry at the initial pose, movement events 8/17/26/35, final attack event 135 and landing event 145. The witness generator now records each transition, and the independent verifier checks each pose/support pair and reversible patch. No new owner premise was required.\n\n"
       "Please return precise findings on the W01 support/z46 overlays, each W09 source binding and event sequence, all movement/carry/contact "
       "geometry, attack submotions and inputs, support loss, falling result, reversibility, and non-effects. State explicitly whether any correction remains and whether "
       "Fortress is ready for identity acceptance. Do not treat this packet as a seal, campaign event, canonical change, or application.\n\n"

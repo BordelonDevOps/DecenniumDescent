@@ -47,10 +47,36 @@ def main():
     state=copy.deepcopy(w['stateSnapshots'][w['branchInitialStateId']])
     check('embedded-parent-snapshot',digest(state['inheritedParentState'])==parent['terminalStateSha256'] and state['inheritedParentState']==parent['stateSnapshots']['S030'] and state['parentSnapshotReference']['copiedWithoutBranchEdits'],'The entire S030 snapshot is embedded byte-equivalently at JSON value level and remains separately preserved.')
     check('branch-initial-hash',digest(state)==w['branchInitialStateSha256'],'Initial branch snapshot hash matches.')
-    for e in w['events']:
+    support_expectations={
+      'PG328-W09-R1:MOVE-18':(8,[49.0,10.0,0.0],["origin-ground-face"],True),
+      'PG328-W09-R1:MOVE-24':(17,[55.0,34.0,0.0],["origin-ground-face"],True),
+      'PG328-W09-R1:MOVE-30':(26,[46.0,55.0,0.0],["origin-ground-face","keep-F0-0-2","keep-F0-1-2"],True),
+      'PG328-W09-R1:MOVE-36':(35,[45.0,59.5,4.5],["keep-tread-0-9","keep-riser-0-9"],True),
+      'PG328-W09-R1:ATTACK-12-102.1':(135,[45.0,59.5,4.5],[],False),
+      'PG328-W09-R1:FALL-LAND-108.9':(145,[45.0,59.5,0.5],["keep-tread-0-1","keep-riser-0-1"],True),
+    }
+    initial_fortress=state['fortressW09']
+    check('support-state:branch-initial',state['actors']['A']['position']==[25,6,0] and initial_fortress['actorABottomSupportPartIds']==["origin-ground-face"] and initial_fortress['actorAHasBottomSupport'] is True,
+      'Initial ground pose is supported by origin-ground-face.')
+    for event_index,e in enumerate(w['events']):
         check('forward-before:'+e['eventId'],digest(state)==e['beforeStateSha256'],'Current replay state equals event before hash.')
         after=apply_patch(state,e['forwardPatch'])
         check('forward-after:'+e['eventId'],digest(after)==e['afterStateSha256'],'Forward patch reproduces event after hash.')
+        if e['eventId'] in support_expectations:
+            expected_index,expected_position,expected_parts,expected_supported=support_expectations[e['eventId']]
+            f=after['fortressW09']
+            check('support-index:'+e['eventId'],event_index==expected_index,'Event occupies the Director-specified zero-based index.')
+            check('support-state:'+e['eventId'],after['actors']['A']['position']==expected_position and
+              f['actorABottomSupportPartIds']==expected_parts and f['actorAHasBottomSupport'] is expected_supported,
+              'Actor position and live support ledger match the Director-specified state.')
+            prior_f=state['fortressW09']
+            expected_changes={
+              '/fortressW09/actorABottomSupportPartIds':prior_f['actorABottomSupportPartIds']!=expected_parts,
+              '/fortressW09/actorAHasBottomSupport':prior_f['actorAHasBottomSupport'] is not expected_supported}
+            forward_fields={op.get('path') for op in e['forwardPatch']}
+            inverse_fields={op.get('path') for op in e['inversePatch']}
+            check('support-patch:'+e['eventId'],all((field in forward_fields)==changed and (field in inverse_fields)==changed for field,changed in expected_changes.items()),
+              'Support fields have matching forward/inverse operations exactly when their values change.')
         restored=apply_patch(after,e['inversePatch'])
         check('inverse:'+e['eventId'],digest(restored)==digest(state),'Inverse patch restores exact prior canonical bytes.')
         if e['kind']=='TEST_ONLY_ORDINARY_ATTACK_SUNDER':
