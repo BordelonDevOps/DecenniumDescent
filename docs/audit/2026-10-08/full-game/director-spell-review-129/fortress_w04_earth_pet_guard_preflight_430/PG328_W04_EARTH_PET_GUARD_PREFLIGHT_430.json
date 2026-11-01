@@ -242,6 +242,14 @@
       "turnAndAttachedPhase": "The unchanged A schedule places the regular turn end at 18.9; the pet's commanded phase follows the whole owner turn.",
       "futureCommandLimit": "The modeled segment from A to the destination center intersects tower-SW-entry-leaf. This proposal issues no command after arrival and makes no claim of later perception through that leaf. A future-command task would require a new position or visibility review."
     },
+    "subsequentUncommandedPhases": {
+      "status": "DIRECTOR_CONFIRMED_SOURCE_CONSISTENT_PROPOSAL",
+      "ruleBinding": "catalog.json#/spells/139/operational/effect: without a command, the pet may move defensively and Dodge.",
+      "selectedBehavior": "After its commanded 14-ft move and Dodge, the pet chooses zero movement and Dodge during each subsequent eligible uncommanded attached phase, remaining at the same supported destination.",
+      "additionalRouteOrSupport": "No additional defensive route is required. The adopted destination support and clearance must remain valid throughout occupancy; no additional support premise is needed solely because it stays there.",
+      "turnLimits": "Record each fresh Dodge at the permitted attached phase after A's whole turn. Do not carry the original command forward or grant independent turns, attacks, or reactions. No additional owner Bonus Action is issued or charged.",
+      "eligibility": "Apply ordinary Dodge eligibility and ending rules; do not assume protection through intervening incapacity or source ending."
+    },
     "staticGeometryCheck": {
       "method": "AABB positive-volume intersection check against all Geometry405 occupied fragments for 2,660 panels and 10 door leaves, plus same-plane A/B bodies; swept AABBs tested on each straight route segment. C/D remain on fixture:origin.",
       "summonBoundsCollisions": 0,
@@ -257,13 +265,14 @@
       "futureRegularStartMarkers": [24, 30, 36, 42, 48, 54, 60, 66, 72, 78],
       "expiryTime": 78.0,
       "ending": "At the caster's tenth future regular-start marker, the pet vanishes. It ends earlier if concentration ends or it reaches 0 HP.",
-      "boundedNoInterferencePremise": "For this proposed finite branch, A remains able to maintain concentration, the pet is not dismissed or reduced to 0 HP, and no other event interrupts the spell before 78.0. If any such event occurs, resolve its actual rule instead of assuming the proposed endpoint."
+      "boundedNoInterferencePremise": "For this proposed finite branch, A remains able to maintain concentration, the pet is not dismissed or reduced to 0 HP, and no other event interrupts the spell before 78.0. If any such event occurs, resolve its actual rule instead of assuming the proposed endpoint.",
+      "lastEligibleDodge": "The pet may choose zero movement and Dodge after A's whole turns ending at 24.9 through 72.9, subject to ordinary eligibility. Expiry at 78.0 resolves before any later attached phase; no post-expiry Dodge occurs."
     }
   },
   "ownerAdoptionNeededBeforeWitness": [
     "Branch-local PG200-W20 profile binding and compatibility record; keep the S030 historical profile identifier unchanged.",
     "Branch-only 5x5x6-ft body envelope and exact summon point/route/destination for the 300-lb Earth Pet.",
-    "Branch-only ground-support premise for the pet at the summon pose, all route poses, and destination.",
+    "Branch-only ground-support premise for the pet at the summon pose, every point along the swept route, and destination throughout occupancy.",
     "One ordinary free object interaction after START 18.0 to set down this exact existing tile with unchanged bounds and lifecycle; include its exact unattended custody and load transition.",
     "Branch-only support premise for this specific tile at its exact grounded footprint, unless an existing adopted source expressly covers it.",
     "Bounded TEST_ONLY no-interference/concentration conditions through the stated finite endpoint."
