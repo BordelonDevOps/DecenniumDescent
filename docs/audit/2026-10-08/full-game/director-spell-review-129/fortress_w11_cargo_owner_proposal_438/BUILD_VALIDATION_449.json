@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "id": "PG328-W11-WITNESS-BUILD-VALIDATION-449",
+  "classification": "TEST_ONLY_BRANCH_WITNESS_VALIDATION",
+  "status": "PASS",
+  "proposalSha256": "44c150647453fb762aec288fc83ce2afe0a77c160ca810682919d320078ae3de",
+  "adoptionSha256": "256d6e7f5b751c515d42aa5a8704a56b48861c3f54db0053b91013bfe22529f0",
+  "traceSha256": "654588e539c4b966e8ebde0142a057e24d6b3d41f7863f6e1c94fdf0e1d54509",
+  "parentReplaySha256": "2b60ae35d828bd6028d71f202c1dd61c823d6212bb45c7f633ecd8f6b51d44fb",
+  "witnessSha256": "2c5febae687ef8b844fd093b58d367ea27bd799f2710ffb82726eb0e5bb11e3e",
+  "checks": [
+    {
+      "name": "exact owner adoption recorded",
+      "status": "PASS",
+      "evidence": "Adoption SHA-256 256d6e7f5b751c515d42aa5a8704a56b48861c3f54db0053b91013bfe22529f0; proposal SHA-256 44c150647453fb762aec288fc83ce2afe0a77c160ca810682919d320078ae3de."
+    },
+    {
+      "name": "Director proposal readiness receipt bound",
+      "status": "PASS",
+      "evidence": "DIRECTOR_READBACK_438 SHA-256 22ec348d77a8479a86516a23bfc658873bff92e905885d9a4f9d620e494ef396."
+    },
+    {
+      "name": "unchanged S030 parent binding",
+      "status": "PASS",
+      "evidence": "Parent replay SHA-256 2b60ae35d828bd6028d71f202c1dd61c823d6212bb45c7f633ecd8f6b51d44fb; S030 canonical projection SHA-256 6270321d6f07a55173f01fb353142d6bfb537d8e044cd313ef8fdd956baeff6c."
+    },
+    {
+      "name": "trace source hash and branch identity",
+      "status": "PASS",
+      "evidence": "Source trace ID PG328-W11-R1-PROPOSED is explicitly mapped by the adoption wrapper to PG328-W11-R1; SHA-256 654588e539c4b966e8ebde0142a057e24d6b3d41f7863f6e1c94fdf0e1d54509."
+    },
+    {
+      "name": "regular turn coverage",
+      "status": "PASS",
+      "evidence": "74 ordered regular turn markers from 13.0 through 102.9."
+    },
+    {
+      "name": "authored events and action coverage",
+      "status": "PASS",
+      "evidence": "10 actions and 24 chronologically ordered events."
+    },
+    {
+      "name": "finite pet lifecycle phases",
+      "status": "PASS",
+      "evidence": "10 scheduled phases from 34.9 through 88.9."
+    },
+    {
+      "name": "no parent campaign canon acceptance or queue effect",
+      "status": "PASS",
+      "evidence": "830 applied / 18 pending / 0 accepted-unapplied"
+    }
+  ],
+  "result": {
+    "passed": 8,
+    "failed": 0,
+    "directorReviewRequired": true,
+    "sealPresent": false,
+    "FortressAcceptedOrApplied": false,
+    "spellIdentityAcceptedOrApplied": false,
+    "canonChanged": false,
+    "queueChanged": false,
+    "queue": "830 applied / 18 pending / 0 accepted-unapplied"
+  },
+  "s030SnapshotSha256": "6270321d6f07a55173f01fb353142d6bfb537d8e044cd313ef8fdd956baeff6c"
+}
