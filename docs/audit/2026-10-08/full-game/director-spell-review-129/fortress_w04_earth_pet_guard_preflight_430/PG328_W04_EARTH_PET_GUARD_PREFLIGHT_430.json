@@ -50,7 +50,10 @@
         "/ordinaryLearning/17/permission",
         "/ordinaryLearning/17/selected/0",
         "/prepared/6",
-        "/spellbook/67"
+        "/spellbook/67",
+        "/acquisitionLedger/18/choices/0",
+        "/automaticCards/1",
+        "/alwaysPrepared/10"
       ],
       "sha256": "a3a3ce0a714c1fa35523719c8c8a0297fc457d5b5f097f6a20a00aad6cd7be55",
       "bytes": 116341,
@@ -66,23 +69,33 @@
       "relevantRules": [
         "V requires audible speech; S requires a free hand or explicit class exception; F is the ordinary class casting focus.",
         "Rank 1–5 base Dissonance is 1; current Dissonance determines any surcharge before the cast; costs commit before interruption.",
-        "A completed legal cast establishes concentration and updates class cadence once."
+        "At legal cast commitment, commit costs, perform components, establish concentration if required and end incompatible prior concentration, then apply beginning-of-cast Dissonance/Refrain and class hooks before the Counterspell window. Resolve actual eligible interruptions next; only a cast that survives resolves its effect. Countering does not refund committed costs or restore displaced concentration."
       ]
     },
     {
       "path": "DescentReviewChanges/ReviewBible/data/playtest/class_drafts/wizard.json",
-      "pointer": "Wizard protected Dissonance interface",
+      "pointer": "/engine/11",
       "sha256": "b66266ff1d38298884af4cd18185201e1d21b71b68e0a8f8779605267159c0af",
       "bytes": 57572,
       "gitBlobSha1": "a0c6eab5940a90e4f926db47ca8fa327e8727f17",
-      "relevantRule": "The first cast of each different prepared matrix family during an encounter generates 0 base Dissonance; Refrain and printed strain costs remain separate."
+      "relevantRule": "The first cast of each different prepared matrix family during an encounter generates 0 base Dissonance; Refrain and printed strain costs remain separate.",
+      "relatedPointers": [
+        "/cards/15"
+      ]
     },
     {
       "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w01_successor_overlays_425/evidence/GEOMETRY_405.json",
       "sha256": "2ec0b2448eb4dd03a028a2c3edfd78c262fbef0309eb3e6ff49a41ca8850a147",
       "bytes": 1335900,
       "gitBlobSha1": "332fb5fd95231075a186055f03c68b78d6f3e688",
-      "worldBounds": [0, 120, 0, 120, 0, 40],
+      "worldBounds": [
+        0,
+        120,
+        0,
+        120,
+        0,
+        40
+      ],
       "positionConvention": "Minimum x/y and feet z."
     },
     {
@@ -102,6 +115,21 @@
       "bytes": 2923,
       "gitBlobSha1": "a47a8a68fae3780eab6219877207a87cfefcda5a",
       "scopeLimit": "W01-only adopted structure/usable-space premises; does not establish generic load support for new occupants or grounded carried items."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+      "pointers": [
+        "turn ordinary free object interaction",
+        "ordinary Dodge"
+      ],
+      "sha256": "f90d039142145fbd31c37992ebece70d7926dc4b6081e340f9a2fd9dc7237bc6",
+      "bytes": 30409,
+      "gitBlobSha1": "72bcb58af57f8bfe27596ec0b1467e4c780a6ef8",
+      "byteDomain": "Exact committed Git blob.",
+      "relevantRules": [
+        "One ordinary free object interaction is available on a turn.",
+        "Dodge benefits end at their stated deadline and fail while Incapacitated or Speed 0."
+      ]
     }
   ],
   "profileBindingAndCompatibility": {
@@ -126,8 +154,22 @@
         "speed": 30
       },
       "profileSourceValuesNotDirectlyStoredInS030ActorA": {
-        "abilityScores": {"CHA": 12, "CON": 14, "DEX": 14, "INT": 20, "STR": 12, "WIS": 16},
-        "modifiers": {"CHA": 1, "CON": 2, "DEX": 2, "INT": 5, "STR": 1, "WIS": 3},
+        "abilityScores": {
+          "CHA": 12,
+          "CON": 14,
+          "DEX": 14,
+          "INT": 20,
+          "STR": 12,
+          "WIS": 16
+        },
+        "modifiers": {
+          "CHA": 1,
+          "CON": 2,
+          "DEX": 2,
+          "INT": 5,
+          "STR": 1,
+          "WIS": 3
+        },
         "spellAttack": 11,
         "spellDC": 19,
         "school": "Divination",
@@ -141,7 +183,11 @@
         "Refrain": 0,
         "lastSpell": "wizard.base.minor-conjuration",
         "concentration": null,
-        "position": [25, 6, 0],
+        "position": [
+          25,
+          6,
+          0
+        ],
         "nextRegularStart": 18.0
       }
     }
@@ -156,11 +202,33 @@
       "timing": "After A's actual next regular START at 18.0 and before casting; do not spend a leftover interaction at S030 time 12.9.",
       "ordinaryObjectInteractionCount": 1,
       "itemId": "PG328-W01-403:CLAY-TILE-1",
-      "from": {"heldBy": "A:right", "owner": null, "custodian": "A", "position": null},
+      "from": {
+        "heldBy": "A:right",
+        "owner": null,
+        "custodian": "A",
+        "position": null
+      },
       "to": {
-        "position": [25, 5, 0],
+        "position": [
+          25,
+          5,
+          0
+        ],
         "positionConvention": "Minimum x/y and lower face at feet z.",
-        "boundsFeet": {"x": [25, 26], "y": [5, 6], "z": [0, 0.25]},
+        "boundsFeet": {
+          "x": [
+            25,
+            26
+          ],
+          "y": [
+            5,
+            6
+          ],
+          "z": [
+            0,
+            0.25
+          ]
+        },
         "owner": null,
         "custodian": null,
         "heldBy": null,
@@ -185,22 +253,51 @@
         "carriedWeightLb": "14 -> 12",
         "carriedLoad": "1.4 -> 1.2"
       },
-      "supportFinding": "Geometry405 shows no positive-volume overlap with modeled panels/doors/actors at the tile bounds, but neither its lower-face support nor the W01 support adoption's scope is enough to establish this grounded pose. Include the narrow owner premise above unless GPT identifies an existing adopted contract that expressly covers it."
+      "supportFinding": "Geometry405 shows no positive-volume overlap with modeled panels/doors/actors at the tile bounds, but neither its lower-face support nor the W01 support adoption's scope establishes this grounded pose. The tile requires its narrow exact-footprint support premise. The support overlay also covers only A's original W01 carried-item configuration; this branch must separately adopt support for A at unchanged [25,6,0] with the post-set-down 12-lb/1.2-Load carried configuration."
     },
     "summon": {
       "action": "Action",
       "baseRpCost": 5,
       "concentration": true,
-      "targetFeet": [30, 12, 0],
-      "proposedBodyEnvelopeFeet": [5, 5, 6],
+      "targetFeet": [
+        30,
+        12,
+        0
+      ],
+      "proposedBodyEnvelopeFeet": [
+        5,
+        5,
+        6
+      ],
       "bodyEnvelopeSourceStatus": "No Earth Pet anatomy/box dimensions are established by the card; this finite envelope is a branch-only owner premise, not a sourced stat.",
-      "proposedBoundsFeet": {"x": [30, 35], "y": [12, 17], "z": [0, 6]},
+      "proposedBoundsFeet": {
+        "x": [
+          30,
+          35
+        ],
+        "y": [
+          12,
+          17
+        ],
+        "z": [
+          0,
+          6
+        ]
+      },
       "printedMassLb": 300,
       "bodySupportRequired": "Direct support by the courtyard ground for this 300-lb pet at the summon pose and every point along the swept route through its destination, for this branch only. It does not establish general floor capacity or support elsewhere.",
       "unoccupiedSpace": "Under the proposed body envelope, the target has no positive-volume overlap with same-plane actors A/B or any modeled panel/door at cast time. C/D remain on fixture:origin, outside this Fortress space.",
       "rangeAndModeledLine": {
-        "AActorCenter": [27.5, 8.5, 3],
-        "summonedBodyCenter": [32.5, 14.5, 3],
+        "AActorCenter": [
+          27.5,
+          8.5,
+          3
+        ],
+        "summonedBodyCenter": [
+          32.5,
+          14.5,
+          3
+        ],
         "distanceFeet": 7.81025,
         "printedRangeFeet": 60,
         "modeledPanelOrDoorLeafIntersections": 0,
@@ -218,29 +315,211 @@
         "DissonanceSurcharge": 0,
         "refrainChange": 0,
         "postCastDissonance": 0,
-        "condition": "The proposed PG200-W20 profile binding is adopted and the Wizard first-different-prepared-matrix-family rule applies. Earth Pet is absent from S030's preparedFamiliesUsed and is distinct from lastSpell wizard.base.minor-conjuration. Without the explicit profile binding, do not infer this class-interface result."
+        "condition": "The proposed PG200-W20 profile binding is adopted and the Wizard first-different-prepared-matrix-family rule applies. Earth Pet is absent from S030's preparedFamiliesUsed and is distinct from lastSpell wizard.base.minor-conjuration. Without the explicit profile binding, do not infer this class-interface result.",
+        "preparedFamilyTreatment": "At legal commitment, use the pre-cast family ledger for the first-different-family reduction, consume that first-family use, record summon-earth-pet exactly once in preparedFamiliesUsed, update lastSpell, and set magicThisTurn=true. These beginning-of-cast ledger updates precede the Counterspell window and are not rolled back by interruption.",
+        "successfulCastState": {
+          "resolution": "Only after the actual Counterspell window leaves the spell alive, create the Earth Pet and record the successful resolution. Do not repeat commitment, beginning hooks, or ledger updates.",
+          "magicThisTurn": "It remains true through END 18.9 and resets at START 24.0; this was already set at commitment.",
+          "spellEfficiency": "After this successful prepared-matrix cast, create the same-family pending discount; unused expiry is END 24.9."
+        }
       },
       "stateTransitionIfCastSurvives": {
-        "RP": "53 -> 48",
-        "concentration": "null -> summon-earth-pet",
-        "Action": "Spend the refreshed Action from the 18.0 regular START.",
-        "noRefund": "A legal cast's committed cost is not restored if later interrupted, under the shared casting rule."
+        "pet": "Create and record the Earth Pet source instance only after the committed cast survives the actual Counterspell window.",
+        "castAndResourceHistories": "Append the surviving resolution result to the already-recorded committed cast and resource histories; do not double-charge or replay beginning hooks.",
+        "spellEfficiency": {
+          "source": "PG200-W20 /acquisitionLedger/18/choices/0; Wizard /cards/15.",
+          "effect": "The acquired Spell Efficiency feature creates one same-family 1-RP pending discount after this successful prepared-matrix cast.",
+          "deadline": "With no further cast, the pending discount expires unused at END 24.9."
+        },
+        "noRefund": "If the cast is interrupted, the committed cost and beginning-of-cast ledger updates remain; no pet or successful-resolution effect is created.",
+        "resolutionAt": 18.04
+      },
+      "stateTransitionAtCommitment": {
+        "time": 18.02,
+        "Action": "Spend the refreshed Action from START 18.0.",
+        "RP": "Debit 5 RP at legal commitment: 53 -> 48.",
+        "concentration": "Establish the new summon-earth-pet concentration record at commitment, before the Counterspell window; end any incompatible prior concentration (none is present in S030).",
+        "beginningHooks": "Resolve the actual beginning-of-cast Dissonance/Refrain and protected Wizard hooks once at commitment, before interruption.",
+        "castAndResourceHistory": "Record the committed cast and RP debit before interruption; if countered, retain the committed cost and mark the cast interrupted.",
+        "noRefund": "A legal cast's committed cost is not restored if later interrupted.",
+        "preparedFamiliesUsed": [
+          "conjure-demiplane-fortress",
+          "wizard.base.minor-conjuration",
+          "summon-earth-pet"
+        ],
+        "lastSpell": "summon-earth-pet",
+        "magicThisTurn": {
+          "value": true,
+          "remainsTrueThrough": "END 18.9",
+          "resetsAt": "START 24.0"
+        },
+        "interruptionDoesNotRollback": [
+          "committed Action and RP debit",
+          "new concentration record",
+          "beginning-of-cast hooks",
+          "preparedFamiliesUsed first-family consumption",
+          "lastSpell update",
+          "magicThisTurn=true"
+        ]
+      },
+      "counterspellWindow": {
+        "ordering": "After legal commitment, components, concentration establishment and beginning hooks; before the spell effect creates the pet.",
+        "requiredResolution": "The proposed roster below describes the hypothetical branch selection only; it is not an occurrence. The final witness must resolve the actual source-qualified window and re-evaluate any changed state. Do not replace the window with a general no-interference statement.",
+        "creationCondition": "The pet exists only if the committed cast survives the actual interruption window.",
+        "proposedResponderRoster": {
+          "status": "PROPOSED_TEST_ONLY_NOT_OCCURRED",
+          "proposedWindowTime": 18.02,
+          "actors": {
+            "A": {
+              "role": "Casting actor",
+              "counterspellSource": {
+                "cardId": "wizard.base.counterspell",
+                "acquisition": "Automatic at Wizard 2",
+                "profilePath": "docs/audit/2026-10-08/full-game/director-spell-review-129/conjure_demiplane_fortress_closure_intake_367/payload/sources/RETURN284_WIZARD20_PROFILE_TESTONLY.json",
+                "cardPointer": "/automaticCards/1",
+                "alwaysPreparedPointer": "/alwaysPrepared/10"
+              },
+              "eligibility": "UNADJUDICATED_SELF_COUNTER",
+              "proposedDecision": "NO_ATTEMPT_TEST_ONLY",
+              "reason": "A is the triggering caster. Preserve the unchanged parent treatment: no self-counterspell attempt is made and self-eligibility is not adjudicated."
+            },
+            "B": {
+              "role": "Wizard20 in the same Fortress space",
+              "counterspellSource": {
+                "cardId": "wizard.base.counterspell",
+                "acquisition": "Automatic at Wizard 2",
+                "profilePath": "docs/audit/2026-10-08/full-game/director-spell-review-129/conjure_demiplane_fortress_closure_intake_367/payload/sources/RETURN284_WIZARD20_PROFILE_TESTONLY.json",
+                "cardPointer": "/automaticCards/1",
+                "alwaysPreparedPointer": "/alwaysPrepared/10"
+              },
+              "castWindowState": {
+                "profileSHA256": "ebb96b340b94c3c6a98f8005e6fd6d0d6c93b1dc4abd1b584a7528c5cb459223",
+                "plane": "RANK9PLANARGATES5129-CONJURE-DEMIPLANE-FORTRESS-A/cast1/space",
+                "positionFeet": [
+                  15,
+                  10,
+                  0
+                ],
+                "samePlaneAsCaster": true,
+                "centerToCenterDistanceFeet": 10.7703296143,
+                "nearestBodyEdgeDistanceFeet": 5,
+                "lineOfEffect": "Open courtyard; zero modeled panel/door intersections on B-to-A centerline.",
+                "perceivesCasting": "Proposed TEST_ONLY ordinary perception of A's visible casting; no concealment or perception-denial condition is recorded.",
+                "reactionAvailable": 1,
+                "reactionRefresh": "B's regular START at 13.0 occurs before this 18.02 window; no Reaction use is proposed in between.",
+                "conditions": [],
+                "currentRP": 80,
+                "counterspellCostRP": 3,
+                "rpSufficient": true,
+                "rechargeAvailable": true,
+                "sourceCardRank": 1,
+                "triggeringSpellRank": 3,
+                "checkDCIfAttempted": 16,
+                "componentLimit": "The acquired class card omits a component list; do not infer or add a material component. No attempt is made in the proposed branch."
+              },
+              "eligibility": "ELIGIBLE",
+              "proposedDecision": {
+                "status": "DECLINED_TEST_ONLY",
+                "time": 18.03,
+                "roll": "NOT ROLLED",
+                "reactionSpent": false,
+                "rpSpent": 0,
+                "rechargeStarted": false,
+                "occurred": false
+              },
+              "hostilityRequired": false,
+              "rangeFeet": 60,
+              "staticGeometryCheck": {
+                "source": "docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w01_successor_overlays_425/evidence/GEOMETRY_405.json",
+                "lineStartCenter": [
+                  17.5,
+                  12.5,
+                  3
+                ],
+                "lineEndCenter": [
+                  27.5,
+                  8.5,
+                  3
+                ],
+                "modeledPanelDoorIntersections": 0
+              }
+            },
+            "C": {
+              "role": "Cleric20 on fixture:origin",
+              "plane": "fixture:origin",
+              "eligibility": "INELIGIBLE_DIFFERENT_PLANE",
+              "reason": "No Fortress-plane perception/line-of-effect route is established for this branch; do not infer a cross-plane Counterspell window."
+            },
+            "D": {
+              "role": "Wizard20 on fixture:origin",
+              "hasCounterspell": true,
+              "plane": "fixture:origin",
+              "eligibility": "INELIGIBLE_DIFFERENT_PLANE",
+              "reason": "Although D has Wizard Counterspell, no Fortress-plane perception/line-of-effect route is established for this branch; do not infer a cross-plane Counterspell window."
+            }
+          },
+          "actorStateBinding": {
+            "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w01_structural_damage_witness_403_repack02/W01_REPLAY_403.json",
+            "sha256": "2b60ae35d828bd6028d71f202c1dd61c823d6212bb45c7f633ecd8f6b51d44fb",
+            "gitBlobSha1": "dd43ac67bf2ddca69fe6041d335d5fed3479b57d",
+            "pointer": "/stateSnapshots/S030/actors",
+            "stateId": "S030",
+            "stateSha256": "6270321d6f07a55173f01fb353142d6bfb537d8e044cd313ef8fdd956baeff6c",
+            "stateTime": 12.9
+          },
+          "successfulResolutionTime": 18.04
+        },
+        "trigger": "Creature begins casting; the cast has already committed its costs, concentration transition and beginning hooks. Success by an eligible responder negates the pending spell after those commitments."
       }
     },
     "commandAndGuardTask": {
-      "commandTiming": "After the cast and before A's turn ends; command is conveyed while pet remains at the spawn pose.",
+      "commandTiming": "After the surviving spell resolves and creates the pet at 18.04, A spends the Bonus Action at 18.05 while the pet remains at its spawn pose and before A's 18.9 turn end.",
       "payment": "A spends the refreshed Bonus Action for one Earth Pet command.",
       "petTask": "Move along the exact route below and Dodge in its attached phase. No attack, Help, tool use, hands, cargo, or extra protection/advantage is claimed.",
       "commandDistanceAtIssueFeet": 7.81025,
       "perceptionCondition": "A speaks an audible command and the pet can perceive it at the spawn pose; no later command is issued after the pet moves.",
-      "routeFeet": [[30, 12, 0], [30, 16, 0], [20, 16, 0]],
+      "routeFeet": [
+        [
+          30,
+          12,
+          0
+        ],
+        [
+          30,
+          16,
+          0
+        ],
+        [
+          20,
+          16,
+          0
+        ]
+      ],
       "distanceMovedFeet": 14,
-      "destinationBoundsFeet": {"x": [20, 25], "y": [16, 21], "z": [0, 6]},
-      "destinationCenter": [22.5, 18.5, 3],
+      "destinationBoundsFeet": {
+        "x": [
+          20,
+          25
+        ],
+        "y": [
+          16,
+          21
+        ],
+        "z": [
+          0,
+          6
+        ]
+      },
+      "destinationCenter": [
+        22.5,
+        18.5,
+        3
+      ],
       "destinationRangeFromAFeet": 11.18034,
       "guardTask": "Occupy the stated northeast approach to B and Dodge; do not imply the spell grants B a mechanical protection, Help advantage, or automatic interception benefit.",
       "turnAndAttachedPhase": "The unchanged A schedule places the regular turn end at 18.9; the pet's commanded phase follows the whole owner turn.",
-      "futureCommandLimit": "The modeled segment from A to the destination center intersects tower-SW-entry-leaf. This proposal issues no command after arrival and makes no claim of later perception through that leaf. A future-command task would require a new position or visibility review."
+      "futureCommandLimit": "The modeled centerline from A to the destination center intersects tower-SW-entry-leaf. This does not establish that a spoken command cannot be heard: the pet has ordinary hearing. Any later command would require an actual source-qualified perception check for its communication method; this centerline result alone establishes neither audible-command failure nor successful perception. No later command is proposed here.",
+      "commandAt": 18.05
     },
     "subsequentUncommandedPhases": {
       "status": "DIRECTOR_CONFIRMED_SOURCE_CONSISTENT_PROPOSAL",
@@ -253,20 +532,42 @@
     "staticGeometryCheck": {
       "method": "AABB positive-volume intersection check against all Geometry405 occupied fragments for 2,660 panels and 10 door leaves, plus same-plane A/B bodies; swept AABBs tested on each straight route segment. C/D remain on fixture:origin.",
       "summonBoundsCollisions": 0,
-      "routeSegmentCollisions": {"firstSweptSegment": 0, "secondSweptSegment": 0},
+      "routeSegmentCollisions": {
+        "firstSweptSegment": 0,
+        "secondSweptSegment": 0
+      },
       "destinationBoundsCollisions": 0,
       "tileBoundsCollisions": 0,
-      "worldBounds": [0, 120, 0, 120, 0, 40],
+      "worldBounds": [
+        0,
+        120,
+        0,
+        120,
+        0,
+        40
+      ],
       "allListedPosesInsideWorld": true,
       "supportIsNotEstablishedByThisCheck": true
     },
     "finiteLifecycle": {
-      "applicationTime": 18.02,
-      "futureRegularStartMarkers": [24, 30, 36, 42, 48, 54, 60, 66, 72, 78],
+      "applicationTime": 18.04,
+      "futureRegularStartMarkers": [
+        24,
+        30,
+        36,
+        42,
+        48,
+        54,
+        60,
+        66,
+        72,
+        78
+      ],
       "expiryTime": 78.0,
       "ending": "At the caster's tenth future regular-start marker, the pet vanishes. It ends earlier if concentration ends or it reaches 0 HP.",
       "boundedNoInterferencePremise": "For this proposed finite branch, A remains able to maintain concentration, the pet is not dismissed or reduced to 0 HP, and no other event interrupts the spell before 78.0. If any such event occurs, resolve its actual rule instead of assuming the proposed endpoint.",
-      "lastEligibleDodge": "The pet may choose zero movement and Dodge after A's whole turns ending at 24.9 through 72.9, subject to ordinary eligibility. Expiry at 78.0 resolves before any later attached phase; no post-expiry Dodge occurs."
+      "lastEligibleDodge": "The pet may choose zero movement and Dodge after A's whole turns ending at 24.9 through 72.9, subject to ordinary eligibility. Expiry at 78.0 resolves before any later attached phase; no post-expiry Dodge occurs.",
+      "concentrationApplicationRelationship": "Clear the concentration/application relationship when the pet actually expires at 78.0, or at the actual earlier ending if concentration ends or the pet reaches 0 HP."
     }
   },
   "ownerAdoptionNeededBeforeWitness": [
@@ -275,12 +576,21 @@
     "Branch-only ground-support premise for the pet at the summon pose, every point along the swept route, and destination throughout occupancy.",
     "One ordinary free object interaction after START 18.0 to set down this exact existing tile with unchanged bounds and lifecycle; include its exact unattended custody and load transition.",
     "Branch-only support premise for this specific tile at its exact grounded footprint, unless an existing adopted source expressly covers it.",
-    "Bounded TEST_ONLY no-interference/concentration conditions through the stated finite endpoint."
+    "Bounded TEST_ONLY no-interference/concentration conditions through the stated finite endpoint.",
+    "During this W04 branch, A remains supported at unchanged [25,6,0] with the post-set-down 12-lb/1.2-Load carried configuration, alongside the separately specified tile and pet support premises. This grants no general support or load-capacity rule.",
+    "Use the proposed Counterspell-window roster only as a TEST_ONLY branch choice: B explicitly declines if the verified cast-window state matches; A makes no self-counter attempt without adjudicating eligibility; C/D remain outside the supported Fortress-plane window. Record actual source, range/perception, Reaction, recharge and resources in the witness."
   ],
   "nonEffects": [
     "No witness was constructed or executed.",
     "No seal, acceptance, or application was issued.",
     "No canonical rule, live fixture, historical parent, current queue, or campaign fact was changed or asserted.",
     "No pet anatomy, general floor capacity, carrying/tool/Help capability, or future command perception is established."
-  ]
+  ],
+  "directorReadback": {
+    "reviewedJsonSha256": "053121c58c596cbd8b6194728f95c198d0b3eaf245cac236c43c97691d52f3eb",
+    "status": "READY_FOR_OWNER_ADOPTION_AFTER_EXACT_TIMESTAMP_CORRECTION",
+    "correction": "Commitment/window opening at 18.02; B's proposed decline at 18.03; surviving resolution and pet creation at 18.04; applicationTime=18.04. The ten future START markers and 78.0 expiry remain unchanged.",
+    "noWitnessOrAcceptanceAuthorized": true,
+    "queueUnchanged": "830 applied / 18 pending / 0 accepted-unapplied"
+  }
 }
