@@ -3,12 +3,12 @@
   "status": "PARTIAL-AUTHORED-REVIEW-CATALOG",
   "scope": "Discovery index for the complete authored procedures; read the whole referenced card and shared rules. This index never grants acquisition or runtime implementation. Preserved source catalog labels describe that older representation; this index records current authored review coverage.",
   "authoredCounts": {
-    "reviewed": 828,
-    "pending": 20
+    "reviewed": 829,
+    "pending": 19
   },
   "representationCounts": {
     "preservedLegacyOperationalRecords": 276,
-    "completeReviewedStandaloneProcedures": 552
+    "completeReviewedStandaloneProcedures": 553
   },
   "sourceCatalogSha256": "f52cf6a4a4673897615a74c7c67dcba798c431362d4357e71ee552cc7c5d31f8",
   "standaloneEnvelopeSha256": "506393b1131e3ed099effbe55b05d6b00a5193e503b02f065a5f84751a2955fe",
@@ -2601,12 +2601,86 @@
     {
       "id": "banishment-gate",
       "name": "Banishment Gate",
-      "authoredStatus": "pending-authored-procedure",
-      "procedureFile": "catalog.json",
-      "procedurePointer": null,
-      "wholeCardPointer": "/spells/89",
+      "authoredStatus": "reviewed-authored-operational-playtest",
+      "procedureFile": "../spell_candidates/rank9banishmentgate_reviewed_404/MODEL.json",
+      "procedurePointer": "/spells/0/procedure",
+      "wholeCardPointer": "/spells/0",
       "sourceStatus": "blocked-pending-operational-review",
-      "priorCatalogSelectionStatusUnchanged": true
+      "priorCatalogSelectionStatusUnchanged": true,
+      "procedureTextPointer": "/spells/0/procedure/procedureContent",
+      "wholeCardIdField": "id",
+      "sourceCatalogWholeCardPointer": "/spells/89",
+      "directorProcedureRecordPointer": "/spells/0/directorProcedureRecord",
+      "sharedRulesPointer": "/sharedRequirements",
+      "spellLocalRequirementsPointer": "/spells/0/procedure",
+      "runtimeSelectionEnabled": false,
+      "completeEvidenceRoot": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9banishmentgate_reviewed_404",
+      "completeEnvelopeBinding": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9banishmentgate_reviewed_404/MODEL.json",
+        "bytes": 97376,
+        "sha256": "51ac63c4042dba984d62ab13ba83d9970de6bba17d05e7f6d0262ff2cc73f334",
+        "crc32": "5457d253"
+      },
+      "caseEvidenceBindings": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9banishmentgate_reviewed_404/CASE_COVERAGE.json",
+        "bytes": 9029,
+        "sha256": "c28e1fe73c22336276f369a1bb67f70f42daeb28385236b0f6686377815eb06f",
+        "crc32": "1d515807"
+      },
+      "candidatePackageManifestBinding": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9banishmentgate_reviewed_404/CANDIDATE_PACKAGE_MANIFEST.json",
+        "bytes": 613,
+        "sha256": "19f917f909a45b2537887ddddc1d4de0d741afdf3cd6bc824bd928dc778d9f0e",
+        "crc32": "dc77694b"
+      },
+      "authoredAcceptanceReceipt": {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/banishment_gate_closure404/DIRECTOR_ACCEPTANCE_404.json",
+        "bytes": 5529,
+        "sha256": "274ea5b01ed8511cb86ba8d1aa9b99ddcf9876f47e9e84835133de1cde0bdd3a",
+        "crc32": "58ec2253"
+      },
+      "authoredApplicationReceipt": {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/banishment_gate_closure404/APPLICATION_404.json",
+        "bytes": 1592,
+        "sha256": "c2ba37072a6a4ad693d477b5ca7948683513b93454db3a19006fa9a121a3470b",
+        "crc32": "dfec4c66"
+      },
+      "sourceArchiveBinding": {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/banishment_gate_w03_lich_taxonomy_witness400_repack03/DD_Rank9_BanishmentGate_PG327W03_LichTaxonomy_Witness400_Repack03_TESTONLY.zip",
+        "bytes": 2428502,
+        "sha256": "98f3ac7cf18b0264deef40ccd8c0cfd20355fc2e41d20874b767d19ce4147ee2",
+        "crc32": "33aaaeb1"
+      },
+      "independentReviewBinding": {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/banishment_gate_w03_lich_taxonomy_witness400_repack03/INDEPENDENT_VERIFICATION_400_REPACK03.json",
+        "bytes": 628,
+        "sha256": "ad8bddd0aeeac3c30ff695a4b49a5ee834fc6eb46ae31d963889cdbb3792df4f",
+        "crc32": "f0d71205"
+      },
+      "reviewId": "BANISHMENT-GATE-CLOSURE404-DIRECTOR-ACCEPTANCE",
+      "accepted": true,
+      "applied": true,
+      "closedBlockerIds": [
+        "PG200-B03",
+        "PG200-B04"
+      ],
+      "retainedQualificationIds": [
+        "PG200-H01",
+        "PG200-H02",
+        "PG200-H03",
+        "PG200-H04",
+        "PG200-H05",
+        "PG200-H06",
+        "PG200-H07",
+        "PG200-H08",
+        "PG200-H09",
+        "PG200-H10"
+      ],
+      "applicationScope": "Authored review index only; no native catalog/source procedure or runtime promotion",
+      "historicalCandidateLabelsPreserved": true,
+      "retainedQualifications": [
+        "Authored operational review only. Preserve all historical records, native card/source status and TEST_ONLY limits; runtime and all downstream gates stay closed."
+      ]
     },
     {
       "id": "divine-shield",
@@ -35392,6 +35466,31 @@
       },
       "scope": "ONE_EXACT_STATIC_AUTHORED_PROCEDURE_ACCEPTED_AND_APPLIED_SH202_B02_RUNTIME_DISABLED",
       "runtimeSelectionEnabled": false
+    },
+    {
+      "file": "../spell_candidates/rank9banishmentgate_reviewed_404/MODEL.json",
+      "binding": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9banishmentgate_reviewed_404/MODEL.json",
+        "bytes": 97376,
+        "sha256": "51ac63c4042dba984d62ab13ba83d9970de6bba17d05e7f6d0262ff2cc73f334",
+        "crc32": "5457d253"
+      },
+      "reviewId": "BANISHMENT-GATE-CLOSURE404-DIRECTOR-ACCEPTANCE",
+      "acceptedIds": [
+        "banishment-gate"
+      ],
+      "authority": {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/banishment_gate_closure404/DIRECTOR_ACCEPTANCE_404.json",
+        "bytes": 5529,
+        "sha256": "274ea5b01ed8511cb86ba8d1aa9b99ddcf9876f47e9e84835133de1cde0bdd3a",
+        "crc32": "58ec2253"
+      },
+      "receipt": {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/banishment_gate_closure404/APPLICATION_404.json",
+        "bytes": 1592,
+        "sha256": "c2ba37072a6a4ad693d477b5ca7948683513b93454db3a19006fa9a121a3470b",
+        "crc32": "dfec4c66"
+      }
     }
   ],
   "sourceCatalogBindingHistory": [

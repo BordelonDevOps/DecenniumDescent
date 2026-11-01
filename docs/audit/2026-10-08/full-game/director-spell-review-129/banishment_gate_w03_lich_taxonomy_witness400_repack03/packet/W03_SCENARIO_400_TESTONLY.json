@@ -1,0 +1,976 @@
+{
+  "id": "PG327-W03-LICH-TAXONOMY-WITNESS-400-TESTONLY",
+  "status": "TEST_ONLY_OPEN_UNSEALED",
+  "spellId": "banishment-gate",
+  "witnessId": "W03",
+  "blockerIds": [
+    "PG200-B03",
+    "PG200-B04"
+  ],
+  "scenarioQualification": {
+    "testOnly": true,
+    "campaignFact": false,
+    "ownerAuthorizedSource": "Proposal 398 Repack03; exact SHA-256 bound in SOURCE_BINDINGS_400.json",
+    "directorAcceptedSourceAndAuthorizedConstruction": true,
+    "worldOrFixtureMutation": false,
+    "purpose": "Demonstrate a successful stationary Humanoid-to-Humanoid+Undead type update while a fixed Undead-selected Banishment Gate is active."
+  },
+  "sourceAcceptedUnit": {
+    "proposalSha256": "a0d22b2c54958e12e93df890b169e70b578f4f66e055c5fc75f172f64271fac1",
+    "ownerAcceptanceRecordSha256": "0706de2a7703854b5e01aa507cda6e2b89e48a0e674feaa51de90111df0b0bc1",
+    "directorReadbackDecision": "SOURCE_ACCEPTED_TEST_ONLY_W03",
+    "includedPointers": [
+      "/proposedRule/proposedInsertionText",
+      "/proposedRule/eligibility/accessAndTiming",
+      "/proposedRule/ritualTimingAndInterruption",
+      "/proposedRule/paymentAndConsumptionClarification"
+    ],
+    "unitIsIndivisible": true
+  },
+  "parentFork": {
+    "path": "banishment_gate_return327_received/evidence/packet327/prior/cases/RANK9PLANARGATES5129-BANISHMENT-GATE-A__stationary-type-change.json",
+    "fileSha256": "2f3a5a697cd9effda2a921dbf22eca060716d2584340cdf8e9611b6dd66f2e3f",
+    "pointer": "/initial",
+    "initialStateSha256": "0c0ce87d9a855a9e91b9837e34468d28cab76294fa8c48878cd519bddd27b55b",
+    "parentFinalAndItsMissingSelectionNotUsed": true,
+    "clockOffsetEvidence": {
+      "parentFinalEventTime": 0.9,
+      "parentFinalElapsedSeconds": 1.0,
+      "offsetSeconds": 0.1,
+      "newWitnessEventTime1ElapsedSeconds": 1.1,
+      "OpeningRemaining": 8639998.9,
+      "HornRemaining": 4319998.9,
+      "Hunt": null,
+      "preForkRitualTimeChargedAgain": false
+    }
+  },
+  "ritualEligibilityAndReadiness": {
+    "mage": {
+      "id": "M-W03-400",
+      "class": "Mage",
+      "classLevel": 10,
+      "typeSetBefore": [
+        "Humanoid"
+      ],
+      "hasUndeadBefore": false,
+      "lawfulLevel10LichOpportunity": true,
+      "noPriorHeroPath": true,
+      "noRespec": true
+    },
+    "soulCoinOrTwoParticipants": {
+      "selectedRoute": "TWO_AVAILABLE_PARTICIPANTS",
+      "participants": [
+        "W03-PARTICIPANT-01",
+        "W03-PARTICIPANT-02"
+      ],
+      "bothAvailableThroughout": true,
+      "bothWillingAtFinalCheck": true,
+      "consumed": false,
+      "coinRouteUsed": false
+    },
+    "namedMiniBossGuardians": [
+      "W03-MINIBOSS-01",
+      "W03-MINIBOSS-02"
+    ],
+    "guardianCount": 2,
+    "thirdGuardianModifier": 0,
+    "securedPlanarNexus": "W03-PLANAR-NEXUS-01",
+    "divineEchoEncounter": {
+      "completed": true,
+      "survived": true
+    },
+    "failureStakesDisclosedBeforeStart": [
+      "permanent loss of spellcasting",
+      "cursed melee undead NPC transformation",
+      "hostile faction consequences",
+      "cursed-gear restriction",
+      "no further XP as retired PC"
+    ],
+    "playerOptedInBeforeStart": true,
+    "playerWithdrewConsent": false
+  },
+  "ritualContinuity": {
+    "interval": {
+      "startEventTime": -3599.0,
+      "endEventTime": 1.0,
+      "durationSeconds": 3600.0,
+      "elapsedWorldTime": true
+    },
+    "scheduling": {
+      "scheduledActivity": true,
+      "spellCast": false,
+      "regularAction": false,
+      "turnGranted": false,
+      "actionGranted": false,
+      "reactionGranted": false,
+      "resourceRefresh": false,
+      "worldClockPaused": false,
+      "mageOtherVoluntaryActivity": false,
+      "initiativeActors": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "offInitiativeTestPremiseActors": [
+        "M-W03-400",
+        "W03-PARTICIPANT-01",
+        "W03-PARTICIPANT-02",
+        "W03-MINIBOSS-01",
+        "W03-MINIBOSS-02"
+      ],
+      "noDueInheritedMarkerSuppressed": true,
+      "boundary": "Only inherited initiative actors receive their existing regular markers. Off-initiative ritual actors remain present in world time and receive no turns, actions, reactions, or refreshes."
+    },
+    "interruptions": [
+      "mage incapacitated",
+      "mage leaves or is forced away from secured nexus",
+      "nexus ceases to be secured",
+      "fewer than two named mini-boss guardians remain bound",
+      "selected Soul Coin route loses its qualifying coin",
+      "selected participant route loses two available participants",
+      "player withdraws explicit consent before final roll"
+    ],
+    "otherEventsRule": "Only one enumerated interruption aborts; damage alone does not unless it causes a listed condition; ordinary world effects and clocks continue.",
+    "interruptionOutcome": "Abort before roll; no type change or historical roll-failure consequence; no coin consumption; no partial resume; retry requires full duration and fresh recheck, disclosure, and consent.",
+    "checkpoints": [
+      {
+        "eventTime": -3599.0,
+        "elapsedSinceRitualStartSeconds": 0.0,
+        "remainingSeconds": 3600.0,
+        "clockRunning": true,
+        "mageIdentity": "M-W03-400",
+        "lifeState": "active-alive",
+        "bodyPosition": [
+          0,
+          30,
+          0
+        ],
+        "bodyOrientation": [
+          0,
+          1,
+          0
+        ],
+        "bodyVolumeCubicFeet": 150,
+        "movementSincePreviousCheckpoint": [
+          0,
+          0,
+          0
+        ],
+        "typesBeforeFinalRoll": [
+          "Humanoid"
+        ],
+        "nexusSecured": true,
+        "twoNamedGuardiansBound": true,
+        "twoParticipantsAvailable": true,
+        "bothParticipantsWilling": true,
+        "consentPresent": true,
+        "interruptionConditions": {
+          "mage incapacitated": false,
+          "mage leaves or is forced away from secured nexus": false,
+          "nexus ceases to be secured": false,
+          "fewer than two named mini-boss guardians remain bound": false,
+          "selected Soul Coin route loses its qualifying coin": false,
+          "selected participant route loses two available participants": false,
+          "player withdraws explicit consent before final roll": false
+        },
+        "mageTakesOtherVoluntaryActivity": false,
+        "mageTurnActionReactionOrRefreshGranted": false,
+        "worldEffectsAndClocksPaused": false,
+        "damageEvent": false
+      },
+      {
+        "eventTime": -2699.0,
+        "elapsedSinceRitualStartSeconds": 900.0,
+        "remainingSeconds": 2700.0,
+        "clockRunning": true,
+        "mageIdentity": "M-W03-400",
+        "lifeState": "active-alive",
+        "bodyPosition": [
+          0,
+          30,
+          0
+        ],
+        "bodyOrientation": [
+          0,
+          1,
+          0
+        ],
+        "bodyVolumeCubicFeet": 150,
+        "movementSincePreviousCheckpoint": [
+          0,
+          0,
+          0
+        ],
+        "typesBeforeFinalRoll": [
+          "Humanoid"
+        ],
+        "nexusSecured": true,
+        "twoNamedGuardiansBound": true,
+        "twoParticipantsAvailable": true,
+        "bothParticipantsWilling": true,
+        "consentPresent": true,
+        "interruptionConditions": {
+          "mage incapacitated": false,
+          "mage leaves or is forced away from secured nexus": false,
+          "nexus ceases to be secured": false,
+          "fewer than two named mini-boss guardians remain bound": false,
+          "selected Soul Coin route loses its qualifying coin": false,
+          "selected participant route loses two available participants": false,
+          "player withdraws explicit consent before final roll": false
+        },
+        "mageTakesOtherVoluntaryActivity": false,
+        "mageTurnActionReactionOrRefreshGranted": false,
+        "worldEffectsAndClocksPaused": false,
+        "damageEvent": false
+      },
+      {
+        "eventTime": -1799.0,
+        "elapsedSinceRitualStartSeconds": 1800.0,
+        "remainingSeconds": 1800.0,
+        "clockRunning": true,
+        "mageIdentity": "M-W03-400",
+        "lifeState": "active-alive",
+        "bodyPosition": [
+          0,
+          30,
+          0
+        ],
+        "bodyOrientation": [
+          0,
+          1,
+          0
+        ],
+        "bodyVolumeCubicFeet": 150,
+        "movementSincePreviousCheckpoint": [
+          0,
+          0,
+          0
+        ],
+        "typesBeforeFinalRoll": [
+          "Humanoid"
+        ],
+        "nexusSecured": true,
+        "twoNamedGuardiansBound": true,
+        "twoParticipantsAvailable": true,
+        "bothParticipantsWilling": true,
+        "consentPresent": true,
+        "interruptionConditions": {
+          "mage incapacitated": false,
+          "mage leaves or is forced away from secured nexus": false,
+          "nexus ceases to be secured": false,
+          "fewer than two named mini-boss guardians remain bound": false,
+          "selected Soul Coin route loses its qualifying coin": false,
+          "selected participant route loses two available participants": false,
+          "player withdraws explicit consent before final roll": false
+        },
+        "mageTakesOtherVoluntaryActivity": false,
+        "mageTurnActionReactionOrRefreshGranted": false,
+        "worldEffectsAndClocksPaused": false,
+        "damageEvent": false
+      },
+      {
+        "eventTime": -899.0,
+        "elapsedSinceRitualStartSeconds": 2700.0,
+        "remainingSeconds": 900.0,
+        "clockRunning": true,
+        "mageIdentity": "M-W03-400",
+        "lifeState": "active-alive",
+        "bodyPosition": [
+          0,
+          30,
+          0
+        ],
+        "bodyOrientation": [
+          0,
+          1,
+          0
+        ],
+        "bodyVolumeCubicFeet": 150,
+        "movementSincePreviousCheckpoint": [
+          0,
+          0,
+          0
+        ],
+        "typesBeforeFinalRoll": [
+          "Humanoid"
+        ],
+        "nexusSecured": true,
+        "twoNamedGuardiansBound": true,
+        "twoParticipantsAvailable": true,
+        "bothParticipantsWilling": true,
+        "consentPresent": true,
+        "interruptionConditions": {
+          "mage incapacitated": false,
+          "mage leaves or is forced away from secured nexus": false,
+          "nexus ceases to be secured": false,
+          "fewer than two named mini-boss guardians remain bound": false,
+          "selected Soul Coin route loses its qualifying coin": false,
+          "selected participant route loses two available participants": false,
+          "player withdraws explicit consent before final roll": false
+        },
+        "mageTakesOtherVoluntaryActivity": false,
+        "mageTurnActionReactionOrRefreshGranted": false,
+        "worldEffectsAndClocksPaused": false,
+        "damageEvent": false
+      },
+      {
+        "eventTime": -0.1,
+        "elapsedSinceRitualStartSeconds": 3598.9,
+        "remainingSeconds": 1.1,
+        "clockRunning": true,
+        "mageIdentity": "M-W03-400",
+        "lifeState": "active-alive",
+        "bodyPosition": [
+          0,
+          30,
+          0
+        ],
+        "bodyOrientation": [
+          0,
+          1,
+          0
+        ],
+        "bodyVolumeCubicFeet": 150,
+        "movementSincePreviousCheckpoint": [
+          0,
+          0,
+          0
+        ],
+        "typesBeforeFinalRoll": [
+          "Humanoid"
+        ],
+        "nexusSecured": true,
+        "twoNamedGuardiansBound": true,
+        "twoParticipantsAvailable": true,
+        "bothParticipantsWilling": true,
+        "consentPresent": true,
+        "interruptionConditions": {
+          "mage incapacitated": false,
+          "mage leaves or is forced away from secured nexus": false,
+          "nexus ceases to be secured": false,
+          "fewer than two named mini-boss guardians remain bound": false,
+          "selected Soul Coin route loses its qualifying coin": false,
+          "selected participant route loses two available participants": false,
+          "player withdraws explicit consent before final roll": false
+        },
+        "mageTakesOtherVoluntaryActivity": false,
+        "mageTurnActionReactionOrRefreshGranted": false,
+        "worldEffectsAndClocksPaused": false,
+        "damageEvent": false
+      },
+      {
+        "eventTime": 0.0,
+        "elapsedSinceRitualStartSeconds": 3599.0,
+        "remainingSeconds": 1.0,
+        "clockRunning": true,
+        "mageIdentity": "M-W03-400",
+        "lifeState": "active-alive",
+        "bodyPosition": [
+          0,
+          30,
+          0
+        ],
+        "bodyOrientation": [
+          0,
+          1,
+          0
+        ],
+        "bodyVolumeCubicFeet": 150,
+        "movementSincePreviousCheckpoint": [
+          0,
+          0,
+          0
+        ],
+        "typesBeforeFinalRoll": [
+          "Humanoid"
+        ],
+        "nexusSecured": true,
+        "twoNamedGuardiansBound": true,
+        "twoParticipantsAvailable": true,
+        "bothParticipantsWilling": true,
+        "consentPresent": true,
+        "interruptionConditions": {
+          "mage incapacitated": false,
+          "mage leaves or is forced away from secured nexus": false,
+          "nexus ceases to be secured": false,
+          "fewer than two named mini-boss guardians remain bound": false,
+          "selected Soul Coin route loses its qualifying coin": false,
+          "selected participant route loses two available participants": false,
+          "player withdraws explicit consent before final roll": false
+        },
+        "mageTakesOtherVoluntaryActivity": false,
+        "mageTurnActionReactionOrRefreshGranted": false,
+        "worldEffectsAndClocksPaused": false,
+        "damageEvent": false
+      },
+      {
+        "eventTime": 0.1,
+        "elapsedSinceRitualStartSeconds": 3599.1,
+        "remainingSeconds": 0.9,
+        "clockRunning": true,
+        "mageIdentity": "M-W03-400",
+        "lifeState": "active-alive",
+        "bodyPosition": [
+          0,
+          30,
+          0
+        ],
+        "bodyOrientation": [
+          0,
+          1,
+          0
+        ],
+        "bodyVolumeCubicFeet": 150,
+        "movementSincePreviousCheckpoint": [
+          0,
+          0,
+          0
+        ],
+        "typesBeforeFinalRoll": [
+          "Humanoid"
+        ],
+        "nexusSecured": true,
+        "twoNamedGuardiansBound": true,
+        "twoParticipantsAvailable": true,
+        "bothParticipantsWilling": true,
+        "consentPresent": true,
+        "interruptionConditions": {
+          "mage incapacitated": false,
+          "mage leaves or is forced away from secured nexus": false,
+          "nexus ceases to be secured": false,
+          "fewer than two named mini-boss guardians remain bound": false,
+          "selected Soul Coin route loses its qualifying coin": false,
+          "selected participant route loses two available participants": false,
+          "player withdraws explicit consent before final roll": false
+        },
+        "mageTakesOtherVoluntaryActivity": false,
+        "mageTurnActionReactionOrRefreshGranted": false,
+        "worldEffectsAndClocksPaused": false,
+        "damageEvent": false
+      },
+      {
+        "eventTime": 0.9,
+        "elapsedSinceRitualStartSeconds": 3599.9,
+        "remainingSeconds": 0.1,
+        "clockRunning": true,
+        "mageIdentity": "M-W03-400",
+        "lifeState": "active-alive",
+        "bodyPosition": [
+          0,
+          30,
+          0
+        ],
+        "bodyOrientation": [
+          0,
+          1,
+          0
+        ],
+        "bodyVolumeCubicFeet": 150,
+        "movementSincePreviousCheckpoint": [
+          0,
+          0,
+          0
+        ],
+        "typesBeforeFinalRoll": [
+          "Humanoid"
+        ],
+        "nexusSecured": true,
+        "twoNamedGuardiansBound": true,
+        "twoParticipantsAvailable": true,
+        "bothParticipantsWilling": true,
+        "consentPresent": true,
+        "interruptionConditions": {
+          "mage incapacitated": false,
+          "mage leaves or is forced away from secured nexus": false,
+          "nexus ceases to be secured": false,
+          "fewer than two named mini-boss guardians remain bound": false,
+          "selected Soul Coin route loses its qualifying coin": false,
+          "selected participant route loses two available participants": false,
+          "player withdraws explicit consent before final roll": false
+        },
+        "mageTakesOtherVoluntaryActivity": false,
+        "mageTurnActionReactionOrRefreshGranted": false,
+        "worldEffectsAndClocksPaused": false,
+        "damageEvent": false
+      },
+      {
+        "eventTime": 1.0,
+        "elapsedSinceRitualStartSeconds": 3600.0,
+        "remainingSeconds": 0.0,
+        "clockRunning": true,
+        "mageIdentity": "M-W03-400",
+        "lifeState": "active-alive",
+        "bodyPosition": [
+          0,
+          30,
+          0
+        ],
+        "bodyOrientation": [
+          0,
+          1,
+          0
+        ],
+        "bodyVolumeCubicFeet": 150,
+        "movementSincePreviousCheckpoint": [
+          0,
+          0,
+          0
+        ],
+        "typesBeforeFinalRoll": [
+          "Humanoid"
+        ],
+        "nexusSecured": true,
+        "twoNamedGuardiansBound": true,
+        "twoParticipantsAvailable": true,
+        "bothParticipantsWilling": true,
+        "consentPresent": true,
+        "interruptionConditions": {
+          "mage incapacitated": false,
+          "mage leaves or is forced away from secured nexus": false,
+          "nexus ceases to be secured": false,
+          "fewer than two named mini-boss guardians remain bound": false,
+          "selected Soul Coin route loses its qualifying coin": false,
+          "selected participant route loses two available participants": false,
+          "player withdraws explicit consent before final roll": false
+        },
+        "mageTakesOtherVoluntaryActivity": false,
+        "mageTurnActionReactionOrRefreshGranted": false,
+        "worldEffectsAndClocksPaused": false,
+        "damageEvent": false
+      }
+    ],
+    "keyDueMarkers": [
+      {
+        "eventTime": 0.0,
+        "marker": "inherited A regular start; A is the source-matched Wizard20 creator",
+        "orderedBeforeStanceAndCastCommit": true
+      },
+      {
+        "eventTime": 0.9,
+        "marker": "inherited A regular turn ends",
+        "orderedBeforeFinalRitualOperations": true
+      },
+      {
+        "eventTime": 1.0,
+        "marker": "B regular start",
+        "orderedBeforeFinalRitualOperations": true
+      }
+    ]
+  },
+  "ritualCheck": {
+    "formula": "d20 + INT modifier + CON modifier",
+    "DC": 20,
+    "authoredTestOnlyDice": [
+      11,
+      15
+    ],
+    "advantageFromBothWillingParticipants": true,
+    "keptDie": 15,
+    "intModifier": 4,
+    "conModifier": 2,
+    "thirdGuardianModifier": 0,
+    "total": 21,
+    "result": "success"
+  },
+  "mageStateAndMapping": {
+    "actorId": "M-W03-400",
+    "bodyId": "M-W03-400-BODY-01",
+    "position": [
+      0,
+      30,
+      0
+    ],
+    "orientation": [
+      0,
+      1,
+      0
+    ],
+    "occupiedBodyBoxFeet": [
+      5,
+      5,
+      6
+    ],
+    "occupiedVolumeCubicFeet": 150,
+    "lifeState": "active-alive before and after",
+    "beforeTypes": [
+      "Humanoid"
+    ],
+    "afterTypes": [
+      "Humanoid",
+      "Undead"
+    ],
+    "typeSetSemantics": "Add Undead once, retain Humanoid; no other type removed or rewritten.",
+    "identityBodyPositionOrientationVolumeHPConditionsResourcesEquipmentCargoCustodyPreserved": true,
+    "noDeathCorpseResurrectionReplacementDuplication": true,
+    "noMovementCrossingAdmissionCellTransition": true,
+    "taxonomyPermanentNoAutomaticExpiryOrReversion": true,
+    "noTaxonomyImmunityOrRestOrRecoveryGrant": true,
+    "level10PathCardsChosenExplicitlyAfterSuccess": [
+      "mage.hero.lich.lingering-malice",
+      "mage.hero.lich.resonance-to-flesh"
+    ],
+    "undeadImmunitiesSelected": false,
+    "eliteCompanionOptionsUnlockedButNoneSelectedOrSpawned": true
+  },
+  "gateSetupCast": {
+    "castId": "W03-400-BANISHMENT-GATE-CAST01",
+    "effectId": "W03-400-BANISHMENT-GATE-EFFECT01",
+    "creatorId": "A",
+    "sourceBinding": "inherited Return327 actor A uses the exact sealed W07 Wizard20 profile hash; no added or overlapping Wizard actor and no campaign existence claim",
+    "class": "Wizard",
+    "classLevel": 20,
+    "spellRank": 9,
+    "sourceSchoolOnBoundCatalogRow": "Abjuration",
+    "acquiredAtWizardLevel": 17,
+    "prepared": true,
+    "actionCost": 1,
+    "rpCost": 26,
+    "components": [
+      "V",
+      "S",
+      "F"
+    ],
+    "dissonance": 0,
+    "counterspellDisposition": {
+      "fromEventTime": 0.0,
+      "untilEventTime": 0.1,
+      "eligibleResponders": [
+        "B",
+        "D"
+      ],
+      "potentialRespondersWithUnadjudicatedEligibility": [
+        "A",
+        "C",
+        "M-W03-400",
+        "W03-MINIBOSS-01",
+        "W03-MINIBOSS-02",
+        "W03-PARTICIPANT-01",
+        "W03-PARTICIPANT-02"
+      ],
+      "eligibilityAdjudication": "B and D are source-qualified eligible responders and explicitly decline. A's self-response remains no-attempt with eligibility unadjudicated; no self-counter prohibition is adopted. Other existing no-attempt rows do not claim eligibility or a response.",
+      "dispositions": [
+        {
+          "actorId": "A",
+          "distanceFeet": 0.0,
+          "counterspellRangeFeet": 60,
+          "withinRange": true,
+          "eligibility": "unadjudicated",
+          "disposition": "TEST_ONLY no-attempt; zero response cost; no response authored"
+        },
+        {
+          "actorId": "B",
+          "automaticCardId": "wizard.base.counterspell",
+          "source": "sources/W07_BOUND_ACTOR_PROFILES_351fe708.json#/Wizard20/automaticCards/1",
+          "classMatrixRule": "sources/WIZARD_CLASS_ENGINE_W07.md#L44",
+          "acquired": true,
+          "alwaysPrepared": true,
+          "distanceFeet": 15.811388,
+          "counterspellRangeFeet": 60,
+          "withinRange": true,
+          "perceivesCasting": true,
+          "lineOfSight": true,
+          "lineOfEffect": true,
+          "reactionAvailable": true,
+          "reactionBefore": 1,
+          "currentRP": 80,
+          "costRP": 3,
+          "affordable": true,
+          "rechargeKey": "wizard.base.counterspell",
+          "rechargeCounter": 0,
+          "rechargeReady": true,
+          "componentsAvailable": [
+            "V",
+            "S",
+            "F"
+          ],
+          "focusItemId": "focus-B",
+          "heldFocusHand": "left",
+          "freeSomaticHand": "right",
+          "voiceAvailable": true,
+          "Dissonance": 0,
+          "Refrain": 0,
+          "eligibility": "eligible",
+          "decision": "decline",
+          "disposition": "TEST_ONLY eligible responder explicitly declines",
+          "decisionPremise": "Hypothetical cooperative witness; not a campaign choice",
+          "attempted": false,
+          "roll": null,
+          "RPSpent": 0,
+          "reactionSpent": false,
+          "rechargeChanged": false,
+          "castingHistoryChanged": false,
+          "strainChanged": false
+        },
+        {
+          "actorId": "C",
+          "distanceFeet": 5.0,
+          "counterspellRangeFeet": 60,
+          "withinRange": true,
+          "eligibility": "unadjudicated",
+          "disposition": "TEST_ONLY no-attempt; zero response cost; no response authored"
+        },
+        {
+          "actorId": "D",
+          "automaticCardId": "wizard.base.counterspell",
+          "source": "sources/W07_BOUND_ACTOR_PROFILES_351fe708.json#/Wizard20/automaticCards/1",
+          "classMatrixRule": "sources/WIZARD_CLASS_ENGINE_W07.md#L44",
+          "acquired": true,
+          "alwaysPrepared": true,
+          "distanceFeet": 5.0,
+          "counterspellRangeFeet": 60,
+          "withinRange": true,
+          "perceivesCasting": true,
+          "lineOfSight": true,
+          "lineOfEffect": true,
+          "reactionAvailable": true,
+          "reactionBefore": 1,
+          "currentRP": 80,
+          "costRP": 3,
+          "affordable": true,
+          "rechargeKey": "wizard.base.counterspell",
+          "rechargeCounter": 0,
+          "rechargeReady": true,
+          "componentsAvailable": [
+            "V",
+            "S",
+            "F"
+          ],
+          "focusItemId": "focus-D",
+          "heldFocusHand": "left",
+          "freeSomaticHand": "right",
+          "voiceAvailable": true,
+          "Dissonance": 0,
+          "Refrain": 0,
+          "eligibility": "eligible",
+          "decision": "decline",
+          "disposition": "TEST_ONLY eligible responder explicitly declines",
+          "decisionPremise": "Hypothetical cooperative witness; not a campaign choice",
+          "attempted": false,
+          "roll": null,
+          "RPSpent": 0,
+          "reactionSpent": false,
+          "rechargeChanged": false,
+          "castingHistoryChanged": false,
+          "strainChanged": false
+        },
+        {
+          "actorId": "M-W03-400",
+          "distanceFeet": 30.413813,
+          "counterspellRangeFeet": 60,
+          "withinRange": true,
+          "eligibility": "unadjudicated",
+          "disposition": "TEST_ONLY no-attempt; zero response cost; no response authored"
+        },
+        {
+          "actorId": "W03-MINIBOSS-01",
+          "distanceFeet": 39.051248,
+          "counterspellRangeFeet": 60,
+          "withinRange": true,
+          "eligibility": "unadjudicated",
+          "disposition": "TEST_ONLY no-attempt; zero response cost; no response authored"
+        },
+        {
+          "actorId": "W03-MINIBOSS-02",
+          "distanceFeet": 33.54102,
+          "counterspellRangeFeet": 60,
+          "withinRange": true,
+          "eligibility": "unadjudicated",
+          "disposition": "TEST_ONLY no-attempt; zero response cost; no response authored"
+        },
+        {
+          "actorId": "W03-PARTICIPANT-01",
+          "distanceFeet": 33.54102,
+          "counterspellRangeFeet": 60,
+          "withinRange": true,
+          "eligibility": "unadjudicated",
+          "disposition": "TEST_ONLY no-attempt; zero response cost; no response authored"
+        },
+        {
+          "actorId": "W03-PARTICIPANT-02",
+          "distanceFeet": 30.413813,
+          "counterspellRangeFeet": 60,
+          "withinRange": true,
+          "eligibility": "unadjudicated",
+          "disposition": "TEST_ONLY no-attempt; zero response cost; no response authored"
+        }
+      ],
+      "attempted": false,
+      "responseResourceSpent": false,
+      "decisionOrder": [
+        "B",
+        "D"
+      ],
+      "noResponseCastCreated": true
+    },
+    "selectedType": "Undead",
+    "aperture": {
+      "plane": "x=100",
+      "center": [
+        100,
+        0,
+        7.5
+      ],
+      "widthFeet": 10,
+      "heightFeet": 15,
+      "yBounds": [
+        -5,
+        5
+      ],
+      "zBounds": [
+        0,
+        15
+      ],
+      "fixtureOriginBounds": [
+        -200,
+        200,
+        -200,
+        200,
+        0,
+        100
+      ]
+    },
+    "creatorPosition": [
+      5,
+      0,
+      0
+    ],
+    "creatorBodyBoundsFeet": [
+      [
+        2.5,
+        7.5
+      ],
+      [
+        -2.5,
+        2.5
+      ],
+      [
+        0,
+        6
+      ]
+    ],
+    "creatorBodyEntirelyWithinFixtureOrigin": true,
+    "apertureEntirelyWithinFixtureOrigin": true,
+    "distanceToApertureCenterFeet": 95.295593,
+    "rangeFeet": 120,
+    "clearPerceivedSpace": true,
+    "createdAt": 0.1,
+    "deadline": 600.1,
+    "activeAtFinalTime": true,
+    "finalTime": 1.0,
+    "remainingAtFinalTimeSeconds": 599.1,
+    "creatorStance": {
+      "name": "Guarded",
+      "selectedAt": 0.0,
+      "source": "sources/COMBAT_ACTION_PLAYTEST.md lines 115 and 120",
+      "ACAfterSelection": 13,
+      "speedAfterSelection": 25,
+      "expiresAtNextRegularStart": 6.0
+    },
+    "focusAndHands": {
+      "focusItemId": "focus-A",
+      "itemExistsInInheritedState": true,
+      "custodian": "A",
+      "heldHand": "left",
+      "freeSomaticHand": "right",
+      "voiceAvailable": true
+    },
+    "castingLifecycle": {
+      "pendingCastDuringInterruptWindow": true,
+      "paidAtCommit": true,
+      "pendingCastSettledAtResolution": true,
+      "magicThisTurnSetAtCommit": true,
+      "magicThisTurnResetAtNextRegularStart": 6.0,
+      "spellEfficiencyHook": "wizard.arch.spell-efficiency",
+      "sameFamilyDiscountMarker": {
+        "family": "banishment-gate",
+        "until": 6.9
+      }
+    },
+    "noSourceIdentityReuse": true,
+    "noLiveOrCampaignCast": true,
+    "schoolAccessSourceNote": "The PG9-Q01 Conjuration wording applies to Gate (spellId gate), not Banishment Gate. The bound banishment-gate catalog row at /spells/89/classAccess/Wizard specifies Abjuration; the cast preserves that route. The packet does not alter either source or resolve broader canon precedence."
+  },
+  "gateNonTriggerEvidence": {
+    "mageMovesDuringInterval": false,
+    "mageBodyIntersectsPortal": false,
+    "completeBodyCrossing": false,
+    "touchOnly": false,
+    "stationaryTypeChangeOnly": true,
+    "crossingId": null,
+    "claim": false,
+    "admission": false,
+    "cell": false,
+    "hardDenial": false,
+    "spatialRelation": {
+      "before": {
+        "mageBodyXMax": 2.5,
+        "gatePlaneX": 100,
+        "planeGapFeet": 97.5,
+        "mageBodyYBounds": [
+          27.5,
+          32.5
+        ],
+        "gateOpeningYBounds": [
+          -5,
+          5
+        ],
+        "yClearanceFeet": 22.5
+      },
+      "after": "identical to before"
+    }
+  },
+  "mageLevel10CardSchedule": {
+    "sourceSchedule": {
+      "classLevel": 10,
+      "choose": 2,
+      "bands": [
+        "Hero"
+      ],
+      "minimumActives": 1,
+      "asiOrFeat": false
+    },
+    "explicitSelections": [
+      "mage.hero.lich.lingering-malice",
+      "mage.hero.lich.resonance-to-flesh"
+    ],
+    "eachEligibleAtLevel10": true,
+    "minimumActiveChoiceMet": true,
+    "effectsActivated": false,
+    "undeadImmunitiesCardId": "mage.hero.lich.undead-immunities",
+    "undeadImmunitiesMinimumClassLevel": 16,
+    "undeadImmunitiesSelected": false
+  },
+  "finalDisposition": {
+    "witnessStatus": "OPEN_UNSEALED",
+    "acceptedIds": [],
+    "appliedIds": [],
+    "heldIds": [
+      "banishment-gate"
+    ],
+    "blockerIds": [
+      "PG200-B03",
+      "PG200-B04"
+    ],
+    "closedBlockerIds": [],
+    "applicationAuthorized": false,
+    "queueChanged": false,
+    "queueCounts": {
+      "applied": 828,
+      "pending": 20,
+      "acceptedUnapplied": 0
+    },
+    "canonicalPromotion": false
+  },
+  "sourceAssertions": {
+    "repack03ProposalSha256": "a0d22b2c54958e12e93df890b169e70b578f4f66e055c5fc75f172f64271fac1",
+    "parentInitialSha256": "0c0ce87d9a855a9e91b9837e34468d28cab76294fa8c48878cd519bddd27b55b",
+    "procedureSha256": "39c216e978e1c06da3dbea7fb27a60f8611ce08b36143c403fbca989f155fb00",
+    "wizard20ProfilePointer": "/Wizard20",
+    "wizard20ProfileCanonicalFullPointerSha256": "ebb96b340b94c3c6a98f8005e6fd6d0d6c93b1dc4abd1b584a7528c5cb459223",
+    "wizard20ProfileExcludingOwnHashSha256": "28e6ab554f7f6bbfd839d5bf637826414867f1984f08def1ed410e56cf171aa9",
+    "wizard20SourceFileSha256": "031e83195692df0359c39908dc5cd4673ce573559f233179be90e467e0c1cfbd",
+    "gateCatalogPointer": "/spells/89"
+  },
+  "counterspellRepairScope": "R6 only; no changes to ritual, Gate, source rules or other witness predicates"
+}
