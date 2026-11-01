@@ -14,7 +14,7 @@
       "No witness is sealed, and no spell, queue item, or hold is accepted or applied."
     ]
   },
-  "decision": "POTENTIAL_COMPOSITE_SOURCE_PATH_IDENTIFIED_W01_REMAINS_OPEN",
+  "decision": "DIRECTOR_CONFIRMED_TESTONLY_DAMAGE_SOURCE_ROUTE_W01_WITNESS_OPEN",
   "obligationBinding": {
     "file": "payload/authority/PG328_BLOCKER_REASSESSMENT.json",
     "sha256": "8f50b284846ef373ada5bae610c2a8d584cf695c3922cf9c30f34bb48fc4bd4b",
@@ -58,7 +58,7 @@
       "finding": "Sunder line 136 supplies an object/component target route and delegates to actual durability only for an otherwise lawful attack. It supplies no weapon, attack grant, acquisition, custody, damage profile, or override for creature-only spell targeting."
     },
     {
-      "file": "docs/reference/Player_Rulebook_v6_source_text.txt",
+      "file": "payload/sources/PLAYER_RULEBOOK_V6_SOURCE_TEXT.txt",
       "bytes": 776711,
       "sha256": "a346670f4244efe3641cfb06814819d83ffb8512153858205f0621bd8ab8a04b",
       "lines": [
@@ -68,7 +68,16 @@
         6832
       ],
       "rule": "An improvised weapon includes any object the user can wield in one or two hands; an object with no resemblance to a weapon deals 1d4 damage of a Director-assigned appropriate type.",
-      "finding": "Combined with the explicit Sunder object-target rule, this establishes a plausible attack method if the actor lawfully creates/acquires and can wield the selected object. It does not itself establish Minor Conjuration access at the witness state, object shape/custody, attack roll, or resolution."
+      "finding": "Rulebook v6 permits a wieldable object as an improvised weapon; objects with no resemblance to a weapon use 1d4 with an appropriate Director-assigned damage type. Combined with Sunder, this supplies a targetable damaging method when the object and attack are otherwise lawful. It does not grant proficiency."
+    },
+    {
+      "file": "payload/authority/PG328_HELD_ARCHIVE.zip",
+      "sha256": "47af8e23be318210229f7fd2b360be809b2b7ed5d73b08abcbeaf7a078c3f1f4",
+      "archiveMember": "evidence/current_bound_wizard.json",
+      "archiveMemberSha256": "8ab2f4f43bcbced418fb266e5bd3216cff491b0c442c16f93438bd3556672c8b",
+      "pointer": "/engine/12",
+      "rule": "Wizard cards tagged wizard-spell are always-prepared class matrices once acquired, do not consume a daily prepared-matrix position, and use their printed RP cost.",
+      "finding": "Confirms profile always-prepared status for the acquired Minor Conjuration class matrix; no ordinary prepared-list slot is required."
     }
   ],
   "actorProfileScreen": {
@@ -126,23 +135,36 @@
     },
     "candidateCardsArchiveMember": "evidence/current_bound_wizard.json",
     "candidateCardsMemberSha256": "8ab2f4f43bcbced418fb266e5bd3216cff491b0c442c16f93438bd3556672c8b",
-    "candidateCardPointer": "/cards/5"
+    "candidateCardPointer": "/cards/5",
+    "engineAccessBinding": {
+      "archiveMember": "evidence/current_bound_wizard.json",
+      "memberSha256": "8ab2f4f43bcbced418fb266e5bd3216cff491b0c442c16f93438bd3556672c8b",
+      "pointer": "/engine/12",
+      "profileAlwaysPreparedPointer": "/alwaysPrepared/1",
+      "profileAcquisitionPointers": [
+        "/acquisitionLedger/0/choices/1",
+        "/allAcquiredClassCapabilities/1"
+      ],
+      "profileFortressAccessPointer": "/prepared"
+    }
   },
   "candidateAssessment": [
     {
       "candidate": "wizard.base.minor-conjuration + wieldable improvised object + Sunder",
-      "profileBasis": "The profile lists wizard.base.minor-conjuration at /acquisitionLedger/0/choices/1 and /allAcquiredClassCapabilities/1, and explicitly includes it in /alwaysPrepared. It is absent from the separate ordinary /prepared list, but the profile’s alwaysPrepared field establishes its availability in that profile snapshot. The bound card is current_bound_wizard.json#/cards/6.",
+      "profileBasis": "The profile lists wizard.base.minor-conjuration at /acquisitionLedger/0/choices/1 and /allAcquiredClassCapabilities/1, and /alwaysPrepared/1. The bound Wizard engine /engine/12 states acquired wizard-spell class matrices are always prepared and do not consume ordinary preparation slots. The conditional profile also lists conjure-demiplane-fortress in /prepared. Bound card: current_bound_wizard.json#/cards/6.",
       "sourceAndPotentialRoute": {
         "minorConjuration": "Action, 1 RP; create one nonmagical unattended object in one unoccupied space within 10 feet, fitting in a 1-foot cube and weighing no more than 10 pounds, from common nonvaluable material; lasts 1 hour; no functional complex mechanism.",
         "improvisedWeapon": "The bound Player_Rulebook_v6_source_text.txt lines 6826-6832 allow any object the user can wield to be an improvised weapon; a nonweaponlike object deals 1d4 of a Director-assigned appropriate type.",
         "sunder": "COMBAT_ACTION_PLAYTEST.md line 136 supplies an object/component target and delegates to actual durability only for an otherwise lawful attack; it does not itself provide the attack, weapon, or damage profile."
       },
-      "result": "POTENTIAL_COMPOSITE_ROUTE; DIRECTOR SOURCE-CONSISTENCY REVIEW NEEDED",
-      "unresolved": "The profile supports acquisition and always-prepared availability for Minor Conjuration. The source-consistent conditional actor still needs lawful access to the rank-9 Fortress procedure at the TEST_ONLY witness state. No exact object creation/handling, Attack/Sunder resolution, reach, damage type, or paid witness timeline is recorded.",
+      "result": "DIRECTOR-CONFIRMED LAWFUL DAMAGING-SOURCE ROUTE FOR TEST_ONLY; W01 WITNESS OPEN",
+      "unresolved": "The source route and conditional acquisition/preparation are supported. The actual witness must still specify the object identity/material/dimensions/weight/wieldability; lawful creation and pickup/custody; current actor resources, conditions, hands/focus and casting histories; paid actions/RP, components and expiry/replacement timing; reach/geometry, weapon-attack modifiers and proficiency treatment; appropriate damage type and attack/damage inputs; and the Q23 panel/support/navigation consequences.",
       "profilePointerForAcquisitionLedger": "/acquisitionLedger/0/choices/1",
       "profilePointerForAllAcquiredCapabilities": "/allAcquiredClassCapabilities/1",
       "candidateCardPointer": "/cards/6",
-      "alwaysPreparedPointer": "/alwaysPrepared"
+      "alwaysPreparedPointer": "/alwaysPrepared/1",
+      "wizardEnginePointer": "/engine/12",
+      "fortressPreparedPointer": "/prepared"
     },
     {
       "candidate": "wizard.base.arcane-bolt",
@@ -182,17 +204,18 @@
     {
       "candidate": "Ordinary weapon or improvised-object attack",
       "profileBasis": "The source action rule requires attacks legally granted by class and weapon; profile equipment says weapon none; PG9-Q23 says no free weapon authorization.",
-      "result": "UNRESOLVED",
-      "reason": "The profile lists no actual weapon. Minor Conjuration plus the improvised-weapon rule is separately screened as a potential route, but its cast availability and witness-state attack predicates remain unresolved."
+      "result": "NO SEPARATE PHYSICAL WEAPON ESTABLISHED; CONJURED-OBJECT ROUTE CONFIRMED SEPARATELY",
+      "reason": "The profile lists no physical weapon. The separate Minor Conjuration plus wieldable improvised-object plus Sunder route is Director-confirmed for a TEST_ONLY damaging-source route; the concrete object and attack remain unproved."
     }
   ],
   "preflightFinding": {
-    "summary": "A potentially compatible composite route is identified in the bound material: the conditional Wizard profile lists Minor Conjuration as acquired and always-prepared; the spell can create a small nonmagical object; Rulebook v6 permits a wieldable object as an improvised weapon; and Sunder supplies object targeting for an otherwise lawful attack using actual durability. This route appears available at the profile snapshot, but no qualifying source/access pair is confirmed for a TEST_ONLY W01 witness until the Director confirms rank-9 Fortress access and the exact attack sequence. Campaign occurrence is not required. W01 remains open.",
+    "summary": "The Director confirms the conditional profile’s acquired, always-prepared Minor Conjuration plus a wieldable improvised object and Sunder can satisfy W01’s lawful damaging-source requirement for a TEST_ONLY review. Campaign occurrence and an ordinary prepared-slot entry are not required. W01 remains open because no concrete object, paid attack event, structural witness, or panel/support/navigation resolution has been constructed.",
     "remainingPredicates": [
-      "Director ruling whether this source-consistent conditional Wizard20 profile establishes lawful access to the rank-9 Fortress procedure for a TEST_ONLY witness; campaign occurrence is not required.",
-      "Exact selected object material, dimensions, shape and wieldability; paid Minor Conjuration Action/1-RP event, lawful handling/custody and one-hour expiry timeline.",
-      "Otherwise lawful Attack/Sunder basis, applicable proficiency/reach/attack modifiers, appropriate damage type/profile, and resolution against Q23 AC17/HP60.",
-      "Separately required named panel/support/navigation graph and dependent effects."
+      "Preserve the historical parent; identify the conditional actor and bind current resources, conditions, hands/focus and casting histories.",
+      "Specify one permitted object’s identity, material, dimensions, weight and wieldability. Record lawful creation in an unoccupied space within 10 feet, components, Action, applicable RP/strain and interrupt decisions.",
+      "Record pickup/custody, hand availability and the subsequent paid attack opportunity. Preserve the object’s expiry and replacement-dismissal rules.",
+      "Bind reach, geometry, ordinary weapon-attack modifiers, proficiency treatment, damage type and actual attack/damage inputs. Do not substitute the Wizard spell-attack bonus or grant proficiency without a source.",
+      "Resolve damage against the named Q23 target, with the required panel/support/navigation graph and dependent consequences; supply deterministic forward/inverse evidence."
     ]
   },
   "immutableParentBinding": {
@@ -214,19 +237,20 @@
       "acceptedUnapplied": 0
     }
   },
-  "nextAction": "Director review of the profile-backed always-prepared Minor Conjuration plus wieldable improvised-object plus Sunder route. Please rule on source-consistent TEST_ONLY rank-9 Fortress access and identify any remaining exact attack predicates. No attack, witness, or seal is constructed from this preflight.",
+  "nextAction": "No witness is constructed by this preflight. Await explicit witness-construction authorization; if authorized, build only the TEST_ONLY W01 branch using the five minimum predicates and obtain Director review before any seal or application.",
   "bindingBase": "docs/audit/2026-10-08/full-game/director-spell-review-129/conjure_demiplane_fortress_closure_intake_367/",
   "directorReviewOfPriorVersion": {
-    "reviewedCommit": "a2b5e42e",
-    "reviewedBytes": 9163,
-    "reviewedSha256": "fc05c48e647c43489a22ff9abb34adbfcf0f37827b9b5f409f63fcad3a09cd73",
+    "reviewedCommit": "97cd1060",
+    "reviewedBytes": 12141,
+    "reviewedSha256": "b99c8d4126e7c7a44049229da75887e6837f81194264e338eaa738a87aee3958",
+    "decision": "Composite route can satisfy W01 lawful damaging-source requirement; W01 remains OPEN; witnessConstructionAuthorized=false.",
     "correctionsApplied": [
-      "Removed campaign occurrence as a TEST_ONLY prerequisite; retained source-consistent conditional actor and lawful rank-9 Fortress access.",
-      "Bound all payload-relative source paths explicitly to the Intake367 directory.",
-      "Separated Wizard Dispel Magic class-card access from the ordinary dispel-magic spellbook identity.",
-      "Clarified that Sunder supplies object targeting only for an otherwise lawful attack."
+      "Added the profile /alwaysPrepared pointer and Wizard engine /engine/12 binding; removed the false preparation-gap claim.",
+      "Removed campaign occurrence/runtime access as TEST_ONLY prerequisites; bound conditional actor Fortress spell access using /prepared.",
+      "Bound the byte-identical Rulebook v6 source from Intake367 payload/sources/PLAYER_RULEBOOK_V6_SOURCE_TEXT.txt.",
+      "Recorded improvised damage as 1d4 with a Director-assigned appropriate type and no automatic proficiency.",
+      "Recorded that Sunder provides object targeting only for an otherwise lawful attack."
     ],
-    "additionalCandidateAdded": "Minor Conjuration plus a wieldable improvised object and Sunder, retained as an unproven potential route for Director review.",
-    "additionalProfileFact": "The profile /alwaysPrepared list includes wizard.base.minor-conjuration; its absence from /prepared is not itself a preparation gap at the profile snapshot."
+    "sourceRouteRuling": "Minor Conjuration + wieldable improvised object + Sunder is supported as the TEST_ONLY damaging-source route. No attack, structural witness, seal, adoption, or application was authorized."
   }
 }
