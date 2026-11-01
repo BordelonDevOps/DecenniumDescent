@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "PG328-W09-DIRECTOR-CORRECTION-426-C01-RECORD",
+  "classification": "DIRECTOR_REVIEW_READBACK_FOR_TESTONLY_PROPOSAL",
+  "source": "GPT Director review in Calibration Review Part 6, read 2026-11-01",
+  "findingId": "W09-426-C01",
+  "affectedProposalPointers": [
+    "/proposedOwnerAdoption/exactTerms/1",
+    "/proposedOwnerAdoption/exactTerms/4"
+  ],
+  "affectedPreflightPointer": "/route/sourceStaticSweptCollisionResults",
+  "finding": "Inherited tile bounds [25,26]×[5,6]×[0,0.25] differ from the Geometry405 route certificate carry bounds [2,3]×[1,2]×[3,3.25]. Geometry405 grants no actual repositioning. Retaining inherited bounds causes tile penetration on route segments beginning [55,55,0]→[45,55,0], including keep-room-west-0-north-45-0; the route certificate cannot silently substitute a new carry offset.",
+  "requiredExactClause": "After A’s regular START at18.0 and before movement, at18.01 A spends the turn’s one ordinary free object interaction to reposition the same right-held clay tile. Preserve the exact inherited bounds until this event. First translate the tile horizontally to [27,28]×[7,8]×[0,0.25], then raise it to [27,28]×[7,8]×[3,3.25]. These are ordered submotions of one interaction, not additional turns or movement grants. Thereafter use Geometry405’s relative carry bounds [2,3]×[1,2]×[3,3.25] through travel and falling. Each attack moves it to the stated strike bounds and returns it to this carry pose. Preserve identity, right-hand custody, dimensions, mass, Load, original expiry and all other resources. Record the interaction expenditure and reversible bounds transition; inverse traversal restores the exact parent.",
+  "readback": "Both JSON hashes matched; the 100-foot route, 12 attack times, 18-part disconnection and 108.9 fall marker matched. No other correction was identified; no new creature, structural rule or campaign premise was needed. No witness, seal, spell acceptance/application, or Queue404 change was authorized. GPT could not confirm the compressed ZIP CRC because GitHub returned an LFS pointer, so the corrected package will be locally rebuilt and verified.",
+  "priorHashesNotAdoptable": {
+    "proposal": "fcc1abac7c3c420e01465af3d0e8b5726146eda84633be27341d10cc2bc13e9b",
+    "preflight": "fbe2982e841bf862d73017f4aabeb8ac71de678fc6090d57f91353fa07c85efa"
+  },
+  "correctedHashesMustBeReadBack": true,
+  "witnessConstructed": false,
+  "sealed": false,
+  "acceptedIds": [],
+  "appliedIds": [],
+  "queue404": "829 reviewed/applied; 19 pending; 0 accepted-unapplied; unchanged"
+}

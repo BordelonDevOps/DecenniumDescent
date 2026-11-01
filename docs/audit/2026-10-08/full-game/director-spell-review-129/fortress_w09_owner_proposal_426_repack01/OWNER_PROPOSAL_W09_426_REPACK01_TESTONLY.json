@@ -1,0 +1,217 @@
+{
+  "schemaVersion": 1,
+  "id": "OWNER-PG328-W09-SUPPORT-426-REPACK01-TESTONLY-PROPOSAL",
+  "classification": "OWNER_ADOPTION_PROPOSAL_TEST_ONLY_NOT_ADOPTED",
+  "status": "PROPOSED_NOT_ADOPTED_PENDING_DIRECTOR_READBACK",
+  "recordedLocalDate": "2026-11-01",
+  "scope": {
+    "identity": "conjure-demiplane-fortress",
+    "identityHold": "PG200-B06",
+    "witnessId": "PG328-W09",
+    "branchId": "PG328-W09-R1",
+    "onlyThisWitness": true,
+    "sourceSnapshotCommit": "b39f9b7c073202f62541adcc92638ff919a16a43",
+    "parent": {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w01_structural_damage_witness_403_repack02/W01_REPLAY_403.json",
+      "replayId": "PG328-W01-DAMAGE-SUBWITNESS-403",
+      "terminalStateId": "S030",
+      "terminalStateSha256": "6270321d6f07a55173f01fb353142d6bfb537d8e044cd313ef8fdd956baeff6c",
+      "terminalTime": 12.9
+    }
+  },
+  "sourceDerivedStartingState": {
+    "A": {
+      "position": [
+        25,
+        6,
+        0
+      ],
+      "bodyFeet": [
+        5,
+        5,
+        6
+      ],
+      "hp": 122,
+      "rp": 53,
+      "carriedLoad": 1.4,
+      "carriedWeightLb": 14,
+      "equipmentIds": [
+        "focus-A",
+        "pack-A",
+        "cargo-A",
+        "PG328-W01-403:CLAY-TILE-1"
+      ],
+      "regularSchedule": {
+        "nextStart": 18.0,
+        "period": 6,
+        "endOffset": 0.9,
+        "speed": 30
+      }
+    },
+    "tile": {
+      "id": "PG328-W01-403:CLAY-TILE-1",
+      "custodian": "A",
+      "heldBy": "A:right",
+      "dimensionsFeet": [
+        1,
+        1,
+        0.25
+      ],
+      "expiresAtEventTime": 3606.13,
+      "consumed": false,
+      "sourceBoundsFeet": [
+        25,
+        26,
+        5,
+        6,
+        0,
+        0.25
+      ]
+    },
+    "historicalSouthPanelHp": 55,
+    "queue404": {
+      "reviewedApplied": 829,
+      "pending": 19,
+      "acceptedUnapplied": 0,
+      "nextIdentity": "conjure-demiplane-fortress",
+      "nextBlockerIds": [
+        "PG200-B06"
+      ]
+    }
+  },
+  "sourceDerivedW09Target": {
+    "panelId": "keep-west-60-0",
+    "boundsFeet": [
+      40,
+      45,
+      60,
+      65,
+      0,
+      5
+    ],
+    "ac": 17,
+    "hp": 60,
+    "status": "Existing Geometry405 branch panel; destructive attack and consequences have not been executed."
+  },
+  "sourceDerivedSupportResult": {
+    "supportRoot": "origin-ground-face",
+    "supportPredicate": "A surviving structural part is supported iff a path of surviving structural parts and adopted joints reaches origin-ground-face; one path suffices.",
+    "sourceStructuralJoints": 4851,
+    "afterRemovingTarget": {
+      "unreachableIds": [
+        "keep-riser-0-10",
+        "keep-riser-0-2",
+        "keep-riser-0-3",
+        "keep-riser-0-4",
+        "keep-riser-0-5",
+        "keep-riser-0-6",
+        "keep-riser-0-7",
+        "keep-riser-0-8",
+        "keep-riser-0-9",
+        "keep-tread-0-10",
+        "keep-tread-0-2",
+        "keep-tread-0-3",
+        "keep-tread-0-4",
+        "keep-tread-0-5",
+        "keep-tread-0-6",
+        "keep-tread-0-7",
+        "keep-tread-0-8",
+        "keep-tread-0-9",
+        "keep-west-60-0"
+      ],
+      "unreachableCountIncludingTarget": 19,
+      "dependentStairPartIds": [
+        "keep-riser-0-10",
+        "keep-riser-0-2",
+        "keep-riser-0-3",
+        "keep-riser-0-4",
+        "keep-riser-0-5",
+        "keep-riser-0-6",
+        "keep-riser-0-7",
+        "keep-riser-0-8",
+        "keep-riser-0-9",
+        "keep-tread-0-10",
+        "keep-tread-0-2",
+        "keep-tread-0-3",
+        "keep-tread-0-4",
+        "keep-tread-0-5",
+        "keep-tread-0-6",
+        "keep-tread-0-7",
+        "keep-tread-0-8",
+        "keep-tread-0-9"
+      ],
+      "dependentStairPartCount": 18,
+      "allOtherSurvivingStructuralNodesRemainRooted": true
+    },
+    "actorBottomContactAtProposedPose": {
+      "pose": [
+        45,
+        59.5,
+        4.5
+      ],
+      "bodyBoundsFeet": [
+        45,
+        50,
+        59.5,
+        64.5,
+        4.5,
+        10.5
+      ],
+      "contactParts": [
+        {
+          "partId": "keep-tread-0-9",
+          "fragment": [
+            45,
+            50,
+            64.0,
+            64.5,
+            4.25,
+            4.5
+          ],
+          "contactAreaSquareFeet": 2.5
+        },
+        {
+          "partId": "keep-riser-0-9",
+          "fragment": [
+            45,
+            50,
+            64.0,
+            64.125,
+            4.0,
+            4.5
+          ],
+          "contactAreaSquareFeet": 0.625
+        }
+      ],
+      "verticalWallContactDoesNotCountAsFooting": "Requires the additional owner-adopted TEST_ONLY body-support predicate below."
+    }
+  },
+  "proposedOwnerAdoption": {
+    "termsAreNewTestOnlyPremises": true,
+    "exactTerms": [
+      "Create only a separate hypothetical PG328-W09-R1 successor branch by copying W01-403 terminal S030 at t=12.9 exactly. Keep every historical parent byte, W01/other witness branch, prior seal, the W01 south panel at 55 HP, all actor resources, the Fortress object, item custody and tile expiry unchanged at branch start.",
+      "Use only Geometry405, SupportOverlay425 and OwnerAdoption424 within their stated W01/test-only scope. The branch may move A along the exact source-bound axis-aligned clear route from [25,6,0] through [25,11,0], [25,10,0], [55,10,0], [55,35,0], [55,45,0], [55,55,0], [45,55,0], and the keep-flight-0 positions through [45,59.5,4.5]. Reverse traversal of the verified 403-A-movement segment is an explicit branch premise.\n\nAfter A’s regular START at18.0 and before movement, at18.01 A spends the turn’s one ordinary free object interaction to reposition the same right-held clay tile. Preserve the exact inherited bounds until this event. First translate the tile horizontally to [27,28]×[7,8]×[0,0.25], then raise it to [27,28]×[7,8]×[3,3.25]. These are ordered submotions of one interaction, not additional turns or movement grants. Thereafter use Geometry405’s relative carry bounds [2,3]×[1,2]×[3,3.25] through travel and falling. Each attack moves it to the stated strike bounds and returns it to this carry pose. Preserve identity, right-hand custody, dimensions, mass, Load, original expiry and all other resources. Record the interaction expenditure and reversible bounds transition; inverse traversal restores the exact parent.",
+      "For this branch only, count the absolute displacement of each axis-aligned route segment, including its vertical coordinate, as movement cost. The exact route totals 100 feet: 6 + 55 + 10 + 20 + 9. A spends ordinary 30-foot movement at regular starts t=18,24,30,36; it uses no Dash, receives no extra movement, and reaches the attack pose after 30+30+30+10 feet. Static clearance is not a claim that traversal already occurred.",
+      "At the attack pose A occupies [45,50]Ã—[59.5,64.5]Ã—[4.5,10.5]. For this W09 branch only, a creature is supported by a structural surface only through positive-area upward-facing bottom contact: its foot plane must equal the contacted structural part top and horizontal footprints must overlap. Side contact with a wall, including keep-west-60-5, cannot support a creature. At this pose Aâ€™s only bottom-contact supports are keep-tread-0-9 and keep-riser-0-9; both are supported before the target damage and both lose their rooted path when the named target is destroyed.",
+      "For each ordinary Attack/Sunder, A may wield the same 1Ã—1Ã—0.25-foot clay tile while it stays held in A:right. The branch-specific strike contact pose is [45,46]Ã—[60,61]Ã—[4.75,5.0]: the tile touches the targetâ€™s east face at x=45 over 1Ã—0.25 square feet, with no positive-volume penetration. The swing is part of the ordinary Attack Action; it costs no separate movement or Action, consumes no tile, creates no new tile, and returns to the corrected Geometry405 carry pose defined in exactTerms/1 after the attack. This exact contact pose is a TEST_ONLY choice, not inherited geometry or a general reach rule.",
+      "After movement, A makes exactly 12 ordinary Attack/Sunder Actions against keep-west-60-0, one on each regular A turn beginning at t=36.1 and then every six seconds through t=102.1. For each hit the TEST_ONLY roll inputs are d20=16, STR modifier +1, proficiency +0, total 17 against AC17; damage d4=4 plus STR +1 for 5 bludgeoning. Each attack consumes Aâ€™s one ordinary Action and 0 RP; no additional spell is cast, no other Action or Bonus Action is invented, and the clay tile is not consumed. These are stipulated witness inputs, not actual rolls.",
+      "Process every actual regular initiative start/end marker for A, B, C and D from t=12.9 through the W09 fall marker. Aâ€™s travel and attacks are the only authored choices; B/C/D take no rescue, movement, attack, spell, reaction, rest, recovery or clock-reset action. No actor receives an extra turn or resource refresh beyond the source schedule.",
+      "On the twelfth hit, set only keep-west-60-0 to 0 HP and apply the source Q27 structural-collapse consequence: destroy only the 18 disconnected treads/risers enumerated in the preflight; retain origin-ground-face, the keep entrance, all other rooted parts, the Fortress itself and the historical W01 south panel. This is structural collapse only and does not invoke whole-source evacuation or termination.",
+      "A loses bottom support immediately when the dependent treads/risers are destroyed and enters the existing Falling procedure. No flight, hold, rescue, or other support effect intervenes. Begin descent at the end of Aâ€™s next regular slot in the following round, after processing all regular markers through that time. Hold x/y fixed. The first actual supporting surface is keep-tread-0-1 at z=0.5 feet (with the co-level riser edge); A lands at feet z=0.5 after 4.0 feet of uncontrolled descent. Under the bound Falling procedure, this is less than 20 feet and causes 0 damage and no damage-triggered Prone state."
+    ]
+  },
+  "explicitNonEffects": [
+    "No parent, W01 replay, fixture, Geometry405, SupportOverlay425, canon, or historical state mutation.",
+    "No Fortress acceptance/application, PG200-B06 closure, spell queue change, identity acceptance, or application.",
+    "No W09 seal or final Director pass is presumed by proposal adoption.",
+    "No whole-source dispel, termination, evacuation, or permanent structural change is inferred.",
+    "No changes to any other Fortress witness or the 19-item pending spell queue."
+  ],
+  "requestedOwnerAction": "After Director readback of the corrected package, adopt or reject these exact PG328-W09-R1 TEST_ONLY premises by the corrected proposal SHA-256. Adoption permits only construction of the stated hypothetical evidence branch.",
+  "revisionOf": {
+    "priorProposalPath": "docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w09_owner_proposal_426/OWNER_PROPOSAL_W09_426_TESTONLY.json",
+    "priorProposalSha256": "fcc1abac7c3c420e01465af3d0e8b5726146eda84633be27341d10cc2bc13e9b",
+    "priorPreflightSha256": "fbe2982e841bf862d73017f4aabeb8ac71de678fc6090d57f91353fa07c85efa",
+    "directorFindingId": "W09-426-C01"
+  }
+}
