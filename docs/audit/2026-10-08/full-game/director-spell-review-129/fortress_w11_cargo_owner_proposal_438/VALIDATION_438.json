@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 1,
+  "id": "PG328-W11-VALIDATION-438",
+  "classification": "PROPOSED_TEST_ONLY_VALIDATION",
+  "status": "PASS_PENDING_INTEGRITY_CONFIRMATION",
+  "proposalSha256": "44c150647453fb762aec288fc83ce2afe0a77c160ca810682919d320078ae3de",
+  "traceSha256": "654588e539c4b966e8ebde0142a057e24d6b3d41f7863f6e1c94fdf0e1d54509",
+  "checks": [
+    {
+      "name": "A18 tile set-down order",
+      "status": "PASS",
+      "evidence": "Tile free-interaction is explicitly first, at unchanged held bounds; the 10ft move follows within turn18.0."
+    },
+    {
+      "name": "B19 gateway route",
+      "status": "PASS",
+      "evidence": "Inherited corrected route remains 30ft after proposed one-Action cargo-B lift; Geometry405 panels, stair solids and leaves were checked in435."
+    },
+    {
+      "name": "B cargo-B classification, hands and capacity",
+      "status": "PASS",
+      "evidence": "Proposed Extraction Class0; B has right cargo-B and inherited left focus-B; bound STR12 capacity is180lb/12 Load; body+equipment162lb and Load1.2 fit."
+    },
+    {
+      "name": "A24 glyph route",
+      "status": "PASS",
+      "evidence": "Inherited corrected route ends at courtyard glyph[25,25]; source geometry check retained from435."
+    },
+    {
+      "name": "Mage28 approach and crossing",
+      "status": "PASS",
+      "evidence": "Approach5 + passage5 + interior20 =30ft; actual exterior crossing pose is[10,0], distinct from starting pose[10,-5]."
+    },
+    {
+      "name": "A30 lift route",
+      "status": "PASS",
+      "evidence": "Inherited 24ft lift route and timed geometry checks retained from435."
+    },
+    {
+      "name": "A36 revised attach approach",
+      "status": "PASS",
+      "evidence": "A moves3ft to[33,6]; actor body ends x=38. Attachment bounds start x=39; Geometry405 sweep is clear."
+    },
+    {
+      "name": "A42 revised Sight/Dispel route",
+      "status": "PASS",
+      "evidence": "Route[33,6]->[30,6]->[30,10]->[25,10] is12ft; Geometry405 sweep is clear."
+    },
+    {
+      "name": "edited Geometry405 movement sweeps",
+      "status": "PASS",
+      "evidence": "Checked A36 and A42 full 5x5x6 body sweeps against 2694 panel/door-leaf occupied fragments; strict positive-volume overlap only."
+    },
+    {
+      "name": "summon range",
+      "status": "PASS",
+      "evidence": "Center range is sqrt(421)=20.518284529ft (20.518284529ft), with the source Geometry405 ray checks retained."
+    },
+    {
+      "name": "Counterspell S-component hand states",
+      "status": "PASS",
+      "evidence": "A and B make no Counterspell attempt at summon; B makes no attempt at Sight/Dispel. Their recorded hands do not establish a free S hand; no RP, reaction or recharge is spent."
+    },
+    {
+      "name": "Sight/Dispel timing and resource record",
+      "status": "PASS",
+      "evidence": "Wizard Sight and Dispel remain separate first-family casts, RP53->51->48, distinct Recharge and Efficiency deadlines102.9/108.9."
+    },
+    {
+      "name": "D, caster and C responder boundaries",
+      "status": "PASS",
+      "evidence": "D and caster have no attempt and no positive eligibility claim; C has no source-bound Counterspell. Mage retains proposed declines at later windows."
+    },
+    {
+      "name": "Mage and Wizard cadence",
+      "status": "PASS",
+      "evidence": "Mage cast34.1 is Dissonance0->1; magicThisTurn remains true to34.9; Mage START40 resets it and idle END40.9 vents1->0. A Wizard distinct first families remain0->0."
+    },
+    {
+      "name": "pet phases and expiry",
+      "status": "PASS",
+      "evidence": "Pet defensive Dodge phases34.9..88.9 and expiry94.3 with no94.9 phase are unchanged."
+    },
+    {
+      "name": "Q27 body return placements",
+      "status": "PASS",
+      "evidence": "Mage actual exterior-entry anchor is[10,0]; offset[5,0] returns Mage at[15,0], bounds x[15,20],y[0,5]."
+    },
+    {
+      "name": "Q27 loose-item projections",
+      "status": "PASS",
+      "evidence": "Current tile and cargo bounds are projected by[0,-10,0] at closure; stable ID order preserved."
+    },
+    {
+      "name": "Q27 support and collision premises",
+      "status": "PASS",
+      "evidence": "Existing branch-only support/load and non-overlap checks retained; A post-transfer position corrected to[33,6]."
+    },
+    {
+      "name": "Geometry405 source arrays",
+      "status": "PASS",
+      "evidence": "Source binding remains array pointers /openings/0, /regions/0, /panels, /doorLeaves and /stairFlights."
+    },
+    {
+      "name": "decision boundary",
+      "status": "PASS",
+      "evidence": "Proposal remains unadopted; no witness, seal, Fortress acceptance/application, canon change or queue mutation."
+    },
+    {
+      "name": "GPT B-profile source pointer erratum",
+      "status": "PASS",
+      "evidence": "Trace pointer resolves at W01_REPLAY_403.json#/stateSnapshots/S030/actors/B/profileSHA256 to unchanged profile SHA-256 ebb96b340b94c3c6a98f8005e6fd6d0d6c93b1dc4abd1b584a7528c5cb459223; parent has no root /actors member."
+    }
+  ],
+  "result": {
+    "passed": 21,
+    "failed": 0,
+    "directorFinalReviewRequired": true,
+    "ownerAdoptionRecorded": false,
+    "witnessConstructionAuthorized": false,
+    "sealPresent": false,
+    "spellAcceptanceOrApplication": false,
+    "integrityErratumOnly": true,
+    "substantiveDirectorReviewRepeated": false
+  },
+  "geometryTestMethod": "Axis-aligned full-body 5x5x6 sweeps with strict positive-volume overlap against all Geometry405 panels[].occupiedFragments and doorLeaves[].occupiedFragments; ray/range evidence independently recomputed for summon center range.",
+  "limitations": [
+    "This packet is a proposal and corrected evidence record only; owner adoption for W11 has not occurred.",
+    "Extraction Class0, branch poses/support, boundary contact, cargo clamp, nonhostility and the exact no-damage three-foot fall remain proposed TEST_ONLY premises.",
+    "No free S hand is established for A or B in the summon response, or B in Sight/Dispel response; no attempt is recorded.",
+    "D cross-portal and caster self-counter eligibility remain unadjudicated with no attempt.",
+    "No W11 witness, seal, Fortress acceptance/application, canon change or queue mutation occurred."
+  ]
+}

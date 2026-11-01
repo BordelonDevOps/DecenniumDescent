@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "id": "PG328-W04-BUILD-VALIDATION-440",
+  "classification": "OWNER_ADOPTED_TEST_ONLY_BRANCH_VALIDATION",
+  "status": "PASS_PENDING_DIRECTOR_REVIEW",
+  "adoptionProposalSha256": "c80c91547ee4a07c687c0ba346ce0bcde861d3dda84a0389d12aeb48b7588d41",
+  "adoptionRecordSha256": "6c6ddfd3770fb1358af1917338db19e2b8f4047c55e46e7a455540431577b422",
+  "parentStateSha256": "6270321d6f07a55173f01fb353142d6bfb537d8e044cd313ef8fdd956baeff6c",
+  "supersededReplaySha256": "7b39039c82f06b79e4f9a844983b2dd8214a009df29b03a5184b484d3716cdfb",
+  "replaySha256": "b4e85f014f52ea8af95dd714c37973834e0a77d0ba0b4be760697be6cce943e5",
+  "checks": [
+    {
+      "name": "exact owner adoption preserved",
+      "status": "PASS",
+      "evidence": "Proposal430 exact SHA and owner adoption436 record are unchanged."
+    },
+    {
+      "name": "parent S030 digest preserved",
+      "status": "PASS",
+      "evidence": "Replay starts from unchanged W01-403 S030 terminal digest."
+    },
+    {
+      "name": "forward transition coverage",
+      "status": "PASS",
+      "evidence": "104 reversible transition records include all44 regular STARTs, all43 ENDs through78.0, and all authored events."
+    },
+    {
+      "name": "inverse restoration",
+      "status": "PASS",
+      "evidence": "Reversing all 104 inverse patches restores the initial S030 projection digest a67c5fefd6141b4e980418ff2e14efb29f75d4ef33cd48e78b76d7a5bd0b172e exactly."
+    },
+    {
+      "name": "clock and schedule updates",
+      "status": "PASS",
+      "evidence": "Each marker updates elapsed clock and all applicable actor regularSchedule starts/ends/nextStart/nextEnd and budgetHistory."
+    },
+    {
+      "name": "A18 resource expenditure",
+      "status": "PASS",
+      "evidence": "A spends Action on summon-earth-pet and Bonus Action on18.05 command; no owner movement or Reaction is spent."
+    },
+    {
+      "name": "B response time",
+      "status": "PASS",
+      "evidence": "At18.02 B response remains pending; at18.03 B declines with Reaction, RP and recharge unchanged."
+    },
+    {
+      "name": "Mage/Wizard magicThisTurn lifecycle",
+      "status": "PASS",
+      "evidence": "Wizard first-family cast keeps magicThisTurn true through END18.9; reset occurs at START24."
+    },
+    {
+      "name": "Spell Efficiency expiry order",
+      "status": "PASS",
+      "evidence": "Unused family discount persists until A END24.9 and is then removed before the pet attached phase."
+    },
+    {
+      "name": "pet command, position and Dodge phases",
+      "status": "PASS",
+      "evidence": "Command at18.05; pet moves14ft and Dodges at18.9; zero-movement defensive Dodges at24.9..72.9."
+    },
+    {
+      "name": "shared command ledger and consumed receipt",
+      "status": "PASS",
+      "evidence": "A companionCommandRound records18.0; pending command clears at18.9 into a consumed execution receipt; companionOffenseRound remains null for Dodge."
+    },
+    {
+      "name": "concentration and finite expiry",
+      "status": "PASS",
+      "evidence": "At A START78.0 concentration and pet are removed before owner choices; A END78.9 remains future scheduled only."
+    },
+    {
+      "name": "A18 marker consistency",
+      "status": "PASS",
+      "evidence": "A18 authoredAction records cast and Bonus Action command; owner movement is0 and Reaction expenditure none."
+    },
+    {
+      "name": "commitment snapshot consistency",
+      "status": "PASS",
+      "evidence": "Snapshot18.02 contains pending B response; decline is first recorded at18.03."
+    },
+    {
+      "name": "geometry and route premises unchanged",
+      "status": "PASS",
+      "evidence": "No geometry, pose, profile, support, ray, or source premise changed from adopted proposal430 / replay436."
+    },
+    {
+      "name": "boundary",
+      "status": "PASS",
+      "evidence": "No seal, Fortress acceptance/application, canon or queue change; queue remains830/18/0."
+    }
+  ],
+  "result": {
+    "passed": 16,
+    "failed": 0,
+    "directorReviewRequired": true,
+    "ownerAdoptionUnchanged": true,
+    "sealPresent": false,
+    "fortressAcceptanceOrApplication": false,
+    "canonChanged": false,
+    "queueChanged": false
+  }
+}

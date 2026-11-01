@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "id": "PG328-W11-DIRECTOR-CORRECTIONS-437",
+  "classification": "DIRECTOR_FEEDBACK_RECONCILIATION",
+  "status": "SIX_435_FINDINGS_APPLIED_PENDING_DIRECTOR_FINAL_RULING",
+  "priorProposalSha256": "095fc32a60e41aeddc09b5c4ab800a3a1ede36753d7fe6b5d197db34f1c68ef1",
+  "priorTraceSha256": "6bfbf45f415ac32d5e69704cccb703711eaf98d88d1bfde0d8341775f3773fc8",
+  "currentProposal": {
+    "path": "OWNER_PG328_W11_ADOPTION_PROPOSAL_437.json",
+    "sha256": "2db914ee8eb4a3f379d8774d6b0dae4fa45e54666ade77365e1491e6c549f62a"
+  },
+  "currentTrace": {
+    "path": "W11_LIFECYCLE_TRACE_437.json",
+    "sha256": "648c0e4092c7a56fbcc35a03355d053f17b7dc1445abf3da3ca1442e92e1c1ea"
+  },
+  "directorReviewScope": [
+    "Verify C01 Mage cadence and idle END vent.",
+    "Verify C02 cargo-B Extraction Class, STR12 capacity and A/B hand-state no-attempt response rows.",
+    "Verify C03 corrected cargo-A endpoint and 3ft/12ft routes.",
+    "Verify C04 Mage Q27 anchor from actual crossing pose.",
+    "Verify R01 set-down-before-movement ordering.",
+    "Verify R02 exact summon range and synchronized validation hashes."
+  ],
+  "corrections": [
+    {
+      "id": "W11-435-C01",
+      "field": "/trace/events/0/dissonance; /turnMarkers; /castingStateRules",
+      "disposition": "Mage receives ordinary ranked-spell cadence: Dissonance0->1 at34.1. Reset magicThisTurn at40.0 START and vent1->0 at40.9 END if the turn remains idle."
+    },
+    {
+      "id": "W11-435-C02",
+      "field": "/cargoBHandling; /creation/counterspellResponses; /closureRoute/sightResponses; /closureRoute/dispelResponses",
+      "disposition": "Assign proposed Extraction Class0; use bound STR12 capacity180lb/12 Load; retain focus-B left and cargo-B right. No A/B attempt is recorded where free S hand is not established; preserve RP/reaction/recharge."
+    },
+    {
+      "id": "W11-435-C03",
+      "field": "/cargoHandling/attach; /trace/actions/6; /trace/actions/7; /supportPremise",
+      "disposition": "A ends turn36 at[33,6] after3ft; body ends x38 and cargo-A attached bounds start x39. The revised A42 route is12ft and Geometry405-clear."
+    },
+    {
+      "id": "W11-435-C04",
+      "field": "/closure/bodyPlacements/2; /entryPremise/passage",
+      "disposition": "Mage approaches from[10,-5] to actual crossing pose[10,0]; interior offset[5,0] returns Mage at[15,0] with bounds x[15,20],y[0,5]."
+    },
+    {
+      "id": "W11-435-R01",
+      "field": "/trace/actions/0",
+      "disposition": "Set down tile at existing held bounds first, then A moves10ft in the same turn; no extra time."
+    },
+    {
+      "id": "W11-435-R02",
+      "field": "/creation/lineOfEffect/distanceFeet; /VALIDATION_437.json",
+      "disposition": "Recomputed Mage-to-pet center distance sqrt(421)=20.518284528683ft; validation and trace hashes are synchronized."
+    }
+  ],
+  "boundary": {
+    "queue": "830 applied / 18 pending / 0 accepted-unapplied",
+    "changed": false,
+    "witness": false,
+    "seal": false,
+    "acceptanceOrApplication": false,
+    "canon": false,
+    "W04OrW09Changed": false
+  }
+}

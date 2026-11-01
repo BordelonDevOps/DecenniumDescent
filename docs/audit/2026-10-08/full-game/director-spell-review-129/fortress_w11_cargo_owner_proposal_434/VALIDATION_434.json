@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 1,
+  "id": "PG328-W11-VALIDATION-434",
+  "classification": "LOCAL_SOURCE_HASH_GEOMETRY_AND_SEMANTIC_PRECHECK",
+  "status": "PASS_WITH_DIRECTOR_CONFIRMATIONS_OPEN",
+  "proposalSha256": "db500e155f1a6ca37f2d888b4b73f49d54c7d1ae95ce2208fd53375f201b5519",
+  "traceSha256": "ebc81b632f71fe63a79d6c735a01d5e5f54ca1f492651c3339222be0e2b569ac",
+  "checks": [
+    {
+      "name": "selection and Fire Focus",
+      "status": "PASS",
+      "evidence": "selection sha256=06cdf754284ba09bb02acbebfd9356af585ed5e700e31790031972f2f0e46bf4; source /cards/10"
+    },
+    {
+      "name": "A profile binding",
+      "status": "PASS",
+      "evidence": "S030 actors/A/profileSHA256 matches PG328_SOURCE_BINDINGS#/Wizard20Profile/profileSHA256"
+    },
+    {
+      "name": "retained portal",
+      "status": "PASS",
+      "evidence": "S030 two 10x15 apertures; no main structural gate"
+    },
+    {
+      "name": "A entry-control route",
+      "status": "PASS",
+      "evidence": "26ft movement and one Action; set-down tile lies outside the swept body path"
+    },
+    {
+      "name": "A swept control route avoids B and tile",
+      "status": "PASS",
+      "evidence": "Each axis-aligned 5x5x6 swept segment avoids B and set-down tile"
+    },
+    {
+      "name": "A return route avoids B and tile",
+      "status": "PASS",
+      "evidence": "16ft return route; full body sweep avoids B and tile"
+    },
+    {
+      "name": "Mage turns within Speed",
+      "status": "PASS",
+      "evidence": "25ft including 5ft passage, then 9ft to cast pose"
+    },
+    {
+      "name": "Mage swept route avoids A and B",
+      "status": "PASS",
+      "evidence": "Mage full body route meets A/B only at permitted boundaries"
+    },
+    {
+      "name": "actions separated",
+      "status": "PASS",
+      "evidence": "Separate Secure Cargo Actions; neither shares opening or cast"
+    },
+    {
+      "name": "pet range and body clearance",
+      "status": "PASS",
+      "evidence": "29.1548ft range; ray passes above A and clear of B; A [27,32] and pet [35,40] do not overlap"
+    },
+    {
+      "name": "cargo sweep avoids pet",
+      "status": "PASS",
+      "evidence": "Cargo contacts pet west face at x35 without positive-volume penetration"
+    },
+    {
+      "name": "load arithmetic",
+      "status": "PASS",
+      "evidence": "A 14->12->2lb and 1.4->1.2->0.2 Load; pet+item110lb/1Load"
+    },
+    {
+      "name": "spell timing and expiry",
+      "status": "PASS",
+      "evidence": "Commit before interruption; success before creation; expiry after60 elapsed seconds"
+    },
+    {
+      "name": "responders enumerated",
+      "status": "PASS",
+      "evidence": "All three windows list A/B/D/Mage/C/self; D cross-portal rule explicitly open for Director"
+    },
+    {
+      "name": "A closure acquisition, cadence, RP and recharge",
+      "status": "PASS",
+      "evidence": "Acquired Sight/Dispel rank2/rank3, 2+3RP, RP 53->51->48, each Recharge2; Dissonance 0->1->2"
+    },
+    {
+      "name": "Q27 body placement non-overlap",
+      "status": "PASS",
+      "evidence": "A/B/Mage returned in stable admission order without positive-volume collision"
+    },
+    {
+      "name": "Q27 bodies and loose objects clear on origin plane",
+      "status": "PASS",
+      "evidence": "A/B/Mage/C/D and cargo-A/tile have no positive-volume overlap; objects supported at z0"
+    },
+    {
+      "name": "source byte and Git hash domains",
+      "status": "PASS",
+      "evidence": "All source bindings separately record working-tree attachment SHA256 and HEAD Git blob SHA1/SHA256"
+    },
+    {
+      "name": "decision boundary",
+      "status": "PASS",
+      "evidence": "Proposal only; queue stays 830/18/0; no witness, seal, canon or application"
+    }
+  ],
+  "result": {
+    "passed": 19,
+    "failed": 0,
+    "directorQuestions": 5
+  },
+  "limitations": [
+    "Portal-control semantics, cross-portal perception/LoE, cargo attachment/fall outcome, and Q27 projections remain TEST_ONLY Director review questions.",
+    "No witness, seal, Fortress acceptance/application, canon change or queue mutation occurred."
+  ]
+}

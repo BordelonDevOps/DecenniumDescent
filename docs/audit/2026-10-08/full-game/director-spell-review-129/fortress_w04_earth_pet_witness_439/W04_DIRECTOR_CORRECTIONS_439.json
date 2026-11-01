@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "id": "PG328-W04-DIRECTOR-CORRECTIONS-439",
+  "classification": "DIRECTOR_FEEDBACK_RECONCILIATION",
+  "status": "C01_C03_APPLIED_PENDING_DIRECTOR_REVIEW",
+  "priorReplay": {
+    "path": "fortress_w04_earth_pet_witness_436/W04_REPLAY_436_TESTONLY.json",
+    "sha256": "59a3d3445dd64535f5bd1b9283bc5c701d0da5e1e87e84484cac719e4b78f260"
+  },
+  "adoptionProposalSha256": "c80c91547ee4a07c687c0ba346ce0bcde861d3dda84a0389d12aeb48b7588d41",
+  "correctedReplay": {
+    "path": "W04_REPLAY_439_TESTONLY.json",
+    "sha256": "7b39039c82f06b79e4f9a844983b2dd8214a009df29b03a5184b484d3716cdfb"
+  },
+  "corrections": [
+    {
+      "id": "W04-436-C01",
+      "field": "/events; /branchTerminalStateAt78",
+      "disposition": "Added 104 ordered reversible state transitions. Every forward operation has an inverse. Forward application and reverse restoration verified; all regular START/END markers through78.0, state clock, schedule, resource spend, pet phases, efficiency expiry, concentration and pet removal are accounted.78.9 remains future only."
+    },
+    {
+      "id": "W04-436-C02",
+      "field": "/timelineCoverage/regularActorMarkers/3/authoredAction",
+      "disposition": "A18 row now records Action cast at18.02 and Bonus Action command at18.05; owner movement0 and no Reaction expenditure."
+    },
+    {
+      "id": "W04-436-C03",
+      "field": "/branchStateAfterCommitment/B/declinedAt",
+      "disposition": "At18.02 B response is eligible/pending with resources unchanged; decline first occurs18.03 and remains unspent."
+    }
+  ],
+  "unchangedBoundaries": {
+    "adoptedProposalBytesChanged": false,
+    "parentBytesChanged": false,
+    "canonChanged": false,
+    "queueChanged": false,
+    "sealed": false,
+    "FortressAcceptanceOrApplication": false,
+    "queue": "830 applied / 18 pending / 0 accepted-unapplied"
+  }
+}

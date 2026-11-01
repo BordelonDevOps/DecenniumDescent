@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "id": "PG328-W11-VALIDATION-435",
+  "classification": "SOURCE_HASH_GEOMETRY_ROUTE_LOE_CADENCE_Q27_PRECHECK",
+  "status": "PASS_WITH_DIRECTOR_REVIEW_OPEN",
+  "proposalSha256": "095fc32a60e41aeddc09b5c4ab800a3a1ede36753d7fe6b5d197db34f1c68ef1",
+  "traceSha256": "6bfbf45f415ac32d5e69704cccb703711eaf98d88d1bfde0d8341775f3773fc8",
+  "checks": [
+    {
+      "name": "A18 whole-body route and set-down",
+      "status": "PASS",
+      "evidence": "10ft; tile remains at its S030 held bounds and touches but does not overlap the body sweep."
+    },
+    {
+      "name": "B19 gateway route",
+      "status": "PASS",
+      "evidence": "30ft after B first lifts the obstructing S030 cargo-B; all panels, stairs and physical door leaf clear."
+    },
+    {
+      "name": "B cargo-B lift clears item path and preserves custody",
+      "status": "PASS",
+      "evidence": "One discrete Secure Cargo Action moves the pre-existing ground item into B carried bounds before the route; it returns with B under Q27."
+    },
+    {
+      "name": "A24 glyph route",
+      "status": "PASS",
+      "evidence": "29ft to courtyard glyph[25,25]; wall/tower/stairs/door leaves clear."
+    },
+    {
+      "name": "Mage28 approach and crossing",
+      "status": "PASS",
+      "evidence": "Approach5 + passage5 + interior20 =30ft; interior pose[15,10] uses S030 full-fit analog."
+    },
+    {
+      "name": "A30 lift route",
+      "status": "PASS",
+      "evidence": "24ft; clear of stationary Mage, B and tile; lift Action is separate."
+    },
+    {
+      "name": "A36 attach approach",
+      "status": "PASS",
+      "evidence": "5ft; pet and A touch only at x=40 boundary."
+    },
+    {
+      "name": "A42 Sight/Dispel route",
+      "status": "PASS",
+      "evidence": "14ft to[25,10], with all modeled structure and actor checks clear."
+    },
+    {
+      "name": "timed route collisions",
+      "status": "PASS",
+      "evidence": "Each movement sweep tested against the relevant stationary actor boxes and tile; all checks passed."
+    },
+    {
+      "name": "summon ray",
+      "status": "PASS",
+      "evidence": "Mage/pet center range31.241ft; ray clear of Geometry405 and A/B."
+    },
+    {
+      "name": "same-plane Counterspell lines",
+      "status": "PASS",
+      "evidence": "A/B/Mage rays are clear, perceptive and within60ft in each window."
+    },
+    {
+      "name": "visible Fortress aura/Dispel line",
+      "status": "PASS",
+      "evidence": "Target point[10,10,3] is17.678ft away and clear through open tower-SW-entry."
+    },
+    {
+      "name": "D/self responder boundaries",
+      "status": "PASS",
+      "evidence": "No positive cross-portal D or self-counter eligibility claim; C has no source-bound Counterspell."
+    },
+    {
+      "name": "Wizard cadence and RP",
+      "status": "PASS",
+      "evidence": "Different first families, Dissonance0->0, Refrain0, RP53->51->48, deadlines correct."
+    },
+    {
+      "name": "pet turn phases and expiry",
+      "status": "PASS",
+      "evidence": "Dodge after each Mage END34.9..88.9; expiry94.3 precludes94.9."
+    },
+    {
+      "name": "Q27 body return placements",
+      "status": "PASS",
+      "evidence": "A/B/Mage anchors plus unchanged C/D have no positive-volume overlap; Mage exterior[10,-5] and offset[5,0] -> [15,-5]."
+    },
+    {
+      "name": "Q27 loose-item current positions/order",
+      "status": "PASS",
+      "evidence": "Both objects projected at closure from current bounds by[0,-10,0], sorted by stable ID."
+    },
+    {
+      "name": "Q27 placed bodies/items supported and nonoverlapping",
+      "status": "PASS",
+      "evidence": "All closure bodies and loose items are supported on their scoped fixture:origin floor and have no positive-volume collisions."
+    },
+    {
+      "name": "Geometry405 array source pointers",
+      "status": "PASS",
+      "evidence": "Correct /openings/0 and /regions/0 arrays plus panels, door leaves and stairs."
+    },
+    {
+      "name": "decision boundary",
+      "status": "PASS",
+      "evidence": "No witness/seal/acceptance/application/canon/queue mutation; queue remains830/18/0."
+    }
+  ],
+  "result": {
+    "passed": 20,
+    "failed": 0,
+    "directorReviewItems": 6
+  },
+  "geometryTestMethod": "Axis-aligned full-body sweeps checked with strict positive-volume overlap against every Geometry405 panels[].occupiedFragments (including stair treads/risers) plus doorLeaves[].occupiedFragments. 3D ray/AABB tests check sightlines. Boundary contact remains an explicit branch-only TEST_ONLY premise.",
+  "limitations": [
+    "Accessible glyph pose, boundary contact, support poses, nonhostile relations, clamp, and exact no-damage three-foot cargo fall are proposed owner-adoptable TEST_ONLY premises.",
+    "D cross-portal and caster self-counter eligibility are unadjudicated with no attempt and no positive eligibility claim.",
+    "No witness, seal, Fortress acceptance/application, canon change or queue mutation occurred."
+  ]
+}
