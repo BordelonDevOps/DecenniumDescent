@@ -1,0 +1,37 @@
+# PG328-W04 Earth Pet guard preflight 430
+
+**Status:** PROPOSAL_ONLY—NO_WITNESS_EXECUTED. This is a read-only source and geometry preflight for the open PG328-W04 companion-job obligation. It does not construct or execute a witness, accept Fortress, issue a seal, or alter the 830 applied / 18 pending / 0 accepted-unapplied queue.
+
+## Bound sources
+
+Crosswalk 429 identifies PG200-W20 as already having Summon Earth Pet acquired and prepared. The corrected exact source pointers are `/ordinaryLearning/17/level` = 18, `/ordinaryLearning/17/permission` = “Wizard engine free level-up spellbook additions,” `/ordinaryLearning/17/selected/0` = `summon-earth-pet`, `/prepared/6`, and `/spellbook/67` in the 116,341-byte profile file with SHA-256 `a3a3ce0a714c1fa35523719c8c8a0297fc457d5b5f097f6a20a00aad6cd7be55`. The file says `campaignExistenceVerified=false`. Its Earth Pet acquisition pointer is **not** `/acquisitionLedger`.
+
+The operational card is `catalog.json#/spells/139/operational` from the exact committed Git blob, SHA-256 `f52cf6a4a4673897615a74c7c67dcba798c431362d4357e71ee552cc7c5d31f8`. It gives Action, 60-foot range, V/S/F, concentration, a Medium 300-lb pet, Speed 30, a paid Bonus Action command, and movement plus attack or a basic legal nondamaging action in the attached phase. Without a command it may move defensively and Dodge. No hands, tools, cargo capacity, free Help, or extraordinary senses are granted.
+
+The chosen unchanged parent is `PG328-W01-DAMAGE-SUBWITNESS-403`, terminal S030 at 12.9, replay SHA-256 `2b60ae35d828bd6028d71f202c1dd61c823d6212bb45c7f633ecd8f6b51d44fb`; terminal hash `6270321d6f07a55173f01fb353142d6bfb537d8e044cd313ef8fdd956baeff6c`. S030 schedules A’s next regular START for 18.0. No interaction is available by assumption at the already-ended 12.9 turn.
+
+## Profile association and current state
+
+The branch needs a separate, owner-adopted binding of branch actor A to PG200-W20’s source-qualified acquisition and preparation. The identifiers remain distinct: S030 A has profile hash `ebb96b340b94c3c6a98f8005e6fd6d0d6c93b1dc4abd1b584a7528c5cb459223`; PG200-W20 has internal `profileSHA256BeforeOwnHash` `28e6ab554f7f6bbfd839d5bf637826414867f1984f08def1ed410e56cf171aa9`; the profile file’s byte hash is `a3a3ce0a714c1fa35523719c8c8a0297fc457d5b5f097f6a20a00aad6cd7be55`. These are not interchangeable, and the proposed association does not replace S030’s history.
+
+Class, level, PB, M/S, maximum HP/RP, and speed agree between the branch snapshot and PG200-W20. Ability scores/modifiers, spell attack/DC, school, hero path, and Dissonance limit are present in PG200-W20 but not directly in S030 A’s actor record; record them as source-profile values, not as independently matching snapshot fields. Preserve A’s actual HP 122/122, RP 53/80, Dissonance 0, Refrain 0, last spell, position, concentration, and scheduled turn. Do not initialize from profile defaults. Any conflict requires a reviewed delta.
+
+## Proposed component and placement sequence
+
+At S030 A’s left hand holds `focus-A`; A’s right hand holds the exact 2-lb Minor Conjuration clay tile. The shared component rule requires a free hand for S and the ordinary focus for F. The Director confirmed that the preflight should propose one ordinary free object interaction **after A’s actual regular START at 18.0 and before casting**. It sets this same tile down at unchanged bounds x 25–26, y 5–6, z 0–0.25, with lower-face position `[25,5,0]`. The left hand keeps the accessible focus; the right hand becomes free. A’s carried weight/load changes 14→12 lb and 1.4→1.2. Preserve tile identity, owner null, unattended custodian null, Minor Conjuration provenance, quantity, existence, and its original 3606.13 expiry. Its existing held bounds do not establish support: unless an adopted contract covers the exact footprint, owner adoption must state that this specific tile is supported there for this branch only.
+
+The pet’s anatomy is not dimensioned by its card. For clearance preflight only, propose a branch-only 5×5×6-ft envelope at `[30,12,0]`, bounds `[30,35]×[12,17]×[0,6]`; adopting this envelope does not create a canonical stat. AABB checks show no positive-volume intersection with any modeled panel, door leaf, or same-plane A/B body. C/D remain on `fixture:origin`, outside this Fortress space. The A-to-target center distance is 7.81025 ft, below the printed 60-ft range, and its centerline intersects no modeled panel or door leaf. A must still perceive the target and have legal line of effect at cast time. The proposed pose is inside Geometry405’s world bounds.
+
+W01’s adopted support overlay is explicitly limited to the depicted structure and A’s exact W01 body/carried-item configuration at verified poses. It does not support a 300-lb pet or the set-down tile. The proposed owner terms therefore separately state ground support for the pet at its exact spawn, every point along its swept route, and endpoint, and for this particular tile at its footprint. They create no general floor-capacity rule.
+
+The proposed route is `[30,12,0] → [30,16,0] → [20,16,0]`, a total of 14 ft. Its destination bounds are `[20,25]×[16,21]×[0,6]`, just northeast of B. Swept-AABB tests on both straight legs and endpoint checks report zero positive-volume intersections with modeled panels, leaves, or actors. The candidate guard task is to occupy this lane and Dodge; no attack, Help, automatic protection, or advantage is claimed.
+
+At the cast, the V condition requires audible speech, S is performed with the freed right hand, and F uses `focus-A` in the left hand. At pre-cast Dissonance 0, the rank-3 cast has no Dissonance surcharge and costs 5 RP, leaving A at 48/80. Under the proposed PG200-W20 branch binding, the Wizard rule waives base Dissonance for the first cast of each different prepared matrix family; Earth Pet is not among S030’s recorded used families and differs from A’s last spell, so the proposal leaves Dissonance and Refrain at 0. This class-interface result is conditional on the owner-adopted binding; do not infer it if that binding is absent. The cast establishes concentration; A had none to displace.
+
+After the cast, A spends one Bonus Action while the pet is still at the spawn pose, within 7.81025 ft and able to perceive A, to command movement plus Dodge in the attached phase after A’s full turn ends at 18.9. No later command is part of this proposal. Geometry405’s modeled tower-SW-entry-leaf intersects the centerline from A to the pet at the destination, so the proposal makes no claim that the pet can perceive a later command through that leaf.
+
+If the branch remains uninterrupted, the tenth future regular-start marker after application at 18.02 is 78.0 (markers 24, 30, 36, 42, 48, 54, 60, 66, 72, 78). The pet ends then, or earlier if concentration ends or it reaches 0 HP. A bounded no-interference/concentration premise must be adopted before any witness is constructed; an actual interruption would need its real rules resolved.
+
+## Owner adoption gates
+
+Before a W04 witness, the owner must adopt the branch-local profile binding and compatibility treatment, the candidate body envelope and placement/route, exact ground support for the pet and tile, the one post-START tile interaction and full item-state transition, and the bounded uninterrupted concentration conditions. These proposed terms make no campaign-existence claim and change no parent state, canonical rule, queue, acceptance, seal, or application. The W04 identity remains held.
