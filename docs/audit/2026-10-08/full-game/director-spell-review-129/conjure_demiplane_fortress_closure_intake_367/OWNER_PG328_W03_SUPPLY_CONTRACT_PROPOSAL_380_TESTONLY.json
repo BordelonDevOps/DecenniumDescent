@@ -1,0 +1,114 @@
+{
+  "id": "PG328-W03-SUPPLY-CONTRACT-PROPOSAL-380",
+  "recordedAtLocal": "2026-10-31",
+  "status": "PROPOSED_PENDING_EXPLICIT_OWNER_ADOPTION_AND_DIRECTOR_REVIEW",
+  "scope": {
+    "residualId": "PG328-W03",
+    "eligibilityResidual": "PG366-W03-R1",
+    "spellId": "conjure-demiplane-fortress",
+    "identityHold": "PG200-B06",
+    "testOnlyRule": "P368-BINDING",
+    "fixturePath": "payload/fixtures/PG328-W03_BENEFICIAL_SHORT_REST_367_TESTONLY.json",
+    "fixtureSha256": "d0ef9a698b2fdfd0c18b5b881b7e3448cc5b314d9306a9b70fd4c795eed547f7",
+    "character": "A",
+    "interval": {
+      "clock": "worldElapsedSeconds",
+      "startInclusive": 1.0,
+      "endExclusive": 3601.0,
+      "durationSeconds": 3600
+    },
+    "sourceGapRecord": "DIRECTOR_PG328_W03_SAFETY_SUPPLY_REVIEW_379.json",
+    "sourceGapRecordSha256": "5a13db7b81c70bfabfcdf763d75e52e6998ede7901c1df25793e40efc9db0563"
+  },
+  "classification": {
+    "testOnly": true,
+    "hypotheticalRuleAndItemMapping": true,
+    "campaignOccurrence": false,
+    "canonicalRuleChange": false,
+    "fixtureMutation": false,
+    "runtimeStateMutation": false,
+    "restCompletionOrBenefit": false,
+    "settlementExecuted": false,
+    "FortressAcceptedOrApplied": false
+  },
+  "proposedSupplyContract": {
+    "contractId": "PG328-W03-REAL-SUPPLIES-TESTONLY-380",
+    "scopeLimit": "Only A's candidate 3600-second short-rest branch in fixture 367 for PG366-W03-R1. No general rest, supply, or Fortress rule is created.",
+    "preservedRule": "Q26 remains in force: rest uses real supplies; Fortress creates no food or water; imported supplies retain actual ownership, custody, and quantity.",
+    "minimumAtIntervalStart": [
+      {
+        "fixtureItemId": "REST-FOOD-367-A",
+        "requiredIdentity": "One canonical Rations (1 day) unit",
+        "requiredQuantity": 1,
+        "testOnlyMappingPremise": "For this branch only, the fixture's one real imported food unit is identified as one Player Rulebook v6 Rations (1 day) item (2 lb)."
+      },
+      {
+        "fixtureItemId": "REST-WATER-367-A",
+        "requiredIdentity": "One genuine potable Waterskin, full",
+        "requiredQuantity": 1,
+        "testOnlyMappingPremise": "For this branch only, the fixture's one real imported water-container unit is identified as one Player Rulebook v6 Waterskin, full (5 lb). The current generic fixture label alone does not prove this mapping."
+      }
+    ],
+    "sufficiencyRule": "At worldElapsedSeconds 1.0, A's actual availability, ownership, and custody of the listed one-day ration and one full waterskin satisfy Q26's real-supplies prerequisite for this one 3600-second TEST_ONLY rest interval. These quantities are sufficient by this scoped rule; the Fortress contributes none of them.",
+    "consumptionRule": "No food or water consumption is required for eligibility or completion of this one-hour TEST_ONLY short rest. This contract does not assert consumption. P368's eating/drinking activity permission remains activity classification only. Any actual consumption, if separately introduced in a future proposal, must be explicitly recorded and deducted from the real inventory; it is not implied here.",
+    "custodyRule": "A remains the real owner/custodian of both imported items throughout the recorded interval. The source fixture's unchanged custody and quantity-preservation transitions govern; no item is created, copied, replenished, or transferred by this contract.",
+    "durationAndSafety": "P368-BINDING eligibility is established by review 377. Safety for this declared interval is established by Director review 379 only. This supply contract adds no duration, activity, interruption, or safety rule.",
+    "recoveryAndBenefits": "No RP formula, recovery cap, Dissonance rule, rest counter, or other benefit is added or modified. Any benefit still requires a separate reviewed, reversible completion/settlement proposal and applicable recovery-limit checks."
+  },
+  "evidenceBinding": {
+    "fixture367": {
+      "sha256": "d0ef9a698b2fdfd0c18b5b881b7e3448cc5b314d9306a9b70fd4c795eed547f7",
+      "observedInventory": {
+        "REST-FOOD-367-A": { "quantity": 1, "quantityConsumed": 0, "quantityRemaining": 1, "custodian": "A" },
+        "REST-WATER-367-A": { "quantity": 1, "quantityConsumed": 0, "quantityRemaining": 1, "custodian": "A" }
+      },
+      "warning": "Inventory counts and custody are evidence; item identity/fullness depends on the additional TEST_ONLY mapping premises above and is not retroactively written into fixture 367."
+    },
+    "itemReference": {
+      "source": "docs/reference/Player_Rulebook_v6_source_text.txt",
+      "sha256": "a346670f4244efe3641cfb06814819d83ffb8512153858205f0621bd8ab8a04b",
+      "rationPointer": "line 6995: Rations (1 day), 5 sp, 2 lb",
+      "waterPointer": "line 7013: Waterskin, 2 sp, 5 lb (full)",
+      "authorityLimit": "These equipment entries identify the item descriptions only; they do not establish the new rest-sufficiency or consumption terms proposed here."
+    },
+    "fortressQuestionSource": {
+      "path": "payload/rules/PG328_QUESTION_DISPOSITIONS.json",
+      "sha256": "149d4098591799f51afa37837ccca722eb9ae08c3ea437c640d943f33b1bb637",
+      "Q26Pointer": "/questions/5/answer",
+      "Q28Pointer": "/questions/7/answer"
+    },
+    "eligibilityRecords": [
+      { "path": "OWNER_P368_W03_TESTONLY_AUTHORIZATION_372.json", "sha256": "eac0f0760c6c3e29b13e0cd1a73b2e21855e814d8aeb854f2b1468d6ad72a6d5" },
+      { "path": "OWNER_P368_W03_ELIGIBILITY_PREMISE_PROPOSAL_376_TESTONLY.json", "sha256": "9d0b1c66f86b115a69b5dc0ef75a4aa421cba88642f635ec7ac9c6a087f2265b" },
+      { "path": "DIRECTOR_P368_W03_ELIGIBILITY_REVIEW_377.json", "sha256": "78ec8589fc176038a33f9d5e2fcea5c3ca96955279cd5b91a793bf9613080b1c" }
+    ]
+  },
+  "ownerAdoption": {
+    "required": true,
+    "status": "NOT_YET_ADOPTED",
+    "exactRequestedAuthorization": "Yes—adopt PG328-W03-REAL-SUPPLIES-TESTONLY-380 for A's PG366-W03-R1 branch and unchanged fixture 367 only.",
+    "scopeWarnings": [
+      "This adopts new TEST_ONLY mechanics for supply identity, minimum quantity, sufficiency, and non-required consumption only for the named branch.",
+      "It does not make a canonical rule, mutate fixture 367, or assert a campaign occurrence.",
+      "It does not settle any rest benefit, RP, Dissonance, rest counter, or Arcane Recovery.",
+      "It does not seal W03, close PG200-B06, accept/apply Fortress, or change another hold, seal, or queue count."
+    ]
+  },
+  "requestedDirectorReviewAfterOwnerAdoption": {
+    "reviewQuestions": [
+      "Confirm or reject the exact item-identity mapping premises, especially that REST-WATER-367-A denotes one genuine full waterskin for this branch.",
+      "Confirm or reject the sufficiency rule: one daily ration plus one full waterskin available to A at the interval start satisfies Q26's real-supplies prerequisite for this single one-hour rest.",
+      "Confirm or reject the explicit no-consumption-required term while preserving actual inventory accounting and Q26's real-supplies requirement.",
+      "If accepted, state whether supply sufficiency is established only for this test branch; do not construct or execute settlement in this review."
+    ],
+    "prohibitedEffects": [
+      "Do not mutate fixture 367.",
+      "Do not infer a campaign occurrence or general supply/rest rule.",
+      "Do not execute settlement or grant any rest benefit.",
+      "Do not add recovery sources or change recovery limits.",
+      "Do not seal W03 or close PG200-B06.",
+      "Do not accept or apply the Fortress identity.",
+      "Do not alter other holds, seals, or queue counts (828/20/0)."
+    ]
+  }
+}

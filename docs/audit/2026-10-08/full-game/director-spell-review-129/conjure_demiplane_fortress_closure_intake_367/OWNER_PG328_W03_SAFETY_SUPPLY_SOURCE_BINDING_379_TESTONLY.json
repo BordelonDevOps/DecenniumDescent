@@ -1,0 +1,154 @@
+{
+  "id": "PG328-W03-SAFETY-SUPPLY-SOURCE-BINDING-379",
+  "recordedAtLocal": "2026-10-31",
+  "status": "CORRECTED_AFTER_DIRECTOR_REVIEW_378_SUPPLY_SOURCE_GAP_REMAINS",
+  "scope": {
+    "residualId": "PG328-W03",
+    "spellId": "conjure-demiplane-fortress",
+    "identityHold": "PG200-B06",
+    "eligibilityResidual": "PG366-W03-R1",
+    "testOnlyRule": "P368-BINDING",
+    "fixturePath": "payload/fixtures/PG328-W03_BENEFICIAL_SHORT_REST_367_TESTONLY.json",
+    "fixtureSha256": "d0ef9a698b2fdfd0c18b5b881b7e3448cc5b314d9306a9b70fd4c795eed547f7",
+    "interval": {
+      "clock": "worldElapsedSeconds",
+      "startInclusive": 1.0,
+      "endExclusive": 3601.0,
+      "durationSeconds": 3600
+    },
+    "boundRecords": [
+      "OWNER_P368_W03_TESTONLY_AUTHORIZATION_372.json",
+      "OWNER_P368_W03_ELIGIBILITY_PREMISE_PROPOSAL_376_TESTONLY.json",
+      "DIRECTOR_P368_W03_ELIGIBILITY_REVIEW_377.json"
+    ],
+    "inputSha256": {
+      "OWNER_P368_W03_TESTONLY_AUTHORIZATION_372.json": "eac0f0760c6c3e29b13e0cd1a73b2e21855e814d8aeb854f2b1468d6ad72a6d5",
+      "OWNER_P368_W03_ELIGIBILITY_PREMISE_PROPOSAL_376_TESTONLY.json": "9d0b1c66f86b115a69b5dc0ef75a4aa421cba88642f635ec7ac9c6a087f2265b",
+      "DIRECTOR_P368_W03_ELIGIBILITY_REVIEW_377.json": "78ec8589fc176038a33f9d5e2fcea5c3ca96955279cd5b91a793bf9613080b1c",
+      "payload/rules/PG328_QUESTION_DISPOSITIONS.json": "149d4098591799f51afa37837ccca722eb9ae08c3ea437c640d943f33b1bb637",
+      "payload/fixtures/PG328-W03_BENEFICIAL_SHORT_REST_367_TESTONLY.json": "d0ef9a698b2fdfd0c18b5b881b7e3448cc5b314d9306a9b70fd4c795eed547f7",
+      "DescentReviewChanges/ReviewBible/docs/mechanics/GAMEPLAY_LOOP_CANON.md": "5bc37ee0fa7953200095e78fd095642fa7005cf5b42ac752f5adbd003d2c1b67",
+      "docs/reference/Player_Rulebook_v6_source_text.txt": "a346670f4244efe3641cfb06814819d83ffb8512153858205f0621bd8ab8a04b"
+    }
+  },
+  "classification": {
+    "testOnly": true,
+    "hypotheticalPremises": true,
+    "campaignOccurrence": false,
+    "canonicalRuleChange": false,
+    "fixtureMutation": false,
+    "runtimeStateMutation": false,
+    "restCompletionOrBenefit": false,
+    "settlementExecuted": false,
+    "fortressIdentityAcceptedOrApplied": false
+  },
+  "sourceBindings": [
+    {
+      "source": "payload/rules/PG328_QUESTION_DISPOSITIONS.json#/questions/5/answer (PG9-Q26)",
+      "authorityUse": "Fortress amenities and materiality",
+      "operativeText": "The Fortress creates no food or water. Imported supplies remain real with tracked ownership, custody, and quantities. Rest requires real supplies, safety, and duration; shelter supplies location only.",
+      "finding": "This establishes that Fortress itself does not provide food or water and that real supplies, safety, and duration are prerequisites. It gives no minimum supply quantity, consumption amount, or rule for how long an inventory unit lasts."
+    },
+    {
+      "source": "payload/rules/PG328_QUESTION_DISPOSITIONS.json#/questions/7/answer (PG9-Q28)",
+      "authorityUse": "Fortress safety and environment",
+      "operativeText": "Fortress is shelter, not a universal safe haven. It does not bypass food or other rest requirements; the door may be closed for security, but lawful acquired enemy access remains possible.",
+      "finding": "Fortress presence alone cannot establish safety. The Director found the fixture's explicit interval-specific no-hostile-creature/hazard premise and established no-interruption premise sufficient for this TEST_ONLY branch only; the rule does not grant universal safety or require proof that lawful access is impossible."
+    },
+    {
+      "source": "payload/fixtures/PG328-W03_BENEFICIAL_SHORT_REST_367_TESTONLY.json#/testOnlyInputs/safety",
+      "authorityUse": "Scoped hypothetical safety premise",
+      "operativeText": "No hostile creature/hazard is present during the hypothetical interval; this is a fixture premise and does not imply Fortress grants safety.",
+      "finding": "Director review of proposal 378 finds this explicit absence-of-hostile-creature/hazard premise, together with the established no-interruption premise, sufficient under Q26/Q28 for A's declared interval only. No additional safety predicate is missing for this hypothetical branch. Q28's lawful enemy-access possibility remains; the finding establishes no general Fortress safety property."
+    },
+    {
+      "source": "payload/fixtures/PG328-W03_BENEFICIAL_SHORT_REST_367_TESTONLY.json#/testOnlyInputs/supplyInventory and /testOnlyInputs/consumption",
+      "authorityUse": "Custody and quantity evidence",
+      "operativeText": "A carries one ration and one water container; each records quantityConsumed=0 and quantityRemaining=1. The fixture expressly says no bound consumption rule is supplied and the Director must not infer legal sufficiency.",
+      "finding": "Possession and custody are recorded. Neither quantity sufficiency nor consumption is established."
+    },
+    {
+      "source": "DescentReviewChanges/ReviewBible/docs/mechanics/GAMEPLAY_LOOP_CANON.md#L140-L147",
+      "authorityUse": "Retained UNACCEPTED candidate-source status only; not relied on for W03 eligibility, P368 duration, the recovery formula, or benefits",
+      "operativeText": "A Short Rest takes one hour; a character can benefit from no more than two Short Rests between Long Rests. The benefit list gives one-quarter of maximum RP, rounded down, minimum 1 for a character with an RP pool.",
+      "finding": "Director review states acceptance of gameplay-loop v1.2 remains withheld. Authorization 372 adopted P368 only; it did not accept this candidate or replace the pinned recovery formula. This candidate is not relied on as authority in this proposal."
+    },
+    {
+      "source": "docs/reference/Player_Rulebook_v6_source_text.txt#L6995,L7013",
+      "authorityUse": "Equipment item descriptions only",
+      "operativeText": "Rations (1 day), 2 lb; Waterskin, 5 lb (full).",
+      "finding": "These entries identify ordinary equipment but do not specify a one-hour rest's food/water requirement, consumption requirement, or sufficiency, and they do not prove that fixture 367's generic water-container unit is a full waterskin."
+    }
+  ],
+  "adjudication": {
+    "eligibility": {
+      "decisionRecord": "DIRECTOR_P368_W03_ELIGIBILITY_REVIEW_377.json",
+      "decision": "ELIGIBILITY_ESTABLISHED_TEST_ONLY",
+      "finding": "Eligibility for A is established only for PG366-W03-R1 under P368-BINDING and fixture 367's named hypothetical branch. Safety, supply sufficiency, and completion remain separate."
+    },
+    "safety": {
+      "status": "ESTABLISHED_TEST_ONLY_FOR_DECLARED_INTERVAL_ONLY",
+      "evidence": "Fixture 367 asserts no hostile creature/hazard is present over the hypothetical interval.",
+      "limit": "Do not infer safety from Fortress occupancy or convert the scoped premise into universal or campaign safety.",
+      "directorFinding": "The explicit absence of hostile creatures and hazards throughout the interval, together with the established no-interruption premise, suffices under Q26/Q28. No additional safety predicate is missing for this hypothetical branch. Lawful acquired enemy access remains possible; a closed entrance is not required. This is no general Fortress safety property.",
+      "directorResponse": "GPT Director response to proposal 378 in Review SH202 B02 Archive, 2026-10-31"
+    },
+    "supplies": {
+      "status": "SOURCE_GAP",
+      "presentEvidence": {
+        "food": { "itemId": "REST-FOOD-367-A", "quantity": 1, "quantityConsumed": 0, "quantityRemaining": 1, "custodian": "A" },
+        "water": { "itemId": "REST-WATER-367-A", "quantity": 1, "quantityConsumed": 0, "quantityRemaining": 1, "custodian": "A" }
+      },
+      "missingAuthority": [
+        "What real supply types and minimum amounts are required for one character over this 3600-second rest interval?",
+        "Is consumption required; if so, what quantity of each supply must be consumed, and when?",
+        "What source rule establishes that the recorded ration and water-container quantities satisfy those requirements?"
+      ],
+      "finding": "Q26/Q28 establish real-supplies/food as a prerequisite and prohibit treating the Fortress as its source. The fixture establishes custody and inventory only, with zero consumption. No bound source in this packet supplies a quantity, consumption, or sufficiency rule. Eating/drinking being permitted by P368-BINDING is not evidence of consumption or sufficiency."
+    },
+    "completionAndSettlement": {
+      "status": "NOT_PROPOSED_PENDING_REQUIRED_PREDICATES",
+      "reason": "Supply sufficiency is not established. Therefore no completed-rest transition, before/after recovery state, inverse, or benefit calculation is constructed.",
+      "requiredNextStep": "Establish supply authority through an accepted operative source with exact version, hash, pointer, and acceptance receipt, or a separately reviewed, owner-adopted NEW scoped TEST_ONLY supply contract that preserves Q26's real-supplies requirement. Only then prepare a separate reversible completion/settlement proposal; no execution is authorized."
+    }
+  },
+  "preservedState": {
+    "fixtureHash": "d0ef9a698b2fdfd0c18b5b881b7e3448cc5b314d9306a9b70fd4c795eed547f7",
+    "RP": 54,
+    "Dissonance": 0,
+    "shortRestsSinceLong": 0,
+    "ArcaneRecoveryUsed": false,
+    "fixtureMutated": false,
+    "restBenefitGranted": false,
+    "RPRecoveryApplied": false,
+    "DissonanceResetApplied": false,
+    "restCounterUpdated": false,
+    "W03Sealed": false,
+    "FortressHeld": true,
+    "spellAccepted": false,
+    "spellApplied": false,
+    "queueCounts": "828/20/0",
+    "otherHoldsOrSealsChanged": false
+  },
+  "requestedDirectorDecision": {
+    "safety": "Closed for A's declared interval only by the Director's TEST_ONLY finding on proposal 378; do not generalize.",
+    "remainingSupplyAuthority": "No bound operative rule maps fixture 367's one ration and one generic water container to this short rest's requirements. Neither sufficiency nor a consumption rule is established.",
+    "requiredSupplyAuthority": [
+      "Required food/water types and minimum amounts for A's interval.",
+      "Whether availability, prior intake, or consumption satisfies the requirement; if consumption is required, its amount and timing.",
+      "How the named inventory units satisfy that rule, with corresponding quantity/custody evidence.",
+      "An accepted operative source with exact version, hash, pointer, and acceptance receipt, or a separately reviewed, owner-adopted NEW scoped TEST_ONLY supply contract preserving Q26's real-supplies requirement."
+    ],
+    "ifSupplyAuthorityIsAdopted": "Prepare a separate reversible completion/settlement proposal only after Director review; this request does not approve or execute settlement.",
+    "prohibitedEffects": [
+      "Do not mutate fixture 367.",
+      "Do not invent, infer, or add food/water consumption or sufficiency.",
+      "Do not execute rest settlement or grant RP, Dissonance, or rest-counter benefits.",
+      "Do not add recovery sources or change recovery limits.",
+      "Do not seal W03 or close PG200-B06.",
+      "Do not accept or apply the Fortress identity.",
+      "Do not alter any other hold, seal, or queue count."
+    ],
+    "queueAuthority": "828 applied / 20 pending / 0 accepted-unapplied"
+  }
+}
