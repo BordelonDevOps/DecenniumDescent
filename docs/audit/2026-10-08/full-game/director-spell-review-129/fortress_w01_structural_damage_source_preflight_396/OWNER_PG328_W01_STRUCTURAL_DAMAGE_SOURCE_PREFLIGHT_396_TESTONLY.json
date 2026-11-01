@@ -14,7 +14,7 @@
       "No witness is sealed, and no spell, queue item, or hold is accepted or applied."
     ]
   },
-  "decision": "NO_SOURCE_COMPLETE_OBJECT_DAMAGE_CANDIDATE_ESTABLISHED",
+  "decision": "POTENTIAL_COMPOSITE_SOURCE_PATH_IDENTIFIED_W01_REMAINS_OPEN",
   "obligationBinding": {
     "file": "payload/authority/PG328_BLOCKER_REASSESSMENT.json",
     "sha256": "8f50b284846ef373ada5bae610c2a8d584cf695c3922cf9c30f34bb48fc4bd4b",
@@ -56,6 +56,19 @@
       "line": 136,
       "rule": "Sunder attacks an object, shield, armor component, or construct joint using its actual durability system; unspecified durability remains an equipment dependency.",
       "finding": "Sunder supplies no independent attack source, weapon, acquisition, or permission to convert a creature-only spell into object damage."
+    },
+    {
+      "file": "docs/reference/Player_Rulebook_v6_source_text.txt",
+      "bytes": 776711,
+      "sha256": "a346670f4244efe3641cfb06814819d83ffb8512153858205f0621bd8ab8a04b",
+      "lines": [
+        6826,
+        6828,
+        6830,
+        6832
+      ],
+      "rule": "An improvised weapon includes any object the user can wield in one or two hands; an object with no resemblance to a weapon deals 1d4 damage of a Director-assigned appropriate type.",
+      "finding": "Combined with the explicit Sunder object-target rule, this establishes a plausible attack method if the actor lawfully creates/acquires and can wield the selected object. It does not itself establish Minor Conjuration access at the witness state, object shape/custody, attack roll, or resolution."
     }
   ],
   "actorProfileScreen": {
@@ -111,6 +124,17 @@
   },
   "candidateAssessment": [
     {
+      "candidate": "wizard.base.minor-conjuration + wieldable improvised object + Sunder",
+      "profileBasis": "The profile acquisition ledger and allAcquiredClassCapabilities list wizard.base.minor-conjuration at /allAcquiredClassCapabilities/1; bound current card is current_bound_wizard.json#/cards/6. The profile's /prepared list does not include minor-conjuration.",
+      "sourceAndPotentialRoute": {
+        "minorConjuration": "Action, 1 RP; create one nonmagical unattended object in one unoccupied space within 10 feet, fitting in a 1-foot cube and weighing no more than 10 pounds, from common nonvaluable material; lasts 1 hour; no functional complex mechanism.",
+        "improvisedWeapon": "The bound Player_Rulebook_v6_source_text.txt lines 6826-6832 allow any object the user can wield to be an improvised weapon; a nonweaponlike object deals 1d4 of a Director-assigned appropriate type.",
+        "sunder": "COMBAT_ACTION_PLAYTEST.md line 136 allows an object attack using its actual durability system; Q23 supplies panel AC17/HP60."
+      },
+      "result": "POTENTIAL_COMPOSITE_ROUTE; NOT ESTABLISHED AT THE WITNESS STATE",
+      "unresolved": "The profile is conditional and does not verify campaign existence or acquired rank-9 runtime access. Minor Conjuration is absent from the current prepared list and its exact cast/preparation permission at the proposed witness state is not established. No exact conjured object shape/material, lawful handling/custody, attack roll, damage type, paid timeline, or target-resolution event is recorded. Director review is needed to decide whether this route is valid and which access predicate is sufficient."
+    },
+    {
       "candidate": "wizard.base.arcane-bolt",
       "profileBasis": "Listed in the profile acquisition ledger; exact candidate bound at current_bound_wizard.json#/cards/5.",
       "targetAndEffect": "One creature within 60 feet; spell attack; force damage on hit.",
@@ -145,12 +169,13 @@
     }
   ],
   "preflightFinding": {
-    "summary": "No source-complete object-compatible damaging option with established lawful actor access is supported by the bound W01 inputs. This finding is limited to the supplied test profile and screened source entries; it does not claim that no future source or lawful acquisition could ever satisfy W01.",
+    "summary": "A potentially compatible composite source route is identified in the bound material: Minor Conjuration could create a small nonmagical object, the rulebook permits a wieldable object as an improvised weapon, and Sunder permits an object target using its actual durability. This is only a candidate route; lawful access/preparation, object details, and an actual witness-state attack are not established. W01 remains open.",
     "remainingPredicates": [
-      "Exact attack/effect source and version/hash with a target rule allowing the selected structure/object.",
-      "Named actor's campaign existence and lawful access to the level-9 procedure at the witness state.",
-      "Lawful acquisition, current availability/preparation, custody, proficiency, range/reach, action and resource payment as applicable.",
-      "Object damage resolution against Q23 AC/HP and the separately required named panel/support/navigation graph."
+      "Director ruling on whether the acquired Minor Conjuration capability can be lawfully cast at the intended witness state despite its absence from the current prepared list, or the exact lawful preparation sequence.",
+      "Named actor's campaign existence and lawful access to the level-9 Fortress procedure at the witness state.",
+      "Exact created object's material, dimensions, shape, and wieldability; paid cast, RP, action, handling/custody and expiry timeline.",
+      "Attack action and Sunder legality, reach, proficiency/attack modifiers, suitable damage type, and resolution against Q23 AC17/HP60.",
+      "Separately required named panel/support/navigation graph and dependent effects."
     ]
   },
   "immutableParentBinding": {
@@ -172,5 +197,5 @@
       "acceptedUnapplied": 0
     }
   },
-  "nextAction": "Director review of this read-only preflight; if a lawful source/access binding is supplied, reassess only the missing W01 predicates. Otherwise retain PG200-B06 and W01 held."
+  "nextAction": "Director review of the potential Minor Conjuration plus improvised-object plus Sunder route. If accepted as a candidate, bind lawful preparation/access and all attack predicates in a later W01 witness; do not simulate or seal this preflight. Otherwise identify the exact missing source/access predicate and retain PG200-B06."
 }
