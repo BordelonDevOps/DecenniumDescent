@@ -1,10 +1,10 @@
 # Final Word discovery and catalog byte correspondence 476 Repack02
 
-This read-only Final Word source-discovery pass found no qualifying changed evidence for DR217-B01. The current catalog/index still hold Final Word; the Chronicle and F51 entries are historical or adventure hooks, and the reviewed W07 Guard is explicitly a TEST_ONLY fixture at HP 0 in a dying state. The Director's retained minimum witness remains unsatisfied.
+This read-only Final Word source-discovery pass found no qualifying changed evidence for DR217-B01. GPT Director confirmed the pass and the catalog byte correspondence. The current catalog/index still hold Final Word; the Chronicle and F51 entries are historical or adventure hooks, and the reviewed W07 Guard is explicitly a TEST_ONLY fixture at HP 0 in a dying state. HP 0/dying does not itself mean dead; the fixture remains insufficient because Final Word-specific provenance and event history are absent.
 
 The catalog report resolves the raw hash discrepancy: the Queue476 SHA binds the exact LF snapshot in the W06 packet. On this Windows checkout, `core.autocrlf=true` produces a CRLF working-tree copy whose raw hash differs. Replacing CRLF with LF exactly reproduces the archived snapshot byte for byte. The root path and archived member point to the same Git blob at the pinned commit. No catalog, index, or queue file was changed or normalized.
 
-The 468 caster-premise and 448 W13 owner adoptions remain exactly branch-scoped as recorded in their existing owner records. They do not accept or apply an identity and do not change Queue476. Elemental Shell remains the next queue priority; its separate B01/B02 owner-adoption gate remains unresolved.
+The 468 caster-premise and 448 W13 owner adoptions remain exactly branch-scoped as recorded in their existing owner records. They do not accept or apply an identity and do not change Queue476. Elemental Shell remains the next queue priority; its separate B01/B02 owner-adoption gate remains unresolved. GPT directed that, after exact owner adoption of either Proposal478 Repack01 or Proposal477 Repack01, only that branch may be constructed as TEST_ONLY and submitted for review.
 
 Run the verifier from the repository root:
 
