@@ -1,0 +1,471 @@
+{
+  "schema": "DD_OWNER_STATIC_TEST_PROPOSAL_V1",
+  "proposalId": "OWNER_EP480_STATIC_GUARANTEE_PROPOSAL_02",
+  "contractId": "EP480-STATIC-GUARANTEE-PROPOSAL-02",
+  "revision": 2,
+  "spellId": "eternal-prophecy",
+  "blockerId": "TF192-B02",
+  "status": "PROPOSED_NOT_ADOPTED",
+  "authorityClass": "NEW_CONDITIONAL_TEST_RULES_NOT_NATIVE_SOURCE_AUTHORITY",
+  "reviewScope": "Construct bounded TEST_ONLY witnesses and evaluate STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY for Eternal Prophecy only.",
+  "ownerDecisionRequired": true,
+  "directorReadinessReviewRequiredBeforeAdoptionOrWitnessConstruction": true,
+  "proposalSourceCommit": "f8cf0d704e1958b89030d1e01e173727f8e16b9b",
+  "supersedes": {
+    "proposalId": "OWNER_EP480_STATIC_GUARANTEE_PROPOSAL_01",
+    "commit": "f8cf0d704e1958b89030d1e01e173727f8e16b9b",
+    "sha256": "85d40154095fe766d8f21fb91a701d9ea7c97fede17b575a52172ea70051b41d",
+    "status": "REVISE_NOT_ADOPTED"
+  },
+  "sourceBindings": [
+    {
+      "role": "controlling_return323_blocker",
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_eternal_prophecy_return323_received/BLOCKER_REASSESSMENT.json",
+      "gitBlobSha1": "41aeee157694badc61971e686318ee6c69632d7f",
+      "sha256": "82286a8f13269c2d3b7699690a47be9738ec1721ead6d5ce09173913c73b4ff8",
+      "pointers": [
+        "/missingWitnessParts/0",
+        "/missingWitnessParts/1",
+        "/missingWitnessParts/2",
+        "/nativePromise",
+        "/sourceAnchor"
+      ]
+    },
+    {
+      "role": "paid_cast_and_successful_delivery_parent",
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_eternal_prophecy_return323_received/cases/RANK9TIMEFATE6129-ETERNAL-PROPHECY-A.json",
+      "gitBlobSha1": "5ff20ab95c2798d822f046453cb26ff22c0a5b47",
+      "sha256": "1f71f14dbb63947dba11a5cfde26a3677fbbfb9ead24bced606bdcd0f8977188",
+      "pointers": [
+        "/initialState/actors/W",
+        "/initialState/items/book-W",
+        "/initialState/world",
+        "/events/2",
+        "/events/3",
+        "/finalState/casts/0",
+        "/finalState/obligations/RANK9TIMEFATE6129-ETERNAL-PROPHECY-A-cast1/predicate",
+        "/finalState/custodyHistory",
+        "/events/2/after"
+      ]
+    },
+    {
+      "role": "alternate_route_decline_and_obstruction_parent",
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_eternal_prophecy_return323_received/cases/RANK9TIMEFATE6129-ETERNAL-PROPHECY-A__alternate-route-obstruction.json",
+      "gitBlobSha1": "4e58128aeb6b3b38e7c6c7acabcead6ca8b48101",
+      "sha256": "8fad1dde9d8fa7f06f107d2527992ffb1d7d458376c35fdaab1340899c1a8b5e",
+      "pointers": [
+        "/events/6",
+        "/events/10",
+        "/events/14",
+        "/finalState/obligations/RANK9TIMEFATE6129-ETERNAL-PROPHECY-A__alternate-route-obstruction-cast1"
+      ]
+    },
+    {
+      "role": "unclosed_paid_pending_obligation_parent",
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_eternal_prophecy_return323_received/cases/RANK9TIMEFATE6129-ETERNAL-PROPHECY-B.json",
+      "gitBlobSha1": "d3988208c64dd651e411d31474026de8d90e7a62",
+      "sha256": "c501f95c296bb8506b6a722474da8d70a0251a69f97f37359260daeee08cfa81",
+      "pointers": [
+        "/events/2",
+        "/events/3",
+        "/events/4",
+        "/finalState/obligations/RANK9TIMEFATE6129-ETERNAL-PROPHECY-B-cast1"
+      ]
+    },
+    {
+      "role": "later_unavailable_item_preflight_boundary",
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_eternal_prophecy_return323_received/cases/RANK9TIMEFATE6129-ETERNAL-PROPHECY-B__unavailable-item.json",
+      "gitBlobSha1": "5dd9e357a924b4874afa6419491597ead6c8a9b1",
+      "sha256": "b17bb21c6660149667032c7582f7d9f745a8753623b2dd1a7a614fea9e83ed06",
+      "pointers": [
+        "/events/3",
+        "/events/4",
+        "/finalState/obligations"
+      ]
+    },
+    {
+      "role": "temporal-conflict-boundary",
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_eternal_prophecy_return323_received/cases/RANK9TIMEFATE6129-ETERNAL-PROPHECY-B__rewrite-creation-conflict.json",
+      "gitBlobSha1": "380eb5532d8a86b66051df61b5ab339cb5ef0f86",
+      "sha256": "542276a60f0c3d1c0b15adcc018927eff550d58f400908ca03ccb9dc50b039d2",
+      "pointers": [
+        "/events/2",
+        "/events/3",
+        "/events/4",
+        "/finalState/casts/0",
+        "/finalState/obligations"
+      ]
+    },
+    {
+      "role": "caster-death-and-persistence-boundary",
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_eternal_prophecy_return323_received/cases/RANK9TIMEFATE6129-ETERNAL-PROPHECY-B__caster-death-persistence.json",
+      "gitBlobSha1": "98c2f702c96be8b03761b69795298a41047c2c25",
+      "sha256": "e4b83a45975c356e19eb7ede050e4ef396c273feeb4adcbca617a68bb1e23b0c",
+      "pointers": [
+        "/events/2",
+        "/events/3",
+        "/events/10",
+        "/events/11",
+        "/finalState/obligations"
+      ]
+    },
+    {
+      "role": "authored_procedure_and_persistence_constraints",
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9timefate6_reviewed_192/procedures/eternal-prophecy.json",
+      "gitBlobSha1": "bff318be16ad847542d6db197df2505f1be36eb2",
+      "sha256": "e79e5bd6409cc6cc4a71d4774b06af327dd155f2c00b27fcf72acaa4edd30aff",
+      "pointers": [
+        "/procedure/admission",
+        "/procedure/conflicts",
+        "/procedure/plan",
+        "/procedure/unresolvedGuarantee",
+        "/sharedRequirements/commit",
+        "/sharedRequirements/persistence",
+        "/sharedRequirements/physical",
+        "/sharedRequirements/suppression"
+      ]
+    },
+    {
+      "role": "conditional_actor_profile_source",
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9timefate6_reviewed_192/ACTOR_PROFILES.json",
+      "gitBlobSha1": "c9141b8924ddee5aba342d244dd57751db2943c8",
+      "sha256": "329f686f6e40688700e956ce731d76dbbe72d595439c36d9128cdfb6fb03f9f1",
+      "pointers": [
+        "/Wizard",
+        "/Wizard/acquisitionLedger/9/choices/0"
+      ]
+    }
+  ],
+  "nativePromise": {
+    "text": "Create a self-fulfilling prophecy that must come true within 1 year.",
+    "sourcePointer": "Return323 BLOCKER_REASSESSMENT.json#/sourceAnchor; Core309 paragraph9360",
+    "treatment": "Preserved unchanged; no qualification, waiver, reinterpretation as a pending record, or native authority is proposed."
+  },
+  "branchFixture": {
+    "provenance": "Four isolated static branches clone the exact Return323 A /events/2/after state after payment and cast commitment but before response resolution or obligation creation. Source files remain immutable.",
+    "sourceCastId": "RANK9TIMEFATE6129-ETERNAL-PROPHECY-A-cast1",
+    "soleObligationId": "RANK9TIMEFATE6129-ETERNAL-PROPHECY-A-cast1",
+    "branchExecutionIdPrefix": "EP480-WITNESS-OBLIGATION-BOOK-W-01",
+    "branchStart": {
+      "sourcePath": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_eternal_prophecy_return323_received/cases/RANK9TIMEFATE6129-ETERNAL-PROPHECY-A.json",
+      "pointer": "/events/2/after",
+      "sourceStateSha256": "55de6c13eb5c86784933052e401d8f84ad600d6b1ec8830280eeb693d0c0347c",
+      "worldTimeMs": 100,
+      "castAlreadyPaid": true,
+      "obligationNotYetCreated": true
+    },
+    "paidCast": {
+      "actor": "W",
+      "profile": "Wizard17-human",
+      "class": "Wizard",
+      "classLevel": 17,
+      "school": "Divination",
+      "rank": 9,
+      "action": "Action",
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "commitTimeMs": 100,
+      "rpBefore": 64,
+      "rpPaid": 26,
+      "rpAfter": 38,
+      "surcharge": 0,
+      "inheritedExactlyOnce": true,
+      "historicalReceiptStatusRemains": "committed"
+    },
+    "counterWindow": {
+      "timeMs": 100,
+      "observerActor": "T",
+      "sourcePointer": "/events/2/after/actors/T",
+      "rulePointer": "procedures/eternal-prophecy.json#/sharedRequirements/commit",
+      "eligibility": [
+        "Wizard17-human at [5,0,0], W at [0,0,0], mutual sight and line of effect true.",
+        "Reaction=1 and RP=64 in inherited source state.",
+        "Check source-qualified Wizard Arch Counterspell prerequisites; if they do not hold, stop and hold rather than fabricate eligibility."
+      ],
+      "outcome": "T voluntarily declines; no forced creature action.",
+      "reactionSpent": false,
+      "rpSpent": 0
+    },
+    "resolutionOrder": [
+      "Inherit the paid cast and consumed Action; never repeat either.",
+      "Open and record the actual response window.",
+      "Record T eligibility and voluntary decline without cost.",
+      "Record successful spell resolution as a new branch-local event; do not rewrite the source receipt.",
+      "Create exactly one obligation whose ID equals the source cast ID; map one execution child key per isolated branch."
+    ],
+    "item": {
+      "id": "book-W",
+      "type": "existing ordinary nonliving primary Wizard spellbook",
+      "owner": "W",
+      "initialCustodian": "W",
+      "artifact": false,
+      "contentsAndIdentity": "Preserve exact stable ID and bound contents.",
+      "preservationSourcePointer": "ACTOR_PROFILES.json#/Wizard/acquisitionLedger/9/choices/0",
+      "lossSemantics": "Non-destructive off-scene removal only. Preserve the unique intact item and contents in one TEST_ONLY unavailable ledger; keep owner W; no destruction, fragments, copying, data reconstruction, or second item."
+    },
+    "destination": {
+      "custodian": "cache",
+      "anchor": [
+        15,
+        0,
+        0
+      ],
+      "coordinateConvention": "TEST_ONLY: x east, y north, z up; anchor is the center of the book footprint at bottom-contact elevation.",
+      "sourcePredicate": "Return323 A final obligation predicate and actual delivery use book-W at [15,0,0], custodian cache.",
+      "newPremises": {
+        "scene": "Inherited 120 by 120 ft synthetic room; geometry outside this patch unchanged.",
+        "supportId": "EP480-SUPPORT-BOOK-W-01",
+        "supportPatch": "One 1 by 1 ft plate centered x=15,y=0, top z=0; bounds x=[14.5,15.5], y=[-0.5,0.5]. The inherited floor has a matching cutout, so this plate is the sole support at the anchor.",
+        "itemEnvelope": "One 1 by 1 by 0.1 ft book envelope above z=0 for TEST_ONLY collision checks only.",
+        "cacheMarker": "Separate logical non-owning custody marker; supplies no physical support or property.",
+        "clearance": "Only book-W occupies the envelope. W at [0,0,0] and T at [5,0,0], each with source 5 by 5 ft body footprint, do not intersect the destination or restoration volume.",
+        "supportOwner": "TEST_ONLY scene-fixture-owner",
+        "restorationPermission": "Only this exact owner adoption grants branch-local restoration permission.",
+        "accounting": "Track unique item/support IDs and owner/custody/availability. Make no quantitative mass-conservation claim."
+      }
+    },
+    "objective": {
+      "predicate": "The same book-W first arrives at the original anchor with valid support and custodian cache after 100 ms and by the original deadline.",
+      "deadlineMs": 34560000100,
+      "terminalMs": 34560000099,
+      "exclusiveStartMs": 100,
+      "physicalEvidence": [
+        "stable item ID",
+        "owner and custodian",
+        "position and support ID",
+        "physical arrival time",
+        "source obligation ID"
+      ]
+    }
+  },
+  "guarantee": {
+    "eligibility": "The branch inherits one committed 26-RP Action/V/S/F cast. At 100 ms run response, voluntary decline, successful resolution, then one obligation creation in order. A refused/countered/suppressed-at-origin/failed cast creates no obligation and retains actual costs.",
+    "calendar": "Keep createdMs=100 and deadlineMs=34,560,000,100. Run terminal at 34,560,000,099 ms. No reset, extension or post-deadline retry.",
+    "routeRegistry": {
+      "exactOrdinaryRoutes": [
+        "consensual-ally-delivery",
+        "caster-carries-around-obstruction"
+      ],
+      "noOtherActorsOrObjects": true,
+      "branchOnlyClosedWorld": true
+    },
+    "preventionInventory": [
+      {
+        "id": "EP480-PREVENT-ALLY-DELIVERY",
+        "atMs": 100,
+        "source": "A alternate-route-obstruction /events/6",
+        "target": "T and route consensual-ally-delivery",
+        "effect": "T declines; routeAvailable=false",
+        "persistsUntilMs": 34560000098,
+        "cost": 0
+      },
+      {
+        "id": "EP480-PREVENT-CARRY-ROUTE",
+        "atMs": 101,
+        "source": "A initialState/items/gate/geometry and A /events/10",
+        "target": "W and route caster-carries-around-obstruction",
+        "effect": "All local carry paths unavailable, explicitly including open y=5 bypass; gate itself is not treated as a complete block.",
+        "persistsUntilMs": 34560000098,
+        "cost": 0
+      },
+      {
+        "id": "EP480-PREVENT-OTHER-DELIVERY",
+        "atMs": 101,
+        "target": "source obligation ID, book-W, cache",
+        "effect": "Seal branch registry to the two named ordinary routes and one terminal route; ordinaryMagicalInterventionsEnabled=false; no other route/actor/item exists in this closed TEST_ONLY fixture.",
+        "persistsUntilMs": 34560000098,
+        "cost": 0
+      },
+      {
+        "id": "EP480-SUPPRESS-ORDINARY-EXPRESSION",
+        "atMs": 101,
+        "target": "source obligation ordinarySpellExpressionEnabled",
+        "effect": "Set false, suppressing only ordinary Eternal Prophecy delivery expression.",
+        "persistsUntilMs": 34560000098,
+        "cost": 0
+      },
+      {
+        "id": "EP480-REMOVE-ATTEMPT-01",
+        "atMs": 200,
+        "target": [
+          "obligation.status",
+          "obligation.deadlineMs",
+          "terminalSchedule"
+        ],
+        "effect": "Attempt cancel/reset/delete; reject writes, preserve exact fields, append refused-attempt record.",
+        "persistsUntilMs": 200,
+        "cost": 0
+      },
+      {
+        "id": "EP480-REMOVE-ATTEMPT-02",
+        "atMs": 34560000097,
+        "target": [
+          "obligation.status",
+          "obligation.deadlineMs",
+          "terminalSchedule"
+        ],
+        "effect": "Repeat cancel/reset/delete two milliseconds before terminal; reject writes and retain one-use scheduler entry.",
+        "persistsUntilMs": 34560000097,
+        "cost": 0
+      }
+    ],
+    "terminalPriority": "The one-use scheduler is a separate immutable branch-overlay entry, not the ordinary spell expression. At exactly 34,560,000,099 ms it outranks only the six listed prevention/removal operations and the two listed non-destructive losses. It cannot compel a creature, alter unrelated state, or override an unlisted artifact/finality/cosmology/physical operand. No general unsuppressibility.",
+    "itemLoss": {
+      "id": "EP480-LOSS-ITEM-01",
+      "atMs": 5000,
+      "effect": "Move unique intact book-W from active-scene inventory to offSceneItemLedger[book-W]; owner W, contents and ID unchanged; destroyed=false; availability=off-scene/unavailable.",
+      "restore": "At terminal consume exactly one ledger entry and return that same object. This uses source Spell Preservation compatible theft/hiding/transport and creates no copy."
+    },
+    "destinationLoss": {
+      "id": "EP480-LOSS-DESTINATION-01",
+      "atMs": 5100,
+      "effect": "Move same support plate ID and cache marker to offSceneDestinationLedger; retain permission and provenance; leave destination cutout with no alternate support.",
+      "restore": "At terminal return only the same plate and marker to [15,0,0], recheck exact clearance, then place book-W.",
+      "noAlternateAnchor": true,
+      "noForcedDisplacement": true,
+      "massClaim": "No quantitative mass-conservation claim."
+    },
+    "persistence": "One source cast pays 26 RP exactly once (64 to 38); no sibling-case cast or cost is imported. Same obligation/deadline survives save/load and W death. No new Action, RP, item, reward, body, rest, recovery, refund, reset or replay.",
+    "temporal": "Compatible history: replay pending save/load A /events/5 and source clocks A /events/7,/events/8. Conflict: replay only the refused precommit OBLIGATION_PREFLIGHT at B__rewrite-creation-conflict /events/4, remapping its old obligation reference to the one source obligation; no cast, actor, action, RP or second obligation. It is a refused second-obligation request, not a Fate Rewrite cast. Actual Fate Rewrite/Collapse Timeline casts remain outside scope.",
+    "terminal": "Atomic and idempotent at terminalMs: (1) return same support plate if absent; (2) consume unique off-scene book ledger entry if needed and place same book-W; (3) verify position, support, clear envelope, owner W, cache custody, first-arrival time; (4) mark the one obligation fulfilled and consume execution key. Failure of any precondition commits none of the writes and keeps blocker open.",
+    "audit": "Inverse only in an isolated audit clone, reverse exact order, require current hash equals operation after-hash, restore each before-state hash, remove only TEST_ONLY overlay and match this branch start. No gameplay time rewind or source-file edit."
+  },
+  "t4": {
+    "sourceInputs": {
+      "deathCase": "Return323 B__caster-death-persistence /events/4 sets W hp=0, life=dying, failures=1, Unconscious and Prone at 100 ms; use only these W fields, no cause/damage source.",
+      "deathRoll": "Same source /events/8: at W nextRegularStart 6000 ms, natural 1, reaches three failures and dead. /events/10 at 6100 records death.",
+      "saveLoad": "A /events/5 at 1000 ms; round trip pending obligation only.",
+      "conflict": "B__rewrite-creation-conflict /events/4; rejected precommit request only, not executed Fate Rewrite.",
+      "ids": "Do not import either sibling branch obligation/cast/payment. Map only branch source ID RANK9TIMEFATE6129-ETERNAL-PROPHECY-A-cast1 to itself."
+    },
+    "schedule": [
+      {
+        "atMs": 100,
+        "event": "response, success, sole obligation creation, refused conflict preflight, then W scene input"
+      },
+      {
+        "atMs": 1000,
+        "event": "pending save/load; same IDs, payment and deadline"
+      },
+      {
+        "atMs": 1900,
+        "event": "process W nextRegularEnd"
+      },
+      {
+        "atMs": 2000,
+        "event": "process T nextRegularStart; no action/resource/delivery"
+      },
+      {
+        "atMs": 3900,
+        "event": "process T nextRegularEnd"
+      },
+      {
+        "atMs": 5000,
+        "event": "non-destructive book-W off-scene loss"
+      },
+      {
+        "atMs": 5100,
+        "event": "same support plate and cache marker off-scene loss"
+      },
+      {
+        "atMs": 6000,
+        "event": "process W nextRegularStart and source-bound natural-1 death save"
+      },
+      {
+        "atMs": 6100,
+        "event": "record dead state; corpse remains at [0,0,0]"
+      },
+      {
+        "atMs": 6101,
+        "event": "close encounter and explicitly enter outside-initiative; no rest/recovery/turn reset"
+      },
+      {
+        "atMs": 34560000098,
+        "event": "explicit monotonic outside-initiative elapsed-time marker, one ms before terminal"
+      },
+      {
+        "atMs": 34560000099,
+        "event": "terminal settlement, then identical-key retry that must be a full-state no-op"
+      }
+    ]
+  },
+  "execution": {
+    "branchStart": "Clone exact A /events/2/after, expected source-provided state SHA-256 55de6c13eb5c86784933052e401d8f84ad600d6b1ec8830280eeb693d0c0347c.",
+    "overlay": "Separate removable TEST_ONLY overlay holds branch ID, response outcome, closed route registry, support patch/cutout, off-scene ledgers, timers and terminal rule. Base projection and historical sources remain byte-identical.",
+    "branchIsolation": "T1-T4 are separate forks from the same pre-response parent. Each contains one inherited cast/payment and one obligation; no sibling success, costs, objects or inverses.",
+    "forwardInverse": "Record event IDs, exact inputs, before/after states and hashes for every transition. Inverses require matching after-hash, run in reverse order and restore matching before-hash. After inversion remove the overlay and verify parent hash exactly.",
+    "hash": "For new branch states: UTF-8 without BOM, canonical JSON, recursively ordinal-sort object keys, preserve array order, normalize numbers to JSON decimal and strings to Unicode NFC, SHA-256 exact canonical bytes. Keep the source-provided parent state hash as its exact separate binding.",
+    "terminalAssertions": [
+      "book-W unique ID and one source obligation ID",
+      "support plate unique ID and original anchor",
+      "position [15,0,0], support valid, owner W, custodian cache",
+      "arrival 34560000099 ms before deadline 34560000100 ms",
+      "no duplicate item/support, payment, reward or property; T4 W remains dead",
+      "execution key consumed once; second invocation leaves complete state hash identical"
+    ],
+    "t4Clock": "Process inherited due markers through W death at 6000 ms; close combat explicitly at 6101 ms; record monotonic elapsed-time markers through terminal outside initiative. No silent clock freeze and no rest or recovery."
+  },
+  "cases": [
+    {
+      "id": "EP480-T1",
+      "branchId": "EP480-BRANCH-T1",
+      "inputs": [
+        "all six prevention/removal operands",
+        "no item or destination loss"
+      ],
+      "expected": "One physical delivery of same book-W to intact support/cache at original anchor by terminal time."
+    },
+    {
+      "id": "EP480-T2",
+      "branchId": "EP480-BRANCH-T2",
+      "inputs": [
+        "all six prevention/removal operands",
+        "EP480-LOSS-ITEM-01 at 5000 ms"
+      ],
+      "expected": "Retain loss history and return same unique off-scene book-W, then prove physical delivery by unchanged deadline."
+    },
+    {
+      "id": "EP480-T3",
+      "branchId": "EP480-BRANCH-T3",
+      "inputs": [
+        "all six prevention/removal operands",
+        "EP480-LOSS-DESTINATION-01 at 5100 ms"
+      ],
+      "expected": "Retain loss history and return same support/cache at original anchor, then deliver same book-W by unchanged deadline."
+    },
+    {
+      "id": "EP480-T4",
+      "branchId": "EP480-BRANCH-T4",
+      "inputs": [
+        "all six prevention/removal operands",
+        "both non-destructive loss operations",
+        "source-bound W injury/death-save and pending save/load inputs",
+        "compatible clocks and refused precommit conflict request only"
+      ],
+      "schedulePointer": "/t4/schedule",
+      "expected": "Preserve one paid obligation/deadline, W death and all histories; restore exact support and same book-W, physically deliver once, then prove duplicate invocation is a no-op."
+    }
+  ],
+  "minimumInheritedQualifications": [
+    "TF192-Q-SOURCE",
+    "TF192-Q-RUNTIME",
+    "TF192-Q-BALANCE",
+    "TF192-Q-COMPLETION",
+    "TF192-Q-COSMOLOGY",
+    "TF192-Q-DOMAIN",
+    "TF192-Q-PHYSICAL",
+    "TF192-Q-PLAY",
+    "TF192-Q-RELEASE"
+  ],
+  "explicitNonEffects": [
+    "No native-source authority, campaign event, or real actor/item/destination fact is asserted.",
+    "No canonical rule, spell card, runtime, application, index, catalog or queue change.",
+    "No seal, acceptance, TF192-B02 closure, qualification closure, release/balance/play approval, or promise qualification.",
+    "No executed Fate Rewrite or Collapse Timeline witness; those remain held.",
+    "No witness construction until this revision passes Director readiness review and the owner adopts its exact hash."
+  ],
+  "ownerAdoptionText": "I adopt the exact EP480 proposal identified by its SHA-256 solely for constructing its bounded TEST_ONLY Eternal Prophecy witnesses and evaluating STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY. I explicitly authorize its listed response-window, finite-prevention, non-destructive off-scene loss/return, terminal-priority and same-item/destination restoration rules within those branches. These are new conditional test rules, not recovered native authority, campaign facts or canonical powers. Native-source and downstream qualifications remain. This authorizes no identity acceptance, application, seal or queue change."
+}
