@@ -1,0 +1,186 @@
+{
+  "schemaVersion": 1,
+  "id": "FINAL-WORD-CHANGE-EVIDENCE-LEAD-SHEET-476-REPACK02",
+  "recordedAtUtc": "2026-11-02T03:55:32Z",
+  "status": "COMPLETE_NO_QUALIFYING_CHANGED_EVIDENCE",
+  "identity": "final-word",
+  "blocker": "DR217-B01",
+  "scope": "Targeted read-only review of the current catalog/index, retained Director decision, Chronicle and F51 Gazetteer, linked creature/lifecycle and Hunt/soul records, and existing test-only encounter evidence. No hypothetical witness was constructed.",
+  "directorRuling": {
+    "source": "GPT Director, Calibration review part 6",
+    "conversationUrl": "https://chatgpt.com/g/g-p-67f17555a8dc8191a2b5b81e6d8adc12-dungeon-crawler/c/6adc506d-8770-83ea-b64c-0345d9b9b682",
+    "permission": "Complete the targeted discovery pass as no qualifying changed evidence and disclose the catalog representation discrepancy; preserve catalog, index, Queue476 and the DR217-B01 hold."
+  },
+  "currentAuthority": {
+    "queuePath": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_SPELL_QUEUE_476_REPACK01.json",
+    "queueBytes": 4150,
+    "queueSha256": "4ae9ed74080e2919e7223aeee54fe1d0a380b0117248648027a3f5dfbc95e9cb",
+    "reviewedApplied": 831,
+    "pending": 17,
+    "acceptedUnapplied": 0,
+    "nextIdentity": "elemental-shell",
+    "finalWordPosition": 2,
+    "finalWordRemainsPending": true
+  },
+  "leads": [
+    {
+      "source": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+        "pinnedCommit": "f6e89fde9251b7807fe0125ec14670c46ff8edfa",
+        "gitBlobSha1": "2d243b311cded8484630c12b6fcc2ae7f70cfddf",
+        "workingTreeBytes": 5085187,
+        "workingTreeSha256": "773fb0b3b0fdb501858ded33c02d90dc4db3009bd1b9f7112c244d998218f05b",
+        "pointer": "/spells/675"
+      },
+      "authorityClass": "Current authored catalog metadata and source summary; not an event or capture witness.",
+      "supported": [
+        "Final Word card remains status blocked-pending-operational-review with operational=null.",
+        "Its current summary describes a creature below 50 HP, a soul reserve on death, and a one-use 5 RP reserve; it supplies no source-qualified present victim or completed event."
+      ],
+      "missing": [
+        "Current living victim/body/HP and lifecycle state.",
+        "Soul availability, capture eligibility, permission and custody restrictions.",
+        "Hunt, origin and no-farming facts for a specific victim.",
+        "Lawful Final Word access/cast that causes the victim's actual final death, plus unique reserve and lawful payment/lifecycle history."
+      ],
+      "comparison": "Raw working-tree bytes are the CRLF checkout form. Replacing CRLF with LF yields exactly 4,945,319 bytes and SHA-256 f52cf6a4a4673897615a74c7c67dcba798c431362d4357e71ee552cc7c5d31f8, matching the Queue476-bound archived snapshot and the same Git blob. No catalog edit was made."
+    },
+    {
+      "source": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+        "pinnedCommit": "f6e89fde9251b7807fe0125ec14670c46ff8edfa",
+        "bytes": 1764525,
+        "sha256": "ebd344ece3b12fff06deead46e05e2a49dfe957e72086f2baaba24159ad34c7c",
+        "pointer": "/entries/675"
+      },
+      "authorityClass": "Current authored review index status.",
+      "supported": [
+        "The Final Word row is pending-authored-procedure and blocked-pending-operational-review; procedurePointer is null.",
+        "The row is exactly equal to the Final Word row in the retained 303 packet index."
+      ],
+      "missing": [
+        "No authored procedure or positive operational witness is indexed for Final Word."
+      ],
+      "canonicalRowSha256": "e5a75b2fc92b5f836032c46db8ec4fb5f19c61e37f03025d6f4c1a797db1cd59"
+    },
+    {
+      "source": {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/FINAL_WORD_DIRECTOR_DECISION_303.json",
+        "pinnedCommit": "f6e89fde9251b7807fe0125ec14670c46ff8edfa",
+        "bytes": 4978,
+        "sha256": "705ab79284cdf64a7d9e30eb2fb670666da4795a9a53469e5cfa40a9f7b26bd8",
+        "pointer": "/minimumMissingWitness"
+      },
+      "authorityClass": "Retained Director disposition for DR217-B01.",
+      "supported": [
+        "The identity remains held; acceptedIds and appliedIds are empty.",
+        "No new true-name prerequisite or new soul doctrine is required or authorized."
+      ],
+      "missing": [
+        "One source-qualified victim with current living body/HP, soul availability and capture eligibility, custody/capture restrictions, Hunt status and origin/no-farming facts.",
+        "A lawful Final Word cast that actually causes final death, followed by a uniquely identified reserve and lawful payment/lifecycle trace under the selected rules."
+      ]
+    },
+    {
+      "source": {
+        "path": "docs/manuals/Chronicle_of_the_Decennial_Opening.md",
+        "pinnedCommit": "f6e89fde9251b7807fe0125ec14670c46ff8edfa",
+        "bytes": 42499,
+        "sha256": "28c7e59c881bacdc73d7f88d19b595de33b61ba342c98a231b9de9ed04ca6a29",
+        "pointers": [
+          "line 145",
+          "line 332",
+          "line 549"
+        ]
+      },
+      "authorityClass": "Narrative/history and adventure seed.",
+      "supported": [
+        "Lines 145 and 332 describe Archpriest Gorthan's historical soulbinding and name-recovery rites.",
+        "Line 549 is an adventure seed involving a true name."
+      ],
+      "missing": [
+        "No present victim state, capture eligibility/permission, custody record, lawful Final Word cast/death, or reserve/payment ledger.",
+        "The true-name seed does not establish a Final Word prerequisite."
+      ]
+    },
+    {
+      "source": {
+        "path": "docs/manuals/F51_100_Director_Deep_Gazetteer.md",
+        "pinnedCommit": "f6e89fde9251b7807fe0125ec14670c46ff8edfa",
+        "bytes": 22457,
+        "sha256": "d5e05a7badb32e13ebc71fb01786e01e4b328f319ef33846ca53f615ff4df917",
+        "pointer": "line 233"
+      },
+      "authorityClass": "Surface adventure hook.",
+      "supported": [
+        "Vaskurhollow name-recovery contracts associated with Archpriest Gorthan."
+      ],
+      "missing": [
+        "No present victim, living-body/HP/lifecycle, capture permission, custody, Hunt/origin, qualifying death, or reserve/token history."
+      ],
+      "priorDirectorDisposition": "The exact hook was already classified nonqualifying in FINAL_WORD_GAZETTEER_SOURCE_LEAD_476_REPACK01.json; this pass does not replay it."
+    },
+    {
+      "source": {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/banishment_gate_witness363/packet/W07_GUST_CORPSE_CASE_363.json",
+        "pinnedCommit": "f6e89fde9251b7807fe0125ec14670c46ff8edfa",
+        "bytes": 998280,
+        "sha256": "ee3d2609272336246396c0421ae807e3ebee62d6aef1807d91b310dad548d2dd",
+        "pointer": "/initial/actors/Guard-W07-TESTONLY"
+      },
+      "authorityClass": "TEST_ONLY encounter fixture; explicitly not a campaign fact.",
+      "supported": [
+        "The fixture Guard has HP 0, is dying, and has TEST_ONLY fixture custody; the case is submitted, not accepted or applied.",
+        "No actual campaign victim, capture event, or current living eligible body is established."
+      ],
+      "missing": [
+        "Campaign existence, a current living victim, capture permission and a qualifying Final Word event."
+      ]
+    },
+    {
+      "source": {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank7gateglyph3_return01_141_extracted/evidence/source01/sources/DescentReviewChanges/ReviewBible/docs/director-only/cosmology/SOULS_RESEARCH_REVIEWED_01.md",
+        "bytes": 23925,
+        "sha256": "01e141c7b4c1d63f2ee1e82169d869378571428269500df749e3188a31545121",
+        "pointer": "lines 167-184"
+      },
+      "authorityClass": "General Hunt warning/trigger and attention-state guidance; not a named victim or event ledger.",
+      "supported": [
+        "Hunt warning, commitment and trigger are separate records; the document cautions against inventing a roster or cosmological identity."
+      ],
+      "missing": [
+        "No victim identity, present life/HP, capture permission, custody, origin, no-farming status, or Final Word event/token history."
+      ]
+    },
+    {
+      "source": {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_faction_incarnate_review_337_prepared_v2/packet/sources/02_CREATURE_LIFECYCLE_PLAYTEST.md",
+        "bytes": 20087,
+        "sha256": "eae68470d4dba14aa74334e22270e35a8aea022d3c5013aa75a96c15d8e93b08",
+        "pointers": [
+          "line 21",
+          "line 63"
+        ]
+      },
+      "authorityClass": "General creature lifecycle playtest procedure; describes Mage Lich asset return, not a Final Word victim record.",
+      "supported": [
+        "Generic lifecycle rules for a destroyed bound Mage Lich asset and its own return conditions."
+      ],
+      "missing": [
+        "No named Final Word victim, capture permission, or qualifying event/reserve history."
+      ]
+    }
+  ],
+  "conclusion": {
+    "finding": "No qualifying changed evidence was found in the Director-authorized source domains. The unchanged historical/name-recovery material and TEST_ONLY Guard fixture do not satisfy the positive capture witness.",
+    "minimumMissingWitnessSource": "docs/audit/2026-10-08/full-game/director-spell-review-129/FINAL_WORD_DIRECTOR_DECISION_303.json#/minimumMissingWitness",
+    "finalWordHeld": true,
+    "identityAccepted": false,
+    "identityApplied": false,
+    "blockerClosed": false,
+    "campaignEventAsserted": false,
+    "hypotheticalWitnessConstructed": false,
+    "canonicalRuleChanged": false,
+    "queueChanged": false
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "id": "CATALOG-BYTE-CORRESPONDENCE-476-REPACK02",
+  "recordedAtUtc": "2026-11-02T03:55:32Z",
+  "status": "PASS_EXACT_CRLF_TO_LF_CORRESPONDENCE",
+  "purpose": "Resolve the Queue476 catalog SHA-256 versus current tracked working-tree representation without changing the catalog, index or queue.",
+  "pinnedSourceCommit": "f6e89fde9251b7807fe0125ec14670c46ff8edfa",
+  "queueExpectedSnapshot": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/banishment_gate_witness365_w06_planes_shift_repack06_verified04/packet/sources/catalog.json",
+    "bytes": 4945319,
+    "sha256": "f52cf6a4a4673897615a74c7c67dcba798c431362d4357e71ee552cc7c5d31f8",
+    "crc32": "75a4fd7c",
+    "gitBlobSha1": "2d243b311cded8484630c12b6fcc2ae7f70cfddf"
+  },
+  "queue476Binding": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_SPELL_QUEUE_476_REPACK01.json#/currentCatalogBinding",
+    "bytes": 4945319,
+    "sha256": "f52cf6a4a4673897615a74c7c67dcba798c431362d4357e71ee552cc7c5d31f8",
+    "crc32": "75a4fd7c"
+  },
+  "observedTrackedCatalog": {
+    "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+    "commit": "f6e89fde9251b7807fe0125ec14670c46ff8edfa",
+    "gitBlobSha1": "2d243b311cded8484630c12b6fcc2ae7f70cfddf",
+    "workingTreeBytes": 5085187,
+    "workingTreeSha256": "773fb0b3b0fdb501858ded33c02d90dc4db3009bd1b9f7112c244d998218f05b",
+    "workingTreeCrlfCount": 139868,
+    "gitCoreAutocrlf": true
+  },
+  "verifiedCorrespondence": {
+    "operation": "Replace every CRLF pair with LF; perform no other transformation.",
+    "resultBytes": 4945319,
+    "resultSha256": "f52cf6a4a4673897615a74c7c67dcba798c431362d4357e71ee552cc7c5d31f8",
+    "equalsExpectedSnapshotBytes": true,
+    "sameGitBlobAtPinnedCommit": true,
+    "parsedCatalogObjectsEqual": true,
+    "parsedSpellCount": 848,
+    "finalWordCardPointer": "/spells/675",
+    "finalWordCardEqualAcrossRootSnapshotAnd303Archive": true,
+    "rootWorkingBytesEqual303ArchivedCurrentCatalogMember": true,
+    "declaredFinalWordSourceHashesAlsoMatchLfRepresentations": true
+  },
+  "sourceFileLineEndingCorrespondence": [
+    {
+      "catalogPointer": "/spells/675/source/catalogPath",
+      "catalogDeclaredSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+      "path": "DescentReviewChanges/ReviewBible/src/data/spells.js",
+      "pinnedCommit": "f6e89fde9251b7807fe0125ec14670c46ff8edfa",
+      "gitBlobSha1": "a132e45c6d76010eae85c1829f7ed9b584874ed4",
+      "workingTreeBytes": 1305184,
+      "workingTreeSha256": "e96e777c94c054c1b68c65e299b08babf8e3284a1ec80cdc0206da16241a75e5",
+      "workingTreeCrlfCount": 52725,
+      "lfNormalizedBytes": 1252459,
+      "lfNormalizedSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+      "declaredHashCorrespondsExactlyAfterCrlfToLf": true
+    },
+    {
+      "catalogPointer": "/spells/675/source/corePath",
+      "catalogDeclaredSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+      "path": "DescentReviewChanges/ReviewBible/data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "pinnedCommit": "f6e89fde9251b7807fe0125ec14670c46ff8edfa",
+      "gitBlobSha1": "3c37ee7486d98eb214166cc77b81447823ed0310",
+      "workingTreeBytes": 450543,
+      "workingTreeSha256": "842718b9f016294529bdffefca9c81cca9a37670dd5e66a3c893ad313d79dd51",
+      "workingTreeCrlfCount": 15851,
+      "lfNormalizedBytes": 434692,
+      "lfNormalizedSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+      "declaredHashCorrespondsExactlyAfterCrlfToLf": true
+    }
+  ],
+  "indexComparison": {
+    "currentPath": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+    "currentBytes": 1764525,
+    "currentSha256": "ebd344ece3b12fff06deead46e05e2a49dfe957e72086f2baaba24159ad34c7c",
+    "currentFinalWordPointer": "/entries/675",
+    "archived303IndexMember": "current/authored_review_index.json",
+    "archived303IndexBytes": 1688021,
+    "archived303IndexSha256": "bc17b53a5260e0df579c5695aca0df5c9dd6ad711200ba40dc56a0a12d0681a7",
+    "finalWordRowsEqual": true,
+    "canonicalFinalWordRowSha256": "e5a75b2fc92b5f836032c46db8ec4fb5f19c61e37f03025d6f4c1a797db1cd59"
+  },
+  "interpretation": [
+    "Queue476's f52cf6... hash identifies the exact LF archived snapshot, not the observed CRLF working-tree bytes at the tracked path.",
+    "The root tracked catalog and archived snapshot use the same Git blob at the pinned commit; core.autocrlf=true produces the recorded CRLF working-tree form. The Final Word card's declared spells.js and core JSON hashes also match those files exactly after the same CRLF-to-LF conversion.",
+    "The Final Word catalog card and index row comparisons are unchanged from the archived 303 evidence. Semantic comparison is valid, and exact byte correspondence is now also established through the declared line-ending transformation."
+  ],
+  "effects": {
+    "catalogModified": false,
+    "indexModified": false,
+    "queue476Modified": false,
+    "catalogSilentlyNormalized": false,
+    "rulesChanged": false,
+    "identityAcceptedOrApplied": false,
+    "blockerClosed": false
+  }
+}
