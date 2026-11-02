@@ -57,7 +57,8 @@
       "sourceStatus": "blocked-pending-operational-review",
       "priorCatalogSelectionStatusUnchanged": true
     },
-    "decayIndexRowUnchanged": true
+    "decayIndexRowUnchanged": true,
+    "coreGitBlobSha256MatchesEmbeddedBinding": true
   },
   "transformationRecords": [
     {
@@ -322,7 +323,17 @@
       }
     ],
     "catalogEmbeddedCoreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
-    "bindingNote": "The full-file hash recorded inside catalog spell source metadata differs from the current Core Systems file hash. The current records inspected at these pointers remain summary-only; none specifies a type change or Undead eligibility removal."
+    "bindingNote": "The catalog embedded coreSha256 matches the exact current Git blob bytes. The checked-out worktree has CRLF line endings (15,851 CRLF sequences); converting CRLF to LF yields byte-identical current Git blob bytes, so the worktree SHA difference is line-ending normalization only, not a source delta. The inspected current Core Systems records remain summary-only and do not specify type change or Undead eligibility removal.",
+    "worktreeFileBytes": 450543,
+    "worktreeFileSha256": "842718b9f016294529bdffefca9c81cca9a37670dd5e66a3c893ad313d79dd51",
+    "worktreeCrLfLineCount": 15851,
+    "gitBlob": {
+      "bytes": 434692,
+      "sha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+      "gitBlobSha1": "3c37ee7486d98eb214166cc77b81447823ed0310"
+    },
+    "crlfToLfNormalizationMatchesGitBlob": true,
+    "pointersRemainSummaryOnly": true
   },
   "fleshAscendant": {
     "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
