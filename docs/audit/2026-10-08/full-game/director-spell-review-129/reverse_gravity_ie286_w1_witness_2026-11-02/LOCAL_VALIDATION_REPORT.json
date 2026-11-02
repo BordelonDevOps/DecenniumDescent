@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "id": "IE286-W1-LOCAL-VALIDATION-01",
+  "classification": "TESTONLY_WITNESS_STRUCTURAL_VALIDATION",
+  "validatedAtUtc": "2026-11-02T16:12:01Z",
+  "validator": "verify_ie286_w1_packet.py",
+  "result": "PASS",
+  "checks": {
+    "packet": "IE286-W1-TESTONLY-WITNESS-PACKET-01",
+    "caseCount": 3,
+    "checks": [
+      {
+        "file": "IE286_W1_A_60FT_DELTA_TESTONLY.json",
+        "sha256": "d43111288fe16083c961da9977ca6b3133191d6b633ab4834af69ceb6b35f2bc",
+        "sourceBefore": "1b342e12d9ef061e402b5807c2890f32a9ad5095790378ed07a1f1c7be701487",
+        "sourceAfterLanding": "4f5548b7a44ba8e287598634ac7b7de8918ec4e3fddec7f67bae523154db1b28",
+        "overlayHashes": {
+          "beforeLanding": "fac89d19001a1cc0c5cab2e1b583b9db495fa0047960a2c899892c09e5a693be",
+          "afterLandingBeforeImpact": "fe0b4f8b8961e7e9d70a0738c7406a01b087f1f00d15c2c12b7b5fe963499315",
+          "afterImpactAndSettlement": "d1896657bb57f6a713c58df407b54df849b47df92f17cae4bf59902f7e7c9978"
+        },
+        "massAfterLb": 20,
+        "result": "PASS"
+      },
+      {
+        "file": "IE286_W1_B_60FT_DELTA_TESTONLY.json",
+        "sha256": "37a07d45038f73731e6b2c3b6657a6d40bc09585125faa16f7627c9ce73f9a81",
+        "sourceBefore": "77b7e8ac10220d235163e35a309ec1dc5466857b9a20ee3c07375af1d3ced8eb",
+        "sourceAfterLanding": "c8144c9eeb204b3926be38c7ab7e078523c07f31df26c1e39c1c0707f2c9354c",
+        "overlayHashes": {
+          "beforeLanding": "51546456046b8c9b953077eb44f5b75156355402a6f7dfb565605b16e3c96cb6",
+          "afterLandingBeforeImpact": "0f33a0eab44ea9bc8cc21d467c4b90eaf60a0e76357ce8bb769982c850d10095",
+          "afterImpactAndSettlement": "841c9d4ecaf1b054b33aaef1d015db05110e1767d891db7f450046617843e471"
+        },
+        "massAfterLb": 20,
+        "result": "PASS"
+      },
+      {
+        "file": "IE286_W1_B_OVERLAP_120FT_DELTA_TESTONLY.json",
+        "sha256": "dd23f6bdc801d0ec933001c5b2e25a0dd6a6aedade655bdd6277eb66fa49caf1",
+        "sourceBefore": "25f72143a693ebb2ba8b4971a362de091919cdfdf5f03d8c54679c9951eae7c9",
+        "sourceAfterLanding": "1d3eb034a9810a49a7abc677ebcd1a89edf369c5590238a932dec2f5a0ca5258",
+        "overlayHashes": {
+          "beforeLanding": "b94cc5d6e06c871dee14711ae8c5782769bf98eea2c7b80810edd7296c511a16",
+          "afterLandingBeforeImpact": "b8734fb986e24fc69bcb210b62ae8c001ba52c5507dd4a39b3556487092fa00f",
+          "afterImpactAndSettlement": "cece2db2919a0cf40ae05e6855ba97ee5e2ab01e89c71605f33eda09c232bfcb"
+        },
+        "massAfterLb": 20,
+        "result": "PASS"
+      }
+    ]
+  },
+  "limitations": [
+    "This verifies packet consistency and deterministic arithmetic only. It does not establish source facts, certify actual equipment, seal evidence, close IE204-B02, or accept/apply the spell."
+  ]
+}
