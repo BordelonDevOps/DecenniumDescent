@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "id": "OWNER-REVERSE-GRAVITY-IE286-W2-UPWARD-LOAD-RULE-PROPOSAL-01",
-  "createdAtUtc": "2026-11-02",
-  "classification": "OWNER_AUTHORIZED_TEST_ONLY_MECHANIC_DESIGN_PROPOSAL_REVISION_5_NOT_ACCEPTED_NOT_WITNESS",
+  "createdAtUtc": "2026-11-02T20:12:35Z",
+  "classification": "OWNER_AUTHORIZED_TEST_ONLY_MECHANIC_DESIGN_PROPOSAL_REVISION_6_NOT_ACCEPTED_NOT_WITNESS",
   "status": "AWAITING_GPT_DIRECTOR_REVIEW",
   "authorization": {
     "userInstruction": "Create a rule that fits",
@@ -177,6 +177,12 @@
       "sha256": "5cf576555f8e76e838ed4233fbfa2c0fedc4ae8a944ed4936a5f24e29050e4c5",
       "decisionId": "CODEX-TRANSCRIBED-IE286-W2-GPT-REVIEW-03",
       "classification": "CODEX_TRANSCRIBED_GPT_UI_READBACK_NOT_GPT_AUTHORED_FILE"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/reverse_gravity_ie286_w2_owner_proposal_2026-11-02/CODEX_TRANSCRIBED_DIRECTOR_REVIEW_REVISE_04.json",
+      "bytes": 4849,
+      "sha256": "fd3c0f1c0223cc15440228c90e5855cb20ba14a833235c82fcfebea192fc32b2",
+      "hashDomain": "exact UTF-8 bytes; no newline normalization"
     }
   ],
   "proposedTestOnlyRule": {
@@ -242,7 +248,7 @@
             "deadlineSeconds": 600
           },
           "operationalProfileStatus": "Bound operational-playtest draft, not canonical promotion; the t=600-second expiry is preserved from that profile.",
-          "creationPointPremise": "Before t=0 casting, the full 0.8-by-0.8-by-1.45-ft TEST_ONLY creation cell centered at [-2.2,0,2.225] (bounds x[-2.6,-1.8], y[-0.4,0.4], z[1.5,2.95]) is clear of creatures, gear and objects. It begins exactly at the shelf top z=1.5 and has no positive-volume overlap with the shelf. The complete 50-ft, 0.05-ft-diameter rope materializes as a TEST_ONLY stacked-loop coil inside the cell, with measured envelope 0.70-by-0.70-by-1.35 ft (0.6615 ft3), bounding the 0.098175 ft3 rope material. The coil has 26 full horizontal circular turns at 0.30-ft centerline radius plus a final 0.99115-ft arc, stacked at 0.05-ft pitch; the measured continuous line length is exactly 50 ft. The coil rests on the shelf; this explicit packing geometry is a branch premise, not a general creation rule."
+          "creationPointPremise": "Before t=0 casting, the full 0.8-by-0.8-by-1.45-ft TEST_ONLY creation cell centered at [-2.2,0,2.225] (bounds x[-2.6,-1.8], y[-0.4,0.4], z[1.5,2.95]) is clear of creatures, gear and objects. It begins exactly at the shelf top z=1.5 and has no positive-volume overlap with the shelf. The complete 50-ft, 0.05-ft-diameter rope materializes as one continuous, unbroken TEST_ONLY coil wholly inside the cell, with measured envelope 0.70-by-0.70-by-1.35 ft (0.6615 ft3), bounding the 0.098175 ft3 rope material. The continuous centerline length is explicitly stipulated and measured at exactly 50.000 ft while packed in that envelope. No analytic turn recipe or uncounted inter-level connectors are asserted; the measured coil is a branch premise, not a general creation rule. The coil rests on the shelf."
         }
       },
       "attachmentSetup": [
@@ -251,14 +257,14 @@
             0,
             6
           ],
-          "operation": "TEST_HANDLER_B stands at [0,1,0] on the upper platform and manually clips one rope end to the consenting target's side D-ring at [0,0,1.5], a 1.803-ft reach within 2.25 ft. At the same time, TEST_HANDLER_A walks from [-1,2,0] to pickup stance [-1,0,0], whose nearest reach to the coil envelope is 1.724 ft, and lifts the 10-lb coil from the shelf. Both are supported manual operations; no Rope command."
+          "operation": "From t=0 to t=6, TEST_HANDLER_B stands at [0,1,0] on the upper platform. TEST_HANDLER_A walks from [-1,2,0] to pickup stance [-1,0,0] (nearest coil-envelope point 1.724 ft away) and lifts/supports the 10-lb coil. A draws out its free end by hand and presents it at handoff point [-0.5,0,0.9]. That point is 1.030 ft from A's pickup stance and 1.436 ft from B; the target D-ring [0,0,1.5] is 1.803 ft from B and 0.781 ft from the handoff point. B receives the end from A and clips it to the consenting target's side D-ring within B's 2.25-ft reach. A supports the coil throughout; B does not retrieve the end directly from the shelf. These are supported manual operations; no Rope command."
         },
         {
           "seconds": [
             6,
             14
           ],
-          "operation": "TEST_HANDLER_A carries the coil on the supported upper platform to the stair entrance [-1,2,0], descends TEST_SERVICE_STAIR_01, unspools the free end by hand down the straight open TEST_ROPE_CHANNEL_01 at x=0,y=0, secures it to the lower bracket at [0,0,-8.1], and leaves exactly 40.4 ft of slack as loose, irregular bights on TEST_LOWER_SLACK_PATCH_01. No tray, reel, passive coiling guide, powered haul, flight, levitation, Rope command, or free slack-drawing lift."
+          "operation": "From t=6 to t=14, after B has clipped the upper end, TEST_HANDLER_A carries the coil on the supported upper platform to stair entrance [-1,2,0], descends TEST_SERVICE_STAIR_01, unspools the free lower end by hand down the straight open TEST_ROPE_CHANNEL_01 at x=0,y=0, and secures it to the lower bracket at [0,0,-8.1]. The aligned D-ring-to-bracket taut span is 9.6 ft. The remaining 40.4 ft of slack is accounted for as a 0.721110-ft straight loose lead from the bracket to patch-entry point [0.6,0,-8.5], plus 39.678890 ft of loose, irregular bights on TEST_LOWER_SLACK_PATCH_01. Total initial slack is 40.400000 ft. No tray, reel, passive coiling guide, powered haul, flight, levitation, Rope command, or free slack-drawing lift."
         },
         {
           "seconds": [
@@ -368,9 +374,9 @@
         "ropeLengthFeet": 50,
         "initialSlackFeet": 40.4,
         "effectiveWorkingLengthFeet": 50,
-        "slackStorage": "At t=18, 40.4 ft of the 50-ft line is slack as loose irregular bights on TEST_LOWER_SLACK_PATCH_01, bounds x[0.6,2.6], y[-1,1], z=-8.5; the aligned taut-route length between D-ring and support is 9.6 ft. The patch is open ledge, not a tray or reel. Upward target travel increases the straight endpoint distance by exactly 1 ft per 1 ft of +z travel and draws out only existing slack; no powered or commanded hauling.",
+        "slackStorage": "At t=18, endpoint taut-path length is 9.6 ft and total initial slack is 40.4 ft. The slack is physically accounted for as (a) a 0.721110-ft straight loose lead from fixed bracket [0,0,-8.1] to the open patch-entry point [0.6,0,-8.5], distance sqrt(0.6^2+0.4^2), and (b) 39.678890 ft of loose irregular bights on TEST_LOWER_SLACK_PATCH_01, bounds x[0.6,2.6], y[-1,1], top z=-8.5. The parts sum to 40.400000 ft. The patch is open ledge, not a tray or reel. Upward target travel increases the straight endpoint distance exactly 1 ft per 1 ft of +z travel, drawing out only existing slack; no powered or commanded hauling.",
         "slackTakeup": "Because target D-ring and support share x=0,y=0, upward travel increases straight line length exactly one-for-one; 40.4 ft of vertical travel consumes all 40.4 ft of initial slack.",
-        "endpointAccess": "B reaches the target D-ring from [0,1,0] within 2.25 ft. A approaches the lower bracket from [-1,1,-8.5], 1.47 ft from [0,0,-8.1], within 2.25-ft reach. A manually routes the free end through the straight clearance channel; no bend or guide.",
+        "endpointAccess": "For the upper handoff, A presents the free end at [-0.5,0,0.9] to B at [0,1,0] (1.436 ft); B clips it to the target D-ring [0,0,1.5] (1.803 ft from B), both within 2.25-ft reach. A approaches the lower bracket from [-1,1,-8.5], 1.47 ft from [0,0,-8.1], within 2.25-ft reach. The loose lower lead runs straight from the bracket to [0.6,0,-8.5], length 0.721110 ft, followed by 39.678890 ft of loose line on the patch. A manually routes the free end through the straight clearance channel; no bend, guide, or pulley.",
         "endpointCapacities": "Both end connections, connectors, harness and D-ring are inside the complete 250-lb TEST_ONLY assembly rating. The 1-lb target harness connector is counted once in gear; fixed support hardware is excluded from moving target mass; rope-side connector mass is included in the 10-lb rope mass."
       },
       "movement": {
@@ -425,8 +431,8 @@
             2,
             -8.5
           ],
-          "upperPlatformRoute": "From [-1,2,0], walks on the supported upper platform to pickup stance [-1,0,0]. The coil envelope's nearest point is 1.724 ft from this stance; the handler body remains x[-1.4,-0.6], separated from coil x[-2.55,-1.85]. Handler lifts the coil and carries it along the outer supported route to stair entrance [-1,2,0]; carried coil stays outside the target/cargo x>=0.75 swept envelope.",
-          "supportRoute": "Descends the supported stair to lower ledge, approaches bracket from [-1,1,-8.5] (1.47 ft from [0,0,-8.1], within 2.25-ft reach), secures the lower end, leaves the loose slack at TEST_LOWER_SLACK_PATCH_01, then exits to [-1,2,-8.5].",
+          "upperPlatformRoute": "From [-1,2,0], A walks on the supported upper platform to pickup stance [-1,0,0]. The coil envelope's nearest point is 1.724 ft from this stance; A lifts/supports the coil and draws the free end out to handoff point [-0.5,0,0.9], 1.030 ft from A's stance. B at [0,1,0] can reach the handoff point at 1.436 ft and clips the end to the D-ring at 1.803 ft. A then carries the coil along the outer supported route to stair entrance [-1,2,0]; the carried coil stays outside the target/cargo x>=0.75 swept envelope.",
+          "supportRoute": "Descends the supported stair to the lower ledge, approaches bracket from [-1,1,-8.5] (1.47 ft from [0,0,-8.1], within 2.25-ft reach), secures the lower end, then accounts for 0.721110 ft of straight loose lead to patch entry [0.6,0,-8.5] plus 39.678890 ft of irregular bights on TEST_LOWER_SLACK_PATCH_01, totaling 40.400000 ft of initial slack. A exits to [-1,2,-8.5].",
           "bodyEnvelopeFeet": {
             "x": [
               -1.4,
@@ -457,7 +463,7 @@
           },
           "custody": "TEST_FIXTURE_CUSTODIAN_01",
           "permission": "TEST_ONLY granted",
-          "role": "Manually lifts the full 10-lb coil, carries it down the supported stair, routes the free end through the straight clearance channel, secures the lower end and exits; no Rope command.",
+          "role": "Manually lifts and supports the full 10-lb coil, hands the accessible free end to B at the specified upper handoff, then carries the coil down the supported stair, routes the lower end to the bracket, places the accounted slack, and exits; no Rope command.",
           "pickupStanceFeet": [
             -1,
             0,
@@ -512,7 +518,7 @@
           "armReachFeet": 2.25,
           "custody": "TEST_FIXTURE_CUSTODIAN_01",
           "permission": "TEST_ONLY granted",
-          "role": "Manually secures the upper rope end to the consenting target’s side D-ring, then exits to the upper bay."
+          "role": "Receives the upper free end directly from A at [-0.5,0,0.9], within B's 2.25-ft reach, clips it to the consenting target's side D-ring at [0,0,1.5] (1.803 ft from B), then exits to the upper bay. B does not reach to or retrieve the coil from the shelf."
         }
       ],
       "spatialLayout": {
@@ -595,7 +601,7 @@
                 1
               ]
             },
-            "supports": "Open lower-ledge patch for loose 40.4-ft rope bights at setup and the uncoiled loose-rope location recorded at landing. Rope may drape there under gravity; this surface does not wind, guide, coil, or restow it."
+            "supports": "Open lower-ledge patch for 39.678890 ft of loose, irregular rope bights at setup and the corresponding loose-rope location stipulated at landing. The remaining 0.721110 ft of the 40.400000-ft slack is the straight loose lead from bracket [0,0,-8.1] to patch entry [0.6,0,-8.5]. Rope may drape there under gravity; this surface does not wind, guide, coil, or restow it."
           }
         ],
         "creationSpace": {
@@ -647,7 +653,7 @@
             "ropeDiameterFeet": 0.05,
             "materialVolumeCubicFeet": 0.098175,
             "coilVolumeCubicFeet": 0.6615,
-            "packing": "26 full horizontal circular turns at 0.30-ft centerline radius plus a final 0.99115-ft arc, stacked vertically at 0.05-ft pitch."
+            "packing": "TEST_ONLY measured/stipulated packing: one continuous unbroken 50.000-ft centerline-length rope entirely within the stated 0.70-by-0.70-by-1.35-ft envelope. The exact turn-by-turn path is not asserted; no vertical-level connector length is omitted from the stipulated measured length."
           },
           "statusBeforeCast": "At t=0 the complete cell bounds are clear. The shelf volume ends at z=1.5; the creation cell begins at z=1.5, so they share a boundary only and have no positive-volume intersection. The complete measured coil envelope fits within the cell and rests on the shelf after creation.",
           "perceptionAndLineOfEffect": "Caster [3,-2,0] perceives the cell and has clear line of effect. Distance to cell center is 6.0 ft, within the 50-ft range."
@@ -793,7 +799,7 @@
           "clear": "Straight open clearance corridor only; rope centerline is x=0,y=0 with 0.025-ft radius. Target body/cargo nearest x boundary is 0.75 ft, leaving at least 0.675 ft horizontal clearance. The channel has no bend, pulley, moving guide, or load-bearing contact; the tether remains straight and aligned as the target moves +z. Below the fixed support at z=-8.1 the open corridor continues to the lower ledge; no passive chute or coil guide is present."
         },
         "fallPath": "After t=24 the target descends vertically from body-feet z=40.4 to platform z=0. Handlers have exited. The straight rope channel at x=0 remains outside the target body/cargo swept volume.",
-        "slackPatchClearance": "TEST_LOWER_SLACK_PATCH_01 lies on the supported lower ledge at z=-8.5, x[0.6,2.6], y[-1,1]. It is separate from stair bounds x[-2.75,-0.5] and Handler A's final body/gear bounds near x=-1,y=2; it does not intersect the vertical rope channel's upper swept clearance or the target/cargo fall volume. It is an open surface, not a catch basket, chute, reel, or restowing device."
+        "slackPatchClearance": "TEST_LOWER_SLACK_PATCH_01 is the supported open lower ledge at z=-8.5, x[0.6,2.6], y[-1,1]. The loose-line lead runs straight from bracket [0,0,-8.1] to patch entry [0.6,0,-8.5] and is 0.721110 ft long; the remaining 39.678890 ft of slack lies in loose irregular bights on the patch. The lead and patch are separate from stair bounds x[-2.75,-0.5] and Handler A's final body/gear bounds near x=-1,y=2; they do not intersect the target/cargo fall volume. The open surface is not a catch basket, chute, reel, or restowing device."
       }
     },
     "expectedSettlement": {
@@ -847,7 +853,7 @@
       },
       "rope": {
         "status": "Intact; remains attached to the fixed lower support and target harness at landing.",
-        "locationAtLanding": "At landing, endpoint separation is 9.6 ft and the tether is slack. The 40.4-ft surplus is located as loose, irregular, uncoiled rope on the open TEST_LOWER_SLACK_PATCH_01 bounds x[0.6,2.6], y[-1,1], z=-8.5. This is the fixture's observed synthetic after-state; the original bight arrangement is not restored. No tray, reel, chute, passive coiling guide, restowing Action, or Rope command is asserted.",
+        "locationAtLanding": "Proposed/stipulated TEST_ONLY landing configuration; no witness has executed. At landing, endpoint separation is 9.6 ft and the tether is slack. The full 40.400000-ft surplus remains uncoiled: 0.721110 ft is the straight loose lead from fixed bracket [0,0,-8.1] to patch entry [0.6,0,-8.5], and 39.678890 ft remains as loose irregular line on open TEST_LOWER_SLACK_PATCH_01, bounds x[0.6,2.6], y[-1,1], top z=-8.5. This does not restore the original bight arrangement. No tray, reel, chute, passive coiling guide, restowing Action, or Rope command is asserted.",
         "slackState": "Currently slack at landing with 40.4 ft of surplus available before a later ascent would make it taut; it is not permanently incapable of restraining another ascent.",
         "custody": "Rope and support remain with TEST_FIXTURE_CUSTODIAN_01; target harness, target connector and satchel remain with TEST_TARGET_01.",
         "massAccounting": "Rope mass 10 lb counted once in the 210-lb first-taut load. Target's 1-lb harness connector counted once in 20-lb gear/cargo. Fixed support connector is not moving target mass; post-landing slack position does not change queue or campaign state.",
@@ -991,18 +997,18 @@
     ]
   },
   "directorReviewRequest": {
-    "decision": "PASS, REVISE with exact corrections, or NO on revision 5 of this exact W2-only TEST_ONLY rule/fixture.",
+    "decision": "PASS, REVISE with exact corrections, or NO on revision 6 of this exact W2-only TEST_ONLY rule/fixture.",
     "focus": [
-      "W2-R4-C01: creation cell and shelf bounds have no positive-volume overlap; the complete 50-ft coil's measured envelope fits the supported shelf and clear creation space.",
-      "W2-R4-C02: aligned vertical D-ring/channel/support route is straight and unconstrained by bends; exact 9.6-ft taut span, 40.4-ft slack, first-taut time and all dependent positions are reconciled.",
-      "W2-R4-C03: setup and landing locations for loose slack are bounded; landing does not silently restore a tray/coil or assume a coiling mechanism.",
+      "W2-R5-C01: the entire continuous unbroken 50-ft coil has an explicitly stipulated, measured 50.000-ft line length within its stated envelope; no analytic turns omit inter-level connections.",
+      "W2-R5-C02: A picks up/supports the coil, transfers the free end to B at the exact handoff coordinate, and B clips it within the existing manual setup interval; B does not retrieve the end from the shelf.",
+      "W2-R5-C03: the 40.400000-ft slack total includes a 0.721110-ft bracket-to-patch lead plus 39.678890 ft on the bounded patch; landing is proposed/stipulated and does not imply automatic restowing.",
       "Previously passing 250/300-lb assembly/load arithmetic, 260/301/310 immediate decision probes, release property/mass states, and V0/V1 Action accounting."
     ],
     "require": [
-      "Verify exact revision-5 UTF-8 bytes/hash/commit and all source bindings.",
+      "Verify exact revision-6 UTF-8 bytes/hash/commit and all declared source bindings.",
       "State whether this exact revision is eligible for separate owner adoption; review does not adopt it.",
       "If it passes, provide exact bounded adoption wording before any witness.",
-      "List remaining actual-source access/preparation and complete legal paid-cast histories for both spells, including components, budgets, class bookkeeping, interruption, clocks and damage/HP.",
+      "List remaining actual-source access/preparation and complete legal paid-cast histories for both spells, including components, budgets, class bookkeeping, interruption, clocks and damage/HP settlement.",
       "Do not treat synthetic rpPaid:2 as actual paid-cast evidence."
     ],
     "boundary": "Design review only: no witness, seal, blocker closure, identity acceptance/application, canon/runtime mutation or Queue479 change. Full W2 integration remains held pending separately evidenced spell procedures and legal paid applications."
@@ -1015,9 +1021,9 @@
     "W1 remains separate and unsealed; W2 and IE204-B02 remain held.",
     "Revision 3 remains a design proposal only; it does not settle actual spell access, casts, campaign events, or the prior W2 source hold."
   ],
-  "revision": 5,
-  "supersedesSha256": "2e467a1ac3ce49025252de16f574f6e6c90f34bb2a3c54d359145ad514d6ceff",
-  "revisionNote": "Addresses Director REVISE items W2-R4-C01 through C03. The complete 50-ft rope is a measured stacked-loop coil whose full envelope fits in a clear creation volume above, but not overlapping, a rated TEST_ONLY shelf. The target D-ring, straight clearance channel and lower bracket are vertically aligned, giving a 9.6-ft taut span and 40.4-ft slack; first taut is t=22.04 and dependent positions/fall distances are updated. Setup slack is loose on a bounded open ledge patch; the landing record preserves the observed loose, uncoiled location without claiming tray return, an automatic coil, or restowing. No witness or owner adoption is claimed.",
+  "revision": 6,
+  "supersedesSha256": "a139032adc6eb5c4647c289f1b0abe30640d71a875ad0850e468c0a21a0a044a",
+  "revisionNote": "Addresses Director REVISE items W2-R5-C01 through C03. The coil's former analytic turn recipe is replaced by an explicitly stipulated and measured continuous 50.000-ft line within the stated coil envelope. Upper-end setup now orders A's pickup/support, exact free-end handoff to B, and B's clipping within reach. The 40.400000-ft slack is accounted for as a 0.721110-ft bracket-to-patch lead plus 39.678890 ft of loose bights on the bounded patch; the landing configuration is proposed/stipulated and does not claim automatic restowing. Other passing proposal-level geometry, timing, threshold, and V0/V1 fields are retained. No witness or owner adoption is claimed.",
   "integrationGates": [
     "Bind the retained Reverse Gravity procedure and legal paid application with source-backed acquisition/preparation, current RP, components, action, class bookkeeping, interruption, resolution clock, damage and HP history.",
     "Provide equivalent source-backed acquisition/preparation/cast history for Conjure Rope and preserve its own 600-second deadline.",

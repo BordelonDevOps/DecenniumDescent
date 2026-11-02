@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "id": "CODEX-TRANSCRIBED-IE286-W2-GPT-REVIEW-04",
+  "reviewedAtUtc": "2026-11-02",
+  "classification": "GPT_DIRECTOR_UI_REVIEW_READBACK_REVISE_NOT_OWNER_ADOPTION_NOT_WITNESS",
+  "captureMethod": "Transcribed from the rendered GPT Director conversation; exact ruling content and corrections are recorded here.",
+  "sourceConversationUrl": "https://chatgpt.com/g/g-p-67f17555a8dc8191a2b5b81e6d8adc12-dungeon-crawler/c/6adc506d-8770-83ea-b64c-0345d9b9b682",
+  "identity": "reverse-gravity-field",
+  "blockerId": "IE204-B02",
+  "witnessId": "IE286-W2",
+  "reviewedCommit": "280f2f7e73718bcecfc0e3e8c5376c1c55b38515",
+  "reviewedProposalPath": "docs/audit/2026-10-08/full-game/director-spell-review-129/reverse_gravity_ie286_w2_owner_proposal_2026-11-02/OWNER_PROPOSAL_IE286_W2_UPWARD_LOAD_RULE_01.json",
+  "reviewedProposalBytes": 50281,
+  "reviewedProposalSha256": "a139032adc6eb5c4647c289f1b0abe30640d71a875ad0850e468c0a21a0a044a",
+  "disposition": "REVISE",
+  "readyForOwnerAdoption": false,
+  "sourceBindingCheck": "All 11 declared source bindings and Queue479 match.",
+  "assessment": "The Director verified the exact revision-5 bytes, hash, commit, eleven source bindings, and queue. Shelf/cell separation, available coil volume, aligned 9.6-ft span, 40.4-ft slack budget, t=22.04 first-taut time, updated fall distances, failure decisions, and V0/V1 accounting pass at proposal level. Three geometric corrections remain.",
+  "passedAtProposalDesignLevel": [
+    "Shelf/cell separation and available coil volume.",
+    "Aligned 9.6-ft tether span, 40.4-ft slack budget, t=22.04 first-taut time, and updated fall distances.",
+    "Failure decisions and V0/V1 accounting."
+  ],
+  "requiredCorrections": [
+    {
+      "id": "W2-R5-C01",
+      "topic": "continuous coil length",
+      "pointers": [
+        "/proposedTestOnlyRule/fixture/caster/cast/creationPointPremise",
+        "/proposedTestOnlyRule/fixture/spatialLayout/creationSpace/coilEnvelopeFeet/packing"
+      ],
+      "requirement": "The 26 circular turns plus 0.99115-ft arc already consume approximately 50 ft before connecting the vertically stacked levels. Supply a continuous packing path whose total includes those connections, or remove the analytic turn recipe and retain an explicitly stipulated, measured continuous 50-ft coil within the stated envelope. Envelope capacity itself passes."
+    },
+    {
+      "id": "W2-R5-C02",
+      "topic": "upper-end handoff",
+      "pointers": [
+        "/proposedTestOnlyRule/fixture/attachmentSetup/0",
+        "/proposedTestOnlyRule/fixture/handlers/1"
+      ],
+      "requirement": "B is approximately 2.469 ft from the nearest point of the initial coil envelope, exceeding its 2.25-ft reach. A can reach and lift it. Explicitly order A's pickup, transfer of the free end into B's reach, and B's clipping within the existing manual setup interval. Do not imply B retrieves the end directly from the shelf."
+    },
+    {
+      "id": "W2-R5-C03",
+      "topic": "slack budget versus occupied line",
+      "pointers": [
+        "/proposedTestOnlyRule/fixture/tether/slackStorage",
+        "/proposedTestOnlyRule/expectedSettlement/rope/locationAtLanding"
+      ],
+      "requirement": "40.4 ft is the excess over the straight 9.6-ft endpoint distance. It cannot all be wholly inside the offset patch while excluding connecting lengths. Account for connecting lengths and remaining loose line, or specify a larger bounded loose-rope region containing both. Label landing configuration proposed/stipulated, not observed; no witness has executed. Preserve absence of automatic restowing."
+    }
+  ],
+  "sourceBasis": "The applicable source basis remains the bound Conjure Rope /operational/effect and /operational/limitations: one physical 50-ft rope, actual path/slack, and no unstated commanded movement.",
+  "fullW2IntegrationRequirements": [
+    "The retained Reverse Gravity procedure and source-backed acquisition/preparation for both spells.",
+    "Complete legal paid-cast histories: components, actions, RP, class bookkeeping, interruption and resolution.",
+    "Original clocks, including Conjure Rope's 600-second deadline, plus damage/HP and property settlement.",
+    "Separate exact owner adoption and subsequent witness review; synthetic rpPaid:2 is not paid-cast evidence."
+  ],
+  "nonEffects": [
+    "No adoption wording is issued for revision 5.",
+    "W1 PASS remains unsealed; the retained source-qualification NO and IE204-B02 HOLD remain unchanged.",
+    "Queue479 remains 834 applied / 14 pending / 0 accepted-unapplied, Reverse Gravity first.",
+    "No witness, adoption, seal, identity, canon, runtime or queue changes."
+  ],
+  "queueReadback": {
+    "applied": 834,
+    "pending": 14,
+    "acceptedUnapplied": 0,
+    "nextIdentity": "reverse-gravity-field",
+    "blocker": "IE204-B02"
+  }
+}
