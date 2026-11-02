@@ -1,0 +1,901 @@
+{
+  "id": "DF218-B01-EVENT-TRACE-480",
+  "classification": "TEST_ONLY",
+  "witnessSha256": "097306c6b125f4b70581616aa4f0f611c7b07346ee37fa16c774654a162351fc",
+  "events": [
+    {
+      "eventId": "B01-E001",
+      "timeSeconds": 0.0,
+      "kind": "REGULAR_START_AND_CAST_BEGIN",
+      "detail": "Order-zero START refreshes ordinary budgets; the legal self-targeted Shell cast begins without spending before commitment.",
+      "beforeStateId": "S000",
+      "afterStateId": "S001",
+      "beforeStateSha256": "1f23670d411be0f37a70ff75fef51de3ab9cb500833c7141cde9ad8a4bcf65c1",
+      "afterStateSha256": "d373230acbf66639a99c2d72f9d48677e3e4adc267a5b0cec254ab6cf83619fa",
+      "forwardOperations": [
+        {
+          "op": "replace",
+          "path": "/actor/pendingCast",
+          "beforeExists": true,
+          "before": null,
+          "afterExists": true,
+          "after": {
+            "spellId": "elemental-shell",
+            "castId": "DF218-SHELL-B01-TESTONLY-R1:CAST-1",
+            "caster": "Wizard18-B01-R1",
+            "target": "Wizard18-B01-R1",
+            "startedAt": 0.0,
+            "status": "CASTING_NOT_YET_COMMITTED",
+            "components": [
+              "V",
+              "S",
+              "F"
+            ],
+            "selectedElement": "fire"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/actor/turn/actionAvailable",
+          "beforeExists": true,
+          "before": false,
+          "afterExists": true,
+          "after": true
+        },
+        {
+          "op": "replace",
+          "path": "/actor/turn/bonusActionAvailable",
+          "beforeExists": true,
+          "before": false,
+          "afterExists": true,
+          "after": true
+        },
+        {
+          "op": "replace",
+          "path": "/actor/turn/movementAvailableFeet",
+          "beforeExists": true,
+          "before": 0,
+          "afterExists": true,
+          "after": 30
+        },
+        {
+          "op": "replace",
+          "path": "/actor/turn/reactionAvailable",
+          "beforeExists": true,
+          "before": false,
+          "afterExists": true,
+          "after": true
+        },
+        {
+          "op": "replace",
+          "path": "/actor/turn/startSeconds",
+          "beforeExists": true,
+          "before": null,
+          "afterExists": true,
+          "after": 0.0
+        },
+        {
+          "op": "replace",
+          "path": "/actor/turn/status",
+          "beforeExists": true,
+          "before": "NOT_STARTED",
+          "afterExists": true,
+          "after": "ACTIVE"
+        },
+        {
+          "op": "replace",
+          "path": "/phase",
+          "beforeExists": true,
+          "before": "BEFORE_ORDER_ZERO_START",
+          "afterExists": true,
+          "after": "REGULAR_START_AND_CAST_BEGIN"
+        }
+      ],
+      "inverseOperations": [
+        {
+          "op": "replace",
+          "path": "/phase",
+          "beforeExists": true,
+          "before": "REGULAR_START_AND_CAST_BEGIN",
+          "afterExists": true,
+          "after": "BEFORE_ORDER_ZERO_START"
+        },
+        {
+          "op": "replace",
+          "path": "/actor/turn/status",
+          "beforeExists": true,
+          "before": "ACTIVE",
+          "afterExists": true,
+          "after": "NOT_STARTED"
+        },
+        {
+          "op": "replace",
+          "path": "/actor/turn/startSeconds",
+          "beforeExists": true,
+          "before": 0.0,
+          "afterExists": true,
+          "after": null
+        },
+        {
+          "op": "replace",
+          "path": "/actor/turn/reactionAvailable",
+          "beforeExists": true,
+          "before": true,
+          "afterExists": true,
+          "after": false
+        },
+        {
+          "op": "replace",
+          "path": "/actor/turn/movementAvailableFeet",
+          "beforeExists": true,
+          "before": 30,
+          "afterExists": true,
+          "after": 0
+        },
+        {
+          "op": "replace",
+          "path": "/actor/turn/bonusActionAvailable",
+          "beforeExists": true,
+          "before": true,
+          "afterExists": true,
+          "after": false
+        },
+        {
+          "op": "replace",
+          "path": "/actor/turn/actionAvailable",
+          "beforeExists": true,
+          "before": true,
+          "afterExists": true,
+          "after": false
+        },
+        {
+          "op": "replace",
+          "path": "/actor/pendingCast",
+          "beforeExists": true,
+          "before": {
+            "spellId": "elemental-shell",
+            "castId": "DF218-SHELL-B01-TESTONLY-R1:CAST-1",
+            "caster": "Wizard18-B01-R1",
+            "target": "Wizard18-B01-R1",
+            "startedAt": 0.0,
+            "status": "CASTING_NOT_YET_COMMITTED",
+            "components": [
+              "V",
+              "S",
+              "F"
+            ],
+            "selectedElement": "fire"
+          },
+          "afterExists": true,
+          "after": null
+        }
+      ]
+    },
+    {
+      "eventId": "B01-E002",
+      "timeSeconds": 0.1,
+      "kind": "PAID_CAST_COMMIT",
+      "detail": "Commit Action, components, cast history and 26 RP before resolution; RP 68→42.",
+      "beforeStateId": "S001",
+      "afterStateId": "S002",
+      "beforeStateSha256": "d373230acbf66639a99c2d72f9d48677e3e4adc267a5b0cec254ab6cf83619fa",
+      "afterStateSha256": "e83127d94a866ed9d92b1cb7c662d85f2d539ab17fc8318c36701f7781cc2eed",
+      "forwardOperations": [
+        {
+          "op": "replace",
+          "path": "/actor/castHistory",
+          "beforeExists": true,
+          "before": [],
+          "afterExists": true,
+          "after": [
+            {
+              "castId": "DF218-SHELL-B01-TESTONLY-R1:CAST-1",
+              "spellId": "elemental-shell",
+              "rank": 9,
+              "committedAt": 0.1,
+              "costRP": 26,
+              "preCastRP": 68,
+              "postCastRP": 42,
+              "firstDistinctPreparedFamily": true,
+              "baseDissonance": 0,
+              "dissonanceAfter": 0,
+              "refrain": 0,
+              "target": "Wizard18-B01-R1",
+              "components": [
+                "V",
+                "S",
+                "F"
+              ]
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/actor/lastSpell",
+          "beforeExists": true,
+          "before": null,
+          "afterExists": true,
+          "after": "elemental-shell"
+        },
+        {
+          "op": "replace",
+          "path": "/actor/pendingCast/committedAt",
+          "beforeExists": false,
+          "afterExists": true,
+          "after": 0.1
+        },
+        {
+          "op": "replace",
+          "path": "/actor/pendingCast/paidBeforeResolution",
+          "beforeExists": false,
+          "afterExists": true,
+          "after": true
+        },
+        {
+          "op": "replace",
+          "path": "/actor/pendingCast/rpCost",
+          "beforeExists": false,
+          "afterExists": true,
+          "after": 26
+        },
+        {
+          "op": "replace",
+          "path": "/actor/pendingCast/status",
+          "beforeExists": true,
+          "before": "CASTING_NOT_YET_COMMITTED",
+          "afterExists": true,
+          "after": "COMMITTED_AWAITING_RESOLUTION"
+        },
+        {
+          "op": "replace",
+          "path": "/actor/preparedFamiliesUsed",
+          "beforeExists": true,
+          "before": [],
+          "afterExists": true,
+          "after": [
+            "elemental-shell"
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/actor/resourceHistory",
+          "beforeExists": true,
+          "before": [],
+          "afterExists": true,
+          "after": [
+            {
+              "eventId": "DF218-SHELL-B01-TESTONLY-R1:CAST-1",
+              "resource": "RP",
+              "delta": -26,
+              "poolAfter": 42,
+              "discount": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/actor/turn/actionAvailable",
+          "beforeExists": true,
+          "before": true,
+          "afterExists": true,
+          "after": false
+        },
+        {
+          "op": "replace",
+          "path": "/actor/turn/magicThisTurn",
+          "beforeExists": true,
+          "before": false,
+          "afterExists": true,
+          "after": true
+        },
+        {
+          "op": "replace",
+          "path": "/actor/vitals/RP",
+          "beforeExists": true,
+          "before": 68,
+          "afterExists": true,
+          "after": 42
+        },
+        {
+          "op": "replace",
+          "path": "/phase",
+          "beforeExists": true,
+          "before": "REGULAR_START_AND_CAST_BEGIN",
+          "afterExists": true,
+          "after": "PAID_CAST_COMMIT"
+        },
+        {
+          "op": "replace",
+          "path": "/timeSeconds",
+          "beforeExists": true,
+          "before": 0.0,
+          "afterExists": true,
+          "after": 0.1
+        }
+      ],
+      "inverseOperations": [
+        {
+          "op": "replace",
+          "path": "/timeSeconds",
+          "beforeExists": true,
+          "before": 0.1,
+          "afterExists": true,
+          "after": 0.0
+        },
+        {
+          "op": "replace",
+          "path": "/phase",
+          "beforeExists": true,
+          "before": "PAID_CAST_COMMIT",
+          "afterExists": true,
+          "after": "REGULAR_START_AND_CAST_BEGIN"
+        },
+        {
+          "op": "replace",
+          "path": "/actor/vitals/RP",
+          "beforeExists": true,
+          "before": 42,
+          "afterExists": true,
+          "after": 68
+        },
+        {
+          "op": "replace",
+          "path": "/actor/turn/magicThisTurn",
+          "beforeExists": true,
+          "before": true,
+          "afterExists": true,
+          "after": false
+        },
+        {
+          "op": "replace",
+          "path": "/actor/turn/actionAvailable",
+          "beforeExists": true,
+          "before": false,
+          "afterExists": true,
+          "after": true
+        },
+        {
+          "op": "replace",
+          "path": "/actor/resourceHistory",
+          "beforeExists": true,
+          "before": [
+            {
+              "eventId": "DF218-SHELL-B01-TESTONLY-R1:CAST-1",
+              "resource": "RP",
+              "delta": -26,
+              "poolAfter": 42,
+              "discount": false
+            }
+          ],
+          "afterExists": true,
+          "after": []
+        },
+        {
+          "op": "replace",
+          "path": "/actor/preparedFamiliesUsed",
+          "beforeExists": true,
+          "before": [
+            "elemental-shell"
+          ],
+          "afterExists": true,
+          "after": []
+        },
+        {
+          "op": "replace",
+          "path": "/actor/pendingCast/status",
+          "beforeExists": true,
+          "before": "COMMITTED_AWAITING_RESOLUTION",
+          "afterExists": true,
+          "after": "CASTING_NOT_YET_COMMITTED"
+        },
+        {
+          "op": "replace",
+          "path": "/actor/pendingCast/rpCost",
+          "beforeExists": true,
+          "before": 26,
+          "afterExists": false
+        },
+        {
+          "op": "replace",
+          "path": "/actor/pendingCast/paidBeforeResolution",
+          "beforeExists": true,
+          "before": true,
+          "afterExists": false
+        },
+        {
+          "op": "replace",
+          "path": "/actor/pendingCast/committedAt",
+          "beforeExists": true,
+          "before": 0.1,
+          "afterExists": false
+        },
+        {
+          "op": "replace",
+          "path": "/actor/lastSpell",
+          "beforeExists": true,
+          "before": "elemental-shell",
+          "afterExists": true,
+          "after": null
+        },
+        {
+          "op": "replace",
+          "path": "/actor/castHistory",
+          "beforeExists": true,
+          "before": [
+            {
+              "castId": "DF218-SHELL-B01-TESTONLY-R1:CAST-1",
+              "spellId": "elemental-shell",
+              "rank": 9,
+              "committedAt": 0.1,
+              "costRP": 26,
+              "preCastRP": 68,
+              "postCastRP": 42,
+              "firstDistinctPreparedFamily": true,
+              "baseDissonance": 0,
+              "dissonanceAfter": 0,
+              "refrain": 0,
+              "target": "Wizard18-B01-R1",
+              "components": [
+                "V",
+                "S",
+                "F"
+              ]
+            }
+          ],
+          "afterExists": true,
+          "after": []
+        }
+      ]
+    },
+    {
+      "eventId": "B01-E003",
+      "timeSeconds": 0.2,
+      "kind": "NO_COUNTERSPELL_RESPONDER",
+      "detail": "No other actor or eligible responder is present; no reaction, expenditure, roll or interruption occurs.",
+      "beforeStateId": "S002",
+      "afterStateId": "S002",
+      "beforeStateSha256": "e83127d94a866ed9d92b1cb7c662d85f2d539ab17fc8318c36701f7781cc2eed",
+      "afterStateSha256": "e83127d94a866ed9d92b1cb7c662d85f2d539ab17fc8318c36701f7781cc2eed",
+      "forwardOperations": [],
+      "inverseOperations": []
+    },
+    {
+      "eventId": "B01-E004",
+      "timeSeconds": 0.3,
+      "kind": "SHELL_MANIFESTATION",
+      "detail": "Shell manifests on the consenting self; fire immunity is active through deadline 60.3.",
+      "beforeStateId": "S002",
+      "afterStateId": "S003",
+      "beforeStateSha256": "e83127d94a866ed9d92b1cb7c662d85f2d539ab17fc8318c36701f7781cc2eed",
+      "afterStateSha256": "3ad1de661fa6bb6ce52716cdd2ea187772e8c7170c38994967fbd49d9cb1d6b3",
+      "forwardOperations": [
+        {
+          "op": "replace",
+          "path": "/actor/activeEffects",
+          "beforeExists": true,
+          "before": [],
+          "afterExists": true,
+          "after": [
+            {
+              "effectId": "DF218-SHELL-B01-TESTONLY-R1:SHELL-1",
+              "spellId": "elemental-shell",
+              "bearer": "Wizard18-B01-R1",
+              "selectedElement": "fire",
+              "manifestedAt": 0.3,
+              "deadlineSeconds": 60.3,
+              "active": true,
+              "preventsIncomingFire": true,
+              "preventsDamage": true,
+              "reflectionRequiresResponsibleCreatureDealer": true
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/actor/pendingCast",
+          "beforeExists": true,
+          "before": {
+            "spellId": "elemental-shell",
+            "castId": "DF218-SHELL-B01-TESTONLY-R1:CAST-1",
+            "caster": "Wizard18-B01-R1",
+            "target": "Wizard18-B01-R1",
+            "startedAt": 0.0,
+            "status": "COMMITTED_AWAITING_RESOLUTION",
+            "components": [
+              "V",
+              "S",
+              "F"
+            ],
+            "selectedElement": "fire",
+            "committedAt": 0.1,
+            "paidBeforeResolution": true,
+            "rpCost": 26
+          },
+          "afterExists": true,
+          "after": null
+        },
+        {
+          "op": "replace",
+          "path": "/phase",
+          "beforeExists": true,
+          "before": "PAID_CAST_COMMIT",
+          "afterExists": true,
+          "after": "SHELL_MANIFESTATION"
+        },
+        {
+          "op": "replace",
+          "path": "/timeSeconds",
+          "beforeExists": true,
+          "before": 0.1,
+          "afterExists": true,
+          "after": 0.3
+        }
+      ],
+      "inverseOperations": [
+        {
+          "op": "replace",
+          "path": "/timeSeconds",
+          "beforeExists": true,
+          "before": 0.3,
+          "afterExists": true,
+          "after": 0.1
+        },
+        {
+          "op": "replace",
+          "path": "/phase",
+          "beforeExists": true,
+          "before": "SHELL_MANIFESTATION",
+          "afterExists": true,
+          "after": "PAID_CAST_COMMIT"
+        },
+        {
+          "op": "replace",
+          "path": "/actor/pendingCast",
+          "beforeExists": true,
+          "before": null,
+          "afterExists": true,
+          "after": {
+            "spellId": "elemental-shell",
+            "castId": "DF218-SHELL-B01-TESTONLY-R1:CAST-1",
+            "caster": "Wizard18-B01-R1",
+            "target": "Wizard18-B01-R1",
+            "startedAt": 0.0,
+            "status": "COMMITTED_AWAITING_RESOLUTION",
+            "components": [
+              "V",
+              "S",
+              "F"
+            ],
+            "selectedElement": "fire",
+            "committedAt": 0.1,
+            "paidBeforeResolution": true,
+            "rpCost": 26
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/actor/activeEffects",
+          "beforeExists": true,
+          "before": [
+            {
+              "effectId": "DF218-SHELL-B01-TESTONLY-R1:SHELL-1",
+              "spellId": "elemental-shell",
+              "bearer": "Wizard18-B01-R1",
+              "selectedElement": "fire",
+              "manifestedAt": 0.3,
+              "deadlineSeconds": 60.3,
+              "active": true,
+              "preventsIncomingFire": true,
+              "preventsDamage": true,
+              "reflectionRequiresResponsibleCreatureDealer": true
+            }
+          ],
+          "afterExists": true,
+          "after": []
+        }
+      ]
+    },
+    {
+      "eventId": "B01-E005",
+      "timeSeconds": 0.9,
+      "kind": "REGULAR_END",
+      "detail": "Regular END clears the active-turn flag; committed costs and spell history remain.",
+      "beforeStateId": "S003",
+      "afterStateId": "S004",
+      "beforeStateSha256": "3ad1de661fa6bb6ce52716cdd2ea187772e8c7170c38994967fbd49d9cb1d6b3",
+      "afterStateSha256": "bd29ed74b8ae238d8c0b4338edaae97eeb0d1c468df7fc3b1be1dc3f41ab0051",
+      "forwardOperations": [
+        {
+          "op": "replace",
+          "path": "/actor/turn/bonusActionAvailable",
+          "beforeExists": true,
+          "before": true,
+          "afterExists": true,
+          "after": false
+        },
+        {
+          "op": "replace",
+          "path": "/actor/turn/endSeconds",
+          "beforeExists": true,
+          "before": null,
+          "afterExists": true,
+          "after": 0.9
+        },
+        {
+          "op": "replace",
+          "path": "/actor/turn/magicThisTurn",
+          "beforeExists": true,
+          "before": true,
+          "afterExists": true,
+          "after": false
+        },
+        {
+          "op": "replace",
+          "path": "/actor/turn/movementAvailableFeet",
+          "beforeExists": true,
+          "before": 30,
+          "afterExists": true,
+          "after": 0
+        },
+        {
+          "op": "replace",
+          "path": "/actor/turn/reactionAvailable",
+          "beforeExists": true,
+          "before": true,
+          "afterExists": true,
+          "after": false
+        },
+        {
+          "op": "replace",
+          "path": "/actor/turn/status",
+          "beforeExists": true,
+          "before": "ACTIVE",
+          "afterExists": true,
+          "after": "ENDED"
+        },
+        {
+          "op": "replace",
+          "path": "/phase",
+          "beforeExists": true,
+          "before": "SHELL_MANIFESTATION",
+          "afterExists": true,
+          "after": "REGULAR_END"
+        },
+        {
+          "op": "replace",
+          "path": "/timeSeconds",
+          "beforeExists": true,
+          "before": 0.3,
+          "afterExists": true,
+          "after": 0.9
+        }
+      ],
+      "inverseOperations": [
+        {
+          "op": "replace",
+          "path": "/timeSeconds",
+          "beforeExists": true,
+          "before": 0.9,
+          "afterExists": true,
+          "after": 0.3
+        },
+        {
+          "op": "replace",
+          "path": "/phase",
+          "beforeExists": true,
+          "before": "REGULAR_END",
+          "afterExists": true,
+          "after": "SHELL_MANIFESTATION"
+        },
+        {
+          "op": "replace",
+          "path": "/actor/turn/status",
+          "beforeExists": true,
+          "before": "ENDED",
+          "afterExists": true,
+          "after": "ACTIVE"
+        },
+        {
+          "op": "replace",
+          "path": "/actor/turn/reactionAvailable",
+          "beforeExists": true,
+          "before": false,
+          "afterExists": true,
+          "after": true
+        },
+        {
+          "op": "replace",
+          "path": "/actor/turn/movementAvailableFeet",
+          "beforeExists": true,
+          "before": 0,
+          "afterExists": true,
+          "after": 30
+        },
+        {
+          "op": "replace",
+          "path": "/actor/turn/magicThisTurn",
+          "beforeExists": true,
+          "before": false,
+          "afterExists": true,
+          "after": true
+        },
+        {
+          "op": "replace",
+          "path": "/actor/turn/endSeconds",
+          "beforeExists": true,
+          "before": 0.9,
+          "afterExists": true,
+          "after": null
+        },
+        {
+          "op": "replace",
+          "path": "/actor/turn/bonusActionAvailable",
+          "beforeExists": true,
+          "before": false,
+          "afterExists": true,
+          "after": true
+        }
+      ]
+    },
+    {
+      "eventId": "B01-E006",
+      "timeSeconds": 1.1,
+      "kind": "NONCREATURE_FIRE_EVENT",
+      "detail": "One scheduled ordinary non-Null 7-fire pulse is prevented; no HP loss and no reflection recipient/root/packet.",
+      "beforeStateId": "S004",
+      "afterStateId": "S005",
+      "beforeStateSha256": "bd29ed74b8ae238d8c0b4338edaae97eeb0d1c468df7fc3b1be1dc3f41ab0051",
+      "afterStateSha256": "df4e45173f7baf2fc11c63e4fb2e0a717f0511d9892d239f04f21d3e16a9f745",
+      "forwardOperations": [
+        {
+          "op": "replace",
+          "path": "/actor/damageLedger",
+          "beforeExists": true,
+          "before": [],
+          "afterExists": true,
+          "after": [
+            {
+              "eventId": "B01-ENV-01:EVENT-1",
+              "timeSeconds": 1.1,
+              "sourceId": "B01-ENV-01",
+              "sourceActorId": null,
+              "responsibleCreatureDealer": null,
+              "damageType": "fire",
+              "rawAmount": 7,
+              "mitigatedBeforeShell": 0,
+              "shellPrevents": 7,
+              "hpDamage": 0,
+              "hpBefore": 110,
+              "hpAfter": 110
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/actor/reflectionLedger",
+          "beforeExists": true,
+          "before": [],
+          "afterExists": true,
+          "after": [
+            {
+              "eventId": "B01-ENV-01:EVENT-1",
+              "reflectionBasisBeforeShellImmunity": 7,
+              "recipient": null,
+              "reflectedPacketEmitted": false,
+              "nominalOrBankedReflectionRootCreated": false,
+              "reason": "The adopted noncreature test source has no responsible creature dealer; retained Q14 provides no environmental recipient."
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/environment/source/eventEmittedCount",
+          "beforeExists": true,
+          "before": 0,
+          "afterExists": true,
+          "after": 1
+        },
+        {
+          "op": "replace",
+          "path": "/environment/source/eventPending",
+          "beforeExists": true,
+          "before": true,
+          "afterExists": true,
+          "after": false
+        },
+        {
+          "op": "replace",
+          "path": "/phase",
+          "beforeExists": true,
+          "before": "REGULAR_END",
+          "afterExists": true,
+          "after": "NONCREATURE_FIRE_EVENT"
+        },
+        {
+          "op": "replace",
+          "path": "/timeSeconds",
+          "beforeExists": true,
+          "before": 0.9,
+          "afterExists": true,
+          "after": 1.1
+        }
+      ],
+      "inverseOperations": [
+        {
+          "op": "replace",
+          "path": "/timeSeconds",
+          "beforeExists": true,
+          "before": 1.1,
+          "afterExists": true,
+          "after": 0.9
+        },
+        {
+          "op": "replace",
+          "path": "/phase",
+          "beforeExists": true,
+          "before": "NONCREATURE_FIRE_EVENT",
+          "afterExists": true,
+          "after": "REGULAR_END"
+        },
+        {
+          "op": "replace",
+          "path": "/environment/source/eventPending",
+          "beforeExists": true,
+          "before": false,
+          "afterExists": true,
+          "after": true
+        },
+        {
+          "op": "replace",
+          "path": "/environment/source/eventEmittedCount",
+          "beforeExists": true,
+          "before": 1,
+          "afterExists": true,
+          "after": 0
+        },
+        {
+          "op": "replace",
+          "path": "/actor/reflectionLedger",
+          "beforeExists": true,
+          "before": [
+            {
+              "eventId": "B01-ENV-01:EVENT-1",
+              "reflectionBasisBeforeShellImmunity": 7,
+              "recipient": null,
+              "reflectedPacketEmitted": false,
+              "nominalOrBankedReflectionRootCreated": false,
+              "reason": "The adopted noncreature test source has no responsible creature dealer; retained Q14 provides no environmental recipient."
+            }
+          ],
+          "afterExists": true,
+          "after": []
+        },
+        {
+          "op": "replace",
+          "path": "/actor/damageLedger",
+          "beforeExists": true,
+          "before": [
+            {
+              "eventId": "B01-ENV-01:EVENT-1",
+              "timeSeconds": 1.1,
+              "sourceId": "B01-ENV-01",
+              "sourceActorId": null,
+              "responsibleCreatureDealer": null,
+              "damageType": "fire",
+              "rawAmount": 7,
+              "mitigatedBeforeShell": 0,
+              "shellPrevents": 7,
+              "hpDamage": 0,
+              "hpBefore": 110,
+              "hpAfter": 110
+            }
+          ],
+          "afterExists": true,
+          "after": []
+        }
+      ]
+    }
+  ],
+  "terminalStateSha256": "df4e45173f7baf2fc11c63e4fb2e0a717f0511d9892d239f04f21d3e16a9f745",
+  "noCampaignEventClaim": true
+}
