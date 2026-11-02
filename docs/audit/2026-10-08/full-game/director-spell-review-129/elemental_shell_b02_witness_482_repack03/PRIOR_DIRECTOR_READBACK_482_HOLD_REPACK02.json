@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "DIRECTOR-READBACK-DF218-B02-WITNESS-482-HOLD",
+  "source": "GPT Director, Calibration review part 6, completed audit readback",
+  "recordedAtUtc": "2026-11-02T05:48:01Z",
+  "classification": "TEST_ONLY_WITNESS_REVIEW_HOLD",
+  "decision": "HOLD_FOR_ONE_SOURCE_STATE_CORRECTION",
+  "reviewedTarget": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/elemental_shell_b02_witness_482_repack01/DF218_B02_WITNESS_482_TESTONLY.json",
+    "sha256": "9109d59aef0c302c83ddd63c2a601a150a60ed25beb588baa27b4616d47877d4",
+    "branchId": "DF218-SHELL-B02-R2-PROPOSED",
+    "proposalSha256": "b673305a49eb10dcfd7da1de676ea883cbcb2f34abcc308310ef00fd0c549c64"
+  },
+  "findings": [
+    {
+      "id": "B02-482-C01",
+      "title": "Wizard18 Dissonance limit",
+      "status": "CORRECTION_REQUIRED",
+      "finding": "Every snapshot records Wizard18/vitals/DissonanceLimit as 10, while the bound ACTOR_PROFILES.json specifies 13 at /Wizard18/DissonanceLimit.",
+      "sourcePath": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9defenseform8_reviewed_186/ACTOR_PROFILES.json",
+      "sourceSha256": "05f523187a27ee8d46938b7db9e48ff930782533d2ae23e8da9f0b4ab65e686d",
+      "sourcePointer": "/Wizard18/DissonanceLimit",
+      "observedValue": 10,
+      "expectedValue": 13,
+      "requiredAction": "Set the field to 13 in snapshots 0–15; regenerate dependent hashes, replay bindings, validation and delivery records; add a direct assertion against the bound profile.",
+      "newOwnerAdoptionRequired": false
+    }
+  ],
+  "passedAreas": [
+    "Forward and reverse replay; 15 events, 16 snapshots, 141 forward and 141 inverse operations restore the exact submitted start state.",
+    "Adopted geometry, responder declines, paid casting, turn history, command execution, custody, deadlines, attack/reflection settlement and HP outcome."
+  ],
+  "outcomeUnchanged": "Costs and outcomes do not change; Wizard Dissonance remains zero.",
+  "nonEffects": {
+    "B01Witness481Changed": false,
+    "B02Closed": false,
+    "sealIssued": false,
+    "identityAcceptedOrApplied": false,
+    "canonicalRuleChanged": false,
+    "queueChanged": false,
+    "campaignEventClaimed": false
+  },
+  "queueAuthority": {
+    "reviewedApplied": 831,
+    "pending": 17,
+    "acceptedUnapplied": 0,
+    "firstPendingIdentity": "elemental-shell"
+  }
+}
