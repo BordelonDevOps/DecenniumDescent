@@ -1,7 +1,7 @@
 {
   "classification": "TEST_ONLY_REVERSIBLE_BRANCH_STATE_RECONSTRUCTION",
   "initialStateSha256": "6270321d6f07a55173f01fb353142d6bfb537d8e044cd313ef8fdd956baeff6c",
-  "terminalStateSha256": "06d63cb0aebdff8ae2cbcf72ca0960ae2038da0b1548a014690eac430f27cd51",
+  "terminalStateSha256": "ae87a9f3811ea91ccd372c5fb63f1b5a59c83544f3e0ded40be057d478a835d9",
   "terminalTime": 79.31,
   "starts": 45,
   "ends": 44,
@@ -19,6 +19,7 @@
           "Reaction": 1,
           "MovementFeet": 30
         },
+        "operativeSpeedFeet": 30,
         "rechargeBefore": {},
         "rechargeAfter": {},
         "nextStart": 19.0,
@@ -1042,28 +1043,24 @@
           "MovementFeet": {
             "granted": 30,
             "spent": 0,
-            "unusedExpired": 30
+            "unusedExpired": 30,
+            "recalculatedAway": 0
           }
         },
+        "magicThisTurnAfterEnd": true,
         "nextStartPreserved": 19.0,
         "nextEndAfter": null
       },
       "eventId": "PG328-W12-R1-E005",
       "stateTransition": {
         "beforeStateSha256": "7ba2ad53f2210d0af2d21e21c4be889bc6c2138bde756ed67e01165ab39ad0b0",
-        "afterStateSha256": "ee4a745e7b091dddfd938965984d5a44483d12b7ec83f54549d2220c5eb687cf",
+        "afterStateSha256": "0165e8a5911de5765a22563274ef4e465559aa3bed6030df6ba3ee2f2b4dbc11",
         "forwardOperations": [
           {
             "op": "replace",
             "path": "/actors/B/bonusAction",
             "oldValue": 1,
             "value": 0
-          },
-          {
-            "op": "replace",
-            "path": "/actors/B/magicThisTurn",
-            "oldValue": true,
-            "value": false
           },
           {
             "op": "replace",
@@ -1101,7 +1098,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -1218,7 +1216,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -1228,12 +1227,6 @@
             "path": "/actors/B/movement",
             "oldValue": 0,
             "value": 30
-          },
-          {
-            "op": "replace",
-            "path": "/actors/B/magicThisTurn",
-            "oldValue": false,
-            "value": true
           },
           {
             "op": "replace",
@@ -1256,6 +1249,7 @@
           "Reaction": 1,
           "MovementFeet": 30
         },
+        "operativeSpeedFeet": 30,
         "rechargeBefore": {},
         "rechargeAfter": {},
         "nextStart": 20.0,
@@ -1268,8 +1262,8 @@
       },
       "eventId": "PG328-W12-R1-E006",
       "stateTransition": {
-        "beforeStateSha256": "ee4a745e7b091dddfd938965984d5a44483d12b7ec83f54549d2220c5eb687cf",
-        "afterStateSha256": "057a5b676a8a4410a90da9702e02db9519583734c1a7a1f42ac106c89d299f7a",
+        "beforeStateSha256": "0165e8a5911de5765a22563274ef4e465559aa3bed6030df6ba3ee2f2b4dbc11",
+        "afterStateSha256": "0577e9937ae26fc361d26958a9dfcb1cbfc85ca177297ec7fb7f63823efe751c",
         "forwardOperations": [
           {
             "op": "replace",
@@ -1434,16 +1428,18 @@
           "MovementFeet": {
             "granted": 30,
             "spent": 0,
-            "unusedExpired": 30
+            "unusedExpired": 30,
+            "recalculatedAway": 0
           }
         },
+        "magicThisTurnAfterEnd": false,
         "nextStartPreserved": 20.0,
         "nextEndAfter": null
       },
       "eventId": "PG328-W12-R1-E007",
       "stateTransition": {
-        "beforeStateSha256": "057a5b676a8a4410a90da9702e02db9519583734c1a7a1f42ac106c89d299f7a",
-        "afterStateSha256": "0d35117b87f4746bf25ab1c6cf3ccab1b021073af11552ef4527116b51c9362d",
+        "beforeStateSha256": "0577e9937ae26fc361d26958a9dfcb1cbfc85ca177297ec7fb7f63823efe751c",
+        "afterStateSha256": "142a2e51cfd586f57ecc09218676287be4b730ca8b059b8b3c261afaaa924408",
         "forwardOperations": [
           {
             "op": "replace",
@@ -1491,7 +1487,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -1606,7 +1603,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -1644,6 +1642,7 @@
           "Reaction": 1,
           "MovementFeet": 30
         },
+        "operativeSpeedFeet": 30,
         "rechargeBefore": {},
         "rechargeAfter": {},
         "nextStart": 21.0,
@@ -1656,8 +1655,8 @@
       },
       "eventId": "PG328-W12-R1-E008",
       "stateTransition": {
-        "beforeStateSha256": "0d35117b87f4746bf25ab1c6cf3ccab1b021073af11552ef4527116b51c9362d",
-        "afterStateSha256": "0bea2f4229c62755fe9ee8f163ba1d1386ccf1aff2df696b894cc08da6e24af1",
+        "beforeStateSha256": "142a2e51cfd586f57ecc09218676287be4b730ca8b059b8b3c261afaaa924408",
+        "afterStateSha256": "1a6dda0b7dd2073fe39d63d3b52eac6d0c586e11f0fd82f07544c557b88a7b68",
         "forwardOperations": [
           {
             "op": "replace",
@@ -1822,16 +1821,18 @@
           "MovementFeet": {
             "granted": 30,
             "spent": 0,
-            "unusedExpired": 30
+            "unusedExpired": 30,
+            "recalculatedAway": 0
           }
         },
+        "magicThisTurnAfterEnd": false,
         "nextStartPreserved": 21.0,
         "nextEndAfter": null
       },
       "eventId": "PG328-W12-R1-E009",
       "stateTransition": {
-        "beforeStateSha256": "0bea2f4229c62755fe9ee8f163ba1d1386ccf1aff2df696b894cc08da6e24af1",
-        "afterStateSha256": "62d99124dee7b9240ab2f3bd8c8f7e6ab4f8c4bf05ce27abb15552f47503dcfa",
+        "beforeStateSha256": "1a6dda0b7dd2073fe39d63d3b52eac6d0c586e11f0fd82f07544c557b88a7b68",
+        "afterStateSha256": "99a277f825f11a9356a2770ae1bdb223d0c5477811593b3efb5085be40188124",
         "forwardOperations": [
           {
             "op": "replace",
@@ -1879,7 +1880,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -1994,7 +1996,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -2032,6 +2035,7 @@
           "Reaction": 1,
           "MovementFeet": 30
         },
+        "operativeSpeedFeet": 30,
         "rechargeBefore": {},
         "rechargeAfter": {},
         "nextStart": 24.0,
@@ -2044,8 +2048,8 @@
       },
       "eventId": "PG328-W12-R1-E010",
       "stateTransition": {
-        "beforeStateSha256": "62d99124dee7b9240ab2f3bd8c8f7e6ab4f8c4bf05ce27abb15552f47503dcfa",
-        "afterStateSha256": "fb3ce615aecdcc15fbcd97dc979521a1b148f9e6cbd1513edbb64749beb617b7",
+        "beforeStateSha256": "99a277f825f11a9356a2770ae1bdb223d0c5477811593b3efb5085be40188124",
+        "afterStateSha256": "1b0698a9fd4cb3192f13b3bc5b399a02cd661208e7328aab953b010ce582e7e3",
         "forwardOperations": [
           {
             "op": "replace",
@@ -2239,8 +2243,8 @@
       },
       "eventId": "PG328-W12-R1-E011",
       "stateTransition": {
-        "beforeStateSha256": "fb3ce615aecdcc15fbcd97dc979521a1b148f9e6cbd1513edbb64749beb617b7",
-        "afterStateSha256": "a6ee315877fd2c0de6d35fd73d3bb7cc58bc3ed71bf81d6691915b57d3a1781f",
+        "beforeStateSha256": "1b0698a9fd4cb3192f13b3bc5b399a02cd661208e7328aab953b010ce582e7e3",
+        "afterStateSha256": "996f0727c04664a0a82d41dc6b4dab97349d7811f4694db021a913cbcc08bb0c",
         "forwardOperations": [
           {
             "op": "replace",
@@ -2590,8 +2594,8 @@
       },
       "eventId": "PG328-W12-R1-E012",
       "stateTransition": {
-        "beforeStateSha256": "a6ee315877fd2c0de6d35fd73d3bb7cc58bc3ed71bf81d6691915b57d3a1781f",
-        "afterStateSha256": "bda73586dd02d7e91aa2aff255bbc664b97dc6a2611d975a60cc5a1c1cfae077",
+        "beforeStateSha256": "996f0727c04664a0a82d41dc6b4dab97349d7811f4694db021a913cbcc08bb0c",
+        "afterStateSha256": "8fdd6fcb82375b99bf796df5754e3b6459a58d919189d3302921085a7743be53",
         "forwardOperations": [
           {
             "op": "add",
@@ -2949,8 +2953,8 @@
       },
       "eventId": "PG328-W12-R1-E013",
       "stateTransition": {
-        "beforeStateSha256": "bda73586dd02d7e91aa2aff255bbc664b97dc6a2611d975a60cc5a1c1cfae077",
-        "afterStateSha256": "5bcf34ef6385b55388e5c090b004bd15f5c3a3d5c53e12085d2ce3198aa61285",
+        "beforeStateSha256": "8fdd6fcb82375b99bf796df5754e3b6459a58d919189d3302921085a7743be53",
+        "afterStateSha256": "3cc34294e2c28b2d48f10889c6cfbf836e6d4dd3a7508f3bcc3d63812da79736",
         "forwardOperations": [
           {
             "op": "replace",
@@ -3169,12 +3173,21 @@
           "cargo-A"
         ],
         "tileRemainsLoose": true,
+        "movementRecalculation": {
+          "reason": "operative Polymorph form Speed becomes 40 ft",
+          "speedBeforeFeet": 30,
+          "speedAfterFeet": 40,
+          "movementSpentFeet": 0,
+          "remainingBeforeFeet": 30,
+          "remainingAfterFeet": 40,
+          "turnGrantAfterRecalculationFeet": 40
+        },
         "concentrationDeadline": 78.1
       },
       "eventId": "PG328-W12-R1-E014",
       "stateTransition": {
-        "beforeStateSha256": "5bcf34ef6385b55388e5c090b004bd15f5c3a3d5c53e12085d2ce3198aa61285",
-        "afterStateSha256": "a3422289b440295f6c924a123fec966094f45c4c379ba0b8bfbcbd336c18e23b",
+        "beforeStateSha256": "3cc34294e2c28b2d48f10889c6cfbf836e6d4dd3a7508f3bcc3d63812da79736",
+        "afterStateSha256": "6bc5c785387c04527c5fb2f4c38eb961ca8b8471b6d7a95b54112eaff2c88c0a",
         "forwardOperations": [
           {
             "op": "add",
@@ -3258,6 +3271,12 @@
             "path": "/actors/A/hands",
             "oldValue": 2,
             "value": 0
+          },
+          {
+            "op": "replace",
+            "path": "/actors/A/movement",
+            "oldValue": 30,
+            "value": 40
           },
           {
             "op": "replace",
@@ -3791,6 +3810,12 @@
           },
           {
             "op": "replace",
+            "path": "/actors/A/movement",
+            "oldValue": 40,
+            "value": 30
+          },
+          {
+            "op": "replace",
             "path": "/actors/A/hands",
             "oldValue": 0,
             "value": 2
@@ -3903,18 +3928,20 @@
             "availableOffTurnUntilSpentOrNextOwnStart": true
           },
           "MovementFeet": {
-            "granted": 30,
+            "granted": 40,
             "spent": 0,
-            "unusedExpired": 30
+            "unusedExpired": 40,
+            "recalculatedAway": 0
           }
         },
+        "magicThisTurnAfterEnd": true,
         "nextStartPreserved": 24.0,
         "nextEndAfter": null
       },
       "eventId": "PG328-W12-R1-E015",
       "stateTransition": {
-        "beforeStateSha256": "a3422289b440295f6c924a123fec966094f45c4c379ba0b8bfbcbd336c18e23b",
-        "afterStateSha256": "a01022bc8afea52b23f3426d336291f072aeb792ed8925633d16007a0d9b3554",
+        "beforeStateSha256": "6bc5c785387c04527c5fb2f4c38eb961ca8b8471b6d7a95b54112eaff2c88c0a",
+        "afterStateSha256": "f3ec2cd92178a2f7a0b140c8aeb643d166541aeb89b596366c969c11702f939f",
         "forwardOperations": [
           {
             "op": "replace",
@@ -3924,14 +3951,8 @@
           },
           {
             "op": "replace",
-            "path": "/actors/A/magicThisTurn",
-            "oldValue": true,
-            "value": false
-          },
-          {
-            "op": "replace",
             "path": "/actors/A/movement",
-            "oldValue": 30,
+            "oldValue": 40,
             "value": 0
           },
           {
@@ -3942,7 +3963,7 @@
               "action": 1,
               "BA": 1,
               "Reaction": 1,
-              "Move": 30,
+              "Move": 40,
               "recharge": {},
               "endDisposition": {
                 "regularTurnEndedAt": 18.9,
@@ -3960,9 +3981,10 @@
                   "availableOffTurnUntilSpentOrNextOwnStart": true
                 },
                 "MovementFeet": {
-                  "granted": 30,
+                  "granted": 40,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 40,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -4057,7 +4079,7 @@
               "action": 1,
               "BA": 1,
               "Reaction": 1,
-              "Move": 30,
+              "Move": 40,
               "recharge": {},
               "endDisposition": {
                 "regularTurnEndedAt": 18.9,
@@ -4075,9 +4097,10 @@
                   "availableOffTurnUntilSpentOrNextOwnStart": true
                 },
                 "MovementFeet": {
-                  "granted": 30,
+                  "granted": 40,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 40,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -4086,13 +4109,7 @@
             "op": "replace",
             "path": "/actors/A/movement",
             "oldValue": 0,
-            "value": 30
-          },
-          {
-            "op": "replace",
-            "path": "/actors/A/magicThisTurn",
-            "oldValue": false,
-            "value": true
+            "value": 40
           },
           {
             "op": "replace",
@@ -4115,6 +4132,7 @@
           "Reaction": 1,
           "MovementFeet": 30
         },
+        "operativeSpeedFeet": 30,
         "rechargeBefore": {
           "wizard.arch.arcane-sight": 2
         },
@@ -4131,8 +4149,8 @@
       },
       "eventId": "PG328-W12-R1-E016",
       "stateTransition": {
-        "beforeStateSha256": "a01022bc8afea52b23f3426d336291f072aeb792ed8925633d16007a0d9b3554",
-        "afterStateSha256": "973207fc460853075109bb4db8cfd1cd0c8a869cb74f4d7029a035a3dec00698",
+        "beforeStateSha256": "f3ec2cd92178a2f7a0b140c8aeb643d166541aeb89b596366c969c11702f939f",
+        "afterStateSha256": "c7f06bd095c280adf52ce040b08e4705c860e13f217d1c2e2486c6c9766524af",
         "forwardOperations": [
           {
             "op": "replace",
@@ -4145,6 +4163,12 @@
             "path": "/actors/B/bonusAction",
             "oldValue": 0,
             "value": 1
+          },
+          {
+            "op": "replace",
+            "path": "/actors/B/magicThisTurn",
+            "oldValue": true,
+            "value": false
           },
           {
             "op": "replace",
@@ -4266,6 +4290,12 @@
           },
           {
             "op": "replace",
+            "path": "/actors/B/magicThisTurn",
+            "oldValue": false,
+            "value": true
+          },
+          {
+            "op": "replace",
             "path": "/actors/B/bonusAction",
             "oldValue": 1,
             "value": 0
@@ -4293,8 +4323,8 @@
       },
       "eventId": "PG328-W12-R1-E017",
       "stateTransition": {
-        "beforeStateSha256": "973207fc460853075109bb4db8cfd1cd0c8a869cb74f4d7029a035a3dec00698",
-        "afterStateSha256": "4d356b9b65992afa3a5b0692cd47e635bb47ea90d24c2411ecee978a50cb08e5",
+        "beforeStateSha256": "c7f06bd095c280adf52ce040b08e4705c860e13f217d1c2e2486c6c9766524af",
+        "afterStateSha256": "d02245ac27077b7d93f55486f59e934c4394e5486dc06596c99e116716efe365",
         "forwardOperations": [
           {
             "op": "replace",
@@ -4445,16 +4475,18 @@
           "MovementFeet": {
             "granted": 30,
             "spent": 0,
-            "unusedExpired": 30
+            "unusedExpired": 30,
+            "recalculatedAway": 0
           }
         },
+        "magicThisTurnAfterEnd": false,
         "nextStartPreserved": 25.0,
         "nextEndAfter": null
       },
       "eventId": "PG328-W12-R1-E018",
       "stateTransition": {
-        "beforeStateSha256": "4d356b9b65992afa3a5b0692cd47e635bb47ea90d24c2411ecee978a50cb08e5",
-        "afterStateSha256": "80634a0fc08cae99ac13004172163ff6f2c65b118ddb010fdeb2c2b1369bd6aa",
+        "beforeStateSha256": "d02245ac27077b7d93f55486f59e934c4394e5486dc06596c99e116716efe365",
+        "afterStateSha256": "af9b9671252b049d642cd70c04b345aad14801455e519edd51f3cc481569eee9",
         "forwardOperations": [
           {
             "op": "replace",
@@ -4504,7 +4536,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -4573,7 +4606,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -4611,6 +4645,7 @@
           "Reaction": 1,
           "MovementFeet": 30
         },
+        "operativeSpeedFeet": 30,
         "rechargeBefore": {},
         "rechargeAfter": {},
         "nextStart": 26.0,
@@ -4623,8 +4658,8 @@
       },
       "eventId": "PG328-W12-R1-E019",
       "stateTransition": {
-        "beforeStateSha256": "80634a0fc08cae99ac13004172163ff6f2c65b118ddb010fdeb2c2b1369bd6aa",
-        "afterStateSha256": "08a1b341f36e27e4acbed757bdca8323bad36b1dde13dd5e76f4d7f3cd03a1f8",
+        "beforeStateSha256": "af9b9671252b049d642cd70c04b345aad14801455e519edd51f3cc481569eee9",
+        "afterStateSha256": "dd870300d8d2aa700f5e9f2b9c482bef8a8a6811d2a0515f14e82b4fd746665c",
         "forwardOperations": [
           {
             "op": "replace",
@@ -4789,16 +4824,18 @@
           "MovementFeet": {
             "granted": 30,
             "spent": 0,
-            "unusedExpired": 30
+            "unusedExpired": 30,
+            "recalculatedAway": 0
           }
         },
+        "magicThisTurnAfterEnd": false,
         "nextStartPreserved": 26.0,
         "nextEndAfter": null
       },
       "eventId": "PG328-W12-R1-E020",
       "stateTransition": {
-        "beforeStateSha256": "08a1b341f36e27e4acbed757bdca8323bad36b1dde13dd5e76f4d7f3cd03a1f8",
-        "afterStateSha256": "daafe610c7126f9c7d5158952eeff2cb873b1e8253d4feba47c611e08a193b01",
+        "beforeStateSha256": "dd870300d8d2aa700f5e9f2b9c482bef8a8a6811d2a0515f14e82b4fd746665c",
+        "afterStateSha256": "4b2a8e2d13527d55de40bbeac10a0b0b7cadb18ca196da7c0c7be4ed11fa40aa",
         "forwardOperations": [
           {
             "op": "replace",
@@ -4846,7 +4883,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -4961,7 +4999,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -4999,6 +5038,7 @@
           "Reaction": 1,
           "MovementFeet": 30
         },
+        "operativeSpeedFeet": 30,
         "rechargeBefore": {},
         "rechargeAfter": {},
         "nextStart": 27.0,
@@ -5011,8 +5051,8 @@
       },
       "eventId": "PG328-W12-R1-E021",
       "stateTransition": {
-        "beforeStateSha256": "daafe610c7126f9c7d5158952eeff2cb873b1e8253d4feba47c611e08a193b01",
-        "afterStateSha256": "24dbd124705bb16bacebc8e7752973f78dc1916390636f9da7487dcd30f17d02",
+        "beforeStateSha256": "4b2a8e2d13527d55de40bbeac10a0b0b7cadb18ca196da7c0c7be4ed11fa40aa",
+        "afterStateSha256": "bb503097a132b37d70442f0a726f84178b1aca54980620b09725a7f1e8efd803",
         "forwardOperations": [
           {
             "op": "replace",
@@ -5177,16 +5217,18 @@
           "MovementFeet": {
             "granted": 30,
             "spent": 0,
-            "unusedExpired": 30
+            "unusedExpired": 30,
+            "recalculatedAway": 0
           }
         },
+        "magicThisTurnAfterEnd": false,
         "nextStartPreserved": 27.0,
         "nextEndAfter": null
       },
       "eventId": "PG328-W12-R1-E022",
       "stateTransition": {
-        "beforeStateSha256": "24dbd124705bb16bacebc8e7752973f78dc1916390636f9da7487dcd30f17d02",
-        "afterStateSha256": "233440709fee46317adef23d6cfffc5b913d8ff9bdc3169ebec8d5b5138bde85",
+        "beforeStateSha256": "bb503097a132b37d70442f0a726f84178b1aca54980620b09725a7f1e8efd803",
+        "afterStateSha256": "233e7ddfeeaae693ce85afc02c4aa890e7ce660fa16150933548e467f8a163a9",
         "forwardOperations": [
           {
             "op": "replace",
@@ -5234,7 +5276,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -5349,7 +5392,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -5385,8 +5429,9 @@
           "Action": 1,
           "BonusAction": 1,
           "Reaction": 1,
-          "MovementFeet": 30
+          "MovementFeet": 40
         },
+        "operativeSpeedFeet": 40,
         "rechargeBefore": {},
         "rechargeAfter": {},
         "nextStart": 30.0,
@@ -5399,8 +5444,8 @@
       },
       "eventId": "PG328-W12-R1-E023",
       "stateTransition": {
-        "beforeStateSha256": "233440709fee46317adef23d6cfffc5b913d8ff9bdc3169ebec8d5b5138bde85",
-        "afterStateSha256": "963da274ba334a11838b4ebbdd6f9278871ad05a58992bf76317c130fbae72ff",
+        "beforeStateSha256": "233e7ddfeeaae693ce85afc02c4aa890e7ce660fa16150933548e467f8a163a9",
+        "afterStateSha256": "3ae3554cf5229affaa73ecf16cabb42a577f814ca065c5ecdb50e93681a7b9f5",
         "forwardOperations": [
           {
             "op": "replace",
@@ -5416,9 +5461,15 @@
           },
           {
             "op": "replace",
+            "path": "/actors/A/magicThisTurn",
+            "oldValue": true,
+            "value": false
+          },
+          {
+            "op": "replace",
             "path": "/actors/A/movement",
             "oldValue": 0,
-            "value": 30
+            "value": 40
           },
           {
             "op": "replace",
@@ -5517,8 +5568,14 @@
           {
             "op": "replace",
             "path": "/actors/A/movement",
-            "oldValue": 30,
+            "oldValue": 40,
             "value": 0
+          },
+          {
+            "op": "replace",
+            "path": "/actors/A/magicThisTurn",
+            "oldValue": false,
+            "value": true
           },
           {
             "op": "replace",
@@ -5549,8 +5606,8 @@
       },
       "eventId": "PG328-W12-R1-E024",
       "stateTransition": {
-        "beforeStateSha256": "963da274ba334a11838b4ebbdd6f9278871ad05a58992bf76317c130fbae72ff",
-        "afterStateSha256": "b63c2527595c2de765bc8c803160e3d0abd5b47e0d2dbf68a96d0f07cd269397",
+        "beforeStateSha256": "3ae3554cf5229affaa73ecf16cabb42a577f814ca065c5ecdb50e93681a7b9f5",
+        "afterStateSha256": "c6ee47b519fd003e1d93912d114a3552c1e564a2be367d2d1973f7f1bf8000fa",
         "forwardOperations": [
           {
             "op": "replace",
@@ -5699,18 +5756,20 @@
             "availableOffTurnUntilSpentOrNextOwnStart": true
           },
           "MovementFeet": {
-            "granted": 30,
+            "granted": 40,
             "spent": 0,
-            "unusedExpired": 30
+            "unusedExpired": 40,
+            "recalculatedAway": 0
           }
         },
+        "magicThisTurnAfterEnd": false,
         "nextStartPreserved": 30.0,
         "nextEndAfter": null
       },
       "eventId": "PG328-W12-R1-E025",
       "stateTransition": {
-        "beforeStateSha256": "b63c2527595c2de765bc8c803160e3d0abd5b47e0d2dbf68a96d0f07cd269397",
-        "afterStateSha256": "6c243a7f4289f8121f37f4c41172014b7551bd2564d258317146c2316d810ca0",
+        "beforeStateSha256": "c6ee47b519fd003e1d93912d114a3552c1e564a2be367d2d1973f7f1bf8000fa",
+        "afterStateSha256": "93c18ac500d0ae098e64f8479cc403d1aa4073161a0c58e62b661c9884e4c68e",
         "forwardOperations": [
           {
             "op": "replace",
@@ -5727,7 +5786,7 @@
           {
             "op": "replace",
             "path": "/actors/A/movement",
-            "oldValue": 30,
+            "oldValue": 40,
             "value": 0
           },
           {
@@ -5738,7 +5797,7 @@
               "action": 1,
               "BA": 1,
               "Reaction": 1,
-              "Move": 30,
+              "Move": 40,
               "recharge": {},
               "endDisposition": {
                 "regularTurnEndedAt": 24.9,
@@ -5756,9 +5815,10 @@
                   "availableOffTurnUntilSpentOrNextOwnStart": true
                 },
                 "MovementFeet": {
-                  "granted": 30,
+                  "granted": 40,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 40,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -5805,7 +5865,7 @@
               "action": 1,
               "BA": 1,
               "Reaction": 1,
-              "Move": 30,
+              "Move": 40,
               "recharge": {},
               "endDisposition": {
                 "regularTurnEndedAt": 24.9,
@@ -5823,9 +5883,10 @@
                   "availableOffTurnUntilSpentOrNextOwnStart": true
                 },
                 "MovementFeet": {
-                  "granted": 30,
+                  "granted": 40,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 40,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -5834,7 +5895,7 @@
             "op": "replace",
             "path": "/actors/A/movement",
             "oldValue": 0,
-            "value": 30
+            "value": 40
           },
           {
             "op": "replace",
@@ -5863,6 +5924,7 @@
           "Reaction": 1,
           "MovementFeet": 30
         },
+        "operativeSpeedFeet": 30,
         "rechargeBefore": {
           "wizard.arch.arcane-sight": 1
         },
@@ -5879,8 +5941,8 @@
       },
       "eventId": "PG328-W12-R1-E026",
       "stateTransition": {
-        "beforeStateSha256": "6c243a7f4289f8121f37f4c41172014b7551bd2564d258317146c2316d810ca0",
-        "afterStateSha256": "9b6e2d8d3ffd791df64a266d650a04b8504f1d6cd3fd4c7a50e38ae8a8975bb9",
+        "beforeStateSha256": "93c18ac500d0ae098e64f8479cc403d1aa4073161a0c58e62b661c9884e4c68e",
+        "afterStateSha256": "2e36f10b0ebbbfeb2201f22988731bc08819975ab63b0b27df8c174af3876c6b",
         "forwardOperations": [
           {
             "op": "replace",
@@ -6057,16 +6119,18 @@
           "MovementFeet": {
             "granted": 30,
             "spent": 0,
-            "unusedExpired": 30
+            "unusedExpired": 30,
+            "recalculatedAway": 0
           }
         },
+        "magicThisTurnAfterEnd": false,
         "nextStartPreserved": 31.0,
         "nextEndAfter": null
       },
       "eventId": "PG328-W12-R1-E027",
       "stateTransition": {
-        "beforeStateSha256": "9b6e2d8d3ffd791df64a266d650a04b8504f1d6cd3fd4c7a50e38ae8a8975bb9",
-        "afterStateSha256": "b7ef7d84372d0b90985e57ea564302dd39f9c7538b9ecf78f9830e6fc1c233d6",
+        "beforeStateSha256": "2e36f10b0ebbbfeb2201f22988731bc08819975ab63b0b27df8c174af3876c6b",
+        "afterStateSha256": "38d92ffc9846254933392fc56e31028ad436753b8e1601f3f90c60cee95e7d4c",
         "forwardOperations": [
           {
             "op": "replace",
@@ -6116,7 +6180,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -6233,7 +6298,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -6271,6 +6337,7 @@
           "Reaction": 1,
           "MovementFeet": 30
         },
+        "operativeSpeedFeet": 30,
         "rechargeBefore": {},
         "rechargeAfter": {},
         "nextStart": 32.0,
@@ -6283,8 +6350,8 @@
       },
       "eventId": "PG328-W12-R1-E028",
       "stateTransition": {
-        "beforeStateSha256": "b7ef7d84372d0b90985e57ea564302dd39f9c7538b9ecf78f9830e6fc1c233d6",
-        "afterStateSha256": "5afc5ae1aff9176255d07563e48cc06a517daf63941d2bba83ceaf30457f9757",
+        "beforeStateSha256": "38d92ffc9846254933392fc56e31028ad436753b8e1601f3f90c60cee95e7d4c",
+        "afterStateSha256": "885aaabfdc656a79170375f3c6557917b07b1294d7ea1decb0c3d5f3ff930f9a",
         "forwardOperations": [
           {
             "op": "replace",
@@ -6449,16 +6516,18 @@
           "MovementFeet": {
             "granted": 30,
             "spent": 0,
-            "unusedExpired": 30
+            "unusedExpired": 30,
+            "recalculatedAway": 0
           }
         },
+        "magicThisTurnAfterEnd": false,
         "nextStartPreserved": 32.0,
         "nextEndAfter": null
       },
       "eventId": "PG328-W12-R1-E029",
       "stateTransition": {
-        "beforeStateSha256": "5afc5ae1aff9176255d07563e48cc06a517daf63941d2bba83ceaf30457f9757",
-        "afterStateSha256": "c8bfeb7011c4da1de795d754a22a622c7ee3021a931948da05875e10a8d070f0",
+        "beforeStateSha256": "885aaabfdc656a79170375f3c6557917b07b1294d7ea1decb0c3d5f3ff930f9a",
+        "afterStateSha256": "ab97026681b6eb63fba22849edee0b9f6805cda22629e37af36f0bd46e15856a",
         "forwardOperations": [
           {
             "op": "replace",
@@ -6506,7 +6575,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -6621,7 +6691,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -6659,6 +6730,7 @@
           "Reaction": 1,
           "MovementFeet": 30
         },
+        "operativeSpeedFeet": 30,
         "rechargeBefore": {},
         "rechargeAfter": {},
         "nextStart": 33.0,
@@ -6671,8 +6743,8 @@
       },
       "eventId": "PG328-W12-R1-E030",
       "stateTransition": {
-        "beforeStateSha256": "c8bfeb7011c4da1de795d754a22a622c7ee3021a931948da05875e10a8d070f0",
-        "afterStateSha256": "15713f470d5c8416d28b780bae605242ed6a8a747c28bc912b1360cf494e92c3",
+        "beforeStateSha256": "ab97026681b6eb63fba22849edee0b9f6805cda22629e37af36f0bd46e15856a",
+        "afterStateSha256": "dd46e7017e72ad7b10c1ea3a8d8ba96d11f53cb29ff6f431aa27fd2c35dc9864",
         "forwardOperations": [
           {
             "op": "replace",
@@ -6837,16 +6909,18 @@
           "MovementFeet": {
             "granted": 30,
             "spent": 0,
-            "unusedExpired": 30
+            "unusedExpired": 30,
+            "recalculatedAway": 0
           }
         },
+        "magicThisTurnAfterEnd": false,
         "nextStartPreserved": 33.0,
         "nextEndAfter": null
       },
       "eventId": "PG328-W12-R1-E031",
       "stateTransition": {
-        "beforeStateSha256": "15713f470d5c8416d28b780bae605242ed6a8a747c28bc912b1360cf494e92c3",
-        "afterStateSha256": "8b94452786c730e7fe4eb8e01ee716ef3524cff9c03213447b72e87f377bb93b",
+        "beforeStateSha256": "dd46e7017e72ad7b10c1ea3a8d8ba96d11f53cb29ff6f431aa27fd2c35dc9864",
+        "afterStateSha256": "fbb6d822ddb8d170928ee9518820e2146c70d19ab2656fbc701863734d1f0236",
         "forwardOperations": [
           {
             "op": "replace",
@@ -6894,7 +6968,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -7009,7 +7084,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -7045,8 +7121,9 @@
           "Action": 1,
           "BonusAction": 1,
           "Reaction": 1,
-          "MovementFeet": 30
+          "MovementFeet": 40
         },
+        "operativeSpeedFeet": 40,
         "rechargeBefore": {},
         "rechargeAfter": {},
         "nextStart": 36.0,
@@ -7059,8 +7136,8 @@
       },
       "eventId": "PG328-W12-R1-E032",
       "stateTransition": {
-        "beforeStateSha256": "8b94452786c730e7fe4eb8e01ee716ef3524cff9c03213447b72e87f377bb93b",
-        "afterStateSha256": "46227aa74ba4a903c1605db05710d1bb76400b2cca0074367c57d951d0e4185f",
+        "beforeStateSha256": "fbb6d822ddb8d170928ee9518820e2146c70d19ab2656fbc701863734d1f0236",
+        "afterStateSha256": "1ff569c3ac9d591e021bad09df947467ab538b000ea7ff8787790f2e63cb1992",
         "forwardOperations": [
           {
             "op": "replace",
@@ -7078,7 +7155,7 @@
             "op": "replace",
             "path": "/actors/A/movement",
             "oldValue": 0,
-            "value": 30
+            "value": 40
           },
           {
             "op": "replace",
@@ -7177,7 +7254,7 @@
           {
             "op": "replace",
             "path": "/actors/A/movement",
-            "oldValue": 30,
+            "oldValue": 40,
             "value": 0
           },
           {
@@ -7223,18 +7300,20 @@
             "availableOffTurnUntilSpentOrNextOwnStart": true
           },
           "MovementFeet": {
-            "granted": 30,
+            "granted": 40,
             "spent": 0,
-            "unusedExpired": 30
+            "unusedExpired": 40,
+            "recalculatedAway": 0
           }
         },
+        "magicThisTurnAfterEnd": false,
         "nextStartPreserved": 36.0,
         "nextEndAfter": null
       },
       "eventId": "PG328-W12-R1-E033",
       "stateTransition": {
-        "beforeStateSha256": "46227aa74ba4a903c1605db05710d1bb76400b2cca0074367c57d951d0e4185f",
-        "afterStateSha256": "530f41c34fc6e95557bd11ee65529e72c25976d22e7d7f10403b26333fea6a12",
+        "beforeStateSha256": "1ff569c3ac9d591e021bad09df947467ab538b000ea7ff8787790f2e63cb1992",
+        "afterStateSha256": "831822d6935f35823eb4d3d297fa2b915d71d9369ef7d5a0dac2e2bfc3b38c19",
         "forwardOperations": [
           {
             "op": "replace",
@@ -7251,7 +7330,7 @@
           {
             "op": "replace",
             "path": "/actors/A/movement",
-            "oldValue": 30,
+            "oldValue": 40,
             "value": 0
           },
           {
@@ -7262,7 +7341,7 @@
               "action": 1,
               "BA": 1,
               "Reaction": 1,
-              "Move": 30,
+              "Move": 40,
               "recharge": {},
               "endDisposition": {
                 "regularTurnEndedAt": 30.9,
@@ -7280,9 +7359,10 @@
                   "availableOffTurnUntilSpentOrNextOwnStart": true
                 },
                 "MovementFeet": {
-                  "granted": 30,
+                  "granted": 40,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 40,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -7377,7 +7457,7 @@
               "action": 1,
               "BA": 1,
               "Reaction": 1,
-              "Move": 30,
+              "Move": 40,
               "recharge": {},
               "endDisposition": {
                 "regularTurnEndedAt": 30.9,
@@ -7395,9 +7475,10 @@
                   "availableOffTurnUntilSpentOrNextOwnStart": true
                 },
                 "MovementFeet": {
-                  "granted": 30,
+                  "granted": 40,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 40,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -7406,7 +7487,7 @@
             "op": "replace",
             "path": "/actors/A/movement",
             "oldValue": 0,
-            "value": 30
+            "value": 40
           },
           {
             "op": "replace",
@@ -7435,6 +7516,7 @@
           "Reaction": 1,
           "MovementFeet": 30
         },
+        "operativeSpeedFeet": 30,
         "rechargeBefore": {
           "wizard.arch.arcane-sight": 0
         },
@@ -7451,8 +7533,8 @@
       },
       "eventId": "PG328-W12-R1-E034",
       "stateTransition": {
-        "beforeStateSha256": "530f41c34fc6e95557bd11ee65529e72c25976d22e7d7f10403b26333fea6a12",
-        "afterStateSha256": "4abc1ed35dcc2ce52453c6bc3b2eb981479192a7f4fd9b40ed00892ca9e95244",
+        "beforeStateSha256": "831822d6935f35823eb4d3d297fa2b915d71d9369ef7d5a0dac2e2bfc3b38c19",
+        "afterStateSha256": "5fcc063725dbf823d2a755d9d8384abfca8635c29a86b156976bb2ceb59d6092",
         "forwardOperations": [
           {
             "op": "replace",
@@ -7617,16 +7699,18 @@
           "MovementFeet": {
             "granted": 30,
             "spent": 0,
-            "unusedExpired": 30
+            "unusedExpired": 30,
+            "recalculatedAway": 0
           }
         },
+        "magicThisTurnAfterEnd": false,
         "nextStartPreserved": 37.0,
         "nextEndAfter": null
       },
       "eventId": "PG328-W12-R1-E035",
       "stateTransition": {
-        "beforeStateSha256": "4abc1ed35dcc2ce52453c6bc3b2eb981479192a7f4fd9b40ed00892ca9e95244",
-        "afterStateSha256": "80bf17166de92b8265d62365cc8a58fb71e686d2ea625234f9766780fb239fb4",
+        "beforeStateSha256": "5fcc063725dbf823d2a755d9d8384abfca8635c29a86b156976bb2ceb59d6092",
+        "afterStateSha256": "6bc22ebc3ed3df8501b2045eb1428401e58d9bd1e75ef45e34d3b344c870d343",
         "forwardOperations": [
           {
             "op": "replace",
@@ -7676,7 +7760,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -7793,7 +7878,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -7831,6 +7917,7 @@
           "Reaction": 1,
           "MovementFeet": 30
         },
+        "operativeSpeedFeet": 30,
         "rechargeBefore": {},
         "rechargeAfter": {},
         "nextStart": 38.0,
@@ -7843,8 +7930,8 @@
       },
       "eventId": "PG328-W12-R1-E036",
       "stateTransition": {
-        "beforeStateSha256": "80bf17166de92b8265d62365cc8a58fb71e686d2ea625234f9766780fb239fb4",
-        "afterStateSha256": "9a02d12628ac73ceabaf75ae324424ff3b3081002e1505a873946c3a519af373",
+        "beforeStateSha256": "6bc22ebc3ed3df8501b2045eb1428401e58d9bd1e75ef45e34d3b344c870d343",
+        "afterStateSha256": "ddca9d78aeec584c3bea54761ddfbccc5e3d59be242b70484d9d8b46e1c7e44b",
         "forwardOperations": [
           {
             "op": "replace",
@@ -8009,16 +8096,18 @@
           "MovementFeet": {
             "granted": 30,
             "spent": 0,
-            "unusedExpired": 30
+            "unusedExpired": 30,
+            "recalculatedAway": 0
           }
         },
+        "magicThisTurnAfterEnd": false,
         "nextStartPreserved": 38.0,
         "nextEndAfter": null
       },
       "eventId": "PG328-W12-R1-E037",
       "stateTransition": {
-        "beforeStateSha256": "9a02d12628ac73ceabaf75ae324424ff3b3081002e1505a873946c3a519af373",
-        "afterStateSha256": "2a01c06b7da41ab5ca63da73f083b6e90dbde628a500a9e4a6406a91bfba600d",
+        "beforeStateSha256": "ddca9d78aeec584c3bea54761ddfbccc5e3d59be242b70484d9d8b46e1c7e44b",
+        "afterStateSha256": "01bc4e2d59aa2a8c191b9b7e057f4968b3d25a1f1fca9e316ea3f43574a54b39",
         "forwardOperations": [
           {
             "op": "replace",
@@ -8066,7 +8155,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -8181,7 +8271,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -8219,6 +8310,7 @@
           "Reaction": 1,
           "MovementFeet": 30
         },
+        "operativeSpeedFeet": 30,
         "rechargeBefore": {},
         "rechargeAfter": {},
         "nextStart": 39.0,
@@ -8231,8 +8323,8 @@
       },
       "eventId": "PG328-W12-R1-E038",
       "stateTransition": {
-        "beforeStateSha256": "2a01c06b7da41ab5ca63da73f083b6e90dbde628a500a9e4a6406a91bfba600d",
-        "afterStateSha256": "74affa6d4cb63ce5acc13e058ab51a005ba637ad2bf795796021c021e3212c23",
+        "beforeStateSha256": "01bc4e2d59aa2a8c191b9b7e057f4968b3d25a1f1fca9e316ea3f43574a54b39",
+        "afterStateSha256": "37f4774ae8437c307ab1100de64cfaf488354dbd6226a4285921502b384aa709",
         "forwardOperations": [
           {
             "op": "replace",
@@ -8397,16 +8489,18 @@
           "MovementFeet": {
             "granted": 30,
             "spent": 0,
-            "unusedExpired": 30
+            "unusedExpired": 30,
+            "recalculatedAway": 0
           }
         },
+        "magicThisTurnAfterEnd": false,
         "nextStartPreserved": 39.0,
         "nextEndAfter": null
       },
       "eventId": "PG328-W12-R1-E039",
       "stateTransition": {
-        "beforeStateSha256": "74affa6d4cb63ce5acc13e058ab51a005ba637ad2bf795796021c021e3212c23",
-        "afterStateSha256": "4df159ec29bd9fb84ff1425dff2d717377c89c52e62393e5d2b0f5317cb5aeb4",
+        "beforeStateSha256": "37f4774ae8437c307ab1100de64cfaf488354dbd6226a4285921502b384aa709",
+        "afterStateSha256": "3aaf3d90d43e76b01c23e29d01e56d739c8abdefeb9613ef45da53d283845bb0",
         "forwardOperations": [
           {
             "op": "replace",
@@ -8454,7 +8548,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -8569,7 +8664,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -8605,8 +8701,9 @@
           "Action": 1,
           "BonusAction": 1,
           "Reaction": 1,
-          "MovementFeet": 30
+          "MovementFeet": 40
         },
+        "operativeSpeedFeet": 40,
         "rechargeBefore": {},
         "rechargeAfter": {},
         "nextStart": 42.0,
@@ -8619,8 +8716,8 @@
       },
       "eventId": "PG328-W12-R1-E040",
       "stateTransition": {
-        "beforeStateSha256": "4df159ec29bd9fb84ff1425dff2d717377c89c52e62393e5d2b0f5317cb5aeb4",
-        "afterStateSha256": "f3891abd7cf5cef63dd1245a0ee956af1c995a8a642f3b423fe7be6dcac5e682",
+        "beforeStateSha256": "3aaf3d90d43e76b01c23e29d01e56d739c8abdefeb9613ef45da53d283845bb0",
+        "afterStateSha256": "aaf38a098b9e05cf3ace4e2de72868fa7658fc910e9ad51e2d78674f6d2263be",
         "forwardOperations": [
           {
             "op": "replace",
@@ -8638,7 +8735,7 @@
             "op": "replace",
             "path": "/actors/A/movement",
             "oldValue": 0,
-            "value": 30
+            "value": 40
           },
           {
             "op": "replace",
@@ -8737,7 +8834,7 @@
           {
             "op": "replace",
             "path": "/actors/A/movement",
-            "oldValue": 30,
+            "oldValue": 40,
             "value": 0
           },
           {
@@ -8783,18 +8880,20 @@
             "availableOffTurnUntilSpentOrNextOwnStart": true
           },
           "MovementFeet": {
-            "granted": 30,
+            "granted": 40,
             "spent": 0,
-            "unusedExpired": 30
+            "unusedExpired": 40,
+            "recalculatedAway": 0
           }
         },
+        "magicThisTurnAfterEnd": false,
         "nextStartPreserved": 42.0,
         "nextEndAfter": null
       },
       "eventId": "PG328-W12-R1-E041",
       "stateTransition": {
-        "beforeStateSha256": "f3891abd7cf5cef63dd1245a0ee956af1c995a8a642f3b423fe7be6dcac5e682",
-        "afterStateSha256": "ef0c2cd421ab6c9c23e3ba05fecf3d180d7d7b922a8e1e39228370ab91c4cf0d",
+        "beforeStateSha256": "aaf38a098b9e05cf3ace4e2de72868fa7658fc910e9ad51e2d78674f6d2263be",
+        "afterStateSha256": "6531efad933542ed6b22cdd1ae4b9cb3eab298596a5532db16cd7bc2a60c44fb",
         "forwardOperations": [
           {
             "op": "replace",
@@ -8811,7 +8910,7 @@
           {
             "op": "replace",
             "path": "/actors/A/movement",
-            "oldValue": 30,
+            "oldValue": 40,
             "value": 0
           },
           {
@@ -8822,7 +8921,7 @@
               "action": 1,
               "BA": 1,
               "Reaction": 1,
-              "Move": 30,
+              "Move": 40,
               "recharge": {},
               "endDisposition": {
                 "regularTurnEndedAt": 36.9,
@@ -8840,9 +8939,10 @@
                   "availableOffTurnUntilSpentOrNextOwnStart": true
                 },
                 "MovementFeet": {
-                  "granted": 30,
+                  "granted": 40,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 40,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -8937,7 +9037,7 @@
               "action": 1,
               "BA": 1,
               "Reaction": 1,
-              "Move": 30,
+              "Move": 40,
               "recharge": {},
               "endDisposition": {
                 "regularTurnEndedAt": 36.9,
@@ -8955,9 +9055,10 @@
                   "availableOffTurnUntilSpentOrNextOwnStart": true
                 },
                 "MovementFeet": {
-                  "granted": 30,
+                  "granted": 40,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 40,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -8966,7 +9067,7 @@
             "op": "replace",
             "path": "/actors/A/movement",
             "oldValue": 0,
-            "value": 30
+            "value": 40
           },
           {
             "op": "replace",
@@ -8995,6 +9096,7 @@
           "Reaction": 1,
           "MovementFeet": 30
         },
+        "operativeSpeedFeet": 30,
         "rechargeBefore": {
           "wizard.arch.arcane-sight": 0
         },
@@ -9011,8 +9113,8 @@
       },
       "eventId": "PG328-W12-R1-E042",
       "stateTransition": {
-        "beforeStateSha256": "ef0c2cd421ab6c9c23e3ba05fecf3d180d7d7b922a8e1e39228370ab91c4cf0d",
-        "afterStateSha256": "fd2a5f142025874565123567f4c48cb0598c67f043e803069b9672e8c35df60d",
+        "beforeStateSha256": "6531efad933542ed6b22cdd1ae4b9cb3eab298596a5532db16cd7bc2a60c44fb",
+        "afterStateSha256": "5f8b5b0acf9cd4d16ebbf6cc102215968227b63184ac5a6ea4f1b474b4f218c8",
         "forwardOperations": [
           {
             "op": "replace",
@@ -9177,16 +9279,18 @@
           "MovementFeet": {
             "granted": 30,
             "spent": 0,
-            "unusedExpired": 30
+            "unusedExpired": 30,
+            "recalculatedAway": 0
           }
         },
+        "magicThisTurnAfterEnd": false,
         "nextStartPreserved": 43.0,
         "nextEndAfter": null
       },
       "eventId": "PG328-W12-R1-E043",
       "stateTransition": {
-        "beforeStateSha256": "fd2a5f142025874565123567f4c48cb0598c67f043e803069b9672e8c35df60d",
-        "afterStateSha256": "95bf65e9531a9fe544e65946f164220f065330c4f012c92b7ca9bb075ea5d74f",
+        "beforeStateSha256": "5f8b5b0acf9cd4d16ebbf6cc102215968227b63184ac5a6ea4f1b474b4f218c8",
+        "afterStateSha256": "6201a8588f18b868cc63fe62c0c82ce12684bf4b2e59846f61b0bfb0304114a4",
         "forwardOperations": [
           {
             "op": "replace",
@@ -9236,7 +9340,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -9353,7 +9458,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -9391,6 +9497,7 @@
           "Reaction": 1,
           "MovementFeet": 30
         },
+        "operativeSpeedFeet": 30,
         "rechargeBefore": {},
         "rechargeAfter": {},
         "nextStart": 44.0,
@@ -9403,8 +9510,8 @@
       },
       "eventId": "PG328-W12-R1-E044",
       "stateTransition": {
-        "beforeStateSha256": "95bf65e9531a9fe544e65946f164220f065330c4f012c92b7ca9bb075ea5d74f",
-        "afterStateSha256": "7ad2049711ac8f97330dc30ee7b89b793e546d7b5addf9880d40a2b122dabada",
+        "beforeStateSha256": "6201a8588f18b868cc63fe62c0c82ce12684bf4b2e59846f61b0bfb0304114a4",
+        "afterStateSha256": "08ec889bf9bc87861f73c5af1e3343e899fb024266cabdbfea5ece83aa5f38da",
         "forwardOperations": [
           {
             "op": "replace",
@@ -9569,16 +9676,18 @@
           "MovementFeet": {
             "granted": 30,
             "spent": 0,
-            "unusedExpired": 30
+            "unusedExpired": 30,
+            "recalculatedAway": 0
           }
         },
+        "magicThisTurnAfterEnd": false,
         "nextStartPreserved": 44.0,
         "nextEndAfter": null
       },
       "eventId": "PG328-W12-R1-E045",
       "stateTransition": {
-        "beforeStateSha256": "7ad2049711ac8f97330dc30ee7b89b793e546d7b5addf9880d40a2b122dabada",
-        "afterStateSha256": "a1e12cf2638eba1b6f4e46165d597313074da42590a499a5c05460e5e6f4e9d7",
+        "beforeStateSha256": "08ec889bf9bc87861f73c5af1e3343e899fb024266cabdbfea5ece83aa5f38da",
+        "afterStateSha256": "8acf1da59ba16b137c8fe80117f8ab31c2ef24d6f95172337618d46d3a310183",
         "forwardOperations": [
           {
             "op": "replace",
@@ -9626,7 +9735,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -9741,7 +9851,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -9779,6 +9890,7 @@
           "Reaction": 1,
           "MovementFeet": 30
         },
+        "operativeSpeedFeet": 30,
         "rechargeBefore": {},
         "rechargeAfter": {},
         "nextStart": 45.0,
@@ -9791,8 +9903,8 @@
       },
       "eventId": "PG328-W12-R1-E046",
       "stateTransition": {
-        "beforeStateSha256": "a1e12cf2638eba1b6f4e46165d597313074da42590a499a5c05460e5e6f4e9d7",
-        "afterStateSha256": "8028c62b6d9c9a988e8115342becdeac2e51fb969f0ec9b8db4c3e9a1857f0c0",
+        "beforeStateSha256": "8acf1da59ba16b137c8fe80117f8ab31c2ef24d6f95172337618d46d3a310183",
+        "afterStateSha256": "5662fc4658b905a043ea2e46e13e731958239e33237f414000ed7e76e8dcf233",
         "forwardOperations": [
           {
             "op": "replace",
@@ -9957,16 +10069,18 @@
           "MovementFeet": {
             "granted": 30,
             "spent": 0,
-            "unusedExpired": 30
+            "unusedExpired": 30,
+            "recalculatedAway": 0
           }
         },
+        "magicThisTurnAfterEnd": false,
         "nextStartPreserved": 45.0,
         "nextEndAfter": null
       },
       "eventId": "PG328-W12-R1-E047",
       "stateTransition": {
-        "beforeStateSha256": "8028c62b6d9c9a988e8115342becdeac2e51fb969f0ec9b8db4c3e9a1857f0c0",
-        "afterStateSha256": "9fae933c21a18ff682ad0ae5d5c2a37efe976b3396158198696ff2fd212e960a",
+        "beforeStateSha256": "5662fc4658b905a043ea2e46e13e731958239e33237f414000ed7e76e8dcf233",
+        "afterStateSha256": "a4df2ca6b00a7042e1b23909b48cd072197e7895c29766402314ebd24829b69c",
         "forwardOperations": [
           {
             "op": "replace",
@@ -10014,7 +10128,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -10129,7 +10244,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -10165,8 +10281,9 @@
           "Action": 1,
           "BonusAction": 1,
           "Reaction": 1,
-          "MovementFeet": 30
+          "MovementFeet": 40
         },
+        "operativeSpeedFeet": 40,
         "rechargeBefore": {},
         "rechargeAfter": {},
         "nextStart": 48.0,
@@ -10179,8 +10296,8 @@
       },
       "eventId": "PG328-W12-R1-E048",
       "stateTransition": {
-        "beforeStateSha256": "9fae933c21a18ff682ad0ae5d5c2a37efe976b3396158198696ff2fd212e960a",
-        "afterStateSha256": "18b06f24d015b23effc363084417d2a4167118fb01fcca5ccac2e1a61f6dfa56",
+        "beforeStateSha256": "a4df2ca6b00a7042e1b23909b48cd072197e7895c29766402314ebd24829b69c",
+        "afterStateSha256": "1484d22934894f3ee7a8f424016ebad9548126a17671c1a1992e048fdf775e5c",
         "forwardOperations": [
           {
             "op": "replace",
@@ -10198,7 +10315,7 @@
             "op": "replace",
             "path": "/actors/A/movement",
             "oldValue": 0,
-            "value": 30
+            "value": 40
           },
           {
             "op": "replace",
@@ -10297,7 +10414,7 @@
           {
             "op": "replace",
             "path": "/actors/A/movement",
-            "oldValue": 30,
+            "oldValue": 40,
             "value": 0
           },
           {
@@ -10343,18 +10460,20 @@
             "availableOffTurnUntilSpentOrNextOwnStart": true
           },
           "MovementFeet": {
-            "granted": 30,
+            "granted": 40,
             "spent": 0,
-            "unusedExpired": 30
+            "unusedExpired": 40,
+            "recalculatedAway": 0
           }
         },
+        "magicThisTurnAfterEnd": false,
         "nextStartPreserved": 48.0,
         "nextEndAfter": null
       },
       "eventId": "PG328-W12-R1-E049",
       "stateTransition": {
-        "beforeStateSha256": "18b06f24d015b23effc363084417d2a4167118fb01fcca5ccac2e1a61f6dfa56",
-        "afterStateSha256": "2d77e002300cd50852014266a63f46e2520b4fa3eb44377855eb56819e3fb0e1",
+        "beforeStateSha256": "1484d22934894f3ee7a8f424016ebad9548126a17671c1a1992e048fdf775e5c",
+        "afterStateSha256": "9689d9b0353d376a8c90e95ccc1ba9051c9ca765575f98f016465076e7cabf11",
         "forwardOperations": [
           {
             "op": "replace",
@@ -10371,7 +10490,7 @@
           {
             "op": "replace",
             "path": "/actors/A/movement",
-            "oldValue": 30,
+            "oldValue": 40,
             "value": 0
           },
           {
@@ -10382,7 +10501,7 @@
               "action": 1,
               "BA": 1,
               "Reaction": 1,
-              "Move": 30,
+              "Move": 40,
               "recharge": {},
               "endDisposition": {
                 "regularTurnEndedAt": 42.9,
@@ -10400,9 +10519,10 @@
                   "availableOffTurnUntilSpentOrNextOwnStart": true
                 },
                 "MovementFeet": {
-                  "granted": 30,
+                  "granted": 40,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 40,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -10497,7 +10617,7 @@
               "action": 1,
               "BA": 1,
               "Reaction": 1,
-              "Move": 30,
+              "Move": 40,
               "recharge": {},
               "endDisposition": {
                 "regularTurnEndedAt": 42.9,
@@ -10515,9 +10635,10 @@
                   "availableOffTurnUntilSpentOrNextOwnStart": true
                 },
                 "MovementFeet": {
-                  "granted": 30,
+                  "granted": 40,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 40,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -10526,7 +10647,7 @@
             "op": "replace",
             "path": "/actors/A/movement",
             "oldValue": 0,
-            "value": 30
+            "value": 40
           },
           {
             "op": "replace",
@@ -10555,6 +10676,7 @@
           "Reaction": 1,
           "MovementFeet": 30
         },
+        "operativeSpeedFeet": 30,
         "rechargeBefore": {
           "wizard.arch.arcane-sight": 0
         },
@@ -10571,8 +10693,8 @@
       },
       "eventId": "PG328-W12-R1-E050",
       "stateTransition": {
-        "beforeStateSha256": "2d77e002300cd50852014266a63f46e2520b4fa3eb44377855eb56819e3fb0e1",
-        "afterStateSha256": "a61aba234772727adf68582b475ad808ef02e8624bbcbee676c3123f045ddfa2",
+        "beforeStateSha256": "9689d9b0353d376a8c90e95ccc1ba9051c9ca765575f98f016465076e7cabf11",
+        "afterStateSha256": "a6ac49034990d23d54d51e0ebeb75c5d7db75bcdb64eba65760ec4c30bfadbcc",
         "forwardOperations": [
           {
             "op": "replace",
@@ -10737,16 +10859,18 @@
           "MovementFeet": {
             "granted": 30,
             "spent": 0,
-            "unusedExpired": 30
+            "unusedExpired": 30,
+            "recalculatedAway": 0
           }
         },
+        "magicThisTurnAfterEnd": false,
         "nextStartPreserved": 49.0,
         "nextEndAfter": null
       },
       "eventId": "PG328-W12-R1-E051",
       "stateTransition": {
-        "beforeStateSha256": "a61aba234772727adf68582b475ad808ef02e8624bbcbee676c3123f045ddfa2",
-        "afterStateSha256": "64a22cc70b70d9ffc062b161917bb6fe61dd787c1035184042f1f391c303655e",
+        "beforeStateSha256": "a6ac49034990d23d54d51e0ebeb75c5d7db75bcdb64eba65760ec4c30bfadbcc",
+        "afterStateSha256": "73c9acc22bfba84a811994baed609153372ab7fe2b6357e1bb129c27e8924853",
         "forwardOperations": [
           {
             "op": "replace",
@@ -10796,7 +10920,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -10913,7 +11038,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -10951,6 +11077,7 @@
           "Reaction": 1,
           "MovementFeet": 30
         },
+        "operativeSpeedFeet": 30,
         "rechargeBefore": {},
         "rechargeAfter": {},
         "nextStart": 50.0,
@@ -10963,8 +11090,8 @@
       },
       "eventId": "PG328-W12-R1-E052",
       "stateTransition": {
-        "beforeStateSha256": "64a22cc70b70d9ffc062b161917bb6fe61dd787c1035184042f1f391c303655e",
-        "afterStateSha256": "80182892a48af97eec05663a6238814bdcd87120a9f0d2d8eb0c7b516368721b",
+        "beforeStateSha256": "73c9acc22bfba84a811994baed609153372ab7fe2b6357e1bb129c27e8924853",
+        "afterStateSha256": "c5e3cedef608fc187de6e11225ff23331e254ac283d26ad74737c890b8a616d3",
         "forwardOperations": [
           {
             "op": "replace",
@@ -11129,16 +11256,18 @@
           "MovementFeet": {
             "granted": 30,
             "spent": 0,
-            "unusedExpired": 30
+            "unusedExpired": 30,
+            "recalculatedAway": 0
           }
         },
+        "magicThisTurnAfterEnd": false,
         "nextStartPreserved": 50.0,
         "nextEndAfter": null
       },
       "eventId": "PG328-W12-R1-E053",
       "stateTransition": {
-        "beforeStateSha256": "80182892a48af97eec05663a6238814bdcd87120a9f0d2d8eb0c7b516368721b",
-        "afterStateSha256": "1f3f4b62090612b8f05e0ea29e1ea04dc23809324bf88a41a1824cc1c6c995ed",
+        "beforeStateSha256": "c5e3cedef608fc187de6e11225ff23331e254ac283d26ad74737c890b8a616d3",
+        "afterStateSha256": "4c49ff81f7690e96a19bde3f7d4a16cb8fba49e06ecd1ed7f3a58c41f778f505",
         "forwardOperations": [
           {
             "op": "replace",
@@ -11186,7 +11315,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -11301,7 +11431,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -11339,6 +11470,7 @@
           "Reaction": 1,
           "MovementFeet": 30
         },
+        "operativeSpeedFeet": 30,
         "rechargeBefore": {},
         "rechargeAfter": {},
         "nextStart": 51.0,
@@ -11351,8 +11483,8 @@
       },
       "eventId": "PG328-W12-R1-E054",
       "stateTransition": {
-        "beforeStateSha256": "1f3f4b62090612b8f05e0ea29e1ea04dc23809324bf88a41a1824cc1c6c995ed",
-        "afterStateSha256": "7285e92513745c4bef77093d376c2e05c72f46ea32153de7d88662ac4e971577",
+        "beforeStateSha256": "4c49ff81f7690e96a19bde3f7d4a16cb8fba49e06ecd1ed7f3a58c41f778f505",
+        "afterStateSha256": "6c6293bda71b1ed743eb1692d3e3e7bdca5176f912b863035e240bc1f531ad94",
         "forwardOperations": [
           {
             "op": "replace",
@@ -11517,16 +11649,18 @@
           "MovementFeet": {
             "granted": 30,
             "spent": 0,
-            "unusedExpired": 30
+            "unusedExpired": 30,
+            "recalculatedAway": 0
           }
         },
+        "magicThisTurnAfterEnd": false,
         "nextStartPreserved": 51.0,
         "nextEndAfter": null
       },
       "eventId": "PG328-W12-R1-E055",
       "stateTransition": {
-        "beforeStateSha256": "7285e92513745c4bef77093d376c2e05c72f46ea32153de7d88662ac4e971577",
-        "afterStateSha256": "e040f8964e06123101f4a569d7ebc067dfbef8fbe9322b0653660b78a8bd3e2b",
+        "beforeStateSha256": "6c6293bda71b1ed743eb1692d3e3e7bdca5176f912b863035e240bc1f531ad94",
+        "afterStateSha256": "f53d3ada23078576e066fb334d82d2e744375e34b57ece97c3049f5e67833f63",
         "forwardOperations": [
           {
             "op": "replace",
@@ -11574,7 +11708,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -11689,7 +11824,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -11725,8 +11861,9 @@
           "Action": 1,
           "BonusAction": 1,
           "Reaction": 1,
-          "MovementFeet": 30
+          "MovementFeet": 40
         },
+        "operativeSpeedFeet": 40,
         "rechargeBefore": {},
         "rechargeAfter": {},
         "nextStart": 54.0,
@@ -11739,8 +11876,8 @@
       },
       "eventId": "PG328-W12-R1-E056",
       "stateTransition": {
-        "beforeStateSha256": "e040f8964e06123101f4a569d7ebc067dfbef8fbe9322b0653660b78a8bd3e2b",
-        "afterStateSha256": "d27705822bdf3829baa09763c216950cb85f31c355d053a1db089d609efb96bd",
+        "beforeStateSha256": "f53d3ada23078576e066fb334d82d2e744375e34b57ece97c3049f5e67833f63",
+        "afterStateSha256": "f09c346b825317712b6ec16c0261b325e6cb9731acafa887b8ce1eb36c701e9a",
         "forwardOperations": [
           {
             "op": "replace",
@@ -11758,7 +11895,7 @@
             "op": "replace",
             "path": "/actors/A/movement",
             "oldValue": 0,
-            "value": 30
+            "value": 40
           },
           {
             "op": "replace",
@@ -11857,7 +11994,7 @@
           {
             "op": "replace",
             "path": "/actors/A/movement",
-            "oldValue": 30,
+            "oldValue": 40,
             "value": 0
           },
           {
@@ -11903,18 +12040,20 @@
             "availableOffTurnUntilSpentOrNextOwnStart": true
           },
           "MovementFeet": {
-            "granted": 30,
+            "granted": 40,
             "spent": 0,
-            "unusedExpired": 30
+            "unusedExpired": 40,
+            "recalculatedAway": 0
           }
         },
+        "magicThisTurnAfterEnd": false,
         "nextStartPreserved": 54.0,
         "nextEndAfter": null
       },
       "eventId": "PG328-W12-R1-E057",
       "stateTransition": {
-        "beforeStateSha256": "d27705822bdf3829baa09763c216950cb85f31c355d053a1db089d609efb96bd",
-        "afterStateSha256": "97c5dc91a2b5ca3ee5d61715b5fc2c24cdaa382ad7ff56b3a3a74f4274fda461",
+        "beforeStateSha256": "f09c346b825317712b6ec16c0261b325e6cb9731acafa887b8ce1eb36c701e9a",
+        "afterStateSha256": "9127b26985a743d989c8b25db430990dbea67dcb1cd632a31117946d595ebe8f",
         "forwardOperations": [
           {
             "op": "replace",
@@ -11931,7 +12070,7 @@
           {
             "op": "replace",
             "path": "/actors/A/movement",
-            "oldValue": 30,
+            "oldValue": 40,
             "value": 0
           },
           {
@@ -11942,7 +12081,7 @@
               "action": 1,
               "BA": 1,
               "Reaction": 1,
-              "Move": 30,
+              "Move": 40,
               "recharge": {},
               "endDisposition": {
                 "regularTurnEndedAt": 48.9,
@@ -11960,9 +12099,10 @@
                   "availableOffTurnUntilSpentOrNextOwnStart": true
                 },
                 "MovementFeet": {
-                  "granted": 30,
+                  "granted": 40,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 40,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -12057,7 +12197,7 @@
               "action": 1,
               "BA": 1,
               "Reaction": 1,
-              "Move": 30,
+              "Move": 40,
               "recharge": {},
               "endDisposition": {
                 "regularTurnEndedAt": 48.9,
@@ -12075,9 +12215,10 @@
                   "availableOffTurnUntilSpentOrNextOwnStart": true
                 },
                 "MovementFeet": {
-                  "granted": 30,
+                  "granted": 40,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 40,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -12086,7 +12227,7 @@
             "op": "replace",
             "path": "/actors/A/movement",
             "oldValue": 0,
-            "value": 30
+            "value": 40
           },
           {
             "op": "replace",
@@ -12115,6 +12256,7 @@
           "Reaction": 1,
           "MovementFeet": 30
         },
+        "operativeSpeedFeet": 30,
         "rechargeBefore": {
           "wizard.arch.arcane-sight": 0
         },
@@ -12131,8 +12273,8 @@
       },
       "eventId": "PG328-W12-R1-E058",
       "stateTransition": {
-        "beforeStateSha256": "97c5dc91a2b5ca3ee5d61715b5fc2c24cdaa382ad7ff56b3a3a74f4274fda461",
-        "afterStateSha256": "5e02432c61c58fce4600186ad2c44a504e166fe19e7cc89a925597b6b9ffd689",
+        "beforeStateSha256": "9127b26985a743d989c8b25db430990dbea67dcb1cd632a31117946d595ebe8f",
+        "afterStateSha256": "5aeb2c319c7265200ce21cb9847943df55d3500bf6f3d1aadc1afc0a35fc83b3",
         "forwardOperations": [
           {
             "op": "replace",
@@ -12297,16 +12439,18 @@
           "MovementFeet": {
             "granted": 30,
             "spent": 0,
-            "unusedExpired": 30
+            "unusedExpired": 30,
+            "recalculatedAway": 0
           }
         },
+        "magicThisTurnAfterEnd": false,
         "nextStartPreserved": 55.0,
         "nextEndAfter": null
       },
       "eventId": "PG328-W12-R1-E059",
       "stateTransition": {
-        "beforeStateSha256": "5e02432c61c58fce4600186ad2c44a504e166fe19e7cc89a925597b6b9ffd689",
-        "afterStateSha256": "7206edadaf7c6a33c99a73ffd7b2f7d2cb128b4506d8f7f6ba3524295a767a9b",
+        "beforeStateSha256": "5aeb2c319c7265200ce21cb9847943df55d3500bf6f3d1aadc1afc0a35fc83b3",
+        "afterStateSha256": "e992cba3954da2cb2cf1886b4f92470d81bc6155b5dd7e01cefc1485a0344afa",
         "forwardOperations": [
           {
             "op": "replace",
@@ -12356,7 +12500,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -12473,7 +12618,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -12511,6 +12657,7 @@
           "Reaction": 1,
           "MovementFeet": 30
         },
+        "operativeSpeedFeet": 30,
         "rechargeBefore": {},
         "rechargeAfter": {},
         "nextStart": 56.0,
@@ -12523,8 +12670,8 @@
       },
       "eventId": "PG328-W12-R1-E060",
       "stateTransition": {
-        "beforeStateSha256": "7206edadaf7c6a33c99a73ffd7b2f7d2cb128b4506d8f7f6ba3524295a767a9b",
-        "afterStateSha256": "33edb67c1d1344c640f1ed931e33ccd9d911242bfefc34a4f9f617309eec0499",
+        "beforeStateSha256": "e992cba3954da2cb2cf1886b4f92470d81bc6155b5dd7e01cefc1485a0344afa",
+        "afterStateSha256": "1aa4d2eca6672e4054e6b54e71c766cee4efe162c34c695bbdcbacb1457e346a",
         "forwardOperations": [
           {
             "op": "replace",
@@ -12689,16 +12836,18 @@
           "MovementFeet": {
             "granted": 30,
             "spent": 0,
-            "unusedExpired": 30
+            "unusedExpired": 30,
+            "recalculatedAway": 0
           }
         },
+        "magicThisTurnAfterEnd": false,
         "nextStartPreserved": 56.0,
         "nextEndAfter": null
       },
       "eventId": "PG328-W12-R1-E061",
       "stateTransition": {
-        "beforeStateSha256": "33edb67c1d1344c640f1ed931e33ccd9d911242bfefc34a4f9f617309eec0499",
-        "afterStateSha256": "a7edd76f9eb7ab1ae433da94f1534d8eb158a49ded633b931fd6d715d0998992",
+        "beforeStateSha256": "1aa4d2eca6672e4054e6b54e71c766cee4efe162c34c695bbdcbacb1457e346a",
+        "afterStateSha256": "4d4d1ea36a574cd4fb3cc12475a59d89e6535a817244e563ce57be1952515fbf",
         "forwardOperations": [
           {
             "op": "replace",
@@ -12746,7 +12895,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -12861,7 +13011,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -12899,6 +13050,7 @@
           "Reaction": 1,
           "MovementFeet": 30
         },
+        "operativeSpeedFeet": 30,
         "rechargeBefore": {},
         "rechargeAfter": {},
         "nextStart": 57.0,
@@ -12911,8 +13063,8 @@
       },
       "eventId": "PG328-W12-R1-E062",
       "stateTransition": {
-        "beforeStateSha256": "a7edd76f9eb7ab1ae433da94f1534d8eb158a49ded633b931fd6d715d0998992",
-        "afterStateSha256": "f12b78887498cd28f39ad6e2355df1fdb4b20d49f3eb64cc4de8afa318c71de3",
+        "beforeStateSha256": "4d4d1ea36a574cd4fb3cc12475a59d89e6535a817244e563ce57be1952515fbf",
+        "afterStateSha256": "a72e1e016769bcd713a7e4c7308d3195e16002c920d0937af1d1f84e234fa5c4",
         "forwardOperations": [
           {
             "op": "replace",
@@ -13077,16 +13229,18 @@
           "MovementFeet": {
             "granted": 30,
             "spent": 0,
-            "unusedExpired": 30
+            "unusedExpired": 30,
+            "recalculatedAway": 0
           }
         },
+        "magicThisTurnAfterEnd": false,
         "nextStartPreserved": 57.0,
         "nextEndAfter": null
       },
       "eventId": "PG328-W12-R1-E063",
       "stateTransition": {
-        "beforeStateSha256": "f12b78887498cd28f39ad6e2355df1fdb4b20d49f3eb64cc4de8afa318c71de3",
-        "afterStateSha256": "4b97f304769545c9008378dbdf8ab49c716c24b630dd19f8741a706ab68e4a49",
+        "beforeStateSha256": "a72e1e016769bcd713a7e4c7308d3195e16002c920d0937af1d1f84e234fa5c4",
+        "afterStateSha256": "f182fc711101dd95bf1646de4a4d50f6a96b562e6dc8585f04b01a15a0951421",
         "forwardOperations": [
           {
             "op": "replace",
@@ -13134,7 +13288,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -13249,7 +13404,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -13285,8 +13441,9 @@
           "Action": 1,
           "BonusAction": 1,
           "Reaction": 1,
-          "MovementFeet": 30
+          "MovementFeet": 40
         },
+        "operativeSpeedFeet": 40,
         "rechargeBefore": {},
         "rechargeAfter": {},
         "nextStart": 60.0,
@@ -13299,8 +13456,8 @@
       },
       "eventId": "PG328-W12-R1-E064",
       "stateTransition": {
-        "beforeStateSha256": "4b97f304769545c9008378dbdf8ab49c716c24b630dd19f8741a706ab68e4a49",
-        "afterStateSha256": "8f1558e2a419475fc87b56b612c4f45de8d148627c9797f761edb49e19d565a7",
+        "beforeStateSha256": "f182fc711101dd95bf1646de4a4d50f6a96b562e6dc8585f04b01a15a0951421",
+        "afterStateSha256": "de70a876a531bdd13b9d7ba9932389e2d9edd6c52d4e9d3954825a4c9531ca1b",
         "forwardOperations": [
           {
             "op": "replace",
@@ -13318,7 +13475,7 @@
             "op": "replace",
             "path": "/actors/A/movement",
             "oldValue": 0,
-            "value": 30
+            "value": 40
           },
           {
             "op": "replace",
@@ -13417,7 +13574,7 @@
           {
             "op": "replace",
             "path": "/actors/A/movement",
-            "oldValue": 30,
+            "oldValue": 40,
             "value": 0
           },
           {
@@ -13463,18 +13620,20 @@
             "availableOffTurnUntilSpentOrNextOwnStart": true
           },
           "MovementFeet": {
-            "granted": 30,
+            "granted": 40,
             "spent": 0,
-            "unusedExpired": 30
+            "unusedExpired": 40,
+            "recalculatedAway": 0
           }
         },
+        "magicThisTurnAfterEnd": false,
         "nextStartPreserved": 60.0,
         "nextEndAfter": null
       },
       "eventId": "PG328-W12-R1-E065",
       "stateTransition": {
-        "beforeStateSha256": "8f1558e2a419475fc87b56b612c4f45de8d148627c9797f761edb49e19d565a7",
-        "afterStateSha256": "37b799b2484d3c8501fb6659c66a2a7b4f5bba75b9c2700b50805ddd91351888",
+        "beforeStateSha256": "de70a876a531bdd13b9d7ba9932389e2d9edd6c52d4e9d3954825a4c9531ca1b",
+        "afterStateSha256": "5f6637b5007e34ecdbaacd0051f3f3c5b74f174db4a90039a8b9d37ef1186a29",
         "forwardOperations": [
           {
             "op": "replace",
@@ -13491,7 +13650,7 @@
           {
             "op": "replace",
             "path": "/actors/A/movement",
-            "oldValue": 30,
+            "oldValue": 40,
             "value": 0
           },
           {
@@ -13502,7 +13661,7 @@
               "action": 1,
               "BA": 1,
               "Reaction": 1,
-              "Move": 30,
+              "Move": 40,
               "recharge": {},
               "endDisposition": {
                 "regularTurnEndedAt": 54.9,
@@ -13520,9 +13679,10 @@
                   "availableOffTurnUntilSpentOrNextOwnStart": true
                 },
                 "MovementFeet": {
-                  "granted": 30,
+                  "granted": 40,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 40,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -13617,7 +13777,7 @@
               "action": 1,
               "BA": 1,
               "Reaction": 1,
-              "Move": 30,
+              "Move": 40,
               "recharge": {},
               "endDisposition": {
                 "regularTurnEndedAt": 54.9,
@@ -13635,9 +13795,10 @@
                   "availableOffTurnUntilSpentOrNextOwnStart": true
                 },
                 "MovementFeet": {
-                  "granted": 30,
+                  "granted": 40,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 40,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -13646,7 +13807,7 @@
             "op": "replace",
             "path": "/actors/A/movement",
             "oldValue": 0,
-            "value": 30
+            "value": 40
           },
           {
             "op": "replace",
@@ -13675,6 +13836,7 @@
           "Reaction": 1,
           "MovementFeet": 30
         },
+        "operativeSpeedFeet": 30,
         "rechargeBefore": {
           "wizard.arch.arcane-sight": 0
         },
@@ -13691,8 +13853,8 @@
       },
       "eventId": "PG328-W12-R1-E066",
       "stateTransition": {
-        "beforeStateSha256": "37b799b2484d3c8501fb6659c66a2a7b4f5bba75b9c2700b50805ddd91351888",
-        "afterStateSha256": "e23905234a6afc0719dad4c6346a42dbb15446ba1f5b26627c6946eab51f72cd",
+        "beforeStateSha256": "5f6637b5007e34ecdbaacd0051f3f3c5b74f174db4a90039a8b9d37ef1186a29",
+        "afterStateSha256": "87b9d35dcc311eb6712e58d70f7bec93d6d9af95ee228930ecabb6d7f83bb04c",
         "forwardOperations": [
           {
             "op": "replace",
@@ -13857,16 +14019,18 @@
           "MovementFeet": {
             "granted": 30,
             "spent": 0,
-            "unusedExpired": 30
+            "unusedExpired": 30,
+            "recalculatedAway": 0
           }
         },
+        "magicThisTurnAfterEnd": false,
         "nextStartPreserved": 61.0,
         "nextEndAfter": null
       },
       "eventId": "PG328-W12-R1-E067",
       "stateTransition": {
-        "beforeStateSha256": "e23905234a6afc0719dad4c6346a42dbb15446ba1f5b26627c6946eab51f72cd",
-        "afterStateSha256": "92a58460a44202ade66255fa52f9af5206108f63da9ced119afb20e863d454e2",
+        "beforeStateSha256": "87b9d35dcc311eb6712e58d70f7bec93d6d9af95ee228930ecabb6d7f83bb04c",
+        "afterStateSha256": "25f5074223ad7365075a3e076a9fee79504c839562c83f216600aebf786fb2ce",
         "forwardOperations": [
           {
             "op": "replace",
@@ -13916,7 +14080,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -14033,7 +14198,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -14071,6 +14237,7 @@
           "Reaction": 1,
           "MovementFeet": 30
         },
+        "operativeSpeedFeet": 30,
         "rechargeBefore": {},
         "rechargeAfter": {},
         "nextStart": 62.0,
@@ -14083,8 +14250,8 @@
       },
       "eventId": "PG328-W12-R1-E068",
       "stateTransition": {
-        "beforeStateSha256": "92a58460a44202ade66255fa52f9af5206108f63da9ced119afb20e863d454e2",
-        "afterStateSha256": "c9b9d0dd55b48f2af1c87c5b67298a06cad98d31aaeb87b44ca2229832963354",
+        "beforeStateSha256": "25f5074223ad7365075a3e076a9fee79504c839562c83f216600aebf786fb2ce",
+        "afterStateSha256": "0221427ab906158a020a719eda17709e58aebee81055230e4ebaf9080ff395e1",
         "forwardOperations": [
           {
             "op": "replace",
@@ -14249,16 +14416,18 @@
           "MovementFeet": {
             "granted": 30,
             "spent": 0,
-            "unusedExpired": 30
+            "unusedExpired": 30,
+            "recalculatedAway": 0
           }
         },
+        "magicThisTurnAfterEnd": false,
         "nextStartPreserved": 62.0,
         "nextEndAfter": null
       },
       "eventId": "PG328-W12-R1-E069",
       "stateTransition": {
-        "beforeStateSha256": "c9b9d0dd55b48f2af1c87c5b67298a06cad98d31aaeb87b44ca2229832963354",
-        "afterStateSha256": "aaa4e31a0ea2b50b329352a59459e6e642b51c2f403942cc4e3f1fa82e7d5f82",
+        "beforeStateSha256": "0221427ab906158a020a719eda17709e58aebee81055230e4ebaf9080ff395e1",
+        "afterStateSha256": "dc1f7628e74f92ba42c358ba55090de2ec6434b90a639121b38879ea07a98440",
         "forwardOperations": [
           {
             "op": "replace",
@@ -14306,7 +14475,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -14421,7 +14591,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -14459,6 +14630,7 @@
           "Reaction": 1,
           "MovementFeet": 30
         },
+        "operativeSpeedFeet": 30,
         "rechargeBefore": {},
         "rechargeAfter": {},
         "nextStart": 63.0,
@@ -14471,8 +14643,8 @@
       },
       "eventId": "PG328-W12-R1-E070",
       "stateTransition": {
-        "beforeStateSha256": "aaa4e31a0ea2b50b329352a59459e6e642b51c2f403942cc4e3f1fa82e7d5f82",
-        "afterStateSha256": "7aace134fa5efc0f90cfaf120ce57a5aa08e572599cc5e0cbbda77ee08873392",
+        "beforeStateSha256": "dc1f7628e74f92ba42c358ba55090de2ec6434b90a639121b38879ea07a98440",
+        "afterStateSha256": "7a43accb0707a464b4c360a122fbaa2637e67929ff00873b074d40aba8a84fc5",
         "forwardOperations": [
           {
             "op": "replace",
@@ -14637,16 +14809,18 @@
           "MovementFeet": {
             "granted": 30,
             "spent": 0,
-            "unusedExpired": 30
+            "unusedExpired": 30,
+            "recalculatedAway": 0
           }
         },
+        "magicThisTurnAfterEnd": false,
         "nextStartPreserved": 63.0,
         "nextEndAfter": null
       },
       "eventId": "PG328-W12-R1-E071",
       "stateTransition": {
-        "beforeStateSha256": "7aace134fa5efc0f90cfaf120ce57a5aa08e572599cc5e0cbbda77ee08873392",
-        "afterStateSha256": "550b55b8a85b01e493b5ac977889c85d3f085a88aa905af7731b67585f4b9817",
+        "beforeStateSha256": "7a43accb0707a464b4c360a122fbaa2637e67929ff00873b074d40aba8a84fc5",
+        "afterStateSha256": "4fa20041f0db4626e4ca312f30fe1db423f6d73b0fc921768fa64ca0e7f73c12",
         "forwardOperations": [
           {
             "op": "replace",
@@ -14694,7 +14868,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -14809,7 +14984,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -14845,8 +15021,9 @@
           "Action": 1,
           "BonusAction": 1,
           "Reaction": 1,
-          "MovementFeet": 30
+          "MovementFeet": 40
         },
+        "operativeSpeedFeet": 40,
         "rechargeBefore": {},
         "rechargeAfter": {},
         "nextStart": 66.0,
@@ -14859,8 +15036,8 @@
       },
       "eventId": "PG328-W12-R1-E072",
       "stateTransition": {
-        "beforeStateSha256": "550b55b8a85b01e493b5ac977889c85d3f085a88aa905af7731b67585f4b9817",
-        "afterStateSha256": "85036f809d1927ea5c63695ec91b9f77fcf112aca9b933948d86f9be0e51893c",
+        "beforeStateSha256": "4fa20041f0db4626e4ca312f30fe1db423f6d73b0fc921768fa64ca0e7f73c12",
+        "afterStateSha256": "ca8826215d080561a12b3f84503ca8576676adb6a2eaf5098cb32db3e03d88f3",
         "forwardOperations": [
           {
             "op": "replace",
@@ -14878,7 +15055,7 @@
             "op": "replace",
             "path": "/actors/A/movement",
             "oldValue": 0,
-            "value": 30
+            "value": 40
           },
           {
             "op": "replace",
@@ -14977,7 +15154,7 @@
           {
             "op": "replace",
             "path": "/actors/A/movement",
-            "oldValue": 30,
+            "oldValue": 40,
             "value": 0
           },
           {
@@ -15023,18 +15200,20 @@
             "availableOffTurnUntilSpentOrNextOwnStart": true
           },
           "MovementFeet": {
-            "granted": 30,
+            "granted": 40,
             "spent": 0,
-            "unusedExpired": 30
+            "unusedExpired": 40,
+            "recalculatedAway": 0
           }
         },
+        "magicThisTurnAfterEnd": false,
         "nextStartPreserved": 66.0,
         "nextEndAfter": null
       },
       "eventId": "PG328-W12-R1-E073",
       "stateTransition": {
-        "beforeStateSha256": "85036f809d1927ea5c63695ec91b9f77fcf112aca9b933948d86f9be0e51893c",
-        "afterStateSha256": "959dbf7266eaccfd7def8611a6641d470dfc2136e1352c0855bf1879e99b0727",
+        "beforeStateSha256": "ca8826215d080561a12b3f84503ca8576676adb6a2eaf5098cb32db3e03d88f3",
+        "afterStateSha256": "c373b929444950d6f46462e1fadbce838baad27a284c04eabee5d072e8b4a361",
         "forwardOperations": [
           {
             "op": "replace",
@@ -15051,7 +15230,7 @@
           {
             "op": "replace",
             "path": "/actors/A/movement",
-            "oldValue": 30,
+            "oldValue": 40,
             "value": 0
           },
           {
@@ -15062,7 +15241,7 @@
               "action": 1,
               "BA": 1,
               "Reaction": 1,
-              "Move": 30,
+              "Move": 40,
               "recharge": {},
               "endDisposition": {
                 "regularTurnEndedAt": 60.9,
@@ -15080,9 +15259,10 @@
                   "availableOffTurnUntilSpentOrNextOwnStart": true
                 },
                 "MovementFeet": {
-                  "granted": 30,
+                  "granted": 40,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 40,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -15177,7 +15357,7 @@
               "action": 1,
               "BA": 1,
               "Reaction": 1,
-              "Move": 30,
+              "Move": 40,
               "recharge": {},
               "endDisposition": {
                 "regularTurnEndedAt": 60.9,
@@ -15195,9 +15375,10 @@
                   "availableOffTurnUntilSpentOrNextOwnStart": true
                 },
                 "MovementFeet": {
-                  "granted": 30,
+                  "granted": 40,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 40,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -15206,7 +15387,7 @@
             "op": "replace",
             "path": "/actors/A/movement",
             "oldValue": 0,
-            "value": 30
+            "value": 40
           },
           {
             "op": "replace",
@@ -15235,6 +15416,7 @@
           "Reaction": 1,
           "MovementFeet": 30
         },
+        "operativeSpeedFeet": 30,
         "rechargeBefore": {
           "wizard.arch.arcane-sight": 0
         },
@@ -15251,8 +15433,8 @@
       },
       "eventId": "PG328-W12-R1-E074",
       "stateTransition": {
-        "beforeStateSha256": "959dbf7266eaccfd7def8611a6641d470dfc2136e1352c0855bf1879e99b0727",
-        "afterStateSha256": "dd606a816c4e35b4de3599b20459abbf725eab37c74255c769930ac1f7c7dbdb",
+        "beforeStateSha256": "c373b929444950d6f46462e1fadbce838baad27a284c04eabee5d072e8b4a361",
+        "afterStateSha256": "ef49959875857975b60b54cd3f77c5dab7f7091edb5a0ec548d24fa084359925",
         "forwardOperations": [
           {
             "op": "replace",
@@ -15417,16 +15599,18 @@
           "MovementFeet": {
             "granted": 30,
             "spent": 0,
-            "unusedExpired": 30
+            "unusedExpired": 30,
+            "recalculatedAway": 0
           }
         },
+        "magicThisTurnAfterEnd": false,
         "nextStartPreserved": 67.0,
         "nextEndAfter": null
       },
       "eventId": "PG328-W12-R1-E075",
       "stateTransition": {
-        "beforeStateSha256": "dd606a816c4e35b4de3599b20459abbf725eab37c74255c769930ac1f7c7dbdb",
-        "afterStateSha256": "e45d55d18d32e90fe237f2a64d1f4c5087af18a8f98e62b4410c5c98029d0404",
+        "beforeStateSha256": "ef49959875857975b60b54cd3f77c5dab7f7091edb5a0ec548d24fa084359925",
+        "afterStateSha256": "aaa8535cb57525bb1ff5b2964ba17a9d7d857e9e8de4c2e4be699226676fb420",
         "forwardOperations": [
           {
             "op": "replace",
@@ -15476,7 +15660,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -15593,7 +15778,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -15631,6 +15817,7 @@
           "Reaction": 1,
           "MovementFeet": 30
         },
+        "operativeSpeedFeet": 30,
         "rechargeBefore": {},
         "rechargeAfter": {},
         "nextStart": 68.0,
@@ -15643,8 +15830,8 @@
       },
       "eventId": "PG328-W12-R1-E076",
       "stateTransition": {
-        "beforeStateSha256": "e45d55d18d32e90fe237f2a64d1f4c5087af18a8f98e62b4410c5c98029d0404",
-        "afterStateSha256": "7cc8f41c29f51736b6cf3f59f52c4d25b70484a0d6252420d642dd836bb771c3",
+        "beforeStateSha256": "aaa8535cb57525bb1ff5b2964ba17a9d7d857e9e8de4c2e4be699226676fb420",
+        "afterStateSha256": "408eec3ad9587d74e80ec2662ecc9fdd9ae096d950bd7ed1ae5ed0f4c824baf3",
         "forwardOperations": [
           {
             "op": "replace",
@@ -15809,16 +15996,18 @@
           "MovementFeet": {
             "granted": 30,
             "spent": 0,
-            "unusedExpired": 30
+            "unusedExpired": 30,
+            "recalculatedAway": 0
           }
         },
+        "magicThisTurnAfterEnd": false,
         "nextStartPreserved": 68.0,
         "nextEndAfter": null
       },
       "eventId": "PG328-W12-R1-E077",
       "stateTransition": {
-        "beforeStateSha256": "7cc8f41c29f51736b6cf3f59f52c4d25b70484a0d6252420d642dd836bb771c3",
-        "afterStateSha256": "09768fee972c04828c6b71841287957f37bf4edd4dcccb5c54e5799dacee2b1d",
+        "beforeStateSha256": "408eec3ad9587d74e80ec2662ecc9fdd9ae096d950bd7ed1ae5ed0f4c824baf3",
+        "afterStateSha256": "8f2592dc1348cac463bd8e7399fdf26913257880939fe9c021532033d9413f2c",
         "forwardOperations": [
           {
             "op": "replace",
@@ -15866,7 +16055,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -15981,7 +16171,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -16019,6 +16210,7 @@
           "Reaction": 1,
           "MovementFeet": 30
         },
+        "operativeSpeedFeet": 30,
         "rechargeBefore": {},
         "rechargeAfter": {},
         "nextStart": 69.0,
@@ -16031,8 +16223,8 @@
       },
       "eventId": "PG328-W12-R1-E078",
       "stateTransition": {
-        "beforeStateSha256": "09768fee972c04828c6b71841287957f37bf4edd4dcccb5c54e5799dacee2b1d",
-        "afterStateSha256": "1ee080aa901148566b4a3d5f0ba28def6d9d5078d18e583d4e2435a3bf67487b",
+        "beforeStateSha256": "8f2592dc1348cac463bd8e7399fdf26913257880939fe9c021532033d9413f2c",
+        "afterStateSha256": "6b27668accd22f871077f577b9b16927d657025664d3302a8760f7544da942b7",
         "forwardOperations": [
           {
             "op": "replace",
@@ -16197,16 +16389,18 @@
           "MovementFeet": {
             "granted": 30,
             "spent": 0,
-            "unusedExpired": 30
+            "unusedExpired": 30,
+            "recalculatedAway": 0
           }
         },
+        "magicThisTurnAfterEnd": false,
         "nextStartPreserved": 69.0,
         "nextEndAfter": null
       },
       "eventId": "PG328-W12-R1-E079",
       "stateTransition": {
-        "beforeStateSha256": "1ee080aa901148566b4a3d5f0ba28def6d9d5078d18e583d4e2435a3bf67487b",
-        "afterStateSha256": "3f0b6070f528e117767d54d2c0d7dcc90c9927ab1001c6661521ec7a4fb4ad9d",
+        "beforeStateSha256": "6b27668accd22f871077f577b9b16927d657025664d3302a8760f7544da942b7",
+        "afterStateSha256": "be8643320426583c6b0ee353de042636dfc7a444f70784fe08e36ccd6921d88a",
         "forwardOperations": [
           {
             "op": "replace",
@@ -16254,7 +16448,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -16369,7 +16564,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -16405,8 +16601,9 @@
           "Action": 1,
           "BonusAction": 1,
           "Reaction": 1,
-          "MovementFeet": 30
+          "MovementFeet": 40
         },
+        "operativeSpeedFeet": 40,
         "rechargeBefore": {},
         "rechargeAfter": {},
         "nextStart": 72.0,
@@ -16419,8 +16616,8 @@
       },
       "eventId": "PG328-W12-R1-E080",
       "stateTransition": {
-        "beforeStateSha256": "3f0b6070f528e117767d54d2c0d7dcc90c9927ab1001c6661521ec7a4fb4ad9d",
-        "afterStateSha256": "5ff660ee81db929b30ca6925bd4e20198b98da23b6dea7a463e2262bab1b62be",
+        "beforeStateSha256": "be8643320426583c6b0ee353de042636dfc7a444f70784fe08e36ccd6921d88a",
+        "afterStateSha256": "ffa17b6f87abfb84deb64db65651a71e4f95d7d86d28984c1cfe3cd8892083dd",
         "forwardOperations": [
           {
             "op": "replace",
@@ -16438,7 +16635,7 @@
             "op": "replace",
             "path": "/actors/A/movement",
             "oldValue": 0,
-            "value": 30
+            "value": 40
           },
           {
             "op": "replace",
@@ -16537,7 +16734,7 @@
           {
             "op": "replace",
             "path": "/actors/A/movement",
-            "oldValue": 30,
+            "oldValue": 40,
             "value": 0
           },
           {
@@ -16583,18 +16780,20 @@
             "availableOffTurnUntilSpentOrNextOwnStart": true
           },
           "MovementFeet": {
-            "granted": 30,
+            "granted": 40,
             "spent": 0,
-            "unusedExpired": 30
+            "unusedExpired": 40,
+            "recalculatedAway": 0
           }
         },
+        "magicThisTurnAfterEnd": false,
         "nextStartPreserved": 72.0,
         "nextEndAfter": null
       },
       "eventId": "PG328-W12-R1-E081",
       "stateTransition": {
-        "beforeStateSha256": "5ff660ee81db929b30ca6925bd4e20198b98da23b6dea7a463e2262bab1b62be",
-        "afterStateSha256": "446ae5d26af23d2bff59d539bfee2c6534b5802abf8d3716b5d77e3adf39cdbe",
+        "beforeStateSha256": "ffa17b6f87abfb84deb64db65651a71e4f95d7d86d28984c1cfe3cd8892083dd",
+        "afterStateSha256": "3cf54a4ccf19d9fee137e59bdcaa0c55742f5ff78b6813a09ddf4b01c9b69f89",
         "forwardOperations": [
           {
             "op": "replace",
@@ -16611,7 +16810,7 @@
           {
             "op": "replace",
             "path": "/actors/A/movement",
-            "oldValue": 30,
+            "oldValue": 40,
             "value": 0
           },
           {
@@ -16622,7 +16821,7 @@
               "action": 1,
               "BA": 1,
               "Reaction": 1,
-              "Move": 30,
+              "Move": 40,
               "recharge": {},
               "endDisposition": {
                 "regularTurnEndedAt": 66.9,
@@ -16640,9 +16839,10 @@
                   "availableOffTurnUntilSpentOrNextOwnStart": true
                 },
                 "MovementFeet": {
-                  "granted": 30,
+                  "granted": 40,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 40,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -16737,7 +16937,7 @@
               "action": 1,
               "BA": 1,
               "Reaction": 1,
-              "Move": 30,
+              "Move": 40,
               "recharge": {},
               "endDisposition": {
                 "regularTurnEndedAt": 66.9,
@@ -16755,9 +16955,10 @@
                   "availableOffTurnUntilSpentOrNextOwnStart": true
                 },
                 "MovementFeet": {
-                  "granted": 30,
+                  "granted": 40,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 40,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -16766,7 +16967,7 @@
             "op": "replace",
             "path": "/actors/A/movement",
             "oldValue": 0,
-            "value": 30
+            "value": 40
           },
           {
             "op": "replace",
@@ -16795,6 +16996,7 @@
           "Reaction": 1,
           "MovementFeet": 30
         },
+        "operativeSpeedFeet": 30,
         "rechargeBefore": {
           "wizard.arch.arcane-sight": 0
         },
@@ -16811,8 +17013,8 @@
       },
       "eventId": "PG328-W12-R1-E082",
       "stateTransition": {
-        "beforeStateSha256": "446ae5d26af23d2bff59d539bfee2c6534b5802abf8d3716b5d77e3adf39cdbe",
-        "afterStateSha256": "d890fd91bc156c689eadcdac3373738f154c3d969167854d931fd3f5a155d4d6",
+        "beforeStateSha256": "3cf54a4ccf19d9fee137e59bdcaa0c55742f5ff78b6813a09ddf4b01c9b69f89",
+        "afterStateSha256": "15dad8a1eb93d2c097b1c97f0c22ca75889c6a607d6714470937aaf7451ae5a5",
         "forwardOperations": [
           {
             "op": "replace",
@@ -16977,16 +17179,18 @@
           "MovementFeet": {
             "granted": 30,
             "spent": 0,
-            "unusedExpired": 30
+            "unusedExpired": 30,
+            "recalculatedAway": 0
           }
         },
+        "magicThisTurnAfterEnd": false,
         "nextStartPreserved": 73.0,
         "nextEndAfter": null
       },
       "eventId": "PG328-W12-R1-E083",
       "stateTransition": {
-        "beforeStateSha256": "d890fd91bc156c689eadcdac3373738f154c3d969167854d931fd3f5a155d4d6",
-        "afterStateSha256": "92e699b12fc92d43d042b185c60a27b22fb862ae2fc9273d99b32e0812961010",
+        "beforeStateSha256": "15dad8a1eb93d2c097b1c97f0c22ca75889c6a607d6714470937aaf7451ae5a5",
+        "afterStateSha256": "5b026bd0a95e8c2d17d0808cd09bdcab51a3ba7509dd9b7208f5f222bc6278c7",
         "forwardOperations": [
           {
             "op": "replace",
@@ -17036,7 +17240,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -17153,7 +17358,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -17191,6 +17397,7 @@
           "Reaction": 1,
           "MovementFeet": 30
         },
+        "operativeSpeedFeet": 30,
         "rechargeBefore": {},
         "rechargeAfter": {},
         "nextStart": 74.0,
@@ -17203,8 +17410,8 @@
       },
       "eventId": "PG328-W12-R1-E084",
       "stateTransition": {
-        "beforeStateSha256": "92e699b12fc92d43d042b185c60a27b22fb862ae2fc9273d99b32e0812961010",
-        "afterStateSha256": "16f6af2d33eef06093a634c84f55a48b51f52ceb7dd395bbba166815ebca8054",
+        "beforeStateSha256": "5b026bd0a95e8c2d17d0808cd09bdcab51a3ba7509dd9b7208f5f222bc6278c7",
+        "afterStateSha256": "87fbf53e585ab152fddc5c725de434981165c74fe1a2690574ed062dacbfc1fb",
         "forwardOperations": [
           {
             "op": "replace",
@@ -17369,16 +17576,18 @@
           "MovementFeet": {
             "granted": 30,
             "spent": 0,
-            "unusedExpired": 30
+            "unusedExpired": 30,
+            "recalculatedAway": 0
           }
         },
+        "magicThisTurnAfterEnd": false,
         "nextStartPreserved": 74.0,
         "nextEndAfter": null
       },
       "eventId": "PG328-W12-R1-E085",
       "stateTransition": {
-        "beforeStateSha256": "16f6af2d33eef06093a634c84f55a48b51f52ceb7dd395bbba166815ebca8054",
-        "afterStateSha256": "735f70c4d449ea1d9d02e393975b6fb4723a8b6619bda5085c2f77a5676ee168",
+        "beforeStateSha256": "87fbf53e585ab152fddc5c725de434981165c74fe1a2690574ed062dacbfc1fb",
+        "afterStateSha256": "50954930a817223e3c611403ea503262e02d45c30d06764732a64cfce1eb3f60",
         "forwardOperations": [
           {
             "op": "replace",
@@ -17426,7 +17635,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -17541,7 +17751,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -17579,6 +17790,7 @@
           "Reaction": 1,
           "MovementFeet": 30
         },
+        "operativeSpeedFeet": 30,
         "rechargeBefore": {},
         "rechargeAfter": {},
         "nextStart": 75.0,
@@ -17591,8 +17803,8 @@
       },
       "eventId": "PG328-W12-R1-E086",
       "stateTransition": {
-        "beforeStateSha256": "735f70c4d449ea1d9d02e393975b6fb4723a8b6619bda5085c2f77a5676ee168",
-        "afterStateSha256": "3d37cb5c731df50bc204fe2ce8c836b739aa9f5456fbaf0a93753379ed70483d",
+        "beforeStateSha256": "50954930a817223e3c611403ea503262e02d45c30d06764732a64cfce1eb3f60",
+        "afterStateSha256": "6c58821b09556456276e828c0d0dabc38d6e6090249d7fd8e87f5f4d4ff238e5",
         "forwardOperations": [
           {
             "op": "replace",
@@ -17757,16 +17969,18 @@
           "MovementFeet": {
             "granted": 30,
             "spent": 0,
-            "unusedExpired": 30
+            "unusedExpired": 30,
+            "recalculatedAway": 0
           }
         },
+        "magicThisTurnAfterEnd": false,
         "nextStartPreserved": 75.0,
         "nextEndAfter": null
       },
       "eventId": "PG328-W12-R1-E087",
       "stateTransition": {
-        "beforeStateSha256": "3d37cb5c731df50bc204fe2ce8c836b739aa9f5456fbaf0a93753379ed70483d",
-        "afterStateSha256": "359789da548a6eb96bed1dd44d0094581d14097224efbd851d8ad3463d43fe70",
+        "beforeStateSha256": "6c58821b09556456276e828c0d0dabc38d6e6090249d7fd8e87f5f4d4ff238e5",
+        "afterStateSha256": "b2e76eb8fdd5968f695a996f91a12e4756482d458b593dcee8febd16c59aab28",
         "forwardOperations": [
           {
             "op": "replace",
@@ -17814,7 +18028,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -17929,7 +18144,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -17965,8 +18181,9 @@
           "Action": 1,
           "BonusAction": 1,
           "Reaction": 1,
-          "MovementFeet": 30
+          "MovementFeet": 40
         },
+        "operativeSpeedFeet": 40,
         "rechargeBefore": {},
         "rechargeAfter": {},
         "nextStart": 78.0,
@@ -17979,8 +18196,8 @@
       },
       "eventId": "PG328-W12-R1-E088",
       "stateTransition": {
-        "beforeStateSha256": "359789da548a6eb96bed1dd44d0094581d14097224efbd851d8ad3463d43fe70",
-        "afterStateSha256": "458b603d4c44a6a84ddf276eab2284a7790f685d5eee207cd583f2936ec1959d",
+        "beforeStateSha256": "b2e76eb8fdd5968f695a996f91a12e4756482d458b593dcee8febd16c59aab28",
+        "afterStateSha256": "9c3ee79ceaebac4974939c3f13c6fb9b25e570d527e8bceaf8827c63442b4982",
         "forwardOperations": [
           {
             "op": "replace",
@@ -17998,7 +18215,7 @@
             "op": "replace",
             "path": "/actors/A/movement",
             "oldValue": 0,
-            "value": 30
+            "value": 40
           },
           {
             "op": "replace",
@@ -18097,7 +18314,7 @@
           {
             "op": "replace",
             "path": "/actors/A/movement",
-            "oldValue": 30,
+            "oldValue": 40,
             "value": 0
           },
           {
@@ -18143,18 +18360,20 @@
             "availableOffTurnUntilSpentOrNextOwnStart": true
           },
           "MovementFeet": {
-            "granted": 30,
+            "granted": 40,
             "spent": 0,
-            "unusedExpired": 30
+            "unusedExpired": 40,
+            "recalculatedAway": 0
           }
         },
+        "magicThisTurnAfterEnd": false,
         "nextStartPreserved": 78.0,
         "nextEndAfter": null
       },
       "eventId": "PG328-W12-R1-E089",
       "stateTransition": {
-        "beforeStateSha256": "458b603d4c44a6a84ddf276eab2284a7790f685d5eee207cd583f2936ec1959d",
-        "afterStateSha256": "847495e363f5195f70c38bf509aa609cd96156c0a48c41f2defc9720fd14d583",
+        "beforeStateSha256": "9c3ee79ceaebac4974939c3f13c6fb9b25e570d527e8bceaf8827c63442b4982",
+        "afterStateSha256": "4d9dea1525430a49cc658c4062eb66379b22bacec6e852826f1385c093c36d54",
         "forwardOperations": [
           {
             "op": "replace",
@@ -18171,7 +18390,7 @@
           {
             "op": "replace",
             "path": "/actors/A/movement",
-            "oldValue": 30,
+            "oldValue": 40,
             "value": 0
           },
           {
@@ -18182,7 +18401,7 @@
               "action": 1,
               "BA": 1,
               "Reaction": 1,
-              "Move": 30,
+              "Move": 40,
               "recharge": {},
               "endDisposition": {
                 "regularTurnEndedAt": 72.9,
@@ -18200,9 +18419,10 @@
                   "availableOffTurnUntilSpentOrNextOwnStart": true
                 },
                 "MovementFeet": {
-                  "granted": 30,
+                  "granted": 40,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 40,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -18297,7 +18517,7 @@
               "action": 1,
               "BA": 1,
               "Reaction": 1,
-              "Move": 30,
+              "Move": 40,
               "recharge": {},
               "endDisposition": {
                 "regularTurnEndedAt": 72.9,
@@ -18315,9 +18535,10 @@
                   "availableOffTurnUntilSpentOrNextOwnStart": true
                 },
                 "MovementFeet": {
-                  "granted": 30,
+                  "granted": 40,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 40,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -18326,7 +18547,7 @@
             "op": "replace",
             "path": "/actors/A/movement",
             "oldValue": 0,
-            "value": 30
+            "value": 40
           },
           {
             "op": "replace",
@@ -18355,6 +18576,7 @@
           "Reaction": 1,
           "MovementFeet": 30
         },
+        "operativeSpeedFeet": 30,
         "rechargeBefore": {
           "wizard.arch.arcane-sight": 0
         },
@@ -18371,8 +18593,8 @@
       },
       "eventId": "PG328-W12-R1-E090",
       "stateTransition": {
-        "beforeStateSha256": "847495e363f5195f70c38bf509aa609cd96156c0a48c41f2defc9720fd14d583",
-        "afterStateSha256": "69baf208067a31f242f7deb6f21219f477f837182f46bf184f021e674bc9e6ce",
+        "beforeStateSha256": "4d9dea1525430a49cc658c4062eb66379b22bacec6e852826f1385c093c36d54",
+        "afterStateSha256": "be526b42a180c0784a8fee29df3103b5a0e42c705b155173a1e952c3621a2497",
         "forwardOperations": [
           {
             "op": "replace",
@@ -18537,16 +18759,18 @@
           "MovementFeet": {
             "granted": 30,
             "spent": 0,
-            "unusedExpired": 30
+            "unusedExpired": 30,
+            "recalculatedAway": 0
           }
         },
+        "magicThisTurnAfterEnd": false,
         "nextStartPreserved": 79.0,
         "nextEndAfter": null
       },
       "eventId": "PG328-W12-R1-E091",
       "stateTransition": {
-        "beforeStateSha256": "69baf208067a31f242f7deb6f21219f477f837182f46bf184f021e674bc9e6ce",
-        "afterStateSha256": "2aa421b91b3149705886fef513b169a77028adb2856ddd0f22fd9b5f8e81d008",
+        "beforeStateSha256": "be526b42a180c0784a8fee29df3103b5a0e42c705b155173a1e952c3621a2497",
+        "afterStateSha256": "a2d1fec467644945c45ce641bc6438520621874040aa75f075687c9aa70f853f",
         "forwardOperations": [
           {
             "op": "replace",
@@ -18596,7 +18820,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -18713,7 +18938,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -18751,6 +18977,7 @@
           "Reaction": 1,
           "MovementFeet": 30
         },
+        "operativeSpeedFeet": 30,
         "rechargeBefore": {},
         "rechargeAfter": {},
         "nextStart": 80.0,
@@ -18763,8 +18990,8 @@
       },
       "eventId": "PG328-W12-R1-E092",
       "stateTransition": {
-        "beforeStateSha256": "2aa421b91b3149705886fef513b169a77028adb2856ddd0f22fd9b5f8e81d008",
-        "afterStateSha256": "b004f94ae5b399fff36df769a6b1db2852f83efee3dedd91ea4ea8ba55b3123b",
+        "beforeStateSha256": "a2d1fec467644945c45ce641bc6438520621874040aa75f075687c9aa70f853f",
+        "afterStateSha256": "3b565153657c0603a2f5e6cea686f2df35d395ce4bcd01b223ff198601d99b6f",
         "forwardOperations": [
           {
             "op": "replace",
@@ -18929,16 +19156,18 @@
           "MovementFeet": {
             "granted": 30,
             "spent": 0,
-            "unusedExpired": 30
+            "unusedExpired": 30,
+            "recalculatedAway": 0
           }
         },
+        "magicThisTurnAfterEnd": false,
         "nextStartPreserved": 80.0,
         "nextEndAfter": null
       },
       "eventId": "PG328-W12-R1-E093",
       "stateTransition": {
-        "beforeStateSha256": "b004f94ae5b399fff36df769a6b1db2852f83efee3dedd91ea4ea8ba55b3123b",
-        "afterStateSha256": "a24b7cef4cb4b05089e5b9b9261ee7c9d03e23242fd847326b307173e91d8087",
+        "beforeStateSha256": "3b565153657c0603a2f5e6cea686f2df35d395ce4bcd01b223ff198601d99b6f",
+        "afterStateSha256": "d9daf543ed51a4584c7fd145e1844369b7994a9086bdff951d946a106c67df64",
         "forwardOperations": [
           {
             "op": "replace",
@@ -18986,7 +19215,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -19101,7 +19331,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -19139,6 +19370,7 @@
           "Reaction": 1,
           "MovementFeet": 30
         },
+        "operativeSpeedFeet": 30,
         "rechargeBefore": {},
         "rechargeAfter": {},
         "nextStart": 81.0,
@@ -19151,8 +19383,8 @@
       },
       "eventId": "PG328-W12-R1-E094",
       "stateTransition": {
-        "beforeStateSha256": "a24b7cef4cb4b05089e5b9b9261ee7c9d03e23242fd847326b307173e91d8087",
-        "afterStateSha256": "eb6b7bf27d8b73df905796dbb3307d88f849cfdb04d39c8c6802c3f299e1b560",
+        "beforeStateSha256": "d9daf543ed51a4584c7fd145e1844369b7994a9086bdff951d946a106c67df64",
+        "afterStateSha256": "f225c34782b8a12b61e499ed01a8397f826d1a08732eb27b7f0252fbd5cbce9b",
         "forwardOperations": [
           {
             "op": "replace",
@@ -19317,16 +19549,18 @@
           "MovementFeet": {
             "granted": 30,
             "spent": 0,
-            "unusedExpired": 30
+            "unusedExpired": 30,
+            "recalculatedAway": 0
           }
         },
+        "magicThisTurnAfterEnd": false,
         "nextStartPreserved": 81.0,
         "nextEndAfter": null
       },
       "eventId": "PG328-W12-R1-E095",
       "stateTransition": {
-        "beforeStateSha256": "eb6b7bf27d8b73df905796dbb3307d88f849cfdb04d39c8c6802c3f299e1b560",
-        "afterStateSha256": "75e2e60d90c67299c5618e8a8c3fb211bf48640a7d4c66a1af3e54a4521abd5b",
+        "beforeStateSha256": "f225c34782b8a12b61e499ed01a8397f826d1a08732eb27b7f0252fbd5cbce9b",
+        "afterStateSha256": "285212dd26ef0833ad8b829459b4612b62d90be6bc19f77ccd59a59298b5e0a7",
         "forwardOperations": [
           {
             "op": "replace",
@@ -19374,7 +19608,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -19489,7 +19724,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -19525,8 +19761,9 @@
           "Action": 1,
           "BonusAction": 1,
           "Reaction": 1,
-          "MovementFeet": 30
+          "MovementFeet": 40
         },
+        "operativeSpeedFeet": 40,
         "rechargeBefore": {},
         "rechargeAfter": {},
         "nextStart": 84.0,
@@ -19539,8 +19776,8 @@
       },
       "eventId": "PG328-W12-R1-E096",
       "stateTransition": {
-        "beforeStateSha256": "75e2e60d90c67299c5618e8a8c3fb211bf48640a7d4c66a1af3e54a4521abd5b",
-        "afterStateSha256": "36c357bed21045a8e20a9a1583ee9b10917d55f7d9862327e40e3f828c244611",
+        "beforeStateSha256": "285212dd26ef0833ad8b829459b4612b62d90be6bc19f77ccd59a59298b5e0a7",
+        "afterStateSha256": "79b19a3d0af98ed23623f6133c42acde5be6bd633467222aa80ad4ecf44bd28a",
         "forwardOperations": [
           {
             "op": "replace",
@@ -19558,7 +19795,7 @@
             "op": "replace",
             "path": "/actors/A/movement",
             "oldValue": 0,
-            "value": 30
+            "value": 40
           },
           {
             "op": "replace",
@@ -19657,7 +19894,7 @@
           {
             "op": "replace",
             "path": "/actors/A/movement",
-            "oldValue": 30,
+            "oldValue": 40,
             "value": 0
           },
           {
@@ -19785,12 +20022,22 @@
         "carriedWeightLb": 12,
         "carriedLoad": 1.2,
         "tileRemainsLoose": true,
+        "movementRecalculation": {
+          "reason": "mandatory reversion restores ordinary form Speed to 30 ft",
+          "speedBeforeFeet": 40,
+          "speedAfterFeet": 30,
+          "movementSpentFeet": 0,
+          "remainingBeforeFeet": 40,
+          "remainingAfterFeet": 30,
+          "turnGrantAtStartFeet": 40,
+          "recalculatedAwayFeet": 10
+        },
         "noHealingOrRelocation": true
       },
       "eventId": "PG328-W12-R1-E097",
       "stateTransition": {
-        "beforeStateSha256": "36c357bed21045a8e20a9a1583ee9b10917d55f7d9862327e40e3f828c244611",
-        "afterStateSha256": "af86655805defce1a0aa317e5ea6af2b63f49bee3c63a206462b20b6a19571b6",
+        "beforeStateSha256": "79b19a3d0af98ed23623f6133c42acde5be6bd633467222aa80ad4ecf44bd28a",
+        "afterStateSha256": "71c485fc95d20252633a6297f2b84f58f97a9f3df236c6e3fd552761dbbc8107",
         "forwardOperations": [
           {
             "op": "remove",
@@ -19887,6 +20134,12 @@
             "path": "/actors/A/hands",
             "oldValue": 0,
             "value": 2
+          },
+          {
+            "op": "replace",
+            "path": "/actors/A/movement",
+            "oldValue": 40,
+            "value": 30
           },
           {
             "op": "replace",
@@ -20132,6 +20385,12 @@
           },
           {
             "op": "replace",
+            "path": "/actors/A/movement",
+            "oldValue": 30,
+            "value": 40
+          },
+          {
+            "op": "replace",
             "path": "/actors/A/hands",
             "oldValue": 2,
             "value": 0
@@ -20257,18 +20516,20 @@
             "availableOffTurnUntilSpentOrNextOwnStart": true
           },
           "MovementFeet": {
-            "granted": 30,
+            "granted": 40,
             "spent": 0,
-            "unusedExpired": 30
+            "unusedExpired": 30,
+            "recalculatedAway": 10
           }
         },
+        "magicThisTurnAfterEnd": false,
         "nextStartPreserved": 84.0,
         "nextEndAfter": null
       },
       "eventId": "PG328-W12-R1-E098",
       "stateTransition": {
-        "beforeStateSha256": "af86655805defce1a0aa317e5ea6af2b63f49bee3c63a206462b20b6a19571b6",
-        "afterStateSha256": "4a9cc6c889f14233e6ecee3be87abd467e86991a8fd599284c65cef2c09d793e",
+        "beforeStateSha256": "71c485fc95d20252633a6297f2b84f58f97a9f3df236c6e3fd552761dbbc8107",
+        "afterStateSha256": "ff14aaa1c8228828d75012a2cf4d296f9109acb51dce5d1236c1529de1286343",
         "forwardOperations": [
           {
             "op": "replace",
@@ -20296,7 +20557,7 @@
               "action": 1,
               "BA": 1,
               "Reaction": 1,
-              "Move": 30,
+              "Move": 40,
               "recharge": {},
               "endDisposition": {
                 "regularTurnEndedAt": 78.9,
@@ -20314,9 +20575,10 @@
                   "availableOffTurnUntilSpentOrNextOwnStart": true
                 },
                 "MovementFeet": {
-                  "granted": 30,
+                  "granted": 40,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 10
                 }
               }
             }
@@ -20411,7 +20673,7 @@
               "action": 1,
               "BA": 1,
               "Reaction": 1,
-              "Move": 30,
+              "Move": 40,
               "recharge": {},
               "endDisposition": {
                 "regularTurnEndedAt": 78.9,
@@ -20429,9 +20691,10 @@
                   "availableOffTurnUntilSpentOrNextOwnStart": true
                 },
                 "MovementFeet": {
-                  "granted": 30,
+                  "granted": 40,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 10
                 }
               }
             }
@@ -20469,6 +20732,7 @@
           "Reaction": 1,
           "MovementFeet": 30
         },
+        "operativeSpeedFeet": 30,
         "rechargeBefore": {
           "wizard.arch.arcane-sight": 0
         },
@@ -20485,8 +20749,8 @@
       },
       "eventId": "PG328-W12-R1-E099",
       "stateTransition": {
-        "beforeStateSha256": "4a9cc6c889f14233e6ecee3be87abd467e86991a8fd599284c65cef2c09d793e",
-        "afterStateSha256": "3d67dbb7a164a23920c1ddef606fe027e5cd6ddfc88b7060b5a2884254d4b050",
+        "beforeStateSha256": "ff14aaa1c8228828d75012a2cf4d296f9109acb51dce5d1236c1529de1286343",
+        "afterStateSha256": "76cf58c2fb5702e273e072484df4ce4cc68ef057c60025c59e18561ee2cc42fb",
         "forwardOperations": [
           {
             "op": "replace",
@@ -20683,8 +20947,8 @@
       },
       "eventId": "PG328-W12-R1-E100",
       "stateTransition": {
-        "beforeStateSha256": "3d67dbb7a164a23920c1ddef606fe027e5cd6ddfc88b7060b5a2884254d4b050",
-        "afterStateSha256": "c808c73e47e11bc13e4c5d5b2a7ad049f84f1763854d2d9610d9429e9a488ba9",
+        "beforeStateSha256": "76cf58c2fb5702e273e072484df4ce4cc68ef057c60025c59e18561ee2cc42fb",
+        "afterStateSha256": "5e0b33ab3feeb66d7e3b646148704ec51be63c6204f83dfc8e156f69d6f7b475",
         "forwardOperations": [
           {
             "op": "replace",
@@ -20989,8 +21253,8 @@
       },
       "eventId": "PG328-W12-R1-E101",
       "stateTransition": {
-        "beforeStateSha256": "c808c73e47e11bc13e4c5d5b2a7ad049f84f1763854d2d9610d9429e9a488ba9",
-        "afterStateSha256": "61ca7be2451d4125cf21d4ba1e66c060d16a1a6d51cbd202d75ecb6ad98069f4",
+        "beforeStateSha256": "5e0b33ab3feeb66d7e3b646148704ec51be63c6204f83dfc8e156f69d6f7b475",
+        "afterStateSha256": "b293d92d34aa02364c07b2a01f477360e80730c1c2bb61ed5d33e032dc2fdbdb",
         "forwardOperations": [
           {
             "op": "replace",
@@ -21116,8 +21380,8 @@
       },
       "eventId": "PG328-W12-R1-E102",
       "stateTransition": {
-        "beforeStateSha256": "61ca7be2451d4125cf21d4ba1e66c060d16a1a6d51cbd202d75ecb6ad98069f4",
-        "afterStateSha256": "f4bf5bfac2815a749d71afe50bc3c05c8be6c37121585332da05e3d9f71feb0f",
+        "beforeStateSha256": "b293d92d34aa02364c07b2a01f477360e80730c1c2bb61ed5d33e032dc2fdbdb",
+        "afterStateSha256": "ff45044cf9763b457445dfab5dfc9a111bc4be17fbf7847a2aa63313e8b466aa",
         "forwardOperations": [
           {
             "op": "replace",
@@ -21413,8 +21677,8 @@
       },
       "eventId": "PG328-W12-R1-E103",
       "stateTransition": {
-        "beforeStateSha256": "f4bf5bfac2815a749d71afe50bc3c05c8be6c37121585332da05e3d9f71feb0f",
-        "afterStateSha256": "607edc7a9e00c07b0c0ed2af0260eca76af240c24aff9e3b1dd070aeebff2197",
+        "beforeStateSha256": "ff45044cf9763b457445dfab5dfc9a111bc4be17fbf7847a2aa63313e8b466aa",
+        "afterStateSha256": "781fefd7d7aa55ad40af095105d03bf6a1936b3e5cc7596f95299900f19c30c7",
         "forwardOperations": [
           {
             "op": "replace",
@@ -21773,8 +22037,8 @@
       },
       "eventId": "PG328-W12-R1-E104",
       "stateTransition": {
-        "beforeStateSha256": "607edc7a9e00c07b0c0ed2af0260eca76af240c24aff9e3b1dd070aeebff2197",
-        "afterStateSha256": "d64b590d252467628095c19c5560e29f6d881b1d57539d96ddf2ad99c96bd4c5",
+        "beforeStateSha256": "781fefd7d7aa55ad40af095105d03bf6a1936b3e5cc7596f95299900f19c30c7",
+        "afterStateSha256": "b18740db7fb5a1566264669588605467ccd05e7a51b570c43c23c925239dbaa1",
         "forwardOperations": [
           {
             "op": "add",
@@ -22350,8 +22614,8 @@
       },
       "eventId": "PG328-W12-R1-E105",
       "stateTransition": {
-        "beforeStateSha256": "d64b590d252467628095c19c5560e29f6d881b1d57539d96ddf2ad99c96bd4c5",
-        "afterStateSha256": "46b8b54776ec5a2722e7afe9d764d038a03c9393e109f6553756d42eaa996a29",
+        "beforeStateSha256": "b18740db7fb5a1566264669588605467ccd05e7a51b570c43c23c925239dbaa1",
+        "afterStateSha256": "5ca4bb19a3504f179be78d81e57f64b66bf612de7b5e46b9f2e8e3b2671201ee",
         "forwardOperations": [
           {
             "op": "add",
@@ -22759,8 +23023,8 @@
       },
       "eventId": "PG328-W12-R1-E106",
       "stateTransition": {
-        "beforeStateSha256": "46b8b54776ec5a2722e7afe9d764d038a03c9393e109f6553756d42eaa996a29",
-        "afterStateSha256": "7dfd693a760d9300f655b661fa94a86275520a0a06a981a3891fc1741ab8d55b",
+        "beforeStateSha256": "5ca4bb19a3504f179be78d81e57f64b66bf612de7b5e46b9f2e8e3b2671201ee",
+        "afterStateSha256": "71157ba0e705a832beb56c3e51e884efd456923822bb833152e6828e82225bbb",
         "forwardOperations": [
           {
             "op": "add",
@@ -22926,8 +23190,8 @@
       },
       "eventId": "PG328-W12-R1-E107",
       "stateTransition": {
-        "beforeStateSha256": "7dfd693a760d9300f655b661fa94a86275520a0a06a981a3891fc1741ab8d55b",
-        "afterStateSha256": "06d63cb0aebdff8ae2cbcf72ca0960ae2038da0b1548a014690eac430f27cd51",
+        "beforeStateSha256": "71157ba0e705a832beb56c3e51e884efd456923822bb833152e6828e82225bbb",
+        "afterStateSha256": "ae87a9f3811ea91ccd372c5fb63f1b5a59c83544f3e0ded40be057d478a835d9",
         "forwardOperations": [
           {
             "op": "replace",
@@ -23318,7 +23582,7 @@
               "action": 1,
               "BA": 1,
               "Reaction": 1,
-              "Move": 30,
+              "Move": 40,
               "recharge": {},
               "endDisposition": {
                 "regularTurnEndedAt": 18.9,
@@ -23336,9 +23600,10 @@
                   "availableOffTurnUntilSpentOrNextOwnStart": true
                 },
                 "MovementFeet": {
-                  "granted": 30,
+                  "granted": 40,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 40,
+                  "recalculatedAway": 0
                 }
               }
             },
@@ -23347,7 +23612,7 @@
               "action": 1,
               "BA": 1,
               "Reaction": 1,
-              "Move": 30,
+              "Move": 40,
               "recharge": {},
               "endDisposition": {
                 "regularTurnEndedAt": 24.9,
@@ -23365,9 +23630,10 @@
                   "availableOffTurnUntilSpentOrNextOwnStart": true
                 },
                 "MovementFeet": {
-                  "granted": 30,
+                  "granted": 40,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 40,
+                  "recalculatedAway": 0
                 }
               }
             },
@@ -23376,7 +23642,7 @@
               "action": 1,
               "BA": 1,
               "Reaction": 1,
-              "Move": 30,
+              "Move": 40,
               "recharge": {},
               "endDisposition": {
                 "regularTurnEndedAt": 30.9,
@@ -23394,9 +23660,10 @@
                   "availableOffTurnUntilSpentOrNextOwnStart": true
                 },
                 "MovementFeet": {
-                  "granted": 30,
+                  "granted": 40,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 40,
+                  "recalculatedAway": 0
                 }
               }
             },
@@ -23405,7 +23672,7 @@
               "action": 1,
               "BA": 1,
               "Reaction": 1,
-              "Move": 30,
+              "Move": 40,
               "recharge": {},
               "endDisposition": {
                 "regularTurnEndedAt": 36.9,
@@ -23423,9 +23690,10 @@
                   "availableOffTurnUntilSpentOrNextOwnStart": true
                 },
                 "MovementFeet": {
-                  "granted": 30,
+                  "granted": 40,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 40,
+                  "recalculatedAway": 0
                 }
               }
             },
@@ -23434,7 +23702,7 @@
               "action": 1,
               "BA": 1,
               "Reaction": 1,
-              "Move": 30,
+              "Move": 40,
               "recharge": {},
               "endDisposition": {
                 "regularTurnEndedAt": 42.9,
@@ -23452,9 +23720,10 @@
                   "availableOffTurnUntilSpentOrNextOwnStart": true
                 },
                 "MovementFeet": {
-                  "granted": 30,
+                  "granted": 40,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 40,
+                  "recalculatedAway": 0
                 }
               }
             },
@@ -23463,7 +23732,7 @@
               "action": 1,
               "BA": 1,
               "Reaction": 1,
-              "Move": 30,
+              "Move": 40,
               "recharge": {},
               "endDisposition": {
                 "regularTurnEndedAt": 48.9,
@@ -23481,9 +23750,10 @@
                   "availableOffTurnUntilSpentOrNextOwnStart": true
                 },
                 "MovementFeet": {
-                  "granted": 30,
+                  "granted": 40,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 40,
+                  "recalculatedAway": 0
                 }
               }
             },
@@ -23492,7 +23762,7 @@
               "action": 1,
               "BA": 1,
               "Reaction": 1,
-              "Move": 30,
+              "Move": 40,
               "recharge": {},
               "endDisposition": {
                 "regularTurnEndedAt": 54.9,
@@ -23510,9 +23780,10 @@
                   "availableOffTurnUntilSpentOrNextOwnStart": true
                 },
                 "MovementFeet": {
-                  "granted": 30,
+                  "granted": 40,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 40,
+                  "recalculatedAway": 0
                 }
               }
             },
@@ -23521,7 +23792,7 @@
               "action": 1,
               "BA": 1,
               "Reaction": 1,
-              "Move": 30,
+              "Move": 40,
               "recharge": {},
               "endDisposition": {
                 "regularTurnEndedAt": 60.9,
@@ -23539,9 +23810,10 @@
                   "availableOffTurnUntilSpentOrNextOwnStart": true
                 },
                 "MovementFeet": {
-                  "granted": 30,
+                  "granted": 40,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 40,
+                  "recalculatedAway": 0
                 }
               }
             },
@@ -23550,7 +23822,7 @@
               "action": 1,
               "BA": 1,
               "Reaction": 1,
-              "Move": 30,
+              "Move": 40,
               "recharge": {},
               "endDisposition": {
                 "regularTurnEndedAt": 66.9,
@@ -23568,9 +23840,10 @@
                   "availableOffTurnUntilSpentOrNextOwnStart": true
                 },
                 "MovementFeet": {
-                  "granted": 30,
+                  "granted": 40,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 40,
+                  "recalculatedAway": 0
                 }
               }
             },
@@ -23579,7 +23852,7 @@
               "action": 1,
               "BA": 1,
               "Reaction": 1,
-              "Move": 30,
+              "Move": 40,
               "recharge": {},
               "endDisposition": {
                 "regularTurnEndedAt": 72.9,
@@ -23597,9 +23870,10 @@
                   "availableOffTurnUntilSpentOrNextOwnStart": true
                 },
                 "MovementFeet": {
-                  "granted": 30,
+                  "granted": 40,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 40,
+                  "recalculatedAway": 0
                 }
               }
             },
@@ -23608,7 +23882,7 @@
               "action": 1,
               "BA": 1,
               "Reaction": 1,
-              "Move": 30,
+              "Move": 40,
               "recharge": {},
               "endDisposition": {
                 "regularTurnEndedAt": 78.9,
@@ -23626,9 +23900,10 @@
                   "availableOffTurnUntilSpentOrNextOwnStart": true
                 },
                 "MovementFeet": {
-                  "granted": 30,
+                  "granted": 40,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 10
                 }
               }
             }
@@ -24077,7 +24352,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             },
@@ -24108,7 +24384,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             },
@@ -24139,7 +24416,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             },
@@ -24170,7 +24448,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             },
@@ -24201,7 +24480,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             },
@@ -24232,7 +24512,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             },
@@ -24263,7 +24544,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             },
@@ -24294,7 +24576,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             },
@@ -24325,7 +24608,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             },
@@ -24356,7 +24640,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             },
@@ -24387,7 +24672,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -24717,7 +25003,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             },
@@ -24746,7 +25033,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             },
@@ -24775,7 +25063,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             },
@@ -24804,7 +25093,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             },
@@ -24833,7 +25123,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             },
@@ -24862,7 +25153,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             },
@@ -24891,7 +25183,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             },
@@ -24920,7 +25213,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             },
@@ -24949,7 +25243,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             },
@@ -24978,7 +25273,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             },
@@ -25007,7 +25303,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }
@@ -25221,7 +25518,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             },
@@ -25250,7 +25548,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             },
@@ -25279,7 +25578,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             },
@@ -25308,7 +25608,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             },
@@ -25337,7 +25638,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             },
@@ -25366,7 +25668,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             },
@@ -25395,7 +25698,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             },
@@ -25424,7 +25728,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             },
@@ -25453,7 +25758,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             },
@@ -25482,7 +25788,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             },
@@ -25511,7 +25818,8 @@
                 "MovementFeet": {
                   "granted": 30,
                   "spent": 0,
-                  "unusedExpired": 30
+                  "unusedExpired": 30,
+                  "recalculatedAway": 0
                 }
               }
             }

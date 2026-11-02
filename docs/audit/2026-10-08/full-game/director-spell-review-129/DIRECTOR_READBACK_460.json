@@ -1,0 +1,66 @@
+{
+  "id": "GPT-DIRECTOR-READBACK-460",
+  "classification": "DIRECTOR_COMPONENT_REVIEW_HOLD_WITH_CONSOLIDATED_CORRECTIONS",
+  "source": "GPT Director ruling in Calibration review part 6, after W12 witness451 review",
+  "component": "PG328-W12 witness451",
+  "status": "HOLD_FOR_COMPONENT_SUFFICIENCY",
+  "submittedHashesMatched": true,
+  "directorVerified": {
+    "eventCount": 107,
+    "forwardOperations": 1152,
+    "inverseOperations": 1152,
+    "inverseRestoresExactS030": true,
+    "adoptedSourceBindingsMatched": 18,
+    "W450C01ReversibleConstructionRepaired": true
+  },
+  "corrections": [
+    {
+      "id": "W451-C01",
+      "title": "premature cast-flag reset",
+      "locations": [
+        "/eventTrace/events/4 (E005, B END13.9)/stateTransition/forwardOperations/1",
+        "/eventTrace/events/14 (E015, A END18.9)/stateTransition/forwardOperations/1"
+      ],
+      "required": "Preserve B magicThisTurn=true through END13.9 and reset it at B START19.0 (event15/E016). Preserve A true through END18.9 and reset at A START24.0 (event22/E023). Follow adopted Proposal445 /ownerProposedInputs/scheduledTimeAdvance/rule."
+    },
+    {
+      "id": "W451-C02",
+      "title": "movement ignores operative form Speed",
+      "locations": [
+        "/eventTrace/events/13 (E014, Polymorph resolution18.3)",
+        "A STARTs24.0-78.0",
+        "/eventTrace/events/96 (E097, reversion78.1)"
+      ],
+      "required": "With zero movement spent, recalculate remaining movement to40 ft at18.3; grant40-ft movement at A STARTs24/30/36/42/48/54/60/66/72/78; at reversion78.1 recalculate to30 ft while preserving spent movement. Update END dispositions, budget histories, detail mirrors and patches. Bound COMBAT_ACTION_PLAYTEST.md, Movement and geometry, line156; recalculation is not an extra refresh."
+    }
+  ],
+  "noNewOwnerPremiseOrAdoptionRequired": true,
+  "unchangedValues": {
+    "A_RP": 46,
+    "B_RP": 75,
+    "sightDeadline": 613.1,
+    "tileExpiry": 3606.13,
+    "START": 45,
+    "END": 44
+  },
+  "preservedBoundary": {
+    "wholeFortress": "HELD_UNDER_PG200-B06",
+    "queue": "830 applied / 18 pending / 0 accepted-unapplied",
+    "seal": false,
+    "identityAcceptanceOrApplication": false,
+    "canonChange": false,
+    "campaignEventAsserted": false,
+    "queueMutation": false
+  },
+  "correctedSuccessor": {
+    "witnessSha256": "b0947b3c496cd1a28ab17ba382be2d96d30aa671560a3b781573bb3075ff93df",
+    "traceSha256": "92abfb3292f1b3ee58520f23553ccb66899b65afc8011795a0da4fc3d2dbc744",
+    "buildValidationSha256": "51a9bf8471a57a24b56b15d9df1a337753b424fc853cee1fa1a0f3b76871eb63",
+    "manifestSha256": "6ddb357783297ea279b658503ab39afb60bde9dac2afacbba6343702eb3ff3b1",
+    "archiveSha256": "ca63d4127939e9ee0dc617d90a4ea70af058c16a451422ec7bb19ec1b84df464",
+    "deliverySha256": "165dac4e5a7c99a346c99cdbc178ecce0a1c9dce8c065dd808c02fe03e8e8ad8",
+    "constructionChecks": "18/18 PASS",
+    "independentVerifier": "23/23 PASS",
+    "status": "CORRECTED_SUCCESSOR_PENDING_DIRECTOR_REVIEW"
+  }
+}
