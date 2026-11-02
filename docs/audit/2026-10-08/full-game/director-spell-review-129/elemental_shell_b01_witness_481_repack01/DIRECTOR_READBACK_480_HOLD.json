@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "id": "DIRECTOR-READBACK-DF218-B01-WITNESS-480-HOLD",
+  "source": "GPT Director, Calibration review part 6",
+  "sourceConversation": "https://chatgpt.com/g/g-p-67f17555a8dc8191a2b5b81e6d8adc12-dungeon-crawler/c/6adc506d-8770-83ea-b64c-0345d9b9b682",
+  "classification": "DIRECTOR_WITNESS_REVIEW_HOLD_TEST_ONLY",
+  "reviewedArtifact": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/elemental_shell_b01_witness_480_repack01/DF218_B01_WITNESS_480_TESTONLY.json",
+    "sha256": "097306c6b125f4b70581616aa4f0f611c7b07346ee37fa16c774654a162351fc",
+    "proposalSha256": "e00c3c8fad96883b6fe1d7ac07e1ed07f4b2f7b2f275dcee1853ce30b576ea69",
+    "ownerAdoptionPath": "docs/audit/2026-10-08/full-game/director-spell-review-129/elemental_shell_b01_test_source_proposal_478_repack01/OWNER_DF218_B01_ADOPTION_478_REPACK01_TESTONLY.json",
+    "ownerAdoptionSha256": "23b99a464927dcd62d60dcb17b5f6f25a2244eafe3e6601f423b38b3405e8144"
+  },
+  "decision": "HOLD",
+  "summary": "The adopted source, geometry and intended damage settlement pass. Integrity checks passed: 18 members, 17 payload hashes, 22 source-binding rows, six events, 39 forward/39 inverse operations, with exact restoration of S000. Replay integrity does not resolve the semantic defects.",
+  "corrections": [
+    {
+      "id": "B01-480-C01",
+      "title": "END bookkeeping",
+      "finding": "Event B01-E005, /stateTransitionReplay/eventTransitions/4, incorrectly clears /actor/turn/magicThisTurn and /actor/turn/reactionAvailable. In snapshots S004 and S005, both must remain true: the cast flag persists until the next regular START, and no Reaction was spent. Keep status=\"ENDED\", Action/Bonus Action unavailable and movement0. The retained class rule supplies one Reaction between starts, not only during the turn."
+    },
+    {
+      "id": "B01-480-C02",
+      "title": "conflicting family histories",
+      "finding": "From S002 onward, /actor/preparedFamiliesUsed=[\"elemental-shell\"], but /actor/vitals/preparedRankedCastFamiliesUsed=[]. Update the latter mirror at B01-E002 and preserve it through the endpoint. Both initial lists remain empty; inverse traversal must restore them."
+    },
+    {
+      "id": "B01-480-C03",
+      "title": "response-window clock",
+      "finding": "B01-E003 is timestamped 0.2 but has no operations and returns S002 with /timeSeconds=0.1. Give this event a distinct after-state at 0.2, recording the response-window phase without resource expenditure. Update E004’s incoming state/hash and corresponding inverse operations."
+    },
+    {
+      "id": "B01-480-C04",
+      "title": "adoption metadata binding",
+      "finding": "In OWNER_DF218_B01_ADOPTION_478_REPACK01_TESTONLY.json, /supportingCasterQualification/proposal468Path names CASTER_PREPARATION_PREMISE_468_TESTONLY.json, while /proposal468Sha256 contains the proposal hash de4bd28b…. Preserve the original adoption and issue a narrow binding erratum pointing that proposal field to OWNER_DF218_SHELL_CASTER_PREMISE_PROPOSAL_468_TESTONLY.json. The separate preparation-premise hash is 0d66f106211fc705cfdc88d0916494511a30e91472aad36efbc05eafec73e05f."
+    }
+  ],
+  "preservePassingSettlement": "RP68→42; first-family Dissonance0/Refrain0; manifestation0.3/deadline60.3; one ordinary non-Null fire7 event at1.1; HP110 unchanged; force Ward and focus custody retained; no creature dealer, reflection recipient, reflected packet or banked root.",
+  "direction": "Regenerate affected snapshots, trace, patches, hashes and validation. No new owner premise or renewed adoption is required.",
+  "nonEffects": {
+    "B01Closed": false,
+    "B02Closed": false,
+    "identityAcceptedOrApplied": false,
+    "canonicalRuleChanged": false,
+    "queueChanged": false,
+    "sealed": false
+  },
+  "queueAuthority": {
+    "reviewedApplied": 831,
+    "pending": 17,
+    "acceptedUnapplied": 0
+  }
+}
