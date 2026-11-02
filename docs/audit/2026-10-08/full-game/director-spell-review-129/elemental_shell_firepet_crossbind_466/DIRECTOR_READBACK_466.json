@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "DIRECTOR-READBACK-ELEMENTAL-SHELL-CROSSBIND-466",
+  "source": "GPT Director, Calibration review part 6",
+  "status": "PASS_SOURCE_QUALIFICATION_ONLY_NO_BLOCKER_CLOSED",
+  "reviewedPreflightPath": "docs/audit/2026-10-08/full-game/director-spell-review-129/elemental_shell_firepet_crossbind_466/SOURCE_CROSSBIND_PREFLIGHT_466.json",
+  "reviewedPreflightSha256": "a900ba265fc61b8d4be476963e9c0e2d1af9e08881af14d804d4c7543fb060ff",
+  "reviewedArchivePath": "docs/audit/2026-10-08/full-game/director-spell-review-129/elemental_shell_firepet_crossbind_466/DD_ElementalShell_FirePet_Crossbind_466_TESTONLY.zip",
+  "reviewedArchiveBytes": 519554,
+  "reviewedArchiveSha256": "f19946b5640680d9bf5677c24f4eeb292f17b06010009ff671668016c3cf2651",
+  "directorFinding": "No byte-binding or pointer correction remains. The AC5 Greater Fire Pet Fire Strike is a valid native elemental-attack source candidate and the pet is the dealer. W11 selection/adoption evidence stays PG328-W11-R1 TEST_ONLY and does not transfer. Q14/Q15 bindings are correct. Wizard20 has no Shell acquisition/preparation; W11 Mage9 is below the level threshold.",
+  "sourceBindingReview": {
+    "archiveMembers": 11,
+    "sourceBindings": 9,
+    "crcAndPayloadHashes": "PASS",
+    "standalonePreflightMatchesPackagedCopy": true,
+    "catalogLineEndingFinding": "Current catalog CRLF bytes normalize exactly to the established LF hash; no source rule changed."
+  },
+  "blockerDisposition": {
+    "DF218-B01": "OPEN; requires authorized noncreature elemental producer with exact geometry/type/damage/timing/attribution and paid Shell/bearer settlement; Fire Strike and aura do not substitute.",
+    "DF218-B02": "OPEN; native-attack source subpart established only. Lawful Shell caster/application, consenting bearer, separately instantiated pet, command/phase, actual attack, Q14/Q15 reflection and complete defenses/HP/Null/lifecycle/clocks/resources/custody integration remain missing."
+  },
+  "nextPermittedAction": "Read-only qualification of an existing rank-17-or-higher Shell caster record, binding actual acquisition and preparation. If none is present, report missing history for a separately scoped proposal.",
+  "boundary": {
+    "witnessConstructed": false,
+    "obligationsRevised": false,
+    "ElementalShellHeld": [
+      "DF218-B01",
+      "DF218-B02"
+    ],
+    "Fortress": "HELD under PG200-B06",
+    "queue": {
+      "reviewedApplied": 830,
+      "pending": 18,
+      "acceptedUnapplied": 0
+    }
+  }
+}
