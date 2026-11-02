@@ -1,0 +1,152 @@
+{
+  "schemaVersion": 1,
+  "id": "SH202-B03-R03-WARD5-DECAY-CROSSBIND-SOURCE-CHECK-2026-11-02",
+  "recordedAtUtc": "2026-11-02 05:07:09 UTC",
+  "classification": "READ_ONLY_SOURCE_CROSSBIND_NO_SCENE_OR_WITNESS",
+  "status": "SOURCE_QUALIFICATION_COMPLETE_INTEGRATED_WITNESS_OPEN",
+  "scope": {
+    "spellId": "summon-avatar-of-decay",
+    "blockerId": "SH202-B03",
+    "branchId": "SH333-R03",
+    "objective": "Cross-bind accepted Rank8 Ward5 Mind Blank and Antimagic Field authored procedures to the retained Decay relay and conditional W17D profile."
+  },
+  "sourceBindings": [
+    {
+      "id": "return333",
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_summon_avatar_of_decay_return333_received/DD_SummonAvatarOfDecay_Director_Return333_HELD.zip",
+      "bytes": 180837,
+      "sha256": "93c63971f08e74f2526b050e9301b80ccff9746d4089e9d638306acdcef16f44"
+    },
+    {
+      "id": "decayProcedure",
+      "archiveMember": "input/05_RETURN285_AVATAR_PROCEDURE.json",
+      "bytes": 32394,
+      "sha256": "33aee500f24d78a7ad7f941c84c5293d0073e311261b7d72fe350d94475081da",
+      "pointers": [
+        "/spellLocalProcedure/admission",
+        "/spellLocalProcedure/relationEnding",
+        "/commonProcedure/suppression",
+        "/commonProcedure/clocks"
+      ]
+    },
+    {
+      "id": "riderCancelComponent",
+      "archiveMember": "components/SH333-RIDER-CANCEL.json",
+      "bytes": 482031,
+      "sha256": "1ae0cf57a18fc0a40e0ef20ff3d1336a9d5d05445f5aec2e773c1f239be33761",
+      "providerActivationOrPaidEncounterDemonstrated": false
+    },
+    {
+      "id": "conditionalW17D",
+      "archiveMember": "evidence/EXISTING_W17D_PROFILE.json",
+      "bytes": 104846,
+      "sha256": "626aa53e570c65720a9c2c6e3b1dc1a9997b3d014889346593e88ae91c25df8d",
+      "profile": {
+        "id": "W17D",
+        "class": "Wizard",
+        "classLevel": 17,
+        "school": "Divination",
+        "campaignExistenceVerified": false,
+        "prepared": [
+          "antimagic-field",
+          "mind-blank"
+        ],
+        "level15SpellbookAdditions": [
+          "antimagic-field",
+          "mind-blank"
+        ]
+      },
+      "qualification": "Conditional source-qualified access only; no campaign actor or cast is established."
+    },
+    {
+      "id": "ward5Acceptance149",
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/RANK8_WARD5_EXACT_ACCEPTANCE_149.json",
+      "commit": "43ab89ef00ff82d6a7c173432f9402978f867c36",
+      "gitBlobSha1": "3fe1cb5de5da94423b52fd8092effda82534d7a5",
+      "status": "DIRECTOR_ACCEPTED_EXACT_AUTHORED_PROCEDURES_WITH_RETAINED_HOLDS",
+      "acceptedIds": [
+        "antimagic-field",
+        "mind-blank"
+      ],
+      "sourceStatusPreserved": "blocked-pending-operational-review; runtime selection disabled",
+      "retainedHolds": 13,
+      "canonicalApplicationPerformed": false
+    },
+    {
+      "id": "ward5Model149",
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank8ward5_reviewed_149/MODEL.json",
+      "commit": "43ab89ef00ff82d6a7c173432f9402978f867c36",
+      "gitBlobSha1": "849bc9792ad79c898acf636670d2ef0eff2d985c",
+      "mindBlankProcedurePointer": "/spells/3/procedure",
+      "antimagicFieldProcedurePointer": "/spells/2/procedure"
+    }
+  ],
+  "sourceMatrix": [
+    {
+      "topic": "Relay identity and isolation",
+      "finding": "The retained Decay branch models each relay as an individually targeted, single-order mental-compulsion relation linked to A:cast1 and A:cast1:body1. Avatar body/source/aura and ordinary attack/damage are separate components. The Decay local rule cancels only the affected relay when rider-only suppression applies, preserving the parent and unaffected relations."
+    },
+    {
+      "topic": "Mind Blank provider cross-bind",
+      "finding": "The accepted static Abjuration procedure is Action, V/S/F, rank 8, base 21 RP, 120 ft, one willing perceived creature, no save, no concentration, and 3,600 elapsed seconds. It suppresses an existing covered mental-compulsion expression; applying Decay's relation-ending rule then cancels that relay rather than generically curing or reviving it.",
+      "remainingInputs": [
+        "Actual target willingness and perception/range/line-of-effect at casting",
+        "A real qualified caster and legal runtime spell selection",
+        "Current resources, casting cadence, concentration transition, and response window",
+        "An integrated paid encounter proving the interaction with the existing relay and retained guard/cost history"
+      ]
+    },
+    {
+      "topic": "Antimagic Field provider cross-bind",
+      "finding": "The accepted static Abjuration procedure is Action, V/S/F, rank 8, base 21 RP, perceived center within 20 ft, fixed 20-ft-radius sphere, concentration, and maximum 60 elapsed seconds. Its adopted Lesser local-expression rule suppresses actual magical expressions at their manifestation body/anchor/area; a creature-attached spell expression is suppressed if any part of its body intersects the operative field. Whole-body Avatar overlap fails the required body/aura preservation condition, but the procedure does not establish that every spatial arrangement fails.",
+      "remainingInputs": [
+        "Exact manifestation locus of the existing relay",
+        "An encounter-bound center and geometry that covers the relay expression while preserving the Avatar body/aura and unaffected relations",
+        "A real qualified caster, paid activation, current resources/cadence/concentration, and response window",
+        "Integrated evidence of field and relay clocks, cancellation, reservations/guards, and no revival/refill"
+      ]
+    },
+    {
+      "topic": "W17D actor access",
+      "finding": "W17D is a conditional Wizard 17 Divination profile with both Mind Blank and Antimagic Field in its level-15 spellbook additions and prepared list. campaignExistenceVerified=false, so this is not an actual campaign actor, resource state, or paid activation. Both spells remain runtime-disabled despite their accepted static authored procedures."
+    },
+    {
+      "topic": "Existing component evidence",
+      "finding": "SH333-RIDER-CANCEL cancels F/relay:3 at tick 300, preserves A:cast1 through tick 6020, Avatar HP/aura, relay:1 and relay:2, and the relay:3 original expiry at tick 510. It demonstrates component cancellation only: no provider activation, paid cost, or elapsed provider/relay clock integration."
+    }
+  ],
+  "preciseGap": "The static Ward5 authored rules provide relevant suppression operations; the record does not show a paid runtime use against an existing Decay relay. Mind Blank requires an actually willing target. Antimagic Field requires the relay's manifestation locus and compatible encounter geometry. Neither provider has a complete integrated paid witness covering legal actor/access, costs/resources/cadence, response windows, clocks, cancellation, reservation/guard disposition, and no revival/refill.",
+  "directorReadback": {
+    "status": "PARTIAL_RESPONSE",
+    "observedFinding": "GPT stated that the corrected Ward5-to-Decay cross-bind is sufficient for source qualification and that SH333-R03 remains COMPONENT_PASS_PROVIDER_INTEGRATION_OPEN; SH202-B03 remains held.",
+    "limitation": "The final response did not load completely. No complete final review decision or application was claimed."
+  },
+  "governanceSnapshot": {
+    "queueId": "Queue476",
+    "reviewedApplied": 831,
+    "pending": 17,
+    "acceptedUnapplied": 0,
+    "nextIdentity": "elemental-shell",
+    "b01": {
+      "proposal": "B01 Proposal478 Repack01",
+      "sha256": "e00c3c8fad96883b6fe1d7ac07e1ed07f4b2f7b2f275dcee1853ce30b576ea69",
+      "ownerAdoption": "authorized-and-acknowledged-by-Director",
+      "witness481": "component-sufficient-unsealed"
+    },
+    "b02": {
+      "proposal": "B02 Proposal477 Repack01",
+      "ownerAdoption": "not-adopted"
+    }
+  },
+  "actionsTaken": {
+    "readOnlySourceCrossbind": true,
+    "sceneOrSuppressorConstructed": false,
+    "witnessConstructedOrReplayed": false,
+    "paidEncounterCreated": false,
+    "campaignEventsAsserted": 0,
+    "queueChanged": false,
+    "spellAcceptedOrApplied": false,
+    "canonChanged": false
+  },
+  "nextTaskPerPriorCompleteDirectorReadback": "SH333-R04 same-family aura arbitration, after this R03 reconciliation."
+}
