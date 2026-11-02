@@ -64,7 +64,7 @@ def main():
     event_additions = [
         {"time": 102.3, "type": "Q27_FORTRESS_TERMINATION", "substep": 1,
          "before": {"rootActive": True, "spaceExists": True}, "after": {"rootActive": False, "spaceExists": False},
-         "cause": "successful adopted rank-9 Dispel; event 23 roll 23 vs DC19", "campaignEventAsserted": False},
+         "cause": "successful adopted rank-3 Arch Dispel against the rank-9 Fortress; event 23 roll 23 vs DC19", "campaignEventAsserted": False},
     ]
     for substep, actor_id, before_pos in [(2, "A", [25, 10, 0]), (3, "B", [35, 20, 0]), (4, "actor-w11-firepet-owner", [25, 20, 0])]:
         place = placements[actor_id]
