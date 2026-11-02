@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "id": "DIRECTOR-READBACK-DF218-B01-WITNESS-481-PASS",
+  "recordedAtUtc": "2026-11-02T04:29:06Z",
+  "source": "GPT Director, Calibration review part 6",
+  "sourceConversation": "https://chatgpt.com/g/g-p-67f17555a8dc8191a2b5b81e6d8adc12-dungeon-crawler/c/6adc506d-8770-83ea-b64c-0345d9b9b682",
+  "classification": "DIRECTOR_PASS_TEST_ONLY_COMPONENT_SUFFICIENCY_UNSEALED",
+  "reviewedWitness": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/elemental_shell_b01_witness_481_repack01/DF218_B01_WITNESS_481_TESTONLY.json",
+    "sha256": "0c9757c2ee7e191e16a8184e5e725211d23ebf3778104f80d823794e02a99314",
+    "proposalSha256": "e00c3c8fad96883b6fe1d7ac07e1ed07f4b2f7b2f275dcee1853ce30b576ea69",
+    "archivePath": "docs/audit/2026-10-08/full-game/director-spell-review-129/elemental_shell_b01_witness_481_repack01/DD_ElementalShell_B01_Witness_481_TESTONLY.zip",
+    "archiveSha256": "68c2d01fb303137f3db4a6940d430a26471f49325b457b94593f40f42ce9e7ec",
+    "validationPath": "docs/audit/2026-10-08/full-game/director-spell-review-129/elemental_shell_b01_witness_481_repack01/INDEPENDENT_VALIDATION_481.json",
+    "validationSha256": "5017899a621b3a98f09d4889530f52e040c97c3a3605400d3e12ab24c13bd2e5"
+  },
+  "decision": "PASS — adopted TEST_ONLY B01 witness481 is component-sufficient. B01-480-C01–C04 are resolved; no corrections remain.",
+  "verified": {
+    "archiveMembers": 22,
+    "manifestPayloadHashes": 21,
+    "archiveCrcs": "PASS",
+    "sourceBindingRows": 26,
+    "proposal478AndOriginalAdoptionBytes": "UNCHANGED",
+    "stateSnapshots": 7,
+    "events": 6,
+    "forwardOperations": 40,
+    "inverseOperations": 40,
+    "restoresExactS000": true,
+    "corrections": [
+      "E005 preserves the unspent Reaction and cast flag.",
+      "Prepared-family mirrors agree.",
+      "E003 advances to 0.2 without expenditure.",
+      "The binding erratum distinguishes Proposal468 from its preparation record."
+    ],
+    "settlement": "RP68→42; Dissonance0/Refrain0; manifestation0.3/deadline60.3; one fire7 pulse at1.1; HP110 unchanged; no reflection recipient, packet or banked root."
+  },
+  "disposition": {
+    "B01ComponentSufficient": true,
+    "sealed": false,
+    "B01Closed": false,
+    "B02Closed": false,
+    "identityAcceptedOrApplied": false,
+    "canonicalRuleChanged": false,
+    "queueChanged": false
+  },
+  "nextPermittedAction": {
+    "requiresOwnerAdoption": true,
+    "proposal": "B02 Proposal477 Repack01",
+    "proposalSha256": "b673305a49eb10dcfd7da1de676ea883cbcb2f34abcc308310ef00fd0c549c64",
+    "afterAdoption": "Construct and submit only its scoped witness for Director review.",
+    "additionalB01ConstructionNeeded": false
+  },
+  "queueAuthority": {
+    "queue": "Queue476",
+    "reviewedApplied": 831,
+    "pending": 17,
+    "acceptedUnapplied": 0
+  },
+  "verbatimResponse": "PASS — adopted TEST_ONLY B01 witness481 is component-sufficient. B01-480-C01–C04 are resolved; no corrections remain. Verified: 22 archive members, 21 payload hashes and CRCs; 26 source-binding rows; unchanged Proposal478 and original adoption bytes; seven snapshots, six events, 40 forward/40 inverse operations, restoring exact S000. E005 preserves the unspent Reaction and cast flag; prepared-family mirrors agree; E003 advances to 0.2 without expenditure; the binding erratum correctly distinguishes Proposal468 from its preparation record. RP68→42, Dissonance0/Refrain0, manifestation0.3/deadline60.3, one fire7 pulse at1.1, HP110 unchanged, and no reflection recipient, packet or banked root. Witness SHA-256: 0c9757c2ee7e191e16a8184e5e725211d23ebf3778104f80d823794e02a99314. Verified ZIP SHA-256: 68c2d01fb303137f3db4a6940d430a26471f49325b457b94593f40f42ce9e7ec. Record this as B01 component sufficiency only, unsealed. This does not close B01/B02 or accept/apply Elemental Shell. Next: exact owner adoption of B02 Proposal477 Repack01 b673305a49eb10dcfd7da1de676ea883cbcb2f34abcc308310ef00fd0c549c64, followed by its scoped witness construction and review. No additional B01 construction is needed. Queue476 remains 831 applied / 17 pending / 0 accepted-unapplied."
+}
