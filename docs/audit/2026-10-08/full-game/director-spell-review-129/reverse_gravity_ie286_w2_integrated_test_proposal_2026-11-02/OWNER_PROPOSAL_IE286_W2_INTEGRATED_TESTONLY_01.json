@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "id": "OWNER-IE286-W2-INTEGRATED-TESTONLY-PROPOSAL-02",
-  "createdAtUtc": "2026-11-02T21:35:53Z",
+  "id": "OWNER-IE286-W2-INTEGRATED-TESTONLY-PROPOSAL-03",
+  "createdAtUtc": "2026-11-02T21:54:11Z",
   "classification": "DIRECTOR_REVIEW_REQUEST_ONLY_COMBINED_TESTONLY_INTEGRATION_PROPOSAL_NOT_OWNER_ADOPTED_NOT_WITNESS",
   "repository": "BordelonDevOps/DecenniumDescent",
   "branch": "main",
@@ -351,7 +351,8 @@
       "preparedMatrixFamilyHistory": {
         "atT0": [],
         "firstDistinctFamilyExemptionsAvailable": true,
-        "refrain": 0
+        "refrain": 0,
+        "lastMatrixFamilyAtT0": null
       },
       "perTurnCastFlag": {
         "initial": false,
@@ -981,7 +982,9 @@
           "perTurnSpellCastFlagBefore": false,
           "perTurnSpellCastFlagAfter": true,
           "pendingCastSetAtCommitment": true,
-          "pendingCastClearedAfterResolution": true
+          "pendingCastClearedAfterResolution": true,
+          "lastMatrixFamilyBefore": null,
+          "lastMatrixFamilyAfter": "conjure-rope"
         },
         "orderedSubevents": [
           {
@@ -1001,8 +1004,8 @@
             "event": "Resolve spell; clear pending cast only after resolution."
           },
           {
-            "timeSeconds": 0,
-            "event": "Regular END; Action consumed; remaining turn state recorded."
+            "timeSeconds": 6,
+            "event": "Regular END of the cast turn. The Action and RP were spent at commitment; perform no additional payment, casting, resolution or history update. Preserve the cast flag through END; reset it only at the following START."
           }
         ],
         "normalActionOpportunity": {
@@ -1070,7 +1073,9 @@
           "perTurnSpellCastFlagBefore": false,
           "perTurnSpellCastFlagAfter": true,
           "pendingCastSetAtCommitment": true,
-          "pendingCastClearedAfterResolution": true
+          "pendingCastClearedAfterResolution": true,
+          "lastMatrixFamilyBefore": "conjure-rope",
+          "lastMatrixFamilyAfter": "reverse-gravity-field"
         },
         "orderedSubevents": [
           {
@@ -1090,8 +1095,8 @@
             "event": "Resolve spell; clear pending cast only after resolution."
           },
           {
-            "timeSeconds": 18,
-            "event": "Regular END; Action consumed; remaining turn state recorded."
+            "timeSeconds": 24,
+            "event": "Regular END of the cast turn. The Action and RP were spent at commitment; perform no additional payment, casting, resolution or history update. Preserve the cast flag through END; reset it only at the following START."
           }
         ],
         "normalActionOpportunity": {
@@ -1116,38 +1121,38 @@
           "endSeconds": 6,
           "START": "Reset per-turn spell/magical-ability flags; Action available; RP64, Counterspell ready 0/2 recharge rounds.",
           "ActionOpportunity": "Use one Action to cast Conjure Rope.",
-          "END": "Commit2RP; first distinct-family exemption leaves Dissonance/Refrain0; pending cast clears after instantaneous resolution."
+          "END": "At t=6 close the turn whose Conjure Rope cast committed and resolved at t=0. RP remains 62; Dissonance/Refrain remain 0; pendingCast is false and the cast flag remains true through END. No idle-turn reduction applies."
         },
         {
           "startSeconds": 6,
           "endSeconds": 12,
           "START": "Reset per-turn flags.",
           "ActionOpportunity": "Available; no spell or magical class ability used.",
-          "END": "Idle-turn Dissonance decrease1, floored at0; matrix-family history preserved; Refrain remains0."
+          "END": "At t=12 close the idle interval [6,12]. Apply the idle-turn Dissonance reduction once (floored at 0); preserve matrix-family history, lastMatrixFamily conjure-rope, and Refrain 0. The next START resets per-turn flags."
         },
         {
           "startSeconds": 12,
           "endSeconds": 18,
           "START": "Reset per-turn flags.",
           "ActionOpportunity": "Available; no spell or magical class ability used.",
-          "END": "Idle-turn Dissonance decrease1, floored at0; matrix-family history preserved; Refrain remains0."
+          "END": "At t=18 close the idle interval [12,18]. Apply the idle-turn Dissonance reduction once (floored at 0); preserve matrix-family history, lastMatrixFamily conjure-rope, and Refrain 0. Settle this END before the t=18 START and Reverse Gravity commitment."
         },
         {
           "startSeconds": 18,
           "endSeconds": 24,
           "START": "Reset per-turn flags; Action available; RP62, Counterspell ready 0/2 recharge rounds.",
           "ActionOpportunity": "Use one Action to cast Reverse Gravity Field.",
-          "END": "Commit26RP; distinct first-family exemption leaves Dissonance/Refrain0; instantaneous spell resolves; post-resolution movement procedure ends at t24; pending cast clears after resolution."
+          "END": "At t=24 close the turn whose Reverse Gravity cast committed and resolved at t=18. RP remains 36; Dissonance/Refrain remain 0; pendingCast is false and the cast flag remains true through END. No second payment or resolution occurs. Settle the movement endpoint before V0 and the next interval's START."
         },
         {
           "startSeconds": 24,
           "endSeconds": 30,
-          "START": "V0 interval begins; reset per-turn spell/magical-ability flags; Action available; Counterspell remains ready at 0/2 recharge rounds.",
-          "ActionOpportunity": "At V0 in the roster order, one normal Action is available; no rescue is declared and no Action is used.",
-          "END": "No spell or magical class ability used; idle-turn Dissonance decreases by 1, floored at 0; matrix-family history persists and Refrain remains 0. V1/landing resolves at t=30."
+          "START": "After the preceding interval END and V0 at t=24, begin interval [24,30]; reset per-turn spell/magical-ability flags; Action available; Counterspell remains ready at 0/2 recharge rounds.",
+          "ActionOpportunity": "At t=24, in the listed roster order, one normal Action is available; no rescue is declared and no Action is used.",
+          "END": "At t=30 close interval [24,30] after all roster opportunities. Apply the idle-turn Dissonance reduction once (floored at 0); preserve family history, lastMatrixFamily reverse-gravity-field, and Refrain 0. Then resolve V1 and landing."
         }
       ],
-      "castSubeventOrder": "At each cast time: regular START and Action availability; Action begins; commit RP and update matrix-family history, Dissonance/Refrain, per-turn cast flag, and pending-cast state exactly once; open Counterspell response window; record no attempt and close window; resolve the spell; clear pending-cast state only after resolution; regular END.",
+      "castSubeventOrder": "At t=0 and t=18: START; consume the Action and commit costs/history once; open and close the response window; resolve; clear pendingCast. These cast turns END at t=6 and t=24 respectively. At shared timestamps, settle the preceding END before the following START. END neither repeats commitment nor clears the cast flag.",
       "actorActionState": "No extra Action, Bonus Action, Reaction, cost waiver, or interruption bypass is granted. Support setup is recorded as branch-specific timed manual operations in scene.integrationGeometry."
     }
   },
@@ -1524,7 +1529,8 @@
               "active": true,
               "expires": "next long rest"
             },
-            "spellEfficiencySelected": false
+            "spellEfficiencySelected": false,
+            "lastMatrixFamily": "reverse-gravity-field"
           }
         },
         "handlerA": {
@@ -1593,39 +1599,39 @@
   "forwardAndInverse": {
     "forwardStates": [
       "S0 at t<0: synthetic actors consenting; completed long rest and 60-minute preparation; initial RP64/HP/conditions/class feature state recorded; no rope; empty matrix-family encounter history.",
-      "S1 at t=0: Conjure Rope commitment, response window, instantaneous resolution; RP62; family history contains conjure-rope; rope deadline t=600.",
+      "S1 at t=0: Conjure Rope commitment, response window, instantaneous resolution; RP62; family history and lastMatrixFamily contain conjure-rope; rope deadline t=600.",
       "S2 during t=0..18: R7 target/load/attachment/continuous route set up; integration-only A/B supported routes and clearance checks completed; no magical movement.",
-      "S3 at t=18: Reverse Gravity commitment/window/instantaneous resolution; RP36; family history contains both names; bounded post-resolution event t18..24.",
+      "S3 at t=18: Reverse Gravity commitment/window/instantaneous resolution; RP36; family history contains both names and lastMatrixFamily is reverse-gravity-field; bounded post-resolution event t18..24.",
       "S4 at t=22.04: first taut sample; target held at body-feet z40.4; assembly/rope intact.",
       "S5 at t=24: upward procedure ends; target and caster unsupported; V0 markers set; no descent yet.",
       "S6 during t=24..30: each actor receives one ordinary opportunity in the fixed order; no rescue; V1 and first Falling Step at t=30; both land and damage/HP/Prone states resolve.",
       "S7 at t=30: final body/item bounds, custody, unchanged continuous rope route and 570-second rope clock snapshot."
     ],
-    "inverse": "Record one inverse for each S0→S7 transition in reverse order. Restore the exact projected TEST_ONLY initial state: actor and item positions/bounds/custody, HP/temp HP/conditions/defenses including Arcane Ward selection, RP64, Dissonance0, empty family history/Refrain0, per-turn flags false, Counterspell recharge0/ready, available Actions, no rope, and no active deadlines. Audit reversal is not an in-game refund, healing, rest, or history erasure.",
+    "inverse": "Record one inverse for each S0→S7 transition in reverse order. Restore the exact projected TEST_ONLY initial state: actor and item positions/bounds/custody, HP/temp HP/conditions/defenses including Arcane Ward selection, RP64, Dissonance0, empty family history, lastMatrixFamily null, Refrain 0, per-turn flags false, Counterspell recharge0/ready, available Actions, no rope, and no active deadlines. Audit reversal is not an in-game refund, healing, rest, or history erasure.",
     "stateLedger": [
       {
         "timeSeconds": 0,
-        "event": "Regular START; Conjure Rope Action commitment, response window and instantaneous resolution; RP64->62; family history []->[conjure-rope]; Dissonance/Refrain remain 0."
+        "event": "Regular START of [0,6]; Conjure Rope Action commitment, response window and instantaneous resolution; RP64->62; matrix-family history []->[conjure-rope]; lastMatrixFamily null->conjure-rope; Dissonance/Refrain remain 0."
       },
       {
         "timeSeconds": 6,
-        "event": "Regular START reset cast flags; no magical ability; idle-turn Dissonance remains 0; family history preserved."
+        "event": "END [0,6] for the cast turn, with cast flag preserved and no idle reduction; then START [6,12] resets per-turn flags."
       },
       {
         "timeSeconds": 12,
-        "event": "Regular START reset cast flags; no magical ability; idle-turn Dissonance remains 0; family history preserved."
+        "event": "END [6,12] applies one idle-turn Dissonance reduction, floored at 0; preserves family history, lastMatrixFamily conjure-rope, and Refrain 0; then START [12,18] resets per-turn flags."
       },
       {
         "timeSeconds": 18,
-        "event": "Regular START; Reverse Gravity Action commitment, response window and instantaneous resolution; RP62->36; family history adds reverse-gravity-field; Dissonance/Refrain remain 0."
+        "event": "END [12,18] applies one idle-turn Dissonance reduction, floored at 0; preserves family history, lastMatrixFamily conjure-rope, and Refrain 0; then START [18,24] resets flags and Reverse Gravity commits/resolves; RP62->36; lastMatrixFamily becomes reverse-gravity-field."
       },
       {
         "timeSeconds": 24,
-        "event": "Post-resolution movement schedule ends; V0 marker set; caster starts outside-initiative interval and resets per-turn flags; no descent yet; ordered roster Action opportunities offered."
+        "event": "Settle post-resolution movement endpoint; END [18,24] with cast flag preserved and no idle reduction; then V0; then START [24,30] resets per-turn flags and offers ordered roster opportunities. No descent at V0."
       },
       {
         "timeSeconds": 30,
-        "event": "V1; first falling step and landing; final HP, conditions, custody, class state and 570-second rope deadline snapshot; idle-turn Dissonance remains 0 and family history is preserved."
+        "event": "END [24,30] applies one idle-turn Dissonance reduction, floored at 0; preserves lastMatrixFamily reverse-gravity-field and family/Refrain history; then V1, first falling step and landing; record final state and 570-second rope deadline."
       }
     ]
   },
@@ -1645,7 +1651,7 @@
       "Are complete-body membership, handler partial-intersection statuses and point distances, stipulated tether selection point, one-time sampling, and fixed-terrain exclusion stated as branch-only proposals?",
       "Are the Wizard-17 spellbook entry projections, preparation, Arcane Ward, Spell Efficiency selection, PB/Dissonance limit, family history, per-turn flags, Counterspell recharge, target initial HP/temp HP/defenses, and paid cost/cadence history complete?",
       "Does the no-attempt Counterspell wording preserve self-counter eligibility as unadjudicated?",
-      "Are ordered cast subevents at t0/t18, regular START/END intervals, V0 at t24, V1/landing at t30, final-state clocks/bounds/custody and exact inverse complete?"
+      "Are cast ENDs at t=6/t=24, shared END→START ordering, idle reductions only at END12/END18/END30, cast-flag persistence, lastMatrixFamily history, V0/V1 at t24/t30, final clocks/bounds/custody and exact inverse complete?"
     ],
     "nonEffects": {
       "witnessConstructed": false,
@@ -1657,9 +1663,15 @@
       "canonChanged": false,
       "runtimeChanged": false,
       "queueChanged": false
-    }
+    },
+    "integrityNote": "Committed file uses UTF-8 with LF line endings. The review message will provide the SHA-256 of exact committed Git blob data; a CRLF-transcoded copy hashes differently."
   },
-  "revision": 2,
-  "supersedesSha256": "cf0bca36c46ceeda8a8b5211ff3576357702b8cd57c034e370bc34214e4ede54",
-  "revisionNote": "Addresses GPT Director corrections W2-I01-C01 through C06: preserves R7 continuous bounded terminal route; restores inherited caster bounds and separately bounds the caster corridor and handler B lower-bay route; corrects complete-body selection and point-membership rules; completes Wizard-17 source and initial-state inputs; leaves self-Counterspell eligibility unadjudicated with no attempt; and adds exact cast, turn, V0/V1, landing, clock, final class-state, and inverse ledgers. This remains an unadopted TEST_ONLY proposal."
+  "revision": 3,
+  "supersedesSha256": "310f0eb6419d7292acbea9fde71ead07c4bb4a5ca1bbf086259edc32f7f1c3ac",
+  "revisionNote": "Addresses Director C01-C06. C01-C05 scene, class-state and response findings remain as previously corrected. C06 now aligns cast-turn ENDs at t=6/t=24 with the six-second ledger, settles shared timestamps in order, avoids duplicate commitment/resolution at END, preserves cast flags through END, records lastMatrixFamily through idle turns, and restores its initial null on inverse. This remains an unadopted TEST_ONLY proposal.",
+  "fileSerialization": {
+    "encoding": "UTF-8",
+    "committedLineEndings": "LF",
+    "hashScope": "SHA-256 is computed over the exact committed Git blob data bytes; CRLF-transcoded copies have a different SHA-256."
+  }
 }
