@@ -1,0 +1,386 @@
+{
+  "schemaVersion": 1,
+  "id": "SH202-B03-SOURCE-DELTA-2026-11-01",
+  "classification": "READ_ONLY_SOURCE_DELTA_PREPARATION_ONLY",
+  "status": "NO_QUALIFYING_CHANGED_SOURCE",
+  "scope": {
+    "spellId": "summon-avatar-of-decay",
+    "blockerId": "SH202-B03",
+    "question": "Does a current operational transformation source explicitly remove an Undead recipient’s Undead eligibility, and is there a qualified actor/activation history for it?",
+    "decisionEffect": "None; no replacement premise, actor, encounter, identity closure, acceptance, application, canon or queue mutation."
+  },
+  "comparison": {
+    "retainedReturn333Archive": {
+      "fileName": "DD_Rank9_SummonAvatarOfDecay_Review333.zip",
+      "bytes": 30427,
+      "sha256": "86098cfceb7224f343c88f731b022dac8707c16078fbaf8aba52a17e7852843d",
+      "crc32": "088137e6"
+    },
+    "retainedInputBindings": {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_summon_avatar_of_decay_return333_received/payload/INPUT_BINDINGS.json",
+      "bytes": 5714,
+      "sha256": "d1c3054c6c8ef30168fcbbb789cfb5d7aca1751d0a7ad757086bb782ae21f046"
+    },
+    "retainedReturn333CatalogBinding": {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+      "bytes": 5085187,
+      "sha256": "773fb0b3b0fdb501858ded33c02d90dc4db3009bd1b9f7112c244d998218f05b",
+      "crc32": "f06243cf"
+    },
+    "currentCatalog": {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+      "bytes": 5085187,
+      "sha256": "773fb0b3b0fdb501858ded33c02d90dc4db3009bd1b9f7112c244d998218f05b"
+    },
+    "catalogBytesMatchReturn333Binding": true,
+    "retainedReturn333FullIndexBinding": {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+      "bytes": 1697606,
+      "sha256": "c6dd6d30703911864a3e2784d8abb3d79835b39bc01804c4335f80a1c4bea7b2",
+      "crc32": "ae581c7e"
+    },
+    "currentFullIndex": {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+      "bytes": 1764525,
+      "sha256": "ebd344ece3b12fff06deead46e05e2a49dfe957e72086f2baaba24159ad34c7c"
+    },
+    "decayIndexRowPointer": "/entries/670",
+    "retainedDecayIndexRowPath": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_summon_avatar_of_decay_return333_received/payload/input/02_CURRENT_AUTHORED_REVIEW_INDEX_ROW.json",
+    "retainedDecayIndexRowSha256": "98e8c21df27fdf0ae9e7f5fd03083d2d93ef53cea91421e54bbfd42b469a3682",
+    "currentDecayIndexRow": {
+      "id": "summon-avatar-of-decay",
+      "name": "Summon Avatar of Decay",
+      "authoredStatus": "pending-authored-procedure",
+      "procedureFile": "catalog.json",
+      "procedurePointer": null,
+      "wholeCardPointer": "/spells/670",
+      "sourceStatus": "blocked-pending-operational-review",
+      "priorCatalogSelectionStatusUnchanged": true
+    },
+    "decayIndexRowUnchanged": true
+  },
+  "transformationRecords": [
+    {
+      "id": "polymorph",
+      "name": "Polymorph",
+      "catalogPointer": "/spells/735",
+      "operationalPointer": "/spells/735/operational",
+      "catalogStatus": "operational-playtest-draft",
+      "indexAuthoredStatus": "reviewed-authored-operational-playtest",
+      "classAccess": {
+        "Dragoon": {
+          "rank": 4,
+          "minimumClassLevel": 18,
+          "school": "Transmutation",
+          "baseRpCost": 7
+        },
+        "Druid": {
+          "rank": 4,
+          "minimumClassLevel": 7,
+          "school": "Transmutation",
+          "baseRpCost": 7
+        },
+        "Mage": {
+          "rank": 4,
+          "minimumClassLevel": 7,
+          "school": "Transmutation",
+          "baseRpCost": 7
+        },
+        "Monk": {
+          "rank": 4,
+          "minimumClassLevel": 18,
+          "school": "Transmutation",
+          "baseRpCost": 7
+        },
+        "Ranger": {
+          "rank": 4,
+          "minimumClassLevel": 13,
+          "school": "Transmutation",
+          "baseRpCost": 7
+        },
+        "Shaman": {
+          "rank": 4,
+          "minimumClassLevel": 10,
+          "school": "Transmutation",
+          "baseRpCost": 7
+        },
+        "Thief": {
+          "rank": 4,
+          "minimumClassLevel": 18,
+          "school": "Transmutation",
+          "baseRpCost": 7
+        },
+        "Tinker": {
+          "rank": 4,
+          "minimumClassLevel": 14,
+          "school": "Transmutation",
+          "baseRpCost": 7
+        },
+        "Wizard": {
+          "rank": 4,
+          "minimumClassLevel": 7,
+          "school": "Transmutation",
+          "baseRpCost": 7
+        }
+      },
+      "targets": "One physical creature you can perceive within 60 feet",
+      "duration": "Concentration, up to 1 minute; absolute checkpoint at casting timestamp +60 seconds, never extended by extra turns",
+      "concentration": true,
+      "resolution": "Choose one legal R4 spell-form profile and validate its space before payment. A willing target may waive its save. An unwilling target makes a Constitution save against your spell DC. On failure it transforms. At the end of each of its original regular turns, and once per numbered round after it suffers positive actual HP damage, it may repeat the save; success ends the transformation. Use the complete TRANSFORMATION_SPELL_PLAYTEST.md procedure and finite spell_form_profiles.json register. Preflight all targets, anatomy, space and access before committing Action/RP; commit ends your old concentration before counters or saves. A failed or countered new spell does not restore old concentration. An anatomy from another source is replaced only on actual success. No displaced form remains underneath.",
+      "relevantLimitations": "No monster stat block, multiattack, class spellcasting, legendary power, new resource pool or second HP pool is gained. Speech, hands and movement come only from the selected profile. A willing target may spend its Action on its regular turn to end its own Polymorph. Actual 0 HP, death or Incapacitated after same-packet prevention resolves ends the spell without healing. Explicit transformation immunity and legendary defenses apply normally. Natural/form attacks do not automatically qualify for unrelated weapon-only features. The subject owns supplied natural-attack events; the original caster supplies attack statistics. These attacks are not spell casts or automatically caster spell-damage/kill triggers. A Druid cannot enter Shapeshift while a spell anatomy is active. Temporary lower-rank spells cannot replace higher-rank anatomy. Only a successful True Polymorph or an exact named exception can replace permanent True anatomy. Antimagic suppresses the same record while concentration and its absolute clock continue; True Polymorph can stabilize while suppressed. Suppression never frees an object-companion slot or resets gear. Creature-origin type tags remain unchanged; profile names confer no creature type. Every supplied attack has5-foot reach. Original anatomical abilities unavailable in the selected profile do not persist underneath it. A successful new transformation closes the old record and atomically restores/recaptures still-existing original gear; internal profile switches instead retain the same meld set and drop incompatible external gear. Mandatory reversion returns at the same anchor; blocked placement is referred to canonical geometry without automatic teleport or crushing damage. Original melded gear remains inaccessible under antimagic. A willing temporary creature-origin recipient can use its regular-turn rejection Action while suppressed if its root creature anatomy can act; object-origin identities gain no rejection right. No generic magical-attack bypass flag is granted.",
+      "typeTagsRetainedStatement": "No monster stat block, multiattack, class spellcasting, legendary power, new resource pool or second HP pool is gained. Speech, hands and movement come only from the selected profile. A willing target may spend its Action on its regular turn to end its own Polymorph. Actual 0 HP, death or Incapacitated after same-packet prevention resolves ends the spell without healing. Explicit transformation immunity and legendary defenses apply normally. Natural/form attacks do not automatically qualify for unrelated weapon-only features. The subject owns supplied natural-attack events; the original caster supplies attack statistics. These attacks are not spell casts or automatically caster spell-damage/kill triggers. A Druid cannot enter Shapeshift while a spell anatomy is active. Temporary lower-rank spells cannot replace higher-rank anatomy. Only a successful True Polymorph or an exact named exception can replace permanent True anatomy. Antimagic suppresses the same record while concentration and its absolute clock continue; True Polymorph can stabilize while suppressed. Suppression never frees an object-companion slot or resets gear. Creature-origin type tags remain unchanged; profile names confer no creature type. Every supplied attack has5-foot reach. Original anatomical abilities unavailable in the selected profile do not persist underneath it. A successful new transformation closes the old record and atomically restores/recaptures still-existing original gear; internal profile switches instead retain the same meld set and drop incompatible external gear. Mandatory reversion returns at the same anchor; blocked placement is referred to canonical geometry without automatic teleport or crushing damage. Original melded gear remains inaccessible under antimagic. A willing temporary creature-origin recipient can use its regular-turn rejection Action while suppressed if its root creature anatomy can act; object-origin identities gain no rejection right. No generic magical-attack bypass flag is granted."
+    },
+    {
+      "id": "shapechange",
+      "name": "Shapechange",
+      "catalogPointer": "/spells/583",
+      "operationalPointer": "/spells/583/operational",
+      "catalogStatus": "operational-playtest-draft",
+      "indexAuthoredStatus": "reviewed-authored-operational-playtest",
+      "classAccess": {
+        "Druid": {
+          "rank": 9,
+          "minimumClassLevel": 17,
+          "school": "Transmutation",
+          "baseRpCost": 26
+        },
+        "Mage": {
+          "rank": 9,
+          "minimumClassLevel": 17,
+          "school": "Transmutation",
+          "baseRpCost": 26
+        },
+        "Wizard": {
+          "rank": 9,
+          "minimumClassLevel": 17,
+          "school": "Illusion",
+          "baseRpCost": 26
+        }
+      },
+      "targets": "Self",
+      "duration": "Concentration, up to 1 minute; absolute checkpoint at casting timestamp +60 seconds, never extended by extra turns",
+      "concentration": true,
+      "resolution": "Choose one legal R4 or R9 spell-form profile on cast. No save. Once on each of your original regular turns afterward, you may use a Bonus Action to switch to a different legal profile. The new anatomy must fit the available space. Use the complete TRANSFORMATION_SPELL_PLAYTEST.md procedure and finite spell_form_profiles.json register. Preflight all targets, anatomy, space and access before committing Action/RP; commit ends your old concentration before counters or saves. A failed or countered new spell does not restore old concentration. An anatomy from another source is replaced only on actual success. No displaced form remains underneath. No internal switch on the casting turn or an extra turn; first switch is the next original regular turn, then at most one on each later original regular turn.",
+      "relevantLimitations": "Only one Shapechange anatomy exists at a time. An identical-profile switch is rejected before Bonus Action payment. Internal switches are not spell casts and do not create new Dissonance or Refrain events. Equipment remains melded through switches. Losing flight while unsupported begins ordinary falling. Actual 0 HP, death or Incapacitated after same-packet prevention ends Shapechange without healing. The spell grants no Druid Buffer Reserve, Form Surge, Shapeshift use or Druid form features. The subject owns supplied natural-attack events; the original caster supplies attack statistics. These attacks are not spell casts or automatically caster spell-damage/kill triggers. A Druid cannot enter Shapeshift while a spell anatomy is active. Temporary lower-rank spells cannot replace higher-rank anatomy. Only a successful True Polymorph or an exact named exception can replace permanent True anatomy. Antimagic suppresses the same record while concentration and its absolute clock continue; True Polymorph can stabilize while suppressed. Suppression never frees an object-companion slot or resets gear. Creature-origin type tags remain unchanged; profile names confer no creature type. Every supplied attack has5-foot reach. Original anatomical abilities unavailable in the selected profile do not persist underneath it. A successful new transformation closes the old record and atomically restores/recaptures still-existing original gear; internal profile switches instead retain the same meld set and drop incompatible external gear. Mandatory reversion returns at the same anchor; blocked placement is referred to canonical geometry without automatic teleport or crushing damage. Original melded gear remains inaccessible under antimagic. A willing temporary creature-origin recipient can use its regular-turn rejection Action while suppressed if its root creature anatomy can act; object-origin identities gain no rejection right. No generic magical-attack bypass flag is granted.",
+      "typeTagsRetainedStatement": "Only one Shapechange anatomy exists at a time. An identical-profile switch is rejected before Bonus Action payment. Internal switches are not spell casts and do not create new Dissonance or Refrain events. Equipment remains melded through switches. Losing flight while unsupported begins ordinary falling. Actual 0 HP, death or Incapacitated after same-packet prevention ends Shapechange without healing. The spell grants no Druid Buffer Reserve, Form Surge, Shapeshift use or Druid form features. The subject owns supplied natural-attack events; the original caster supplies attack statistics. These attacks are not spell casts or automatically caster spell-damage/kill triggers. A Druid cannot enter Shapeshift while a spell anatomy is active. Temporary lower-rank spells cannot replace higher-rank anatomy. Only a successful True Polymorph or an exact named exception can replace permanent True anatomy. Antimagic suppresses the same record while concentration and its absolute clock continue; True Polymorph can stabilize while suppressed. Suppression never frees an object-companion slot or resets gear. Creature-origin type tags remain unchanged; profile names confer no creature type. Every supplied attack has5-foot reach. Original anatomical abilities unavailable in the selected profile do not persist underneath it. A successful new transformation closes the old record and atomically restores/recaptures still-existing original gear; internal profile switches instead retain the same meld set and drop incompatible external gear. Mandatory reversion returns at the same anchor; blocked placement is referred to canonical geometry without automatic teleport or crushing damage. Original melded gear remains inaccessible under antimagic. A willing temporary creature-origin recipient can use its regular-turn rejection Action while suppressed if its root creature anatomy can act; object-origin identities gain no rejection right. No generic magical-attack bypass flag is granted."
+    },
+    {
+      "id": "true-polymorph",
+      "name": "True Polymorph",
+      "catalogPointer": "/spells/771",
+      "operationalPointer": "/spells/771/operational",
+      "catalogStatus": "operational-playtest-draft",
+      "indexAuthoredStatus": "reviewed-authored-operational-playtest",
+      "classAccess": {
+        "Cleric": {
+          "rank": 9,
+          "minimumClassLevel": 17,
+          "school": "Universal",
+          "baseRpCost": 26
+        },
+        "Druid": {
+          "rank": 9,
+          "minimumClassLevel": 17,
+          "school": "Transmutation",
+          "baseRpCost": 26
+        },
+        "Mage": {
+          "rank": 9,
+          "minimumClassLevel": 17,
+          "school": "Transmutation",
+          "baseRpCost": 26
+        },
+        "Wizard": {
+          "rank": 9,
+          "minimumClassLevel": 17,
+          "school": "Transmutation",
+          "baseRpCost": 26
+        }
+      },
+      "targets": "One eligible physical creature or one eligible discrete nonmagical unattended object within 120 feet",
+      "duration": "Concentration during a 1-minute shaping period; if maintained for the full minute, the transformation persists until dispelled without further concentration; absolute checkpoint at casting timestamp +60 seconds, never extended by extra turns",
+      "concentration": true,
+      "resolution": "Choose creature-to-creature, willing-creature-to-object, object-to-creature, or object-to-object before payment. Creature-to-creature may affect an unwilling target on a failed Constitution save; while shaping, that target repeats the save at each original regular end and once per numbered round after positive actual HP damage. Creature-to-object requires willingness. Objects make no save. If concentration survives the full shaping minute, the result becomes persistent until dispelled. Use the complete TRANSFORMATION_SPELL_PLAYTEST.md procedure and finite spell_form_profiles.json register. Preflight all targets, anatomy, space and access before committing Action/RP; commit ends your old concentration before counters or saves. A failed or countered new spell does not restore old concentration. An anatomy from another source is replaced only on actual success. No displaced form remains underneath.",
+      "relevantLimitations": "No mode creates XP, loot, a soul, resurrection entitlement, valuable material, consumable stock, ammunition, currency, medicine, food or magical properties. Carried, worn, attuned, magical, artifact, structural-terrain and undefined-durability objects are ineligible. Object-origin creatures cannot receive ordinary HP healing as a means of repairing their source object. Only one active object-origin True Polymorph creature per caster is permitted. Such a creature shares the owner's companion Bonus Action/offensive budget and gains no independent turn/resources. Permanent True Polymorph does not end at 0 HP merely to restore the original form. Death/destruction remains real; later dispelling changes anatomy only and never heals, resurrects or recreates missing matter. The subject owns supplied natural-attack events; the original caster supplies attack statistics. These attacks are not spell casts or automatically caster spell-damage/kill triggers. A Druid cannot enter Shapeshift while a spell anatomy is active. Temporary lower-rank spells cannot replace higher-rank anatomy. Only a successful True Polymorph or an exact named exception can replace permanent True anatomy. Antimagic suppresses the same record while concentration and its absolute clock continue; True Polymorph can stabilize while suppressed. Suppression never frees an object-companion slot or resets gear. Creature-origin type tags remain unchanged; profile names confer no creature type. Every supplied attack has5-foot reach. Original anatomical abilities unavailable in the selected profile do not persist underneath it. A successful new transformation closes the old record and atomically restores/recaptures still-existing original gear; internal profile switches instead retain the same meld set and drop incompatible external gear. Mandatory reversion returns at the same anchor; blocked placement is referred to canonical geometry without automatic teleport or crushing damage. Original melded gear remains inaccessible under antimagic. A willing temporary creature-origin recipient can use its regular-turn rejection Action while suppressed if its root creature anatomy can act; object-origin identities gain no rejection right. No generic magical-attack bypass flag is granted. Object origin and earliest physical identity persist through every transformation chain. Object-origin creatures never gain a humanoid profile, soul, ordinary healing, resurrection or biological/class/rest resources. Use one actual structural HP ledger; structural0 destroys the object and ends its creature manifestation. Creature-origin object anatomy is actionless, not automatically Incapacitated. Allowed object templates are barrier/slab, ramp/wedge, open-container, static-furniture or simple-one-piece-tool; no actuated mechanism, magical or valuable output. Output size Tiny..Large and within one category of input; output mass cannot exceed recorded input or earliest origin mass; value cannot exceed original documented ceiling. Corpses/remains, magical/attuned/carried/worn/attended/structural objects and undefined structural durability are ineligible. An object-creature reserves its original caster slot on successful shaping; suppression/control change never frees it. At the60-second boundary finish damage, resolve due repeat save, then stabilize only surviving links. Replacing an active True object anatomy requires legal True replacement, not fresh nonmagical/unattended outside-object admission. Creature-origin people retain their CON save against unwilling creature-profile recasts and must consent to object-profile recasts. Returning them to creature anatomy grants no companion slot.",
+      "typeTagsRetainedStatement": "No mode creates XP, loot, a soul, resurrection entitlement, valuable material, consumable stock, ammunition, currency, medicine, food or magical properties. Carried, worn, attuned, magical, artifact, structural-terrain and undefined-durability objects are ineligible. Object-origin creatures cannot receive ordinary HP healing as a means of repairing their source object. Only one active object-origin True Polymorph creature per caster is permitted. Such a creature shares the owner's companion Bonus Action/offensive budget and gains no independent turn/resources. Permanent True Polymorph does not end at 0 HP merely to restore the original form. Death/destruction remains real; later dispelling changes anatomy only and never heals, resurrects or recreates missing matter. The subject owns supplied natural-attack events; the original caster supplies attack statistics. These attacks are not spell casts or automatically caster spell-damage/kill triggers. A Druid cannot enter Shapeshift while a spell anatomy is active. Temporary lower-rank spells cannot replace higher-rank anatomy. Only a successful True Polymorph or an exact named exception can replace permanent True anatomy. Antimagic suppresses the same record while concentration and its absolute clock continue; True Polymorph can stabilize while suppressed. Suppression never frees an object-companion slot or resets gear. Creature-origin type tags remain unchanged; profile names confer no creature type. Every supplied attack has5-foot reach. Original anatomical abilities unavailable in the selected profile do not persist underneath it. A successful new transformation closes the old record and atomically restores/recaptures still-existing original gear; internal profile switches instead retain the same meld set and drop incompatible external gear. Mandatory reversion returns at the same anchor; blocked placement is referred to canonical geometry without automatic teleport or crushing damage. Original melded gear remains inaccessible under antimagic. A willing temporary creature-origin recipient can use its regular-turn rejection Action while suppressed if its root creature anatomy can act; object-origin identities gain no rejection right. No generic magical-attack bypass flag is granted. Object origin and earliest physical identity persist through every transformation chain. Object-origin creatures never gain a humanoid profile, soul, ordinary healing, resurrection or biological/class/rest resources. Use one actual structural HP ledger; structural0 destroys the object and ends its creature manifestation. Creature-origin object anatomy is actionless, not automatically Incapacitated. Allowed object templates are barrier/slab, ramp/wedge, open-container, static-furniture or simple-one-piece-tool; no actuated mechanism, magical or valuable output. Output size Tiny..Large and within one category of input; output mass cannot exceed recorded input or earliest origin mass; value cannot exceed original documented ceiling. Corpses/remains, magical/attuned/carried/worn/attended/structural objects and undefined structural durability are ineligible. An object-creature reserves its original caster slot on successful shaping; suppression/control change never frees it. At the60-second boundary finish damage, resolve due repeat save, then stabilize only surviving links. Replacing an active True object anatomy requires legal True replacement, not fresh nonmagical/unattended outside-object admission. Creature-origin people retain their CON save against unwilling creature-profile recasts and must consent to object-profile recasts. Returning them to creature anatomy grants no companion slot."
+    },
+    {
+      "id": "mass-polymorph",
+      "name": "Mass Polymorph",
+      "catalogPointer": "/spells/773",
+      "operationalPointer": "/spells/773/operational",
+      "catalogStatus": "operational-playtest-draft",
+      "indexAuthoredStatus": "reviewed-authored-operational-playtest",
+      "classAccess": {
+        "Druid": {
+          "rank": 9,
+          "minimumClassLevel": 17,
+          "school": "Transmutation",
+          "baseRpCost": 26
+        },
+        "Mage": {
+          "rank": 9,
+          "minimumClassLevel": 17,
+          "school": "Transmutation",
+          "baseRpCost": 26
+        },
+        "Wizard": {
+          "rank": 9,
+          "minimumClassLevel": 17,
+          "school": "Transmutation",
+          "baseRpCost": 26
+        }
+      },
+      "targets": "Up to 10 distinct physical creatures you can perceive within 120 feet",
+      "duration": "Concentration, up to 1 minute; absolute checkpoint at casting timestamp +60 seconds, never extended by extra turns",
+      "concentration": true,
+      "resolution": "Before payment choose 1-10 targets and one legal R4 spell-form profile for each, validating each possible anatomy's space. Willing targets may waive saves. Each unwilling target independently makes a Constitution save. Failure creates that target's transformation link. Each hostile transformed target repeats the save at its original regular-turn end and once per numbered round after positive actual HP damage. Success ends only that target's link. Use the complete TRANSFORMATION_SPELL_PLAYTEST.md procedure and finite spell_form_profiles.json register. Preflight all targets, anatomy, space and access before committing Action/RP; commit ends your old concentration before counters or saves. A failed or countered new spell does not restore old concentration. An anatomy from another source is replaced only on actual success. No displaced form remains underneath. Before payment validate O/O, O/T, T/O and T/T footprint compatibility for every pair of targets; saves resolve independently and successful anatomy changes apply simultaneously.",
+      "relevantLimitations": "Casting range and line of effect are checked only when the spell is committed; there is no ongoing range tether. One target ending does not end another. Concentration ending removes every remaining target transformation. No target gains monster stat blocks, multiattack, resources, class features or a second HP pool. Equipment/anatomy, natural-attack taxonomy, damage/reversion and agency follow the shared spell-transformation chassis. The subject owns supplied natural-attack events; the original caster supplies attack statistics. These attacks are not spell casts or automatically caster spell-damage/kill triggers. A Druid cannot enter Shapeshift while a spell anatomy is active. Temporary lower-rank spells cannot replace higher-rank anatomy. Only a successful True Polymorph or an exact named exception can replace permanent True anatomy. Antimagic suppresses the same record while concentration and its absolute clock continue; True Polymorph can stabilize while suppressed. Suppression never frees an object-companion slot or resets gear. Creature-origin type tags remain unchanged; profile names confer no creature type. Every supplied attack has5-foot reach. Original anatomical abilities unavailable in the selected profile do not persist underneath it. A successful new transformation closes the old record and atomically restores/recaptures still-existing original gear; internal profile switches instead retain the same meld set and drop incompatible external gear. Mandatory reversion returns at the same anchor; blocked placement is referred to canonical geometry without automatic teleport or crushing damage. Original melded gear remains inaccessible under antimagic. A willing temporary creature-origin recipient can use its regular-turn rejection Action while suppressed if its root creature anatomy can act; object-origin identities gain no rejection right. No generic magical-attack bypass flag is granted.",
+      "typeTagsRetainedStatement": "Casting range and line of effect are checked only when the spell is committed; there is no ongoing range tether. One target ending does not end another. Concentration ending removes every remaining target transformation. No target gains monster stat blocks, multiattack, resources, class features or a second HP pool. Equipment/anatomy, natural-attack taxonomy, damage/reversion and agency follow the shared spell-transformation chassis. The subject owns supplied natural-attack events; the original caster supplies attack statistics. These attacks are not spell casts or automatically caster spell-damage/kill triggers. A Druid cannot enter Shapeshift while a spell anatomy is active. Temporary lower-rank spells cannot replace higher-rank anatomy. Only a successful True Polymorph or an exact named exception can replace permanent True anatomy. Antimagic suppresses the same record while concentration and its absolute clock continue; True Polymorph can stabilize while suppressed. Suppression never frees an object-companion slot or resets gear. Creature-origin type tags remain unchanged; profile names confer no creature type. Every supplied attack has5-foot reach. Original anatomical abilities unavailable in the selected profile do not persist underneath it. A successful new transformation closes the old record and atomically restores/recaptures still-existing original gear; internal profile switches instead retain the same meld set and drop incompatible external gear. Mandatory reversion returns at the same anchor; blocked placement is referred to canonical geometry without automatic teleport or crushing damage. Original melded gear remains inaccessible under antimagic. A willing temporary creature-origin recipient can use its regular-turn rejection Action while suppressed if its root creature anatomy can act; object-origin identities gain no rejection right. No generic magical-attack bypass flag is granted."
+    }
+  ],
+  "sharedOperationalRule": {
+    "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/lifematter4_reviewed_129/evidence/rules/TRANSFORMATION_SPELL_PLAYTEST.md",
+    "bytes": 20171,
+    "sha256": "b0551148795953c4435cd2e528fcfca84f9cfae97a6684f2b7334a10955dde23",
+    "pointersOrLines": {
+      "targetDurationAndOrdinaryAcquisition": "lines 7-17",
+      "finiteProfilesAreNewAndNamesGrantNoType": "lines 36-55",
+      "creatureOriginTypeIdentityRetained": "line 65",
+      "TrueStabilizationAndTemporaryExpiry": "lines 81-89",
+      "mandatoryReversionAnchor": "line 93"
+    },
+    "relevantText": "Creature-origin subjects retain their original creature-type, ancestry, class and soul identity. Object-origin manifestations have the transformed-object origin tag; profile names grant no humanoid/beast/elemental/undead tag."
+  },
+  "finiteSpellFormRegister": {
+    "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9planargates5_reviewed_200/supplemental_sources/01_6bf641487b42_spell_form_profiles.json",
+    "bytes": 11952,
+    "sha256": "6bf641487b429201e7d0d01c725acb1c975949d902687c6cdf3be9d13e25b3d3",
+    "pointer": "/profiles",
+    "profileCount": 12,
+    "typeTagFieldsPresentInProfileRows": [],
+    "provenance": "NEW finite spell profile agreed with GPT; not a Druid or bestiary stat block"
+  },
+  "coreSummaryRecords": {
+    "path": "DescentReviewChanges/ReviewBible/data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+    "bytes": 450543,
+    "sha256": "842718b9f016294529bdffefca9c81cca9a37670dd5e66a3c893ad313d79dd51",
+    "pointers": [
+      {
+        "pointer": "/spells/617",
+        "name": "Shapechange",
+        "school": "Illusion",
+        "effect": "Transform into different creature each round.",
+        "casting_time": "1 action",
+        "range": "120 feet",
+        "duration": "Instantaneous"
+      },
+      {
+        "pointer": "/spells/780",
+        "name": "Polymorph",
+        "school": "Transmutation",
+        "effect": "Transform creature into new form.",
+        "casting_time": "1 action",
+        "range": "60 feet",
+        "duration": "Instantaneous"
+      },
+      {
+        "pointer": "/spells/824",
+        "name": "Shapechange",
+        "school": "Transmutation",
+        "effect": "Transform into different creature each round.",
+        "casting_time": "1 action",
+        "range": "120 feet",
+        "duration": "Instantaneous"
+      },
+      {
+        "pointer": "/spells/825",
+        "name": "True Polymorph",
+        "school": "Transmutation",
+        "effect": "Permanently transform creature or object.",
+        "casting_time": "1 action",
+        "range": "120 feet",
+        "duration": "Until dispelled"
+      },
+      {
+        "pointer": "/spells/830",
+        "name": "Mass Polymorph",
+        "school": "Transmutation",
+        "effect": "Transform up to 10 creatures into new forms.",
+        "casting_time": "1 action",
+        "range": "120 feet",
+        "duration": "Instantaneous"
+      },
+      {
+        "pointer": "/spells/935",
+        "name": "True Polymorph",
+        "school": "Universal",
+        "effect": "Permanently transform creature or object.",
+        "casting_time": "1 action",
+        "range": "120 feet",
+        "duration": "Until dispelled"
+      }
+    ],
+    "catalogEmbeddedCoreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+    "bindingNote": "The full-file hash recorded inside catalog spell source metadata differs from the current Core Systems file hash. The current records inspected at these pointers remain summary-only; none specifies a type change or Undead eligibility removal."
+  },
+  "fleshAscendant": {
+    "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+    "bytes": 100635,
+    "sha256": "8ab2f4f43bcbced418fb266e5bd3216cff491b0c442c16f93438bd3556672c8b",
+    "feature": {
+      "pointer": "/cards/44",
+      "id": "wizard.hero.necromancer.flesh-ascendant",
+      "name": "Flesh Ascendant",
+      "acquisition": "selection",
+      "activation": "Passive",
+      "minimumClassLevel": 10,
+      "rangeAndTarget": "Undead creatures you control",
+      "duration": "Permanent while active",
+      "effect": "Flesh Ascendant. Tags: hero, necromancer, passive, undead. Each undead creature you control gains +2 maximum HP per Wizard class level. While at least two of your undead creatures are active, each also gains +1 AC and +1 on saving throws. These bonuses apply after the common standard-minion and elite-pet statistics and do not increase companion caps or command frequency."
+    },
+    "finding": "Passive bonus applies to currently controlled Undead; it does not transform a creature or change its type/eligibility."
+  },
+  "qualifiedActorOrActivationHistory": {
+    "boundW17NProfile": {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_summon_avatar_of_decay_return333_received/payload/evidence/EXISTING_W17N_PROFILE.json",
+      "bytes": 105789,
+      "sha256": "344eeb0b4ce3173d1a51f2bb10c460303a97c190c79eec1db9039c275c1fce3a"
+    },
+    "boundW17NProfileContainsTransformationSpellNames": false,
+    "Return285Qualifications": {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_summon_avatar_of_decay_return333_received/payload/evidence/RETURN285_QUALIFICATIONS.json",
+      "bytes": 6637,
+      "sha256": "2a6ae189d3191050ec2e06dda3c32fdce5f465e9196431a00933a092f4d3af8d"
+    },
+    "qualificationPointer": "/qualifications/1/retainedQualification",
+    "sourceChecks": {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_summon_avatar_of_decay_return333_received/payload/SOURCE_DATA_CHECKS.json",
+      "bytes": 4586,
+      "sha256": "da3714e86ddc3942145d34af4f304a2fb7cfea211091dcca0ae42fd1e6580dfc"
+    },
+    "Return333NewCampaignEvents": 0,
+    "finding": "The retained Return333 material supplies no qualified actor plus cast/activation history for a type-changing transformation. Its level-17 actor profiles are conditional authored fixtures, not verified campaign characters. This is bounded to the cited Return333 inputs and does not assert facts outside them."
+  },
+  "conclusion": "NO_QUALIFYING_CHANGED_SOURCE",
+  "reason": "The available catalog procedures allow transformation, but the shared operational rule expressly preserves creature-origin type identity and says profile names grant no creature-type tags. True Polymorph’s exact operational duration and target paths do not remove Undead eligibility. Current Core summaries are silent on type change. Flesh Ascendant requires an Undead target and grants only HP/AC/save bonuses. No bound qualifying actor/activation history exists.",
+  "queueSnapshot": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_SPELL_QUEUE_476_REPACK01.json",
+    "bytes": 4150,
+    "sha256": "4ae9ed74080e2919e7223aeee54fe1d0a380b0117248648027a3f5dfbc95e9cb",
+    "reviewedApplied": 831,
+    "pending": 17,
+    "acceptedUnapplied": 0,
+    "nextIdentity": "elemental-shell",
+    "priorityPosition": "Summon Avatar of Decay is third in continuing priority order."
+  },
+  "actionsTaken": {
+    "sourceReadOnlyCheck": true,
+    "spellWitnessConstructed": false,
+    "replacementPremiseCreated": false,
+    "actorOrEncounterCreated": false,
+    "queueChanged": false,
+    "acceptanceOrApplicationChanged": false,
+    "canonChanged": false
+  }
+}
