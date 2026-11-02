@@ -1,0 +1,790 @@
+{
+  "schemaVersion": 1,
+  "id": "SH333-R02-R1-487",
+  "classification": "HYPOTHETICAL_TEST_ONLY_UNSEALED",
+  "scope": "SH333-R02-OBLIGATION-REVISION-01 abstract static test only. Numeric baseline explicitly synthetic; no operational type-changing provider, paid activation, acquisition or campaign history.",
+  "campaignOccurrence": false,
+  "runtimeExecuted": false,
+  "hashDomain": "state SHA-256: UTF-8 JSON sorted keys, compact separators, ensure_ascii=false; file bindings: raw bytes",
+  "sourceBindings": [
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/summon_avatar_of_decay_r02_obligation_revision_request_2026-11-02/OWNER_SH333_R02_ELIGIBILITY_LOSS_REVISION_DECISION_REQUEST_TESTONLY.json",
+      "bytes": 6205,
+      "sha256": "d2b9e43a5c2f56551aeafc37e51ed03919b6fe00311b3dfd7ad36a9950932458",
+      "hashDomain": "raw Git UTF-8 bytes",
+      "baseCommit": "c6d6a3a0e084008fc260dc6096c2b01fd77e67d6"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/summon_avatar_of_decay_r02_obligation_revision_request_2026-11-02/DIRECTOR_READBACK_SH333_R02_OBLIGATION_REVISION_01.json",
+      "bytes": 7440,
+      "sha256": "dd9066fd12fe25cbc8b2f245c2b1f1740313dd6b5ea2f2276e1e0759708b9479",
+      "hashDomain": "raw Git UTF-8 bytes",
+      "baseCommit": "c6d6a3a0e084008fc260dc6096c2b01fd77e67d6"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/summon_avatar_of_decay_static_closure_487/DELEGATED_TESTONLY_AUTHORIZATION_487.json",
+      "bytes": 2905,
+      "sha256": "446b972e7fa955d227d6221f2e57296f27619bafae32ee85fb39f271b5e10f01",
+      "hashDomain": "raw Git UTF-8 bytes",
+      "baseCommit": "c6d6a3a0e084008fc260dc6096c2b01fd77e67d6"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_summon_avatar_of_decay_return333_received/payload/input/05_RETURN285_AVATAR_PROCEDURE.json",
+      "bytes": 31908,
+      "sha256": "09434c5f683e7e6116ecd48b66865781238bcae5c6d43043d462699e4554c65c",
+      "hashDomain": "raw Git UTF-8 bytes",
+      "baseCommit": "c6d6a3a0e084008fc260dc6096c2b01fd77e67d6"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_summon_avatar_of_decay_return333_received/payload/evidence/EXISTING_W17N_PROFILE.json",
+      "bytes": 105789,
+      "sha256": "344eeb0b4ce3173d1a51f2bb10c460303a97c190c79eec1db9039c275c1fce3a",
+      "hashDomain": "raw Git UTF-8 bytes",
+      "baseCommit": "c6d6a3a0e084008fc260dc6096c2b01fd77e67d6"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+      "bytes": 100635,
+      "sha256": "8ab2f4f43bcbced418fb266e5bd3216cff491b0c442c16f93438bd3556672c8b",
+      "hashDomain": "raw Git UTF-8 bytes",
+      "baseCommit": "c6d6a3a0e084008fc260dc6096c2b01fd77e67d6"
+    }
+  ],
+  "initialState": {
+    "tick": 300,
+    "phase": "syntheticBaseline",
+    "classification": "TEST_ONLY_ABSTRACT_ELIGIBILITY_INPUT",
+    "parentSource": {
+      "id": "R02:decay",
+      "active": true,
+      "expires": 6020,
+      "owner": "R02:W17N",
+      "concentration": true
+    },
+    "avatar": {
+      "id": "R02:avatar",
+      "sourceId": "R02:decay",
+      "active": true,
+      "HP": 284,
+      "maxHP": 284,
+      "nativeHP": 250,
+      "dynamicFlesh": 34,
+      "type": "Undead",
+      "controller": "R02:W17N",
+      "AC": 16,
+      "baseAC": 15,
+      "saves": 7,
+      "baseSaves": 6,
+      "pos": [
+        0,
+        0,
+        0
+      ],
+      "auraActive": true
+    },
+    "recipient": {
+      "id": "R02-TEST-RECIPIENT",
+      "type": "Undead",
+      "kind": "conditional independent recipient",
+      "originalController": "R02-TEST-RECIPIENT",
+      "controller": "R02:W17N",
+      "nativeHP": 40,
+      "HP": 60,
+      "maxHP": 74,
+      "dynamicFlesh": 34,
+      "baseAC": 14,
+      "AC": 15,
+      "baseSaves": 6,
+      "saves": 7,
+      "pos": [
+        20,
+        0,
+        0
+      ],
+      "box": [
+        5,
+        5,
+        5
+      ],
+      "physicalSupport": "R02:test-floor",
+      "equipment": [
+        "R02:item:1"
+      ],
+      "pendingOrder": "R02:order",
+      "nextRegularStart": 500,
+      "Action": 1,
+      "agency": "one designated action reserved"
+    },
+    "relay": {
+      "id": "R02:relay",
+      "sourceId": "R02:decay",
+      "target": "R02-TEST-RECIPIENT",
+      "issued": 90,
+      "expires": 510,
+      "status": "pending",
+      "guardKey": "R02:W17N:R02-TEST-RECIPIENT:encounter",
+      "reservation": "R02:reservation"
+    },
+    "order": {
+      "id": "R02:order",
+      "status": "pending",
+      "designatedOpportunity": 510,
+      "executed": false
+    },
+    "reservation": {
+      "id": "R02:reservation",
+      "active": true,
+      "relationId": "R02:relay"
+    },
+    "budgets": {
+      "casterCommandSpent": true,
+      "casterOffenseSpent": true,
+      "recipientActionSpent": false
+    },
+    "guardHistory": {
+      "R02:W17N:other:encounter": {
+        "spent": true,
+        "tick": 80
+      }
+    },
+    "resources": {
+      "casterRP": 38,
+      "casterDissonance": 0,
+      "casterRefrain": 0,
+      "paidHistory": [
+        {
+          "sourceId": "R02:decay",
+          "amount": 26,
+          "tick": 10,
+          "provenance": "synthetic baseline only; not a newly executed cast"
+        }
+      ]
+    },
+    "property": {
+      "R02:item:1": {
+        "owner": "R02-TEST-RECIPIENT",
+        "custodian": "R02-TEST-RECIPIENT",
+        "placement": "carried",
+        "massLb": 1
+      }
+    },
+    "unrelatedRelation": {
+      "id": "R02:other-relay",
+      "target": "R02:other",
+      "status": "pending",
+      "expires": 900
+    },
+    "settlements": [],
+    "providerQualification": {
+      "typeChangingProvider": null,
+      "acquisition": null,
+      "activation": null,
+      "actualSourceQualified": false
+    },
+    "schedules": {
+      "sourceDeadline": 6020,
+      "relayOpportunity": 510,
+      "providerClock": null
+    }
+  },
+  "initialSHA256": "3c3b297d183bf8470f2cdcd12571aab8862ee4efa50d482b76294d194d774484",
+  "events": [
+    {
+      "id": "E001",
+      "tick": 310,
+      "kind": "abstractEligibilityLoss",
+      "sequence": 1,
+      "evidence": {},
+      "beforeSHA256": "3c3b297d183bf8470f2cdcd12571aab8862ee4efa50d482b76294d194d774484",
+      "afterSHA256": "c1b8377407b8ddb1817612dc4c058d94225d2f151e953fd55bd9c704267caff4",
+      "forward": [
+        {
+          "op": "replace",
+          "path": "/avatar/AC",
+          "value": 15
+        },
+        {
+          "op": "replace",
+          "path": "/avatar/saves",
+          "value": 6
+        },
+        {
+          "op": "add",
+          "path": "/order/endedTick",
+          "value": 310
+        },
+        {
+          "op": "replace",
+          "path": "/order/status",
+          "value": "cancelled"
+        },
+        {
+          "op": "replace",
+          "path": "/phase",
+          "value": "abstractEligibilityLoss"
+        },
+        {
+          "op": "replace",
+          "path": "/recipient/AC",
+          "value": 14
+        },
+        {
+          "op": "replace",
+          "path": "/recipient/HP",
+          "value": 40
+        },
+        {
+          "op": "replace",
+          "path": "/recipient/agency",
+          "value": "prospective original agency"
+        },
+        {
+          "op": "replace",
+          "path": "/recipient/controller",
+          "value": "R02-TEST-RECIPIENT"
+        },
+        {
+          "op": "replace",
+          "path": "/recipient/dynamicFlesh",
+          "value": 0
+        },
+        {
+          "op": "replace",
+          "path": "/recipient/maxHP",
+          "value": 40
+        },
+        {
+          "op": "replace",
+          "path": "/recipient/pendingOrder",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/recipient/saves",
+          "value": 6
+        },
+        {
+          "op": "replace",
+          "path": "/recipient/type",
+          "value": "NonUndead_TEST_ONLY"
+        },
+        {
+          "op": "add",
+          "path": "/relay/endedReason",
+          "value": "loss of Undead eligibility"
+        },
+        {
+          "op": "add",
+          "path": "/relay/endedTick",
+          "value": 310
+        },
+        {
+          "op": "replace",
+          "path": "/relay/status",
+          "value": "cancelled"
+        },
+        {
+          "op": "replace",
+          "path": "/reservation/active",
+          "value": false
+        },
+        {
+          "op": "replace",
+          "path": "/settlements",
+          "value": [
+            {
+              "tick": 310,
+              "cause": "TEST_ONLY abstract eligibility input",
+              "HPBefore": 60,
+              "HPAfter": 40,
+              "maximumBefore": 74,
+              "maximumAfter": 40,
+              "damage": 0,
+              "healing": 0,
+              "newGuardSpend": false,
+              "refund": 0,
+              "relatedAvatarPairBonusRemoved": true
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/tick",
+          "value": 310
+        }
+      ],
+      "inverse": [
+        {
+          "op": "replace",
+          "path": "/avatar/AC",
+          "value": 16
+        },
+        {
+          "op": "replace",
+          "path": "/avatar/saves",
+          "value": 7
+        },
+        {
+          "op": "remove",
+          "path": "/order/endedTick"
+        },
+        {
+          "op": "replace",
+          "path": "/order/status",
+          "value": "pending"
+        },
+        {
+          "op": "replace",
+          "path": "/phase",
+          "value": "syntheticBaseline"
+        },
+        {
+          "op": "replace",
+          "path": "/recipient/AC",
+          "value": 15
+        },
+        {
+          "op": "replace",
+          "path": "/recipient/HP",
+          "value": 60
+        },
+        {
+          "op": "replace",
+          "path": "/recipient/agency",
+          "value": "one designated action reserved"
+        },
+        {
+          "op": "replace",
+          "path": "/recipient/controller",
+          "value": "R02:W17N"
+        },
+        {
+          "op": "replace",
+          "path": "/recipient/dynamicFlesh",
+          "value": 34
+        },
+        {
+          "op": "replace",
+          "path": "/recipient/maxHP",
+          "value": 74
+        },
+        {
+          "op": "replace",
+          "path": "/recipient/pendingOrder",
+          "value": "R02:order"
+        },
+        {
+          "op": "replace",
+          "path": "/recipient/saves",
+          "value": 7
+        },
+        {
+          "op": "replace",
+          "path": "/recipient/type",
+          "value": "Undead"
+        },
+        {
+          "op": "remove",
+          "path": "/relay/endedReason"
+        },
+        {
+          "op": "remove",
+          "path": "/relay/endedTick"
+        },
+        {
+          "op": "replace",
+          "path": "/relay/status",
+          "value": "pending"
+        },
+        {
+          "op": "replace",
+          "path": "/reservation/active",
+          "value": true
+        },
+        {
+          "op": "replace",
+          "path": "/settlements",
+          "value": []
+        },
+        {
+          "op": "replace",
+          "path": "/tick",
+          "value": 300
+        }
+      ]
+    },
+    {
+      "id": "E002",
+      "tick": 320,
+      "kind": "abstractReturnToUndead",
+      "sequence": 2,
+      "evidence": {},
+      "beforeSHA256": "c1b8377407b8ddb1817612dc4c058d94225d2f151e953fd55bd9c704267caff4",
+      "afterSHA256": "0ac883734056eef036417b73e308c34029d5ab0cb7b67d5e09eaef9524e186de",
+      "forward": [
+        {
+          "op": "replace",
+          "path": "/phase",
+          "value": "abstractReturnToUndead"
+        },
+        {
+          "op": "replace",
+          "path": "/recipient/type",
+          "value": "Undead"
+        },
+        {
+          "op": "replace",
+          "path": "/settlements",
+          "value": [
+            {
+              "tick": 310,
+              "cause": "TEST_ONLY abstract eligibility input",
+              "HPBefore": 60,
+              "HPAfter": 40,
+              "maximumBefore": 74,
+              "maximumAfter": 40,
+              "damage": 0,
+              "healing": 0,
+              "newGuardSpend": false,
+              "refund": 0,
+              "relatedAvatarPairBonusRemoved": true
+            },
+            {
+              "tick": 320,
+              "cause": "TEST_ONLY return to Undead",
+              "controllerRemains": "R02-TEST-RECIPIENT",
+              "noNewControl": true,
+              "noReinstatement": true,
+              "HPRemains": 40,
+              "maximumRemains": 40,
+              "parentAvatarPairBonusRemainsAbsent": true
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/tick",
+          "value": 320
+        }
+      ],
+      "inverse": [
+        {
+          "op": "replace",
+          "path": "/phase",
+          "value": "abstractEligibilityLoss"
+        },
+        {
+          "op": "replace",
+          "path": "/recipient/type",
+          "value": "NonUndead_TEST_ONLY"
+        },
+        {
+          "op": "replace",
+          "path": "/settlements",
+          "value": [
+            {
+              "tick": 310,
+              "cause": "TEST_ONLY abstract eligibility input",
+              "HPBefore": 60,
+              "HPAfter": 40,
+              "maximumBefore": 74,
+              "maximumAfter": 40,
+              "damage": 0,
+              "healing": 0,
+              "newGuardSpend": false,
+              "refund": 0,
+              "relatedAvatarPairBonusRemoved": true
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/tick",
+          "value": 310
+        }
+      ]
+    },
+    {
+      "id": "E003",
+      "tick": 510,
+      "kind": "cancelledOpportunityObservation",
+      "sequence": 3,
+      "evidence": {},
+      "beforeSHA256": "0ac883734056eef036417b73e308c34029d5ab0cb7b67d5e09eaef9524e186de",
+      "afterSHA256": "a775eb46bdbef32ad9eccd55674ea25b065ff49e2c4806f626683508c847432a",
+      "forward": [
+        {
+          "op": "replace",
+          "path": "/phase",
+          "value": "cancelledOpportunityObservation"
+        },
+        {
+          "op": "replace",
+          "path": "/settlements",
+          "value": [
+            {
+              "tick": 310,
+              "cause": "TEST_ONLY abstract eligibility input",
+              "HPBefore": 60,
+              "HPAfter": 40,
+              "maximumBefore": 74,
+              "maximumAfter": 40,
+              "damage": 0,
+              "healing": 0,
+              "newGuardSpend": false,
+              "refund": 0,
+              "relatedAvatarPairBonusRemoved": true
+            },
+            {
+              "tick": 320,
+              "cause": "TEST_ONLY return to Undead",
+              "controllerRemains": "R02-TEST-RECIPIENT",
+              "noNewControl": true,
+              "noReinstatement": true,
+              "HPRemains": 40,
+              "maximumRemains": 40,
+              "parentAvatarPairBonusRemainsAbsent": true
+            },
+            {
+              "tick": 510,
+              "cause": "original deadline reached; order already cancelled",
+              "execution": false,
+              "newGuardSpend": false,
+              "noSecondTermination": true,
+              "noBudgetRefresh": true
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/tick",
+          "value": 510
+        }
+      ],
+      "inverse": [
+        {
+          "op": "replace",
+          "path": "/phase",
+          "value": "abstractReturnToUndead"
+        },
+        {
+          "op": "replace",
+          "path": "/settlements",
+          "value": [
+            {
+              "tick": 310,
+              "cause": "TEST_ONLY abstract eligibility input",
+              "HPBefore": 60,
+              "HPAfter": 40,
+              "maximumBefore": 74,
+              "maximumAfter": 40,
+              "damage": 0,
+              "healing": 0,
+              "newGuardSpend": false,
+              "refund": 0,
+              "relatedAvatarPairBonusRemoved": true
+            },
+            {
+              "tick": 320,
+              "cause": "TEST_ONLY return to Undead",
+              "controllerRemains": "R02-TEST-RECIPIENT",
+              "noNewControl": true,
+              "noReinstatement": true,
+              "HPRemains": 40,
+              "maximumRemains": 40,
+              "parentAvatarPairBonusRemainsAbsent": true
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/tick",
+          "value": 320
+        }
+      ]
+    }
+  ],
+  "terminalState": {
+    "tick": 510,
+    "phase": "cancelledOpportunityObservation",
+    "classification": "TEST_ONLY_ABSTRACT_ELIGIBILITY_INPUT",
+    "parentSource": {
+      "id": "R02:decay",
+      "active": true,
+      "expires": 6020,
+      "owner": "R02:W17N",
+      "concentration": true
+    },
+    "avatar": {
+      "id": "R02:avatar",
+      "sourceId": "R02:decay",
+      "active": true,
+      "HP": 284,
+      "maxHP": 284,
+      "nativeHP": 250,
+      "dynamicFlesh": 34,
+      "type": "Undead",
+      "controller": "R02:W17N",
+      "AC": 15,
+      "baseAC": 15,
+      "saves": 6,
+      "baseSaves": 6,
+      "pos": [
+        0,
+        0,
+        0
+      ],
+      "auraActive": true
+    },
+    "recipient": {
+      "id": "R02-TEST-RECIPIENT",
+      "type": "Undead",
+      "kind": "conditional independent recipient",
+      "originalController": "R02-TEST-RECIPIENT",
+      "controller": "R02-TEST-RECIPIENT",
+      "nativeHP": 40,
+      "HP": 40,
+      "maxHP": 40,
+      "dynamicFlesh": 0,
+      "baseAC": 14,
+      "AC": 14,
+      "baseSaves": 6,
+      "saves": 6,
+      "pos": [
+        20,
+        0,
+        0
+      ],
+      "box": [
+        5,
+        5,
+        5
+      ],
+      "physicalSupport": "R02:test-floor",
+      "equipment": [
+        "R02:item:1"
+      ],
+      "pendingOrder": null,
+      "nextRegularStart": 500,
+      "Action": 1,
+      "agency": "prospective original agency"
+    },
+    "relay": {
+      "id": "R02:relay",
+      "sourceId": "R02:decay",
+      "target": "R02-TEST-RECIPIENT",
+      "issued": 90,
+      "expires": 510,
+      "status": "cancelled",
+      "guardKey": "R02:W17N:R02-TEST-RECIPIENT:encounter",
+      "reservation": "R02:reservation",
+      "endedTick": 310,
+      "endedReason": "loss of Undead eligibility"
+    },
+    "order": {
+      "id": "R02:order",
+      "status": "cancelled",
+      "designatedOpportunity": 510,
+      "executed": false,
+      "endedTick": 310
+    },
+    "reservation": {
+      "id": "R02:reservation",
+      "active": false,
+      "relationId": "R02:relay"
+    },
+    "budgets": {
+      "casterCommandSpent": true,
+      "casterOffenseSpent": true,
+      "recipientActionSpent": false
+    },
+    "guardHistory": {
+      "R02:W17N:other:encounter": {
+        "spent": true,
+        "tick": 80
+      }
+    },
+    "resources": {
+      "casterRP": 38,
+      "casterDissonance": 0,
+      "casterRefrain": 0,
+      "paidHistory": [
+        {
+          "sourceId": "R02:decay",
+          "amount": 26,
+          "tick": 10,
+          "provenance": "synthetic baseline only; not a newly executed cast"
+        }
+      ]
+    },
+    "property": {
+      "R02:item:1": {
+        "owner": "R02-TEST-RECIPIENT",
+        "custodian": "R02-TEST-RECIPIENT",
+        "placement": "carried",
+        "massLb": 1
+      }
+    },
+    "unrelatedRelation": {
+      "id": "R02:other-relay",
+      "target": "R02:other",
+      "status": "pending",
+      "expires": 900
+    },
+    "settlements": [
+      {
+        "tick": 310,
+        "cause": "TEST_ONLY abstract eligibility input",
+        "HPBefore": 60,
+        "HPAfter": 40,
+        "maximumBefore": 74,
+        "maximumAfter": 40,
+        "damage": 0,
+        "healing": 0,
+        "newGuardSpend": false,
+        "refund": 0,
+        "relatedAvatarPairBonusRemoved": true
+      },
+      {
+        "tick": 320,
+        "cause": "TEST_ONLY return to Undead",
+        "controllerRemains": "R02-TEST-RECIPIENT",
+        "noNewControl": true,
+        "noReinstatement": true,
+        "HPRemains": 40,
+        "maximumRemains": 40,
+        "parentAvatarPairBonusRemainsAbsent": true
+      },
+      {
+        "tick": 510,
+        "cause": "original deadline reached; order already cancelled",
+        "execution": false,
+        "newGuardSpend": false,
+        "noSecondTermination": true,
+        "noBudgetRefresh": true
+      }
+    ],
+    "providerQualification": {
+      "typeChangingProvider": null,
+      "acquisition": null,
+      "activation": null,
+      "actualSourceQualified": false
+    },
+    "schedules": {
+      "sourceDeadline": 6020,
+      "relayOpportunity": 510,
+      "providerClock": null
+    }
+  },
+  "terminalSHA256": "a775eb46bdbef32ad9eccd55674ea25b065ff49e2c4806f626683508c847432a",
+  "eventCount": 3,
+  "forwardOperationCount": 27,
+  "inverseOperationCount": 27,
+  "inversePurpose": "Audit restoration only; no in-game undo, resource refund, resurrection or history erasure.",
+  "baselineDerivation": {
+    "FleshAscendant": "Wizard17 acquired passive: +34 maximumHP; two initially controlled Undead (Avatar and recipient) +1 AC/save. Eligibility loss restores independent recipient agency and leaves one controlled Undead, removing only related pair bonuses. Return of Undead type alone restores neither control nor bonuses.",
+    "unrelatedRelations": "Other relation is metadata for an unrelated source; it does not add another Undead controlled by this caster.",
+    "noExternalProvider": "The change is a test operand under the explicit review-obligation revision, not a spell or in-game ability.",
+    "time": "Subturn observations only. Recipient START500 is intentionally out of the abstract operator harness, not a claimed complete encounter; no regular turn or actor action is executed."
+  }
+}
