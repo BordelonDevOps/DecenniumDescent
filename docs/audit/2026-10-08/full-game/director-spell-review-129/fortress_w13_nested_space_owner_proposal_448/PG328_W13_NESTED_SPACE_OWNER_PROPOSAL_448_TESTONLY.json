@@ -1196,7 +1196,7 @@
           "sourceAnchor": "Secure Cargo Action definition line95 at source commit",
           "cargoId": "cargo-B",
           "result": "custodian B; right hand",
-          "premisePointer": "/resourceLedger/B/cargoExtractionClassPremise",
+          "premisePointer": "/ownerProposedInputs/resourceLedger/B/cargoExtractionClassPremise",
           "freeInteractionClaim": false
         },
         "childDispelRechargeRemainingAtTerminal": 2
@@ -1767,7 +1767,7 @@
       },
       "spellEfficiencyDeadlineAt": 24.9,
       "spellEfficiencySameFamilyOpportunityUsed": false,
-      "rechargeRoundsRemainingAtTerminal": 1,
+      "rechargeRoundsRemainingAtTerminal": 0,
       "counterspellDispositionAt18_2": {
         "candidate": "B",
         "result": "ELIGIBLE_DECLINES",
@@ -2256,6 +2256,22 @@
     {
       "id": "W447-C04",
       "summary": "Child ray is checked against Model166 room bounds, opaque walls/aperture and actual branch contents, not parent Geometry405."
+    }
+  ],
+  "readinessCorrectionsApplied": [
+    {
+      "id": "W448-C01",
+      "pointer": "/ownerProposedInputs/AArcaneSight/rechargeRoundsRemainingAtTerminal",
+      "before": 1,
+      "after": 0,
+      "basis": "A START24 ticks recharge2 to1; A START30 ticks to0."
+    },
+    {
+      "id": "W448-C02",
+      "pointer": "/ownerProposedInputs/resourceLedger/B/cargoSecureAction/premisePointer",
+      "before": "/resourceLedger/B/cargoExtractionClassPremise",
+      "after": "/ownerProposedInputs/resourceLedger/B/cargoExtractionClassPremise",
+      "basis": "Use the full pointer from the proposal document root."
     }
   ]
 }

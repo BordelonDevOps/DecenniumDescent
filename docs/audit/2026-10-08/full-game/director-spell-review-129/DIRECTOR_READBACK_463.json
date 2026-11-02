@@ -1,0 +1,60 @@
+{
+  "id": "GPT-DIRECTOR-READBACK-463",
+  "classification": "DIRECTOR_READINESS_HOLD_WITH_EXACT_RECORD_CORRECTIONS",
+  "source": "GPT Director response in Calibration review part 6",
+  "component": "PG328-W13 proposal448 readiness",
+  "status": "HOLD_FOR_TWO_RECORD_CORRECTIONS_BEFORE_OWNER_ADOPTION",
+  "proposalReviewedSha256": "9a52115dcba2e3ad2615ab96d662deddf318308a7e489279bae2ac048211bce4",
+  "resolvedEarlierFindings": [
+    "W447-C01",
+    "W447-C02",
+    "W447-C03",
+    "W447-C04"
+  ],
+  "findings": [
+    {
+      "id": "W448-C01",
+      "title": "stale recharge mirror",
+      "pointer": "/ownerProposedInputs/AArcaneSight/rechargeRoundsRemainingAtTerminal",
+      "before": 1,
+      "required": 0,
+      "basis": "Recharge begins at2; A START24 reduces it to1 and START30 to0. Schedule and resourceLedger A already record0."
+    },
+    {
+      "id": "W448-C02",
+      "title": "incomplete premise pointer",
+      "pointer": "/ownerProposedInputs/resourceLedger/B/cargoSecureAction/premisePointer",
+      "before": "/resourceLedger/B/cargoExtractionClassPremise",
+      "required": "/ownerProposedInputs/resourceLedger/B/cargoExtractionClassPremise",
+      "basis": "Class0 remains expressly proposed and unadopted."
+    }
+  ],
+  "otherReviewedContent": "17 source contents/pointers, Secure Cargo Action, 12 START/11 END, RP A48/B56, 7-ft responder decline, Model166 child ray, child-before-parent ending, cargo projection [40,5,0], distinct support patches, and15 exterior pairs pass.",
+  "validationHashCorrection": {
+    "staleReported": "864b7af3e59067a749721e33b2e64b0f0d0a77c00543d1230aae5d075432dcc8",
+    "actualAtReview": "b120d381ab9d37da77aae64874bedd250320f86efc836e57b2804c576f16d47f",
+    "matchesGitBlobManifestDelivery": true
+  },
+  "noNewSubstantiveProposalOrSourcePremiseRequired": true,
+  "W12": "PASS_FOR_ADOPTED_TEST_ONLY_COMPONENT_SUFFICIENCY",
+  "preservedBoundary": {
+    "wholeFortress": "HELD_UNDER_PG200-B06",
+    "queue": "830 applied / 18 pending / 0 accepted-unapplied",
+    "seal": false,
+    "identityAcceptanceOrApplication": false,
+    "canonChange": false,
+    "campaignEventAsserted": false,
+    "queueMutation": false
+  },
+  "correctedSuccessor": {
+    "proposalSha256": "9254bee8a314de50cbe0c6aa71bef45e22fbea988d8668c089151b8e7f80051a",
+    "validationSha256": "e631f3b93f0652b2ceacf951402ef760aedd284807ca3c37cb9f2078c33212be",
+    "correctionRecordSha256": "0cd0029603ff7707422061a37269efcfa7b5ce4e064bab6817516b4b9c5b7a2c",
+    "manifestSha256": "a5beb30a908ed4907b563c8fa4cac24148636a82396bf7445ec2ef3abee05592",
+    "archiveSha256": "4b55651b14d24b8060d9da6c088ccf57a8de0b7f2b879bb0527d78d884a06f24",
+    "deliverySha256": "d798599d0972906d7ee9201674efab189780aace15b6ae8c04e8d73f240cce92",
+    "buildChecks": "12/12 PASS",
+    "independentVerifier": "15/15 PASS",
+    "status": "PENDING_DIRECTOR_READINESS_RE-REVIEW; NOT_ADOPTED; NOT_WITNESSED"
+  }
+}
