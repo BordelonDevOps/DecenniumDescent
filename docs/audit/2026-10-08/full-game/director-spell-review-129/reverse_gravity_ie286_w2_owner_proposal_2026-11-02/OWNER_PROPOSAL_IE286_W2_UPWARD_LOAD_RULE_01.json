@@ -100,15 +100,15 @@
       "upwardRestraintLoadLb": "Equal to restrainedSystemMassLb. This is a new 1:1 test convention in pound-equivalent units, not a source-defined physical-force conversion.",
       "effectiveCapacityLb": "Lower of the source-defined 300-lb Conjure Rope static limit and the named synthetic support TEST_ONLY rating.",
       "tautBehavior": "Inextensible for this test. Slack is consumed geometrically; at first taut contact upward velocity is set to zero before load sampling, so there is no impact or dynamic multiplier.",
-      "threshold": "Load at or below both capacities holds; above one, the lower-rated component fails."
+      "threshold": "At the taut sample, each component independently fails only if load exceeds its own rating; equality holds. If multiple limits are exceeded, all affected components apply their defined failure result."
     },
     "sequence": [
       "Apply only the supplied upward displacement; do not alter Reverse Gravity source profile.",
       "Consume measured tether slack; no free lifting, hauling, or slack-drawing.",
       "At first taut contact, zero upward velocity and sample the defined TEST_ONLY quasi-static load.",
       "Within both capacities, rope and support hold, block remaining upward displacement for this event, and do not stretch.",
-      "Above rope limit, use bound Conjure Rope overload result: rope vanishes and restraint ends.",
-      "Above synthetic support rating while rope is within its limit, the TEST_ONLY attachment releases; support stays fixed and undamaged.",
+      "If load exceeds the rope limit, apply the existing Conjure Rope overload result: the rope vanishes and restraint ends.",
+      "If load exceeds the synthetic support rating, its TEST_ONLY attachment releases without damaging or moving the support. Apply this independently of rope overload; if both limits are exceeded, both failure results occur.",
       "If restraint ends during the scripted event, apply only uncompleted displacement from the current point; do not replay prior movement.",
       "Cargo stays attached to the body unless separately detached; record body, rope, support, cargo, and custody."
     ],
@@ -168,7 +168,7 @@
           -10
         ],
         "kind": "Synthetic fixed support assembly anchored to stone",
-        "ratingLb": 500,
+        "ratingLb": 250,
         "custodian": "TEST_FIXTURE_CUSTODIAN_01",
         "permission": "TEST_ONLY granted",
         "overrating": "Attachment releases without moving/damaging support."
@@ -213,7 +213,7 @@
         "totalLb": 210,
         "upwardRestraintLb": 210,
         "ropeLimitLb": 300,
-        "supportRatingLb": 500,
+        "supportRatingLb": 250,
         "result": "Within both capacities."
       }
     },
@@ -264,5 +264,8 @@
     "Proposal does not revise the retained Director NO ruling.",
     "Historical anchored event is not replayed or used as evidence.",
     "W1 remains separate and unsealed; W2 and IE204-B02 remain held."
-  ]
+  ],
+  "revision": 2,
+  "supersedesSha256": "a5bc4984767032621603f22d545e192e880ae3f5937d5e7893d2051453a8c222",
+  "revisionNote": "The synthetic support rating is 250 lb, below the rope's 300-lb cap, so the support-release branch is reachable while the 210-lb expected case still holds. Each component now independently applies its own over-limit result at the taut load sample."
 }
