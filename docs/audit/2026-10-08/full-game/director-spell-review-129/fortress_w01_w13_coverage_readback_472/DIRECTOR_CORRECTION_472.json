@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "DIRECTOR-CORRECTION-FORTRESS-COVERAGE-472",
+  "recordedAtUtc": "2026-11-02T01:49:03Z",
+  "source": "GPT Director, Calibration review part 6",
+  "status": "COVERAGE_472_REQUIRES_SUCCESSOR_CORRECTION",
+  "finding": "Reconciliation472 incorrectly reopens five completed components by carrying forward readback429's older open statuses without incorporating later PASS dispositions.",
+  "requiredDispositionCorrections": [
+    {"row":"/rows/3","component":"PG328-W04","evidence":"W04 witness440 and DIRECTOR_READBACK_440.json","correctDisposition":"COMPONENT_SUFFICIENT_UNSEALED"},
+    {"row":"/rows/4","component":"PG328-W05","evidence":"W05/W10 joint witness453","correctDisposition":"COMPONENT_SUFFICIENT_UNSEALED"},
+    {"row":"/rows/9","component":"PG328-W10","evidence":"W05/W10 joint witness453","correctDisposition":"COMPONENT_SUFFICIENT_UNSEALED"},
+    {"row":"/rows/10","component":"PG328-W11","evidence":"W11 witness456 PASS; preserve limitation that invertible patches are not certified","correctDisposition":"COMPONENT_SUFFICIENT_UNSEALED"},
+    {"row":"/rows/11","component":"PG328-W12","evidence":"Corrected witness451 PASS; SHA-256 b0947b3c496cd1a28ab17ba382be2d96d30aa671560a3b781573bb3075ff93df","correctDisposition":"COMPONENT_SUFFICIENT_UNSEALED"}
+  ],
+  "verifiedByDirector": {
+    "availableWitnessBytesMatchPreviouslyReviewedHashes": true,
+    "additionalReplayOrReconstructionRequired": false,
+    "totalComponentRows": 13,
+    "componentSufficientUnsealed": 9,
+    "sealedTestOnlyComponents": 4,
+    "openIntegrations": 0,
+    "W13_471":"PASS_COMPONENT_SUFFICIENT_UNSEALED"
+  },
+  "nextAction": "Prepare a separate Fortress identity-level reconciliation binding the corrected coverage register to the retained procedure, historical coverage, qualifications and current authority. No further component construction is identified.",
+  "authority": {
+    "Fortress": "HELD_UNDER_PG200-B06_UNTIL_EXPLICIT_IDENTITY_DECISION",
+    "reviewedApplied": 830,
+    "pending": 18,
+    "acceptedUnapplied": 0,
+    "identityAcceptanceOrApplication": false,
+    "canonicalChanged": false,
+    "queueChanged": false
+  }
+}

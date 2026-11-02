@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 1,
+  "id": "FORTRESS-W01-W13-COVERAGE-RECONCILIATION-473",
+  "recordedAtUtc": "2026-11-02T01:49:03Z",
+  "status": "DIRECTOR_CORRECTED_READ_ONLY_COVERAGE_RECONCILIATION_NO_SEAL_NO_ACCEPTANCE",
+  "repository": "BordelonDevOps/DecenniumDescent",
+  "sourceCommit": "6cc400efd00499864671f2377ab7584a1f50f937",
+  "supersedes": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w01_w13_coverage_readback_472/FORTRESS_W01_W13_COVERAGE_RECONCILIATION_472.json",
+    "sha256": "b637ae6015ba5c34e120cbb2b6eb0a2eccb635f56a86208fe5eb82acac7ea8fd",
+    "reason": "It incorrectly reopened W04, W05, W10, W11, and W12 despite later component PASS dispositions."
+  },
+  "directorCorrection": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w01_w13_coverage_readback_472/DIRECTOR_CORRECTION_472.json",
+    "sha256": "4647809b9226db6764a56e3fb81145f4d50f69b34fd882ab9b69e8227544c3ed",
+    "requiredComponentSufficientUnsealed": 9,
+    "requiredSealedTestOnlyComponents": 4,
+    "requiredOpenIntegrations": 0,
+    "additionalReplayOrReconstructionRequired": false
+  },
+  "priorReadback": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w01_w13_coverage_readback_429/FORTRESS_W01_W13_COVERAGE_READBACK_429_BINDING_RECONCILED.json",
+    "readAtCommit": "158219a844102b0f0069b0e311abb9b8bda014ff",
+    "sha256": "3b52ab2479da5be1b61e4ff192a1326a870c57f55a0120bc8480f524b8dbc647"
+  },
+  "scope": {
+    "spellId": "conjure-demiplane-fortress",
+    "blockerId": "PG200-B06",
+    "identityDecision": "PENDING_SEPARATE_IDENTITY_LEVEL_RECONCILIATION_AND_EXPLICIT_DECISION",
+    "acceptedIds": [],
+    "appliedIds": [],
+    "heldIds": ["conjure-demiplane-fortress"],
+    "applicationAuthorized": false
+  },
+  "method": "Carried forward the seven dispositions and exact semantic review in binding-reconciled readback429. Verified all 29 unique prior source paths are unchanged from pinned commit 158219a844102b0f0069b0e311abb9b8bda014ff to source commit 6cc400efd00499864671f2377ab7584a1f50f937. Incorporated later Director PASS evidence for W04-440, W05/W10-453, W11-456, W12-451, and W13-471. Checked available successor witness bytes against previously reviewed hashes; no replay or reconstruction was repeated. Preserved W11's limitation that its invertible state-patch chain is not certified.",
+  "finding": "All 13 W01–W13 component obligations now have sufficient evidence or preserved TEST_ONLY seals. Nine rows are component-sufficient and unsealed; four rows retain TEST_ONLY seals. No component integration remains open. Fortress remains held until the separate identity-level reconciliation and explicit identity decision.",
+  "counts": {
+    "componentSufficientUnsealed": 9,
+    "sealedTestOnlyComponents": 4,
+    "openIntegrations": 0,
+    "rows": 13,
+    "unchangedPriorSourcePathsVerified": 29,
+    "changedPriorSourcePaths": 0
+  },
+  "rows": [
+    {"id":"PG328-W01","title":"Structure, panels, support and navigation","disposition":"COMPONENT_SUFFICIENT_UNSEALED","evidence":"Readback429; preserved earlier PASS"},
+    {"id":"PG328-W02","title":"Actual scribing work","disposition":"COMPONENT_SUFFICIENT_UNSEALED","evidence":"Readback429; preserved earlier PASS"},
+    {"id":"PG328-W03","title":"Legitimate rest/work inputs","disposition":"SEALED_TEST_ONLY_COMPONENT","evidence":"W03 evidence seal395 and director review393"},
+    {
+      "id":"PG328-W04",
+      "title":"Companion job",
+      "disposition":"COMPONENT_SUFFICIENT_UNSEALED",
+      "evidence":[
+        {"path":"docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w04_earth_pet_witness_440/W04_REPLAY_440_TESTONLY.json","sha256":"b4e85f014f52ea8af95dd714c37973834e0a77d0ba0b4be760697be6cce943e5"},
+        {"path":"docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w04_earth_pet_witness_440/DIRECTOR_READBACK_440.json","sha256":"866df1831e3ff572d1002908f242895bbe45e3678379ff5499f64a30707c2e79","status":"PASS_COMPONENT_SUFFICIENCY"}
+      ]
+    },
+    {
+      "id":"PG328-W05",
+      "title":"Creator death persistence",
+      "disposition":"COMPONENT_SUFFICIENT_UNSEALED",
+      "evidence":[
+        {"path":"docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w05_w10_joint_witness_453/W05_W10_WITNESS_453_TESTONLY.json","sha256":"8a76cac3a63c32e3c263cd26ceee574a8cec189e448df7d5504957d2875a400b"},
+        {"path":"docs/audit/2026-10-08/full-game/director-spell-review-129/DIRECTOR_READBACK_453.json","sha256":"c508386ea1a180e7d6f138d6abc0979957a39347ec81ca0fb2261bc8f6b6179c","status":"PASS_WITHIN_ADOPTED_TEST_ONLY_SCOPE"}
+      ]
+    },
+    {"id":"PG328-W06","title":"Permissions and reentry","disposition":"SEALED_TEST_ONLY_COMPONENT","evidence":"W06 seal375 Repack03"},
+    {"id":"PG328-W07","title":"Real occupied Dispel","disposition":"SEALED_TEST_ONLY_COMPONENT","evidence":"W07 seal374 Repack02"},
+    {"id":"PG328-W08","title":"Occupied Antimagic","disposition":"SEALED_TEST_ONLY_COMPONENT","evidence":"W08 seal412 Repack01"},
+    {"id":"PG328-W09","title":"Support loss and fall","disposition":"COMPONENT_SUFFICIENT_UNSEALED","evidence":"W09 replay428 and preserved director PASS"},
+    {
+      "id":"PG328-W10",
+      "title":"Corpse return",
+      "disposition":"COMPONENT_SUFFICIENT_UNSEALED",
+      "evidence":[
+        {"path":"docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w05_w10_joint_witness_453/W05_W10_WITNESS_453_TESTONLY.json","sha256":"8a76cac3a63c32e3c263cd26ceee574a8cec189e448df7d5504957d2875a400b"},
+        {"path":"docs/audit/2026-10-08/full-game/director-spell-review-129/DIRECTOR_READBACK_453.json","sha256":"c508386ea1a180e7d6f138d6abc0979957a39347ec81ca0fb2261bc8f6b6179c","status":"PASS_WITHIN_ADOPTED_TEST_ONLY_SCOPE"}
+      ]
+    },
+    {
+      "id":"PG328-W11",
+      "title":"Expired summon’s genuine cargo",
+      "disposition":"COMPONENT_SUFFICIENT_UNSEALED",
+      "evidence":[
+        {"path":"docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w11_cargo_owner_proposal_438/W11_WITNESS_456_TESTONLY.json","sha256":"beffa9d434ddd9d93a4402a980a6f4a3275ae851887edf3f8d75e4a095248921"},
+        {"path":"docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_REVIEW_STATE_466_REPACK10.json","sha256":"87b29d152f1eee9f8a1028cfc26db67f29d638ebe323ccb2f6e798a900648c2c","status":"PASS_TEST_ONLY_UNSEALED_COMPONENT_SUFFICIENCY; invertible state-patch chain not certified"}
+      ],
+      "limitation":"Invertible state-patch chain is not certified; preserve this qualification."
+    },
+    {
+      "id":"PG328-W12",
+      "title":"Mandatory reversion before return fit",
+      "disposition":"COMPONENT_SUFFICIENT_UNSEALED",
+      "evidence":[
+        {"path":"docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w12_reversion_owner_proposal_445/W12_WITNESS_451_TESTONLY.json","sha256":"b0947b3c496cd1a28ab17ba382be2d96d30aa671560a3b781573bb3075ff93df"},
+        {"path":"docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_REVIEW_STATE_466_REPACK10.json","sha256":"87b29d152f1eee9f8a1028cfc26db67f29d638ebe323ccb2f6e798a900648c2c","status":"PASS_WITHIN_ADOPTED_TEST_ONLY_COMPONENT_SCOPE; W451-C01/C02 pass; exact S030 restored by 1,154 forward/inverse operations"}
+      ]
+    },
+    {
+      "id":"PG328-W13",
+      "title":"Nested space and anchor settlement",
+      "disposition":"COMPONENT_SUFFICIENT_UNSEALED",
+      "evidence":[
+        {"path":"docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w13_nested_space_witness_471/W13_WITNESS_471_TESTONLY.json","sha256":"bfe66dbb98f196ca34e64484fc85c8b526d3baf93a9287811e3b3a6d9eda7658"},
+        {"path":"docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w13_nested_space_witness_471/DIRECTOR_READBACK_471.json","sha256":"71237a7bc6cc94ebaa2faf06cec8c65ecfe9f4f389b5e52a46328c16aad663d9","status":"PASS_ADOPTED_TEST_ONLY_COMPONENT_SUFFICIENCY"}
+      ]
+    }
+  ],
+  "authority": {
+    "reviewedApplied": 830,
+    "pending": 18,
+    "acceptedUnapplied": 0,
+    "Fortress": "HELD_UNDER_PG200-B06",
+    "changed": false
+  },
+  "identityLevelNextAction": {
+    "required": true,
+    "instructionsFromDirector": "Bind this corrected coverage register to the retained procedure, historical coverage, qualifications, and current authority; then proceed to the explicit identity decision.",
+    "requiresAdditionalComponentConstruction": false
+  },
+  "nonEffects": [
+    "No identity acceptance, application, or seal was issued.",
+    "No canonical, catalog, fixture, parent, queue, or campaign state changed.",
+    "Hypothetical TEST_ONLY witnesses are not campaign events."
+  ]
+}
