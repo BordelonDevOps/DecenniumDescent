@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "id": "CODEX-TRANSCRIBED-IE286-W2-GPT-REVIEW-03",
+  "reviewedAtUtc": "2026-11-02",
+  "classification": "GPT_DIRECTOR_UI_REVIEW_READBACK_REVISE_NOT_OWNER_ADOPTION_NOT_WITNESS",
+  "captureMethod": "Transcribed from the rendered GPT Director conversation; exact ruling content and corrections are recorded here.",
+  "sourceConversationUrl": "https://chatgpt.com/g/g-p-67f17555a8dc8191a2b5b81e6d8adc12-dungeon-crawler/c/6adc506d-8770-83ea-b64c-0345d9b9b682",
+  "identity": "reverse-gravity-field",
+  "blockerId": "IE204-B02",
+  "witnessId": "IE286-W2",
+  "reviewedCommit": "10b09beaf00b477e253a7ca335b6d36d9a523c52",
+  "reviewedProposalPath": "docs/audit/2026-10-08/full-game/director-spell-review-129/reverse_gravity_ie286_w2_owner_proposal_2026-11-02/OWNER_PROPOSAL_IE286_W2_UPWARD_LOAD_RULE_01.json",
+  "reviewedProposalBytes": 45056,
+  "reviewedProposalSha256": "2e467a1ac3ce49025252de16f574f6e6c90f34bb2a3c54d359145ad514d6ceff",
+  "disposition": "REVISE",
+  "readyForOwnerAdoption": false,
+  "sourceBindingCheck": "All ten declared source bindings and Queue479 match.",
+  "assessment": "The Director verified the exact revision-4 bytes, hash, commit, ten source bindings, and queue. Release/property states, decision-only probes, post-vanish masses, currently-slack wording, V0/V1 timing, Action accounting, load arithmetic, and immediate rechecks pass. Three geometry issues remain: creation-cell/shelf overlap and inadequate whole-coil volume, unsupported bent-path length, and an unrecorded automatic return of slack to the tray.",
+  "passedAtProposalDesignLevel": [
+    "Separate release/property states, decision-only failure probes, and post-vanish masses of 291 lb and 300 lb.",
+    "Currently-slack base-branch wording and deterministic V0/V1 scheduling with the target's ordinary Action opportunity.",
+    "Load arithmetic and immediate rechecks remain valid."
+  ],
+  "requiredCorrections": [
+    {
+      "id": "W2-R4-C01",
+      "topic": "creation-space fit and whole-coil envelope",
+      "pointers": [
+        "/proposedTestOnlyRule/fixture/caster/cast/creationPointPremise",
+        "/proposedTestOnlyRule/fixture/spatialLayout/creationSpace",
+        "/proposedTestOnlyRule/fixture/spatialLayout/supportedSurfaces/1"
+      ],
+      "requirement": "The creation cell centered at z=1.5 with height 0.1 occupies z=1.45–1.55 and overlaps the shelf whose top is z=1.5. Define consistent shelf/cell bounds with no positive-volume overlap. Bind the whole coil's occupied envelope: the 0.015 ft3 cell is smaller than the rope's approximately 0.098175 ft3 material volume at 50 ft and radius 0.025 ft. A clear center point does not establish an unoccupied, supported coil."
+    },
+    {
+      "id": "W2-R4-C02",
+      "topic": "bent path lacks a routing constraint",
+      "pointers": [
+        "/proposedTestOnlyRule/fixture/tether",
+        "/proposedTestOnlyRule/fixture/spatialLayout/ropeChannel",
+        "/proposedTestOnlyRule/expectedSettlement/firstTaut"
+      ],
+      "requirement": "The 0.4-ft horizontal plus 9.6-ft vertical path needs a defined guide/contact maintaining that bend as the target rises. Endpoints alone do not establish it. An unobstructed straight span would initially measure 9.608330 ft and become taut after approximately 40.398400 ft. Specify a real TEST_ONLY routing constraint, its motion/load scope/clearance, or use coherent straight-span geometry and update dependent timing and positions."
+    },
+    {
+      "id": "W2-R4-C03",
+      "topic": "automatic slack return to tray",
+      "pointers": [
+        "/proposedTestOnlyRule/expectedSettlement/rope/locationAtLanding",
+        "/proposedTestOnlyRule/fixture/tether/slackStorage",
+        "/proposedTestOnlyRule/fixture/spatialLayout/supportedSurfaces/4"
+      ],
+      "requirement": "The branch asserts that all 40 ft returns to the adjacent tray at landing without a passive routing mechanism or restowing operation. Specify a coherent passive guide/chute, record lawful manual restowing after landing with timing/Action accounting, or retain the actual loose-rope location. Do not silently grant a coil command."
+    }
+  ],
+  "sourceBasis": "The Director tied these corrections to the retained rope procedure's /operational/targets, /operational/effect, and /operational/limitations: creation requires unoccupied space, physical length/path matters, and commanded coiling has its own cost.",
+  "fullW2IntegrationRequirements": "A corrected design still requires separate owner adoption. Full W2 integration additionally needs the retained Reverse Gravity procedure, source-backed caster access/preparation, and complete legal paid-cast histories for both spells, including components, budgets, class bookkeeping, interruptions, clocks, and actual damage/HP settlement. Synthetic rpPaid:2 does not establish those records.",
+  "nonEffects": [
+    "No adoption wording is issued for revision 4; the retained source-qualification NO remains unchanged.",
+    "W1 PASS remains unsealed; IE204-B02 remains HELD.",
+    "Queue479 remains 834 applied / 14 pending / 0 accepted-unapplied, Reverse Gravity first.",
+    "No witness, seal, identity disposition, or state changes."
+  ],
+  "queueReadback": {
+    "applied": 834,
+    "pending": 14,
+    "acceptedUnapplied": 0,
+    "nextIdentity": "reverse-gravity-field",
+    "blocker": "IE204-B02"
+  }
+}
