@@ -3,12 +3,12 @@
   "status": "PARTIAL-AUTHORED-REVIEW-CATALOG",
   "scope": "Discovery index for the complete authored procedures; read the whole referenced card and shared rules. This index never grants acquisition or runtime implementation. Preserved source catalog labels describe that older representation; this index records current authored review coverage.",
   "authoredCounts": {
-    "reviewed": 831,
-    "pending": 17
+    "reviewed": 832,
+    "pending": 16
   },
   "representationCounts": {
     "preservedLegacyOperationalRecords": 276,
-    "completeReviewedStandaloneProcedures": 555
+    "completeReviewedStandaloneProcedures": 556
   },
   "sourceCatalogSha256": "f52cf6a4a4673897615a74c7c67dcba798c431362d4357e71ee552cc7c5d31f8",
   "standaloneEnvelopeSha256": "506393b1131e3ed099effbe55b05d6b00a5193e503b02f065a5f84751a2955fe",
@@ -24794,12 +24794,110 @@
     {
       "id": "elemental-shell",
       "name": "Elemental Shell",
-      "authoredStatus": "pending-authored-procedure",
-      "procedureFile": "catalog.json",
-      "procedurePointer": null,
-      "wholeCardPointer": "/spells/769",
+      "authoredStatus": "reviewed-authored-operational-playtest",
+      "procedureFile": "../spell_candidates/rank9elementalshell_static_reviewed_483/MODEL.json",
+      "procedurePointer": "/spells/0/procedure",
+      "wholeCardPointer": "/spells/0",
       "sourceStatus": "blocked-pending-operational-review",
-      "priorCatalogSelectionStatusUnchanged": true
+      "priorCatalogSelectionStatusUnchanged": true,
+      "procedureTextPointer": "/spells/0/procedure/procedureContent",
+      "wholeCardIdField": "id",
+      "sourceCatalogWholeCardPointer": "/spells/769",
+      "directorProcedureRecordPointer": "/spells/0/directorProcedureRecord",
+      "sharedRulesPointer": "/sharedRequirements",
+      "spellLocalRequirementsPointer": "/spells/0/procedure",
+      "runtimeSelectionEnabled": false,
+      "completeEvidenceRoot": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9elementalshell_static_reviewed_483",
+      "completeEnvelopeBinding": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9elementalshell_static_reviewed_483/MODEL.json",
+        "bytes": 100691,
+        "sha256": "003ec37a9afad3124f4a7a59b75f5b8c790d1a16fe0e02c835a69f8c7f4be02d",
+        "crc32": "ad7feee9"
+      },
+      "caseEvidenceBindings": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9elementalshell_static_reviewed_483/CASE_COVERAGE.json",
+        "bytes": 10763,
+        "sha256": "87de93987953430a8a68ae73383211b848385c1c7f1b3de515e743dd38d80a58",
+        "crc32": "37c89b68"
+      },
+      "candidatePackageManifestBinding": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9elementalshell_static_reviewed_483/CANDIDATE_PACKAGE_MANIFEST.json",
+        "bytes": 4342,
+        "sha256": "fa6f7c3cfaba27e2216faec253c0a3d893ea091258d20e6b61c6379dd6d06363",
+        "crc32": "aae99858"
+      },
+      "authoredAcceptanceReceipt": {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/elemental_shell_static_application_483/DIRECTOR_ACCEPTANCE_483.json",
+        "bytes": 3298,
+        "sha256": "ad4341e75aff4ba4157e96c2f4074b63583f78d921a97e1eee78c4cf679aba1b",
+        "crc32": "6658f191"
+      },
+      "authoredApplicationReceipt": {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/elemental_shell_static_application_483/APPLICATION_483.json",
+        "bytes": 5652,
+        "sha256": "d6136fe3c2ce92249c721fc2bd6812d485182d9df33621136c546d079a8c4218",
+        "crc32": "66551465"
+      },
+      "sourceProcedureBinding": {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/elemental_shell_caster_premise_proposal_468/payload/sources/ELEMENTAL_SHELL_PROCEDURE_SOURCE.json",
+        "bytes": 22777,
+        "sha256": "31794a20cfb27e44cab1e2b8b65b79eb22a5b0a9745e378691b8cebbd2242f9f",
+        "crc32": "087b5ea8"
+      },
+      "historicalCoverageBinding": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9elementalshell_static_reviewed_483/CASE_COVERAGE.json",
+        "bytes": 10763,
+        "sha256": "87de93987953430a8a68ae73383211b848385c1c7f1b3de515e743dd38d80a58",
+        "crc32": "37c89b68"
+      },
+      "coverageReconciliationBinding": {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/elemental_shell_identity_reconciliation_483/SHELL_IDENTITY_RECONCILIATION_483.json",
+        "bytes": 41662,
+        "sha256": "fef37090a27f361230c2681f55a2a2c6aedd12d368cd7d2521da09005a105407",
+        "crc32": "de7935a5"
+      },
+      "directorReadbackBinding": {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/elemental_shell_static_application_483/DIRECTOR_READBACK_483.json",
+        "bytes": 3563,
+        "sha256": "b1c4ec76631fdebc2c6e8f7f318d19d6665acc191e2792ff0335430f54c5a8e2",
+        "crc32": "9e18e9ca"
+      },
+      "reviewId": "DIRECTOR-ELEMENTAL-SHELL-IDENTITY-483",
+      "accepted": true,
+      "applied": true,
+      "closedBlockerIds": [
+        "DF218-B01",
+        "DF218-B02"
+      ],
+      "retainedQualificationIds": [
+        "DF186-QH-SOURCE-ACCESS",
+        "DF186-QH-CONTENT-PHYSICAL",
+        "DF186-QH-RUNTIME",
+        "DF186-QH-HUMAN-PLAY",
+        "DF186-QH-BALANCE",
+        "DF186-QH-COSMOLOGY",
+        "DF186-QH-DOMAIN-CLOSURE",
+        "DF186-QH-RELEASE",
+        "DF186-QH-INHERITED",
+        "DF218-Q-IMPLEMENTATION"
+      ],
+      "retainedQualifications": {
+        "current": "Static authored decision only; authority baseline808/40/0 unchanged. Applied=false. No implementation/runtime/human-play/balance/cosmology/domain-closure/release approval.",
+        "priorUnchanged": {
+          "applicationPerformed": false,
+          "balanceApproved": false,
+          "canonicalFilesEdited": false,
+          "cosmologyApproved": false,
+          "domainClosed": false,
+          "humanPlaytested": false,
+          "releaseApproved": false,
+          "runtimeExecuted": false,
+          "staticAuthoredReviewOnly": true,
+          "suppliedOrHistoricalProgramsExecuted": false
+        }
+      },
+      "historicalCandidateLabelsPreserved": true,
+      "applicationScope": "ELEMENTAL_SHELL_AUTHORED_REVIEW_INDEX_ONLY"
     },
     {
       "id": "body-to-void",
