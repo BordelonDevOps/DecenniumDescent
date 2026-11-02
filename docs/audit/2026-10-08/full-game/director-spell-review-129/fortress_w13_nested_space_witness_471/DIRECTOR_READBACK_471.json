@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "id": "DIRECTOR-READBACK-FORTRESS-W13-471",
+  "recordedAtUtc": "2026-11-02T01:43:06Z",
+  "source": "GPT Director, Calibration review part 6",
+  "status": "PASS_ADOPTED_TEST_ONLY_COMPONENT_SUFFICIENCY",
+  "reviewedPacket": {
+    "witnessPath": "docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w13_nested_space_witness_471/W13_WITNESS_471_TESTONLY.json",
+    "witnessSha256": "bfe66dbb98f196ca34e64484fc85c8b526d3baf93a9287811e3b3a6d9eda7658",
+    "tracePath": "docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w13_nested_space_witness_471/W13_LIFECYCLE_TRACE_471.json",
+    "traceSha256": "4b7c71274d1ed66ba0122af7adc3782da2d114d0fcd0c706ebefd8933e6c5c13",
+    "archivePath": "docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w13_nested_space_witness_471/DD_Fortress_W13_Reversible_Witness_471_TESTONLY.zip",
+    "archiveBytes": 122257,
+    "archiveSha256": "2a1322f1dcb5b6b0fe9dd6e1a664fe338bb81af3176d89a28dc07f6d04e507ec",
+    "adoptedProposalId": "OWNER-PG328-W13-SUPPORT-426-REPACK01-TESTONLY-PROPOSAL",
+    "adoptedProposalSha256": "f4dfbf3403c63f603ef188be972c4425cc627309d4fb77cc86934afecd6b8a9d"
+  },
+  "directorFinding": "W13-471: PASS for adopted TEST_ONLY component sufficiency. All four W469 corrections are resolved; no remaining correction identified.",
+  "verifiedCorrections": [
+    {
+      "id": "W469-C01",
+      "finding": "Fortress ends at 30.3 upon successful Dispel. Q27 settles separately at 30.31, without a second termination."
+    },
+    {
+      "id": "W469-C02",
+      "finding": "B’s right-hand state and cargo bounds agree through pickup, entry and release. Focus-B and pack-B enter the child and return with B at 25.31."
+    },
+    {
+      "id": "W469-C03",
+      "finding": "The tile retains the exact existing Fortress space ID until its Q27 return."
+    },
+    {
+      "id": "W469-C04",
+      "finding": "Carried-item bounds and cargo/tile support patches now match their current positions and settlement locations."
+    }
+  ],
+  "independentChecksConfirmedByDirector": {
+    "witnessTraceAndArchiveHashes": true,
+    "archiveCrcAndMemberBindings": true,
+    "proposal448AndAdoptionUnchanged": true,
+    "sourceBindingCount": 17,
+    "eventCount": 47,
+    "forwardOperationCount": 526,
+    "inverseOperationCount": 526,
+    "restoresExactParentS030": true,
+    "previouslyVerifiedRouteAndDoorGeometryPreserved": true,
+    "childTerminationAndP5CloseOccurWhileFortressSurvives": true,
+    "resourcesTurnBudgetsConcentrationRechargeAndInheritedClocksUnchanged": true
+  },
+  "decisionBoundary": {
+    "componentSufficient": true,
+    "sealed": false,
+    "FortressIdentityAccepted": false,
+    "FortressApplied": false,
+    "campaignClaimed": false,
+    "canonicalRuleChanged": false,
+    "queueChanged": false,
+    "additionalOwnerAdoptionOrW13ReconstructionRequired": false
+  },
+  "authority": {
+    "Fortress": "HELD_UNDER_PG200-B06",
+    "reviewedApplied": 830,
+    "pending": 18,
+    "acceptedUnapplied": 0
+  }
+}

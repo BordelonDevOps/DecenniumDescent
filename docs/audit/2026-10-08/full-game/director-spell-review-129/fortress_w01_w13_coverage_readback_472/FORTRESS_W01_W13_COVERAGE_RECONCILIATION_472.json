@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "id": "FORTRESS-W01-W13-COVERAGE-RECONCILIATION-472",
+  "recordedAtUtc": "2026-11-02T01:43:06Z",
+  "status": "READ_ONLY_COVERAGE_RECONCILIATION_NO_SEAL_NO_ACCEPTANCE",
+  "repository": "BordelonDevOps/DecenniumDescent",
+  "sourceCommit": "6cc400efd00499864671f2377ab7584a1f50f937",
+  "priorReadback": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w01_w13_coverage_readback_429/FORTRESS_W01_W13_COVERAGE_READBACK_429_BINDING_RECONCILED.json",
+    "readAtCommit": "158219a844102b0f0069b0e311abb9b8bda014ff",
+    "sha256": "3b52ab2479da5be1b61e4ff192a1326a870c57f55a0120bc8480f524b8dbc647"
+  },
+  "scope": {
+    "spellId": "conjure-demiplane-fortress",
+    "blockerId": "PG200-B06",
+    "identityDecision": "NOT_EXECUTED",
+    "acceptedIds": [],
+    "appliedIds": [],
+    "heldIds": ["conjure-demiplane-fortress"],
+    "applicationAuthorized": false
+  },
+  "method": "Carried forward the seven prior component sufficiency/seal dispositions and their exact semantic review from readback 429. Verified that all 23 prior verified-record paths and all 7 primary-component paths are unchanged between pinned commit 158219a844102b0f0069b0e311abb9b8bda014ff and source commit 6cc400efd00499864671f2377ab7584a1f50f937 (29 unique paths). Added the GPT Director PASS for W13-471 and changed only the W13 component disposition. No unchanged component was semantically replayed.",
+  "finding": "Eight component obligations now have existing sufficiency or TEST_ONLY seal dispositions. Five integrations remain open. Fortress is not ready for identity acceptance. No new campaign fact or witness is asserted by this reconciliation.",
+  "counts": {
+    "componentSufficientUnsealed": 4,
+    "sealedTestOnlyComponents": 4,
+    "openIntegrations": 5,
+    "rows": 13,
+    "unchangedPriorSourcePathsVerified": 29,
+    "changedPriorSourcePaths": 0
+  },
+  "rows": [
+    {"id":"PG328-W01","title":"Structure, panels, support and navigation","disposition":"COMPONENT_SUFFICIENT_UNSEALED","carriedForwardFrom429":true},
+    {"id":"PG328-W02","title":"Actual scribing work","disposition":"COMPONENT_SUFFICIENT_UNSEALED","carriedForwardFrom429":true},
+    {"id":"PG328-W03","title":"Legitimate rest/work inputs","disposition":"SEALED_TEST_ONLY_COMPONENT","carriedForwardFrom429":true},
+    {"id":"PG328-W04","title":"Companion job","disposition":"OPEN_INTEGRATION_NOT_NEWLY_REPLAYED","carriedForwardFrom429":true},
+    {"id":"PG328-W05","title":"Creator death persistence","disposition":"OPEN_INTEGRATION_NOT_NEWLY_REPLAYED","carriedForwardFrom429":true},
+    {"id":"PG328-W06","title":"Permissions and reentry","disposition":"SEALED_TEST_ONLY_COMPONENT","carriedForwardFrom429":true},
+    {"id":"PG328-W07","title":"Real occupied Dispel","disposition":"SEALED_TEST_ONLY_COMPONENT","carriedForwardFrom429":true},
+    {"id":"PG328-W08","title":"Occupied Antimagic","disposition":"SEALED_TEST_ONLY_COMPONENT","carriedForwardFrom429":true},
+    {"id":"PG328-W09","title":"Support loss and fall","disposition":"COMPONENT_SUFFICIENT_UNSEALED","carriedForwardFrom429":true},
+    {"id":"PG328-W10","title":"Corpse return","disposition":"OPEN_INTEGRATION_NOT_NEWLY_REPLAYED","carriedForwardFrom429":true},
+    {"id":"PG328-W11","title":"Expired summon’s genuine cargo","disposition":"OPEN_INTEGRATION_NOT_NEWLY_REPLAYED","carriedForwardFrom429":true},
+    {"id":"PG328-W12","title":"Mandatory reversion before return fit","disposition":"OPEN_INTEGRATION_NOT_NEWLY_REPLAYED","carriedForwardFrom429":true},
+    {
+      "id":"PG328-W13",
+      "title":"Nested space and anchor settlement",
+      "disposition":"COMPONENT_SUFFICIENT_UNSEALED",
+      "carriedForwardFrom429":false,
+      "directorReadbackPath":"docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w13_nested_space_witness_471/DIRECTOR_READBACK_471.json",
+      "witnessSha256":"bfe66dbb98f196ca34e64484fc85c8b526d3baf93a9287811e3b3a6d9eda7658",
+      "directorDecision":"PASS_ADOPTED_TEST_ONLY_COMPONENT_SUFFICIENCY"
+    }
+  ],
+  "openIntegrations": ["PG328-W04","PG328-W05","PG328-W10","PG328-W11","PG328-W12"],
+  "authority": {
+    "reviewedApplied": 830,
+    "pending": 18,
+    "acceptedUnapplied": 0,
+    "Fortress": "HELD_UNDER_PG200-B06",
+    "changed": false
+  },
+  "nonEffects": [
+    "No identity acceptance, application, or seal was issued.",
+    "No canonical, catalog, fixture, parent, queue, or campaign state changed.",
+    "Existing component dispositions are carried forward as reviewed; only W13 reflects a new director PASS.",
+    "Hypothetical TEST_ONLY witnesses are not campaign events."
+  ]
+}
