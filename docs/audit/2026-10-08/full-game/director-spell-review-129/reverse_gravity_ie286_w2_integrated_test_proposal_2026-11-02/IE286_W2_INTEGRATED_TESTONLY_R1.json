@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "IE286-W2-INTEGRATED-TESTONLY-R1",
-  "createdAtUtc": "2026-11-02T22:05:27.758Z",
+  "createdAtUtc": "2026-11-02T22:12:16.949Z",
   "classification": "CONSTRUCTED_SYNTHETIC_STATIC_AUTHORED_PROCEDURE_WITNESS_SUBMITTED_FOR_DIRECTOR_REVIEW_NOT_RUNTIME_OR_CAMPAIGN_EVIDENCE",
   "repository": "BordelonDevOps/DecenniumDescent",
   "branch": "main",
@@ -1731,47 +1731,1965 @@
         "hashScope": "SHA-256 is computed over the exact committed Git blob data bytes; CRLF-transcoded copies have a different SHA-256."
       }
     },
-    "initialState": "S0 at t<0: synthetic actors consenting; completed long rest and 60-minute preparation; initial RP64/HP/conditions/class feature state recorded; no rope; empty matrix-family encounter history.",
+    "initialState": {
+      "stateId": "S0",
+      "timeSeconds": 0,
+      "authority": "synthetic TEST_ONLY projection; no campaign or runtime claim",
+      "longRest": {
+        "completedBeforeT0": true,
+        "preparationMinutes": 60,
+        "spellEfficiencySelected": false,
+        "arcaneWard": {
+          "active": true,
+          "damageType": "force",
+          "expires": "next long rest",
+          "mitigatesBludgeoning": false
+        }
+      },
+      "actors": {
+        "caster": {
+          "id": "TEST_CASTER_01",
+          "class": "Wizard",
+          "classLevel": 17,
+          "totalCharacterLevel": 17,
+          "intelligence": 20,
+          "intelligenceModifier": 5,
+          "schoolSpecialization": "Conjuration",
+          "heroPath": "Spellbinder",
+          "positionFeet": [
+            3,
+            -2,
+            0
+          ],
+          "bodyBoundsFeet": {
+            "x": [
+              2.5,
+              3.5
+            ],
+            "y": [
+              -2.5,
+              -1.5
+            ],
+            "z": [
+              0,
+              6
+            ]
+          },
+          "massLb": 160,
+          "hp": {
+            "current": 60,
+            "maximum": 60,
+            "temporary": 0,
+            "conditions": [],
+            "damageResistances": [
+              "force"
+            ],
+            "damageImmunities": [],
+            "pronePrevention": false
+          },
+          "rp": {
+            "current": 64,
+            "maximum": 64
+          },
+          "dissonance": {
+            "current": 0,
+            "limit": 13,
+            "formula": "max(4,2+PB+max(0,Int modifier))",
+            "inputs": {
+              "pb": 6,
+              "intelligenceModifier": 5
+            }
+          },
+          "matrixFamiliesCastThisEncounter": [],
+          "lastMatrixFamily": null,
+          "refrain": 0,
+          "perTurnSpellCastFlag": false,
+          "perTurnMagicalClassAbilityFlag": false,
+          "pendingCast": false,
+          "actionAvailable": true,
+          "bonusActionAvailable": true,
+          "reactionAvailable": true,
+          "counterspell": {
+            "ready": true,
+            "rechargeRounds": 0,
+            "maximumRechargeRounds": 2,
+            "attempts": 0
+          },
+          "preparedMatrix": {
+            "completedAfterLongRest": true,
+            "studyMinutes": 60,
+            "matrixEfficiencyFeature": false,
+            "normalCapacity": 22,
+            "normalPreparedCopies": [
+              {
+                "spell": "conjure-rope",
+                "copies": 11,
+                "modifications": []
+              },
+              {
+                "spell": "reverse-gravity-field",
+                "copies": 11,
+                "modifications": []
+              }
+            ],
+            "arcaneTraditionExtra": {
+              "school": "Conjuration",
+              "spell": "conjure-rope",
+              "copies": 1,
+              "countsAgainstNormalCapacity": false
+            },
+            "totalPreparedCopies": 23,
+            "duplicateRule": "Underlying spell name defines one matrix family; duplicate copies do not refresh first-cast exemption or Refrain.",
+            "arcaneWardSelection": {
+              "damageType": "force",
+              "reason": "No prepared Conjuration spell deals damage; provisional fallback.",
+              "duration": "until next long rest"
+            },
+            "spellEfficiency": {
+              "selected": false,
+              "effect": "No discount permission or deadline is created."
+            }
+          },
+          "equipment": [
+            {
+              "id": "TEST_CASTER_FOCUS_01",
+              "kind": "arcane focus",
+              "massLb": 1,
+              "custody": "TEST_CASTER_01",
+              "hand": "left",
+              "consumed": false
+            },
+            {
+              "id": "TEST_CASTER_SPELLBOOK_01",
+              "kind": "Wizard spellbook",
+              "massLb": 3,
+              "custody": "TEST_CASTER_01",
+              "location": "belt"
+            },
+            {
+              "id": "TEST_CASTER_CLOTHING_01",
+              "kind": "worn clothing",
+              "massLb": 4,
+              "custody": "TEST_CASTER_01"
+            }
+          ],
+          "components": {
+            "voiceAudible": true,
+            "leftHand": "holds ordinary focus",
+            "rightHand": "free for somatic component",
+            "mapping": "same for both casts"
+          },
+          "ward": {
+            "active": true,
+            "damageType": "force",
+            "expires": "next long rest",
+            "mitigatesBludgeoning": false
+          },
+          "spellEfficiencySelected": false
+        },
+        "target": {
+          "id": "TEST_TARGET_01",
+          "consent": "TEST_ONLY granted",
+          "custodian": "TEST_TARGET_01",
+          "bodyMassLb": 180,
+          "gearAndCargoLb": 20,
+          "bodyFeet": {
+            "initial": [
+              1,
+              0,
+              0
+            ],
+            "harnessPosition": [
+              0,
+              0,
+              1.5
+            ],
+            "bodyEnvelope": {
+              "x": [
+                0.75,
+                1.25
+              ],
+              "y": [
+                -0.5,
+                0.5
+              ],
+              "z": [
+                0,
+                6
+              ]
+            }
+          },
+          "harness": {
+            "id": "TEST_WAIST_HARNESS_01",
+            "custody": "TEST_TARGET_01",
+            "permission": "TEST_ONLY granted",
+            "massLb": 5,
+            "sideDRingPositionFeet": [
+              0,
+              0,
+              1.5
+            ],
+            "assemblyId": "TEST_COMPLETE_LOAD_BEARING_ASSEMBLY_01",
+            "sideLinkLengthFeet": 0.75
+          },
+          "gearInventory": [
+            {
+              "id": "TEST_WAIST_HARNESS_01",
+              "massLb": 5,
+              "countedInGearAndCargoLb": true
+            },
+            {
+              "id": "TEST_HARNESS_CONNECTOR_01",
+              "massLb": 1,
+              "countedInGearAndCargoLb": true
+            },
+            {
+              "id": "TEST_SATCHEL_01",
+              "massLb": 5,
+              "countedInGearAndCargoLb": true
+            },
+            {
+              "id": "TEST_OTHER_GEAR_01",
+              "massLb": 9,
+              "countedInGearAndCargoLb": true
+            }
+          ],
+          "cargo": {
+            "id": "TEST_SATCHEL_01",
+            "massLb": 5,
+            "includedInGearAndCargoLb": true,
+            "custody": "TEST_TARGET_01",
+            "consent": "TEST_ONLY granted"
+          },
+          "positionFeet": [
+            1,
+            0,
+            0
+          ],
+          "bodyBoundsFeet": {
+            "x": [
+              0.75,
+              1.25
+            ],
+            "y": [
+              -0.5,
+              0.5
+            ],
+            "z": [
+              0,
+              6
+            ]
+          },
+          "hp": {
+            "current": 40,
+            "maximum": 40,
+            "temporary": 0,
+            "conditions": [],
+            "fallDamageResistance": false,
+            "fallDamageImmunity": false,
+            "pronePrevention": false
+          }
+        },
+        "handlerA": {
+          "id": "TEST_HANDLER_A",
+          "positionFeet": [
+            -1,
+            2,
+            0
+          ],
+          "bodyBoundsFeet": {
+            "x": [
+              -1.4,
+              -0.6
+            ],
+            "y": [
+              1.65,
+              2.35
+            ],
+            "z": [
+              0,
+              6
+            ]
+          },
+          "custody": "TEST_FIXTURE_CUSTODIAN_01",
+          "consent": "TEST_ONLY granted"
+        },
+        "handlerB": {
+          "id": "TEST_HANDLER_B",
+          "positionFeet": [
+            0,
+            1,
+            0
+          ],
+          "startPositionFeet": [
+            0,
+            1,
+            0
+          ],
+          "exitPositionFeet": [
+            -2,
+            2,
+            0
+          ],
+          "bodyEnvelopeFeet": {
+            "x": [
+              -0.35,
+              0.35
+            ],
+            "y": [
+              0.65,
+              1.35
+            ],
+            "z": [
+              0,
+              6
+            ]
+          },
+          "carriedGearEnvelopeFeet": {
+            "x": [
+              -0.5,
+              0.5
+            ],
+            "y": [
+              0.5,
+              1.5
+            ],
+            "z": [
+              0,
+              6
+            ]
+          },
+          "armReachFeet": 2.25,
+          "custody": "TEST_FIXTURE_CUSTODIAN_01",
+          "permission": "TEST_ONLY granted",
+          "role": "Receives the upper free end directly from A at [-0.5,0,0.9], within B's 2.25-ft reach, clips it to the consenting target's side D-ring at [0,0,1.5] (1.803 ft from B), then exits to the upper bay. B does not reach to or retrieve the coil from the shelf.",
+          "consent": "TEST_ONLY granted"
+        }
+      },
+      "items": {
+        "rope": null,
+        "focus": {
+          "id": "TEST_CASTER_FOCUS_01",
+          "custody": "TEST_CASTER_01",
+          "massLb": 1,
+          "hand": "left"
+        },
+        "spellbook": {
+          "id": "TEST_CASTER_SPELLBOOK_01",
+          "custody": "TEST_CASTER_01",
+          "massLb": 3,
+          "location": "belt"
+        },
+        "clothing": {
+          "id": "TEST_CASTER_CLOTHING_01",
+          "custody": "TEST_CASTER_01",
+          "massLb": 4
+        },
+        "targetGear": [
+          {
+            "id": "TEST_WAIST_HARNESS_01",
+            "massLb": 5,
+            "countedInGearAndCargoLb": true
+          },
+          {
+            "id": "TEST_HARNESS_CONNECTOR_01",
+            "massLb": 1,
+            "countedInGearAndCargoLb": true
+          },
+          {
+            "id": "TEST_SATCHEL_01",
+            "massLb": 5,
+            "countedInGearAndCargoLb": true
+          },
+          {
+            "id": "TEST_OTHER_GEAR_01",
+            "massLb": 9,
+            "countedInGearAndCargoLb": true
+          }
+        ]
+      },
+      "fixture": {
+        "support": {
+          "id": "TEST_FIXED_SUPPORT_01",
+          "positionFeet": [
+            0,
+            0,
+            -8.1
+          ],
+          "kind": "Synthetic fixed wall bracket on the lower service-channel wall, 0.4 ft above the supported lower ledge.",
+          "ratingLb": 250,
+          "ratingScope": "TEST_ONLY complete load-bearing assembly rating. Bracket, support-side weak link, both terminal connections, both connectors, waist harness and D-ring are included within the same 250-lb rating; no included element receives a higher independent capacity.",
+          "custodian": "TEST_FIXTURE_CUSTODIAN_01",
+          "permission": "TEST_ONLY granted",
+          "assemblyId": "TEST_COMPLETE_LOAD_BEARING_ASSEMBLY_01",
+          "overrating": "Above 250 lb, the support-side weak link releases immediately; the fixed bracket and support-side connector remain with the fixture. The intact rope stays attached to the target-side harness connector unless its separate 300-lb overload condition is also met.",
+          "supportConnectorId": "TEST_SUPPORT_CONNECTOR_01",
+          "supportWeakLinkId": "TEST_SUPPORT_SIDE_WEAK_LINK_01",
+          "envelopeFeet": {
+            "x": [
+              -0.05,
+              0.05
+            ],
+            "y": [
+              -0.05,
+              0.05
+            ],
+            "z": [
+              -8.15,
+              -8.05
+            ]
+          },
+          "currentLoadLb": 0,
+          "assemblyState": "intact",
+          "attached": false
+        },
+        "surfaces": [
+          {
+            "id": "TEST_PLATFORM_01",
+            "topZ": 0,
+            "boundsFeet": {
+              "x": [
+                -3.5,
+                4
+              ],
+              "y": [
+                -3,
+                3
+              ]
+            },
+            "supports": "Target initially, upper handler/caster bays, and upper stair landing."
+          },
+          {
+            "id": "TEST_UPPER_COIL_SHELF_01",
+            "centerFeet": [
+              -2.2,
+              0,
+              1.45
+            ],
+            "topZ": 1.5,
+            "dimensionsFeet": [
+              1,
+              1,
+              0.1
+            ],
+            "supportCapacityLb": 20,
+            "supports": "The 10-lb stacked-loop rope coil only before transfer. TEST_ONLY 20-lb static rating. Shelf is below the creation volume and carries no tether load."
+          },
+          {
+            "id": "TEST_SERVICE_STAIR_01",
+            "boundsFeet": {
+              "x": [
+                -2.75,
+                -0.5
+              ],
+              "y": [
+                0.75,
+                3
+              ],
+              "z": [
+                -8.5,
+                0
+              ]
+            },
+            "route": "Continuous supported treads/handrails between [-1,2,0] and [-1,2,-8.5], with a supported landing at z=-4.25; bounds x[-2.75,-0.5], y[0.75,3]."
+          },
+          {
+            "id": "TEST_LOWER_SERVICE_LEDGE_01",
+            "topZ": -8.5,
+            "boundsFeet": {
+              "x": [
+                -3,
+                3
+              ],
+              "y": [
+                -1,
+                3
+              ]
+            },
+            "supports": "Lower bracket access, the handler's lower exit, and TEST_LOWER_SLACK_PATCH_01; bracket is fixed 0.4 ft above ledge."
+          },
+          {
+            "id": "TEST_LOWER_SLACK_PATCH_01",
+            "topZ": -8.5,
+            "boundsFeet": {
+              "x": [
+                0.6,
+                2.6
+              ],
+              "y": [
+                -1,
+                1
+              ]
+            },
+            "supports": "Open lower-ledge patch for 39.260906 ft of loose, irregular rope bights at setup and corresponding slack location proposed at landing. The bight path begins and ends at patch entry [0.6,0,-8.5]. One continuous 10.017984-ft leader runs from D-ring [0,0,1.5] to patch entry; a 0.721110-ft return lead runs from patch entry to bracket [0,0,-8.1]. All portions total 50.000000 ft. Relative to the 9.6-ft direct endpoint distance, slack is 40.400000 ft. The patch does not wind, guide, coil, or restow the line."
+          }
+        ],
+        "consentsAndPermissions": {
+          "caster": "TEST_ONLY",
+          "target": "TEST_ONLY",
+          "handlerA": "TEST_ONLY",
+          "handlerB": "TEST_ONLY",
+          "fixtureCustodian": "TEST_ONLY"
+        },
+        "creationCellClear": true,
+        "creationPointFeet": [
+          -2.2,
+          0,
+          2.225
+        ],
+        "upperShelfCoilPresent": false
+      },
+      "spellcasting": {
+        "preparedCopies": [
+          {
+            "spell": "conjure-rope",
+            "copies": 11,
+            "modifications": []
+          },
+          {
+            "spell": "reverse-gravity-field",
+            "copies": 11,
+            "modifications": []
+          }
+        ],
+        "extraCopy": {
+          "school": "Conjuration",
+          "spell": "conjure-rope",
+          "copies": 1,
+          "countsAgainstNormalCapacity": false
+        },
+        "normalCapacity": 22,
+        "totalPreparedCopies": 23,
+        "dissonanceLimit": 13,
+        "castEvents": []
+      },
+      "clocks": {
+        "currentSeconds": 0,
+        "ropeExpiresAtSeconds": null,
+        "ropeSecondsRemaining": null,
+        "activeEvent": null
+      },
+      "timeline": {
+        "movementEvent": null,
+        "v0": null,
+        "v1": null,
+        "actionOpportunities": [],
+        "rescueDeclarations": [],
+        "fallResolution": null,
+        "setupOperations": []
+      }
+    },
     "eventTrace": [
       {
-        "timeSeconds": 0,
-        "state": "Regular START; synthetic TEST_CASTER_01 commits Conjure Rope once, closes a no-attempt response window, resolves; RP 64→62; rope materializes with deadline t=600."
+        "operationId": "F01",
+        "transition": "S0→S1",
+        "operation": "Conjure Rope commitment, no-attempt response window and instantaneous resolution",
+        "subevents": [
+          {
+            "timeSeconds": 0,
+            "stage": "START",
+            "perTurnSpellCastFlag": false,
+            "pendingCast": false,
+            "actionAvailable": true,
+            "rp": 64
+          },
+          {
+            "timeSeconds": 0,
+            "stage": "COMMITMENT",
+            "rpBefore": 64,
+            "rpCommitted": 2,
+            "rpAfter": 62,
+            "perTurnSpellCastFlag": true,
+            "pendingCast": true,
+            "matrixFamilies": [
+              "conjure-rope"
+            ],
+            "lastMatrixFamily": "conjure-rope",
+            "actionAvailable": false
+          },
+          {
+            "timeSeconds": 0,
+            "stage": "RESPONSE_WINDOW",
+            "counterspellAttempted": false,
+            "reactionSpent": false,
+            "counterspellRpSpent": 0
+          },
+          {
+            "timeSeconds": 0,
+            "stage": "INSTANTANEOUS_RESOLUTION",
+            "ropeMaterialized": true,
+            "pendingCast": false
+          },
+          {
+            "timeSeconds": 6,
+            "stage": "END_CAST_TURN",
+            "castFlagPreserved": true,
+            "idleReduction": false
+          },
+          {
+            "timeSeconds": 6,
+            "stage": "START_NEXT_TURN",
+            "castFlagReset": false
+          }
+        ],
+        "stateChanges": [
+          {
+            "op": "replace",
+            "path": "/actors/caster/actionAvailable",
+            "from": true,
+            "value": false
+          },
+          {
+            "op": "replace",
+            "path": "/actors/caster/lastMatrixFamily",
+            "from": null,
+            "value": "conjure-rope"
+          },
+          {
+            "op": "replace",
+            "path": "/actors/caster/matrixFamiliesCastThisEncounter",
+            "from": [],
+            "value": [
+              "conjure-rope"
+            ]
+          },
+          {
+            "op": "replace",
+            "path": "/actors/caster/perTurnSpellCastFlag",
+            "from": false,
+            "value": true
+          },
+          {
+            "op": "replace",
+            "path": "/actors/caster/rp/current",
+            "from": 64,
+            "value": 62
+          },
+          {
+            "op": "replace",
+            "path": "/clocks/ropeExpiresAtSeconds",
+            "from": null,
+            "value": 600
+          },
+          {
+            "op": "replace",
+            "path": "/clocks/ropeSecondsRemaining",
+            "from": null,
+            "value": 600
+          },
+          {
+            "op": "replace",
+            "path": "/fixture/upperShelfCoilPresent",
+            "from": false,
+            "value": true
+          },
+          {
+            "op": "replace",
+            "path": "/items/rope",
+            "from": null,
+            "value": {
+              "id": "TEST_TETHER_01",
+              "type": "Conjure Rope output",
+              "status": "created_coil_on_shelf",
+              "positionFeet": [
+                -2.2,
+                0,
+                2.225
+              ],
+              "custody": "TEST_FIXTURE_CUSTODIAN_01",
+              "lengthFeet": 50,
+              "massLb": 10,
+              "ac": 11,
+              "hp": 5,
+              "maximumStaticLoadLb": 300,
+              "concentration": false,
+              "attachments": [],
+              "deadlineSeconds": 600,
+              "secondsRemaining": 600,
+              "continuous": true
+            }
+          },
+          {
+            "op": "replace",
+            "path": "/spellcasting/castEvents",
+            "from": [],
+            "value": [
+              {
+                "spell": "conjure-rope",
+                "timeSeconds": 0,
+                "rpBefore": 64,
+                "rpCommitted": 2,
+                "rpAfter": 62,
+                "actionConsumed": true,
+                "responseWindow": "closed_no_attempt",
+                "pendingCastSetAtCommitment": true,
+                "pendingCastClearedAfterResolution": true,
+                "resolution": "one continuous rope materialized on the specified shelf",
+                "refund": false
+              }
+            ]
+          },
+          {
+            "op": "replace",
+            "path": "/stateId",
+            "from": "S0",
+            "value": "S1"
+          }
+        ],
+        "preStateSha256": "2018dd01afe20f663ffb980bf0f858505178dcd6bc0525a792b89ac627a71029",
+        "postStateSha256": "70c0f3fa66f8f94e948dfe979bb35d48e0aaf498f67d8386b0701d9d9dca31d7",
+        "applied": true
       },
       {
-        "timeSeconds": 6,
-        "state": "Cast turn END; no second payment or resolution; cast flag persists through END."
+        "operationId": "F02",
+        "transition": "S1→S2",
+        "operation": "Manual R7 setup plus integration-only handler routes; regular END/START ticks through t18",
+        "subevents": [
+          {
+            "timeSeconds": 6,
+            "stage": "END_IDLE_TURN",
+            "dissonanceReduction": 1,
+            "flooredCurrent": 0,
+            "lastMatrixFamily": "conjure-rope"
+          },
+          {
+            "timeSeconds": 6,
+            "stage": "START",
+            "perTurnFlagsReset": true
+          },
+          {
+            "timeSeconds": 12,
+            "stage": "END_IDLE_TURN",
+            "dissonanceReduction": 1,
+            "flooredCurrent": 0,
+            "lastMatrixFamily": "conjure-rope"
+          },
+          {
+            "timeSeconds": 12,
+            "stage": "START",
+            "perTurnFlagsReset": true
+          },
+          {
+            "timeSeconds": 14,
+            "stage": "A_STAGING",
+            "from": [
+              -1,
+              2,
+              -8.5
+            ],
+            "to": [
+              -1,
+              0,
+              -8.5
+            ]
+          },
+          {
+            "timeSeconds": 14,
+            "stage": "B_ROUTE",
+            "from": [
+              0,
+              1,
+              0
+            ],
+            "to": [
+              -1,
+              2,
+              0
+            ],
+            "support": "platform"
+          },
+          {
+            "timeSeconds": 15,
+            "stage": "B_STAIR",
+            "from": [
+              -1,
+              2,
+              0
+            ],
+            "to": [
+              -1,
+              2,
+              -8.5
+            ],
+            "support": "supported stair"
+          },
+          {
+            "timeSeconds": 17.5,
+            "stage": "B_LOWER_BAY",
+            "position": [
+              -2,
+              2,
+              -8.5
+            ]
+          },
+          {
+            "timeSeconds": 17.5,
+            "stage": "A_FINAL_RETURN",
+            "from": [
+              -1,
+              0,
+              -8.5
+            ],
+            "to": [
+              -1,
+              2,
+              -8.5
+            ]
+          },
+          {
+            "timeSeconds": 18,
+            "stage": "END_IDLE_TURN",
+            "dissonanceReduction": 1,
+            "flooredCurrent": 0,
+            "lastMatrixFamily": "conjure-rope"
+          },
+          {
+            "timeSeconds": 18,
+            "stage": "START_CAST_TURN",
+            "perTurnFlagsReset": true,
+            "actionAvailable": true
+          }
+        ],
+        "stateChanges": [
+          {
+            "op": "replace",
+            "path": "/actors/caster/actionAvailable",
+            "from": false,
+            "value": true
+          },
+          {
+            "op": "replace",
+            "path": "/actors/caster/perTurnSpellCastFlag",
+            "from": true,
+            "value": false
+          },
+          {
+            "op": "replace",
+            "path": "/actors/handlerA/bodyBoundsFeet/z",
+            "from": [
+              0,
+              6
+            ],
+            "value": [
+              -8.5,
+              -2.5
+            ]
+          },
+          {
+            "op": "replace",
+            "path": "/actors/handlerA/positionFeet",
+            "from": [
+              -1,
+              2,
+              0
+            ],
+            "value": [
+              -1,
+              2,
+              -8.5
+            ]
+          },
+          {
+            "op": "add",
+            "path": "/actors/handlerB/bodyBoundsFeet",
+            "value": {
+              "x": [
+                -2.35,
+                -1.65
+              ],
+              "y": [
+                1.65,
+                2.35
+              ],
+              "z": [
+                -8.5,
+                -2.5
+              ]
+            }
+          },
+          {
+            "op": "add",
+            "path": "/actors/handlerB/carriedGearBoundsFeet",
+            "value": {
+              "x": [
+                -2.5,
+                -1.5
+              ],
+              "y": [
+                1.5,
+                2.5
+              ],
+              "z": [
+                -8.5,
+                -2.5
+              ]
+            }
+          },
+          {
+            "op": "replace",
+            "path": "/actors/handlerB/positionFeet",
+            "from": [
+              0,
+              1,
+              0
+            ],
+            "value": [
+              -2,
+              2,
+              -8.5
+            ]
+          },
+          {
+            "op": "replace",
+            "path": "/clocks/currentSeconds",
+            "from": 0,
+            "value": 18
+          },
+          {
+            "op": "replace",
+            "path": "/clocks/ropeSecondsRemaining",
+            "from": 600,
+            "value": 582
+          },
+          {
+            "op": "replace",
+            "path": "/fixture/support/assemblyState",
+            "from": "intact",
+            "value": "intact_holds"
+          },
+          {
+            "op": "replace",
+            "path": "/fixture/support/attached",
+            "from": false,
+            "value": true
+          },
+          {
+            "op": "replace",
+            "path": "/fixture/support/currentLoadLb",
+            "from": 0,
+            "value": 210
+          },
+          {
+            "op": "replace",
+            "path": "/items/rope/attachments",
+            "from": [],
+            "value": [
+              {
+                "to": "TEST_WAIST_HARNESS_01",
+                "positionFeet": [
+                  0,
+                  0,
+                  1.5
+                ]
+              },
+              {
+                "to": "TEST_FIXED_SUPPORT_01",
+                "positionFeet": [
+                  0,
+                  0,
+                  -8.1
+                ]
+              }
+            ]
+          },
+          {
+            "op": "add",
+            "path": "/items/rope/deployedPathFeet",
+            "value": 50
+          },
+          {
+            "op": "add",
+            "path": "/items/rope/routeSegments",
+            "value": [
+              {
+                "lengthFeet": 10.017984,
+                "from": [
+                  0,
+                  0,
+                  1.5
+                ],
+                "to": [
+                  0.6,
+                  0,
+                  -8.5
+                ],
+                "role": "incoming leader"
+              },
+              {
+                "lengthFeet": 39.260906,
+                "from": [
+                  0.6,
+                  0,
+                  -8.5
+                ],
+                "to": [
+                  0.6,
+                  0,
+                  -8.5
+                ],
+                "role": "loose irregular bights in TEST_LOWER_SLACK_PATCH_01"
+              },
+              {
+                "lengthFeet": 0.72111,
+                "from": [
+                  0.6,
+                  0,
+                  -8.5
+                ],
+                "to": [
+                  0,
+                  0,
+                  -8.1
+                ],
+                "role": "return leader"
+              }
+            ]
+          },
+          {
+            "op": "replace",
+            "path": "/items/rope/secondsRemaining",
+            "from": 600,
+            "value": 582
+          },
+          {
+            "op": "add",
+            "path": "/items/rope/slackFeet",
+            "value": 40.4
+          },
+          {
+            "op": "replace",
+            "path": "/items/rope/status",
+            "from": "created_coil_on_shelf",
+            "value": "deployed_attached_slack"
+          },
+          {
+            "op": "replace",
+            "path": "/stateId",
+            "from": "S1",
+            "value": "S2"
+          },
+          {
+            "op": "replace",
+            "path": "/timeSeconds",
+            "from": 0,
+            "value": 18
+          },
+          {
+            "op": "replace",
+            "path": "/timeline/setupOperations",
+            "from": [],
+            "value": [
+              {
+                "seconds": [
+                  0,
+                  6
+                ],
+                "operation": "R7 supported manual rope pickup, handoff, target D-ring attachment; no powered lift or Rope command."
+              },
+              {
+                "seconds": [
+                  6,
+                  14
+                ],
+                "operation": "R7 supported manual rope payout, specified loose bights and bracket attachment; exact continuous 50-ft path."
+              },
+              {
+                "seconds": [
+                  14,
+                  15
+                ],
+                "operation": "A steps to lower staging bay to clear stair landing."
+              },
+              {
+                "seconds": [
+                  14,
+                  17.5
+                ],
+                "operation": "B uses specified supported upper approach, wait, stair and lower-bay route."
+              },
+              {
+                "seconds": [
+                  17.5,
+                  18
+                ],
+                "operation": "A returns after B clears; both handler envelopes separated and clear of rope/fall paths."
+              }
+            ]
+          },
+          {
+            "op": "add",
+            "path": "/timeline/turnEvents",
+            "value": [
+              {
+                "timeSeconds": 6,
+                "event": "END cast turn: cast flag remains true; no idle reduction; then START resets flags."
+              },
+              {
+                "timeSeconds": 12,
+                "event": "END idle interval: one reduction floored at zero; preserve matrix history/last family/Refrain; then START resets flags."
+              },
+              {
+                "timeSeconds": 18,
+                "event": "END idle interval: one reduction floored at zero; preserve matrix history/last family/Refrain; settle END before START18."
+              },
+              {
+                "timeSeconds": 18,
+                "event": "START18 resets flags and grants Action before Reverse Gravity commitment."
+              }
+            ]
+          }
+        ],
+        "preStateSha256": "70c0f3fa66f8f94e948dfe979bb35d48e0aaf498f67d8386b0701d9d9dca31d7",
+        "postStateSha256": "958dde547168f86f3ec07db4aa93d05dd71754a9995b40a3f437bdf2226b136c",
+        "applied": true
       },
       {
-        "timeSeconds": 12,
-        "state": "Idle interval END; one floored-at-zero Dissonance reduction; family history and lastMatrixFamily=conjure-rope preserved."
+        "operationId": "F03",
+        "transition": "S2→S3",
+        "operation": "Reverse Gravity Field commitment, no-attempt response window and instantaneous resolution",
+        "subevents": [
+          {
+            "timeSeconds": 18,
+            "stage": "COMMITMENT",
+            "rpBefore": 62,
+            "rpCommitted": 26,
+            "rpAfter": 36,
+            "perTurnSpellCastFlag": true,
+            "pendingCast": true,
+            "matrixFamilies": [
+              "conjure-rope",
+              "reverse-gravity-field"
+            ],
+            "lastMatrixFamily": "reverse-gravity-field",
+            "actionAvailable": false
+          },
+          {
+            "timeSeconds": 18,
+            "stage": "RESPONSE_WINDOW",
+            "counterspellAttempted": false,
+            "reactionSpent": false,
+            "counterspellRpSpent": 0
+          },
+          {
+            "timeSeconds": 18,
+            "stage": "INSTANTANEOUS_RESOLUTION",
+            "pendingCast": false,
+            "movementProcedureStarts": true,
+            "sourceDuration": "Instantaneous"
+          },
+          {
+            "timeSeconds": 24,
+            "stage": "CAST_TURN_END",
+            "castFlagPreserved": true,
+            "noSecondCommitment": true
+          }
+        ],
+        "stateChanges": [
+          {
+            "op": "replace",
+            "path": "/actors/caster/actionAvailable",
+            "from": true,
+            "value": false
+          },
+          {
+            "op": "replace",
+            "path": "/actors/caster/lastMatrixFamily",
+            "from": "conjure-rope",
+            "value": "reverse-gravity-field"
+          },
+          {
+            "op": "replace",
+            "path": "/actors/caster/matrixFamiliesCastThisEncounter",
+            "from": [
+              "conjure-rope"
+            ],
+            "value": [
+              "conjure-rope",
+              "reverse-gravity-field"
+            ]
+          },
+          {
+            "op": "replace",
+            "path": "/actors/caster/perTurnSpellCastFlag",
+            "from": false,
+            "value": true
+          },
+          {
+            "op": "replace",
+            "path": "/actors/caster/rp/current",
+            "from": 62,
+            "value": 36
+          },
+          {
+            "op": "replace",
+            "path": "/clocks/activeEvent",
+            "from": null,
+            "value": {
+              "id": "TEST_UPWARD_EVENT_01",
+              "active": true,
+              "startsAtSeconds": 18,
+              "endsAtSeconds": 24,
+              "rateFeetPerSecond": 10,
+              "direction": "+z",
+              "distanceFeet": 60,
+              "sourceDuration": "Instantaneous",
+              "movementIsProposedPostResolutionProcedure": true,
+              "targetAffected": true,
+              "casterAffected": true,
+              "tetherObjectMovement": "excluded by branch-only membership rule; passive restraint follows R7"
+            }
+          },
+          {
+            "op": "replace",
+            "path": "/spellcasting/castEvents",
+            "from": [
+              {
+                "spell": "conjure-rope",
+                "timeSeconds": 0,
+                "rpBefore": 64,
+                "rpCommitted": 2,
+                "rpAfter": 62,
+                "actionConsumed": true,
+                "responseWindow": "closed_no_attempt",
+                "pendingCastSetAtCommitment": true,
+                "pendingCastClearedAfterResolution": true,
+                "resolution": "one continuous rope materialized on the specified shelf",
+                "refund": false
+              }
+            ],
+            "value": [
+              {
+                "spell": "conjure-rope",
+                "timeSeconds": 0,
+                "rpBefore": 64,
+                "rpCommitted": 2,
+                "rpAfter": 62,
+                "actionConsumed": true,
+                "responseWindow": "closed_no_attempt",
+                "pendingCastSetAtCommitment": true,
+                "pendingCastClearedAfterResolution": true,
+                "resolution": "one continuous rope materialized on the specified shelf",
+                "refund": false
+              },
+              {
+                "spell": "reverse-gravity-field",
+                "timeSeconds": 18,
+                "rpBefore": 62,
+                "rpCommitted": 26,
+                "rpAfter": 36,
+                "actionConsumed": true,
+                "responseWindow": "closed_no_attempt; no Counterspell source attempted",
+                "pendingCastSetAtCommitment": true,
+                "pendingCastClearedAfterResolution": true,
+                "resolution": "instantaneous at t18; proposed bounded post-resolution event starts",
+                "refund": false
+              }
+            ]
+          },
+          {
+            "op": "replace",
+            "path": "/stateId",
+            "from": "S2",
+            "value": "S3"
+          },
+          {
+            "op": "add",
+            "path": "/timeline/cast18Subevents",
+            "value": [
+              {
+                "timeSeconds": 18,
+                "event": "END[12,18] settled before START18."
+              },
+              {
+                "timeSeconds": 18,
+                "event": "START18 resets per-turn flags; Action available."
+              },
+              {
+                "timeSeconds": 18,
+                "event": "Commit 26 RP once; family history and lastMatrixFamily update; perTurnSpellCastFlag=true; pendingCast=true."
+              },
+              {
+                "timeSeconds": 18,
+                "event": "Counterspell window: no attempt; no reaction/cost/recharge change."
+              },
+              {
+                "timeSeconds": 18,
+                "event": "Resolve instantaneous spell; clear pendingCast after resolution."
+              }
+            ]
+          }
+        ],
+        "preStateSha256": "958dde547168f86f3ec07db4aa93d05dd71754a9995b40a3f437bdf2226b136c",
+        "postStateSha256": "3b09e77cc5f143adbfb1d980bd140c932109b2ef41fd439ebfcbf2fd690444a4",
+        "applied": true
       },
       {
-        "timeSeconds": 14,
-        "state": "Handler A uses the specified supported move to clear the stair landing; Handler B follows the proposal’s supported route while A stages."
+        "operationId": "F04",
+        "transition": "S3→S4",
+        "operation": "Upward procedure reaches first taut sample",
+        "subevents": [
+          {
+            "timeSeconds": 22.04,
+            "stage": "FIRST_TAUT",
+            "targetBaseZ": 40.4,
+            "targetHarnessZ": 41.9,
+            "targetVerticalVelocity": 0,
+            "casterBaseZ": 40.4,
+            "casterVerticalVelocity": 10,
+            "ropeSlackRemaining": 0,
+            "assemblyLoadLb": 210,
+            "assemblyIntact": true,
+            "ropeIntact": true
+          }
+        ],
+        "stateChanges": [
+          {
+            "op": "replace",
+            "path": "/actors/caster/positionFeet",
+            "from": [
+              3,
+              -2,
+              0
+            ],
+            "value": [
+              3,
+              -2,
+              40.4
+            ]
+          },
+          {
+            "op": "add",
+            "path": "/actors/target/harness/positionFeet",
+            "value": [
+              0,
+              0,
+              41.9
+            ]
+          },
+          {
+            "op": "replace",
+            "path": "/actors/target/positionFeet",
+            "from": [
+              1,
+              0,
+              0
+            ],
+            "value": [
+              1,
+              0,
+              40.4
+            ]
+          },
+          {
+            "op": "replace",
+            "path": "/clocks/currentSeconds",
+            "from": 18,
+            "value": 22.04
+          },
+          {
+            "op": "replace",
+            "path": "/clocks/ropeSecondsRemaining",
+            "from": 582,
+            "value": 577.96
+          },
+          {
+            "op": "replace",
+            "path": "/items/rope/slackFeet",
+            "from": 40.4,
+            "value": 0
+          },
+          {
+            "op": "replace",
+            "path": "/items/rope/status",
+            "from": "deployed_attached_slack",
+            "value": "taut_intact"
+          },
+          {
+            "op": "replace",
+            "path": "/stateId",
+            "from": "S3",
+            "value": "S4"
+          },
+          {
+            "op": "replace",
+            "path": "/timeSeconds",
+            "from": 18,
+            "value": 22.04
+          },
+          {
+            "op": "replace",
+            "path": "/timeline/movementEvent",
+            "from": null,
+            "value": {
+              "id": "TEST_UPWARD_EVENT_01",
+              "active": true,
+              "startsAtSeconds": 18,
+              "endsAtSeconds": 24,
+              "rateFeetPerSecond": 10,
+              "direction": "+z",
+              "distanceFeet": 60,
+              "sourceDuration": "Instantaneous",
+              "movementIsProposedPostResolutionProcedure": true,
+              "targetAffected": true,
+              "casterAffected": true,
+              "tetherObjectMovement": "excluded by branch-only membership rule; passive restraint follows R7",
+              "elapsedSeconds": 4.04,
+              "targetDistanceFeet": 40.4,
+              "casterDistanceFeet": 40.4,
+              "targetVerticalVelocityAfterTautFeetPerSecond": 0,
+              "casterVerticalVelocityFeetPerSecond": 10,
+              "firstTautAtSeconds": 22.04
+            }
+          }
+        ],
+        "preStateSha256": "3b09e77cc5f143adbfb1d980bd140c932109b2ef41fd439ebfcbf2fd690444a4",
+        "postStateSha256": "fcac9d30866715f7cf8e5e1b67816aa491cdbf15da94ec95aab3cbe677b5be6d",
+        "applied": true
       },
       {
-        "timeSeconds": 17.5,
-        "state": "Handler B is in the lower bay; Handler A returns to the final bay; body and carried-gear clearances match the proposed bounds."
+        "operationId": "F05",
+        "transition": "S4→S5",
+        "operation": "Movement endpoint; cast END; V0; next START",
+        "subevents": [
+          {
+            "timeSeconds": 24,
+            "stage": "MOVEMENT_ENDPOINT",
+            "targetBaseZ": 40.4,
+            "casterBaseZ": 60,
+            "eventEnded": true
+          },
+          {
+            "timeSeconds": 24,
+            "stage": "END_CAST_TURN",
+            "castFlagPreserved": true,
+            "pendingCast": false,
+            "noDuplicateCommitment": true
+          },
+          {
+            "timeSeconds": 24,
+            "stage": "V0",
+            "fallMarkerSet": true,
+            "descentResolved": false
+          },
+          {
+            "timeSeconds": 24,
+            "stage": "START_NEXT_INTERVAL",
+            "perTurnFlagsReset": true,
+            "actionsAvailable": true
+          }
+        ],
+        "stateChanges": [
+          {
+            "op": "replace",
+            "path": "/actors/caster/actionAvailable",
+            "from": false,
+            "value": true
+          },
+          {
+            "op": "replace",
+            "path": "/actors/caster/perTurnSpellCastFlag",
+            "from": true,
+            "value": false
+          },
+          {
+            "op": "replace",
+            "path": "/actors/caster/positionFeet",
+            "from": [
+              3,
+              -2,
+              40.4
+            ],
+            "value": [
+              3,
+              -2,
+              60
+            ]
+          },
+          {
+            "op": "replace",
+            "path": "/clocks/activeEvent",
+            "from": {
+              "id": "TEST_UPWARD_EVENT_01",
+              "active": true,
+              "startsAtSeconds": 18,
+              "endsAtSeconds": 24,
+              "rateFeetPerSecond": 10,
+              "direction": "+z",
+              "distanceFeet": 60,
+              "sourceDuration": "Instantaneous",
+              "movementIsProposedPostResolutionProcedure": true,
+              "targetAffected": true,
+              "casterAffected": true,
+              "tetherObjectMovement": "excluded by branch-only membership rule; passive restraint follows R7"
+            },
+            "value": null
+          },
+          {
+            "op": "replace",
+            "path": "/clocks/currentSeconds",
+            "from": 22.04,
+            "value": 24
+          },
+          {
+            "op": "replace",
+            "path": "/clocks/ropeSecondsRemaining",
+            "from": 577.96,
+            "value": 576
+          },
+          {
+            "op": "replace",
+            "path": "/stateId",
+            "from": "S4",
+            "value": "S5"
+          },
+          {
+            "op": "replace",
+            "path": "/timeSeconds",
+            "from": 22.04,
+            "value": 24
+          },
+          {
+            "op": "replace",
+            "path": "/timeline/movementEvent/active",
+            "from": true,
+            "value": false
+          },
+          {
+            "op": "add",
+            "path": "/timeline/movementEvent/endedAtSeconds",
+            "value": 24
+          },
+          {
+            "op": "replace",
+            "path": "/timeline/turnEvents",
+            "from": [
+              {
+                "timeSeconds": 6,
+                "event": "END cast turn: cast flag remains true; no idle reduction; then START resets flags."
+              },
+              {
+                "timeSeconds": 12,
+                "event": "END idle interval: one reduction floored at zero; preserve matrix history/last family/Refrain; then START resets flags."
+              },
+              {
+                "timeSeconds": 18,
+                "event": "END idle interval: one reduction floored at zero; preserve matrix history/last family/Refrain; settle END before START18."
+              },
+              {
+                "timeSeconds": 18,
+                "event": "START18 resets flags and grants Action before Reverse Gravity commitment."
+              }
+            ],
+            "value": [
+              {
+                "timeSeconds": 6,
+                "event": "END cast turn: cast flag remains true; no idle reduction; then START resets flags."
+              },
+              {
+                "timeSeconds": 12,
+                "event": "END idle interval: one reduction floored at zero; preserve matrix history/last family/Refrain; then START resets flags."
+              },
+              {
+                "timeSeconds": 18,
+                "event": "END idle interval: one reduction floored at zero; preserve matrix history/last family/Refrain; settle END before START18."
+              },
+              {
+                "timeSeconds": 18,
+                "event": "START18 resets flags and grants Action before Reverse Gravity commitment."
+              },
+              {
+                "timeSeconds": 24,
+                "event": "Movement endpoint then END[18,24]; cast flag remains true through END; no duplicate cost/resolution."
+              },
+              {
+                "timeSeconds": 24,
+                "event": "V0 sets marker; no descent."
+              },
+              {
+                "timeSeconds": 24,
+                "event": "START[24,30] resets per-turn flags; Actions available."
+              }
+            ]
+          },
+          {
+            "op": "add",
+            "path": "/timeline/unsupportedActors",
+            "value": [
+              "TEST_TARGET_01",
+              "TEST_CASTER_01"
+            ]
+          },
+          {
+            "op": "replace",
+            "path": "/timeline/v0",
+            "from": null,
+            "value": {
+              "timeSeconds": 24,
+              "fallMarkerSet": true,
+              "descentResolved": false
+            }
+          }
+        ],
+        "preStateSha256": "fcac9d30866715f7cf8e5e1b67816aa491cdbf15da94ec95aab3cbe677b5be6d",
+        "postStateSha256": "7bc1f9e15d603715b8eb12200d326e1b9e7938f65568a59defcdb747e73d5091",
+        "applied": true
       },
       {
-        "timeSeconds": 18,
-        "state": "Preceding idle END settles before START; Reverse Gravity Field commits once, no response attempt, instantaneous resolution; RP 62→36; lastMatrixFamily becomes reverse-gravity-field; bounded post-resolution upward procedure begins."
+        "operationId": "F06",
+        "transition": "S5→S6",
+        "operation": "Ordered no-rescue normal Action opportunities at V0",
+        "subevents": [
+          {
+            "timeSeconds": 24,
+            "stage": "ROSTER_ACTION_OPPORTUNITIES",
+            "order": [
+              "TEST_TARGET_01",
+              "TEST_HANDLER_A",
+              "TEST_HANDLER_B",
+              "TEST_CASTER_01"
+            ],
+            "actionsUsed": [],
+            "rescuesDeclared": []
+          }
+        ],
+        "stateChanges": [
+          {
+            "op": "replace",
+            "path": "/stateId",
+            "from": "S5",
+            "value": "S6"
+          },
+          {
+            "op": "replace",
+            "path": "/timeline/actionOpportunities",
+            "from": [],
+            "value": [
+              {
+                "order": 1,
+                "actor": "TEST_TARGET_01",
+                "timeSeconds": 24,
+                "normalActionGranted": true,
+                "actionUsed": false,
+                "rescueDeclared": false
+              },
+              {
+                "order": 2,
+                "actor": "TEST_HANDLER_A",
+                "timeSeconds": 24,
+                "normalActionGranted": true,
+                "actionUsed": false,
+                "rescueDeclared": false
+              },
+              {
+                "order": 3,
+                "actor": "TEST_HANDLER_B",
+                "timeSeconds": 24,
+                "normalActionGranted": true,
+                "actionUsed": false,
+                "rescueDeclared": false
+              },
+              {
+                "order": 4,
+                "actor": "TEST_CASTER_01",
+                "timeSeconds": 24,
+                "normalActionGranted": true,
+                "actionUsed": false,
+                "rescueDeclared": false
+              }
+            ]
+          }
+        ],
+        "preStateSha256": "7bc1f9e15d603715b8eb12200d326e1b9e7938f65568a59defcdb747e73d5091",
+        "postStateSha256": "e48f5c515860c576d1d3b4367d4ed556b2c758f1d0146b689b050ed9c5ea3d2f",
+        "applied": true
       },
       {
-        "timeSeconds": 22.04,
-        "state": "First taut point: 40.4 ft slack is traversed at 10 ft/s; target base z=40.4 ft; support assembly and rope remain within proposed limits."
-      },
-      {
-        "timeSeconds": 24,
-        "state": "Upward procedure ends; cast turn END settles without repeat payment/resolution; V0 is set; target and caster have no support from the terminated upward event; no descent at V0."
-      },
-      {
-        "timeSeconds": 24,
-        "state": "Target, Handler A, Handler B and caster receive one logical normal Action opportunity in the specified stable order; no rescue is declared or used."
-      },
-      {
-        "timeSeconds": 30,
-        "state": "END [24,30] applies one idle-turn reduction; V1 triggers the first falling step; target and caster land, take proposed bludgeoning damage, and become Prone."
+        "operationId": "F07",
+        "transition": "S6→S7",
+        "operation": "END30; V1; first Falling Step, landing and impact settlement",
+        "subevents": [
+          {
+            "timeSeconds": 30,
+            "stage": "END_IDLE_INTERVAL",
+            "dissonanceReduction": 1,
+            "flooredCurrent": 0,
+            "lastMatrixFamily": "reverse-gravity-field"
+          },
+          {
+            "timeSeconds": 30,
+            "stage": "V1_FIRST_FALLING_STEP",
+            "targetDice": "2d6",
+            "targetFaces": [
+              3,
+              4
+            ],
+            "targetDamage": 7,
+            "casterDice": "3d6",
+            "casterFaces": [
+              4,
+              4,
+              3
+            ],
+            "casterDamage": 11
+          },
+          {
+            "timeSeconds": 30,
+            "stage": "LANDING",
+            "targetHP": [
+              40,
+              33
+            ],
+            "casterHP": [
+              60,
+              49
+            ],
+            "conditions": [
+              "Prone"
+            ],
+            "ropeSecondsRemaining": 570
+          }
+        ],
+        "stateChanges": [
+          {
+            "op": "replace",
+            "path": "/actors/caster/hp/conditions",
+            "from": [],
+            "value": [
+              "Prone"
+            ]
+          },
+          {
+            "op": "replace",
+            "path": "/actors/caster/hp/current",
+            "from": 60,
+            "value": 49
+          },
+          {
+            "op": "replace",
+            "path": "/actors/caster/positionFeet",
+            "from": [
+              3,
+              -2,
+              60
+            ],
+            "value": [
+              3,
+              -2,
+              0
+            ]
+          },
+          {
+            "op": "replace",
+            "path": "/actors/target/hp/conditions",
+            "from": [],
+            "value": [
+              "Prone"
+            ]
+          },
+          {
+            "op": "replace",
+            "path": "/actors/target/hp/current",
+            "from": 40,
+            "value": 33
+          },
+          {
+            "op": "replace",
+            "path": "/actors/target/positionFeet",
+            "from": [
+              1,
+              0,
+              40.4
+            ],
+            "value": [
+              1,
+              0,
+              0
+            ]
+          },
+          {
+            "op": "replace",
+            "path": "/clocks/currentSeconds",
+            "from": 24,
+            "value": 30
+          },
+          {
+            "op": "replace",
+            "path": "/clocks/ropeSecondsRemaining",
+            "from": 576,
+            "value": 570
+          },
+          {
+            "op": "add",
+            "path": "/items/rope/finalRouteSnapshot",
+            "value": {
+              "timeSeconds": 30,
+              "lengthFeet": 50,
+              "dRingToPatchEntryFeet": 10.017984,
+              "looseIrregularBightsFeet": 39.260906,
+              "patchEntryToBracketFeet": 0.72111,
+              "automaticRestowing": false
+            }
+          },
+          {
+            "op": "replace",
+            "path": "/items/rope/secondsRemaining",
+            "from": 582,
+            "value": 570
+          },
+          {
+            "op": "replace",
+            "path": "/items/rope/slackFeet",
+            "from": 0,
+            "value": 40.4
+          },
+          {
+            "op": "replace",
+            "path": "/items/rope/status",
+            "from": "taut_intact",
+            "value": "intact_slack_at_landing"
+          },
+          {
+            "op": "replace",
+            "path": "/stateId",
+            "from": "S6",
+            "value": "S7"
+          },
+          {
+            "op": "replace",
+            "path": "/timeSeconds",
+            "from": 24,
+            "value": 30
+          },
+          {
+            "op": "replace",
+            "path": "/timeline/fallResolution",
+            "from": null,
+            "value": {
+              "target": {
+                "distanceFeet": 40.4,
+                "dice": "2d6",
+                "faces": [
+                  3,
+                  4
+                ],
+                "damage": 7,
+                "hpBefore": 40,
+                "hpAfter": 33,
+                "condition": "Prone",
+                "landingFeet": [
+                  1,
+                  0,
+                  0
+                ]
+              },
+              "caster": {
+                "distanceFeet": 60,
+                "dice": "3d6",
+                "faces": [
+                  4,
+                  4,
+                  3
+                ],
+                "damage": 11,
+                "hpBefore": 60,
+                "hpAfter": 49,
+                "condition": "Prone",
+                "landingFeet": [
+                  3,
+                  -2,
+                  0
+                ]
+              },
+              "damageType": "bludgeoning",
+              "arcaneWardMitigates": false
+            }
+          },
+          {
+            "op": "replace",
+            "path": "/timeline/turnEvents",
+            "from": [
+              {
+                "timeSeconds": 6,
+                "event": "END cast turn: cast flag remains true; no idle reduction; then START resets flags."
+              },
+              {
+                "timeSeconds": 12,
+                "event": "END idle interval: one reduction floored at zero; preserve matrix history/last family/Refrain; then START resets flags."
+              },
+              {
+                "timeSeconds": 18,
+                "event": "END idle interval: one reduction floored at zero; preserve matrix history/last family/Refrain; settle END before START18."
+              },
+              {
+                "timeSeconds": 18,
+                "event": "START18 resets flags and grants Action before Reverse Gravity commitment."
+              },
+              {
+                "timeSeconds": 24,
+                "event": "Movement endpoint then END[18,24]; cast flag remains true through END; no duplicate cost/resolution."
+              },
+              {
+                "timeSeconds": 24,
+                "event": "V0 sets marker; no descent."
+              },
+              {
+                "timeSeconds": 24,
+                "event": "START[24,30] resets per-turn flags; Actions available."
+              }
+            ],
+            "value": [
+              {
+                "timeSeconds": 6,
+                "event": "END cast turn: cast flag remains true; no idle reduction; then START resets flags."
+              },
+              {
+                "timeSeconds": 12,
+                "event": "END idle interval: one reduction floored at zero; preserve matrix history/last family/Refrain; then START resets flags."
+              },
+              {
+                "timeSeconds": 18,
+                "event": "END idle interval: one reduction floored at zero; preserve matrix history/last family/Refrain; settle END before START18."
+              },
+              {
+                "timeSeconds": 18,
+                "event": "START18 resets flags and grants Action before Reverse Gravity commitment."
+              },
+              {
+                "timeSeconds": 24,
+                "event": "Movement endpoint then END[18,24]; cast flag remains true through END; no duplicate cost/resolution."
+              },
+              {
+                "timeSeconds": 24,
+                "event": "V0 sets marker; no descent."
+              },
+              {
+                "timeSeconds": 24,
+                "event": "START[24,30] resets per-turn flags; Actions available."
+              },
+              {
+                "timeSeconds": 30,
+                "event": "END[24,30] applies one idle Dissonance reduction floored at zero; preserves family history/lastMatrixFamily/Refrain."
+              },
+              {
+                "timeSeconds": 30,
+                "event": "V1 after all roster opportunities; first Falling Step; both land and resolve damage/Prone."
+              }
+            ]
+          },
+          {
+            "op": "replace",
+            "path": "/timeline/v1",
+            "from": null,
+            "value": {
+              "timeSeconds": 30,
+              "fallMarkerResolved": true,
+              "firstFallingStepResolved": true
+            }
+          }
+        ],
+        "preStateSha256": "e48f5c515860c576d1d3b4367d4ed556b2c758f1d0146b689b050ed9c5ea3d2f",
+        "postStateSha256": "f06d062cbed2422e43a0055a534f7cf884e905b911e364a779dab81ec93bb16e",
+        "applied": true
       }
     ],
     "computedChecks": [
@@ -1823,180 +3741,3075 @@
       {
         "id": "INVERSE-AUDIT",
         "result": "PASS",
-        "calculation": "One audit inverse per S0→S7 transition in reverse order restores the exact projected TEST_ONLY initial state, including RP64, empty family history, lastMatrixFamily null, original positions/custody/HP/conditions, no rope and no deadline. Audit reversal is not an in-game refund or healing."
+        "calculation": "Executed 7 forward JSON state-patch transitions and 7 inverse patches in reverse order; all inverse preconditions passed. Restored S0 deep-equals initial S0; canonical SHA-256 2018dd01afe20f663ffb980bf0f858505178dcd6bc0525a792b89ac627a71029 matches 2018dd01afe20f663ffb980bf0f858505178dcd6bc0525a792b89ac627a71029. No in-game refund, healing, rest or history erasure is claimed."
       }
     ],
     "terminalState": {
+      "stateId": "S7",
       "timeSeconds": 30,
-      "target": {
-        "feet": [
-          1,
-          0,
-          0
-        ],
-        "bodyBoundsFeet": {
-          "x": [
-            0.75,
-            1.25
-          ],
-          "y": [
-            -0.5,
-            0.5
-          ],
-          "z": [
-            0,
-            6
-          ]
-        },
-        "gearAndCargoCustody": "TEST_TARGET_01",
-        "hp": "33/40",
-        "temporaryHp": 0,
-        "conditions": [
-          "Prone"
-        ]
+      "authority": "synthetic TEST_ONLY projection; no campaign or runtime claim",
+      "longRest": {
+        "completedBeforeT0": true,
+        "preparationMinutes": 60,
+        "spellEfficiencySelected": false,
+        "arcaneWard": {
+          "active": true,
+          "damageType": "force",
+          "expires": "next long rest",
+          "mitigatesBludgeoning": false
+        }
       },
-      "caster": {
-        "feet": [
-          3,
-          -2,
-          0
-        ],
-        "bodyBoundsFeet": {
-          "x": [
-            2.5,
-            3.5
+      "actors": {
+        "caster": {
+          "id": "TEST_CASTER_01",
+          "class": "Wizard",
+          "classLevel": 17,
+          "totalCharacterLevel": 17,
+          "intelligence": 20,
+          "intelligenceModifier": 5,
+          "schoolSpecialization": "Conjuration",
+          "heroPath": "Spellbinder",
+          "positionFeet": [
+            3,
+            -2,
+            0
           ],
-          "y": [
-            -2.5,
-            -1.5
-          ],
-          "z": [
-            0,
-            6
-          ]
-        },
-        "focusSpellbookClothingCustody": "TEST_CASTER_01",
-        "hp": "49/60",
-        "temporaryHp": 0,
-        "conditions": [
-          "Prone"
-        ],
-        "forceResistanceUntil": "next long rest",
-        "classState": {
-          "rpCurrent": 36,
-          "rpMaximum": 64,
-          "dissonance": 0,
-          "dissonanceLimit": 13,
+          "bodyBoundsFeet": {
+            "x": [
+              2.5,
+              3.5
+            ],
+            "y": [
+              -2.5,
+              -1.5
+            ],
+            "z": [
+              0,
+              6
+            ]
+          },
+          "massLb": 160,
+          "hp": {
+            "current": 49,
+            "maximum": 60,
+            "temporary": 0,
+            "conditions": [
+              "Prone"
+            ],
+            "damageResistances": [
+              "force"
+            ],
+            "damageImmunities": [],
+            "pronePrevention": false
+          },
+          "rp": {
+            "current": 36,
+            "maximum": 64
+          },
+          "dissonance": {
+            "current": 0,
+            "limit": 13,
+            "formula": "max(4,2+PB+max(0,Int modifier))",
+            "inputs": {
+              "pb": 6,
+              "intelligenceModifier": 5
+            }
+          },
           "matrixFamiliesCastThisEncounter": [
             "conjure-rope",
             "reverse-gravity-field"
           ],
-          "sameFamilyRefrainCount": 0,
+          "lastMatrixFamily": "reverse-gravity-field",
+          "refrain": 0,
           "perTurnSpellCastFlag": false,
           "perTurnMagicalClassAbilityFlag": false,
-          "counterspellReady": true,
-          "counterspellRechargeRoundsRemaining": 0,
-          "reaction": "available",
-          "arcaneWard": {
-            "damageType": "force",
-            "active": true,
-            "expires": "next long rest"
+          "pendingCast": false,
+          "actionAvailable": true,
+          "bonusActionAvailable": true,
+          "reactionAvailable": true,
+          "counterspell": {
+            "ready": true,
+            "rechargeRounds": 0,
+            "maximumRechargeRounds": 2,
+            "attempts": 0
           },
-          "spellEfficiencySelected": false,
-          "lastMatrixFamily": "reverse-gravity-field"
+          "preparedMatrix": {
+            "completedAfterLongRest": true,
+            "studyMinutes": 60,
+            "matrixEfficiencyFeature": false,
+            "normalCapacity": 22,
+            "normalPreparedCopies": [
+              {
+                "spell": "conjure-rope",
+                "copies": 11,
+                "modifications": []
+              },
+              {
+                "spell": "reverse-gravity-field",
+                "copies": 11,
+                "modifications": []
+              }
+            ],
+            "arcaneTraditionExtra": {
+              "school": "Conjuration",
+              "spell": "conjure-rope",
+              "copies": 1,
+              "countsAgainstNormalCapacity": false
+            },
+            "totalPreparedCopies": 23,
+            "duplicateRule": "Underlying spell name defines one matrix family; duplicate copies do not refresh first-cast exemption or Refrain.",
+            "arcaneWardSelection": {
+              "damageType": "force",
+              "reason": "No prepared Conjuration spell deals damage; provisional fallback.",
+              "duration": "until next long rest"
+            },
+            "spellEfficiency": {
+              "selected": false,
+              "effect": "No discount permission or deadline is created."
+            }
+          },
+          "equipment": [
+            {
+              "id": "TEST_CASTER_FOCUS_01",
+              "kind": "arcane focus",
+              "massLb": 1,
+              "custody": "TEST_CASTER_01",
+              "hand": "left",
+              "consumed": false
+            },
+            {
+              "id": "TEST_CASTER_SPELLBOOK_01",
+              "kind": "Wizard spellbook",
+              "massLb": 3,
+              "custody": "TEST_CASTER_01",
+              "location": "belt"
+            },
+            {
+              "id": "TEST_CASTER_CLOTHING_01",
+              "kind": "worn clothing",
+              "massLb": 4,
+              "custody": "TEST_CASTER_01"
+            }
+          ],
+          "components": {
+            "voiceAudible": true,
+            "leftHand": "holds ordinary focus",
+            "rightHand": "free for somatic component",
+            "mapping": "same for both casts"
+          },
+          "ward": {
+            "active": true,
+            "damageType": "force",
+            "expires": "next long rest",
+            "mitigatesBludgeoning": false
+          },
+          "spellEfficiencySelected": false
+        },
+        "target": {
+          "id": "TEST_TARGET_01",
+          "consent": "TEST_ONLY granted",
+          "custodian": "TEST_TARGET_01",
+          "bodyMassLb": 180,
+          "gearAndCargoLb": 20,
+          "bodyFeet": {
+            "initial": [
+              1,
+              0,
+              0
+            ],
+            "harnessPosition": [
+              0,
+              0,
+              1.5
+            ],
+            "bodyEnvelope": {
+              "x": [
+                0.75,
+                1.25
+              ],
+              "y": [
+                -0.5,
+                0.5
+              ],
+              "z": [
+                0,
+                6
+              ]
+            }
+          },
+          "harness": {
+            "id": "TEST_WAIST_HARNESS_01",
+            "custody": "TEST_TARGET_01",
+            "permission": "TEST_ONLY granted",
+            "massLb": 5,
+            "sideDRingPositionFeet": [
+              0,
+              0,
+              1.5
+            ],
+            "assemblyId": "TEST_COMPLETE_LOAD_BEARING_ASSEMBLY_01",
+            "sideLinkLengthFeet": 0.75,
+            "positionFeet": [
+              0,
+              0,
+              41.9
+            ]
+          },
+          "gearInventory": [
+            {
+              "id": "TEST_WAIST_HARNESS_01",
+              "massLb": 5,
+              "countedInGearAndCargoLb": true
+            },
+            {
+              "id": "TEST_HARNESS_CONNECTOR_01",
+              "massLb": 1,
+              "countedInGearAndCargoLb": true
+            },
+            {
+              "id": "TEST_SATCHEL_01",
+              "massLb": 5,
+              "countedInGearAndCargoLb": true
+            },
+            {
+              "id": "TEST_OTHER_GEAR_01",
+              "massLb": 9,
+              "countedInGearAndCargoLb": true
+            }
+          ],
+          "cargo": {
+            "id": "TEST_SATCHEL_01",
+            "massLb": 5,
+            "includedInGearAndCargoLb": true,
+            "custody": "TEST_TARGET_01",
+            "consent": "TEST_ONLY granted"
+          },
+          "positionFeet": [
+            1,
+            0,
+            0
+          ],
+          "bodyBoundsFeet": {
+            "x": [
+              0.75,
+              1.25
+            ],
+            "y": [
+              -0.5,
+              0.5
+            ],
+            "z": [
+              0,
+              6
+            ]
+          },
+          "hp": {
+            "current": 33,
+            "maximum": 40,
+            "temporary": 0,
+            "conditions": [
+              "Prone"
+            ],
+            "fallDamageResistance": false,
+            "fallDamageImmunity": false,
+            "pronePrevention": false
+          }
+        },
+        "handlerA": {
+          "id": "TEST_HANDLER_A",
+          "positionFeet": [
+            -1,
+            2,
+            -8.5
+          ],
+          "bodyBoundsFeet": {
+            "x": [
+              -1.4,
+              -0.6
+            ],
+            "y": [
+              1.65,
+              2.35
+            ],
+            "z": [
+              -8.5,
+              -2.5
+            ]
+          },
+          "custody": "TEST_FIXTURE_CUSTODIAN_01",
+          "consent": "TEST_ONLY granted"
+        },
+        "handlerB": {
+          "id": "TEST_HANDLER_B",
+          "positionFeet": [
+            -2,
+            2,
+            -8.5
+          ],
+          "startPositionFeet": [
+            0,
+            1,
+            0
+          ],
+          "exitPositionFeet": [
+            -2,
+            2,
+            0
+          ],
+          "bodyEnvelopeFeet": {
+            "x": [
+              -0.35,
+              0.35
+            ],
+            "y": [
+              0.65,
+              1.35
+            ],
+            "z": [
+              0,
+              6
+            ]
+          },
+          "carriedGearEnvelopeFeet": {
+            "x": [
+              -0.5,
+              0.5
+            ],
+            "y": [
+              0.5,
+              1.5
+            ],
+            "z": [
+              0,
+              6
+            ]
+          },
+          "armReachFeet": 2.25,
+          "custody": "TEST_FIXTURE_CUSTODIAN_01",
+          "permission": "TEST_ONLY granted",
+          "role": "Receives the upper free end directly from A at [-0.5,0,0.9], within B's 2.25-ft reach, clips it to the consenting target's side D-ring at [0,0,1.5] (1.803 ft from B), then exits to the upper bay. B does not reach to or retrieve the coil from the shelf.",
+          "consent": "TEST_ONLY granted",
+          "bodyBoundsFeet": {
+            "x": [
+              -2.35,
+              -1.65
+            ],
+            "y": [
+              1.65,
+              2.35
+            ],
+            "z": [
+              -8.5,
+              -2.5
+            ]
+          },
+          "carriedGearBoundsFeet": {
+            "x": [
+              -2.5,
+              -1.5
+            ],
+            "y": [
+              1.5,
+              2.5
+            ],
+            "z": [
+              -8.5,
+              -2.5
+            ]
+          }
         }
       },
-      "handlerA": {
-        "feet": [
-          -1,
-          2,
-          -8.5
-        ],
-        "bodyBoundsFeet": {
-          "x": [
-            -1.4,
-            -0.6
+      "items": {
+        "rope": {
+          "id": "TEST_TETHER_01",
+          "type": "Conjure Rope output",
+          "status": "intact_slack_at_landing",
+          "positionFeet": [
+            -2.2,
+            0,
+            2.225
           ],
-          "y": [
-            1.65,
-            2.35
+          "custody": "TEST_FIXTURE_CUSTODIAN_01",
+          "lengthFeet": 50,
+          "massLb": 10,
+          "ac": 11,
+          "hp": 5,
+          "maximumStaticLoadLb": 300,
+          "concentration": false,
+          "attachments": [
+            {
+              "to": "TEST_WAIST_HARNESS_01",
+              "positionFeet": [
+                0,
+                0,
+                1.5
+              ]
+            },
+            {
+              "to": "TEST_FIXED_SUPPORT_01",
+              "positionFeet": [
+                0,
+                0,
+                -8.1
+              ]
+            }
           ],
-          "z": [
-            -8.5,
-            -2.5
-          ]
+          "deadlineSeconds": 600,
+          "secondsRemaining": 570,
+          "continuous": true,
+          "routeSegments": [
+            {
+              "lengthFeet": 10.017984,
+              "from": [
+                0,
+                0,
+                1.5
+              ],
+              "to": [
+                0.6,
+                0,
+                -8.5
+              ],
+              "role": "incoming leader"
+            },
+            {
+              "lengthFeet": 39.260906,
+              "from": [
+                0.6,
+                0,
+                -8.5
+              ],
+              "to": [
+                0.6,
+                0,
+                -8.5
+              ],
+              "role": "loose irregular bights in TEST_LOWER_SLACK_PATCH_01"
+            },
+            {
+              "lengthFeet": 0.72111,
+              "from": [
+                0.6,
+                0,
+                -8.5
+              ],
+              "to": [
+                0,
+                0,
+                -8.1
+              ],
+              "role": "return leader"
+            }
+          ],
+          "deployedPathFeet": 50,
+          "slackFeet": 40.4,
+          "finalRouteSnapshot": {
+            "timeSeconds": 30,
+            "lengthFeet": 50,
+            "dRingToPatchEntryFeet": 10.017984,
+            "looseIrregularBightsFeet": 39.260906,
+            "patchEntryToBracketFeet": 0.72111,
+            "automaticRestowing": false
+          }
         },
-        "custody": "TEST_FIXTURE_CUSTODIAN_01"
+        "focus": {
+          "id": "TEST_CASTER_FOCUS_01",
+          "custody": "TEST_CASTER_01",
+          "massLb": 1,
+          "hand": "left"
+        },
+        "spellbook": {
+          "id": "TEST_CASTER_SPELLBOOK_01",
+          "custody": "TEST_CASTER_01",
+          "massLb": 3,
+          "location": "belt"
+        },
+        "clothing": {
+          "id": "TEST_CASTER_CLOTHING_01",
+          "custody": "TEST_CASTER_01",
+          "massLb": 4
+        },
+        "targetGear": [
+          {
+            "id": "TEST_WAIST_HARNESS_01",
+            "massLb": 5,
+            "countedInGearAndCargoLb": true
+          },
+          {
+            "id": "TEST_HARNESS_CONNECTOR_01",
+            "massLb": 1,
+            "countedInGearAndCargoLb": true
+          },
+          {
+            "id": "TEST_SATCHEL_01",
+            "massLb": 5,
+            "countedInGearAndCargoLb": true
+          },
+          {
+            "id": "TEST_OTHER_GEAR_01",
+            "massLb": 9,
+            "countedInGearAndCargoLb": true
+          }
+        ]
       },
-      "handlerB": {
-        "feet": [
-          -2,
-          2,
-          -8.5
+      "fixture": {
+        "support": {
+          "id": "TEST_FIXED_SUPPORT_01",
+          "positionFeet": [
+            0,
+            0,
+            -8.1
+          ],
+          "kind": "Synthetic fixed wall bracket on the lower service-channel wall, 0.4 ft above the supported lower ledge.",
+          "ratingLb": 250,
+          "ratingScope": "TEST_ONLY complete load-bearing assembly rating. Bracket, support-side weak link, both terminal connections, both connectors, waist harness and D-ring are included within the same 250-lb rating; no included element receives a higher independent capacity.",
+          "custodian": "TEST_FIXTURE_CUSTODIAN_01",
+          "permission": "TEST_ONLY granted",
+          "assemblyId": "TEST_COMPLETE_LOAD_BEARING_ASSEMBLY_01",
+          "overrating": "Above 250 lb, the support-side weak link releases immediately; the fixed bracket and support-side connector remain with the fixture. The intact rope stays attached to the target-side harness connector unless its separate 300-lb overload condition is also met.",
+          "supportConnectorId": "TEST_SUPPORT_CONNECTOR_01",
+          "supportWeakLinkId": "TEST_SUPPORT_SIDE_WEAK_LINK_01",
+          "envelopeFeet": {
+            "x": [
+              -0.05,
+              0.05
+            ],
+            "y": [
+              -0.05,
+              0.05
+            ],
+            "z": [
+              -8.15,
+              -8.05
+            ]
+          },
+          "currentLoadLb": 210,
+          "assemblyState": "intact_holds",
+          "attached": true
+        },
+        "surfaces": [
+          {
+            "id": "TEST_PLATFORM_01",
+            "topZ": 0,
+            "boundsFeet": {
+              "x": [
+                -3.5,
+                4
+              ],
+              "y": [
+                -3,
+                3
+              ]
+            },
+            "supports": "Target initially, upper handler/caster bays, and upper stair landing."
+          },
+          {
+            "id": "TEST_UPPER_COIL_SHELF_01",
+            "centerFeet": [
+              -2.2,
+              0,
+              1.45
+            ],
+            "topZ": 1.5,
+            "dimensionsFeet": [
+              1,
+              1,
+              0.1
+            ],
+            "supportCapacityLb": 20,
+            "supports": "The 10-lb stacked-loop rope coil only before transfer. TEST_ONLY 20-lb static rating. Shelf is below the creation volume and carries no tether load."
+          },
+          {
+            "id": "TEST_SERVICE_STAIR_01",
+            "boundsFeet": {
+              "x": [
+                -2.75,
+                -0.5
+              ],
+              "y": [
+                0.75,
+                3
+              ],
+              "z": [
+                -8.5,
+                0
+              ]
+            },
+            "route": "Continuous supported treads/handrails between [-1,2,0] and [-1,2,-8.5], with a supported landing at z=-4.25; bounds x[-2.75,-0.5], y[0.75,3]."
+          },
+          {
+            "id": "TEST_LOWER_SERVICE_LEDGE_01",
+            "topZ": -8.5,
+            "boundsFeet": {
+              "x": [
+                -3,
+                3
+              ],
+              "y": [
+                -1,
+                3
+              ]
+            },
+            "supports": "Lower bracket access, the handler's lower exit, and TEST_LOWER_SLACK_PATCH_01; bracket is fixed 0.4 ft above ledge."
+          },
+          {
+            "id": "TEST_LOWER_SLACK_PATCH_01",
+            "topZ": -8.5,
+            "boundsFeet": {
+              "x": [
+                0.6,
+                2.6
+              ],
+              "y": [
+                -1,
+                1
+              ]
+            },
+            "supports": "Open lower-ledge patch for 39.260906 ft of loose, irregular rope bights at setup and corresponding slack location proposed at landing. The bight path begins and ends at patch entry [0.6,0,-8.5]. One continuous 10.017984-ft leader runs from D-ring [0,0,1.5] to patch entry; a 0.721110-ft return lead runs from patch entry to bracket [0,0,-8.1]. All portions total 50.000000 ft. Relative to the 9.6-ft direct endpoint distance, slack is 40.400000 ft. The patch does not wind, guide, coil, or restow the line."
+          }
         ],
-        "bodyBoundsFeet": {
-          "x": [
-            -2.35,
-            -1.65
-          ],
-          "y": [
-            1.65,
-            2.35
-          ],
-          "z": [
-            -8.5,
-            -2.5
-          ]
+        "consentsAndPermissions": {
+          "caster": "TEST_ONLY",
+          "target": "TEST_ONLY",
+          "handlerA": "TEST_ONLY",
+          "handlerB": "TEST_ONLY",
+          "fixtureCustodian": "TEST_ONLY"
         },
-        "carriedGearBoundsFeet": {
-          "x": [
-            -2.5,
-            -1.5
-          ],
-          "y": [
-            1.5,
-            2.5
-          ],
-          "z": [
-            -8.5,
-            -2.5
-          ]
-        },
-        "custody": "TEST_FIXTURE_CUSTODIAN_01"
+        "creationCellClear": true,
+        "creationPointFeet": [
+          -2.2,
+          0,
+          2.225
+        ],
+        "upperShelfCoilPresent": true
       },
-      "ropeDeadlineSecondsRemaining": 570,
-      "ropeRoute": "Continuous 10.017984-ft leader + 39.260906-ft bounded irregular bights + 0.721110-ft return lead = 50.000000 ft; no automatic restowing."
+      "spellcasting": {
+        "preparedCopies": [
+          {
+            "spell": "conjure-rope",
+            "copies": 11,
+            "modifications": []
+          },
+          {
+            "spell": "reverse-gravity-field",
+            "copies": 11,
+            "modifications": []
+          }
+        ],
+        "extraCopy": {
+          "school": "Conjuration",
+          "spell": "conjure-rope",
+          "copies": 1,
+          "countsAgainstNormalCapacity": false
+        },
+        "normalCapacity": 22,
+        "totalPreparedCopies": 23,
+        "dissonanceLimit": 13,
+        "castEvents": [
+          {
+            "spell": "conjure-rope",
+            "timeSeconds": 0,
+            "rpBefore": 64,
+            "rpCommitted": 2,
+            "rpAfter": 62,
+            "actionConsumed": true,
+            "responseWindow": "closed_no_attempt",
+            "pendingCastSetAtCommitment": true,
+            "pendingCastClearedAfterResolution": true,
+            "resolution": "one continuous rope materialized on the specified shelf",
+            "refund": false
+          },
+          {
+            "spell": "reverse-gravity-field",
+            "timeSeconds": 18,
+            "rpBefore": 62,
+            "rpCommitted": 26,
+            "rpAfter": 36,
+            "actionConsumed": true,
+            "responseWindow": "closed_no_attempt; no Counterspell source attempted",
+            "pendingCastSetAtCommitment": true,
+            "pendingCastClearedAfterResolution": true,
+            "resolution": "instantaneous at t18; proposed bounded post-resolution event starts",
+            "refund": false
+          }
+        ]
+      },
+      "clocks": {
+        "currentSeconds": 30,
+        "ropeExpiresAtSeconds": 600,
+        "ropeSecondsRemaining": 570,
+        "activeEvent": null
+      },
+      "timeline": {
+        "movementEvent": {
+          "id": "TEST_UPWARD_EVENT_01",
+          "active": false,
+          "startsAtSeconds": 18,
+          "endsAtSeconds": 24,
+          "rateFeetPerSecond": 10,
+          "direction": "+z",
+          "distanceFeet": 60,
+          "sourceDuration": "Instantaneous",
+          "movementIsProposedPostResolutionProcedure": true,
+          "targetAffected": true,
+          "casterAffected": true,
+          "tetherObjectMovement": "excluded by branch-only membership rule; passive restraint follows R7",
+          "elapsedSeconds": 4.04,
+          "targetDistanceFeet": 40.4,
+          "casterDistanceFeet": 40.4,
+          "targetVerticalVelocityAfterTautFeetPerSecond": 0,
+          "casterVerticalVelocityFeetPerSecond": 10,
+          "firstTautAtSeconds": 22.04,
+          "endedAtSeconds": 24
+        },
+        "v0": {
+          "timeSeconds": 24,
+          "fallMarkerSet": true,
+          "descentResolved": false
+        },
+        "v1": {
+          "timeSeconds": 30,
+          "fallMarkerResolved": true,
+          "firstFallingStepResolved": true
+        },
+        "actionOpportunities": [
+          {
+            "order": 1,
+            "actor": "TEST_TARGET_01",
+            "timeSeconds": 24,
+            "normalActionGranted": true,
+            "actionUsed": false,
+            "rescueDeclared": false
+          },
+          {
+            "order": 2,
+            "actor": "TEST_HANDLER_A",
+            "timeSeconds": 24,
+            "normalActionGranted": true,
+            "actionUsed": false,
+            "rescueDeclared": false
+          },
+          {
+            "order": 3,
+            "actor": "TEST_HANDLER_B",
+            "timeSeconds": 24,
+            "normalActionGranted": true,
+            "actionUsed": false,
+            "rescueDeclared": false
+          },
+          {
+            "order": 4,
+            "actor": "TEST_CASTER_01",
+            "timeSeconds": 24,
+            "normalActionGranted": true,
+            "actionUsed": false,
+            "rescueDeclared": false
+          }
+        ],
+        "rescueDeclarations": [],
+        "fallResolution": {
+          "target": {
+            "distanceFeet": 40.4,
+            "dice": "2d6",
+            "faces": [
+              3,
+              4
+            ],
+            "damage": 7,
+            "hpBefore": 40,
+            "hpAfter": 33,
+            "condition": "Prone",
+            "landingFeet": [
+              1,
+              0,
+              0
+            ]
+          },
+          "caster": {
+            "distanceFeet": 60,
+            "dice": "3d6",
+            "faces": [
+              4,
+              4,
+              3
+            ],
+            "damage": 11,
+            "hpBefore": 60,
+            "hpAfter": 49,
+            "condition": "Prone",
+            "landingFeet": [
+              3,
+              -2,
+              0
+            ]
+          },
+          "damageType": "bludgeoning",
+          "arcaneWardMitigates": false
+        },
+        "setupOperations": [
+          {
+            "seconds": [
+              0,
+              6
+            ],
+            "operation": "R7 supported manual rope pickup, handoff, target D-ring attachment; no powered lift or Rope command."
+          },
+          {
+            "seconds": [
+              6,
+              14
+            ],
+            "operation": "R7 supported manual rope payout, specified loose bights and bracket attachment; exact continuous 50-ft path."
+          },
+          {
+            "seconds": [
+              14,
+              15
+            ],
+            "operation": "A steps to lower staging bay to clear stair landing."
+          },
+          {
+            "seconds": [
+              14,
+              17.5
+            ],
+            "operation": "B uses specified supported upper approach, wait, stair and lower-bay route."
+          },
+          {
+            "seconds": [
+              17.5,
+              18
+            ],
+            "operation": "A returns after B clears; both handler envelopes separated and clear of rope/fall paths."
+          }
+        ],
+        "turnEvents": [
+          {
+            "timeSeconds": 6,
+            "event": "END cast turn: cast flag remains true; no idle reduction; then START resets flags."
+          },
+          {
+            "timeSeconds": 12,
+            "event": "END idle interval: one reduction floored at zero; preserve matrix history/last family/Refrain; then START resets flags."
+          },
+          {
+            "timeSeconds": 18,
+            "event": "END idle interval: one reduction floored at zero; preserve matrix history/last family/Refrain; settle END before START18."
+          },
+          {
+            "timeSeconds": 18,
+            "event": "START18 resets flags and grants Action before Reverse Gravity commitment."
+          },
+          {
+            "timeSeconds": 24,
+            "event": "Movement endpoint then END[18,24]; cast flag remains true through END; no duplicate cost/resolution."
+          },
+          {
+            "timeSeconds": 24,
+            "event": "V0 sets marker; no descent."
+          },
+          {
+            "timeSeconds": 24,
+            "event": "START[24,30] resets per-turn flags; Actions available."
+          },
+          {
+            "timeSeconds": 30,
+            "event": "END[24,30] applies one idle Dissonance reduction floored at zero; preserves family history/lastMatrixFamily/Refrain."
+          },
+          {
+            "timeSeconds": 30,
+            "event": "V1 after all roster opportunities; first Falling Step; both land and resolve damage/Prone."
+          }
+        ],
+        "cast18Subevents": [
+          {
+            "timeSeconds": 18,
+            "event": "END[12,18] settled before START18."
+          },
+          {
+            "timeSeconds": 18,
+            "event": "START18 resets per-turn flags; Action available."
+          },
+          {
+            "timeSeconds": 18,
+            "event": "Commit 26 RP once; family history and lastMatrixFamily update; perTurnSpellCastFlag=true; pendingCast=true."
+          },
+          {
+            "timeSeconds": 18,
+            "event": "Counterspell window: no attempt; no reaction/cost/recharge change."
+          },
+          {
+            "timeSeconds": 18,
+            "event": "Resolve instantaneous spell; clear pendingCast after resolution."
+          }
+        ],
+        "unsupportedActors": [
+          "TEST_TARGET_01",
+          "TEST_CASTER_01"
+        ]
+      }
     },
     "inverseAudit": {
-      "procedure": "Record one inverse for each S0→S7 transition in reverse order. Restore the exact projected TEST_ONLY initial state: actor and item positions/bounds/custody, HP/temp HP/conditions/defenses including Arcane Ward selection, RP64, Dissonance0, empty family history, lastMatrixFamily null, Refrain 0, per-turn flags false, Counterspell recharge0/ready, available Actions, no rope, and no active deadlines. Audit reversal is not an in-game refund, healing, rest, or history erasure.",
+      "procedure": "Applied one concrete inverse state patch for each S0→S7 transition, in exact reverse order S7→S6→S5→S4→S3→S2→S1→S0. Patches were executed against the preceding current state with exact from-value preconditions; no runtime or game engine was called.",
+      "forwardExecution": {
+        "applied": true,
+        "transitionCount": 7,
+        "order": [
+          "S0→S1",
+          "S1→S2",
+          "S2→S3",
+          "S3→S4",
+          "S4→S5",
+          "S5→S6",
+          "S6→S7"
+        ],
+        "finalStateSha256": "f06d062cbed2422e43a0055a534f7cf884e905b911e364a779dab81ec93bb16e",
+        "matchesRecordedTerminalState": true
+      },
       "transitionLedger": [
         {
-          "timeSeconds": 0,
-          "event": "Regular START of [0,6]; Conjure Rope Action commitment, response window and instantaneous resolution; RP64->62; matrix-family history []->[conjure-rope]; lastMatrixFamily null->conjure-rope; Dissonance/Refrain remain 0."
+          "operationId": "I07",
+          "transition": "S7→S6",
+          "undoesForwardTransition": "S6→S7",
+          "operation": "Audit-inverse the exact recorded forward state changes; restore the preceding projected snapshot without claiming in-game refund/healing/rest/history erasure.",
+          "stateChanges": [
+            {
+              "op": "replace",
+              "path": "/actors/caster/hp/conditions",
+              "from": [
+                "Prone"
+              ],
+              "value": []
+            },
+            {
+              "op": "replace",
+              "path": "/actors/caster/hp/current",
+              "from": 49,
+              "value": 60
+            },
+            {
+              "op": "replace",
+              "path": "/actors/caster/positionFeet",
+              "from": [
+                3,
+                -2,
+                0
+              ],
+              "value": [
+                3,
+                -2,
+                60
+              ]
+            },
+            {
+              "op": "replace",
+              "path": "/actors/target/hp/conditions",
+              "from": [
+                "Prone"
+              ],
+              "value": []
+            },
+            {
+              "op": "replace",
+              "path": "/actors/target/hp/current",
+              "from": 33,
+              "value": 40
+            },
+            {
+              "op": "replace",
+              "path": "/actors/target/positionFeet",
+              "from": [
+                1,
+                0,
+                0
+              ],
+              "value": [
+                1,
+                0,
+                40.4
+              ]
+            },
+            {
+              "op": "replace",
+              "path": "/clocks/currentSeconds",
+              "from": 30,
+              "value": 24
+            },
+            {
+              "op": "replace",
+              "path": "/clocks/ropeSecondsRemaining",
+              "from": 570,
+              "value": 576
+            },
+            {
+              "op": "remove",
+              "path": "/items/rope/finalRouteSnapshot",
+              "from": {
+                "timeSeconds": 30,
+                "lengthFeet": 50,
+                "dRingToPatchEntryFeet": 10.017984,
+                "looseIrregularBightsFeet": 39.260906,
+                "patchEntryToBracketFeet": 0.72111,
+                "automaticRestowing": false
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/items/rope/secondsRemaining",
+              "from": 570,
+              "value": 582
+            },
+            {
+              "op": "replace",
+              "path": "/items/rope/slackFeet",
+              "from": 40.4,
+              "value": 0
+            },
+            {
+              "op": "replace",
+              "path": "/items/rope/status",
+              "from": "intact_slack_at_landing",
+              "value": "taut_intact"
+            },
+            {
+              "op": "replace",
+              "path": "/stateId",
+              "from": "S7",
+              "value": "S6"
+            },
+            {
+              "op": "replace",
+              "path": "/timeSeconds",
+              "from": 30,
+              "value": 24
+            },
+            {
+              "op": "replace",
+              "path": "/timeline/fallResolution",
+              "from": {
+                "target": {
+                  "distanceFeet": 40.4,
+                  "dice": "2d6",
+                  "faces": [
+                    3,
+                    4
+                  ],
+                  "damage": 7,
+                  "hpBefore": 40,
+                  "hpAfter": 33,
+                  "condition": "Prone",
+                  "landingFeet": [
+                    1,
+                    0,
+                    0
+                  ]
+                },
+                "caster": {
+                  "distanceFeet": 60,
+                  "dice": "3d6",
+                  "faces": [
+                    4,
+                    4,
+                    3
+                  ],
+                  "damage": 11,
+                  "hpBefore": 60,
+                  "hpAfter": 49,
+                  "condition": "Prone",
+                  "landingFeet": [
+                    3,
+                    -2,
+                    0
+                  ]
+                },
+                "damageType": "bludgeoning",
+                "arcaneWardMitigates": false
+              },
+              "value": null
+            },
+            {
+              "op": "replace",
+              "path": "/timeline/turnEvents",
+              "from": [
+                {
+                  "timeSeconds": 6,
+                  "event": "END cast turn: cast flag remains true; no idle reduction; then START resets flags."
+                },
+                {
+                  "timeSeconds": 12,
+                  "event": "END idle interval: one reduction floored at zero; preserve matrix history/last family/Refrain; then START resets flags."
+                },
+                {
+                  "timeSeconds": 18,
+                  "event": "END idle interval: one reduction floored at zero; preserve matrix history/last family/Refrain; settle END before START18."
+                },
+                {
+                  "timeSeconds": 18,
+                  "event": "START18 resets flags and grants Action before Reverse Gravity commitment."
+                },
+                {
+                  "timeSeconds": 24,
+                  "event": "Movement endpoint then END[18,24]; cast flag remains true through END; no duplicate cost/resolution."
+                },
+                {
+                  "timeSeconds": 24,
+                  "event": "V0 sets marker; no descent."
+                },
+                {
+                  "timeSeconds": 24,
+                  "event": "START[24,30] resets per-turn flags; Actions available."
+                },
+                {
+                  "timeSeconds": 30,
+                  "event": "END[24,30] applies one idle Dissonance reduction floored at zero; preserves family history/lastMatrixFamily/Refrain."
+                },
+                {
+                  "timeSeconds": 30,
+                  "event": "V1 after all roster opportunities; first Falling Step; both land and resolve damage/Prone."
+                }
+              ],
+              "value": [
+                {
+                  "timeSeconds": 6,
+                  "event": "END cast turn: cast flag remains true; no idle reduction; then START resets flags."
+                },
+                {
+                  "timeSeconds": 12,
+                  "event": "END idle interval: one reduction floored at zero; preserve matrix history/last family/Refrain; then START resets flags."
+                },
+                {
+                  "timeSeconds": 18,
+                  "event": "END idle interval: one reduction floored at zero; preserve matrix history/last family/Refrain; settle END before START18."
+                },
+                {
+                  "timeSeconds": 18,
+                  "event": "START18 resets flags and grants Action before Reverse Gravity commitment."
+                },
+                {
+                  "timeSeconds": 24,
+                  "event": "Movement endpoint then END[18,24]; cast flag remains true through END; no duplicate cost/resolution."
+                },
+                {
+                  "timeSeconds": 24,
+                  "event": "V0 sets marker; no descent."
+                },
+                {
+                  "timeSeconds": 24,
+                  "event": "START[24,30] resets per-turn flags; Actions available."
+                }
+              ]
+            },
+            {
+              "op": "replace",
+              "path": "/timeline/v1",
+              "from": {
+                "timeSeconds": 30,
+                "fallMarkerResolved": true,
+                "firstFallingStepResolved": true
+              },
+              "value": null
+            }
+          ],
+          "preStateSha256": "f06d062cbed2422e43a0055a534f7cf884e905b911e364a779dab81ec93bb16e",
+          "restoredStateSha256": "e48f5c515860c576d1d3b4367d4ed556b2c758f1d0146b689b050ed9c5ea3d2f",
+          "restoredStateId": "S6",
+          "applied": true,
+          "preconditionsPassed": true,
+          "deepComparisonToExpectedPriorState": true
         },
         {
-          "timeSeconds": 6,
-          "event": "END [0,6] for the cast turn, with cast flag preserved and no idle reduction; then START [6,12] resets per-turn flags."
+          "operationId": "I06",
+          "transition": "S6→S5",
+          "undoesForwardTransition": "S5→S6",
+          "operation": "Audit-inverse the exact recorded forward state changes; restore the preceding projected snapshot without claiming in-game refund/healing/rest/history erasure.",
+          "stateChanges": [
+            {
+              "op": "replace",
+              "path": "/stateId",
+              "from": "S6",
+              "value": "S5"
+            },
+            {
+              "op": "replace",
+              "path": "/timeline/actionOpportunities",
+              "from": [
+                {
+                  "order": 1,
+                  "actor": "TEST_TARGET_01",
+                  "timeSeconds": 24,
+                  "normalActionGranted": true,
+                  "actionUsed": false,
+                  "rescueDeclared": false
+                },
+                {
+                  "order": 2,
+                  "actor": "TEST_HANDLER_A",
+                  "timeSeconds": 24,
+                  "normalActionGranted": true,
+                  "actionUsed": false,
+                  "rescueDeclared": false
+                },
+                {
+                  "order": 3,
+                  "actor": "TEST_HANDLER_B",
+                  "timeSeconds": 24,
+                  "normalActionGranted": true,
+                  "actionUsed": false,
+                  "rescueDeclared": false
+                },
+                {
+                  "order": 4,
+                  "actor": "TEST_CASTER_01",
+                  "timeSeconds": 24,
+                  "normalActionGranted": true,
+                  "actionUsed": false,
+                  "rescueDeclared": false
+                }
+              ],
+              "value": []
+            }
+          ],
+          "preStateSha256": "e48f5c515860c576d1d3b4367d4ed556b2c758f1d0146b689b050ed9c5ea3d2f",
+          "restoredStateSha256": "7bc1f9e15d603715b8eb12200d326e1b9e7938f65568a59defcdb747e73d5091",
+          "restoredStateId": "S5",
+          "applied": true,
+          "preconditionsPassed": true,
+          "deepComparisonToExpectedPriorState": true
         },
         {
-          "timeSeconds": 12,
-          "event": "END [6,12] applies one idle-turn Dissonance reduction, floored at 0; preserves family history, lastMatrixFamily conjure-rope, and Refrain 0; then START [12,18] resets per-turn flags."
+          "operationId": "I05",
+          "transition": "S5→S4",
+          "undoesForwardTransition": "S4→S5",
+          "operation": "Audit-inverse the exact recorded forward state changes; restore the preceding projected snapshot without claiming in-game refund/healing/rest/history erasure.",
+          "stateChanges": [
+            {
+              "op": "replace",
+              "path": "/actors/caster/actionAvailable",
+              "from": true,
+              "value": false
+            },
+            {
+              "op": "replace",
+              "path": "/actors/caster/perTurnSpellCastFlag",
+              "from": false,
+              "value": true
+            },
+            {
+              "op": "replace",
+              "path": "/actors/caster/positionFeet",
+              "from": [
+                3,
+                -2,
+                60
+              ],
+              "value": [
+                3,
+                -2,
+                40.4
+              ]
+            },
+            {
+              "op": "replace",
+              "path": "/clocks/activeEvent",
+              "from": null,
+              "value": {
+                "id": "TEST_UPWARD_EVENT_01",
+                "active": true,
+                "startsAtSeconds": 18,
+                "endsAtSeconds": 24,
+                "rateFeetPerSecond": 10,
+                "direction": "+z",
+                "distanceFeet": 60,
+                "sourceDuration": "Instantaneous",
+                "movementIsProposedPostResolutionProcedure": true,
+                "targetAffected": true,
+                "casterAffected": true,
+                "tetherObjectMovement": "excluded by branch-only membership rule; passive restraint follows R7"
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/clocks/currentSeconds",
+              "from": 24,
+              "value": 22.04
+            },
+            {
+              "op": "replace",
+              "path": "/clocks/ropeSecondsRemaining",
+              "from": 576,
+              "value": 577.96
+            },
+            {
+              "op": "replace",
+              "path": "/stateId",
+              "from": "S5",
+              "value": "S4"
+            },
+            {
+              "op": "replace",
+              "path": "/timeSeconds",
+              "from": 24,
+              "value": 22.04
+            },
+            {
+              "op": "replace",
+              "path": "/timeline/movementEvent/active",
+              "from": false,
+              "value": true
+            },
+            {
+              "op": "remove",
+              "path": "/timeline/movementEvent/endedAtSeconds",
+              "from": 24
+            },
+            {
+              "op": "replace",
+              "path": "/timeline/turnEvents",
+              "from": [
+                {
+                  "timeSeconds": 6,
+                  "event": "END cast turn: cast flag remains true; no idle reduction; then START resets flags."
+                },
+                {
+                  "timeSeconds": 12,
+                  "event": "END idle interval: one reduction floored at zero; preserve matrix history/last family/Refrain; then START resets flags."
+                },
+                {
+                  "timeSeconds": 18,
+                  "event": "END idle interval: one reduction floored at zero; preserve matrix history/last family/Refrain; settle END before START18."
+                },
+                {
+                  "timeSeconds": 18,
+                  "event": "START18 resets flags and grants Action before Reverse Gravity commitment."
+                },
+                {
+                  "timeSeconds": 24,
+                  "event": "Movement endpoint then END[18,24]; cast flag remains true through END; no duplicate cost/resolution."
+                },
+                {
+                  "timeSeconds": 24,
+                  "event": "V0 sets marker; no descent."
+                },
+                {
+                  "timeSeconds": 24,
+                  "event": "START[24,30] resets per-turn flags; Actions available."
+                }
+              ],
+              "value": [
+                {
+                  "timeSeconds": 6,
+                  "event": "END cast turn: cast flag remains true; no idle reduction; then START resets flags."
+                },
+                {
+                  "timeSeconds": 12,
+                  "event": "END idle interval: one reduction floored at zero; preserve matrix history/last family/Refrain; then START resets flags."
+                },
+                {
+                  "timeSeconds": 18,
+                  "event": "END idle interval: one reduction floored at zero; preserve matrix history/last family/Refrain; settle END before START18."
+                },
+                {
+                  "timeSeconds": 18,
+                  "event": "START18 resets flags and grants Action before Reverse Gravity commitment."
+                }
+              ]
+            },
+            {
+              "op": "remove",
+              "path": "/timeline/unsupportedActors",
+              "from": [
+                "TEST_TARGET_01",
+                "TEST_CASTER_01"
+              ]
+            },
+            {
+              "op": "replace",
+              "path": "/timeline/v0",
+              "from": {
+                "timeSeconds": 24,
+                "fallMarkerSet": true,
+                "descentResolved": false
+              },
+              "value": null
+            }
+          ],
+          "preStateSha256": "7bc1f9e15d603715b8eb12200d326e1b9e7938f65568a59defcdb747e73d5091",
+          "restoredStateSha256": "fcac9d30866715f7cf8e5e1b67816aa491cdbf15da94ec95aab3cbe677b5be6d",
+          "restoredStateId": "S4",
+          "applied": true,
+          "preconditionsPassed": true,
+          "deepComparisonToExpectedPriorState": true
         },
         {
-          "timeSeconds": 18,
-          "event": "END [12,18] applies one idle-turn Dissonance reduction, floored at 0; preserves family history, lastMatrixFamily conjure-rope, and Refrain 0; then START [18,24] resets flags and Reverse Gravity commits/resolves; RP62->36; lastMatrixFamily becomes reverse-gravity-field."
+          "operationId": "I04",
+          "transition": "S4→S3",
+          "undoesForwardTransition": "S3→S4",
+          "operation": "Audit-inverse the exact recorded forward state changes; restore the preceding projected snapshot without claiming in-game refund/healing/rest/history erasure.",
+          "stateChanges": [
+            {
+              "op": "replace",
+              "path": "/actors/caster/positionFeet",
+              "from": [
+                3,
+                -2,
+                40.4
+              ],
+              "value": [
+                3,
+                -2,
+                0
+              ]
+            },
+            {
+              "op": "remove",
+              "path": "/actors/target/harness/positionFeet",
+              "from": [
+                0,
+                0,
+                41.9
+              ]
+            },
+            {
+              "op": "replace",
+              "path": "/actors/target/positionFeet",
+              "from": [
+                1,
+                0,
+                40.4
+              ],
+              "value": [
+                1,
+                0,
+                0
+              ]
+            },
+            {
+              "op": "replace",
+              "path": "/clocks/currentSeconds",
+              "from": 22.04,
+              "value": 18
+            },
+            {
+              "op": "replace",
+              "path": "/clocks/ropeSecondsRemaining",
+              "from": 577.96,
+              "value": 582
+            },
+            {
+              "op": "replace",
+              "path": "/items/rope/slackFeet",
+              "from": 0,
+              "value": 40.4
+            },
+            {
+              "op": "replace",
+              "path": "/items/rope/status",
+              "from": "taut_intact",
+              "value": "deployed_attached_slack"
+            },
+            {
+              "op": "replace",
+              "path": "/stateId",
+              "from": "S4",
+              "value": "S3"
+            },
+            {
+              "op": "replace",
+              "path": "/timeSeconds",
+              "from": 22.04,
+              "value": 18
+            },
+            {
+              "op": "replace",
+              "path": "/timeline/movementEvent",
+              "from": {
+                "id": "TEST_UPWARD_EVENT_01",
+                "active": true,
+                "startsAtSeconds": 18,
+                "endsAtSeconds": 24,
+                "rateFeetPerSecond": 10,
+                "direction": "+z",
+                "distanceFeet": 60,
+                "sourceDuration": "Instantaneous",
+                "movementIsProposedPostResolutionProcedure": true,
+                "targetAffected": true,
+                "casterAffected": true,
+                "tetherObjectMovement": "excluded by branch-only membership rule; passive restraint follows R7",
+                "elapsedSeconds": 4.04,
+                "targetDistanceFeet": 40.4,
+                "casterDistanceFeet": 40.4,
+                "targetVerticalVelocityAfterTautFeetPerSecond": 0,
+                "casterVerticalVelocityFeetPerSecond": 10,
+                "firstTautAtSeconds": 22.04
+              },
+              "value": null
+            }
+          ],
+          "preStateSha256": "fcac9d30866715f7cf8e5e1b67816aa491cdbf15da94ec95aab3cbe677b5be6d",
+          "restoredStateSha256": "3b09e77cc5f143adbfb1d980bd140c932109b2ef41fd439ebfcbf2fd690444a4",
+          "restoredStateId": "S3",
+          "applied": true,
+          "preconditionsPassed": true,
+          "deepComparisonToExpectedPriorState": true
         },
         {
-          "timeSeconds": 24,
-          "event": "Settle post-resolution movement endpoint; END [18,24] with cast flag preserved and no idle reduction; then V0; then START [24,30] resets per-turn flags and offers ordered roster opportunities. No descent at V0."
+          "operationId": "I03",
+          "transition": "S3→S2",
+          "undoesForwardTransition": "S2→S3",
+          "operation": "Audit-inverse the exact recorded forward state changes; restore the preceding projected snapshot without claiming in-game refund/healing/rest/history erasure.",
+          "stateChanges": [
+            {
+              "op": "replace",
+              "path": "/actors/caster/actionAvailable",
+              "from": false,
+              "value": true
+            },
+            {
+              "op": "replace",
+              "path": "/actors/caster/lastMatrixFamily",
+              "from": "reverse-gravity-field",
+              "value": "conjure-rope"
+            },
+            {
+              "op": "replace",
+              "path": "/actors/caster/matrixFamiliesCastThisEncounter",
+              "from": [
+                "conjure-rope",
+                "reverse-gravity-field"
+              ],
+              "value": [
+                "conjure-rope"
+              ]
+            },
+            {
+              "op": "replace",
+              "path": "/actors/caster/perTurnSpellCastFlag",
+              "from": true,
+              "value": false
+            },
+            {
+              "op": "replace",
+              "path": "/actors/caster/rp/current",
+              "from": 36,
+              "value": 62
+            },
+            {
+              "op": "replace",
+              "path": "/clocks/activeEvent",
+              "from": {
+                "id": "TEST_UPWARD_EVENT_01",
+                "active": true,
+                "startsAtSeconds": 18,
+                "endsAtSeconds": 24,
+                "rateFeetPerSecond": 10,
+                "direction": "+z",
+                "distanceFeet": 60,
+                "sourceDuration": "Instantaneous",
+                "movementIsProposedPostResolutionProcedure": true,
+                "targetAffected": true,
+                "casterAffected": true,
+                "tetherObjectMovement": "excluded by branch-only membership rule; passive restraint follows R7"
+              },
+              "value": null
+            },
+            {
+              "op": "replace",
+              "path": "/spellcasting/castEvents",
+              "from": [
+                {
+                  "spell": "conjure-rope",
+                  "timeSeconds": 0,
+                  "rpBefore": 64,
+                  "rpCommitted": 2,
+                  "rpAfter": 62,
+                  "actionConsumed": true,
+                  "responseWindow": "closed_no_attempt",
+                  "pendingCastSetAtCommitment": true,
+                  "pendingCastClearedAfterResolution": true,
+                  "resolution": "one continuous rope materialized on the specified shelf",
+                  "refund": false
+                },
+                {
+                  "spell": "reverse-gravity-field",
+                  "timeSeconds": 18,
+                  "rpBefore": 62,
+                  "rpCommitted": 26,
+                  "rpAfter": 36,
+                  "actionConsumed": true,
+                  "responseWindow": "closed_no_attempt; no Counterspell source attempted",
+                  "pendingCastSetAtCommitment": true,
+                  "pendingCastClearedAfterResolution": true,
+                  "resolution": "instantaneous at t18; proposed bounded post-resolution event starts",
+                  "refund": false
+                }
+              ],
+              "value": [
+                {
+                  "spell": "conjure-rope",
+                  "timeSeconds": 0,
+                  "rpBefore": 64,
+                  "rpCommitted": 2,
+                  "rpAfter": 62,
+                  "actionConsumed": true,
+                  "responseWindow": "closed_no_attempt",
+                  "pendingCastSetAtCommitment": true,
+                  "pendingCastClearedAfterResolution": true,
+                  "resolution": "one continuous rope materialized on the specified shelf",
+                  "refund": false
+                }
+              ]
+            },
+            {
+              "op": "replace",
+              "path": "/stateId",
+              "from": "S3",
+              "value": "S2"
+            },
+            {
+              "op": "remove",
+              "path": "/timeline/cast18Subevents",
+              "from": [
+                {
+                  "timeSeconds": 18,
+                  "event": "END[12,18] settled before START18."
+                },
+                {
+                  "timeSeconds": 18,
+                  "event": "START18 resets per-turn flags; Action available."
+                },
+                {
+                  "timeSeconds": 18,
+                  "event": "Commit 26 RP once; family history and lastMatrixFamily update; perTurnSpellCastFlag=true; pendingCast=true."
+                },
+                {
+                  "timeSeconds": 18,
+                  "event": "Counterspell window: no attempt; no reaction/cost/recharge change."
+                },
+                {
+                  "timeSeconds": 18,
+                  "event": "Resolve instantaneous spell; clear pendingCast after resolution."
+                }
+              ]
+            }
+          ],
+          "preStateSha256": "3b09e77cc5f143adbfb1d980bd140c932109b2ef41fd439ebfcbf2fd690444a4",
+          "restoredStateSha256": "958dde547168f86f3ec07db4aa93d05dd71754a9995b40a3f437bdf2226b136c",
+          "restoredStateId": "S2",
+          "applied": true,
+          "preconditionsPassed": true,
+          "deepComparisonToExpectedPriorState": true
         },
         {
-          "timeSeconds": 30,
-          "event": "END [24,30] applies one idle-turn Dissonance reduction, floored at 0; preserves lastMatrixFamily reverse-gravity-field and family/Refrain history; then V1, first falling step and landing; record final state and 570-second rope deadline."
+          "operationId": "I02",
+          "transition": "S2→S1",
+          "undoesForwardTransition": "S1→S2",
+          "operation": "Audit-inverse the exact recorded forward state changes; restore the preceding projected snapshot without claiming in-game refund/healing/rest/history erasure.",
+          "stateChanges": [
+            {
+              "op": "replace",
+              "path": "/actors/caster/actionAvailable",
+              "from": true,
+              "value": false
+            },
+            {
+              "op": "replace",
+              "path": "/actors/caster/perTurnSpellCastFlag",
+              "from": false,
+              "value": true
+            },
+            {
+              "op": "replace",
+              "path": "/actors/handlerA/bodyBoundsFeet/z",
+              "from": [
+                -8.5,
+                -2.5
+              ],
+              "value": [
+                0,
+                6
+              ]
+            },
+            {
+              "op": "replace",
+              "path": "/actors/handlerA/positionFeet",
+              "from": [
+                -1,
+                2,
+                -8.5
+              ],
+              "value": [
+                -1,
+                2,
+                0
+              ]
+            },
+            {
+              "op": "remove",
+              "path": "/actors/handlerB/bodyBoundsFeet",
+              "from": {
+                "x": [
+                  -2.35,
+                  -1.65
+                ],
+                "y": [
+                  1.65,
+                  2.35
+                ],
+                "z": [
+                  -8.5,
+                  -2.5
+                ]
+              }
+            },
+            {
+              "op": "remove",
+              "path": "/actors/handlerB/carriedGearBoundsFeet",
+              "from": {
+                "x": [
+                  -2.5,
+                  -1.5
+                ],
+                "y": [
+                  1.5,
+                  2.5
+                ],
+                "z": [
+                  -8.5,
+                  -2.5
+                ]
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/actors/handlerB/positionFeet",
+              "from": [
+                -2,
+                2,
+                -8.5
+              ],
+              "value": [
+                0,
+                1,
+                0
+              ]
+            },
+            {
+              "op": "replace",
+              "path": "/clocks/currentSeconds",
+              "from": 18,
+              "value": 0
+            },
+            {
+              "op": "replace",
+              "path": "/clocks/ropeSecondsRemaining",
+              "from": 582,
+              "value": 600
+            },
+            {
+              "op": "replace",
+              "path": "/fixture/support/assemblyState",
+              "from": "intact_holds",
+              "value": "intact"
+            },
+            {
+              "op": "replace",
+              "path": "/fixture/support/attached",
+              "from": true,
+              "value": false
+            },
+            {
+              "op": "replace",
+              "path": "/fixture/support/currentLoadLb",
+              "from": 210,
+              "value": 0
+            },
+            {
+              "op": "replace",
+              "path": "/items/rope/attachments",
+              "from": [
+                {
+                  "to": "TEST_WAIST_HARNESS_01",
+                  "positionFeet": [
+                    0,
+                    0,
+                    1.5
+                  ]
+                },
+                {
+                  "to": "TEST_FIXED_SUPPORT_01",
+                  "positionFeet": [
+                    0,
+                    0,
+                    -8.1
+                  ]
+                }
+              ],
+              "value": []
+            },
+            {
+              "op": "remove",
+              "path": "/items/rope/deployedPathFeet",
+              "from": 50
+            },
+            {
+              "op": "remove",
+              "path": "/items/rope/routeSegments",
+              "from": [
+                {
+                  "lengthFeet": 10.017984,
+                  "from": [
+                    0,
+                    0,
+                    1.5
+                  ],
+                  "to": [
+                    0.6,
+                    0,
+                    -8.5
+                  ],
+                  "role": "incoming leader"
+                },
+                {
+                  "lengthFeet": 39.260906,
+                  "from": [
+                    0.6,
+                    0,
+                    -8.5
+                  ],
+                  "to": [
+                    0.6,
+                    0,
+                    -8.5
+                  ],
+                  "role": "loose irregular bights in TEST_LOWER_SLACK_PATCH_01"
+                },
+                {
+                  "lengthFeet": 0.72111,
+                  "from": [
+                    0.6,
+                    0,
+                    -8.5
+                  ],
+                  "to": [
+                    0,
+                    0,
+                    -8.1
+                  ],
+                  "role": "return leader"
+                }
+              ]
+            },
+            {
+              "op": "replace",
+              "path": "/items/rope/secondsRemaining",
+              "from": 582,
+              "value": 600
+            },
+            {
+              "op": "remove",
+              "path": "/items/rope/slackFeet",
+              "from": 40.4
+            },
+            {
+              "op": "replace",
+              "path": "/items/rope/status",
+              "from": "deployed_attached_slack",
+              "value": "created_coil_on_shelf"
+            },
+            {
+              "op": "replace",
+              "path": "/stateId",
+              "from": "S2",
+              "value": "S1"
+            },
+            {
+              "op": "replace",
+              "path": "/timeSeconds",
+              "from": 18,
+              "value": 0
+            },
+            {
+              "op": "replace",
+              "path": "/timeline/setupOperations",
+              "from": [
+                {
+                  "seconds": [
+                    0,
+                    6
+                  ],
+                  "operation": "R7 supported manual rope pickup, handoff, target D-ring attachment; no powered lift or Rope command."
+                },
+                {
+                  "seconds": [
+                    6,
+                    14
+                  ],
+                  "operation": "R7 supported manual rope payout, specified loose bights and bracket attachment; exact continuous 50-ft path."
+                },
+                {
+                  "seconds": [
+                    14,
+                    15
+                  ],
+                  "operation": "A steps to lower staging bay to clear stair landing."
+                },
+                {
+                  "seconds": [
+                    14,
+                    17.5
+                  ],
+                  "operation": "B uses specified supported upper approach, wait, stair and lower-bay route."
+                },
+                {
+                  "seconds": [
+                    17.5,
+                    18
+                  ],
+                  "operation": "A returns after B clears; both handler envelopes separated and clear of rope/fall paths."
+                }
+              ],
+              "value": []
+            },
+            {
+              "op": "remove",
+              "path": "/timeline/turnEvents",
+              "from": [
+                {
+                  "timeSeconds": 6,
+                  "event": "END cast turn: cast flag remains true; no idle reduction; then START resets flags."
+                },
+                {
+                  "timeSeconds": 12,
+                  "event": "END idle interval: one reduction floored at zero; preserve matrix history/last family/Refrain; then START resets flags."
+                },
+                {
+                  "timeSeconds": 18,
+                  "event": "END idle interval: one reduction floored at zero; preserve matrix history/last family/Refrain; settle END before START18."
+                },
+                {
+                  "timeSeconds": 18,
+                  "event": "START18 resets flags and grants Action before Reverse Gravity commitment."
+                }
+              ]
+            }
+          ],
+          "preStateSha256": "958dde547168f86f3ec07db4aa93d05dd71754a9995b40a3f437bdf2226b136c",
+          "restoredStateSha256": "70c0f3fa66f8f94e948dfe979bb35d48e0aaf498f67d8386b0701d9d9dca31d7",
+          "restoredStateId": "S1",
+          "applied": true,
+          "preconditionsPassed": true,
+          "deepComparisonToExpectedPriorState": true
+        },
+        {
+          "operationId": "I01",
+          "transition": "S1→S0",
+          "undoesForwardTransition": "S0→S1",
+          "operation": "Audit-inverse the exact recorded forward state changes; restore the preceding projected snapshot without claiming in-game refund/healing/rest/history erasure.",
+          "stateChanges": [
+            {
+              "op": "replace",
+              "path": "/actors/caster/actionAvailable",
+              "from": false,
+              "value": true
+            },
+            {
+              "op": "replace",
+              "path": "/actors/caster/lastMatrixFamily",
+              "from": "conjure-rope",
+              "value": null
+            },
+            {
+              "op": "replace",
+              "path": "/actors/caster/matrixFamiliesCastThisEncounter",
+              "from": [
+                "conjure-rope"
+              ],
+              "value": []
+            },
+            {
+              "op": "replace",
+              "path": "/actors/caster/perTurnSpellCastFlag",
+              "from": true,
+              "value": false
+            },
+            {
+              "op": "replace",
+              "path": "/actors/caster/rp/current",
+              "from": 62,
+              "value": 64
+            },
+            {
+              "op": "replace",
+              "path": "/clocks/ropeExpiresAtSeconds",
+              "from": 600,
+              "value": null
+            },
+            {
+              "op": "replace",
+              "path": "/clocks/ropeSecondsRemaining",
+              "from": 600,
+              "value": null
+            },
+            {
+              "op": "replace",
+              "path": "/fixture/upperShelfCoilPresent",
+              "from": true,
+              "value": false
+            },
+            {
+              "op": "replace",
+              "path": "/items/rope",
+              "from": {
+                "id": "TEST_TETHER_01",
+                "type": "Conjure Rope output",
+                "status": "created_coil_on_shelf",
+                "positionFeet": [
+                  -2.2,
+                  0,
+                  2.225
+                ],
+                "custody": "TEST_FIXTURE_CUSTODIAN_01",
+                "lengthFeet": 50,
+                "massLb": 10,
+                "ac": 11,
+                "hp": 5,
+                "maximumStaticLoadLb": 300,
+                "concentration": false,
+                "attachments": [],
+                "deadlineSeconds": 600,
+                "secondsRemaining": 600,
+                "continuous": true
+              },
+              "value": null
+            },
+            {
+              "op": "replace",
+              "path": "/spellcasting/castEvents",
+              "from": [
+                {
+                  "spell": "conjure-rope",
+                  "timeSeconds": 0,
+                  "rpBefore": 64,
+                  "rpCommitted": 2,
+                  "rpAfter": 62,
+                  "actionConsumed": true,
+                  "responseWindow": "closed_no_attempt",
+                  "pendingCastSetAtCommitment": true,
+                  "pendingCastClearedAfterResolution": true,
+                  "resolution": "one continuous rope materialized on the specified shelf",
+                  "refund": false
+                }
+              ],
+              "value": []
+            },
+            {
+              "op": "replace",
+              "path": "/stateId",
+              "from": "S1",
+              "value": "S0"
+            }
+          ],
+          "preStateSha256": "70c0f3fa66f8f94e948dfe979bb35d48e0aaf498f67d8386b0701d9d9dca31d7",
+          "restoredStateSha256": "2018dd01afe20f663ffb980bf0f858505178dcd6bc0525a792b89ac627a71029",
+          "restoredStateId": "S0",
+          "applied": true,
+          "preconditionsPassed": true,
+          "deepComparisonToExpectedPriorState": true
         }
       ],
-      "restoredState": "Exact projected TEST_ONLY initial state specified by the adopted contract."
-    }
+      "inverseExecution": {
+        "applied": true,
+        "transitionCount": 7,
+        "order": [
+          "S7→S6",
+          "S6→S5",
+          "S5→S4",
+          "S4→S3",
+          "S3→S2",
+          "S2→S1",
+          "S1→S0"
+        ],
+        "allPreconditionsPassed": true,
+        "finalStateSha256": "2018dd01afe20f663ffb980bf0f858505178dcd6bc0525a792b89ac627a71029",
+        "initialStateSha256": "2018dd01afe20f663ffb980bf0f858505178dcd6bc0525a792b89ac627a71029",
+        "deepEqualToS0": true
+      },
+      "restoredState": {
+        "state": {
+          "stateId": "S0",
+          "timeSeconds": 0,
+          "authority": "synthetic TEST_ONLY projection; no campaign or runtime claim",
+          "longRest": {
+            "completedBeforeT0": true,
+            "preparationMinutes": 60,
+            "spellEfficiencySelected": false,
+            "arcaneWard": {
+              "active": true,
+              "damageType": "force",
+              "expires": "next long rest",
+              "mitigatesBludgeoning": false
+            }
+          },
+          "actors": {
+            "caster": {
+              "id": "TEST_CASTER_01",
+              "class": "Wizard",
+              "classLevel": 17,
+              "totalCharacterLevel": 17,
+              "intelligence": 20,
+              "intelligenceModifier": 5,
+              "schoolSpecialization": "Conjuration",
+              "heroPath": "Spellbinder",
+              "positionFeet": [
+                3,
+                -2,
+                0
+              ],
+              "bodyBoundsFeet": {
+                "x": [
+                  2.5,
+                  3.5
+                ],
+                "y": [
+                  -2.5,
+                  -1.5
+                ],
+                "z": [
+                  0,
+                  6
+                ]
+              },
+              "massLb": 160,
+              "hp": {
+                "current": 60,
+                "maximum": 60,
+                "temporary": 0,
+                "conditions": [],
+                "damageResistances": [
+                  "force"
+                ],
+                "damageImmunities": [],
+                "pronePrevention": false
+              },
+              "rp": {
+                "current": 64,
+                "maximum": 64
+              },
+              "dissonance": {
+                "current": 0,
+                "limit": 13,
+                "formula": "max(4,2+PB+max(0,Int modifier))",
+                "inputs": {
+                  "pb": 6,
+                  "intelligenceModifier": 5
+                }
+              },
+              "matrixFamiliesCastThisEncounter": [],
+              "lastMatrixFamily": null,
+              "refrain": 0,
+              "perTurnSpellCastFlag": false,
+              "perTurnMagicalClassAbilityFlag": false,
+              "pendingCast": false,
+              "actionAvailable": true,
+              "bonusActionAvailable": true,
+              "reactionAvailable": true,
+              "counterspell": {
+                "ready": true,
+                "rechargeRounds": 0,
+                "maximumRechargeRounds": 2,
+                "attempts": 0
+              },
+              "preparedMatrix": {
+                "completedAfterLongRest": true,
+                "studyMinutes": 60,
+                "matrixEfficiencyFeature": false,
+                "normalCapacity": 22,
+                "normalPreparedCopies": [
+                  {
+                    "spell": "conjure-rope",
+                    "copies": 11,
+                    "modifications": []
+                  },
+                  {
+                    "spell": "reverse-gravity-field",
+                    "copies": 11,
+                    "modifications": []
+                  }
+                ],
+                "arcaneTraditionExtra": {
+                  "school": "Conjuration",
+                  "spell": "conjure-rope",
+                  "copies": 1,
+                  "countsAgainstNormalCapacity": false
+                },
+                "totalPreparedCopies": 23,
+                "duplicateRule": "Underlying spell name defines one matrix family; duplicate copies do not refresh first-cast exemption or Refrain.",
+                "arcaneWardSelection": {
+                  "damageType": "force",
+                  "reason": "No prepared Conjuration spell deals damage; provisional fallback.",
+                  "duration": "until next long rest"
+                },
+                "spellEfficiency": {
+                  "selected": false,
+                  "effect": "No discount permission or deadline is created."
+                }
+              },
+              "equipment": [
+                {
+                  "id": "TEST_CASTER_FOCUS_01",
+                  "kind": "arcane focus",
+                  "massLb": 1,
+                  "custody": "TEST_CASTER_01",
+                  "hand": "left",
+                  "consumed": false
+                },
+                {
+                  "id": "TEST_CASTER_SPELLBOOK_01",
+                  "kind": "Wizard spellbook",
+                  "massLb": 3,
+                  "custody": "TEST_CASTER_01",
+                  "location": "belt"
+                },
+                {
+                  "id": "TEST_CASTER_CLOTHING_01",
+                  "kind": "worn clothing",
+                  "massLb": 4,
+                  "custody": "TEST_CASTER_01"
+                }
+              ],
+              "components": {
+                "voiceAudible": true,
+                "leftHand": "holds ordinary focus",
+                "rightHand": "free for somatic component",
+                "mapping": "same for both casts"
+              },
+              "ward": {
+                "active": true,
+                "damageType": "force",
+                "expires": "next long rest",
+                "mitigatesBludgeoning": false
+              },
+              "spellEfficiencySelected": false
+            },
+            "target": {
+              "id": "TEST_TARGET_01",
+              "consent": "TEST_ONLY granted",
+              "custodian": "TEST_TARGET_01",
+              "bodyMassLb": 180,
+              "gearAndCargoLb": 20,
+              "bodyFeet": {
+                "initial": [
+                  1,
+                  0,
+                  0
+                ],
+                "harnessPosition": [
+                  0,
+                  0,
+                  1.5
+                ],
+                "bodyEnvelope": {
+                  "x": [
+                    0.75,
+                    1.25
+                  ],
+                  "y": [
+                    -0.5,
+                    0.5
+                  ],
+                  "z": [
+                    0,
+                    6
+                  ]
+                }
+              },
+              "harness": {
+                "id": "TEST_WAIST_HARNESS_01",
+                "custody": "TEST_TARGET_01",
+                "permission": "TEST_ONLY granted",
+                "massLb": 5,
+                "sideDRingPositionFeet": [
+                  0,
+                  0,
+                  1.5
+                ],
+                "assemblyId": "TEST_COMPLETE_LOAD_BEARING_ASSEMBLY_01",
+                "sideLinkLengthFeet": 0.75
+              },
+              "gearInventory": [
+                {
+                  "id": "TEST_WAIST_HARNESS_01",
+                  "massLb": 5,
+                  "countedInGearAndCargoLb": true
+                },
+                {
+                  "id": "TEST_HARNESS_CONNECTOR_01",
+                  "massLb": 1,
+                  "countedInGearAndCargoLb": true
+                },
+                {
+                  "id": "TEST_SATCHEL_01",
+                  "massLb": 5,
+                  "countedInGearAndCargoLb": true
+                },
+                {
+                  "id": "TEST_OTHER_GEAR_01",
+                  "massLb": 9,
+                  "countedInGearAndCargoLb": true
+                }
+              ],
+              "cargo": {
+                "id": "TEST_SATCHEL_01",
+                "massLb": 5,
+                "includedInGearAndCargoLb": true,
+                "custody": "TEST_TARGET_01",
+                "consent": "TEST_ONLY granted"
+              },
+              "positionFeet": [
+                1,
+                0,
+                0
+              ],
+              "bodyBoundsFeet": {
+                "x": [
+                  0.75,
+                  1.25
+                ],
+                "y": [
+                  -0.5,
+                  0.5
+                ],
+                "z": [
+                  0,
+                  6
+                ]
+              },
+              "hp": {
+                "current": 40,
+                "maximum": 40,
+                "temporary": 0,
+                "conditions": [],
+                "fallDamageResistance": false,
+                "fallDamageImmunity": false,
+                "pronePrevention": false
+              }
+            },
+            "handlerA": {
+              "id": "TEST_HANDLER_A",
+              "positionFeet": [
+                -1,
+                2,
+                0
+              ],
+              "bodyBoundsFeet": {
+                "x": [
+                  -1.4,
+                  -0.6
+                ],
+                "y": [
+                  1.65,
+                  2.35
+                ],
+                "z": [
+                  0,
+                  6
+                ]
+              },
+              "custody": "TEST_FIXTURE_CUSTODIAN_01",
+              "consent": "TEST_ONLY granted"
+            },
+            "handlerB": {
+              "id": "TEST_HANDLER_B",
+              "positionFeet": [
+                0,
+                1,
+                0
+              ],
+              "startPositionFeet": [
+                0,
+                1,
+                0
+              ],
+              "exitPositionFeet": [
+                -2,
+                2,
+                0
+              ],
+              "bodyEnvelopeFeet": {
+                "x": [
+                  -0.35,
+                  0.35
+                ],
+                "y": [
+                  0.65,
+                  1.35
+                ],
+                "z": [
+                  0,
+                  6
+                ]
+              },
+              "carriedGearEnvelopeFeet": {
+                "x": [
+                  -0.5,
+                  0.5
+                ],
+                "y": [
+                  0.5,
+                  1.5
+                ],
+                "z": [
+                  0,
+                  6
+                ]
+              },
+              "armReachFeet": 2.25,
+              "custody": "TEST_FIXTURE_CUSTODIAN_01",
+              "permission": "TEST_ONLY granted",
+              "role": "Receives the upper free end directly from A at [-0.5,0,0.9], within B's 2.25-ft reach, clips it to the consenting target's side D-ring at [0,0,1.5] (1.803 ft from B), then exits to the upper bay. B does not reach to or retrieve the coil from the shelf.",
+              "consent": "TEST_ONLY granted"
+            }
+          },
+          "items": {
+            "rope": null,
+            "focus": {
+              "id": "TEST_CASTER_FOCUS_01",
+              "custody": "TEST_CASTER_01",
+              "massLb": 1,
+              "hand": "left"
+            },
+            "spellbook": {
+              "id": "TEST_CASTER_SPELLBOOK_01",
+              "custody": "TEST_CASTER_01",
+              "massLb": 3,
+              "location": "belt"
+            },
+            "clothing": {
+              "id": "TEST_CASTER_CLOTHING_01",
+              "custody": "TEST_CASTER_01",
+              "massLb": 4
+            },
+            "targetGear": [
+              {
+                "id": "TEST_WAIST_HARNESS_01",
+                "massLb": 5,
+                "countedInGearAndCargoLb": true
+              },
+              {
+                "id": "TEST_HARNESS_CONNECTOR_01",
+                "massLb": 1,
+                "countedInGearAndCargoLb": true
+              },
+              {
+                "id": "TEST_SATCHEL_01",
+                "massLb": 5,
+                "countedInGearAndCargoLb": true
+              },
+              {
+                "id": "TEST_OTHER_GEAR_01",
+                "massLb": 9,
+                "countedInGearAndCargoLb": true
+              }
+            ]
+          },
+          "fixture": {
+            "support": {
+              "id": "TEST_FIXED_SUPPORT_01",
+              "positionFeet": [
+                0,
+                0,
+                -8.1
+              ],
+              "kind": "Synthetic fixed wall bracket on the lower service-channel wall, 0.4 ft above the supported lower ledge.",
+              "ratingLb": 250,
+              "ratingScope": "TEST_ONLY complete load-bearing assembly rating. Bracket, support-side weak link, both terminal connections, both connectors, waist harness and D-ring are included within the same 250-lb rating; no included element receives a higher independent capacity.",
+              "custodian": "TEST_FIXTURE_CUSTODIAN_01",
+              "permission": "TEST_ONLY granted",
+              "assemblyId": "TEST_COMPLETE_LOAD_BEARING_ASSEMBLY_01",
+              "overrating": "Above 250 lb, the support-side weak link releases immediately; the fixed bracket and support-side connector remain with the fixture. The intact rope stays attached to the target-side harness connector unless its separate 300-lb overload condition is also met.",
+              "supportConnectorId": "TEST_SUPPORT_CONNECTOR_01",
+              "supportWeakLinkId": "TEST_SUPPORT_SIDE_WEAK_LINK_01",
+              "envelopeFeet": {
+                "x": [
+                  -0.05,
+                  0.05
+                ],
+                "y": [
+                  -0.05,
+                  0.05
+                ],
+                "z": [
+                  -8.15,
+                  -8.05
+                ]
+              },
+              "currentLoadLb": 0,
+              "assemblyState": "intact",
+              "attached": false
+            },
+            "surfaces": [
+              {
+                "id": "TEST_PLATFORM_01",
+                "topZ": 0,
+                "boundsFeet": {
+                  "x": [
+                    -3.5,
+                    4
+                  ],
+                  "y": [
+                    -3,
+                    3
+                  ]
+                },
+                "supports": "Target initially, upper handler/caster bays, and upper stair landing."
+              },
+              {
+                "id": "TEST_UPPER_COIL_SHELF_01",
+                "centerFeet": [
+                  -2.2,
+                  0,
+                  1.45
+                ],
+                "topZ": 1.5,
+                "dimensionsFeet": [
+                  1,
+                  1,
+                  0.1
+                ],
+                "supportCapacityLb": 20,
+                "supports": "The 10-lb stacked-loop rope coil only before transfer. TEST_ONLY 20-lb static rating. Shelf is below the creation volume and carries no tether load."
+              },
+              {
+                "id": "TEST_SERVICE_STAIR_01",
+                "boundsFeet": {
+                  "x": [
+                    -2.75,
+                    -0.5
+                  ],
+                  "y": [
+                    0.75,
+                    3
+                  ],
+                  "z": [
+                    -8.5,
+                    0
+                  ]
+                },
+                "route": "Continuous supported treads/handrails between [-1,2,0] and [-1,2,-8.5], with a supported landing at z=-4.25; bounds x[-2.75,-0.5], y[0.75,3]."
+              },
+              {
+                "id": "TEST_LOWER_SERVICE_LEDGE_01",
+                "topZ": -8.5,
+                "boundsFeet": {
+                  "x": [
+                    -3,
+                    3
+                  ],
+                  "y": [
+                    -1,
+                    3
+                  ]
+                },
+                "supports": "Lower bracket access, the handler's lower exit, and TEST_LOWER_SLACK_PATCH_01; bracket is fixed 0.4 ft above ledge."
+              },
+              {
+                "id": "TEST_LOWER_SLACK_PATCH_01",
+                "topZ": -8.5,
+                "boundsFeet": {
+                  "x": [
+                    0.6,
+                    2.6
+                  ],
+                  "y": [
+                    -1,
+                    1
+                  ]
+                },
+                "supports": "Open lower-ledge patch for 39.260906 ft of loose, irregular rope bights at setup and corresponding slack location proposed at landing. The bight path begins and ends at patch entry [0.6,0,-8.5]. One continuous 10.017984-ft leader runs from D-ring [0,0,1.5] to patch entry; a 0.721110-ft return lead runs from patch entry to bracket [0,0,-8.1]. All portions total 50.000000 ft. Relative to the 9.6-ft direct endpoint distance, slack is 40.400000 ft. The patch does not wind, guide, coil, or restow the line."
+              }
+            ],
+            "consentsAndPermissions": {
+              "caster": "TEST_ONLY",
+              "target": "TEST_ONLY",
+              "handlerA": "TEST_ONLY",
+              "handlerB": "TEST_ONLY",
+              "fixtureCustodian": "TEST_ONLY"
+            },
+            "creationCellClear": true,
+            "creationPointFeet": [
+              -2.2,
+              0,
+              2.225
+            ],
+            "upperShelfCoilPresent": false
+          },
+          "spellcasting": {
+            "preparedCopies": [
+              {
+                "spell": "conjure-rope",
+                "copies": 11,
+                "modifications": []
+              },
+              {
+                "spell": "reverse-gravity-field",
+                "copies": 11,
+                "modifications": []
+              }
+            ],
+            "extraCopy": {
+              "school": "Conjuration",
+              "spell": "conjure-rope",
+              "copies": 1,
+              "countsAgainstNormalCapacity": false
+            },
+            "normalCapacity": 22,
+            "totalPreparedCopies": 23,
+            "dissonanceLimit": 13,
+            "castEvents": []
+          },
+          "clocks": {
+            "currentSeconds": 0,
+            "ropeExpiresAtSeconds": null,
+            "ropeSecondsRemaining": null,
+            "activeEvent": null
+          },
+          "timeline": {
+            "movementEvent": null,
+            "v0": null,
+            "v1": null,
+            "actionOpportunities": [],
+            "rescueDeclarations": [],
+            "fallResolution": null,
+            "setupOperations": []
+          }
+        },
+        "comparisonAgainstS0": {
+          "deepEqual": true,
+          "canonicalSha256Matches": true,
+          "initialStateSha256": "2018dd01afe20f663ffb980bf0f858505178dcd6bc0525a792b89ac627a71029",
+          "restoredStateSha256": "2018dd01afe20f663ffb980bf0f858505178dcd6bc0525a792b89ac627a71029",
+          "comparedFields": [
+            "stateId",
+            "timeSeconds",
+            "authority",
+            "longRest",
+            "actors",
+            "items",
+            "fixture",
+            "spellcasting",
+            "clocks",
+            "timeline"
+          ]
+        }
+      }
+    },
+    "stateCheckpoints": [
+      {
+        "stateId": "S0",
+        "timeSeconds": 0,
+        "sha256": "2018dd01afe20f663ffb980bf0f858505178dcd6bc0525a792b89ac627a71029",
+        "caster": {
+          "feet": [
+            3,
+            -2,
+            0
+          ],
+          "hp": 60,
+          "rp": 64,
+          "lastMatrixFamily": null,
+          "perTurnSpellCastFlag": false,
+          "pendingCast": false
+        },
+        "target": {
+          "feet": [
+            1,
+            0,
+            0
+          ],
+          "hp": 40,
+          "conditions": []
+        },
+        "handlers": {
+          "A": [
+            -1,
+            2,
+            0
+          ],
+          "B": [
+            0,
+            1,
+            0
+          ]
+        },
+        "rope": null,
+        "supportLoadLb": 0,
+        "eventActive": false,
+        "v0": null,
+        "v1": null,
+        "opportunities": 0
+      },
+      {
+        "stateId": "S1",
+        "timeSeconds": 0,
+        "sha256": "70c0f3fa66f8f94e948dfe979bb35d48e0aaf498f67d8386b0701d9d9dca31d7",
+        "caster": {
+          "feet": [
+            3,
+            -2,
+            0
+          ],
+          "hp": 60,
+          "rp": 62,
+          "lastMatrixFamily": "conjure-rope",
+          "perTurnSpellCastFlag": true,
+          "pendingCast": false
+        },
+        "target": {
+          "feet": [
+            1,
+            0,
+            0
+          ],
+          "hp": 40,
+          "conditions": []
+        },
+        "handlers": {
+          "A": [
+            -1,
+            2,
+            0
+          ],
+          "B": [
+            0,
+            1,
+            0
+          ]
+        },
+        "rope": {
+          "status": "created_coil_on_shelf",
+          "secondsRemaining": 600,
+          "attached": false
+        },
+        "supportLoadLb": 0,
+        "eventActive": false,
+        "v0": null,
+        "v1": null,
+        "opportunities": 0
+      },
+      {
+        "stateId": "S2",
+        "timeSeconds": 18,
+        "sha256": "958dde547168f86f3ec07db4aa93d05dd71754a9995b40a3f437bdf2226b136c",
+        "caster": {
+          "feet": [
+            3,
+            -2,
+            0
+          ],
+          "hp": 60,
+          "rp": 62,
+          "lastMatrixFamily": "conjure-rope",
+          "perTurnSpellCastFlag": false,
+          "pendingCast": false
+        },
+        "target": {
+          "feet": [
+            1,
+            0,
+            0
+          ],
+          "hp": 40,
+          "conditions": []
+        },
+        "handlers": {
+          "A": [
+            -1,
+            2,
+            -8.5
+          ],
+          "B": [
+            -2,
+            2,
+            -8.5
+          ]
+        },
+        "rope": {
+          "status": "deployed_attached_slack",
+          "slackFeet": 40.4,
+          "secondsRemaining": 582,
+          "attached": true
+        },
+        "supportLoadLb": 210,
+        "eventActive": false,
+        "v0": null,
+        "v1": null,
+        "opportunities": 0
+      },
+      {
+        "stateId": "S3",
+        "timeSeconds": 18,
+        "sha256": "3b09e77cc5f143adbfb1d980bd140c932109b2ef41fd439ebfcbf2fd690444a4",
+        "caster": {
+          "feet": [
+            3,
+            -2,
+            0
+          ],
+          "hp": 60,
+          "rp": 36,
+          "lastMatrixFamily": "reverse-gravity-field",
+          "perTurnSpellCastFlag": true,
+          "pendingCast": false
+        },
+        "target": {
+          "feet": [
+            1,
+            0,
+            0
+          ],
+          "hp": 40,
+          "conditions": []
+        },
+        "handlers": {
+          "A": [
+            -1,
+            2,
+            -8.5
+          ],
+          "B": [
+            -2,
+            2,
+            -8.5
+          ]
+        },
+        "rope": {
+          "status": "deployed_attached_slack",
+          "slackFeet": 40.4,
+          "secondsRemaining": 582,
+          "attached": true
+        },
+        "supportLoadLb": 210,
+        "eventActive": true,
+        "v0": null,
+        "v1": null,
+        "opportunities": 0
+      },
+      {
+        "stateId": "S4",
+        "timeSeconds": 22.04,
+        "sha256": "fcac9d30866715f7cf8e5e1b67816aa491cdbf15da94ec95aab3cbe677b5be6d",
+        "caster": {
+          "feet": [
+            3,
+            -2,
+            40.4
+          ],
+          "hp": 60,
+          "rp": 36,
+          "lastMatrixFamily": "reverse-gravity-field",
+          "perTurnSpellCastFlag": true,
+          "pendingCast": false
+        },
+        "target": {
+          "feet": [
+            1,
+            0,
+            40.4
+          ],
+          "hp": 40,
+          "conditions": []
+        },
+        "handlers": {
+          "A": [
+            -1,
+            2,
+            -8.5
+          ],
+          "B": [
+            -2,
+            2,
+            -8.5
+          ]
+        },
+        "rope": {
+          "status": "taut_intact",
+          "slackFeet": 0,
+          "secondsRemaining": 582,
+          "attached": true
+        },
+        "supportLoadLb": 210,
+        "eventActive": true,
+        "v0": null,
+        "v1": null,
+        "opportunities": 0
+      },
+      {
+        "stateId": "S5",
+        "timeSeconds": 24,
+        "sha256": "7bc1f9e15d603715b8eb12200d326e1b9e7938f65568a59defcdb747e73d5091",
+        "caster": {
+          "feet": [
+            3,
+            -2,
+            60
+          ],
+          "hp": 60,
+          "rp": 36,
+          "lastMatrixFamily": "reverse-gravity-field",
+          "perTurnSpellCastFlag": false,
+          "pendingCast": false
+        },
+        "target": {
+          "feet": [
+            1,
+            0,
+            40.4
+          ],
+          "hp": 40,
+          "conditions": []
+        },
+        "handlers": {
+          "A": [
+            -1,
+            2,
+            -8.5
+          ],
+          "B": [
+            -2,
+            2,
+            -8.5
+          ]
+        },
+        "rope": {
+          "status": "taut_intact",
+          "slackFeet": 0,
+          "secondsRemaining": 582,
+          "attached": true
+        },
+        "supportLoadLb": 210,
+        "eventActive": false,
+        "v0": {
+          "timeSeconds": 24,
+          "fallMarkerSet": true,
+          "descentResolved": false
+        },
+        "v1": null,
+        "opportunities": 0
+      },
+      {
+        "stateId": "S6",
+        "timeSeconds": 24,
+        "sha256": "e48f5c515860c576d1d3b4367d4ed556b2c758f1d0146b689b050ed9c5ea3d2f",
+        "caster": {
+          "feet": [
+            3,
+            -2,
+            60
+          ],
+          "hp": 60,
+          "rp": 36,
+          "lastMatrixFamily": "reverse-gravity-field",
+          "perTurnSpellCastFlag": false,
+          "pendingCast": false
+        },
+        "target": {
+          "feet": [
+            1,
+            0,
+            40.4
+          ],
+          "hp": 40,
+          "conditions": []
+        },
+        "handlers": {
+          "A": [
+            -1,
+            2,
+            -8.5
+          ],
+          "B": [
+            -2,
+            2,
+            -8.5
+          ]
+        },
+        "rope": {
+          "status": "taut_intact",
+          "slackFeet": 0,
+          "secondsRemaining": 582,
+          "attached": true
+        },
+        "supportLoadLb": 210,
+        "eventActive": false,
+        "v0": {
+          "timeSeconds": 24,
+          "fallMarkerSet": true,
+          "descentResolved": false
+        },
+        "v1": null,
+        "opportunities": 4
+      },
+      {
+        "stateId": "S7",
+        "timeSeconds": 30,
+        "sha256": "f06d062cbed2422e43a0055a534f7cf884e905b911e364a779dab81ec93bb16e",
+        "caster": {
+          "feet": [
+            3,
+            -2,
+            0
+          ],
+          "hp": 49,
+          "rp": 36,
+          "lastMatrixFamily": "reverse-gravity-field",
+          "perTurnSpellCastFlag": false,
+          "pendingCast": false
+        },
+        "target": {
+          "feet": [
+            1,
+            0,
+            0
+          ],
+          "hp": 33,
+          "conditions": [
+            "Prone"
+          ]
+        },
+        "handlers": {
+          "A": [
+            -1,
+            2,
+            -8.5
+          ],
+          "B": [
+            -2,
+            2,
+            -8.5
+          ]
+        },
+        "rope": {
+          "status": "intact_slack_at_landing",
+          "slackFeet": 40.4,
+          "secondsRemaining": 570,
+          "attached": true
+        },
+        "supportLoadLb": 210,
+        "eventActive": false,
+        "v0": {
+          "timeSeconds": 24,
+          "fallMarkerSet": true,
+          "descentResolved": false
+        },
+        "v1": {
+          "timeSeconds": 30,
+          "fallMarkerResolved": true,
+          "firstFallingStepResolved": true
+        },
+        "opportunities": 4
+      }
+    ],
+    "proposalSnapshotNote": "Immutable proposal snapshot retained byte-for-byte; the proposal status text records its status when issued. Current adoption is separately bound above."
   },
   "nonEffects": {
     "evidenceSealIssued": false,
@@ -2014,12 +6827,20 @@
     }
   },
   "directorReviewRequest": {
-    "request": "Review this exact constructed TEST_ONLY witness against the committed revision-3 proposal, owner adoption, R7 contract, source bindings, component PASS and current Queue479. Return PASS/REVISE/NO for this witness with exact corrections if needed.",
-    "doNotRepeat": "Do not repeat the six already-passed W2 component cases or the revision-3 readiness review.",
+    "request": "Review witness document revision 2 for IE286-W2-INTEGRATED-TESTONLY-R1 against the exact adopted revision-3 proposal, owner adoption, R7 contract, source bindings, component PASS and Queue479. The prior R1-C01 is addressed with concrete S0, replayable forward changes, seven executed reverse-order inverse patches and an exact restored-state comparison. Return PASS/REVISE/NO for this witness with exact corrections if needed.",
+    "doNotRepeat": "Do not repeat the six already-passed W2 component cases or revision-3 readiness review.",
     "nonEffects": "Review only; do not seal, close IE204-B02, accept/apply the spell, alter canon/runtime/campaign state or mutate Queue479."
   },
   "fileSerialization": {
     "encoding": "UTF-8",
     "lineEndings": "LF"
+  },
+  "documentRevision": 2,
+  "revisionNote": "Addresses GPT Director witness correction W2-INTEGRATED-R1-C01 within the exact existing owner adoption. It replaces the descriptive S0 and forward narrative with concrete state and applied state patches; records seven actual inverse operations in reverse order; executes their preconditions; and verifies the restored projected state against S0.",
+  "supersedes": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/reverse_gravity_ie286_w2_integrated_test_proposal_2026-11-02/IE286_W2_INTEGRATED_TESTONLY_R1.json",
+    "priorCommit": "2a83f981c91850ba8b63e021f7269078a9733fec",
+    "priorSha256": "cbc0a580478d938310a15185d9cafae49034baf5d4d2371b971eff9f48633d21",
+    "note": "Same adopted witness ID and branch; this successor corrects the evidence record without changing premises or adoption scope."
   }
 }
