@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "id": "DIRECTOR-READBACK-ELEMENTAL-SHELL-B02-PREFLIGHT-477-REPACK01",
+  "source": "GPT Director, Calibration review part 6",
+  "reviewedPreflightPath": "docs/audit/2026-10-08/full-game/director-spell-review-129/elemental_shell_b02_integrated_preflight_477/SHELL_B02_INTEGRATED_PREFLIGHT_477_TESTONLY.json",
+  "reviewedPreflightSha256": "529245d4a1fc28c7e83a9ba562eb76c8b91ddd5d7d864e1e156c38d88c9739d0",
+  "status": "NOT_READY_FOR_OWNER_ADOPTION",
+  "otherReviews": {
+    "w13ReceiptCorrection": "PASS; only /reviewedPacket/adoptedProposalId and /reviewedPacket/adoptedProposalSha256 change. Witness, trace, archive, adoption and replay findings match exact owner-adopted Proposal448; original receipt remains unchanged.",
+    "shell472CasterQualification": "PASS; strictly caster-acquisition/preparation subpart only. Historical/current authority is separated and Greater Fire Pet is the qualified Fire Strike dealer."
+  },
+  "correctionStatus": "All ten existing byte-count/SHA-256 source bindings match exact source bytes. Integrity validation does not resolve semantic discrepancies; preflight477's 11/11 did not cover these errors.",
+  "corrections": [
+    {
+      "id": "477-C01",
+      "topic": "Wizard cadence and retained Ward",
+      "affectedPointers": ["/proposedOwnerPremises/startingStates/Wizard18/woundsConditionsAndOtherDefenses", "/proposedOwnerPremises/proposedTimelineSeconds/7"],
+      "direction": "The first distinct prepared Wizard family generates 0 base Dissonance, not 1. Keep Dissonance0, Refrain0, RP68→42. Preserve Proposal468's force Arcane Ward and empty matrix modifications. Replace 'no other resistance' with 'no other defense applicable to this fire component'; force resistance does not change the fire calculation."
+    },
+    {
+      "id": "477-C02",
+      "topic": "Mage profile and DC",
+      "affectedPointers": ["/proposedOwnerPremises/startingStates/Mage9-PROPOSED"],
+      "direction": "Mage spell DC is16 from8+PB4+INT4 absent an exact additional source.20 is Counterspell's check DC against the rank5 summon, not the Mage's spell DC. Bind a lawful static Mage9 specification covering ordinary selections, cantrips, class cards, automatic Fire Focus and full ability/HP derivation; selection433 may supply the specification without transferring W11 actor or scene. Do not retain CON14 with unexplained maximum HP50."
+    },
+    {
+      "id": "477-C03",
+      "topic": "Commitment timing",
+      "affectedPointers": ["/proposedOwnerPremises/proposedTimelineSeconds/1", "/proposedOwnerPremises/proposedTimelineSeconds/3", "/proposedOwnerPremises/proposedTimelineSeconds/5", "/proposedOwnerPremises/proposedTimelineSeconds/7"],
+      "direction": "At0.1 commit Mage RP26→16, Action/components, concentration, Dissonance0→1, remembered spell and cast flag before interruption. Pet creation remains0.3 with expiry60.3. At3.1 commit Wizard RP68→42, Action/components, family-use history and cast flag before interruption; Shell manifests3.3, deadline63.3. Do not postpone cast-commit effects until successful resolution."
+    },
+    {
+      "id": "477-C04",
+      "topic": "Missing END and command accounting",
+      "affectedPointers": ["/proposedOwnerPremises/proposedTimelineSeconds/4", "/proposedOwnerPremises/proposedTimelineSeconds/8–11", "/proposedOwnerPremises/proposedRollsAndSettlement"],
+      "direction": "Explicitly record Mage END0.9 before its attached phase, Wizard END3.9 and Mage END6.9 before the second attached phase. Preserve cast flags through END and reset at next regular START. With no spell or magical class ability in Mage's second turn, Dissonance vents1→0 at6.9; companion command does not itself establish another cast. Record shared command consumption6.1, offensive allowance consumption at execution, pending-command clearance and retained execution receipt."
+    },
+    {
+      "id": "477-C05",
+      "topic": "Counterspell geometry and contradictory responses",
+      "affectedPointers": ["/proposedOwnerPremises/geometryFeet/counterspellEligibility", "/proposedOwnerPremises/proposedTimelineSeconds/2", "/proposedOwnerPremises/proposedTimelineSeconds/6", "/ownerAdoptionRequiredPremises"],
+      "direction": "Centers are62 ft apart but nearest occupied bodies are57 ft apart. A center-only exclusion needs a source-bound measurement convention; it cannot be assumed. Establish a valid convention, revise geometry, or record eligible declines under the applicable range rule. Reconcile out-of-range claims and declines, including exact source, Reaction, RP, components and recharge. Do not categorically adjudicate self-counter eligibility merely to record no attempt."
+    },
+    {
+      "id": "477-C06",
+      "topic": "Perception and line of effect",
+      "affectedPointers": ["/proposedOwnerPremises/geometryFeet/allRelevantLineOfEffect"],
+      "direction": "After creation, the Mage–Wizard centerline intersects the Pet's box, so 'no intervening body' is false. Record actual relevant sight/LoE witnesses and the applicable obstruction rule. This does not itself establish total cover. Summon placement and command perception must also be explicit."
+    },
+    {
+      "id": "477-C07",
+      "topic": "Direct operative bindings and settlement",
+      "affectedPointers": ["/sourceBindings", "/proposedOwnerPremises/proposedRollsAndSettlement"],
+      "direction": "Add direct operative pointers for Shell procedure /sharedRules/casting, /cadence, /clocks, /selectedRules/1–/4 and the class/casting/turn rules used. Bind stable cast/root IDs and once-only consumed reflection key; state optional attack/damage reactions are declined, preserve equipment custody and defenses, and specify full before/after plus inverse restoration for any eventual witness. Update validation to cover these semantics."
+    }
+  ],
+  "controllingAnchors": [
+    {"path": "docs/audit/2026-10-08/full-game/director-spell-review-129/elemental_shell_caster_premise_proposal_468/payload/sources/wizard.json", "pointer": "/engine/11", "sha256": "8ab2f4f43bcbced418fb266e5bd3216cff491b0c442c16f93438bd3556672c8b", "finding": "First prepared-family exemption."},
+    {"path": "docs/audit/2026-10-08/full-game/director-spell-review-129/banishment_gate_witness365_w05_separation365_repack03_build01/packet/sources/MAGE_CLASS_PLAYTEST.json", "pointers": ["/engine/0", "/engine/19", "/cards/23"], "sha256": "c64782e192e2e63e5abed5728f9213c9d4cf956bce1a75da7a156dbfd1141e0b", "finding": "Mage spell attack/DC, acquisition and Counterspell."},
+    {"path": "docs/audit/2026-10-08/full-game/director-spell-review-129/elemental_shell_caster_premise_proposal_468/payload/sources/ELEMENTAL_SHELL_PROCEDURE_SOURCE.json", "pointers": ["/sharedRules/casting", "/sharedRules/cadence", "/sharedRules/clocks", "/sharedRules/geometry", "/selectedRules/1–/4"], "sha256": "31794a20cfb27e44cab1e2b8b65b79eb22a5b0a9745e378691b8cebbd2242f9f", "finding": "Shell procedure and selected DF9-Q12–Q15 rules."},
+    {"path": "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md", "note": "Resolve a cast at the table, steps4–6; cast commitment and interruption timing."},
+    {"path": "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md", "note": "Regular-turn Dissonance vent."}
+  ],
+  "positiveDamageCalculation": {
+    "status": "OTHERWISE_CONSISTENT",
+    "attack": "12+8=20 vs AC12",
+    "fireDamage": "2d10=7",
+    "shell": "Pre-own-immunity basis7; original fire prevented; floor(7/2)=3 reflected to Pet",
+    "petHP": "60→57",
+    "aura": "Nonhostile relationship may prevent an aura attempt without removing the aura rule."
+  },
+  "nextPermittedStep": "Correct and revalidate the proposal, then return that exact successor for adoption-readiness review. If ready, a later owner adoption would cover only the specified new TEST_ONLY actor/current-state, equipment, supported scene, geometry, consent/nonhostility, schedule, response choices and stipulated rolls for this B02 branch. It would not adopt B01 premises or confer identity acceptance.",
+  "boundary": {
+    "witnessConstructed": false,
+    "castExecuted": false,
+    "sealIssued": false,
+    "identityAcceptedOrApplied": false,
+    "B01Open": true,
+    "B02Open": true,
+    "queueChanged": false,
+    "canonicalChange": false
+  },
+  "currentAuthority": {
+    "queue": "Queue476",
+    "reviewedApplied": 831,
+    "pending": 17,
+    "acceptedUnapplied": 0,
+    "nextIdentity": "elemental-shell"
+  }
+}
