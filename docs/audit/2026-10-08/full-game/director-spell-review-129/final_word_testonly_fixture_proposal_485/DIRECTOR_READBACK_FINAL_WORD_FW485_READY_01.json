@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "id": "DIRECTOR-READBACK-FINAL-WORD-FW485-READY-01",
+  "recordedAtUtc": "2026-11-02T08:51:46Z",
+  "classification": "DIRECTOR_READY_FOR_OWNER_ADOPTION_NOT_ADOPTION_OR_WITNESS",
+  "source": {
+    "service": "ChatGPT",
+    "conversationTitle": "Calibration review part 6",
+    "conversationUrl": "https://chatgpt.com/g/g-p-67f17555a8dc8191a2b5b81e6d8adc12-dungeon-crawler/c/6adc506d-8770-83ea-b64c-0345d9b9b682"
+  },
+  "decision": "READY_FOR_OWNER_ADOPTION",
+  "identity": "final-word",
+  "blocker": "DR217-B01",
+  "route": "DR217-B01-TESTONLY-ROUTE-484-01",
+  "scope": "STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY",
+  "reviewedCommit": "426c65cc9e6c9504615c6697c155e7899f524f96",
+  "reviewedArtifacts": [
+    {
+      "id": "FW485-proposal",
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/final_word_testonly_fixture_proposal_485/FINAL_WORD_FW485_TESTONLY_FIXTURE_PROPOSAL_REPACK01.json",
+      "bytes": 23932,
+      "sha256": "20a49fe2e413498c64df3d5a87b6503d77326270d038cb797af69ad0722be462"
+    },
+    {
+      "id": "route-readback-484",
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/final_word_testonly_fixture_proposal_485/DIRECTOR_READBACK_FINAL_WORD_TESTONLY_ROUTE_484_01.json",
+      "bytes": 5917,
+      "sha256": "f0efa358240de853fc21ef952f645a0b45b0f5e1d758ca9de715883d1f964ccf"
+    }
+  ],
+  "integrity": {
+    "proposalAndRouteReadback": "MATCH",
+    "textSourceArtifacts": {
+      "checked": 15,
+      "matchDeclaredBytesAndSha256": 15
+    },
+    "preserved303ArchiveLfsPointer": {
+      "sha256": "087a50b901d1c7f561036d3b3f086871e5c19ebe245d549a687485da6bec57a2",
+      "bytes": 10228938,
+      "matchesDeclaredPointer": true
+    },
+    "historicalCasesRedownloadedOrReplayed": false
+  },
+  "correctionsRequired": [],
+  "findings": [
+    {
+      "topic": "caster-access-and-preparation",
+      "result": "Bound conditional Wizard18 profile supplies Final Word from level 17 and False Life from level 1; both are prepared. The 22-entry preparation fits capacity; acquired Matrix Efficiency supports the stated 45-minute preparation."
+    },
+    {
+      "topic": "final-word-commitment",
+      "result": "Action and 26 RP commit at 0.1, 68 to 42. First distinct prepared family gives zero base Dissonance; Refrain and surcharge are zero."
+    },
+    {
+      "topic": "death-and-capture",
+      "result": "At 0.2 normal HP 49 is strictly below 50. With stipulated protections absent, Final Word causes direct final death before capture. Retaining HP ledger 49 while life becomes Dead is valid under the retained direct-death rule."
+    },
+    {
+      "topic": "capture-predicates",
+      "result": "Explicit hypothetical soul, permission, custody, Hunt and origin facts provide permitted TEST_ONLY inputs. They establish no campaign eligibility or new capture permission rule."
+    },
+    {
+      "topic": "reserve-and-payment",
+      "result": "One nonphysical, nontransferable token links caster, victim, soul, cast and death. At 6.1, allocation of 2 RP consumes the token and forfeits 3; caster RP remains 42."
+    },
+    {
+      "topic": "false-life",
+      "result": "Self is a willing living target. Declared d4 input 1 produces 5 temporary HP at 6.2; no healing or concentration is introduced."
+    },
+    {
+      "topic": "expiry",
+      "result": "Preserve the original next legally completed Long Rest endpoint. The token is consumed first, so no expiry executes and no rest benefit is claimed."
+    },
+    {
+      "topic": "custody",
+      "result": "Same surviving body identity and worn clothing retain ownership/custody. No held item exists to drop; capture creates no physical loot or soul ownership."
+    }
+  ],
+  "requiredWitnessBookkeeping": [
+    "At each commitment update exact Final Word or False Life family history, remembered spell/Refrain and magicThisTurn. Preserve the cast flag through END; reset it at the next regular START.",
+    "Record each pending cast, post-commit response window, resolution and pending-state clearing. Record no Counterspell attempt; do not adjudicate self-counter eligibility.",
+    "Preserve inherited force Arcane Ward and retained profile state. Spell Efficiency is not acquired; add no efficiency discount or deadline.",
+    "Preserve corpse/body, clothing, token provenance and expenditure history through forward/inverse verification. Inverse replay is audit only, not gameplay resurrection or refund."
+  ],
+  "proposedOwnerAdoptionWording": "I adopt Final Word TEST_ONLY fixture proposal SHA-256 20a49fe2e413498c64df3d5a87b6503d77326270d038cb797af69ad0722be462 under DR217-B01-TESTONLY-ROUTE-484-01, solely for construction and submission of branch DR217-B01-TESTONLY-ROUTE-484-01/FW485-R1. I adopt its explicit hypothetical victim, eligibility, provenance, permissions, caster, resources, geometry and event inputs. The retained Final Word, lifecycle, Hunt, class and payment rules remain controlling. This supplies no campaign facts or actual-source qualification and authorizes no seal, blocker closure, identity acceptance/application, canon or queue change.",
+  "statusBoundaries": {
+    "ownerAdoptionPerformed": false,
+    "witnessConstructed": false,
+    "witnessSubmitted": false,
+    "sealIssued": false,
+    "identityAccepted": false,
+    "identityApplied": false,
+    "actualSourceQualificationEstablished": false,
+    "campaignFactsAsserted": false,
+    "canonicalRulesChanged": false,
+    "queueChanged": false
+  },
+  "queue": {
+    "reviewedApplied": 832,
+    "pending": 16,
+    "acceptedUnapplied": 0,
+    "nextIdentity": "final-word"
+  },
+  "nextStep": "Separate exact owner adoption by the user, then construct and submit the one reversible FW485-R1 witness.",
+  "otherHolds": "Unchanged."
+}
