@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "id": "OWNER-REVERSE-GRAVITY-IE286-W2-UPWARD-LOAD-RULE-PROPOSAL-01",
-  "createdAtUtc": "2026-11-02T20:12:35Z",
-  "classification": "OWNER_AUTHORIZED_TEST_ONLY_MECHANIC_DESIGN_PROPOSAL_REVISION_6_NOT_ACCEPTED_NOT_WITNESS",
+  "createdAtUtc": "2026-11-02T20:21:00Z",
+  "classification": "OWNER_AUTHORIZED_TEST_ONLY_MECHANIC_DESIGN_PROPOSAL_REVISION_7_NOT_ACCEPTED_NOT_WITNESS",
   "status": "AWAITING_GPT_DIRECTOR_REVIEW",
   "authorization": {
     "userInstruction": "Create a rule that fits",
@@ -183,6 +183,12 @@
       "bytes": 4849,
       "sha256": "fd3c0f1c0223cc15440228c90e5855cb20ba14a833235c82fcfebea192fc32b2",
       "hashDomain": "exact UTF-8 bytes; no newline normalization"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/reverse_gravity_ie286_w2_owner_proposal_2026-11-02/CODEX_TRANSCRIBED_DIRECTOR_REVIEW_REVISE_05.json",
+      "bytes": 4215,
+      "sha256": "13876b3703d36f0e983abce759abb17fc6a9ac5c6323de4cd5e6c9bb762eeb31",
+      "hashDomain": "exact UTF-8 bytes; no newline normalization"
     }
   ],
   "proposedTestOnlyRule": {
@@ -264,7 +270,7 @@
             6,
             14
           ],
-          "operation": "From t=6 to t=14, after B has clipped the upper end, TEST_HANDLER_A carries the coil on the supported upper platform to stair entrance [-1,2,0], descends TEST_SERVICE_STAIR_01, unspools the free lower end by hand down the straight open TEST_ROPE_CHANNEL_01 at x=0,y=0, and secures it to the lower bracket at [0,0,-8.1]. The aligned D-ring-to-bracket taut span is 9.6 ft. The remaining 40.4 ft of slack is accounted for as a 0.721110-ft straight loose lead from the bracket to patch-entry point [0.6,0,-8.5], plus 39.678890 ft of loose, irregular bights on TEST_LOWER_SLACK_PATCH_01. Total initial slack is 40.400000 ft. No tray, reel, passive coiling guide, powered haul, flight, levitation, Rope command, or free slack-drawing lift."
+          "operation": "From t=6 to t=14, after B clips the upper end, A carries the coil along the supported upper platform to stair entrance [-1,2,0], descends TEST_SERVICE_STAIR_01, and manually pays out the continuous rope along the clear D-ring-to-patch segment from [0,0,1.5] to [0.6,0,-8.5] (10.017984 ft). A lays 39.260906 ft as loose irregular bights within TEST_LOWER_SLACK_PATCH_01, returning the running line to that patch entry, then routes the final 0.721110-ft lead from [0.6,0,-8.5] to bracket [0,0,-8.1] and secures the rope end. Total deployed length is exactly 50.000000 ft; relative to the 9.6-ft direct taut endpoint distance, slack is 1.139094 ft of leader detour plus 39.260906 ft of bights = 40.400000 ft. No tray, reel, passive guide, powered haul, flight, levitation, Rope command, or free slack-drawing lift."
         },
         {
           "seconds": [
@@ -289,7 +295,21 @@
         "assemblyId": "TEST_COMPLETE_LOAD_BEARING_ASSEMBLY_01",
         "overrating": "Above 250 lb, the support-side weak link releases immediately; the fixed bracket and support-side connector remain with the fixture. The intact rope stays attached to the target-side harness connector unless its separate 300-lb overload condition is also met.",
         "supportConnectorId": "TEST_SUPPORT_CONNECTOR_01",
-        "supportWeakLinkId": "TEST_SUPPORT_SIDE_WEAK_LINK_01"
+        "supportWeakLinkId": "TEST_SUPPORT_SIDE_WEAK_LINK_01",
+        "envelopeFeet": {
+          "x": [
+            -0.05,
+            0.05
+          ],
+          "y": [
+            -0.05,
+            0.05
+          ],
+          "z": [
+            -8.15,
+            -8.05
+          ]
+        }
       },
       "target": {
         "id": "TEST_TARGET_01",
@@ -369,15 +389,63 @@
       "tether": {
         "id": "TEST_TETHER_01",
         "loadBearingAssemblyId": "TEST_COMPLETE_LOAD_BEARING_ASSEMBLY_01",
-        "path": "From D-ring [0,0,1.5] directly down the straight, open channel centered at x=0,y=0 to support connector [0,0,-8.1]. The target D-ring, channel centerline and support are vertically aligned; no horizontal lead, bend, guide contact, pulley, or load-bearing routing device. Taut endpoint path is exactly 9.6 ft.",
+        "path": "One continuous unbroken rope. At t=18 its deployed path runs from target D-ring [0,0,1.5] along a straight, unobstructed diagonal leader to patch entry [0.6,0,-8.5] (10.017984 ft), through 39.260906 ft of loose bights within TEST_LOWER_SLACK_PATCH_01 returning to that patch entry, then along a straight unobstructed 0.721110-ft return lead to fixed bracket [0,0,-8.1]. These portions total 50.000000 ft. The direct taut endpoint distance from D-ring to bracket is 9.6 ft. The two leaders exceed that direct distance by 1.139094 ft; together with the 39.260906-ft bights this is the full 40.400000-ft slack. The leaders can slide and straighten through the specified open clearance corridor; no pulley, guide, bend contact, or load-bearing routing device is present. Under tension the line straightens to the direct D-ring-to-bracket span.",
         "currentPathFeet": 9.6,
         "ropeLengthFeet": 50,
         "initialSlackFeet": 40.4,
         "effectiveWorkingLengthFeet": 50,
-        "slackStorage": "At t=18, endpoint taut-path length is 9.6 ft and total initial slack is 40.4 ft. The slack is physically accounted for as (a) a 0.721110-ft straight loose lead from fixed bracket [0,0,-8.1] to the open patch-entry point [0.6,0,-8.5], distance sqrt(0.6^2+0.4^2), and (b) 39.678890 ft of loose irregular bights on TEST_LOWER_SLACK_PATCH_01, bounds x[0.6,2.6], y[-1,1], top z=-8.5. The parts sum to 40.400000 ft. The patch is open ledge, not a tray or reel. Upward target travel increases the straight endpoint distance exactly 1 ft per 1 ft of +z travel, drawing out only existing slack; no powered or commanded hauling.",
-        "slackTakeup": "Because target D-ring and support share x=0,y=0, upward travel increases straight line length exactly one-for-one; 40.4 ft of vertical travel consumes all 40.4 ft of initial slack.",
-        "endpointAccess": "For the upper handoff, A presents the free end at [-0.5,0,0.9] to B at [0,1,0] (1.436 ft); B clips it to the target D-ring [0,0,1.5] (1.803 ft from B), both within 2.25-ft reach. A approaches the lower bracket from [-1,1,-8.5], 1.47 ft from [0,0,-8.1], within 2.25-ft reach. The loose lower lead runs straight from the bracket to [0.6,0,-8.5], length 0.721110 ft, followed by 39.678890 ft of loose line on the patch. A manually routes the free end through the straight clearance channel; no bend, guide, or pulley.",
-        "endpointCapacities": "Both end connections, connectors, harness and D-ring are inside the complete 250-lb TEST_ONLY assembly rating. The 1-lb target harness connector is counted once in gear; fixed support hardware is excluded from moving target mass; rope-side connector mass is included in the 10-lb rope mass."
+        "slackStorage": "At t=18, direct D-ring-to-bracket endpoint distance is 9.6 ft and rope length is 50 ft. The continuous deployed path is D-ring [0,0,1.5] to patch entry [0.6,0,-8.5] (10.017984 ft), through 39.260906 ft of loose irregular bights on the patch and returning to that entry, then patch entry to bracket [0,0,-8.1] (0.721110 ft). These line portions total 50.000000 ft. The routed leaders add 1.139094 ft beyond the 9.6-ft direct endpoint distance; together with the 39.260906-ft bights they account for the full 40.400000-ft slack. The patch is an open ledge, not a tray or reel. The leaders can slide and straighten through the defined corridor as the target rises; there is no powered or commanded hauling.",
+        "slackTakeup": "The taut reference is the direct distance from the D-ring to the fixed bracket, 9.6 ft. At t=18 the continuous route has 1.139094 ft of leader detour plus 39.260906 ft of loose bights, totaling 40.400000 ft beyond that reference. In the unobstructed TEST_ONLY corridor, increasing endpoint separation by 1 ft per 1 ft of target +z travel consumes this total; first taut remains at 40.4 ft of rise, t=22.04.",
+        "endpointAccess": "For the upper handoff, A presents the free end at [-0.5,0,0.9] to B at [0,1,0] (1.436 ft); B clips it to the target D-ring [0,0,1.5] (1.803 ft from B), both within 2.25-ft reach. A approaches the lower bracket from [-1,1,-8.5], 1.47 ft from [0,0,-8.1], within reach. The deployed route has a 10.017984-ft leader from D-ring to patch entry [0.6,0,-8.5], 39.260906 ft of loose bights on the patch, and a 0.721110-ft return lead to the bracket; all portions are counted once.",
+        "endpointCapacities": "Both end connections, connectors, harness and D-ring are inside the complete 250-lb TEST_ONLY assembly rating. The 1-lb target harness connector is counted once in gear; fixed support hardware is excluded from moving target mass; rope-side connector mass is included in the 10-lb rope mass.",
+        "initialDeployedRouteSegments": [
+          {
+            "fromFeet": [
+              0,
+              0,
+              1.5
+            ],
+            "toFeet": [
+              0.6,
+              0,
+              -8.5
+            ],
+            "lengthFeet": 10.017984,
+            "role": "Straight open D-ring-to-patch-entry leader."
+          },
+          {
+            "fromFeet": [
+              0.6,
+              0,
+              -8.5
+            ],
+            "toFeet": [
+              0.6,
+              0,
+              -8.5
+            ],
+            "lengthFeet": 39.260906,
+            "role": "Continuous loose-bight path confined to the open slack patch; begins and ends at patch entry."
+          },
+          {
+            "fromFeet": [
+              0.6,
+              0,
+              -8.5
+            ],
+            "toFeet": [
+              0,
+              0,
+              -8.1
+            ],
+            "lengthFeet": 0.72111,
+            "role": "Straight open return lead from patch entry to fixed bracket."
+          }
+        ],
+        "initialDeployedPathLengthFeet": 50.0,
+        "routeDetourBeyondDirectEndpointFeet": 1.139094,
+        "directEndpointDistanceFeet": 9.6,
+        "currentPathMeaning": "currentPathFeet is the direct D-ring-to-bracket endpoint-distance reference used for taut/slack arithmetic; it is not an additional installed segment. The initial deployed rope path is 50.000000 ft and is enumerated in initialDeployedRouteSegments."
       },
       "movement": {
         "id": "TEST_UPWARD_EVENT_01",
@@ -432,7 +500,7 @@
             -8.5
           ],
           "upperPlatformRoute": "From [-1,2,0], A walks on the supported upper platform to pickup stance [-1,0,0]. The coil envelope's nearest point is 1.724 ft from this stance; A lifts/supports the coil and draws the free end out to handoff point [-0.5,0,0.9], 1.030 ft from A's stance. B at [0,1,0] can reach the handoff point at 1.436 ft and clips the end to the D-ring at 1.803 ft. A then carries the coil along the outer supported route to stair entrance [-1,2,0]; the carried coil stays outside the target/cargo x>=0.75 swept envelope.",
-          "supportRoute": "Descends the supported stair to the lower ledge, approaches bracket from [-1,1,-8.5] (1.47 ft from [0,0,-8.1], within 2.25-ft reach), secures the lower end, then accounts for 0.721110 ft of straight loose lead to patch entry [0.6,0,-8.5] plus 39.678890 ft of irregular bights on TEST_LOWER_SLACK_PATCH_01, totaling 40.400000 ft of initial slack. A exits to [-1,2,-8.5].",
+          "supportRoute": "Descends the supported stair to the lower ledge. From the already clipped D-ring end, pays out the 10.017984-ft leader to patch entry [0.6,0,-8.5], lays 39.260906 ft as loose irregular bights returning to that entry, then routes the final 0.721110-ft straight lead to bracket [0,0,-8.1] and secures the rope end. Total deployed path is 50.000000 ft; slack beyond the direct 9.6-ft endpoint reference is 40.400000 ft. A exits to [-1,2,-8.5].",
           "bodyEnvelopeFeet": {
             "x": [
               -1.4,
@@ -601,7 +669,7 @@
                 1
               ]
             },
-            "supports": "Open lower-ledge patch for 39.678890 ft of loose, irregular rope bights at setup and the corresponding loose-rope location stipulated at landing. The remaining 0.721110 ft of the 40.400000-ft slack is the straight loose lead from bracket [0,0,-8.1] to patch entry [0.6,0,-8.5]. Rope may drape there under gravity; this surface does not wind, guide, coil, or restow it."
+            "supports": "Open lower-ledge patch for 39.260906 ft of loose, irregular rope bights at setup and corresponding slack location proposed at landing. The bight path begins and ends at patch entry [0.6,0,-8.5]. One continuous 10.017984-ft leader runs from D-ring [0,0,1.5] to patch entry; a 0.721110-ft return lead runs from patch entry to bracket [0,0,-8.1]. All portions total 50.000000 ft. Relative to the 9.6-ft direct endpoint distance, slack is 40.400000 ft. The patch does not wind, guide, coil, or restow the line."
           }
         ],
         "creationSpace": {
@@ -784,22 +852,39 @@
           "centerlineY": 0,
           "boundsFeet": {
             "x": [
-              -0.05,
-              0.05
+              -0.025,
+              0.625
             ],
             "y": [
-              -0.25,
-              0.25
+              -0.025,
+              0.025
             ],
             "z": [
-              -8.5,
+              -8.525,
               70
             ]
           },
-          "clear": "Straight open clearance corridor only; rope centerline is x=0,y=0 with 0.025-ft radius. Target body/cargo nearest x boundary is 0.75 ft, leaving at least 0.675 ft horizontal clearance. The channel has no bend, pulley, moving guide, or load-bearing contact; the tether remains straight and aligned as the target moves +z. Below the fixed support at z=-8.1 the open corridor continues to the lower ledge; no passive chute or coil guide is present."
+          "clear": "Open, unobstructed corridor around the direct taut endpoint segment x=0,y=0 and the initial D-ring-to-patch-entry leader from [0,0,1.5] to [0.6,0,-8.5], plus the return lead from patch entry to bracket [0,0,-8.1]. The corridor centerline x range is 0 to 0.6 ft; including rope radius 0.025 ft, bounds are x[-0.025,0.625], y[-0.025,0.025], z[-8.525,70]. The target/cargo's nearest x boundary is 0.75 ft, leaving 0.125 ft clearance from the maximum rope extent. Leaders can slide/straighten; no guide, pulley, bend contact, or load-bearing routing device. TEST_ONLY bracket envelope is x[-0.05,0.05], y[-0.05,0.05], z[-8.15,-8.05]; the D-ring-to-patch leader passes it without contact.",
+          "routeCenterlinePolylineFeet": [
+            [
+              0,
+              0,
+              1.5
+            ],
+            [
+              0.6,
+              0,
+              -8.5
+            ],
+            [
+              0,
+              0,
+              -8.1
+            ]
+          ]
         },
-        "fallPath": "After t=24 the target descends vertically from body-feet z=40.4 to platform z=0. Handlers have exited. The straight rope channel at x=0 remains outside the target body/cargo swept volume.",
-        "slackPatchClearance": "TEST_LOWER_SLACK_PATCH_01 is the supported open lower ledge at z=-8.5, x[0.6,2.6], y[-1,1]. The loose-line lead runs straight from bracket [0,0,-8.1] to patch entry [0.6,0,-8.5] and is 0.721110 ft long; the remaining 39.678890 ft of slack lies in loose irregular bights on the patch. The lead and patch are separate from stair bounds x[-2.75,-0.5] and Handler A's final body/gear bounds near x=-1,y=2; they do not intersect the target/cargo fall volume. The open surface is not a catch basket, chute, reel, or restowing device."
+        "fallPath": "After t=24 the target descends vertically from body-feet z=40.4 to platform z=0. Handlers have exited. The deployed leaders remain within the defined corridor, whose maximum x extent including rope radius is 0.625 ft, leaving 0.125 ft from the target/cargo nearest x boundary at 0.75 ft. The lower slack remains in its bounded open patch; no automatic restowing device or command is present.",
+        "slackPatchClearance": "TEST_LOWER_SLACK_PATCH_01 is the supported open ledge at z=-8.5, x[0.6,2.6], y[-1,1]. The continuous route arrives at patch entry [0.6,0,-8.5] on a straight 10.017984-ft leader from D-ring [0,0,1.5], contains 39.260906 ft of loose bights beginning/ending there, then returns on a straight 0.721110-ft lead to bracket [0,0,-8.1]. The leader x extent is [0,0.6], so with rope radius it remains at least 0.125 ft from target/cargo x>=0.75. It bypasses the bounded bracket envelope without contact. The patch and leaders avoid stair bounds x[-2.75,-0.5], Handler A's lower exit near x=-1,y=2, and the target/cargo fall volume. No catch basket, chute, reel, or restowing device."
       }
     },
     "expectedSettlement": {
@@ -853,7 +938,7 @@
       },
       "rope": {
         "status": "Intact; remains attached to the fixed lower support and target harness at landing.",
-        "locationAtLanding": "Proposed/stipulated TEST_ONLY landing configuration; no witness has executed. At landing, endpoint separation is 9.6 ft and the tether is slack. The full 40.400000-ft surplus remains uncoiled: 0.721110 ft is the straight loose lead from fixed bracket [0,0,-8.1] to patch entry [0.6,0,-8.5], and 39.678890 ft remains as loose irregular line on open TEST_LOWER_SLACK_PATCH_01, bounds x[0.6,2.6], y[-1,1], top z=-8.5. This does not restore the original bight arrangement. No tray, reel, chute, passive coiling guide, restowing Action, or Rope command is asserted.",
+        "locationAtLanding": "Proposed/stipulated TEST_ONLY landing configuration; no witness has executed. At landing the direct D-ring-to-bracket separation is 9.6 ft and tether is slack. Its continuous deployed route is 10.017984 ft from D-ring [0,0,1.5] to patch entry [0.6,0,-8.5], 39.260906 ft of loose irregular bights beginning/ending at that entry within the bounded open patch, and a 0.721110-ft return lead from patch entry to bracket [0,0,-8.1]. The route sums to 50.000000 ft. The leaders add 1.139094 ft beyond the direct endpoint reference; with the bights they account for the full 40.400000-ft slack. This does not restore the original bight arrangement. No tray, reel, chute, passive coiling guide, restowing Action, or Rope command is asserted.",
         "slackState": "Currently slack at landing with 40.4 ft of surplus available before a later ascent would make it taut; it is not permanently incapable of restraining another ascent.",
         "custody": "Rope and support remain with TEST_FIXTURE_CUSTODIAN_01; target harness, target connector and satchel remain with TEST_TARGET_01.",
         "massAccounting": "Rope mass 10 lb counted once in the 210-lb first-taut load. Target's 1-lb harness connector counted once in 20-lb gear/cargo. Fixed support connector is not moving target mass; post-landing slack position does not change queue or campaign state.",
@@ -997,15 +1082,14 @@
     ]
   },
   "directorReviewRequest": {
-    "decision": "PASS, REVISE with exact corrections, or NO on revision 6 of this exact W2-only TEST_ONLY rule/fixture.",
+    "decision": "PASS, REVISE with exact corrections, or NO on revision 7 of this exact W2-only TEST_ONLY rule/fixture.",
     "focus": [
-      "W2-R5-C01: the entire continuous unbroken 50-ft coil has an explicitly stipulated, measured 50.000-ft line length within its stated envelope; no analytic turns omit inter-level connections.",
-      "W2-R5-C02: A picks up/supports the coil, transfers the free end to B at the exact handoff coordinate, and B clips it within the existing manual setup interval; B does not retrieve the end from the shelf.",
-      "W2-R5-C03: the 40.400000-ft slack total includes a 0.721110-ft bracket-to-patch lead plus 39.678890 ft on the bounded patch; landing is proposed/stipulated and does not imply automatic restowing.",
-      "Previously passing 250/300-lb assembly/load arithmetic, 260/301/310 immediate decision probes, release property/mass states, and V0/V1 Action accounting."
+      "W2-R6-C01: one continuous deployed path runs D-ring → patch/bights → bracket; the 10.017984-ft leader, 39.260906-ft bight path, and 0.721110-ft return lead sum to 50.000000 ft, while the 1.139094-ft route detour plus bights equals the 40.400000-ft slack budget over the 9.6-ft direct endpoint reference.",
+      "W2-R6-C01: the path lies within the stated open clearance corridor, bypasses the fixed bracket before returning to it, stays clear of target/cargo and stair, and is accounted for at setup and proposed/stipulated landing without automatic restowing.",
+      "Previously passing W2-R5-C01 and C02, 250/300-lb load decisions, mass states, 22.04 first-taut time, and V0/V1 Action accounting."
     ],
     "require": [
-      "Verify exact revision-6 UTF-8 bytes/hash/commit and all declared source bindings.",
+      "Verify exact revision-7 UTF-8 bytes/hash/commit and all declared source bindings.",
       "State whether this exact revision is eligible for separate owner adoption; review does not adopt it.",
       "If it passes, provide exact bounded adoption wording before any witness.",
       "List remaining actual-source access/preparation and complete legal paid-cast histories for both spells, including components, budgets, class bookkeeping, interruption, clocks and damage/HP settlement.",
@@ -1021,9 +1105,9 @@
     "W1 remains separate and unsealed; W2 and IE204-B02 remain held.",
     "Revision 3 remains a design proposal only; it does not settle actual spell access, casts, campaign events, or the prior W2 source hold."
   ],
-  "revision": 6,
-  "supersedesSha256": "a139032adc6eb5c4647c289f1b0abe30640d71a875ad0850e468c0a21a0a044a",
-  "revisionNote": "Addresses Director REVISE items W2-R5-C01 through C03. The coil's former analytic turn recipe is replaced by an explicitly stipulated and measured continuous 50.000-ft line within the stated coil envelope. Upper-end setup now orders A's pickup/support, exact free-end handoff to B, and B's clipping within reach. The 40.400000-ft slack is accounted for as a 0.721110-ft bracket-to-patch lead plus 39.678890 ft of loose bights on the bounded patch; the landing configuration is proposed/stipulated and does not claim automatic restowing. Other passing proposal-level geometry, timing, threshold, and V0/V1 fields are retained. No witness or owner adoption is claimed.",
+  "revision": 7,
+  "supersedesSha256": "dc719be20676f08fdecb46f2ca57999b36b42dc92852bced4675e7d1f05579db",
+  "revisionNote": "Addresses Director REVISE item W2-R6-C01. The initial rope is specified as one continuous path from D-ring to a bounded lower slack patch, through loose bights, and back to the fixed bracket. Both leaders and every bight length are counted: 10.017984 ft + 39.260906 ft + 0.721110 ft = 50.000000 ft. The route detour of 1.139094 ft plus 39.260906 ft of loose bights equals the 40.400000-ft excess over the 9.6-ft direct endpoint reference. The path's open corridor and clearances are bounded; first-taut geometry remains 9.6+40.4=50 ft at t=22.04. Setup and proposed/stipulated landing use the same complete accounting without automatic restowing. No witness or owner adoption is claimed.",
   "integrationGates": [
     "Bind the retained Reverse Gravity procedure and legal paid application with source-backed acquisition/preparation, current RP, components, action, class bookkeeping, interruption, resolution clock, damage and HP history.",
     "Provide equivalent source-backed acquisition/preparation/cast history for Conjure Rope and preserve its own 600-second deadline.",

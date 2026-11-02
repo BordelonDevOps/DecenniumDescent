@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "id": "CODEX-TRANSCRIBED-IE286-W2-GPT-REVIEW-05",
+  "reviewedAtUtc": "2026-11-02",
+  "classification": "GPT_DIRECTOR_UI_REVIEW_READBACK_REVISE_NOT_OWNER_ADOPTION_NOT_WITNESS",
+  "captureMethod": "Transcribed from the rendered GPT Director conversation; exact ruling content and corrections are recorded here.",
+  "sourceConversationUrl": "https://chatgpt.com/g/g-p-67f17555a8dc8191a2b5b81e6d8adc12-dungeon-crawler/c/6adc506d-8770-83ea-b64c-0345d9b9b682",
+  "identity": "reverse-gravity-field",
+  "blockerId": "IE204-B02",
+  "witnessId": "IE286-W2",
+  "reviewedCommit": "99420ee534e457e2d1252d1074fb2f212d62d79e",
+  "reviewedProposalPath": "docs/audit/2026-10-08/full-game/director-spell-review-129/reverse_gravity_ie286_w2_owner_proposal_2026-11-02/OWNER_PROPOSAL_IE286_W2_UPWARD_LOAD_RULE_01.json",
+  "reviewedProposalBytes": 52922,
+  "reviewedProposalSha256": "dc719be20676f08fdecb46f2ca57999b36b42dc92852bced4675e7d1f05579db",
+  "disposition": "REVISE",
+  "readyForOwnerAdoption": false,
+  "sourceBindingCheck": "All 12 declared source bindings and Queue479 match.",
+  "assessment": "The Director verified revision 6's exact bytes, hash, commit, 12 declared bindings, and Queue479. W2-R5-C01 and C02 are resolved: the stipulated continuous 50-ft coil fits its envelope, and the ordered A-to-B handoff is within reach. Load decisions, mass states, 22.04 taut time, and V0/V1 accounting remain preserved. One continuous-rope slack-accounting correction remains.",
+  "passedAtProposalDesignLevel": [
+    "The stipulated continuous 50-ft coil fits its envelope.",
+    "The ordered A-to-B handoff is within reach.",
+    "Load decisions, mass states, 22.04 first-taut time, and V0/V1 accounting remain preserved."
+  ],
+  "requiredCorrections": [
+    {
+      "id": "W2-R6-C01",
+      "topic": "continuous rope route and slack accounting",
+      "pointers": [
+        "/proposedTestOnlyRule/fixture/attachmentSetup/1",
+        "/proposedTestOnlyRule/fixture/tether/slackStorage",
+        "/proposedTestOnlyRule/fixture/tether/endpointAccess",
+        "/proposedTestOnlyRule/fixture/handlers/0/supportRoute",
+        "/proposedTestOnlyRule/fixture/spatialLayout/supportedSurfaces/4",
+        "/proposedTestOnlyRule/fixture/spatialLayout/slackPatchClearance",
+        "/proposedTestOnlyRule/expectedSettlement/rope/locationAtLanding"
+      ],
+      "requirement": "The 9.6-ft straight endpoint distance is a reference for calculating slack, not an additional installed segment that can terminate at the bracket and continue into the loose pile. One continuous rope must connect D-ring → loose-line region → bracket, with both connecting portions counted. The Director's direct-segment illustration is D-ring [0,0,1.5] to patch entry [0.6,0,-8.5] = 10.017984 ft, patch entry to bracket [0,0,-8.1] = 0.721110 ft, leaving 39.260906 ft on the patch. The proposed 39.678890 ft would make that route 50.417984 ft. Those direct segments illustrate the arithmetic discrepancy, not an approved replacement route through the declared channel. Specify one continuous, clearance-valid deployed path; count every connecting segment once; assign the remainder to loose bights; apply the same accounting to setup and proposed landing. The global slack budget may remain 50−9.6=40.4 ft, so the established taut timing need not change."
+    }
+  ],
+  "fullW2IntegrationRequirements": [
+    "Retained spell procedures and source-backed acquisition/preparation.",
+    "Complete legal paid casts and class/action bookkeeping for both spells.",
+    "Interruption outcomes, original clocks, and damage/HP/property settlement.",
+    "Separate exact owner adoption before any witness; synthetic rpPaid:2 is not paid-cast evidence."
+  ],
+  "nonEffects": [
+    "No adoption wording is issued for this hash.",
+    "W1 PASS remains unsealed; W2 and IE204-B02 remain HELD.",
+    "Queue479 remains 834 applied / 14 pending / 0 accepted-unapplied, Reverse Gravity first.",
+    "No adoption, witness, seal, identity, canon, runtime, or queue changes."
+  ],
+  "queueReadback": {
+    "applied": 834,
+    "pending": 14,
+    "acceptedUnapplied": 0,
+    "nextIdentity": "reverse-gravity-field",
+    "blocker": "IE204-B02"
+  }
+}
