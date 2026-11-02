@@ -1,0 +1,85 @@
+{
+  "id": "DIRECTOR-READBACK-457",
+  "source": "GPT Director, Calibration review part 6",
+  "component": "PG328-W13 proposal447 readiness review",
+  "status": "HOLD_FOR_OWNER_ADOPTION_READINESS",
+  "proposal447Sha256": "5dc27a73ffde95b92fe278e62d8233aef85b264cf9d4ae801b0af0fa96a3c786",
+  "findings": [
+    {
+      "id": "W447-C01",
+      "location": "/ownerProposedInputs/scheduledTimeAdvance/lifecycleEvents/3; /resourceLedger/B/cargoCustody/0",
+      "finding": "Cargo pickup cannot be free interaction; Secure Cargo requires Action. S030 has no Extraction Class. Any Class0 assignment must remain expressly proposed TEST_ONLY.",
+      "exactCorrection": [
+        "keep Demiplane13.1/13.2/13.3",
+        "leave cargo-B loose until B START19.0",
+        "at18.2 B eligible and explicitly declines Counterspell",
+        "at19.01 spend B Action on Secure Cargo",
+        "retain entry19.05 and set-down19.06"
+      ]
+    },
+    {
+      "id": "W447-C02",
+      "location": "/rootTerminalClosure/looseItems/0; /rootTerminalClosure/supportPatches/2",
+      "finding": "Q27 projects cargo-B from parent [40,15,0] through anchor offset [0,-10,0]. Exterior must be [40,5,0], bounds [40,41]×[5,6]×[0,1]. Use a distinct origin-plane support patch and preserve parent support separately."
+    },
+    {
+      "id": "W447-C03",
+      "location": "/parentDispel/counterspellDispositionAt24_2/distanceFeet",
+      "finding": "A [35,8,0] and B [35,15,0] are7 ft apart. B remains eligible and may explicitly decline; update window name when retimed."
+    },
+    {
+      "id": "W447-C04",
+      "location": "/geometryAudit/rays/BChildDispel",
+      "finding": "Geometry405 is the parent. Bind the child ray to Model166 room bounds, opaque boundary and actual child contents; retain13.5185058346-ft distance."
+    }
+  ],
+  "directorTimingForCorrectedProposal": {
+    "childDispel": [
+      25.1,
+      25.2,
+      25.3
+    ],
+    "P5CLOSE": 25.31,
+    "parentDispel": [
+      30.1,
+      30.2,
+      30.3
+    ],
+    "Q27": 30.31,
+    "regularStarts": 12,
+    "regularEnds": 11,
+    "doorExpiry": 73.1,
+    "sightDeadline": 618.1,
+    "terminalRP": {
+      "A": 48,
+      "B": 56
+    },
+    "sightRechargeReachesZeroAt": "A START30.0",
+    "spellEfficiencyExpiries": [
+      19.9,
+      24.9,
+      31.9,
+      36.9
+    ]
+  },
+  "preserved": {
+    "W01/W09": "PASS",
+    "W05/W10-453": "PASS",
+    "W11-456": "pending focused review",
+    "W12-451": "pending review",
+    "queue": {
+      "applied": 830,
+      "pending": 18,
+      "acceptedUnapplied": 0
+    },
+    "Fortress": "HELD_UNDER_PG200-B06"
+  },
+  "nonEffects": {
+    "proposal448OwnerAdopted": false,
+    "witnessConstructed": false,
+    "sealPresent": false,
+    "FortressAcceptedOrApplied": false,
+    "canonChanged": false,
+    "queueChanged": false
+  }
+}
