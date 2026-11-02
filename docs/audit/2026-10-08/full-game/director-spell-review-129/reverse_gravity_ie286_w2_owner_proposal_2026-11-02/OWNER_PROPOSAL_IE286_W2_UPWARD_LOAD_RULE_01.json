@@ -1,0 +1,268 @@
+{
+  "schemaVersion": 1,
+  "id": "OWNER-REVERSE-GRAVITY-IE286-W2-UPWARD-LOAD-RULE-PROPOSAL-01",
+  "createdAtUtc": "2026-11-02",
+  "classification": "OWNER_AUTHORIZED_TEST_ONLY_MECHANIC_DESIGN_PROPOSAL_NOT_ACCEPTED_NOT_WITNESS",
+  "status": "AWAITING_GPT_DIRECTOR_REVIEW",
+  "authorization": {
+    "userInstruction": "Create a rule that fits",
+    "scope": "W2-only TEST_ONLY obligation revision, as stated to the owner before authoring",
+    "effect": "Design authorization only; not rule acceptance, source discovery, owner adoption, or witness authorization."
+  },
+  "scope": {
+    "repository": "BordelonDevOps/DecenniumDescent",
+    "branch": "main",
+    "spellId": "reverse-gravity-field",
+    "blockerId": "IE204-B02",
+    "witnessId": "IE286-W2",
+    "use": "One synthetic branch for static authored-procedure review, only if GPT accepts and the owner separately adopts the exact reviewed terms.",
+    "exclusions": [
+      "No effect on W1 or its PASS status.",
+      "No canon, runtime, actual-campaign, or actual-actor change.",
+      "No historical case replay or amendment.",
+      "No witness, seal, blocker closure, identity acceptance/application, or queue mutation."
+    ]
+  },
+  "queueBaseline": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_SPELL_QUEUE_479.json",
+    "sha256": "f6245df32958ae5438d08fbd2573f53f60cc70b343ff16d9e78d8cf0dffa804a",
+    "applied": 834,
+    "pending": 14,
+    "acceptedUnapplied": 0,
+    "nextIdentity": "reverse-gravity-field",
+    "blocker": "IE204-B02"
+  },
+  "sourceBindings": [
+    {
+      "id": "IE286-W2-witness-reassessment",
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_impactexile4_return334_received/payload/WITNESS_REASSESSMENT.json",
+      "bytes": 5256,
+      "sha256": "59def2b5ce37bed9b42ed1d3d61a8ef5f1580a09387e42cff3cdb4305797503d",
+      "pointer": "/witnesses/1"
+    },
+    {
+      "id": "Conjure_Rope_scope",
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_impactexile4_return334_received/payload/CONJURE_ROPE_SCOPE.json",
+      "bytes": 2249,
+      "sha256": "0a1542622695890acd815ec77bdc6fb0c928ba909d7988ff3186aa50bea5f371",
+      "pointer": "/sourceFacts",
+      "facts": {
+        "activation": "Action",
+        "rangeFeet": 50,
+        "components": [
+          "V",
+          "S",
+          "F"
+        ],
+        "baseRpCost": 2,
+        "durationSeconds": 600,
+        "concentration": false,
+        "ropeLengthFeet": 50,
+        "ropeMassLb": 10,
+        "ropeAc": 11,
+        "ropeHp": 5,
+        "maxTotalStaticLoadLb": 300,
+        "support": "Must be actually secured to a real support able to bear load."
+      },
+      "limits": [
+        "No anchor creation/rating, hauling/forced movement, or free slack-drawing lift.",
+        "300 lb is static only; no source-defined upward/dynamic conversion.",
+        "At 0 HP, spell end, or overload, rope vanishes."
+      ]
+    },
+    {
+      "id": "Conjure_Rope_current_catalog_row",
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_impactexile4_return334_received/payload/input/03_CURRENT_CONJURE_ROPE_CATALOG_ROW.json",
+      "bytes": 10248,
+      "sha256": "d830ec4d68dbe527a878233d5eb6a42f05271080fb6f463ede8c9aae645eb229",
+      "pointer": "/operational"
+    },
+    {
+      "id": "Director_W2_retained_ruling",
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/reverse_gravity_ie286_w2_attachment_preflight_2026-11-02/DIRECTOR_READBACK_IE286_W2_RULING_01.json",
+      "bytes": 4507,
+      "sha256": "cbe8f7c5ea2dc109951315ec2fcf4047f31d44fbc1d8c70ad433aa0aa0ae5e58",
+      "decisionId": "IE286-W2-SOURCE-REQUIREMENT-01",
+      "finding": "No bound source defines Reverse Gravity load on secured tether."
+    },
+    {
+      "id": "W1_contract_boundary",
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/reverse_gravity_ie286_w1_authoring_preflight_2026-11-02/DIRECTOR_READBACK_IE286_W1_TEST_CONTRACT_01.json",
+      "sha256": "eda1dea0268a68f464891e2f87730c7b5da0fe0980dfd17fd76dd3d6d0107887",
+      "boundary": "W1 only; does not supply the W2 tether rule."
+    }
+  ],
+  "proposedTestOnlyRule": {
+    "id": "IE286-W2-TESTONLY-UPWARD-RESTRAINT-01",
+    "type": "Branch-local mechanic for one synthetic W2 fixture; not canonical.",
+    "definitions": {
+      "restrainedSystemMassLb": "Restrained body + attached/worn gear and cargo + Conjure Rope, each counted once.",
+      "upwardRestraintLoadLb": "Equal to restrainedSystemMassLb. This is a new 1:1 test convention in pound-equivalent units, not a source-defined physical-force conversion.",
+      "effectiveCapacityLb": "Lower of the source-defined 300-lb Conjure Rope static limit and the named synthetic support TEST_ONLY rating.",
+      "tautBehavior": "Inextensible for this test. Slack is consumed geometrically; at first taut contact upward velocity is set to zero before load sampling, so there is no impact or dynamic multiplier.",
+      "threshold": "Load at or below both capacities holds; above one, the lower-rated component fails."
+    },
+    "sequence": [
+      "Apply only the supplied upward displacement; do not alter Reverse Gravity source profile.",
+      "Consume measured tether slack; no free lifting, hauling, or slack-drawing.",
+      "At first taut contact, zero upward velocity and sample the defined TEST_ONLY quasi-static load.",
+      "Within both capacities, rope and support hold, block remaining upward displacement for this event, and do not stretch.",
+      "Above rope limit, use bound Conjure Rope overload result: rope vanishes and restraint ends.",
+      "Above synthetic support rating while rope is within its limit, the TEST_ONLY attachment releases; support stays fixed and undamaged.",
+      "If restraint ends during the scripted event, apply only uncompleted displacement from the current point; do not replay prior movement.",
+      "Cargo stays attached to the body unless separately detached; record body, rope, support, cargo, and custody."
+    ],
+    "fixture": {
+      "id": "IE286-W2-TESTONLY-FIXTURE-01",
+      "caster": {
+        "id": "TEST_CASTER_01",
+        "qualification": "Stipulated qualified/prepared for Conjure Rope solely for this branch; not an actual actor/class claim.",
+        "cast": {
+          "tSeconds": 0,
+          "action": "Action",
+          "components": [
+            "V",
+            "S",
+            "F"
+          ],
+          "rpPaid": 2,
+          "creationPointFeet": [
+            0,
+            0,
+            -10
+          ],
+          "rangeFeet": 5,
+          "refund": false,
+          "rope": {
+            "lengthFeet": 50,
+            "massLb": 10,
+            "ac": 11,
+            "hp": 5,
+            "maxStaticLoadLb": 300,
+            "concentration": false,
+            "deadlineSeconds": 600
+          }
+        }
+      },
+      "attachmentSetup": [
+        {
+          "seconds": [
+            0,
+            6
+          ],
+          "operation": "TEST_ONLY six-second brief operation secures one rope end to support."
+        },
+        {
+          "seconds": [
+            6,
+            12
+          ],
+          "operation": "TEST_ONLY six-second brief operation secures other end to consenting target's closed waist harness."
+        }
+      ],
+      "support": {
+        "id": "TEST_FIXED_SUPPORT_01",
+        "positionFeet": [
+          0,
+          0,
+          -10
+        ],
+        "kind": "Synthetic fixed support assembly anchored to stone",
+        "ratingLb": 500,
+        "custodian": "TEST_FIXTURE_CUSTODIAN_01",
+        "permission": "TEST_ONLY granted",
+        "overrating": "Attachment releases without moving/damaging support."
+      },
+      "target": {
+        "id": "TEST_TARGET_01",
+        "consent": "TEST_ONLY granted",
+        "bodyMassLb": 180,
+        "gearAndCargoLb": 20,
+        "harnessPositionFeet": [
+          0,
+          0,
+          0
+        ],
+        "cargo": {
+          "id": "TEST_SATCHEL_01",
+          "massLb": 5,
+          "includedInGearAndCargoLb": true,
+          "custody": "TEST_TARGET_01"
+        }
+      },
+      "tether": {
+        "path": "Straight vertical unobstructed from support z=-10 ft to harness z=0 ft",
+        "currentPathFeet": 10,
+        "ropeLengthFeet": 50,
+        "initialSlackFeet": 40,
+        "slackTakeup": "1 ft upward travel consumes 1 ft slack."
+      },
+      "movement": {
+        "id": "TEST_UPWARD_EVENT_01",
+        "classification": "Synthetic TEST_ONLY movement input, not an actual spell cast/campaign event",
+        "beginsAtSeconds": 18,
+        "endsAtSeconds": 24,
+        "requestedUpwardFeet": 60,
+        "direction": "+z",
+        "ReverseGravitySourceProfileOrCostClaimed": false
+      },
+      "load": {
+        "bodyLb": 180,
+        "gearCargoLb": 20,
+        "ropeLb": 10,
+        "totalLb": 210,
+        "upwardRestraintLb": 210,
+        "ropeLimitLb": 300,
+        "supportRatingLb": 500,
+        "result": "Within both capacities."
+      }
+    },
+    "expectedSettlement": {
+      "requestedFeet": 60,
+      "slackTakenUpFeet": 40,
+      "realizedUpwardFeet": 40,
+      "finalHarnessPositionFeet": [
+        0,
+        0,
+        40
+      ],
+      "remainingDisplacementPreventedFeet": 20,
+      "rope": "Intact, taut, secured; no stretch or release.",
+      "support": "Fixed and undamaged; attachment holds.",
+      "targetAndGear": "Move together; no gear dropped.",
+      "cargoCustody": "Satchel remains with target.",
+      "fall": "None; target remains supported at event end.",
+      "costs": "2 RP remains paid; no refund or duplicate cast.",
+      "ropeExpiry": "Event ends 24 seconds after cast, before 600-second deadline."
+    },
+    "releaseAndFailure": {
+      "ropeOverloadZeroHpOrExpiry": "Rope vanishes under bound source rule; restraint ends; during event only uncompleted displacement then applies.",
+      "supportOverrating": "Synthetic attachment releases; during event only uncompleted displacement then applies.",
+      "voluntaryRelease": "TEST_ONLY target-loop release ends restraint; apply only uncompleted displacement and preserve cargo custody.",
+      "intactAtEventEnd": "Target remains suspended at taut endpoint; no fall.",
+      "boundary": "No general physical-force model, dynamic-impact rule, actual support rating, or actual-campaign outcome."
+    }
+  },
+  "directorReviewRequest": {
+    "decision": "PASS, REVISE with exact corrections, or NO on this exact TEST_ONLY W2 rule and fixture.",
+    "focus": [
+      "1:1 quasi-static load convention",
+      "slack take-up and taut-stop",
+      "capacity and release/failure behavior",
+      "movement, cargo, custody, support, and fall settlement"
+    ],
+    "require": [
+      "Say whether eligible for separate exact owner adoption; do not treat design authorization as adoption.",
+      "If accepted, provide exact adoption wording and limits required before witness construction.",
+      "List actual spell-source and paid-application evidence that remains separate."
+    ],
+    "boundary": "No witness, seal, blocker closure, identity acceptance/application, canon/runtime mutation, or queue change before Director ruling and separate exact owner adoption."
+  },
+  "nonClaims": [
+    "The 1:1 load convention is new, TEST_ONLY, and absent from bound sources.",
+    "Caster, support, permissions, consent, attachment tasks, and movement are synthetic.",
+    "Proposal does not revise the retained Director NO ruling.",
+    "Historical anchored event is not replayed or used as evidence.",
+    "W1 remains separate and unsealed; W2 and IE204-B02 remain held."
+  ]
+}
