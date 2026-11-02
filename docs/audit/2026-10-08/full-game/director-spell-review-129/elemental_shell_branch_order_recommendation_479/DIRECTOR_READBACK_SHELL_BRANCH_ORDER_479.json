@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "id": "DIRECTOR-READBACK-ELEMENTAL-SHELL-BRANCH-ORDER-479",
+  "recordedAtUtc": "2026-11-02T04:07:02Z",
+  "source": "GPT Director, Calibration review part 6",
+  "conversationUrl": "https://chatgpt.com/g/g-p-67f17555a8dc8191a2b5b81e6d8adc12-dungeon-crawler/c/6adc506d-8770-83ea-b64c-0345d9b9b682",
+  "status": "RECOMMEND_B01_PROPOSAL478_REPACK01_FIRST",
+  "exactDirectorResponse": "Recommend B01 Proposal478 Repack01 first, then B02 Proposal477 Repack01. Both subparts are required before Elemental Shell can receive a whole-identity acceptance. B01 is the smaller witness: one paid Shell application against the bounded noncreature fire event, with mitigation/immunity and no creature reflection. B02 then covers the additional pet acquisition, creation, command, attack and reflection accounting. After both witnesses pass, reconcile them with the retained procedure, historical coverage and qualifications. Only an explicit identity ACCEPT would produce 831 applied / 16 still-held pending / 1 accepted-unapplied; subsequent application would produce 832/16/0. This is a recommendation, not owner authorization.",
+  "recommendedSequence": [
+    {
+      "order": 1,
+      "branch": "DF218-SHELL-B01-TESTONLY-R1",
+      "proposalPath": "docs/audit/2026-10-08/full-game/director-spell-review-129/elemental_shell_b01_test_source_proposal_478_repack01/OWNER_DF218_B01_TEST_SOURCE_PROPOSAL_478_REPACK01_TESTONLY.json",
+      "proposalSha256": "e00c3c8fad96883b6fe1d7ac07e1ed07f4b2f7b2f275dcee1853ce30b576ea69",
+      "directorReadbackPath": "docs/audit/2026-10-08/full-game/director-spell-review-129/elemental_shell_b01_test_source_proposal_478_repack01/DIRECTOR_READBACK_478_REPACK01.json",
+      "directorStatus": "READY_FOR_OWNER_ADOPTION",
+      "witnessScope": "One B01-only static authored component witness for a paid Shell application on the bounded noncreature fire event; mitigation/immunity; no creature reflection.",
+      "progressAfterSuccessfulWitnessReview": "Satisfies only B01; B02 remains open; queue remains 831/17/0."
+    },
+    {
+      "order": 2,
+      "branch": "DF218-SHELL-B02-R2-PROPOSED-OPEN-TEST-PLANE",
+      "proposalPath": "docs/audit/2026-10-08/full-game/director-spell-review-129/elemental_shell_b02_integrated_preflight_477_repack01/SHELL_B02_INTEGRATED_PREFLIGHT_477_REPACK01_TESTONLY.json",
+      "proposalSha256": "b673305a49eb10dcfd7da1de676ea883cbcb2f34abcc308310ef00fd0c549c64",
+      "directorReadbackPath": "docs/audit/2026-10-08/full-game/director-spell-review-129/elemental_shell_b02_integrated_preflight_477_repack01/DIRECTOR_READBACK_477_REPACK01_SUCCESSOR_READY.json",
+      "directorStatus": "READY_FOR_OWNER_ADOPTION",
+      "witnessScope": "B02 integrated TEST_ONLY encounter covering the additional pet acquisition, creation, command, attack and reflection accounting.",
+      "progressAfterSuccessfulWitnessReview": "Satisfies only B02; after B01 also passes, the whole identity may be reconciled; queue remains 831/17/0 until an explicit identity decision and application."
+    }
+  ],
+  "currentQueue": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_SPELL_QUEUE_476_REPACK01.json",
+    "sha256": "4ae9ed74080e2919e7223aeee54fe1d0a380b0117248648027a3f5dfbc95e9cb",
+    "reviewedApplied": 831,
+    "pending": 17,
+    "acceptedUnapplied": 0,
+    "nextIdentity": "elemental-shell",
+    "openBlockers": [
+      "DF218-B01",
+      "DF218-B02"
+    ]
+  },
+  "readinessEvidence": {
+    "B01IndependentValidation": {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/elemental_shell_b01_test_source_proposal_478_repack01/INDEPENDENT_VALIDATION_478_REPACK01.json",
+      "status": "PASS",
+      "checksPassed": 76,
+      "checksFailed": 0,
+      "ownerAdoptionRecorded": false,
+      "witnessConstructed": false
+    },
+    "B02SuccessorValidation": {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/elemental_shell_b02_integrated_preflight_477_repack01/VALIDATION_DIRECTOR_READBACK_477_REPACK01_SUCCESSOR_READY.json",
+      "status": "PASS",
+      "passed": 13,
+      "failed": 0,
+      "ownerAdoptionReceived": false
+    }
+  },
+  "ownerAuthorization": {
+    "status": "AWAITING_EXACT_BRANCH_SELECTION",
+    "proposal468AuthorizesShellEncounter": false,
+    "proposal448AuthorizesShellEncounter": false,
+    "B01Adopted": false,
+    "B02Adopted": false
+  },
+  "decisionBoundary": {
+    "witnessConstructed": false,
+    "ShellAccepted": false,
+    "ShellApplied": false,
+    "campaignEventAsserted": false,
+    "canonicalRuleChanged": false,
+    "queueChanged": false
+  }
+}
