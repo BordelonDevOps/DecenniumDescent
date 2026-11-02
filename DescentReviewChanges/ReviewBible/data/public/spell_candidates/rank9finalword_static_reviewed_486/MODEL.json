@@ -1,0 +1,591 @@
+{
+  "schemaVersion": 1,
+  "id": "RANK9-FINAL-WORD-STATIC-REVIEWED-486",
+  "reviewId": "DR217-B01-FW485-STATIC-ACCEPT-01",
+  "status": "REVIEWED_AUTHORED_STATIC_PROCEDURE",
+  "acceptedIds": [
+    "final-word"
+  ],
+  "heldIds": [],
+  "closedBlockerIds": [
+    "DR217-B01"
+  ],
+  "retainedQualificationIds": [
+    "DR217-H-SOURCE",
+    "DR217-H-RUNTIME",
+    "DR217-H-BALANCE",
+    "DR217-H-COSMOLOGY",
+    "DR217-H-RELEASE"
+  ],
+  "sourceProcedureBinding": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_deathrecovery7_return217_received/extracted/procedures/final-word.json",
+    "bytes": 14336,
+    "sha256": "21bd9b43c8865c573a53185b6571b37f8aa650fe2cfb38b3f3fff67b3246bf43",
+    "crc32": "a390b27e"
+  },
+  "directorReadback": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/final_word_static_application_486/DIRECTOR_READBACK_486.json",
+    "bytes": 4934,
+    "sha256": "4ec6dab22da3118192a944125a18fd56f2a0009fa20abbd25204e6ba4146ae74",
+    "crc32": "88555d11"
+  },
+  "directorAcceptance": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/final_word_static_application_486/DIRECTOR_ACCEPTANCE_486.json",
+    "bytes": 3704,
+    "sha256": "e47ffa48ae0bea9fe4865e24bcdfe77329aeae3ea727619a536f265498207702",
+    "crc32": "7c5e8fc1"
+  },
+  "ownerAdoptionReceiptErratum": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/final_word_static_application_486/OWNER_ADOPTION_RECEIPT_BINDING_ERRATUM_486.json",
+    "bytes": 1645,
+    "sha256": "42abae511c9e3fd56f99d0684180d01dcef19b637f76c763d2ae6eeed23e1dde",
+    "crc32": "87bbee00"
+  },
+  "caseEvidence": {
+    "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9finalword_static_reviewed_486/CASE_COVERAGE.json",
+    "bytes": 2894,
+    "sha256": "2efad0f620976415466d1445cb2fe28e47bcbf9b45bee8586a28d65bcf843add",
+    "crc32": "ed25677a"
+  },
+  "spells": [
+    {
+      "id": "final-word",
+      "name": "Final Word",
+      "nativeCard": {
+        "id": "final-word",
+        "name": "Final Word",
+        "schools": [
+          "Necromancy"
+        ],
+        "status": "blocked-pending-operational-review",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Cleric": {
+            "rank": 9,
+            "minimumClassLevel": 17,
+            "school": "Necromancy",
+            "baseRpCost": 26
+          },
+          "Druid": {
+            "rank": 9,
+            "minimumClassLevel": 17,
+            "school": "Necromancy",
+            "baseRpCost": 26
+          },
+          "Wizard": {
+            "rank": 9,
+            "minimumClassLevel": 17,
+            "school": "Necromancy",
+            "baseRpCost": 26
+          }
+        },
+        "operational": null,
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "final-word",
+          "original": {
+            "name": "Final Word",
+            "level": 9,
+            "resonanceRank": 9,
+            "school": "Necromancy",
+            "schools": [
+              "Necromancy"
+            ],
+            "placements": [
+              {
+                "name": "Final Word",
+                "school": "Necromancy",
+                "level": 9,
+                "summary": "Kill a creature with HP < 50. If it dies, capture a soul reserve that can pay up to 5 RP toward one spell before the end of your next long rest."
+              }
+            ],
+            "classLevels": {
+              "Cleric": 9,
+              "Druid": 9,
+              "Wizard": 9
+            },
+            "classRanks": {
+              "Cleric": 9,
+              "Druid": 9,
+              "Wizard": 9
+            },
+            "classLearnLevels": {
+              "Cleric": 17,
+              "Druid": 17,
+              "Wizard": 17
+            },
+            "classSchools": {
+              "Cleric": "Necromancy",
+              "Druid": "Necromancy",
+              "Wizard": "Necromancy"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Kill a creature with HP < 50. If it dies, capture a soul reserve that can pay up to 5 RP toward one spell before the end of your next long rest.",
+            "alternateSummaries": [],
+            "classes": [
+              "Cleric",
+              "Druid",
+              "Wizard"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 717,
+              "original": {
+                "school": "Necromancy",
+                "level": 9,
+                "name": "Final Word",
+                "effect": "Kill a creature with fewer than 50 HP. If it dies, bind its soul as a one-use 5 RP reserve.",
+                "source_paragraph": 9868,
+                "casting_time": "1 action",
+                "range": "120 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Utility"
+                ],
+                "rp_cost": 26
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation",
+          "Not selectable in this spell playtest packet until individual operational review"
+        ]
+      },
+      "procedure": {
+        "procedureContent": "Action; native120 feet; V/S/F; native rank9/base26RP through Cleric/Druid/Wizard Necromancy. Choose one perceived living creature with a source-qualified ordinary life/normal-HP interface in range and line of effect. NEW evaluate its actual current normalHP at resolution: strictly below50 qualifies;50 does not. Temporary HP is not counted. On qualification attempt direct death with no invented attack/save/damage. An eligible would-die replacement precedes actual death; a prevention means no reserve. A later independent death is not attributed retroactively. A paid threshold failure has no fallback and discloses no exact HP.\n\nOnly an actual eligible death caused by this cast opens the reserve-capture stage. NEW select optionA: a source-owned finite spell-payment token, not a claim of soul ownership, destruction, memory access, an afterlife location or an additional resurrection prison. Still require an actual identity/soul record establishing that this capture is permitted. An unavailable/unknown soul fact creates a capture hold, not a free token. Existing source-bound custody, an express soul-capture bar, Hunted Death (NEW local no-reward choice), and an actual summon/no-resource-farming rule prevent capture; death remains resolved. This local restriction supplies no escape from Hunt finality. Ordinary future return uses its own gates, and token use/expiry neither causes nor prevents that return.\n\nNEW each lawful capture creates one nontransferable5RP-maximum token tied to caster identity, victim identity, generating cast/death event and the end of that caster's next legally completed long rest. Concurrent distinct lawful tokens may coexist; there is no invented per-rest capture cap. Choose at most ONE token for ONE eligible spell commitment. Compute that spell's real price first, then allocate0..min(5,tokenRemaining,eligibleBaseRP) to its base-RP component; mandatory extra RP, Dissonance surcharge and nonspell costs must still be paid from their actual sources. No reserve stacks with another reserve on that cast. A zero allocation does not consume it. A positive allocation commits and consumes the entire token before interruption; unused remainder is lost, and counter/failure does not restore it. A legal base-price0 cast cannot consume a token merely to refresh it. It cannot pay a nonspell class rite, move into ordinary RP, transfer through an item/body, or duplicate through save/load. Caster death suspends ability to cast but does not reset an existing token's original next-long-rest endpoint.\n\nThe native positive capture/payment obligation is NOT demonstrated by inventing soul availability. This return retains the positive capture, subsequent paid use/counter, concurrency and expiry demonstrations as precisely linked held continuations wherever the requisite actual token cannot be established from supplied evidence. The selected operational rule is complete as a proposal; acceptance remains blocked on that evidence.\n\nReturn217 reassessment: the token accounting, one-token-per-spell rule, no ownership/return prison selection, strict49/50 boundary and exact capture exclusions are director-selected spell-local rules. The remaining hold is evidentiary only: establish one source-authorized, unbound capture-eligible victim lifecycle/identity, then complete actual token creation, one-spell payment, counter nonrefund, remainder and concurrent expiry. A participant choosing Pact return is not permission to infer that another identity can be captured. Neither an arbitrary new global capture-permission gate nor a new soul doctrine is selected.",
+        "sharedContract": {
+          "casting": "All seven native routes are rank9, class level17 minimum, base26RP, Action and V/S/F. Use exactly each native class-school row, actual acquired repertoire/prepared set, source ability/PB, usable hands/voice/focus, current budgets, range/geometry and perception where stated. The four Power Word Kill placements do not grant four class modes. Generic upcast, foreign material requirements and familiar spell rules are not supplied. Preflight illegality spends nothing; an otherwise legal commitment pays costs, Action and source cadence before interruption, saves or hidden threshold checks. Threshold failure is a paid no-effect resolution, not a target-selection oracle.",
+          "costAndCadence": "Use current SPELL_INTEGRATION_RULES resolve-a-cast sequence: pre-cast Dissonance price surcharge, actual source discounts/mandatory extras, then chronological Refrain and base strain. Rank9 ordinary base strain is2. A Wizard first distinct prepared matrix family has0 BASE strain only; a repeat still pays its actual base strain and chronological Refrain. A different name resets consecutive-name Refrain but never refreshes a Wizard family exemption. Class Counterspell has its own rank1,3RP,INT+PB versus10+2*rank and recharge2; Wizard Arch Dispel is rank3,3RP, and versus a rank9 ongoing spell uses INT+PB versus19, not rank5 or the counter DC. Actual acquisition and perception remain necessary. No blanket promotion of a catalog sourceStatus to runtime availability.",
+          "death": "KEEP the Core/Healing/Body/Lifecycle interfaces. Direct death is a life-state transition, with no damage packet, Wound/concentration save, HP-damage trigger or damage-immunity test. Do not manufacture numeric damage to implement it. Normal HP is retained as a ledger unless an exact state assignment changes it; actual death can coexist with positive recorded HP. Ordinary Death Ward is a positive-to-zero floor and does not prevent direct death. Actually acquired Ritual of Undeath Death Ward mode can intercept an eligible would-die event if body and all its real source gates pass. True would-die protections resolve before committing death; a successful protection is not death. Actual death ends concentration and invalidates temporary-HP holding, drops actually held equipment, closes actual temporary forms by their exact interface and preserves unique identity, wound/injury/debt/corruption/resource histories. Hunted Death and pending Soul Bind conversion follow committed death; no spell here supplies an exceptional Hunt return.",
+          "holds": "Missing source acquisition, creature/lifecycle/body information, geometry, hearing, identity/soul eligibility or an actual required campaign prerequisite is never supplied by a spell name or high die roll. Hold the exact branch requiring it. A conditional authored geometry/profile fixture is not observed gameplay. No runtime, human-play, playtest, numerical-balance, cosmology-canon, domain-closure or release approval is given.",
+          "information": "Full authored state is audit data, not a player/controller visibility grant. No hidden HP preview, exact-HP failure explanation, hidden listener list, allegiance revelation, soul-location knowledge or debug-state access is granted. Fix declared modes, targets and recipient ordering before outcome data; no post-check retargeting. Only actually perceived consequences enter the controller observation record.",
+          "ready": "Use the accepted Ready contract unchanged: Action at preparation, actual spell paid/cast/components/cadence/counter window once; one held spell requiring concentration until release/expiry; expiration before next regular own-start refresh. Choose targets/area at a legal Reaction release and recheck prerequisites. Illegal/declined releases do not spend a Reaction and may wait until expiry. Release creates no second cast or payment and anchors the effect duration then. Wail NEW audible death-bearing emission occurs at release, distinct from its preparatory V component; a physically voice-blocked release is ineligible. Casting menus/save-load/mode changes grant no turn, release, death save, reaction or clock reset.",
+          "scope": "NEW choices below are authored only for these seven ordinary spell identities. They do not amend a global interface, a class acquisition rule, any accepted comparison, or source canon. Original native cards and all classAccess rows remain complete and unchanged.",
+          "time": "Actor regular starts/ends, reaction refresh, budgets, recharge, Ready expiry and death saves remain separate from spell events. Use exact source-relative or absolute endpoints below. A periodic packet is never an actor turn. Save/load preserves IDs, RNG/event lineage, paid history, clocks, source custody, pending effects and already-consumed opportunities. Authored fixture calendars are declared scenario inputs, not a game scheduler or runtime implementation."
+        },
+        "questionIds": [
+          "DR9-Q01",
+          "DR9-Q09",
+          "DR9-Q10",
+          "DR9-Q11",
+          "DR9-Q12",
+          "DR9-Q21",
+          "DR9-Q22"
+        ],
+        "focusedQuestionIds": []
+      },
+      "sourceProcedureRecord": {
+        "accepted": false,
+        "applied": false,
+        "blockerIds": [
+          "DR217-B01"
+        ],
+        "currentCatalogRowUnchanged": {
+          "additionalRpCost": 0,
+          "classAccess": {
+            "Cleric": {
+              "baseRpCost": 26,
+              "minimumClassLevel": 17,
+              "rank": 9,
+              "school": "Necromancy"
+            },
+            "Druid": {
+              "baseRpCost": 26,
+              "minimumClassLevel": 17,
+              "rank": 9,
+              "school": "Necromancy"
+            },
+            "Wizard": {
+              "baseRpCost": 26,
+              "minimumClassLevel": 17,
+              "rank": 9,
+              "school": "Necromancy"
+            }
+          },
+          "id": "final-word",
+          "name": "Final Word",
+          "operational": null,
+          "reviewFlags": [
+            "Core resolution requires an explicit operational interpretation",
+            "Not selectable in this spell playtest packet until individual operational review"
+          ],
+          "schools": [
+            "Necromancy"
+          ],
+          "source": {
+            "catalogKey": "final-word",
+            "catalogPath": "src/data/spells.js",
+            "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+            "coreEntries": [
+              {
+                "index": 717,
+                "original": {
+                  "casting_time": "1 action",
+                  "components": "V, S, F",
+                  "duration": "Instantaneous",
+                  "effect": "Kill a creature with fewer than 50 HP. If it dies, bind its soul as a one-use 5 RP reserve.",
+                  "level": 9,
+                  "name": "Final Word",
+                  "range": "120 feet",
+                  "resolution": "Automatic or opposed as described",
+                  "rp_cost": 26,
+                  "school": "Necromancy",
+                  "source_paragraph": 9868,
+                  "tags": [
+                    "Utility"
+                  ]
+                }
+              }
+            ],
+            "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+            "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+            "original": {
+              "alternateSummaries": [],
+              "castingTime": "Not specified in current rulebook",
+              "classLearnLevels": {
+                "Cleric": 17,
+                "Druid": 17,
+                "Wizard": 17
+              },
+              "classLevels": {
+                "Cleric": 9,
+                "Druid": 9,
+                "Wizard": 9
+              },
+              "classRanks": {
+                "Cleric": 9,
+                "Druid": 9,
+                "Wizard": 9
+              },
+              "classSchools": {
+                "Cleric": "Necromancy",
+                "Druid": "Necromancy",
+                "Wizard": "Necromancy"
+              },
+              "classes": [
+                "Cleric",
+                "Druid",
+                "Wizard"
+              ],
+              "components": "Not specified in current rulebook",
+              "description": "Kill a creature with HP < 50. If it dies, capture a soul reserve that can pay up to 5 RP toward one spell before the end of your next long rest.",
+              "duration": "Not specified in current rulebook",
+              "level": 9,
+              "name": "Final Word",
+              "placements": [
+                {
+                  "level": 9,
+                  "name": "Final Word",
+                  "school": "Necromancy",
+                  "summary": "Kill a creature with HP < 50. If it dies, capture a soul reserve that can pay up to 5 RP toward one spell before the end of your next long rest."
+                }
+              ],
+              "range": "Not specified in current rulebook",
+              "resonanceRank": 9,
+              "school": "Necromancy",
+              "schools": [
+                "Necromancy"
+              ],
+              "source": "Player Rulebook — Spell Lists",
+              "status": "canon"
+            },
+            "possibleHistoricalAliases": []
+          },
+          "status": "blocked-pending-operational-review",
+          "visibility": "public-source-review"
+        },
+        "currentIndexEntryUnchanged": {
+          "authoredStatus": "pending-authored-procedure",
+          "id": "final-word",
+          "name": "Final Word",
+          "priorCatalogSelectionStatusUnchanged": true,
+          "procedureFile": "catalog.json",
+          "procedurePointer": null,
+          "sourceStatus": "blocked-pending-operational-review",
+          "wholeCardPointer": "/spells/675"
+        },
+        "id": "final-word",
+        "nativeCardUnchanged": {
+          "additionalRpCost": 0,
+          "classAccess": {
+            "Cleric": {
+              "baseRpCost": 26,
+              "minimumClassLevel": 17,
+              "rank": 9,
+              "school": "Necromancy"
+            },
+            "Druid": {
+              "baseRpCost": 26,
+              "minimumClassLevel": 17,
+              "rank": 9,
+              "school": "Necromancy"
+            },
+            "Wizard": {
+              "baseRpCost": 26,
+              "minimumClassLevel": 17,
+              "rank": 9,
+              "school": "Necromancy"
+            }
+          },
+          "id": "final-word",
+          "name": "Final Word",
+          "operational": null,
+          "reviewFlags": [
+            "Core resolution requires an explicit operational interpretation",
+            "Not selectable in this spell playtest packet until individual operational review"
+          ],
+          "schools": [
+            "Necromancy"
+          ],
+          "source": {
+            "catalogKey": "final-word",
+            "catalogPath": "src/data/spells.js",
+            "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+            "coreEntries": [
+              {
+                "index": 717,
+                "original": {
+                  "casting_time": "1 action",
+                  "components": "V, S, F",
+                  "duration": "Instantaneous",
+                  "effect": "Kill a creature with fewer than 50 HP. If it dies, bind its soul as a one-use 5 RP reserve.",
+                  "level": 9,
+                  "name": "Final Word",
+                  "range": "120 feet",
+                  "resolution": "Automatic or opposed as described",
+                  "rp_cost": 26,
+                  "school": "Necromancy",
+                  "source_paragraph": 9868,
+                  "tags": [
+                    "Utility"
+                  ]
+                }
+              }
+            ],
+            "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+            "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+            "original": {
+              "alternateSummaries": [],
+              "castingTime": "Not specified in current rulebook",
+              "classLearnLevels": {
+                "Cleric": 17,
+                "Druid": 17,
+                "Wizard": 17
+              },
+              "classLevels": {
+                "Cleric": 9,
+                "Druid": 9,
+                "Wizard": 9
+              },
+              "classRanks": {
+                "Cleric": 9,
+                "Druid": 9,
+                "Wizard": 9
+              },
+              "classSchools": {
+                "Cleric": "Necromancy",
+                "Druid": "Necromancy",
+                "Wizard": "Necromancy"
+              },
+              "classes": [
+                "Cleric",
+                "Druid",
+                "Wizard"
+              ],
+              "components": "Not specified in current rulebook",
+              "description": "Kill a creature with HP < 50. If it dies, capture a soul reserve that can pay up to 5 RP toward one spell before the end of your next long rest.",
+              "duration": "Not specified in current rulebook",
+              "level": 9,
+              "name": "Final Word",
+              "placements": [
+                {
+                  "level": 9,
+                  "name": "Final Word",
+                  "school": "Necromancy",
+                  "summary": "Kill a creature with HP < 50. If it dies, capture a soul reserve that can pay up to 5 RP toward one spell before the end of your next long rest."
+                }
+              ],
+              "range": "Not specified in current rulebook",
+              "resonanceRank": 9,
+              "school": "Necromancy",
+              "schools": [
+                "Necromancy"
+              ],
+              "source": "Player Rulebook — Spell Lists",
+              "status": "canon"
+            },
+            "possibleHistoricalAliases": []
+          },
+          "status": "blocked-pending-operational-review",
+          "visibility": "public-source-review"
+        },
+        "newAuthorshipScope": "Spell-local selections only; not global authority or recovered canon.",
+        "procedure": "Action; native120 feet; V/S/F; native rank9/base26RP through Cleric/Druid/Wizard Necromancy. Choose one perceived living creature with a source-qualified ordinary life/normal-HP interface in range and line of effect. NEW evaluate its actual current normalHP at resolution: strictly below50 qualifies;50 does not. Temporary HP is not counted. On qualification attempt direct death with no invented attack/save/damage. An eligible would-die replacement precedes actual death; a prevention means no reserve. A later independent death is not attributed retroactively. A paid threshold failure has no fallback and discloses no exact HP.\n\nOnly an actual eligible death caused by this cast opens the reserve-capture stage. NEW select optionA: a source-owned finite spell-payment token, not a claim of soul ownership, destruction, memory access, an afterlife location or an additional resurrection prison. Still require an actual identity/soul record establishing that this capture is permitted. An unavailable/unknown soul fact creates a capture hold, not a free token. Existing source-bound custody, an express soul-capture bar, Hunted Death (NEW local no-reward choice), and an actual summon/no-resource-farming rule prevent capture; death remains resolved. This local restriction supplies no escape from Hunt finality. Ordinary future return uses its own gates, and token use/expiry neither causes nor prevents that return.\n\nNEW each lawful capture creates one nontransferable5RP-maximum token tied to caster identity, victim identity, generating cast/death event and the end of that caster's next legally completed long rest. Concurrent distinct lawful tokens may coexist; there is no invented per-rest capture cap. Choose at most ONE token for ONE eligible spell commitment. Compute that spell's real price first, then allocate0..min(5,tokenRemaining,eligibleBaseRP) to its base-RP component; mandatory extra RP, Dissonance surcharge and nonspell costs must still be paid from their actual sources. No reserve stacks with another reserve on that cast. A zero allocation does not consume it. A positive allocation commits and consumes the entire token before interruption; unused remainder is lost, and counter/failure does not restore it. A legal base-price0 cast cannot consume a token merely to refresh it. It cannot pay a nonspell class rite, move into ordinary RP, transfer through an item/body, or duplicate through save/load. Caster death suspends ability to cast but does not reset an existing token's original next-long-rest endpoint.\n\nThe native positive capture/payment obligation is NOT demonstrated by inventing soul availability. This return retains the positive capture, subsequent paid use/counter, concurrency and expiry demonstrations as precisely linked held continuations wherever the requisite actual token cannot be established from supplied evidence. The selected operational rule is complete as a proposal; acceptance remains blocked on that evidence.\n\nReturn217 reassessment: the token accounting, one-token-per-spell rule, no ownership/return prison selection, strict49/50 boundary and exact capture exclusions are director-selected spell-local rules. The remaining hold is evidentiary only: establish one source-authorized, unbound capture-eligible victim lifecycle/identity, then complete actual token creation, one-spell payment, counter nonrefund, remainder and concurrent expiry. A participant choosing Pact return is not permission to infer that another identity can be captured. Neither an arbitrary new global capture-permission gate nor a new soul doctrine is selected.",
+        "qualification": "Static authored review only; accepted only as individually indicated. No application, runtime, implementation, human play, balance, cosmology, domain closure or release approval.",
+        "questionIds": [
+          "DR9-Q01",
+          "DR9-Q09",
+          "DR9-Q10",
+          "DR9-Q11",
+          "DR9-Q12",
+          "DR9-Q21",
+          "DR9-Q22"
+        ],
+        "reassessmentAuthority": {
+          "acceptedUnapplied": 0,
+          "completeStandaloneProcedures": 530,
+          "pending": 42,
+          "reviewedApplied": 806,
+          "scopedInterfaces": 173
+        },
+        "runtimeSelectionEnabled": false,
+        "sharedRules": {
+          "casting": "All seven native routes are rank9, class level17 minimum, base26RP, Action and V/S/F. Use exactly each native class-school row, actual acquired repertoire/prepared set, source ability/PB, usable hands/voice/focus, current budgets, range/geometry and perception where stated. The four Power Word Kill placements do not grant four class modes. Generic upcast, foreign material requirements and familiar spell rules are not supplied. Preflight illegality spends nothing; an otherwise legal commitment pays costs, Action and source cadence before interruption, saves or hidden threshold checks. Threshold failure is a paid no-effect resolution, not a target-selection oracle.",
+          "costAndCadence": "Use current SPELL_INTEGRATION_RULES resolve-a-cast sequence: pre-cast Dissonance price surcharge, actual source discounts/mandatory extras, then chronological Refrain and base strain. Rank9 ordinary base strain is2. A Wizard first distinct prepared matrix family has0 BASE strain only; a repeat still pays its actual base strain and chronological Refrain. A different name resets consecutive-name Refrain but never refreshes a Wizard family exemption. Class Counterspell has its own rank1,3RP,INT+PB versus10+2*rank and recharge2; Wizard Arch Dispel is rank3,3RP, and versus a rank9 ongoing spell uses INT+PB versus19, not rank5 or the counter DC. Actual acquisition and perception remain necessary. No blanket promotion of a catalog sourceStatus to runtime availability.",
+          "death": "KEEP the Core/Healing/Body/Lifecycle interfaces. Direct death is a life-state transition, with no damage packet, Wound/concentration save, HP-damage trigger or damage-immunity test. Do not manufacture numeric damage to implement it. Normal HP is retained as a ledger unless an exact state assignment changes it; actual death can coexist with positive recorded HP. Ordinary Death Ward is a positive-to-zero floor and does not prevent direct death. Actually acquired Ritual of Undeath Death Ward mode can intercept an eligible would-die event if body and all its real source gates pass. True would-die protections resolve before committing death; a successful protection is not death. Actual death ends concentration and invalidates temporary-HP holding, drops actually held equipment, closes actual temporary forms by their exact interface and preserves unique identity, wound/injury/debt/corruption/resource histories. Hunted Death and pending Soul Bind conversion follow committed death; no spell here supplies an exceptional Hunt return.",
+          "holds": "Missing source acquisition, creature/lifecycle/body information, geometry, hearing, identity/soul eligibility or an actual required campaign prerequisite is never supplied by a spell name or high die roll. Hold the exact branch requiring it. A conditional authored geometry/profile fixture is not observed gameplay. No runtime, human-play, playtest, numerical-balance, cosmology-canon, domain-closure or release approval is given.",
+          "information": "Full authored state is audit data, not a player/controller visibility grant. No hidden HP preview, exact-HP failure explanation, hidden listener list, allegiance revelation, soul-location knowledge or debug-state access is granted. Fix declared modes, targets and recipient ordering before outcome data; no post-check retargeting. Only actually perceived consequences enter the controller observation record.",
+          "ready": "Use the accepted Ready contract unchanged: Action at preparation, actual spell paid/cast/components/cadence/counter window once; one held spell requiring concentration until release/expiry; expiration before next regular own-start refresh. Choose targets/area at a legal Reaction release and recheck prerequisites. Illegal/declined releases do not spend a Reaction and may wait until expiry. Release creates no second cast or payment and anchors the effect duration then. Wail NEW audible death-bearing emission occurs at release, distinct from its preparatory V component; a physically voice-blocked release is ineligible. Casting menus/save-load/mode changes grant no turn, release, death save, reaction or clock reset.",
+          "scope": "NEW choices below are authored only for these seven ordinary spell identities. They do not amend a global interface, a class acquisition rule, any accepted comparison, or source canon. Original native cards and all classAccess rows remain complete and unchanged.",
+          "time": "Actor regular starts/ends, reaction refresh, budgets, recharge, Ready expiry and death saves remain separate from spell events. Use exact source-relative or absolute endpoints below. A periodic packet is never an actor turn. Save/load preserves IDs, RNG/event lineage, paid history, clocks, source custody, pending effects and already-consumed opportunities. Authored fixture calendars are declared scenario inputs, not a game scheduler or runtime implementation."
+        },
+        "status": "PROPOSED_UNACCEPTED_REQUIRED_EVIDENCE_HELD"
+      },
+      "directorProcedureRecord": {
+        "id": "final-word",
+        "status": "DIRECTOR_ACCEPTED_STATIC_AUTHORED_PROCEDURE_APPLIED_TO_AUTHORED_REVIEW_INDEX_RUNTIME_DISABLED",
+        "accepted": true,
+        "applied": true,
+        "holdIds": [
+          "DR217-H-SOURCE",
+          "DR217-H-RUNTIME",
+          "DR217-H-BALANCE",
+          "DR217-H-COSMOLOGY",
+          "DR217-H-RELEASE"
+        ],
+        "qualificationHoldIds": [
+          "DR217-H-SOURCE",
+          "DR217-H-RUNTIME",
+          "DR217-H-BALANCE",
+          "DR217-H-COSMOLOGY",
+          "DR217-H-RELEASE"
+        ],
+        "closedBlockerIds": [
+          "DR217-B01"
+        ],
+        "resolvedBlockerIds": [
+          "DR217-B01"
+        ],
+        "scope": "STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY",
+        "sourceProcedureStatusPreserved": true,
+        "sourceOperationalValuePreserved": null,
+        "directorAcceptance": {
+          "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/final_word_static_application_486/DIRECTOR_ACCEPTANCE_486.json",
+          "bytes": 3704,
+          "sha256": "e47ffa48ae0bea9fe4865e24bcdfe77329aeae3ea727619a536f265498207702",
+          "crc32": "7c5e8fc1"
+        },
+        "directorReadback": {
+          "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/final_word_static_application_486/DIRECTOR_READBACK_486.json",
+          "bytes": 4934,
+          "sha256": "4ec6dab22da3118192a944125a18fd56f2a0009fa20abbd25204e6ba4146ae74",
+          "crc32": "88555d11"
+        },
+        "ownerAdoptionReceiptErratum": {
+          "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/final_word_static_application_486/OWNER_ADOPTION_RECEIPT_BINDING_ERRATUM_486.json",
+          "bytes": 1645,
+          "sha256": "42abae511c9e3fd56f99d0684180d01dcef19b637f76c763d2ae6eeed23e1dde",
+          "crc32": "87bbee00"
+        },
+        "witnessBinding": {
+          "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/final_word_testonly_fixture_proposal_485/FW485_R1_TESTONLY_WITNESS_01.json",
+          "bytes": 127547,
+          "sha256": "9677561e5d2f3f3854fddff831f13fca4239242a7e1d060c4ff98cc0c06caca8",
+          "crc32": "75f702f1"
+        },
+        "caseEvidenceBinding": {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9finalword_static_reviewed_486/CASE_COVERAGE.json",
+          "bytes": 2894,
+          "sha256": "2efad0f620976415466d1445cb2fe28e47bcbf9b45bee8586a28d65bcf843add",
+          "crc32": "ed25677a"
+        },
+        "reconciliationBinding": {
+          "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/final_word_identity_reconciliation_486/FINAL_WORD_IDENTITY_RECONCILIATION_486.json",
+          "bytes": 4308,
+          "sha256": "bdce1224cdd59d4149871a9bae0099f75450a60746e7f0e3192c43e63062a036",
+          "crc32": "da5d399e"
+        },
+        "reassessment": [
+          {
+            "blockerId": "DR217-B01",
+            "decision": "CLOSED_FOR_STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY",
+            "directorReadback": "docs/audit/2026-10-08/full-game/director-spell-review-129/final_word_static_application_486/DIRECTOR_READBACK_486.json",
+            "witnessPath": "docs/audit/2026-10-08/full-game/director-spell-review-129/final_word_testonly_fixture_proposal_485/FW485_R1_TESTONLY_WITNESS_01.json",
+            "limitation": "No actual-source qualification or campaign fact is established; all five qualification holds remain."
+          }
+        ]
+      },
+      "sourceProcedureBinding": {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_deathrecovery7_return217_received/extracted/procedures/final-word.json",
+        "bytes": 14336,
+        "sha256": "21bd9b43c8865c573a53185b6571b37f8aa650fe2cfb38b3f3fff67b3246bf43",
+        "crc32": "a390b27e"
+      },
+      "qualificationIds": [
+        "DR217-H-SOURCE",
+        "DR217-H-RUNTIME",
+        "DR217-H-BALANCE",
+        "DR217-H-COSMOLOGY",
+        "DR217-H-RELEASE"
+      ],
+      "closedBlockerIds": [
+        "DR217-B01"
+      ],
+      "caseEvidence": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9finalword_static_reviewed_486/CASE_COVERAGE.json",
+        "bytes": 2894,
+        "sha256": "2efad0f620976415466d1445cb2fe28e47bcbf9b45bee8586a28d65bcf843add",
+        "crc32": "ed25677a"
+      },
+      "identityReconciliation": {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/final_word_identity_reconciliation_486/FINAL_WORD_IDENTITY_RECONCILIATION_486.json",
+        "bytes": 4308,
+        "sha256": "bdce1224cdd59d4149871a9bae0099f75450a60746e7f0e3192c43e63062a036",
+        "crc32": "da5d399e"
+      }
+    }
+  ],
+  "sharedRequirements": {
+    "casting": "All seven native routes are rank9, class level17 minimum, base26RP, Action and V/S/F. Use exactly each native class-school row, actual acquired repertoire/prepared set, source ability/PB, usable hands/voice/focus, current budgets, range/geometry and perception where stated. The four Power Word Kill placements do not grant four class modes. Generic upcast, foreign material requirements and familiar spell rules are not supplied. Preflight illegality spends nothing; an otherwise legal commitment pays costs, Action and source cadence before interruption, saves or hidden threshold checks. Threshold failure is a paid no-effect resolution, not a target-selection oracle.",
+    "costAndCadence": "Use current SPELL_INTEGRATION_RULES resolve-a-cast sequence: pre-cast Dissonance price surcharge, actual source discounts/mandatory extras, then chronological Refrain and base strain. Rank9 ordinary base strain is2. A Wizard first distinct prepared matrix family has0 BASE strain only; a repeat still pays its actual base strain and chronological Refrain. A different name resets consecutive-name Refrain but never refreshes a Wizard family exemption. Class Counterspell has its own rank1,3RP,INT+PB versus10+2*rank and recharge2; Wizard Arch Dispel is rank3,3RP, and versus a rank9 ongoing spell uses INT+PB versus19, not rank5 or the counter DC. Actual acquisition and perception remain necessary. No blanket promotion of a catalog sourceStatus to runtime availability.",
+    "death": "KEEP the Core/Healing/Body/Lifecycle interfaces. Direct death is a life-state transition, with no damage packet, Wound/concentration save, HP-damage trigger or damage-immunity test. Do not manufacture numeric damage to implement it. Normal HP is retained as a ledger unless an exact state assignment changes it; actual death can coexist with positive recorded HP. Ordinary Death Ward is a positive-to-zero floor and does not prevent direct death. Actually acquired Ritual of Undeath Death Ward mode can intercept an eligible would-die event if body and all its real source gates pass. True would-die protections resolve before committing death; a successful protection is not death. Actual death ends concentration and invalidates temporary-HP holding, drops actually held equipment, closes actual temporary forms by their exact interface and preserves unique identity, wound/injury/debt/corruption/resource histories. Hunted Death and pending Soul Bind conversion follow committed death; no spell here supplies an exceptional Hunt return.",
+    "holds": "Missing source acquisition, creature/lifecycle/body information, geometry, hearing, identity/soul eligibility or an actual required campaign prerequisite is never supplied by a spell name or high die roll. Hold the exact branch requiring it. A conditional authored geometry/profile fixture is not observed gameplay. No runtime, human-play, playtest, numerical-balance, cosmology-canon, domain-closure or release approval is given.",
+    "information": "Full authored state is audit data, not a player/controller visibility grant. No hidden HP preview, exact-HP failure explanation, hidden listener list, allegiance revelation, soul-location knowledge or debug-state access is granted. Fix declared modes, targets and recipient ordering before outcome data; no post-check retargeting. Only actually perceived consequences enter the controller observation record.",
+    "ready": "Use the accepted Ready contract unchanged: Action at preparation, actual spell paid/cast/components/cadence/counter window once; one held spell requiring concentration until release/expiry; expiration before next regular own-start refresh. Choose targets/area at a legal Reaction release and recheck prerequisites. Illegal/declined releases do not spend a Reaction and may wait until expiry. Release creates no second cast or payment and anchors the effect duration then. Wail NEW audible death-bearing emission occurs at release, distinct from its preparatory V component; a physically voice-blocked release is ineligible. Casting menus/save-load/mode changes grant no turn, release, death save, reaction or clock reset.",
+    "scope": "NEW choices below are authored only for these seven ordinary spell identities. They do not amend a global interface, a class acquisition rule, any accepted comparison, or source canon. Original native cards and all classAccess rows remain complete and unchanged.",
+    "time": "Actor regular starts/ends, reaction refresh, budgets, recharge, Ready expiry and death saves remain separate from spell events. Use exact source-relative or absolute endpoints below. A periodic packet is never an actor turn. Save/load preserves IDs, RNG/event lineage, paid history, clocks, source custody, pending effects and already-consumed opportunities. Authored fixture calendars are declared scenario inputs, not a game scheduler or runtime implementation."
+  },
+  "runtimeSelectionEnabled": false,
+  "implementationApproved": false,
+  "humanPlayApproved": false,
+  "balanceApproved": false,
+  "cosmologyModified": false,
+  "domainClosure": false,
+  "releaseApproved": false,
+  "nativeCatalogChanged": false,
+  "historicalEvidenceChanged": false
+}
