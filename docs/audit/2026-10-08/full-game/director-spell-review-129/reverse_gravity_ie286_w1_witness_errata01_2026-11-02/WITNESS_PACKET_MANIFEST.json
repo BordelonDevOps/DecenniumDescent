@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "id": "IE286-W1-TESTONLY-WITNESS-PACKET-ERRATA01",
+  "classification": "OWNER_ADOPTED_BRANCH_SCOPED_TEST_ONLY_RECORD_ERRATA_SUCCESSOR_NOT_SEALED",
+  "parentCommit": "5a99a3f263105637c54517071524b198ff30645d",
+  "ownerAdoption": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/reverse_gravity_ie286_w1_owner_adoption_2026-11-02/OWNER_ADOPTION_IE286_W1_TESTONLY.json",
+    "sha256": "257cb9f5f2181c4467750c3d6fa14afa4dd80ea94f6b36f0373898ed9b1384eb",
+    "commit": "b58c5d92858d9ab77cb332a4f716073cabcdb073"
+  },
+  "reviewedComponentPass": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/reverse_gravity_ie286_w1_witness_errata01_2026-11-02/DIRECTOR_READBACK_IE286_W1_COMPONENT_01.json",
+    "sha256": "edb7e27fd4b39e59bf558efff6c8cad89a065525160e5526d43016983fa27aeb",
+    "reviewedCommit": "5a99a3f263105637c54517071524b198ff30645d",
+    "disposition": "PASS_FOR_ADOPTED_TEST_ONLY_COMPONENT_SUFFICIENCY",
+    "independentChecksPassed": 98
+  },
+  "supersedes": {
+    "packetCommit": "5a99a3f263105637c54517071524b198ff30645d",
+    "manifestPath": "docs/audit/2026-10-08/full-game/director-spell-review-129/reverse_gravity_ie286_w1_witness_2026-11-02/WITNESS_PACKET_MANIFEST.json",
+    "manifestSha256": "9b0b78f91c605beb68775a41923cde8501e781f46a42c4ad7ea7041fa3a5eb93",
+    "errataOnly": true,
+    "witnessReconstructed": false
+  },
+  "adoptedContract": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/reverse_gravity_ie286_w1_authoring_preflight_2026-11-02/DIRECTOR_READBACK_IE286_W1_TEST_CONTRACT_01.json",
+    "id": "IE286-W1-TEST-CONTRACT-01",
+    "sha256": "eda1dea0268a68f464891e2f87730c7b5da0fe0980dfd17fd76dd3d6d0107887"
+  },
+  "sourceArtifact": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_impactexile4_return334_received/payload/input/08_RETURN286_OBSERVED_CASE_FRAGMENTS.json",
+    "sha256": "4f661d93ca49360a5845f692b93447e948f3a25f7b3a39df0b20a660ee563c5c"
+  },
+  "cases": [
+    {
+      "caseId": "RANK9IMPACTEXILE4129-REVERSE-GRAVITY-FIELD-A",
+      "eventId": "RANK9IMPACTEXILE4129-REVERSE-GRAVITY-FIELD-A:29",
+      "landingFeet": 60,
+      "path": "IE286_W1_A_60FT_DELTA_TESTONLY_ERRATA01.json",
+      "bytes": 102720,
+      "sha256": "337f833fca9965b7975feffeec48bd165e3576c1d8e84cd52f0f87f6d6ef6638"
+    },
+    {
+      "caseId": "RANK9IMPACTEXILE4129-REVERSE-GRAVITY-FIELD-B",
+      "eventId": "RANK9IMPACTEXILE4129-REVERSE-GRAVITY-FIELD-B:29",
+      "landingFeet": 60,
+      "path": "IE286_W1_B_60FT_DELTA_TESTONLY_ERRATA01.json",
+      "bytes": 103202,
+      "sha256": "5aa8ecb60f8554f1155778d825aea9ab465b3dbb3429cc0c3a92837c7e92cb34"
+    },
+    {
+      "caseId": "RANK9IMPACTEXILE4129-REVERSE-GRAVITY-FIELD-B/overlap",
+      "eventId": "RANK9IMPACTEXILE4129-REVERSE-GRAVITY-FIELD-B/overlap:34",
+      "landingFeet": 120,
+      "path": "IE286_W1_B_OVERLAP_120FT_DELTA_TESTONLY_ERRATA01.json",
+      "bytes": 108476,
+      "sha256": "85f53c7ac01971919bfd44e73f06c2758cd442b2323aa39d2d0ea5fb30a4c11b"
+    }
+  ],
+  "corrections": [
+    "Replace mojibake arrow with the adopted UTF-8 sentence preserving the 6.133-to-6.15 transition.",
+    "Bind validation to verify_ie286_w1_packet.py and LOCAL_VALIDATION_REPORT.json."
+  ],
+  "supportingFiles": [
+    {
+      "path": "DIRECTOR_ERRATA_REVIEW_REQUEST.md",
+      "bytes": 1051,
+      "sha256": "efd45fe8e67ccae3fe43d6947b293cce38cd764ee1784577d85376c3cd24b53b"
+    },
+    {
+      "path": "DIRECTOR_READBACK_IE286_W1_COMPONENT_01.json",
+      "bytes": 10663,
+      "sha256": "edb7e27fd4b39e59bf558efff6c8cad89a065525160e5526d43016983fa27aeb"
+    },
+    {
+      "path": "LOCAL_VALIDATION_REPORT.json",
+      "bytes": 3645,
+      "sha256": "704fdb286787df58ad803104241e8a608da039bdcd602a30158037d4ca8045b9"
+    },
+    {
+      "path": "verify_ie286_w1_packet.py",
+      "bytes": 4714,
+      "sha256": "2595415db13aa983d4b0f1571a5d7da8131ba812b63f1e0ce170088a723c804f"
+    }
+  ],
+  "status": {
+    "locallyValidated": true,
+    "submittedToDirector": false,
+    "componentPassRetained": true,
+    "componentPassUnsealed": true,
+    "identityDisposition": "HOLD",
+    "acceptedIds": [],
+    "appliedIds": [],
+    "heldIds": [
+      "reverse-gravity-field"
+    ],
+    "queue": "834/14/0",
+    "queueChanged": false,
+    "W2": "HELD_SOURCE_REQUIREMENT"
+  },
+  "validationReport": "LOCAL_VALIDATION_REPORT.json",
+  "validationReportSha256": "704fdb286787df58ad803104241e8a608da039bdcd602a30158037d4ca8045b9",
+  "verifier": "verify_ie286_w1_packet.py",
+  "verifierSha256": "2595415db13aa983d4b0f1571a5d7da8131ba812b63f1e0ce170088a723c804f"
+}

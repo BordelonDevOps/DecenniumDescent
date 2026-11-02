@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "id": "IE286-W1-LOCAL-VALIDATION-ERRATA01",
+  "classification": "TESTONLY_WITNESS_RECORD_ERRATA_SUCCESSOR_VALIDATION",
+  "validatedAtUtc": "2026-11-02T16:27:34Z",
+  "validator": "verify_ie286_w1_packet.py",
+  "validatorSha256": "2595415db13aa983d4b0f1571a5d7da8131ba812b63f1e0ce170088a723c804f",
+  "result": "PASS",
+  "supersedesValidationForCommit": "5a99a3f263105637c54517071524b198ff30645d",
+  "directorReadback": {
+    "path": "DIRECTOR_READBACK_IE286_W1_COMPONENT_01.json",
+    "sha256": "edb7e27fd4b39e59bf558efff6c8cad89a065525160e5526d43016983fa27aeb",
+    "disposition": "PASS_FOR_ADOPTED_TEST_ONLY_COMPONENT_SUFFICIENCY",
+    "independentChecksPassed": 98
+  },
+  "correctionsValidated": [
+    "Adopted UTF-8 6.133 to 6.15 sentence is recorded at the requested JSON pointer in all three cases.",
+    "Current verifier and this report are bound at the requested validation pointer in all three cases."
+  ],
+  "checks": {
+    "packet": "IE286-W1-TESTONLY-WITNESS-PACKET-ERRATA01",
+    "caseCount": 3,
+    "checks": [
+      {
+        "file": "IE286_W1_A_60FT_DELTA_TESTONLY_ERRATA01.json",
+        "sha256": "337f833fca9965b7975feffeec48bd165e3576c1d8e84cd52f0f87f6d6ef6638",
+        "sourceBefore": "1b342e12d9ef061e402b5807c2890f32a9ad5095790378ed07a1f1c7be701487",
+        "sourceAfterLanding": "4f5548b7a44ba8e287598634ac7b7de8918ec4e3fddec7f67bae523154db1b28",
+        "overlayHashes": {
+          "beforeLanding": "fac89d19001a1cc0c5cab2e1b583b9db495fa0047960a2c899892c09e5a693be",
+          "afterLandingBeforeImpact": "fe0b4f8b8961e7e9d70a0738c7406a01b087f1f00d15c2c12b7b5fe963499315",
+          "afterImpactAndSettlement": "d1896657bb57f6a713c58df407b54df849b47df92f17cae4bf59902f7e7c9978"
+        },
+        "massAfterLb": 20,
+        "result": "PASS"
+      },
+      {
+        "file": "IE286_W1_B_60FT_DELTA_TESTONLY_ERRATA01.json",
+        "sha256": "5aa8ecb60f8554f1155778d825aea9ab465b3dbb3429cc0c3a92837c7e92cb34",
+        "sourceBefore": "77b7e8ac10220d235163e35a309ec1dc5466857b9a20ee3c07375af1d3ced8eb",
+        "sourceAfterLanding": "c8144c9eeb204b3926be38c7ab7e078523c07f31df26c1e39c1c0707f2c9354c",
+        "overlayHashes": {
+          "beforeLanding": "51546456046b8c9b953077eb44f5b75156355402a6f7dfb565605b16e3c96cb6",
+          "afterLandingBeforeImpact": "0f33a0eab44ea9bc8cc21d467c4b90eaf60a0e76357ce8bb769982c850d10095",
+          "afterImpactAndSettlement": "841c9d4ecaf1b054b33aaef1d015db05110e1767d891db7f450046617843e471"
+        },
+        "massAfterLb": 20,
+        "result": "PASS"
+      },
+      {
+        "file": "IE286_W1_B_OVERLAP_120FT_DELTA_TESTONLY_ERRATA01.json",
+        "sha256": "85f53c7ac01971919bfd44e73f06c2758cd442b2323aa39d2d0ea5fb30a4c11b",
+        "sourceBefore": "25f72143a693ebb2ba8b4971a362de091919cdfdf5f03d8c54679c9951eae7c9",
+        "sourceAfterLanding": "1d3eb034a9810a49a7abc677ebcd1a89edf369c5590238a932dec2f5a0ca5258",
+        "overlayHashes": {
+          "beforeLanding": "b94cc5d6e06c871dee14711ae8c5782769bf98eea2c7b80810edd7296c511a16",
+          "afterLandingBeforeImpact": "b8734fb986e24fc69bcb210b62ae8c001ba52c5507dd4a39b3556487092fa00f",
+          "afterImpactAndSettlement": "cece2db2919a0cf40ae05e6855ba97ee5e2ab01e89c71605f33eda09c232bfcb"
+        },
+        "massAfterLb": 20,
+        "result": "PASS"
+      }
+    ]
+  },
+  "limitations": [
+    "Record-only correction; no witness reconstruction or semantic change.",
+    "No source facts established, no evidence seal, no IE204-B02 closure, no identity acceptance/application, and no queue/canon/runtime change."
+  ]
+}
