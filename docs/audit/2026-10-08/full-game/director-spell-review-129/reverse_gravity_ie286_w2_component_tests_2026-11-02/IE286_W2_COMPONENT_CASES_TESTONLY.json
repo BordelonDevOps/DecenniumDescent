@@ -1,0 +1,235 @@
+{
+  "schemaVersion": 1,
+  "id": "IE286-W2-TESTONLY-COMPONENT-CASES-01",
+  "createdAtUtc": "2026-11-02T20:36:57Z",
+  "classification": "OWNER_ADOPTED_BRANCH_SCOPED_TEST_ONLY_COMPONENT_CASES_NOT_RUNTIME_OR_CAMPAIGN_EVIDENCE",
+  "adoptedContract": {
+    "id": "IE286-W2-TESTONLY-UPWARD-RESTRAINT-01",
+    "proposalId": "OWNER-REVERSE-GRAVITY-IE286-W2-UPWARD-LOAD-RULE-PROPOSAL-01",
+    "proposalRevision": 7,
+    "proposalPath": "docs/audit/2026-10-08/full-game/director-spell-review-129/reverse_gravity_ie286_w2_owner_proposal_2026-11-02/OWNER_PROPOSAL_IE286_W2_UPWARD_LOAD_RULE_01.json",
+    "proposalBytes": 57122,
+    "proposalSha256": "4a934f6055546387fe5bc17f81ea6be8b6d623334152729fa721722e255c06e7",
+    "ownerAdoptionPath": "docs/audit/2026-10-08/full-game/director-spell-review-129/reverse_gravity_ie286_w2_owner_adoption_2026-11-02/OWNER_ADOPTION_IE286_W2_TESTONLY.json",
+    "ownerAdoptionSha256": "b782c8692feaf7b758c929c284d458296218139bca097e09f65e29addcf3ea3b",
+    "ownerAdoptionCommit": "5400737f"
+  },
+  "queueBaseline": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_SPELL_QUEUE_479.json",
+    "sha256": "f6245df32958ae5438d08fbd2573f53f60cc70b343ff16d9e78d8cf0dffa804a",
+    "applied": 834,
+    "pending": 14,
+    "acceptedUnapplied": 0,
+    "nextIdentity": "reverse-gravity-field",
+    "blocker": "IE204-B02"
+  },
+  "testMethod": "Recompute arithmetic, timing, threshold decisions, and scoped property states from the explicitly adopted synthetic contract. These checks are not a game-runtime execution, source qualification, or paid-cast reconstruction.",
+  "fixturePremises": {
+    "allPremisesAreSynthetic": true,
+    "targetBodyMassLb": 180,
+    "baseGearAndCargoMassLb": 20,
+    "gearInventoryMassesLb": {
+      "harness": 5,
+      "targetConnector": 1,
+      "satchel": 5,
+      "otherGear": 9
+    },
+    "ropeMassLb": 10,
+    "ropeLengthFt": 50,
+    "ropeCapacityLb": 300,
+    "completeSupportAssemblyCapacityLb": 250,
+    "targetBodyInitialZFt": 0,
+    "harnessOffsetAboveBodyZFt": 1.5,
+    "targetToBracketDirectReferenceFt": 9.6,
+    "ropeRouteFt": {
+      "dRingToPatchEntry": 10.017984,
+      "looseBightsReturningToEntry": 39.260906,
+      "patchEntryToBracket": 0.72111,
+      "total": 50.0
+    },
+    "ropeSlackFt": {
+      "leaderDetourBeyondDirectReference": 1.139094,
+      "looseBights": 39.260906,
+      "total": 40.4
+    },
+    "movement": {
+      "startsAtSeconds": 18,
+      "rateFeetPerSecond": 10,
+      "requestedDistanceFeet": 60,
+      "eventEndsAtSeconds": 24,
+      "firstTautAtSeconds": 22.04
+    },
+    "fall": {
+      "landingPlatformZFt": 0,
+      "impactFormula": "min(10, floor(distanceFeet / 20))d6",
+      "outsideInitiativeOrder": [
+        "TEST_TARGET_01",
+        "TEST_HANDLER_A",
+        "TEST_HANDLER_B",
+        "TEST_CASTER_01"
+      ],
+      "fallMarkerSequence": "V0 at event end sets marker without descent; V1 recurs after each listed actor receives one normal turn, then resolves the first ordinary fall step."
+    },
+    "syntheticCastInput": {
+      "spell": "Conjure Rope",
+      "timeSeconds": 0,
+      "rpPaid": 2,
+      "isLegalPaidCastEvidence": false,
+      "deadlineSeconds": 600
+    }
+  },
+  "cases": [
+    {
+      "id": "IE286-W2-BASE-210-FIRST-TAUT-AND-FALL",
+      "sourcePointer": "/proposedTestOnlyRule/expectedSettlement/firstTaut",
+      "input": {
+        "bodyLb": 180,
+        "gearCargoLb": 20,
+        "ropeLb": 10,
+        "slackFt": 40.4
+      },
+      "expected": {
+        "totalLoadLb": 210,
+        "firstTautAtSeconds": 22.04,
+        "bodyZAtTautFt": 40.4,
+        "harnessZAtTautFt": 41.9,
+        "verticalVelocityAfterTautFeetPerSecond": 0,
+        "assembly": "holds",
+        "rope": "intact",
+        "bodyZAtEventEndFt": 40.4,
+        "fallDistanceFt": 40.4,
+        "impactDice": "2d6",
+        "ropeDeadlineSeconds": 600
+      },
+      "propertyState": {
+        "targetAndGear": "Move together; no item is dropped.",
+        "satchelCustody": "TEST_TARGET_01",
+        "ropeCustody": "TEST_FIXTURE_CUSTODIAN_01",
+        "support": "Fixed and undamaged; complete assembly holds at 210 lb.",
+        "landingRope": "Intact and slack at the stipulated landing configuration; its original bight arrangement is not restored."
+      }
+    },
+    {
+      "id": "IE286-W2-ACTIVE-EVENT-RELEASE-AT-23",
+      "sourcePointer": "/proposedTestOnlyRule/releaseAndFailure/activeEventVoluntaryRelease",
+      "input": {
+        "releaseTimeSeconds": 23,
+        "ordinaryActionSpent": true,
+        "bodyZAtReleaseFt": 40.4,
+        "eventEndsAtSeconds": 24,
+        "rateFeetPerSecond": 10
+      },
+      "expected": {
+        "remainingScheduledDisplacementFt": 10,
+        "bodyZAtEventEndFt": 50.4,
+        "fallDistanceFt": 50.4,
+        "impactDice": "2d6",
+        "rope": "intact; attached to fixed support only at release snapshot",
+        "targetConnector": "remains on target",
+        "postReleaseRopeMotion": "not simulated"
+      }
+    },
+    {
+      "id": "IE286-W2-AFTER-EVENT-RELEASE-BEFORE-V1",
+      "sourcePointer": "/proposedTestOnlyRule/releaseAndFailure/afterEventVoluntaryRelease",
+      "input": {
+        "eventEndsAtSeconds": 24,
+        "bodyZAtEventEndFt": 40.4,
+        "releaseUsesTargetOrdinaryAction": true,
+        "releaseBeforeFirstFallMarkerV1": true
+      },
+      "expected": {
+        "fallAlreadyStarted": true,
+        "releaseResetsFall": false,
+        "fallDistanceFt": 40.4,
+        "impactDice": "2d6",
+        "firstFallStepAt": "V1 after the full listed roster has one normal turn opportunity",
+        "postReleaseRopeMotion": "not simulated"
+      }
+    },
+    {
+      "id": "IE286-W2-PROBE-SUPPORT-RELEASE-260",
+      "sourcePointer": "/proposedTestOnlyRule/failureProbeCases/0",
+      "snapshotOnly": true,
+      "input": {
+        "bodyLb": 180,
+        "gearCargoLb": 70,
+        "ropeLb": 10,
+        "supportRatingLb": 250,
+        "ropeRatingLb": 300
+      },
+      "expected": {
+        "totalLoadLb": 260,
+        "supportWeakLink": "releases",
+        "rope": "intact and attached to target-side connector",
+        "fixedBracket": "remains fixed",
+        "targetMassLb": 260,
+        "scope": "stop at decision; no post-failure trajectory, fall, landing, or damage"
+      }
+    },
+    {
+      "id": "IE286-W2-PROBE-ROPE-OVERLOAD-301",
+      "sourcePointer": "/proposedTestOnlyRule/failureProbeCases/1",
+      "snapshotOnly": true,
+      "input": {
+        "bodyLb": 180,
+        "gearCargoLb": 111,
+        "ropeLb": 10,
+        "supportRatingLb": 250,
+        "ropeRatingLb": 300
+      },
+      "expected": {
+        "totalLoadLb": 301,
+        "supportWeakLink": "releases",
+        "rope": "vanishes with rope-side connectors",
+        "fixedBracket": "remains fixed",
+        "survivingTargetMassLb": 291,
+        "targetHarnessConnector": "remains with target and is counted in gear/cargo",
+        "satchelCustody": "TEST_TARGET_01",
+        "scope": "stop at decision; no post-failure trajectory, fall, landing, or damage"
+      }
+    },
+    {
+      "id": "IE286-W2-PROBE-POST-TAUT-MASS-CHANGE-310",
+      "sourcePointer": "/proposedTestOnlyRule/failureProbeCases/2",
+      "snapshotOnly": true,
+      "input": {
+        "bodyLb": 180,
+        "baseGearCargoLb": 20,
+        "addedCargoLb": 100,
+        "ropeLb": 10,
+        "changeTimeSeconds": 23,
+        "supportRatingLb": 250,
+        "ropeRatingLb": 300
+      },
+      "expected": {
+        "firstTautLoadLb": 210,
+        "gearCargoAfterChangeLb": 120,
+        "totalLoadAfterChangeLb": 310,
+        "supportWeakLink": "releases at immediate recheck",
+        "rope": "vanishes at immediate recheck",
+        "survivingTargetMassLb": 300,
+        "satchelCustody": "TEST_TARGET_01",
+        "scope": "stop at immediate recheck; no later movement, fall, landing, or damage"
+      }
+    }
+  ],
+  "integrationGatesStillOpen": [
+    "Source-qualified Reverse Gravity procedure, caster acquisition/preparation, and an authoritative upward-restraint interaction rule.",
+    "Legal paid-cast evidence for Reverse Gravity and Conjure Rope, including resources, components/free hands, actions, class bookkeeping, response windows, commitment/resolution, interruption, and concentration where applicable.",
+    "Integrated branch clocks, including the Conjure Rope t=600-second deadline, damage/HP, property custody, release/failure aftermath, and reversible-state evidence."
+  ],
+  "nonEffects": {
+    "gameRuntimeExecuted": false,
+    "campaignEventAsserted": false,
+    "actualPaidCastEstablished": false,
+    "historicalParentChanged": false,
+    "w1Changed": false,
+    "sealIssued": false,
+    "blockerClosed": false,
+    "identityAccepted": false,
+    "identityApplied": false,
+    "canonChanged": false,
+    "queueChanged": false
+  }
+}

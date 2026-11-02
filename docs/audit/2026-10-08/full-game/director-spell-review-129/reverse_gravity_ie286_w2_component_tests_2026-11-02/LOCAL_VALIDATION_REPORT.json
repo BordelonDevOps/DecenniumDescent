@@ -1,0 +1,504 @@
+{
+  "schemaVersion": 1,
+  "id": "IE286-W2-TESTONLY-COMPONENT-VALIDATION-01",
+  "recordedAtUtc": "2026-11-02T20:37:36Z",
+  "classification": "LOCAL_TEST_ONLY_CONTRACT_ARITHMETIC_AND_BRANCH_CHECK_NOT_RUNTIME_OR_CAMPAIGN_EXECUTION",
+  "proposal": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/reverse_gravity_ie286_w2_owner_proposal_2026-11-02/OWNER_PROPOSAL_IE286_W2_UPWARD_LOAD_RULE_01.json",
+    "bytes": 57122,
+    "sha256": "4a934f6055546387fe5bc17f81ea6be8b6d623334152729fa721722e255c06e7"
+  },
+  "ownerAdoption": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/reverse_gravity_ie286_w2_owner_adoption_2026-11-02/OWNER_ADOPTION_IE286_W2_TESTONLY.json",
+    "sha256": "b782c8692feaf7b758c929c284d458296218139bca097e09f65e29addcf3ea3b",
+    "ownerAdoptionCommitPrefix": "5400737f"
+  },
+  "queue": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_SPELL_QUEUE_479.json",
+    "sha256": "f6245df32958ae5438d08fbd2573f53f60cc70b343ff16d9e78d8cf0dffa804a",
+    "applied": 834,
+    "pending": 14,
+    "acceptedUnapplied": 0,
+    "nextIdentity": "reverse-gravity-field",
+    "blockers": [
+      "IE204-B02"
+    ]
+  },
+  "testSuite": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/reverse_gravity_ie286_w2_component_tests_2026-11-02/IE286_W2_COMPONENT_CASES_TESTONLY.json",
+    "sha256": "214fe23ee7b46bcd0f5187b389ad00429b3cefcd7f2e979c39687e0e54396cf8",
+    "caseCount": 6
+  },
+  "checkCount": 29,
+  "passedChecks": 29,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "check": "Exact R7 proposal bytes and hash",
+      "passed": true,
+      "detail": {
+        "bytes": 57122,
+        "sha256": "4a934f6055546387fe5bc17f81ea6be8b6d623334152729fa721722e255c06e7"
+      }
+    },
+    {
+      "check": "Exact owner adoption bytes bind R7",
+      "passed": true,
+      "detail": {
+        "sha256": "b782c8692feaf7b758c929c284d458296218139bca097e09f65e29addcf3ea3b",
+        "adoptedProposalSha256": "4a934f6055546387fe5bc17f81ea6be8b6d623334152729fa721722e255c06e7"
+      }
+    },
+    {
+      "check": "Owner adoption is an ancestor of current HEAD",
+      "passed": true,
+      "detail": {
+        "ownerAdoptionCommitPrefix": "5400737f"
+      }
+    },
+    {
+      "check": "Queue479 exact bytes and held baseline remain",
+      "passed": true,
+      "detail": {
+        "sha256": "f6245df32958ae5438d08fbd2573f53f60cc70b343ff16d9e78d8cf0dffa804a",
+        "applied": 834,
+        "pending": 14,
+        "acceptedUnapplied": 0,
+        "next": "reverse-gravity-field",
+        "blockers": [
+          "IE204-B02"
+        ]
+      }
+    },
+    {
+      "check": "Suite binds the exact adopted contract and six scoped cases",
+      "passed": true,
+      "detail": {
+        "caseIds": [
+          "IE286-W2-BASE-210-FIRST-TAUT-AND-FALL",
+          "IE286-W2-ACTIVE-EVENT-RELEASE-AT-23",
+          "IE286-W2-AFTER-EVENT-RELEASE-BEFORE-V1",
+          "IE286-W2-PROBE-SUPPORT-RELEASE-260",
+          "IE286-W2-PROBE-ROPE-OVERLOAD-301",
+          "IE286-W2-PROBE-POST-TAUT-MASS-CHANGE-310"
+        ]
+      }
+    },
+    {
+      "check": "Suite remains explicitly non-runtime and non-campaign",
+      "passed": true,
+      "detail": {
+        "gameRuntimeExecuted": false,
+        "campaignEventAsserted": false,
+        "actualPaidCastEstablished": false,
+        "historicalParentChanged": false,
+        "w1Changed": false,
+        "sealIssued": false,
+        "blockerClosed": false,
+        "identityAccepted": false,
+        "identityApplied": false,
+        "canonChanged": false,
+        "queueChanged": false
+      }
+    },
+    {
+      "check": "Continuous rope route totals 50 ft",
+      "passed": true,
+      "detail": {
+        "sum": "50.000000",
+        "expected": 50.0
+      }
+    },
+    {
+      "check": "Leader detour and loose bights total 40.4 ft slack",
+      "passed": true,
+      "detail": {
+        "leaderDetour": "1.139094",
+        "bights": 39.260906,
+        "slack": "40.400000"
+      }
+    },
+    {
+      "check": "First taut is 22.04 s at 40.4 ft rise",
+      "passed": true,
+      "detail": {
+        "timeSeconds": "22.040000",
+        "riseFeet": 40.4
+      }
+    },
+    {
+      "check": "Test route and slack inputs match adopted proposal's deployed path",
+      "passed": true,
+      "detail": {
+        "sourceRouteSegments": [
+          {
+            "fromFeet": [
+              0,
+              0,
+              1.5
+            ],
+            "toFeet": [
+              0.6,
+              0,
+              -8.5
+            ],
+            "lengthFeet": 10.017984,
+            "role": "Straight open D-ring-to-patch-entry leader."
+          },
+          {
+            "fromFeet": [
+              0.6,
+              0,
+              -8.5
+            ],
+            "toFeet": [
+              0.6,
+              0,
+              -8.5
+            ],
+            "lengthFeet": 39.260906,
+            "role": "Continuous loose-bight path confined to the open slack patch; begins and ends at patch entry."
+          },
+          {
+            "fromFeet": [
+              0.6,
+              0,
+              -8.5
+            ],
+            "toFeet": [
+              0,
+              0,
+              -8.1
+            ],
+            "lengthFeet": 0.72111,
+            "role": "Straight open return lead from patch entry to fixed bracket."
+          }
+        ],
+        "suiteRoute": {
+          "dRingToPatchEntry": 10.017984,
+          "looseBightsReturningToEntry": 39.260906,
+          "patchEntryToBracket": 0.72111,
+          "total": 50.0
+        }
+      }
+    },
+    {
+      "check": "Movement schedule and first-taut time match adopted expected settlement",
+      "passed": true,
+      "detail": {
+        "requestedFeet": 60,
+        "rateFeetPerSecond": 10,
+        "startsAtSeconds": 18,
+        "firstTautAtSeconds": 22.04,
+        "eventEndsAtSeconds": 24
+      }
+    },
+    {
+      "check": "Base first-taut output matches adopted expected settlement",
+      "passed": true,
+      "detail": {
+        "firstTaut": {
+          "loadLb": 210,
+          "verticalVelocityAfterSampleFeetPerSecond": 0,
+          "bodyFeetPositionFeet": [
+            1,
+            0,
+            40.4
+          ],
+          "harnessPositionFeet": [
+            0,
+            0,
+            41.9
+          ],
+          "supportAssembly": "Holds at 210 lb",
+          "rope": "Intact; exactly 40.4 ft of slack is consumed at t=22.04; the 10-ft/s scheduled displacement is blocked through t=24."
+        }
+      }
+    },
+    {
+      "check": "Fall order and procedure match adopted expected settlement",
+      "passed": true,
+      "detail": {
+        "fall": {
+          "bodyFeetStartZ": 40.4,
+          "landingPlatformTopZ": 0,
+          "distanceFeet": 40.4,
+          "procedureSource": "Provisional_Falling_playtest_procedure",
+          "timing": "Outside initiative, establish fixed order TEST_TARGET_01, TEST_HANDLER_A, TEST_HANDLER_B, TEST_CASTER_01 before descent. At t=24 virtual initiating slot V0 occurs immediately before the target’s first normal slot; V0 sets the Fall Marker and resolves no step. Each actor receives exactly one normal turn. First Fall Marker is V1, the recurrence of V0 after the full roster has acted; resolve the first ordinary Falling Step there. No bonus, extra or free rescue Action.",
+          "impact": "min(10, floor(40.4/20))d6 = 2d6 bludgeoning under the provisional test procedure; then Falling ends and the target is Prone if positive damage is suffered.",
+          "landing": "Target lands on TEST_PLATFORM_01 at z=0; no other landing surface or rescue effect is stipulated in this branch.",
+          "outsideInitiativeSchedule": {
+            "stableOrder": [
+              "TEST_TARGET_01",
+              "TEST_HANDLER_A",
+              "TEST_HANDLER_B",
+              "TEST_CASTER_01"
+            ],
+            "virtualInitiatingSlot": "V0 immediately before target’s first normal slot at t=24; no descent at V0.",
+            "firstFallMarker": "V1, next V0 recurrence after every listed actor has had one normal turn opportunity.",
+            "firstStep": "At V1 descend up to 300 ft or until support; target lands after 40.4 ft in this first step."
+          }
+        }
+      }
+    },
+    {
+      "check": "Synthetic body, gear inventory, rope, and support ratings match R7",
+      "passed": true,
+      "detail": {
+        "bodyLb": 180,
+        "gearInventory": {
+          "harness": 5,
+          "targetConnector": 1,
+          "satchel": 5,
+          "otherGear": 9
+        },
+        "rope": {
+          "lengthFeet": 50,
+          "massLb": 10,
+          "ac": 11,
+          "hp": 5,
+          "maxStaticLoadLb": 300,
+          "concentration": false,
+          "deadlineSeconds": 600
+        },
+        "assemblyRatingLb": 250
+      }
+    },
+    {
+      "check": "Base gear inventory sums to 20 lb and base load to 210 lb",
+      "passed": true,
+      "detail": {
+        "gearInventoryLb": "20",
+        "baseLoadLb": 210
+      }
+    },
+    {
+      "check": "Base load holds both adopted limits",
+      "passed": true,
+      "detail": {
+        "loadLb": 210,
+        "assemblyRatingLb": 250,
+        "ropeRatingLb": 300
+      }
+    },
+    {
+      "check": "Base target/harness geometry and fall result match contract",
+      "passed": true,
+      "detail": {
+        "bodyZ": 40.4,
+        "harnessZ": 41.9,
+        "fallFeet": 40.4
+      }
+    },
+    {
+      "check": "Provisional impact formula yields 2d6 for both fall distances",
+      "passed": true,
+      "detail": {
+        "formula": "min(10, floor(distanceFeet / 20))d6",
+        "baseDice": 2,
+        "activeReleaseDice": 2
+      }
+    },
+    {
+      "check": "Active-event release spends one Action and applies only remaining 10 ft",
+      "passed": true,
+      "detail": {
+        "remainingSeconds": "1",
+        "remainingDisplacementFt": "10",
+        "eventEndZFt": 50.4
+      }
+    },
+    {
+      "check": "Active-release branch binds exact t=23 one-Action source branch",
+      "passed": true,
+      "detail": {
+        "actor": "TEST_TARGET_01",
+        "timeSeconds": 23,
+        "action": "This branch explicitly schedules the target’s ordinary Action at t=23. Spend that one Action to open the target snap link manually; not a Rope command or free rescue Action.",
+        "immediatePropertyState": {
+          "rope": "Intact and attached to TEST_FIXED_SUPPORT_01 only; free upper end at D-ring release coordinate [0,0,41.9]. Rope mass 10 lb remains fixture property/custody.",
+          "targetConnector": "TEST_HARNESS_CONNECTOR_01 remains on the target harness and counted once in gear.",
+          "supportConnector": "Remains fixed with support assembly and fixture custodian.",
+          "scope": "Location/custody snapshot at t=23; later loose-rope motion is not simulated."
+        },
+        "result": "Tether stops restraining immediately. From t=23 to t=24 the remaining 10-ft scheduled displacement applies; the event ends at body-feet z=50.4, followed by a distinct 50.4-ft ordinary fall (2d6 under the bound provisional formula)."
+      }
+    },
+    {
+      "check": "After-event release cannot reset the separate 40.4 ft fall",
+      "passed": true,
+      "detail": {
+        "fallAlreadyStarted": true,
+        "releaseResetsFall": false,
+        "fallDistanceFt": 40.4,
+        "impactDice": "2d6",
+        "firstFallStepAt": "V1 after the full listed roster has one normal turn opportunity",
+        "postReleaseRopeMotion": "not simulated"
+      }
+    },
+    {
+      "check": "After-event release branch binds to target's Action before V1",
+      "passed": true,
+      "detail": {
+        "actor": "TEST_TARGET_01",
+        "action": "After t=24 use the target’s actual normal Action on its first regular slot, before first Fall Marker V1, to open the target snap link manually. Target is first in the fixed order. One ordinary Action only; no free rescue Action.",
+        "immediatePropertyState": {
+          "rope": "Intact, attached to TEST_FIXED_SUPPORT_01 only; free upper end recorded at [0,0,41.9] at release. Rope mass/custody stays with fixture inventory/custodian.",
+          "targetConnector": "1-lb harness connector remains on the target and in gear mass.",
+          "scope": "Release-time snapshot; no subsequent loose-rope motion is simulated."
+        },
+        "result": "Falling began when upward support ended at t=24. Release cannot undo/reset it; at V1 the target lands after the separate 40.4-ft fall with the same provisional 2d6 resolution."
+      }
+    },
+    {
+      "check": "260-lb probe releases only support weak link",
+      "passed": true,
+      "detail": {
+        "loadLb": "260",
+        "supportRatingLb": 250,
+        "ropeRatingLb": 300
+      }
+    },
+    {
+      "check": "260-lb probe matches adopted isolated support-release case",
+      "passed": true,
+      "detail": {
+        "id": "IE286-W2-PROBE-SUPPORT-RELEASE-260",
+        "classification": "TEST_ONLY isolated threshold decision; no post-decision aftermath claimed.",
+        "decisionSnapshot": {
+          "timeSeconds": 22.04,
+          "targetBodyFeet": [
+            1,
+            0,
+            40.4
+          ],
+          "eventActive": true,
+          "unitHarness": "Pause at first-taut decision; do not simulate later movement, fall, landing or damage."
+        },
+        "loadLb": {
+          "body": 180,
+          "gearCargo": 70,
+          "rope": 10,
+          "total": 260
+        },
+        "decision": "260 exceeds 250 but not 300; support weak link releases and rope remains intact.",
+        "immediatePropertyState": {
+          "support": "Bracket fixed; weak link released; support connector remains fixture property.",
+          "rope": "10-lb rope intact, attached to target-side harness connector only; free lower end at [0,0,-8.1], custody TEST_TARGET_01 for this snapshot.",
+          "target": "Attached moving mass remains 260 lb; harness, connector and satchel stay with target.",
+          "scope": "Snapshot ends at decision; no post-failure movement or landing claim."
+        }
+      }
+    },
+    {
+      "check": "301-lb probe independently releases support and rope",
+      "passed": true,
+      "detail": {
+        "preFailureLoadLb": "301",
+        "survivingTargetMassLb": "291"
+      }
+    },
+    {
+      "check": "301-lb probe matches adopted simultaneous-failure case",
+      "passed": true,
+      "detail": {
+        "id": "IE286-W2-PROBE-ROPE-OVERLOAD-301",
+        "classification": "TEST_ONLY isolated threshold decision; no post-decision aftermath claimed.",
+        "decisionSnapshot": {
+          "timeSeconds": 22.04,
+          "targetBodyFeet": [
+            1,
+            0,
+            40.4
+          ],
+          "eventActive": true,
+          "unitHarness": "Pause at first-taut decision; do not simulate later movement, fall, landing or damage."
+        },
+        "loadLb": {
+          "body": 180,
+          "gearCargo": 111,
+          "rope": 10,
+          "total": 301
+        },
+        "decision": "301 exceeds both limits; support weak link releases and rope immediately vanishes.",
+        "immediatePropertyState": {
+          "support": "Bracket fixed; weak link released; support connector remains fixture property.",
+          "rope": "Vanished, including rope body and rope-side connectors; no rope remains attached to either endpoint.",
+          "target": "Surviving body plus gear/cargo is 291 lb (180+111); target harness and 1-lb harness connector remain. Satchel stays with target.",
+          "scope": "Snapshot ends at decision; no post-failure movement or landing claim."
+        }
+      }
+    },
+    {
+      "check": "310-lb post-taut recheck triggers both limits at t=23",
+      "passed": true,
+      "detail": {
+        "postChangeGearLb": "120",
+        "preFailureLoadLb": "310",
+        "survivingTargetMassLb": "300"
+      }
+    },
+    {
+      "check": "310-lb probe matches adopted immediate-recheck case",
+      "passed": true,
+      "detail": {
+        "id": "IE286-W2-PROBE-POST-TAUT-MASS-CHANGE-310",
+        "classification": "TEST_ONLY isolated recheck decision; no post-decision aftermath claimed.",
+        "decisionSnapshot": {
+          "firstTautAtSeconds": 22.04,
+          "massChangeAtSeconds": 23,
+          "targetBodyFeetAtChange": [
+            1,
+            0,
+            40.4
+          ],
+          "eventActive": true,
+          "unitHarness": "After 100-lb cargo input, pause at immediate recheck; no later movement, fall, landing or damage."
+        },
+        "loadLb": {
+          "firstTaut": {
+            "body": 180,
+            "gearCargo": 20,
+            "rope": 10,
+            "total": 210
+          },
+          "afterChange": {
+            "body": 180,
+            "gearCargo": 120,
+            "rope": 10,
+            "total": 310
+          }
+        },
+        "decision": "At t=23, 310 exceeds both limits; support weak link releases and rope immediately vanishes.",
+        "immediatePropertyState": {
+          "support": "Bracket fixed; weak link released; support connector remains fixture property.",
+          "rope": "Vanished, including rope body and rope-side connectors; rope mass removed.",
+          "target": "Surviving body plus gear/cargo is 300 lb (180+120); 100-lb cargo and 1-lb harness connector remain with target. Satchel stays with target.",
+          "scope": "Snapshot ends at decision; no post-failure movement or landing claim."
+        }
+      }
+    },
+    {
+      "check": "R7 contract and case IDs are exact and non-duplicated",
+      "passed": true,
+      "detail": {
+        "proposalId": "OWNER-REVERSE-GRAVITY-IE286-W2-UPWARD-LOAD-RULE-PROPOSAL-01",
+        "sourceBindings": 13,
+        "contractId": "IE286-W2-TESTONLY-UPWARD-RESTRAINT-01",
+        "cases": 6
+      }
+    }
+  ],
+  "nonEffects": {
+    "gameRuntimeExecuted": false,
+    "campaignEventAsserted": false,
+    "legalPaidCastEstablished": false,
+    "sealIssued": false,
+    "blockerClosed": false,
+    "identityAccepted": false,
+    "identityApplied": false,
+    "canonChanged": false,
+    "runtimeChanged": false,
+    "queueChanged": false
+  }
+}
