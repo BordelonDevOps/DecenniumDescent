@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "id": "CURRENT-HANDOFF-468-REPACK01",
+  "supersedes": "CURRENT_HANDOFF_467_REPACK11.json",
+  "queue": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_SPELL_QUEUE_465_REPACK01.json",
+    "sha256": "b6ef81469804a4e196bdbc61a927cb5b53c51c738005082ba41293a6e54f9133"
+  },
+  "authority": {
+    "reviewedApplied": 830,
+    "pending": 18,
+    "acceptedUnapplied": 0,
+    "completeStandaloneProcedures": 554,
+    "scopedInterfaces": 173
+  },
+  "directorComponentStatus": {
+    "W05W10_453": "PASS_TEST_ONLY_UNSEALED_COMPONENT_SUFFICIENCY",
+    "W11_456": "PASS_TEST_ONLY_UNSEALED_COMPONENT_SUFFICIENCY",
+    "W12_451": "PASS_TEST_ONLY_UNSEALED_COMPONENT_SUFFICIENCY",
+    "W13_448": "READY_FOR_OWNER_ADOPTION; adoption pending; no witness",
+    "wholeFortress": "HELD_UNDER_PG200-B06"
+  },
+  "elementalShell": {
+    "status": "HELD_DF218-B01_B02",
+    "crossbind466": "PASS_SOURCE_QUALIFICATION_ONLY; Fire Pet Fire Strike source candidate established; attack/witness not constructed",
+    "casterQualification467": {
+      "directorStatus": "PASS_PACKET_INTEGRITY_CANDIDATE_FOUND_PREPARATION_GAP_REMAINS",
+      "correctedRecord": "elemental_shell_caster_preflight_467/SHELL_CASTER_SOURCE_QUALIFICATION_467_REPACK01.json",
+      "correctedRecordSha256": "9ef4a6e053343838f703cd9774e9b7beb4463ff43b10a114e728dbb305185f8c",
+      "interpretation": "Existing level-17 Shell spellbook selection is source-supported as an authored level-up route; campaign history is not claimed."
+    },
+    "proposal468": {
+      "path": "elemental_shell_caster_premise_proposal_468/OWNER_DF218_SHELL_CASTER_PREMISE_PROPOSAL_468_TESTONLY.json",
+      "sha256": "de4bd28b11d33be17a9185f925fae4c740956a10f7aaf5d89bcddc16a7bb8169",
+      "directorReadback": "elemental_shell_caster_premise_proposal_468/DIRECTOR_READBACK_468.json",
+      "status": "PASS_READY_FOR_OWNER_ADOPTION; NOT_ADOPTED",
+      "effectIfAdopted": "Hypothetical branch-local caster preparation premise only; no cast, encounter, witness, blocker closure, or queue/canon change."
+    },
+    "openBlockers": ["DF218-B01", "DF218-B02"]
+  },
+  "ownerAdoptionsPending": [
+    {
+      "proposal": "Elemental Shell caster preparation 468",
+      "sha256": "de4bd28b11d33be17a9185f925fae4c740956a10f7aaf5d89bcddc16a7bb8169",
+      "scope": "Caster qualification premise only"
+    },
+    {
+      "proposal": "Fortress W13 448",
+      "sha256": "9254bee8a314de50cbe0c6aa71bef45e22fbea988d8668c089151b8e7f80051a",
+      "scope": "Exact branch-only TEST_ONLY W13 witness construction"
+    }
+  ],
+  "nextStep": "Record exact owner decisions for proposals 468 and W13-448. Upon adoption of 468, construct only the scoped caster qualification premise; do not cast or construct an Elemental Shell encounter without separate Director/owner authority. Upon adoption of W13-448, construct only the scoped W13 hypothetical witness. Preserve queue 830/18/0 and Fortress HELD under PG200-B06.",
+  "noStateChanges": {
+    "queueChanged": false,
+    "canonChanged": false,
+    "spellCast": false,
+    "witnessConstructedBy468": false,
+    "fortressAcceptedOrApplied": false
+  }
+}
