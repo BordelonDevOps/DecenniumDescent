@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "id": "NO-QUALIFYING-CHANGED-SOURCE-IE286-W2-2026-11-02",
+  "recordedAtUtc": "2026-11-02T16:45:25Z",
+  "classification": "BOUNDED_SOURCE_SEARCH_RESULT_ONLY",
+  "outcome": "NO_QUALIFYING_CHANGED_SOURCE",
+  "scope": {
+    "repository": "BordelonDevOps/DecenniumDescent",
+    "branch": "main",
+    "baseCommit": "bc8300eea55dd710419a8a9dbd26f663f64ff9f0",
+    "queueId": "CURRENT-SPELL-QUEUE-479",
+    "authority": {
+      "reviewedApplied": 834,
+      "pending": 14,
+      "acceptedUnapplied": 0
+    },
+    "spellId": "reverse-gravity-field",
+    "blockerId": "IE204-B02",
+    "witnessId": "IE286-W2"
+  },
+  "searchBasis": {
+    "directorInstruction": "Search the current catalog, combat action rules, equipment item procedures and accepted Conjure Rope review for an authorized upward-restraint rule. Identify exact source path, hash, pointer and acceptance authority if one qualifies; otherwise record NO_QUALIFYING_CHANGED_SOURCE.",
+    "conversationUrl": "https://chatgpt.com/g/g-p-67f17555a8dc8191a2b5b81e6d8adc12-dungeon-crawler/c/6adc506d-8770-83ea-b64c-0345d9b9b682",
+    "searchTerms": [
+      "upward restraint",
+      "upward load",
+      "restraint test",
+      "slack take-up",
+      "stop",
+      "stretch",
+      "failure",
+      "release",
+      "dynamic load",
+      "anchor rating",
+      "attachment rating",
+      "tether"
+    ]
+  },
+  "sources": [
+    {
+      "id": "current-spell-catalog",
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+      "bytes": 4945319,
+      "sha256": "f52cf6a4a4673897615a74c7c67dcba798c431362d4357e71ee552cc7c5d31f8",
+      "selector": "/spells entries where id is reverse-gravity-field and conjure-rope",
+      "findings": [
+        "Reverse Gravity Field has status blocked-pending-operational-review and no operational rule.",
+        "Conjure Rope defines a 300 lb total static-load ceiling only when secured to real support; rope commands cannot haul/forcibly move a load, and drawing slack cannot lift or drag for free.",
+        "No upward-load/restraint test or stop/stretch/failure/release rule; no rated anchor or attachment assembly."
+      ]
+    },
+    {
+      "id": "combat-action-playtest",
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+      "bytes": 30409,
+      "sha256": "f90d039142145fbd31c37992ebece70d7926dc4b6081e340f9a2fd9dc7237bc6",
+      "locations": [
+        "lines 20-25",
+        "line 95",
+        "lines 99-111"
+      ],
+      "findings": [
+        "The combat/action document keeps equipment, cargo and object durability dependencies open and supplies no upward-restraint or dynamic tether rule."
+      ]
+    },
+    {
+      "id": "equipment-item-procedures",
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/EQUIPMENT_ITEM_PROCEDURES.md",
+      "bytes": 15196,
+      "sha256": "ea0b6c89191160c9e56a97563d55e9f1022bd1b7b732c648fd0c3882aab2a050",
+      "locations": [
+        "lines 45-55",
+        "lines 59-62"
+      ],
+      "findings": [
+        "Printed traps/restraints and ordinary climbing/tool procedures do not supply a rated upward-restraint rule, dynamic-load test, or attachment/anchor rating and permission."
+      ]
+    },
+    {
+      "id": "accepted-conjure-rope-review",
+      "path": "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_EXACT_REVIEW.md",
+      "bytes": 12730,
+      "sha256": "988dff1fd6d200c7da8e75b206693ff3e833089f689879aad3f20b9d3205786f",
+      "location": "Section 7: Conjure Rope",
+      "acceptanceAuthority": "The review marks Conjure Rope approved and states its 300 lb static support ceiling, actual external anchor/support requirement, and that slack-taking cannot lift or drag loads for free.",
+      "findings": [
+        "Accepted rope review does not define an upward force/restraint test or stop/stretch/failure/release behavior, and does not assign an anchor rating."
+      ]
+    }
+  ],
+  "priorDirectorRuling": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/reverse_gravity_ie286_w2_attachment_preflight_2026-11-02/DIRECTOR_READBACK_IE286_W2_RULING_01.json",
+    "sha256": "cbe8f7c5ea2dc109951315ec2fcf4047f31d44fbc1d8c70ad433aa0aa0ae5e58",
+    "decisionId": "IE286-W2-SOURCE-REQUIREMENT-01",
+    "decision": "NO",
+    "relevantFinding": "The bound sources do not determine how Reverse Gravity loads a secured tether; selecting new upward strength or automatic stop/break behavior would supply the interaction rather than demonstrate an existing rope rule."
+  },
+  "requiredActualEvidence": [
+    "An authorized upward-restraint rule specifying applicable load/test, slack take-up, and when the rope/attachment/anchor stops, stretches, fails or releases.",
+    "An identified lawful anchor/support and attachment assembly with ratings, custody/permission, method, tether path/length/slack, and recipient/gear/applicable-rope mass.",
+    "Qualified caster acquisition/preparation, components, Action, actual RP/class bookkeeping, interruption result, rope creation and exact 600-second deadline.",
+    "One-time integrated settlement preserving cargo/custody and resolving movement, support and any fall without refunds or duplicated events."
+  ],
+  "disposition": {
+    "blockerRemainsOpen": "IE204-B02",
+    "status": "HOLD",
+    "w1": "Component PASS retained, unsealed; unchanged.",
+    "w2": "Open; no qualifying changed source found in the bounded source set.",
+    "acceptedIds": [],
+    "appliedIds": [],
+    "heldIds": [
+      "reverse-gravity-field"
+    ],
+    "queueChanged": false,
+    "canonChanged": false,
+    "runtimeChanged": false,
+    "witnessConstructed": false,
+    "historicalCaseReplayed": false,
+    "syntheticReplacementRuleAuthored": false
+  }
+}
