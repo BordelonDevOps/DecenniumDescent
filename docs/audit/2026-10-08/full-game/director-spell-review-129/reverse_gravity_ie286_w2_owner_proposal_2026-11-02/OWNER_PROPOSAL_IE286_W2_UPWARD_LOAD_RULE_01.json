@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "OWNER-REVERSE-GRAVITY-IE286-W2-UPWARD-LOAD-RULE-PROPOSAL-01",
   "createdAtUtc": "2026-11-02",
-  "classification": "OWNER_AUTHORIZED_TEST_ONLY_MECHANIC_DESIGN_PROPOSAL_REVISION_3_NOT_ACCEPTED_NOT_WITNESS",
+  "classification": "OWNER_AUTHORIZED_TEST_ONLY_MECHANIC_DESIGN_PROPOSAL_REVISION_4_NOT_ACCEPTED_NOT_WITNESS",
   "status": "AWAITING_GPT_DIRECTOR_REVIEW",
   "authorization": {
     "userInstruction": "Create a rule that fits",
@@ -161,6 +161,14 @@
         "The canonical identity row does not include the branch-bound AC/HP/load/command/600-second operational playtest details.",
         "Those operational values remain in the separately bound draft source and are not promoted by this proposal."
       ]
+    },
+    {
+      "id": "Director_W2_proposal_revision_3_REVISE",
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/reverse_gravity_ie286_w2_owner_proposal_2026-11-02/CODEX_TRANSCRIBED_DIRECTOR_REVIEW_REVISE_02.json",
+      "bytes": 5743,
+      "sha256": "64058fcaf63b0baedc3314300cd2ef811e8a353283d64c330908702c45df6b39",
+      "decisionId": "CODEX-TRANSCRIBED-IE286-W2-GPT-REVIEW-02",
+      "classification": "CODEX_TRANSCRIBED_GPT_UI_READBACK_NOT_GPT_AUTHORED_FILE"
     }
   ],
   "proposedTestOnlyRule": {
@@ -191,9 +199,9 @@
       "caster": {
         "id": "TEST_CASTER_01",
         "positionFeet": [
-          1.5,
-          0,
-          -8.5
+          3,
+          -2,
+          0
         ],
         "profileStatus": "Synthetic position only. Source-backed access, preparation, current RP, class bookkeeping, and interruption record remain required before full W2 integration.",
         "canPerceiveCreationPoint": true,
@@ -209,9 +217,9 @@
           "rpPaid": 2,
           "qualificationStatus": "No actual-caster qualification is asserted; the 2-RP value is a synthetic mechanical input, not paid-application evidence.",
           "creationPointFeet": [
-            0.5,
+            0.4,
             0,
-            -8.5
+            1.5
           ],
           "creationPointUnoccupied": true,
           "rangeFeet": 50,
@@ -225,7 +233,8 @@
             "concentration": false,
             "deadlineSeconds": 600
           },
-          "operationalProfileStatus": "Bound operational-playtest draft, not canonical promotion; the t=600-second expiry is preserved from that profile."
+          "operationalProfileStatus": "Bound operational-playtest draft, not canonical promotion; the t=600-second expiry is preserved from that profile.",
+          "creationPointPremise": "Before casting, a 0.3-by-0.5-ft cell at [0.4,0,1.5] is clear of creatures, gear and objects. It lies above the fixed upper coil shelf; the shelf supports the coil after creation but does not occupy the creation cell."
         }
       },
       "attachmentSetup": [
@@ -234,37 +243,39 @@
             0,
             6
           ],
-          "operation": "After the coil appears, TEST_HANDLER_A manually secures one end to the support assembly. This is a synthetic manual operation, not a Rope command."
+          "operation": "After the coil appears on TEST_UPPER_COIL_SHELF_01, TEST_HANDLER_B stands on the upper platform and manually clips one end to the consenting target’s side D-ring. The D-ring is 1.80 ft from B’s stance, within the synthetic 2.25-ft reach. Manual operation; no Rope command."
         },
         {
           "seconds": [
             6,
             12
           ],
-          "operation": "TEST_HANDLER_B manually routes and secures the other end to the consenting target's side D-ring. The 40-ft slack bight is staged in the supported, unobstructed tray beside the channel. This is a synthetic manual operation, not a Rope command."
+          "operation": "TEST_HANDLER_A walks on the upper platform to handoff point [0,1.5,0]; B passes the remaining coil from the shelf at [0.4,0,1.5] within 2.16 ft of A. A carries it along the supported platform edge to the stair, descends TEST_SERVICE_STAIR_01, routes the free end by hand through TEST_ROPE_CHANNEL_01, secures it at [0.4,0,-8.1], and places exactly 40 ft of bight in TEST_SLACK_TRAY_01. The handoff/stair path stays at y>=0.75, outside target/cargo y<=0.5. No Rope command, powered haul, flight or levitation; slack is not a lift."
         },
         {
           "seconds": [
             12,
             18
           ],
-          "operation": "Both handlers clear the ascent/fall corridor; no Rope commands are used. The creation point, support surface, platform, target access, route, end connections, permissions, and slack are fixed and inspected before the movement event."
+          "operation": "Handler A exits to the lower supported bay [-1.5,2,-8.5], Handler B exits to the upper bay [-2,2,0], and the caster stays at [3,-2,0]. They are clear of the target ascent/fall and rope channels. Surfaces, route, endpoints, permissions and clearances are inspected before t=18."
         }
       ],
       "support": {
         "id": "TEST_FIXED_SUPPORT_01",
         "positionFeet": [
+          0.4,
           0,
-          0,
-          -8.5
+          -8.1
         ],
-        "kind": "Synthetic fixed structural support at the lower service-channel wall",
+        "kind": "Synthetic fixed wall bracket on the lower service-channel wall, 0.4 ft above the supported lower ledge.",
         "ratingLb": 250,
-        "ratingScope": "TEST_ONLY complete load-bearing assembly rating, including the anchor/support, both end connections, terminal connectors, waist harness, and harness D-ring; no individual included element may be below this 250-lb assembly limit.",
+        "ratingScope": "TEST_ONLY complete load-bearing assembly rating. Bracket, support-side weak link, both terminal connections, both connectors, waist harness and D-ring are included within the same 250-lb rating; no included element receives a higher independent capacity.",
         "custodian": "TEST_FIXTURE_CUSTODIAN_01",
         "permission": "TEST_ONLY granted",
         "assemblyId": "TEST_COMPLETE_LOAD_BEARING_ASSEMBLY_01",
-        "overrating": "Above 250 lb, the synthetic support-side weak link releases; the fixed support is not damaged or moved."
+        "overrating": "Above 250 lb, the support-side weak link releases immediately; the fixed bracket and support-side connector remain with the fixture. The intact rope stays attached to the target-side harness connector unless its separate 300-lb overload condition is also met.",
+        "supportConnectorId": "TEST_SUPPORT_CONNECTOR_01",
+        "supportWeakLinkId": "TEST_SUPPORT_SIDE_WEAK_LINK_01"
       },
       "target": {
         "id": "TEST_TARGET_01",
@@ -344,15 +355,15 @@
       "tether": {
         "id": "TEST_TETHER_01",
         "loadBearingAssemblyId": "TEST_COMPLETE_LOAD_BEARING_ASSEMBLY_01",
-        "path": "Vertical from support end at [0,0,-8.5] to the target's side D-ring at [0,0,1.5], alongside (not through) the target's body envelope.",
+        "path": "From D-ring [0,0,1.5], a 0.4-ft horizontal upper lead reaches channel [0.4,0,1.5], then a 9.6-ft vertical run reaches the support connector [0.4,0,-8.1]; deployed endpoint path exactly 10 ft.",
         "currentPathFeet": 10,
         "ropeLengthFeet": 50,
         "initialSlackFeet": 40,
         "effectiveWorkingLengthFeet": 50,
-        "slackStorage": "One measured 40-ft bight in the supported tray beside the channel; it is part of the 50-ft rope and is manually staged before movement.",
-        "slackTakeup": "1 ft of vertical target travel consumes 1 ft of this slack; no commanded lifting, hauling, or slack-drawing occurs.",
-        "endpointAccess": "Both endpoints are within the named handlers' reach and the support/platform surfaces; both manual connections are made before movement.",
-        "endpointCapacities": "Both rope-end connections and the waist harness/D-ring are included in the same 250-lb TEST_ONLY complete assembly rating."
+        "slackStorage": "Exactly 40 ft is a measured bight in TEST_SLACK_TRAY_01 beside the lower channel exit. Its tray throat/feed is included in those 40 ft; it adds no length to the 10-ft endpoint path.",
+        "slackTakeup": "1 ft upward target travel consumes 1 ft of the measured slack; no commanded hauling or free slack-drawing.",
+        "endpointAccess": "B reaches the target D-ring from the upper platform within 2.25 ft. A reaches the lower bracket from the lower ledge within 0.4 ft vertically. A carries the free end down the stair and through the open channel before securing it.",
+        "endpointCapacities": "Both end connections, connectors, harness and D-ring are inside the complete 250-lb TEST_ONLY assembly rating. The 1-lb target harness connector is counted once in gear; fixed support hardware is excluded from moving target mass; rope-side connector mass is included in the 10-lb rope mass."
       },
       "movement": {
         "id": "TEST_UPWARD_EVENT_01",
@@ -386,49 +397,237 @@
         {
           "id": "TEST_HANDLER_A",
           "positionFeet": [
+            -1.5,
+            2,
+            0
+          ],
+          "startPositionFeet": [
+            -1.5,
+            2,
+            0
+          ],
+          "handoffPositionFeet": [
             0,
+            1.5,
+            0
+          ],
+          "supportApproachFeet": [
+            0.4,
             1,
             -8.5
           ],
+          "supportReachFeet": 2.25,
+          "exitPositionFeet": [
+            -1.5,
+            2,
+            -8.5
+          ],
+          "upperPlatformRoute": "From start, walks on the supported upper platform to [0,1.5,0] (2.16 ft from coil center), receives the coil from B, then returns along the platform outer edge to the stair entrance; route keeps y>=0.75 clear of target/cargo.",
+          "supportRoute": "Descends supported stair to the lower ledge, approaches the bracket at [0.4,1,-8.5] (1.08 ft from its connection at [0.4,0,-8.1], within 2.25-ft reach), attaches the lower end, then exits to the lower bay.",
+          "bodyEnvelopeFeet": {
+            "x": [
+              -1.9,
+              0.4
+            ],
+            "y": [
+              0.75,
+              2.4
+            ],
+            "z": [
+              -8.5,
+              6
+            ]
+          },
+          "carriedCoilEnvelopeDuringTransferFeet": {
+            "x": [
+              -2.5,
+              0.55
+            ],
+            "y": [
+              0.75,
+              3
+            ],
+            "z": [
+              -8.5,
+              3
+            ]
+          },
           "custody": "TEST_FIXTURE_CUSTODIAN_01",
           "permission": "TEST_ONLY granted",
-          "role": "Manually secures the lower rope end to the support assembly during the first setup interval."
+          "role": "Receives the coil by a supported upper-platform handoff, manually routes the free lower end down the stair, secures the bracket end and clears the corridor."
         },
         {
           "id": "TEST_HANDLER_B",
           "positionFeet": [
             0,
-            0.5,
+            1,
             0
           ],
-          "custody": "TEST_FIXTURE_CUSTODIAN_01",
-          "permission": "TEST_ONLY granted",
-          "role": "With target consent, manually routes the upper end and secures it to the target harness during the second setup interval."
-        }
-      ],
-      "spatialLayout": {
-        "coordinateSystem": "Feet; z increases upward.",
-        "platform": {
-          "id": "TEST_PLATFORM_01",
-          "topZ": 0,
-          "position": "Fixed small landing pad under the target's initial footprint; it supports the target at t=0 and is the only landing surface in the fall corridor."
-        },
-        "ascentShaft": {
-          "boundsFeet": {
+          "startPositionFeet": [
+            0,
+            1,
+            0
+          ],
+          "exitPositionFeet": [
+            -2,
+            2,
+            0
+          ],
+          "bodyEnvelopeFeet": {
             "x": [
-              -0.5,
-              2.5
+              -0.35,
+              0.35
             ],
             "y": [
-              -1.5,
+              0.65,
+              1.35
+            ],
+            "z": [
+              0,
+              6
+            ]
+          },
+          "carriedGearEnvelopeFeet": {
+            "x": [
+              -0.5,
+              0.5
+            ],
+            "y": [
+              0.5,
               1.5
             ],
             "z": [
               0,
-              70
+              6
             ]
           },
-          "clear": "Open vertical path; no obstruction intersects the target body envelope through the full 60-ft unrestrained movement. The top clearance remains at least 4 ft."
+          "armReachFeet": 2.25,
+          "custody": "TEST_FIXTURE_CUSTODIAN_01",
+          "permission": "TEST_ONLY granted",
+          "role": "Manually secures the upper rope end to the consenting target’s side D-ring, then exits to the upper bay."
+        }
+      ],
+      "spatialLayout": {
+        "coordinateSystem": "Feet; z increases upward.",
+        "supportedSurfaces": [
+          {
+            "id": "TEST_PLATFORM_01",
+            "topZ": 0,
+            "boundsFeet": {
+              "x": [
+                -3.5,
+                4
+              ],
+              "y": [
+                -3,
+                3
+              ]
+            },
+            "supports": "Target initially, upper handler/caster bays, and upper stair landing."
+          },
+          {
+            "id": "TEST_UPPER_COIL_SHELF_01",
+            "centerFeet": [
+              0.4,
+              0,
+              1.5
+            ],
+            "topZ": 1.5,
+            "dimensionsFeet": [
+              0.3,
+              0.5,
+              0.1
+            ],
+            "supports": "Coil after creation only; shelf applies no tether load."
+          },
+          {
+            "id": "TEST_SERVICE_STAIR_01",
+            "boundsFeet": {
+              "x": [
+                -2.75,
+                -0.75
+              ],
+              "y": [
+                0.75,
+                3
+              ],
+              "z": [
+                -8.5,
+                0
+              ]
+            },
+            "route": "Continuous supported treads/handrails between [-1.5,2,0] and [-1.5,2,-8.5], with a supported landing at z=-4.25."
+          },
+          {
+            "id": "TEST_LOWER_SERVICE_LEDGE_01",
+            "topZ": -8.5,
+            "boundsFeet": {
+              "x": [
+                -3,
+                3
+              ],
+              "y": [
+                -1,
+                3
+              ]
+            },
+            "supports": "Lower bracket access and handler exit; bracket is fixed 0.4 ft above ledge."
+          },
+          {
+            "id": "TEST_SLACK_TRAY_01",
+            "boundsFeet": {
+              "x": [
+                1,
+                2.5
+              ],
+              "y": [
+                0.5,
+                2.5
+              ],
+              "z": [
+                -8.5,
+                -7.5
+              ]
+            },
+            "supports": "All 40 ft of slack bight; outside body, rope-channel and fall corridors."
+          }
+        ],
+        "creationSpace": {
+          "centerFeet": [
+            0.4,
+            0,
+            1.5
+          ],
+          "dimensionsFeet": [
+            0.3,
+            0.5,
+            0.1
+          ],
+          "statusBeforeCast": "Clear of creatures, gear and objects; shelf is below and does not occupy the cell.",
+          "perceptionAndLineOfEffect": "Caster at [3,-2,0] sees the cell and has line of effect; range is under 50 ft."
+        },
+        "casterBounds": {
+          "positionFeet": [
+            3,
+            -2,
+            0
+          ],
+          "bodyEnvelopeFeet": {
+            "x": [
+              2.5,
+              3.5
+            ],
+            "y": [
+              -2.5,
+              -1.5
+            ],
+            "z": [
+              0,
+              6
+            ]
+          },
+          "gearEnvelope": "Contained within body envelope.",
+          "surface": "TEST_PLATFORM_01"
         },
         "targetEnvelope": {
           "initialBodyFeet": {
@@ -459,26 +658,89 @@
               66
             ]
           },
-          "harnessDRing": "Side D-ring lies at x=0, outside the body envelope; body is 0.75 ft from the rope centerline and 0.25 ft from the channel boundary."
+          "harnessDRing": "[0,0,1.5], outside body by 0.75 ft; the 0.75-ft side link reaches channel entry without crossing torso.",
+          "satchelEnvelopeFeet": {
+            "id": "TEST_SATCHEL_01",
+            "x": [
+              1.25,
+              1.75
+            ],
+            "y": [
+              -0.45,
+              0.45
+            ],
+            "z": [
+              1.5,
+              3.5
+            ]
+          },
+          "otherGear": "Secured inside the body envelope."
         },
-        "ropeChannel": {
+        "handlerBounds": {
+          "TEST_HANDLER_A": {
+            "startFeet": [
+              -1.5,
+              2,
+              0
+            ],
+            "exitFeet": [
+              -1.5,
+              2,
+              -8.5
+            ],
+            "clearance": "Carried coil stays within stair bounds and y>=0.75, at least 0.25 ft from target body/cargo y<=0.5."
+          },
+          "TEST_HANDLER_B": {
+            "startFeet": [
+              0,
+              1,
+              0
+            ],
+            "exitFeet": [
+              -2,
+              2,
+              0
+            ],
+            "clearance": "Body/gear envelope remains outside target body/cargo and rope channel; exit before t=18."
+          }
+        },
+        "ascentShaft": {
           "boundsFeet": {
             "x": [
+              -0.5,
+              2.5
+            ],
+            "y": [
+              -1.5,
+              1.5
+            ],
+            "z": [
               0,
-              0.5
+              70
+            ]
+          },
+          "clear": "Body and every carried item clear all obstructions through the 60-ft ascent; body top stops z=66 with 4-ft overhead clearance. Caster and handler exit bays lie outside the swept body/cargo envelope."
+        },
+        "ropeChannel": {
+          "id": "TEST_ROPE_CHANNEL_01",
+          "centerlineX": 0.4,
+          "boundsFeet": {
+            "x": [
+              0.35,
+              0.45
             ],
             "y": [
               -0.25,
               0.25
             ],
             "z": [
-              -8.5,
+              -8.1,
               70
             ]
           },
-          "clear": "Clear vertical service channel beside the target, with a floor slot at x=0; rope does not cross the body envelope or landing pad."
+          "clear": "Line center is 0.35 ft from target body edge; with 0.025-ft rope radius, at least 0.325 ft remains. Upper lead and cargo remain outside body/cargo bounds."
         },
-        "fallPath": "At event end, target body descends vertically from its current feet z to the fixed pad at z=0. The rope channel remains outside the body path."
+        "fallPath": "After t=24 target descends vertically from z=40 to platform z=0. Handlers have exited and the rope channel remains at x=0.4, outside target body/cargo swept volume."
       }
     },
     "expectedSettlement": {
@@ -515,73 +777,142 @@
         "landingPlatformTopZ": 0,
         "distanceFeet": 40,
         "procedureSource": "Provisional_Falling_playtest_procedure",
-        "timing": "Use the source's outside-initiative virtual slot and rescue window; the after-effect release branch below uses the target's one Action in that window.",
+        "timing": "Outside initiative, establish fixed order TEST_TARGET_01, TEST_HANDLER_A, TEST_HANDLER_B, TEST_CASTER_01 before descent. At t=24 virtual initiating slot V0 occurs immediately before the target’s first normal slot; V0 sets the Fall Marker and resolves no step. Each actor receives exactly one normal turn. First Fall Marker is V1, the recurrence of V0 after the full roster has acted; resolve the first ordinary Falling Step there. No bonus, extra or free rescue Action.",
         "impact": "min(10, floor(40/20))d6 = 2d6 bludgeoning under the provisional test procedure; then Falling ends and the target is Prone if positive damage is suffered.",
-        "landing": "Target lands on TEST_PLATFORM_01 at z=0; no other landing surface or rescue effect is stipulated in this branch."
+        "landing": "Target lands on TEST_PLATFORM_01 at z=0; no other landing surface or rescue effect is stipulated in this branch.",
+        "outsideInitiativeSchedule": {
+          "stableOrder": [
+            "TEST_TARGET_01",
+            "TEST_HANDLER_A",
+            "TEST_HANDLER_B",
+            "TEST_CASTER_01"
+          ],
+          "virtualInitiatingSlot": "V0 immediately before target’s first normal slot at t=24; no descent at V0.",
+          "firstFallMarker": "V1, next V0 recurrence after every listed actor has had one normal turn opportunity.",
+          "firstStep": "At V1 descend up to 300 ft or until support; target lands after 40 ft in this first step."
+        }
       },
-      "rope": "Intact and slack at landing; the attachment no longer restrains upward or downward movement. Its own 600-second deadline remains t=600 from cast.",
+      "rope": {
+        "status": "Intact; remains attached to fixed lower support and target harness at landing.",
+        "locationAtLanding": "Endpoint path returns to 10 ft: 0.4-ft upper lead plus 9.6-ft vertical channel. The 40-ft bight is back in TEST_SLACK_TRAY_01; no rope crosses the target path.",
+        "slackState": "Currently slack at landing with 40 ft available before a later ascent would make it taut; it is not permanently incapable of restraining another ascent.",
+        "custody": "Rope and support remain with TEST_FIXTURE_CUSTODIAN_01; target harness, target connector and satchel remain with TEST_TARGET_01.",
+        "massAccounting": "Rope mass 10 lb counted once in the 210-lb first-taut load. Target’s 1-lb harness connector counted once in 20-lb gear/cargo. Fixed support connector is not moving target mass.",
+        "deadline": "Bound TEST_ONLY Conjure Rope deadline remains t=600 seconds from its own input at t=0."
+      },
       "support": "Fixed and undamaged; assembly held at 210 lb.",
       "targetAndGear": "Target, harness, harness connector, satchel, and other gear move together; nothing is dropped.",
       "cargoCustody": "Satchel remains in TEST_TARGET_01 custody.",
       "costs": "Synthetic 2-RP Conjure Rope input remains paid; no refund or duplicate cast. This is not actual paid-cast evidence."
     },
     "releaseAndFailure": {
+      "counterfactualBoundary": "Each item below is an independent branch from the intact 210-lb base; none mutates another branch.",
       "activeEventVoluntaryRelease": {
         "actor": "TEST_TARGET_01",
-        "action": "At t=23, spend one TEST_ONLY Action to manually open the target-side snap link; this is not a Rope Bonus Action command.",
-        "result": "The tether stops restraining immediately. The remaining one-second scheduled upward movement is 10 ft; at t=24 the event ends, then the target falls 50 ft to the platform."
+        "timeSeconds": 23,
+        "action": "This branch explicitly schedules the target’s ordinary Action at t=23. Spend that one Action to open the target snap link manually; not a Rope command or free rescue Action.",
+        "immediatePropertyState": {
+          "rope": "Intact and attached to TEST_FIXED_SUPPORT_01 only; free upper end at D-ring release coordinate [0,0,41.5]. Rope mass 10 lb remains fixture property/custody.",
+          "targetConnector": "TEST_HARNESS_CONNECTOR_01 remains on the target harness and counted once in gear.",
+          "supportConnector": "Remains fixed with support assembly and fixture custodian.",
+          "scope": "Location/custody snapshot at t=23; later loose-rope motion is not simulated."
+        },
+        "result": "Tether stops restraining immediately. Remaining 10-ft scheduled displacement applies from t=23 to t=24; event ends at body-feet z=50, then a distinct 50-ft ordinary fall begins."
       },
       "afterEventVoluntaryRelease": {
         "actor": "TEST_TARGET_01",
-        "action": "After t=24, during the source-defined rescue opportunity before the first Falling Step, spend one Action to manually open the now-slack target-side snap link.",
-        "result": "The fall already began when upward support ended; releasing the slack tether does not undo, arrest, or reset the fall. Target still lands after 40 ft with the same ordinary Falling resolution."
+        "action": "After t=24 use the target’s actual normal Action on its first regular slot, before first Fall Marker V1, to open the target snap link manually. Target is first in the fixed order. One ordinary Action only; no free rescue Action.",
+        "immediatePropertyState": {
+          "rope": "Intact, attached to TEST_FIXED_SUPPORT_01 only; free upper end recorded at [0,0,41.5] at release. Rope mass/custody stays with fixture inventory/custodian.",
+          "targetConnector": "1-lb harness connector remains on the target and in gear mass.",
+          "scope": "Release-time snapshot; no subsequent loose-rope motion is simulated."
+        },
+        "result": "Falling began when upward support ended at t=24. Release cannot undo/reset it; at V1 target lands after the separate 40-ft fall with the same provisional 2d6 resolution."
       },
-      "supportOverrating": "Above 250 lb, the complete TEST_ONLY assembly releases at its support-side weak link. During the active event, remaining scheduled displacement continues; after t=24, ordinary Falling applies.",
-      "ropeOverloadZeroHpOrExpiry": "At >300 lb, 0 HP, or t=600 expiry, the whole rope vanishes under the bound Conjure Rope procedure. The 300-lb overload is immediate. If this happens during t=18..24, only remaining scheduled displacement runs until t=24; afterward ordinary Falling applies.",
-      "laterLoadChange": "Every later mass change is immediately resampled; the first-taut result grants no exemption.",
-      "simultaneousFailure": "If load exceeds both the 250-lb assembly limit and the 300-lb rope limit, both assembly release and rope disappearance occur independently.",
-      "boundary": "All capacities, attachment permissions, target consent, 1:1 load conversion, movement schedule, geometry and release probes are TEST_ONLY for this branch; no general physical-force model, canon rule, actual support rating, or campaign event is asserted."
+      "supportOverrating": {
+        "trigger": "Current load exceeds 250 lb at taut sample or immediate mass-change recheck.",
+        "immediateResult": "Support weak link releases; bracket/support connector remain fixed. If rope load is <=300 lb, rope remains intact attached to target connector; rope mass stays with target snapshot.",
+        "postFailureMovement": "Apply only remaining scheduled displacement during the active event, then ordinary Falling after t=24. The three threshold probes stop at the decision instant."
+      },
+      "ropeOverloadZeroHpOrExpiry": {
+        "trigger": "Load >300 lb, rope at 0 HP, or its own t=600 expiry; overload immediate.",
+        "immediateResult": "Rope body/rope-side connectors vanish. Fixed support connector stays with support; target-side harness connector remains target gear. Remove 10-lb rope mass immediately.",
+        "postFailureMovement": "If event remains active, only remaining scheduled movement applies; ordinary Falling after t=24 if unsupported."
+      },
+      "laterLoadChange": "Recalculate body + attached/worn gear/cargo + rope immediately on every applicable mass change; no grandfathered taut result.",
+      "simultaneousFailure": "If both limits are exceeded, support weak link releases and rope vanishes independently; support stays fixed, target connector/gear stays with target, rope mass is removed.",
+      "failureProbeScope": "260/301/310 are isolated decision snapshots with immediate attachment, location/custody and mass only; they claim no post-failure trajectory, fall, landing or damage.",
+      "boundary": "All capacities, consent, permissions, load conversion, schedule, geometry and property records are TEST_ONLY; no general physical-force model, canon rule, actual support rating or campaign event is asserted."
     },
     "failureProbeCases": [
       {
         "id": "IE286-W2-PROBE-SUPPORT-RELEASE-260",
-        "classification": "TEST_ONLY boundary probe; not an actual event",
+        "classification": "TEST_ONLY isolated threshold decision; no post-decision aftermath claimed.",
+        "decisionSnapshot": {
+          "timeSeconds": 22,
+          "targetBodyFeet": [
+            1,
+            0,
+            40
+          ],
+          "eventActive": true,
+          "unitHarness": "Pause at first-taut decision; do not simulate later movement, fall, landing or damage."
+        },
         "loadLb": {
           "body": 180,
           "gearCargo": 70,
           "rope": 10,
           "total": 260
         },
-        "when": "t=22 first-taut sample",
-        "expected": "The 250-lb assembly weak link releases at the support end; the 300-lb rope remains intact. The scheduled upward movement continues for t=22..24, reaching 60 ft total, then the event ends and a 60-ft ordinary fall resolves to the platform (3d6 bludgeoning under the bound provisional procedure; Prone if positive).",
-        "bodyFeetAtEventEnd": [
-          1,
-          0,
-          60
-        ],
-        "fallDistanceFeet": 60
+        "decision": "260 exceeds 250 but not 300; support weak link releases and rope remains intact.",
+        "immediatePropertyState": {
+          "support": "Bracket fixed; weak link released; support connector remains fixture property.",
+          "rope": "10-lb rope intact, attached to target-side harness connector only; free lower end at [0.4,0,-8.1], custody TEST_TARGET_01 for this snapshot.",
+          "target": "Attached moving mass remains 260 lb; harness, connector and satchel stay with target.",
+          "scope": "Snapshot ends at decision; no post-failure movement or landing claim."
+        }
       },
       {
         "id": "IE286-W2-PROBE-ROPE-OVERLOAD-301",
-        "classification": "TEST_ONLY boundary probe; not an actual event",
+        "classification": "TEST_ONLY isolated threshold decision; no post-decision aftermath claimed.",
+        "decisionSnapshot": {
+          "timeSeconds": 22,
+          "targetBodyFeet": [
+            1,
+            0,
+            40
+          ],
+          "eventActive": true,
+          "unitHarness": "Pause at first-taut decision; do not simulate later movement, fall, landing or damage."
+        },
         "loadLb": {
           "body": 180,
           "gearCargo": 111,
           "rope": 10,
           "total": 301
         },
-        "when": "t=22 first-taut sample",
-        "expected": "The 250-lb support assembly releases and the >300-lb rope immediately vanishes under its existing overload rule. The scheduled upward movement continues for t=22..24, reaching 60 ft total, then the event ends and a 60-ft ordinary fall resolves (3d6 bludgeoning; Prone if positive).",
-        "bodyFeetAtEventEnd": [
-          1,
-          0,
-          60
-        ],
-        "fallDistanceFeet": 60
+        "decision": "301 exceeds both limits; support weak link releases and rope immediately vanishes.",
+        "immediatePropertyState": {
+          "support": "Bracket fixed; weak link released; support connector remains fixture property.",
+          "rope": "Vanished, including rope body and rope-side connectors; no rope remains attached to either endpoint.",
+          "target": "Surviving body plus gear/cargo is 291 lb (180+111); target harness and 1-lb harness connector remain. Satchel stays with target.",
+          "scope": "Snapshot ends at decision; no post-failure movement or landing claim."
+        }
       },
       {
         "id": "IE286-W2-PROBE-POST-TAUT-MASS-CHANGE-310",
-        "classification": "TEST_ONLY load-recheck unit probe; no campaign mechanism asserted",
+        "classification": "TEST_ONLY isolated recheck decision; no post-decision aftermath claimed.",
+        "decisionSnapshot": {
+          "firstTautAtSeconds": 22,
+          "massChangeAtSeconds": 23,
+          "targetBodyFeetAtChange": [
+            1,
+            0,
+            40
+          ],
+          "eventActive": true,
+          "unitHarness": "After 100-lb cargo input, pause at immediate recheck; no later movement, fall, landing or damage."
+        },
         "loadLb": {
           "firstTaut": {
             "body": 180,
@@ -596,33 +927,32 @@
             "total": 310
           }
         },
-        "when": "First taut sample at t=22; at t=23 a stipulated zero-impulse TEST_ONLY attached-mass input increases cargo by 100 lb.",
-        "expected": "The held branch is immediately resampled at t=23. The support assembly releases and the >300-lb rope vanishes. Only the remaining one-second scheduled 10-ft ascent applies; event ends at t=24 at body-feet z=50, then 50-ft ordinary fall resolves to the platform (2d6 bludgeoning; Prone if positive).",
-        "bodyFeetAtEventEnd": [
-          1,
-          0,
-          50
-        ],
-        "fallDistanceFeet": 50
+        "decision": "At t=23, 310 exceeds both limits; support weak link releases and rope immediately vanishes.",
+        "immediatePropertyState": {
+          "support": "Bracket fixed; weak link released; support connector remains fixture property.",
+          "rope": "Vanished, including rope body and rope-side connectors; rope mass removed.",
+          "target": "Surviving body plus gear/cargo is 300 lb (180+120); 100-lb cargo and 1-lb harness connector remain with target. Satchel stays with target.",
+          "scope": "Snapshot ends at decision; no post-failure movement or landing claim."
+        }
       }
     ]
   },
   "directorReviewRequest": {
-    "decision": "PASS, REVISE with exact corrections, or NO on revision 3 of this exact W2-only TEST_ONLY rule/fixture.",
+    "decision": "PASS, REVISE with exact corrections, or NO on revision 4 of this exact W2-only TEST_ONLY rule/fixture.",
     "focus": [
-      "Prior C01 event end, downward fall, landing and release states",
-      "Prior C02 caster/handler positions, creation point, actual manual deployment, 40-ft slack location, route and full body/cargo clearance",
-      "Prior C03 complete load-bearing assembly, connectors/harness capacity, custody/permission and one-time mass accounting",
-      "Immediate load rechecks, independent 250-lb assembly and 300-lb rope failures, plus the 260/301/310 boundary probes",
-      "Whether the bound provisional falling procedure is appropriate for this TEST_ONLY branch."
+      "W2-R3-C01 supported coil/end transfer, exact handler/gear bounds, 10-ft path/40-ft slack geometry, surfaces and exit clearance",
+      "W2-R3-C02 separate release/overload property, connector, location, custody and mass states; threshold-only probes; currently slack base rope",
+      "W2-R3-C03 fixed outside-initiative order, virtual initiating slot, first Fall Marker and target’s normal Action opportunity",
+      "Previously passing load arithmetic, immediate rechecks and 260/301/310 threshold results"
     ],
     "require": [
-      "Say whether revision 3 is eligible for separate exact owner adoption; review does not itself adopt it.",
-      "If it passes, provide exact adoption wording and limits required before witness construction.",
-      "List the remaining actual Reverse Gravity and Conjure Rope source-backed access, preparation, paid-cast, action, class-bookkeeping and interruption evidence required for full W2 integration.",
-      "Do not treat the existing synthetic rpPaid:2 field as an actual cast record."
+      "Verify exact revision-4 UTF-8 bytes/hash/commit and source bindings.",
+      "State whether revision 4 is eligible for separate exact owner adoption; review does not adopt it.",
+      "If it passes, provide exact bounded adoption wording before any witness.",
+      "List remaining actual-source access/preparation and complete paid-cast histories for both spells, including components, budgets, class bookkeeping, interruption, clocks and damage/HP.",
+      "Do not treat synthetic rpPaid:2 as actual paid-cast evidence."
     ],
-    "boundary": "This is design revision only: no witness, seal, blocker closure, identity acceptance/application, canon/runtime mutation, or Queue479 change. Full W2 integration remains held pending separately evidenced actual spell procedures and legal paid applications."
+    "boundary": "Design review only: no witness, seal, blocker closure, identity acceptance/application, canon/runtime mutation or Queue479 change. Full W2 integration remains held pending separately evidenced spell procedures and legal paid applications."
   },
   "nonClaims": [
     "The 1:1 load convention is new, TEST_ONLY, and absent from bound sources.",
@@ -632,13 +962,13 @@
     "W1 remains separate and unsealed; W2 and IE204-B02 remain held.",
     "Revision 3 remains a design proposal only; it does not settle actual spell access, casts, campaign events, or the prior W2 source hold."
   ],
-  "revision": 3,
-  "supersedesSha256": "8adadbd925cacd55fb7b87833e6772caa2b4e292763eb89528bc29e18bfeb18f",
-  "revisionNote": "Addresses Director REVISE items W2-P01-C01 through C03; defines t=22 first-taut ordering and t=24 event termination, an explicit falling/landing baseline, lawful synthetic deployment geometry, complete 250-lb assembly capacity including both connections and harness, one-time gear/satchel/harness mass, immediate later-load rechecks, and separate failure probes. No witness or owner adoption is claimed.",
+  "revision": 4,
+  "supersedesSha256": "ca486c2e2b7bcc9b6f6d9dc4536a7ac1835102f14f1a451d91446617131c88ad",
+  "revisionNote": "Addresses Director REVISE items W2-R3-C01 through C03: places the coil on an empty supported upper shelf beside the target; defines the stair/hand-off, 0.4-ft upper lead plus 9.6-ft vertical run, lower 40-ft slack tray, surfaces, actor/gear bounds, clearances and exits; records exact connector/custody/mass states; limits boundary probes to the decision instant; clarifies that the base rope is currently slack after landing; and binds the outside-initiative order, virtual slot and first Fall Marker. No witness or owner adoption is claimed.",
   "integrationGates": [
-    "Bind the retained Reverse Gravity procedure and a legal paid application with actual source-backed acquisition/preparation, current RP, components, action, class bookkeeping, interruption, and resolution history.",
-    "Provide equivalent complete source-backed acquisition/preparation and cast history for Conjure Rope; preserve its 600-second duration from its own application.",
-    "Director PASS and separate exact owner adoption of the reviewed TEST_ONLY terms must occur before any W2 witness is constructed.",
-    "A director-approved rule or owner adoption cannot substitute for actual spell source facts or paid-application evidence."
+    "Bind the retained Reverse Gravity procedure and legal paid application with source-backed acquisition/preparation, current RP, components, action, class bookkeeping, interruption, resolution clock, damage and HP history.",
+    "Provide equivalent source-backed acquisition/preparation/cast history for Conjure Rope and preserve its own 600-second deadline.",
+    "Director PASS plus separate exact owner adoption is required before W2 witness construction.",
+    "Director review or owner adoption cannot substitute for actual spell source facts or paid-application evidence."
   ]
 }

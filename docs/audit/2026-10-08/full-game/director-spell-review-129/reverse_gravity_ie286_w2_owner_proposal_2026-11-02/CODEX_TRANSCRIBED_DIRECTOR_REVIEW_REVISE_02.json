@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "id": "CODEX-TRANSCRIBED-IE286-W2-GPT-REVIEW-02",
+  "reviewedAtUtc": "2026-11-02",
+  "classification": "GPT_DIRECTOR_UI_REVIEW_READBACK_REVISE_NOT_OWNER_ADOPTION_NOT_WITNESS",
+  "captureMethod": "Transcribed from the rendered GPT Director conversation; the ruling text and corrections are preserved below.",
+  "sourceConversationUrl": "https://chatgpt.com/g/g-p-67f17555a8dc8191a2b5b81e6d8adc12-dungeon-crawler/c/6adc506d-8770-83ea-b64c-0345d9b9b682",
+  "identity": "reverse-gravity-field",
+  "blockerId": "IE204-B02",
+  "witnessId": "IE286-W2",
+  "reviewedCommit": "18a10cc7c8b8b982be2453ba416dc457768e0197",
+  "reviewedProposalPath": "docs/audit/2026-10-08/full-game/director-spell-review-129/reverse_gravity_ie286_w2_owner_proposal_2026-11-02/OWNER_PROPOSAL_IE286_W2_UPWARD_LOAD_RULE_01.json",
+  "reviewedProposalBytes": 31890,
+  "reviewedProposalSha256": "ca486c2e2b7bcc9b6f6d9dc4536a7ac1835102f14f1a451d91446617131c88ad",
+  "disposition": "REVISE",
+  "readyForOwnerAdoption": false,
+  "sourceBindingCheck": "All nine declared source bindings and Queue479 match.",
+  "assessment": "The hashes and source bindings match. C01’s main timing and fall correction and C03’s assembly/mass accounting now work, as do the 260/301/310 load calculations. The remaining gaps are in the physical deployment details and the release/failure aftermath records, not the load arithmetic.",
+  "passedAtProposalDesignLevel": [
+    "C01’s main correction: taut at 22, upward effect ends at 24, then a 40-ft fall—no suspension from the anchor below.",
+    "C03: the complete 250-lb assembly expressly includes both connections and harness; gear totals 20 lb and system mass 210 lb without duplicating the satchel.",
+    "Immediate rechecks and independent failure decisions are explicit.",
+    "Probe calculations: 260 → assembly release → 60 ft / 3d6; 301 → both failures → 60 ft / 3d6; 310 at 23 → both failures → 50 ft / 2d6.",
+    "Those fall formulas match the bound provisional Falling procedure. This does not promote that procedure to canon."
+  ],
+  "requiredCorrections": [
+    {
+      "id": "W2-R3-C01",
+      "topic": "deployment and clearance incomplete",
+      "pointers": [
+        "/proposedTestOnlyRule/fixture/attachmentSetup",
+        "/proposedTestOnlyRule/fixture/handlers",
+        "/proposedTestOnlyRule/fixture/spatialLayout"
+      ],
+      "requirement": "Identify the supported transfer of the upper rope end from its initial coil at z−8.5 to Handler B/D-ring above. “Manually routes” does not establish the intervening reach, handoff or route. Give the slack tray’s location/envelope, effective attachment lengths, and supported handler exit endpoints. Supply caster/handler and carried-gear bounds sufficient to verify creation-space occupancy and ascent/fall clearance. The target-body box alone does not establish those claims. Keep these as explicit TEST_ONLY premises."
+    },
+    {
+      "id": "W2-R3-C02",
+      "topic": "release/failure property settlement incomplete",
+      "pointers": [
+        "/proposedTestOnlyRule/releaseAndFailure",
+        "/proposedTestOnlyRule/failureProbeCases",
+        "/proposedTestOnlyRule/expectedSettlement/rope"
+      ],
+      "requirement": "Separate each counterfactual from the intact base branch. Target-side release leaves the rope attached to the lower support; support-side release leaves it attached to the target; overload removes it entirely. Record the resulting rope/connector attachment, location, custody and mass accounting. After disappearance, surviving body-plus-gear mass is 291 lb in the 301 probe and 300 lb in the 310 probe; do not retain phantom rope mass. The base landing description must mean currently slack, not permanently incapable of restraining another ascent. Alternatively, explicitly limit these probes to the failure decision and remove claims of completed property aftermath."
+    },
+    {
+      "id": "W2-R3-C03",
+      "topic": "rescue timing needs an explicit schedule",
+      "pointers": [
+        "/proposedTestOnlyRule/expectedSettlement/fall/timing",
+        "/proposedTestOnlyRule/releaseAndFailure/afterEventVoluntaryRelease"
+      ],
+      "requirement": "Bind a deterministic outside-initiative order, virtual initiating slot and first Fall Marker. Place the manual release on the target’s actual normal Action opportunity. The cited Falling section grants no free rescue Action. Keep this 40-ft branch distinct from the t23-release branch that reaches 50 ft."
+    }
+  ],
+  "sourceBasis": "The Director identified the retained rope row’s /operational/effect and /operational/limitations as the C01/C02 basis. C03 follows SPELL_INTEGRATION_RULES.md, ‘Falling bridge — new provisional procedure’, SHA-256 55f486de8d38a6734f8f0f2f62066401504f5b1311ebe66693175876b3f7aa6d.",
+  "fullW2IntegrationRequirements": "After correction, separate owner adoption is still required. Full W2 integration additionally needs the retained Reverse Gravity procedure, source-backed caster access/preparation and complete legal paid-cast histories for both spells, including components, budgets, class bookkeeping, interruption, clocks and actual damage/HP settlement. The synthetic rpPaid:2 does not demonstrate those records.",
+  "nonEffects": [
+    "No adoption wording is issued; the retained source-qualification NO remains unchanged.",
+    "W1 PASS remains unsealed; IE204-B02 remains HELD.",
+    "Queue479 remains 834 applied / 14 pending / 0 accepted-unapplied, Reverse Gravity first.",
+    "No witness or state changes."
+  ],
+  "queueReadback": {
+    "applied": 834,
+    "pending": 14,
+    "acceptedUnapplied": 0,
+    "nextIdentity": "reverse-gravity-field",
+    "blocker": "IE204-B02"
+  }
+}
