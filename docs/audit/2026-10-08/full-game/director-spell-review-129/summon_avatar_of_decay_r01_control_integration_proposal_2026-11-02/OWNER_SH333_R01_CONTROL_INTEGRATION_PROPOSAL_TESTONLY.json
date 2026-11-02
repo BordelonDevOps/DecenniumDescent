@@ -1,0 +1,443 @@
+{
+  "schemaVersion": 1,
+  "id": "OWNER-SH333-R01-CONTROL-INTEGRATION-PROPOSAL-2026-11-02",
+  "classification": "TEST_ONLY_OWNER_ADOPTION_PROPOSAL",
+  "status": "DIRECTOR_READINESS_REVIEW_REQUESTED_NOT_ADOPTED_NOT_CONSTRUCTED",
+  "scope": {
+    "spell": "summon-avatar-of-decay",
+    "blocker": "SH202-B03",
+    "branch": "SH333-R01",
+    "question": "Integrate one fully paid Mental Binding attempt with the earlier Decay relay reservation, both shared guards, turn-end saves, recharge, and maximum duration.",
+    "directorInstruction": "GPT directed bounded Decay work while Final Word remains held. Review this R01 proposal; no witness construction before separate owner adoption.",
+    "excluded": [
+      "R02 source gap",
+      "sealed R03 witness408",
+      "sealed R04 witness409",
+      "Final Word DR217-B01"
+    ]
+  },
+  "base": {
+    "repository": "BordelonDevOps/DecenniumDescent",
+    "branch": "main",
+    "commit": "4ba486b4aa91be58dde1e76213562aef8626357f",
+    "queue": {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_SPELL_QUEUE_477_REPACK01.json",
+      "sha256": "6189c68a3b6ead079f2d3e18522aa789b0164dc919e6dd004093f64b03f623ab",
+      "reviewedApplied": 832,
+      "pending": 16,
+      "acceptedUnapplied": 0,
+      "nextIdentity": "final-word",
+      "nextBlocker": "DR217-B01"
+    }
+  },
+  "bindings": [
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/summon_avatar_of_decay_source_delta_2026-11-01/SH202_B03_R01_CONTROL_GUARD_SOURCE_CHECK_2026-11-01.json",
+      "bytes": 14537,
+      "sha256": "298b5c981533651e05cbbecd723c90787ba3aa4bd4c51033d2baf90a4994de7c",
+      "use": "Current R01 source check; acquisition closed, paid integration open."
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_summon_avatar_of_decay_return333_received/payload/components/SH333-CONTROL-EARLIER_RESERVATION.json",
+      "bytes": 7994,
+      "sha256": "6cf1cdbe556e44d0ee3548a13150c4fa17478e669937d2c1501d08a86eec3163",
+      "use": "Earlier reservation component only."
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_summon_avatar_of_decay_return333_received/payload/components/SH333-CONTROL-SPENT_SHARED_GUARD.json",
+      "bytes": 7833,
+      "sha256": "520d241462a8167fcf1df6d80e19e680055d01132bf79e41ee8b3cc3195b8b73",
+      "use": "Shared-guard component only."
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_summon_avatar_of_decay_return333_received/payload/components/SH333-RIDER-CANCEL.json",
+      "bytes": 482031,
+      "sha256": "1ae0cf57a18fc0a40e0ef20ff3d1336a9d5d05445f5aec2e773c1f239be33761",
+      "use": "Conditional actors, resources, initiative and Decay history."
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_summon_avatar_of_decay_return333_received/payload/evidence/EXISTING_W17N_PROFILE.json",
+      "bytes": 105789,
+      "sha256": "344eeb0b4ce3173d1a51f2bb10c460303a97c190c79eec1db9039c275c1fce3a",
+      "use": "W17N conditional build/acquisition."
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_summon_avatar_of_decay_return333_received/payload/input/05_RETURN285_AVATAR_PROCEDURE.json",
+      "bytes": 31908,
+      "sha256": "09434c5f683e7e6116ecd48b66865781238bcae5c6d43043d462699e4554c65c",
+      "use": "Guards, precedence, command timing, termination, no replay."
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_summon_avatar_of_decay_return333_received/payload/input/06_RETURN285_FERRY_COUNTERPART_PROFILE.json",
+      "bytes": 6509,
+      "sha256": "fddf741089a0852380d784c7ee58692ad811626c927554e29c577f6ccebf86e1",
+      "use": "Conditional Ferry profile and 5-foot reach completion."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+      "bytes": 100635,
+      "sha256": "8ab2f4f43bcbced418fb266e5bd3216cff491b0c442c16f93438bd3556672c8b",
+      "use": "Wizard card/rules: Binding, Mind Matrix, Counterspell, strain, concentration and recharge."
+    },
+    {
+      "path": "docs/bestiary/Decennium_Descent_Monster_Manual_Canon_Rewrite_Source_Pack/Monster_Manual_of_the_Known_Descent_Source/entries/ferry-wraith-of-the-hush.md",
+      "bytes": 4637,
+      "sha256": "393a659464c3cbc49c349df5376fb44eeea8d169984e0f3933fc2a125db52895",
+      "use": "Native Ferry stats and Hellfire Claw."
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_SPELL_QUEUE_477_REPACK01.json",
+      "bytes": 4300,
+      "sha256": "6189c68a3b6ead079f2d3e18522aa789b0164dc919e6dd004093f64b03f623ab",
+      "use": "Queue boundary."
+    }
+  ],
+  "premises": {
+    "scene": {
+      "id": "SH333-R01-MENTAL-BINDING-INTEGRATION-TEST-ONLY-2026-11-02",
+      "plane": "P",
+      "coordinates": "feet",
+      "tickUnit": "one hundredth second",
+      "roundTicks": 600,
+      "environment": "Open supported plane, no cover/blocked LoE/hazards/silence/suppression/restraint/other effects; clear paths and perception.",
+      "seal": "F retains F-contract-seal, fully covered; no visible seal or writing, so Contract-Bound does not alter the attack.",
+      "campaignEvent": false
+    },
+    "timing": {
+      "start": 300,
+      "cast": 310,
+      "N1Starts": [
+        300,
+        900,
+        1500,
+        2100
+      ],
+      "FStarts": [
+        500,
+        1100,
+        1700
+      ],
+      "FEnds": [
+        580,
+        1180,
+        1780
+      ],
+      "relay3Slot": 510,
+      "relay3Expires": 510,
+      "turnEndOffset": 80,
+      "maximumEffectDeadline": 2110
+    },
+    "actors": {
+      "A": {
+        "profile": "W17C Wizard17 Conjuration",
+        "p": [
+          0,
+          0,
+          0
+        ],
+        "hp": "104/104",
+        "ac": 12,
+        "rp": 38,
+        "d": 0,
+        "refrain": 0,
+        "actions": {
+          "Action": 0,
+          "BA": 0,
+          "Reaction": 1
+        },
+        "concentration": "A:cast1",
+        "nextStart": 600
+      },
+      "B": {
+        "profile": "W17D Wizard17 Divination",
+        "p": [
+          30,
+          -20,
+          0
+        ],
+        "hp": "104/104",
+        "ac": 12,
+        "rp": 64,
+        "d": 0,
+        "refrain": 0,
+        "actions": {
+          "Action": 1,
+          "BA": 1,
+          "Reaction": 1
+        },
+        "nextStart": 400
+      },
+      "C": {
+        "profile": "W17D Wizard17 Divination",
+        "p": [
+          45,
+          -5,
+          0
+        ],
+        "hp": "104/104",
+        "ac": 12,
+        "rp": 64,
+        "d": 0,
+        "refrain": 0,
+        "actions": {
+          "Action": 1,
+          "BA": 1,
+          "Reaction": 1
+        },
+        "nextStart": 800,
+        "positionChange": "Proposal-only: source fixture has [40,-5,0]; this exact new position puts C 5 feet from F. No source fixture bytes change.",
+        "resistances": [
+          "force"
+        ]
+      },
+      "N1": {
+        "profile": "W17N Wizard17 Necromancer",
+        "p": [
+          45,
+          30,
+          0
+        ],
+        "hp": "104/104",
+        "ac": 12,
+        "rp": 56,
+        "d": 2,
+        "refrain": 1,
+        "actions": {
+          "Action": 1,
+          "BA": 1,
+          "Reaction": 1
+        },
+        "concentration": null,
+        "recharge": {
+          "wizard.hero.necromancer.corpse-harvest": 0
+        },
+        "lastCast": "wizard.hero.necromancer.corpse-harvest",
+        "priorCastTicks": [
+          -2090,
+          -890
+        ]
+      },
+      "N2": {
+        "profile": "W17N Wizard17 Necromancer",
+        "p": [
+          50,
+          25,
+          0
+        ],
+        "hp": "104/104",
+        "ac": 12,
+        "rp": 56,
+        "d": 0,
+        "refrain": 0,
+        "actions": {
+          "Action": 1,
+          "BA": 1,
+          "Reaction": 1
+        },
+        "concentration": null
+      },
+      "F": {
+        "profile": "SH202-FERRY conditional Ferry-Wraith",
+        "p": [
+          45,
+          0,
+          0
+        ],
+        "hp": "9/9",
+        "ac": 10,
+        "type": "Undead",
+        "wisdomSave": 0,
+        "conditionImmunities": [
+          "poisoned"
+        ],
+        "charmedImmune": false,
+        "walk": 40,
+        "actions": {
+          "Action": 1,
+          "BA": 1,
+          "Reaction": 1
+        },
+        "controller": "A under relay",
+        "originalController": "F",
+        "sealVisible": false,
+        "attack": {
+          "name": "Hellfire Claw",
+          "bonus": 3,
+          "reach": 5,
+          "damage": "1d4 fire"
+        }
+      }
+    },
+    "N1Spell": {
+      "id": "wizard.hero.necromancer.mental-binding",
+      "acquisition": "selected at Wizard level16; always-prepared class matrix",
+      "rank": 7,
+      "activation": "Action",
+      "costRp": 4,
+      "rangeFeet": 60,
+      "target": "one creature; no type exclusion",
+      "duration": "concentration, maximum 3 rounds",
+      "rechargeRounds": 3,
+      "baseSaveDc": 19,
+      "mindMatrixBonus": 2,
+      "enchantmentDc": 21,
+      "necromancySchoolBonus": false,
+      "otherConcentration": []
+    },
+    "existingDecay": {
+      "cast": "A:cast1",
+      "paidAt": 10,
+      "rpPaid": 26,
+      "concentrationExpiry": 6020,
+      "body": {
+        "id": "A:cast1:body1",
+        "p": [
+          0,
+          0,
+          0
+        ],
+        "unchanged": true
+      },
+      "relay": {
+        "id": "relay:3",
+        "issued": 90,
+        "slot": 510,
+        "expires": 510,
+        "target": "F",
+        "command": "one Hellfire Claw attack against C",
+        "guard": "A:F:encounter",
+        "guardInitial": false,
+        "status": "pending"
+      }
+    },
+    "counterspell": {
+      "tick": 310,
+      "eligible": [
+        "A",
+        "B",
+        "C",
+        "N2"
+      ],
+      "distancesFromN1Feet": {
+        "A": 54.08,
+        "B": 52.2,
+        "C": 35,
+        "N2": 7.07
+      },
+      "allHave": "Wizard Counterspell; Reaction available; 3 RP; 60 feet; 2-round recharge; perception and LoE",
+      "checkDcIfAttempted": 24,
+      "response": "All decline, so no roll, payment, Reaction or recharge change."
+    }
+  },
+  "sequence": [
+    {
+      "tick": 310,
+      "event": "N1 casts Mental Binding on F; pays before Counterspell window.",
+      "before": {
+        "rp": 56,
+        "Action": 1,
+        "d": 2,
+        "refrain": 1,
+        "concentration": null
+      },
+      "after": {
+        "rp": 52,
+        "Action": 0,
+        "d": 2,
+        "refrain": 0,
+        "lastFamily": "Mental Binding",
+        "concentration": "N1:mental-binding-1",
+        "bindingRecharge": 3
+      },
+      "strain": "Different family from prior Corpse Harvest: protected first-distinct base Dissonance 0, no repeat strain or vent. Refrain resets to 0 for the new consecutive family; Director should confirm.",
+      "counter": "A/B/C/N2 decline; no refund if a counter had succeeded."
+    },
+    {
+      "tick": 310,
+      "event": "F initial Wisdom save.",
+      "roll": "d20 3 + 0 = 3 vs DC21, fail",
+      "result": "F becomes Charmed. N1 selects first-turn command Approach N1, move 10 feet from [45,0,0] to [45,10,0] within half-Speed 20. Proposed, not executed."
+    },
+    {
+      "tick": 500,
+      "event": "F first affected turn starts.",
+      "state": "relay3 remains pending for exact attached phase at 510."
+    },
+    {
+      "tick": 510,
+      "event": "Resolve earlier valid Decay reservation against N1 Approach.",
+      "winner": "relay3 (issued90 for slot510)",
+      "loser": "N1 Approach; no replacement or replay",
+      "attack": "F Hellfire Claw vs C at 5 feet; proposed d20 12 + 3 = 15 vs AC12, hit; d4 2 fire, C HP104 -> 102.",
+      "guards": {
+        "A:F:encounter": "spends once",
+        "N1:F:encounter": "unspent because N1 command never executed"
+      },
+      "end": "relay3 ends after one execution; F original controller restored. N1 Approach expires unexecuted at510, no replay/refund/new Action. Charm remains, without permanent control transfer."
+    },
+    {
+      "tick": 580,
+      "event": "F end-turn repeat save.",
+      "roll": "d20 4 + 0 = 4 vs DC21, fail",
+      "state": "Charm continues; no damage to F, so no damage-triggered save."
+    },
+    {
+      "tick": 900,
+      "event": "N1 turn/recharge decrement.",
+      "recharge": 2,
+      "state": "concentration maintained; no cast."
+    },
+    {
+      "tick": 1100,
+      "event": "F turn.",
+      "response": "F Dodges; no order, no attack against N1, no F damage."
+    },
+    {
+      "tick": 1180,
+      "event": "F end-turn repeat save.",
+      "roll": "d20 10 + 0 = 10 vs DC21, fail",
+      "state": "Charm continues."
+    },
+    {
+      "tick": 1500,
+      "event": "N1 turn/recharge decrement.",
+      "recharge": 1,
+      "state": "concentration maintained; no cast."
+    },
+    {
+      "tick": 1700,
+      "event": "F third turn during effect.",
+      "response": "F Dodges; no new order or F damage."
+    },
+    {
+      "tick": 1780,
+      "event": "F end-turn repeat save.",
+      "roll": "d20 19 + 0 = 19 vs DC21, fail",
+      "state": "Charm continues."
+    },
+    {
+      "tick": 2100,
+      "event": "N1 turn/final recharge decrement.",
+      "recharge": 0,
+      "state": "concentration maintained; no cast."
+    },
+    {
+      "tick": 2110,
+      "event": "Three-round maximum expires.",
+      "result": "N1 concentration and F Charm end; no subsequent save, turn, movement, order, refund, replay, refill, body change, or Decay consequence."
+    }
+  ],
+  "reviewQuestions": [
+    "Confirm family-switch Refrain result and no repeat strain.",
+    "Confirm earlier relay and N1 Approach compete for the same tick-510 target opportunity.",
+    "Confirm C's proposed position and conditional 5-foot reach make the Ferry attack legal.",
+    "Confirm end-turn saves, recharge ticks, and 2110 duration deadline."
+  ],
+  "requestedDisposition": "Director readiness review only. If ready, return exact terms for separate owner adoption. Do not construct witness yet.",
+  "nonClaims": [
+    "No campaign actor, encounter, cast, roll, result or event is asserted.",
+    "This is not owner adoption, witness, seal, spell acceptance or application.",
+    "No queue/index/catalog/runtime/canon/R02/R03/R04/Final Word changes.",
+    "Queue remains 832 applied, 16 pending, 0 accepted-unapplied; Final Word remains first."
+  ]
+}
