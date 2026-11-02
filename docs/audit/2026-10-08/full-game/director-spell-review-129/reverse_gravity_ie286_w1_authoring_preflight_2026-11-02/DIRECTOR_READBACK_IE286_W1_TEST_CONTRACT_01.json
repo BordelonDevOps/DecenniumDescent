@@ -1,0 +1,271 @@
+{
+  "schemaVersion": 1,
+  "id": "DIRECTOR-IE286-W1-TEST-CONTRACT-01-READBACK-2026-11-02",
+  "source": {
+    "service": "ChatGPT",
+    "conversationTitle": "Calibration review part 6",
+    "conversationUrl": "https://chatgpt.com/g/g-p-67f17555a8dc8191a2b5b81e6d8adc12-dungeon-crawler/c/6adc506d-8770-83ea-b64c-0345d9b9b682"
+  },
+  "classification": "DIRECTOR_AUTHORED_TESTONLY_PROPOSAL_NOT_OWNER_ADOPTED_NOT_A_WITNESS",
+  "status": "PROPOSED_NOT_ADOPTED",
+  "reviewedPreflight": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/reverse_gravity_ie286_w1_authoring_preflight_2026-11-02/REVERSE_GRAVITY_IE286_W1_AUTHORING_PREFLIGHT_TESTONLY.json",
+    "commit": "2b2f07b0c28739d66a086c9c21e80a50de9b0b17",
+    "bytes": 10821,
+    "sha256": "487acbe71a355b33c5c3e7b336c832c0e10fad3ebada7b835d66f2d8f63c378a",
+    "verifiedSourceBindingCount": 8
+  },
+  "decision": {
+    "id": "IE286-W1-TEST-CONTRACT-01",
+    "result": "YES_FOR_COMPLETE_LOCAL_W1_TEST_CONTRACT",
+    "scope": "Static authored-procedure testing for IE286-W1 only. The contract creates no recovered source facts, no general equipment rule and no campaign event."
+  },
+  "branchScope": {
+    "targetSpell": "reverse-gravity-field",
+    "blocker": "IE204-B02",
+    "witness": "IE286-W1",
+    "cases": [
+      {
+        "case": "RANK9IMPACTEXILE4129-REVERSE-GRAVITY-FIELD-A",
+        "event": "29",
+        "landingFeet": 60,
+        "settlementTime": "6.133→6.15"
+      },
+      {
+        "case": "RANK9IMPACTEXILE4129-REVERSE-GRAVITY-FIELD-B",
+        "event": "29",
+        "landingFeet": 60,
+        "settlementTime": "6.133→6.15"
+      },
+      {
+        "case": "RANK9IMPACTEXILE4129-REVERSE-GRAVITY-FIELD-B/overlap",
+        "event": "34",
+        "landingFeet": 120,
+        "settlementTime": "6.133→6.15"
+      }
+    ],
+    "independentBranches": "Each case begins from its own exact historical pre-landing state; the three impacts are not successive damage to one shared crate.",
+    "inheritedCrate": {
+      "id": "crate",
+      "loadedAggregateMassLb": 20,
+      "envelopeFeet": [
+        5,
+        5,
+        5
+      ],
+      "plane": "scene",
+      "landingAnchor": [
+        20,
+        0,
+        0
+      ]
+    }
+  },
+  "testOnlyProfile": {
+    "construction": "Hollow, lightweight wooden lattice container with thin facing and breakable joints; nonmagical.",
+    "massAccounting": {
+      "containerStructureLb": 18,
+      "contentsLb": 2,
+      "loadedAggregateLb": 20
+    },
+    "structuralDurability": {
+      "current": 15,
+      "maximum": 15,
+      "AC": 12
+    },
+    "impactDefenses": {
+      "save": false,
+      "damageThreshold": null,
+      "reduction": 0,
+      "resistance": false,
+      "immunity": false,
+      "temporaryDurability": false
+    },
+    "coordinateConvention": "Crate and listed item positions use minimum XYZ corner.",
+    "interiorClearBoundsRelativeToCrate": [
+      0.02,
+      4.98
+    ],
+    "bottomSupportsContents": true,
+    "owner": "W1-TEST-OWNER-01",
+    "custodian": "W1-TEST-CUSTODIAN-01 (accountability only; not physical possession)",
+    "physicalPossession": {
+      "carriedBy": null,
+      "held": false,
+      "actorPickupOrTransfer": false
+    },
+    "localSupport": "Existing ground at z=0 supports the settled 20 lb and remains intact during these two stipulated impacts; no general terrain-strength rule."
+  },
+  "contentsManifest": [
+    {
+      "id": "crate:content:cloth-01",
+      "description": "One nonmagical, dry cloth bundle",
+      "massLb": 2,
+      "envelopeFeet": [
+        1,
+        1,
+        0.25
+      ],
+      "durability": {
+        "current": 6,
+        "maximum": 6,
+        "AC": 10
+      },
+      "owner": "W1-TEST-OWNER-01",
+      "custodian": "W1-TEST-CUSTODIAN-01",
+      "initialMinCornerRelativeToCrate": [
+        2,
+        2,
+        0.02
+      ],
+      "otherContents": "none in this explicitly proposed branch"
+    }
+  ],
+  "impactRule": {
+    "authorship": "Fixed newly authored object-impact values, not creature fall damage; only these two heights and this exact proposed profile.",
+    "resolveOnce": "One impact per original case/event ID plus crate. No attack roll, critical, additional ascent impact or repeated damage. Contents receive only listed transmitted impact; container overkill does not transfer.",
+    "results": [
+      {
+        "landingFeet": 60,
+        "containerDamage": 10,
+        "containerDurabilityAfter": "5/15; damaged but intact",
+        "contentDamage": 2,
+        "contentDurabilityAfter": "4/6; intact"
+      },
+      {
+        "landingFeet": 120,
+        "containerDamage": 20,
+        "containerDurabilityAfter": "0/15; broken",
+        "contentDamage": 4,
+        "contentDurabilityAfter": "2/6; intact"
+      }
+    ],
+    "60FootSettlement": {
+      "crate": "Retain at [20,0,0].",
+      "content": "Remains contained at [22,2,0.02].",
+      "fragments": []
+    },
+    "120FootSettlement": {
+      "crate": "Loses enclosing/support function; retain only as a nonphysical lineage record, not an occupying or mass-bearing object.",
+      "fragments": [
+        {
+          "id": "crate:fragment:01",
+          "massLb": 4.5,
+          "minCorner": [
+            20,
+            0,
+            0
+          ],
+          "envelopeFeet": [
+            2,
+            2,
+            0.5
+          ]
+        },
+        {
+          "id": "crate:fragment:02",
+          "massLb": 4.5,
+          "minCorner": [
+            23,
+            0,
+            0
+          ],
+          "envelopeFeet": [
+            2,
+            2,
+            0.5
+          ]
+        },
+        {
+          "id": "crate:fragment:03",
+          "massLb": 4.5,
+          "minCorner": [
+            20,
+            3,
+            0
+          ],
+          "envelopeFeet": [
+            2,
+            2,
+            0.5
+          ]
+        },
+        {
+          "id": "crate:fragment:04",
+          "massLb": 4.5,
+          "minCorner": [
+            23,
+            3,
+            0
+          ],
+          "envelopeFeet": [
+            2,
+            2,
+            0.5
+          ]
+        }
+      ],
+      "fragmentMeaning": "These four clusters represent the entire 18 lb container structure and joints. No further debris is generated. They are broken, nonfunctional remains with no durability or salvage value; further attacks, repair, handling or valuation are outside the contract.",
+      "content": {
+        "id": "crate:content:cloth-01",
+        "minCorner": [
+          22,
+          2,
+          0
+        ],
+        "envelopeFeet": [
+          1,
+          1,
+          0.25
+        ],
+        "durabilityAfter": "2/6",
+        "support": "ground"
+      }
+    }
+  },
+  "custodyAndConservation": {
+    "owner": "W1-TEST-OWNER-01",
+    "custodian": "W1-TEST-CUSTODIAN-01",
+    "carriedBy": null,
+    "held": false,
+    "appliesTo": "crate, all four physical fragments and the cloth bundle.",
+    "totalPhysicalMassAfterLb": 20,
+    "noOwnershipTransfer": true,
+    "noDuplication": true,
+    "noLootAward": true,
+    "finalEnvelopesOverlap": false,
+    "fragmentLayoutAndBundleSettlement": "Stipulated same-impact aftermath; not teleport, additional falls or separate damage events."
+  },
+  "requiredWitnessScopeAfterAdoption": {
+    "onlyDeltas": [
+      "A and B at 60 ft",
+      "B/overlap at 120 ft"
+    ],
+    "perDelta": "Use its exact historical pre-landing state plus a separately declared adopted overlay. Apply impact, breakage and property settlement as same-time substeps at 6.15, preserving 6.133→6.15 landing timing.",
+    "evidence": "Record full before/after states, stable IDs, mass/custody accounting, and forward/inverse operations. Reverse restoration returns to the adopted branch start; removing the separately recorded overlay returns to exact historical input.",
+    "preserve": "Unrelated paths, creature outcomes, Feather Fall, casts, clocks and budgets. Do not replay the six historical cases."
+  },
+  "proposedOwnerAdoption": {
+    "required": true,
+    "wording": "I adopt IE286-W1-TEST-CONTRACT-01 exactly as issued against preflight SHA-256 487acbe71a355b33c5c3e7b336c832c0e10fad3ebada7b835d66f2d8f63c378a, including its loaded-mass interpretation, nonempty contents manifest, hypothetical ownership/custody, local geometry/support, durability, fixed impacts and complete aftermath. I authorize only construction and submission of the three minimal W1 TEST_ONLY successor deltas. This establishes no campaign facts or general equipment rule and authorizes no seal, blocker closure, identity acceptance/application, W2 change or queue mutation."
+  },
+  "boundary": {
+    "ownerAdoptionGranted": false,
+    "witnessConstructed": false,
+    "W1": "AWAITING_OWNER_ADOPTION_AND_SUBSEQUENT_DIRECTOR_REVIEW",
+    "W2": "OPEN_AND_UNCHANGED",
+    "blocker": "IE204-B02 HELD",
+    "campaignEventAsserted": false,
+    "sourceQualificationAdded": false,
+    "identityAccepted": false,
+    "identityApplied": false,
+    "canonChanged": false,
+    "queueChanged": false,
+    "authority": {
+      "applied": 832,
+      "pending": 16,
+      "acceptedUnapplied": 0,
+      "nextIdentity": "final-word"
+    }
+  }
+}
