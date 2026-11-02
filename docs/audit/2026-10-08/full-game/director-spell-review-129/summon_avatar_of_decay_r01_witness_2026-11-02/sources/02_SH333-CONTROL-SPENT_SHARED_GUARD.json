@@ -1,0 +1,314 @@
+{
+  "id": "SH333-CONTROL-SPENT_SHARED_GUARD",
+  "provenance": "NEW Director-authored conditional component test; no campaign event or user authorship asserted.",
+  "scope": "Interface arbitration only. Assumes two admitted command operands, does not assert the missing paid Mental Binding cast/save/first-turn command. No actual attack or hard-control execution is claimed.",
+  "providerActivationOrPaidEncounterDemonstrated": false,
+  "initialState": {
+    "conditional": true,
+    "clock": {
+      "tick": 310,
+      "regularStarts": {
+        "N1": 300,
+        "F": -100
+      },
+      "nextStarts": {
+        "N1": 900,
+        "F": 500
+      },
+      "extraTicks": 0
+    },
+    "recipient": {
+      "id": "F",
+      "type": "Undead",
+      "HP": 9,
+      "maxHP": 9,
+      "controller": "A",
+      "sourceOwner": "F",
+      "originalPhase": 510,
+      "equipment": {
+        "leftHand": null,
+        "rightHand": null,
+        "seal": "F-contract-seal"
+      }
+    },
+    "existingOrder": {
+      "id": "relay:3",
+      "source": "A:cast1",
+      "issued": 90,
+      "slot": 510,
+      "status": "pending"
+    },
+    "competingInput": {
+      "kind": "MentalBinding",
+      "casterProfile": "W17N",
+      "caster": "N1",
+      "selectedAtLevel": 16,
+      "admittedAt": 310,
+      "slot": 510,
+      "status": "conditional-admitted-input",
+      "castPaymentClaimed": false,
+      "selectedCommandRequiresItsOwnLegality": true
+    },
+    "guards": {
+      "A:F:encounter": false,
+      "N1:F:encounter": true
+    },
+    "resources": {
+      "N1RP": 56,
+      "N1Action": 1,
+      "N1Reaction": 1,
+      "FAction": 1,
+      "payments": []
+    },
+    "arbitration": {
+      "winner": null,
+      "loserStatus": null
+    }
+  },
+  "initialSHA256": "fb76307f73b49d1ed374002c446dd5dec67feb742df97f92a6ed3612559c9998",
+  "events": [
+    {
+      "label": "Evaluate only reservation/guard predicates; no execution and no guard spent",
+      "anchors": [
+        "input/05_RETURN285_AVATAR_PROCEDURE.json#/spellLocalProcedure/guardAndConflict",
+        "evidence/wizard.json#/cards/52",
+        "input/07_RETURN285_W17N_SOURCE_ACTOR_PROFILE.json#/acquisitionLedger/15"
+      ],
+      "before": {
+        "conditional": true,
+        "clock": {
+          "tick": 310,
+          "regularStarts": {
+            "N1": 300,
+            "F": -100
+          },
+          "nextStarts": {
+            "N1": 900,
+            "F": 500
+          },
+          "extraTicks": 0
+        },
+        "recipient": {
+          "id": "F",
+          "type": "Undead",
+          "HP": 9,
+          "maxHP": 9,
+          "controller": "A",
+          "sourceOwner": "F",
+          "originalPhase": 510,
+          "equipment": {
+            "leftHand": null,
+            "rightHand": null,
+            "seal": "F-contract-seal"
+          }
+        },
+        "existingOrder": {
+          "id": "relay:3",
+          "source": "A:cast1",
+          "issued": 90,
+          "slot": 510,
+          "status": "pending"
+        },
+        "competingInput": {
+          "kind": "MentalBinding",
+          "casterProfile": "W17N",
+          "caster": "N1",
+          "selectedAtLevel": 16,
+          "admittedAt": 310,
+          "slot": 510,
+          "status": "conditional-admitted-input",
+          "castPaymentClaimed": false,
+          "selectedCommandRequiresItsOwnLegality": true
+        },
+        "guards": {
+          "A:F:encounter": false,
+          "N1:F:encounter": true
+        },
+        "resources": {
+          "N1RP": 56,
+          "N1Action": 1,
+          "N1Reaction": 1,
+          "FAction": 1,
+          "payments": []
+        },
+        "arbitration": {
+          "winner": null,
+          "loserStatus": null
+        }
+      },
+      "after": {
+        "conditional": true,
+        "clock": {
+          "tick": 310,
+          "regularStarts": {
+            "N1": 300,
+            "F": -100
+          },
+          "nextStarts": {
+            "N1": 900,
+            "F": 500
+          },
+          "extraTicks": 0
+        },
+        "recipient": {
+          "id": "F",
+          "type": "Undead",
+          "HP": 9,
+          "maxHP": 9,
+          "controller": "A",
+          "sourceOwner": "F",
+          "originalPhase": 510,
+          "equipment": {
+            "leftHand": null,
+            "rightHand": null,
+            "seal": "F-contract-seal"
+          }
+        },
+        "existingOrder": {
+          "id": "relay:3",
+          "source": "A:cast1",
+          "issued": 90,
+          "slot": 510,
+          "status": "pending"
+        },
+        "competingInput": {
+          "kind": "MentalBinding",
+          "casterProfile": "W17N",
+          "caster": "N1",
+          "selectedAtLevel": 16,
+          "admittedAt": 310,
+          "slot": 510,
+          "status": "conditional-admitted-input",
+          "castPaymentClaimed": false,
+          "selectedCommandRequiresItsOwnLegality": true
+        },
+        "guards": {
+          "A:F:encounter": false,
+          "N1:F:encounter": true
+        },
+        "resources": {
+          "N1RP": 56,
+          "N1Action": 1,
+          "N1Reaction": 1,
+          "FAction": 1,
+          "payments": []
+        },
+        "arbitration": {
+          "winner": "relay:3",
+          "loserStatus": "guard-blocked"
+        }
+      },
+      "beforeSHA256": "fb76307f73b49d1ed374002c446dd5dec67feb742df97f92a6ed3612559c9998",
+      "afterSHA256": "d7fa3dae121483f44bce72dd5ed603bae0f1448c14fbefe5b0806aeb98545fe6",
+      "forward": [
+        {
+          "op": "test",
+          "path": "/arbitration",
+          "value": {
+            "winner": null,
+            "loserStatus": null
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/arbitration",
+          "value": {
+            "winner": "relay:3",
+            "loserStatus": "guard-blocked"
+          }
+        }
+      ],
+      "inverse": [
+        {
+          "op": "test",
+          "path": "/arbitration",
+          "value": {
+            "winner": "relay:3",
+            "loserStatus": "guard-blocked"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/arbitration",
+          "value": {
+            "winner": null,
+            "loserStatus": null
+          }
+        }
+      ]
+    }
+  ],
+  "finalState": {
+    "conditional": true,
+    "clock": {
+      "tick": 310,
+      "regularStarts": {
+        "N1": 300,
+        "F": -100
+      },
+      "nextStarts": {
+        "N1": 900,
+        "F": 500
+      },
+      "extraTicks": 0
+    },
+    "recipient": {
+      "id": "F",
+      "type": "Undead",
+      "HP": 9,
+      "maxHP": 9,
+      "controller": "A",
+      "sourceOwner": "F",
+      "originalPhase": 510,
+      "equipment": {
+        "leftHand": null,
+        "rightHand": null,
+        "seal": "F-contract-seal"
+      }
+    },
+    "existingOrder": {
+      "id": "relay:3",
+      "source": "A:cast1",
+      "issued": 90,
+      "slot": 510,
+      "status": "pending"
+    },
+    "competingInput": {
+      "kind": "MentalBinding",
+      "casterProfile": "W17N",
+      "caster": "N1",
+      "selectedAtLevel": 16,
+      "admittedAt": 310,
+      "slot": 510,
+      "status": "conditional-admitted-input",
+      "castPaymentClaimed": false,
+      "selectedCommandRequiresItsOwnLegality": true
+    },
+    "guards": {
+      "A:F:encounter": false,
+      "N1:F:encounter": true
+    },
+    "resources": {
+      "N1RP": 56,
+      "N1Action": 1,
+      "N1Reaction": 1,
+      "FAction": 1,
+      "payments": []
+    },
+    "arbitration": {
+      "winner": "relay:3",
+      "loserStatus": "guard-blocked"
+    }
+  },
+  "finalSHA256": "d7fa3dae121483f44bce72dd5ed603bae0f1448c14fbefe5b0806aeb98545fe6",
+  "unchangedPaths": [
+    "/clock",
+    "/recipient",
+    "/resources",
+    "/guards",
+    "/existingOrder",
+    "/competingInput"
+  ],
+  "observedReplay": "PASS",
+  "fullReverseTraversal": true
+}

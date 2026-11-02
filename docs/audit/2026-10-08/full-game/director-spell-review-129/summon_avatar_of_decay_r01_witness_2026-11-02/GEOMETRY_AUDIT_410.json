@@ -1,0 +1,95 @@
+{
+  "convention": {
+    "scope": "Explicitly proposed only for this TEST_ONLY branch; no global geometry/range rule change.",
+    "positionMeaning": "Branch-local proposal convention: p/pos x and y are the center of the occupied footprint; z is the feet/bottom elevation. box supplies full x/y footprint dimensions and full vertical height in feet. All inherited z=0 occupants rest on the supported floor.",
+    "nearestSurfaceFormula": "For x/y, gap=max(0,abs(center delta)-(footprintDimensionA+footprintDimensionB)/2). Vertically, each occupied interval is [z,z+height]; dz=max(0,max(zA,zB)-min(zA+heightA,zB+heightB)). 3D nearest occupied-surface distance=sqrt(dx^2+dy^2+dz^2). Boundary contact is inside when distance<=10 feet.",
+    "avatarBody": {
+      "p": [
+        20,
+        -20,
+        0
+      ],
+      "box": [
+        10,
+        10,
+        10
+      ]
+    },
+    "zombieAfterRelay2": {
+      "p": [
+        35,
+        -20,
+        0
+      ],
+      "box": [
+        5,
+        5,
+        5
+      ]
+    },
+    "calculation": "Avatar [20,-20,0], footprint10x10, height10 occupies z[0,10]; Zombie [35,-20,0], footprint5x5,height5 occupies z[0,5]. x gap=max(0,15-(10/2+5/2))=7.5ft, y gap0, vertical intervals overlap (dz0); nearest surface distance7.5ft, inside10ft.",
+    "movementPassage": "Occupied AABBs may touch at their boundaries without overlapping occupied volume. B starts boundary-adjacent to the Zombie along x; the northward first segment immediately increases separation, and the eastward second segment stays at y=-10, clear of the Zombie at y=-20.",
+    "floorConvention": "All listed actors and bodies at z=0 have feet at floor z=0, not centered vertically below the floor. No occupant intersects the floor."
+  },
+  "cPositionOverride": {
+    "field": "C.position",
+    "source": [
+      40,
+      -5,
+      0
+    ],
+    "proposed": [
+      45,
+      -5,
+      0
+    ],
+    "reason": "exact5ft from Ferry for conditional reach; source fixture unchanged"
+  },
+  "BRoute": {
+    "actor": "B",
+    "start": [
+      30,
+      -20,
+      0
+    ],
+    "box": [
+      5,
+      5,
+      6
+    ],
+    "walkFeet": 30,
+    "route": [
+      [
+        30,
+        -20,
+        0
+      ],
+      [
+        30,
+        -10,
+        0
+      ],
+      [
+        40,
+        -10,
+        0
+      ]
+    ],
+    "segmentsFeet": [
+      10,
+      10
+    ],
+    "totalFeet": 20,
+    "occupantAvoided": "N2:cast1:minion at [35,-20,0]",
+    "clearance": "With center-XY/feet-Z coordinates, B and Zombie occupied boxes meet only at their initial x-boundary; boundary contact is not positive-volume overlap. The first northward segment moves away from that boundary, and the eastward segment at y=-10 remains clear of the Zombie at y=-20. Floor support is continuous.",
+    "endpointSurfaceDistanceFeet": 12.747548783981962,
+    "endpointDistanceCalculation": "dx=20-(10/2+5/2)=12.5; dy=10-(10/2+5/2)=2.5; z intervals [0,10] and [0,6] overlap; sqrt(12.5^2+2.5^2)=12.747548783981962ft (>10)."
+  },
+  "calculations": {
+    "BInitialAvatarGapFeet": 2.5,
+    "ZombieGapFeet": 7.5,
+    "BEndpointGapFeet": 12.747548783981962,
+    "BEndpointOutsideAura": true
+  },
+  "fixtureUnchanged": true
+}

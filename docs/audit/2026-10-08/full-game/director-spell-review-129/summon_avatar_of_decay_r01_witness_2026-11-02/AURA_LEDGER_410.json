@@ -1,0 +1,530 @@
+{
+  "geometryConvention": {
+    "scope": "Explicitly proposed only for this TEST_ONLY branch; no global geometry/range rule change.",
+    "positionMeaning": "Branch-local proposal convention: p/pos x and y are the center of the occupied footprint; z is the feet/bottom elevation. box supplies full x/y footprint dimensions and full vertical height in feet. All inherited z=0 occupants rest on the supported floor.",
+    "nearestSurfaceFormula": "For x/y, gap=max(0,abs(center delta)-(footprintDimensionA+footprintDimensionB)/2). Vertically, each occupied interval is [z,z+height]; dz=max(0,max(zA,zB)-min(zA+heightA,zB+heightB)). 3D nearest occupied-surface distance=sqrt(dx^2+dy^2+dz^2). Boundary contact is inside when distance<=10 feet.",
+    "avatarBody": {
+      "p": [
+        20,
+        -20,
+        0
+      ],
+      "box": [
+        10,
+        10,
+        10
+      ]
+    },
+    "zombieAfterRelay2": {
+      "p": [
+        35,
+        -20,
+        0
+      ],
+      "box": [
+        5,
+        5,
+        5
+      ]
+    },
+    "calculation": "Avatar [20,-20,0], footprint10x10, height10 occupies z[0,10]; Zombie [35,-20,0], footprint5x5,height5 occupies z[0,5]. x gap=max(0,15-(10/2+5/2))=7.5ft, y gap0, vertical intervals overlap (dz0); nearest surface distance7.5ft, inside10ft.",
+    "movementPassage": "Occupied AABBs may touch at their boundaries without overlapping occupied volume. B starts boundary-adjacent to the Zombie along x; the northward first segment immediately increases separation, and the eastward second segment stays at y=-10, clear of the Zombie at y=-20.",
+    "floorConvention": "All listed actors and bodies at z=0 have feet at floor z=0, not centered vertically below the floor. No occupant intersects the floor."
+  },
+  "declaredRecipientStartCoverage": [
+    {
+      "tick": 300,
+      "recipient": "N1 actor",
+      "position": [
+        45,
+        30,
+        0
+      ],
+      "nearestSurfaceFeet": 45.96,
+      "result": "outside; no pulse"
+    },
+    {
+      "tick": 300,
+      "recipient": "N1:cast1:minion",
+      "position": [
+        30,
+        0,
+        0
+      ],
+      "ownerMarker": 300,
+      "nearestSurfaceFeet": 12.75,
+      "result": "outside; no pulse"
+    },
+    {
+      "tick": 300,
+      "recipient": "N1:cast2:minion",
+      "position": [
+        25,
+        0,
+        0
+      ],
+      "ownerMarker": 300,
+      "nearestSurfaceFeet": 12.5,
+      "result": "outside; no pulse"
+    },
+    {
+      "tick": 400,
+      "recipient": "N2 actor",
+      "position": [
+        50,
+        25,
+        0
+      ],
+      "nearestSurfaceFeet": 43.73,
+      "result": "outside; no pulse; both N2 companions separately checked at this owner marker"
+    },
+    {
+      "tick": 400,
+      "recipient": "N2:cast1:minion",
+      "position": [
+        35,
+        0,
+        0
+      ],
+      "ownerMarker": 400,
+      "nearestSurfaceFeet": 14.58,
+      "result": "outside; no pulse"
+    },
+    {
+      "tick": 400,
+      "recipient": "N2:cast2:minion",
+      "position": [
+        40,
+        0,
+        0
+      ],
+      "ownerMarker": 400,
+      "nearestSurfaceFeet": 17.68,
+      "result": "outside; no pulse"
+    },
+    {
+      "tick": 500,
+      "recipient": "F",
+      "position": [
+        45,
+        0,
+        0
+      ],
+      "result": "outside; no pulse"
+    },
+    {
+      "tick": 600,
+      "recipient": "A",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "sourceMarker": 600,
+      "nearestSurfaceFeet": 17.68,
+      "result": "outside; no pulse"
+    },
+    {
+      "tick": 700,
+      "recipient": "B",
+      "position": [
+        30,
+        -20,
+        0
+      ],
+      "sourceMarker": 600,
+      "nearestSurfaceFeet": 2.5,
+      "roll": "2d6 3+3=6; CON 17+2=19 vs DC19 succeeds; half-down3",
+      "HP": "86->83",
+      "consumptionKey": "B:600"
+    },
+    {
+      "tick": 800,
+      "recipient": "C",
+      "position": [
+        45,
+        -5,
+        0
+      ],
+      "nearestSurfaceFeet": 19.04,
+      "result": "outside; no pulse"
+    },
+    {
+      "tick": 900,
+      "recipient": "N1 actor",
+      "position": [
+        45,
+        30,
+        0
+      ],
+      "nearestSurfaceFeet": 45.96,
+      "result": "outside; no pulse"
+    },
+    {
+      "tick": 900,
+      "recipient": "N1:cast1:minion and N1:cast2:minion",
+      "positions": [
+        [
+          30,
+          0,
+          0
+        ],
+        [
+          25,
+          0,
+          0
+        ]
+      ],
+      "ownerMarker": 900,
+      "result": "both outside; no pulse"
+    },
+    {
+      "tick": 1000,
+      "recipient": "N2 actor",
+      "position": [
+        50,
+        25,
+        0
+      ],
+      "nearestSurfaceFeet": 43.73,
+      "result": "outside; no pulse; companion N2:cast1:minion separately pulses as recorded"
+    },
+    {
+      "tick": 1000,
+      "recipient": "N2:cast1:minion Zombie",
+      "position": [
+        35,
+        -20,
+        0
+      ],
+      "ownerMarker": 1000,
+      "sourceMarker": 600,
+      "nearestSurfaceFeet": 7.5,
+      "roll": "2d6 2+4=6; CON d20 11+7=18 vs DC19 fails; damage6",
+      "HP": "61->55 (max95; no healing)",
+      "consumptionKey": "N2:cast1:minion:600"
+    },
+    {
+      "tick": 1000,
+      "recipient": "N2:cast2:minion Skeleton",
+      "position": [
+        40,
+        0,
+        0
+      ],
+      "ownerMarker": 1000,
+      "nearestSurfaceFeet": 17.68,
+      "result": "outside; no pulse"
+    },
+    {
+      "tick": 1100,
+      "recipient": "F",
+      "position": [
+        45,
+        0,
+        0
+      ],
+      "nearestSurfaceFeet": 21.5,
+      "result": "outside; no pulse"
+    },
+    {
+      "tick": 1200,
+      "recipient": "A",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "sourceMarker": 1200,
+      "nearestSurfaceFeet": 17.68,
+      "result": "outside; no pulse"
+    },
+    {
+      "tick": 1300,
+      "recipient": "B",
+      "position": [
+        40,
+        -10,
+        0
+      ],
+      "sourceMarker": 1200,
+      "nearestSurfaceFeet": 12.75,
+      "result": "outside; no pulse"
+    },
+    {
+      "tick": 1400,
+      "recipient": "C",
+      "position": [
+        45,
+        -5,
+        0
+      ],
+      "nearestSurfaceFeet": 19.04,
+      "result": "outside; no pulse"
+    },
+    {
+      "tick": 1500,
+      "recipient": "N1 actor",
+      "position": [
+        45,
+        30,
+        0
+      ],
+      "nearestSurfaceFeet": 45.96,
+      "result": "outside; no pulse"
+    },
+    {
+      "tick": 1500,
+      "recipient": "N1:cast1:minion and N1:cast2:minion",
+      "positions": [
+        [
+          30,
+          0,
+          0
+        ],
+        [
+          25,
+          0,
+          0
+        ]
+      ],
+      "ownerMarker": 1500,
+      "result": "both outside; no pulse"
+    },
+    {
+      "tick": 1600,
+      "recipient": "N2 actor",
+      "position": [
+        50,
+        25,
+        0
+      ],
+      "nearestSurfaceFeet": 43.73,
+      "result": "outside; no pulse; companion N2:cast1:minion separately pulses as recorded"
+    },
+    {
+      "tick": 1600,
+      "recipient": "N2:cast1:minion Zombie",
+      "position": [
+        35,
+        -20,
+        0
+      ],
+      "ownerMarker": 1600,
+      "sourceMarker": 1200,
+      "nearestSurfaceFeet": 7.5,
+      "roll": "2d6 3+5=8; CON d20 12+7=19 vs DC19 succeeds; half-down4",
+      "HP": "55->51 (max95)",
+      "consumptionKey": "N2:cast1:minion:1200"
+    },
+    {
+      "tick": 1600,
+      "recipient": "N2:cast2:minion Skeleton",
+      "position": [
+        40,
+        0,
+        0
+      ],
+      "ownerMarker": 1600,
+      "nearestSurfaceFeet": 17.68,
+      "result": "outside; no pulse"
+    },
+    {
+      "tick": 1700,
+      "recipient": "F",
+      "position": [
+        45,
+        0,
+        0
+      ],
+      "nearestSurfaceFeet": 21.5,
+      "result": "outside; no pulse"
+    },
+    {
+      "tick": 1800,
+      "recipient": "A",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "sourceMarker": 1800,
+      "nearestSurfaceFeet": 17.68,
+      "result": "outside; no pulse"
+    },
+    {
+      "tick": 1900,
+      "recipient": "B",
+      "position": [
+        40,
+        -10,
+        0
+      ],
+      "sourceMarker": 1800,
+      "nearestSurfaceFeet": 12.75,
+      "result": "outside; no pulse"
+    },
+    {
+      "tick": 2000,
+      "recipient": "C",
+      "position": [
+        45,
+        -5,
+        0
+      ],
+      "nearestSurfaceFeet": 19.04,
+      "result": "outside; no pulse"
+    },
+    {
+      "tick": 2100,
+      "recipient": "N1 actor",
+      "position": [
+        45,
+        30,
+        0
+      ],
+      "nearestSurfaceFeet": 45.96,
+      "result": "outside; no pulse"
+    },
+    {
+      "tick": 2100,
+      "recipient": "N1:cast1:minion and N1:cast2:minion",
+      "positions": [
+        [
+          30,
+          0,
+          0
+        ],
+        [
+          25,
+          0,
+          0
+        ]
+      ],
+      "ownerMarker": 2100,
+      "sourceMarker": 1800,
+      "result": "both outside; no pulse"
+    },
+    {
+      "tick": 2200,
+      "recipient": "N2 actor",
+      "position": [
+        50,
+        25,
+        0
+      ],
+      "nearestSurfaceFeet": 43.73,
+      "result": "outside; after deadline2110"
+    },
+    {
+      "tick": 2200,
+      "recipient": "N2:cast1:minion and N2:cast2:minion",
+      "result": "after Mental Binding/branch deadline2110; no pulse in scope"
+    }
+  ],
+  "branchSettlements": [
+    {
+      "tick": 400,
+      "recipient": "N2:minions",
+      "result": "both outside; no pulse"
+    },
+    {
+      "source": "A:cast1:body1",
+      "tick": 600,
+      "lastMarker": 600,
+      "nextMarker": 1200,
+      "immediatePulse": false
+    },
+    {
+      "tick": 700,
+      "recipient": "B",
+      "sourceMarker": 600,
+      "nearestSurfaceFeet": 2.5,
+      "damageDice": [
+        3,
+        3
+      ],
+      "rawDamage": 6,
+      "save": "CON17+2=19 vs DC19 success",
+      "damageAfterSave": 3,
+      "HP": "86->83",
+      "key": "B:600"
+    },
+    {
+      "tick": 1000,
+      "recipient": "N2:cast1:minion",
+      "sourceMarker": 600,
+      "nearestSurfaceFeet": 7.5,
+      "damageDice": [
+        2,
+        4
+      ],
+      "rawDamage": 6,
+      "save": "CON11+7=18 vs DC19 fail",
+      "damageAfterSave": 6,
+      "HP": "61->55",
+      "key": "N2:cast1:minion:600"
+    },
+    {
+      "source": "A:cast1:body1",
+      "tick": 1200,
+      "lastMarker": 1200,
+      "nextMarker": 1800,
+      "immediatePulse": false
+    },
+    {
+      "tick": 1600,
+      "recipient": "N2:cast1:minion",
+      "sourceMarker": 1200,
+      "nearestSurfaceFeet": 7.5,
+      "damageDice": [
+        3,
+        5
+      ],
+      "rawDamage": 8,
+      "save": "CON12+7=19 vs DC19 success",
+      "damageAfterSave": 4,
+      "HP": "55->51",
+      "key": "N2:cast1:minion:1200"
+    },
+    {
+      "source": "A:cast1:body1",
+      "tick": 1800,
+      "lastMarker": 1800,
+      "nextMarker": 2400,
+      "immediatePulse": false
+    }
+  ],
+  "geometryAudit": [
+    {
+      "tick": 700,
+      "route": [
+        [
+          30,
+          -20,
+          0
+        ],
+        [
+          30,
+          -10,
+          0
+        ],
+        [
+          40,
+          -10,
+          0
+        ]
+      ],
+      "segmentsFeet": [
+        10,
+        10
+      ],
+      "totalFeet": 20,
+      "walk": 30,
+      "endpointNearestSurfaceFeet": 12.747548783981962,
+      "outside10ft": true,
+      "supported": true
+    }
+  ],
+  "sourceRule": "Geometry uses the explicit branch-local centerXY/feetZ AABB convention. B pulses at700 then takes the clear20ft route outside. N2:cast1:minion Zombie at[35,-20] is7.5ft from the Avatar nearest surface at owner markers1000 and1600; both conditional pulses are settled. Every other retained actor/companion marker through2110 is checked and outside. No attached phase pulses."
+}

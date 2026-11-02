@@ -1,0 +1,367 @@
+{
+  "casts": [
+    {
+      "id": "N1:mental-binding:1",
+      "tick": 310,
+      "status": "committed",
+      "RP": "56->52",
+      "Action": "1->0",
+      "Dissonance": "2->2",
+      "Refrain": "1->0",
+      "firstDistinctPreparedFamily": true,
+      "concentrationBeforeResponse": true
+    },
+    {
+      "id": "N1:mental-binding:1",
+      "tick": 310,
+      "status": "resolved",
+      "deadline": 2110,
+      "costRefunded": false,
+      "concentration": "N1:mental-binding:1"
+    },
+    {
+      "tick": 2110,
+      "source": "N1:mental-binding:1",
+      "status": "expired"
+    }
+  ],
+  "counterspell": [
+    {
+      "tick": 310,
+      "pendingCast": "N1:mental-binding:1",
+      "responses": [
+        {
+          "actor": "A",
+          "distanceFeet": 54.08,
+          "eligible": true,
+          "response": "declined",
+          "ReactionSpent": false,
+          "RPSpent": 0,
+          "rechargeChanged": false,
+          "roll": null
+        },
+        {
+          "actor": "B",
+          "distanceFeet": 52.2,
+          "eligible": true,
+          "response": "declined",
+          "ReactionSpent": false,
+          "RPSpent": 0,
+          "rechargeChanged": false,
+          "roll": null
+        },
+        {
+          "actor": "C",
+          "distanceFeet": 35,
+          "eligible": true,
+          "response": "declined",
+          "ReactionSpent": false,
+          "RPSpent": 0,
+          "rechargeChanged": false,
+          "roll": null
+        },
+        {
+          "actor": "N2",
+          "distanceFeet": 7.07,
+          "eligible": true,
+          "response": "declined",
+          "ReactionSpent": false,
+          "RPSpent": 0,
+          "rechargeChanged": false,
+          "roll": null
+        }
+      ],
+      "selfCounter": "N1 no attempt; eligibility unadjudicated",
+      "prospectiveDC": 24
+    }
+  ],
+  "orders": [
+    {
+      "id": "order:2",
+      "issued": 310,
+      "designated": 510,
+      "expires": 510,
+      "owner": "A",
+      "controller": "F",
+      "target": "N1",
+      "command": "Approach",
+      "from": [
+        45,
+        0,
+        0
+      ],
+      "to": [
+        45,
+        10,
+        0
+      ],
+      "distanceFeet": 10,
+      "status": "pending",
+      "competesWith": "relay:3"
+    },
+    {
+      "tick": 510,
+      "winner": "relay:3",
+      "loser": "order:2",
+      "loserStatus": "expired-unexecuted",
+      "noRefund": true,
+      "noReplay": true,
+      "noReplacement": true,
+      "noBank": true
+    }
+  ],
+  "guards": [
+    {
+      "tick": 390,
+      "spent": "A:N1:cast1:minion:encounter"
+    },
+    {
+      "tick": 490,
+      "spent": "A:N2:cast1:minion:encounter"
+    },
+    {
+      "tick": 510,
+      "spent": "A:F:encounter",
+      "unspent": "N1:F:encounter"
+    }
+  ],
+  "resources": [
+    {
+      "actor": "N1",
+      "tick": 310,
+      "RP": "56->52",
+      "ActionSpent": true,
+      "Dissonance": 2,
+      "Refrain": "1->0"
+    },
+    {
+      "tick": 700,
+      "actor": "B",
+      "movementSpent": 20,
+      "movementAvailable": 30
+    }
+  ],
+  "controlAndFleshAscendant": [
+    {
+      "tick": 390,
+      "owner": "N1",
+      "controlledPair": [
+        "N1:cast1:minion",
+        "N1:cast2:minion"
+      ],
+      "dynamicFlesh": 34,
+      "pairACSaveBonus": "+1",
+      "currentHPUnchanged": true
+    },
+    {
+      "tick": 490,
+      "owner": "N2",
+      "controlledPair": [
+        "N2:cast1:minion",
+        "N2:cast2:minion"
+      ],
+      "dynamicFlesh": 34,
+      "pairACSaveBonus": "+1",
+      "currentHPUnchanged": true
+    }
+  ],
+  "phaseLedger": [
+    {
+      "tick": 390,
+      "minions": [
+        "N1:cast1:minion",
+        "N1:cast2:minion"
+      ],
+      "result": "relay resolves; return; pair bonus recomputed; uncommanded Zombie Dodges with AC13/all saves+7"
+    },
+    {
+      "tick": 490,
+      "minions": [
+        "N2:cast1:minion",
+        "N2:cast2:minion"
+      ],
+      "result": "relay resolves; return; pair bonus recomputed; uncommanded Skeleton Dodges with AC15/all saves+7"
+    },
+    {
+      "tick": 690,
+      "avatar": "A:cast1:body1",
+      "result": "no attack/order; no recipient pulse"
+    },
+    {
+      "tick": 990,
+      "owner": "N1",
+      "minions": [
+        "N1:cast1:minion",
+        "N1:cast2:minion"
+      ],
+      "result": "Dodge; no order; no aura pulse"
+    },
+    {
+      "tick": 1090,
+      "owner": "N2",
+      "minions": [
+        "N2:cast1:minion",
+        "N2:cast2:minion"
+      ],
+      "result": "Dodge; no order; no aura pulse"
+    },
+    {
+      "tick": 1290,
+      "avatar": "A:cast1:body1",
+      "result": "no attack/order; no recipient pulse"
+    },
+    {
+      "tick": 1590,
+      "owner": "N1",
+      "minions": [
+        "N1:cast1:minion",
+        "N1:cast2:minion"
+      ],
+      "result": "Dodge; no order; no aura pulse"
+    },
+    {
+      "tick": 1690,
+      "owner": "N2",
+      "minions": [
+        "N2:cast1:minion",
+        "N2:cast2:minion"
+      ],
+      "result": "Dodge; no order; no aura pulse"
+    },
+    {
+      "tick": 1890,
+      "avatar": "A:cast1:body1",
+      "result": "no attack/order; no recipient pulse"
+    }
+  ],
+  "conditionSavesAndExpiry": [
+    {
+      "tick": 310,
+      "target": "F",
+      "save": {
+        "ability": "WIS",
+        "die": 3,
+        "bonus": 0,
+        "total": 3,
+        "DC": 21,
+        "success": false
+      },
+      "result": "Charmed; concentration persists; recharge set3"
+    },
+    {
+      "tick": 580,
+      "actor": "F",
+      "condition": "Charmed",
+      "save": {
+        "ability": "WIS",
+        "die": 4,
+        "bonus": 0,
+        "total": 4,
+        "DC": 21,
+        "success": false
+      },
+      "result": "failed; condition remains"
+    },
+    {
+      "tick": 1180,
+      "actor": "F",
+      "condition": "Charmed",
+      "save": {
+        "ability": "WIS",
+        "die": 10,
+        "bonus": 0,
+        "total": 10,
+        "DC": 21,
+        "success": false
+      },
+      "result": "failed; condition remains"
+    },
+    {
+      "tick": 1780,
+      "actor": "F",
+      "condition": "Charmed",
+      "save": {
+        "ability": "WIS",
+        "die": 19,
+        "bonus": 0,
+        "total": 19,
+        "DC": 21,
+        "success": false
+      },
+      "result": "failed; condition remains"
+    },
+    {
+      "tick": 2110,
+      "source": "N1:mental-binding:1",
+      "result": "duration expires; Charm/concentration end; no later consequence"
+    }
+  ],
+  "damageAndSaveSettlements": [
+    {
+      "tick": 390,
+      "id": "relay:1",
+      "roll": "12+11=23 vs AC12",
+      "hit": true,
+      "damage": "2+4=6 necrotic",
+      "targetHP": "99->93",
+      "controllerReturns": "N1",
+      "healing": 0
+    },
+    {
+      "tick": 490,
+      "id": "relay:2",
+      "move": "[35,0,0]->[35,-20,0],20ft",
+      "roll": "8+11=19 vs AC12",
+      "hit": true,
+      "damage": "3+4=7 necrotic",
+      "targetHP": "93->86",
+      "controllerReturns": "N2",
+      "healing": 0
+    },
+    {
+      "tick": 510,
+      "selected": "relay:3",
+      "losing": "order:2",
+      "sameOpportunity": true,
+      "roll": "12+3=15 vs AC12 hit",
+      "damage": "d4=2 fire",
+      "targetHP": "104->102",
+      "forceResistanceMitigates": false,
+      "seal": "intact/visible; no Contract-Bound suppression",
+      "ActionSpent": true,
+      "controllerReturns": "F"
+    },
+    {
+      "tick": 1000,
+      "target": "N2:cast1:minion",
+      "source": "A:cast1:body1",
+      "type": "necrotic",
+      "amount": 6
+    },
+    {
+      "tick": 1600,
+      "target": "N2:cast1:minion",
+      "source": "A:cast1:body1",
+      "type": "necrotic",
+      "amount": 4
+    }
+  ],
+  "initialGuardLedger": {
+    "A:1": {
+      "command": true,
+      "offense": true
+    },
+    "N1:1": {
+      "command": false,
+      "offense": true,
+      "reservation": "relay:1"
+    },
+    "N2:1": {
+      "command": false,
+      "offense": true,
+      "reservation": "relay:2"
+    },
+    "hardGuards": []
+  },
+  "guardScope": "Only relay1, relay2 and A:F guards spent; N1:F remains unspent."
+}

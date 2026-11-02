@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "id": "SH333-R01-REPACK03-QUEUE478-DIRECTOR-CONFIRMATION-01",
+  "recordedAtUtc": "2026-11-02T10:03:14Z",
+  "classification": "DIRECTOR_CURRENT_AUTHORITY_CONFIRMATION_NOT_OWNER_ADOPTION_OR_WITNESS",
+  "source": {
+    "service": "ChatGPT",
+    "conversationTitle": "Calibration review part 6",
+    "conversationUrl": "https://chatgpt.com/g/g-p-67f17555a8dc8191a2b5b81e6d8adc12-dungeon-crawler/c/6adc506d-8770-83ea-b64c-0345d9b9b682"
+  },
+  "reviewedMainCommit": "c6d6a3a0e084008fc260dc6096c2b01fd77e67d6",
+  "directorConfirmation": {
+    "decision": "READY_FOR_OWNER_ADOPTION_REMAINS_VALID",
+    "correctionsRequired": false,
+    "successorProposalRequired": false,
+    "currentAuthorityReceipt": {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/summon_avatar_of_decay_r01_witness_2026-11-02/DIRECTOR_READBACK_SH333_R01_REPACK03_QUEUE478_01.json",
+      "sha256": "33f877fcfbdff091a667a514572b96cf3e984616bb15e5f39d45f82388b0d2bd"
+    },
+    "proposal": {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/summon_avatar_of_decay_r01_control_integration_proposal_2026-11-02/OWNER_SH333_R01_CONTROL_INTEGRATION_PROPOSAL_REPACK03_TESTONLY.json",
+      "bytes": 58308,
+      "sha256": "35e602db0b0d8939092c793165a293983bd7d61a7f18f0747a93d94fa1f903e3"
+    },
+    "currentQueue": {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_SPELL_QUEUE_478.json",
+      "bytes": 4320,
+      "sha256": "9342a75e44b35804a0ec10fa7cef319afa12def7462d1286af4be26c95facb54",
+      "applied": 833,
+      "pending": 15,
+      "acceptedUnapplied": 0,
+      "nextIdentity": "summon-avatar-of-decay",
+      "nextBlocker": "SH202-B03"
+    },
+    "sourceBindings": {
+      "declared": 12,
+      "independentlyMatchedAtPriorReadback": 12
+    },
+    "adoptionWording": "Identical in the current-authority reconciliation and prior readiness receipt; preserved exactly in ownerAdoptionWording below.",
+    "afterOwnerAdoption": "No further readiness approval is required before construction. Record adoption and construct only the specified R01 witness through tick2110.",
+    "witnessSubmissionRequirements": [
+      "Exact proposal, adoption and source bindings plus adopted starting-state projection.",
+      "Ordered states and complete cast, control, guard, resource, aura and deadline ledgers.",
+      "Forward/inverse verification restoring the adopted branch start, with validation results."
+    ],
+    "directorReviewAfterSubmission": "Component-sufficiency review remains required. Adoption does not close SH202-B03 or accept/apply Decay."
+  },
+  "ownerAdoptionWording": "I adopt exact SH333-R01 Repack03 proposal SHA-256 35e602db0b0d8939092c793165a293983bd7d61a7f18f0747a93d94fa1f903e3 solely for construction and submission of its bounded hypothetical TEST_ONLY R01 witness. This adopts the specified parent projection, branch-local geometry and support, C position, movement, rolls, response declines, order arbitration and scheduled outcomes through tick2110. Bound source rules, costs, shared guards, clocks and retained histories remain controlling. This does not adopt R02, alter sealed R03/R04, authorize campaign facts, seal evidence, close SH202-B03, accept/apply an identity, or change canon or queue.",
+  "ownerAdoptionStatus": "PENDING_EXPLICIT_USER_RESPONSE",
+  "preservedBoundaries": {
+    "R02": "excluded; separate scope",
+    "R03": "sealed component unchanged",
+    "R04": "sealed component unchanged"
+  },
+  "notClaimed": {
+    "witnessConstructed": false,
+    "witnessSubmitted": false,
+    "sealIssued": false,
+    "blockerClosed": false,
+    "identityAccepted": false,
+    "identityApplied": false,
+    "campaignFactsAsserted": false,
+    "canonicalRulesChanged": false,
+    "queueChanged": false
+  },
+  "nextStep": "Record separate exact owner adoption when received, construct and submit only SH333-R01 TEST_ONLY witness, then await GPT component-sufficiency review."
+}
