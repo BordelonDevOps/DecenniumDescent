@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "id": "DIRECTOR-READBACK-DF218-B02-WITNESS-482-REPACK03-PASS",
+  "recordedAtUtc": "2026-11-02T05:56:45Z",
+  "source": "GPT Director response in Calibration review part 6",
+  "sourceConversation": "https://chatgpt.com/g/g-p-67f17555a8dc8191a2b5b81e6d8adc12-dungeon-crawler/c/6adc506d-8770-83ea-b64c-0345d9b9b682",
+  "classification": "TEST_ONLY_COMPONENT_SUFFICIENCY_READBACK_NOT_IDENTITY_DISPOSITION",
+  "directorDisposition": "PASS_FOR_ADOPTED_TEST_ONLY_COMPONENT_SUFFICIENCY",
+  "reviewed": {
+    "branchId": "DF218-SHELL-B02-R2-PROPOSED",
+    "witnessPath": "docs/audit/2026-10-08/full-game/director-spell-review-129/elemental_shell_b02_witness_482_repack03/DF218_B02_WITNESS_482_REPACK03_TESTONLY.json",
+    "witnessSha256": "33307dba059fd30904f26d12bb3dd2c908f91b5c80d55a6fda599e187792a170",
+    "packetCommit": "b4bf0d4e9c95e69e8f7d811e8f21580fd322f28f"
+  },
+  "findings": [
+    {
+      "id": "B02-482-C01",
+      "disposition": "RESOLVED",
+      "result": "Wizard18 DissonanceLimit is 13 in snapshots 0–15, matching the bound profile."
+    },
+    {
+      "id": "B02-482-C02",
+      "disposition": "RESOLVED",
+      "result": "Both prepared-family fields are elemental-shell in snapshots 8–15. History remains empty before the 3.1 commitment; no B01 history is imported."
+    }
+  ],
+  "independentReplayReadback": {
+    "events": 15,
+    "snapshots": 16,
+    "snapshotHashesVerified": true,
+    "forwardOperations": 141,
+    "inverseOperations": 141,
+    "exactInitialStateRestoration": true,
+    "onlyTwoAuthorizedCorrections": true,
+    "costsTimingDamageAndOutcomesPreserved": true
+  },
+  "scopeDisposition": {
+    "componentSufficient": true,
+    "B02Sealed": false,
+    "B01ComponentSufficient": true,
+    "B01Sealed": false,
+    "blockerClosureIssued": false,
+    "identityDispositionIssued": false,
+    "identityAcceptedOrApplied": false,
+    "canonicalRuleChanged": false,
+    "campaignChange": false,
+    "queueChanged": false,
+    "runtimeUse": false
+  },
+  "queueAuthority": {
+    "id": "CURRENT-SPELL-QUEUE-476-REPACK01",
+    "applied": 831,
+    "pending": 17,
+    "acceptedUnapplied": 0,
+    "firstPendingIdentity": "elemental-shell"
+  }
+}
