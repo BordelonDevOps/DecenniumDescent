@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "id": "CODEX-TRANSCRIBED-IE286-W2-COMPONENT-REVIEW-01",
+  "reviewedAtUtc": "2026-11-02T20:41:35Z",
+  "classification": "GPT_DIRECTOR_COMPONENT_SUFFICIENCY_PASS_NOT_FULL_W2_INTEGRATION_NOT_SEAL_OR_IDENTITY_ACCEPTANCE",
+  "captureMethod": "Transcribed from the rendered GPT Director conversation after the packet review completed.",
+  "sourceConversationUrl": "https://chatgpt.com/g/g-p-67f17555a8dc8191a2b5b81e6d8adc12-dungeon-crawler/c/6adc506d-8770-83ea-b64c-0345d9b9b682",
+  "identity": "reverse-gravity-field",
+  "blockerId": "IE204-B02",
+  "componentId": "IE286-W2",
+  "reviewedCommit": "3317a86c6525e5ee708d1f8cb6767ba89a64a933",
+  "proposalSha256": "4a934f6055546387fe5bc17f81ea6be8b6d623334152729fa721722e255c06e7",
+  "ownerAdoptionSha256": "b782c8692feaf7b758c929c284d458296218139bca097e09f65e29addcf3ea3b",
+  "packetManifestPath": "docs/audit/2026-10-08/full-game/director-spell-review-129/reverse_gravity_ie286_w2_component_tests_2026-11-02/COMPONENT_TEST_PACKET_MANIFEST.json",
+  "packetManifestSha256": "43b0e802aa91511d7d7dacde5648ed556deaff97da9c61aa988fa58273719dd5",
+  "caseSuiteSha256": "214fe23ee7b46bcd0f5187b389ad00429b3cefcd7f2e979c39687e0e54396cf8",
+  "localValidationReportSha256": "fc012a032ee81ec7862cbfe4f084cccd77f7d24b3fe6921ae3dc8bfe9702fbe3",
+  "disposition": "PASS",
+  "passText": "PASS — sufficient as the six adopted TEST_ONLY component tests under R7. No corrections required.",
+  "bindingChecks": {
+    "proposalAdoptionVerifierReportAndManifest": "Exact declared bytes and hashes match.",
+    "ownerAdoptionCommitAncestor": "5400737f6a7edd25673973d10ca0407352296ad4 is an ancestor of reviewed commit 3317a86c6525e5ee708d1f8cb6767ba89a64a933.",
+    "allSixCasePointersResolve": true,
+    "localReport": "29/29 PASS; Director independently recomputed 23 arithmetic/branch assertions and checked binding/scope evidence."
+  },
+  "caseResults": [
+    {
+      "caseId": "IE286-W2-BASE-210-FIRST-TAUT-AND-FALL",
+      "result": "PASS",
+      "finding": "Continuous route totals 50 ft; slack is 40.4 ft; first taut at t=22.04, body z=40.4 and harness z=41.9. Both limits hold. Upward support ends at t=24; the prescribed V0/normal-turn/V1 order yields a 40.4-ft fall and 2d6 formula."
+    },
+    {
+      "caseId": "IE286-W2-ACTIVE-EVENT-RELEASE-AT-23",
+      "result": "PASS",
+      "finding": "One ordinary Action at t=23; only the remaining 10 ft applies before t=24, reaching z=50.4. The distinct 50.4-ft fall uses 2d6. Rope remains support-attached at the release snapshot and target connector stays with target."
+    },
+    {
+      "caseId": "IE286-W2-AFTER-EVENT-RELEASE-BEFORE-V1",
+      "result": "PASS",
+      "finding": "The target uses an actual normal Action before V1. Falling has already begun and is not reset; the fall remains 40.4 ft / 2d6."
+    },
+    {
+      "caseId": "IE286-W2-PROBE-SUPPORT-RELEASE-260",
+      "result": "PASS",
+      "finding": "The support weak link releases; rope remains intact and target-attached. Snapshot retains 260 lb."
+    },
+    {
+      "caseId": "IE286-W2-PROBE-ROPE-OVERLOAD-301",
+      "result": "PASS",
+      "finding": "Both thresholds fail independently; rope disappears, leaving 291 lb. Fixed support hardware and the target harness connector remain."
+    },
+    {
+      "caseId": "IE286-W2-PROBE-POST-TAUT-MASS-CHANGE-310",
+      "result": "PASS",
+      "finding": "Immediate recheck at t=23 after the isolated 100-lb input fails both limits and leaves 300 lb."
+    }
+  ],
+  "propertyAndCustodyFinding": "Rope mass and target connector are counted once; the base landing does not restore the original bight arrangement; release snapshots do not claim later loose-rope motion; isolated threshold probes stop at their decision instants.",
+  "scopeLimit": "This PASS certifies contract-level component checks only. It is not a full reversible integrated witness, rolled damage/HP settlement, actual-source interaction authority, or legal paid-cast evidence.",
+  "fullW2IntegrationRequirements": [
+    "Source-qualified Reverse Gravity procedure, caster acquisition/preparation, and authoritative upward-restraint interaction rule.",
+    "Legal paid-cast evidence for Reverse Gravity and Conjure Rope: resources, components/free hands, actions, class bookkeeping, response windows, commitment/resolution, interruption, and concentration where applicable.",
+    "Integrated branch clocks, including the unchanged Conjure Rope 600-second deadline; actual damage/HP; attachment/property custody; release/failure aftermath; and reversible state records."
+  ],
+  "queueReadback": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_SPELL_QUEUE_479.json",
+    "sha256": "f6245df32958ae5438d08fbd2573f53f60cc70b343ff16d9e78d8cf0dffa804a",
+    "applied": 834,
+    "pending": 14,
+    "acceptedUnapplied": 0,
+    "nextIdentity": "reverse-gravity-field",
+    "blocker": "IE204-B02"
+  },
+  "nonEffects": [
+    "W1 remains PASS and unsealed.",
+    "W2 and IE204-B02 remain HELD.",
+    "No seal, blocker closure, identity acceptance/application, campaign claim, canon/runtime change, or Queue479 change follows."
+  ]
+}
