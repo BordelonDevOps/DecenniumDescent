@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "id": "ELEMENTAL-SHELL-CASTER-SOURCE-QUALIFICATION-467",
+  "classification": "READ_ONLY_CASTER_ACQUISITION_PREPARATION_QUALIFICATION",
+  "status": "CANDIDATE_FOUND_NOT_QUALIFIED_FOR_SHELL_APPLICATION",
+  "createdLocalDate": "2026-11-01",
+  "directorInstructionBasis": {
+    "priorCrossbind466Path": "docs/audit/2026-10-08/full-game/director-spell-review-129/elemental_shell_firepet_crossbind_466/SOURCE_CROSSBIND_PREFLIGHT_466.json",
+    "priorCrossbind466Sha256": "a900ba265fc61b8d4be476963e9c0e2d1af9e08881af14d804d4c7543fb060ff",
+    "director466Status": "PASS_SOURCE_QUALIFICATION_ONLY; no byte/pointer corrections",
+    "nextPermittedAction": "Focused read-only qualification of an existing rank-17-or-higher Shell caster record binding actual acquisition and preparation."
+  },
+  "searchScope": {
+    "profileJsonFilesInspected": 219,
+    "pattern": "rg --files -g *PROFILE*.json -g *profile*.json across the repository",
+    "matchesContainingElementalShellInSpellbookOrLearningOrPreparation": 1,
+    "matchPath": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9defenseform8_reviewed_186/ACTOR_PROFILES.json",
+    "scopeLimit": "This count covers profile-named JSON files only; it is not a global claim that no other record exists."
+  },
+  "sourceBindings": [
+    {
+      "sourcePath": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9defenseform8_reviewed_186/ACTOR_PROFILES.json",
+      "packetPath": "payload/sources/ACTOR_PROFILES.json",
+      "bytes": 81256,
+      "sha256": "05f523187a27ee8d46938b7db9e48ff930782533d2ae23e8da9f0b4ab65e686d",
+      "byteExactCopy": true
+    },
+    {
+      "sourcePath": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+      "packetPath": "payload/sources/wizard.json",
+      "bytes": 100635,
+      "sha256": "8ab2f4f43bcbced418fb266e5bd3216cff491b0c442c16f93438bd3556672c8b",
+      "byteExactCopy": true
+    },
+    {
+      "sourcePath": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9defenseform8_reviewed_186/DIRECTOR_DECISION_186.json",
+      "packetPath": "payload/sources/DIRECTOR_DECISION_186.json",
+      "bytes": 13300,
+      "sha256": "c70983340265b2469bfb3e1717901e315b8475e79904d88796f0cfa75afc55bd",
+      "byteExactCopy": true
+    },
+    {
+      "sourcePath": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9defenseform8_reviewed_186/VALIDATION_SUMMARY.json",
+      "packetPath": "payload/sources/VALIDATION_SUMMARY.json",
+      "bytes": 3721,
+      "sha256": "275b2246530f3b16d3fdf9fa8068ea71eaf7463024532fec019673e716a97d32",
+      "byteExactCopy": true
+    },
+    {
+      "sourcePath": "docs/audit/2026-10-08/full-game/director-spell-review-129/elemental_shell_firepet_crossbind_466/SOURCE_CROSSBIND_PREFLIGHT_466.json",
+      "packetPath": "payload/sources/SOURCE_CROSSBIND_PREFLIGHT_466.json",
+      "bytes": 12265,
+      "sha256": "a900ba265fc61b8d4be476963e9c0e2d1af9e08881af14d804d4c7543fb060ff",
+      "byteExactCopy": true
+    }
+  ],
+  "candidate": {
+    "profilePointer": "/Wizard18",
+    "profileId": "Wizard18",
+    "class": "Wizard",
+    "classLevel": 18,
+    "classLevelMeetsElementalShellMinimum17": true,
+    "ordinaryRepertoirePointer": "/Wizard18/ordinaryRepertoire",
+    "elementalShellInOrdinaryRepertoire": true,
+    "spellbookEntryPointer": "/Wizard18/spellbook/65",
+    "spellbookEntry": {
+      "level": 17,
+      "spellId": "elemental-shell",
+      "rank": 9,
+      "source": "level-up book selection; no claim of prior campaign acquisition"
+    },
+    "acquisitionPointer": "/Wizard18/acquisition",
+    "elementalShellInAcquisitionLedger": false,
+    "preparedCountPointer": "/Wizard18/preparedCount",
+    "preparedCount": 24,
+    "explicitPreparedListPointer": null,
+    "explicitPreparedListPresent": false,
+    "campaignAcquisitionClaim": false,
+    "classification": "Authored Wizard18 profile in reviewed rank9 defense-form source candidate package; profile spellbook explicitly says level-up book selection with no claim of prior campaign acquisition."
+  },
+  "qualificationFinding": {
+    "rankAndSpellbookCandidate": "PRESENT",
+    "actualAcquisitionHistory": "NOT ESTABLISHED",
+    "actualPreparationMembership": "NOT ESTABLISHED",
+    "lawfulShellCastOrApplication": "NOT ESTABLISHED",
+    "why": "The profile meets Wizard class-level minimum and contains an Elemental Shell level-up book-selection row, but the row explicitly disclaims prior campaign acquisition. Its acquisition array contains class-card records rather than this spell, and its preparation data is only preparedCount=24 with no spell-identity list; nothing binds Elemental Shell among the prepared spells. The source candidate is not an actual campaign character or cast record."
+  },
+  "nextEvidenceNeeded": "A source-qualified actor/acquisition record that binds the exact level-up spellbook acquisition or other lawful acquisition path, plus that actor’s actual current prepared spell list explicitly containing Elemental Shell. If only a hypothetical test actor can be supplied, Director should provide a separately scoped TEST_ONLY proposal stating the exact actor, acquisition, and preparation premises for owner review before any cast/witness is constructed.",
+  "decisionBoundary": {
+    "sourceQualificationOnly": true,
+    "actorCreatedOrModified": false,
+    "spellbookModified": false,
+    "spellPrepared": false,
+    "spellCast": false,
+    "sceneOrEncounterConstructed": false,
+    "witnessConstructed": false,
+    "witnessSealed": false,
+    "ElementalShellAcceptedOrApplied": false,
+    "DF218B01": "OPEN",
+    "DF218B02": "OPEN",
+    "Fortress": "HELD under PG200-B06",
+    "queue": {
+      "reviewedApplied": 830,
+      "pending": 18,
+      "acceptedUnapplied": 0
+    }
+  }
+}
