@@ -2319,17 +2319,6 @@
             "stage": "INSTANTANEOUS_RESOLUTION",
             "ropeMaterialized": true,
             "pendingCast": false
-          },
-          {
-            "timeSeconds": 6,
-            "stage": "END_CAST_TURN",
-            "castFlagPreserved": true,
-            "idleReduction": false
-          },
-          {
-            "timeSeconds": 6,
-            "stage": "START_NEXT_TURN",
-            "castFlagReset": false
           }
         ],
         "stateChanges": [
@@ -2447,15 +2436,18 @@
         "subevents": [
           {
             "timeSeconds": 6,
-            "stage": "END_IDLE_TURN",
-            "dissonanceReduction": 1,
-            "flooredCurrent": 0,
-            "lastMatrixFamily": "conjure-rope"
+            "stage": "END_CAST_TURN",
+            "perTurnSpellCastFlag": true,
+            "pendingCast": false,
+            "idleReduction": false,
+            "dissonanceReduction": 0
           },
           {
             "timeSeconds": 6,
             "stage": "START",
-            "perTurnFlagsReset": true
+            "perTurnSpellCastFlag": false,
+            "pendingCast": false,
+            "actionAvailable": true
           },
           {
             "timeSeconds": 12,
@@ -2837,10 +2829,88 @@
                 "event": "START18 resets flags and grants Action before Reverse Gravity commitment."
               }
             ]
+          },
+          {
+            "op": "replace",
+            "path": "/fixture/upperShelfCoilPresent",
+            "from": true,
+            "value": false
+          },
+          {
+            "op": "replace",
+            "path": "/items/rope/positionFeet",
+            "from": [
+              -2.2,
+              0,
+              2.225
+            ],
+            "value": null
+          },
+          {
+            "op": "add",
+            "path": "/items/rope/creationPositionFeet",
+            "value": [
+              -2.2,
+              0,
+              2.225
+            ]
+          },
+          {
+            "op": "add",
+            "path": "/fixture/ropeSetupGeometry",
+            "value": {
+              "id": "TEST_ROPE_SETUP_GEOMETRY_01",
+              "classification": "Immutable setup geometry; not a current rope position or route.",
+              "recordedAtSeconds": 18,
+              "segments": [
+                {
+                  "lengthFeet": 10.017984,
+                  "from": [
+                    0,
+                    0,
+                    1.5
+                  ],
+                  "to": [
+                    0.6,
+                    0,
+                    -8.5
+                  ],
+                  "role": "incoming leader"
+                },
+                {
+                  "lengthFeet": 39.260906,
+                  "from": [
+                    0.6,
+                    0,
+                    -8.5
+                  ],
+                  "to": [
+                    0.6,
+                    0,
+                    -8.5
+                  ],
+                  "role": "loose irregular bights in TEST_LOWER_SLACK_PATCH_01"
+                },
+                {
+                  "lengthFeet": 0.72111,
+                  "from": [
+                    0.6,
+                    0,
+                    -8.5
+                  ],
+                  "to": [
+                    0,
+                    0,
+                    -8.1
+                  ],
+                  "role": "return leader"
+                }
+              ]
+            }
           }
         ],
         "preStateSha256": "70c0f3fa66f8f94e948dfe979bb35d48e0aaf498f67d8386b0701d9d9dca31d7",
-        "postStateSha256": "958dde547168f86f3ec07db4aa93d05dd71754a9995b40a3f437bdf2226b136c",
+        "postStateSha256": "6503a10d62f022b1161ceebf84aea5c9b08055a08f4e3ec9ff51e652eac7dc3b",
         "applied": true
       },
       {
@@ -2876,12 +2946,6 @@
             "pendingCast": false,
             "movementProcedureStarts": true,
             "sourceDuration": "Instantaneous"
-          },
-          {
-            "timeSeconds": 24,
-            "stage": "CAST_TURN_END",
-            "castFlagPreserved": true,
-            "noSecondCommitment": true
           }
         ],
         "stateChanges": [
@@ -3019,8 +3083,8 @@
             ]
           }
         ],
-        "preStateSha256": "958dde547168f86f3ec07db4aa93d05dd71754a9995b40a3f437bdf2226b136c",
-        "postStateSha256": "3b09e77cc5f143adbfb1d980bd140c932109b2ef41fd439ebfcbf2fd690444a4",
+        "preStateSha256": "6503a10d62f022b1161ceebf84aea5c9b08055a08f4e3ec9ff51e652eac7dc3b",
+        "postStateSha256": "6cdd7cdbab36e2d3af1cd6d7bb446f31ce2bf420eee3e03db289e1404ab4be12",
         "applied": true
       },
       {
@@ -3140,10 +3204,146 @@
               "casterVerticalVelocityFeetPerSecond": 10,
               "firstTautAtSeconds": 22.04
             }
+          },
+          {
+            "op": "replace",
+            "path": "/actors/caster/bodyBoundsFeet/z",
+            "from": [
+              0,
+              6
+            ],
+            "value": [
+              40.4,
+              46.4
+            ]
+          },
+          {
+            "op": "replace",
+            "path": "/actors/target/bodyBoundsFeet/z",
+            "from": [
+              0,
+              6
+            ],
+            "value": [
+              40.4,
+              46.4
+            ]
+          },
+          {
+            "op": "replace",
+            "path": "/actors/target/bodyFeet/harnessPosition",
+            "from": [
+              0,
+              0,
+              1.5
+            ],
+            "value": [
+              0,
+              0,
+              41.9
+            ]
+          },
+          {
+            "op": "replace",
+            "path": "/actors/target/harness/sideDRingPositionFeet",
+            "from": [
+              0,
+              0,
+              1.5
+            ],
+            "value": [
+              0,
+              0,
+              41.9
+            ]
+          },
+          {
+            "op": "replace",
+            "path": "/items/rope/attachments/0/positionFeet",
+            "from": [
+              0,
+              0,
+              1.5
+            ],
+            "value": [
+              0,
+              0,
+              41.9
+            ]
+          },
+          {
+            "op": "replace",
+            "path": "/items/rope/routeSegments",
+            "from": [
+              {
+                "lengthFeet": 10.017984,
+                "from": [
+                  0,
+                  0,
+                  1.5
+                ],
+                "to": [
+                  0.6,
+                  0,
+                  -8.5
+                ],
+                "role": "incoming leader"
+              },
+              {
+                "lengthFeet": 39.260906,
+                "from": [
+                  0.6,
+                  0,
+                  -8.5
+                ],
+                "to": [
+                  0.6,
+                  0,
+                  -8.5
+                ],
+                "role": "loose irregular bights in TEST_LOWER_SLACK_PATCH_01"
+              },
+              {
+                "lengthFeet": 0.72111,
+                "from": [
+                  0.6,
+                  0,
+                  -8.5
+                ],
+                "to": [
+                  0,
+                  0,
+                  -8.1
+                ],
+                "role": "return leader"
+              }
+            ],
+            "value": [
+              {
+                "lengthFeet": 50,
+                "from": [
+                  0,
+                  0,
+                  41.9
+                ],
+                "to": [
+                  0,
+                  0,
+                  -8.1
+                ],
+                "role": "adopted taut 50-ft span at first taut"
+              }
+            ]
+          },
+          {
+            "op": "replace",
+            "path": "/items/rope/secondsRemaining",
+            "from": 582,
+            "value": 577.96
           }
         ],
-        "preStateSha256": "3b09e77cc5f143adbfb1d980bd140c932109b2ef41fd439ebfcbf2fd690444a4",
-        "postStateSha256": "fcac9d30866715f7cf8e5e1b67816aa491cdbf15da94ec95aab3cbe677b5be6d",
+        "preStateSha256": "6cdd7cdbab36e2d3af1cd6d7bb446f31ce2bf420eee3e03db289e1404ab4be12",
+        "postStateSha256": "48f2fb3881aa70e771bb127b0332b831de4851b695ab31543ecd4117da7c674a",
         "applied": true
       },
       {
@@ -3328,10 +3528,28 @@
               "fallMarkerSet": true,
               "descentResolved": false
             }
+          },
+          {
+            "op": "replace",
+            "path": "/actors/caster/bodyBoundsFeet/z",
+            "from": [
+              40.4,
+              46.4
+            ],
+            "value": [
+              60,
+              66
+            ]
+          },
+          {
+            "op": "replace",
+            "path": "/items/rope/secondsRemaining",
+            "from": 577.96,
+            "value": 576
           }
         ],
-        "preStateSha256": "fcac9d30866715f7cf8e5e1b67816aa491cdbf15da94ec95aab3cbe677b5be6d",
-        "postStateSha256": "7bc1f9e15d603715b8eb12200d326e1b9e7938f65568a59defcdb747e73d5091",
+        "preStateSha256": "48f2fb3881aa70e771bb127b0332b831de4851b695ab31543ecd4117da7c674a",
+        "postStateSha256": "8088cfa10970b625f3536074943c2719ca4908cb29c5ab3d1560d95dfd8914b3",
         "applied": true
       },
       {
@@ -3399,8 +3617,8 @@
             ]
           }
         ],
-        "preStateSha256": "7bc1f9e15d603715b8eb12200d326e1b9e7938f65568a59defcdb747e73d5091",
-        "postStateSha256": "e48f5c515860c576d1d3b4367d4ed556b2c758f1d0146b689b050ed9c5ea3d2f",
+        "preStateSha256": "8088cfa10970b625f3536074943c2719ca4908cb29c5ab3d1560d95dfd8914b3",
+        "postStateSha256": "ee171aaef238fb5b88fdd4575ea7d7e90ab5b35b9828f12cce9fed67b6bd1ff3",
         "applied": true
       },
       {
@@ -3533,7 +3751,7 @@
           {
             "op": "replace",
             "path": "/items/rope/secondsRemaining",
-            "from": 582,
+            "from": 576,
             "value": 570
           },
           {
@@ -3685,10 +3903,154 @@
               "fallMarkerResolved": true,
               "firstFallingStepResolved": true
             }
+          },
+          {
+            "op": "replace",
+            "path": "/actors/caster/bodyBoundsFeet/z",
+            "from": [
+              60,
+              66
+            ],
+            "value": [
+              0,
+              6
+            ]
+          },
+          {
+            "op": "replace",
+            "path": "/actors/target/bodyBoundsFeet/z",
+            "from": [
+              40.4,
+              46.4
+            ],
+            "value": [
+              0,
+              6
+            ]
+          },
+          {
+            "op": "replace",
+            "path": "/actors/target/bodyFeet/harnessPosition",
+            "from": [
+              0,
+              0,
+              41.9
+            ],
+            "value": [
+              0,
+              0,
+              1.5
+            ]
+          },
+          {
+            "op": "replace",
+            "path": "/actors/target/harness/positionFeet",
+            "from": [
+              0,
+              0,
+              41.9
+            ],
+            "value": [
+              0,
+              0,
+              1.5
+            ]
+          },
+          {
+            "op": "replace",
+            "path": "/actors/target/harness/sideDRingPositionFeet",
+            "from": [
+              0,
+              0,
+              41.9
+            ],
+            "value": [
+              0,
+              0,
+              1.5
+            ]
+          },
+          {
+            "op": "replace",
+            "path": "/items/rope/attachments/0/positionFeet",
+            "from": [
+              0,
+              0,
+              41.9
+            ],
+            "value": [
+              0,
+              0,
+              1.5
+            ]
+          },
+          {
+            "op": "replace",
+            "path": "/items/rope/routeSegments",
+            "from": [
+              {
+                "lengthFeet": 50,
+                "from": [
+                  0,
+                  0,
+                  41.9
+                ],
+                "to": [
+                  0,
+                  0,
+                  -8.1
+                ],
+                "role": "adopted taut 50-ft span at first taut"
+              }
+            ],
+            "value": [
+              {
+                "lengthFeet": 10.017984,
+                "from": [
+                  0,
+                  0,
+                  1.5
+                ],
+                "to": [
+                  0.6,
+                  0,
+                  -8.5
+                ],
+                "role": "incoming leader"
+              },
+              {
+                "lengthFeet": 39.260906,
+                "from": [
+                  0.6,
+                  0,
+                  -8.5
+                ],
+                "to": [
+                  0.6,
+                  0,
+                  -8.5
+                ],
+                "role": "loose irregular bights in TEST_LOWER_SLACK_PATCH_01"
+              },
+              {
+                "lengthFeet": 0.72111,
+                "from": [
+                  0.6,
+                  0,
+                  -8.5
+                ],
+                "to": [
+                  0,
+                  0,
+                  -8.1
+                ],
+                "role": "return leader"
+              }
+            ]
           }
         ],
-        "preStateSha256": "e48f5c515860c576d1d3b4367d4ed556b2c758f1d0146b689b050ed9c5ea3d2f",
-        "postStateSha256": "f06d062cbed2422e43a0055a534f7cf884e905b911e364a779dab81ec93bb16e",
+        "preStateSha256": "ee171aaef238fb5b88fdd4575ea7d7e90ab5b35b9828f12cce9fed67b6bd1ff3",
+        "postStateSha256": "fc70aea1ca15ec7a06c30730af6e82375879f80294c468713071f9774693e882",
         "applied": true
       }
     ],
@@ -3736,7 +4098,7 @@
       {
         "id": "ORDER-AND-HISTORY",
         "result": "PASS",
-        "calculation": "Cast turns END at 6 and 24; END precedes same-time next START; idle reductions only at 12, 18, 30; lastMatrixFamily progresses null→conjure-rope→reverse-gravity-field and is preserved between casts."
+        "calculation": "Cast turns END at 6 and 24; END precedes same-time next START; idle reductions occur only at 12, 18 and 30; lastMatrixFamily progresses null→conjure-rope→reverse-gravity-field and is preserved between casts."
       },
       {
         "id": "INVERSE-AUDIT",
@@ -3952,7 +4314,7 @@
             "positionFeet": [
               0,
               0,
-              41.9
+              1.5
             ]
           },
           "gearInventory": [
@@ -4124,11 +4486,7 @@
           "id": "TEST_TETHER_01",
           "type": "Conjure Rope output",
           "status": "intact_slack_at_landing",
-          "positionFeet": [
-            -2.2,
-            0,
-            2.225
-          ],
+          "positionFeet": null,
           "custody": "TEST_FIXTURE_CUSTODIAN_01",
           "lengthFeet": 50,
           "massLb": 10,
@@ -4157,6 +4515,7 @@
           "deadlineSeconds": 600,
           "secondsRemaining": 570,
           "continuous": true,
+          "deployedPathFeet": 50,
           "routeSegments": [
             {
               "lengthFeet": 10.017984,
@@ -4201,8 +4560,12 @@
               "role": "return leader"
             }
           ],
-          "deployedPathFeet": 50,
           "slackFeet": 40.4,
+          "creationPositionFeet": [
+            -2.2,
+            0,
+            2.225
+          ],
           "finalRouteSnapshot": {
             "timeSeconds": 30,
             "lengthFeet": 50,
@@ -4381,7 +4744,56 @@
           0,
           2.225
         ],
-        "upperShelfCoilPresent": true
+        "upperShelfCoilPresent": false,
+        "ropeSetupGeometry": {
+          "id": "TEST_ROPE_SETUP_GEOMETRY_01",
+          "classification": "Immutable setup geometry; not a current rope position or route.",
+          "recordedAtSeconds": 18,
+          "segments": [
+            {
+              "lengthFeet": 10.017984,
+              "from": [
+                0,
+                0,
+                1.5
+              ],
+              "to": [
+                0.6,
+                0,
+                -8.5
+              ],
+              "role": "incoming leader"
+            },
+            {
+              "lengthFeet": 39.260906,
+              "from": [
+                0.6,
+                0,
+                -8.5
+              ],
+              "to": [
+                0.6,
+                0,
+                -8.5
+              ],
+              "role": "loose irregular bights in TEST_LOWER_SLACK_PATCH_01"
+            },
+            {
+              "lengthFeet": 0.72111,
+              "from": [
+                0.6,
+                0,
+                -8.5
+              ],
+              "to": [
+                0,
+                0,
+                -8.1
+              ],
+              "role": "return leader"
+            }
+          ]
+        }
       },
       "spellcasting": {
         "preparedCopies": [
@@ -4663,7 +5075,7 @@
           "S5→S6",
           "S6→S7"
         ],
-        "finalStateSha256": "f06d062cbed2422e43a0055a534f7cf884e905b911e364a779dab81ec93bb16e",
+        "finalStateSha256": "fc70aea1ca15ec7a06c30730af6e82375879f80294c468713071f9774693e882",
         "matchesRecordedTerminalState": true
       },
       "transitionLedger": [
@@ -4675,155 +5087,155 @@
           "stateChanges": [
             {
               "op": "replace",
-              "path": "/actors/caster/hp/conditions",
+              "path": "/items/rope/routeSegments",
               "from": [
-                "Prone"
-              ],
-              "value": []
-            },
-            {
-              "op": "replace",
-              "path": "/actors/caster/hp/current",
-              "from": 49,
-              "value": 60
-            },
-            {
-              "op": "replace",
-              "path": "/actors/caster/positionFeet",
-              "from": [
-                3,
-                -2,
-                0
+                {
+                  "lengthFeet": 10.017984,
+                  "from": [
+                    0,
+                    0,
+                    1.5
+                  ],
+                  "to": [
+                    0.6,
+                    0,
+                    -8.5
+                  ],
+                  "role": "incoming leader"
+                },
+                {
+                  "lengthFeet": 39.260906,
+                  "from": [
+                    0.6,
+                    0,
+                    -8.5
+                  ],
+                  "to": [
+                    0.6,
+                    0,
+                    -8.5
+                  ],
+                  "role": "loose irregular bights in TEST_LOWER_SLACK_PATCH_01"
+                },
+                {
+                  "lengthFeet": 0.72111,
+                  "from": [
+                    0.6,
+                    0,
+                    -8.5
+                  ],
+                  "to": [
+                    0,
+                    0,
+                    -8.1
+                  ],
+                  "role": "return leader"
+                }
               ],
               "value": [
-                3,
-                -2,
-                60
+                {
+                  "lengthFeet": 50,
+                  "from": [
+                    0,
+                    0,
+                    41.9
+                  ],
+                  "to": [
+                    0,
+                    0,
+                    -8.1
+                  ],
+                  "role": "adopted taut 50-ft span at first taut"
+                }
               ]
             },
             {
               "op": "replace",
-              "path": "/actors/target/hp/conditions",
+              "path": "/items/rope/attachments/0/positionFeet",
               "from": [
-                "Prone"
-              ],
-              "value": []
-            },
-            {
-              "op": "replace",
-              "path": "/actors/target/hp/current",
-              "from": 33,
-              "value": 40
-            },
-            {
-              "op": "replace",
-              "path": "/actors/target/positionFeet",
-              "from": [
-                1,
                 0,
-                0
+                0,
+                1.5
               ],
               "value": [
-                1,
                 0,
-                40.4
+                0,
+                41.9
               ]
             },
             {
               "op": "replace",
-              "path": "/clocks/currentSeconds",
-              "from": 30,
-              "value": 24
+              "path": "/actors/target/harness/sideDRingPositionFeet",
+              "from": [
+                0,
+                0,
+                1.5
+              ],
+              "value": [
+                0,
+                0,
+                41.9
+              ]
             },
             {
               "op": "replace",
-              "path": "/clocks/ropeSecondsRemaining",
-              "from": 570,
-              "value": 576
+              "path": "/actors/target/harness/positionFeet",
+              "from": [
+                0,
+                0,
+                1.5
+              ],
+              "value": [
+                0,
+                0,
+                41.9
+              ]
             },
             {
-              "op": "remove",
-              "path": "/items/rope/finalRouteSnapshot",
+              "op": "replace",
+              "path": "/actors/target/bodyFeet/harnessPosition",
+              "from": [
+                0,
+                0,
+                1.5
+              ],
+              "value": [
+                0,
+                0,
+                41.9
+              ]
+            },
+            {
+              "op": "replace",
+              "path": "/actors/target/bodyBoundsFeet/z",
+              "from": [
+                0,
+                6
+              ],
+              "value": [
+                40.4,
+                46.4
+              ]
+            },
+            {
+              "op": "replace",
+              "path": "/actors/caster/bodyBoundsFeet/z",
+              "from": [
+                0,
+                6
+              ],
+              "value": [
+                60,
+                66
+              ]
+            },
+            {
+              "op": "replace",
+              "path": "/timeline/v1",
               "from": {
                 "timeSeconds": 30,
-                "lengthFeet": 50,
-                "dRingToPatchEntryFeet": 10.017984,
-                "looseIrregularBightsFeet": 39.260906,
-                "patchEntryToBracketFeet": 0.72111,
-                "automaticRestowing": false
-              }
-            },
-            {
-              "op": "replace",
-              "path": "/items/rope/secondsRemaining",
-              "from": 570,
-              "value": 582
-            },
-            {
-              "op": "replace",
-              "path": "/items/rope/slackFeet",
-              "from": 40.4,
-              "value": 0
-            },
-            {
-              "op": "replace",
-              "path": "/items/rope/status",
-              "from": "intact_slack_at_landing",
-              "value": "taut_intact"
-            },
-            {
-              "op": "replace",
-              "path": "/stateId",
-              "from": "S7",
-              "value": "S6"
-            },
-            {
-              "op": "replace",
-              "path": "/timeSeconds",
-              "from": 30,
-              "value": 24
-            },
-            {
-              "op": "replace",
-              "path": "/timeline/fallResolution",
-              "from": {
-                "target": {
-                  "distanceFeet": 40.4,
-                  "dice": "2d6",
-                  "faces": [
-                    3,
-                    4
-                  ],
-                  "damage": 7,
-                  "hpBefore": 40,
-                  "hpAfter": 33,
-                  "condition": "Prone",
-                  "landingFeet": [
-                    1,
-                    0,
-                    0
-                  ]
-                },
-                "caster": {
-                  "distanceFeet": 60,
-                  "dice": "3d6",
-                  "faces": [
-                    4,
-                    4,
-                    3
-                  ],
-                  "damage": 11,
-                  "hpBefore": 60,
-                  "hpAfter": 49,
-                  "condition": "Prone",
-                  "landingFeet": [
-                    3,
-                    -2,
-                    0
-                  ]
-                },
-                "damageType": "bludgeoning",
-                "arcaneWardMitigates": false
+                "fallMarkerResolved": true,
+                "firstFallingStepResolved": true
               },
               "value": null
             },
@@ -4901,17 +5313,161 @@
             },
             {
               "op": "replace",
-              "path": "/timeline/v1",
+              "path": "/timeline/fallResolution",
               "from": {
-                "timeSeconds": 30,
-                "fallMarkerResolved": true,
-                "firstFallingStepResolved": true
+                "target": {
+                  "distanceFeet": 40.4,
+                  "dice": "2d6",
+                  "faces": [
+                    3,
+                    4
+                  ],
+                  "damage": 7,
+                  "hpBefore": 40,
+                  "hpAfter": 33,
+                  "condition": "Prone",
+                  "landingFeet": [
+                    1,
+                    0,
+                    0
+                  ]
+                },
+                "caster": {
+                  "distanceFeet": 60,
+                  "dice": "3d6",
+                  "faces": [
+                    4,
+                    4,
+                    3
+                  ],
+                  "damage": 11,
+                  "hpBefore": 60,
+                  "hpAfter": 49,
+                  "condition": "Prone",
+                  "landingFeet": [
+                    3,
+                    -2,
+                    0
+                  ]
+                },
+                "damageType": "bludgeoning",
+                "arcaneWardMitigates": false
               },
               "value": null
+            },
+            {
+              "op": "replace",
+              "path": "/timeSeconds",
+              "from": 30,
+              "value": 24
+            },
+            {
+              "op": "replace",
+              "path": "/stateId",
+              "from": "S7",
+              "value": "S6"
+            },
+            {
+              "op": "replace",
+              "path": "/items/rope/status",
+              "from": "intact_slack_at_landing",
+              "value": "taut_intact"
+            },
+            {
+              "op": "replace",
+              "path": "/items/rope/slackFeet",
+              "from": 40.4,
+              "value": 0
+            },
+            {
+              "op": "replace",
+              "path": "/items/rope/secondsRemaining",
+              "from": 570,
+              "value": 576
+            },
+            {
+              "op": "remove",
+              "path": "/items/rope/finalRouteSnapshot",
+              "from": {
+                "timeSeconds": 30,
+                "lengthFeet": 50,
+                "dRingToPatchEntryFeet": 10.017984,
+                "looseIrregularBightsFeet": 39.260906,
+                "patchEntryToBracketFeet": 0.72111,
+                "automaticRestowing": false
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/clocks/ropeSecondsRemaining",
+              "from": 570,
+              "value": 576
+            },
+            {
+              "op": "replace",
+              "path": "/clocks/currentSeconds",
+              "from": 30,
+              "value": 24
+            },
+            {
+              "op": "replace",
+              "path": "/actors/target/positionFeet",
+              "from": [
+                1,
+                0,
+                0
+              ],
+              "value": [
+                1,
+                0,
+                40.4
+              ]
+            },
+            {
+              "op": "replace",
+              "path": "/actors/target/hp/current",
+              "from": 33,
+              "value": 40
+            },
+            {
+              "op": "replace",
+              "path": "/actors/target/hp/conditions",
+              "from": [
+                "Prone"
+              ],
+              "value": []
+            },
+            {
+              "op": "replace",
+              "path": "/actors/caster/positionFeet",
+              "from": [
+                3,
+                -2,
+                0
+              ],
+              "value": [
+                3,
+                -2,
+                60
+              ]
+            },
+            {
+              "op": "replace",
+              "path": "/actors/caster/hp/current",
+              "from": 49,
+              "value": 60
+            },
+            {
+              "op": "replace",
+              "path": "/actors/caster/hp/conditions",
+              "from": [
+                "Prone"
+              ],
+              "value": []
             }
           ],
-          "preStateSha256": "f06d062cbed2422e43a0055a534f7cf884e905b911e364a779dab81ec93bb16e",
-          "restoredStateSha256": "e48f5c515860c576d1d3b4367d4ed556b2c758f1d0146b689b050ed9c5ea3d2f",
+          "preStateSha256": "fc70aea1ca15ec7a06c30730af6e82375879f80294c468713071f9774693e882",
+          "restoredStateSha256": "ee171aaef238fb5b88fdd4575ea7d7e90ab5b35b9828f12cce9fed67b6bd1ff3",
           "restoredStateId": "S6",
           "applied": true,
           "preconditionsPassed": true,
@@ -4923,12 +5479,6 @@
           "undoesForwardTransition": "S5→S6",
           "operation": "Audit-inverse the exact recorded forward state changes; restore the preceding projected snapshot without claiming in-game refund/healing/rest/history erasure.",
           "stateChanges": [
-            {
-              "op": "replace",
-              "path": "/stateId",
-              "from": "S6",
-              "value": "S5"
-            },
             {
               "op": "replace",
               "path": "/timeline/actionOpportunities",
@@ -4967,10 +5517,16 @@
                 }
               ],
               "value": []
+            },
+            {
+              "op": "replace",
+              "path": "/stateId",
+              "from": "S6",
+              "value": "S5"
             }
           ],
-          "preStateSha256": "e48f5c515860c576d1d3b4367d4ed556b2c758f1d0146b689b050ed9c5ea3d2f",
-          "restoredStateSha256": "7bc1f9e15d603715b8eb12200d326e1b9e7938f65568a59defcdb747e73d5091",
+          "preStateSha256": "ee171aaef238fb5b88fdd4575ea7d7e90ab5b35b9828f12cce9fed67b6bd1ff3",
+          "restoredStateSha256": "8088cfa10970b625f3536074943c2719ca4908cb29c5ab3d1560d95dfd8914b3",
           "restoredStateId": "S5",
           "applied": true,
           "preconditionsPassed": true,
@@ -4984,83 +5540,39 @@
           "stateChanges": [
             {
               "op": "replace",
-              "path": "/actors/caster/actionAvailable",
-              "from": true,
-              "value": false
-            },
-            {
-              "op": "replace",
-              "path": "/actors/caster/perTurnSpellCastFlag",
-              "from": false,
-              "value": true
-            },
-            {
-              "op": "replace",
-              "path": "/actors/caster/positionFeet",
-              "from": [
-                3,
-                -2,
-                60
-              ],
-              "value": [
-                3,
-                -2,
-                40.4
-              ]
-            },
-            {
-              "op": "replace",
-              "path": "/clocks/activeEvent",
-              "from": null,
-              "value": {
-                "id": "TEST_UPWARD_EVENT_01",
-                "active": true,
-                "startsAtSeconds": 18,
-                "endsAtSeconds": 24,
-                "rateFeetPerSecond": 10,
-                "direction": "+z",
-                "distanceFeet": 60,
-                "sourceDuration": "Instantaneous",
-                "movementIsProposedPostResolutionProcedure": true,
-                "targetAffected": true,
-                "casterAffected": true,
-                "tetherObjectMovement": "excluded by branch-only membership rule; passive restraint follows R7"
-              }
-            },
-            {
-              "op": "replace",
-              "path": "/clocks/currentSeconds",
-              "from": 24,
-              "value": 22.04
-            },
-            {
-              "op": "replace",
-              "path": "/clocks/ropeSecondsRemaining",
+              "path": "/items/rope/secondsRemaining",
               "from": 576,
               "value": 577.96
             },
             {
               "op": "replace",
-              "path": "/stateId",
-              "from": "S5",
-              "value": "S4"
+              "path": "/actors/caster/bodyBoundsFeet/z",
+              "from": [
+                60,
+                66
+              ],
+              "value": [
+                40.4,
+                46.4
+              ]
             },
             {
               "op": "replace",
-              "path": "/timeSeconds",
-              "from": 24,
-              "value": 22.04
-            },
-            {
-              "op": "replace",
-              "path": "/timeline/movementEvent/active",
-              "from": false,
-              "value": true
+              "path": "/timeline/v0",
+              "from": {
+                "timeSeconds": 24,
+                "fallMarkerSet": true,
+                "descentResolved": false
+              },
+              "value": null
             },
             {
               "op": "remove",
-              "path": "/timeline/movementEvent/endedAtSeconds",
-              "from": 24
+              "path": "/timeline/unsupportedActors",
+              "from": [
+                "TEST_TARGET_01",
+                "TEST_CASTER_01"
+              ]
             },
             {
               "op": "replace",
@@ -5116,25 +5628,87 @@
             },
             {
               "op": "remove",
-              "path": "/timeline/unsupportedActors",
+              "path": "/timeline/movementEvent/endedAtSeconds",
+              "from": 24
+            },
+            {
+              "op": "replace",
+              "path": "/timeline/movementEvent/active",
+              "from": false,
+              "value": true
+            },
+            {
+              "op": "replace",
+              "path": "/timeSeconds",
+              "from": 24,
+              "value": 22.04
+            },
+            {
+              "op": "replace",
+              "path": "/stateId",
+              "from": "S5",
+              "value": "S4"
+            },
+            {
+              "op": "replace",
+              "path": "/clocks/ropeSecondsRemaining",
+              "from": 576,
+              "value": 577.96
+            },
+            {
+              "op": "replace",
+              "path": "/clocks/currentSeconds",
+              "from": 24,
+              "value": 22.04
+            },
+            {
+              "op": "replace",
+              "path": "/clocks/activeEvent",
+              "from": null,
+              "value": {
+                "id": "TEST_UPWARD_EVENT_01",
+                "active": true,
+                "startsAtSeconds": 18,
+                "endsAtSeconds": 24,
+                "rateFeetPerSecond": 10,
+                "direction": "+z",
+                "distanceFeet": 60,
+                "sourceDuration": "Instantaneous",
+                "movementIsProposedPostResolutionProcedure": true,
+                "targetAffected": true,
+                "casterAffected": true,
+                "tetherObjectMovement": "excluded by branch-only membership rule; passive restraint follows R7"
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/actors/caster/positionFeet",
               "from": [
-                "TEST_TARGET_01",
-                "TEST_CASTER_01"
+                3,
+                -2,
+                60
+              ],
+              "value": [
+                3,
+                -2,
+                40.4
               ]
             },
             {
               "op": "replace",
-              "path": "/timeline/v0",
-              "from": {
-                "timeSeconds": 24,
-                "fallMarkerSet": true,
-                "descentResolved": false
-              },
-              "value": null
+              "path": "/actors/caster/perTurnSpellCastFlag",
+              "from": false,
+              "value": true
+            },
+            {
+              "op": "replace",
+              "path": "/actors/caster/actionAvailable",
+              "from": true,
+              "value": false
             }
           ],
-          "preStateSha256": "7bc1f9e15d603715b8eb12200d326e1b9e7938f65568a59defcdb747e73d5091",
-          "restoredStateSha256": "fcac9d30866715f7cf8e5e1b67816aa491cdbf15da94ec95aab3cbe677b5be6d",
+          "preStateSha256": "8088cfa10970b625f3536074943c2719ca4908cb29c5ab3d1560d95dfd8914b3",
+          "restoredStateSha256": "48f2fb3881aa70e771bb127b0332b831de4851b695ab31543ecd4117da7c674a",
           "restoredStateId": "S4",
           "applied": true,
           "preconditionsPassed": true,
@@ -5148,76 +5722,139 @@
           "stateChanges": [
             {
               "op": "replace",
-              "path": "/actors/caster/positionFeet",
-              "from": [
-                3,
-                -2,
-                40.4
-              ],
-              "value": [
-                3,
-                -2,
-                0
-              ]
-            },
-            {
-              "op": "remove",
-              "path": "/actors/target/harness/positionFeet",
-              "from": [
-                0,
-                0,
-                41.9
-              ]
-            },
-            {
-              "op": "replace",
-              "path": "/actors/target/positionFeet",
-              "from": [
-                1,
-                0,
-                40.4
-              ],
-              "value": [
-                1,
-                0,
-                0
-              ]
-            },
-            {
-              "op": "replace",
-              "path": "/clocks/currentSeconds",
-              "from": 22.04,
-              "value": 18
-            },
-            {
-              "op": "replace",
-              "path": "/clocks/ropeSecondsRemaining",
+              "path": "/items/rope/secondsRemaining",
               "from": 577.96,
               "value": 582
             },
             {
               "op": "replace",
-              "path": "/items/rope/slackFeet",
-              "from": 0,
-              "value": 40.4
+              "path": "/items/rope/routeSegments",
+              "from": [
+                {
+                  "lengthFeet": 50,
+                  "from": [
+                    0,
+                    0,
+                    41.9
+                  ],
+                  "to": [
+                    0,
+                    0,
+                    -8.1
+                  ],
+                  "role": "adopted taut 50-ft span at first taut"
+                }
+              ],
+              "value": [
+                {
+                  "lengthFeet": 10.017984,
+                  "from": [
+                    0,
+                    0,
+                    1.5
+                  ],
+                  "to": [
+                    0.6,
+                    0,
+                    -8.5
+                  ],
+                  "role": "incoming leader"
+                },
+                {
+                  "lengthFeet": 39.260906,
+                  "from": [
+                    0.6,
+                    0,
+                    -8.5
+                  ],
+                  "to": [
+                    0.6,
+                    0,
+                    -8.5
+                  ],
+                  "role": "loose irregular bights in TEST_LOWER_SLACK_PATCH_01"
+                },
+                {
+                  "lengthFeet": 0.72111,
+                  "from": [
+                    0.6,
+                    0,
+                    -8.5
+                  ],
+                  "to": [
+                    0,
+                    0,
+                    -8.1
+                  ],
+                  "role": "return leader"
+                }
+              ]
             },
             {
               "op": "replace",
-              "path": "/items/rope/status",
-              "from": "taut_intact",
-              "value": "deployed_attached_slack"
+              "path": "/items/rope/attachments/0/positionFeet",
+              "from": [
+                0,
+                0,
+                41.9
+              ],
+              "value": [
+                0,
+                0,
+                1.5
+              ]
             },
             {
               "op": "replace",
-              "path": "/stateId",
-              "from": "S4",
-              "value": "S3"
+              "path": "/actors/target/harness/sideDRingPositionFeet",
+              "from": [
+                0,
+                0,
+                41.9
+              ],
+              "value": [
+                0,
+                0,
+                1.5
+              ]
             },
             {
               "op": "replace",
-              "path": "/timeSeconds",
-              "from": 22.04,
-              "value": 18
+              "path": "/actors/target/bodyFeet/harnessPosition",
+              "from": [
+                0,
+                0,
+                41.9
+              ],
+              "value": [
+                0,
+                0,
+                1.5
+              ]
+            },
+            {
+              "op": "replace",
+              "path": "/actors/target/bodyBoundsFeet/z",
+              "from": [
+                40.4,
+                46.4
+              ],
+              "value": [
+                0,
+                6
+              ]
+            },
+            {
+              "op": "replace",
+              "path": "/actors/caster/bodyBoundsFeet/z",
+              "from": [
+                40.4,
+                46.4
+              ],
+              "value": [
+                0,
+                6
+              ]
             },
             {
               "op": "replace",
@@ -5243,10 +5880,83 @@
                 "firstTautAtSeconds": 22.04
               },
               "value": null
+            },
+            {
+              "op": "replace",
+              "path": "/timeSeconds",
+              "from": 22.04,
+              "value": 18
+            },
+            {
+              "op": "replace",
+              "path": "/stateId",
+              "from": "S4",
+              "value": "S3"
+            },
+            {
+              "op": "replace",
+              "path": "/items/rope/status",
+              "from": "taut_intact",
+              "value": "deployed_attached_slack"
+            },
+            {
+              "op": "replace",
+              "path": "/items/rope/slackFeet",
+              "from": 0,
+              "value": 40.4
+            },
+            {
+              "op": "replace",
+              "path": "/clocks/ropeSecondsRemaining",
+              "from": 577.96,
+              "value": 582
+            },
+            {
+              "op": "replace",
+              "path": "/clocks/currentSeconds",
+              "from": 22.04,
+              "value": 18
+            },
+            {
+              "op": "replace",
+              "path": "/actors/target/positionFeet",
+              "from": [
+                1,
+                0,
+                40.4
+              ],
+              "value": [
+                1,
+                0,
+                0
+              ]
+            },
+            {
+              "op": "remove",
+              "path": "/actors/target/harness/positionFeet",
+              "from": [
+                0,
+                0,
+                41.9
+              ]
+            },
+            {
+              "op": "replace",
+              "path": "/actors/caster/positionFeet",
+              "from": [
+                3,
+                -2,
+                40.4
+              ],
+              "value": [
+                3,
+                -2,
+                0
+              ]
             }
           ],
-          "preStateSha256": "fcac9d30866715f7cf8e5e1b67816aa491cdbf15da94ec95aab3cbe677b5be6d",
-          "restoredStateSha256": "3b09e77cc5f143adbfb1d980bd140c932109b2ef41fd439ebfcbf2fd690444a4",
+          "preStateSha256": "48f2fb3881aa70e771bb127b0332b831de4851b695ab31543ecd4117da7c674a",
+          "restoredStateSha256": "6cdd7cdbab36e2d3af1cd6d7bb446f31ce2bf420eee3e03db289e1404ab4be12",
           "restoredStateId": "S3",
           "applied": true,
           "preconditionsPassed": true,
@@ -5259,58 +5969,36 @@
           "operation": "Audit-inverse the exact recorded forward state changes; restore the preceding projected snapshot without claiming in-game refund/healing/rest/history erasure.",
           "stateChanges": [
             {
-              "op": "replace",
-              "path": "/actors/caster/actionAvailable",
-              "from": false,
-              "value": true
-            },
-            {
-              "op": "replace",
-              "path": "/actors/caster/lastMatrixFamily",
-              "from": "reverse-gravity-field",
-              "value": "conjure-rope"
-            },
-            {
-              "op": "replace",
-              "path": "/actors/caster/matrixFamiliesCastThisEncounter",
+              "op": "remove",
+              "path": "/timeline/cast18Subevents",
               "from": [
-                "conjure-rope",
-                "reverse-gravity-field"
-              ],
-              "value": [
-                "conjure-rope"
+                {
+                  "timeSeconds": 18,
+                  "event": "END[12,18] settled before START18."
+                },
+                {
+                  "timeSeconds": 18,
+                  "event": "START18 resets per-turn flags; Action available."
+                },
+                {
+                  "timeSeconds": 18,
+                  "event": "Commit 26 RP once; family history and lastMatrixFamily update; perTurnSpellCastFlag=true; pendingCast=true."
+                },
+                {
+                  "timeSeconds": 18,
+                  "event": "Counterspell window: no attempt; no reaction/cost/recharge change."
+                },
+                {
+                  "timeSeconds": 18,
+                  "event": "Resolve instantaneous spell; clear pendingCast after resolution."
+                }
               ]
             },
             {
               "op": "replace",
-              "path": "/actors/caster/perTurnSpellCastFlag",
-              "from": true,
-              "value": false
-            },
-            {
-              "op": "replace",
-              "path": "/actors/caster/rp/current",
-              "from": 36,
-              "value": 62
-            },
-            {
-              "op": "replace",
-              "path": "/clocks/activeEvent",
-              "from": {
-                "id": "TEST_UPWARD_EVENT_01",
-                "active": true,
-                "startsAtSeconds": 18,
-                "endsAtSeconds": 24,
-                "rateFeetPerSecond": 10,
-                "direction": "+z",
-                "distanceFeet": 60,
-                "sourceDuration": "Instantaneous",
-                "movementIsProposedPostResolutionProcedure": true,
-                "targetAffected": true,
-                "casterAffected": true,
-                "tetherObjectMovement": "excluded by branch-only membership rule; passive restraint follows R7"
-              },
-              "value": null
+              "path": "/stateId",
+              "from": "S3",
+              "value": "S2"
             },
             {
               "op": "replace",
@@ -5361,39 +6049,61 @@
             },
             {
               "op": "replace",
-              "path": "/stateId",
-              "from": "S3",
-              "value": "S2"
+              "path": "/clocks/activeEvent",
+              "from": {
+                "id": "TEST_UPWARD_EVENT_01",
+                "active": true,
+                "startsAtSeconds": 18,
+                "endsAtSeconds": 24,
+                "rateFeetPerSecond": 10,
+                "direction": "+z",
+                "distanceFeet": 60,
+                "sourceDuration": "Instantaneous",
+                "movementIsProposedPostResolutionProcedure": true,
+                "targetAffected": true,
+                "casterAffected": true,
+                "tetherObjectMovement": "excluded by branch-only membership rule; passive restraint follows R7"
+              },
+              "value": null
             },
             {
-              "op": "remove",
-              "path": "/timeline/cast18Subevents",
+              "op": "replace",
+              "path": "/actors/caster/rp/current",
+              "from": 36,
+              "value": 62
+            },
+            {
+              "op": "replace",
+              "path": "/actors/caster/perTurnSpellCastFlag",
+              "from": true,
+              "value": false
+            },
+            {
+              "op": "replace",
+              "path": "/actors/caster/matrixFamiliesCastThisEncounter",
               "from": [
-                {
-                  "timeSeconds": 18,
-                  "event": "END[12,18] settled before START18."
-                },
-                {
-                  "timeSeconds": 18,
-                  "event": "START18 resets per-turn flags; Action available."
-                },
-                {
-                  "timeSeconds": 18,
-                  "event": "Commit 26 RP once; family history and lastMatrixFamily update; perTurnSpellCastFlag=true; pendingCast=true."
-                },
-                {
-                  "timeSeconds": 18,
-                  "event": "Counterspell window: no attempt; no reaction/cost/recharge change."
-                },
-                {
-                  "timeSeconds": 18,
-                  "event": "Resolve instantaneous spell; clear pendingCast after resolution."
-                }
+                "conjure-rope",
+                "reverse-gravity-field"
+              ],
+              "value": [
+                "conjure-rope"
               ]
+            },
+            {
+              "op": "replace",
+              "path": "/actors/caster/lastMatrixFamily",
+              "from": "reverse-gravity-field",
+              "value": "conjure-rope"
+            },
+            {
+              "op": "replace",
+              "path": "/actors/caster/actionAvailable",
+              "from": false,
+              "value": true
             }
           ],
-          "preStateSha256": "3b09e77cc5f143adbfb1d980bd140c932109b2ef41fd439ebfcbf2fd690444a4",
-          "restoredStateSha256": "958dde547168f86f3ec07db4aa93d05dd71754a9995b40a3f437bdf2226b136c",
+          "preStateSha256": "6cdd7cdbab36e2d3af1cd6d7bb446f31ce2bf420eee3e03db289e1404ab4be12",
+          "restoredStateSha256": "6503a10d62f022b1161ceebf84aea5c9b08055a08f4e3ec9ff51e652eac7dc3b",
           "restoredStateId": "S2",
           "applied": true,
           "preconditionsPassed": true,
@@ -5406,150 +6116,175 @@
           "operation": "Audit-inverse the exact recorded forward state changes; restore the preceding projected snapshot without claiming in-game refund/healing/rest/history erasure.",
           "stateChanges": [
             {
-              "op": "replace",
-              "path": "/actors/caster/actionAvailable",
-              "from": true,
-              "value": false
+              "op": "remove",
+              "path": "/fixture/ropeSetupGeometry",
+              "from": {
+                "id": "TEST_ROPE_SETUP_GEOMETRY_01",
+                "classification": "Immutable setup geometry; not a current rope position or route.",
+                "recordedAtSeconds": 18,
+                "segments": [
+                  {
+                    "lengthFeet": 10.017984,
+                    "from": [
+                      0,
+                      0,
+                      1.5
+                    ],
+                    "to": [
+                      0.6,
+                      0,
+                      -8.5
+                    ],
+                    "role": "incoming leader"
+                  },
+                  {
+                    "lengthFeet": 39.260906,
+                    "from": [
+                      0.6,
+                      0,
+                      -8.5
+                    ],
+                    "to": [
+                      0.6,
+                      0,
+                      -8.5
+                    ],
+                    "role": "loose irregular bights in TEST_LOWER_SLACK_PATCH_01"
+                  },
+                  {
+                    "lengthFeet": 0.72111,
+                    "from": [
+                      0.6,
+                      0,
+                      -8.5
+                    ],
+                    "to": [
+                      0,
+                      0,
+                      -8.1
+                    ],
+                    "role": "return leader"
+                  }
+                ]
+              }
+            },
+            {
+              "op": "remove",
+              "path": "/items/rope/creationPositionFeet",
+              "from": [
+                -2.2,
+                0,
+                2.225
+              ]
             },
             {
               "op": "replace",
-              "path": "/actors/caster/perTurnSpellCastFlag",
+              "path": "/items/rope/positionFeet",
+              "from": null,
+              "value": [
+                -2.2,
+                0,
+                2.225
+              ]
+            },
+            {
+              "op": "replace",
+              "path": "/fixture/upperShelfCoilPresent",
               "from": false,
               "value": true
             },
             {
-              "op": "replace",
-              "path": "/actors/handlerA/bodyBoundsFeet/z",
-              "from": [
-                -8.5,
-                -2.5
-              ],
-              "value": [
-                0,
-                6
-              ]
-            },
-            {
-              "op": "replace",
-              "path": "/actors/handlerA/positionFeet",
-              "from": [
-                -1,
-                2,
-                -8.5
-              ],
-              "value": [
-                -1,
-                2,
-                0
-              ]
-            },
-            {
               "op": "remove",
-              "path": "/actors/handlerB/bodyBoundsFeet",
-              "from": {
-                "x": [
-                  -2.35,
-                  -1.65
-                ],
-                "y": [
-                  1.65,
-                  2.35
-                ],
-                "z": [
-                  -8.5,
-                  -2.5
-                ]
-              }
-            },
-            {
-              "op": "remove",
-              "path": "/actors/handlerB/carriedGearBoundsFeet",
-              "from": {
-                "x": [
-                  -2.5,
-                  -1.5
-                ],
-                "y": [
-                  1.5,
-                  2.5
-                ],
-                "z": [
-                  -8.5,
-                  -2.5
-                ]
-              }
-            },
-            {
-              "op": "replace",
-              "path": "/actors/handlerB/positionFeet",
-              "from": [
-                -2,
-                2,
-                -8.5
-              ],
-              "value": [
-                0,
-                1,
-                0
-              ]
-            },
-            {
-              "op": "replace",
-              "path": "/clocks/currentSeconds",
-              "from": 18,
-              "value": 0
-            },
-            {
-              "op": "replace",
-              "path": "/clocks/ropeSecondsRemaining",
-              "from": 582,
-              "value": 600
-            },
-            {
-              "op": "replace",
-              "path": "/fixture/support/assemblyState",
-              "from": "intact_holds",
-              "value": "intact"
-            },
-            {
-              "op": "replace",
-              "path": "/fixture/support/attached",
-              "from": true,
-              "value": false
-            },
-            {
-              "op": "replace",
-              "path": "/fixture/support/currentLoadLb",
-              "from": 210,
-              "value": 0
-            },
-            {
-              "op": "replace",
-              "path": "/items/rope/attachments",
+              "path": "/timeline/turnEvents",
               "from": [
                 {
-                  "to": "TEST_WAIST_HARNESS_01",
-                  "positionFeet": [
-                    0,
-                    0,
-                    1.5
-                  ]
+                  "timeSeconds": 6,
+                  "event": "END cast turn: cast flag remains true; no idle reduction; then START resets flags."
                 },
                 {
-                  "to": "TEST_FIXED_SUPPORT_01",
-                  "positionFeet": [
+                  "timeSeconds": 12,
+                  "event": "END idle interval: one reduction floored at zero; preserve matrix history/last family/Refrain; then START resets flags."
+                },
+                {
+                  "timeSeconds": 18,
+                  "event": "END idle interval: one reduction floored at zero; preserve matrix history/last family/Refrain; settle END before START18."
+                },
+                {
+                  "timeSeconds": 18,
+                  "event": "START18 resets flags and grants Action before Reverse Gravity commitment."
+                }
+              ]
+            },
+            {
+              "op": "replace",
+              "path": "/timeline/setupOperations",
+              "from": [
+                {
+                  "seconds": [
                     0,
-                    0,
-                    -8.1
-                  ]
+                    6
+                  ],
+                  "operation": "R7 supported manual rope pickup, handoff, target D-ring attachment; no powered lift or Rope command."
+                },
+                {
+                  "seconds": [
+                    6,
+                    14
+                  ],
+                  "operation": "R7 supported manual rope payout, specified loose bights and bracket attachment; exact continuous 50-ft path."
+                },
+                {
+                  "seconds": [
+                    14,
+                    15
+                  ],
+                  "operation": "A steps to lower staging bay to clear stair landing."
+                },
+                {
+                  "seconds": [
+                    14,
+                    17.5
+                  ],
+                  "operation": "B uses specified supported upper approach, wait, stair and lower-bay route."
+                },
+                {
+                  "seconds": [
+                    17.5,
+                    18
+                  ],
+                  "operation": "A returns after B clears; both handler envelopes separated and clear of rope/fall paths."
                 }
               ],
               "value": []
             },
             {
+              "op": "replace",
+              "path": "/timeSeconds",
+              "from": 18,
+              "value": 0
+            },
+            {
+              "op": "replace",
+              "path": "/stateId",
+              "from": "S2",
+              "value": "S1"
+            },
+            {
+              "op": "replace",
+              "path": "/items/rope/status",
+              "from": "deployed_attached_slack",
+              "value": "created_coil_on_shelf"
+            },
+            {
               "op": "remove",
-              "path": "/items/rope/deployedPathFeet",
-              "from": 50
+              "path": "/items/rope/slackFeet",
+              "from": 40.4
+            },
+            {
+              "op": "replace",
+              "path": "/items/rope/secondsRemaining",
+              "from": 582,
+              "value": 600
             },
             {
               "op": "remove",
@@ -5600,100 +6335,153 @@
               ]
             },
             {
-              "op": "replace",
-              "path": "/items/rope/secondsRemaining",
-              "from": 582,
-              "value": 600
-            },
-            {
               "op": "remove",
-              "path": "/items/rope/slackFeet",
-              "from": 40.4
+              "path": "/items/rope/deployedPathFeet",
+              "from": 50
             },
             {
               "op": "replace",
-              "path": "/items/rope/status",
-              "from": "deployed_attached_slack",
-              "value": "created_coil_on_shelf"
-            },
-            {
-              "op": "replace",
-              "path": "/stateId",
-              "from": "S2",
-              "value": "S1"
-            },
-            {
-              "op": "replace",
-              "path": "/timeSeconds",
-              "from": 18,
-              "value": 0
-            },
-            {
-              "op": "replace",
-              "path": "/timeline/setupOperations",
+              "path": "/items/rope/attachments",
               "from": [
                 {
-                  "seconds": [
+                  "to": "TEST_WAIST_HARNESS_01",
+                  "positionFeet": [
                     0,
-                    6
-                  ],
-                  "operation": "R7 supported manual rope pickup, handoff, target D-ring attachment; no powered lift or Rope command."
+                    0,
+                    1.5
+                  ]
                 },
                 {
-                  "seconds": [
-                    6,
-                    14
-                  ],
-                  "operation": "R7 supported manual rope payout, specified loose bights and bracket attachment; exact continuous 50-ft path."
-                },
-                {
-                  "seconds": [
-                    14,
-                    15
-                  ],
-                  "operation": "A steps to lower staging bay to clear stair landing."
-                },
-                {
-                  "seconds": [
-                    14,
-                    17.5
-                  ],
-                  "operation": "B uses specified supported upper approach, wait, stair and lower-bay route."
-                },
-                {
-                  "seconds": [
-                    17.5,
-                    18
-                  ],
-                  "operation": "A returns after B clears; both handler envelopes separated and clear of rope/fall paths."
+                  "to": "TEST_FIXED_SUPPORT_01",
+                  "positionFeet": [
+                    0,
+                    0,
+                    -8.1
+                  ]
                 }
               ],
               "value": []
             },
             {
-              "op": "remove",
-              "path": "/timeline/turnEvents",
+              "op": "replace",
+              "path": "/fixture/support/currentLoadLb",
+              "from": 210,
+              "value": 0
+            },
+            {
+              "op": "replace",
+              "path": "/fixture/support/attached",
+              "from": true,
+              "value": false
+            },
+            {
+              "op": "replace",
+              "path": "/fixture/support/assemblyState",
+              "from": "intact_holds",
+              "value": "intact"
+            },
+            {
+              "op": "replace",
+              "path": "/clocks/ropeSecondsRemaining",
+              "from": 582,
+              "value": 600
+            },
+            {
+              "op": "replace",
+              "path": "/clocks/currentSeconds",
+              "from": 18,
+              "value": 0
+            },
+            {
+              "op": "replace",
+              "path": "/actors/handlerB/positionFeet",
               "from": [
-                {
-                  "timeSeconds": 6,
-                  "event": "END cast turn: cast flag remains true; no idle reduction; then START resets flags."
-                },
-                {
-                  "timeSeconds": 12,
-                  "event": "END idle interval: one reduction floored at zero; preserve matrix history/last family/Refrain; then START resets flags."
-                },
-                {
-                  "timeSeconds": 18,
-                  "event": "END idle interval: one reduction floored at zero; preserve matrix history/last family/Refrain; settle END before START18."
-                },
-                {
-                  "timeSeconds": 18,
-                  "event": "START18 resets flags and grants Action before Reverse Gravity commitment."
-                }
+                -2,
+                2,
+                -8.5
+              ],
+              "value": [
+                0,
+                1,
+                0
               ]
+            },
+            {
+              "op": "remove",
+              "path": "/actors/handlerB/carriedGearBoundsFeet",
+              "from": {
+                "x": [
+                  -2.5,
+                  -1.5
+                ],
+                "y": [
+                  1.5,
+                  2.5
+                ],
+                "z": [
+                  -8.5,
+                  -2.5
+                ]
+              }
+            },
+            {
+              "op": "remove",
+              "path": "/actors/handlerB/bodyBoundsFeet",
+              "from": {
+                "x": [
+                  -2.35,
+                  -1.65
+                ],
+                "y": [
+                  1.65,
+                  2.35
+                ],
+                "z": [
+                  -8.5,
+                  -2.5
+                ]
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/actors/handlerA/positionFeet",
+              "from": [
+                -1,
+                2,
+                -8.5
+              ],
+              "value": [
+                -1,
+                2,
+                0
+              ]
+            },
+            {
+              "op": "replace",
+              "path": "/actors/handlerA/bodyBoundsFeet/z",
+              "from": [
+                -8.5,
+                -2.5
+              ],
+              "value": [
+                0,
+                6
+              ]
+            },
+            {
+              "op": "replace",
+              "path": "/actors/caster/perTurnSpellCastFlag",
+              "from": false,
+              "value": true
+            },
+            {
+              "op": "replace",
+              "path": "/actors/caster/actionAvailable",
+              "from": true,
+              "value": false
             }
           ],
-          "preStateSha256": "958dde547168f86f3ec07db4aa93d05dd71754a9995b40a3f437bdf2226b136c",
+          "preStateSha256": "6503a10d62f022b1161ceebf84aea5c9b08055a08f4e3ec9ff51e652eac7dc3b",
           "restoredStateSha256": "70c0f3fa66f8f94e948dfe979bb35d48e0aaf498f67d8386b0701d9d9dca31d7",
           "restoredStateId": "S1",
           "applied": true,
@@ -5708,53 +6496,29 @@
           "stateChanges": [
             {
               "op": "replace",
-              "path": "/actors/caster/actionAvailable",
-              "from": false,
-              "value": true
+              "path": "/stateId",
+              "from": "S1",
+              "value": "S0"
             },
             {
               "op": "replace",
-              "path": "/actors/caster/lastMatrixFamily",
-              "from": "conjure-rope",
-              "value": null
-            },
-            {
-              "op": "replace",
-              "path": "/actors/caster/matrixFamiliesCastThisEncounter",
+              "path": "/spellcasting/castEvents",
               "from": [
-                "conjure-rope"
+                {
+                  "spell": "conjure-rope",
+                  "timeSeconds": 0,
+                  "rpBefore": 64,
+                  "rpCommitted": 2,
+                  "rpAfter": 62,
+                  "actionConsumed": true,
+                  "responseWindow": "closed_no_attempt",
+                  "pendingCastSetAtCommitment": true,
+                  "pendingCastClearedAfterResolution": true,
+                  "resolution": "one continuous rope materialized on the specified shelf",
+                  "refund": false
+                }
               ],
               "value": []
-            },
-            {
-              "op": "replace",
-              "path": "/actors/caster/perTurnSpellCastFlag",
-              "from": true,
-              "value": false
-            },
-            {
-              "op": "replace",
-              "path": "/actors/caster/rp/current",
-              "from": 62,
-              "value": 64
-            },
-            {
-              "op": "replace",
-              "path": "/clocks/ropeExpiresAtSeconds",
-              "from": 600,
-              "value": null
-            },
-            {
-              "op": "replace",
-              "path": "/clocks/ropeSecondsRemaining",
-              "from": 600,
-              "value": null
-            },
-            {
-              "op": "replace",
-              "path": "/fixture/upperShelfCoilPresent",
-              "from": true,
-              "value": false
             },
             {
               "op": "replace",
@@ -5784,29 +6548,53 @@
             },
             {
               "op": "replace",
-              "path": "/spellcasting/castEvents",
+              "path": "/fixture/upperShelfCoilPresent",
+              "from": true,
+              "value": false
+            },
+            {
+              "op": "replace",
+              "path": "/clocks/ropeSecondsRemaining",
+              "from": 600,
+              "value": null
+            },
+            {
+              "op": "replace",
+              "path": "/clocks/ropeExpiresAtSeconds",
+              "from": 600,
+              "value": null
+            },
+            {
+              "op": "replace",
+              "path": "/actors/caster/rp/current",
+              "from": 62,
+              "value": 64
+            },
+            {
+              "op": "replace",
+              "path": "/actors/caster/perTurnSpellCastFlag",
+              "from": true,
+              "value": false
+            },
+            {
+              "op": "replace",
+              "path": "/actors/caster/matrixFamiliesCastThisEncounter",
               "from": [
-                {
-                  "spell": "conjure-rope",
-                  "timeSeconds": 0,
-                  "rpBefore": 64,
-                  "rpCommitted": 2,
-                  "rpAfter": 62,
-                  "actionConsumed": true,
-                  "responseWindow": "closed_no_attempt",
-                  "pendingCastSetAtCommitment": true,
-                  "pendingCastClearedAfterResolution": true,
-                  "resolution": "one continuous rope materialized on the specified shelf",
-                  "refund": false
-                }
+                "conjure-rope"
               ],
               "value": []
             },
             {
               "op": "replace",
-              "path": "/stateId",
-              "from": "S1",
-              "value": "S0"
+              "path": "/actors/caster/lastMatrixFamily",
+              "from": "conjure-rope",
+              "value": null
+            },
+            {
+              "op": "replace",
+              "path": "/actors/caster/actionAvailable",
+              "from": false,
+              "value": true
             }
           ],
           "preStateSha256": "70c0f3fa66f8f94e948dfe979bb35d48e0aaf498f67d8386b0701d9d9dca31d7",
@@ -6499,7 +7287,7 @@
       {
         "stateId": "S2",
         "timeSeconds": 18,
-        "sha256": "958dde547168f86f3ec07db4aa93d05dd71754a9995b40a3f437bdf2226b136c",
+        "sha256": "6503a10d62f022b1161ceebf84aea5c9b08055a08f4e3ec9ff51e652eac7dc3b",
         "caster": {
           "feet": [
             3,
@@ -6548,7 +7336,7 @@
       {
         "stateId": "S3",
         "timeSeconds": 18,
-        "sha256": "3b09e77cc5f143adbfb1d980bd140c932109b2ef41fd439ebfcbf2fd690444a4",
+        "sha256": "6cdd7cdbab36e2d3af1cd6d7bb446f31ce2bf420eee3e03db289e1404ab4be12",
         "caster": {
           "feet": [
             3,
@@ -6597,7 +7385,7 @@
       {
         "stateId": "S4",
         "timeSeconds": 22.04,
-        "sha256": "fcac9d30866715f7cf8e5e1b67816aa491cdbf15da94ec95aab3cbe677b5be6d",
+        "sha256": "48f2fb3881aa70e771bb127b0332b831de4851b695ab31543ecd4117da7c674a",
         "caster": {
           "feet": [
             3,
@@ -6634,7 +7422,7 @@
         "rope": {
           "status": "taut_intact",
           "slackFeet": 0,
-          "secondsRemaining": 582,
+          "secondsRemaining": 577.96,
           "attached": true
         },
         "supportLoadLb": 210,
@@ -6646,7 +7434,7 @@
       {
         "stateId": "S5",
         "timeSeconds": 24,
-        "sha256": "7bc1f9e15d603715b8eb12200d326e1b9e7938f65568a59defcdb747e73d5091",
+        "sha256": "8088cfa10970b625f3536074943c2719ca4908cb29c5ab3d1560d95dfd8914b3",
         "caster": {
           "feet": [
             3,
@@ -6683,7 +7471,7 @@
         "rope": {
           "status": "taut_intact",
           "slackFeet": 0,
-          "secondsRemaining": 582,
+          "secondsRemaining": 576,
           "attached": true
         },
         "supportLoadLb": 210,
@@ -6699,7 +7487,7 @@
       {
         "stateId": "S6",
         "timeSeconds": 24,
-        "sha256": "e48f5c515860c576d1d3b4367d4ed556b2c758f1d0146b689b050ed9c5ea3d2f",
+        "sha256": "ee171aaef238fb5b88fdd4575ea7d7e90ab5b35b9828f12cce9fed67b6bd1ff3",
         "caster": {
           "feet": [
             3,
@@ -6736,7 +7524,7 @@
         "rope": {
           "status": "taut_intact",
           "slackFeet": 0,
-          "secondsRemaining": 582,
+          "secondsRemaining": 576,
           "attached": true
         },
         "supportLoadLb": 210,
@@ -6752,7 +7540,7 @@
       {
         "stateId": "S7",
         "timeSeconds": 30,
-        "sha256": "f06d062cbed2422e43a0055a534f7cf884e905b911e364a779dab81ec93bb16e",
+        "sha256": "fc70aea1ca15ec7a06c30730af6e82375879f80294c468713071f9774693e882",
         "caster": {
           "feet": [
             3,
@@ -6835,12 +7623,12 @@
     "encoding": "UTF-8",
     "lineEndings": "LF"
   },
-  "documentRevision": 2,
-  "revisionNote": "Addresses GPT Director witness correction W2-INTEGRATED-R1-C01 within the exact existing owner adoption. It replaces the descriptive S0 and forward narrative with concrete state and applied state patches; records seven actual inverse operations in reverse order; executes their preconditions; and verifies the restored projected state against S0.",
+  "documentRevision": 3,
+  "revisionNote": "Addresses GPT Director corrections W2-INTEGRATED-R1-C02 and C03 within the exact existing owner adoption. It records the cast-turn END at t=6 once, removes the premature t=24 END, synchronizes current actor bounds, target harness endpoints, rope clock and taut/slack route geometry, and regenerates and executes all forward/inverse state patches, checkpoints and hashes.",
   "supersedes": {
     "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/reverse_gravity_ie286_w2_integrated_test_proposal_2026-11-02/IE286_W2_INTEGRATED_TESTONLY_R1.json",
-    "priorCommit": "2a83f981c91850ba8b63e021f7269078a9733fec",
-    "priorSha256": "cbc0a580478d938310a15185d9cafae49034baf5d4d2371b971eff9f48633d21",
-    "note": "Same adopted witness ID and branch; this successor corrects the evidence record without changing premises or adoption scope."
+    "priorCommit": "558bb909a34a407bfd69bfa21c1ff6ee901a7e94",
+    "priorSha256": "990734a879ef64eeb1663b7b950bf33c9abc63a435d548cb6cd1d1cfccdf5f73",
+    "note": "Same adopted witness ID and branch; this successor corrects C02/C03 within the existing owner adoption, with no new premises or adoption scope."
   }
 }
