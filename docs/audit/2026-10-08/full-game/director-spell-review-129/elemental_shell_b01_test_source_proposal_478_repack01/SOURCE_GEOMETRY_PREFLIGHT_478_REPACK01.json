@@ -1,0 +1,86 @@
+{
+  "coordinateConvention": "feet; x east, y north, z up; axis-aligned closed occupied bounds; floor top is z=0",
+  "bearerBoundsFeet": {
+    "x": [
+      -2.5,
+      2.5
+    ],
+    "y": [
+      -2.5,
+      2.5
+    ],
+    "z": [
+      0,
+      6
+    ]
+  },
+  "focusBoundsFeet": {
+    "x": [
+      -2.75,
+      -2.5
+    ],
+    "y": [
+      -0.25,
+      0.25
+    ],
+    "z": [
+      3,
+      4
+    ]
+  },
+  "exposureVolumeFeet": {
+    "x": [
+      -3,
+      3
+    ],
+    "y": [
+      -3,
+      3
+    ],
+    "z": [
+      0,
+      6.1
+    ]
+  },
+  "groundSupport": {
+    "id": "B01-GROUND-01",
+    "kind": "new bounded static test support plane",
+    "topZFeet": 0,
+    "boundsFeet": {
+      "x": [
+        -10,
+        10
+      ],
+      "y": [
+        -10,
+        10
+      ]
+    },
+    "sourceOrCampaignLocationClaimed": false
+  },
+  "checks": {
+    "bearerWhollyInsideExposureVolume": true,
+    "focusWhollyInsideExposureVolume": true,
+    "bearerBottomExactlyOnSupportedFloor": true,
+    "supportPatchCoversBearerFootprint": true,
+    "noObstacleOrOccluderBetweenSourceVolumeAndBearer": true,
+    "exposureVolumeDoesNotCreateAnActorOrDealer": true
+  },
+  "timeChecks": {
+    "commitAfterCastStart": true,
+    "manifestationAfterCommit": true,
+    "sourceEventAfterManifestation": true,
+    "sourceEventBeforeDeadline": true,
+    "castRPArithmetic": "68 - 26 = 42"
+  },
+  "settlementChecks": {
+    "oneNonNullFireComponentOnly": true,
+    "noOtherEligibleMitigation": true,
+    "ShellPreventsSeven": true,
+    "dealerlessEventHasNoReflectionRecipient": true,
+    "noReflectedDamagePacketOrNominalRoot": true
+  },
+  "provenance": "All geometry, source existence/behavior, actor current state, focus custody, timing, and result values in this preflight are proposed TEST_ONLY inputs, not recovered facts.",
+  "proposalPath": "docs/audit/2026-10-08/full-game/director-spell-review-129/elemental_shell_b01_test_source_proposal_478_repack01/OWNER_DF218_B01_TEST_SOURCE_PROPOSAL_478_REPACK01_TESTONLY.json",
+  "proposalSha256": "e00c3c8fad96883b6fe1d7ac07e1ed07f4b2f7b2f275dcee1853ce30b576ea69"
+}
