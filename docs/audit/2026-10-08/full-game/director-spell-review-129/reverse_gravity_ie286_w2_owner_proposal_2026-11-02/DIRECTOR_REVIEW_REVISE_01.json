@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "id": "DIRECTOR-IE286-W2-UPWARD-LOAD-PROPOSAL-REVIEW-01",
+  "reviewedAtUtc": "2026-11-02",
+  "classification": "GPT_DIRECTOR_REVIEW_REVISE_NOT_OWNER_ADOPTION_NOT_WITNESS",
+  "identity": "reverse-gravity-field",
+  "blockerId": "IE204-B02",
+  "witnessId": "IE286-W2",
+  "reviewedCommit": "8cc5af98b19a829ccd6ce5bb9ac524971dc6ea35",
+  "reviewedProposalPath": "docs/audit/2026-10-08/full-game/director-spell-review-129/reverse_gravity_ie286_w2_owner_proposal_2026-11-02/OWNER_PROPOSAL_IE286_W2_UPWARD_LOAD_RULE_01.json",
+  "reviewedProposalBytes": 12244,
+  "reviewedProposalSha256": "8adadbd925cacd55fb7b87833e6772caa2b4e292763eb89528bc29e18bfeb18f",
+  "disposition": "REVISE",
+  "readyForOwnerAdoption": false,
+  "sourceBindingCheck": "All five source bindings, declared pointers, and Queue479 binding match.",
+  "arithmeticAssessment": "180 + 20 + 10 = 210 lb; below both limits. 50 - 10 = 40 ft slack, leaving 20 ft prevented displacement. The explicitly new quasi-static convention is suitable for further TEST_ONLY review but does not establish an existing source rule.",
+  "requiredCorrections": [
+    {
+      "id": "W2-P01-C01",
+      "topic": "endpoint and release",
+      "pointers": [
+        "/proposedTestOnlyRule/fixture/movement",
+        "/proposedTestOnlyRule/expectedSettlement/fall",
+        "/proposedTestOnlyRule/releaseAndFailure"
+      ],
+      "requirement": "Distinguish completion of the displacement event from termination of the upward effect. A tether anchored below the target cannot alone keep it suspended after upward support ends. Specify the taut-sample time/order and whether upward support remains active at t=24. If it ends, settle downward movement/fall and landing; if it remains, give its bounded duration and later ending rule. Release/failure must distinguish upward effect still active from upward effect ended, including release actor/action. The bound rope operational limitations require ordinary Falling when support is removed."
+    },
+    {
+      "id": "W2-P01-C02",
+      "topic": "lawful deployment geometry",
+      "pointers": [
+        "/proposedTestOnlyRule/fixture/caster/cast",
+        "/proposedTestOnlyRule/fixture/attachmentSetup",
+        "/proposedTestOnlyRule/fixture/tether"
+      ],
+      "requirement": "Supply caster/handler positions, perceived unoccupied creation space, supporting surfaces, endpoint access, and the actual deployment sequence. Identify manual operations versus rope commands. Conjure Rope initially creates a coil; commands permit supported slithering up to 20 ft and tying within 5 ft of a rope portion, not flight or levitation. Define where the 40 ft slack lies and effective working length after attachment. Confirm body/cargo/rope clearance through the 40 ft ascent. A straight 10 ft endpoint distance alone does not establish this setup."
+    },
+    {
+      "id": "W2-P01-C03",
+      "topic": "complete load path",
+      "pointers": [
+        "/proposedTestOnlyRule/fixture/support",
+        "/proposedTestOnlyRule/fixture/target",
+        "/proposedTestOnlyRule/fixture/load"
+      ],
+      "requirement": "Include both end connections and the waist harness in the proposed load-bearing assembly. State their TEST_ONLY capacities and failure treatment, or expressly include them within the 250 lb assembly limit. Identify harness custody/permission and confirm its mass is already included in the 20 lb gear total, with the 5 lb satchel counted once. The support rating alone does not establish the harness connection capacity."
+    }
+  ],
+  "additionalRequirements": [
+    "Preserve the existing immediate rope-overload rule; the first-taut sample cannot exempt later applicable load changes.",
+    "Before full W2 integration, bind the retained Reverse Gravity procedure and legal paid application; provide explicit synthetic caster profiles with source-backed acquisition/preparation, current RP, components, actions, class bookkeeping, and interruption outcomes for both spells. Preserve Conjure Rope's own 600-second deadline. A generic qualified/prepared stipulation and rpPaid:2 are not a complete cast history.",
+    "A 210 lb holding branch alone does not demonstrate the proposed failure/release outcomes."
+  ],
+  "nonEffects": [
+    "No witness constructed, seal issued, blocker closed, or identity accepted/applied.",
+    "No canon/runtime or Queue479 mutation.",
+    "W1 PASS remains separate and unsealed."
+  ],
+  "queueReadback": {
+    "applied": 834,
+    "pending": 14,
+    "acceptedUnapplied": 0,
+    "nextIdentity": "reverse-gravity-field",
+    "blocker": "IE204-B02"
+  }
+}
