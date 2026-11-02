@@ -3,12 +3,12 @@
   "status": "PARTIAL-AUTHORED-REVIEW-CATALOG",
   "scope": "Discovery index for the complete authored procedures; read the whole referenced card and shared rules. This index never grants acquisition or runtime implementation. Preserved source catalog labels describe that older representation; this index records current authored review coverage.",
   "authoredCounts": {
-    "reviewed": 830,
-    "pending": 18
+    "reviewed": 831,
+    "pending": 17
   },
   "representationCounts": {
     "preservedLegacyOperationalRecords": 276,
-    "completeReviewedStandaloneProcedures": 554
+    "completeReviewedStandaloneProcedures": 555
   },
   "sourceCatalogSha256": "f52cf6a4a4673897615a74c7c67dcba798c431362d4357e71ee552cc7c5d31f8",
   "standaloneEnvelopeSha256": "506393b1131e3ed099effbe55b05d6b00a5193e503b02f065a5f84751a2955fe",
@@ -6305,12 +6305,97 @@
     {
       "id": "conjure-demiplane-fortress",
       "name": "Conjure Demiplane Fortress",
-      "authoredStatus": "pending-authored-procedure",
-      "procedureFile": "catalog.json",
-      "procedurePointer": null,
-      "wholeCardPointer": "/spells/198",
+      "authoredStatus": "reviewed-authored-operational-playtest",
+      "procedureFile": "../spell_candidates/rank9fortress_static_reviewed_475/MODEL.json",
+      "procedurePointer": "/spells/0/procedure",
+      "wholeCardPointer": "/spells/0",
       "sourceStatus": "blocked-pending-operational-review",
-      "priorCatalogSelectionStatusUnchanged": true
+      "priorCatalogSelectionStatusUnchanged": true,
+      "procedureTextPointer": "/spells/0/procedure/procedureContent",
+      "wholeCardIdField": "id",
+      "sourceCatalogWholeCardPointer": "/spells/198",
+      "directorProcedureRecordPointer": "/spells/0/directorProcedureRecord",
+      "sharedRulesPointer": "/sharedRequirements",
+      "spellLocalRequirementsPointer": "/spells/0/procedure",
+      "runtimeSelectionEnabled": false,
+      "completeEvidenceRoot": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9fortress_static_reviewed_475",
+      "completeEnvelopeBinding": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9fortress_static_reviewed_475/MODEL.json",
+        "bytes": 143492,
+        "sha256": "801df16ef2a61c4faa58c4092be69072322c5175d245b6ea6f6ebcb0b891fd5f",
+        "crc32": "ca115896"
+      },
+      "caseEvidenceBindings": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9fortress_static_reviewed_475/CASE_COVERAGE.json",
+        "bytes": 8265,
+        "sha256": "24b68579a46aa583386d8cfc99768a9412d847e88dd40b12bd19654658284a74",
+        "crc32": "f04fa670"
+      },
+      "candidatePackageManifestBinding": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9fortress_static_reviewed_475/CANDIDATE_PACKAGE_MANIFEST.json",
+        "bytes": 2221,
+        "sha256": "336f388185cb67c0e608948b3dc93752c533c12fe50ed9e8de8e5e606d10c605",
+        "crc32": "0c62591b"
+      },
+      "authoredAcceptanceReceipt": {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_static_acceptance_475/DIRECTOR_ACCEPTANCE_475.json",
+        "bytes": 5299,
+        "sha256": "c89bb76b3756b9471bed1b090a34f3fc2f530de4af2ea886dd10b3543e28dbd2",
+        "crc32": "28537b4d"
+      },
+      "authoredApplicationReceipt": {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_static_acceptance_475/APPLICATION_475.json",
+        "bytes": 4505,
+        "sha256": "35fe84ed1f161a8e75c53fbbcd46e4c9190984131c2edf9e08972d0f069a0218",
+        "crc32": "7124627b"
+      },
+      "sourceProcedureBinding": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9planargates5_reviewed_200/procedures/conjure-demiplane-fortress.json",
+        "bytes": 37366,
+        "sha256": "bf8b80fcb3f819ad549b94bef7ef9227cd8a190962a70392dbaa0fb6237b4145",
+        "crc32": "47a50850"
+      },
+      "historicalCoverageBinding": {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w01_w13_coverage_readback_429/FORTRESS_W01_W13_COVERAGE_READBACK_429_BINDING_RECONCILED.json",
+        "bytes": 76037,
+        "sha256": "3b52ab2479da5be1b61e4ff192a1326a870c57f55a0120bc8480f524b8dbc647",
+        "crc32": "7fa4cc76"
+      },
+      "coverageReconciliationBinding": {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w01_w13_coverage_readback_473/FORTRESS_W01_W13_COVERAGE_RECONCILIATION_473.json",
+        "bytes": 8700,
+        "sha256": "d110203b65fb697e8a0574c8a4bccae9b0654423b8662044632c7174526c2306",
+        "crc32": "575cd292"
+      },
+      "directorReadbackBinding": {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_static_acceptance_475/DIRECTOR_READBACK_474.json",
+        "bytes": 4106,
+        "sha256": "5b6cc776f2945c439b01c8475c28a2481df420df4eb37e78d933820af2939e1c",
+        "crc32": "3f7fc56c"
+      },
+      "reviewId": "CONJURE-DEMIPLANE-FORTRESS-STATIC-APPLICATION-475",
+      "accepted": true,
+      "applied": true,
+      "closedBlockerIds": [
+        "PG200-B06"
+      ],
+      "retainedQualificationIds": [
+        "PG200-H01",
+        "PG200-H02",
+        "PG200-H03",
+        "PG200-H04",
+        "PG200-H05",
+        "PG200-H06",
+        "PG200-H07",
+        "PG200-H08",
+        "PG200-H09",
+        "PG200-H10"
+      ],
+      "retainedQualifications": [
+        "Static authored-procedure review only. Preserve the original unresolved procedure and blocked native card; runtime, implementation, human-play, balance, cosmology, domain and release gates stay closed."
+      ],
+      "historicalCandidateLabelsPreserved": true,
+      "applicationScope": "Fortress authored-review index only; no native catalog/source procedure or runtime promotion."
     },
     {
       "id": "resonance-nexus-supreme",
@@ -35645,6 +35730,77 @@
       },
       "runtimeSelectionEnabled": false,
       "scope": "ONE_EXACT_STATIC_AUTHORED_PROCEDURE_DF218_B04_RUNTIME_DISABLED"
+    },
+    {
+      "file": "../spell_candidates/rank9fortress_static_reviewed_475/MODEL.json",
+      "binding": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9fortress_static_reviewed_475/MODEL.json",
+        "bytes": 143492,
+        "sha256": "801df16ef2a61c4faa58c4092be69072322c5175d245b6ea6f6ebcb0b891fd5f",
+        "crc32": "ca115896"
+      },
+      "reviewId": "CONJURE-DEMIPLANE-FORTRESS-STATIC-AUTHORED-ACCEPTANCE-475",
+      "acceptedIds": [
+        "conjure-demiplane-fortress"
+      ],
+      "unacceptedIds": [],
+      "excludedPendingIds": [
+        "alignment-ascension",
+        "alignment-perfection",
+        "astral-projection",
+        "collapse-timeline",
+        "corruption-purification",
+        "divine-intervention-greater",
+        "elemental-shell",
+        "eternal-prophecy",
+        "faction-incarnate",
+        "faction-omniscience-supreme",
+        "faction-perfection",
+        "fate-rewrite",
+        "final-word",
+        "imprisonment",
+        "reverse-gravity-field",
+        "summon-avatar-of-decay",
+        "wish"
+      ],
+      "authority": {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_static_acceptance_475/DIRECTOR_ACCEPTANCE_475.json",
+        "bytes": 5299,
+        "sha256": "c89bb76b3756b9471bed1b090a34f3fc2f530de4af2ea886dd10b3543e28dbd2",
+        "crc32": "28537b4d"
+      },
+      "applicationReceipt": {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_static_acceptance_475/APPLICATION_475.json",
+        "bytes": 4505,
+        "sha256": "35fe84ed1f161a8e75c53fbbcd46e4c9190984131c2edf9e08972d0f069a0218",
+        "crc32": "7124627b"
+      },
+      "caseEvidenceBinding": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9fortress_static_reviewed_475/CASE_COVERAGE.json",
+        "bytes": 8265,
+        "sha256": "24b68579a46aa583386d8cfc99768a9412d847e88dd40b12bd19654658284a74",
+        "crc32": "f04fa670"
+      },
+      "candidatePackageManifestBinding": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9fortress_static_reviewed_475/CANDIDATE_PACKAGE_MANIFEST.json",
+        "bytes": 2221,
+        "sha256": "336f388185cb67c0e608948b3dc93752c533c12fe50ed9e8de8e5e606d10c605",
+        "crc32": "0c62591b"
+      },
+      "sourceProcedureBinding": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9planargates5_reviewed_200/procedures/conjure-demiplane-fortress.json",
+        "bytes": 37366,
+        "sha256": "bf8b80fcb3f819ad549b94bef7ef9227cd8a190962a70392dbaa0fb6237b4145",
+        "crc32": "47a50850"
+      },
+      "historicalCoverageBinding": {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_w01_w13_coverage_readback_429/FORTRESS_W01_W13_COVERAGE_READBACK_429_BINDING_RECONCILED.json",
+        "bytes": 76037,
+        "sha256": "3b52ab2479da5be1b61e4ff192a1326a870c57f55a0120bc8480f524b8dbc647",
+        "crc32": "7fa4cc76"
+      },
+      "runtimeSelectionEnabled": false,
+      "scope": "ONE_EXACT_STATIC_AUTHORED_PROCEDURE_PG200_B06_CLOSED_FOR_REVIEW_ONLY"
     }
   ],
   "sourceCatalogBindingHistory": [
