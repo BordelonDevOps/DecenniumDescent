@@ -120,7 +120,7 @@ namespace Decennium.Foundation.Laboratory
                 var source=s.InventoryLots.Single(x=>x.LotId==job.SourceLotId);var lot=s.Work.Lots.Single(x=>x.Id==job.SourceLotId);
                 var claim=s.Work.Reservations.Single(x=>x.Id==job.ReservationId);
                 var destination=s.Vessels.Single(v=>v.Id==job.DestinationId);var sourceContainer=s.Vessels.SingleOrDefault(v=>v.Id==SourceVessel(s,job.SourceLotId));
-                if(s.SchemaVersion==Snapshot.MovableVesselSchema) {
+                if(s.SchemaVersion>=Snapshot.MovableVesselSchema) {
                     destination=VesselHandling.At(s,destination.Id,job.StartedAt,VesselHandling.CreationRevision(job.Id));
                     if(sourceContainer!=null)sourceContainer=VesselHandling.At(s,sourceContainer.Id,job.StartedAt,VesselHandling.CreationRevision(job.Id));
                 }

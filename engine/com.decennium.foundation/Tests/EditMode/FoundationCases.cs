@@ -215,6 +215,7 @@ namespace Decennium.Foundation.Tests
             AddInventoryCases(cases, directory);
             AddWaterFillingCases(cases, directory);
             AddVesselHandlingCases(cases, directory);
+            AddFixedEncounterCases(cases, directory);
             return cases;
         }
         private static void Resign(byte[] bytes)

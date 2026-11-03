@@ -86,7 +86,8 @@ namespace Decennium.Foundation.Laboratory
             }
             return inventory.Resolve(s,c);
         }
-        public string ValidateState(Snapshot s)
+        public string ValidateState(Snapshot s)=>ValidateFillingState(s,false);
+        internal string ValidateFillingState(Snapshot s,bool encounter)
         {
             try {
                 var expected=InitialVessels();
@@ -94,7 +95,7 @@ namespace Decennium.Foundation.Laboratory
                     &&v.LocationId==e.LocationId&&v.CustodianId==e.CustodianId))))return "InvalidFixtureVessels";
                 if(s.WaterFills.Any(j=>Hands(j.WorkerId)<2))return "InvalidFillingHands";
                 string error=movable?VesselHandling.Validate(s,expected,Hands):null;
-                return error??inventory.ValidateInventoryState(s,true,movable)??WaterFilling.Validate(s);
+                return error??inventory.ValidateInventoryState(s,true,movable,encounter)??WaterFilling.Validate(s);
             } catch(Exception ex) when(ex is ArgumentException||ex is InvalidOperationException||ex is OverflowException){return "InvalidFillingState";}
         }
     }

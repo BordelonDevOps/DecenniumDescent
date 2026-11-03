@@ -7,7 +7,7 @@ namespace Decennium.Foundation
     public enum ExecutionProfile { Laboratory, Release }
     public enum CommandKind { Move, Interact, AdvanceClock, ReserveWork, ConsumeReservation, ReleaseReservation,
         PlantCrop, TendCrop, HarvestCrop, PauseCrop, SetCropConditions,
-        PortionInventory, HandleInventory, StartIntake, InterruptIntake, EnterInventoryCombat, StartWaterFill, PauseWaterFill, ResumeWaterFill, CancelWaterFill, HandleVessel }
+        PortionInventory, HandleInventory, StartIntake, InterruptIntake, EnterInventoryCombat, StartWaterFill, PauseWaterFill, ResumeWaterFill, CancelWaterFill, HandleVessel, BeginFixedEncounter, EndRegularTurn, EncounterDash }
     public enum Outcome { Rejected, Committed, Duplicate }
 
     // DTOs are detached copies. No caller ever receives the owned simulation state.
@@ -38,6 +38,7 @@ namespace Decennium.Foundation
         public const int InventorySchema = 4;
         public const int VesselSchema = 5;
         public const int MovableVesselSchema = 6;
+        public const int EncounterSchema = 7;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
         // Technical bound keeps the entire snapshot within the existing 1 MiB save limit,
@@ -68,8 +69,10 @@ namespace Decennium.Foundation
         public VesselContentRecord[] VesselContents = Array.Empty<VesselContentRecord>();
         public WaterFillRecord[] WaterFills = Array.Empty<WaterFillRecord>();
         public VesselHandlingRecord[] VesselMoves = Array.Empty<VesselHandlingRecord>();
+        public FixedEncounterRecord Encounter;
+        public EncounterDashRecord[] EncounterDashes = Array.Empty<EncounterDashRecord>();
         public Snapshot Copy() => new Snapshot {
-            VesselMoves = VesselMoves.ToArray(), Vessels = Vessels.ToArray(), VesselContents = VesselContents.ToArray(), WaterFills = WaterFills.ToArray(),
+            Encounter = Encounter, EncounterDashes = EncounterDashes.ToArray(), VesselMoves = VesselMoves.ToArray(), Vessels = Vessels.ToArray(), VesselContents = VesselContents.ToArray(), WaterFills = WaterFills.ToArray(),
             InventoryLots = InventoryLots.ToArray(), Intakes = Intakes.ToArray(), Handling = Handling.ToArray(),
             InventoryCombat = InventoryCombat, InventoryTurnActor = InventoryTurnActor, InventoryInteractions = InventoryInteractions,
             SchemaVersion = SchemaVersion, RuleClock = RuleClock, Work = Work,
@@ -100,6 +103,10 @@ namespace Decennium.Foundation
             + "|" + X.ToString(System.Globalization.CultureInfo.InvariantCulture)
             + "|" + Y.ToString(System.Globalization.CultureInfo.InvariantCulture)
             + (Inventory == null ? "" : "|inventory-v1|" + Inventory.Fingerprint);
+        // Structural history consistency only; receipts are not authentication credentials.
+        public bool MatchesReceipt(CommandReceipt receipt) => receipt != null && ExpectedRevision >= 0
+            && ExpectedRevision < long.MaxValue && receipt.Revision == ExpectedRevision + 1
+            && receipt.Id == Id && receipt.Fingerprint == Fingerprint;
     }
 
     // Constructed by the trusted local/host adapter, never from a claimed command identity.
@@ -157,7 +164,7 @@ namespace Decennium.Foundation
             if (s == null || !ValidId(s.ContentFingerprint) || s.Revision < 0 || s.Clock < 0 || s.RandomState == 0)
                 throw new ArgumentException("Invalid snapshot header.");
             if (s.SchemaVersion != Foundation.Snapshot.Schema && s.SchemaVersion != Foundation.Snapshot.WorkSchema
-                && s.SchemaVersion != Foundation.Snapshot.CropSchema && s.SchemaVersion != Foundation.Snapshot.InventorySchema && s.SchemaVersion != Foundation.Snapshot.VesselSchema && s.SchemaVersion != Foundation.Snapshot.MovableVesselSchema)
+                && s.SchemaVersion != Foundation.Snapshot.CropSchema && s.SchemaVersion != Foundation.Snapshot.InventorySchema && s.SchemaVersion != Foundation.Snapshot.VesselSchema && s.SchemaVersion != Foundation.Snapshot.MovableVesselSchema && s.SchemaVersion != Foundation.Snapshot.EncounterSchema)
                 throw new ArgumentException("Unsupported snapshot schema.");
             if (s.SchemaVersion == Foundation.Snapshot.Schema && (s.Work != null || s.RuleClock != default))
                 throw new ArgumentException("Legacy snapshot cannot contain unsaved work or exact time.");
@@ -211,6 +218,7 @@ namespace Decennium.Foundation
             InventoryValidation.Validate(s);
             WaterVesselValidation.Validate(s);
             VesselHandlingValidation.Validate(s);
+            FixedEncounterValidation.Validate(s);
         }
     }
 
@@ -244,7 +252,7 @@ namespace Decennium.Foundation
                 || (command.Target.Length != 0 && !Validation.ValidId(command.Target)) || command.ExpectedRevision < 0
                 || !Enum.IsDefined(typeof(CommandKind), command.Kind)) return Reject("InvalidCommand");
             if (!authority.Controls(command.Actor) || (command.Kind == CommandKind.AdvanceClock && !authority.CanAdvanceClock)
-                || ((command.Kind == CommandKind.SetCropConditions || command.Kind == CommandKind.EnterInventoryCombat) && !authority.CanModifyWorld))
+                || ((command.Kind == CommandKind.SetCropConditions || command.Kind == CommandKind.EnterInventoryCombat || command.Kind == CommandKind.BeginFixedEncounter) && !authority.CanModifyWorld))
                 return Reject("NotAuthorized");
             if (command.Kind == CommandKind.PortionInventory || command.Kind == CommandKind.HandleInventory || command.Kind == CommandKind.StartIntake) {
                 var source = state.InventoryLots.FirstOrDefault(x => x.LotId == command.Target);

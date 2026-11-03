@@ -40,7 +40,8 @@ namespace Decennium.Foundation
                 if (state.SchemaVersion >= Snapshot.CropSchema) CropRecordCodec.Write(writer,state);
                 if (state.SchemaVersion >= Snapshot.InventorySchema) InventoryRecordCodec.Write(writer,state);
                 if (state.SchemaVersion >= Snapshot.VesselSchema) WaterVesselCodec.Write(writer,state);
-                if (state.SchemaVersion == Snapshot.MovableVesselSchema) VesselHandlingCodec.Write(writer,state);
+                if (state.SchemaVersion >= Snapshot.MovableVesselSchema) VesselHandlingCodec.Write(writer,state);
+                if (state.SchemaVersion == Snapshot.EncounterSchema) FixedEncounterCodec.Write(writer,state);
                 writer.Flush(); payload = stream.ToArray();
             }
             if (payload.Length + 32 > MaxBytes) throw new InvalidDataException("Save exceeds size limit.");
@@ -59,7 +60,7 @@ namespace Decennium.Foundation
                 {
                     if (reader.ReadInt32() != Magic) throw new InvalidDataException("Unsupported save format.");
                     int schema = reader.ReadInt32();
-                    if (schema != Snapshot.Schema && schema != Snapshot.WorkSchema && schema != Snapshot.CropSchema && schema != Snapshot.InventorySchema && schema != Snapshot.VesselSchema && schema != Snapshot.MovableVesselSchema)
+                    if (schema != Snapshot.Schema && schema != Snapshot.WorkSchema && schema != Snapshot.CropSchema && schema != Snapshot.InventorySchema && schema != Snapshot.VesselSchema && schema != Snapshot.MovableVesselSchema && schema != Snapshot.EncounterSchema)
                         throw new InvalidDataException("Unsupported save schema.");
                     string fingerprint = ReadText(reader);
                     if (ReadText(reader) != RandomV1.Algorithm) throw new InvalidDataException("Unsupported RNG version.");
@@ -86,7 +87,8 @@ namespace Decennium.Foundation
                     if (schema >= Snapshot.CropSchema) CropRecordCodec.Read(reader,s);
                     if (schema >= Snapshot.InventorySchema) InventoryRecordCodec.Read(reader,s);
                     if (schema >= Snapshot.VesselSchema) WaterVesselCodec.Read(reader,s);
-                    if (schema == Snapshot.MovableVesselSchema) VesselHandlingCodec.Read(reader,s);
+                    if (schema >= Snapshot.MovableVesselSchema) VesselHandlingCodec.Read(reader,s);
+                    if (schema == Snapshot.EncounterSchema) FixedEncounterCodec.Read(reader,s);
                     if (stream.Position != length) throw new InvalidDataException("Unexpected trailing save data.");
                     Validation.Snapshot(s); return s;
                 }

@@ -125,7 +125,7 @@ namespace Decennium.Foundation.Tests
             cases.Add("vessel_schema_release_legacy_fields_and_corruption_guards",()=>{
                 var p=new TestOnlyFillingPolicy(movableVessels:true);Throws<InvalidOperationException>(()=>new Simulation(p,p.Initial(),ExecutionProfile.Release));
                 var s=Vessels();MoveVessel(s,TestOnlyFillingPolicy.FlaskId,HandlingKind.Pickup,TestOnlyPolicy.CompanionId);var v=s.Capture();v.SchemaVersion=5;Throws<ArgumentException>(()=>codec.Encode(v));
-                byte[] bytes=Bytes(s),bad=(byte[])bytes.Clone();bad[4]=7;Resign(bad);Throws<InvalidDataException>(()=>codec.Decode(bad));
+                byte[] bytes=Bytes(s),bad=(byte[])bytes.Clone();bad[4]=8;Resign(bad);Throws<InvalidDataException>(()=>codec.Decode(bad));
                 bad=(byte[])bytes.Clone();bad[bad.Length-33]^=1;Throws<InvalidDataException>(()=>codec.Decode(bad));
                 v=s.Capture();v.VesselMoves[0]=null;Require(bytes.SequenceEqual(Bytes(s)),"Detached movement history mutated simulation."); });
             cases.Add("vessel_last_revision_movement_commits_and_roundtrips_without_sequence_overflow",()=>{

@@ -180,7 +180,7 @@ namespace Decennium.Foundation.Tests
                 Throws<ArgumentException>(()=>new Simulation(new TestOnlyFillingPolicy(),codec.Decode(codec.Encode(v)),ExecutionProfile.Laboratory)); });
             cases.Add("filling_schema_release_future_version_and_corruption_guards",()=>{
                 var p=new TestOnlyFillingPolicy();Throws<InvalidOperationException>(()=>new Simulation(p,p.Initial(),ExecutionProfile.Release));
-                var v=p.Initial();v.SchemaVersion=4;Throws<ArgumentException>(()=>codec.Encode(v));var bytes=Bytes(Filling());var bad=(byte[])bytes.Clone();bad[4]=7;Resign(bad);Throws<InvalidDataException>(()=>codec.Decode(bad));
+                var v=p.Initial();v.SchemaVersion=4;Throws<ArgumentException>(()=>codec.Encode(v));var bytes=Bytes(Filling());var bad=(byte[])bytes.Clone();bad[4]=8;Resign(bad);Throws<InvalidDataException>(()=>codec.Decode(bad));
                 bad=(byte[])bytes.Clone();bad[bad.Length-40]^=1;Throws<InvalidDataException>(()=>codec.Decode(bad));Throws<InvalidDataException>(()=>codec.Decode(bytes.Take(bytes.Length-1).ToArray())); });
             cases.Add("filling_detached_views_do_not_change_owned_reservations",()=>{
                 var s=Filling();StartFill(s,Q(1));var bytes=Bytes(s);var v=s.Capture();v.Vessels[0]=null;v.VesselContents=Array.Empty<VesselContentRecord>();v.WaterFills=Array.Empty<WaterFillRecord>();

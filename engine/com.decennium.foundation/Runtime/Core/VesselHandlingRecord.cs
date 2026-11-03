@@ -33,7 +33,7 @@ namespace Decennium.Foundation
         public static void Validate(Snapshot s)
         {
             if(s.VesselMoves==null||s.VesselMoves.Length>64||s.VesselMoves.Any(x=>x==null))throw new ArgumentException("Invalid vessel movement collection.");
-            if(s.SchemaVersion!=Snapshot.MovableVesselSchema) {
+            if(s.SchemaVersion<Snapshot.MovableVesselSchema) {
                 if(s.VesselMoves.Length!=0)throw new ArgumentException("Vessel movement requires schema6.");return;
             }
             var ids=s.WaterFills.Select(x=>x.Id).Concat(s.Intakes.Select(x=>x.Id)).Concat(s.Handling.Select(x=>x.Id))
