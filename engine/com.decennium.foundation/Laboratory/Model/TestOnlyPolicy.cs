@@ -22,6 +22,11 @@ namespace Decennium.Foundation.Laboratory
         public static bool Walkable(int x, int y) => x >= 0 && x < 5 && y >= 0 && y < 5 && !(x == 2 && y == 1);
         public string ValidateState(Snapshot state)
         {
+            if (state.SchemaVersion != Snapshot.Schema) return "WrongFixtureSchema";
+            return ValidateWorld(state);
+        }
+        internal static string ValidateWorld(Snapshot state)
+        {
             if (state.Actors.Length != 2 || !state.Actors.Any(a => a.Id == ActorId) || !state.Actors.Any(a => a.Id == CompanionId)
                 || state.Objects.Length != 1 || state.Objects[0].Id != ContainerId || state.Objects[0].X != 1 || state.Objects[0].Y != 2)
                 return "UnknownFixtureIdentity";

@@ -5,7 +5,7 @@ using System.Linq;
 namespace Decennium.Foundation
 {
     public enum ExecutionProfile { Laboratory, Release }
-    public enum CommandKind { Move, Interact, AdvanceClock }
+    public enum CommandKind { Move, Interact, AdvanceClock, ReserveWork, ConsumeReservation, ReleaseReservation }
     public enum Outcome { Rejected, Committed, Duplicate }
 
     // DTOs are detached copies. No caller ever receives the owned simulation state.
@@ -31,6 +31,11 @@ namespace Decennium.Foundation
     public sealed class Snapshot
     {
         public const int Schema = 1;
+        public const int WorkSchema = 2;
+        // Technical bound keeps the entire snapshot within the existing 1 MiB save limit,
+        // including maximum-length identities and a full receipt history. Not a game rule.
+        public const int MaxWorkRecords = 256;
+        public int SchemaVersion = Schema;
         public string ContentFingerprint;
         public bool TestOnly;
         public long Revision, Clock;
@@ -38,7 +43,12 @@ namespace Decennium.Foundation
         public ActorState[] Actors;
         public ObjectState[] Objects;
         public CommandReceipt[] Receipts;
+        // Schema 1 uses synthetic Clock ticks only. Schema 2 uses exact RuleClock only,
+        // with Clock fixed at zero. No conversion or implicit save migration exists.
+        public RuleTime RuleClock;
+        public WorkLedger Work;
         public Snapshot Copy() => new Snapshot {
+            SchemaVersion = SchemaVersion, RuleClock = RuleClock, Work = Work,
             ContentFingerprint = ContentFingerprint, TestOnly = TestOnly,
             Revision = Revision, Clock = Clock, RandomState = RandomState,
             Actors = Actors.Select(x => x.Copy()).ToArray(),
@@ -113,6 +123,15 @@ namespace Decennium.Foundation
         {
             if (s == null || !ValidId(s.ContentFingerprint) || s.Revision < 0 || s.Clock < 0 || s.RandomState == 0)
                 throw new ArgumentException("Invalid snapshot header.");
+            if (s.SchemaVersion != Foundation.Snapshot.Schema && s.SchemaVersion != Foundation.Snapshot.WorkSchema)
+                throw new ArgumentException("Unsupported snapshot schema.");
+            if (s.SchemaVersion == Foundation.Snapshot.Schema && (s.Work != null || s.RuleClock != default))
+                throw new ArgumentException("Legacy snapshot cannot contain unsaved work or exact time.");
+            if (s.SchemaVersion == Foundation.Snapshot.WorkSchema && (s.Work == null || s.Clock != 0
+                || s.Work.Lots.Count > Foundation.Snapshot.MaxWorkRecords
+                || s.Work.WorkerIntervals.Count > Foundation.Snapshot.MaxWorkRecords
+                || s.Work.Reservations.Count > Foundation.Snapshot.MaxWorkRecords))
+                throw new ArgumentException("Invalid work snapshot or session capacity exceeded.");
             if (s.Actors == null || s.Objects == null || s.Receipts == null || s.Actors.Length == 0
                 || s.Actors.Length > 64 || s.Objects.Length > 64 || s.Receipts.Length > MaxReceipts)
                 throw new ArgumentException("Invalid snapshot counts.");
@@ -120,6 +139,8 @@ namespace Decennium.Foundation
                 || s.Objects.Any(o => o == null || !ValidId(o.Id))) throw new ArgumentException("Invalid entity.");
             if (s.Actors.Select(a => a.Id).Concat(s.Objects.Select(o => o.Id)).Distinct(StringComparer.Ordinal).Count()
                 != s.Actors.Length + s.Objects.Length) throw new ArgumentException("Duplicate entity ID.");
+            if (s.Work != null && s.Work.WorkerIntervals.Any(w => !s.Actors.Any(a => a.Id == w.WorkerId)))
+                throw new ArgumentException("Work interval references an unknown actor.");
             if (s.Receipts.Any(r => r == null || !ValidId(r.Principal) || !ValidId(r.Id)
                 || string.IsNullOrEmpty(r.Fingerprint) || r.Fingerprint.Length > 512
                 || r.Fingerprint.Any(c => c < 32 || c > 126) || r.Revision < 1 || r.Revision > s.Revision))
@@ -173,12 +194,13 @@ namespace Decennium.Foundation
             catch (Exception ex) when (ex is ArgumentException || ex is OverflowException || ex is InvalidOperationException)
             { return Reject("PolicyFailure"); }
             if (failure != null) return Reject(failure);
+            if (candidate.SchemaVersion != state.SchemaVersion) return Reject("SchemaChangeForbidden");
             // Policy cannot rewrite command history, revision, identity or content scope.
             candidate.Revision = state.Revision + 1;
             candidate.Receipts = state.Receipts.Select(r => r.Copy()).Concat(new[] { new CommandReceipt {
                 Principal = authority.Principal, Id = command.Id, Fingerprint = command.Fingerprint, Revision = candidate.Revision
             }}).ToArray();
-            if (candidate.Clock < state.Clock) return Reject("ClockReversal");
+            if (candidate.Clock < state.Clock || candidate.RuleClock < state.RuleClock) return Reject("ClockReversal");
             try { ValidateCandidate(candidate); }
             catch (ArgumentException) { return Reject("InvalidResult"); }
             state = candidate.Copy();

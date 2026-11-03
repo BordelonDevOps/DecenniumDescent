@@ -1,8 +1,18 @@
-# Proposed prototype rules — owner decision required
+# Prototype rules — owner decisions and original proposal
 
-Prepared through the owner-requested discussion in [Unity Rules Engine Development](https://chatgpt.com/c/6ae59513-3008-83e9-a5c4-8b6c5c5b4206). Captured response `2d36a873-aa5c-5ac3-9f30-cf00137cf6bb`,2026-11-03. **None of the new mechanics below is adopted or implemented.** Existing canonical/reviewed procedures retain their scopes. This document is a proposal, not a competing rule registry.
+**Owner decisions received 2026-11-03:** Chris answered “Adopt this clock policy,” “Adopt the proposed traversal rules,” and “Adopt Camp Greens provisionally” to the three concrete questions recorded below. These are new owner-approved prototype policies, not recovered Decennium rules, release promotion or balance certification. Unity remains deferred until the C# work is ready.
 
-Codex assessment: the shared-clock and per-procedure work architecture is supported. The new pace/pause policy and farming figures are concrete prototype choices that require the owner. The jump formulas resemble familiar RPG conventions and are not recovered Decennium rules; they must not be adopted merely because they are familiar. Authored traversal routes remain a valid alternative for the first prototype. Farming still requires explicit event behavior at care/failure/harvest boundaries before implementation; the proposed numbers have no balance certification.
+| Decision | Approved scope |
+|---|---|
+| Clock | 1 game second per real second in exploration; solo pause, menus and dialogue pause the whole simulation; tactical decisions pause; one complete combat round advances six seconds total; wait/rest fast-forward; no offline progress. |
+| Traversal | Run at twice walking pace using Dash; ten-foot run-up permits horizontal jumps up to STR feet and vertical jumps up to `max(0, 3 + STR modifier)` feet; standing jumps halve limits; ordinary climb/swim adds one movement foot per foot. |
+| Camp Greens | The linked full one-crop profile below, provisionally: 10×10-foot plot, one hour planting, seven days of suitable growth, fifteen-minute tending with eight pints, one hour harvest and eight pounds food, including its specified inputs, interruption, failure and freshness behavior. |
+
+The clock question did not select initial initiative phases or cooperative pause semantics. The traversal question did not adopt the proposed five-minute dig-site recipe or the rest of the environment draft. Camp Greens boundary ordering at maturity/care/harvest and disposition on failure still require an explicit specification; Codex sent those remaining questions to **Unity Rules Engine Development** after recording these approvals. Proceed with independent approved mechanics while resolving these details. No earlier negative status in the preserved proposal below overrides these later owner decisions.
+
+Prepared through the owner-requested discussion in [Unity Rules Engine Development](https://chatgpt.com/c/6ae59513-3008-83e9-a5c4-8b6c5c5b4206). Original proposal response `2d36a873-aa5c-5ac3-9f30-cf00137cf6bb`, 2026-11-03. The following is retained as the original proposal; its request-for-approval wording is historical. Implementation and test status belong in the development handoff and trace, not this product decision receipt.
+
+---
 
 **Recommend one prototype approach: real-time exploration with explicit pause, continuous state when entering turn-based combat, bounded traversal, and one small tended crop.** Continue the independent C# work while Chris considers these product choices.
 
@@ -83,3 +93,35 @@ Additional proposed semantics:
 **Tradeoff:** a Haven-only farming service would be simpler but provide less meaningful companion/world interaction. Longer seasonal crops would support deeper settlement play but delay feedback substantially. Start with this single crop before adding fertility, diseases, variable quality or seed reproduction.
 
 The concrete decision for Chris is whether to adopt **this prototype clock/pause policy, traversal baseline and one-crop profile** as labeled provisional mechanics. The recommendation itself approves none of them; marker/deadline and worker/reservation infrastructure can continue independently.
+
+
+## Follow-up boundary proposals — awaiting owner decision
+
+GPT response `76afe920-a4ea-5bd5-a2b4-4619d56b0f40` acknowledged all three approvals and supplied the following remaining specifications. These are explicitly proposed completions, not yet adopted. The approval above continues to govern the already specified mechanics.
+
+### Camp Greens boundary and failure completion
+
+- Credit eligible growth and active labor over the elapsed interval before resolving its endpoint. No rounding into completion.
+- Growth reaching 168 hours exactly at care expiry earns maturity; tending finishing exactly at care expiry renews care without an uncovered interval. Growth earned before a season becomes unsuitable is retained.
+- At 48 continuous hours of unsuitable conditions or missing care, failure wins over recovery at that same timestamp. Recovery must be strictly earlier.
+- After maturity, daily growth care stops; the fixed 48-hour harvest window controls. Tending cannot extend it. Cancel future unnecessary tending but preserve spent inputs and labor.
+- Harvest completion exactly at maturity plus 48 hours is timely. Freshness ends at its exact deadline; an output already at its freshness deadline grants no edible food.
+- An incomplete harvest at its deadline fails without proportional food. Partial harvest is labor progress, not inventory.
+- Tending water is consumed at the first active work; care renews only on completion. Spent seeds/water/labor are not refunded. Release unspent reservations and unused future worker bookings, preserving physical tool/supply locations and history.
+- Failed crops remain recorded as nonharvestable biomass at the plot, granting no automatic food, seeds, compost, crafting materials or sale value. Clearing an ordinary failed crop is included in the next planting's existing one-hour task, with new inputs and a new batch ID. Retain the failed batch record.
+- A successful harvest closes the crop and creates its once-only output lot separately. Later cleanup cannot remove or duplicate the output.
+
+Example: harvest starts at maturity M, but interruptions delay completion to M+48 hours. It meets the harvest window; freshness also expires then, so it awards zero edible food. Preserve the terminal disposition rather than granting a briefly usable edible lot.
+
+These crop-local priorities do not override separately sourced destructive hazards or define a universal event ordering rule.
+
+### Initial initiative checkpoint allocation
+
+For N initial actors in established initiative order, at encounter start T0:
+
+- Actor i starts at T0+6i/N and ends at T0+6(i+1)/N.
+- At a shared boundary, finish the outgoing slot before starting the incoming slot.
+- Preserve existing absolute deadlines and already captured virtual markers.
+- For three actors, the first-round windows are 0–2, 2–4 and 4–6 seconds. They are scheduling checkpoints, not different action durations.
+
+This proposal is limited to initial allocation. Joining/leaving/reordering participants still requires a separately specified future-schedule policy; existing duration markers may never be rewritten by it.

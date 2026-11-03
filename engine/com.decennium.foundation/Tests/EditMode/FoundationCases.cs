@@ -120,7 +120,7 @@ namespace Decennium.Foundation.Tests
                     byte[] bytes=Bytes(New());bytes[20]^=1;Throws<InvalidDataException>(()=>codec.Decode(bytes)); },
                 ["truncation_and_future_schema_rejected"] = () => {
                     byte[] bytes=Bytes(New());Throws<InvalidDataException>(()=>codec.Decode(bytes.Take(bytes.Length-1).ToArray()));
-                    bytes[4]=2;Resign(bytes);Throws<InvalidDataException>(()=>codec.Decode(bytes)); },
+                    bytes[4]=3;Resign(bytes);Throws<InvalidDataException>(()=>codec.Decode(bytes)); },
                 ["unknown_fixture_identity_rejected_on_restore"] = () => {
                     var v=new TestOnlyPolicy().Initial();v.Actors[0].Id="TEST_ONLY.unknown";
                     Throws<ArgumentException>(()=>new Simulation(new TestOnlyPolicy(),codec.Decode(codec.Encode(v)),ExecutionProfile.Laboratory)); },
@@ -171,7 +171,8 @@ namespace Decennium.Foundation.Tests
                 ["recovery_checks_content_before_any_disk_change"] = () => {
                     string path=Path.Combine(directory,"recover-invalid.ddsave");var store=new FileSaveStore();
                     var wrong=New().Capture();wrong.ContentFingerprint="TEST_ONLY.other";
-                    store.Save(path,wrong);store.Save(path,New().Capture());byte[] current=File.ReadAllBytes(path),backup=File.ReadAllBytes(path+".bak");
+                    store.Save(path,New().Capture());File.WriteAllBytes(path+".bak",codec.Encode(wrong));
+                    byte[] current=File.ReadAllBytes(path),backup=File.ReadAllBytes(path+".bak");
                     Throws<ArgumentException>(()=>store.RecoverBackup(path,v=>new Simulation(new TestOnlyPolicy(),v,ExecutionProfile.Laboratory)));
                     Require(current.SequenceEqual(File.ReadAllBytes(path)) && backup.SequenceEqual(File.ReadAllBytes(path+".bak"))
                         && Directory.GetFiles(directory).Length==2,"Domain rejection altered files."); },
@@ -206,6 +207,8 @@ namespace Decennium.Foundation.Tests
             AddTimingCases(cases);
             AddWorkLedgerCases(cases);
             AddDiceCases(cases);
+            AddWorkSessionCases(cases, directory);
+            AddPrototypePolicyCases(cases);
             return cases;
         }
         private static void Resign(byte[] bytes)

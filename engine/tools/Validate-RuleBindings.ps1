@@ -1,5 +1,5 @@
 param(
-    [string]$Bindings = (Join-Path $PSScriptRoot '../../docs/unity/evidence/2026-11-03-engine-expansion/SOURCE_BINDINGS.json'),
+    [string]$Bindings = (Join-Path $PSScriptRoot '../../docs/unity/evidence/2026-11-03-shared-session/SOURCE_BINDINGS.json'),
     [string]$ResultsRoot = (Join-Path $PSScriptRoot '../artifacts')
 )
 $ErrorActionPreference = 'Stop'
@@ -16,7 +16,9 @@ try {
         if ((Get-FileHash -LiteralPath $snapshot -Algorithm SHA256).Hash.ToLowerInvariant() -ne $source.sha256) { throw ('Source snapshot changed: '+$source.snapshot) }
         $report.sources++
     }
-    $data = Get-Content -Raw -LiteralPath (Join-Path $bindingRoot 'sources/character_foundation.json') | ConvertFrom-Json
+    $profileSource = @($binding.sources | Where-Object { $_.path -ceq 'DescentReviewChanges/ReviewBible/data/playtest/character_foundation.json' })
+    if ($profileSource.Count -ne 1) { throw 'Exactly one character profile source binding required.' }
+    $data = Get-Content -Raw -LiteralPath (Join-Path $bindingRoot $profileSource[0].snapshot) | ConvertFrom-Json
     $code = Get-Content -Raw -LiteralPath (Join-Path $repoRoot 'engine/com.decennium.foundation/Laboratory/Model/CharacterProfiles.cs')
     $rows = [regex]::Matches($code, 'case "([^"]+)": return new ClassProfile\(new\[\] \{ ([^}]+) \}, WeaveTier\.(\w+), new\[\] \{ ([^}]+) \}\);')
     if ($rows.Count -ne 17 -or $data.classes.Count -ne 17) { throw 'Expected exactly 17 class projections.' }

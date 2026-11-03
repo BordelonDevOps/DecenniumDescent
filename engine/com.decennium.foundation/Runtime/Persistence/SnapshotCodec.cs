@@ -18,7 +18,7 @@ namespace Decennium.Foundation
             using (var stream = new MemoryStream())
             using (var writer = new BinaryWriter(stream, Utf8, true))
             {
-                writer.Write(Magic); writer.Write(Snapshot.Schema);
+                writer.Write(Magic); writer.Write(state.SchemaVersion);
                 WriteText(writer, state.ContentFingerprint); WriteText(writer, RandomV1.Algorithm);
                 writer.Write(state.TestOnly); writer.Write(state.Revision); writer.Write(state.Clock); writer.Write(state.RandomState);
                 writer.Write(state.Actors.Length);
@@ -30,6 +30,13 @@ namespace Decennium.Foundation
                 writer.Write(state.Receipts.Length);
                 foreach (var r in state.Receipts.OrderBy(x => x.Revision))
                 { WriteText(writer, r.Principal); WriteText(writer, r.Id); WriteText(writer, r.Fingerprint); writer.Write(r.Revision); }
+                if (state.SchemaVersion == Snapshot.WorkSchema)
+                {
+                    writer.Write(state.RuleClock.Numerator); writer.Write(state.RuleClock.Denominator);
+                    WriteText(writer, DiceStream.MappingVersion);
+                    byte[] work = new WorkLedgerCodec().Encode(state.Work);
+                    writer.Write(work.Length); writer.Write(work);
+                }
                 writer.Flush(); payload = stream.ToArray();
             }
             if (payload.Length + 32 > MaxBytes) throw new InvalidDataException("Save exceeds size limit.");
@@ -46,10 +53,12 @@ namespace Decennium.Foundation
                 using (var stream = new MemoryStream(data, 0, length, false))
                 using (var reader = new BinaryReader(stream, Utf8))
                 {
-                    if (reader.ReadInt32() != Magic || reader.ReadInt32() != Snapshot.Schema) throw new InvalidDataException("Unsupported save schema.");
+                    if (reader.ReadInt32() != Magic) throw new InvalidDataException("Unsupported save format.");
+                    int schema = reader.ReadInt32();
+                    if (schema != Snapshot.Schema && schema != Snapshot.WorkSchema) throw new InvalidDataException("Unsupported save schema.");
                     string fingerprint = ReadText(reader);
                     if (ReadText(reader) != RandomV1.Algorithm) throw new InvalidDataException("Unsupported RNG version.");
-                    var s = new Snapshot { ContentFingerprint = fingerprint, TestOnly = ReadBool(reader), Revision = reader.ReadInt64(),
+                    var s = new Snapshot { SchemaVersion = schema, ContentFingerprint = fingerprint, TestOnly = ReadBool(reader), Revision = reader.ReadInt64(),
                         Clock = reader.ReadInt64(), RandomState = reader.ReadUInt32() };
                     s.Actors = new ActorState[ReadCount(reader, 64)];
                     for (int i = 0; i < s.Actors.Length; i++) s.Actors[i] = new ActorState {
@@ -60,6 +69,15 @@ namespace Decennium.Foundation
                     s.Receipts = new CommandReceipt[ReadCount(reader, Validation.MaxReceipts)];
                     for (int i = 0; i < s.Receipts.Length; i++) s.Receipts[i] = new CommandReceipt {
                         Principal = ReadText(reader), Id = ReadText(reader), Fingerprint = ReadText(reader), Revision = reader.ReadInt64() };
+                    if (schema == Snapshot.WorkSchema)
+                    {
+                        s.RuleClock = new RuleTime(reader.ReadInt64(), reader.ReadInt64());
+                        if (ReadText(reader) != DiceStream.MappingVersion) throw new InvalidDataException("Unsupported dice mapping.");
+                        int workLength = ReadCount(reader, WorkLedgerCodec.MaxBytes);
+                        byte[] work = reader.ReadBytes(workLength);
+                        if (work.Length != workLength) throw new EndOfStreamException();
+                        s.Work = new WorkLedgerCodec().Decode(work);
+                    }
                     if (stream.Position != length) throw new InvalidDataException("Unexpected trailing save data.");
                     Validation.Snapshot(s); return s;
                 }
@@ -113,7 +131,13 @@ namespace Decennium.Foundation
             string full = Path.GetFullPath(path);
             Directory.CreateDirectory(Path.GetDirectoryName(full));
             // A corrupt current file must not replace the last-known-good backup.
-            if (File.Exists(full)) Load(full);
+            if (File.Exists(full))
+            {
+                Snapshot current = Load(full);
+                if (current.SchemaVersion != snapshot.SchemaVersion || current.ContentFingerprint != snapshot.ContentFingerprint
+                    || current.TestOnly != snapshot.TestOnly)
+                    throw new InvalidDataException("Existing save has a different schema or content scope; use a separate destination.");
+            }
             WriteAndCommit(full, bytes, full + ".bak");
         }
         // Explicit user recovery. Validate domain/content before writing; preserve both the
