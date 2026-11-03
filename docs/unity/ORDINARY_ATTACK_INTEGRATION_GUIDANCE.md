@@ -24,19 +24,19 @@ The later accepted Euclidean/body-volume interfaces are **scoped exceptions**: r
 
 **The smallest ordinary attack still needs these mechanics**
 
-1. **Validate actor, equipment and target before committing.**  
+1. **Validate actor, equipment and target before committing.**
    Use actual action permissions, conditions, weapon custody/readiness, hands, proficiency, weapon properties and target AC. Melee requires actual reach—normally 5 ft; the Reach property adds 5 ft. Ranged attacks beyond normal through maximum range have disadvantage; beyond maximum is illegal. A nearby non-Incapacitated hostile that sees the attacker imposes the ordinary ranged disadvantage.
 
    Visibility, known location and line of effect are separate. Total cover blocks direct targeting; half/three-quarters cover gives +2/+5 AC, using only the best cover. A transparent barrier does not automatically permit an attack through it.
 
    Sources: `COMBAT_ACTION_PLAYTEST` §§Cover, sight, Hide and Search; [Equipment §§Armor and shields; Hands and focuses; Weapons and ammunition](https://github.com/BordelonDevOps/DecenniumDescent/blob/ac01b64a7b11df3d9d5b77359574277c68cc5e8a/DescentReviewChanges/ReviewBible/docs/mechanics/EQUIPMENT_ACQUISITION_PLAYTEST.md#weapons-and-ammunition). Underlying V6 paragraph 8194 supplies ordinary melee reach.
 
-2. **Spend the existing Action and apply the selected stance.**  
+2. **Spend the existing Action and apply the selected stance.**
    V6 paragraph 8156 supplies one attack absent an actual multiple-attack grant. `COMBAT_ACTION_PLAYTEST` §Standard Actions preserves class/weapon-granted attacks. This consumes the same Action already shared with Dash and the second interaction; it adds no separate elapsed second.
 
    **Stance selection is required**, before the first event using its benefits/restrictions. There is no sourced neutral default. For example, Aggressive changes both attack damage and AC. Also, §Maneuvers and ordinary attacks says a regular-turn melee hit arms **Press** through the next regular start. A melee attack implementation must retain that entitlement, even if the fixture never triggers following movement.
 
-3. **Resolve applicable choices at their actual windows.**  
+3. **Resolve applicable choices at their actual windows.**
    An ordinary attack does not create a generic defensive Reaction. Nevertheless, actual eligible protections cannot be silently declined:
    - **Interpose:** while Guarding, after target selection and before the roll; its replacement target must be legal.
    - **Guardian Pulse:** its own retargeting procedure, before comparing the original roll with AC.
@@ -46,14 +46,14 @@ The later accepted Euclidean/body-volume interfaces are **scoped exceptions**: r
 
    Sources: `COMBAT_ACTION_PLAYTEST` §§Ready, Maneuvers and ordinary attacks; [Damage sharing §§Resolve the kind of protection first; One transfer operation and exact amounts](https://github.com/BordelonDevOps/DecenniumDescent/blob/ac01b64a7b11df3d9d5b77359574277c68cc5e8a/DescentReviewChanges/ReviewBible/docs/mechanics/DAMAGE_SHARING_PLAYTEST.md).
 
-4. **Roll using the actual modifier and RNG.**  
+4. **Roll using the actual modifier and RNG.**
    Attack is d20 + applicable ability modifier + PB when proficient, plus legal modifiers. Meeting AC hits; natural 1 misses; natural 20 hits and doubles damage dice, not flat modifiers. Advantage/disadvantage uses two d20s; any presence of both cancels.
 
    Ordinary weapon damage uses its specified dice and the same ability modifier used for the attack, subject to explicit exceptions. Finesse permits STR or DEX for both; thrown melee weapons retain their melee ability rule. Ammunition weapons consume a real compatible unit per attack.
 
    Sources: [Core §Rolls](https://github.com/BordelonDevOps/DecenniumDescent/blob/ac01b64a7b11df3d9d5b77359574277c68cc5e8a/DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md#rolls), Equipment §Weapons and ammunition; [exact source packet](https://github.com/BordelonDevOps/DecenniumDescent/blob/ac01b64a7b11df3d9d5b77359574277c68cc5e8a/docs/audit/2026-10-08/full-game/COMBAT_ACTION_VISION_SOURCE_PACKET.json), Core paragraph 459 and V6 paragraphs 8172–8180, 8230–8243.
 
-5. **Apply actual defenses, then the complete reachable life consequences.**  
+5. **Apply actual defenses, then the complete reachable life consequences.**
    Resistance halves matching damage; vulnerability doubles it. The shared class rule uses the strongest applicable class flat reduction before resistance. Do not generalize that ordering to every item, spell or protection: damage-sharing procedures distinguish pre-defense, post-defense and pre-temp-HP stages.
 
    For the ordinary unprotected life path:
@@ -66,7 +66,7 @@ The later accepted Euclidean/body-volume interfaces are **scoped exceptions**: r
 
    Later survival amendments insert their exact prevention/replacement windows; `PlaytestLife.Damage` alone is not their dispatcher. See [Core §§Resolve a damage event; Zero HP and recovery](https://github.com/BordelonDevOps/DecenniumDescent/blob/ac01b64a7b11df3d9d5b77359574277c68cc5e8a/DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md#resolve-a-damage-event) and [Healing/death §Damage quantities and resolution](https://github.com/BordelonDevOps/DecenniumDescent/blob/ac01b64a7b11df3d9d5b77359574277c68cc5e8a/DescentReviewChanges/ReviewBible/docs/mechanics/HEALING_DEATH_PLAYTEST.md#damage-quantities-and-resolution).
 
-6. **Project life changes into the actor and shared world.**  
+6. **Project life changes into the actor and shared world.**
    Ordinary zero-HP Unconscious includes Incapacitated, dropping held items and falling Prone. It affects action legality, attack modifiers, concentration and subsequent hits. These cannot remain decorative flags around an HP number. Healing does not automatically stand the actor up or remove independent condition causes.
 
    Source: [Conditions §§Incapacitated; Prone; Unconscious](https://github.com/BordelonDevOps/DecenniumDescent/blob/ac01b64a7b11df3d9d5b77359574277c68cc5e8a/DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md#unconscious).
@@ -78,4 +78,3 @@ Implement persisted actor life and exact recovery timing first, followed by plan
 For the subsequent attack fixture, explicitly supply two grid-aligned Medium actors on supported level ground, clear mutual sight/line of effect, an actual ordinary weapon, verified character statistics, a selected legal stance and an enumerated set of operative features. Those are **fixture facts**, not defaults for arbitrary actors.
 
 Persist Action spending, actual RNG draws, damage/life results, stance/Press records and any resulting custody changes together. Conditional choice continuations and draw ordering are engineering contracts; their gameplay eligibility comes from the sources above. Reject unsupported admitted features before spending or rolling, rather than discovering after a hit that its required consequence cannot run.
-
