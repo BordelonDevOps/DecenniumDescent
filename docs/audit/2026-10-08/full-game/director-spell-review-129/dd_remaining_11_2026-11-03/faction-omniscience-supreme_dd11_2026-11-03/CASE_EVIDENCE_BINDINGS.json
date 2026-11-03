@@ -1,0 +1,290 @@
+{
+  "id": "FOS-DD11-CASE-EVIDENCE-BINDINGS-01",
+  "identity": "faction-omniscience-supreme",
+  "status": "ALL_REQUIRED_CASES_EXECUTED_STATIC_TEST_ONLY",
+  "contractSha256": "82b864d2edaa8321ea6db88d8dc70dd1029cb2cda00363e0f66e93aaaeb0423d",
+  "witnessPacket": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/dd_remaining_11_2026-11-03/faction-omniscience-supreme_dd11_2026-11-03/WITNESS_PACKET.json",
+    "bytes": 11071996,
+    "sha256": "828e4873a08541ce18534e4ff01c789217211c818765f5163ab8d8f3f8c58847",
+    "crc32": "95db3234",
+    "gitBlobSha1": "bb3925771c804d471bdad6abedf280ee6f4be7da"
+  },
+  "semanticValidation": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/dd_remaining_11_2026-11-03/faction-omniscience-supreme_dd11_2026-11-03/SEMANTIC_VALIDATION.json",
+    "bytes": 90403,
+    "sha256": "455807a73acafde11752d6a6d92e4373605689c04b10befb4410dc1ef8d8bb1e",
+    "crc32": "4e964cd0",
+    "gitBlobSha1": "36067184fc6081a67664bfc989454e574cdf920d"
+  },
+  "cases": [
+    {
+      "caseId": "FOS-P1",
+      "caseSpecification": {
+        "id": "FOS-P1",
+        "given": {
+          "route": "Wizard/Divination",
+          "institution": "TEST-FACTION-DD11-ARCHIVE",
+          "recipient": "caster"
+        },
+        "steps": [
+          "Legal paid cast",
+          "Retrieve stores using one later Action"
+        ],
+        "expected": {
+          "dossier": "all five permitted history/current institutional facts plus labeled ferry report; secret personal fact excluded",
+          "usefulResult": "80 unreserved grain crates and a supported conditional 40-crate dispatch forecast",
+          "standingChanged": false
+        },
+        "covers": [
+          "KR326-W1",
+          "KR326-W2",
+          "KR326-W4",
+          "KR326-W5"
+        ],
+        "executionStatus": "NOT_EXECUTED_IN_THIS_PACKAGE"
+      },
+      "caseSpecificationCanonicalSha256": "fcfc6655339674c881732a5a093cb631c282cbb21a0ee2dc067ab80c527ea1f0",
+      "branchIds": [
+        "FOS-ROUTE-WIZARD-01",
+        "FOS-ROUTE-WIZARD-02",
+        "FOS-P1-WIZARD-01"
+      ],
+      "branchCanonicalSha256": {
+        "FOS-ROUTE-WIZARD-01": "a513ace4634f3f7d7bbce72d72824b5ec28c969dddcb005aa15b91f518f8ee9b",
+        "FOS-ROUTE-WIZARD-02": "a2699104081a6eddb27db19a8f90122b8b2adf055fe39eb53a327e51ef7c3905",
+        "FOS-P1-WIZARD-01": "31b4fcd97672c45db36e27640063ab8ff2723e04e5903b04a559c45f3f535944"
+      },
+      "eventIds": {
+        "FOS-ROUTE-WIZARD-01": [
+          "FOS-ROUTE-WIZARD-01-TURN-1-START",
+          "FOS-ROUTE-WIZARD-01-CAST-COMMIT",
+          "FOS-ROUTE-WIZARD-01-CAST-RESPONSE-WINDOW",
+          "FOS-ROUTE-WIZARD-01-CAST-RESOLVE",
+          "FOS-ROUTE-WIZARD-01-TURN-1-END",
+          "FOS-ROUTE-WIZARD-01-TURN-2-START",
+          "FOS-ROUTE-WIZARD-01-RETRIEVE-STORES",
+          "FOS-ROUTE-WIZARD-01-TURN-2-END"
+        ],
+        "FOS-ROUTE-WIZARD-02": [
+          "FOS-ROUTE-WIZARD-02-TURN-1-START",
+          "FOS-ROUTE-WIZARD-02-CAST-COMMIT",
+          "FOS-ROUTE-WIZARD-02-CAST-RESPONSE-WINDOW",
+          "FOS-ROUTE-WIZARD-02-CAST-RESOLVE",
+          "FOS-ROUTE-WIZARD-02-TURN-1-END",
+          "FOS-ROUTE-WIZARD-02-TURN-2-START",
+          "FOS-ROUTE-WIZARD-02-RETRIEVE-STORES",
+          "FOS-ROUTE-WIZARD-02-TURN-2-END"
+        ],
+        "FOS-P1-WIZARD-01": [
+          "FOS-P1-WIZARD-01-TURN-1-START",
+          "FOS-P1-WIZARD-01-CAST-COMMIT",
+          "FOS-P1-WIZARD-01-CAST-RESPONSE-WINDOW",
+          "FOS-P1-WIZARD-01-CAST-RESOLVE",
+          "FOS-P1-WIZARD-01-TURN-1-END",
+          "FOS-P1-WIZARD-01-TURN-2-START",
+          "FOS-P1-WIZARD-01-RETRIEVE-STORES",
+          "FOS-P1-WIZARD-01-TURN-2-END"
+        ]
+      },
+      "semanticResult": "PASS_STATIC_TEST_ONLY"
+    },
+    {
+      "caseId": "FOS-P2",
+      "caseSpecification": {
+        "id": "FOS-P2",
+        "given": {
+          "route": "Cleric/Divination",
+          "recipient": "willing helper",
+          "remoteBranch": "same plane,500 miles"
+        },
+        "steps": [
+          "Paid cast",
+          "Recipient communicates only permitted result"
+        ],
+        "expected": {
+          "recipientOnly": true,
+          "distantInstitutionalRecordIncluded": true,
+          "forecastHorizonMs": 604800000
+        },
+        "covers": [
+          "KR326-W2",
+          "KR326-W3",
+          "KR326-W5"
+        ],
+        "executionStatus": "NOT_EXECUTED_IN_THIS_PACKAGE"
+      },
+      "caseSpecificationCanonicalSha256": "10ddeb89e75150f7e3df5310bc27d2ee991ab9dac6154b535dd80fe169390fec",
+      "branchIds": [
+        "FOS-ROUTE-CLERIC-01",
+        "FOS-ROUTE-CLERIC-02",
+        "FOS-P2-CLERIC-01"
+      ],
+      "branchCanonicalSha256": {
+        "FOS-ROUTE-CLERIC-01": "43a4a2387e17664c5ae8d5ee6ac360dee67820c43e9ca9d81d3e72db5cbce1e5",
+        "FOS-ROUTE-CLERIC-02": "5fe42198074c90ca4ceb4083348baf368d182249af36a310ab9af962bfaf7fd1",
+        "FOS-P2-CLERIC-01": "c4dd0448d91887d0cfdf4d4bcb3de4882d65040a52e57b3b4fe0495a0e456d50"
+      },
+      "eventIds": {
+        "FOS-ROUTE-CLERIC-01": [
+          "FOS-ROUTE-CLERIC-01-TURN-1-START",
+          "FOS-ROUTE-CLERIC-01-CAST-COMMIT",
+          "FOS-ROUTE-CLERIC-01-CAST-RESPONSE-WINDOW",
+          "FOS-ROUTE-CLERIC-01-CAST-RESOLVE",
+          "FOS-ROUTE-CLERIC-01-COMMUNICATE-PERMITTED",
+          "FOS-ROUTE-CLERIC-01-TURN-1-END"
+        ],
+        "FOS-ROUTE-CLERIC-02": [
+          "FOS-ROUTE-CLERIC-02-TURN-1-START",
+          "FOS-ROUTE-CLERIC-02-CAST-COMMIT",
+          "FOS-ROUTE-CLERIC-02-CAST-RESPONSE-WINDOW",
+          "FOS-ROUTE-CLERIC-02-CAST-RESOLVE",
+          "FOS-ROUTE-CLERIC-02-COMMUNICATE-PERMITTED",
+          "FOS-ROUTE-CLERIC-02-TURN-1-END"
+        ],
+        "FOS-P2-CLERIC-01": [
+          "FOS-P2-CLERIC-01-TURN-1-START",
+          "FOS-P2-CLERIC-01-CAST-COMMIT",
+          "FOS-P2-CLERIC-01-CAST-RESPONSE-WINDOW",
+          "FOS-P2-CLERIC-01-CAST-RESOLVE",
+          "FOS-P2-CLERIC-01-COMMUNICATE-PERMITTED",
+          "FOS-P2-CLERIC-01-TURN-1-END"
+        ]
+      },
+      "semanticResult": "PASS_STATIC_TEST_ONLY"
+    },
+    {
+      "caseId": "FOS-A1",
+      "caseSpecification": {
+        "id": "FOS-A1",
+        "given": {
+          "variants": [
+            "protected member",
+            "missing record",
+            "unestablished faction",
+            "unauthorized cross-plane record"
+          ]
+        },
+        "steps": [
+          "Resolve separately with identical public availability surface",
+          "Compare output schemas and timing-independent content"
+        ],
+        "expected": {
+          "neutralUnavailable": "No information available",
+          "hiddenCountsOrReasons": false,
+          "unknownNotAbsence": true
+        },
+        "covers": [
+          "KR326-W1",
+          "KR326-W3"
+        ],
+        "executionStatus": "NOT_EXECUTED_IN_THIS_PACKAGE"
+      },
+      "caseSpecificationCanonicalSha256": "9db27ca9503a685aab3ba146aef8292c4ee2f277d0262c065069c74e742f5017",
+      "branchIds": [
+        "FOS-A1-PROTECTED_MEMBER",
+        "FOS-A1-MISSING_RECORD",
+        "FOS-A1-UNESTABLISHED_INSTITUTION",
+        "FOS-A1-UNAUTHORIZED_CROSS_PLANE_RECORD"
+      ],
+      "branchCanonicalSha256": {
+        "FOS-A1-PROTECTED_MEMBER": "7227181774b9b63347ffa6c19f4224511b06d68538978ceb3fed662c63be5403",
+        "FOS-A1-MISSING_RECORD": "a5d495494d60ee9a03839f89f44e84f5c5c73b71c6eac7f8656f9883a83a046f",
+        "FOS-A1-UNESTABLISHED_INSTITUTION": "6bb62c668c24d9472c37fb27840ea1904a0cc9553c109a27709157daac418212",
+        "FOS-A1-UNAUTHORIZED_CROSS_PLANE_RECORD": "6ee974bc638bf88b2036597630bf07a50723111ed567885217681713c1f08989"
+      },
+      "eventIds": {
+        "FOS-A1-PROTECTED_MEMBER": [
+          "FOS-A1-PROTECTED_MEMBER-TURN-1-START",
+          "FOS-A1-PROTECTED_MEMBER-CAST-COMMIT",
+          "FOS-A1-PROTECTED_MEMBER-CAST-RESPONSE-WINDOW",
+          "FOS-A1-PROTECTED_MEMBER-CAST-RESOLVE-UNAVAILABLE",
+          "FOS-A1-PROTECTED_MEMBER-TURN-1-END"
+        ],
+        "FOS-A1-MISSING_RECORD": [
+          "FOS-A1-MISSING_RECORD-TURN-1-START",
+          "FOS-A1-MISSING_RECORD-CAST-COMMIT",
+          "FOS-A1-MISSING_RECORD-CAST-RESPONSE-WINDOW",
+          "FOS-A1-MISSING_RECORD-CAST-RESOLVE-UNAVAILABLE",
+          "FOS-A1-MISSING_RECORD-TURN-1-END"
+        ],
+        "FOS-A1-UNESTABLISHED_INSTITUTION": [
+          "FOS-A1-UNESTABLISHED_INSTITUTION-TURN-1-START",
+          "FOS-A1-UNESTABLISHED_INSTITUTION-CAST-COMMIT",
+          "FOS-A1-UNESTABLISHED_INSTITUTION-CAST-RESPONSE-WINDOW",
+          "FOS-A1-UNESTABLISHED_INSTITUTION-CAST-RESOLVE-UNAVAILABLE",
+          "FOS-A1-UNESTABLISHED_INSTITUTION-TURN-1-END"
+        ],
+        "FOS-A1-UNAUTHORIZED_CROSS_PLANE_RECORD": [
+          "FOS-A1-UNAUTHORIZED_CROSS_PLANE_RECORD-TURN-1-START",
+          "FOS-A1-UNAUTHORIZED_CROSS_PLANE_RECORD-CAST-COMMIT",
+          "FOS-A1-UNAUTHORIZED_CROSS_PLANE_RECORD-CAST-RESPONSE-WINDOW",
+          "FOS-A1-UNAUTHORIZED_CROSS_PLANE_RECORD-CAST-RESOLVE-UNAVAILABLE",
+          "FOS-A1-UNAUTHORIZED_CROSS_PLANE_RECORD-TURN-1-END"
+        ]
+      },
+      "semanticResult": "PASS_STATIC_TEST_ONLY"
+    },
+    {
+      "caseId": "FOS-A2",
+      "caseSpecification": {
+        "id": "FOS-A2",
+        "given": {
+          "changedInput": "dispatch plan withdrawn with versioned source receipt"
+        },
+        "steps": [
+          "Repeat same-key callback",
+          "Make a distinct paid recast after actual changed source"
+        ],
+        "expected": {
+          "sameKey": "unchanged receipt/no new memory or cost",
+          "newCast": "new as-of dossier; old acquired memory preserved and marked historical",
+          "forcedFuture": false
+        },
+        "covers": [
+          "KR326-W4",
+          "KR326-W5"
+        ],
+        "executionStatus": "NOT_EXECUTED_IN_THIS_PACKAGE"
+      },
+      "caseSpecificationCanonicalSha256": "100dd12cd548ee9eaee4af020a8b68a524e7c41daf6038ee5f25f2e19fbdc3f5",
+      "branchIds": [
+        "FOS-A2-WIZARD-01"
+      ],
+      "branchCanonicalSha256": {
+        "FOS-A2-WIZARD-01": "37e9c5558b66224985f6df023e73fa103b8055e515b193a826958e575d26a348"
+      },
+      "eventIds": {
+        "FOS-A2-WIZARD-01": [
+          "FOS-A2-WIZARD-01-TURN-1-START",
+          "FOS-A2-WIZARD-01-CAST-COMMIT",
+          "FOS-A2-WIZARD-01-CAST-RESPONSE-WINDOW",
+          "FOS-A2-WIZARD-01-CAST-RESOLVE",
+          "FOS-A2-WIZARD-01-TURN-1-END",
+          "FOS-A2-WIZARD-01-SAME-KEY-CALLBACK",
+          "FOS-A2-WIZARD-01-WITHDRAW-DISPATCH-PLAN",
+          "FOS-A2-WIZARD-01-TURN-2-START",
+          "FOS-A2-WIZARD-01-TURN-2-END",
+          "FOS-A2-WIZARD-01-TURN-3-START",
+          "FOS-A2-WIZARD-01-CAST-2-COMMIT",
+          "FOS-A2-WIZARD-01-CAST-2-RESPONSE-WINDOW",
+          "FOS-A2-WIZARD-01-CAST-2-RESOLVE",
+          "FOS-A2-WIZARD-01-MARK-OLD-MEMORY-HISTORICAL",
+          "FOS-A2-WIZARD-01-TURN-3-END"
+        ]
+      },
+      "semanticResult": "PASS_STATIC_TEST_ONLY"
+    }
+  ],
+  "nativeRouteCoverage": {
+    "Wizard/Divination": [
+      "FOS-ROUTE-WIZARD-01",
+      "FOS-ROUTE-WIZARD-02"
+    ],
+    "Cleric/Divination": [
+      "FOS-ROUTE-CLERIC-01",
+      "FOS-ROUTE-CLERIC-02"
+    ]
+  },
+  "scope": "STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY"
+}

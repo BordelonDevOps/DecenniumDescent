@@ -1,0 +1,796 @@
+{
+  "id": "FOS-DD11-ACTOR-PROFILES-01",
+  "status": "PASS_SOURCE_BOUND_TEST_ONLY",
+  "actors": [
+    {
+      "actorId": "wizard-17-divination",
+      "ancestry": {
+        "id": "human",
+        "name": "Human",
+        "abilityBonuses": {
+          "STR": 1,
+          "DEX": 1,
+          "CON": 1,
+          "INT": 1,
+          "WIS": 1,
+          "CHA": 1
+        },
+        "traits": [
+          {
+            "name": "Ability Score Increase",
+            "sourceLine": 1100,
+            "text": "Your ability scores each increase by 1.",
+            "id": "human--ability-score-increase",
+            "status": "original-source-preserved; apply-reviewed-integration-guide"
+          },
+          {
+            "name": "Size",
+            "sourceLine": 1106,
+            "text": "Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.",
+            "id": "human--size",
+            "status": "original-source-preserved; apply-reviewed-integration-guide"
+          },
+          {
+            "name": "Speed",
+            "sourceLine": 1108,
+            "text": "Your base walking speed is 30 feet.",
+            "id": "human--speed",
+            "status": "original-source-preserved; apply-reviewed-integration-guide"
+          },
+          {
+            "name": "Versatility",
+            "sourceLine": 1110,
+            "text": "You gain proficiency in one skill of your choice.",
+            "id": "human--versatility",
+            "status": "original-source-preserved; apply-reviewed-integration-guide"
+          },
+          {
+            "name": "Languages",
+            "sourceLine": 1112,
+            "text": "You can speak, read, and write Common and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, including obscure dialects.",
+            "id": "human--languages",
+            "status": "original-source-preserved; apply-reviewed-integration-guide"
+          }
+        ],
+        "variants": [
+          {
+            "id": "imperial-human",
+            "name": "Imperial Human",
+            "abilityBonuses": {
+              "CHA": 1
+            },
+            "combinedAbilityBonuses": {
+              "STR": 1,
+              "DEX": 1,
+              "CON": 1,
+              "INT": 1,
+              "WIS": 1,
+              "CHA": 2
+            },
+            "traits": [
+              {
+                "name": "Ability Score Increase",
+                "sourceLine": 1122,
+                "text": "Your Charisma score increases by 1 (for a total of +2 to Charisma).",
+                "id": "imperial-human--ability-score-increase",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              },
+              {
+                "name": "Social Intuition",
+                "sourceLine": 1124,
+                "text": "You have proficiency in the Persuasion skill. If you already have this proficiency, you gain proficiency in one of the following skills of your choice: Deception, Insight, or Intimidation.",
+                "id": "imperial-human--social-intuition",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              },
+              {
+                "name": "Diplomatic Training",
+                "sourceLine": 1126,
+                "text": "You know one additional language of your choice.",
+                "id": "imperial-human--diplomatic-training",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              },
+              {
+                "name": "Natural Leader",
+                "sourceLine": 1128,
+                "text": "Once per short rest, when you or an ally within 30 feet of you rolls a 1 on an attack roll, ability check, or saving throw, you can call out a warning or offer quick advice, allowing the roll to be rerolled. The second roll must be used.",
+                "id": "imperial-human--natural-leader",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              }
+            ]
+          },
+          {
+            "id": "nomadic-human",
+            "name": "Nomadic Human",
+            "abilityBonuses": {
+              "CON": 1,
+              "WIS": 1
+            },
+            "combinedAbilityBonuses": {
+              "STR": 1,
+              "DEX": 1,
+              "CON": 2,
+              "INT": 1,
+              "WIS": 2,
+              "CHA": 1
+            },
+            "traits": [
+              {
+                "name": "Ability Score Increase",
+                "sourceLine": 1134,
+                "text": "Your Constitution score increases by 1, and your Wisdom score increases by 1 (for a total of +2 to Constitution and +2 to Wisdom).",
+                "id": "nomadic-human--ability-score-increase",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              },
+              {
+                "name": "Environmental Adaptation",
+                "sourceLine": 1136,
+                "text": "You have advantage on saving throws against extreme heat and cold.",
+                "id": "nomadic-human--environmental-adaptation",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              },
+              {
+                "name": "Survival Instinct",
+                "sourceLine": 1138,
+                "text": "You have proficiency in the Survival skill. If you already have this proficiency, you gain proficiency in one of the following skills of your choice: Animal Handling, Medicine, or Nature.",
+                "id": "nomadic-human--survival-instinct",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              },
+              {
+                "name": "Wayfinder",
+                "sourceLine": 1140,
+                "text": "You always know which way is north, and you have advantage on Wisdom (Survival) checks to avoid becoming lost.",
+                "id": "nomadic-human--wayfinder",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              }
+            ]
+          },
+          {
+            "id": "scholarly-human",
+            "name": "Scholarly Human",
+            "abilityBonuses": {
+              "INT": 1
+            },
+            "combinedAbilityBonuses": {
+              "STR": 1,
+              "DEX": 1,
+              "CON": 1,
+              "INT": 2,
+              "WIS": 1,
+              "CHA": 1
+            },
+            "traits": [
+              {
+                "name": "Ability Score Increase",
+                "sourceLine": 1146,
+                "text": "Your Intelligence score increases by 1 (for a total of +2 to Intelligence).",
+                "id": "scholarly-human--ability-score-increase",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              },
+              {
+                "name": "Knowledge Seeker",
+                "sourceLine": 1148,
+                "text": "You have proficiency in the History skill. If you already have this proficiency, you gain proficiency in one of the following skills of your choice: Arcana, Investigation, or Religion.",
+                "id": "scholarly-human--knowledge-seeker",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              },
+              {
+                "name": "Quick Learner",
+                "sourceLine": 1150,
+                "text": "You gain proficiency with one set of tools of your choice.",
+                "id": "scholarly-human--quick-learner",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              },
+              {
+                "name": "Lore Master",
+                "sourceLine": 1152,
+                "text": "When you make an Intelligence check to recall information about something you've studied, you can add double your proficiency bonus instead of any proficiency bonus you normally apply.",
+                "id": "scholarly-human--lore-master",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              }
+            ]
+          }
+        ],
+        "size": "Medium",
+        "baseWalkFeet": 30
+      },
+      "background": {
+        "id": "arcane-academy-dropout",
+        "name": "Arcane Academy Dropout",
+        "status": "source-package-reviewed; integration-guide-and-stated-equipment-dependencies-apply",
+        "source": [
+          {
+            "line": 6004,
+            "text": "Skill Proficiencies: Arcana, History"
+          },
+          {
+            "line": 6005,
+            "text": "Languages: Two of your choice"
+          },
+          {
+            "line": 6006,
+            "text": "Equipment: A spellbook or arcane focus (perhaps damaged or modified), a letter of expulsion or resignation, a set of common clothes, a student's robe, and a pouch containing 10 gp."
+          },
+          {
+            "line": 6007,
+            "text": "Feature: Theoretical Knowledge: Despite your incomplete education, you retain substantial theoretical knowledge. You have advantage on Intelligence (Arcana) checks related to identifying magical effects, traditions, or items, even if you can't replicate them yourself. Your academic background grants you Disliked starting Reputation with formal arcane institutions but Neutral starting Reputation with independent mages and magical researchers who value unorthodox thinking."
+          }
+        ],
+        "skillsSource": "Arcana, History",
+        "languagesSource": "Two of your choice",
+        "equipmentSource": "A spellbook or arcane focus (perhaps damaged or modified), a letter of expulsion or resignation, a set of common clothes, a student's robe, and a pouch containing 10 gp.",
+        "featureSource": "Theoretical Knowledge: Despite your incomplete education, you retain substantial theoretical knowledge. You have advantage on Intelligence (Arcana) checks related to identifying magical effects, traditions, or items, even if you can't replicate them yourself. Your academic background grants you Disliked starting Reputation with formal arcane institutions but Neutral starting Reputation with independent mages and magical researchers who value unorthodox thinking."
+      },
+      "className": "Wizard",
+      "singleClassLevel": 17,
+      "totalCharacterLevel": 17,
+      "classBuildArchetype": "Spellbinder",
+      "buildSelectionSource": "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_BUILD_EXAMPLES.md",
+      "selectedClassCardsByLevel": [
+        [
+          "Arcane Shield",
+          "Analyze Magic",
+          "Spell Scribing",
+          "Arcane Bolt"
+        ],
+        [
+          "Scholarly Mind",
+          "Arcane Recovery"
+        ],
+        [
+          "Sigil Rewrite",
+          "Arcane Sight"
+        ],
+        [
+          "Arcane Lock"
+        ],
+        [
+          "Dispel Magic"
+        ],
+        [
+          "Spell Tether"
+        ],
+        [
+          "Floating Preparation"
+        ],
+        [
+          "Matrix Efficiency"
+        ],
+        [
+          "Dimensional Pocket"
+        ],
+        [
+          "Runic Snare",
+          "Spell Preservation"
+        ],
+        [
+          "Spell Efficiency"
+        ],
+        [
+          "Counterpulse"
+        ],
+        [
+          "Arcane Insight"
+        ],
+        [
+          "Seal Magic"
+        ],
+        [
+          "Improved Concentration"
+        ],
+        [
+          "Knowledge Shield"
+        ],
+        [
+          "Minor Conjuration"
+        ]
+      ],
+      "firstClassTraining": {
+        "saves": [
+          "INT",
+          "WIS"
+        ],
+        "selectedSkills": [
+          "Arcana",
+          "Investigation"
+        ],
+        "equipmentTraining": "per current Character Foundation Tables"
+      },
+      "abilityScores": {
+        "STR": 9,
+        "DEX": 14,
+        "CON": 19,
+        "INT": 20,
+        "WIS": 13,
+        "CHA": 11
+      },
+      "abilityModifiers": {
+        "STR": -1,
+        "DEX": 2,
+        "CON": 4,
+        "INT": 5,
+        "WIS": 2,
+        "CHA": 0
+      },
+      "proficiencyBonus": 6,
+      "hp": {
+        "hitDie": "d6",
+        "level1Base": 6,
+        "subsequentFixedBase": 4,
+        "constitutionModifier": 4,
+        "maximumHP": 138,
+        "currentHP": 138
+      },
+      "armorClass": 12,
+      "armor": null,
+      "rank9SpellAccess": true,
+      "classRankMaximum": 9,
+      "maxRP": 64,
+      "currentRP": 64,
+      "castingAbility": "Intelligence",
+      "spellAttackBonus": 13,
+      "spellSaveDC": 21,
+      "dissonance": 0,
+      "dissonanceLimit": 13,
+      "lastSpell": null,
+      "refrainCount": 0,
+      "magicThisTurn": false,
+      "classSpellProfile": {
+        "bookEntries": 67,
+        "preparedMatrixLimit": 22,
+        "cantrips": 5,
+        "matrixEfficiencyPreparationMinutes": 45,
+        "matrixEfficiencySelectedAtLevel": 8,
+        "spellEfficiencySelectedAtLevel": 11,
+        "schoolMasteryBonus": 2,
+        "school": "Divination",
+        "targetSpellAcquiredAtLevel": 17,
+        "targetSpellPrepared": true,
+        "rank9LegalAtLevel": 17,
+        "counterspellAcquiredAtLevel": 2,
+        "counterspellPrepared": true,
+        "preparedSpellChoicesInclude": [
+          "Faction Omniscience (Supreme)",
+          "Counterspell"
+        ]
+      },
+      "targetSpell": {
+        "id": "faction-omniscience-supreme",
+        "rank": 9,
+        "school": "Divination",
+        "acquiredByOrdinaryClassRule": true,
+        "firstLegalAcquisitionLevel": 17,
+        "repertoireState": "known/prepared as appropriate"
+      },
+      "components": {
+        "V": true,
+        "S": true,
+        "F": true,
+        "focusItemId": "wizard-focus-01",
+        "focusHand": "left",
+        "rightHandFree": true
+      },
+      "equipment": {
+        "focusItemId": "wizard-focus-01",
+        "focusType": "Arcane Focus Wand",
+        "focusMassLb": 1,
+        "owned": true,
+        "spellbook": {
+          "id": "wizard-spellbook-01",
+          "massLb": 3,
+          "owned": true
+        }
+      },
+      "setupPremises": {
+        "status": "TEST_ONLY",
+        "completedLongRest": true,
+        "preparedBeforeEncounter": true,
+        "inEncounterRest": false,
+        "RPAtLawfulMaximum": true,
+        "schoolChoice": "Divination"
+      }
+    },
+    {
+      "actorId": "cleric-17-divination",
+      "ancestry": {
+        "id": "human",
+        "name": "Human",
+        "abilityBonuses": {
+          "STR": 1,
+          "DEX": 1,
+          "CON": 1,
+          "INT": 1,
+          "WIS": 1,
+          "CHA": 1
+        },
+        "traits": [
+          {
+            "name": "Ability Score Increase",
+            "sourceLine": 1100,
+            "text": "Your ability scores each increase by 1.",
+            "id": "human--ability-score-increase",
+            "status": "original-source-preserved; apply-reviewed-integration-guide"
+          },
+          {
+            "name": "Size",
+            "sourceLine": 1106,
+            "text": "Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.",
+            "id": "human--size",
+            "status": "original-source-preserved; apply-reviewed-integration-guide"
+          },
+          {
+            "name": "Speed",
+            "sourceLine": 1108,
+            "text": "Your base walking speed is 30 feet.",
+            "id": "human--speed",
+            "status": "original-source-preserved; apply-reviewed-integration-guide"
+          },
+          {
+            "name": "Versatility",
+            "sourceLine": 1110,
+            "text": "You gain proficiency in one skill of your choice.",
+            "id": "human--versatility",
+            "status": "original-source-preserved; apply-reviewed-integration-guide"
+          },
+          {
+            "name": "Languages",
+            "sourceLine": 1112,
+            "text": "You can speak, read, and write Common and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, including obscure dialects.",
+            "id": "human--languages",
+            "status": "original-source-preserved; apply-reviewed-integration-guide"
+          }
+        ],
+        "variants": [
+          {
+            "id": "imperial-human",
+            "name": "Imperial Human",
+            "abilityBonuses": {
+              "CHA": 1
+            },
+            "combinedAbilityBonuses": {
+              "STR": 1,
+              "DEX": 1,
+              "CON": 1,
+              "INT": 1,
+              "WIS": 1,
+              "CHA": 2
+            },
+            "traits": [
+              {
+                "name": "Ability Score Increase",
+                "sourceLine": 1122,
+                "text": "Your Charisma score increases by 1 (for a total of +2 to Charisma).",
+                "id": "imperial-human--ability-score-increase",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              },
+              {
+                "name": "Social Intuition",
+                "sourceLine": 1124,
+                "text": "You have proficiency in the Persuasion skill. If you already have this proficiency, you gain proficiency in one of the following skills of your choice: Deception, Insight, or Intimidation.",
+                "id": "imperial-human--social-intuition",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              },
+              {
+                "name": "Diplomatic Training",
+                "sourceLine": 1126,
+                "text": "You know one additional language of your choice.",
+                "id": "imperial-human--diplomatic-training",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              },
+              {
+                "name": "Natural Leader",
+                "sourceLine": 1128,
+                "text": "Once per short rest, when you or an ally within 30 feet of you rolls a 1 on an attack roll, ability check, or saving throw, you can call out a warning or offer quick advice, allowing the roll to be rerolled. The second roll must be used.",
+                "id": "imperial-human--natural-leader",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              }
+            ]
+          },
+          {
+            "id": "nomadic-human",
+            "name": "Nomadic Human",
+            "abilityBonuses": {
+              "CON": 1,
+              "WIS": 1
+            },
+            "combinedAbilityBonuses": {
+              "STR": 1,
+              "DEX": 1,
+              "CON": 2,
+              "INT": 1,
+              "WIS": 2,
+              "CHA": 1
+            },
+            "traits": [
+              {
+                "name": "Ability Score Increase",
+                "sourceLine": 1134,
+                "text": "Your Constitution score increases by 1, and your Wisdom score increases by 1 (for a total of +2 to Constitution and +2 to Wisdom).",
+                "id": "nomadic-human--ability-score-increase",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              },
+              {
+                "name": "Environmental Adaptation",
+                "sourceLine": 1136,
+                "text": "You have advantage on saving throws against extreme heat and cold.",
+                "id": "nomadic-human--environmental-adaptation",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              },
+              {
+                "name": "Survival Instinct",
+                "sourceLine": 1138,
+                "text": "You have proficiency in the Survival skill. If you already have this proficiency, you gain proficiency in one of the following skills of your choice: Animal Handling, Medicine, or Nature.",
+                "id": "nomadic-human--survival-instinct",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              },
+              {
+                "name": "Wayfinder",
+                "sourceLine": 1140,
+                "text": "You always know which way is north, and you have advantage on Wisdom (Survival) checks to avoid becoming lost.",
+                "id": "nomadic-human--wayfinder",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              }
+            ]
+          },
+          {
+            "id": "scholarly-human",
+            "name": "Scholarly Human",
+            "abilityBonuses": {
+              "INT": 1
+            },
+            "combinedAbilityBonuses": {
+              "STR": 1,
+              "DEX": 1,
+              "CON": 1,
+              "INT": 2,
+              "WIS": 1,
+              "CHA": 1
+            },
+            "traits": [
+              {
+                "name": "Ability Score Increase",
+                "sourceLine": 1146,
+                "text": "Your Intelligence score increases by 1 (for a total of +2 to Intelligence).",
+                "id": "scholarly-human--ability-score-increase",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              },
+              {
+                "name": "Knowledge Seeker",
+                "sourceLine": 1148,
+                "text": "You have proficiency in the History skill. If you already have this proficiency, you gain proficiency in one of the following skills of your choice: Arcana, Investigation, or Religion.",
+                "id": "scholarly-human--knowledge-seeker",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              },
+              {
+                "name": "Quick Learner",
+                "sourceLine": 1150,
+                "text": "You gain proficiency with one set of tools of your choice.",
+                "id": "scholarly-human--quick-learner",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              },
+              {
+                "name": "Lore Master",
+                "sourceLine": 1152,
+                "text": "When you make an Intelligence check to recall information about something you've studied, you can add double your proficiency bonus instead of any proficiency bonus you normally apply.",
+                "id": "scholarly-human--lore-master",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              }
+            ]
+          }
+        ],
+        "size": "Medium",
+        "baseWalkFeet": 30
+      },
+      "background": {
+        "id": "expedition-cartographer",
+        "name": "Expedition Cartographer",
+        "status": "source-package-reviewed; integration-guide-and-stated-equipment-dependencies-apply",
+        "source": [
+          {
+            "line": 5965,
+            "text": "Skill Proficiencies: Survival, Investigation"
+          },
+          {
+            "line": 5966,
+            "text": "Tool Proficiencies: Cartographer's tools, Navigator's tools"
+          },
+          {
+            "line": 5967,
+            "text": "Equipment: A set of cartographer's tools, several blank parchments, a collection of partially completed maps, a compass, a set of traveler's clothes, and a belt pouch containing 10 gp."
+          },
+          {
+            "line": 5968,
+            "text": "Feature: Trailblazer: You have an excellent memory for maps and geography. You can always recall the general layout of terrain, settlements, and other features you've seen or studied. When in wilderness environments, you can identify the safest route forward, potential hazards, and prime camping locations. Your professional reputation grants you Liked starting Reputation with merchant guilds and explorers' societies but Neutral starting Reputation with indigenous tribes wary of outsiders mapping their territories."
+          }
+        ],
+        "skillsSource": "Survival, Investigation",
+        "toolsSource": "Cartographer's tools, Navigator's tools",
+        "equipmentSource": "A set of cartographer's tools, several blank parchments, a collection of partially completed maps, a compass, a set of traveler's clothes, and a belt pouch containing 10 gp.",
+        "featureSource": "Trailblazer: You have an excellent memory for maps and geography. You can always recall the general layout of terrain, settlements, and other features you've seen or studied. When in wilderness environments, you can identify the safest route forward, potential hazards, and prime camping locations. Your professional reputation grants you Liked starting Reputation with merchant guilds and explorers' societies but Neutral starting Reputation with indigenous tribes wary of outsiders mapping their territories."
+      },
+      "className": "Cleric",
+      "singleClassLevel": 17,
+      "totalCharacterLevel": 17,
+      "classBuildArchetype": "Saint",
+      "buildSelectionSource": "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_BUILD_EXAMPLES.md",
+      "selectedClassCardsByLevel": [
+        [
+          "Consecrate",
+          "Healing Rite",
+          "Consecrated Ground",
+          "Fervent Ritualist"
+        ],
+        [
+          "Judging Light",
+          "Conviction Pool"
+        ],
+        [
+          "Divine Invocation",
+          "Aura of Faith"
+        ],
+        [
+          "Sacred Chant"
+        ],
+        [
+          "Liturgical Flow"
+        ],
+        [
+          "Divine Insight"
+        ],
+        [
+          "Sermon of Purpose"
+        ],
+        [
+          "Sacrament"
+        ],
+        [
+          "Blessing of Protection"
+        ],
+        [
+          "Mass Healing Light",
+          "Divine Intervention"
+        ],
+        [
+          "Banish Unholy"
+        ],
+        [
+          "Aura of Grace"
+        ],
+        [
+          "Commune"
+        ],
+        [
+          "Radiant Burst"
+        ],
+        [
+          "Divine Smite"
+        ],
+        [
+          "Resurrection"
+        ],
+        [
+          "Miraculous Channel"
+        ]
+      ],
+      "firstClassTraining": {
+        "saves": [
+          "WIS",
+          "CHA"
+        ],
+        "selectedSkills": [
+          "Insight",
+          "Religion"
+        ],
+        "equipmentTraining": "per current Character Foundation Tables"
+      },
+      "abilityScores": {
+        "STR": 9,
+        "DEX": 14,
+        "CON": 19,
+        "INT": 13,
+        "WIS": 20,
+        "CHA": 11
+      },
+      "abilityModifiers": {
+        "STR": -1,
+        "DEX": 2,
+        "CON": 4,
+        "INT": 0,
+        "WIS": 5,
+        "CHA": 0
+      },
+      "proficiencyBonus": 6,
+      "hp": {
+        "hitDie": "d8",
+        "level1Base": 8,
+        "subsequentFixedBase": 5,
+        "constitutionModifier": 4,
+        "maximumHP": 156,
+        "currentHP": 156
+      },
+      "armorClass": 12,
+      "armor": null,
+      "rank9SpellAccess": true,
+      "classRankMaximum": 9,
+      "maxRP": 48,
+      "currentRP": 48,
+      "castingAbility": "Wisdom",
+      "spellAttackBonus": 11,
+      "spellSaveDC": 19,
+      "dissonance": 0,
+      "dissonanceLimit": 13,
+      "lastSpell": null,
+      "refrainCount": 0,
+      "magicThisTurn": false,
+      "classSpellProfile": {
+        "rankedSpellsKnown": 18,
+        "cantrips": 5,
+        "targetSpellAcquiredAtLevel": 17,
+        "targetSpellKnown": true,
+        "rank9LegalAtLevel": 17,
+        "preparation": "ordinary Cleric known-spell repertoire; no Wizard matrix is used"
+      },
+      "targetSpell": {
+        "id": "faction-omniscience-supreme",
+        "rank": 9,
+        "school": "Divination",
+        "acquiredByOrdinaryClassRule": true,
+        "firstLegalAcquisitionLevel": 17,
+        "repertoireState": "known/prepared as appropriate"
+      },
+      "components": {
+        "V": true,
+        "S": true,
+        "F": true,
+        "focusItemId": "cleric-focus-01",
+        "focusHand": "left",
+        "rightHandFree": true
+      },
+      "equipment": {
+        "focusItemId": "cleric-focus-01",
+        "focusType": "Holy Symbol Amulet",
+        "focusMassLb": 1,
+        "owned": true,
+        "spellbook": null
+      },
+      "setupPremises": {
+        "status": "TEST_ONLY",
+        "completedLongRest": true,
+        "preparedBeforeEncounter": true,
+        "inEncounterRest": false,
+        "RPAtLawfulMaximum": true,
+        "schoolChoice": null
+      }
+    }
+  ],
+  "constructionRules": {
+    "standardArray": [
+      15,
+      14,
+      13,
+      12,
+      10,
+      8
+    ],
+    "ancestry": "Human +1 all six abilities, applied once",
+    "ASIlevels": [
+      4,
+      8,
+      12,
+      16
+    ],
+    "PBAtTotalLevel17": 6,
+    "allProfilesSingleClass17": true,
+    "noClassLevelMixing": true,
+    "freshBranchRestSetup": true,
+    "exactNativeRoutes": [
+      "Wizard/Divination",
+      "Cleric/Divination"
+    ],
+    "targetSpellAcquiredAtFirstLegalRank9Level": true,
+    "RPBaseCost": 26,
+    "DissonanceAtFreshStart": 0,
+    "initialRank9CastDissonance": 2,
+    "noSurchargeBecauseDissonanceBelowLimit": true,
+    "spellEfficiencyNotAppliedOnFirstCast": true
+  }
+}

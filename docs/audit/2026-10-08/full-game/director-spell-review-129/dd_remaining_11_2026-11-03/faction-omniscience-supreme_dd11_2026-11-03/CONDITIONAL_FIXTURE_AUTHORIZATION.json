@@ -1,0 +1,93 @@
+{
+  "id": "FOS-DD11-CONDITIONAL-FIXTURE-AUTH-01",
+  "classification": "NEW_DIRECTOR_AUTHORED_TEST_ONLY",
+  "identity": "faction-omniscience-supreme",
+  "authorizationBasis": "User standing instruction to finish pending identities and follow the Director; the exact package authorizes scoped conditional fixture construction. Numeric fixture facts are Director-authored, not attributed verbatim to the owner.",
+  "directorContract": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/dd_remaining_11_2026-11-03/faction-omniscience-supreme_dd11_2026-11-03/DIRECTOR_CONTRACT.json",
+    "sha256": "82b864d2edaa8321ea6db88d8dc70dd1029cb2cda00363e0f66e93aaaeb0423d"
+  },
+  "commonContract": {
+    "id": "DD-DIRECTOR-11-COMMON-01",
+    "sha256": "df85ee92c143fadc66f51cb070379f4c87b3f9c7f77a6f30eb2ceeb7239dfcab"
+  },
+  "fixture": {
+    "id": "TEST-FACTION-DD11-ARCHIVE",
+    "canonical": false,
+    "aliases": [
+      "Test Archive Guild"
+    ],
+    "knownBy": [
+      "caster"
+    ],
+    "observationMs": 1000,
+    "history": [
+      {
+        "id": "founded",
+        "atMs": -864000000,
+        "value": "Institution founded under elected three-seat council",
+        "audience": [
+          "caster"
+        ]
+      },
+      {
+        "id": "branch-east",
+        "atMs": -432000000,
+        "value": "East store opened 500 miles away on same plane",
+        "audience": [
+          "caster"
+        ]
+      }
+    ],
+    "current": [
+      {
+        "id": "governance",
+        "value": {
+          "seats": 3,
+          "decision": "majority"
+        },
+        "kind": "fact"
+      },
+      {
+        "id": "stores",
+        "value": {
+          "grainCrates": 100,
+          "reservedCrates": 20
+        },
+        "kind": "fact"
+      },
+      {
+        "id": "dispatch-plan",
+        "value": {
+          "plannedCrates": 40,
+          "departAfterMs": 86401000,
+          "capacityCrates": 40
+        },
+        "kind": "fact"
+      },
+      {
+        "id": "ferry-report",
+        "value": "Public ferry operator reports a two-day river closure",
+        "kind": "report"
+      },
+      {
+        "id": "secret-person",
+        "value": "Member privately plans to defect",
+        "kind": "fact",
+        "protected": true,
+        "audience": []
+      }
+    ],
+    "supportedForecast": "40-crate dispatch likely within the next seven days if the reported river closure ends; a delay or road reroute is the stated alternative. No exact arrival time, secret defection or outcome certainty.",
+    "excludedHistoricalCandidates": "SEA-FACTION-WAR seed331 and seed502 remain separate unadjudicated records; neither is imported. Their persistence/chronicler conflict remains unresolved."
+  },
+  "branchScope": "Each branch is isolated and synthetic; canonical=false, campaignExistenceVerified=false. The fixture does not resolve KR326-C01 or close KR198-B01.",
+  "prohibitedInferences": [
+    "no campaign fact",
+    "no canonical faction history",
+    "no native catalog edit",
+    "no runtime selection",
+    "no seal",
+    "no downstream blocker closure"
+  ]
+}

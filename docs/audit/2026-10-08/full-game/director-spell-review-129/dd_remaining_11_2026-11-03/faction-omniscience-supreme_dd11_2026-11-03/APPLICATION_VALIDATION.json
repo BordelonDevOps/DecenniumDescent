@@ -1,0 +1,100 @@
+{
+  "id": "FOS-DD11-APPLICATION-VALIDATION-01",
+  "status": "PASS",
+  "checksPassed": 12,
+  "checksFailed": 0,
+  "indexBefore": {
+    "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+    "commit": "3b4e4be0388a56db26ece31bfcba01da01a80139",
+    "bytes": 1794812,
+    "sha256": "ed0ad2fbc943f6c4921ef57661cc3664bd9c006960e1275cbb471d500ee4bbdb",
+    "gitBlobSha1": "d48640253e187ba4c981c765ed86fb040f03f6cd",
+    "role": "index before FOS application"
+  },
+  "indexAfter": {
+    "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+    "bytes": 1800035,
+    "sha256": "2495cb38971b1dbee1a07847d31cbaf375521b7b880157e2b1eb8d1e6a301412",
+    "crc32": "63c01313",
+    "gitBlobSha1": "7b37d0fdc8408de71fd960773dd1b468fb3ae51b"
+  },
+  "queueAfter": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_SPELL_QUEUE_484.json",
+    "bytes": 4237,
+    "sha256": "2d6a1b9e304a96dd74675b9cec8112e7924abe08b283c368451f4cbe858f3419",
+    "crc32": "ee712a4a",
+    "gitBlobSha1": "578586146fb4a0a0ab06a9ac323487673b39ea44"
+  },
+  "handoffAfter": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_484.json",
+    "bytes": 3201,
+    "sha256": "dd5584c7f785b1a5012a9f7763bfe251206f34dcc5ce4736287a373a3394e3c7",
+    "crc32": "91b7279a",
+    "gitBlobSha1": "6ca5f19dadb8463290eaa4edc96d248fcf383692"
+  },
+  "pendingAuditAfter": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT9_PENDING_IDENTITY_AUDIT_484.json",
+    "bytes": 1661,
+    "sha256": "d808aa63709a0e9e8494f325934bf25a8ae2c2abf11ed70a6309660890b1e238",
+    "crc32": "5ab072df",
+    "gitBlobSha1": "6fc28b459f20e03a854107f32488ecad76562c24"
+  },
+  "applicationReceipt": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/dd_remaining_11_2026-11-03/faction-omniscience-supreme_dd11_2026-11-03/APPLICATION_RECEIPT.json",
+    "bytes": 3916,
+    "sha256": "5a13e6b4c79b56e30e3831a0764edda89cfb01fe66966b2460f23198ce440212",
+    "crc32": "c6cb0f25",
+    "gitBlobSha1": "bef0f40e7613c7aabb4500621efcd925dacceaff"
+  },
+  "checks": [
+    {
+      "check": "index counters reviewed+1/pending-1/accepted-unapplied0",
+      "pass": true
+    },
+    {
+      "check": "only one identity row changed",
+      "pass": true
+    },
+    {
+      "check": "all other index fields preserved",
+      "pass": true
+    },
+    {
+      "check": "native catalog remains exact unchanged",
+      "pass": true
+    },
+    {
+      "check": "source blockers and qualifications retained",
+      "pass": true
+    },
+    {
+      "check": "priority advances one identity",
+      "pass": true
+    },
+    {
+      "check": "pending queue exactly matches index",
+      "pass": true
+    },
+    {
+      "check": "native FOS source status remains held",
+      "pass": true
+    },
+    {
+      "check": "index receipt references exact evidence",
+      "pass": true
+    },
+    {
+      "check": "all 10 contracts included",
+      "pass": true
+    },
+    {
+      "check": "witness and independent validator passed",
+      "pass": true
+    },
+    {
+      "check": "runtime/canon/seal remain off",
+      "pass": true
+    }
+  ],
+  "verificationMethod": "Independent JSON readback of the applied index row, counters, next queue, exact retained source hashes, and separately executed semantic/replay validation."
+}
