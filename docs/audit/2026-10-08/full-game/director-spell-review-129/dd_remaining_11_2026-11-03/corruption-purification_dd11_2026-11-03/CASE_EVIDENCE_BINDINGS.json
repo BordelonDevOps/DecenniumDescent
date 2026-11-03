@@ -1,0 +1,175 @@
+{
+  "id": "CP-DD11-CASE-EVIDENCE-BINDINGS-01",
+  "identity": "corruption-purification",
+  "contractSha256": "3d31fadf72859acc024d3665757323ec1ed057325f28086977fa605100306fb0",
+  "requiredCases": [
+    {
+      "caseId": "CP-P1",
+      "specification": {
+        "id": "CP-P1",
+        "given": {
+          "route": "Cleric/Abjuration",
+          "fixture": "creature"
+        },
+        "steps": [
+          "Paid willing cast",
+          "Snapshot graph",
+          "Remove eligible records once"
+        ],
+        "expected": {
+          "app1Ended": true,
+          "burden": 0,
+          "currentReversiblePTStage": 0,
+          "KTStage": 2,
+          "knowledgePreserved": true,
+          "NullVeilStillActive": true,
+          "OraclePreserved": true,
+          "protectedPActive": true
+        },
+        "covers": [
+          "AFP339-W01",
+          "AFP339-W03"
+        ],
+        "executionStatus": "NOT_EXECUTED_IN_THIS_PACKAGE"
+      },
+      "specificationSha256": "9c715fe7d06535f997c92714c810c4fc3e0bbc0888dd971a92b28e1f0226902b",
+      "branchIds": [
+        "CP-P1-CLERIC"
+      ],
+      "branchHashes": {
+        "CP-P1-CLERIC": "2f4dbee1300ce0f3f5357582a57d734654ead664db81b6ae67f3414cc35adee5"
+      },
+      "status": "PASS_STATIC_TEST_ONLY"
+    },
+    {
+      "caseId": "CP-P2",
+      "specification": {
+        "id": "CP-P2",
+        "given": {
+          "route": "Wizard/Abjuration",
+          "fixture": "area"
+        },
+        "steps": [
+          "Paid area cast",
+          "Apply exact intersection/containment",
+          "Retry same key"
+        ],
+        "expected": {
+          "e1Removed": true,
+          "e2Untouched": true,
+          "e3OnlyIntersectingCellsRemoved": true,
+          "e4Untouched": true,
+          "remoteParentActive": true,
+          "duplicateCallbackCount": 0
+        },
+        "covers": [
+          "AFP339-W02",
+          "AFP339-W03"
+        ],
+        "executionStatus": "NOT_EXECUTED_IN_THIS_PACKAGE"
+      },
+      "specificationSha256": "f786334ae790f03d4dcc0f21b9b7e26067429db87defbeb07f0ddd97f59729db",
+      "branchIds": [
+        "CP-P2-WIZARD"
+      ],
+      "branchHashes": {
+        "CP-P2-WIZARD": "644f154bca5f5e3bc49eff803b9f99f32eea09408386367f545a0ae9148499dc"
+      },
+      "status": "PASS_STATIC_TEST_ONLY"
+    },
+    {
+      "caseId": "CP-A1",
+      "specification": {
+        "id": "CP-A1",
+        "given": {
+          "events": [
+            "new app8 exposure",
+            "later dispel attempt on completed cure",
+            "unwilling occupant in area"
+          ]
+        },
+        "steps": [
+          "Resolve as independent operations"
+        ],
+        "expected": {
+          "app8CanApply": true,
+          "oldAppsNeverRecreated": true,
+          "occupantPurified": false,
+          "futureImmunity": false
+        },
+        "covers": [
+          "AFP339-W01",
+          "AFP339-W02",
+          "AFP339-W03"
+        ],
+        "executionStatus": "NOT_EXECUTED_IN_THIS_PACKAGE"
+      },
+      "specificationSha256": "b0ef7d2854a206ce7f6723e57a80a52429fc97063a03190d2b2daded3e302500",
+      "branchIds": [
+        "CP-A1-DRUID"
+      ],
+      "branchHashes": {
+        "CP-A1-DRUID": "a388c8e2ce7932cafeb740172ce957c2aa4d241b0f92d2258c80eb48abe2d24d"
+      },
+      "status": "PASS_STATIC_TEST_ONLY"
+    },
+    {
+      "caseId": "CP-R",
+      "specification": {
+        "id": "CP-R",
+        "given": {
+          "routes": [
+            "Druid/Abjuration",
+            "Mage/Abjuration"
+          ],
+          "adverse": [
+            "countered paid cast",
+            "protected-only target",
+            "mixed source graph"
+          ]
+        },
+        "steps": [
+          "Run paid route variants with genuine source callbacks and end-state checks"
+        ],
+        "expected": {
+          "noRefund": true,
+          "protectedNeutralResult": true,
+          "noAnatomyOrHistoryDeletion": true
+        },
+        "covers": [
+          "AFP339-W01",
+          "AFP339-W03"
+        ],
+        "executionStatus": "NOT_EXECUTED_IN_THIS_PACKAGE"
+      },
+      "specificationSha256": "33675d5ae99029d53574a8d987f2dff5de82e7a618a8c28727d832e868af0f20",
+      "branchIds": [
+        "CP-R-DRUID-PROTECTED",
+        "CP-R-WIZARD-COUNTERED",
+        "CP-R-MAGE-MIXED"
+      ],
+      "branchHashes": {
+        "CP-R-DRUID-PROTECTED": "bec20aca809f4f7c9760208296016f3a46f9ba639f9beaceaec9d9a3af7d7653",
+        "CP-R-WIZARD-COUNTERED": "f9599efb6a3829ac840cd5c47c2c75d34a13471bd5bd4dd72576b3edf05671a7",
+        "CP-R-MAGE-MIXED": "3233d2c7c917d4ef4c58f1480f8233d15115277abaa5fda70df1c3c062b08d01"
+      },
+      "status": "PASS_STATIC_TEST_ONLY"
+    }
+  ],
+  "nativeRouteCoverage": {
+    "Cleric/Abjuration": [
+      "CP-P1-CLERIC"
+    ],
+    "Wizard/Abjuration": [
+      "CP-P2-WIZARD"
+    ],
+    "Druid/Abjuration": [
+      "CP-A1-DRUID"
+    ],
+    "Mage/Abjuration": [
+      "CP-R-MAGE-MIXED"
+    ]
+  },
+  "minimumDistinctPaidPositiveEncountersPerRoute": 1,
+  "scope": "STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY"
+}

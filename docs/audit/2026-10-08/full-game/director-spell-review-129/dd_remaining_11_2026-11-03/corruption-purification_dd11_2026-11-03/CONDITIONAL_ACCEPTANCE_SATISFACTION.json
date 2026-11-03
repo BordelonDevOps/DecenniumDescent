@@ -1,0 +1,104 @@
+{
+  "id": "CP-DD11-CONDITIONAL-ACCEPTANCE-SATISFACTION-01",
+  "reviewId": "CP-DD11-STATIC-ACCEPT-01",
+  "identity": "corruption-purification",
+  "status": "CONDITIONAL_STATIC_ACCEPTANCE_SATISFIED",
+  "scope": "STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY",
+  "authority": {
+    "directorContractId": "DD11-CORRUPTION-PURIFICATION-01",
+    "directorContractSha256": "3d31fadf72859acc024d3665757323ec1ed057325f28086977fa605100306fb0",
+    "commonContractSha256": "df85ee92c143fadc66f51cb070379f4c87b3f9c7f77a6f30eb2ceeb7239dfcab",
+    "ownerInstruction": "finish the remaining Director-authored identities and apply each passing identity",
+    "exactModelAndBoundary": "Director-authored TEST_ONLY terms with source-bound protected and excluded records",
+    "noAdditionalRoutineAdoptionRequired": true
+  },
+  "conditions": {
+    "exactModelAndSourceBindings": {
+      "satisfied": true,
+      "binding": {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/dd_remaining_11_2026-11-03/corruption-purification_dd11_2026-11-03/SOURCE_BINDINGS.json",
+        "bytes": 11127,
+        "sha256": "897fd9291e8535b2fd5915c6ba002b5eb18b5a92fb68c7f72520576b8cdadedc",
+        "crc32": "e9339703",
+        "gitBlobSha1": "aeea32625b5bf217373d84ebd073119df68afa2f"
+      }
+    },
+    "legalPaidUsefulPositiveCoverageEveryNativeClassRoute": {
+      "satisfied": true,
+      "routeWitnesses": {
+        "Cleric/Abjuration": [
+          "CP-P1-CLERIC"
+        ],
+        "Wizard/Abjuration": [
+          "CP-P2-WIZARD"
+        ],
+        "Druid/Abjuration": [
+          "CP-A1-DRUID"
+        ],
+        "Mage/Abjuration": [
+          "CP-R-MAGE-MIXED"
+        ]
+      },
+      "minimumDistinctPositiveEncountersPerRoute": 1
+    },
+    "allPositiveAndAdverseRequiredCases": {
+      "satisfied": true,
+      "requiredCaseIds": [
+        "CP-P1",
+        "CP-P2",
+        "CP-A1",
+        "CP-R"
+      ],
+      "branchCount": 6,
+      "eventCount": 15
+    },
+    "semanticAndReplayChecks": {
+      "satisfied": true,
+      "semantic": {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/dd_remaining_11_2026-11-03/corruption-purification_dd11_2026-11-03/SEMANTIC_VALIDATION.json",
+        "bytes": 16352,
+        "sha256": "58118ac28d25abb571bd6a1d2e4921606383852695ae23bebdc983627da2a5f0",
+        "crc32": "7c015005",
+        "gitBlobSha1": "685bb8af505f05a0fbde17de61454c2c488b8513"
+      },
+      "semanticChecksPassed": 150,
+      "replay": {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/dd_remaining_11_2026-11-03/corruption-purification_dd11_2026-11-03/REPLAY_VALIDATION.json",
+        "bytes": 951,
+        "sha256": "61f1cd974c95ac0f905e2eaec79ec8ab571410681f398e7f92ec26d4280f90e2",
+        "crc32": "1d146236",
+        "gitBlobSha1": "8fdc340f2980a290a4ebf0e19d8cc65015b5f932"
+      },
+      "replayChecksPassed": 150
+    },
+    "retainedSourceBlockerAndQualifications": {
+      "satisfied": true,
+      "blockerId": "AFP211-B05",
+      "blockerStatus": "OPEN_RETAINED",
+      "qualificationIds": [
+        "AFP231-Q01",
+        "AFP231-Q02",
+        "AFP231-Q03",
+        "AFP231-Q04",
+        "AFP231-Q05",
+        "AFP231-Q06",
+        "AFP231-Q07"
+      ]
+    },
+    "providerScopeDisclosure": {
+      "satisfied": true,
+      "externalProviderCastCertified": false,
+      "limitation": "All actors, applications, permissions and callbacks in the evidence are synthetic TEST_ONLY inputs."
+    }
+  },
+  "staticLimits": {
+    "nativeOperational": null,
+    "sourceBlockerClosed": false,
+    "qualificationsClosed": false,
+    "runtimeSelectionEnabled": false,
+    "canonPromotion": false,
+    "campaignFactsCreated": false,
+    "providerCastCertified": false,
+    "witnessesSealed": false
+  }
+}

@@ -1,0 +1,3338 @@
+{
+  "id": "CP-DD11-STATE-START-01",
+  "scope": "independent TEST_ONLY actors, source graphs, area cells and callback ledgers",
+  "branches": [
+    {
+      "branchId": "CP-P1-CLERIC",
+      "caseId": "CP-P1",
+      "route": "Cleric/Abjuration",
+      "mode": "creature",
+      "state": {
+        "id": "CP-FIXTURE-CP-P1-Cleric",
+        "status": "TEST_ONLY",
+        "canonical": false,
+        "site": "TEST-DD11-CLEANSE-ARENA",
+        "plane": "TEST-DD11-PLANE-A",
+        "caster": {
+          "id": "cleric-17-abjuration",
+          "className": "Cleric",
+          "classLevel": 17,
+          "route": "Cleric/Abjuration",
+          "profile": {
+            "actorId": "cleric-17-abjuration",
+            "className": "Cleric",
+            "singleClassLevel": 17,
+            "totalCharacterLevel": 17,
+            "ancestry": {
+              "id": "human",
+              "name": "Human",
+              "abilityBonuses": {
+                "STR": 1,
+                "DEX": 1,
+                "CON": 1,
+                "INT": 1,
+                "WIS": 1,
+                "CHA": 1
+              },
+              "traits": [
+                {
+                  "name": "Ability Score Increase",
+                  "sourceLine": 1100,
+                  "text": "Your ability scores each increase by 1.",
+                  "id": "human--ability-score-increase",
+                  "status": "original-source-preserved; apply-reviewed-integration-guide"
+                },
+                {
+                  "name": "Size",
+                  "sourceLine": 1106,
+                  "text": "Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.",
+                  "id": "human--size",
+                  "status": "original-source-preserved; apply-reviewed-integration-guide"
+                },
+                {
+                  "name": "Speed",
+                  "sourceLine": 1108,
+                  "text": "Your base walking speed is 30 feet.",
+                  "id": "human--speed",
+                  "status": "original-source-preserved; apply-reviewed-integration-guide"
+                },
+                {
+                  "name": "Versatility",
+                  "sourceLine": 1110,
+                  "text": "You gain proficiency in one skill of your choice.",
+                  "id": "human--versatility",
+                  "status": "original-source-preserved; apply-reviewed-integration-guide"
+                },
+                {
+                  "name": "Languages",
+                  "sourceLine": 1112,
+                  "text": "You can speak, read, and write Common and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, including obscure dialects.",
+                  "id": "human--languages",
+                  "status": "original-source-preserved; apply-reviewed-integration-guide"
+                }
+              ],
+              "variants": [
+                {
+                  "id": "imperial-human",
+                  "name": "Imperial Human",
+                  "abilityBonuses": {
+                    "CHA": 1
+                  },
+                  "combinedAbilityBonuses": {
+                    "STR": 1,
+                    "DEX": 1,
+                    "CON": 1,
+                    "INT": 1,
+                    "WIS": 1,
+                    "CHA": 2
+                  },
+                  "traits": [
+                    {
+                      "name": "Ability Score Increase",
+                      "sourceLine": 1122,
+                      "text": "Your Charisma score increases by 1 (for a total of +2 to Charisma).",
+                      "id": "imperial-human--ability-score-increase",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Social Intuition",
+                      "sourceLine": 1124,
+                      "text": "You have proficiency in the Persuasion skill. If you already have this proficiency, you gain proficiency in one of the following skills of your choice: Deception, Insight, or Intimidation.",
+                      "id": "imperial-human--social-intuition",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Diplomatic Training",
+                      "sourceLine": 1126,
+                      "text": "You know one additional language of your choice.",
+                      "id": "imperial-human--diplomatic-training",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Natural Leader",
+                      "sourceLine": 1128,
+                      "text": "Once per short rest, when you or an ally within 30 feet of you rolls a 1 on an attack roll, ability check, or saving throw, you can call out a warning or offer quick advice, allowing the roll to be rerolled. The second roll must be used.",
+                      "id": "imperial-human--natural-leader",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    }
+                  ]
+                },
+                {
+                  "id": "nomadic-human",
+                  "name": "Nomadic Human",
+                  "abilityBonuses": {
+                    "CON": 1,
+                    "WIS": 1
+                  },
+                  "combinedAbilityBonuses": {
+                    "STR": 1,
+                    "DEX": 1,
+                    "CON": 2,
+                    "INT": 1,
+                    "WIS": 2,
+                    "CHA": 1
+                  },
+                  "traits": [
+                    {
+                      "name": "Ability Score Increase",
+                      "sourceLine": 1134,
+                      "text": "Your Constitution score increases by 1, and your Wisdom score increases by 1 (for a total of +2 to Constitution and +2 to Wisdom).",
+                      "id": "nomadic-human--ability-score-increase",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Environmental Adaptation",
+                      "sourceLine": 1136,
+                      "text": "You have advantage on saving throws against extreme heat and cold.",
+                      "id": "nomadic-human--environmental-adaptation",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Survival Instinct",
+                      "sourceLine": 1138,
+                      "text": "You have proficiency in the Survival skill. If you already have this proficiency, you gain proficiency in one of the following skills of your choice: Animal Handling, Medicine, or Nature.",
+                      "id": "nomadic-human--survival-instinct",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Wayfinder",
+                      "sourceLine": 1140,
+                      "text": "You always know which way is north, and you have advantage on Wisdom (Survival) checks to avoid becoming lost.",
+                      "id": "nomadic-human--wayfinder",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    }
+                  ]
+                },
+                {
+                  "id": "scholarly-human",
+                  "name": "Scholarly Human",
+                  "abilityBonuses": {
+                    "INT": 1
+                  },
+                  "combinedAbilityBonuses": {
+                    "STR": 1,
+                    "DEX": 1,
+                    "CON": 1,
+                    "INT": 2,
+                    "WIS": 1,
+                    "CHA": 1
+                  },
+                  "traits": [
+                    {
+                      "name": "Ability Score Increase",
+                      "sourceLine": 1146,
+                      "text": "Your Intelligence score increases by 1 (for a total of +2 to Intelligence).",
+                      "id": "scholarly-human--ability-score-increase",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Knowledge Seeker",
+                      "sourceLine": 1148,
+                      "text": "You have proficiency in the History skill. If you already have this proficiency, you gain proficiency in one of the following skills of your choice: Arcana, Investigation, or Religion.",
+                      "id": "scholarly-human--knowledge-seeker",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Quick Learner",
+                      "sourceLine": 1150,
+                      "text": "You gain proficiency with one set of tools of your choice.",
+                      "id": "scholarly-human--quick-learner",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Lore Master",
+                      "sourceLine": 1152,
+                      "text": "When you make an Intelligence check to recall information about something you've studied, you can add double your proficiency bonus instead of any proficiency bonus you normally apply.",
+                      "id": "scholarly-human--lore-master",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    }
+                  ]
+                }
+              ],
+              "size": "Medium",
+              "baseWalkFeet": 30
+            },
+            "background": {
+              "id": "expedition-cartographer",
+              "name": "Expedition Cartographer",
+              "status": "source-package-reviewed; integration-guide-and-stated-equipment-dependencies-apply",
+              "source": [
+                {
+                  "line": 5965,
+                  "text": "Skill Proficiencies: Survival, Investigation"
+                },
+                {
+                  "line": 5966,
+                  "text": "Tool Proficiencies: Cartographer's tools, Navigator's tools"
+                },
+                {
+                  "line": 5967,
+                  "text": "Equipment: A set of cartographer's tools, several blank parchments, a collection of partially completed maps, a compass, a set of traveler's clothes, and a belt pouch containing 10 gp."
+                },
+                {
+                  "line": 5968,
+                  "text": "Feature: Trailblazer: You have an excellent memory for maps and geography. You can always recall the general layout of terrain, settlements, and other features you've seen or studied. When in wilderness environments, you can identify the safest route forward, potential hazards, and prime camping locations. Your professional reputation grants you Liked starting Reputation with merchant guilds and explorers' societies but Neutral starting Reputation with indigenous tribes wary of outsiders mapping their territories."
+                }
+              ],
+              "skillsSource": "Survival, Investigation",
+              "toolsSource": "Cartographer's tools, Navigator's tools",
+              "equipmentSource": "A set of cartographer's tools, several blank parchments, a collection of partially completed maps, a compass, a set of traveler's clothes, and a belt pouch containing 10 gp.",
+              "featureSource": "Trailblazer: You have an excellent memory for maps and geography. You can always recall the general layout of terrain, settlements, and other features you've seen or studied. When in wilderness environments, you can identify the safest route forward, potential hazards, and prime camping locations. Your professional reputation grants you Liked starting Reputation with merchant guilds and explorers' societies but Neutral starting Reputation with indigenous tribes wary of outsiders mapping their territories."
+            },
+            "abilityScoreArray": {
+              "STR": 8,
+              "DEX": 13,
+              "CON": 14,
+              "INT": 12,
+              "WIS": 15,
+              "CHA": 10
+            },
+            "abilityScores": {
+              "STR": 9,
+              "DEX": 14,
+              "CON": 19,
+              "INT": 13,
+              "WIS": 20,
+              "CHA": 11
+            },
+            "ASIChoices": [
+              {
+                "level": 4,
+                "WIS": 2
+              },
+              {
+                "level": 8,
+                "WIS": 2
+              },
+              {
+                "level": 12,
+                "CON": 2
+              },
+              {
+                "level": 16,
+                "CON": 2
+              }
+            ],
+            "classBuild": [
+              [
+                "Consecrate",
+                "Healing Rite",
+                "Consecrated Ground",
+                "Fervent Ritualist"
+              ],
+              [
+                "Judging Light",
+                "Conviction Pool"
+              ],
+              [
+                "Divine Invocation",
+                "Aura of Faith"
+              ],
+              [
+                "Sacred Chant"
+              ],
+              [
+                "Liturgical Flow"
+              ],
+              [
+                "Divine Insight"
+              ],
+              [
+                "Sermon of Purpose"
+              ],
+              [
+                "Sacrament"
+              ],
+              [
+                "Blessing of Protection"
+              ],
+              [
+                "Mass Healing Light",
+                "Divine Intervention"
+              ],
+              [
+                "Banish Unholy"
+              ],
+              [
+                "Aura of Grace"
+              ],
+              [
+                "Commune"
+              ],
+              [
+                "Radiant Burst"
+              ],
+              [
+                "Divine Smite"
+              ],
+              [
+                "Resurrection"
+              ],
+              [
+                "Miraculous Channel"
+              ]
+            ],
+            "classBuildExampleSource": "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_BUILD_EXAMPLES.md",
+            "classGuideSource": "DescentReviewChanges/ReviewBible/docs/mechanics/classes/cleric.md",
+            "classDataSource": "DescentReviewChanges/ReviewBible/data/public/class_playtests/cleric.json",
+            "proficiencyBonus": 6,
+            "hitDie": "d8",
+            "hpLedger": {
+              "method": "fixed rounded-up average at level-up",
+              "firstLevelBase": 8,
+              "laterLevelBase": 5,
+              "currentConModifier": 4,
+              "baseMaximumHP": 156,
+              "currentHP": 156,
+              "wounds": 0,
+              "deathState": "alive"
+            },
+            "armorClass": 12,
+            "classRankMaximum": 9,
+            "maxRP": 48,
+            "currentRP": 48,
+            "spellAttackBonus": 11,
+            "spellSaveDC": 19,
+            "targetSpell": {
+              "targetSpell": "corruption-purification",
+              "rank": 9,
+              "school": "Abjuration",
+              "acquiredAtClassLevel": 17,
+              "ordinaryRankGate": 9,
+              "preparedOrKnown": true,
+              "paidRpCost": 26,
+              "rankedKnownCount": 18,
+              "ordinaryClericPreparation": true
+            },
+            "components": {
+              "V": true,
+              "S": true,
+              "F": true,
+              "focusItemId": "cleric-focus-01",
+              "focusHand": "left",
+              "rightHandFree": true
+            },
+            "equipment": {
+              "focusItemId": "cleric-focus-01",
+              "focusOwned": true,
+              "focusMassLb": 1,
+              "spellbookOwned": false,
+              "spellbookId": null,
+              "spellbookMassLb": 0
+            },
+            "setupPremises": {
+              "status": "TEST_ONLY",
+              "separateFreshEncounterBranch": true,
+              "completedLongRest": true,
+              "preparedBeforeEncounter": true,
+              "initialResourcesAtLawfulMaximum": true
+            },
+            "route": "Cleric/Abjuration"
+          },
+          "location": {
+            "x": 0,
+            "y": 0,
+            "z": 0,
+            "plane": "TEST-DD11-PLANE-A"
+          },
+          "resources": {
+            "RP": 48,
+            "maxRP": 48,
+            "Dissonance": 0
+          },
+          "actionBudget": {
+            "actionAvailable": true,
+            "actionsSpent": 0
+          },
+          "turnState": {
+            "regularTurn": 1,
+            "magicThisTurn": false,
+            "lastSpell": null
+          },
+          "spellHistory": [],
+          "pendingCast": null
+        },
+        "target": {
+          "id": "target-01",
+          "alive": true,
+          "willing": true,
+          "perceived": true,
+          "lineOfEffect": true,
+          "location": {
+            "x": 5,
+            "y": 0,
+            "z": 0,
+            "plane": "TEST-DD11-PLANE-A"
+          },
+          "HP": {
+            "current": 47,
+            "maximum": 80
+          },
+          "Wounds": 1,
+          "dead": false,
+          "anatomyHistory": [
+            "left forearm injury: healed closed before test"
+          ],
+          "alignment": {
+            "Order": "Neutral",
+            "Moral": "Neutral"
+          },
+          "inventory": [
+            {
+              "id": "owned-kit-01",
+              "owner": "target-01",
+              "custodian": "target-01",
+              "exists": true
+            }
+          ],
+          "knowledgeLedger": {
+            "stage": "KT2",
+            "facts": [
+              {
+                "id": "knowledgeK",
+                "status": "acquired",
+                "content": "dangerous operational knowledge",
+                "learnedAtMs": -1000
+              }
+            ],
+            "history": [
+              "knowledgeK acquired"
+            ]
+          },
+          "PT": {
+            "stage": 2,
+            "history": [
+              {
+                "stage": 1,
+                "episodeId": "pt-03"
+              },
+              {
+                "stage": 2,
+                "episodeId": "pt-03"
+              }
+            ],
+            "exposureHistory": [
+              "pt-03"
+            ]
+          },
+          "conditions": [
+            {
+              "id": "app1",
+              "condition": "Corrupted",
+              "active": true
+            },
+            {
+              "id": "appKT-symptom",
+              "condition": "active corruption symptom",
+              "active": true
+            }
+          ],
+          "trackHistory": []
+        },
+        "admission": {
+          "mode": "creature",
+          "targetDistanceFt": 5,
+          "center": {
+            "x": 20,
+            "y": 0,
+            "z": 0,
+            "plane": "TEST-DD11-PLANE-A"
+          },
+          "within120Ft": true,
+          "lineOfEffect": true,
+          "centerPerceived": true
+        },
+        "sourceGraph": {
+          "applications": {
+            "app1": {
+              "id": "app1",
+              "category": "ordinary Corrupted",
+              "sourceOwner": "source-CORRUPTED-app1",
+              "active": true,
+              "protected": false,
+              "version": 1,
+              "applicationHistory": [
+                "created-before-cure"
+              ],
+              "endCallbackId": "end-app1"
+            },
+            "app2": {
+              "id": "app2",
+              "category": "Unity Exposure numeric burden",
+              "sourceOwner": "source-UNITY-EXPOSURE",
+              "active": true,
+              "protected": false,
+              "current": 7,
+              "historicalMaximum": 9,
+              "sourceHistory": [
+                {
+                  "value": 7,
+                  "atMs": -500
+                }
+              ],
+              "version": 4,
+              "endCallbackId": "set-burden-zero"
+            },
+            "app3": {
+              "id": "app3",
+              "category": "PT reversible exposure stage",
+              "sourceOwner": "source-PT-episode-03",
+              "active": true,
+              "protected": false,
+              "currentStage": 2,
+              "history": [
+                {
+                  "stage": 1,
+                  "atMs": -2000
+                },
+                {
+                  "stage": 2,
+                  "atMs": -1000
+                }
+              ],
+              "version": 2,
+              "symptoms": [
+                {
+                  "id": "pt-symptom-01",
+                  "active": true,
+                  "sourceOwner": "source-PT-episode-03",
+                  "endCallbackId": "end-pt-symptom-01",
+                  "callbackCount": 0
+                }
+              ],
+              "endCallbackId": "end-pt-stage"
+            },
+            "appKT-symptom": {
+              "id": "appKT-symptom",
+              "category": "separately eligible active corruption symptom",
+              "sourceOwner": "source-KT-symptom",
+              "active": true,
+              "protected": false,
+              "endCallbackId": "end-kt-symptom",
+              "callbackCount": 0
+            },
+            "protectedP": {
+              "id": "protectedP",
+              "category": "active tagged corruption component",
+              "sourceOwner": "source-protected-P",
+              "active": true,
+              "protected": true,
+              "protection": "independent higher-priority parent protection",
+              "version": 3,
+              "endCallbackId": "do-not-end-protectedP"
+            },
+            "sourceO": {
+              "id": "sourceO",
+              "category": "intrinsic Oracle Curse/Burden",
+              "sourceOwner": "oracle-curse-sourceO",
+              "active": true,
+              "intrinsic": true,
+              "protected": true,
+              "endCallbackId": null
+            },
+            "sourceN": {
+              "id": "sourceN",
+              "category": "Null Veil",
+              "sourceOwner": "null-veil-sourceN",
+              "active": true,
+              "intrinsic": false,
+              "purificationAuthorized": false,
+              "namedPurgeRoutes": [
+                "mask confession",
+                "Archon temporary blessing",
+                "bittersap antidote"
+              ],
+              "endCallbackId": null
+            }
+          },
+          "environmentalCells": {},
+          "parents": {},
+          "callbacks": {},
+          "cureReceipts": {}
+        },
+        "purificationExpression": null,
+        "currentTimeMs": 0,
+        "events": [],
+        "callbackRegistry": {
+          "end-app1": {
+            "applicationId": "app1",
+            "sourceOwner": "source-CORRUPTED-app1",
+            "callback": "end exact active Corrupted application once",
+            "sourceBinding": "condition_playtests /conditions/5"
+          },
+          "set-burden-zero": {
+            "applicationId": "app2",
+            "sourceOwner": "source-UNITY-EXPOSURE",
+            "callback": "set current reversible burden to0; preserve max/history",
+            "sourceBinding": "condition_playtests /conditions/25"
+          },
+          "end-pt-stage": {
+            "applicationId": "app3",
+            "sourceOwner": "source-PT-episode-03",
+            "callback": "remove current reversible PT stage and its active source-owned symptoms",
+            "sourceBinding": "SOULS_RESEARCH_REVIEWED_01.md:131-153"
+          },
+          "end-pt-symptom-01": {
+            "applicationId": "app3",
+            "sourceOwner": "source-PT-episode-03",
+            "callback": "end only source-owned symptom 01 once",
+            "sourceBinding": "SOULS_RESEARCH_REVIEWED_01.md:131-153"
+          },
+          "end-kt-symptom": {
+            "applicationId": "appKT-symptom",
+            "sourceOwner": "source-KT-symptom",
+            "callback": "end source-owned symptom only; retain KT knowledge and stage",
+            "sourceBinding": "SOULS_RESEARCH_REVIEWED_01.md:102-129"
+          }
+        }
+      },
+      "hash": "7fb068d3a991067ece820baa661c74c3700de9e0a1af3e79ab9c59b846859e7e"
+    },
+    {
+      "branchId": "CP-P2-WIZARD",
+      "caseId": "CP-P2",
+      "route": "Wizard/Abjuration",
+      "mode": "area",
+      "state": {
+        "id": "CP-FIXTURE-CP-P2-Wizard",
+        "status": "TEST_ONLY",
+        "canonical": false,
+        "site": "TEST-DD11-CLEANSE-ARENA",
+        "plane": "TEST-DD11-PLANE-A",
+        "caster": {
+          "id": "wizard-17-abjuration",
+          "className": "Wizard",
+          "classLevel": 17,
+          "route": "Wizard/Abjuration",
+          "profile": {
+            "actorId": "wizard-17-abjuration",
+            "className": "Wizard",
+            "singleClassLevel": 17,
+            "totalCharacterLevel": 17,
+            "ancestry": {
+              "id": "human",
+              "name": "Human",
+              "abilityBonuses": {
+                "STR": 1,
+                "DEX": 1,
+                "CON": 1,
+                "INT": 1,
+                "WIS": 1,
+                "CHA": 1
+              },
+              "traits": [
+                {
+                  "name": "Ability Score Increase",
+                  "sourceLine": 1100,
+                  "text": "Your ability scores each increase by 1.",
+                  "id": "human--ability-score-increase",
+                  "status": "original-source-preserved; apply-reviewed-integration-guide"
+                },
+                {
+                  "name": "Size",
+                  "sourceLine": 1106,
+                  "text": "Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.",
+                  "id": "human--size",
+                  "status": "original-source-preserved; apply-reviewed-integration-guide"
+                },
+                {
+                  "name": "Speed",
+                  "sourceLine": 1108,
+                  "text": "Your base walking speed is 30 feet.",
+                  "id": "human--speed",
+                  "status": "original-source-preserved; apply-reviewed-integration-guide"
+                },
+                {
+                  "name": "Versatility",
+                  "sourceLine": 1110,
+                  "text": "You gain proficiency in one skill of your choice.",
+                  "id": "human--versatility",
+                  "status": "original-source-preserved; apply-reviewed-integration-guide"
+                },
+                {
+                  "name": "Languages",
+                  "sourceLine": 1112,
+                  "text": "You can speak, read, and write Common and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, including obscure dialects.",
+                  "id": "human--languages",
+                  "status": "original-source-preserved; apply-reviewed-integration-guide"
+                }
+              ],
+              "variants": [
+                {
+                  "id": "imperial-human",
+                  "name": "Imperial Human",
+                  "abilityBonuses": {
+                    "CHA": 1
+                  },
+                  "combinedAbilityBonuses": {
+                    "STR": 1,
+                    "DEX": 1,
+                    "CON": 1,
+                    "INT": 1,
+                    "WIS": 1,
+                    "CHA": 2
+                  },
+                  "traits": [
+                    {
+                      "name": "Ability Score Increase",
+                      "sourceLine": 1122,
+                      "text": "Your Charisma score increases by 1 (for a total of +2 to Charisma).",
+                      "id": "imperial-human--ability-score-increase",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Social Intuition",
+                      "sourceLine": 1124,
+                      "text": "You have proficiency in the Persuasion skill. If you already have this proficiency, you gain proficiency in one of the following skills of your choice: Deception, Insight, or Intimidation.",
+                      "id": "imperial-human--social-intuition",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Diplomatic Training",
+                      "sourceLine": 1126,
+                      "text": "You know one additional language of your choice.",
+                      "id": "imperial-human--diplomatic-training",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Natural Leader",
+                      "sourceLine": 1128,
+                      "text": "Once per short rest, when you or an ally within 30 feet of you rolls a 1 on an attack roll, ability check, or saving throw, you can call out a warning or offer quick advice, allowing the roll to be rerolled. The second roll must be used.",
+                      "id": "imperial-human--natural-leader",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    }
+                  ]
+                },
+                {
+                  "id": "nomadic-human",
+                  "name": "Nomadic Human",
+                  "abilityBonuses": {
+                    "CON": 1,
+                    "WIS": 1
+                  },
+                  "combinedAbilityBonuses": {
+                    "STR": 1,
+                    "DEX": 1,
+                    "CON": 2,
+                    "INT": 1,
+                    "WIS": 2,
+                    "CHA": 1
+                  },
+                  "traits": [
+                    {
+                      "name": "Ability Score Increase",
+                      "sourceLine": 1134,
+                      "text": "Your Constitution score increases by 1, and your Wisdom score increases by 1 (for a total of +2 to Constitution and +2 to Wisdom).",
+                      "id": "nomadic-human--ability-score-increase",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Environmental Adaptation",
+                      "sourceLine": 1136,
+                      "text": "You have advantage on saving throws against extreme heat and cold.",
+                      "id": "nomadic-human--environmental-adaptation",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Survival Instinct",
+                      "sourceLine": 1138,
+                      "text": "You have proficiency in the Survival skill. If you already have this proficiency, you gain proficiency in one of the following skills of your choice: Animal Handling, Medicine, or Nature.",
+                      "id": "nomadic-human--survival-instinct",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Wayfinder",
+                      "sourceLine": 1140,
+                      "text": "You always know which way is north, and you have advantage on Wisdom (Survival) checks to avoid becoming lost.",
+                      "id": "nomadic-human--wayfinder",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    }
+                  ]
+                },
+                {
+                  "id": "scholarly-human",
+                  "name": "Scholarly Human",
+                  "abilityBonuses": {
+                    "INT": 1
+                  },
+                  "combinedAbilityBonuses": {
+                    "STR": 1,
+                    "DEX": 1,
+                    "CON": 1,
+                    "INT": 2,
+                    "WIS": 1,
+                    "CHA": 1
+                  },
+                  "traits": [
+                    {
+                      "name": "Ability Score Increase",
+                      "sourceLine": 1146,
+                      "text": "Your Intelligence score increases by 1 (for a total of +2 to Intelligence).",
+                      "id": "scholarly-human--ability-score-increase",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Knowledge Seeker",
+                      "sourceLine": 1148,
+                      "text": "You have proficiency in the History skill. If you already have this proficiency, you gain proficiency in one of the following skills of your choice: Arcana, Investigation, or Religion.",
+                      "id": "scholarly-human--knowledge-seeker",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Quick Learner",
+                      "sourceLine": 1150,
+                      "text": "You gain proficiency with one set of tools of your choice.",
+                      "id": "scholarly-human--quick-learner",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Lore Master",
+                      "sourceLine": 1152,
+                      "text": "When you make an Intelligence check to recall information about something you've studied, you can add double your proficiency bonus instead of any proficiency bonus you normally apply.",
+                      "id": "scholarly-human--lore-master",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    }
+                  ]
+                }
+              ],
+              "size": "Medium",
+              "baseWalkFeet": 30
+            },
+            "background": {
+              "id": "arcane-academy-dropout",
+              "name": "Arcane Academy Dropout",
+              "status": "source-package-reviewed; integration-guide-and-stated-equipment-dependencies-apply",
+              "source": [
+                {
+                  "line": 6004,
+                  "text": "Skill Proficiencies: Arcana, History"
+                },
+                {
+                  "line": 6005,
+                  "text": "Languages: Two of your choice"
+                },
+                {
+                  "line": 6006,
+                  "text": "Equipment: A spellbook or arcane focus (perhaps damaged or modified), a letter of expulsion or resignation, a set of common clothes, a student's robe, and a pouch containing 10 gp."
+                },
+                {
+                  "line": 6007,
+                  "text": "Feature: Theoretical Knowledge: Despite your incomplete education, you retain substantial theoretical knowledge. You have advantage on Intelligence (Arcana) checks related to identifying magical effects, traditions, or items, even if you can't replicate them yourself. Your academic background grants you Disliked starting Reputation with formal arcane institutions but Neutral starting Reputation with independent mages and magical researchers who value unorthodox thinking."
+                }
+              ],
+              "skillsSource": "Arcana, History",
+              "languagesSource": "Two of your choice",
+              "equipmentSource": "A spellbook or arcane focus (perhaps damaged or modified), a letter of expulsion or resignation, a set of common clothes, a student's robe, and a pouch containing 10 gp.",
+              "featureSource": "Theoretical Knowledge: Despite your incomplete education, you retain substantial theoretical knowledge. You have advantage on Intelligence (Arcana) checks related to identifying magical effects, traditions, or items, even if you can't replicate them yourself. Your academic background grants you Disliked starting Reputation with formal arcane institutions but Neutral starting Reputation with independent mages and magical researchers who value unorthodox thinking."
+            },
+            "abilityScoreArray": {
+              "STR": 10,
+              "DEX": 13,
+              "CON": 8,
+              "INT": 15,
+              "WIS": 12,
+              "CHA": 14
+            },
+            "abilityScores": {
+              "STR": 11,
+              "DEX": 14,
+              "CON": 9,
+              "INT": 20,
+              "WIS": 13,
+              "CHA": 19
+            },
+            "ASIChoices": [
+              {
+                "level": 4,
+                "INT": 2
+              },
+              {
+                "level": 8,
+                "INT": 2
+              },
+              {
+                "level": 12,
+                "CHA": 2
+              },
+              {
+                "level": 16,
+                "CHA": 2
+              }
+            ],
+            "classBuild": [
+              [
+                "Arcane Shield",
+                "Analyze Magic",
+                "Spell Scribing",
+                "Arcane Bolt"
+              ],
+              [
+                "Scholarly Mind",
+                "Arcane Recovery"
+              ],
+              [
+                "Sigil Rewrite",
+                "Arcane Sight"
+              ],
+              [
+                "Arcane Lock"
+              ],
+              [
+                "Dispel Magic"
+              ],
+              [
+                "Spell Tether"
+              ],
+              [
+                "Floating Preparation"
+              ],
+              [
+                "Matrix Efficiency"
+              ],
+              [
+                "Dimensional Pocket"
+              ],
+              [
+                "Runic Snare",
+                "Spell Preservation"
+              ],
+              [
+                "Spell Efficiency"
+              ],
+              [
+                "Counterpulse"
+              ],
+              [
+                "Arcane Insight"
+              ],
+              [
+                "Seal Magic"
+              ],
+              [
+                "Improved Concentration"
+              ],
+              [
+                "Knowledge Shield"
+              ],
+              [
+                "Minor Conjuration"
+              ]
+            ],
+            "classBuildExampleSource": "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_BUILD_EXAMPLES.md",
+            "classGuideSource": "DescentReviewChanges/ReviewBible/docs/mechanics/classes/wizard.md",
+            "classDataSource": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+            "proficiencyBonus": 6,
+            "hitDie": "d6",
+            "hpLedger": {
+              "method": "rolled legal Hit Dice at level-up",
+              "firstLevelBase": 6,
+              "laterLevelRolls": [
+                6,
+                6,
+                6,
+                6,
+                6,
+                6,
+                6,
+                6,
+                6,
+                6,
+                6,
+                5,
+                5,
+                5,
+                5,
+                5
+              ],
+              "currentConModifier": -1,
+              "laterPerLevelContribution": [
+                5,
+                5,
+                5,
+                5,
+                5,
+                5,
+                5,
+                5,
+                5,
+                5,
+                5,
+                4,
+                4,
+                4,
+                4,
+                4
+              ],
+              "baseMaximumHP": 80,
+              "currentHP": 55,
+              "priorTestOnlyDamage": 25,
+              "wounds": 0,
+              "deathState": "alive"
+            },
+            "armorClass": 12,
+            "classRankMaximum": 9,
+            "maxRP": 64,
+            "currentRP": 64,
+            "spellAttackBonus": 13,
+            "spellSaveDC": 21,
+            "targetSpell": {
+              "targetSpell": "corruption-purification",
+              "rank": 9,
+              "school": "Abjuration",
+              "acquiredAtClassLevel": 17,
+              "ordinaryRankGate": 9,
+              "preparedOrKnown": true,
+              "paidRpCost": 26,
+              "path": "Spellbinder",
+              "preparedMatrixCount": 22,
+              "targetMatrixPrepared": true,
+              "matrixPreparationMinutes": 45,
+              "spellbookEntryCount": 67,
+              "counterspellKnownAndPrepared": true
+            },
+            "components": {
+              "V": true,
+              "S": true,
+              "F": true,
+              "focusItemId": "wizard-focus-01",
+              "focusHand": "left",
+              "rightHandFree": true
+            },
+            "equipment": {
+              "focusItemId": "wizard-focus-01",
+              "focusOwned": true,
+              "focusMassLb": 1,
+              "spellbookOwned": true,
+              "spellbookId": "wizard-spellbook-01",
+              "spellbookMassLb": 3
+            },
+            "setupPremises": {
+              "status": "TEST_ONLY",
+              "separateFreshEncounterBranch": true,
+              "completedLongRest": true,
+              "preparedBeforeEncounter": true,
+              "initialResourcesAtLawfulMaximum": true
+            },
+            "route": "Wizard/Abjuration",
+            "wizardSpecializationSchool": "Abjuration"
+          },
+          "location": {
+            "x": 0,
+            "y": 0,
+            "z": 0,
+            "plane": "TEST-DD11-PLANE-A"
+          },
+          "resources": {
+            "RP": 64,
+            "maxRP": 64,
+            "Dissonance": 0
+          },
+          "actionBudget": {
+            "actionAvailable": true,
+            "actionsSpent": 0
+          },
+          "turnState": {
+            "regularTurn": 1,
+            "magicThisTurn": false,
+            "lastSpell": null
+          },
+          "spellHistory": [],
+          "pendingCast": null
+        },
+        "target": {
+          "id": "target-01",
+          "alive": true,
+          "willing": true,
+          "perceived": true,
+          "lineOfEffect": true,
+          "location": {
+            "x": 5,
+            "y": 0,
+            "z": 0,
+            "plane": "TEST-DD11-PLANE-A"
+          },
+          "HP": {
+            "current": 47,
+            "maximum": 80
+          },
+          "Wounds": 1,
+          "dead": false,
+          "anatomyHistory": [
+            "left forearm injury: healed closed before test"
+          ],
+          "alignment": {
+            "Order": "Neutral",
+            "Moral": "Neutral"
+          },
+          "inventory": [
+            {
+              "id": "owned-kit-01",
+              "owner": "target-01",
+              "custodian": "target-01",
+              "exists": true
+            }
+          ],
+          "knowledgeLedger": {
+            "stage": "KT2",
+            "facts": [
+              {
+                "id": "knowledgeK",
+                "status": "acquired",
+                "content": "dangerous operational knowledge",
+                "learnedAtMs": -1000
+              }
+            ],
+            "history": [
+              "knowledgeK acquired"
+            ]
+          },
+          "PT": {
+            "stage": 0,
+            "history": []
+          },
+          "conditions": [],
+          "trackHistory": []
+        },
+        "admission": {
+          "mode": "area",
+          "targetDistanceFt": 5,
+          "center": {
+            "x": 20,
+            "y": 0,
+            "z": 0,
+            "plane": "TEST-DD11-PLANE-A"
+          },
+          "within120Ft": true,
+          "lineOfEffect": true,
+          "centerPerceived": true
+        },
+        "sourceGraph": {
+          "applications": {},
+          "environmentalCells": {},
+          "parents": {},
+          "callbacks": {},
+          "cureReceipts": {}
+        },
+        "purificationExpression": null,
+        "currentTimeMs": 0,
+        "events": []
+      },
+      "hash": "d3e61f643f50cfd6191e561a41b416c8e2760fb92993feb9fdbb19f9c4ad4e67"
+    },
+    {
+      "branchId": "CP-A1-DRUID",
+      "caseId": "CP-A1",
+      "route": "Druid/Abjuration",
+      "mode": "area",
+      "state": {
+        "id": "CP-FIXTURE-CP-A1-Druid",
+        "status": "TEST_ONLY",
+        "canonical": false,
+        "site": "TEST-DD11-CLEANSE-ARENA",
+        "plane": "TEST-DD11-PLANE-A",
+        "caster": {
+          "id": "druid-17-abjuration",
+          "className": "Druid",
+          "classLevel": 17,
+          "route": "Druid/Abjuration",
+          "profile": {
+            "actorId": "druid-17-abjuration",
+            "className": "Druid",
+            "singleClassLevel": 17,
+            "totalCharacterLevel": 17,
+            "ancestry": {
+              "id": "human",
+              "name": "Human",
+              "abilityBonuses": {
+                "STR": 1,
+                "DEX": 1,
+                "CON": 1,
+                "INT": 1,
+                "WIS": 1,
+                "CHA": 1
+              },
+              "traits": [
+                {
+                  "name": "Ability Score Increase",
+                  "sourceLine": 1100,
+                  "text": "Your ability scores each increase by 1.",
+                  "id": "human--ability-score-increase",
+                  "status": "original-source-preserved; apply-reviewed-integration-guide"
+                },
+                {
+                  "name": "Size",
+                  "sourceLine": 1106,
+                  "text": "Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.",
+                  "id": "human--size",
+                  "status": "original-source-preserved; apply-reviewed-integration-guide"
+                },
+                {
+                  "name": "Speed",
+                  "sourceLine": 1108,
+                  "text": "Your base walking speed is 30 feet.",
+                  "id": "human--speed",
+                  "status": "original-source-preserved; apply-reviewed-integration-guide"
+                },
+                {
+                  "name": "Versatility",
+                  "sourceLine": 1110,
+                  "text": "You gain proficiency in one skill of your choice.",
+                  "id": "human--versatility",
+                  "status": "original-source-preserved; apply-reviewed-integration-guide"
+                },
+                {
+                  "name": "Languages",
+                  "sourceLine": 1112,
+                  "text": "You can speak, read, and write Common and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, including obscure dialects.",
+                  "id": "human--languages",
+                  "status": "original-source-preserved; apply-reviewed-integration-guide"
+                }
+              ],
+              "variants": [
+                {
+                  "id": "imperial-human",
+                  "name": "Imperial Human",
+                  "abilityBonuses": {
+                    "CHA": 1
+                  },
+                  "combinedAbilityBonuses": {
+                    "STR": 1,
+                    "DEX": 1,
+                    "CON": 1,
+                    "INT": 1,
+                    "WIS": 1,
+                    "CHA": 2
+                  },
+                  "traits": [
+                    {
+                      "name": "Ability Score Increase",
+                      "sourceLine": 1122,
+                      "text": "Your Charisma score increases by 1 (for a total of +2 to Charisma).",
+                      "id": "imperial-human--ability-score-increase",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Social Intuition",
+                      "sourceLine": 1124,
+                      "text": "You have proficiency in the Persuasion skill. If you already have this proficiency, you gain proficiency in one of the following skills of your choice: Deception, Insight, or Intimidation.",
+                      "id": "imperial-human--social-intuition",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Diplomatic Training",
+                      "sourceLine": 1126,
+                      "text": "You know one additional language of your choice.",
+                      "id": "imperial-human--diplomatic-training",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Natural Leader",
+                      "sourceLine": 1128,
+                      "text": "Once per short rest, when you or an ally within 30 feet of you rolls a 1 on an attack roll, ability check, or saving throw, you can call out a warning or offer quick advice, allowing the roll to be rerolled. The second roll must be used.",
+                      "id": "imperial-human--natural-leader",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    }
+                  ]
+                },
+                {
+                  "id": "nomadic-human",
+                  "name": "Nomadic Human",
+                  "abilityBonuses": {
+                    "CON": 1,
+                    "WIS": 1
+                  },
+                  "combinedAbilityBonuses": {
+                    "STR": 1,
+                    "DEX": 1,
+                    "CON": 2,
+                    "INT": 1,
+                    "WIS": 2,
+                    "CHA": 1
+                  },
+                  "traits": [
+                    {
+                      "name": "Ability Score Increase",
+                      "sourceLine": 1134,
+                      "text": "Your Constitution score increases by 1, and your Wisdom score increases by 1 (for a total of +2 to Constitution and +2 to Wisdom).",
+                      "id": "nomadic-human--ability-score-increase",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Environmental Adaptation",
+                      "sourceLine": 1136,
+                      "text": "You have advantage on saving throws against extreme heat and cold.",
+                      "id": "nomadic-human--environmental-adaptation",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Survival Instinct",
+                      "sourceLine": 1138,
+                      "text": "You have proficiency in the Survival skill. If you already have this proficiency, you gain proficiency in one of the following skills of your choice: Animal Handling, Medicine, or Nature.",
+                      "id": "nomadic-human--survival-instinct",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Wayfinder",
+                      "sourceLine": 1140,
+                      "text": "You always know which way is north, and you have advantage on Wisdom (Survival) checks to avoid becoming lost.",
+                      "id": "nomadic-human--wayfinder",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    }
+                  ]
+                },
+                {
+                  "id": "scholarly-human",
+                  "name": "Scholarly Human",
+                  "abilityBonuses": {
+                    "INT": 1
+                  },
+                  "combinedAbilityBonuses": {
+                    "STR": 1,
+                    "DEX": 1,
+                    "CON": 1,
+                    "INT": 2,
+                    "WIS": 1,
+                    "CHA": 1
+                  },
+                  "traits": [
+                    {
+                      "name": "Ability Score Increase",
+                      "sourceLine": 1146,
+                      "text": "Your Intelligence score increases by 1 (for a total of +2 to Intelligence).",
+                      "id": "scholarly-human--ability-score-increase",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Knowledge Seeker",
+                      "sourceLine": 1148,
+                      "text": "You have proficiency in the History skill. If you already have this proficiency, you gain proficiency in one of the following skills of your choice: Arcana, Investigation, or Religion.",
+                      "id": "scholarly-human--knowledge-seeker",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Quick Learner",
+                      "sourceLine": 1150,
+                      "text": "You gain proficiency with one set of tools of your choice.",
+                      "id": "scholarly-human--quick-learner",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Lore Master",
+                      "sourceLine": 1152,
+                      "text": "When you make an Intelligence check to recall information about something you've studied, you can add double your proficiency bonus instead of any proficiency bonus you normally apply.",
+                      "id": "scholarly-human--lore-master",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    }
+                  ]
+                }
+              ],
+              "size": "Medium",
+              "baseWalkFeet": 30
+            },
+            "background": {
+              "id": "wildling-herbalist",
+              "name": "Wildling Herbalist",
+              "status": "source-package-reviewed; integration-guide-and-stated-equipment-dependencies-apply",
+              "source": [
+                {
+                  "line": 5804,
+                  "text": "Skill Proficiencies: Nature, Medicine"
+                },
+                {
+                  "line": 5805,
+                  "text": "Tool Proficiencies: Herbalism kit"
+                },
+                {
+                  "line": 5806,
+                  "text": "Languages: Sylvan or Primordial (choose one)"
+                },
+                {
+                  "line": 5807,
+                  "text": "Equipment: An herbalism kit, a staff carved with natural symbols, a collection of dried herbs and rare flowers, a set of common clothes made from animal hides, and a belt pouch containing 5 gp."
+                },
+                {
+                  "line": 5808,
+                  "text": "Feature: Natural Remedy: You can identify most mundane and magical plants with ease and know their potential uses. During a long rest, you can gather natural components (if available in the environment) to create one Potion of Healing (basic) or an antitoxin without expending gold. This knowledge grants you Liked starting Reputation with Druidic circles and isolated wildling communities, but Disliked starting Reputation with alchemists guilds who see you as competition."
+                }
+              ],
+              "skillsSource": "Nature, Medicine",
+              "toolsSource": "Herbalism kit",
+              "languagesSource": "Sylvan or Primordial (choose one)",
+              "equipmentSource": "An herbalism kit, a staff carved with natural symbols, a collection of dried herbs and rare flowers, a set of common clothes made from animal hides, and a belt pouch containing 5 gp.",
+              "featureSource": "Natural Remedy: You can identify most mundane and magical plants with ease and know their potential uses. During a long rest, you can gather natural components (if available in the environment) to create one Potion of Healing (basic) or an antitoxin without expending gold. This knowledge grants you Liked starting Reputation with Druidic circles and isolated wildling communities, but Disliked starting Reputation with alchemists guilds who see you as competition."
+            },
+            "abilityScoreArray": {
+              "STR": 8,
+              "DEX": 13,
+              "CON": 14,
+              "INT": 12,
+              "WIS": 15,
+              "CHA": 10
+            },
+            "abilityScores": {
+              "STR": 9,
+              "DEX": 14,
+              "CON": 19,
+              "INT": 13,
+              "WIS": 20,
+              "CHA": 11
+            },
+            "ASIChoices": [
+              {
+                "level": 4,
+                "WIS": 2
+              },
+              {
+                "level": 8,
+                "WIS": 2
+              },
+              {
+                "level": 12,
+                "CON": 2
+              },
+              {
+                "level": 16,
+                "CON": 2
+              }
+            ],
+            "classBuild": {
+              "circle": "Land",
+              "heroFormsAt10": [
+                "Blight Elk",
+                "Tanglemaw"
+              ],
+              "automaticAt10": "Nature's Ward",
+              "archFormsAt11": [
+                "Dire Wolf",
+                "Sky Serpent"
+              ],
+              "shiftsAt17": 7,
+              "cantripsAt17": 4,
+              "circleFeatureAt14": "Nature's Sanctuary"
+            },
+            "classBuildExampleSource": "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_BUILD_EXAMPLES.md",
+            "classGuideSource": "DescentReviewChanges/ReviewBible/docs/mechanics/classes/druid.md",
+            "classDataSource": "DescentReviewChanges/ReviewBible/data/public/class_playtests/druid.json",
+            "proficiencyBonus": 6,
+            "hitDie": "d8",
+            "hpLedger": {
+              "method": "fixed rounded-up average at level-up",
+              "firstLevelBase": 8,
+              "laterLevelBase": 5,
+              "currentConModifier": 4,
+              "baseMaximumHP": 156,
+              "currentHP": 156,
+              "wounds": 0,
+              "deathState": "alive"
+            },
+            "armorClass": 13,
+            "classRankMaximum": 9,
+            "maxRP": 48,
+            "currentRP": 48,
+            "spellAttackBonus": 11,
+            "spellSaveDC": 19,
+            "targetSpell": {
+              "targetSpell": "corruption-purification",
+              "rank": 9,
+              "school": "Abjuration",
+              "acquiredAtClassLevel": 17,
+              "ordinaryRankGate": 9,
+              "preparedOrKnown": true,
+              "paidRpCost": 26,
+              "ordinaryDruidPreparation": true,
+              "preparedCount": 22,
+              "circle": "Land",
+              "archForms": [
+                "Dire Wolf",
+                "Sky Serpent"
+              ]
+            },
+            "components": {
+              "V": true,
+              "S": true,
+              "F": true,
+              "focusItemId": "druid-focus-01",
+              "focusHand": "left",
+              "rightHandFree": true
+            },
+            "equipment": {
+              "focusItemId": "druid-focus-01",
+              "focusOwned": true,
+              "focusMassLb": 1,
+              "spellbookOwned": false,
+              "spellbookId": null,
+              "spellbookMassLb": 0
+            },
+            "setupPremises": {
+              "status": "TEST_ONLY",
+              "separateFreshEncounterBranch": true,
+              "completedLongRest": true,
+              "preparedBeforeEncounter": true,
+              "initialResourcesAtLawfulMaximum": true
+            },
+            "route": "Druid/Abjuration"
+          },
+          "location": {
+            "x": 0,
+            "y": 0,
+            "z": 0,
+            "plane": "TEST-DD11-PLANE-A"
+          },
+          "resources": {
+            "RP": 48,
+            "maxRP": 48,
+            "Dissonance": 0
+          },
+          "actionBudget": {
+            "actionAvailable": true,
+            "actionsSpent": 0
+          },
+          "turnState": {
+            "regularTurn": 1,
+            "magicThisTurn": false,
+            "lastSpell": null
+          },
+          "spellHistory": [],
+          "pendingCast": null
+        },
+        "target": {
+          "id": "target-01",
+          "alive": true,
+          "willing": true,
+          "perceived": true,
+          "lineOfEffect": true,
+          "location": {
+            "x": 5,
+            "y": 0,
+            "z": 0,
+            "plane": "TEST-DD11-PLANE-A"
+          },
+          "HP": {
+            "current": 47,
+            "maximum": 80
+          },
+          "Wounds": 1,
+          "dead": false,
+          "anatomyHistory": [
+            "left forearm injury: healed closed before test"
+          ],
+          "alignment": {
+            "Order": "Neutral",
+            "Moral": "Neutral"
+          },
+          "inventory": [
+            {
+              "id": "owned-kit-01",
+              "owner": "target-01",
+              "custodian": "target-01",
+              "exists": true
+            }
+          ],
+          "knowledgeLedger": {
+            "stage": "KT2",
+            "facts": [
+              {
+                "id": "knowledgeK",
+                "status": "acquired",
+                "content": "dangerous operational knowledge",
+                "learnedAtMs": -1000
+              }
+            ],
+            "history": [
+              "knowledgeK acquired"
+            ]
+          },
+          "PT": {
+            "stage": 0,
+            "history": []
+          },
+          "conditions": [],
+          "trackHistory": []
+        },
+        "admission": {
+          "mode": "area",
+          "targetDistanceFt": 5,
+          "center": {
+            "x": 20,
+            "y": 0,
+            "z": 0,
+            "plane": "TEST-DD11-PLANE-A"
+          },
+          "within120Ft": true,
+          "lineOfEffect": true,
+          "centerPerceived": true
+        },
+        "sourceGraph": {
+          "applications": {},
+          "environmentalCells": {},
+          "parents": {},
+          "callbacks": {},
+          "cureReceipts": {}
+        },
+        "purificationExpression": null,
+        "currentTimeMs": 0,
+        "events": [],
+        "areaOccupant": {
+          "id": "unwilling-occupant",
+          "withinSphere": true,
+          "willing": false,
+          "mode": "area",
+          "conditions": [
+            {
+              "id": "occupant-app1",
+              "condition": "Corrupted",
+              "active": true
+            }
+          ],
+          "purified": false
+        }
+      },
+      "hash": "5a0fff7976f8b3fe4e85f3e8e3dc1a29131061dc01417aac1af6009e6257d97d"
+    },
+    {
+      "branchId": "CP-R-DRUID-PROTECTED",
+      "caseId": "CP-R",
+      "route": "Druid/Abjuration",
+      "mode": "creature",
+      "state": {
+        "id": "CP-FIXTURE-CP-R-Druid",
+        "status": "TEST_ONLY",
+        "canonical": false,
+        "site": "TEST-DD11-CLEANSE-ARENA",
+        "plane": "TEST-DD11-PLANE-A",
+        "caster": {
+          "id": "druid-17-abjuration",
+          "className": "Druid",
+          "classLevel": 17,
+          "route": "Druid/Abjuration",
+          "profile": {
+            "actorId": "druid-17-abjuration",
+            "className": "Druid",
+            "singleClassLevel": 17,
+            "totalCharacterLevel": 17,
+            "ancestry": {
+              "id": "human",
+              "name": "Human",
+              "abilityBonuses": {
+                "STR": 1,
+                "DEX": 1,
+                "CON": 1,
+                "INT": 1,
+                "WIS": 1,
+                "CHA": 1
+              },
+              "traits": [
+                {
+                  "name": "Ability Score Increase",
+                  "sourceLine": 1100,
+                  "text": "Your ability scores each increase by 1.",
+                  "id": "human--ability-score-increase",
+                  "status": "original-source-preserved; apply-reviewed-integration-guide"
+                },
+                {
+                  "name": "Size",
+                  "sourceLine": 1106,
+                  "text": "Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.",
+                  "id": "human--size",
+                  "status": "original-source-preserved; apply-reviewed-integration-guide"
+                },
+                {
+                  "name": "Speed",
+                  "sourceLine": 1108,
+                  "text": "Your base walking speed is 30 feet.",
+                  "id": "human--speed",
+                  "status": "original-source-preserved; apply-reviewed-integration-guide"
+                },
+                {
+                  "name": "Versatility",
+                  "sourceLine": 1110,
+                  "text": "You gain proficiency in one skill of your choice.",
+                  "id": "human--versatility",
+                  "status": "original-source-preserved; apply-reviewed-integration-guide"
+                },
+                {
+                  "name": "Languages",
+                  "sourceLine": 1112,
+                  "text": "You can speak, read, and write Common and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, including obscure dialects.",
+                  "id": "human--languages",
+                  "status": "original-source-preserved; apply-reviewed-integration-guide"
+                }
+              ],
+              "variants": [
+                {
+                  "id": "imperial-human",
+                  "name": "Imperial Human",
+                  "abilityBonuses": {
+                    "CHA": 1
+                  },
+                  "combinedAbilityBonuses": {
+                    "STR": 1,
+                    "DEX": 1,
+                    "CON": 1,
+                    "INT": 1,
+                    "WIS": 1,
+                    "CHA": 2
+                  },
+                  "traits": [
+                    {
+                      "name": "Ability Score Increase",
+                      "sourceLine": 1122,
+                      "text": "Your Charisma score increases by 1 (for a total of +2 to Charisma).",
+                      "id": "imperial-human--ability-score-increase",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Social Intuition",
+                      "sourceLine": 1124,
+                      "text": "You have proficiency in the Persuasion skill. If you already have this proficiency, you gain proficiency in one of the following skills of your choice: Deception, Insight, or Intimidation.",
+                      "id": "imperial-human--social-intuition",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Diplomatic Training",
+                      "sourceLine": 1126,
+                      "text": "You know one additional language of your choice.",
+                      "id": "imperial-human--diplomatic-training",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Natural Leader",
+                      "sourceLine": 1128,
+                      "text": "Once per short rest, when you or an ally within 30 feet of you rolls a 1 on an attack roll, ability check, or saving throw, you can call out a warning or offer quick advice, allowing the roll to be rerolled. The second roll must be used.",
+                      "id": "imperial-human--natural-leader",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    }
+                  ]
+                },
+                {
+                  "id": "nomadic-human",
+                  "name": "Nomadic Human",
+                  "abilityBonuses": {
+                    "CON": 1,
+                    "WIS": 1
+                  },
+                  "combinedAbilityBonuses": {
+                    "STR": 1,
+                    "DEX": 1,
+                    "CON": 2,
+                    "INT": 1,
+                    "WIS": 2,
+                    "CHA": 1
+                  },
+                  "traits": [
+                    {
+                      "name": "Ability Score Increase",
+                      "sourceLine": 1134,
+                      "text": "Your Constitution score increases by 1, and your Wisdom score increases by 1 (for a total of +2 to Constitution and +2 to Wisdom).",
+                      "id": "nomadic-human--ability-score-increase",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Environmental Adaptation",
+                      "sourceLine": 1136,
+                      "text": "You have advantage on saving throws against extreme heat and cold.",
+                      "id": "nomadic-human--environmental-adaptation",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Survival Instinct",
+                      "sourceLine": 1138,
+                      "text": "You have proficiency in the Survival skill. If you already have this proficiency, you gain proficiency in one of the following skills of your choice: Animal Handling, Medicine, or Nature.",
+                      "id": "nomadic-human--survival-instinct",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Wayfinder",
+                      "sourceLine": 1140,
+                      "text": "You always know which way is north, and you have advantage on Wisdom (Survival) checks to avoid becoming lost.",
+                      "id": "nomadic-human--wayfinder",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    }
+                  ]
+                },
+                {
+                  "id": "scholarly-human",
+                  "name": "Scholarly Human",
+                  "abilityBonuses": {
+                    "INT": 1
+                  },
+                  "combinedAbilityBonuses": {
+                    "STR": 1,
+                    "DEX": 1,
+                    "CON": 1,
+                    "INT": 2,
+                    "WIS": 1,
+                    "CHA": 1
+                  },
+                  "traits": [
+                    {
+                      "name": "Ability Score Increase",
+                      "sourceLine": 1146,
+                      "text": "Your Intelligence score increases by 1 (for a total of +2 to Intelligence).",
+                      "id": "scholarly-human--ability-score-increase",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Knowledge Seeker",
+                      "sourceLine": 1148,
+                      "text": "You have proficiency in the History skill. If you already have this proficiency, you gain proficiency in one of the following skills of your choice: Arcana, Investigation, or Religion.",
+                      "id": "scholarly-human--knowledge-seeker",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Quick Learner",
+                      "sourceLine": 1150,
+                      "text": "You gain proficiency with one set of tools of your choice.",
+                      "id": "scholarly-human--quick-learner",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Lore Master",
+                      "sourceLine": 1152,
+                      "text": "When you make an Intelligence check to recall information about something you've studied, you can add double your proficiency bonus instead of any proficiency bonus you normally apply.",
+                      "id": "scholarly-human--lore-master",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    }
+                  ]
+                }
+              ],
+              "size": "Medium",
+              "baseWalkFeet": 30
+            },
+            "background": {
+              "id": "wildling-herbalist",
+              "name": "Wildling Herbalist",
+              "status": "source-package-reviewed; integration-guide-and-stated-equipment-dependencies-apply",
+              "source": [
+                {
+                  "line": 5804,
+                  "text": "Skill Proficiencies: Nature, Medicine"
+                },
+                {
+                  "line": 5805,
+                  "text": "Tool Proficiencies: Herbalism kit"
+                },
+                {
+                  "line": 5806,
+                  "text": "Languages: Sylvan or Primordial (choose one)"
+                },
+                {
+                  "line": 5807,
+                  "text": "Equipment: An herbalism kit, a staff carved with natural symbols, a collection of dried herbs and rare flowers, a set of common clothes made from animal hides, and a belt pouch containing 5 gp."
+                },
+                {
+                  "line": 5808,
+                  "text": "Feature: Natural Remedy: You can identify most mundane and magical plants with ease and know their potential uses. During a long rest, you can gather natural components (if available in the environment) to create one Potion of Healing (basic) or an antitoxin without expending gold. This knowledge grants you Liked starting Reputation with Druidic circles and isolated wildling communities, but Disliked starting Reputation with alchemists guilds who see you as competition."
+                }
+              ],
+              "skillsSource": "Nature, Medicine",
+              "toolsSource": "Herbalism kit",
+              "languagesSource": "Sylvan or Primordial (choose one)",
+              "equipmentSource": "An herbalism kit, a staff carved with natural symbols, a collection of dried herbs and rare flowers, a set of common clothes made from animal hides, and a belt pouch containing 5 gp.",
+              "featureSource": "Natural Remedy: You can identify most mundane and magical plants with ease and know their potential uses. During a long rest, you can gather natural components (if available in the environment) to create one Potion of Healing (basic) or an antitoxin without expending gold. This knowledge grants you Liked starting Reputation with Druidic circles and isolated wildling communities, but Disliked starting Reputation with alchemists guilds who see you as competition."
+            },
+            "abilityScoreArray": {
+              "STR": 8,
+              "DEX": 13,
+              "CON": 14,
+              "INT": 12,
+              "WIS": 15,
+              "CHA": 10
+            },
+            "abilityScores": {
+              "STR": 9,
+              "DEX": 14,
+              "CON": 19,
+              "INT": 13,
+              "WIS": 20,
+              "CHA": 11
+            },
+            "ASIChoices": [
+              {
+                "level": 4,
+                "WIS": 2
+              },
+              {
+                "level": 8,
+                "WIS": 2
+              },
+              {
+                "level": 12,
+                "CON": 2
+              },
+              {
+                "level": 16,
+                "CON": 2
+              }
+            ],
+            "classBuild": {
+              "circle": "Land",
+              "heroFormsAt10": [
+                "Blight Elk",
+                "Tanglemaw"
+              ],
+              "automaticAt10": "Nature's Ward",
+              "archFormsAt11": [
+                "Dire Wolf",
+                "Sky Serpent"
+              ],
+              "shiftsAt17": 7,
+              "cantripsAt17": 4,
+              "circleFeatureAt14": "Nature's Sanctuary"
+            },
+            "classBuildExampleSource": "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_BUILD_EXAMPLES.md",
+            "classGuideSource": "DescentReviewChanges/ReviewBible/docs/mechanics/classes/druid.md",
+            "classDataSource": "DescentReviewChanges/ReviewBible/data/public/class_playtests/druid.json",
+            "proficiencyBonus": 6,
+            "hitDie": "d8",
+            "hpLedger": {
+              "method": "fixed rounded-up average at level-up",
+              "firstLevelBase": 8,
+              "laterLevelBase": 5,
+              "currentConModifier": 4,
+              "baseMaximumHP": 156,
+              "currentHP": 156,
+              "wounds": 0,
+              "deathState": "alive"
+            },
+            "armorClass": 13,
+            "classRankMaximum": 9,
+            "maxRP": 48,
+            "currentRP": 48,
+            "spellAttackBonus": 11,
+            "spellSaveDC": 19,
+            "targetSpell": {
+              "targetSpell": "corruption-purification",
+              "rank": 9,
+              "school": "Abjuration",
+              "acquiredAtClassLevel": 17,
+              "ordinaryRankGate": 9,
+              "preparedOrKnown": true,
+              "paidRpCost": 26,
+              "ordinaryDruidPreparation": true,
+              "preparedCount": 22,
+              "circle": "Land",
+              "archForms": [
+                "Dire Wolf",
+                "Sky Serpent"
+              ]
+            },
+            "components": {
+              "V": true,
+              "S": true,
+              "F": true,
+              "focusItemId": "druid-focus-01",
+              "focusHand": "left",
+              "rightHandFree": true
+            },
+            "equipment": {
+              "focusItemId": "druid-focus-01",
+              "focusOwned": true,
+              "focusMassLb": 1,
+              "spellbookOwned": false,
+              "spellbookId": null,
+              "spellbookMassLb": 0
+            },
+            "setupPremises": {
+              "status": "TEST_ONLY",
+              "separateFreshEncounterBranch": true,
+              "completedLongRest": true,
+              "preparedBeforeEncounter": true,
+              "initialResourcesAtLawfulMaximum": true
+            },
+            "route": "Druid/Abjuration"
+          },
+          "location": {
+            "x": 0,
+            "y": 0,
+            "z": 0,
+            "plane": "TEST-DD11-PLANE-A"
+          },
+          "resources": {
+            "RP": 48,
+            "maxRP": 48,
+            "Dissonance": 0
+          },
+          "actionBudget": {
+            "actionAvailable": true,
+            "actionsSpent": 0
+          },
+          "turnState": {
+            "regularTurn": 1,
+            "magicThisTurn": false,
+            "lastSpell": null
+          },
+          "spellHistory": [],
+          "pendingCast": null
+        },
+        "target": {
+          "id": "target-01",
+          "alive": true,
+          "willing": true,
+          "perceived": true,
+          "lineOfEffect": true,
+          "location": {
+            "x": 5,
+            "y": 0,
+            "z": 0,
+            "plane": "TEST-DD11-PLANE-A"
+          },
+          "HP": {
+            "current": 47,
+            "maximum": 80
+          },
+          "Wounds": 1,
+          "dead": false,
+          "anatomyHistory": [
+            "left forearm injury: healed closed before test"
+          ],
+          "alignment": {
+            "Order": "Neutral",
+            "Moral": "Neutral"
+          },
+          "inventory": [
+            {
+              "id": "owned-kit-01",
+              "owner": "target-01",
+              "custodian": "target-01",
+              "exists": true
+            }
+          ],
+          "knowledgeLedger": {
+            "stage": "KT2",
+            "facts": [
+              {
+                "id": "knowledgeK",
+                "status": "acquired",
+                "content": "dangerous operational knowledge",
+                "learnedAtMs": -1000
+              }
+            ],
+            "history": [
+              "knowledgeK acquired"
+            ]
+          },
+          "PT": {
+            "stage": 0,
+            "history": []
+          },
+          "conditions": [],
+          "trackHistory": []
+        },
+        "admission": {
+          "mode": "creature",
+          "targetDistanceFt": 5,
+          "center": {
+            "x": 20,
+            "y": 0,
+            "z": 0,
+            "plane": "TEST-DD11-PLANE-A"
+          },
+          "within120Ft": true,
+          "lineOfEffect": true,
+          "centerPerceived": true
+        },
+        "sourceGraph": {
+          "applications": {
+            "protected-only": {
+              "id": "protected-only",
+              "category": "tagged active corruption component",
+              "sourceOwner": "source-protected-only",
+              "active": true,
+              "protected": true,
+              "protection": "higher-priority explicit source protection",
+              "version": 1,
+              "endCallbackId": "must-not-end"
+            }
+          },
+          "environmentalCells": {},
+          "parents": {},
+          "callbacks": {},
+          "cureReceipts": {}
+        },
+        "purificationExpression": null,
+        "currentTimeMs": 0,
+        "events": [],
+        "callbackRegistry": {
+          "must-not-end": {
+            "applicationId": "protected-only",
+            "status": "prohibited"
+          }
+        }
+      },
+      "hash": "c077e38f29717da576ff80af7d6b25abb08837ba41c10c8bdada4335bdc9bf91"
+    },
+    {
+      "branchId": "CP-R-WIZARD-COUNTERED",
+      "caseId": "CP-R",
+      "route": "Wizard/Abjuration",
+      "mode": "creature",
+      "state": {
+        "id": "CP-FIXTURE-CP-R-Wizard",
+        "status": "TEST_ONLY",
+        "canonical": false,
+        "site": "TEST-DD11-CLEANSE-ARENA",
+        "plane": "TEST-DD11-PLANE-A",
+        "caster": {
+          "id": "wizard-17-abjuration",
+          "className": "Wizard",
+          "classLevel": 17,
+          "route": "Wizard/Abjuration",
+          "profile": {
+            "actorId": "wizard-17-abjuration",
+            "className": "Wizard",
+            "singleClassLevel": 17,
+            "totalCharacterLevel": 17,
+            "ancestry": {
+              "id": "human",
+              "name": "Human",
+              "abilityBonuses": {
+                "STR": 1,
+                "DEX": 1,
+                "CON": 1,
+                "INT": 1,
+                "WIS": 1,
+                "CHA": 1
+              },
+              "traits": [
+                {
+                  "name": "Ability Score Increase",
+                  "sourceLine": 1100,
+                  "text": "Your ability scores each increase by 1.",
+                  "id": "human--ability-score-increase",
+                  "status": "original-source-preserved; apply-reviewed-integration-guide"
+                },
+                {
+                  "name": "Size",
+                  "sourceLine": 1106,
+                  "text": "Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.",
+                  "id": "human--size",
+                  "status": "original-source-preserved; apply-reviewed-integration-guide"
+                },
+                {
+                  "name": "Speed",
+                  "sourceLine": 1108,
+                  "text": "Your base walking speed is 30 feet.",
+                  "id": "human--speed",
+                  "status": "original-source-preserved; apply-reviewed-integration-guide"
+                },
+                {
+                  "name": "Versatility",
+                  "sourceLine": 1110,
+                  "text": "You gain proficiency in one skill of your choice.",
+                  "id": "human--versatility",
+                  "status": "original-source-preserved; apply-reviewed-integration-guide"
+                },
+                {
+                  "name": "Languages",
+                  "sourceLine": 1112,
+                  "text": "You can speak, read, and write Common and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, including obscure dialects.",
+                  "id": "human--languages",
+                  "status": "original-source-preserved; apply-reviewed-integration-guide"
+                }
+              ],
+              "variants": [
+                {
+                  "id": "imperial-human",
+                  "name": "Imperial Human",
+                  "abilityBonuses": {
+                    "CHA": 1
+                  },
+                  "combinedAbilityBonuses": {
+                    "STR": 1,
+                    "DEX": 1,
+                    "CON": 1,
+                    "INT": 1,
+                    "WIS": 1,
+                    "CHA": 2
+                  },
+                  "traits": [
+                    {
+                      "name": "Ability Score Increase",
+                      "sourceLine": 1122,
+                      "text": "Your Charisma score increases by 1 (for a total of +2 to Charisma).",
+                      "id": "imperial-human--ability-score-increase",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Social Intuition",
+                      "sourceLine": 1124,
+                      "text": "You have proficiency in the Persuasion skill. If you already have this proficiency, you gain proficiency in one of the following skills of your choice: Deception, Insight, or Intimidation.",
+                      "id": "imperial-human--social-intuition",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Diplomatic Training",
+                      "sourceLine": 1126,
+                      "text": "You know one additional language of your choice.",
+                      "id": "imperial-human--diplomatic-training",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Natural Leader",
+                      "sourceLine": 1128,
+                      "text": "Once per short rest, when you or an ally within 30 feet of you rolls a 1 on an attack roll, ability check, or saving throw, you can call out a warning or offer quick advice, allowing the roll to be rerolled. The second roll must be used.",
+                      "id": "imperial-human--natural-leader",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    }
+                  ]
+                },
+                {
+                  "id": "nomadic-human",
+                  "name": "Nomadic Human",
+                  "abilityBonuses": {
+                    "CON": 1,
+                    "WIS": 1
+                  },
+                  "combinedAbilityBonuses": {
+                    "STR": 1,
+                    "DEX": 1,
+                    "CON": 2,
+                    "INT": 1,
+                    "WIS": 2,
+                    "CHA": 1
+                  },
+                  "traits": [
+                    {
+                      "name": "Ability Score Increase",
+                      "sourceLine": 1134,
+                      "text": "Your Constitution score increases by 1, and your Wisdom score increases by 1 (for a total of +2 to Constitution and +2 to Wisdom).",
+                      "id": "nomadic-human--ability-score-increase",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Environmental Adaptation",
+                      "sourceLine": 1136,
+                      "text": "You have advantage on saving throws against extreme heat and cold.",
+                      "id": "nomadic-human--environmental-adaptation",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Survival Instinct",
+                      "sourceLine": 1138,
+                      "text": "You have proficiency in the Survival skill. If you already have this proficiency, you gain proficiency in one of the following skills of your choice: Animal Handling, Medicine, or Nature.",
+                      "id": "nomadic-human--survival-instinct",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Wayfinder",
+                      "sourceLine": 1140,
+                      "text": "You always know which way is north, and you have advantage on Wisdom (Survival) checks to avoid becoming lost.",
+                      "id": "nomadic-human--wayfinder",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    }
+                  ]
+                },
+                {
+                  "id": "scholarly-human",
+                  "name": "Scholarly Human",
+                  "abilityBonuses": {
+                    "INT": 1
+                  },
+                  "combinedAbilityBonuses": {
+                    "STR": 1,
+                    "DEX": 1,
+                    "CON": 1,
+                    "INT": 2,
+                    "WIS": 1,
+                    "CHA": 1
+                  },
+                  "traits": [
+                    {
+                      "name": "Ability Score Increase",
+                      "sourceLine": 1146,
+                      "text": "Your Intelligence score increases by 1 (for a total of +2 to Intelligence).",
+                      "id": "scholarly-human--ability-score-increase",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Knowledge Seeker",
+                      "sourceLine": 1148,
+                      "text": "You have proficiency in the History skill. If you already have this proficiency, you gain proficiency in one of the following skills of your choice: Arcana, Investigation, or Religion.",
+                      "id": "scholarly-human--knowledge-seeker",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Quick Learner",
+                      "sourceLine": 1150,
+                      "text": "You gain proficiency with one set of tools of your choice.",
+                      "id": "scholarly-human--quick-learner",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Lore Master",
+                      "sourceLine": 1152,
+                      "text": "When you make an Intelligence check to recall information about something you've studied, you can add double your proficiency bonus instead of any proficiency bonus you normally apply.",
+                      "id": "scholarly-human--lore-master",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    }
+                  ]
+                }
+              ],
+              "size": "Medium",
+              "baseWalkFeet": 30
+            },
+            "background": {
+              "id": "arcane-academy-dropout",
+              "name": "Arcane Academy Dropout",
+              "status": "source-package-reviewed; integration-guide-and-stated-equipment-dependencies-apply",
+              "source": [
+                {
+                  "line": 6004,
+                  "text": "Skill Proficiencies: Arcana, History"
+                },
+                {
+                  "line": 6005,
+                  "text": "Languages: Two of your choice"
+                },
+                {
+                  "line": 6006,
+                  "text": "Equipment: A spellbook or arcane focus (perhaps damaged or modified), a letter of expulsion or resignation, a set of common clothes, a student's robe, and a pouch containing 10 gp."
+                },
+                {
+                  "line": 6007,
+                  "text": "Feature: Theoretical Knowledge: Despite your incomplete education, you retain substantial theoretical knowledge. You have advantage on Intelligence (Arcana) checks related to identifying magical effects, traditions, or items, even if you can't replicate them yourself. Your academic background grants you Disliked starting Reputation with formal arcane institutions but Neutral starting Reputation with independent mages and magical researchers who value unorthodox thinking."
+                }
+              ],
+              "skillsSource": "Arcana, History",
+              "languagesSource": "Two of your choice",
+              "equipmentSource": "A spellbook or arcane focus (perhaps damaged or modified), a letter of expulsion or resignation, a set of common clothes, a student's robe, and a pouch containing 10 gp.",
+              "featureSource": "Theoretical Knowledge: Despite your incomplete education, you retain substantial theoretical knowledge. You have advantage on Intelligence (Arcana) checks related to identifying magical effects, traditions, or items, even if you can't replicate them yourself. Your academic background grants you Disliked starting Reputation with formal arcane institutions but Neutral starting Reputation with independent mages and magical researchers who value unorthodox thinking."
+            },
+            "abilityScoreArray": {
+              "STR": 10,
+              "DEX": 13,
+              "CON": 8,
+              "INT": 15,
+              "WIS": 12,
+              "CHA": 14
+            },
+            "abilityScores": {
+              "STR": 11,
+              "DEX": 14,
+              "CON": 9,
+              "INT": 20,
+              "WIS": 13,
+              "CHA": 19
+            },
+            "ASIChoices": [
+              {
+                "level": 4,
+                "INT": 2
+              },
+              {
+                "level": 8,
+                "INT": 2
+              },
+              {
+                "level": 12,
+                "CHA": 2
+              },
+              {
+                "level": 16,
+                "CHA": 2
+              }
+            ],
+            "classBuild": [
+              [
+                "Arcane Shield",
+                "Analyze Magic",
+                "Spell Scribing",
+                "Arcane Bolt"
+              ],
+              [
+                "Scholarly Mind",
+                "Arcane Recovery"
+              ],
+              [
+                "Sigil Rewrite",
+                "Arcane Sight"
+              ],
+              [
+                "Arcane Lock"
+              ],
+              [
+                "Dispel Magic"
+              ],
+              [
+                "Spell Tether"
+              ],
+              [
+                "Floating Preparation"
+              ],
+              [
+                "Matrix Efficiency"
+              ],
+              [
+                "Dimensional Pocket"
+              ],
+              [
+                "Runic Snare",
+                "Spell Preservation"
+              ],
+              [
+                "Spell Efficiency"
+              ],
+              [
+                "Counterpulse"
+              ],
+              [
+                "Arcane Insight"
+              ],
+              [
+                "Seal Magic"
+              ],
+              [
+                "Improved Concentration"
+              ],
+              [
+                "Knowledge Shield"
+              ],
+              [
+                "Minor Conjuration"
+              ]
+            ],
+            "classBuildExampleSource": "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_BUILD_EXAMPLES.md",
+            "classGuideSource": "DescentReviewChanges/ReviewBible/docs/mechanics/classes/wizard.md",
+            "classDataSource": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+            "proficiencyBonus": 6,
+            "hitDie": "d6",
+            "hpLedger": {
+              "method": "rolled legal Hit Dice at level-up",
+              "firstLevelBase": 6,
+              "laterLevelRolls": [
+                6,
+                6,
+                6,
+                6,
+                6,
+                6,
+                6,
+                6,
+                6,
+                6,
+                6,
+                5,
+                5,
+                5,
+                5,
+                5
+              ],
+              "currentConModifier": -1,
+              "laterPerLevelContribution": [
+                5,
+                5,
+                5,
+                5,
+                5,
+                5,
+                5,
+                5,
+                5,
+                5,
+                5,
+                4,
+                4,
+                4,
+                4,
+                4
+              ],
+              "baseMaximumHP": 80,
+              "currentHP": 55,
+              "priorTestOnlyDamage": 25,
+              "wounds": 0,
+              "deathState": "alive"
+            },
+            "armorClass": 12,
+            "classRankMaximum": 9,
+            "maxRP": 64,
+            "currentRP": 64,
+            "spellAttackBonus": 13,
+            "spellSaveDC": 21,
+            "targetSpell": {
+              "targetSpell": "corruption-purification",
+              "rank": 9,
+              "school": "Abjuration",
+              "acquiredAtClassLevel": 17,
+              "ordinaryRankGate": 9,
+              "preparedOrKnown": true,
+              "paidRpCost": 26,
+              "path": "Spellbinder",
+              "preparedMatrixCount": 22,
+              "targetMatrixPrepared": true,
+              "matrixPreparationMinutes": 45,
+              "spellbookEntryCount": 67,
+              "counterspellKnownAndPrepared": true
+            },
+            "components": {
+              "V": true,
+              "S": true,
+              "F": true,
+              "focusItemId": "wizard-focus-01",
+              "focusHand": "left",
+              "rightHandFree": true
+            },
+            "equipment": {
+              "focusItemId": "wizard-focus-01",
+              "focusOwned": true,
+              "focusMassLb": 1,
+              "spellbookOwned": true,
+              "spellbookId": "wizard-spellbook-01",
+              "spellbookMassLb": 3
+            },
+            "setupPremises": {
+              "status": "TEST_ONLY",
+              "separateFreshEncounterBranch": true,
+              "completedLongRest": true,
+              "preparedBeforeEncounter": true,
+              "initialResourcesAtLawfulMaximum": true
+            },
+            "route": "Wizard/Abjuration",
+            "wizardSpecializationSchool": "Abjuration"
+          },
+          "location": {
+            "x": 0,
+            "y": 0,
+            "z": 0,
+            "plane": "TEST-DD11-PLANE-A"
+          },
+          "resources": {
+            "RP": 64,
+            "maxRP": 64,
+            "Dissonance": 0
+          },
+          "actionBudget": {
+            "actionAvailable": true,
+            "actionsSpent": 0
+          },
+          "turnState": {
+            "regularTurn": 1,
+            "magicThisTurn": false,
+            "lastSpell": null
+          },
+          "spellHistory": [],
+          "pendingCast": null
+        },
+        "target": {
+          "id": "target-01",
+          "alive": true,
+          "willing": true,
+          "perceived": true,
+          "lineOfEffect": true,
+          "location": {
+            "x": 5,
+            "y": 0,
+            "z": 0,
+            "plane": "TEST-DD11-PLANE-A"
+          },
+          "HP": {
+            "current": 47,
+            "maximum": 80
+          },
+          "Wounds": 1,
+          "dead": false,
+          "anatomyHistory": [
+            "left forearm injury: healed closed before test"
+          ],
+          "alignment": {
+            "Order": "Neutral",
+            "Moral": "Neutral"
+          },
+          "inventory": [
+            {
+              "id": "owned-kit-01",
+              "owner": "target-01",
+              "custodian": "target-01",
+              "exists": true
+            }
+          ],
+          "knowledgeLedger": {
+            "stage": "KT2",
+            "facts": [
+              {
+                "id": "knowledgeK",
+                "status": "acquired",
+                "content": "dangerous operational knowledge",
+                "learnedAtMs": -1000
+              }
+            ],
+            "history": [
+              "knowledgeK acquired"
+            ]
+          },
+          "PT": {
+            "stage": 2,
+            "history": [
+              {
+                "stage": 1,
+                "episodeId": "pt-03"
+              },
+              {
+                "stage": 2,
+                "episodeId": "pt-03"
+              }
+            ],
+            "exposureHistory": [
+              "pt-03"
+            ]
+          },
+          "conditions": [
+            {
+              "id": "app1",
+              "condition": "Corrupted",
+              "active": true
+            },
+            {
+              "id": "appKT-symptom",
+              "condition": "active corruption symptom",
+              "active": true
+            }
+          ],
+          "trackHistory": []
+        },
+        "admission": {
+          "mode": "creature",
+          "targetDistanceFt": 5,
+          "center": {
+            "x": 20,
+            "y": 0,
+            "z": 0,
+            "plane": "TEST-DD11-PLANE-A"
+          },
+          "within120Ft": true,
+          "lineOfEffect": true,
+          "centerPerceived": true
+        },
+        "sourceGraph": {
+          "applications": {
+            "app1": {
+              "id": "app1",
+              "category": "ordinary Corrupted",
+              "sourceOwner": "source-CORRUPTED-app1",
+              "active": true,
+              "protected": false,
+              "version": 1,
+              "applicationHistory": [
+                "created-before-cure"
+              ],
+              "endCallbackId": "end-app1"
+            },
+            "app2": {
+              "id": "app2",
+              "category": "Unity Exposure numeric burden",
+              "sourceOwner": "source-UNITY-EXPOSURE",
+              "active": true,
+              "protected": false,
+              "current": 7,
+              "historicalMaximum": 9,
+              "sourceHistory": [
+                {
+                  "value": 7,
+                  "atMs": -500
+                }
+              ],
+              "version": 4,
+              "endCallbackId": "set-burden-zero"
+            },
+            "app3": {
+              "id": "app3",
+              "category": "PT reversible exposure stage",
+              "sourceOwner": "source-PT-episode-03",
+              "active": true,
+              "protected": false,
+              "currentStage": 2,
+              "history": [
+                {
+                  "stage": 1,
+                  "atMs": -2000
+                },
+                {
+                  "stage": 2,
+                  "atMs": -1000
+                }
+              ],
+              "version": 2,
+              "symptoms": [
+                {
+                  "id": "pt-symptom-01",
+                  "active": true,
+                  "sourceOwner": "source-PT-episode-03",
+                  "endCallbackId": "end-pt-symptom-01",
+                  "callbackCount": 0
+                }
+              ],
+              "endCallbackId": "end-pt-stage"
+            },
+            "appKT-symptom": {
+              "id": "appKT-symptom",
+              "category": "separately eligible active corruption symptom",
+              "sourceOwner": "source-KT-symptom",
+              "active": true,
+              "protected": false,
+              "endCallbackId": "end-kt-symptom",
+              "callbackCount": 0
+            },
+            "protectedP": {
+              "id": "protectedP",
+              "category": "active tagged corruption component",
+              "sourceOwner": "source-protected-P",
+              "active": true,
+              "protected": true,
+              "protection": "independent higher-priority parent protection",
+              "version": 3,
+              "endCallbackId": "do-not-end-protectedP"
+            },
+            "sourceO": {
+              "id": "sourceO",
+              "category": "intrinsic Oracle Curse/Burden",
+              "sourceOwner": "oracle-curse-sourceO",
+              "active": true,
+              "intrinsic": true,
+              "protected": true,
+              "endCallbackId": null
+            },
+            "sourceN": {
+              "id": "sourceN",
+              "category": "Null Veil",
+              "sourceOwner": "null-veil-sourceN",
+              "active": true,
+              "intrinsic": false,
+              "purificationAuthorized": false,
+              "namedPurgeRoutes": [
+                "mask confession",
+                "Archon temporary blessing",
+                "bittersap antidote"
+              ],
+              "endCallbackId": null
+            }
+          },
+          "environmentalCells": {},
+          "parents": {},
+          "callbacks": {},
+          "cureReceipts": {}
+        },
+        "purificationExpression": null,
+        "currentTimeMs": 0,
+        "events": [],
+        "callbackRegistry": {
+          "end-app1": {
+            "applicationId": "app1",
+            "sourceOwner": "source-CORRUPTED-app1",
+            "callback": "end exact active Corrupted application once",
+            "sourceBinding": "condition_playtests /conditions/5"
+          },
+          "set-burden-zero": {
+            "applicationId": "app2",
+            "sourceOwner": "source-UNITY-EXPOSURE",
+            "callback": "set current reversible burden to0; preserve max/history",
+            "sourceBinding": "condition_playtests /conditions/25"
+          },
+          "end-pt-stage": {
+            "applicationId": "app3",
+            "sourceOwner": "source-PT-episode-03",
+            "callback": "remove current reversible PT stage and its active source-owned symptoms",
+            "sourceBinding": "SOULS_RESEARCH_REVIEWED_01.md:131-153"
+          },
+          "end-pt-symptom-01": {
+            "applicationId": "app3",
+            "sourceOwner": "source-PT-episode-03",
+            "callback": "end only source-owned symptom 01 once",
+            "sourceBinding": "SOULS_RESEARCH_REVIEWED_01.md:131-153"
+          },
+          "end-kt-symptom": {
+            "applicationId": "appKT-symptom",
+            "sourceOwner": "source-KT-symptom",
+            "callback": "end source-owned symptom only; retain KT knowledge and stage",
+            "sourceBinding": "SOULS_RESEARCH_REVIEWED_01.md:102-129"
+          }
+        }
+      },
+      "hash": "23c79a9f924cdd130b1f82e697e5ba0c6bfda7fc6f95cebd13717d5d06549508"
+    },
+    {
+      "branchId": "CP-R-MAGE-MIXED",
+      "caseId": "CP-R",
+      "route": "Mage/Abjuration",
+      "mode": "creature",
+      "state": {
+        "id": "CP-FIXTURE-CP-R-Mage",
+        "status": "TEST_ONLY",
+        "canonical": false,
+        "site": "TEST-DD11-CLEANSE-ARENA",
+        "plane": "TEST-DD11-PLANE-A",
+        "caster": {
+          "id": "mage-17-abjuration",
+          "className": "Mage",
+          "classLevel": 17,
+          "route": "Mage/Abjuration",
+          "profile": {
+            "actorId": "mage-17-abjuration",
+            "className": "Mage",
+            "singleClassLevel": 17,
+            "totalCharacterLevel": 17,
+            "ancestry": {
+              "id": "human",
+              "name": "Human",
+              "abilityBonuses": {
+                "STR": 1,
+                "DEX": 1,
+                "CON": 1,
+                "INT": 1,
+                "WIS": 1,
+                "CHA": 1
+              },
+              "traits": [
+                {
+                  "name": "Ability Score Increase",
+                  "sourceLine": 1100,
+                  "text": "Your ability scores each increase by 1.",
+                  "id": "human--ability-score-increase",
+                  "status": "original-source-preserved; apply-reviewed-integration-guide"
+                },
+                {
+                  "name": "Size",
+                  "sourceLine": 1106,
+                  "text": "Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.",
+                  "id": "human--size",
+                  "status": "original-source-preserved; apply-reviewed-integration-guide"
+                },
+                {
+                  "name": "Speed",
+                  "sourceLine": 1108,
+                  "text": "Your base walking speed is 30 feet.",
+                  "id": "human--speed",
+                  "status": "original-source-preserved; apply-reviewed-integration-guide"
+                },
+                {
+                  "name": "Versatility",
+                  "sourceLine": 1110,
+                  "text": "You gain proficiency in one skill of your choice.",
+                  "id": "human--versatility",
+                  "status": "original-source-preserved; apply-reviewed-integration-guide"
+                },
+                {
+                  "name": "Languages",
+                  "sourceLine": 1112,
+                  "text": "You can speak, read, and write Common and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, including obscure dialects.",
+                  "id": "human--languages",
+                  "status": "original-source-preserved; apply-reviewed-integration-guide"
+                }
+              ],
+              "variants": [
+                {
+                  "id": "imperial-human",
+                  "name": "Imperial Human",
+                  "abilityBonuses": {
+                    "CHA": 1
+                  },
+                  "combinedAbilityBonuses": {
+                    "STR": 1,
+                    "DEX": 1,
+                    "CON": 1,
+                    "INT": 1,
+                    "WIS": 1,
+                    "CHA": 2
+                  },
+                  "traits": [
+                    {
+                      "name": "Ability Score Increase",
+                      "sourceLine": 1122,
+                      "text": "Your Charisma score increases by 1 (for a total of +2 to Charisma).",
+                      "id": "imperial-human--ability-score-increase",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Social Intuition",
+                      "sourceLine": 1124,
+                      "text": "You have proficiency in the Persuasion skill. If you already have this proficiency, you gain proficiency in one of the following skills of your choice: Deception, Insight, or Intimidation.",
+                      "id": "imperial-human--social-intuition",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Diplomatic Training",
+                      "sourceLine": 1126,
+                      "text": "You know one additional language of your choice.",
+                      "id": "imperial-human--diplomatic-training",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Natural Leader",
+                      "sourceLine": 1128,
+                      "text": "Once per short rest, when you or an ally within 30 feet of you rolls a 1 on an attack roll, ability check, or saving throw, you can call out a warning or offer quick advice, allowing the roll to be rerolled. The second roll must be used.",
+                      "id": "imperial-human--natural-leader",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    }
+                  ]
+                },
+                {
+                  "id": "nomadic-human",
+                  "name": "Nomadic Human",
+                  "abilityBonuses": {
+                    "CON": 1,
+                    "WIS": 1
+                  },
+                  "combinedAbilityBonuses": {
+                    "STR": 1,
+                    "DEX": 1,
+                    "CON": 2,
+                    "INT": 1,
+                    "WIS": 2,
+                    "CHA": 1
+                  },
+                  "traits": [
+                    {
+                      "name": "Ability Score Increase",
+                      "sourceLine": 1134,
+                      "text": "Your Constitution score increases by 1, and your Wisdom score increases by 1 (for a total of +2 to Constitution and +2 to Wisdom).",
+                      "id": "nomadic-human--ability-score-increase",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Environmental Adaptation",
+                      "sourceLine": 1136,
+                      "text": "You have advantage on saving throws against extreme heat and cold.",
+                      "id": "nomadic-human--environmental-adaptation",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Survival Instinct",
+                      "sourceLine": 1138,
+                      "text": "You have proficiency in the Survival skill. If you already have this proficiency, you gain proficiency in one of the following skills of your choice: Animal Handling, Medicine, or Nature.",
+                      "id": "nomadic-human--survival-instinct",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Wayfinder",
+                      "sourceLine": 1140,
+                      "text": "You always know which way is north, and you have advantage on Wisdom (Survival) checks to avoid becoming lost.",
+                      "id": "nomadic-human--wayfinder",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    }
+                  ]
+                },
+                {
+                  "id": "scholarly-human",
+                  "name": "Scholarly Human",
+                  "abilityBonuses": {
+                    "INT": 1
+                  },
+                  "combinedAbilityBonuses": {
+                    "STR": 1,
+                    "DEX": 1,
+                    "CON": 1,
+                    "INT": 2,
+                    "WIS": 1,
+                    "CHA": 1
+                  },
+                  "traits": [
+                    {
+                      "name": "Ability Score Increase",
+                      "sourceLine": 1146,
+                      "text": "Your Intelligence score increases by 1 (for a total of +2 to Intelligence).",
+                      "id": "scholarly-human--ability-score-increase",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Knowledge Seeker",
+                      "sourceLine": 1148,
+                      "text": "You have proficiency in the History skill. If you already have this proficiency, you gain proficiency in one of the following skills of your choice: Arcana, Investigation, or Religion.",
+                      "id": "scholarly-human--knowledge-seeker",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Quick Learner",
+                      "sourceLine": 1150,
+                      "text": "You gain proficiency with one set of tools of your choice.",
+                      "id": "scholarly-human--quick-learner",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    },
+                    {
+                      "name": "Lore Master",
+                      "sourceLine": 1152,
+                      "text": "When you make an Intelligence check to recall information about something you've studied, you can add double your proficiency bonus instead of any proficiency bonus you normally apply.",
+                      "id": "scholarly-human--lore-master",
+                      "status": "original-source-preserved; apply-reviewed-integration-guide"
+                    }
+                  ]
+                }
+              ],
+              "size": "Medium",
+              "baseWalkFeet": 30
+            },
+            "background": {
+              "id": "arcane-academy-dropout",
+              "name": "Arcane Academy Dropout",
+              "status": "source-package-reviewed; integration-guide-and-stated-equipment-dependencies-apply",
+              "source": [
+                {
+                  "line": 6004,
+                  "text": "Skill Proficiencies: Arcana, History"
+                },
+                {
+                  "line": 6005,
+                  "text": "Languages: Two of your choice"
+                },
+                {
+                  "line": 6006,
+                  "text": "Equipment: A spellbook or arcane focus (perhaps damaged or modified), a letter of expulsion or resignation, a set of common clothes, a student's robe, and a pouch containing 10 gp."
+                },
+                {
+                  "line": 6007,
+                  "text": "Feature: Theoretical Knowledge: Despite your incomplete education, you retain substantial theoretical knowledge. You have advantage on Intelligence (Arcana) checks related to identifying magical effects, traditions, or items, even if you can't replicate them yourself. Your academic background grants you Disliked starting Reputation with formal arcane institutions but Neutral starting Reputation with independent mages and magical researchers who value unorthodox thinking."
+                }
+              ],
+              "skillsSource": "Arcana, History",
+              "languagesSource": "Two of your choice",
+              "equipmentSource": "A spellbook or arcane focus (perhaps damaged or modified), a letter of expulsion or resignation, a set of common clothes, a student's robe, and a pouch containing 10 gp.",
+              "featureSource": "Theoretical Knowledge: Despite your incomplete education, you retain substantial theoretical knowledge. You have advantage on Intelligence (Arcana) checks related to identifying magical effects, traditions, or items, even if you can't replicate them yourself. Your academic background grants you Disliked starting Reputation with formal arcane institutions but Neutral starting Reputation with independent mages and magical researchers who value unorthodox thinking."
+            },
+            "abilityScoreArray": {
+              "STR": 8,
+              "DEX": 13,
+              "CON": 14,
+              "INT": 15,
+              "WIS": 12,
+              "CHA": 10
+            },
+            "abilityScores": {
+              "STR": 9,
+              "DEX": 14,
+              "CON": 19,
+              "INT": 20,
+              "WIS": 13,
+              "CHA": 11
+            },
+            "ASIChoices": [
+              {
+                "level": 4,
+                "INT": 2
+              },
+              {
+                "level": 8,
+                "INT": 2
+              },
+              {
+                "level": 12,
+                "CON": 2
+              },
+              {
+                "level": 16,
+                "CON": 2
+              }
+            ],
+            "classBuild": [
+              [
+                "Blink",
+                "Arcane Missile",
+                "Spell Precision",
+                "Arcane Insight"
+              ],
+              [
+                "Elemental Affinity",
+                "Resonance Shield"
+              ],
+              [
+                "Arcane Barrage",
+                "Overload Crits"
+              ],
+              [
+                "Arcane Stability"
+              ],
+              [
+                "Detect Magic"
+              ],
+              [
+                "Arcane Bypass"
+              ],
+              [
+                "Metaspell Access"
+              ],
+              [
+                "Displacement"
+              ],
+              [
+                "Elemental Bolt"
+              ],
+              [
+                "Arcane Sanctuary",
+                "Purifying Beam"
+              ],
+              [
+                "Spell Efficiency"
+              ],
+              [
+                "Ward of Purity"
+              ],
+              [
+                "Counterspell"
+              ],
+              [
+                "Empowered Link"
+              ],
+              [
+                "Elemental Surge"
+              ],
+              [
+                "Harmonized Core"
+              ],
+              [
+                "Elemental Mastery"
+              ]
+            ],
+            "classBuildExampleSource": "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_BUILD_EXAMPLES.md",
+            "classGuideSource": "DescentReviewChanges/ReviewBible/docs/mechanics/classes/mage.md",
+            "classDataSource": "DescentReviewChanges/ReviewBible/data/public/class_playtests/mage.json",
+            "proficiencyBonus": 6,
+            "hitDie": "d6",
+            "hpLedger": {
+              "method": "fixed rounded-up average at level-up",
+              "firstLevelBase": 6,
+              "laterLevelBase": 4,
+              "currentConModifier": 4,
+              "baseMaximumHP": 138,
+              "currentHP": 138,
+              "wounds": 0,
+              "deathState": "alive"
+            },
+            "armorClass": 12,
+            "classRankMaximum": 9,
+            "maxRP": 50,
+            "currentRP": 50,
+            "spellAttackBonus": 11,
+            "spellSaveDC": 19,
+            "targetSpell": {
+              "targetSpell": "corruption-purification",
+              "rank": 9,
+              "school": "Abjuration",
+              "acquiredAtClassLevel": 17,
+              "ordinaryRankGate": 9,
+              "preparedOrKnown": true,
+              "paidRpCost": 26,
+              "path": "Archmage",
+              "rankedKnownCount": 18,
+              "ordinaryMagePreparation": true
+            },
+            "components": {
+              "V": true,
+              "S": true,
+              "F": true,
+              "focusItemId": "mage-focus-01",
+              "focusHand": "left",
+              "rightHandFree": true
+            },
+            "equipment": {
+              "focusItemId": "mage-focus-01",
+              "focusOwned": true,
+              "focusMassLb": 1,
+              "spellbookOwned": false,
+              "spellbookId": null,
+              "spellbookMassLb": 0
+            },
+            "setupPremises": {
+              "status": "TEST_ONLY",
+              "separateFreshEncounterBranch": true,
+              "completedLongRest": true,
+              "preparedBeforeEncounter": true,
+              "initialResourcesAtLawfulMaximum": true
+            },
+            "route": "Mage/Abjuration"
+          },
+          "location": {
+            "x": 0,
+            "y": 0,
+            "z": 0,
+            "plane": "TEST-DD11-PLANE-A"
+          },
+          "resources": {
+            "RP": 50,
+            "maxRP": 50,
+            "Dissonance": 0
+          },
+          "actionBudget": {
+            "actionAvailable": true,
+            "actionsSpent": 0
+          },
+          "turnState": {
+            "regularTurn": 1,
+            "magicThisTurn": false,
+            "lastSpell": null
+          },
+          "spellHistory": [],
+          "pendingCast": null
+        },
+        "target": {
+          "id": "target-01",
+          "alive": true,
+          "willing": true,
+          "perceived": true,
+          "lineOfEffect": true,
+          "location": {
+            "x": 5,
+            "y": 0,
+            "z": 0,
+            "plane": "TEST-DD11-PLANE-A"
+          },
+          "HP": {
+            "current": 47,
+            "maximum": 80
+          },
+          "Wounds": 1,
+          "dead": false,
+          "anatomyHistory": [
+            "completed injury remains"
+          ],
+          "alignment": {
+            "Order": "Neutral",
+            "Moral": "Neutral"
+          },
+          "inventory": [
+            {
+              "id": "owned-kit-01",
+              "owner": "target-01",
+              "custodian": "target-01",
+              "exists": true
+            }
+          ],
+          "knowledgeLedger": {
+            "stage": "KT2",
+            "facts": [
+              {
+                "id": "knowledgeK",
+                "status": "acquired",
+                "content": "preserved knowledge",
+                "learnedAtMs": -1000
+              }
+            ],
+            "history": [
+              "knowledgeK acquired"
+            ]
+          },
+          "PT": {
+            "stage": 0,
+            "history": []
+          },
+          "conditions": [],
+          "trackHistory": []
+        },
+        "admission": {
+          "mode": "creature",
+          "targetDistanceFt": 5,
+          "center": {
+            "x": 20,
+            "y": 0,
+            "z": 0,
+            "plane": "TEST-DD11-PLANE-A"
+          },
+          "within120Ft": true,
+          "lineOfEffect": true,
+          "centerPerceived": true
+        },
+        "sourceGraph": {
+          "applications": {
+            "eligible-app": {
+              "id": "eligible-app",
+              "category": "active tagged magical corruption",
+              "sourceOwner": "source-eligible-app",
+              "active": true,
+              "protected": false,
+              "version": 2,
+              "endCallbackId": "end-eligible-app"
+            },
+            "protected-parent": {
+              "id": "protected-parent",
+              "category": "restricted parent expression",
+              "sourceOwner": "source-protected-parent",
+              "active": true,
+              "protected": true,
+              "version": 4,
+              "endCallbackId": null
+            },
+            "sourceO": {
+              "id": "sourceO",
+              "category": "intrinsic Oracle Curse/Burden",
+              "active": true,
+              "intrinsic": true,
+              "protected": true,
+              "endCallbackId": null
+            }
+          },
+          "environmentalCells": {},
+          "parents": {},
+          "callbacks": {},
+          "cureReceipts": {}
+        },
+        "purificationExpression": null,
+        "currentTimeMs": 0,
+        "events": [],
+        "callbackRegistry": {
+          "end-eligible-app": {
+            "applicationId": "eligible-app",
+            "sourceOwner": "source-eligible-app",
+            "callback": "end eligible application once"
+          }
+        }
+      },
+      "hash": "34bc8b9c63263aaa69bfacb5849051549c48ab4aea2892d56f09e73055c62d0b"
+    }
+  ]
+}
