@@ -1,0 +1,59 @@
+{
+  "schema": "CODEX_TRANSCRIBED_GPT_DIRECTOR_REVIEW_V1",
+  "classification": "CODEX_TRANSCRIBED_GPT_UI_READBACK_NOT_GPT_AUTHORED",
+  "conversationUrl": "https://chatgpt.com/g/g-p-67f17555a8dc8191a2b5b81e6d8adc12-dungeon-crawler/c/6adc506d-8770-83ea-b64c-0345d9b9b682",
+  "readAtUtc": "2026-11-03T02:18:38Z",
+  "reviewedCommit": "36319ab7904454ab468f2917aa52adc5cf4a88d5",
+  "reviewedProposal": "docs/audit/2026-10-08/full-game/director-spell-review-129/fate_rewrite_ep480_interface_spec_2026-11-02/FATE_REWRITE_EP480_INTERFACE_PROPOSAL_02.json",
+  "reviewedProposalSha256": "7a730ffc094d8b9a443b0ec4444914e1a585ecf9f771a82d7100978ac7587019",
+  "disposition": "REVISE",
+  "readyForOwnerAdoption": false,
+  "corrections": [
+    {
+      "id": "FR-P02-C01",
+      "pointer": "/preservedGuaranteeBranch/parentState/wholeFileSha256",
+      "requirement": "Replace the malformed 62-hex value with the verified raw-byte SHA-256; preserve the /events/2/after digest and inherited cast verbatim.",
+      "sha256": "1f71f14dbb63947dba11a5cfde26a3677fbbfb9ead24bced606bdcd0f8977188"
+    },
+    {
+      "id": "FR-P02-C02",
+      "pointer": "/compatibleRewrite/newPremises/2",
+      "requirement": "Distinct supported endpoints and ordered nonintersecting routes; define position convention, body/book bounds, pickup reach, supported clearance, and recalculate Counterspell distance. Wizard body is 5x5 ft and six ft tall."
+    },
+    {
+      "id": "FR-P02-C03",
+      "pointer": "/compatibleRewrite/targetEvent/movementAndCustodyAtomicity",
+      "requirement": "Separate ordered movement from one atomic custody event. Enumerate descendants; movement/interaction cost, custody, hands, poses, observations, and version checks. Preserve prior expenditure, fund additional alternative costs, no refunds."
+    },
+    {
+      "id": "FR-P02-C04",
+      "pointer": "/compatibleRewrite/newPremises/4",
+      "requirement": "Finite clock schedule. T1 ends with initiative dispatch disabled, historical markers retained, prevention operands active and ordinary-expression flags false. Explicitly expire or continue them before movement/casting; never reactivate fulfilled obligation or consumed scheduler. Explain inherited budgets outside initiative without administrative refresh; order admission, commitment, response, resolution, and pending-cast clearing."
+    },
+    {
+      "id": "FR-P02-C05",
+      "pointer": "/compatibleRewrite/proposedRelease",
+      "requirement": "Limit 13; Dissonance/Refrain 0; first prepared Fate Rewrite family waives base strain; surcharge 0; pay 26 RP, 64 to 38. Record Action, seenFamilies, lastSpell, spellsThisTurn, pending-cast lifecycle. Identify possessed focus and free gesture hand while T carries book. Recheck Counterspell: Reaction, 3 RP, two-round recharge, INT+PB +11 vs rank-9 DC28; voluntary decline spends nothing and starts no recharge/feedback."
+    },
+    {
+      "id": "FR-P02-C06",
+      "pointer": "/conflictingRequest/knowledgeRoutePremise",
+      "requirement": "Replace audit-record assumption with bounded information provenance/content/access/timing or actual observation/communication; update request time and age; anchor via event participation or surviving cache with perception and LoE. No engine omniscience."
+    }
+  ],
+  "passedNotes": [
+    "Admission-stage conflict rejection before new Action/RP and Counterspell is correct; original 26 RP stays sunk.",
+    "Memory preservation, independent branch restoration and one active history are appropriate.",
+    "All ten submitted source bindings and T1 parent/cast/obligation/item/terminal digests match."
+  ],
+  "unchangedScope": {
+    "queue": "Queue481 836/12/0",
+    "openBlockers": [
+      "TF192-B02",
+      "TF192-B04"
+    ],
+    "historicalCases": 17,
+    "witnessSealed": false,
+    "constructionAuthorized": false
+  }
+}
