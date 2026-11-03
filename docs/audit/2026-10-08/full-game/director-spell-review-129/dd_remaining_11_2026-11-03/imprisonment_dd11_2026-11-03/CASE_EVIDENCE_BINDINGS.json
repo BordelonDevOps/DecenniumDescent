@@ -1,0 +1,250 @@
+{
+  "id": "IM-DD11-CASE-EVIDENCE-BINDINGS-01",
+  "identity": "imprisonment",
+  "contractSha256": "dfe3f2b1edae9e8dc76f9fde5e691c2ae6de0036de5f1a94a2a500aa8f4a8f7f",
+  "requiredCases": [
+    {
+      "caseId": "IM-P1",
+      "specification": {
+        "id": "IM-P1",
+        "given": {
+          "routes": [
+            "Wizard/Necromancy",
+            "Cleric/Necromancy"
+          ],
+          "mode": "STONE_VAULT",
+          "targetSave": "actual total below actual casterDC"
+        },
+        "steps": [
+          "Paid cast",
+          "Failed save forms exact five panels",
+          "Target spends lawful attacks totaling60 valid damage on north panel",
+          "Move through7ft-wide opening with actual budget"
+        ],
+        "expected": {
+          "panelDestroyed": true,
+          "otherPanelsRetained": true,
+          "usefulConfinementBeforeRescue": true,
+          "noActionDenialOrStasis": true
+        },
+        "covers": [
+          "PC341-W01",
+          "PC341-W02",
+          "PC341-W04"
+        ],
+        "executionStatus": "NOT_EXECUTED_IN_THIS_PACKAGE"
+      },
+      "specificationSha256": "84cad21e78a7a56fd275c5a7adcda9b31d5114b6732de4fb35bfd805a0f2a7d9",
+      "branchIds": [
+        "IM-P1-WIZARD",
+        "IM-P1-CLERIC"
+      ],
+      "branchHashes": {
+        "IM-P1-WIZARD": "2e7da27d4b8890bf1e778a342167d84bef42701bdb3a2295b4899da822b8fea7",
+        "IM-P1-CLERIC": "62f5776465b26425016eec11d63566b7984136d1a65139a5e64a6e378cc312e5"
+      },
+      "status": "PASS_STATIC_TEST_ONLY"
+    },
+    {
+      "caseId": "IM-P2",
+      "specification": {
+        "id": "IM-P2",
+        "given": {
+          "routes": [
+            "Druid/Necromancy",
+            "Mage/Universal"
+          ],
+          "mode": "SIGIL_CELL",
+          "saveSequence": [
+            "initial failure",
+            "escape success",
+            "escape failure",
+            "escape success",
+            "escape success"
+          ]
+        },
+        "steps": [
+          "Paid cast",
+          "Four later actual Action attempts"
+        ],
+        "expected": {
+          "thirdSuccessReleases": true,
+          "failureDoesNotResetProgress": true,
+          "noFreeCheck": true,
+          "allRPAndActionHistoryPreserved": true
+        },
+        "covers": [
+          "PC341-W01",
+          "PC341-W02",
+          "PC341-W04"
+        ],
+        "executionStatus": "NOT_EXECUTED_IN_THIS_PACKAGE"
+      },
+      "specificationSha256": "10401a087aa4f02dd48ea2a4d02ee55945d30f50144cb9412a1bc5d6d66917a0",
+      "branchIds": [
+        "IM-P2-DRUID",
+        "IM-P2-MAGE"
+      ],
+      "branchHashes": {
+        "IM-P2-DRUID": "9e0a33c1ab6623d8d50d34418cd28b2792c837340d7515efe382e706f1205dea",
+        "IM-P2-MAGE": "825692a1f3fac376987b6885f25d8546316e4857a7b0076b2934eb55d51fe81c"
+      },
+      "status": "PASS_STATIC_TEST_ONLY"
+    },
+    {
+      "caseId": "IM-A1",
+      "specification": {
+        "id": "IM-A1",
+        "given": {
+          "variants": [
+            "successful initial save",
+            "formation collision after commit",
+            "caster death",
+            "target death",
+            "growth collision",
+            "external helper communicates correct phrase"
+          ]
+        },
+        "steps": [
+          "Resolve isolated paid branches with exact target/equipment states"
+        ],
+        "expected": {
+          "savedTargetNotEntombed": true,
+          "paidFailureNoRefund": true,
+          "casterDeathDoesNotRefreshOrEndClock": true,
+          "corpseAndGearPreserved": true,
+          "growthSafelyEndsPrison": true,
+          "phraseRequiresTargetAction": true
+        },
+        "covers": [
+          "PC341-W02",
+          "PC341-W03",
+          "PC341-W04"
+        ],
+        "executionStatus": "NOT_EXECUTED_IN_THIS_PACKAGE"
+      },
+      "specificationSha256": "08b51199d763b8eff03ee02973474df35bc756336e0c9c8b67e955b9b271b0c4",
+      "branchIds": [
+        "IM-A1-SUCCESSFUL-SAVE",
+        "IM-A1-COLLISION-PAID-FAIL",
+        "IM-A1-CASTER-DEATH",
+        "IM-A1-TARGET-DEATH",
+        "IM-A1-GROWTH-COLLISION",
+        "IM-A1-PHRASE-RELEASE"
+      ],
+      "branchHashes": {
+        "IM-A1-SUCCESSFUL-SAVE": "0047067c792ae1408bbfd4c4270399454f62e6dd05207a32b6f21e7cb507c7bd",
+        "IM-A1-COLLISION-PAID-FAIL": "393144166fbcb6160206f833af009f7a0facc872113df766a6cb8d39afda20ac",
+        "IM-A1-CASTER-DEATH": "a80d011628b1d360bbab917fc9f17c6ee4f2d6b06e6c3ecdb90046f8b23a1f9c",
+        "IM-A1-TARGET-DEATH": "671f6b33cbc312c9c20249a44f800732bd06e06ff0ba9f6f2c96ef6e2b3280b2",
+        "IM-A1-GROWTH-COLLISION": "b69fce433d949930811e8e621255f0eea8ddd9086cf81a375dc59c4f5705d66e",
+        "IM-A1-PHRASE-RELEASE": "6e6849fd5d9408dc37bdbf0a9e3f50338a3be49454ddd9d98d4f0971db79095b"
+      },
+      "status": "PASS_STATIC_TEST_ONLY"
+    },
+    {
+      "caseId": "IM-A2",
+      "specification": {
+        "id": "IM-A2",
+        "given": {
+          "variants": [
+            "partial suppression and target exit",
+            "occupied resumption",
+            "eligible dispel",
+            "duplicate release",
+            "24hour deadline",
+            "same/different-owner recast"
+          ]
+        },
+        "steps": [
+          "Bind actual external providers and exact loci",
+          "Resolve terminal placement and retry"
+        ],
+        "expected": {
+          "noCrush": true,
+          "noRevivedPanel": true,
+          "noDuplicateSourceOrCargo": true,
+          "noRecastStack": true
+        },
+        "covers": [
+          "PC341-W03",
+          "PC341-W04"
+        ],
+        "executionStatus": "NOT_EXECUTED_IN_THIS_PACKAGE"
+      },
+      "specificationSha256": "ed13c6b71fcfed79b2c8ddb185472ea29a7394a12ad2c39dbe9f6b8fef78f50e",
+      "branchIds": [
+        "IM-A2-PARTIAL-SUPPRESSION-EXIT",
+        "IM-A2-OCCUPIED-RESUMPTION",
+        "IM-A2-ELIGIBLE-DISPEL",
+        "IM-A2-DUPLICATE-RELEASE",
+        "IM-A2-24H-DEADLINE",
+        "IM-A2-SAME-DIFFERENT-OWNER-RECAST",
+        "IM-A2-RESOLUTION-RACE"
+      ],
+      "branchHashes": {
+        "IM-A2-PARTIAL-SUPPRESSION-EXIT": "d2f7bc1da2ac4927a62b55c45aad6cec102928707378a64bed22463595ffc1bd",
+        "IM-A2-OCCUPIED-RESUMPTION": "3f762d23946ef05cbf086caf797f7c09e113b76a0b393185acc2074b3c3bf2db",
+        "IM-A2-ELIGIBLE-DISPEL": "f1c9a9467b1a9f8cd7fa357ee1b152efd313450e63bd746e9fb930fa314fd121",
+        "IM-A2-DUPLICATE-RELEASE": "552dff03b9caa5584743273e84d898c8f9b3acd8761fa91f7a335ee68fda32b6",
+        "IM-A2-24H-DEADLINE": "7c0d8ea17b8c720974edf69626a9e7432d3372cd206009031e20703bf7a06207",
+        "IM-A2-SAME-DIFFERENT-OWNER-RECAST": "2eae87902af8f064f5b07bc17af972a4ec65b644d9a1cca5f26c3713b930ea29",
+        "IM-A2-RESOLUTION-RACE": "acaa67c822bf6426c28ad86f0f2d2833ccc5cfae2250513b16ba1d4f97c45467"
+      },
+      "status": "PASS_STATIC_TEST_ONLY"
+    }
+  ],
+  "nativeRouteCoverage": {
+    "Wizard/Necromancy": [
+      "IM-P1-WIZARD",
+      "IM-A2-PARTIAL-SUPPRESSION-EXIT",
+      "IM-A2-24H-DEADLINE",
+      "IM-A2-RESOLUTION-RACE"
+    ],
+    "Cleric/Necromancy": [
+      "IM-P1-CLERIC",
+      "IM-A2-OCCUPIED-RESUMPTION",
+      "IM-A2-SAME-DIFFERENT-OWNER-RECAST"
+    ],
+    "Druid/Necromancy": [
+      "IM-P2-DRUID",
+      "IM-A1-CASTER-DEATH",
+      "IM-A1-GROWTH-COLLISION",
+      "IM-A2-DUPLICATE-RELEASE"
+    ],
+    "Mage/Universal": [
+      "IM-P2-MAGE",
+      "IM-A1-TARGET-DEATH",
+      "IM-A1-PHRASE-RELEASE",
+      "IM-A2-ELIGIBLE-DISPEL"
+    ]
+  },
+  "minimumDistinctPaidPositiveEncountersPerRoute": 1,
+  "obligationCrosswalk": {
+    "PC341-W01": [
+      "IM-P1",
+      "IM-P2",
+      "IM-A1",
+      "IM-A2"
+    ],
+    "PC341-W02": [
+      "IM-P1",
+      "IM-P2",
+      "IM-A1",
+      "IM-A2"
+    ],
+    "PC341-W03": [
+      "IM-P1",
+      "IM-P2",
+      "IM-A1",
+      "IM-A2"
+    ],
+    "PC341-W04": [
+      "IM-P1",
+      "IM-P2",
+      "IM-A1",
+      "IM-A2"
+    ]
+  },
+  "scope": "STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY"
+}

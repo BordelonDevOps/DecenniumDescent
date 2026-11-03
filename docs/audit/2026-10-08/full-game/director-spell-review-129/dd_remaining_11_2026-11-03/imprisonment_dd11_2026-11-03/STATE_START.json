@@ -1,0 +1,4699 @@
+{
+  "id": "IM-DD11-STATE-START-01",
+  "scope": "independent TEST_ONLY casters, target, cell geometry, bodies, items, actions and source receipts",
+  "branches": [
+    {
+      "branchId": "IM-P1-WIZARD",
+      "caseId": "IM-P1",
+      "route": "Wizard/Necromancy",
+      "mode": "STONE_VAULT",
+      "state": {
+        "id": "IM-FIXTURE-IM-P1-WIZARD",
+        "status": "TEST_ONLY",
+        "canonical": false,
+        "scope": "STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY",
+        "route": "Wizard/Necromancy",
+        "mode": "STONE_VAULT",
+        "currentTimeMs": 0,
+        "fixtureAuthorization": {
+          "authority": "DD-DIRECTOR-11-COMMON-01",
+          "contractId": "DD11-IMPRISONMENT-01",
+          "classification": "TEST_ONLY target, attack rolls, cell material, phrase, providers and location"
+        },
+        "site": {
+          "id": "TEST-ONLY-ARENA-11",
+          "owner": "TEST-SITE-OWNER",
+          "floor": {
+            "id": "test-floor",
+            "bounds": [
+              [
+                -100,
+                100
+              ],
+              [
+                -100,
+                100
+              ],
+              [
+                -1,
+                0
+              ]
+            ],
+            "continuous": true,
+            "existing": true,
+            "supportsTarget": true,
+            "insertedSlab": false
+          },
+          "targetStartBounds": [
+            [
+              17.5,
+              22.5
+            ],
+            [
+              -2.5,
+              2.5
+            ],
+            [
+              0,
+              6
+            ]
+          ],
+          "cellInnerBounds": [
+            [
+              16.5,
+              23.5
+            ],
+            [
+              -3.5,
+              3.5
+            ],
+            [
+              0,
+              7
+            ]
+          ],
+          "declaredPhrase": "open-test-cell-11",
+          "phraseTestOnly": true,
+          "helper": {
+            "id": "helper-01",
+            "location": [
+              12,
+              0,
+              0
+            ],
+            "knowsPhrase": false
+          },
+          "externalObjects": []
+        },
+        "caster": {
+          "id": "wizard-17-necromancy",
+          "role": "caster",
+          "route": "Wizard/Necromancy",
+          "profileBinding": {
+            "profileId": "wizard-17-necromancy",
+            "sha256": "f7146efa506472495508a0900e89a6b5f205bfb0caae769050c935bf956cc125"
+          },
+          "classLevel": 17,
+          "spellRank": 9,
+          "spellSaveDC": 21,
+          "spellAccess": {
+            "targetSpell": "imprisonment",
+            "rank": 9,
+            "school": "Necromancy",
+            "acquiredAtClassLevel": 17,
+            "ordinaryRankGate": 9,
+            "preparedOrKnown": true,
+            "paidRpCost": 26,
+            "path": "Spellbinder",
+            "preparedMatrixCount": 22,
+            "targetMatrixPrepared": true,
+            "matrixPreparationMinutes": 45,
+            "spellbookEntryCount": 67,
+            "counterspellKnownAndPrepared": true
+          },
+          "preparedOrKnown": true,
+          "resources": {
+            "RP": 64,
+            "maxRP": 64,
+            "Dissonance": 0,
+            "HP": 55,
+            "maxHP": 80
+          },
+          "body": {
+            "id": "wizard-17-necromancy:body",
+            "owner": "wizard-17-necromancy",
+            "location": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-ONLY-ARENA-11"
+            },
+            "bounds": [
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                0,
+                6
+              ]
+            ],
+            "shape": "Medium5x5x6",
+            "alive": true,
+            "physical": true,
+            "support": "test-floor",
+            "targetable": true
+          },
+          "inventory": {
+            "focus": {
+              "id": "wizard-focus-01",
+              "owner": "wizard-17-necromancy",
+              "custodian": "wizard-17-necromancy",
+              "equipped": true,
+              "location": "left-hand",
+              "massLb": 1
+            }
+          },
+          "turn": {
+            "regularTurn": 1,
+            "actionAvailable": true,
+            "actionsSpent": 0,
+            "magicThisTurn": false,
+            "lastSpell": null,
+            "movementFtAvailable": 30,
+            "movementFtSpent": 0
+          },
+          "spellHistory": [],
+          "pendingCast": null,
+          "health": {
+            "alive": true,
+            "dead": false
+          },
+          "canAct": true
+        },
+        "target": {
+          "id": "target-01",
+          "willing": false,
+          "perceived": true,
+          "lineOfEffect": true,
+          "rangeFt": 20,
+          "body": {
+            "id": "target-01:body",
+            "owner": "target-01",
+            "location": {
+              "x": 20,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-ONLY-ARENA-11"
+            },
+            "bounds": [
+              [
+                17.5,
+                22.5
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                0,
+                6
+              ]
+            ],
+            "shape": "Medium5x5x6",
+            "alive": true,
+            "physical": true,
+            "support": "test-floor",
+            "targetable": true
+          },
+          "equipment": {
+            "carried": [],
+            "bodyBoundsComplete": true
+          },
+          "resources": {
+            "HP": 100,
+            "maxHP": 100,
+            "Wounds": 0
+          },
+          "health": {
+            "alive": true,
+            "dead": false,
+            "dying": false,
+            "stable": false
+          },
+          "turn": {
+            "regularTurn": 1,
+            "regularStarts": 1,
+            "regularEnds": 0,
+            "actionAvailable": true,
+            "actionsSpent": 0,
+            "movementFtAvailable": 30,
+            "movementFtSpent": 0,
+            "bonusActionAvailable": true,
+            "reactionAvailable": true
+          },
+          "conditions": [],
+          "inventory": {
+            "wornGear": [
+              {
+                "id": "target-worn-kit",
+                "owner": "target-01",
+                "custodian": "target-01",
+                "location": "worn",
+                "boundsContainedByBody": true
+              }
+            ],
+            "attackTool": {
+              "id": "TEST-ONLY-PANEL-BREAKER",
+              "owner": "target-01",
+              "custodian": "target-01",
+              "location": "held",
+              "usable": true,
+              "meleeReachFt": 5,
+              "fixtureOnly": true
+            }
+          },
+          "prisonSourceIds": [],
+          "awareness": {
+            "conscious": true,
+            "airPasses": true,
+            "lightPasses": true,
+            "soundPasses": true,
+            "handsAndComponentsAvailable": true
+          }
+        },
+        "otherCasters": [],
+        "castWindow": null,
+        "cell": null,
+        "sourceReceipts": {},
+        "eventInputs": [],
+        "events": [],
+        "canonicalEffect": false
+      },
+      "hash": "483925bf94c41fb0e5f5075261b9501409089865c08ca4a552c6d14c31155189"
+    },
+    {
+      "branchId": "IM-P1-CLERIC",
+      "caseId": "IM-P1",
+      "route": "Cleric/Necromancy",
+      "mode": "STONE_VAULT",
+      "state": {
+        "id": "IM-FIXTURE-IM-P1-CLERIC",
+        "status": "TEST_ONLY",
+        "canonical": false,
+        "scope": "STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY",
+        "route": "Cleric/Necromancy",
+        "mode": "STONE_VAULT",
+        "currentTimeMs": 0,
+        "fixtureAuthorization": {
+          "authority": "DD-DIRECTOR-11-COMMON-01",
+          "contractId": "DD11-IMPRISONMENT-01",
+          "classification": "TEST_ONLY target, attack rolls, cell material, phrase, providers and location"
+        },
+        "site": {
+          "id": "TEST-ONLY-ARENA-11",
+          "owner": "TEST-SITE-OWNER",
+          "floor": {
+            "id": "test-floor",
+            "bounds": [
+              [
+                -100,
+                100
+              ],
+              [
+                -100,
+                100
+              ],
+              [
+                -1,
+                0
+              ]
+            ],
+            "continuous": true,
+            "existing": true,
+            "supportsTarget": true,
+            "insertedSlab": false
+          },
+          "targetStartBounds": [
+            [
+              17.5,
+              22.5
+            ],
+            [
+              -2.5,
+              2.5
+            ],
+            [
+              0,
+              6
+            ]
+          ],
+          "cellInnerBounds": [
+            [
+              16.5,
+              23.5
+            ],
+            [
+              -3.5,
+              3.5
+            ],
+            [
+              0,
+              7
+            ]
+          ],
+          "declaredPhrase": "open-test-cell-11",
+          "phraseTestOnly": true,
+          "helper": {
+            "id": "helper-01",
+            "location": [
+              12,
+              0,
+              0
+            ],
+            "knowsPhrase": false
+          },
+          "externalObjects": []
+        },
+        "caster": {
+          "id": "cleric-17-necromancy",
+          "role": "caster",
+          "route": "Cleric/Necromancy",
+          "profileBinding": {
+            "profileId": "cleric-17-necromancy",
+            "sha256": "6ac172c2563d28fb0884f0e9da4e713fb6a501b6769d445a32d4880671790630"
+          },
+          "classLevel": 17,
+          "spellRank": 9,
+          "spellSaveDC": 19,
+          "spellAccess": {
+            "targetSpell": "imprisonment",
+            "rank": 9,
+            "school": "Necromancy",
+            "acquiredAtClassLevel": 17,
+            "ordinaryRankGate": 9,
+            "preparedOrKnown": true,
+            "paidRpCost": 26,
+            "rankedKnownCount": 18,
+            "ordinaryClericPreparation": true
+          },
+          "preparedOrKnown": true,
+          "resources": {
+            "RP": 48,
+            "maxRP": 48,
+            "Dissonance": 0,
+            "HP": 156,
+            "maxHP": 156
+          },
+          "body": {
+            "id": "cleric-17-necromancy:body",
+            "owner": "cleric-17-necromancy",
+            "location": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-ONLY-ARENA-11"
+            },
+            "bounds": [
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                0,
+                6
+              ]
+            ],
+            "shape": "Medium5x5x6",
+            "alive": true,
+            "physical": true,
+            "support": "test-floor",
+            "targetable": true
+          },
+          "inventory": {
+            "focus": {
+              "id": "cleric-focus-01",
+              "owner": "cleric-17-necromancy",
+              "custodian": "cleric-17-necromancy",
+              "equipped": true,
+              "location": "left-hand",
+              "massLb": 1
+            }
+          },
+          "turn": {
+            "regularTurn": 1,
+            "actionAvailable": true,
+            "actionsSpent": 0,
+            "magicThisTurn": false,
+            "lastSpell": null,
+            "movementFtAvailable": 30,
+            "movementFtSpent": 0
+          },
+          "spellHistory": [],
+          "pendingCast": null,
+          "health": {
+            "alive": true,
+            "dead": false
+          },
+          "canAct": true
+        },
+        "target": {
+          "id": "target-01",
+          "willing": false,
+          "perceived": true,
+          "lineOfEffect": true,
+          "rangeFt": 20,
+          "body": {
+            "id": "target-01:body",
+            "owner": "target-01",
+            "location": {
+              "x": 20,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-ONLY-ARENA-11"
+            },
+            "bounds": [
+              [
+                17.5,
+                22.5
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                0,
+                6
+              ]
+            ],
+            "shape": "Medium5x5x6",
+            "alive": true,
+            "physical": true,
+            "support": "test-floor",
+            "targetable": true
+          },
+          "equipment": {
+            "carried": [],
+            "bodyBoundsComplete": true
+          },
+          "resources": {
+            "HP": 100,
+            "maxHP": 100,
+            "Wounds": 0
+          },
+          "health": {
+            "alive": true,
+            "dead": false,
+            "dying": false,
+            "stable": false
+          },
+          "turn": {
+            "regularTurn": 1,
+            "regularStarts": 1,
+            "regularEnds": 0,
+            "actionAvailable": true,
+            "actionsSpent": 0,
+            "movementFtAvailable": 30,
+            "movementFtSpent": 0,
+            "bonusActionAvailable": true,
+            "reactionAvailable": true
+          },
+          "conditions": [],
+          "inventory": {
+            "wornGear": [
+              {
+                "id": "target-worn-kit",
+                "owner": "target-01",
+                "custodian": "target-01",
+                "location": "worn",
+                "boundsContainedByBody": true
+              }
+            ],
+            "attackTool": {
+              "id": "TEST-ONLY-PANEL-BREAKER",
+              "owner": "target-01",
+              "custodian": "target-01",
+              "location": "held",
+              "usable": true,
+              "meleeReachFt": 5,
+              "fixtureOnly": true
+            }
+          },
+          "prisonSourceIds": [],
+          "awareness": {
+            "conscious": true,
+            "airPasses": true,
+            "lightPasses": true,
+            "soundPasses": true,
+            "handsAndComponentsAvailable": true
+          }
+        },
+        "otherCasters": [],
+        "castWindow": null,
+        "cell": null,
+        "sourceReceipts": {},
+        "eventInputs": [],
+        "events": [],
+        "canonicalEffect": false
+      },
+      "hash": "6117cfd34b0cc2815d4fc95955d75fe20ae599e0216c4473fd86ff709a2080b3"
+    },
+    {
+      "branchId": "IM-P2-DRUID",
+      "caseId": "IM-P2",
+      "route": "Druid/Necromancy",
+      "mode": "SIGIL_CELL",
+      "state": {
+        "id": "IM-FIXTURE-IM-P2-DRUID",
+        "status": "TEST_ONLY",
+        "canonical": false,
+        "scope": "STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY",
+        "route": "Druid/Necromancy",
+        "mode": "SIGIL_CELL",
+        "currentTimeMs": 0,
+        "fixtureAuthorization": {
+          "authority": "DD-DIRECTOR-11-COMMON-01",
+          "contractId": "DD11-IMPRISONMENT-01",
+          "classification": "TEST_ONLY target, attack rolls, cell material, phrase, providers and location"
+        },
+        "site": {
+          "id": "TEST-ONLY-ARENA-11",
+          "owner": "TEST-SITE-OWNER",
+          "floor": {
+            "id": "test-floor",
+            "bounds": [
+              [
+                -100,
+                100
+              ],
+              [
+                -100,
+                100
+              ],
+              [
+                -1,
+                0
+              ]
+            ],
+            "continuous": true,
+            "existing": true,
+            "supportsTarget": true,
+            "insertedSlab": false
+          },
+          "targetStartBounds": [
+            [
+              17.5,
+              22.5
+            ],
+            [
+              -2.5,
+              2.5
+            ],
+            [
+              0,
+              6
+            ]
+          ],
+          "cellInnerBounds": [
+            [
+              16.5,
+              23.5
+            ],
+            [
+              -3.5,
+              3.5
+            ],
+            [
+              0,
+              7
+            ]
+          ],
+          "declaredPhrase": "open-test-cell-11",
+          "phraseTestOnly": true,
+          "helper": {
+            "id": "helper-01",
+            "location": [
+              12,
+              0,
+              0
+            ],
+            "knowsPhrase": false
+          },
+          "externalObjects": []
+        },
+        "caster": {
+          "id": "druid-17-necromancy",
+          "role": "caster",
+          "route": "Druid/Necromancy",
+          "profileBinding": {
+            "profileId": "druid-17-necromancy",
+            "sha256": "fff9482c3d03b31a872cab7d0aed3286b1a68ca0a241996ed56f08e8c9507b61"
+          },
+          "classLevel": 17,
+          "spellRank": 9,
+          "spellSaveDC": 19,
+          "spellAccess": {
+            "targetSpell": "imprisonment",
+            "rank": 9,
+            "school": "Necromancy",
+            "acquiredAtClassLevel": 17,
+            "ordinaryRankGate": 9,
+            "preparedOrKnown": true,
+            "paidRpCost": 26,
+            "ordinaryDruidPreparation": true,
+            "preparedCount": 22,
+            "circle": "Land",
+            "archForms": [
+              "Dire Wolf",
+              "Sky Serpent"
+            ]
+          },
+          "preparedOrKnown": true,
+          "resources": {
+            "RP": 48,
+            "maxRP": 48,
+            "Dissonance": 0,
+            "HP": 156,
+            "maxHP": 156
+          },
+          "body": {
+            "id": "druid-17-necromancy:body",
+            "owner": "druid-17-necromancy",
+            "location": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-ONLY-ARENA-11"
+            },
+            "bounds": [
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                0,
+                6
+              ]
+            ],
+            "shape": "Medium5x5x6",
+            "alive": true,
+            "physical": true,
+            "support": "test-floor",
+            "targetable": true
+          },
+          "inventory": {
+            "focus": {
+              "id": "druid-focus-01",
+              "owner": "druid-17-necromancy",
+              "custodian": "druid-17-necromancy",
+              "equipped": true,
+              "location": "left-hand",
+              "massLb": 1
+            }
+          },
+          "turn": {
+            "regularTurn": 1,
+            "actionAvailable": true,
+            "actionsSpent": 0,
+            "magicThisTurn": false,
+            "lastSpell": null,
+            "movementFtAvailable": 30,
+            "movementFtSpent": 0
+          },
+          "spellHistory": [],
+          "pendingCast": null,
+          "health": {
+            "alive": true,
+            "dead": false
+          },
+          "canAct": true
+        },
+        "target": {
+          "id": "target-01",
+          "willing": false,
+          "perceived": true,
+          "lineOfEffect": true,
+          "rangeFt": 20,
+          "body": {
+            "id": "target-01:body",
+            "owner": "target-01",
+            "location": {
+              "x": 20,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-ONLY-ARENA-11"
+            },
+            "bounds": [
+              [
+                17.5,
+                22.5
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                0,
+                6
+              ]
+            ],
+            "shape": "Medium5x5x6",
+            "alive": true,
+            "physical": true,
+            "support": "test-floor",
+            "targetable": true
+          },
+          "equipment": {
+            "carried": [],
+            "bodyBoundsComplete": true
+          },
+          "resources": {
+            "HP": 100,
+            "maxHP": 100,
+            "Wounds": 0
+          },
+          "health": {
+            "alive": true,
+            "dead": false,
+            "dying": false,
+            "stable": false
+          },
+          "turn": {
+            "regularTurn": 1,
+            "regularStarts": 1,
+            "regularEnds": 0,
+            "actionAvailable": true,
+            "actionsSpent": 0,
+            "movementFtAvailable": 30,
+            "movementFtSpent": 0,
+            "bonusActionAvailable": true,
+            "reactionAvailable": true
+          },
+          "conditions": [],
+          "inventory": {
+            "wornGear": [
+              {
+                "id": "target-worn-kit",
+                "owner": "target-01",
+                "custodian": "target-01",
+                "location": "worn",
+                "boundsContainedByBody": true
+              }
+            ],
+            "attackTool": {
+              "id": "TEST-ONLY-PANEL-BREAKER",
+              "owner": "target-01",
+              "custodian": "target-01",
+              "location": "held",
+              "usable": true,
+              "meleeReachFt": 5,
+              "fixtureOnly": true
+            }
+          },
+          "prisonSourceIds": [],
+          "awareness": {
+            "conscious": true,
+            "airPasses": true,
+            "lightPasses": true,
+            "soundPasses": true,
+            "handsAndComponentsAvailable": true
+          }
+        },
+        "otherCasters": [],
+        "castWindow": null,
+        "cell": null,
+        "sourceReceipts": {},
+        "eventInputs": [],
+        "events": [],
+        "canonicalEffect": false
+      },
+      "hash": "6f8f393edfddcd08791ae7028b3e07c95771c7d66185975835f5dec8b0d9d89b"
+    },
+    {
+      "branchId": "IM-P2-MAGE",
+      "caseId": "IM-P2",
+      "route": "Mage/Universal",
+      "mode": "SIGIL_CELL",
+      "state": {
+        "id": "IM-FIXTURE-IM-P2-MAGE",
+        "status": "TEST_ONLY",
+        "canonical": false,
+        "scope": "STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY",
+        "route": "Mage/Universal",
+        "mode": "SIGIL_CELL",
+        "currentTimeMs": 0,
+        "fixtureAuthorization": {
+          "authority": "DD-DIRECTOR-11-COMMON-01",
+          "contractId": "DD11-IMPRISONMENT-01",
+          "classification": "TEST_ONLY target, attack rolls, cell material, phrase, providers and location"
+        },
+        "site": {
+          "id": "TEST-ONLY-ARENA-11",
+          "owner": "TEST-SITE-OWNER",
+          "floor": {
+            "id": "test-floor",
+            "bounds": [
+              [
+                -100,
+                100
+              ],
+              [
+                -100,
+                100
+              ],
+              [
+                -1,
+                0
+              ]
+            ],
+            "continuous": true,
+            "existing": true,
+            "supportsTarget": true,
+            "insertedSlab": false
+          },
+          "targetStartBounds": [
+            [
+              17.5,
+              22.5
+            ],
+            [
+              -2.5,
+              2.5
+            ],
+            [
+              0,
+              6
+            ]
+          ],
+          "cellInnerBounds": [
+            [
+              16.5,
+              23.5
+            ],
+            [
+              -3.5,
+              3.5
+            ],
+            [
+              0,
+              7
+            ]
+          ],
+          "declaredPhrase": "open-test-cell-11",
+          "phraseTestOnly": true,
+          "helper": {
+            "id": "helper-01",
+            "location": [
+              12,
+              0,
+              0
+            ],
+            "knowsPhrase": false
+          },
+          "externalObjects": []
+        },
+        "caster": {
+          "id": "mage-17-universal",
+          "role": "caster",
+          "route": "Mage/Universal",
+          "profileBinding": {
+            "profileId": "mage-17-universal",
+            "sha256": "13459853ec7561c12c358252ede5dd4c638238b99e02a3ab706ed8e78667ae76"
+          },
+          "classLevel": 17,
+          "spellRank": 9,
+          "spellSaveDC": 19,
+          "spellAccess": {
+            "targetSpell": "imprisonment",
+            "rank": 9,
+            "school": "Universal",
+            "acquiredAtClassLevel": 17,
+            "ordinaryRankGate": 9,
+            "preparedOrKnown": true,
+            "paidRpCost": 26,
+            "path": "Archmage",
+            "rankedKnownCount": 18,
+            "ordinaryMagePreparation": true
+          },
+          "preparedOrKnown": true,
+          "resources": {
+            "RP": 50,
+            "maxRP": 50,
+            "Dissonance": 0,
+            "HP": 138,
+            "maxHP": 138
+          },
+          "body": {
+            "id": "mage-17-universal:body",
+            "owner": "mage-17-universal",
+            "location": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-ONLY-ARENA-11"
+            },
+            "bounds": [
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                0,
+                6
+              ]
+            ],
+            "shape": "Medium5x5x6",
+            "alive": true,
+            "physical": true,
+            "support": "test-floor",
+            "targetable": true
+          },
+          "inventory": {
+            "focus": {
+              "id": "mage-focus-01",
+              "owner": "mage-17-universal",
+              "custodian": "mage-17-universal",
+              "equipped": true,
+              "location": "left-hand",
+              "massLb": 1
+            }
+          },
+          "turn": {
+            "regularTurn": 1,
+            "actionAvailable": true,
+            "actionsSpent": 0,
+            "magicThisTurn": false,
+            "lastSpell": null,
+            "movementFtAvailable": 30,
+            "movementFtSpent": 0
+          },
+          "spellHistory": [],
+          "pendingCast": null,
+          "health": {
+            "alive": true,
+            "dead": false
+          },
+          "canAct": true
+        },
+        "target": {
+          "id": "target-01",
+          "willing": false,
+          "perceived": true,
+          "lineOfEffect": true,
+          "rangeFt": 20,
+          "body": {
+            "id": "target-01:body",
+            "owner": "target-01",
+            "location": {
+              "x": 20,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-ONLY-ARENA-11"
+            },
+            "bounds": [
+              [
+                17.5,
+                22.5
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                0,
+                6
+              ]
+            ],
+            "shape": "Medium5x5x6",
+            "alive": true,
+            "physical": true,
+            "support": "test-floor",
+            "targetable": true
+          },
+          "equipment": {
+            "carried": [],
+            "bodyBoundsComplete": true
+          },
+          "resources": {
+            "HP": 100,
+            "maxHP": 100,
+            "Wounds": 0
+          },
+          "health": {
+            "alive": true,
+            "dead": false,
+            "dying": false,
+            "stable": false
+          },
+          "turn": {
+            "regularTurn": 1,
+            "regularStarts": 1,
+            "regularEnds": 0,
+            "actionAvailable": true,
+            "actionsSpent": 0,
+            "movementFtAvailable": 30,
+            "movementFtSpent": 0,
+            "bonusActionAvailable": true,
+            "reactionAvailable": true
+          },
+          "conditions": [],
+          "inventory": {
+            "wornGear": [
+              {
+                "id": "target-worn-kit",
+                "owner": "target-01",
+                "custodian": "target-01",
+                "location": "worn",
+                "boundsContainedByBody": true
+              }
+            ],
+            "attackTool": {
+              "id": "TEST-ONLY-PANEL-BREAKER",
+              "owner": "target-01",
+              "custodian": "target-01",
+              "location": "held",
+              "usable": true,
+              "meleeReachFt": 5,
+              "fixtureOnly": true
+            }
+          },
+          "prisonSourceIds": [],
+          "awareness": {
+            "conscious": true,
+            "airPasses": true,
+            "lightPasses": true,
+            "soundPasses": true,
+            "handsAndComponentsAvailable": true
+          }
+        },
+        "otherCasters": [],
+        "castWindow": null,
+        "cell": null,
+        "sourceReceipts": {},
+        "eventInputs": [],
+        "events": [],
+        "canonicalEffect": false
+      },
+      "hash": "00834ffbb85148a16c0ac198273f567b182b86c35cd8a9a557a7b8499cb65542"
+    },
+    {
+      "branchId": "IM-A1-SUCCESSFUL-SAVE",
+      "caseId": "IM-A1",
+      "route": "Wizard/Necromancy",
+      "mode": "STONE_VAULT",
+      "state": {
+        "id": "IM-FIXTURE-IM-A1-SUCCESSFUL-SAVE",
+        "status": "TEST_ONLY",
+        "canonical": false,
+        "scope": "STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY",
+        "route": "Wizard/Necromancy",
+        "mode": "STONE_VAULT",
+        "currentTimeMs": 0,
+        "fixtureAuthorization": {
+          "authority": "DD-DIRECTOR-11-COMMON-01",
+          "contractId": "DD11-IMPRISONMENT-01",
+          "classification": "TEST_ONLY target, attack rolls, cell material, phrase, providers and location"
+        },
+        "site": {
+          "id": "TEST-ONLY-ARENA-11",
+          "owner": "TEST-SITE-OWNER",
+          "floor": {
+            "id": "test-floor",
+            "bounds": [
+              [
+                -100,
+                100
+              ],
+              [
+                -100,
+                100
+              ],
+              [
+                -1,
+                0
+              ]
+            ],
+            "continuous": true,
+            "existing": true,
+            "supportsTarget": true,
+            "insertedSlab": false
+          },
+          "targetStartBounds": [
+            [
+              17.5,
+              22.5
+            ],
+            [
+              -2.5,
+              2.5
+            ],
+            [
+              0,
+              6
+            ]
+          ],
+          "cellInnerBounds": [
+            [
+              16.5,
+              23.5
+            ],
+            [
+              -3.5,
+              3.5
+            ],
+            [
+              0,
+              7
+            ]
+          ],
+          "declaredPhrase": "open-test-cell-11",
+          "phraseTestOnly": true,
+          "helper": {
+            "id": "helper-01",
+            "location": [
+              12,
+              0,
+              0
+            ],
+            "knowsPhrase": false
+          },
+          "externalObjects": []
+        },
+        "caster": {
+          "id": "wizard-17-necromancy",
+          "role": "caster",
+          "route": "Wizard/Necromancy",
+          "profileBinding": {
+            "profileId": "wizard-17-necromancy",
+            "sha256": "f7146efa506472495508a0900e89a6b5f205bfb0caae769050c935bf956cc125"
+          },
+          "classLevel": 17,
+          "spellRank": 9,
+          "spellSaveDC": 21,
+          "spellAccess": {
+            "targetSpell": "imprisonment",
+            "rank": 9,
+            "school": "Necromancy",
+            "acquiredAtClassLevel": 17,
+            "ordinaryRankGate": 9,
+            "preparedOrKnown": true,
+            "paidRpCost": 26,
+            "path": "Spellbinder",
+            "preparedMatrixCount": 22,
+            "targetMatrixPrepared": true,
+            "matrixPreparationMinutes": 45,
+            "spellbookEntryCount": 67,
+            "counterspellKnownAndPrepared": true
+          },
+          "preparedOrKnown": true,
+          "resources": {
+            "RP": 64,
+            "maxRP": 64,
+            "Dissonance": 0,
+            "HP": 55,
+            "maxHP": 80
+          },
+          "body": {
+            "id": "wizard-17-necromancy:body",
+            "owner": "wizard-17-necromancy",
+            "location": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-ONLY-ARENA-11"
+            },
+            "bounds": [
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                0,
+                6
+              ]
+            ],
+            "shape": "Medium5x5x6",
+            "alive": true,
+            "physical": true,
+            "support": "test-floor",
+            "targetable": true
+          },
+          "inventory": {
+            "focus": {
+              "id": "wizard-focus-01",
+              "owner": "wizard-17-necromancy",
+              "custodian": "wizard-17-necromancy",
+              "equipped": true,
+              "location": "left-hand",
+              "massLb": 1
+            }
+          },
+          "turn": {
+            "regularTurn": 1,
+            "actionAvailable": true,
+            "actionsSpent": 0,
+            "magicThisTurn": false,
+            "lastSpell": null,
+            "movementFtAvailable": 30,
+            "movementFtSpent": 0
+          },
+          "spellHistory": [],
+          "pendingCast": null,
+          "health": {
+            "alive": true,
+            "dead": false
+          },
+          "canAct": true
+        },
+        "target": {
+          "id": "target-01",
+          "willing": false,
+          "perceived": true,
+          "lineOfEffect": true,
+          "rangeFt": 20,
+          "body": {
+            "id": "target-01:body",
+            "owner": "target-01",
+            "location": {
+              "x": 20,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-ONLY-ARENA-11"
+            },
+            "bounds": [
+              [
+                17.5,
+                22.5
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                0,
+                6
+              ]
+            ],
+            "shape": "Medium5x5x6",
+            "alive": true,
+            "physical": true,
+            "support": "test-floor",
+            "targetable": true
+          },
+          "equipment": {
+            "carried": [],
+            "bodyBoundsComplete": true
+          },
+          "resources": {
+            "HP": 100,
+            "maxHP": 100,
+            "Wounds": 0
+          },
+          "health": {
+            "alive": true,
+            "dead": false,
+            "dying": false,
+            "stable": false
+          },
+          "turn": {
+            "regularTurn": 1,
+            "regularStarts": 1,
+            "regularEnds": 0,
+            "actionAvailable": true,
+            "actionsSpent": 0,
+            "movementFtAvailable": 30,
+            "movementFtSpent": 0,
+            "bonusActionAvailable": true,
+            "reactionAvailable": true
+          },
+          "conditions": [],
+          "inventory": {
+            "wornGear": [
+              {
+                "id": "target-worn-kit",
+                "owner": "target-01",
+                "custodian": "target-01",
+                "location": "worn",
+                "boundsContainedByBody": true
+              }
+            ],
+            "attackTool": {
+              "id": "TEST-ONLY-PANEL-BREAKER",
+              "owner": "target-01",
+              "custodian": "target-01",
+              "location": "held",
+              "usable": true,
+              "meleeReachFt": 5,
+              "fixtureOnly": true
+            }
+          },
+          "prisonSourceIds": [],
+          "awareness": {
+            "conscious": true,
+            "airPasses": true,
+            "lightPasses": true,
+            "soundPasses": true,
+            "handsAndComponentsAvailable": true
+          }
+        },
+        "otherCasters": [],
+        "castWindow": null,
+        "cell": null,
+        "sourceReceipts": {},
+        "eventInputs": [],
+        "events": [],
+        "canonicalEffect": false
+      },
+      "hash": "827e95df8607e7cecb7cf0ee7d529a20f13fffba2cc6dda4e6b93fca4bbf80d3"
+    },
+    {
+      "branchId": "IM-A1-COLLISION-PAID-FAIL",
+      "caseId": "IM-A1",
+      "route": "Cleric/Necromancy",
+      "mode": "STONE_VAULT",
+      "state": {
+        "id": "IM-FIXTURE-IM-A1-COLLISION-PAID-FAIL",
+        "status": "TEST_ONLY",
+        "canonical": false,
+        "scope": "STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY",
+        "route": "Cleric/Necromancy",
+        "mode": "STONE_VAULT",
+        "currentTimeMs": 0,
+        "fixtureAuthorization": {
+          "authority": "DD-DIRECTOR-11-COMMON-01",
+          "contractId": "DD11-IMPRISONMENT-01",
+          "classification": "TEST_ONLY target, attack rolls, cell material, phrase, providers and location"
+        },
+        "site": {
+          "id": "TEST-ONLY-ARENA-11",
+          "owner": "TEST-SITE-OWNER",
+          "floor": {
+            "id": "test-floor",
+            "bounds": [
+              [
+                -100,
+                100
+              ],
+              [
+                -100,
+                100
+              ],
+              [
+                -1,
+                0
+              ]
+            ],
+            "continuous": true,
+            "existing": true,
+            "supportsTarget": true,
+            "insertedSlab": false
+          },
+          "targetStartBounds": [
+            [
+              17.5,
+              22.5
+            ],
+            [
+              -2.5,
+              2.5
+            ],
+            [
+              0,
+              6
+            ]
+          ],
+          "cellInnerBounds": [
+            [
+              16.5,
+              23.5
+            ],
+            [
+              -3.5,
+              3.5
+            ],
+            [
+              0,
+              7
+            ]
+          ],
+          "declaredPhrase": "open-test-cell-11",
+          "phraseTestOnly": true,
+          "helper": {
+            "id": "helper-01",
+            "location": [
+              12,
+              0,
+              0
+            ],
+            "knowsPhrase": false
+          },
+          "externalObjects": []
+        },
+        "caster": {
+          "id": "cleric-17-necromancy",
+          "role": "caster",
+          "route": "Cleric/Necromancy",
+          "profileBinding": {
+            "profileId": "cleric-17-necromancy",
+            "sha256": "6ac172c2563d28fb0884f0e9da4e713fb6a501b6769d445a32d4880671790630"
+          },
+          "classLevel": 17,
+          "spellRank": 9,
+          "spellSaveDC": 19,
+          "spellAccess": {
+            "targetSpell": "imprisonment",
+            "rank": 9,
+            "school": "Necromancy",
+            "acquiredAtClassLevel": 17,
+            "ordinaryRankGate": 9,
+            "preparedOrKnown": true,
+            "paidRpCost": 26,
+            "rankedKnownCount": 18,
+            "ordinaryClericPreparation": true
+          },
+          "preparedOrKnown": true,
+          "resources": {
+            "RP": 48,
+            "maxRP": 48,
+            "Dissonance": 0,
+            "HP": 156,
+            "maxHP": 156
+          },
+          "body": {
+            "id": "cleric-17-necromancy:body",
+            "owner": "cleric-17-necromancy",
+            "location": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-ONLY-ARENA-11"
+            },
+            "bounds": [
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                0,
+                6
+              ]
+            ],
+            "shape": "Medium5x5x6",
+            "alive": true,
+            "physical": true,
+            "support": "test-floor",
+            "targetable": true
+          },
+          "inventory": {
+            "focus": {
+              "id": "cleric-focus-01",
+              "owner": "cleric-17-necromancy",
+              "custodian": "cleric-17-necromancy",
+              "equipped": true,
+              "location": "left-hand",
+              "massLb": 1
+            }
+          },
+          "turn": {
+            "regularTurn": 1,
+            "actionAvailable": true,
+            "actionsSpent": 0,
+            "magicThisTurn": false,
+            "lastSpell": null,
+            "movementFtAvailable": 30,
+            "movementFtSpent": 0
+          },
+          "spellHistory": [],
+          "pendingCast": null,
+          "health": {
+            "alive": true,
+            "dead": false
+          },
+          "canAct": true
+        },
+        "target": {
+          "id": "target-01",
+          "willing": false,
+          "perceived": true,
+          "lineOfEffect": true,
+          "rangeFt": 20,
+          "body": {
+            "id": "target-01:body",
+            "owner": "target-01",
+            "location": {
+              "x": 20,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-ONLY-ARENA-11"
+            },
+            "bounds": [
+              [
+                17.5,
+                22.5
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                0,
+                6
+              ]
+            ],
+            "shape": "Medium5x5x6",
+            "alive": true,
+            "physical": true,
+            "support": "test-floor",
+            "targetable": true
+          },
+          "equipment": {
+            "carried": [],
+            "bodyBoundsComplete": true
+          },
+          "resources": {
+            "HP": 100,
+            "maxHP": 100,
+            "Wounds": 0
+          },
+          "health": {
+            "alive": true,
+            "dead": false,
+            "dying": false,
+            "stable": false
+          },
+          "turn": {
+            "regularTurn": 1,
+            "regularStarts": 1,
+            "regularEnds": 0,
+            "actionAvailable": true,
+            "actionsSpent": 0,
+            "movementFtAvailable": 30,
+            "movementFtSpent": 0,
+            "bonusActionAvailable": true,
+            "reactionAvailable": true
+          },
+          "conditions": [],
+          "inventory": {
+            "wornGear": [
+              {
+                "id": "target-worn-kit",
+                "owner": "target-01",
+                "custodian": "target-01",
+                "location": "worn",
+                "boundsContainedByBody": true
+              }
+            ],
+            "attackTool": {
+              "id": "TEST-ONLY-PANEL-BREAKER",
+              "owner": "target-01",
+              "custodian": "target-01",
+              "location": "held",
+              "usable": true,
+              "meleeReachFt": 5,
+              "fixtureOnly": true
+            }
+          },
+          "prisonSourceIds": [],
+          "awareness": {
+            "conscious": true,
+            "airPasses": true,
+            "lightPasses": true,
+            "soundPasses": true,
+            "handsAndComponentsAvailable": true
+          }
+        },
+        "otherCasters": [],
+        "castWindow": null,
+        "cell": null,
+        "sourceReceipts": {},
+        "eventInputs": [],
+        "events": [],
+        "canonicalEffect": false
+      },
+      "hash": "e2a27cec94b8c2dff4515da14d8dc8be339295b454870eb127212fff630fe0ed"
+    },
+    {
+      "branchId": "IM-A1-CASTER-DEATH",
+      "caseId": "IM-A1",
+      "route": "Druid/Necromancy",
+      "mode": "STONE_VAULT",
+      "state": {
+        "id": "IM-FIXTURE-IM-A1-CASTER-DEATH",
+        "status": "TEST_ONLY",
+        "canonical": false,
+        "scope": "STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY",
+        "route": "Druid/Necromancy",
+        "mode": "STONE_VAULT",
+        "currentTimeMs": 0,
+        "fixtureAuthorization": {
+          "authority": "DD-DIRECTOR-11-COMMON-01",
+          "contractId": "DD11-IMPRISONMENT-01",
+          "classification": "TEST_ONLY target, attack rolls, cell material, phrase, providers and location"
+        },
+        "site": {
+          "id": "TEST-ONLY-ARENA-11",
+          "owner": "TEST-SITE-OWNER",
+          "floor": {
+            "id": "test-floor",
+            "bounds": [
+              [
+                -100,
+                100
+              ],
+              [
+                -100,
+                100
+              ],
+              [
+                -1,
+                0
+              ]
+            ],
+            "continuous": true,
+            "existing": true,
+            "supportsTarget": true,
+            "insertedSlab": false
+          },
+          "targetStartBounds": [
+            [
+              17.5,
+              22.5
+            ],
+            [
+              -2.5,
+              2.5
+            ],
+            [
+              0,
+              6
+            ]
+          ],
+          "cellInnerBounds": [
+            [
+              16.5,
+              23.5
+            ],
+            [
+              -3.5,
+              3.5
+            ],
+            [
+              0,
+              7
+            ]
+          ],
+          "declaredPhrase": "open-test-cell-11",
+          "phraseTestOnly": true,
+          "helper": {
+            "id": "helper-01",
+            "location": [
+              12,
+              0,
+              0
+            ],
+            "knowsPhrase": false
+          },
+          "externalObjects": []
+        },
+        "caster": {
+          "id": "druid-17-necromancy",
+          "role": "caster",
+          "route": "Druid/Necromancy",
+          "profileBinding": {
+            "profileId": "druid-17-necromancy",
+            "sha256": "fff9482c3d03b31a872cab7d0aed3286b1a68ca0a241996ed56f08e8c9507b61"
+          },
+          "classLevel": 17,
+          "spellRank": 9,
+          "spellSaveDC": 19,
+          "spellAccess": {
+            "targetSpell": "imprisonment",
+            "rank": 9,
+            "school": "Necromancy",
+            "acquiredAtClassLevel": 17,
+            "ordinaryRankGate": 9,
+            "preparedOrKnown": true,
+            "paidRpCost": 26,
+            "ordinaryDruidPreparation": true,
+            "preparedCount": 22,
+            "circle": "Land",
+            "archForms": [
+              "Dire Wolf",
+              "Sky Serpent"
+            ]
+          },
+          "preparedOrKnown": true,
+          "resources": {
+            "RP": 48,
+            "maxRP": 48,
+            "Dissonance": 0,
+            "HP": 156,
+            "maxHP": 156
+          },
+          "body": {
+            "id": "druid-17-necromancy:body",
+            "owner": "druid-17-necromancy",
+            "location": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-ONLY-ARENA-11"
+            },
+            "bounds": [
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                0,
+                6
+              ]
+            ],
+            "shape": "Medium5x5x6",
+            "alive": true,
+            "physical": true,
+            "support": "test-floor",
+            "targetable": true
+          },
+          "inventory": {
+            "focus": {
+              "id": "druid-focus-01",
+              "owner": "druid-17-necromancy",
+              "custodian": "druid-17-necromancy",
+              "equipped": true,
+              "location": "left-hand",
+              "massLb": 1
+            }
+          },
+          "turn": {
+            "regularTurn": 1,
+            "actionAvailable": true,
+            "actionsSpent": 0,
+            "magicThisTurn": false,
+            "lastSpell": null,
+            "movementFtAvailable": 30,
+            "movementFtSpent": 0
+          },
+          "spellHistory": [],
+          "pendingCast": null,
+          "health": {
+            "alive": true,
+            "dead": false
+          },
+          "canAct": true
+        },
+        "target": {
+          "id": "target-01",
+          "willing": false,
+          "perceived": true,
+          "lineOfEffect": true,
+          "rangeFt": 20,
+          "body": {
+            "id": "target-01:body",
+            "owner": "target-01",
+            "location": {
+              "x": 20,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-ONLY-ARENA-11"
+            },
+            "bounds": [
+              [
+                17.5,
+                22.5
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                0,
+                6
+              ]
+            ],
+            "shape": "Medium5x5x6",
+            "alive": true,
+            "physical": true,
+            "support": "test-floor",
+            "targetable": true
+          },
+          "equipment": {
+            "carried": [],
+            "bodyBoundsComplete": true
+          },
+          "resources": {
+            "HP": 100,
+            "maxHP": 100,
+            "Wounds": 0
+          },
+          "health": {
+            "alive": true,
+            "dead": false,
+            "dying": false,
+            "stable": false
+          },
+          "turn": {
+            "regularTurn": 1,
+            "regularStarts": 1,
+            "regularEnds": 0,
+            "actionAvailable": true,
+            "actionsSpent": 0,
+            "movementFtAvailable": 30,
+            "movementFtSpent": 0,
+            "bonusActionAvailable": true,
+            "reactionAvailable": true
+          },
+          "conditions": [],
+          "inventory": {
+            "wornGear": [
+              {
+                "id": "target-worn-kit",
+                "owner": "target-01",
+                "custodian": "target-01",
+                "location": "worn",
+                "boundsContainedByBody": true
+              }
+            ],
+            "attackTool": {
+              "id": "TEST-ONLY-PANEL-BREAKER",
+              "owner": "target-01",
+              "custodian": "target-01",
+              "location": "held",
+              "usable": true,
+              "meleeReachFt": 5,
+              "fixtureOnly": true
+            }
+          },
+          "prisonSourceIds": [],
+          "awareness": {
+            "conscious": true,
+            "airPasses": true,
+            "lightPasses": true,
+            "soundPasses": true,
+            "handsAndComponentsAvailable": true
+          }
+        },
+        "otherCasters": [],
+        "castWindow": null,
+        "cell": null,
+        "sourceReceipts": {},
+        "eventInputs": [],
+        "events": [],
+        "canonicalEffect": false
+      },
+      "hash": "50ebcbbb3abb745a667dfd77edd36e00da41530d164be9e9abca7bf3fc55d01e"
+    },
+    {
+      "branchId": "IM-A1-TARGET-DEATH",
+      "caseId": "IM-A1",
+      "route": "Mage/Universal",
+      "mode": "STONE_VAULT",
+      "state": {
+        "id": "IM-FIXTURE-IM-A1-TARGET-DEATH",
+        "status": "TEST_ONLY",
+        "canonical": false,
+        "scope": "STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY",
+        "route": "Mage/Universal",
+        "mode": "STONE_VAULT",
+        "currentTimeMs": 0,
+        "fixtureAuthorization": {
+          "authority": "DD-DIRECTOR-11-COMMON-01",
+          "contractId": "DD11-IMPRISONMENT-01",
+          "classification": "TEST_ONLY target, attack rolls, cell material, phrase, providers and location"
+        },
+        "site": {
+          "id": "TEST-ONLY-ARENA-11",
+          "owner": "TEST-SITE-OWNER",
+          "floor": {
+            "id": "test-floor",
+            "bounds": [
+              [
+                -100,
+                100
+              ],
+              [
+                -100,
+                100
+              ],
+              [
+                -1,
+                0
+              ]
+            ],
+            "continuous": true,
+            "existing": true,
+            "supportsTarget": true,
+            "insertedSlab": false
+          },
+          "targetStartBounds": [
+            [
+              17.5,
+              22.5
+            ],
+            [
+              -2.5,
+              2.5
+            ],
+            [
+              0,
+              6
+            ]
+          ],
+          "cellInnerBounds": [
+            [
+              16.5,
+              23.5
+            ],
+            [
+              -3.5,
+              3.5
+            ],
+            [
+              0,
+              7
+            ]
+          ],
+          "declaredPhrase": "open-test-cell-11",
+          "phraseTestOnly": true,
+          "helper": {
+            "id": "helper-01",
+            "location": [
+              12,
+              0,
+              0
+            ],
+            "knowsPhrase": false
+          },
+          "externalObjects": []
+        },
+        "caster": {
+          "id": "mage-17-universal",
+          "role": "caster",
+          "route": "Mage/Universal",
+          "profileBinding": {
+            "profileId": "mage-17-universal",
+            "sha256": "13459853ec7561c12c358252ede5dd4c638238b99e02a3ab706ed8e78667ae76"
+          },
+          "classLevel": 17,
+          "spellRank": 9,
+          "spellSaveDC": 19,
+          "spellAccess": {
+            "targetSpell": "imprisonment",
+            "rank": 9,
+            "school": "Universal",
+            "acquiredAtClassLevel": 17,
+            "ordinaryRankGate": 9,
+            "preparedOrKnown": true,
+            "paidRpCost": 26,
+            "path": "Archmage",
+            "rankedKnownCount": 18,
+            "ordinaryMagePreparation": true
+          },
+          "preparedOrKnown": true,
+          "resources": {
+            "RP": 50,
+            "maxRP": 50,
+            "Dissonance": 0,
+            "HP": 138,
+            "maxHP": 138
+          },
+          "body": {
+            "id": "mage-17-universal:body",
+            "owner": "mage-17-universal",
+            "location": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-ONLY-ARENA-11"
+            },
+            "bounds": [
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                0,
+                6
+              ]
+            ],
+            "shape": "Medium5x5x6",
+            "alive": true,
+            "physical": true,
+            "support": "test-floor",
+            "targetable": true
+          },
+          "inventory": {
+            "focus": {
+              "id": "mage-focus-01",
+              "owner": "mage-17-universal",
+              "custodian": "mage-17-universal",
+              "equipped": true,
+              "location": "left-hand",
+              "massLb": 1
+            }
+          },
+          "turn": {
+            "regularTurn": 1,
+            "actionAvailable": true,
+            "actionsSpent": 0,
+            "magicThisTurn": false,
+            "lastSpell": null,
+            "movementFtAvailable": 30,
+            "movementFtSpent": 0
+          },
+          "spellHistory": [],
+          "pendingCast": null,
+          "health": {
+            "alive": true,
+            "dead": false
+          },
+          "canAct": true
+        },
+        "target": {
+          "id": "target-01",
+          "willing": false,
+          "perceived": true,
+          "lineOfEffect": true,
+          "rangeFt": 20,
+          "body": {
+            "id": "target-01:body",
+            "owner": "target-01",
+            "location": {
+              "x": 20,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-ONLY-ARENA-11"
+            },
+            "bounds": [
+              [
+                17.5,
+                22.5
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                0,
+                6
+              ]
+            ],
+            "shape": "Medium5x5x6",
+            "alive": true,
+            "physical": true,
+            "support": "test-floor",
+            "targetable": true
+          },
+          "equipment": {
+            "carried": [],
+            "bodyBoundsComplete": true
+          },
+          "resources": {
+            "HP": 100,
+            "maxHP": 100,
+            "Wounds": 0
+          },
+          "health": {
+            "alive": true,
+            "dead": false,
+            "dying": false,
+            "stable": false
+          },
+          "turn": {
+            "regularTurn": 1,
+            "regularStarts": 1,
+            "regularEnds": 0,
+            "actionAvailable": true,
+            "actionsSpent": 0,
+            "movementFtAvailable": 30,
+            "movementFtSpent": 0,
+            "bonusActionAvailable": true,
+            "reactionAvailable": true
+          },
+          "conditions": [],
+          "inventory": {
+            "wornGear": [
+              {
+                "id": "target-worn-kit",
+                "owner": "target-01",
+                "custodian": "target-01",
+                "location": "worn",
+                "boundsContainedByBody": true
+              }
+            ],
+            "attackTool": {
+              "id": "TEST-ONLY-PANEL-BREAKER",
+              "owner": "target-01",
+              "custodian": "target-01",
+              "location": "held",
+              "usable": true,
+              "meleeReachFt": 5,
+              "fixtureOnly": true
+            }
+          },
+          "prisonSourceIds": [],
+          "awareness": {
+            "conscious": true,
+            "airPasses": true,
+            "lightPasses": true,
+            "soundPasses": true,
+            "handsAndComponentsAvailable": true
+          }
+        },
+        "otherCasters": [],
+        "castWindow": null,
+        "cell": null,
+        "sourceReceipts": {},
+        "eventInputs": [],
+        "events": [],
+        "canonicalEffect": false
+      },
+      "hash": "6f01e34e6eb5a360cbb7162e6ea02f78195d1b46056a00de9d5470f3be15fc3b"
+    },
+    {
+      "branchId": "IM-A1-GROWTH-COLLISION",
+      "caseId": "IM-A1",
+      "route": "Druid/Necromancy",
+      "mode": "STONE_VAULT",
+      "state": {
+        "id": "IM-FIXTURE-IM-A1-GROWTH-COLLISION",
+        "status": "TEST_ONLY",
+        "canonical": false,
+        "scope": "STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY",
+        "route": "Druid/Necromancy",
+        "mode": "STONE_VAULT",
+        "currentTimeMs": 0,
+        "fixtureAuthorization": {
+          "authority": "DD-DIRECTOR-11-COMMON-01",
+          "contractId": "DD11-IMPRISONMENT-01",
+          "classification": "TEST_ONLY target, attack rolls, cell material, phrase, providers and location"
+        },
+        "site": {
+          "id": "TEST-ONLY-ARENA-11",
+          "owner": "TEST-SITE-OWNER",
+          "floor": {
+            "id": "test-floor",
+            "bounds": [
+              [
+                -100,
+                100
+              ],
+              [
+                -100,
+                100
+              ],
+              [
+                -1,
+                0
+              ]
+            ],
+            "continuous": true,
+            "existing": true,
+            "supportsTarget": true,
+            "insertedSlab": false
+          },
+          "targetStartBounds": [
+            [
+              17.5,
+              22.5
+            ],
+            [
+              -2.5,
+              2.5
+            ],
+            [
+              0,
+              6
+            ]
+          ],
+          "cellInnerBounds": [
+            [
+              16.5,
+              23.5
+            ],
+            [
+              -3.5,
+              3.5
+            ],
+            [
+              0,
+              7
+            ]
+          ],
+          "declaredPhrase": "open-test-cell-11",
+          "phraseTestOnly": true,
+          "helper": {
+            "id": "helper-01",
+            "location": [
+              12,
+              0,
+              0
+            ],
+            "knowsPhrase": false
+          },
+          "externalObjects": []
+        },
+        "caster": {
+          "id": "druid-17-necromancy",
+          "role": "caster",
+          "route": "Druid/Necromancy",
+          "profileBinding": {
+            "profileId": "druid-17-necromancy",
+            "sha256": "fff9482c3d03b31a872cab7d0aed3286b1a68ca0a241996ed56f08e8c9507b61"
+          },
+          "classLevel": 17,
+          "spellRank": 9,
+          "spellSaveDC": 19,
+          "spellAccess": {
+            "targetSpell": "imprisonment",
+            "rank": 9,
+            "school": "Necromancy",
+            "acquiredAtClassLevel": 17,
+            "ordinaryRankGate": 9,
+            "preparedOrKnown": true,
+            "paidRpCost": 26,
+            "ordinaryDruidPreparation": true,
+            "preparedCount": 22,
+            "circle": "Land",
+            "archForms": [
+              "Dire Wolf",
+              "Sky Serpent"
+            ]
+          },
+          "preparedOrKnown": true,
+          "resources": {
+            "RP": 48,
+            "maxRP": 48,
+            "Dissonance": 0,
+            "HP": 156,
+            "maxHP": 156
+          },
+          "body": {
+            "id": "druid-17-necromancy:body",
+            "owner": "druid-17-necromancy",
+            "location": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-ONLY-ARENA-11"
+            },
+            "bounds": [
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                0,
+                6
+              ]
+            ],
+            "shape": "Medium5x5x6",
+            "alive": true,
+            "physical": true,
+            "support": "test-floor",
+            "targetable": true
+          },
+          "inventory": {
+            "focus": {
+              "id": "druid-focus-01",
+              "owner": "druid-17-necromancy",
+              "custodian": "druid-17-necromancy",
+              "equipped": true,
+              "location": "left-hand",
+              "massLb": 1
+            }
+          },
+          "turn": {
+            "regularTurn": 1,
+            "actionAvailable": true,
+            "actionsSpent": 0,
+            "magicThisTurn": false,
+            "lastSpell": null,
+            "movementFtAvailable": 30,
+            "movementFtSpent": 0
+          },
+          "spellHistory": [],
+          "pendingCast": null,
+          "health": {
+            "alive": true,
+            "dead": false
+          },
+          "canAct": true
+        },
+        "target": {
+          "id": "target-01",
+          "willing": false,
+          "perceived": true,
+          "lineOfEffect": true,
+          "rangeFt": 20,
+          "body": {
+            "id": "target-01:body",
+            "owner": "target-01",
+            "location": {
+              "x": 20,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-ONLY-ARENA-11"
+            },
+            "bounds": [
+              [
+                17.5,
+                22.5
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                0,
+                6
+              ]
+            ],
+            "shape": "Medium5x5x6",
+            "alive": true,
+            "physical": true,
+            "support": "test-floor",
+            "targetable": true
+          },
+          "equipment": {
+            "carried": [],
+            "bodyBoundsComplete": true
+          },
+          "resources": {
+            "HP": 100,
+            "maxHP": 100,
+            "Wounds": 0
+          },
+          "health": {
+            "alive": true,
+            "dead": false,
+            "dying": false,
+            "stable": false
+          },
+          "turn": {
+            "regularTurn": 1,
+            "regularStarts": 1,
+            "regularEnds": 0,
+            "actionAvailable": true,
+            "actionsSpent": 0,
+            "movementFtAvailable": 30,
+            "movementFtSpent": 0,
+            "bonusActionAvailable": true,
+            "reactionAvailable": true
+          },
+          "conditions": [],
+          "inventory": {
+            "wornGear": [
+              {
+                "id": "target-worn-kit",
+                "owner": "target-01",
+                "custodian": "target-01",
+                "location": "worn",
+                "boundsContainedByBody": true
+              }
+            ],
+            "attackTool": {
+              "id": "TEST-ONLY-PANEL-BREAKER",
+              "owner": "target-01",
+              "custodian": "target-01",
+              "location": "held",
+              "usable": true,
+              "meleeReachFt": 5,
+              "fixtureOnly": true
+            }
+          },
+          "prisonSourceIds": [],
+          "awareness": {
+            "conscious": true,
+            "airPasses": true,
+            "lightPasses": true,
+            "soundPasses": true,
+            "handsAndComponentsAvailable": true
+          }
+        },
+        "otherCasters": [],
+        "castWindow": null,
+        "cell": null,
+        "sourceReceipts": {},
+        "eventInputs": [],
+        "events": [],
+        "canonicalEffect": false
+      },
+      "hash": "929ff8efa7f18aa31cc672356bc2469f4a98d720d01365f569a1a933d4207740"
+    },
+    {
+      "branchId": "IM-A1-PHRASE-RELEASE",
+      "caseId": "IM-A1",
+      "route": "Mage/Universal",
+      "mode": "SIGIL_CELL",
+      "state": {
+        "id": "IM-FIXTURE-IM-A1-PHRASE-RELEASE",
+        "status": "TEST_ONLY",
+        "canonical": false,
+        "scope": "STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY",
+        "route": "Mage/Universal",
+        "mode": "SIGIL_CELL",
+        "currentTimeMs": 0,
+        "fixtureAuthorization": {
+          "authority": "DD-DIRECTOR-11-COMMON-01",
+          "contractId": "DD11-IMPRISONMENT-01",
+          "classification": "TEST_ONLY target, attack rolls, cell material, phrase, providers and location"
+        },
+        "site": {
+          "id": "TEST-ONLY-ARENA-11",
+          "owner": "TEST-SITE-OWNER",
+          "floor": {
+            "id": "test-floor",
+            "bounds": [
+              [
+                -100,
+                100
+              ],
+              [
+                -100,
+                100
+              ],
+              [
+                -1,
+                0
+              ]
+            ],
+            "continuous": true,
+            "existing": true,
+            "supportsTarget": true,
+            "insertedSlab": false
+          },
+          "targetStartBounds": [
+            [
+              17.5,
+              22.5
+            ],
+            [
+              -2.5,
+              2.5
+            ],
+            [
+              0,
+              6
+            ]
+          ],
+          "cellInnerBounds": [
+            [
+              16.5,
+              23.5
+            ],
+            [
+              -3.5,
+              3.5
+            ],
+            [
+              0,
+              7
+            ]
+          ],
+          "declaredPhrase": "open-test-cell-11",
+          "phraseTestOnly": true,
+          "helper": {
+            "id": "helper-01",
+            "location": [
+              12,
+              0,
+              0
+            ],
+            "knowsPhrase": false
+          },
+          "externalObjects": []
+        },
+        "caster": {
+          "id": "mage-17-universal",
+          "role": "caster",
+          "route": "Mage/Universal",
+          "profileBinding": {
+            "profileId": "mage-17-universal",
+            "sha256": "13459853ec7561c12c358252ede5dd4c638238b99e02a3ab706ed8e78667ae76"
+          },
+          "classLevel": 17,
+          "spellRank": 9,
+          "spellSaveDC": 19,
+          "spellAccess": {
+            "targetSpell": "imprisonment",
+            "rank": 9,
+            "school": "Universal",
+            "acquiredAtClassLevel": 17,
+            "ordinaryRankGate": 9,
+            "preparedOrKnown": true,
+            "paidRpCost": 26,
+            "path": "Archmage",
+            "rankedKnownCount": 18,
+            "ordinaryMagePreparation": true
+          },
+          "preparedOrKnown": true,
+          "resources": {
+            "RP": 50,
+            "maxRP": 50,
+            "Dissonance": 0,
+            "HP": 138,
+            "maxHP": 138
+          },
+          "body": {
+            "id": "mage-17-universal:body",
+            "owner": "mage-17-universal",
+            "location": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-ONLY-ARENA-11"
+            },
+            "bounds": [
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                0,
+                6
+              ]
+            ],
+            "shape": "Medium5x5x6",
+            "alive": true,
+            "physical": true,
+            "support": "test-floor",
+            "targetable": true
+          },
+          "inventory": {
+            "focus": {
+              "id": "mage-focus-01",
+              "owner": "mage-17-universal",
+              "custodian": "mage-17-universal",
+              "equipped": true,
+              "location": "left-hand",
+              "massLb": 1
+            }
+          },
+          "turn": {
+            "regularTurn": 1,
+            "actionAvailable": true,
+            "actionsSpent": 0,
+            "magicThisTurn": false,
+            "lastSpell": null,
+            "movementFtAvailable": 30,
+            "movementFtSpent": 0
+          },
+          "spellHistory": [],
+          "pendingCast": null,
+          "health": {
+            "alive": true,
+            "dead": false
+          },
+          "canAct": true
+        },
+        "target": {
+          "id": "target-01",
+          "willing": false,
+          "perceived": true,
+          "lineOfEffect": true,
+          "rangeFt": 20,
+          "body": {
+            "id": "target-01:body",
+            "owner": "target-01",
+            "location": {
+              "x": 20,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-ONLY-ARENA-11"
+            },
+            "bounds": [
+              [
+                17.5,
+                22.5
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                0,
+                6
+              ]
+            ],
+            "shape": "Medium5x5x6",
+            "alive": true,
+            "physical": true,
+            "support": "test-floor",
+            "targetable": true
+          },
+          "equipment": {
+            "carried": [],
+            "bodyBoundsComplete": true
+          },
+          "resources": {
+            "HP": 100,
+            "maxHP": 100,
+            "Wounds": 0
+          },
+          "health": {
+            "alive": true,
+            "dead": false,
+            "dying": false,
+            "stable": false
+          },
+          "turn": {
+            "regularTurn": 1,
+            "regularStarts": 1,
+            "regularEnds": 0,
+            "actionAvailable": true,
+            "actionsSpent": 0,
+            "movementFtAvailable": 30,
+            "movementFtSpent": 0,
+            "bonusActionAvailable": true,
+            "reactionAvailable": true
+          },
+          "conditions": [],
+          "inventory": {
+            "wornGear": [
+              {
+                "id": "target-worn-kit",
+                "owner": "target-01",
+                "custodian": "target-01",
+                "location": "worn",
+                "boundsContainedByBody": true
+              }
+            ],
+            "attackTool": {
+              "id": "TEST-ONLY-PANEL-BREAKER",
+              "owner": "target-01",
+              "custodian": "target-01",
+              "location": "held",
+              "usable": true,
+              "meleeReachFt": 5,
+              "fixtureOnly": true
+            }
+          },
+          "prisonSourceIds": [],
+          "awareness": {
+            "conscious": true,
+            "airPasses": true,
+            "lightPasses": true,
+            "soundPasses": true,
+            "handsAndComponentsAvailable": true
+          }
+        },
+        "otherCasters": [],
+        "castWindow": null,
+        "cell": null,
+        "sourceReceipts": {},
+        "eventInputs": [],
+        "events": [],
+        "canonicalEffect": false
+      },
+      "hash": "04c21a23a58a26b646650175469d7400b3a42c443594a42d1a4c261c557b54c4"
+    },
+    {
+      "branchId": "IM-A2-PARTIAL-SUPPRESSION-EXIT",
+      "caseId": "IM-A2",
+      "route": "Wizard/Necromancy",
+      "mode": "STONE_VAULT",
+      "state": {
+        "id": "IM-FIXTURE-IM-A2-PARTIAL-SUPPRESSION-EXIT",
+        "status": "TEST_ONLY",
+        "canonical": false,
+        "scope": "STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY",
+        "route": "Wizard/Necromancy",
+        "mode": "STONE_VAULT",
+        "currentTimeMs": 0,
+        "fixtureAuthorization": {
+          "authority": "DD-DIRECTOR-11-COMMON-01",
+          "contractId": "DD11-IMPRISONMENT-01",
+          "classification": "TEST_ONLY target, attack rolls, cell material, phrase, providers and location"
+        },
+        "site": {
+          "id": "TEST-ONLY-ARENA-11",
+          "owner": "TEST-SITE-OWNER",
+          "floor": {
+            "id": "test-floor",
+            "bounds": [
+              [
+                -100,
+                100
+              ],
+              [
+                -100,
+                100
+              ],
+              [
+                -1,
+                0
+              ]
+            ],
+            "continuous": true,
+            "existing": true,
+            "supportsTarget": true,
+            "insertedSlab": false
+          },
+          "targetStartBounds": [
+            [
+              17.5,
+              22.5
+            ],
+            [
+              -2.5,
+              2.5
+            ],
+            [
+              0,
+              6
+            ]
+          ],
+          "cellInnerBounds": [
+            [
+              16.5,
+              23.5
+            ],
+            [
+              -3.5,
+              3.5
+            ],
+            [
+              0,
+              7
+            ]
+          ],
+          "declaredPhrase": "open-test-cell-11",
+          "phraseTestOnly": true,
+          "helper": {
+            "id": "helper-01",
+            "location": [
+              12,
+              0,
+              0
+            ],
+            "knowsPhrase": false
+          },
+          "externalObjects": []
+        },
+        "caster": {
+          "id": "wizard-17-necromancy",
+          "role": "caster",
+          "route": "Wizard/Necromancy",
+          "profileBinding": {
+            "profileId": "wizard-17-necromancy",
+            "sha256": "f7146efa506472495508a0900e89a6b5f205bfb0caae769050c935bf956cc125"
+          },
+          "classLevel": 17,
+          "spellRank": 9,
+          "spellSaveDC": 21,
+          "spellAccess": {
+            "targetSpell": "imprisonment",
+            "rank": 9,
+            "school": "Necromancy",
+            "acquiredAtClassLevel": 17,
+            "ordinaryRankGate": 9,
+            "preparedOrKnown": true,
+            "paidRpCost": 26,
+            "path": "Spellbinder",
+            "preparedMatrixCount": 22,
+            "targetMatrixPrepared": true,
+            "matrixPreparationMinutes": 45,
+            "spellbookEntryCount": 67,
+            "counterspellKnownAndPrepared": true
+          },
+          "preparedOrKnown": true,
+          "resources": {
+            "RP": 64,
+            "maxRP": 64,
+            "Dissonance": 0,
+            "HP": 55,
+            "maxHP": 80
+          },
+          "body": {
+            "id": "wizard-17-necromancy:body",
+            "owner": "wizard-17-necromancy",
+            "location": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-ONLY-ARENA-11"
+            },
+            "bounds": [
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                0,
+                6
+              ]
+            ],
+            "shape": "Medium5x5x6",
+            "alive": true,
+            "physical": true,
+            "support": "test-floor",
+            "targetable": true
+          },
+          "inventory": {
+            "focus": {
+              "id": "wizard-focus-01",
+              "owner": "wizard-17-necromancy",
+              "custodian": "wizard-17-necromancy",
+              "equipped": true,
+              "location": "left-hand",
+              "massLb": 1
+            }
+          },
+          "turn": {
+            "regularTurn": 1,
+            "actionAvailable": true,
+            "actionsSpent": 0,
+            "magicThisTurn": false,
+            "lastSpell": null,
+            "movementFtAvailable": 30,
+            "movementFtSpent": 0
+          },
+          "spellHistory": [],
+          "pendingCast": null,
+          "health": {
+            "alive": true,
+            "dead": false
+          },
+          "canAct": true
+        },
+        "target": {
+          "id": "target-01",
+          "willing": false,
+          "perceived": true,
+          "lineOfEffect": true,
+          "rangeFt": 20,
+          "body": {
+            "id": "target-01:body",
+            "owner": "target-01",
+            "location": {
+              "x": 20,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-ONLY-ARENA-11"
+            },
+            "bounds": [
+              [
+                17.5,
+                22.5
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                0,
+                6
+              ]
+            ],
+            "shape": "Medium5x5x6",
+            "alive": true,
+            "physical": true,
+            "support": "test-floor",
+            "targetable": true
+          },
+          "equipment": {
+            "carried": [],
+            "bodyBoundsComplete": true
+          },
+          "resources": {
+            "HP": 100,
+            "maxHP": 100,
+            "Wounds": 0
+          },
+          "health": {
+            "alive": true,
+            "dead": false,
+            "dying": false,
+            "stable": false
+          },
+          "turn": {
+            "regularTurn": 1,
+            "regularStarts": 1,
+            "regularEnds": 0,
+            "actionAvailable": true,
+            "actionsSpent": 0,
+            "movementFtAvailable": 30,
+            "movementFtSpent": 0,
+            "bonusActionAvailable": true,
+            "reactionAvailable": true
+          },
+          "conditions": [],
+          "inventory": {
+            "wornGear": [
+              {
+                "id": "target-worn-kit",
+                "owner": "target-01",
+                "custodian": "target-01",
+                "location": "worn",
+                "boundsContainedByBody": true
+              }
+            ],
+            "attackTool": {
+              "id": "TEST-ONLY-PANEL-BREAKER",
+              "owner": "target-01",
+              "custodian": "target-01",
+              "location": "held",
+              "usable": true,
+              "meleeReachFt": 5,
+              "fixtureOnly": true
+            }
+          },
+          "prisonSourceIds": [],
+          "awareness": {
+            "conscious": true,
+            "airPasses": true,
+            "lightPasses": true,
+            "soundPasses": true,
+            "handsAndComponentsAvailable": true
+          }
+        },
+        "otherCasters": [],
+        "castWindow": null,
+        "cell": null,
+        "sourceReceipts": {},
+        "eventInputs": [],
+        "events": [],
+        "canonicalEffect": false
+      },
+      "hash": "e9f63a17bd1e63166546c67562a6a2ef006575846c150f4b8d10c9cf383dae2a"
+    },
+    {
+      "branchId": "IM-A2-OCCUPIED-RESUMPTION",
+      "caseId": "IM-A2",
+      "route": "Cleric/Necromancy",
+      "mode": "STONE_VAULT",
+      "state": {
+        "id": "IM-FIXTURE-IM-A2-OCCUPIED-RESUMPTION",
+        "status": "TEST_ONLY",
+        "canonical": false,
+        "scope": "STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY",
+        "route": "Cleric/Necromancy",
+        "mode": "STONE_VAULT",
+        "currentTimeMs": 0,
+        "fixtureAuthorization": {
+          "authority": "DD-DIRECTOR-11-COMMON-01",
+          "contractId": "DD11-IMPRISONMENT-01",
+          "classification": "TEST_ONLY target, attack rolls, cell material, phrase, providers and location"
+        },
+        "site": {
+          "id": "TEST-ONLY-ARENA-11",
+          "owner": "TEST-SITE-OWNER",
+          "floor": {
+            "id": "test-floor",
+            "bounds": [
+              [
+                -100,
+                100
+              ],
+              [
+                -100,
+                100
+              ],
+              [
+                -1,
+                0
+              ]
+            ],
+            "continuous": true,
+            "existing": true,
+            "supportsTarget": true,
+            "insertedSlab": false
+          },
+          "targetStartBounds": [
+            [
+              17.5,
+              22.5
+            ],
+            [
+              -2.5,
+              2.5
+            ],
+            [
+              0,
+              6
+            ]
+          ],
+          "cellInnerBounds": [
+            [
+              16.5,
+              23.5
+            ],
+            [
+              -3.5,
+              3.5
+            ],
+            [
+              0,
+              7
+            ]
+          ],
+          "declaredPhrase": "open-test-cell-11",
+          "phraseTestOnly": true,
+          "helper": {
+            "id": "helper-01",
+            "location": [
+              12,
+              0,
+              0
+            ],
+            "knowsPhrase": false
+          },
+          "externalObjects": []
+        },
+        "caster": {
+          "id": "cleric-17-necromancy",
+          "role": "caster",
+          "route": "Cleric/Necromancy",
+          "profileBinding": {
+            "profileId": "cleric-17-necromancy",
+            "sha256": "6ac172c2563d28fb0884f0e9da4e713fb6a501b6769d445a32d4880671790630"
+          },
+          "classLevel": 17,
+          "spellRank": 9,
+          "spellSaveDC": 19,
+          "spellAccess": {
+            "targetSpell": "imprisonment",
+            "rank": 9,
+            "school": "Necromancy",
+            "acquiredAtClassLevel": 17,
+            "ordinaryRankGate": 9,
+            "preparedOrKnown": true,
+            "paidRpCost": 26,
+            "rankedKnownCount": 18,
+            "ordinaryClericPreparation": true
+          },
+          "preparedOrKnown": true,
+          "resources": {
+            "RP": 48,
+            "maxRP": 48,
+            "Dissonance": 0,
+            "HP": 156,
+            "maxHP": 156
+          },
+          "body": {
+            "id": "cleric-17-necromancy:body",
+            "owner": "cleric-17-necromancy",
+            "location": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-ONLY-ARENA-11"
+            },
+            "bounds": [
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                0,
+                6
+              ]
+            ],
+            "shape": "Medium5x5x6",
+            "alive": true,
+            "physical": true,
+            "support": "test-floor",
+            "targetable": true
+          },
+          "inventory": {
+            "focus": {
+              "id": "cleric-focus-01",
+              "owner": "cleric-17-necromancy",
+              "custodian": "cleric-17-necromancy",
+              "equipped": true,
+              "location": "left-hand",
+              "massLb": 1
+            }
+          },
+          "turn": {
+            "regularTurn": 1,
+            "actionAvailable": true,
+            "actionsSpent": 0,
+            "magicThisTurn": false,
+            "lastSpell": null,
+            "movementFtAvailable": 30,
+            "movementFtSpent": 0
+          },
+          "spellHistory": [],
+          "pendingCast": null,
+          "health": {
+            "alive": true,
+            "dead": false
+          },
+          "canAct": true
+        },
+        "target": {
+          "id": "target-01",
+          "willing": false,
+          "perceived": true,
+          "lineOfEffect": true,
+          "rangeFt": 20,
+          "body": {
+            "id": "target-01:body",
+            "owner": "target-01",
+            "location": {
+              "x": 20,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-ONLY-ARENA-11"
+            },
+            "bounds": [
+              [
+                17.5,
+                22.5
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                0,
+                6
+              ]
+            ],
+            "shape": "Medium5x5x6",
+            "alive": true,
+            "physical": true,
+            "support": "test-floor",
+            "targetable": true
+          },
+          "equipment": {
+            "carried": [],
+            "bodyBoundsComplete": true
+          },
+          "resources": {
+            "HP": 100,
+            "maxHP": 100,
+            "Wounds": 0
+          },
+          "health": {
+            "alive": true,
+            "dead": false,
+            "dying": false,
+            "stable": false
+          },
+          "turn": {
+            "regularTurn": 1,
+            "regularStarts": 1,
+            "regularEnds": 0,
+            "actionAvailable": true,
+            "actionsSpent": 0,
+            "movementFtAvailable": 30,
+            "movementFtSpent": 0,
+            "bonusActionAvailable": true,
+            "reactionAvailable": true
+          },
+          "conditions": [],
+          "inventory": {
+            "wornGear": [
+              {
+                "id": "target-worn-kit",
+                "owner": "target-01",
+                "custodian": "target-01",
+                "location": "worn",
+                "boundsContainedByBody": true
+              }
+            ],
+            "attackTool": {
+              "id": "TEST-ONLY-PANEL-BREAKER",
+              "owner": "target-01",
+              "custodian": "target-01",
+              "location": "held",
+              "usable": true,
+              "meleeReachFt": 5,
+              "fixtureOnly": true
+            }
+          },
+          "prisonSourceIds": [],
+          "awareness": {
+            "conscious": true,
+            "airPasses": true,
+            "lightPasses": true,
+            "soundPasses": true,
+            "handsAndComponentsAvailable": true
+          }
+        },
+        "otherCasters": [],
+        "castWindow": null,
+        "cell": null,
+        "sourceReceipts": {},
+        "eventInputs": [],
+        "events": [],
+        "canonicalEffect": false
+      },
+      "hash": "b30b7374bfe55b8eb9b5ae510dedd0932725431396df416c782f13dc0a715e94"
+    },
+    {
+      "branchId": "IM-A2-ELIGIBLE-DISPEL",
+      "caseId": "IM-A2",
+      "route": "Mage/Universal",
+      "mode": "SIGIL_CELL",
+      "state": {
+        "id": "IM-FIXTURE-IM-A2-ELIGIBLE-DISPEL",
+        "status": "TEST_ONLY",
+        "canonical": false,
+        "scope": "STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY",
+        "route": "Mage/Universal",
+        "mode": "SIGIL_CELL",
+        "currentTimeMs": 0,
+        "fixtureAuthorization": {
+          "authority": "DD-DIRECTOR-11-COMMON-01",
+          "contractId": "DD11-IMPRISONMENT-01",
+          "classification": "TEST_ONLY target, attack rolls, cell material, phrase, providers and location"
+        },
+        "site": {
+          "id": "TEST-ONLY-ARENA-11",
+          "owner": "TEST-SITE-OWNER",
+          "floor": {
+            "id": "test-floor",
+            "bounds": [
+              [
+                -100,
+                100
+              ],
+              [
+                -100,
+                100
+              ],
+              [
+                -1,
+                0
+              ]
+            ],
+            "continuous": true,
+            "existing": true,
+            "supportsTarget": true,
+            "insertedSlab": false
+          },
+          "targetStartBounds": [
+            [
+              17.5,
+              22.5
+            ],
+            [
+              -2.5,
+              2.5
+            ],
+            [
+              0,
+              6
+            ]
+          ],
+          "cellInnerBounds": [
+            [
+              16.5,
+              23.5
+            ],
+            [
+              -3.5,
+              3.5
+            ],
+            [
+              0,
+              7
+            ]
+          ],
+          "declaredPhrase": "open-test-cell-11",
+          "phraseTestOnly": true,
+          "helper": {
+            "id": "helper-01",
+            "location": [
+              12,
+              0,
+              0
+            ],
+            "knowsPhrase": false
+          },
+          "externalObjects": []
+        },
+        "caster": {
+          "id": "mage-17-universal",
+          "role": "caster",
+          "route": "Mage/Universal",
+          "profileBinding": {
+            "profileId": "mage-17-universal",
+            "sha256": "13459853ec7561c12c358252ede5dd4c638238b99e02a3ab706ed8e78667ae76"
+          },
+          "classLevel": 17,
+          "spellRank": 9,
+          "spellSaveDC": 19,
+          "spellAccess": {
+            "targetSpell": "imprisonment",
+            "rank": 9,
+            "school": "Universal",
+            "acquiredAtClassLevel": 17,
+            "ordinaryRankGate": 9,
+            "preparedOrKnown": true,
+            "paidRpCost": 26,
+            "path": "Archmage",
+            "rankedKnownCount": 18,
+            "ordinaryMagePreparation": true
+          },
+          "preparedOrKnown": true,
+          "resources": {
+            "RP": 50,
+            "maxRP": 50,
+            "Dissonance": 0,
+            "HP": 138,
+            "maxHP": 138
+          },
+          "body": {
+            "id": "mage-17-universal:body",
+            "owner": "mage-17-universal",
+            "location": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-ONLY-ARENA-11"
+            },
+            "bounds": [
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                0,
+                6
+              ]
+            ],
+            "shape": "Medium5x5x6",
+            "alive": true,
+            "physical": true,
+            "support": "test-floor",
+            "targetable": true
+          },
+          "inventory": {
+            "focus": {
+              "id": "mage-focus-01",
+              "owner": "mage-17-universal",
+              "custodian": "mage-17-universal",
+              "equipped": true,
+              "location": "left-hand",
+              "massLb": 1
+            }
+          },
+          "turn": {
+            "regularTurn": 1,
+            "actionAvailable": true,
+            "actionsSpent": 0,
+            "magicThisTurn": false,
+            "lastSpell": null,
+            "movementFtAvailable": 30,
+            "movementFtSpent": 0
+          },
+          "spellHistory": [],
+          "pendingCast": null,
+          "health": {
+            "alive": true,
+            "dead": false
+          },
+          "canAct": true
+        },
+        "target": {
+          "id": "target-01",
+          "willing": false,
+          "perceived": true,
+          "lineOfEffect": true,
+          "rangeFt": 20,
+          "body": {
+            "id": "target-01:body",
+            "owner": "target-01",
+            "location": {
+              "x": 20,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-ONLY-ARENA-11"
+            },
+            "bounds": [
+              [
+                17.5,
+                22.5
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                0,
+                6
+              ]
+            ],
+            "shape": "Medium5x5x6",
+            "alive": true,
+            "physical": true,
+            "support": "test-floor",
+            "targetable": true
+          },
+          "equipment": {
+            "carried": [],
+            "bodyBoundsComplete": true
+          },
+          "resources": {
+            "HP": 100,
+            "maxHP": 100,
+            "Wounds": 0
+          },
+          "health": {
+            "alive": true,
+            "dead": false,
+            "dying": false,
+            "stable": false
+          },
+          "turn": {
+            "regularTurn": 1,
+            "regularStarts": 1,
+            "regularEnds": 0,
+            "actionAvailable": true,
+            "actionsSpent": 0,
+            "movementFtAvailable": 30,
+            "movementFtSpent": 0,
+            "bonusActionAvailable": true,
+            "reactionAvailable": true
+          },
+          "conditions": [],
+          "inventory": {
+            "wornGear": [
+              {
+                "id": "target-worn-kit",
+                "owner": "target-01",
+                "custodian": "target-01",
+                "location": "worn",
+                "boundsContainedByBody": true
+              }
+            ],
+            "attackTool": {
+              "id": "TEST-ONLY-PANEL-BREAKER",
+              "owner": "target-01",
+              "custodian": "target-01",
+              "location": "held",
+              "usable": true,
+              "meleeReachFt": 5,
+              "fixtureOnly": true
+            }
+          },
+          "prisonSourceIds": [],
+          "awareness": {
+            "conscious": true,
+            "airPasses": true,
+            "lightPasses": true,
+            "soundPasses": true,
+            "handsAndComponentsAvailable": true
+          }
+        },
+        "otherCasters": [],
+        "castWindow": null,
+        "cell": null,
+        "sourceReceipts": {},
+        "eventInputs": [],
+        "events": [],
+        "canonicalEffect": false
+      },
+      "hash": "60c1f77816522c675637ebd48685e5a50432435680a63e32280636300a52f7d4"
+    },
+    {
+      "branchId": "IM-A2-DUPLICATE-RELEASE",
+      "caseId": "IM-A2",
+      "route": "Druid/Necromancy",
+      "mode": "SIGIL_CELL",
+      "state": {
+        "id": "IM-FIXTURE-IM-A2-DUPLICATE-RELEASE",
+        "status": "TEST_ONLY",
+        "canonical": false,
+        "scope": "STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY",
+        "route": "Druid/Necromancy",
+        "mode": "SIGIL_CELL",
+        "currentTimeMs": 0,
+        "fixtureAuthorization": {
+          "authority": "DD-DIRECTOR-11-COMMON-01",
+          "contractId": "DD11-IMPRISONMENT-01",
+          "classification": "TEST_ONLY target, attack rolls, cell material, phrase, providers and location"
+        },
+        "site": {
+          "id": "TEST-ONLY-ARENA-11",
+          "owner": "TEST-SITE-OWNER",
+          "floor": {
+            "id": "test-floor",
+            "bounds": [
+              [
+                -100,
+                100
+              ],
+              [
+                -100,
+                100
+              ],
+              [
+                -1,
+                0
+              ]
+            ],
+            "continuous": true,
+            "existing": true,
+            "supportsTarget": true,
+            "insertedSlab": false
+          },
+          "targetStartBounds": [
+            [
+              17.5,
+              22.5
+            ],
+            [
+              -2.5,
+              2.5
+            ],
+            [
+              0,
+              6
+            ]
+          ],
+          "cellInnerBounds": [
+            [
+              16.5,
+              23.5
+            ],
+            [
+              -3.5,
+              3.5
+            ],
+            [
+              0,
+              7
+            ]
+          ],
+          "declaredPhrase": "open-test-cell-11",
+          "phraseTestOnly": true,
+          "helper": {
+            "id": "helper-01",
+            "location": [
+              12,
+              0,
+              0
+            ],
+            "knowsPhrase": false
+          },
+          "externalObjects": []
+        },
+        "caster": {
+          "id": "druid-17-necromancy",
+          "role": "caster",
+          "route": "Druid/Necromancy",
+          "profileBinding": {
+            "profileId": "druid-17-necromancy",
+            "sha256": "fff9482c3d03b31a872cab7d0aed3286b1a68ca0a241996ed56f08e8c9507b61"
+          },
+          "classLevel": 17,
+          "spellRank": 9,
+          "spellSaveDC": 19,
+          "spellAccess": {
+            "targetSpell": "imprisonment",
+            "rank": 9,
+            "school": "Necromancy",
+            "acquiredAtClassLevel": 17,
+            "ordinaryRankGate": 9,
+            "preparedOrKnown": true,
+            "paidRpCost": 26,
+            "ordinaryDruidPreparation": true,
+            "preparedCount": 22,
+            "circle": "Land",
+            "archForms": [
+              "Dire Wolf",
+              "Sky Serpent"
+            ]
+          },
+          "preparedOrKnown": true,
+          "resources": {
+            "RP": 48,
+            "maxRP": 48,
+            "Dissonance": 0,
+            "HP": 156,
+            "maxHP": 156
+          },
+          "body": {
+            "id": "druid-17-necromancy:body",
+            "owner": "druid-17-necromancy",
+            "location": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-ONLY-ARENA-11"
+            },
+            "bounds": [
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                0,
+                6
+              ]
+            ],
+            "shape": "Medium5x5x6",
+            "alive": true,
+            "physical": true,
+            "support": "test-floor",
+            "targetable": true
+          },
+          "inventory": {
+            "focus": {
+              "id": "druid-focus-01",
+              "owner": "druid-17-necromancy",
+              "custodian": "druid-17-necromancy",
+              "equipped": true,
+              "location": "left-hand",
+              "massLb": 1
+            }
+          },
+          "turn": {
+            "regularTurn": 1,
+            "actionAvailable": true,
+            "actionsSpent": 0,
+            "magicThisTurn": false,
+            "lastSpell": null,
+            "movementFtAvailable": 30,
+            "movementFtSpent": 0
+          },
+          "spellHistory": [],
+          "pendingCast": null,
+          "health": {
+            "alive": true,
+            "dead": false
+          },
+          "canAct": true
+        },
+        "target": {
+          "id": "target-01",
+          "willing": false,
+          "perceived": true,
+          "lineOfEffect": true,
+          "rangeFt": 20,
+          "body": {
+            "id": "target-01:body",
+            "owner": "target-01",
+            "location": {
+              "x": 20,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-ONLY-ARENA-11"
+            },
+            "bounds": [
+              [
+                17.5,
+                22.5
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                0,
+                6
+              ]
+            ],
+            "shape": "Medium5x5x6",
+            "alive": true,
+            "physical": true,
+            "support": "test-floor",
+            "targetable": true
+          },
+          "equipment": {
+            "carried": [],
+            "bodyBoundsComplete": true
+          },
+          "resources": {
+            "HP": 100,
+            "maxHP": 100,
+            "Wounds": 0
+          },
+          "health": {
+            "alive": true,
+            "dead": false,
+            "dying": false,
+            "stable": false
+          },
+          "turn": {
+            "regularTurn": 1,
+            "regularStarts": 1,
+            "regularEnds": 0,
+            "actionAvailable": true,
+            "actionsSpent": 0,
+            "movementFtAvailable": 30,
+            "movementFtSpent": 0,
+            "bonusActionAvailable": true,
+            "reactionAvailable": true
+          },
+          "conditions": [],
+          "inventory": {
+            "wornGear": [
+              {
+                "id": "target-worn-kit",
+                "owner": "target-01",
+                "custodian": "target-01",
+                "location": "worn",
+                "boundsContainedByBody": true
+              }
+            ],
+            "attackTool": {
+              "id": "TEST-ONLY-PANEL-BREAKER",
+              "owner": "target-01",
+              "custodian": "target-01",
+              "location": "held",
+              "usable": true,
+              "meleeReachFt": 5,
+              "fixtureOnly": true
+            }
+          },
+          "prisonSourceIds": [],
+          "awareness": {
+            "conscious": true,
+            "airPasses": true,
+            "lightPasses": true,
+            "soundPasses": true,
+            "handsAndComponentsAvailable": true
+          }
+        },
+        "otherCasters": [],
+        "castWindow": null,
+        "cell": null,
+        "sourceReceipts": {},
+        "eventInputs": [],
+        "events": [],
+        "canonicalEffect": false
+      },
+      "hash": "176fb79f521a0cf9d7af1bc89bd50df1e80345279ae4a73fd61b3e37edf295b8"
+    },
+    {
+      "branchId": "IM-A2-24H-DEADLINE",
+      "caseId": "IM-A2",
+      "route": "Wizard/Necromancy",
+      "mode": "STONE_VAULT",
+      "state": {
+        "id": "IM-FIXTURE-IM-A2-24H-DEADLINE",
+        "status": "TEST_ONLY",
+        "canonical": false,
+        "scope": "STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY",
+        "route": "Wizard/Necromancy",
+        "mode": "STONE_VAULT",
+        "currentTimeMs": 0,
+        "fixtureAuthorization": {
+          "authority": "DD-DIRECTOR-11-COMMON-01",
+          "contractId": "DD11-IMPRISONMENT-01",
+          "classification": "TEST_ONLY target, attack rolls, cell material, phrase, providers and location"
+        },
+        "site": {
+          "id": "TEST-ONLY-ARENA-11",
+          "owner": "TEST-SITE-OWNER",
+          "floor": {
+            "id": "test-floor",
+            "bounds": [
+              [
+                -100,
+                100
+              ],
+              [
+                -100,
+                100
+              ],
+              [
+                -1,
+                0
+              ]
+            ],
+            "continuous": true,
+            "existing": true,
+            "supportsTarget": true,
+            "insertedSlab": false
+          },
+          "targetStartBounds": [
+            [
+              17.5,
+              22.5
+            ],
+            [
+              -2.5,
+              2.5
+            ],
+            [
+              0,
+              6
+            ]
+          ],
+          "cellInnerBounds": [
+            [
+              16.5,
+              23.5
+            ],
+            [
+              -3.5,
+              3.5
+            ],
+            [
+              0,
+              7
+            ]
+          ],
+          "declaredPhrase": "open-test-cell-11",
+          "phraseTestOnly": true,
+          "helper": {
+            "id": "helper-01",
+            "location": [
+              12,
+              0,
+              0
+            ],
+            "knowsPhrase": false
+          },
+          "externalObjects": []
+        },
+        "caster": {
+          "id": "wizard-17-necromancy",
+          "role": "caster",
+          "route": "Wizard/Necromancy",
+          "profileBinding": {
+            "profileId": "wizard-17-necromancy",
+            "sha256": "f7146efa506472495508a0900e89a6b5f205bfb0caae769050c935bf956cc125"
+          },
+          "classLevel": 17,
+          "spellRank": 9,
+          "spellSaveDC": 21,
+          "spellAccess": {
+            "targetSpell": "imprisonment",
+            "rank": 9,
+            "school": "Necromancy",
+            "acquiredAtClassLevel": 17,
+            "ordinaryRankGate": 9,
+            "preparedOrKnown": true,
+            "paidRpCost": 26,
+            "path": "Spellbinder",
+            "preparedMatrixCount": 22,
+            "targetMatrixPrepared": true,
+            "matrixPreparationMinutes": 45,
+            "spellbookEntryCount": 67,
+            "counterspellKnownAndPrepared": true
+          },
+          "preparedOrKnown": true,
+          "resources": {
+            "RP": 64,
+            "maxRP": 64,
+            "Dissonance": 0,
+            "HP": 55,
+            "maxHP": 80
+          },
+          "body": {
+            "id": "wizard-17-necromancy:body",
+            "owner": "wizard-17-necromancy",
+            "location": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-ONLY-ARENA-11"
+            },
+            "bounds": [
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                0,
+                6
+              ]
+            ],
+            "shape": "Medium5x5x6",
+            "alive": true,
+            "physical": true,
+            "support": "test-floor",
+            "targetable": true
+          },
+          "inventory": {
+            "focus": {
+              "id": "wizard-focus-01",
+              "owner": "wizard-17-necromancy",
+              "custodian": "wizard-17-necromancy",
+              "equipped": true,
+              "location": "left-hand",
+              "massLb": 1
+            }
+          },
+          "turn": {
+            "regularTurn": 1,
+            "actionAvailable": true,
+            "actionsSpent": 0,
+            "magicThisTurn": false,
+            "lastSpell": null,
+            "movementFtAvailable": 30,
+            "movementFtSpent": 0
+          },
+          "spellHistory": [],
+          "pendingCast": null,
+          "health": {
+            "alive": true,
+            "dead": false
+          },
+          "canAct": true
+        },
+        "target": {
+          "id": "target-01",
+          "willing": false,
+          "perceived": true,
+          "lineOfEffect": true,
+          "rangeFt": 20,
+          "body": {
+            "id": "target-01:body",
+            "owner": "target-01",
+            "location": {
+              "x": 20,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-ONLY-ARENA-11"
+            },
+            "bounds": [
+              [
+                17.5,
+                22.5
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                0,
+                6
+              ]
+            ],
+            "shape": "Medium5x5x6",
+            "alive": true,
+            "physical": true,
+            "support": "test-floor",
+            "targetable": true
+          },
+          "equipment": {
+            "carried": [],
+            "bodyBoundsComplete": true
+          },
+          "resources": {
+            "HP": 100,
+            "maxHP": 100,
+            "Wounds": 0
+          },
+          "health": {
+            "alive": true,
+            "dead": false,
+            "dying": false,
+            "stable": false
+          },
+          "turn": {
+            "regularTurn": 1,
+            "regularStarts": 1,
+            "regularEnds": 0,
+            "actionAvailable": true,
+            "actionsSpent": 0,
+            "movementFtAvailable": 30,
+            "movementFtSpent": 0,
+            "bonusActionAvailable": true,
+            "reactionAvailable": true
+          },
+          "conditions": [],
+          "inventory": {
+            "wornGear": [
+              {
+                "id": "target-worn-kit",
+                "owner": "target-01",
+                "custodian": "target-01",
+                "location": "worn",
+                "boundsContainedByBody": true
+              }
+            ],
+            "attackTool": {
+              "id": "TEST-ONLY-PANEL-BREAKER",
+              "owner": "target-01",
+              "custodian": "target-01",
+              "location": "held",
+              "usable": true,
+              "meleeReachFt": 5,
+              "fixtureOnly": true
+            }
+          },
+          "prisonSourceIds": [],
+          "awareness": {
+            "conscious": true,
+            "airPasses": true,
+            "lightPasses": true,
+            "soundPasses": true,
+            "handsAndComponentsAvailable": true
+          }
+        },
+        "otherCasters": [],
+        "castWindow": null,
+        "cell": null,
+        "sourceReceipts": {},
+        "eventInputs": [],
+        "events": [],
+        "canonicalEffect": false
+      },
+      "hash": "1d2f23df06d49c33039d8ec5e13d6728a9292813369d1af07d6d9e99aff3c1dd"
+    },
+    {
+      "branchId": "IM-A2-SAME-DIFFERENT-OWNER-RECAST",
+      "caseId": "IM-A2",
+      "route": "Cleric/Necromancy",
+      "mode": "STONE_VAULT",
+      "state": {
+        "id": "IM-FIXTURE-IM-A2-SAME-DIFFERENT-OWNER-RECAST",
+        "status": "TEST_ONLY",
+        "canonical": false,
+        "scope": "STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY",
+        "route": "Cleric/Necromancy",
+        "mode": "STONE_VAULT",
+        "currentTimeMs": 0,
+        "fixtureAuthorization": {
+          "authority": "DD-DIRECTOR-11-COMMON-01",
+          "contractId": "DD11-IMPRISONMENT-01",
+          "classification": "TEST_ONLY target, attack rolls, cell material, phrase, providers and location"
+        },
+        "site": {
+          "id": "TEST-ONLY-ARENA-11",
+          "owner": "TEST-SITE-OWNER",
+          "floor": {
+            "id": "test-floor",
+            "bounds": [
+              [
+                -100,
+                100
+              ],
+              [
+                -100,
+                100
+              ],
+              [
+                -1,
+                0
+              ]
+            ],
+            "continuous": true,
+            "existing": true,
+            "supportsTarget": true,
+            "insertedSlab": false
+          },
+          "targetStartBounds": [
+            [
+              17.5,
+              22.5
+            ],
+            [
+              -2.5,
+              2.5
+            ],
+            [
+              0,
+              6
+            ]
+          ],
+          "cellInnerBounds": [
+            [
+              16.5,
+              23.5
+            ],
+            [
+              -3.5,
+              3.5
+            ],
+            [
+              0,
+              7
+            ]
+          ],
+          "declaredPhrase": "open-test-cell-11",
+          "phraseTestOnly": true,
+          "helper": {
+            "id": "helper-01",
+            "location": [
+              12,
+              0,
+              0
+            ],
+            "knowsPhrase": false
+          },
+          "externalObjects": []
+        },
+        "caster": {
+          "id": "cleric-17-necromancy",
+          "role": "caster",
+          "route": "Cleric/Necromancy",
+          "profileBinding": {
+            "profileId": "cleric-17-necromancy",
+            "sha256": "6ac172c2563d28fb0884f0e9da4e713fb6a501b6769d445a32d4880671790630"
+          },
+          "classLevel": 17,
+          "spellRank": 9,
+          "spellSaveDC": 19,
+          "spellAccess": {
+            "targetSpell": "imprisonment",
+            "rank": 9,
+            "school": "Necromancy",
+            "acquiredAtClassLevel": 17,
+            "ordinaryRankGate": 9,
+            "preparedOrKnown": true,
+            "paidRpCost": 26,
+            "rankedKnownCount": 18,
+            "ordinaryClericPreparation": true
+          },
+          "preparedOrKnown": true,
+          "resources": {
+            "RP": 48,
+            "maxRP": 48,
+            "Dissonance": 0,
+            "HP": 156,
+            "maxHP": 156
+          },
+          "body": {
+            "id": "cleric-17-necromancy:body",
+            "owner": "cleric-17-necromancy",
+            "location": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-ONLY-ARENA-11"
+            },
+            "bounds": [
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                0,
+                6
+              ]
+            ],
+            "shape": "Medium5x5x6",
+            "alive": true,
+            "physical": true,
+            "support": "test-floor",
+            "targetable": true
+          },
+          "inventory": {
+            "focus": {
+              "id": "cleric-focus-01",
+              "owner": "cleric-17-necromancy",
+              "custodian": "cleric-17-necromancy",
+              "equipped": true,
+              "location": "left-hand",
+              "massLb": 1
+            }
+          },
+          "turn": {
+            "regularTurn": 1,
+            "actionAvailable": true,
+            "actionsSpent": 0,
+            "magicThisTurn": false,
+            "lastSpell": null,
+            "movementFtAvailable": 30,
+            "movementFtSpent": 0
+          },
+          "spellHistory": [],
+          "pendingCast": null,
+          "health": {
+            "alive": true,
+            "dead": false
+          },
+          "canAct": true,
+          "ownerId": "owner-01"
+        },
+        "target": {
+          "id": "target-01",
+          "willing": false,
+          "perceived": true,
+          "lineOfEffect": true,
+          "rangeFt": 20,
+          "body": {
+            "id": "target-01:body",
+            "owner": "target-01",
+            "location": {
+              "x": 20,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-ONLY-ARENA-11"
+            },
+            "bounds": [
+              [
+                17.5,
+                22.5
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                0,
+                6
+              ]
+            ],
+            "shape": "Medium5x5x6",
+            "alive": true,
+            "physical": true,
+            "support": "test-floor",
+            "targetable": true
+          },
+          "equipment": {
+            "carried": [],
+            "bodyBoundsComplete": true
+          },
+          "resources": {
+            "HP": 100,
+            "maxHP": 100,
+            "Wounds": 0
+          },
+          "health": {
+            "alive": true,
+            "dead": false,
+            "dying": false,
+            "stable": false
+          },
+          "turn": {
+            "regularTurn": 1,
+            "regularStarts": 1,
+            "regularEnds": 0,
+            "actionAvailable": true,
+            "actionsSpent": 0,
+            "movementFtAvailable": 30,
+            "movementFtSpent": 0,
+            "bonusActionAvailable": true,
+            "reactionAvailable": true
+          },
+          "conditions": [],
+          "inventory": {
+            "wornGear": [
+              {
+                "id": "target-worn-kit",
+                "owner": "target-01",
+                "custodian": "target-01",
+                "location": "worn",
+                "boundsContainedByBody": true
+              }
+            ],
+            "attackTool": {
+              "id": "TEST-ONLY-PANEL-BREAKER",
+              "owner": "target-01",
+              "custodian": "target-01",
+              "location": "held",
+              "usable": true,
+              "meleeReachFt": 5,
+              "fixtureOnly": true
+            }
+          },
+          "prisonSourceIds": [],
+          "awareness": {
+            "conscious": true,
+            "airPasses": true,
+            "lightPasses": true,
+            "soundPasses": true,
+            "handsAndComponentsAvailable": true
+          }
+        },
+        "otherCasters": [
+          {
+            "id": "owner-02",
+            "route": "Wizard/Necromancy",
+            "resources": {
+              "RP": 64,
+              "maxRP": 64
+            },
+            "turn": {
+              "actionAvailable": true,
+              "actionsSpent": 0
+            },
+            "spellAccess": {
+              "targetSpell": "imprisonment",
+              "rank": 9,
+              "school": "Necromancy",
+              "acquiredAtClassLevel": 17,
+              "ordinaryRankGate": 9,
+              "preparedOrKnown": true,
+              "paidRpCost": 26,
+              "path": "Spellbinder",
+              "preparedMatrixCount": 22,
+              "targetMatrixPrepared": true,
+              "matrixPreparationMinutes": 45,
+              "spellbookEntryCount": 67,
+              "counterspellKnownAndPrepared": true
+            },
+            "preparedOrKnown": true,
+            "spellHistory": [],
+            "pendingCast": null
+          }
+        ],
+        "castWindow": null,
+        "cell": null,
+        "sourceReceipts": {},
+        "eventInputs": [],
+        "events": [],
+        "canonicalEffect": false
+      },
+      "hash": "ce8404bb48e33f9c8c47878c7a8d42fbe26ef6165ced0c9794df0fcd33114cc2"
+    },
+    {
+      "branchId": "IM-A2-RESOLUTION-RACE",
+      "caseId": "IM-A2",
+      "route": "Wizard/Necromancy",
+      "mode": "STONE_VAULT",
+      "state": {
+        "id": "IM-FIXTURE-IM-A2-RESOLUTION-RACE",
+        "status": "TEST_ONLY",
+        "canonical": false,
+        "scope": "STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY",
+        "route": "Wizard/Necromancy",
+        "mode": "STONE_VAULT",
+        "currentTimeMs": 0,
+        "fixtureAuthorization": {
+          "authority": "DD-DIRECTOR-11-COMMON-01",
+          "contractId": "DD11-IMPRISONMENT-01",
+          "classification": "TEST_ONLY target, attack rolls, cell material, phrase, providers and location"
+        },
+        "site": {
+          "id": "TEST-ONLY-ARENA-11",
+          "owner": "TEST-SITE-OWNER",
+          "floor": {
+            "id": "test-floor",
+            "bounds": [
+              [
+                -100,
+                100
+              ],
+              [
+                -100,
+                100
+              ],
+              [
+                -1,
+                0
+              ]
+            ],
+            "continuous": true,
+            "existing": true,
+            "supportsTarget": true,
+            "insertedSlab": false
+          },
+          "targetStartBounds": [
+            [
+              17.5,
+              22.5
+            ],
+            [
+              -2.5,
+              2.5
+            ],
+            [
+              0,
+              6
+            ]
+          ],
+          "cellInnerBounds": [
+            [
+              16.5,
+              23.5
+            ],
+            [
+              -3.5,
+              3.5
+            ],
+            [
+              0,
+              7
+            ]
+          ],
+          "declaredPhrase": "open-test-cell-11",
+          "phraseTestOnly": true,
+          "helper": {
+            "id": "helper-01",
+            "location": [
+              12,
+              0,
+              0
+            ],
+            "knowsPhrase": false
+          },
+          "externalObjects": []
+        },
+        "caster": {
+          "id": "wizard-17-necromancy",
+          "role": "caster",
+          "route": "Wizard/Necromancy",
+          "profileBinding": {
+            "profileId": "wizard-17-necromancy",
+            "sha256": "f7146efa506472495508a0900e89a6b5f205bfb0caae769050c935bf956cc125"
+          },
+          "classLevel": 17,
+          "spellRank": 9,
+          "spellSaveDC": 21,
+          "spellAccess": {
+            "targetSpell": "imprisonment",
+            "rank": 9,
+            "school": "Necromancy",
+            "acquiredAtClassLevel": 17,
+            "ordinaryRankGate": 9,
+            "preparedOrKnown": true,
+            "paidRpCost": 26,
+            "path": "Spellbinder",
+            "preparedMatrixCount": 22,
+            "targetMatrixPrepared": true,
+            "matrixPreparationMinutes": 45,
+            "spellbookEntryCount": 67,
+            "counterspellKnownAndPrepared": true
+          },
+          "preparedOrKnown": true,
+          "resources": {
+            "RP": 64,
+            "maxRP": 64,
+            "Dissonance": 0,
+            "HP": 55,
+            "maxHP": 80
+          },
+          "body": {
+            "id": "wizard-17-necromancy:body",
+            "owner": "wizard-17-necromancy",
+            "location": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-ONLY-ARENA-11"
+            },
+            "bounds": [
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                0,
+                6
+              ]
+            ],
+            "shape": "Medium5x5x6",
+            "alive": true,
+            "physical": true,
+            "support": "test-floor",
+            "targetable": true
+          },
+          "inventory": {
+            "focus": {
+              "id": "wizard-focus-01",
+              "owner": "wizard-17-necromancy",
+              "custodian": "wizard-17-necromancy",
+              "equipped": true,
+              "location": "left-hand",
+              "massLb": 1
+            }
+          },
+          "turn": {
+            "regularTurn": 1,
+            "actionAvailable": true,
+            "actionsSpent": 0,
+            "magicThisTurn": false,
+            "lastSpell": null,
+            "movementFtAvailable": 30,
+            "movementFtSpent": 0
+          },
+          "spellHistory": [],
+          "pendingCast": null,
+          "health": {
+            "alive": true,
+            "dead": false
+          },
+          "canAct": true
+        },
+        "target": {
+          "id": "target-01",
+          "willing": false,
+          "perceived": true,
+          "lineOfEffect": true,
+          "rangeFt": 20,
+          "body": {
+            "id": "target-01:body",
+            "owner": "target-01",
+            "location": {
+              "x": 20,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-ONLY-ARENA-11"
+            },
+            "bounds": [
+              [
+                17.5,
+                22.5
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                0,
+                6
+              ]
+            ],
+            "shape": "Medium5x5x6",
+            "alive": true,
+            "physical": true,
+            "support": "test-floor",
+            "targetable": true
+          },
+          "equipment": {
+            "carried": [],
+            "bodyBoundsComplete": true
+          },
+          "resources": {
+            "HP": 100,
+            "maxHP": 100,
+            "Wounds": 0
+          },
+          "health": {
+            "alive": true,
+            "dead": false,
+            "dying": false,
+            "stable": false
+          },
+          "turn": {
+            "regularTurn": 1,
+            "regularStarts": 1,
+            "regularEnds": 0,
+            "actionAvailable": true,
+            "actionsSpent": 0,
+            "movementFtAvailable": 30,
+            "movementFtSpent": 0,
+            "bonusActionAvailable": true,
+            "reactionAvailable": true
+          },
+          "conditions": [],
+          "inventory": {
+            "wornGear": [
+              {
+                "id": "target-worn-kit",
+                "owner": "target-01",
+                "custodian": "target-01",
+                "location": "worn",
+                "boundsContainedByBody": true
+              }
+            ],
+            "attackTool": {
+              "id": "TEST-ONLY-PANEL-BREAKER",
+              "owner": "target-01",
+              "custodian": "target-01",
+              "location": "held",
+              "usable": true,
+              "meleeReachFt": 5,
+              "fixtureOnly": true
+            }
+          },
+          "prisonSourceIds": [],
+          "awareness": {
+            "conscious": true,
+            "airPasses": true,
+            "lightPasses": true,
+            "soundPasses": true,
+            "handsAndComponentsAvailable": true
+          }
+        },
+        "otherCasters": [
+          {
+            "id": "owner-02",
+            "route": "Cleric/Necromancy",
+            "resources": {
+              "RP": 48,
+              "maxRP": 48
+            },
+            "turn": {
+              "actionAvailable": true,
+              "actionsSpent": 0
+            },
+            "spellAccess": {
+              "targetSpell": "imprisonment",
+              "rank": 9,
+              "school": "Necromancy",
+              "acquiredAtClassLevel": 17,
+              "ordinaryRankGate": 9,
+              "preparedOrKnown": true,
+              "paidRpCost": 26,
+              "rankedKnownCount": 18,
+              "ordinaryClericPreparation": true
+            },
+            "preparedOrKnown": true,
+            "spellHistory": [],
+            "pendingCast": null
+          }
+        ],
+        "castWindow": null,
+        "cell": null,
+        "sourceReceipts": {},
+        "eventInputs": [],
+        "events": [],
+        "canonicalEffect": false
+      },
+      "hash": "fabf3e452a5384e8f26b5f06ca3505f9d11487293a8fdf5898a3850526654f3b"
+    }
+  ]
+}

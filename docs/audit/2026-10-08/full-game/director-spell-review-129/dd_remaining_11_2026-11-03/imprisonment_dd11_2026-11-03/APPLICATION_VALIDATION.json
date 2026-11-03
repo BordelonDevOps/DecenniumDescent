@@ -1,0 +1,80 @@
+{
+  "id": "IM-DD11-APPLICATION-VALIDATION-01",
+  "status": "PASS",
+  "identity": "imprisonment",
+  "scope": "STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY",
+  "checks": [
+    {
+      "check": "index counts increment exactly one",
+      "pass": true
+    },
+    {
+      "check": "complete standalone procedure count increments one",
+      "pass": true
+    },
+    {
+      "check": "only Imprisonment authored-index row changes",
+      "pass": true
+    },
+    {
+      "check": "native catalog remains blocked and unchanged",
+      "pass": true
+    },
+    {
+      "check": "PC232-B02 and all qualification records remain open/retained",
+      "pass": true
+    },
+    {
+      "check": "next queue follows ordered Director contract",
+      "pass": true
+    },
+    {
+      "check": "counts and pending list agree",
+      "pass": true
+    },
+    {
+      "check": "independent semantic and replay validations pass",
+      "pass": true
+    },
+    {
+      "check": "package validation remains verified",
+      "pass": true
+    },
+    {
+      "check": "no runtime/campaign/blocker mutation",
+      "pass": true
+    }
+  ],
+  "checksPassed": 10,
+  "checksFailed": 0,
+  "index": {
+    "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+    "bytes": 1827916,
+    "sha256": "e106d6be0504ee8606a319dc6112cbbf23499a5c1255f47d73544479855328e9",
+    "crc32": "812f2a4c",
+    "gitBlobSha1": "008fd56c8af74738c12864bb8209ba4aff176cd9"
+  },
+  "queue": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_SPELL_QUEUE_491.json",
+    "bytes": 4040,
+    "sha256": "94c5b6851f1beb52e026c279e70ddfd79f0b014cb0f471c1e0a9bda0e237311f",
+    "crc32": "6c82eaee",
+    "gitBlobSha1": "edf26efe202c17d2127c6995ac4d2cb3a21ba01f"
+  },
+  "pendingAudit": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT5_PENDING_IDENTITY_AUDIT_491.json",
+    "bytes": 1261,
+    "sha256": "0d4caf44cfda3fa8395fb8f625b4579fc2e30a09ffec179b358a61a927b56a21",
+    "crc32": "269906ac",
+    "gitBlobSha1": "7cb9247edc3fff2004b336534442757e00a4bf23"
+  },
+  "handoff": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_491.json",
+    "bytes": 1680,
+    "sha256": "77f2738b7b7631fd657fa0cba9ffe36dcaa73be8029a97dcb5b03abb87c3b47c",
+    "crc32": "683ffd8c",
+    "gitBlobSha1": "832a89c6e5001eb61770174804eb223aaff5fc6a"
+  },
+  "nativeCatalogChanged": false,
+  "runtimeExecuted": false
+}
