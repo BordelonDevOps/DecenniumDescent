@@ -1,0 +1,48 @@
+{
+  "schema": "CODEX_TRANSCRIBED_GPT_DIRECTOR_REVIEW_V1",
+  "classification": "CODEX_TRANSCRIBED_GPT_UI_READBACK_NOT_GPT_AUTHORED",
+  "conversationUrl": "https://chatgpt.com/g/g-p-67f17555a8dc8191a2b5b81e6d8adc12-dungeon-crawler/c/6adc506d-8770-83ea-b64c-0345d9b9b682",
+  "readAtUtc": "2026-11-03T02:37:18Z",
+  "reviewedCommit": "9e948acc14d47cf8147dd6a5aebb4d439cd7b4bb",
+  "reviewedProposal": "docs/audit/2026-10-08/full-game/director-spell-review-129/fate_rewrite_ep480_interface_spec_2026-11-02/FATE_REWRITE_EP480_INTERFACE_PROPOSAL_03.json",
+  "reviewedProposalSha256": "8f4639fd21bbd076fc90e31eadded81bf473eef9d7170ad2a93fdb1d95ddf1de",
+  "disposition": "REVISE",
+  "readyForOwnerAdoption": false,
+  "sourceBindingReadback": "All supplied hashes, all 14 source bindings, and all four manifest entries match.",
+  "corrections": [
+    {
+      "id": "FR-P03-C01",
+      "pointer": "/compatibleRewrite/newPremises/scene/source",
+      "requirement": "Preserve the inherited ordinary operable gate from Return323 A /events/2/after/items/gate and EP480 /parentProjection/state/items/gate: open=false, destroyed=false, position [10,0,0], geometry 'blocks direct5ft lane; supported5ft-wide bypass at y5 is clear.' T1 does not open or remove it. Replace the false no-gate premise with this record. Supply bounded gate geometry needed to check the southern route and any rays crossing its location; label added geometry as proposed TEST_ONLY inputs. Revalidate orderedApproachMovements and conflict observer/anchor line of effect. The source establishes an obstruction, not optical transparency."
+    },
+    {
+      "id": "FR-P03-C02",
+      "pointer": "/compatibleRewrite/proposedRelease/sequence",
+      "requirement": "Move seenFamilies/lastSpell/spellsThisTurn to commitment before counters, together with Action and 26 RP payment and pending-cast set. Record Dissonance/Refrain unchanged at zero. Then record W response, resolve, fund W additional interaction before any alternative atomic settlement, and clear pending cast. Preserve all committed history on interruption; do not charge or update again on success."
+    },
+    {
+      "id": "FR-P03-C03",
+      "pointer": "/conflictingRequest/knowledgeRoutePremise/observer,/conflictingRequest/knowledgeRoutePremise/communication,/reversibilityPlan",
+      "requirement": "Both branches start at 34560000100, but proposed observation at 34560000099 predates the fork and is absent from preserved T1 knowledge. Do not execute it as a new pre-fork event. Add a conditional prior-observation knowledge input through a separate reversible post-fork overlay with proven visibility, clearly distinct from recorded T1 evidence, or provide another lawful post-fork information route. Explicitly order clock/expiry and knowledge writes before admission, recalculate request age, and keep internal reviewer IDs/hashes separate from character knowledge."
+    }
+  ],
+  "passedNotes": [
+    "One-time frozen-budget expenditure without replenishment.",
+    "Prevention expiry after inclusive deadline without rearming the terminal.",
+    "Movement arithmetic 14.5/29.2 ft.",
+    "Distinct final bodies with 0.2-ft clearance.",
+    "Counterspell distance 6.268174 ft.",
+    "Separate atomic custody target.",
+    "Sunk T interaction plus additional W interaction.",
+    "The 1-ms target age.",
+    "Cast payment 64 to 38 RP, first-family strain treatment, and admission-stage conflict refusal."
+  ],
+  "unchangedScope": {
+    "queue": "Queue481 836/12/0",
+    "openBlockers": ["TF192-B02", "TF192-B04"],
+    "historicalCases": 17,
+    "witnessSealed": false,
+    "constructionAuthorized": false
+  },
+  "reviewResponseSummary": "REVISE — Proposal 03 is not yet ready for owner adoption. No adoption or construction follows. Queue481 remains 836/12/0; TF192-B02/B04, all historical cases, question dispositions, qualifications and unsealed evidence remain unchanged."
+}
