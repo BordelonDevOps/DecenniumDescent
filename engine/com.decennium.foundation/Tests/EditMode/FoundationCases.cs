@@ -120,7 +120,7 @@ namespace Decennium.Foundation.Tests
                     byte[] bytes=Bytes(New());bytes[20]^=1;Throws<InvalidDataException>(()=>codec.Decode(bytes)); },
                 ["truncation_and_future_schema_rejected"] = () => {
                     byte[] bytes=Bytes(New());Throws<InvalidDataException>(()=>codec.Decode(bytes.Take(bytes.Length-1).ToArray()));
-                    bytes[4]=3;Resign(bytes);Throws<InvalidDataException>(()=>codec.Decode(bytes)); },
+                    bytes[4]=4;Resign(bytes);Throws<InvalidDataException>(()=>codec.Decode(bytes)); },
                 ["unknown_fixture_identity_rejected_on_restore"] = () => {
                     var v=new TestOnlyPolicy().Initial();v.Actors[0].Id="TEST_ONLY.unknown";
                     Throws<ArgumentException>(()=>new Simulation(new TestOnlyPolicy(),codec.Decode(codec.Encode(v)),ExecutionProfile.Laboratory)); },
@@ -209,6 +209,7 @@ namespace Decennium.Foundation.Tests
             AddDiceCases(cases);
             AddWorkSessionCases(cases, directory);
             AddPrototypePolicyCases(cases);
+            AddCropCases(cases, directory);
             return cases;
         }
         private static void Resign(byte[] bytes)

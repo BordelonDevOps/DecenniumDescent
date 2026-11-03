@@ -38,7 +38,7 @@ namespace Decennium.Foundation.Tests
                 legacy.Work=null;legacy.RuleClock=T(1,3);Throws<ArgumentException>(()=>codec.Encode(legacy));
                 var modern=new TestOnlyWorkPolicy().Initial();modern.Work=null;Throws<ArgumentException>(()=>codec.Encode(modern));
                 modern=new TestOnlyWorkPolicy().Initial();modern.Clock=1;Throws<ArgumentException>(()=>codec.Encode(modern));
-                modern=new TestOnlyWorkPolicy().Initial();modern.SchemaVersion=3;Throws<ArgumentException>(()=>codec.Encode(modern)); });
+                modern=new TestOnlyWorkPolicy().Initial();modern.SchemaVersion=4;Throws<ArgumentException>(()=>codec.Encode(modern)); });
             cases.Add("session_policy_and_release_gates_survive_new_schema",()=>{
                 var modern=new TestOnlyWorkPolicy();var legacy=new TestOnlyPolicy();
                 Throws<ArgumentException>(()=>new Simulation(legacy,modern.Initial(),ExecutionProfile.Laboratory));
@@ -146,7 +146,7 @@ namespace Decennium.Foundation.Tests
                 var original=Bytes(WorkSession());int mapping=FindMapping(original);
                 var changed=(byte[])original.Clone();changed[mapping]=(byte)'y';Resign(changed);Throws<InvalidDataException>(()=>codec.Decode(changed));
                 changed=(byte[])original.Clone();Array.Clear(changed,mapping-4-8,8);Resign(changed);Throws<InvalidDataException>(()=>codec.Decode(changed));
-                changed=(byte[])original.Clone();changed[4]=3;Resign(changed);Throws<InvalidDataException>(()=>codec.Decode(changed)); });
+                changed=(byte[])original.Clone();changed[4]=4;Resign(changed);Throws<InvalidDataException>(()=>codec.Decode(changed)); });
             cases.Add("session_schema2_invalid_embedded_lengths_and_trailing_reject",()=>{
                 var original=Bytes(WorkSession());int lengthOffset=FindMapping(original)+DiceStream.MappingVersion.Length;
                 var changed=(byte[])original.Clone();for(int i=0;i<4;i++)changed[lengthOffset+i]=255;Resign(changed);Throws<InvalidDataException>(()=>codec.Decode(changed));

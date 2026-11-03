@@ -8,7 +8,7 @@
 | Traversal | Run at twice walking pace using Dash; ten-foot run-up permits horizontal jumps up to STR feet and vertical jumps up to `max(0, 3 + STR modifier)` feet; standing jumps halve limits; ordinary climb/swim adds one movement foot per foot. |
 | Camp Greens | The linked full one-crop profile below, provisionally: 10×10-foot plot, one hour planting, seven days of suitable growth, fifteen-minute tending with eight pints, one hour harvest and eight pounds food, including its specified inputs, interruption, failure and freshness behavior. |
 
-The clock question did not select initial initiative phases or cooperative pause semantics. The traversal question did not adopt the proposed five-minute dig-site recipe or the rest of the environment draft. Camp Greens boundary ordering at maturity/care/harvest and disposition on failure still require an explicit specification; Codex sent those remaining questions to **Unity Rules Engine Development** after recording these approvals. Proceed with independent approved mechanics while resolving these details. No earlier negative status in the preserved proposal below overrides these later owner decisions.
+The clock question did not select initial initiative phases or cooperative pause semantics. The traversal question did not adopt the proposed five-minute dig-site recipe or the rest of the environment draft. Camp Greens boundary ordering and failure disposition, and equal initial initiative-slot allocation, were subsequently explicitly approved by the owner; see the follow-up receipt below. Proceed with independent approved mechanics while resolving these details. No earlier negative status in the preserved proposal below overrides these later owner decisions.
 
 Prepared through the owner-requested discussion in [Unity Rules Engine Development](https://chatgpt.com/c/6ae59513-3008-83e9-a5c4-8b6c5c5b4206). Original proposal response `2d36a873-aa5c-5ac3-9f30-cf00137cf6bb`, 2026-11-03. The following is retained as the original proposal; its request-for-approval wording is historical. Implementation and test status belong in the development handoff and trace, not this product decision receipt.
 
@@ -95,11 +95,11 @@ Additional proposed semantics:
 The concrete decision for Chris is whether to adopt **this prototype clock/pause policy, traversal baseline and one-crop profile** as labeled provisional mechanics. The recommendation itself approves none of them; marker/deadline and worker/reservation infrastructure can continue independently.
 
 
-## Follow-up boundary proposals — awaiting owner decision
+## Follow-up boundary decisions — owner approved
 
-GPT response `76afe920-a4ea-5bd5-a2b4-4619d56b0f40` acknowledged all three approvals and supplied the following remaining specifications. These are explicitly proposed completions, not yet adopted. The approval above continues to govern the already specified mechanics.
+GPT response `76afe920-a4ea-5bd5-a2b4-4619d56b0f40` supplied these completions. On2026-11-03 the owner explicitly answered “Adopt these Camp Greens details” and “Adopt equal initial initiative slots” to the two follow-up questions linking this full specification. The crop-local completion rules and initial slot convention below are therefore adopted for the prototype. Future joining/leaving/reordering remains a separate unresolved schedule policy.
 
-### Camp Greens boundary and failure completion
+### Camp Greens boundary and failure completion — adopted
 
 - Credit eligible growth and active labor over the elapsed interval before resolving its endpoint. No rounding into completion.
 - Growth reaching 168 hours exactly at care expiry earns maturity; tending finishing exactly at care expiry renews care without an uncovered interval. Growth earned before a season becomes unsuitable is retained.
@@ -115,7 +115,7 @@ Example: harvest starts at maturity M, but interruptions delay completion to M+4
 
 These crop-local priorities do not override separately sourced destructive hazards or define a universal event ordering rule.
 
-### Initial initiative checkpoint allocation
+### Initial initiative checkpoint allocation — adopted
 
 For N initial actors in established initiative order, at encounter start T0:
 

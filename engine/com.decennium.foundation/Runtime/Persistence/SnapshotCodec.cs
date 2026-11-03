@@ -30,13 +30,14 @@ namespace Decennium.Foundation
                 writer.Write(state.Receipts.Length);
                 foreach (var r in state.Receipts.OrderBy(x => x.Revision))
                 { WriteText(writer, r.Principal); WriteText(writer, r.Id); WriteText(writer, r.Fingerprint); writer.Write(r.Revision); }
-                if (state.SchemaVersion == Snapshot.WorkSchema)
+                if (state.SchemaVersion >= Snapshot.WorkSchema)
                 {
                     writer.Write(state.RuleClock.Numerator); writer.Write(state.RuleClock.Denominator);
                     WriteText(writer, DiceStream.MappingVersion);
                     byte[] work = new WorkLedgerCodec().Encode(state.Work);
                     writer.Write(work.Length); writer.Write(work);
                 }
+                if (state.SchemaVersion == Snapshot.CropSchema) CropRecordCodec.Write(writer,state);
                 writer.Flush(); payload = stream.ToArray();
             }
             if (payload.Length + 32 > MaxBytes) throw new InvalidDataException("Save exceeds size limit.");
@@ -55,7 +56,8 @@ namespace Decennium.Foundation
                 {
                     if (reader.ReadInt32() != Magic) throw new InvalidDataException("Unsupported save format.");
                     int schema = reader.ReadInt32();
-                    if (schema != Snapshot.Schema && schema != Snapshot.WorkSchema) throw new InvalidDataException("Unsupported save schema.");
+                    if (schema != Snapshot.Schema && schema != Snapshot.WorkSchema && schema != Snapshot.CropSchema)
+                        throw new InvalidDataException("Unsupported save schema.");
                     string fingerprint = ReadText(reader);
                     if (ReadText(reader) != RandomV1.Algorithm) throw new InvalidDataException("Unsupported RNG version.");
                     var s = new Snapshot { SchemaVersion = schema, ContentFingerprint = fingerprint, TestOnly = ReadBool(reader), Revision = reader.ReadInt64(),
@@ -69,7 +71,7 @@ namespace Decennium.Foundation
                     s.Receipts = new CommandReceipt[ReadCount(reader, Validation.MaxReceipts)];
                     for (int i = 0; i < s.Receipts.Length; i++) s.Receipts[i] = new CommandReceipt {
                         Principal = ReadText(reader), Id = ReadText(reader), Fingerprint = ReadText(reader), Revision = reader.ReadInt64() };
-                    if (schema == Snapshot.WorkSchema)
+                    if (schema >= Snapshot.WorkSchema)
                     {
                         s.RuleClock = new RuleTime(reader.ReadInt64(), reader.ReadInt64());
                         if (ReadText(reader) != DiceStream.MappingVersion) throw new InvalidDataException("Unsupported dice mapping.");
@@ -78,6 +80,7 @@ namespace Decennium.Foundation
                         if (work.Length != workLength) throw new EndOfStreamException();
                         s.Work = new WorkLedgerCodec().Decode(work);
                     }
+                    if (schema == Snapshot.CropSchema) CropRecordCodec.Read(reader,s);
                     if (stream.Position != length) throw new InvalidDataException("Unexpected trailing save data.");
                     Validation.Snapshot(s); return s;
                 }

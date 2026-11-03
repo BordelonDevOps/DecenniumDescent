@@ -1,0 +1,16 @@
+# Camp Greens and initial initiative review
+
+Reviewed 2026-11-03 by the existing separate `/root/source_review` agent under development brief section14. Review was read-only. The reviewer inspected implementation, tests, persistence bounds and adopted owner decisions. It performed two focused in-memory probes against already compiled assemblies to reproduce semantic restore defects; it made no file edits and did not rerun the full C# suite or Unity.
+
+Four confirmed findings were corrected before this checkpoint:
+
+1. Historical labor could reference another worker or fall outside a task's recorded start/terminal interval. The policy now checks worker identity, start and terminal upper bound. `crop_restore_rejects_wrong_historical_worker_or_labor_time` covers each variant.
+2. Later hypothetical crop deadlines or a large requested advance could overflow before an earlier representable milestone won. Advancement now compares exact BigInteger candidates before converting the selected endpoint; actual stored deadlines must still be representable. `crop_unreachable_deadline_overflow_does_not_block_earlier_time` and `crop_unrepresentable_stored_care_deadline_rolls_back` cover success and atomic rejection.
+3. A failed crop with no tending could be restored as mature and harvested, because elapsed time alone did not establish cared growth. Growth is now bounded by the union of completed planting/tending care windows, clipped to maturity/closure/current time. `crop_restore_growth_requires_recorded_nonoverlapping_care` covers untended, overlapping-care and elapsed-only forgeries.
+4. A completed task could report an endpoint later than its last labor interval, extending care or altering settlement timing. Completed tasks now end exactly with their last labor interval; cancellation retains the looser historical upper bound. `crop_restore_complete_task_must_end_with_its_actual_labor` covers planting, tending and harvest. Additional phase guards reject tending before planting completion and harvest before maturity.
+
+The final reviewer checked the changed policy/test hashes against `engine/artifacts/run-20261103T205409061Z-c6fe3139/results.json` and reported no new actionable findings in the fixes. That primary-agent run passed296/296 cases. Initial initiative allocation and outgoing-End-before-incoming-Start ordering match the owner's initial-only approval; future roster changes were not implemented.
+
+The structural maximum-size regression serialized977,634 bytes, under the existing1MiB save limit. The reviewer independently estimated an even more conservative1,016,834-byte bound by allowing every task its maximum input-reference slots, although valid cross-references further limit those slots through128 reservations. These are technical bounds, not game capacities.
+
+Limits: care-history validation is a necessary upper bound, not replay of unrecorded suitable-condition history. Checksums detect corruption, not malicious authentication. The host supplies a prepared plot, capable companion and tools; full geometry, acquisition, worker legality, hazards, seasons, inventory use, general scheduler, Unity behavior and the complete game loop remain outside this increment. No release approval is implied.

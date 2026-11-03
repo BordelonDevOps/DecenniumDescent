@@ -1,0 +1,588 @@
+{
+  "schemaVersion": 1,
+  "recordedUtc": "2026-11-03T20:54:31.544436+00:00",
+  "purpose": "Current crop lifecycle, schema3 persistence and approved initial initiative provenance; bounded prototype, not full engine or release certification",
+  "sourceRevision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+  "branch": "Engine",
+  "ownerDirection": "Develop the complete engine in C# first; consult Unity Rules Engine Development then owner when both stuck",
+  "guidanceChat": "https://chatgpt.com/c/6ae59513-3008-83e9-a5c4-8b6c5c5b4206",
+  "status": "PARTIAL / PROVISIONAL / OWNER-APPROVED PROTOTYPE",
+  "productionRuntimeSelectionEnabled": false,
+  "releaseApproved": false,
+  "sourcePythonExecuted": false,
+  "sourceByteDomain": "Exact checked-out source bytes at pinned Engine base; older CRLF snapshots are retained separately",
+  "sources": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CHARACTER_CREATION_PLAYTEST.md",
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "sha256": "5c9f9ab4c9b485546a249637a335f56193dd3d58e58c451f9561c4e330c09a84",
+      "snapshot": "../2026-11-03-engine-expansion/sources/CHARACTER_CREATION_PLAYTEST.md"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/playtest/character_foundation.json",
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "sha256": "21e12af81f191abe52d1e3272ed1f57c6446ed3d4487cafbd5609dff08e56a77",
+      "snapshot": "../2026-11-03-engine-expansion/sources/character_foundation.json"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/tools/character_foundation.py",
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "sha256": "25e49a3342ca19aaf6c3b1623e1fd04f57b543312ea3d2098f93ca391c54464b",
+      "snapshot": "../2026-11-03-engine-expansion/sources/character_foundation.py"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/tools/validate_character_foundation.py",
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "sha256": "8940f235bc980607d379d077c8b1c007d6d67b67e2471f49a80f6d38229afe75",
+      "snapshot": "../2026-11-03-engine-expansion/sources/validate_character_foundation.py"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md",
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "sha256": "69d0e64394de58c4d86a3ec57cf282978d131a1a9c1eaa21632bb7d3b72562da",
+      "snapshot": "../2026-11-03-engine-expansion/sources/CORE_RESOLUTION_PLAYTEST.md"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/tools/core_playtest_rules.py",
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "sha256": "a162117cf2c0c96a77ef5e594ce7247593930c57e6223fc7291ab12fc45c8d7d",
+      "snapshot": "../2026-11-03-engine-expansion/sources/core_playtest_rules.py"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/tools/validate_core_playtests.py",
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "sha256": "901089252ebcec963ca5cd524c7c23e8604cde071ccf345ce8935db28886b8ba",
+      "snapshot": "../2026-11-03-engine-expansion/sources/validate_core_playtests.py"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CUSTOM_CONDITION_BINDINGS.md",
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "sha256": "745cbd788c454e4a9a77ce30eb7ba62f27b2a84dc20b2a870ff4ca2482356830",
+      "snapshot": "../2026-11-03-engine-expansion/sources/CUSTOM_CONDITION_BINDINGS.md"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/tools/custom_condition_rules.py",
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "sha256": "3708ff099026a66288fdb791a129e5ce57a1bd3eefa47cd8d7bb3fbbaf20dfd4",
+      "snapshot": "../2026-11-03-engine-expansion/sources/custom_condition_rules.py"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/MAXIMUM_HP_PLAYTEST.md",
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "sha256": "c3771a0b40f8a969b20c152ec66db3789ecdf0c18033a7cae460bea6ccea516a",
+      "snapshot": "../2026-11-03-engine-expansion/sources/MAXIMUM_HP_PLAYTEST.md"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "sha256": "f90d039142145fbd31c37992ebece70d7926dc4b6081e340f9a2fd9dc7237bc6",
+      "snapshot": "../2026-11-03-engine-expansion/sources/COMBAT_ACTION_PLAYTEST.md"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/tools/combat_playtest_rules.py",
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "sha256": "e115ffba217f56e00f36b49a86a146f8aaef0a14b062628c549efd6925f45d8b",
+      "snapshot": "../2026-11-03-engine-expansion/sources/combat_playtest_rules.py"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/tools/validate_combat_playtests.py",
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "sha256": "cd37a90a2d5502e3ba6c19a3f7de39532719d194893add410d814bb9f4fb32c6",
+      "snapshot": "../2026-11-03-engine-expansion/sources/validate_combat_playtests.py"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_PLAYER_BOOK.md",
+      "sha256": "4c58b9f7063e562b785b8db6006699d3c4f68edd0e697d06db69662ba9b7e480",
+      "snapshot": "../2026-11-03-engine-expansion/sources/EXPEDITION_PLAYER_BOOK.md",
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4"
+    },
+    {
+      "path": "docs/unity/DEVELOPMENT_BRIEF.md",
+      "sha256": "cfca586c7351f7ac913523a3b9cde076bc3e92f4301404f1f78b608db6145369",
+      "snapshot": "../2026-11-03-engine-expansion/sources/DEVELOPMENT_BRIEF.md",
+      "revision": "935d14398da013e6b7fb411f73c8e5a63fd0c8ef"
+    },
+    {
+      "path": "docs/unity/PROTOTYPE_RULE_DECISIONS.md",
+      "sourceKind": "Owner decision in active Codex chat, 2026-11-03; new prototype policies only",
+      "snapshot": "OWNER_DECISIONS.md",
+      "sha256": "57d0e2d692bb0587ff3f1a3ef380ee727da6d1a70071ec7a6625588a696d2eea"
+    }
+  ],
+  "inheritedAuthority": "../2026-11-03-characters/SOURCE_BINDINGS.json",
+  "characterReconciliation": "../2026-11-03-rule-map/CHARACTER_SOURCE_RECONCILIATION.json",
+  "implementations": [
+    {
+      "workItems": [
+        "CHR-02"
+      ],
+      "scope": "Point-buy budget; exact class levels/acquisition order; new-class entry gates; shared RP capacity sorting",
+      "code": [
+        "Laboratory/Model/PlaytestCharacterBuild.cs",
+        "Laboratory/Model/CharacterProfiles.cs"
+      ],
+      "sourceSections": [
+        "Abilities and training",
+        "Multiclass entry and class features",
+        "One shared RP pool"
+      ],
+      "tests": [
+        "build_abilities_exact_names",
+        "build_class_levels_detached_readonly",
+        "build_class_levels_empty_and_combined_cap",
+        "build_class_levels_exact_order_membership",
+        "build_class_levels_invalid_individual_levels_and_names",
+        "build_class_levels_null_rejected",
+        "build_class_levels_total_and_order",
+        "build_entry_all_failures_ordered_and_held_duplicates_deduplicated",
+        "build_entry_every_held_class_checked",
+        "build_entry_not_first_class_or_retention_or_existing_advancement",
+        "build_entry_source_all_pass_and_agent_constitution",
+        "build_entry_unknown_names_validated_before_exemptions",
+        "build_point_buy_each_price",
+        "build_point_buy_rejects_overspend_counts_ranges",
+        "build_point_buy_source_arrays_and_unspent_budget",
+        "build_profile_bard",
+        "build_profile_cleric",
+        "build_profile_crimson-agent",
+        "build_profile_dragoon",
+        "build_profile_druid",
+        "build_profile_mage",
+        "build_profile_mirrorsage",
+        "build_profile_monk",
+        "build_profile_oracle",
+        "build_profile_paladin",
+        "build_profile_ranger",
+        "build_profile_shaman",
+        "build_profile_soldier",
+        "build_profile_thief",
+        "build_profile_tinker",
+        "build_profile_warrior",
+        "build_profile_wizard",
+        "build_rp_acquisition_tie_not_dictionary_order",
+        "build_rp_level_precedes_pool_and_pool_precedes_acquisition",
+        "build_rp_none_and_single_constituent",
+        "build_rp_quarter_rounds_up",
+        "build_rp_rejects_invalid_build_including_none_tier",
+        "build_rp_result_detached_and_readonly",
+        "build_rp_three_class_source_example",
+        "build_rp_tier_precedes_level_and_capacity_can_fall"
+      ],
+      "excluded": [
+        "complete character creation",
+        "grants and acquisition schedules",
+        "state/command/save integration",
+        "RP expenditure/recovery"
+      ]
+    },
+    {
+      "workItems": [
+        "TAC-04",
+        "TAC-06"
+      ],
+      "scope": "Post-defense damage, Wounds/injuries, death-save transitions, healing, stabilization, absolute recovery deadline, Wound removal, HP-prohibition bridge, capacity-only clamp",
+      "code": [
+        "Laboratory/Model/PlaytestLife.cs"
+      ],
+      "sourceSections": [
+        "Resolve a damage event",
+        "Zero HP and recovery",
+        "Wounds and Critical state",
+        "Linked injuries",
+        "Decay oracle.decay",
+        "Capacity changes are not HP damage or healing"
+      ],
+      "tests": [
+        "life_at_zero_instant_death_skips_failures",
+        "life_blocked_natural_twenty_stabilizes_without_healing",
+        "life_blocked_recovery_retains_deadline_and_cannot_heal",
+        "life_capacity_change_preserves_state_and_temp_hp",
+        "life_critical_healing_ceiling_does_not_reduce_existing_hp",
+        "life_damage_at_zero_and_critical_failures",
+        "life_dead_cannot_receive_ordinary_healing_or_treatment",
+        "life_deadline_overflow_rejected_without_mutation",
+        "life_death_natural_one_and_modified_other_rolls",
+        "life_death_natural_twenty_overrides_modifier",
+        "life_death_saves_regular_once_only",
+        "life_duplicate_injuries_keep_separate_links",
+        "life_failed_save_at_three_kills_without_injury_roll",
+        "life_fully_buffered_and_maiming",
+        "life_healing_clears_counters_only_when_positive",
+        "life_immutable_collections",
+        "life_instant_death_precedes_wounds_and_knockout",
+        "life_invalid_state_rejected",
+        "life_knockout_cannot_override_fatal_wound",
+        "life_knockout_sets_absolute_deadline",
+        "life_long_arithmetic_and_half_threshold",
+        "life_one_save_for_overlapping_triggers",
+        "life_ordinary_creature_death_or_knockout",
+        "life_post_temp_threshold",
+        "life_required_rolls_and_rejection_leave_input_intact",
+        "life_sampled_damage_state_invariants",
+        "life_severe_third_wound_links_one_injury",
+        "life_stabilize_does_not_reroll_existing_deadline",
+        "life_stable_buffer_preserves_deadline_then_damage_cancels",
+        "life_stable_recovery_once_on_elapsed_clock",
+        "life_third_success_stabilizes_and_third_failure_kills",
+        "life_third_wound_uses_pre_event_penalty",
+        "life_wound_selection_and_recovery_boundaries"
+      ],
+      "sampledDamageStates": 10944,
+      "excluded": [
+        "damage generation and defenses",
+        "legal action/target selection",
+        "survival replacements",
+        "general condition/effect dispatch",
+        "injury penalty aggregation",
+        "medical work/inventory",
+        "resurrection",
+        "persisted combat state"
+      ]
+    },
+    {
+      "workItems": [
+        "TAC-01",
+        "TAC-02",
+        "TAC-03"
+      ],
+      "scope": "Pure movement cost/budget ledger; ordinary Reaction refresh; extra-full-Action cap; reinforcement first round",
+      "code": [
+        "Laboratory/Model/PlaytestCombatBudgets.cs"
+      ],
+      "sourceSections": [
+        "Encounter and action resources",
+        "Movement and geometry"
+      ],
+      "tests": [
+        "combat_extra_action_cap_and_no_recursive_grant",
+        "combat_extra_action_history_detached_and_validated",
+        "combat_movement_285_sampled_mode_states",
+        "combat_movement_invalid_inputs_and_overflow",
+        "combat_movement_spent_cost_survives_mode_changes",
+        "combat_multiple_legal_dashes_add_current_speed",
+        "combat_reaction_extra_turn_and_round_do_not_refresh",
+        "combat_reaction_initial_then_own_start_same_round",
+        "combat_reaction_prohibition_preserves_available_resource",
+        "combat_reinforcement_complete_ordered_slot",
+        "combat_rejected_movement_preserves_ledger",
+        "combat_separate_special_budgets",
+        "combat_standing_floor_and_zero_speed",
+        "combat_surprise_blocks_until_first_regular_end",
+        "combat_terrain_crawl_squeeze_additive"
+      ],
+      "sampledMovementStates": 285,
+      "excluded": [
+        "full encounter scheduler",
+        "initiative roll/tie resolution",
+        "action/feature legality",
+        "Ready and stance lifecycle",
+        "geometry/collision/pathfinding",
+        "exploration clock",
+        "state/command/save integration"
+      ]
+    },
+    {
+      "code": [
+        "Runtime/Core/RuleTime.cs",
+        "Laboratory/Model/PlaytestTiming.cs"
+      ],
+      "scope": "Exact rational time, virtual/absolute/Ready effect deadlines and stable application ordering",
+      "sourceSections": [
+        "Time and event ordering",
+        "Ready"
+      ],
+      "excluded": [
+        "initial phase assignment",
+        "scheduler",
+        "full event dispatch",
+        "whole-state serialization"
+      ],
+      "tests": [
+        "time_comparison_widens_intermediate_products",
+        "time_effect_application_sequence_and_ordinal_ties",
+        "time_exact_rational_normalization_and_default",
+        "time_fractional_phase_and_preserved_virtual_schedule",
+        "time_future_target_end_and_current_end_exclusion",
+        "time_invalid_counts_and_unrepresentable_deadline",
+        "time_invalid_fraction_and_overflow_rejected",
+        "time_marker_at_or_after_excluded_end_does_not_double_skip",
+        "time_ordering_rejects_duplicate_or_invalid_records",
+        "time_ready_effect_begins_on_release",
+        "time_source_three_round_buff_and_absolute_duration"
+      ],
+      "workItems": [
+        "TAC-01"
+      ]
+    },
+    {
+      "code": [
+        "Runtime/Core/WorkLedger.cs",
+        "Runtime/Persistence/WorkLedgerCodec.cs"
+      ],
+      "scope": "Technical shared worker/resource reservation state and versioned component payload",
+      "sourceSections": [
+        "Brief sections6-7,10,12",
+        "Expedition FL-02/03"
+      ],
+      "excluded": [
+        "authorization and expected-revision command boundary",
+        "job-specific lifecycle and actual work credit",
+        "recipe/catch/output grants",
+        "whole-save embedding",
+        "filesystem/crash validation",
+        "schema1 migration"
+      ],
+      "tests": [
+        "work_adjacent_intervals_allowed_overlap_rejected",
+        "work_atomic_rejection_on_stock_or_worker_conflict",
+        "work_cancel_future_preserves_prior_time_and_costs",
+        "work_component_corruption_unknown_schema_and_malformed_count",
+        "work_component_encoding_stable_across_input_order",
+        "work_component_roundtrip_retains_settlement_and_intervals",
+        "work_consumption_once_and_replay_safe",
+        "work_detached_immutable_records",
+        "work_different_workers_and_passive_time",
+        "work_identity_references_and_record_guards",
+        "work_large_quantities_do_not_overflow_reservation_sum",
+        "work_multiple_claims_cannot_overreserve",
+        "work_release_once_has_no_refund_or_physical_transfer",
+        "work_reserve_is_not_consumption_or_transfer",
+        "work_settlement_cannot_use_another_jobs_claim"
+      ],
+      "workItems": [
+        "MGT-01",
+        "MGT-02",
+        "FND-02"
+      ]
+    },
+    {
+      "code": [
+        "Runtime/Core/DiceStream.cs",
+        "Laboratory/Model/PlaytestDice.cs"
+      ],
+      "scope": "Versioned unbiased nonzero-word rejection mapping; d20 advantage/disadvantage presence selection",
+      "sourceSections": [
+        "Core Rolls",
+        "Brief Determinism"
+      ],
+      "excluded": [
+        "advantage-source eligibility",
+        "authoritative command draw ownership",
+        "statistical independence/seed quality",
+        "cryptographic use"
+      ],
+      "tests": [
+        "dice_advantage_and_disadvantage_consume_two_dice",
+        "dice_advantage_presence_cancellation_not_source_count",
+        "dice_cancelled_roll_consumes_only_one_die",
+        "dice_invalid_requests_rejected",
+        "dice_rejection_tail_and_exact_acceptance_boundary",
+        "dice_replay_state_and_boundaries",
+        "dice_seed_one_literal_nonzero_domain_mapping"
+      ],
+      "workItems": [
+        "FND-03",
+        "RUL-05"
+      ]
+    },
+    {
+      "code": [
+        "Runtime/Core/Simulation.cs",
+        "Runtime/Persistence/SnapshotCodec.cs",
+        "Laboratory/Model/TestOnlyPolicy.cs",
+        "Laboratory/Model/TestOnlyWorkPolicy.cs"
+      ],
+      "scope": "Explicit schema2 fixture with atomic world/work/exact time/RNG/receipt save and transaction integration; preserved schema1 bytes; incompatible save destination rejected",
+      "sourceSections": [
+        "Development brief sections5-7,10-11,14",
+        "Owner C#-first full-engine direction; technical fixture authorization"
+      ],
+      "tests": [
+        "session_all_maximum_fields_fit_existing_save_limit",
+        "session_detached_snapshot_cannot_replace_owned_ledger",
+        "session_disk_commit_failure_preserves_entire_previous_state",
+        "session_duplicate_and_fresh_id_cannot_repeat_settlement",
+        "session_exact_clock_addition_is_not_legacy_tick_conversion",
+        "session_exact_clock_overflow_and_reversal_roll_back",
+        "session_explicit_recovery_restores_complete_work_snapshot",
+        "session_explicit_schemas_cannot_drop_or_invent_work",
+        "session_legacy_golden_bytes_and_schema_preserved",
+        "session_partial_work_world_time_rng_mutations_roll_back",
+        "session_policy_and_release_gates_survive_new_schema",
+        "session_policy_cannot_downgrade_or_upgrade_schema",
+        "session_release_has_no_refund_draw_or_worker_time_credit",
+        "session_reservation_commits_with_one_revision_and_receipt",
+        "session_save_refuses_schema_content_or_scope_overwrite",
+        "session_save_restore_retries_preserve_pending_and_settled_work",
+        "session_schema2_corruption_and_inner_checksum_reject",
+        "session_schema2_invalid_embedded_lengths_and_trailing_reject",
+        "session_schema2_unknown_mapping_and_invalid_rational_reject",
+        "session_settlement_commits_stock_rng_and_receipt_together",
+        "session_work_authority_stale_payload_and_revocation_reject",
+        "session_worker_reference_and_embedded_record_capacity_reject",
+        "session_world_progress_shares_work_save_and_receipts"
+      ],
+      "excluded": [
+        "production jobs and labor credit",
+        "character/effect/encounter save state",
+        "implicit migration",
+        "power-loss crash durability",
+        "network or Unity runtime validation"
+      ],
+      "workItems": [
+        "FND-01",
+        "FND-02",
+        "FND-03",
+        "MGT-01",
+        "MGT-02"
+      ]
+    },
+    {
+      "code": [
+        "Laboratory/Model/PrototypeClock.cs",
+        "Laboratory/Model/PrototypeTraversal.cs"
+      ],
+      "scope": "Owner-approved prototype arithmetic:1:1 live exploration, solo pause, no offline delta, bounded activity targets, absolute six-second round window; Dash2x pace, strength jump limits in half-feet, ordinary climb/swim surcharge; approved exact equal initial initiative slots with outgoing End before incoming Start",
+      "sourceSections": [
+        "Owner approvals recorded at top of OWNER_DECISIONS.md",
+        "Existing character ability modifier and combat terrain-cost helpers"
+      ],
+      "tests": [
+        "prototype_clock_bounds_before_unrepresentable_target",
+        "prototype_declared_activities_spend_time_in_bounded_segments",
+        "prototype_dedicated_speed_removes_only_traversal_surcharge",
+        "prototype_every_solo_pause_reason_freezes_shared_time",
+        "prototype_exploration_advances_exact_one_to_one",
+        "prototype_exploration_stops_at_earliest_supplied_milestone",
+        "prototype_initial_slots_detached_and_prior_deadline_unchanged",
+        "prototype_initial_slots_preserve_exact_offset_and_supplied_order",
+        "prototype_initial_slots_require_valid_resolved_roster",
+        "prototype_initial_three_actor_slots_match_owner_example",
+        "prototype_jump_runup_strength_and_modifier_examples",
+        "prototype_jump_zero_low_and_large_scores",
+        "prototype_ordinary_climb_swim_add_one_per_foot",
+        "prototype_restore_never_awards_offline_time",
+        "prototype_round_decisions_pause_and_deadlines_interrupt_resolution",
+        "prototype_round_reversal_overrun_and_overflow_reject",
+        "prototype_round_total_six_seconds_for_any_checkpoint_count",
+        "prototype_run_requires_paid_dash_and_exact_double_pace",
+        "prototype_running_pace_rejects_decimal_precision_loss",
+        "prototype_standing_jump_retains_half_foot_limits",
+        "prototype_traversal_invalid_inputs_and_overflow_reject"
+      ],
+      "excluded": [
+        "wall-clock/input adapter",
+        "automatic scheduler or event dispatch",
+        "round identity persistence",
+        "cooperative pause",
+        "collision/route/run-up legality",
+        "fractional movement debit",
+        "future joining/leaving/reordering schedule policy"
+      ],
+      "workItems": [
+        "EXP-01",
+        "EXP-02",
+        "TAC-01"
+      ]
+    },
+    {
+      "code": [
+        "Runtime/Core/CropRecords.cs",
+        "Runtime/Core/Simulation.cs",
+        "Runtime/Persistence/CropRecordCodec.cs",
+        "Runtime/Persistence/SnapshotCodec.cs",
+        "Laboratory/Model/CampGreens.cs",
+        "Laboratory/Model/TestOnlyCropPolicy.cs"
+      ],
+      "scope": "Owner-approved Camp Greens lifecycle in a bounded prepared-plot host: committed inputs, exclusive active labor, passive cared growth, interruption, neglect/maturity/harvest/freshness boundaries, once-only physical output and atomic schema3 save/restore",
+      "sourceSections": [
+        "OWNER_DECISIONS.md full Camp Greens profile and adopted boundary/failure completion",
+        "Expedition Player Book FL-02/FL-03 shared workers and elapsed time",
+        "Development brief sections5-7,10-11,14"
+      ],
+      "tests": [
+        "crop_active_tending_and_harvest_disk_resume_match_continuation",
+        "crop_care_expiry_pauses_growth_and_completion_resumes_retained_growth",
+        "crop_chunked_advances_match_same_domain_state",
+        "crop_codec_corruption_future_schema_and_truncation_reject",
+        "crop_complete_harvest_once_at_plot_without_seeds_or_supply",
+        "crop_condition_changes_require_separate_host_authority",
+        "crop_conditions_alone_cannot_reset_missing_care_failure",
+        "crop_failed_disk_commit_preserves_progress_inputs_and_receipts",
+        "crop_failure_at_48_continuous_hours_has_no_refund_or_yield",
+        "crop_first_hour_is_active_growth_begins_after_completion",
+        "crop_food_expiry_is_exact_and_does_not_delete_physical_lot",
+        "crop_harvest_exact_deadline_is_timely_but_expired_food_not_edible",
+        "crop_incomplete_harvest_at_deadline_fails_without_food",
+        "crop_interrupted_harvest_retains_first_freshness_origin",
+        "crop_large_advance_stops_at_first_milestone",
+        "crop_maturity_cancels_unfinished_tending_without_refund",
+        "crop_missing_inputs_rejects_every_partial_change",
+        "crop_new_batch_does_not_reset_or_delete_prior_food",
+        "crop_partial_harvest_is_labor_not_inventory",
+        "crop_passive_growth_does_not_reserve_worker",
+        "crop_planting_interruption_retains_progress_and_spent_inputs",
+        "crop_read_view_cannot_mutate_plot_task_or_food_state",
+        "crop_recovery_strictly_before_failure_preserves_batch",
+        "crop_replant_cannot_reset_unsuitable_plot",
+        "crop_replant_failed_plot_preserves_history_and_requires_new_inputs",
+        "crop_restore_complete_task_must_end_with_its_actual_labor",
+        "crop_restore_growing_mature_and_harvested_states",
+        "crop_restore_growth_requires_recorded_nonoverlapping_care",
+        "crop_restore_partial_work_continues_identically_without_offline_credit",
+        "crop_restore_rejects_wrong_historical_worker_or_labor_time",
+        "crop_restore_work_cannot_begin_before_its_phase",
+        "crop_schema2_frozen_golden_still_roundtrips_unchanged",
+        "crop_schema3_maximum_structural_state_fits_save_capacity",
+        "crop_schema_guards_release_and_hidden_records",
+        "crop_seven_growth_days_mature_at_care_expiry",
+        "crop_start_commits_inputs_once_without_growth_or_yield",
+        "crop_tending_completing_at_failure_deadline_loses",
+        "crop_tending_pause_resume_never_rebuys_water",
+        "crop_tending_water_at_start_and_care_only_on_completion",
+        "crop_unreachable_deadline_overflow_does_not_block_earlier_time",
+        "crop_unrepresentable_stored_care_deadline_rolls_back",
+        "crop_unsuitable_conditions_pause_growth_without_restarting_care",
+        "crop_valid_checksum_cannot_hide_invalid_fields",
+        "crop_work_receipt_replay_after_disk_restore",
+        "crop_worker_location_authority_and_busy_guards"
+      ],
+      "excluded": [
+        "production plot/route/tool acquisition and legality",
+        "full worker capability/AI assignment",
+        "hazards or generic event ordering",
+        "food use, transport, carrying or Supply conversion",
+        "season/world simulation",
+        "unbounded history or automatic save migration",
+        "Unity execution, full game loop and release promotion"
+      ],
+      "workItems": [
+        "FND-01",
+        "FND-02",
+        "MGT-01",
+        "MGT-02",
+        "MGT-03",
+        "MGT-08"
+      ]
+    }
+  ],
+  "engineeringGuards": [
+    "Immutable inputs/results; bounded checked arithmetic; negative/invalid inputs fail closed",
+    "Stable must retain its recorded deadline; never invent one",
+    "Ordinary zero-HP creature without death saves must already be Dead or legally Stable",
+    "Schema1 retains exact golden bytes; schema2 has exactly one active time representation",
+    "New work fixture cannot overwrite incompatible schema/content/TestOnly saves",
+    "256 work records per collection keep worst-case aggregate within1MiB; technical bound, not gameplay capacity",
+    "Schema3 bounds ledger collections at128, crop/plot/food records at8 and tasks per batch at32; technical session bounds, not gameplay capacities",
+    "Stored output/booking/care timestamps must be representable; hypothetical later deadlines are compared exactly before choosing the earliest target",
+    "Historical labor must match task worker and timestamps; physical harvest output is retained when edible freshness expires",
+    "Initial slots approved; later membership/calendar proposals remain unadopted"
+  ],
+  "validation": {
+    "headless": "HEADLESS_RESULTS.json",
+    "independentReview": "INDEPENDENT_REVIEW.md",
+    "staticPackage": "PACKAGE_RESULTS.json",
+    "sourceBindings": "VALIDATION.json"
+  },
+  "baselineEngineRevision": "1ca99b2e1b9f27977f7f53e3aca6568686b8deae"
+}

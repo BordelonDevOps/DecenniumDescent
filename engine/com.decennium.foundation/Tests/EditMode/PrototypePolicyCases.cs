@@ -1,6 +1,7 @@
 #if DECENNIUM_TEST_ONLY && (UNITY_EDITOR || HEADLESS_TESTS)
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Decennium.Foundation.Laboratory;
 
 namespace Decennium.Foundation.Tests
@@ -89,6 +90,31 @@ namespace Decennium.Foundation.Tests
                 Throws<ArgumentException>(()=>round.AdvanceTo(T(1),SoloPause.None));
                 Throws<ArgumentException>(()=>round.AdvanceTo(T(7),SoloPause.None));
                 Throws<ArgumentException>(()=>round.AdvanceTo(T(3),(SoloPause)16)); });
+            cases.Add("prototype_initial_three_actor_slots_match_owner_example",()=>{
+                var schedule=new PrototypeInitialInitiative(T(0),new[]{"first","second","third"});
+                Require(schedule.Slots.Select(x=>x.Start).SequenceEqual(new[]{T(0),T(2),T(4)})
+                    && schedule.Slots.Select(x=>x.End).SequenceEqual(new[]{T(2),T(4),T(6)}),"Initial slots differ from0-2,2-4,4-6.");
+                Require(schedule.Boundaries[1].ActorId=="first" && schedule.Boundaries[1].Kind==InitialSlotBoundaryKind.End
+                    && schedule.Boundaries[2].ActorId=="second" && schedule.Boundaries[2].Kind==InitialSlotBoundaryKind.Start
+                    && schedule.Boundaries[1].At==schedule.Boundaries[2].At,"Outgoing end must precede incoming start."); });
+            cases.Add("prototype_initial_slots_preserve_exact_offset_and_supplied_order",()=>{
+                var schedule=new PrototypeInitialInitiative(T(1,3),new[]{"z","a","m","b","y","q","c"});
+                Require(schedule.Slots[0].ActorId=="z" && schedule.Slots[1].ActorId=="a" && schedule.Slots[1].Start==T(25,21)
+                    && schedule.Slots[6].End==T(19,3),"Order or fractional initial checkpoints changed.");
+                Require(new PrototypeInitialInitiative(T(5),new[]{"only"}).Slots[0].End==T(11),"Single actor round."); });
+            cases.Add("prototype_initial_slots_detached_and_prior_deadline_unchanged",()=>{
+                var ids=new[]{"one","two"};var schedule=new PrototypeInitialInitiative(T(0),ids);ids[0]="mutated";
+                var captured=schedule.Slots[0].End;var later=new PrototypeInitialInitiative(T(6),new[]{"two","one","new"});
+                Require(schedule.Slots[0].ActorId=="one" && captured==T(3) && later.Slots[0].End==T(8),"New allocation rewrote captured markers.");
+                Throws<NotSupportedException>(()=>((IList<InitialInitiativeSlot>)schedule.Slots).Clear());
+                Throws<NotSupportedException>(()=>((IList<InitialSlotBoundary>)schedule.Boundaries).Clear()); });
+            cases.Add("prototype_initial_slots_require_valid_resolved_roster",()=>{
+                Throws<ArgumentNullException>(()=>new PrototypeInitialInitiative(T(0),null));
+                Throws<ArgumentException>(()=>new PrototypeInitialInitiative(T(0),Array.Empty<string>()));
+                Throws<ArgumentException>(()=>new PrototypeInitialInitiative(T(0),new[]{"same","same"}));
+                Throws<ArgumentException>(()=>new PrototypeInitialInitiative(T(0),new[]{"bad id"}));
+                Throws<ArgumentException>(()=>new PrototypeInitialInitiative(T(0),Enumerable.Range(0,65).Select(i=>"actor"+i)));
+                Throws<OverflowException>(()=>new PrototypeInitialInitiative(T(long.MaxValue),new[]{"actor"})); });
         }
     }
 }

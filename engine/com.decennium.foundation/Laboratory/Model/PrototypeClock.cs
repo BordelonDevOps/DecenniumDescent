@@ -1,5 +1,7 @@
 #if DECENNIUM_TEST_ONLY && (UNITY_EDITOR || DEVELOPMENT_BUILD || HEADLESS_TESTS)
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Numerics;
 
 namespace Decennium.Foundation.Laboratory
@@ -73,6 +75,50 @@ namespace Decennium.Foundation.Laboratory
             if(checkpoint<Current || checkpoint>End) throw new ArgumentException("Checkpoint is outside remaining round.");
             RuleTime bounded=PrototypeClock.StopAtMilestone(Current,checkpoint,nextMilestone);
             return pause==SoloPause.None?new PrototypeRoundWindow(Start,bounded):this;
+        }
+    }
+
+    public enum InitialSlotBoundaryKind { End, Start }
+    public sealed class InitialSlotBoundary
+    {
+        public string ActorId { get; }
+        public RuleTime At { get; }
+        public InitialSlotBoundaryKind Kind { get; }
+        internal InitialSlotBoundary(string actorId,RuleTime at,InitialSlotBoundaryKind kind)
+        { ActorId=actorId;At=at;Kind=kind; }
+    }
+    public sealed class InitialInitiativeSlot
+    {
+        public string ActorId { get; }
+        public RuleTime Start { get; }
+        public RuleTime End { get; }
+        internal InitialInitiativeSlot(string actorId,RuleTime start,RuleTime end)
+        { ActorId=actorId;Start=start;End=end; }
+    }
+    /// <summary>
+    /// Owner-approved initial allocation only: the caller supplies already resolved initiative
+    /// order, including player/Director tie choices. No membership-change or reorder policy.
+    /// Immutable absolute checkpoints cannot rewrite existing effect deadline records.
+    /// </summary>
+    public sealed class PrototypeInitialInitiative
+    {
+        public IReadOnlyList<InitialInitiativeSlot> Slots { get; }
+        public IReadOnlyList<InitialSlotBoundary> Boundaries { get; }
+        public PrototypeInitialInitiative(RuleTime encounterStart,IEnumerable<string> orderedActorIds)
+        {
+            if(orderedActorIds==null) throw new ArgumentNullException(nameof(orderedActorIds));
+            var ids=orderedActorIds.ToArray();
+            if(ids.Length<1 || ids.Length>64 || ids.Any(id=>!Validation.ValidId(id))
+                || ids.Distinct(StringComparer.Ordinal).Count()!=ids.Length)
+                throw new ArgumentException("Supply1-64 distinct actors in explicitly resolved initiative order.");
+            RuleTime Checkpoint(int index) => RuleTime.FromFraction((BigInteger)encounterStart.Numerator*ids.Length
+                +(BigInteger)6*index*encounterStart.Denominator,(BigInteger)encounterStart.Denominator*ids.Length);
+            var slots=ids.Select((id,index)=>new InitialInitiativeSlot(id,Checkpoint(index),Checkpoint(index+1))).ToArray();
+            Slots=Array.AsReadOnly(slots);
+            Boundaries=Array.AsReadOnly(slots.SelectMany(slot=>new[]{
+                new InitialSlotBoundary(slot.ActorId,slot.Start,InitialSlotBoundaryKind.Start),
+                new InitialSlotBoundary(slot.ActorId,slot.End,InitialSlotBoundaryKind.End)})
+                .OrderBy(boundary=>boundary.At).ThenBy(boundary=>boundary.Kind).ToArray());
         }
     }
 }

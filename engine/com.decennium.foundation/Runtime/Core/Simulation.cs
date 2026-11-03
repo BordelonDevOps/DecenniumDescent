@@ -5,7 +5,8 @@ using System.Linq;
 namespace Decennium.Foundation
 {
     public enum ExecutionProfile { Laboratory, Release }
-    public enum CommandKind { Move, Interact, AdvanceClock, ReserveWork, ConsumeReservation, ReleaseReservation }
+    public enum CommandKind { Move, Interact, AdvanceClock, ReserveWork, ConsumeReservation, ReleaseReservation,
+        PlantCrop, TendCrop, HarvestCrop, PauseCrop, SetCropConditions }
     public enum Outcome { Rejected, Committed, Duplicate }
 
     // DTOs are detached copies. No caller ever receives the owned simulation state.
@@ -32,6 +33,9 @@ namespace Decennium.Foundation
     {
         public const int Schema = 1;
         public const int WorkSchema = 2;
+        public const int CropSchema = 3;
+        public const int MaxCropBatches = 8;
+        public const int MaxCropWorkRecords = 128;
         // Technical bound keeps the entire snapshot within the existing 1 MiB save limit,
         // including maximum-length identities and a full receipt history. Not a game rule.
         public const int MaxWorkRecords = 256;
@@ -47,8 +51,12 @@ namespace Decennium.Foundation
         // with Clock fixed at zero. No conversion or implicit save migration exists.
         public RuleTime RuleClock;
         public WorkLedger Work;
+        public CropBatchRecord[] Crops = Array.Empty<CropBatchRecord>();
+        public CropPlotRecord[] CropPlots = Array.Empty<CropPlotRecord>();
+        public CropFoodRecord[] CropFood = Array.Empty<CropFoodRecord>();
         public Snapshot Copy() => new Snapshot {
             SchemaVersion = SchemaVersion, RuleClock = RuleClock, Work = Work,
+            Crops = Crops.ToArray(), CropFood = CropFood.ToArray(), CropPlots = CropPlots.ToArray(),
             ContentFingerprint = ContentFingerprint, TestOnly = TestOnly,
             Revision = Revision, Clock = Clock, RandomState = RandomState,
             Actors = Actors.Select(x => x.Copy()).ToArray(),
@@ -81,11 +89,12 @@ namespace Decennium.Foundation
     {
         public string Principal { get; }
         public bool CanAdvanceClock { get; }
+        public bool CanModifyWorld { get; }
         private readonly HashSet<string> actors;
-        public Authority(string principal, IEnumerable<string> controlledActors, bool canAdvanceClock = false)
+        public Authority(string principal, IEnumerable<string> controlledActors, bool canAdvanceClock = false, bool canModifyWorld = false)
         {
             if (!Validation.ValidId(principal) || controlledActors == null) throw new ArgumentException("Invalid authority.");
-            Principal = principal; CanAdvanceClock = canAdvanceClock;
+            Principal = principal; CanAdvanceClock = canAdvanceClock; CanModifyWorld = canModifyWorld;
             actors = new HashSet<string>(controlledActors, StringComparer.Ordinal);
             if (actors.Any(x => !Validation.ValidId(x))) throw new ArgumentException("Invalid actor grant.");
         }
@@ -123,15 +132,25 @@ namespace Decennium.Foundation
         {
             if (s == null || !ValidId(s.ContentFingerprint) || s.Revision < 0 || s.Clock < 0 || s.RandomState == 0)
                 throw new ArgumentException("Invalid snapshot header.");
-            if (s.SchemaVersion != Foundation.Snapshot.Schema && s.SchemaVersion != Foundation.Snapshot.WorkSchema)
+            if (s.SchemaVersion != Foundation.Snapshot.Schema && s.SchemaVersion != Foundation.Snapshot.WorkSchema
+                && s.SchemaVersion != Foundation.Snapshot.CropSchema)
                 throw new ArgumentException("Unsupported snapshot schema.");
             if (s.SchemaVersion == Foundation.Snapshot.Schema && (s.Work != null || s.RuleClock != default))
                 throw new ArgumentException("Legacy snapshot cannot contain unsaved work or exact time.");
-            if (s.SchemaVersion == Foundation.Snapshot.WorkSchema && (s.Work == null || s.Clock != 0
+            if (s.SchemaVersion >= Foundation.Snapshot.WorkSchema && (s.Work == null || s.Clock != 0
                 || s.Work.Lots.Count > Foundation.Snapshot.MaxWorkRecords
                 || s.Work.WorkerIntervals.Count > Foundation.Snapshot.MaxWorkRecords
                 || s.Work.Reservations.Count > Foundation.Snapshot.MaxWorkRecords))
                 throw new ArgumentException("Invalid work snapshot or session capacity exceeded.");
+            if (s.Crops == null || s.CropFood == null || s.CropPlots == null || s.Crops.Length > Foundation.Snapshot.MaxCropBatches
+                || s.CropPlots.Length > Foundation.Snapshot.MaxCropBatches || s.CropPlots.Any(p => p == null)
+                || s.CropFood.Length > Foundation.Snapshot.MaxCropBatches || s.Crops.Any(c => c == null) || s.CropFood.Any(f => f == null)
+                || (s.SchemaVersion != Foundation.Snapshot.CropSchema && (s.Crops.Length != 0 || s.CropFood.Length != 0 || s.CropPlots.Length != 0)))
+                throw new ArgumentException("Invalid crop snapshot collections or schema.");
+            if (s.SchemaVersion == Foundation.Snapshot.CropSchema && (s.Work.Lots.Count > Foundation.Snapshot.MaxCropWorkRecords
+                || s.Work.WorkerIntervals.Count > Foundation.Snapshot.MaxCropWorkRecords
+                || s.Work.Reservations.Count > Foundation.Snapshot.MaxCropWorkRecords))
+                throw new ArgumentException("Crop session ledger capacity exceeded.");
             if (s.Actors == null || s.Objects == null || s.Receipts == null || s.Actors.Length == 0
                 || s.Actors.Length > 64 || s.Objects.Length > 64 || s.Receipts.Length > MaxReceipts)
                 throw new ArgumentException("Invalid snapshot counts.");
@@ -141,6 +160,23 @@ namespace Decennium.Foundation
                 != s.Actors.Length + s.Objects.Length) throw new ArgumentException("Duplicate entity ID.");
             if (s.Work != null && s.Work.WorkerIntervals.Any(w => !s.Actors.Any(a => a.Id == w.WorkerId)))
                 throw new ArgumentException("Work interval references an unknown actor.");
+            if (s.Crops.Select(c => c.Id).Distinct(StringComparer.Ordinal).Count() != s.Crops.Length
+                || s.CropPlots.Select(p => p.Id).Distinct(StringComparer.Ordinal).Count() != s.CropPlots.Length
+                || s.Crops.SelectMany(c => c.Tasks).Select(t => t.Id).Distinct(StringComparer.Ordinal).Count() != s.Crops.Sum(c => c.Tasks.Count)
+                || s.CropFood.Select(f => f.LotId).Distinct(StringComparer.Ordinal).Count() != s.CropFood.Length
+                || s.CropFood.Select(f => f.BatchId).Distinct(StringComparer.Ordinal).Count() != s.CropFood.Length)
+                throw new ArgumentException("Duplicate crop, work or output identity.");
+            foreach (var crop in s.Crops)
+            {
+                if (crop.UpdatedAt != s.RuleClock || !s.Work.Lots.Any(l => l.Id == crop.SeedLotId) || !s.CropPlots.Any(p => p.Id == crop.PlotId))
+                    throw new ArgumentException("Crop clock or seed provenance mismatch.");
+                foreach (var task in crop.Tasks)
+                    if (!s.Actors.Any(a => a.Id == task.WorkerId)
+                        || task.InputReservations.Any(id => !s.Work.Reservations.Any(r => r.Id == id && r.JobId == task.Id)))
+                        throw new ArgumentException("Unknown crop worker or input reservation.");
+            }
+            if (s.CropFood.Any(f => !s.Crops.Any(c => c.Id == f.BatchId) || !s.Work.Lots.Any(l => l.Id == f.LotId)))
+                throw new ArgumentException("Unknown crop output lot or source batch.");
             if (s.Receipts.Any(r => r == null || !ValidId(r.Principal) || !ValidId(r.Id)
                 || string.IsNullOrEmpty(r.Fingerprint) || r.Fingerprint.Length > 512
                 || r.Fingerprint.Any(c => c < 32 || c > 126) || r.Revision < 1 || r.Revision > s.Revision))
@@ -179,7 +215,8 @@ namespace Decennium.Foundation
                 || !Validation.ValidId(command.Actor) || command.Target == null || command.Target.Length > 96
                 || (command.Target.Length != 0 && !Validation.ValidId(command.Target)) || command.ExpectedRevision < 0
                 || !Enum.IsDefined(typeof(CommandKind), command.Kind)) return Reject("InvalidCommand");
-            if (!authority.Controls(command.Actor) || (command.Kind == CommandKind.AdvanceClock && !authority.CanAdvanceClock))
+            if (!authority.Controls(command.Actor) || (command.Kind == CommandKind.AdvanceClock && !authority.CanAdvanceClock)
+                || (command.Kind == CommandKind.SetCropConditions && !authority.CanModifyWorld))
                 return Reject("NotAuthorized");
             CommandReceipt previous = state.Receipts.FirstOrDefault(r => r.Principal == authority.Principal && r.Id == command.Id);
             if (previous != null)
