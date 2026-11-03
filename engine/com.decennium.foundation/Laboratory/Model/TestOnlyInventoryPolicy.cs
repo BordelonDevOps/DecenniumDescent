@@ -16,7 +16,7 @@ namespace Decennium.Foundation.Laboratory
         public const string FoodUnit="TEST_ONLY.ration-pound",WaterUnit="prototype.potable-water.pint";
         private readonly long freshSeconds;
         private readonly TestOnlyCropPolicy crops=new TestOnlyCropPolicy();
-                public TestOnlyInventoryPolicy(long remainingFoodFreshness=2592000)
+        public TestOnlyInventoryPolicy(long remainingFoodFreshness=2592000)
         {if(remainingFoodFreshness<0)throw new ArgumentOutOfRangeException(nameof(remainingFoodFreshness));freshSeconds=remainingFoodFreshness;}
         public bool TestOnly=>true;
         public string ContentFingerprint=>"TEST_ONLY.inventory-v1-f"+freshSeconds.ToString(CultureInfo.InvariantCulture);
@@ -50,8 +50,10 @@ namespace Decennium.Foundation.Laboratory
             if(!s.Actors.Any(x=>x.Id==actor))throw new ArgumentException("Unknown fixture carrier.");
             // Each actor's fixed pouch weighs one pound. The actor's fixed skin also retains its
             // one-pound tare when empty. These host fixtures are not transferable equipment records.
-            var pounds=RuleQuantity.Sum(s.Work.Lots.Where(x=>x.LocationId==actor).Select(x=>x.Amount))
-                +new RuleQuantity(1)+(actor==TestOnlyPolicy.ActorId?new RuleQuantity(1):default);
+            var pounds=RuleQuantity.Sum(s.Work.Lots.Where(x=>x.LocationId==actor||s.Vessels.Any(v=>v.Id==x.LocationId&&v.LocationId==actor)).Select(x=>x.Amount))
+                +new RuleQuantity(1)+(s.SchemaVersion==Snapshot.VesselSchema
+                    ?RuleQuantity.Sum(s.Vessels.Where(v=>v.LocationId==actor).Select(v=>WaterFilling.Tare(v.Profile)))
+                    :actor==TestOnlyPolicy.ActorId?new RuleQuantity(1):default);
             return new BurdenTotals(pounds,pounds.Scale(1,10),true);
         }
         private static bool Capacity(Snapshot s,string actor,RuleQuantity additional)
@@ -124,6 +126,7 @@ namespace Decennium.Foundation.Laboratory
                     var receiver=s.Actors.SingleOrDefault(x=>x.Id==c.Inventory.Destination);
                     if(item.Access!=InventoryAccess.Ready||receiver==null||receiver.Id==c.Actor
                         ||!Near(s.Actors.Single(x=>x.Id==c.Actor),receiver))return "InvalidHandover";
+                    if(s.WaterFills.Any(j=>j.WorkerId==receiver.Id&&j.Status==WaterFillStatus.Working))return "RecipientHandsReserved";
                     location=receiver.Id;custodian=receiver.Id;break;
                 default:return "InvalidHandling";
             }
@@ -131,19 +134,22 @@ namespace Decennium.Foundation.Laboratory
             if(s.InventoryCombat&&(s.InventoryTurnActor!=c.Actor||s.InventoryInteractions>=2))return "InteractionBudgetUnavailable";
             OrdinaryInventory.Handle(s,c,location,custodian,access);return null;
         }
-        public string ValidateState(Snapshot s)
+        public string ValidateState(Snapshot s)=>ValidateInventoryState(s,false);
+        internal string ValidateInventoryState(Snapshot s,bool filling)
         {
             try {
+                if(s.SchemaVersion!=(filling?Snapshot.VesselSchema:Snapshot.InventorySchema))return "WrongInventorySchema";
                 string error=crops.ValidateCropState(s,true);if(error!=null)return error;
                 error=OrdinaryInventory.Validate(s);if(error!=null)return error;
                 var roots=s.InventoryLots.Where(x=>x.ParentId=="").ToArray();
-                if(roots.Length!=4+s.CropFood.Length)return "InvalidInventoryRoots";
+                if(roots.Length!=(filling?5:4)+s.CropFood.Length)return "InvalidInventoryRoots";
                 foreach(var root in roots) {
                     var lot=s.Work.Lots.Single(x=>x.Id==root.LotId);long amount;string unit,owner,location;NutritionKind kind;RuleTime? fresh=null;RuleTime created=default;InventoryAccess access=InventoryAccess.Ground;
                     if(root.LotId==TestOnlyCropPolicy.SeedLotId){amount=8;unit=CampGreens.SeedUnit;kind=NutritionKind.None;owner=TestOnlyPolicy.CompanionId;location=TestOnlyCropPolicy.PlotId;}
                     else if(root.LotId==TestOnlyCropPolicy.WaterLotId){amount=512;unit=CampGreens.WaterUnit;kind=NutritionKind.None;owner=TestOnlyPolicy.CompanionId;location=TestOnlyCropPolicy.PlotId;}
                     else if(root.LotId==FoodId){amount=2;unit=FoodUnit;kind=NutritionKind.FoodPounds;fresh=new RuleTime(freshSeconds);owner=TestOnlyPolicy.ActorId;location=owner;access=InventoryAccess.Ready;}
-                    else if(root.LotId==WaterId){amount=4;unit=WaterUnit;kind=NutritionKind.WaterPints;owner=TestOnlyPolicy.ActorId;location=owner;access=InventoryAccess.Ready;}
+                    else if(root.LotId==WaterId){amount=4;unit=WaterUnit;kind=NutritionKind.WaterPints;owner=TestOnlyPolicy.ActorId;location=filling?TestOnlyFillingPolicy.ActorSkinId:owner;access=InventoryAccess.Ready;}
+                    else if(filling&&root.LotId==TestOnlyFillingPolicy.SupplyId){amount=32;unit=WaterUnit;kind=NutritionKind.WaterPints;owner=TestOnlyPolicy.CompanionId;location=TestOnlyCropPolicy.PlotId;}
                     else {
                         var food=s.CropFood.Single(f=>f.LotId==root.LotId);var crop=s.Crops.Single(c=>c.Id==food.BatchId);
                         amount=8;unit=CampGreens.FoodUnit;kind=NutritionKind.FoodPounds;fresh=food.FreshUntil;created=crop.ClosedAt.Value;owner=crop.OwnerId;location=crop.PlotId;
@@ -154,13 +160,17 @@ namespace Decennium.Foundation.Laboratory
                 foreach(var item in s.InventoryLots) {
                     var lot=s.Work.Lots.Single(x=>x.Id==item.LotId);
                     if(item.Access==InventoryAccess.Stowed&&!FitsSuppliedPouch(s,item))return "ContainerFitNotEstablished";
-                    if(item.Access==InventoryAccess.Ground?lot.LocationId!=TestOnlyCropPolicy.PlotId
+                    var containing=s.Vessels.SingleOrDefault(v=>v.Id==lot.LocationId);
+                    if(containing!=null) {
+                        if(item.Nutrition!=NutritionKind.WaterPints||lot.CustodianId!=containing.CustodianId
+                            ||item.Access!=(containing.LocationId==TestOnlyCropPolicy.PlotId?InventoryAccess.Ground:InventoryAccess.Ready))return "InvalidContainedAccess";
+                    } else if(item.Access==InventoryAccess.Ground?lot.LocationId!=TestOnlyCropPolicy.PlotId
                         :!s.Actors.Any(a=>a.Id==lot.LocationId&&a.Id==lot.CustodianId))return "InvalidInventoryLocation";
                     if(item.ParentId!="") {
                         var parent=s.InventoryLots.Single(x=>x.LotId==item.ParentId);var parentLot=s.Work.Lots.Single(x=>x.Id==parent.LotId);
                         var moves=s.Handling.Where(x=>x.ChildId==item.LotId).ToArray();
                         if(moves.Length>1)return "DuplicatePhysicalHandling";
-                        if(moves.Length==0&&(item.Access!=parent.Access||lot.LocationId!=parentLot.LocationId||lot.CustodianId!=parentLot.CustodianId))return "UnrecordedInventoryMovement";
+                        if(moves.Length==0&&!s.WaterFills.Any(j=>j.Status==WaterFillStatus.Complete&&j.OutputLotId==item.LotId)&&(item.Access!=parent.Access||lot.LocationId!=parentLot.LocationId||lot.CustodianId!=parentLot.CustodianId))return "UnrecordedInventoryMovement";
                         if(moves.Length!=0) {
                             var move=moves[0];bool sourceHeld=parentLot.LocationId==move.ActorId&&parentLot.CustodianId==move.ActorId;
                             bool heldHere=lot.LocationId==move.ActorId&&lot.CustodianId==move.ActorId;

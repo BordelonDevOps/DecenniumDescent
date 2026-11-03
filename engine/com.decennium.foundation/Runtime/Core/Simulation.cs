@@ -7,7 +7,7 @@ namespace Decennium.Foundation
     public enum ExecutionProfile { Laboratory, Release }
     public enum CommandKind { Move, Interact, AdvanceClock, ReserveWork, ConsumeReservation, ReleaseReservation,
         PlantCrop, TendCrop, HarvestCrop, PauseCrop, SetCropConditions,
-        PortionInventory, HandleInventory, StartIntake, InterruptIntake, EnterInventoryCombat }
+        PortionInventory, HandleInventory, StartIntake, InterruptIntake, EnterInventoryCombat, StartWaterFill, PauseWaterFill, ResumeWaterFill, CancelWaterFill }
     public enum Outcome { Rejected, Committed, Duplicate }
 
     // DTOs are detached copies. No caller ever receives the owned simulation state.
@@ -36,6 +36,7 @@ namespace Decennium.Foundation
         public const int WorkSchema = 2;
         public const int CropSchema = 3;
         public const int InventorySchema = 4;
+        public const int VesselSchema = 5;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
         // Technical bound keeps the entire snapshot within the existing 1 MiB save limit,
@@ -62,7 +63,11 @@ namespace Decennium.Foundation
         public bool InventoryCombat;
         public string InventoryTurnActor = "";
         public int InventoryInteractions;
+        public WaterVesselRecord[] Vessels = Array.Empty<WaterVesselRecord>();
+        public VesselContentRecord[] VesselContents = Array.Empty<VesselContentRecord>();
+        public WaterFillRecord[] WaterFills = Array.Empty<WaterFillRecord>();
         public Snapshot Copy() => new Snapshot {
+            Vessels = Vessels.ToArray(), VesselContents = VesselContents.ToArray(), WaterFills = WaterFills.ToArray(),
             InventoryLots = InventoryLots.ToArray(), Intakes = Intakes.ToArray(), Handling = Handling.ToArray(),
             InventoryCombat = InventoryCombat, InventoryTurnActor = InventoryTurnActor, InventoryInteractions = InventoryInteractions,
             SchemaVersion = SchemaVersion, RuleClock = RuleClock, Work = Work,
@@ -150,7 +155,7 @@ namespace Decennium.Foundation
             if (s == null || !ValidId(s.ContentFingerprint) || s.Revision < 0 || s.Clock < 0 || s.RandomState == 0)
                 throw new ArgumentException("Invalid snapshot header.");
             if (s.SchemaVersion != Foundation.Snapshot.Schema && s.SchemaVersion != Foundation.Snapshot.WorkSchema
-                && s.SchemaVersion != Foundation.Snapshot.CropSchema && s.SchemaVersion != Foundation.Snapshot.InventorySchema)
+                && s.SchemaVersion != Foundation.Snapshot.CropSchema && s.SchemaVersion != Foundation.Snapshot.InventorySchema && s.SchemaVersion != Foundation.Snapshot.VesselSchema)
                 throw new ArgumentException("Unsupported snapshot schema.");
             if (s.SchemaVersion == Foundation.Snapshot.Schema && (s.Work != null || s.RuleClock != default))
                 throw new ArgumentException("Legacy snapshot cannot contain unsaved work or exact time.");
@@ -202,6 +207,7 @@ namespace Decennium.Foundation
             if (s.Receipts.Select(r => r.Principal + "|" + r.Id).Distinct(StringComparer.Ordinal).Count() != s.Receipts.Length)
                 throw new ArgumentException("Duplicate receipt.");
             InventoryValidation.Validate(s);
+            WaterVesselValidation.Validate(s);
         }
     }
 
@@ -240,9 +246,24 @@ namespace Decennium.Foundation
             if (command.Kind == CommandKind.PortionInventory || command.Kind == CommandKind.HandleInventory || command.Kind == CommandKind.StartIntake) {
                 var source = state.InventoryLots.FirstOrDefault(x => x.LotId == command.Target);
                 if (source != null && !authority.MayUseInventory(source.OwnerId)) return Reject("InventoryNotAuthorized");
+                if (command.Kind == CommandKind.StartIntake && source != null && state.Vessels.Length != 0) {
+                    var lot = state.Work.Lots.First(x => x.Id == source.LotId);
+                    var vessel = state.Vessels.FirstOrDefault(x => x.Id == lot.LocationId);
+                    if (vessel != null && !authority.MayUseInventory(vessel.OwnerId)) return Reject("InventoryNotAuthorized");
+                }
                 if (command.Kind == CommandKind.HandleInventory && command.Inventory != null
                     && command.Inventory.Handling == HandlingKind.Handover && !authority.ConsentsToHandover(command.Inventory.Destination))
                     return Reject("RecipientNotWilling");
+            }
+            if (command.Kind == CommandKind.StartWaterFill || command.Kind == CommandKind.ResumeWaterFill) {
+                var fill = command.Kind == CommandKind.ResumeWaterFill ? state.WaterFills.FirstOrDefault(x => x.Id == command.Target) : null;
+                var source = state.InventoryLots.FirstOrDefault(x => x.LotId == (fill == null ? command.Target : fill.SourceLotId));
+                var vessel = state.Vessels.FirstOrDefault(x => x.Id == (fill == null ? command.Inventory?.Destination : fill.DestinationId));
+                var sourceLot = source == null ? null : state.Work.Lots.FirstOrDefault(x => x.Id == source.LotId);
+                var sourceVessel = sourceLot == null ? null : state.Vessels.FirstOrDefault(x => x.Id == sourceLot.LocationId);
+                if ((source != null && !authority.MayUseInventory(source.OwnerId)) || (vessel != null && !authority.MayUseInventory(vessel.OwnerId))
+                    || (sourceVessel != null && !authority.MayUseInventory(sourceVessel.OwnerId)))
+                    return Reject("InventoryNotAuthorized");
             }
             CommandReceipt previous = state.Receipts.FirstOrDefault(r => r.Principal == authority.Principal && r.Id == command.Id);
             if (previous != null)
@@ -250,7 +271,7 @@ namespace Decennium.Foundation
                     ? new CommandResult(Outcome.Duplicate, "AlreadyCommitted", previous.Revision) : Reject("CommandIdConflict");
             if (command.ExpectedRevision != state.Revision) return Reject("StaleRevision");
             if (!state.Actors.Any(a => a.Id == command.Actor)) return Reject("UnknownActor");
-            if (state.Revision == long.MaxValue || state.Receipts.Length == (state.SchemaVersion == Snapshot.InventorySchema ? 512 : Validation.MaxReceipts)) return Reject("SessionCapacityReached");
+            if (state.Revision == long.MaxValue || state.Receipts.Length == (state.SchemaVersion >= Snapshot.InventorySchema ? 512 : Validation.MaxReceipts)) return Reject("SessionCapacityReached");
             Snapshot candidate = state.Copy();
             string failure;
             try { failure = policy.Resolve(candidate, command); }

@@ -1,6 +1,6 @@
-# Ordinary water filling proposal
+# Ordinary water filling prototype decision
 
-Status: PROPOSED, NOT ADOPTED. Prepared2026-11-03 after the owner-approved ordinary inventory increment. No filling gameplay behavior is authorized by this proposal alone.
+Status: OWNER-APPROVED PROTOTYPE,2026-11-03. Chris explicitly answered “Adopt completion-time filling” to the question linking this specification. The bounded completion below is adopted; the quoted GPT response remains historical proposal evidence. This does not promote these mechanics to release.
 
 ## Existing source requirements
 
@@ -18,7 +18,7 @@ Primary sources at the pinned rules revision:
 - [Director work](https://github.com/BordelonDevOps/DecenniumDescent/blob/46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4/DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_DIRECTOR_BOOK.md)
 - [Integrated flow](https://github.com/BordelonDevOps/DecenniumDescent/blob/46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4/DescentReviewChanges/ReviewBible/data/public/expedition_candidate/integrated_flow.json), `/lighting/refills/0`, `/lighting/transfers/2`, `/nextProcurement/waterFilling`.
 
-## Proposed bounded prototype completion
+## Adopted bounded prototype completion
 
 1. Declare a fixed amount and specific source/destination. Reserve actual source liquid and destination free capacity. Starting the job moves no liquid.
 2. Require one capable worker, two usable hands and physically feasible access/support for60active seconds. Include ordinary opening, pouring and securing in that minute. Retrieval and later handover retain their own costs.

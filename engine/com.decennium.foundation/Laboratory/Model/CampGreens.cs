@@ -196,7 +196,7 @@ namespace Decennium.Foundation.Laboratory
                 crop.Tasks[i]=UpdateTask(task,CropWorkStatus.Cancelled,task.Progress,crop.UpdatedAt);
             }
         }
-        public static long EdibleFood(Snapshot state)=>state.SchemaVersion==Snapshot.InventorySchema
+        public static long EdibleFood(Snapshot state)=>state.SchemaVersion>=Snapshot.InventorySchema
             ?throw new InvalidOperationException("Use the exact inventory food projection for schema4 descendants."):state.CropFood.Where(f=>!f.Expired&&state.RuleClock<f.FreshUntil)
             .Sum(f=>state.Work.Lots.Single(l=>l.Id==f.LotId).Quantity);
         private static CropDraft Draft(Snapshot state,CropBatchRecord crop)=>new CropDraft(crop,state.CropPlots.Single(p=>p.Id==crop.PlotId).Suitable);

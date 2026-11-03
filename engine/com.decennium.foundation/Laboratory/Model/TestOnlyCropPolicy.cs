@@ -83,7 +83,7 @@ namespace Decennium.Foundation.Laboratory
         }
         internal string ValidateCropState(Snapshot s,bool inventory=false)
         {
-            if(s.SchemaVersion!=(inventory?Snapshot.InventorySchema:Snapshot.CropSchema)||s.Work==null)return "WrongCropSchema";
+            if((inventory?(s.SchemaVersion!=Snapshot.InventorySchema&&s.SchemaVersion!=Snapshot.VesselSchema):s.SchemaVersion!=Snapshot.CropSchema)||s.Work==null)return "WrongCropSchema";
             string worldError=TestOnlyPolicy.ValidateWorld(s);if(worldError!=null)return worldError;
             if(s.CropPlots.Length!=1||s.CropPlots[0].Id!=PlotId||s.CropPlots[0].OwnerId!=TestOnlyPolicy.CompanionId)return "InvalidPlot";
             var tasks=s.Crops.SelectMany(c=>c.Tasks).ToArray();

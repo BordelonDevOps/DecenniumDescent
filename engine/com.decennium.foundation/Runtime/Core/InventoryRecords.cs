@@ -85,7 +85,7 @@ namespace Decennium.Foundation
             if(s.InventoryLots==null||s.Intakes==null||s.Handling==null||s.InventoryTurnActor==null
                 ||s.InventoryLots.Any(x=>x==null)||s.Intakes.Any(x=>x==null)||s.Handling.Any(x=>x==null)
                 ||s.InventoryLots.Length>128||s.Intakes.Length>32||s.Handling.Length>64)throw new ArgumentException("Invalid inventory collections.");
-            if(s.SchemaVersion!=Snapshot.InventorySchema) {
+            if(s.SchemaVersion<Snapshot.InventorySchema) {
                 if(s.InventoryLots.Length!=0||s.Intakes.Length!=0||s.Handling.Length!=0||s.InventoryCombat
                     ||s.InventoryTurnActor!=""||s.InventoryInteractions!=0)throw new ArgumentException("Inventory requires its explicit schema.");
                 return;

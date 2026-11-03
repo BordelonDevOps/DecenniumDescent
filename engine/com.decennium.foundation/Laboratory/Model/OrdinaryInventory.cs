@@ -31,6 +31,7 @@ namespace Decennium.Foundation.Laboratory
                 .Concat(new[]{new ResourceLot(childId,lot.UnitId,amount,location,custodian)}),s.Work.WorkerIntervals,s.Work.Reservations);
             s.InventoryLots=s.InventoryLots.Concat(new[]{new InventoryLotRecord(childId,sourceId,source.OwnerId,amount,s.RuleClock,
                 source.Nutrition,source.FreshUntil,access)}).ToArray();
+            if(s.Vessels.Any(v=>v.Id==location))s.VesselContents=s.VesselContents.Concat(new[]{new VesselContentRecord(childId,location)}).ToArray();
         }
         public static void StartIntake(Snapshot s,string actor,string lotId,RuleQuantity amount)
         {
@@ -54,6 +55,9 @@ namespace Decennium.Foundation.Laboratory
             if(target<=s.RuleClock)throw new ArgumentException("Positive shared advance required.");
             while(s.RuleClock<target) {
                 RuleTime next=target;
+                foreach(var fill in s.WaterFills.Where(x=>x.Status==WaterFillStatus.Working)) {
+                    var end=CampGreens.Add(s.RuleClock,CampGreens.Subtract(new RuleTime(60),fill.Progress));if(end<next)next=end;
+                }
                 foreach(var job in s.Intakes.Where(x=>x.Status==IntakeStatus.Working)) {
                     var item=s.InventoryLots.Single(x=>x.LotId==job.LotId);var claim=s.Work.Reservations.Single(x=>x.Id==job.ReservationId);
                     var finish=CampGreens.Add(job.StartedAt,Duration(claim.Amount,SecondsPerUnit(item.Nutrition)));
@@ -61,7 +65,8 @@ namespace Decennium.Foundation.Laboratory
                     if(item.FreshUntil.HasValue&&item.FreshUntil.Value<next)next=item.FreshUntil.Value;
                 }
                 // Camp Greens may stop at an earlier milestone. Credit intake only through the actual endpoint.
-                CampGreens.Advance(s,next);RegisterCropOutput(s);
+                RuleTime previous=s.RuleClock;CampGreens.Advance(s,next);RegisterCropOutput(s);
+                WaterFilling.CreditWork(s,CampGreens.Subtract(s.RuleClock,previous));
                 foreach(var job in s.Intakes.Where(x=>x.Status==IntakeStatus.Working).ToArray()) {
                     var item=s.InventoryLots.Single(x=>x.LotId==job.LotId);var claim=s.Work.Reservations.Single(x=>x.Id==job.ReservationId);
                     RuleQuantity consumed=Quantity(CampGreens.Subtract(s.RuleClock,job.StartedAt),SecondsPerUnit(item.Nutrition));
@@ -69,6 +74,7 @@ namespace Decennium.Foundation.Laboratory
                     if(consumed==claim.Amount)Replace(s,new IntakeRecord(job.Id,job.ActorId,job.LotId,job.ReservationId,job.StartedAt,s.RuleClock,IntakeStatus.Complete));
                     else if(!Fresh(s,item))Interrupt(s,job,IntakeStatus.Expired);
                 }
+                WaterFilling.CompleteDue(s);
             }
         }
         internal static void RegisterCropOutput(Snapshot s)
@@ -99,14 +105,14 @@ namespace Decennium.Foundation.Laboratory
             if(s.InventoryCombat?tactical.Length!=s.InventoryInteractions||tactical.Any(x=>x.ActorId!=s.InventoryTurnActor)
                 :tactical.Length!=0||s.Intakes.Any(x=>x.Status==IntakeStatus.CombatInterrupted))return "InvalidTacticalHistory";
             var cropTasks=s.Crops.SelectMany(x=>x.Tasks).ToArray();
-            if(s.Work.Reservations.Any(r=>!cropTasks.Any(t=>t.InputReservations.Contains(r.Id))&&!s.Intakes.Any(j=>j.ReservationId==r.Id))
-                ||s.Work.WorkerIntervals.Any(w=>!cropTasks.Any(t=>t.Id==w.JobId)&&!s.Intakes.Any(j=>j.Id==w.JobId)&&!s.Handling.Any(j=>j.Id==w.JobId)))
+            if(s.Work.Reservations.Any(r=>!cropTasks.Any(t=>t.InputReservations.Contains(r.Id))&&!s.Intakes.Any(j=>j.ReservationId==r.Id)&&!s.WaterFills.Any(j=>j.ReservationId==r.Id))
+                ||s.Work.WorkerIntervals.Any(w=>!cropTasks.Any(t=>t.Id==w.JobId)&&!s.Intakes.Any(j=>j.Id==w.JobId)&&!s.Handling.Any(j=>j.Id==w.JobId)&&!s.WaterFills.Any(j=>j.Id==w.JobId)))
                 return "UnattributedInventoryLedger";
             foreach(var job in s.Intakes) {
                 var item=s.InventoryLots.Single(x=>x.LotId==job.LotId);var lot=s.Work.Lots.Single(x=>x.Id==job.LotId);
                 var claim=s.Work.Reservations.Single(x=>x.Id==job.ReservationId);long rate=SecondsPerUnit(item.Nutrition);
                 var end=job.EndedAt??s.RuleClock;var elapsed=CampGreens.Subtract(end,job.StartedAt);
-                if(item.Access!=InventoryAccess.Ready||lot.LocationId!=job.ActorId||lot.CustodianId!=job.ActorId||job.StartedAt<item.CreatedAt
+                if(!WaterFilling.ReadyForIntake(s,job.ActorId,item,lot)||job.StartedAt<item.CreatedAt
                     ||(item.FreshUntil.HasValue&&(job.StartedAt>=item.FreshUntil.Value||end>item.FreshUntil.Value))
                     ||Quantity(elapsed,rate)!=claim.ConsumedAmount)return "InvalidIntakeCredit";
                 var intervals=s.Work.WorkerIntervals.Where(x=>x.JobId==job.Id).ToArray();
