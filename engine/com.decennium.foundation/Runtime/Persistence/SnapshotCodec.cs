@@ -34,10 +34,11 @@ namespace Decennium.Foundation
                 {
                     writer.Write(state.RuleClock.Numerator); writer.Write(state.RuleClock.Denominator);
                     WriteText(writer, DiceStream.MappingVersion);
-                    byte[] work = new WorkLedgerCodec().Encode(state.Work);
+                    byte[] work = new WorkLedgerCodec().Encode(state.Work,state.SchemaVersion==Snapshot.InventorySchema?2:1);
                     writer.Write(work.Length); writer.Write(work);
                 }
-                if (state.SchemaVersion == Snapshot.CropSchema) CropRecordCodec.Write(writer,state);
+                if (state.SchemaVersion >= Snapshot.CropSchema) CropRecordCodec.Write(writer,state);
+                if (state.SchemaVersion == Snapshot.InventorySchema) InventoryRecordCodec.Write(writer,state);
                 writer.Flush(); payload = stream.ToArray();
             }
             if (payload.Length + 32 > MaxBytes) throw new InvalidDataException("Save exceeds size limit.");
@@ -56,7 +57,7 @@ namespace Decennium.Foundation
                 {
                     if (reader.ReadInt32() != Magic) throw new InvalidDataException("Unsupported save format.");
                     int schema = reader.ReadInt32();
-                    if (schema != Snapshot.Schema && schema != Snapshot.WorkSchema && schema != Snapshot.CropSchema)
+                    if (schema != Snapshot.Schema && schema != Snapshot.WorkSchema && schema != Snapshot.CropSchema && schema != Snapshot.InventorySchema)
                         throw new InvalidDataException("Unsupported save schema.");
                     string fingerprint = ReadText(reader);
                     if (ReadText(reader) != RandomV1.Algorithm) throw new InvalidDataException("Unsupported RNG version.");
@@ -78,9 +79,10 @@ namespace Decennium.Foundation
                         int workLength = ReadCount(reader, WorkLedgerCodec.MaxBytes);
                         byte[] work = reader.ReadBytes(workLength);
                         if (work.Length != workLength) throw new EndOfStreamException();
-                        s.Work = new WorkLedgerCodec().Decode(work);
+                        s.Work = new WorkLedgerCodec().Decode(work,schema==Snapshot.InventorySchema?2:1);
                     }
-                    if (schema == Snapshot.CropSchema) CropRecordCodec.Read(reader,s);
+                    if (schema >= Snapshot.CropSchema) CropRecordCodec.Read(reader,s);
+                    if (schema == Snapshot.InventorySchema) InventoryRecordCodec.Read(reader,s);
                     if (stream.Position != length) throw new InvalidDataException("Unexpected trailing save data.");
                     Validation.Snapshot(s); return s;
                 }

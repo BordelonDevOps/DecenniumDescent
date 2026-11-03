@@ -12,15 +12,17 @@ namespace Decennium.Foundation
         public const int MaxBytes=1024*1024;
         private const int Magic=0x314C5744; // DWL1
         private static readonly UTF8Encoding Utf8=new UTF8Encoding(false,true);
-        public byte[] Encode(WorkLedger ledger)
+        public byte[] Encode(WorkLedger ledger,int version=1)
         {
             if(ledger==null) throw new ArgumentNullException(nameof(ledger));
+            if(version!=1&&version!=2)throw new ArgumentException("Unsupported work-ledger schema.");
+            if(version==1&&ledger.RequiresRationalSchema)throw new InvalidDataException("Legacy ledger cannot encode fractional or partial settlements.");
             byte[] payload;
             using(var stream=new MemoryStream()) using(var writer=new BinaryWriter(stream,Utf8,true)) {
-                writer.Write(Magic);writer.Write(1);
+                writer.Write(Magic);writer.Write(version);
                 writer.Write(ledger.Lots.Count);
                 foreach(var lot in ledger.Lots) {
-                    Text(writer,lot.Id);Text(writer,lot.UnitId);writer.Write(lot.Quantity);
+                    Text(writer,lot.Id);Text(writer,lot.UnitId);if(version==1)writer.Write(lot.Quantity);else Quantity(writer,lot.Amount);
                     Text(writer,lot.LocationId);Text(writer,lot.CustodianId);
                 }
                 writer.Write(ledger.WorkerIntervals.Count);
@@ -31,14 +33,15 @@ namespace Decennium.Foundation
                 writer.Write(ledger.Reservations.Count);
                 foreach(var claim in ledger.Reservations) {
                     Text(writer,claim.Id);Text(writer,claim.JobId);Text(writer,claim.LotId);
-                    writer.Write(claim.Quantity);writer.Write((int)claim.Status);
+                    if(version==1){writer.Write(claim.Quantity);writer.Write((int)claim.Status);}
+                    else{Quantity(writer,claim.Amount);Quantity(writer,claim.ConsumedAmount);Quantity(writer,claim.ReleasedAmount);}
                 }
                 writer.Flush();payload=stream.ToArray();
             }
             if(payload.Length>MaxBytes-32) throw new InvalidDataException("Work ledger exceeds serialized size limit.");
             using(var hash=SHA256.Create()) return payload.Concat(hash.ComputeHash(payload)).ToArray();
         }
-        public WorkLedger Decode(byte[] bytes)
+        public WorkLedger Decode(byte[] bytes,int? expectedVersion=null)
         {
             if(bytes==null || bytes.Length<52 || bytes.Length>MaxBytes) throw new InvalidDataException("Invalid work-ledger length.");
             int length=bytes.Length-32;
@@ -46,13 +49,22 @@ namespace Decennium.Foundation
                 if(!hash.ComputeHash(bytes,0,length).SequenceEqual(bytes.Skip(length))) throw new InvalidDataException("Work-ledger checksum mismatch.");
             try {
                 using(var stream=new MemoryStream(bytes,0,length,false)) using(var reader=new BinaryReader(stream,Utf8)) {
-                    if(reader.ReadInt32()!=Magic || reader.ReadInt32()!=1) throw new InvalidDataException("Unsupported work-ledger schema.");
+                    if(reader.ReadInt32()!=Magic)throw new InvalidDataException("Unsupported work-ledger format.");
+                    int version=reader.ReadInt32();
+                    if((version!=1&&version!=2)||(expectedVersion.HasValue&&version!=expectedVersion.Value))throw new InvalidDataException("Unsupported work-ledger schema.");
                     var lots=new ResourceLot[Count(reader)];
-                    for(int i=0;i<lots.Length;i++) lots[i]=new ResourceLot(Text(reader),Text(reader),reader.ReadInt64(),Text(reader),Text(reader));
+                    for(int i=0;i<lots.Length;i++) {
+                        string id=Text(reader),unit=Text(reader);var amount=version==1?new RuleQuantity(reader.ReadInt64()):Quantity(reader);
+                        lots[i]=new ResourceLot(id,unit,amount,Text(reader),Text(reader));
+                    }
                     var workers=new WorkerInterval[Count(reader)];
                     for(int i=0;i<workers.Length;i++) workers[i]=new WorkerInterval(Text(reader),Text(reader),Text(reader),Time(reader),Time(reader));
                     var claims=new ResourceReservation[Count(reader)];
-                    for(int i=0;i<claims.Length;i++) claims[i]=new ResourceReservation(Text(reader),Text(reader),Text(reader),reader.ReadInt64(),(ReservationStatus)reader.ReadInt32());
+                    for(int i=0;i<claims.Length;i++) {
+                        string id=Text(reader),job=Text(reader),lot=Text(reader);
+                        claims[i]=version==1?new ResourceReservation(id,job,lot,reader.ReadInt64(),(ReservationStatus)reader.ReadInt32())
+                            :new ResourceReservation(id,job,lot,Quantity(reader),Quantity(reader),Quantity(reader));
+                    }
                     if(stream.Position!=length) throw new InvalidDataException("Trailing work-ledger data.");
                     return new WorkLedger(lots,workers,claims);
                 }
@@ -77,5 +89,7 @@ namespace Decennium.Foundation
         }
         private static void Time(BinaryWriter writer,RuleTime value) {writer.Write(value.Numerator);writer.Write(value.Denominator);}
         private static RuleTime Time(BinaryReader reader) => new RuleTime(reader.ReadInt64(),reader.ReadInt64());
+        private static void Quantity(BinaryWriter writer,RuleQuantity value){writer.Write(value.Numerator);writer.Write(value.Denominator);}
+        private static RuleQuantity Quantity(BinaryReader reader)=>new RuleQuantity(reader.ReadInt64(),reader.ReadInt64());
     }
 }

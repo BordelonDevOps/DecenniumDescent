@@ -101,7 +101,7 @@ namespace Decennium.Foundation.Tests
             cases.Add("work_component_corruption_unknown_schema_and_malformed_count", () => {
                 var codec=new WorkLedgerCodec();var original=codec.Encode(new WorkLedger(new[]{Lot()}));
                 var corrupt=(byte[])original.Clone();corrupt[15]^=1;Throws<InvalidDataException>(()=>codec.Decode(corrupt));
-                var schema=(byte[])original.Clone();schema[4]=2;Resign(schema);Throws<InvalidDataException>(()=>codec.Decode(schema));
+                var schema=(byte[])original.Clone();schema[4]=3;Resign(schema);Throws<InvalidDataException>(()=>codec.Decode(schema));
                 var count=(byte[])original.Clone();for(int i=8;i<12;i++)count[i]=255;Resign(count);Throws<InvalidDataException>(()=>codec.Decode(count));
                 Throws<InvalidDataException>(()=>codec.Decode(original.Take(original.Length-1).ToArray()));
                 Throws<InvalidDataException>(()=>codec.Decode(new byte[WorkLedgerCodec.MaxBytes+1]));

@@ -6,7 +6,8 @@ namespace Decennium.Foundation
 {
     public enum ExecutionProfile { Laboratory, Release }
     public enum CommandKind { Move, Interact, AdvanceClock, ReserveWork, ConsumeReservation, ReleaseReservation,
-        PlantCrop, TendCrop, HarvestCrop, PauseCrop, SetCropConditions }
+        PlantCrop, TendCrop, HarvestCrop, PauseCrop, SetCropConditions,
+        PortionInventory, HandleInventory, StartIntake, InterruptIntake, EnterInventoryCombat }
     public enum Outcome { Rejected, Committed, Duplicate }
 
     // DTOs are detached copies. No caller ever receives the owned simulation state.
@@ -34,6 +35,7 @@ namespace Decennium.Foundation
         public const int Schema = 1;
         public const int WorkSchema = 2;
         public const int CropSchema = 3;
+        public const int InventorySchema = 4;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
         // Technical bound keeps the entire snapshot within the existing 1 MiB save limit,
@@ -54,7 +56,15 @@ namespace Decennium.Foundation
         public CropBatchRecord[] Crops = Array.Empty<CropBatchRecord>();
         public CropPlotRecord[] CropPlots = Array.Empty<CropPlotRecord>();
         public CropFoodRecord[] CropFood = Array.Empty<CropFoodRecord>();
+        public InventoryLotRecord[] InventoryLots = Array.Empty<InventoryLotRecord>();
+        public IntakeRecord[] Intakes = Array.Empty<IntakeRecord>();
+        public HandlingRecord[] Handling = Array.Empty<HandlingRecord>();
+        public bool InventoryCombat;
+        public string InventoryTurnActor = "";
+        public int InventoryInteractions;
         public Snapshot Copy() => new Snapshot {
+            InventoryLots = InventoryLots.ToArray(), Intakes = Intakes.ToArray(), Handling = Handling.ToArray(),
+            InventoryCombat = InventoryCombat, InventoryTurnActor = InventoryTurnActor, InventoryInteractions = InventoryInteractions,
             SchemaVersion = SchemaVersion, RuleClock = RuleClock, Work = Work,
             Crops = Crops.ToArray(), CropFood = CropFood.ToArray(), CropPlots = CropPlots.ToArray(),
             ContentFingerprint = ContentFingerprint, TestOnly = TestOnly,
@@ -74,13 +84,15 @@ namespace Decennium.Foundation
         public CommandKind Kind { get; }
         public int X { get; }
         public int Y { get; }
+        public InventoryRequest Inventory { get; }
         public Command(string id, string actor, long revision, CommandKind kind,
-            string target = "", int x = 0, int y = 0)
-        { Id = id; Actor = actor; ExpectedRevision = revision; Kind = kind; Target = target; X = x; Y = y; }
+            string target = "", int x = 0, int y = 0, InventoryRequest inventory = null)
+        { Id = id; Actor = actor; ExpectedRevision = revision; Kind = kind; Target = target; X = x; Y = y; Inventory = inventory; }
         internal string Fingerprint => ((int)Kind).ToString(System.Globalization.CultureInfo.InvariantCulture)
             + "|" + Actor + "|" + Target + "|" + ExpectedRevision.ToString(System.Globalization.CultureInfo.InvariantCulture)
             + "|" + X.ToString(System.Globalization.CultureInfo.InvariantCulture)
-            + "|" + Y.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            + "|" + Y.ToString(System.Globalization.CultureInfo.InvariantCulture)
+            + (Inventory == null ? "" : "|inventory-v1|" + Inventory.Fingerprint);
     }
 
     // Constructed by the trusted local/host adapter, never from a claimed command identity.
@@ -90,15 +102,20 @@ namespace Decennium.Foundation
         public string Principal { get; }
         public bool CanAdvanceClock { get; }
         public bool CanModifyWorld { get; }
-        private readonly HashSet<string> actors;
-        public Authority(string principal, IEnumerable<string> controlledActors, bool canAdvanceClock = false, bool canModifyWorld = false)
+        private readonly HashSet<string> actors, inventoryOwners, willingRecipients;
+        public Authority(string principal, IEnumerable<string> controlledActors, bool canAdvanceClock = false, bool canModifyWorld = false,
+            IEnumerable<string> inventoryOwners = null, IEnumerable<string> willingRecipients = null)
         {
             if (!Validation.ValidId(principal) || controlledActors == null) throw new ArgumentException("Invalid authority.");
             Principal = principal; CanAdvanceClock = canAdvanceClock; CanModifyWorld = canModifyWorld;
             actors = new HashSet<string>(controlledActors, StringComparer.Ordinal);
-            if (actors.Any(x => !Validation.ValidId(x))) throw new ArgumentException("Invalid actor grant.");
+            this.inventoryOwners = new HashSet<string>(inventoryOwners ?? Array.Empty<string>(), StringComparer.Ordinal);
+            this.willingRecipients = new HashSet<string>(willingRecipients ?? Array.Empty<string>(), StringComparer.Ordinal);
+            if (actors.Concat(this.inventoryOwners).Concat(this.willingRecipients).Any(x => !Validation.ValidId(x))) throw new ArgumentException("Invalid actor grant.");
         }
         public bool Controls(string actor) => actors.Contains(actor);
+        public bool MayUseInventory(string owner) => inventoryOwners.Contains(owner);
+        public bool ConsentsToHandover(string recipient) => willingRecipients.Contains(recipient);
     }
 
     public interface ICommandPolicy
@@ -133,7 +150,7 @@ namespace Decennium.Foundation
             if (s == null || !ValidId(s.ContentFingerprint) || s.Revision < 0 || s.Clock < 0 || s.RandomState == 0)
                 throw new ArgumentException("Invalid snapshot header.");
             if (s.SchemaVersion != Foundation.Snapshot.Schema && s.SchemaVersion != Foundation.Snapshot.WorkSchema
-                && s.SchemaVersion != Foundation.Snapshot.CropSchema)
+                && s.SchemaVersion != Foundation.Snapshot.CropSchema && s.SchemaVersion != Foundation.Snapshot.InventorySchema)
                 throw new ArgumentException("Unsupported snapshot schema.");
             if (s.SchemaVersion == Foundation.Snapshot.Schema && (s.Work != null || s.RuleClock != default))
                 throw new ArgumentException("Legacy snapshot cannot contain unsaved work or exact time.");
@@ -142,12 +159,13 @@ namespace Decennium.Foundation
                 || s.Work.WorkerIntervals.Count > Foundation.Snapshot.MaxWorkRecords
                 || s.Work.Reservations.Count > Foundation.Snapshot.MaxWorkRecords))
                 throw new ArgumentException("Invalid work snapshot or session capacity exceeded.");
+            if(s.SchemaVersion<Foundation.Snapshot.InventorySchema&&s.Work!=null&&s.Work.RequiresRationalSchema)throw new ArgumentException("Fractional/partial ledger requires an explicit later snapshot schema.");
             if (s.Crops == null || s.CropFood == null || s.CropPlots == null || s.Crops.Length > Foundation.Snapshot.MaxCropBatches
                 || s.CropPlots.Length > Foundation.Snapshot.MaxCropBatches || s.CropPlots.Any(p => p == null)
                 || s.CropFood.Length > Foundation.Snapshot.MaxCropBatches || s.Crops.Any(c => c == null) || s.CropFood.Any(f => f == null)
-                || (s.SchemaVersion != Foundation.Snapshot.CropSchema && (s.Crops.Length != 0 || s.CropFood.Length != 0 || s.CropPlots.Length != 0)))
+                || (s.SchemaVersion < Foundation.Snapshot.CropSchema && (s.Crops.Length != 0 || s.CropFood.Length != 0 || s.CropPlots.Length != 0)))
                 throw new ArgumentException("Invalid crop snapshot collections or schema.");
-            if (s.SchemaVersion == Foundation.Snapshot.CropSchema && (s.Work.Lots.Count > Foundation.Snapshot.MaxCropWorkRecords
+            if (s.SchemaVersion >= Foundation.Snapshot.CropSchema && (s.Work.Lots.Count > Foundation.Snapshot.MaxCropWorkRecords
                 || s.Work.WorkerIntervals.Count > Foundation.Snapshot.MaxCropWorkRecords
                 || s.Work.Reservations.Count > Foundation.Snapshot.MaxCropWorkRecords))
                 throw new ArgumentException("Crop session ledger capacity exceeded.");
@@ -183,6 +201,7 @@ namespace Decennium.Foundation
                 throw new ArgumentException("Invalid receipt.");
             if (s.Receipts.Select(r => r.Principal + "|" + r.Id).Distinct(StringComparer.Ordinal).Count() != s.Receipts.Length)
                 throw new ArgumentException("Duplicate receipt.");
+            InventoryValidation.Validate(s);
         }
     }
 
@@ -216,15 +235,22 @@ namespace Decennium.Foundation
                 || (command.Target.Length != 0 && !Validation.ValidId(command.Target)) || command.ExpectedRevision < 0
                 || !Enum.IsDefined(typeof(CommandKind), command.Kind)) return Reject("InvalidCommand");
             if (!authority.Controls(command.Actor) || (command.Kind == CommandKind.AdvanceClock && !authority.CanAdvanceClock)
-                || (command.Kind == CommandKind.SetCropConditions && !authority.CanModifyWorld))
+                || ((command.Kind == CommandKind.SetCropConditions || command.Kind == CommandKind.EnterInventoryCombat) && !authority.CanModifyWorld))
                 return Reject("NotAuthorized");
+            if (command.Kind == CommandKind.PortionInventory || command.Kind == CommandKind.HandleInventory || command.Kind == CommandKind.StartIntake) {
+                var source = state.InventoryLots.FirstOrDefault(x => x.LotId == command.Target);
+                if (source != null && !authority.MayUseInventory(source.OwnerId)) return Reject("InventoryNotAuthorized");
+                if (command.Kind == CommandKind.HandleInventory && command.Inventory != null
+                    && command.Inventory.Handling == HandlingKind.Handover && !authority.ConsentsToHandover(command.Inventory.Destination))
+                    return Reject("RecipientNotWilling");
+            }
             CommandReceipt previous = state.Receipts.FirstOrDefault(r => r.Principal == authority.Principal && r.Id == command.Id);
             if (previous != null)
                 return previous.Fingerprint == command.Fingerprint
                     ? new CommandResult(Outcome.Duplicate, "AlreadyCommitted", previous.Revision) : Reject("CommandIdConflict");
             if (command.ExpectedRevision != state.Revision) return Reject("StaleRevision");
             if (!state.Actors.Any(a => a.Id == command.Actor)) return Reject("UnknownActor");
-            if (state.Revision == long.MaxValue || state.Receipts.Length == Validation.MaxReceipts) return Reject("SessionCapacityReached");
+            if (state.Revision == long.MaxValue || state.Receipts.Length == (state.SchemaVersion == Snapshot.InventorySchema ? 512 : Validation.MaxReceipts)) return Reject("SessionCapacityReached");
             Snapshot candidate = state.Copy();
             string failure;
             try { failure = policy.Resolve(candidate, command); }

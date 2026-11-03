@@ -81,22 +81,22 @@ namespace Decennium.Foundation.Laboratory
             }
             return (BigInteger)crop.Growth.Numerator*earnedDenominator<=earnedNumerator*crop.Growth.Denominator;
         }
-        private string ValidateCropState(Snapshot s)
+        internal string ValidateCropState(Snapshot s,bool inventory=false)
         {
-            if(s.SchemaVersion!=Snapshot.CropSchema||s.Work==null)return "WrongCropSchema";
+            if(s.SchemaVersion!=(inventory?Snapshot.InventorySchema:Snapshot.CropSchema)||s.Work==null)return "WrongCropSchema";
             string worldError=TestOnlyPolicy.ValidateWorld(s);if(worldError!=null)return worldError;
             if(s.CropPlots.Length!=1||s.CropPlots[0].Id!=PlotId||s.CropPlots[0].OwnerId!=TestOnlyPolicy.CompanionId)return "InvalidPlot";
             var tasks=s.Crops.SelectMany(c=>c.Tasks).ToArray();
-            if(s.Work.Lots.Count!=2+s.CropFood.Length||s.Work.Reservations.Count!=tasks.Sum(t=>t.InputReservations.Count)
+            if(!inventory&&(s.Work.Lots.Count!=2+s.CropFood.Length||s.Work.Reservations.Count!=tasks.Sum(t=>t.InputReservations.Count)
                 ||s.Work.Reservations.Any(r=>r.Status!=ReservationStatus.Consumed||!tasks.Any(t=>t.Id==r.JobId&&t.InputReservations.Contains(r.Id)))
-                ||s.Work.WorkerIntervals.Any(w=>!tasks.Any(t=>t.Id==w.JobId)))return "InvalidCropLedger";
+                ||s.Work.WorkerIntervals.Any(w=>!tasks.Any(t=>t.Id==w.JobId))))return "InvalidCropLedger";
             bool Stock(string id,string unit,long initial) {
                 var lot=s.Work.Lots.Single(l=>l.Id==id);
                 long consumed=s.Work.Reservations.Where(r=>r.LotId==id).Sum(r=>r.Quantity);
                 return lot.UnitId==unit&&lot.LocationId==PlotId&&lot.CustodianId==TestOnlyPolicy.CompanionId
                     &&consumed<=initial&&lot.Quantity==initial-consumed;
             }
-            if(!Stock(SeedLotId,CampGreens.SeedUnit,seeds)||!Stock(WaterLotId,CampGreens.WaterUnit,water))return "InvalidCropStock";
+            if(!inventory&&(!Stock(SeedLotId,CampGreens.SeedUnit,seeds)||!Stock(WaterLotId,CampGreens.WaterUnit,water)))return "InvalidCropStock";
             if(s.Crops.Count(c=>c.Stage!=CropStage.Harvested&&c.Stage!=CropStage.Failed)>1)return "PlotOccupiedTwice";
             foreach(var crop in s.Crops) {
                 if(crop.PlotId!=PlotId||crop.SeedLotId!=SeedLotId||crop.OwnerId!=TestOnlyPolicy.CompanionId
@@ -172,7 +172,7 @@ namespace Decennium.Foundation.Laboratory
             }
             foreach(var food in s.CropFood) {
                 var lot=s.Work.Lots.Single(l=>l.Id==food.LotId);
-                if(lot.UnitId!=CampGreens.FoodUnit||lot.Quantity!=8||lot.LocationId!=PlotId||lot.CustodianId!=TestOnlyPolicy.CompanionId
+                if(lot.UnitId!=CampGreens.FoodUnit||(!inventory&&(lot.Quantity!=8||lot.LocationId!=PlotId||lot.CustodianId!=TestOnlyPolicy.CompanionId))
                     ||food.Expired!=(s.RuleClock>=food.FreshUntil))return "InvalidFoodLot";
             }
             return null;

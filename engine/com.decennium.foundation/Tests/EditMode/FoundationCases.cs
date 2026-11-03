@@ -211,6 +211,8 @@ namespace Decennium.Foundation.Tests
             AddPrototypePolicyCases(cases);
             AddCropCases(cases, directory);
             AddCarryingCases(cases);
+            AddExactLedgerCases(cases);
+            AddInventoryCases(cases, directory);
             return cases;
         }
         private static void Resign(byte[] bytes)
