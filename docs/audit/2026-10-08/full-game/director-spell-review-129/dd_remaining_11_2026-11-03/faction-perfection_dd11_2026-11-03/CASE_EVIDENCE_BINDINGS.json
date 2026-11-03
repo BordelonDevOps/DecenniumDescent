@@ -1,0 +1,183 @@
+{
+  "id": "FP-DD11-CASE-EVIDENCE-BINDINGS-01",
+  "identity": "faction-perfection",
+  "contractSha256": "c016301b74132cbf6d0a7c775bd5c15306319bbaa8d650736034f0cdf2e6b898",
+  "requiredCases": [
+    {
+      "caseId": "FP-P1",
+      "specification": {
+        "id": "FP-P1",
+        "given": {
+          "route": "Cleric/Abjuration",
+          "standing": -1,
+          "benefitHistory": "none"
+        },
+        "steps": [
+          "Paid cast",
+          "Set standing+3",
+          "Target spends Action to activate40tempHP",
+          "Take17 ordinary post-mitigation damage"
+        ],
+        "expected": {
+          "standing": 3,
+          "tempHPRemaining": 23,
+          "normalHPUnchanged": true,
+          "entitlementConsumed": true,
+          "membershipGranted": false
+        },
+        "covers": [
+          "AFP338-W01",
+          "AFP338-W02"
+        ],
+        "executionStatus": "NOT_EXECUTED_IN_THIS_PACKAGE"
+      },
+      "specificationSha256": "f58998319e2a1d039fb407195df142ddb9e0435b88e71839a01739dc60c81204",
+      "branchIds": [
+        "FP-P1-CLERIC"
+      ],
+      "branchHashes": {
+        "FP-P1-CLERIC": "b1de4b17e355e01799a692d75652b5e5a1a62386ac8756cbe71d78264cd05a66"
+      },
+      "status": "PASS_STATIC_TEST_ONLY"
+    },
+    {
+      "caseId": "FP-P2",
+      "specification": {
+        "id": "FP-P2",
+        "given": {
+          "route": "Wizard/Abjuration",
+          "standing": 2,
+          "benefitHistory": "consumed"
+        },
+        "steps": [
+          "Paid cast",
+          "Attempt benefit activation"
+        ],
+        "expected": {
+          "standing": 3,
+          "newTempHP": 0,
+          "oldConsumedRecordPreserved": true,
+          "castPaid": true
+        },
+        "covers": [
+          "AFP338-W01",
+          "AFP338-W02"
+        ],
+        "executionStatus": "NOT_EXECUTED_IN_THIS_PACKAGE"
+      },
+      "specificationSha256": "672e7747718ed31fccce7603d7e87e1d312e347115ca667ea761d0a0f10c0786",
+      "branchIds": [
+        "FP-P2-WIZARD"
+      ],
+      "branchHashes": {
+        "FP-P2-WIZARD": "6ddcd30f0bbf52459a165d5df7834a793847dc9cdb57f7f49869ff495018f621"
+      },
+      "status": "PASS_STATIC_TEST_ONLY"
+    },
+    {
+      "caseId": "FP-A1",
+      "specification": {
+        "id": "FP-A1",
+        "given": {
+          "timeline": [
+            "grant",
+            "activate",
+            "damage17",
+            "standing becomes+1",
+            "standing legally returns+3",
+            "suppression",
+            "expiry"
+          ]
+        },
+        "steps": [
+          "Apply actual events in sequence"
+        ],
+        "expected": {
+          "standingNeverRewrittenByEnding": true,
+          "poolNeverRefills": true,
+          "afterReenableMaxRemaining": 23,
+          "finalRemaining": 0
+        },
+        "covers": [
+          "AFP338-W01",
+          "AFP338-W02"
+        ],
+        "executionStatus": "NOT_EXECUTED_IN_THIS_PACKAGE"
+      },
+      "specificationSha256": "f1f4140f200b496faf982b2cd0e5bf31bab3f61fcc37b1bb53f4ac1a9561f9fb",
+      "branchIds": [
+        "FP-A1-TIMELINE"
+      ],
+      "branchHashes": {
+        "FP-A1-TIMELINE": "1d17ad616fb321c7bc22d39f0aebd9141512e6625df24fb33f988f9f6a5aad7e"
+      },
+      "status": "PASS_STATIC_TEST_ONLY"
+    },
+    {
+      "caseId": "FP-R",
+      "specification": {
+        "id": "FP-R",
+        "given": {
+          "routes": [
+            "Druid/Abjuration",
+            "Mage/Abjuration"
+          ],
+          "adverse": [
+            "consent revoked after commitment",
+            "same-key retry",
+            "stronger existing tempHP"
+          ]
+        },
+        "steps": [
+          "Execute paid route variants and adverse branches"
+        ],
+        "expected": {
+          "noRefund": true,
+          "noDoubleGrant": true,
+          "strongerTempHPRetained": true,
+          "activationStillConsumesEntitlement": true
+        },
+        "covers": [
+          "AFP338-W02"
+        ],
+        "executionStatus": "NOT_EXECUTED_IN_THIS_PACKAGE"
+      },
+      "specificationSha256": "36b72ef47443a2ece8fdf4884b8b86c9ff961d2c00a7d04dd074f756ec92adb6",
+      "branchIds": [
+        "FP-R-DRUID",
+        "FP-R-MAGE",
+        "FP-R-WIZARD-RECAST",
+        "FP-R-CONSENT",
+        "FP-R-DEATH"
+      ],
+      "branchHashes": {
+        "FP-R-DRUID": "add13c667724aa1616b355af51cfa820b533931dcd7f7a83358226510ef7cc0b",
+        "FP-R-MAGE": "ba2b8782da238072b9cf20941142661ea6c136f85a4f52cd7c43984eb895cf18",
+        "FP-R-WIZARD-RECAST": "fb53e09aaee9d986f7a7d8f200ea81b1ef29ae8056a1bccf3b50250af19667bd",
+        "FP-R-CONSENT": "e2accf5e36e840ff4ea230c35b9068a100966dafd69ba48e73b2e2106b8f85d0",
+        "FP-R-DEATH": "e5d832f6341b9bd5aa4049885075daa7cdc34a337ec341bd519f51f19eb89245"
+      },
+      "status": "PASS_STATIC_TEST_ONLY"
+    }
+  ],
+  "nativeRouteCoverage": {
+    "Cleric/Abjuration": [
+      "FP-P1-CLERIC",
+      "FP-A1-TIMELINE",
+      "FP-R-DEATH"
+    ],
+    "Wizard/Abjuration": [
+      "FP-P2-WIZARD",
+      "FP-R-WIZARD-RECAST"
+    ],
+    "Druid/Abjuration": [
+      "FP-R-DRUID",
+      "FP-R-CONSENT"
+    ],
+    "Mage/Abjuration": [
+      "FP-R-MAGE"
+    ]
+  },
+  "minimumDistinctPaidPositiveEncountersPerRoute": 1,
+  "scope": "STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY"
+}
