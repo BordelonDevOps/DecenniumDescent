@@ -1,0 +1,231 @@
+{
+  "id": "AP-DD11-AUTHORED-PROCEDURE-01",
+  "identity": "alignment-perfection",
+  "status": "CONDITIONALLY_ACCEPTED_STATIC_MODEL",
+  "scope": "STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY",
+  "model": {
+    "admission": "One actually willing perceived creature within120ft and LoE; willingness is checked at commitment and resolution. No forced Good/Lawful conversion or moral hierarchy.",
+    "cleansing": {
+      "eligible": "Active imposed alignment-alteration components whose type is alignment_override, whose source grants ordinary removable spell expression status, and whose exact protection resolver permits this rank9 cleansing. Bind the component IDs; unknown eligibility is not permission. All eligible components are ended once at success.",
+      "operation": "Call each affected source's actual end-component callback in stable component-ID order inside one transaction; cancel owned dependent operations only. Do not delete ledger entries.",
+      "preserve": "Underlying conduct/development, personality, oath obligations, acquisition and historical alignment records; independent Lock/Anchor snapshots and protected components survive unless their own accepted rule explicitly permits ending. No lower-source deletion erases a protected snapshot."
+    },
+    "benefits": {
+      "input": "live effective permitted axes after completed cleansing; independent per-axis evaluation",
+      "Order": {
+        "Lawful": {
+          "ACBonus": 2
+        },
+        "Neutral": {
+          "CONSaveBonus": 2
+        },
+        "Chaotic": {
+          "walkingSpeedBonusFt": 10
+        }
+      },
+      "Moral": {
+        "Good": {
+          "WISSaveBonus": 2
+        },
+        "Neutral": {
+          "DEXSaveBonus": 2
+        },
+        "Evil": {
+          "STRSaveBonus": 2
+        }
+      },
+      "unknownOrProtected": "no benefit from that axis; no substitution of Neutral and no diagnostic disclosure",
+      "stacking": "one modifier from each axis; typed Perfection bonuses never stack with another Perfection source. Other sources follow their own stacking rules.",
+      "valuePolicy": "Every known Neutral axis has a concrete useful benefit. All values are new design selections, not native printed values."
+    },
+    "lifecycle": {
+      "cleansing": "instantaneous completed source endings, not undone by later suppression or expiry",
+      "benefitSource": "new continuing rank9 expression; no concentration; deadline successful resolution+1200000ms (20 minutes)",
+      "sourceIdentity": "castID:perfection:targetID; source owns modifiers only",
+      "recast": "later successful cast replaces benefit source; newly eligible alterations may end but old ended records are not ended twice. No consumable refill exists in this passive benefit model.",
+      "suppression": "remove covered modifiers while original deadline runs; no cleansing restoration or missed-event benefits",
+      "death": "ends target benefit source without changing corpse, gear or death history",
+      "legitimateChange": "remove old axis modifiers and recompute before next affected event; spent movement remains spent when speed changes; no extra movement credit beyond shared recalculation rules"
+    }
+  },
+  "nativeCardUnmodified": {
+    "id": "alignment-perfection",
+    "name": "Alignment Perfection",
+    "schools": [
+      "Abjuration"
+    ],
+    "status": "blocked-pending-operational-review",
+    "visibility": "public-source-review",
+    "classAccess": {
+      "Cleric": {
+        "rank": 9,
+        "minimumClassLevel": 17,
+        "school": "Abjuration",
+        "baseRpCost": 26
+      },
+      "Druid": {
+        "rank": 9,
+        "minimumClassLevel": 17,
+        "school": "Abjuration",
+        "baseRpCost": 26
+      },
+      "Mage": {
+        "rank": 9,
+        "minimumClassLevel": 17,
+        "school": "Abjuration",
+        "baseRpCost": 26
+      },
+      "Wizard": {
+        "rank": 9,
+        "minimumClassLevel": 17,
+        "school": "Abjuration",
+        "baseRpCost": 26
+      }
+    },
+    "operational": null,
+    "additionalRpCost": 0,
+    "source": {
+      "catalogPath": "src/data/spells.js",
+      "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+      "catalogKey": "alignment-perfection",
+      "original": {
+        "name": "Alignment Perfection",
+        "level": 9,
+        "resonanceRank": 9,
+        "school": "Abjuration",
+        "schools": [
+          "Abjuration"
+        ],
+        "placements": [
+          {
+            "name": "Alignment Perfection",
+            "school": "Abjuration",
+            "level": 9,
+            "summary": "Target's alignment becomes purified; they gain benefits based on alignment."
+          }
+        ],
+        "classLevels": {
+          "Cleric": 9,
+          "Druid": 9,
+          "Mage": 9,
+          "Wizard": 9
+        },
+        "classRanks": {
+          "Cleric": 9,
+          "Druid": 9,
+          "Mage": 9,
+          "Wizard": 9
+        },
+        "classLearnLevels": {
+          "Cleric": 17,
+          "Druid": 17,
+          "Mage": 17,
+          "Wizard": 17
+        },
+        "classSchools": {
+          "Cleric": "Abjuration",
+          "Druid": "Abjuration",
+          "Mage": "Abjuration",
+          "Wizard": "Abjuration"
+        },
+        "castingTime": "Not specified in current rulebook",
+        "range": "Not specified in current rulebook",
+        "components": "Not specified in current rulebook",
+        "duration": "Not specified in current rulebook",
+        "description": "Target's alignment becomes purified; they gain benefits based on alignment.",
+        "alternateSummaries": [],
+        "classes": [
+          "Cleric",
+          "Druid",
+          "Mage",
+          "Wizard"
+        ],
+        "status": "canon",
+        "source": "Player Rulebook — Spell Lists"
+      },
+      "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+      "coreEntries": [
+        {
+          "index": 98,
+          "original": {
+            "school": "Abjuration",
+            "level": 9,
+            "name": "Alignment Perfection",
+            "effect": "Target's alignment becomes purified; they gain benefits based on alignment.",
+            "source_paragraph": 9099,
+            "casting_time": "1 action",
+            "range": "120 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Alignment"
+            ],
+            "rp_cost": 26
+          }
+        }
+      ],
+      "possibleHistoricalAliases": []
+    },
+    "reviewFlags": [
+      "Core resolution requires an explicit operational interpretation",
+      "Not selectable in this spell playtest packet until individual operational review"
+    ]
+  },
+  "sourceBindings": [
+    {
+      "repositoryPath": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_alignment_perfection_return336_received/payload/HOLD_REGISTER.json",
+      "commit": "980c498826c631a3e28a4dc308e534c75c884d35",
+      "hashDomain": "exact committed UTF-8 Git blob bytes; no line-ending normalization",
+      "bytes": 8573,
+      "sha256": "b35c26570c767dddab5ff2f130b4aa25fce0d7a5619d0c380261ec7e81dc0e67",
+      "crc32": "256ffbf7",
+      "gitBlobSha1": "50cd83404d0ad6fbe8c162248a03b2873e528b11"
+    },
+    {
+      "repositoryPath": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_alignment_perfection_return336_received/payload/CASE_COVERAGE.json",
+      "commit": "980c498826c631a3e28a4dc308e534c75c884d35",
+      "hashDomain": "exact committed UTF-8 Git blob bytes; no line-ending normalization",
+      "bytes": 2066,
+      "sha256": "564341d1c39c850461fbaba46b66e1571dcec5bbf48d8869bfc2d61891bbaa99",
+      "crc32": "f7eb7063",
+      "gitBlobSha1": "c022f2597ed7d4c3b4175d427ba9c09dfb7be4ff"
+    },
+    {
+      "repositoryPath": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_alignment_perfection_return336_received/payload/DIRECTOR_DECISION.json",
+      "commit": "980c498826c631a3e28a4dc308e534c75c884d35",
+      "hashDomain": "exact committed UTF-8 Git blob bytes; no line-ending normalization",
+      "bytes": 2697,
+      "sha256": "07b2e389959243e70c5a0f84cba55b223f4e86d35f23d790039ab466b3e3263e",
+      "crc32": "7d6bc1ef",
+      "gitBlobSha1": "f3f1bc38d0f49c54c2c601460c9bed7fd72f9248"
+    },
+    {
+      "repositoryPath": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_alignment_perfection_return336_received/payload/PROCEDURE_STATUS.json",
+      "commit": "980c498826c631a3e28a4dc308e534c75c884d35",
+      "hashDomain": "exact committed UTF-8 Git blob bytes; no line-ending normalization",
+      "bytes": 9770,
+      "sha256": "2519c99c2c0bb5382507b9e72b5559469c478024f25059407ce4285306e5dc7a",
+      "crc32": "4bdb7481",
+      "gitBlobSha1": "cec3b55b7c4e4a50c2d36df27a2d216fd29ca9ce"
+    },
+    {
+      "repositoryPath": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_alignment_perfection_return336_received/payload/QUALIFICATIONS.json",
+      "commit": "980c498826c631a3e28a4dc308e534c75c884d35",
+      "hashDomain": "exact committed UTF-8 Git blob bytes; no line-ending normalization",
+      "bytes": 3031,
+      "sha256": "e55a9058300d47ff0aeab07542a0ed47331d46832fb4c28a8583915bf11f3301",
+      "crc32": "110ba637",
+      "gitBlobSha1": "64dfa57244ba9cc96a9ad0c7520dbc393df535d1"
+    }
+  ],
+  "staticLimits": {
+    "sourceBlockerClosed": false,
+    "runtimeSelectionEnabled": false,
+    "nativeOperational": null,
+    "canonPromotion": false,
+    "campaignFactsCreated": false,
+    "externalSuppressionProviderCertified": false
+  }
+}

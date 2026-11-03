@@ -1,0 +1,1441 @@
+{
+  "id": "AP-DD11-STATE-START-01",
+  "scope": "independent TEST_ONLY branches, no campaign facts",
+  "branches": [
+    {
+      "branchId": "AP-P1-CLERIC",
+      "caseId": "AP-P1",
+      "route": "Cleric/Abjuration",
+      "state": {
+        "id": "AP-FIXTURE-AP-P1-Cleric",
+        "status": "TEST_ONLY",
+        "canonical": false,
+        "site": "TEST-DD11-ARENA",
+        "plane": "TEST-DD11-PLANE-A",
+        "floor": {
+          "id": "TEST-DD11-FLOOR",
+          "support": "static",
+          "capacityLb": 100000
+        },
+        "actors": {
+          "caster": {
+            "id": "cleric-17-abjuration",
+            "className": "Cleric",
+            "classLevel": 17,
+            "route": "Cleric/Abjuration",
+            "profileId": "cleric-17-abjuration",
+            "resources": {
+              "HP": 156,
+              "maxHP": 156,
+              "RP": 48,
+              "maxRP": 48,
+              "Dissonance": 0,
+              "Refrain": 0
+            },
+            "actionBudget": {
+              "actionAvailable": true,
+              "actionsSpent": 0,
+              "bonusActionAvailable": true,
+              "reactionAvailable": true,
+              "movementFtAvailable": 30
+            },
+            "turnState": {
+              "regularTurn": 1,
+              "magicThisTurn": false,
+              "lastSpell": null
+            },
+            "components": {
+              "V": true,
+              "S": true,
+              "F": true,
+              "focusId": "cleric-focus-01",
+              "focusHeldLeft": true
+            },
+            "equipment": {
+              "focusOwner": "cleric-17-abjuration",
+              "focusCustodian": "cleric-17-abjuration",
+              "focusAttachedTo": "cleric-17-abjuration-body"
+            },
+            "body": {
+              "id": "cleric-17-abjuration-body",
+              "type": "Human",
+              "bounds": [
+                [
+                  -2.5,
+                  2.5
+                ],
+                [
+                  -2.5,
+                  2.5
+                ],
+                [
+                  0,
+                  6
+                ]
+              ],
+              "supportedBy": "TEST-DD11-FLOOR",
+              "alive": true
+            },
+            "spellHistory": [],
+            "pendingCast": null
+          },
+          "target": {
+            "id": "target-01",
+            "willing": true,
+            "location": {
+              "x": 20,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-DD11-PLANE-A"
+            },
+            "perceived": true,
+            "lineOfEffect": true,
+            "distanceFt": 20,
+            "AC": 16,
+            "speedFt": 30,
+            "resources": {
+              "HP": 100,
+              "maxHP": 100
+            },
+            "alignment": {
+              "underlying": {
+                "Order": "Lawful",
+                "Moral": "Good"
+              },
+              "effective": {
+                "Order": "Lawful",
+                "Moral": "Good"
+              },
+              "protected": {
+                "Order": false,
+                "Moral": false
+              },
+              "lock": null
+            },
+            "sourceComponents": [
+              {
+                "id": "r1",
+                "type": "alignment_override",
+                "active": true,
+                "ordinaryRemovableSpellExpression": true,
+                "protectionAllowsThisRank9Cleansing": true,
+                "value": "Chaotic",
+                "callbackCount": 0
+              }
+            ],
+            "conductHistory": [
+              {
+                "id": "history-0",
+                "axes": [
+                  "Lawful",
+                  "Good"
+                ],
+                "value": "immutable test record"
+              }
+            ],
+            "benefitSource": null,
+            "saves": {
+              "WIS": 0,
+              "CON": 0,
+              "DEX": 0,
+              "STR": 0
+            },
+            "movementFtSpent": 0,
+            "memory": []
+          }
+        },
+        "events": [],
+        "receipts": []
+      },
+      "hash": "4ab5cc7dbfeca398dfa3b9f3a8a0246f1e1384aa150c1eb5e1831a2c393a70cc"
+    },
+    {
+      "branchId": "AP-P2-WIZARD",
+      "caseId": "AP-P2",
+      "route": "Wizard/Abjuration",
+      "state": {
+        "id": "AP-FIXTURE-AP-P2-Wizard",
+        "status": "TEST_ONLY",
+        "canonical": false,
+        "site": "TEST-DD11-ARENA",
+        "plane": "TEST-DD11-PLANE-A",
+        "floor": {
+          "id": "TEST-DD11-FLOOR",
+          "support": "static",
+          "capacityLb": 100000
+        },
+        "actors": {
+          "caster": {
+            "id": "wizard-17-abjuration",
+            "className": "Wizard",
+            "classLevel": 17,
+            "route": "Wizard/Abjuration",
+            "profileId": "wizard-17-abjuration",
+            "resources": {
+              "HP": 55,
+              "maxHP": 80,
+              "RP": 64,
+              "maxRP": 64,
+              "Dissonance": 0,
+              "Refrain": 0
+            },
+            "actionBudget": {
+              "actionAvailable": true,
+              "actionsSpent": 0,
+              "bonusActionAvailable": true,
+              "reactionAvailable": true,
+              "movementFtAvailable": 30
+            },
+            "turnState": {
+              "regularTurn": 1,
+              "magicThisTurn": false,
+              "lastSpell": null
+            },
+            "components": {
+              "V": true,
+              "S": true,
+              "F": true,
+              "focusId": "wizard-focus-01",
+              "focusHeldLeft": true
+            },
+            "equipment": {
+              "focusOwner": "wizard-17-abjuration",
+              "focusCustodian": "wizard-17-abjuration",
+              "focusAttachedTo": "wizard-17-abjuration-body"
+            },
+            "body": {
+              "id": "wizard-17-abjuration-body",
+              "type": "Human",
+              "bounds": [
+                [
+                  -2.5,
+                  2.5
+                ],
+                [
+                  -2.5,
+                  2.5
+                ],
+                [
+                  0,
+                  6
+                ]
+              ],
+              "supportedBy": "TEST-DD11-FLOOR",
+              "alive": true
+            },
+            "spellHistory": [],
+            "pendingCast": null
+          },
+          "target": {
+            "id": "target-01",
+            "willing": true,
+            "location": {
+              "x": 20,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-DD11-PLANE-A"
+            },
+            "perceived": true,
+            "lineOfEffect": true,
+            "distanceFt": 20,
+            "AC": 16,
+            "speedFt": 30,
+            "resources": {
+              "HP": 100,
+              "maxHP": 100
+            },
+            "alignment": {
+              "underlying": {
+                "Order": "Neutral",
+                "Moral": "Neutral"
+              },
+              "effective": {
+                "Order": "Neutral",
+                "Moral": "Neutral"
+              },
+              "protected": {
+                "Order": false,
+                "Moral": false
+              },
+              "lock": {
+                "Order": {
+                  "id": "lock-01",
+                  "value": "Neutral",
+                  "active": true,
+                  "protected": true,
+                  "source": "TEST_ONLY active Lock snapshot"
+                }
+              }
+            },
+            "sourceComponents": [],
+            "conductHistory": [
+              {
+                "id": "history-0",
+                "axes": [
+                  "Neutral",
+                  "Neutral"
+                ],
+                "value": "immutable test record"
+              }
+            ],
+            "benefitSource": null,
+            "saves": {
+              "WIS": 0,
+              "CON": 0,
+              "DEX": 0,
+              "STR": 0
+            },
+            "movementFtSpent": 0,
+            "memory": []
+          }
+        },
+        "events": [],
+        "receipts": []
+      },
+      "hash": "c76fc2df6a399b4cc5626917785842960b4a251aeb03b814d5e2834f2947ea6a"
+    },
+    {
+      "branchId": "AP-A1-UNWILLING",
+      "caseId": "AP-A1",
+      "route": "Cleric/Abjuration",
+      "state": {
+        "id": "AP-FIXTURE-AP-A1-Cleric",
+        "status": "TEST_ONLY",
+        "canonical": false,
+        "site": "TEST-DD11-ARENA",
+        "plane": "TEST-DD11-PLANE-A",
+        "floor": {
+          "id": "TEST-DD11-FLOOR",
+          "support": "static",
+          "capacityLb": 100000
+        },
+        "actors": {
+          "caster": {
+            "id": "cleric-17-abjuration",
+            "className": "Cleric",
+            "classLevel": 17,
+            "route": "Cleric/Abjuration",
+            "profileId": "cleric-17-abjuration",
+            "resources": {
+              "HP": 156,
+              "maxHP": 156,
+              "RP": 48,
+              "maxRP": 48,
+              "Dissonance": 0,
+              "Refrain": 0
+            },
+            "actionBudget": {
+              "actionAvailable": true,
+              "actionsSpent": 0,
+              "bonusActionAvailable": true,
+              "reactionAvailable": true,
+              "movementFtAvailable": 30
+            },
+            "turnState": {
+              "regularTurn": 1,
+              "magicThisTurn": false,
+              "lastSpell": null
+            },
+            "components": {
+              "V": true,
+              "S": true,
+              "F": true,
+              "focusId": "cleric-focus-01",
+              "focusHeldLeft": true
+            },
+            "equipment": {
+              "focusOwner": "cleric-17-abjuration",
+              "focusCustodian": "cleric-17-abjuration",
+              "focusAttachedTo": "cleric-17-abjuration-body"
+            },
+            "body": {
+              "id": "cleric-17-abjuration-body",
+              "type": "Human",
+              "bounds": [
+                [
+                  -2.5,
+                  2.5
+                ],
+                [
+                  -2.5,
+                  2.5
+                ],
+                [
+                  0,
+                  6
+                ]
+              ],
+              "supportedBy": "TEST-DD11-FLOOR",
+              "alive": true
+            },
+            "spellHistory": [],
+            "pendingCast": null
+          },
+          "target": {
+            "id": "target-01",
+            "willing": false,
+            "location": {
+              "x": 20,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-DD11-PLANE-A"
+            },
+            "perceived": true,
+            "lineOfEffect": true,
+            "distanceFt": 20,
+            "AC": 16,
+            "speedFt": 30,
+            "resources": {
+              "HP": 100,
+              "maxHP": 100
+            },
+            "alignment": {
+              "underlying": {
+                "Order": "Lawful",
+                "Moral": "Good"
+              },
+              "effective": {
+                "Order": "Lawful",
+                "Moral": "Good"
+              },
+              "protected": {
+                "Order": false,
+                "Moral": false
+              },
+              "lock": null
+            },
+            "sourceComponents": [],
+            "conductHistory": [
+              {
+                "id": "history-0",
+                "axes": [
+                  "Lawful",
+                  "Good"
+                ],
+                "value": "immutable test record"
+              }
+            ],
+            "benefitSource": null,
+            "saves": {
+              "WIS": 0,
+              "CON": 0,
+              "DEX": 0,
+              "STR": 0
+            },
+            "movementFtSpent": 0,
+            "memory": []
+          }
+        },
+        "events": [],
+        "receipts": []
+      },
+      "hash": "62a0697fbb95442e77c8cf2dafbae10d054ec94f2477e63d274ad2cd0623fa4f"
+    },
+    {
+      "branchId": "AP-A1-CONSENT-REVOKED",
+      "caseId": "AP-A1",
+      "route": "Wizard/Abjuration",
+      "state": {
+        "id": "AP-FIXTURE-AP-A1-Wizard",
+        "status": "TEST_ONLY",
+        "canonical": false,
+        "site": "TEST-DD11-ARENA",
+        "plane": "TEST-DD11-PLANE-A",
+        "floor": {
+          "id": "TEST-DD11-FLOOR",
+          "support": "static",
+          "capacityLb": 100000
+        },
+        "actors": {
+          "caster": {
+            "id": "wizard-17-abjuration",
+            "className": "Wizard",
+            "classLevel": 17,
+            "route": "Wizard/Abjuration",
+            "profileId": "wizard-17-abjuration",
+            "resources": {
+              "HP": 55,
+              "maxHP": 80,
+              "RP": 64,
+              "maxRP": 64,
+              "Dissonance": 0,
+              "Refrain": 0
+            },
+            "actionBudget": {
+              "actionAvailable": true,
+              "actionsSpent": 0,
+              "bonusActionAvailable": true,
+              "reactionAvailable": true,
+              "movementFtAvailable": 30
+            },
+            "turnState": {
+              "regularTurn": 1,
+              "magicThisTurn": false,
+              "lastSpell": null
+            },
+            "components": {
+              "V": true,
+              "S": true,
+              "F": true,
+              "focusId": "wizard-focus-01",
+              "focusHeldLeft": true
+            },
+            "equipment": {
+              "focusOwner": "wizard-17-abjuration",
+              "focusCustodian": "wizard-17-abjuration",
+              "focusAttachedTo": "wizard-17-abjuration-body"
+            },
+            "body": {
+              "id": "wizard-17-abjuration-body",
+              "type": "Human",
+              "bounds": [
+                [
+                  -2.5,
+                  2.5
+                ],
+                [
+                  -2.5,
+                  2.5
+                ],
+                [
+                  0,
+                  6
+                ]
+              ],
+              "supportedBy": "TEST-DD11-FLOOR",
+              "alive": true
+            },
+            "spellHistory": [],
+            "pendingCast": null
+          },
+          "target": {
+            "id": "target-01",
+            "willing": true,
+            "location": {
+              "x": 20,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-DD11-PLANE-A"
+            },
+            "perceived": true,
+            "lineOfEffect": true,
+            "distanceFt": 20,
+            "AC": 16,
+            "speedFt": 30,
+            "resources": {
+              "HP": 100,
+              "maxHP": 100
+            },
+            "alignment": {
+              "underlying": {
+                "Order": "Lawful",
+                "Moral": "Good"
+              },
+              "effective": {
+                "Order": "Lawful",
+                "Moral": "Good"
+              },
+              "protected": {
+                "Order": false,
+                "Moral": false
+              },
+              "lock": null
+            },
+            "sourceComponents": [],
+            "conductHistory": [
+              {
+                "id": "history-0",
+                "axes": [
+                  "Lawful",
+                  "Good"
+                ],
+                "value": "immutable test record"
+              }
+            ],
+            "benefitSource": null,
+            "saves": {
+              "WIS": 0,
+              "CON": 0,
+              "DEX": 0,
+              "STR": 0
+            },
+            "movementFtSpent": 0,
+            "memory": []
+          }
+        },
+        "events": [],
+        "receipts": []
+      },
+      "hash": "65cc90cb37efcebce33282809b7ed7e76ea8af6a5222b7e003c6ecdba22538a3"
+    },
+    {
+      "branchId": "AP-A1-PROTECTED-BOTH",
+      "caseId": "AP-A1",
+      "route": "Druid/Abjuration",
+      "state": {
+        "id": "AP-FIXTURE-AP-A1-Druid",
+        "status": "TEST_ONLY",
+        "canonical": false,
+        "site": "TEST-DD11-ARENA",
+        "plane": "TEST-DD11-PLANE-A",
+        "floor": {
+          "id": "TEST-DD11-FLOOR",
+          "support": "static",
+          "capacityLb": 100000
+        },
+        "actors": {
+          "caster": {
+            "id": "druid-17-abjuration",
+            "className": "Druid",
+            "classLevel": 17,
+            "route": "Druid/Abjuration",
+            "profileId": "druid-17-abjuration",
+            "resources": {
+              "HP": 156,
+              "maxHP": 156,
+              "RP": 48,
+              "maxRP": 48,
+              "Dissonance": 0,
+              "Refrain": 0
+            },
+            "actionBudget": {
+              "actionAvailable": true,
+              "actionsSpent": 0,
+              "bonusActionAvailable": true,
+              "reactionAvailable": true,
+              "movementFtAvailable": 30
+            },
+            "turnState": {
+              "regularTurn": 1,
+              "magicThisTurn": false,
+              "lastSpell": null
+            },
+            "components": {
+              "V": true,
+              "S": true,
+              "F": true,
+              "focusId": "druid-focus-01",
+              "focusHeldLeft": true
+            },
+            "equipment": {
+              "focusOwner": "druid-17-abjuration",
+              "focusCustodian": "druid-17-abjuration",
+              "focusAttachedTo": "druid-17-abjuration-body"
+            },
+            "body": {
+              "id": "druid-17-abjuration-body",
+              "type": "Human",
+              "bounds": [
+                [
+                  -2.5,
+                  2.5
+                ],
+                [
+                  -2.5,
+                  2.5
+                ],
+                [
+                  0,
+                  6
+                ]
+              ],
+              "supportedBy": "TEST-DD11-FLOOR",
+              "alive": true
+            },
+            "spellHistory": [],
+            "pendingCast": null
+          },
+          "target": {
+            "id": "target-01",
+            "willing": true,
+            "location": {
+              "x": 20,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-DD11-PLANE-A"
+            },
+            "perceived": true,
+            "lineOfEffect": true,
+            "distanceFt": 20,
+            "AC": 16,
+            "speedFt": 30,
+            "resources": {
+              "HP": 100,
+              "maxHP": 100
+            },
+            "alignment": {
+              "underlying": {
+                "Order": "Lawful",
+                "Moral": "Good"
+              },
+              "effective": {
+                "Order": "Lawful",
+                "Moral": "Good"
+              },
+              "protected": {
+                "Order": true,
+                "Moral": true
+              },
+              "lock": null
+            },
+            "sourceComponents": [
+              {
+                "id": "lock-order",
+                "type": "lock_snapshot",
+                "active": true,
+                "protected": true
+              },
+              {
+                "id": "moral-protect",
+                "type": "protection",
+                "active": true,
+                "protected": true
+              }
+            ],
+            "conductHistory": [
+              {
+                "id": "history-0",
+                "axes": [
+                  "Lawful",
+                  "Good"
+                ],
+                "value": "immutable test record"
+              }
+            ],
+            "benefitSource": null,
+            "saves": {
+              "WIS": 0,
+              "CON": 0,
+              "DEX": 0,
+              "STR": 0
+            },
+            "movementFtSpent": 0,
+            "memory": []
+          }
+        },
+        "events": [],
+        "receipts": []
+      },
+      "hash": "8dd2b9e8c30a680c2d872772ca720700bcbc5e0948682b12ac7e7dddf6c5f369"
+    },
+    {
+      "branchId": "AP-A1-UNDEFINED-ORDER",
+      "caseId": "AP-A1",
+      "route": "Mage/Abjuration",
+      "state": {
+        "id": "AP-FIXTURE-AP-A1-Mage",
+        "status": "TEST_ONLY",
+        "canonical": false,
+        "site": "TEST-DD11-ARENA",
+        "plane": "TEST-DD11-PLANE-A",
+        "floor": {
+          "id": "TEST-DD11-FLOOR",
+          "support": "static",
+          "capacityLb": 100000
+        },
+        "actors": {
+          "caster": {
+            "id": "mage-17-abjuration",
+            "className": "Mage",
+            "classLevel": 17,
+            "route": "Mage/Abjuration",
+            "profileId": "mage-17-abjuration",
+            "resources": {
+              "HP": 138,
+              "maxHP": 138,
+              "RP": 50,
+              "maxRP": 50,
+              "Dissonance": 0,
+              "Refrain": 0
+            },
+            "actionBudget": {
+              "actionAvailable": true,
+              "actionsSpent": 0,
+              "bonusActionAvailable": true,
+              "reactionAvailable": true,
+              "movementFtAvailable": 30
+            },
+            "turnState": {
+              "regularTurn": 1,
+              "magicThisTurn": false,
+              "lastSpell": null
+            },
+            "components": {
+              "V": true,
+              "S": true,
+              "F": true,
+              "focusId": "mage-focus-01",
+              "focusHeldLeft": true
+            },
+            "equipment": {
+              "focusOwner": "mage-17-abjuration",
+              "focusCustodian": "mage-17-abjuration",
+              "focusAttachedTo": "mage-17-abjuration-body"
+            },
+            "body": {
+              "id": "mage-17-abjuration-body",
+              "type": "Human",
+              "bounds": [
+                [
+                  -2.5,
+                  2.5
+                ],
+                [
+                  -2.5,
+                  2.5
+                ],
+                [
+                  0,
+                  6
+                ]
+              ],
+              "supportedBy": "TEST-DD11-FLOOR",
+              "alive": true
+            },
+            "spellHistory": [],
+            "pendingCast": null
+          },
+          "target": {
+            "id": "target-01",
+            "willing": true,
+            "location": {
+              "x": 20,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-DD11-PLANE-A"
+            },
+            "perceived": true,
+            "lineOfEffect": true,
+            "distanceFt": 20,
+            "AC": 16,
+            "speedFt": 30,
+            "resources": {
+              "HP": 100,
+              "maxHP": 100
+            },
+            "alignment": {
+              "underlying": {
+                "Order": null,
+                "Moral": "Good"
+              },
+              "effective": {
+                "Order": null,
+                "Moral": "Good"
+              },
+              "protected": {
+                "Order": false,
+                "Moral": false
+              },
+              "lock": null
+            },
+            "sourceComponents": [],
+            "conductHistory": [
+              {
+                "id": "history-0",
+                "axes": [
+                  null,
+                  "Good"
+                ],
+                "value": "immutable test record"
+              }
+            ],
+            "benefitSource": null,
+            "saves": {
+              "WIS": 0,
+              "CON": 0,
+              "DEX": 0,
+              "STR": 0
+            },
+            "movementFtSpent": 0,
+            "memory": []
+          }
+        },
+        "events": [],
+        "receipts": []
+      },
+      "hash": "875dd0570e939648c52472bacceb6e2f3a92f1c09a0463ea96a7957d9c73ac5b"
+    },
+    {
+      "branchId": "AP-A1-MIXED",
+      "caseId": "AP-A1",
+      "route": "Cleric/Abjuration",
+      "state": {
+        "id": "AP-FIXTURE-AP-A1-Cleric",
+        "status": "TEST_ONLY",
+        "canonical": false,
+        "site": "TEST-DD11-ARENA",
+        "plane": "TEST-DD11-PLANE-A",
+        "floor": {
+          "id": "TEST-DD11-FLOOR",
+          "support": "static",
+          "capacityLb": 100000
+        },
+        "actors": {
+          "caster": {
+            "id": "cleric-17-abjuration",
+            "className": "Cleric",
+            "classLevel": 17,
+            "route": "Cleric/Abjuration",
+            "profileId": "cleric-17-abjuration",
+            "resources": {
+              "HP": 156,
+              "maxHP": 156,
+              "RP": 48,
+              "maxRP": 48,
+              "Dissonance": 0,
+              "Refrain": 0
+            },
+            "actionBudget": {
+              "actionAvailable": true,
+              "actionsSpent": 0,
+              "bonusActionAvailable": true,
+              "reactionAvailable": true,
+              "movementFtAvailable": 30
+            },
+            "turnState": {
+              "regularTurn": 1,
+              "magicThisTurn": false,
+              "lastSpell": null
+            },
+            "components": {
+              "V": true,
+              "S": true,
+              "F": true,
+              "focusId": "cleric-focus-01",
+              "focusHeldLeft": true
+            },
+            "equipment": {
+              "focusOwner": "cleric-17-abjuration",
+              "focusCustodian": "cleric-17-abjuration",
+              "focusAttachedTo": "cleric-17-abjuration-body"
+            },
+            "body": {
+              "id": "cleric-17-abjuration-body",
+              "type": "Human",
+              "bounds": [
+                [
+                  -2.5,
+                  2.5
+                ],
+                [
+                  -2.5,
+                  2.5
+                ],
+                [
+                  0,
+                  6
+                ]
+              ],
+              "supportedBy": "TEST-DD11-FLOOR",
+              "alive": true
+            },
+            "spellHistory": [],
+            "pendingCast": null
+          },
+          "target": {
+            "id": "target-01",
+            "willing": true,
+            "location": {
+              "x": 20,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-DD11-PLANE-A"
+            },
+            "perceived": true,
+            "lineOfEffect": true,
+            "distanceFt": 20,
+            "AC": 16,
+            "speedFt": 30,
+            "resources": {
+              "HP": 100,
+              "maxHP": 100
+            },
+            "alignment": {
+              "underlying": {
+                "Order": "Lawful",
+                "Moral": "Good"
+              },
+              "effective": {
+                "Order": "Lawful",
+                "Moral": "Good"
+              },
+              "protected": {
+                "Order": false,
+                "Moral": false
+              },
+              "lock": {
+                "Order": {
+                  "id": "lock-protected",
+                  "value": "Lawful",
+                  "active": true,
+                  "protected": true
+                }
+              }
+            },
+            "sourceComponents": [
+              {
+                "id": "r2",
+                "type": "alignment_override",
+                "active": true,
+                "ordinaryRemovableSpellExpression": true,
+                "protectionAllowsThisRank9Cleansing": true,
+                "value": "Chaotic",
+                "callbackCount": 0
+              },
+              {
+                "id": "lock-protected",
+                "type": "lock_snapshot",
+                "active": true,
+                "protected": true,
+                "value": "Lawful"
+              }
+            ],
+            "conductHistory": [
+              {
+                "id": "history-0",
+                "axes": [
+                  "Lawful",
+                  "Good"
+                ],
+                "value": "immutable test record"
+              }
+            ],
+            "benefitSource": null,
+            "saves": {
+              "WIS": 0,
+              "CON": 0,
+              "DEX": 0,
+              "STR": 0
+            },
+            "movementFtSpent": 0,
+            "memory": []
+          }
+        },
+        "events": [],
+        "receipts": []
+      },
+      "hash": "10012c33f6a28cfec74bfba977a78dc65aac9a5ac3721a4435d0cf17a382e30e"
+    },
+    {
+      "branchId": "AP-A2-TIMELINE",
+      "caseId": "AP-A2",
+      "route": "Wizard/Abjuration",
+      "state": {
+        "id": "AP-FIXTURE-AP-A2-Wizard",
+        "status": "TEST_ONLY",
+        "canonical": false,
+        "site": "TEST-DD11-ARENA",
+        "plane": "TEST-DD11-PLANE-A",
+        "floor": {
+          "id": "TEST-DD11-FLOOR",
+          "support": "static",
+          "capacityLb": 100000
+        },
+        "actors": {
+          "caster": {
+            "id": "wizard-17-abjuration",
+            "className": "Wizard",
+            "classLevel": 17,
+            "route": "Wizard/Abjuration",
+            "profileId": "wizard-17-abjuration",
+            "resources": {
+              "HP": 55,
+              "maxHP": 80,
+              "RP": 64,
+              "maxRP": 64,
+              "Dissonance": 0,
+              "Refrain": 0
+            },
+            "actionBudget": {
+              "actionAvailable": true,
+              "actionsSpent": 0,
+              "bonusActionAvailable": true,
+              "reactionAvailable": true,
+              "movementFtAvailable": 30
+            },
+            "turnState": {
+              "regularTurn": 1,
+              "magicThisTurn": false,
+              "lastSpell": null
+            },
+            "components": {
+              "V": true,
+              "S": true,
+              "F": true,
+              "focusId": "wizard-focus-01",
+              "focusHeldLeft": true
+            },
+            "equipment": {
+              "focusOwner": "wizard-17-abjuration",
+              "focusCustodian": "wizard-17-abjuration",
+              "focusAttachedTo": "wizard-17-abjuration-body"
+            },
+            "body": {
+              "id": "wizard-17-abjuration-body",
+              "type": "Human",
+              "bounds": [
+                [
+                  -2.5,
+                  2.5
+                ],
+                [
+                  -2.5,
+                  2.5
+                ],
+                [
+                  0,
+                  6
+                ]
+              ],
+              "supportedBy": "TEST-DD11-FLOOR",
+              "alive": true
+            },
+            "spellHistory": [],
+            "pendingCast": null
+          },
+          "target": {
+            "id": "target-01",
+            "willing": true,
+            "location": {
+              "x": 20,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-DD11-PLANE-A"
+            },
+            "perceived": true,
+            "lineOfEffect": true,
+            "distanceFt": 20,
+            "AC": 16,
+            "speedFt": 30,
+            "resources": {
+              "HP": 100,
+              "maxHP": 100
+            },
+            "alignment": {
+              "underlying": {
+                "Order": "Lawful",
+                "Moral": "Good"
+              },
+              "effective": {
+                "Order": "Lawful",
+                "Moral": "Good"
+              },
+              "protected": {
+                "Order": false,
+                "Moral": false
+              },
+              "lock": null
+            },
+            "sourceComponents": [
+              {
+                "id": "rA2",
+                "type": "alignment_override",
+                "active": true,
+                "ordinaryRemovableSpellExpression": true,
+                "protectionAllowsThisRank9Cleansing": true,
+                "value": "Chaotic",
+                "callbackCount": 0
+              }
+            ],
+            "conductHistory": [
+              {
+                "id": "history-0",
+                "axes": [
+                  "Lawful",
+                  "Good"
+                ],
+                "value": "immutable test record"
+              }
+            ],
+            "benefitSource": null,
+            "saves": {
+              "WIS": 0,
+              "CON": 0,
+              "DEX": 0,
+              "STR": 0
+            },
+            "movementFtSpent": 0,
+            "memory": []
+          }
+        },
+        "events": [],
+        "receipts": []
+      },
+      "hash": "19b783614fd80800c50a187b0b90dc25536a4fca41790fa3122c2404ec620ac8"
+    },
+    {
+      "branchId": "AP-R-DRUID",
+      "caseId": "AP-R",
+      "route": "Druid/Abjuration",
+      "state": {
+        "id": "AP-FIXTURE-AP-R-Druid",
+        "status": "TEST_ONLY",
+        "canonical": false,
+        "site": "TEST-DD11-ARENA",
+        "plane": "TEST-DD11-PLANE-A",
+        "floor": {
+          "id": "TEST-DD11-FLOOR",
+          "support": "static",
+          "capacityLb": 100000
+        },
+        "actors": {
+          "caster": {
+            "id": "druid-17-abjuration",
+            "className": "Druid",
+            "classLevel": 17,
+            "route": "Druid/Abjuration",
+            "profileId": "druid-17-abjuration",
+            "resources": {
+              "HP": 156,
+              "maxHP": 156,
+              "RP": 48,
+              "maxRP": 48,
+              "Dissonance": 0,
+              "Refrain": 0
+            },
+            "actionBudget": {
+              "actionAvailable": true,
+              "actionsSpent": 0,
+              "bonusActionAvailable": true,
+              "reactionAvailable": true,
+              "movementFtAvailable": 30
+            },
+            "turnState": {
+              "regularTurn": 1,
+              "magicThisTurn": false,
+              "lastSpell": null
+            },
+            "components": {
+              "V": true,
+              "S": true,
+              "F": true,
+              "focusId": "druid-focus-01",
+              "focusHeldLeft": true
+            },
+            "equipment": {
+              "focusOwner": "druid-17-abjuration",
+              "focusCustodian": "druid-17-abjuration",
+              "focusAttachedTo": "druid-17-abjuration-body"
+            },
+            "body": {
+              "id": "druid-17-abjuration-body",
+              "type": "Human",
+              "bounds": [
+                [
+                  -2.5,
+                  2.5
+                ],
+                [
+                  -2.5,
+                  2.5
+                ],
+                [
+                  0,
+                  6
+                ]
+              ],
+              "supportedBy": "TEST-DD11-FLOOR",
+              "alive": true
+            },
+            "spellHistory": [],
+            "pendingCast": null
+          },
+          "target": {
+            "id": "target-01",
+            "willing": true,
+            "location": {
+              "x": 20,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-DD11-PLANE-A"
+            },
+            "perceived": true,
+            "lineOfEffect": true,
+            "distanceFt": 20,
+            "AC": 16,
+            "speedFt": 30,
+            "resources": {
+              "HP": 100,
+              "maxHP": 100
+            },
+            "alignment": {
+              "underlying": {
+                "Order": "Chaotic",
+                "Moral": "Evil"
+              },
+              "effective": {
+                "Order": "Chaotic",
+                "Moral": "Evil"
+              },
+              "protected": {
+                "Order": false,
+                "Moral": false
+              },
+              "lock": null
+            },
+            "sourceComponents": [],
+            "conductHistory": [
+              {
+                "id": "history-0",
+                "axes": [
+                  "Chaotic",
+                  "Evil"
+                ],
+                "value": "immutable test record"
+              }
+            ],
+            "benefitSource": null,
+            "saves": {
+              "WIS": 0,
+              "CON": 0,
+              "DEX": 0,
+              "STR": 0
+            },
+            "movementFtSpent": 0,
+            "memory": []
+          }
+        },
+        "events": [],
+        "receipts": []
+      },
+      "hash": "e9338825e1f94cb1bd8aae7fc3ce4331f21044c65a15c13a39fcf4b7039847c4"
+    },
+    {
+      "branchId": "AP-R-MAGE",
+      "caseId": "AP-R",
+      "route": "Mage/Abjuration",
+      "state": {
+        "id": "AP-FIXTURE-AP-R-Mage",
+        "status": "TEST_ONLY",
+        "canonical": false,
+        "site": "TEST-DD11-ARENA",
+        "plane": "TEST-DD11-PLANE-A",
+        "floor": {
+          "id": "TEST-DD11-FLOOR",
+          "support": "static",
+          "capacityLb": 100000
+        },
+        "actors": {
+          "caster": {
+            "id": "mage-17-abjuration",
+            "className": "Mage",
+            "classLevel": 17,
+            "route": "Mage/Abjuration",
+            "profileId": "mage-17-abjuration",
+            "resources": {
+              "HP": 138,
+              "maxHP": 138,
+              "RP": 50,
+              "maxRP": 50,
+              "Dissonance": 0,
+              "Refrain": 0
+            },
+            "actionBudget": {
+              "actionAvailable": true,
+              "actionsSpent": 0,
+              "bonusActionAvailable": true,
+              "reactionAvailable": true,
+              "movementFtAvailable": 30
+            },
+            "turnState": {
+              "regularTurn": 1,
+              "magicThisTurn": false,
+              "lastSpell": null
+            },
+            "components": {
+              "V": true,
+              "S": true,
+              "F": true,
+              "focusId": "mage-focus-01",
+              "focusHeldLeft": true
+            },
+            "equipment": {
+              "focusOwner": "mage-17-abjuration",
+              "focusCustodian": "mage-17-abjuration",
+              "focusAttachedTo": "mage-17-abjuration-body"
+            },
+            "body": {
+              "id": "mage-17-abjuration-body",
+              "type": "Human",
+              "bounds": [
+                [
+                  -2.5,
+                  2.5
+                ],
+                [
+                  -2.5,
+                  2.5
+                ],
+                [
+                  0,
+                  6
+                ]
+              ],
+              "supportedBy": "TEST-DD11-FLOOR",
+              "alive": true
+            },
+            "spellHistory": [],
+            "pendingCast": null
+          },
+          "target": {
+            "id": "target-01",
+            "willing": true,
+            "location": {
+              "x": 20,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-DD11-PLANE-A"
+            },
+            "perceived": true,
+            "lineOfEffect": true,
+            "distanceFt": 20,
+            "AC": 16,
+            "speedFt": 30,
+            "resources": {
+              "HP": 100,
+              "maxHP": 100
+            },
+            "alignment": {
+              "underlying": {
+                "Order": "Chaotic",
+                "Moral": "Evil"
+              },
+              "effective": {
+                "Order": "Chaotic",
+                "Moral": "Evil"
+              },
+              "protected": {
+                "Order": false,
+                "Moral": false
+              },
+              "lock": null
+            },
+            "sourceComponents": [],
+            "conductHistory": [
+              {
+                "id": "history-0",
+                "axes": [
+                  "Chaotic",
+                  "Evil"
+                ],
+                "value": "immutable test record"
+              }
+            ],
+            "benefitSource": null,
+            "saves": {
+              "WIS": 0,
+              "CON": 0,
+              "DEX": 0,
+              "STR": 0
+            },
+            "movementFtSpent": 0,
+            "memory": []
+          }
+        },
+        "events": [],
+        "receipts": []
+      },
+      "hash": "cbdbf0cb6043b99ad0e2c21eb74d7ffe3c49c578bebb1a1faedcf5c9770e0c8f"
+    }
+  ]
+}

@@ -1,0 +1,222 @@
+{
+  "id": "AP-DD11-CASE-EVIDENCE-BINDINGS-01",
+  "identity": "alignment-perfection",
+  "contractSha256": "a49854b2f02dae55ba6abc8e182e4fafe917aa0609d0256adf2bf85debdb3927",
+  "requiredCases": [
+    {
+      "caseId": "AP-P1",
+      "specification": {
+        "id": "AP-P1",
+        "given": {
+          "route": "Cleric/Abjuration",
+          "willing": true,
+          "underlyingAxes": [
+            "Lawful",
+            "Good"
+          ],
+          "removable": "imposed Chaotic override r1",
+          "ACBefore": 16
+        },
+        "steps": [
+          "Paid cast",
+          "End r1 via callback",
+          "Resolve AC and WIS save"
+        ],
+        "expected": {
+          "r1Active": false,
+          "r1CallbackCount": 1,
+          "AC": 18,
+          "WISSaveModifierDelta": 2,
+          "conductHistoryIntact": true
+        },
+        "covers": [
+          "AFP336-W01",
+          "AFP336-W02"
+        ],
+        "executionStatus": "NOT_EXECUTED_IN_THIS_PACKAGE"
+      },
+      "specificationSha256": "aa9b3a088de1e0393504e656745c6ee7d33d9f11471ff4a89df2ea7e5d093ed6",
+      "branchIds": [
+        "AP-P1-CLERIC"
+      ],
+      "branchHashes": {
+        "AP-P1-CLERIC": "5f750a5cc4e8741bc79d2e297892c86e602df313219b577c887c90a0a7ec2e62"
+      },
+      "status": "PASS_STATIC_TEST_ONLY"
+    },
+    {
+      "caseId": "AP-P2",
+      "specification": {
+        "id": "AP-P2",
+        "given": {
+          "route": "Wizard/Abjuration",
+          "axes": [
+            "Neutral",
+            "Neutral"
+          ],
+          "activeProtectedLock": true
+        },
+        "steps": [
+          "Paid cast",
+          "Preserve protected source",
+          "Resolve CON and DEX saves"
+        ],
+        "expected": {
+          "CONBonus": 2,
+          "DEXBonus": 2,
+          "protectedLockEnded": false
+        },
+        "covers": [
+          "AFP336-W01",
+          "AFP336-W02"
+        ],
+        "executionStatus": "NOT_EXECUTED_IN_THIS_PACKAGE"
+      },
+      "specificationSha256": "b7dc5e698959affd0fc81fd1d55f9816f54b9daa5bb00bceacb3ee0cfa18a66e",
+      "branchIds": [
+        "AP-P2-WIZARD"
+      ],
+      "branchHashes": {
+        "AP-P2-WIZARD": "22af2f88dbb242132b4d109af1bfd5866795a0d55289e4cb450bd83ed9efc67f"
+      },
+      "status": "PASS_STATIC_TEST_ONLY"
+    },
+    {
+      "caseId": "AP-A1",
+      "specification": {
+        "id": "AP-A1",
+        "given": {
+          "variants": [
+            "unwilling before commit",
+            "consent revoked after commit",
+            "protected both axes",
+            "one undefined axis",
+            "mixed removable/protected components"
+          ]
+        },
+        "steps": [
+          "Admit/commit/resolve each branch at its real stage"
+        ],
+        "expected": {
+          "precommit": "no new cost",
+          "postcommit": "paid failure/no refund",
+          "partial": "only eligible components end; only known permitted axes grant benefits",
+          "noForcedAlignment": true
+        },
+        "covers": [
+          "AFP336-W01",
+          "AFP336-W02"
+        ],
+        "executionStatus": "NOT_EXECUTED_IN_THIS_PACKAGE"
+      },
+      "specificationSha256": "ce1deeb92dda6b39bde9f0bce5be49ab9b275f00b543fc02deb32bfa200af120",
+      "branchIds": [
+        "AP-A1-UNWILLING",
+        "AP-A1-CONSENT-REVOKED",
+        "AP-A1-PROTECTED-BOTH",
+        "AP-A1-UNDEFINED-ORDER",
+        "AP-A1-MIXED"
+      ],
+      "branchHashes": {
+        "AP-A1-UNWILLING": "772e07a3fffd6438ac4be9f727359d8cdf5ce48dfeb751607b44ebcdb2f7f736",
+        "AP-A1-CONSENT-REVOKED": "20416dd07008556754c12fb73c2155e30cb9abad11bde0cf4060ae37f8ca27fa",
+        "AP-A1-PROTECTED-BOTH": "071d68e5afe16aed79499857d3d064d9d1c66e1f9c3a2aa21a4b4a8efccef24d",
+        "AP-A1-UNDEFINED-ORDER": "5b30e893d865c3342bc3609a4e47b584ee1933bd34603932753eb3650a1958d5",
+        "AP-A1-MIXED": "b4fca0a67d63afd6df39ef8d937ae487f2180da0be8d8c0a6184a6a01659c75e"
+      },
+      "status": "PASS_STATIC_TEST_ONLY"
+    },
+    {
+      "caseId": "AP-A2",
+      "specification": {
+        "id": "AP-A2",
+        "given": {
+          "timeline": [
+            "successful cast",
+            "alignment changes",
+            "suppress",
+            "resume",
+            "recast",
+            "expiry"
+          ]
+        },
+        "steps": [
+          "Track every modifier and original source terminal state"
+        ],
+        "expected": {
+          "cleansingRemainsCompleted": true,
+          "noStackedDuplicate": true,
+          "noResourceRefill": true,
+          "historyPreserved": true
+        },
+        "covers": [
+          "AFP336-W03"
+        ],
+        "executionStatus": "NOT_EXECUTED_IN_THIS_PACKAGE"
+      },
+      "specificationSha256": "0b8660f38e79a74378b875b5be0c65f77f13bb1b1c7daebb6b9a045fbae5b47f",
+      "branchIds": [
+        "AP-A2-TIMELINE"
+      ],
+      "branchHashes": {
+        "AP-A2-TIMELINE": "e719447e4f5c1e919a54d49528e64486fefc8e8e0248209108ba65b75bf1b624"
+      },
+      "status": "PASS_STATIC_TEST_ONLY"
+    },
+    {
+      "caseId": "AP-R",
+      "specification": {
+        "id": "AP-R",
+        "given": {
+          "routes": [
+            "Druid/Abjuration",
+            "Mage/Abjuration"
+          ]
+        },
+        "steps": [
+          "Paid positive variants with Chaotic/Evil useful movement and STR-save benefit"
+        ],
+        "expected": {
+          "speedDeltaFt": 10,
+          "STRSaveDelta": 2,
+          "nativeClassArithmeticVerified": true
+        },
+        "covers": [
+          "AFP336-W02",
+          "AFP336-W03"
+        ],
+        "executionStatus": "NOT_EXECUTED_IN_THIS_PACKAGE"
+      },
+      "specificationSha256": "2ac1926b60fe376d94118cc3e257a192e6158a45de1cdb12dec86a15f094769c",
+      "branchIds": [
+        "AP-R-DRUID",
+        "AP-R-MAGE"
+      ],
+      "branchHashes": {
+        "AP-R-DRUID": "80baff5e6c0b4094f3a6e1944717d4c261678cb8fe37b30ac3a364282d6e1e40",
+        "AP-R-MAGE": "0166f2648f0aab1078227ef2413989d09633b29be9434364ee381802f0d9ef29"
+      },
+      "status": "PASS_STATIC_TEST_ONLY"
+    }
+  ],
+  "nativeRouteCoverage": {
+    "Cleric/Abjuration": [
+      "AP-P1-CLERIC",
+      "AP-A1-MIXED"
+    ],
+    "Wizard/Abjuration": [
+      "AP-P2-WIZARD",
+      "AP-A2-TIMELINE"
+    ],
+    "Druid/Abjuration": [
+      "AP-A1-PROTECTED-BOTH",
+      "AP-R-DRUID"
+    ],
+    "Mage/Abjuration": [
+      "AP-A1-UNDEFINED-ORDER",
+      "AP-R-MAGE"
+    ]
+  },
+  "minimumDistinctPaidPositiveEncountersPerRoute": 1,
+  "scope": "STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY"
+}
