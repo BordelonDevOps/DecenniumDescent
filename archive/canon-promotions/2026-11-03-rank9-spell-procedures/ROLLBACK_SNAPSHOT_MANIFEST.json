@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "1.0",
+  "id": "ROLLBACK_DD11_RANK9_SPELL_CANON_2026-11-03",
+  "status": "READY",
+  "baseCommit": "e853342659c81da6e5a2138688e5580f4ea27882",
+  "canonicalFilesBefore": [
+    {
+      "path": "docs/canon/CANON_MANIFEST.json",
+      "snapshotPath": "archive/canon-promotions/2026-11-03-rank9-spell-procedures/CANON_MANIFEST.json.before",
+      "sha256": "87fbe5800daaf8e263c540d6bbe40c178cf88633f6a07738ab6f23f53957e61e"
+    },
+    {
+      "path": "data/director/rank9_spell_procedures_dd11_2026-11-03.json",
+      "stateBeforePromotion": "ABSENT"
+    }
+  ],
+  "rollbackProcedure": [
+    "Restore the snapshotted docs/canon/CANON_MANIFEST.json.",
+    "Remove data/director/rank9_spell_procedures_dd11_2026-11-03.json.",
+    "Remove the promotion report directory and this archive directory, or revert the promotion commit."
+  ],
+  "scope": "This snapshot covers every pre-existing canonical file modified by this promotion; the new registry path was absent at the base commit."
+}
