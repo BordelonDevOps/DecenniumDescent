@@ -39,6 +39,7 @@ namespace Decennium.Foundation
         public const int VesselSchema = 5;
         public const int MovableVesselSchema = 6;
         public const int EncounterSchema = 7;
+        public const int ActorLifeSchema = 8;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
         // Technical bound keeps the entire snapshot within the existing 1 MiB save limit,
@@ -69,9 +70,13 @@ namespace Decennium.Foundation
         public VesselContentRecord[] VesselContents = Array.Empty<VesselContentRecord>();
         public WaterFillRecord[] WaterFills = Array.Empty<WaterFillRecord>();
         public VesselHandlingRecord[] VesselMoves = Array.Empty<VesselHandlingRecord>();
+        public ActorCharacterRecord[] Characters = Array.Empty<ActorCharacterRecord>();
+        public ActorLifeRecord[] Lives = Array.Empty<ActorLifeRecord>();
+        public ActorLifeEvent[] LifeEvents = Array.Empty<ActorLifeEvent>();
         public FixedEncounterRecord Encounter;
         public EncounterDashRecord[] EncounterDashes = Array.Empty<EncounterDashRecord>();
         public Snapshot Copy() => new Snapshot {
+            Characters = Characters.ToArray(), Lives = Lives.ToArray(), LifeEvents = LifeEvents.ToArray(),
             Encounter = Encounter, EncounterDashes = EncounterDashes.ToArray(), VesselMoves = VesselMoves.ToArray(), Vessels = Vessels.ToArray(), VesselContents = VesselContents.ToArray(), WaterFills = WaterFills.ToArray(),
             InventoryLots = InventoryLots.ToArray(), Intakes = Intakes.ToArray(), Handling = Handling.ToArray(),
             InventoryCombat = InventoryCombat, InventoryTurnActor = InventoryTurnActor, InventoryInteractions = InventoryInteractions,
@@ -164,7 +169,7 @@ namespace Decennium.Foundation
             if (s == null || !ValidId(s.ContentFingerprint) || s.Revision < 0 || s.Clock < 0 || s.RandomState == 0)
                 throw new ArgumentException("Invalid snapshot header.");
             if (s.SchemaVersion != Foundation.Snapshot.Schema && s.SchemaVersion != Foundation.Snapshot.WorkSchema
-                && s.SchemaVersion != Foundation.Snapshot.CropSchema && s.SchemaVersion != Foundation.Snapshot.InventorySchema && s.SchemaVersion != Foundation.Snapshot.VesselSchema && s.SchemaVersion != Foundation.Snapshot.MovableVesselSchema && s.SchemaVersion != Foundation.Snapshot.EncounterSchema)
+                && s.SchemaVersion != Foundation.Snapshot.CropSchema && s.SchemaVersion != Foundation.Snapshot.InventorySchema && s.SchemaVersion != Foundation.Snapshot.VesselSchema && s.SchemaVersion != Foundation.Snapshot.MovableVesselSchema && s.SchemaVersion != Foundation.Snapshot.EncounterSchema && s.SchemaVersion != Foundation.Snapshot.ActorLifeSchema)
                 throw new ArgumentException("Unsupported snapshot schema.");
             if (s.SchemaVersion == Foundation.Snapshot.Schema && (s.Work != null || s.RuleClock != default))
                 throw new ArgumentException("Legacy snapshot cannot contain unsaved work or exact time.");
@@ -219,6 +224,7 @@ namespace Decennium.Foundation
             WaterVesselValidation.Validate(s);
             VesselHandlingValidation.Validate(s);
             FixedEncounterValidation.Validate(s);
+            ActorLifeValidation.Validate(s);
         }
     }
 

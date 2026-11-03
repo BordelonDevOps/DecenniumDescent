@@ -39,7 +39,7 @@ namespace Decennium.Foundation
         public static void Validate(Snapshot s)
         {
             if(s.EncounterDashes==null||s.EncounterDashes.Length>128||s.EncounterDashes.Any(x=>x==null))throw new ArgumentException("Invalid encounter action collection.");
-            if(s.SchemaVersion!=Snapshot.EncounterSchema) {
+            if(s.SchemaVersion<Snapshot.EncounterSchema) {
                 if(s.Encounter!=null||s.EncounterDashes.Length!=0)throw new ArgumentException("Fixed encounter requires schema7.");return;
             }
             var e=s.Encounter;

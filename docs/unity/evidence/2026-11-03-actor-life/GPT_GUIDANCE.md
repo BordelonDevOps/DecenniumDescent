@@ -1,0 +1,7 @@
+# Actor-life integration guidance
+
+Source: [Unity Rules Engine Development](https://chatgpt.com/c/6ae59513-3008-83e9-a5c4-8b6c5c5b4206), response `aefd072d-5cc6-5598-b93b-db6802836c1a`, reviewed during this increment. This is a developer summary, not a verbatim transcript or owner rule approval.
+
+GPT confirmed persisted numerical profiles/life as the next dependency after exact Stable deadlines: regular-start death saves, all-actor shared-clock recovery, linked Wounds/counters/markers and zero-HP permissions. Recovery must retain Prone and independent condition causes; zero-HP transitions must drop held items when such transitions are admitted. This bounded host explicitly admits empty hands and no independent causes, and does not implement damage-to-zero or general handling.
+
+For subsequent ordinary attacks, existing orthogonal/diagonal five-foot combat measurement remains available in an already grid-aligned level-ground Medium fixture. The video-game directive does not globally replace this metric with Euclidean distance. General3D conversion remains unresolved. Actual weapon/custody/hands, AC, proficiency, range/visibility/line of effect, selected stance, melee Press and every reachable eligible reaction/survival choice still need implementation. No neutral stance or automatically declined reaction is approved. See the earlier [attack guidance](../../ORDINARY_ATTACK_INTEGRATION_GUIDANCE.md).

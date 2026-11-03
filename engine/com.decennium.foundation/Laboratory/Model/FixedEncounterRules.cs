@@ -73,9 +73,9 @@ namespace Decennium.Foundation.Laboratory
             return s.Receipts.Count(r=>r.Revision>=e.StartRevisions[0])==used.Count
                 &&s.Revision-e.StartRevisions[0]+1==used.Count;
         }
-        internal static string Validate(Snapshot s,string[] order)
+        internal static string Validate(Snapshot s,string[] order,bool actorLife=false)
         {
-            if(s.SchemaVersion!=Snapshot.EncounterSchema)return "WrongEncounterSchema";
+            if(s.SchemaVersion!=(actorLife?Snapshot.ActorLifeSchema:Snapshot.EncounterSchema))return "WrongEncounterSchema";
             var e=s.Encounter;if(e==null)return null;
             if(!HistoryMatchesReceipts(s))return "InvalidEncounterCommandHistory";
             if(!e.Order.SequenceEqual(order)||e.Id!="encounter."+e.StartRevisions[0].ToString(System.Globalization.CultureInfo.InvariantCulture)
@@ -141,9 +141,10 @@ namespace Decennium.Foundation.Laboratory
             }
             return inventory.Resolve(s,c);
         }
-        public string ValidateState(Snapshot s)
+        public string ValidateState(Snapshot s)=>ValidateEncounterState(s);
+        internal string ValidateEncounterState(Snapshot s,bool actorLife=false)
         {
-            try {return FixedEncounterRules.Validate(s,order)??inventory.ValidateFillingState(s,true);}
+            try {return FixedEncounterRules.Validate(s,order,actorLife)??inventory.ValidateFillingState(s,true,actorLife);}
             catch(Exception ex) when(ex is ArgumentException||ex is InvalidOperationException||ex is OverflowException){return "InvalidEncounterState";}
         }
     }

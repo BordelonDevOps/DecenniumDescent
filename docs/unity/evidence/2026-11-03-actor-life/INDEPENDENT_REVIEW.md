@@ -1,0 +1,11 @@
+# Actor-life integration review
+
+2026-11-03. The separate `/root/source_review` agent reviewed the schema8 Core records, codec, actor-life policy, automatic clock/regular-turn dispatch and tests. It independently reproduced a save-history defect: recovery at time10 from AdvanceClock revision2 could be attached to revision1, whose interval ended at time1. The previous check verified only a plausible receipt kind.
+
+The fix replays canonical contiguous admitted commands from the fingerprinted initial fixture and compares exact life state, clock, RNG and ordered life events including their committed revision. The `actor_life_recovery_revision_must_cross_actual_deadline` regression covers the reproduction. The reviewer reran the focused forgery against the final503-case assemblies and confirmed restore rejects with `InvalidLifeHistory`. No further actionable finding remained within this review.
+
+Parent checks separately found and corrected historical Dash eligibility after later recovery, pre-origin encounter history, and a maximum-size schema8 record exceeding the previous1MiB envelope. Regressions cover these; schema8 now permits2MiB while schemas1-7 retain1MiB. The maximum structural fixture encodes to1,199,243 bytes. These limits are technical, not gameplay rules.
+
+The reviewer verified all61 compiled source hashes against `run-20261103T234518890Z-d96ba8fa/results.json` (503/503 PASS) and the package receipt (8/8). It did not edit files or independently rerun the full suite. The parent ran the full suite, package and source-binding validation, and compared48 overlapping schema1-7 persisted outputs byte-for-byte. The reviewer did not independently perform that parity comparison.
+
+The review found the numerical-only profile boundary, conditional RNG draws, exact off-roster recovery, Prone preservation, empty-hand invariant and incapacity/host-progression gates consistent with the declared scope. Replay validates life/clock outcomes and admitted-command eligibility; separate crop validators retain their existing limits. Receipts do not authenticate edited saves or reconstruct authority grants. No full character creation, arbitrary condition engine, damage command, attack execution, Unity runtime or release qualification is claimed.

@@ -147,7 +147,7 @@ namespace Decennium.Foundation.Tests
                 foreach(int schema in new[]{1,2,3}){var v=p.Initial();v.SchemaVersion=schema;Throws<ArgumentException>(()=>codec.Encode(v));} });
             cases.Add("inventory_decode_checks_corruption_unknown_version_and_boolean",()=>{
                 byte[] bytes=Bytes(Inventory());var bad=(byte[])bytes.Clone();bad[10]^=1;Throws<InvalidDataException>(()=>codec.Decode(bad));
-                bad=(byte[])bytes.Clone();bad[4]=8;Resign(bad);Throws<InvalidDataException>(()=>codec.Decode(bad));
+                bad=(byte[])bytes.Clone();bad[4]=9;Resign(bad);Throws<InvalidDataException>(()=>codec.Decode(bad));
                 bad=(byte[])bytes.Clone();bad[bad.Length-32-9]=2;Resign(bad);Throws<InvalidDataException>(()=>codec.Decode(bad));
                 Throws<InvalidDataException>(()=>codec.Decode(bytes.Take(bytes.Length-1).ToArray())); });
             cases.Add("inventory_restore_rejects_quantity_creation_and_freshness_reset",()=>{
@@ -221,7 +221,15 @@ namespace Decennium.Foundation.Tests
                 v.SchemaVersion=Snapshot.EncounterSchema;v.InventoryCombat=true;v.InventoryTurnActor=v.Actors[63].Id;
                 v.Encounter=new FixedEncounterRecord(new string('e',87),T(0),v.Actors.Select(a=>a.Id),Enumerable.Range(1,128).Select(i=>(long)i));
                 v.EncounterDashes=Enumerable.Range(0,128).Select(i=>new EncounterDashRecord(129+i,i,v.Actors[i%64].Id)).ToArray();
-                bytes=codec.Encode(v);Require(bytes.Length<SnapshotCodec.MaxBytes&&bytes.SequenceEqual(codec.Encode(codec.Decode(bytes))),"Maximum schema7 component counts exceed save bound or fail roundtrip."); });
+                bytes=codec.Encode(v);Require(bytes.Length<SnapshotCodec.MaxBytes&&bytes.SequenceEqual(codec.Encode(codec.Decode(bytes))),"Maximum schema7 component counts exceed save bound or fail roundtrip.");
+                v.SchemaVersion=Snapshot.ActorLifeSchema;
+                v.Characters=v.Actors.Select(a=>new ActorCharacterRecord(a.Id,Id("profile"),Enumerable.Repeat(int.MaxValue,6),
+                    Enumerable.Range(0,20).Select(i=>new CharacterLevelFact(Id("class",i),int.MaxValue)))).ToArray();
+                v.Lives=v.Actors.Select(a=>new ActorLifeRecord(a.Id,long.MaxValue,0,long.MaxValue,new[]{0,1,2},true,false,true,0,0,T(1,3),long.MaxValue,true,
+                    Enumerable.Range(0,32).Select(i=>Id("held",i)))).ToArray();
+                v.LifeEvents=Enumerable.Range(0,256).Select(i=>new ActorLifeEvent(v.Actors[i%64].Id,i+1,T(1),LifeEventKind.StableRecovery,-1,0,0,1,1,0)).ToArray();
+                bytes=codec.Encode(v);Require(bytes.Length<SnapshotCodec.MaxBytes&&bytes.SequenceEqual(codec.Encode(codec.Decode(bytes))),"Maximum schema8 component counts exceed save bound or fail roundtrip.");
+                File.WriteAllText(Path.Combine(directory,"maximal-actor-life-bytes.txt"),bytes.Length.ToString(System.Globalization.CultureInfo.InvariantCulture)); });
             cases.Add("inventory_restore_rejects_handling_before_source_creation",()=>{
                 var s=Inventory();AdvanceI(s,10);string source=Portion(s,Q(1));string child=HandleI(s,source,Q(1),HandlingKind.Stow);var v=s.Capture();var h=v.Handling[0];
                 v.Handling=new[]{new HandlingRecord(h.Id,h.ActorId,h.SourceId,h.ChildId,h.Kind,T(9),T(10),false)};

@@ -114,7 +114,7 @@ namespace Decennium.Foundation.Laboratory
                     :m.Kind==HandlingKind.Handover&&held&&m.ToLocation==m.ToCustodian&&m.ToCustodian!=m.ActorId&&s.Actors.Any(a=>a.Id==m.ToCustodian)&&hands(m.ToCustodian)>=1;
                 if(!valid)return "InvalidVesselTransition";
                 var work=s.Work.WorkerIntervals.Where(w=>w.JobId==m.Id).ToArray();
-                if(m.Tactical?(s.SchemaVersion==Snapshot.EncounterSchema?!FixedEncounterRules.HistoricalHandling(s,m.Id,m.ActorId,m.StartedAt,m.EndedAt):m.StartedAt!=m.EndedAt||m.EndedAt!=s.RuleClock)||work.Length!=0
+                if(m.Tactical?(s.SchemaVersion>=Snapshot.EncounterSchema?!FixedEncounterRules.HistoricalHandling(s,m.Id,m.ActorId,m.StartedAt,m.EndedAt):m.StartedAt!=m.EndedAt||m.EndedAt!=s.RuleClock)||work.Length!=0
                     :m.EndedAt!=m.StartedAt.AddSeconds(1)||work.Length!=1||work[0].WorkerId!=m.ActorId||work[0].Start!=m.StartedAt||work[0].End!=m.EndedAt)return "InvalidVesselLabor";
                 if(m.Kind==HandlingKind.Handover&&s.Work.WorkerIntervals.Any(w=>w.WorkerId==m.ToCustodian&&w.Start<=m.StartedAt&&w.End>m.StartedAt))return "ReservedRecipientHands";
                 if(s.WaterFills.Any(j=>(j.DestinationId==m.VesselId||WaterFilling.SourceVessel(s,j.SourceLotId)==m.VesselId)

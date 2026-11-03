@@ -53,8 +53,10 @@ namespace Decennium.Foundation.Laboratory
         public static void AdvanceTo(Snapshot s,RuleTime target)
         {
             if(target<=s.RuleClock)throw new ArgumentException("Positive shared advance required.");
+            ActorLifeRules.RecoverDue(s);
             while(s.RuleClock<target) {
                 RuleTime next=target;
+                var lifeDeadline=ActorLifeRules.NextDeadline(s);if(lifeDeadline.HasValue&&lifeDeadline.Value<next)next=lifeDeadline.Value;
                 foreach(var fill in s.WaterFills.Where(x=>x.Status==WaterFillStatus.Working)) {
                     var end=CampGreens.Add(s.RuleClock,CampGreens.Subtract(new RuleTime(60),fill.Progress));if(end<next)next=end;
                 }
@@ -75,6 +77,7 @@ namespace Decennium.Foundation.Laboratory
                     else if(!Fresh(s,item))Interrupt(s,job,IntakeStatus.Expired);
                 }
                 WaterFilling.CompleteDue(s);
+                ActorLifeRules.RecoverDue(s);
             }
         }
         internal static void RegisterCropOutput(Snapshot s)
@@ -103,7 +106,7 @@ namespace Decennium.Foundation.Laboratory
         {
             var tactical=s.Handling.Where(x=>x.Tactical).ToArray();
             var tacticalVessels=s.VesselMoves.Where(x=>x.Tactical).ToArray();
-            if(s.SchemaVersion!=Snapshot.EncounterSchema&&(s.InventoryCombat?tactical.Length+tacticalVessels.Length!=s.InventoryInteractions||tactical.Any(x=>x.ActorId!=s.InventoryTurnActor)||tacticalVessels.Any(x=>x.ActorId!=s.InventoryTurnActor)
+            if(s.SchemaVersion<Snapshot.EncounterSchema&&(s.InventoryCombat?tactical.Length+tacticalVessels.Length!=s.InventoryInteractions||tactical.Any(x=>x.ActorId!=s.InventoryTurnActor)||tacticalVessels.Any(x=>x.ActorId!=s.InventoryTurnActor)
                 :tactical.Length!=0||tacticalVessels.Length!=0||s.Intakes.Any(x=>x.Status==IntakeStatus.CombatInterrupted)))return "InvalidTacticalHistory";
             var cropTasks=s.Crops.SelectMany(x=>x.Tasks).ToArray();
             if(s.Work.Reservations.Any(r=>!cropTasks.Any(t=>t.InputReservations.Contains(r.Id))&&!s.Intakes.Any(j=>j.ReservationId==r.Id)&&!s.WaterFills.Any(j=>j.ReservationId==r.Id))
@@ -127,14 +130,14 @@ namespace Decennium.Foundation.Laboratory
                 } else {
                     if(claim.RemainingAmount!=default||claim.ReleasedAmount==default)return "UnreleasedIntake";
                     if(job.Status==IntakeStatus.Expired&&job.EndedAt!=item.FreshUntil)return "InvalidIntakeExpiry";
-                    if(job.Status==IntakeStatus.CombatInterrupted&&job.EndedAt!=(s.SchemaVersion==Snapshot.EncounterSchema?s.Encounter?.Origin:s.RuleClock))return "InvalidCombatInterruptionTime";
+                    if(job.Status==IntakeStatus.CombatInterrupted&&job.EndedAt!=(s.SchemaVersion>=Snapshot.EncounterSchema?s.Encounter?.Origin:s.RuleClock))return "InvalidCombatInterruptionTime";
                 }
             }
             foreach(var job in s.Handling) {
                 var source=s.InventoryLots.Single(x=>x.LotId==job.SourceId);
                 if(job.StartedAt<source.CreatedAt)return "HandlingBeforeSource";
                 var intervals=s.Work.WorkerIntervals.Where(x=>x.JobId==job.Id).ToArray();
-                if(job.Tactical?(s.SchemaVersion==Snapshot.EncounterSchema?!FixedEncounterRules.HistoricalHandling(s,job.Id,job.ActorId,job.StartedAt,job.EndedAt):job.EndedAt!=s.RuleClock||job.StartedAt!=job.EndedAt)||intervals.Length!=0
+                if(job.Tactical?(s.SchemaVersion>=Snapshot.EncounterSchema?!FixedEncounterRules.HistoricalHandling(s,job.Id,job.ActorId,job.StartedAt,job.EndedAt):job.EndedAt!=s.RuleClock||job.StartedAt!=job.EndedAt)||intervals.Length!=0
                     :job.EndedAt!=job.StartedAt.AddSeconds(1)||intervals.Length!=1||intervals[0].WorkerId!=job.ActorId
                         ||intervals[0].Start!=job.StartedAt||intervals[0].End!=job.EndedAt)return "InvalidHandlingLabor";
             }
