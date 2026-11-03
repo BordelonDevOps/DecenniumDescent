@@ -1,0 +1,39 @@
+{
+  "schema": "CODEX_TRANSCRIBED_GPT_DIRECTOR_REVIEW_V1",
+  "classification": "CODEX_TRANSCRIBED_GPT_UI_READBACK_NOT_GPT_AUTHORED",
+  "conversationUrl": "https://chatgpt.com/g/g-p-67f17555a8dc8191a2b5b81e6d8adc12-dungeon-crawler/c/6adc506d-8770-83ea-b64c-0345d9b9b682",
+  "readAtUtc": "2026-11-03T02:56:00Z",
+  "reviewedCommit": "08c4e0db03fb3d20db56c01c16af7865110adc85",
+  "reviewedProposal": "docs/audit/2026-10-08/full-game/director-spell-review-129/fate_rewrite_ep480_interface_spec_2026-11-02/FATE_REWRITE_EP480_INTERFACE_PROPOSAL_05.json",
+  "reviewedProposalSha256": "cd492a5bdf9c966f83a2674c31ff1db02a10d2df5f3c92fe8b4680974047386d",
+  "disposition": "PASS_FOR_OWNER_ADOPTION",
+  "readyForOwnerAdoption": true,
+  "sourceBindingReadback": "The submitted hashes and all four manifest entries verify. Previously passed source bindings, premises and preservation terms are unchanged.",
+  "corrections": [
+    {
+      "id": "FR-P04-C01",
+      "disposition": "RESOLVED",
+      "pointer": "/authorizationBoundary/adoptionSubject",
+      "readback": "The stale key is removed. adoptionSubject identifies Proposal 05, and its manifest pointer resolves to the exact reviewed hash. Separate owner adoption must identify this proposal ID/hash."
+    },
+    {
+      "id": "FR-P04-C02",
+      "disposition": "RESOLVED",
+      "pointer": "/compatibleRewrite/proposedRelease/interactionCostSettlement",
+      "readback": "W's Interaction is reserved before settlement, debited before custody/version writes, and committed atomically with them. Version failure releases the uncommitted reservation without custody writes. T's original Interaction and committed cast Action/RP/history remain spent."
+    }
+  ],
+  "noRemainingCorrections": true,
+  "proposedOwnerAdoptionText_notExecuted": "I adopt FR-EP480-INTERFACE-PROPOSAL-05, SHA-256 cd492a5bdf9c966f83a2674c31ff1db02a10d2df5f3c92fe8b4680974047386d, solely for construction and submission of its two bounded TEST_ONLY branches, FR-EP480-IFACE-COMPAT-01 and FR-EP480-IFACE-CONFLICT-01. No other premises, seal, blocker closure, identity acceptance/application, or canon/runtime/campaign/queue change is authorized.",
+  "ownerAdoptionPerformed": false,
+  "witnessConstructionPerformed": false,
+  "unchangedScope": {
+    "queue": "Queue481 836/12/0",
+    "openBlockers": ["TF192-B02", "TF192-B04"],
+    "historicalCases": 17,
+    "questionAndQualificationDispositionsPreserved": true,
+    "H_HISTORY_and_H_DEATH_preserved": true,
+    "EP480Status": "unsealed static-only",
+    "branches": "unadopted and unconstructed"
+  }
+}
