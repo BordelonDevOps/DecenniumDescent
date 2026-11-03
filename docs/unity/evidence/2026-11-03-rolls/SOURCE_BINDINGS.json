@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "recordedUtc": "2026-11-03T17:30:43.8096742Z",
+  "purpose": "Implementation provenance only; not a replacement canon registry or content promotion",
+  "implementationId": "TEST_ONLY.core-rolls-v1",
+  "sourceStatus": "Provisional core integration candidate",
+  "scope": "CORE_RESOLUTION_PLAYTEST.md Rolls only; task_check, attack_roll, saving_throw and opposed_check plus integer input validation",
+  "excluded": "Damage, wounds, death saves, advantage selection, target/action legality, feature eligibility, cadence, geometry, RNG selection, command integration and content selection",
+  "ownerDecision": "2026-11-03: begin development; turn-based combat for first prototype",
+  "productionRuntimeSelectionEnabled": false,
+  "releaseApproved": false,
+  "sourceByteDomain": "Exact local working-file bytes, not normalized Git blobs",
+  "sourceRoot": "C:/Github/DecenniumDescent-review-push-134",
+  "sourceCheckoutHead": "43ab89ef00ff82d6a7c173432f9402978f867c36",
+  "sources": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md",
+      "absoluteSource": "C:\\Github\\DecenniumDescent-review-push-134\\DescentReviewChanges\\ReviewBible\\docs\\mechanics\\CORE_RESOLUTION_PLAYTEST.md",
+      "sha256": "2343b5216dc7f3fdda87df24aa5a0ce8e7c0b2e2b492f62a772bf51631f5189f",
+      "bytes": 15972,
+      "snapshot": "sources/CORE_RESOLUTION_PLAYTEST.md"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/tools/core_playtest_rules.py",
+      "absoluteSource": "C:\\Github\\DecenniumDescent-review-push-134\\DescentReviewChanges\\ReviewBible\\tools\\core_playtest_rules.py",
+      "sha256": "089c8d2035c1692e4437c2e943370fbe59a98d5bab9aeb093c00f55c0bbf8daa",
+      "bytes": 9382,
+      "snapshot": "sources/core_playtest_rules.py"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/tools/validate_core_playtests.py",
+      "absoluteSource": "C:\\Github\\DecenniumDescent-review-push-134\\DescentReviewChanges\\ReviewBible\\tools\\validate_core_playtests.py",
+      "sha256": "8d47c3db92c261214c24873f5ff951efbb8e802df8c24caa472757d5be78709f",
+      "bytes": 10539,
+      "snapshot": "sources/validate_core_playtests.py"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/tools/spell_playtest_rules.py",
+      "absoluteSource": "C:\\Github\\DecenniumDescent-review-push-134\\DescentReviewChanges\\ReviewBible\\tools\\spell_playtest_rules.py",
+      "sha256": "b01924eed78677046812686f2e5dcc200a1c7b167e899affa6276b4b965acf6f",
+      "bytes": 3471,
+      "snapshot": "sources/spell_playtest_rules.py"
+    }
+  ],
+  "expectedOutcomeAuthority": "Prose Rolls section and independent pre-existing validator examples at lines 40-51; additional boundary expectations manually derived from prose",
+  "integerRepresentation": "C# API accepts int inputs; long totals/margins preserve all supported inputs without overflow. Python unbounded integers outside int range are outside this API.",
+  "reviewedCandidateContext": {
+    "scope": "Ordinary spell authored review only; not implemented by this increment",
+    "handoff": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_476_REPACK01.json",
+    "handoffSha256": "d4a836c08b023face9e83f4b0614afb2a04faee04eaf7b5e4d84da27d8f6220e",
+    "authority": {
+      "reviewedApplied": 831,
+      "pending": 17,
+      "acceptedUnapplied": 0,
+      "completeStandaloneProcedures": 555,
+      "scopedInterfaces": 173
+    },
+    "verifiedLinkedReceipts": [
+      {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_475.json",
+        "sha256": "3a9de6efbbe0d6cdb4a636047a6e63519646b4bed1b6dc7d8fed77e5b36dc70f",
+        "bytes": 4357,
+        "match": true
+      },
+      {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_SPELL_QUEUE_476_REPACK01.json",
+        "sha256": "4ae9ed74080e2919e7223aeee54fe1d0a380b0117248648027a3f5dfbc95e9cb",
+        "bytes": 4150,
+        "match": true
+      },
+      {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT17_PENDING_IDENTITY_AUDIT_476_REPACK01.json",
+        "sha256": "7e9be3ea2a5afd8d917bae0fd0d6d95b85e4660d211e1c72f13e8a3f58f35aad",
+        "bytes": 2111,
+        "match": true
+      },
+      {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/fortress_static_acceptance_475/APPLICATION_475.json",
+        "sha256": "35fe84ed1f161a8e75c53fbbcd46e4c9190984131c2edf9e08972d0f069a0218",
+        "bytes": 4505,
+        "match": true
+      }
+    ],
+    "authoredIndexSha256": "ebd344ece3b12fff06deead46e05e2a49dfe957e72086f2baaba24159ad34c7c",
+    "nativeCatalogAndDownstreamGatesUnchanged": true
+  }
+}

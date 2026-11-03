@@ -1,0 +1,318 @@
+{
+  "schemaVersion": 1,
+  "recordedUtc": "2026-11-03T18:39:57.099034+00:00",
+  "purpose": "Implementation provenance and CHR-01 status update; not a canon registry or rule promotion",
+  "implementationId": "TEST_ONLY.character-numerics-v1",
+  "workItemId": "CHR-01",
+  "csharpStatus": "PROVISIONAL",
+  "remoteRevision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+  "remoteMainRechecked": "2026-11-03; GitHub branches/main still at mapped revision before implementation",
+  "ownerDirection": "get started: implement the next mapped C# numeric increment; Unity afterward",
+  "sourceStatus": "Reviewed authored operational PLAYTEST candidate; unchanged numeric scope reconciled to exact receipt",
+  "approvalLimits": "Current whole manuscript/data are not newly exact-approved. Prose navigation edits and Warrior classCandidateSha256 change were reconciled in the prior map. Class/hitDie projection is unchanged.",
+  "reconciliation": "../2026-11-03-rule-map/CHARACTER_SOURCE_RECONCILIATION.json",
+  "productionRuntimeSelectionEnabled": false,
+  "releaseApproved": false,
+  "scope": [
+    "all-int ability floor",
+    "total-character-level PB 1-20",
+    "17 exact class HD and explicit later fixed option",
+    "1-20 chronological declared HP bases, per-level floors, attained Hit Dice counts",
+    "pure nonnegative current-value clamp"
+  ],
+  "excluded": [
+    "ability generation/point buy/ASI legality",
+    "multiclass entry legality and class grants",
+    "class resource pooling and recovery",
+    "HP bonuses/reductions/systemic ledger",
+    "Hit Die expenditure or replenishment",
+    "authoritative character state and commands",
+    "save/schema integration",
+    "RNG selection",
+    "life-state, damage/healing events",
+    "Unity/runtime/release qualification"
+  ],
+  "integerRepresentation": {
+    "scores": "int; widen before subtraction and floor; generation legality remains separate",
+    "bases": "int within the bound class die",
+    "hp": "long; even 20 valid levels can exceed int at extreme supported CON",
+    "capacity": "nonnegative long; wider Python integers are outside this API"
+  },
+  "hitDiceMeaning": "Attained-level count by die size only; not current unspent dice",
+  "expectedOutcomeAuthority": "Prose Worked foundation checks, pre-existing validator literal vectors, exact class tables; further integer/immutability examples independently derived",
+  "sourcePythonExecuted": false,
+  "sourceByteDomain": "Exact pinned remote bytes, retained as inert evidence snapshots",
+  "sources": [
+    {
+      "id": "registry",
+      "path": "docs/canon/CANON_MANIFEST.json",
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "url": "https://github.com/BordelonDevOps/DecenniumDescent/blob/46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4/docs/canon/CANON_MANIFEST.json",
+      "sha256": "c10eefe60f4ccbe2f98788afe0fe495016b448a52fa32d41eb99b9273952803f",
+      "bytes": 24917,
+      "snapshot": "sources/registry.json"
+    },
+    {
+      "id": "character",
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CHARACTER_CREATION_PLAYTEST.md",
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "url": "https://github.com/BordelonDevOps/DecenniumDescent/blob/46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4/DescentReviewChanges/ReviewBible/docs/mechanics/CHARACTER_CREATION_PLAYTEST.md",
+      "sha256": "5c9f9ab4c9b485546a249637a335f56193dd3d58e58c451f9561c4e330c09a84",
+      "bytes": 20258,
+      "snapshot": "sources/character.md"
+    },
+    {
+      "id": "character_tables",
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CHARACTER_FOUNDATION_TABLES.md",
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "url": "https://github.com/BordelonDevOps/DecenniumDescent/blob/46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4/DescentReviewChanges/ReviewBible/docs/mechanics/CHARACTER_FOUNDATION_TABLES.md",
+      "sha256": "8ce30a927b550d31bc981fc9537fccd178507c6b5e671fe9c6d82b987476f871",
+      "bytes": 11475,
+      "snapshot": "sources/character_tables.md"
+    },
+    {
+      "id": "character_py",
+      "path": "DescentReviewChanges/ReviewBible/tools/character_foundation.py",
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "url": "https://github.com/BordelonDevOps/DecenniumDescent/blob/46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4/DescentReviewChanges/ReviewBible/tools/character_foundation.py",
+      "sha256": "25e49a3342ca19aaf6c3b1623e1fd04f57b543312ea3d2098f93ca391c54464b",
+      "bytes": 5436,
+      "snapshot": "sources/character_py.py"
+    },
+    {
+      "id": "character_tests",
+      "path": "DescentReviewChanges/ReviewBible/tools/validate_character_foundation.py",
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "url": "https://github.com/BordelonDevOps/DecenniumDescent/blob/46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4/DescentReviewChanges/ReviewBible/tools/validate_character_foundation.py",
+      "sha256": "8940f235bc980607d379d077c8b1c007d6d67b67e2471f49a80f6d38229afe75",
+      "bytes": 8888,
+      "snapshot": "sources/character_tests.py"
+    },
+    {
+      "id": "character_data",
+      "path": "DescentReviewChanges/ReviewBible/data/playtest/character_foundation.json",
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "url": "https://github.com/BordelonDevOps/DecenniumDescent/blob/46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4/DescentReviewChanges/ReviewBible/data/playtest/character_foundation.json",
+      "sha256": "21e12af81f191abe52d1e3272ed1f57c6446ed3d4487cafbd5609dff08e56a77",
+      "bytes": 29695,
+      "snapshot": "sources/character_data.json"
+    },
+    {
+      "id": "character_status",
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CHARACTER_FOUNDATION_REVIEW_STATUS.json",
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "url": "https://github.com/BordelonDevOps/DecenniumDescent/blob/46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4/DescentReviewChanges/ReviewBible/docs/mechanics/CHARACTER_FOUNDATION_REVIEW_STATUS.json",
+      "sha256": "a3e6ff57da65b2b245de6502e3d1dbe9136c5a52b876a8bb2eebff1cd1270255",
+      "bytes": 2250,
+      "snapshot": "sources/character_status.json"
+    },
+    {
+      "id": "character_frozen",
+      "path": "docs/audit/2026-10-08/full-game/advanced167-local-source-verification/frozen-source/DescentReviewChanges/ReviewBible/docs/mechanics/CHARACTER_CREATION_PLAYTEST.md",
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "url": "https://github.com/BordelonDevOps/DecenniumDescent/blob/46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4/docs/audit/2026-10-08/full-game/advanced167-local-source-verification/frozen-source/DescentReviewChanges/ReviewBible/docs/mechanics/CHARACTER_CREATION_PLAYTEST.md",
+      "sha256": "e59456f4430f7f72db0392c3a52be8ec8b7d804b4b765c0a73f81c72f060a49e",
+      "bytes": 19931,
+      "snapshot": "sources/character_frozen.md"
+    },
+    {
+      "id": "character_data_frozen",
+      "path": "docs/audit/2026-10-08/full-game/advanced167-local-source-verification/frozen-source/DescentReviewChanges/ReviewBible/data/playtest/character_foundation.json",
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "url": "https://github.com/BordelonDevOps/DecenniumDescent/blob/46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4/docs/audit/2026-10-08/full-game/advanced167-local-source-verification/frozen-source/DescentReviewChanges/ReviewBible/data/playtest/character_foundation.json",
+      "sha256": "23a3b37796c4adb8191dd0156fde8059c39c0983d494e64ec5e9445cdfad9e2f",
+      "bytes": 31024,
+      "snapshot": "sources/character_data_frozen.json"
+    }
+  ],
+  "classHitDieProjection": [
+    {
+      "name": "Bard",
+      "hitDie": 8,
+      "sourcePointer": "/classes/0"
+    },
+    {
+      "name": "Cleric",
+      "hitDie": 8,
+      "sourcePointer": "/classes/1"
+    },
+    {
+      "name": "Crimson Agent",
+      "hitDie": 8,
+      "sourcePointer": "/classes/2"
+    },
+    {
+      "name": "Dragoon",
+      "hitDie": 10,
+      "sourcePointer": "/classes/3"
+    },
+    {
+      "name": "Druid",
+      "hitDie": 8,
+      "sourcePointer": "/classes/4"
+    },
+    {
+      "name": "Mage",
+      "hitDie": 6,
+      "sourcePointer": "/classes/5"
+    },
+    {
+      "name": "Mirrorsage",
+      "hitDie": 8,
+      "sourcePointer": "/classes/6"
+    },
+    {
+      "name": "Monk",
+      "hitDie": 8,
+      "sourcePointer": "/classes/7"
+    },
+    {
+      "name": "Oracle",
+      "hitDie": 6,
+      "sourcePointer": "/classes/8"
+    },
+    {
+      "name": "Paladin",
+      "hitDie": 10,
+      "sourcePointer": "/classes/9"
+    },
+    {
+      "name": "Ranger",
+      "hitDie": 8,
+      "sourcePointer": "/classes/10"
+    },
+    {
+      "name": "Shaman",
+      "hitDie": 8,
+      "sourcePointer": "/classes/11"
+    },
+    {
+      "name": "Soldier",
+      "hitDie": 10,
+      "sourcePointer": "/classes/12"
+    },
+    {
+      "name": "Thief",
+      "hitDie": 8,
+      "sourcePointer": "/classes/13"
+    },
+    {
+      "name": "Tinker",
+      "hitDie": 8,
+      "sourcePointer": "/classes/14"
+    },
+    {
+      "name": "Warrior",
+      "hitDie": 12,
+      "sourcePointer": "/classes/15"
+    },
+    {
+      "name": "Wizard",
+      "hitDie": 6,
+      "sourcePointer": "/classes/16"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "CHR-01.MOD",
+      "source": "character:Abilities and training; character_py:ability_modifier",
+      "implementation": "PlaytestCharacters.AbilityModifier",
+      "tests": [
+        "character_ability_source_examples_and_negative_odds",
+        "character_ability_extremes_widen_before_subtraction"
+      ]
+    },
+    {
+      "id": "CHR-01.PB",
+      "source": "character:Gain a level step 1; Multiclass entry and class features",
+      "implementation": "PlaytestCharacters.ProficiencyBonus; CharacterHpResult.TotalLevel/ProficiencyBonus",
+      "tests": [
+        "character_proficiency_all_twenty_total_levels",
+        "character_proficiency_rejects_outside_campaign_levels",
+        "character_hp_total_level_proficiency_ignores_class_split"
+      ]
+    },
+    {
+      "id": "CHR-01.HD",
+      "source": "character_tables:Starting class, Hit Dice, skills and wealth; character_data:/classes",
+      "implementation": "PlaytestCharacters.HitDieForClass/FixedHpBaseForClass; CharacterLevelRecord",
+      "tests": [
+        "character_all_seventeen_class_hit_dice_and_fixed_bases",
+        "character_unknown_and_legacy_classes_rejected",
+        "character_later_maximum_roll_is_still_legal",
+        "character_first_character_level_requires_maximum_die",
+        "character_record_rejects_base_outside_each_die",
+        "character_default_record_cannot_bypass_validation"
+      ]
+    },
+    {
+      "id": "CHR-01.HP",
+      "source": "character:Begin a character sheet step 6; Gain a level steps 2/6/7; Worked foundation checks; character_py:base_maximum_hp",
+      "implementation": "PlaytestCharacters.BaseMaximumHp; CharacterHpResult",
+      "tests": [
+        "character_bard_first_level_source_example",
+        "character_bard_advancement_capacity_does_not_heal",
+        "character_new_class_first_level_uses_recorded_later_base",
+        "character_later_maximum_roll_is_still_legal",
+        "character_first_character_level_requires_maximum_die",
+        "character_hp_rejects_null_empty_and_level_twenty_one",
+        "character_hp_retroactive_constitution_recomputes_floors",
+        "character_hp_first_and_later_contributions_floor_individually",
+        "character_hp_total_level_proficiency_ignores_class_split",
+        "character_hp_history_preserves_interleaved_class_order",
+        "character_hp_twenty_levels_and_integer_extremes",
+        "character_hp_results_detach_from_caller_history",
+        "character_hp_result_collections_reject_mutation",
+        "character_hp_recalculation_does_not_mutate_records_or_prior_results"
+      ]
+    },
+    {
+      "id": "CHR-01.CLAMP",
+      "source": "character:Gain a level step 7 and New HP completion; character_py:clamp_after_capacity_change",
+      "implementation": "PlaytestCharacters.ClampAfterCapacityChange",
+      "tests": [
+        "character_bard_advancement_capacity_does_not_heal",
+        "character_capacity_only_clamps_downward",
+        "character_capacity_zero_stays_zero_and_zero_maximum_clamps",
+        "character_capacity_negative_inputs_rejected",
+        "character_capacity_long_limits_preserve_value"
+      ]
+    }
+  ],
+  "code": [
+    "engine/com.decennium.foundation/Laboratory/Model/PlaytestCharacters.cs"
+  ],
+  "testsFile": "engine/com.decennium.foundation/Tests/EditMode/CharacterNumericCases.cs",
+  "tests": [
+    "character_ability_source_examples_and_negative_odds",
+    "character_ability_extremes_widen_before_subtraction",
+    "character_proficiency_all_twenty_total_levels",
+    "character_proficiency_rejects_outside_campaign_levels",
+    "character_all_seventeen_class_hit_dice_and_fixed_bases",
+    "character_unknown_and_legacy_classes_rejected",
+    "character_bard_first_level_source_example",
+    "character_bard_advancement_capacity_does_not_heal",
+    "character_new_class_first_level_uses_recorded_later_base",
+    "character_later_maximum_roll_is_still_legal",
+    "character_first_character_level_requires_maximum_die",
+    "character_record_rejects_base_outside_each_die",
+    "character_default_record_cannot_bypass_validation",
+    "character_hp_rejects_null_empty_and_level_twenty_one",
+    "character_hp_retroactive_constitution_recomputes_floors",
+    "character_hp_first_and_later_contributions_floor_individually",
+    "character_hp_total_level_proficiency_ignores_class_split",
+    "character_hp_history_preserves_interleaved_class_order",
+    "character_hp_twenty_levels_and_integer_extremes",
+    "character_hp_results_detach_from_caller_history",
+    "character_hp_result_collections_reject_mutation",
+    "character_hp_recalculation_does_not_mutate_records_or_prior_results",
+    "character_capacity_only_clamps_downward",
+    "character_capacity_zero_stays_zero_and_zero_maximum_clamps",
+    "character_capacity_negative_inputs_rejected",
+    "character_capacity_long_limits_preserve_value"
+  ],
+  "implemented": true,
+  "headlessTested": true,
+  "stateIntegrated": false,
+  "unityTested": false
+}

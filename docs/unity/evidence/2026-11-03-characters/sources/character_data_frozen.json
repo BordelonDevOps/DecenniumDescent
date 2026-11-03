@@ -1,0 +1,1329 @@
+{
+  "schemaVersion": "1.0",
+  "version": "0.1-playtest",
+  "status": "REVIEWED CHARACTER FOUNDATION — authored operational PLAYTEST candidate",
+  "reviewTurnId": "93aa40e3-89e9-46cd-bd22-d70cb3e244e1",
+  "exactReviewTurnId": "d1bc9c3b-6f5a-4aed-a6ad-d39d5cdd933f",
+  "proceduralAuthority": "docs/mechanics/CHARACTER_CREATION_PLAYTEST.md; the class data accompanies this guide and is not a complete character runtime schema.",
+  "authorityOrder": [
+    "Reviewed active class contract",
+    "Detailed class entry",
+    "Classes Table fallback",
+    "Companion only for actual gaps"
+  ],
+  "sourceEvidenceSha256": "bd939b1ac0eafee4b528743bfbc3a95b3bd0eda5b8c0aa95905858c8d6c5257e",
+  "sourceBookSha256": "a346670f4244efe3641cfb06814819d83ffb8512153858205f0621bd8ab8a04b",
+  "skillAbilities": {
+    "STR": [
+      "Athletics"
+    ],
+    "DEX": [
+      "Acrobatics",
+      "Sleight of Hand",
+      "Stealth"
+    ],
+    "INT": [
+      "Arcana",
+      "Engineering",
+      "History",
+      "Investigation",
+      "Nature",
+      "Religion"
+    ],
+    "WIS": [
+      "Animal Handling",
+      "Insight",
+      "Medicine",
+      "Perception",
+      "Survival"
+    ],
+    "CHA": [
+      "Deception",
+      "Intimidation",
+      "Performance",
+      "Persuasion",
+      "Reputation"
+    ]
+  },
+  "pointBuy": {
+    "budget": 27,
+    "minimum": 8,
+    "maximum": 15,
+    "costs": {
+      "8": 0,
+      "9": 1,
+      "10": 2,
+      "11": 3,
+      "12": 4,
+      "13": 5,
+      "14": 7,
+      "15": 9
+    },
+    "status": "provisional-optional-companion-derived"
+  },
+  "standardArray": [
+    15,
+    14,
+    13,
+    12,
+    10,
+    8
+  ],
+  "xpThresholds": [
+    0,
+    300,
+    900,
+    2700,
+    6500,
+    14000,
+    23000,
+    34000,
+    48000,
+    64000,
+    85000,
+    100000,
+    120000,
+    140000,
+    165000,
+    195000,
+    225000,
+    265000,
+    305000,
+    355000
+  ],
+  "classes": [
+    {
+      "class": "Bard",
+      "slug": "bard",
+      "hitDie": 8,
+      "fixedLaterLevelHpBase": 5,
+      "savingThrowProficiencies": [
+        "DEX",
+        "CHA"
+      ],
+      "weaveTier": "hybrid",
+      "armor": "Light",
+      "weapons": "Simple weapons; musical instruments used as improvised weapons",
+      "tools": "Three musical instruments",
+      "skillChoices": 3,
+      "skillOptions": [
+        "Athletics",
+        "Acrobatics",
+        "Sleight of Hand",
+        "Stealth",
+        "Arcana",
+        "Engineering",
+        "History",
+        "Investigation",
+        "Nature",
+        "Religion",
+        "Animal Handling",
+        "Insight",
+        "Medicine",
+        "Perception",
+        "Survival",
+        "Deception",
+        "Intimidation",
+        "Performance",
+        "Persuasion",
+        "Reputation"
+      ],
+      "startingWealth": {
+        "diceCount": 5,
+        "dieSides": 4,
+        "multiplierGp": 10
+      },
+      "multiclassPrerequisites": {
+        "CHA": 13
+      },
+      "multiclassProficiencies": "Light armor; one skill of your choice; one musical instrument",
+      "rpByClassLevel": [
+        2,
+        3,
+        5,
+        7,
+        9,
+        11,
+        14,
+        17,
+        20,
+        23,
+        26,
+        29,
+        32,
+        35,
+        38,
+        41,
+        44,
+        47,
+        50,
+        54
+      ],
+      "asiClassLevels": [
+        4,
+        8,
+        12,
+        16,
+        19
+      ],
+      "classCandidatePath": "DescentReviewChanges/ReviewBible/data/public/Decennium_Descent_Bard_Playtest_v0_1.json",
+      "classCandidateSha256": "b514ef61a468d5d9b19031811f98860f1a61324b4626df601d2748dcb46ce6a6",
+      "sourceChassisLines": [
+        1807,
+        1808,
+        1809,
+        1810
+      ],
+      "sourceComparison": "docs/audit/2026-10-08/full-game/CHARACTER_FOUNDATION_SOURCE_EVIDENCE.json"
+    },
+    {
+      "class": "Cleric",
+      "slug": "cleric",
+      "hitDie": 8,
+      "fixedLaterLevelHpBase": 5,
+      "savingThrowProficiencies": [
+        "WIS",
+        "CHA"
+      ],
+      "weaveTier": "full",
+      "armor": "Light; Medium; Shields",
+      "weapons": "Simple weapons; one existing mundane deity-favored weapon selected and recorded at creation",
+      "tools": "Religious implements",
+      "skillChoices": 2,
+      "skillOptions": [
+        "History",
+        "Insight",
+        "Medicine",
+        "Persuasion",
+        "Religion"
+      ],
+      "startingWealth": {
+        "diceCount": 5,
+        "dieSides": 4,
+        "multiplierGp": 10
+      },
+      "multiclassPrerequisites": {
+        "WIS": 13
+      },
+      "multiclassProficiencies": "Light armor; medium armor; shields",
+      "rpByClassLevel": [
+        3,
+        4,
+        7,
+        9,
+        12,
+        15,
+        18,
+        21,
+        24,
+        27,
+        30,
+        33,
+        36,
+        39,
+        42,
+        45,
+        48,
+        51,
+        54,
+        58
+      ],
+      "asiClassLevels": [
+        4,
+        8,
+        12,
+        16,
+        19
+      ],
+      "classCandidatePath": "DescentReviewChanges/ReviewBible/data/public/class_playtests/cleric.json",
+      "classCandidateSha256": "25387b0dcfae0d53d689486d4b05d8ef5b24bed1b70f0baab970a82dbd370f89",
+      "sourceChassisLines": [
+        1956,
+        1957,
+        1958,
+        1959
+      ],
+      "sourceComparison": "docs/audit/2026-10-08/full-game/CHARACTER_FOUNDATION_SOURCE_EVIDENCE.json"
+    },
+    {
+      "class": "Crimson Agent",
+      "slug": "crimson-agent",
+      "hitDie": 8,
+      "fixedLaterLevelHpBase": 5,
+      "savingThrowProficiencies": [
+        "DEX",
+        "INT"
+      ],
+      "weaveTier": "hybrid",
+      "armor": "Light",
+      "weapons": "Simple weapons; actual Finesse-property or Thrown-property weapons",
+      "tools": "Poisoner's kit; thieves' tools",
+      "skillChoices": 4,
+      "skillOptions": [
+        "Acrobatics",
+        "Athletics",
+        "Deception",
+        "Insight",
+        "Intimidation",
+        "Investigation",
+        "Perception",
+        "Sleight of Hand",
+        "Stealth"
+      ],
+      "startingWealth": {
+        "diceCount": 4,
+        "dieSides": 4,
+        "multiplierGp": 10
+      },
+      "multiclassPrerequisites": {
+        "DEX": 13,
+        "CON": 13
+      },
+      "multiclassProficiencies": "Light armor; one skill from this class's list",
+      "rpByClassLevel": [
+        2,
+        2,
+        4,
+        5,
+        6,
+        8,
+        9,
+        11,
+        12,
+        14,
+        15,
+        17,
+        18,
+        20,
+        21,
+        23,
+        24,
+        26,
+        27,
+        29
+      ],
+      "asiClassLevels": [
+        4,
+        8,
+        12,
+        16,
+        19
+      ],
+      "classCandidatePath": "DescentReviewChanges/ReviewBible/data/public/class_playtests/crimson-agent.json",
+      "classCandidateSha256": "bfcd0ff392035e48bdef27da630b911b96ce85ba036de5de622cdc2427a47a33",
+      "sourceChassisLines": [
+        2115,
+        2116,
+        2117,
+        2118
+      ],
+      "sourceComparison": "docs/audit/2026-10-08/full-game/CHARACTER_FOUNDATION_SOURCE_EVIDENCE.json"
+    },
+    {
+      "class": "Dragoon",
+      "slug": "dragoon",
+      "hitDie": 10,
+      "fixedLaterLevelHpBase": 6,
+      "savingThrowProficiencies": [
+        "STR",
+        "DEX"
+      ],
+      "weaveTier": "minor",
+      "armor": "Light; Medium",
+      "weapons": "Simple weapons; spears; glaives; tridents",
+      "tools": "Leatherworker's tools",
+      "skillChoices": 2,
+      "skillOptions": [
+        "Athletics",
+        "Acrobatics",
+        "Perception",
+        "Survival"
+      ],
+      "startingWealth": {
+        "diceCount": 5,
+        "dieSides": 4,
+        "multiplierGp": 10
+      },
+      "multiclassPrerequisites": {
+        "STR": 13,
+        "DEX": 13
+      },
+      "multiclassProficiencies": "Medium armor; shields; martial weapons",
+      "rpByClassLevel": [
+        1,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "asiClassLevels": [
+        4,
+        8,
+        12,
+        16,
+        19
+      ],
+      "classCandidatePath": "DescentReviewChanges/ReviewBible/data/public/class_playtests/dragoon.json",
+      "classCandidateSha256": "b55a59ae743bc1b8ed0d5832eb40453f438bc9c9f4a69aef87f3e19048e0fb0e",
+      "sourceChassisLines": [
+        2266,
+        2267,
+        2268,
+        2269
+      ],
+      "sourceComparison": "docs/audit/2026-10-08/full-game/CHARACTER_FOUNDATION_SOURCE_EVIDENCE.json"
+    },
+    {
+      "class": "Druid",
+      "slug": "druid",
+      "hitDie": 8,
+      "fixedLaterLevelHpBase": 5,
+      "savingThrowProficiencies": [
+        "INT",
+        "WIS"
+      ],
+      "weaveTier": "full",
+      "armor": "Light; Medium; Shields — no metal armor or shields",
+      "weapons": "Clubs; daggers; darts; javelins; maces; quarterstaffs; scimitars; sickles; slings; spears",
+      "tools": "Herbalism kit",
+      "skillChoices": 2,
+      "skillOptions": [
+        "Arcana",
+        "Animal Handling",
+        "Insight",
+        "Medicine",
+        "Nature",
+        "Perception",
+        "Religion",
+        "Survival"
+      ],
+      "startingWealth": {
+        "diceCount": 2,
+        "dieSides": 4,
+        "multiplierGp": 10
+      },
+      "multiclassPrerequisites": {
+        "WIS": 13
+      },
+      "multiclassProficiencies": "Light armor; medium armor; shields — no metal armor or shields",
+      "rpByClassLevel": [
+        3,
+        4,
+        7,
+        9,
+        12,
+        15,
+        18,
+        21,
+        24,
+        27,
+        30,
+        33,
+        36,
+        39,
+        42,
+        45,
+        48,
+        51,
+        54,
+        58
+      ],
+      "asiClassLevels": [
+        4,
+        8,
+        12,
+        16,
+        19
+      ],
+      "classCandidatePath": "DescentReviewChanges/ReviewBible/data/public/class_playtests/druid.json",
+      "classCandidateSha256": "581bd030286dc91e17792e9724e942b99d7e7d97ce6f6a3dfacc4f37f5113b8f",
+      "sourceChassisLines": [
+        2403,
+        2404,
+        2406
+      ],
+      "sourceComparison": "docs/audit/2026-10-08/full-game/CHARACTER_FOUNDATION_SOURCE_EVIDENCE.json"
+    },
+    {
+      "class": "Mage",
+      "slug": "mage",
+      "hitDie": 6,
+      "fixedLaterLevelHpBase": 4,
+      "savingThrowProficiencies": [
+        "INT",
+        "WIS"
+      ],
+      "weaveTier": "full",
+      "armor": "None",
+      "weapons": "Daggers; darts; slings; quarterstaffs; light crossbows",
+      "tools": "Arcana tools; scribe's supplies",
+      "skillChoices": 2,
+      "skillOptions": [
+        "Arcana",
+        "History",
+        "Insight",
+        "Investigation",
+        "Medicine",
+        "Religion"
+      ],
+      "startingWealth": {
+        "diceCount": 4,
+        "dieSides": 4,
+        "multiplierGp": 10
+      },
+      "multiclassPrerequisites": {
+        "INT": 13
+      },
+      "multiclassProficiencies": "One skill from this class's list",
+      "rpByClassLevel": [
+        3,
+        5,
+        8,
+        10,
+        14,
+        17,
+        20,
+        23,
+        26,
+        29,
+        32,
+        35,
+        38,
+        41,
+        44,
+        47,
+        50,
+        53,
+        56,
+        60
+      ],
+      "asiClassLevels": [
+        4,
+        8,
+        12,
+        16,
+        19
+      ],
+      "classCandidatePath": "DescentReviewChanges/ReviewBible/data/public/class_playtests/mage.json",
+      "classCandidateSha256": "c64782e192e2e63e5abed5728f9213c9d4cf956bce1a75da7a156dbfd1141e0b",
+      "sourceChassisLines": [
+        2879,
+        2880,
+        2881,
+        2882
+      ],
+      "sourceComparison": "docs/audit/2026-10-08/full-game/CHARACTER_FOUNDATION_SOURCE_EVIDENCE.json"
+    },
+    {
+      "class": "Mirrorsage",
+      "slug": "mirrorsage",
+      "hitDie": 8,
+      "fixedLaterLevelHpBase": 5,
+      "savingThrowProficiencies": [
+        "INT",
+        "CHA"
+      ],
+      "weaveTier": "hybrid",
+      "armor": "Light",
+      "weapons": "Simple weapons; shortswords; hand crossbows",
+      "tools": "Calligrapher's supplies",
+      "skillChoices": 3,
+      "skillOptions": [
+        "Arcana",
+        "History",
+        "Insight",
+        "Investigation",
+        "Nature",
+        "Perception"
+      ],
+      "startingWealth": {
+        "diceCount": 4,
+        "dieSides": 4,
+        "multiplierGp": 10
+      },
+      "multiclassPrerequisites": {
+        "INT": 13,
+        "CHA": 13
+      },
+      "multiclassProficiencies": "One skill from this class's list",
+      "rpByClassLevel": [
+        2,
+        3,
+        5,
+        7,
+        9,
+        11,
+        14,
+        17,
+        20,
+        23,
+        26,
+        29,
+        32,
+        35,
+        38,
+        41,
+        44,
+        47,
+        50,
+        54
+      ],
+      "asiClassLevels": [
+        4,
+        8,
+        12,
+        16,
+        19
+      ],
+      "classCandidatePath": "DescentReviewChanges/ReviewBible/data/public/class_playtests/mirrorsage.json",
+      "classCandidateSha256": "9179729dd39e0a81f4f6d78b9fbb0c7fb296fb5d418aaa238d7ff6aa02b2bd3a",
+      "sourceChassisLines": [
+        3056,
+        3057,
+        3058,
+        3059
+      ],
+      "sourceComparison": "docs/audit/2026-10-08/full-game/CHARACTER_FOUNDATION_SOURCE_EVIDENCE.json"
+    },
+    {
+      "class": "Monk",
+      "slug": "monk",
+      "hitDie": 8,
+      "fixedLaterLevelHpBase": 5,
+      "savingThrowProficiencies": [
+        "STR",
+        "DEX"
+      ],
+      "weaveTier": "minor",
+      "armor": "None",
+      "weapons": "Simple weapons; kama; nunchaku; staff",
+      "tools": "One artisan's tool",
+      "skillChoices": 2,
+      "skillOptions": [
+        "Acrobatics",
+        "Athletics",
+        "History",
+        "Insight",
+        "Religion",
+        "Stealth"
+      ],
+      "startingWealth": {
+        "diceCount": 5,
+        "dieSides": 4,
+        "multiplierGp": 1
+      },
+      "multiclassPrerequisites": {
+        "DEX": 13,
+        "WIS": 13
+      },
+      "multiclassProficiencies": "Simple weapons; shortswords",
+      "rpByClassLevel": [
+        1,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "asiClassLevels": [
+        4,
+        8,
+        12,
+        16,
+        19
+      ],
+      "classCandidatePath": "DescentReviewChanges/ReviewBible/data/public/class_playtests/monk.json",
+      "classCandidateSha256": "18a8bac9168cb4c87c641b4f2e792d31ed5ae2ae56240b3fbeced9f6ada74fc9",
+      "sourceChassisLines": [
+        3217,
+        3218,
+        3219,
+        3220
+      ],
+      "sourceComparison": "docs/audit/2026-10-08/full-game/CHARACTER_FOUNDATION_SOURCE_EVIDENCE.json"
+    },
+    {
+      "class": "Oracle",
+      "slug": "oracle",
+      "hitDie": 6,
+      "fixedLaterLevelHpBase": 4,
+      "savingThrowProficiencies": [
+        "WIS",
+        "CHA"
+      ],
+      "weaveTier": "none",
+      "armor": "Light",
+      "weapons": "Simple weapons; symbolic/relic weapons only with an actual defined weapon profile",
+      "tools": "Divination tools",
+      "skillChoices": 4,
+      "skillOptions": [
+        "Arcana",
+        "History",
+        "Insight",
+        "Medicine",
+        "Persuasion",
+        "Religion"
+      ],
+      "startingWealth": {
+        "diceCount": 3,
+        "dieSides": 4,
+        "multiplierGp": 10
+      },
+      "multiclassPrerequisites": {
+        "WIS": 13,
+        "CHA": 13
+      },
+      "multiclassProficiencies": "Light armor; one skill from this class's list",
+      "rpByClassLevel": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "asiClassLevels": [
+        4,
+        8,
+        14,
+        19
+      ],
+      "classCandidatePath": "DescentReviewChanges/ReviewBible/data/public/class_playtests/oracle.json",
+      "classCandidateSha256": "fda69f674d24eab725957d07e04d79a92a48d9d2e28615e47ffd98046b80e327",
+      "sourceChassisLines": [
+        3380,
+        3381,
+        3382,
+        3383
+      ],
+      "sourceComparison": "docs/audit/2026-10-08/full-game/CHARACTER_FOUNDATION_SOURCE_EVIDENCE.json"
+    },
+    {
+      "class": "Paladin",
+      "slug": "paladin",
+      "hitDie": 10,
+      "fixedLaterLevelHpBase": 6,
+      "savingThrowProficiencies": [
+        "WIS",
+        "CHA"
+      ],
+      "weaveTier": "half",
+      "armor": "Light; Medium; Heavy; Shields",
+      "weapons": "Simple weapons; Martial weapons",
+      "tools": "None",
+      "skillChoices": 2,
+      "skillOptions": [
+        "Athletics",
+        "Insight",
+        "Intimidation",
+        "Medicine",
+        "Persuasion",
+        "Religion"
+      ],
+      "startingWealth": {
+        "diceCount": 5,
+        "dieSides": 4,
+        "multiplierGp": 10
+      },
+      "multiclassPrerequisites": {
+        "STR": 13,
+        "CHA": 13
+      },
+      "multiclassProficiencies": "Light armor; medium armor; shields; simple weapons; martial weapons",
+      "rpByClassLevel": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        8,
+        10,
+        12,
+        14,
+        16,
+        18,
+        20,
+        22,
+        24,
+        26,
+        28,
+        30,
+        32,
+        34,
+        36
+      ],
+      "asiClassLevels": [
+        4,
+        8,
+        12,
+        16,
+        19
+      ],
+      "classCandidatePath": "DescentReviewChanges/ReviewBible/data/public/class_playtests/paladin.json",
+      "classCandidateSha256": "f028a253a1a08dd17e42a2abbcd3d7f7a484ea9d8255c934339bdf1739ae8e09",
+      "sourceChassisLines": [
+        3632,
+        3633,
+        3634,
+        3635
+      ],
+      "sourceComparison": "docs/audit/2026-10-08/full-game/CHARACTER_FOUNDATION_SOURCE_EVIDENCE.json"
+    },
+    {
+      "class": "Ranger",
+      "slug": "ranger",
+      "hitDie": 8,
+      "fixedLaterLevelHpBase": 5,
+      "savingThrowProficiencies": [
+        "STR",
+        "DEX"
+      ],
+      "weaveTier": "half",
+      "armor": "Light; Medium — no plate",
+      "weapons": "Longbows; shortbows; spears; daggers; shortswords; scimitars",
+      "tools": "Survival tools; herbalism kit",
+      "skillChoices": 3,
+      "skillOptions": [
+        "Animal Handling",
+        "Athletics",
+        "Insight",
+        "Investigation",
+        "Nature",
+        "Perception",
+        "Stealth",
+        "Survival"
+      ],
+      "startingWealth": {
+        "diceCount": 5,
+        "dieSides": 4,
+        "multiplierGp": 10
+      },
+      "multiclassPrerequisites": {
+        "DEX": 13,
+        "WIS": 13
+      },
+      "multiclassProficiencies": "Light armor; medium armor; shields; simple weapons; martial weapons; one skill from this class's list",
+      "rpByClassLevel": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        8,
+        10,
+        12,
+        14,
+        16,
+        18,
+        20,
+        22,
+        24,
+        26,
+        28,
+        30,
+        32,
+        34,
+        36
+      ],
+      "asiClassLevels": [
+        4,
+        8,
+        12,
+        16,
+        19
+      ],
+      "classCandidatePath": "DescentReviewChanges/ReviewBible/data/public/class_playtests/ranger.json",
+      "classCandidateSha256": "584df9db3a6785f6268709cf3e376ae48dd62607c3ddb8e5ad5b2cc57e62f3f2",
+      "sourceChassisLines": [
+        3830,
+        3831,
+        3832,
+        3833
+      ],
+      "sourceComparison": "docs/audit/2026-10-08/full-game/CHARACTER_FOUNDATION_SOURCE_EVIDENCE.json"
+    },
+    {
+      "class": "Shaman",
+      "slug": "shaman",
+      "hitDie": 8,
+      "fixedLaterLevelHpBase": 5,
+      "savingThrowProficiencies": [
+        "WIS",
+        "CON"
+      ],
+      "weaveTier": "hybrid",
+      "armor": "Light",
+      "weapons": "Clubs; spears; staves",
+      "tools": "Alchemist's supplies; herbalism kit",
+      "skillChoices": 4,
+      "skillOptions": [
+        "Animal Handling",
+        "Insight",
+        "Medicine",
+        "Nature",
+        "Perception",
+        "Religion",
+        "Survival"
+      ],
+      "startingWealth": {
+        "diceCount": 2,
+        "dieSides": 4,
+        "multiplierGp": 10
+      },
+      "multiclassPrerequisites": {
+        "WIS": 13,
+        "CON": 13
+      },
+      "multiclassProficiencies": "Light armor; shields; one skill from this class's list",
+      "rpByClassLevel": [
+        3,
+        4,
+        7,
+        9,
+        12,
+        15,
+        18,
+        21,
+        24,
+        27,
+        30,
+        33,
+        36,
+        39,
+        42,
+        45,
+        48,
+        51,
+        54,
+        58
+      ],
+      "asiClassLevels": [
+        4,
+        8,
+        12,
+        16,
+        19
+      ],
+      "classCandidatePath": "DescentReviewChanges/ReviewBible/data/public/class_playtests/shaman.json",
+      "classCandidateSha256": "c88fcad8c14734cc852a95aee7b3686fd64ea2a8cfb9d014f4297b7efec94a62",
+      "sourceChassisLines": [
+        4000,
+        4001,
+        4002,
+        4003
+      ],
+      "sourceComparison": "docs/audit/2026-10-08/full-game/CHARACTER_FOUNDATION_SOURCE_EVIDENCE.json"
+    },
+    {
+      "class": "Soldier",
+      "slug": "soldier",
+      "hitDie": 10,
+      "fixedLaterLevelHpBase": 6,
+      "savingThrowProficiencies": [
+        "STR",
+        "CON"
+      ],
+      "weaveTier": "none",
+      "armor": "Light; Medium; Heavy; Shields",
+      "weapons": "Repeating heavy crossbows; actual equipment explicitly classified as a sidearm",
+      "tools": "Carpenter's tools; siege engineer's kit",
+      "skillChoices": 2,
+      "skillOptions": [
+        "Athletics",
+        "Intimidation",
+        "Perception",
+        "Survival"
+      ],
+      "startingWealth": {
+        "diceCount": 5,
+        "dieSides": 4,
+        "multiplierGp": 10
+      },
+      "multiclassPrerequisites": {
+        "STR": 13,
+        "CON": 13
+      },
+      "multiclassProficiencies": "Light armor; medium armor; heavy armor; shields; simple weapons; martial weapons",
+      "rpByClassLevel": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "asiClassLevels": [
+        4,
+        8,
+        12,
+        16,
+        19
+      ],
+      "classCandidatePath": "DescentReviewChanges/ReviewBible/data/public/class_playtests/soldier.json",
+      "classCandidateSha256": "ab9cd3bd64355166dceb5a09e1ddab98443a957bb4bcdce813f1ad294ec048f0",
+      "sourceChassisLines": [
+        4180,
+        4181,
+        4182,
+        4183
+      ],
+      "sourceComparison": "docs/audit/2026-10-08/full-game/CHARACTER_FOUNDATION_SOURCE_EVIDENCE.json"
+    },
+    {
+      "class": "Thief",
+      "slug": "thief",
+      "hitDie": 8,
+      "fixedLaterLevelHpBase": 5,
+      "savingThrowProficiencies": [
+        "DEX",
+        "INT"
+      ],
+      "weaveTier": "minor",
+      "armor": "Light",
+      "weapons": "Daggers; shortswords; hand crossbows; actual Thrown-property weapons",
+      "tools": "Thieves' tools; poisoner's kit",
+      "skillChoices": 4,
+      "skillOptions": [
+        "Acrobatics",
+        "Athletics",
+        "Deception",
+        "Insight",
+        "Intimidation",
+        "Investigation",
+        "Perception",
+        "Performance",
+        "Persuasion",
+        "Sleight of Hand",
+        "Stealth"
+      ],
+      "startingWealth": {
+        "diceCount": 4,
+        "dieSides": 4,
+        "multiplierGp": 10
+      },
+      "multiclassPrerequisites": {
+        "DEX": 13
+      },
+      "multiclassProficiencies": "Light armor; one skill from this class's list; thieves' tools",
+      "rpByClassLevel": [
+        1,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "asiClassLevels": [
+        4,
+        8,
+        12,
+        16,
+        19
+      ],
+      "classCandidatePath": "DescentReviewChanges/ReviewBible/data/public/class_playtests/thief.json",
+      "classCandidateSha256": "9c2896fbf19bd3f1138707db2545b19156341c0a6e9be6a15192b19582068400",
+      "sourceChassisLines": [
+        4360,
+        4361,
+        4362,
+        4363
+      ],
+      "sourceComparison": "docs/audit/2026-10-08/full-game/CHARACTER_FOUNDATION_SOURCE_EVIDENCE.json"
+    },
+    {
+      "class": "Tinker",
+      "slug": "tinker",
+      "hitDie": 8,
+      "fixedLaterLevelHpBase": 5,
+      "savingThrowProficiencies": [
+        "INT",
+        "DEX"
+      ],
+      "weaveTier": "minor",
+      "armor": "Light",
+      "weapons": "Simple weapons; shortbows; crossbows",
+      "tools": "Tinker's tools; alchemist's supplies",
+      "skillChoices": 2,
+      "skillOptions": [
+        "Arcana",
+        "Engineering",
+        "History",
+        "Investigation",
+        "Medicine",
+        "Nature",
+        "Perception"
+      ],
+      "startingWealth": {
+        "diceCount": 4,
+        "dieSides": 4,
+        "multiplierGp": 10
+      },
+      "multiclassPrerequisites": {
+        "INT": 13,
+        "DEX": 13
+      },
+      "multiclassProficiencies": "Light armor; one skill from this class's list; tinker's tools",
+      "rpByClassLevel": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        8,
+        10,
+        12,
+        14,
+        16,
+        18,
+        20,
+        22,
+        24,
+        26,
+        28,
+        30,
+        32,
+        34,
+        36
+      ],
+      "asiClassLevels": [
+        4,
+        8,
+        12,
+        16,
+        19
+      ],
+      "classCandidatePath": "DescentReviewChanges/ReviewBible/data/public/class_playtests/tinker.json",
+      "classCandidateSha256": "f087cc9250f1864e60209fb13bff86800d45b7238dc09e8eac2dbf2272b09c1d",
+      "sourceChassisLines": [
+        4565,
+        4566,
+        4567,
+        4568
+      ],
+      "sourceComparison": "docs/audit/2026-10-08/full-game/CHARACTER_FOUNDATION_SOURCE_EVIDENCE.json"
+    },
+    {
+      "class": "Warrior",
+      "slug": "warrior",
+      "hitDie": 12,
+      "fixedLaterLevelHpBase": 7,
+      "savingThrowProficiencies": [
+        "STR",
+        "CON"
+      ],
+      "weaveTier": "none",
+      "armor": "Medium; Heavy",
+      "weapons": "Martial weapons",
+      "tools": "None",
+      "skillChoices": 2,
+      "skillOptions": [
+        "Animal Handling",
+        "Athletics",
+        "Intimidation",
+        "Nature",
+        "Perception",
+        "Survival"
+      ],
+      "startingWealth": {
+        "diceCount": 2,
+        "dieSides": 4,
+        "multiplierGp": 10
+      },
+      "multiclassPrerequisites": {
+        "STR": 13,
+        "CON": 13
+      },
+      "multiclassProficiencies": "Light armor; medium armor; shields; simple weapons; martial weapons",
+      "rpByClassLevel": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "asiClassLevels": [
+        4,
+        8,
+        12,
+        16,
+        19
+      ],
+      "classCandidatePath": "DescentReviewChanges/ReviewBible/data/public/class_playtests/warrior.json",
+      "classCandidateSha256": "9a7de82d75e74ae22135266cd4b0c0951ba6bd280e72584212f441d4fa91fc17",
+      "sourceChassisLines": [
+        4775,
+        4776,
+        4777,
+        4778
+      ],
+      "sourceComparison": "docs/audit/2026-10-08/full-game/CHARACTER_FOUNDATION_SOURCE_EVIDENCE.json"
+    },
+    {
+      "class": "Wizard",
+      "slug": "wizard",
+      "hitDie": 6,
+      "fixedLaterLevelHpBase": 4,
+      "savingThrowProficiencies": [
+        "INT",
+        "WIS"
+      ],
+      "weaveTier": "full",
+      "armor": "None",
+      "weapons": "Daggers; darts; slings; quarterstaffs; light crossbows",
+      "tools": "Arcana tools; scribe's supplies",
+      "skillChoices": 2,
+      "skillOptions": [
+        "Arcana",
+        "History",
+        "Insight",
+        "Investigation",
+        "Medicine",
+        "Religion"
+      ],
+      "startingWealth": {
+        "diceCount": 4,
+        "dieSides": 4,
+        "multiplierGp": 10
+      },
+      "multiclassPrerequisites": {
+        "INT": 13
+      },
+      "multiclassProficiencies": "One skill from this class's list",
+      "rpByClassLevel": [
+        4,
+        6,
+        10,
+        12,
+        16,
+        20,
+        24,
+        28,
+        32,
+        36,
+        40,
+        44,
+        48,
+        52,
+        56,
+        60,
+        64,
+        68,
+        72,
+        80
+      ],
+      "asiClassLevels": [
+        4,
+        8,
+        12,
+        16,
+        19
+      ],
+      "classCandidatePath": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+      "classCandidateSha256": "8ab2f4f43bcbced418fb266e5bd3216cff491b0c442c16f93438bd3556672c8b",
+      "sourceChassisLines": [
+        5125,
+        5126,
+        5127,
+        5128
+      ],
+      "sourceComparison": "docs/audit/2026-10-08/full-game/CHARACTER_FOUNDATION_SOURCE_EVIDENCE.json"
+    }
+  ],
+  "unclosedScope": [
+    "Complete ancestry traits/ASI reconciliation",
+    "Complete background packages/features",
+    "Equipment records/prices/weights/carrying",
+    "Remaining feats and spells",
+    "Separate prestige-class mechanics",
+    "Live companion parity",
+    "Human balance",
+    "Final authored flow and GitHub delivery"
+  ],
+  "cosmology": "Deferred until after successful authorized GitHub push and remote commit verification"
+}

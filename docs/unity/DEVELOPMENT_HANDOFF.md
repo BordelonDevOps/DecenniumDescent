@@ -1,0 +1,102 @@
+# Decennium Unity foundation handoff
+
+**2026-11-03 latest owner clarification: C# rules engine first, Unity integration afterward.** Convert, compile and test the rules for exploration, tactical combat and resource management without Unity dependencies. Technical foundation, four provisional roll resolvers and the CHR-01 character numeric kernel pass **86 headless cases**; the complete rules engine has not been implemented. Unity integration is deliberately DEFERRED. This clarification supersedes the earlier next-task instruction to qualify the Unity package immediately.
+
+**Latest increment delivered after the owner's “get started”: CHR-01 character numerics.** Ability modifiers, total-level proficiency, chronological base HP, exact 17-class Hit Dice/fixed-base projection and capacity-only clamping run in standalone C#. Fresh baseline was 60/60; **26 added cases bring verification to 86/86**, with static package checks 8/8. [Source bindings](evidence/2026-11-03-characters/SOURCE_BINDINGS.json) retain exact snapshots, scope, code and named tests. Character commands, complete creation/advancement, HP effects and save integration remain unimplemented.
+
+The [conversion map](IMPLEMENTATION_TRACE.md) routes all 75 source areas to 49 work items. The original JSON map/inventory and its review receipt remain frozen evidence of the earlier mapping task; current CHR-01 status is supplied by the new bindings and human trace. The owner explicitly authorized GitHub research; main was rechecked unchanged at the pinned revision before this increment. No complete clause-by-clause review is claimed.
+
+The owner authorized Editor installation and subsequently activated the license. **Unity 6000.3.28f1 LTS is installed; Universal 2D template creation at `engine/UnityLaboratory/` completed with exit 0.** The successful attempt is recorded in `engine/artifacts/unity-qualification-20261103T174953/01-create.json` and its adjacent log; ProjectVersion confirms 6000.3.28f1. The manifest contains template dependencies and no `com.decennium.foundation` entry. No Decennium package import, scene generation, Edit Mode/Play Mode test or player build has run. Preserve the unused host and the earlier exit-198 license failure [evidence](evidence/2026-11-03-rolls/UNITY_ENVIRONMENT.json). Installation and activation were preparation, not completion of the C# milestone.
+
+Unity remains the chosen engine. The owner wants a tactical CRPG in the vein of Wrath of the Righteous, with HD pixel art and Final Fantasy Resonance named as a visual reference. **The owner authorized starting development and selected turn-based combat for the first prototype.** That does not decide every turn/reaction/clock rule or bind the final game to this mode. Camera and rendering choices remain to be evaluated with a bounded visual sample.
+
+## Product agreement and first playable milestone
+
+The owner makes product decisions; browser GPT helps manage requirements and scope; Codex implements and verifies them, raising conflicts rather than silently choosing rules. The accepted browser planning discussion is **Convert Rules To Unity**. Implementation readiness is evidence-based; agreement alone does not make content ready.
+
+All three gameplay layers share expedition, characters, world state, inventory and progression:
+
+| Layer | Required player experience |
+| --- | --- |
+| `EXPLORATION` | Directly move through and interact with the world: run, jump, dig, mark, open, discover and investigate. Expedition administration does not replace this experience. |
+| `TACTICAL` | Control the active party through positioning, attacks, abilities, reactions and conditions. First prototype: turn-based. |
+| `MANAGEMENT` | Craft, research, prepare and assign other companions to work, including eventual fishing, mining and farming. |
+
+The first playable product milestone is **explore -> encounter -> acquire -> manage/prepare -> explore again**. A small combat or arithmetic test is an engineering checkpoint. For a bounded first slice, propose one traversable area, one discoverable encounter, one acquired resource, one companion assignment or crafting/preparation action, and a return to exploration where the result matters. Specific content and numeric rules still need exact source binding. The full interaction vocabulary above is the product requirement; it is not all implemented by the first checkpoint.
+
+Acceptance must observe direct world interaction, an encounter, shared resource continuity, useful preparation and continuation after save/load. Keep controlled randomness and ordered resolution records in the shared simulation. Include a small HD pixel art readability sample early; no art or visual evaluation was performed in this increment.
+
+## Where the work lives
+
+Verified Git checkout: `C:\Users\cbord\Documents\ChatGPT\Decennium Descent\github-delivery`, active development branch **[`Engine`](https://github.com/BordelonDevOps/DecenniumDescent/tree/Engine)**, origin `https://github.com/BordelonDevOps/DecenniumDescent.git`. On 2026-11-03 the owner requested a fresh `Engine` branch from `main` containing all engine files. Its base is verified GitHub main `46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4`. Engine code/tests, the unused Unity host's source/settings and these development records are committed on `Engine`. Future engine work stays on that branch; no merge to `main` is authorized by this request.
+
+Before branching, all 151 eligible files under `engine/` and `docs/unity/` were uncommitted. They were backed up and their SHA-256 hashes verified before and after switching. The former local `main` ref remains at `9367b319e460134a3fc35b530da29ecbe6224b6a`; it was not reset or merged. Historical evidence refers to that earlier checkout. Branch instructions and scoped `.gitattributes` were added during transfer so Git's line-ending conversion preserves the exact tested/source bytes. Generated caches, user settings, saves and temporary build artifacts remain ignored.
+
+**Current inspected source and Engine branch base is GitHub main `46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4`.** It is 106 commits ahead of the former candidate and 389 ahead of the former implementation checkout. `CURRENT_HANDOFF_493.json`, its queue/receipt chain and the complete downloaded authored index agree on **848 reviewed/applied ordinary spells / 0 pending / 0 accepted-unapplied**. The index has 572 standalone procedures and 173 scoped interfaces; these are representation/scope counts, not additive executable-spell totals. Exact references are in [REMOTE_REVIEW.json](evidence/2026-11-03-rule-map/REMOTE_REVIEW.json) and [RULE_MAP.json](evidence/2026-11-03-rule-map/RULE_MAP.json).
+
+The current canon registry now explicitly promotes **ten exact Rank 9 Director procedures** through `data/director/rank9_spell_procedures_dd11_2026-11-03.json`. Their canonical procedures supersede the earlier static-only model scope and omit test fixtures; open blockers and qualifications remain. Collapse Timeline is excluded from that ten-model promotion. Runtime implementation/selection is not certified. The map's per-identity effective source pointers must use this overlay for those ten identities while retaining historical review pointers as history.
+
+`C:\Github\DecenniumDescent-review-push-134` at `43ab89ef00ff82d6a7c173432f9402978f867c36` and its 476 handoff / 831-reviewed / 17-pending counts are historical. The core, combat, equipment, mining, fishing, crafting and consolidated expedition procedures inspected earlier match pinned main; their conversion work remains relevant. Root START_HERE is still stale. Source status comes from the verified domain registry and explicit later receipts, not a root filename. Remote comparison file arrays are capped at 300 and are not complete diff inventories. No authoring tree was merged or synchronized into this checkout.
+
+## Delivered
+
+- Engine-free Core and Persistence assemblies: validated commands, trusted authority outside payloads, revision checks, detached transaction state, persisted idempotency, versioned RNG/snapshots and corruption checks.
+- Explicit TEST_ONLY model: actor, companion, wall, container and one synthetic token, with manual ticks and abstract coordinates.
+- Unity UI Toolkit adapter and idempotent scene builder; opt-in laboratory assembly constraints and release-build rejection guards.
+- Save/load with validated sibling temporary file, same-volume replacement, previous-good backup and explicit backup recovery preserving the displaced primary.
+- Shared headless/NUnit regression suite, structural validation, concise engine instructions and the unchanged full brief.
+- Development-only `PlaytestRolls`: task degrees, attacks, ordinary saves and opposed totals from the provisional core overlay's **Rolls** section. Four typed immutable result records, validated d20/DC/AC/critical-threshold inputs, and widened arithmetic for all supported integer inputs. No combat action, damage, clock, RNG consumption or command integration is claimed.
+- Nineteen independent source-example and boundary regression cases. Exact source snapshots/hashes and current decision record: [SOURCE_BINDINGS.json](evidence/2026-11-03-rolls/SOURCE_BINDINGS.json). Provisional rules remain behind the existing laboratory guards; production content selection stays disabled.
+- Comprehensive area/identity conversion map: all 75 source areas, 49 work items, 17 classes / 1,223 class cards, 848 ordinary spells, 335 feats, 687 recipes (433 public subset), 28 Core conditions, 14 ancestries / 45 variants / 20 backgrounds, 220 equipment-projection records and an explicitly limited 26-record bestiary source sample. Each corpus retains its actual scope and C# status; no whole-game completion percentage is inferred.
+- Development-only `PlaytestCharacters`, immutable `CharacterLevelRecord` and detached `CharacterHpResult`: negative floor division, PB from total level, 1–20 chronological HP bases, individually recomputed minimums, and downward-only capacity clamp. Later maximum-face rolls remain legal; a new class does not automatically receive maximum HP. Hit Dice totals are attained-level counts, not unspent-dice state. All inputs/results are independent of Unity, RNG, commands and saves. The 26 new tests cover source examples, invalid input, integer extremes and collection ownership.
+
+Current increment inventory and hashes: [CHANGED_FILES.json](evidence/2026-11-03-characters/CHANGED_FILES.json). Prior [roll inventory](evidence/2026-11-03-rolls/CHANGED_FILES.json) and [foundation inventory](evidence/CHANGED_FILES.json) remain historical. Source binding and per-requirement evidence: [IMPLEMENTATION_TRACE.md](IMPLEMENTATION_TRACE.md). Architecture and the initial audit: [UNITY_ENGINE_PLAN.md](UNITY_ENGINE_PLAN.md).
+
+## Actual validation
+
+| Gate | Result | Evidence / limitation |
+| --- | --- | --- |
+| Existing Python reference-model smoke | PASS, 6 selected expectations | [Stage 0](evidence/STAGE0.json); no complete historical-validator run or gameplay parity claim. |
+| Shared C# assemblies under headless Roslyn | PASS | PowerShell 7.6.5 / .NET 10.0.11 / C# 9, warnings as errors. No .NET SDK was installed. |
+| Shared regression cases | PASS, 86 discovered / 86 passed / 0 failed | [Character increment results](evidence/2026-11-03-characters/HEADLESS_RESULTS.json), including current source hashes. [Before-change baseline](evidence/2026-11-03-characters/BASELINE_RESULTS.json): 60/60. |
+| Package structure and dependencies | PASS, 8 checks | [Fresh static JSON](evidence/2026-11-03-characters/PACKAGE_RESULTS.json); metadata pairing/GUIDs, asmdef graph and engine boundaries. |
+| Character source bindings | PASS, 9 source snapshots / 17 class projections / 26 named new cases | [Binding validation](evidence/2026-11-03-characters/VALIDATION.json); Python reference files inspected as data, not executed. |
+| Rules conversion map | PASS structural checks; semantic limits retained | [Map validation](evidence/2026-11-03-rule-map/VALIDATION.json): all75 areas routed, individual catalog source addresses and current C# evidence checked. This is not rule-execution coverage. |
+| Independent engineering review | Completed for character code/source; no actionable findings | [Character review](evidence/2026-11-03-characters/INDEPENDENT_REVIEW.md). Source/evidence review, not an independently executed suite. Prior [roll review](evidence/2026-11-03-rolls/INDEPENDENT_REVIEW.md) and initial foundation's [two fixes](evidence/INDEPENDENT_REVIEW.md) remain historical. |
+| Editor installation | PASS, Unity 6000.3.28f1 LTS | Hub installer exit 0, installed registry and signed executable verified. Standalone CLI setup failed HTTP 404; existing Hub CLI succeeded. |
+| Unity template creation | PASS, exit 0 after license activation | `engine/artifacts/unity-qualification-20261103T174953/01-create.json`; template only, not the Decennium package. |
+| Decennium Unity package import, compilation and Console | DEFERRED / NOT RUN | Owner clarified C# first. Template creation is not package compilation evidence. |
+| Unity Edit Mode, Play Mode and scene generation | NOT RUN | NUnit bridge and builder source delivered; no Unity execution. |
+| Standalone development/release builds and release exclusion | NOT RUN | No player artifact. Static guards and a headless Release-profile test do not prove a build. |
+| Visual/gameplay observation, co-op and performance | NOT RUN | No playability, feel, peer-count or performance claim. |
+
+The initial independent review caught a recovery flow that could not resume saving and an encode/decode string-bound mismatch; both remain corrected and regression-tested. No known failing headless cases remain. The license blocker is resolved; Unity integration is deferred by development sequence. Integration regressions remain possible until exercised.
+
+Unexecuted qualification helpers remain under ignored `engine/artifacts/bootstrap-staging/`; they have not been copied into the host. Independent review identified two unresolved issues in `LaboratoryRuntimeTests.cs`: teardown must archive owned save/recovery evidence before deleting it, and synthetic `NavigationSubmitEvent` must explicitly target the intended button. These helpers are not validated deliverables and must not be used unchanged when Unity work resumes.
+
+## Run and exercise
+
+From the checkout root:
+
+```powershell
+pwsh -NoProfile -File engine/tools/Test-Foundation.ps1
+pwsh -NoProfile -File engine/tools/Validate-Package.ps1
+```
+
+Future Unity instructions are retained in [engine/README.md](../../engine/README.md), but are deferred during the C# phase. Expected laboratory scene after later integration: `Assets/DecenniumTestOnly/FoundationLab.unity`.
+
+The UI offers **Left / Up / Down / Right**, **Open TEST_ONLY container**, **Advance one TEST_ONLY tick**, **Save fixture**, **Load fixture**, and explicit recovery/new-fixture buttons. Use the mouse. No production keyboard/gamepad maps or continuous exploration movement exists yet. Opening the adjacent container should award one synthetic token; trying again should leave state unchanged. Save/load should restore the actor, clock, revision and receipt history. These are expected Unity observations, not completed Play Mode results.
+
+## Unresolved decisions
+
+Camera/geometry/rendering approach; production movement, collision, jump and range policy; exploration-clock progression and encounter transitions; initiative/reaction details; the first encounter and management content subset; production costs/research/crafting outcomes; final shipping platforms; save migration/session retention; and cooperative ownership/disconnect behavior. Windows desktop is the current development target; Editor 6000.3.28f1 LTS is installed. Host plus up to four guests remains the supplied longer-term target, with no network implementation. Resolve each relevant rule through the existing authority registry before production behavior is added.
+
+The reviewed EX58 expedition candidate provides assignments, shared time, foraging, routes/mapping and Haven work (Player Book FL-02/03/06/10/24), but its status still says runtime/selection/whole-game-flow false. Reviewed crafting, gathering and fishing records are input sources, not proof that autonomous companion work is implemented. The new declared-roll helpers do not close these dependencies.
+
+## One next task
+
+**Next bounded C# increment: class-level and multiclass-entry validation (part of CHR-02).** Bind the existing `validate_class_levels` and `new_class_prerequisite_failures` source procedures and exact prerequisite rows. Validate held classes, acquisition order and combined level; check every held/new class's prerequisites only on new-class entry. Keep existing-class advancement and later loss of a qualifying ability distinct. This does not authorize implicit grants, resource restoration or full class engines. Reuse CHR-01 numerics; no Unity dependency is needed.
+
+The [character source reconciliation](evidence/2026-11-03-rule-map/CHARACTER_SOURCE_RECONCILIATION.json) compares current prose/data with retained exact-receipt snapshots. The helper/tables and six numeric sections are unchanged; later changes are five navigation/progress notes and one Warrior class-file hash. CHR-01 binds only its unchanged scope and does not claim new exact approval of the whole manuscript/data. Scores 3 and 9 produce -4 and -1; stored d6 bases 6 and 1 produce HP 5 at CON 6 and HP 6 at CON 8. These are now tested results. Reconfirm relevant source scope before the next port.
+
+Then follow the dependency order in the map: real character/inventory state; shared clock/events/actions/reservations; life-state/conditions/spatial interactions; source-bound tactical and management procedures; connected headless scenarios and save/resume. Fishing already supplies meaningful commitment/interruption and unattended-trap lifecycle rules; research already has existing-formula procedures. Direct jump/dig/farming gaps remain explicit. Neither one small connected scenario nor 86 passing tests completes the full rules conversion. Unity stays deferred during this C# phase.

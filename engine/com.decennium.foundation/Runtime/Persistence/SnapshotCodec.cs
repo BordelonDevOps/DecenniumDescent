@@ -1,0 +1,144 @@
+using System;
+using System.IO;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
+
+namespace Decennium.Foundation
+{
+    public sealed class SnapshotCodec
+    {
+        public const int MaxBytes = 1024 * 1024;
+        private static readonly UTF8Encoding Utf8 = new UTF8Encoding(false, true);
+        private const int Magic = 0x31464444; // DDF1, little endian. Checksum detects corruption, not tampering.
+        public byte[] Encode(Snapshot state)
+        {
+            Validation.Snapshot(state);
+            byte[] payload;
+            using (var stream = new MemoryStream())
+            using (var writer = new BinaryWriter(stream, Utf8, true))
+            {
+                writer.Write(Magic); writer.Write(Snapshot.Schema);
+                WriteText(writer, state.ContentFingerprint); WriteText(writer, RandomV1.Algorithm);
+                writer.Write(state.TestOnly); writer.Write(state.Revision); writer.Write(state.Clock); writer.Write(state.RandomState);
+                writer.Write(state.Actors.Length);
+                foreach (var a in state.Actors.OrderBy(x => x.Id, StringComparer.Ordinal))
+                { WriteText(writer, a.Id); writer.Write(a.X); writer.Write(a.Y); writer.Write(a.Tokens); }
+                writer.Write(state.Objects.Length);
+                foreach (var o in state.Objects.OrderBy(x => x.Id, StringComparer.Ordinal))
+                { WriteText(writer, o.Id); writer.Write(o.X); writer.Write(o.Y); writer.Write(o.Opened); }
+                writer.Write(state.Receipts.Length);
+                foreach (var r in state.Receipts.OrderBy(x => x.Revision))
+                { WriteText(writer, r.Principal); WriteText(writer, r.Id); WriteText(writer, r.Fingerprint); writer.Write(r.Revision); }
+                writer.Flush(); payload = stream.ToArray();
+            }
+            if (payload.Length + 32 > MaxBytes) throw new InvalidDataException("Save exceeds size limit.");
+            using (var hash = SHA256.Create()) return payload.Concat(hash.ComputeHash(payload)).ToArray();
+        }
+        public Snapshot Decode(byte[] data)
+        {
+            if (data == null || data.Length < 40 || data.Length > MaxBytes) throw new InvalidDataException("Invalid save length.");
+            int length = data.Length - 32;
+            using (var hash = SHA256.Create())
+                if (!hash.ComputeHash(data, 0, length).SequenceEqual(data.Skip(length))) throw new InvalidDataException("Save checksum mismatch.");
+            try
+            {
+                using (var stream = new MemoryStream(data, 0, length, false))
+                using (var reader = new BinaryReader(stream, Utf8))
+                {
+                    if (reader.ReadInt32() != Magic || reader.ReadInt32() != Snapshot.Schema) throw new InvalidDataException("Unsupported save schema.");
+                    string fingerprint = ReadText(reader);
+                    if (ReadText(reader) != RandomV1.Algorithm) throw new InvalidDataException("Unsupported RNG version.");
+                    var s = new Snapshot { ContentFingerprint = fingerprint, TestOnly = ReadBool(reader), Revision = reader.ReadInt64(),
+                        Clock = reader.ReadInt64(), RandomState = reader.ReadUInt32() };
+                    s.Actors = new ActorState[ReadCount(reader, 64)];
+                    for (int i = 0; i < s.Actors.Length; i++) s.Actors[i] = new ActorState {
+                        Id = ReadText(reader), X = reader.ReadInt32(), Y = reader.ReadInt32(), Tokens = reader.ReadInt32() };
+                    s.Objects = new ObjectState[ReadCount(reader, 64)];
+                    for (int i = 0; i < s.Objects.Length; i++) s.Objects[i] = new ObjectState {
+                        Id = ReadText(reader), X = reader.ReadInt32(), Y = reader.ReadInt32(), Opened = ReadBool(reader) };
+                    s.Receipts = new CommandReceipt[ReadCount(reader, Validation.MaxReceipts)];
+                    for (int i = 0; i < s.Receipts.Length; i++) s.Receipts[i] = new CommandReceipt {
+                        Principal = ReadText(reader), Id = ReadText(reader), Fingerprint = ReadText(reader), Revision = reader.ReadInt64() };
+                    if (stream.Position != length) throw new InvalidDataException("Unexpected trailing save data.");
+                    Validation.Snapshot(s); return s;
+                }
+            }
+            catch (Exception ex) when (ex is ArgumentException || ex is EndOfStreamException || ex is OverflowException)
+            { throw new InvalidDataException("Malformed save.", ex); }
+        }
+        private static int ReadCount(BinaryReader reader, int maximum)
+        { int n = reader.ReadInt32(); if (n < 0 || n > maximum) throw new InvalidDataException("Invalid collection length."); return n; }
+        private static bool ReadBool(BinaryReader reader)
+        { byte b = reader.ReadByte(); if (b > 1) throw new InvalidDataException("Invalid boolean."); return b == 1; }
+        private static void WriteText(BinaryWriter writer, string value)
+        { byte[] bytes = Utf8.GetBytes(value); writer.Write(bytes.Length); writer.Write(bytes); }
+        private static string ReadText(BinaryReader reader)
+        {
+            int n = ReadCount(reader, 512); byte[] bytes = reader.ReadBytes(n);
+            if (bytes.Length != n) throw new EndOfStreamException(); return Utf8.GetString(bytes);
+        }
+    }
+
+    public interface IFileCommit
+    {
+        void Commit(string temporary, string destination, string backup);
+    }
+    public sealed class SameVolumeCommit : IFileCommit
+    {
+        public void Commit(string temporary, string destination, string backup)
+        {
+            if (File.Exists(destination)) File.Replace(temporary, destination, backup, true);
+            else File.Move(temporary, destination);
+        }
+    }
+    // Single writer, stable local path, completed-command boundaries only. No silent backup fallback.
+    public sealed class FileSaveStore
+    {
+        private readonly SnapshotCodec codec = new SnapshotCodec();
+        private readonly IFileCommit committer;
+        public FileSaveStore() : this(new SameVolumeCommit()) { }
+        public FileSaveStore(IFileCommit committer) { this.committer = committer ?? throw new ArgumentNullException(nameof(committer)); }
+        public Snapshot Load(string path)
+        {
+            using (var stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
+            {
+                if (stream.Length > SnapshotCodec.MaxBytes) throw new InvalidDataException("Save exceeds size limit.");
+                using (var memory = new MemoryStream()) { stream.CopyTo(memory); return codec.Decode(memory.ToArray()); }
+            }
+        }
+        public void Save(string path, Snapshot snapshot)
+        {
+            byte[] bytes = codec.Encode(snapshot);
+            string full = Path.GetFullPath(path);
+            Directory.CreateDirectory(Path.GetDirectoryName(full));
+            // A corrupt current file must not replace the last-known-good backup.
+            if (File.Exists(full)) Load(full);
+            WriteAndCommit(full, bytes, full + ".bak");
+        }
+        // Explicit user recovery. Validate domain/content before writing; preserve both the
+        // selected backup and the displaced primary. Caller must serialize all file operations.
+        public string RecoverBackup(string path, Action<Snapshot> validate)
+        {
+            if (validate == null) throw new ArgumentNullException(nameof(validate));
+            string full = Path.GetFullPath(path);
+            Snapshot recovered = Load(full + ".bak");
+            validate(recovered.Copy());
+            string preserved = File.Exists(full) ? full + ".recovery-evidence-" + Guid.NewGuid().ToString("N") : null;
+            WriteAndCommit(full, codec.Encode(recovered), preserved);
+            return preserved;
+        }
+        private void WriteAndCommit(string full, byte[] bytes, string backup)
+        {
+            string temporary = full + ".tmp-" + Guid.NewGuid().ToString("N");
+            try
+            {
+                using (var stream = new FileStream(temporary, FileMode.CreateNew, FileAccess.Write, FileShare.None))
+                { stream.Write(bytes, 0, bytes.Length); stream.Flush(true); }
+                Load(temporary);
+                committer.Commit(temporary, full, backup);
+            }
+            finally { if (File.Exists(temporary)) File.Delete(temporary); }
+        }
+    }
+}
