@@ -444,6 +444,7 @@ def build_case(case_id: str, ctx: dict[str, Any]) -> tuple[dict[str, Any], dict[
 
     def remaining_preventions(s):
         o = ov(s)
+        o["nowMs"] = 101
         specs = [
             ("EP480-PREVENT-CARRY-ROUTE", "W", "caster-carries-around-obstruction", "all local carry paths unavailable, including the otherwise open y=5 bypass"),
             ("EP480-PREVENT-OTHER-DELIVERY", OBLIGATION_ID, "closed-world route registry", "only two ordinary routes and one terminal route; no other actor/object/route"),
@@ -475,6 +476,7 @@ def build_case(case_id: str, ctx: dict[str, Any]) -> tuple[dict[str, Any], dict[
 
     def removal_one(s):
         o = ov(s)
+        o["nowMs"] = 200
         target = o["newObligations"][OBLIGATION_ID]
         before = {"status": target["status"], "deadlineMs": target["deadlineMs"], "scheduler": copy.deepcopy(o["terminalScheduler"])}
         o["removalAttempts"].append({"id": "EP480-REMOVE-ATTEMPT-01", "atMs": 200,
@@ -545,6 +547,7 @@ def build_case(case_id: str, ctx: dict[str, Any]) -> tuple[dict[str, Any], dict[
     if case_id in ("EP480-T2", "EP480-T4"):
         def lose_item(s):
             o = ov(s)
+            o["nowMs"] = 5000
             item = copy.deepcopy(o["itemOverrides"].get("book-W", base_item))
             last_support = "inherited-flat-room-floor" if case_id == "EP480-T4" else None
             last_custody = item["custodian"]
@@ -566,6 +569,7 @@ def build_case(case_id: str, ctx: dict[str, Any]) -> tuple[dict[str, Any], dict[
     if case_id in ("EP480-T3", "EP480-T4"):
         def lose_destination(s):
             o = ov(s)
+            o["nowMs"] = 5100
             plate = copy.deepcopy(o["fixture"]["supportPatch"])
             marker = copy.deepcopy(o["fixture"]["cacheMarker"])
             plate["active"] = False
@@ -588,7 +592,7 @@ def build_case(case_id: str, ctx: dict[str, Any]) -> tuple[dict[str, Any], dict[
         o["actorOverrides"]["W"] = {
             "budget": {"Action": 1, "BonusAction": 1, "Reaction": 1, "extraAction": 0, "interaction": 1, "movement": 30},
             "currentRegularStart": 6000, "nextRegularStart": 12000,
-            "nextRegularEnd": 7900, "regularStarts": [0, 6000], "spellsThisTurn": 0,
+            "nextRegularEnd": 7900, "regularStarts": [0, 6000], "regularEnds": [1900], "spellsThisTurn": 0,
         }
         o["w6000"] = {"alive": True, "deathSaveProcessed": False, "actionOrRouteAttempt": False}
 
@@ -764,12 +768,16 @@ def build_case(case_id: str, ctx: dict[str, Any]) -> tuple[dict[str, Any], dict[
         "identityAcceptanceOrApplication": False,
         "canonRuntimeOrQueueChange": False,
     }
+    terminal_post_state_hash = next(
+        t["afterStateSHA256"] for t in branch["transitions"]
+        if t["eventId"] == f"{case_id}-{TERMINAL}-ATOMIC-TERMINAL"
+    )
     branch["idempotency"] = {
         "key": case["executionChildId"],
         "retryInputAtMs": TERMINAL,
-        "firstCallPostStateSHA256": final_hash,
-        "retryBeforeStateSHA256": final_hash,
-        "retryAfterStateSHA256": final_hash,
+        "firstCallPostStateSHA256": terminal_post_state_hash,
+        "retryBeforeStateSHA256": terminal_post_state_hash,
+        "retryAfterStateSHA256": terminal_post_state_hash,
         "fullStateNoOp": True,
         "retryWasNotRecordedAsAStateWrite": True,
     }
@@ -898,6 +906,11 @@ def verify_packet_path(path: Path, expected: dict[str, Any]) -> None:
             apply_ops(state, transition["forward"])
             if digest(state) != transition["afterStateSHA256"]:
                 raise AssertionError(f"{case_id}: forward after-hash mismatch at {transition['eventId']}")
+            if state["overlay"]["nowMs"] != transition["atMs"]:
+                raise AssertionError(f"{case_id}: overlay clock does not match {transition['eventId']}")
+            if transition["eventId"].endswith(("-6000-W-START", "-6101-CLOSE-INITIATIVE")):
+                if state["overlay"]["actorOverrides"]["W"].get("regularEnds") != [1900]:
+                    raise AssertionError(f"{case_id}: W END1900 history was not retained")
         if digest(state) != branch["finalStateSHA256"]:
             raise AssertionError(f"{case_id}: forward replay final state mismatch")
         # Reverse the explicit inverse evidence in reverse chronological order.
@@ -909,6 +922,14 @@ def verify_packet_path(path: Path, expected: dict[str, Any]) -> None:
                 raise AssertionError(f"{case_id}: inverse before-hash mismatch at {transition['eventId']}")
         if digest(state) != branch["branchStartStateSHA256"]:
             raise AssertionError(f"{case_id}: inverse did not return to branch start")
+        terminal_transition = next(
+            t for t in branch["transitions"]
+            if t["eventId"] == f"{case_id}-{TERMINAL}-ATOMIC-TERMINAL"
+        )
+        terminal_hash = terminal_transition["afterStateSHA256"]
+        if any(branch["idempotency"][field] != terminal_hash for field in
+               ("firstCallPostStateSHA256", "retryBeforeStateSHA256", "retryAfterStateSHA256")):
+            raise AssertionError(f"{case_id}: retry is not bound to the post-terminal state")
         if branch["idempotency"]["retryBeforeStateSHA256"] != branch["idempotency"]["retryAfterStateSHA256"]:
             raise AssertionError(f"{case_id}: terminal retry is not a no-op")
 

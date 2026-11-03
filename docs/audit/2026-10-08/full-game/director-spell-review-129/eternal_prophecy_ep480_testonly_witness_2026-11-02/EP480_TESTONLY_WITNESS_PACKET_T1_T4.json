@@ -10,7 +10,7 @@
   },
   "adoptionReceipt": {
     "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/eternal_prophecy_ep480_testonly_witness_2026-11-02/OWNER_ADOPTION_RECEIPT_EP480_P03.json",
-    "sha256": "9c87556b922efb69abda1f1e35334a33c13848add786eb94efe5afbb06ed9eec",
+    "sha256": "96954fa162cb77f11872c972f8926aade79b083aa466f7d24618d44917df5f5c",
     "response": "Adopt exact proposal for TEST_ONLY construction"
   },
   "directorReadiness": "PASS — READY_FOR_OWNER_ADOPTION",
@@ -792,8 +792,16 @@
           "atMs": 101,
           "description": "Activate the three remaining named prevention operands without repeating the 100-ms ally refusal; close the two-route registry and suppress ordinary expression.",
           "beforeStateSHA256": "4a309c6da58b1635d2516a11119574bad161e5578cd5a3ff5699e40039786564",
-          "afterStateSHA256": "759fb3d7a0568bff368ff2460e8e1e0e5604e763db3c6c94652941d6a201e5d3",
+          "afterStateSHA256": "42e6bd23d91f83750810bc29dbac7812f3d3d23b48a2c8801bcb23e22785dff1",
           "forward": [
+            {
+              "op": "replace",
+              "path": "/overlay/nowMs",
+              "beforeExists": true,
+              "afterExists": true,
+              "before": 100,
+              "after": 101
+            },
             {
               "op": "replace",
               "path": "/overlay/ordinaryMagicalInterventionsEnabled",
@@ -1017,6 +1025,14 @@
               "afterExists": true,
               "before": false,
               "after": true
+            },
+            {
+              "op": "replace",
+              "path": "/overlay/nowMs",
+              "beforeExists": true,
+              "afterExists": true,
+              "before": 101,
+              "after": 100
             }
           ]
         },
@@ -1024,9 +1040,17 @@
           "eventId": "EP480-T1-200-REMOVAL-REFUSAL-01",
           "atMs": 200,
           "description": "Reject cancellation/reset/deletion with no protected-state writes and retain the one-use scheduler entry.",
-          "beforeStateSHA256": "759fb3d7a0568bff368ff2460e8e1e0e5604e763db3c6c94652941d6a201e5d3",
-          "afterStateSHA256": "ec8c22b1a4b7fd3edf83f4775ba87c88de593c82e32f55c42b274dbeaf005973",
+          "beforeStateSHA256": "42e6bd23d91f83750810bc29dbac7812f3d3d23b48a2c8801bcb23e22785dff1",
+          "afterStateSHA256": "a435d7e555abbac1c8b76e89f1d3890a67ca1885549908c9a03ec7017535de7f",
           "forward": [
+            {
+              "op": "replace",
+              "path": "/overlay/nowMs",
+              "beforeExists": true,
+              "afterExists": true,
+              "before": 101,
+              "after": 200
+            },
             {
               "op": "replace",
               "path": "/overlay/removalAttempts",
@@ -1068,6 +1092,14 @@
                 }
               ],
               "after": []
+            },
+            {
+              "op": "replace",
+              "path": "/overlay/nowMs",
+              "beforeExists": true,
+              "afterExists": true,
+              "before": 200,
+              "after": 101
             }
           ]
         },
@@ -1075,7 +1107,7 @@
           "eventId": "EP480-T1-1900-W-END",
           "atMs": 1900,
           "description": "Process inherited W END1900 and retain its exact source clock marker.",
-          "beforeStateSHA256": "ec8c22b1a4b7fd3edf83f4775ba87c88de593c82e32f55c42b274dbeaf005973",
+          "beforeStateSHA256": "a435d7e555abbac1c8b76e89f1d3890a67ca1885549908c9a03ec7017535de7f",
           "afterStateSHA256": "dac05e5c86f039e9864f2a1a24e90b26e24ffb64f144d37444695de3bb5a8991",
           "forward": [
             {
@@ -1112,7 +1144,7 @@
               "path": "/overlay/nowMs",
               "beforeExists": true,
               "afterExists": true,
-              "before": 100,
+              "before": 200,
               "after": 1900
             }
           ],
@@ -1123,7 +1155,7 @@
               "beforeExists": true,
               "afterExists": true,
               "before": 1900,
-              "after": 100
+              "after": 200
             },
             {
               "op": "replace",
@@ -1461,7 +1493,7 @@
           "atMs": 6000,
           "description": "Process inherited W START6000. T1-T3 retain W alive and idle; T4 applies the exact bound natural-1 death-save transition.",
           "beforeStateSHA256": "88de5b17a43d7f662cfe60efca726376500b2cbe8f76bb8f749530bf350f44ea",
-          "afterStateSHA256": "6aa920f421c309830f34c9863192dc53b8dccd539873b5c7d5372dfb50cf4e20",
+          "afterStateSHA256": "8da8940a3b5e0481d701f32dcd4caa7110d3af02fa24cb9b535a5f762f848bf3",
           "forward": [
             {
               "op": "add",
@@ -1498,15 +1530,6 @@
               "beforeExists": false,
               "afterExists": true,
               "after": 12000
-            },
-            {
-              "op": "remove",
-              "path": "/overlay/actorOverrides/W/regularEnds",
-              "beforeExists": true,
-              "afterExists": false,
-              "before": [
-                1900
-              ]
             },
             {
               "op": "add",
@@ -1731,15 +1754,6 @@
               ]
             },
             {
-              "op": "add",
-              "path": "/overlay/actorOverrides/W/regularEnds",
-              "beforeExists": false,
-              "afterExists": true,
-              "after": [
-                1900
-              ]
-            },
-            {
               "op": "remove",
               "path": "/overlay/actorOverrides/W/nextRegularStart",
               "beforeExists": true,
@@ -1781,8 +1795,8 @@
           "eventId": "EP480-T1-6101-CLOSE-INITIATIVE",
           "atMs": 6101,
           "description": "Close combat after processed markers and continue monotonic outside-initiative time without rest, recovery, or reset.",
-          "beforeStateSHA256": "6aa920f421c309830f34c9863192dc53b8dccd539873b5c7d5372dfb50cf4e20",
-          "afterStateSHA256": "efbbb6a2c5fed7d1152ef722bf83edc826cf940a5bbf8c15cd3097d6d8d6ba90",
+          "beforeStateSHA256": "8da8940a3b5e0481d701f32dcd4caa7110d3af02fa24cb9b535a5f762f848bf3",
+          "afterStateSHA256": "2a45e6bab5ebf8fca8519e6f7dbf62c18c9d147c004c445d60e5c5d035a843c7",
           "forward": [
             {
               "op": "add",
@@ -1882,8 +1896,8 @@
           "eventId": "EP480-T1-34560000097-REMOVAL-REFUSAL-02",
           "atMs": 34560000097,
           "description": "Repeat cancel/reset/delete refusal two milliseconds before terminal while retaining the original due entry.",
-          "beforeStateSHA256": "efbbb6a2c5fed7d1152ef722bf83edc826cf940a5bbf8c15cd3097d6d8d6ba90",
-          "afterStateSHA256": "1c2acde627f6bfafbd8ac681dd4b6af88e4f2248108c000b2d7a591cf537331c",
+          "beforeStateSHA256": "2a45e6bab5ebf8fca8519e6f7dbf62c18c9d147c004c445d60e5c5d035a843c7",
+          "afterStateSHA256": "9c3309d34a034e97194ed41f484b1e6f22049f3e8b136537706ed1ba3b0e4596",
           "forward": [
             {
               "op": "replace",
@@ -1995,8 +2009,8 @@
           "eventId": "EP480-T1-34560000098-ELAPSED-MARKER",
           "atMs": 34560000098,
           "description": "Advance monotonic outside-initiative time to terminal-minus-one without reset or extra action.",
-          "beforeStateSHA256": "1c2acde627f6bfafbd8ac681dd4b6af88e4f2248108c000b2d7a591cf537331c",
-          "afterStateSHA256": "e2996e25cb5383e64f2f840a3964c88167159dcafd68478789981b62643bb607",
+          "beforeStateSHA256": "9c3309d34a034e97194ed41f484b1e6f22049f3e8b136537706ed1ba3b0e4596",
+          "afterStateSHA256": "a9669d235429b47d01959b5032e6875eed8a897a616caba5738cdd0b66f2784e",
           "forward": [
             {
               "op": "add",
@@ -2044,8 +2058,8 @@
           "eventId": "EP480-T1-34560000099-ATOMIC-TERMINAL",
           "atMs": 34560000099,
           "description": "Run the one-use branch-local terminal while all prevention remains active; restore exact assets, fulfill the same obligation, and consume the key atomically.",
-          "beforeStateSHA256": "e2996e25cb5383e64f2f840a3964c88167159dcafd68478789981b62643bb607",
-          "afterStateSHA256": "40de74942adc0740fbbcb3f5873af5d067d31bdc07060bdb64470278e78cbfe1",
+          "beforeStateSHA256": "a9669d235429b47d01959b5032e6875eed8a897a616caba5738cdd0b66f2784e",
+          "afterStateSHA256": "b9b48d2e102c127deee670ac89d51a8153739f01a2841c2db01c0e72b456172d",
           "forward": [
             {
               "op": "add",
@@ -2287,8 +2301,8 @@
           "eventId": "EP480-T1-34560000100-DEADLINE-OBSERVATION",
           "atMs": 34560000100,
           "description": "Observe the unchanged original deadline after physical fulfillment; do not extend or re-execute.",
-          "beforeStateSHA256": "40de74942adc0740fbbcb3f5873af5d067d31bdc07060bdb64470278e78cbfe1",
-          "afterStateSHA256": "f8332d5aa8612439d3c232441f48244f6cdd76ceb75766ed97362c73d9b4fa54",
+          "beforeStateSHA256": "b9b48d2e102c127deee670ac89d51a8153739f01a2841c2db01c0e72b456172d",
+          "afterStateSHA256": "49d94d12e54fbd36d36a0cf3f69803f6de1b0f903557804c02dbd41f1a2ae7c3",
           "forward": [
             {
               "op": "replace",
@@ -2339,7 +2353,7 @@
           ]
         }
       ],
-      "finalStateSHA256": "f8332d5aa8612439d3c232441f48244f6cdd76ceb75766ed97362c73d9b4fa54",
+      "finalStateSHA256": "49d94d12e54fbd36d36a0cf3f69803f6de1b0f903557804c02dbd41f1a2ae7c3",
       "terminalAssertions": {
         "sourceCastId": "RANK9TIMEFATE6129-ETERNAL-PROPHECY-A-cast1",
         "soleObligationId": "RANK9TIMEFATE6129-ETERNAL-PROPHECY-A-cast1",
@@ -2368,9 +2382,9 @@
       "idempotency": {
         "key": "EP480-WITNESS-OBLIGATION-BOOK-W-01-T1",
         "retryInputAtMs": 34560000099,
-        "firstCallPostStateSHA256": "f8332d5aa8612439d3c232441f48244f6cdd76ceb75766ed97362c73d9b4fa54",
-        "retryBeforeStateSHA256": "f8332d5aa8612439d3c232441f48244f6cdd76ceb75766ed97362c73d9b4fa54",
-        "retryAfterStateSHA256": "f8332d5aa8612439d3c232441f48244f6cdd76ceb75766ed97362c73d9b4fa54",
+        "firstCallPostStateSHA256": "b9b48d2e102c127deee670ac89d51a8153739f01a2841c2db01c0e72b456172d",
+        "retryBeforeStateSHA256": "b9b48d2e102c127deee670ac89d51a8153739f01a2841c2db01c0e72b456172d",
+        "retryAfterStateSHA256": "b9b48d2e102c127deee670ac89d51a8153739f01a2841c2db01c0e72b456172d",
         "fullStateNoOp": true,
         "retryWasNotRecordedAsAStateWrite": true
       },
@@ -2700,8 +2714,16 @@
           "atMs": 101,
           "description": "Activate the three remaining named prevention operands without repeating the 100-ms ally refusal; close the two-route registry and suppress ordinary expression.",
           "beforeStateSHA256": "b7d4cb9470ac185e53c0253a6f708ca434c0ba84428561fef63c7a9c2810128d",
-          "afterStateSHA256": "8745a686929f2909bbbb33d9eb651249e994caeed25f90b94d53a49dbcb62eb8",
+          "afterStateSHA256": "3a5444d8b841684695892d08cb21b8a25ecbcf4d59b34280c53ddd44e6850efc",
           "forward": [
+            {
+              "op": "replace",
+              "path": "/overlay/nowMs",
+              "beforeExists": true,
+              "afterExists": true,
+              "before": 100,
+              "after": 101
+            },
             {
               "op": "replace",
               "path": "/overlay/ordinaryMagicalInterventionsEnabled",
@@ -2925,6 +2947,14 @@
               "afterExists": true,
               "before": false,
               "after": true
+            },
+            {
+              "op": "replace",
+              "path": "/overlay/nowMs",
+              "beforeExists": true,
+              "afterExists": true,
+              "before": 101,
+              "after": 100
             }
           ]
         },
@@ -2932,9 +2962,17 @@
           "eventId": "EP480-T2-200-REMOVAL-REFUSAL-01",
           "atMs": 200,
           "description": "Reject cancellation/reset/deletion with no protected-state writes and retain the one-use scheduler entry.",
-          "beforeStateSHA256": "8745a686929f2909bbbb33d9eb651249e994caeed25f90b94d53a49dbcb62eb8",
-          "afterStateSHA256": "aff3edaef3c0c66796007f0c063cba6b88769eece00b7ce7943c374671a0f804",
+          "beforeStateSHA256": "3a5444d8b841684695892d08cb21b8a25ecbcf4d59b34280c53ddd44e6850efc",
+          "afterStateSHA256": "434c633dc56392075de1523b2cf03948f616b059cd98e530bb6f35305ac0a72c",
           "forward": [
+            {
+              "op": "replace",
+              "path": "/overlay/nowMs",
+              "beforeExists": true,
+              "afterExists": true,
+              "before": 101,
+              "after": 200
+            },
             {
               "op": "replace",
               "path": "/overlay/removalAttempts",
@@ -2976,6 +3014,14 @@
                 }
               ],
               "after": []
+            },
+            {
+              "op": "replace",
+              "path": "/overlay/nowMs",
+              "beforeExists": true,
+              "afterExists": true,
+              "before": 200,
+              "after": 101
             }
           ]
         },
@@ -2983,7 +3029,7 @@
           "eventId": "EP480-T2-1900-W-END",
           "atMs": 1900,
           "description": "Process inherited W END1900 and retain its exact source clock marker.",
-          "beforeStateSHA256": "aff3edaef3c0c66796007f0c063cba6b88769eece00b7ce7943c374671a0f804",
+          "beforeStateSHA256": "434c633dc56392075de1523b2cf03948f616b059cd98e530bb6f35305ac0a72c",
           "afterStateSHA256": "5cd496dd6fddf1d720112151f4776b728d8afe11da5750e3ad672ae1a4c8d32b",
           "forward": [
             {
@@ -3020,7 +3066,7 @@
               "path": "/overlay/nowMs",
               "beforeExists": true,
               "afterExists": true,
-              "before": 100,
+              "before": 200,
               "after": 1900
             }
           ],
@@ -3031,7 +3077,7 @@
               "beforeExists": true,
               "afterExists": true,
               "before": 1900,
-              "after": 100
+              "after": 200
             },
             {
               "op": "replace",
@@ -3369,7 +3415,7 @@
           "atMs": 5000,
           "description": "Move the one intact book-W to the off-scene ledger; preserve unique ID, owner, contents, Spell Preservation, and T4's floor pose/support.",
           "beforeStateSHA256": "39f84b4652b5b5248a7e77e9204c2500bdf01e33fa4e648a94492220e1ac9f4c",
-          "afterStateSHA256": "3a925479ed8d2a878b6f5f00e808aff280b2265559e2f546085b8627910a1e60",
+          "afterStateSHA256": "31f1b5aac18859c9799b1e886f165c6048ff248b75d5e4aad4002e4e51e2b747",
           "forward": [
             {
               "op": "replace",
@@ -3397,6 +3443,14 @@
               "beforeExists": false,
               "afterExists": true,
               "after": null
+            },
+            {
+              "op": "replace",
+              "path": "/overlay/nowMs",
+              "beforeExists": true,
+              "afterExists": true,
+              "before": 3900,
+              "after": 5000
             },
             {
               "op": "add",
@@ -3455,6 +3509,14 @@
               }
             },
             {
+              "op": "replace",
+              "path": "/overlay/nowMs",
+              "beforeExists": true,
+              "afterExists": true,
+              "before": 5000,
+              "after": 3900
+            },
+            {
               "op": "remove",
               "path": "/overlay/itemOverrides/book-W",
               "beforeExists": true,
@@ -3487,8 +3549,8 @@
           "eventId": "EP480-T2-6000-W-START",
           "atMs": 6000,
           "description": "Process inherited W START6000. T1-T3 retain W alive and idle; T4 applies the exact bound natural-1 death-save transition.",
-          "beforeStateSHA256": "3a925479ed8d2a878b6f5f00e808aff280b2265559e2f546085b8627910a1e60",
-          "afterStateSHA256": "1a5b285dd8789decc446476c83ed31d5051c1a80691b5e2acd2a593cbdcc27a7",
+          "beforeStateSHA256": "31f1b5aac18859c9799b1e886f165c6048ff248b75d5e4aad4002e4e51e2b747",
+          "afterStateSHA256": "e9accfb074d70fa36142ea96ce2b6b2e935edcf595ce10c8a48237b0030c8d78",
           "forward": [
             {
               "op": "add",
@@ -3525,15 +3587,6 @@
               "beforeExists": false,
               "afterExists": true,
               "after": 12000
-            },
-            {
-              "op": "remove",
-              "path": "/overlay/actorOverrides/W/regularEnds",
-              "beforeExists": true,
-              "afterExists": false,
-              "before": [
-                1900
-              ]
             },
             {
               "op": "add",
@@ -3623,7 +3676,7 @@
               "path": "/overlay/nowMs",
               "beforeExists": true,
               "afterExists": true,
-              "before": 3900,
+              "before": 5000,
               "after": 6000
             },
             {
@@ -3672,7 +3725,7 @@
               "beforeExists": true,
               "afterExists": true,
               "before": 6000,
-              "after": 3900
+              "after": 5000
             },
             {
               "op": "replace",
@@ -3758,15 +3811,6 @@
               ]
             },
             {
-              "op": "add",
-              "path": "/overlay/actorOverrides/W/regularEnds",
-              "beforeExists": false,
-              "afterExists": true,
-              "after": [
-                1900
-              ]
-            },
-            {
               "op": "remove",
               "path": "/overlay/actorOverrides/W/nextRegularStart",
               "beforeExists": true,
@@ -3808,8 +3852,8 @@
           "eventId": "EP480-T2-6101-CLOSE-INITIATIVE",
           "atMs": 6101,
           "description": "Close combat after processed markers and continue monotonic outside-initiative time without rest, recovery, or reset.",
-          "beforeStateSHA256": "1a5b285dd8789decc446476c83ed31d5051c1a80691b5e2acd2a593cbdcc27a7",
-          "afterStateSHA256": "b526b579c304d72581a2b9c04d79a6ffbd06db0856c31221264d1d0eaab217e1",
+          "beforeStateSHA256": "e9accfb074d70fa36142ea96ce2b6b2e935edcf595ce10c8a48237b0030c8d78",
+          "afterStateSHA256": "9f238baeef14966fcb0ce450b9bcdb6731b527dd221f3337404919dcf39c5d27",
           "forward": [
             {
               "op": "add",
@@ -3909,8 +3953,8 @@
           "eventId": "EP480-T2-34560000097-REMOVAL-REFUSAL-02",
           "atMs": 34560000097,
           "description": "Repeat cancel/reset/delete refusal two milliseconds before terminal while retaining the original due entry.",
-          "beforeStateSHA256": "b526b579c304d72581a2b9c04d79a6ffbd06db0856c31221264d1d0eaab217e1",
-          "afterStateSHA256": "2d0d4a045c08557d33495a7fbe0224ca2841bacbc678fea80d60dc5ea9e4b840",
+          "beforeStateSHA256": "9f238baeef14966fcb0ce450b9bcdb6731b527dd221f3337404919dcf39c5d27",
+          "afterStateSHA256": "99cc9dfb3e9457dd4db41186cf05e57476fc03c34cb24fdd652947bdd1c107c0",
           "forward": [
             {
               "op": "replace",
@@ -4022,8 +4066,8 @@
           "eventId": "EP480-T2-34560000098-ELAPSED-MARKER",
           "atMs": 34560000098,
           "description": "Advance monotonic outside-initiative time to terminal-minus-one without reset or extra action.",
-          "beforeStateSHA256": "2d0d4a045c08557d33495a7fbe0224ca2841bacbc678fea80d60dc5ea9e4b840",
-          "afterStateSHA256": "d1d12cfba4653f237014f605466611dc0a6a81a3320790fa83666c4462ceba85",
+          "beforeStateSHA256": "99cc9dfb3e9457dd4db41186cf05e57476fc03c34cb24fdd652947bdd1c107c0",
+          "afterStateSHA256": "e5809bdabef29339fc73c33467cf733e7a8242691cb3258d41920d081daed2f6",
           "forward": [
             {
               "op": "add",
@@ -4071,8 +4115,8 @@
           "eventId": "EP480-T2-34560000099-ATOMIC-TERMINAL",
           "atMs": 34560000099,
           "description": "Run the one-use branch-local terminal while all prevention remains active; restore exact assets, fulfill the same obligation, and consume the key atomically.",
-          "beforeStateSHA256": "d1d12cfba4653f237014f605466611dc0a6a81a3320790fa83666c4462ceba85",
-          "afterStateSHA256": "e34cfb70a4e3dcb5348ea7362472688779a1e0b55c4c1a805417017699a532ac",
+          "beforeStateSHA256": "e5809bdabef29339fc73c33467cf733e7a8242691cb3258d41920d081daed2f6",
+          "afterStateSHA256": "8bfc67ee70a3a25c3617a3057aee5756b10674c40e77d3f82c4964eb8527e6c8",
           "forward": [
             {
               "op": "replace",
@@ -4370,8 +4414,8 @@
           "eventId": "EP480-T2-34560000100-DEADLINE-OBSERVATION",
           "atMs": 34560000100,
           "description": "Observe the unchanged original deadline after physical fulfillment; do not extend or re-execute.",
-          "beforeStateSHA256": "e34cfb70a4e3dcb5348ea7362472688779a1e0b55c4c1a805417017699a532ac",
-          "afterStateSHA256": "45a273bfda1aab02b7017c6528c8eafad3a1dfcaa6885664106ba9dd15bd6aec",
+          "beforeStateSHA256": "8bfc67ee70a3a25c3617a3057aee5756b10674c40e77d3f82c4964eb8527e6c8",
+          "afterStateSHA256": "42b66efcd58d742c340d351602173d86f1ea7de027f1a77e0af96d30c2d8fb9e",
           "forward": [
             {
               "op": "replace",
@@ -4422,7 +4466,7 @@
           ]
         }
       ],
-      "finalStateSHA256": "45a273bfda1aab02b7017c6528c8eafad3a1dfcaa6885664106ba9dd15bd6aec",
+      "finalStateSHA256": "42b66efcd58d742c340d351602173d86f1ea7de027f1a77e0af96d30c2d8fb9e",
       "terminalAssertions": {
         "sourceCastId": "RANK9TIMEFATE6129-ETERNAL-PROPHECY-A-cast1",
         "soleObligationId": "RANK9TIMEFATE6129-ETERNAL-PROPHECY-A-cast1",
@@ -4451,9 +4495,9 @@
       "idempotency": {
         "key": "EP480-WITNESS-OBLIGATION-BOOK-W-01-T2",
         "retryInputAtMs": 34560000099,
-        "firstCallPostStateSHA256": "45a273bfda1aab02b7017c6528c8eafad3a1dfcaa6885664106ba9dd15bd6aec",
-        "retryBeforeStateSHA256": "45a273bfda1aab02b7017c6528c8eafad3a1dfcaa6885664106ba9dd15bd6aec",
-        "retryAfterStateSHA256": "45a273bfda1aab02b7017c6528c8eafad3a1dfcaa6885664106ba9dd15bd6aec",
+        "firstCallPostStateSHA256": "8bfc67ee70a3a25c3617a3057aee5756b10674c40e77d3f82c4964eb8527e6c8",
+        "retryBeforeStateSHA256": "8bfc67ee70a3a25c3617a3057aee5756b10674c40e77d3f82c4964eb8527e6c8",
+        "retryAfterStateSHA256": "8bfc67ee70a3a25c3617a3057aee5756b10674c40e77d3f82c4964eb8527e6c8",
         "fullStateNoOp": true,
         "retryWasNotRecordedAsAStateWrite": true
       },
@@ -4783,8 +4827,16 @@
           "atMs": 101,
           "description": "Activate the three remaining named prevention operands without repeating the 100-ms ally refusal; close the two-route registry and suppress ordinary expression.",
           "beforeStateSHA256": "5e88b492aae7c52dbf152659ea130015b9d9b26222e41f5bf8dabae2e56c99dd",
-          "afterStateSHA256": "c826ebb742cfa9a005e86ae22543f4d9822def466e95e8203b99b5f317d92e1f",
+          "afterStateSHA256": "1c37a7b757a15750297f6b0e3d36d5b8aa3a88daf39668e0aaf0146cba49c067",
           "forward": [
+            {
+              "op": "replace",
+              "path": "/overlay/nowMs",
+              "beforeExists": true,
+              "afterExists": true,
+              "before": 100,
+              "after": 101
+            },
             {
               "op": "replace",
               "path": "/overlay/ordinaryMagicalInterventionsEnabled",
@@ -5008,6 +5060,14 @@
               "afterExists": true,
               "before": false,
               "after": true
+            },
+            {
+              "op": "replace",
+              "path": "/overlay/nowMs",
+              "beforeExists": true,
+              "afterExists": true,
+              "before": 101,
+              "after": 100
             }
           ]
         },
@@ -5015,9 +5075,17 @@
           "eventId": "EP480-T3-200-REMOVAL-REFUSAL-01",
           "atMs": 200,
           "description": "Reject cancellation/reset/deletion with no protected-state writes and retain the one-use scheduler entry.",
-          "beforeStateSHA256": "c826ebb742cfa9a005e86ae22543f4d9822def466e95e8203b99b5f317d92e1f",
-          "afterStateSHA256": "df1d869b0c03b9ff91f4c45ffc4e07a0d961712bddc843b54f5a2d9222235ecd",
+          "beforeStateSHA256": "1c37a7b757a15750297f6b0e3d36d5b8aa3a88daf39668e0aaf0146cba49c067",
+          "afterStateSHA256": "dfe72f5e1700697673760f3da92e270b0998699694c9989c626b3baa38a02492",
           "forward": [
+            {
+              "op": "replace",
+              "path": "/overlay/nowMs",
+              "beforeExists": true,
+              "afterExists": true,
+              "before": 101,
+              "after": 200
+            },
             {
               "op": "replace",
               "path": "/overlay/removalAttempts",
@@ -5059,6 +5127,14 @@
                 }
               ],
               "after": []
+            },
+            {
+              "op": "replace",
+              "path": "/overlay/nowMs",
+              "beforeExists": true,
+              "afterExists": true,
+              "before": 200,
+              "after": 101
             }
           ]
         },
@@ -5066,7 +5142,7 @@
           "eventId": "EP480-T3-1900-W-END",
           "atMs": 1900,
           "description": "Process inherited W END1900 and retain its exact source clock marker.",
-          "beforeStateSHA256": "df1d869b0c03b9ff91f4c45ffc4e07a0d961712bddc843b54f5a2d9222235ecd",
+          "beforeStateSHA256": "dfe72f5e1700697673760f3da92e270b0998699694c9989c626b3baa38a02492",
           "afterStateSHA256": "6c6b6b41fdc6871699394e586f89148eecc685f3504f4e799dfebfdd3ea39e17",
           "forward": [
             {
@@ -5103,7 +5179,7 @@
               "path": "/overlay/nowMs",
               "beforeExists": true,
               "afterExists": true,
-              "before": 100,
+              "before": 200,
               "after": 1900
             }
           ],
@@ -5114,7 +5190,7 @@
               "beforeExists": true,
               "afterExists": true,
               "before": 1900,
-              "after": 100
+              "after": 200
             },
             {
               "op": "replace",
@@ -5452,7 +5528,7 @@
           "atMs": 5100,
           "description": "Move the exact plate and separate cache marker to off-scene ledgers, leaving the cutout with no alternate support.",
           "beforeStateSHA256": "187365a4353e2614ddf2e43cb8bab77e7e41e4e3bbec0945f59da23222db2a4a",
-          "afterStateSHA256": "4911f70a16709f9187c0c717b93e863ae77ac8a135e675e310223047e0a70f60",
+          "afterStateSHA256": "84a5d13d341b75fa4939e7a31b3bbcac118d9f33d1f88d45b4314b1ea01321d0",
           "forward": [
             {
               "op": "replace",
@@ -5469,6 +5545,14 @@
               "afterExists": true,
               "before": true,
               "after": false
+            },
+            {
+              "op": "replace",
+              "path": "/overlay/nowMs",
+              "beforeExists": true,
+              "afterExists": true,
+              "before": 3900,
+              "after": 5100
             },
             {
               "op": "add",
@@ -5584,6 +5668,14 @@
             },
             {
               "op": "replace",
+              "path": "/overlay/nowMs",
+              "beforeExists": true,
+              "afterExists": true,
+              "before": 5100,
+              "after": 3900
+            },
+            {
+              "op": "replace",
               "path": "/overlay/fixture/supportPatch/active",
               "beforeExists": true,
               "afterExists": true,
@@ -5604,8 +5696,8 @@
           "eventId": "EP480-T3-6000-W-START",
           "atMs": 6000,
           "description": "Process inherited W START6000. T1-T3 retain W alive and idle; T4 applies the exact bound natural-1 death-save transition.",
-          "beforeStateSHA256": "4911f70a16709f9187c0c717b93e863ae77ac8a135e675e310223047e0a70f60",
-          "afterStateSHA256": "a23f9a8fb9f58046ca47764418274dfe0c32a27a361f6f77cc9552918fb1679b",
+          "beforeStateSHA256": "84a5d13d341b75fa4939e7a31b3bbcac118d9f33d1f88d45b4314b1ea01321d0",
+          "afterStateSHA256": "0324616f79b44d61a07fa388c75ec15a04faccc639ea73970dc65c6145b3d9fe",
           "forward": [
             {
               "op": "add",
@@ -5642,15 +5734,6 @@
               "beforeExists": false,
               "afterExists": true,
               "after": 12000
-            },
-            {
-              "op": "remove",
-              "path": "/overlay/actorOverrides/W/regularEnds",
-              "beforeExists": true,
-              "afterExists": false,
-              "before": [
-                1900
-              ]
             },
             {
               "op": "add",
@@ -5740,7 +5823,7 @@
               "path": "/overlay/nowMs",
               "beforeExists": true,
               "afterExists": true,
-              "before": 3900,
+              "before": 5100,
               "after": 6000
             },
             {
@@ -5789,7 +5872,7 @@
               "beforeExists": true,
               "afterExists": true,
               "before": 6000,
-              "after": 3900
+              "after": 5100
             },
             {
               "op": "replace",
@@ -5875,15 +5958,6 @@
               ]
             },
             {
-              "op": "add",
-              "path": "/overlay/actorOverrides/W/regularEnds",
-              "beforeExists": false,
-              "afterExists": true,
-              "after": [
-                1900
-              ]
-            },
-            {
               "op": "remove",
               "path": "/overlay/actorOverrides/W/nextRegularStart",
               "beforeExists": true,
@@ -5925,8 +5999,8 @@
           "eventId": "EP480-T3-6101-CLOSE-INITIATIVE",
           "atMs": 6101,
           "description": "Close combat after processed markers and continue monotonic outside-initiative time without rest, recovery, or reset.",
-          "beforeStateSHA256": "a23f9a8fb9f58046ca47764418274dfe0c32a27a361f6f77cc9552918fb1679b",
-          "afterStateSHA256": "0c0960410ea87a1d7dabd4da05a8c5b9736fc0154e628d2cf49dfb839c5da937",
+          "beforeStateSHA256": "0324616f79b44d61a07fa388c75ec15a04faccc639ea73970dc65c6145b3d9fe",
+          "afterStateSHA256": "fe7a223e2c53fa11bd9891cc4d26a4423a2e6c83f1d891431b6e76f15bf29fe1",
           "forward": [
             {
               "op": "add",
@@ -6026,8 +6100,8 @@
           "eventId": "EP480-T3-34560000097-REMOVAL-REFUSAL-02",
           "atMs": 34560000097,
           "description": "Repeat cancel/reset/delete refusal two milliseconds before terminal while retaining the original due entry.",
-          "beforeStateSHA256": "0c0960410ea87a1d7dabd4da05a8c5b9736fc0154e628d2cf49dfb839c5da937",
-          "afterStateSHA256": "a86aee865b3007beab6075cc29527abdbd68f7ce403a25b344095d8b1d6367d1",
+          "beforeStateSHA256": "fe7a223e2c53fa11bd9891cc4d26a4423a2e6c83f1d891431b6e76f15bf29fe1",
+          "afterStateSHA256": "12519595c3eaed4a2c0d8c9e9ce1279c99b62ef4c55c6aed755beca22c458b0f",
           "forward": [
             {
               "op": "replace",
@@ -6139,8 +6213,8 @@
           "eventId": "EP480-T3-34560000098-ELAPSED-MARKER",
           "atMs": 34560000098,
           "description": "Advance monotonic outside-initiative time to terminal-minus-one without reset or extra action.",
-          "beforeStateSHA256": "a86aee865b3007beab6075cc29527abdbd68f7ce403a25b344095d8b1d6367d1",
-          "afterStateSHA256": "2e156b238779ed78ca0f24d1c335d350c0210b0996f08866be79bf4c6dc54235",
+          "beforeStateSHA256": "12519595c3eaed4a2c0d8c9e9ce1279c99b62ef4c55c6aed755beca22c458b0f",
+          "afterStateSHA256": "bd665a37258ecb19d3401c660d6d39e3fa273c08c5021b09ac660cc3ae534970",
           "forward": [
             {
               "op": "add",
@@ -6188,8 +6262,8 @@
           "eventId": "EP480-T3-34560000099-ATOMIC-TERMINAL",
           "atMs": 34560000099,
           "description": "Run the one-use branch-local terminal while all prevention remains active; restore exact assets, fulfill the same obligation, and consume the key atomically.",
-          "beforeStateSHA256": "2e156b238779ed78ca0f24d1c335d350c0210b0996f08866be79bf4c6dc54235",
-          "afterStateSHA256": "7851ddbafe8bc1865de0a36e0c2cc4fbc3f1aa4ab8de7f6b4440a072e9d48eb1",
+          "beforeStateSHA256": "bd665a37258ecb19d3401c660d6d39e3fa273c08c5021b09ac660cc3ae534970",
+          "afterStateSHA256": "fa95e44e508338c43c327f43db43f439077318cfc71904b2010ccf416252502a",
           "forward": [
             {
               "op": "replace",
@@ -6573,8 +6647,8 @@
           "eventId": "EP480-T3-34560000100-DEADLINE-OBSERVATION",
           "atMs": 34560000100,
           "description": "Observe the unchanged original deadline after physical fulfillment; do not extend or re-execute.",
-          "beforeStateSHA256": "7851ddbafe8bc1865de0a36e0c2cc4fbc3f1aa4ab8de7f6b4440a072e9d48eb1",
-          "afterStateSHA256": "3d8004fab1d43cb4c089e117db1243da9572a6969d9c7e534d2cb0806c10077b",
+          "beforeStateSHA256": "fa95e44e508338c43c327f43db43f439077318cfc71904b2010ccf416252502a",
+          "afterStateSHA256": "2f7785484c9ac871043e1a89beb047b03457e50a6897dd2ca0f26fe93c18b73b",
           "forward": [
             {
               "op": "replace",
@@ -6625,7 +6699,7 @@
           ]
         }
       ],
-      "finalStateSHA256": "3d8004fab1d43cb4c089e117db1243da9572a6969d9c7e534d2cb0806c10077b",
+      "finalStateSHA256": "2f7785484c9ac871043e1a89beb047b03457e50a6897dd2ca0f26fe93c18b73b",
       "terminalAssertions": {
         "sourceCastId": "RANK9TIMEFATE6129-ETERNAL-PROPHECY-A-cast1",
         "soleObligationId": "RANK9TIMEFATE6129-ETERNAL-PROPHECY-A-cast1",
@@ -6654,9 +6728,9 @@
       "idempotency": {
         "key": "EP480-WITNESS-OBLIGATION-BOOK-W-01-T3",
         "retryInputAtMs": 34560000099,
-        "firstCallPostStateSHA256": "3d8004fab1d43cb4c089e117db1243da9572a6969d9c7e534d2cb0806c10077b",
-        "retryBeforeStateSHA256": "3d8004fab1d43cb4c089e117db1243da9572a6969d9c7e534d2cb0806c10077b",
-        "retryAfterStateSHA256": "3d8004fab1d43cb4c089e117db1243da9572a6969d9c7e534d2cb0806c10077b",
+        "firstCallPostStateSHA256": "fa95e44e508338c43c327f43db43f439077318cfc71904b2010ccf416252502a",
+        "retryBeforeStateSHA256": "fa95e44e508338c43c327f43db43f439077318cfc71904b2010ccf416252502a",
+        "retryAfterStateSHA256": "fa95e44e508338c43c327f43db43f439077318cfc71904b2010ccf416252502a",
         "fullStateNoOp": true,
         "retryWasNotRecordedAsAStateWrite": true
       },
@@ -7232,8 +7306,16 @@
           "atMs": 101,
           "description": "Activate the three remaining named prevention operands without repeating the 100-ms ally refusal; close the two-route registry and suppress ordinary expression.",
           "beforeStateSHA256": "502f2bb8f37c88959e3cc372cbea71ef4ca31963e473864b3c9065c296fb94e5",
-          "afterStateSHA256": "99d6a53e9cc368bc63a0556acccd58d14062021f3cc9d95dbc3bdf9152c0cfcb",
+          "afterStateSHA256": "162507277548721b38a4644f509532af1ab176537e90283c65307cb95b8658bf",
           "forward": [
+            {
+              "op": "replace",
+              "path": "/overlay/nowMs",
+              "beforeExists": true,
+              "afterExists": true,
+              "before": 100,
+              "after": 101
+            },
             {
               "op": "replace",
               "path": "/overlay/ordinaryMagicalInterventionsEnabled",
@@ -7457,6 +7539,14 @@
               "afterExists": true,
               "before": false,
               "after": true
+            },
+            {
+              "op": "replace",
+              "path": "/overlay/nowMs",
+              "beforeExists": true,
+              "afterExists": true,
+              "before": 101,
+              "after": 100
             }
           ]
         },
@@ -7464,9 +7554,17 @@
           "eventId": "EP480-T4-200-REMOVAL-REFUSAL-01",
           "atMs": 200,
           "description": "Reject cancellation/reset/deletion with no protected-state writes and retain the one-use scheduler entry.",
-          "beforeStateSHA256": "99d6a53e9cc368bc63a0556acccd58d14062021f3cc9d95dbc3bdf9152c0cfcb",
-          "afterStateSHA256": "8e290a6a4be2931c0b662c73b085e2e337052b0477c7b25ce29ef6b823b6ee88",
+          "beforeStateSHA256": "162507277548721b38a4644f509532af1ab176537e90283c65307cb95b8658bf",
+          "afterStateSHA256": "65f3f59584ea4629ebe3bd5ebe0b467d456fe4057dd9aeb4f52dc050eeca6d19",
           "forward": [
+            {
+              "op": "replace",
+              "path": "/overlay/nowMs",
+              "beforeExists": true,
+              "afterExists": true,
+              "before": 101,
+              "after": 200
+            },
             {
               "op": "replace",
               "path": "/overlay/removalAttempts",
@@ -7508,6 +7606,14 @@
                 }
               ],
               "after": []
+            },
+            {
+              "op": "replace",
+              "path": "/overlay/nowMs",
+              "beforeExists": true,
+              "afterExists": true,
+              "before": 200,
+              "after": 101
             }
           ]
         },
@@ -7515,7 +7621,7 @@
           "eventId": "EP480-T4-1000-PENDING-SAVE-LOAD",
           "atMs": 1000,
           "description": "Round-trip the same pending obligation, cast ID, payment and original deadline using the bound A save/load event.",
-          "beforeStateSHA256": "8e290a6a4be2931c0b662c73b085e2e337052b0477c7b25ce29ef6b823b6ee88",
+          "beforeStateSHA256": "65f3f59584ea4629ebe3bd5ebe0b467d456fe4057dd9aeb4f52dc050eeca6d19",
           "afterStateSHA256": "50ac33d2d9314026f172ee65ff0f231fdf341ab18cbe6d0ba63c63e05fa356c3",
           "forward": [
             {
@@ -7523,7 +7629,7 @@
               "path": "/overlay/nowMs",
               "beforeExists": true,
               "afterExists": true,
-              "before": 100,
+              "before": 200,
               "after": 1000
             },
             {
@@ -7572,7 +7678,7 @@
               "beforeExists": true,
               "afterExists": true,
               "before": 1000,
-              "after": 100
+              "after": 200
             }
           ]
         },
@@ -7974,7 +8080,7 @@
           "atMs": 5000,
           "description": "Move the one intact book-W to the off-scene ledger; preserve unique ID, owner, contents, Spell Preservation, and T4's floor pose/support.",
           "beforeStateSHA256": "50873e442e8b0b30de8bc19ab22e1da1c31f347edf34ee7e90645af5cae66b20",
-          "afterStateSHA256": "1097cf437445fd3ca2647bf58dd1c718c4920441cd9947141e71f5682a8a3d53",
+          "afterStateSHA256": "6e4ab711809ad882ee1d6337c7d6867db76d731aa7d7f358121b3e11d3d69741",
           "forward": [
             {
               "op": "replace",
@@ -8051,6 +8157,14 @@
               "after": null
             },
             {
+              "op": "replace",
+              "path": "/overlay/nowMs",
+              "beforeExists": true,
+              "afterExists": true,
+              "before": 3900,
+              "after": 5000
+            },
+            {
               "op": "add",
               "path": "/overlay/offSceneItemLedger/book-W",
               "beforeExists": false,
@@ -8121,6 +8235,14 @@
                 "lossId": "EP480-LOSS-ITEM-01",
                 "atMs": 5000
               }
+            },
+            {
+              "op": "replace",
+              "path": "/overlay/nowMs",
+              "beforeExists": true,
+              "afterExists": true,
+              "before": 5000,
+              "after": 3900
             },
             {
               "op": "replace",
@@ -8202,8 +8324,8 @@
           "eventId": "EP480-T4-5100-DESTINATION-OFFSCENE-LOSS",
           "atMs": 5100,
           "description": "Move the exact plate and separate cache marker to off-scene ledgers, leaving the cutout with no alternate support.",
-          "beforeStateSHA256": "1097cf437445fd3ca2647bf58dd1c718c4920441cd9947141e71f5682a8a3d53",
-          "afterStateSHA256": "7665179abe3d9de9f047005b0826c6eb269963e95c9c353bf690b19f27b3ec4a",
+          "beforeStateSHA256": "6e4ab711809ad882ee1d6337c7d6867db76d731aa7d7f358121b3e11d3d69741",
+          "afterStateSHA256": "2388d36d0e5b525611bbe9dc5400b3b2b4f2042ac82e41f1750b0bed04c59fd1",
           "forward": [
             {
               "op": "replace",
@@ -8220,6 +8342,14 @@
               "afterExists": true,
               "before": true,
               "after": false
+            },
+            {
+              "op": "replace",
+              "path": "/overlay/nowMs",
+              "beforeExists": true,
+              "afterExists": true,
+              "before": 5000,
+              "after": 5100
             },
             {
               "op": "add",
@@ -8335,6 +8465,14 @@
             },
             {
               "op": "replace",
+              "path": "/overlay/nowMs",
+              "beforeExists": true,
+              "afterExists": true,
+              "before": 5100,
+              "after": 5000
+            },
+            {
+              "op": "replace",
               "path": "/overlay/fixture/supportPatch/active",
               "beforeExists": true,
               "afterExists": true,
@@ -8355,7 +8493,7 @@
           "eventId": "EP480-T4-6000-W-START",
           "atMs": 6000,
           "description": "Process inherited W START6000. T1-T3 retain W alive and idle; T4 applies the exact bound natural-1 death-save transition.",
-          "beforeStateSHA256": "7665179abe3d9de9f047005b0826c6eb269963e95c9c353bf690b19f27b3ec4a",
+          "beforeStateSHA256": "2388d36d0e5b525611bbe9dc5400b3b2b4f2042ac82e41f1750b0bed04c59fd1",
           "afterStateSHA256": "15547659c436a91d95c649c834da4d07b8aa1297f4bf74171c4fea81ab989153",
           "forward": [
             {
@@ -8499,7 +8637,7 @@
               "path": "/overlay/nowMs",
               "beforeExists": true,
               "afterExists": true,
-              "before": 3900,
+              "before": 5100,
               "after": 6000
             },
             {
@@ -8618,7 +8756,7 @@
               "beforeExists": true,
               "afterExists": true,
               "before": 6000,
-              "after": 3900
+              "after": 5100
             },
             {
               "op": "replace",
@@ -9636,9 +9774,9 @@
       "idempotency": {
         "key": "EP480-WITNESS-OBLIGATION-BOOK-W-01-T4",
         "retryInputAtMs": 34560000099,
-        "firstCallPostStateSHA256": "88b163a7bf194c183036e3a2844d220c9795f9dc6c0ccd900872b7351b843c8e",
-        "retryBeforeStateSHA256": "88b163a7bf194c183036e3a2844d220c9795f9dc6c0ccd900872b7351b843c8e",
-        "retryAfterStateSHA256": "88b163a7bf194c183036e3a2844d220c9795f9dc6c0ccd900872b7351b843c8e",
+        "firstCallPostStateSHA256": "8b9268e18c3bd8abc2099e8750adb33fcfebe439eff00a7876883225e1a4973e",
+        "retryBeforeStateSHA256": "8b9268e18c3bd8abc2099e8750adb33fcfebe439eff00a7876883225e1a4973e",
+        "retryAfterStateSHA256": "8b9268e18c3bd8abc2099e8750adb33fcfebe439eff00a7876883225e1a4973e",
         "fullStateNoOp": true,
         "retryWasNotRecordedAsAStateWrite": true
       },
