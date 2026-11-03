@@ -1,0 +1,1201 @@
+{
+  "schemaVersion": 1,
+  "id": "COLLAPSE-TIMELINE-CURRENT-AUTHORITY-REVIEW-01",
+  "classification": "READ_ONLY_CURRENT_AUTHORITY_STATIC_RECONCILIATION",
+  "recordedAtUtc": "2026-11-03",
+  "baseCommit": "62876002c4d84b17b7c4a072ccd377ae4bd091cc",
+  "scope": {
+    "spellId": "collapse-timeline",
+    "reviewOnly": true,
+    "purpose": "Reconcile current Queue481, catalog/index, retained Collapse Timeline procedure and Return322 evidence after the preceding Fate Rewrite reconciliation.",
+    "directorAuthorizedNextScope": "Collapse Timeline-only current-authority packet; carry unresolved guaranteed-obligation dependency without representing it as fulfilled or accepted.",
+    "directorAuthorizationSource": {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_fate_rewrite_return320_received/DIRECTOR_DECISION.json",
+      "pointer": "/nextScope"
+    },
+    "noNewPremisesOrWitnessConstruction": true
+  },
+  "requestedDirectorDisposition": "PASS_STATIC_CURRENT_AUTHORITY_RECONCILIATION_ONLY, REVISE with exact path/pointer/hash, or HOLD with the precise unresolved source or authority gap.",
+  "currentAuthority": {
+    "queuePath": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_SPELL_QUEUE_481.json",
+    "queueSha256": "b67153e1daa6ceeb5ca3013c0e53fbbe256428f4b25bb4786cc9ffa653105aa0",
+    "handoffPath": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_481.json",
+    "handoffSha256": "76f7b4020109578ff1dcf06457f2568f927daca66166d8aca3f69ffd25a1a1c0",
+    "pendingAuditPath": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT12_PENDING_IDENTITY_AUDIT_481.json",
+    "pendingAuditSha256": "5c584557baeb3daf3e1236706651cc02f7356941d3c9d8edfb0a6b7937a50ed8",
+    "counts": {
+      "reviewedApplied": 836,
+      "pending": 12,
+      "acceptedUnapplied": 0,
+      "completeStandaloneProcedures": 560,
+      "scopedInterfaces": 173
+    },
+    "remainingPendingIds": [
+      "alignment-perfection",
+      "corruption-purification",
+      "faction-perfection",
+      "faction-incarnate",
+      "alignment-ascension",
+      "divine-intervention-greater",
+      "fate-rewrite",
+      "faction-omniscience-supreme",
+      "astral-projection",
+      "imprisonment",
+      "wish",
+      "collapse-timeline"
+    ],
+    "continuingPriorityOrder": [
+      "fate-rewrite",
+      "collapse-timeline",
+      "faction-omniscience-supreme",
+      "alignment-ascension",
+      "alignment-perfection",
+      "faction-incarnate",
+      "faction-perfection",
+      "corruption-purification",
+      "astral-projection",
+      "imprisonment",
+      "divine-intervention-greater",
+      "wish"
+    ],
+    "nextIdentity": "fate-rewrite",
+    "acceptedUnapplied": 0,
+    "runtimeExecuted": false,
+    "runtimeSelectionEnabled": false,
+    "collapseTimelineQueuePosition": 2,
+    "queueDisposition": "No queue mutation or identity acceptance/application is requested. Queue481 remains authoritative; Return322/Queue321 snapshots are historical only."
+  },
+  "currentCatalogAndIndex": {
+    "catalog": {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+      "bytes": 4945319,
+      "sha256": "f52cf6a4a4673897615a74c7c67dcba798c431362d4357e71ee552cc7c5d31f8",
+      "gitBlobSha1": "2d243b311cded8484630c12b6fcc2ae7f70cfddf",
+      "pointer": "/spells/847",
+      "row": {
+        "id": "collapse-timeline",
+        "name": "Collapse Timeline",
+        "schools": [
+          "Universal"
+        ],
+        "status": "blocked-pending-operational-review",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Cleric": {
+            "rank": 9,
+            "minimumClassLevel": 17,
+            "school": "Universal",
+            "baseRpCost": 26
+          },
+          "Mage": {
+            "rank": 9,
+            "minimumClassLevel": 17,
+            "school": "Universal",
+            "baseRpCost": 26
+          },
+          "Wizard": {
+            "rank": 9,
+            "minimumClassLevel": 17,
+            "school": "Universal",
+            "baseRpCost": 26
+          }
+        },
+        "operational": null,
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "collapse-timeline",
+          "original": {
+            "name": "Collapse Timeline",
+            "level": 9,
+            "resonanceRank": 9,
+            "school": "Universal",
+            "schools": [
+              "Universal"
+            ],
+            "placements": [
+              {
+                "name": "Collapse Timeline",
+                "school": "Universal",
+                "level": 9,
+                "summary": "Force entire battlefield into alternate future: Director determines outcome."
+              }
+            ],
+            "classLevels": {
+              "Cleric": 9,
+              "Mage": 9,
+              "Wizard": 9
+            },
+            "classRanks": {
+              "Cleric": 9,
+              "Mage": 9,
+              "Wizard": 9
+            },
+            "classLearnLevels": {
+              "Cleric": 17,
+              "Mage": 17,
+              "Wizard": 17
+            },
+            "classSchools": {
+              "Cleric": "Universal",
+              "Mage": "Universal",
+              "Wizard": "Universal"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Force entire battlefield into alternate future: Director determines outcome.",
+            "alternateSummaries": [],
+            "classes": [
+              "Cleric",
+              "Mage",
+              "Wizard"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 927,
+              "original": {
+                "school": "Universal",
+                "level": 9,
+                "name": "Collapse Timeline",
+                "effect": "Force entire battlefield into alternate future: GM determines outcome.",
+                "source_paragraph": 10128,
+                "casting_time": "1 action",
+                "range": "120 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Utility"
+                ],
+                "rp_cost": 26
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation",
+          "Not selectable in this spell playtest packet until individual operational review"
+        ]
+      }
+    },
+    "authoredReviewIndex": {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+      "bytes": 1782973,
+      "sha256": "a1e8fd127ef461d6284fe4b092f448857a670f715fd596849c628771ee4c4b37",
+      "gitBlobSha1": "535646be0b15479ced7bb3c743a41d8d9db2df58",
+      "pointer": "/entries/847",
+      "row": {
+        "id": "collapse-timeline",
+        "name": "Collapse Timeline",
+        "authoredStatus": "pending-authored-procedure",
+        "procedureFile": "catalog.json",
+        "procedurePointer": null,
+        "wholeCardPointer": "/spells/847",
+        "sourceStatus": "blocked-pending-operational-review",
+        "priorCatalogSelectionStatusUnchanged": true
+      }
+    },
+    "sourceAnchor": {
+      "commit": "38fec0bbf19a4480098eb10ab0d992b055790ada",
+      "catalogFileSha256": "f52cf6a4a4673897615a74c7c67dcba798c431362d4357e71ee552cc7c5d31f8",
+      "indexFileSha256": "939bfb1b99863ca6865c96d4bc3897e4bf7df04f8a72bba078e41771c3d07204",
+      "targetCatalogRowEqual": true,
+      "targetIndexRowEqual": true
+    },
+    "candidateProcedureSnapshotsEqualCurrentRows": {
+      "catalog": true,
+      "authoredReviewIndex": true
+    },
+    "interpretation": "The target catalog/index rows match their package anchor, but Return322's whole-file catalog and index hashes are stale. Queue481's bound whole-file snapshots and exact rows at 6287600 are used for current authority."
+  },
+  "collapseTimelineCurrentStatus": {
+    "catalogStatus": "blocked-pending-operational-review",
+    "authoredStatus": "pending-authored-procedure",
+    "operationalDefinition": null,
+    "blockerIds": [
+      "TF192-B05"
+    ],
+    "dependencyIds": [
+      "TF192-B02"
+    ],
+    "accepted": false,
+    "applied": false,
+    "sourceSummary": "Force entire battlefield into alternate future: Director determines outcome.",
+    "access": {
+      "Cleric": {
+        "rank": 9,
+        "minimumClassLevel": 17,
+        "school": "Universal",
+        "baseRpCost": 26
+      },
+      "Mage": {
+        "rank": 9,
+        "minimumClassLevel": 17,
+        "school": "Universal",
+        "baseRpCost": 26
+      },
+      "Wizard": {
+        "rank": 9,
+        "minimumClassLevel": 17,
+        "school": "Universal",
+        "baseRpCost": 26
+      }
+    }
+  },
+  "retainedReturn322Evidence": {
+    "historicalAuthority": {
+      "before": {
+        "reviewedApplied": 823,
+        "pending": 25,
+        "acceptedUnapplied": 0,
+        "completeStandaloneProcedures": 547,
+        "scopedInterfaces": 173
+      },
+      "after": {
+        "reviewedApplied": 823,
+        "pending": 25,
+        "acceptedUnapplied": 0,
+        "completeStandaloneProcedures": 547,
+        "scopedInterfaces": 173
+      },
+      "nextIdentityThen": "eternal-prophecy",
+      "note": "Historical Return322 dispositions only; superseded by Queue481."
+    },
+    "caseCounts": {
+      "sourceBindings": 140,
+      "unchangedSources": 139,
+      "changedSources": 1,
+      "inputMembers": 55,
+      "targetCases": 17,
+      "targetEvents": 156,
+      "forwardOperations": 312,
+      "inverseOperations": 312,
+      "fullReverseTraversals": 17,
+      "linkedContextCasesByteVerifiedOnly": 14,
+      "originalQuestions": 7,
+      "focusedAddenda": 1,
+      "futureRequirements": 5
+    },
+    "caseResults": [
+      {
+        "id": "RANK9TIMEFATE6129-COLLAPSE-TIMELINE-A__future-policy-0",
+        "preservedStatus": "DEMONSTRATED",
+        "holdIds": [],
+        "events": 21,
+        "forwardOperations": 42,
+        "inverseOperations": 42,
+        "replay": "PASS",
+        "semanticCoverage": "Preserved authored finite component; not proof of guaranteed-obligation interoperability."
+      },
+      {
+        "id": "RANK9TIMEFATE6129-COLLAPSE-TIMELINE-A__future-policy-1",
+        "preservedStatus": "DEMONSTRATED",
+        "holdIds": [],
+        "events": 21,
+        "forwardOperations": 42,
+        "inverseOperations": 42,
+        "replay": "PASS",
+        "semanticCoverage": "Preserved authored finite component; not proof of guaranteed-obligation interoperability."
+      },
+      {
+        "id": "RANK9TIMEFATE6129-COLLAPSE-TIMELINE-A",
+        "preservedStatus": "DEMONSTRATED",
+        "holdIds": [],
+        "events": 5,
+        "forwardOperations": 10,
+        "inverseOperations": 10,
+        "replay": "PASS",
+        "semanticCoverage": "Preserved authored finite component; not proof of guaranteed-obligation interoperability."
+      },
+      {
+        "id": "RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B",
+        "preservedStatus": "DEMONSTRATED",
+        "holdIds": [],
+        "events": 4,
+        "forwardOperations": 8,
+        "inverseOperations": 8,
+        "replay": "PASS",
+        "semanticCoverage": "Preserved authored finite component; not proof of guaranteed-obligation interoperability."
+      },
+      {
+        "id": "RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__external-dependency",
+        "preservedStatus": "DEMONSTRATED",
+        "holdIds": [
+          "TF192-H-HISTORY"
+        ],
+        "events": 4,
+        "forwardOperations": 8,
+        "inverseOperations": 8,
+        "replay": "PASS",
+        "semanticCoverage": "Preserved authored finite component; not proof of guaranteed-obligation interoperability."
+      },
+      {
+        "id": "RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__stale-preflight",
+        "preservedStatus": "DEMONSTRATED",
+        "holdIds": [],
+        "events": 3,
+        "forwardOperations": 6,
+        "inverseOperations": 6,
+        "replay": "PASS",
+        "semanticCoverage": "Preserved authored finite component; not proof of guaranteed-obligation interoperability."
+      },
+      {
+        "id": "RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__stale-after-payment",
+        "preservedStatus": "DEMONSTRATED",
+        "holdIds": [],
+        "events": 4,
+        "forwardOperations": 8,
+        "inverseOperations": 8,
+        "replay": "PASS",
+        "semanticCoverage": "Preserved authored finite component; not proof of guaranteed-obligation interoperability."
+      },
+      {
+        "id": "RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__active-time-stop",
+        "preservedStatus": "DEMONSTRATED",
+        "holdIds": [],
+        "events": 3,
+        "forwardOperations": 6,
+        "inverseOperations": 6,
+        "replay": "PASS",
+        "semanticCoverage": "Preserved authored finite component; not proof of guaranteed-obligation interoperability."
+      },
+      {
+        "id": "RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__unsupported-parent",
+        "preservedStatus": "DEMONSTRATED",
+        "holdIds": [
+          "TF192-H-HISTORY"
+        ],
+        "events": 4,
+        "forwardOperations": 8,
+        "inverseOperations": 8,
+        "replay": "PASS",
+        "semanticCoverage": "Preserved authored finite component; not proof of guaranteed-obligation interoperability."
+      },
+      {
+        "id": "RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__paid-countered-exact",
+        "preservedStatus": "DEMONSTRATED",
+        "holdIds": [],
+        "events": 21,
+        "forwardOperations": 42,
+        "inverseOperations": 42,
+        "replay": "PASS",
+        "semanticCoverage": "Preserved authored finite component; not proof of guaranteed-obligation interoperability."
+      },
+      {
+        "id": "RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__ready-expiry-valid-operands",
+        "preservedStatus": "DEMONSTRATED",
+        "holdIds": [],
+        "events": 11,
+        "forwardOperations": 22,
+        "inverseOperations": 22,
+        "replay": "PASS",
+        "semanticCoverage": "Preserved authored finite component; not proof of guaranteed-obligation interoperability."
+      },
+      {
+        "id": "RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__antimagic-origin-paid-failure",
+        "preservedStatus": "DEMONSTRATED",
+        "holdIds": [],
+        "events": 14,
+        "forwardOperations": 28,
+        "inverseOperations": 28,
+        "replay": "PASS",
+        "semanticCoverage": "Preserved authored finite component; not proof of guaranteed-obligation interoperability."
+      },
+      {
+        "id": "RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__independent-coverage-hold",
+        "preservedStatus": "BLOCKED_EVIDENCE",
+        "holdIds": [
+          "TF192-B05"
+        ],
+        "events": 1,
+        "forwardOperations": 2,
+        "inverseOperations": 2,
+        "replay": "PASS",
+        "semanticCoverage": "Preserved authored finite component; not proof of guaranteed-obligation interoperability."
+      },
+      {
+        "id": "RANK9TIMEFATE6129-COLLAPSE-TIMELINE-A__clock-future-trace",
+        "preservedStatus": "DEMONSTRATED",
+        "holdIds": [],
+        "events": 12,
+        "forwardOperations": 24,
+        "inverseOperations": 24,
+        "replay": "PASS",
+        "semanticCoverage": "Preserved authored finite component; not proof of guaranteed-obligation interoperability."
+      },
+      {
+        "id": "RANK9TIMEFATE6129-COLLAPSE-TIMELINE-A__clock-envelope",
+        "preservedStatus": "DEMONSTRATED",
+        "holdIds": [],
+        "events": 15,
+        "forwardOperations": 30,
+        "inverseOperations": 30,
+        "replay": "PASS",
+        "semanticCoverage": "Preserved authored finite component; not proof of guaranteed-obligation interoperability."
+      },
+      {
+        "id": "RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__dying-future-trace",
+        "preservedStatus": "DEMONSTRATED",
+        "holdIds": [],
+        "events": 8,
+        "forwardOperations": 16,
+        "inverseOperations": 16,
+        "replay": "PASS",
+        "semanticCoverage": "Preserved authored finite component; not proof of guaranteed-obligation interoperability."
+      },
+      {
+        "id": "RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__dying-actor-future-clock",
+        "preservedStatus": "DEMONSTRATED",
+        "holdIds": [],
+        "events": 5,
+        "forwardOperations": 10,
+        "inverseOperations": 10,
+        "replay": "PASS",
+        "semanticCoverage": "Preserved authored finite component; not proof of guaranteed-obligation interoperability."
+      }
+    ],
+    "caseFiles": [
+      "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-A__future-policy-0.json",
+      "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-A__future-policy-1.json",
+      "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-A.json",
+      "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B.json",
+      "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__external-dependency.json",
+      "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__stale-preflight.json",
+      "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__stale-after-payment.json",
+      "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__active-time-stop.json",
+      "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__unsupported-parent.json",
+      "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__paid-countered-exact.json",
+      "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__ready-expiry-valid-operands.json",
+      "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__antimagic-origin-paid-failure.json",
+      "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__independent-coverage-hold.json",
+      "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-A__clock-future-trace.json",
+      "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-A__clock-envelope.json",
+      "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__dying-future-trace.json",
+      "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__dying-actor-future-clock.json"
+    ],
+    "blockerB05": {
+      "id": "TF192-B05",
+      "status": "OPEN",
+      "scopeIds": [
+        "collapse-timeline"
+      ],
+      "dependencyIds": [
+        "TF192-B02"
+      ],
+      "minimumMissingWitness": "One source-complete paid committed guarantee with exact source/acquisition, original objective/deadline and lawful fulfillment mechanism/history, plus the complete affected external/temporal-parent histories. Demonstrate one useful compatible full battlefield future and a rejected incompatible future, preserving all original payments, actual actors/agency, clocks, custody and protected objective/deadline.",
+      "sourceAnchors": [
+        "evidence/authority/TF192-B02_and_TF192-B05.json#/TF192-B05",
+        "evidence/collapse_timeline/return282_director_reviewed_procedure.json#/procedure/failures",
+        "evidence/collapse_timeline/return282_director_reviewed_procedure.json#/procedure/settlement",
+        "evidence/eternal_prophecy/return282_linked_dependency_procedure.json#/procedure/unresolvedGuarantee",
+        "evidence/native/temporal_reference_transaction_review_status.json#/requiredNext"
+      ],
+      "actualConditionalRecord": {
+        "member": "evidence/cases/collapse_timeline/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B.json",
+        "initialPointer": "/initialState/obligations",
+        "initialValue": {},
+        "insertionPointer": "/events/2/after/obligations/old-guarantee",
+        "insertedSource": "conditional-eternal-prophecy-fixture",
+        "qualification": "TF192-B02 retains guarantee-mechanism hold",
+        "status": "pending",
+        "castsPointer": "/finalState/casts",
+        "castsValue": [],
+        "meaning": "A directly seeded conditional constraint and compatibility assertion, not an actual paid creation/fulfillment trace or completed guarantee contract."
+      },
+      "otherExactMissingRecords": [
+        {
+          "caseId": "RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__independent-coverage-hold",
+          "finding": "One SOURCE_HOLD event explicitly records the absent guarantee interoperability."
+        },
+        {
+          "caseId": "RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__external-dependency",
+          "finding": "Complete actual outside-history operands remain missing; refusal is valid conditional coverage only."
+        },
+        {
+          "caseId": "RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__unsupported-parent",
+          "finding": "Actual temporal-parent interface/history remains missing; refusal grants no mixed-clock permission."
+        }
+      ],
+      "preservedConditionalQualification": "TF192-H-HISTORY applies to exact unknown external/parent histories. A new witness must supply dependencies it actually touches; no generic engine implementation or universal world certification is required to prove static authorship.",
+      "guaranteeDependency": "Current TF192-GUARANTEE-01 has no authorized adverse closure when all routes/intervention remain prevented or item/destination facts become unavailable. No new source permission closes TF192-B02 in the bound comparison.",
+      "newMechanismAuthorized": false,
+      "promiseQualified": false,
+      "waiver": false
+    },
+    "questions": {
+      "count": 8,
+      "dispositions": [
+        {
+          "questionId": "TF9-Q01",
+          "scopeIds": [
+            "collapse-timeline"
+          ],
+          "selected": true,
+          "selection": "Retain all printed modes/class routes, rank9/class17/base26RP, V/S/F, Action except Universal Time Stop Reaction. No new acquisition.",
+          "disposition": "Preserve Collapse Timeline proposal only; complete guarantee interoperability remains held under TF192-B05.",
+          "sourceAnchor": "Packet322/evidence/collapse_timeline/questions_and_obligations.json#/priorDispositions/0"
+        },
+        {
+          "questionId": "TF9-Q23",
+          "scopeIds": [
+            "collapse-timeline"
+          ],
+          "selected": true,
+          "selection": "Declared entire connected battlefield and dependencies, 120ft anchor and NEW finite six-second future horizon.",
+          "disposition": "Preserve Collapse Timeline proposal only; complete guarantee interoperability remains held under TF192-B05.",
+          "sourceAnchor": "Packet322/evidence/collapse_timeline/questions_and_obligations.json#/priorDispositions/1"
+        },
+        {
+          "questionId": "TF9-Q24",
+          "scopeIds": [
+            "collapse-timeline"
+          ],
+          "selected": true,
+          "selection": "Deterministic authored ordered alternatives and legitimate objective choice; no live agent or hidden-outcome disclosure.",
+          "disposition": "Preserve Collapse Timeline proposal only; complete guarantee interoperability remains held under TF192-B05.",
+          "sourceAnchor": "Packet322/evidence/collapse_timeline/questions_and_obligations.json#/priorDispositions/2"
+        },
+        {
+          "questionId": "TF9-Q25",
+          "scopeIds": [
+            "collapse-timeline"
+          ],
+          "selected": true,
+          "selection": "One atomic lawful future from paid state, all bodies/resources/custody/clocks and outsiders covered; no duplications or invented actions.",
+          "disposition": "Preserve Collapse Timeline proposal only; complete guarantee interoperability remains held under TF192-B05.",
+          "sourceAnchor": "Packet322/evidence/collapse_timeline/questions_and_obligations.json#/priorDispositions/3"
+        },
+        {
+          "questionId": "TF9-Q26",
+          "scopeIds": [
+            "collapse-timeline"
+          ],
+          "selected": true,
+          "selection": "Advance elapsed world time exactly6seconds with all due events; retain actual payments and deadlines. Missing parent integration remains held.",
+          "disposition": "Preserve Collapse Timeline proposal only; complete guarantee interoperability remains held under TF192-B05.",
+          "sourceAnchor": "Packet322/evidence/collapse_timeline/questions_and_obligations.json#/priorDispositions/4"
+        },
+        {
+          "questionId": "TF9-Q31",
+          "scopeIds": [
+            "collapse-timeline"
+          ],
+          "selected": true,
+          "selection": "Keep scoped source-ID/obligation priority; useful compatible histories and denials remain conditional until actual guarantee witness closes TF192-B02/B04/B05.",
+          "disposition": "Preserve Collapse Timeline proposal only; complete guarantee interoperability remains held under TF192-B05.",
+          "sourceAnchor": "Packet322/evidence/collapse_timeline/questions_and_obligations.json#/priorDispositions/5"
+        },
+        {
+          "questionId": "TF9-Q32",
+          "scopeIds": [
+            "collapse-timeline"
+          ],
+          "selected": true,
+          "selection": "Preserve exact source IDs, pending lineages, clocks, costs and knowledge across serialized modes; no runtime, implementation or completion claim.",
+          "disposition": "Preserve Collapse Timeline proposal only; complete guarantee interoperability remains held under TF192-B05.",
+          "sourceAnchor": "Packet322/evidence/collapse_timeline/questions_and_obligations.json#/priorDispositions/6"
+        },
+        {
+          "questionId": "TIME129-ADD02",
+          "scopeIds": [
+            "collapse-timeline"
+          ],
+          "selected": true,
+          "disposition": "Preserve actual original transaction/source/clock/guarantee boundaries. Existing finite future-policy tests do not close the actual complete-guarantee/external-parent witness. Linked Fate Rewrite/Eternal Prophecy not re-adjudicated."
+        }
+      ]
+    },
+    "qualifications": {
+      "qualificationIds": [
+        "TF192-H-HISTORY",
+        "TF192-Q-BALANCE",
+        "TF192-Q-COMPLETION",
+        "TF192-Q-COSMOLOGY",
+        "TF192-Q-DOMAIN",
+        "TF192-Q-PHYSICAL",
+        "TF192-Q-PLAY",
+        "TF192-Q-RELEASE",
+        "TF192-Q-RUNTIME",
+        "TF192-Q-SOURCE"
+      ],
+      "text": {
+        "BALANCE": "No balance approval or quantitative balance validation.",
+        "COMPLETION": "Four held proposals do not assert rule review, engine, game or domain completion.",
+        "COSMOLOGY": "No new soul/Hunt/finality, planar or cosmology authority; a400day calendar year is not a primordial epoch.",
+        "DOMAIN": "No time/causality, spell domain or whole-game domain closure.",
+        "PHYSICAL": "Actors, body/hand/focus, geometry, support, cargo, custody, witnesses and campaign facts in traces are explicit conditional scenario operands, not authenticated campaign data.",
+        "PLAY": "No human playtest or live campaign execution occurred.",
+        "RELEASE": "No shipping, release or selectable-runtime authorization; canonical application reserved to the owner.",
+        "RUNTIME": "No game or supplied/historical program executed. JSON replay is static evidence, not engine implementation or runtime approval.",
+        "SOURCE": "Exact native cards, all access rows, acquisition, authoritative snapshots and source permissions remain controlling; no later backing-source change becomes accepted without matching evidence."
+      },
+      "TF192-H-HISTORY": "Exact unavailable external/parent operands remain whole-dependent-case holds, not proof that all alternate futures fail.",
+      "allUnrelatedHoldsRetained": true
+    },
+    "sourceSnapshotDrift": {
+      "return322CatalogSnapshotSha256": "773fb0b3b0fdb501858ded33c02d90dc4db3009bd1b9f7112c244d998218f05b",
+      "queue481CatalogSha256": "f52cf6a4a4673897615a74c7c67dcba798c431362d4357e71ee552cc7c5d31f8",
+      "return322AuthoredIndexSnapshotSha256": "c6dd6d30703911864a3e2784d8abb3d79835b39bc01804c4335f80a1c4bea7b2",
+      "queue481AuthoredIndexSha256": "a1e8fd127ef461d6284fe4b092f448857a670f715fd596849c628771ee4c4b37",
+      "return322SnapshotsAreCurrent": false
+    }
+  },
+  "precedingFateRewriteContext": {
+    "identityReconciliationPath": "docs/audit/2026-10-08/full-game/director-spell-review-129/fate_rewrite_identity_reconciliation_2026-11-03/FATE_REWRITE_IDENTITY_RECONCILIATION_01.json",
+    "identityReconciliationSha256": "7cda9e3f14afd8a1254b81c37e13eda72495b41af97c3928cdef07c5df45ea8b",
+    "directorDisposition": "PASS_STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY_RECONCILIATION",
+    "scopeLimits": {
+      "reconciliationOnly": true,
+      "identityAccepted": false,
+      "identityApplied": false,
+      "blockersClosed": false,
+      "qualificationsClosed": false,
+      "witnessesSealed": false,
+      "guaranteeProved": false,
+      "runtimeSelectionEnabled": false,
+      "Queue481": "836 applied / 12 pending / 0 accepted-unapplied",
+      "catalogIndexCanonRuntimeCampaignSealBlockerOrQueueChanged": false
+    },
+    "proposal05WitnessDisposition": "PASS_ADOPTED_TEST_ONLY_COMPONENT_SUFFICIENCY_BOTH_BRANCHES",
+    "proposal05WitnessesRemainUnsealed": true,
+    "B02AndB04RemainOpen": true
+  },
+  "openEvidenceRequirement": {
+    "B05Status": "OPEN",
+    "dependencyIds": [
+      "TF192-B02"
+    ],
+    "minimumMissingWitness": "One source-complete paid committed guarantee with exact source/acquisition, original objective/deadline and lawful fulfillment mechanism/history, plus the complete affected external/temporal-parent histories. Demonstrate one useful compatible full battlefield future and a rejected incompatible future, preserving all original payments, actual actors/agency, clocks, custody and protected objective/deadline.",
+    "actualConditionalRecordMeaning": "A directly seeded conditional constraint and compatibility assertion, not an actual paid creation/fulfillment trace or completed guarantee contract.",
+    "guaranteeDependency": "Current TF192-GUARANTEE-01 has no authorized adverse closure when all routes/intervention remain prevented or item/destination facts become unavailable. No new source permission closes TF192-B02 in the bound comparison.",
+    "newMechanismAuthorized": false,
+    "promiseQualified": false,
+    "waiver": false
+  },
+  "nonAuthorization": {
+    "identityAcceptance": false,
+    "identityApplication": false,
+    "blockerClosure": false,
+    "witnessConstruction": false,
+    "witnessSeal": false,
+    "canonOrNativeRuleChange": false,
+    "runtimeOrCampaignChange": false,
+    "queueChange": false,
+    "promiseQualificationOrWaiver": false
+  },
+  "sourceBindings": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9timefate6_reviewed_192/CANDIDATE_PACKAGE_MANIFEST.json",
+      "bytes": 8486,
+      "sha256": "8ab438ce58eb721d1c0a51a6ec5c1805e669d181f77166daf53f39bba4574c45",
+      "gitBlobSha1": "0f93b184a8d7edafdf499a8898d334740f0407aa",
+      "roles": [
+        "Reviewed candidate package provenance"
+      ]
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9timefate6_reviewed_192/CASE_DISPOSITIONS.json",
+      "bytes": 55324,
+      "sha256": "16291a97dcc8418e5e6889f72b07cc95290ff9fd67b3f32cbdf6264200558592",
+      "gitBlobSha1": "89fe95293ef8beabdadf201dabd7a1d2ba25188f",
+      "roles": [
+        "Candidate historical case dispositions"
+      ]
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9timefate6_reviewed_192/CASE_HASH_BINDINGS.json",
+      "bytes": 35907,
+      "sha256": "ca412313fb5ab75c37160e95750481027590e48a9a2dcd7b5f01dfb59b1db7d4",
+      "gitBlobSha1": "7313c75c9fa1b479ead83ec9341adb912191d7a2",
+      "roles": [
+        "Candidate case byte/hash bindings"
+      ]
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9timefate6_reviewed_192/COUNTS.json",
+      "bytes": 2161,
+      "sha256": "fb7ad6a0aa82a73155922eb76575cf20cc4466e8d5382ea72bcb53cc9da9d612",
+      "gitBlobSha1": "517d379396cef24611dadb1ab9f12e8ceb64bd27",
+      "roles": [
+        "Candidate package counts"
+      ]
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9timefate6_reviewed_192/CURRENT_CONTEXT_191.json",
+      "bytes": 3147,
+      "sha256": "aa399481cd998fc2d86dd717299e12313b7dfb1765923968deeeb46bf0eba817",
+      "gitBlobSha1": "a92855e353603998545ed52d62840693ebf0ca51",
+      "roles": [
+        "Historical package context, not current queue authority"
+      ]
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9timefate6_reviewed_192/DIRECTOR_DECISION.json",
+      "bytes": 10231,
+      "sha256": "9d71410e7b8bb7f9d63ac0961555d803300b52fed015c75c5a3e7c71a10b6170",
+      "gitBlobSha1": "841b48565a9622abb1fb95ff7017ce67d6916d6e",
+      "roles": [
+        "Candidate package held decision"
+      ]
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9timefate6_reviewed_192/FUTURE_OBLIGATIONS.json",
+      "bytes": 22080,
+      "sha256": "3cbcdebe8f2c70a2a1d854cea8041401ff527efea2c16751a0eadf39da4c8493",
+      "gitBlobSha1": "0f2e5c520f57ba25a4b53e178d5fc328ec2814f8",
+      "roles": [
+        "Future obligation scope"
+      ]
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9timefate6_reviewed_192/HOLD_REGISTER.json",
+      "bytes": 34943,
+      "sha256": "2c5a6660f0308cdfcb5e1ac8fd376ce54b92edf4a68d0926e17bff2730c0a9d9",
+      "gitBlobSha1": "a201062f49f2a9dd98fa2cf82bd58d5564ed8877",
+      "roles": [
+        "Candidate hold register"
+      ]
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9timefate6_reviewed_192/ORIGINAL_QUESTIONS.json",
+      "bytes": 62146,
+      "sha256": "908f09b3ef219004aec182f8e5e8fac82086ce4181b2c1a64ea36b1022ee309b",
+      "gitBlobSha1": "577e90f0f1c0dc5ce24b1b798d8637ea79ef4ff0",
+      "roles": [
+        "Original review questions"
+      ]
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9timefate6_reviewed_192/QUALIFICATIONS.json",
+      "bytes": 1157,
+      "sha256": "9bf02378d25aed283892e24a8ab60d348fe05200bf6d6baac501644e4a7ff65c",
+      "gitBlobSha1": "1a5ed51da2be624486853c7a5f87002afab4c676",
+      "roles": [
+        "Candidate qualifications"
+      ]
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9timefate6_reviewed_192/QUESTION_DISPOSITIONS.json",
+      "bytes": 330351,
+      "sha256": "952624ba010620b2f91dd1b8ce1ccf08294def82950f475ff9d06c1209a9a71c",
+      "gitBlobSha1": "a768c038582c16f7ec2d4c9da7e47ebe6897bfb2",
+      "roles": [
+        "Candidate question dispositions"
+      ]
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9timefate6_reviewed_192/SOURCE_BINDINGS.json",
+      "bytes": 94076,
+      "sha256": "d4b316192a4d8f2465b660216ff3929e4c682d7ab76aa576513499696e92c9d2",
+      "gitBlobSha1": "4422a50ecd0d45ed8b73ffa28cb06763f42a116d",
+      "roles": [
+        "Candidate package source bindings"
+      ]
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9timefate6_reviewed_192/procedures/collapse-timeline.json",
+      "bytes": 16761,
+      "sha256": "fc46e84d07dcb43316b3b4c68ba1eaa955a503a6d543e2e2a6a192b32bbc6d25",
+      "gitBlobSha1": "0ae98c7ba75a3f4be982824d7948cac3e919ce5b",
+      "roles": [
+        "Current authored candidate procedure; no acceptance or application"
+      ]
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+      "bytes": 1782973,
+      "sha256": "a1e8fd127ef461d6284fe4b092f448857a670f715fd596849c628771ee4c4b37",
+      "gitBlobSha1": "535646be0b15479ced7bb3c743a41d8d9db2df58",
+      "roles": [
+        "Current authored review index, Collapse Timeline row"
+      ]
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+      "bytes": 4945319,
+      "sha256": "f52cf6a4a4673897615a74c7c67dcba798c431362d4357e71ee552cc7c5d31f8",
+      "gitBlobSha1": "2d243b311cded8484630c12b6fcc2ae7f70cfddf",
+      "roles": [
+        "Current public catalog, Collapse Timeline row"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT12_PENDING_IDENTITY_AUDIT_481.json",
+      "bytes": 1936,
+      "sha256": "5c584557baeb3daf3e1236706651cc02f7356941d3c9d8edfb0a6b7937a50ed8",
+      "gitBlobSha1": "cb95f251b2a981f76111fc2474798bde86c28420",
+      "roles": [
+        "Current pending identity audit consistency"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_481.json",
+      "bytes": 2074,
+      "sha256": "76f7b4020109578ff1dcf06457f2568f927daca66166d8aca3f69ffd25a1a1c0",
+      "gitBlobSha1": "a282f493d4f562dbecf6156c44f50e1df7149d24",
+      "roles": [
+        "Current Handoff481 consistency"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_SPELL_QUEUE_481.json",
+      "bytes": 4119,
+      "sha256": "b67153e1daa6ceeb5ca3013c0e53fbbe256428f4b25bb4786cc9ffa653105aa0",
+      "gitBlobSha1": "2145dcbfe75fbcb59271ceeff556a05fc2e2683c",
+      "roles": [
+        "Current Queue481 authority and order"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/fate_rewrite_ep480_interface_witness_2026-11-03/CODEX_TRANSCRIBED_DIRECTOR_REVIEW_PASS_03.json",
+      "bytes": 1782,
+      "sha256": "a9fca80d3c8e7bdef0ed799369d5e4cb0fcfd0b751a025dba685fa34d5c78e5e",
+      "gitBlobSha1": "53b5e8ca7add550af381cc545d4004b70a023339",
+      "roles": [
+        "Adopted Proposal05 witness component PASS; unsealed"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/fate_rewrite_identity_reconciliation_2026-11-03/CODEX_TRANSCRIBED_DIRECTOR_REVIEW_PASS_FATE_REWRITE_IDENTITY_01.json",
+      "bytes": 1772,
+      "sha256": "e32e4f7f722234a87c020bcb77efafd9f3d5bbf6a0854f02b18c1e496ba0ddba",
+      "gitBlobSha1": "4b4d9bd8f04fc1316269915680a7ccb7a939b3e9",
+      "roles": [
+        "Director PASS readback; static only"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/fate_rewrite_identity_reconciliation_2026-11-03/FATE_REWRITE_IDENTITY_RECONCILIATION_01.json",
+      "bytes": 63860,
+      "sha256": "7cda9e3f14afd8a1254b81c37e13eda72495b41af97c3928cdef07c5df45ea8b",
+      "gitBlobSha1": "839156e84bd09cbe004481132d000f6d278c2a67",
+      "roles": [
+        "Completed preceding static reconciliation"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/BLOCKER_REASSESSMENT.json",
+      "bytes": 2966,
+      "sha256": "1211d7a15e50d03803d888c23716a580c1fbbc35ed62df1a5699891bf688f0c6",
+      "gitBlobSha1": "dce7aa592c0b7ec7979a17ab2977f12f4e318cce",
+      "roles": [
+        "B05 and B02 retained blocker evidence"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/CASE_RESULTS.json",
+      "bytes": 7320,
+      "sha256": "f2459e455341591f5a8e2fa9cacbed9c0b2899af200c4fb718aa659e6ddebdb0",
+      "gitBlobSha1": "2d3dd983cdaa4ef3e21f334b22509f63f2047a52",
+      "roles": [
+        "Return322 static case summary"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/DATA_VALIDATION.json",
+      "bytes": 170573,
+      "sha256": "3f467e505b4b4c9d5b194bc8b05701d053665d5671e231a1fd44d27f725c05cc",
+      "gitBlobSha1": "b4d60f9481f873d446a5e3300ae5bc147ef3a684",
+      "roles": [
+        "Return322 data validation record"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/DIRECTOR_DECISION.json",
+      "bytes": 2559,
+      "sha256": "9845dbd0860494632d2e12b80903d578c61e5cf0c65e307338ab366eb690af1d",
+      "gitBlobSha1": "f84a83c0a53150aab5e975143066afad06b9e49a",
+      "roles": [
+        "Historical Return322 hold; not current queue authority"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/FUTURE_OBLIGATION_DISPOSITIONS.json",
+      "bytes": 2485,
+      "sha256": "91248444ed20327cdd6ff6439e87fda945d527341e58f1013b5d68e23e959d28",
+      "gitBlobSha1": "ddbc062b0d0adf5d19148b6974837c65287ad1e4",
+      "roles": [
+        "Preserved future obligations"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/INDEPENDENT_SEMANTIC_FAILURE_CHECK.json",
+      "bytes": 2058,
+      "sha256": "65b4a1f1932cd417b2edf031f2db9ffb1d68fa504e9bd3759324f7b92ad84788",
+      "gitBlobSha1": "e19ad48bf6fde00bcbbc78a9117776600f997845",
+      "roles": [
+        "Return322 semantic failure check"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/INPUT_MEMBER_MANIFEST.json",
+      "bytes": 13564,
+      "sha256": "55a8e148e9c45b167b2f6c6d1fb6b7f7d82ebdd099178e8dee2856db38515f42",
+      "gitBlobSha1": "27604bdeead75c40f33c890bdb2b455829c4a093",
+      "roles": [
+        "Return322 source member manifest"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/MANIFEST.json",
+      "bytes": 11376,
+      "sha256": "ae0a4ae410b256515be842fd1a5b349d669bc03c1da468513d36229ab0ad0b56",
+      "gitBlobSha1": "53ea8551a6b76ea93c064ab2deca780dfbd3ea78",
+      "roles": [
+        "Return322 manifest"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/PACKAGE_CHECKS.json",
+      "bytes": 916,
+      "sha256": "b2b031921882add78fd28d6d96f9e6d503140a92c799e5693b14b7a1683fbf66",
+      "gitBlobSha1": "c863320571595c547635ce0fcbfd6380d806b7ba",
+      "roles": [
+        "Return322 package checks"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/PRIOR_CASE_BINDINGS.json",
+      "bytes": 6867,
+      "sha256": "b134c3e1e15a69bd4ad15ad5a78c75bc3124ace7bc0e34ab1bbe1decdc434f37",
+      "gitBlobSha1": "9773633fb9a656b464831fc2c6f5db5887aa23e7",
+      "roles": [
+        "Return322 prior case bindings"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/QUALIFICATIONS.json",
+      "bytes": 1584,
+      "sha256": "1a187626fe64b5c9e02ffca19b77efd7558aaf22dc309c392ab4a4a7a2f14bc6",
+      "gitBlobSha1": "2abdc3f2f459fb77b38d0504641d6af9bc7b4b8a",
+      "roles": [
+        "Return322 held qualifications"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/QUESTION_DISPOSITIONS.json",
+      "bytes": 4169,
+      "sha256": "df740459c1f930c2178aef553dee1e8f51fbf62b8555c80a77380aa562f80daf",
+      "gitBlobSha1": "41f52558aaaaeffdd0b1da03ed37abb2b91d5d34",
+      "roles": [
+        "Return322 Collapse Timeline questions"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/SOURCE_BINDING.json",
+      "bytes": 128112,
+      "sha256": "2ee942ae264fff6347ea9ac65dc90b4dc7ff2916b30f2346b9d36974cdf26b8f",
+      "gitBlobSha1": "322228f830de858b3163809f9379edcb4ee08364",
+      "roles": [
+        "Return322 source snapshots, historical-only"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/authority/CURRENT_HANDOFF_321.json",
+      "bytes": 8306,
+      "sha256": "dba375cbc065d85a09c7d48f117c13deff715585d300f37348a7305996512bce",
+      "gitBlobSha1": "a2a2607c3971307956d4c6698178763ef8fb1186",
+      "roles": [
+        "Historical Handoff321, explicitly superseded"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/authority/CURRENT_SPELL_QUEUE_321.json",
+      "bytes": 8700,
+      "sha256": "f680c69d2a9293538a6eb3ce2c9c034b6bf85da1a69818b26daddc16c3528a5a",
+      "gitBlobSha1": "1e86f7f05166acb9551f6b3b11e12d116736ec83",
+      "roles": [
+        "Historical Queue321, explicitly superseded"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-A.json",
+      "bytes": 200964,
+      "sha256": "b13eda7437c954d7a5330fb64283b7c1e48ea4c8be39a5054b14d7e957bee337",
+      "gitBlobSha1": "8b82bd14e183f4936138b74528c8ddd0cc2f417b",
+      "roles": [
+        "One of 17 Return322 Collapse Timeline case records"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-A__clock-envelope.json",
+      "bytes": 605090,
+      "sha256": "df997f0e9bff4a0062a832e43a10ce831002601153143e05c05ec77a8d133b65",
+      "gitBlobSha1": "1fb1ab3d1a6153503a15bc7badc1f58cfe355cf2",
+      "roles": [
+        "One of 17 Return322 Collapse Timeline case records"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-A__clock-future-trace.json",
+      "bytes": 763813,
+      "sha256": "6d9a235e900f5362a9beb1739bc2119cd4de94a992f5d5fbf792920a514ad918",
+      "gitBlobSha1": "a13e052159271151e041d7e079258ce4b89cb9a4",
+      "roles": [
+        "One of 17 Return322 Collapse Timeline case records"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-A__future-policy-0.json",
+      "bytes": 1197731,
+      "sha256": "7c6e8fda0acdbd2399750a4e9c8061ed3a2586540896bd4f1dda8011bd71515e",
+      "gitBlobSha1": "946b6501fca383446c540126bf9022e6f45d4bd7",
+      "roles": [
+        "One of 17 Return322 Collapse Timeline case records"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-A__future-policy-1.json",
+      "bytes": 1190553,
+      "sha256": "430f7862b144bddb3696921ef3d97ab94805e387ac1c8419908910a6237a0339",
+      "gitBlobSha1": "ce64ca84c95b3d0dd7dd04d485610665fc6f0b82",
+      "roles": [
+        "One of 17 Return322 Collapse Timeline case records"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B.json",
+      "bytes": 119451,
+      "sha256": "5a23105fb0c510c73ab67c6de72d5d9a4e4838803dd98dad01a2dad7690677ed",
+      "gitBlobSha1": "8e394d5759e47dd6cc5c3c7457efba24db2d6a23",
+      "roles": [
+        "One of 17 Return322 Collapse Timeline case records"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__active-time-stop.json",
+      "bytes": 68277,
+      "sha256": "c27b6a515fb3f2e2bbf2c7e1ac1f0e9fbeaafd26a0819ddb16cccf3c6a3a00b1",
+      "gitBlobSha1": "0855b0624ca4b2f9b6645f0a19ca409a90f8a6fb",
+      "roles": [
+        "One of 17 Return322 Collapse Timeline case records"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__antimagic-origin-paid-failure.json",
+      "bytes": 521500,
+      "sha256": "e1fb5292238a4167bf708dbe3f3e4ad6e6e3c9f52cf522bc7159b7e6b68b6672",
+      "gitBlobSha1": "0263ae44837368a5653d6f77be40f145be1e1232",
+      "roles": [
+        "One of 17 Return322 Collapse Timeline case records"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__dying-actor-future-clock.json",
+      "bytes": 164727,
+      "sha256": "1f40446115b33011fc2559b133f6a9b2f736950929fcfdbad564bc4457cc7624",
+      "gitBlobSha1": "77b34d1ef0b1ec8cc12f8e343591edf52854b40b",
+      "roles": [
+        "One of 17 Return322 Collapse Timeline case records"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__dying-future-trace.json",
+      "bytes": 324411,
+      "sha256": "4aff3435b1f66d995524c458258ed472f968f1e2b9a150fb841803d73a292884",
+      "gitBlobSha1": "3bfae21588d644e681ce61e69a40322795e1d584",
+      "roles": [
+        "One of 17 Return322 Collapse Timeline case records"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__external-dependency.json",
+      "bytes": 90242,
+      "sha256": "3029ef2b37d96e123d47ac0a8b95d1409f7080c9b0456e321797579e844b16e3",
+      "gitBlobSha1": "2ead14c1c42ddfc17cc06db3fe2d4d5910dbaf3c",
+      "roles": [
+        "One of 17 Return322 Collapse Timeline case records"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__independent-coverage-hold.json",
+      "bytes": 29098,
+      "sha256": "b4a83c8be627bd848e677a49c2d1222aef0ac9931d47160dc34140c8db9e9bdb",
+      "gitBlobSha1": "4ff1140a433bb79b174e3f09a2b1194929d27713",
+      "roles": [
+        "One of 17 Return322 Collapse Timeline case records"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__paid-countered-exact.json",
+      "bytes": 1013048,
+      "sha256": "4da0e7c2273218d1ce03052499bff6213b7b24436f5762b21bc4af1d7413eb10",
+      "gitBlobSha1": "77672ce98b770d6d0655c35f43418e5a59730bd0",
+      "roles": [
+        "One of 17 Return322 Collapse Timeline case records"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__ready-expiry-valid-operands.json",
+      "bytes": 404594,
+      "sha256": "182b3ad368b3868a58e45ac0b34288d9f0be6d398999b8c621b836829d33260c",
+      "gitBlobSha1": "1388e6d5a4f090d79e84ea8a7ff3cac42bd0bba1",
+      "roles": [
+        "One of 17 Return322 Collapse Timeline case records"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__stale-after-payment.json",
+      "bytes": 98621,
+      "sha256": "260974d794715bced4aa5083599815b0422423f968bb0a63e276b5b5beb702e2",
+      "gitBlobSha1": "17b973fa8dc130f6a3ca7eb75bf7bf04bf2d8532",
+      "roles": [
+        "One of 17 Return322 Collapse Timeline case records"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__stale-preflight.json",
+      "bytes": 68268,
+      "sha256": "d39b6b10f45b03c87302d3a6c6653a292becf8b33da1b8aa724c003e67ddc146",
+      "gitBlobSha1": "638ccf0c7c64b79edabae972d918fd828f89b216",
+      "roles": [
+        "One of 17 Return322 Collapse Timeline case records"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__unsupported-parent.json",
+      "bytes": 90226,
+      "sha256": "5e215f30ce036a3c663755ab6d43a0d832143b5d77e2e64344ac34a910a5408f",
+      "gitBlobSha1": "2e804d25fb4379cc46fd5a7b01c3619425119b22",
+      "roles": [
+        "One of 17 Return322 Collapse Timeline case records"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/procedures/collapse-timeline.json",
+      "bytes": 17879,
+      "sha256": "271284d5e9941bb96a59e5586344158f84a834f1335e001082853e34664e37ba",
+      "gitBlobSha1": "12af287c0ff57678469f0d004c7a7f96d5f01bfd",
+      "roles": [
+        "Return322 retained Collapse Timeline procedure"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_fate_rewrite_return320_received/BLOCKER_REASSESSMENT.json",
+      "bytes": 3256,
+      "sha256": "7ec4c8bb82f86cde32ae3e20f8f65ae7df7b3a509be448ef2578fd33e3bc24f8",
+      "gitBlobSha1": "6be74441390b93a075c895e962176803b2eed1ab",
+      "roles": [
+        "Fate Rewrite B02/B04 unresolved boundary"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_fate_rewrite_return320_received/DIRECTOR_DECISION.json",
+      "bytes": 2843,
+      "sha256": "aff07d47358feacf818e8a2e6bc97ef83ee16ad2b5564f1bc8333fcf62debeb5",
+      "gitBlobSha1": "533304d90ebd0642944fbbfa28ccdf288af6f09a",
+      "roles": [
+        "Director-authorized current-authority nextScope"
+      ]
+    }
+  ]
+}
