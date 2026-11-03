@@ -6,7 +6,8 @@ using System.Linq;
 namespace Decennium.Foundation.Laboratory
 {
     /// <summary>Bounded combined crop/inventory host. Supplies capable Medium STR10 actors, usable hands,
-    /// an open compatible pouch, prepared plot and a fixed four-pint waterskin (one-pound tare).
+    /// an open pouch verified to fit the entire initial two-pound ration bundle, prepared plot
+    /// and a fixed four-pint waterskin (one-pound tare). Harvested greens have no authored volume/shape here.
     /// Food is ready ordinary bulk; the waterskin can be drunk from but vessel transfer/filling is unsupported.
     /// No hazards, scheduled combat entries or other timed systems exist in this fixture.</summary>
     public sealed class TestOnlyInventoryPolicy : ICommandPolicy
@@ -36,11 +37,26 @@ namespace Decennium.Foundation.Laboratory
         private static bool Accessible(Snapshot s,string actor,InventoryLotRecord item,ResourceLot lot)=>item.Access==InventoryAccess.Ground
             ?lot.LocationId==TestOnlyCropPolicy.PlotId&&AtPlot(s.Actors.Single(a=>a.Id==actor))
             :lot.LocationId==actor&&lot.CustodianId==actor;
+        private static bool FitsSuppliedPouch(Snapshot s,InventoryLotRecord item)
+        {
+            // The fixture verifies the complete initial ration bundle fits its pouch. Descendants are
+            // portions of that same finite bundle, not extra contents. It supplies no greens volume or
+            // universal food density; do not infer fit from carrying pounds alone.
+            while(item.ParentId!="")item=s.InventoryLots.Single(x=>x.LotId==item.ParentId);
+            return item.LotId==FoodId;
+        }
+        public static BurdenTotals CarriedBurden(Snapshot s,string actor)
+        {
+            if(!s.Actors.Any(x=>x.Id==actor))throw new ArgumentException("Unknown fixture carrier.");
+            // Each actor's fixed pouch weighs one pound. The actor's fixed skin also retains its
+            // one-pound tare when empty. These host fixtures are not transferable equipment records.
+            var pounds=RuleQuantity.Sum(s.Work.Lots.Where(x=>x.LocationId==actor).Select(x=>x.Amount))
+                +new RuleQuantity(1)+(actor==TestOnlyPolicy.ActorId?new RuleQuantity(1):default);
+            return new BurdenTotals(pounds,pounds.Scale(1,10),true);
+        }
         private static bool Capacity(Snapshot s,string actor,RuleQuantity additional)
         {
-            // All carried fixture food/water units have documented one-pound unit mass; the fixed skin retains its tare even when empty.
-            var pounds=RuleQuantity.Sum(s.Work.Lots.Where(x=>x.LocationId==actor).Select(x=>x.Amount))
-                +additional+(actor==TestOnlyPolicy.ActorId?new RuleQuantity(1):default);
+            var burden=CarriedBurden(s,actor);var pounds=burden.Pounds.Value+additional;
             return PlaytestCarrying.CanCarry(PlaytestCarrying.Limits(CarrierSize.Medium,10),new BurdenTotals(pounds,pounds.Scale(1,10),true))==true;
         }
         public string Resolve(Snapshot s,Command c)
@@ -99,7 +115,9 @@ namespace Decennium.Foundation.Laboratory
                     if(c.Inventory.Destination!=""||item.Access!=InventoryAccess.Ready||!AtPlot(s.Actors.Single(x=>x.Id==c.Actor)))return "InvalidDrop";
                     location=TestOnlyCropPolicy.PlotId;access=InventoryAccess.Ground;break;
                 case HandlingKind.Stow:
-                    if(c.Inventory.Destination!=""||item.Access!=InventoryAccess.Ready)return "InvalidStow";access=InventoryAccess.Stowed;break;
+                    if(c.Inventory.Destination!=""||item.Access!=InventoryAccess.Ready)return "InvalidStow";
+                    if(!FitsSuppliedPouch(s,item))return "ContainerFitNotEstablished";
+                    access=InventoryAccess.Stowed;break;
                 case HandlingKind.Retrieve:
                     if(c.Inventory.Destination!=""||item.Access!=InventoryAccess.Stowed)return "InvalidRetrieval";break;
                 case HandlingKind.Handover:
@@ -135,6 +153,7 @@ namespace Decennium.Foundation.Laboratory
                 }
                 foreach(var item in s.InventoryLots) {
                     var lot=s.Work.Lots.Single(x=>x.Id==item.LotId);
+                    if(item.Access==InventoryAccess.Stowed&&!FitsSuppliedPouch(s,item))return "ContainerFitNotEstablished";
                     if(item.Access==InventoryAccess.Ground?lot.LocationId!=TestOnlyCropPolicy.PlotId
                         :!s.Actors.Any(a=>a.Id==lot.LocationId&&a.Id==lot.CustodianId))return "InvalidInventoryLocation";
                     if(item.ParentId!="") {

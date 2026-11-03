@@ -230,6 +230,28 @@ namespace Decennium.Foundation.Tests
                 var inner=new WorkLedgerCodec().Encode(v.Work,2);inner[20]^=1;Throws<InvalidDataException>(()=>codec.Decode(ReplaceLedger(current,inner)));
                 inner=new WorkLedgerCodec().Encode(v.Work,2);inner[4]=3;Resign(inner);Throws<InvalidDataException>(()=>codec.Decode(ReplaceLedger(current,inner)));
             });
+            cases.Add("inventory_stowing_requires_known_container_fit_not_just_carry_capacity",()=>{
+                var s=Inventory();Mature(s);FarmWork(s,CommandKind.HarvestCrop);FarmAdvance(s,3600);string root=s.Capture().CropFood.Single().LotId;
+                string greens=HandleI(s,root,Q(8),HandlingKind.Pickup,TestOnlyPolicy.CompanionId);
+                foreach(var amount in new[]{Q(8),Q(1)})RejectUnchanged(s,host,IC(s,CommandKind.HandleInventory,greens,
+                    new InventoryRequest(amount,handling:HandlingKind.Stow),TestOnlyPolicy.CompanionId),"ContainerFitNotEstablished");
+                // A checksum-valid forged stow cannot bypass the same host storage prerequisite on restore.
+                var v=s.Capture();string child="forged-greens",job="forged-stow";var start=v.RuleClock;var end=start.AddSeconds(1);var source=v.InventoryLots.Single(x=>x.LotId==greens);
+                v.Work=new WorkLedger(v.Work.Lots.Select(x=>x.Id==greens?new ResourceLot(x.Id,x.UnitId,Q(7),x.LocationId,x.CustodianId):x)
+                    .Concat(new[]{new ResourceLot(child,CampGreens.FoodUnit,Q(1),TestOnlyPolicy.CompanionId,TestOnlyPolicy.CompanionId)}),
+                    v.Work.WorkerIntervals.Concat(new[]{new WorkerInterval(job+".labor",job,TestOnlyPolicy.CompanionId,start,end)}),v.Work.Reservations);
+                OrdinaryInventory.AdvanceTo(v,end);
+                v.InventoryLots=v.InventoryLots.Concat(new[]{new InventoryLotRecord(child,greens,source.OwnerId,Q(1),end,source.Nutrition,source.FreshUntil,InventoryAccess.Stowed)}).ToArray();
+                v.Handling=v.Handling.Concat(new[]{new HandlingRecord(job,TestOnlyPolicy.CompanionId,greens,child,HandlingKind.Stow,start,end,false)}).ToArray();
+                Throws<ArgumentException>(()=>new Simulation(new TestOnlyInventoryPolicy(),codec.Decode(codec.Encode(v)),ExecutionProfile.Laboratory)); });
+            cases.Add("inventory_fixed_container_tares_count_once_and_survive_emptying",()=>{
+                var s=Inventory();var burden=TestOnlyInventoryPolicy.CarriedBurden(s.Capture(),TestOnlyPolicy.ActorId);
+                Require(burden.Pounds==Q(8)&&burden.Load==Q(4,5)&&TestOnlyInventoryPolicy.CarriedBurden(s.Capture(),TestOnlyPolicy.CompanionId).Pounds==Q(1),"Initial pouch/skin tare omitted or double counted.");
+                HandleI(s,TestOnlyInventoryPolicy.FoodId,Q(1),HandlingKind.Stow);
+                Require(TestOnlyInventoryPolicy.CarriedBurden(s.Capture(),TestOnlyPolicy.ActorId).Pounds==Q(8),"Stowing duplicated content weight.");
+                Eat(s,Q(4),TestOnlyInventoryPolicy.WaterId);AdvanceI(s,240);burden=TestOnlyInventoryPolicy.CarriedBurden(s.Capture(),TestOnlyPolicy.ActorId);
+                Require(burden.Pounds==Q(4)&&burden.Load==Q(2,5)&&IL(s,TestOnlyInventoryPolicy.WaterId).Amount==Q(0),"Empty skin or pouch lost its own weight.");
+            });
             cases.Add("inventory_failed_file_commit_preserves_partial_intake",()=>{
                 string path=Path.Combine(directory,"inventory-fail.ddsave");var s=Inventory();var store=new FileSaveStore();store.Save(path,s.Capture());Eat(s,Q(1));AdvanceI(s,300);store.Save(path,s.Capture());
                 var before=File.ReadAllBytes(path);AdvanceI(s,300);Throws<IOException>(()=>new FileSaveStore(new FailingCommit()).Save(path,s.Capture()));
