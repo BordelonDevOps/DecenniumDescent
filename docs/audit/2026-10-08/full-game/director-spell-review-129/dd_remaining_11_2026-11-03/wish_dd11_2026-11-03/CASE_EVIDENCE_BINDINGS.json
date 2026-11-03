@@ -1,0 +1,220 @@
+{
+  "id": "WI-DD11-CASE-EVIDENCE-BINDINGS-01",
+  "identity": "wish",
+  "contractSha256": "212cfa15cf09a8f5515692fa7a912f324d5ca41a37e7c8b1c8e0f2e7c15c2c32",
+  "requiredCases": [
+    {
+      "caseId": "WI-P1",
+      "specification": {
+        "id": "WI-P1",
+        "given": {
+          "routes": [
+            "Wizard/Transmutation",
+            "Cleric/Universal"
+          ],
+          "operation": "WISH-BRIDGE-AND-EVACUATE-01"
+        },
+        "steps": [
+          "Separate paid class-route variants",
+          "Stage shape/reconstruct/relocate",
+          "Atomically settle exact material and two actors",
+          "Traverse bridge with actual movement afterward"
+        ],
+        "expected": {
+          "massInLb": 6000,
+          "massOutLb": 6000,
+          "stockConsumedOnce": true,
+          "bridgeUsable": true,
+          "evacueesAtDeclaredDestinations": true,
+          "onePaidCastPerVariant": true
+        },
+        "covers": [
+          "MR343-W01",
+          "MR343-W02",
+          "MR343-W03"
+        ],
+        "executionStatus": "NOT_EXECUTED_IN_THIS_PACKAGE"
+      },
+      "specificationSha256": "fe70a7a8a7163f51bdfbf94025ffa62e80e01b29670cdd9e673e57b3381549ba",
+      "branchIds": [
+        "WI-P1-WIZARD-COMPOSITE",
+        "WI-P1-CLERIC-COMPOSITE"
+      ],
+      "branchHashes": {
+        "WI-P1-WIZARD-COMPOSITE": "7d61ea5fbcca7e34ccc6e148e1604fe3c171e2b79d346bb9523c261e35be7a86",
+        "WI-P1-CLERIC-COMPOSITE": "51178a114a92323fd5ee1fa81cc506943ca52a2b8ecc507677a3dcb18af637e2"
+      },
+      "status": "PASS_STATIC_TEST_ONLY"
+    },
+    {
+      "caseId": "WI-P2",
+      "specification": {
+        "id": "WI-P2",
+        "given": {
+          "routes": [
+            "Druid/Transmutation",
+            "Mage/Transmutation"
+          ],
+          "operations": [
+            "WISH-MATERIAL-RESHAPE-01",
+            "WISH-WILLING-RELOCATE-01"
+          ],
+          "fixture": "distinct paid encounters with exact owned material/consenting actors"
+        },
+        "steps": [
+          "Demonstrate each substantive useful outcome with complete native class costs and actual state deltas"
+        ],
+        "expected": {
+          "multipleOutcomes": true,
+          "noSlotCopySubstitute": true,
+          "allFourNativeRoutesCovered": true
+        },
+        "covers": [
+          "MR343-W01",
+          "MR343-W03"
+        ],
+        "executionStatus": "NOT_EXECUTED_IN_THIS_PACKAGE"
+      },
+      "specificationSha256": "77741f96977e5508cd50b7abdf05eab284a806cc34f9e68d20e6a9fd5c3f29ee",
+      "branchIds": [
+        "WI-P2-DRUID-MATERIAL",
+        "WI-P2-DRUID-RELOCATE",
+        "WI-P2-MAGE-MATERIAL",
+        "WI-P2-MAGE-RELOCATE"
+      ],
+      "branchHashes": {
+        "WI-P2-DRUID-MATERIAL": "e37ca3e0139a4db75ea3b20b0cbf102847d6d6825a1ea3548ea2b13d07757e97",
+        "WI-P2-DRUID-RELOCATE": "6a2fd6b7670b04fcaca51a784051d6226901dc84804509b6479c5ad01944bd08",
+        "WI-P2-MAGE-MATERIAL": "253f20f45cbb6a76dd5197dc1c641b26d42f42e514577c8eb86a11f8134082cd",
+        "WI-P2-MAGE-RELOCATE": "ff398fc33851b8a227a930604a0e27dba3bd53fbdf570854845ee953fafce71f"
+      },
+      "status": "PASS_STATIC_TEST_ONLY"
+    },
+    {
+      "caseId": "WI-A1",
+      "specification": {
+        "id": "WI-A1",
+        "given": {
+          "variants": [
+            "countered",
+            "consent revoked after commitment",
+            "destination occupied at settlement",
+            "protected target",
+            "source material version changed"
+          ]
+        },
+        "steps": [
+          "Commit valid graph before response/change",
+          "Fail atomic settlement correctly"
+        ],
+        "expected": {
+          "originalWorldUnchanged": true,
+          "castCostsHistoryRemainSpent": true,
+          "partialMatterOrMovement": false
+        },
+        "covers": [
+          "MR343-W02",
+          "MR343-W03"
+        ],
+        "executionStatus": "NOT_EXECUTED_IN_THIS_PACKAGE"
+      },
+      "specificationSha256": "90a761c5209bc3a98904584b79eff37bc527f63fca748e1f79d191c9170a328f",
+      "branchIds": [
+        "WI-A1-COUNTERED",
+        "WI-A1-CONSENT-REVOKED",
+        "WI-A1-DESTINATION-OCCUPIED",
+        "WI-A1-PROTECTED-TARGET",
+        "WI-A1-SOURCE-VERSION-CHANGED"
+      ],
+      "branchHashes": {
+        "WI-A1-COUNTERED": "7b8e4ce8bfb92a051d04e4d9fe34a699faa6422413b9daade81a2519d2b116f5",
+        "WI-A1-CONSENT-REVOKED": "400ab7eeb5927d697b848b03d279b971ae4f32c1d1ea2abdca3b8adf822ae0a8",
+        "WI-A1-DESTINATION-OCCUPIED": "5b599211a1f5819e70d05fd1350acd6de0e3a400e3f56b8d5f7dbc36d86e2e9e",
+        "WI-A1-PROTECTED-TARGET": "0ed72fd6c0cec14aaecc4df1589aa2a937c2c9c4763528f6d6f9f91b89ec59fa",
+        "WI-A1-SOURCE-VERSION-CHANGED": "8b9fe3a8143f201c0a10a47e250f34889fab9d4feb2da798db28bb1a0be0c46a"
+      },
+      "status": "PASS_STATIC_TEST_ONLY"
+    },
+    {
+      "caseId": "WI-A2",
+      "specification": {
+        "id": "WI-A2",
+        "given": {
+          "variants": [
+            "same-key retry",
+            "concurrent distinct cast on same material",
+            "known unsupported outcome before commit",
+            "later damage/dispel/save-load"
+          ]
+        },
+        "steps": [
+          "Check receipt before transaction",
+          "Compare versions",
+          "Preserve exact physical aftermath"
+        ],
+        "expected": {
+          "noDuplicateOutput": true,
+          "secondRaceCannotConsumeSameMass": true,
+          "knownIllegalNoCommitment": true,
+          "noAuditRewindInWorld": true
+        },
+        "covers": [
+          "MR343-W01",
+          "MR343-W02",
+          "MR343-W03"
+        ],
+        "executionStatus": "NOT_EXECUTED_IN_THIS_PACKAGE"
+      },
+      "specificationSha256": "1e1835163259c78ddd4d28dc774287e7fc205446b3f31eec6b648bc1da5aa7a6",
+      "branchIds": [
+        "WI-A2-SAME-KEY-AFTERMATH",
+        "WI-A2-CONCURRENT-SOURCE-RACE",
+        "WI-A2-KNOWN-UNSUPPORTED-OUTCOME"
+      ],
+      "branchHashes": {
+        "WI-A2-SAME-KEY-AFTERMATH": "0375579f8690cd692f647bbc6fa50f3c09a6e51df6882fc1a491362f1f6ab9fb",
+        "WI-A2-CONCURRENT-SOURCE-RACE": "e280969e9b06b17ddaa47aa145e81513139057137d9daee912863f5f7b3a8bbf",
+        "WI-A2-KNOWN-UNSUPPORTED-OUTCOME": "f002d57c93403794e392405a0c6183969ade65cfe083892f2af21d644429f522"
+      },
+      "status": "PASS_STATIC_TEST_ONLY"
+    }
+  ],
+  "nativeRouteCoverage": {
+    "Wizard/Transmutation": [
+      "WI-P1-WIZARD-COMPOSITE",
+      "WI-A2-SAME-KEY-AFTERMATH",
+      "WI-A2-CONCURRENT-SOURCE-RACE"
+    ],
+    "Cleric/Universal": [
+      "WI-P1-CLERIC-COMPOSITE"
+    ],
+    "Druid/Transmutation": [
+      "WI-P2-DRUID-MATERIAL",
+      "WI-P2-DRUID-RELOCATE"
+    ],
+    "Mage/Transmutation": [
+      "WI-P2-MAGE-MATERIAL",
+      "WI-P2-MAGE-RELOCATE"
+    ]
+  },
+  "minimumDistinctPaidPositiveEncountersPerRoute": 1,
+  "obligationCrosswalk": {
+    "MR343-W01": [
+      "WI-P1",
+      "WI-P2",
+      "WI-A2"
+    ],
+    "MR343-W02": [
+      "WI-P1",
+      "WI-A1",
+      "WI-A2"
+    ],
+    "MR343-W03": [
+      "WI-P1",
+      "WI-P2",
+      "WI-A1",
+      "WI-A2"
+    ]
+  },
+  "scope": "STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY"
+}

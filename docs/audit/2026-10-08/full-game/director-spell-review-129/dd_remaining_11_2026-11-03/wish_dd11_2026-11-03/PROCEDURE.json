@@ -1,0 +1,400 @@
+{
+  "id": "WI-DD11-AUTHORED-PROCEDURE-01",
+  "identity": "wish",
+  "status": "CONDITIONALLY_ACCEPTED_STATIC_MODEL",
+  "scope": "STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY",
+  "model": {
+    "designDecision": "A versioned finite outcome registry supplies substantive reality changes and one substantial composite. These examples are not the maximum possible power of Wish. Additional outcomes need their own explicit design/version and tests, not an invented universal permission. No D&D spell-copy ceiling, gold cap, stress, Strength drain, spell-loss chance, extra material price or cooldown is imported.",
+    "admission": "Select an exact registered outcome and complete finite argument graph. All affected bodies/items/source and destination geometry must be within120ft and satisfy the selected LoE/permission rules. Known impossible/unregistered/prohibited declarations are rejected before commitment; hidden defenses/changed versions discovered after commitment are paid failures with no refund.",
+    "outcomes": {
+      "WISH-MATERIAL-RESHAPE-01": {
+        "operation": "Instantaneously change owned nonliving mundane material into a specified mundane material and shape, conserving exact total mass for this outcome; this is not a global Wish conservation limit.",
+        "inputs": "source IDs, quantities, material/density, owner consent, output blueprint/density/volume and unoccupied supported destination cells",
+        "exclusions": "living tissue, souls, unique relic identity/protected components, knowledge/history and resource pools are not authorized by this outcome",
+        "result": "new physical geometry/material with one lineage graph and original ownership. Source quantities are consumed exactly once; no ongoing magic or free reversion."
+      },
+      "WISH-STRUCTURE-RECONSTRUCT-01": {
+        "operation": "Reconstruct a finite damaged mundane structure from its exact authorized blueprint and real compatible mass, including its support graph and exact durability. It may use the staged output of MATERIAL-RESHAPE in the same composite.",
+        "rules": "validate all source/target/support versions and full empty-volume fit. No restoring consumed unique resources, reviving destroyed relic powers or inferring an unavailable blueprint. Completed construction is ordinary physical aftermath."
+      },
+      "WISH-WILLING-RELOCATE-01": {
+        "operation": "Instantaneously relocate a finite explicitly enumerated set of willing living corporeal creatures and their currently declared carried items between exact cells on the same plane. No fixed participant-count cap; every body and its complete cargo envelope must be enumerated and independently fit.",
+        "consent": "each creature explicitly consents at commitment and settlement; each moved independent owned item has lawful custody/owner permission",
+        "geometry": "both original and destination complete bounds within120ft with clear LoE from caster; destination supported and pairwise nonoverlapping; actual anti-teleport/source protections remain effective",
+        "cost": "caster's paid Wish supplies the relocation; no recipient movement cost or extra Action is fabricated, and no recipient budget is refreshed",
+        "preserve": "actor identity, HP/Wounds/death history, current RP, concentration, existing elapsed clocks, item ownership/charges and all prior movement spent; process actual range-dependent effect callbacks once"
+      }
+    },
+    "composite": {
+      "id": "WISH-BRIDGE-AND-EVACUATE-01",
+      "graph": [
+        {
+          "id": "shape",
+          "operation": "WISH-MATERIAL-RESHAPE-01",
+          "dependsOn": []
+        },
+        {
+          "id": "reconstruct",
+          "operation": "WISH-STRUCTURE-RECONSTRUCT-01",
+          "dependsOn": [
+            "shape"
+          ]
+        },
+        {
+          "id": "relocate",
+          "operation": "WISH-WILLING-RELOCATE-01",
+          "dependsOn": [
+            "reconstruct"
+          ]
+        }
+      ],
+      "transaction": "One cast, one Action, one actual final RP price; stage every node against a versioned projected state, validate all nodes and protections, then atomically commit the entire graph. No partially built bridge or moved participant exists if any node fails. The dependency graph is evidence, not three free new spell casts.",
+      "failure": "Known-invalid graph refused at admission. Counterspell/changed consent/version/occupied endpoint after commitment leaves all original world nodes untouched and preserves cast costs/history. Staging rollback is distinct from audit inverse of the full paid branch.",
+      "deduplication": "castID:operationGraphHash is the transaction key; receipt-first repeat returns original result with no second quantities, relocation, procs, memory or cost. Concurrent distinct casts race via version checks, never last-writer duplication.",
+      "ongoingOrDeferred": "None in these three outcomes. Save/load or later dispel does not rewind physical results. Future outcome versions must explicitly define any ongoing or deferred source, deadline and terminal ordering."
+    },
+    "fixture": {
+      "site": "TEST-ONLY-ARENA-11 with the same exact bridge gap/support geometry declared by the Divine Intervention fixture; this is a fresh isolated branch, not imported Divine events",
+      "sourceMaterial": {
+        "id": "wish-scrap",
+        "material": "mundane mixed aggregate allowed by this NEW reshape recipe",
+        "massLb": 6000,
+        "densityLbFt3": 100,
+        "bounds": [
+          [
+            30,
+            42
+          ],
+          [
+            10,
+            15
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "owner": "TEST-SITE-OWNER"
+      },
+      "shapeOutput": {
+        "material": "mundane structural stone",
+        "massLb": 6000,
+        "densityLbFt3": 120,
+        "volumeFt3": 50
+      },
+      "bridge": {
+        "bounds": [
+          [
+            30,
+            50
+          ],
+          [
+            -2.5,
+            2.5
+          ],
+          [
+            -0.5,
+            0
+          ]
+        ],
+        "AC": 17,
+        "HP": 100,
+        "massLb": 6000,
+        "supportCapacityLbEach": 10000,
+        "maxTransitLoadLb": 2000
+      },
+      "relocation": {
+        "actors": [
+          {
+            "id": "evacuee1",
+            "from": [
+              20,
+              10,
+              0
+            ],
+            "to": [
+              55,
+              10,
+              0
+            ]
+          },
+          {
+            "id": "evacuee2",
+            "from": [
+              20,
+              -10,
+              0
+            ],
+            "to": [
+              55,
+              -10,
+              0
+            ]
+          }
+        ],
+        "bodyDimensionsFt": [
+          5,
+          5,
+          6
+        ],
+        "cargo": "one10lb1Load owned pack per evacuee, exact contained/attached bounds",
+        "consent": true,
+        "samePlane": true,
+        "destinationFloor": "continuous test-floor at z=0 outside gap"
+      }
+    },
+    "extensionPolicy": "A future registered substantive Wish outcome is allowed to exceed these examples if separately and explicitly authored; this package neither claims unlimited success nor imposes these examples as native power ceilings. Existing Hunt, time/history, uniqueness and source-protection qualifications remain."
+  },
+  "nativeCardUnmodified": {
+    "id": "wish",
+    "name": "Wish",
+    "schools": [
+      "Transmutation",
+      "Universal"
+    ],
+    "status": "blocked-pending-operational-review",
+    "visibility": "public-source-review",
+    "classAccess": {
+      "Cleric": {
+        "rank": 9,
+        "minimumClassLevel": 17,
+        "school": "Universal",
+        "baseRpCost": 26
+      },
+      "Druid": {
+        "rank": 9,
+        "minimumClassLevel": 17,
+        "school": "Transmutation",
+        "baseRpCost": 26
+      },
+      "Mage": {
+        "rank": 9,
+        "minimumClassLevel": 17,
+        "school": "Transmutation",
+        "baseRpCost": 26
+      },
+      "Wizard": {
+        "rank": 9,
+        "minimumClassLevel": 17,
+        "school": "Transmutation",
+        "baseRpCost": 26
+      }
+    },
+    "operational": null,
+    "additionalRpCost": 0,
+    "source": {
+      "catalogPath": "src/data/spells.js",
+      "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+      "catalogKey": "wish",
+      "original": {
+        "name": "Wish",
+        "level": 9,
+        "resonanceRank": 9,
+        "school": "Transmutation",
+        "schools": [
+          "Transmutation",
+          "Universal"
+        ],
+        "placements": [
+          {
+            "name": "Wish",
+            "school": "Transmutation",
+            "level": 9,
+            "summary": "The most powerful spell, reshape reality."
+          },
+          {
+            "name": "Wish",
+            "school": "Universal",
+            "level": 9,
+            "summary": "The most powerful spell, reshape reality."
+          }
+        ],
+        "classLevels": {
+          "Cleric": 9,
+          "Druid": 9,
+          "Mage": 9,
+          "Wizard": 9
+        },
+        "classRanks": {
+          "Cleric": 9,
+          "Druid": 9,
+          "Mage": 9,
+          "Wizard": 9
+        },
+        "classLearnLevels": {
+          "Cleric": 17,
+          "Druid": 17,
+          "Mage": 17,
+          "Wizard": 17
+        },
+        "classSchools": {
+          "Cleric": "Universal",
+          "Druid": "Transmutation",
+          "Mage": "Transmutation",
+          "Wizard": "Transmutation"
+        },
+        "castingTime": "Not specified in current rulebook",
+        "range": "Not specified in current rulebook",
+        "components": "Not specified in current rulebook",
+        "duration": "Not specified in current rulebook",
+        "description": "The most powerful spell, reshape reality.",
+        "alternateSummaries": [],
+        "classes": [
+          "Cleric",
+          "Druid",
+          "Mage",
+          "Wizard"
+        ],
+        "status": "canon",
+        "source": "Player Rulebook — Spell Lists"
+      },
+      "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+      "coreEntries": [
+        {
+          "index": 827,
+          "original": {
+            "school": "Transmutation",
+            "level": 9,
+            "name": "Wish",
+            "effect": "The most powerful spell, reshape reality.",
+            "source_paragraph": 10003,
+            "casting_time": "1 action",
+            "range": "120 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Utility"
+            ],
+            "rp_cost": 26
+          }
+        },
+        {
+          "index": 928,
+          "original": {
+            "school": "Universal",
+            "level": 9,
+            "name": "Wish",
+            "effect": "The most powerful spell, reshape reality.",
+            "source_paragraph": 10129,
+            "casting_time": "1 action",
+            "range": "120 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Utility"
+            ],
+            "rp_cost": 26
+          }
+        }
+      ],
+      "possibleHistoricalAliases": []
+    },
+    "reviewFlags": [
+      "Core resolution requires an explicit operational interpretation",
+      "Not selectable in this spell playtest packet until individual operational review"
+    ]
+  },
+  "sourceBindings": [
+    {
+      "repositoryPath": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_wish_return343_received/payload/HOLD_REGISTER.json",
+      "commit": "980c498826c631a3e28a4dc308e534c75c884d35",
+      "hashDomain": "exact committed UTF-8 Git blob bytes; no line-ending normalization",
+      "bytes": 10370,
+      "sha256": "c4393d7ffec10b7477074f802bcd703dd5fa90b47e84536ad6c1ce021ee3a942",
+      "crc32": "77ff35d0",
+      "gitBlobSha1": "a90adb1d8eb5f0e9b6adc51edc0b1605acadd5ca"
+    },
+    {
+      "repositoryPath": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_wish_return343_received/payload/CASE_COVERAGE.json",
+      "commit": "980c498826c631a3e28a4dc308e534c75c884d35",
+      "hashDomain": "exact committed UTF-8 Git blob bytes; no line-ending normalization",
+      "bytes": 1672,
+      "sha256": "b73787db0e664fb84f88b6877380c271773983cb9134505e5fa9169358e8d4d3",
+      "crc32": "6b68737f",
+      "gitBlobSha1": "38466da1e4c739167764e81f2605b0a5b5b9b67a"
+    },
+    {
+      "repositoryPath": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_wish_return343_received/payload/DIRECTOR_DECISION.json",
+      "commit": "980c498826c631a3e28a4dc308e534c75c884d35",
+      "hashDomain": "exact committed UTF-8 Git blob bytes; no line-ending normalization",
+      "bytes": 3973,
+      "sha256": "dd0419c746e14930fcc146201af5e935bc93bf129ccf56274d7da098af0ba8ae",
+      "crc32": "62ccfd9e",
+      "gitBlobSha1": "ebe5eb0dec48ba67bc78344643c02b9c93b535db"
+    },
+    {
+      "repositoryPath": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_wish_return343_received/payload/PROCEDURE_STATUS.json",
+      "commit": "980c498826c631a3e28a4dc308e534c75c884d35",
+      "hashDomain": "exact committed UTF-8 Git blob bytes; no line-ending normalization",
+      "bytes": 9984,
+      "sha256": "d5da6473fd3a5f1e4c37d247d1c4371046bad7e1548b894bfd181d4bc41ebf2f",
+      "crc32": "18f8b5f8",
+      "gitBlobSha1": "c84a5f9be282a021a63cb3bc4a2a54079646a36a"
+    },
+    {
+      "repositoryPath": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_wish_return343_received/payload/QUALIFICATIONS.json",
+      "commit": "980c498826c631a3e28a4dc308e534c75c884d35",
+      "hashDomain": "exact committed UTF-8 Git blob bytes; no line-ending normalization",
+      "bytes": 5179,
+      "sha256": "89f790fe9206b5ce42a7bf718d0748963bf87280ae756c7c87c3dd9401f4611d",
+      "crc32": "34d4ccb1",
+      "gitBlobSha1": "052b964e31d23ee9e54b70e838a9fb169e507ffc"
+    },
+    {
+      "repositoryPath": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_wish_return343_received/payload/evidence/packet/sources/04_SPELL_INTEGRATION_RULES.md",
+      "commit": "980c498826c631a3e28a4dc308e534c75c884d35",
+      "hashDomain": "exact committed UTF-8 Git blob bytes; no line-ending normalization",
+      "bytes": 67451,
+      "sha256": "55f486de8d38a6734f8f0f2f62066401504f5b1311ebe66693175876b3f7aa6d",
+      "crc32": "9fb65271",
+      "gitBlobSha1": "771a8e5a35124d6ab3521a4c9a6538f00b4519e6"
+    },
+    {
+      "repositoryPath": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_wish_return343_received/payload/evidence/packet/sources/07_cleric.json",
+      "commit": "980c498826c631a3e28a4dc308e534c75c884d35",
+      "hashDomain": "exact committed UTF-8 Git blob bytes; no line-ending normalization",
+      "bytes": 81863,
+      "sha256": "25387b0dcfae0d53d689486d4b05d8ef5b24bed1b70f0baab970a82dbd370f89",
+      "crc32": "9bb09a74",
+      "gitBlobSha1": "193ca1eaecd1c9fa1f26993dfe872f7da2a17b97"
+    },
+    {
+      "repositoryPath": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_wish_return343_received/payload/evidence/packet/sources/08_druid.json",
+      "commit": "980c498826c631a3e28a4dc308e534c75c884d35",
+      "hashDomain": "exact committed UTF-8 Git blob bytes; no line-ending normalization",
+      "bytes": 88119,
+      "sha256": "581bd030286dc91e17792e9724e942b99d7e7d97ce6f6a3dfacc4f37f5113b8f",
+      "crc32": "888fd919",
+      "gitBlobSha1": "e6778fbc21a547e235fcb1534eef27e553d1354b"
+    },
+    {
+      "repositoryPath": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_wish_return343_received/payload/evidence/packet/sources/09_mage.json",
+      "commit": "980c498826c631a3e28a4dc308e534c75c884d35",
+      "hashDomain": "exact committed UTF-8 Git blob bytes; no line-ending normalization",
+      "bytes": 80394,
+      "sha256": "c64782e192e2e63e5abed5728f9213c9d4cf956bce1a75da7a156dbfd1141e0b",
+      "crc32": "4bd2b68a",
+      "gitBlobSha1": "fa74b85e206a514991a7637870004a7ddd91925b"
+    },
+    {
+      "repositoryPath": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_wish_return343_received/payload/evidence/packet/sources/10_wizard.json",
+      "commit": "980c498826c631a3e28a4dc308e534c75c884d35",
+      "hashDomain": "exact committed UTF-8 Git blob bytes; no line-ending normalization",
+      "bytes": 100635,
+      "sha256": "8ab2f4f43bcbced418fb266e5bd3216cff491b0c442c16f93438bd3556672c8b",
+      "crc32": "88ed1ecc",
+      "gitBlobSha1": "cba2bdbbe964e9597011ed59f0c934bd09350a93"
+    }
+  ],
+  "limits": {
+    "blockerClosed": false,
+    "nativeOperational": null,
+    "runtimeSelectionEnabled": false,
+    "canonPromotion": false,
+    "campaignFactsCreated": false,
+    "unlimitedOutcomeRegistry": false
+  }
+}
