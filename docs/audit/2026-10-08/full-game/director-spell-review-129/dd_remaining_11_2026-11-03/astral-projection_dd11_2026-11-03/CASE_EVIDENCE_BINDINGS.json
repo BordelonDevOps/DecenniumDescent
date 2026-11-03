@@ -1,0 +1,244 @@
+{
+  "id": "AS-DD11-CASE-EVIDENCE-BINDINGS-01",
+  "identity": "astral-projection",
+  "contractSha256": "929e8cf4007cc3e156320753358acaadca15bc67fc10dfa611107458156b7fd2",
+  "requiredCases": [
+    {
+      "caseId": "AS-P1",
+      "specification": {
+        "id": "AS-P1",
+        "given": {
+          "routes": [
+            "Cleric/Necromancy",
+            "Wizard/Enchantment"
+          ],
+          "cohortSize": 2
+        },
+        "steps": [
+          "Separate legal paid route variants",
+          "Project caster and companion",
+          "Walk20ft clear supported route",
+          "Spend Action opening Astral latch",
+          "Companion individually returns"
+        ],
+        "expected": {
+          "gateOpen": true,
+          "companionAtOriginal": true,
+          "casterStillProjected": true,
+          "oneActorLedgerEach": true
+        },
+        "covers": [
+          "PC340-W01",
+          "PC340-W02",
+          "PC340-W03",
+          "PC340-W04"
+        ],
+        "executionStatus": "NOT_EXECUTED_IN_THIS_PACKAGE"
+      },
+      "specificationSha256": "48c38d4ad6a27ec62aba924b571bd77ad9341d0dcdf0c68c9cdd4ea82c376357",
+      "branchIds": [
+        "AS-P1-CLERIC",
+        "AS-P1-WIZARD"
+      ],
+      "branchHashes": {
+        "AS-P1-CLERIC": "aa017b9698e1703dee52bd5016a0ab294091ef27c4658f85eba0d120bb0b61ba",
+        "AS-P1-WIZARD": "64dfdbf07f24c273d0b079924d4b5d7c1f6d6e9f16cb89e1c025143bb12c52ec"
+      },
+      "status": "PASS_STATIC_TEST_ONLY"
+    },
+    {
+      "caseId": "AS-P2",
+      "specification": {
+        "id": "AS-P2",
+        "given": {
+          "routes": [
+            "Druid/Necromancy",
+            "Mage/Universal"
+          ],
+          "genuineCargo": "astral-survey-tablet"
+        },
+        "steps": [
+          "Paid cohort variant",
+          "Lawfully pick up tablet",
+          "Use valid focus proxy for legal paid action",
+          "Return and settle tablet at Astral floor"
+        ],
+        "expected": {
+          "tabletNotImported": true,
+          "ownerPreserved": true,
+          "focusChargeOrCostDebitedOnce": true,
+          "deadlineNotExtended": true
+        },
+        "covers": [
+          "PC340-W01",
+          "PC340-W02",
+          "PC340-W04"
+        ],
+        "executionStatus": "NOT_EXECUTED_IN_THIS_PACKAGE"
+      },
+      "specificationSha256": "428ac0edc19a3a0a4f386090e7d91e75dfa48cc18853e48ce51e41236e63c816",
+      "branchIds": [
+        "AS-P2-DRUID",
+        "AS-P2-MAGE"
+      ],
+      "branchHashes": {
+        "AS-P2-DRUID": "48e778b38e4c477be6dc5e5558b104f8d5138d4ac2aad8bc4507f805e258fa82",
+        "AS-P2-MAGE": "b0e19a1967e511c8c20635853ecfcb78c302c11f39824b4d823703cd70a59447"
+      },
+      "status": "PASS_STATIC_TEST_ONLY"
+    },
+    {
+      "caseId": "AS-A1",
+      "specification": {
+        "id": "AS-A1",
+        "given": {
+          "branches": [
+            "original body moved/confined",
+            "original focus stolen",
+            "damage to original",
+            "projection reduced to0",
+            "caster dies while companion remains"
+          ]
+        },
+        "steps": [
+          "Resolve each from isolated paid state with exact event roots"
+        ],
+        "expected": {
+          "noSafeTeleport": true,
+          "stolenFocusProxyInvalid": true,
+          "oneHPDeathLedger": true,
+          "noHealingOnReturn": true,
+          "cohortDeadlinePreserved": true
+        },
+        "covers": [
+          "PC340-W02",
+          "PC340-W03",
+          "PC340-W04"
+        ],
+        "executionStatus": "NOT_EXECUTED_IN_THIS_PACKAGE"
+      },
+      "specificationSha256": "35165588b54ba3a1468762e6a26291b17687ee0635f7176d1212549b9cc60734",
+      "branchIds": [
+        "AS-A1-BODY-MOVED",
+        "AS-A1-FOCUS-STOLEN",
+        "AS-A1-ORIGINAL-DAMAGE",
+        "AS-A1-PROJECTION-ZERO",
+        "AS-A1-CASTER-DIES"
+      ],
+      "branchHashes": {
+        "AS-A1-BODY-MOVED": "23778fe2be2ad7426816043a1c45d01c3f7630f207015412b6b4e0aa2ffdad5e",
+        "AS-A1-FOCUS-STOLEN": "ad525bed00664cdbfe63078be12f4df0d7743b09cd99b6769f4e7651b7b161a6",
+        "AS-A1-ORIGINAL-DAMAGE": "1293ae8d0a4f72b390a6173b1f8a109ee62b57cc4cad805755422ce70f2eaa4e",
+        "AS-A1-PROJECTION-ZERO": "abf547bf9412bfd71bebd952e2401e36c26223792f9c5de7750d30ab6dd318d6",
+        "AS-A1-CASTER-DIES": "ff69a88a8459578d273cb100db9f136e187dcfce59f1f36a5aeab158ad872cf8"
+      },
+      "status": "PASS_STATIC_TEST_ONLY"
+    },
+    {
+      "caseId": "AS-A2",
+      "specification": {
+        "id": "AS-A2",
+        "given": {
+          "branches": [
+            "suppression",
+            "eligible dispel",
+            "natural deadline",
+            "recast while projected",
+            "duplicate return",
+            "new source-qualified Hunt terminal condition"
+          ]
+        },
+        "steps": [
+          "Bind actual sources for external operations",
+          "End only covered participant(s)",
+          "Repeat callback"
+        ],
+        "expected": {
+          "noProjectionRevival": true,
+          "cargoSettledOnce": true,
+          "noHuntBypass": true,
+          "noSecondBodySoul": true
+        },
+        "covers": [
+          "PC340-W03",
+          "PC340-W04"
+        ],
+        "executionStatus": "NOT_EXECUTED_IN_THIS_PACKAGE"
+      },
+      "specificationSha256": "7dcc5fc9627c9c4d4a92066511afbf490d911e28fcec91b29582cb7621a23ab3",
+      "branchIds": [
+        "AS-A2-SUPPRESSION",
+        "AS-A2-DISPEL",
+        "AS-A2-DEADLINE",
+        "AS-A2-RECAST-WHILE-PROJECTED",
+        "AS-A2-DUPLICATE-RETURN",
+        "AS-A2-RETURN-THEN-RECAST",
+        "AS-A2-HUNT"
+      ],
+      "branchHashes": {
+        "AS-A2-SUPPRESSION": "76017ef4820759836779750663c2b0270928ed2dfcf9b613dd67803fc1780d9a",
+        "AS-A2-DISPEL": "dab9c67fd01233375639e6fbfb7b31d422e425308dc05b81f07ea4abdc17f989",
+        "AS-A2-DEADLINE": "ebce75e48a032780d1c4a13017880c8a82d4f36e3622546bdfbab21fa970e89a",
+        "AS-A2-RECAST-WHILE-PROJECTED": "8f16462b910e0a0591a519f385f1b39aa06564ac3e05baa96a8f42aafc54d181",
+        "AS-A2-DUPLICATE-RETURN": "8f2252e9e724a7f31d84a3a209924e11dfdf7eef4b13662002657d41f0e4deab",
+        "AS-A2-RETURN-THEN-RECAST": "d16e15f02f18cdaa58e94c424092dc3ca1214a31ca28666ded43f7550157ef9b",
+        "AS-A2-HUNT": "b2e3da4cccbd2c2b4c5bc2104e38d9df390b215695c94665e02f44ed77667ded"
+      },
+      "status": "PASS_STATIC_TEST_ONLY"
+    }
+  ],
+  "nativeRouteCoverage": {
+    "Cleric/Necromancy": [
+      "AS-P1-CLERIC",
+      "AS-A1-BODY-MOVED",
+      "AS-A1-CASTER-DIES",
+      "AS-A2-SUPPRESSION"
+    ],
+    "Druid/Necromancy": [
+      "AS-P2-DRUID",
+      "AS-A1-ORIGINAL-DAMAGE",
+      "AS-A2-RECAST-WHILE-PROJECTED"
+    ],
+    "Mage/Universal": [
+      "AS-P2-MAGE",
+      "AS-A1-PROJECTION-ZERO",
+      "AS-A2-DEADLINE",
+      "AS-A2-DUPLICATE-RETURN",
+      "AS-A2-HUNT"
+    ],
+    "Wizard/Enchantment": [
+      "AS-P1-WIZARD",
+      "AS-A1-FOCUS-STOLEN",
+      "AS-A2-DISPEL",
+      "AS-A2-RETURN-THEN-RECAST"
+    ]
+  },
+  "minimumDistinctPaidPositiveEncountersPerRoute": 1,
+  "obligationCrosswalk": {
+    "PC340-W01": [
+      "AS-P1",
+      "AS-P2",
+      "AS-A1",
+      "AS-A2"
+    ],
+    "PC340-W02": [
+      "AS-P1",
+      "AS-P2",
+      "AS-A1",
+      "AS-A2"
+    ],
+    "PC340-W03": [
+      "AS-P1",
+      "AS-P2",
+      "AS-A1",
+      "AS-A2"
+    ],
+    "PC340-W04": [
+      "AS-P1",
+      "AS-P2",
+      "AS-A1",
+      "AS-A2"
+    ]
+  },
+  "scope": "STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY"
+}
