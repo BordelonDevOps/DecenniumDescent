@@ -210,6 +210,7 @@ namespace Decennium.Foundation.Tests
             AddWorkSessionCases(cases, directory);
             AddPrototypePolicyCases(cases);
             AddCropCases(cases, directory);
+            AddCarryingCases(cases);
             return cases;
         }
         private static void Resign(byte[] bytes)
