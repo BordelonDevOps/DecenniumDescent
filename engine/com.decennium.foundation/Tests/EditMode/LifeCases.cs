@@ -15,6 +15,60 @@ namespace Decennium.Foundation.Tests
             => PlaytestLife.Damage(s,damage,modifier,natural,injury,critical,maiming,knockout,melee,stableD4,now);
         private static void AddLifeCases(Dictionary<string,Action> cases)
         {
+            cases.Add("life_exact_stable_recovery_preserves_fractional_origin_and_deadline",()=>{
+                var s=PlaytestLife.StabilizeAt(new LifeState(40,0),1,T(1,3));
+                Require(s.StableUntil==T(10801,3)&&PlaytestLife.StableRecoveryAt(s,T(3600)).Hp==0,"Stable deadline rounded down.");
+                var recovered=PlaytestLife.StableRecoveryAt(s,T(10801,3));
+                Require(recovered.Hp==1&&!recovered.Stable&&!recovered.StableUntil.HasValue,"Exact deadline did not recover once.");
+                Require(PlaytestLife.StableRecoveryAt(recovered,T(7200)).Hp==1,"Stable recovery repeated."); });
+            cases.Add("life_exact_knockout_records_fractional_completion",()=>{
+                var s=PlaytestLife.DamageAt(new LifeState(40,5),5,T(2,7),woundNatural:20,knockout:true,melee:true,stableD4:2).State;
+                Require(s.Stable&&s.StableUntil==T(50402,7)&&s.DeathFailures==0,"Knockout rounded or duplicated zero-HP consequences."); });
+            cases.Add("life_exact_third_death_success_retains_start_phase",()=>{
+                var s=PlaytestLife.DeathSaveAt(new LifeState(40,0,deathSuccesses:2),10,1,T(5,11),stableD4:4);
+                Require(s.Stable&&s.StableUntil==T(158405,11)&&s.LastDeathTurn==1&&s.DeathSuccesses==0,"Death-save stabilization lost phase/counter reset."); });
+            cases.Add("life_exact_prohibited_natural_twenty_stabilizes_without_transient_hp",()=>{
+                var s=PlaytestLife.DeathSaveAt(new LifeState(40,0,deathFailures:2),20,1,T(1,7),stableD4:3,hpRecoveryProhibited:true);
+                Require(s.Hp==0&&s.Stable&&s.StableUntil==T(75601,7)&&s.DeathFailures==0,"Blocked natural20 healed or rounded."); });
+            cases.Add("life_exact_buffered_damage_retains_deadline_real_damage_cancels",()=>{
+                var s=new LifeState(40,0,5,stable:true,stableUntil:T(10801,3));
+                var buffered=PlaytestLife.DamageAt(s,5,T(1,3)).State;
+                Require(buffered.StableUntil==s.StableUntil&&buffered.Stable,"Temporary HP absorption erased fractional recovery.");
+                var broken=PlaytestLife.DamageAt(buffered,1,T(2,3)).State;
+                Require(!broken.Stable&&!broken.StableUntil.HasValue&&broken.DeathFailures==1,"HP damage retained stale recovery."); });
+            cases.Add("life_exact_capacity_and_wound_changes_preserve_recovery",()=>{
+                var s=new LifeState(40,0,wounds:Wounds(2),stable:true,stableUntil:T(10801,3));
+                var changed=PlaytestLife.RemoveWounds(PlaytestLife.ChangeMaximum(s,20),new[]{0});
+                Require(changed.StableUntil==s.StableUntil&&changed.Hp==0&&changed.Wounds.Count==1&&s.Wounds.Count==2,"Non-HP changes moved recovery or mutated input."); });
+            cases.Add("life_exact_overdue_prohibited_recovery_resumes_without_reanchoring",()=>{
+                var s=PlaytestLife.StabilizeAt(new LifeState(40,0),1,T(1,3));
+                var blocked=PlaytestLife.StableRecoveryAt(s,T(20000,3),true);
+                Require(blocked.StableUntil==T(10801,3)&&blocked.Hp==0,"Blocked recovery restarted deadline.");
+                Require(PlaytestLife.StableRecoveryAt(blocked,T(20001,3)).Hp==1,"Overdue legal recovery waited another hour."); });
+            cases.Add("life_exact_legacy_deadline_view_never_truncates",()=>{
+                var fractional=PlaytestLife.StabilizeAt(new LifeState(40,0),1,T(1,3));
+                Throws<InvalidOperationException>(()=>{var ignored=fractional.StableUntilSeconds;});
+                var whole=new LifeState(40,0,stable:true,stableUntil:T(7200,2));
+                Require(whole.StableUntilSeconds==3600&&new LifeState(40,0,stable:true,stableUntilSeconds:3600).StableUntil==T(3600),"Legacy whole seconds lost exact equivalence."); });
+            cases.Add("life_exact_deadline_requires_one_valid_stable_representation",()=>{
+                Throws<ArgumentException>(()=>new LifeState(40,0,stable:true,stableUntil:T(1,3),stableUntilSeconds:0));
+                Throws<ArgumentException>(()=>new LifeState(40,0,stableUntil:T(1,3)));
+                Throws<ArgumentException>(()=>new LifeState(40,0,stable:true));
+                Throws<ArgumentOutOfRangeException>(()=>new LifeState(40,0,stable:true,stableUntilSeconds:-1)); });
+            cases.Add("life_exact_overflow_rejects_without_mutating_state",()=>{
+                var s=new LifeState(40,0);var late=T(long.MaxValue,2);
+                Throws<OverflowException>(()=>PlaytestLife.StabilizeAt(s,1,late));
+                Throws<OverflowException>(()=>PlaytestLife.DeathSaveAt(s,20,1,late,stableD4:1,hpRecoveryProhibited:true));
+                Require(!s.Stable&&!s.StableUntil.HasValue&&s.LastDeathTurn==0,"Failed exact timing changed source state."); });
+            cases.Add("life_exact_recovery_uses_original_seven_actor_slot_phase",()=>{
+                var e=new FixedEncounterRecord("test",T(1,3),Enumerable.Range(0,7).Select(i=>"actor"+i),new long[]{1});
+                var phase=FixedEncounterRules.Start(e,1);var s=PlaytestLife.StabilizeAt(new LifeState(40,0),1,phase);
+                Require(phase==T(25,21)&&s.StableUntil==T(75625,21)&&PlaytestLife.StableRecoveryAt(s,T(3601)).Hp==0
+                    &&PlaytestLife.StableRecoveryAt(s,T(75625,21)).Hp==1,"Fractional encounter phase drifted on hour conversion."); });
+            cases.Add("life_exact_positive_healing_clears_deadline_zero_healing_preserves",()=>{
+                var s=new LifeState(40,0,stable:true,stableUntil:T(10801,3));
+                Require(PlaytestLife.Heal(s,0).StableUntil==s.StableUntil&&PlaytestLife.Heal(s,10,true).StableUntil==s.StableUntil,"No actual healing canceled recovery.");
+                var healed=PlaytestLife.Heal(s,1);Require(healed.Hp==1&&!healed.StableUntil.HasValue&&!healed.Stable,"Actual recovery retained Stable deadline."); });
             cases.Add("life_post_temp_threshold", () => {
                 var r=Hit(new LifeState(40,40,10),25);
                 Require(r.State.Hp==25 && r.State.TemporaryHp==0 && r.PostTempDamage==15 && r.TemporaryAbsorbed==10 && r.WoundSaves==0,"Use damage after temp HP."); });
