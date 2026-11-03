@@ -1,0 +1,990 @@
+{
+  "id": "CT-B05-IDENTITY-RECONCILIATION-01",
+  "sourceCommit": "980c498826c631a3e28a4dc308e534c75c884d35",
+  "identity": "collapse-timeline",
+  "scope": "STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY",
+  "status": "PASS_STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY_RECONCILIATION",
+  "queueBefore": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_SPELL_QUEUE_482.json",
+    "bytes": 4427,
+    "sha256": "71ec10103b25c2f246a43c78cf373ac40ba3385fe71d9d00b1c5a5ff765285a9",
+    "crc32": "2520dbdd",
+    "gitBlobSha1": "d7964f8e3bc76b88b01e28b0759e565785ce0ba9"
+  },
+  "indexBefore": {
+    "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+    "bytes": 1788550,
+    "sha256": "aa3710911acd4b4add74e625b32d703965254ef638dbab5742bd17a23edde2de",
+    "crc32": "1643dc87",
+    "gitBlobSha1": "23b4b409ab20d1a776dbc896d01c653379ad5029"
+  },
+  "catalogUnchanged": {
+    "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+    "bytes": 4945319,
+    "sha256": "f52cf6a4a4673897615a74c7c67dcba798c431362d4357e71ee552cc7c5d31f8",
+    "crc32": "75a4fd7c",
+    "gitBlobSha1": "2d243b311cded8484630c12b6fcc2ae7f70cfddf"
+  },
+  "procedure": {
+    "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9timefate6_reviewed_192/procedures/collapse-timeline.json",
+    "bytes": 16761,
+    "sha256": "fc46e84d07dcb43316b3b4c68ba1eaa955a503a6d543e2e2a6a192b32bbc6d25",
+    "crc32": "25f6ab8d",
+    "gitBlobSha1": "0ae98c7ba75a3f4be982824d7948cac3e919ce5b",
+    "pointer": "/procedure",
+    "status": "PROPOSED_UNACCEPTED_REQUIRED_BRANCH_HELD",
+    "accepted": false,
+    "applied": false
+  },
+  "sourceBindings": [
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_SPELL_QUEUE_482.json",
+      "bytes": 4427,
+      "sha256": "71ec10103b25c2f246a43c78cf373ac40ba3385fe71d9d00b1c5a5ff765285a9",
+      "crc32": "2520dbdd",
+      "gitBlobSha1": "d7964f8e3bc76b88b01e28b0759e565785ce0ba9",
+      "role": "Current authoritative Queue482",
+      "pointers": [
+        "/id",
+        "/currentAuthority",
+        "/nextIdentity",
+        "/nextBlockerIds",
+        "/nextDependencyIds"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT_HANDOFF_482.json",
+      "bytes": 2456,
+      "sha256": "6fa748116b0a2a9b3f5ffc8d17d2bc9fb659169264b059d173db0c42541c4089",
+      "crc32": "a0c40567",
+      "gitBlobSha1": "3be7422ba626fc9a185ad8a1db5b5821174bf7cf",
+      "role": "Current handoff482",
+      "pointers": [
+        "/nextIdentity",
+        "/nextBlockerIds",
+        "/instruction"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/CURRENT11_PENDING_IDENTITY_AUDIT_482.json",
+      "bytes": 2187,
+      "sha256": "89b257e1d089e164e08b2c81f4d629bbd7b6f6204f0a2b44ee8fdd727b5a916f",
+      "crc32": "34bb8e11",
+      "gitBlobSha1": "f151f824d07c3a0cc435d0b1c074fd4d52cac5d1",
+      "role": "Current pending audit482",
+      "pointers": [
+        "/currentAuthority",
+        "/remainingPendingIds"
+      ]
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+      "bytes": 4945319,
+      "sha256": "f52cf6a4a4673897615a74c7c67dcba798c431362d4357e71ee552cc7c5d31f8",
+      "crc32": "75a4fd7c",
+      "gitBlobSha1": "2d243b311cded8484630c12b6fcc2ae7f70cfddf",
+      "role": "Current catalog and blocked Collapse Timeline row",
+      "pointers": [
+        "/spells/847"
+      ]
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+      "bytes": 1788550,
+      "sha256": "aa3710911acd4b4add74e625b32d703965254ef638dbab5742bd17a23edde2de",
+      "crc32": "1643dc87",
+      "gitBlobSha1": "23b4b409ab20d1a776dbc896d01c653379ad5029",
+      "role": "Current authored review index and unchanged Collapse row",
+      "pointers": [
+        "/entries/847"
+      ]
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9timefate6_reviewed_192/procedures/collapse-timeline.json",
+      "bytes": 16761,
+      "sha256": "fc46e84d07dcb43316b3b4c68ba1eaa955a503a6d543e2e2a6a192b32bbc6d25",
+      "crc32": "25f6ab8d",
+      "gitBlobSha1": "0ae98c7ba75a3f4be982824d7948cac3e919ce5b",
+      "role": "Retained proposed Collapse Timeline procedure",
+      "pointers": [
+        "/blockerIds",
+        "/holdIds",
+        "/caseIds",
+        "/questionIds",
+        "/procedure"
+      ]
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9timefate6_reviewed_192/CANDIDATE_PACKAGE_MANIFEST.json",
+      "bytes": 8486,
+      "sha256": "8ab438ce58eb721d1c0a51a6ec5c1805e669d181f77166daf53f39bba4574c45",
+      "crc32": "1ee2fa66",
+      "gitBlobSha1": "0f93b184a8d7edafdf499a8898d334740f0407aa",
+      "role": "Rank9 Time/Fate package manifest",
+      "pointers": [
+        "/files/15/path",
+        "/files/15/sha256"
+      ]
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9timefate6_reviewed_192/CASE_DISPOSITIONS.json",
+      "bytes": 55324,
+      "sha256": "16291a97dcc8418e5e6889f72b07cc95290ff9fd67b3f32cbdf6264200558592",
+      "crc32": "6738af5d",
+      "gitBlobSha1": "89fe95293ef8beabdadf201dabd7a1d2ba25188f",
+      "role": "Historical case dispositions",
+      "pointers": [
+        "/dispositions"
+      ]
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9timefate6_reviewed_192/QUESTION_DISPOSITIONS.json",
+      "bytes": 330351,
+      "sha256": "952624ba010620b2f91dd1b8ce1ccf08294def82950f475ff9d06c1209a9a71c",
+      "crc32": "41e52abe",
+      "gitBlobSha1": "a768c038582c16f7ec2d4c9da7e47ebe6897bfb2",
+      "role": "Retained question dispositions",
+      "pointers": [
+        ""
+      ]
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9timefate6_reviewed_192/QUALIFICATIONS.json",
+      "bytes": 1157,
+      "sha256": "9bf02378d25aed283892e24a8ab60d348fe05200bf6d6baac501644e4a7ff65c",
+      "crc32": "ffca69b6",
+      "gitBlobSha1": "1a5ed51da2be624486853c7a5f87002afab4c676",
+      "role": "Retained Collapse qualifications",
+      "pointers": [
+        ""
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/BLOCKER_REASSESSMENT.json",
+      "bytes": 2966,
+      "sha256": "1211d7a15e50d03803d888c23716a580c1fbbc35ed62df1a5699891bf688f0c6",
+      "crc32": "a697383f",
+      "gitBlobSha1": "dce7aa592c0b7ec7979a17ab2977f12f4e318cce",
+      "role": "Controlling TF192-B05 reassessment",
+      "pointers": [
+        "/minimumMissingWitness",
+        "/actualConditionalRecord",
+        "/otherExactMissingRecords",
+        "/preservedConditionalQualification",
+        "/guaranteeDependency",
+        "/newMechanismAuthorized",
+        "/promiseQualified",
+        "/waiver"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B.json",
+      "bytes": 119451,
+      "sha256": "5a23105fb0c510c73ab67c6de72d5d9a4e4838803dd98dad01a2dad7690677ed",
+      "crc32": "df16a53f",
+      "gitBlobSha1": "8e394d5759e47dd6cc5c3c7457efba24db2d6a23"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/DIRECTOR_DECISION.json",
+      "bytes": 2559,
+      "sha256": "9845dbd0860494632d2e12b80903d578c61e5cf0c65e307338ab366eb690af1d",
+      "crc32": "cdd17c77",
+      "gitBlobSha1": "f84a83c0a53150aab5e975143066afad06b9e49a",
+      "role": "Return322 Director disposition and B05/B02 holds",
+      "pointers": [
+        ""
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/collapse_timeline_current_authority_review_2026-11-03/COLLAPSE_TIMELINE_CURRENT_AUTHORITY_REVIEW_01.json",
+      "bytes": 56948,
+      "sha256": "e9fb888a01d5060fdd7e90e7501f8c04711329c21a27c39bedaeab330685c273",
+      "crc32": "7c178547",
+      "gitBlobSha1": "3f8d061e544d10cb3c21da97d18a80293a43d2b0",
+      "role": "Prior read-only current-authority packet",
+      "pointers": [
+        "/currentAuthority",
+        "/retainedReturn322Evidence",
+        "/openEvidenceRequirement"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/collapse_timeline_current_authority_review_2026-11-03/CODEX_TRANSCRIBED_DIRECTOR_REVIEW_PASS_COLLAPSE_TIMELINE_CURRENT_AUTHORITY_01.json",
+      "bytes": 4163,
+      "sha256": "b1f8e9dfee398fd0f0201d14e94360995d94d4f44dffb53967febbc188d558be",
+      "crc32": "1aca1443",
+      "gitBlobSha1": "212d164fa564df3d603b8befa5f86946c8276bdf",
+      "role": "Director PASS readback; no repeated pass/witness authority",
+      "pointers": [
+        "/disposition",
+        "/scopeLimits",
+        "/verified"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_eternal_prophecy_return323_received/BLOCKER_REASSESSMENT.json",
+      "bytes": 4224,
+      "sha256": "82286a8f13269c2d3b7699690a47be9738ec1721ead6d5ce09173913c73b4ff8",
+      "crc32": "5a9304fe",
+      "gitBlobSha1": "41aeee157694badc61971e686318ee6c69632d7f",
+      "role": "Controlling TF192-B02 reassessment",
+      "pointers": [
+        "/missingWitnessParts",
+        "/nativePromise"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_eternal_prophecy_return323_received/cases/RANK9TIMEFATE6129-ETERNAL-PROPHECY-A.json",
+      "bytes": 428146,
+      "sha256": "1f71f14dbb63947dba11a5cfde26a3677fbbfb9ead24bced606bdcd0f8977188",
+      "crc32": "194efb41",
+      "gitBlobSha1": "5ff20ab95c2798d822f046453cb26ff22c0a5b47",
+      "role": "Exact Return323 paid EP source case A",
+      "pointers": [
+        "/events/2",
+        "/finalState/casts/0",
+        "/finalState/obligations"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/eternal_prophecy_ep480_static_guarantee_proposal_2026-11-02/OWNER_EP480_STATIC_GUARANTEE_PROPOSAL_03.json",
+      "bytes": 31930,
+      "sha256": "6910934619559fea734a7215e92022859050d81c084d2d5520d78b9d7fdec0f0",
+      "crc32": "288ad254",
+      "gitBlobSha1": "b9d2dda13a1373e033ef6260d9897407b4fcd6b7",
+      "role": "Prior TEST_ONLY EP contract, adopted for EP T1-T4 only",
+      "pointers": [
+        "/branchFixture/paidCast",
+        "/branchFixture/counterWindow",
+        "/branchFixture/destination/anchor",
+        "/branchFixture/destination/custodian",
+        "/branchFixture/destination/sourcePredicate",
+        "/guarantee/calendar",
+        "/execution/branchIsolation"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/eternal_prophecy_ep480_testonly_witness_2026-11-02/OWNER_ADOPTION_RECEIPT_EP480_P03.json",
+      "bytes": 1544,
+      "sha256": "9c87556b922efb69abda1f1e35334a33c13848add786eb94efe5afbb06ed9eec",
+      "crc32": "1f7989bf",
+      "gitBlobSha1": "966f394c40bdeace0e3de75d1b22eb8849cba38d",
+      "role": "EP Proposal03 adoption receipt; limited to T1-T4",
+      "pointers": [
+        ""
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/eternal_prophecy_ep480_testonly_witness_2026-11-02/EP480_TESTONLY_WITNESS_PACKET_T1_T4.json",
+      "bytes": 339697,
+      "sha256": "e77130b2a2f41b2d7ef1064f206a22b6a04c2dc679727d8ba5d17dbc6a1c8bb7",
+      "crc32": "683e1c39",
+      "gitBlobSha1": "9f64d97d17fd3b34e3d9c7d240d15880959b9ffb",
+      "role": "Existing accepted-scope EP480 T1-T4 TEST_ONLY evidence",
+      "pointers": [
+        "/counterspellResponseEvidence",
+        "/branches/0/transitions/0/forward/1/after",
+        "/branches/0/transitions/0/forward/3",
+        "/branches/0/transitions/0/forward/4/after"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/eternal_prophecy_identity_reconciliation_2026-11-02/CODEX_TRANSCRIBED_DIRECTOR_IDENTITY_ACCEPTANCE_EP480_01.json",
+      "bytes": 3178,
+      "sha256": "0d288b571275e20785ad66fc93babbfa03c55f09ac0bdb4e8c2ca490b9221b4b",
+      "crc32": "8cba4f63",
+      "gitBlobSha1": "ef76fa5f1f4a853cec567fae5e8abca39df545e2",
+      "role": "Exact Director identity acceptance readback bounding the EP480 accepted scope",
+      "pointers": [
+        "/decision",
+        "/decision/retainedOpenBlockerIds",
+        "/nativeSourceLimit"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/eternal_prophecy_identity_reconciliation_2026-11-02/APPLICATION_EP480_STATIC_01.json",
+      "bytes": 4924,
+      "sha256": "68048b1d0f7b44e115cf6198b55378baa0131c50c31e88afac1ab890f6b7ccea",
+      "crc32": "db228902",
+      "gitBlobSha1": "cddfa474ff9c39a51229a21f75886f5875c0fb34",
+      "role": "EP480 static-only application receipt",
+      "pointers": [
+        "/applicationScope",
+        "/retainedOpenBlockerIds",
+        "/retainedQualificationIds",
+        "/witnessSealed",
+        "/guaranteeProved"
+      ]
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/eternal_prophecy_static_reviewed_01/MODEL.json",
+      "bytes": 12361,
+      "sha256": "9d548807efdc3bbfd09ab3d46121bfa96eba75f0813c1a00c9087c2102f7124e",
+      "crc32": "180dd63c",
+      "gitBlobSha1": "ef37e1102ddad2bd2915537cd5cec76a11705c71",
+      "role": "Current accepted EP static envelope",
+      "pointers": [
+        "/status",
+        "/scope",
+        "/acceptedIdentity",
+        "/retainedOpenBlockerIds"
+      ]
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/eternal_prophecy_static_reviewed_01/CASE_COVERAGE.json",
+      "bytes": 3304,
+      "sha256": "f5d501e7842a52164c241247beb3b01b767a40b050e9969f038b743cf052b0d4",
+      "crc32": "96256f0c",
+      "gitBlobSha1": "0c78a9af086f326406dd8f1c3312172fd59221bb",
+      "role": "EP static case coverage envelope",
+      "pointers": [
+        ""
+      ]
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/eternal_prophecy_static_reviewed_01/CANDIDATE_PACKAGE_MANIFEST.json",
+      "bytes": 10706,
+      "sha256": "7b348706f8aa24622e6fca7504f674750ec5f797b6219d78186002e489860b28",
+      "crc32": "e3a90158",
+      "gitBlobSha1": "bc5fa7c6f5da445759b6fd1bc85882477b37c0ac",
+      "role": "EP static package manifest",
+      "pointers": [
+        "/identity",
+        "/scope",
+        "/decisionId"
+      ]
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/collapse_timeline_b05_integration_preflight_2026-11-03/COLLAPSE_TIMELINE_B05_INTEGRATION_PREFLIGHT_01.json",
+      "role": "Superseded proposal version reviewed as REVISE; binds revision lineage",
+      "pointers": [
+        "/proposedTestOnlyInputSpecification",
+        "/proposedOwnerAdoptionBoundary"
+      ],
+      "bytes": 47120,
+      "sha256": "8c9e97911f15b00b71ae82d2796bf6d90688af04446b5269f021e888cb544056",
+      "crc32": "dbf22f4c",
+      "gitBlobSha1": "6d0c6b25a73e002c8fe98517cd5405295b447c53"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/rank9timefate6_reviewed_192/ACTOR_PROFILES.json",
+      "role": "Conditional Wizard profile, acquisition, preparation, components, focus and Counterspell source; TEST_ONLY profile only",
+      "pointers": [
+        "/Wizard/ordinaryLearning/16/selected/4",
+        "/Wizard/knownRanked/64",
+        "/Wizard/prepared/4",
+        "/Wizard/automaticCards/1",
+        "/Wizard/components",
+        "/Wizard/focus",
+        "/Wizard/dissonanceLimit",
+        "/Wizard/engineUnchanged/11"
+      ],
+      "bytes": 221398,
+      "sha256": "329f686f6e40688700e956ce731d76dbbe72d595439c36d9128cdfb6fb03f9f1",
+      "crc32": "f81166da",
+      "gitBlobSha1": "c9141b8924ddee5aba342d244dd57751db2943c8"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-A.json",
+      "bytes": 200964,
+      "sha256": "b13eda7437c954d7a5330fb64283b7c1e48ea4c8be39a5054b14d7e957bee337",
+      "crc32": "991ce7d2",
+      "gitBlobSha1": "8b82bd14e183f4936138b74528c8ddd0cc2f417b"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-A__clock-envelope.json",
+      "bytes": 605090,
+      "sha256": "df997f0e9bff4a0062a832e43a10ce831002601153143e05c05ec77a8d133b65",
+      "crc32": "d30cc6fa",
+      "gitBlobSha1": "1fb1ab3d1a6153503a15bc7badc1f58cfe355cf2"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-A__clock-future-trace.json",
+      "bytes": 763813,
+      "sha256": "6d9a235e900f5362a9beb1739bc2119cd4de94a992f5d5fbf792920a514ad918",
+      "crc32": "9de2d0ac",
+      "gitBlobSha1": "a13e052159271151e041d7e079258ce4b89cb9a4"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-A__future-policy-0.json",
+      "bytes": 1197731,
+      "sha256": "7c6e8fda0acdbd2399750a4e9c8061ed3a2586540896bd4f1dda8011bd71515e",
+      "crc32": "aa7ce18f",
+      "gitBlobSha1": "946b6501fca383446c540126bf9022e6f45d4bd7"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-A__future-policy-1.json",
+      "bytes": 1190553,
+      "sha256": "430f7862b144bddb3696921ef3d97ab94805e387ac1c8419908910a6237a0339",
+      "crc32": "e781c90d",
+      "gitBlobSha1": "ce64ca84c95b3d0dd7dd04d485610665fc6f0b82"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__active-time-stop.json",
+      "bytes": 68277,
+      "sha256": "c27b6a515fb3f2e2bbf2c7e1ac1f0e9fbeaafd26a0819ddb16cccf3c6a3a00b1",
+      "crc32": "012c96be",
+      "gitBlobSha1": "0855b0624ca4b2f9b6645f0a19ca409a90f8a6fb"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__antimagic-origin-paid-failure.json",
+      "bytes": 521500,
+      "sha256": "e1fb5292238a4167bf708dbe3f3e4ad6e6e3c9f52cf522bc7159b7e6b68b6672",
+      "crc32": "d658836e",
+      "gitBlobSha1": "0263ae44837368a5653d6f77be40f145be1e1232"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__dying-actor-future-clock.json",
+      "bytes": 164727,
+      "sha256": "1f40446115b33011fc2559b133f6a9b2f736950929fcfdbad564bc4457cc7624",
+      "crc32": "e9f20e5a",
+      "gitBlobSha1": "77b34d1ef0b1ec8cc12f8e343591edf52854b40b"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__dying-future-trace.json",
+      "bytes": 324411,
+      "sha256": "4aff3435b1f66d995524c458258ed472f968f1e2b9a150fb841803d73a292884",
+      "crc32": "8dea5002",
+      "gitBlobSha1": "3bfae21588d644e681ce61e69a40322795e1d584"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__external-dependency.json",
+      "bytes": 90242,
+      "sha256": "3029ef2b37d96e123d47ac0a8b95d1409f7080c9b0456e321797579e844b16e3",
+      "crc32": "cab05dfa",
+      "gitBlobSha1": "2ead14c1c42ddfc17cc06db3fe2d4d5910dbaf3c"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__independent-coverage-hold.json",
+      "bytes": 29098,
+      "sha256": "b4a83c8be627bd848e677a49c2d1222aef0ac9931d47160dc34140c8db9e9bdb",
+      "crc32": "d9522e96",
+      "gitBlobSha1": "4ff1140a433bb79b174e3f09a2b1194929d27713"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__paid-countered-exact.json",
+      "bytes": 1013048,
+      "sha256": "4da0e7c2273218d1ce03052499bff6213b7b24436f5762b21bc4af1d7413eb10",
+      "crc32": "af6899e5",
+      "gitBlobSha1": "77672ce98b770d6d0655c35f43418e5a59730bd0"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__ready-expiry-valid-operands.json",
+      "bytes": 404594,
+      "sha256": "182b3ad368b3868a58e45ac0b34288d9f0be6d398999b8c621b836829d33260c",
+      "crc32": "ddfd657c",
+      "gitBlobSha1": "1388e6d5a4f090d79e84ea8a7ff3cac42bd0bba1"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__stale-after-payment.json",
+      "bytes": 98621,
+      "sha256": "260974d794715bced4aa5083599815b0422423f968bb0a63e276b5b5beb702e2",
+      "crc32": "f98ba036",
+      "gitBlobSha1": "17b973fa8dc130f6a3ca7eb75bf7bf04bf2d8532"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__stale-preflight.json",
+      "bytes": 68268,
+      "sha256": "d39b6b10f45b03c87302d3a6c6653a292becf8b33da1b8aa724c003e67ddc146",
+      "crc32": "84577200",
+      "gitBlobSha1": "638ccf0c7c64b79edabae972d918fd828f89b216"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__unsupported-parent.json",
+      "bytes": 90226,
+      "sha256": "5e215f30ce036a3c663755ab6d43a0d832143b5d77e2e64344ac34a910a5408f",
+      "crc32": "34102bec",
+      "gitBlobSha1": "2e804d25fb4379cc46fd5a7b01c3619425119b22"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/CASE_RESULTS.json",
+      "bytes": 7320,
+      "sha256": "f2459e455341591f5a8e2fa9cacbed9c0b2899af200c4fb718aa659e6ddebdb0",
+      "crc32": "497e0788",
+      "gitBlobSha1": "2d3dd983cdaa4ef3e21f334b22509f63f2047a52"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/QUESTION_DISPOSITIONS.json",
+      "bytes": 4169,
+      "sha256": "df740459c1f930c2178aef553dee1e8f51fbf62b8555c80a77380aa562f80daf",
+      "crc32": "3c5e2546",
+      "gitBlobSha1": "41f52558aaaaeffdd0b1da03ed37abb2b91d5d34"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/QUALIFICATIONS.json",
+      "bytes": 1584,
+      "sha256": "1a187626fe64b5c9e02ffca19b77efd7558aaf22dc309c392ab4a4a7a2f14bc6",
+      "crc32": "5c0bbd42",
+      "gitBlobSha1": "2abdc3f2f459fb77b38d0504641d6af9bc7b4b8a"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/procedures/collapse-timeline.json",
+      "bytes": 17879,
+      "sha256": "271284d5e9941bb96a59e5586344158f84a834f1335e001082853e34664e37ba",
+      "crc32": "3079b1b1",
+      "gitBlobSha1": "12af287c0ff57678469f0d004c7a7f96d5f01bfd"
+    }
+  ],
+  "historicalCases": [
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-A.json",
+      "bytes": 200964,
+      "sha256": "b13eda7437c954d7a5330fb64283b7c1e48ea4c8be39a5054b14d7e957bee337",
+      "crc32": "991ce7d2",
+      "gitBlobSha1": "8b82bd14e183f4936138b74528c8ddd0cc2f417b"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-A__clock-envelope.json",
+      "bytes": 605090,
+      "sha256": "df997f0e9bff4a0062a832e43a10ce831002601153143e05c05ec77a8d133b65",
+      "crc32": "d30cc6fa",
+      "gitBlobSha1": "1fb1ab3d1a6153503a15bc7badc1f58cfe355cf2"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-A__clock-future-trace.json",
+      "bytes": 763813,
+      "sha256": "6d9a235e900f5362a9beb1739bc2119cd4de94a992f5d5fbf792920a514ad918",
+      "crc32": "9de2d0ac",
+      "gitBlobSha1": "a13e052159271151e041d7e079258ce4b89cb9a4"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-A__future-policy-0.json",
+      "bytes": 1197731,
+      "sha256": "7c6e8fda0acdbd2399750a4e9c8061ed3a2586540896bd4f1dda8011bd71515e",
+      "crc32": "aa7ce18f",
+      "gitBlobSha1": "946b6501fca383446c540126bf9022e6f45d4bd7"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-A__future-policy-1.json",
+      "bytes": 1190553,
+      "sha256": "430f7862b144bddb3696921ef3d97ab94805e387ac1c8419908910a6237a0339",
+      "crc32": "e781c90d",
+      "gitBlobSha1": "ce64ca84c95b3d0dd7dd04d485610665fc6f0b82"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B.json",
+      "bytes": 119451,
+      "sha256": "5a23105fb0c510c73ab67c6de72d5d9a4e4838803dd98dad01a2dad7690677ed",
+      "crc32": "df16a53f",
+      "gitBlobSha1": "8e394d5759e47dd6cc5c3c7457efba24db2d6a23"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__active-time-stop.json",
+      "bytes": 68277,
+      "sha256": "c27b6a515fb3f2e2bbf2c7e1ac1f0e9fbeaafd26a0819ddb16cccf3c6a3a00b1",
+      "crc32": "012c96be",
+      "gitBlobSha1": "0855b0624ca4b2f9b6645f0a19ca409a90f8a6fb"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__antimagic-origin-paid-failure.json",
+      "bytes": 521500,
+      "sha256": "e1fb5292238a4167bf708dbe3f3e4ad6e6e3c9f52cf522bc7159b7e6b68b6672",
+      "crc32": "d658836e",
+      "gitBlobSha1": "0263ae44837368a5653d6f77be40f145be1e1232"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__dying-actor-future-clock.json",
+      "bytes": 164727,
+      "sha256": "1f40446115b33011fc2559b133f6a9b2f736950929fcfdbad564bc4457cc7624",
+      "crc32": "e9f20e5a",
+      "gitBlobSha1": "77b34d1ef0b1ec8cc12f8e343591edf52854b40b"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__dying-future-trace.json",
+      "bytes": 324411,
+      "sha256": "4aff3435b1f66d995524c458258ed472f968f1e2b9a150fb841803d73a292884",
+      "crc32": "8dea5002",
+      "gitBlobSha1": "3bfae21588d644e681ce61e69a40322795e1d584"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__external-dependency.json",
+      "bytes": 90242,
+      "sha256": "3029ef2b37d96e123d47ac0a8b95d1409f7080c9b0456e321797579e844b16e3",
+      "crc32": "cab05dfa",
+      "gitBlobSha1": "2ead14c1c42ddfc17cc06db3fe2d4d5910dbaf3c"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__independent-coverage-hold.json",
+      "bytes": 29098,
+      "sha256": "b4a83c8be627bd848e677a49c2d1222aef0ac9931d47160dc34140c8db9e9bdb",
+      "crc32": "d9522e96",
+      "gitBlobSha1": "4ff1140a433bb79b174e3f09a2b1194929d27713"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__paid-countered-exact.json",
+      "bytes": 1013048,
+      "sha256": "4da0e7c2273218d1ce03052499bff6213b7b24436f5762b21bc4af1d7413eb10",
+      "crc32": "af6899e5",
+      "gitBlobSha1": "77672ce98b770d6d0655c35f43418e5a59730bd0"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__ready-expiry-valid-operands.json",
+      "bytes": 404594,
+      "sha256": "182b3ad368b3868a58e45ac0b34288d9f0be6d398999b8c621b836829d33260c",
+      "crc32": "ddfd657c",
+      "gitBlobSha1": "1388e6d5a4f090d79e84ea8a7ff3cac42bd0bba1"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__stale-after-payment.json",
+      "bytes": 98621,
+      "sha256": "260974d794715bced4aa5083599815b0422423f968bb0a63e276b5b5beb702e2",
+      "crc32": "f98ba036",
+      "gitBlobSha1": "17b973fa8dc130f6a3ca7eb75bf7bf04bf2d8532"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__stale-preflight.json",
+      "bytes": 68268,
+      "sha256": "d39b6b10f45b03c87302d3a6c6653a292becf8b33da1b8aa724c003e67ddc146",
+      "crc32": "84577200",
+      "gitBlobSha1": "638ccf0c7c64b79edabae972d918fd828f89b216"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/cases/RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__unsupported-parent.json",
+      "bytes": 90226,
+      "sha256": "5e215f30ce036a3c663755ab6d43a0d832143b5d77e2e64344ac34a910a5408f",
+      "crc32": "34102bec",
+      "gitBlobSha1": "2e804d25fb4379cc46fd5a7b01c3619425119b22"
+    }
+  ],
+  "historicalCaseDispositions": [
+    {
+      "id": "RANK9TIMEFATE6129-COLLAPSE-TIMELINE-A__future-policy-0",
+      "preservedStatus": "DEMONSTRATED",
+      "holdIds": [],
+      "events": 21,
+      "forwardOperations": 42,
+      "inverseOperations": 42,
+      "replay": "PASS",
+      "semanticCoverage": "Preserved authored finite component; not proof of guaranteed-obligation interoperability."
+    },
+    {
+      "id": "RANK9TIMEFATE6129-COLLAPSE-TIMELINE-A__future-policy-1",
+      "preservedStatus": "DEMONSTRATED",
+      "holdIds": [],
+      "events": 21,
+      "forwardOperations": 42,
+      "inverseOperations": 42,
+      "replay": "PASS",
+      "semanticCoverage": "Preserved authored finite component; not proof of guaranteed-obligation interoperability."
+    },
+    {
+      "id": "RANK9TIMEFATE6129-COLLAPSE-TIMELINE-A",
+      "preservedStatus": "DEMONSTRATED",
+      "holdIds": [],
+      "events": 5,
+      "forwardOperations": 10,
+      "inverseOperations": 10,
+      "replay": "PASS",
+      "semanticCoverage": "Preserved authored finite component; not proof of guaranteed-obligation interoperability."
+    },
+    {
+      "id": "RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B",
+      "preservedStatus": "DEMONSTRATED",
+      "holdIds": [],
+      "events": 4,
+      "forwardOperations": 8,
+      "inverseOperations": 8,
+      "replay": "PASS",
+      "semanticCoverage": "Preserved authored finite component; not proof of guaranteed-obligation interoperability."
+    },
+    {
+      "id": "RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__external-dependency",
+      "preservedStatus": "DEMONSTRATED",
+      "holdIds": [
+        "TF192-H-HISTORY"
+      ],
+      "events": 4,
+      "forwardOperations": 8,
+      "inverseOperations": 8,
+      "replay": "PASS",
+      "semanticCoverage": "Preserved authored finite component; not proof of guaranteed-obligation interoperability."
+    },
+    {
+      "id": "RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__stale-preflight",
+      "preservedStatus": "DEMONSTRATED",
+      "holdIds": [],
+      "events": 3,
+      "forwardOperations": 6,
+      "inverseOperations": 6,
+      "replay": "PASS",
+      "semanticCoverage": "Preserved authored finite component; not proof of guaranteed-obligation interoperability."
+    },
+    {
+      "id": "RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__stale-after-payment",
+      "preservedStatus": "DEMONSTRATED",
+      "holdIds": [],
+      "events": 4,
+      "forwardOperations": 8,
+      "inverseOperations": 8,
+      "replay": "PASS",
+      "semanticCoverage": "Preserved authored finite component; not proof of guaranteed-obligation interoperability."
+    },
+    {
+      "id": "RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__active-time-stop",
+      "preservedStatus": "DEMONSTRATED",
+      "holdIds": [],
+      "events": 3,
+      "forwardOperations": 6,
+      "inverseOperations": 6,
+      "replay": "PASS",
+      "semanticCoverage": "Preserved authored finite component; not proof of guaranteed-obligation interoperability."
+    },
+    {
+      "id": "RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__unsupported-parent",
+      "preservedStatus": "DEMONSTRATED",
+      "holdIds": [
+        "TF192-H-HISTORY"
+      ],
+      "events": 4,
+      "forwardOperations": 8,
+      "inverseOperations": 8,
+      "replay": "PASS",
+      "semanticCoverage": "Preserved authored finite component; not proof of guaranteed-obligation interoperability."
+    },
+    {
+      "id": "RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__paid-countered-exact",
+      "preservedStatus": "DEMONSTRATED",
+      "holdIds": [],
+      "events": 21,
+      "forwardOperations": 42,
+      "inverseOperations": 42,
+      "replay": "PASS",
+      "semanticCoverage": "Preserved authored finite component; not proof of guaranteed-obligation interoperability."
+    },
+    {
+      "id": "RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__ready-expiry-valid-operands",
+      "preservedStatus": "DEMONSTRATED",
+      "holdIds": [],
+      "events": 11,
+      "forwardOperations": 22,
+      "inverseOperations": 22,
+      "replay": "PASS",
+      "semanticCoverage": "Preserved authored finite component; not proof of guaranteed-obligation interoperability."
+    },
+    {
+      "id": "RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__antimagic-origin-paid-failure",
+      "preservedStatus": "DEMONSTRATED",
+      "holdIds": [],
+      "events": 14,
+      "forwardOperations": 28,
+      "inverseOperations": 28,
+      "replay": "PASS",
+      "semanticCoverage": "Preserved authored finite component; not proof of guaranteed-obligation interoperability."
+    },
+    {
+      "id": "RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__independent-coverage-hold",
+      "preservedStatus": "BLOCKED_EVIDENCE",
+      "holdIds": [
+        "TF192-B05"
+      ],
+      "events": 1,
+      "forwardOperations": 2,
+      "inverseOperations": 2,
+      "replay": "PASS",
+      "semanticCoverage": "Preserved authored finite component; not proof of guaranteed-obligation interoperability."
+    },
+    {
+      "id": "RANK9TIMEFATE6129-COLLAPSE-TIMELINE-A__clock-future-trace",
+      "preservedStatus": "DEMONSTRATED",
+      "holdIds": [],
+      "events": 12,
+      "forwardOperations": 24,
+      "inverseOperations": 24,
+      "replay": "PASS",
+      "semanticCoverage": "Preserved authored finite component; not proof of guaranteed-obligation interoperability."
+    },
+    {
+      "id": "RANK9TIMEFATE6129-COLLAPSE-TIMELINE-A__clock-envelope",
+      "preservedStatus": "DEMONSTRATED",
+      "holdIds": [],
+      "events": 15,
+      "forwardOperations": 30,
+      "inverseOperations": 30,
+      "replay": "PASS",
+      "semanticCoverage": "Preserved authored finite component; not proof of guaranteed-obligation interoperability."
+    },
+    {
+      "id": "RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__dying-future-trace",
+      "preservedStatus": "DEMONSTRATED",
+      "holdIds": [],
+      "events": 8,
+      "forwardOperations": 16,
+      "inverseOperations": 16,
+      "replay": "PASS",
+      "semanticCoverage": "Preserved authored finite component; not proof of guaranteed-obligation interoperability."
+    },
+    {
+      "id": "RANK9TIMEFATE6129-COLLAPSE-TIMELINE-B__dying-actor-future-clock",
+      "preservedStatus": "DEMONSTRATED",
+      "holdIds": [],
+      "events": 5,
+      "forwardOperations": 10,
+      "inverseOperations": 10,
+      "replay": "PASS",
+      "semanticCoverage": "Preserved authored finite component; not proof of guaranteed-obligation interoperability."
+    }
+  ],
+  "historicalCounts": {
+    "total": 17,
+    "demonstrated": 16,
+    "blockedEvidence": 1,
+    "replayedThisReview": false
+  },
+  "questionDispositions": {
+    "scopeIds": [
+      "collapse-timeline"
+    ],
+    "count": 8,
+    "dispositions": [
+      {
+        "questionId": "TF9-Q01",
+        "scopeIds": [
+          "collapse-timeline"
+        ],
+        "selected": true,
+        "selection": "Retain all printed modes/class routes, rank9/class17/base26RP, V/S/F, Action except Universal Time Stop Reaction. No new acquisition.",
+        "disposition": "Preserve Collapse Timeline proposal only; complete guarantee interoperability remains held under TF192-B05.",
+        "sourceAnchor": "Packet322/evidence/collapse_timeline/questions_and_obligations.json#/priorDispositions/0"
+      },
+      {
+        "questionId": "TF9-Q23",
+        "scopeIds": [
+          "collapse-timeline"
+        ],
+        "selected": true,
+        "selection": "Declared entire connected battlefield and dependencies, 120ft anchor and NEW finite six-second future horizon.",
+        "disposition": "Preserve Collapse Timeline proposal only; complete guarantee interoperability remains held under TF192-B05.",
+        "sourceAnchor": "Packet322/evidence/collapse_timeline/questions_and_obligations.json#/priorDispositions/1"
+      },
+      {
+        "questionId": "TF9-Q24",
+        "scopeIds": [
+          "collapse-timeline"
+        ],
+        "selected": true,
+        "selection": "Deterministic authored ordered alternatives and legitimate objective choice; no live agent or hidden-outcome disclosure.",
+        "disposition": "Preserve Collapse Timeline proposal only; complete guarantee interoperability remains held under TF192-B05.",
+        "sourceAnchor": "Packet322/evidence/collapse_timeline/questions_and_obligations.json#/priorDispositions/2"
+      },
+      {
+        "questionId": "TF9-Q25",
+        "scopeIds": [
+          "collapse-timeline"
+        ],
+        "selected": true,
+        "selection": "One atomic lawful future from paid state, all bodies/resources/custody/clocks and outsiders covered; no duplications or invented actions.",
+        "disposition": "Preserve Collapse Timeline proposal only; complete guarantee interoperability remains held under TF192-B05.",
+        "sourceAnchor": "Packet322/evidence/collapse_timeline/questions_and_obligations.json#/priorDispositions/3"
+      },
+      {
+        "questionId": "TF9-Q26",
+        "scopeIds": [
+          "collapse-timeline"
+        ],
+        "selected": true,
+        "selection": "Advance elapsed world time exactly6seconds with all due events; retain actual payments and deadlines. Missing parent integration remains held.",
+        "disposition": "Preserve Collapse Timeline proposal only; complete guarantee interoperability remains held under TF192-B05.",
+        "sourceAnchor": "Packet322/evidence/collapse_timeline/questions_and_obligations.json#/priorDispositions/4"
+      },
+      {
+        "questionId": "TF9-Q31",
+        "scopeIds": [
+          "collapse-timeline"
+        ],
+        "selected": true,
+        "selection": "Keep scoped source-ID/obligation priority; useful compatible histories and denials remain conditional until actual guarantee witness closes TF192-B02/B04/B05.",
+        "disposition": "Preserve Collapse Timeline proposal only; complete guarantee interoperability remains held under TF192-B05.",
+        "sourceAnchor": "Packet322/evidence/collapse_timeline/questions_and_obligations.json#/priorDispositions/5"
+      },
+      {
+        "questionId": "TF9-Q32",
+        "scopeIds": [
+          "collapse-timeline"
+        ],
+        "selected": true,
+        "selection": "Preserve exact source IDs, pending lineages, clocks, costs and knowledge across serialized modes; no runtime, implementation or completion claim.",
+        "disposition": "Preserve Collapse Timeline proposal only; complete guarantee interoperability remains held under TF192-B05.",
+        "sourceAnchor": "Packet322/evidence/collapse_timeline/questions_and_obligations.json#/priorDispositions/6"
+      },
+      {
+        "questionId": "TIME129-ADD02",
+        "scopeIds": [
+          "collapse-timeline"
+        ],
+        "selected": true,
+        "disposition": "Preserve actual original transaction/source/clock/guarantee boundaries. Existing finite future-policy tests do not close the actual complete-guarantee/external-parent witness. Linked Fate Rewrite/Eternal Prophecy not re-adjudicated."
+      }
+    ]
+  },
+  "qualificationRecord": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/rank9_collapse_timeline_return322_received/QUALIFICATIONS.json",
+    "bytes": 1584,
+    "sha256": "1a187626fe64b5c9e02ffca19b77efd7558aaf22dc309c392ab4a4a7a2f14bc6",
+    "crc32": "5c0bbd42",
+    "gitBlobSha1": "2abdc3f2f459fb77b38d0504641d6af9bc7b4b8a"
+  },
+  "componentPass": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/collapse_timeline_b05_witness_2026-11-03/DIRECTOR_COMPONENT_PASS_CT_B05_P04_01.json",
+    "bytes": 3690,
+    "sha256": "218a14fdb0b0090bd54db7869f0d2a9e2a449ffaa1dadad27387d1a79a0a66b9",
+    "crc32": "097342b0",
+    "gitBlobSha1": "8a8d1410f0c13328192c3ca4df0843fa05f6a8f4"
+  },
+  "adoption": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/collapse_timeline_b05_witness_2026-11-03/OWNER_AUTHORIZATION_CT_B05_P04_01.json",
+    "bytes": 2513,
+    "sha256": "55233e2ff9c82b2a262fc311adcfe8bd67c803448fee31eabd0b20494cd126eb",
+    "crc32": "709c0749",
+    "gitBlobSha1": "093272aaf06795eb938bd30a1323646d392fd820"
+  },
+  "coverage": [
+    {
+      "requirement": "paid compatible Collapse future with mapped EP obligation",
+      "evidence": "CT-B05-BRANCH-COMPAT-01",
+      "disposition": "SUFFICIENT_WITHIN_ADOPTED_STATIC_FIXTURE"
+    },
+    {
+      "requirement": "incompatible alternative filtering without payment refund",
+      "evidence": "CT-B05-BRANCH-INCOMPAT-01",
+      "disposition": "SUFFICIENT_WITHIN_ADOPTED_STATIC_FIXTURE"
+    },
+    {
+      "requirement": "native unconditional EP guarantee and source-complete interoperability",
+      "disposition": "NOT_ESTABLISHED; TF192-B02/B05 REMAIN OPEN"
+    },
+    {
+      "requirement": "game engine implementation and gameplay validation",
+      "disposition": "NOT_CERTIFIED_BY_THIS_REVIEW"
+    }
+  ],
+  "historicalReceiptsPreserved": "Return322/323 and prior procedure labels are retained history. This reconciliation supersedes only the pending static authored-review identity classification after its separate decision and application.",
+  "limits": {
+    "scope": "STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY",
+    "retainedOpenBlockerIds": [
+      "TF192-B05",
+      "TF192-B02"
+    ],
+    "retainedQualificationIds": [
+      "TF192-H-HISTORY",
+      "TF192-Q-BALANCE",
+      "TF192-Q-COMPLETION",
+      "TF192-Q-COSMOLOGY",
+      "TF192-Q-DOMAIN",
+      "TF192-Q-PHYSICAL",
+      "TF192-Q-PLAY",
+      "TF192-Q-RELEASE",
+      "TF192-Q-RUNTIME",
+      "TF192-Q-SOURCE"
+    ],
+    "guaranteeProved": false,
+    "witnessesSealed": false,
+    "runtimeSelectionEnabled": false,
+    "runtimeExecuted": false,
+    "engineImplementationCertified": false,
+    "campaignEventAsserted": false,
+    "canonChanged": false,
+    "nativeSourceChanged": false,
+    "unrelatedDispositionsChanged": false,
+    "closedBlockerIds": []
+  }
+}
