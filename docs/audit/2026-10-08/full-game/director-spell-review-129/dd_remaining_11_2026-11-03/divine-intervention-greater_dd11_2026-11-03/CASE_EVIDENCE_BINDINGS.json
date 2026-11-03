@@ -1,0 +1,195 @@
+{
+  "id": "DI-DD11-CASE-EVIDENCE-BINDINGS-01",
+  "identity": "divine-intervention-greater",
+  "contractSha256": "9c09222a503e88e4012c6fba18180c757b54aeccb7729d4601c2601999699123",
+  "requiredCases": [
+    {
+      "caseId": "DI-P1",
+      "specification": {
+        "id": "DI-P1",
+        "given": {
+          "route": "Cleric/Divination",
+          "operation": "QUESTION"
+        },
+        "steps": [
+          "Legal paid cast",
+          "Receive exact authorized answer",
+          "Spend later real action/interaction on Control C"
+        ],
+        "expected": {
+          "answer": "Control C lowers the east floodgate.",
+          "gateLowered": true,
+          "oneQuestion": true,
+          "noFreeInteraction": true
+        },
+        "covers": [
+          "MR342-W01",
+          "MR342-W03"
+        ],
+        "executionStatus": "NOT_EXECUTED_IN_THIS_PACKAGE"
+      },
+      "specificationSha256": "16598a654b2881cc289afd24ed6da576819b22cf6d1667428a60e8a25b08a0b3",
+      "branchIds": [
+        "DI-P1-QUESTION-ANSWER"
+      ],
+      "branchHashes": {
+        "DI-P1-QUESTION-ANSWER": "17c19c2e729498afb4ad5b046a7c8d2387eac2e07c02ceabcb416287ee60319b"
+      },
+      "status": "PASS_STATIC_TEST_ONLY"
+    },
+    {
+      "caseId": "DI-P2",
+      "specification": {
+        "id": "DI-P2",
+        "given": {
+          "route": "Wizard/Divination",
+          "operation": "GREATER-RESTORE-STRUCTURE-01"
+        },
+        "steps": [
+          "Paid cast",
+          "Atomic6000lb material conversion to bridge",
+          "Helper walks actual20ft across supported bridge"
+        ],
+        "expected": {
+          "bridgeMassLb": 6000,
+          "materialStockRemainingLb": 0,
+          "supportCapacitySufficient": true,
+          "ownerUnchanged": true,
+          "usefulPassage": true
+        },
+        "covers": [
+          "MR342-W02",
+          "MR342-W03"
+        ],
+        "executionStatus": "NOT_EXECUTED_IN_THIS_PACKAGE"
+      },
+      "specificationSha256": "c74c8c54d2b5dd62aa53a8e5ddcac9469e4c97bf76368adfc3906d32cd455d56",
+      "branchIds": [
+        "DI-P2-RESTORE-BRIDGE"
+      ],
+      "branchHashes": {
+        "DI-P2-RESTORE-BRIDGE": "7d7147bb78ffef7a86d75122fec6e47b321e472fcacb5409b0bec5789c7ef602"
+      },
+      "status": "PASS_STATIC_TEST_ONLY"
+    },
+    {
+      "caseId": "DI-A1",
+      "specification": {
+        "id": "DI-A1",
+        "given": {
+          "variants": [
+            "protected answer",
+            "missing answer",
+            "unqualified faith relationship",
+            "countered paid cast",
+            "material ownership revoked after commitment",
+            "occupied bridge volume"
+          ]
+        },
+        "steps": [
+          "Check public admission vs paid resolution stage correctly"
+        ],
+        "expected": {
+          "neutralNoAnswerWithoutDiagnosis": true,
+          "noInventedFaithOrAnswer": true,
+          "paidFailureNoRefund": true,
+          "noPartialBridge": true,
+          "bodiesUnmoved": true
+        },
+        "covers": [
+          "MR342-W01",
+          "MR342-W02",
+          "MR342-W03"
+        ],
+        "executionStatus": "NOT_EXECUTED_IN_THIS_PACKAGE"
+      },
+      "specificationSha256": "87ddc6aaea341395aad87d2a7c60edbacc4edecfc5da3831c7e882f0d549702c",
+      "branchIds": [
+        "DI-A1-PROTECTED-ANSWER",
+        "DI-A1-MISSING-ANSWER",
+        "DI-A1-UNQUALIFIED-FAITH",
+        "DI-A1-COUNTERED-CAST",
+        "DI-A1-OWNER-CONSENT-REVOKED",
+        "DI-A1-OCCUPIED-BRIDGE-VOLUME"
+      ],
+      "branchHashes": {
+        "DI-A1-PROTECTED-ANSWER": "210b57370e9b1730505b76748cd8db2d413cf4040071d59c0272c3709e46fb64",
+        "DI-A1-MISSING-ANSWER": "10710250dad526d515da4c8d77ecedc667e4c44192fec3efff910f623e0e45f0",
+        "DI-A1-UNQUALIFIED-FAITH": "2e34438f565b419f53b8768ebcd27d6ae6ee3e387dca7654e498e94fc5de2dfa",
+        "DI-A1-COUNTERED-CAST": "ca96614635476b4c5b01ca16f2a9a5253b0416ea079760ab30aa2cca4e4f1536",
+        "DI-A1-OWNER-CONSENT-REVOKED": "cff7f63a1a26c8cd82b61ab73e62bcd9035754263f006c160e88a90378a9a8ce",
+        "DI-A1-OCCUPIED-BRIDGE-VOLUME": "fe5ab6e0ed07c4334096bf0dd14f5b5214f88ea8ecd15b06d81f9b71fdbcb492"
+      },
+      "status": "PASS_STATIC_TEST_ONLY"
+    },
+    {
+      "caseId": "DI-A2",
+      "specification": {
+        "id": "DI-A2",
+        "given": {
+          "events": [
+            "same-key retry",
+            "new paid task after material consumed",
+            "damage to completed bridge",
+            "later dispel"
+          ]
+        },
+        "steps": [
+          "Resolve exact current versions/history"
+        ],
+        "expected": {
+          "noDuplicateMatter": true,
+          "newImpossibleTaskRejected": true,
+          "damagePersists": true,
+          "completedPhysicalBridgeNotDispelled": true,
+          "memoryNotErased": true
+        },
+        "covers": [
+          "MR342-W02",
+          "MR342-W03"
+        ],
+        "executionStatus": "NOT_EXECUTED_IN_THIS_PACKAGE"
+      },
+      "specificationSha256": "1270e6f246862692bc186792558775b8eda35679af111bd4f00cd7e3e9cacaec",
+      "branchIds": [
+        "DI-P1-QUESTION-ANSWER",
+        "DI-P2-RESTORE-BRIDGE",
+        "DI-A2-NEW-PAID-QUESTION"
+      ],
+      "branchHashes": {
+        "DI-P1-QUESTION-ANSWER": "17c19c2e729498afb4ad5b046a7c8d2387eac2e07c02ceabcb416287ee60319b",
+        "DI-P2-RESTORE-BRIDGE": "7d7147bb78ffef7a86d75122fec6e47b321e472fcacb5409b0bec5789c7ef602",
+        "DI-A2-NEW-PAID-QUESTION": "01e9acb69c4f45b79ac3e18fa1a44aa29ee9b6f2771e9e40445393c7e3a49f6b"
+      },
+      "status": "PASS_STATIC_TEST_ONLY"
+    }
+  ],
+  "nativeRouteCoverage": {
+    "Cleric/Divination": [
+      "DI-P1-QUESTION-ANSWER"
+    ],
+    "Wizard/Divination": [
+      "DI-P2-RESTORE-BRIDGE",
+      "DI-A2-NEW-PAID-QUESTION"
+    ]
+  },
+  "minimumDistinctPaidPositiveEncountersPerRoute": 1,
+  "obligationCrosswalk": {
+    "MR342-W01": [
+      "DI-P1",
+      "DI-A1"
+    ],
+    "MR342-W02": [
+      "DI-P2",
+      "DI-A1",
+      "DI-A2"
+    ],
+    "MR342-W03": [
+      "DI-P1",
+      "DI-P2",
+      "DI-A1",
+      "DI-A2"
+    ]
+  },
+  "scope": "STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY"
+}

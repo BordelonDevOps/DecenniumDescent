@@ -1,0 +1,2830 @@
+{
+  "id": "DI-DD11-STATE-START-01",
+  "scope": "independent TEST_ONLY faith, recipient, answer, material, terrain, bridge and action snapshots",
+  "branches": [
+    {
+      "branchId": "DI-P1-QUESTION-ANSWER",
+      "caseId": "DI-P1",
+      "route": "Cleric/Divination",
+      "operation": "QUESTION",
+      "state": {
+        "id": "DI-FIXTURE-DI-P1-QUESTION-ANSWER",
+        "identity": "divine-intervention-greater",
+        "status": "TEST_ONLY",
+        "canonical": false,
+        "scope": "STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY",
+        "currentTimeMs": 0,
+        "route": "Cleric/Divination",
+        "operation": "QUESTION",
+        "fixtureAuthorization": {
+          "authority": "DD-DIRECTOR-11-COMMON-01",
+          "contractId": "DD11-DIVINE-INTERVENTION-GREATER-01",
+          "classification": "TEST_ONLY patron, faith relationship, answer, material, terrain, helper, task and damage"
+        },
+        "caster": {
+          "id": "cleric-17-divination",
+          "role": "caster",
+          "route": "Cleric/Divination",
+          "profileBinding": {
+            "profileId": "cleric-17-divination",
+            "sha256": "0eec5c6193552cf2b63d62ead06cb3cdce6ea3f920e7c007d396a664a4d0d7a1"
+          },
+          "classLevel": 17,
+          "spellRank": 9,
+          "spellAccess": {
+            "targetSpell": "divine-intervention-greater",
+            "rank": 9,
+            "school": "Divination",
+            "acquiredAtClassLevel": 17,
+            "ordinaryRankGate": 9,
+            "preparedOrKnown": true,
+            "paidRpCost": 26,
+            "rankedKnownCount": 18,
+            "ordinaryClericPreparation": true
+          },
+          "preparedOrKnown": true,
+          "resources": {
+            "RP": 48,
+            "maxRP": 48,
+            "HP": 156,
+            "maxHP": 156
+          },
+          "turn": {
+            "turnNumber": 1,
+            "actionAvailable": true,
+            "actionsSpent": 0,
+            "movementFtAvailable": 30,
+            "movementFtSpent": 0,
+            "magicThisTurn": false,
+            "lastSpell": null
+          },
+          "body": {
+            "id": "cleric-17-divination:body",
+            "owner": "cleric-17-divination",
+            "location": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-DD11-SITE"
+            },
+            "bounds": [
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                0,
+                6
+              ]
+            ],
+            "alive": true,
+            "physical": true,
+            "support": "existing TEST_ONLY ground",
+            "targetable": true
+          },
+          "faith": {
+            "recipientId": "TEST-PATRON-DD11",
+            "relationship": "explicitly declared and consented TEST_ONLY faith context",
+            "selectedFaithId": "TEST-FAITH-DD11",
+            "relationshipAuthorized": true,
+            "questionPermission": true,
+            "taskPermission": true,
+            "canonical": false
+          },
+          "inventory": {
+            "focus": {
+              "id": "cleric-focus-01",
+              "owner": "cleric-17-divination",
+              "custodian": "cleric-17-divination",
+              "equipped": true
+            }
+          },
+          "spellHistory": [],
+          "pendingCast": null
+        },
+        "recipient": {
+          "id": "TEST-PATRON-DD11",
+          "kind": "synthetic test recipient",
+          "canonical": false,
+          "permissions": {
+            "question": true,
+            "task": true
+          },
+          "disclosurePolicy": "TEST_ONLY exact permitted fields only"
+        },
+        "site": {
+          "id": "TEST-SITE-DD11",
+          "owner": "TEST-SITE-OWNER",
+          "questionSubject": {
+            "bounds": [
+              [
+                10,
+                11
+              ],
+              [
+                10,
+                11
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            "rangeFt": 20,
+            "lineOfEffect": true,
+            "perceived": true,
+            "recordId": "TEST-MAINTENANCE-LEDGER-1",
+            "recordVersion": 1
+          },
+          "questionRecord": {
+            "id": "TEST-MAINTENANCE-LEDGER-1",
+            "version": 1,
+            "answer": "Control C lowers the east floodgate.",
+            "evidence": "authorized exact machinery plan/control mapping, not a belief or future promise",
+            "permitted": true,
+            "protected": false
+          },
+          "questionOutput": null,
+          "floodgate": {
+            "id": "east-floodgate-01",
+            "state": "raised",
+            "controlId": "Control C",
+            "owner": "TEST-SITE-OWNER"
+          },
+          "task": {
+            "gap": [
+              [
+                30,
+                50
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                -10,
+                0
+              ]
+            ],
+            "bridgeBounds": [
+              [
+                30,
+                50
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                -0.5,
+                0
+              ]
+            ],
+            "materialStock": {
+              "id": "TEST-GRANITE-STOCK-01",
+              "bounds": [
+                [
+                  30,
+                  40
+                ],
+                [
+                  10,
+                  15
+                ],
+                [
+                  0,
+                  1
+                ]
+              ],
+              "perceived": true,
+              "lineOfEffect": true,
+              "rangeFt": 34,
+              "owner": "TEST-SITE-OWNER",
+              "consent": true,
+              "version": 1,
+              "massLb": 6000,
+              "densityLbFt3": 120,
+              "available": true,
+              "provenance": "TEST_ONLY compatible granite stock"
+            },
+            "supports": {
+              "west": [
+                [
+                  30,
+                  31
+                ],
+                [
+                  -2.5,
+                  2.5
+                ],
+                [
+                  -10,
+                  -0.5
+                ]
+              ],
+              "east": [
+                [
+                  49,
+                  50
+                ],
+                [
+                  -2.5,
+                  2.5
+                ],
+                [
+                  -10,
+                  -0.5
+                ]
+              ],
+              "perceived": true,
+              "lineOfEffect": true,
+              "rangeFt": 50,
+              "owner": "TEST-SITE-OWNER",
+              "existing": true,
+              "capacityLbEach": 10000,
+              "foundationTopZ": -10
+            },
+            "clearVolumes": true,
+            "bridgePerceived": true,
+            "bridgeLineOfEffect": true,
+            "bridgeRangeFt": 50,
+            "protectedMatter": false,
+            "occupants": [],
+            "bridge": null
+          },
+          "helper": {
+            "id": "helper-01",
+            "owner": "TEST-SITE-OWNER",
+            "body": {
+              "id": "helper-01:body",
+              "owner": "helper-01",
+              "location": {
+                "x": 29,
+                "y": 0,
+                "z": 0,
+                "plane": "TEST-DD11-SITE"
+              },
+              "bounds": [
+                [
+                  28,
+                  30
+                ],
+                [
+                  -1,
+                  1
+                ],
+                [
+                  0,
+                  4
+                ]
+              ],
+              "alive": true,
+              "physical": true,
+              "support": "existing TEST_ONLY ground",
+              "targetable": true
+            },
+            "massLb": 150,
+            "turn": {
+              "actionAvailable": true,
+              "actionsSpent": 0,
+              "movementFtAvailable": 30,
+              "movementFtSpent": 0
+            },
+            "inventory": {
+              "testMallet": {
+                "id": "TEST-ONLY-MALLET-01",
+                "owner": "helper-01",
+                "custodian": "helper-01",
+                "usable": true,
+                "fixtureOnly": true
+              }
+            }
+          }
+        },
+        "externalInputs": [],
+        "castWindow": null,
+        "taskTransaction": null,
+        "receipts": {},
+        "eventInputs": [],
+        "canonicalEffect": false
+      },
+      "hash": "c3a582bd2bf3c4bfbc7f3a54d0f2b4a5231cf11ad941e7e5027340ea4c07d810"
+    },
+    {
+      "branchId": "DI-P2-RESTORE-BRIDGE",
+      "caseId": "DI-P2",
+      "route": "Wizard/Divination",
+      "operation": "TASK",
+      "state": {
+        "id": "DI-FIXTURE-DI-P2-RESTORE-BRIDGE",
+        "identity": "divine-intervention-greater",
+        "status": "TEST_ONLY",
+        "canonical": false,
+        "scope": "STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY",
+        "currentTimeMs": 0,
+        "route": "Wizard/Divination",
+        "operation": "TASK",
+        "fixtureAuthorization": {
+          "authority": "DD-DIRECTOR-11-COMMON-01",
+          "contractId": "DD11-DIVINE-INTERVENTION-GREATER-01",
+          "classification": "TEST_ONLY patron, faith relationship, answer, material, terrain, helper, task and damage"
+        },
+        "caster": {
+          "id": "wizard-17-divination",
+          "role": "caster",
+          "route": "Wizard/Divination",
+          "profileBinding": {
+            "profileId": "wizard-17-divination",
+            "sha256": "16046fbcd3faa4df3a2b3d6913f12badee7314d84a29799d7b038b802ca6b771"
+          },
+          "classLevel": 17,
+          "spellRank": 9,
+          "spellAccess": {
+            "targetSpell": "divine-intervention-greater",
+            "rank": 9,
+            "school": "Divination",
+            "acquiredAtClassLevel": 17,
+            "ordinaryRankGate": 9,
+            "preparedOrKnown": true,
+            "paidRpCost": 26,
+            "path": "Spellbinder",
+            "preparedMatrixCount": 22,
+            "targetMatrixPrepared": true,
+            "matrixPreparationMinutes": 45,
+            "spellbookEntryCount": 67,
+            "counterspellKnownAndPrepared": true
+          },
+          "preparedOrKnown": true,
+          "resources": {
+            "RP": 64,
+            "maxRP": 64,
+            "HP": 55,
+            "maxHP": 80
+          },
+          "turn": {
+            "turnNumber": 1,
+            "actionAvailable": true,
+            "actionsSpent": 0,
+            "movementFtAvailable": 30,
+            "movementFtSpent": 0,
+            "magicThisTurn": false,
+            "lastSpell": null
+          },
+          "body": {
+            "id": "wizard-17-divination:body",
+            "owner": "wizard-17-divination",
+            "location": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-DD11-SITE"
+            },
+            "bounds": [
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                0,
+                6
+              ]
+            ],
+            "alive": true,
+            "physical": true,
+            "support": "existing TEST_ONLY ground",
+            "targetable": true
+          },
+          "faith": {
+            "recipientId": "TEST-PATRON-DD11",
+            "relationship": "explicitly declared and consented TEST_ONLY faith context",
+            "selectedFaithId": "TEST-FAITH-DD11",
+            "relationshipAuthorized": true,
+            "questionPermission": true,
+            "taskPermission": true,
+            "canonical": false
+          },
+          "inventory": {
+            "focus": {
+              "id": "wizard-focus-01",
+              "owner": "wizard-17-divination",
+              "custodian": "wizard-17-divination",
+              "equipped": true
+            }
+          },
+          "spellHistory": [],
+          "pendingCast": null
+        },
+        "recipient": {
+          "id": "TEST-PATRON-DD11",
+          "kind": "synthetic test recipient",
+          "canonical": false,
+          "permissions": {
+            "question": true,
+            "task": true
+          },
+          "disclosurePolicy": "TEST_ONLY exact permitted fields only"
+        },
+        "site": {
+          "id": "TEST-SITE-DD11",
+          "owner": "TEST-SITE-OWNER",
+          "questionSubject": {
+            "bounds": [
+              [
+                10,
+                11
+              ],
+              [
+                10,
+                11
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            "rangeFt": 20,
+            "lineOfEffect": true,
+            "perceived": true,
+            "recordId": "TEST-MAINTENANCE-LEDGER-1",
+            "recordVersion": 1
+          },
+          "questionRecord": {
+            "id": "TEST-MAINTENANCE-LEDGER-1",
+            "version": 1,
+            "answer": "Control C lowers the east floodgate.",
+            "evidence": "authorized exact machinery plan/control mapping, not a belief or future promise",
+            "permitted": true,
+            "protected": false
+          },
+          "questionOutput": null,
+          "floodgate": {
+            "id": "east-floodgate-01",
+            "state": "raised",
+            "controlId": "Control C",
+            "owner": "TEST-SITE-OWNER"
+          },
+          "task": {
+            "gap": [
+              [
+                30,
+                50
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                -10,
+                0
+              ]
+            ],
+            "bridgeBounds": [
+              [
+                30,
+                50
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                -0.5,
+                0
+              ]
+            ],
+            "materialStock": {
+              "id": "TEST-GRANITE-STOCK-01",
+              "bounds": [
+                [
+                  30,
+                  40
+                ],
+                [
+                  10,
+                  15
+                ],
+                [
+                  0,
+                  1
+                ]
+              ],
+              "perceived": true,
+              "lineOfEffect": true,
+              "rangeFt": 34,
+              "owner": "TEST-SITE-OWNER",
+              "consent": true,
+              "version": 1,
+              "massLb": 6000,
+              "densityLbFt3": 120,
+              "available": true,
+              "provenance": "TEST_ONLY compatible granite stock"
+            },
+            "supports": {
+              "west": [
+                [
+                  30,
+                  31
+                ],
+                [
+                  -2.5,
+                  2.5
+                ],
+                [
+                  -10,
+                  -0.5
+                ]
+              ],
+              "east": [
+                [
+                  49,
+                  50
+                ],
+                [
+                  -2.5,
+                  2.5
+                ],
+                [
+                  -10,
+                  -0.5
+                ]
+              ],
+              "perceived": true,
+              "lineOfEffect": true,
+              "rangeFt": 50,
+              "owner": "TEST-SITE-OWNER",
+              "existing": true,
+              "capacityLbEach": 10000,
+              "foundationTopZ": -10
+            },
+            "clearVolumes": true,
+            "bridgePerceived": true,
+            "bridgeLineOfEffect": true,
+            "bridgeRangeFt": 50,
+            "protectedMatter": false,
+            "occupants": [],
+            "bridge": null
+          },
+          "helper": {
+            "id": "helper-01",
+            "owner": "TEST-SITE-OWNER",
+            "body": {
+              "id": "helper-01:body",
+              "owner": "helper-01",
+              "location": {
+                "x": 29,
+                "y": 0,
+                "z": 0,
+                "plane": "TEST-DD11-SITE"
+              },
+              "bounds": [
+                [
+                  28,
+                  30
+                ],
+                [
+                  -1,
+                  1
+                ],
+                [
+                  0,
+                  4
+                ]
+              ],
+              "alive": true,
+              "physical": true,
+              "support": "existing TEST_ONLY ground",
+              "targetable": true
+            },
+            "massLb": 150,
+            "turn": {
+              "actionAvailable": true,
+              "actionsSpent": 0,
+              "movementFtAvailable": 30,
+              "movementFtSpent": 0
+            },
+            "inventory": {
+              "testMallet": {
+                "id": "TEST-ONLY-MALLET-01",
+                "owner": "helper-01",
+                "custodian": "helper-01",
+                "usable": true,
+                "fixtureOnly": true
+              }
+            }
+          }
+        },
+        "externalInputs": [],
+        "castWindow": null,
+        "taskTransaction": null,
+        "receipts": {},
+        "eventInputs": [],
+        "canonicalEffect": false
+      },
+      "hash": "93e4b66feb8e26b07657c95f64acd6e6bc1c746d3715f2ddbb5430e7053989ab"
+    },
+    {
+      "branchId": "DI-A2-NEW-PAID-QUESTION",
+      "caseId": "DI-A2",
+      "route": "Wizard/Divination",
+      "operation": "QUESTION",
+      "state": {
+        "id": "DI-FIXTURE-DI-A2-NEW-PAID-QUESTION",
+        "identity": "divine-intervention-greater",
+        "status": "TEST_ONLY",
+        "canonical": false,
+        "scope": "STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY",
+        "currentTimeMs": 0,
+        "route": "Wizard/Divination",
+        "operation": "QUESTION",
+        "fixtureAuthorization": {
+          "authority": "DD-DIRECTOR-11-COMMON-01",
+          "contractId": "DD11-DIVINE-INTERVENTION-GREATER-01",
+          "classification": "TEST_ONLY patron, faith relationship, answer, material, terrain, helper, task and damage"
+        },
+        "caster": {
+          "id": "wizard-17-divination",
+          "role": "caster",
+          "route": "Wizard/Divination",
+          "profileBinding": {
+            "profileId": "wizard-17-divination",
+            "sha256": "16046fbcd3faa4df3a2b3d6913f12badee7314d84a29799d7b038b802ca6b771"
+          },
+          "classLevel": 17,
+          "spellRank": 9,
+          "spellAccess": {
+            "targetSpell": "divine-intervention-greater",
+            "rank": 9,
+            "school": "Divination",
+            "acquiredAtClassLevel": 17,
+            "ordinaryRankGate": 9,
+            "preparedOrKnown": true,
+            "paidRpCost": 26,
+            "path": "Spellbinder",
+            "preparedMatrixCount": 22,
+            "targetMatrixPrepared": true,
+            "matrixPreparationMinutes": 45,
+            "spellbookEntryCount": 67,
+            "counterspellKnownAndPrepared": true
+          },
+          "preparedOrKnown": true,
+          "resources": {
+            "RP": 64,
+            "maxRP": 64,
+            "HP": 55,
+            "maxHP": 80
+          },
+          "turn": {
+            "turnNumber": 1,
+            "actionAvailable": true,
+            "actionsSpent": 0,
+            "movementFtAvailable": 30,
+            "movementFtSpent": 0,
+            "magicThisTurn": false,
+            "lastSpell": null
+          },
+          "body": {
+            "id": "wizard-17-divination:body",
+            "owner": "wizard-17-divination",
+            "location": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-DD11-SITE"
+            },
+            "bounds": [
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                0,
+                6
+              ]
+            ],
+            "alive": true,
+            "physical": true,
+            "support": "existing TEST_ONLY ground",
+            "targetable": true
+          },
+          "faith": {
+            "recipientId": "TEST-PATRON-DD11",
+            "relationship": "explicitly declared and consented TEST_ONLY faith context",
+            "selectedFaithId": "TEST-FAITH-DD11",
+            "relationshipAuthorized": true,
+            "questionPermission": true,
+            "taskPermission": true,
+            "canonical": false
+          },
+          "inventory": {
+            "focus": {
+              "id": "wizard-focus-01",
+              "owner": "wizard-17-divination",
+              "custodian": "wizard-17-divination",
+              "equipped": true
+            }
+          },
+          "spellHistory": [],
+          "pendingCast": null
+        },
+        "recipient": {
+          "id": "TEST-PATRON-DD11",
+          "kind": "synthetic test recipient",
+          "canonical": false,
+          "permissions": {
+            "question": true,
+            "task": true
+          },
+          "disclosurePolicy": "TEST_ONLY exact permitted fields only"
+        },
+        "site": {
+          "id": "TEST-SITE-DD11",
+          "owner": "TEST-SITE-OWNER",
+          "questionSubject": {
+            "bounds": [
+              [
+                10,
+                11
+              ],
+              [
+                10,
+                11
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            "rangeFt": 20,
+            "lineOfEffect": true,
+            "perceived": true,
+            "recordId": "TEST-MAINTENANCE-LEDGER-1",
+            "recordVersion": 1
+          },
+          "questionRecord": {
+            "id": "TEST-MAINTENANCE-LEDGER-1",
+            "version": 1,
+            "answer": "Control C lowers the east floodgate.",
+            "evidence": "authorized exact machinery plan/control mapping, not a belief or future promise",
+            "permitted": true,
+            "protected": false
+          },
+          "questionOutput": null,
+          "floodgate": {
+            "id": "east-floodgate-01",
+            "state": "raised",
+            "controlId": "Control C",
+            "owner": "TEST-SITE-OWNER"
+          },
+          "task": {
+            "gap": [
+              [
+                30,
+                50
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                -10,
+                0
+              ]
+            ],
+            "bridgeBounds": [
+              [
+                30,
+                50
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                -0.5,
+                0
+              ]
+            ],
+            "materialStock": {
+              "id": "TEST-GRANITE-STOCK-01",
+              "bounds": [
+                [
+                  30,
+                  40
+                ],
+                [
+                  10,
+                  15
+                ],
+                [
+                  0,
+                  1
+                ]
+              ],
+              "perceived": true,
+              "lineOfEffect": true,
+              "rangeFt": 34,
+              "owner": "TEST-SITE-OWNER",
+              "consent": true,
+              "version": 1,
+              "massLb": 6000,
+              "densityLbFt3": 120,
+              "available": true,
+              "provenance": "TEST_ONLY compatible granite stock"
+            },
+            "supports": {
+              "west": [
+                [
+                  30,
+                  31
+                ],
+                [
+                  -2.5,
+                  2.5
+                ],
+                [
+                  -10,
+                  -0.5
+                ]
+              ],
+              "east": [
+                [
+                  49,
+                  50
+                ],
+                [
+                  -2.5,
+                  2.5
+                ],
+                [
+                  -10,
+                  -0.5
+                ]
+              ],
+              "perceived": true,
+              "lineOfEffect": true,
+              "rangeFt": 50,
+              "owner": "TEST-SITE-OWNER",
+              "existing": true,
+              "capacityLbEach": 10000,
+              "foundationTopZ": -10
+            },
+            "clearVolumes": true,
+            "bridgePerceived": true,
+            "bridgeLineOfEffect": true,
+            "bridgeRangeFt": 50,
+            "protectedMatter": false,
+            "occupants": [],
+            "bridge": null
+          },
+          "helper": {
+            "id": "helper-01",
+            "owner": "TEST-SITE-OWNER",
+            "body": {
+              "id": "helper-01:body",
+              "owner": "helper-01",
+              "location": {
+                "x": 29,
+                "y": 0,
+                "z": 0,
+                "plane": "TEST-DD11-SITE"
+              },
+              "bounds": [
+                [
+                  28,
+                  30
+                ],
+                [
+                  -1,
+                  1
+                ],
+                [
+                  0,
+                  4
+                ]
+              ],
+              "alive": true,
+              "physical": true,
+              "support": "existing TEST_ONLY ground",
+              "targetable": true
+            },
+            "massLb": 150,
+            "turn": {
+              "actionAvailable": true,
+              "actionsSpent": 0,
+              "movementFtAvailable": 30,
+              "movementFtSpent": 0
+            },
+            "inventory": {
+              "testMallet": {
+                "id": "TEST-ONLY-MALLET-01",
+                "owner": "helper-01",
+                "custodian": "helper-01",
+                "usable": true,
+                "fixtureOnly": true
+              }
+            }
+          }
+        },
+        "externalInputs": [],
+        "castWindow": null,
+        "taskTransaction": null,
+        "receipts": {},
+        "eventInputs": [],
+        "canonicalEffect": false
+      },
+      "hash": "14ef6ddf4eb873d9b2dab5165f0c52163adc3e4f7342baca6f05d45fc6a64613"
+    },
+    {
+      "branchId": "DI-A1-PROTECTED-ANSWER",
+      "caseId": "DI-A1",
+      "route": "Cleric/Divination",
+      "operation": "QUESTION",
+      "state": {
+        "id": "DI-FIXTURE-DI-A1-PROTECTED-ANSWER",
+        "identity": "divine-intervention-greater",
+        "status": "TEST_ONLY",
+        "canonical": false,
+        "scope": "STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY",
+        "currentTimeMs": 0,
+        "route": "Cleric/Divination",
+        "operation": "QUESTION",
+        "fixtureAuthorization": {
+          "authority": "DD-DIRECTOR-11-COMMON-01",
+          "contractId": "DD11-DIVINE-INTERVENTION-GREATER-01",
+          "classification": "TEST_ONLY patron, faith relationship, answer, material, terrain, helper, task and damage"
+        },
+        "caster": {
+          "id": "cleric-17-divination",
+          "role": "caster",
+          "route": "Cleric/Divination",
+          "profileBinding": {
+            "profileId": "cleric-17-divination",
+            "sha256": "0eec5c6193552cf2b63d62ead06cb3cdce6ea3f920e7c007d396a664a4d0d7a1"
+          },
+          "classLevel": 17,
+          "spellRank": 9,
+          "spellAccess": {
+            "targetSpell": "divine-intervention-greater",
+            "rank": 9,
+            "school": "Divination",
+            "acquiredAtClassLevel": 17,
+            "ordinaryRankGate": 9,
+            "preparedOrKnown": true,
+            "paidRpCost": 26,
+            "rankedKnownCount": 18,
+            "ordinaryClericPreparation": true
+          },
+          "preparedOrKnown": true,
+          "resources": {
+            "RP": 48,
+            "maxRP": 48,
+            "HP": 156,
+            "maxHP": 156
+          },
+          "turn": {
+            "turnNumber": 1,
+            "actionAvailable": true,
+            "actionsSpent": 0,
+            "movementFtAvailable": 30,
+            "movementFtSpent": 0,
+            "magicThisTurn": false,
+            "lastSpell": null
+          },
+          "body": {
+            "id": "cleric-17-divination:body",
+            "owner": "cleric-17-divination",
+            "location": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-DD11-SITE"
+            },
+            "bounds": [
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                0,
+                6
+              ]
+            ],
+            "alive": true,
+            "physical": true,
+            "support": "existing TEST_ONLY ground",
+            "targetable": true
+          },
+          "faith": {
+            "recipientId": "TEST-PATRON-DD11",
+            "relationship": "explicitly declared and consented TEST_ONLY faith context",
+            "selectedFaithId": "TEST-FAITH-DD11",
+            "relationshipAuthorized": true,
+            "questionPermission": true,
+            "taskPermission": true,
+            "canonical": false
+          },
+          "inventory": {
+            "focus": {
+              "id": "cleric-focus-01",
+              "owner": "cleric-17-divination",
+              "custodian": "cleric-17-divination",
+              "equipped": true
+            }
+          },
+          "spellHistory": [],
+          "pendingCast": null
+        },
+        "recipient": {
+          "id": "TEST-PATRON-DD11",
+          "kind": "synthetic test recipient",
+          "canonical": false,
+          "permissions": {
+            "question": true,
+            "task": true
+          },
+          "disclosurePolicy": "TEST_ONLY exact permitted fields only"
+        },
+        "site": {
+          "id": "TEST-SITE-DD11",
+          "owner": "TEST-SITE-OWNER",
+          "questionSubject": {
+            "bounds": [
+              [
+                10,
+                11
+              ],
+              [
+                10,
+                11
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            "rangeFt": 20,
+            "lineOfEffect": true,
+            "perceived": true,
+            "recordId": "TEST-MAINTENANCE-LEDGER-1",
+            "recordVersion": 1
+          },
+          "questionRecord": {
+            "id": "TEST-MAINTENANCE-LEDGER-1",
+            "version": 1,
+            "answer": "Control C lowers the east floodgate.",
+            "evidence": "authorized exact machinery plan/control mapping, not a belief or future promise",
+            "permitted": true,
+            "protected": true
+          },
+          "questionOutput": null,
+          "floodgate": {
+            "id": "east-floodgate-01",
+            "state": "raised",
+            "controlId": "Control C",
+            "owner": "TEST-SITE-OWNER"
+          },
+          "task": {
+            "gap": [
+              [
+                30,
+                50
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                -10,
+                0
+              ]
+            ],
+            "bridgeBounds": [
+              [
+                30,
+                50
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                -0.5,
+                0
+              ]
+            ],
+            "materialStock": {
+              "id": "TEST-GRANITE-STOCK-01",
+              "bounds": [
+                [
+                  30,
+                  40
+                ],
+                [
+                  10,
+                  15
+                ],
+                [
+                  0,
+                  1
+                ]
+              ],
+              "perceived": true,
+              "lineOfEffect": true,
+              "rangeFt": 34,
+              "owner": "TEST-SITE-OWNER",
+              "consent": true,
+              "version": 1,
+              "massLb": 6000,
+              "densityLbFt3": 120,
+              "available": true,
+              "provenance": "TEST_ONLY compatible granite stock"
+            },
+            "supports": {
+              "west": [
+                [
+                  30,
+                  31
+                ],
+                [
+                  -2.5,
+                  2.5
+                ],
+                [
+                  -10,
+                  -0.5
+                ]
+              ],
+              "east": [
+                [
+                  49,
+                  50
+                ],
+                [
+                  -2.5,
+                  2.5
+                ],
+                [
+                  -10,
+                  -0.5
+                ]
+              ],
+              "perceived": true,
+              "lineOfEffect": true,
+              "rangeFt": 50,
+              "owner": "TEST-SITE-OWNER",
+              "existing": true,
+              "capacityLbEach": 10000,
+              "foundationTopZ": -10
+            },
+            "clearVolumes": true,
+            "bridgePerceived": true,
+            "bridgeLineOfEffect": true,
+            "bridgeRangeFt": 50,
+            "protectedMatter": false,
+            "occupants": [],
+            "bridge": null
+          },
+          "helper": {
+            "id": "helper-01",
+            "owner": "TEST-SITE-OWNER",
+            "body": {
+              "id": "helper-01:body",
+              "owner": "helper-01",
+              "location": {
+                "x": 29,
+                "y": 0,
+                "z": 0,
+                "plane": "TEST-DD11-SITE"
+              },
+              "bounds": [
+                [
+                  28,
+                  30
+                ],
+                [
+                  -1,
+                  1
+                ],
+                [
+                  0,
+                  4
+                ]
+              ],
+              "alive": true,
+              "physical": true,
+              "support": "existing TEST_ONLY ground",
+              "targetable": true
+            },
+            "massLb": 150,
+            "turn": {
+              "actionAvailable": true,
+              "actionsSpent": 0,
+              "movementFtAvailable": 30,
+              "movementFtSpent": 0
+            },
+            "inventory": {
+              "testMallet": {
+                "id": "TEST-ONLY-MALLET-01",
+                "owner": "helper-01",
+                "custodian": "helper-01",
+                "usable": true,
+                "fixtureOnly": true
+              }
+            }
+          }
+        },
+        "externalInputs": [],
+        "castWindow": null,
+        "taskTransaction": null,
+        "receipts": {},
+        "eventInputs": [],
+        "canonicalEffect": false
+      },
+      "hash": "929dd459de7279c00030857243e8528f2cf5b663e92cb6679c30deb2df5cdbb0"
+    },
+    {
+      "branchId": "DI-A1-MISSING-ANSWER",
+      "caseId": "DI-A1",
+      "route": "Cleric/Divination",
+      "operation": "QUESTION",
+      "state": {
+        "id": "DI-FIXTURE-DI-A1-MISSING-ANSWER",
+        "identity": "divine-intervention-greater",
+        "status": "TEST_ONLY",
+        "canonical": false,
+        "scope": "STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY",
+        "currentTimeMs": 0,
+        "route": "Cleric/Divination",
+        "operation": "QUESTION",
+        "fixtureAuthorization": {
+          "authority": "DD-DIRECTOR-11-COMMON-01",
+          "contractId": "DD11-DIVINE-INTERVENTION-GREATER-01",
+          "classification": "TEST_ONLY patron, faith relationship, answer, material, terrain, helper, task and damage"
+        },
+        "caster": {
+          "id": "cleric-17-divination",
+          "role": "caster",
+          "route": "Cleric/Divination",
+          "profileBinding": {
+            "profileId": "cleric-17-divination",
+            "sha256": "0eec5c6193552cf2b63d62ead06cb3cdce6ea3f920e7c007d396a664a4d0d7a1"
+          },
+          "classLevel": 17,
+          "spellRank": 9,
+          "spellAccess": {
+            "targetSpell": "divine-intervention-greater",
+            "rank": 9,
+            "school": "Divination",
+            "acquiredAtClassLevel": 17,
+            "ordinaryRankGate": 9,
+            "preparedOrKnown": true,
+            "paidRpCost": 26,
+            "rankedKnownCount": 18,
+            "ordinaryClericPreparation": true
+          },
+          "preparedOrKnown": true,
+          "resources": {
+            "RP": 48,
+            "maxRP": 48,
+            "HP": 156,
+            "maxHP": 156
+          },
+          "turn": {
+            "turnNumber": 1,
+            "actionAvailable": true,
+            "actionsSpent": 0,
+            "movementFtAvailable": 30,
+            "movementFtSpent": 0,
+            "magicThisTurn": false,
+            "lastSpell": null
+          },
+          "body": {
+            "id": "cleric-17-divination:body",
+            "owner": "cleric-17-divination",
+            "location": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-DD11-SITE"
+            },
+            "bounds": [
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                0,
+                6
+              ]
+            ],
+            "alive": true,
+            "physical": true,
+            "support": "existing TEST_ONLY ground",
+            "targetable": true
+          },
+          "faith": {
+            "recipientId": "TEST-PATRON-DD11",
+            "relationship": "explicitly declared and consented TEST_ONLY faith context",
+            "selectedFaithId": "TEST-FAITH-DD11",
+            "relationshipAuthorized": true,
+            "questionPermission": true,
+            "taskPermission": true,
+            "canonical": false
+          },
+          "inventory": {
+            "focus": {
+              "id": "cleric-focus-01",
+              "owner": "cleric-17-divination",
+              "custodian": "cleric-17-divination",
+              "equipped": true
+            }
+          },
+          "spellHistory": [],
+          "pendingCast": null
+        },
+        "recipient": {
+          "id": "TEST-PATRON-DD11",
+          "kind": "synthetic test recipient",
+          "canonical": false,
+          "permissions": {
+            "question": true,
+            "task": true
+          },
+          "disclosurePolicy": "TEST_ONLY exact permitted fields only"
+        },
+        "site": {
+          "id": "TEST-SITE-DD11",
+          "owner": "TEST-SITE-OWNER",
+          "questionSubject": {
+            "bounds": [
+              [
+                10,
+                11
+              ],
+              [
+                10,
+                11
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            "rangeFt": 20,
+            "lineOfEffect": true,
+            "perceived": true,
+            "recordId": "TEST-MAINTENANCE-LEDGER-1",
+            "recordVersion": 1
+          },
+          "questionRecord": {
+            "id": "TEST-MAINTENANCE-LEDGER-1",
+            "version": 1,
+            "answer": null,
+            "evidence": "authorized exact machinery plan/control mapping, not a belief or future promise",
+            "permitted": false,
+            "protected": false
+          },
+          "questionOutput": null,
+          "floodgate": {
+            "id": "east-floodgate-01",
+            "state": "raised",
+            "controlId": "Control C",
+            "owner": "TEST-SITE-OWNER"
+          },
+          "task": {
+            "gap": [
+              [
+                30,
+                50
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                -10,
+                0
+              ]
+            ],
+            "bridgeBounds": [
+              [
+                30,
+                50
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                -0.5,
+                0
+              ]
+            ],
+            "materialStock": {
+              "id": "TEST-GRANITE-STOCK-01",
+              "bounds": [
+                [
+                  30,
+                  40
+                ],
+                [
+                  10,
+                  15
+                ],
+                [
+                  0,
+                  1
+                ]
+              ],
+              "perceived": true,
+              "lineOfEffect": true,
+              "rangeFt": 34,
+              "owner": "TEST-SITE-OWNER",
+              "consent": true,
+              "version": 1,
+              "massLb": 6000,
+              "densityLbFt3": 120,
+              "available": true,
+              "provenance": "TEST_ONLY compatible granite stock"
+            },
+            "supports": {
+              "west": [
+                [
+                  30,
+                  31
+                ],
+                [
+                  -2.5,
+                  2.5
+                ],
+                [
+                  -10,
+                  -0.5
+                ]
+              ],
+              "east": [
+                [
+                  49,
+                  50
+                ],
+                [
+                  -2.5,
+                  2.5
+                ],
+                [
+                  -10,
+                  -0.5
+                ]
+              ],
+              "perceived": true,
+              "lineOfEffect": true,
+              "rangeFt": 50,
+              "owner": "TEST-SITE-OWNER",
+              "existing": true,
+              "capacityLbEach": 10000,
+              "foundationTopZ": -10
+            },
+            "clearVolumes": true,
+            "bridgePerceived": true,
+            "bridgeLineOfEffect": true,
+            "bridgeRangeFt": 50,
+            "protectedMatter": false,
+            "occupants": [],
+            "bridge": null
+          },
+          "helper": {
+            "id": "helper-01",
+            "owner": "TEST-SITE-OWNER",
+            "body": {
+              "id": "helper-01:body",
+              "owner": "helper-01",
+              "location": {
+                "x": 29,
+                "y": 0,
+                "z": 0,
+                "plane": "TEST-DD11-SITE"
+              },
+              "bounds": [
+                [
+                  28,
+                  30
+                ],
+                [
+                  -1,
+                  1
+                ],
+                [
+                  0,
+                  4
+                ]
+              ],
+              "alive": true,
+              "physical": true,
+              "support": "existing TEST_ONLY ground",
+              "targetable": true
+            },
+            "massLb": 150,
+            "turn": {
+              "actionAvailable": true,
+              "actionsSpent": 0,
+              "movementFtAvailable": 30,
+              "movementFtSpent": 0
+            },
+            "inventory": {
+              "testMallet": {
+                "id": "TEST-ONLY-MALLET-01",
+                "owner": "helper-01",
+                "custodian": "helper-01",
+                "usable": true,
+                "fixtureOnly": true
+              }
+            }
+          }
+        },
+        "externalInputs": [],
+        "castWindow": null,
+        "taskTransaction": null,
+        "receipts": {},
+        "eventInputs": [],
+        "canonicalEffect": false
+      },
+      "hash": "f10f73ec6fb67e936206a39149d046c3a0838c099f0426e1d639febfb032b267"
+    },
+    {
+      "branchId": "DI-A1-UNQUALIFIED-FAITH",
+      "caseId": "DI-A1",
+      "route": "Cleric/Divination",
+      "operation": "QUESTION",
+      "state": {
+        "id": "DI-FIXTURE-DI-A1-UNQUALIFIED-FAITH",
+        "identity": "divine-intervention-greater",
+        "status": "TEST_ONLY",
+        "canonical": false,
+        "scope": "STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY",
+        "currentTimeMs": 0,
+        "route": "Cleric/Divination",
+        "operation": "QUESTION",
+        "fixtureAuthorization": {
+          "authority": "DD-DIRECTOR-11-COMMON-01",
+          "contractId": "DD11-DIVINE-INTERVENTION-GREATER-01",
+          "classification": "TEST_ONLY patron, faith relationship, answer, material, terrain, helper, task and damage"
+        },
+        "caster": {
+          "id": "cleric-17-divination",
+          "role": "caster",
+          "route": "Cleric/Divination",
+          "profileBinding": {
+            "profileId": "cleric-17-divination",
+            "sha256": "0eec5c6193552cf2b63d62ead06cb3cdce6ea3f920e7c007d396a664a4d0d7a1"
+          },
+          "classLevel": 17,
+          "spellRank": 9,
+          "spellAccess": {
+            "targetSpell": "divine-intervention-greater",
+            "rank": 9,
+            "school": "Divination",
+            "acquiredAtClassLevel": 17,
+            "ordinaryRankGate": 9,
+            "preparedOrKnown": true,
+            "paidRpCost": 26,
+            "rankedKnownCount": 18,
+            "ordinaryClericPreparation": true
+          },
+          "preparedOrKnown": true,
+          "resources": {
+            "RP": 48,
+            "maxRP": 48,
+            "HP": 156,
+            "maxHP": 156
+          },
+          "turn": {
+            "turnNumber": 1,
+            "actionAvailable": true,
+            "actionsSpent": 0,
+            "movementFtAvailable": 30,
+            "movementFtSpent": 0,
+            "magicThisTurn": false,
+            "lastSpell": null
+          },
+          "body": {
+            "id": "cleric-17-divination:body",
+            "owner": "cleric-17-divination",
+            "location": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-DD11-SITE"
+            },
+            "bounds": [
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                0,
+                6
+              ]
+            ],
+            "alive": true,
+            "physical": true,
+            "support": "existing TEST_ONLY ground",
+            "targetable": true
+          },
+          "faith": {
+            "recipientId": "TEST-PATRON-DD11",
+            "relationship": "explicitly declared and consented TEST_ONLY faith context",
+            "selectedFaithId": "TEST-FAITH-DD11",
+            "relationshipAuthorized": false,
+            "questionPermission": false,
+            "taskPermission": true,
+            "canonical": false
+          },
+          "inventory": {
+            "focus": {
+              "id": "cleric-focus-01",
+              "owner": "cleric-17-divination",
+              "custodian": "cleric-17-divination",
+              "equipped": true
+            }
+          },
+          "spellHistory": [],
+          "pendingCast": null
+        },
+        "recipient": {
+          "id": "TEST-PATRON-DD11",
+          "kind": "synthetic test recipient",
+          "canonical": false,
+          "permissions": {
+            "question": true,
+            "task": true
+          },
+          "disclosurePolicy": "TEST_ONLY exact permitted fields only"
+        },
+        "site": {
+          "id": "TEST-SITE-DD11",
+          "owner": "TEST-SITE-OWNER",
+          "questionSubject": {
+            "bounds": [
+              [
+                10,
+                11
+              ],
+              [
+                10,
+                11
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            "rangeFt": 20,
+            "lineOfEffect": true,
+            "perceived": true,
+            "recordId": "TEST-MAINTENANCE-LEDGER-1",
+            "recordVersion": 1
+          },
+          "questionRecord": {
+            "id": "TEST-MAINTENANCE-LEDGER-1",
+            "version": 1,
+            "answer": "Control C lowers the east floodgate.",
+            "evidence": "authorized exact machinery plan/control mapping, not a belief or future promise",
+            "permitted": true,
+            "protected": false
+          },
+          "questionOutput": null,
+          "floodgate": {
+            "id": "east-floodgate-01",
+            "state": "raised",
+            "controlId": "Control C",
+            "owner": "TEST-SITE-OWNER"
+          },
+          "task": {
+            "gap": [
+              [
+                30,
+                50
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                -10,
+                0
+              ]
+            ],
+            "bridgeBounds": [
+              [
+                30,
+                50
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                -0.5,
+                0
+              ]
+            ],
+            "materialStock": {
+              "id": "TEST-GRANITE-STOCK-01",
+              "bounds": [
+                [
+                  30,
+                  40
+                ],
+                [
+                  10,
+                  15
+                ],
+                [
+                  0,
+                  1
+                ]
+              ],
+              "perceived": true,
+              "lineOfEffect": true,
+              "rangeFt": 34,
+              "owner": "TEST-SITE-OWNER",
+              "consent": true,
+              "version": 1,
+              "massLb": 6000,
+              "densityLbFt3": 120,
+              "available": true,
+              "provenance": "TEST_ONLY compatible granite stock"
+            },
+            "supports": {
+              "west": [
+                [
+                  30,
+                  31
+                ],
+                [
+                  -2.5,
+                  2.5
+                ],
+                [
+                  -10,
+                  -0.5
+                ]
+              ],
+              "east": [
+                [
+                  49,
+                  50
+                ],
+                [
+                  -2.5,
+                  2.5
+                ],
+                [
+                  -10,
+                  -0.5
+                ]
+              ],
+              "perceived": true,
+              "lineOfEffect": true,
+              "rangeFt": 50,
+              "owner": "TEST-SITE-OWNER",
+              "existing": true,
+              "capacityLbEach": 10000,
+              "foundationTopZ": -10
+            },
+            "clearVolumes": true,
+            "bridgePerceived": true,
+            "bridgeLineOfEffect": true,
+            "bridgeRangeFt": 50,
+            "protectedMatter": false,
+            "occupants": [],
+            "bridge": null
+          },
+          "helper": {
+            "id": "helper-01",
+            "owner": "TEST-SITE-OWNER",
+            "body": {
+              "id": "helper-01:body",
+              "owner": "helper-01",
+              "location": {
+                "x": 29,
+                "y": 0,
+                "z": 0,
+                "plane": "TEST-DD11-SITE"
+              },
+              "bounds": [
+                [
+                  28,
+                  30
+                ],
+                [
+                  -1,
+                  1
+                ],
+                [
+                  0,
+                  4
+                ]
+              ],
+              "alive": true,
+              "physical": true,
+              "support": "existing TEST_ONLY ground",
+              "targetable": true
+            },
+            "massLb": 150,
+            "turn": {
+              "actionAvailable": true,
+              "actionsSpent": 0,
+              "movementFtAvailable": 30,
+              "movementFtSpent": 0
+            },
+            "inventory": {
+              "testMallet": {
+                "id": "TEST-ONLY-MALLET-01",
+                "owner": "helper-01",
+                "custodian": "helper-01",
+                "usable": true,
+                "fixtureOnly": true
+              }
+            }
+          }
+        },
+        "externalInputs": [],
+        "castWindow": null,
+        "taskTransaction": null,
+        "receipts": {},
+        "eventInputs": [],
+        "canonicalEffect": false
+      },
+      "hash": "a413498aa1499398762b4eff6455e3c779019a1bed2f7112a0ef4a367fcb64c7"
+    },
+    {
+      "branchId": "DI-A1-COUNTERED-CAST",
+      "caseId": "DI-A1",
+      "route": "Cleric/Divination",
+      "operation": "QUESTION",
+      "state": {
+        "id": "DI-FIXTURE-DI-A1-COUNTERED-CAST",
+        "identity": "divine-intervention-greater",
+        "status": "TEST_ONLY",
+        "canonical": false,
+        "scope": "STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY",
+        "currentTimeMs": 0,
+        "route": "Cleric/Divination",
+        "operation": "QUESTION",
+        "fixtureAuthorization": {
+          "authority": "DD-DIRECTOR-11-COMMON-01",
+          "contractId": "DD11-DIVINE-INTERVENTION-GREATER-01",
+          "classification": "TEST_ONLY patron, faith relationship, answer, material, terrain, helper, task and damage"
+        },
+        "caster": {
+          "id": "cleric-17-divination",
+          "role": "caster",
+          "route": "Cleric/Divination",
+          "profileBinding": {
+            "profileId": "cleric-17-divination",
+            "sha256": "0eec5c6193552cf2b63d62ead06cb3cdce6ea3f920e7c007d396a664a4d0d7a1"
+          },
+          "classLevel": 17,
+          "spellRank": 9,
+          "spellAccess": {
+            "targetSpell": "divine-intervention-greater",
+            "rank": 9,
+            "school": "Divination",
+            "acquiredAtClassLevel": 17,
+            "ordinaryRankGate": 9,
+            "preparedOrKnown": true,
+            "paidRpCost": 26,
+            "rankedKnownCount": 18,
+            "ordinaryClericPreparation": true
+          },
+          "preparedOrKnown": true,
+          "resources": {
+            "RP": 48,
+            "maxRP": 48,
+            "HP": 156,
+            "maxHP": 156
+          },
+          "turn": {
+            "turnNumber": 1,
+            "actionAvailable": true,
+            "actionsSpent": 0,
+            "movementFtAvailable": 30,
+            "movementFtSpent": 0,
+            "magicThisTurn": false,
+            "lastSpell": null
+          },
+          "body": {
+            "id": "cleric-17-divination:body",
+            "owner": "cleric-17-divination",
+            "location": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-DD11-SITE"
+            },
+            "bounds": [
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                0,
+                6
+              ]
+            ],
+            "alive": true,
+            "physical": true,
+            "support": "existing TEST_ONLY ground",
+            "targetable": true
+          },
+          "faith": {
+            "recipientId": "TEST-PATRON-DD11",
+            "relationship": "explicitly declared and consented TEST_ONLY faith context",
+            "selectedFaithId": "TEST-FAITH-DD11",
+            "relationshipAuthorized": true,
+            "questionPermission": true,
+            "taskPermission": true,
+            "canonical": false
+          },
+          "inventory": {
+            "focus": {
+              "id": "cleric-focus-01",
+              "owner": "cleric-17-divination",
+              "custodian": "cleric-17-divination",
+              "equipped": true
+            }
+          },
+          "spellHistory": [],
+          "pendingCast": null
+        },
+        "recipient": {
+          "id": "TEST-PATRON-DD11",
+          "kind": "synthetic test recipient",
+          "canonical": false,
+          "permissions": {
+            "question": true,
+            "task": true
+          },
+          "disclosurePolicy": "TEST_ONLY exact permitted fields only"
+        },
+        "site": {
+          "id": "TEST-SITE-DD11",
+          "owner": "TEST-SITE-OWNER",
+          "questionSubject": {
+            "bounds": [
+              [
+                10,
+                11
+              ],
+              [
+                10,
+                11
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            "rangeFt": 20,
+            "lineOfEffect": true,
+            "perceived": true,
+            "recordId": "TEST-MAINTENANCE-LEDGER-1",
+            "recordVersion": 1
+          },
+          "questionRecord": {
+            "id": "TEST-MAINTENANCE-LEDGER-1",
+            "version": 1,
+            "answer": "Control C lowers the east floodgate.",
+            "evidence": "authorized exact machinery plan/control mapping, not a belief or future promise",
+            "permitted": true,
+            "protected": false
+          },
+          "questionOutput": null,
+          "floodgate": {
+            "id": "east-floodgate-01",
+            "state": "raised",
+            "controlId": "Control C",
+            "owner": "TEST-SITE-OWNER"
+          },
+          "task": {
+            "gap": [
+              [
+                30,
+                50
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                -10,
+                0
+              ]
+            ],
+            "bridgeBounds": [
+              [
+                30,
+                50
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                -0.5,
+                0
+              ]
+            ],
+            "materialStock": {
+              "id": "TEST-GRANITE-STOCK-01",
+              "bounds": [
+                [
+                  30,
+                  40
+                ],
+                [
+                  10,
+                  15
+                ],
+                [
+                  0,
+                  1
+                ]
+              ],
+              "perceived": true,
+              "lineOfEffect": true,
+              "rangeFt": 34,
+              "owner": "TEST-SITE-OWNER",
+              "consent": true,
+              "version": 1,
+              "massLb": 6000,
+              "densityLbFt3": 120,
+              "available": true,
+              "provenance": "TEST_ONLY compatible granite stock"
+            },
+            "supports": {
+              "west": [
+                [
+                  30,
+                  31
+                ],
+                [
+                  -2.5,
+                  2.5
+                ],
+                [
+                  -10,
+                  -0.5
+                ]
+              ],
+              "east": [
+                [
+                  49,
+                  50
+                ],
+                [
+                  -2.5,
+                  2.5
+                ],
+                [
+                  -10,
+                  -0.5
+                ]
+              ],
+              "perceived": true,
+              "lineOfEffect": true,
+              "rangeFt": 50,
+              "owner": "TEST-SITE-OWNER",
+              "existing": true,
+              "capacityLbEach": 10000,
+              "foundationTopZ": -10
+            },
+            "clearVolumes": true,
+            "bridgePerceived": true,
+            "bridgeLineOfEffect": true,
+            "bridgeRangeFt": 50,
+            "protectedMatter": false,
+            "occupants": [],
+            "bridge": null
+          },
+          "helper": {
+            "id": "helper-01",
+            "owner": "TEST-SITE-OWNER",
+            "body": {
+              "id": "helper-01:body",
+              "owner": "helper-01",
+              "location": {
+                "x": 29,
+                "y": 0,
+                "z": 0,
+                "plane": "TEST-DD11-SITE"
+              },
+              "bounds": [
+                [
+                  28,
+                  30
+                ],
+                [
+                  -1,
+                  1
+                ],
+                [
+                  0,
+                  4
+                ]
+              ],
+              "alive": true,
+              "physical": true,
+              "support": "existing TEST_ONLY ground",
+              "targetable": true
+            },
+            "massLb": 150,
+            "turn": {
+              "actionAvailable": true,
+              "actionsSpent": 0,
+              "movementFtAvailable": 30,
+              "movementFtSpent": 0
+            },
+            "inventory": {
+              "testMallet": {
+                "id": "TEST-ONLY-MALLET-01",
+                "owner": "helper-01",
+                "custodian": "helper-01",
+                "usable": true,
+                "fixtureOnly": true
+              }
+            }
+          }
+        },
+        "externalInputs": [],
+        "castWindow": null,
+        "taskTransaction": null,
+        "receipts": {},
+        "eventInputs": [],
+        "canonicalEffect": false
+      },
+      "hash": "4e908e0e04d26ebb0d0715a0e815dc82ebc8e363f8ad614d239e21d40cf8783f"
+    },
+    {
+      "branchId": "DI-A1-OWNER-CONSENT-REVOKED",
+      "caseId": "DI-A1",
+      "route": "Wizard/Divination",
+      "operation": "TASK",
+      "state": {
+        "id": "DI-FIXTURE-DI-A1-OWNER-CONSENT-REVOKED",
+        "identity": "divine-intervention-greater",
+        "status": "TEST_ONLY",
+        "canonical": false,
+        "scope": "STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY",
+        "currentTimeMs": 0,
+        "route": "Wizard/Divination",
+        "operation": "TASK",
+        "fixtureAuthorization": {
+          "authority": "DD-DIRECTOR-11-COMMON-01",
+          "contractId": "DD11-DIVINE-INTERVENTION-GREATER-01",
+          "classification": "TEST_ONLY patron, faith relationship, answer, material, terrain, helper, task and damage"
+        },
+        "caster": {
+          "id": "wizard-17-divination",
+          "role": "caster",
+          "route": "Wizard/Divination",
+          "profileBinding": {
+            "profileId": "wizard-17-divination",
+            "sha256": "16046fbcd3faa4df3a2b3d6913f12badee7314d84a29799d7b038b802ca6b771"
+          },
+          "classLevel": 17,
+          "spellRank": 9,
+          "spellAccess": {
+            "targetSpell": "divine-intervention-greater",
+            "rank": 9,
+            "school": "Divination",
+            "acquiredAtClassLevel": 17,
+            "ordinaryRankGate": 9,
+            "preparedOrKnown": true,
+            "paidRpCost": 26,
+            "path": "Spellbinder",
+            "preparedMatrixCount": 22,
+            "targetMatrixPrepared": true,
+            "matrixPreparationMinutes": 45,
+            "spellbookEntryCount": 67,
+            "counterspellKnownAndPrepared": true
+          },
+          "preparedOrKnown": true,
+          "resources": {
+            "RP": 64,
+            "maxRP": 64,
+            "HP": 55,
+            "maxHP": 80
+          },
+          "turn": {
+            "turnNumber": 1,
+            "actionAvailable": true,
+            "actionsSpent": 0,
+            "movementFtAvailable": 30,
+            "movementFtSpent": 0,
+            "magicThisTurn": false,
+            "lastSpell": null
+          },
+          "body": {
+            "id": "wizard-17-divination:body",
+            "owner": "wizard-17-divination",
+            "location": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-DD11-SITE"
+            },
+            "bounds": [
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                0,
+                6
+              ]
+            ],
+            "alive": true,
+            "physical": true,
+            "support": "existing TEST_ONLY ground",
+            "targetable": true
+          },
+          "faith": {
+            "recipientId": "TEST-PATRON-DD11",
+            "relationship": "explicitly declared and consented TEST_ONLY faith context",
+            "selectedFaithId": "TEST-FAITH-DD11",
+            "relationshipAuthorized": true,
+            "questionPermission": true,
+            "taskPermission": true,
+            "canonical": false
+          },
+          "inventory": {
+            "focus": {
+              "id": "wizard-focus-01",
+              "owner": "wizard-17-divination",
+              "custodian": "wizard-17-divination",
+              "equipped": true
+            }
+          },
+          "spellHistory": [],
+          "pendingCast": null
+        },
+        "recipient": {
+          "id": "TEST-PATRON-DD11",
+          "kind": "synthetic test recipient",
+          "canonical": false,
+          "permissions": {
+            "question": true,
+            "task": true
+          },
+          "disclosurePolicy": "TEST_ONLY exact permitted fields only"
+        },
+        "site": {
+          "id": "TEST-SITE-DD11",
+          "owner": "TEST-SITE-OWNER",
+          "questionSubject": {
+            "bounds": [
+              [
+                10,
+                11
+              ],
+              [
+                10,
+                11
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            "rangeFt": 20,
+            "lineOfEffect": true,
+            "perceived": true,
+            "recordId": "TEST-MAINTENANCE-LEDGER-1",
+            "recordVersion": 1
+          },
+          "questionRecord": {
+            "id": "TEST-MAINTENANCE-LEDGER-1",
+            "version": 1,
+            "answer": "Control C lowers the east floodgate.",
+            "evidence": "authorized exact machinery plan/control mapping, not a belief or future promise",
+            "permitted": true,
+            "protected": false
+          },
+          "questionOutput": null,
+          "floodgate": {
+            "id": "east-floodgate-01",
+            "state": "raised",
+            "controlId": "Control C",
+            "owner": "TEST-SITE-OWNER"
+          },
+          "task": {
+            "gap": [
+              [
+                30,
+                50
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                -10,
+                0
+              ]
+            ],
+            "bridgeBounds": [
+              [
+                30,
+                50
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                -0.5,
+                0
+              ]
+            ],
+            "materialStock": {
+              "id": "TEST-GRANITE-STOCK-01",
+              "bounds": [
+                [
+                  30,
+                  40
+                ],
+                [
+                  10,
+                  15
+                ],
+                [
+                  0,
+                  1
+                ]
+              ],
+              "perceived": true,
+              "lineOfEffect": true,
+              "rangeFt": 34,
+              "owner": "TEST-SITE-OWNER",
+              "consent": true,
+              "version": 1,
+              "massLb": 6000,
+              "densityLbFt3": 120,
+              "available": true,
+              "provenance": "TEST_ONLY compatible granite stock"
+            },
+            "supports": {
+              "west": [
+                [
+                  30,
+                  31
+                ],
+                [
+                  -2.5,
+                  2.5
+                ],
+                [
+                  -10,
+                  -0.5
+                ]
+              ],
+              "east": [
+                [
+                  49,
+                  50
+                ],
+                [
+                  -2.5,
+                  2.5
+                ],
+                [
+                  -10,
+                  -0.5
+                ]
+              ],
+              "perceived": true,
+              "lineOfEffect": true,
+              "rangeFt": 50,
+              "owner": "TEST-SITE-OWNER",
+              "existing": true,
+              "capacityLbEach": 10000,
+              "foundationTopZ": -10
+            },
+            "clearVolumes": true,
+            "bridgePerceived": true,
+            "bridgeLineOfEffect": true,
+            "bridgeRangeFt": 50,
+            "protectedMatter": false,
+            "occupants": [],
+            "bridge": null
+          },
+          "helper": {
+            "id": "helper-01",
+            "owner": "TEST-SITE-OWNER",
+            "body": {
+              "id": "helper-01:body",
+              "owner": "helper-01",
+              "location": {
+                "x": 29,
+                "y": 0,
+                "z": 0,
+                "plane": "TEST-DD11-SITE"
+              },
+              "bounds": [
+                [
+                  28,
+                  30
+                ],
+                [
+                  -1,
+                  1
+                ],
+                [
+                  0,
+                  4
+                ]
+              ],
+              "alive": true,
+              "physical": true,
+              "support": "existing TEST_ONLY ground",
+              "targetable": true
+            },
+            "massLb": 150,
+            "turn": {
+              "actionAvailable": true,
+              "actionsSpent": 0,
+              "movementFtAvailable": 30,
+              "movementFtSpent": 0
+            },
+            "inventory": {
+              "testMallet": {
+                "id": "TEST-ONLY-MALLET-01",
+                "owner": "helper-01",
+                "custodian": "helper-01",
+                "usable": true,
+                "fixtureOnly": true
+              }
+            }
+          }
+        },
+        "externalInputs": [],
+        "castWindow": null,
+        "taskTransaction": null,
+        "receipts": {},
+        "eventInputs": [],
+        "canonicalEffect": false
+      },
+      "hash": "72a2166fffd72ec87de6cf249a67ce67e8911e1ee960e649acd2bb774d8c9484"
+    },
+    {
+      "branchId": "DI-A1-OCCUPIED-BRIDGE-VOLUME",
+      "caseId": "DI-A1",
+      "route": "Wizard/Divination",
+      "operation": "TASK",
+      "state": {
+        "id": "DI-FIXTURE-DI-A1-OCCUPIED-BRIDGE-VOLUME",
+        "identity": "divine-intervention-greater",
+        "status": "TEST_ONLY",
+        "canonical": false,
+        "scope": "STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY",
+        "currentTimeMs": 0,
+        "route": "Wizard/Divination",
+        "operation": "TASK",
+        "fixtureAuthorization": {
+          "authority": "DD-DIRECTOR-11-COMMON-01",
+          "contractId": "DD11-DIVINE-INTERVENTION-GREATER-01",
+          "classification": "TEST_ONLY patron, faith relationship, answer, material, terrain, helper, task and damage"
+        },
+        "caster": {
+          "id": "wizard-17-divination",
+          "role": "caster",
+          "route": "Wizard/Divination",
+          "profileBinding": {
+            "profileId": "wizard-17-divination",
+            "sha256": "16046fbcd3faa4df3a2b3d6913f12badee7314d84a29799d7b038b802ca6b771"
+          },
+          "classLevel": 17,
+          "spellRank": 9,
+          "spellAccess": {
+            "targetSpell": "divine-intervention-greater",
+            "rank": 9,
+            "school": "Divination",
+            "acquiredAtClassLevel": 17,
+            "ordinaryRankGate": 9,
+            "preparedOrKnown": true,
+            "paidRpCost": 26,
+            "path": "Spellbinder",
+            "preparedMatrixCount": 22,
+            "targetMatrixPrepared": true,
+            "matrixPreparationMinutes": 45,
+            "spellbookEntryCount": 67,
+            "counterspellKnownAndPrepared": true
+          },
+          "preparedOrKnown": true,
+          "resources": {
+            "RP": 64,
+            "maxRP": 64,
+            "HP": 55,
+            "maxHP": 80
+          },
+          "turn": {
+            "turnNumber": 1,
+            "actionAvailable": true,
+            "actionsSpent": 0,
+            "movementFtAvailable": 30,
+            "movementFtSpent": 0,
+            "magicThisTurn": false,
+            "lastSpell": null
+          },
+          "body": {
+            "id": "wizard-17-divination:body",
+            "owner": "wizard-17-divination",
+            "location": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "plane": "TEST-DD11-SITE"
+            },
+            "bounds": [
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                0,
+                6
+              ]
+            ],
+            "alive": true,
+            "physical": true,
+            "support": "existing TEST_ONLY ground",
+            "targetable": true
+          },
+          "faith": {
+            "recipientId": "TEST-PATRON-DD11",
+            "relationship": "explicitly declared and consented TEST_ONLY faith context",
+            "selectedFaithId": "TEST-FAITH-DD11",
+            "relationshipAuthorized": true,
+            "questionPermission": true,
+            "taskPermission": true,
+            "canonical": false
+          },
+          "inventory": {
+            "focus": {
+              "id": "wizard-focus-01",
+              "owner": "wizard-17-divination",
+              "custodian": "wizard-17-divination",
+              "equipped": true
+            }
+          },
+          "spellHistory": [],
+          "pendingCast": null
+        },
+        "recipient": {
+          "id": "TEST-PATRON-DD11",
+          "kind": "synthetic test recipient",
+          "canonical": false,
+          "permissions": {
+            "question": true,
+            "task": true
+          },
+          "disclosurePolicy": "TEST_ONLY exact permitted fields only"
+        },
+        "site": {
+          "id": "TEST-SITE-DD11",
+          "owner": "TEST-SITE-OWNER",
+          "questionSubject": {
+            "bounds": [
+              [
+                10,
+                11
+              ],
+              [
+                10,
+                11
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            "rangeFt": 20,
+            "lineOfEffect": true,
+            "perceived": true,
+            "recordId": "TEST-MAINTENANCE-LEDGER-1",
+            "recordVersion": 1
+          },
+          "questionRecord": {
+            "id": "TEST-MAINTENANCE-LEDGER-1",
+            "version": 1,
+            "answer": "Control C lowers the east floodgate.",
+            "evidence": "authorized exact machinery plan/control mapping, not a belief or future promise",
+            "permitted": true,
+            "protected": false
+          },
+          "questionOutput": null,
+          "floodgate": {
+            "id": "east-floodgate-01",
+            "state": "raised",
+            "controlId": "Control C",
+            "owner": "TEST-SITE-OWNER"
+          },
+          "task": {
+            "gap": [
+              [
+                30,
+                50
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                -10,
+                0
+              ]
+            ],
+            "bridgeBounds": [
+              [
+                30,
+                50
+              ],
+              [
+                -2.5,
+                2.5
+              ],
+              [
+                -0.5,
+                0
+              ]
+            ],
+            "materialStock": {
+              "id": "TEST-GRANITE-STOCK-01",
+              "bounds": [
+                [
+                  30,
+                  40
+                ],
+                [
+                  10,
+                  15
+                ],
+                [
+                  0,
+                  1
+                ]
+              ],
+              "perceived": true,
+              "lineOfEffect": true,
+              "rangeFt": 34,
+              "owner": "TEST-SITE-OWNER",
+              "consent": true,
+              "version": 1,
+              "massLb": 6000,
+              "densityLbFt3": 120,
+              "available": true,
+              "provenance": "TEST_ONLY compatible granite stock"
+            },
+            "supports": {
+              "west": [
+                [
+                  30,
+                  31
+                ],
+                [
+                  -2.5,
+                  2.5
+                ],
+                [
+                  -10,
+                  -0.5
+                ]
+              ],
+              "east": [
+                [
+                  49,
+                  50
+                ],
+                [
+                  -2.5,
+                  2.5
+                ],
+                [
+                  -10,
+                  -0.5
+                ]
+              ],
+              "perceived": true,
+              "lineOfEffect": true,
+              "rangeFt": 50,
+              "owner": "TEST-SITE-OWNER",
+              "existing": true,
+              "capacityLbEach": 10000,
+              "foundationTopZ": -10
+            },
+            "clearVolumes": true,
+            "bridgePerceived": true,
+            "bridgeLineOfEffect": true,
+            "bridgeRangeFt": 50,
+            "protectedMatter": false,
+            "occupants": [],
+            "bridge": null
+          },
+          "helper": {
+            "id": "helper-01",
+            "owner": "TEST-SITE-OWNER",
+            "body": {
+              "id": "helper-01:body",
+              "owner": "helper-01",
+              "location": {
+                "x": 29,
+                "y": 0,
+                "z": 0,
+                "plane": "TEST-DD11-SITE"
+              },
+              "bounds": [
+                [
+                  28,
+                  30
+                ],
+                [
+                  -1,
+                  1
+                ],
+                [
+                  0,
+                  4
+                ]
+              ],
+              "alive": true,
+              "physical": true,
+              "support": "existing TEST_ONLY ground",
+              "targetable": true
+            },
+            "massLb": 150,
+            "turn": {
+              "actionAvailable": true,
+              "actionsSpent": 0,
+              "movementFtAvailable": 30,
+              "movementFtSpent": 0
+            },
+            "inventory": {
+              "testMallet": {
+                "id": "TEST-ONLY-MALLET-01",
+                "owner": "helper-01",
+                "custodian": "helper-01",
+                "usable": true,
+                "fixtureOnly": true
+              }
+            }
+          }
+        },
+        "externalInputs": [],
+        "castWindow": null,
+        "taskTransaction": null,
+        "receipts": {},
+        "eventInputs": [],
+        "canonicalEffect": false
+      },
+      "hash": "d423c75aab64b2f1e3d2ebdc0acf9dfed7a705323f233641fb8d3269a9c3c34c"
+    }
+  ]
+}
