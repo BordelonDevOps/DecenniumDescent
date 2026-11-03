@@ -7,7 +7,7 @@ namespace Decennium.Foundation
     public enum ExecutionProfile { Laboratory, Release }
     public enum CommandKind { Move, Interact, AdvanceClock, ReserveWork, ConsumeReservation, ReleaseReservation,
         PlantCrop, TendCrop, HarvestCrop, PauseCrop, SetCropConditions,
-        PortionInventory, HandleInventory, StartIntake, InterruptIntake, EnterInventoryCombat, StartWaterFill, PauseWaterFill, ResumeWaterFill, CancelWaterFill }
+        PortionInventory, HandleInventory, StartIntake, InterruptIntake, EnterInventoryCombat, StartWaterFill, PauseWaterFill, ResumeWaterFill, CancelWaterFill, HandleVessel }
     public enum Outcome { Rejected, Committed, Duplicate }
 
     // DTOs are detached copies. No caller ever receives the owned simulation state.
@@ -37,6 +37,7 @@ namespace Decennium.Foundation
         public const int CropSchema = 3;
         public const int InventorySchema = 4;
         public const int VesselSchema = 5;
+        public const int MovableVesselSchema = 6;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
         // Technical bound keeps the entire snapshot within the existing 1 MiB save limit,
@@ -66,8 +67,9 @@ namespace Decennium.Foundation
         public WaterVesselRecord[] Vessels = Array.Empty<WaterVesselRecord>();
         public VesselContentRecord[] VesselContents = Array.Empty<VesselContentRecord>();
         public WaterFillRecord[] WaterFills = Array.Empty<WaterFillRecord>();
+        public VesselHandlingRecord[] VesselMoves = Array.Empty<VesselHandlingRecord>();
         public Snapshot Copy() => new Snapshot {
-            Vessels = Vessels.ToArray(), VesselContents = VesselContents.ToArray(), WaterFills = WaterFills.ToArray(),
+            VesselMoves = VesselMoves.ToArray(), Vessels = Vessels.ToArray(), VesselContents = VesselContents.ToArray(), WaterFills = WaterFills.ToArray(),
             InventoryLots = InventoryLots.ToArray(), Intakes = Intakes.ToArray(), Handling = Handling.ToArray(),
             InventoryCombat = InventoryCombat, InventoryTurnActor = InventoryTurnActor, InventoryInteractions = InventoryInteractions,
             SchemaVersion = SchemaVersion, RuleClock = RuleClock, Work = Work,
@@ -155,7 +157,7 @@ namespace Decennium.Foundation
             if (s == null || !ValidId(s.ContentFingerprint) || s.Revision < 0 || s.Clock < 0 || s.RandomState == 0)
                 throw new ArgumentException("Invalid snapshot header.");
             if (s.SchemaVersion != Foundation.Snapshot.Schema && s.SchemaVersion != Foundation.Snapshot.WorkSchema
-                && s.SchemaVersion != Foundation.Snapshot.CropSchema && s.SchemaVersion != Foundation.Snapshot.InventorySchema && s.SchemaVersion != Foundation.Snapshot.VesselSchema)
+                && s.SchemaVersion != Foundation.Snapshot.CropSchema && s.SchemaVersion != Foundation.Snapshot.InventorySchema && s.SchemaVersion != Foundation.Snapshot.VesselSchema && s.SchemaVersion != Foundation.Snapshot.MovableVesselSchema)
                 throw new ArgumentException("Unsupported snapshot schema.");
             if (s.SchemaVersion == Foundation.Snapshot.Schema && (s.Work != null || s.RuleClock != default))
                 throw new ArgumentException("Legacy snapshot cannot contain unsaved work or exact time.");
@@ -208,6 +210,7 @@ namespace Decennium.Foundation
                 throw new ArgumentException("Duplicate receipt.");
             InventoryValidation.Validate(s);
             WaterVesselValidation.Validate(s);
+            VesselHandlingValidation.Validate(s);
         }
     }
 
@@ -264,6 +267,14 @@ namespace Decennium.Foundation
                 if ((source != null && !authority.MayUseInventory(source.OwnerId)) || (vessel != null && !authority.MayUseInventory(vessel.OwnerId))
                     || (sourceVessel != null && !authority.MayUseInventory(sourceVessel.OwnerId)))
                     return Reject("InventoryNotAuthorized");
+            }
+            if (command.Kind == CommandKind.HandleVessel) {
+                var vessel = state.Vessels.FirstOrDefault(v => v.Id == command.Target);
+                if (vessel != null && (!authority.MayUseInventory(vessel.OwnerId) || state.VesselContents.Where(x => x.VesselId == vessel.Id)
+                    .Any(x => state.Work.Lots.First(l => l.Id == x.LotId).Amount != default
+                        && !authority.MayUseInventory(state.InventoryLots.First(l => l.LotId == x.LotId).OwnerId)))) return Reject("InventoryNotAuthorized");
+                if (command.Inventory != null && command.Inventory.Handling == HandlingKind.Handover
+                    && !authority.ConsentsToHandover(command.Inventory.Destination)) return Reject("RecipientNotWilling");
             }
             CommandReceipt previous = state.Receipts.FirstOrDefault(r => r.Principal == authority.Principal && r.Id == command.Id);
             if (previous != null)

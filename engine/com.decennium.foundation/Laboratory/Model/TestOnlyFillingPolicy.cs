@@ -7,20 +7,22 @@ namespace Decennium.Foundation.Laboratory
 {
     /// <summary>Stable water arrangements only: a finite clean pool at the prepared plot, a skin carried
     /// by each actor and one supported ordinary flask at the plot. Individual openings admit one active
-    /// worker at a time. Source pool access supports both workers. Hazards, contamination, vessel movement
-    /// and tactical filling are not representable; no unsupported event may be ignored during a fill.</summary>
+    /// worker at a time. Source pool access supports both workers. Explicit schema6 adds safe intact
+    /// movement using supplied access/hand capabilities, not a general equipment/hand-slot model.
+    /// Hazards, contamination and tactical filling remain unsupported.</summary>
     public sealed class TestOnlyFillingPolicy : ICommandPolicy
     {
         public const string ActorSkinId="TEST_ONLY.actor-skin",CompanionSkinId="TEST_ONLY.companion-skin",FlaskId="TEST_ONLY.plot-flask",SupplyId="TEST_ONLY.clean-pool";
         private readonly TestOnlyInventoryPolicy inventory;
         private readonly int actorHands,companionHands;
-        public TestOnlyFillingPolicy(int actorUsableHands=2,int companionUsableHands=2,long remainingFoodFreshness=2592000)
+        private readonly bool movable;
+        public TestOnlyFillingPolicy(int actorUsableHands=2,int companionUsableHands=2,long remainingFoodFreshness=2592000,bool movableVessels=false)
         {
             if(actorUsableHands<0||actorUsableHands>2||companionUsableHands<0||companionUsableHands>2)throw new ArgumentOutOfRangeException(nameof(actorUsableHands));
-            actorHands=actorUsableHands;companionHands=companionUsableHands;inventory=new TestOnlyInventoryPolicy(remainingFoodFreshness);
+            movable=movableVessels;actorHands=actorUsableHands;companionHands=companionUsableHands;inventory=new TestOnlyInventoryPolicy(remainingFoodFreshness);
         }
         public bool TestOnly=>true;
-        public string ContentFingerprint=>"TEST_ONLY.filling-v1-"+actorHands.ToString(CultureInfo.InvariantCulture)+"-"+companionHands.ToString(CultureInfo.InvariantCulture)
+        public string ContentFingerprint=>(movable?"TEST_ONLY.movable-v1-":"TEST_ONLY.filling-v1-")+actorHands.ToString(CultureInfo.InvariantCulture)+"-"+companionHands.ToString(CultureInfo.InvariantCulture)
             +"-"+inventory.ContentFingerprint;
         public static Authority Host()=>TestOnlyInventoryPolicy.Host();
         private int Hands(string actor)=>actor==TestOnlyPolicy.ActorId?actorHands:companionHands;
@@ -30,7 +32,7 @@ namespace Decennium.Foundation.Laboratory
             new WaterVesselRecord(FlaskId,WaterVesselProfile.OrdinaryFlask,TestOnlyPolicy.CompanionId,TestOnlyCropPolicy.PlotId,TestOnlyPolicy.CompanionId)};
         public Snapshot Initial()
         {
-            var s=inventory.Initial();s.SchemaVersion=Snapshot.VesselSchema;s.ContentFingerprint=ContentFingerprint;s.Vessels=InitialVessels();
+            var s=inventory.Initial();s.SchemaVersion=movable?Snapshot.MovableVesselSchema:Snapshot.VesselSchema;s.ContentFingerprint=ContentFingerprint;s.Vessels=InitialVessels();
             s.Work=new WorkLedger(s.Work.Lots.Select(x=>x.Id==TestOnlyInventoryPolicy.WaterId?new ResourceLot(x.Id,x.UnitId,x.Amount,ActorSkinId,x.CustodianId):x)
                 .Concat(new[]{new ResourceLot(SupplyId,TestOnlyInventoryPolicy.WaterUnit,32,TestOnlyCropPolicy.PlotId,TestOnlyPolicy.CompanionId)}));
             s.InventoryLots=s.InventoryLots.Concat(new[]{new InventoryLotRecord(SupplyId,"",TestOnlyPolicy.CompanionId,new RuleQuantity(32),default,NutritionKind.WaterPints,null,InventoryAccess.Ground)}).ToArray();
@@ -38,6 +40,7 @@ namespace Decennium.Foundation.Laboratory
         }
         public string Resolve(Snapshot s,Command c)
         {
+            if(c.Kind==CommandKind.HandleVessel)return movable?VesselHandling.Resolve(s,c,Hands):"VesselMovementNotSupported";
             if(c.Kind==CommandKind.EnterInventoryCombat&&s.WaterFills.Any(j=>j.Pending))return "PendingFillEncounterTransitionUnsupported";
             if(c.Kind==CommandKind.StartWaterFill) {
                 if(s.InventoryCombat)return "TacticalFillingUnsupported";
@@ -87,10 +90,11 @@ namespace Decennium.Foundation.Laboratory
         {
             try {
                 var expected=InitialVessels();
-                if(s.Vessels.Length!=expected.Length||expected.Any(e=>!s.Vessels.Any(v=>v.Id==e.Id&&v.Profile==e.Profile&&v.OwnerId==e.OwnerId
-                    &&v.LocationId==e.LocationId&&v.CustodianId==e.CustodianId)))return "InvalidFixtureVessels";
+                if(!movable&&(s.Vessels.Length!=expected.Length||expected.Any(e=>!s.Vessels.Any(v=>v.Id==e.Id&&v.Profile==e.Profile&&v.OwnerId==e.OwnerId
+                    &&v.LocationId==e.LocationId&&v.CustodianId==e.CustodianId))))return "InvalidFixtureVessels";
                 if(s.WaterFills.Any(j=>Hands(j.WorkerId)<2))return "InvalidFillingHands";
-                string error=inventory.ValidateInventoryState(s,true);return error??WaterFilling.Validate(s);
+                string error=movable?VesselHandling.Validate(s,expected,Hands):null;
+                return error??inventory.ValidateInventoryState(s,true,movable)??WaterFilling.Validate(s);
             } catch(Exception ex) when(ex is ArgumentException||ex is InvalidOperationException||ex is OverflowException){return "InvalidFillingState";}
         }
     }

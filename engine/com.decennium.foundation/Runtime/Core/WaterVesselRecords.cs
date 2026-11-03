@@ -6,7 +6,7 @@ namespace Decennium.Foundation
     public enum WaterVesselProfile { Waterskin, OrdinaryFlask }
     public enum WaterFillStatus { Working, Paused, Complete, Cancelled }
     /// <summary>A distinct physical vessel. Capacity and tare come from its selected source profile.
-    /// This bounded schema records stable custody; a future movement procedure must preserve that history.</summary>
+    /// Schema5 has stable custody; schema6 retains each intact movement in a separate history.</summary>
     public sealed class WaterVesselRecord
     {
         public string Id { get; }
@@ -64,7 +64,7 @@ namespace Decennium.Foundation
         {
             if(s.Vessels==null||s.VesselContents==null||s.WaterFills==null||s.Vessels.Length>8||s.VesselContents.Length>128||s.WaterFills.Length>32
                 ||s.Vessels.Any(x=>x==null)||s.VesselContents.Any(x=>x==null)||s.WaterFills.Any(x=>x==null))throw new ArgumentException("Invalid vessel collections.");
-            if(s.SchemaVersion!=Snapshot.VesselSchema) {
+            if(s.SchemaVersion<Snapshot.VesselSchema) {
                 if(s.Vessels.Length!=0||s.VesselContents.Length!=0||s.WaterFills.Length!=0)throw new ArgumentException("Vessels require explicit schema5.");return;
             }
             if(s.Vessels.Select(x=>x.Id).Distinct(StringComparer.Ordinal).Count()!=s.Vessels.Length

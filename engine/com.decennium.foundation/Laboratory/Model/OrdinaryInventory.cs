@@ -102,17 +102,18 @@ namespace Decennium.Foundation.Laboratory
         public static string Validate(Snapshot s)
         {
             var tactical=s.Handling.Where(x=>x.Tactical).ToArray();
-            if(s.InventoryCombat?tactical.Length!=s.InventoryInteractions||tactical.Any(x=>x.ActorId!=s.InventoryTurnActor)
-                :tactical.Length!=0||s.Intakes.Any(x=>x.Status==IntakeStatus.CombatInterrupted))return "InvalidTacticalHistory";
+            var tacticalVessels=s.VesselMoves.Where(x=>x.Tactical).ToArray();
+            if(s.InventoryCombat?tactical.Length+tacticalVessels.Length!=s.InventoryInteractions||tactical.Any(x=>x.ActorId!=s.InventoryTurnActor)||tacticalVessels.Any(x=>x.ActorId!=s.InventoryTurnActor)
+                :tactical.Length!=0||tacticalVessels.Length!=0||s.Intakes.Any(x=>x.Status==IntakeStatus.CombatInterrupted))return "InvalidTacticalHistory";
             var cropTasks=s.Crops.SelectMany(x=>x.Tasks).ToArray();
             if(s.Work.Reservations.Any(r=>!cropTasks.Any(t=>t.InputReservations.Contains(r.Id))&&!s.Intakes.Any(j=>j.ReservationId==r.Id)&&!s.WaterFills.Any(j=>j.ReservationId==r.Id))
-                ||s.Work.WorkerIntervals.Any(w=>!cropTasks.Any(t=>t.Id==w.JobId)&&!s.Intakes.Any(j=>j.Id==w.JobId)&&!s.Handling.Any(j=>j.Id==w.JobId)&&!s.WaterFills.Any(j=>j.Id==w.JobId)))
+                ||s.Work.WorkerIntervals.Any(w=>!cropTasks.Any(t=>t.Id==w.JobId)&&!s.Intakes.Any(j=>j.Id==w.JobId)&&!s.Handling.Any(j=>j.Id==w.JobId)&&!s.WaterFills.Any(j=>j.Id==w.JobId)&&!s.VesselMoves.Any(j=>j.Id==w.JobId)))
                 return "UnattributedInventoryLedger";
             foreach(var job in s.Intakes) {
                 var item=s.InventoryLots.Single(x=>x.LotId==job.LotId);var lot=s.Work.Lots.Single(x=>x.Id==job.LotId);
                 var claim=s.Work.Reservations.Single(x=>x.Id==job.ReservationId);long rate=SecondsPerUnit(item.Nutrition);
                 var end=job.EndedAt??s.RuleClock;var elapsed=CampGreens.Subtract(end,job.StartedAt);
-                if(!WaterFilling.ReadyForIntake(s,job.ActorId,item,lot)||job.StartedAt<item.CreatedAt
+                if(!VesselHandling.ReadyForHistoricalIntake(s,job,item,lot)||job.StartedAt<item.CreatedAt
                     ||(item.FreshUntil.HasValue&&(job.StartedAt>=item.FreshUntil.Value||end>item.FreshUntil.Value))
                     ||Quantity(elapsed,rate)!=claim.ConsumedAmount)return "InvalidIntakeCredit";
                 var intervals=s.Work.WorkerIntervals.Where(x=>x.JobId==job.Id).ToArray();

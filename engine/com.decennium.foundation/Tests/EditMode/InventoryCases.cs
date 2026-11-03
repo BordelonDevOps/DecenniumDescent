@@ -147,7 +147,7 @@ namespace Decennium.Foundation.Tests
                 foreach(int schema in new[]{1,2,3}){var v=p.Initial();v.SchemaVersion=schema;Throws<ArgumentException>(()=>codec.Encode(v));} });
             cases.Add("inventory_decode_checks_corruption_unknown_version_and_boolean",()=>{
                 byte[] bytes=Bytes(Inventory());var bad=(byte[])bytes.Clone();bad[10]^=1;Throws<InvalidDataException>(()=>codec.Decode(bad));
-                bad=(byte[])bytes.Clone();bad[4]=6;Resign(bad);Throws<InvalidDataException>(()=>codec.Decode(bad));
+                bad=(byte[])bytes.Clone();bad[4]=7;Resign(bad);Throws<InvalidDataException>(()=>codec.Decode(bad));
                 bad=(byte[])bytes.Clone();bad[bad.Length-32-9]=2;Resign(bad);Throws<InvalidDataException>(()=>codec.Decode(bad));
                 Throws<InvalidDataException>(()=>codec.Decode(bytes.Take(bytes.Length-1).ToArray())); });
             cases.Add("inventory_restore_rejects_quantity_creation_and_freshness_reset",()=>{
@@ -213,7 +213,11 @@ namespace Decennium.Foundation.Tests
                 v.Work=new WorkLedger(lots.Select((l,i)=>new ResourceLot(l.Id,l.UnitId,l.Amount,v.Vessels[i%8].Id,l.CustodianId)),intervals,claims);
                 v.InventoryLots=v.InventoryLots.Select(x=>new InventoryLotRecord(x.LotId,x.ParentId,x.OwnerId,x.CreatedAmount,x.CreatedAt,NutritionKind.WaterPints,null,x.Access)).ToArray();
                 v.WaterFills=Enumerable.Range(32,32).Select(i=>new WaterFillRecord(Id("job",i),v.Actors[i].Id,lots[i].Id,v.Vessels[(i+1)%8].Id,claims[i].Id,Q(1,3),T(0),T(0),null,WaterFillStatus.Paused)).ToArray();
-                bytes=codec.Encode(v);Require(bytes.Length<SnapshotCodec.MaxBytes&&bytes.SequenceEqual(codec.Encode(codec.Decode(bytes))),"Maximum schema5 component counts exceed save bound or fail roundtrip."); });
+                bytes=codec.Encode(v);Require(bytes.Length<SnapshotCodec.MaxBytes&&bytes.SequenceEqual(codec.Encode(codec.Decode(bytes))),"Maximum schema5 component counts exceed save bound or fail roundtrip.");
+                v.SchemaVersion=Snapshot.MovableVesselSchema;
+                v.VesselMoves=Enumerable.Range(0,64).Select(i=>new VesselHandlingRecord(Id("vessel-move",i),i+1,v.Actors[i].Id,v.Vessels[i%8].Id,
+                    Id("from"),Id("owner"),v.Actors[i].Id,v.Actors[i].Id,HandlingKind.Pickup,T(0),T(1),false)).ToArray();
+                bytes=codec.Encode(v);Require(bytes.Length<SnapshotCodec.MaxBytes&&bytes.SequenceEqual(codec.Encode(codec.Decode(bytes))),"Maximum schema6 component counts exceed save bound or fail roundtrip."); });
             cases.Add("inventory_restore_rejects_handling_before_source_creation",()=>{
                 var s=Inventory();AdvanceI(s,10);string source=Portion(s,Q(1));string child=HandleI(s,source,Q(1),HandlingKind.Stow);var v=s.Capture();var h=v.Handling[0];
                 v.Handling=new[]{new HandlingRecord(h.Id,h.ActorId,h.SourceId,h.ChildId,h.Kind,T(9),T(10),false)};
