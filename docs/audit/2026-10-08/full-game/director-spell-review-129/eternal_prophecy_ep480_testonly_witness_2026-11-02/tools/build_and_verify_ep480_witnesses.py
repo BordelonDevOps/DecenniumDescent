@@ -75,7 +75,7 @@ def json_pointer(value: Any, pointer: str) -> Any:
 
 
 def load_sources() -> tuple[dict[str, Any], dict[str, Any], dict[str, Any]]:
-    proposal_raw = (ROOT / PROPOSAL_REL).read_bytes()
+    proposal_raw = git("show", f"HEAD:{PROPOSAL_REL.as_posix()}")
     if hashlib.sha256(proposal_raw).hexdigest() != PROPOSAL_SHA256:
         raise AssertionError("proposal bytes do not match the adopted SHA-256")
     proposal = json.loads(proposal_raw)
@@ -95,7 +95,7 @@ def load_sources() -> tuple[dict[str, Any], dict[str, Any], dict[str, Any]]:
             json_pointer(data, pointer)
         sources[binding["role"]] = data
 
-    receipt_raw = (ROOT / RECEIPT_REL).read_bytes()
+    receipt_raw = git("show", f"HEAD:{RECEIPT_REL.as_posix()}")
     receipt = json.loads(receipt_raw)
     if receipt["proposal"]["sha256"] != PROPOSAL_SHA256:
         raise AssertionError("adoption receipt is bound to the wrong proposal")
@@ -818,7 +818,7 @@ def build_packet() -> dict[str, Any]:
         "blockerId": "TF192-B02",
         "proposal": {"id": proposal["proposalId"], "sha256": PROPOSAL_SHA256},
         "adoptionReceipt": {"path": str(RECEIPT_REL).replace("\\", "/"),
-                            "sha256": hashlib.sha256((ROOT / RECEIPT_REL).read_bytes()).hexdigest(),
+                            "sha256": hashlib.sha256(git("show", f"HEAD:{RECEIPT_REL.as_posix()}")).hexdigest(),
                             "response": receipt["ownerResponse"]},
         "directorReadiness": "PASS — READY_FOR_OWNER_ADOPTION",
         "sourceBindings": bindings,
