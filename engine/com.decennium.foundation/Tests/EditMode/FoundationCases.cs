@@ -200,6 +200,12 @@ namespace Decennium.Foundation.Tests
             };
             AddRollCases(cases);
             AddCharacterCases(cases);
+            AddCharacterBuildCases(cases);
+            AddLifeCases(cases);
+            AddCombatBudgetCases(cases);
+            AddTimingCases(cases);
+            AddWorkLedgerCases(cases);
+            AddDiceCases(cases);
             return cases;
         }
         private static void Resign(byte[] bytes)

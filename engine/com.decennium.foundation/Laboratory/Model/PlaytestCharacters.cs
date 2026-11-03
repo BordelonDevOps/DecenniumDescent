@@ -49,7 +49,7 @@ namespace Decennium.Foundation.Laboratory
     /// Pure calculations: no grants, RNG, resource recovery, life-state changes or save writes.
     /// Sources/approval limits: docs/unity/evidence/2026-11-03-characters/SOURCE_BINDINGS.json.
     /// </summary>
-    public static class PlaytestCharacters
+    public static partial class PlaytestCharacters
     {
         // This arithmetic API accepts all int scores; generation/advancement legality is separate.
         public static int AbilityModifier(int score)
