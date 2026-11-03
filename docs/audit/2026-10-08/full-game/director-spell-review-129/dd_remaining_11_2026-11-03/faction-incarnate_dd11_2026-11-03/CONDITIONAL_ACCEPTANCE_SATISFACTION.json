@@ -1,0 +1,108 @@
+{
+  "id": "FI-DD11-CONDITIONAL-ACCEPTANCE-SATISFACTION-01",
+  "reviewId": "FI-DD11-STATIC-ACCEPT-01",
+  "identity": "faction-incarnate",
+  "status": "CONDITIONAL_STATIC_ACCEPTANCE_SATISFIED",
+  "scope": "STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY",
+  "authority": {
+    "directorContractId": "DD11-FACTION-INCARNATE-01",
+    "directorContractSha256": "497e42fee8ea5dcbd3609ffe1807f33ea67feaa302e3d3a56c89d5edcef2fbe8",
+    "commonContractSha256": "df85ee92c143fadc66f51cb070379f4c87b3f9c7f77a6f30eb2ceeb7239dfcab",
+    "ownerInstruction": "finish the remaining Director-authored identities and apply each passing identity",
+    "exactNumericAndProfileFields": "Director-authored TEST_ONLY terms; no owner authorship or canonical authority is inferred",
+    "noAdditionalRoutineAdoptionRequired": true
+  },
+  "conditions": {
+    "exactModelAndSourceBindings": {
+      "satisfied": true,
+      "binding": {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/dd_remaining_11_2026-11-03/faction-incarnate_dd11_2026-11-03/SOURCE_BINDINGS.json",
+        "bytes": 7710,
+        "sha256": "6517bbec021ae40843f4c391f54a1a1af2be231d349377a4823accf9def8480f",
+        "crc32": "7a8a5feb",
+        "gitBlobSha1": "67a1f1a95bc3391d72094acc0e06b4389eeeeb90"
+      }
+    },
+    "legalPaidUsefulPositiveCoverageEveryNativeClassRoute": {
+      "satisfied": true,
+      "routeWitnesses": {
+        "Wizard/Conjuration": [
+          "FI-P1-WIZARD",
+          "FI-A2-HEALING",
+          "FI-A2-RECAST-CARGO"
+        ],
+        "Druid/Conjuration": [
+          "FI-P2-DRUID",
+          "FI-A2-ZERO"
+        ],
+        "Mage/Conjuration": [
+          "FI-A1-MAGE",
+          "FI-A2-NULL",
+          "FI-A2-SUPPRESSION"
+        ]
+      },
+      "minimumDistinctPositiveEncountersPerRoute": 1
+    },
+    "allPositiveAndAdverseRequiredCases": {
+      "satisfied": true,
+      "requiredCaseIds": [
+        "FI-P1",
+        "FI-P2",
+        "FI-A1",
+        "FI-A2"
+      ],
+      "branchCount": 8,
+      "eventCount": 49
+    },
+    "semanticAndReplayChecks": {
+      "satisfied": true,
+      "semantic": {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/dd_remaining_11_2026-11-03/faction-incarnate_dd11_2026-11-03/SEMANTIC_VALIDATION.json",
+        "bytes": 37390,
+        "sha256": "5768425e327b6306fe284a506bd6042ec005f9ffbec0e517a4dd18c1608a9426",
+        "crc32": "e78a294e",
+        "gitBlobSha1": "0abdfc229035870be20c51d2844d0f3e137340fc"
+      },
+      "semanticChecksPassed": 316,
+      "replay": {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/dd_remaining_11_2026-11-03/faction-incarnate_dd11_2026-11-03/REPLAY_VALIDATION.json",
+        "bytes": 950,
+        "sha256": "9113b8693ddfce0a85dfb795f680cc7a1dff8903cc5fc3d62199b2f74913c38e",
+        "crc32": "3f9a25d9",
+        "gitBlobSha1": "f66dfe3c074de88c1e6c68397d8d539614bda219"
+      },
+      "replayChecksPassed": 316
+    },
+    "retainedSourceBlockerAndQualifications": {
+      "satisfied": true,
+      "blockerId": "AFP211-B03",
+      "blockerStatus": "OPEN_RETAINED",
+      "qualificationIds": [
+        "AFP231-Q01",
+        "AFP231-Q02",
+        "AFP231-Q03",
+        "AFP231-Q04",
+        "AFP231-Q05",
+        "AFP231-Q06",
+        "AFP231-Q07"
+      ]
+    },
+    "providerScopeDisclosure": {
+      "satisfied": true,
+      "actualMassHealingLightProviderCast": true,
+      "NullProviderCastCertified": false,
+      "suppressionProviderCastCertified": false,
+      "limitation": "Null and suppression are branch-only TEST_ONLY interface inputs; no external provider cast is accepted"
+    }
+  },
+  "staticLimits": {
+    "nativeOperational": null,
+    "sourceBlockerClosed": false,
+    "qualificationsClosed": false,
+    "runtimeSelectionEnabled": false,
+    "canonPromotion": false,
+    "campaignFactsCreated": false,
+    "providerCastCertified": false,
+    "witnessesSealed": false
+  }
+}

@@ -1,0 +1,193 @@
+{
+  "id": "FI-DD11-CASE-EVIDENCE-BINDINGS-01",
+  "identity": "faction-incarnate",
+  "contractSha256": "497e42fee8ea5dcbd3609ffe1807f33ea67feaa302e3d3a56c89d5edcef2fbe8",
+  "requiredCases": [
+    {
+      "caseId": "FI-P1",
+      "specification": {
+        "id": "FI-P1",
+        "given": {
+          "route": "Wizard/Conjuration",
+          "faction": "TEST-DD11-WARDENS",
+          "standing": 1,
+          "membership": true,
+          "permission": true
+        },
+        "steps": [
+          "Paid cast",
+          "Owner BA strike command",
+          "Attached strike with dice[5,5,5],hit",
+          "Attempt another companion offense in same owner round"
+        ],
+        "expected": {
+          "rawForceDamage": 15,
+          "commandSpent": true,
+          "offenseSpent": true,
+          "secondOffenseDenied": true,
+          "noExtraTurn": true
+        },
+        "covers": [
+          "AFP337-W01",
+          "AFP337-W02",
+          "AFP337-W03"
+        ],
+        "executionStatus": "NOT_EXECUTED_IN_THIS_PACKAGE"
+      },
+      "specificationSha256": "f58c609ec15c2658b7b250c5d9be93762a1dc3e2fbf61e84edd24ff18a7763d4",
+      "branchIds": [
+        "FI-P1-WIZARD"
+      ],
+      "branchHashes": {
+        "FI-P1-WIZARD": "5eeb0031c71af64a2491c491c57c456e1c17d704ced05d94f2423090a219e784"
+      },
+      "status": "PASS_STATIC_TEST_ONLY"
+    },
+    {
+      "caseId": "FI-P2",
+      "specification": {
+        "id": "FI-P2",
+        "given": {
+          "route": "Druid/Conjuration",
+          "faction": "TEST-DD11-COURIERS",
+          "borrowedCargo": {
+            "id": "real-crate",
+            "massLb": 40,
+            "Load": 2
+          }
+        },
+        "steps": [
+          "Paid cast",
+          "Command legal pickup",
+          "Next commanded phase carry20ft on clear floor",
+          "Hold cargo to expiry"
+        ],
+        "expected": {
+          "movementLawful": true,
+          "cargoOwnerUnchanged": true,
+          "cargoPersistsAtExpiry": true,
+          "noIntrinsicLoot": true
+        },
+        "covers": [
+          "AFP337-W01",
+          "AFP337-W02",
+          "AFP337-W03"
+        ],
+        "executionStatus": "NOT_EXECUTED_IN_THIS_PACKAGE"
+      },
+      "specificationSha256": "d88c49e80f0cdb4832d89ace88734cbef99045c67d95d5e125e529b3f0aaf94d",
+      "branchIds": [
+        "FI-P2-DRUID"
+      ],
+      "branchHashes": {
+        "FI-P2-DRUID": "dd8b5a9333311b04c0850e80b39bf71254ab84384cca89ad69952da32a28b4f5"
+      },
+      "status": "PASS_STATIC_TEST_ONLY"
+    },
+    {
+      "caseId": "FI-A1",
+      "specification": {
+        "id": "FI-A1",
+        "given": {
+          "route": "Mage/Conjuration",
+          "mode": "Wardens"
+        },
+        "steps": [
+          "Paid cast",
+          "Command guard",
+          "Later no-command phase",
+          "Lose standing",
+          "Revoke permission"
+        ],
+        "expected": {
+          "guardACDelta": 2,
+          "guardOffenseSpent": false,
+          "defaultDodge": true,
+          "standingLossNoStrike": true,
+          "permissionRevocationTerminal": true
+        },
+        "covers": [
+          "AFP337-W02",
+          "AFP337-W03"
+        ],
+        "executionStatus": "NOT_EXECUTED_IN_THIS_PACKAGE"
+      },
+      "specificationSha256": "65261698601820e69b2599cc6c6874c5b8b747f687029bbe56dcfa76d8d0cdc8",
+      "branchIds": [
+        "FI-A1-MAGE"
+      ],
+      "branchHashes": {
+        "FI-A1-MAGE": "9d55285b3a9f7194ac919991fa5367ba2232b139f2c2aa0d39e81a4431d61ae2"
+      },
+      "status": "PASS_STATIC_TEST_ONLY"
+    },
+    {
+      "caseId": "FI-A2",
+      "specification": {
+        "id": "FI-A2",
+        "given": {
+          "variants": [
+            "healing eligible provider atHP70",
+            "ordinary0HP",
+            "qualifying Null",
+            "suppression through deadline",
+            "recast with real cargo"
+          ]
+        },
+        "steps": [
+          "Bind actual selected provider sources",
+          "Resolve independent branches and same-key duplicate callback"
+        ],
+        "expected": {
+          "healingCap": 100,
+          "noRevivalOfEndedSource": true,
+          "originalClock": true,
+          "cargoSettledOnce": true,
+          "noRoundBudgetRefresh": true
+        },
+        "covers": [
+          "AFP337-W03"
+        ],
+        "executionStatus": "NOT_EXECUTED_IN_THIS_PACKAGE"
+      },
+      "specificationSha256": "89e0126d9d20c9fcacf6d5fe9ef399bf5df2ca37b0ae9de8eaba210636ad67c0",
+      "branchIds": [
+        "FI-A2-HEALING",
+        "FI-A2-ZERO",
+        "FI-A2-NULL",
+        "FI-A2-SUPPRESSION",
+        "FI-A2-RECAST-CARGO"
+      ],
+      "branchHashes": {
+        "FI-A2-HEALING": "1047f6dba93e951bd753a4d6a1aa5953e0b590fa39c3e782414a6ec2682f36dc",
+        "FI-A2-ZERO": "0c0bc71c80dfb695b6bee312f46f21d321bd8d636b6aac1fd20044d566de793c",
+        "FI-A2-NULL": "fea3de9e88d0bd2f22870a049a7f7afeddce65f5055820465d2573eb185c2073",
+        "FI-A2-SUPPRESSION": "61a731cfb16f24c8cdeb6fee20e799622211f1017cb5442e1c9d3138043b04bc",
+        "FI-A2-RECAST-CARGO": "7d8f17ca0cc74499fdff94bf7b1fd5def807a944c7dd0977afd2621b75b48d88"
+      },
+      "status": "PASS_STATIC_TEST_ONLY"
+    }
+  ],
+  "nativeRouteCoverage": {
+    "Wizard/Conjuration": [
+      "FI-P1-WIZARD",
+      "FI-A2-HEALING",
+      "FI-A2-RECAST-CARGO"
+    ],
+    "Druid/Conjuration": [
+      "FI-P2-DRUID",
+      "FI-A2-ZERO"
+    ],
+    "Mage/Conjuration": [
+      "FI-A1-MAGE",
+      "FI-A2-NULL",
+      "FI-A2-SUPPRESSION"
+    ]
+  },
+  "minimumDistinctPaidPositiveEncountersPerRoute": 1,
+  "externalProviders": {
+    "Mass Healing Light": "actual paid provider action in FI-A2-HEALING",
+    "Null and suppression": "TEST_ONLY interface inputs; provider casts not certified"
+  },
+  "scope": "STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY"
+}
