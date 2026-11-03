@@ -1,0 +1,66 @@
+{
+  "schema": "CODEX_TRANSCRIBED_GPT_DIRECTOR_REVIEW_V1",
+  "classification": "CODEX_TRANSCRIBED_GPT_UI_READBACK_NOT_GPT_AUTHORED",
+  "conversationUrl": "https://chatgpt.com/g/g-p-67f17555a8dc8191a2b5b81e6d8adc12-dungeon-crawler/c/6adc506d-8770-83ea-b64c-0345d9b9b682",
+  "transcribedAtUtc": "2026-11-03T03:25:07Z",
+  "reviewedCommit": "eacd076230175e3f843d14d4d9150c205b4d58d1",
+  "reviewedPacketPath": "docs/audit/2026-10-08/full-game/director-spell-review-129/fate_rewrite_ep480_interface_witness_2026-11-03/FR_EP480_P05_TESTONLY_WITNESS_PACKET.json",
+  "reviewedPacketSha256": "dcff67b42e93c1d7df9bd47d33ecd6fa2c1fe0ff23f6eda4997f92c9b3f14773",
+  "disposition": "REVISE",
+  "sourceBindingReadback": "Exact packet/adoption hashes and all 18 declared source-binding rows match.",
+  "replayReadback": {
+    "bothStartAt": "49d94d12e54fbd36d36a0cf3f69803f6de1b0f903557804c02dbd41f1a2ae7c3",
+    "transitions": 15,
+    "forwardOperations": 101,
+    "inverseOperations": 101,
+    "eachExactBranchStartRestored": true,
+    "passed": [
+      "expiry",
+      "routes",
+      "target ages",
+      "commitment before response",
+      "payment",
+      "W Interaction debit"
+    ]
+  },
+  "corrections": [
+    {
+      "id": "FR-P05-W-C01",
+      "pointer": [
+        "/branches/0/transitions/8/forward/3/after",
+        "/branches/0/transitions/8/forward/9/after",
+        "/branches/0/costAndCustodyDeltas/custody"
+      ],
+      "required": "Record replacement cache-to-W at target time 34560012105, separately from settlement 34560012106; preserve original cache-to-T in immutable audit; mark its causal path superseded; distinguish pre-event book version from current T-held transaction version; retain all costs; one replacement history active."
+    },
+    {
+      "id": "FR-P05-W-C02",
+      "pointer": [
+        "/branches/0/transitions/5/forward",
+        "/branches/0/transitions/8/forward"
+      ],
+      "required": "Record T's direct knowledge of the pickup before commitment and preserve it as explicitly tagged prior-history memory after replacement; no automatic knowledge of changed present custody to other actors."
+    },
+    {
+      "id": "FR-P05-W-C03",
+      "pointer": [
+        "/branches/0/idempotency",
+        "/branches/1/idempotency",
+        "builder functions build_compat/build_conflict/verify_branch"
+      ],
+      "required": "Receipt lookup must run before costs, preconditions or history appends. Execute both duplicate calls and record unchanged state hashes, receipts, costs, custody and history counts."
+    }
+  ],
+  "branchDispositions": {
+    "compatible": "REVISE C01-C03",
+    "conflict": "REVISE C03 only"
+  },
+  "adoptionScopeReadback": "The Director stated these corrections are implementation/evidence corrections within the existing adoption; no new owner premise is needed.",
+  "queueAndHoldState": {
+    "Queue481": "836/12/0",
+    "TF192-B02": "OPEN",
+    "TF192-B04": "OPEN",
+    "EP480": "unsealed",
+    "FateRewrite": "unaccepted/unapplied"
+  }
+}
