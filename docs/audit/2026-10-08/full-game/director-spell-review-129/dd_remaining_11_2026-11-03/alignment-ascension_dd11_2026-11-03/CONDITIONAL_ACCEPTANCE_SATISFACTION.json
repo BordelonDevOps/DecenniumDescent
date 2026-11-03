@@ -1,0 +1,111 @@
+{
+  "id": "AA-DD11-CONDITIONAL-ACCEPTANCE-SATISFACTION-01",
+  "reviewId": "AA-DD11-STATIC-ACCEPT-01",
+  "identity": "alignment-ascension",
+  "status": "CONDITIONAL_STATIC_ACCEPTANCE_SATISFIED",
+  "scope": "STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY",
+  "authority": {
+    "directorContractId": "DD11-ALIGNMENT-ASCENSION-01",
+    "directorContractSha256": "dd898abf30bb569d56774a776b203a9a3e30949b2b00cb115cfcbc3fe7165449",
+    "commonContractSha256": "df85ee92c143fadc66f51cb070379f4c87b3f9c7f77a6f30eb2ceeb7239dfcab",
+    "ownerStandingInstruction": "finish the remaining identities and apply each accepted batch",
+    "noAdditionalRoutineAdoptionRequired": true
+  },
+  "conditions": {
+    "exactModelAndSourceBindings": {
+      "satisfied": true,
+      "binding": {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/dd_remaining_11_2026-11-03/alignment-ascension_dd11_2026-11-03/SOURCE_BINDINGS.json",
+        "bytes": 12779,
+        "sha256": "9b31e85a234a3bf7bdf1243f7334aee12ab22439363a1647667615c10226926a",
+        "crc32": "43e5d461",
+        "gitBlobSha1": "8e28214a9cdfde52feaec4b9de215a7116b4c395"
+      }
+    },
+    "legalPaidUsefulPositiveCoverageEveryNativeClassRoute": {
+      "satisfied": true,
+      "routes": {
+        "Wizard/Conjuration": [
+          "AA-P1-WIZARD",
+          "AA-A1-LIVE-RESOLVER",
+          "AA-A2-CLOCK"
+        ],
+        "Cleric/Divination": [
+          "AA-P2-CLERIC"
+        ],
+        "Druid/Conjuration": [
+          "AA-R-DRUID"
+        ],
+        "Mage/Conjuration": [
+          "AA-R-MAGE"
+        ]
+      },
+      "minimumDistinctPositiveEncountersPerRoute": 1
+    },
+    "allPositiveAndAdverseRequiredCasesExecuted": {
+      "satisfied": true,
+      "requiredCaseIds": [
+        "AA-P1",
+        "AA-P2",
+        "AA-A1",
+        "AA-A2",
+        "AA-R"
+      ],
+      "branchCount": 7
+    },
+    "fullStateCustodyResourcePrivacyAndLifecycleSemantics": {
+      "satisfied": true,
+      "semanticValidation": {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/dd_remaining_11_2026-11-03/alignment-ascension_dd11_2026-11-03/SEMANTIC_VALIDATION.json",
+        "bytes": 20976,
+        "sha256": "e24f948c0b9e1c96963f65403548f79a7c0a6d5f4553b887ed9e8b9cff8f718b",
+        "crc32": "70f4ce05",
+        "gitBlobSha1": "c1f8926f1f41a116e2f91bcfca53c83b1aa481c8"
+      },
+      "checksPassed": 170,
+      "checksFailed": 0
+    },
+    "forwardAndInverseReplay": {
+      "satisfied": true,
+      "replayValidation": {
+        "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/dd_remaining_11_2026-11-03/alignment-ascension_dd11_2026-11-03/REPLAY_VALIDATION.json",
+        "bytes": 1185,
+        "sha256": "f69cea9605c20245941e9ff7f63a5df01e25c8b1c428ec27295ccd263fcc01da",
+        "crc32": "ab438a85",
+        "gitBlobSha1": "96b5397a05bab4a7d962893c2450fa8cc7c8c944"
+      },
+      "checksPassed": 170,
+      "checksFailed": 0
+    },
+    "retainedNativeSourceBlockerAndQualifications": {
+      "satisfied": true,
+      "blockerId": "AFP211-B01",
+      "status": "OPEN_RETAINED",
+      "qualificationIds": [
+        "AFP231-Q01",
+        "AFP231-Q02",
+        "AFP231-Q03",
+        "AFP231-Q04",
+        "AFP231-Q05",
+        "AFP231-Q06",
+        "AFP231-Q07"
+      ]
+    },
+    "suppressionProviderBoundary": {
+      "satisfiedForTestOnlySpellSideInterface": true,
+      "providerCastCertified": false,
+      "limitation": "AA-A2 uses a synthetic provider interface input; it does not certify an accepted external provider."
+    }
+  },
+  "staticLimits": {
+    "nativeCatalogOperational": null,
+    "runtimeSelectionEnabled": false,
+    "canonPromotion": false,
+    "campaignFactsCreated": false,
+    "sourceBlockerClosed": false,
+    "qualificationsClosed": false,
+    "externalProviderAccepted": false,
+    "UnityOrRuntimeExecuted": false,
+    "witnessesSealed": false
+  }
+}

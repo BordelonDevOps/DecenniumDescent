@@ -1,0 +1,223 @@
+{
+  "id": "AA-DD11-CASE-EVIDENCE-BINDINGS-01",
+  "identity": "alignment-ascension",
+  "scope": "STATIC_AUTHORED_PROCEDURE_REVIEW_ONLY",
+  "contractSha256": "dd898abf30bb569d56774a776b203a9a3e30949b2b00cb115cfcbc3fe7165449",
+  "witnessPacket": {
+    "path": "docs/audit/2026-10-08/full-game/director-spell-review-129/dd_remaining_11_2026-11-03/alignment-ascension_dd11_2026-11-03/WITNESS_PACKET.json",
+    "bytes": 4962142,
+    "sha256": "2625d88eda5cf9d1b2a3da5198ea08bf1fdbad8744bf0b9988df939040fe9de9",
+    "crc32": "58aab08e",
+    "gitBlobSha1": "baa986936ffa2a247cd5d2e4cb76d25df84250c7"
+  },
+  "requiredCases": [
+    {
+      "caseId": "AA-P1",
+      "specification": {
+        "id": "AA-P1",
+        "given": {
+          "route": "Wizard/Conjuration",
+          "actor": "HP55/max80, Lawful Good",
+          "attackDice": [
+            6,
+            6,
+            6,
+            6
+          ]
+        },
+        "steps": [
+          "Paid cast",
+          "Use energy strike against AC15 with attack total20",
+          "Take 9 ordinary damage",
+          "Expire"
+        ],
+        "expected": {
+          "strikeRawRadiant": 24,
+          "ACBonusDuring": 2,
+          "HPAfterExpiry": 46,
+          "maxHPAfter": 80,
+          "sameBodyAndGear": true
+        },
+        "covers": [
+          "AFP335-W01",
+          "AFP335-W02"
+        ],
+        "executionStatus": "NOT_EXECUTED_IN_THIS_PACKAGE"
+      },
+      "specificationSha256": "212437712fde5378d5392b7aa4a7ba24a76fe2883625f44cd5ade7dd653738fb",
+      "branchIds": [
+        "AA-P1-WIZARD"
+      ],
+      "branchHashes": {
+        "AA-P1-WIZARD": "6b942e07b4b5d9be6309fcb3666e598625e2f52deff7bb825e01c5b25f267129"
+      },
+      "status": "PASS_STATIC_TEST_ONLY"
+    },
+    {
+      "caseId": "AA-P2",
+      "specification": {
+        "id": "AA-P2",
+        "given": {
+          "route": "Cleric/Divination",
+          "targetAxes": [
+            "Chaotic",
+            "Neutral"
+          ],
+          "protectedAxis": "none"
+        },
+        "steps": [
+          "Paid cast",
+          "Spend one later Action for insight"
+        ],
+        "expected": {
+          "privateAnswer": [
+            "Chaotic",
+            "Neutral"
+          ],
+          "noPublicSigil": true,
+          "insightActionSpent": true
+        },
+        "covers": [
+          "AFP335-W03"
+        ],
+        "executionStatus": "NOT_EXECUTED_IN_THIS_PACKAGE"
+      },
+      "specificationSha256": "4c12c3bda9dde994c0d811a296c4f1517b45f443576b5fbfda281bb880000117",
+      "branchIds": [
+        "AA-P2-CLERIC"
+      ],
+      "branchHashes": {
+        "AA-P2-CLERIC": "b154031adcc5ab905cbed58cfac4d0c092b23c8a5541a8d69a3302e605347f93"
+      },
+      "status": "PASS_STATIC_TEST_ONLY"
+    },
+    {
+      "caseId": "AA-A1",
+      "specification": {
+        "id": "AA-A1",
+        "given": {
+          "sequence": [
+            "legitimate Order change to Chaotic",
+            "active Lawful Lock snapshot",
+            "Moral protection",
+            "undefined Order"
+          ]
+        },
+        "steps": [
+          "Resolve each live effective input without rewriting conduct history"
+        ],
+        "expected": {
+          "bonuses": "only current permitted axis modifiers",
+          "protectedStrikeUnavailable": true,
+          "unknownNotNeutral": true,
+          "underlyingHistoryPreserved": true
+        },
+        "covers": [
+          "AFP335-W02",
+          "AFP335-W03"
+        ],
+        "executionStatus": "NOT_EXECUTED_IN_THIS_PACKAGE"
+      },
+      "specificationSha256": "8b199162f7d72a4db0123a266423e1b974fae9be4c571171e52350391b6f0c61",
+      "branchIds": [
+        "AA-A1-LIVE-RESOLVER"
+      ],
+      "branchHashes": {
+        "AA-A1-LIVE-RESOLVER": "3fcaf95135bc61809eae2a981901a8e7bc6f59de90454e3a35697f8c5e71a5aa"
+      },
+      "status": "PASS_STATIC_TEST_ONLY"
+    },
+    {
+      "caseId": "AA-A2",
+      "specification": {
+        "id": "AA-A2",
+        "given": {
+          "suppressionAtMs": 20000,
+          "resumeAtMs": 50000,
+          "expiry": "original resolution+60000"
+        },
+        "steps": [
+          "Suppress with bound provider",
+          "Resume",
+          "Expire",
+          "Attempt replay"
+        ],
+        "expected": {
+          "clockNotPaused": true,
+          "noCatchup": true,
+          "endedSourceCannotResume": true
+        },
+        "covers": [
+          "AFP335-W02"
+        ],
+        "executionStatus": "NOT_EXECUTED_IN_THIS_PACKAGE"
+      },
+      "specificationSha256": "554140c931a0521660e8b65712f1d67e103f8f577d6b96fe85e1379e99919a6c",
+      "branchIds": [
+        "AA-A2-CLOCK"
+      ],
+      "branchHashes": {
+        "AA-A2-CLOCK": "744f2e91c71f7c336a8f4dcc387c78a849e7a5aecae0db7931c171f58bd461f1"
+      },
+      "status": "PASS_STATIC_TEST_ONLY"
+    },
+    {
+      "caseId": "AA-R",
+      "specification": {
+        "id": "AA-R",
+        "given": {
+          "routes": [
+            "Druid/Conjuration",
+            "Mage/Conjuration"
+          ]
+        },
+        "steps": [
+          "Run legal paid positive route variants with actual class bookkeeping and an interrupted paid variant"
+        ],
+        "expected": {
+          "routePreserved": true,
+          "noInterruptedRefund": true
+        },
+        "covers": [
+          "AFP335-W01",
+          "AFP335-W02",
+          "AFP335-W03"
+        ],
+        "executionStatus": "NOT_EXECUTED_IN_THIS_PACKAGE"
+      },
+      "specificationSha256": "c0e136500cda9162bac6989bf2cce7abd1f132aa9391c2bc9b99e6a7f8c82bb0",
+      "branchIds": [
+        "AA-R-DRUID",
+        "AA-R-MAGE",
+        "AA-R-DRUID-INTERRUPTED"
+      ],
+      "branchHashes": {
+        "AA-R-DRUID": "d2aec152640e555bb4690f83a18085c2c618a5f804ed3076c0bd36586610475e",
+        "AA-R-MAGE": "b0f6bd89d38468a05ee451f870554f5e5df1182dfc62b8b5afb89e99ad4bf060",
+        "AA-R-DRUID-INTERRUPTED": "e1aca01ed493ac4de814ccfa593069da6938202915ec17a5697a7afa6fb970fb"
+      },
+      "status": "PASS_STATIC_TEST_ONLY"
+    }
+  ],
+  "routePositiveWitnesses": {
+    "Wizard/Conjuration": [
+      "AA-P1-WIZARD",
+      "AA-A1-LIVE-RESOLVER",
+      "AA-A2-CLOCK"
+    ],
+    "Cleric/Divination": [
+      "AA-P2-CLERIC"
+    ],
+    "Druid/Conjuration": [
+      "AA-R-DRUID"
+    ],
+    "Mage/Conjuration": [
+      "AA-R-MAGE"
+    ]
+  },
+  "minimumDistinctPositiveEncountersPerRoute": 1,
+  "retainedRequiredPositivePromises": [
+    "one useful Conjuration-route transformed-body encounter",
+    "one useful Cleric/Divination insight encounter"
+  ]
+}
