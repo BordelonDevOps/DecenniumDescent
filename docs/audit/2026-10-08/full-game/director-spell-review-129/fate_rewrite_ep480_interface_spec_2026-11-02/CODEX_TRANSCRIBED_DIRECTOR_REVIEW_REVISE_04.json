@@ -1,0 +1,38 @@
+{
+  "schema": "CODEX_TRANSCRIBED_GPT_DIRECTOR_REVIEW_V1",
+  "classification": "CODEX_TRANSCRIBED_GPT_UI_READBACK_NOT_GPT_AUTHORED",
+  "conversationUrl": "https://chatgpt.com/g/g-p-67f17555a8dc8191a2b5b81e6d8adc12-dungeon-crawler/c/6adc506d-8770-83ea-b64c-0345d9b9b682",
+  "readAtUtc": "2026-11-03T02:52:02Z",
+  "reviewedCommit": "70ef8108000046a54f823b50c7be21b0446a0f1b",
+  "reviewedProposal": "docs/audit/2026-10-08/full-game/director-spell-review-129/fate_rewrite_ep480_interface_spec_2026-11-02/FATE_REWRITE_EP480_INTERFACE_PROPOSAL_04.json",
+  "reviewedProposalSha256": "ac8a2e9511da6d4037af0b89ce6e69650c9409844e34167ac0d328cdb53dfaf1",
+  "disposition": "REVISE",
+  "readyForOwnerAdoption": false,
+  "sourceBindingReadback": "All supplied hashes, all 14 source bindings, and four manifest entries match.",
+  "passedCorrections": [
+    "Inherited gate preserved; explicit proposed TEST_ONLY dimensions and opacity; continuous body sweeps avoid the gate, other actor, and cached book.",
+    "Route totals: T 13.901795 ft, W 29.2 ft, conflict W 20 ft; declared rays avoid the gate.",
+    "Action/RP and casting-history fields update before counters and survive interruption.",
+    "Conflict movement, observation, and proposed knowledge overlay occur after the fork; anchor is five feet away; mechanical target age is 6,006 ms."
+  ],
+  "corrections": [
+    {
+      "id": "FR-P04-C01",
+      "pointer": "/authorizationBoundary/adoptionMustNameExactPostCommitProposal03Sha256",
+      "requirement": "Remove the stale Proposal 03 key. Replace it with adoptionMustNameExactReviewedProposalSha256: true. The adoption text must identify the exact reviewed successor and its hash."
+    },
+    {
+      "id": "FR-P04-C02",
+      "pointer": "/compatibleRewrite/proposedRelease/sequence/3 and /4",
+      "requirement": "The ordered list currently says resolve the replacement before funding W's additional Interaction. Put reservation/debit of that Interaction before atomic replacement settlement, then settle once and clear pending cast. Preserve T's original Interaction and committed Action/RP/history. This follows retained /procedure/transaction cost-before-settlement."
+    }
+  ],
+  "unchangedScope": {
+    "queue": "Queue481 836/12/0",
+    "openBlockers": ["TF192-B02", "TF192-B04"],
+    "historicalCases": 17,
+    "witnessSealed": false,
+    "constructionAuthorized": false
+  },
+  "reviewResponseSummary": "REVISE — two narrow consistency corrections remain. No additional scene or source premise is requested. No owner adoption or witness construction is authorized yet."
+}
