@@ -11,19 +11,23 @@ namespace Decennium.Foundation.Laboratory
         Petrified, Poisoned, Prone, Restrained, Staggered, Stunned, Unconscious }
     public enum ConditionAttackKind { Melee, Ranged }
     public enum HpRestorationKind { HealingEffect, DeathNaturalTwenty, StableRecovery }
-    /// <summary>Adjudicated unsuppressed clauses, with no inherited-component immunity exceptions.
-    /// This projection input does not apply conditions, infer one-time Prone/drop consequences, retain
-    /// sources, remove suppressed records or resolve duration/immunity. Such contexts need a lifecycle host.</summary>
+    /// <summary>Projection clauses. The public constructor retains the legacy parent-component
+    /// inference contract. The condition lifecycle supplies already resolved components through
+    /// FromResolved, so named component immunity is never undone by that legacy inference.</summary>
     public sealed class ConditionClauses
     {
         public IReadOnlyList<ConditionClause> Active { get; }
-        public ConditionClauses(params ConditionClause[] active)
+        private readonly bool inferInherited;
+        public ConditionClauses(params ConditionClause[] active) : this(true,active) { }
+        private ConditionClauses(bool infer,ConditionClause[] active)
         {
             if(active==null||active.Any(x=>!Enum.IsDefined(typeof(ConditionClause),x)))throw new ArgumentException("Unknown condition projection clause.");
             Active=Array.AsReadOnly(active.Distinct().OrderBy(x=>x).ToArray());
+            inferInherited=infer;
         }
+        internal static ConditionClauses FromResolved(IEnumerable<ConditionClause> active)=>new ConditionClauses(false,active.ToArray());
         public bool Has(ConditionClause c)=>Active.Contains(c);
-        internal bool Incapacitated=>Has(ConditionClause.Incapacitated)||Has(ConditionClause.Paralyzed)||Has(ConditionClause.Petrified)||Has(ConditionClause.Stunned)||Has(ConditionClause.Unconscious);
+        internal bool Incapacitated=>Has(ConditionClause.Incapacitated)||inferInherited&&(Has(ConditionClause.Paralyzed)||Has(ConditionClause.Petrified)||Has(ConditionClause.Stunned)||Has(ConditionClause.Unconscious));
         internal bool Immobile=>Has(ConditionClause.Paralyzed)||Has(ConditionClause.Petrified)||Has(ConditionClause.Stunned)||Has(ConditionClause.Unconscious);
     }
     public readonly struct ConditionPermissions

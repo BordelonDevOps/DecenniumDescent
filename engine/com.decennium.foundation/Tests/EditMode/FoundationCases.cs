@@ -221,6 +221,7 @@ namespace Decennium.Foundation.Tests
             AddDamageDiceCases(cases);
             AddClubAttackCases(cases, directory);
             AddConditionProjectionCases(cases);
+            AddConditionLifecycleCases(cases);
             AddPostureCases(cases, directory);
             AddMaximumHpCases(cases);
             AddTacticalMovementCases(cases, directory);
