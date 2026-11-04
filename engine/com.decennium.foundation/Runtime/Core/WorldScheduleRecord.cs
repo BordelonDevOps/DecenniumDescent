@@ -73,6 +73,12 @@ namespace Decennium.Foundation
             if (ActionSpent) throw new InvalidOperationException("Action already spent.");
             return new WorldIntervalRecord(ActorId, LastStart, MovementSpent, true, true, ReactionAvailable, Interactions);
         }
+        public WorldIntervalRecord PayAction()
+        {
+            if (ActionSpent) throw new InvalidOperationException("Action already spent.");
+            return new WorldIntervalRecord(ActorId, LastStart, MovementSpent, true, DashPaid, ReactionAvailable, Interactions);
+        }
+        public WorldIntervalRecord WithReaction(bool available) => new WorldIntervalRecord(ActorId, LastStart, MovementSpent, ActionSpent, DashPaid, available, Interactions);
     }
     public enum WorldTraversalStatus { Moving, WaitingForRefresh, Suspended }
     /// <summary>Actual partial position along one cardinal five-foot edge. ActorState is the last

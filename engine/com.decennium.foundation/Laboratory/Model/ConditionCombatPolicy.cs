@@ -10,7 +10,7 @@ namespace Decennium.Foundation.Laboratory
         public static ConditionLedger ConditionsFor(Snapshot s, string actor)
             => ConditionHistory.Restore(s.Conditions.Single(x => x.Target == actor)).Ledger;
         private static bool WithConditions(Snapshot s) => s.SchemaVersion >= Snapshot.ConditionSchema;
-        private static bool Aware(Snapshot s, string actor) => ActorLifeRules.CanAct(s, actor)
+        internal static bool Aware(Snapshot s, string actor) => ActorLifeRules.CanAct(s, actor)
             && (!WithConditions(s) || !ConditionsFor(s, actor).View().Unaware);
         private static ConditionClauses CombatConditions(Snapshot s, string actor)
         {
@@ -25,6 +25,7 @@ namespace Decennium.Foundation.Laboratory
             bool ownTurn = s.Encounter?.CurrentActor == actor;
             long spent = ownTurn ? s.ActorMovement.Single(x => x.ActorId == actor).Spent
                 + s.TacticalMoves.Where(x => x.ActorId == actor && x.TurnOrdinal == s.Encounter.TurnOrdinal && EncounterHistory.InCurrent(s,x.Revision) && x.Kind == TacticalMoveKind.Press && x.Status == TacticalMoveStatus.Completed).Sum(x => x.CostPaid) : 0;
+            if(ownTurn&&s.WorldSchedule!=null&&s.WorldIntervals.Single(x=>x.ActorId==actor).MovementSpent!=default)spent=Math.Max(1,spent);
             return PlaytestConditions.Permissions(CombatConditions(s, actor), ownTurn && ActionSpent(s) ? 1 : 0, spent);
         }
         private static bool EffectiveProne(Snapshot s, string actor) => WithConditions(s)

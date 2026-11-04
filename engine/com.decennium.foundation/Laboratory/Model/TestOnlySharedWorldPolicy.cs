@@ -9,27 +9,31 @@ namespace Decennium.Foundation.Laboratory
     /// partial positions and ordinary interval spending; calendar creation is not combat entry.
     /// The fixed two-actor calendar excludes the remote companion at the prepared plot.
     /// Tactical handoff, off-grid interactions and hostile departures are explicitly gated.</summary>
-    public sealed class TestOnlySharedWorldPolicy : ICommandPolicy
+    public sealed partial class TestOnlySharedWorldPolicy : ICommandPolicy
     {
         private readonly TestOnlyClubAttackPolicy bodies;
         private readonly TestOnlyFillingPolicy inventory = new TestOnlyFillingPolicy(movableVessels: true);
         private readonly TacticalCombatFixture terrain;
         private readonly ConditionCombatFixture conditions;
+        private readonly SharedCombatFixture connectedCombat;
         public bool TestOnly => true;
         public string ContentFingerprint { get; }
         public TestOnlySharedWorldPolicy(int walkingSpeed = 30, ConditionCombatFixture conditions = null, params TacticalTerrainCell[] terrain)
+            :this(null,walkingSpeed,conditions,terrain) { }
+        public TestOnlySharedWorldPolicy(SharedCombatFixture combat,int walkingSpeed = 30, ConditionCombatFixture conditions = null, params TacticalTerrainCell[] terrain)
         {
+            connectedCombat=combat;
             this.conditions = conditions ?? new ConditionCombatFixture();
-            this.terrain = new TacticalCombatFixture(new AdditionalTacticalActor(4, 4, walkingSpeed), terrain);
+            this.terrain = new TacticalCombatFixture(new AdditionalTacticalActor(4, combat==null?4:0, walkingSpeed,combat?.EnemyHp??26), terrain);
             bodies = new TestOnlyClubAttackPolicy(actorBaseWalkingSpeed: walkingSpeed, companionBaseWalkingSpeed: walkingSpeed,
-                tactical: this.terrain, conditions: this.conditions);
-            ContentFingerprint = "TEST_ONLY.shared-v1-" + bodies.ContentFingerprint.Substring("TEST_ONLY.club-v1-".Length);
+                tactical: this.terrain, conditions: this.conditions,seed:combat?.Seed??1);
+            ContentFingerprint = (combat==null?"TEST_ONLY.shared-v1-":"TEST_ONLY.connected-v1-") + bodies.ContentFingerprint.Substring("TEST_ONLY.club-v1-".Length);
         }
         public static Authority Host() => new Authority("TEST_ONLY.host", new[] { TestOnlyPolicy.ActorId, TestOnlyPolicy.CompanionId, AdditionalTacticalActor.Id }, true, true,
             new[] { TestOnlyPolicy.ActorId, TestOnlyPolicy.CompanionId, AdditionalTacticalActor.Id }, new[] { TestOnlyPolicy.ActorId, TestOnlyPolicy.CompanionId });
         public Snapshot Initial()
         {
-            var s = bodies.Initial(); s.SchemaVersion = Snapshot.SharedWorldSchema; s.ContentFingerprint = ContentFingerprint;
+            var s = bodies.Initial(); s.SchemaVersion = connectedCombat==null?Snapshot.SharedWorldSchema:Snapshot.CalendarCombatSchema; s.ContentFingerprint = ContentFingerprint;
             var companion = s.Actors.Single(a => a.Id == TestOnlyPolicy.CompanionId); companion.X = 3; companion.Y = 3;
             // The remote worker starts with both hands available. Its supplied Club is on the
             // ground at the plot; the two calendar actors begin holding their one-handed Clubs.
@@ -37,6 +41,7 @@ namespace Decennium.Foundation.Laboratory
             s.Lives = s.Lives.Select(l => l.ActorId == companion.Id ? ActorLifeRules.Record(l.ActorId, ActorLifeRules.Read(l), l.Prone) : l).ToArray();
             s.WorldSchedule = new WorldScheduleRecord("world.fixed-calendar", default, new[] { TestOnlyPolicy.ActorId, AdditionalTacticalActor.Id });
             s.WorldIntervals = s.WorldSchedule.Order.Select(a => new WorldIntervalRecord(a, s.WorldSchedule.LatestStart(a, 0))).ToArray();
+            if(connectedCombat!=null)SyncCalendarBodies(s);
             return s;
         }
         private static WorldIntervalRecord Interval(Snapshot s, string actor) => s.WorldIntervals.Single(x => x.ActorId == actor);
@@ -81,6 +86,7 @@ namespace Decennium.Foundation.Laboratory
                 return start == a.LastStart ? a : new WorldIntervalRecord(a.ActorId, start);
             }).ToArray();
             s.WorldSchedule = schedule.At(slot);
+            if(s.SchemaVersion>=Snapshot.CalendarCombatSchema)SyncCalendarBodies(s);
         }
         private static string PayRun(Snapshot s, string actor)
         {
@@ -113,7 +119,7 @@ namespace Decennium.Foundation.Laboratory
                 var active = s.WorldTraversals.Where(x => x.Status != WorldTraversalStatus.Suspended).ToArray();
                 // Stationary, living actors have no per-Start event here. The arithmetic cursor
                 // skips empty intervals; active movement must visit its real budget boundaries.
-                if (active.Length != 0) {
+                if (active.Length != 0 || s.InventoryCombat || s.Encounter!=null&&s.Lives.Any(x=>x.Hp==0&&!x.Stable&&!x.Dead&&x.UsesDeathSaves)) {
                     var boundary = s.WorldSchedule.Start(checked(s.WorldSchedule.ProcessedSlot + 1)); if (boundary < next) next = boundary;
                 }
                 foreach (var edge in active.Where(x => x.Status == WorldTraversalStatus.Moving)) {
@@ -136,15 +142,31 @@ namespace Decennium.Foundation.Laboratory
                 }
                 // Existing procedures own crop/food/water completion and their local ordering.
                 // Movement duration was bounded before their advance, so they cannot over-credit it.
-                OrdinaryInventory.AdvanceTo(s, next);
-                TestOnlyClubAttackPolicy.AdvanceConditions(s, "." + (++subevent).ToString(CultureInfo.InvariantCulture));
-                RefreshIntervals(s); PauseIncompatibleWork(s); ReconcileTraversal(s);
+                long previousSlot=s.WorldSchedule.ProcessedSlot;
+                if(connectedCombat==null) {
+                    OrdinaryInventory.AdvanceTo(s, next);
+                    TestOnlyClubAttackPolicy.AdvanceConditions(s, "." + (++subevent).ToString(CultureInfo.InvariantCulture));
+                } else OrdinaryInventory.AdvanceTo(s,next,world=> {
+                    TestOnlyClubAttackPolicy.AdvanceConditions(world,"."+(++subevent).ToString(CultureInfo.InvariantCulture));
+                    PauseIncompatibleWork(world);
+                });
+                RefreshIntervals(s);
+                if(connectedCombat!=null&&s.Encounter!=null&&s.WorldSchedule.ProcessedSlot!=previousSlot) {
+                    // Any dying actor forces real boundary visits above; no random save is skipped.
+                    ActorLifeRules.RegularStart(s,checked((int)s.WorldSchedule.ProcessedSlot));
+                }
+                PauseIncompatibleWork(s); ReconcileTraversal(s);
             }
+            if(connectedCombat!=null)ObserveCalendar(s);
         }
         public string Resolve(Snapshot s, Command c)
         {
-            if (c.Combat != null) return "SharedCombatHandoffNotImplemented";
             if (!s.Actors.Any(a => a.Id == c.Actor)) return "UnknownWorldActor";
+            if(connectedCombat!=null) {
+                if(c.Kind==CommandKind.BeginFixedEncounter)return EnterCalendarCombat(s,c);
+                if(s.InventoryCombat)return ResolveCalendarCombat(s,c);
+            }
+            if (c.Combat != null) return "SharedCombatHandoffNotImplemented";
             if (c.Kind == CommandKind.AdvanceClock) {
                 if (c.Inventory != null || c.Target != "" || c.X < 1 || c.Y < 1) return "InvalidWorldAdvance";
                 AdvanceTo(s, CampGreens.Add(s.RuleClock, new RuleTime(c.X, c.Y))); return null;
@@ -161,10 +183,10 @@ namespace Decennium.Foundation.Laboratory
                 if (s.Actors.Any(a => a.Id != actor.Id && a.X == x && a.Y == y) || s.WorldTraversals.Any(e => e.ToX == x && e.ToY == y)) return "Occupied";
                 // No implicit combat is fabricated. Entering/leaving a hostile engagement requires
                 // the upcoming tactical continuation host before the departure can be admitted.
-                if (s.WorldSchedule.Order.Where(a => a != actor.Id).Any(id => {
+                if (s.WorldSchedule.Order.Where(a => a != actor.Id&&(connectedCombat==null||!s.Lives.Single(l=>l.ActorId==a).Dead)).Any(id => {
                     var enemy = s.Actors.Single(a => a.Id == id);
                     return Math.Max(Math.Abs(actor.X - enemy.X), Math.Abs(actor.Y - enemy.Y)) <= 1 || Math.Max(Math.Abs(x - enemy.X), Math.Abs(y - enemy.Y)) <= 1;
-                })) return "TacticalTransitionRequired";
+                })) return connectedCombat==null?"TacticalTransitionRequired":EnterCalendarCombat(s,new Command(c.Id,c.Actor,c.ExpectedRevision,CommandKind.BeginFixedEncounter));
                 if (c.Target == "run") { string error = PayRun(s, c.Actor); if (error != null) return error; }
                 if (Remaining(s, c.Actor) == default) return "InsufficientMovement";
                 s.WorldTraversals = s.WorldTraversals.Concat(new[] { new WorldTraversalRecord(c.Actor, s.Revision + 1, actor.X, actor.Y, x, y, running: c.Target == "run") }).ToArray(); return null;
@@ -211,13 +233,14 @@ namespace Decennium.Foundation.Laboratory
             if (s.RuleClock > before) {
                 // No traversal or condition deadline can occur inside the admitted interval.
                 TestOnlyClubAttackPolicy.AdvanceConditions(s, ".handling"); RefreshIntervals(s); PauseIncompatibleWork(s);
+                if(connectedCombat!=null)ObserveCalendar(s);
             }
             return null;
         }
         public string ValidateState(Snapshot s)
         {
             try {
-                if (s.SchemaVersion != Snapshot.SharedWorldSchema || s.Receipts.Length != s.Revision) return "InvalidSharedWorldHeader";
+                if (s.SchemaVersion != (connectedCombat==null?Snapshot.SharedWorldSchema:Snapshot.CalendarCombatSchema) || s.Receipts.Length != s.Revision) return "InvalidSharedWorldHeader";
                 var replay = Initial();
                 foreach (var receipt in s.Receipts.OrderBy(x => x.Revision)) {
                     var command = CommandHistory.Read(receipt);

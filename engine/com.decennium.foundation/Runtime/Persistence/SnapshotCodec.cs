@@ -58,7 +58,7 @@ namespace Decennium.Foundation
                 if (state.SchemaVersion >= Snapshot.SharedWorldSchema) {
                     writer.Write(state.ClosedEncounters.Length);
                     foreach (var closed in state.ClosedEncounters.OrderBy(x => x.Encounter.StartRevisions[0])) {
-                        FixedEncounterCodec.WriteRecord(writer, closed.Encounter); writer.Write(closed.ClosedRevision);
+                        FixedEncounterCodec.WriteRecord(writer, closed.Encounter, state.SchemaVersion >= Snapshot.CalendarCombatSchema); writer.Write(closed.ClosedRevision);
                         writer.Write(closed.ClosedAt.Numerator); writer.Write(closed.ClosedAt.Denominator); WriteText(writer, closed.Reason);
                     }
                     WorldScheduleCodec.Write(writer, state);
@@ -82,7 +82,7 @@ namespace Decennium.Foundation
                     if (reader.ReadInt32() != Magic) throw new InvalidDataException("Unsupported save format.");
                     int schema = reader.ReadInt32();
                     if (data.Length > Limit(schema)) throw new InvalidDataException("Save exceeds schema size limit.");
-                    if (schema != Snapshot.Schema && schema != Snapshot.WorkSchema && schema != Snapshot.CropSchema && schema != Snapshot.InventorySchema && schema != Snapshot.VesselSchema && schema != Snapshot.MovableVesselSchema && schema != Snapshot.EncounterSchema && schema != Snapshot.ActorLifeSchema && schema != Snapshot.ClubAttackSchema && schema != Snapshot.PostureSchema && schema != Snapshot.TacticalMovementSchema && schema != Snapshot.ConditionSchema && schema != Snapshot.SharedWorldSchema)
+                    if (schema != Snapshot.Schema && schema != Snapshot.WorkSchema && schema != Snapshot.CropSchema && schema != Snapshot.InventorySchema && schema != Snapshot.VesselSchema && schema != Snapshot.MovableVesselSchema && schema != Snapshot.EncounterSchema && schema != Snapshot.ActorLifeSchema && schema != Snapshot.ClubAttackSchema && schema != Snapshot.PostureSchema && schema != Snapshot.TacticalMovementSchema && schema != Snapshot.ConditionSchema && schema != Snapshot.SharedWorldSchema && schema != Snapshot.CalendarCombatSchema)
                         throw new InvalidDataException("Unsupported save schema.");
                     string fingerprint = ReadText(reader);
                     if (ReadText(reader) != RandomV1.Algorithm) throw new InvalidDataException("Unsupported RNG version.");
@@ -126,7 +126,7 @@ namespace Decennium.Foundation
                     if (schema >= Snapshot.SharedWorldSchema) {
                         s.ClosedEncounters = new ClosedEncounterRecord[ReadCount(reader, EncounterHistory.MaxClosedEncounters)];
                         for (int i = 0; i < s.ClosedEncounters.Length; i++)
-                            s.ClosedEncounters[i] = new ClosedEncounterRecord(FixedEncounterCodec.ReadRecord(reader), reader.ReadInt64(),
+                            s.ClosedEncounters[i] = new ClosedEncounterRecord(FixedEncounterCodec.ReadRecord(reader, schema >= Snapshot.CalendarCombatSchema), reader.ReadInt64(),
                                 new RuleTime(reader.ReadInt64(), reader.ReadInt64()), ReadText(reader));
                         WorldScheduleCodec.Read(reader, s);
                     }

@@ -227,6 +227,8 @@ namespace Decennium.Foundation.Tests
             AddCommandHistoryCases(cases);
             AddEncounterHistoryCases(cases, directory);
             AddSharedWorldCases(cases, directory);
+            AddSparseEncounterCases(cases, directory);
+            AddConnectedCombatCases(cases, directory);
             AddPostureCases(cases, directory);
             AddMaximumHpCases(cases);
             AddTacticalMovementCases(cases, directory);

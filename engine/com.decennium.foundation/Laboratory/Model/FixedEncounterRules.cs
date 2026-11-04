@@ -19,7 +19,7 @@ namespace Decennium.Foundation.Laboratory
         internal static int TurnForRevision(FixedEncounterRecord e,long revision)
         {
             if(e==null||revision<=e.StartRevisions[0]||e.StartRevisions.Contains(revision))throw new ArgumentException("Action requires its own decision revision.");
-            for(int i=e.StartRevisions.Count-1;i>=0;i--)if(revision>e.StartRevisions[i])return i;
+            for(int i=e.StartRevisions.Count-1;i>=0;i--)if(revision>e.StartRevisions[i])return e.ObservedOrdinals[i];
             throw new ArgumentException("Missing regular start.");
         }
         internal static bool HistoricalHandling(Snapshot s,string job,string actor,RuleTime start,RuleTime end)

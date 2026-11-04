@@ -7,7 +7,10 @@ namespace Decennium.Foundation.Laboratory
     public sealed partial class TestOnlyClubAttackPolicy
     {
         private static ActorTacticalRecord TacticalActor(Snapshot s,string actor)=>s.TacticalActors.Single(x=>x.ActorId==actor);
-        private static void SetTactical(Snapshot s,ActorTacticalRecord record)=>s.TacticalActors=s.TacticalActors.Select(x=>x.ActorId==record.ActorId?record:x).ToArray();
+        private static void SetTactical(Snapshot s,ActorTacticalRecord record) {
+            s.TacticalActors=s.TacticalActors.Select(x=>x.ActorId==record.ActorId?record:x).ToArray();
+            if(s.WorldSchedule!=null)s.WorldIntervals=s.WorldIntervals.Select(x=>x.ActorId==record.ActorId?x.WithReaction(record.ReactionAvailable):x).ToArray();
+        }
         private static void StartTactical(Snapshot s)
         {
             var e=s.Encounter;var before=TacticalActor(s,e.CurrentActor);
@@ -35,7 +38,7 @@ namespace Decennium.Foundation.Laboratory
             long cost=StepCost(s,actor,x,y);
             if(kind==TacticalMoveKind.Press)return cost>PlaytestCombatBudgets.SpecialBudget(SpecialMovement.Press,speed)?"InsufficientPressMovement":null;
             if(s.Encounter.CurrentActor!=actor)return "WrongRegularTurn";
-            return cost>WalkingLedger(s).Remaining(speed)?"InsufficientMovement":null;
+            return new RuleQuantity(cost)>RemainingMovement(s,actor)?"InsufficientMovement":null;
         }
         private static bool EligibleOpportunity(Snapshot s,string reactor,TacticalMoveRecord move)
         {
@@ -100,8 +103,7 @@ namespace Decennium.Foundation.Laboratory
                     if(index<move.Reactors.Count)return;
                     long cost=StepCost(s,move.ActorId,move.ToX,move.ToY);
                     if(move.Kind==TacticalMoveKind.Ordinary) {
-                        var ledger=WalkingLedger(s).Spend(cost,WalkingSpeed(s,move.ActorId));
-                        s.ActorMovement=s.ActorMovement.Select(m=>m.ActorId==move.ActorId?new ActorMovementRecord(m.ActorId,m.BaseWalkingSpeed,m.TurnOrdinal,ledger.Spent):m).ToArray();
+                        SpendMovement(s,move.ActorId,cost);
                     }
                     var actor=s.Actors.Single(a=>a.Id==move.ActorId);actor.X=move.ToX;actor.Y=move.ToY;
                     s.Clubs=s.Clubs.Select(w=>w.HeldBy==actor.Id?new ClubInstance(w.Id,w.ProfileId,w.OwnerId,w.CustodianId,w.HeldBy,actor.X,actor.Y):w).ToArray();

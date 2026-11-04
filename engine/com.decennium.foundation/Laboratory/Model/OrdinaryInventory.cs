@@ -50,10 +50,10 @@ namespace Decennium.Foundation.Laboratory
             Replace(s,new IntakeRecord(job.Id,job.ActorId,job.LotId,job.ReservationId,job.StartedAt,s.RuleClock,status));
         }
         private static void Replace(Snapshot s,IntakeRecord job)=>s.Intakes=s.Intakes.Select(x=>x.Id==job.Id?job:x).ToArray();
-        public static void AdvanceTo(Snapshot s,RuleTime target)
+        public static void AdvanceTo(Snapshot s,RuleTime target,Action<Snapshot> beforeRecovery=null)
         {
             if(target<=s.RuleClock)throw new ArgumentException("Positive shared advance required.");
-            ActorLifeRules.RecoverDue(s);
+            beforeRecovery?.Invoke(s);ActorLifeRules.RecoverDue(s);
             while(s.RuleClock<target) {
                 RuleTime next=target;
                 var lifeDeadline=ActorLifeRules.NextDeadline(s);if(lifeDeadline.HasValue&&lifeDeadline.Value<next)next=lifeDeadline.Value;
@@ -77,7 +77,7 @@ namespace Decennium.Foundation.Laboratory
                     else if(!Fresh(s,item))Interrupt(s,job,IntakeStatus.Expired);
                 }
                 WaterFilling.CompleteDue(s);
-                ActorLifeRules.RecoverDue(s);
+                beforeRecovery?.Invoke(s);ActorLifeRules.RecoverDue(s);
             }
         }
         internal static void RegisterCropOutput(Snapshot s)

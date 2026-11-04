@@ -65,7 +65,7 @@ namespace Decennium.Foundation.Laboratory
         }
         public static StanceSelectionRecord ActiveStance(Snapshot s,string actor)=>s.Stances.LastOrDefault(t=>t.ActorId==actor&&s.RuleClock<t.ExpiresAt);
         public static PressRecord ActivePress(Snapshot s,string actor)=>s.Presses.SingleOrDefault(p=>p.ActorId==actor&&s.RuleClock<p.ExpiresAt);
-        public static bool ActionSpent(Snapshot s)=>FixedEncounterRules.ActionSpent(s)||s.Encounter!=null&&s.MeleeAttacks.Any(a=>a.TurnOrdinal==s.Encounter.TurnOrdinal&&!a.Opportunity&&EncounterHistory.InCurrent(s,a.Revision))
+        public static bool ActionSpent(Snapshot s)=>s.WorldSchedule!=null&&s.Encounter!=null?s.WorldIntervals.Single(x=>x.ActorId==s.Encounter.CurrentActor).ActionSpent:FixedEncounterRules.ActionSpent(s)||s.Encounter!=null&&s.MeleeAttacks.Any(a=>a.TurnOrdinal==s.Encounter.TurnOrdinal&&!a.Opportunity&&EncounterHistory.InCurrent(s,a.Revision))
             ||s.Encounter!=null&&s.TacticalActors.Any(a=>a.ActorId==s.Encounter.CurrentActor&&a.DisengageTurn==s.Encounter.TurnOrdinal);
         private bool Admitted(CommandKind k)=>k==CommandKind.AdvanceClock||k==CommandKind.BeginFixedEncounter||k==CommandKind.EndRegularTurn
             ||k==CommandKind.EncounterDash||k==CommandKind.SelectCombatStance||k==CommandKind.AttackClub||k==CommandKind.ResolveKnockout
@@ -80,10 +80,24 @@ namespace Decennium.Foundation.Laboratory
         }
         public static MovementLedger WalkingLedger(Snapshot s)
         {
+            if(s.WorldSchedule!=null)throw new ArgumentException("Use exact shared-world movement ledger.");
             if(s.Encounter==null)throw new ArgumentException("No current regular turn.");
             var m=s.ActorMovement.Single(x=>x.ActorId==s.Encounter.CurrentActor);
             if(m.TurnOrdinal!=s.Encounter.TurnOrdinal)throw new ArgumentException("Movement turn is not current.");
             return new MovementLedger(m.Spent,s.EncounterDashes.Count(d=>d.TurnOrdinal==m.TurnOrdinal&&EncounterHistory.InCurrent(s,d.Revision)));
+        }
+        private static RuleQuantity RemainingMovement(Snapshot s,string actor) {
+            if(s.WorldSchedule==null)return new RuleQuantity(WalkingLedger(s).Remaining(WalkingSpeed(s,actor)));
+            var a=s.WorldIntervals.Single(x=>x.ActorId==actor);var maximum=new RuleQuantity(WalkingSpeed(s,actor)).Scale(a.DashPaid?2:1);
+            return maximum>a.MovementSpent?maximum-a.MovementSpent:default;
+        }
+        private static void SpendMovement(Snapshot s,string actor,long cost) {
+            if(s.WorldSchedule!=null) {
+                if(new RuleQuantity(cost)>RemainingMovement(s,actor))throw new ArgumentException("Insufficient shared movement.");
+                s.WorldIntervals=s.WorldIntervals.Select(a=>a.ActorId==actor?a.Spend(new RuleQuantity(cost)):a).ToArray();return;
+            }
+            var ledger=WalkingLedger(s).Spend(cost,WalkingSpeed(s,actor));
+            s.ActorMovement=s.ActorMovement.Select(m=>m.ActorId==actor?new ActorMovementRecord(m.ActorId,m.BaseWalkingSpeed,m.TurnOrdinal,ledger.Spent):m).ToArray();
         }
         private static void StartMovement(Snapshot s)
         {
@@ -91,7 +105,7 @@ namespace Decennium.Foundation.Laboratory
             if(s.SchemaVersion<Snapshot.PostureSchema)return;
             s.ActorMovement=s.ActorMovement.Select(m=>m.ActorId==s.Encounter.CurrentActor?new ActorMovementRecord(m.ActorId,m.BaseWalkingSpeed,s.Encounter.TurnOrdinal):m).ToArray();
         }
-        private static bool HasStance(Snapshot s)=>s.Stances.Any(t=>t.TurnOrdinal==s.Encounter.TurnOrdinal&&EncounterHistory.InCurrent(s,t.Revision));
+        internal static bool HasStance(Snapshot s)=>s.Stances.Any(t=>t.TurnOrdinal==s.Encounter.TurnOrdinal&&EncounterHistory.InCurrent(s,t.Revision));
         public string Resolve(Snapshot s,Command c)
         {
             if(!Admitted(c.Kind))return "ClubCommandNotImplemented";
@@ -127,11 +141,10 @@ namespace Decennium.Foundation.Laboratory
                 if(standing&&!HasStance(s))return "StanceRequired"; // Standing uses current Speed, including Guarded.
                 if(before.Prone!=standing)return standing?"ActorNotProne":"ActorAlreadyProne";
                 if(standing) {
-                    long speed=WalkingSpeed(s,c.Actor);var ledger=WalkingLedger(s);
+                    long speed=WalkingSpeed(s,c.Actor);
                     if(speed==0)return "ZeroSpeedCannotStand";
-                    if(ledger.Remaining(speed)<speed/2)return "InsufficientMovement";
-                    ledger=ledger.Stand(speed);
-                    s.ActorMovement=s.ActorMovement.Select(m=>m.ActorId==c.Actor?new ActorMovementRecord(m.ActorId,m.BaseWalkingSpeed,m.TurnOrdinal,ledger.Spent):m).ToArray();
+                    if(RemainingMovement(s,c.Actor)<new RuleQuantity(speed/2))return "InsufficientMovement";
+                    SpendMovement(s,c.Actor,speed/2);
                 }
                 // Dropping voluntarily changes no position, spent cost or stance allowance. Zero Speed alone does not prohibit it.
                 if(WithConditions(s)) {
