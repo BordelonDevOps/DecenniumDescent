@@ -93,6 +93,7 @@ namespace Decennium.Foundation.Laboratory
                 if(PendingCalendarChoice(s))return "TacticalChoicePending";
                 return CharacterAdvancementRules.ActivateTacticalReposition(s,c);
             }
+            if(c.Kind==CommandKind.CurePeriodicRider)return ResolvePeriodicMedicine(s,c);
             if((c.Kind==CommandKind.HandleInventory||c.Kind==CommandKind.HandleVessel)&&s.SchemaVersion>=Snapshot.SupplyCacheSchema) {
                 if(PendingCalendarChoice(s))return "TacticalChoicePending";
                 if(c.Actor!=s.Encounter.CurrentActor)return "WrongRegularTurn";

@@ -244,6 +244,7 @@ namespace Decennium.Foundation.Tests
             AddTacticalMovementCases(cases, directory);
             AddContentResolutionCases(cases, directory);
             AddCharacterAdvancementCases(cases,directory);
+            AddPeriodicRiderCases(cases,directory);
             return cases;
         }
         private static void Resign(byte[] bytes)

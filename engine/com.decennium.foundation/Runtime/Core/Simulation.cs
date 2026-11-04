@@ -16,7 +16,8 @@ namespace Decennium.Foundation
         StartManufacturing, PauseManufacturing, ResumeManufacturing, CancelManufacturing, ResolveManufacturingQuality, UseAlchemyDose,
         HandlePortableEquipment, EquipPortableItem, RemovePortableItem, OpenPortableContainer, ClosePortableContainer,
         AwardCharacterMilestone, AdvanceCharacterLevel, ActivateTacticalReposition, TacticalRepositionStep,
-        AttackRepeatingCrossbow, ReloadRepeatingCrossbow }
+        AttackRepeatingCrossbow, ReloadRepeatingCrossbow, DispatchFixturePeriodicRider, CurePeriodicRider,
+        SetPeriodicRiderSuppression, SetPeriodicFamilyImmunity, ApplyFixtureMagicalHealing }
     public enum Outcome { Rejected, Committed, Duplicate }
 
     // DTOs are detached copies. No caller ever receives the owned simulation state.
@@ -63,6 +64,7 @@ namespace Decennium.Foundation
         public const int PortableEquipmentSchema = 20;
         public const int CharacterAdvancementSchema = 21;
         public const int RepeatingCrossbowSchema = 22;
+        public const int PeriodicRiderSchema = 23;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
         // Technical bound keeps the entire snapshot within the existing 1 MiB save limit,
@@ -136,6 +138,10 @@ namespace Decennium.Foundation
         public AmmunitionLotRecord[] AmmunitionLots = Array.Empty<AmmunitionLotRecord>();
         public RangedCombatantRecord[] RangedCombatants = Array.Empty<RangedCombatantRecord>();
         public RangedAttackRecord[] RangedAttacks = Array.Empty<RangedAttackRecord>();
+        public PeriodicRiderRecord[] PeriodicRiders = Array.Empty<PeriodicRiderRecord>();
+        public PeriodicRiderEventRecord[] PeriodicRiderEvents = Array.Empty<PeriodicRiderEventRecord>();
+        public PeriodicFamilyImmunityRecord[] PeriodicImmunities = Array.Empty<PeriodicFamilyImmunityRecord>();
+        public SkillTrainingRecord[] SkillTraining = Array.Empty<SkillTrainingRecord>();
         public Snapshot Copy() => new Snapshot {
             DyingCadences = DyingCadences.ToArray(), Structures = Structures.ToArray(), CraftingIncidents = CraftingIncidents.ToArray(),
             WorldLifeMarkers = WorldLifeMarkers.ToArray(),
@@ -147,6 +153,8 @@ namespace Decennium.Foundation
             CharacterFeatureRuntime = CharacterFeatureRuntime.ToArray(), TacticalCovers = TacticalCovers.ToArray(),
             RepeatingCrossbows = RepeatingCrossbows.ToArray(), AmmunitionLots = AmmunitionLots.ToArray(),
             RangedCombatants = RangedCombatants.ToArray(), RangedAttacks = RangedAttacks.ToArray(),
+            PeriodicRiders = PeriodicRiders.ToArray(), PeriodicRiderEvents = PeriodicRiderEvents.ToArray(),
+            PeriodicImmunities = PeriodicImmunities.ToArray(), SkillTraining = SkillTraining.ToArray(),
             FormulaWork = FormulaWork.ToArray(),
             WorldSchedule = WorldSchedule, WorldIntervals = WorldIntervals.ToArray(), WorldTraversals = WorldTraversals.ToArray(),
             Conditions = Conditions.ToArray(), ClosedEncounters = ClosedEncounters.ToArray(),
@@ -259,7 +267,7 @@ namespace Decennium.Foundation
             if (s == null || !ValidId(s.ContentFingerprint) || s.Revision < 0 || s.Clock < 0 || s.RandomState == 0)
                 throw new ArgumentException("Invalid snapshot header.");
             if (s.SchemaVersion != Foundation.Snapshot.Schema && s.SchemaVersion != Foundation.Snapshot.WorkSchema
-                && s.SchemaVersion != Foundation.Snapshot.CropSchema && s.SchemaVersion != Foundation.Snapshot.InventorySchema && s.SchemaVersion != Foundation.Snapshot.VesselSchema && s.SchemaVersion != Foundation.Snapshot.MovableVesselSchema && s.SchemaVersion != Foundation.Snapshot.EncounterSchema && s.SchemaVersion != Foundation.Snapshot.ActorLifeSchema && s.SchemaVersion != Foundation.Snapshot.ClubAttackSchema && s.SchemaVersion != Foundation.Snapshot.PostureSchema && s.SchemaVersion != Foundation.Snapshot.TacticalMovementSchema && s.SchemaVersion != Foundation.Snapshot.ConditionSchema && s.SchemaVersion != Foundation.Snapshot.SharedWorldSchema && s.SchemaVersion != Foundation.Snapshot.CalendarCombatSchema && s.SchemaVersion != Foundation.Snapshot.FormulaWorkSchema && s.SchemaVersion != Foundation.Snapshot.CraftingConsequenceSchema && s.SchemaVersion != Foundation.Snapshot.RepairWorkSchema && s.SchemaVersion != Foundation.Snapshot.ManufacturingSchema && s.SchemaVersion != Foundation.Snapshot.SupplyCacheSchema && s.SchemaVersion != Foundation.Snapshot.PortableEquipmentSchema && s.SchemaVersion != Foundation.Snapshot.CharacterAdvancementSchema && s.SchemaVersion != Foundation.Snapshot.RepeatingCrossbowSchema)
+                && s.SchemaVersion != Foundation.Snapshot.CropSchema && s.SchemaVersion != Foundation.Snapshot.InventorySchema && s.SchemaVersion != Foundation.Snapshot.VesselSchema && s.SchemaVersion != Foundation.Snapshot.MovableVesselSchema && s.SchemaVersion != Foundation.Snapshot.EncounterSchema && s.SchemaVersion != Foundation.Snapshot.ActorLifeSchema && s.SchemaVersion != Foundation.Snapshot.ClubAttackSchema && s.SchemaVersion != Foundation.Snapshot.PostureSchema && s.SchemaVersion != Foundation.Snapshot.TacticalMovementSchema && s.SchemaVersion != Foundation.Snapshot.ConditionSchema && s.SchemaVersion != Foundation.Snapshot.SharedWorldSchema && s.SchemaVersion != Foundation.Snapshot.CalendarCombatSchema && s.SchemaVersion != Foundation.Snapshot.FormulaWorkSchema && s.SchemaVersion != Foundation.Snapshot.CraftingConsequenceSchema && s.SchemaVersion != Foundation.Snapshot.RepairWorkSchema && s.SchemaVersion != Foundation.Snapshot.ManufacturingSchema && s.SchemaVersion != Foundation.Snapshot.SupplyCacheSchema && s.SchemaVersion != Foundation.Snapshot.PortableEquipmentSchema && s.SchemaVersion != Foundation.Snapshot.CharacterAdvancementSchema && s.SchemaVersion != Foundation.Snapshot.RepeatingCrossbowSchema && s.SchemaVersion != Foundation.Snapshot.PeriodicRiderSchema)
                 throw new ArgumentException("Unsupported snapshot schema.");
             if (s.SchemaVersion == Foundation.Snapshot.Schema && (s.Work != null || s.RuleClock != default))
                 throw new ArgumentException("Legacy snapshot cannot contain unsaved work or exact time.");
@@ -329,6 +337,7 @@ namespace Decennium.Foundation
             PortableEquipmentValidation.Validate(s);
             CharacterAdvancementValidation.Validate(s);
             RangedCombatValidation.Validate(s);
+            PeriodicRiderValidation.Validate(s);
         }
     }
 
@@ -369,7 +378,8 @@ namespace Decennium.Foundation
             bool rangedKind=command.Kind==CommandKind.AttackRepeatingCrossbow||command.Kind==CommandKind.ReloadRepeatingCrossbow;
             if(rangedKind!=(command.Ranged!=null)||command.Ranged!=null&&(command.Inventory!=null||command.Combat!=null||command.Advancement!=null))return Reject("UnexpectedRangedPayload");
             if ((!authority.Controls(command.Actor) && !(command.Kind==CommandKind.AwardCharacterMilestone&&authority.CanModifyWorld)) || (command.Kind == CommandKind.AdvanceClock && !authority.CanAdvanceClock)
-                || ((command.Kind == CommandKind.SetCropConditions || command.Kind == CommandKind.EnterInventoryCombat || command.Kind == CommandKind.BeginFixedEncounter || command.Kind == CommandKind.EndFixedEncounter || command.Kind == CommandKind.DispatchConditionEvent || command.Kind == CommandKind.DispatchCraftingMishap || command.Kind==CommandKind.AwardCharacterMilestone) && !authority.CanModifyWorld))
+                || ((command.Kind == CommandKind.SetCropConditions || command.Kind == CommandKind.EnterInventoryCombat || command.Kind == CommandKind.BeginFixedEncounter || command.Kind == CommandKind.EndFixedEncounter || command.Kind == CommandKind.DispatchConditionEvent || command.Kind == CommandKind.DispatchCraftingMishap || command.Kind==CommandKind.AwardCharacterMilestone
+                    ||command.Kind==CommandKind.DispatchFixturePeriodicRider||command.Kind==CommandKind.SetPeriodicRiderSuppression||command.Kind==CommandKind.SetPeriodicFamilyImmunity||command.Kind==CommandKind.ApplyFixtureMagicalHealing) && !authority.CanModifyWorld))
                 return Reject("NotAuthorized");
             if (policy is ICommandInventoryClaims claims) {
                 try {

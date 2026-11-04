@@ -115,6 +115,7 @@ namespace Decennium.Foundation.Laboratory
             InitializePortableEquipment(s);
             InitializeCharacterAdvancement(s);
             InitializeRepeatingCrossbow(s);
+            InitializePeriodicRider(s);
             if(contentManifest!=null) {
                 string bindingError=contentManifest.ValidatePortableSnapshot(s);
                 if(bindingError!=null)throw new InvalidOperationException(bindingError);
@@ -199,6 +200,7 @@ namespace Decennium.Foundation.Laboratory
             while (s.RuleClock < target) {
                 ReconcileTraversal(s); RuleTime next = target;
                 var condition = NextConditionDeadline(s); if (condition.HasValue && condition.Value < next) next = condition.Value;
+                var periodic = NextPeriodicMarker(s); if(periodic.HasValue&&periodic.Value<next)next=periodic.Value;
                 var formula = NextFormulaBoundary(s); if (formula.HasValue && formula.Value < next) next = formula.Value;
                 var dying = NextDyingMarker(s); if(dying.HasValue&&dying.Value<next)next=dying.Value;
                 var remedy = NextRemedyBoundary(s); if(remedy.HasValue&&remedy.Value<next)next=remedy.Value;
@@ -250,6 +252,11 @@ namespace Decennium.Foundation.Laboratory
                     // Any dying actor forces real boundary visits above; no random save is skipped.
                     ActorLifeRules.RegularStart(s,checked((int)s.WorldSchedule.ProcessedSlot));
                 }
+                else if(periodicRider!=null&&s.WorldSchedule.ProcessedSlot!=previousSlot) {
+                    long slot=s.WorldSchedule.ProcessedSlot;string actor=s.WorldSchedule.Order[(int)(slot%s.WorldSchedule.Order.Count)];
+                    SaveWorldLifeMarker(s,actor,s.WorldSchedule.Id,s.WorldSchedule.Origin,slot,checked((int)slot));
+                }
+                ProcessPeriodicRiderMarker(s,previousSlot);
                 foreach(string id in ready) {
                     var job=s.FormulaWork.Single(x=>x.Id==id);
                     if(ResearchAccess(s,job.WorkerId,false)==null)FinishFormulaCheck(s,job);
@@ -275,6 +282,8 @@ namespace Decennium.Foundation.Laboratory
         {
             if (!s.Actors.Any(a => a.Id == c.Actor)) return "UnknownWorldActor";
             if(c.Kind==CommandKind.AwardCharacterMilestone||c.Kind==CommandKind.AdvanceCharacterLevel)return ResolveCharacterAdvancement(s,c);
+            if(PeriodicEventCommand(c.Kind))return ResolvePeriodicEvent(s,c);
+            if(c.Kind==CommandKind.CurePeriodicRider&&(connectedCombat==null||!s.InventoryCombat))return "MedicineRequiresTacticalAction";
             if(contentManifest!=null) {
                 string contentError=contentManifest.ValidateCommand(s,c);
                 if(contentError!=null)return contentError;
@@ -353,6 +362,8 @@ namespace Decennium.Foundation.Laboratory
             if (c.Kind == CommandKind.HandleInventory || c.Kind == CommandKind.HandleVessel) {
                 var deadline = NextConditionDeadline(s);
                 if (deadline.HasValue && deadline.Value <= s.RuleClock.AddSeconds(1)) return "TimedHandlingBoundaryUnsupported";
+                var periodic = NextPeriodicMarker(s);
+                if(periodic.HasValue&&periodic.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
                 var formula = NextFormulaBoundary(s);
                 if(formula.HasValue&&formula.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
                 var dying=NextDyingMarker(s);if(dying.HasValue&&dying.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
@@ -386,6 +397,12 @@ namespace Decennium.Foundation.Laboratory
                     PortableEquipmentRules.ValidateFixture(s);
                     var pack=s.PortableEquipment.SingleOrDefault(x=>x.Id==PortableKitFixture.Pack);
                     if(pack==null||!PortableEquipmentRules.FixtureFitValid(s,pack))return "InvalidPortableKitFixture";
+                }
+                if(periodicRider!=null) {
+                    if(s.SchemaVersion!=Snapshot.PeriodicRiderSchema||s.PeriodicRiders.Any(x=>x.ProfileId!=PeriodicRiderFixture.ProfileId
+                        ||x.FamilyId!=PeriodicRiderFixture.FamilyId||x.SourceId!=PeriodicRiderFixture.SourceId||x.DamageType!="piercing"||x.RemainingTicks>1)
+                        ||s.PeriodicRiders.Where(x=>x.Present).GroupBy(x=>x.TargetId+"|"+x.OwnerId+"|"+x.SourceId,StringComparer.Ordinal).Any(g=>g.Count()>1)
+                        ||s.SkillTraining.Any(x=>x.SkillId!="medicine"))return "InvalidPeriodicRiderFixture";
                 }
                 var replay = Initial();
                 foreach (var receipt in s.Receipts.OrderBy(x => x.Revision)) {
