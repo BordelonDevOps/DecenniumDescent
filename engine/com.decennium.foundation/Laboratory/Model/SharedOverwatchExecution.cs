@@ -35,6 +35,9 @@ namespace Decennium.Foundation.Laboratory
         private static OverwatchOfferRecord PendingOverwatchOffer(Snapshot s)
             =>s.OverwatchOffers.SingleOrDefault(x=>x.Status==OverwatchOfferStatus.Pending);
 
+        public static bool AutomaticPushStrengthSaveFailure(Snapshot s,string targetId)
+            =>TestOnlyClubAttackPolicy.ConditionsFor(s,targetId).View().AutomaticStrengthDexterityFailure;
+
         private static PostStepChoiceKind NextPostStepChoice(Snapshot s)
         {
             var press=TestOnlyClubAttackPolicy.CurrentPressOffer(s);var ow=PendingOverwatchOffer(s);
@@ -230,8 +233,7 @@ namespace Decennium.Foundation.Laboratory
                     var charOwner=s.Characters.Single(x=>x.ActorId==pending.OwnerId);
                     dc=checked(8+PlaytestCharacters.ProficiencyBonus(charOwner.Levels.Count)+PlaytestCharacters.AbilityModifier(charOwner.Abilities[2]));
                     modifier=checked(PlaytestCharacters.AbilityModifier(charTarget.Abilities[0])+overwatchExecution.AdditionalStrengthSaveModifier);
-                    bool automaticFailure=TestOnlyClubAttackPolicy.ConditionsFor(s,pending.TargetId).View().Has(ConditionKind.Paralyzed)
-                        ||TestOnlyClubAttackPolicy.ConditionsFor(s,pending.TargetId).View().Has(ConditionKind.Unconscious);
+                    bool automaticFailure=AutomaticPushStrengthSaveFailure(s,pending.TargetId);
                     if(automaticFailure) {success=false;}
                     else {
                         var save=PlaytestDice.RollD20(s.RandomState);natural=save.Natural;randomAfter=save.NextRandomState;words=save.WordsConsumed;

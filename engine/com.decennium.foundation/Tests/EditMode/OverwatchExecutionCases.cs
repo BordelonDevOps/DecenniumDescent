@@ -168,6 +168,18 @@ namespace Decennium.Foundation.Tests
                     &&result.FromX==3&&result.FromY==0&&result.ToX==3&&result.ToY==0&&result.MovedFeet==0&&target.X==3&&target.Y==0,
                     "A successful Push Strength save did not preserve position and its complete deterministic audit.");
             });
+            cases.Add("overwatch_push_automatic_strength_failures_follow_condition_contract",()=>{
+                foreach(var kind in new[]{ConditionKind.Stunned,ConditionKind.Petrified}) {
+                    var snapshot=World(OverwatchExecutionPolicy()).Capture();var journal=snapshot.Conditions.Single(x=>x.Target==AdditionalTacticalActor.Id);
+                    string id="ow.push.condition."+kind;
+                    var application=new ConditionApplicationData(id,TestOnlyPolicy.ActorId,"TEST_ONLY.overwatch-save",kind.ToString(),null,"test-end",true);
+                    var operation=ConditionOperation.Apply("ow.push.operation."+kind,journal.Now,application);
+                    var updated=ConditionHistory.Restore(journal).Append(operation).State.Journal;
+                    snapshot.Conditions=snapshot.Conditions.Select(x=>x.Target==journal.Target?updated:x).ToArray();
+                    Require(TestOnlySharedWorldPolicy.AutomaticPushStrengthSaveFailure(snapshot,AdditionalTacticalActor.Id),
+                        kind+" did not trigger the shared automatic Strength/Dexterity save failure rule.");
+                }
+            });
             cases.Add("overwatch_push_failure_stops_at_blocked_cell_without_collision_or_refund",()=>{
                 var s=OverwatchVerticalTrigger(SeedForNatural(10),new OverwatchExecutionFixture(additionalStrengthSaveModifier:-100));
                 var offer=s.Capture().OverwatchOffers.Single(x=>x.Status==OverwatchOfferStatus.Pending);
