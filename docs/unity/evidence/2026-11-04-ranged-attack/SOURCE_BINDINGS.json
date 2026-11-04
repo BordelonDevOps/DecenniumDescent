@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "recordedUtc": "2026-11-04T11:25:49Z",
+  "purpose": "TEST_ONLY source-bound ranged attack-roll query; no attack command, ammunition consumption, damage application, or Overwatch reaction ordering.",
+  "branch": "Engine",
+  "engineBase": "7bd118e618778204b40a4307e14e517243e96ac0",
+  "sourceRevision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+  "prototypeRevision": "97c528dea83d123a726af9d0f20551e7d7a259b3",
+  "status": "PARTIAL / TEST_ONLY / SOURCE-BOUND / PROVISIONAL",
+  "productionRuntimeSelectionEnabled": false,
+  "releaseApproved": false,
+  "sources": [
+    {
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "path": "docs/reference/Player_Rulebook_v6_source_text.txt",
+      "gitBlobId": "bb143507cf66e3fdc73f6514663ad5c71344609b",
+      "sha256": "a346670f4244efe3641cfb06814819d83ffb8512153858205f0621bd8ab8a04b",
+      "locators": "Making an Attack; Attack Rolls; Unseen Attackers and Targets; Ranged Attacks; Cover (source text lines 8157-8219)"
+    },
+    {
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/soldier.json",
+      "gitBlobId": "c414a1d9ba2ce37cde89d0ef73265821bb74ac2d",
+      "sha256": "ab9cd3bd64355166dceb5a09e1ddab98443a957bb4bcdce813f1ad294ec048f0",
+      "locators": "/engine/0 (Dexterity governs ranged attacks)"
+    }
+  ],
+  "decisions": [
+    "Ranged attack modifiers use Dexterity and add proficiency only when the caller supplies proficiency; caller-supplied flat modifiers remain explicit.",
+    "Half cover adds 2 AC, three-quarters cover adds 5 AC, and total cover blocks direct targeting.",
+    "Long range, an unseen target, and an eligible visible hostile within 5 feet contribute disadvantage; an unseen attacker contributes advantage; any advantage and disadvantage cancel to a normal d20 roll.",
+    "Target location and clear line of fire are explicit caller facts. If unavailable, the query fails without consuming a die; this is a fail-closed query boundary, not a new rule about all unseen spaces.",
+    "Existing condition-derived advantage, disadvantage and critical-on-hit results are incorporated; hit damage and state mutation are excluded."
+  ],
+  "implementation": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/RangedAttackResolution.cs",
+      "gitBlobId": "69e1f7e7de5b9361106527c24332239a05200083",
+      "sha256": "95e514b3660efc0aadc4030be45b65a57e019eb79f1daa8f0a5c563a7eb0a5cf"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/RangedAttackResolutionCases.cs",
+      "gitBlobId": "d60552ad2fd60d87f16533fd363a7827ac64daea",
+      "sha256": "1228bc8ec82c448731ade5a18f6dce467573decca9b51cb8926edeca508a07d7"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/FoundationCases.cs",
+      "gitBlobId": "9e461948e26b00c838216d5d9489ea839ec525eb",
+      "sha256": "11a30705aa29a795f892005e462fc7e09478f4c81acc7761b0f33c38c497c8c2"
+    }
+  ],
+  "newNamedCases": [
+    "ranged_attack_uses_dexterity_proficiency_and_cover_ac",
+    "ranged_attack_unproficient_and_three_quarter_cover",
+    "ranged_attack_long_range_disadvantage_cancels_unseen_advantage",
+    "ranged_attack_unknown_target_blocked_line_and_total_cover_do_not_roll",
+    "ranged_attack_beyond_long_range_does_not_roll",
+    "ranged_attack_unseen_target_and_close_hostile_apply_disadvantage",
+    "ranged_attack_condition_sources_cancel_across_kinds",
+    "ranged_attack_external_modifier_presence_does_not_overflow_or_stack",
+    "ranged_attack_critical_condition_applies_only_on_hit",
+    "ranged_attack_rejects_invalid_profiles_and_sources"
+  ],
+  "verification": {
+    "headless": {
+      "status": "PASS",
+      "passed": 998,
+      "failed": 0,
+      "testsDiscovered": 998,
+      "results": "HEADLESS_RESULTS.json",
+      "unityCompilation": "NOT RUN",
+      "editMode": "NOT RUN",
+      "playMode": "NOT RUN",
+      "standaloneBuild": "NOT RUN",
+      "gameplay": "NOT RUN"
+    },
+    "packageStatic": {
+      "status": "PASS",
+      "checks": 14,
+      "passed": 14,
+      "failed": 0,
+      "scope": "Static package structure only; not Unity import, compilation or release-build validation",
+      "results": "PACKAGE_RESULTS.json"
+    }
+  },
+  "limits": [
+    "TEST_ONLY query; no production runtime selection or release approval.",
+    "No weapon or hand legality, action/reaction authority, target-state validation, ammunition, magazine, loading, damage or mutation.",
+    "Line of fire, visibility, location and cover are supplied facts, not derived tactical geometry.",
+    "Soldier Overwatch cross-reaction ordering and its 1d8+DEX versus selected-weapon damage interaction remain unresolved.",
+    "Unity import/compilation, Edit Mode, Play Mode, scene integration, standalone build and gameplay were not run."
+  ],
+  "prototypeDecisionRecord": "docs/unity/RANGED_ATTACK_RULE_DECISIONS.md"
+}

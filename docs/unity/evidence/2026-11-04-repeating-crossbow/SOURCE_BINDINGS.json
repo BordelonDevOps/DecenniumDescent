@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "recordedUtc": "2026-11-04T11:33:14Z",
+  "purpose": "TEST_ONLY source-bound Repeating 5 magazine state and attack ammunition spending; no tactical Action integration or persisted combat.",
+  "branch": "Engine",
+  "engineBase": "97c528dea83d123a726af9d0f20551e7d7a259b3",
+  "sourceRevision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+  "prototypeRevision": "cd8f14fa7edefd3208c4cf8c63722e17c06cef0d",
+  "status": "PARTIAL / TEST_ONLY / SOURCE-BOUND / PROVISIONAL",
+  "productionRuntimeSelectionEnabled": false,
+  "releaseApproved": false,
+  "sources": [
+    {
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/EQUIPMENT_ACQUISITION_PLAYTEST.md",
+      "gitBlobId": "789e905552aba2ee9a4bbad1ae73aa314b77af10",
+      "sha256": "406c68622102b444c6afb005e2d50cfd75171fe8d90db36a06d02df2d67bf27d",
+      "locators": "#new-class-equipment-profiles; Repeating heavy crossbow; Repeating 5"
+    },
+    {
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "path": "DescentReviewChanges/ReviewBible/data/playtest/equipment_acquisition_candidate.json",
+      "gitBlobId": "afd06198e19409385408ac258be7dc1d0b2600fb",
+      "sha256": "4037e188edb890c971acb39e8679cfd5a142b0042508af30c95d4703d2a2745b",
+      "locators": ["/items/195", "/classKits/12"]
+    }
+  ],
+  "decisions": [
+    "Repeating 5 magazine capacity is five actual bolts; the Soldier class kit supplies 20 carried bolts and starts the magazine empty.",
+    "A legal attack attempt spends one loaded bolt independent of hit result; no sixth shot is available.",
+    "Reload transfers no more than free capacity from carried stock and requires a free loading hand. A caller must separately charge the sourced Action.",
+    "No spare-magazine multiplication, automatic refill, or ammunition creation is allowed."
+  ],
+  "implementation": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/RepeatingFiveMagazine.cs",
+      "gitBlobId": "63f9f58f919a40ab795d343a856329d157bc1126",
+      "sha256": "e6c07969bd847389062242d0d243f4f38ab44815578ede8baa295b7b0babcc33"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/RepeatingMagazineCases.cs",
+      "gitBlobId": "2b7a79bc5148785272f2be36da93632c7d1de9ce",
+      "sha256": "111b2b3283ba1dd065e79e997a3ef27915f90b45feb85035ed7b0ca0e29428af"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/FoundationCases.cs",
+      "gitBlobId": "5073b2a17fb0da1d644b2f545cf971158089d1c1",
+      "sha256": "b394ec471d9b4667736c320e41e394a2a78acd8569a6cec6ae32bc11ef5cd298"
+    }
+  ],
+  "newNamedCases": [
+    "repeating5_magazine_starts_empty_and_empty_weapon_cannot_fire",
+    "repeating5_load_moves_only_carried_bolts_up_to_capacity",
+    "repeating5_each_attack_attempt_spends_one_bolt",
+    "repeating5_partial_reload_uses_remaining_capacity_only",
+    "repeating5_reload_requires_free_hand_and_preserves_inventory",
+    "repeating5_full_or_empty_stock_reload_fails_without_transfer",
+    "repeating5_magazine_rejects_capacity_and_inventory_underflow"
+  ],
+  "verification": {
+    "headless": {
+      "status": "PASS",
+      "passed": 1005,
+      "failed": 0,
+      "testsDiscovered": 1005,
+      "results": "HEADLESS_RESULTS.json",
+      "unityCompilation": "NOT RUN",
+      "editMode": "NOT RUN",
+      "playMode": "NOT RUN",
+      "standaloneBuild": "NOT RUN",
+      "gameplay": "NOT RUN"
+    },
+    "packageStatic": {
+      "status": "PASS",
+      "checks": 14,
+      "passed": 14,
+      "failed": 0,
+      "scope": "Static package structure only; not Unity import, compilation or release-build validation",
+      "results": "PACKAGE_RESULTS.json"
+    }
+  },
+  "limits": [
+    "Pure TEST_ONLY resource model; does not spend a tactical Action or persist to a combat snapshot.",
+    "No weapon custody, hands, inventory-lot identity, ammo reservations, attack validation or damage integration.",
+    "Soldier Overwatch reaction ordering and its feature-die versus weapon-die interaction remain unresolved.",
+    "Unity import/compilation, Edit Mode, Play Mode, standalone build and gameplay were not run."
+  ],
+  "prototypeDecisionRecord": "docs/unity/REPEATING_CROSSBOW_RULE_DECISIONS.md"
+}
