@@ -109,8 +109,12 @@ namespace Decennium.Foundation
             }
             foreach(var item in s.SupplyCacheEquipment) {
                 var held=s.Actors.SingleOrDefault(x=>x.Id==item.LocationId);
-                if(held==null||item.LocationId!=item.CustodianId||item.OwnerId!=item.CustodianId)
-                    throw new ArgumentException("Cache credentials must remain with their recorded owner.");
+                var portable=s.SchemaVersion>=Snapshot.PortableEquipmentSchema
+                    ?s.PortableEquipment.SingleOrDefault(x=>x.LinkKind==PortableLinkKind.SupplyEquipment&&x.LinkedId==item.Id):null;
+                if(portable==null
+                    ?held==null||item.LocationId!=item.CustodianId||item.OwnerId!=item.CustodianId
+                    :portable.OwnerId!=item.OwnerId||portable.CustodianId!=item.CustodianId)
+                    throw new ArgumentException("Cache credentials must remain in recorded custody.");
             }
             if(s.SupplyCacheEquipment.Select(x=>x.Kind).Distinct().Count()!=s.SupplyCacheEquipment.Length)
                 throw new ArgumentException("Duplicate cache credential profile.");

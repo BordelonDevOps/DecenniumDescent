@@ -54,6 +54,15 @@ namespace Decennium.Foundation.Laboratory
             if(manufacturing!=null)ContentFingerprint=ManufacturingFingerprint(ContentFingerprint,manufacturing);
             if(supplyCache!=null)ContentFingerprint=SupplyCacheFingerprint(ContentFingerprint,supplyCache);
         }
+        public TestOnlySharedWorldPolicy(PortableKitFixture portableKit,SharedCombatFixture combat,SupplyCacheFixture supplyCache,
+            int walkingSpeed=30,ConditionCombatFixture conditions=null,params TacticalTerrainCell[] terrain)
+            :this(combat,null,null,null,null,supplyCache,walkingSpeed,conditions,terrain)
+        {
+            this.portableKit=portableKit??throw new ArgumentNullException(nameof(portableKit));
+            if(combat==null||supplyCache==null||!supplyCache.HasTools||supplyCache.HasKey)
+                throw new ArgumentException("Portable kit requires the selected cache and tools, and rejects an unsourced-mass key fixture.");
+            ContentFingerprint=PortableEquipmentRules.Fingerprint(ContentFingerprint,portableKit);
+        }
         public static Authority Host() => new Authority("TEST_ONLY.host", new[] { TestOnlyPolicy.ActorId, TestOnlyPolicy.CompanionId, AdditionalTacticalActor.Id }, true, true,
             new[] { TestOnlyPolicy.ActorId, TestOnlyPolicy.CompanionId, AdditionalTacticalActor.Id }, new[] { TestOnlyPolicy.ActorId, TestOnlyPolicy.CompanionId });
         public Snapshot Initial()
@@ -72,6 +81,7 @@ namespace Decennium.Foundation.Laboratory
             InitializeRepair(s);
             InitializeManufacturing(s);
             InitializeSupplyCache(s);
+            InitializePortableEquipment(s);
             return s;
         }
         private static WorldIntervalRecord Interval(Snapshot s, string actor) => s.WorldIntervals.Single(x => x.ActorId == actor);
@@ -227,6 +237,7 @@ namespace Decennium.Foundation.Laboratory
         {
             if (!s.Actors.Any(a => a.Id == c.Actor)) return "UnknownWorldActor";
             if(ManufacturingChoicePending(s)&&c.Kind!=CommandKind.ResolveManufacturingQuality)return "ManufacturingChoicePending";
+            if(PortableCommand(c.Kind))return ResolvePortableEquipment(s,c);
             if(ManufacturingCommand(c.Kind))return ResolveManufacturing(s,c);
             if(IsSupplyCacheCommand(c))return ResolveSupplyCache(s,c);
             if(RepairCommand(c.Kind))return ResolveRepair(s,c);
@@ -321,6 +332,11 @@ namespace Decennium.Foundation.Laboratory
         {
             try {
                 if (s.SchemaVersion != SelectedSchema || s.Receipts.Length != s.Revision) return "InvalidSharedWorldHeader";
+                if(portableKit!=null) {
+                    PortableEquipmentRules.ValidateFixture(s);
+                    var pack=s.PortableEquipment.SingleOrDefault(x=>x.Id==PortableKitFixture.Pack);
+                    if(pack==null||!PortableEquipmentRules.FixtureFitValid(s,pack))return "InvalidPortableKitFixture";
+                }
                 var replay = Initial();
                 foreach (var receipt in s.Receipts.OrderBy(x => x.Revision)) {
                     var command = CommandHistory.Read(receipt);

@@ -1,0 +1,233 @@
+#if DECENNIUM_TEST_ONLY && (UNITY_EDITOR || DEVELOPMENT_BUILD || HEADLESS_TESTS)
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
+
+namespace Decennium.Foundation.Laboratory
+{
+    /// <summary>One authored TEST_ONLY Explorer's Pack arrangement. Source weights are retained
+    /// separately from the exact internal-fit fact; no item-volume inference is made.</summary>
+    public sealed class PortableKitFixture
+    {
+        public const string Pack="TEST_ONLY.explorer-pack",Rations="TEST_ONLY.pack-rations",Skin="TEST_ONLY.pack-skin",Water="TEST_ONLY.pack-water";
+        public const string Tools=SupplyCacheFixture.ToolsId,MessKit="TEST_ONLY.pack-mess-kit",Tinderbox="TEST_ONLY.pack-tinderbox";
+        public const string Bedroll="TEST_ONLY.pack-bedroll",Torches="TEST_ONLY.pack-torches",Rope="TEST_ONLY.pack-rope";
+        public const string ActorPouch="TEST_ONLY.actor-pouch",CompanionPouch="TEST_ONLY.companion-pouch";
+        public const string FitRule="TEST_ONLY.explorer-pack-fit-v1";
+        public static readonly System.Collections.ObjectModel.ReadOnlyCollection<string> FitMembers=Array.AsReadOnly(new[]{Rations,Skin,Water,Tools,MessKit,Tinderbox});
+        internal string Key=>"portable-kit-schema20-v1|source-main-46a4d527|pack.explorer|interior=20lb-rations+5lb-full-skin+1lb-tools+1lb-mess-kit+1lb-tinderbox;exact-fixture-fit-28lb|external=7lb-bedroll+10lb-torches+10lb-rope-strapped|simple-unfastened-worn-open-pack|"+FitRule+"|"+string.Join(",",FitMembers);
+    }
+
+    /// <summary>Physical execution for the narrow reviewed pack fixture. This does not define a
+    /// universal item catalog, volume model, body-size model or release equipment policy.</summary>
+    public static class PortableEquipmentRules
+    {
+        private static string N(long value)=>value.ToString(CultureInfo.InvariantCulture);
+        internal static string Fingerprint(string prior,PortableKitFixture facts)
+        {
+            using(var sha=SHA256.Create())return "TEST_ONLY.portable-v1-"+string.Concat(sha.ComputeHash(Encoding.UTF8.GetBytes(prior+"|"+facts.Key)).Select(b=>b.ToString("x2",CultureInfo.InvariantCulture)));
+        }
+        internal static void Initialize(Snapshot s)
+        {
+            string actor=TestOnlyPolicy.ActorId,companion=TestOnlyPolicy.CompanionId;
+            if(s.SchemaVersion!=Snapshot.PortableEquipmentSchema||s.SupplyCaches.Length!=1
+                ||!s.SupplyCacheEquipment.Any(x=>x.Id==PortableKitFixture.Tools))throw new ArgumentException("Portable kit requires the selected cache and actual tools.");
+            var pack=PortableKitFixture.Pack;
+            s.Work=new WorkLedger(s.Work.Lots.Concat(new[]{
+                new ResourceLot(PortableKitFixture.Rations,TestOnlyInventoryPolicy.FoodUnit,new RuleQuantity(20),pack,actor),
+                new ResourceLot(PortableKitFixture.Water,TestOnlyInventoryPolicy.WaterUnit,new RuleQuantity(4),PortableKitFixture.Skin,actor)
+            }),s.Work.WorkerIntervals,s.Work.Reservations);
+            s.InventoryLots=s.InventoryLots.Concat(new[]{
+                new InventoryLotRecord(PortableKitFixture.Rations,"",actor,new RuleQuantity(20),s.RuleClock,NutritionKind.FoodPounds,
+                    new RuleTime(2592000),InventoryAccess.Stowed),
+                new InventoryLotRecord(PortableKitFixture.Water,"",actor,new RuleQuantity(4),s.RuleClock,NutritionKind.WaterPints,null,InventoryAccess.Stowed)
+            }).ToArray();
+            s.Vessels=s.Vessels.Concat(new[]{new WaterVesselRecord(PortableKitFixture.Skin,WaterVesselProfile.Waterskin,actor,pack,actor)}).ToArray();
+            s.VesselContents=s.VesselContents.Concat(new[]{new VesselContentRecord(PortableKitFixture.Water,PortableKitFixture.Skin)}).ToArray();
+            s.SupplyCacheEquipment=s.SupplyCacheEquipment.Select(x=>x.Id==PortableKitFixture.Tools
+                ?new SupplyCacheEquipmentRecord(x.Id,x.Kind,x.OwnerId,pack,x.CustodianId):x).ToArray();
+            RuleQuantity Q(long value)=>new RuleQuantity(value);
+            PortableEquipmentRecord Fixed(string id,string profile,string owner,string parent,PortablePlacement place,long weight,bool? wearable=null,
+                bool open=false,string fit="",string[] fitMembers=null,long? capacity=null,long? volume=null)
+                =>new PortableEquipmentRecord(id,profile,owner,owner,parent,place,PortableLinkKind.None,"",PortableMassBasis.Fixed,Q(weight),Q(weight),
+                    capacityPounds:capacity.HasValue?Q(capacity.Value):(RuleQuantity?)null,capacityCubicFeet:volume.HasValue?Q(volume.Value):(RuleQuantity?)null,
+                    wearable:wearable??false,open:open,fitRuleId:fit,fitMemberIds:fitMembers,groundX:0,groundY:0);
+            var items=new List<PortableEquipmentRecord>{
+                new PortableEquipmentRecord(pack,"adventuring-gear.backpack",actor,actor,"",PortablePlacement.Worn,PortableLinkKind.None,"",PortableMassBasis.Fixed,
+                    Q(5),Q(5),capacityPounds:Q(30),capacityCubicFeet:Q(1),wearable:true,open:true,fitRuleId:PortableKitFixture.FitRule,fitMemberIds:PortableKitFixture.FitMembers.ToArray()),
+                new PortableEquipmentRecord(PortableKitFixture.Rations,"adventuring-gear.rations-1-day",actor,actor,pack,PortablePlacement.Contained,
+                    PortableLinkKind.InventoryLot,PortableKitFixture.Rations,PortableMassBasis.FoodPounds,Q(20),null),
+                new PortableEquipmentRecord(PortableKitFixture.Skin,"adventuring-gear.waterskin",actor,actor,pack,PortablePlacement.Contained,
+                    PortableLinkKind.WaterVessel,PortableKitFixture.Skin,PortableMassBasis.Fixed,Q(5),Q(1)),
+                new PortableEquipmentRecord(PortableKitFixture.Water,"prototype.potable-water.pint",actor,actor,PortableKitFixture.Skin,PortablePlacement.Contained,
+                    PortableLinkKind.InventoryLot,PortableKitFixture.Water,PortableMassBasis.WaterPints,Q(4),null),
+                new PortableEquipmentRecord(PortableKitFixture.Tools,"tools.thieves-tools",actor,actor,pack,PortablePlacement.Contained,
+                    PortableLinkKind.SupplyEquipment,PortableKitFixture.Tools,PortableMassBasis.Fixed,Q(1),Q(1)),
+                Fixed(PortableKitFixture.MessKit,"adventuring-gear.mess-kit",actor,pack,PortablePlacement.Contained,1),
+                Fixed(PortableKitFixture.Tinderbox,"adventuring-gear.tinderbox",actor,pack,PortablePlacement.Contained,1),
+                Fixed(PortableKitFixture.Bedroll,"adventuring-gear.bedroll",actor,pack,PortablePlacement.Attached,7),
+                Fixed(PortableKitFixture.Torches,"adventuring-gear.torch",actor,pack,PortablePlacement.Attached,10),
+                Fixed(PortableKitFixture.Rope,"adventuring-gear.rope-hempen-50-feet",actor,pack,PortablePlacement.Attached,10),
+                Fixed(PortableKitFixture.ActorPouch,"adventuring-gear.pouch",actor,"",PortablePlacement.Carried,1),
+                Fixed(PortableKitFixture.CompanionPouch,"adventuring-gear.pouch",companion,"",PortablePlacement.Carried,1),
+                new PortableEquipmentRecord(TestOnlyFillingPolicy.CompanionSkinId,"adventuring-gear.waterskin",companion,companion,"",
+                    PortablePlacement.Carried,PortableLinkKind.WaterVessel,TestOnlyFillingPolicy.CompanionSkinId,PortableMassBasis.Fixed,Q(1),Q(1))
+            };
+            s.PortableEquipment=items.ToArray();
+        }
+        internal static void ValidateFixture(Snapshot s)
+        {
+            foreach(var item in s.PortableEquipment.Where(x=>x.ParentId!=""&&x.MassBasis==PortableMassBasis.WaterPints)) {
+                var parent=s.PortableEquipment.SingleOrDefault(x=>x.Id==item.ParentId);
+                if(parent?.LinkKind!=PortableLinkKind.WaterVessel)continue;
+                var vessel=s.Vessels.Single(x=>x.Id==parent.LinkedId);var contents=s.Work.Lots.Single(x=>x.Id==item.LinkedId);
+                if(contents.Amount>WaterFilling.Capacity(vessel.Profile))throw new ArgumentException("Portable vessel content exceeds its selected prototype capacity.");
+            }
+        }
+
+        public static BurdenTotals CarriedBurden(Snapshot s,string actor)
+        {
+            if(s==null||!s.Actors.Any(x=>x.Id==actor))throw new ArgumentException("Unknown carrying actor.");
+            var records=s.PortableEquipment;
+            bool CarriedTree(PortableEquipmentRecord item) {
+                var current=item;var seen=new HashSet<string>(StringComparer.Ordinal);
+                while(current.ParentId!="") {
+                    if(!seen.Add(current.ParentId))return false;
+                    current=records.Single(x=>x.Id==current.ParentId);
+                }
+                return current.CustodianId==actor&&current.Placement!=PortablePlacement.Ground;
+            }
+            var modeled=records.Where(CarriedTree).ToArray();
+            var burden=modeled.Select(x=>{
+                var mass=PortableEquipmentValidation.Mass(s,x);
+                // A missing source weight is retained as null; only its approved operational
+                // Load fallback supplies estimated pounds for routine carrying.
+                RuleQuantity? pounds=x.SourceWeightLb.HasValue?mass:(RuleQuantity?)null;
+                RuleQuantity? load=x.PrintedLoad??(x.SourceWeightLb.HasValue?null:mass.Scale(1,10));
+                return new BurdenItem(x.Id,x.ParentId==""?null:x.ParentId,pounds,load);
+            }).ToList();
+            foreach(var club in s.Clubs.Where(x=>x.HeldBy==actor))
+                burden.Add(new BurdenItem(club.Id,null,new RuleQuantity(2),null));
+            return PlaytestCarrying.Total(burden);
+        }
+        public static bool IsBurdened(Snapshot s,string actor)
+        {
+            var burden=CarriedBurden(s,actor);if(!burden.Pounds.HasValue||!burden.Load.HasValue)throw new InvalidOperationException("Portable carrying evidence is incomplete.");
+            return PlaytestCarrying.IsBurdened(burden.Load.Value,PlaytestCarrying.Limits(CarrierSize.Medium,10).Load);
+        }
+        internal static string[] Owners(Snapshot s,string itemId)
+        {
+            var item=s.PortableEquipment.SingleOrDefault(x=>x.Id==itemId);if(item==null)return Array.Empty<string>();
+            var ids=Descendants(s,itemId).Select(x=>x.OwnerId).Append(item.OwnerId).Distinct(StringComparer.Ordinal).ToArray();
+            return ids;
+        }
+        internal static PortableEquipmentRecord[] Descendants(Snapshot s,string id)
+        {
+            var result=new List<PortableEquipmentRecord>();var pending=new Queue<string>();pending.Enqueue(id);
+            while(pending.Count!=0){var parent=pending.Dequeue();foreach(var child in s.PortableEquipment.Where(x=>x.ParentId==parent)){result.Add(child);pending.Enqueue(child.Id);}}
+            return result.ToArray();
+        }
+        internal static bool Accessible(Snapshot s,string actor,PortableEquipmentRecord item)
+        {
+            var current=item;var seen=new HashSet<string>(StringComparer.Ordinal);
+            while(true) {
+                if(current.Placement==PortablePlacement.Ground) {
+                    var a=s.Actors.Single(x=>x.Id==actor);
+                    return Math.Abs((long)a.X-current.GroundX)+Math.Abs((long)a.Y-current.GroundY)<=1;
+                }
+                if(current.ParentId=="")return current.CustodianId==actor;
+                var parent=s.PortableEquipment.SingleOrDefault(x=>x.Id==current.ParentId);
+                if(parent==null||!seen.Add(parent.Id))return false;
+                if(current.Placement==PortablePlacement.Contained&&!parent.Open)return false;
+                current=parent;
+            }
+        }
+        internal static bool HasPendingClaim(Snapshot s,PortableEquipmentRecord item)
+        {
+            var ids=Descendants(s,item.Id).Select(x=>x.Id).Append(item.Id).ToHashSet(StringComparer.Ordinal);
+            var lots=s.PortableEquipment.Where(x=>ids.Contains(x.Id)&&x.LinkKind==PortableLinkKind.InventoryLot).Select(x=>x.LinkedId).ToHashSet(StringComparer.Ordinal);
+            var vessels=s.PortableEquipment.Where(x=>ids.Contains(x.Id)&&x.LinkKind==PortableLinkKind.WaterVessel).Select(x=>x.LinkedId).ToHashSet(StringComparer.Ordinal);
+            var tools=s.PortableEquipment.Where(x=>ids.Contains(x.Id)&&x.LinkKind==PortableLinkKind.SupplyEquipment).Select(x=>x.LinkedId).ToHashSet(StringComparer.Ordinal);
+            return s.Work.Reservations.Any(x=>lots.Contains(x.LotId)&&x.RemainingAmount!=default)
+                ||s.Intakes.Any(x=>lots.Contains(x.LotId)&&x.Status==IntakeStatus.Working)
+                ||s.WaterFills.Any(x=>x.Pending&&(vessels.Contains(x.DestinationId)||vessels.Contains(WaterFilling.SourceVessel(s,x.SourceLotId))))
+                ||s.SupplyCacheAttempts.Any(x=>x.Status==SupplyCacheAttemptStatus.Working&&tools.Contains(x.EquipmentId));
+        }
+        internal static bool InventoryAccessible(Snapshot s,string actor,string location)
+        {
+            var portable=s.PortableEquipment.SingleOrDefault(x=>x.Id==location&&x.CapacityPounds.HasValue);
+            return portable!=null&&Accessible(s,actor,portable)&&portable.Open;
+        }
+        internal static void SynchronizeLinks(Snapshot s)
+        {
+            var lots=s.Work.Lots.ToDictionary(x=>x.Id,x=>x,StringComparer.Ordinal);
+            var inventory=s.InventoryLots.ToDictionary(x=>x.LotId,x=>x,StringComparer.Ordinal);
+            var vessels=s.Vessels.ToDictionary(x=>x.Id,x=>x,StringComparer.Ordinal);
+            var tools=s.SupplyCacheEquipment.ToDictionary(x=>x.Id,x=>x,StringComparer.Ordinal);
+            foreach(var item in s.PortableEquipment.Where(x=>x.LinkKind!=PortableLinkKind.None)) {
+                string location=item.ParentId!=""?item.ParentId:item.Placement==PortablePlacement.Ground
+                    ?PortableEquipmentValidation.GroundLocation(item):item.CustodianId;
+                if(item.LinkKind==PortableLinkKind.InventoryLot) {
+                    var lot=lots[item.LinkedId];lots[item.LinkedId]=new ResourceLot(lot.Id,lot.UnitId,lot.Amount,location,item.CustodianId);
+                    var old=inventory[item.LinkedId];InventoryAccess access;
+                    if(item.Placement==PortablePlacement.Ground)access=InventoryAccess.Ground;
+                    else if(item.ParentId=="")access=InventoryAccess.Ready;
+                    else {
+                        var parent=s.PortableEquipment.Single(x=>x.Id==item.ParentId);
+                        access=parent.LinkKind==PortableLinkKind.WaterVessel&&parent.ParentId==""&&parent.Placement!=PortablePlacement.Ground
+                            ?InventoryAccess.Ready:InventoryAccess.Stowed;
+                    }
+                    inventory[item.LinkedId]=new InventoryLotRecord(old.LotId,old.ParentId,old.OwnerId,old.CreatedAmount,old.CreatedAt,old.Nutrition,old.FreshUntil,access);
+                } else if(item.LinkKind==PortableLinkKind.WaterVessel) {
+                    var vessel=vessels[item.LinkedId];vessels[item.LinkedId]=new WaterVesselRecord(vessel.Id,vessel.Profile,vessel.OwnerId,location,item.CustodianId);
+                } else if(item.LinkKind==PortableLinkKind.SupplyEquipment) {
+                    var tool=tools[item.LinkedId];tools[item.LinkedId]=new SupplyCacheEquipmentRecord(tool.Id,tool.Kind,tool.OwnerId,location,item.CustodianId);
+                }
+            }
+            s.Work=new WorkLedger(s.Work.Lots.Select(x=>lots[x.Id]),s.Work.WorkerIntervals,s.Work.Reservations);
+            s.InventoryLots=s.InventoryLots.Select(x=>inventory[x.LotId]).ToArray();
+            s.Vessels=s.Vessels.Select(x=>vessels[x.Id]).ToArray();
+            s.SupplyCacheEquipment=s.SupplyCacheEquipment.Select(x=>tools[x.Id]).ToArray();
+        }
+        public static bool FixtureFitValid(Snapshot s,PortableEquipmentRecord pack)
+        {
+            if(pack.Id!=PortableKitFixture.Pack||pack.ProfileId!="adventuring-gear.backpack"||pack.FitRuleId!=PortableKitFixture.FitRule
+                ||pack.CapacityPounds!=new RuleQuantity(30)||pack.CapacityCubicFeet!=new RuleQuantity(1)
+                ||!pack.FitMemberIds.OrderBy(x=>x,StringComparer.Ordinal).SequenceEqual(PortableKitFixture.FitMembers.OrderBy(x=>x,StringComparer.Ordinal)))return false;
+            return true;
+        }
+        internal static bool FitsCarrier(Snapshot s,string actor)
+        {
+            var burden=CarriedBurden(s,actor);return burden.Pounds.HasValue&&burden.Load.HasValue
+                &&PlaytestCarrying.CanCarry(PlaytestCarrying.Limits(CarrierSize.Medium,10),burden)==true;
+        }
+        internal static void RegisterInventoryLot(Snapshot s,string lotId,string location,string custodian)
+        {
+            if(s.SchemaVersion<Snapshot.PortableEquipmentSchema||s.PortableEquipment.Any(x=>x.LinkedId==lotId))return;
+            var item=s.InventoryLots.Single(x=>x.LotId==lotId);if(item.Nutrition==NutritionKind.None)return;
+            string parent="";PortablePlacement placement=PortablePlacement.Carried;
+            if(location!=custodian) {
+                var holder=s.PortableEquipment.SingleOrDefault(x=>x.Id==location&&(x.CapacityPounds.HasValue||x.LinkKind==PortableLinkKind.WaterVessel));
+                if(holder==null)return;
+                parent=holder.Id;placement=PortablePlacement.Contained;
+            }
+            var lot=s.Work.Lots.Single(x=>x.Id==lotId);var basis=item.Nutrition==NutritionKind.FoodPounds?PortableMassBasis.FoodPounds:PortableMassBasis.WaterPints;
+            string root=item.LotId;var lineage=new HashSet<string>(StringComparer.Ordinal);
+            while(true) {
+                var current=s.InventoryLots.Single(x=>x.LotId==root);
+                if(current.ParentId=="")break;
+                if(!lineage.Add(current.ParentId))throw new ArgumentException("Inventory portion cycle.");
+                root=current.ParentId;
+            }
+            string profile=item.Nutrition==NutritionKind.WaterPints?"prototype.potable-water.pint"
+                :root==PortableKitFixture.Rations?"adventuring-gear.rations-1-day":"prototype.food-lot";
+            var physical=new PortableEquipmentRecord(lotId,profile,item.OwnerId,custodian,parent,placement,PortableLinkKind.InventoryLot,lotId,basis,
+                lot.Amount,null);
+            s.PortableEquipment=s.PortableEquipment.Concat(new[]{physical}).ToArray();
+        }
+    }
+}
+#endif

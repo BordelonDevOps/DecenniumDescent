@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "recordedUtc": "2026-11-04T08:35:30.9417656Z",
+  "purpose": "TEST_ONLY schema20 portable equipment fixture integrated with the shared exploration, tactical, inventory, water, and persistence simulation; the full rules engine remains incomplete.",
+  "sourceRevision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+  "engineBase": "fc2e76b5747976638813023b505f00b7f4cb8b42",
+  "branch": "Engine",
+  "ownerDirection": "Complete the C# engine first; Codex and Unity Rules Engine Development resolve new rule gaps by consensus. Unity integration remains deferred.",
+  "guidanceChat": "https://chatgpt.com/c/6ae59513-3008-83e9-a5c4-8b6c5c5b4206",
+  "status": "PARTIAL / TEST_ONLY / PROVISIONAL / OWNER-DELEGATED CONSENSUS",
+  "productionRuntimeSelectionEnabled": false,
+  "releaseApproved": false,
+  "sourcePythonExecuted": false,
+  "sources": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/EQUIPMENT_ACQUISITION_PLAYTEST.md",
+      "sha256": "406c68622102b444c6afb005e2d50cfd75171fe8d90db36a06d02df2d67bf27d",
+      "snapshot": "sources/EQUIPMENT_ACQUISITION_PLAYTEST.md"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+      "sha256": "5fa622f43b6948e7e991f1ca5a237de584900e92cfd4f37eed47586d73222039",
+      "snapshot": "sources/BODY_EQUIPMENT_PLAYTEST.md"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/EQUIPMENT_ITEM_PROCEDURES.md",
+      "sha256": "ea0b6c89191160c9e56a97563d55e9f1022bd1b7b732c648fd0c3882aab2a050",
+      "snapshot": "sources/EQUIPMENT_ITEM_PROCEDURES.md"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/EQUIPMENT_SOURCE_BINDINGS.md",
+      "sha256": "a4a45a51e00d2481ed8916b269c2e8197abef524c176d745fa438bea886e5aa8",
+      "snapshot": "sources/EQUIPMENT_SOURCE_BINDINGS.md"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/playtest/equipment_acquisition_candidate.json",
+      "sha256": "4037e188edb890c971acb39e8679cfd5a142b0042508af30c95d4703d2a2745b",
+      "snapshot": "sources/equipment_acquisition_candidate.json"
+    }
+  ],
+  "decisions": "docs/unity/PORTABLE_EQUIPMENT_RULE_DECISIONS.md",
+  "implementation": [
+    "engine/com.decennium.foundation/Runtime/Core/PortableEquipmentRecords.cs",
+    "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+    "engine/com.decennium.foundation/Runtime/Core/InventoryRecords.cs",
+    "engine/com.decennium.foundation/Runtime/Core/SupplyCacheRecords.cs",
+    "engine/com.decennium.foundation/Runtime/Persistence/PortableEquipmentCodec.cs",
+    "engine/com.decennium.foundation/Runtime/Persistence/SnapshotCodec.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/PortableEquipment.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedPortableEquipment.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/TestOnlyInventoryPolicy.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/OrdinaryInventory.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/VesselHandling.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedToolRepair.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedCraftingConsequences.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/TestOnlyClubAttackPolicy.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/FixedEncounterRules.cs",
+    "engine/com.decennium.foundation/Tests/EditMode/PortableEquipmentCases.cs",
+    "engine/com.decennium.foundation/Tests/EditMode/FoundationCases.cs"
+  ],
+  "newNamedCases": [
+    "portable_equipment_schema20_exact_pack_mass_burden_and_roundtrip",
+    "portable_equipment_fit_records_and_fixture_are_detached_readonly",
+    "portable_equipment_does_not_relabel_unrelated_food_as_pack_rations",
+    "portable_equipment_splitting_a_stowed_lot_preserves_exact_fit_and_mass",
+    "portable_equipment_rejects_unknown_key_mass_and_untracked_vessel_move",
+    "portable_equipment_tracks_companion_skin_and_filled_water_mass",
+    "portable_equipment_handover_rejects_recipient_with_active_traversal",
+    "portable_equipment_retrieve_tools_then_use_cache_and_save",
+    "portable_equipment_drop_recover_and_handover_preserve_lots_and_ownership",
+    "portable_equipment_tactical_unload_preserves_spent_movement"
+  ],
+  "verification": {
+    "headless": "HEADLESS_RESULTS.json; 975/975 pass. Headless C# compilation only; Unity compilation, Edit Mode, Play Mode, standalone build and gameplay not run.",
+    "packageStatic": "PACKAGE_RESULTS.json; 8/8 static package checks pass; not Unity import/build validation.",
+    "independentReview": "INDEPENDENT_REVIEW.md; 9/9 focused nondisk portable cases pass; 131/131 compiled-source hashes match reviewed worktree. Additional final-DLL probes confirmed intake history, paused-fill reservations, revoked-grant rejection and byte-identical restore. Reviewer did not rerun full975, disk cases, legacy-save corpus or Unity."
+  },
+  "limits": [
+    "One authored TEST_ONLY Explorer Pack fixture and one companion carried waterskin; no complete equipment catalog or generalized storage/volume inference.",
+    "General armor/weapon slots, arbitrary equipment acquisition and all inventory transfer cases remain incomplete.",
+    "Optional cache-key mass is unknown and rejected; the unlinked legacy cache waterskin cannot be moved in schema20.",
+    "Nutrition-lot portioning exists; generalized equipment stack splitting is not implemented.",
+    "Schema20 is explicit and has no automatic migration; schemas1–19 retain prior serialization and versioned behavior.",
+    "All new behavior remains prototype-only and release approval is false."
+  ]
+}

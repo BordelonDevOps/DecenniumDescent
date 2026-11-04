@@ -39,6 +39,8 @@ namespace Decennium.Foundation.Laboratory
         {
             if(c.Inventory==null||c.Inventory.Amount!=new RuleQuantity(1)||c.X!=0||c.Y!=0)return "InvalidVesselHandling";
             var vessel=s.Vessels.SingleOrDefault(v=>v.Id==c.Target);if(vessel==null)return "UnknownVessel";
+            if(s.SchemaVersion>=Snapshot.PortableEquipmentSchema)return s.PortableEquipment.Any(x=>x.LinkKind==PortableLinkKind.WaterVessel&&x.LinkedId==vessel.Id)
+                ?"UsePortableEquipmentHandling":"PortableEquipmentRequired";
             if(hands(c.Actor)<1)return "HandlingHandRequired";
             if(OrdinaryInventory.Busy(s,c.Actor))return "WorkerBusy";
             if(PendingUse(s,vessel.Id))return "VesselHasPendingWork";

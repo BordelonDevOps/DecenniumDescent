@@ -13,7 +13,8 @@ namespace Decennium.Foundation
         StartFormulaResearch, StartFormulaCopy, PauseFormulaWork, ResumeFormulaWork, CancelFormulaWork,
         DispatchCraftingMishap, StartCraftRemedy, PauseCraftRemedy,
         StartToolRepair, PauseToolRepair, ResumeToolRepair, CancelToolRepair,
-        StartManufacturing, PauseManufacturing, ResumeManufacturing, CancelManufacturing, ResolveManufacturingQuality, UseAlchemyDose }
+        StartManufacturing, PauseManufacturing, ResumeManufacturing, CancelManufacturing, ResolveManufacturingQuality, UseAlchemyDose,
+        HandlePortableEquipment, EquipPortableItem, RemovePortableItem, OpenPortableContainer, ClosePortableContainer }
     public enum Outcome { Rejected, Committed, Duplicate }
 
     // DTOs are detached copies. No caller ever receives the owned simulation state.
@@ -57,6 +58,7 @@ namespace Decennium.Foundation
         public const int RepairWorkSchema = 17;
         public const int ManufacturingSchema = 18;
         public const int SupplyCacheSchema = 19;
+        public const int PortableEquipmentSchema = 20;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
         // Technical bound keeps the entire snapshot within the existing 1 MiB save limit,
@@ -117,12 +119,15 @@ namespace Decennium.Foundation
         public SupplyCacheRecord[] SupplyCaches = Array.Empty<SupplyCacheRecord>();
         public SupplyCacheAttemptRecord[] SupplyCacheAttempts = Array.Empty<SupplyCacheAttemptRecord>();
         public SupplyCacheEquipmentRecord[] SupplyCacheEquipment = Array.Empty<SupplyCacheEquipmentRecord>();
+        public PortableEquipmentRecord[] PortableEquipment = Array.Empty<PortableEquipmentRecord>();
+        public PortableHandlingRecord[] PortableHandling = Array.Empty<PortableHandlingRecord>();
         public EncounterDashRecord[] EncounterDashes = Array.Empty<EncounterDashRecord>();
         public Snapshot Copy() => new Snapshot {
             DyingCadences = DyingCadences.ToArray(), Structures = Structures.ToArray(), CraftingIncidents = CraftingIncidents.ToArray(),
             WorldLifeMarkers = WorldLifeMarkers.ToArray(),
             RepairWork = RepairWork.ToArray(), ManufacturingOrders = ManufacturingOrders.ToArray(), Trades = Trades.ToArray(), AlchemyDoses = AlchemyDoses.ToArray(), ManufacturingAdvance = ManufacturingAdvance,
             SupplyCaches = SupplyCaches.ToArray(), SupplyCacheAttempts = SupplyCacheAttempts.ToArray(), SupplyCacheEquipment = SupplyCacheEquipment.ToArray(),
+            PortableEquipment = PortableEquipment.ToArray(), PortableHandling = PortableHandling.ToArray(),
             FormulaWork = FormulaWork.ToArray(),
             WorldSchedule = WorldSchedule, WorldIntervals = WorldIntervals.ToArray(), WorldTraversals = WorldTraversals.ToArray(),
             Conditions = Conditions.ToArray(), ClosedEncounters = ClosedEncounters.ToArray(),
@@ -230,7 +235,7 @@ namespace Decennium.Foundation
             if (s == null || !ValidId(s.ContentFingerprint) || s.Revision < 0 || s.Clock < 0 || s.RandomState == 0)
                 throw new ArgumentException("Invalid snapshot header.");
             if (s.SchemaVersion != Foundation.Snapshot.Schema && s.SchemaVersion != Foundation.Snapshot.WorkSchema
-                && s.SchemaVersion != Foundation.Snapshot.CropSchema && s.SchemaVersion != Foundation.Snapshot.InventorySchema && s.SchemaVersion != Foundation.Snapshot.VesselSchema && s.SchemaVersion != Foundation.Snapshot.MovableVesselSchema && s.SchemaVersion != Foundation.Snapshot.EncounterSchema && s.SchemaVersion != Foundation.Snapshot.ActorLifeSchema && s.SchemaVersion != Foundation.Snapshot.ClubAttackSchema && s.SchemaVersion != Foundation.Snapshot.PostureSchema && s.SchemaVersion != Foundation.Snapshot.TacticalMovementSchema && s.SchemaVersion != Foundation.Snapshot.ConditionSchema && s.SchemaVersion != Foundation.Snapshot.SharedWorldSchema && s.SchemaVersion != Foundation.Snapshot.CalendarCombatSchema && s.SchemaVersion != Foundation.Snapshot.FormulaWorkSchema && s.SchemaVersion != Foundation.Snapshot.CraftingConsequenceSchema && s.SchemaVersion != Foundation.Snapshot.RepairWorkSchema && s.SchemaVersion != Foundation.Snapshot.ManufacturingSchema && s.SchemaVersion != Foundation.Snapshot.SupplyCacheSchema)
+                && s.SchemaVersion != Foundation.Snapshot.CropSchema && s.SchemaVersion != Foundation.Snapshot.InventorySchema && s.SchemaVersion != Foundation.Snapshot.VesselSchema && s.SchemaVersion != Foundation.Snapshot.MovableVesselSchema && s.SchemaVersion != Foundation.Snapshot.EncounterSchema && s.SchemaVersion != Foundation.Snapshot.ActorLifeSchema && s.SchemaVersion != Foundation.Snapshot.ClubAttackSchema && s.SchemaVersion != Foundation.Snapshot.PostureSchema && s.SchemaVersion != Foundation.Snapshot.TacticalMovementSchema && s.SchemaVersion != Foundation.Snapshot.ConditionSchema && s.SchemaVersion != Foundation.Snapshot.SharedWorldSchema && s.SchemaVersion != Foundation.Snapshot.CalendarCombatSchema && s.SchemaVersion != Foundation.Snapshot.FormulaWorkSchema && s.SchemaVersion != Foundation.Snapshot.CraftingConsequenceSchema && s.SchemaVersion != Foundation.Snapshot.RepairWorkSchema && s.SchemaVersion != Foundation.Snapshot.ManufacturingSchema && s.SchemaVersion != Foundation.Snapshot.SupplyCacheSchema && s.SchemaVersion != Foundation.Snapshot.PortableEquipmentSchema)
                 throw new ArgumentException("Unsupported snapshot schema.");
             if (s.SchemaVersion == Foundation.Snapshot.Schema && (s.Work != null || s.RuleClock != default))
                 throw new ArgumentException("Legacy snapshot cannot contain unsaved work or exact time.");
@@ -297,6 +302,7 @@ namespace Decennium.Foundation
             RepairWorkValidation.Validate(s);
             ManufacturingValidation.Validate(s);
             SupplyCacheValidation.Validate(s);
+            PortableEquipmentValidation.Validate(s);
         }
     }
 
@@ -351,6 +357,13 @@ namespace Decennium.Foundation
                 if (command.Kind == CommandKind.HandleInventory && command.Inventory != null
                     && command.Inventory.Handling == HandlingKind.Handover && !authority.ConsentsToHandover(command.Inventory.Destination))
                     return Reject("RecipientNotWilling");
+            }
+            if(command.Kind==CommandKind.HandlePortableEquipment||command.Kind==CommandKind.EquipPortableItem||command.Kind==CommandKind.RemovePortableItem
+                ||command.Kind==CommandKind.OpenPortableContainer||command.Kind==CommandKind.ClosePortableContainer) {
+                var item=state.PortableEquipment.FirstOrDefault(x=>x.Id==command.Target);
+                if(item!=null&&!authority.MayUseInventory(item.OwnerId))return Reject("InventoryNotAuthorized");
+                if(command.Kind==CommandKind.HandlePortableEquipment&&command.Inventory!=null&&command.Inventory.Handling==HandlingKind.Handover
+                    &&!authority.ConsentsToHandover(command.Inventory.Destination))return Reject("RecipientNotWilling");
             }
             if (command.Kind == CommandKind.StartWaterFill || command.Kind == CommandKind.ResumeWaterFill) {
                 var fill = command.Kind == CommandKind.ResumeWaterFill ? state.WaterFills.FirstOrDefault(x => x.Id == command.Target) : null;

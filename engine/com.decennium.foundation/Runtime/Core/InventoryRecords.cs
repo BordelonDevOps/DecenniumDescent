@@ -82,7 +82,7 @@ namespace Decennium.Foundation
     {
         public static void Validate(Snapshot s)
         {
-            if(s.InventoryLots==null||s.Intakes==null||s.Handling==null||s.InventoryTurnActor==null
+            if(s.InventoryLots==null||s.Intakes==null||s.Handling==null||s.PortableHandling==null||s.InventoryTurnActor==null
                 ||s.InventoryLots.Any(x=>x==null)||s.Intakes.Any(x=>x==null)||s.Handling.Any(x=>x==null)
                 ||s.InventoryLots.Length>128||s.Intakes.Length>32||s.Handling.Length>64)throw new ArgumentException("Invalid inventory collections.");
             if(s.SchemaVersion<Snapshot.InventorySchema) {
@@ -93,8 +93,8 @@ namespace Decennium.Foundation
             if(s.Receipts.Length>512||s.InventoryLots.Length!=s.Work.Lots.Count
                 ||s.InventoryLots.Any(x=>!s.Work.Lots.Any(l=>l.Id==x.LotId))
                 ||s.InventoryLots.Select(x=>x.LotId).Distinct(StringComparer.Ordinal).Count()!=s.InventoryLots.Length
-                ||s.Intakes.Select(x=>x.Id).Concat(s.Handling.Select(x=>x.Id)).Concat(s.Crops.SelectMany(x=>x.Tasks).Select(x=>x.Id))
-                    .Distinct(StringComparer.Ordinal).Count()!=s.Intakes.Length+s.Handling.Length+s.Crops.Sum(x=>x.Tasks.Count))
+                ||s.Intakes.Select(x=>x.Id).Concat(s.Handling.Select(x=>x.Id)).Concat(s.PortableHandling.Select(x=>x.Id)).Concat(s.Crops.SelectMany(x=>x.Tasks).Select(x=>x.Id))
+                    .Distinct(StringComparer.Ordinal).Count()!=s.Intakes.Length+s.Handling.Length+s.PortableHandling.Length+s.Crops.Sum(x=>x.Tasks.Count))
                 throw new ArgumentException("Invalid inventory identities or session capacity.");
             bool Actor(string id)=>s.Actors.Any(a=>a.Id==id);
             if(s.InventoryInteractions<0||s.InventoryInteractions>2

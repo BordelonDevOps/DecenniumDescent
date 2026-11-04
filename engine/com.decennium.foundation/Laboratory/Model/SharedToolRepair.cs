@@ -30,6 +30,7 @@ namespace Decennium.Foundation.Laboratory
         private readonly SharedRepairFixture repair;
         public IEnumerable<string> RequiredInventoryOwners(Snapshot s, Command c)
         {
+            if(PortableCommand(c.Kind))return PortableEquipmentRules.Owners(s,c.Target);
             if(IsSupplyCacheCommand(c)) {
                 var cache=s.SupplyCaches.SingleOrDefault(x=>x.Id==c.Target);
                 if(cache==null)return Array.Empty<string>();

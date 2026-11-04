@@ -30,7 +30,8 @@ namespace Decennium.Foundation.Laboratory
             return start==end&&start==Start(e,ordinal)&&actor==e.Order[ordinal%e.Order.Count];
         }
         internal static int Interactions(Snapshot s,int ordinal)=>s.Handling.Count(h=>h.Tactical&&EncounterHistory.InCurrent(s,VesselHandling.CreationRevision(h.Id))&&TurnForRevision(s.Encounter,VesselHandling.CreationRevision(h.Id))==ordinal)
-            +s.VesselMoves.Count(h=>h.Tactical&&EncounterHistory.InCurrent(s,VesselHandling.CreationRevision(h.Id))&&TurnForRevision(s.Encounter,VesselHandling.CreationRevision(h.Id))==ordinal);
+            +s.VesselMoves.Count(h=>h.Tactical&&EncounterHistory.InCurrent(s,VesselHandling.CreationRevision(h.Id))&&TurnForRevision(s.Encounter,VesselHandling.CreationRevision(h.Id))==ordinal)
+            +s.PortableHandling.Count(h=>h.Tactical&&EncounterHistory.InCurrent(s,h.Revision)&&TurnForRevision(s.Encounter,h.Revision)==ordinal);
         public static bool ActionSpent(Snapshot s)=>s.Encounter!=null&&(s.InventoryInteractions>1||s.EncounterDashes.Any(d=>d.TurnOrdinal==s.Encounter.TurnOrdinal&&EncounterHistory.InCurrent(s,d.Revision)));
         public static MovementLedger CurrentMovement(Snapshot s)
         {
@@ -65,6 +66,24 @@ namespace Decennium.Foundation.Laboratory
                 if(revision>s.Revision||!used.Add(revision)||revision!=h.Sequence||h.Id!="inventory."+Number(revision)+".vessel-move"
                     ||!Receipt(s,revision,h.ActorId,CommandKind.HandleVessel,h.VesselId,
                         new InventoryRequest(new RuleQuantity(1),h.Kind==HandlingKind.Handover?h.ToCustodian:"",h.Kind)))return false;
+            }
+            foreach(var h in s.PortableHandling.Where(x=>x.Tactical)) {
+                var receipt=s.Receipts.SingleOrDefault(r=>r.Revision==h.Revision);
+                if(receipt==null||!used.Add(h.Revision)||h.Id!="inventory."+Number(h.Revision)+".portable")return false;
+                CommandKind kind;InventoryRequest request=null;string target=h.ItemId;
+                switch(h.Operation) {
+                    case PortableOperation.Pickup:kind=CommandKind.HandlePortableEquipment;request=new InventoryRequest(new RuleQuantity(1),handling:HandlingKind.Pickup);break;
+                    case PortableOperation.Drop:kind=CommandKind.HandlePortableEquipment;request=new InventoryRequest(new RuleQuantity(1),handling:HandlingKind.Drop);break;
+                    case PortableOperation.Retrieve:kind=CommandKind.HandlePortableEquipment;request=new InventoryRequest(new RuleQuantity(1),handling:HandlingKind.Retrieve);break;
+                    case PortableOperation.Stow:kind=CommandKind.HandlePortableEquipment;request=new InventoryRequest(new RuleQuantity(1),h.ToParentId,HandlingKind.Stow);break;
+                    case PortableOperation.Handover:kind=CommandKind.HandlePortableEquipment;request=new InventoryRequest(new RuleQuantity(1),h.RecipientId,HandlingKind.Handover);break;
+                    case PortableOperation.Wear:kind=CommandKind.EquipPortableItem;target=h.ItemId;break;
+                    case PortableOperation.Remove:kind=CommandKind.RemovePortableItem;target=h.ItemId;break;
+                    case PortableOperation.Open:kind=CommandKind.OpenPortableContainer;target=h.ItemId;break;
+                    case PortableOperation.Close:kind=CommandKind.ClosePortableContainer;target=h.ItemId;break;
+                    default:return false;
+                }
+                if(!Receipt(s,h.Revision,h.ActorId,kind,target,request))return false;
             }
             foreach(var d in s.EncounterDashes) {
                 if(!used.Add(d.Revision)||!Receipt(s,d.Revision,d.ActorId,CommandKind.EncounterDash,e.Id+".turn."+Number(d.TurnOrdinal)))return false;

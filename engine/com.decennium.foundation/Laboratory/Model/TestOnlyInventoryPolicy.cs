@@ -36,7 +36,9 @@ namespace Decennium.Foundation.Laboratory
         private static bool AtPlot(ActorState a)=>Math.Abs((long)a.X-3)+Math.Abs((long)a.Y-3)<=1;
         private static bool Accessible(Snapshot s,string actor,InventoryLotRecord item,ResourceLot lot)=>item.Access==InventoryAccess.Ground
             ?lot.LocationId==TestOnlyCropPolicy.PlotId&&AtPlot(s.Actors.Single(a=>a.Id==actor))||SupplyCacheRules.Accessible(s,actor,lot.LocationId)
-            :lot.LocationId==actor&&lot.CustodianId==actor;
+            :lot.LocationId==actor&&lot.CustodianId==actor
+                ||s.SchemaVersion>=Snapshot.PortableEquipmentSchema&&item.Access==InventoryAccess.Stowed&&lot.CustodianId==actor
+                    &&PortableEquipmentRules.InventoryAccessible(s,actor,lot.LocationId);
         private static bool FitsSuppliedPouch(Snapshot s,InventoryLotRecord item)
         {
             // The fixture verifies the complete initial ration bundle fits its pouch. Descendants are
@@ -48,6 +50,7 @@ namespace Decennium.Foundation.Laboratory
         public static BurdenTotals CarriedBurden(Snapshot s,string actor)
         {
             if(!s.Actors.Any(x=>x.Id==actor))throw new ArgumentException("Unknown fixture carrier.");
+            if(s.SchemaVersion>=Snapshot.PortableEquipmentSchema)return PortableEquipmentRules.CarriedBurden(s,actor);
             // Each actor's fixed pouch weighs one pound. The actor's fixed skin also retains its
             // one-pound tare when empty. These host fixtures are not transferable equipment records.
             var pounds=RuleQuantity.Sum(s.Work.Lots.Where(x=>x.LocationId==actor||s.Vessels.Any(v=>v.Id==x.LocationId&&v.LocationId==actor)).Select(x=>x.Amount))

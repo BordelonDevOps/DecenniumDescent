@@ -68,6 +68,7 @@ namespace Decennium.Foundation
                 if (state.SchemaVersion >= Snapshot.RepairWorkSchema) RepairWorkCodec.Write(writer, state);
                 if (state.SchemaVersion >= Snapshot.ManufacturingSchema) ManufacturingCodec.Write(writer,state);
                 if (state.SchemaVersion >= Snapshot.SupplyCacheSchema) SupplyCacheCodec.Write(writer,state);
+                if (state.SchemaVersion >= Snapshot.PortableEquipmentSchema) PortableEquipmentCodec.Write(writer,state);
                 writer.Flush(); payload = stream.ToArray();
             }
             if (payload.Length + 32 > Limit(state.SchemaVersion)) throw new InvalidDataException("Save exceeds schema size limit.");
@@ -87,7 +88,7 @@ namespace Decennium.Foundation
                     if (reader.ReadInt32() != Magic) throw new InvalidDataException("Unsupported save format.");
                     int schema = reader.ReadInt32();
                     if (data.Length > Limit(schema)) throw new InvalidDataException("Save exceeds schema size limit.");
-                    if (schema != Snapshot.Schema && schema != Snapshot.WorkSchema && schema != Snapshot.CropSchema && schema != Snapshot.InventorySchema && schema != Snapshot.VesselSchema && schema != Snapshot.MovableVesselSchema && schema != Snapshot.EncounterSchema && schema != Snapshot.ActorLifeSchema && schema != Snapshot.ClubAttackSchema && schema != Snapshot.PostureSchema && schema != Snapshot.TacticalMovementSchema && schema != Snapshot.ConditionSchema && schema != Snapshot.SharedWorldSchema && schema != Snapshot.CalendarCombatSchema && schema != Snapshot.FormulaWorkSchema && schema != Snapshot.CraftingConsequenceSchema && schema != Snapshot.RepairWorkSchema && schema != Snapshot.ManufacturingSchema && schema != Snapshot.SupplyCacheSchema)
+                    if (schema != Snapshot.Schema && schema != Snapshot.WorkSchema && schema != Snapshot.CropSchema && schema != Snapshot.InventorySchema && schema != Snapshot.VesselSchema && schema != Snapshot.MovableVesselSchema && schema != Snapshot.EncounterSchema && schema != Snapshot.ActorLifeSchema && schema != Snapshot.ClubAttackSchema && schema != Snapshot.PostureSchema && schema != Snapshot.TacticalMovementSchema && schema != Snapshot.ConditionSchema && schema != Snapshot.SharedWorldSchema && schema != Snapshot.CalendarCombatSchema && schema != Snapshot.FormulaWorkSchema && schema != Snapshot.CraftingConsequenceSchema && schema != Snapshot.RepairWorkSchema && schema != Snapshot.ManufacturingSchema && schema != Snapshot.SupplyCacheSchema && schema != Snapshot.PortableEquipmentSchema)
                         throw new InvalidDataException("Unsupported save schema.");
                     string fingerprint = ReadText(reader);
                     if (ReadText(reader) != RandomV1.Algorithm) throw new InvalidDataException("Unsupported RNG version.");
@@ -140,6 +141,7 @@ namespace Decennium.Foundation
                     if (schema >= Snapshot.RepairWorkSchema) RepairWorkCodec.Read(reader, s);
                     if(schema >= Snapshot.ManufacturingSchema)ManufacturingCodec.Read(reader,s);
                     if(schema >= Snapshot.SupplyCacheSchema)SupplyCacheCodec.Read(reader,s);
+                    if(schema >= Snapshot.PortableEquipmentSchema)PortableEquipmentCodec.Read(reader,s);
                     if (stream.Position != length) throw new InvalidDataException("Unexpected trailing save data.");
                     Validation.Snapshot(s); return s;
                 }
