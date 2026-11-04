@@ -218,6 +218,7 @@ namespace Decennium.Foundation.Tests
             AddFixedEncounterCases(cases, directory);
             AddActorLifeCases(cases, directory);
             AddPlanarGeometryCases(cases);
+            AddRangedAttackResolutionCases(cases);
             AddDamageDiceCases(cases);
             AddClubAttackCases(cases, directory);
             AddConditionProjectionCases(cases);
