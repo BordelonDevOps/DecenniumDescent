@@ -1,0 +1,136 @@
+{
+  "schemaVersion": 1,
+  "recordedUtc": "2026-11-04T10:54:56.1755062Z",
+  "purpose": "CHR-03 partial: source-bound TEST_ONLY Soldier 1-to-2 advancement and two selected feature effects; complete advancement and full engine remain incomplete.",
+  "branch": "Engine",
+  "engineBase": "bf14c3476dc5d3d65f922d56a1f3b2e8d55a8258",
+  "sourceRevision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+  "prototypeRevision": "eabb0675c2ea3e1b675cf5126dfe79d3191ff481",
+  "status": "PARTIAL / TEST_ONLY / SOURCE-BOUND / PROVISIONAL",
+  "productionRuntimeSelectionEnabled": false,
+  "releaseApproved": false,
+  "schemaBump": 21,
+  "sources": [
+    {
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CHARACTER_CREATION_PLAYTEST.md",
+      "gitBlobId": "04c77b3ddff460219600df2f28bac27d854647af",
+      "sha256": "5c9f9ab4c9b485546a249637a335f56193dd3d58e58c451f9561c4e330c09a84",
+      "locators": "#gain-a-level: steps 1-3 and 6-7"
+    },
+    {
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md",
+      "gitBlobId": "5a446dd0dabae096e51f419b5e71756e0169bb3b",
+      "sha256": "adb2f4752b45dc70ce792a675bb30dda362aab5056588061bcde3ba31c4c8a81",
+      "locators": "#reading-a-class-card"
+    },
+    {
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/manifest.json",
+      "gitBlobId": "c7f68a17b5b38cfc6ab7ce6022eae80ae635b890",
+      "sha256": "41c044ad787394f0b52a0bf8ec7bb7f4a923c7cbec9a553423fa78c64947c20d",
+      "locators": "/classes/12"
+    },
+    {
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/soldier.json",
+      "gitBlobId": "c414a1d9ba2ce37cde89d0ef73265821bb74ac2d",
+      "sha256": "ab9cd3bd64355166dceb5a09e1ddab98443a957bb4bcdce813f1ad294ec048f0",
+      "locators": [
+        "/schedule/1",
+        "/cards/3",
+        "/cards/8",
+        "/engine/1"
+      ]
+    },
+    {
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "path": "DescentReviewChanges/ReviewBible/data/playtest/character_foundation.json",
+      "gitBlobId": "88fad6737419c7053d262bdf747fad80fd20f1c4",
+      "sha256": "21e12af81f191abe52d1e3272ed1f57c6446ed3d4487cafbd5609dff08e56a77",
+      "locators": [
+        "/classes/12/hitDie",
+        "/classes/12/fixedLaterLevelHpBase"
+      ]
+    },
+    {
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/XP_ADVANCEMENT_CANON.md",
+      "gitBlobId": "f16bbdf4f352aaccf8e8548e2b993ef338e9c05d",
+      "sha256": "f9c92adc2444f37bf0cabc0baabce4e37ab58781f0959bdce178c2266c8ebf01",
+      "locators": "#official-opening-advancement-t1-10-floors-1-100"
+    }
+  ],
+  "decisions": [
+    "Trusted host grants an actor-scoped semantic milestone; award and level-up are separate persisted commands.",
+    "Only Soldier 1-to-2, fixed-average d10 base 6, and the exact two level-2 Base cards Defensive Positioning and Tactical Reposition are supported.",
+    "Level-up preserves current HP/resources/status except downward max-HP clamp; adds one unspent Hit Die and leaves prior Hit Dice unchanged.",
+    "Tactical Reposition is restricted to the actor own regular tactical turn; it consumes Bonus Action at commitment, has Recharge 2, a separate half-Speed route budget, suppresses OAs but keeps Press, and refreshes on the actor regular starts.",
+    "Defensive Positioning uses an explicit adjacent prototype cover marker; general terrain/cover is not implemented."
+  ],
+  "implementation": [
+    "engine/com.decennium.foundation/Laboratory/Model/ConditionCombatPolicy.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedCharacterAdvancement.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedCraftingConsequences.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/TacticalMovementPolicy.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/TestOnlyClubAttackPolicy.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+    "engine/com.decennium.foundation/Runtime/Core/CharacterAdvancementRecords.cs",
+    "engine/com.decennium.foundation/Runtime/Core/CommandHistory.cs",
+    "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+    "engine/com.decennium.foundation/Runtime/Core/TacticalMovementRecords.cs",
+    "engine/com.decennium.foundation/Runtime/Persistence/CharacterAdvancementCodec.cs",
+    "engine/com.decennium.foundation/Runtime/Persistence/SnapshotCodec.cs",
+    "engine/com.decennium.foundation/Tests/EditMode/CharacterAdvancementCases.cs",
+    "engine/com.decennium.foundation/Tests/EditMode/FoundationCases.cs"
+  ],
+  "newNamedCases": [
+    "character_advancement_schema21_starts_as_source_scoped_soldier1",
+    "character_advancement_rejects_missing_hit_dice_and_unknown_feature_grants",
+    "character_advancement_requires_host_award_and_unique_milestone",
+    "character_advancement_preserves_a_spent_prior_hit_die",
+    "character_advancement_incomplete_and_unsupported_selections_are_atomic",
+    "character_advancement_fixed_average_grants_cards_and_hit_die_without_healing",
+    "character_advancement_waits_for_traversal_and_tactical_control",
+    "character_advancement_preserves_down_state_and_temporary_resources",
+    "soldier_features_apply_explicit_cover_and_tactical_reposition_preserves_press"
+  ],
+  "verification": {
+    "headless": {
+      "status": "PASS",
+      "passed": 988,
+      "failed": 0,
+      "testsDiscovered": 988,
+      "results": "HEADLESS_RESULTS.json",
+      "unityCompilation": "NOT RUN",
+      "editMode": "NOT RUN",
+      "playMode": "NOT RUN",
+      "standaloneBuild": "NOT RUN",
+      "gameplay": "NOT RUN"
+    },
+    "packageStatic": {
+      "status": "PASS",
+      "checks": 14,
+      "passed": 14,
+      "failed": 0,
+      "scope": "Static package structure only; not Unity import, compilation or release-build validation",
+      "results": "PACKAGE_RESULTS.json"
+    },
+    "independentReview": "INDEPENDENT_REVIEW.md; separate read-only review found and confirmed closure of three concrete issues; reviewer did not independently rerun final headless suite, Unity, or player build."
+  },
+  "limits": [
+    "TEST_ONLY profile; no production runtime selection or release approval.",
+    "Soldier level-1 automatic Overwatch, other level-1 choices and complete Soldier build are not implemented.",
+    "All other classes/levels, multiclassing, ASIs/feats, acquisition/retraining, class resources/repertoires, general terrain/cover and XP mode remain unimplemented.",
+    "Headless C# Roslyn and static package checks are not Unity compilation or gameplay evidence; Unity remains deferred.",
+    "This slice does not establish full rules-engine completion or the three-layer playable game."
+  ],
+  "prototypeDecisionRecord": {
+    "path": "docs/unity/CHARACTER_ADVANCEMENT_RULE_DECISIONS.md",
+    "gitBlobId": "3a8cdfcf83072f02a9b08fa457d354e42f4ac12b",
+    "sha256": "6a53f8cfb9ac6e197c38b4b73c082f36bfbc8f4791893e8ca0abd97b8f3d41e9",
+    "sourceReference": "Engine:docs/unity/CHARACTER_ADVANCEMENT_RULE_DECISIONS.md@3a8cdfcf83072f02a9b08fa457d354e42f4ac12b#sha256=6a53f8cfb9ac6e197c38b4b73c082f36bfbc8f4791893e8ca0abd97b8f3d41e9"
+  }
+}
