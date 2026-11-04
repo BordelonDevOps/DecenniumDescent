@@ -218,6 +218,7 @@ namespace Decennium.Foundation.Tests
             AddFixedEncounterCases(cases, directory);
             AddActorLifeCases(cases, directory);
             AddPlanarGeometryCases(cases);
+            AddDamageDiceCases(cases);
             return cases;
         }
         private static void Resign(byte[] bytes)

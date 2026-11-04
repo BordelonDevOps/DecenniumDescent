@@ -1,5 +1,5 @@
 param(
-    [string]$Bindings = (Join-Path $PSScriptRoot '../../docs/unity/evidence/2026-11-03-planar-geometry/SOURCE_BINDINGS.json'),
+    [string]$Bindings = (Join-Path $PSScriptRoot '../../docs/unity/evidence/2026-11-03-damage-dice/SOURCE_BINDINGS.json'),
     [string]$ResultsRoot = (Join-Path $PSScriptRoot '../artifacts')
 )
 $ErrorActionPreference = 'Stop'
