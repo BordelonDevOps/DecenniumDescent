@@ -71,7 +71,7 @@ namespace Decennium.Foundation.Laboratory
             ||k==CommandKind.EncounterDash||k==CommandKind.SelectCombatStance||k==CommandKind.AttackClub||k==CommandKind.ResolveKnockout
             ||Posture&&(k==CommandKind.StandFromProne||k==CommandKind.DropProne)
             ||conditions!=null&&k==CommandKind.DispatchConditionEvent
-            ||tactical!=null&&(k==CommandKind.AttackUnarmed||k==CommandKind.TacticalStep||k==CommandKind.RespondOpportunityAttack||k==CommandKind.RespondPress||k==CommandKind.Disengage);
+            ||tactical!=null&&(k==CommandKind.AttackUnarmed||k==CommandKind.TacticalStep||k==CommandKind.TacticalRepositionStep||k==CommandKind.RespondOpportunityAttack||k==CommandKind.RespondPress||k==CommandKind.Disengage);
         public static long WalkingSpeed(Snapshot s,string actor)
         {
             var m=s.ActorMovement.Single(x=>x.ActorId==actor);var l=s.Lives.Single(x=>x.ActorId==actor);
@@ -130,7 +130,8 @@ namespace Decennium.Foundation.Laboratory
                 if(c.Kind==CommandKind.BeginFixedEncounter){StartMovement(s);ActorLifeRules.RegularStart(s,0);}return null;
             }
             var e=s.Encounter;
-            if(e==null||c.Actor!=e.CurrentActor||c.Kind!=CommandKind.TacticalStep&&(c.X!=0||c.Y!=0)||combat&&c.Combat.TurnId!=e.CurrentTurnId)return "WrongRegularTurn";
+            bool moveCommand=c.Kind==CommandKind.TacticalStep||c.Kind==CommandKind.TacticalRepositionStep;
+            if(e==null||c.Actor!=e.CurrentActor||!moveCommand&&(c.X!=0||c.Y!=0)||combat&&c.Combat.TurnId!=e.CurrentTurnId)return "WrongRegularTurn";
             if(c.Kind==CommandKind.EndRegularTurn) {
                 if(Aware(s,c.Actor)&&!HasStance(s))return "StanceRequired";
                 string error=encounter.Resolve(s,c);if(error!=null)return error;
@@ -167,6 +168,10 @@ namespace Decennium.Foundation.Laboratory
                 if(!HasStance(s))return "StanceRequired";
                 return BeginOrdinaryStep(s,c);
             }
+            if(c.Kind==CommandKind.TacticalRepositionStep) {
+                if(c.Target!=e.CurrentTurnId)return "WrongRegularTurn";
+                return BeginTacticalRepositionStep(s,c);
+            }
             if(ActionSpent(s))return "ActionAlreadySpent";
             if(c.Kind==CommandKind.Disengage) {
                 if(c.Target!=e.CurrentTurnId)return "WrongRegularTurn";
@@ -198,7 +203,8 @@ namespace Decennium.Foundation.Laboratory
             bool advantage=modifiers.AdvantagePresent,disadvantage=modifiers.DisadvantagePresent;
             uint before=s.RandomState;var roll=PlaytestDice.RollD20(before,advantage?1:0,disadvantage?1:0);
             int modifier=attacker.LinkedInjuries.Contains((int)Injury.OffensiveTrauma)?-1:0; // STR10, explicitly no Club proficiency grant.
-            var defense=ActiveStance(s,c.Target);int ac=checked((int)PrototypeArmor.UnarmoredBaseAc(10))+(defense?.Kind==CombatStance.Aggressive?-2:defense?.Kind==CombatStance.Guarded?1:0);
+            var defense=ActiveStance(s,c.Target);int ac=checked((int)PrototypeArmor.UnarmoredBaseAc(10))+(defense?.Kind==CombatStance.Aggressive?-2:defense?.Kind==CombatStance.Guarded?1:0)
+                +CharacterAdvancementRules.DefensivePositioningBonus(s,c.Target);
             var hit=PlaytestRolls.AttackRoll(roll.Natural,modifier,ac);bool critical=hit.Hit&&(hit.Critical||modifiers.CriticalIfHit);
             var attack=new CombatAttackRoll(roll.First,roll.Second??0,roll.Natural,modifier,ac,hit.Hit,critical,before,roll.NextRandomState,roll.WordsConsumed);
             uint next=roll.NextRandomState;CombatDamageRoll damage;bool pending=false;

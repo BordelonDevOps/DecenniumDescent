@@ -38,10 +38,12 @@ namespace Decennium.Foundation.Laboratory
             long cost=StepCost(s,actor,x,y);
             if(kind==TacticalMoveKind.Press)return cost>PlaytestCombatBudgets.SpecialBudget(SpecialMovement.Press,speed)?"InsufficientPressMovement":null;
             if(s.Encounter.CurrentActor!=actor)return "WrongRegularTurn";
+            if(kind==TacticalMoveKind.TacticalReposition)return cost>CharacterAdvancementRules.RepositionBudget(s,actor,s.Encounter.TurnOrdinal)?"InsufficientRepositionMovement":null;
             return new RuleQuantity(cost)>RemainingMovement(s,actor)?"InsufficientMovement":null;
         }
         private static bool EligibleOpportunity(Snapshot s,string reactor,TacticalMoveRecord move)
         {
+            if(move.Kind==TacticalMoveKind.TacticalReposition)return false;
             if(reactor==move.ActorId||!ActorLifeRules.CanAct(s,reactor)||!TacticalActor(s,reactor).ReactionAvailable
                 ||ActiveStance(s,reactor)?.Kind==CombatStance.Focused)return false;
             if(WithConditions(s)&&(!CurrentPermissions(s,reactor).Reaction||PhysicalAttackFailure(s,reactor)!=null||!CanSee(s,reactor,move.ActorId)))return false;
@@ -61,6 +63,14 @@ namespace Decennium.Foundation.Laboratory
             int n=s.Actors.Length,steps=n+1,offers=steps*(n-1),commands=1+3*offers;
             if(s.TacticalMoves.Length+steps>64||s.PressOffers.Length+offers>128||s.MeleeAttacks.Length+offers>128||s.Receipts.Length+commands>512)return "ContinuationCapacityReached";
             BeginStep(s,c.Actor,c.X,c.Y,TacticalMoveKind.Ordinary);AdvanceTacticalFlow(s);return null;
+        }
+        private string BeginTacticalRepositionStep(Snapshot s,Command c)
+        {
+            var body=s.Actors.Single(a=>a.Id==c.Actor);string error=StepFailure(s,c.Actor,body.X,body.Y,c.X,c.Y,TacticalMoveKind.TacticalReposition);if(error!=null)return error;
+            int pendingPress=s.Presses.Count(x=>x.TargetId==c.Actor&&s.RuleClock<x.ExpiresAt);
+            if(s.TacticalMoves.Length>=64||s.PressOffers.Length+pendingPress>128||s.MeleeAttacks.Length+pendingPress>128
+                ||s.Receipts.Length+pendingPress*3+1>512)return "ContinuationCapacityReached";
+            BeginStep(s,c.Actor,c.X,c.Y,TacticalMoveKind.TacticalReposition);AdvanceTacticalFlow(s);return null;
         }
         private static TacticalMoveRecord NewStep(Snapshot s,string actor,int x,int y,TacticalMoveKind kind,string parent="")
         {
@@ -105,6 +115,7 @@ namespace Decennium.Foundation.Laboratory
                     if(move.Kind==TacticalMoveKind.Ordinary) {
                         SpendMovement(s,move.ActorId,cost);
                     }
+                    else if(move.Kind==TacticalMoveKind.TacticalReposition)CharacterAdvancementRules.SpendReposition(s,move.ActorId,cost);
                     var actor=s.Actors.Single(a=>a.Id==move.ActorId);actor.X=move.ToX;actor.Y=move.ToY;
                     s.Clubs=s.Clubs.Select(w=>w.HeldBy==actor.Id?new ClubInstance(w.Id,w.ProfileId,w.OwnerId,w.CustodianId,w.HeldBy,actor.X,actor.Y):w).ToArray();
                     var resources=TacticalActor(s,actor.Id);

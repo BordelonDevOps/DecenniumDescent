@@ -5,7 +5,7 @@ using System.Linq;
 namespace Decennium.Foundation
 {
     public static class CombatProfileIds { public const string OrdinaryUnarmed="TEST_ONLY.ordinary-unarmed"; }
-    public enum TacticalMoveKind { Ordinary, Press }
+    public enum TacticalMoveKind { Ordinary, Press, TacticalReposition }
     public enum TacticalMoveStatus { AwaitingReactions, Completed, Interrupted }
     public enum PressOfferStatus { Pending, Accepted, Declined, Invalidated }
     public sealed class ActorTacticalRecord

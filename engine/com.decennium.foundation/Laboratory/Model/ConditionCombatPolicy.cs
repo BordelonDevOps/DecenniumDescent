@@ -106,7 +106,7 @@ namespace Decennium.Foundation.Laboratory
                 if (ledger.ImmuneTo(ConditionKind.Prone)) return "PronePrevented";
                 return CombatConditions(s, actor).Immobile ? "BodyCannotMove" : null;
             }
-            if (kind == CommandKind.StandFromProne || kind == CommandKind.TacticalStep)
+            if (kind == CommandKind.StandFromProne || kind == CommandKind.TacticalStep || kind==CommandKind.TacticalRepositionStep)
                 return permissions.VoluntarySpeed ? null : "ConditionPreventsMovement";
             if (kind == CommandKind.EncounterDash) return permissions.Dash ? null : "ConditionPreventsDash";
             return permissions.Action ? null : "ConditionPreventsAction";

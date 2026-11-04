@@ -239,6 +239,7 @@ namespace Decennium.Foundation.Tests
             AddMaximumHpCases(cases);
             AddTacticalMovementCases(cases, directory);
             AddContentResolutionCases(cases, directory);
+            AddCharacterAdvancementCases(cases,directory);
             return cases;
         }
         private static void Resign(byte[] bytes)

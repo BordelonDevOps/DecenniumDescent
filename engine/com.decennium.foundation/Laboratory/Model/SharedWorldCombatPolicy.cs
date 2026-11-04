@@ -19,7 +19,7 @@ namespace Decennium.Foundation.Laboratory
         {
             foreach(var interval in s.WorldIntervals) {
                 int start=checked((int)interval.LastStart);var before=s.TacticalActors.Single(x=>x.ActorId==interval.ActorId);
-                if(before.LastRegularStart!=start)s.TacticalActors=s.TacticalActors.Select(x=>x.ActorId==interval.ActorId?new ActorTacticalRecord(x.ActorId,start,interval.ReactionAvailable):x).ToArray();
+                if(before.LastRegularStart!=start){s.TacticalActors=s.TacticalActors.Select(x=>x.ActorId==interval.ActorId?new ActorTacticalRecord(x.ActorId,start,interval.ReactionAvailable):x).ToArray();CharacterAdvancementRules.RegularStart(s,interval.ActorId,start);}
                 s.ActorMovement=s.ActorMovement.Select(x=>x.ActorId==interval.ActorId?new ActorMovementRecord(x.ActorId,x.BaseWalkingSpeed,start):x).ToArray();
             }
         }
@@ -49,7 +49,7 @@ namespace Decennium.Foundation.Laboratory
             s.InventoryCombat=true;s.InventoryTurnActor=s.Encounter.CurrentActor;s.InventoryInteractions=Interval(s,s.Encounter.CurrentActor).Interactions;
             PauseIncompatibleRemedies(s);PauseIncompatibleRepairs(s);PauseIncompatibleManufacturing(s);return null;
         }
-        private static bool PendingCalendarChoice(Snapshot s)=>s.MeleeAttacks.Any(x=>x.Pending)||TestOnlyClubAttackPolicy.PendingMove(s)!=null||TestOnlyClubAttackPolicy.CurrentPressOffer(s)!=null;
+        internal static bool PendingCalendarChoice(Snapshot s)=>s.MeleeAttacks.Any(x=>x.Pending)||TestOnlyClubAttackPolicy.PendingMove(s)!=null||TestOnlyClubAttackPolicy.CurrentPressOffer(s)!=null;
         private static bool ResolvedConflict(Snapshot s)=>s.Lives.Single(x=>x.ActorId==AdditionalTacticalActor.Id).Dead;
         private string ResolveCalendarCombat(Snapshot s,Command c)
         {
@@ -64,11 +64,12 @@ namespace Decennium.Foundation.Laboratory
                 if(exit&&!ResolvedConflict(s))return "ConflictNotResolved";
                 if(TestOnlyClubAttackPolicy.Aware(s,c.Actor)&&!TestOnlyClubAttackPolicy.HasStance(s))return "StanceRequired";
                 if(s.WorldSchedule.ProcessedSlot>=int.MaxValue-1)return "CombatCalendarCapacityReached";
+                CharacterAdvancementRules.EndRegularTurn(s,c.Actor,s.Encounter.TurnOrdinal);
                 AdvanceTo(s,s.WorldSchedule.Start(s.WorldSchedule.ProcessedSlot+1),exit,c);
                 if(s.ManufacturingAdvance!=null)return null;
                 s.InventoryInteractions=Interval(s,s.Encounter.CurrentActor).Interactions;
                 // Time and consequences are committed even if the exit predicate no longer holds.
-                if(exit&&ResolvedConflict(s)&&!PendingCalendarChoice(s)){s.InventoryCombat=false;s.InventoryTurnActor="";s.InventoryInteractions=0;}
+                if(exit&&ResolvedConflict(s)&&!PendingCalendarChoice(s)){s.InventoryCombat=false;s.InventoryTurnActor="";s.InventoryInteractions=0;CharacterAdvancementRules.TacticalExit(s);}
                 return null;
             }
             if(!s.WorldSchedule.Order.Contains(c.Actor))return "ActorOutsideEncounter";
@@ -79,6 +80,10 @@ namespace Decennium.Foundation.Laboratory
                 if(c.Inventory!=null||c.Combat!=null||c.X!=0||c.Y!=0||c.Actor!=s.Encounter.CurrentActor||c.Target!=s.Encounter.CurrentTurnId)return "WrongRegularTurn";
                 if(Interval(s,c.Actor).ActionSpent)return "ActionAlreadySpent";
                 return PayRun(s,c.Actor);
+            }
+            if(c.Kind==CommandKind.ActivateTacticalReposition) {
+                if(PendingCalendarChoice(s))return "TacticalChoicePending";
+                return CharacterAdvancementRules.ActivateTacticalReposition(s,c);
             }
             if((c.Kind==CommandKind.HandleInventory||c.Kind==CommandKind.HandleVessel)&&s.SchemaVersion>=Snapshot.SupplyCacheSchema) {
                 if(PendingCalendarChoice(s))return "TacticalChoicePending";

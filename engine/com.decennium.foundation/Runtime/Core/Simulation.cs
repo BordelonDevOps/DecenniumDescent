@@ -14,7 +14,8 @@ namespace Decennium.Foundation
         DispatchCraftingMishap, StartCraftRemedy, PauseCraftRemedy,
         StartToolRepair, PauseToolRepair, ResumeToolRepair, CancelToolRepair,
         StartManufacturing, PauseManufacturing, ResumeManufacturing, CancelManufacturing, ResolveManufacturingQuality, UseAlchemyDose,
-        HandlePortableEquipment, EquipPortableItem, RemovePortableItem, OpenPortableContainer, ClosePortableContainer }
+        HandlePortableEquipment, EquipPortableItem, RemovePortableItem, OpenPortableContainer, ClosePortableContainer,
+        AwardCharacterMilestone, AdvanceCharacterLevel, ActivateTacticalReposition, TacticalRepositionStep }
     public enum Outcome { Rejected, Committed, Duplicate }
 
     // DTOs are detached copies. No caller ever receives the owned simulation state.
@@ -59,6 +60,7 @@ namespace Decennium.Foundation
         public const int ManufacturingSchema = 18;
         public const int SupplyCacheSchema = 19;
         public const int PortableEquipmentSchema = 20;
+        public const int CharacterAdvancementSchema = 21;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
         // Technical bound keeps the entire snapshot within the existing 1 MiB save limit,
@@ -122,12 +124,21 @@ namespace Decennium.Foundation
         public PortableEquipmentRecord[] PortableEquipment = Array.Empty<PortableEquipmentRecord>();
         public PortableHandlingRecord[] PortableHandling = Array.Empty<PortableHandlingRecord>();
         public EncounterDashRecord[] EncounterDashes = Array.Empty<EncounterDashRecord>();
+        public CharacterMilestoneRecord[] CharacterMilestones = Array.Empty<CharacterMilestoneRecord>();
+        public CharacterHitDieRecord[] CharacterHitDice = Array.Empty<CharacterHitDieRecord>();
+        public CharacterFeatureGrantRecord[] CharacterFeatureGrants = Array.Empty<CharacterFeatureGrantRecord>();
+        public CharacterAdvancementRecord[] CharacterAdvancements = Array.Empty<CharacterAdvancementRecord>();
+        public CharacterFeatureRuntimeRecord[] CharacterFeatureRuntime = Array.Empty<CharacterFeatureRuntimeRecord>();
+        public TacticalCoverRecord[] TacticalCovers = Array.Empty<TacticalCoverRecord>();
         public Snapshot Copy() => new Snapshot {
             DyingCadences = DyingCadences.ToArray(), Structures = Structures.ToArray(), CraftingIncidents = CraftingIncidents.ToArray(),
             WorldLifeMarkers = WorldLifeMarkers.ToArray(),
             RepairWork = RepairWork.ToArray(), ManufacturingOrders = ManufacturingOrders.ToArray(), Trades = Trades.ToArray(), AlchemyDoses = AlchemyDoses.ToArray(), ManufacturingAdvance = ManufacturingAdvance,
             SupplyCaches = SupplyCaches.ToArray(), SupplyCacheAttempts = SupplyCacheAttempts.ToArray(), SupplyCacheEquipment = SupplyCacheEquipment.ToArray(),
             PortableEquipment = PortableEquipment.ToArray(), PortableHandling = PortableHandling.ToArray(),
+            CharacterMilestones = CharacterMilestones.ToArray(), CharacterHitDice = CharacterHitDice.ToArray(),
+            CharacterFeatureGrants = CharacterFeatureGrants.ToArray(), CharacterAdvancements = CharacterAdvancements.ToArray(),
+            CharacterFeatureRuntime = CharacterFeatureRuntime.ToArray(), TacticalCovers = TacticalCovers.ToArray(),
             FormulaWork = FormulaWork.ToArray(),
             WorldSchedule = WorldSchedule, WorldIntervals = WorldIntervals.ToArray(), WorldTraversals = WorldTraversals.ToArray(),
             Conditions = Conditions.ToArray(), ClosedEncounters = ClosedEncounters.ToArray(),
@@ -158,15 +169,18 @@ namespace Decennium.Foundation
         public int Y { get; }
         public InventoryRequest Inventory { get; }
         public CombatRequest Combat { get; }
+        public CharacterAdvancementRequest Advancement { get; }
         public Command(string id, string actor, long revision, CommandKind kind,
-            string target = "", int x = 0, int y = 0, InventoryRequest inventory = null, CombatRequest combat = null)
-        { Id = id; Actor = actor; ExpectedRevision = revision; Kind = kind; Target = target; X = x; Y = y; Inventory = inventory; Combat = combat; }
+            string target = "", int x = 0, int y = 0, InventoryRequest inventory = null, CombatRequest combat = null,
+            CharacterAdvancementRequest advancement = null)
+        { Id = id; Actor = actor; ExpectedRevision = revision; Kind = kind; Target = target; X = x; Y = y; Inventory = inventory; Combat = combat; Advancement=advancement; }
         internal string Fingerprint => ((int)Kind).ToString(System.Globalization.CultureInfo.InvariantCulture)
             + "|" + Actor + "|" + Target + "|" + ExpectedRevision.ToString(System.Globalization.CultureInfo.InvariantCulture)
             + "|" + X.ToString(System.Globalization.CultureInfo.InvariantCulture)
             + "|" + Y.ToString(System.Globalization.CultureInfo.InvariantCulture)
             + (Inventory == null ? "" : "|inventory-v1|" + Inventory.Fingerprint)
-            + (Combat == null ? "" : "|" + Combat.FingerprintVersion + "|" + Combat.Fingerprint);
+            + (Combat == null ? "" : "|" + Combat.FingerprintVersion + "|" + Combat.Fingerprint)
+            + (Advancement == null ? "" : "|character-level-v1|" + Advancement.FeatureOne + "|" + Advancement.FeatureTwo);
         // Structural history consistency only; receipts are not authentication credentials.
         public bool MatchesReceipt(CommandReceipt receipt) => receipt != null && ExpectedRevision >= 0
             && ExpectedRevision < long.MaxValue && receipt.Revision == ExpectedRevision + 1
@@ -235,7 +249,7 @@ namespace Decennium.Foundation
             if (s == null || !ValidId(s.ContentFingerprint) || s.Revision < 0 || s.Clock < 0 || s.RandomState == 0)
                 throw new ArgumentException("Invalid snapshot header.");
             if (s.SchemaVersion != Foundation.Snapshot.Schema && s.SchemaVersion != Foundation.Snapshot.WorkSchema
-                && s.SchemaVersion != Foundation.Snapshot.CropSchema && s.SchemaVersion != Foundation.Snapshot.InventorySchema && s.SchemaVersion != Foundation.Snapshot.VesselSchema && s.SchemaVersion != Foundation.Snapshot.MovableVesselSchema && s.SchemaVersion != Foundation.Snapshot.EncounterSchema && s.SchemaVersion != Foundation.Snapshot.ActorLifeSchema && s.SchemaVersion != Foundation.Snapshot.ClubAttackSchema && s.SchemaVersion != Foundation.Snapshot.PostureSchema && s.SchemaVersion != Foundation.Snapshot.TacticalMovementSchema && s.SchemaVersion != Foundation.Snapshot.ConditionSchema && s.SchemaVersion != Foundation.Snapshot.SharedWorldSchema && s.SchemaVersion != Foundation.Snapshot.CalendarCombatSchema && s.SchemaVersion != Foundation.Snapshot.FormulaWorkSchema && s.SchemaVersion != Foundation.Snapshot.CraftingConsequenceSchema && s.SchemaVersion != Foundation.Snapshot.RepairWorkSchema && s.SchemaVersion != Foundation.Snapshot.ManufacturingSchema && s.SchemaVersion != Foundation.Snapshot.SupplyCacheSchema && s.SchemaVersion != Foundation.Snapshot.PortableEquipmentSchema)
+                && s.SchemaVersion != Foundation.Snapshot.CropSchema && s.SchemaVersion != Foundation.Snapshot.InventorySchema && s.SchemaVersion != Foundation.Snapshot.VesselSchema && s.SchemaVersion != Foundation.Snapshot.MovableVesselSchema && s.SchemaVersion != Foundation.Snapshot.EncounterSchema && s.SchemaVersion != Foundation.Snapshot.ActorLifeSchema && s.SchemaVersion != Foundation.Snapshot.ClubAttackSchema && s.SchemaVersion != Foundation.Snapshot.PostureSchema && s.SchemaVersion != Foundation.Snapshot.TacticalMovementSchema && s.SchemaVersion != Foundation.Snapshot.ConditionSchema && s.SchemaVersion != Foundation.Snapshot.SharedWorldSchema && s.SchemaVersion != Foundation.Snapshot.CalendarCombatSchema && s.SchemaVersion != Foundation.Snapshot.FormulaWorkSchema && s.SchemaVersion != Foundation.Snapshot.CraftingConsequenceSchema && s.SchemaVersion != Foundation.Snapshot.RepairWorkSchema && s.SchemaVersion != Foundation.Snapshot.ManufacturingSchema && s.SchemaVersion != Foundation.Snapshot.SupplyCacheSchema && s.SchemaVersion != Foundation.Snapshot.PortableEquipmentSchema && s.SchemaVersion != Foundation.Snapshot.CharacterAdvancementSchema)
                 throw new ArgumentException("Unsupported snapshot schema.");
             if (s.SchemaVersion == Foundation.Snapshot.Schema && (s.Work != null || s.RuleClock != default))
                 throw new ArgumentException("Legacy snapshot cannot contain unsaved work or exact time.");
@@ -303,6 +317,7 @@ namespace Decennium.Foundation
             ManufacturingValidation.Validate(s);
             SupplyCacheValidation.Validate(s);
             PortableEquipmentValidation.Validate(s);
+            CharacterAdvancementValidation.Validate(s);
         }
     }
 
@@ -338,8 +353,10 @@ namespace Decennium.Foundation
             bool combatKind=command.Kind==CommandKind.SelectCombatStance||command.Kind==CommandKind.AttackClub||command.Kind==CommandKind.ResolveKnockout
                 ||command.Kind==CommandKind.AttackUnarmed||command.Kind==CommandKind.RespondOpportunityAttack||command.Kind==CommandKind.RespondPress;
             if(combatKind!=(command.Combat!=null)||command.Combat!=null&&command.Inventory!=null)return Reject("UnexpectedCombatPayload");
-            if (!authority.Controls(command.Actor) || (command.Kind == CommandKind.AdvanceClock && !authority.CanAdvanceClock)
-                || ((command.Kind == CommandKind.SetCropConditions || command.Kind == CommandKind.EnterInventoryCombat || command.Kind == CommandKind.BeginFixedEncounter || command.Kind == CommandKind.EndFixedEncounter || command.Kind == CommandKind.DispatchConditionEvent || command.Kind == CommandKind.DispatchCraftingMishap) && !authority.CanModifyWorld))
+            if((command.Kind==CommandKind.AdvanceCharacterLevel)!=(command.Advancement!=null)
+                ||command.Advancement!=null&&(command.Inventory!=null||command.Combat!=null))return Reject("UnexpectedCommandPayload");
+            if ((!authority.Controls(command.Actor) && !(command.Kind==CommandKind.AwardCharacterMilestone&&authority.CanModifyWorld)) || (command.Kind == CommandKind.AdvanceClock && !authority.CanAdvanceClock)
+                || ((command.Kind == CommandKind.SetCropConditions || command.Kind == CommandKind.EnterInventoryCombat || command.Kind == CommandKind.BeginFixedEncounter || command.Kind == CommandKind.EndFixedEncounter || command.Kind == CommandKind.DispatchConditionEvent || command.Kind == CommandKind.DispatchCraftingMishap || command.Kind==CommandKind.AwardCharacterMilestone) && !authority.CanModifyWorld))
                 return Reject("NotAuthorized");
             if (policy is ICommandInventoryClaims claims) {
                 try {

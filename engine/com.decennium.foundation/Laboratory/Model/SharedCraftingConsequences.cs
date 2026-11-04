@@ -72,7 +72,7 @@ namespace Decennium.Foundation.Laboratory
     public sealed partial class TestOnlySharedWorldPolicy
     {
         private readonly SharedCraftingFixture crafting;
-        private int SelectedSchema => portableKit!=null?Snapshot.PortableEquipmentSchema:supplyCache!=null?Snapshot.SupplyCacheSchema:manufacturing != null ? Snapshot.ManufacturingSchema : repair != null ? Snapshot.RepairWorkSchema : crafting != null ? Snapshot.CraftingConsequenceSchema : research != null ? Snapshot.FormulaWorkSchema : connectedCombat == null ? Snapshot.SharedWorldSchema : Snapshot.CalendarCombatSchema;
+        private int SelectedSchema => characterAdvancement!=null?Snapshot.CharacterAdvancementSchema:portableKit!=null?Snapshot.PortableEquipmentSchema:supplyCache!=null?Snapshot.SupplyCacheSchema:manufacturing != null ? Snapshot.ManufacturingSchema : repair != null ? Snapshot.RepairWorkSchema : crafting != null ? Snapshot.CraftingConsequenceSchema : research != null ? Snapshot.FormulaWorkSchema : connectedCombat == null ? Snapshot.SharedWorldSchema : Snapshot.CalendarCombatSchema;
         private static string CraftingFingerprint(string prior, SharedCraftingFixture facts)
         {
             using (var sha = SHA256.Create()) return "TEST_ONLY.crafting-v1-" + string.Concat(sha.ComputeHash(Encoding.UTF8.GetBytes(prior + "|" + facts.Key)).Select(b => b.ToString("x2", CultureInfo.InvariantCulture)));

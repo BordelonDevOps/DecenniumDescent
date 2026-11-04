@@ -113,6 +113,7 @@ namespace Decennium.Foundation.Laboratory
             InitializeManufacturing(s);
             InitializeSupplyCache(s);
             InitializePortableEquipment(s);
+            InitializeCharacterAdvancement(s);
             if(contentManifest!=null) {
                 string bindingError=contentManifest.ValidatePortableSnapshot(s);
                 if(bindingError!=null)throw new InvalidOperationException(bindingError);
@@ -271,6 +272,7 @@ namespace Decennium.Foundation.Laboratory
         public string Resolve(Snapshot s, Command c)
         {
             if (!s.Actors.Any(a => a.Id == c.Actor)) return "UnknownWorldActor";
+            if(c.Kind==CommandKind.AwardCharacterMilestone||c.Kind==CommandKind.AdvanceCharacterLevel)return ResolveCharacterAdvancement(s,c);
             if(contentManifest!=null) {
                 string contentError=contentManifest.ValidateCommand(s,c);
                 if(contentError!=null)return contentError;
