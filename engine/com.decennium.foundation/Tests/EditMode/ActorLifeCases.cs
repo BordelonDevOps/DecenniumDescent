@@ -119,7 +119,7 @@ namespace Decennium.Foundation.Tests
             cases.Add("actor_life_release_legacy_fields_and_future_schema_reject",()=>{
                 var p=new TestOnlyActorLifePolicy();Throws<InvalidOperationException>(()=>new Simulation(p,p.Initial(),ExecutionProfile.Release));
                 var v=p.Initial();v.SchemaVersion=7;Throws<ArgumentException>(()=>codec.Encode(v));
-                byte[] bad=codec.Encode(p.Initial());bad[4]=10;Resign(bad);Throws<InvalidDataException>(()=>codec.Decode(bad)); });
+                byte[] bad=codec.Encode(p.Initial());bad[4]=11;Resign(bad);Throws<InvalidDataException>(()=>codec.Decode(bad)); });
             cases.Add("actor_life_history_rejects_incapable_dash_before_later_recovery",()=>{
                 var stable=new LifeState(26,0,stable:true,stableUntil:T(3));var p=new TestOnlyActorLifePolicy(actorLife:stable);
                 var template=Living(new TestOnlyActorLifePolicy());BeginEncounter(template);EncounterCommand(template,CommandKind.EncounterDash);EndTurn(template);EndTurn(template);

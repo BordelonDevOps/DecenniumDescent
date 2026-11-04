@@ -136,7 +136,7 @@ namespace Decennium.Foundation
         {
             if(s.Clubs==null||s.Stances==null||s.MeleeAttacks==null||s.Presses==null||s.Clubs.Length>64||s.Stances.Length>128||s.MeleeAttacks.Length>128||s.Presses.Length>64
                 ||s.Clubs.Any(x=>x==null)||s.Stances.Any(x=>x==null)||s.MeleeAttacks.Any(x=>x==null)||s.Presses.Any(x=>x==null))throw new ArgumentException("Invalid combat collections.");
-            if(s.SchemaVersion!=Snapshot.ClubAttackSchema) {
+            if(s.SchemaVersion<Snapshot.ClubAttackSchema) {
                 if(s.Clubs.Length+s.Stances.Length+s.MeleeAttacks.Length+s.Presses.Length!=0)throw new ArgumentException("Club combat requires schema9.");return;
             }
             bool Actor(string id)=>s.Actors.Any(a=>a.Id==id);

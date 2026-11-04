@@ -18,22 +18,30 @@ namespace Decennium.Foundation.Laboratory
         private readonly TestOnlyEncounterPolicy encounter=new TestOnlyEncounterPolicy();
         private readonly TestOnlyFillingPolicy inventory=new TestOnlyFillingPolicy(movableVessels:true);
         private readonly int companionX,companionY;
+        private readonly int? actorBaseSpeed,companionBaseSpeed;
+        private bool Posture=>actorBaseSpeed.HasValue;
         public bool TestOnly=>true;
         public string ContentFingerprint { get; }
         public TestOnlyClubAttackPolicy(long actorHp=26,long companionHp=26,long actorTemporaryHp=0,long companionTemporaryHp=0,
-            uint seed=1,RuleTime origin=default,int companionX=1,int companionY=0,bool actorProne=false,bool companionProne=false)
+            uint seed=1,RuleTime origin=default,int companionX=1,int companionY=0,bool actorProne=false,bool companionProne=false,
+            int? actorBaseWalkingSpeed=null,int? companionBaseWalkingSpeed=null)
         {
             if(actorHp<1||actorHp>26||companionHp<1||companionHp>26||companionX<1||companionX>4||companionY<0||companionY>1||companionY==1&&companionX!=1)
                 throw new ArgumentException("Unsupported initial club fixture facts.");
+            if(actorBaseWalkingSpeed.HasValue!=companionBaseWalkingSpeed.HasValue||actorBaseWalkingSpeed<0||companionBaseWalkingSpeed<0)
+                throw new ArgumentException("Supply both explicit nonnegative fixture walking Speeds, or neither.");
+            actorBaseSpeed=actorBaseWalkingSpeed;companionBaseSpeed=companionBaseWalkingSpeed;
             life=new TestOnlyActorLifePolicy(new LifeState(26,actorHp,actorTemporaryHp),new LifeState(26,companionHp,companionTemporaryHp),origin,seed,
                 actorProne:actorProne,companionProne:companionProne);this.companionX=companionX;this.companionY=companionY;
             string key="club-attack-v1|"+life.ContentFingerprint+"|"+N(companionX)+"|"+N(companionY);
+            if(Posture)key+="|posture-v1|"+N(actorBaseSpeed.Value)+"|"+N(companionBaseSpeed.Value);
             using(var sha=SHA256.Create())ContentFingerprint="TEST_ONLY.club-v1-"+string.Concat(sha.ComputeHash(Encoding.UTF8.GetBytes(key)).Select(b=>b.ToString("x2",CultureInfo.InvariantCulture)));
         }
         private static string N(long n)=>n.ToString(CultureInfo.InvariantCulture);
         public Snapshot Initial()
         {
             var s=life.Initial();s.SchemaVersion=Snapshot.ClubAttackSchema;s.ContentFingerprint=ContentFingerprint;
+            if(Posture){s.SchemaVersion=Snapshot.PostureSchema;s.ActorMovement=s.Actors.Select(a=>new ActorMovementRecord(a.Id,a.Id==TestOnlyPolicy.ActorId?actorBaseSpeed.Value:companionBaseSpeed.Value)).ToArray();}
             foreach(var a in s.Actors){a.X=a.Id==TestOnlyPolicy.ActorId?0:companionX;a.Y=a.Id==TestOnlyPolicy.ActorId?0:companionY;}
             s.Clubs=s.Actors.Select(a=>new ClubInstance(a.Id==TestOnlyPolicy.ActorId?ActorClub:CompanionClub,ClubProfile,a.Id,a.Id,a.Id,a.X,a.Y)).ToArray();
             s.Lives=s.Lives.Select(l=>ActorLifeRules.Record(l.ActorId,ActorLifeRules.Read(l),l.Prone,new[]{s.Clubs.Single(w=>w.HeldBy==l.ActorId).Id})).ToArray();return s;
@@ -41,8 +49,27 @@ namespace Decennium.Foundation.Laboratory
         public static StanceSelectionRecord ActiveStance(Snapshot s,string actor)=>s.Stances.LastOrDefault(t=>t.ActorId==actor&&s.RuleClock<t.ExpiresAt);
         public static PressRecord ActivePress(Snapshot s,string actor)=>s.Presses.SingleOrDefault(p=>p.ActorId==actor&&s.RuleClock<p.ExpiresAt);
         public static bool ActionSpent(Snapshot s)=>FixedEncounterRules.ActionSpent(s)||s.Encounter!=null&&s.MeleeAttacks.Any(a=>a.TurnOrdinal==s.Encounter.TurnOrdinal);
-        private static bool Admitted(CommandKind k)=>k==CommandKind.AdvanceClock||k==CommandKind.BeginFixedEncounter||k==CommandKind.EndRegularTurn
-            ||k==CommandKind.EncounterDash||k==CommandKind.SelectCombatStance||k==CommandKind.AttackClub||k==CommandKind.ResolveKnockout;
+        private bool Admitted(CommandKind k)=>k==CommandKind.AdvanceClock||k==CommandKind.BeginFixedEncounter||k==CommandKind.EndRegularTurn
+            ||k==CommandKind.EncounterDash||k==CommandKind.SelectCombatStance||k==CommandKind.AttackClub||k==CommandKind.ResolveKnockout
+            ||Posture&&(k==CommandKind.StandFromProne||k==CommandKind.DropProne);
+        public static long WalkingSpeed(Snapshot s,string actor)
+        {
+            var m=s.ActorMovement.Single(x=>x.ActorId==actor);var l=s.Lives.Single(x=>x.ActorId==actor);
+            long flat=(ActiveStance(s,actor)?.Kind==CombatStance.Guarded?-5:0)-(l.LinkedInjuries.Contains((int)Injury.MobilityTrauma)?5:0)-(l.LinkedInjuries.Count==3?10:0);
+            return l.Dead||l.Hp==0?0:Math.Max(0,m.BaseWalkingSpeed+flat);
+        }
+        public static MovementLedger WalkingLedger(Snapshot s)
+        {
+            if(s.Encounter==null)throw new ArgumentException("No current regular turn.");
+            var m=s.ActorMovement.Single(x=>x.ActorId==s.Encounter.CurrentActor);
+            if(m.TurnOrdinal!=s.Encounter.TurnOrdinal)throw new ArgumentException("Movement turn is not current.");
+            return new MovementLedger(m.Spent,s.EncounterDashes.Count(d=>d.TurnOrdinal==m.TurnOrdinal));
+        }
+        private static void StartMovement(Snapshot s)
+        {
+            if(s.SchemaVersion<Snapshot.PostureSchema)return;
+            s.ActorMovement=s.ActorMovement.Select(m=>m.ActorId==s.Encounter.CurrentActor?new ActorMovementRecord(m.ActorId,m.BaseWalkingSpeed,s.Encounter.TurnOrdinal):m).ToArray();
+        }
         private static bool HasStance(Snapshot s)=>s.Stances.Any(t=>t.TurnOrdinal==s.Encounter.TurnOrdinal);
         public string Resolve(Snapshot s,Command c)
         {
@@ -54,16 +81,31 @@ namespace Decennium.Foundation.Laboratory
             if(c.Kind==CommandKind.ResolveKnockout)return "NoPendingKnockout";
             if(c.Kind==CommandKind.BeginFixedEncounter||c.Kind==CommandKind.AdvanceClock) {
                 string error=encounter.Resolve(s,c);if(error!=null)return error;
-                if(c.Kind==CommandKind.BeginFixedEncounter)ActorLifeRules.RegularStart(s,0);return null;
+                if(c.Kind==CommandKind.BeginFixedEncounter){StartMovement(s);ActorLifeRules.RegularStart(s,0);}return null;
             }
             var e=s.Encounter;
             if(e==null||c.Actor!=e.CurrentActor||c.X!=0||c.Y!=0||combat&&c.Combat.TurnId!=e.CurrentTurnId)return "WrongRegularTurn";
             if(c.Kind==CommandKind.EndRegularTurn) {
                 if(ActorLifeRules.CanAct(s,c.Actor)&&!HasStance(s))return "StanceRequired";
                 string error=encounter.Resolve(s,c);if(error!=null)return error;
-                ActorLifeRules.RegularStart(s,s.Encounter.TurnOrdinal);return null;
+                StartMovement(s);ActorLifeRules.RegularStart(s,s.Encounter.TurnOrdinal);return null;
             }
             if(!ActorLifeRules.CanAct(s,c.Actor))return "ActorCannotAct";
+            if(c.Kind==CommandKind.StandFromProne||c.Kind==CommandKind.DropProne) {
+                if(c.Target!=e.CurrentTurnId)return "WrongRegularTurn";
+                var before=s.Lives.Single(l=>l.ActorId==c.Actor);bool standing=c.Kind==CommandKind.StandFromProne;
+                if(standing&&!HasStance(s))return "StanceRequired"; // Standing uses current Speed, including Guarded.
+                if(before.Prone!=standing)return standing?"ActorNotProne":"ActorAlreadyProne";
+                if(standing) {
+                    long speed=WalkingSpeed(s,c.Actor);var ledger=WalkingLedger(s);
+                    if(speed==0)return "ZeroSpeedCannotStand";
+                    if(ledger.Remaining(speed)<speed/2)return "InsufficientMovement";
+                    ledger=ledger.Stand(speed);
+                    s.ActorMovement=s.ActorMovement.Select(m=>m.ActorId==c.Actor?new ActorMovementRecord(m.ActorId,m.BaseWalkingSpeed,m.TurnOrdinal,ledger.Spent):m).ToArray();
+                }
+                // Dropping voluntarily changes no position, spent cost or stance allowance. Zero Speed alone does not prohibit it.
+                s.Lives=s.Lives.Select(l=>l.ActorId==c.Actor?ActorLifeRules.Record(l.ActorId,ActorLifeRules.Read(l),!standing,l.HeldItems):l).ToArray();return null;
+            }
             if(c.Kind==CommandKind.SelectCombatStance) {
                 if(c.Target!=""||c.Combat.WeaponId!=""||c.Combat.Stance==0||c.Combat.Knockout!=AttackKnockoutMode.OrdinaryOutcome||c.Combat.Choice)return "InvalidStanceRequest";
                 if(HasStance(s))return "StanceAlreadySelected";
@@ -141,8 +183,8 @@ namespace Decennium.Foundation.Laboratory
         public string ValidateState(Snapshot s)
         {
             try {
-                if(s.SchemaVersion!=Snapshot.ClubAttackSchema)return "WrongClubSchema";
-                string error=inventory.ValidateFillingState(s,true,true,true);if(error!=null)return error;
+                if(s.SchemaVersion!=(Posture?Snapshot.PostureSchema:Snapshot.ClubAttackSchema))return "WrongClubSchema";
+                string error=inventory.ValidateFillingState(s,true,true,true,Posture);if(error!=null)return error;
                 if(s.Crops.Length+s.CropFood.Length+s.Handling.Length+s.VesselMoves.Length+s.Intakes.Length+s.WaterFills.Length!=0
                     ||s.Work.WorkerIntervals.Count+s.Work.Reservations.Count!=0||s.Receipts.Length!=s.Revision)return "InvalidClubFixture";
                 var replay=Initial();
@@ -177,6 +219,7 @@ namespace Decennium.Foundation.Laboratory
                 &&!s.LifeEvents.Where((a,i)=>a.Revision!=r.LifeEvents[i].Revision||!a.SameOutcome(r.LifeEvents[i])).Any()
                 &&Tables(s.EncounterDashes,r.EncounterDashes,(a,b)=>a.ActorId==b.ActorId&&a.Revision==b.Revision&&a.TurnOrdinal==b.TurnOrdinal)
                 &&Tables(s.Clubs,r.Clubs,(a,b)=>a.SameAs(b))&&Tables(s.Stances,r.Stances,(a,b)=>a.SameAs(b))
+                &&Tables(s.ActorMovement,r.ActorMovement,(a,b)=>a.SameAs(b))
                 &&Tables(s.MeleeAttacks,r.MeleeAttacks,(a,b)=>a.SameAs(b))&&Tables(s.Presses,r.Presses,(a,b)=>a.SameAs(b))
                 &&Tables(s.CropPlots,r.CropPlots,(a,b)=>a.Id==b.Id&&a.OwnerId==b.OwnerId&&a.Suitable==b.Suitable)
                 &&Tables(s.Work.Lots.ToArray(),r.Work.Lots.ToArray(),(a,b)=>a.Id==b.Id&&a.UnitId==b.UnitId&&a.Amount==b.Amount&&a.LocationId==b.LocationId&&a.CustodianId==b.CustodianId)
