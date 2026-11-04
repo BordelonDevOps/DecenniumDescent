@@ -56,15 +56,13 @@ namespace Decennium.Foundation.Laboratory
         private static void Level(int exhaustion){if(exhaustion<0||exhaustion>6)throw new ArgumentOutOfRangeException(nameof(exhaustion));}
         private static void Clauses(ConditionClauses conditions){if(conditions==null)throw new ArgumentNullException(nameof(conditions));}
         public static long ExhaustionMaximum(long otherwiseMaximum,int level)
-        {Level(level);if(otherwiseMaximum<1)throw new ArgumentOutOfRangeException(nameof(otherwiseMaximum));return level>=4?Math.Max(1,otherwiseMaximum/2):otherwiseMaximum;}
+        {Level(level);return PlaytestMaximumHp.SystemicMaximum(otherwiseMaximum,exhaustion:level);}
         // Exhaustion-only capacity projection. A combined systemic-factor ledger must multiply its
         // compatible rational factors before rounding; do not chain separately rounded modifiers.
         public static LifeState RecomputeExhaustionCapacity(LifeState state,long otherwiseMaximum,int level)
         {
             if(state==null)throw new ArgumentNullException(nameof(state));long max=ExhaustionMaximum(otherwiseMaximum,level);
-            return new LifeState(max,Math.Min(state.Hp,max),state.TemporaryHp,state.Wounds,stable:state.Stable,dead:state.Dead,
-                deathSuccesses:state.DeathSuccesses,deathFailures:state.DeathFailures,usesDeathSaves:state.UsesDeathSaves,
-                lastDeathTurn:state.LastDeathTurn,stableUntil:state.StableUntil);
+            return PlaytestMaximumHp.ApplyCapacity(state,max);
         }
         // Resolve an actual admitted track change, without survival replacements. Numerical capacity
         // recalculation or repeating an existing level6 is not a new lethal transition.

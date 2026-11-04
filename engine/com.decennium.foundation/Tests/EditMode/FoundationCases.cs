@@ -222,6 +222,7 @@ namespace Decennium.Foundation.Tests
             AddClubAttackCases(cases, directory);
             AddConditionProjectionCases(cases);
             AddPostureCases(cases, directory);
+            AddMaximumHpCases(cases);
             return cases;
         }
         private static void Resign(byte[] bytes)
