@@ -99,15 +99,17 @@ namespace Decennium.Foundation.Laboratory
     {
         private readonly TestOnlyFillingPolicy inventory=new TestOnlyFillingPolicy(movableVessels:true);
         private readonly string[] order;
-        public TestOnlyEncounterPolicy(params string[] resolvedOrder)
+        public TestOnlyEncounterPolicy(params string[] resolvedOrder):this(false,resolvedOrder) { }
+        // Expanded order is only a dispatcher for the outer schema11 host, which supplies the third body.
+        internal TestOnlyEncounterPolicy(bool tacticalHost,params string[] resolvedOrder)
         {
             order=resolvedOrder==null?throw new ArgumentNullException(nameof(resolvedOrder))
                 :resolvedOrder.Length==0?new[]{TestOnlyPolicy.ActorId,TestOnlyPolicy.CompanionId}:resolvedOrder.ToArray();
-            if(order.Length<1||order.Length>2||order.Distinct(StringComparer.Ordinal).Count()!=order.Length
-                ||order.Any(x=>x!=TestOnlyPolicy.ActorId&&x!=TestOnlyPolicy.CompanionId))throw new ArgumentException("Supply distinct fixture actors in resolved order.");
+            if(order.Length<1||order.Length>(tacticalHost?3:2)||order.Distinct(StringComparer.Ordinal).Count()!=order.Length
+                ||order.Any(x=>x!=TestOnlyPolicy.ActorId&&x!=TestOnlyPolicy.CompanionId&&(!tacticalHost||x!=AdditionalTacticalActor.Id)))throw new ArgumentException("Supply distinct fixture actors in resolved order.");
         }
         public bool TestOnly=>true;
-        public string ContentFingerprint=>"TEST_ONLY.encounter-v1-"+string.Join("-",order.Select(x=>x==TestOnlyPolicy.ActorId?"a":"c"));
+        public string ContentFingerprint=>"TEST_ONLY.encounter-v1-"+string.Join("-",order.Select(x=>x==TestOnlyPolicy.ActorId?"a":x==TestOnlyPolicy.CompanionId?"c":"t"));
         public Snapshot Initial(){var s=inventory.Initial();s.SchemaVersion=Snapshot.EncounterSchema;s.ContentFingerprint=ContentFingerprint;return s;}
         public string Resolve(Snapshot s,Command c)
         {

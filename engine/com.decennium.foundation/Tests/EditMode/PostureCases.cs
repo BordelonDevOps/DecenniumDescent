@@ -104,7 +104,7 @@ namespace Decennium.Foundation.Tests
             cases.Add("posture_codec_counts_future_schema_and_legacy_fields_reject",()=>{
                 var p=PosturePolicy();var v=p.Initial();var legacy=v.Copy();legacy.SchemaVersion=9;legacy.ActorMovement=Array.Empty<ActorMovementRecord>();int offset=codec.Encode(legacy).Length-32;
                 foreach(int count in new[]{-1,65,int.MaxValue}){byte[] bad=codec.Encode(v);Array.Copy(BitConverter.GetBytes(count),0,bad,offset,4);Resign(bad);Throws<InvalidDataException>(()=>codec.Decode(bad));}
-                v.SchemaVersion=9;Throws<ArgumentException>(()=>codec.Encode(v));byte[] future=codec.Encode(p.Initial());future[4]=11;Resign(future);Throws<InvalidDataException>(()=>codec.Decode(future)); });
+                v.SchemaVersion=9;Throws<ArgumentException>(()=>codec.Encode(v));byte[] future=codec.Encode(p.Initial());future[4]=12;Resign(future);Throws<InvalidDataException>(()=>codec.Decode(future)); });
         }
     }
 }

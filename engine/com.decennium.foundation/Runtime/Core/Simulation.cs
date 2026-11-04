@@ -7,7 +7,8 @@ namespace Decennium.Foundation
     public enum ExecutionProfile { Laboratory, Release }
     public enum CommandKind { Move, Interact, AdvanceClock, ReserveWork, ConsumeReservation, ReleaseReservation,
         PlantCrop, TendCrop, HarvestCrop, PauseCrop, SetCropConditions,
-        PortionInventory, HandleInventory, StartIntake, InterruptIntake, EnterInventoryCombat, StartWaterFill, PauseWaterFill, ResumeWaterFill, CancelWaterFill, HandleVessel, BeginFixedEncounter, EndRegularTurn, EncounterDash, SelectCombatStance, AttackClub, ResolveKnockout, StandFromProne, DropProne }
+        PortionInventory, HandleInventory, StartIntake, InterruptIntake, EnterInventoryCombat, StartWaterFill, PauseWaterFill, ResumeWaterFill, CancelWaterFill, HandleVessel, BeginFixedEncounter, EndRegularTurn, EncounterDash, SelectCombatStance, AttackClub, ResolveKnockout, StandFromProne, DropProne,
+        AttackUnarmed, TacticalStep, RespondOpportunityAttack, RespondPress, Disengage }
     public enum Outcome { Rejected, Committed, Duplicate }
 
     // DTOs are detached copies. No caller ever receives the owned simulation state.
@@ -42,6 +43,7 @@ namespace Decennium.Foundation
         public const int ActorLifeSchema = 8;
         public const int ClubAttackSchema = 9;
         public const int PostureSchema = 10;
+        public const int TacticalMovementSchema = 11;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
         // Technical bound keeps the entire snapshot within the existing 1 MiB save limit,
@@ -80,9 +82,13 @@ namespace Decennium.Foundation
         public StanceSelectionRecord[] Stances = Array.Empty<StanceSelectionRecord>();
         public MeleeAttackRecord[] MeleeAttacks = Array.Empty<MeleeAttackRecord>();
         public PressRecord[] Presses = Array.Empty<PressRecord>();
+        public ActorTacticalRecord[] TacticalActors = Array.Empty<ActorTacticalRecord>();
+        public TacticalMoveRecord[] TacticalMoves = Array.Empty<TacticalMoveRecord>();
+        public PressOfferRecord[] PressOffers = Array.Empty<PressOfferRecord>();
         public FixedEncounterRecord Encounter;
         public EncounterDashRecord[] EncounterDashes = Array.Empty<EncounterDashRecord>();
         public Snapshot Copy() => new Snapshot {
+            TacticalActors = TacticalActors.ToArray(), TacticalMoves = TacticalMoves.ToArray(), PressOffers = PressOffers.ToArray(),
             ActorMovement = ActorMovement.ToArray(), Clubs = Clubs.ToArray(), Stances = Stances.ToArray(), MeleeAttacks = MeleeAttacks.ToArray(), Presses = Presses.ToArray(),
             Characters = Characters.ToArray(), Lives = Lives.ToArray(), LifeEvents = LifeEvents.ToArray(),
             Encounter = Encounter, EncounterDashes = EncounterDashes.ToArray(), VesselMoves = VesselMoves.ToArray(), Vessels = Vessels.ToArray(), VesselContents = VesselContents.ToArray(), WaterFills = WaterFills.ToArray(),
@@ -117,7 +123,7 @@ namespace Decennium.Foundation
             + "|" + X.ToString(System.Globalization.CultureInfo.InvariantCulture)
             + "|" + Y.ToString(System.Globalization.CultureInfo.InvariantCulture)
             + (Inventory == null ? "" : "|inventory-v1|" + Inventory.Fingerprint)
-            + (Combat == null ? "" : "|combat-v1|" + Combat.Fingerprint);
+            + (Combat == null ? "" : "|" + Combat.FingerprintVersion + "|" + Combat.Fingerprint);
         // Structural history consistency only; receipts are not authentication credentials.
         public bool MatchesReceipt(CommandReceipt receipt) => receipt != null && ExpectedRevision >= 0
             && ExpectedRevision < long.MaxValue && receipt.Revision == ExpectedRevision + 1
@@ -179,7 +185,7 @@ namespace Decennium.Foundation
             if (s == null || !ValidId(s.ContentFingerprint) || s.Revision < 0 || s.Clock < 0 || s.RandomState == 0)
                 throw new ArgumentException("Invalid snapshot header.");
             if (s.SchemaVersion != Foundation.Snapshot.Schema && s.SchemaVersion != Foundation.Snapshot.WorkSchema
-                && s.SchemaVersion != Foundation.Snapshot.CropSchema && s.SchemaVersion != Foundation.Snapshot.InventorySchema && s.SchemaVersion != Foundation.Snapshot.VesselSchema && s.SchemaVersion != Foundation.Snapshot.MovableVesselSchema && s.SchemaVersion != Foundation.Snapshot.EncounterSchema && s.SchemaVersion != Foundation.Snapshot.ActorLifeSchema && s.SchemaVersion != Foundation.Snapshot.ClubAttackSchema && s.SchemaVersion != Foundation.Snapshot.PostureSchema)
+                && s.SchemaVersion != Foundation.Snapshot.CropSchema && s.SchemaVersion != Foundation.Snapshot.InventorySchema && s.SchemaVersion != Foundation.Snapshot.VesselSchema && s.SchemaVersion != Foundation.Snapshot.MovableVesselSchema && s.SchemaVersion != Foundation.Snapshot.EncounterSchema && s.SchemaVersion != Foundation.Snapshot.ActorLifeSchema && s.SchemaVersion != Foundation.Snapshot.ClubAttackSchema && s.SchemaVersion != Foundation.Snapshot.PostureSchema && s.SchemaVersion != Foundation.Snapshot.TacticalMovementSchema)
                 throw new ArgumentException("Unsupported snapshot schema.");
             if (s.SchemaVersion == Foundation.Snapshot.Schema && (s.Work != null || s.RuleClock != default))
                 throw new ArgumentException("Legacy snapshot cannot contain unsaved work or exact time.");
@@ -237,6 +243,7 @@ namespace Decennium.Foundation
             ActorLifeValidation.Validate(s);
             ClubAttackValidation.Validate(s);
             ActorMovementValidation.Validate(s);
+            TacticalMovementValidation.Validate(s);
         }
     }
 
@@ -269,7 +276,8 @@ namespace Decennium.Foundation
                 || !Validation.ValidId(command.Actor) || command.Target == null || command.Target.Length > 96
                 || (command.Target.Length != 0 && !Validation.ValidId(command.Target)) || command.ExpectedRevision < 0
                 || !Enum.IsDefined(typeof(CommandKind), command.Kind)) return Reject("InvalidCommand");
-            bool combatKind=command.Kind==CommandKind.SelectCombatStance||command.Kind==CommandKind.AttackClub||command.Kind==CommandKind.ResolveKnockout;
+            bool combatKind=command.Kind==CommandKind.SelectCombatStance||command.Kind==CommandKind.AttackClub||command.Kind==CommandKind.ResolveKnockout
+                ||command.Kind==CommandKind.AttackUnarmed||command.Kind==CommandKind.RespondOpportunityAttack||command.Kind==CommandKind.RespondPress;
             if(combatKind!=(command.Combat!=null)||command.Combat!=null&&command.Inventory!=null)return Reject("UnexpectedCombatPayload");
             if (!authority.Controls(command.Actor) || (command.Kind == CommandKind.AdvanceClock && !authority.CanAdvanceClock)
                 || ((command.Kind == CommandKind.SetCropConditions || command.Kind == CommandKind.EnterInventoryCombat || command.Kind == CommandKind.BeginFixedEncounter) && !authority.CanModifyWorld))
@@ -304,7 +312,7 @@ namespace Decennium.Foundation
                 if (command.Inventory != null && command.Inventory.Handling == HandlingKind.Handover
                     && !authority.ConsentsToHandover(command.Inventory.Destination)) return Reject("RecipientNotWilling");
             }
-            if(command.Kind==CommandKind.AttackClub) {
+            if(command.Kind==CommandKind.AttackClub||command.Kind==CommandKind.RespondOpportunityAttack&&command.Combat.Choice) {
                 var club=state.Clubs.FirstOrDefault(w=>w.Id==command.Combat.WeaponId);
                 if(club!=null&&!authority.MayUseInventory(club.OwnerId))return Reject("InventoryNotAuthorized");
             }

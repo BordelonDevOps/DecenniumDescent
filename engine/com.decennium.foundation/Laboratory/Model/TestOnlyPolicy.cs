@@ -27,7 +27,8 @@ namespace Decennium.Foundation.Laboratory
         }
         internal static string ValidateWorld(Snapshot state)
         {
-            if (state.Actors.Length != 2 || !state.Actors.Any(a => a.Id == ActorId) || !state.Actors.Any(a => a.Id == CompanionId)
+            bool third=state.SchemaVersion==Snapshot.TacticalMovementSchema&&state.Actors.Any(a=>a.Id==AdditionalTacticalActor.Id);
+            if (state.Actors.Length != (third?3:2) || !state.Actors.Any(a => a.Id == ActorId) || !state.Actors.Any(a => a.Id == CompanionId)
                 || state.Objects.Length != 1 || state.Objects[0].Id != ContainerId || state.Objects[0].X != 1 || state.Objects[0].Y != 2)
                 return "UnknownFixtureIdentity";
             if (state.Actors.Any(a => !Walkable(a.X, a.Y) || a.Tokens > 1)

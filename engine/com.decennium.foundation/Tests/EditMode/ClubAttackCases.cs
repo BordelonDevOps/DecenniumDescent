@@ -176,7 +176,7 @@ namespace Decennium.Foundation.Tests
             cases.Add("club_codec_bounds_and_legacy_schema_reject_new_fields",()=>{
                 var p=new TestOnlyClubAttackPolicy();var v=p.Initial();var legacy=v.Copy();legacy.SchemaVersion=8;legacy.Clubs=Array.Empty<ClubInstance>();int offset=codec.Encode(legacy).Length-32;
                 foreach(int count in new[]{-1,65,int.MaxValue}){byte[] bad=codec.Encode(v);Array.Copy(BitConverter.GetBytes(count),0,bad,offset,4);Resign(bad);Throws<InvalidDataException>(()=>codec.Decode(bad));}
-                v.SchemaVersion=8;Throws<ArgumentException>(()=>codec.Encode(v));byte[] future=codec.Encode(p.Initial());future[4]=11;Resign(future);Throws<InvalidDataException>(()=>codec.Decode(future)); });
+                v.SchemaVersion=8;Throws<ArgumentException>(()=>codec.Encode(v));byte[] future=codec.Encode(p.Initial());future[4]=12;Resign(future);Throws<InvalidDataException>(()=>codec.Decode(future)); });
             cases.Add("club_release_gate_and_save_roundtrip_pending_then_resolved",()=>{
                 var s=PendingClub(out var p);Throws<InvalidOperationException>(()=>new Simulation(p,p.Initial(),ExecutionProfile.Release));
                 string path=Path.Combine(directory,"pending-club.bin");var store=new FileSaveStore();store.Save(path,s.Capture());s=new Simulation(p,store.Load(path),ExecutionProfile.Laboratory);ChooseKnockout(s,true);store.Save(path,s.Capture());

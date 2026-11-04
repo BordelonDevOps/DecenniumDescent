@@ -7,6 +7,7 @@ namespace Decennium.Foundation
 {
     public enum CombatStance { Aggressive=1, Guarded, Mobile, Focused, Carrying }
     public enum AttackKnockoutMode { OrdinaryOutcome, KnockOutIfEligible, AskIfEligible }
+    public enum PressHitInstruction { ArmOrReplace, KeepExisting }
     public sealed class CombatRequest
     {
         public string TurnId { get; }
@@ -14,13 +15,15 @@ namespace Decennium.Foundation
         public int Stance { get; }
         public AttackKnockoutMode Knockout { get; }
         public bool Choice { get; }
-        public CombatRequest(string turnId,string weaponId="",int stance=0,AttackKnockoutMode knockout=AttackKnockoutMode.OrdinaryOutcome,bool choice=false)
+        public PressHitInstruction PressInstruction { get; }
+        public CombatRequest(string turnId,string weaponId="",int stance=0,AttackKnockoutMode knockout=AttackKnockoutMode.OrdinaryOutcome,bool choice=false,PressHitInstruction pressInstruction=PressHitInstruction.ArmOrReplace)
         {
             if(!Validation.ValidId(turnId)||weaponId==null||weaponId!=""&&!Validation.ValidId(weaponId)||stance<0||stance>5
-                ||!Enum.IsDefined(typeof(AttackKnockoutMode),knockout))throw new ArgumentException("Invalid combat request.");
-            TurnId=turnId;WeaponId=weaponId;Stance=stance;Knockout=knockout;Choice=choice;
+                ||!Enum.IsDefined(typeof(AttackKnockoutMode),knockout)||!Enum.IsDefined(typeof(PressHitInstruction),pressInstruction))throw new ArgumentException("Invalid combat request.");
+            TurnId=turnId;WeaponId=weaponId;Stance=stance;Knockout=knockout;Choice=choice;PressInstruction=pressInstruction;
         }
-        internal string Fingerprint=>TurnId+"|"+WeaponId+"|"+Stance.ToString(CultureInfo.InvariantCulture)+"|"+((int)Knockout).ToString(CultureInfo.InvariantCulture)+"|"+(Choice?"1":"0");
+        internal string FingerprintVersion=>PressInstruction==PressHitInstruction.ArmOrReplace?"combat-v1":"combat-v2";
+        internal string Fingerprint=>TurnId+"|"+WeaponId+"|"+Stance.ToString(CultureInfo.InvariantCulture)+"|"+((int)Knockout).ToString(CultureInfo.InvariantCulture)+"|"+(Choice?"1":"0")+(PressInstruction==PressHitInstruction.ArmOrReplace?"":"|1");
     }
     public sealed class ClubInstance
     {
@@ -107,15 +110,17 @@ namespace Decennium.Foundation
         public CombatAttackRoll Attack { get; }
         public CombatDamageRoll Damage { get; }
         public bool Pending=>ResolvedRevision==0;
+        public bool Opportunity { get; }
+        public PressHitInstruction PressInstruction { get; }
         public MeleeAttackRecord(string id,long revision,long resolvedRevision,int ordinal,string actor,string target,string weapon,RuleTime at,
-            AttackKnockoutMode instruction,CombatAttackRoll attack,CombatDamageRoll damage)
+            AttackKnockoutMode instruction,CombatAttackRoll attack,CombatDamageRoll damage,bool opportunity=false,PressHitInstruction pressInstruction=PressHitInstruction.ArmOrReplace)
         {
             if(new[]{id,actor,target,weapon}.Any(s=>!Validation.ValidId(s))||revision<1||resolvedRevision<0||resolvedRevision!=0&&resolvedRevision<revision||ordinal<0
-                ||!Enum.IsDefined(typeof(AttackKnockoutMode),instruction)||attack==null||damage==null)throw new ArgumentException("Invalid melee attack record.");
-            Id=id;Revision=revision;ResolvedRevision=resolvedRevision;TurnOrdinal=ordinal;AttackerId=actor;TargetId=target;WeaponId=weapon;At=at;Instruction=instruction;Attack=attack;Damage=damage;
+                ||!Enum.IsDefined(typeof(AttackKnockoutMode),instruction)||!Enum.IsDefined(typeof(PressHitInstruction),pressInstruction)||attack==null||damage==null)throw new ArgumentException("Invalid melee attack record.");
+            Id=id;Revision=revision;ResolvedRevision=resolvedRevision;TurnOrdinal=ordinal;AttackerId=actor;TargetId=target;WeaponId=weapon;At=at;Instruction=instruction;Attack=attack;Damage=damage;Opportunity=opportunity;PressInstruction=pressInstruction;
         }
         public bool SameAs(MeleeAttackRecord x)=>x!=null&&Id==x.Id&&Revision==x.Revision&&ResolvedRevision==x.ResolvedRevision&&TurnOrdinal==x.TurnOrdinal
-            &&AttackerId==x.AttackerId&&TargetId==x.TargetId&&WeaponId==x.WeaponId&&At==x.At&&Instruction==x.Instruction&&Attack.SameAs(x.Attack)&&Damage.SameAs(x.Damage);
+            &&AttackerId==x.AttackerId&&TargetId==x.TargetId&&WeaponId==x.WeaponId&&At==x.At&&Instruction==x.Instruction&&Attack.SameAs(x.Attack)&&Damage.SameAs(x.Damage)&&Opportunity==x.Opportunity&&PressInstruction==x.PressInstruction;
     }
     public sealed class PressRecord
     {
@@ -143,7 +148,7 @@ namespace Decennium.Foundation
             if(s.Clubs.Select(w=>w.Id).Distinct(StringComparer.Ordinal).Count()!=s.Clubs.Length||s.Presses.Select(p=>p.ActorId).Distinct(StringComparer.Ordinal).Count()!=s.Presses.Length
                 ||s.Clubs.Any(w=>w.HeldBy!=""&&!Actor(w.HeldBy))||s.Stances.Any(t=>!Actor(t.ActorId)||t.Revision>s.Revision)
                 ||s.MeleeAttacks.Count(a=>a.Pending)>1||s.MeleeAttacks.Select(a=>a.Id).Distinct(StringComparer.Ordinal).Count()!=s.MeleeAttacks.Length
-                ||s.MeleeAttacks.Any(a=>!Actor(a.AttackerId)||!Actor(a.TargetId)||!s.Clubs.Any(w=>w.Id==a.WeaponId)||a.Revision>s.Revision||a.ResolvedRevision>s.Revision||a.At>s.RuleClock)
+                ||s.MeleeAttacks.Any(a=>!Actor(a.AttackerId)||!Actor(a.TargetId)||!s.Clubs.Any(w=>w.Id==a.WeaponId)&&!(s.SchemaVersion>=Snapshot.TacticalMovementSchema&&a.WeaponId==CombatProfileIds.OrdinaryUnarmed)||a.Revision>s.Revision||a.ResolvedRevision>s.Revision||a.At>s.RuleClock)
                 ||s.Presses.Any(p=>!Actor(p.ActorId)||!Actor(p.TargetId)||p.ArmedRevision>s.Revision))throw new ArgumentException("Invalid combat references.");
         }
     }

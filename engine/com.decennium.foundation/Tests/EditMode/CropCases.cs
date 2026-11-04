@@ -215,7 +215,7 @@ namespace Decennium.Foundation.Tests
                 Throws<ArgumentException>(()=>new Simulation(p,unknown,ExecutionProfile.Laboratory)); });
             cases.Add("crop_codec_corruption_future_schema_and_truncation_reject",()=>{
                 var s=Farm();Planted(s);var original=Bytes(s);var bad=(byte[])original.Clone();bad[bad.Length-40]^=1;Throws<InvalidDataException>(()=>codec.Decode(bad));
-                bad=(byte[])original.Clone();bad[4]=11;Resign(bad);Throws<InvalidDataException>(()=>codec.Decode(bad));
+                bad=(byte[])original.Clone();bad[4]=12;Resign(bad);Throws<InvalidDataException>(()=>codec.Decode(bad));
                 Throws<InvalidDataException>(()=>codec.Decode(original.Take(original.Length-1).ToArray()));
                 bad=new byte[original.Length+1];Buffer.BlockCopy(original,0,bad,0,original.Length-32);Resign(bad);Throws<InvalidDataException>(()=>codec.Decode(bad)); });
             cases.Add("crop_read_view_cannot_mutate_plot_task_or_food_state",()=>{

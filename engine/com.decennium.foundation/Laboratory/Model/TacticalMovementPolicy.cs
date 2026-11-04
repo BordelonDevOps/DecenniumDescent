@@ -1,0 +1,148 @@
+#if DECENNIUM_TEST_ONLY && (UNITY_EDITOR || DEVELOPMENT_BUILD || HEADLESS_TESTS)
+using System;
+using System.Linq;
+
+namespace Decennium.Foundation.Laboratory
+{
+    public sealed partial class TestOnlyClubAttackPolicy
+    {
+        private static ActorTacticalRecord TacticalActor(Snapshot s,string actor)=>s.TacticalActors.Single(x=>x.ActorId==actor);
+        private static void SetTactical(Snapshot s,ActorTacticalRecord record)=>s.TacticalActors=s.TacticalActors.Select(x=>x.ActorId==record.ActorId?record:x).ToArray();
+        private static void StartTactical(Snapshot s)
+        {
+            var e=s.Encounter;var before=TacticalActor(s,e.CurrentActor);
+            var reaction=new ReactionClock(before.ReactionAvailable,lastRegularStart:before.LastRegularStart).RegularStart(e.TurnOrdinal);
+            SetTactical(s,new ActorTacticalRecord(e.CurrentActor,e.TurnOrdinal,reaction.Available));
+        }
+        public static TacticalMoveRecord PendingMove(Snapshot s)=>s.TacticalMoves.SingleOrDefault(m=>m.Pending);
+        public static PressOfferRecord CurrentPressOffer(Snapshot s)=>s.PressOffers.Where(p=>p.Status==PressOfferStatus.Pending)
+            .OrderByDescending(p=>p.CreatedRevision).ThenBy(p=>p.ArmedRevision).ThenBy(p=>p.Id,StringComparer.Ordinal).FirstOrDefault();
+        private static void SetMove(Snapshot s,TacticalMoveRecord move)=>s.TacticalMoves=s.TacticalMoves.Select(m=>m.Id==move.Id?move:m).ToArray();
+        private static void SetOffer(Snapshot s,PressOfferRecord offer)=>s.PressOffers=s.PressOffers.Select(p=>p.Id==offer.Id?offer:p).ToArray();
+        private static bool Adjacent(int ax,int ay,int bx,int by)=>PlanarCombatGeometry.DistanceFeet(new CombatCell(ax,ay),new CombatCell(bx,by))==5;
+        private long StepCost(Snapshot s,string actor,int x,int y)=>PlaytestCombatBudgets.MovementCost(5,tactical.At(x,y),s.Lives.Single(l=>l.ActorId==actor).Prone);
+        private string StepFailure(Snapshot s,string actor,int fromX,int fromY,int x,int y,TacticalMoveKind kind)
+        {
+            if(!ActorLifeRules.CanAct(s,actor))return "MoverCannotAct";
+            var body=s.Actors.Single(a=>a.Id==actor);
+            if(body.X!=fromX||body.Y!=fromY)return "MovementOriginChanged";
+            if(!Adjacent(fromX,fromY,x,y))return "InvalidTacticalStep";
+            if(!TestOnlyPolicy.Walkable(x,y)||!PlanarCombatGeometry.NeighborPassesCornerRule(new CombatCell(fromX,fromY),new CombatCell(x,y),
+                !TestOnlyPolicy.Walkable(x,fromY),!TestOnlyPolicy.Walkable(fromX,y)))return "BlockedTacticalStep";
+            if(s.Actors.Any(a=>a.Id!=actor&&a.X==x&&a.Y==y))return "OccupiedTacticalStep";
+            long speed=WalkingSpeed(s,actor);if(speed==0)return "ZeroSpeedCannotMove";
+            long cost=StepCost(s,actor,x,y);
+            if(kind==TacticalMoveKind.Press)return cost>PlaytestCombatBudgets.SpecialBudget(SpecialMovement.Press,speed)?"InsufficientPressMovement":null;
+            if(s.Encounter.CurrentActor!=actor)return "WrongRegularTurn";
+            return cost>WalkingLedger(s).Remaining(speed)?"InsufficientMovement":null;
+        }
+        private static bool EligibleOpportunity(Snapshot s,string reactor,TacticalMoveRecord move)
+        {
+            if(reactor==move.ActorId||!ActorLifeRules.CanAct(s,reactor)||!TacticalActor(s,reactor).ReactionAvailable
+                ||ActiveStance(s,reactor)?.Kind==CombatStance.Focused)return false;
+            var moving=TacticalActor(s,move.ActorId);
+            if(moving.DisengageTurn==s.Encounter.TurnOrdinal||ActiveStance(s,move.ActorId)?.Kind==CombatStance.Mobile&&moving.MobileFeet<5)return false;
+            var body=s.Actors.Single(a=>a.Id==reactor);
+            // This admitted fixture supplies hostility and sight for legal adjacent melee attacks.
+            // Every reactor has a usable ordinary unarmed attack, even after dropping a Club.
+            return Adjacent(body.X,body.Y,move.FromX,move.FromY)&&!Adjacent(body.X,body.Y,move.ToX,move.ToY);
+        }
+        private string BeginOrdinaryStep(Snapshot s,Command c)
+        {
+            var body=s.Actors.Single(a=>a.Id==c.Actor);string error=StepFailure(s,c.Actor,body.X,body.Y,c.X,c.Y,TacticalMoveKind.Ordinary);if(error!=null)return error;
+            // Reserve room for the entire bounded chain before any reaction can be paid. Every
+            // accepted follow consumes one interval entitlement, with no clock/start inside it.
+            int n=s.Actors.Length,steps=n+1,offers=steps*(n-1),commands=1+3*offers;
+            if(s.TacticalMoves.Length+steps>64||s.PressOffers.Length+offers>128||s.MeleeAttacks.Length+offers>128||s.Receipts.Length+commands>512)return "ContinuationCapacityReached";
+            BeginStep(s,c.Actor,c.X,c.Y,TacticalMoveKind.Ordinary);AdvanceTacticalFlow(s);return null;
+        }
+        private static TacticalMoveRecord NewStep(Snapshot s,string actor,int x,int y,TacticalMoveKind kind,string parent="")
+        {
+            var body=s.Actors.Single(a=>a.Id==actor);return new TacticalMoveRecord("move."+N(s.Revision+1),s.Revision+1,0,s.Encounter.TurnOrdinal,
+                actor,body.X,body.Y,x,y,kind,TacticalMoveStatus.AwaitingReactions,Array.Empty<string>(),parentPressOffer:parent);
+        }
+        private static void BeginStep(Snapshot s,string actor,int x,int y,TacticalMoveKind kind,string parent="")
+        {
+            var step=NewStep(s,actor,x,y,kind,parent);
+            var reactors=s.Encounter.Order.Where(id=>EligibleOpportunity(s,id,step)).ToArray();
+            step=new TacticalMoveRecord(step.Id,step.Revision,0,step.TurnOrdinal,actor,step.FromX,step.FromY,x,y,kind,step.Status,reactors,parentPressOffer:parent);
+            s.TacticalMoves=s.TacticalMoves.Concat(new[]{step}).ToArray();
+        }
+        private bool PressLegal(Snapshot s,PressOfferRecord offer)
+        {
+            var source=ActivePress(s,offer.ActorId);if(source==null||source.ArmedRevision!=offer.ArmedRevision||source.TargetId!=offer.TargetId||TacticalActor(s,offer.ActorId).PressConsumed)return false;
+            var moved=s.TacticalMoves.Single(m=>m.Id==offer.MoveId);var holder=s.Actors.Single(a=>a.Id==offer.ActorId);
+            return moved.Status==TacticalMoveStatus.Completed&&moved.ActorId==offer.TargetId
+                &&Adjacent(holder.X,holder.Y,moved.FromX,moved.FromY)&&!Adjacent(holder.X,holder.Y,moved.ToX,moved.ToY)
+                &&StepFailure(s,offer.ActorId,holder.X,holder.Y,moved.FromX,moved.FromY,TacticalMoveKind.Press)==null;
+        }
+        private void QueuePress(Snapshot s,TacticalMoveRecord move)
+        {
+            foreach(var press in s.Presses.Where(p=>p.TargetId==move.ActorId&&s.RuleClock<p.ExpiresAt).OrderBy(p=>p.ArmedRevision).ThenBy(p=>p.ActorId,StringComparer.Ordinal)) {
+                var offer=new PressOfferRecord("press."+N(s.Revision+1)+"."+press.ActorId,move.Id,press.ActorId,move.ActorId,s.Revision+1,press.ArmedRevision);
+                if(PressLegal(s,offer))s.PressOffers=s.PressOffers.Concat(new[]{offer}).ToArray();
+            }
+        }
+        private void AdvanceTacticalFlow(Snapshot s)
+        {
+            while(!s.MeleeAttacks.Any(a=>a.Pending)) {
+                var move=PendingMove(s);
+                if(move!=null) {
+                    if(StepFailure(s,move.ActorId,move.FromX,move.FromY,move.ToX,move.ToY,move.Kind)!=null) {
+                        SetMove(s,move.Progress(move.ResponseIndex,TacticalMoveStatus.Interrupted,s.Revision+1));continue;
+                    }
+                    int index=move.ResponseIndex;
+                    while(index<move.Reactors.Count&&!EligibleOpportunity(s,move.Reactors[index],move))index++;
+                    if(index!=move.ResponseIndex){move=move.Progress(index,move.Status);SetMove(s,move);}
+                    if(index<move.Reactors.Count)return;
+                    long cost=StepCost(s,move.ActorId,move.ToX,move.ToY);
+                    if(move.Kind==TacticalMoveKind.Ordinary) {
+                        var ledger=WalkingLedger(s).Spend(cost,WalkingSpeed(s,move.ActorId));
+                        s.ActorMovement=s.ActorMovement.Select(m=>m.ActorId==move.ActorId?new ActorMovementRecord(m.ActorId,m.BaseWalkingSpeed,m.TurnOrdinal,ledger.Spent):m).ToArray();
+                    }
+                    var actor=s.Actors.Single(a=>a.Id==move.ActorId);actor.X=move.ToX;actor.Y=move.ToY;
+                    s.Clubs=s.Clubs.Select(w=>w.HeldBy==actor.Id?new ClubInstance(w.Id,w.ProfileId,w.OwnerId,w.CustodianId,w.HeldBy,actor.X,actor.Y):w).ToArray();
+                    var resources=TacticalActor(s,actor.Id);
+                    if(ActiveStance(s,actor.Id)?.Kind==CombatStance.Mobile)SetTactical(s,new ActorTacticalRecord(actor.Id,resources.LastRegularStart,resources.ReactionAvailable,5,resources.PressConsumed,resources.DisengageTurn));
+                    move=move.Progress(index,TacticalMoveStatus.Completed,s.Revision+1,cost);SetMove(s,move);QueuePress(s,move);continue;
+                }
+                var offer=CurrentPressOffer(s);if(offer==null)return;
+                if(PressLegal(s,offer))return;
+                SetOffer(s,offer.Resolve(PressOfferStatus.Invalidated,s.Revision+1));
+            }
+        }
+        private string ResolveTacticalChoice(Snapshot s,Command c)
+        {
+            var move=PendingMove(s);var r=c.Combat;
+            if(move!=null) {
+                if(c.Kind!=CommandKind.RespondOpportunityAttack)return "OpportunityChoicePending";
+                if(r==null||r.TurnId!=s.Encounter.CurrentTurnId||c.Target!=move.Id||c.X!=0||c.Y!=0||r.Stance!=0)return "InvalidOpportunityResponse";
+                if(move.ResponseIndex>=move.Reactors.Count||c.Actor!=move.Reactors[move.ResponseIndex])return "WrongReactionController";
+                if(!EligibleOpportunity(s,c.Actor,move))return "OpportunityNoLongerEligible";
+                if(!r.Choice&&(r.WeaponId!=""||r.Knockout!=AttackKnockoutMode.OrdinaryOutcome||r.PressInstruction!=PressHitInstruction.ArmOrReplace))return "InvalidOpportunityResponse";
+                SetMove(s,move.Progress(move.ResponseIndex+1,move.Status));
+                if(r.Choice) {
+                    var actor=TacticalActor(s,c.Actor);var reaction=new ReactionClock(actor.ReactionAvailable,lastRegularStart:actor.LastRegularStart).Spend();
+                    SetTactical(s,new ActorTacticalRecord(actor.ActorId,actor.LastRegularStart,reaction.Available,actor.MobileFeet,actor.PressConsumed,actor.DisengageTurn));
+                    bool unarmed=r.WeaponId==CombatProfileIds.OrdinaryUnarmed;
+                    var attack=new Command(c.Id,c.Actor,c.ExpectedRevision,unarmed?CommandKind.AttackUnarmed:CommandKind.AttackClub,move.ActorId,
+                        combat:new CombatRequest(r.TurnId,unarmed?"":r.WeaponId,knockout:r.Knockout,pressInstruction:r.PressInstruction));
+                    string error=Attack(s,attack,true);if(error!=null)return error;
+                }
+                AdvanceTacticalFlow(s);return null;
+            }
+            var offer=CurrentPressOffer(s);
+            if(c.Kind!=CommandKind.RespondPress)return "PressChoicePending";
+            if(offer==null||r==null||c.Actor!=offer.ActorId||c.Target!=offer.Id||r.TurnId!=s.Encounter.CurrentTurnId||r.WeaponId!=""||r.Stance!=0
+                ||r.Knockout!=AttackKnockoutMode.OrdinaryOutcome||r.PressInstruction!=PressHitInstruction.ArmOrReplace||c.X!=0||c.Y!=0)return "InvalidPressResponse";
+            if(!PressLegal(s,offer))return "PressNoLongerEligible";
+            SetOffer(s,offer.Resolve(r.Choice?PressOfferStatus.Accepted:PressOfferStatus.Declined,s.Revision+1));
+            if(r.Choice) {
+                var actor=TacticalActor(s,c.Actor);SetTactical(s,new ActorTacticalRecord(actor.ActorId,actor.LastRegularStart,actor.ReactionAvailable,actor.MobileFeet,true,actor.DisengageTurn));
+                var departed=s.TacticalMoves.Single(m=>m.Id==offer.MoveId);BeginStep(s,c.Actor,departed.FromX,departed.FromY,TacticalMoveKind.Press,offer.Id);
+            }
+            AdvanceTacticalFlow(s);return null;
+        }
+    }
+}
+#endif

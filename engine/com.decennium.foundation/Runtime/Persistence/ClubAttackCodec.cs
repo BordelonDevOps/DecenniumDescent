@@ -26,6 +26,7 @@ namespace Decennium.Foundation
                 w.Write(r.RandomBefore);w.Write(r.RandomAfter);w.Write(r.Words);var d=a.Damage;
                 w.Write(d.Dice.Count);foreach(int n in d.Dice)w.Write(n);w.Write(d.Total);w.Write(d.DiceWords);w.Write(d.EffectsSeed);w.Write(d.FinalRandom);
                 w.Write(d.EffectsWords);w.Write(d.WoundNatural);w.Write(d.InjuryD6);w.Write(d.StableD4);
+                if(s.SchemaVersion>=Snapshot.TacticalMovementSchema){w.Write(a.Opportunity);w.Write((int)a.PressInstruction);}
             }
             w.Write(s.Presses.Length);
             foreach(var p in s.Presses.OrderBy(x=>x.ActorId,StringComparer.Ordinal)) {
@@ -45,7 +46,9 @@ namespace Decennium.Foundation
                 var attack=new CombatAttackRoll(r.ReadInt32(),r.ReadInt32(),r.ReadInt32(),r.ReadInt32(),r.ReadInt32(),Bool(r),Bool(r),r.ReadUInt32(),r.ReadUInt32(),r.ReadInt64());
                 var dice=new int[Count(r,2)];for(int j=0;j<dice.Length;j++)dice[j]=r.ReadInt32();
                 var damage=new CombatDamageRoll(dice,r.ReadInt64(),r.ReadInt64(),r.ReadUInt32(),r.ReadUInt32(),r.ReadInt64(),r.ReadInt32(),r.ReadInt32(),r.ReadInt32());
-                s.MeleeAttacks[i]=new MeleeAttackRecord(id,revision,resolved,ordinal,actor,target,weapon,at,instruction,attack,damage);
+                bool opportunity=s.SchemaVersion>=Snapshot.TacticalMovementSchema&&Bool(r);
+                var press=s.SchemaVersion>=Snapshot.TacticalMovementSchema?(PressHitInstruction)r.ReadInt32():PressHitInstruction.ArmOrReplace;
+                s.MeleeAttacks[i]=new MeleeAttackRecord(id,revision,resolved,ordinal,actor,target,weapon,at,instruction,attack,damage,opportunity,press);
             }
             s.Presses=new PressRecord[Count(r,64)];
             for(int i=0;i<s.Presses.Length;i++)s.Presses[i]=new PressRecord(Text(r),Text(r),r.ReadInt64(),Time(r));
