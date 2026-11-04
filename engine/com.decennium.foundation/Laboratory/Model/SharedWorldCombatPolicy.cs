@@ -26,7 +26,7 @@ namespace Decennium.Foundation.Laboratory
         {
             foreach(var interval in s.WorldIntervals) {
                 int start=checked((int)interval.LastStart);var before=s.TacticalActors.Single(x=>x.ActorId==interval.ActorId);
-                if(before.LastRegularStart!=start){s.TacticalActors=s.TacticalActors.Select(x=>x.ActorId==interval.ActorId?new ActorTacticalRecord(x.ActorId,start,interval.ReactionAvailable):x).ToArray();CharacterAdvancementRules.RegularStart(s,interval.ActorId,start);}
+                if(before.LastRegularStart!=start){s.TacticalActors=s.TacticalActors.Select(x=>x.ActorId==interval.ActorId?new ActorTacticalRecord(x.ActorId,start,interval.ReactionAvailable):x).ToArray();CharacterAdvancementRules.RegularStart(s,interval.ActorId,start);TestOnlySharedWorldPolicy.OverwatchRegularStart(s,interval.ActorId,start,s.Revision+1);}
                 s.ActorMovement=s.ActorMovement.Select(x=>x.ActorId==interval.ActorId?new ActorMovementRecord(x.ActorId,x.BaseWalkingSpeed,start):x).ToArray();
             }
         }
@@ -92,6 +92,10 @@ namespace Decennium.Foundation.Laboratory
             if(c.Kind==CommandKind.ActivateTacticalReposition) {
                 if(PendingCalendarChoice(s))return "TacticalChoicePending";
                 return CharacterAdvancementRules.ActivateTacticalReposition(s,c);
+            }
+            if(c.Kind==CommandKind.DesignateOverwatch) {
+                if(PendingCalendarChoice(s))return "TacticalChoicePending";
+                return ResolveOverwatchDesignation(s,c);
             }
             if(c.Kind==CommandKind.CurePeriodicRider)return ResolvePeriodicMedicine(s,c);
             if((c.Kind==CommandKind.HandleInventory||c.Kind==CommandKind.HandleVessel)&&s.SchemaVersion>=Snapshot.SupplyCacheSchema) {

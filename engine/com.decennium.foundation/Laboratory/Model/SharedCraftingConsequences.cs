@@ -72,7 +72,8 @@ namespace Decennium.Foundation.Laboratory
     public sealed partial class TestOnlySharedWorldPolicy
     {
         private readonly SharedCraftingFixture crafting;
-        private int SelectedSchema => overwatchFoundation != null ? Snapshot.SharedBonusActionSchema
+        private int SelectedSchema => overwatchRuntime != null ? Snapshot.OverwatchSchema
+            : overwatchFoundation != null ? Snapshot.SharedBonusActionSchema
             : periodicRider != null ? Snapshot.PeriodicRiderSchema
             : rangedCombat != null ? Snapshot.RepeatingCrossbowSchema
             : characterAdvancement != null ? Snapshot.CharacterAdvancementSchema

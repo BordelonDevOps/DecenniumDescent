@@ -17,7 +17,7 @@ namespace Decennium.Foundation
         HandlePortableEquipment, EquipPortableItem, RemovePortableItem, OpenPortableContainer, ClosePortableContainer,
         AwardCharacterMilestone, AdvanceCharacterLevel, ActivateTacticalReposition, TacticalRepositionStep,
         AttackRepeatingCrossbow, ReloadRepeatingCrossbow, DispatchFixturePeriodicRider, CurePeriodicRider,
-        SetPeriodicRiderSuppression, SetPeriodicFamilyImmunity, ApplyFixtureMagicalHealing }
+        SetPeriodicRiderSuppression, SetPeriodicFamilyImmunity, ApplyFixtureMagicalHealing, DesignateOverwatch }
     public enum Outcome { Rejected, Committed, Duplicate }
 
     // DTOs are detached copies. No caller ever receives the owned simulation state.
@@ -66,6 +66,7 @@ namespace Decennium.Foundation
         public const int RepeatingCrossbowSchema = 22;
         public const int PeriodicRiderSchema = 23;
         public const int SharedBonusActionSchema = 24;
+        public const int OverwatchSchema = 25;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
         // Technical bound keeps the entire snapshot within the existing 1 MiB save limit,
@@ -144,6 +145,8 @@ namespace Decennium.Foundation
         public PeriodicFamilyImmunityRecord[] PeriodicImmunities = Array.Empty<PeriodicFamilyImmunityRecord>();
         public SkillTrainingRecord[] SkillTraining = Array.Empty<SkillTrainingRecord>();
         public ActorBonusActionRecord[] BonusActions = Array.Empty<ActorBonusActionRecord>();
+        public OverwatchIntervalRecord[] OverwatchIntervals = Array.Empty<OverwatchIntervalRecord>();
+        public OverwatchDesignationRecord[] OverwatchDesignations = Array.Empty<OverwatchDesignationRecord>();
         public Snapshot Copy() => new Snapshot {
             DyingCadences = DyingCadences.ToArray(), Structures = Structures.ToArray(), CraftingIncidents = CraftingIncidents.ToArray(),
             WorldLifeMarkers = WorldLifeMarkers.ToArray(),
@@ -158,6 +161,7 @@ namespace Decennium.Foundation
             PeriodicRiders = PeriodicRiders.ToArray(), PeriodicRiderEvents = PeriodicRiderEvents.ToArray(),
             PeriodicImmunities = PeriodicImmunities.ToArray(), SkillTraining = SkillTraining.ToArray(),
             BonusActions = BonusActions.ToArray(),
+            OverwatchIntervals = OverwatchIntervals.ToArray(), OverwatchDesignations = OverwatchDesignations.ToArray(),
             FormulaWork = FormulaWork.ToArray(),
             WorldSchedule = WorldSchedule, WorldIntervals = WorldIntervals.ToArray(), WorldTraversals = WorldTraversals.ToArray(),
             Conditions = Conditions.ToArray(), ClosedEncounters = ClosedEncounters.ToArray(),
@@ -270,7 +274,7 @@ namespace Decennium.Foundation
             if (s == null || !ValidId(s.ContentFingerprint) || s.Revision < 0 || s.Clock < 0 || s.RandomState == 0)
                 throw new ArgumentException("Invalid snapshot header.");
             if (s.SchemaVersion != Foundation.Snapshot.Schema && s.SchemaVersion != Foundation.Snapshot.WorkSchema
-                && s.SchemaVersion != Foundation.Snapshot.CropSchema && s.SchemaVersion != Foundation.Snapshot.InventorySchema && s.SchemaVersion != Foundation.Snapshot.VesselSchema && s.SchemaVersion != Foundation.Snapshot.MovableVesselSchema && s.SchemaVersion != Foundation.Snapshot.EncounterSchema && s.SchemaVersion != Foundation.Snapshot.ActorLifeSchema && s.SchemaVersion != Foundation.Snapshot.ClubAttackSchema && s.SchemaVersion != Foundation.Snapshot.PostureSchema && s.SchemaVersion != Foundation.Snapshot.TacticalMovementSchema && s.SchemaVersion != Foundation.Snapshot.ConditionSchema && s.SchemaVersion != Foundation.Snapshot.SharedWorldSchema && s.SchemaVersion != Foundation.Snapshot.CalendarCombatSchema && s.SchemaVersion != Foundation.Snapshot.FormulaWorkSchema && s.SchemaVersion != Foundation.Snapshot.CraftingConsequenceSchema && s.SchemaVersion != Foundation.Snapshot.RepairWorkSchema && s.SchemaVersion != Foundation.Snapshot.ManufacturingSchema && s.SchemaVersion != Foundation.Snapshot.SupplyCacheSchema && s.SchemaVersion != Foundation.Snapshot.PortableEquipmentSchema && s.SchemaVersion != Foundation.Snapshot.CharacterAdvancementSchema && s.SchemaVersion != Foundation.Snapshot.RepeatingCrossbowSchema && s.SchemaVersion != Foundation.Snapshot.PeriodicRiderSchema && s.SchemaVersion != Foundation.Snapshot.SharedBonusActionSchema)
+                && s.SchemaVersion != Foundation.Snapshot.CropSchema && s.SchemaVersion != Foundation.Snapshot.InventorySchema && s.SchemaVersion != Foundation.Snapshot.VesselSchema && s.SchemaVersion != Foundation.Snapshot.MovableVesselSchema && s.SchemaVersion != Foundation.Snapshot.EncounterSchema && s.SchemaVersion != Foundation.Snapshot.ActorLifeSchema && s.SchemaVersion != Foundation.Snapshot.ClubAttackSchema && s.SchemaVersion != Foundation.Snapshot.PostureSchema && s.SchemaVersion != Foundation.Snapshot.TacticalMovementSchema && s.SchemaVersion != Foundation.Snapshot.ConditionSchema && s.SchemaVersion != Foundation.Snapshot.SharedWorldSchema && s.SchemaVersion != Foundation.Snapshot.CalendarCombatSchema && s.SchemaVersion != Foundation.Snapshot.FormulaWorkSchema && s.SchemaVersion != Foundation.Snapshot.CraftingConsequenceSchema && s.SchemaVersion != Foundation.Snapshot.RepairWorkSchema && s.SchemaVersion != Foundation.Snapshot.ManufacturingSchema && s.SchemaVersion != Foundation.Snapshot.SupplyCacheSchema && s.SchemaVersion != Foundation.Snapshot.PortableEquipmentSchema && s.SchemaVersion != Foundation.Snapshot.CharacterAdvancementSchema && s.SchemaVersion != Foundation.Snapshot.RepeatingCrossbowSchema && s.SchemaVersion != Foundation.Snapshot.PeriodicRiderSchema && s.SchemaVersion != Foundation.Snapshot.SharedBonusActionSchema && s.SchemaVersion != Foundation.Snapshot.OverwatchSchema)
                 throw new ArgumentException("Unsupported snapshot schema.");
             if (s.SchemaVersion == Foundation.Snapshot.Schema && (s.Work != null || s.RuleClock != default))
                 throw new ArgumentException("Legacy snapshot cannot contain unsaved work or exact time.");
@@ -341,6 +345,7 @@ namespace Decennium.Foundation
             CharacterAdvancementValidation.Validate(s);
             RangedCombatValidation.Validate(s);
             PeriodicRiderValidation.Validate(s);
+            OverwatchValidation.Validate(s);
         }
     }
 

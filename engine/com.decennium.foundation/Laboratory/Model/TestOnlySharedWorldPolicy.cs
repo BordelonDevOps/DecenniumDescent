@@ -117,6 +117,7 @@ namespace Decennium.Foundation.Laboratory
             InitializeRepeatingCrossbow(s);
             InitializePeriodicRider(s);
             InitializeOverwatchFoundation(s);
+            InitializeOverwatchRuntime(s);
             if(contentManifest!=null) {
                 string bindingError=contentManifest.ValidatePortableSnapshot(s);
                 if(bindingError!=null)throw new InvalidOperationException(bindingError);
@@ -400,10 +401,13 @@ namespace Decennium.Foundation.Laboratory
                     if(pack==null||!PortableEquipmentRules.FixtureFitValid(s,pack))return "InvalidPortableKitFixture";
                 }
                 if(overwatchFoundation!=null&&(s.SchemaVersion!=Snapshot.SharedBonusActionSchema
+                    &&s.SchemaVersion!=Snapshot.OverwatchSchema
                     ||s.CharacterFeatureGrants.Count(g=>g.ActorId==TestOnlyPolicy.ActorId&&g.FeatureId==CharacterFeatureIds.Overwatch
                         &&g.Origin==CharacterFeatureGrantOrigin.AutomaticClassFeature)!=1
                     ||s.CharacterFeatureGrants.Any(g=>g.ActorId==TestOnlyPolicy.ActorId&&g.FeatureId==CharacterFeatureIds.Overwatch
                         &&g.Origin==CharacterFeatureGrantOrigin.AutomaticClassFeature&&(g.MilestoneId!=""||g.GrantedRevision!=0))))return "InvalidOverwatchFoundationFixture";
+                if(overwatchRuntime!=null&&(s.SchemaVersion!=Snapshot.OverwatchSchema||s.OverwatchIntervals.Length<1
+                    ||s.OverwatchIntervals.Any(x=>x.ActorId!=TestOnlyPolicy.ActorId)))return "InvalidOverwatchDesignationFixture";
                 if(periodicRider!=null) {
                     if(s.SchemaVersion<Snapshot.PeriodicRiderSchema||s.PeriodicRiders.Any(x=>x.ProfileId!=PeriodicRiderFixture.ProfileId
                         ||x.FamilyId!=PeriodicRiderFixture.FamilyId||x.SourceId!=PeriodicRiderFixture.SourceId||x.DamageType!="piercing"||x.RemainingTicks>1)

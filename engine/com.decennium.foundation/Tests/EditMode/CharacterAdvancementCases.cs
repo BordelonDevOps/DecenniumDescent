@@ -174,6 +174,106 @@ namespace Decennium.Foundation.Tests
                 var bytes=Bytes(s);Require(bytes.SequenceEqual(Bytes(new Simulation(p,new SnapshotCodec().Decode(bytes),ExecutionProfile.Laboratory))),
                     "Schema24 shared action budget did not survive command replay.");
             });
+            cases.Add("overwatch_schema25_designation_spends_shared_bonus_action_and_persists_zone",()=>{
+                var periodic=new PeriodicRiderFixture(new[]{new PeriodicRiderApplicationFact("fixture.bleed.event","fixture.bleed",TestOnlyPolicy.ActorId,AdditionalTacticalActor.Id,10)});
+                var p=new TestOnlySharedWorldPolicy(new OverwatchDesignationFixture(),new OverwatchFoundationFixture(),periodic,
+                    new RepeatingCrossbowFixture(),new CharacterAdvancementFixture(),new SharedCombatFixture());
+                var s=World(p);Require(s.Capture().SchemaVersion==Snapshot.OverwatchSchema&&s.Capture().OverwatchIntervals.Single().ShotStatus==OverwatchShotStatus.Available,
+                    "Schema25 did not initialize the interval-owned Overwatch entitlement.");
+                WorldCommit(s,new Command("schema25.begin.combat",TestOnlyPolicy.ActorId,s.Capture().Revision,CommandKind.BeginFixedEncounter));
+                WorldCommit(s,Tac(s,CommandKind.SelectCombatStance,stance:(int)CombatStance.Aggressive));
+                var designation=new Command("schema25.designate",TestOnlyPolicy.ActorId,s.Capture().Revision,CommandKind.DesignateOverwatch,
+                    s.Capture().Encounter.CurrentTurnId,x:1,y:-1);
+                WorldCommit(s,designation);var v=s.Capture();var zone=v.OverwatchDesignations.Single();
+                Require(zone.Status==OverwatchDesignationStatus.Active&&zone.Contains(3,0)&&!zone.Contains(4,0)
+                    &&v.OverwatchIntervals.Single().ShotStatus==OverwatchShotStatus.Available
+                    &&!v.BonusActions.Single(x=>x.ActorId==TestOnlyPolicy.ActorId).Available,
+                    "Designation did not persist its fixed 3-by-3 zone, preserve the interval shot, or spend the common Bonus Action.");
+                var codec=new SnapshotCodec();var bytes=codec.Encode(v);var restored=codec.Decode(bytes);
+                Require(bytes.SequenceEqual(codec.Encode(restored))&&zone.SameAs(restored.OverwatchDesignations.Single()),
+                    "Schema25 designation did not survive canonical save encoding.");
+                var second=new Command("schema25.designate.again",TestOnlyPolicy.ActorId,s.Capture().Revision,CommandKind.DesignateOverwatch,
+                    s.Capture().Encounter.CurrentTurnId,x:1,y:-1);
+                RejectUnchanged(s,host,second,"BonusActionUnavailable");
+                Require(s.Capture().OverwatchDesignations.Single().Status==OverwatchDesignationStatus.Active,
+                    "A rejected redeployment removed the previously active zone.");
+            });
+            cases.Add("overwatch_schema25_redeployment_replaces_zone_and_preserves_each_interval_shot_status",()=>{
+                var periodic=new PeriodicRiderFixture(new[]{new PeriodicRiderApplicationFact("fixture.bleed.event","fixture.bleed",TestOnlyPolicy.ActorId,AdditionalTacticalActor.Id,10)});
+                var p=new TestOnlySharedWorldPolicy(new OverwatchDesignationFixture(),new OverwatchFoundationFixture(),periodic,
+                    new RepeatingCrossbowFixture(),new CharacterAdvancementFixture(),new SharedCombatFixture());
+                var designated=World(p);WorldCommit(designated,new Command("schema25.replace.begin",TestOnlyPolicy.ActorId,designated.Capture().Revision,CommandKind.BeginFixedEncounter));
+                WorldCommit(designated,Tac(designated,CommandKind.SelectCombatStance,stance:(int)CombatStance.Aggressive));
+                WorldCommit(designated,new Command("schema25.replace.first",TestOnlyPolicy.ActorId,designated.Capture().Revision,CommandKind.DesignateOverwatch,
+                    designated.Capture().Encounter.CurrentTurnId,x:1,y:-1));
+                var baseState=designated.Capture();
+                foreach(var status in new[]{OverwatchShotStatus.Available,OverwatchShotStatus.Spent,OverwatchShotStatus.Forfeited}) {
+                    var seeded=baseState.Copy();
+                    seeded.OverwatchIntervals=seeded.OverwatchIntervals.Select(x=>x.ActorId==TestOnlyPolicy.ActorId?x.WithStatus(status):x).ToArray();
+                    seeded.BonusActions=seeded.BonusActions.Select(x=>x.ActorId==TestOnlyPolicy.ActorId
+                        ?new ActorBonusActionRecord(x.ActorId,x.LastRegularStart,true):x).ToArray();
+                    seeded.CharacterFeatureRuntime=seeded.CharacterFeatureRuntime.Select(x=>x.ActorId==TestOnlyPolicy.ActorId
+                        ?x.WithBonusActionAvailable(true):x).ToArray();
+                    // The current Base fixture has one Bonus Action per interval, so its normal
+                    // command sequence cannot redeploy before the zone expires. Exercise the
+                    // agreed replacement transition directly with a structurally valid available
+                    // ledger; this does not add a second Bonus Action grant to the fixture.
+                    var replacement=new Command("schema25.replace."+(int)status,TestOnlyPolicy.ActorId,seeded.Revision,
+                        CommandKind.DesignateOverwatch,seeded.Encounter.CurrentTurnId,x:1,y:-1);
+                    Require(p.Resolve(seeded,replacement)==null,"A valid available Bonus Action did not permit replacement.");
+                    var after=seeded;var old=after.OverwatchDesignations.Single(x=>x.CreatedRevision==baseState.Revision);
+                    var current=after.OverwatchDesignations.Single(x=>x.Status==OverwatchDesignationStatus.Active);
+                    Require(old.Status==OverwatchDesignationStatus.Replaced&&current.Id!=old.Id&&current.LastRegularStart==old.LastRegularStart
+                        &&after.OverwatchIntervals.Single(x=>x.ActorId==TestOnlyPolicy.ActorId).ShotStatus==status
+                        &&!after.BonusActions.Single(x=>x.ActorId==TestOnlyPolicy.ActorId).Available,
+                        "Redeployment failed to replace only the zone, preserve its interval endpoint/shot status, and spend the available shared Bonus Action.");
+                }
+            });
+            cases.Add("overwatch_schema25_interval_history_compacts_after_sparse_long_world_advance",()=>{
+                var periodic=new PeriodicRiderFixture(new[]{new PeriodicRiderApplicationFact("fixture.bleed.event","fixture.bleed",TestOnlyPolicy.ActorId,AdditionalTacticalActor.Id,10)});
+                var p=new TestOnlySharedWorldPolicy(new OverwatchDesignationFixture(),new OverwatchFoundationFixture(),periodic,
+                    new RepeatingCrossbowFixture(),new CharacterAdvancementFixture(),new SharedCombatFixture());
+                var s=World(p);WorldAdvance(s,1000);var v=s.Capture();
+                Require(v.OverwatchIntervals.Length<=2&&v.OverwatchIntervals.Where(x=>x.ActorId==TestOnlyPolicy.ActorId)
+                    .OrderByDescending(x=>x.LastRegularStart).First().LastRegularStart>64,
+                    "A large sparse calendar advance retained unbounded Overwatch interval history or failed to reach the new interval.");
+            });
+            cases.Add("overwatch_schema25_rejects_unknown_placement_and_invisible_zone_before_payment",()=>{
+                var periodic=new PeriodicRiderFixture(new[]{new PeriodicRiderApplicationFact("fixture.bleed.event", "fixture.bleed",TestOnlyPolicy.ActorId,AdditionalTacticalActor.Id,10)});
+                TestOnlySharedWorldPolicy Policy(OverwatchDesignationFixture fixture)=>new TestOnlySharedWorldPolicy(fixture,new OverwatchFoundationFixture(),periodic,
+                    new RepeatingCrossbowFixture(),new CharacterAdvancementFixture(),new SharedCombatFixture());
+                var s=World(Policy(new OverwatchDesignationFixture()));
+                WorldCommit(s,new Command("schema25.invalid.begin",TestOnlyPolicy.ActorId,s.Capture().Revision,CommandKind.BeginFixedEncounter));
+                WorldCommit(s,Tac(s,CommandKind.SelectCombatStance,stance:(int)CombatStance.Aggressive));
+                RejectUnchanged(s,host,new Command("schema25.unknown.zone",TestOnlyPolicy.ActorId,s.Capture().Revision,CommandKind.DesignateOverwatch,
+                    s.Capture().Encounter.CurrentTurnId,x:2,y:-1),"UnsupportedOverwatchPlacement");
+                var invisible=World(Policy(new OverwatchDesignationFixture(1,-1,false)));
+                WorldCommit(invisible,new Command("schema25.invisible.begin",TestOnlyPolicy.ActorId,invisible.Capture().Revision,CommandKind.BeginFixedEncounter));
+                WorldCommit(invisible,Tac(invisible,CommandKind.SelectCombatStance,stance:(int)CombatStance.Aggressive));
+                RejectUnchanged(invisible,host,new Command("schema25.invisible.zone",TestOnlyPolicy.ActorId,invisible.Capture().Revision,CommandKind.DesignateOverwatch,
+                    invisible.Capture().Encounter.CurrentTurnId,x:1,y:-1),"OverwatchZoneNotVisible");
+                Require(invisible.Capture().OverwatchDesignations.Length==0&&invisible.Capture().BonusActions.Single(x=>x.ActorId==TestOnlyPolicy.ActorId).Available,
+                    "An invisible-zone rejection mutated the designation or Bonus Action ledger.");
+            });
+            cases.Add("overwatch_schema25_zone_expires_and_interval_entitlement_refreshes_at_next_soldier_start",()=>{
+                var periodic=new PeriodicRiderFixture(new[]{new PeriodicRiderApplicationFact("fixture.bleed.event","fixture.bleed",TestOnlyPolicy.ActorId,AdditionalTacticalActor.Id,10)});
+                var p=new TestOnlySharedWorldPolicy(new OverwatchDesignationFixture(),new OverwatchFoundationFixture(),periodic,
+                    new RepeatingCrossbowFixture(),new CharacterAdvancementFixture(),new SharedCombatFixture());
+                var s=World(p);WorldCommit(s,new Command("schema25.expire.begin",TestOnlyPolicy.ActorId,s.Capture().Revision,CommandKind.BeginFixedEncounter));
+                WorldCommit(s,Tac(s,CommandKind.SelectCombatStance,stance:(int)CombatStance.Aggressive));
+                WorldCommit(s,new Command("schema25.expire.designate",TestOnlyPolicy.ActorId,s.Capture().Revision,CommandKind.DesignateOverwatch,
+                    s.Capture().Encounter.CurrentTurnId,x:1,y:-1));
+                WorldCommit(s,Tac(s,CommandKind.EndRegularTurn));
+                WorldCommit(s,Tac(s,CommandKind.SelectCombatStance,actor:AdditionalTacticalActor.Id,stance:(int)CombatStance.Aggressive));
+                WorldCommit(s,Tac(s,CommandKind.EndRegularTurn,actor:AdditionalTacticalActor.Id));
+                var v=s.Capture();var interval=v.OverwatchIntervals.Single(x=>x.ActorId==TestOnlyPolicy.ActorId&&x.LastRegularStart==2);
+                Require(interval.ShotStatus==OverwatchShotStatus.Available&&v.OverwatchDesignations.Single().Status==OverwatchDesignationStatus.Expired
+                    &&v.OverwatchDesignations.Single().EndedRevision==v.Revision
+                    &&v.BonusActions.Single(x=>x.ActorId==TestOnlyPolicy.ActorId).Available,
+                    "The previous zone survived the next regular start or the new interval did not refresh its shot and Bonus Action.");
+                var bytes=Bytes(s);Require(bytes.SequenceEqual(Bytes(new Simulation(p,new SnapshotCodec().Decode(bytes),ExecutionProfile.Laboratory))),
+                    "Schema25 interval refresh did not survive command-history replay.");
+            });
         }
     }
 }

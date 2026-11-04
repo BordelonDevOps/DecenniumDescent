@@ -153,7 +153,7 @@ namespace Decennium.Foundation.Laboratory
         }
         public static string Resolve(Snapshot s,Command c)
         {
-            if(s.SchemaVersion!=Snapshot.CharacterAdvancementSchema&&s.SchemaVersion!=Snapshot.SharedBonusActionSchema)return "CharacterAdvancementUnsupported";
+            if(s.SchemaVersion!=Snapshot.CharacterAdvancementSchema&&s.SchemaVersion<Snapshot.SharedBonusActionSchema)return "CharacterAdvancementUnsupported";
             if(!EmptyCommand(c))return "InvalidAdvancementCommand";
             var character=s.Characters.SingleOrDefault(x=>x.ActorId==c.Actor);
             if(character==null)return "CharacterNotFound";
@@ -229,7 +229,7 @@ namespace Decennium.Foundation.Laboratory
         private void InitializeOverwatchFoundation(Snapshot s)
         {
             if(overwatchFoundation==null)return;
-            if(s.SchemaVersion!=Snapshot.SharedBonusActionSchema||s.WorldSchedule==null||characterAdvancement==null
+            if(s.SchemaVersion<Snapshot.SharedBonusActionSchema||s.WorldSchedule==null||characterAdvancement==null
                 ||s.Characters.Single(x=>x.ActorId==TestOnlyPolicy.ActorId).Levels.Count!=1)
                 throw new ArgumentException("Overwatch foundation requires the source-scoped Soldier 1 schema24 fixture.");
             s.BonusActions=s.WorldIntervals.Select(x=>new ActorBonusActionRecord(x.ActorId,checked((int)x.LastStart))).ToArray();

@@ -54,7 +54,7 @@ namespace Decennium.Foundation.Laboratory
         private void InitializeRepeatingCrossbow(Snapshot s)
         {
             if(rangedCombat==null)return;
-            if(s.SchemaVersion!=Snapshot.RepeatingCrossbowSchema||s.Actors.All(a=>a.Id!=rangedCombat.ShooterId)
+            if(s.SchemaVersion<Snapshot.RepeatingCrossbowSchema||s.Actors.All(a=>a.Id!=rangedCombat.ShooterId)
                 ||s.Actors.All(a=>a.Id!=rangedCombat.TargetId)||s.Characters.Single(c=>c.ActorId==rangedCombat.ShooterId).Abilities[1]!=10)
                 throw new ArgumentException("The explicit crossbow fixture does not match the selected actor roster.");
             var shooter=s.Actors.Single(a=>a.Id==rangedCombat.ShooterId);
