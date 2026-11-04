@@ -31,6 +31,7 @@ namespace Decennium.Foundation.Laboratory
         }
         private static void PauseParticipantWork(Snapshot s,string actor)
         {
+            foreach(var job in s.FormulaWork.Where(x=>x.WorkerId==actor&&x.Status==FormulaWorkStatus.Working).ToArray())PauseFormula(s,job);
             foreach(var crop in s.Crops.Where(x=>x.Tasks.Any(t=>t.WorkerId==actor&&t.Status==CropWorkStatus.Working)).ToArray())CampGreens.Pause(s,crop.Id,actor);
             foreach(var fill in s.WaterFills.Where(x=>x.WorkerId==actor&&x.Status==WaterFillStatus.Working).ToArray())WaterFilling.Pause(s,fill);
             foreach(var intake in s.Intakes.Where(x=>x.ActorId==actor&&x.Status==IntakeStatus.Working).ToArray())OrdinaryInventory.Interrupt(s,intake,IntakeStatus.CombatInterrupted);

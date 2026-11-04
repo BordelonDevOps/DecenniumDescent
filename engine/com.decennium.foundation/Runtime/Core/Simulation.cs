@@ -9,7 +9,8 @@ namespace Decennium.Foundation
         PlantCrop, TendCrop, HarvestCrop, PauseCrop, SetCropConditions,
         PortionInventory, HandleInventory, StartIntake, InterruptIntake, EnterInventoryCombat, StartWaterFill, PauseWaterFill, ResumeWaterFill, CancelWaterFill, HandleVessel, BeginFixedEncounter, EndRegularTurn, EncounterDash, SelectCombatStance, AttackClub, ResolveKnockout, StandFromProne, DropProne,
         AttackUnarmed, TacticalStep, RespondOpportunityAttack, RespondPress, Disengage, DispatchConditionEvent,
-        BeginWorldStep, SuspendWorldStep, ResumeWorldStep, EndFixedEncounter }
+        BeginWorldStep, SuspendWorldStep, ResumeWorldStep, EndFixedEncounter,
+        StartFormulaResearch, StartFormulaCopy, PauseFormulaWork, ResumeFormulaWork, CancelFormulaWork }
     public enum Outcome { Rejected, Committed, Duplicate }
 
     // DTOs are detached copies. No caller ever receives the owned simulation state.
@@ -48,6 +49,7 @@ namespace Decennium.Foundation
         public const int ConditionSchema = 12;
         public const int SharedWorldSchema = 13;
         public const int CalendarCombatSchema = 14;
+        public const int FormulaWorkSchema = 15;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
         // Technical bound keeps the entire snapshot within the existing 1 MiB save limit,
@@ -95,8 +97,10 @@ namespace Decennium.Foundation
         public WorldScheduleRecord WorldSchedule;
         public WorldIntervalRecord[] WorldIntervals = Array.Empty<WorldIntervalRecord>();
         public WorldTraversalRecord[] WorldTraversals = Array.Empty<WorldTraversalRecord>();
+        public FormulaWorkRecord[] FormulaWork = Array.Empty<FormulaWorkRecord>();
         public EncounterDashRecord[] EncounterDashes = Array.Empty<EncounterDashRecord>();
         public Snapshot Copy() => new Snapshot {
+            FormulaWork = FormulaWork.ToArray(),
             WorldSchedule = WorldSchedule, WorldIntervals = WorldIntervals.ToArray(), WorldTraversals = WorldTraversals.ToArray(),
             Conditions = Conditions.ToArray(), ClosedEncounters = ClosedEncounters.ToArray(),
             TacticalActors = TacticalActors.ToArray(), TacticalMoves = TacticalMoves.ToArray(), PressOffers = PressOffers.ToArray(),
@@ -196,7 +200,7 @@ namespace Decennium.Foundation
             if (s == null || !ValidId(s.ContentFingerprint) || s.Revision < 0 || s.Clock < 0 || s.RandomState == 0)
                 throw new ArgumentException("Invalid snapshot header.");
             if (s.SchemaVersion != Foundation.Snapshot.Schema && s.SchemaVersion != Foundation.Snapshot.WorkSchema
-                && s.SchemaVersion != Foundation.Snapshot.CropSchema && s.SchemaVersion != Foundation.Snapshot.InventorySchema && s.SchemaVersion != Foundation.Snapshot.VesselSchema && s.SchemaVersion != Foundation.Snapshot.MovableVesselSchema && s.SchemaVersion != Foundation.Snapshot.EncounterSchema && s.SchemaVersion != Foundation.Snapshot.ActorLifeSchema && s.SchemaVersion != Foundation.Snapshot.ClubAttackSchema && s.SchemaVersion != Foundation.Snapshot.PostureSchema && s.SchemaVersion != Foundation.Snapshot.TacticalMovementSchema && s.SchemaVersion != Foundation.Snapshot.ConditionSchema && s.SchemaVersion != Foundation.Snapshot.SharedWorldSchema && s.SchemaVersion != Foundation.Snapshot.CalendarCombatSchema)
+                && s.SchemaVersion != Foundation.Snapshot.CropSchema && s.SchemaVersion != Foundation.Snapshot.InventorySchema && s.SchemaVersion != Foundation.Snapshot.VesselSchema && s.SchemaVersion != Foundation.Snapshot.MovableVesselSchema && s.SchemaVersion != Foundation.Snapshot.EncounterSchema && s.SchemaVersion != Foundation.Snapshot.ActorLifeSchema && s.SchemaVersion != Foundation.Snapshot.ClubAttackSchema && s.SchemaVersion != Foundation.Snapshot.PostureSchema && s.SchemaVersion != Foundation.Snapshot.TacticalMovementSchema && s.SchemaVersion != Foundation.Snapshot.ConditionSchema && s.SchemaVersion != Foundation.Snapshot.SharedWorldSchema && s.SchemaVersion != Foundation.Snapshot.CalendarCombatSchema && s.SchemaVersion != Foundation.Snapshot.FormulaWorkSchema)
                 throw new ArgumentException("Unsupported snapshot schema.");
             if (s.SchemaVersion == Foundation.Snapshot.Schema && (s.Work != null || s.RuleClock != default))
                 throw new ArgumentException("Legacy snapshot cannot contain unsaved work or exact time.");
@@ -258,6 +262,7 @@ namespace Decennium.Foundation
             TacticalMovementValidation.Validate(s);
             ActorConditionValidation.Validate(s);
             WorldScheduleValidation.Validate(s);
+            FormulaWorkValidation.Validate(s);
         }
     }
 
@@ -325,6 +330,13 @@ namespace Decennium.Foundation
                         && !authority.MayUseInventory(state.InventoryLots.First(l => l.LotId == x.LotId).OwnerId)))) return Reject("InventoryNotAuthorized");
                 if (command.Inventory != null && command.Inventory.Handling == HandlingKind.Handover
                     && !authority.ConsentsToHandover(command.Inventory.Destination)) return Reject("RecipientNotWilling");
+            }
+            // The admitted copying command uses its actor-owned writing allotment. Resume also
+            // rechecks that owner's current grant before duplicate handling or deferred spending.
+            if (command.Kind == CommandKind.StartFormulaCopy && !authority.MayUseInventory(command.Actor)) return Reject("InventoryNotAuthorized");
+            if (command.Kind == CommandKind.ResumeFormulaWork) {
+                var job = state.FormulaWork.FirstOrDefault(x => x.Id == command.Target && x.Kind == FormulaWorkKind.Copy);
+                if (job != null && !authority.MayUseInventory(job.WorkerId)) return Reject("InventoryNotAuthorized");
             }
             if(command.Kind==CommandKind.AttackClub||command.Kind==CommandKind.RespondOpportunityAttack&&command.Combat.Choice) {
                 var club=state.Clubs.FirstOrDefault(w=>w.Id==command.Combat.WeaponId);

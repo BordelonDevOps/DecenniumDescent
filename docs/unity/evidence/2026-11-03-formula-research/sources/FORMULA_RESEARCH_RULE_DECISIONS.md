@@ -1,0 +1,37 @@
+# Existing-formula research and copying
+
+Date: 2026-11-03 owner session; implementation receipts extend into 2026-11-04 UTC.
+Status: provisional knowledge-only procedure under the owner's Codex/GPT consensus delegation. C# first, no release promotion.
+
+## Source and supplied project
+
+`CRAFTING_HARVEST_PLAYTEST.md`, “Salvage, research and sale,” supplies existing-formula research: sufficient legitimate evidence, `H=max(8,minimumResearchHours)` active hours, the trade ability and applicable proficiency against the exact recipe DC, usable transcription on success and notes on failure. Manufacturing ingredients are not automatically research inputs. A fresh attempt requires new qualifying evidence or eight additional hours using a concretely different method. Copying legible legitimately accessible text takes one hour and1sp of actual writing supplies, no check and no trade XP.
+
+`CORE_RESOLUTION_PLAYTEST.md`, Rolls, explicitly applies task degrees and natural shifts before collapsing a success/failure-only task into its binary result. Research is not an ordinary saving throw or the six-band manufacturing quality table. Poisoned affects its actual ability check. No product effect, quality, mishap, manufacturing XP or trade training grant follows from research or copying.
+
+The selected public knowledge project is canonical V4 `/recipes/3`, `recipe-4`: Alchemy5, Intelligence, DC8, `minimumResearchHours=0` which the framework raises to8hours. The canonical V4 file SHA-256 is `32b2bf00c28584ad259c343bc5b961126d25078c094444c05bf3caf0c9edda5e`. Its identity and numerical fields are bound; its product effect is not executed. The framework receipt's historical zero-reviewed-effects count does not override the later recipe review index's433/433 completed public operational cards. Manufacturing must use the corresponding current reviewed card when implemented.
+
+The explicit fixture supplies one Alchemy5/primary-tool-qualified actor, a suitable ordinary station and tools at the plot, legitimate sufficient visual evidence, and two legal work windows `[0,8h)` and `[8h,16h)`. It supplies no general credential acquisition, automatic formula ownership, global day anchor, rest benefit or unlimited work allowance. Default character INT10 and total level3 yield a single +2 PB contribution. Two evidence identities represent separate authored sufficient sources; two method identities represent sequence analysis and a substantively distinct independent comparison. Arbitrary new command strings confer no evidence or method eligibility.
+
+## Delegated completions
+
+GPT response `8ca1780b-ce1c-50b5-a592-b686b9a18893` proposes the following new boundaries; Codex explicitly accepted them in turn `c1f3af9f-1b48-4b13-a022-5b6cd8e7dbab`. Response `f544b9d4-54c2-5d82-9847-06e43e70bfc5` confirms the endpoint rule with the clarification below, which Codex adopts. [Exact exchanges](evidence/2026-11-03-formula-research/GPT_RESEARCH_GUIDANCE.json) distinguish these completions from recovered text.
+
+1. **Knowledge work retains feasible progress.** Nondestructive research and ordinary copying retain actual eligible work after voluntary pause, forced interruption and save/restore. Resume revalidates capability, evidence and a legal work window. Interruption grants no partial formula or completion roll. Cancellation closes that attempt, preserves historical notes/labor and transfers no work credit to a fresh attempt. Manufacturing retains its separate unfinished-phase-loss rule; knowledge work has no invented eight-hour uninterrupted-phase requirement.
+2. **Each retry performs the full duration anew.** For a20-hour formula, either a new qualifying source or a substantively different method requires20new hours; the alternative-method route includes at least8hours actually using that method within those20. It is neither an8-hour replacement nor a28-hour surcharge. Recipe-4 requires8new hours. Earlier failed evidence/method pairs cannot be retried by renaming or cycling back. The failed attempt is retained and linked to the new attempt.
+3. **Copy supplies debit on first actual work.** Scheduling reserves one actual writing-supply allotment representing1sp. The first positive labor interval consumes the entire allotment once, atomically. Pause/resume retains progress and never charges again. Cancellation before work releases the reservation; cancellation after work refunds neither supplies nor time. Completion adds no further debit. This is not automatic purchasing, coin conversion, or a research cost.
+4. **Finish existing boundary events before the research check.** Credit lawful work through timeT; then finish the established condition/recovery/life-marker sequence. A fully written copy completes once without an additional act/check. Fully worked research checks current capability and access and uses modifiers then operative. If incapable, persist `AwaitingCheck` without consuming RNG or recording success/failure. Explicit resume revalidates the original attempt and resolves once, without additional research hours. It therefore needs no new labor window, though capability, access, participation and other actual constraints still apply. Waiting books no worker hours. Eligible completion is automatic, not an optional delay to seek better modifiers.
+
+Destructive tests, sample debit and destruction consequences remain gated. No sample or manufacturing ingredient is silently spent by this fixture.
+
+## Runtime contract
+
+Explicit schema15 extends the connected calendar host with immutable formula work and a complete canonical replay/codec path. It retains exact work, failed/cancelled attempts, prior-failure identity, fixed evidence/method IDs, first/second/selected dice and once-only knowledge results. The selected content fingerprint binds exact source version and fixture access facts. `ActiveWorkProgress` separately accounts for retained phase progress and actual labor, allowing later source-bound manufacturing phase loss without borrowing knowledge retention.
+
+Research and copying use exclusive worker reservations. A work-window endpoint pauses unfinished work; continuation requires explicit rescheduling within another supplied legal window. Compatible remote work advances with actual exploration/tactical time; tactical participants pause. Ordinary synchronous handling credits concurrent research but rejects a research-completion boundary its older synchronous path cannot yet resolve. Formula commands are blocked while KO/OA/Press choices are pending, preserving their retained RNG and reserved command capacity. Current inventory grants are checked before copying and resuming/duplicating copying commands.
+
+The first window does not bank unused hours and the second creates no third window. The fixture does not establish multi-day rest/fatigue or general scheduling eligibility. Other held equipment, containers, arbitrary evidence discovery and changing access facts require their own content/procedures.
+
+## Remaining scope
+
+One exact formula knowledge project and ordinary copying are executable, with pause, cancellation, failure/retry, condition endpoints, remote tactical work, disk continuation and forged-state rejection. General crafting, every reachable mishap, actual manufactured output use, training, research assistants/bonuses, destructive experiments, general source acquisition, full content, AI and Unity remain incomplete. The source-bound calendar and three-layer loop are retained; this increment does not complete the engine.

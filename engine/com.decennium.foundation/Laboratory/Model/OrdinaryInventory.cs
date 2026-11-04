@@ -50,7 +50,7 @@ namespace Decennium.Foundation.Laboratory
             Replace(s,new IntakeRecord(job.Id,job.ActorId,job.LotId,job.ReservationId,job.StartedAt,s.RuleClock,status));
         }
         private static void Replace(Snapshot s,IntakeRecord job)=>s.Intakes=s.Intakes.Select(x=>x.Id==job.Id?job:x).ToArray();
-        public static void AdvanceTo(Snapshot s,RuleTime target,Action<Snapshot> beforeRecovery=null)
+        public static void AdvanceTo(Snapshot s,RuleTime target,Action<Snapshot> beforeRecovery=null,Action<Snapshot,RuleTime> creditOtherWork=null)
         {
             if(target<=s.RuleClock)throw new ArgumentException("Positive shared advance required.");
             beforeRecovery?.Invoke(s);ActorLifeRules.RecoverDue(s);
@@ -69,6 +69,7 @@ namespace Decennium.Foundation.Laboratory
                 // Camp Greens may stop at an earlier milestone. Credit intake only through the actual endpoint.
                 RuleTime previous=s.RuleClock;CampGreens.Advance(s,next);RegisterCropOutput(s);
                 WaterFilling.CreditWork(s,CampGreens.Subtract(s.RuleClock,previous));
+                creditOtherWork?.Invoke(s,CampGreens.Subtract(s.RuleClock,previous));
                 foreach(var job in s.Intakes.Where(x=>x.Status==IntakeStatus.Working).ToArray()) {
                     var item=s.InventoryLots.Single(x=>x.LotId==job.LotId);var claim=s.Work.Reservations.Single(x=>x.Id==job.ReservationId);
                     RuleQuantity consumed=Quantity(CampGreens.Subtract(s.RuleClock,job.StartedAt),SecondsPerUnit(item.Nutrition));
