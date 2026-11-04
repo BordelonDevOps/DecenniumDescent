@@ -1,0 +1,9 @@
+# Schema18 manufacturing review
+
+The separate `source_review` agent reviewed the in-progress schema18 manufacturing increment and its connected shared-world changes. No outstanding actionable defect was found. It checked recipe source scope, exact phase and spoilage boundaries, quality/yield/input arithmetic, trade XP, all six native mishaps, physical product use, inventory ownership, continuation ordering and persisted replay.
+
+The reviewer independently ran26/26 focused nondisk manufacturing cases against the frozen candidate DLLs. Coverage included settlement capacity, authored and generated mishap identity, exact spoilage, wide recovery arithmetic, suspended status ownership, specialty gating, tactical slot continuation, zero-benefit consumption, actual dying-state healing and forged-restore rejection. All passed. The subsequent final implementation only added three tests and line-ending normalization; the reviewer verified all122 hashes in the final953-case receipt against the current worktree with zero mismatches. The independent focused cases were not rerun against the final DLLs.
+
+The parent ran the full C# suite at953/953, all8 static package checks, exact source-binding validation and byte comparison of80 overlapping schema1–17 saved outputs. The parent also wrote and reloaded three real schema18 disk saves for partial/AwaitingCheck work, pending quality choice with a suspended shared advance, and a used dose with its empty vial. Unity import, Edit Mode/Play Mode, player build, general catalog and release approval were not tested.
+
+This evidence applies to one explicitly selected public recipe with supplied finite stock, worker and station facts. It does not establish general recipe availability, training/acquisition, arbitrary profession or station selection, the full crafting catalog, or a complete engine.

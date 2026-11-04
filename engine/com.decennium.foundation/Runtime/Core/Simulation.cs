@@ -12,7 +12,8 @@ namespace Decennium.Foundation
         BeginWorldStep, SuspendWorldStep, ResumeWorldStep, EndFixedEncounter,
         StartFormulaResearch, StartFormulaCopy, PauseFormulaWork, ResumeFormulaWork, CancelFormulaWork,
         DispatchCraftingMishap, StartCraftRemedy, PauseCraftRemedy,
-        StartToolRepair, PauseToolRepair, ResumeToolRepair, CancelToolRepair }
+        StartToolRepair, PauseToolRepair, ResumeToolRepair, CancelToolRepair,
+        StartManufacturing, PauseManufacturing, ResumeManufacturing, CancelManufacturing, ResolveManufacturingQuality, UseAlchemyDose }
     public enum Outcome { Rejected, Committed, Duplicate }
 
     // DTOs are detached copies. No caller ever receives the owned simulation state.
@@ -54,6 +55,7 @@ namespace Decennium.Foundation
         public const int FormulaWorkSchema = 15;
         public const int CraftingConsequenceSchema = 16;
         public const int RepairWorkSchema = 17;
+        public const int ManufacturingSchema = 18;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
         // Technical bound keeps the entire snapshot within the existing 1 MiB save limit,
@@ -107,11 +109,15 @@ namespace Decennium.Foundation
         public ObjectStructureRecord[] Structures = Array.Empty<ObjectStructureRecord>();
         public CraftingIncidentRecord[] CraftingIncidents = Array.Empty<CraftingIncidentRecord>();
         public RepairWorkRecord[] RepairWork = Array.Empty<RepairWorkRecord>();
+        public ManufacturingOrderRecord[] ManufacturingOrders = Array.Empty<ManufacturingOrderRecord>();
+        public TradeProgressRecord[] Trades = Array.Empty<TradeProgressRecord>();
+        public AlchemyDoseRecord[] AlchemyDoses = Array.Empty<AlchemyDoseRecord>();
+        public ManufacturingAdvanceRecord ManufacturingAdvance;
         public EncounterDashRecord[] EncounterDashes = Array.Empty<EncounterDashRecord>();
         public Snapshot Copy() => new Snapshot {
             DyingCadences = DyingCadences.ToArray(), Structures = Structures.ToArray(), CraftingIncidents = CraftingIncidents.ToArray(),
             WorldLifeMarkers = WorldLifeMarkers.ToArray(),
-            RepairWork = RepairWork.ToArray(),
+            RepairWork = RepairWork.ToArray(), ManufacturingOrders = ManufacturingOrders.ToArray(), Trades = Trades.ToArray(), AlchemyDoses = AlchemyDoses.ToArray(), ManufacturingAdvance = ManufacturingAdvance,
             FormulaWork = FormulaWork.ToArray(),
             WorldSchedule = WorldSchedule, WorldIntervals = WorldIntervals.ToArray(), WorldTraversals = WorldTraversals.ToArray(),
             Conditions = Conditions.ToArray(), ClosedEncounters = ClosedEncounters.ToArray(),
@@ -200,8 +206,9 @@ namespace Decennium.Foundation
         public Outcome Outcome { get; }
         public string Code { get; }
         public long Revision { get; }
-        internal CommandResult(Outcome outcome, string code, long revision)
-        { Outcome = outcome; Code = code; Revision = revision; }
+        public bool IsSuspended { get; }
+        internal CommandResult(Outcome outcome, string code, long revision, bool suspended = false)
+        { Outcome = outcome; Code = code; Revision = revision; IsSuspended = suspended; }
     }
 
     public static class Validation
@@ -218,7 +225,7 @@ namespace Decennium.Foundation
             if (s == null || !ValidId(s.ContentFingerprint) || s.Revision < 0 || s.Clock < 0 || s.RandomState == 0)
                 throw new ArgumentException("Invalid snapshot header.");
             if (s.SchemaVersion != Foundation.Snapshot.Schema && s.SchemaVersion != Foundation.Snapshot.WorkSchema
-                && s.SchemaVersion != Foundation.Snapshot.CropSchema && s.SchemaVersion != Foundation.Snapshot.InventorySchema && s.SchemaVersion != Foundation.Snapshot.VesselSchema && s.SchemaVersion != Foundation.Snapshot.MovableVesselSchema && s.SchemaVersion != Foundation.Snapshot.EncounterSchema && s.SchemaVersion != Foundation.Snapshot.ActorLifeSchema && s.SchemaVersion != Foundation.Snapshot.ClubAttackSchema && s.SchemaVersion != Foundation.Snapshot.PostureSchema && s.SchemaVersion != Foundation.Snapshot.TacticalMovementSchema && s.SchemaVersion != Foundation.Snapshot.ConditionSchema && s.SchemaVersion != Foundation.Snapshot.SharedWorldSchema && s.SchemaVersion != Foundation.Snapshot.CalendarCombatSchema && s.SchemaVersion != Foundation.Snapshot.FormulaWorkSchema && s.SchemaVersion != Foundation.Snapshot.CraftingConsequenceSchema && s.SchemaVersion != Foundation.Snapshot.RepairWorkSchema)
+                && s.SchemaVersion != Foundation.Snapshot.CropSchema && s.SchemaVersion != Foundation.Snapshot.InventorySchema && s.SchemaVersion != Foundation.Snapshot.VesselSchema && s.SchemaVersion != Foundation.Snapshot.MovableVesselSchema && s.SchemaVersion != Foundation.Snapshot.EncounterSchema && s.SchemaVersion != Foundation.Snapshot.ActorLifeSchema && s.SchemaVersion != Foundation.Snapshot.ClubAttackSchema && s.SchemaVersion != Foundation.Snapshot.PostureSchema && s.SchemaVersion != Foundation.Snapshot.TacticalMovementSchema && s.SchemaVersion != Foundation.Snapshot.ConditionSchema && s.SchemaVersion != Foundation.Snapshot.SharedWorldSchema && s.SchemaVersion != Foundation.Snapshot.CalendarCombatSchema && s.SchemaVersion != Foundation.Snapshot.FormulaWorkSchema && s.SchemaVersion != Foundation.Snapshot.CraftingConsequenceSchema && s.SchemaVersion != Foundation.Snapshot.RepairWorkSchema && s.SchemaVersion != Foundation.Snapshot.ManufacturingSchema)
                 throw new ArgumentException("Unsupported snapshot schema.");
             if (s.SchemaVersion == Foundation.Snapshot.Schema && (s.Work != null || s.RuleClock != default))
                 throw new ArgumentException("Legacy snapshot cannot contain unsaved work or exact time.");
@@ -283,6 +290,7 @@ namespace Decennium.Foundation
             FormulaWorkValidation.Validate(s);
             CraftingConsequenceValidation.Validate(s);
             RepairWorkValidation.Validate(s);
+            ManufacturingValidation.Validate(s);
         }
     }
 
@@ -375,7 +383,7 @@ namespace Decennium.Foundation
             CommandReceipt previous = state.Receipts.FirstOrDefault(r => r.Principal == authority.Principal && r.Id == command.Id);
             if (previous != null)
                 return previous.Fingerprint == command.Fingerprint
-                    ? new CommandResult(Outcome.Duplicate, "AlreadyCommitted", previous.Revision) : Reject("CommandIdConflict");
+                    ? new CommandResult(Outcome.Duplicate, (state.ManufacturingAdvance?.CommandId==command.Id && state.ManufacturingAdvance.CommandRevision==previous.Revision)?"AlreadyAcceptedSuspended":"AlreadyCommitted", previous.Revision,(state.ManufacturingAdvance?.CommandId==command.Id && state.ManufacturingAdvance.CommandRevision==previous.Revision)) : Reject("CommandIdConflict");
             if (command.ExpectedRevision != state.Revision) return Reject("StaleRevision");
             if (!state.Actors.Any(a => a.Id == command.Actor)) return Reject("UnknownActor");
             if (state.Revision == long.MaxValue || state.Receipts.Length == (state.SchemaVersion >= Snapshot.InventorySchema ? 512 : Validation.MaxReceipts)) return Reject("SessionCapacityReached");
@@ -395,7 +403,7 @@ namespace Decennium.Foundation
             try { ValidateCandidate(candidate); }
             catch (ArgumentException) { return Reject("InvalidResult"); }
             state = candidate.Copy();
-            return new CommandResult(Outcome.Committed, "Committed", state.Revision);
+            return new CommandResult(Outcome.Committed, state.ManufacturingAdvance?.CommandId==command.Id?"AcceptedSuspended":"Committed", state.Revision,state.ManufacturingAdvance?.CommandId==command.Id);
         }
         private CommandResult Reject(string reason) => new CommandResult(Outcome.Rejected, reason, state.Revision);
     }

@@ -27,11 +27,15 @@ namespace Decennium.Foundation.Laboratory
         public TestOnlySharedWorldPolicy(SharedCombatFixture combat,SharedResearchFixture research,SharedCraftingFixture crafting,int walkingSpeed = 30, ConditionCombatFixture conditions = null, params TacticalTerrainCell[] terrain)
             :this(combat,research,crafting,null,walkingSpeed,conditions,terrain) { }
         public TestOnlySharedWorldPolicy(SharedCombatFixture combat,SharedResearchFixture research,SharedCraftingFixture crafting,SharedRepairFixture repair,int walkingSpeed = 30, ConditionCombatFixture conditions = null, params TacticalTerrainCell[] terrain)
+            :this(combat,research,crafting,repair,null,walkingSpeed,conditions,terrain) { }
+        public TestOnlySharedWorldPolicy(SharedCombatFixture combat,SharedResearchFixture research,SharedCraftingFixture crafting,SharedRepairFixture repair,SharedManufacturingFixture manufacturing,int walkingSpeed = 30, ConditionCombatFixture conditions = null, params TacticalTerrainCell[] terrain)
         {
             connectedCombat=combat;
             this.research=research;
             this.crafting=crafting;
             this.repair=repair;
+            this.manufacturing=manufacturing;
+            if(manufacturing!=null&&(repair==null||research==null||research.WorkerId!=TestOnlyPolicy.CompanionId))throw new ArgumentException("Manufacturing requires selected repair and companion knowledge fixtures.");
             if(repair!=null&&crafting==null)throw new ArgumentException("Repair requires the explicit physical crafting fixture.");
             if(crafting!=null&&combat==null)throw new ArgumentException("Crafting consequences require the explicit calendar host.");
             if(research!=null&&combat==null)throw new ArgumentException("Research requires the explicit connected calendar host.");
@@ -43,6 +47,7 @@ namespace Decennium.Foundation.Laboratory
             if(research!=null)ContentFingerprint=ResearchFingerprint(ContentFingerprint,research);
             if(crafting!=null)ContentFingerprint=CraftingFingerprint(ContentFingerprint,crafting);
             if(repair!=null)ContentFingerprint=RepairFingerprint(ContentFingerprint,repair);
+            if(manufacturing!=null)ContentFingerprint=ManufacturingFingerprint(ContentFingerprint,manufacturing);
         }
         public static Authority Host() => new Authority("TEST_ONLY.host", new[] { TestOnlyPolicy.ActorId, TestOnlyPolicy.CompanionId, AdditionalTacticalActor.Id }, true, true,
             new[] { TestOnlyPolicy.ActorId, TestOnlyPolicy.CompanionId, AdditionalTacticalActor.Id }, new[] { TestOnlyPolicy.ActorId, TestOnlyPolicy.CompanionId });
@@ -60,6 +65,7 @@ namespace Decennium.Foundation.Laboratory
             InitializeResearch(s);
             InitializeCrafting(s);
             InitializeRepair(s);
+            InitializeManufacturing(s);
             return s;
         }
         private static WorldIntervalRecord Interval(Snapshot s, string actor) => s.WorldIntervals.Single(x => x.ActorId == actor);
@@ -98,6 +104,7 @@ namespace Decennium.Foundation.Laboratory
             if(includeFormula)PauseIncompatibleFormulaWork(s);
             PauseIncompatibleRemedies(s);
             PauseIncompatibleRepairs(s);
+            PauseIncompatibleManufacturing(s);
         }
         private static void RefreshIntervals(Snapshot s)
         {
@@ -130,7 +137,7 @@ namespace Decennium.Foundation.Laboratory
                 .Concat(l.Immunities.Where(x => !x.EndedAt.HasValue).Select(x => x.Grant.Expires))).Where(x => x.HasValue && x.Value.Time > s.RuleClock).Select(x => x.Value.Time).ToArray();
             return values.Length == 0 ? (RuleTime?)null : values.Min();
         }
-        private void AdvanceTo(Snapshot s, RuleTime target)
+        private void AdvanceTo(Snapshot s, RuleTime target, bool exitAfterSlot=false, Command initiating=null, ManufacturingAdvanceRecord continuation=null)
         {
             if (target <= s.RuleClock) throw new ArgumentException("Positive shared advance required.");
             int subevent = 0;
@@ -141,6 +148,7 @@ namespace Decennium.Foundation.Laboratory
                 var dying = NextDyingMarker(s); if(dying.HasValue&&dying.Value<next)next=dying.Value;
                 var remedy = NextRemedyBoundary(s); if(remedy.HasValue&&remedy.Value<next)next=remedy.Value;
                 var repairBoundary = NextRepairBoundary(s); if(repairBoundary.HasValue&&repairBoundary.Value<next)next=repairBoundary.Value;
+                var manufacturingBoundary=NextManufacturingBoundary(s);if(manufacturingBoundary.HasValue&&manufacturingBoundary.Value<next)next=manufacturingBoundary.Value;
                 var active = s.WorldTraversals.Where(x => x.Status != WorldTraversalStatus.Suspended).ToArray();
                 // Stationary, living actors have no per-Start event here. The arithmetic cursor
                 // skips empty intervals; active movement must visit its real budget boundaries.
@@ -170,6 +178,7 @@ namespace Decennium.Foundation.Laboratory
                 long previousSlot=s.WorldSchedule.ProcessedSlot;
                 var ready = new System.Collections.Generic.List<string>();
                 var repairsReady = new System.Collections.Generic.List<string>();
+                var manufacturingReady = new System.Collections.Generic.List<string>();
                 if(connectedCombat==null) {
                     OrdinaryInventory.AdvanceTo(s, next);
                     TestOnlyClubAttackPolicy.AdvanceConditions(s, "." + (++subevent).ToString(CultureInfo.InvariantCulture));
@@ -177,7 +186,7 @@ namespace Decennium.Foundation.Laboratory
                     OrdinaryInventory.AdvanceTo(s,next,world=> {
                         TestOnlyClubAttackPolicy.AdvanceConditions(world,"."+(++subevent).ToString(CultureInfo.InvariantCulture));
                         PauseIncompatibleWork(world,false);
-                    }, (world,elapsedWork)=>{CreditFormulaWork(world,elapsedWork,ready);CreditRemedyWork(world,elapsedWork);CreditRepairWork(world,elapsedWork,repairsReady);});
+                    }, (world,elapsedWork)=>{CreditFormulaWork(world,elapsedWork,ready);CreditRemedyWork(world,elapsedWork);CreditRepairWork(world,elapsedWork,repairsReady);CreditManufacturing(world,elapsedWork,manufacturingReady);});
                 }
                 RefreshIntervals(s);
                 if(crafting!=null)ProcessSharedLifeMarkers(s,previousSlot);
@@ -193,13 +202,24 @@ namespace Decennium.Foundation.Laboratory
                     var job=s.RepairWork.Single(x=>x.Id==id);
                     if(RepairAccess(s,job.WorkerId,job.TargetId,false)==null)FinishRepair(s,job);
                 }
+                foreach(string id in manufacturingReady){
+                    var job=s.ManufacturingOrders.Single(x=>x.Id==id);
+                    if(ManufacturingAccess(s,job.WorkerId,false,true)==null)FinishManufacturingCheck(s,job);
+                }
                 PauseIncompatibleWork(s); ReconcileTraversal(s);
+                if(ManufacturingChoicePending(s)){
+                    s.ManufacturingAdvance=continuation??new ManufacturingAdvanceRecord(target,exitAfterSlot,initiating.Id,s.Revision+1,
+                        initiating.Kind==CommandKind.EndRegularTurn||initiating.Kind==CommandKind.EndFixedEncounter?initiating.Target:"");
+                    if(connectedCombat!=null)ObserveCalendar(s);return;
+                }
             }
             if(connectedCombat!=null)ObserveCalendar(s);
         }
         public string Resolve(Snapshot s, Command c)
         {
             if (!s.Actors.Any(a => a.Id == c.Actor)) return "UnknownWorldActor";
+            if(ManufacturingChoicePending(s)&&c.Kind!=CommandKind.ResolveManufacturingQuality)return "ManufacturingChoicePending";
+            if(ManufacturingCommand(c.Kind))return ResolveManufacturing(s,c);
             if(RepairCommand(c.Kind))return ResolveRepair(s,c);
             if(CraftingCommand(c.Kind))return ResolveCraftingConsequence(s,c);
             if(FormulaCommand(c.Kind))return connectedCombat!=null&&PendingCalendarChoice(s)?"TacticalChoicePending":ResolveFormulaWork(s,c);
@@ -210,7 +230,7 @@ namespace Decennium.Foundation.Laboratory
             if (c.Combat != null) return "SharedCombatHandoffNotImplemented";
             if (c.Kind == CommandKind.AdvanceClock) {
                 if (c.Inventory != null || c.Target != "" || c.X < 1 || c.Y < 1) return "InvalidWorldAdvance";
-                AdvanceTo(s, CampGreens.Add(s.RuleClock, new RuleTime(c.X, c.Y))); return null;
+                AdvanceTo(s, CampGreens.Add(s.RuleClock, new RuleTime(c.X, c.Y)),initiating:c); return null;
             }
             if (c.Kind == CommandKind.BeginWorldStep) {
                 if (c.Inventory != null || (c.Target != "walk" && c.Target != "run") || Math.Abs((long)c.X) + Math.Abs((long)c.Y) != 1) return "InvalidWorldStep";
@@ -273,6 +293,7 @@ namespace Decennium.Foundation.Laboratory
                 var dying=NextDyingMarker(s);if(dying.HasValue&&dying.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
                 var remedy=NextRemedyBoundary(s);if(remedy.HasValue&&remedy.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
                 var repairBoundary=NextRepairBoundary(s);if(repairBoundary.HasValue&&repairBoundary.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
+                var manufacturingBoundary=NextManufacturingBoundary(s);if(manufacturingBoundary.HasValue&&manufacturingBoundary.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
             }
             var before = s.RuleClock; string failure = inventory.Resolve(s, c);
             if (failure != null) return failure;
@@ -280,6 +301,7 @@ namespace Decennium.Foundation.Laboratory
                 CreditFormulaWork(s,CampGreens.Subtract(s.RuleClock,before),new System.Collections.Generic.List<string>());
                 CreditRemedyWork(s,CampGreens.Subtract(s.RuleClock,before));
                 CreditRepairWork(s,CampGreens.Subtract(s.RuleClock,before),new System.Collections.Generic.List<string>());
+                CreditManufacturing(s,CampGreens.Subtract(s.RuleClock,before),new System.Collections.Generic.List<string>());
                 // No traversal or condition deadline can occur inside the admitted interval.
                 TestOnlyClubAttackPolicy.AdvanceConditions(s, ".handling"); RefreshIntervals(s); PauseIncompatibleWork(s);
                 if(connectedCombat!=null)ObserveCalendar(s);

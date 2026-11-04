@@ -72,7 +72,7 @@ namespace Decennium.Foundation.Laboratory
     public sealed partial class TestOnlySharedWorldPolicy
     {
         private readonly SharedCraftingFixture crafting;
-        private int SelectedSchema => repair != null ? Snapshot.RepairWorkSchema : crafting != null ? Snapshot.CraftingConsequenceSchema : research != null ? Snapshot.FormulaWorkSchema : connectedCombat == null ? Snapshot.SharedWorldSchema : Snapshot.CalendarCombatSchema;
+        private int SelectedSchema => manufacturing != null ? Snapshot.ManufacturingSchema : repair != null ? Snapshot.RepairWorkSchema : crafting != null ? Snapshot.CraftingConsequenceSchema : research != null ? Snapshot.FormulaWorkSchema : connectedCombat == null ? Snapshot.SharedWorldSchema : Snapshot.CalendarCombatSchema;
         private static string CraftingFingerprint(string prior, SharedCraftingFixture facts)
         {
             using (var sha = SHA256.Create()) return "TEST_ONLY.crafting-v1-" + string.Concat(sha.ComputeHash(Encoding.UTF8.GetBytes(prior + "|" + facts.Key)).Select(b => b.ToString("x2", CultureInfo.InvariantCulture)));
@@ -134,11 +134,15 @@ namespace Decennium.Foundation.Laboratory
             if (fact == null) return "UnknownCraftingMishap";
             if (s.CraftingIncidents.Any(x => x.Id == fact.Id)) return "CraftingMishapAlreadyResolved";
             if (s.RuleClock != fact.At) return "WrongCraftingMishapTime";
+            return ApplyCraftingMishap(s,fact);
+        }
+        private string ApplyCraftingMishap(Snapshot s,CraftingMishapFact fact)
+        {
             if (s.CraftingIncidents.Length == CraftingConsequenceValidation.MaxIncidents) return "CraftingIncidentCapacityReached";
             if (s.WorldTraversals.Any(x => x.ActorId == fact.LeadId && x.DistanceFeet != default)) return "OffGridPhysicalConsequenceUnsupported";
             var before = s.Lives.Single(x => x.ActorId == fact.LeadId);
             if (before.Dead) return "CraftingLeadDead";
-            if (fact.Result == 4 && !TestOnlyClubAttackPolicy.DamageConditionCapacity(s, c.Actor)) return "ConditionHistoryCapacityReached";
+            if (fact.Result == 4 && !TestOnlyClubAttackPolicy.DamageConditionCapacity(s, fact.LeadId)) return "ConditionHistoryCapacityReached";
             uint initial = s.RandomState; int d4 = 0, wound = 0, injury = 0; long damage = 0, words = 0;
             if (fact.Result == 3) {
                 var kit = s.Structures.Single(x => x.Id == SharedCraftingFixture.ToolId);
@@ -147,8 +151,8 @@ namespace Decennium.Foundation.Laboratory
             }
             if (fact.Result == 4) {
                 var draw = DiceStream.Draw(s.RandomState, 4); d4 = draw.Value + 1; damage = d4;
-                if (View(s, c.Actor).Has(ConditionKind.Petrified)) damage = PlaytestConditions.PetrifiedDamage(damage);
-                var character = s.Characters.Single(x => x.ActorId == c.Actor);
+                if (View(s, fact.LeadId).Has(ConditionKind.Petrified)) damage = PlaytestConditions.PetrifiedDamage(damage);
+                var character = s.Characters.Single(x => x.ActorId == fact.LeadId);
                 var result = PlaytestDamageDice.Resolve(ActorLifeRules.Read(before), damage, s.RuleClock, draw.NextState, PlaytestCharacters.AbilityModifier(character.Abilities[2]));
                 s.RandomState = result.NextRandomState; words = checked(draw.WordsConsumed + result.WordsConsumed); wound = result.WoundRoll?.Natural ?? 0; injury = result.InjuryD6 ?? 0;
                 TestOnlyClubAttackPolicy.ApplyLife(s, before, result.Outcome.State);
@@ -162,6 +166,7 @@ namespace Decennium.Foundation.Laboratory
         private static string RemedyJobId(CraftingIncidentRecord incident) => "craft.remedy." + incident.Revision.ToString(CultureInfo.InvariantCulture);
         private bool RemedyCapable(Snapshot s, CraftingIncidentRecord incident, string actor)
         {
+            if (incident.Result == 2 && ActiveManufacturing(s)) return false;
             if (incident.Result == 2 && TargetInActiveRepair(s, incident.ToolId)) return false;
             if (!CapableWorker(s, actor) || AvailableHands(s, actor) < 1 || s.WorldTraversals.Any(x => x.ActorId == actor)
                 || s.InventoryCombat && s.WorldSchedule.Order.Contains(actor)) return false;

@@ -232,6 +232,7 @@ namespace Decennium.Foundation.Tests
             AddFormulaResearchCases(cases, directory);
             AddCraftingConsequenceCases(cases, directory);
             AddToolRepairCases(cases, directory);
+            AddManufacturingCases(cases, directory);
             AddPostureCases(cases, directory);
             AddMaximumHpCases(cases);
             AddTacticalMovementCases(cases, directory);

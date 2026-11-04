@@ -46,7 +46,7 @@ namespace Decennium.Foundation.Laboratory
             foreach(string actor in s.WorldSchedule.Order)PauseParticipantWork(s,actor);
             // Starts have already been processed by shared advancement. Do not replay one here.
             s.InventoryCombat=true;s.InventoryTurnActor=s.Encounter.CurrentActor;s.InventoryInteractions=Interval(s,s.Encounter.CurrentActor).Interactions;
-            PauseIncompatibleRemedies(s);PauseIncompatibleRepairs(s);return null;
+            PauseIncompatibleRemedies(s);PauseIncompatibleRepairs(s);PauseIncompatibleManufacturing(s);return null;
         }
         private static bool PendingCalendarChoice(Snapshot s)=>s.MeleeAttacks.Any(x=>x.Pending)||TestOnlyClubAttackPolicy.PendingMove(s)!=null||TestOnlyClubAttackPolicy.CurrentPressOffer(s)!=null;
         private static bool ResolvedConflict(Snapshot s)=>s.Lives.Single(x=>x.ActorId==AdditionalTacticalActor.Id).Dead;
@@ -63,7 +63,8 @@ namespace Decennium.Foundation.Laboratory
                 if(exit&&!ResolvedConflict(s))return "ConflictNotResolved";
                 if(TestOnlyClubAttackPolicy.Aware(s,c.Actor)&&!TestOnlyClubAttackPolicy.HasStance(s))return "StanceRequired";
                 if(s.WorldSchedule.ProcessedSlot>=int.MaxValue-1)return "CombatCalendarCapacityReached";
-                AdvanceTo(s,s.WorldSchedule.Start(s.WorldSchedule.ProcessedSlot+1));
+                AdvanceTo(s,s.WorldSchedule.Start(s.WorldSchedule.ProcessedSlot+1),exit,c);
+                if(s.ManufacturingAdvance!=null)return null;
                 s.InventoryInteractions=Interval(s,s.Encounter.CurrentActor).Interactions;
                 // Time and consequences are committed even if the exit predicate no longer holds.
                 if(exit&&ResolvedConflict(s)&&!PendingCalendarChoice(s)){s.InventoryCombat=false;s.InventoryTurnActor="";s.InventoryInteractions=0;}

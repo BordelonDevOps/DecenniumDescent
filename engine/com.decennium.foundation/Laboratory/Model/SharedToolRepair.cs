@@ -30,6 +30,7 @@ namespace Decennium.Foundation.Laboratory
         private readonly SharedRepairFixture repair;
         public IEnumerable<string> RequiredInventoryOwners(Snapshot s, Command c)
         {
+            if(ManufacturingCommand(c.Kind))return ManufacturingOwners(s,c);
             if (repair == null || c.Kind != CommandKind.StartToolRepair && c.Kind != CommandKind.ResumeToolRepair) return Array.Empty<string>();
             var job = c.Kind == CommandKind.ResumeToolRepair ? s.RepairWork.SingleOrDefault(x => x.Id == c.Target) : null;
             if (c.Kind == CommandKind.ResumeToolRepair && job == null) return Array.Empty<string>();
@@ -41,6 +42,7 @@ namespace Decennium.Foundation.Laboratory
         private static bool ResearchUsesRepairTarget(FormulaWorkRecord job, string target) => target == SharedCraftingFixture.ToolId && job.Kind == FormulaWorkKind.Research && job.Status == FormulaWorkStatus.Working;
         private static void AcquireRepairAccess(Snapshot s, string target)
         {
+            foreach(var job in s.ManufacturingOrders.Where(x=>x.Status==ManufacturingStatus.Working).ToArray())PauseManufacturing(s,job);
             foreach (var job in s.FormulaWork.Where(x => ResearchUsesRepairTarget(x,target)).ToArray()) PauseFormula(s, job);
             foreach (var incident in s.CraftingIncidents.Where(x => x.ToolId == target && x.Result == 2 && x.Workers.Count != 0).ToArray()) {
                 var paused = incident.WithWork(s.RuleClock, incident.Labor, Array.Empty<string>());
