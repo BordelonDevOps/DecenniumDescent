@@ -7,6 +7,34 @@ using System.Text;
 
 namespace Decennium.Foundation.Laboratory
 {
+    /// <summary>Explicit dynamic shot-lane and Strength-save facts for the first complete
+    /// Overwatch execution fixture. The authored lane is cardinal and the target remains fixed.</summary>
+    public sealed class OverwatchExecutionFixture
+    {
+        public bool TargetLocationKnown { get; }
+        public bool TargetVisible { get; }
+        public bool LineOfFireClear { get; }
+        public CombatCover TargetCover { get; }
+        public int AdditionalStrengthSaveModifier { get; }
+        public OverwatchExecutionFixture(bool targetLocationKnown=true,bool targetVisible=true,bool lineOfFireClear=true,
+            CombatCover targetCover=CombatCover.None,int additionalStrengthSaveModifier=0)
+        {
+            if(!Enum.IsDefined(typeof(CombatCover),targetCover)||additionalStrengthSaveModifier< -100||additionalStrengthSaveModifier>100)
+                throw new ArgumentException("Invalid authored Overwatch shot/save facts.");
+            TargetLocationKnown=targetLocationKnown;TargetVisible=targetVisible;LineOfFireClear=lineOfFireClear;
+            TargetCover=targetCover;AdditionalStrengthSaveModifier=additionalStrengthSaveModifier;
+        }
+        internal string Key=>"overwatch-execution-schema26-v1|known="+(TargetLocationKnown?"1":"0")+"|visible="+(TargetVisible?"1":"0")
+            +"|line="+(LineOfFireClear?"1":"0")+"|cover="+(int)TargetCover+"|str-save="+AdditionalStrengthSaveModifier.ToString(CultureInfo.InvariantCulture)
+            +"|supported-cells=designation-center-row-or-column-only|triggers=post-completed-enter-or-inside-move|source="+OverwatchFoundationFixture.SoldierSourceRevision
+            +"|decision=Engine:docs/unity/OVERWATCH_RULE_DECISIONS.md@1e8cf03e0dde25978aba83d251cfe74266b2687a#sha256=972a722c1fd68f0ad4a7fcef894d06b1d940e75cd9bf2d4293f9b734512b2a43";
+        internal string BindFingerprint(string prior)
+        {
+            using(var sha=SHA256.Create())return "TEST_ONLY.ow-execution-v1-"+string.Concat(sha.ComputeHash(Encoding.UTF8.GetBytes(prior+"|"+Key))
+                .Select(b=>b.ToString("x2",CultureInfo.InvariantCulture)));
+        }
+    }
+
     /// <summary>Explicit visibility fact and first authored fixed footprint for the bounded
     /// Overwatch designation fixture. It is not a general visibility or placement provider.</summary>
     public sealed class OverwatchDesignationFixture
@@ -29,6 +57,7 @@ namespace Decennium.Foundation.Laboratory
     public sealed partial class TestOnlySharedWorldPolicy
     {
         private OverwatchDesignationFixture overwatchRuntime;
+        private OverwatchExecutionFixture overwatchExecution;
 
         public TestOnlySharedWorldPolicy(OverwatchDesignationFixture runtime,OverwatchFoundationFixture foundation,PeriodicRiderFixture periodic,
             RepeatingCrossbowFixture crossbow,CharacterAdvancementFixture advancement,SharedCombatFixture combat,
@@ -42,10 +71,21 @@ namespace Decennium.Foundation.Laboratory
             ContentFingerprint=overwatchRuntime.BindFingerprint(ContentFingerprint);
         }
 
+        public TestOnlySharedWorldPolicy(OverwatchExecutionFixture execution,OverwatchDesignationFixture runtime,OverwatchFoundationFixture foundation,
+            PeriodicRiderFixture periodic,RepeatingCrossbowFixture crossbow,CharacterAdvancementFixture advancement,SharedCombatFixture combat,
+            int walkingSpeed=30,ConditionCombatFixture conditions=null,params TacticalTerrainCell[] terrain)
+            :this(runtime,foundation,periodic,crossbow,advancement,combat,walkingSpeed,conditions,terrain)
+        {
+            overwatchExecution=execution??throw new ArgumentNullException(nameof(execution));
+            ContentFingerprint=overwatchExecution.BindFingerprint(ContentFingerprint);
+        }
+
         private void InitializeOverwatchRuntime(Snapshot s)
         {
             if(overwatchRuntime==null)return;
-            if(s.SchemaVersion!=Snapshot.OverwatchSchema||overwatchFoundation==null||periodicRider==null||rangedCombat==null
+            if((s.SchemaVersion!=Snapshot.OverwatchSchema&&s.SchemaVersion!=Snapshot.OverwatchExecutionSchema)
+                ||(s.SchemaVersion==Snapshot.OverwatchExecutionSchema)!=(overwatchExecution!=null)
+                ||overwatchFoundation==null||periodicRider==null||rangedCombat==null
                 ||rangedCombat.ShooterId!=TestOnlyPolicy.ActorId)
                 throw new ArgumentException("The TEST_ONLY Overwatch designation fixture is incomplete or out of scope.");
             int start=checked((int)s.WorldIntervals.Single(x=>x.ActorId==TestOnlyPolicy.ActorId).LastStart);
@@ -75,6 +115,12 @@ namespace Decennium.Foundation.Laboratory
             int oldestRetained=before.LastRegularStart;
             s.OverwatchDesignations=s.OverwatchDesignations.Where(x=>x.OwnerId!=actor||x.LastRegularStart>=oldestRetained).ToArray();
             s.OverwatchIntervals=s.OverwatchIntervals.Where(x=>x.ActorId!=actor||x.LastRegularStart>=oldestRetained).ToArray();
+            if(s.SchemaVersion>=Snapshot.OverwatchExecutionSchema) {
+                var retained=s.OverwatchDesignations.Where(x=>x.OwnerId==actor).Select(x=>x.Id).ToHashSet(StringComparer.Ordinal);
+                var removed=s.OverwatchOffers.Where(x=>x.OwnerId==actor&&!retained.Contains(x.DesignationId)).Select(x=>x.Id).ToHashSet(StringComparer.Ordinal);
+                s.OverwatchOffers=s.OverwatchOffers.Where(x=>!removed.Contains(x.Id)).ToArray();
+                s.OverwatchRiderChoices=s.OverwatchRiderChoices.Where(x=>!removed.Contains(x.OfferId)).ToArray();
+            }
         }
 
         private static OverwatchDesignationRecord ActiveOverwatchZone(Snapshot s,string actor,int interval)

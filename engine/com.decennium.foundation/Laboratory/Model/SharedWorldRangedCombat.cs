@@ -77,6 +77,7 @@ namespace Decennium.Foundation.Laboratory
         {
             bool attack=c.Kind==CommandKind.AttackRepeatingCrossbow;
             if(rangedCombat==null||s.SchemaVersion<Snapshot.RepeatingCrossbowSchema)return "RangedCommandNotImplemented";
+            if(attack&&AttackingFromActiveOverwatchZone(s,c.Actor,c.Target))return "OverwatchAttackTriggerNotImplemented";
             if(c.Inventory!=null||c.Combat!=null||c.Advancement!=null||c.Ranged==null||c.X!=0||c.Y!=0)return "InvalidRangedPayload";
             if(!s.InventoryCombat||s.Encounter==null)return "RangedCombatRequiresEncounter";
             if(PendingCalendarChoice(s))return "TacticalChoicePending";

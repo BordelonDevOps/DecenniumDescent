@@ -56,14 +56,45 @@ namespace Decennium.Foundation.Laboratory
             s.InventoryCombat=true;s.InventoryTurnActor=s.Encounter.CurrentActor;s.InventoryInteractions=Interval(s,s.Encounter.CurrentActor).Interactions;
             PauseIncompatibleRemedies(s);PauseIncompatibleRepairs(s);PauseIncompatibleManufacturing(s);return null;
         }
-        internal static bool PendingCalendarChoice(Snapshot s)=>s.MeleeAttacks.Any(x=>x.Pending)||TestOnlyClubAttackPolicy.PendingMove(s)!=null||TestOnlyClubAttackPolicy.CurrentPressOffer(s)!=null;
+        internal static bool PendingCalendarChoice(Snapshot s)=>s.MeleeAttacks.Any(x=>x.Pending)||TestOnlyClubAttackPolicy.PendingMove(s)!=null
+            ||TestOnlyClubAttackPolicy.CurrentPressOffer(s)!=null||s.OverwatchOffers.Any(x=>x.Status==OverwatchOfferStatus.Pending)
+            ||s.OverwatchRiderChoices.Any(x=>x.Status==OverwatchRiderChoiceStatus.Pending);
         private static bool ResolvedConflict(Snapshot s)=>s.Lives.Single(x=>x.ActorId==AdditionalTacticalActor.Id).Dead;
         private string ResolveCalendarCombat(Snapshot s,Command c)
         {
             if(c.Kind==CommandKind.AdvanceClock)return "TacticalDecisionClockPaused";
-            if(c.Kind==CommandKind.AttackRepeatingCrossbow||c.Kind==CommandKind.ReloadRepeatingCrossbow)return ResolveRepeatingCrossbow(s,c);
+            var riderChoice=s.OverwatchRiderChoices.SingleOrDefault(x=>x.Status==OverwatchRiderChoiceStatus.Pending);
+            if(riderChoice!=null) {
+                if(c.Kind!=CommandKind.ResolveOverwatchRider)return "OverwatchRiderChoicePending";
+                string riderError=ResolveOverwatchRiderChoice(s,c);if(riderError!=null)return riderError;
+                if(NextPostStepChoice(s)==PostStepChoiceKind.None) {
+                    bodies.ContinueTacticalFlow(s);string queueError=QueueCompletedMovementOverwatch(s);if(queueError!=null)return queueError;
+                    NormalizePendingOverwatchOffers(s);
+                }
+                return null;
+            }
+            var pendingMove=TestOnlyClubAttackPolicy.PendingMove(s);
+            if(pendingMove==null) {
+                var postStep=NextPostStepChoice(s);
+                if(postStep==PostStepChoiceKind.Overwatch) {
+                    if(c.Kind!=CommandKind.RespondOverwatch)return "OverwatchChoicePending";
+                    string responseError=ResolveOverwatchResponse(s,c);if(responseError!=null)return responseError;
+                    if(!s.OverwatchRiderChoices.Any(x=>x.Status==OverwatchRiderChoiceStatus.Pending)&&NextPostStepChoice(s)==PostStepChoiceKind.None) {
+                        bodies.ContinueTacticalFlow(s);string queueError=QueueCompletedMovementOverwatch(s);if(queueError!=null)return queueError;
+                        NormalizePendingOverwatchOffers(s);
+                    }
+                    return null;
+                }
+                if(postStep==PostStepChoiceKind.Press&&c.Kind==CommandKind.RespondOverwatch)return "EarlierPostStepChoicePending";
+            } else if(c.Kind==CommandKind.RespondOverwatch)return "OpportunityChoicePending";
+            if(c.Kind==CommandKind.RespondOverwatch)return "NoPendingOverwatchChoice";
+            if(c.Kind==CommandKind.ResolveOverwatchRider)return "NoPendingOverwatchRiderChoice";
+            if(c.Kind==CommandKind.AttackRepeatingCrossbow||c.Kind==CommandKind.ReloadRepeatingCrossbow) {
+                string error=ResolveRepeatingCrossbow(s,c);if(error==null)NormalizePendingOverwatchOffers(s);return error;
+            }
             if(c.Kind==CommandKind.DispatchConditionEvent) {
-                string error=bodies.Resolve(s,c);if(error==null)PauseIncompatibleWork(s);return error;
+                if(PendingCalendarChoice(s))return "TacticalChoicePending";
+                string error=bodies.Resolve(s,c);if(error==null){PauseIncompatibleWork(s);NormalizePendingOverwatchOffers(s);}return error;
             }
             if(c.Kind==CommandKind.EndRegularTurn||c.Kind==CommandKind.EndFixedEncounter) {
                 if(c.Inventory!=null||c.Combat!=null||c.X!=0||c.Y!=0||c.Actor!=s.Encounter.CurrentActor||c.Target!=s.Encounter.CurrentTurnId)return "WrongRegularTurn";
@@ -72,6 +103,7 @@ namespace Decennium.Foundation.Laboratory
                 if(exit&&!ResolvedConflict(s))return "ConflictNotResolved";
                 if(TestOnlyClubAttackPolicy.Aware(s,c.Actor)&&!TestOnlyClubAttackPolicy.HasStance(s))return "StanceRequired";
                 if(s.WorldSchedule.ProcessedSlot>=int.MaxValue-1)return "CombatCalendarCapacityReached";
+                ExpireOverwatchSnares(s,c.Actor,s.Encounter.TurnOrdinal,s.Revision+1);
                 CharacterAdvancementRules.EndRegularTurn(s,c.Actor,s.Encounter.TurnOrdinal);
                 AdvanceTo(s,s.WorldSchedule.Start(s.WorldSchedule.ProcessedSlot+1),exit,c);
                 if(s.ManufacturingAdvance!=null)return null;
@@ -112,8 +144,12 @@ namespace Decennium.Foundation.Laboratory
                 var spent=Interval(s,c.Actor).SpendInteraction();SetInterval(s,spent);s.InventoryInteractions=spent.Interactions;
                 PauseIncompatibleWork(s);return null;
             }
+            if((c.Kind==CommandKind.AttackClub||c.Kind==CommandKind.AttackUnarmed)&&AttackingFromActiveOverwatchZone(s,c.Actor,c.Target))
+                return "OverwatchAttackTriggerNotImplemented";
             bool action=c.Kind==CommandKind.AttackClub||c.Kind==CommandKind.AttackUnarmed||c.Kind==CommandKind.Disengage;
             string failure=bodies.Resolve(s,c);if(failure!=null)return failure;
+            string triggerError=QueueCompletedMovementOverwatch(s);if(triggerError!=null)return triggerError;
+            NormalizePendingOverwatchOffers(s);
             if(action)SetInterval(s,Interval(s,c.Actor).PayAction());
             PauseIncompatibleWork(s);return null;
         }

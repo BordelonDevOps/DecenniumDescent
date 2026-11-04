@@ -102,6 +102,7 @@ namespace Decennium.Foundation.Laboratory
         private void AdvanceTacticalFlow(Snapshot s)
         {
             while(!s.MeleeAttacks.Any(a=>a.Pending)) {
+                if(s.SchemaVersion>=Snapshot.OverwatchExecutionSchema&&TestOnlySharedWorldPolicy.OverwatchHasPriorityOverPress(s))return;
                 var move=PendingMove(s);
                 if(move!=null) {
                     if(StepFailure(s,move.ActorId,move.FromX,move.FromY,move.ToX,move.ToY,move.Kind)!=null) {
@@ -118,15 +119,29 @@ namespace Decennium.Foundation.Laboratory
                     else if(move.Kind==TacticalMoveKind.TacticalReposition)CharacterAdvancementRules.SpendReposition(s,move.ActorId,cost);
                     var actor=s.Actors.Single(a=>a.Id==move.ActorId);actor.X=move.ToX;actor.Y=move.ToY;
                     s.Clubs=s.Clubs.Select(w=>w.HeldBy==actor.Id?new ClubInstance(w.Id,w.ProfileId,w.OwnerId,w.CustodianId,w.HeldBy,actor.X,actor.Y):w).ToArray();
+                    if(s.SchemaVersion>=Snapshot.OverwatchExecutionSchema)
+                        s.RepeatingCrossbows=s.RepeatingCrossbows.Select(w=>w.HeldBy==actor.Id
+                            ?new RepeatingCrossbowRecord(w.Id,w.ProfileId,w.OwnerId,w.CustodianId,w.HeldBy,w.GripHands,actor.X,actor.Y,w.LoadedBoltLots.ToArray()):w).ToArray();
                     var resources=TacticalActor(s,actor.Id);
                     if(ActiveStance(s,actor.Id)?.Kind==CombatStance.Mobile)SetTactical(s,new ActorTacticalRecord(actor.Id,resources.LastRegularStart,resources.ReactionAvailable,5,resources.PressConsumed,resources.DisengageTurn));
                     move=move.Progress(index,TacticalMoveStatus.Completed,s.Revision+1,cost);SetMove(s,move);QueuePress(s,move);continue;
                 }
-                var offer=CurrentPressOffer(s);if(offer==null)return;
-                if(PressLegal(s,offer))return;
-                SetOffer(s,offer.Resolve(PressOfferStatus.Invalidated,s.Revision+1));
+                var offer=CurrentPressOffer(s);
+                if(offer!=null) {
+                    if(PressLegal(s,offer))return;
+                    SetOffer(s,offer.Resolve(PressOfferStatus.Invalidated,s.Revision+1));continue;
+                }
+                var accepted=s.PressOffers.Where(x=>x.Status==PressOfferStatus.Accepted
+                    &&!s.TacticalMoves.Any(m=>m.ParentPressOffer==x.Id)).OrderByDescending(x=>x.CreatedRevision)
+                    .ThenBy(x=>x.ArmedRevision).ThenBy(x=>x.Id,StringComparer.Ordinal).FirstOrDefault();
+                if(accepted!=null) {
+                    var departed=s.TacticalMoves.Single(m=>m.Id==accepted.MoveId);
+                    BeginStep(s,accepted.ActorId,departed.FromX,departed.FromY,TacticalMoveKind.Press,accepted.Id);continue;
+                }
+                return;
             }
         }
+        internal void ContinueTacticalFlow(Snapshot s)=>AdvanceTacticalFlow(s);
         private string ResolveTacticalChoice(Snapshot s,Command c)
         {
             var move=PendingMove(s);var r=c.Combat;
@@ -155,7 +170,9 @@ namespace Decennium.Foundation.Laboratory
             SetOffer(s,offer.Resolve(r.Choice?PressOfferStatus.Accepted:PressOfferStatus.Declined,s.Revision+1));
             if(r.Choice) {
                 var actor=TacticalActor(s,c.Actor);SetTactical(s,new ActorTacticalRecord(actor.ActorId,actor.LastRegularStart,actor.ReactionAvailable,actor.MobileFeet,true,actor.DisengageTurn));
-                var departed=s.TacticalMoves.Single(m=>m.Id==offer.MoveId);BeginStep(s,c.Actor,departed.FromX,departed.FromY,TacticalMoveKind.Press,offer.Id);
+                if(s.SchemaVersion<Snapshot.OverwatchExecutionSchema||!s.OverwatchOffers.Any(x=>x.Status==OverwatchOfferStatus.Pending)) {
+                    var departed=s.TacticalMoves.Single(m=>m.Id==offer.MoveId);BeginStep(s,c.Actor,departed.FromX,departed.FromY,TacticalMoveKind.Press,offer.Id);
+                }
             }
             AdvanceTacticalFlow(s);return null;
         }

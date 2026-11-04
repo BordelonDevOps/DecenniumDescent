@@ -17,7 +17,8 @@ namespace Decennium.Foundation
         HandlePortableEquipment, EquipPortableItem, RemovePortableItem, OpenPortableContainer, ClosePortableContainer,
         AwardCharacterMilestone, AdvanceCharacterLevel, ActivateTacticalReposition, TacticalRepositionStep,
         AttackRepeatingCrossbow, ReloadRepeatingCrossbow, DispatchFixturePeriodicRider, CurePeriodicRider,
-        SetPeriodicRiderSuppression, SetPeriodicFamilyImmunity, ApplyFixtureMagicalHealing, DesignateOverwatch }
+        SetPeriodicRiderSuppression, SetPeriodicFamilyImmunity, ApplyFixtureMagicalHealing, DesignateOverwatch,
+        RespondOverwatch, ResolveOverwatchRider }
     public enum Outcome { Rejected, Committed, Duplicate }
 
     // DTOs are detached copies. No caller ever receives the owned simulation state.
@@ -67,6 +68,7 @@ namespace Decennium.Foundation
         public const int PeriodicRiderSchema = 23;
         public const int SharedBonusActionSchema = 24;
         public const int OverwatchSchema = 25;
+        public const int OverwatchExecutionSchema = 26;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
         // Technical bound keeps the entire snapshot within the existing 1 MiB save limit,
@@ -147,6 +149,8 @@ namespace Decennium.Foundation
         public ActorBonusActionRecord[] BonusActions = Array.Empty<ActorBonusActionRecord>();
         public OverwatchIntervalRecord[] OverwatchIntervals = Array.Empty<OverwatchIntervalRecord>();
         public OverwatchDesignationRecord[] OverwatchDesignations = Array.Empty<OverwatchDesignationRecord>();
+        public OverwatchOfferRecord[] OverwatchOffers = Array.Empty<OverwatchOfferRecord>();
+        public OverwatchRiderChoiceRecord[] OverwatchRiderChoices = Array.Empty<OverwatchRiderChoiceRecord>();
         public Snapshot Copy() => new Snapshot {
             DyingCadences = DyingCadences.ToArray(), Structures = Structures.ToArray(), CraftingIncidents = CraftingIncidents.ToArray(),
             WorldLifeMarkers = WorldLifeMarkers.ToArray(),
@@ -162,6 +166,7 @@ namespace Decennium.Foundation
             PeriodicImmunities = PeriodicImmunities.ToArray(), SkillTraining = SkillTraining.ToArray(),
             BonusActions = BonusActions.ToArray(),
             OverwatchIntervals = OverwatchIntervals.ToArray(), OverwatchDesignations = OverwatchDesignations.ToArray(),
+            OverwatchOffers = OverwatchOffers.ToArray(), OverwatchRiderChoices = OverwatchRiderChoices.ToArray(),
             FormulaWork = FormulaWork.ToArray(),
             WorldSchedule = WorldSchedule, WorldIntervals = WorldIntervals.ToArray(), WorldTraversals = WorldTraversals.ToArray(),
             Conditions = Conditions.ToArray(), ClosedEncounters = ClosedEncounters.ToArray(),
@@ -194,10 +199,12 @@ namespace Decennium.Foundation
         public CombatRequest Combat { get; }
         public CharacterAdvancementRequest Advancement { get; }
         public RangedRequest Ranged { get; }
+        public OverwatchRider OverwatchRider { get; }
         public Command(string id, string actor, long revision, CommandKind kind,
             string target = "", int x = 0, int y = 0, InventoryRequest inventory = null, CombatRequest combat = null,
-            CharacterAdvancementRequest advancement = null, RangedRequest ranged = null)
-        { Id = id; Actor = actor; ExpectedRevision = revision; Kind = kind; Target = target; X = x; Y = y; Inventory = inventory; Combat = combat; Advancement=advancement; Ranged=ranged; }
+            CharacterAdvancementRequest advancement = null, RangedRequest ranged = null, OverwatchRider overwatchRider = OverwatchRider.None)
+        { if(!Enum.IsDefined(typeof(OverwatchRider),overwatchRider))throw new ArgumentException("Invalid Overwatch rider selection.");
+            Id = id; Actor = actor; ExpectedRevision = revision; Kind = kind; Target = target; X = x; Y = y; Inventory = inventory; Combat = combat; Advancement=advancement; Ranged=ranged; OverwatchRider=overwatchRider; }
         internal string Fingerprint => ((int)Kind).ToString(System.Globalization.CultureInfo.InvariantCulture)
             + "|" + Actor + "|" + Target + "|" + ExpectedRevision.ToString(System.Globalization.CultureInfo.InvariantCulture)
             + "|" + X.ToString(System.Globalization.CultureInfo.InvariantCulture)
@@ -205,7 +212,8 @@ namespace Decennium.Foundation
             + (Inventory == null ? "" : "|inventory-v1|" + Inventory.Fingerprint)
             + (Combat == null ? "" : "|" + Combat.FingerprintVersion + "|" + Combat.Fingerprint)
             + (Advancement == null ? "" : "|character-level-v1|" + Advancement.FeatureOne + "|" + Advancement.FeatureTwo)
-            + (Ranged == null ? "" : "|ranged-v1|" + Ranged.Fingerprint);
+            + (Ranged == null ? "" : "|ranged-v1|" + Ranged.Fingerprint)
+            + (OverwatchRider == OverwatchRider.None ? "" : "|overwatch-rider-v1|" + ((int)OverwatchRider).ToString(System.Globalization.CultureInfo.InvariantCulture));
         // Structural history consistency only; receipts are not authentication credentials.
         public bool MatchesReceipt(CommandReceipt receipt) => receipt != null && ExpectedRevision >= 0
             && ExpectedRevision < long.MaxValue && receipt.Revision == ExpectedRevision + 1
@@ -274,7 +282,7 @@ namespace Decennium.Foundation
             if (s == null || !ValidId(s.ContentFingerprint) || s.Revision < 0 || s.Clock < 0 || s.RandomState == 0)
                 throw new ArgumentException("Invalid snapshot header.");
             if (s.SchemaVersion != Foundation.Snapshot.Schema && s.SchemaVersion != Foundation.Snapshot.WorkSchema
-                && s.SchemaVersion != Foundation.Snapshot.CropSchema && s.SchemaVersion != Foundation.Snapshot.InventorySchema && s.SchemaVersion != Foundation.Snapshot.VesselSchema && s.SchemaVersion != Foundation.Snapshot.MovableVesselSchema && s.SchemaVersion != Foundation.Snapshot.EncounterSchema && s.SchemaVersion != Foundation.Snapshot.ActorLifeSchema && s.SchemaVersion != Foundation.Snapshot.ClubAttackSchema && s.SchemaVersion != Foundation.Snapshot.PostureSchema && s.SchemaVersion != Foundation.Snapshot.TacticalMovementSchema && s.SchemaVersion != Foundation.Snapshot.ConditionSchema && s.SchemaVersion != Foundation.Snapshot.SharedWorldSchema && s.SchemaVersion != Foundation.Snapshot.CalendarCombatSchema && s.SchemaVersion != Foundation.Snapshot.FormulaWorkSchema && s.SchemaVersion != Foundation.Snapshot.CraftingConsequenceSchema && s.SchemaVersion != Foundation.Snapshot.RepairWorkSchema && s.SchemaVersion != Foundation.Snapshot.ManufacturingSchema && s.SchemaVersion != Foundation.Snapshot.SupplyCacheSchema && s.SchemaVersion != Foundation.Snapshot.PortableEquipmentSchema && s.SchemaVersion != Foundation.Snapshot.CharacterAdvancementSchema && s.SchemaVersion != Foundation.Snapshot.RepeatingCrossbowSchema && s.SchemaVersion != Foundation.Snapshot.PeriodicRiderSchema && s.SchemaVersion != Foundation.Snapshot.SharedBonusActionSchema && s.SchemaVersion != Foundation.Snapshot.OverwatchSchema)
+                && s.SchemaVersion != Foundation.Snapshot.CropSchema && s.SchemaVersion != Foundation.Snapshot.InventorySchema && s.SchemaVersion != Foundation.Snapshot.VesselSchema && s.SchemaVersion != Foundation.Snapshot.MovableVesselSchema && s.SchemaVersion != Foundation.Snapshot.EncounterSchema && s.SchemaVersion != Foundation.Snapshot.ActorLifeSchema && s.SchemaVersion != Foundation.Snapshot.ClubAttackSchema && s.SchemaVersion != Foundation.Snapshot.PostureSchema && s.SchemaVersion != Foundation.Snapshot.TacticalMovementSchema && s.SchemaVersion != Foundation.Snapshot.ConditionSchema && s.SchemaVersion != Foundation.Snapshot.SharedWorldSchema && s.SchemaVersion != Foundation.Snapshot.CalendarCombatSchema && s.SchemaVersion != Foundation.Snapshot.FormulaWorkSchema && s.SchemaVersion != Foundation.Snapshot.CraftingConsequenceSchema && s.SchemaVersion != Foundation.Snapshot.RepairWorkSchema && s.SchemaVersion != Foundation.Snapshot.ManufacturingSchema && s.SchemaVersion != Foundation.Snapshot.SupplyCacheSchema && s.SchemaVersion != Foundation.Snapshot.PortableEquipmentSchema && s.SchemaVersion != Foundation.Snapshot.CharacterAdvancementSchema && s.SchemaVersion != Foundation.Snapshot.RepeatingCrossbowSchema && s.SchemaVersion != Foundation.Snapshot.PeriodicRiderSchema && s.SchemaVersion != Foundation.Snapshot.SharedBonusActionSchema && s.SchemaVersion != Foundation.Snapshot.OverwatchSchema && s.SchemaVersion != Foundation.Snapshot.OverwatchExecutionSchema)
                 throw new ArgumentException("Unsupported snapshot schema.");
             if (s.SchemaVersion == Foundation.Snapshot.Schema && (s.Work != null || s.RuleClock != default))
                 throw new ArgumentException("Legacy snapshot cannot contain unsaved work or exact time.");
@@ -379,10 +387,14 @@ namespace Decennium.Foundation
                 || (command.Target.Length != 0 && !Validation.ValidId(command.Target)) || command.ExpectedRevision < 0
                 || !Enum.IsDefined(typeof(CommandKind), command.Kind)) return Reject("InvalidCommand");
             bool combatKind=command.Kind==CommandKind.SelectCombatStance||command.Kind==CommandKind.AttackClub||command.Kind==CommandKind.ResolveKnockout
-                ||command.Kind==CommandKind.AttackUnarmed||command.Kind==CommandKind.RespondOpportunityAttack||command.Kind==CommandKind.RespondPress;
+                ||command.Kind==CommandKind.AttackUnarmed||command.Kind==CommandKind.RespondOpportunityAttack||command.Kind==CommandKind.RespondPress
+                ||command.Kind==CommandKind.RespondOverwatch;
             if(combatKind!=(command.Combat!=null)||command.Combat!=null&&command.Inventory!=null)return Reject("UnexpectedCombatPayload");
             if((command.Kind==CommandKind.AdvanceCharacterLevel)!=(command.Advancement!=null)
                 ||command.Advancement!=null&&(command.Inventory!=null||command.Combat!=null))return Reject("UnexpectedCommandPayload");
+            if((command.Kind==CommandKind.ResolveOverwatchRider)!=(command.OverwatchRider!=OverwatchRider.None)
+                ||command.OverwatchRider!=OverwatchRider.None&&(command.Inventory!=null||command.Combat!=null||command.Advancement!=null||command.Ranged!=null))
+                return Reject("UnexpectedOverwatchPayload");
             bool rangedKind=command.Kind==CommandKind.AttackRepeatingCrossbow||command.Kind==CommandKind.ReloadRepeatingCrossbow;
             if(rangedKind!=(command.Ranged!=null)||command.Ranged!=null&&(command.Inventory!=null||command.Combat!=null||command.Advancement!=null))return Reject("UnexpectedRangedPayload");
             if ((!authority.Controls(command.Actor) && !(command.Kind==CommandKind.AwardCharacterMilestone&&authority.CanModifyWorld)) || (command.Kind == CommandKind.AdvanceClock && !authority.CanAdvanceClock)

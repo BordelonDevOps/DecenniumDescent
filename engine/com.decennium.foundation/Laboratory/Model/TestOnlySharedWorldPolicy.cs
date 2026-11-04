@@ -283,6 +283,8 @@ namespace Decennium.Foundation.Laboratory
         public string Resolve(Snapshot s, Command c)
         {
             if (!s.Actors.Any(a => a.Id == c.Actor)) return "UnknownWorldActor";
+            if((c.Kind==CommandKind.RespondOverwatch||c.Kind==CommandKind.ResolveOverwatchRider)&&(connectedCombat==null||!s.InventoryCombat))
+                return "OverwatchRequiresTacticalCombat";
             if(c.Kind==CommandKind.AwardCharacterMilestone||c.Kind==CommandKind.AdvanceCharacterLevel)return ResolveCharacterAdvancement(s,c);
             if(PeriodicEventCommand(c.Kind))return ResolvePeriodicEvent(s,c);
             if(c.Kind==CommandKind.CurePeriodicRider&&(connectedCombat==null||!s.InventoryCombat))return "MedicineRequiresTacticalAction";
@@ -401,12 +403,12 @@ namespace Decennium.Foundation.Laboratory
                     if(pack==null||!PortableEquipmentRules.FixtureFitValid(s,pack))return "InvalidPortableKitFixture";
                 }
                 if(overwatchFoundation!=null&&(s.SchemaVersion!=Snapshot.SharedBonusActionSchema
-                    &&s.SchemaVersion!=Snapshot.OverwatchSchema
+                    &&s.SchemaVersion!=Snapshot.OverwatchSchema&&s.SchemaVersion!=Snapshot.OverwatchExecutionSchema
                     ||s.CharacterFeatureGrants.Count(g=>g.ActorId==TestOnlyPolicy.ActorId&&g.FeatureId==CharacterFeatureIds.Overwatch
                         &&g.Origin==CharacterFeatureGrantOrigin.AutomaticClassFeature)!=1
                     ||s.CharacterFeatureGrants.Any(g=>g.ActorId==TestOnlyPolicy.ActorId&&g.FeatureId==CharacterFeatureIds.Overwatch
                         &&g.Origin==CharacterFeatureGrantOrigin.AutomaticClassFeature&&(g.MilestoneId!=""||g.GrantedRevision!=0))))return "InvalidOverwatchFoundationFixture";
-                if(overwatchRuntime!=null&&(s.SchemaVersion!=Snapshot.OverwatchSchema||s.OverwatchIntervals.Length<1
+                if(overwatchRuntime!=null&&((s.SchemaVersion!=Snapshot.OverwatchSchema&&s.SchemaVersion!=Snapshot.OverwatchExecutionSchema)||s.OverwatchIntervals.Length<1
                     ||s.OverwatchIntervals.Any(x=>x.ActorId!=TestOnlyPolicy.ActorId)))return "InvalidOverwatchDesignationFixture";
                 if(periodicRider!=null) {
                     if(s.SchemaVersion<Snapshot.PeriodicRiderSchema||s.PeriodicRiders.Any(x=>x.ProfileId!=PeriodicRiderFixture.ProfileId

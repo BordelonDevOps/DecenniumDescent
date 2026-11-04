@@ -73,6 +73,7 @@ namespace Decennium.Foundation
                 if (state.SchemaVersion >= Snapshot.RepeatingCrossbowSchema) RangedCombatCodec.Write(writer,state);
                 if (state.SchemaVersion >= Snapshot.PeriodicRiderSchema) PeriodicRiderCodec.Write(writer,state);
                 if (state.SchemaVersion >= Snapshot.OverwatchSchema) OverwatchCodec.Write(writer,state);
+                if (state.SchemaVersion >= Snapshot.OverwatchExecutionSchema) OverwatchExecutionCodec.Write(writer,state);
                 writer.Flush(); payload = stream.ToArray();
             }
             if (payload.Length + 32 > Limit(state.SchemaVersion)) throw new InvalidDataException("Save exceeds schema size limit.");
@@ -92,7 +93,7 @@ namespace Decennium.Foundation
                     if (reader.ReadInt32() != Magic) throw new InvalidDataException("Unsupported save format.");
                     int schema = reader.ReadInt32();
                     if (data.Length > Limit(schema)) throw new InvalidDataException("Save exceeds schema size limit.");
-                    if (schema != Snapshot.Schema && schema != Snapshot.WorkSchema && schema != Snapshot.CropSchema && schema != Snapshot.InventorySchema && schema != Snapshot.VesselSchema && schema != Snapshot.MovableVesselSchema && schema != Snapshot.EncounterSchema && schema != Snapshot.ActorLifeSchema && schema != Snapshot.ClubAttackSchema && schema != Snapshot.PostureSchema && schema != Snapshot.TacticalMovementSchema && schema != Snapshot.ConditionSchema && schema != Snapshot.SharedWorldSchema && schema != Snapshot.CalendarCombatSchema && schema != Snapshot.FormulaWorkSchema && schema != Snapshot.CraftingConsequenceSchema && schema != Snapshot.RepairWorkSchema && schema != Snapshot.ManufacturingSchema && schema != Snapshot.SupplyCacheSchema && schema != Snapshot.PortableEquipmentSchema && schema != Snapshot.CharacterAdvancementSchema && schema != Snapshot.RepeatingCrossbowSchema && schema != Snapshot.PeriodicRiderSchema && schema != Snapshot.SharedBonusActionSchema && schema != Snapshot.OverwatchSchema)
+                    if (schema != Snapshot.Schema && schema != Snapshot.WorkSchema && schema != Snapshot.CropSchema && schema != Snapshot.InventorySchema && schema != Snapshot.VesselSchema && schema != Snapshot.MovableVesselSchema && schema != Snapshot.EncounterSchema && schema != Snapshot.ActorLifeSchema && schema != Snapshot.ClubAttackSchema && schema != Snapshot.PostureSchema && schema != Snapshot.TacticalMovementSchema && schema != Snapshot.ConditionSchema && schema != Snapshot.SharedWorldSchema && schema != Snapshot.CalendarCombatSchema && schema != Snapshot.FormulaWorkSchema && schema != Snapshot.CraftingConsequenceSchema && schema != Snapshot.RepairWorkSchema && schema != Snapshot.ManufacturingSchema && schema != Snapshot.SupplyCacheSchema && schema != Snapshot.PortableEquipmentSchema && schema != Snapshot.CharacterAdvancementSchema && schema != Snapshot.RepeatingCrossbowSchema && schema != Snapshot.PeriodicRiderSchema && schema != Snapshot.SharedBonusActionSchema && schema != Snapshot.OverwatchSchema && schema != Snapshot.OverwatchExecutionSchema)
                         throw new InvalidDataException("Unsupported save schema.");
                     string fingerprint = ReadText(reader);
                     if (ReadText(reader) != RandomV1.Algorithm) throw new InvalidDataException("Unsupported RNG version.");
@@ -150,6 +151,7 @@ namespace Decennium.Foundation
                     if(schema >= Snapshot.RepeatingCrossbowSchema)RangedCombatCodec.Read(reader,s);
                     if(schema >= Snapshot.PeriodicRiderSchema)PeriodicRiderCodec.Read(reader,s);
                     if(schema >= Snapshot.OverwatchSchema)OverwatchCodec.Read(reader,s);
+                    if(schema >= Snapshot.OverwatchExecutionSchema)OverwatchExecutionCodec.Read(reader,s);
                     if (stream.Position != length) throw new InvalidDataException("Unexpected trailing save data.");
                     Validation.Snapshot(s); return s;
                 }

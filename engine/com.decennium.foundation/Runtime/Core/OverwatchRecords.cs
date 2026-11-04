@@ -5,6 +5,7 @@ namespace Decennium.Foundation
 {
     public enum OverwatchShotStatus { Available, Spent, Forfeited }
     public enum OverwatchDesignationStatus { Active, Replaced, Expired }
+    public enum OverwatchRider { None, Snare, Bleed, Push }
 
     /// <summary>One actor's Base Overwatch shot entitlement for a regular-start interval.
     /// The interval owns use; replacing a zone never creates another shot.</summary>
@@ -65,6 +66,7 @@ namespace Decennium.Foundation
             if(s.OverwatchIntervals==null||s.OverwatchDesignations==null||s.OverwatchIntervals.Length>MaxIntervals
                 ||s.OverwatchDesignations.Length>MaxDesignations||s.OverwatchIntervals.Any(x=>x==null)||s.OverwatchDesignations.Any(x=>x==null))
                 throw new ArgumentException("Invalid Overwatch collections.");
+            OverwatchExecutionValidation.Validate(s);
             if(s.SchemaVersion<Snapshot.OverwatchSchema)
             {
                 if(s.OverwatchIntervals.Length+s.OverwatchDesignations.Length!=0)throw new ArgumentException("Overwatch state requires schema25.");

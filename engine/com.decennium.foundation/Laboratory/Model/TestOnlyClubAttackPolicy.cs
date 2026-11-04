@@ -77,6 +77,9 @@ namespace Decennium.Foundation.Laboratory
             var m=s.ActorMovement.Single(x=>x.ActorId==actor);var l=s.Lives.Single(x=>x.ActorId==actor);
             long flat=(ActiveStance(s,actor)?.Kind==CombatStance.Guarded?-5:0)-(l.LinkedInjuries.Contains((int)Injury.MobilityTrauma)?5:0)-(l.LinkedInjuries.Count==3?10:0);
             long speed=l.Dead||l.Hp==0?0:WithConditions(s)?PlaytestConditions.EffectiveSpeed(m.BaseWalkingSpeed,flat,CombatConditions(s,actor)):Math.Max(0,m.BaseWalkingSpeed+flat);
+            if(s.SchemaVersion>=Snapshot.OverwatchExecutionSchema&&s.OverwatchRiderChoices.Any(x=>x.TargetId==actor
+                &&x.Choice==OverwatchRider.Snare&&x.Status==OverwatchRiderChoiceStatus.Resolved&&s.Encounter!=null
+                &&s.Encounter.TurnOrdinal<=x.ExpiresAfterTurnOrdinal))speed=Math.Max(0,speed-10);
             if(s.SchemaVersion>=Snapshot.PortableEquipmentSchema&&speed>0&&PortableEquipmentRules.IsBurdened(s,actor))
                 speed=PlaytestCarrying.SpeedWithBurden(new RuleQuantity(speed),true).Numerator;
             return speed;
