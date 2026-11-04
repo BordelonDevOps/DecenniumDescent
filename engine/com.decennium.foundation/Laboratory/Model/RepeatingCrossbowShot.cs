@@ -80,7 +80,7 @@ namespace Decennium.Foundation.Laboratory
 
             int count=attack.Critical?2:1;var dice=new int[count];uint next=attack.RandomStateAfter;long words=attack.Roll.WordsConsumed;
             for(int i=0;i<count;i++){var draw=DiceStream.Draw(next,DamageDieSides);dice[i]=draw.Value+1;next=draw.NextState;words=checked(words+draw.WordsConsumed);}
-            long damage=request.DexterityModifier;foreach(int die in dice)damage=checked(damage+die);
+            long damage=request.DexterityModifier;foreach(int die in dice)damage=checked(damage+die);damage=Math.Max(0,damage);
             return new RepeatingCrossbowShotResult(attack,after,carriedBolts,request.DexterityModifier,dice,damage,next,words);
         }
     }

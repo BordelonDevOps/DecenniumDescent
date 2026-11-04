@@ -221,6 +221,7 @@ namespace Decennium.Foundation.Tests
             AddRangedAttackResolutionCases(cases);
             AddRepeatingMagazineCases(cases);
             AddRepeatingCrossbowShotCases(cases);
+            AddRangedCrossbowCases(cases, directory);
             AddDamageDiceCases(cases);
             AddClubAttackCases(cases, directory);
             AddConditionProjectionCases(cases);

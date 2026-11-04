@@ -111,6 +111,10 @@ namespace Decennium.Foundation.Laboratory
             }).ToList();
             foreach(var club in s.Clubs.Where(x=>x.HeldBy==actor))
                 burden.Add(new BurdenItem(club.Id,null,new RuleQuantity(2),null));
+            foreach(var crossbow in s.RepeatingCrossbows.Where(x=>x.CustodianId==actor&&x.HeldBy==actor))
+                burden.Add(new BurdenItem(crossbow.Id,null,new RuleQuantity(20)+new RuleQuantity(3L*crossbow.LoadedBoltLots.Count,40),null));
+            foreach(var lot in s.AmmunitionLots.Where(x=>x.CustodianId==actor))
+                burden.Add(new BurdenItem(lot.Id,null,new RuleQuantity(3L*lot.AvailableQuantity,40),null));
             return PlaytestCarrying.Total(burden);
         }
         public static bool IsBurdened(Snapshot s,string actor)

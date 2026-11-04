@@ -60,6 +60,15 @@ namespace Decennium.Foundation.Tests
                 var shot=RepeatingCrossbowShotRules.Resolve(RangedSeed(12),request,new RepeatingFiveMagazine(1),0);
                 Require(shot.Legal&&shot.Attack.AttackModifier==10&&shot.DamageModifier==3
                     &&shot.RolledDamageBeforeDefense==shot.DamageDice[0]+3,"A flat attack bonus was incorrectly added to damage."); });
+            cases.Add("repeating_crossbow_negative_flat_damage_is_floored_at_zero",()=>{
+                var request=new RangedAttackRequest(10,80,320,0,-5,0,false,0,CombatCover.None,true,true,true,false,false,new ConditionClauses(),new ConditionClauses());
+                RepeatingCrossbowShotResult shot=null;uint seed=1;
+                for(;seed<100000;seed++) {
+                    shot=RepeatingCrossbowShotRules.Resolve(seed,request,new RepeatingFiveMagazine(1),0);
+                    if(shot.Attack?.Critical==true&&shot.DamageDice[0]+shot.DamageDice[1]<=5)break;
+                }
+                Require(shot!=null&&shot.Legal&&shot.Attack.Critical&&shot.DamageModifier== -5&&shot.RolledDamageBeforeDefense==0,
+                    "Negative Dexterity damage modifier produced negative weapon damage."); });
         }
     }
 }

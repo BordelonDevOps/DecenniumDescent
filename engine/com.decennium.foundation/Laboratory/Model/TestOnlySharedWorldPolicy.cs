@@ -23,7 +23,7 @@ namespace Decennium.Foundation.Laboratory
         public TestOnlySharedWorldPolicy(int walkingSpeed = 30, ConditionCombatFixture conditions = null, params TacticalTerrainCell[] terrain)
             :this(null,walkingSpeed,conditions,terrain) { }
         public TestOnlySharedWorldPolicy(SharedCombatFixture combat,int walkingSpeed = 30, ConditionCombatFixture conditions = null, params TacticalTerrainCell[] terrain)
-            :this(combat,null,walkingSpeed,conditions,terrain) { }
+            :this(combat,(SharedResearchFixture)null,walkingSpeed,conditions,terrain) { }
         public TestOnlySharedWorldPolicy(SharedCombatFixture combat,SharedResearchFixture research,int walkingSpeed = 30, ConditionCombatFixture conditions = null, params TacticalTerrainCell[] terrain)
             :this(combat,research,null,walkingSpeed,conditions,terrain) { }
         public TestOnlySharedWorldPolicy(SharedCombatFixture combat,SharedResearchFixture research,SharedCraftingFixture crafting,int walkingSpeed = 30, ConditionCombatFixture conditions = null, params TacticalTerrainCell[] terrain)
@@ -114,6 +114,7 @@ namespace Decennium.Foundation.Laboratory
             InitializeSupplyCache(s);
             InitializePortableEquipment(s);
             InitializeCharacterAdvancement(s);
+            InitializeRepeatingCrossbow(s);
             if(contentManifest!=null) {
                 string bindingError=contentManifest.ValidatePortableSnapshot(s);
                 if(bindingError!=null)throw new InvalidOperationException(bindingError);
@@ -145,7 +146,8 @@ namespace Decennium.Foundation.Laboratory
             // "has a condition": poison, invisibility and unrelated sensory clauses do not stop it.
             return ActorLifeRules.CanAct(s, actor) && !view.Unaware && !view.Clauses.Incapacitated && !view.Clauses.Immobile;
         }
-        private static int AvailableHands(Snapshot s, string actor) => 2 - s.Clubs.Count(c => c.HeldBy == actor);
+        private static int AvailableHands(Snapshot s, string actor) => 2 - s.Clubs.Where(c => c.HeldBy == actor).Count()
+            - s.RepeatingCrossbows.Where(c => c.HeldBy == actor).Sum(c => c.GripHands);
         private void PauseIncompatibleWork(Snapshot s,bool includeFormula=true)
         {
             foreach (var actor in s.Actors.Where(a => !CapableWorker(s, a.Id))) {
@@ -288,6 +290,8 @@ namespace Decennium.Foundation.Laboratory
                 if(c.Kind==CommandKind.BeginFixedEncounter)return EnterCalendarCombat(s,c);
                 if(s.InventoryCombat)return ResolveCalendarCombat(s,c);
             }
+            if(c.Kind==CommandKind.AttackRepeatingCrossbow||c.Kind==CommandKind.ReloadRepeatingCrossbow)
+                return rangedCombat==null?"RangedCommandNotImplemented":"RangedCombatRequiresEncounter";
             if (c.Combat != null) return "SharedCombatHandoffNotImplemented";
             if (c.Kind == CommandKind.AdvanceClock) {
                 if (c.Inventory != null || c.Target != "" || c.X < 1 || c.Y < 1) return "InvalidWorldAdvance";

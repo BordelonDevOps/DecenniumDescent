@@ -15,6 +15,13 @@ namespace Decennium.Foundation.Laboratory
     }
     public sealed partial class TestOnlySharedWorldPolicy
     {
+        public TestOnlySharedWorldPolicy(RepeatingCrossbowFixture rangedCombat,SharedCombatFixture combat,int walkingSpeed=30,
+            ConditionCombatFixture conditions=null,params TacticalTerrainCell[] terrain)
+            :this(combat,walkingSpeed,conditions,terrain)
+        {
+            if(combat==null||rangedCombat==null)throw new ArgumentException("Repeating crossbow combat requires its connected encounter and explicit shooter fixture.");
+            this.rangedCombat=rangedCombat;ContentFingerprint=RepeatingCrossbowFixture.BindFingerprint(ContentFingerprint,rangedCombat);
+        }
         private static void SyncCalendarBodies(Snapshot s)
         {
             foreach(var interval in s.WorldIntervals) {
@@ -54,6 +61,7 @@ namespace Decennium.Foundation.Laboratory
         private string ResolveCalendarCombat(Snapshot s,Command c)
         {
             if(c.Kind==CommandKind.AdvanceClock)return "TacticalDecisionClockPaused";
+            if(c.Kind==CommandKind.AttackRepeatingCrossbow||c.Kind==CommandKind.ReloadRepeatingCrossbow)return ResolveRepeatingCrossbow(s,c);
             if(c.Kind==CommandKind.DispatchConditionEvent) {
                 string error=bodies.Resolve(s,c);if(error==null)PauseIncompatibleWork(s);return error;
             }

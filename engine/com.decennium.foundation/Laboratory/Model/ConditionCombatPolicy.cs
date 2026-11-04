@@ -12,7 +12,7 @@ namespace Decennium.Foundation.Laboratory
         private static bool WithConditions(Snapshot s) => s.SchemaVersion >= Snapshot.ConditionSchema;
         internal static bool Aware(Snapshot s, string actor) => ActorLifeRules.CanAct(s, actor)
             && (!WithConditions(s) || !ConditionsFor(s, actor).View().Unaware);
-        private static ConditionClauses CombatConditions(Snapshot s, string actor)
+        internal static ConditionClauses CombatConditions(Snapshot s, string actor)
         {
             var result = WithConditions(s) ? ConditionsFor(s, actor).View().Clauses.Active.ToList() : new System.Collections.Generic.List<ConditionClause>();
             if (!WithConditions(s) && s.Lives.Single(x => x.ActorId == actor).Prone) result.Add(ConditionClause.Prone);
@@ -30,7 +30,7 @@ namespace Decennium.Foundation.Laboratory
         }
         private static bool EffectiveProne(Snapshot s, string actor) => WithConditions(s)
             ? ConditionsFor(s, actor).View().Has(ConditionKind.Prone) : s.Lives.Single(x => x.ActorId == actor).Prone;
-        private static bool CanSee(Snapshot s, string observer, string target) => !WithConditions(s)
+        internal static bool CanSee(Snapshot s, string observer, string target) => !WithConditions(s)
             || Aware(s, observer) && !ConditionsFor(s, observer).View().BlocksSight && !ConditionsFor(s, target).View().Has(ConditionKind.Invisible);
         internal static bool DamageConditionCapacity(Snapshot s, string target)
         {
@@ -54,6 +54,7 @@ namespace Decennium.Foundation.Laboratory
         {
             var body = s.Actors.Single(x => x.Id == actor);
             s.Clubs = s.Clubs.Select(x => x.HeldBy == actor ? new ClubInstance(x.Id, x.ProfileId, x.OwnerId, x.CustodianId, "", body.X, body.Y) : x).ToArray();
+            s.RepeatingCrossbows=s.RepeatingCrossbows.Select(x=>x.HeldBy==actor?x.DropAt(body.X,body.Y):x).ToArray();
         }
         private static void AppendCondition(Snapshot s, string actor, ConditionOperation operation)
             => CommitCondition(s, ConditionHistory.Restore(s.Conditions.Single(x => x.Target == actor)).Append(operation));
@@ -111,7 +112,7 @@ namespace Decennium.Foundation.Laboratory
             if (kind == CommandKind.EncounterDash) return permissions.Dash ? null : "ConditionPreventsDash";
             return permissions.Action ? null : "ConditionPreventsAction";
         }
-        private static string PhysicalAttackFailure(Snapshot s, string actor)
+        internal static string PhysicalAttackFailure(Snapshot s, string actor)
         {
             if (!WithConditions(s)) return null;
             if (!Aware(s, actor)) return "ActorUnaware";

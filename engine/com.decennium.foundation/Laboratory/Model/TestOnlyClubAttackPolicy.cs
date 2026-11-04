@@ -246,13 +246,16 @@ namespace Decennium.Foundation.Laboratory
         {
             bool newlyUnconscious=!after.Dead&&after.Hp==0&&before.Hp>0;
             // The initial HP/Wound facts and bounded Club damage exclude death while still holding equipment.
-            if(after.Dead&&before.HeldItems.Count!=0)throw new ArgumentException("Death with held equipment is outside this profile.");
-            var record=ActorLifeRules.Record(before.ActorId,after,before.Prone||newlyUnconscious&&!WithConditions(s),newlyUnconscious?Array.Empty<string>():before.HeldItems);
+            bool dropEquipment=newlyUnconscious||after.Dead;
+            var record=ActorLifeRules.Record(before.ActorId,after,before.Prone||newlyUnconscious&&!WithConditions(s),dropEquipment?Array.Empty<string>():before.HeldItems);
             s.Lives=s.Lives.Select(l=>l.ActorId==record.ActorId?record:l).ToArray();
             if(newlyUnconscious) {
                 if(WithConditions(s))AddPhysicalProne(s,before.ActorId,"zero-hp");
+            }
+            if(dropEquipment) {
                 var a=s.Actors.Single(x=>x.Id==before.ActorId);
                 s.Clubs=s.Clubs.Select(w=>w.HeldBy==a.Id?new ClubInstance(w.Id,w.ProfileId,w.OwnerId,w.CustodianId,"",a.X,a.Y):w).ToArray();
+                s.RepeatingCrossbows=s.RepeatingCrossbows.Select(w=>w.HeldBy==a.Id?w.DropAt(a.X,a.Y):w).ToArray();
             }
         }
         public string ValidateState(Snapshot s)

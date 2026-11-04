@@ -8,6 +8,22 @@ namespace Decennium.Foundation
     public enum CombatStance { Aggressive=1, Guarded, Mobile, Focused, Carrying }
     public enum AttackKnockoutMode { OrdinaryOutcome, KnockOutIfEligible, AskIfEligible }
     public enum PressHitInstruction { ArmOrReplace, KeepExisting }
+    /// <summary>Exact command inputs for one ordinary Repeating heavy crossbow attack or reload.
+    /// Attack uses an empty AmmoLotId and zero Amount; reload names one actual carried lot.</summary>
+    public sealed class RangedRequest
+    {
+        public string TurnId { get; }
+        public string WeaponId { get; }
+        public string AmmoLotId { get; }
+        public int Amount { get; }
+        public RangedRequest(string turnId,string weaponId,string ammoLotId="",int amount=0)
+        {
+            if(!Validation.ValidId(turnId)||!Validation.ValidId(weaponId)||ammoLotId==null||ammoLotId!=""&&!Validation.ValidId(ammoLotId)||amount<0||amount>20)
+                throw new ArgumentException("Invalid ranged request.");
+            TurnId=turnId;WeaponId=weaponId;AmmoLotId=ammoLotId;Amount=amount;
+        }
+        internal string Fingerprint=>TurnId+"|"+WeaponId+"|"+AmmoLotId+"|"+Amount.ToString(CultureInfo.InvariantCulture);
+    }
     public sealed class CombatRequest
     {
         public string TurnId { get; }

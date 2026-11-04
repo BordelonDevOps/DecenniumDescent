@@ -30,6 +30,11 @@ namespace Decennium.Foundation.Laboratory
         private readonly SharedRepairFixture repair;
         public IEnumerable<string> RequiredInventoryOwners(Snapshot s, Command c)
         {
+            if(c.Kind==CommandKind.AttackRepeatingCrossbow||c.Kind==CommandKind.ReloadRepeatingCrossbow) {
+                var weapon=s.RepeatingCrossbows.FirstOrDefault(x=>x.Id==c.Ranged?.WeaponId);
+                var lot=c.Kind==CommandKind.ReloadRepeatingCrossbow?s.AmmunitionLots.FirstOrDefault(x=>x.Id==c.Ranged?.AmmoLotId):null;
+                return new[]{weapon?.OwnerId,lot?.OwnerId}.Where(x=>x!=null).Distinct(StringComparer.Ordinal).ToArray();
+            }
             if(PortableCommand(c.Kind))return PortableEquipmentRules.Owners(s,c.Target);
             if(IsSupplyCacheCommand(c)) {
                 var cache=s.SupplyCaches.SingleOrDefault(x=>x.Id==c.Target);

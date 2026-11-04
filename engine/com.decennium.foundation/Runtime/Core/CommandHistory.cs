@@ -13,7 +13,7 @@ namespace Decennium.Foundation
                 || receipt.Revision < 1 || string.IsNullOrEmpty(receipt.Fingerprint) || receipt.Fingerprint.Length > 512)
                 throw new ArgumentException("Invalid command receipt.");
             var p = receipt.Fingerprint.Split('|');
-            if (p.Length != 6 && p.Length != 9 && p.Length != 10 && p.Length != 12 && p.Length != 13) throw new ArgumentException("Invalid receipt fields.");
+            if (p.Length != 6 && p.Length != 9 && p.Length != 10 && p.Length != 11 && p.Length != 12 && p.Length != 13) throw new ArgumentException("Invalid receipt fields.");
             int Int(string value) => int.TryParse(value, NumberStyles.AllowLeadingSign, CultureInfo.InvariantCulture, out int n)
                 ? n : throw new ArgumentException("Invalid receipt integer.");
             long Long(string value) => long.TryParse(value, NumberStyles.None, CultureInfo.InvariantCulture, out long n)
@@ -21,7 +21,7 @@ namespace Decennium.Foundation
             var kind = (CommandKind)Int(p[0]);
             if (!Enum.IsDefined(typeof(CommandKind), kind) || !Validation.ValidId(p[1]) || p[2] != "" && !Validation.ValidId(p[2]))
                 throw new ArgumentException("Invalid receipt identity or command kind.");
-            InventoryRequest inventory = null; CombatRequest combat = null; CharacterAdvancementRequest advancement=null;
+            InventoryRequest inventory = null; CombatRequest combat = null; CharacterAdvancementRequest advancement=null; RangedRequest ranged=null;
             if(p.Length==9) {
                 if(kind!=CommandKind.AdvanceCharacterLevel||p[6]!="character-level-v1"||p[7]!=""&&!Validation.ValidId(p[7])||p[8]!=""&&!Validation.ValidId(p[8]))throw new ArgumentException("Invalid advancement receipt version or choices.");
                 advancement=new CharacterAdvancementRequest(p[7],p[8]);
@@ -31,13 +31,18 @@ namespace Decennium.Foundation
                 var q = p[7].Split('/'); if (q.Length != 2) throw new ArgumentException("Invalid receipt fraction.");
                 inventory = new InventoryRequest(new RuleQuantity(Long(q[0]), Long(q[1])), p[8], (HandlingKind)Int(p[9]));
             }
+            if (p.Length == 11) {
+                if ((kind != CommandKind.AttackRepeatingCrossbow && kind != CommandKind.ReloadRepeatingCrossbow) || p[6] != "ranged-v1")
+                    throw new ArgumentException("Unknown ranged receipt version or command.");
+                ranged = new RangedRequest(p[7], p[8], p[9], Int(p[10]));
+            }
             if (p.Length >= 12) {
                 if (p[6] != (p.Length == 12 ? "combat-v1" : "combat-v2") || p.Length == 13 && p[12] != "1"
                     || p[11] != "0" && p[11] != "1") throw new ArgumentException("Invalid combat receipt version or flag.");
                 combat = new CombatRequest(p[7], p[8], Int(p[9]), (AttackKnockoutMode)Int(p[10]), p[11] == "1",
                     p.Length == 13 ? PressHitInstruction.KeepExisting : PressHitInstruction.ArmOrReplace);
             }
-            var command = new Command(receipt.Id, p[1], receipt.Revision - 1, kind, p[2], Int(p[4]), Int(p[5]), inventory, combat,advancement);
+            var command = new Command(receipt.Id, p[1], receipt.Revision - 1, kind, p[2], Int(p[4]), Int(p[5]), inventory, combat,advancement,ranged);
             // Includes expected revision and exact canonical numeric representation, versions and fields.
             if (!command.MatchesReceipt(receipt)) throw new ArgumentException("Noncanonical or inconsistent command receipt.");
             return command;
