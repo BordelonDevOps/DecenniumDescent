@@ -55,23 +55,30 @@ namespace Decennium.Foundation.Laboratory
         public const long MaximumRangeFeet=320;
         public const int DamageDieSides=10;
 
-        public static RepeatingCrossbowShotResult Resolve(uint initialRandomState,RangedAttackRequest request,
+        public static RepeatingCrossbowShotFailure CheckLegality(RangedAttackRequest request,
             RepeatingFiveMagazine magazine,int carriedBolts)
         {
             if(magazine==null)throw new ArgumentNullException(nameof(magazine));
             if(carriedBolts<0)throw new ArgumentOutOfRangeException(nameof(carriedBolts));
             if(request.NormalRangeFeet!=NormalRangeFeet||request.MaximumRangeFeet!=MaximumRangeFeet)
-                return new RepeatingCrossbowShotResult(RepeatingCrossbowShotFailure.WrongWeaponRangeProfile,initialRandomState,magazine,carriedBolts);
-            if(!magazine.CanFire)
-                return new RepeatingCrossbowShotResult(RepeatingCrossbowShotFailure.NoAmmunition,initialRandomState,magazine,carriedBolts);
+                return RepeatingCrossbowShotFailure.WrongWeaponRangeProfile;
+            if(!magazine.CanFire)return RepeatingCrossbowShotFailure.NoAmmunition;
+            var legality=RangedAttackRules.CheckLegality(request);
+            if(legality.Legal)return RepeatingCrossbowShotFailure.None;
+            return legality.Failure==RangedAttackFailure.UnknownTargetLocation?RepeatingCrossbowShotFailure.UnknownTargetLocation
+                :legality.Failure==RangedAttackFailure.BlockedLineOfFire?RepeatingCrossbowShotFailure.BlockedLineOfFire
+                :legality.Failure==RangedAttackFailure.TotalCover?RepeatingCrossbowShotFailure.TotalCover:RepeatingCrossbowShotFailure.OutOfRange;
+        }
+
+        public static RepeatingCrossbowShotResult Resolve(uint initialRandomState,RangedAttackRequest request,
+            RepeatingFiveMagazine magazine,int carriedBolts)
+        {
+            var failure=CheckLegality(request,magazine,carriedBolts);
+            if(failure!=RepeatingCrossbowShotFailure.None)
+                return new RepeatingCrossbowShotResult(failure,initialRandomState,magazine,carriedBolts);
 
             var attack=RangedAttackRules.Resolve(initialRandomState,request);
-            if(!attack.Legal) {
-                var failure=attack.Failure==RangedAttackFailure.UnknownTargetLocation?RepeatingCrossbowShotFailure.UnknownTargetLocation
-                    :attack.Failure==RangedAttackFailure.BlockedLineOfFire?RepeatingCrossbowShotFailure.BlockedLineOfFire
-                    :attack.Failure==RangedAttackFailure.TotalCover?RepeatingCrossbowShotFailure.TotalCover:RepeatingCrossbowShotFailure.OutOfRange;
-                return new RepeatingCrossbowShotResult(failure,initialRandomState,magazine,carriedBolts);
-            }
+            if(!attack.Legal)throw new InvalidOperationException("A ranged attack passed preflight but failed resolution.");
 
             if(!magazine.TrySpendForAttack(out var after))throw new InvalidOperationException("A validated loaded magazine failed to spend its bolt.");
             if(!attack.Attack.Hit)

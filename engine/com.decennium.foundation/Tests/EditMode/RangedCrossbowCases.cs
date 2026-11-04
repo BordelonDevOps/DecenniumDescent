@@ -89,6 +89,60 @@ namespace Decennium.Foundation.Tests
                 WorldCommit(empty,Tac(empty,CommandKind.SelectCombatStance,stance:(int)CombatStance.Aggressive));
                 RejectUnchanged(empty,host,RangedCommand(empty,CommandKind.AttackRepeatingCrossbow,AdditionalTacticalActor.Id),"NoAmmunition");
             });
+            cases.Add("repeating_crossbow_query_discovers_costs_without_mutating_rng_or_authoritative_state",()=>{
+                var p=RangedPolicy();var s=World(p);BeginEncounter(s);var before=Bytes(s);uint random=s.Capture().RandomState;
+                var options=s.DiscoverCommands(host,TestOnlyPolicy.ActorId);
+                var reloads=options.Where(x=>x.Command.Kind==CommandKind.ReloadRepeatingCrossbow).OrderBy(x=>x.Command.Ranged.Amount).ToArray();
+                var attack=options.Single(x=>x.Command.Kind==CommandKind.AttackRepeatingCrossbow);
+                Require(reloads.Length==5&&reloads.All(x=>x.Query.Supported&&x.Query.Admissible&&x.Query.Code=="Available")
+                    &&reloads.Select(x=>x.Command.Ranged.Amount).SequenceEqual(new[]{1,2,3,4,5}),"Discovery did not expose exactly the finite legal reload quantities.");
+                Require(reloads[0].Query.Costs.Count==2&&reloads[0].Query.Costs[0].Kind=="action"
+                    &&reloads[0].Query.Costs[1].ResourceId==RepeatingCrossbowFixture.AmmunitionId&&reloads[0].Query.Costs[1].Amount==1,
+                    "Read-only query omitted the admitted action and ammunition costs.");
+                Require(!attack.Query.Admissible&&attack.Query.Code=="NoAmmunition"&&attack.Query.Costs.Count==0,
+                    "An empty-magazine attack was not explained as inadmissible without claiming spendable costs.");
+                for(int i=0;i<3;i++)s.QueryCommand(host,reloads[0].Command);
+                Require(Bytes(s).SequenceEqual(before)&&s.Capture().RandomState==random,"Repeated query/discovery changed authoritative bytes or RNG.");
+                var stale=new Command("query.stale",reloads[0].Command.Actor,reloads[0].Command.ExpectedRevision-1,
+                    CommandKind.ReloadRepeatingCrossbow,ranged:reloads[0].Command.Ranged);
+                Require(s.QueryCommand(host,stale).Code=="StaleRevision","Query accepted a stale command revision.");
+                var revoked=new Authority("TEST_ONLY.query-revoked",new[]{TestOnlyPolicy.ActorId});
+                Require(s.QueryCommand(revoked,reloads[0].Command).Code=="InventoryNotAuthorized","Query ignored revoked inventory permission.");
+                var unsupported=new Command("query.unsupported",TestOnlyPolicy.ActorId,s.Capture().Revision,CommandKind.Move);
+                Require(!s.QueryCommand(host,unsupported).Supported,"Unsupported operations were presented as queryable.");
+                var pending=OverwatchTrigger(OverwatchExecutionPolicy(SeedForNatural(10)));var pendingView=pending.Capture();var pendingBytes=Bytes(pending);
+                var pendingAttack=new Command("query.pending",TestOnlyPolicy.ActorId,pendingView.Revision,CommandKind.AttackRepeatingCrossbow,
+                    AdditionalTacticalActor.Id,ranged:new RangedRequest(pendingView.Encounter.CurrentTurnId,
+                        RepeatingCrossbowFixture.WeaponId,"",0));
+                Require(pending.QueryCommand(host,pendingAttack).Code=="TacticalChoicePending"&&Bytes(pending).SequenceEqual(pendingBytes),
+                    "Query bypassed an unresolved tactical response/choice.");
+                Require(Bytes(s).SequenceEqual(before),"Rejected queries changed authoritative state.");
+            });
+            cases.Add("repeating_crossbow_headless_controller_submits_normal_reload_and_attack_commands",()=>{
+                var p=RangedPolicy();var s=World(p);BeginEncounter(s);var controller=new RepeatingCrossbowHeadlessController();
+                var reload=controller.Act(s,host,TestOnlyPolicy.ActorId);var loaded=s.Capture();
+                Require(reload!=null&&reload.Outcome==Outcome.Committed&&loaded.RepeatingCrossbows.Single().LoadedBoltLots.Count==5
+                    &&loaded.AmmunitionLots.Single().AvailableQuantity==15&&loaded.Receipts.Any(x=>x.Revision==reload.Revision
+                        &&x.Id.StartsWith("option.",StringComparison.Ordinal)),
+                    "Headless controller failed to submit the largest admissible reload through normal command execution.");
+                var restored=new Simulation(p,codec.Decode(Bytes(s)),ExecutionProfile.Laboratory);
+                Require(Bytes(s).SequenceEqual(Bytes(restored)),"Headless reload did not survive snapshot save/restore.");s=restored;
+                WorldCommit(s,Tac(s,CommandKind.SelectCombatStance,stance:(int)CombatStance.Aggressive));
+                WorldCommit(s,Tac(s,CommandKind.EndRegularTurn));
+                WorldCommit(s,Tac(s,CommandKind.SelectCombatStance,actor:AdditionalTacticalActor.Id,stance:(int)CombatStance.Guarded));
+                WorldCommit(s,Tac(s,CommandKind.EndRegularTurn,actor:AdditionalTacticalActor.Id));
+                WorldCommit(s,Tac(s,CommandKind.SelectCombatStance,stance:(int)CombatStance.Aggressive));
+                var attack=controller.Act(s,host,TestOnlyPolicy.ActorId);var final=s.Capture();
+                Require(attack!=null&&attack.Outcome==Outcome.Committed&&final.RangedAttacks.Length==1
+                    &&final.RepeatingCrossbows.Single().LoadedBoltLots.Count==4&&final.WorldIntervals.Single(x=>x.ActorId==TestOnlyPolicy.ActorId).ActionSpent,
+                    "Headless controller did not select and execute an admissible attack through the ordinary command path.");
+            });
+            cases.Add("repeating_crossbow_discovery_retains_known_unseen_attack_targets",()=>{
+                var p=RangedPolicy(fixture:new RepeatingCrossbowFixture(targetVisible:false));var s=World(p);PrepareRangedActorTurn(s);
+                var option=s.DiscoverCommands(host,TestOnlyPolicy.ActorId).Single(x=>x.Command.Kind==CommandKind.AttackRepeatingCrossbow);
+                Require(option.Query.Admissible&&option.Query.Code=="Available",
+                    "A known but unseen location was incorrectly hidden from attack discovery instead of retaining the existing disadvantage rule.");
+            });
             cases.Add("repeating_crossbow_proficiency_is_explicit_and_untrained_possession_adds_no_bonus",()=>{
                 var p=RangedPolicy(fixture:new RepeatingCrossbowFixture(proficient:false));var s=World(p);PrepareRangedActorTurn(s);
                 RangedCommit(s,RangedCommand(s,CommandKind.AttackRepeatingCrossbow,AdditionalTacticalActor.Id));

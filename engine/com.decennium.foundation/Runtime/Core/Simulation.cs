@@ -251,6 +251,58 @@ namespace Decennium.Foundation
         string Resolve(Snapshot candidate, Command command);
         string ValidateState(Snapshot candidate);
     }
+    public sealed class CommandCost
+    {
+        public string Kind { get; }
+        public string ResourceId { get; }
+        public long Amount { get; }
+        public CommandCost(string kind, string resourceId, long amount)
+        {
+            if (!Validation.ValidId(kind) || resourceId == null || resourceId.Length > 96
+                || resourceId.Length != 0 && !Validation.ValidId(resourceId) || amount < 1)
+                throw new ArgumentException("Invalid command cost.");
+            Kind = kind; ResourceId = resourceId; Amount = amount;
+        }
+    }
+    public sealed class CommandQueryResult
+    {
+        private readonly CommandCost[] costs;
+        private readonly string[] requiredChoices;
+        public bool Supported { get; }
+        public bool Admissible { get; }
+        public string Code { get; }
+        public long ObservedRevision { get; }
+        public IReadOnlyList<CommandCost> Costs { get; }
+        public IReadOnlyList<string> RequiredChoices { get; }
+        public CommandQueryResult(bool supported, bool admissible, string code, long observedRevision,
+            IEnumerable<CommandCost> costs = null, IEnumerable<string> requiredChoices = null)
+        {
+            if (observedRevision < 0 || string.IsNullOrEmpty(code) || code.Length > 96
+                || code.Any(c => c < 32 || c > 126) || !supported && admissible)
+                throw new ArgumentException("Invalid command-query result.");
+            this.costs = (costs ?? Array.Empty<CommandCost>()).ToArray();
+            this.requiredChoices = (requiredChoices ?? Array.Empty<string>()).ToArray();
+            if (this.costs.Any(x => x == null) || this.requiredChoices.Any(x => string.IsNullOrEmpty(x)
+                || x.Length > 96 || x.Any(c => c < 32 || c > 126))) throw new ArgumentException("Invalid command-query details.");
+            Supported = supported; Admissible = admissible; Code = code; ObservedRevision = observedRevision;
+            Costs = Array.AsReadOnly(this.costs); RequiredChoices = Array.AsReadOnly(this.requiredChoices);
+        }
+    }
+    public sealed class CommandOption
+    {
+        public Command Command { get; }
+        public CommandQueryResult Query { get; }
+        public CommandOption(Command command, CommandQueryResult query)
+        { Command = command ?? throw new ArgumentNullException(nameof(command)); Query = query ?? throw new ArgumentNullException(nameof(query)); }
+    }
+    /// <summary>Optional read-only command discovery. Query implementations inspect detached state only
+    /// and must not roll RNG, write receipts, reserve resources, advance time, or resolve choices.</summary>
+    public interface ICommandQueryPolicy
+    {
+        bool SupportsCommand(CommandKind kind);
+        IEnumerable<Command> DiscoverCommands(Snapshot snapshot, Authority authority, string actor);
+        CommandQueryResult QueryCommand(Snapshot snapshot, Authority authority, Command command);
+    }
     /// <summary>Policy-resolved physical inputs; host authority remains outside client payloads.
     /// Called on detached state before duplicate handling and any mutation.</summary>
     public interface ICommandInventoryClaims
@@ -380,50 +432,50 @@ namespace Decennium.Foundation
             string error = policy.ValidateState(candidate);
             if (error != null) throw new ArgumentException(error);
         }
-        public CommandResult Execute(Authority authority, Command command)
+        private string ValidateCommandAndAuthority(Authority authority, Command command)
         {
             if (authority == null || command == null || !Validation.ValidId(command.Id)
                 || !Validation.ValidId(command.Actor) || command.Target == null || command.Target.Length > 96
                 || (command.Target.Length != 0 && !Validation.ValidId(command.Target)) || command.ExpectedRevision < 0
-                || !Enum.IsDefined(typeof(CommandKind), command.Kind)) return Reject("InvalidCommand");
+                || !Enum.IsDefined(typeof(CommandKind), command.Kind)) return "InvalidCommand";
             bool combatKind=command.Kind==CommandKind.SelectCombatStance||command.Kind==CommandKind.AttackClub||command.Kind==CommandKind.ResolveKnockout
                 ||command.Kind==CommandKind.AttackUnarmed||command.Kind==CommandKind.RespondOpportunityAttack||command.Kind==CommandKind.RespondPress
                 ||command.Kind==CommandKind.RespondOverwatch;
-            if(combatKind!=(command.Combat!=null)||command.Combat!=null&&command.Inventory!=null)return Reject("UnexpectedCombatPayload");
+            if(combatKind!=(command.Combat!=null)||command.Combat!=null&&command.Inventory!=null)return "UnexpectedCombatPayload";
             if((command.Kind==CommandKind.AdvanceCharacterLevel)!=(command.Advancement!=null)
-                ||command.Advancement!=null&&(command.Inventory!=null||command.Combat!=null))return Reject("UnexpectedCommandPayload");
+                ||command.Advancement!=null&&(command.Inventory!=null||command.Combat!=null))return "UnexpectedCommandPayload";
             if((command.Kind==CommandKind.ResolveOverwatchRider)!=(command.OverwatchRider!=OverwatchRider.None)
                 ||command.OverwatchRider!=OverwatchRider.None&&(command.Inventory!=null||command.Combat!=null||command.Advancement!=null||command.Ranged!=null))
-                return Reject("UnexpectedOverwatchPayload");
+                return "UnexpectedOverwatchPayload";
             bool rangedKind=command.Kind==CommandKind.AttackRepeatingCrossbow||command.Kind==CommandKind.ReloadRepeatingCrossbow;
-            if(rangedKind!=(command.Ranged!=null)||command.Ranged!=null&&(command.Inventory!=null||command.Combat!=null||command.Advancement!=null))return Reject("UnexpectedRangedPayload");
+            if(rangedKind!=(command.Ranged!=null)||command.Ranged!=null&&(command.Inventory!=null||command.Combat!=null||command.Advancement!=null))return "UnexpectedRangedPayload";
             if ((!authority.Controls(command.Actor) && !(command.Kind==CommandKind.AwardCharacterMilestone&&authority.CanModifyWorld)) || (command.Kind == CommandKind.AdvanceClock && !authority.CanAdvanceClock)
                 || ((command.Kind == CommandKind.SetCropConditions || command.Kind == CommandKind.EnterInventoryCombat || command.Kind == CommandKind.BeginFixedEncounter || command.Kind == CommandKind.EndFixedEncounter || command.Kind == CommandKind.DispatchConditionEvent || command.Kind == CommandKind.DispatchCraftingMishap || command.Kind==CommandKind.AwardCharacterMilestone
                     ||command.Kind==CommandKind.DispatchFixturePeriodicRider||command.Kind==CommandKind.SetPeriodicRiderSuppression||command.Kind==CommandKind.SetPeriodicFamilyImmunity||command.Kind==CommandKind.ApplyFixtureMagicalHealing) && !authority.CanModifyWorld))
-                return Reject("NotAuthorized");
+                return "NotAuthorized";
             if (policy is ICommandInventoryClaims claims) {
                 try {
-                    if (claims.RequiredInventoryOwners(state.Copy(), command).Any(owner => !Validation.ValidId(owner) || !authority.MayUseInventory(owner))) return Reject("InventoryNotAuthorized");
-                } catch (Exception ex) when (ex is ArgumentException || ex is InvalidOperationException || ex is OverflowException) { return Reject("InvalidInventoryClaims"); }
+                    if (claims.RequiredInventoryOwners(state.Copy(), command).Any(owner => !Validation.ValidId(owner) || !authority.MayUseInventory(owner))) return "InventoryNotAuthorized";
+                } catch (Exception ex) when (ex is ArgumentException || ex is InvalidOperationException || ex is OverflowException) { return "InvalidInventoryClaims"; }
             }
             if (command.Kind == CommandKind.PortionInventory || command.Kind == CommandKind.HandleInventory || command.Kind == CommandKind.StartIntake) {
                 var source = state.InventoryLots.FirstOrDefault(x => x.LotId == command.Target);
-                if (source != null && !authority.MayUseInventory(source.OwnerId)) return Reject("InventoryNotAuthorized");
+                if (source != null && !authority.MayUseInventory(source.OwnerId)) return "InventoryNotAuthorized";
                 if (command.Kind == CommandKind.StartIntake && source != null && state.Vessels.Length != 0) {
                     var lot = state.Work.Lots.First(x => x.Id == source.LotId);
                     var vessel = state.Vessels.FirstOrDefault(x => x.Id == lot.LocationId);
-                    if (vessel != null && !authority.MayUseInventory(vessel.OwnerId)) return Reject("InventoryNotAuthorized");
+                    if (vessel != null && !authority.MayUseInventory(vessel.OwnerId)) return "InventoryNotAuthorized";
                 }
                 if (command.Kind == CommandKind.HandleInventory && command.Inventory != null
                     && command.Inventory.Handling == HandlingKind.Handover && !authority.ConsentsToHandover(command.Inventory.Destination))
-                    return Reject("RecipientNotWilling");
+                    return "RecipientNotWilling";
             }
             if(command.Kind==CommandKind.HandlePortableEquipment||command.Kind==CommandKind.EquipPortableItem||command.Kind==CommandKind.RemovePortableItem
                 ||command.Kind==CommandKind.OpenPortableContainer||command.Kind==CommandKind.ClosePortableContainer) {
                 var item=state.PortableEquipment.FirstOrDefault(x=>x.Id==command.Target);
-                if(item!=null&&!authority.MayUseInventory(item.OwnerId))return Reject("InventoryNotAuthorized");
+                if(item!=null&&!authority.MayUseInventory(item.OwnerId))return "InventoryNotAuthorized";
                 if(command.Kind==CommandKind.HandlePortableEquipment&&command.Inventory!=null&&command.Inventory.Handling==HandlingKind.Handover
-                    &&!authority.ConsentsToHandover(command.Inventory.Destination))return Reject("RecipientNotWilling");
+                    &&!authority.ConsentsToHandover(command.Inventory.Destination))return "RecipientNotWilling";
             }
             if (command.Kind == CommandKind.StartWaterFill || command.Kind == CommandKind.ResumeWaterFill) {
                 var fill = command.Kind == CommandKind.ResumeWaterFill ? state.WaterFills.FirstOrDefault(x => x.Id == command.Target) : null;
@@ -433,32 +485,38 @@ namespace Decennium.Foundation
                 var sourceVessel = sourceLot == null ? null : state.Vessels.FirstOrDefault(x => x.Id == sourceLot.LocationId);
                 if ((source != null && !authority.MayUseInventory(source.OwnerId)) || (vessel != null && !authority.MayUseInventory(vessel.OwnerId))
                     || (sourceVessel != null && !authority.MayUseInventory(sourceVessel.OwnerId)))
-                    return Reject("InventoryNotAuthorized");
+                    return "InventoryNotAuthorized";
             }
             if (command.Kind == CommandKind.HandleVessel) {
                 var vessel = state.Vessels.FirstOrDefault(v => v.Id == command.Target);
                 if (vessel != null && (!authority.MayUseInventory(vessel.OwnerId) || state.VesselContents.Where(x => x.VesselId == vessel.Id)
                     .Any(x => state.Work.Lots.First(l => l.Id == x.LotId).Amount != default
-                        && !authority.MayUseInventory(state.InventoryLots.First(l => l.LotId == x.LotId).OwnerId)))) return Reject("InventoryNotAuthorized");
+                        && !authority.MayUseInventory(state.InventoryLots.First(l => l.LotId == x.LotId).OwnerId)))) return "InventoryNotAuthorized";
                 if (command.Inventory != null && command.Inventory.Handling == HandlingKind.Handover
-                    && !authority.ConsentsToHandover(command.Inventory.Destination)) return Reject("RecipientNotWilling");
+                    && !authority.ConsentsToHandover(command.Inventory.Destination)) return "RecipientNotWilling";
             }
             // The admitted copying command uses its actor-owned writing allotment. Resume also
             // rechecks that owner's current grant before duplicate handling or deferred spending.
-            if (command.Kind == CommandKind.StartFormulaCopy && !authority.MayUseInventory(command.Actor)) return Reject("InventoryNotAuthorized");
+            if (command.Kind == CommandKind.StartFormulaCopy && !authority.MayUseInventory(command.Actor)) return "InventoryNotAuthorized";
             if (command.Kind == CommandKind.StartCraftRemedy) {
                 var incident = state.CraftingIncidents.FirstOrDefault(x => x.Id == command.Target && x.Result == 2);
                 var tool = incident == null ? null : state.Structures.FirstOrDefault(x => x.Id == incident.ToolId);
-                if (tool != null && !authority.MayUseInventory(tool.OwnerId)) return Reject("InventoryNotAuthorized");
+                if (tool != null && !authority.MayUseInventory(tool.OwnerId)) return "InventoryNotAuthorized";
             }
             if (command.Kind == CommandKind.ResumeFormulaWork) {
                 var job = state.FormulaWork.FirstOrDefault(x => x.Id == command.Target && x.Kind == FormulaWorkKind.Copy);
-                if (job != null && !authority.MayUseInventory(job.WorkerId)) return Reject("InventoryNotAuthorized");
+                if (job != null && !authority.MayUseInventory(job.WorkerId)) return "InventoryNotAuthorized";
             }
             if(command.Kind==CommandKind.AttackClub||command.Kind==CommandKind.RespondOpportunityAttack&&command.Combat.Choice) {
                 var club=state.Clubs.FirstOrDefault(w=>w.Id==command.Combat.WeaponId);
-                if(club!=null&&!authority.MayUseInventory(club.OwnerId))return Reject("InventoryNotAuthorized");
+                if(club!=null&&!authority.MayUseInventory(club.OwnerId))return "InventoryNotAuthorized";
             }
+            return null;
+        }
+        public CommandResult Execute(Authority authority, Command command)
+        {
+            string preflightFailure=ValidateCommandAndAuthority(authority,command);
+            if(preflightFailure!=null)return Reject(preflightFailure);
             CommandReceipt previous = state.Receipts.FirstOrDefault(r => r.Principal == authority.Principal && r.Id == command.Id);
             if (previous != null)
                 return previous.Fingerprint == command.Fingerprint
@@ -483,6 +541,44 @@ namespace Decennium.Foundation
             catch (ArgumentException) { return Reject("InvalidResult"); }
             state = candidate.Copy();
             return new CommandResult(Outcome.Committed, state.ManufacturingAdvance?.CommandId==command.Id?"AcceptedSuspended":"Committed", state.Revision,state.ManufacturingAdvance?.CommandId==command.Id);
+        }
+        public CommandQueryResult QueryCommand(Authority authority, Command command)
+        {
+            long observedRevision=state.Revision;
+            var queryPolicy=policy as ICommandQueryPolicy;
+            if(queryPolicy==null||command==null||!Enum.IsDefined(typeof(CommandKind),command.Kind)||!queryPolicy.SupportsCommand(command.Kind))
+                return new CommandQueryResult(false,false,"UnsupportedOperation",observedRevision);
+            string failure=ValidateCommandAndAuthority(authority,command);
+            if(failure!=null)return new CommandQueryResult(true,false,failure,observedRevision);
+            CommandReceipt previous=state.Receipts.FirstOrDefault(r=>r.Principal==authority.Principal&&r.Id==command.Id);
+            if(previous!=null)return new CommandQueryResult(true,false,previous.Fingerprint==command.Fingerprint?"AlreadyCommitted":"CommandIdConflict",observedRevision);
+            if(command.ExpectedRevision!=state.Revision)return new CommandQueryResult(true,false,"StaleRevision",observedRevision);
+            if(!state.Actors.Any(a=>a.Id==command.Actor))return new CommandQueryResult(true,false,"UnknownActor",observedRevision);
+            if(state.Revision==long.MaxValue||state.Receipts.Length==(state.SchemaVersion>=Snapshot.InventorySchema?512:Validation.MaxReceipts))
+                return new CommandQueryResult(true,false,"SessionCapacityReached",observedRevision);
+            CommandQueryResult result;
+            try { result=queryPolicy.QueryCommand(state.Copy(),authority,command); }
+            catch(Exception ex) when(ex is ArgumentException||ex is OverflowException||ex is InvalidOperationException)
+            { return new CommandQueryResult(true,false,"PolicyFailure",observedRevision); }
+            if(result==null)return new CommandQueryResult(true,false,"PolicyFailure",observedRevision);
+            if(!result.Supported)return new CommandQueryResult(false,false,"UnsupportedOperation",observedRevision);
+            return new CommandQueryResult(true,result.Admissible,result.Code,observedRevision,result.Costs,result.RequiredChoices);
+        }
+        public IReadOnlyList<CommandOption> DiscoverCommands(Authority authority, string actor)
+        {
+            var queryPolicy=policy as ICommandQueryPolicy;
+            if(queryPolicy==null||authority==null||!Validation.ValidId(actor)||!authority.Controls(actor))
+                return Array.AsReadOnly(Array.Empty<CommandOption>());
+            var candidates=queryPolicy.DiscoverCommands(state.Copy(),authority,actor)?.ToArray()??Array.Empty<Command>();
+            var options=new List<CommandOption>();
+            var ids=new HashSet<string>(StringComparer.Ordinal);
+            foreach(var command in candidates) {
+                if(command==null||command.Actor!=actor||!queryPolicy.SupportsCommand(command.Kind))continue;
+                if(!ids.Add(command.Id))throw new InvalidOperationException("Command discovery produced duplicate option identities.");
+                var result=QueryCommand(authority,command);
+                if(result.Supported)options.Add(new CommandOption(command,result));
+            }
+            return Array.AsReadOnly(options.ToArray());
         }
         private CommandResult Reject(string reason) => new CommandResult(Outcome.Rejected, reason, state.Revision);
     }

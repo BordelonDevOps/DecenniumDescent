@@ -82,11 +82,18 @@ namespace Decennium.Foundation.Laboratory
             Roll=roll;Attack=attack;Critical=critical;RandomStateAfter=roll.NextRandomState;}
     }
 
+    public sealed class RangedAttackLegality
+    {
+        public bool Legal=>Failure==RangedAttackFailure.None;
+        public RangedAttackFailure Failure { get; }
+        internal RangedAttackLegality(RangedAttackFailure failure) { Failure=failure; }
+    }
+
     /// <summary>Source-bound calculation for the ranged-attack roll only. Target selection, perception,
     /// line-of-fire facts, weapon legality, resource spending and hit damage are resolved by other layers.</summary>
     public static class RangedAttackRules
     {
-        public static RangedAttackResolution Resolve(uint initialRandomState,RangedAttackRequest request)
+        public static RangedAttackLegality CheckLegality(RangedAttackRequest request)
         {
             if(request.DistanceFeet<0||request.NormalRangeFeet<0||request.MaximumRangeFeet<request.NormalRangeFeet
                 ||request.TargetArmorClass<0||request.ProficiencyBonus<0||request.AttackerExhaustion<0||request.AttackerExhaustion>6
@@ -94,12 +101,21 @@ namespace Decennium.Foundation.Laboratory
                 ||request.AttackerConditions==null||request.TargetConditions==null
                 ||!Enum.IsDefined(typeof(CombatCover),request.TargetCover))throw new ArgumentException("Invalid ranged-attack facts.",nameof(request));
 
-            if(!request.TargetLocationKnown)return new RangedAttackResolution(RangedAttackFailure.UnknownTargetLocation,initialRandomState);
-            if(!request.LineOfFireClear)return new RangedAttackResolution(RangedAttackFailure.BlockedLineOfFire,initialRandomState);
+            if(!request.TargetLocationKnown)return new RangedAttackLegality(RangedAttackFailure.UnknownTargetLocation);
+            if(!request.LineOfFireClear)return new RangedAttackLegality(RangedAttackFailure.BlockedLineOfFire);
             var cover=PlanarCombatGeometry.BestCover(new[]{request.TargetCover});
-            if(!cover.DirectTargetLegal)return new RangedAttackResolution(RangedAttackFailure.TotalCover,initialRandomState);
+            if(!cover.DirectTargetLegal)return new RangedAttackLegality(RangedAttackFailure.TotalCover);
             var range=PlanarCombatGeometry.RangedRange(request.DistanceFeet,request.NormalRangeFeet,request.MaximumRangeFeet);
-            if(!range.WithinMaximum)return new RangedAttackResolution(RangedAttackFailure.OutOfRange,initialRandomState);
+            if(!range.WithinMaximum)return new RangedAttackLegality(RangedAttackFailure.OutOfRange);
+            return new RangedAttackLegality(RangedAttackFailure.None);
+        }
+
+        public static RangedAttackResolution Resolve(uint initialRandomState,RangedAttackRequest request)
+        {
+            var legality=CheckLegality(request);
+            if(!legality.Legal)return new RangedAttackResolution(legality.Failure,initialRandomState);
+            var cover=PlanarCombatGeometry.BestCover(new[]{request.TargetCover});
+            var range=PlanarCombatGeometry.RangedRange(request.DistanceFeet,request.NormalRangeFeet,request.MaximumRangeFeet);
 
             int modifier=checked(request.DexterityModifier+(request.Proficient?request.ProficiencyBonus:0)+request.FlatAttackModifier);
             int armorClass=checked(request.TargetArmorClass+cover.DefenseBonus.GetValueOrDefault());

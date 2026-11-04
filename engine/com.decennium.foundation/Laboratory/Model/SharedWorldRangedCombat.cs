@@ -1,5 +1,6 @@
 #if DECENNIUM_TEST_ONLY && (UNITY_EDITOR || DEVELOPMENT_BUILD || HEADLESS_TESTS)
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography;
@@ -48,9 +49,65 @@ namespace Decennium.Foundation.Laboratory
         }
     }
 
-    public sealed partial class TestOnlySharedWorldPolicy
+    public sealed partial class TestOnlySharedWorldPolicy : ICommandQueryPolicy
     {
         private RepeatingCrossbowFixture rangedCombat;
+        private sealed class RepeatingCrossbowAssessment
+        {
+            public bool Attack;
+            public int Amount;
+            public RepeatingCrossbowRecord Weapon;
+            public AmmunitionLotRecord AmmoLot;
+            public WorldIntervalRecord Interval;
+            public RangedAttackRequest AttackFacts;
+            public int CarriedBolts;
+        }
+
+        public bool SupportsCommand(CommandKind kind)=>kind==CommandKind.AttackRepeatingCrossbow||kind==CommandKind.ReloadRepeatingCrossbow;
+
+        public IEnumerable<Command> DiscoverCommands(Snapshot s,Authority authority,string actor)
+        {
+            if(s==null||authority==null||rangedCombat==null||s.SchemaVersion<Snapshot.RepeatingCrossbowSchema
+                ||s.Encounter==null||!s.InventoryCombat||actor!=s.Encounter.CurrentActor||actor!=rangedCombat.ShooterId
+                ||!authority.Controls(actor)||!Validation.ValidId(actor))return Array.Empty<Command>();
+            var weapon=s.RepeatingCrossbows.SingleOrDefault(x=>x.Id==RepeatingCrossbowFixture.WeaponId);
+            if(weapon==null||weapon.OwnerId!=actor||weapon.CustodianId!=actor||weapon.HeldBy!=actor
+                ||!authority.MayUseInventory(weapon.OwnerId)||!s.Lives.Single(x=>x.ActorId==actor).HeldItems.Contains(weapon.Id))
+                return Array.Empty<Command>();
+
+            var options=new System.Collections.Generic.List<Command>();
+            int optionIndex=0;
+            string turnId=s.Encounter.CurrentTurnId;
+            var ammo=s.AmmunitionLots.SingleOrDefault(x=>x.Id==RepeatingCrossbowFixture.AmmunitionId);
+            if(ammo!=null&&ammo.CustodianId==actor&&ammo.OwnerId==actor&&ammo.Accessible&&authority.MayUseInventory(ammo.OwnerId)) {
+                int reloadMaximum=Math.Min(5-weapon.LoadedBoltLots.Count,ammo.AvailableQuantity);
+                for(int amount=1;amount<=reloadMaximum;amount++) {
+                    var request=new RangedRequest(turnId,weapon.Id,ammo.Id,amount);
+                    options.Add(new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+".ranged."+(optionIndex++).ToString(CultureInfo.InvariantCulture),
+                        actor,s.Revision,CommandKind.ReloadRepeatingCrossbow,ranged:request));
+                }
+            }
+            if(rangedCombat.TargetLocationKnown) {
+                var request=new RangedRequest(turnId,weapon.Id,"",0);
+                options.Add(new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+".ranged."+optionIndex.ToString(CultureInfo.InvariantCulture),
+                    actor,s.Revision,CommandKind.AttackRepeatingCrossbow,rangedCombat.TargetId,ranged:request));
+            }
+            return options;
+        }
+
+        public CommandQueryResult QueryCommand(Snapshot s,Authority authority,Command c)
+        {
+            string failure=AssessRepeatingCrossbow(s,c,out _);
+            var costs=new System.Collections.Generic.List<CommandCost>();
+            if(failure==null) {
+                costs.Add(new CommandCost("action","",1));
+                long bolts=c.Kind==CommandKind.ReloadRepeatingCrossbow?c.Ranged.Amount:1;
+                string resource=c.Kind==CommandKind.ReloadRepeatingCrossbow?c.Ranged.AmmoLotId:c.Ranged.WeaponId;
+                costs.Add(new CommandCost("ammunition",resource,bolts));
+            }
+            return new CommandQueryResult(true,failure==null,failure??"Available",s.Revision,costs);
+        }
+
         private void InitializeRepeatingCrossbow(Snapshot s)
         {
             if(rangedCombat==null)return;
@@ -73,48 +130,39 @@ namespace Decennium.Foundation.Laboratory
                 rangedCombat.Proficient,rangedCombat.ProficiencySource)};
         }
 
-        private string ResolveRepeatingCrossbow(Snapshot s,Command c)
+        private string AssessRepeatingCrossbow(Snapshot s,Command c,out RepeatingCrossbowAssessment assessment)
         {
-            bool attack=c.Kind==CommandKind.AttackRepeatingCrossbow;
+            assessment=new RepeatingCrossbowAssessment{Attack=c.Kind==CommandKind.AttackRepeatingCrossbow};
             if(rangedCombat==null||s.SchemaVersion<Snapshot.RepeatingCrossbowSchema)return "RangedCommandNotImplemented";
-            if(attack&&AttackingFromActiveOverwatchZone(s,c.Actor,c.Target))return "OverwatchAttackTriggerNotImplemented";
+            if(assessment.Attack&&AttackingFromActiveOverwatchZone(s,c.Actor,c.Target))return "OverwatchAttackTriggerNotImplemented";
             if(c.Inventory!=null||c.Combat!=null||c.Advancement!=null||c.Ranged==null||c.X!=0||c.Y!=0)return "InvalidRangedPayload";
             if(!s.InventoryCombat||s.Encounter==null)return "RangedCombatRequiresEncounter";
             if(PendingCalendarChoice(s))return "TacticalChoicePending";
             if(c.Actor!=s.Encounter.CurrentActor||c.Ranged.TurnId!=s.Encounter.CurrentTurnId)return "WrongRegularTurn";
-            var interval=Interval(s,c.Actor);
+            var interval=Interval(s,c.Actor);assessment.Interval=interval;
             if(interval.ActionSpent)return "ActionAlreadySpent";
             if(!CapableWorker(s,c.Actor)||!Permissions(s,c.Actor).Action)return "ConditionPreventsAction";
             if(s.RepeatingCrossbows.Length!=1||c.Ranged.WeaponId!=RepeatingCrossbowFixture.WeaponId)return "CrossbowUnavailable";
-            var weapon=s.RepeatingCrossbows.Single();
+            var weapon=s.RepeatingCrossbows.Single();assessment.Weapon=weapon;
             if(weapon.HeldBy!=c.Actor||weapon.CustodianId!=c.Actor||!s.Lives.Single(l=>l.ActorId==c.Actor).HeldItems.Contains(weapon.Id))return "CrossbowNotHeld";
-            if(attack) return ResolveRepeatingAttack(s,c,weapon,interval);
-            return ResolveRepeatingReload(s,c,weapon,interval);
-        }
+            if(!assessment.Attack) {
+                var request=c.Ranged;
+                if(c.Target!=""||request.Amount<1||request.AmmoLotId=="")return "InvalidReloadRequest";
+                var lot=s.AmmunitionLots.SingleOrDefault(x=>x.Id==request.AmmoLotId);
+                if(lot==null||lot.CustodianId!=c.Actor||lot.OwnerId!=c.Actor||!lot.Accessible)return "AmmunitionInaccessible";
+                if(weapon.LoadedBoltLots.Count==5)return "MagazineFull";
+                if(request.Amount>5-weapon.LoadedBoltLots.Count)return "ReloadExceedsMagazineCapacity";
+                if(request.Amount>lot.AvailableQuantity)return "InsufficientCarriedBolts";
+                int available=AvailableHands(s,c.Actor)+(weapon.GripHands==2?1:0);
+                if(available<1)return "LoadingHandRequired";
+                assessment.Amount=request.Amount;assessment.AmmoLot=lot;
+                return null;
+            }
 
-        private string ResolveRepeatingReload(Snapshot s,Command c,RepeatingCrossbowRecord weapon,WorldIntervalRecord interval)
-        {
-            var request=c.Ranged;
-            if(c.Target!=""||request.Amount<1||request.AmmoLotId=="")return "InvalidReloadRequest";
-            var lot=s.AmmunitionLots.SingleOrDefault(x=>x.Id==request.AmmoLotId);
-            if(lot==null||lot.CustodianId!=c.Actor||lot.OwnerId!=c.Actor||!lot.Accessible)return "AmmunitionInaccessible";
-            if(weapon.LoadedBoltLots.Count==5)return "MagazineFull";
-            if(request.Amount>5-weapon.LoadedBoltLots.Count)return "ReloadExceedsMagazineCapacity";
-            if(request.Amount>lot.AvailableQuantity)return "InsufficientCarriedBolts";
-            int available=AvailableHands(s,c.Actor)+(weapon.GripHands==2?1:0);
-            if(available<1)return "LoadingHandRequired";
-            s.AmmunitionLots=s.AmmunitionLots.Select(x=>x.Id==lot.Id?x.WithAvailable(x.AvailableQuantity-request.Amount):x).ToArray();
-            s.RepeatingCrossbows=s.RepeatingCrossbows.Select(x=>x.Id==weapon.Id
-                ?new RepeatingCrossbowRecord(x.Id,x.ProfileId,x.OwnerId,x.CustodianId,x.HeldBy,1,x.CellX,x.CellY,x.LoadedBoltLots.Concat(Enumerable.Repeat(lot.Id,request.Amount)).ToArray()):x).ToArray();
-            SetInterval(s,interval.PayAction());return null;
-        }
-
-        private string ResolveRepeatingAttack(Snapshot s,Command c,RepeatingCrossbowRecord weapon,WorldIntervalRecord interval)
-        {
-            var request=c.Ranged;
-            if(c.Target==""||request.Amount!=0||request.AmmoLotId!="")return "InvalidRangedAttackRequest";
+            var attackRequest=c.Ranged;
+            if(c.Target==""||attackRequest.Amount!=0||attackRequest.AmmoLotId!="")return "InvalidRangedAttackRequest";
             if(c.Target!=rangedCombat.TargetId||!s.WorldSchedule.Order.Contains(c.Target))return "TargetOutsideEncounter";
-            if(request.WeaponId!=weapon.Id||weapon.LoadedBoltLots.Count==0)return weapon.LoadedBoltLots.Count==0?"NoAmmunition":"CrossbowUnavailable";
+            if(attackRequest.WeaponId!=weapon.Id||weapon.LoadedBoltLots.Count==0)return weapon.LoadedBoltLots.Count==0?"NoAmmunition":"CrossbowUnavailable";
             if(!TestOnlyClubAttackPolicy.HasStance(s))return "StanceRequired";
             if(s.RangedAttacks.Length==128)return "RangedAttackHistoryCapacityReached";
             var shooter=s.Actors.Single(a=>a.Id==c.Actor);var target=s.Actors.Single(a=>a.Id==c.Target);
@@ -124,11 +172,7 @@ namespace Decennium.Foundation.Laboratory
             if(!TestOnlyClubAttackPolicy.DamageConditionCapacity(s,c.Target))return "ConditionHistoryCapacityReached";
             if(AvailableHands(s,c.Actor)+(weapon.GripHands==1?1:0)<2)return "TwoHandsRequired";
             string physicalFailure=TestOnlyClubAttackPolicy.PhysicalAttackFailure(s,c.Actor);if(physicalFailure!=null)return physicalFailure;
-            if(weapon.LoadedBoltLots.Count>0&&weapon.GripHands==1)
-                s.RepeatingCrossbows=s.RepeatingCrossbows.Select(x=>x.Id==weapon.Id?x.WithGrip(2):x).ToArray();
-            weapon=s.RepeatingCrossbows.Single(x=>x.Id==weapon.Id);
             var combatant=s.RangedCombatants.Single(x=>x.ActorId==c.Actor);
-            var attackerLife=s.Lives.Single(x=>x.ActorId==c.Actor);
             var targetCombatant=s.RangedCombatants.SingleOrDefault(x=>x.ActorId==c.Target);
             int targetDex=targetCombatant?.DexterityScore??s.Characters.Single(x=>x.ActorId==c.Target).Abilities[1];
             var targetStance=TestOnlyClubAttackPolicy.ActiveStance(s,c.Target);
@@ -142,6 +186,7 @@ namespace Decennium.Foundation.Laboratory
                 bool incapacitated=otherLife.Dead||otherLife.Hp==0||TestOnlyClubAttackPolicy.ConditionsFor(s,id).View().Clauses.Incapacitated;
                 return PlanarCombatGeometry.CloseHostileDisadvantage(PlanarCombatGeometry.DistanceFeet(new CombatCell(shooter.X,shooter.Y),new CombatCell(other.X,other.Y)),true,incapacitated,TestOnlyClubAttackPolicy.CanSee(s,id,c.Actor));
             });
+            var attackerLife=s.Lives.Single(x=>x.ActorId==c.Actor);
             int flatAttack=attackerLife.LinkedInjuries.Contains((int)Injury.OffensiveTrauma)?-1:0;
             var rangedFacts=new RangedAttackRequest(PlanarCombatGeometry.DistanceFeet(new CombatCell(shooter.X,shooter.Y),new CombatCell(target.X,target.Y)),
                 RepeatingCrossbowShotRules.NormalRangeFeet,RepeatingCrossbowShotRules.MaximumRangeFeet,armorClass,
@@ -149,10 +194,36 @@ namespace Decennium.Foundation.Laboratory
                 rangedCombat.TargetCover,rangedCombat.TargetLocationKnown,targetVisible,rangedCombat.LineOfFireClear,attackerUnseen,closeHostile,
                 TestOnlyClubAttackPolicy.CombatConditions(s,c.Actor),TestOnlyClubAttackPolicy.CombatConditions(s,c.Target),
                 attackerInvisibleLocationKnown:true,targetInvisibleLocationKnown:true);
+            int carriedBolts=s.AmmunitionLots.Where(x=>x.CustodianId==c.Actor&&x.Accessible).Sum(x=>x.AvailableQuantity);
+            var shotFailure=RepeatingCrossbowShotRules.CheckLegality(rangedFacts,new RepeatingFiveMagazine(weapon.LoadedBoltLots.Count),carriedBolts);
+            if(shotFailure!=RepeatingCrossbowShotFailure.None)return ShotFailureCode(shotFailure);
+            assessment.AttackFacts=rangedFacts;assessment.CarriedBolts=carriedBolts;
+            return null;
+        }
+
+        private string ResolveRepeatingCrossbow(Snapshot s,Command c)
+        {
+            string failure=AssessRepeatingCrossbow(s,c,out var assessment);
+            if(failure!=null)return failure;
+            if(assessment.Attack)return ResolveRepeatingAttack(s,c,assessment);
+            var lot=assessment.AmmoLot;var weapon=assessment.Weapon;var interval=assessment.Interval;
+            s.AmmunitionLots=s.AmmunitionLots.Select(x=>x.Id==lot.Id?x.WithAvailable(x.AvailableQuantity-assessment.Amount):x).ToArray();
+            s.RepeatingCrossbows=s.RepeatingCrossbows.Select(x=>x.Id==weapon.Id
+                ?new RepeatingCrossbowRecord(x.Id,x.ProfileId,x.OwnerId,x.CustodianId,x.HeldBy,1,x.CellX,x.CellY,x.LoadedBoltLots.Concat(Enumerable.Repeat(lot.Id,assessment.Amount)).ToArray()):x).ToArray();
+            SetInterval(s,interval.PayAction());return null;
+        }
+
+        private string ResolveRepeatingAttack(Snapshot s,Command c,RepeatingCrossbowAssessment assessment)
+        {
+            var weapon=assessment.Weapon;var interval=assessment.Interval;
+            if(weapon.LoadedBoltLots.Count>0&&weapon.GripHands==1)
+                s.RepeatingCrossbows=s.RepeatingCrossbows.Select(x=>x.Id==weapon.Id?x.WithGrip(2):x).ToArray();
+            weapon=s.RepeatingCrossbows.Single(x=>x.Id==weapon.Id);
+            var combatant=s.RangedCombatants.Single(x=>x.ActorId==c.Actor);
+            var life=s.Lives.Single(x=>x.ActorId==c.Target);
             uint randomBefore=s.RandomState;
-            var shot=RepeatingCrossbowShotRules.Resolve(randomBefore,rangedFacts,new RepeatingFiveMagazine(weapon.LoadedBoltLots.Count),
-                s.AmmunitionLots.Where(x=>x.CustodianId==c.Actor&&x.Accessible).Sum(x=>x.AvailableQuantity));
-            if(!shot.Legal)return "RangedAttack"+shot.Failure;
+            var shot=RepeatingCrossbowShotRules.Resolve(randomBefore,assessment.AttackFacts,new RepeatingFiveMagazine(weapon.LoadedBoltLots.Count),assessment.CarriedBolts);
+            if(!shot.Legal)return ShotFailureCode(shot.Failure);
             var ammunitionLot=weapon.LoadedBoltLots[0];
             var magazine=weapon.LoadedBoltLots.Skip(1).ToArray();
             s.RepeatingCrossbows=s.RepeatingCrossbows.Select(x=>x.Id==weapon.Id?x.WithMagazine(magazine):x).ToArray();
@@ -178,7 +249,35 @@ namespace Decennium.Foundation.Laboratory
                 c.Actor,c.Target,weapon.Id,ammunitionLot,s.RuleClock,recordedAttack,damage)}).ToArray();
             s.RandomState=next;SetInterval(s,interval.PayAction());return null;
         }
+
+        private static string ShotFailureCode(RepeatingCrossbowShotFailure failure)
+        {
+            if(failure==RepeatingCrossbowShotFailure.NoAmmunition)return "NoAmmunition";
+            if(failure==RepeatingCrossbowShotFailure.WrongWeaponRangeProfile)return "RangedAttackWrongWeaponRangeProfile";
+            if(failure==RepeatingCrossbowShotFailure.UnknownTargetLocation)return "RangedAttackUnknownTargetLocation";
+            if(failure==RepeatingCrossbowShotFailure.BlockedLineOfFire)return "RangedAttackBlockedLineOfFire";
+            if(failure==RepeatingCrossbowShotFailure.TotalCover)return "RangedAttackTotalCover";
+            return "RangedAttackOutOfRange";
+        }
         private static string N(long value)=>value.ToString(CultureInfo.InvariantCulture);
+    }
+
+    /// <summary>Small headless driver for the admitted Repeating crossbow commands. It selects an
+    /// admissible shot first, otherwise loads the largest legal quantity, then submits that normal
+    /// command through Simulation.Execute. This is a development harness, not game AI.</summary>
+    public sealed class RepeatingCrossbowHeadlessController
+    {
+        public CommandResult Act(Simulation simulation,Authority authority,string actor)
+        {
+            if(simulation==null)throw new ArgumentNullException(nameof(simulation));
+            if(authority==null)throw new ArgumentNullException(nameof(authority));
+            if(!Validation.ValidId(actor))throw new ArgumentException("Invalid actor.",nameof(actor));
+            var options=simulation.DiscoverCommands(authority,actor);
+            var selected=options.FirstOrDefault(x=>x.Query.Admissible&&x.Command.Kind==CommandKind.AttackRepeatingCrossbow)
+                ??options.Where(x=>x.Query.Admissible&&x.Command.Kind==CommandKind.ReloadRepeatingCrossbow)
+                    .OrderByDescending(x=>x.Command.Ranged.Amount).FirstOrDefault();
+            return selected==null?null:simulation.Execute(authority,selected.Command);
+        }
     }
 }
 #endif
