@@ -2,6 +2,8 @@
 
 **Status: TEST_ONLY source-bound immutable magazine state.** Code commit: `cd8f14fa7edefd3208c4cf8c63722e17c06cef0d`, branch `Engine`. This models the authored Repeating 5 ammunition transfer and spending rules only. The later [ordinary shot calculation](REPEATING_CROSSBOW_SHOT_RULE_DECISIONS.md) composes it with ranged attack and damage dice, but neither implements the required reload Action, adds magazine state to a saved combat, nor supplies full tactical authority.
 
+**Superseded integration status (2026-11-04):** schema22 now connects the magazine to a bounded shared-world reload/attack command, finite physical bolt lots, tactical Action spending, applied damage and save/replay. The earlier statements above remain accurate for this pure magazine component; see the [integrated combat record](REPEATING_CROSSBOW_COMBAT_RULE_DECISIONS.md) for the later scope and limits.
+
 ## Source rules
 
 The exact candidate and procedure are pinned at source revision `46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4`; see [SOURCE_BINDINGS.json](evidence/2026-11-04-repeating-crossbow/SOURCE_BINDINGS.json).

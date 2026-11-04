@@ -2,6 +2,8 @@
 
 **Status: TEST_ONLY source-bound pure attack result.** Code commit: `448764e65bff6edbb0ad58a6ec25aa915278f76c`, branch `Engine`. This composes the source-profile Repeating heavy crossbow, the deterministic ranged attack-roll query and the finite magazine model. It does not spend a tactical Action/Reaction or apply the rolled damage to a target.
 
+**Superseded integration status (2026-11-04):** the pure helper is now used by the schema22 TEST_ONLY shared-world combat path, which spends an Action and actual bolt lot, applies the bounded damage/life-state procedure, and persists attack outcomes. This record remains the contract for the reusable shot calculation; see the [integrated combat record](REPEATING_CROSSBOW_COMBAT_RULE_DECISIONS.md) for the additional transaction and its limits.
+
 ## Source rules
 
 The source revision is pinned to `46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4`; exact Git blobs, SHA-256 values and locators are in [SOURCE_BINDINGS.json](evidence/2026-11-04-repeating-crossbow-shot/SOURCE_BINDINGS.json).

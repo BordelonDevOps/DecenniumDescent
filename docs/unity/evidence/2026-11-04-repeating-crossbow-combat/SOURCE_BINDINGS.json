@@ -1,0 +1,264 @@
+{
+  "schemaVersion": 1,
+  "recordedUtc": "2026-11-04T12:51:30.5591898Z",
+  "purpose": "Schema22 TEST_ONLY ordinary Repeating heavy crossbow Attack-and-Reload transaction with shared tactical Action, finite physical bolt provenance, bounded damage/life outcomes and save/replay; complete ranged combat, Soldier construction and the full engine remain unfinished.",
+  "branch": "Engine",
+  "engineBase": "e3062be9c63011a271e140ac6e9ce0dd500047f9",
+  "sourceRevision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+  "prototypeRevision": "7e49a26504445ae99b2d10a47faea93fe8d1068e",
+  "status": "PARTIAL / TEST_ONLY / SOURCE-BOUND / PROVISIONAL",
+  "productionRuntimeSelectionEnabled": false,
+  "releaseApproved": false,
+  "schemaBump": 22,
+  "sources": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/playtest/equipment_acquisition_candidate.json",
+      "gitBlobId": "afd06198e19409385408ac258be7dc1d0b2600fb",
+      "locators": [
+        "/items/195",
+        "/classKits/12"
+      ],
+      "snapshot": "sources/equipment_acquisition_candidate.json",
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "sha256": "4037e188edb890c971acb39e8679cfd5a142b0042508af30c95d4703d2a2745b"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/EQUIPMENT_ACQUISITION_PLAYTEST.md",
+      "gitBlobId": "789e905552aba2ee9a4bbad1ae73aa314b77af10",
+      "locators": [
+        "#hands-and-focuses",
+        "#weapons-and-ammunition",
+        "#new-class-equipment-profiles; Repeating heavy crossbow; Repeating 5"
+      ],
+      "snapshot": "sources/EQUIPMENT_ACQUISITION_PLAYTEST.md",
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "sha256": "406c68622102b444c6afb005e2d50cfd75171fe8d90db36a06d02df2d67bf27d"
+    },
+    {
+      "path": "docs/reference/Player_Rulebook_v6_source_text.txt",
+      "gitBlobId": "bb143507cf66e3fdc73f6514663ad5c71344609b",
+      "locators": "Making an Attack; Attack Rolls; Ranged Attacks; Damage Rolls; Critical Hits (source text lines 8157-8235)",
+      "snapshot": "sources/Player_Rulebook_v6_source_text.txt",
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "sha256": "a346670f4244efe3641cfb06814819d83ffb8512153858205f0621bd8ab8a04b"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md",
+      "gitBlobId": "5a446dd0dabae096e51f419b5e71756e0169bb3b",
+      "locators": [
+        "#reading-a-class-card",
+        "#action-and-timing-limits"
+      ],
+      "snapshot": "sources/CLASS_PLAYTEST_RULES.md",
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "sha256": "adb2f4752b45dc70ce792a675bb30dda362aab5056588061bcde3ba31c4c8a81"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+      "gitBlobId": "72bcb58af57f8bfe27596ec0b1467e4c780a6ef8",
+      "locators": [
+        "#encounter-and-action-resources",
+        "#standard-actions",
+        "#stances",
+        "#cover-sight-hide-and-search"
+      ],
+      "snapshot": "sources/COMBAT_ACTION_PLAYTEST.md",
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "sha256": "f90d039142145fbd31c37992ebece70d7926dc4b6081e340f9a2fd9dc7237bc6"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md",
+      "gitBlobId": "735e1a1f2661de6167dda58e0609749e0756ca85",
+      "locators": [
+        "#rolls",
+        "#resolve-a-damage-event",
+        "#zero-hp-and-recovery",
+        "#wounds-and-critical-state"
+      ],
+      "snapshot": "sources/CORE_RESOLUTION_PLAYTEST.md",
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "sha256": "69d0e64394de58c4d86a3ec57cf282978d131a1a9c1eaa21632bb7d3b72562da"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/playtest/character_foundation.json",
+      "gitBlobId": "88fad6737419c7053d262bdf747fad80fd20f1c4",
+      "locators": [
+        "/classes/12/hitDie",
+        "/classes/12/fixedLaterLevelHpBase"
+      ],
+      "snapshot": "sources/character_foundation.json",
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "sha256": "21e12af81f191abe52d1e3272ed1f57c6446ed3d4487cafbd5609dff08e56a77"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CHARACTER_FOUNDATION_TABLES.md",
+      "gitBlobId": "ac3665115489bc78bab8a78a3f93209ecff23902",
+      "locators": "#first-class-armor-weapons-and-tools: Soldier proficiency",
+      "snapshot": "sources/CHARACTER_FOUNDATION_TABLES.md",
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "sha256": "8ce30a927b550d31bc981fc9537fccd178507c6b5e671fe9c6d82b987476f871"
+    }
+  ],
+  "implementationFiles": [
+    {
+      "path": "Laboratory/Model/ConditionCombatPolicy.cs",
+      "gitBlobId": "75d511235b174a10c06bc19a36af20e258b582f8",
+      "sha256": "598196c77ba8b80bb30d3749d3e0cdb2c3d54ca2d206af86d17e313f7dbf8498"
+    },
+    {
+      "path": "Laboratory/Model/PortableEquipment.cs",
+      "gitBlobId": "043dcff2bd3961e251c7544a2647b8af61b3d733",
+      "sha256": "9981577f6dc819adecb82cf45ccfbf309a87aeca4df6f3bb720790515a3c03ee"
+    },
+    {
+      "path": "Laboratory/Model/RepeatingCrossbowShot.cs",
+      "gitBlobId": "2997798403680e18d856cc3f9d565e18a526a723",
+      "sha256": "c36c35bb3e72504fbbe76cd093764edc1d853a39d76ed614d50e35b5ed1209aa"
+    },
+    {
+      "path": "Laboratory/Model/SharedCraftingConsequences.cs",
+      "gitBlobId": "8aafdc09c52b9b8e58e355380cde311bd73fd6c2",
+      "sha256": "bb0399b7c0dd5466cffa674a87218c43cb060571ef9655950345259d00bd4422"
+    },
+    {
+      "path": "Laboratory/Model/SharedToolRepair.cs",
+      "gitBlobId": "e7b7ac274de906b32458388850b873b45921daa1",
+      "sha256": "cace8f6baa1adf36ea1f1a130d95075929e35b739829a46742b47836fc8bdf05"
+    },
+    {
+      "path": "Laboratory/Model/SharedWorldCombatPolicy.cs",
+      "gitBlobId": "c3fad1a5b4adf3fda799d434b042c0b3d5b840a3",
+      "sha256": "c2f759e57bbef19121698566ad6aa04e0dfe675f689956aa2cca420d810980e4"
+    },
+    {
+      "path": "Laboratory/Model/SharedWorldRangedCombat.cs",
+      "gitBlobId": "a83a402e4d79316b91b9917bb4a5321fb7d8cbe8",
+      "sha256": "218a53d1ab56623d09b70de8c9a4a1750b2b7e70359f7bf09e29ef285573c46f"
+    },
+    {
+      "path": "Laboratory/Model/TestOnlyClubAttackPolicy.cs",
+      "gitBlobId": "41aca661a529d6844131fec43ad6dfdbc2d733d8",
+      "sha256": "c296150e7092f3fea2da6f684e4cd386cfb60ba4ef2b9a322dbc504928d4eb96"
+    },
+    {
+      "path": "Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "gitBlobId": "fae7962904e43d9f27fd0b06e6e2529ea2c226e0",
+      "sha256": "e23834968d03fc5e621fdf4d9dc0264aa1e934557a53e4afe09d7027d6a57ba2"
+    },
+    {
+      "path": "Runtime/Core/ClubAttackRecords.cs",
+      "gitBlobId": "e88c95d28cd3ecc47318dd66f8061c6998d4aec8",
+      "sha256": "6d046e3a5550b32250c355b02a8b3429ddd96bd6c2fa7078c91750c3cd67a0e4"
+    },
+    {
+      "path": "Runtime/Core/CommandHistory.cs",
+      "gitBlobId": "7925911a89173a1f3f6491eb363e0ca999157f95",
+      "sha256": "f597eaf6dc6e4dc064ec2c8f73e708302abfb0e9edda87f87fead09530fc8f08"
+    },
+    {
+      "path": "Runtime/Core/RangedCombatRecords.cs",
+      "gitBlobId": "18804e011827937e19de083a498a9bb3420fa0cb",
+      "sha256": "ba616f00db073a1717b978fcc137d38be5eb4a573652c5f9536b30468bebe971"
+    },
+    {
+      "path": "Runtime/Core/Simulation.cs",
+      "gitBlobId": "4da8f845137f54d9778fed7f069b14a763d6c3c4",
+      "sha256": "01017c3ffa6115c1b94c88d5821e78b08a78905f8a7ff06085e72392a88a94e0"
+    },
+    {
+      "path": "Runtime/Persistence/RangedCombatCodec.cs",
+      "gitBlobId": "b09ce2513727dee8fb395100148de5723618920c",
+      "sha256": "6dfc0b0f3375a08579f93e67fa3046e18c0c0c238df1b7d2b6f0248c2812744d"
+    },
+    {
+      "path": "Runtime/Persistence/SnapshotCodec.cs",
+      "gitBlobId": "c24f6f136cf260b366d447e51678114c49a3fcbd",
+      "sha256": "dcfb12f507b8cdd912479f31b34e93919ec7309f361947c1292f7e54cdc93c35"
+    },
+    {
+      "path": "Tests/EditMode/FoundationCases.cs",
+      "gitBlobId": "23cf75364777f4b99baae3c7b98090b533c696a3",
+      "sha256": "5aec5d2b7a6512941065c39fa6e2baf4a752fa31c5940f97b91bdefb4b920f5b"
+    },
+    {
+      "path": "Tests/EditMode/RangedCrossbowCases.cs",
+      "gitBlobId": "42d300c133b5d3c80687cec98d1cfa0d006e38fd",
+      "sha256": "658dc7090cd42cbc61bdd77567b80c0d1802ff603dc42d5ab2aa7783a74a5edb"
+    },
+    {
+      "path": "Tests/EditMode/RepeatingCrossbowShotCases.cs",
+      "gitBlobId": "14129ee9346175b2c731d436d6ddd8aac777b1ba",
+      "sha256": "f6493bb11186aabb976a9f46992e83ee8bc628e9865651b061a0f5ec3354cbb9"
+    }
+  ],
+  "implementations": [
+    {
+      "name": "Ordinary repeating crossbow tactical attack and reload",
+      "code": [
+        "Laboratory/Model/ConditionCombatPolicy.cs",
+        "Laboratory/Model/PortableEquipment.cs",
+        "Laboratory/Model/RepeatingCrossbowShot.cs",
+        "Laboratory/Model/SharedCraftingConsequences.cs",
+        "Laboratory/Model/SharedToolRepair.cs",
+        "Laboratory/Model/SharedWorldCombatPolicy.cs",
+        "Laboratory/Model/SharedWorldRangedCombat.cs",
+        "Laboratory/Model/TestOnlyClubAttackPolicy.cs",
+        "Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+        "Runtime/Core/ClubAttackRecords.cs",
+        "Runtime/Core/CommandHistory.cs",
+        "Runtime/Core/RangedCombatRecords.cs",
+        "Runtime/Core/Simulation.cs",
+        "Runtime/Persistence/RangedCombatCodec.cs",
+        "Runtime/Persistence/SnapshotCodec.cs",
+        "Tests/EditMode/FoundationCases.cs",
+        "Tests/EditMode/RangedCrossbowCases.cs",
+        "Tests/EditMode/RepeatingCrossbowShotCases.cs"
+      ],
+      "tests": [
+        "repeating_crossbow_attack_uses_shared_action_critical_d10_damage_and_one_bolt",
+        "repeating_crossbow_drop_on_unconsciousness_preserves_loaded_bolt_and_title",
+        "repeating_crossbow_fixture_persists_custody_training_mass_and_empty_magazine",
+        "repeating_crossbow_negative_flat_damage_is_floored_at_zero",
+        "repeating_crossbow_proficiency_is_explicit_and_untrained_possession_adds_no_bonus",
+        "repeating_crossbow_rejects_empty_ammo_and_blocked_unknown_or_total_cover_before_roll",
+        "repeating_reload_moves_exact_bolts_pays_action_and_replays_after_restore"
+      ]
+    }
+  ],
+  "newNamedCases": [
+    "repeating_crossbow_attack_uses_shared_action_critical_d10_damage_and_one_bolt",
+    "repeating_crossbow_drop_on_unconsciousness_preserves_loaded_bolt_and_title",
+    "repeating_crossbow_fixture_persists_custody_training_mass_and_empty_magazine",
+    "repeating_crossbow_negative_flat_damage_is_floored_at_zero",
+    "repeating_crossbow_proficiency_is_explicit_and_untrained_possession_adds_no_bonus",
+    "repeating_crossbow_rejects_empty_ammo_and_blocked_unknown_or_total_cover_before_roll",
+    "repeating_reload_moves_exact_bolts_pays_action_and_replays_after_restore"
+  ],
+  "decisions": [
+    "Use the authored 20 lb, 80/320, 1d10 piercing, two-handed Repeating 5 crossbow profile; the Soldier kit fixture has an empty magazine and twenty carried bolts.",
+    "Reload transfers actual accessible carried bolts, costs the shared Action, and releases one grip as the loading hand in this fixture.",
+    "Ordinary attack requires the shared Action, actual held weapon, two hands, explicit trained facts, explicit fixture geometry, a legal living target and at least one loaded bolt.",
+    "Legal hit or miss expends one provenance-linked bolt; hit damage uses the source weapon die and existing bounded damage/life resolution.",
+    "Save schema22 persists weapon, loaded/available/expended bolt provenance, training facts, attack rolls, damage, life outcomes, receipts and replay state; earlier schemas remain accepted."
+  ],
+  "validation": {
+    "headless": "HEADLESS_RESULTS.json",
+    "packageStatic": "PACKAGE_RESULTS.json"
+  },
+  "prototypeDecisionRecord": {
+    "path": "docs/unity/REPEATING_CROSSBOW_COMBAT_RULE_DECISIONS.md",
+    "status": "created for this schema22 implementation",
+    "relatedRecords": [
+      "docs/unity/REPEATING_CROSSBOW_SHOT_RULE_DECISIONS.md",
+      "docs/unity/REPEATING_CROSSBOW_RULE_DECISIONS.md",
+      "docs/unity/RANGED_ATTACK_RULE_DECISIONS.md",
+      "docs/unity/ORDINARY_ATTACK_RULE_DECISIONS.md"
+    ]
+  },
+  "limits": [
+    "Two fixed actors, one weapon profile, one ammunition lot and one explicitly authored planar lane only.",
+    "The profile labeled TEST_ONLY.soldier-martial-ranged-training is an explicit fixture fact, not a complete Soldier character or inferred class grant.",
+    "No Overwatch, OA/Overwatch cross-type ordering, general visibility/line-of-fire, arbitrary gear transfer, or general ranged-weapon catalog.",
+    "Headless Roslyn and static package checks are not Unity compilation, editor/play-mode, build or gameplay qualification."
+  ]
+}
