@@ -222,6 +222,7 @@ namespace Decennium.Foundation.Tests
             AddClubAttackCases(cases, directory);
             AddConditionProjectionCases(cases);
             AddConditionLifecycleCases(cases);
+            AddConditionJournalCases(cases, directory);
             AddPostureCases(cases, directory);
             AddMaximumHpCases(cases);
             AddTacticalMovementCases(cases, directory);
