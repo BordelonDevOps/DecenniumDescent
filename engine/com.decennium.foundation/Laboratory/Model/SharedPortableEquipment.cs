@@ -6,7 +6,7 @@ namespace Decennium.Foundation.Laboratory
 {
     public sealed partial class TestOnlySharedWorldPolicy
     {
-        private readonly PortableKitFixture portableKit;
+        private PortableKitFixture portableKit;
         private static bool PortableCommand(CommandKind kind)=>kind==CommandKind.HandlePortableEquipment||kind==CommandKind.EquipPortableItem
             ||kind==CommandKind.RemovePortableItem||kind==CommandKind.OpenPortableContainer||kind==CommandKind.ClosePortableContainer;
         private void InitializePortableEquipment(Snapshot s)

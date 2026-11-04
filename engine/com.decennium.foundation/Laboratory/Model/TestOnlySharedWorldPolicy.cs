@@ -17,8 +17,9 @@ namespace Decennium.Foundation.Laboratory
         private readonly ConditionCombatFixture conditions;
         private readonly SharedCombatFixture connectedCombat;
         private readonly SupplyCacheFixture supplyCache;
+        private TestOnlyContentManifest contentManifest;
         public bool TestOnly => true;
-        public string ContentFingerprint { get; }
+        public string ContentFingerprint { get; private set; }
         public TestOnlySharedWorldPolicy(int walkingSpeed = 30, ConditionCombatFixture conditions = null, params TacticalTerrainCell[] terrain)
             :this(null,walkingSpeed,conditions,terrain) { }
         public TestOnlySharedWorldPolicy(SharedCombatFixture combat,int walkingSpeed = 30, ConditionCombatFixture conditions = null, params TacticalTerrainCell[] terrain)
@@ -63,10 +64,40 @@ namespace Decennium.Foundation.Laboratory
                 throw new ArgumentException("Portable kit requires the selected cache and tools, and rejects an unsourced-mass key fixture.");
             ContentFingerprint=PortableEquipmentRules.Fingerprint(ContentFingerprint,portableKit);
         }
+        /// <summary>Source-resolved opt-in profile. The legacy schema20 constructor above retains
+        /// its original content fingerprint and saved-profile compatibility.</summary>
+        public TestOnlySharedWorldPolicy(TestOnlyContentManifest manifest,PortableKitFixture portableKit,SharedCombatFixture combat,SupplyCacheFixture supplyCache,
+            int walkingSpeed=30,ConditionCombatFixture conditions=null,params TacticalTerrainCell[] terrain)
+            :this(portableKit,combat,supplyCache,walkingSpeed,conditions,terrain)
+        {
+            BindContentManifest(manifest);
+        }
+        /// <summary>Extended connected fixture profile binds the same finite manifest while
+        /// retaining the exact schema20 simulation path for research, manufacturing and combat.</summary>
+        public TestOnlySharedWorldPolicy(TestOnlyContentManifest manifest,PortableKitFixture portableKit,SharedCombatFixture combat,
+            SharedResearchFixture research,SharedCraftingFixture crafting,SharedRepairFixture repair,SharedManufacturingFixture manufacturing,
+            SupplyCacheFixture supplyCache,int walkingSpeed=30,ConditionCombatFixture conditions=null,params TacticalTerrainCell[] terrain)
+            :this(combat,research,crafting,repair,manufacturing,supplyCache,walkingSpeed,conditions,terrain)
+        {
+            if(portableKit==null)throw new ArgumentNullException(nameof(portableKit));
+            this.portableKit=portableKit;
+            if(combat==null||supplyCache==null||!supplyCache.HasTools||supplyCache.HasKey)
+                throw new ArgumentException("Portable kit requires the selected cache and tools, and rejects an unsourced-mass key fixture.");
+            ContentFingerprint=PortableEquipmentRules.Fingerprint(ContentFingerprint,portableKit);
+            BindContentManifest(manifest);
+        }
+        private void BindContentManifest(TestOnlyContentManifest manifest)
+        {
+            contentManifest=manifest??throw new ArgumentNullException(nameof(manifest));
+            string error=contentManifest.ValidateBindings();
+            if(error!=null)throw new ArgumentException(error,nameof(manifest));
+            ContentFingerprint=contentManifest.BindFingerprint(ContentFingerprint);
+        }
         public static Authority Host() => new Authority("TEST_ONLY.host", new[] { TestOnlyPolicy.ActorId, TestOnlyPolicy.CompanionId, AdditionalTacticalActor.Id }, true, true,
             new[] { TestOnlyPolicy.ActorId, TestOnlyPolicy.CompanionId, AdditionalTacticalActor.Id }, new[] { TestOnlyPolicy.ActorId, TestOnlyPolicy.CompanionId });
         public Snapshot Initial()
         {
+            if(contentManifest!=null&&contentManifest.ValidateBindings()!=null)throw new InvalidOperationException("ContentManifestBuildMismatch");
             var s = bodies.Initial(); s.SchemaVersion = SelectedSchema; s.ContentFingerprint = ContentFingerprint;
             var companion = s.Actors.Single(a => a.Id == TestOnlyPolicy.CompanionId); companion.X = 3; companion.Y = 3;
             // The remote worker starts with both hands available. Its supplied Club is on the
@@ -82,6 +113,10 @@ namespace Decennium.Foundation.Laboratory
             InitializeManufacturing(s);
             InitializeSupplyCache(s);
             InitializePortableEquipment(s);
+            if(contentManifest!=null) {
+                string bindingError=contentManifest.ValidatePortableSnapshot(s);
+                if(bindingError!=null)throw new InvalidOperationException(bindingError);
+            }
             return s;
         }
         private static WorldIntervalRecord Interval(Snapshot s, string actor) => s.WorldIntervals.Single(x => x.ActorId == actor);
@@ -236,6 +271,10 @@ namespace Decennium.Foundation.Laboratory
         public string Resolve(Snapshot s, Command c)
         {
             if (!s.Actors.Any(a => a.Id == c.Actor)) return "UnknownWorldActor";
+            if(contentManifest!=null) {
+                string contentError=contentManifest.ValidateCommand(s,c);
+                if(contentError!=null)return contentError;
+            }
             if(ManufacturingChoicePending(s)&&c.Kind!=CommandKind.ResolveManufacturingQuality)return "ManufacturingChoicePending";
             if(PortableCommand(c.Kind))return ResolvePortableEquipment(s,c);
             if(ManufacturingCommand(c.Kind))return ResolveManufacturing(s,c);
@@ -332,6 +371,11 @@ namespace Decennium.Foundation.Laboratory
         {
             try {
                 if (s.SchemaVersion != SelectedSchema || s.Receipts.Length != s.Revision) return "InvalidSharedWorldHeader";
+                if(contentManifest!=null) {
+                    string bindingError=contentManifest.ValidateBindings();if(bindingError!=null)return bindingError;
+                    bindingError=contentManifest.ValidatePortableSnapshot(s);if(bindingError!=null)return bindingError;
+                    if(s.ContentFingerprint!=ContentFingerprint)return "ContentFingerprintMismatch";
+                }
                 if(portableKit!=null) {
                     PortableEquipmentRules.ValidateFixture(s);
                     var pack=s.PortableEquipment.SingleOrDefault(x=>x.Id==PortableKitFixture.Pack);

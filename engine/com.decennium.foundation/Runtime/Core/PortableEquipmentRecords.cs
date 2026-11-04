@@ -187,7 +187,9 @@ namespace Decennium.Foundation
             }
             if(s.Work.WorkerIntervals.Any(w=>!s.Crops.SelectMany(c=>c.Tasks).Any(t=>t.Id==w.JobId)&&!s.Intakes.Any(j=>j.Id==w.JobId)
                 &&!s.Handling.Any(j=>j.Id==w.JobId)&&!s.WaterFills.Any(j=>j.Id==w.JobId)&&!s.VesselMoves.Any(j=>j.Id==w.JobId)
-                &&!s.SupplyCacheAttempts.Any(j=>j.Id==w.JobId)&&!s.PortableHandling.Any(j=>j.Id==w.JobId)))
+                &&!s.SupplyCacheAttempts.Any(j=>j.Id==w.JobId)&&!s.PortableHandling.Any(j=>j.Id==w.JobId)
+                &&!s.FormulaWork.Any(j=>j.Id==w.JobId)&&!s.RepairWork.Any(j=>j.Id==w.JobId)&&!s.ManufacturingOrders.Any(j=>j.Id==w.JobId)
+                &&!s.CraftingIncidents.Any(j=>j.Workers.Count!=0&&w.JobId=="craft.remedy."+j.Revision.ToString(System.Globalization.CultureInfo.InvariantCulture))))
                 throw new ArgumentException("Unattributed portable handling labor.");
         }
         private static string GroundLocation(int x,int y)=>"ground."+x.ToString(System.Globalization.CultureInfo.InvariantCulture)+"."+y.ToString(System.Globalization.CultureInfo.InvariantCulture);
