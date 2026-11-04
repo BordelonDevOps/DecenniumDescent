@@ -37,6 +37,12 @@ namespace Decennium.Foundation.Tests
                 var s=World(p);WorldCommit(s,AwardMilestone(s));WorldCommit(s,AdvanceLevel(s));var invalid=s.Capture();var grant=invalid.CharacterFeatureGrants[0];
                 invalid.CharacterFeatureGrants[0]=new CharacterFeatureGrantRecord(grant.ActorId,"soldier.base.unimplemented",grant.ClassName,grant.ClassLevel,grant.MilestoneId,grant.GrantedRevision);
                 Throws<ArgumentException>(()=>new SnapshotCodec().Encode(invalid));
+                foreach(int schema in new[]{21,22,23}) {
+                    invalid=s.Capture();invalid.SchemaVersion=schema;
+                    invalid.CharacterFeatureGrants=invalid.CharacterFeatureGrants.Concat(new[]{new CharacterFeatureGrantRecord(TestOnlyPolicy.ActorId,
+                        CharacterFeatureIds.Overwatch,"Soldier",1,"opening.milestone.soldier-2",invalid.CharacterAdvancements.Single().Revision)}).ToArray();
+                    Throws<ArgumentException>(()=>new SnapshotCodec().Encode(invalid));
+                }
             });
             cases.Add("character_advancement_requires_host_award_and_unique_milestone",()=>{
                 var p=AdvancementPolicy();var s=World(p);var noHost=new Authority("observer",new[]{TestOnlyPolicy.ActorId});
@@ -130,6 +136,43 @@ namespace Decennium.Foundation.Tests
                 WorldCommit(s,Tac(s,CommandKind.SelectCombatStance,actor:AdditionalTacticalActor.Id,stance:(int)CombatStance.Aggressive));WorldCommit(s,Tac(s,CommandKind.EndRegularTurn,actor:AdditionalTacticalActor.Id));
                 Require(s.Capture().CharacterFeatureRuntime.Single().RepositionRechargeRemaining==0,"Recharge 2 did not become ready after two of the Soldier's regular starts.");
                 var bytes=Bytes(s);Require(bytes.SequenceEqual(Bytes(new Simulation(p,new SnapshotCodec().Decode(bytes),ExecutionProfile.Laboratory))),"Feature runtime did not survive canonical replay.");
+            });
+            cases.Add("overwatch_schema24_separates_automatic_grant_and_persists_shared_bonus_actions",()=>{
+                var p=new TestOnlySharedWorldPolicy(new OverwatchFoundationFixture(),new CharacterAdvancementFixture(),new SharedCombatFixture());
+                var s=World(p);var v=s.Capture();var automatic=v.CharacterFeatureGrants.Single();
+                Require(v.SchemaVersion==Snapshot.SharedBonusActionSchema&&v.BonusActions.Length==2
+                    &&v.BonusActions.Single(x=>x.ActorId==TestOnlyPolicy.ActorId).LastRegularStart==0
+                    &&v.BonusActions.All(x=>x.Available)&&automatic.FeatureId==CharacterFeatureIds.Overwatch
+                    &&automatic.Origin==CharacterFeatureGrantOrigin.AutomaticClassFeature&&automatic.MilestoneId==""&&automatic.GrantedRevision==0
+                    &&v.CharacterFeatureGrants.Count(x=>x.Origin==CharacterFeatureGrantOrigin.SelectedCard)==0,
+                    "Schema24 did not model the shared interval budget and automatic Overwatch outside selected-card grants.");
+                var codec=new SnapshotCodec();var bytes=codec.Encode(v);var restored=codec.Decode(bytes);
+                Require(bytes.SequenceEqual(codec.Encode(restored))&&restored.CharacterFeatureGrants.Single().Origin==CharacterFeatureGrantOrigin.AutomaticClassFeature,
+                    "Schema24 origin or action budget did not survive canonical save encoding.");
+                var missing=v.Copy();missing.BonusActions=missing.BonusActions.Take(1).ToArray();Throws<ArgumentException>(()=>codec.Encode(missing));
+                var stale=v.Copy();stale.BonusActions=stale.BonusActions.Select(x=>x.ActorId==TestOnlyPolicy.ActorId?new ActorBonusActionRecord(x.ActorId,-1):x).ToArray();
+                Throws<ArgumentException>(()=>codec.Encode(stale));
+            });
+            cases.Add("overwatch_schema24_reposition_spends_shared_budget_and_regular_start_refills_it",()=>{
+                var p=new TestOnlySharedWorldPolicy(new OverwatchFoundationFixture(),new CharacterAdvancementFixture(),new SharedCombatFixture());
+                var s=World(p);WorldCommit(s,AwardMilestone(s));WorldCommit(s,AdvanceLevel(s));
+                WorldCommit(s,new Command("schema24.begin.combat",TestOnlyPolicy.ActorId,s.Capture().Revision,CommandKind.BeginFixedEncounter));
+                WorldCommit(s,Tac(s,CommandKind.ActivateTacticalReposition));var after=s.Capture();
+                Require(!after.BonusActions.Single(x=>x.ActorId==TestOnlyPolicy.ActorId).Available
+                    &&!after.CharacterFeatureRuntime.Single(x=>x.ActorId==TestOnlyPolicy.ActorId).BonusActionAvailable,
+                    "Tactical Reposition did not consume the common schema24 Bonus Action budget.");
+                WorldCommit(s,Tac(s,CommandKind.SelectCombatStance,stance:(int)CombatStance.Aggressive));
+                WorldCommit(s,Tac(s,CommandKind.EndRegularTurn));
+                WorldCommit(s,Tac(s,CommandKind.SelectCombatStance,actor:AdditionalTacticalActor.Id,stance:(int)CombatStance.Aggressive));
+                WorldCommit(s,Tac(s,CommandKind.EndRegularTurn,actor:AdditionalTacticalActor.Id));
+                var refreshed=s.Capture();Require(refreshed.Encounter.CurrentActor==TestOnlyPolicy.ActorId
+                    &&refreshed.BonusActions.Single(x=>x.ActorId==TestOnlyPolicy.ActorId).Available
+                    &&refreshed.BonusActions.Single(x=>x.ActorId==TestOnlyPolicy.ActorId).LastRegularStart==2
+                    &&refreshed.CharacterFeatureRuntime.Single(x=>x.ActorId==TestOnlyPolicy.ActorId).BonusActionAvailable
+                    &&refreshed.CharacterFeatureRuntime.Single(x=>x.ActorId==TestOnlyPolicy.ActorId).RepositionRechargeRemaining==1,
+                    "The next regular start did not refill the shared Bonus Action budget and independently advance Reposition Recharge.");
+                var bytes=Bytes(s);Require(bytes.SequenceEqual(Bytes(new Simulation(p,new SnapshotCodec().Decode(bytes),ExecutionProfile.Laboratory))),
+                    "Schema24 shared action budget did not survive command replay.");
             });
         }
     }

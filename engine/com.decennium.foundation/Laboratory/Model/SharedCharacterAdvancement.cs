@@ -51,6 +51,21 @@ namespace Decennium.Foundation.Laboratory
         }
     }
 
+    /// <summary>Opt-in schema24 foundation for the Soldier's automatic Overwatch entitlement and the shared Bonus Action ledger.</summary>
+    public sealed class OverwatchFoundationFixture
+    {
+        public const string SoldierSourceRevision="46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4";
+        internal const string SourceReferences="46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4:DescentReviewChanges/ReviewBible/data/public/class_playtests/soldier.json@c414a1d9ba2ce37cde89d0ef73265821bb74ac2d#sha256=ab9cd3bd64355166dceb5a09e1ddab98443a957bb4bcdce813f1ad294ec048f0#/engine/1;/schedule/0;/cards/0;"
+            +"46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4:DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md@5a446dd0dabae096e51f419b5e71756e0169bb3b#sha256=adb2f4752b45dc70ce792a675bb30dda362aab5056588061bcde3ba31c4c8a81;"
+            +"Engine:docs/unity/BONUS_ACTION_RULE_DECISIONS.md@e54af34ed3ab7b72a5b051b8b1f92218707e12c3#sha256=825feecd8ec0f7c58a4ab03fadc267ad4554883b9351880a0a16ed60aa1972604";
+        internal string BindFingerprint(string prior)
+        {
+            using(var sha=SHA256.Create())return "TEST_ONLY.overwatch-v1-"+string.Concat(sha.ComputeHash(Encoding.UTF8.GetBytes(prior+
+                "|schema24-shared-bonus-action|automatic-base-overwatch-not-a-selection|sources="+SourceReferences))
+                .Select(b=>b.ToString("x2",CultureInfo.InvariantCulture)));
+        }
+    }
+
     public static class CharacterAdvancementRules
     {
         private static bool EmptyCommand(Command c)=>c.Inventory==null&&c.Combat==null&&c.X==0&&c.Y==0;
@@ -69,8 +84,27 @@ namespace Decennium.Foundation.Laboratory
             =>s.CharacterFeatureRuntime=s.CharacterFeatureRuntime.Select(x=>x.ActorId==value.ActorId?value:x).ToArray();
         private static CharacterFeatureRuntimeRecord Runtime(Snapshot s,string actor)
             =>s.CharacterFeatureRuntime.SingleOrDefault(x=>x.ActorId==actor);
+        internal static bool BonusActionAvailable(Snapshot s,string actor)
+        {
+            if(s.SchemaVersion>=Snapshot.SharedBonusActionSchema)return s.BonusActions.SingleOrDefault(x=>x.ActorId==actor)?.Available==true;
+            return Runtime(s,actor)?.BonusActionAvailable==true;
+        }
+        internal static bool SpendBonusAction(Snapshot s,string actor)
+        {
+            if(!BonusActionAvailable(s,actor))return false;
+            if(s.SchemaVersion>=Snapshot.SharedBonusActionSchema) {
+                s.BonusActions=s.BonusActions.Select(x=>x.ActorId==actor?x.Spend():x).ToArray();
+            }
+            var runtime=Runtime(s,actor);if(runtime!=null)SetRuntime(s,runtime.WithBonusActionAvailable(false));
+            return true;
+        }
         internal static void RegularStart(Snapshot s,string actor,int ordinal)
         {
+            if(s.SchemaVersion>=Snapshot.SharedBonusActionSchema) {
+                var budget=s.BonusActions.SingleOrDefault(x=>x.ActorId==actor);
+                if(budget!=null&&ordinal>budget.LastRegularStart)
+                    s.BonusActions=s.BonusActions.Select(x=>x.ActorId==actor?x.RegularStart(ordinal):x).ToArray();
+            }
             var before=Runtime(s,actor);if(before==null||ordinal<=before.LastRegularStart)return;
             SetRuntime(s,before.RegularStart(ordinal));
         }
@@ -94,10 +128,13 @@ namespace Decennium.Foundation.Laboratory
                 var view=TestOnlyClubAttackPolicy.ConditionsFor(s,c.Actor).View();
                 if(view.Unaware||!view.PermissionsForLife(ActorLifeRules.Read(life)).VoluntarySpeed)return "ConditionPreventsMovement";
             }
-            if(!runtime.BonusActionAvailable)return "BonusActionUnavailable";
+            if(!BonusActionAvailable(s,c.Actor))return "BonusActionUnavailable";
             if(runtime.RepositionRechargeRemaining>0)return "TacticalRepositionRecharging";
             if(s.TacticalMoves.Length>=64)return "ContinuationCapacityReached";
-            try {SetRuntime(s,runtime.Activate(s.Encounter.TurnOrdinal,speed/2));return null;}
+            try {
+                if(s.SchemaVersion>=Snapshot.SharedBonusActionSchema&&!SpendBonusAction(s,c.Actor))return "BonusActionUnavailable";
+                SetRuntime(s,runtime.Activate(s.Encounter.TurnOrdinal,speed/2));return null;
+            }
             catch(ArgumentException){return "TacticalRepositionUnavailable";}
         }
         internal static long RepositionBudget(Snapshot s,string actor,int turnOrdinal)
@@ -116,7 +153,7 @@ namespace Decennium.Foundation.Laboratory
         }
         public static string Resolve(Snapshot s,Command c)
         {
-            if(s.SchemaVersion!=Snapshot.CharacterAdvancementSchema)return "CharacterAdvancementUnsupported";
+            if(s.SchemaVersion!=Snapshot.CharacterAdvancementSchema&&s.SchemaVersion!=Snapshot.SharedBonusActionSchema)return "CharacterAdvancementUnsupported";
             if(!EmptyCommand(c))return "InvalidAdvancementCommand";
             var character=s.Characters.SingleOrDefault(x=>x.ActorId==c.Actor);
             if(character==null)return "CharacterNotFound";
@@ -159,7 +196,8 @@ namespace Decennium.Foundation.Laboratory
                 new CharacterFeatureGrantRecord(c.Actor,second,"Soldier",2,c.Target,s.Revision+1)
             }).ToArray();
             int lastStart=checked((int)s.WorldIntervals.Single(x=>x.ActorId==c.Actor).LastStart);
-            s.CharacterFeatureRuntime=s.CharacterFeatureRuntime.Concat(new[]{new CharacterFeatureRuntimeRecord(c.Actor,lastStart)}).ToArray();
+            bool bonusActionAvailable=s.SchemaVersion>=Snapshot.SharedBonusActionSchema?BonusActionAvailable(s,c.Actor):true;
+            s.CharacterFeatureRuntime=s.CharacterFeatureRuntime.Concat(new[]{new CharacterFeatureRuntimeRecord(c.Actor,lastStart,bonusActionAvailable)}).ToArray();
             s.CharacterAdvancements=s.CharacterAdvancements.Concat(new[]{new CharacterAdvancementRecord(c.Actor,c.Target,s.Revision+1,1,2,"Soldier",2,6,
                 HitPointGainMethod.FixedAverage,life.MaximumHp,hp.BaseMaximum,life.Hp,newHp,first,second)}).ToArray();
             return null;
@@ -169,6 +207,7 @@ namespace Decennium.Foundation.Laboratory
     public sealed partial class TestOnlySharedWorldPolicy
     {
         private readonly CharacterAdvancementFixture characterAdvancement;
+        private readonly OverwatchFoundationFixture overwatchFoundation;
         public TestOnlySharedWorldPolicy(CharacterAdvancementFixture advancement,SharedCombatFixture combat,int walkingSpeed=30,
             ConditionCombatFixture conditions=null,params TacticalTerrainCell[] terrain)
             :this(combat,(SharedResearchFixture)null,(SharedCraftingFixture)null,(SharedRepairFixture)null,(SharedManufacturingFixture)null,
@@ -186,6 +225,30 @@ namespace Decennium.Foundation.Laboratory
             s.Lives=s.Lives.Select(x=>x.ActorId==TestOnlyPolicy.ActorId?characterAdvancement.HeroLife:x).ToArray();
             s.CharacterHitDice=new[]{new CharacterHitDieRecord(TestOnlyPolicy.ActorId,1,"Soldier",10,characterAdvancement.StartingHitDieSpent)};
             s.TacticalCovers=characterAdvancement.Covers.ToArray();
+        }
+        private void InitializeOverwatchFoundation(Snapshot s)
+        {
+            if(overwatchFoundation==null)return;
+            if(s.SchemaVersion!=Snapshot.SharedBonusActionSchema||s.WorldSchedule==null||characterAdvancement==null
+                ||s.Characters.Single(x=>x.ActorId==TestOnlyPolicy.ActorId).Levels.Count!=1)
+                throw new ArgumentException("Overwatch foundation requires the source-scoped Soldier 1 schema24 fixture.");
+            s.BonusActions=s.WorldIntervals.Select(x=>new ActorBonusActionRecord(x.ActorId,checked((int)x.LastStart))).ToArray();
+            s.CharacterFeatureGrants=s.CharacterFeatureGrants.Concat(new[]{new CharacterFeatureGrantRecord(TestOnlyPolicy.ActorId,
+                CharacterFeatureIds.Overwatch,"Soldier",1,"",0,CharacterFeatureGrantOrigin.AutomaticClassFeature)}).ToArray();
+        }
+        public TestOnlySharedWorldPolicy(OverwatchFoundationFixture overwatch,CharacterAdvancementFixture advancement,SharedCombatFixture combat,
+            int walkingSpeed=30,ConditionCombatFixture conditions=null,params TacticalTerrainCell[] terrain)
+            :this(advancement,combat,walkingSpeed,conditions,terrain)
+        {
+            overwatchFoundation=overwatch??throw new ArgumentNullException(nameof(overwatch));
+            ContentFingerprint=overwatchFoundation.BindFingerprint(ContentFingerprint);
+        }
+        public TestOnlySharedWorldPolicy(OverwatchFoundationFixture overwatch,PeriodicRiderFixture periodic,CharacterAdvancementFixture advancement,
+            SharedCombatFixture combat,int walkingSpeed=30,ConditionCombatFixture conditions=null,params TacticalTerrainCell[] terrain)
+            :this(periodic,advancement,combat,walkingSpeed,conditions,terrain)
+        {
+            overwatchFoundation=overwatch??throw new ArgumentNullException(nameof(overwatch));
+            ContentFingerprint=overwatchFoundation.BindFingerprint(ContentFingerprint);
         }
         private string ResolveCharacterAdvancement(Snapshot s,Command c)=>CharacterAdvancementRules.Resolve(s,c);
     }

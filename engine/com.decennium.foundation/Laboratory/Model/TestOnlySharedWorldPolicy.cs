@@ -116,6 +116,7 @@ namespace Decennium.Foundation.Laboratory
             InitializeCharacterAdvancement(s);
             InitializeRepeatingCrossbow(s);
             InitializePeriodicRider(s);
+            InitializeOverwatchFoundation(s);
             if(contentManifest!=null) {
                 string bindingError=contentManifest.ValidatePortableSnapshot(s);
                 if(bindingError!=null)throw new InvalidOperationException(bindingError);
@@ -398,8 +399,13 @@ namespace Decennium.Foundation.Laboratory
                     var pack=s.PortableEquipment.SingleOrDefault(x=>x.Id==PortableKitFixture.Pack);
                     if(pack==null||!PortableEquipmentRules.FixtureFitValid(s,pack))return "InvalidPortableKitFixture";
                 }
+                if(overwatchFoundation!=null&&(s.SchemaVersion!=Snapshot.SharedBonusActionSchema
+                    ||s.CharacterFeatureGrants.Count(g=>g.ActorId==TestOnlyPolicy.ActorId&&g.FeatureId==CharacterFeatureIds.Overwatch
+                        &&g.Origin==CharacterFeatureGrantOrigin.AutomaticClassFeature)!=1
+                    ||s.CharacterFeatureGrants.Any(g=>g.ActorId==TestOnlyPolicy.ActorId&&g.FeatureId==CharacterFeatureIds.Overwatch
+                        &&g.Origin==CharacterFeatureGrantOrigin.AutomaticClassFeature&&(g.MilestoneId!=""||g.GrantedRevision!=0))))return "InvalidOverwatchFoundationFixture";
                 if(periodicRider!=null) {
-                    if(s.SchemaVersion!=Snapshot.PeriodicRiderSchema||s.PeriodicRiders.Any(x=>x.ProfileId!=PeriodicRiderFixture.ProfileId
+                    if(s.SchemaVersion<Snapshot.PeriodicRiderSchema||s.PeriodicRiders.Any(x=>x.ProfileId!=PeriodicRiderFixture.ProfileId
                         ||x.FamilyId!=PeriodicRiderFixture.FamilyId||x.SourceId!=PeriodicRiderFixture.SourceId||x.DamageType!="piercing"||x.RemainingTicks>1)
                         ||s.PeriodicRiders.Where(x=>x.Present).GroupBy(x=>x.TargetId+"|"+x.OwnerId+"|"+x.SourceId,StringComparer.Ordinal).Any(g=>g.Count()>1)
                         ||s.SkillTraining.Any(x=>x.SkillId!="medicine"))return "InvalidPeriodicRiderFixture";

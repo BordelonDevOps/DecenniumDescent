@@ -19,8 +19,9 @@ namespace Decennium.Foundation
                 Text(w,d.ActorId);w.Write(d.LevelOrdinal);Text(w,d.ClassName);w.Write(d.DieSize);w.Write(d.Spent);
             }
             w.Write(s.CharacterFeatureGrants.Length);
-            foreach(var g in s.CharacterFeatureGrants.OrderBy(x=>x.GrantedRevision).ThenBy(x=>x.ActorId,StringComparer.Ordinal).ThenBy(x=>x.FeatureId,StringComparer.Ordinal)) {
+            foreach(var g in s.CharacterFeatureGrants.OrderBy(x=>x.GrantedRevision).ThenBy(x=>x.ActorId,StringComparer.Ordinal).ThenBy(x=>x.FeatureId,StringComparer.Ordinal).ThenBy(x=>x.Origin)) {
                 Text(w,g.ActorId);Text(w,g.FeatureId);Text(w,g.ClassName);w.Write(g.ClassLevel);Text(w,g.MilestoneId);w.Write(g.GrantedRevision);
+                if(s.SchemaVersion>=Snapshot.SharedBonusActionSchema)w.Write((int)g.Origin);
             }
             w.Write(s.CharacterAdvancements.Length);
             foreach(var a in s.CharacterAdvancements.OrderBy(x=>x.Revision)) {
@@ -35,6 +36,10 @@ namespace Decennium.Foundation
             }
             w.Write(s.TacticalCovers.Length);
             foreach(var c in s.TacticalCovers.OrderBy(x=>x.Id,StringComparer.Ordinal)){Text(w,c.Id);w.Write(c.X);w.Write(c.Y);}
+            if(s.SchemaVersion>=Snapshot.SharedBonusActionSchema) {
+                w.Write(s.BonusActions.Length);
+                foreach(var b in s.BonusActions.OrderBy(x=>x.ActorId,StringComparer.Ordinal)){Text(w,b.ActorId);w.Write(b.LastRegularStart);w.Write(b.Available);}
+            }
         }
         public static void Read(BinaryReader r,Snapshot s)
         {
@@ -43,7 +48,11 @@ namespace Decennium.Foundation
             s.CharacterHitDice=new CharacterHitDieRecord[Count(r,1280)];
             for(int i=0;i<s.CharacterHitDice.Length;i++)s.CharacterHitDice[i]=new CharacterHitDieRecord(Text(r),r.ReadInt32(),Text(r),r.ReadInt32(),Bool(r));
             s.CharacterFeatureGrants=new CharacterFeatureGrantRecord[Count(r,256)];
-            for(int i=0;i<s.CharacterFeatureGrants.Length;i++)s.CharacterFeatureGrants[i]=new CharacterFeatureGrantRecord(Text(r),Text(r),Text(r),r.ReadInt32(),Text(r),r.ReadInt64());
+            for(int i=0;i<s.CharacterFeatureGrants.Length;i++) {
+                string actor=Text(r),feature=Text(r),className=Text(r);int level=r.ReadInt32();string milestone=Text(r);long revision=r.ReadInt64();
+                var origin=s.SchemaVersion>=Snapshot.SharedBonusActionSchema?(CharacterFeatureGrantOrigin)r.ReadInt32():CharacterFeatureGrantOrigin.SelectedCard;
+                s.CharacterFeatureGrants[i]=new CharacterFeatureGrantRecord(actor,feature,className,level,milestone,revision,origin);
+            }
             s.CharacterAdvancements=new CharacterAdvancementRecord[Count(r,128)];
             for(int i=0;i<s.CharacterAdvancements.Length;i++)s.CharacterAdvancements[i]=new CharacterAdvancementRecord(Text(r),Text(r),r.ReadInt64(),r.ReadInt32(),r.ReadInt32(),
                 Text(r),r.ReadInt32(),r.ReadInt32(),(HitPointGainMethod)r.ReadInt32(),r.ReadInt64(),r.ReadInt64(),r.ReadInt64(),r.ReadInt64(),Text(r),Text(r));
@@ -51,6 +60,10 @@ namespace Decennium.Foundation
             for(int i=0;i<s.CharacterFeatureRuntime.Length;i++)s.CharacterFeatureRuntime[i]=new CharacterFeatureRuntimeRecord(Text(r),r.ReadInt32(),Bool(r),r.ReadInt32(),r.ReadInt32(),r.ReadInt64());
             s.TacticalCovers=new TacticalCoverRecord[Count(r,64)];
             for(int i=0;i<s.TacticalCovers.Length;i++)s.TacticalCovers[i]=new TacticalCoverRecord(Text(r),r.ReadInt32(),r.ReadInt32());
+            if(s.SchemaVersion>=Snapshot.SharedBonusActionSchema) {
+                s.BonusActions=new ActorBonusActionRecord[Count(r,64)];
+                for(int i=0;i<s.BonusActions.Length;i++)s.BonusActions[i]=new ActorBonusActionRecord(Text(r),r.ReadInt32(),Bool(r));
+            }
         }
         private static bool Bool(BinaryReader r){byte b=r.ReadByte();if(b>1)throw new InvalidDataException("Invalid advancement flag.");return b==1;}
         private static int Count(BinaryReader r,int max){int n=r.ReadInt32();if(n<0||n>max)throw new InvalidDataException("Invalid advancement count.");return n;}

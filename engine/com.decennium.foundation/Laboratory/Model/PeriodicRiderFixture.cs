@@ -127,7 +127,7 @@ namespace Decennium.Foundation.Laboratory
         private void InitializePeriodicRider(Snapshot s)
         {
             if(periodicRider==null)return;
-            if(s.SchemaVersion!=Snapshot.PeriodicRiderSchema||s.WorldSchedule==null)throw new ArgumentException("Periodic rider requires the shared schema23 calendar.");
+            if(s.SchemaVersion<Snapshot.PeriodicRiderSchema||s.WorldSchedule==null)throw new ArgumentException("Periodic rider requires the shared schema23-or-later calendar.");
             foreach(var fact in periodicRider.Applications)
                 if(!s.WorldSchedule.Order.Contains(fact.OwnerId)||!s.WorldSchedule.Order.Contains(fact.TargetId))
                     throw new ArgumentException("Periodic event actors must belong to the admitted encounter calendar.");

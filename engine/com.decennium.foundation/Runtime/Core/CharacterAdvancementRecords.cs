@@ -12,7 +12,9 @@ namespace Decennium.Foundation
     {
         public const string DefensivePositioning="soldier.base.defensive-positioning";
         public const string TacticalReposition="soldier.base.tactical-reposition";
+        public const string Overwatch="soldier.base.overwatch";
     }
+    public enum CharacterFeatureGrantOrigin { SelectedCard, AutomaticClassFeature }
     public enum HitPointGainMethod { FixedAverage }
 
     /// <summary>Explicit map marker for a solid feature or cover that qualifies for this one passive.</summary>
@@ -59,6 +61,31 @@ namespace Decennium.Foundation
             return new CharacterFeatureRuntimeRecord(ActorId,LastRegularStart,BonusActionAvailable,RepositionRechargeRemaining,RepositionTurnOrdinal,RepositionBudgetRemaining-cost);
         }
         public CharacterFeatureRuntimeRecord EndTacticalUse()=>new CharacterFeatureRuntimeRecord(ActorId,LastRegularStart,BonusActionAvailable,RepositionRechargeRemaining);
+        public CharacterFeatureRuntimeRecord WithBonusActionAvailable(bool available)
+            =>new CharacterFeatureRuntimeRecord(ActorId,LastRegularStart,available,RepositionRechargeRemaining,RepositionTurnOrdinal,RepositionBudgetRemaining);
+    }
+
+    /// <summary>Shared Bonus Action availability for one actor's current regular interval.</summary>
+    public sealed class ActorBonusActionRecord
+    {
+        public string ActorId { get; }
+        public int LastRegularStart { get; }
+        public bool Available { get; }
+        public ActorBonusActionRecord(string actorId,int lastRegularStart,bool available=true)
+        {
+            if(!Validation.ValidId(actorId)||lastRegularStart< -1)throw new ArgumentException("Invalid Bonus Action ledger.");
+            ActorId=actorId;LastRegularStart=lastRegularStart;Available=available;
+        }
+        public ActorBonusActionRecord RegularStart(int ordinal)
+        {
+            if(ordinal<=LastRegularStart)throw new ArgumentException("Bonus Action regular start cannot repeat or go backward.");
+            return new ActorBonusActionRecord(ActorId,ordinal,true);
+        }
+        public ActorBonusActionRecord Spend()
+        {
+            if(!Available)throw new ArgumentException("Bonus Action is unavailable.");
+            return new ActorBonusActionRecord(ActorId,LastRegularStart,false);
+        }
     }
 
     /// <summary>A host-authored entitlement tied to one actor. Consuming it is a separate command.</summary>
@@ -93,7 +120,7 @@ namespace Decennium.Foundation
         }
     }
 
-    /// <summary>Explicit class-card grant; owned features are never inferred from class level alone.</summary>
+    /// <summary>Origin-tagged feature entitlement; ownership is never inferred from class level alone.</summary>
     public sealed class CharacterFeatureGrantRecord
     {
         public string ActorId { get; }
@@ -102,12 +129,19 @@ namespace Decennium.Foundation
         public int ClassLevel { get; }
         public string MilestoneId { get; }
         public long GrantedRevision { get; }
+        public CharacterFeatureGrantOrigin Origin { get; }
         public CharacterFeatureGrantRecord(string actorId,string featureId,string className,int classLevel,string milestoneId,long grantedRevision)
+            :this(actorId,featureId,className,classLevel,milestoneId,grantedRevision,CharacterFeatureGrantOrigin.SelectedCard)
+        { }
+        public CharacterFeatureGrantRecord(string actorId,string featureId,string className,int classLevel,string milestoneId,long grantedRevision,
+            CharacterFeatureGrantOrigin origin)
         {
             if(!Validation.ValidId(actorId)||!Validation.ValidId(featureId)||string.IsNullOrEmpty(className)||className.Length>96
-                ||className.Any(c=>c<32||c>126)||classLevel<1||classLevel>20||!Validation.ValidId(milestoneId)||grantedRevision<1)
+                ||className.Any(c=>c<32||c>126)||classLevel<1||classLevel>20||!Enum.IsDefined(typeof(CharacterFeatureGrantOrigin),origin)
+                ||origin==CharacterFeatureGrantOrigin.SelectedCard&&(!Validation.ValidId(milestoneId)||grantedRevision<1)
+                ||origin==CharacterFeatureGrantOrigin.AutomaticClassFeature&&(milestoneId!=""||grantedRevision!=0))
                 throw new ArgumentException("Invalid feature grant.");
-            ActorId=actorId;FeatureId=featureId;ClassName=className;ClassLevel=classLevel;MilestoneId=milestoneId;GrantedRevision=grantedRevision;
+            ActorId=actorId;FeatureId=featureId;ClassName=className;ClassLevel=classLevel;MilestoneId=milestoneId;GrantedRevision=grantedRevision;Origin=origin;
         }
     }
 
@@ -163,14 +197,14 @@ namespace Decennium.Foundation
         public static void Validate(Snapshot s)
         {
             if(s.CharacterMilestones==null||s.CharacterHitDice==null||s.CharacterFeatureGrants==null||s.CharacterAdvancements==null
-                ||s.CharacterFeatureRuntime==null||s.TacticalCovers==null
+                ||s.CharacterFeatureRuntime==null||s.TacticalCovers==null||s.BonusActions==null
                 ||s.CharacterMilestones.Length>256||s.CharacterHitDice.Length>1280||s.CharacterFeatureGrants.Length>256||s.CharacterAdvancements.Length>128
-                ||s.CharacterFeatureRuntime.Length>64||s.TacticalCovers.Length>64
+                ||s.CharacterFeatureRuntime.Length>64||s.TacticalCovers.Length>64||s.BonusActions.Length>64
                 ||s.CharacterMilestones.Any(x=>x==null)||s.CharacterHitDice.Any(x=>x==null)||s.CharacterFeatureGrants.Any(x=>x==null)||s.CharacterAdvancements.Any(x=>x==null)
-                ||s.CharacterFeatureRuntime.Any(x=>x==null)||s.TacticalCovers.Any(x=>x==null))
+                ||s.CharacterFeatureRuntime.Any(x=>x==null)||s.TacticalCovers.Any(x=>x==null)||s.BonusActions.Any(x=>x==null))
                 throw new ArgumentException("Invalid advancement collections.");
             if(s.SchemaVersion<Snapshot.CharacterAdvancementSchema) {
-                if(s.CharacterMilestones.Length+s.CharacterHitDice.Length+s.CharacterFeatureGrants.Length+s.CharacterAdvancements.Length+s.CharacterFeatureRuntime.Length+s.TacticalCovers.Length!=0)
+                if(s.CharacterMilestones.Length+s.CharacterHitDice.Length+s.CharacterFeatureGrants.Length+s.CharacterAdvancements.Length+s.CharacterFeatureRuntime.Length+s.TacticalCovers.Length+s.BonusActions.Length!=0)
                     throw new ArgumentException("Character progression requires schema21.");
                 return;
             }
@@ -182,25 +216,32 @@ namespace Decennium.Foundation
                     ||s.CharacterFeatureGrants.Any(g=>g.ActorId==c.ActorId)||s.CharacterAdvancements.Any(a=>a.ActorId==c.ActorId)
                     ||s.CharacterFeatureRuntime.Any(r=>r.ActorId==c.ActorId))
                     .Any(c=>s.CharacterHitDice.Count(d=>d.ActorId==c.ActorId)!=c.Levels.Count)
-                ||s.CharacterFeatureRuntime.Any(x=>!Actor(x.ActorId)||!s.CharacterFeatureGrants.Any(g=>g.ActorId==x.ActorId&&g.FeatureId==CharacterFeatureIds.TacticalReposition)
+                ||s.CharacterFeatureRuntime.Any(x=>!Actor(x.ActorId)||!s.CharacterFeatureGrants.Any(g=>g.ActorId==x.ActorId&&g.FeatureId==CharacterFeatureIds.TacticalReposition&&g.Origin==CharacterFeatureGrantOrigin.SelectedCard)
                     ||x.LastRegularStart>=0&&s.WorldSchedule!=null&&x.LastRegularStart!=s.WorldSchedule.LatestStart(x.ActorId,s.WorldSchedule.ProcessedSlot)
-                    ||x.RepositionTurnOrdinal>=0&&(!s.InventoryCombat||s.Encounter==null||x.RepositionTurnOrdinal!=s.Encounter.TurnOrdinal))
+                    ||x.RepositionTurnOrdinal>=0&&(!s.InventoryCombat||s.Encounter==null||x.RepositionTurnOrdinal!=s.Encounter.TurnOrdinal)
+                    ||s.SchemaVersion>=Snapshot.SharedBonusActionSchema&&s.BonusActions.SingleOrDefault(b=>b.ActorId==x.ActorId)?.Available!=x.BonusActionAvailable)
                 ||s.CharacterFeatureRuntime.Select(x=>x.ActorId).Distinct(StringComparer.Ordinal).Count()!=s.CharacterFeatureRuntime.Length
                 ||s.CharacterMilestones.Any(m=>!Actor(m.ActorId)||m.AwardedRevision>s.Revision||m.ConsumedRevision>s.Revision)
                 ||s.CharacterMilestones.Select(m=>m.ActorId+"|"+m.MilestoneId).Distinct(StringComparer.Ordinal).Count()!=s.CharacterMilestones.Length
                 ||s.CharacterHitDice.Any(d=>!Actor(d.ActorId)||d.LevelOrdinal>s.Characters.Single(c=>c.ActorId==d.ActorId).Levels.Count
                     ||d.ClassName!=s.Characters.Single(c=>c.ActorId==d.ActorId).Levels[d.LevelOrdinal-1].ClassName)
                 ||s.CharacterHitDice.Select(d=>d.ActorId+"|"+d.LevelOrdinal).Distinct(StringComparer.Ordinal).Count()!=s.CharacterHitDice.Length
-                ||s.CharacterFeatureGrants.Any(g=>!Actor(g.ActorId)||g.GrantedRevision>s.Revision||!s.CharacterMilestones.Any(m=>m.ActorId==g.ActorId&&m.MilestoneId==g.MilestoneId&&m.ConsumedRevision==g.GrantedRevision)
-                    ||(g.FeatureId!=CharacterFeatureIds.DefensivePositioning&&g.FeatureId!=CharacterFeatureIds.TacticalReposition)
-                    ||g.ClassName!="Soldier"||g.ClassLevel!=2||g.ClassLevel>s.Characters.Single(c=>c.ActorId==g.ActorId).Levels.Count(x=>x.ClassName==g.ClassName))
-                ||s.CharacterFeatureGrants.Select(g=>g.ActorId+"|"+g.FeatureId).Distinct(StringComparer.Ordinal).Count()!=s.CharacterFeatureGrants.Length
+                ||s.CharacterFeatureGrants.Any(g=>!Actor(g.ActorId)||g.GrantedRevision>s.Revision
+                    ||g.Origin==CharacterFeatureGrantOrigin.SelectedCard&&(!s.CharacterMilestones.Any(m=>m.ActorId==g.ActorId&&m.MilestoneId==g.MilestoneId&&m.ConsumedRevision==g.GrantedRevision)
+                        ||g.ClassName!="Soldier"||(g.FeatureId==CharacterFeatureIds.Overwatch?g.ClassLevel!=1:g.ClassLevel!=2)
+                        ||g.FeatureId==CharacterFeatureIds.Overwatch&&s.SchemaVersion<Snapshot.SharedBonusActionSchema
+                        ||(g.FeatureId!=CharacterFeatureIds.DefensivePositioning&&g.FeatureId!=CharacterFeatureIds.TacticalReposition&&g.FeatureId!=CharacterFeatureIds.Overwatch))
+                    ||g.Origin==CharacterFeatureGrantOrigin.AutomaticClassFeature&&(s.SchemaVersion<Snapshot.SharedBonusActionSchema||g.FeatureId!=CharacterFeatureIds.Overwatch
+                        ||g.ClassName!="Soldier"||g.ClassLevel!=1||g.MilestoneId!=""||g.GrantedRevision!=0
+                        ||s.Characters.Single(c=>c.ActorId==g.ActorId).ProfileId!=CharacterAdvancementProfileIds.TestOnlySoldierLevel1)
+                    ||g.ClassLevel>s.Characters.Single(c=>c.ActorId==g.ActorId).Levels.Count(x=>x.ClassName==g.ClassName))
+                ||s.CharacterFeatureGrants.Select(g=>g.ActorId+"|"+g.FeatureId+"|"+(int)g.Origin).Distinct(StringComparer.Ordinal).Count()!=s.CharacterFeatureGrants.Length
                 ||s.CharacterAdvancements.Any(a=>!Actor(a.ActorId)||a.Revision>s.Revision||!s.CharacterMilestones.Any(m=>m.ActorId==a.ActorId&&m.MilestoneId==a.MilestoneId&&m.ConsumedRevision==a.Revision)
                     ||a.PreviousTotalLevel!=1||a.NewTotalLevel!=2||a.ClassName!="Soldier"||a.ClassLevel!=2||a.BaseHpGain!=6||a.HitPointMethod!=HitPointGainMethod.FixedAverage
                     ||a.MaximumHpBefore!=10||a.MaximumHpAfter!=16||a.FeatureOne!=CharacterFeatureIds.DefensivePositioning||a.FeatureTwo!=CharacterFeatureIds.TacticalReposition
                     ||a.NewTotalLevel!=s.Characters.Single(c=>c.ActorId==a.ActorId).Levels.Count
-                    ||!s.CharacterFeatureGrants.Any(g=>g.ActorId==a.ActorId&&g.FeatureId==a.FeatureOne&&g.GrantedRevision==a.Revision)
-                    ||!s.CharacterFeatureGrants.Any(g=>g.ActorId==a.ActorId&&g.FeatureId==a.FeatureTwo&&g.GrantedRevision==a.Revision))
+                    ||!s.CharacterFeatureGrants.Any(g=>g.ActorId==a.ActorId&&g.FeatureId==a.FeatureOne&&g.Origin==CharacterFeatureGrantOrigin.SelectedCard&&g.GrantedRevision==a.Revision)
+                    ||!s.CharacterFeatureGrants.Any(g=>g.ActorId==a.ActorId&&g.FeatureId==a.FeatureTwo&&g.Origin==CharacterFeatureGrantOrigin.SelectedCard&&g.GrantedRevision==a.Revision))
                 ||s.CharacterAdvancements.Select(a=>a.ActorId+"|"+a.MilestoneId).Distinct(StringComparer.Ordinal).Count()!=s.CharacterAdvancements.Length
                 ||s.CharacterMilestones.Any(m=>(m.ConsumedRevision!=0)!=s.CharacterAdvancements.Any(a=>a.ActorId==m.ActorId&&a.MilestoneId==m.MilestoneId)))
                 throw new ArgumentException("Invalid advancement references or ledgers.");
@@ -208,6 +249,19 @@ namespace Decennium.Foundation
                 var dice=s.CharacterHitDice.Where(x=>x.ActorId==actor).OrderBy(x=>x.LevelOrdinal).ToArray();
                 if(dice.Length!=s.Characters.Single(x=>x.ActorId==actor).Levels.Count
                     ||!dice.Select(x=>x.LevelOrdinal).SequenceEqual(Enumerable.Range(1,dice.Length)))throw new ArgumentException("Hit Dice must cover attained levels in order.");
+            }
+            if(s.SchemaVersion<Snapshot.SharedBonusActionSchema) {
+                if(s.BonusActions.Length!=0)throw new ArgumentException("Shared Bonus Action ledger requires schema24.");
+            } else {
+                if(s.WorldSchedule==null||s.BonusActions.Length!=s.WorldSchedule.Order.Count
+                    ||s.BonusActions.Any(b=>!Actor(b.ActorId)||!s.WorldSchedule.Order.Contains(b.ActorId)
+                        ||b.LastRegularStart!=s.WorldIntervals.Single(x=>x.ActorId==b.ActorId).LastStart)
+                    ||s.BonusActions.Select(b=>b.ActorId).Distinct(StringComparer.Ordinal).Count()!=s.BonusActions.Length)
+                    throw new ArgumentException("Shared Bonus Action ledger must cover each calendar actor at the current regular start.");
+                foreach(var soldier in s.Characters.Where(c=>c.ProfileId==CharacterAdvancementProfileIds.TestOnlySoldierLevel1))
+                    if(s.CharacterFeatureGrants.Count(g=>g.ActorId==soldier.ActorId&&g.FeatureId==CharacterFeatureIds.Overwatch
+                        &&g.Origin==CharacterFeatureGrantOrigin.AutomaticClassFeature)!=1)
+                        throw new ArgumentException("The schema24 Soldier fixture requires one automatic Overwatch entitlement, outside card selections.");
             }
         }
     }
