@@ -72,7 +72,7 @@ namespace Decennium.Foundation.Laboratory
     public sealed partial class TestOnlySharedWorldPolicy
     {
         private readonly SharedCraftingFixture crafting;
-        private int SelectedSchema => crafting != null ? Snapshot.CraftingConsequenceSchema : research != null ? Snapshot.FormulaWorkSchema : connectedCombat == null ? Snapshot.SharedWorldSchema : Snapshot.CalendarCombatSchema;
+        private int SelectedSchema => repair != null ? Snapshot.RepairWorkSchema : crafting != null ? Snapshot.CraftingConsequenceSchema : research != null ? Snapshot.FormulaWorkSchema : connectedCombat == null ? Snapshot.SharedWorldSchema : Snapshot.CalendarCombatSchema;
         private static string CraftingFingerprint(string prior, SharedCraftingFixture facts)
         {
             using (var sha = SHA256.Create()) return "TEST_ONLY.crafting-v1-" + string.Concat(sha.ComputeHash(Encoding.UTF8.GetBytes(prior + "|" + facts.Key)).Select(b => b.ToString("x2", CultureInfo.InvariantCulture)));
@@ -162,6 +162,7 @@ namespace Decennium.Foundation.Laboratory
         private static string RemedyJobId(CraftingIncidentRecord incident) => "craft.remedy." + incident.Revision.ToString(CultureInfo.InvariantCulture);
         private bool RemedyCapable(Snapshot s, CraftingIncidentRecord incident, string actor)
         {
+            if (incident.Result == 2 && TargetInActiveRepair(s, incident.ToolId)) return false;
             if (!CapableWorker(s, actor) || AvailableHands(s, actor) < 1 || s.WorldTraversals.Any(x => x.ActorId == actor)
                 || s.InventoryCombat && s.WorldSchedule.Order.Contains(actor)) return false;
             var body = s.Actors.Single(x => x.Id == actor);

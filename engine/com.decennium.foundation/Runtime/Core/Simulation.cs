@@ -11,7 +11,8 @@ namespace Decennium.Foundation
         AttackUnarmed, TacticalStep, RespondOpportunityAttack, RespondPress, Disengage, DispatchConditionEvent,
         BeginWorldStep, SuspendWorldStep, ResumeWorldStep, EndFixedEncounter,
         StartFormulaResearch, StartFormulaCopy, PauseFormulaWork, ResumeFormulaWork, CancelFormulaWork,
-        DispatchCraftingMishap, StartCraftRemedy, PauseCraftRemedy }
+        DispatchCraftingMishap, StartCraftRemedy, PauseCraftRemedy,
+        StartToolRepair, PauseToolRepair, ResumeToolRepair, CancelToolRepair }
     public enum Outcome { Rejected, Committed, Duplicate }
 
     // DTOs are detached copies. No caller ever receives the owned simulation state.
@@ -52,6 +53,7 @@ namespace Decennium.Foundation
         public const int CalendarCombatSchema = 14;
         public const int FormulaWorkSchema = 15;
         public const int CraftingConsequenceSchema = 16;
+        public const int RepairWorkSchema = 17;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
         // Technical bound keeps the entire snapshot within the existing 1 MiB save limit,
@@ -104,10 +106,12 @@ namespace Decennium.Foundation
         public WorldLifeMarkerRecord[] WorldLifeMarkers = Array.Empty<WorldLifeMarkerRecord>();
         public ObjectStructureRecord[] Structures = Array.Empty<ObjectStructureRecord>();
         public CraftingIncidentRecord[] CraftingIncidents = Array.Empty<CraftingIncidentRecord>();
+        public RepairWorkRecord[] RepairWork = Array.Empty<RepairWorkRecord>();
         public EncounterDashRecord[] EncounterDashes = Array.Empty<EncounterDashRecord>();
         public Snapshot Copy() => new Snapshot {
             DyingCadences = DyingCadences.ToArray(), Structures = Structures.ToArray(), CraftingIncidents = CraftingIncidents.ToArray(),
             WorldLifeMarkers = WorldLifeMarkers.ToArray(),
+            RepairWork = RepairWork.ToArray(),
             FormulaWork = FormulaWork.ToArray(),
             WorldSchedule = WorldSchedule, WorldIntervals = WorldIntervals.ToArray(), WorldTraversals = WorldTraversals.ToArray(),
             Conditions = Conditions.ToArray(), ClosedEncounters = ClosedEncounters.ToArray(),
@@ -184,6 +188,12 @@ namespace Decennium.Foundation
         string Resolve(Snapshot candidate, Command command);
         string ValidateState(Snapshot candidate);
     }
+    /// <summary>Policy-resolved physical inputs; host authority remains outside client payloads.
+    /// Called on detached state before duplicate handling and any mutation.</summary>
+    public interface ICommandInventoryClaims
+    {
+        IEnumerable<string> RequiredInventoryOwners(Snapshot state, Command command);
+    }
 
     public sealed class CommandResult
     {
@@ -208,7 +218,7 @@ namespace Decennium.Foundation
             if (s == null || !ValidId(s.ContentFingerprint) || s.Revision < 0 || s.Clock < 0 || s.RandomState == 0)
                 throw new ArgumentException("Invalid snapshot header.");
             if (s.SchemaVersion != Foundation.Snapshot.Schema && s.SchemaVersion != Foundation.Snapshot.WorkSchema
-                && s.SchemaVersion != Foundation.Snapshot.CropSchema && s.SchemaVersion != Foundation.Snapshot.InventorySchema && s.SchemaVersion != Foundation.Snapshot.VesselSchema && s.SchemaVersion != Foundation.Snapshot.MovableVesselSchema && s.SchemaVersion != Foundation.Snapshot.EncounterSchema && s.SchemaVersion != Foundation.Snapshot.ActorLifeSchema && s.SchemaVersion != Foundation.Snapshot.ClubAttackSchema && s.SchemaVersion != Foundation.Snapshot.PostureSchema && s.SchemaVersion != Foundation.Snapshot.TacticalMovementSchema && s.SchemaVersion != Foundation.Snapshot.ConditionSchema && s.SchemaVersion != Foundation.Snapshot.SharedWorldSchema && s.SchemaVersion != Foundation.Snapshot.CalendarCombatSchema && s.SchemaVersion != Foundation.Snapshot.FormulaWorkSchema && s.SchemaVersion != Foundation.Snapshot.CraftingConsequenceSchema)
+                && s.SchemaVersion != Foundation.Snapshot.CropSchema && s.SchemaVersion != Foundation.Snapshot.InventorySchema && s.SchemaVersion != Foundation.Snapshot.VesselSchema && s.SchemaVersion != Foundation.Snapshot.MovableVesselSchema && s.SchemaVersion != Foundation.Snapshot.EncounterSchema && s.SchemaVersion != Foundation.Snapshot.ActorLifeSchema && s.SchemaVersion != Foundation.Snapshot.ClubAttackSchema && s.SchemaVersion != Foundation.Snapshot.PostureSchema && s.SchemaVersion != Foundation.Snapshot.TacticalMovementSchema && s.SchemaVersion != Foundation.Snapshot.ConditionSchema && s.SchemaVersion != Foundation.Snapshot.SharedWorldSchema && s.SchemaVersion != Foundation.Snapshot.CalendarCombatSchema && s.SchemaVersion != Foundation.Snapshot.FormulaWorkSchema && s.SchemaVersion != Foundation.Snapshot.CraftingConsequenceSchema && s.SchemaVersion != Foundation.Snapshot.RepairWorkSchema)
                 throw new ArgumentException("Unsupported snapshot schema.");
             if (s.SchemaVersion == Foundation.Snapshot.Schema && (s.Work != null || s.RuleClock != default))
                 throw new ArgumentException("Legacy snapshot cannot contain unsaved work or exact time.");
@@ -272,6 +282,7 @@ namespace Decennium.Foundation
             WorldScheduleValidation.Validate(s);
             FormulaWorkValidation.Validate(s);
             CraftingConsequenceValidation.Validate(s);
+            RepairWorkValidation.Validate(s);
         }
     }
 
@@ -310,6 +321,11 @@ namespace Decennium.Foundation
             if (!authority.Controls(command.Actor) || (command.Kind == CommandKind.AdvanceClock && !authority.CanAdvanceClock)
                 || ((command.Kind == CommandKind.SetCropConditions || command.Kind == CommandKind.EnterInventoryCombat || command.Kind == CommandKind.BeginFixedEncounter || command.Kind == CommandKind.EndFixedEncounter || command.Kind == CommandKind.DispatchConditionEvent || command.Kind == CommandKind.DispatchCraftingMishap) && !authority.CanModifyWorld))
                 return Reject("NotAuthorized");
+            if (policy is ICommandInventoryClaims claims) {
+                try {
+                    if (claims.RequiredInventoryOwners(state.Copy(), command).Any(owner => !Validation.ValidId(owner) || !authority.MayUseInventory(owner))) return Reject("InventoryNotAuthorized");
+                } catch (Exception ex) when (ex is ArgumentException || ex is InvalidOperationException || ex is OverflowException) { return Reject("InvalidInventoryClaims"); }
+            }
             if (command.Kind == CommandKind.PortionInventory || command.Kind == CommandKind.HandleInventory || command.Kind == CommandKind.StartIntake) {
                 var source = state.InventoryLots.FirstOrDefault(x => x.LotId == command.Target);
                 if (source != null && !authority.MayUseInventory(source.OwnerId)) return Reject("InventoryNotAuthorized");

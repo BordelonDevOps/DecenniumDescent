@@ -46,7 +46,7 @@ namespace Decennium.Foundation.Laboratory
             foreach(string actor in s.WorldSchedule.Order)PauseParticipantWork(s,actor);
             // Starts have already been processed by shared advancement. Do not replay one here.
             s.InventoryCombat=true;s.InventoryTurnActor=s.Encounter.CurrentActor;s.InventoryInteractions=Interval(s,s.Encounter.CurrentActor).Interactions;
-            PauseIncompatibleRemedies(s);return null;
+            PauseIncompatibleRemedies(s);PauseIncompatibleRepairs(s);return null;
         }
         private static bool PendingCalendarChoice(Snapshot s)=>s.MeleeAttacks.Any(x=>x.Pending)||TestOnlyClubAttackPolicy.PendingMove(s)!=null||TestOnlyClubAttackPolicy.CurrentPressOffer(s)!=null;
         private static bool ResolvedConflict(Snapshot s)=>s.Lives.Single(x=>x.ActorId==AdditionalTacticalActor.Id).Dead;

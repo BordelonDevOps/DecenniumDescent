@@ -258,6 +258,18 @@ namespace Decennium.Foundation.Laboratory
             return Array.AsReadOnly(state.Wounds.Where(x=>x!=Injury.None).Distinct().OrderBy(x=>x).ToArray());
         }
 
+        /// <summary>Ability indices are STR, DEX, CON, INT, WIS, CHA. Use the strongest applicable
+        /// linked Injury once; a Wound without a matching Injury does not penalize the check.</summary>
+        public static int AbilityCheckInjuryPenalty(LifeState state, int abilityIndex, bool toolCheck = false,
+            bool manipulatesObject = false, bool initiative = false, bool perception = false)
+        {
+            RequireState(state);
+            if (abilityIndex < 0 || abilityIndex > 5) throw new ArgumentOutOfRangeException(nameof(abilityIndex));
+            return state.Wounds.Any(x => x == Injury.FineMotorTrauma && (toolCheck || abilityIndex == 1 && manipulatesObject)
+                || x == Injury.ExertionTrauma && abilityIndex <= 1 || x == Injury.CognitiveTrauma && abilityIndex >= 3
+                || x == Injury.Concussion && (initiative || perception)) ? -1 : 0;
+        }
+
         public static int HitDiceRecovered(int normalRecoveryMaximum, int wounds)
         {
             if (normalRecoveryMaximum < 0 || wounds < 0 || wounds > 3) throw new ArgumentOutOfRangeException(nameof(wounds));

@@ -63,12 +63,13 @@ namespace Decennium.Foundation.Laboratory
         private static RuleTime? ResearchWindowEnd(RuleTime at) => at < new RuleTime(28800) ? new RuleTime(28800) : at < new RuleTime(57600) ? new RuleTime(57600) : (RuleTime?)null;
         private bool ResearchCapable(Snapshot s, string actor) => research != null && actor == research.WorkerId && CapableWorker(s, actor)
             && !View(s, actor).BlocksSight && AvailableHands(s, actor) >= 1;
-        private string ResearchAccess(Snapshot s, string actor, bool requireWindow = true)
+        private string ResearchAccess(Snapshot s, string actor, bool requireWindow = true, bool requiresPrimaryTool = true)
         {
             if (actor != research.WorkerId || !research.Qualified) return "ResearchCredentialMissing";
             if (!research.Accessible || !research.Sufficient) return "ResearchEvidenceUnavailable";
             if (!research.StationSuitable) return "ResearchStationUnavailable";
-            if(crafting!=null&&(CraftingRestrictions.StationUseBlocked(s,SharedCraftingFixture.StationId)||s.Structures.Single(x=>x.Id==SharedCraftingFixture.ToolId).Broken))return "ResearchToolsOrStationUnavailable";
+            if(requiresPrimaryTool && TargetInActiveRepair(s,SharedCraftingFixture.ToolId))return "ResearchToolInRepair";
+            if(crafting!=null&&(CraftingRestrictions.StationUseBlocked(s,SharedCraftingFixture.StationId)||requiresPrimaryTool && s.Structures.Single(x=>x.Id==SharedCraftingFixture.ToolId).Broken))return "ResearchToolsOrStationUnavailable";
             if (!ResearchCapable(s, actor)) return "ResearchWorkerIncapable";
             var body = s.Actors.Single(x => x.Id == actor);
             if (s.WorldTraversals.Any(x => x.ActorId == actor) || Math.Max(Math.Abs(body.X - 3), Math.Abs(body.Y - 3)) > 1) return "ResearchStationOutOfReach";
@@ -93,7 +94,9 @@ namespace Decennium.Foundation.Laboratory
             if (research == null) return;
             foreach (var job in s.FormulaWork.Where(x => x.Status == FormulaWorkStatus.Working).ToArray())
                 if (!ResearchCapable(s, job.WorkerId) || (s.InventoryCombat && s.WorldSchedule.Order.Contains(job.WorkerId))
-                    || crafting!=null&&(CraftingRestrictions.StationUseBlocked(s,SharedCraftingFixture.StationId)||s.Structures.Single(x=>x.Id==SharedCraftingFixture.ToolId).Broken)) PauseFormula(s, job);
+                    || (s.SchemaVersion < 17 || job.Kind == FormulaWorkKind.Research) && TargetInActiveRepair(s,SharedCraftingFixture.ToolId)
+                    || crafting!=null&&(CraftingRestrictions.StationUseBlocked(s,SharedCraftingFixture.StationId)
+                        || (s.SchemaVersion < 17 || job.Kind == FormulaWorkKind.Research) && s.Structures.Single(x=>x.Id==SharedCraftingFixture.ToolId).Broken)) PauseFormula(s, job);
         }
         private static RuleTime? NextFormulaBoundary(Snapshot s)
         {
@@ -116,6 +119,8 @@ namespace Decennium.Foundation.Laboratory
         {
             var character = s.Characters.Single(x => x.ActorId == job.WorkerId);
             int modifier = PlaytestCharacters.AbilityModifier(character.Abilities[3]) + PlaytestCharacters.ProficiencyBonus(character.Levels.Count);
+            // Schema16 histories retain their original check outcomes. Schema17 corrects actual tool checks.
+            if (s.SchemaVersion >= 17) modifier += PlaytestLife.AbilityCheckInjuryPenalty(ActorLifeRules.Read(s.Lives.Single(x => x.ActorId == job.WorkerId)), 3, toolCheck: true);
             var roll = PlaytestDice.RollD20(s.RandomState, disadvantageSources: View(s, job.WorkerId).Has(ConditionKind.Poisoned) ? 1 : 0);
             s.RandomState = roll.NextRandomState;
             var status = FormulaResearchRules.Succeeds(roll.Natural, modifier, 8) ? FormulaWorkStatus.Success : FormulaWorkStatus.Failure;
@@ -130,7 +135,7 @@ namespace Decennium.Foundation.Laboratory
                 if (c.X < 0 || c.X > 1 || c.Kind == CommandKind.StartFormulaCopy && c.X != 0) return "UnknownResearchMethod";
                 bool copy = c.Kind == CommandKind.StartFormulaCopy;
                 if (copy ? c.Target != SharedResearchFixture.LegibleFormula : c.Target != SharedResearchFixture.Evidence && c.Target != SharedResearchFixture.FreshEvidence) return "UnknownResearchEvidence";
-                string access = ResearchAccess(s, c.Actor); if (access != null) return access;
+                string access = ResearchAccess(s, c.Actor, requiresPrimaryTool: !copy || s.SchemaVersion < 17); if (access != null) return access;
                 if (FormulaResearchRules.Knows(s, c.Actor, SharedResearchFixture.Recipe)) return "FormulaAlreadyKnown";
                 if (s.FormulaWork.Any(x => x.WorkerId == c.Actor && FormulaOpen(x)) || OrdinaryInventory.Busy(s, c.Actor)) return "WorkerBusy";
                 if (copy && s.Work.AvailableAmount(SharedResearchFixture.Supplies) < new RuleQuantity(1)) return "WritingSuppliesUnavailable";
@@ -159,7 +164,7 @@ namespace Decennium.Foundation.Laboratory
             }
             if (c.Kind == CommandKind.ResumeFormulaWork) {
                 if (current.Status == FormulaWorkStatus.Working) return "FormulaAlreadyWorking";
-                string access = ResearchAccess(s, c.Actor, current.Status != FormulaWorkStatus.AwaitingCheck); if (access != null) return access;
+                string access = ResearchAccess(s, c.Actor, current.Status != FormulaWorkStatus.AwaitingCheck, current.Kind == FormulaWorkKind.Research || s.SchemaVersion < 17); if (access != null) return access;
                 if (OrdinaryInventory.Busy(s, c.Actor)) return "WorkerBusy";
                 if (current.Status == FormulaWorkStatus.AwaitingCheck) { FinishFormulaCheck(s, current); return null; }
                 BookFormula(s, current); PutFormula(s, ChangeFormula(s, current, FormulaWorkStatus.Working)); return null;
