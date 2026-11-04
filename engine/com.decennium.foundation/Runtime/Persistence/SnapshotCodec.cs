@@ -10,7 +10,8 @@ namespace Decennium.Foundation
     {
         public const int LegacyMaxBytes = 1024 * 1024;
         public const int MaxBytes = 2 * 1024 * 1024;
-        private static int Limit(int schema) => schema >= Snapshot.ActorLifeSchema ? MaxBytes : LegacyMaxBytes;
+        public const int ConditionMaxBytes = 6 * 1024 * 1024;
+        private static int Limit(int schema) => schema >= Snapshot.ConditionSchema ? ConditionMaxBytes : schema >= Snapshot.ActorLifeSchema ? MaxBytes : LegacyMaxBytes;
         private static readonly UTF8Encoding Utf8 = new UTF8Encoding(false, true);
         private const int Magic = 0x31464444; // DDF1, little endian. Checksum detects corruption, not tampering.
         public byte[] Encode(Snapshot state)
@@ -48,6 +49,12 @@ namespace Decennium.Foundation
                 if (state.SchemaVersion >= Snapshot.ClubAttackSchema) ClubAttackCodec.Write(writer,state);
                 if (state.SchemaVersion >= Snapshot.PostureSchema) ActorMovementCodec.Write(writer,state);
                 if (state.SchemaVersion >= Snapshot.TacticalMovementSchema) TacticalMovementCodec.Write(writer,state);
+                if (state.SchemaVersion >= Snapshot.ConditionSchema) {
+                    writer.Write(state.Conditions.Length);
+                    foreach (var journal in state.Conditions.OrderBy(x => x.Target, StringComparer.Ordinal)) {
+                        byte[] component = new ConditionJournalCodec().Encode(journal); writer.Write(component.Length); writer.Write(component);
+                    }
+                }
                 writer.Flush(); payload = stream.ToArray();
             }
             if (payload.Length + 32 > Limit(state.SchemaVersion)) throw new InvalidDataException("Save exceeds schema size limit.");
@@ -55,7 +62,7 @@ namespace Decennium.Foundation
         }
         public Snapshot Decode(byte[] data)
         {
-            if (data == null || data.Length < 40 || data.Length > MaxBytes) throw new InvalidDataException("Invalid save length.");
+            if (data == null || data.Length < 40 || data.Length > ConditionMaxBytes) throw new InvalidDataException("Invalid save length.");
             int length = data.Length - 32;
             using (var hash = SHA256.Create())
                 if (!hash.ComputeHash(data, 0, length).SequenceEqual(data.Skip(length))) throw new InvalidDataException("Save checksum mismatch.");
@@ -67,7 +74,7 @@ namespace Decennium.Foundation
                     if (reader.ReadInt32() != Magic) throw new InvalidDataException("Unsupported save format.");
                     int schema = reader.ReadInt32();
                     if (data.Length > Limit(schema)) throw new InvalidDataException("Save exceeds schema size limit.");
-                    if (schema != Snapshot.Schema && schema != Snapshot.WorkSchema && schema != Snapshot.CropSchema && schema != Snapshot.InventorySchema && schema != Snapshot.VesselSchema && schema != Snapshot.MovableVesselSchema && schema != Snapshot.EncounterSchema && schema != Snapshot.ActorLifeSchema && schema != Snapshot.ClubAttackSchema && schema != Snapshot.PostureSchema && schema != Snapshot.TacticalMovementSchema)
+                    if (schema != Snapshot.Schema && schema != Snapshot.WorkSchema && schema != Snapshot.CropSchema && schema != Snapshot.InventorySchema && schema != Snapshot.VesselSchema && schema != Snapshot.MovableVesselSchema && schema != Snapshot.EncounterSchema && schema != Snapshot.ActorLifeSchema && schema != Snapshot.ClubAttackSchema && schema != Snapshot.PostureSchema && schema != Snapshot.TacticalMovementSchema && schema != Snapshot.ConditionSchema)
                         throw new InvalidDataException("Unsupported save schema.");
                     string fingerprint = ReadText(reader);
                     if (ReadText(reader) != RandomV1.Algorithm) throw new InvalidDataException("Unsupported RNG version.");
@@ -100,6 +107,14 @@ namespace Decennium.Foundation
                     if (schema >= Snapshot.ClubAttackSchema) ClubAttackCodec.Read(reader,s);
                     if (schema >= Snapshot.PostureSchema) ActorMovementCodec.Read(reader,s);
                     if (schema >= Snapshot.TacticalMovementSchema) TacticalMovementCodec.Read(reader,s);
+                    if (schema >= Snapshot.ConditionSchema) {
+                        s.Conditions = new ConditionJournal[ReadCount(reader, 3)];
+                        for (int i = 0; i < s.Conditions.Length; i++) {
+                            int count = ReadCount(reader, ConditionJournalCodec.MaxBytes); byte[] component = reader.ReadBytes(count);
+                            if (component.Length != count) throw new EndOfStreamException();
+                            s.Conditions[i] = new ConditionJournalCodec().Decode(component);
+                        }
+                    }
                     if (stream.Position != length) throw new InvalidDataException("Unexpected trailing save data.");
                     Validation.Snapshot(s); return s;
                 }
@@ -143,7 +158,7 @@ namespace Decennium.Foundation
         {
             using (var stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
-                if (stream.Length > SnapshotCodec.MaxBytes) throw new InvalidDataException("Save exceeds size limit.");
+                if (stream.Length > SnapshotCodec.ConditionMaxBytes) throw new InvalidDataException("Save exceeds size limit.");
                 using (var memory = new MemoryStream()) { stream.CopyTo(memory); return codec.Decode(memory.ToArray()); }
             }
         }

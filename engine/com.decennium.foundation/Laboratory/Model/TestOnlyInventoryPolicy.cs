@@ -136,10 +136,10 @@ namespace Decennium.Foundation.Laboratory
             OrdinaryInventory.Handle(s,c,location,custodian,access);return null;
         }
         public string ValidateState(Snapshot s)=>ValidateInventoryState(s,false);
-        internal string ValidateInventoryState(Snapshot s,bool filling,bool movable=false,bool encounter=false,bool actorLife=false,bool ordinaryAttack=false,bool posture=false,bool tactical=false)
+        internal string ValidateInventoryState(Snapshot s,bool filling,bool movable=false,bool encounter=false,bool actorLife=false,bool ordinaryAttack=false,bool posture=false,bool tactical=false,bool conditions=false)
         {
             try {
-                if(s.SchemaVersion!=(tactical?Snapshot.TacticalMovementSchema:posture?Snapshot.PostureSchema:ordinaryAttack?Snapshot.ClubAttackSchema:actorLife?Snapshot.ActorLifeSchema:encounter?Snapshot.EncounterSchema:movable?Snapshot.MovableVesselSchema:filling?Snapshot.VesselSchema:Snapshot.InventorySchema))return "WrongInventorySchema";
+                if(s.SchemaVersion!=(conditions?Snapshot.ConditionSchema:tactical?Snapshot.TacticalMovementSchema:posture?Snapshot.PostureSchema:ordinaryAttack?Snapshot.ClubAttackSchema:actorLife?Snapshot.ActorLifeSchema:encounter?Snapshot.EncounterSchema:movable?Snapshot.MovableVesselSchema:filling?Snapshot.VesselSchema:Snapshot.InventorySchema))return "WrongInventorySchema";
                 string error=crops.ValidateCropState(s,true);if(error!=null)return error;
                 error=OrdinaryInventory.Validate(s);if(error!=null)return error;
                 var roots=s.InventoryLots.Where(x=>x.ParentId=="").ToArray();

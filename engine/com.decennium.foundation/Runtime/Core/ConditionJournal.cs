@@ -121,6 +121,18 @@ namespace Decennium.Foundation
         }
         public static ConditionOperation Advance(string id, ConditionStamp destination)
             => new ConditionOperation(id, destination, ConditionOperationKind.Advance);
+        public string StructuralKey {
+            get {
+                string N(long n) => n.ToString(System.Globalization.CultureInfo.InvariantCulture);
+                string S(ConditionStamp? value) => value.HasValue ? value.Value.Time + ":" + N(value.Value.Phase) : "";
+                var a = Application; var g = Immunity;
+                return Id + "|" + S(At) + "|" + N((int)Kind) + "|" + Subject + "|" + Reason + "|" + Suppressed
+                    + (a == null ? "" : "|app|" + a.Id + "|" + a.Owner + "|" + a.Source + "|" + a.Kind + "|" + S(a.Expires)
+                        + "|" + a.EndingMethod + "|" + a.GenericCureAllowed + "|" + a.InheritedCureAllowed
+                        + "|" + (a.ApplyingDc.HasValue ? N(a.ApplyingDc.Value) : "") + "|" + (a.Magnitude.HasValue ? N(a.Magnitude.Value) : ""))
+                    + (g == null ? "" : "|grant|" + g.Id + "|" + g.Owner + "|" + g.Source + "|" + string.Join(",", g.Kinds) + "|" + S(g.Expires) + "|" + g.EndingMethod);
+            }
+        }
         private static void Endpoint(ConditionStamp starts, ConditionStamp? expires)
         { if (expires.HasValue && expires.Value.CompareTo(starts) <= 0) throw new ArgumentException("Endpoint must follow application."); }
     }
@@ -150,6 +162,8 @@ namespace Decennium.Foundation
             }
             PolicyId = policyId; Target = target; Origin = origin; Operations = Array.AsReadOnly(copy);
         }
+        public bool SameAs(ConditionJournal other) => other != null && PolicyId == other.PolicyId && Target == other.Target
+            && Origin.Equals(other.Origin) && Operations.Select(x => x.StructuralKey).SequenceEqual(other.Operations.Select(x => x.StructuralKey));
         public ConditionJournal Append(ConditionOperation operation)
         {
             if (Operations.Count == MaxOperations) throw new InvalidOperationException("Condition operation capacity reached.");

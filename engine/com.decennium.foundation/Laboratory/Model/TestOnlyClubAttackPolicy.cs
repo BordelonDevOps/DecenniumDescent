@@ -26,14 +26,15 @@ namespace Decennium.Foundation.Laboratory
         public string ContentFingerprint { get; }
         public TestOnlyClubAttackPolicy(long actorHp=26,long companionHp=26,long actorTemporaryHp=0,long companionTemporaryHp=0,
             uint seed=1,RuleTime origin=default,int companionX=1,int companionY=0,bool actorProne=false,bool companionProne=false,
-            int? actorBaseWalkingSpeed=null,int? companionBaseWalkingSpeed=null,TacticalCombatFixture tactical=null)
+            int? actorBaseWalkingSpeed=null,int? companionBaseWalkingSpeed=null,TacticalCombatFixture tactical=null,ConditionCombatFixture conditions=null)
         {
             if(actorHp<1||actorHp>26||companionHp<1||companionHp>26||companionX<1||companionX>4||companionY<0||companionY>1||companionY==1&&companionX!=1)
                 throw new ArgumentException("Unsupported initial club fixture facts.");
             if(actorBaseWalkingSpeed.HasValue!=companionBaseWalkingSpeed.HasValue||actorBaseWalkingSpeed<0||companionBaseWalkingSpeed<0)
                 throw new ArgumentException("Supply both explicit nonnegative fixture walking Speeds, or neither.");
             actorBaseSpeed=actorBaseWalkingSpeed;companionBaseSpeed=companionBaseWalkingSpeed;
-            this.tactical=tactical;
+            this.tactical=tactical;this.conditions=conditions;
+            if(conditions!=null&&tactical==null)throw new ArgumentException("Conditions require the explicit tactical fixture.");
             if(tactical!=null&&!Posture)throw new ArgumentException("Tactical movement requires explicit walking Speeds.");
             if(tactical?.Third!=null&&((tactical.Third.X==0&&tactical.Third.Y==0)||(tactical.Third.X==companionX&&tactical.Third.Y==companionY)))throw new ArgumentException("Third actor overlaps an initial body.");
             encounter=new TestOnlyEncounterPolicy(tactical!=null,tactical?.Third==null?new[]{TestOnlyPolicy.ActorId,TestOnlyPolicy.CompanionId}:new[]{TestOnlyPolicy.ActorId,TestOnlyPolicy.CompanionId,AdditionalTacticalActor.Id});
@@ -42,6 +43,7 @@ namespace Decennium.Foundation.Laboratory
             string key="club-attack-v1|"+life.ContentFingerprint+"|"+N(companionX)+"|"+N(companionY);
             if(Posture)key+="|posture-v1|"+N(actorBaseSpeed.Value)+"|"+N(companionBaseSpeed.Value);
             if(tactical!=null)key+="|"+tactical.Fingerprint;
+            if(conditions!=null)key+="|"+conditions.Fingerprint;
             using(var sha=SHA256.Create())ContentFingerprint="TEST_ONLY.club-v1-"+string.Concat(sha.ComputeHash(Encoding.UTF8.GetBytes(key)).Select(b=>b.ToString("x2",CultureInfo.InvariantCulture)));
         }
         private static string N(long n)=>n.ToString(CultureInfo.InvariantCulture);
@@ -58,7 +60,8 @@ namespace Decennium.Foundation.Laboratory
             if(Posture){s.SchemaVersion=tactical==null?Snapshot.PostureSchema:Snapshot.TacticalMovementSchema;s.ActorMovement=s.Actors.Select(a=>new ActorMovementRecord(a.Id,a.Id==TestOnlyPolicy.ActorId?actorBaseSpeed.Value:a.Id==TestOnlyPolicy.CompanionId?companionBaseSpeed.Value:tactical.Third.WalkingSpeed)).ToArray();}
             if(tactical!=null)s.TacticalActors=s.Actors.Select(a=>new ActorTacticalRecord(a.Id)).ToArray();
             s.Clubs=s.Actors.Select(a=>new ClubInstance(a.Id==TestOnlyPolicy.ActorId?ActorClub:a.Id==TestOnlyPolicy.CompanionId?CompanionClub:AdditionalTacticalActor.ClubId,ClubProfile,a.Id,a.Id,a.Id,a.X,a.Y)).ToArray();
-            s.Lives=s.Lives.Select(l=>ActorLifeRules.Record(l.ActorId,ActorLifeRules.Read(l),l.Prone,new[]{s.Clubs.Single(w=>w.HeldBy==l.ActorId).Id})).ToArray();return s;
+            s.Lives=s.Lives.Select(l=>ActorLifeRules.Record(l.ActorId,ActorLifeRules.Read(l),l.Prone,new[]{s.Clubs.Single(w=>w.HeldBy==l.ActorId).Id})).ToArray();
+            if(conditions!=null)InitializeConditions(s);return s;
         }
         public static StanceSelectionRecord ActiveStance(Snapshot s,string actor)=>s.Stances.LastOrDefault(t=>t.ActorId==actor&&s.RuleClock<t.ExpiresAt);
         public static PressRecord ActivePress(Snapshot s,string actor)=>s.Presses.SingleOrDefault(p=>p.ActorId==actor&&s.RuleClock<p.ExpiresAt);
@@ -67,12 +70,13 @@ namespace Decennium.Foundation.Laboratory
         private bool Admitted(CommandKind k)=>k==CommandKind.AdvanceClock||k==CommandKind.BeginFixedEncounter||k==CommandKind.EndRegularTurn
             ||k==CommandKind.EncounterDash||k==CommandKind.SelectCombatStance||k==CommandKind.AttackClub||k==CommandKind.ResolveKnockout
             ||Posture&&(k==CommandKind.StandFromProne||k==CommandKind.DropProne)
+            ||conditions!=null&&k==CommandKind.DispatchConditionEvent
             ||tactical!=null&&(k==CommandKind.AttackUnarmed||k==CommandKind.TacticalStep||k==CommandKind.RespondOpportunityAttack||k==CommandKind.RespondPress||k==CommandKind.Disengage);
         public static long WalkingSpeed(Snapshot s,string actor)
         {
             var m=s.ActorMovement.Single(x=>x.ActorId==actor);var l=s.Lives.Single(x=>x.ActorId==actor);
             long flat=(ActiveStance(s,actor)?.Kind==CombatStance.Guarded?-5:0)-(l.LinkedInjuries.Contains((int)Injury.MobilityTrauma)?5:0)-(l.LinkedInjuries.Count==3?10:0);
-            return l.Dead||l.Hp==0?0:Math.Max(0,m.BaseWalkingSpeed+flat);
+            return l.Dead||l.Hp==0?0:WithConditions(s)?PlaytestConditions.EffectiveSpeed(m.BaseWalkingSpeed,flat,CombatConditions(s,actor)):Math.Max(0,m.BaseWalkingSpeed+flat);
         }
         public static MovementLedger WalkingLedger(Snapshot s)
         {
@@ -99,21 +103,24 @@ namespace Decennium.Foundation.Laboratory
                 if(c.Kind!=CommandKind.ResolveKnockout)return "KnockoutChoicePending";
                 string choiceError=Complete(s,c,pending);if(choiceError==null&&tactical!=null)AdvanceTacticalFlow(s);return choiceError;
             }
+            if(c.Kind==CommandKind.DispatchConditionEvent)return DispatchCondition(s,c);
             if(tactical!=null&&(PendingMove(s)!=null||CurrentPressOffer(s)!=null))return ResolveTacticalChoice(s,c);
             if(c.Kind==CommandKind.RespondOpportunityAttack||c.Kind==CommandKind.RespondPress)return "NoPendingMovementChoice";
             if(c.Kind==CommandKind.ResolveKnockout)return "NoPendingKnockout";
             if(c.Kind==CommandKind.BeginFixedEncounter||c.Kind==CommandKind.AdvanceClock) {
                 string error=encounter.Resolve(s,c);if(error!=null)return error;
+                AdvanceConditions(s);
                 if(c.Kind==CommandKind.BeginFixedEncounter){StartMovement(s);ActorLifeRules.RegularStart(s,0);}return null;
             }
             var e=s.Encounter;
             if(e==null||c.Actor!=e.CurrentActor||c.Kind!=CommandKind.TacticalStep&&(c.X!=0||c.Y!=0)||combat&&c.Combat.TurnId!=e.CurrentTurnId)return "WrongRegularTurn";
             if(c.Kind==CommandKind.EndRegularTurn) {
-                if(ActorLifeRules.CanAct(s,c.Actor)&&!HasStance(s))return "StanceRequired";
+                if(Aware(s,c.Actor)&&!HasStance(s))return "StanceRequired";
                 string error=encounter.Resolve(s,c);if(error!=null)return error;
-                StartMovement(s);ActorLifeRules.RegularStart(s,s.Encounter.TurnOrdinal);return null;
+                AdvanceConditions(s);StartMovement(s);ActorLifeRules.RegularStart(s,s.Encounter.TurnOrdinal);return null;
             }
             if(!ActorLifeRules.CanAct(s,c.Actor))return "ActorCannotAct";
+            string restriction=ConditionActionFailure(s,c.Kind,c.Actor);if(restriction!=null)return restriction;
             if(c.Kind==CommandKind.StandFromProne||c.Kind==CommandKind.DropProne) {
                 if(c.Target!=e.CurrentTurnId)return "WrongRegularTurn";
                 var before=s.Lives.Single(l=>l.ActorId==c.Actor);bool standing=c.Kind==CommandKind.StandFromProne;
@@ -127,7 +134,10 @@ namespace Decennium.Foundation.Laboratory
                     s.ActorMovement=s.ActorMovement.Select(m=>m.ActorId==c.Actor?new ActorMovementRecord(m.ActorId,m.BaseWalkingSpeed,m.TurnOrdinal,ledger.Spent):m).ToArray();
                 }
                 // Dropping voluntarily changes no position, spent cost or stance allowance. Zero Speed alone does not prohibit it.
-                s.Lives=s.Lives.Select(l=>l.ActorId==c.Actor?ActorLifeRules.Record(l.ActorId,ActorLifeRules.Read(l),!standing,l.HeldItems):l).ToArray();return null;
+                if(WithConditions(s)) {
+                    if(standing)AppendCondition(s,c.Actor,ConditionOperation.Cure("host.stand."+N(s.Revision+1),s.Conditions.Single(j=>j.Target==c.Actor).Now,"Prone"));
+                    else AddPhysicalProne(s,c.Actor,"voluntary-prone");
+                } else s.Lives=s.Lives.Select(l=>l.ActorId==c.Actor?ActorLifeRules.Record(l.ActorId,ActorLifeRules.Read(l),!standing,l.HeldItems):l).ToArray();return null;
             }
             if(c.Kind==CommandKind.SelectCombatStance) {
                 if(c.Target!=""||c.Combat.WeaponId!=""||c.Combat.Stance==0||c.Combat.Knockout!=AttackKnockoutMode.OrdinaryOutcome||c.Combat.Choice||c.Combat.PressInstruction!=PressHitInstruction.ArmOrReplace)return "InvalidStanceRequest";
@@ -154,6 +164,7 @@ namespace Decennium.Foundation.Laboratory
             =>new CombatDamageRoll(dice,total,diceWords,seed,result.NextRandomState,result.WordsConsumed,result.WoundRoll?.Natural??0,result.InjuryD6??0,result.StableD4??0);
         private static string Attack(Snapshot s,Command c,bool opportunity=false)
         {
+            string physical=PhysicalAttackFailure(s,c.Actor);if(physical!=null)return physical;
             var request=c.Combat;
             if(request.Stance!=0||request.Choice||s.SchemaVersion<Snapshot.TacticalMovementSchema&&request.PressInstruction!=PressHitInstruction.ArmOrReplace)return "InvalidAttackRequest";
             if(s.MeleeAttacks.Length==128)return "AttackHistoryCapacityReached";
@@ -164,13 +175,15 @@ namespace Decennium.Foundation.Laboratory
             if(!unarmed&&(weapon==null||weapon.ProfileId!=ClubProfile||weapon.HeldBy!=c.Actor||weapon.CustodianId!=c.Actor||!attacker.HeldItems.Contains(weapon.Id)))return "ClubNotHeld";
             var target=s.Lives.SingleOrDefault(l=>l.ActorId==c.Target);
             if(target==null||target.ActorId==c.Actor||target.Dead)return "InvalidLivingTarget";
+            if(!DamageConditionCapacity(s,c.Target))return "ConditionHistoryCapacityReached";
             var a=s.Actors.Single(x=>x.Id==c.Actor);var t=s.Actors.Single(x=>x.Id==c.Target);
             if(PlanarCombatGeometry.DistanceFeet(new CombatCell(a.X,a.Y),new CombatCell(t.X,t.Y))>5)return "TargetOutOfReach";
-            bool advantage=target.Prone||ActorLifeRules.ZeroHpUnconscious(s,c.Target),disadvantage=attacker.Prone;
+            var modifiers=PlaytestConditions.Attack(CombatConditions(s,c.Actor),CombatConditions(s,c.Target),attackerInvisibleLocationKnown:true,targetInvisibleLocationKnown:true);
+            bool advantage=modifiers.AdvantagePresent,disadvantage=modifiers.DisadvantagePresent;
             uint before=s.RandomState;var roll=PlaytestDice.RollD20(before,advantage?1:0,disadvantage?1:0);
             int modifier=attacker.LinkedInjuries.Contains((int)Injury.OffensiveTrauma)?-1:0; // STR10, explicitly no Club proficiency grant.
             var defense=ActiveStance(s,c.Target);int ac=checked((int)PrototypeArmor.UnarmoredBaseAc(10))+(defense?.Kind==CombatStance.Aggressive?-2:defense?.Kind==CombatStance.Guarded?1:0);
-            var hit=PlaytestRolls.AttackRoll(roll.Natural,modifier,ac);bool critical=hit.Hit&&(hit.Critical||ActorLifeRules.ZeroHpUnconscious(s,c.Target));
+            var hit=PlaytestRolls.AttackRoll(roll.Natural,modifier,ac);bool critical=hit.Hit&&(hit.Critical||modifiers.CriticalIfHit);
             var attack=new CombatAttackRoll(roll.First,roll.Second??0,roll.Natural,modifier,ac,hit.Hit,critical,before,roll.NextRandomState,roll.WordsConsumed);
             uint next=roll.NextRandomState;CombatDamageRoll damage;bool pending=false;
             if(hit.Hit) {
@@ -178,6 +191,7 @@ namespace Decennium.Foundation.Laboratory
                 for(int i=0;i<dice.Length;i++){var d=DiceStream.Draw(next,4);dice[i]=d.Value+1;next=d.NextState;words=checked(words+d.WordsConsumed);}
                 int flat=ActiveStance(s,c.Actor)?.Kind==CombatStance.Aggressive?2:0;
                 long total=unarmed?PrototypeUnarmed.Damage(10,flat):dice.Sum()+flat;
+                if(WithConditions(s)&&ConditionsFor(s,c.Target).View().Has(ConditionKind.Petrified))total=PlaytestConditions.PetrifiedDamage(total);
                 var result=PlaytestDamageDice.Resolve(ActorLifeRules.Read(target),total,s.RuleClock,next,critical:critical,melee:true,knockout:(KnockoutInstruction)request.Knockout);
                 damage=DamageRecord(dice,total,words,next,result);next=result.NextRandomState;pending=result.Pending!=null;
                 if(pending&&s.Receipts.Length>=511)return "ContinuationCapacityReached";
@@ -211,9 +225,10 @@ namespace Decennium.Foundation.Laboratory
             bool newlyUnconscious=!after.Dead&&after.Hp==0&&before.Hp>0;
             // The initial HP/Wound facts and bounded Club damage exclude death while still holding equipment.
             if(after.Dead&&before.HeldItems.Count!=0)throw new ArgumentException("Death with held equipment is outside this profile.");
-            var record=ActorLifeRules.Record(before.ActorId,after,before.Prone||newlyUnconscious,newlyUnconscious?Array.Empty<string>():before.HeldItems);
+            var record=ActorLifeRules.Record(before.ActorId,after,before.Prone||newlyUnconscious&&!WithConditions(s),newlyUnconscious?Array.Empty<string>():before.HeldItems);
             s.Lives=s.Lives.Select(l=>l.ActorId==record.ActorId?record:l).ToArray();
             if(newlyUnconscious) {
+                if(WithConditions(s))AddPhysicalProne(s,before.ActorId,"zero-hp");
                 var a=s.Actors.Single(x=>x.Id==before.ActorId);
                 s.Clubs=s.Clubs.Select(w=>w.HeldBy==a.Id?new ClubInstance(w.Id,w.ProfileId,w.OwnerId,w.CustodianId,"",a.X,a.Y):w).ToArray();
             }
@@ -221,8 +236,8 @@ namespace Decennium.Foundation.Laboratory
         public string ValidateState(Snapshot s)
         {
             try {
-                if(s.SchemaVersion!=(tactical!=null?Snapshot.TacticalMovementSchema:Posture?Snapshot.PostureSchema:Snapshot.ClubAttackSchema))return "WrongClubSchema";
-                string error=inventory.ValidateFillingState(s,true,true,true,Posture,tactical!=null);if(error!=null)return error;
+                if(s.SchemaVersion!=(conditions!=null?Snapshot.ConditionSchema:tactical!=null?Snapshot.TacticalMovementSchema:Posture?Snapshot.PostureSchema:Snapshot.ClubAttackSchema))return "WrongClubSchema";
+                string error=inventory.ValidateFillingState(s,true,true,true,Posture,tactical!=null,conditions!=null);if(error!=null)return error;
                 if(s.Crops.Length+s.CropFood.Length+s.Handling.Length+s.VesselMoves.Length+s.Intakes.Length+s.WaterFills.Length!=0
                     ||s.Work.WorkerIntervals.Count+s.Work.Reservations.Count!=0||s.Receipts.Length!=s.Revision)return "InvalidClubFixture";
                 var replay=Initial();
@@ -249,7 +264,8 @@ namespace Decennium.Foundation.Laboratory
             if(s.Clock!=r.Clock||s.RuleClock!=r.RuleClock||s.RandomState!=r.RandomState||s.InventoryCombat!=r.InventoryCombat||s.InventoryTurnActor!=r.InventoryTurnActor||s.InventoryInteractions!=r.InventoryInteractions
                 ||(s.Encounter==null)!=(r.Encounter==null)||s.Encounter!=null&&(s.Encounter.Id!=r.Encounter.Id||s.Encounter.Origin!=r.Encounter.Origin
                     ||!s.Encounter.Order.SequenceEqual(r.Encounter.Order)||!s.Encounter.StartRevisions.SequenceEqual(r.Encounter.StartRevisions)))return false;
-            return Tables(s.Actors,r.Actors,(a,b)=>a.Id==b.Id&&a.X==b.X&&a.Y==b.Y&&a.Tokens==b.Tokens)
+            return Tables(s.Conditions,r.Conditions,(a,b)=>a.SameAs(b))
+                &&Tables(s.Actors,r.Actors,(a,b)=>a.Id==b.Id&&a.X==b.X&&a.Y==b.Y&&a.Tokens==b.Tokens)
                 &&Tables(s.Objects,r.Objects,(a,b)=>a.Id==b.Id&&a.X==b.X&&a.Y==b.Y&&a.Opened==b.Opened)
                 &&Tables(s.Characters,r.Characters,(a,b)=>a.ActorId==b.ActorId&&a.ProfileId==b.ProfileId&&a.Abilities.SequenceEqual(b.Abilities)
                     &&a.Levels.Count==b.Levels.Count&&!a.Levels.Where((x,i)=>x.ClassName!=b.Levels[i].ClassName||x.BaseHp!=b.Levels[i].BaseHp).Any())

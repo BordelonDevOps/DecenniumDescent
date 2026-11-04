@@ -20,10 +20,11 @@ namespace Decennium.Foundation.Laboratory
         private static void SetMove(Snapshot s,TacticalMoveRecord move)=>s.TacticalMoves=s.TacticalMoves.Select(m=>m.Id==move.Id?move:m).ToArray();
         private static void SetOffer(Snapshot s,PressOfferRecord offer)=>s.PressOffers=s.PressOffers.Select(p=>p.Id==offer.Id?offer:p).ToArray();
         private static bool Adjacent(int ax,int ay,int bx,int by)=>PlanarCombatGeometry.DistanceFeet(new CombatCell(ax,ay),new CombatCell(bx,by))==5;
-        private long StepCost(Snapshot s,string actor,int x,int y)=>PlaytestCombatBudgets.MovementCost(5,tactical.At(x,y),s.Lives.Single(l=>l.ActorId==actor).Prone);
+        private long StepCost(Snapshot s,string actor,int x,int y)=>PlaytestCombatBudgets.MovementCost(5,tactical.At(x,y),EffectiveProne(s,actor));
         private string StepFailure(Snapshot s,string actor,int fromX,int fromY,int x,int y,TacticalMoveKind kind)
         {
             if(!ActorLifeRules.CanAct(s,actor))return "MoverCannotAct";
+            if(WithConditions(s)&&(!Aware(s,actor)||!CurrentPermissions(s,actor).VoluntarySpeed))return "ConditionPreventsMovement";
             var body=s.Actors.Single(a=>a.Id==actor);
             if(body.X!=fromX||body.Y!=fromY)return "MovementOriginChanged";
             if(!Adjacent(fromX,fromY,x,y))return "InvalidTacticalStep";
@@ -40,6 +41,7 @@ namespace Decennium.Foundation.Laboratory
         {
             if(reactor==move.ActorId||!ActorLifeRules.CanAct(s,reactor)||!TacticalActor(s,reactor).ReactionAvailable
                 ||ActiveStance(s,reactor)?.Kind==CombatStance.Focused)return false;
+            if(WithConditions(s)&&(!CurrentPermissions(s,reactor).Reaction||PhysicalAttackFailure(s,reactor)!=null||!CanSee(s,reactor,move.ActorId)))return false;
             var moving=TacticalActor(s,move.ActorId);
             if(moving.DisengageTurn==s.Encounter.TurnOrdinal||ActiveStance(s,move.ActorId)?.Kind==CombatStance.Mobile&&moving.MobileFeet<5)return false;
             var body=s.Actors.Single(a=>a.Id==reactor);
@@ -52,6 +54,7 @@ namespace Decennium.Foundation.Laboratory
             var body=s.Actors.Single(a=>a.Id==c.Actor);string error=StepFailure(s,c.Actor,body.X,body.Y,c.X,c.Y,TacticalMoveKind.Ordinary);if(error!=null)return error;
             // Reserve room for the entire bounded chain before any reaction can be paid. Every
             // accepted follow consumes one interval entitlement, with no clock/start inside it.
+            if(s.Actors.Any(a=>!DamageConditionCapacity(s,a.Id)))return "ConditionContinuationCapacityReached";
             int n=s.Actors.Length,steps=n+1,offers=steps*(n-1),commands=1+3*offers;
             if(s.TacticalMoves.Length+steps>64||s.PressOffers.Length+offers>128||s.MeleeAttacks.Length+offers>128||s.Receipts.Length+commands>512)return "ContinuationCapacityReached";
             BeginStep(s,c.Actor,c.X,c.Y,TacticalMoveKind.Ordinary);AdvanceTacticalFlow(s);return null;
