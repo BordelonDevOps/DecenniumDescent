@@ -93,10 +93,18 @@ namespace Decennium.Foundation
             if(!s.Actors.Select(a=>a.Id).OrderBy(x=>x,StringComparer.Ordinal).SequenceEqual(s.TacticalActors.Select(a=>a.ActorId).OrderBy(x=>x,StringComparer.Ordinal))
                 ||s.TacticalMoves.Select(m=>m.Id).Distinct(StringComparer.Ordinal).Count()!=s.TacticalMoves.Length||s.TacticalMoves.Count(m=>m.Pending)>1
                 ||s.PressOffers.Select(p=>p.Id).Distinct(StringComparer.Ordinal).Count()!=s.PressOffers.Length
-                ||s.TacticalActors.Any(a=>a.LastRegularStart>=0&&(s.Encounter==null||a.LastRegularStart>s.Encounter.TurnOrdinal||s.Encounter.Order[a.LastRegularStart%s.Encounter.Order.Count]!=a.ActorId))
+                ||s.TacticalActors.Any(a=>a.LastRegularStart>=0&&(s.SchemaVersion>=Snapshot.SharedWorldSchema?a.LastRegularStart!=EncounterHistory.LatestStartOrdinal(s,a.ActorId)
+                    :!EncounterHistory.MatchesTurn(s.Encounter,a.LastRegularStart,a.ActorId)))
                 ||s.TacticalMoves.Any(m=>!Actor(m.ActorId)||m.Reactors.Any(id=>!Actor(id))||m.Revision>s.Revision||m.ResolvedRevision>s.Revision
-                    ||s.Encounter==null||m.TurnOrdinal>s.Encounter.TurnOrdinal||m.ParentPressOffer!=""&&!s.PressOffers.Any(p=>p.Id==m.ParentPressOffer&&p.Status==PressOfferStatus.Accepted))
-                ||s.PressOffers.Any(p=>!Actor(p.ActorId)||!Actor(p.TargetId)||p.CreatedRevision>s.Revision||p.ResolvedRevision>s.Revision||!s.TacticalMoves.Any(m=>m.Id==p.MoveId&&m.Status==TacticalMoveStatus.Completed)))
+                    ||EncounterHistory.AtRevision(s,m.Revision)==null||m.TurnOrdinal>EncounterHistory.AtRevision(s,m.Revision).TurnOrdinal
+                    ||m.Pending&&!EncounterHistory.InCurrent(s,m.Revision)||m.ResolvedRevision!=0&&EncounterHistory.AtRevision(s,m.Revision)?.Id!=EncounterHistory.AtRevision(s,m.ResolvedRevision)?.Id
+                    ||m.ParentPressOffer!=""&&!s.PressOffers.Any(p=>p.Id==m.ParentPressOffer&&p.Status==PressOfferStatus.Accepted
+                        &&EncounterHistory.AtRevision(s,p.CreatedRevision)?.Id==EncounterHistory.AtRevision(s,m.Revision)?.Id))
+                ||s.PressOffers.Any(p=>!Actor(p.ActorId)||!Actor(p.TargetId)||p.CreatedRevision>s.Revision||p.ResolvedRevision>s.Revision
+                    ||p.Status==PressOfferStatus.Pending&&!EncounterHistory.InCurrent(s,p.CreatedRevision)
+                    ||p.ResolvedRevision!=0&&EncounterHistory.AtRevision(s,p.CreatedRevision)?.Id!=EncounterHistory.AtRevision(s,p.ResolvedRevision)?.Id
+                    ||!s.TacticalMoves.Any(m=>m.Id==p.MoveId&&m.Status==TacticalMoveStatus.Completed
+                        &&EncounterHistory.AtRevision(s,m.Revision)?.Id==EncounterHistory.AtRevision(s,p.CreatedRevision)?.Id)))
                 throw new ArgumentException("Invalid tactical references.");
         }
     }

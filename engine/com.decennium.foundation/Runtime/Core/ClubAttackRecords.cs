@@ -149,6 +149,8 @@ namespace Decennium.Foundation
                 ||s.Clubs.Any(w=>w.HeldBy!=""&&!Actor(w.HeldBy))||s.Stances.Any(t=>!Actor(t.ActorId)||t.Revision>s.Revision)
                 ||s.MeleeAttacks.Count(a=>a.Pending)>1||s.MeleeAttacks.Select(a=>a.Id).Distinct(StringComparer.Ordinal).Count()!=s.MeleeAttacks.Length
                 ||s.MeleeAttacks.Any(a=>!Actor(a.AttackerId)||!Actor(a.TargetId)||!s.Clubs.Any(w=>w.Id==a.WeaponId)&&!(s.SchemaVersion>=Snapshot.TacticalMovementSchema&&a.WeaponId==CombatProfileIds.OrdinaryUnarmed)||a.Revision>s.Revision||a.ResolvedRevision>s.Revision||a.At>s.RuleClock)
+                ||s.SchemaVersion>=Snapshot.SharedWorldSchema&&s.MeleeAttacks.Any(a=>EncounterHistory.AtRevision(s,a.Revision)==null
+                    ||a.Pending&&!EncounterHistory.InCurrent(s,a.Revision)||!a.Pending&&EncounterHistory.AtRevision(s,a.Revision)?.Id!=EncounterHistory.AtRevision(s,a.ResolvedRevision)?.Id)
                 ||s.Presses.Any(p=>!Actor(p.ActorId)||!Actor(p.TargetId)||p.ArmedRevision>s.Revision))throw new ArgumentException("Invalid combat references.");
         }
     }

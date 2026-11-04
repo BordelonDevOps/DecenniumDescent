@@ -8,7 +8,8 @@ namespace Decennium.Foundation
     public enum CommandKind { Move, Interact, AdvanceClock, ReserveWork, ConsumeReservation, ReleaseReservation,
         PlantCrop, TendCrop, HarvestCrop, PauseCrop, SetCropConditions,
         PortionInventory, HandleInventory, StartIntake, InterruptIntake, EnterInventoryCombat, StartWaterFill, PauseWaterFill, ResumeWaterFill, CancelWaterFill, HandleVessel, BeginFixedEncounter, EndRegularTurn, EncounterDash, SelectCombatStance, AttackClub, ResolveKnockout, StandFromProne, DropProne,
-        AttackUnarmed, TacticalStep, RespondOpportunityAttack, RespondPress, Disengage, DispatchConditionEvent }
+        AttackUnarmed, TacticalStep, RespondOpportunityAttack, RespondPress, Disengage, DispatchConditionEvent,
+        BeginWorldStep, SuspendWorldStep, ResumeWorldStep }
     public enum Outcome { Rejected, Committed, Duplicate }
 
     // DTOs are detached copies. No caller ever receives the owned simulation state.
@@ -45,6 +46,7 @@ namespace Decennium.Foundation
         public const int PostureSchema = 10;
         public const int TacticalMovementSchema = 11;
         public const int ConditionSchema = 12;
+        public const int SharedWorldSchema = 13;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
         // Technical bound keeps the entire snapshot within the existing 1 MiB save limit,
@@ -88,9 +90,14 @@ namespace Decennium.Foundation
         public PressOfferRecord[] PressOffers = Array.Empty<PressOfferRecord>();
         public ConditionJournal[] Conditions = Array.Empty<ConditionJournal>();
         public FixedEncounterRecord Encounter;
+        public ClosedEncounterRecord[] ClosedEncounters = Array.Empty<ClosedEncounterRecord>();
+        public WorldScheduleRecord WorldSchedule;
+        public WorldIntervalRecord[] WorldIntervals = Array.Empty<WorldIntervalRecord>();
+        public WorldTraversalRecord[] WorldTraversals = Array.Empty<WorldTraversalRecord>();
         public EncounterDashRecord[] EncounterDashes = Array.Empty<EncounterDashRecord>();
         public Snapshot Copy() => new Snapshot {
-            Conditions = Conditions.ToArray(),
+            WorldSchedule = WorldSchedule, WorldIntervals = WorldIntervals.ToArray(), WorldTraversals = WorldTraversals.ToArray(),
+            Conditions = Conditions.ToArray(), ClosedEncounters = ClosedEncounters.ToArray(),
             TacticalActors = TacticalActors.ToArray(), TacticalMoves = TacticalMoves.ToArray(), PressOffers = PressOffers.ToArray(),
             ActorMovement = ActorMovement.ToArray(), Clubs = Clubs.ToArray(), Stances = Stances.ToArray(), MeleeAttacks = MeleeAttacks.ToArray(), Presses = Presses.ToArray(),
             Characters = Characters.ToArray(), Lives = Lives.ToArray(), LifeEvents = LifeEvents.ToArray(),
@@ -188,7 +195,7 @@ namespace Decennium.Foundation
             if (s == null || !ValidId(s.ContentFingerprint) || s.Revision < 0 || s.Clock < 0 || s.RandomState == 0)
                 throw new ArgumentException("Invalid snapshot header.");
             if (s.SchemaVersion != Foundation.Snapshot.Schema && s.SchemaVersion != Foundation.Snapshot.WorkSchema
-                && s.SchemaVersion != Foundation.Snapshot.CropSchema && s.SchemaVersion != Foundation.Snapshot.InventorySchema && s.SchemaVersion != Foundation.Snapshot.VesselSchema && s.SchemaVersion != Foundation.Snapshot.MovableVesselSchema && s.SchemaVersion != Foundation.Snapshot.EncounterSchema && s.SchemaVersion != Foundation.Snapshot.ActorLifeSchema && s.SchemaVersion != Foundation.Snapshot.ClubAttackSchema && s.SchemaVersion != Foundation.Snapshot.PostureSchema && s.SchemaVersion != Foundation.Snapshot.TacticalMovementSchema && s.SchemaVersion != Foundation.Snapshot.ConditionSchema)
+                && s.SchemaVersion != Foundation.Snapshot.CropSchema && s.SchemaVersion != Foundation.Snapshot.InventorySchema && s.SchemaVersion != Foundation.Snapshot.VesselSchema && s.SchemaVersion != Foundation.Snapshot.MovableVesselSchema && s.SchemaVersion != Foundation.Snapshot.EncounterSchema && s.SchemaVersion != Foundation.Snapshot.ActorLifeSchema && s.SchemaVersion != Foundation.Snapshot.ClubAttackSchema && s.SchemaVersion != Foundation.Snapshot.PostureSchema && s.SchemaVersion != Foundation.Snapshot.TacticalMovementSchema && s.SchemaVersion != Foundation.Snapshot.ConditionSchema && s.SchemaVersion != Foundation.Snapshot.SharedWorldSchema)
                 throw new ArgumentException("Unsupported snapshot schema.");
             if (s.SchemaVersion == Foundation.Snapshot.Schema && (s.Work != null || s.RuleClock != default))
                 throw new ArgumentException("Legacy snapshot cannot contain unsaved work or exact time.");
@@ -242,12 +249,14 @@ namespace Decennium.Foundation
             InventoryValidation.Validate(s);
             WaterVesselValidation.Validate(s);
             VesselHandlingValidation.Validate(s);
+            EncounterHistory.Validate(s);
             FixedEncounterValidation.Validate(s);
             ActorLifeValidation.Validate(s);
             ClubAttackValidation.Validate(s);
             ActorMovementValidation.Validate(s);
             TacticalMovementValidation.Validate(s);
             ActorConditionValidation.Validate(s);
+            WorldScheduleValidation.Validate(s);
         }
     }
 

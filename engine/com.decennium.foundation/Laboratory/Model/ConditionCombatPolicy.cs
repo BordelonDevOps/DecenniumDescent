@@ -24,7 +24,7 @@ namespace Decennium.Foundation.Laboratory
         {
             bool ownTurn = s.Encounter?.CurrentActor == actor;
             long spent = ownTurn ? s.ActorMovement.Single(x => x.ActorId == actor).Spent
-                + s.TacticalMoves.Where(x => x.ActorId == actor && x.TurnOrdinal == s.Encounter.TurnOrdinal && x.Kind == TacticalMoveKind.Press && x.Status == TacticalMoveStatus.Completed).Sum(x => x.CostPaid) : 0;
+                + s.TacticalMoves.Where(x => x.ActorId == actor && x.TurnOrdinal == s.Encounter.TurnOrdinal && EncounterHistory.InCurrent(s,x.Revision) && x.Kind == TacticalMoveKind.Press && x.Status == TacticalMoveStatus.Completed).Sum(x => x.CostPaid) : 0;
             return PlaytestConditions.Permissions(CombatConditions(s, actor), ownTurn && ActionSpent(s) ? 1 : 0, spent);
         }
         private static bool EffectiveProne(Snapshot s, string actor) => WithConditions(s)
@@ -71,11 +71,11 @@ namespace Decennium.Foundation.Laboratory
             s.Conditions = s.Actors.Select(x => new ConditionJournal(ConditionHistory.PolicyId, x.Id, new ConditionStamp(s.RuleClock))).ToArray();
             foreach (var body in s.Lives.Where(x => x.Prone).ToArray()) AddPhysicalProne(s, body.ActorId, "initial-prone");
         }
-        private static void AdvanceConditions(Snapshot s)
+        internal static void AdvanceConditions(Snapshot s, string subevent = "")
         {
             if (!WithConditions(s)) return;
             foreach (var journal in s.Conditions.ToArray())
-                if (journal.Now.Time < s.RuleClock) AppendCondition(s, journal.Target, ConditionOperation.Advance("host.clock." + N(s.Revision + 1), new ConditionStamp(s.RuleClock)));
+                if (journal.Now.Time < s.RuleClock) AppendCondition(s, journal.Target, ConditionOperation.Advance("host.clock." + N(s.Revision + 1) + subevent, new ConditionStamp(s.RuleClock)));
         }
         private string DispatchCondition(Snapshot s, Command c)
         {

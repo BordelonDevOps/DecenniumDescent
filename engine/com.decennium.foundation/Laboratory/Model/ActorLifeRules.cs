@@ -113,13 +113,9 @@ namespace Decennium.Foundation.Laboratory
                 if(s.Receipts.Length!=s.Revision)return "IncompleteActorLifeHistory";
                 var replay=Initial();
                 foreach(var receipt in s.Receipts.OrderBy(r=>r.Revision)) {
-                    var parts=receipt.Fingerprint.Split('|');
-                    if(parts.Length!=6||!int.TryParse(parts[0],NumberStyles.Integer,CultureInfo.InvariantCulture,out int kind)
-                        ||!int.TryParse(parts[4],NumberStyles.Integer,CultureInfo.InvariantCulture,out int x)
-                        ||!int.TryParse(parts[5],NumberStyles.Integer,CultureInfo.InvariantCulture,out int y)
-                        ||!Admitted((CommandKind)kind)||!replay.Actors.Any(a=>a.Id==parts[1]))return "InvalidActorLifeReceipt";
-                    var command=new Command(receipt.Id,parts[1],replay.Revision,(CommandKind)kind,parts[2],x,y);
-                    if(!command.MatchesReceipt(receipt)||Resolve(replay,command)!=null)return "InvalidActorLifeCommandHistory";
+                    var command=CommandHistory.Read(receipt);
+                    if(!Admitted(command.Kind)||!replay.Actors.Any(a=>a.Id==command.Actor)||command.Inventory!=null||command.Combat!=null)return "InvalidActorLifeReceipt";
+                    if(command.ExpectedRevision!=replay.Revision||Resolve(replay,command)!=null)return "InvalidActorLifeCommandHistory";
                     replay.Revision=receipt.Revision;replay.Receipts=replay.Receipts.Concat(new[]{receipt}).ToArray();
                 }
                 if(s.RuleClock!=replay.RuleClock||(s.Encounter==null)!=(replay.Encounter==null)

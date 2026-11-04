@@ -26,7 +26,8 @@ namespace Decennium.Foundation
             if(s.SchemaVersion<Snapshot.PostureSchema){if(s.ActorMovement.Length!=0)throw new ArgumentException("Movement state requires schema10.");return;}
             if(!s.Actors.Select(a=>a.Id).OrderBy(a=>a,StringComparer.Ordinal).SequenceEqual(s.ActorMovement.Select(m=>m.ActorId).OrderBy(a=>a,StringComparer.Ordinal)))throw new ArgumentException("Invalid movement actor identities.");
             foreach(var m in s.ActorMovement) {
-                if(m.TurnOrdinal>=0&&(s.Encounter==null||m.TurnOrdinal>s.Encounter.TurnOrdinal||s.Encounter.Order[m.TurnOrdinal%s.Encounter.Order.Count]!=m.ActorId))throw new ArgumentException("Invalid movement turn.");
+                if(m.TurnOrdinal>=0&&(s.SchemaVersion>=Snapshot.SharedWorldSchema?m.TurnOrdinal!=EncounterHistory.LatestStartOrdinal(s,m.ActorId)
+                    :!EncounterHistory.MatchesTurn(s.Encounter,m.TurnOrdinal,m.ActorId)))throw new ArgumentException("Invalid movement turn.");
             }
         }
     }

@@ -43,11 +43,10 @@ namespace Decennium.Foundation
                 if(s.Encounter!=null||s.EncounterDashes.Length!=0)throw new ArgumentException("Fixed encounter requires schema7.");return;
             }
             var e=s.Encounter;
-            if((e!=null)!=s.InventoryCombat||e==null&&s.EncounterDashes.Length!=0)throw new ArgumentException("Invalid encounter presence.");
-            if(e==null)return;
-            if(e.Origin>s.RuleClock||e.StartRevisions.Any(r=>r>s.Revision)||e.Order.Any(id=>!s.Actors.Any(a=>a.Id==id))
-                ||s.InventoryTurnActor!=e.CurrentActor||s.EncounterDashes.Select(x=>x.Revision).Distinct().Count()!=s.EncounterDashes.Length
-                ||s.EncounterDashes.Any(x=>x.Revision>s.Revision||x.TurnOrdinal>e.TurnOrdinal||e.Order[x.TurnOrdinal%e.Order.Count]!=x.ActorId))
+            if((e!=null)!=s.InventoryCombat||s.SchemaVersion<Snapshot.SharedWorldSchema&&e==null&&s.EncounterDashes.Length!=0)throw new ArgumentException("Invalid encounter presence.");
+            if(e!=null&&(e.Origin>s.RuleClock||e.StartRevisions.Any(r=>r>s.Revision)||e.Order.Any(id=>!s.Actors.Any(a=>a.Id==id))
+                ||s.InventoryTurnActor!=e.CurrentActor)||s.EncounterDashes.Select(x=>x.Revision).Distinct().Count()!=s.EncounterDashes.Length
+                ||s.EncounterDashes.Any(x=>x.Revision>s.Revision||!EncounterHistory.MatchesTurn(EncounterHistory.AtRevision(s,x.Revision),x.TurnOrdinal,x.ActorId)))
                 throw new ArgumentException("Invalid encounter references.");
         }
     }

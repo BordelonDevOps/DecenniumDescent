@@ -130,7 +130,9 @@ namespace Decennium.Foundation.Laboratory
                 } else {
                     if(claim.RemainingAmount!=default||claim.ReleasedAmount==default)return "UnreleasedIntake";
                     if(job.Status==IntakeStatus.Expired&&job.EndedAt!=item.FreshUntil)return "InvalidIntakeExpiry";
-                    if(job.Status==IntakeStatus.CombatInterrupted&&job.EndedAt!=(s.SchemaVersion>=Snapshot.EncounterSchema?s.Encounter?.Origin:s.RuleClock))return "InvalidCombatInterruptionTime";
+                    if(job.Status==IntakeStatus.CombatInterrupted&&(s.SchemaVersion>=Snapshot.SharedWorldSchema
+                        ?!EncounterHistory.All(s).Any(e=>e.Origin==job.EndedAt&&e.Order.Contains(job.ActorId))
+                        :job.EndedAt!=(s.SchemaVersion>=Snapshot.EncounterSchema?s.Encounter?.Origin:s.RuleClock)))return "InvalidCombatInterruptionTime";
                 }
             }
             foreach(var job in s.Handling) {

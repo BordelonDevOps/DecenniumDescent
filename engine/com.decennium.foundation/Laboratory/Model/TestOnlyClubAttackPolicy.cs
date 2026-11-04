@@ -65,8 +65,8 @@ namespace Decennium.Foundation.Laboratory
         }
         public static StanceSelectionRecord ActiveStance(Snapshot s,string actor)=>s.Stances.LastOrDefault(t=>t.ActorId==actor&&s.RuleClock<t.ExpiresAt);
         public static PressRecord ActivePress(Snapshot s,string actor)=>s.Presses.SingleOrDefault(p=>p.ActorId==actor&&s.RuleClock<p.ExpiresAt);
-        public static bool ActionSpent(Snapshot s)=>FixedEncounterRules.ActionSpent(s)||s.Encounter!=null&&s.MeleeAttacks.Any(a=>a.TurnOrdinal==s.Encounter.TurnOrdinal&&!a.Opportunity)
-            ||s.Encounter!=null&&s.TacticalActors.Any(a=>a.DisengageTurn==s.Encounter.TurnOrdinal);
+        public static bool ActionSpent(Snapshot s)=>FixedEncounterRules.ActionSpent(s)||s.Encounter!=null&&s.MeleeAttacks.Any(a=>a.TurnOrdinal==s.Encounter.TurnOrdinal&&!a.Opportunity&&EncounterHistory.InCurrent(s,a.Revision))
+            ||s.Encounter!=null&&s.TacticalActors.Any(a=>a.ActorId==s.Encounter.CurrentActor&&a.DisengageTurn==s.Encounter.TurnOrdinal);
         private bool Admitted(CommandKind k)=>k==CommandKind.AdvanceClock||k==CommandKind.BeginFixedEncounter||k==CommandKind.EndRegularTurn
             ||k==CommandKind.EncounterDash||k==CommandKind.SelectCombatStance||k==CommandKind.AttackClub||k==CommandKind.ResolveKnockout
             ||Posture&&(k==CommandKind.StandFromProne||k==CommandKind.DropProne)
@@ -83,7 +83,7 @@ namespace Decennium.Foundation.Laboratory
             if(s.Encounter==null)throw new ArgumentException("No current regular turn.");
             var m=s.ActorMovement.Single(x=>x.ActorId==s.Encounter.CurrentActor);
             if(m.TurnOrdinal!=s.Encounter.TurnOrdinal)throw new ArgumentException("Movement turn is not current.");
-            return new MovementLedger(m.Spent,s.EncounterDashes.Count(d=>d.TurnOrdinal==m.TurnOrdinal));
+            return new MovementLedger(m.Spent,s.EncounterDashes.Count(d=>d.TurnOrdinal==m.TurnOrdinal&&EncounterHistory.InCurrent(s,d.Revision)));
         }
         private static void StartMovement(Snapshot s)
         {
@@ -91,7 +91,7 @@ namespace Decennium.Foundation.Laboratory
             if(s.SchemaVersion<Snapshot.PostureSchema)return;
             s.ActorMovement=s.ActorMovement.Select(m=>m.ActorId==s.Encounter.CurrentActor?new ActorMovementRecord(m.ActorId,m.BaseWalkingSpeed,s.Encounter.TurnOrdinal):m).ToArray();
         }
-        private static bool HasStance(Snapshot s)=>s.Stances.Any(t=>t.TurnOrdinal==s.Encounter.TurnOrdinal);
+        private static bool HasStance(Snapshot s)=>s.Stances.Any(t=>t.TurnOrdinal==s.Encounter.TurnOrdinal&&EncounterHistory.InCurrent(s,t.Revision));
         public string Resolve(Snapshot s,Command c)
         {
             if(!Admitted(c.Kind))return "ClubCommandNotImplemented";
@@ -242,17 +242,10 @@ namespace Decennium.Foundation.Laboratory
                     ||s.Work.WorkerIntervals.Count+s.Work.Reservations.Count!=0||s.Receipts.Length!=s.Revision)return "InvalidClubFixture";
                 var replay=Initial();
                 foreach(var receipt in s.Receipts.OrderBy(r=>r.Revision)) {
-                    var p=receipt.Fingerprint.Split('|');CombatRequest request=null;
-                    if(p.Length!=6&&p.Length!=12&&p.Length!=13||!int.TryParse(p[0],NumberStyles.Integer,CultureInfo.InvariantCulture,out int kind)
-                        ||!int.TryParse(p[4],NumberStyles.Integer,CultureInfo.InvariantCulture,out int x)||!int.TryParse(p[5],NumberStyles.Integer,CultureInfo.InvariantCulture,out int y)
-                        ||!Admitted((CommandKind)kind)||!replay.Actors.Any(a=>a.Id==p[1]))return "InvalidClubReceipt";
-                    if(p.Length>=12) {
-                        if((p.Length==12?p[6]!="combat-v1":s.SchemaVersion<Snapshot.TacticalMovementSchema||p[6]!="combat-v2"||p[12]!="1")||!int.TryParse(p[9],NumberStyles.Integer,CultureInfo.InvariantCulture,out int stance)
-                            ||!int.TryParse(p[10],NumberStyles.Integer,CultureInfo.InvariantCulture,out int knockout)||p[11]!="0"&&p[11]!="1")return "InvalidCombatPayloadHistory";
-                        request=new CombatRequest(p[7],p[8],stance,(AttackKnockoutMode)knockout,p[11]=="1",p.Length==13?PressHitInstruction.KeepExisting:PressHitInstruction.ArmOrReplace);
-                    }
-                    var command=new Command(receipt.Id,p[1],replay.Revision,(CommandKind)kind,p[2],x,y,combat:request);
-                    if(!command.MatchesReceipt(receipt)||Resolve(replay,command)!=null)return "InvalidClubCommandHistory";
+                    var command=CommandHistory.Read(receipt);
+                    if(!Admitted(command.Kind)||!replay.Actors.Any(a=>a.Id==command.Actor)||command.Inventory!=null
+                        ||s.SchemaVersion<Snapshot.TacticalMovementSchema&&command.Combat?.PressInstruction==PressHitInstruction.KeepExisting)return "InvalidClubReceipt";
+                    if(command.ExpectedRevision!=replay.Revision||Resolve(replay,command)!=null)return "InvalidClubCommandHistory";
                     replay.Revision=receipt.Revision;replay.Receipts=replay.Receipts.Concat(new[]{receipt}).ToArray();
                 }
                 return SameState(s,replay)?null:"InvalidClubReplay";
@@ -264,7 +257,9 @@ namespace Decennium.Foundation.Laboratory
             if(s.Clock!=r.Clock||s.RuleClock!=r.RuleClock||s.RandomState!=r.RandomState||s.InventoryCombat!=r.InventoryCombat||s.InventoryTurnActor!=r.InventoryTurnActor||s.InventoryInteractions!=r.InventoryInteractions
                 ||(s.Encounter==null)!=(r.Encounter==null)||s.Encounter!=null&&(s.Encounter.Id!=r.Encounter.Id||s.Encounter.Origin!=r.Encounter.Origin
                     ||!s.Encounter.Order.SequenceEqual(r.Encounter.Order)||!s.Encounter.StartRevisions.SequenceEqual(r.Encounter.StartRevisions)))return false;
-            return Tables(s.Conditions,r.Conditions,(a,b)=>a.SameAs(b))
+            return Tables(s.ClosedEncounters,r.ClosedEncounters,(a,b)=>a.ClosedRevision==b.ClosedRevision&&a.ClosedAt==b.ClosedAt&&a.Reason==b.Reason
+                    &&a.Encounter.Id==b.Encounter.Id&&a.Encounter.Origin==b.Encounter.Origin&&a.Encounter.Order.SequenceEqual(b.Encounter.Order)&&a.Encounter.StartRevisions.SequenceEqual(b.Encounter.StartRevisions))
+                &&Tables(s.Conditions,r.Conditions,(a,b)=>a.SameAs(b))
                 &&Tables(s.Actors,r.Actors,(a,b)=>a.Id==b.Id&&a.X==b.X&&a.Y==b.Y&&a.Tokens==b.Tokens)
                 &&Tables(s.Objects,r.Objects,(a,b)=>a.Id==b.Id&&a.X==b.X&&a.Y==b.Y&&a.Opened==b.Opened)
                 &&Tables(s.Characters,r.Characters,(a,b)=>a.ActorId==b.ActorId&&a.ProfileId==b.ProfileId&&a.Abilities.SequenceEqual(b.Abilities)

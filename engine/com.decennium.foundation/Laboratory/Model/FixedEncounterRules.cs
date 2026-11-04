@@ -24,18 +24,18 @@ namespace Decennium.Foundation.Laboratory
         }
         internal static bool HistoricalHandling(Snapshot s,string job,string actor,RuleTime start,RuleTime end)
         {
-            if(s.Encounter==null)return false;
             long revision=VesselHandling.CreationRevision(job);if(revision>s.Revision)return false;
-            int ordinal=TurnForRevision(s.Encounter,revision);
-            return start==end&&start==Start(s.Encounter,ordinal)&&actor==s.Encounter.Order[ordinal%s.Encounter.Order.Count];
+            var e=EncounterHistory.AtRevision(s,revision);if(e==null)return false;
+            int ordinal=TurnForRevision(e,revision);
+            return start==end&&start==Start(e,ordinal)&&actor==e.Order[ordinal%e.Order.Count];
         }
-        internal static int Interactions(Snapshot s,int ordinal)=>s.Handling.Count(h=>h.Tactical&&TurnForRevision(s.Encounter,VesselHandling.CreationRevision(h.Id))==ordinal)
-            +s.VesselMoves.Count(h=>h.Tactical&&TurnForRevision(s.Encounter,VesselHandling.CreationRevision(h.Id))==ordinal);
-        public static bool ActionSpent(Snapshot s)=>s.Encounter!=null&&(s.InventoryInteractions>1||s.EncounterDashes.Any(d=>d.TurnOrdinal==s.Encounter.TurnOrdinal));
+        internal static int Interactions(Snapshot s,int ordinal)=>s.Handling.Count(h=>h.Tactical&&EncounterHistory.InCurrent(s,VesselHandling.CreationRevision(h.Id))&&TurnForRevision(s.Encounter,VesselHandling.CreationRevision(h.Id))==ordinal)
+            +s.VesselMoves.Count(h=>h.Tactical&&EncounterHistory.InCurrent(s,VesselHandling.CreationRevision(h.Id))&&TurnForRevision(s.Encounter,VesselHandling.CreationRevision(h.Id))==ordinal);
+        public static bool ActionSpent(Snapshot s)=>s.Encounter!=null&&(s.InventoryInteractions>1||s.EncounterDashes.Any(d=>d.TurnOrdinal==s.Encounter.TurnOrdinal&&EncounterHistory.InCurrent(s,d.Revision)));
         public static MovementLedger CurrentMovement(Snapshot s)
         {
             if(s.Encounter==null)throw new ArgumentException("No active encounter.");
-            return new MovementLedger(0,s.EncounterDashes.Count(d=>d.TurnOrdinal==s.Encounter.TurnOrdinal));
+            return new MovementLedger(0,s.EncounterDashes.Count(d=>d.TurnOrdinal==s.Encounter.TurnOrdinal&&EncounterHistory.InCurrent(s,d.Revision)));
         }
         private static string Number(long n)=>n.ToString(System.Globalization.CultureInfo.InvariantCulture);
         private static bool Receipt(Snapshot s,long revision,string actor,CommandKind kind,string target="",InventoryRequest request=null)
