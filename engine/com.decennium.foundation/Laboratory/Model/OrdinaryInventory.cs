@@ -111,7 +111,7 @@ namespace Decennium.Foundation.Laboratory
                 :tactical.Length!=0||tacticalVessels.Length!=0||s.Intakes.Any(x=>x.Status==IntakeStatus.CombatInterrupted)))return "InvalidTacticalHistory";
             var cropTasks=s.Crops.SelectMany(x=>x.Tasks).ToArray();
             if(s.Work.Reservations.Any(r=>!cropTasks.Any(t=>t.InputReservations.Contains(r.Id))&&!s.Intakes.Any(j=>j.ReservationId==r.Id)&&!s.WaterFills.Any(j=>j.ReservationId==r.Id))
-                ||s.Work.WorkerIntervals.Any(w=>!cropTasks.Any(t=>t.Id==w.JobId)&&!s.Intakes.Any(j=>j.Id==w.JobId)&&!s.Handling.Any(j=>j.Id==w.JobId)&&!s.WaterFills.Any(j=>j.Id==w.JobId)&&!s.VesselMoves.Any(j=>j.Id==w.JobId)))
+                ||s.Work.WorkerIntervals.Any(w=>!cropTasks.Any(t=>t.Id==w.JobId)&&!s.Intakes.Any(j=>j.Id==w.JobId)&&!s.Handling.Any(j=>j.Id==w.JobId)&&!s.WaterFills.Any(j=>j.Id==w.JobId)&&!s.VesselMoves.Any(j=>j.Id==w.JobId)&&!s.SupplyCacheAttempts.Any(j=>j.Id==w.JobId)))
                 return "UnattributedInventoryLedger";
             foreach(var job in s.Intakes) {
                 var item=s.InventoryLots.Single(x=>x.LotId==job.LotId);var lot=s.Work.Lots.Single(x=>x.Id==job.LotId);

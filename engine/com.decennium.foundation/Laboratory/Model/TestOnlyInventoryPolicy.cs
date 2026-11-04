@@ -35,7 +35,7 @@ namespace Decennium.Foundation.Laboratory
         private static bool Near(ActorState a,ActorState b)=>Math.Abs((long)a.X-b.X)+Math.Abs((long)a.Y-b.Y)<=1;
         private static bool AtPlot(ActorState a)=>Math.Abs((long)a.X-3)+Math.Abs((long)a.Y-3)<=1;
         private static bool Accessible(Snapshot s,string actor,InventoryLotRecord item,ResourceLot lot)=>item.Access==InventoryAccess.Ground
-            ?lot.LocationId==TestOnlyCropPolicy.PlotId&&AtPlot(s.Actors.Single(a=>a.Id==actor))
+            ?lot.LocationId==TestOnlyCropPolicy.PlotId&&AtPlot(s.Actors.Single(a=>a.Id==actor))||SupplyCacheRules.Accessible(s,actor,lot.LocationId)
             :lot.LocationId==actor&&lot.CustodianId==actor;
         private static bool FitsSuppliedPouch(Snapshot s,InventoryLotRecord item)
         {
@@ -55,11 +55,15 @@ namespace Decennium.Foundation.Laboratory
                     ?RuleQuantity.Sum(s.Vessels.Where(v=>v.LocationId==actor).Select(v=>WaterFilling.Tare(v.Profile)))
                     :actor==TestOnlyPolicy.ActorId?new RuleQuantity(1):default);
             pounds+=new RuleQuantity(2L*s.Clubs.Count(w=>w.HeldBy==actor));
+            pounds+=new RuleQuantity(s.SupplyCacheEquipment.Count(e=>e.Kind==SupplyCacheEquipmentKind.ThievesTools&&e.LocationId==actor&&e.CustodianId==actor));
+            if(s.SupplyCacheEquipment.Any(e=>e.Kind==SupplyCacheEquipmentKind.Key&&e.LocationId==actor&&e.CustodianId==actor))
+                return new BurdenTotals(null,null,false); // Ordinary key weight is not recorded in the inspected source tables.
             return new BurdenTotals(pounds,pounds.Scale(1,10),true);
         }
         private static bool Capacity(Snapshot s,string actor,RuleQuantity additional)
         {
-            var burden=CarriedBurden(s,actor);var pounds=burden.Pounds.Value+additional;
+            var burden=CarriedBurden(s,actor);if(!burden.Pounds.HasValue||!burden.Load.HasValue)return false;
+            var pounds=burden.Pounds.Value+additional;
             return PlaytestCarrying.CanCarry(PlaytestCarrying.Limits(CarrierSize.Medium,10),new BurdenTotals(pounds,pounds.Scale(1,10),true))==true;
         }
         public string Resolve(Snapshot s,Command c)
@@ -131,7 +135,11 @@ namespace Decennium.Foundation.Laboratory
                     location=receiver.Id;custodian=receiver.Id;break;
                 default:return "InvalidHandling";
             }
-            if(access!=InventoryAccess.Ground&&!Capacity(s,custodian,lot.LocationId==location?default:c.Inventory.Amount))return "CarryingCapacityExceeded";
+            if(access!=InventoryAccess.Ground) {
+                var burden=CarriedBurden(s,custodian);
+                if(!burden.Pounds.HasValue||!burden.Load.HasValue)return "CarryingCapacityNotEstablished";
+                if(!Capacity(s,custodian,lot.LocationId==location?default:c.Inventory.Amount))return "CarryingCapacityExceeded";
+            }
             if(s.InventoryCombat&&(s.InventoryTurnActor!=c.Actor||s.InventoryInteractions>=2))return "InteractionBudgetUnavailable";
             OrdinaryInventory.Handle(s,c,location,custodian,access);return null;
         }

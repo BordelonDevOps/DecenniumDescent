@@ -56,6 +56,7 @@ namespace Decennium.Foundation
         public const int CraftingConsequenceSchema = 16;
         public const int RepairWorkSchema = 17;
         public const int ManufacturingSchema = 18;
+        public const int SupplyCacheSchema = 19;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
         // Technical bound keeps the entire snapshot within the existing 1 MiB save limit,
@@ -113,11 +114,15 @@ namespace Decennium.Foundation
         public TradeProgressRecord[] Trades = Array.Empty<TradeProgressRecord>();
         public AlchemyDoseRecord[] AlchemyDoses = Array.Empty<AlchemyDoseRecord>();
         public ManufacturingAdvanceRecord ManufacturingAdvance;
+        public SupplyCacheRecord[] SupplyCaches = Array.Empty<SupplyCacheRecord>();
+        public SupplyCacheAttemptRecord[] SupplyCacheAttempts = Array.Empty<SupplyCacheAttemptRecord>();
+        public SupplyCacheEquipmentRecord[] SupplyCacheEquipment = Array.Empty<SupplyCacheEquipmentRecord>();
         public EncounterDashRecord[] EncounterDashes = Array.Empty<EncounterDashRecord>();
         public Snapshot Copy() => new Snapshot {
             DyingCadences = DyingCadences.ToArray(), Structures = Structures.ToArray(), CraftingIncidents = CraftingIncidents.ToArray(),
             WorldLifeMarkers = WorldLifeMarkers.ToArray(),
             RepairWork = RepairWork.ToArray(), ManufacturingOrders = ManufacturingOrders.ToArray(), Trades = Trades.ToArray(), AlchemyDoses = AlchemyDoses.ToArray(), ManufacturingAdvance = ManufacturingAdvance,
+            SupplyCaches = SupplyCaches.ToArray(), SupplyCacheAttempts = SupplyCacheAttempts.ToArray(), SupplyCacheEquipment = SupplyCacheEquipment.ToArray(),
             FormulaWork = FormulaWork.ToArray(),
             WorldSchedule = WorldSchedule, WorldIntervals = WorldIntervals.ToArray(), WorldTraversals = WorldTraversals.ToArray(),
             Conditions = Conditions.ToArray(), ClosedEncounters = ClosedEncounters.ToArray(),
@@ -225,7 +230,7 @@ namespace Decennium.Foundation
             if (s == null || !ValidId(s.ContentFingerprint) || s.Revision < 0 || s.Clock < 0 || s.RandomState == 0)
                 throw new ArgumentException("Invalid snapshot header.");
             if (s.SchemaVersion != Foundation.Snapshot.Schema && s.SchemaVersion != Foundation.Snapshot.WorkSchema
-                && s.SchemaVersion != Foundation.Snapshot.CropSchema && s.SchemaVersion != Foundation.Snapshot.InventorySchema && s.SchemaVersion != Foundation.Snapshot.VesselSchema && s.SchemaVersion != Foundation.Snapshot.MovableVesselSchema && s.SchemaVersion != Foundation.Snapshot.EncounterSchema && s.SchemaVersion != Foundation.Snapshot.ActorLifeSchema && s.SchemaVersion != Foundation.Snapshot.ClubAttackSchema && s.SchemaVersion != Foundation.Snapshot.PostureSchema && s.SchemaVersion != Foundation.Snapshot.TacticalMovementSchema && s.SchemaVersion != Foundation.Snapshot.ConditionSchema && s.SchemaVersion != Foundation.Snapshot.SharedWorldSchema && s.SchemaVersion != Foundation.Snapshot.CalendarCombatSchema && s.SchemaVersion != Foundation.Snapshot.FormulaWorkSchema && s.SchemaVersion != Foundation.Snapshot.CraftingConsequenceSchema && s.SchemaVersion != Foundation.Snapshot.RepairWorkSchema && s.SchemaVersion != Foundation.Snapshot.ManufacturingSchema)
+                && s.SchemaVersion != Foundation.Snapshot.CropSchema && s.SchemaVersion != Foundation.Snapshot.InventorySchema && s.SchemaVersion != Foundation.Snapshot.VesselSchema && s.SchemaVersion != Foundation.Snapshot.MovableVesselSchema && s.SchemaVersion != Foundation.Snapshot.EncounterSchema && s.SchemaVersion != Foundation.Snapshot.ActorLifeSchema && s.SchemaVersion != Foundation.Snapshot.ClubAttackSchema && s.SchemaVersion != Foundation.Snapshot.PostureSchema && s.SchemaVersion != Foundation.Snapshot.TacticalMovementSchema && s.SchemaVersion != Foundation.Snapshot.ConditionSchema && s.SchemaVersion != Foundation.Snapshot.SharedWorldSchema && s.SchemaVersion != Foundation.Snapshot.CalendarCombatSchema && s.SchemaVersion != Foundation.Snapshot.FormulaWorkSchema && s.SchemaVersion != Foundation.Snapshot.CraftingConsequenceSchema && s.SchemaVersion != Foundation.Snapshot.RepairWorkSchema && s.SchemaVersion != Foundation.Snapshot.ManufacturingSchema && s.SchemaVersion != Foundation.Snapshot.SupplyCacheSchema)
                 throw new ArgumentException("Unsupported snapshot schema.");
             if (s.SchemaVersion == Foundation.Snapshot.Schema && (s.Work != null || s.RuleClock != default))
                 throw new ArgumentException("Legacy snapshot cannot contain unsaved work or exact time.");
@@ -291,6 +296,7 @@ namespace Decennium.Foundation
             CraftingConsequenceValidation.Validate(s);
             RepairWorkValidation.Validate(s);
             ManufacturingValidation.Validate(s);
+            SupplyCacheValidation.Validate(s);
         }
     }
 

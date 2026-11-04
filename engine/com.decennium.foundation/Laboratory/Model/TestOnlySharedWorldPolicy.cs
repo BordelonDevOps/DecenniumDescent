@@ -16,6 +16,7 @@ namespace Decennium.Foundation.Laboratory
         private readonly TacticalCombatFixture terrain;
         private readonly ConditionCombatFixture conditions;
         private readonly SharedCombatFixture connectedCombat;
+        private readonly SupplyCacheFixture supplyCache;
         public bool TestOnly => true;
         public string ContentFingerprint { get; }
         public TestOnlySharedWorldPolicy(int walkingSpeed = 30, ConditionCombatFixture conditions = null, params TacticalTerrainCell[] terrain)
@@ -29,8 +30,11 @@ namespace Decennium.Foundation.Laboratory
         public TestOnlySharedWorldPolicy(SharedCombatFixture combat,SharedResearchFixture research,SharedCraftingFixture crafting,SharedRepairFixture repair,int walkingSpeed = 30, ConditionCombatFixture conditions = null, params TacticalTerrainCell[] terrain)
             :this(combat,research,crafting,repair,null,walkingSpeed,conditions,terrain) { }
         public TestOnlySharedWorldPolicy(SharedCombatFixture combat,SharedResearchFixture research,SharedCraftingFixture crafting,SharedRepairFixture repair,SharedManufacturingFixture manufacturing,int walkingSpeed = 30, ConditionCombatFixture conditions = null, params TacticalTerrainCell[] terrain)
+            :this(combat,research,crafting,repair,manufacturing,null,walkingSpeed,conditions,terrain) { }
+        public TestOnlySharedWorldPolicy(SharedCombatFixture combat,SharedResearchFixture research,SharedCraftingFixture crafting,SharedRepairFixture repair,SharedManufacturingFixture manufacturing,SupplyCacheFixture supplyCache,int walkingSpeed = 30, ConditionCombatFixture conditions = null, params TacticalTerrainCell[] terrain)
         {
             connectedCombat=combat;
+            this.supplyCache=supplyCache;
             this.research=research;
             this.crafting=crafting;
             this.repair=repair;
@@ -48,6 +52,7 @@ namespace Decennium.Foundation.Laboratory
             if(crafting!=null)ContentFingerprint=CraftingFingerprint(ContentFingerprint,crafting);
             if(repair!=null)ContentFingerprint=RepairFingerprint(ContentFingerprint,repair);
             if(manufacturing!=null)ContentFingerprint=ManufacturingFingerprint(ContentFingerprint,manufacturing);
+            if(supplyCache!=null)ContentFingerprint=SupplyCacheFingerprint(ContentFingerprint,supplyCache);
         }
         public static Authority Host() => new Authority("TEST_ONLY.host", new[] { TestOnlyPolicy.ActorId, TestOnlyPolicy.CompanionId, AdditionalTacticalActor.Id }, true, true,
             new[] { TestOnlyPolicy.ActorId, TestOnlyPolicy.CompanionId, AdditionalTacticalActor.Id }, new[] { TestOnlyPolicy.ActorId, TestOnlyPolicy.CompanionId });
@@ -66,6 +71,7 @@ namespace Decennium.Foundation.Laboratory
             InitializeCrafting(s);
             InitializeRepair(s);
             InitializeManufacturing(s);
+            InitializeSupplyCache(s);
             return s;
         }
         private static WorldIntervalRecord Interval(Snapshot s, string actor) => s.WorldIntervals.Single(x => x.ActorId == actor);
@@ -105,6 +111,7 @@ namespace Decennium.Foundation.Laboratory
             PauseIncompatibleRemedies(s);
             PauseIncompatibleRepairs(s);
             PauseIncompatibleManufacturing(s);
+            InterruptSupplyCacheAttempts(s);
         }
         private static void RefreshIntervals(Snapshot s)
         {
@@ -149,6 +156,7 @@ namespace Decennium.Foundation.Laboratory
                 var remedy = NextRemedyBoundary(s); if(remedy.HasValue&&remedy.Value<next)next=remedy.Value;
                 var repairBoundary = NextRepairBoundary(s); if(repairBoundary.HasValue&&repairBoundary.Value<next)next=repairBoundary.Value;
                 var manufacturingBoundary=NextManufacturingBoundary(s);if(manufacturingBoundary.HasValue&&manufacturingBoundary.Value<next)next=manufacturingBoundary.Value;
+                var cacheBoundary=NextSupplyCacheBoundary(s);if(cacheBoundary.HasValue&&cacheBoundary.Value<next)next=cacheBoundary.Value;
                 var active = s.WorldTraversals.Where(x => x.Status != WorldTraversalStatus.Suspended).ToArray();
                 // Stationary, living actors have no per-Start event here. The arithmetic cursor
                 // skips empty intervals; active movement must visit its real budget boundaries.
@@ -206,7 +214,7 @@ namespace Decennium.Foundation.Laboratory
                     var job=s.ManufacturingOrders.Single(x=>x.Id==id);
                     if(ManufacturingAccess(s,job.WorkerId,false,true)==null)FinishManufacturingCheck(s,job);
                 }
-                PauseIncompatibleWork(s); ReconcileTraversal(s);
+                PauseIncompatibleWork(s); ReconcileTraversal(s); CompleteSupplyCacheAttempts(s);
                 if(ManufacturingChoicePending(s)){
                     s.ManufacturingAdvance=continuation??new ManufacturingAdvanceRecord(target,exitAfterSlot,initiating.Id,s.Revision+1,
                         initiating.Kind==CommandKind.EndRegularTurn||initiating.Kind==CommandKind.EndFixedEncounter?initiating.Target:"");
@@ -220,6 +228,7 @@ namespace Decennium.Foundation.Laboratory
             if (!s.Actors.Any(a => a.Id == c.Actor)) return "UnknownWorldActor";
             if(ManufacturingChoicePending(s)&&c.Kind!=CommandKind.ResolveManufacturingQuality)return "ManufacturingChoicePending";
             if(ManufacturingCommand(c.Kind))return ResolveManufacturing(s,c);
+            if(IsSupplyCacheCommand(c))return ResolveSupplyCache(s,c);
             if(RepairCommand(c.Kind))return ResolveRepair(s,c);
             if(CraftingCommand(c.Kind))return ResolveCraftingConsequence(s,c);
             if(FormulaCommand(c.Kind))return connectedCombat!=null&&PendingCalendarChoice(s)?"TacticalChoicePending":ResolveFormulaWork(s,c);

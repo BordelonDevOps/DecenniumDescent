@@ -30,6 +30,19 @@ namespace Decennium.Foundation.Laboratory
         private readonly SharedRepairFixture repair;
         public IEnumerable<string> RequiredInventoryOwners(Snapshot s, Command c)
         {
+            if(IsSupplyCacheCommand(c)) {
+                var cache=s.SupplyCaches.SingleOrDefault(x=>x.Id==c.Target);
+                if(cache==null)return Array.Empty<string>();
+                SupplyCacheEquipmentRecord item=null;
+                if(c.X==(int)SupplyCacheInteraction.UnlockWithKey||c.X==(int)SupplyCacheInteraction.PickWithTools) {
+                    var kind=c.X==(int)SupplyCacheInteraction.UnlockWithKey?SupplyCacheEquipmentKind.Key:SupplyCacheEquipmentKind.ThievesTools;
+                    item=s.SupplyCacheEquipment.SingleOrDefault(x=>x.Kind==kind&&x.LocationId==c.Actor&&x.CustodianId==c.Actor);
+                } else if(c.X==(int)SupplyCacheInteraction.Interrupt) {
+                    var active=s.SupplyCacheAttempts.SingleOrDefault(x=>x.CacheId==cache.Id&&x.ActorId==c.Actor&&x.Status==SupplyCacheAttemptStatus.Working);
+                    if(active!=null)item=s.SupplyCacheEquipment.SingleOrDefault(x=>x.Id==active.EquipmentId);
+                }
+                return item==null?new[]{cache.OwnerId}:new[]{cache.OwnerId,item.OwnerId}.Distinct(StringComparer.Ordinal).ToArray();
+            }
             if(ManufacturingCommand(c.Kind))return ManufacturingOwners(s,c);
             if (repair == null || c.Kind != CommandKind.StartToolRepair && c.Kind != CommandKind.ResumeToolRepair) return Array.Empty<string>();
             var job = c.Kind == CommandKind.ResumeToolRepair ? s.RepairWork.SingleOrDefault(x => x.Id == c.Target) : null;

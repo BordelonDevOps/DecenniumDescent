@@ -88,6 +88,14 @@ namespace Decennium.Foundation.Tests
                 RejectUnchanged(s,host,Tac(s,CommandKind.SelectCombatStance,actor:TestOnlyPolicy.CompanionId,stance:(int)CombatStance.Guarded),"ActorOutsideEncounter");
                 RejectUnchanged(s,host,Tac(s,CommandKind.SelectCombatStance,stance:(int)CombatStance.Mobile),"SharedMobileDistanceNotImplemented");
             });
+            cases.Add("connected_combat_inventory_handling_remains_gated_before_schema19",()=>{
+                var p=ConnectedPolicy();var s=World(p);BeginEncounter(s);
+                Require(s.Capture().SchemaVersion==Snapshot.CalendarCombatSchema,"Fixture did not select the legacy shared-combat schema.");
+                RejectUnchanged(s,host,IC(s,CommandKind.HandleInventory,TestOnlyInventoryPolicy.FoodId,
+                    new InventoryRequest(new RuleQuantity(1),handling:HandlingKind.Stow)),"ClubCommandNotImplemented");
+                Require(s.Capture().WorldIntervals.All(x=>x.Interactions==0&&!x.ActionSpent)&&s.Capture().InventoryInteractions==0,
+                    "Legacy combat handling changed the schema14 world interval.");
+            });
             cases.Add("connected_combat_opportunity_choice_survives_disk_and_spends_only_reaction",()=>{
                 var p=ConnectedPolicy();var s=ConnectedArena(p);TacStep(s,2,0);
                 Require(TestOnlyClubAttackPolicy.PendingMove(s.Capture())!=null,"Hostile departure skipped ordinary OA.");

@@ -35,6 +35,7 @@ namespace Decennium.Foundation.Laboratory
             foreach(var crop in s.Crops.Where(x=>x.Tasks.Any(t=>t.WorkerId==actor&&t.Status==CropWorkStatus.Working)).ToArray())CampGreens.Pause(s,crop.Id,actor);
             foreach(var fill in s.WaterFills.Where(x=>x.WorkerId==actor&&x.Status==WaterFillStatus.Working).ToArray())WaterFilling.Pause(s,fill);
             foreach(var intake in s.Intakes.Where(x=>x.ActorId==actor&&x.Status==IntakeStatus.Working).ToArray())OrdinaryInventory.Interrupt(s,intake,IntakeStatus.CombatInterrupted);
+            foreach(var attempt in s.SupplyCacheAttempts.Where(x=>x.ActorId==actor&&x.Status==SupplyCacheAttemptStatus.Working).ToArray())InterruptSupplyCacheAttempt(s,attempt);
         }
         private string EnterCalendarCombat(Snapshot s,Command c)
         {
@@ -78,6 +79,20 @@ namespace Decennium.Foundation.Laboratory
                 if(c.Inventory!=null||c.Combat!=null||c.X!=0||c.Y!=0||c.Actor!=s.Encounter.CurrentActor||c.Target!=s.Encounter.CurrentTurnId)return "WrongRegularTurn";
                 if(Interval(s,c.Actor).ActionSpent)return "ActionAlreadySpent";
                 return PayRun(s,c.Actor);
+            }
+            if((c.Kind==CommandKind.HandleInventory||c.Kind==CommandKind.HandleVessel)&&s.SchemaVersion>=Snapshot.SupplyCacheSchema) {
+                if(PendingCalendarChoice(s))return "TacticalChoicePending";
+                if(c.Actor!=s.Encounter.CurrentActor)return "WrongRegularTurn";
+                if(!CapableWorker(s,c.Actor))return "WorkerCannotPerformTask";
+                if(AvailableHands(s,c.Actor)<1)return "HandlingHandRequired";
+                var interval=Interval(s,c.Actor);
+                if(s.InventoryInteractions!=interval.Interactions)return "TacticalInteractionLedgerMismatch";
+                if(interval.Interactions>=2)return "InteractionBudgetUnavailable";
+                if(interval.Interactions==1&&interval.ActionSpent)return "ActionAlreadySpent";
+                if(interval.Interactions==1&&!Permissions(s,c.Actor).Action)return "ConditionPreventsAction";
+                string handling=inventory.Resolve(s,c);if(handling!=null)return handling;
+                var spent=Interval(s,c.Actor).SpendInteraction();SetInterval(s,spent);s.InventoryInteractions=spent.Interactions;
+                PauseIncompatibleWork(s);return null;
             }
             bool action=c.Kind==CommandKind.AttackClub||c.Kind==CommandKind.AttackUnarmed||c.Kind==CommandKind.Disengage;
             string failure=bodies.Resolve(s,c);if(failure!=null)return failure;

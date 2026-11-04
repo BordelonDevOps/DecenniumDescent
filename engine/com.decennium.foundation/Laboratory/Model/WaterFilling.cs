@@ -25,11 +25,11 @@ namespace Decennium.Foundation.Laboratory
         internal static bool AtPlot(Snapshot s,string actor)
         {var a=s.Actors.Single(x=>x.Id==actor);return Math.Abs((long)a.X-3)+Math.Abs((long)a.Y-3)<=1;}
         internal static bool Accessible(Snapshot s,string actor,WaterVesselRecord vessel)=>vessel.LocationId==TestOnlyCropPolicy.PlotId
-            ?AtPlot(s,actor):vessel.LocationId==actor&&vessel.CustodianId==actor;
+            ?AtPlot(s,actor):vessel.LocationId==actor&&vessel.CustodianId==actor||SupplyCacheRules.Accessible(s,actor,vessel.LocationId);
         internal static bool Accessible(Snapshot s,string actor,ResourceLot lot)
         {
             var vessel=s.Vessels.SingleOrDefault(v=>v.Id==lot.LocationId);
-            return vessel!=null?Accessible(s,actor,vessel):lot.LocationId==TestOnlyCropPolicy.PlotId&&AtPlot(s,actor);
+            return vessel!=null?Accessible(s,actor,vessel):lot.LocationId==TestOnlyCropPolicy.PlotId&&AtPlot(s,actor)||SupplyCacheRules.Accessible(s,actor,lot.LocationId);
         }
         internal static string SourceVessel(Snapshot s,string lot)=>s.VesselContents.SingleOrDefault(x=>x.LotId==lot)?.VesselId;
         private static bool Involves(Snapshot s,WaterFillRecord job,string vessel)=>job.DestinationId==vessel||SourceVessel(s,job.SourceLotId)==vessel;
@@ -39,13 +39,16 @@ namespace Decennium.Foundation.Laboratory
             return !s.WaterFills.Any(j=>j.Status==WaterFillStatus.Working&&j.Id!=exceptJob
                 &&(Involves(s,j,destination)||(sourceVessel!=null&&Involves(s,j,sourceVessel))));
         }
-        internal static bool CarryAfterTransfer(Snapshot s,string actor,string source,string destination,RuleQuantity amount)
+        internal static string CarryAfterTransfer(Snapshot s,string actor,string source,string destination,RuleQuantity amount)
         {
-            var burden=TestOnlyInventoryPolicy.CarriedBurden(s,actor);var pounds=burden.Pounds.Value;
+            var burden=TestOnlyInventoryPolicy.CarriedBurden(s,actor);
+            if(!burden.Pounds.HasValue||!burden.Load.HasValue)return "CarryingCapacityNotEstablished";
+            var pounds=burden.Pounds.Value;
             var sourceVessel=s.Vessels.SingleOrDefault(v=>v.Id==SourceVessel(s,source));var dest=s.Vessels.Single(v=>v.Id==destination);
             if(sourceVessel!=null&&sourceVessel.LocationId==actor)pounds-=amount;
             if(dest.LocationId==actor)pounds+=amount;
-            return PlaytestCarrying.CanCarry(PlaytestCarrying.Limits(CarrierSize.Medium,10),new BurdenTotals(pounds,pounds.Scale(1,10),true))==true;
+            return PlaytestCarrying.CanCarry(PlaytestCarrying.Limits(CarrierSize.Medium,10),new BurdenTotals(pounds,pounds.Scale(1,10),true))==true
+                ?null:"CarryingCapacityExceeded";
         }
         internal static string Prerequisite(Snapshot s,string actor,string source,string destination,RuleQuantity amount,string existingJob=null)
         {
@@ -56,7 +59,7 @@ namespace Decennium.Foundation.Laboratory
             if(SourceVessel(s,source)==destination)return "SameVesselFill";
             if(!Accessible(s,actor,lot)||!Accessible(s,actor,vessel))return "FillOutOfReach";
             if(!OpeningsAvailable(s,source,destination,existingJob))return "VesselOpeningBusy";
-            if(!CarryAfterTransfer(s,actor,source,destination,amount))return "CarryingCapacityExceeded";
+            string carrying=CarryAfterTransfer(s,actor,source,destination,amount);if(carrying!=null)return carrying;
             return null;
         }
         private static void Replace(Snapshot s,WaterFillRecord job)=>s.WaterFills=s.WaterFills.Select(x=>x.Id==job.Id?job:x).ToArray();

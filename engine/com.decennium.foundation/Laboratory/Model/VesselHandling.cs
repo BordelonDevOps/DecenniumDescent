@@ -46,7 +46,7 @@ namespace Decennium.Foundation.Laboratory
             string location,custodian;bool held=vessel.LocationId==c.Actor&&vessel.CustodianId==c.Actor;
             switch(c.Inventory.Handling) {
                 case HandlingKind.Pickup:
-                    if(held||vessel.LocationId!=TestOnlyCropPolicy.PlotId||c.Inventory.Destination!="")return "InvalidVesselPickup";
+                    if(held||!(vessel.LocationId==TestOnlyCropPolicy.PlotId||SupplyCacheRules.Accessible(s,c.Actor,vessel.LocationId))||c.Inventory.Destination!="")return "InvalidVesselPickup";
                     location=c.Actor;custodian=c.Actor;break;
                 case HandlingKind.Drop:
                     if(!held||!WaterFilling.AtPlot(s,c.Actor)||c.Inventory.Destination!="")return "UnsupportedVesselPlacement";
@@ -59,7 +59,9 @@ namespace Decennium.Foundation.Laboratory
             }
             if(s.InventoryCombat&&(s.InventoryTurnActor!=c.Actor||s.InventoryInteractions>=2))return "InteractionBudgetUnavailable";
             if(s.Actors.Any(a=>a.Id==location)) {
-                var pounds=TestOnlyInventoryPolicy.CarriedBurden(s,location).Pounds.Value+WaterFilling.Tare(vessel.Profile)+WaterFilling.Contents(s,vessel.Id);
+                var burden=TestOnlyInventoryPolicy.CarriedBurden(s,location);
+                if(!burden.Pounds.HasValue||!burden.Load.HasValue)return "CarryingCapacityNotEstablished";
+                var pounds=burden.Pounds.Value+WaterFilling.Tare(vessel.Profile)+WaterFilling.Contents(s,vessel.Id);
                 if(!Fits(pounds))return "CarryingCapacityExceeded";
             }
             string id=OrdinaryInventory.Identity(s,"vessel-move");RuleTime start=s.RuleClock;
@@ -74,7 +76,7 @@ namespace Decennium.Foundation.Laboratory
             var contained=s.VesselContents.Where(x=>x.VesselId==vessel.Id).Select(x=>x.LotId).ToArray();
             s.Work=new WorkLedger(s.Work.Lots.Select(l=>contained.Contains(l.Id)?new ResourceLot(l.Id,l.UnitId,l.Amount,l.LocationId,custodian):l),s.Work.WorkerIntervals,s.Work.Reservations);
             s.InventoryLots=s.InventoryLots.Select(l=>contained.Contains(l.LotId)?new InventoryLotRecord(l.LotId,l.ParentId,l.OwnerId,l.CreatedAmount,l.CreatedAt,l.Nutrition,l.FreshUntil,
-                location==TestOnlyCropPolicy.PlotId?InventoryAccess.Ground:InventoryAccess.Ready):l).ToArray();
+                location==TestOnlyCropPolicy.PlotId||SupplyCacheRules.IsCacheLocation(s,location)?InventoryAccess.Ground:InventoryAccess.Ready):l).ToArray();
             s.VesselMoves=s.VesselMoves.Concat(new[]{new VesselHandlingRecord(id,s.Revision+1,c.Actor,vessel.Id,vessel.LocationId,vessel.CustodianId,
                 location,custodian,c.Inventory.Handling,start,s.RuleClock,s.InventoryCombat)}).ToArray();return null;
         }

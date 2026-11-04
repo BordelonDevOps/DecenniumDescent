@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "recordedUtc": "2026-11-04T06:53:42.5183523Z",
+  "purpose": "TEST_ONLY schema19 finite supply-cache interaction across exploration, tactical play, inventory, conditions and persistence; the full rules engine remains incomplete.",
+  "sourceRevision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+  "engineBase": "b18a792412d4ec89fb602b46908e3dd6db24b1c6",
+  "branch": "Engine",
+  "ownerDirection": "Complete the C# engine first; Codex and Unity Rules Engine Development resolve new rule gaps by consensus. Unity integration remains deferred.",
+  "guidanceChat": "https://chatgpt.com/c/6ae59513-3008-83e9-a5c4-8b6c5c5b4206",
+  "status": "PARTIAL / TEST_ONLY / PROVISIONAL / OWNER-DELEGATED CONSENSUS",
+  "productionRuntimeSelectionEnabled": false,
+  "releaseApproved": false,
+  "sourcePythonExecuted": false,
+  "sources": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/EQUIPMENT_ITEM_PROCEDURES.md",
+      "sha256": "ea0b6c89191160c9e56a97563d55e9f1022bd1b7b732c648fd0c3882aab2a050",
+      "snapshot": "sources/EQUIPMENT_ITEM_PROCEDURES.md"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md",
+      "sha256": "69d0e64394de58c4d86a3ec57cf282978d131a1a9c1eaa21632bb7d3b72562da",
+      "snapshot": "sources/CORE_RESOLUTION_PLAYTEST.md"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+      "sha256": "6f6278430d48d0c74dc8e3b928b01dea3cc97d5e45226b128a405ab37b1e7148",
+      "snapshot": "sources/CONDITIONS_PLAYTEST.md"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/EQUIPMENT_SOURCE_BINDINGS.md",
+      "sha256": "a4a45a51e00d2481ed8916b269c2e8197abef524c176d745fa438bea886e5aa8",
+      "snapshot": "sources/EQUIPMENT_SOURCE_BINDINGS.md"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/EQUIPMENT_ACQUISITION_PLAYTEST.md",
+      "sha256": "406c68622102b444c6afb005e2d50cfd75171fe8d90db36a06d02df2d67bf27d",
+      "snapshot": "sources/EQUIPMENT_ACQUISITION_PLAYTEST.md"
+    }
+  ],
+  "decisions": "docs/unity/SUPPLY_CACHE_RULE_DECISIONS.md",
+  "implementation": [
+    "engine/com.decennium.foundation/Runtime/Core/SupplyCacheRecords.cs",
+    "engine/com.decennium.foundation/Runtime/Core/WorldScheduleRecord.cs",
+    "engine/com.decennium.foundation/Runtime/Persistence/SupplyCacheCodec.cs",
+    "engine/com.decennium.foundation/Runtime/Persistence/SnapshotCodec.cs",
+    "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedSupplyCache.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedToolRepair.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/OrdinaryInventory.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/TestOnlyInventoryPolicy.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/VesselHandling.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/WaterFilling.cs",
+    "engine/com.decennium.foundation/Tests/EditMode/SupplyCacheCases.cs",
+    "engine/com.decennium.foundation/Tests/EditMode/ConnectedCombatCases.cs"
+  ],
+  "newNamedCases": [
+    "supply_cache_key_path_and_unknown_key_burden_are_explicit",
+    "supply_cache_action_permission_authority_and_check_modifiers_are_revalidated",
+    "supply_cache_blinded_task_requirement_is_an_authored_fixture_fact",
+    "supply_cache_tactical_open_inventory_and_vessel_share_action_ledger",
+    "supply_cache_tactical_handling_rejects_unconscious_actor",
+    "connected_combat_inventory_handling_remains_gated_before_schema19"
+  ],
+  "verification": {
+    "headless": "HEADLESS_RESULTS.json; 965/965 pass; Unity compilation/edit/play/build not run.",
+    "packageStatic": "PACKAGE_RESULTS.json; static package checks pass.",
+    "independentReview": "INDEPENDENT_REVIEW.md; PASS. Nine focused nondisk cases passed; 126 source hashes match; automatic-failure snapshot and forgery probes passed. Reviewer did not rerun full suite, disk cases, or Unity."
+  },
+  "limits": [
+    "One authored stationary already-discovered chest and fixed finite contents only.",
+    "No general containers, volume model, traps, hidden discovery, arbitrary locks or forced entry.",
+    "Ordinary key weight is unsourced and returns unknown carrying burden; capacity fails closed while it is carried.",
+    "No tactical intake, production content promotion, Unity integration or release approval."
+  ]
+}

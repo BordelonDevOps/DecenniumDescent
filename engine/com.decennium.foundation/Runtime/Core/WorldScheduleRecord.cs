@@ -78,6 +78,14 @@ namespace Decennium.Foundation
             if (ActionSpent) throw new InvalidOperationException("Action already spent.");
             return new WorldIntervalRecord(ActorId, LastStart, MovementSpent, true, DashPaid, ReactionAvailable, Interactions);
         }
+        public WorldIntervalRecord SpendInteraction()
+        {
+            if (Interactions >= 2) throw new InvalidOperationException("Ordinary interaction allowance exhausted.");
+            if (Interactions == 0)
+                return new WorldIntervalRecord(ActorId, LastStart, MovementSpent, ActionSpent, DashPaid, ReactionAvailable, 1);
+            if (ActionSpent) throw new InvalidOperationException("Second ordinary interaction requires an available Action.");
+            return new WorldIntervalRecord(ActorId, LastStart, MovementSpent, true, false, ReactionAvailable, 2);
+        }
         public WorldIntervalRecord WithReaction(bool available) => new WorldIntervalRecord(ActorId, LastStart, MovementSpent, ActionSpent, DashPaid, available, Interactions);
     }
     public enum WorldTraversalStatus { Moving, WaitingForRefresh, Suspended }
