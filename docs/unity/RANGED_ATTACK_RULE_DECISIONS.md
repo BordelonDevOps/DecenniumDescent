@@ -27,7 +27,7 @@ The query returns its effective attack modifier, covered AC, d20 selection/resul
 ## Limits and next integration
 
 - The caller remains responsible for action/reaction availability, valid target state, weapon proficiencies, hands, weapon profile, ammunition, magazine/loading state, target location, visibility, line of fire and cover facts.
-- The separate source-defined Repeating 5 ammunition state is in [REPEATING_CROSSBOW_RULE_DECISIONS.md](REPEATING_CROSSBOW_RULE_DECISIONS.md); it still is not connected to this query or a tactical command.
+- The separate source-defined Repeating 5 ammunition state is in [REPEATING_CROSSBOW_RULE_DECISIONS.md](REPEATING_CROSSBOW_RULE_DECISIONS.md); the later [ordinary shot helper](REPEATING_CROSSBOW_SHOT_RULE_DECISIONS.md) composes it with this roll query but does not issue a tactical command.
 - Cover is provided as an explicit classification; this query does not derive it from terrain. `LineOfFireClear` and `TargetVisible` are independent caller-supplied facts.
 - No ammunition is consumed, no hidden actor is revealed, no injury or condition is applied, and no damage is rolled.
 - Overwatch remains blocked on cross-reaction priority and whether its `1d8 + DEX` feature text replaces the selected weapon die. Its repeating-crossbow source and empty-magazine starting state are pinned in [OVERWATCH_IMPLEMENTATION_GATES.md](OVERWATCH_IMPLEMENTATION_GATES.md).

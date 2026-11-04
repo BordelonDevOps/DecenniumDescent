@@ -1,6 +1,6 @@
 # Repeating heavy crossbow ammunition model
 
-**Status: TEST_ONLY source-bound immutable magazine state.** Code commit: `cd8f14fa7edefd3208c4cf8c63722e17c06cef0d`, branch `Engine`. This models the authored Repeating 5 ammunition transfer and spending rules only. It does not integrate the required reload Action with a tactical turn, add magazine state to a saved combat, or authorize a ranged attack.
+**Status: TEST_ONLY source-bound immutable magazine state.** Code commit: `cd8f14fa7edefd3208c4cf8c63722e17c06cef0d`, branch `Engine`. This models the authored Repeating 5 ammunition transfer and spending rules only. The later [ordinary shot calculation](REPEATING_CROSSBOW_SHOT_RULE_DECISIONS.md) composes it with ranged attack and damage dice, but neither implements the required reload Action, adds magazine state to a saved combat, nor supplies full tactical authority.
 
 ## Source rules
 

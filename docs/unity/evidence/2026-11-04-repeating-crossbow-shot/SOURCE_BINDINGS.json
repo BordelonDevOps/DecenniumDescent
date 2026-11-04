@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "recordedUtc": "2026-11-04T11:45:58Z",
+  "purpose": "TEST_ONLY source-bound ordinary Repeating heavy crossbow attack attempt, magazine spending and deterministic hit damage dice; no tactical action or target damage application.",
+  "branch": "Engine",
+  "engineBase": "cd8f14fa7edefd3208c4cf8c63722e17c06cef0d",
+  "sourceRevision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+  "prototypeRevision": "448764e65bff6edbb0ad58a6ec25aa915278f76c",
+  "status": "PARTIAL / TEST_ONLY / SOURCE-BOUND / PROVISIONAL",
+  "productionRuntimeSelectionEnabled": false,
+  "releaseApproved": false,
+  "sources": [
+    {
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "path": "DescentReviewChanges/ReviewBible/data/playtest/equipment_acquisition_candidate.json",
+      "gitBlobId": "afd06198e19409385408ac258be7dc1d0b2600fb",
+      "sha256": "4037e188edb890c971acb39e8679cfd5a142b0042508af30c95d4703d2a2745b",
+      "locators": ["/items/195", "/classKits/12"]
+    },
+    {
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/EQUIPMENT_ACQUISITION_PLAYTEST.md",
+      "gitBlobId": "789e905552aba2ee9a4bbad1ae73aa314b77af10",
+      "sha256": "406c68622102b444c6afb005e2d50cfd75171fe8d90db36a06d02df2d67bf27d",
+      "locators": "#new-class-equipment-profiles; Repeating heavy crossbow; Repeating 5"
+    },
+    {
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "path": "docs/reference/Player_Rulebook_v6_source_text.txt",
+      "gitBlobId": "bb143507cf66e3fdc73f6514663ad5c71344609b",
+      "sha256": "a346670f4244efe3641cfb06814819d83ffb8512153858205f0621bd8ab8a04b",
+      "locators": "Making an Attack; Attack Rolls; Ranged Attacks; Damage Rolls; Critical Hits (source text lines 8157-8235)"
+    },
+    {
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md",
+      "gitBlobId": "5a446dd0dabae096e51f419b5e71756e0169bb3",
+      "sha256": "adb2f4752b45dc70ce792a675bb30dda362aab5056588061bcde3ba31c4c8a81",
+      "locators": "#reading-a-class-card; weapon ability/dice/type; natural-1/20 and critical damage"
+    }
+  ],
+  "decisions": [
+    "The ordinary weapon attack uses the authored Repeating heavy crossbow's 80/320 profile and 1d10 piercing weapon die.",
+    "One loaded bolt is spent for every legal rolled attack, hit or miss; illegal attacks and an empty magazine spend no bolt.",
+    "A hit rolls one weapon d10 or two on a critical, then adds Dexterity once; the output is explicitly before defense/application.",
+    "Attack and hit-damage dice use one deterministic stream in source order; a miss consumes no damage dice."
+  ],
+  "implementation": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/RepeatingCrossbowShot.cs",
+      "gitBlobId": "7dae8178ea4df59fcfb7bcbf7106e351ea21a839",
+      "sha256": "23b798dd64c5f94063dbffef0350a5bc8dab33aa9e26bbb388eff5f8bb4d22d1"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/RepeatingCrossbowShotCases.cs",
+      "gitBlobId": "f2dcfb801fc330fb5f418c68ce56f10ad26d01a5",
+      "sha256": "65130563fa3ded6ba38e7ad41adb21d3126c35640b28b51ce2ffc3a609667215"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/FoundationCases.cs",
+      "gitBlobId": "cc5e7191330f255dfb7c44d49f9bc3ddf912374b",
+      "sha256": "4abaff44b00a1ced1af1bfa505d0b7c316f0a6c0110013cc02399b52b308253d"
+    }
+  ],
+  "newNamedCases": [
+    "repeating_crossbow_hit_spends_bolt_and_rolls_source_d10_damage",
+    "repeating_crossbow_miss_spends_bolt_without_damage_dice",
+    "repeating_crossbow_critical_doubles_only_weapon_dice",
+    "repeating_crossbow_empty_magazine_with_carried_bolts_cannot_shoot",
+    "repeating_crossbow_illegal_target_does_not_spend_magazine_or_randomness",
+    "repeating_crossbow_wrong_profile_and_invalid_inventory_fail_closed",
+    "repeating_crossbow_flat_attack_bonus_does_not_change_damage_modifier"
+  ],
+  "verification": {
+    "headless": {
+      "status": "PASS",
+      "passed": 1012,
+      "failed": 0,
+      "testsDiscovered": 1012,
+      "results": "HEADLESS_RESULTS.json",
+      "unityCompilation": "NOT RUN",
+      "editMode": "NOT RUN",
+      "playMode": "NOT RUN",
+      "standaloneBuild": "NOT RUN",
+      "gameplay": "NOT RUN"
+    },
+    "packageStatic": {
+      "status": "PASS",
+      "checks": 14,
+      "passed": 14,
+      "failed": 0,
+      "scope": "Static package structure only; not Unity import, compilation or release-build validation",
+      "results": "PACKAGE_RESULTS.json"
+    }
+  },
+  "limits": [
+    "No authoritative tactical command, Action/Reaction spending, weapon custody/hands, or inventory-lot integration.",
+    "No spatial visibility/line-of-fire derivation, suspected-space attack, damage mitigation/resistance, HP/Wound application, or persisted choices.",
+    "Ordinary crossbow weapon damage is source-bound; Soldier Overwatch feature-specific 1d8+DEX interaction remains unresolved.",
+    "Unity import/compilation, Edit Mode, Play Mode, standalone build and gameplay were not run."
+  ],
+  "prototypeDecisionRecord": "docs/unity/REPEATING_CROSSBOW_SHOT_RULE_DECISIONS.md"
+}
