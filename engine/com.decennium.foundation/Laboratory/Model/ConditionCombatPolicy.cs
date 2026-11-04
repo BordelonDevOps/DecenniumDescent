@@ -32,7 +32,7 @@ namespace Decennium.Foundation.Laboratory
             ? ConditionsFor(s, actor).View().Has(ConditionKind.Prone) : s.Lives.Single(x => x.ActorId == actor).Prone;
         private static bool CanSee(Snapshot s, string observer, string target) => !WithConditions(s)
             || Aware(s, observer) && !ConditionsFor(s, observer).View().BlocksSight && !ConditionsFor(s, target).View().Has(ConditionKind.Invisible);
-        private static bool DamageConditionCapacity(Snapshot s, string target)
+        internal static bool DamageConditionCapacity(Snapshot s, string target)
         {
             if (!WithConditions(s)) return true;
             var journal = s.Conditions.Single(x => x.Target == target);

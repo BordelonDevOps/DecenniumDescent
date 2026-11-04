@@ -23,22 +23,27 @@ namespace Decennium.Foundation.Laboratory
         public TestOnlySharedWorldPolicy(SharedCombatFixture combat,int walkingSpeed = 30, ConditionCombatFixture conditions = null, params TacticalTerrainCell[] terrain)
             :this(combat,null,walkingSpeed,conditions,terrain) { }
         public TestOnlySharedWorldPolicy(SharedCombatFixture combat,SharedResearchFixture research,int walkingSpeed = 30, ConditionCombatFixture conditions = null, params TacticalTerrainCell[] terrain)
+            :this(combat,research,null,walkingSpeed,conditions,terrain) { }
+        public TestOnlySharedWorldPolicy(SharedCombatFixture combat,SharedResearchFixture research,SharedCraftingFixture crafting,int walkingSpeed = 30, ConditionCombatFixture conditions = null, params TacticalTerrainCell[] terrain)
         {
             connectedCombat=combat;
             this.research=research;
+            this.crafting=crafting;
+            if(crafting!=null&&combat==null)throw new ArgumentException("Crafting consequences require the explicit calendar host.");
             if(research!=null&&combat==null)throw new ArgumentException("Research requires the explicit connected calendar host.");
             this.conditions = conditions ?? new ConditionCombatFixture();
             this.terrain = new TacticalCombatFixture(new AdditionalTacticalActor(4, combat==null?4:0, walkingSpeed,combat?.EnemyHp??26), terrain);
-            bodies = new TestOnlyClubAttackPolicy(actorBaseWalkingSpeed: walkingSpeed, companionBaseWalkingSpeed: walkingSpeed,
+            bodies = new TestOnlyClubAttackPolicy(actorHp:crafting?.HeroHp??26,companionHp:crafting?.CompanionHp??26,actorBaseWalkingSpeed: walkingSpeed, companionBaseWalkingSpeed: walkingSpeed,
                 tactical: this.terrain, conditions: this.conditions,seed:combat?.Seed??1);
             ContentFingerprint = (combat==null?"TEST_ONLY.shared-v1-":"TEST_ONLY.connected-v1-") + bodies.ContentFingerprint.Substring("TEST_ONLY.club-v1-".Length);
             if(research!=null)ContentFingerprint=ResearchFingerprint(ContentFingerprint,research);
+            if(crafting!=null)ContentFingerprint=CraftingFingerprint(ContentFingerprint,crafting);
         }
         public static Authority Host() => new Authority("TEST_ONLY.host", new[] { TestOnlyPolicy.ActorId, TestOnlyPolicy.CompanionId, AdditionalTacticalActor.Id }, true, true,
             new[] { TestOnlyPolicy.ActorId, TestOnlyPolicy.CompanionId, AdditionalTacticalActor.Id }, new[] { TestOnlyPolicy.ActorId, TestOnlyPolicy.CompanionId });
         public Snapshot Initial()
         {
-            var s = bodies.Initial(); s.SchemaVersion = research!=null?Snapshot.FormulaWorkSchema:connectedCombat==null?Snapshot.SharedWorldSchema:Snapshot.CalendarCombatSchema; s.ContentFingerprint = ContentFingerprint;
+            var s = bodies.Initial(); s.SchemaVersion = SelectedSchema; s.ContentFingerprint = ContentFingerprint;
             var companion = s.Actors.Single(a => a.Id == TestOnlyPolicy.CompanionId); companion.X = 3; companion.Y = 3;
             // The remote worker starts with both hands available. Its supplied Club is on the
             // ground at the plot; the two calendar actors begin holding their one-handed Clubs.
@@ -48,6 +53,7 @@ namespace Decennium.Foundation.Laboratory
             s.WorldIntervals = s.WorldSchedule.Order.Select(a => new WorldIntervalRecord(a, s.WorldSchedule.LatestStart(a, 0))).ToArray();
             if(connectedCombat!=null)SyncCalendarBodies(s);
             InitializeResearch(s);
+            InitializeCrafting(s);
             return s;
         }
         private static WorldIntervalRecord Interval(Snapshot s, string actor) => s.WorldIntervals.Single(x => x.ActorId == actor);
@@ -84,6 +90,7 @@ namespace Decennium.Foundation.Laboratory
                 foreach (var intake in s.Intakes.Where(i => i.ActorId == actor.Id && i.Status == IntakeStatus.Working).ToArray()) OrdinaryInventory.Interrupt(s, intake, IntakeStatus.Interrupted);
             }
             if(includeFormula)PauseIncompatibleFormulaWork(s);
+            PauseIncompatibleRemedies(s);
         }
         private static void RefreshIntervals(Snapshot s)
         {
@@ -124,6 +131,8 @@ namespace Decennium.Foundation.Laboratory
                 ReconcileTraversal(s); RuleTime next = target;
                 var condition = NextConditionDeadline(s); if (condition.HasValue && condition.Value < next) next = condition.Value;
                 var formula = NextFormulaBoundary(s); if (formula.HasValue && formula.Value < next) next = formula.Value;
+                var dying = NextDyingMarker(s); if(dying.HasValue&&dying.Value<next)next=dying.Value;
+                var remedy = NextRemedyBoundary(s); if(remedy.HasValue&&remedy.Value<next)next=remedy.Value;
                 var active = s.WorldTraversals.Where(x => x.Status != WorldTraversalStatus.Suspended).ToArray();
                 // Stationary, living actors have no per-Start event here. The arithmetic cursor
                 // skips empty intervals; active movement must visit its real budget boundaries.
@@ -159,10 +168,11 @@ namespace Decennium.Foundation.Laboratory
                     OrdinaryInventory.AdvanceTo(s,next,world=> {
                         TestOnlyClubAttackPolicy.AdvanceConditions(world,"."+(++subevent).ToString(CultureInfo.InvariantCulture));
                         PauseIncompatibleWork(world,false);
-                    }, (world,elapsedWork)=>CreditFormulaWork(world,elapsedWork,ready));
+                    }, (world,elapsedWork)=>{CreditFormulaWork(world,elapsedWork,ready);CreditRemedyWork(world,elapsedWork);});
                 }
                 RefreshIntervals(s);
-                if(connectedCombat!=null&&s.Encounter!=null&&s.WorldSchedule.ProcessedSlot!=previousSlot) {
+                if(crafting!=null)ProcessSharedLifeMarkers(s,previousSlot);
+                else if(connectedCombat!=null&&s.Encounter!=null&&s.WorldSchedule.ProcessedSlot!=previousSlot) {
                     // Any dying actor forces real boundary visits above; no random save is skipped.
                     ActorLifeRules.RegularStart(s,checked((int)s.WorldSchedule.ProcessedSlot));
                 }
@@ -177,6 +187,7 @@ namespace Decennium.Foundation.Laboratory
         public string Resolve(Snapshot s, Command c)
         {
             if (!s.Actors.Any(a => a.Id == c.Actor)) return "UnknownWorldActor";
+            if(CraftingCommand(c.Kind))return ResolveCraftingConsequence(s,c);
             if(FormulaCommand(c.Kind))return connectedCombat!=null&&PendingCalendarChoice(s)?"TacticalChoicePending":ResolveFormulaWork(s,c);
             if(connectedCombat!=null) {
                 if(c.Kind==CommandKind.BeginFixedEncounter)return EnterCalendarCombat(s,c);
@@ -245,11 +256,14 @@ namespace Decennium.Foundation.Laboratory
                 if (deadline.HasValue && deadline.Value <= s.RuleClock.AddSeconds(1)) return "TimedHandlingBoundaryUnsupported";
                 var formula = NextFormulaBoundary(s);
                 if(formula.HasValue&&formula.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
+                var dying=NextDyingMarker(s);if(dying.HasValue&&dying.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
+                var remedy=NextRemedyBoundary(s);if(remedy.HasValue&&remedy.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
             }
             var before = s.RuleClock; string failure = inventory.Resolve(s, c);
             if (failure != null) return failure;
             if (s.RuleClock > before) {
                 CreditFormulaWork(s,CampGreens.Subtract(s.RuleClock,before),new System.Collections.Generic.List<string>());
+                CreditRemedyWork(s,CampGreens.Subtract(s.RuleClock,before));
                 // No traversal or condition deadline can occur inside the admitted interval.
                 TestOnlyClubAttackPolicy.AdvanceConditions(s, ".handling"); RefreshIntervals(s); PauseIncompatibleWork(s);
                 if(connectedCombat!=null)ObserveCalendar(s);
@@ -259,7 +273,7 @@ namespace Decennium.Foundation.Laboratory
         public string ValidateState(Snapshot s)
         {
             try {
-                if (s.SchemaVersion != (research!=null?Snapshot.FormulaWorkSchema:connectedCombat==null?Snapshot.SharedWorldSchema:Snapshot.CalendarCombatSchema) || s.Receipts.Length != s.Revision) return "InvalidSharedWorldHeader";
+                if (s.SchemaVersion != SelectedSchema || s.Receipts.Length != s.Revision) return "InvalidSharedWorldHeader";
                 var replay = Initial();
                 foreach (var receipt in s.Receipts.OrderBy(x => x.Revision)) {
                     var command = CommandHistory.Read(receipt);

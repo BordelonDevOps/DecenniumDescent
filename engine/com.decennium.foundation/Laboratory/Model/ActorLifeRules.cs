@@ -35,14 +35,17 @@ namespace Decennium.Foundation.Laboratory
         }
         internal static void RegularStart(Snapshot s,int ordinal)
         {
-            // This profile admits no independent conditions, recovery prohibition, effects or reactions.
-            RecoverDue(s);string actor=s.Encounter.Order[ordinal%s.Encounter.Order.Count];var before=s.Lives.Single(x=>x.ActorId==actor);var life=Read(before);
+            SaveAtMarker(s,s.Encounter.Order[ordinal%s.Encounter.Order.Count],ordinal,(long)ordinal+1);
+        }
+        internal static void SaveAtMarker(Snapshot s,string actor,int ordinal,long marker)
+        {
+            RecoverDue(s);var before=s.Lives.Single(x=>x.ActorId==actor);var life=Read(before);
             if(life.Dead||life.Stable||life.Hp!=0||!life.UsesDeathSaves)return;
             uint initial=s.RandomState;var d20=PlaytestDice.RollD20(initial);uint next=d20.NextRandomState;long words=d20.WordsConsumed;int? d4=null;
             if(d20.Natural!=20&&d20.Natural>=10&&life.DeathSuccesses==2) {
                 var recovery=DiceStream.Draw(next,4);d4=recovery.Value+1;next=recovery.NextState;words=checked(words+recovery.WordsConsumed);
             }
-            var after=PlaytestLife.DeathSaveAt(life,d20.Natural,(long)ordinal+1,s.RuleClock,stableD4:d4);
+            var after=PlaytestLife.DeathSaveAt(life,d20.Natural,marker,s.RuleClock,stableD4:d4);
             Set(s,Record(actor,after,before.Prone,before.HeldItems));s.RandomState=next;
             Event(s,new ActorLifeEvent(actor,s.Revision+1,s.RuleClock,LifeEventKind.DeathSave,ordinal,d20.Natural,d4??0,initial,next,words));
         }

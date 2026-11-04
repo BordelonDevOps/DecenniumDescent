@@ -68,6 +68,7 @@ namespace Decennium.Foundation.Laboratory
             if (actor != research.WorkerId || !research.Qualified) return "ResearchCredentialMissing";
             if (!research.Accessible || !research.Sufficient) return "ResearchEvidenceUnavailable";
             if (!research.StationSuitable) return "ResearchStationUnavailable";
+            if(crafting!=null&&(CraftingRestrictions.StationUseBlocked(s,SharedCraftingFixture.StationId)||s.Structures.Single(x=>x.Id==SharedCraftingFixture.ToolId).Broken))return "ResearchToolsOrStationUnavailable";
             if (!ResearchCapable(s, actor)) return "ResearchWorkerIncapable";
             var body = s.Actors.Single(x => x.Id == actor);
             if (s.WorldTraversals.Any(x => x.ActorId == actor) || Math.Max(Math.Abs(body.X - 3), Math.Abs(body.Y - 3)) > 1) return "ResearchStationOutOfReach";
@@ -91,7 +92,8 @@ namespace Decennium.Foundation.Laboratory
         {
             if (research == null) return;
             foreach (var job in s.FormulaWork.Where(x => x.Status == FormulaWorkStatus.Working).ToArray())
-                if (!ResearchCapable(s, job.WorkerId) || (s.InventoryCombat && s.WorldSchedule.Order.Contains(job.WorkerId))) PauseFormula(s, job);
+                if (!ResearchCapable(s, job.WorkerId) || (s.InventoryCombat && s.WorldSchedule.Order.Contains(job.WorkerId))
+                    || crafting!=null&&(CraftingRestrictions.StationUseBlocked(s,SharedCraftingFixture.StationId)||s.Structures.Single(x=>x.Id==SharedCraftingFixture.ToolId).Broken)) PauseFormula(s, job);
         }
         private static RuleTime? NextFormulaBoundary(Snapshot s)
         {

@@ -233,7 +233,7 @@ namespace Decennium.Foundation.Laboratory
                 pending.Instruction,pending.Attack,DamageRecord(d.Dice.ToArray(),d.Total,d.DiceWords,d.EffectsSeed,result),pending.Opportunity,pending.PressInstruction);
             s.MeleeAttacks=s.MeleeAttacks.Select(a=>a.Id==pending.Id?resolved:a).ToArray();return null;
         }
-        private static void ApplyLife(Snapshot s,ActorLifeRecord before,LifeState after)
+        internal static void ApplyLife(Snapshot s,ActorLifeRecord before,LifeState after)
         {
             bool newlyUnconscious=!after.Dead&&after.Hp==0&&before.Hp>0;
             // The initial HP/Wound facts and bounded Club damage exclude death while still holding equipment.

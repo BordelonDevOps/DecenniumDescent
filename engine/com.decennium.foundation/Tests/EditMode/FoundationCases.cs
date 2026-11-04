@@ -230,6 +230,7 @@ namespace Decennium.Foundation.Tests
             AddSparseEncounterCases(cases, directory);
             AddConnectedCombatCases(cases, directory);
             AddFormulaResearchCases(cases, directory);
+            AddCraftingConsequenceCases(cases, directory);
             AddPostureCases(cases, directory);
             AddMaximumHpCases(cases);
             AddTacticalMovementCases(cases, directory);
