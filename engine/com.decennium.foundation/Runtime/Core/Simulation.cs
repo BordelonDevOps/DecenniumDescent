@@ -7,7 +7,7 @@ namespace Decennium.Foundation
     public enum ExecutionProfile { Laboratory, Release }
     public enum CommandKind { Move, Interact, AdvanceClock, ReserveWork, ConsumeReservation, ReleaseReservation,
         PlantCrop, TendCrop, HarvestCrop, PauseCrop, SetCropConditions,
-        PortionInventory, HandleInventory, StartIntake, InterruptIntake, EnterInventoryCombat, StartWaterFill, PauseWaterFill, ResumeWaterFill, CancelWaterFill, HandleVessel, BeginFixedEncounter, EndRegularTurn, EncounterDash }
+        PortionInventory, HandleInventory, StartIntake, InterruptIntake, EnterInventoryCombat, StartWaterFill, PauseWaterFill, ResumeWaterFill, CancelWaterFill, HandleVessel, BeginFixedEncounter, EndRegularTurn, EncounterDash, SelectCombatStance, AttackClub, ResolveKnockout }
     public enum Outcome { Rejected, Committed, Duplicate }
 
     // DTOs are detached copies. No caller ever receives the owned simulation state.
@@ -40,6 +40,7 @@ namespace Decennium.Foundation
         public const int MovableVesselSchema = 6;
         public const int EncounterSchema = 7;
         public const int ActorLifeSchema = 8;
+        public const int ClubAttackSchema = 9;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
         // Technical bound keeps the entire snapshot within the existing 1 MiB save limit,
@@ -73,9 +74,14 @@ namespace Decennium.Foundation
         public ActorCharacterRecord[] Characters = Array.Empty<ActorCharacterRecord>();
         public ActorLifeRecord[] Lives = Array.Empty<ActorLifeRecord>();
         public ActorLifeEvent[] LifeEvents = Array.Empty<ActorLifeEvent>();
+        public ClubInstance[] Clubs = Array.Empty<ClubInstance>();
+        public StanceSelectionRecord[] Stances = Array.Empty<StanceSelectionRecord>();
+        public MeleeAttackRecord[] MeleeAttacks = Array.Empty<MeleeAttackRecord>();
+        public PressRecord[] Presses = Array.Empty<PressRecord>();
         public FixedEncounterRecord Encounter;
         public EncounterDashRecord[] EncounterDashes = Array.Empty<EncounterDashRecord>();
         public Snapshot Copy() => new Snapshot {
+            Clubs = Clubs.ToArray(), Stances = Stances.ToArray(), MeleeAttacks = MeleeAttacks.ToArray(), Presses = Presses.ToArray(),
             Characters = Characters.ToArray(), Lives = Lives.ToArray(), LifeEvents = LifeEvents.ToArray(),
             Encounter = Encounter, EncounterDashes = EncounterDashes.ToArray(), VesselMoves = VesselMoves.ToArray(), Vessels = Vessels.ToArray(), VesselContents = VesselContents.ToArray(), WaterFills = WaterFills.ToArray(),
             InventoryLots = InventoryLots.ToArray(), Intakes = Intakes.ToArray(), Handling = Handling.ToArray(),
@@ -100,14 +106,16 @@ namespace Decennium.Foundation
         public int X { get; }
         public int Y { get; }
         public InventoryRequest Inventory { get; }
+        public CombatRequest Combat { get; }
         public Command(string id, string actor, long revision, CommandKind kind,
-            string target = "", int x = 0, int y = 0, InventoryRequest inventory = null)
-        { Id = id; Actor = actor; ExpectedRevision = revision; Kind = kind; Target = target; X = x; Y = y; Inventory = inventory; }
+            string target = "", int x = 0, int y = 0, InventoryRequest inventory = null, CombatRequest combat = null)
+        { Id = id; Actor = actor; ExpectedRevision = revision; Kind = kind; Target = target; X = x; Y = y; Inventory = inventory; Combat = combat; }
         internal string Fingerprint => ((int)Kind).ToString(System.Globalization.CultureInfo.InvariantCulture)
             + "|" + Actor + "|" + Target + "|" + ExpectedRevision.ToString(System.Globalization.CultureInfo.InvariantCulture)
             + "|" + X.ToString(System.Globalization.CultureInfo.InvariantCulture)
             + "|" + Y.ToString(System.Globalization.CultureInfo.InvariantCulture)
-            + (Inventory == null ? "" : "|inventory-v1|" + Inventory.Fingerprint);
+            + (Inventory == null ? "" : "|inventory-v1|" + Inventory.Fingerprint)
+            + (Combat == null ? "" : "|combat-v1|" + Combat.Fingerprint);
         // Structural history consistency only; receipts are not authentication credentials.
         public bool MatchesReceipt(CommandReceipt receipt) => receipt != null && ExpectedRevision >= 0
             && ExpectedRevision < long.MaxValue && receipt.Revision == ExpectedRevision + 1
@@ -169,7 +177,7 @@ namespace Decennium.Foundation
             if (s == null || !ValidId(s.ContentFingerprint) || s.Revision < 0 || s.Clock < 0 || s.RandomState == 0)
                 throw new ArgumentException("Invalid snapshot header.");
             if (s.SchemaVersion != Foundation.Snapshot.Schema && s.SchemaVersion != Foundation.Snapshot.WorkSchema
-                && s.SchemaVersion != Foundation.Snapshot.CropSchema && s.SchemaVersion != Foundation.Snapshot.InventorySchema && s.SchemaVersion != Foundation.Snapshot.VesselSchema && s.SchemaVersion != Foundation.Snapshot.MovableVesselSchema && s.SchemaVersion != Foundation.Snapshot.EncounterSchema && s.SchemaVersion != Foundation.Snapshot.ActorLifeSchema)
+                && s.SchemaVersion != Foundation.Snapshot.CropSchema && s.SchemaVersion != Foundation.Snapshot.InventorySchema && s.SchemaVersion != Foundation.Snapshot.VesselSchema && s.SchemaVersion != Foundation.Snapshot.MovableVesselSchema && s.SchemaVersion != Foundation.Snapshot.EncounterSchema && s.SchemaVersion != Foundation.Snapshot.ActorLifeSchema && s.SchemaVersion != Foundation.Snapshot.ClubAttackSchema)
                 throw new ArgumentException("Unsupported snapshot schema.");
             if (s.SchemaVersion == Foundation.Snapshot.Schema && (s.Work != null || s.RuleClock != default))
                 throw new ArgumentException("Legacy snapshot cannot contain unsaved work or exact time.");
@@ -225,6 +233,7 @@ namespace Decennium.Foundation
             VesselHandlingValidation.Validate(s);
             FixedEncounterValidation.Validate(s);
             ActorLifeValidation.Validate(s);
+            ClubAttackValidation.Validate(s);
         }
     }
 
@@ -257,6 +266,8 @@ namespace Decennium.Foundation
                 || !Validation.ValidId(command.Actor) || command.Target == null || command.Target.Length > 96
                 || (command.Target.Length != 0 && !Validation.ValidId(command.Target)) || command.ExpectedRevision < 0
                 || !Enum.IsDefined(typeof(CommandKind), command.Kind)) return Reject("InvalidCommand");
+            bool combatKind=command.Kind==CommandKind.SelectCombatStance||command.Kind==CommandKind.AttackClub||command.Kind==CommandKind.ResolveKnockout;
+            if(combatKind!=(command.Combat!=null)||command.Combat!=null&&command.Inventory!=null)return Reject("UnexpectedCombatPayload");
             if (!authority.Controls(command.Actor) || (command.Kind == CommandKind.AdvanceClock && !authority.CanAdvanceClock)
                 || ((command.Kind == CommandKind.SetCropConditions || command.Kind == CommandKind.EnterInventoryCombat || command.Kind == CommandKind.BeginFixedEncounter) && !authority.CanModifyWorld))
                 return Reject("NotAuthorized");
@@ -289,6 +300,10 @@ namespace Decennium.Foundation
                         && !authority.MayUseInventory(state.InventoryLots.First(l => l.LotId == x.LotId).OwnerId)))) return Reject("InventoryNotAuthorized");
                 if (command.Inventory != null && command.Inventory.Handling == HandlingKind.Handover
                     && !authority.ConsentsToHandover(command.Inventory.Destination)) return Reject("RecipientNotWilling");
+            }
+            if(command.Kind==CommandKind.AttackClub) {
+                var club=state.Clubs.FirstOrDefault(w=>w.Id==command.Combat.WeaponId);
+                if(club!=null&&!authority.MayUseInventory(club.OwnerId))return Reject("InventoryNotAuthorized");
             }
             CommandReceipt previous = state.Receipts.FirstOrDefault(r => r.Principal == authority.Principal && r.Id == command.Id);
             if (previous != null)

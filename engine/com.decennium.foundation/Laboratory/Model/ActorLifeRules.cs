@@ -11,9 +11,9 @@ namespace Decennium.Foundation.Laboratory
     {
         public static LifeState Read(ActorLifeRecord r)=>new LifeState(r.MaximumHp,r.Hp,r.TemporaryHp,r.LinkedInjuries.Select(i=>(Injury)i),
             r.Stable,r.Dead,r.DeathSuccesses,r.DeathFailures,r.UsesDeathSaves,lastDeathTurn:r.LastDeathTurn,stableUntil:r.StableUntil);
-        internal static ActorLifeRecord Record(string actor,LifeState state,bool prone)=>new ActorLifeRecord(actor,state.MaximumHp,state.Hp,state.TemporaryHp,
+        internal static ActorLifeRecord Record(string actor,LifeState state,bool prone,System.Collections.Generic.IEnumerable<string> held=null)=>new ActorLifeRecord(actor,state.MaximumHp,state.Hp,state.TemporaryHp,
             state.Wounds.Select(i=>(int)i),state.Stable,state.Dead,state.UsesDeathSaves,state.DeathSuccesses,state.DeathFailures,state.StableUntil,
-            state.LastDeathTurn,prone,Array.Empty<string>());
+            state.LastDeathTurn,prone,held??Array.Empty<string>());
         public static bool CanAct(Snapshot s,string actor){var l=s.Lives.Single(x=>x.ActorId==actor);return !l.Dead&&l.Hp>0;}
         public static bool ZeroHpUnconscious(Snapshot s,string actor){var l=s.Lives.Single(x=>x.ActorId==actor);return !l.Dead&&l.Hp==0;}
         private static void Set(Snapshot s,ActorLifeRecord record)=>s.Lives=s.Lives.Select(x=>x.ActorId==record.ActorId?record:x).ToArray();
@@ -21,15 +21,15 @@ namespace Decennium.Foundation.Laboratory
         {if(s.LifeEvents.Length==256)throw new ArgumentException("Life event history full.");s.LifeEvents=s.LifeEvents.Concat(new[]{record}).ToArray();}
         internal static RuleTime? NextDeadline(Snapshot s)
         {
-            if(s.SchemaVersion!=Snapshot.ActorLifeSchema)return null;
+            if(s.SchemaVersion<Snapshot.ActorLifeSchema)return null;
             var due=s.Lives.Where(x=>x.Stable&&x.StableUntil>s.RuleClock).OrderBy(x=>x.StableUntil).FirstOrDefault();return due?.StableUntil;
         }
         internal static void RecoverDue(Snapshot s)
         {
-            if(s.SchemaVersion!=Snapshot.ActorLifeSchema)return;
+            if(s.SchemaVersion<Snapshot.ActorLifeSchema)return;
             foreach(var before in s.Lives.Where(x=>x.Stable&&x.StableUntil<=s.RuleClock).OrderBy(x=>x.StableUntil).ThenBy(x=>x.ActorId,StringComparer.Ordinal).ToArray()) {
                 var after=PlaytestLife.StableRecoveryAt(Read(before),s.RuleClock);
-                Set(s,Record(before.ActorId,after,before.Prone));
+                Set(s,Record(before.ActorId,after,before.Prone,before.HeldItems));
                 Event(s,new ActorLifeEvent(before.ActorId,s.Revision+1,s.RuleClock,LifeEventKind.StableRecovery,-1,0,0,s.RandomState,s.RandomState,0));
             }
         }
@@ -43,7 +43,7 @@ namespace Decennium.Foundation.Laboratory
                 var recovery=DiceStream.Draw(next,4);d4=recovery.Value+1;next=recovery.NextState;words=checked(words+recovery.WordsConsumed);
             }
             var after=PlaytestLife.DeathSaveAt(life,d20.Natural,ordinal+1,s.RuleClock,stableD4:d4);
-            Set(s,Record(actor,after,before.Prone));s.RandomState=next;
+            Set(s,Record(actor,after,before.Prone,before.HeldItems));s.RandomState=next;
             Event(s,new ActorLifeEvent(actor,s.Revision+1,s.RuleClock,LifeEventKind.DeathSave,ordinal,d20.Natural,d4??0,initial,next,words));
         }
         internal static string Key(ActorLifeRecord r)=>r.ActorId+"|"+r.MaximumHp.ToString(CultureInfo.InvariantCulture)+"|"+r.Hp.ToString(CultureInfo.InvariantCulture)

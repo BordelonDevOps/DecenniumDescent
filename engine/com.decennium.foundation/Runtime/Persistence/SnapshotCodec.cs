@@ -10,7 +10,7 @@ namespace Decennium.Foundation
     {
         public const int LegacyMaxBytes = 1024 * 1024;
         public const int MaxBytes = 2 * 1024 * 1024;
-        private static int Limit(int schema) => schema == Snapshot.ActorLifeSchema ? MaxBytes : LegacyMaxBytes;
+        private static int Limit(int schema) => schema >= Snapshot.ActorLifeSchema ? MaxBytes : LegacyMaxBytes;
         private static readonly UTF8Encoding Utf8 = new UTF8Encoding(false, true);
         private const int Magic = 0x31464444; // DDF1, little endian. Checksum detects corruption, not tampering.
         public byte[] Encode(Snapshot state)
@@ -44,7 +44,8 @@ namespace Decennium.Foundation
                 if (state.SchemaVersion >= Snapshot.VesselSchema) WaterVesselCodec.Write(writer,state);
                 if (state.SchemaVersion >= Snapshot.MovableVesselSchema) VesselHandlingCodec.Write(writer,state);
                 if (state.SchemaVersion >= Snapshot.EncounterSchema) FixedEncounterCodec.Write(writer,state);
-                if (state.SchemaVersion == Snapshot.ActorLifeSchema) ActorLifeCodec.Write(writer,state);
+                if (state.SchemaVersion >= Snapshot.ActorLifeSchema) ActorLifeCodec.Write(writer,state);
+                if (state.SchemaVersion == Snapshot.ClubAttackSchema) ClubAttackCodec.Write(writer,state);
                 writer.Flush(); payload = stream.ToArray();
             }
             if (payload.Length + 32 > Limit(state.SchemaVersion)) throw new InvalidDataException("Save exceeds schema size limit.");
@@ -64,7 +65,7 @@ namespace Decennium.Foundation
                     if (reader.ReadInt32() != Magic) throw new InvalidDataException("Unsupported save format.");
                     int schema = reader.ReadInt32();
                     if (data.Length > Limit(schema)) throw new InvalidDataException("Save exceeds schema size limit.");
-                    if (schema != Snapshot.Schema && schema != Snapshot.WorkSchema && schema != Snapshot.CropSchema && schema != Snapshot.InventorySchema && schema != Snapshot.VesselSchema && schema != Snapshot.MovableVesselSchema && schema != Snapshot.EncounterSchema && schema != Snapshot.ActorLifeSchema)
+                    if (schema != Snapshot.Schema && schema != Snapshot.WorkSchema && schema != Snapshot.CropSchema && schema != Snapshot.InventorySchema && schema != Snapshot.VesselSchema && schema != Snapshot.MovableVesselSchema && schema != Snapshot.EncounterSchema && schema != Snapshot.ActorLifeSchema && schema != Snapshot.ClubAttackSchema)
                         throw new InvalidDataException("Unsupported save schema.");
                     string fingerprint = ReadText(reader);
                     if (ReadText(reader) != RandomV1.Algorithm) throw new InvalidDataException("Unsupported RNG version.");
@@ -93,7 +94,8 @@ namespace Decennium.Foundation
                     if (schema >= Snapshot.VesselSchema) WaterVesselCodec.Read(reader,s);
                     if (schema >= Snapshot.MovableVesselSchema) VesselHandlingCodec.Read(reader,s);
                     if (schema >= Snapshot.EncounterSchema) FixedEncounterCodec.Read(reader,s);
-                    if (schema == Snapshot.ActorLifeSchema) ActorLifeCodec.Read(reader,s);
+                    if (schema >= Snapshot.ActorLifeSchema) ActorLifeCodec.Read(reader,s);
+                    if (schema == Snapshot.ClubAttackSchema) ClubAttackCodec.Read(reader,s);
                     if (stream.Position != length) throw new InvalidDataException("Unexpected trailing save data.");
                     Validation.Snapshot(s); return s;
                 }

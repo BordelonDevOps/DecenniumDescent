@@ -147,7 +147,7 @@ namespace Decennium.Foundation.Tests
                 foreach(int schema in new[]{1,2,3}){var v=p.Initial();v.SchemaVersion=schema;Throws<ArgumentException>(()=>codec.Encode(v));} });
             cases.Add("inventory_decode_checks_corruption_unknown_version_and_boolean",()=>{
                 byte[] bytes=Bytes(Inventory());var bad=(byte[])bytes.Clone();bad[10]^=1;Throws<InvalidDataException>(()=>codec.Decode(bad));
-                bad=(byte[])bytes.Clone();bad[4]=9;Resign(bad);Throws<InvalidDataException>(()=>codec.Decode(bad));
+                bad=(byte[])bytes.Clone();bad[4]=10;Resign(bad);Throws<InvalidDataException>(()=>codec.Decode(bad));
                 bad=(byte[])bytes.Clone();bad[bad.Length-32-9]=2;Resign(bad);Throws<InvalidDataException>(()=>codec.Decode(bad));
                 Throws<InvalidDataException>(()=>codec.Decode(bytes.Take(bytes.Length-1).ToArray())); });
             cases.Add("inventory_restore_rejects_quantity_creation_and_freshness_reset",()=>{
@@ -229,7 +229,16 @@ namespace Decennium.Foundation.Tests
                     Enumerable.Range(0,32).Select(i=>Id("held",i)))).ToArray();
                 v.LifeEvents=Enumerable.Range(0,256).Select(i=>new ActorLifeEvent(v.Actors[i%64].Id,i+1,T(1),LifeEventKind.StableRecovery,-1,0,0,1,1,0)).ToArray();
                 bytes=codec.Encode(v);Require(bytes.Length<SnapshotCodec.MaxBytes&&bytes.SequenceEqual(codec.Encode(codec.Decode(bytes))),"Maximum schema8 component counts exceed save bound or fail roundtrip.");
-                File.WriteAllText(Path.Combine(directory,"maximal-actor-life-bytes.txt"),bytes.Length.ToString(System.Globalization.CultureInfo.InvariantCulture)); });
+                File.WriteAllText(Path.Combine(directory,"maximal-actor-life-bytes.txt"),bytes.Length.ToString(System.Globalization.CultureInfo.InvariantCulture));
+                v.SchemaVersion=Snapshot.ClubAttackSchema;
+                v.Clubs=v.Actors.Select((a,i)=>new ClubInstance(Id("club",i),Id("profile"),a.Id,a.Id,a.Id,int.MaxValue,int.MinValue)).ToArray();
+                v.Stances=Enumerable.Range(0,128).Select(i=>new StanceSelectionRecord(v.Actors[i%64].Id,i+1,i,CombatStance.Aggressive,T(6))).ToArray();
+                var attack=new CombatAttackRoll(20,20,20,int.MaxValue,int.MaxValue,true,true,uint.MaxValue,uint.MaxValue,long.MaxValue);
+                var damage=new CombatDamageRoll(new[]{4,4},long.MaxValue,long.MaxValue,uint.MaxValue,uint.MaxValue,long.MaxValue,20,6,4);
+                v.MeleeAttacks=Enumerable.Range(0,128).Select(i=>new MeleeAttackRecord(Id("attack",i),i+1,i+1,i,v.Actors[i%64].Id,v.Actors[(i+1)%64].Id,v.Clubs[i%64].Id,T(1),AttackKnockoutMode.KnockOutIfEligible,attack,damage)).ToArray();
+                v.Presses=v.Actors.Select((a,i)=>new PressRecord(a.Id,v.Actors[(i+1)%64].Id,i+1,T(6))).ToArray();
+                bytes=codec.Encode(v);Require(bytes.Length<SnapshotCodec.MaxBytes&&bytes.SequenceEqual(codec.Encode(codec.Decode(bytes))),"Maximum schema9 component counts exceed save bound or fail roundtrip.");
+                File.WriteAllText(Path.Combine(directory,"maximal-club-bytes.txt"),bytes.Length.ToString(System.Globalization.CultureInfo.InvariantCulture)); });
             cases.Add("inventory_restore_rejects_handling_before_source_creation",()=>{
                 var s=Inventory();AdvanceI(s,10);string source=Portion(s,Q(1));string child=HandleI(s,source,Q(1),HandlingKind.Stow);var v=s.Capture();var h=v.Handling[0];
                 v.Handling=new[]{new HandlingRecord(h.Id,h.ActorId,h.SourceId,h.ChildId,h.Kind,T(9),T(10),false)};

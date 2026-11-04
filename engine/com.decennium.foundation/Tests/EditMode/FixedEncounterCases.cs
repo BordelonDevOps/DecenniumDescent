@@ -141,7 +141,7 @@ namespace Decennium.Foundation.Tests
             cases.Add("encounter_detached_order_release_legacy_and_malformed_records_reject",()=>{
                 var p=new TestOnlyEncounterPolicy();Throws<InvalidOperationException>(()=>new Simulation(p,p.Initial(),ExecutionProfile.Release));
                 var s=Encounters();BeginEncounter(s);var v=s.Capture();Throws<NotSupportedException>(()=>((IList<string>)v.Encounter.Order)[0]="changed");
-                v.SchemaVersion=6;Throws<ArgumentException>(()=>codec.Encode(v));byte[] bad=Bytes(s);bad[4]=9;Resign(bad);Throws<InvalidDataException>(()=>codec.Decode(bad));
+                v.SchemaVersion=6;Throws<ArgumentException>(()=>codec.Encode(v));byte[] bad=Bytes(s);bad[4]=10;Resign(bad);Throws<InvalidDataException>(()=>codec.Decode(bad));
                 Throws<ArgumentException>(()=>new FixedEncounterRecord(new string('a',90),T(0),new[]{"a"},new long[]{1}));
                 Throws<ArgumentException>(()=>new FixedEncounterRecord("id",T(0),new[]{"a"},new long[]{2,1})); });
         }
