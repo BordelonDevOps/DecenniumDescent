@@ -81,7 +81,8 @@ namespace Decennium.Foundation.Laboratory
             ||kind==CommandKind.StartToolRepair||kind==CommandKind.PauseToolRepair
             ||kind==CommandKind.ResumeToolRepair||kind==CommandKind.CancelToolRepair
             ||kind==CommandKind.StartHarvest||kind==CommandKind.PauseHarvest||kind==CommandKind.ResumeHarvest
-            ||kind==CommandKind.TacticalStep||kind==CommandKind.TacticalRepositionStep||kind==CommandKind.Interact;
+            ||kind==CommandKind.TacticalStep||kind==CommandKind.TacticalRepositionStep||kind==CommandKind.Interact
+            ||kind==CommandKind.ResolveManufacturingQuality;
 
         public IEnumerable<Command> DiscoverCommands(Snapshot s,Authority authority,string actor)
         {
@@ -89,6 +90,7 @@ namespace Decennium.Foundation.Laboratory
             if(s.Encounter==null||!s.InventoryCombat)return DiscoverSharedWorldCommands(s,authority,actor);
             var options=new System.Collections.Generic.List<Command>();
             int optionIndex=0;
+            options.AddRange(DiscoverManufacturingQualityChoices(s,actor));
             if(PendingDefensiveFormationShift(s)!=null) {
                 options.AddRange(DiscoverDefensiveFormationCommands(s,actor));return options;
             }

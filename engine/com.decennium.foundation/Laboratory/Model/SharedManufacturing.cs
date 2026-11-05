@@ -48,6 +48,44 @@ namespace Decennium.Foundation.Laboratory
         private static bool ManufacturingCommand(CommandKind k)=>k==CommandKind.StartManufacturing||k==CommandKind.PauseManufacturing||k==CommandKind.ResumeManufacturing||k==CommandKind.CancelManufacturing||k==CommandKind.ResolveManufacturingQuality||k==CommandKind.UseAlchemyDose;
         private static bool ManufacturingChoicePending(Snapshot s)=>s.ManufacturingOrders.Any(x=>x.Status==ManufacturingStatus.AwaitingChoice);
         private static bool ActiveManufacturing(Snapshot s)=>s.ManufacturingOrders.Any(x=>x.Status==ManufacturingStatus.Working);
+        private IEnumerable<Command> DiscoverManufacturingQualityChoices(Snapshot s,string actor)
+        {
+            if(manufacturing==null||PendingCalendarChoice(s))yield break;
+            int actorIndex=Array.FindIndex(s.Actors,x=>x.Id==actor);
+            if(actorIndex<0)yield break;
+            int index=0;
+            foreach(var order in s.ManufacturingOrders.Where(x=>x.WorkerId==actor&&x.Status==ManufacturingStatus.AwaitingChoice)
+                .OrderBy(x=>x.Id,StringComparer.Ordinal)) {
+                var catalysts=order.Quality==CraftQuality.Masterwork?new[]{0,3}:new[]{-1};
+                foreach(var choice in new[]{CraftQualityChoice.Durability,CraftQualityChoice.FullYield})
+                    foreach(int catalyst in catalysts)
+                        yield return new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+"."+actorIndex.ToString(CultureInfo.InvariantCulture)
+                                +".manufacturing-quality."+(index++).ToString(CultureInfo.InvariantCulture),actor,s.Revision,
+                            CommandKind.ResolveManufacturingQuality,order.Id,(int)choice,catalyst+1);
+            }
+        }
+        private CommandQueryResult QueryManufacturingQualityChoice(Snapshot s,Command c)
+        {
+            string failure=AssessManufacturingQualityChoice(s,c,out _,out _,out _);
+            return new CommandQueryResult(true,failure==null,failure??"Available",s.Revision,Array.Empty<CommandCost>());
+        }
+        private string AssessManufacturingQualityChoice(Snapshot s,Command c,out ManufacturingOrderRecord current,
+            out CraftQualityChoice choice,out int catalyst)
+        {
+            current=null;choice=default(CraftQualityChoice);catalyst=-1;
+            if(manufacturing==null)return "ManufacturingNotSelected";
+            if(c.Inventory!=null||c.Combat!=null)return "InvalidManufacturingRequest";
+            if(PendingCalendarChoice(s))return "TacticalChoicePending";
+            current=s.ManufacturingOrders.SingleOrDefault(x=>x.Id==c.Target&&x.WorkerId==c.Actor);
+            if(current==null)return "UnknownManufacturingOrder";
+            if(!current.Open)return "ManufacturingOrderClosed";
+            if(current.Status!=ManufacturingStatus.AwaitingChoice||c.X<1||c.X>2)return "NoManufacturingQualityChoice";
+            choice=(CraftQualityChoice)c.X;catalyst=c.Y-1;
+            if(current.Quality==CraftQuality.Masterwork?catalyst!=0&&catalyst!=3:catalyst!=-1)return "InvalidRetainedCatalyst";
+            if(choice==CraftQualityChoice.FullYield&&!ManufacturingRules.Recipe4CanYield(current.Quality,current.ExtraVials,catalyst))
+                return "ManufacturingFullYieldUnavailable";
+            return null;
+        }
         private IEnumerable<string> ManufacturingOwners(Snapshot s,Command c)
         {
             if(manufacturing==null||!ManufacturingCommand(c.Kind))return Array.Empty<string>();
@@ -218,10 +256,8 @@ namespace Decennium.Foundation.Laboratory
             var current=s.ManufacturingOrders.SingleOrDefault(x=>x.Id==c.Target&&x.WorkerId==c.Actor);if(current==null)return "UnknownManufacturingOrder";
             if(!current.Open)return "ManufacturingOrderClosed";
             if(c.Kind==CommandKind.ResolveManufacturingQuality){
-                if(current.Status!=ManufacturingStatus.AwaitingChoice||c.X<1||c.X>2)return "NoManufacturingQualityChoice";
-                var choice=(CraftQualityChoice)c.X;int catalyst=c.Y-1;
-                if(current.Quality==CraftQuality.Masterwork?catalyst!=0&&catalyst!=3:catalyst!=-1)return "InvalidRetainedCatalyst";
-                if(choice==CraftQualityChoice.FullYield&&!ManufacturingRules.Recipe4CanYield(current.Quality,current.ExtraVials,catalyst))return "ManufacturingFullYieldUnavailable";
+                string choiceFailure=AssessManufacturingQualityChoice(s,c,out current,out var choice,out int catalyst);
+                if(choiceFailure!=null)return choiceFailure;
                 SettleManufacturing(s,current,choice,catalyst);ResumeManufacturingAdvance(s);return null;
             }
             if(c.X!=0||c.Y!=0)return "InvalidManufacturingRequest";

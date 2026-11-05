@@ -77,8 +77,10 @@ namespace Decennium.Foundation.Tests
         private static void ArchitectureAdvanceTo(Simulation s, Authority authority, long seconds)
         {
             var now = s.Capture().RuleClock;
-            Require(now.Denominator == 1 && seconds > now.Numerator, "Architecture test expected an integral future time.");
-            ArchitectureCommit(s, authority, ArchitectureAdvance(s, checked((int)(seconds - now.Numerator))));
+            var remaining = ArchitectureDifference(new RuleTime(seconds), now);
+            Require(remaining > default(RuleTime) && remaining.Numerator <= int.MaxValue && remaining.Denominator <= int.MaxValue,
+                "Architecture test expected a positive representable future time.");
+            ArchitectureCommit(s, authority, ArchitectureAdvance(s, checked((int)remaining.Numerator), checked((int)remaining.Denominator)));
         }
 
         private static void RunWorldArchitectureScenario(SharedWorldConfiguration configuration, string worker,
@@ -209,24 +211,57 @@ namespace Decennium.Foundation.Tests
             Require(paused.Status == HarvestAttemptStatus.Paused && paused.WorkDone > default(RuleTime)
                 && !s.Capture().Work.WorkerIntervals.Any(x => x.JobId == paused.Id && x.Start <= s.Capture().RuleClock && x.End > s.Capture().RuleClock),
                 "The existing condition interruption did not pause work at its exact earned-progress boundary.");
+            var pausedActivity = WorldActivityProjection.OpenProcedures(s.Capture(), s.DiscoverCommands(authority, worker))
+                .Single(x => x.Id == paused.Id);
+            Require(pausedActivity.Kind == WorldProcedureKind.Harvest && pausedActivity.Status == HarvestAttemptStatus.Paused.ToString()
+                && pausedActivity.RecordedWorkDone == paused.WorkDone && !WorldActivityProjection.CurrentWork(s.Capture()).Any(x => x.Id == paused.Id),
+                "Open activity view omitted paused harvest or changed active-work conflict membership.");
 
-            // A different actor can still explore while the companion's procedure is paused.
-            ArchitectureMove(s, policy, authority, TestOnlyPolicy.ActorId, 0, 1);
+            // A different actor can keep a partial route while the companion's procedure remains paused.
+            ArchitectureCommit(s, authority, ArchitectureStep(s, TestOnlyPolicy.ActorId, 0, 1));
+            ArchitectureCommit(s, authority, ArchitectureAdvance(s, 1, 2));
+            byte[] beforeProjection = Bytes(s);
+            var movingOptions = s.DiscoverCommands(authority, TestOnlyPolicy.ActorId);
+            var moving = WorldActivityProjection.Traversals(s.Capture(), movingOptions).Single();
+            Require(moving.ActorId == TestOnlyPolicy.ActorId && moving.Status == WorldTraversalStatus.Moving
+                && moving.DistanceFeet == new RuleQuantity(5, 2) && moving.AvailableCommands.Any(x => x.Command.Kind == CommandKind.SuspendWorldStep)
+                && Bytes(s).SequenceEqual(beforeProjection),
+                "Partial traversal view omitted exact route state, its suspend option, or changed the simulation during discovery.");
             string pausedPath = Path.Combine(directory, configuration.Id + ".paused.ddsave");
             store.Save(pausedPath, s.Capture());
             var saved = s.Capture();
             s = new Simulation(policy, store.Load(pausedPath), ExecutionProfile.Laboratory);
+            var loadedOptions = s.DiscoverCommands(authority, TestOnlyPolicy.ActorId);
+            var loadedRoute = WorldActivityProjection.Traversals(s.Capture(), loadedOptions).Single();
+            var loadedPaused = WorldActivityProjection.OpenProcedures(s.Capture(), s.DiscoverCommands(authority, worker)).Single(x => x.Id == paused.Id);
             Require(Bytes(s).SequenceEqual(Bytes(new Simulation(policy, saved, ExecutionProfile.Laboratory)))
-                && s.Capture().HarvestAttempts.Single().WorkDone == paused.WorkDone,
-                "Paused work, claims, or its exact progress changed across disk save/load.");
+                && loadedPaused.Status == HarvestAttemptStatus.Paused.ToString() && loadedPaused.RecordedWorkDone == paused.WorkDone
+                && loadedRoute.Status == WorldTraversalStatus.Moving && loadedRoute.DistanceFeet == new RuleQuantity(5, 2),
+                "Paused work or a simultaneous partial route changed across disk save/load.");
+            var suspend = loadedRoute.AvailableCommands.Single(x => x.Command.Kind == CommandKind.SuspendWorldStep).Command;
+            ArchitectureCommit(s, authority, suspend);
+            var suspendedOptions = s.DiscoverCommands(authority, TestOnlyPolicy.ActorId);
+            var suspended = WorldActivityProjection.Traversals(s.Capture(), suspendedOptions).Single();
+            Require(suspended.Status == WorldTraversalStatus.Suspended && suspended.DistanceFeet == new RuleQuantity(5, 2)
+                && suspended.AvailableCommands.Any(x => x.Command.Kind == CommandKind.ResumeWorldStep),
+                "Suspending a partial route lost distance or omitted its resume option.");
+            string suspendedPath = Path.Combine(directory, configuration.Id + ".traversal-suspended.ddsave");
+            store.Save(suspendedPath, s.Capture());
+            s = new Simulation(policy, store.Load(suspendedPath), ExecutionProfile.Laboratory);
+            var restoredRoute = WorldActivityProjection.Traversals(s.Capture(), s.DiscoverCommands(authority, TestOnlyPolicy.ActorId)).Single();
+            Require(restoredRoute.Status == WorldTraversalStatus.Suspended && restoredRoute.DistanceFeet == new RuleQuantity(5, 2)
+                && restoredRoute.AvailableCommands.Any(x => x.Command.Kind == CommandKind.ResumeWorldStep),
+                "Suspended route did not reconstruct its same-revision resume option after restore.");
+            ArchitectureCommit(s, authority, restoredRoute.AvailableCommands.Single(x => x.Command.Kind == CommandKind.ResumeWorldStep).Command);
 
             ArchitectureAdvanceTo(s, authority, 220);
             Require(s.Capture().HarvestAttempts.Single().Status == HarvestAttemptStatus.Paused,
                 "Condition recovery automatically resumed a saved job.");
-            var resume = new Command("architecture.resume." + s.Capture().Revision, worker, s.Capture().Revision,
-                CommandKind.ResumeHarvest, paused.Id);
+            var resumedWork = WorldActivityProjection.OpenProcedures(s.Capture(), s.DiscoverCommands(authority, worker)).Single(x => x.Id == paused.Id);
+            var resume = resumedWork.AvailableCommands.Single(x => x.Command.Kind == CommandKind.ResumeHarvest).Command;
             var resumePreview = s.QueryCommand(authority, resume);
-            Require(resumePreview.Supported && resumePreview.Admissible, "Explicit legal resume was not discoverable through the shared query path.");
+            Require(resumedWork.Status == HarvestAttemptStatus.Paused.ToString() && resumePreview.Supported && resumePreview.Admissible,
+                "Open activity view omitted the recovered job or its explicit legal resume option.");
             ArchitectureCommit(s, authority, resume);
             var progress = s.Capture().HarvestAttempts.Single();
             var remaining = ArchitectureDifference(progress.Duration, progress.WorkDone);

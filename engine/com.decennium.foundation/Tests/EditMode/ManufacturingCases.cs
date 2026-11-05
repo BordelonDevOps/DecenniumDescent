@@ -95,7 +95,14 @@ namespace Decennium.Foundation.Tests
                 ConnectedEnd(s); //17999 ->18000; still one active second short.
                 WorldCommit(s,Tac(s,CommandKind.SelectCombatStance,stance:(int)CombatStance.Guarded));var end=Tac(s,CommandKind.EndRegularTurn);var result=s.Execute(host,end);
                 Require(result.IsSuspended&&s.Capture().RuleClock==T(18001)&&s.Capture().ManufacturingAdvance.Target==T(18003)&&s.Capture().ManufacturingAdvance.OutgoingSlotId==end.Target,"Remote completion rounded, dropped or duplicated outgoing slot.");
-                int prior=s.Capture().Encounter.TurnOrdinal;ManufactureChoice(s,catalyst:0);
+                int prior=s.Capture().Encounter.TurnOrdinal;
+                Require(s.Capture().Encounter.CurrentActor!=worker,"Fixture unexpectedly made the remote manufacturing owner the active tactical actor.");
+                var choice=s.DiscoverCommands(host,worker).Single(x=>x.Command.Kind==CommandKind.ResolveManufacturingQuality
+                    &&x.Command.Target==Order(s).Id&&x.Command.X==(int)CraftQualityChoice.FullYield&&x.Command.Y==1);
+                byte[] beforeChoice=Bytes(s);var preview=s.QueryCommand(host,choice.Command);
+                Require(choice.Query.Admissible&&preview.Supported&&preview.Admissible&&preview.Costs.Count==0&&Bytes(s).SequenceEqual(beforeChoice),
+                    "Off-turn order owner did not receive a pure admissible quality choice without extra costs.");
+                WorldCommit(s,choice.Command);
                 Require(s.Capture().RuleClock==T(18003)&&s.Capture().Encounter.TurnOrdinal==prior+1&&!s.Execute(host,end).IsSuspended,"Settlement did not finish same original outgoing slot once.");
             });
             cases.Add("manufacturing_quality_uses_six_native_bands_without_natural20_shift",()=>{
@@ -145,11 +152,34 @@ namespace Decennium.Foundation.Tests
                 var advance=IC(s,CommandKind.AdvanceClock,x:14401,y:1);var result=s.Execute(host,advance);
                 Require(result.Outcome==Outcome.Committed&&result.IsSuspended&&s.Capture().RuleClock==T(18000)&&s.Capture().ManufacturingAdvance.Target==T(18001)&&Order(s).Natural==16,"Advance did not suspend at exact quality boundary.");
                 uint rng=s.Capture().RandomState;byte[] bytes=Bytes(s);Require(s.Execute(host,advance).IsSuspended&&Bytes(s).SequenceEqual(bytes),"Duplicate restarted suspended advance.");
+                var discovered=s.DiscoverCommands(host,worker);
+                var activity=WorldActivityProjection.OpenProcedures(s.Capture(),discovered).Single(x=>x.Id==Order(s).Id);
+                var qualityOptions=discovered.Where(x=>x.Command.Kind==CommandKind.ResolveManufacturingQuality
+                    &&x.Command.Target==Order(s).Id).ToArray();
+                var fullYieldCatalyst=qualityOptions.Single(x=>x.Command.X==(int)CraftQualityChoice.FullYield&&x.Command.Y==4);
+                var invalidCatalyst=new Command("manufacturing.invalid-quality."+s.Capture().Revision,worker,s.Capture().Revision,
+                    CommandKind.ResolveManufacturingQuality,Order(s).Id,(int)CraftQualityChoice.Durability,2);
+                var invalidQuery=s.QueryCommand(host,invalidCatalyst);
+                Require(activity.Status==ManufacturingStatus.AwaitingChoice.ToString()
+                    &&activity.RecordedWorkDone==Order(s).Work.Retained&&activity.RecordedWorkRequired==Order(s).Work.Required
+                    &&activity.ResourceReservations.SequenceEqual(s.Capture().Work.Reservations.Where(x=>x.JobId==Order(s).Id))
+                    &&activity.AvailableCommands.Count==4&&qualityOptions.Length==4&&qualityOptions.All(x=>x.Query.Admissible)
+                    &&activity.AvailableCommands.Any(x=>x.Command.Id==fullYieldCatalyst.Command.Id)
+                    &&invalidQuery.Supported&&!invalidQuery.Admissible&&invalidQuery.Code=="InvalidRetainedCatalyst"
+                    &&Bytes(s).SequenceEqual(bytes),
+                    "Pending manufacturing choice projection, legal catalyst/yield discovery, invalid-query assessment, or read purity was incorrect.");
                 RejectUnchanged(s,host,IC(s,CommandKind.AdvanceClock,x:1,y:1),"ManufacturingChoicePending");RejectUnchanged(s,host,ManufactureCommand(s,CommandKind.CancelManufacturing,Order(s).Id),"ManufacturingChoicePending");
                 string path=Path.Combine(directory,"manufacturing-choice.bin");new FileSaveStore().Save(path,s.Capture());var loaded=new Simulation(p,new FileSaveStore().Load(path),ExecutionProfile.Laboratory);
-                foreach(var sim in new[]{s,loaded})ManufactureChoice(sim,catalyst:3);
+                var restoredOptions=loaded.DiscoverCommands(host,worker);
+                var restoredChoice=restoredOptions.Single(x=>x.Command.Id==fullYieldCatalyst.Command.Id);
+                Require(restoredChoice.Command.Target==fullYieldCatalyst.Command.Target&&restoredChoice.Command.X==fullYieldCatalyst.Command.X
+                    &&restoredChoice.Command.Y==fullYieldCatalyst.Command.Y&&restoredChoice.Query.Admissible,
+                    "Restored manufacturing choice did not reconstruct the same admissible command.");
+                WorldCommit(s,fullYieldCatalyst.Command);WorldCommit(loaded,restoredChoice.Command);
                 Require(Bytes(s).SequenceEqual(Bytes(loaded))&&s.Capture().RuleClock==T(18001)&&s.Capture().ManufacturingAdvance==null&&s.Capture().RandomState==rng
                     &&s.Capture().AlchemyDoses.Length==7&&Material(s,3)==new RuleQuantity(1)&&s.Capture().Work.Lots.Single(x=>x.Id==SharedManufacturingFixture.Packaging).Amount==new RuleQuantity(2),"Settlement lost continuation or duplicated result.");
+                byte[] settled=Bytes(s);Require(s.Execute(host,fullYieldCatalyst.Command).Outcome==Outcome.Duplicate&&Bytes(s).SequenceEqual(settled),
+                    "Repeating the discovered manufacturing choice settled the order twice.");
                 Require(!s.Execute(host,advance).IsSuspended&&s.Execute(host,advance).Outcome==Outcome.Duplicate,"Completed initiating command still suspended.");
             });
             cases.Add("manufacturing_missing_full_packaging_allows_only_durability_no_partial_yield",()=>{
@@ -205,6 +235,9 @@ namespace Decennium.Foundation.Tests
                 var p=ManufacturePolicy(SeedForDeath(6),conditions:new ConditionCombatFixture(CCApply("stun","Stunned",worker),CCGrant("ward",worker,new ConditionStamp(T(18000)),"Stunned"),cure));var s=World(p);
                 CCDispatch(s,"stun",worker);CCDispatch(s,"ward",worker);LearnManufacturing(s);ManufactureStart(s);uint rng=s.Capture().RandomState;WorldAdvance(s,14400);
                 Require(Order(s).Status==ManufacturingStatus.AwaitingCheck&&Order(s).Work.Complete&&s.Capture().RandomState==rng&&s.Capture().AlchemyDoses.Length==0,"Incapable endpoint rolled or erased completed work.");
+                var awaiting=WorldActivityProjection.OpenProcedures(s.Capture(),s.DiscoverCommands(host,worker)).Single(x=>x.Id==Order(s).Id);
+                Require(awaiting.Kind==WorldProcedureKind.Manufacturing&&awaiting.Status==ManufacturingStatus.AwaitingCheck.ToString()
+                    &&awaiting.RecordedWorkRequired==Order(s).Work.Required,"Open activity view omitted the saved manufacturing check state.");
                 string path=Path.Combine(directory,"manufacturing-awaiting.bin");new FileSaveStore().Save(path,s.Capture());s=new Simulation(p,new FileSaveStore().Load(path),ExecutionProfile.Laboratory);
                 WorldAdvance(s,1);CCDispatch(s,"cure",worker);ManufactureControl(s,CommandKind.ResumeManufacturing);
                 Require(Order(s).Status==ManufacturingStatus.Complete&&Order(s).Work.Labor==T(14400)&&s.Capture().RuleClock==T(18001),"Earned check added labor or failed to resolve once.");

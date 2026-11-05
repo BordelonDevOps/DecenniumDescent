@@ -53,60 +53,123 @@ namespace Decennium.Foundation
         }
     }
 
+    /// <summary>Read-only view of one saved partial traversal. The traversal record remains authoritative.</summary>
+    public sealed class WorldTraversalActivity
+    {
+        public string ActorId { get; }
+        public long StartedRevision { get; }
+        public int FromX { get; }
+        public int FromY { get; }
+        public int ToX { get; }
+        public int ToY { get; }
+        public RuleQuantity DistanceFeet { get; }
+        public bool Running { get; }
+        public WorldTraversalStatus Status { get; }
+        /// <summary>Admissible suspend/resume controls discovered for this actor and snapshot revision.</summary>
+        public IReadOnlyList<CommandOption> AvailableCommands { get; }
+
+        internal WorldTraversalActivity(WorldTraversalRecord traversal, IEnumerable<CommandOption> availableCommands)
+        {
+            if (traversal == null) throw new ArgumentNullException(nameof(traversal));
+            if (availableCommands == null) throw new ArgumentNullException(nameof(availableCommands));
+            ActorId = traversal.ActorId; StartedRevision = traversal.StartedRevision;
+            FromX = traversal.FromX; FromY = traversal.FromY; ToX = traversal.ToX; ToY = traversal.ToY;
+            DistanceFeet = traversal.DistanceFeet; Running = traversal.Running; Status = traversal.Status;
+            AvailableCommands = Array.AsReadOnly(availableCommands.ToArray());
+        }
+    }
+
     public static class WorldActivityProjection
     {
         /// <summary>Projects procedures which currently claim an actor's active work interval,
         /// preserving the historical domain-family and record order used by activity settlement.</summary>
         public static IReadOnlyList<WorldProcedureActivity> CurrentWork(Snapshot s)
-            => CurrentWorkCore(s, null, false);
+            => CurrentWorkCore(s, null, false, false);
 
         /// <summary>Enriches current work with facts from its procedure record, the shared work ledger,
         /// and command options already discovered by Simulation. It does not discover or authorize commands.</summary>
         public static IReadOnlyList<WorldProcedureActivity> CurrentWork(Snapshot s, IEnumerable<CommandOption> discoveredOptions)
         {
             if (discoveredOptions == null) throw new ArgumentNullException(nameof(discoveredOptions));
-            return CurrentWorkCore(s, discoveredOptions.Where(x => x != null).ToArray(), true);
+            return CurrentWorkCore(s, discoveredOptions.Where(x => x != null).ToArray(), true, false);
         }
 
-        private static IReadOnlyList<WorldProcedureActivity> CurrentWorkCore(Snapshot s, CommandOption[] options, bool includeDetails)
+        /// <summary>Projects persisted work procedures in working, paused, or explicit awaiting states. It is
+        /// separate from CurrentWork so active-labor conflict checks keep their historical membership and order.</summary>
+        public static IReadOnlyList<WorldProcedureActivity> OpenProcedures(Snapshot s, IEnumerable<CommandOption> discoveredOptions)
+        {
+            if (discoveredOptions == null) throw new ArgumentNullException(nameof(discoveredOptions));
+            return CurrentWorkCore(s, discoveredOptions.Where(x => x != null).ToArray(), true, true);
+        }
+
+        /// <summary>Projects persisted partial traversals and only their same-revision admissible
+        /// suspend/resume controls. It does not discover commands or change route state.</summary>
+        public static IReadOnlyList<WorldTraversalActivity> Traversals(Snapshot s, IEnumerable<CommandOption> discoveredOptions)
+        {
+            if (s == null) throw new ArgumentNullException(nameof(s));
+            if (discoveredOptions == null) throw new ArgumentNullException(nameof(discoveredOptions));
+            var options = discoveredOptions.Where(x => x != null).ToArray();
+            return Array.AsReadOnly((s.WorldTraversals ?? Array.Empty<WorldTraversalRecord>())
+                .OrderBy(x => x.ActorId, StringComparer.Ordinal)
+                .Select(edge => new WorldTraversalActivity(edge, options.Where(x => x.Command.Actor == edge.ActorId
+                    && (x.Command.Kind == CommandKind.SuspendWorldStep || x.Command.Kind == CommandKind.ResumeWorldStep)
+                    && x.Command.Target == "" && x.Command.X == 0 && x.Command.Y == 0
+                    && x.Command.ExpectedRevision == s.Revision && x.Query.ObservedRevision == s.Revision
+                    && x.Query.Supported && x.Query.Admissible)
+                    .OrderBy(x => x.Command.Kind).ThenBy(x => x.Command.Id, StringComparer.Ordinal)))
+                .ToArray());
+        }
+
+        private static IReadOnlyList<WorldProcedureActivity> CurrentWorkCore(Snapshot s, CommandOption[] options, bool includeDetails, bool includeOpen)
         {
             if (s == null) throw new ArgumentNullException(nameof(s));
             var result = new List<WorldProcedureActivity>();
             foreach (var crop in s.Crops ?? Array.Empty<CropBatchRecord>())
-                foreach (var task in crop.Tasks.Where(x => x.Status == CropWorkStatus.Working))
+                foreach (var task in crop.Tasks.Where(x => x.Status == CropWorkStatus.Working
+                    || includeOpen && x.Status == CropWorkStatus.Paused))
                     result.Add(Create(s, task.Id, task.WorkerId, WorldProcedureKind.Crop, includeDetails ? task.Status.ToString() : null,
                         includeDetails ? (RuleTime?)task.Progress : null, null, options, includeDetails));
             foreach (var fill in s.WaterFills ?? Array.Empty<WaterFillRecord>())
-                if (fill.Status == WaterFillStatus.Working) result.Add(Create(s, fill.Id, fill.WorkerId, WorldProcedureKind.WaterFill,
+                if (fill.Status == WaterFillStatus.Working || includeOpen && fill.Status == WaterFillStatus.Paused)
+                    result.Add(Create(s, fill.Id, fill.WorkerId, WorldProcedureKind.WaterFill,
                     includeDetails ? fill.Status.ToString() : null, includeDetails ? (RuleTime?)fill.Progress : null, null, options, includeDetails));
             foreach (var intake in s.Intakes ?? Array.Empty<IntakeRecord>())
                 if (intake.Status == IntakeStatus.Working) result.Add(Create(s, intake.Id, intake.ActorId, WorldProcedureKind.Intake,
                     includeDetails ? intake.Status.ToString() : null, null, null, options, includeDetails));
             foreach (var formula in s.FormulaWork ?? Array.Empty<FormulaWorkRecord>())
-                if (formula.Status == FormulaWorkStatus.Working) result.Add(Create(s, formula.Id, formula.WorkerId, WorldProcedureKind.FormulaWork,
+                if (formula.Status == FormulaWorkStatus.Working || includeOpen
+                    && (formula.Status == FormulaWorkStatus.Paused || formula.Status == FormulaWorkStatus.AwaitingCheck))
+                    result.Add(Create(s, formula.Id, formula.WorkerId, WorldProcedureKind.FormulaWork,
                     includeDetails ? formula.Status.ToString() : null, includeDetails ? (RuleTime?)formula.Work.Retained : null,
                     includeDetails ? (RuleTime?)formula.Work.Required : null, options, includeDetails));
             foreach (var repair in s.RepairWork ?? Array.Empty<RepairWorkRecord>())
-                if (repair.Status == RepairWorkStatus.Working) result.Add(Create(s, repair.Id, repair.WorkerId, WorldProcedureKind.Repair,
+                if (repair.Status == RepairWorkStatus.Working || includeOpen && repair.Open)
+                    result.Add(Create(s, repair.Id, repair.WorkerId, WorldProcedureKind.Repair,
                     includeDetails ? repair.Status.ToString() : null, includeDetails ? (RuleTime?)repair.Work.Retained : null,
                     includeDetails ? (RuleTime?)repair.Work.Required : null, options, includeDetails));
             foreach (var order in s.ManufacturingOrders ?? Array.Empty<ManufacturingOrderRecord>())
-                if (order.Status == ManufacturingStatus.Working) result.Add(Create(s, order.Id, order.WorkerId, WorldProcedureKind.Manufacturing,
+                if (order.Status == ManufacturingStatus.Working || includeOpen && order.Open)
+                    result.Add(Create(s, order.Id, order.WorkerId, WorldProcedureKind.Manufacturing,
                     includeDetails ? order.Status.ToString() : null, includeDetails ? (RuleTime?)order.Work.Retained : null,
                     includeDetails ? (RuleTime?)order.Work.Required : null, options, includeDetails));
             foreach (var retrieval in s.FishingTrapRetrievals ?? Array.Empty<FishingTrapRetrievalRecord>())
-                if (retrieval.Status == FishingTrapRetrievalStatus.Working) result.Add(Create(s, retrieval.Id, retrieval.WorkerId,
+                if (retrieval.Status == FishingTrapRetrievalStatus.Working
+                    || includeOpen && retrieval.Status == FishingTrapRetrievalStatus.Paused)
+                    result.Add(Create(s, retrieval.Id, retrieval.WorkerId,
                     WorldProcedureKind.FishingTrapRetrieval, includeDetails ? retrieval.Status.ToString() : null,
                     includeDetails ? (RuleTime?)retrieval.WorkDone : null, null, options, includeDetails));
             foreach (var attempt in s.SupplyCacheAttempts ?? Array.Empty<SupplyCacheAttemptRecord>())
                 if (attempt.Status == SupplyCacheAttemptStatus.Working) result.Add(Create(s, attempt.Id, attempt.ActorId,
                     WorldProcedureKind.SupplyCache, includeDetails ? attempt.Status.ToString() : null, null, null, options, includeDetails));
             foreach (var attempt in s.FishingTrapAttempts ?? Array.Empty<FishingTrapAttemptRecord>())
-                if (attempt.Status == FishingTrapAttemptStatus.SettingUp) result.Add(Create(s, attempt.Id, attempt.SetterId,
+                if (attempt.Status == FishingTrapAttemptStatus.SettingUp
+                    || includeOpen && attempt.Status == FishingTrapAttemptStatus.Paused)
+                    result.Add(Create(s, attempt.Id, attempt.SetterId,
                     WorldProcedureKind.FishingTrapSetup, includeDetails ? attempt.Status.ToString() : null,
                     includeDetails ? (RuleTime?)attempt.SetupLabor : null, null, options, includeDetails));
             foreach (var attempt in s.HarvestAttempts ?? Array.Empty<HarvestAttemptRecord>())
-                if (attempt.Status == HarvestAttemptStatus.Working) result.Add(Create(s, attempt.Id, attempt.WorkerId, WorldProcedureKind.Harvest,
+                if (attempt.Status == HarvestAttemptStatus.Working || includeOpen && attempt.Status == HarvestAttemptStatus.Paused)
+                    result.Add(Create(s, attempt.Id, attempt.WorkerId, WorldProcedureKind.Harvest,
                     includeDetails ? attempt.Status.ToString() : null, includeDetails ? (RuleTime?)attempt.WorkDone : null,
                     includeDetails ? (RuleTime?)attempt.Duration : null, options, includeDetails));
             return result.AsReadOnly();
