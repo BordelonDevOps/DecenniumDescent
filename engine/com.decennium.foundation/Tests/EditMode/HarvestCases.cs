@@ -225,6 +225,7 @@ namespace Decennium.Foundation.Tests
                 var initial=unseeded.Initial();var manifest=initial.HarvestManifests.Single();
                 var yield=HarvestYieldRules.Roll(HarvestSize.Small,2);
                 Require(initial.SchemaVersion==Snapshot.HarvestManifestSchema&&manifest.Size==HarvestSize.Small
+                    &&initial.HarvestDonors.Single().AnatomyProfileId==manifest.AnatomyVersionId
                     &&manifest.FullTimeSeconds==20*60&&manifest.BaseYieldUnits==2&&manifest.BaseYieldDice.SequenceEqual(new[]{2})
                     &&manifest.YieldRandomBefore==2&&manifest.YieldRandomAfter==initial.RandomState
                     &&manifest.YieldWordsConsumed==yield.WordsConsumed&&manifest.BaseYieldUnits==yield.Units,
@@ -240,6 +241,12 @@ namespace Decennium.Foundation.Tests
                 int modifier=HarvestModifier(unseeded.Initial());uint seed=HarvestSmallSeedFor(TaskDegree.Success,modifier);
                 var policy=TestOnlySharedWorldPolicy.WithHarvest(new SharedHarvestFixture(smallFinitePool:true),seed);var simulation=World(policy);
                 var before=simulation.Capture();
+                var wrongVersion=new Command("harvest.batch.wrong-version",HarvestWorker,before.Revision,CommandKind.StartHarvest,
+                    SharedHarvestFixture.ManifestId,harvestSelection:new HarvestSelectionRequest("TEST_ONLY.wrong-river-fish-anatomy-v1",
+                        new[]{SharedHarvestFixture.CategoryRecordId}));
+                RejectUnchanged(simulation,host,wrongVersion,"HarvestManifestVersionMismatch");
+                Require(new SnapshotCodec().Encode(before).SequenceEqual(new SnapshotCodec().Encode(simulation.Capture())),
+                    "A mismatched anatomy version changed time, RNG, or selection state.");
                 var command=HarvestBatchCommand(simulation,new[]{SharedHarvestFixture.CategoryRecordId,SharedHarvestFixture.CategoryRecordId2},
                     criticalPreference:SharedHarvestFixture.RecoveryUnitId,commandId:"harvest.batch.full");
                 HarvestCommit(simulation,command);var attempt=simulation.Capture().HarvestAttempts.Single();

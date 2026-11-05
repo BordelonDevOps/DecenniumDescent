@@ -1,6 +1,6 @@
 # Harvest rule decisions
 
-**Scope:** schema41's bounded finite-source harvesting slice on branch `Engine`. The rules below separate pinned playtest source, Codex/GPT interpretation, and test-fixture limits. This is not release approval.
+**Scope:** schema41/42's bounded finite-source harvesting slice on branch `Engine`. The rules below separate pinned playtest source, Codex/GPT interpretation, and test-fixture limits. This is not release approval.
 
 ## Agreed source reading
 
@@ -22,10 +22,17 @@ The [GPT consensus receipt](evidence/2026-11-05-finite-source-harvesting/GPT_CON
 - Success settles only the selected unit into linked inventory/cargo and subtracts exactly its mass from the same remains. Failure ruins only the selected finite unit and awards no cargo. Critical failure records and applies the piercing `1d4` fallback through the existing damage/life path.
 - Each unit retains its origin timestamp and preservation interval. The unit projection computes Fresh, Degraded, and Spoiled boundaries from death/removal time; harvested food remains generic material with no invented nutrition or price.
 
+## Implemented schema42 fixture extension
+
+- The same TEST_ONLY fish fixture can use a Small 1d2 finite yield, resolved once from the shared RNG when its manifest is created. The source-sized time is 20 minutes. A fixed two-unit base allocation is partitioned across one or two categories, with a preregistered damaged-but-recoverable unit in the fixture.
+- A selected category allocation uses one check for all its allocated units. Partial selection uses the source fraction of full time and forfeits the unselected pool when work first advances. Success recovers selected intact units; Critical Success may add the selected preregistered recoverable damaged unit. Failure ruins the unique highest-value unit or honors the recorded tied-unit choice and exhausts the other selected units. Unknown competing values and missing tie choices reject before work.
+- Manifest identity and anatomy version stay separate: `Command.Target` selects the manifest record, and `HarvestSelectionRequest.ManifestVersionId` must equal that record's `AnatomyVersionId`. Donor and manifest anatomy profiles must match. These are identity and admission constraints, not new harvest rules.
+- Schema42 tests cover finite yield persistence, source allocation, save/load, command reconstruction, duplicate replay and the bounded outcomes. The repair record is in [schema42 harvest validation evidence](evidence/2026-11-05-harvest-validation-repair/README.md).
+
 ## Known gaps
 
-- This is not a general harvest engine. It admits one fixed fish, one category, one precomputed ordinary unit and one selected lead. Identification, authored manifest construction, variable anatomy/size, multiple categories, partial harvest choices, assistants, environmental nodes, plants, mining, salvage, container-volume settlement, and the broader gathering catalog are not implemented here.
-- Critical success does not yet restore a preregistered damaged unit. Declared hazards are not represented by this fixture. The test covers the no-hazard Fishing fallback only.
+- This is not a general harvest engine. It admits one fixed TEST_ONLY fish and one selected lead; its Tiny/Small profiles and one/two-category allocations are fixtures, not general manifest authoring. Identification, runtime-authored anatomy/material profiles, assistants, environmental nodes, plants, mining, salvage, container-volume settlement and the broader gathering catalog remain unimplemented.
+- Declared-hazard execution is not represented by this fixture; the test covers the no-hazard Fishing fallback only.
 - The snapshot records the accident type, but does not yet generalize damage-type resistance for all harvesting hazards.
 - The harvest-unit projection computes two-stage preservation. The older generic inventory lot currently exposes a single `FreshUntil` field, so all generic inventory consumers do not yet use the full Degraded/Spoiled lifecycle.
 - The fish death lifecycle event is fixture provenance, not a general creature/death event service. Legal consent and authority records are only admitted as fixture restrictions.

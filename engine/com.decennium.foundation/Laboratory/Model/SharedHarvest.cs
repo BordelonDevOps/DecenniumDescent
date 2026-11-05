@@ -93,9 +93,9 @@ namespace Decennium.Foundation.Laboratory
             s.FishingCreatures=s.FishingCreatures.Concat(new[]{new FishingCreatureBodyRecord(SharedHarvestFixture.CreatureId,
                 "TEST_ONLY.ordinary-river-fish.1lb",HarvestSiteId,HarvestSiteId,HarvestSiteId,
                 "",owner,FishingCreatureLifeState.Dead,new RuleQuantity(1),RuleQuantity.FromFraction(1,10),"","","",null,0)}).ToArray();
-            s.HarvestDonors=new[]{new HarvestDonorRecord(SharedHarvestFixture.CreatureId,"TEST_ONLY.river-fish-death-event.0",default,
-                harvestFixture.OriginRestriction,"TEST_ONLY.ordinary-river-fish-anatomy-v1",owner,new RuleQuantity(1))};
             string anatomy=harvestFixture.SmallFinitePool?"TEST_ONLY.small-river-fish-anatomy-v1":"TEST_ONLY.ordinary-river-fish-anatomy-v1";
+            s.HarvestDonors=new[]{new HarvestDonorRecord(SharedHarvestFixture.CreatureId,"TEST_ONLY.river-fish-death-event.0",default,
+                harvestFixture.OriginRestriction,anatomy,owner,new RuleQuantity(1))};
             if(harvestFixture.SmallFinitePool) {
                 HarvestYieldResolution yield=HarvestYieldRules.Roll(HarvestSize.Small,s.RandomState);
                 if(yield.Units!=2)throw new InvalidOperationException("The TEST_ONLY Small manifest seed must resolve the sourced 1d2 yield to two units.");
@@ -113,14 +113,15 @@ namespace Decennium.Foundation.Laboratory
                             SharedHarvestFixture.CategoryId2,1,new[]{SharedHarvestFixture.UnitId2,SharedHarvestFixture.RecoveryUnitId})};
                 long? firstValue=harvestFixture.UnknownFailureValues?null:(long?)(harvestFixture.EqualFailureValues?5:10);
                 long? secondValue=harvestFixture.UnknownFailureValues?null:(long?)(harvestFixture.EqualFailureValues?5:20);
+                string secondCategory=harvestFixture.SingleCategoryMultipleUnits?SharedHarvestFixture.CategoryId:SharedHarvestFixture.CategoryId2;
                 s.HarvestUnits=new[]{
                     new HarvestMaterialUnitRecord(HarvestFiniteLotId,SharedHarvestFixture.ManifestId,SharedHarvestFixture.CategoryId,
                         "TEST_ONLY.material.river-fish-meat",1,RuleQuantity.FromFraction(1,4),firstValue,
                         HarvestUnitCondition.Intact,HarvestUnitStatus.Available,8*60*60,default),
-                    new HarvestMaterialUnitRecord(SharedHarvestFixture.UnitId2,SharedHarvestFixture.ManifestId,SharedHarvestFixture.CategoryId2,
+                    new HarvestMaterialUnitRecord(SharedHarvestFixture.UnitId2,SharedHarvestFixture.ManifestId,secondCategory,
                         "TEST_ONLY.material.river-fish-offal",1,RuleQuantity.FromFraction(1,4),secondValue,
                         HarvestUnitCondition.Intact,HarvestUnitStatus.Available,8*60*60,default),
-                    new HarvestMaterialUnitRecord(SharedHarvestFixture.RecoveryUnitId,SharedHarvestFixture.ManifestId,SharedHarvestFixture.CategoryId2,
+                    new HarvestMaterialUnitRecord(SharedHarvestFixture.RecoveryUnitId,SharedHarvestFixture.ManifestId,secondCategory,
                         "TEST_ONLY.material.damaged-fish-liver",1,RuleQuantity.FromFraction(1,4),5,
                         HarvestUnitCondition.DamagedPotentiallyRecoverable,HarvestUnitStatus.Available,8*60*60,default)};
             } else {
@@ -361,7 +362,7 @@ namespace Decennium.Foundation.Laboratory
                 HarvestCategoryRecord[] categories;
                 string failurePreference="",criticalPreference="";
                 if(s.SchemaVersion>=Snapshot.HarvestManifestSchema) {
-                    if(c.HarvestSelection==null||c.Target!=c.HarvestSelection.ManifestVersionId)return "HarvestSelectionRequired";
+                    if(c.HarvestSelection==null)return "HarvestSelectionRequired";
                     manifest=s.HarvestManifests.SingleOrDefault(x=>x.Id==c.Target);
                     if(manifest==null)return "UnknownHarvestManifest";
                     if(c.HarvestSelection.ManifestVersionId!=manifest.AnatomyVersionId)return "HarvestManifestVersionMismatch";
