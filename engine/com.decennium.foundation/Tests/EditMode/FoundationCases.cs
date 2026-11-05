@@ -231,6 +231,7 @@ namespace Decennium.Foundation.Tests
             AddCommandHistoryCases(cases);
             AddEncounterHistoryCases(cases, directory);
             AddSharedWorldCases(cases, directory);
+            AddSharedWorldArchitectureCases(cases, directory);
             AddSparseEncounterCases(cases, directory);
             AddConnectedCombatCases(cases, directory);
             AddFormulaResearchCases(cases, directory);
@@ -244,6 +245,11 @@ namespace Decennium.Foundation.Tests
             AddTacticalMovementCases(cases, directory);
             AddContentResolutionCases(cases, directory);
             AddCharacterAdvancementCases(cases,directory);
+            AddSoldierTacticalTechniqueCases(cases,directory);
+            AddSoldierDefensiveFormationCases(cases,directory);
+            AddFishingTrapCases(cases,directory);
+            AddExpeditionAssignmentCases(cases,directory);
+            AddHarvestCases(cases,directory);
             AddPeriodicRiderCases(cases,directory);
             AddOverwatchExecutionCases(cases,directory);
             return cases;

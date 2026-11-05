@@ -1,0 +1,69 @@
+{
+  "schema": 1,
+  "implementationBranch": "Engine",
+  "sourceRevision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+  "sources": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/playtest/character_foundation.json",
+      "snapshot": "sources/character_foundation.json",
+      "blob": "88fad6737419c7053d262bdf747fad80fd20f1c4",
+      "sha256": "21e12af81f191abe52d1e3272ed1f57c6446ed3d4487cafbd5609dff08e56a77",
+      "scope": "The shared binding validator's required 17 class-profile and advancement schedule projection. This is validator context, not the movement rule source."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_PLAYER_BOOK.md",
+      "snapshot": "sources/EXPEDITION_PLAYER_BOOK.md",
+      "blob": "466871fc128dc5f06043a874da2b9c1d94ed80a5",
+      "sha256": "4c58b9f7063e562b785b8db6006699d3c4f68edd0e697d06db69662ba9b7e480",
+      "scope": "FL-01–03: record actual activity, location and elapsed start/end; prohibit incompatible simultaneous activity; use one shared clock for travel, work and combat. These source clauses do not define the six-second off-calendar activity ledger."
+    }
+  ],
+  "ownerAndConsensusDecisions": [
+    "../../PROTOTYPE_RULE_DECISIONS.md: owner-approved six-second tactical rounds and provisional exploration clock/traversal scope.",
+    "../../EXPLORATION_MOVEMENT_RULE_DECISIONS.md and GPT_CONSENSUS.md: delegated Codex/GPT completion for fixed intervals, ActiveLabor, work/action exclusion, automatic legal Dash renewal, receipt provenance, suspension and TEST_ONLY bounds."
+  ],
+  "implementations": [
+    {
+      "name": "Schema40 TEST_ONLY off-calendar companion activity, ActiveLabor and paid Dash ledger",
+      "code": [
+        "Runtime/Core/WorldActivityRecord.cs",
+        "Runtime/Core/WorldScheduleRecord.cs",
+        "Runtime/Core/CommandHistory.cs",
+        "Runtime/Core/Simulation.cs",
+        "Runtime/Persistence/WorldActivityCodec.cs",
+        "Runtime/Persistence/SnapshotCodec.cs",
+        "Laboratory/Model/SharedWorldCombatPolicy.cs",
+        "Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+        "Tests/EditMode/ExpeditionAssignmentCases.cs"
+      ],
+      "tests": [
+        "off_calendar_activity_uses_fixed_six_second_dash_and_persists_without_initiative",
+        "off_calendar_action_and_worker_claims_share_the_fixed_activity_interval"
+      ],
+      "implemented": [
+        "Schema40 appends exact six-second activity intervals, movement spending and a None/Dash/ActiveLabor commitment. Dash references its exact authorizing command receipt; ActiveLabor references retained work history. The new fields are written only on the schema40 codec path; prior schema paths remain versioned. No frozen historical-byte comparison was run.",
+        "Intervals are anchored to WorldSchedule.Origin with exact rational arithmetic. Save/restore and pause/resume preserve spending until the fixed boundary.",
+        "Off-calendar Dash doubles current walking movement allowance. Still-running routes automatically attempt one fresh legal Dash at each boundary after due shared-clock effects; the route's exact originating BeginWorldStep(run) receipt is resolved through StartedRevision. Actor/calendar/interval ordinal keeps each renewal distinct from its authorization reference.",
+        "WorkerInterval and procedure Working records are normalized. Any current or future work claim in the fixed bucket prevents Dash; an unlinked Working record still blocks. Positive credited labor commits ActiveLabor, adjacent work segments share that commitment without merging histories, and scheduler credit after Dash is rejected. Paused reservations without active labor do not block Dash.",
+        "A failed renewal spends nothing and leaves the edge Suspended. Voluntary pauses never renew automatically; blocker removal does not resume a suspended route. Historical stop reason remains transient for this increment.",
+        "The companion remains outside tactical initiative and does not receive a combat turn or life marker. A current-codec schema39 roundtrip confirms that it encodes no activity record; this is not a historical-byte compatibility comparison.",
+        "Dash and running-traversal receipt linkage is validated against exact revision history, even when principals reuse command IDs. Missing or duplicate authorization revisions fail validation."
+      ],
+      "notImplemented": [
+        "General off-calendar roster, multiple simultaneous movers, arbitrary or autonomous route planning, follower behavior, encounter transitions while traversing, and production exploration authority.",
+        "General Action modeling for every future exploration interaction, release-qualified rules content, Unity host integration, player-facing UI, and observed gameplay."
+      ]
+    }
+  ],
+  "validation": {
+    "compile": "COMPILE_RESULTS.json",
+    "headless": "HEADLESS_RESULTS.json",
+    "packageStatic": "PACKAGE_RESULTS.json",
+    "ruleBindings": "RULE_BINDINGS_VALIDATION.json",
+    "ruleDecisionRecord": "../../EXPLORATION_MOVEMENT_RULE_DECISIONS.md",
+    "relatedDecisionRecords": [
+      "../../PROTOTYPE_RULE_DECISIONS.md",
+      "../../EXPEDITION_ASSIGNMENT_RULE_DECISIONS.md"
+    ]
+  }
+}

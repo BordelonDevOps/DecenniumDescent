@@ -15,7 +15,9 @@ namespace Decennium.Foundation.Laboratory
         internal static RuleTime Duration(RuleQuantity amount,long rate)=>RuleTime.FromFraction((BigInteger)amount.Numerator*rate,amount.Denominator);
         internal static RuleQuantity Quantity(RuleTime time,long rate)=>RuleQuantity.FromFraction(time.Numerator,(BigInteger)time.Denominator*rate);
         internal static string Identity(Snapshot s,string suffix)=>"inventory."+(s.Revision+1).ToString(CultureInfo.InvariantCulture)+"."+suffix;
-        public static bool Busy(Snapshot s,string actor)=>s.Work.WorkerIntervals.Any(x=>x.WorkerId==actor&&x.Start<=s.RuleClock&&x.End>s.RuleClock);
+        public static bool Busy(Snapshot s,string actor)
+            =>s.Work.WorkerIntervals.Any(x=>x.WorkerId==actor&&x.Start<=s.RuleClock&&x.End>s.RuleClock)
+                ||WorldActivityProjection.CurrentWork(s).Any(x=>x.ActorId==actor);
         public static bool Fresh(Snapshot s,InventoryLotRecord lot)=>!lot.FreshUntil.HasValue||s.RuleClock<lot.FreshUntil.Value;
         public static RuleQuantity Consumed(Snapshot s,string actor,NutritionKind kind)=>RuleQuantity.Sum(s.Intakes.Where(x=>x.ActorId==actor
             &&s.InventoryLots.Single(l=>l.LotId==x.LotId).Nutrition==kind).Select(x=>s.Work.Reservations.Single(r=>r.Id==x.ReservationId).ConsumedAmount));
@@ -112,7 +114,7 @@ namespace Decennium.Foundation.Laboratory
                 :tactical.Length!=0||tacticalVessels.Length!=0||s.Intakes.Any(x=>x.Status==IntakeStatus.CombatInterrupted)))return "InvalidTacticalHistory";
             var cropTasks=s.Crops.SelectMany(x=>x.Tasks).ToArray();
             if(s.Work.Reservations.Any(r=>!cropTasks.Any(t=>t.InputReservations.Contains(r.Id))&&!s.Intakes.Any(j=>j.ReservationId==r.Id)&&!s.WaterFills.Any(j=>j.ReservationId==r.Id))
-                ||s.Work.WorkerIntervals.Any(w=>!cropTasks.Any(t=>t.Id==w.JobId)&&!s.Intakes.Any(j=>j.Id==w.JobId)&&!s.Handling.Any(j=>j.Id==w.JobId)&&!s.WaterFills.Any(j=>j.Id==w.JobId)&&!s.VesselMoves.Any(j=>j.Id==w.JobId)&&!s.SupplyCacheAttempts.Any(j=>j.Id==w.JobId)&&!s.PortableHandling.Any(j=>j.Id==w.JobId)))
+                ||s.Work.WorkerIntervals.Any(w=>!cropTasks.Any(t=>t.Id==w.JobId)&&!s.Intakes.Any(j=>j.Id==w.JobId)&&!s.Handling.Any(j=>j.Id==w.JobId)&&!s.WaterFills.Any(j=>j.Id==w.JobId)&&!s.VesselMoves.Any(j=>j.Id==w.JobId)&&!s.SupplyCacheAttempts.Any(j=>j.Id==w.JobId)&&!s.PortableHandling.Any(j=>j.Id==w.JobId)&&!s.FishingTrapAttempts.Any(j=>j.Id==w.JobId)&&!s.HarvestAttempts.Any(j=>j.Id==w.JobId)))
                 return "UnattributedInventoryLedger";
             foreach(var job in s.Intakes) {
                 var item=s.InventoryLots.Single(x=>x.LotId==job.LotId);var lot=s.Work.Lots.Single(x=>x.Id==job.LotId);

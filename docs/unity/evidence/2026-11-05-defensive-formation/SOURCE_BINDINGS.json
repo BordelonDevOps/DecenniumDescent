@@ -1,0 +1,78 @@
+{
+  "schema": 1,
+  "implementationBranch": "Engine",
+  "sourceRevision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+  "sources": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/playtest/character_foundation.json",
+      "snapshot": "sources/character_foundation.json",
+      "sha256": "21e12af81f191abe52d1e3272ed1f57c6446ed3d4487cafbd5609dff08e56a77",
+      "scope": "17 class profiles, Hit Dice and fixed later-level HP bases"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/soldier.json",
+      "snapshot": "sources/soldier.json",
+      "sha256": "ab9cd3bd64355166dceb5a09e1ddab98443a957bb4bcdce813f1ad294ec048f0",
+      "scope": "/schedule/2 and /cards/10, /cards/16, /cards/18, /cards/19"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md",
+      "snapshot": "sources/CLASS_PLAYTEST_RULES.md",
+      "sha256": "adb2f4752b45dc70ce792a675bb30dda362aab5056588061bcde3ba31c4c8a81",
+      "scope": "card timing, Recharge, advancement selection"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+      "snapshot": "sources/COMBAT_ACTION_PLAYTEST.md",
+      "sha256": "f90d039142145fbd31c37992ebece70d7926dc4b6081e340f9a2fd9dc7237bc6",
+      "scope": "shared action economy, movement and reactions"
+    },
+    {
+      "path": "docs/unity/SOLDIER_LEVEL3_RULE_DECISIONS.md",
+      "snapshot": "sources/SOLDIER_LEVEL3_RULE_DECISIONS.md",
+      "sha256": "c1b8cf2b4fb6f2bcd8014e22edec2d4e83b71c0cc9216aa59c51874ac6f8b3e3",
+      "scope": "accepted prototype completion policy and documented implementation limits"
+    }
+  ],
+  "implementations": [
+    {
+      "name": "Schema34 Soldier Defensive Formation and Command Step pairing",
+      "code": [
+        "Runtime/Core/CharacterAdvancementRecords.cs",
+        "Runtime/Core/CommandHistory.cs",
+        "Runtime/Core/Simulation.cs",
+        "Runtime/Core/SoldierDefensiveFormationRecords.cs",
+        "Runtime/Core/SoldierTacticalFeatureRecords.cs",
+        "Runtime/Core/TacticalMovementRecords.cs",
+        "Runtime/Persistence/CharacterAdvancementCodec.cs",
+        "Runtime/Persistence/SnapshotCodec.cs",
+        "Runtime/Persistence/SoldierTacticalFeatureCodec.cs",
+        "Runtime/Persistence/TacticalMovementCodec.cs",
+        "Laboratory/Model/SharedCharacterAdvancement.cs",
+        "Laboratory/Model/SharedDefensiveFormation.cs",
+        "Laboratory/Model/SharedWorldCombatPolicy.cs",
+        "Laboratory/Model/SoldierTacticalFeatures.cs",
+        "Laboratory/Model/TacticalMovementPolicy.cs",
+        "Laboratory/Model/TestOnlyClubAttackPolicy.cs",
+        "Tests/EditMode/CharacterAdvancementCases.cs",
+        "Tests/EditMode/FoundationCases.cs",
+        "Tests/EditMode/SoldierDefensiveFormationCases.cs",
+        "Tests/EditMode/TacticalMovementCases.cs"
+      ],
+      "tests": [
+        "soldier_defensive_formation_schema34_grants_source_legal_pair_and_roundtrips",
+        "soldier_defensive_formation_queries_cost_one_bonus_action_and_reject_invalid_targets_purely",
+        "soldier_defensive_formation_resolves_ordered_optional_shifts_without_oa_or_normal_movement_cost",
+        "soldier_defensive_formation_expires_at_owner_next_start_and_remains_one_use_per_encounter",
+        "soldier_defensive_formation_skips_unable_recipients_without_removing_protection",
+        "soldier_defensive_formation_shift_preserves_press_and_resumes_saved_continuation"
+      ]
+    }
+  ],
+  "validation": {
+    "headless": "HEADLESS_RESULTS.json",
+    "packageStatic": "PACKAGE_RESULTS.json",
+    "catalogProjection": "CATALOG_VALIDATION.json",
+    "ruleBindings": "RULE_BINDINGS_VALIDATION.json"
+  }
+}

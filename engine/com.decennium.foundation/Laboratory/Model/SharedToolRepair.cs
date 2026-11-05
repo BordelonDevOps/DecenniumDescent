@@ -20,17 +20,40 @@ namespace Decennium.Foundation.Laboratory
         public bool RecoverableBody { get; }
         public bool IntactImplements { get; }
         public bool Accessible { get; }
-        public SharedRepairFixture(bool trained = true, bool usableToolkit = true, bool recoverableBody = true, bool intactImplements = true, bool accessible = true)
-        { Trained = trained; UsableToolkit = usableToolkit; RecoverableBody = recoverableBody; IntactImplements = intactImplements; Accessible = accessible; }
+        public int SiteX { get; }
+        public int SiteY { get; }
+        public SharedRepairFixture(bool trained = true, bool usableToolkit = true, bool recoverableBody = true, bool intactImplements = true,
+            bool accessible = true, int siteX = 3, int siteY = 3)
+        {
+            if(siteX<0)throw new ArgumentOutOfRangeException(nameof(siteX),"Repair site coordinates must be nonnegative.");
+            if(siteY<0)throw new ArgumentOutOfRangeException(nameof(siteY),"Repair site coordinates must be nonnegative.");
+            Trained = trained; UsableToolkit = usableToolkit; RecoverableBody = recoverableBody; IntactImplements = intactImplements;
+            Accessible = accessible; SiteX=siteX;SiteY=siteY;
+        }
         internal string Key => "case-repair-v1|two-material-allotments1250cp|carpenter8gp6lbHP5|iron-bearing-tools|DEX-PB-once-DC10|retain-repair-work|first-labor-debit|two-watches|shared-bench-two-compatible-copy-repair-workareas|copy-independent-of-alchemy-kit|sourced-injury-check-penalties|"
-            + Trained + "|" + UsableToolkit + "|" + RecoverableBody + "|" + IntactImplements + "|" + Accessible;
+            + Trained + "|" + UsableToolkit + "|" + RecoverableBody + "|" + IntactImplements + "|" + Accessible
+            + (SiteX==3&&SiteY==3?"":"|site="+SiteX.ToString(CultureInfo.InvariantCulture)+","+SiteY.ToString(CultureInfo.InvariantCulture));
     }
     public sealed partial class TestOnlySharedWorldPolicy
     {
         private readonly SharedRepairFixture repair;
         public IEnumerable<string> RequiredInventoryOwners(Snapshot s, Command c)
         {
-            if(c.Kind==CommandKind.AttackRepeatingCrossbow||c.Kind==CommandKind.ReloadRepeatingCrossbow) {
+            if(IsHarvestCommand(c)) {
+                string manifestId=c.Kind==CommandKind.StartHarvest
+                    ?s.HarvestCategories.SingleOrDefault(x=>x.Id==c.Target)?.ManifestId
+                    :s.HarvestAttempts.SingleOrDefault(x=>x.Id==c.Target)?.ManifestId;
+                var manifest=s.HarvestManifests.SingleOrDefault(x=>x.Id==manifestId);
+                if(manifest==null)return Array.Empty<string>();
+                var donor=s.HarvestDonors.SingleOrDefault(x=>x.CreatureId==manifest.CreatureId);
+                return new[]{donor?.OwnerId,s.PortableEquipment.SingleOrDefault(x=>x.Id==manifest.ToolkitId)?.OwnerId,
+                    s.PortableEquipment.SingleOrDefault(x=>x.Id==manifest.KnifeId)?.OwnerId,
+                    s.PortableEquipment.SingleOrDefault(x=>x.Id==manifest.ContainerId)?.OwnerId,
+                    s.Structures.SingleOrDefault(x=>x.Id==manifest.WorkSurfaceId)?.OwnerId}
+                    .Where(x=>x!=null).Distinct(StringComparer.Ordinal).ToArray();
+            }
+            if(c.Kind==CommandKind.AttackRepeatingCrossbow||c.Kind==CommandKind.ReloadRepeatingCrossbow
+                ||c.Kind==CommandKind.WarningShot||c.Kind==CommandKind.CoveringFire) {
                 var weapon=s.RepeatingCrossbows.FirstOrDefault(x=>x.Id==c.Ranged?.WeaponId);
                 var lot=c.Kind==CommandKind.ReloadRepeatingCrossbow?s.AmmunitionLots.FirstOrDefault(x=>x.Id==c.Ranged?.AmmoLotId):null;
                 return new[]{weapon?.OwnerId,lot?.OwnerId}.Where(x=>x!=null).Distinct(StringComparer.Ordinal).ToArray();
@@ -50,10 +73,16 @@ namespace Decennium.Foundation.Laboratory
                 return item==null?new[]{cache.OwnerId}:new[]{cache.OwnerId,item.OwnerId}.Distinct(StringComparer.Ordinal).ToArray();
             }
             if(ManufacturingCommand(c.Kind))return ManufacturingOwners(s,c);
-            if (repair == null || c.Kind != CommandKind.StartToolRepair && c.Kind != CommandKind.ResumeToolRepair) return Array.Empty<string>();
+            var assignment=c.Kind==CommandKind.StartExpeditionWork
+                ?s.ExpeditionAssignments.SingleOrDefault(x=>x.Id==c.Target&&x.WorkerId==c.Actor):null;
+            if(assignment?.Procedure==ExpeditionWorkProcedure.FishingTrapRetrieval)
+                return PortableEquipmentRules.Owners(s,assignment.TargetId);
+            bool assignedRepair=assignment?.Procedure==ExpeditionWorkProcedure.ToolRepair;
+            if (repair == null || !assignedRepair&&c.Kind != CommandKind.StartToolRepair && c.Kind != CommandKind.ResumeToolRepair) return Array.Empty<string>();
             var job = c.Kind == CommandKind.ResumeToolRepair ? s.RepairWork.SingleOrDefault(x => x.Id == c.Target) : null;
             if (c.Kind == CommandKind.ResumeToolRepair && job == null) return Array.Empty<string>();
-            string target = job?.TargetId ?? c.Target, toolkit = job?.ToolkitId ?? SharedRepairFixture.Toolkit, materials = job?.MaterialsId ?? SharedRepairFixture.Materials;
+            string target = assignedRepair?assignment.TargetId:job?.TargetId ?? c.Target;
+            string toolkit = job?.ToolkitId ?? SharedRepairFixture.Toolkit, materials = job?.MaterialsId ?? RepairMaterialsLotId;
             return s.Structures.Where(x => x.Id == target || x.Id == toolkit).Select(x => x.OwnerId)
                 .Concat(s.InventoryLots.Where(x => x.LotId == materials).Select(x => x.OwnerId)).Distinct(StringComparer.Ordinal).ToArray();
         }
@@ -72,7 +101,8 @@ namespace Decennium.Foundation.Laboratory
         {
             var transferable = s.FormulaWork.Where(x => ResearchUsesRepairTarget(x,target)).Select(x => x.Id)
                 .Concat(s.CraftingIncidents.Where(x => x.ToolId == target && x.Result == 2 && x.Workers.Count != 0).Select(RemedyJobId)).ToArray();
-            return s.Work.WorkerIntervals.Any(x => x.WorkerId == actor && x.Start <= s.RuleClock && x.End > s.RuleClock && !transferable.Contains(x.JobId));
+            return s.Work.WorkerIntervals.Any(x => x.WorkerId == actor && x.Start <= s.RuleClock && x.End > s.RuleClock && !transferable.Contains(x.JobId))
+                || WorldActivityProjection.CurrentWork(s).Any(x => x.ActorId == actor && !transferable.Contains(x.Id));
         }
         private static string RepairFingerprint(string prior, SharedRepairFixture facts)
         {
@@ -82,9 +112,9 @@ namespace Decennium.Foundation.Laboratory
         {
             if (repair == null) return;
             s.Structures = s.Structures.Concat(new[] { new ObjectStructureRecord(SharedRepairFixture.Toolkit, "tools.carpenter-s-tools", TestOnlyPolicy.CompanionId,
-                TestOnlyPolicy.CompanionId, TestOnlyCropPolicy.PlotId, ObjectMaterial.IronSteel, 5, repair.UsableToolkit ? 5 : 0, 800, new RuleQuantity(6)) }).ToArray();
-            s.Work = new WorkLedger(s.Work.Lots.Concat(new[] { new ResourceLot(SharedRepairFixture.Materials, "case-repair-allotment-1250cp", 2, TestOnlyCropPolicy.PlotId, TestOnlyPolicy.CompanionId) }), s.Work.WorkerIntervals, s.Work.Reservations);
-            s.InventoryLots = s.InventoryLots.Concat(new[] { new InventoryLotRecord(SharedRepairFixture.Materials, "", TestOnlyPolicy.CompanionId, new RuleQuantity(2), default, NutritionKind.None, null, InventoryAccess.Ground) }).ToArray();
+                TestOnlyPolicy.CompanionId, RepairSiteLocationId, ObjectMaterial.IronSteel, 5, repair.UsableToolkit ? 5 : 0, 800, new RuleQuantity(6)) }).ToArray();
+            s.Work = new WorkLedger(s.Work.Lots.Concat(new[] { new ResourceLot(RepairMaterialsLotId, "case-repair-allotment-1250cp", 2, RepairSiteLocationId, TestOnlyPolicy.CompanionId) }), s.Work.WorkerIntervals, s.Work.Reservations);
+            s.InventoryLots = s.InventoryLots.Concat(new[] { new InventoryLotRecord(RepairMaterialsLotId, "", TestOnlyPolicy.CompanionId, new RuleQuantity(2), default, NutritionKind.None, null, InventoryAccess.Ground) }).ToArray();
         }
         private static bool RepairCommand(CommandKind kind) => kind == CommandKind.StartToolRepair || kind == CommandKind.PauseToolRepair || kind == CommandKind.ResumeToolRepair || kind == CommandKind.CancelToolRepair;
         private static void PutRepair(Snapshot s, RepairWorkRecord job) => s.RepairWork = s.RepairWork.Select(x => x.Id == job.Id ? job : x).ToArray();
@@ -92,16 +122,17 @@ namespace Decennium.Foundation.Laboratory
             => new RepairWorkRecord(job.Id, job.WorkerId, job.TargetId, job.ToolkitId, job.MaterialsId, status, job.StartedAt, s.RuleClock, work ?? job.Work, first, second, natural);
         private string RepairAccess(Snapshot s, string actor, string targetId, bool requireWindow = true)
         {
-            if (actor != TestOnlyPolicy.ActorId && actor != TestOnlyPolicy.CompanionId || !repair.Trained) return "RepairTrainingMissing";
+            if (!IsRepairWorker(actor) || !repair.Trained) return "RepairTrainingMissing";
             var target = s.Structures.SingleOrDefault(x => x.Id == targetId); var kit = s.Structures.SingleOrDefault(x => x.Id == SharedRepairFixture.Toolkit);
             if (target == null || target.Id != SharedCraftingFixture.ToolId || !repair.RecoverableBody || !repair.IntactImplements) return "RepairTargetUnsupported";
             if (kit == null || kit.Broken) return "RepairToolkitUnavailable";
-            if (!repair.Accessible || target.LocationId != TestOnlyCropPolicy.PlotId || kit.LocationId != TestOnlyCropPolicy.PlotId
-                || s.Work.Lots.Single(x => x.Id == SharedRepairFixture.Materials).LocationId != TestOnlyCropPolicy.PlotId) return "RepairAccessUnavailable";
-            if (CraftingRestrictions.StationUseBlocked(s, TestOnlyCropPolicy.PlotId)) return "RepairStationUnavailable";
+            if (!repair.Accessible || target.LocationId != RepairSiteLocationId || kit.LocationId != RepairSiteLocationId
+                || s.Work.Lots.Single(x => x.Id == RepairMaterialsLotId).LocationId != RepairSiteLocationId) return "RepairAccessUnavailable";
+            if (CraftingRestrictions.StationUseBlocked(s, RepairSiteLocationId)) return "RepairStationUnavailable";
             if (!CapableWorker(s, actor) || View(s, actor).BlocksSight || AvailableHands(s, actor) < 1) return "RepairWorkerIncapable";
             var body = s.Actors.Single(x => x.Id == actor);
-            if (s.WorldTraversals.Any(x => x.ActorId == actor) || Math.Max(Math.Abs(body.X - 3), Math.Abs(body.Y - 3)) > 1) return "RepairStationOutOfReach";
+            if (s.WorldTraversals.Any(x => x.ActorId == actor)
+                || !WorldSpatialQueries.WithinRange(body.X, body.Y, RepairSiteX, RepairSiteY, 1)) return "RepairStationOutOfReach";
             if (s.InventoryCombat && s.WorldSchedule.Order.Contains(actor)) return "RepairParticipantInCombat";
             if (requireWindow && !ResearchWindowEnd(s.RuleClock).HasValue) return "RepairWorkWindowClosed";
             return null;
@@ -150,26 +181,16 @@ namespace Decennium.Foundation.Laboratory
         }
         private string ResolveRepair(Snapshot s, Command c)
         {
-            if (repair == null) return "ToolRepairNotSelected";
-            if (c.Inventory != null || c.Combat != null || c.X != 0 || c.Y != 0) return "InvalidRepairRequest";
-            if (PendingCalendarChoice(s)) return "TacticalChoicePending";
+            string assessment = AssessRepairCommand(s, c, out var current); if (assessment != null) return assessment;
             if (c.Kind == CommandKind.StartToolRepair) {
-                string access = RepairAccess(s, c.Actor, c.Target); if (access != null) return access;
-                if (s.RepairWork.Any(x => x.TargetId == c.Target && x.Open)) return "RepairTargetClaimed";
-                var target = s.Structures.Single(x => x.Id == c.Target); if (target.Hp == target.MaximumHp) return "TargetDoesNotNeedRepair";
-                if (RepairWorkerBusy(s, c.Actor, c.Target)) return "WorkerBusy";
-                if (s.Work.AvailableAmount(SharedRepairFixture.Materials) < new RuleQuantity(1)) return "RepairMaterialsUnavailable";
-                if (s.RepairWork.Length == RepairWorkValidation.MaxRecords) return "RepairHistoryCapacityReached";
+                var target = s.Structures.Single(x => x.Id == c.Target);
                 string id = "repair.work." + (s.Revision + 1).ToString(CultureInfo.InvariantCulture);
-                var job = new RepairWorkRecord(id, c.Actor, c.Target, SharedRepairFixture.Toolkit, SharedRepairFixture.Materials, RepairWorkStatus.Working, s.RuleClock, s.RuleClock,
+                var job = new RepairWorkRecord(id, c.Actor, c.Target, SharedRepairFixture.Toolkit, RepairMaterialsLotId, RepairWorkStatus.Working, s.RuleClock, s.RuleClock,
                     new ActiveWorkProgress(new[] { ObjectStructureRules.RepairLabor(target) }));
                 s.Work = s.Work.Reserve(id, Array.Empty<WorkerInterval>(), new[] { new ResourceReservation(id + ".materials", id, job.MaterialsId, 1) });
                 AcquireRepairAccess(s,c.Target);BookRepair(s, job); s.RepairWork = s.RepairWork.Concat(new[] { job }).ToArray(); return null;
             }
-            var current = s.RepairWork.SingleOrDefault(x => x.Id == c.Target && x.WorkerId == c.Actor); if (current == null) return "UnknownRepairWork";
-            if (!current.Open) return "RepairWorkClosed";
             if (c.Kind == CommandKind.PauseToolRepair) {
-                if (current.Status != RepairWorkStatus.Working) return "RepairNotWorking";
                 PauseRepair(s, current); return null;
             }
             if (c.Kind == CommandKind.CancelToolRepair) {
@@ -178,9 +199,6 @@ namespace Decennium.Foundation.Laboratory
                 PutRepair(s, ChangeRepair(s, current, RepairWorkStatus.Cancelled)); return null;
             }
             if (c.Kind == CommandKind.ResumeToolRepair) {
-                if (current.Status == RepairWorkStatus.Working) return "RepairAlreadyWorking";
-                string access = RepairAccess(s, c.Actor, current.TargetId, current.Status != RepairWorkStatus.AwaitingCheck); if (access != null) return access;
-                if (RepairWorkerBusy(s, c.Actor, current.TargetId)) return "WorkerBusy";
                 AcquireRepairAccess(s,current.TargetId);
                 if (current.Status == RepairWorkStatus.AwaitingCheck) { FinishRepair(s, current); return null; }
                 BookRepair(s, current); PutRepair(s, ChangeRepair(s, current, RepairWorkStatus.Working)); return null;

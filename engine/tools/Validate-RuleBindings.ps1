@@ -1,5 +1,5 @@
 param(
-    [string]$Bindings = (Join-Path $PSScriptRoot '../../docs/unity/evidence/2026-11-04-action-query/SOURCE_BINDINGS.json'),
+    [string]$Bindings = (Join-Path $PSScriptRoot '../../docs/unity/evidence/2026-11-05-expedition-assignments/SOURCE_BINDINGS.json'),
     [string]$ResultsRoot = (Join-Path $PSScriptRoot '../artifacts')
 )
 $ErrorActionPreference = 'Stop'
@@ -64,3 +64,4 @@ finally {
     Write-Output ($report.status+': rule bindings; '+$outputFile)
 }
 if ($report.status -ne 'PASS') { Write-Error $report.error; exit 1 }
+

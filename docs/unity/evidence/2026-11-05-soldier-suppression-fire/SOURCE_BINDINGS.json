@@ -1,0 +1,111 @@
+{
+  "status": "CAPTURED",
+  "implementationBranch": "Engine",
+  "implementationBaseCommit": "be10936e9bf4065258ffb4ef4cff2b21e26901ef",
+  "sourceRevision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+  "pinnedSources": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/soldier.json",
+      "gitBlob": "c414a1d9ba2ce37cde89d0ef73265821bb74ac2d",
+      "sha256": "ab9cd3bd64355166dceb5a09e1ddab98443a957bb4bcdce813f1ad294ec048f0",
+      "scope": "/schedule/2, /cards/10, /cards/16, /cards/18"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md",
+      "gitBlob": "5a446dd0dabae096e51f419b5e71756e0169bb3b",
+      "sha256": "adb2f4752b45dc70ce792a675bb30dda362aab5056588061bcde3ba31c4c8a81",
+      "scope": "class card timing and Recharge"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+      "gitBlob": "72bcb58af57f8bfe27596ec0b1467e4c780a6ef8",
+      "sha256": "f90d039142145fbd31c37992ebece70d7926dc4b6081e340f9a2fd9dc7237bc6",
+      "scope": "action, range, cover, save, movement/area geometry"
+    }
+  ],
+  "implementationFiles": [
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+      "sha256": "599f0f2800e2b2c75a0e16be5095bf1de38acf334d722655653220904b2933df"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/CommandHistory.cs",
+      "sha256": "9c40dd4487c25faef9a883ff29f437d76e5eb9e9011229c1283fc9e276e89a53"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/CharacterAdvancementRecords.cs",
+      "sha256": "d9c75083fc66fa3b8a1bd0d3647731644bb6416977092e15e596e4a4a5ff4827"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/RangedCombatRecords.cs",
+      "sha256": "80f90f7bdee9180418c6d153129083e988a7da5826a71eb9baf3a2a3941a0a32"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SoldierTacticalFeatureRecords.cs",
+      "sha256": "426cf152eeeff1d19627a4b4373fd6142e9d46fa0e2d930a637367a05e4f1f2a"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/CharacterAdvancementCodec.cs",
+      "sha256": "bf78d6be42a8e128fe8119862a4ff6ed697379f25ea2a5b04e5b05614cdd80d6"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/SnapshotCodec.cs",
+      "sha256": "e0b02b92571a62144edb12e60e3080bb2341b0f4d168b1df60f4e5ce4c52cd53"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/SoldierTacticalFeatureCodec.cs",
+      "sha256": "533e690211c990b06e4f7826c2efcb9ad5bfba1204d5713f5f4627b24703af51"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCharacterAdvancement.cs",
+      "sha256": "a0649c77b119f9aa7a8de89bc40538a11a0d25ed0451a0ad55b2f36142adbec9"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldRangedCombat.cs",
+      "sha256": "ff16c189467747b74bc25ab9839a3cd46430ab4aea9dc14ff77ed674b71e50ec"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs",
+      "sha256": "61d6297a60affc9abe3e9fa52125a6bbbe7d637c96a2fc0277f49c774fe50801"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SoldierTacticalFeatures.cs",
+      "sha256": "53ea27622791a1224b7e3a03f13cdcccbf9260d12f2aee209e208edee140b5e6"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "sha256": "190d585ab34177d307a985ef8469fd7b8acacf165574da320301ee32f33ae40e"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlyClubAttackPolicy.cs",
+      "sha256": "8564cc124e9fc2a4f5002777c0a746b5c0528b5bcfb0b050a22139cac01ed598"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/SoldierTacticalTechniqueCases.cs",
+      "sha256": "67d2942ee7eb464cbffc986827c3f135408b4ac1e9e8d482f8f3957a065d8cd2"
+    }
+  ],
+  "regressionCases": [
+    "soldier_suppression_fire_is_a_schema33_source_legal_level_three_pair",
+    "soldier_suppression_fire_queries_action_and_three_bolts_without_mutation",
+    "soldier_suppression_fire_records_one_shared_damage_roll_and_saves_then_expires_slow_at_soldier_end",
+    "soldier_suppression_fire_success_halves_shared_damage_without_slow_or_attack_roll",
+    "soldier_suppression_fire_rejects_an_unauthored_zone_before_cost_or_randomness"
+  ],
+  "results": {
+    "fullSuite": "PASS 1077/1077",
+    "compile": "PASS Core, Persistence, LabModel; C# 9; warnings as errors",
+    "staticPackage": "PASS 14 checks",
+    "unityCompilation": "NOT RUN",
+    "editMode": "NOT RUN",
+    "playMode": "NOT RUN",
+    "playerBuild": "NOT RUN"
+  },
+  "catalogValidation": "PASS: 17 classes, 340 schedule rows (280 structured plus 60 narrative exceptions), 1,223 card options, pinned Git blobs at 46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+  "latestResults": {
+    "fullSuite": "engine/artifacts/run-20261105T040638249Z-4076d6c7/results.json",
+    "compile": "engine/artifacts/compile-20261105T040638225Z-bc090f32/results.json",
+    "staticPackage": "engine/artifacts/static-20261105T040638132Z-274c5f13/results.json",
+    "catalogProjection": "engine/artifacts/class-advancement-20261105T040358356Z-42f11257/results.json"
+  }
+}

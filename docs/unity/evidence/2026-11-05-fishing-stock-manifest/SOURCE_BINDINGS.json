@@ -1,0 +1,79 @@
+{
+  "schema": 1,
+  "implementationBranch": "Engine",
+  "sourceRevision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+  "sources": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/playtest/character_foundation.json",
+      "snapshot": "sources/character_foundation.json",
+      "sha256": "21e12af81f191abe52d1e3272ed1f57c6446ed3d4487cafbd5609dff08e56a77",
+      "scope": "17 class profiles, Hit Dice and fixed later-level HP bases; required by the shared source-binding validator."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/FISHING_RECIPE_PLAYTEST.md",
+      "snapshot": "sources/FISHING_RECIPE_PLAYTEST.md",
+      "blob": "01aa68782e604c3e2b2e06ca1caf582d8cd01305",
+      "sha256": "447c77740e42a561346fdbbb0a5ed4e785421c27c4f399bfbd53ab45240d36cf",
+      "scope": "Start one attempt and the one-shot unattended Trap: setup/exposure, commitment, finite shared stock manifests and allocations, fixed minute-55 check, capture retention, retrieval, custody, allowance and abandonment."
+    }
+  ],
+  "implementations": [
+    {
+      "name": "Schema38 TEST_ONLY physical Trap, retrieval and finite stock membership",
+      "code": [
+        "Runtime/Core/FishingTrapRecords.cs",
+        "Runtime/Core/Simulation.cs",
+        "Runtime/Core/PortableEquipmentRecords.cs",
+        "Runtime/Persistence/FishingTrapCodec.cs",
+        "Runtime/Persistence/SnapshotCodec.cs",
+        "Laboratory/Model/SharedFishingTrap.cs",
+        "Laboratory/Model/SharedCraftingConsequences.cs",
+        "Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+        "Laboratory/Model/SharedWorldCombatPolicy.cs",
+        "Laboratory/Model/OrdinaryInventory.cs",
+        "Tests/EditMode/FishingTrapCases.cs",
+        "Tests/EditMode/FoundationCases.cs"
+      ],
+      "tests": [
+        "fishing_trap_schema35_wire_shape_roundtrips_and_replays",
+        "fishing_trap_schema36_bait_wire_shape_roundtrips_and_replays",
+        "fishing_trap_setup_pause_resume_and_save_replay",
+        "fishing_trap_resolves_each_check_degree_once_without_inventory_award",
+        "fishing_trap_untrained_check_uses_and_records_disadvantage",
+        "fishing_trap_retrieval_moves_the_same_catch_after_saved_partial_work",
+        "fishing_trap_early_retrieval_spends_deployed_inputs_without_a_check",
+        "fishing_trap_check_resolves_before_retrieval_on_exact_tie",
+        "fishing_trap_abandonment_pauses_retrieval_and_keeps_its_receiver_reserved",
+        "fishing_trap_retrieval_rejects_excess_path_and_remote_worker",
+        "fishing_trap_another_capable_adjacent_worker_can_retrieve",
+        "fishing_trap_setter_identity_and_check_profile_are_world_supplied",
+        "fishing_trap_multiple_world_profiles_persist_and_resolve_independently",
+        "fishing_trap_shared_physical_candidate_is_allocated_once_across_profiles",
+        "fishing_stock_manifest_membership_and_allocation_roundtrip",
+        "fishing_trap_cancel_before_exposure_and_abandonment_preserve_opportunity",
+        "fishing_trap_deployment_requires_compatible_bait_stock"
+      ],
+      "implemented": [
+        "Preserve schema35 no-bait, schema36 bait/timing and schema37 physical Trap/retrieval wire projections; schema38 appends stock manifests and allocations.",
+        "Persist each finite manifest's shared stock identity, version, half-open effective interval and sorted actual physical member IDs.",
+        "Persist each opportunity's explicit physical-member allocation; require the whole-pool flag to match the complete manifest and require the candidate to belong to its allocation and version.",
+        "Require overlapping versions of a shared pool to agree on physical membership; check that a committed response used the applicable version at setup completion.",
+        "Exercise overlapping opportunity/version labels over one physical fish so its active response lock prevents duplicate allocation, and exercise disjoint singleton allocations across two actual fish.",
+        "Retain the schema37 setup, bait/opportunity reservation and commitment, scheduled check, same-body capture, physical retrieval, worker/custody updates and save/replay behaviors."
+      ],
+      "notImplemented": [
+        "World-authoritative stock and route facts beyond TEST_ONLY records; arbitrary cross-site access/connectivity audits and full candidate-set allocation evaluation.",
+        "Multi-candidate weighted selection, recorded attraction paths, documented renewal, hazards, prey movement and anatomy admission.",
+        "Complete assembly subcomponent histories, Rod, Net, attended fishing, assistants, equipment bonuses, magical bait receipts/suppression, escaped-prey handling, deployment allowance and lawful holder handover.",
+        "Production rule authority, Unity-host integration, presentation and the complete exploration-to-management game loop."
+      ]
+    }
+  ],
+  "validation": {
+    "compile": "COMPILE_RESULTS.json",
+    "headless": "HEADLESS_RESULTS.json",
+    "packageStatic": "PACKAGE_RESULTS.json",
+    "ruleBindings": "RULE_BINDINGS_VALIDATION.json",
+    "ruleDecisionRecord": "../../FISHING_TRAP_RULE_DECISIONS.md"
+  }
+}

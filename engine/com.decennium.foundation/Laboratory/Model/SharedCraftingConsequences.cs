@@ -72,7 +72,21 @@ namespace Decennium.Foundation.Laboratory
     public sealed partial class TestOnlySharedWorldPolicy
     {
         private readonly SharedCraftingFixture crafting;
-        private int SelectedSchema => overwatchExecution != null ? Snapshot.OverwatchExecutionSchema
+        private int SelectedSchema => harvestFixture!=null ? harvestFixture.SchemaVersion
+            : offCalendarActivityEnabled ? Snapshot.OffCalendarActivitySchema
+            : expeditionAssignmentsEnabled ? Snapshot.ExpeditionAssignmentSchema
+            : fishingTrap!=null ? (fishingTrapLegacy?Snapshot.FishingTrapLegacySchema
+            :fishingTrapBaitOnly?Snapshot.FishingTrapBaitSchema
+            :fishingTrapProfiles.Length>1?Snapshot.FishingStockSchema:Snapshot.FishingTrapSchema)
+            : characterAdvancement!=null&&characterAdvancement.DefensiveFormationSchemaEnabled ? Snapshot.DefensiveFormationSchema
+            : characterAdvancement!=null&&characterAdvancement.SuppressionFireSchemaEnabled ? Snapshot.SuppressionFireSchema
+            : characterAdvancement!=null&&characterAdvancement.CommandStepSchemaEnabled ? Snapshot.CommandStepSchema
+            : characterAdvancement!=null&&characterAdvancement.TacticalAssessmentSchemaEnabled ? Snapshot.TacticalAssessmentSchema
+            : characterAdvancement!=null&&characterAdvancement.HistorySchemaEnabled ? Snapshot.CharacterAdvancementHistorySchema
+            : soldierCharacterBuild != null&&soldierCharacterBuild.TacticalTechniquesEnabled ? Snapshot.SoldierTacticalTechniquesSchema
+            : soldierCharacterBuild != null ? Snapshot.SoldierInitialBuildSchema
+            : soldierInitialLoadout != null ? Snapshot.SoldierInitialLoadoutSchema
+            : overwatchExecution != null ? Snapshot.OverwatchExecutionSchema
             : overwatchRuntime != null ? Snapshot.OverwatchSchema
             : overwatchFoundation != null ? Snapshot.SharedBonusActionSchema
             : periodicRider != null ? Snapshot.PeriodicRiderSchema
@@ -94,7 +108,7 @@ namespace Decennium.Foundation.Laboratory
         {
             if (crafting == null) return;
             s.Structures = new[] { new ObjectStructureRecord(SharedCraftingFixture.ToolId, "tools.alchemist-s-supplies", TestOnlyPolicy.CompanionId,
-                TestOnlyPolicy.CompanionId, SharedCraftingFixture.StationId, ObjectMaterial.WoodLeather, 5, crafting.ToolHp, 5000, new RuleQuantity(8)) };
+                TestOnlyPolicy.CompanionId, RepairSiteLocationId, ObjectMaterial.WoodLeather, 5, crafting.ToolHp, 5000, new RuleQuantity(8)) };
         }
         private static bool Dying(ActorLifeRecord life) => life.Hp == 0 && !life.Dead && !life.Stable && life.UsesDeathSaves;
         private static void ReconcileDyingCadences(Snapshot s)
@@ -164,9 +178,12 @@ namespace Decennium.Foundation.Laboratory
             }
             if (fact.Result == 4) {
                 var draw = DiceStream.Draw(s.RandomState, 4); d4 = draw.Value + 1; damage = d4;
+                damage = CharacterAdvancementRules.ReduceIncomingDamage(s,fact.LeadId,damage);
                 if (View(s, fact.LeadId).Has(ConditionKind.Petrified)) damage = PlaytestConditions.PetrifiedDamage(damage);
                 var character = s.Characters.Single(x => x.ActorId == fact.LeadId);
-                var result = PlaytestDamageDice.Resolve(ActorLifeRules.Read(before), damage, s.RuleClock, draw.NextState, PlaytestCharacters.AbilityModifier(character.Abilities[2]));
+                int constitutionSave=checked(PlaytestCharacters.AbilityModifier(character.Abilities[2])
+                    +CharacterAdvancementRules.SaveProficiencyBonus(s,fact.LeadId,"CON"));
+                var result = PlaytestDamageDice.Resolve(ActorLifeRules.Read(before), damage, s.RuleClock, draw.NextState, constitutionSave);
                 s.RandomState = result.NextRandomState; words = checked(draw.WordsConsumed + result.WordsConsumed); wound = result.WoundRoll?.Natural ?? 0; injury = result.InjuryD6 ?? 0;
                 TestOnlyClubAttackPolicy.ApplyLife(s, before, result.Outcome.State);
             }

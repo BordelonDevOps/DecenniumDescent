@@ -18,7 +18,10 @@ namespace Decennium.Foundation
         AwardCharacterMilestone, AdvanceCharacterLevel, ActivateTacticalReposition, TacticalRepositionStep,
         AttackRepeatingCrossbow, ReloadRepeatingCrossbow, DispatchFixturePeriodicRider, CurePeriodicRider,
         SetPeriodicRiderSuppression, SetPeriodicFamilyImmunity, ApplyFixtureMagicalHealing, DesignateOverwatch,
-        RespondOverwatch, ResolveOverwatchRider }
+        RespondOverwatch, ResolveOverwatchRider, DoffPortableShield, WarningShot, CoveringFire, TacticalAssessment, OfferCommandStep, RespondCommandStep,
+        SuppressionFire, ActivateDefensiveFormation, RespondDefensiveFormation,
+        AssignExpeditionWork, CancelExpeditionWork, StartExpeditionWork,
+        StartHarvest, PauseHarvest, ResumeHarvest }
     public enum Outcome { Rejected, Committed, Duplicate }
 
     // DTOs are detached copies. No caller ever receives the owned simulation state.
@@ -69,6 +72,23 @@ namespace Decennium.Foundation
         public const int SharedBonusActionSchema = 24;
         public const int OverwatchSchema = 25;
         public const int OverwatchExecutionSchema = 26;
+        public const int SoldierInitialLoadoutSchema = 27;
+        public const int SoldierInitialBuildSchema = 28;
+        public const int SoldierTacticalTechniquesSchema = 29;
+        public const int CharacterAdvancementHistorySchema = 30;
+        public const int TacticalAssessmentSchema = 31;
+        public const int CommandStepSchema = 32;
+        public const int SuppressionFireSchema = 33;
+        public const int DefensiveFormationSchema = 34;
+        public const int FishingTrapLegacySchema = 35;
+        public const int FishingTrapBaitSchema = 36;
+        public const int FishingTrapSchema = 37;
+        public const int FishingStockSchema = 38;
+        public const int ExpeditionAssignmentSchema = 39;
+        public const int OffCalendarActivitySchema = 40;
+        public const int HarvestSchema = 41;
+        public const int HarvestManifestSchema = 42;
+        public const int MaxActors = 64;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
         // Technical bound keeps the entire snapshot within the existing 1 MiB save limit,
@@ -147,10 +167,36 @@ namespace Decennium.Foundation
         public PeriodicFamilyImmunityRecord[] PeriodicImmunities = Array.Empty<PeriodicFamilyImmunityRecord>();
         public SkillTrainingRecord[] SkillTraining = Array.Empty<SkillTrainingRecord>();
         public ActorBonusActionRecord[] BonusActions = Array.Empty<ActorBonusActionRecord>();
+        public CharacterInitialClassSelectionRecord[] InitialClassSelections = Array.Empty<CharacterInitialClassSelectionRecord>();
+        public CharacterInitialLoadoutRecord[] InitialCharacterLoadouts = Array.Empty<CharacterInitialLoadoutRecord>();
+        public ShieldStationarityRecord[] ShieldStationarity = Array.Empty<ShieldStationarityRecord>();
         public OverwatchIntervalRecord[] OverwatchIntervals = Array.Empty<OverwatchIntervalRecord>();
         public OverwatchDesignationRecord[] OverwatchDesignations = Array.Empty<OverwatchDesignationRecord>();
         public OverwatchOfferRecord[] OverwatchOffers = Array.Empty<OverwatchOfferRecord>();
         public OverwatchRiderChoiceRecord[] OverwatchRiderChoices = Array.Empty<OverwatchRiderChoiceRecord>();
+        public TacticalAllyRecord[] TacticalAllies = Array.Empty<TacticalAllyRecord>();
+        public SoldierTacticalEffectRecord[] SoldierTacticalEffects = Array.Empty<SoldierTacticalEffectRecord>();
+        public TacticalAttackAuditRecord[] TacticalAttackAudits = Array.Empty<TacticalAttackAuditRecord>();
+        public TacticalAssessmentRecord[] TacticalAssessments = Array.Empty<TacticalAssessmentRecord>();
+        public CommandStepOfferRecord[] CommandStepOffers = Array.Empty<CommandStepOfferRecord>();
+        public SuppressionFireVolleyRecord[] SuppressionFireVolleys = Array.Empty<SuppressionFireVolleyRecord>();
+        public SuppressionSlowRecord[] SuppressionSlows = Array.Empty<SuppressionSlowRecord>();
+        public DefensiveFormationActivationRecord[] DefensiveFormations = Array.Empty<DefensiveFormationActivationRecord>();
+        public FishingTrapAttemptRecord[] FishingTrapAttempts = Array.Empty<FishingTrapAttemptRecord>();
+        public FishingOpportunityRecord[] FishingOpportunities = Array.Empty<FishingOpportunityRecord>();
+        public FishingStockManifestRecord[] FishingStockManifests = Array.Empty<FishingStockManifestRecord>();
+        public FishingStockAllocationRecord[] FishingStockAllocations = Array.Empty<FishingStockAllocationRecord>();
+        public FishingCreatureBodyRecord[] FishingCreatures = Array.Empty<FishingCreatureBodyRecord>();
+        public FishingTrapPhysicalRecord[] FishingTraps = Array.Empty<FishingTrapPhysicalRecord>();
+        public FishingReceiveLocationRecord[] FishingReceiveLocations = Array.Empty<FishingReceiveLocationRecord>();
+        public FishingTrapRetrievalRecord[] FishingTrapRetrievals = Array.Empty<FishingTrapRetrievalRecord>();
+        public ExpeditionWorkAssignmentRecord[] ExpeditionAssignments = Array.Empty<ExpeditionWorkAssignmentRecord>();
+        public WorldActivityIntervalRecord[] WorldActivityIntervals = Array.Empty<WorldActivityIntervalRecord>();
+        public HarvestDonorRecord[] HarvestDonors = Array.Empty<HarvestDonorRecord>();
+        public HarvestManifestRecord[] HarvestManifests = Array.Empty<HarvestManifestRecord>();
+        public HarvestCategoryRecord[] HarvestCategories = Array.Empty<HarvestCategoryRecord>();
+        public HarvestMaterialUnitRecord[] HarvestUnits = Array.Empty<HarvestMaterialUnitRecord>();
+        public HarvestAttemptRecord[] HarvestAttempts = Array.Empty<HarvestAttemptRecord>();
         public Snapshot Copy() => new Snapshot {
             DyingCadences = DyingCadences.ToArray(), Structures = Structures.ToArray(), CraftingIncidents = CraftingIncidents.ToArray(),
             WorldLifeMarkers = WorldLifeMarkers.ToArray(),
@@ -165,8 +211,25 @@ namespace Decennium.Foundation
             PeriodicRiders = PeriodicRiders.ToArray(), PeriodicRiderEvents = PeriodicRiderEvents.ToArray(),
             PeriodicImmunities = PeriodicImmunities.ToArray(), SkillTraining = SkillTraining.ToArray(),
             BonusActions = BonusActions.ToArray(),
+            InitialClassSelections = InitialClassSelections.ToArray(),
+            InitialCharacterLoadouts = InitialCharacterLoadouts.ToArray(), ShieldStationarity = ShieldStationarity.ToArray(),
             OverwatchIntervals = OverwatchIntervals.ToArray(), OverwatchDesignations = OverwatchDesignations.ToArray(),
             OverwatchOffers = OverwatchOffers.ToArray(), OverwatchRiderChoices = OverwatchRiderChoices.ToArray(),
+            TacticalAllies = TacticalAllies.ToArray(), SoldierTacticalEffects = SoldierTacticalEffects.ToArray(), TacticalAttackAudits = TacticalAttackAudits.ToArray(),
+            TacticalAssessments = TacticalAssessments.ToArray(),
+            CommandStepOffers = CommandStepOffers.ToArray(),
+            SuppressionFireVolleys = SuppressionFireVolleys.ToArray(),
+            SuppressionSlows = SuppressionSlows.ToArray(),
+            DefensiveFormations = DefensiveFormations.ToArray(),
+            FishingTrapAttempts = FishingTrapAttempts.ToArray(),
+            FishingOpportunities = FishingOpportunities.ToArray(), FishingCreatures = FishingCreatures.ToArray(),
+            FishingStockManifests = FishingStockManifests.ToArray(), FishingStockAllocations = FishingStockAllocations.ToArray(),
+            FishingTraps = FishingTraps.ToArray(), FishingReceiveLocations = FishingReceiveLocations.ToArray(),
+            FishingTrapRetrievals = FishingTrapRetrievals.ToArray(),
+            ExpeditionAssignments = ExpeditionAssignments.ToArray(),
+            WorldActivityIntervals = WorldActivityIntervals.ToArray(),
+            HarvestDonors = HarvestDonors.ToArray(), HarvestManifests = HarvestManifests.ToArray(),
+            HarvestCategories = HarvestCategories.ToArray(), HarvestUnits = HarvestUnits.ToArray(), HarvestAttempts = HarvestAttempts.ToArray(),
             FormulaWork = FormulaWork.ToArray(),
             WorldSchedule = WorldSchedule, WorldIntervals = WorldIntervals.ToArray(), WorldTraversals = WorldTraversals.ToArray(),
             Conditions = Conditions.ToArray(), ClosedEncounters = ClosedEncounters.ToArray(),
@@ -186,6 +249,79 @@ namespace Decennium.Foundation
         };
     }
 
+    /// <summary>Selected perceived targets for the bounded Soldier Suppression Fire command.
+    /// The host still validates target perception, zone membership, weapon, ammunition and authority.</summary>
+    public sealed class SuppressionFireRequest
+    {
+        private readonly string[] targetIds;
+        public string TurnId { get; }
+        public string WeaponId { get; }
+        public string[] TargetIds => (string[])targetIds.Clone();
+        internal string Fingerprint => TurnId + "|" + WeaponId + "|" + string.Join(",",targetIds);
+        public SuppressionFireRequest(string turnId,string weaponId,IEnumerable<string> targetIds)
+        {
+            if(!Validation.ValidId(turnId)||!Validation.ValidId(weaponId)||targetIds==null)throw new ArgumentException("Invalid Suppression Fire request.");
+            var ids=targetIds.ToArray();
+            if(ids.Length<1||ids.Length>3||ids.Any(x=>!Validation.ValidId(x))
+                ||ids.Distinct(StringComparer.Ordinal).Count()!=ids.Length)throw new ArgumentException("Suppression Fire requires one to three distinct targets.");
+            TurnId=turnId;WeaponId=weaponId;this.targetIds=ids.OrderBy(x=>x,StringComparer.Ordinal).ToArray();
+        }
+    }
+
+    /// <summary>Ordered, distinct recipient selection for one TEST_ONLY Defensive Formation use.
+    /// Order is gameplay state because optional shifts resolve sequentially.</summary>
+    public sealed class DefensiveFormationRequest
+    {
+        private readonly string[] recipientIds;
+        internal string Fingerprint=>TurnId+"|"+string.Join(",",recipientIds);
+        public string TurnId { get; }
+        public string[] RecipientIds=>(string[])recipientIds.Clone();
+        public DefensiveFormationRequest(string turnId,IEnumerable<string> recipientIds)
+        {
+            if(!Validation.ValidId(turnId)||recipientIds==null)throw new ArgumentException("Invalid Defensive Formation request.");
+            var ids=recipientIds.ToArray();
+            if(ids.Length<1||ids.Length>3||ids.Any(x=>!Validation.ValidId(x))||ids.Distinct(StringComparer.Ordinal).Count()!=ids.Length)
+                throw new ArgumentException("Defensive Formation requires one to three distinct recipients.");
+            TurnId=turnId;this.recipientIds=ids;
+        }
+    }
+
+    /// <summary>Canonical category selection for one finite harvest manifest. Conditional
+    /// outcome preferences are supplied before the extraction roll and are validated against
+    /// the exact selected allocation.</summary>
+    public sealed class HarvestSelectionRequest
+    {
+        private readonly string[] categoryIds;
+        public string ManifestVersionId { get; }
+        public string FailureVictimPreference { get; }
+        public string CriticalRecoveryPreference { get; }
+        public string[] CategoryIds => (string[])categoryIds.Clone();
+        internal string Fingerprint => ManifestVersionId + "|" + string.Join(",", categoryIds) + "|"
+            + FailureVictimPreference + "|" + CriticalRecoveryPreference;
+        public HarvestSelectionRequest(string manifestVersionId, IEnumerable<string> categoryIds,
+            string failureVictimPreference = "", string criticalRecoveryPreference = "")
+        {
+            if (!Validation.ValidId(manifestVersionId) || categoryIds == null
+                || failureVictimPreference == null || criticalRecoveryPreference == null
+                || failureVictimPreference != "" && !Validation.ValidId(failureVictimPreference)
+                || criticalRecoveryPreference != "" && !Validation.ValidId(criticalRecoveryPreference))
+                throw new ArgumentException("Invalid finite harvest selection.");
+            var ids = categoryIds.ToArray();
+            if (ids.Length < 1 || ids.Length > HarvestValidation.MaxRecords
+                || ids.Any(x => !Validation.ValidId(x))
+                || ids.Distinct(StringComparer.Ordinal).Count() != ids.Length)
+                throw new ArgumentException("Harvest selection requires distinct category identities.");
+            ids = ids.OrderBy(x => x, StringComparer.Ordinal).ToArray();
+            if (manifestVersionId.Length + failureVictimPreference.Length + criticalRecoveryPreference.Length
+                + string.Join(",", ids).Length > 440)
+                throw new ArgumentException("Harvest selection exceeds the receipt bound.");
+            ManifestVersionId = manifestVersionId;
+            FailureVictimPreference = failureVictimPreference;
+            CriticalRecoveryPreference = criticalRecoveryPreference;
+            this.categoryIds = ids;
+        }
+    }
+
     public sealed class Command
     {
         public string Id { get; }
@@ -200,20 +336,32 @@ namespace Decennium.Foundation
         public CharacterAdvancementRequest Advancement { get; }
         public RangedRequest Ranged { get; }
         public OverwatchRider OverwatchRider { get; }
+        public SuppressionFireRequest SuppressionFire { get; }
+        public DefensiveFormationRequest DefensiveFormation { get; }
+        public ExpeditionAssignmentRequest ExpeditionAssignment { get; }
+        public HarvestSelectionRequest HarvestSelection { get; }
         public Command(string id, string actor, long revision, CommandKind kind,
             string target = "", int x = 0, int y = 0, InventoryRequest inventory = null, CombatRequest combat = null,
-            CharacterAdvancementRequest advancement = null, RangedRequest ranged = null, OverwatchRider overwatchRider = OverwatchRider.None)
+            CharacterAdvancementRequest advancement = null, RangedRequest ranged = null, OverwatchRider overwatchRider = OverwatchRider.None,
+            SuppressionFireRequest suppressionFire = null,DefensiveFormationRequest defensiveFormation = null,
+            ExpeditionAssignmentRequest expeditionAssignment = null,HarvestSelectionRequest harvestSelection = null)
         { if(!Enum.IsDefined(typeof(OverwatchRider),overwatchRider))throw new ArgumentException("Invalid Overwatch rider selection.");
-            Id = id; Actor = actor; ExpectedRevision = revision; Kind = kind; Target = target; X = x; Y = y; Inventory = inventory; Combat = combat; Advancement=advancement; Ranged=ranged; OverwatchRider=overwatchRider; }
+            Id = id; Actor = actor; ExpectedRevision = revision; Kind = kind; Target = target; X = x; Y = y; Inventory = inventory; Combat = combat; Advancement=advancement; Ranged=ranged; OverwatchRider=overwatchRider; SuppressionFire=suppressionFire;DefensiveFormation=defensiveFormation; ExpeditionAssignment=expeditionAssignment;HarvestSelection=harvestSelection; }
         internal string Fingerprint => ((int)Kind).ToString(System.Globalization.CultureInfo.InvariantCulture)
             + "|" + Actor + "|" + Target + "|" + ExpectedRevision.ToString(System.Globalization.CultureInfo.InvariantCulture)
             + "|" + X.ToString(System.Globalization.CultureInfo.InvariantCulture)
             + "|" + Y.ToString(System.Globalization.CultureInfo.InvariantCulture)
             + (Inventory == null ? "" : "|inventory-v1|" + Inventory.Fingerprint)
             + (Combat == null ? "" : "|" + Combat.FingerprintVersion + "|" + Combat.Fingerprint)
-            + (Advancement == null ? "" : "|character-level-v1|" + Advancement.FeatureOne + "|" + Advancement.FeatureTwo)
+            + (Advancement == null ? "" : Advancement.UsesLegacyPairReceipt
+                ? "|character-level-v1|" + Advancement.FeatureOne + "|" + Advancement.FeatureTwo
+                : "|character-level-v2|" + string.Join(",",Advancement.FeatureIds))
             + (Ranged == null ? "" : "|ranged-v1|" + Ranged.Fingerprint)
-            + (OverwatchRider == OverwatchRider.None ? "" : "|overwatch-rider-v1|" + ((int)OverwatchRider).ToString(System.Globalization.CultureInfo.InvariantCulture));
+            + (OverwatchRider == OverwatchRider.None ? "" : "|overwatch-rider-v1|" + ((int)OverwatchRider).ToString(System.Globalization.CultureInfo.InvariantCulture))
+            + (SuppressionFire == null ? "" : "|suppression-fire-v1|" + SuppressionFire.Fingerprint)
+            + (DefensiveFormation == null ? "" : "|defensive-formation-v1|" + DefensiveFormation.Fingerprint)
+            + (ExpeditionAssignment == null ? "" : "|expedition-assignment-v1|" + ExpeditionAssignment.Fingerprint)
+            + (HarvestSelection == null ? "" : "|harvest-selection-v1|" + HarvestSelection.Fingerprint);
         // Structural history consistency only; receipts are not authentication credentials.
         public bool MatchesReceipt(CommandReceipt receipt) => receipt != null && ExpectedRevision >= 0
             && ExpectedRevision < long.MaxValue && receipt.Revision == ExpectedRevision + 1
@@ -334,7 +482,7 @@ namespace Decennium.Foundation
             if (s == null || !ValidId(s.ContentFingerprint) || s.Revision < 0 || s.Clock < 0 || s.RandomState == 0)
                 throw new ArgumentException("Invalid snapshot header.");
             if (s.SchemaVersion != Foundation.Snapshot.Schema && s.SchemaVersion != Foundation.Snapshot.WorkSchema
-                && s.SchemaVersion != Foundation.Snapshot.CropSchema && s.SchemaVersion != Foundation.Snapshot.InventorySchema && s.SchemaVersion != Foundation.Snapshot.VesselSchema && s.SchemaVersion != Foundation.Snapshot.MovableVesselSchema && s.SchemaVersion != Foundation.Snapshot.EncounterSchema && s.SchemaVersion != Foundation.Snapshot.ActorLifeSchema && s.SchemaVersion != Foundation.Snapshot.ClubAttackSchema && s.SchemaVersion != Foundation.Snapshot.PostureSchema && s.SchemaVersion != Foundation.Snapshot.TacticalMovementSchema && s.SchemaVersion != Foundation.Snapshot.ConditionSchema && s.SchemaVersion != Foundation.Snapshot.SharedWorldSchema && s.SchemaVersion != Foundation.Snapshot.CalendarCombatSchema && s.SchemaVersion != Foundation.Snapshot.FormulaWorkSchema && s.SchemaVersion != Foundation.Snapshot.CraftingConsequenceSchema && s.SchemaVersion != Foundation.Snapshot.RepairWorkSchema && s.SchemaVersion != Foundation.Snapshot.ManufacturingSchema && s.SchemaVersion != Foundation.Snapshot.SupplyCacheSchema && s.SchemaVersion != Foundation.Snapshot.PortableEquipmentSchema && s.SchemaVersion != Foundation.Snapshot.CharacterAdvancementSchema && s.SchemaVersion != Foundation.Snapshot.RepeatingCrossbowSchema && s.SchemaVersion != Foundation.Snapshot.PeriodicRiderSchema && s.SchemaVersion != Foundation.Snapshot.SharedBonusActionSchema && s.SchemaVersion != Foundation.Snapshot.OverwatchSchema && s.SchemaVersion != Foundation.Snapshot.OverwatchExecutionSchema)
+                && s.SchemaVersion != Foundation.Snapshot.CropSchema && s.SchemaVersion != Foundation.Snapshot.InventorySchema && s.SchemaVersion != Foundation.Snapshot.VesselSchema && s.SchemaVersion != Foundation.Snapshot.MovableVesselSchema && s.SchemaVersion != Foundation.Snapshot.EncounterSchema && s.SchemaVersion != Foundation.Snapshot.ActorLifeSchema && s.SchemaVersion != Foundation.Snapshot.ClubAttackSchema && s.SchemaVersion != Foundation.Snapshot.PostureSchema && s.SchemaVersion != Foundation.Snapshot.TacticalMovementSchema && s.SchemaVersion != Foundation.Snapshot.ConditionSchema && s.SchemaVersion != Foundation.Snapshot.SharedWorldSchema && s.SchemaVersion != Foundation.Snapshot.CalendarCombatSchema && s.SchemaVersion != Foundation.Snapshot.FormulaWorkSchema && s.SchemaVersion != Foundation.Snapshot.CraftingConsequenceSchema && s.SchemaVersion != Foundation.Snapshot.RepairWorkSchema && s.SchemaVersion != Foundation.Snapshot.ManufacturingSchema && s.SchemaVersion != Foundation.Snapshot.SupplyCacheSchema && s.SchemaVersion != Foundation.Snapshot.PortableEquipmentSchema && s.SchemaVersion != Foundation.Snapshot.CharacterAdvancementSchema && s.SchemaVersion != Foundation.Snapshot.RepeatingCrossbowSchema && s.SchemaVersion != Foundation.Snapshot.PeriodicRiderSchema && s.SchemaVersion != Foundation.Snapshot.SharedBonusActionSchema && s.SchemaVersion != Foundation.Snapshot.OverwatchSchema && s.SchemaVersion != Foundation.Snapshot.OverwatchExecutionSchema && s.SchemaVersion != Foundation.Snapshot.SoldierInitialLoadoutSchema && s.SchemaVersion != Foundation.Snapshot.SoldierInitialBuildSchema && s.SchemaVersion != Foundation.Snapshot.SoldierTacticalTechniquesSchema && s.SchemaVersion != Foundation.Snapshot.CharacterAdvancementHistorySchema && s.SchemaVersion != Foundation.Snapshot.TacticalAssessmentSchema && s.SchemaVersion != Foundation.Snapshot.CommandStepSchema && s.SchemaVersion != Foundation.Snapshot.SuppressionFireSchema && s.SchemaVersion != Foundation.Snapshot.DefensiveFormationSchema && s.SchemaVersion != Foundation.Snapshot.FishingTrapLegacySchema && s.SchemaVersion != Foundation.Snapshot.FishingTrapBaitSchema && s.SchemaVersion != Foundation.Snapshot.FishingTrapSchema && s.SchemaVersion != Foundation.Snapshot.FishingStockSchema && s.SchemaVersion != Foundation.Snapshot.ExpeditionAssignmentSchema && s.SchemaVersion != Foundation.Snapshot.OffCalendarActivitySchema && s.SchemaVersion != Foundation.Snapshot.HarvestSchema && s.SchemaVersion != Foundation.Snapshot.HarvestManifestSchema)
                 throw new ArgumentException("Unsupported snapshot schema.");
             if (s.SchemaVersion == Foundation.Snapshot.Schema && (s.Work != null || s.RuleClock != default))
                 throw new ArgumentException("Legacy snapshot cannot contain unsaved work or exact time.");
@@ -354,7 +502,7 @@ namespace Decennium.Foundation
                 || s.Work.Reservations.Count > Foundation.Snapshot.MaxCropWorkRecords))
                 throw new ArgumentException("Crop session ledger capacity exceeded.");
             if (s.Actors == null || s.Objects == null || s.Receipts == null || s.Actors.Length == 0
-                || s.Actors.Length > 64 || s.Objects.Length > 64 || s.Receipts.Length > MaxReceipts)
+                || s.Actors.Length > global::Decennium.Foundation.Snapshot.MaxActors || s.Objects.Length > 64 || s.Receipts.Length > MaxReceipts)
                 throw new ArgumentException("Invalid snapshot counts.");
             if (s.Actors.Any(a => a == null || !ValidId(a.Id) || a.Tokens < 0)
                 || s.Objects.Any(o => o == null || !ValidId(o.Id))) throw new ArgumentException("Invalid entity.");
@@ -385,6 +533,8 @@ namespace Decennium.Foundation
                 throw new ArgumentException("Invalid receipt.");
             if (s.Receipts.Select(r => r.Principal + "|" + r.Id).Distinct(StringComparer.Ordinal).Count() != s.Receipts.Length)
                 throw new ArgumentException("Duplicate receipt.");
+            ExpeditionAssignmentValidation.Validate(s);
+            WorldActivityValidation.Validate(s);
             InventoryValidation.Validate(s);
             WaterVesselValidation.Validate(s);
             VesselHandlingValidation.Validate(s);
@@ -406,6 +556,10 @@ namespace Decennium.Foundation
             RangedCombatValidation.Validate(s);
             PeriodicRiderValidation.Validate(s);
             OverwatchValidation.Validate(s);
+            SoldierTacticalFeatureValidation.Validate(s);
+            DefensiveFormationValidation.Validate(s);
+            FishingTrapValidation.Validate(s);
+            HarvestValidation.Validate(s);
         }
     }
 
@@ -440,14 +594,37 @@ namespace Decennium.Foundation
                 || !Enum.IsDefined(typeof(CommandKind), command.Kind)) return "InvalidCommand";
             bool combatKind=command.Kind==CommandKind.SelectCombatStance||command.Kind==CommandKind.AttackClub||command.Kind==CommandKind.ResolveKnockout
                 ||command.Kind==CommandKind.AttackUnarmed||command.Kind==CommandKind.RespondOpportunityAttack||command.Kind==CommandKind.RespondPress
-                ||command.Kind==CommandKind.RespondOverwatch;
+                ||command.Kind==CommandKind.RespondOverwatch||command.Kind==CommandKind.TacticalAssessment
+                ||command.Kind==CommandKind.OfferCommandStep||command.Kind==CommandKind.RespondCommandStep||command.Kind==CommandKind.RespondDefensiveFormation;
             if(combatKind!=(command.Combat!=null)||command.Combat!=null&&command.Inventory!=null)return "UnexpectedCombatPayload";
             if((command.Kind==CommandKind.AdvanceCharacterLevel)!=(command.Advancement!=null)
                 ||command.Advancement!=null&&(command.Inventory!=null||command.Combat!=null))return "UnexpectedCommandPayload";
+            if(command.Fingerprint.Length>512)return "CommandFingerprintTooLong";
             if((command.Kind==CommandKind.ResolveOverwatchRider)!=(command.OverwatchRider!=OverwatchRider.None)
                 ||command.OverwatchRider!=OverwatchRider.None&&(command.Inventory!=null||command.Combat!=null||command.Advancement!=null||command.Ranged!=null))
                 return "UnexpectedOverwatchPayload";
-            bool rangedKind=command.Kind==CommandKind.AttackRepeatingCrossbow||command.Kind==CommandKind.ReloadRepeatingCrossbow;
+            if((command.Kind==CommandKind.SuppressionFire)!=(command.SuppressionFire!=null)
+                ||command.SuppressionFire!=null&&(command.Inventory!=null||command.Combat!=null||command.Advancement!=null||command.Ranged!=null
+                    ||command.OverwatchRider!=OverwatchRider.None||command.DefensiveFormation!=null||command.Target!=""))return "UnexpectedSuppressionFirePayload";
+            if((command.Kind==CommandKind.ActivateDefensiveFormation)!=(command.DefensiveFormation!=null)
+                ||command.DefensiveFormation!=null&&(command.Inventory!=null||command.Combat!=null||command.Advancement!=null||command.Ranged!=null
+                    ||command.OverwatchRider!=OverwatchRider.None||command.SuppressionFire!=null||command.Target!=""||command.X!=0||command.Y!=0))
+                return "UnexpectedDefensiveFormationPayload";
+            bool assignmentKind=command.Kind==CommandKind.AssignExpeditionWork;
+            if(assignmentKind!=(command.ExpeditionAssignment!=null)
+                ||command.ExpeditionAssignment!=null&&(command.Inventory!=null||command.Combat!=null||command.Advancement!=null||command.Ranged!=null
+                    ||command.OverwatchRider!=OverwatchRider.None||command.SuppressionFire!=null||command.DefensiveFormation!=null
+                    ||command.Target!=""||command.X!=0||command.Y!=0)
+                ||(command.Kind==CommandKind.CancelExpeditionWork||command.Kind==CommandKind.StartExpeditionWork)
+                    &&(command.ExpeditionAssignment!=null||command.Inventory!=null||command.Combat!=null||command.Advancement!=null
+                        ||command.Ranged!=null||command.OverwatchRider!=OverwatchRider.None||command.SuppressionFire!=null
+                        ||command.DefensiveFormation!=null||command.Target==""||command.X!=0||command.Y!=0))
+                return "UnexpectedExpeditionAssignmentPayload";
+            if(command.Kind==CommandKind.RespondDefensiveFormation&&(command.Inventory!=null||command.Advancement!=null||command.Ranged!=null
+                ||command.OverwatchRider!=OverwatchRider.None||command.SuppressionFire!=null||command.DefensiveFormation!=null))
+                return "UnexpectedDefensiveFormationResponsePayload";
+            bool rangedKind=command.Kind==CommandKind.AttackRepeatingCrossbow||command.Kind==CommandKind.ReloadRepeatingCrossbow
+                ||command.Kind==CommandKind.WarningShot||command.Kind==CommandKind.CoveringFire;
             if(rangedKind!=(command.Ranged!=null)||command.Ranged!=null&&(command.Inventory!=null||command.Combat!=null||command.Advancement!=null))return "UnexpectedRangedPayload";
             if ((!authority.Controls(command.Actor) && !(command.Kind==CommandKind.AwardCharacterMilestone&&authority.CanModifyWorld)) || (command.Kind == CommandKind.AdvanceClock && !authority.CanAdvanceClock)
                 || ((command.Kind == CommandKind.SetCropConditions || command.Kind == CommandKind.EnterInventoryCombat || command.Kind == CommandKind.BeginFixedEncounter || command.Kind == CommandKind.EndFixedEncounter || command.Kind == CommandKind.DispatchConditionEvent || command.Kind == CommandKind.DispatchCraftingMishap || command.Kind==CommandKind.AwardCharacterMilestone
@@ -471,6 +648,7 @@ namespace Decennium.Foundation
                     return "RecipientNotWilling";
             }
             if(command.Kind==CommandKind.HandlePortableEquipment||command.Kind==CommandKind.EquipPortableItem||command.Kind==CommandKind.RemovePortableItem
+                ||command.Kind==CommandKind.DoffPortableShield
                 ||command.Kind==CommandKind.OpenPortableContainer||command.Kind==CommandKind.ClosePortableContainer) {
                 var item=state.PortableEquipment.FirstOrDefault(x=>x.Id==command.Target);
                 if(item!=null&&!authority.MayUseInventory(item.OwnerId))return "InventoryNotAuthorized";

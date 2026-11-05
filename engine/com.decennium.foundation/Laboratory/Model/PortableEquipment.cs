@@ -211,14 +211,17 @@ namespace Decennium.Foundation.Laboratory
         internal static void RegisterInventoryLot(Snapshot s,string lotId,string location,string custodian)
         {
             if(s.SchemaVersion<Snapshot.PortableEquipmentSchema||s.PortableEquipment.Any(x=>x.LinkedId==lotId))return;
-            var item=s.InventoryLots.Single(x=>x.LotId==lotId);if(item.Nutrition==NutritionKind.None)return;
+            var item=s.InventoryLots.Single(x=>x.LotId==lotId);var lot=s.Work.Lots.Single(x=>x.Id==lotId);
+            bool genericPounds=item.Nutrition==NutritionKind.None&&lot.UnitId=="mass-pound";
+            if(item.Nutrition==NutritionKind.None&&!genericPounds)return;
             string parent="";PortablePlacement placement=PortablePlacement.Carried;
             if(location!=custodian) {
                 var holder=s.PortableEquipment.SingleOrDefault(x=>x.Id==location&&(x.CapacityPounds.HasValue||x.LinkKind==PortableLinkKind.WaterVessel));
                 if(holder==null)return;
                 parent=holder.Id;placement=PortablePlacement.Contained;
             }
-            var lot=s.Work.Lots.Single(x=>x.Id==lotId);var basis=item.Nutrition==NutritionKind.FoodPounds?PortableMassBasis.FoodPounds:PortableMassBasis.WaterPints;
+            var basis=genericPounds?PortableMassBasis.GenericPounds:item.Nutrition==NutritionKind.FoodPounds
+                ?PortableMassBasis.FoodPounds:PortableMassBasis.WaterPints;
             string root=item.LotId;var lineage=new HashSet<string>(StringComparer.Ordinal);
             while(true) {
                 var current=s.InventoryLots.Single(x=>x.LotId==root);
@@ -226,7 +229,7 @@ namespace Decennium.Foundation.Laboratory
                 if(!lineage.Add(current.ParentId))throw new ArgumentException("Inventory portion cycle.");
                 root=current.ParentId;
             }
-            string profile=item.Nutrition==NutritionKind.WaterPints?"prototype.potable-water.pint"
+            string profile=genericPounds?"prototype.generic-pound-lot":item.Nutrition==NutritionKind.WaterPints?"prototype.potable-water.pint"
                 :root==PortableKitFixture.Rations?"adventuring-gear.rations-1-day":"prototype.food-lot";
             var physical=new PortableEquipmentRecord(lotId,profile,item.OwnerId,custodian,parent,placement,PortableLinkKind.InventoryLot,lotId,basis,
                 lot.Amount,null);

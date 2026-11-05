@@ -144,10 +144,13 @@ namespace Decennium.Foundation.Laboratory
                     else if(rider.Id!=winner)outcome=PeriodicRiderOutcome.FamilyLost;
                     else {
                         var draw=DiceStream.Draw(s.RandomState,4);die=draw.Value+1;afterRandom=draw.NextState;words=draw.WordsConsumed;
-                        damage=View(s,rider.TargetId).Has(ConditionKind.Petrified)?PlaytestConditions.PetrifiedDamage(die):die;
+                        damage=CharacterAdvancementRules.ReduceIncomingDamage(s,rider.TargetId,die);
+                        if(View(s,rider.TargetId).Has(ConditionKind.Petrified))damage=PlaytestConditions.PetrifiedDamage(damage);
                         var character=s.Characters.Single(x=>x.ActorId==rider.TargetId);
+                        int constitutionSave=checked(PlaytestCharacters.AbilityModifier(character.Abilities[2])
+                            +CharacterAdvancementRules.SaveProficiencyBonus(s,rider.TargetId,"CON"));
                         var result=PlaytestDamageDice.Resolve(ActorLifeRules.Read(target),damage,s.RuleClock,afterRandom,
-                            constitutionSaveModifier:PlaytestCharacters.AbilityModifier(character.Abilities[2]),melee:false);
+                            constitutionSaveModifier:constitutionSave,melee:false);
                         s.RandomState=result.NextRandomState;afterRandom=s.RandomState;words=checked(words+result.WordsConsumed);
                         TestOnlyClubAttackPolicy.ApplyLife(s,target,result.Outcome.State);
                         target=s.Lives.Single(x=>x.ActorId==rider.TargetId);outcome=PeriodicRiderOutcome.Damage;

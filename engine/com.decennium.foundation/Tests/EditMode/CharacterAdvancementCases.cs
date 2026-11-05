@@ -11,6 +11,9 @@ namespace Decennium.Foundation.Tests
     {
         private static TestOnlySharedWorldPolicy AdvancementPolicy(ActorLifeRecord life=null)
             =>new TestOnlySharedWorldPolicy(new CharacterAdvancementFixture(life),new SharedCombatFixture());
+        private static TestOnlySharedWorldPolicy CommandStepPolicy(params TacticalTerrainCell[] terrain)
+            =>new TestOnlySharedWorldPolicy(SoldierCharacterBuildFixture.ForTacticalTechniques(),new OverwatchFoundationFixture(),
+                new CharacterAdvancementFixture(null,false,false,true,true),new SharedCombatFixture(),terrain:terrain);
         private static Command AwardMilestone(Simulation s,string milestone="opening.milestone.soldier-2",string actor=null,string id="milestone.award")
             =>new Command(id,actor??TestOnlyPolicy.ActorId,s.Capture().Revision,CommandKind.AwardCharacterMilestone,milestone);
         private static Command AdvanceLevel(Simulation s,string milestone="opening.milestone.soldier-2",string one=CharacterAdvancementFixture.DefensivePositioning,
@@ -20,6 +23,281 @@ namespace Decennium.Foundation.Tests
         private static void AddCharacterAdvancementCases(Dictionary<string,Action> cases,string directory)
         {
             var host=TestOnlySharedWorldPolicy.Host();
+            cases.Add("character_advancement_catalog_covers_all_pinned_classes_and_level_rows",()=>{
+                var rows=ClassAdvancementScheduleCatalog.Rows;var sources=ClassAdvancementScheduleCatalog.Sources;
+                Require(ClassAdvancementScheduleCatalog.SourceRevision=="46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4"
+                    &&sources.Count==17&&rows.Count==340
+                    &&rows.Select(x=>x.ClassName+"|"+x.ClassLevel).Distinct(StringComparer.Ordinal).Count()==340
+                    &&rows.Count(x=>x.Kind==ClassAdvancementScheduleKind.Structured)==280
+                    &&rows.Count(x=>x.Kind==ClassAdvancementScheduleKind.NarrativeException)==60
+                    &&sources.All(x=>x.Sha256.Length==64&&x.GitBlobId.Length==40&&x.DesignStatus.Contains("draft",StringComparison.OrdinalIgnoreCase)
+                        &&!x.DesignStatus.Contains("release-approved",StringComparison.OrdinalIgnoreCase)),
+                    "The class schedule catalog lost a pinned source, class-level row, or the authored draft/release distinction.");
+                Require(rows.All(x=>x.ClassLevel>=1&&x.ClassLevel<=20&&x.SourcePath!=""&&x.SourceLocator.StartsWith("/",StringComparison.Ordinal))
+                    &&rows.All(x=>rows.Count(r=>r.ClassName==x.ClassName&&r.ClassLevel==x.ClassLevel)==1),
+                    "A schedule row lacks exact source addressing or is duplicated.");
+                Throws<NotSupportedException>(()=>((IList<ClassAdvancementScheduleRow>)rows).Add(rows[0]));
+            });
+            cases.Add("character_advancement_catalog_preserves_structured_choices_and_unresolved_exceptions",()=>{
+                var soldier2=ClassAdvancementScheduleCatalog.Get("Soldier",2);
+                var soldier3=ClassAdvancementScheduleCatalog.Get("Soldier",3);
+                var soldier3Candidates=ClassAdvancementOptionCatalog.Candidates(soldier3);
+                var assessment=ClassAdvancementOptionCatalog.Get("Soldier",CharacterFeatureIds.TacticalAssessment);
+                var commandStep=ClassAdvancementOptionCatalog.Get("Soldier",CharacterFeatureIds.CommandStep);
+                var suppression=ClassAdvancementOptionCatalog.Get("Soldier",CharacterFeatureIds.SuppressionFire);
+                var wizard10=ClassAdvancementScheduleCatalog.Get("Wizard",10);
+                var druid1=ClassAdvancementScheduleCatalog.Get("Druid",1);
+                Require(soldier2.Kind==ClassAdvancementScheduleKind.Structured&&soldier2.RequiredSelections==2
+                    &&soldier2.Bands.SequenceEqual(new[]{"Base"})&&soldier2.MinimumActiveSelections==0
+                    &&soldier2.HasAsiOrFeatOpportunity==false&&soldier2.SourceLocator=="/schedule/1"
+                    &&soldier3.RequiredSelections==2&&soldier3.Bands.SequenceEqual(new[]{"Arch"})&&soldier3.MinimumActiveSelections==1
+                    &&new[]{assessment,commandStep,suppression}.All(x=>x!=null&&soldier3Candidates.Contains(x))
+                    &&assessment.Activation=="Bonus Action"&&commandStep.Kind=="passive"&&suppression.Activation=="Action"
+                    &&wizard10.RequiredSelections==2&&wizard10.Bands.SequenceEqual(new[]{"Hero"})&&wizard10.MinimumActiveSelections==1,
+                    "Structured schedule rows do not preserve their selection bands, active minimums, ASI flags, and locators.");
+                Require(druid1.Kind==ClassAdvancementScheduleKind.NarrativeException&&!druid1.RequiredSelections.HasValue
+                    &&druid1.Bands.Count==0&&!druid1.MinimumActiveSelections.HasValue&&!druid1.HasAsiOrFeatOpportunity.HasValue
+                    &&druid1.SourceLocator=="/exceptionSchedule/1"
+                    &&ClassAdvancementScheduleCatalog.Get("Oracle",20).Kind==ClassAdvancementScheduleKind.NarrativeException
+                    &&ClassAdvancementScheduleCatalog.Get("Paladin",20).Kind==ClassAdvancementScheduleKind.NarrativeException
+                    &&ClassAdvancementScheduleCatalog.Get("missing",1)==null,
+                    "Narrative class exceptions were inferred as empty schedules or mapped to the wrong source rows.");
+                Throws<NotSupportedException>(()=>((IList<string>)soldier2.Bands).Add("Hero"));
+            });
+            cases.Add("character_advancement_option_catalog_projects_pinned_cards_and_row_candidates",()=>{
+                var all=ClassAdvancementOptionCatalog.Options;
+                var soldier2=ClassAdvancementScheduleCatalog.Get("Soldier",2);
+                var candidates=ClassAdvancementOptionCatalog.Candidates(soldier2);
+                var steadyAim=ClassAdvancementOptionCatalog.Get("Soldier","soldier.base.steady-aim");
+                Require(ClassAdvancementOptionCatalog.SourceRevision==ClassAdvancementScheduleCatalog.SourceRevision
+                    &&all.Count==1223&&all.Select(x=>x.ClassName+"|"+x.Id).Distinct(StringComparer.Ordinal).Count()==1223
+                    &&all.All(x=>x.SourceLocator.StartsWith("/cards/",StringComparison.Ordinal)&&x.SourcePath!=""&&x.DesignStatus!="")
+                    &&candidates.Count==10&&candidates.All(x=>x.ClassName=="Soldier"&&x.Band=="Base"&&x.Acquisition=="selection"
+                        &&x.MinimumClassLevel<=2)
+                    &&new[]{CharacterAdvancementFixture.DefensivePositioning,CharacterAdvancementFixture.TacticalReposition,
+                        CharacterFeatureIds.WarningShot,CharacterFeatureIds.CoveringFire}.All(id=>candidates.Any(x=>x.Id==id))
+                    &&steadyAim!=null&&steadyAim.Activation=="Passive"&&!steadyAim.HasPathConstraint&&!steadyAim.HasDeclaredPrerequisite,
+                    "Pinned class-card options or level-row band/level candidates were lost or widened.");
+                Throws<NotSupportedException>(()=>((IList<ClassAdvancementOption>)all).Add(all[0]));
+                Throws<NotSupportedException>(()=>((IList<ClassAdvancementOption>)candidates).Add(candidates[0]));
+            });
+            cases.Add("character_advancement_choice_list_receipts_roundtrip_and_preserve_legacy_pairs",()=>{
+                string Fingerprint(Command command)
+                {
+                    var advancement=command.Advancement;
+                    string selection=advancement.UsesLegacyPairReceipt
+                        ?"|character-level-v1|"+advancement.FeatureOne+"|"+advancement.FeatureTwo
+                        :"|character-level-v2|"+string.Join(",",advancement.FeatureIds);
+                    return ((int)command.Kind).ToString(System.Globalization.CultureInfo.InvariantCulture)+"|"+command.Actor+"|"+command.Target+"|"
+                        +command.ExpectedRevision.ToString(System.Globalization.CultureInfo.InvariantCulture)+"|"+command.X.ToString(System.Globalization.CultureInfo.InvariantCulture)
+                        +"|"+command.Y.ToString(System.Globalization.CultureInfo.InvariantCulture)+selection;
+                }
+                foreach(var choices in new[]{Array.Empty<string>(),new[]{"card.only"},new[]{"card.d","card.b","card.a","card.c"}}) {
+                    var command=new Command("history.list."+choices.Length,TestOnlyPolicy.ActorId,0,CommandKind.AdvanceCharacterLevel,"milestone.list",
+                        advancement:new CharacterAdvancementRequest(choices));
+                    var receipt=new CommandReceipt{Principal="TEST_ONLY.host",Id=command.Id,Fingerprint=Fingerprint(command),Revision=1};
+                    var decoded=CommandHistory.Read(receipt);
+                    Require(Fingerprint(decoded)==Fingerprint(command)&&decoded.Advancement.FeatureIds.SequenceEqual(command.Advancement.FeatureIds),
+                        "Versioned advancement choice lists did not roundtrip canonically.");
+                }
+                var legacy=new Command("history.legacy",TestOnlyPolicy.ActorId,0,CommandKind.AdvanceCharacterLevel,"milestone.legacy",
+                    advancement:new CharacterAdvancementRequest(CharacterAdvancementFixture.TacticalReposition,CharacterAdvancementFixture.DefensivePositioning));
+                var legacyReceipt=new CommandReceipt{Principal="TEST_ONLY.host",Id=legacy.Id,Fingerprint=Fingerprint(legacy),Revision=1};
+                var legacyDecoded=CommandHistory.Read(legacyReceipt);
+                Require(legacyDecoded.Advancement.UsesLegacyPairReceipt
+                    &&legacyDecoded.Advancement.FeatureOne==CharacterAdvancementFixture.TacticalReposition
+                    &&legacyDecoded.Advancement.FeatureTwo==CharacterAdvancementFixture.DefensivePositioning,
+                    "A historical pair receipt changed order or version during decoding.");
+
+                var policy=AdvancementPolicy();var s=World(policy);WorldCommit(s,AwardMilestone(s));
+                var selected=new Command("character.advance.v2",TestOnlyPolicy.ActorId,s.Capture().Revision,CommandKind.AdvanceCharacterLevel,
+                    "opening.milestone.soldier-2",advancement:new CharacterAdvancementRequest(new[]{CharacterAdvancementFixture.TacticalReposition,
+                        CharacterAdvancementFixture.DefensivePositioning}));
+                WorldCommit(s,selected);
+                var saved=s.Capture();var committed=CommandHistory.Read(saved.Receipts.Single(x=>x.Id==selected.Id));
+                var bytes=Bytes(s);var replay=new Simulation(policy,new SnapshotCodec().Decode(bytes),ExecutionProfile.Laboratory);
+                Require(committed.Advancement.FeatureIds.SequenceEqual(new[]{CharacterAdvancementFixture.DefensivePositioning,
+                        CharacterAdvancementFixture.TacticalReposition})&&bytes.SequenceEqual(Bytes(replay)),
+                    "A v2 advancement command did not commit, canonicalize, and survive snapshot replay.");
+
+                var longChoices=new[]{new string('a',96),new string('b',96),new string('c',96),new string('d',96)};
+                var oversized=new Command("history.oversized",TestOnlyPolicy.ActorId,s.Capture().Revision,CommandKind.AdvanceCharacterLevel,new string('m',96),
+                    advancement:new CharacterAdvancementRequest(longChoices));
+                Require(Fingerprint(oversized).Length>512,"The boundary fixture did not exceed the persisted receipt limit.");
+                RejectUnchanged(s,host,oversized,"CommandFingerprintTooLong");
+            });
+            cases.Add("character_advancement_schema30_roundtrips_canonical_event_choice_lists",()=>{
+                var samples=new[]{Array.Empty<string>(),new[]{"choice.one"},new[]{"choice.d","choice.b","choice.a","choice.c"}};
+                for(int i=0;i<samples.Length;i++) {
+                    var record=new CharacterAdvancementRecord("actor.history."+i,"milestone.history."+i,1,1,2,"Soldier",2,6,
+                        HitPointGainMethod.FixedAverage,10,16,4,4,samples[i]);
+                    var canonical=samples[i].OrderBy(x=>x,StringComparer.Ordinal).ToArray();
+                    Require(record.SelectedFeatureIds.SequenceEqual(canonical)
+                        &&record.FeatureOne==(canonical.Length>0?canonical[0]:"")
+                        &&record.FeatureTwo==(canonical.Length>1?canonical[1]:""),
+                        "A schema30 advancement record did not expose its canonical selected-card list.");
+                }
+                var policy=new TestOnlySharedWorldPolicy(new OverwatchFoundationFixture(),
+                    new CharacterAdvancementFixture(null,false,true),new SharedCombatFixture());
+                var s=World(policy);Require(s.Capture().SchemaVersion==Snapshot.CharacterAdvancementHistorySchema,
+                    "The explicit advancement-history fixture did not select schema30.");
+                WorldCommit(s,AwardMilestone(s));WorldCommit(s,AdvanceLevel(s));
+                var snapshot=s.Capture();var before=Bytes(s);var restored=new Simulation(policy,new SnapshotCodec().Decode(before),ExecutionProfile.Laboratory);
+                Require(snapshot.CharacterAdvancements.Single().SelectedFeatureIds.SequenceEqual(new[]{CharacterAdvancementFixture.DefensivePositioning,
+                        CharacterAdvancementFixture.TacticalReposition}.OrderBy(x=>x,StringComparer.Ordinal))
+                    &&before.SequenceEqual(Bytes(restored)),
+                    "Schema30 did not persist the selected-feature list through a committed level-up and replay.");
+            });
+            cases.Add("character_advancement_schema30_validates_two_successive_soldier_level_events",()=>{
+                var policy=new TestOnlySharedWorldPolicy(new OverwatchFoundationFixture(),
+                    new CharacterAdvancementFixture(null,false,true),new SharedCombatFixture());
+                var s=World(policy);WorldCommit(s,AwardMilestone(s));WorldCommit(s,AdvanceLevel(s));
+                var state=s.Capture();var levelThree=state.Copy();levelThree.SchemaVersion=Snapshot.CommandStepSchema;
+                const string milestone="opening.milestone.soldier-3";
+                long awardRevision=checked(state.Revision+1),advanceRevision=checked(state.Revision+2);
+                levelThree.Revision=advanceRevision;
+                levelThree.CharacterMilestones=levelThree.CharacterMilestones.Concat(new[]{
+                    new CharacterMilestoneRecord(milestone,TestOnlyPolicy.ActorId,awardRevision,advanceRevision)}).ToArray();
+                levelThree.Characters=levelThree.Characters.Select(x=>x.ActorId==TestOnlyPolicy.ActorId
+                    ?new ActorCharacterRecord(x.ActorId,x.ProfileId,x.Abilities,x.Levels.Concat(new[]{new CharacterLevelFact("Soldier",6)})):x).ToArray();
+                levelThree.Lives=levelThree.Lives.Select(x=>x.ActorId==TestOnlyPolicy.ActorId
+                    ?new ActorLifeRecord(x.ActorId,22,x.Hp,x.TemporaryHp,x.LinkedInjuries,x.Stable,x.Dead,x.UsesDeathSaves,x.DeathSuccesses,
+                        x.DeathFailures,x.StableUntil,x.LastDeathTurn,x.Prone,x.HeldItems):x).ToArray();
+                levelThree.CharacterHitDice=levelThree.CharacterHitDice.Concat(new[]{new CharacterHitDieRecord(TestOnlyPolicy.ActorId,3,"Soldier",10,false)}).ToArray();
+                string[] selected={CharacterFeatureIds.CommandStep,CharacterFeatureIds.TacticalAssessment};
+                levelThree.CharacterFeatureGrants=levelThree.CharacterFeatureGrants.Concat(selected.Select(feature=>
+                    new CharacterFeatureGrantRecord(TestOnlyPolicy.ActorId,feature,"Soldier",3,milestone,advanceRevision))).ToArray();
+                levelThree.CharacterAdvancements=levelThree.CharacterAdvancements.Concat(new[]{new CharacterAdvancementRecord(
+                    TestOnlyPolicy.ActorId,milestone,advanceRevision,2,3,"Soldier",3,6,HitPointGainMethod.FixedAverage,16,22,
+                    levelThree.Lives.Single(x=>x.ActorId==TestOnlyPolicy.ActorId).Hp,
+                    levelThree.Lives.Single(x=>x.ActorId==TestOnlyPolicy.ActorId).Hp,selected)}).ToArray();
+                CharacterAdvancementValidation.Validate(levelThree);
+
+                var secondPair=levelThree.Copy();string[] alternate={CharacterFeatureIds.SuppressionFire,CharacterFeatureIds.TacticalAssessment};
+                secondPair.CharacterFeatureGrants=secondPair.CharacterFeatureGrants.Where(x=>x.MilestoneId!=milestone)
+                    .Concat(alternate.Select(feature=>new CharacterFeatureGrantRecord(TestOnlyPolicy.ActorId,feature,"Soldier",3,milestone,advanceRevision))).ToArray();
+                secondPair.CharacterAdvancements=secondPair.CharacterAdvancements.Select(x=>x.MilestoneId==milestone
+                    ?new CharacterAdvancementRecord(x.ActorId,x.MilestoneId,x.Revision,x.PreviousTotalLevel,x.NewTotalLevel,x.ClassName,
+                        x.ClassLevel,x.BaseHpGain,x.HitPointMethod,x.MaximumHpBefore,x.MaximumHpAfter,x.CurrentHpBefore,x.CurrentHpAfter,alternate):x).ToArray();
+                Throws<ArgumentException>(()=>CharacterAdvancementValidation.Validate(secondPair));
+
+                var invalid=levelThree.Copy();
+                invalid.CharacterAdvancements=invalid.CharacterAdvancements.Select(x=>x.MilestoneId==milestone
+                    ?new CharacterAdvancementRecord(x.ActorId,x.MilestoneId,x.Revision,x.PreviousTotalLevel,x.NewTotalLevel,x.ClassName,
+                        x.ClassLevel,x.BaseHpGain,x.HitPointMethod,x.MaximumHpBefore,x.MaximumHpAfter,x.CurrentHpBefore,x.CurrentHpAfter,
+                        new[]{CharacterFeatureIds.CommandStep,CharacterFeatureIds.SuppressionFire}):x).ToArray();
+                Throws<ArgumentException>(()=>CharacterAdvancementValidation.Validate(invalid));
+
+                var extraGrant=levelThree.Copy();
+                extraGrant.CharacterFeatureGrants=extraGrant.CharacterFeatureGrants.Concat(new[]{new CharacterFeatureGrantRecord(
+                    TestOnlyPolicy.ActorId,CharacterFeatureIds.SuppressionFire,"Soldier",3,milestone,advanceRevision)}).ToArray();
+                Throws<ArgumentException>(()=>CharacterAdvancementValidation.Validate(extraGrant));
+            });
+            cases.Add("character_advancement_schema32_commits_and_replays_the_first_arch_pair",()=>{
+                var policy=CommandStepPolicy();var s=World(policy);
+                Require(s.Capture().SchemaVersion==Snapshot.CommandStepSchema,"The explicit Command Step fixture did not select schema32.");
+                WorldCommit(s,AwardMilestone(s,"opening.milestone.soldier-2",id:"milestone.soldier-2"));
+                WorldCommit(s,AdvanceLevel(s,id:"advance.soldier-2"));
+                var levelTwoBytes=Bytes(s);s=new Simulation(policy,new SnapshotCodec().Decode(levelTwoBytes),ExecutionProfile.Laboratory);
+                Require(levelTwoBytes.SequenceEqual(Bytes(s))&&s.Capture().CharacterAdvancements.Single().NewTotalLevel==2,
+                    "The committed Soldier 2 event did not validate at its own saved revision.");
+                WorldCommit(s,AwardMilestone(s,"opening.milestone.soldier-3",id:"milestone.soldier-3"));
+                var invalid=new Command("advance.soldier-3.invalid",TestOnlyPolicy.ActorId,s.Capture().Revision,CommandKind.AdvanceCharacterLevel,
+                    "opening.milestone.soldier-3",advancement:new CharacterAdvancementRequest(new[]{CharacterFeatureIds.CommandStep,CharacterFeatureIds.SuppressionFire}));
+                RejectUnchanged(s,TestOnlySharedWorldPolicy.Host(),invalid,"LegalFeatureChoiceNotImplemented");
+                var valid=new Command("advance.soldier-3.valid",TestOnlyPolicy.ActorId,s.Capture().Revision,CommandKind.AdvanceCharacterLevel,
+                    "opening.milestone.soldier-3",advancement:new CharacterAdvancementRequest(new[]{CharacterFeatureIds.TacticalAssessment,CharacterFeatureIds.CommandStep}));
+                WorldCommit(s,valid);
+                var state=s.Capture();var before=Bytes(s);var restored=new Simulation(policy,new SnapshotCodec().Decode(before),ExecutionProfile.Laboratory);
+                Require(state.Characters.Single(x=>x.ActorId==TestOnlyPolicy.ActorId).Levels.Count==3
+                    &&state.CharacterAdvancements.OrderBy(x=>x.ClassLevel).Select(x=>x.NewTotalLevel).SequenceEqual(new[]{2,3})
+                    &&state.CharacterFeatureGrants.Where(x=>x.ClassLevel==3).Select(x=>x.FeatureId).OrderBy(x=>x,StringComparer.Ordinal)
+                        .SequenceEqual(new[]{CharacterFeatureIds.CommandStep,CharacterFeatureIds.TacticalAssessment}.OrderBy(x=>x,StringComparer.Ordinal))
+                    &&state.CharacterMilestones.Single(x=>x.MilestoneId=="opening.milestone.soldier-3").ConsumedRevision==valid.ExpectedRevision+1
+                    &&state.Lives.Single(x=>x.ActorId==TestOnlyPolicy.ActorId).MaximumHp==22&&before.SequenceEqual(Bytes(restored)),
+                    "Schema32 did not atomically commit both Arch cards, their hit die and HP capacity, or replay the second level event.");
+            });
+            cases.Add("soldier_command_step_is_action_linked_consentful_and_free_of_normal_movement_cost",()=>{
+                var policy=CommandStepPolicy(new TacticalTerrainCell(0,1,TerrainCost.Difficult));var s=World(policy);
+                WorldCommit(s,AwardMilestone(s,"opening.milestone.soldier-2",id:"cmdstep.milestone.2"));
+                WorldCommit(s,AdvanceLevel(s,id:"cmdstep.advance.2"));
+                WorldCommit(s,AwardMilestone(s,"opening.milestone.soldier-3",id:"cmdstep.milestone.3"));
+                WorldCommit(s,new Command("cmdstep.advance.3",TestOnlyPolicy.ActorId,s.Capture().Revision,CommandKind.AdvanceCharacterLevel,
+                    "opening.milestone.soldier-3",advancement:new CharacterAdvancementRequest(new[]{CharacterFeatureIds.CommandStep,CharacterFeatureIds.TacticalAssessment})));
+                WorldStep(s,-1,0,actor:TestOnlyPolicy.CompanionId);WorldAdvance(s,1);
+                WorldStep(s,0,-1,actor:TestOnlyPolicy.CompanionId);WorldAdvance(s,1);
+                WorldStep(s,-1,0,actor:TestOnlyPolicy.CompanionId);WorldAdvance(s,1);
+                WorldStep(s,0,-1,actor:TestOnlyPolicy.CompanionId);WorldAdvance(s,1);WorldAdvance(s,2);
+                BeginEncounter(s);WorldCommit(s,Tac(s,CommandKind.SelectCombatStance,stance:(int)CombatStance.Aggressive));
+                var host=TestOnlySharedWorldPolicy.Host();var assessmentOption=s.DiscoverCommands(host,TestOnlyPolicy.ActorId)
+                    .Single(x=>x.Command.Kind==CommandKind.TacticalAssessment&&x.Command.Target==AdditionalTacticalActor.Id);
+                WorldCommit(s,assessmentOption.Command);var assessment=s.Capture().TacticalAssessments.Single();
+                Require(assessment.AllyActorId==TestOnlyPolicy.CompanionId&&assessment.EnemyActorId==AdditionalTacticalActor.Id
+                    &&assessment.ArmorCategory=="unarmored"&&!assessment.HasCover,
+                    "Tactical Assessment did not reveal its source-derived armor and cover facts on paid activation.");
+                var loadout=s.Capture().InitialCharacterLoadouts.Single(x=>x.ActorId==TestOnlyPolicy.ActorId);
+                var action=new Command("cmdstep.doff-shield",TestOnlyPolicy.ActorId,s.Capture().Revision,CommandKind.DoffPortableShield,loadout.ShieldId);
+                WorldCommit(s,action);var turnId=s.Capture().Encounter.CurrentTurnId;
+                var offerOptions=s.DiscoverCommands(host,TestOnlyPolicy.ActorId).Where(x=>x.Command.Kind==CommandKind.OfferCommandStep).ToArray();
+                Require(offerOptions.Length>0,"Command Step offer was not discovered after the Soldier Action.");
+                var firstOffer=offerOptions.Single();
+                Require(firstOffer.Query.Admissible&&firstOffer.Command.Combat.WeaponId==action.Id,
+                    "Command discovery did not bind its offer to the Soldier's completed Action receipt.");
+                WorldCommit(s,firstOffer.Command);var declined=s.Capture().CommandStepOffers.Single(x=>x.Id==firstOffer.Command.Id);
+                var decline=s.DiscoverCommands(host,TestOnlyPolicy.CompanionId).Single(x=>x.Command.Kind==CommandKind.RespondCommandStep&&!x.Command.Combat.Choice);
+                WorldCommit(s,decline.Command);
+                Require(declined.Status==CommandStepOfferStatus.Pending
+                    &&s.Capture().CommandStepOffers.Single(x=>x.Id==declined.Id).Status==CommandStepOfferStatus.Declined
+                    &&!s.Capture().CommandStepOffers.Any(x=>x.Status==CommandStepOfferStatus.Accepted),
+                    "The willing ally's decline consumed Command Step or failed to resolve its offer.");
+                var secondOffer=s.DiscoverCommands(host,TestOnlyPolicy.ActorId).Single(x=>x.Command.Kind==CommandKind.OfferCommandStep);
+                WorldCommit(s,secondOffer.Command);var pendingBytes=Bytes(s);
+                s=new Simulation(policy,new SnapshotCodec().Decode(pendingBytes),ExecutionProfile.Laboratory);
+                Require(pendingBytes.SequenceEqual(Bytes(s)),"A pending action-linked Command Step offer did not survive save and restore.");
+                var invalidStep=new Command("cmdstep.difficult",TestOnlyPolicy.CompanionId,s.Capture().Revision,CommandKind.RespondCommandStep,
+                    secondOffer.Command.Id,0,1,combat:new CombatRequest(turnId,choice:true));
+                RejectUnchanged(s,host,invalidStep,"InsufficientCommandStepMovement");
+                var response=s.DiscoverCommands(host,TestOnlyPolicy.CompanionId).Single(x=>x.Command.Kind==CommandKind.RespondCommandStep
+                    &&x.Command.Combat.Choice&&x.Command.X==1&&x.Command.Y==0);
+                var allyIntervalBefore=s.Capture().WorldIntervals.Single(x=>x.ActorId==TestOnlyPolicy.CompanionId);
+                int attacksBefore=s.Capture().MeleeAttacks.Length;
+                WorldCommit(s,response.Command);
+                var after=s.Capture();var accepted=after.CommandStepOffers.Single(x=>x.Id==secondOffer.Command.Id);
+                var move=after.TacticalMoves.Single(x=>x.Id==accepted.MoveId);
+                var allyIntervalAfter=after.WorldIntervals.Single(x=>x.ActorId==TestOnlyPolicy.CompanionId);
+                var soldierInterval=after.WorldIntervals.Single(x=>x.ActorId==TestOnlyPolicy.ActorId);
+                Require(accepted.Status==CommandStepOfferStatus.Accepted&&move.Kind==TacticalMoveKind.CommandStep&&move.Status==TacticalMoveStatus.Completed
+                    &&move.ParentCommandStepOffer==accepted.Id&&move.Reactors.Count==0&&move.CostPaid==5
+                    &&after.Actors.Single(x=>x.Id==TestOnlyPolicy.CompanionId).X==1&&after.Actors.Single(x=>x.Id==TestOnlyPolicy.CompanionId).Y==0
+                    &&allyIntervalAfter.MovementSpent==allyIntervalBefore.MovementSpent&&soldierInterval.ActionSpent&&after.MeleeAttacks.Length==attacksBefore,
+                    "Command Step failed to grant a separate five-foot move without an OA, normal movement debit, or a second Action spend.");
+                var saved=Bytes(s);s=new Simulation(policy,new SnapshotCodec().Decode(saved),ExecutionProfile.Laboratory);
+                Require(saved.SequenceEqual(Bytes(s)),"The accepted Command Step movement and action link did not survive save and restore.");
+                var repeated=new Command("cmdstep.repeat",TestOnlyPolicy.ActorId,s.Capture().Revision,CommandKind.OfferCommandStep,TestOnlyPolicy.CompanionId,
+                    combat:new CombatRequest(turnId,action.Id));
+                RejectUnchanged(s,host,repeated,"CommandStepAlreadyUsedThisRound");
+                TacEnd(s);TacStep(s,2,0);TacStep(s,3,0);
+                WorldCommit(s,Tac(s,CommandKind.AttackUnarmed,AdditionalTacticalActor.Id,TestOnlyPolicy.CompanionId));
+                var testedAttack=s.Capture().MeleeAttacks.Single(x=>x.AttackerId==TestOnlyPolicy.CompanionId&&x.TargetId==AdditionalTacticalActor.Id&&!x.Opportunity);
+                var consumedAssessment=s.Capture().TacticalAssessments.Single(x=>x.Id==assessment.Id);
+                Require(testedAttack.Attack.Modifier==1&&consumedAssessment.Status==TacticalAssessmentStatus.Consumed
+                    &&consumedAssessment.ResolutionId==testedAttack.Id,
+                    "Tactical Assessment did not add and consume +1 on the ally's first attempted attack against its assessed enemy.");
+            });
+            cases.Add("tactical_assessment_schema31_roundtrips_before_level3_is_granted",()=>{
+                var policy=new TestOnlySharedWorldPolicy(SoldierCharacterBuildFixture.ForTacticalTechniques(),new OverwatchFoundationFixture(),
+                    new CharacterAdvancementFixture(null,false,false,true),new SharedCombatFixture());
+                var s=World(policy);var initial=s.Capture();var encoded=Bytes(s);
+                var restored=new Simulation(policy,new SnapshotCodec().Decode(encoded),ExecutionProfile.Laboratory);
+                Require(initial.SchemaVersion==Snapshot.TacticalAssessmentSchema&&initial.TacticalAssessments.Length==0
+                    &&initial.CharacterFeatureGrants.All(x=>x.FeatureId!=CharacterFeatureIds.TacticalAssessment&&x.FeatureId!=CharacterFeatureIds.CommandStep)
+                    &&encoded.SequenceEqual(Bytes(restored)),
+                    "Schema31 did not preserve its opt-in base state or incorrectly granted level-3 cards before both handlers exist.");
+                var host=TestOnlySharedWorldPolicy.Host();
+                var request=new Command("assessment.before-encounter",TestOnlyPolicy.ActorId,initial.Revision,CommandKind.TacticalAssessment,
+                    AdditionalTacticalActor.Id,combat:new CombatRequest("world.unstarted-turn",TestOnlyPolicy.CompanionId));
+                RejectUnchanged(s,host,request,"TacticalAssessmentRequiresEncounter");
+            });
             cases.Add("character_advancement_schema21_starts_as_source_scoped_soldier1",()=>{
                 var p=AdvancementPolicy();var s=new Simulation(p,p.Initial(),ExecutionProfile.Laboratory);var v=s.Capture();
                 Require(v.SchemaVersion==Snapshot.CharacterAdvancementSchema&&v.Characters.Single(x=>x.ActorId==TestOnlyPolicy.ActorId).Levels.Single().ClassName=="Soldier"
@@ -61,9 +339,29 @@ namespace Decennium.Foundation.Tests
             cases.Add("character_advancement_incomplete_and_unsupported_selections_are_atomic",()=>{
                 var p=AdvancementPolicy();var s=World(p);WorldCommit(s,AwardMilestone(s));
                 RejectUnchanged(s,host,AdvanceLevel(s,one:"",two:""),"IncompleteFeatureSelection");
-                RejectUnchanged(s,host,AdvanceLevel(s,one:"soldier.base.unknown",two:CharacterAdvancementFixture.TacticalReposition,id:"character.advance.unsupported"),"UnsupportedFeatureSelection");
+                RejectUnchanged(s,host,AdvanceLevel(s,one:"soldier.base.unknown",two:CharacterAdvancementFixture.TacticalReposition,id:"character.advance.outside-schedule"),"FeatureOutsideClassSchedule");
+                RejectUnchanged(s,host,AdvanceLevel(s,one:"soldier.base.steady-aim",two:CharacterAdvancementFixture.DefensivePositioning,
+                    id:"character.advance.legal-but-unimplemented"),"LegalFeatureChoiceNotImplemented");
                 Require(s.Capture().CharacterMilestones.Single().ConsumedRevision==0&&s.Capture().Characters.Single(x=>x.ActorId==TestOnlyPolicy.ActorId).Levels.Count==1,
                     "Rejected selection consumed the entitlement or partially advanced the character.");
+            });
+            cases.Add("character_advancement_uses_next_class_schedule_and_retains_unbound_level_three_entitlement",()=>{
+                var p=AdvancementPolicy();var s=World(p);WorldCommit(s,AwardMilestone(s));WorldCommit(s,AdvanceLevel(s));
+                const string nextMilestone="opening.milestone.soldier-3";
+                WorldCommit(s,AwardMilestone(s,nextMilestone,id:"milestone.award.soldier3"));
+                var row=ClassAdvancementScheduleCatalog.Get("Soldier",3);
+                var candidates=ClassAdvancementOptionCatalog.Candidates(row);
+                var active=candidates.First(x=>x.Kind=="active"&&!x.HasPathConstraint&&!x.HasDeclaredPrerequisite);
+                var passive=candidates.First(x=>x.Kind!="active"&&!x.HasPathConstraint&&!x.HasDeclaredPrerequisite);
+                Require(row.RequiredSelections==2&&row.MinimumActiveSelections==1&&active.MinimumClassLevel==3&&passive.MinimumClassLevel==3,
+                    "The level-three request did not come from the next source schedule row.");
+                var before=Bytes(s);
+                RejectUnchanged(s,host,AdvanceLevel(s,milestone:nextMilestone,one:active.Id,two:passive.Id,id:"character.advance.soldier3-unbound"),
+                    "LegalFeatureChoiceNotImplemented");
+                var state=s.Capture();
+                Require(before.SequenceEqual(Bytes(s))&&state.CharacterMilestones.Single(x=>x.MilestoneId==nextMilestone).ConsumedRevision==0
+                    &&state.Characters.Single(x=>x.ActorId==TestOnlyPolicy.ActorId).Levels.Count==2&&state.CharacterAdvancements.Length==1,
+                    "An unbound next-level row consumed its entitlement or partially changed progression.");
             });
             cases.Add("character_advancement_fixed_average_grants_cards_and_hit_die_without_healing",()=>{
                 var p=AdvancementPolicy();var s=World(p);WorldCommit(s,AwardMilestone(s));WorldCommit(s,AdvanceLevel(s));var v=s.Capture();
@@ -152,6 +450,36 @@ namespace Decennium.Foundation.Tests
                 var missing=v.Copy();missing.BonusActions=missing.BonusActions.Take(1).ToArray();Throws<ArgumentException>(()=>codec.Encode(missing));
                 var stale=v.Copy();stale.BonusActions=stale.BonusActions.Select(x=>x.ActorId==TestOnlyPolicy.ActorId?new ActorBonusActionRecord(x.ActorId,-1):x).ToArray();
                 Throws<ArgumentException>(()=>codec.Encode(stale));
+            });
+            cases.Add("soldier_schema27_persists_initial_cards_separately_from_automatic_overwatch",()=>{
+                var p=new TestOnlySharedWorldPolicy(new SoldierInitialLoadoutFixture(),new OverwatchFoundationFixture(),
+                    new CharacterAdvancementFixture(),new SharedCombatFixture());
+                var s=World(p);var v=s.Capture();var selection=v.InitialClassSelections.Single();
+                Require(v.SchemaVersion==Snapshot.SoldierInitialLoadoutSchema
+                    &&v.Characters.Single(x=>x.ActorId==TestOnlyPolicy.ActorId).ProfileId==CharacterAdvancementProfileIds.TestOnlySoldierLevel1WithInitialCards
+                    &&selection.ClassName=="Soldier"&&selection.ClassLevel==1&&selection.SourceRevision==SoldierInitialLoadoutFixture.SourceRevision
+                    &&selection.SelectedFeatureIds.OrderBy(x=>x,StringComparer.Ordinal).SequenceEqual(new[]{CharacterFeatureIds.WarningShot,
+                        CharacterFeatureIds.TacticalReposition,CharacterFeatureIds.ShieldTrained,CharacterFeatureIds.CoveringFire}.OrderBy(x=>x,StringComparer.Ordinal))
+                    &&v.CharacterMilestones.Length==0&&v.CharacterFeatureGrants.Count(x=>x.Origin==CharacterFeatureGrantOrigin.InitialClassSelection)==4
+                    &&v.CharacterFeatureGrants.Single(x=>x.FeatureId==CharacterFeatureIds.Overwatch).Origin==CharacterFeatureGrantOrigin.AutomaticClassFeature,
+                    "Level 1 cards were not recorded as initial selections separately from automatic Overwatch.");
+                var codec=new SnapshotCodec();var bytes=codec.Encode(v);var restored=codec.Decode(bytes);
+                Require(bytes.SequenceEqual(codec.Encode(restored))&&restored.InitialClassSelections.Single().SelectedFeatureIds.SequenceEqual(selection.SelectedFeatureIds),
+                    "Schema27 initial class selections did not survive canonical persistence.");
+                var resumed=new Simulation(p,restored,ExecutionProfile.Laboratory);
+                WorldCommit(resumed,new Command("soldier.initial.begin-combat",TestOnlyPolicy.ActorId,resumed.Capture().Revision,CommandKind.BeginFixedEncounter));
+                WorldCommit(resumed,Tac(resumed,CommandKind.ActivateTacticalReposition));
+                Require(resumed.Capture().CharacterFeatureRuntime.Single().RepositionRechargeRemaining==2
+                    &&!resumed.Capture().BonusActions.Single(x=>x.ActorId==TestOnlyPolicy.ActorId).Available,
+                    "Restored initial card ownership could not activate Tactical Reposition through the shared Bonus Action ledger.");
+                var missingGrant=v.Copy();missingGrant.CharacterFeatureGrants=missingGrant.CharacterFeatureGrants
+                    .Where(x=>x.FeatureId!=CharacterFeatureIds.WarningShot).ToArray();Throws<ArgumentException>(()=>codec.Encode(missingGrant));
+                var wrongProfile=v.Copy();wrongProfile.Characters=wrongProfile.Characters.Select(x=>x.ActorId==TestOnlyPolicy.ActorId
+                    ?new ActorCharacterRecord(x.ActorId,CharacterAdvancementProfileIds.TestOnlySoldierLevel1,x.Abilities,x.Levels):x).ToArray();
+                Throws<ArgumentException>(()=>codec.Encode(wrongProfile));
+                var oldSchema=v.Copy();oldSchema.SchemaVersion=Snapshot.OverwatchExecutionSchema;Throws<ArgumentException>(()=>codec.Encode(oldSchema));
+                var milestone=new Command("soldier.initial.level-up",TestOnlyPolicy.ActorId,v.Revision,CommandKind.AwardCharacterMilestone,"soldier.level2");
+                RejectUnchanged(s,TestOnlySharedWorldPolicy.Host(),milestone,"UnsupportedAdvancementPath");
             });
             cases.Add("overwatch_schema24_reposition_spends_shared_budget_and_regular_start_refills_it",()=>{
                 var p=new TestOnlySharedWorldPolicy(new OverwatchFoundationFixture(),new CharacterAdvancementFixture(),new SharedCombatFixture());

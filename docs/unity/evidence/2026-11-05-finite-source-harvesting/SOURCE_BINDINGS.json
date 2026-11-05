@@ -1,0 +1,58 @@
+{
+  "schema": 1,
+  "implementationBranch": "Engine",
+  "sourceRevision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+  "sources": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/playtest/character_foundation.json",
+      "snapshot": "sources/character_foundation.json",
+      "blob": "88fad6737419c7053d262bdf747fad80fd20f1c4",
+      "sha256": "21e12af81f191abe52d1e3272ed1f57c6446ed3d4487cafbd5609dff08e56a77",
+      "scope": "Required profile projection source used by the shared binding validator."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CRAFTING_HARVEST_PLAYTEST.md",
+      "snapshot": "sources/CRAFTING_HARVEST_PLAYTEST.md",
+      "blob": "b2c15e1bd56bb62e0f1729f4f6d68413e62f9be9",
+      "sha256": "b8adb3ac6eb51f333fdb8f2d68ecc7e9c6511e7ee3aded1bfe54cd4728c93479",
+      "scope": "Generic harvest access, extraction ability/tools, finite size/yield/time, four-degree outcomes, restrictions and preservation."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CRAFTING_TRADE_REFERENCE.md",
+      "snapshot": "sources/CRAFTING_TRADE_REFERENCE.md",
+      "blob": "2ef0713003da248a56507cb2febb685c9327190e",
+      "sha256": "fa266be45fb9741db05f7558232bcd69025642c81961afde4f1ce84f38228318",
+      "scope": "Fishing primary proficiency and authored Fishing injury type."
+    }
+  ],
+  "implementations": [
+    {
+      "name": "Schema41 TEST_ONLY finite-source generic fish harvest",
+      "code": [
+        "Runtime/Core/HarvestRecords.cs",
+        "Runtime/Core/Simulation.cs",
+        "Runtime/Core/PortableEquipmentRecords.cs",
+        "Runtime/Persistence/HarvestCodec.cs",
+        "Runtime/Persistence/SnapshotCodec.cs",
+        "Laboratory/Model/SharedHarvest.cs",
+        "Laboratory/Model/SharedWorldCombatPolicy.cs",
+        "Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+        "Laboratory/Model/OrdinaryInventory.cs",
+        "Tests/EditMode/HarvestCases.cs",
+        "Tests/EditMode/FoundationCases.cs"
+      ],
+      "tests": [
+        "harvest_fixture_is_finite_dead_source_and_preserves_unknown_food_identity",
+        "harvest_success_spends_exact_work_and_settles_same_finite_unit",
+        "harvest_critical_failure_records_trade_accident_and_applies_life_damage",
+        "harvest_failure_ruins_only_selected_unit_and_cannot_be_retried",
+        "harvest_pause_resume_and_tactical_entry_preserve_credit_without_overlap",
+        "harvest_untrained_generic_attempt_uses_wisdom_zero_proficiency_and_disadvantage",
+        "harvest_rejects_missing_tools_and_prohibited_origin_without_cost"
+      ]
+    }
+  ],
+  "validation": {
+    "headless": "HEADLESS_RESULTS.json"
+  }
+}

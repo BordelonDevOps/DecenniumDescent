@@ -114,7 +114,8 @@ namespace Decennium.Foundation.Laboratory
                 ||!s.CharacterFeatureGrants.Any(x=>x.ActorId==offer.OwnerId&&x.FeatureId==CharacterFeatureIds.Overwatch)
                 ||weapon==null||weapon.HeldBy!=offer.OwnerId||weapon.CustodianId!=offer.OwnerId||weapon.LoadedBoltLots.Count==0
                 ||AvailableHands(s,offer.OwnerId)+weapon.GripHands<2||targetLife==null||targetLife.Dead
-                ||s.RangedAttacks.Length>=128||s.OverwatchRiderChoices.Length>=OverwatchExecutionValidation.MaxRiderChoices
+                ||s.RangedAttacks.Length>=128||s.SchemaVersion>=Snapshot.SoldierTacticalTechniquesSchema&&s.TacticalAttackAudits.Length>=SoldierTacticalFeatureValidation.MaxAttackAudits
+                ||s.OverwatchRiderChoices.Length>=OverwatchExecutionValidation.MaxRiderChoices
                 ||!TestOnlyClubAttackPolicy.DamageConditionCapacity(s,offer.TargetId))return false;
             var ammunition=s.AmmunitionLots.SingleOrDefault(x=>x.Id==weapon.LoadedBoltLots[0]);
             var attacker=s.RangedCombatants.SingleOrDefault(x=>x.ActorId==offer.OwnerId);
@@ -124,22 +125,25 @@ namespace Decennium.Foundation.Laboratory
                 ||!TestOnlyClubAttackPolicy.CanSee(s,offer.OwnerId,offer.TargetId))return false;
             int dex=PlaytestCharacters.AbilityModifier(s.Characters.Single(x=>x.ActorId==offer.TargetId).Abilities[1]);
             var defense=TestOnlyClubAttackPolicy.ActiveStance(s,offer.TargetId);
-            int ac=checked((int)PrototypeArmor.UnarmoredBaseAc(s.Characters.Single(x=>x.ActorId==offer.TargetId).Abilities[1])
+            int targetDexterity=s.Characters.Single(x=>x.ActorId==offer.TargetId).Abilities[1];
+            int ac=checked(CharacterAdvancementRules.ArmorClass(s,offer.TargetId,targetDexterity)
                 +(defense?.Kind==CombatStance.Aggressive?-2:defense?.Kind==CombatStance.Guarded?1:0)
                 +CharacterAdvancementRules.DefensivePositioningBonus(s,offer.TargetId));
-            bool closeHostile=s.WorldSchedule.Order.Where(id=>id!=offer.OwnerId).Any(id=>{
+            bool closeHostile=s.WorldSchedule.Order.Where(id=>id!=offer.OwnerId&&!SoldierTacticalFeatures.IsAlly(s,offer.OwnerId,id)).Any(id=>{
                 var other=s.Actors.Single(a=>a.Id==id);var otherLife=s.Lives.Single(l=>l.ActorId==id);
                 bool incapacitated=otherLife.Dead||otherLife.Hp==0||TestOnlyClubAttackPolicy.ConditionsFor(s,id).View().Clauses.Incapacitated;
                 return PlanarCombatGeometry.CloseHostileDisadvantage(PlanarCombatGeometry.DistanceFeet(new CombatCell(shooter.X,shooter.Y),
                     new CombatCell(other.X,other.Y)),true,incapacitated,TestOnlyClubAttackPolicy.CanSee(s,id,offer.OwnerId));
             });
-            int flatAttack=s.Lives.Single(x=>x.ActorId==offer.OwnerId).LinkedInjuries.Contains((int)Injury.OffensiveTrauma)?-1:0;
+            var incomingEffects=SoldierTacticalFeatures.ForAttack(s,offer.OwnerId,offer.TargetId);
+            int flatAttack=checked((s.Lives.Single(x=>x.ActorId==offer.OwnerId).LinkedInjuries.Contains((int)Injury.OffensiveTrauma)?-1:0)
+                -incomingEffects.CoveringFirePenalty+incomingEffects.TacticalAssessmentBonus);
             var request=new RangedAttackRequest(distance,RepeatingCrossbowShotRules.NormalRangeFeet,RepeatingCrossbowShotRules.MaximumRangeFeet,ac,
                 PlaytestCharacters.AbilityModifier(attacker.DexterityScore),attacker.ProficiencyBonus,attacker.CrossbowProficient,flatAttack,
                 overwatchExecution.TargetCover,overwatchExecution.TargetLocationKnown,true,overwatchExecution.LineOfFireClear,
                 !TestOnlyClubAttackPolicy.CanSee(s,offer.TargetId,offer.OwnerId),closeHostile,
                 TestOnlyClubAttackPolicy.CombatConditions(s,offer.OwnerId),TestOnlyClubAttackPolicy.CombatConditions(s,offer.TargetId),
-                attackerInvisibleLocationKnown:true,targetInvisibleLocationKnown:true);
+                attackerInvisibleLocationKnown:true,targetInvisibleLocationKnown:true,additionalDisadvantageSources:incomingEffects.WarningShot?1:0);
             var attack=RangedAttackRules.Resolve(s.RandomState,request);if(!attack.Legal)return false;
             facts=new OverwatchShotFacts{Zone=zone,Weapon=weapon,Ammunition=ammunition,Attacker=attacker,Shooter=shooter,Target=target,
                 TargetLife=targetLife,Attack=attack};
@@ -165,6 +169,9 @@ namespace Decennium.Foundation.Laboratory
                 return null;
             }
             if(s.RangedAttacks.Length>=128||s.OverwatchRiderChoices.Length>=OverwatchExecutionValidation.MaxRiderChoices)return "OverwatchHistoryCapacityReached";
+            if(s.SchemaVersion>=Snapshot.SoldierTacticalTechniquesSchema&&s.TacticalAttackAudits.Length>=SoldierTacticalFeatureValidation.MaxAttackAudits)
+                return "TacticalAttackAuditCapacityReached";
+            string attackId="ranged.ow."+N(s.Revision+1);
             s.TacticalActors=s.TacticalActors.Select(x=>x.ActorId==offer.OwnerId
                 ?new ActorTacticalRecord(x.ActorId,x.LastRegularStart,false,x.MobileFeet,x.PressConsumed,x.DisengageTurn):x).ToArray();
             SetInterval(s,Interval(s,offer.OwnerId).WithReaction(false));
@@ -173,6 +180,8 @@ namespace Decennium.Foundation.Laboratory
             if(facts.Weapon.GripHands<2)s.RepeatingCrossbows=s.RepeatingCrossbows.Select(x=>x.Id==facts.Weapon.Id?x.WithGrip(2):x).ToArray();
             var magazine=facts.Weapon.LoadedBoltLots.ToArray();string ammunitionId=magazine[0];
             s.RepeatingCrossbows=s.RepeatingCrossbows.Select(x=>x.Id==facts.Weapon.Id?x.WithMagazine(magazine.Skip(1).ToArray()):x).ToArray();
+            string captureFailure=SoldierTacticalFeatures.CaptureAndConsume(s,attackId,offer.OwnerId,offer.TargetId,"",out _);
+            if(captureFailure!=null)return captureFailure;
             uint before=s.RandomState;var shot=facts.Attack;uint next=shot.RandomStateAfter;int[] dice=Array.Empty<int>();long diceWords=0,total=0,afterDefense=0;RolledDamage rolled=null;
             int flatDamage=checked(PlaytestCharacters.AbilityModifier(facts.Attacker.DexterityScore)
                 +(TestOnlyClubAttackPolicy.ActiveStance(s,offer.OwnerId)?.Kind==CombatStance.Aggressive?2:0));
@@ -180,9 +189,12 @@ namespace Decennium.Foundation.Laboratory
                 int count=shot.Critical?2:1;dice=new int[count];
                 for(int i=0;i<count;i++){var die=DiceStream.Draw(next,8);dice[i]=die.Value+1;next=die.NextState;diceWords=checked(diceWords+die.WordsConsumed);}
                 total=Math.Max(0L,dice.Sum(x=>(long)x)+flatDamage);
-                afterDefense=TestOnlyClubAttackPolicy.ConditionsFor(s,offer.TargetId).View().Has(ConditionKind.Petrified)
-                    ?PlaytestConditions.PetrifiedDamage(total):total;
-                int con=PlaytestCharacters.AbilityModifier(s.Characters.Single(x=>x.ActorId==offer.TargetId).Abilities[2]);
+                afterDefense=CharacterAdvancementRules.ReduceIncomingDamage(s,offer.TargetId,total);
+                if(TestOnlyClubAttackPolicy.ConditionsFor(s,offer.TargetId).View().Has(ConditionKind.Petrified))
+                    afterDefense=PlaytestConditions.PetrifiedDamage(afterDefense);
+                var targetCharacter=s.Characters.Single(x=>x.ActorId==offer.TargetId);
+                int con=checked(PlaytestCharacters.AbilityModifier(targetCharacter.Abilities[2])
+                    +CharacterAdvancementRules.SaveProficiencyBonus(s,offer.TargetId,"CON"));
                 rolled=PlaytestDamageDice.Resolve(ActorLifeRules.Read(facts.TargetLife),afterDefense,s.RuleClock,next,
                     constitutionSaveModifier:con,critical:shot.Critical,melee:false,knockout:KnockoutInstruction.OrdinaryOutcome);
                 next=rolled.NextRandomState;
@@ -193,7 +205,6 @@ namespace Decennium.Foundation.Laboratory
                 rolled?.WoundRoll?.Natural??0,rolled?.InjuryD6??0,rolled?.StableD4??0);
             var attackRecord=new CombatAttackRoll(shot.Roll.First,shot.Roll.Second??0,shot.Roll.Natural,shot.AttackModifier,
                 shot.EffectiveArmorClass,shot.Attack.Hit,shot.Critical,before,shot.Roll.NextRandomState,shot.Roll.WordsConsumed);
-            string attackId="ranged.ow."+N(s.Revision+1);
             var record=new RangedAttackRecord(attackId,s.Revision+1,s.Encounter.TurnOrdinal,offer.OwnerId,offer.TargetId,
                 facts.Weapon.Id,ammunitionId,s.RuleClock,attackRecord,damage);
             s.RangedAttacks=s.RangedAttacks.Concat(new[]{record}).ToArray();s.RandomState=next;
@@ -232,7 +243,9 @@ namespace Decennium.Foundation.Laboratory
                     var charTarget=s.Characters.Single(x=>x.ActorId==pending.TargetId);
                     var charOwner=s.Characters.Single(x=>x.ActorId==pending.OwnerId);
                     dc=checked(8+PlaytestCharacters.ProficiencyBonus(charOwner.Levels.Count)+PlaytestCharacters.AbilityModifier(charOwner.Abilities[2]));
-                    modifier=checked(PlaytestCharacters.AbilityModifier(charTarget.Abilities[0])+overwatchExecution.AdditionalStrengthSaveModifier);
+                    modifier=checked(PlaytestCharacters.AbilityModifier(charTarget.Abilities[0])
+                        +CharacterAdvancementRules.SaveProficiencyBonus(s,pending.TargetId,"STR")
+                        +overwatchExecution.AdditionalStrengthSaveModifier);
                     bool automaticFailure=AutomaticPushStrengthSaveFailure(s,pending.TargetId);
                     if(automaticFailure) {success=false;}
                     else {
@@ -244,6 +257,7 @@ namespace Decennium.Foundation.Laboratory
                         toX=target.X+directionX;toY=target.Y+directionY;
                         if((directionX!=0||directionY!=0)&&TestOnlyPolicy.Walkable(toX,toY)&&!s.Actors.Any(x=>x.Id!=target.Id&&x.X==toX&&x.Y==toY)) {
                             target.X=toX;target.Y=toY;moved=5;
+                            CharacterAdvancementRules.MarkMoved(s,target.Id);
                             s.Clubs=s.Clubs.Select(x=>x.HeldBy==target.Id?new ClubInstance(x.Id,x.ProfileId,x.OwnerId,x.CustodianId,x.HeldBy,toX,toY):x).ToArray();
                             s.RepeatingCrossbows=s.RepeatingCrossbows.Select(x=>x.HeldBy==target.Id
                                 ?new RepeatingCrossbowRecord(x.Id,x.ProfileId,x.OwnerId,x.CustodianId,x.HeldBy,x.GripHands,toX,toY,x.LoadedBoltLots.ToArray()):x).ToArray();

@@ -1,4 +1,4 @@
-param([string]$ResultsRoot = (Join-Path $PSScriptRoot '../artifacts'))
+param([string]$ResultsRoot = (Join-Path $PSScriptRoot '../artifacts'), [string]$CaseName = '')
 $ErrorActionPreference = 'Stop'
 if ($PSVersionTable.PSEdition -ne 'Core') { throw 'Run with PowerShell 7 (pwsh), not Windows PowerShell 5.' }
 $engineRoot = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
@@ -30,7 +30,12 @@ try {
         Add-Type -Path $assembly
         $referenceAssemblies += $assembly
     }
-    $results = @([Decennium.Foundation.Tests.FoundationCases]::RunAll((Join-Path $runDirectory 'saves')))
+    $saveDirectory = Join-Path $runDirectory 'saves'
+    if ([string]::IsNullOrWhiteSpace($CaseName)) {
+        $results = @([Decennium.Foundation.Tests.FoundationCases]::RunAll($saveDirectory))
+    } else {
+        $results = @([Decennium.Foundation.Tests.FoundationCases]::Run($CaseName, $saveDirectory))
+    }
     $report.testsDiscovered = $results.Count
     $report.passed = @($results | Where-Object Passed).Count
     $report.failed = @($results | Where-Object { -not $_.Passed }).Count

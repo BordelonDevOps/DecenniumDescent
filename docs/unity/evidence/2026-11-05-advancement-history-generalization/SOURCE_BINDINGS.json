@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "recordedUtc": "2026-11-05T02:00:58.4633707Z",
+  "branch": "Engine",
+  "engineBase": "be10936e9bf4065258ffb4ef4cff2b21e26901ef",
+  "sourceRevision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+  "catalogEvidence": "docs/unity/evidence/2026-11-04-character-advancement-catalog/SOURCE_BINDINGS.json",
+  "snapshotSchema": 30,
+  "status": "PARTIAL / TEST_ONLY / SOURCE-BOUND / PROVISIONAL",
+  "runtimeLevelUp": "Soldier 1-to-2 only",
+  "change": "CharacterAdvancementValidation now validates the source-bound Soldier level-3 event choices and consecutive level history structurally; runtime feature handlers and L2-to-L3 command execution remain gated.",
+  "selectedLevel3Pairs": [
+    [
+      "soldier.arch.command-step",
+      "soldier.arch.tactical-assessment"
+    ],
+    [
+      "soldier.arch.suppression-fire",
+      "soldier.arch.tactical-assessment"
+    ]
+  ],
+  "implementationFiles": [
+    {
+      "sha256": "7a245242675c0a151cf4b0fb779676769f983014e9d947a2d6e446db0d476aa2",
+      "path": "engine/com.decennium.foundation/Runtime/Core/CharacterAdvancementRecords.cs"
+    },
+    {
+      "sha256": "02d4689458112368f7bac73dd53167efd6b00e05f9de872a6349685aa8a6db47",
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCharacterAdvancement.cs"
+    },
+    {
+      "sha256": "b68a7d8a325e30a52e94c984d27c24cc4cc43234c4aab4c23434f1972637c7f9",
+      "path": "engine/com.decennium.foundation/Tests/EditMode/CharacterAdvancementCases.cs"
+    }
+  ],
+  "tests": {
+    "failed": 0,
+    "status": "PASS",
+    "command": "pwsh -NoProfile -File engine/tools/Test-Foundation.ps1",
+    "passed": 1069,
+    "artifact": "HEADLESS_RESULTS.json"
+  },
+  "packageValidation": {
+    "checks": 14,
+    "status": "PASS",
+    "command": "pwsh -NoProfile -File engine/tools/Validate-Package.ps1",
+    "artifact": "PACKAGE_RESULTS.json"
+  },
+  "catalogValidation": {
+    "status": "PASS",
+    "command": "pwsh -NoProfile -File engine/tools/Validate-ClassAdvancementSchedule.ps1",
+    "artifact": "CATALOG_VALIDATION.json"
+  },
+  "limits": [
+    "Level-3 history test uses a synthetic structurally valid snapshot; it is not an end-to-end second level-up command.",
+    "Command Step, Tactical Assessment, and Suppression Fire runtime handlers remain unimplemented.",
+    "No Unity compilation, Edit Mode, Play Mode, or standalone player build was run."
+  ],
+  "documentFiles": [
+    {
+      "sha256": "32a3e1ce2d38f5cb243d6c27ff2c3a9bce9122737991a276b707fa4502f888ae",
+      "path": "docs/unity/SOLDIER_LEVEL3_RULE_DECISIONS.md"
+    },
+    {
+      "sha256": "fd6a4f7367f515d907fd6971099a50595046bfa15ec655ed2a9f95ef5b0a76c1",
+      "path": "docs/unity/IMPLEMENTATION_TRACE.md"
+    },
+    {
+      "sha256": "1fdef9e47bc87c472b843119e959e5661658ba0e24ce083501a446b8f2cf6de1",
+      "path": "docs/unity/DEVELOPMENT_HANDOFF.md"
+    },
+    {
+      "sha256": "fa5e1ef1dc7215241f4573cae8d2035e70347f6c9c9531484a9f6b9557aae79f",
+      "path": "docs/unity/evidence/2026-11-05-advancement-history-generalization/README.md"
+    }
+  ]
+}

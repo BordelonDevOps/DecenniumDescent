@@ -18,6 +18,7 @@ namespace Decennium.Foundation
                 Optional(w,x.CapacityPounds);Optional(w,x.CapacityCubicFeet);w.Write(x.Wearable);w.Write(x.Open);Text(w,x.FitRuleId);
                 w.Write(x.FitMemberIds.Count);foreach(string id in x.FitMemberIds.OrderBy(v=>v,StringComparer.Ordinal))Text(w,id);
                 w.Write(x.GroundX);w.Write(x.GroundY);
+                if(s.SchemaVersion>=Snapshot.SoldierInitialBuildSchema)w.Write(x.HeldHands);
             }
             w.Write(s.PortableHandling.Length);
             foreach(var x in s.PortableHandling.OrderBy(x=>x.Revision)) {
@@ -34,8 +35,9 @@ namespace Decennium.Foundation
                 var source=Optional(r);var operational=Optional(r);var load=Optional(r);var pounds=Optional(r);var volume=Optional(r);
                 bool wearable=Bool(r),open=Bool(r);string fit=Text(r);string[] members=new string[Count(r,32)];
                 for(int j=0;j<members.Length;j++)members[j]=Text(r);
+                int groundX=r.ReadInt32(),groundY=r.ReadInt32();int heldHands=s.SchemaVersion>=Snapshot.SoldierInitialBuildSchema?r.ReadInt32():0;
                 s.PortableEquipment[i]=new PortableEquipmentRecord(id,profile,owner,custodian,parent,placement,kind,linked,basis,source,operational,load,
-                    pounds,volume,wearable,open,fit,members,r.ReadInt32(),r.ReadInt32());
+                    pounds,volume,wearable,open,fit,members,groundX,groundY,heldHands);
             }
             s.PortableHandling=new PortableHandlingRecord[Count(r,PortableEquipmentValidation.MaxHandling)];
             for(int i=0;i<s.PortableHandling.Length;i++)s.PortableHandling[i]=new PortableHandlingRecord(Text(r),r.ReadInt64(),Text(r),Text(r),Text(r),Text(r),Text(r),

@@ -1,5 +1,6 @@
 #if DECENNIUM_TEST_ONLY && (UNITY_EDITOR || DEVELOPMENT_BUILD || HEADLESS_TESTS)
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography;
@@ -18,6 +19,7 @@ namespace Decennium.Foundation.Laboratory
         private readonly TestOnlyActorLifePolicy life;
         private readonly TestOnlyEncounterPolicy encounter;
         private readonly TacticalCombatFixture tactical;
+        private readonly HashSet<string> deferredConditionTargets;
         private readonly TestOnlyFillingPolicy inventory=new TestOnlyFillingPolicy(movableVessels:true);
         private readonly int companionX,companionY;
         private readonly int? actorBaseSpeed,companionBaseSpeed;
@@ -26,7 +28,8 @@ namespace Decennium.Foundation.Laboratory
         public string ContentFingerprint { get; }
         public TestOnlyClubAttackPolicy(long actorHp=26,long companionHp=26,long actorTemporaryHp=0,long companionTemporaryHp=0,
             uint seed=1,RuleTime origin=default,int companionX=1,int companionY=0,bool actorProne=false,bool companionProne=false,
-            int? actorBaseWalkingSpeed=null,int? companionBaseWalkingSpeed=null,TacticalCombatFixture tactical=null,ConditionCombatFixture conditions=null)
+            int? actorBaseWalkingSpeed=null,int? companionBaseWalkingSpeed=null,TacticalCombatFixture tactical=null,ConditionCombatFixture conditions=null,
+            string[] deferredConditionTargets=null)
         {
             if(actorHp<1||actorHp>26||companionHp<1||companionHp>26||companionX<1||companionX>4||companionY<0||companionY>1||companionY==1&&companionX!=1)
                 throw new ArgumentException("Unsupported initial club fixture facts.");
@@ -34,6 +37,7 @@ namespace Decennium.Foundation.Laboratory
                 throw new ArgumentException("Supply both explicit nonnegative fixture walking Speeds, or neither.");
             actorBaseSpeed=actorBaseWalkingSpeed;companionBaseSpeed=companionBaseWalkingSpeed;
             this.tactical=tactical;this.conditions=conditions;
+            this.deferredConditionTargets=new HashSet<string>(deferredConditionTargets??Array.Empty<string>(),StringComparer.Ordinal);
             if(conditions!=null&&tactical==null)throw new ArgumentException("Conditions require the explicit tactical fixture.");
             if(tactical!=null&&!Posture)throw new ArgumentException("Tactical movement requires explicit walking Speeds.");
             if(tactical?.Third!=null&&((tactical.Third.X==0&&tactical.Third.Y==0)||(tactical.Third.X==companionX&&tactical.Third.Y==companionY)))throw new ArgumentException("Third actor overlaps an initial body.");
@@ -75,11 +79,14 @@ namespace Decennium.Foundation.Laboratory
         public static long WalkingSpeed(Snapshot s,string actor)
         {
             var m=s.ActorMovement.Single(x=>x.ActorId==actor);var l=s.Lives.Single(x=>x.ActorId==actor);
-            long flat=(ActiveStance(s,actor)?.Kind==CombatStance.Guarded?-5:0)-(l.LinkedInjuries.Contains((int)Injury.MobilityTrauma)?5:0)-(l.LinkedInjuries.Count==3?10:0);
+            long flat=(ActiveStance(s,actor)?.Kind==CombatStance.Guarded?-5:0)-(l.LinkedInjuries.Contains((int)Injury.MobilityTrauma)?5:0)
+                -(l.LinkedInjuries.Count==3?10:0)-CharacterAdvancementRules.ArmorStrengthSpeedPenalty(s,actor);
             long speed=l.Dead||l.Hp==0?0:WithConditions(s)?PlaytestConditions.EffectiveSpeed(m.BaseWalkingSpeed,flat,CombatConditions(s,actor)):Math.Max(0,m.BaseWalkingSpeed+flat);
             if(s.SchemaVersion>=Snapshot.OverwatchExecutionSchema&&s.OverwatchRiderChoices.Any(x=>x.TargetId==actor
                 &&x.Choice==OverwatchRider.Snare&&x.Status==OverwatchRiderChoiceStatus.Resolved&&s.Encounter!=null
                 &&s.Encounter.TurnOrdinal<=x.ExpiresAfterTurnOrdinal))speed=Math.Max(0,speed-10);
+            if(s.SchemaVersion>=Snapshot.SuppressionFireSchema&&s.SuppressionSlows.Any(x=>x.TargetActorId==actor
+                &&x.Status==SuppressionSlowStatus.Active&&s.WorldSchedule.ProcessedSlot<=x.ExpirySlot))speed=Math.Max(0,speed-10);
             if(s.SchemaVersion>=Snapshot.PortableEquipmentSchema&&speed>0&&PortableEquipmentRules.IsBurdened(s,actor))
                 speed=PlaytestCarrying.SpeedWithBurden(new RuleQuantity(speed),true).Numerator;
             return speed;
@@ -203,11 +210,16 @@ namespace Decennium.Foundation.Laboratory
             var a=s.Actors.Single(x=>x.Id==c.Actor);var t=s.Actors.Single(x=>x.Id==c.Target);
             if(PlanarCombatGeometry.DistanceFeet(new CombatCell(a.X,a.Y),new CombatCell(t.X,t.Y))>5)return "TargetOutOfReach";
             var modifiers=PlaytestConditions.Attack(CombatConditions(s,c.Actor),CombatConditions(s,c.Target),attackerInvisibleLocationKnown:true,targetInvisibleLocationKnown:true);
-            bool advantage=modifiers.AdvantagePresent,disadvantage=modifiers.DisadvantagePresent;
+            var incomingEffects=SoldierTacticalFeatures.ForAttack(s,c.Actor,c.Target);
+            bool advantage=modifiers.AdvantagePresent,disadvantage=modifiers.DisadvantagePresent||incomingEffects.WarningShot;
+            int modifier=checked((attacker.LinkedInjuries.Contains((int)Injury.OffensiveTrauma)?-1:0)-incomingEffects.CoveringFirePenalty
+                +incomingEffects.TacticalAssessmentBonus); // STR10, explicitly no Club proficiency grant.
+            var defense=ActiveStance(s,c.Target);int dexterity=s.Characters.Single(x=>x.ActorId==c.Target).Abilities[1];
+            int ac=checked(CharacterAdvancementRules.ArmorClass(s,c.Target,dexterity)+(defense?.Kind==CombatStance.Aggressive?-2:defense?.Kind==CombatStance.Guarded?1:0)
+                +CharacterAdvancementRules.DefensivePositioningBonus(s,c.Target));
+            string attackId="attack."+N(s.Revision+1);
+            string captureFailure=SoldierTacticalFeatures.CaptureAndConsume(s,attackId,c.Actor,c.Target,"",out _);if(captureFailure!=null)return captureFailure;
             uint before=s.RandomState;var roll=PlaytestDice.RollD20(before,advantage?1:0,disadvantage?1:0);
-            int modifier=attacker.LinkedInjuries.Contains((int)Injury.OffensiveTrauma)?-1:0; // STR10, explicitly no Club proficiency grant.
-            var defense=ActiveStance(s,c.Target);int ac=checked((int)PrototypeArmor.UnarmoredBaseAc(10))+(defense?.Kind==CombatStance.Aggressive?-2:defense?.Kind==CombatStance.Guarded?1:0)
-                +CharacterAdvancementRules.DefensivePositioningBonus(s,c.Target);
             var hit=PlaytestRolls.AttackRoll(roll.Natural,modifier,ac);bool critical=hit.Hit&&(hit.Critical||modifiers.CriticalIfHit);
             var attack=new CombatAttackRoll(roll.First,roll.Second??0,roll.Natural,modifier,ac,hit.Hit,critical,before,roll.NextRandomState,roll.WordsConsumed);
             uint next=roll.NextRandomState;CombatDamageRoll damage;bool pending=false;
@@ -216,8 +228,13 @@ namespace Decennium.Foundation.Laboratory
                 for(int i=0;i<dice.Length;i++){var d=DiceStream.Draw(next,4);dice[i]=d.Value+1;next=d.NextState;words=checked(words+d.WordsConsumed);}
                 int flat=ActiveStance(s,c.Actor)?.Kind==CombatStance.Aggressive?2:0;
                 long total=unarmed?PrototypeUnarmed.Damage(10,flat):dice.Sum()+flat;
+                total=CharacterAdvancementRules.ReduceIncomingDamage(s,c.Target,total);
                 if(WithConditions(s)&&ConditionsFor(s,c.Target).View().Has(ConditionKind.Petrified))total=PlaytestConditions.PetrifiedDamage(total);
-                var result=PlaytestDamageDice.Resolve(ActorLifeRules.Read(target),total,s.RuleClock,next,critical:critical,melee:true,knockout:(KnockoutInstruction)request.Knockout);
+                var targetCharacter=s.Characters.Single(x=>x.ActorId==c.Target);
+                int constitutionSave=checked(PlaytestCharacters.AbilityModifier(targetCharacter.Abilities[2])
+                    +CharacterAdvancementRules.SaveProficiencyBonus(s,c.Target,"CON"));
+                var result=PlaytestDamageDice.Resolve(ActorLifeRules.Read(target),total,s.RuleClock,next,constitutionSaveModifier:constitutionSave,
+                    critical:critical,melee:true,knockout:(KnockoutInstruction)request.Knockout);
                 damage=DamageRecord(dice,total,words,next,result);next=result.NextRandomState;pending=result.Pending!=null;
                 if(pending&&s.Receipts.Length>=511)return "ContinuationCapacityReached";
                 if(!pending)ApplyLife(s,target,result.Outcome.State);
@@ -227,7 +244,7 @@ namespace Decennium.Foundation.Laboratory
                 }
             } else damage=new CombatDamageRoll(Array.Empty<int>(),0,0,next,next,0,0,0,0);
             s.RandomState=next;
-            var record=new MeleeAttackRecord("attack."+N(s.Revision+1),s.Revision+1,pending?0:s.Revision+1,s.Encounter.TurnOrdinal,c.Actor,c.Target,unarmed?CombatProfileIds.OrdinaryUnarmed:weapon.Id,s.RuleClock,request.Knockout,attack,damage,opportunity,request.PressInstruction);
+            var record=new MeleeAttackRecord(attackId,s.Revision+1,pending?0:s.Revision+1,s.Encounter.TurnOrdinal,c.Actor,c.Target,unarmed?CombatProfileIds.OrdinaryUnarmed:weapon.Id,s.RuleClock,request.Knockout,attack,damage,opportunity,request.PressInstruction);
             s.MeleeAttacks=s.MeleeAttacks.Concat(new[]{record}).ToArray();return null;
         }
         private static string Complete(Snapshot s,Command c,MeleeAttackRecord pending)
@@ -238,7 +255,11 @@ namespace Decennium.Foundation.Laboratory
             var before=s.Lives.Single(l=>l.ActorId==pending.TargetId);var d=pending.Damage;
             // Reconstruct the immutable continuation from its retained seed and unchanged target facts.
             // The prior rolls are verified, never applied to the world random stream a second time.
-            var prior=PlaytestDamageDice.Resolve(ActorLifeRules.Read(before),d.Total,pending.At,d.EffectsSeed,critical:pending.Attack.Critical,melee:true,knockout:KnockoutInstruction.AskIfEligible);
+            var targetCharacter=s.Characters.Single(x=>x.ActorId==pending.TargetId);
+            int constitutionSave=checked(PlaytestCharacters.AbilityModifier(targetCharacter.Abilities[2])
+                +CharacterAdvancementRules.SaveProficiencyBonus(s,pending.TargetId,"CON"));
+            var prior=PlaytestDamageDice.Resolve(ActorLifeRules.Read(before),d.Total,pending.At,d.EffectsSeed,constitutionSaveModifier:constitutionSave,
+                critical:pending.Attack.Critical,melee:true,knockout:KnockoutInstruction.AskIfEligible);
             if(prior.Pending==null||!d.SameAs(DamageRecord(d.Dice.ToArray(),d.Total,d.DiceWords,d.EffectsSeed,prior))||s.RandomState!=prior.NextRandomState)return "InvalidPendingKnockout";
             var result=prior.Pending.Complete(r.Choice);s.RandomState=result.NextRandomState;ApplyLife(s,before,result.Outcome.State);
             var resolved=new MeleeAttackRecord(pending.Id,pending.Revision,s.Revision+1,pending.TurnOrdinal,pending.AttackerId,pending.TargetId,pending.WeaponId,pending.At,

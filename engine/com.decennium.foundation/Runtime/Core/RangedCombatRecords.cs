@@ -134,6 +134,7 @@ namespace Decennium.Foundation
         public static void Validate(Snapshot s)
         {
             if(s.RepeatingCrossbows==null||s.AmmunitionLots==null||s.RangedCombatants==null||s.RangedAttacks==null
+                ||s.SuppressionFireVolleys==null
                 ||s.RepeatingCrossbows.Length>64||s.AmmunitionLots.Length>128||s.RangedCombatants.Length>64||s.RangedAttacks.Length>128
                 ||s.RepeatingCrossbows.Any(x=>x==null)||s.AmmunitionLots.Any(x=>x==null)||s.RangedCombatants.Any(x=>x==null)||s.RangedAttacks.Any(x=>x==null))
                 throw new ArgumentException("Invalid ranged combat collections.");
@@ -162,6 +163,8 @@ namespace Decennium.Foundation
             foreach(var lot in s.AmmunitionLots) {
                 int loaded=s.RepeatingCrossbows.Sum(w=>w.LoadedBoltLots.Count(id=>id==lot.Id));
                 int spent=s.RangedAttacks.Count(a=>a.AmmunitionLotId==lot.Id);
+                if(s.SchemaVersion>=Snapshot.SuppressionFireSchema)
+                    spent=checked(spent+s.SuppressionFireVolleys.Sum(v=>v.AmmunitionLotIds.Count(id=>id==lot.Id)));
                 if(checked(lot.AvailableQuantity+loaded+spent)!=lot.OriginalQuantity)throw new ArgumentException("Ammunition provenance is not conserved.");
             }
         }

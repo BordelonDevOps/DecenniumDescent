@@ -4,8 +4,9 @@ using System.Linq;
 
 namespace Decennium.Foundation.Laboratory
 {
-    /// <summary>Explicit fixed two-participant encounter in the supplied arena. The third expedition
-    /// member is the independent plot worker. This supplies test facts, not enemy content or AI.</summary>
+    /// <summary>Explicit fixed roster encounter in the supplied arena. The schema29 Soldier build
+    /// schedules its companion ally alongside the hostile actor. This supplies test facts, not
+    /// enemy content or AI.</summary>
     public sealed class SharedCombatFixture
     {
         public long EnemyHp { get; }
@@ -15,6 +16,90 @@ namespace Decennium.Foundation.Laboratory
     }
     public sealed partial class TestOnlySharedWorldPolicy
     {
+        /// <summary>Opts this TEST_ONLY fixture into the saved site-aware assignment increment.
+        /// Call before Initial(); the selected schema and content fingerprint are part of the save scope.</summary>
+        public TestOnlySharedWorldPolicy EnableExpeditionAssignments()
+        {
+            if (expeditionAssignmentsEnabled) return this;
+            if (!PhysicalFishingEnabled)
+                throw new InvalidOperationException("The assignment schema extends the physical Trap world and requires its finite stock records.");
+            expeditionAssignmentsEnabled = true;
+            using (var hash = System.Security.Cryptography.SHA256.Create())
+                ContentFingerprint = "TEST_ONLY.site-assignment-v1-" + string.Concat(hash.ComputeHash(
+                    System.Text.Encoding.UTF8.GetBytes(ContentFingerprint + "|site-aware-work-assignment-v1"))
+                    .Select(x => x.ToString("x2", System.Globalization.CultureInfo.InvariantCulture)));
+            return this;
+        }
+
+        /// <summary>Opts this TEST_ONLY site-assignment profile into fixed-origin off-calendar
+        /// six-second activity accounting. The companion remains outside tactical initiative.</summary>
+        public TestOnlySharedWorldPolicy EnableOffCalendarActivity()
+        {
+            if (offCalendarActivityEnabled) return this;
+            if (!expeditionAssignmentsEnabled)
+                throw new InvalidOperationException("Off-calendar activity requires the persisted site-assignment profile.");
+            offCalendarActivityEnabled = true;
+            using (var hash = System.Security.Cryptography.SHA256.Create())
+                ContentFingerprint = "TEST_ONLY.world-activity-v1-" + string.Concat(hash.ComputeHash(
+                    System.Text.Encoding.UTF8.GetBytes(ContentFingerprint + "|off-calendar-activity-v1|origin-six-second-buckets|shared-action-work-exclusion"))
+                    .Select(x => x.ToString("x2", System.Globalization.CultureInfo.InvariantCulture)));
+            return this;
+        }
+
+        public static TestOnlySharedWorldPolicy WithFishingTrap(SharedFishingTrapFixture fishingTrap,uint seed=1)
+        {
+            if(fishingTrap==null)throw new ArgumentNullException(nameof(fishingTrap));
+            var policy=new TestOnlySharedWorldPolicy(new SharedCombatFixture(seed:seed));
+            policy.fishingTrap=fishingTrap;policy.fishingTrapProfiles=new[]{fishingTrap};
+            policy.ContentFingerprint=FishingTrapFingerprint(policy.ContentFingerprint,fishingTrap);
+            return policy;
+        }
+        public static TestOnlySharedWorldPolicy WithFishingTrapAndRepair(SharedFishingTrapFixture fishingTrap,
+            SharedRepairFixture repair, SharedCraftingFixture crafting = null, uint seed = 1, int walkingSpeed = 30)
+        {
+            if (fishingTrap == null || repair == null) throw new ArgumentNullException(fishingTrap == null ? nameof(fishingTrap) : nameof(repair));
+            var policy = new TestOnlySharedWorldPolicy(new SharedCombatFixture(seed: seed), null,
+                crafting ?? new SharedCraftingFixture(toolHp: 0), repair, walkingSpeed);
+            policy.fishingTrap = fishingTrap; policy.fishingTrapProfiles = new[] { fishingTrap };
+            policy.ContentFingerprint = FishingTrapFingerprint(policy.ContentFingerprint, fishingTrap);
+            return policy.EnableExpeditionAssignments();
+        }
+        /// <summary>Physical schema38 witness with multiple independently supplied world Trap profiles.
+        /// Distinct opportunities may reference one physical creature at the same site; response allocation remains single-body.</summary>
+        public static TestOnlySharedWorldPolicy WithFishingTraps(System.Collections.Generic.IEnumerable<SharedFishingTrapFixture> profiles,uint seed=1)
+        {
+            if(profiles==null)throw new ArgumentNullException(nameof(profiles));
+            var rows=profiles.OrderBy(x=>x?.TrapIdentity,StringComparer.Ordinal).ToArray();
+            if(rows.Length<2||rows.Any(x=>x==null)||rows.SelectMany(x=>new[]{x.TrapIdentity,x.OpportunityIdentity,
+                x.BaitLotIdentity,x.SupportIdentity,x.ReceiverIdentity,x.ReceiverSupportIdentity,x.StockVersionIdentity})
+                    .Distinct(StringComparer.Ordinal).Count()!=rows.Length*7
+                ||rows.GroupBy(x=>x.CreatureIdentity,StringComparer.Ordinal).Any(g=>g.Select(x=>x.SiteIdentity).Distinct(StringComparer.Ordinal).Count()!=1)
+                ||rows.GroupBy(x=>x.SetterId,StringComparer.Ordinal).Any(g=>g.Select(x=>x.ProficiencyRank).Distinct().Count()!=1))
+                throw new ArgumentException("Multiple Trap profiles require distinct physical operation identities, shared candidate bodies confined to one site, and a consistent fishing-tackle rank per setter.",nameof(profiles));
+            var policy=new TestOnlySharedWorldPolicy(new SharedCombatFixture(seed:seed));
+            policy.fishingTrapProfiles=rows;policy.fishingTrap=rows[0];
+            policy.ContentFingerprint=FishingTrapSetFingerprint(policy.ContentFingerprint,rows);
+            return policy;
+        }
+        /// <summary>Historical schema35 authority used only to verify old save replay. New sessions
+        /// must use schema37, which requires actual stock and physical equipment records.</summary>
+        public static TestOnlySharedWorldPolicy WithLegacyFishingTrap(SharedFishingTrapFixture fishingTrap,uint seed=1)
+        {
+            if(fishingTrap==null)throw new ArgumentNullException(nameof(fishingTrap));
+            var policy=new TestOnlySharedWorldPolicy(new SharedCombatFixture(seed:seed));
+            policy.fishingTrap=fishingTrap;policy.fishingTrapProfiles=new[]{fishingTrap};policy.fishingTrapLegacy=true;
+            policy.ContentFingerprint=LegacyFishingTrapFingerprint(policy.ContentFingerprint,fishingTrap);
+            return policy;
+        }
+        /// <summary>Historical schema36 authority used to verify the bait/timing-only save projection.</summary>
+        public static TestOnlySharedWorldPolicy WithBaitOnlyFishingTrap(SharedFishingTrapFixture fishingTrap,uint seed=1)
+        {
+            if(fishingTrap==null)throw new ArgumentNullException(nameof(fishingTrap));
+            var policy=new TestOnlySharedWorldPolicy(new SharedCombatFixture(seed:seed));
+            policy.fishingTrap=fishingTrap;policy.fishingTrapProfiles=new[]{fishingTrap};policy.fishingTrapBaitOnly=true;
+            policy.ContentFingerprint=BaitOnlyFishingTrapFingerprint(policy.ContentFingerprint,fishingTrap);
+            return policy;
+        }
         public TestOnlySharedWorldPolicy(RepeatingCrossbowFixture rangedCombat,SharedCombatFixture combat,int walkingSpeed=30,
             ConditionCombatFixture conditions=null,params TacticalTerrainCell[] terrain)
             :this(combat,walkingSpeed,conditions,terrain)
@@ -26,7 +111,7 @@ namespace Decennium.Foundation.Laboratory
         {
             foreach(var interval in s.WorldIntervals) {
                 int start=checked((int)interval.LastStart);var before=s.TacticalActors.Single(x=>x.ActorId==interval.ActorId);
-                if(before.LastRegularStart!=start){s.TacticalActors=s.TacticalActors.Select(x=>x.ActorId==interval.ActorId?new ActorTacticalRecord(x.ActorId,start,interval.ReactionAvailable):x).ToArray();CharacterAdvancementRules.RegularStart(s,interval.ActorId,start);TestOnlySharedWorldPolicy.OverwatchRegularStart(s,interval.ActorId,start,s.Revision+1);}
+                if(before.LastRegularStart!=start){SoldierTacticalFeatures.ExpireStartMarker(s,interval.ActorId,start,s.Revision+1);s.TacticalActors=s.TacticalActors.Select(x=>x.ActorId==interval.ActorId?new ActorTacticalRecord(x.ActorId,start,interval.ReactionAvailable):x).ToArray();CharacterAdvancementRules.RegularStart(s,interval.ActorId,start);TestOnlySharedWorldPolicy.OverwatchRegularStart(s,interval.ActorId,start,s.Revision+1);}
                 s.ActorMovement=s.ActorMovement.Select(x=>x.ActorId==interval.ActorId?new ActorMovementRecord(x.ActorId,x.BaseWalkingSpeed,start):x).ToArray();
             }
         }
@@ -38,11 +123,13 @@ namespace Decennium.Foundation.Laboratory
         }
         private static void PauseParticipantWork(Snapshot s,string actor)
         {
+            PauseFishingTrapForActor(s,actor);
             foreach(var job in s.FormulaWork.Where(x=>x.WorkerId==actor&&x.Status==FormulaWorkStatus.Working).ToArray())PauseFormula(s,job);
             foreach(var crop in s.Crops.Where(x=>x.Tasks.Any(t=>t.WorkerId==actor&&t.Status==CropWorkStatus.Working)).ToArray())CampGreens.Pause(s,crop.Id,actor);
             foreach(var fill in s.WaterFills.Where(x=>x.WorkerId==actor&&x.Status==WaterFillStatus.Working).ToArray())WaterFilling.Pause(s,fill);
             foreach(var intake in s.Intakes.Where(x=>x.ActorId==actor&&x.Status==IntakeStatus.Working).ToArray())OrdinaryInventory.Interrupt(s,intake,IntakeStatus.CombatInterrupted);
             foreach(var attempt in s.SupplyCacheAttempts.Where(x=>x.ActorId==actor&&x.Status==SupplyCacheAttemptStatus.Working).ToArray())InterruptSupplyCacheAttempt(s,attempt);
+            foreach(var attempt in s.HarvestAttempts.Where(x=>x.WorkerId==actor&&x.Status==HarvestAttemptStatus.Working).ToArray())PauseHarvest(s,attempt);
         }
         private string EnterCalendarCombat(Snapshot s,Command c)
         {
@@ -54,15 +141,38 @@ namespace Decennium.Foundation.Laboratory
             foreach(string actor in s.WorldSchedule.Order)PauseParticipantWork(s,actor);
             // Starts have already been processed by shared advancement. Do not replay one here.
             s.InventoryCombat=true;s.InventoryTurnActor=s.Encounter.CurrentActor;s.InventoryInteractions=Interval(s,s.Encounter.CurrentActor).Interactions;
-            PauseIncompatibleRemedies(s);PauseIncompatibleRepairs(s);PauseIncompatibleManufacturing(s);return null;
+            PauseIncompatibleRemedies(s);PauseIncompatibleRepairs(s);PauseIncompatibleManufacturing(s);
+            PauseIncompatibleHarvesting(s);return null;
         }
         internal static bool PendingCalendarChoice(Snapshot s)=>s.MeleeAttacks.Any(x=>x.Pending)||TestOnlyClubAttackPolicy.PendingMove(s)!=null
             ||TestOnlyClubAttackPolicy.CurrentPressOffer(s)!=null||s.OverwatchOffers.Any(x=>x.Status==OverwatchOfferStatus.Pending)
-            ||s.OverwatchRiderChoices.Any(x=>x.Status==OverwatchRiderChoiceStatus.Pending);
+            ||s.OverwatchRiderChoices.Any(x=>x.Status==OverwatchRiderChoiceStatus.Pending)||PendingCommandStepOffer(s)!=null
+            ||s.DefensiveFormations.Any(x=>x.Active&&x.Shifts.Any(y=>y.Status==DefensiveFormationShiftStatus.AwaitingResponse
+                ||y.Status==DefensiveFormationShiftStatus.Moving));
         private static bool ResolvedConflict(Snapshot s)=>s.Lives.Single(x=>x.ActorId==AdditionalTacticalActor.Id).Dead;
         private string ResolveCalendarCombat(Snapshot s,Command c)
         {
             if(c.Kind==CommandKind.AdvanceClock)return "TacticalDecisionClockPaused";
+            var formationResponse=PendingDefensiveFormationShift(s);
+            if(formationResponse!=null) {
+                if(c.Kind!=CommandKind.RespondDefensiveFormation)return "DefensiveFormationChoicePending";
+                string formationError=ResolveDefensiveFormationResponse(s,c);
+                if(formationError==null) {
+                    string formationTriggerError=QueueCompletedMovementOverwatch(s);if(formationTriggerError!=null)return formationTriggerError;
+                    NormalizePendingOverwatchOffers(s);FinishDefensiveFormationContinuation(s,c.Id);
+                }
+                return formationError;
+            }
+            if(c.Kind==CommandKind.RespondDefensiveFormation)return "NoPendingDefensiveFormationChoice";
+            var commandStep=PendingCommandStepOffer(s);
+            if(commandStep!=null) {
+                if(c.Kind!=CommandKind.RespondCommandStep)return "CommandStepChoicePending";
+                string stepError=ResolveCommandStepResponse(s,c);
+                if(stepError==null)NormalizePendingOverwatchOffers(s);
+                return stepError;
+            }
+            if(c.Kind==CommandKind.RespondCommandStep)return "NoPendingCommandStepChoice";
+            if(c.Kind==CommandKind.OfferCommandStep)return ResolveCommandStepOffer(s,c);
             var riderChoice=s.OverwatchRiderChoices.SingleOrDefault(x=>x.Status==OverwatchRiderChoiceStatus.Pending);
             if(riderChoice!=null) {
                 if(c.Kind!=CommandKind.ResolveOverwatchRider)return "OverwatchRiderChoicePending";
@@ -70,6 +180,7 @@ namespace Decennium.Foundation.Laboratory
                 if(NextPostStepChoice(s)==PostStepChoiceKind.None) {
                     bodies.ContinueTacticalFlow(s);string queueError=QueueCompletedMovementOverwatch(s);if(queueError!=null)return queueError;
                     NormalizePendingOverwatchOffers(s);
+                    FinishDefensiveFormationContinuation(s,c.Id);
                 }
                 return null;
             }
@@ -82,6 +193,7 @@ namespace Decennium.Foundation.Laboratory
                     if(!s.OverwatchRiderChoices.Any(x=>x.Status==OverwatchRiderChoiceStatus.Pending)&&NextPostStepChoice(s)==PostStepChoiceKind.None) {
                         bodies.ContinueTacticalFlow(s);string queueError=QueueCompletedMovementOverwatch(s);if(queueError!=null)return queueError;
                         NormalizePendingOverwatchOffers(s);
+                        FinishDefensiveFormationContinuation(s,c.Id);
                     }
                     return null;
                 }
@@ -89,7 +201,15 @@ namespace Decennium.Foundation.Laboratory
             } else if(c.Kind==CommandKind.RespondOverwatch)return "OpportunityChoicePending";
             if(c.Kind==CommandKind.RespondOverwatch)return "NoPendingOverwatchChoice";
             if(c.Kind==CommandKind.ResolveOverwatchRider)return "NoPendingOverwatchRiderChoice";
-            if(c.Kind==CommandKind.AttackRepeatingCrossbow||c.Kind==CommandKind.ReloadRepeatingCrossbow) {
+            if(HasMovingDefensiveFormation(s)&&c.Kind!=CommandKind.RespondOpportunityAttack&&c.Kind!=CommandKind.RespondPress
+                &&c.Kind!=CommandKind.ResolveKnockout)return "DefensiveFormationContinuationPending";
+            if(c.Kind==CommandKind.TacticalAssessment)return ResolveTacticalAssessment(s,c);
+            if(c.Kind==CommandKind.ActivateDefensiveFormation)return ResolveDefensiveFormation(s,c);
+            if(c.Kind==CommandKind.SuppressionFire) {
+                string error=ResolveSuppressionFire(s,c);if(error==null)NormalizePendingOverwatchOffers(s);return error;
+            }
+            if(c.Kind==CommandKind.AttackRepeatingCrossbow||c.Kind==CommandKind.ReloadRepeatingCrossbow
+                ||c.Kind==CommandKind.WarningShot||c.Kind==CommandKind.CoveringFire) {
                 string error=ResolveRepeatingCrossbow(s,c);if(error==null)NormalizePendingOverwatchOffers(s);return error;
             }
             if(c.Kind==CommandKind.DispatchConditionEvent) {
@@ -150,6 +270,7 @@ namespace Decennium.Foundation.Laboratory
             string failure=bodies.Resolve(s,c);if(failure!=null)return failure;
             string triggerError=QueueCompletedMovementOverwatch(s);if(triggerError!=null)return triggerError;
             NormalizePendingOverwatchOffers(s);
+            FinishDefensiveFormationContinuation(s,c.Id);
             if(action)SetInterval(s,Interval(s,c.Actor).PayAction());
             PauseIncompatibleWork(s);return null;
         }

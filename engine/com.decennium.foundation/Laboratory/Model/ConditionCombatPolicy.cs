@@ -68,7 +68,8 @@ namespace Decennium.Foundation.Laboratory
         private void InitializeConditions(Snapshot s)
         {
             s.SchemaVersion = Snapshot.ConditionSchema;
-            if (conditions.Events.Any(x => !s.Actors.Any(a => a.Id == x.Target) || x.Operation.At.Time < s.RuleClock))
+            if (conditions.Events.Any(x => (!s.Actors.Any(a => a.Id == x.Target) && !deferredConditionTargets.Contains(x.Target))
+                || x.Operation.At.Time < s.RuleClock))
                 throw new ArgumentException("Condition event target or timing is outside the fixture.");
             s.Conditions = s.Actors.Select(x => new ConditionJournal(ConditionHistory.PolicyId, x.Id, new ConditionStamp(s.RuleClock))).ToArray();
             foreach (var body in s.Lives.Where(x => x.Prone).ToArray()) AddPhysicalProne(s, body.ActorId, "initial-prone");

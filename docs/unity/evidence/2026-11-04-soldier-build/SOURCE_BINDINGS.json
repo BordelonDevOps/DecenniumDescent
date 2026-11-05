@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Schema28 Soldier TEST_ONLY initial build, Shield Trained integration, and tactical shield-doff completion",
+  "sourceRevision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+  "sources": [
+    {
+      "locators": [
+        "classes[Soldier]: d10; STR/CON saves; two skill choices; Athletics, Intimidation, Perception, Survival"
+      ],
+      "path": "DescentReviewChanges/ReviewBible/data/playtest/character_foundation.json",
+      "gitBlob": "88fad6737419c7053d262bdf747fad80fd20f1c4",
+      "sha256": "21e12af81f191abe52d1e3272ed1f57c6446ed3d4487cafbd5609dff08e56a77"
+    },
+    {
+      "locators": [
+        "line 24: optional 27-point buy; score 10 costs 2"
+      ],
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CHARACTER_CREATION_PLAYTEST.md",
+      "gitBlob": "04c77b3ddff460219600df2f28bac27d854647af",
+      "sha256": "5c9f9ab4c9b485546a249637a335f56193dd3d58e58c451f9561c4e330c09a84"
+    },
+    {
+      "locators": [
+        "line 649: Champion level-1 four-card selection"
+      ],
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_BUILD_EXAMPLES.md",
+      "gitBlob": "f05482f3fece2dbb04638b2fddcc8f74347c646b",
+      "sha256": "fb459620818cf03e6b9d130ed70d299ed77910647c1df58263d35a473025c4fa"
+    },
+    {
+      "locators": [
+        "schedule[0]: choose four Base cards; minimum two active; engine[1]: automatic Overwatch; Shield Trained card effect"
+      ],
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/soldier.json",
+      "gitBlob": "c414a1d9ba2ce37cde89d0ef73265821bb74ac2d",
+      "sha256": "ab9cd3bd64355166dceb5a09e1ddab98443a957bb4bcdce813f1ad294ec048f0"
+    },
+    {
+      "locators": [
+        "chain-mail: AC16, STR13, 55 lb; shield +2 AC, 6 lb; dagger 1 lb; Dungeoneer pack and its item weights/grossWeightLb 61.5; Repeating heavy crossbow and 20-bolt bundle"
+      ],
+      "path": "DescentReviewChanges/ReviewBible/data/playtest/equipment_acquisition_candidate.json",
+      "gitBlob": "afd06198e19409385408ac258be7dc1d0b2600fb",
+      "sha256": "4037e188edb890c971acb39e8679cfd5a142b0042508af30c95d4703d2a2745b"
+    },
+    {
+      "locators": [
+        "lines 31-36: armor/shield don/doff durations"
+      ],
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/EQUIPMENT_ACQUISITION_PLAYTEST.md",
+      "gitBlob": "789e905552aba2ee9a4bbad1ae73aa314b77af10",
+      "sha256": "406c68622102b444c6afb005e2d50cfd75171fe8d90db36a06d02df2d67bf27d"
+    }
+  ],
+  "implementationBoundaries": [
+    "Source-backed class, armor, equipment, and Shield Trained facts stay distinct from adopted fixture selections.",
+    "Schema28 persists Soldier build provenance, physical equipment, shield hand occupancy and tactical doff history; schema27 and older layouts remain versioned.",
+    "Tactical shield doff is a narrow TEST_ONLY Soldier/crossbow procedure; it does not establish general equipment handling or full class execution.",
+    "The prototype does not claim general character creation, release approval, or Unity qualification."
+  ],
+  "adoptedDecision": {
+    "path": "docs/unity/SOLDIER_LEVEL1_LOADOUT_RULE_DECISIONS.md",
+    "gitBlob": "bd5c83aba5e684362cdf624846531e7c91db7f06",
+    "sha256": "1731730f5dfbb776deb13ea3b577e2ef7ccb695b349551a0c569f2931767abad",
+    "fingerprintKeys": [
+      "SoldierInitialLoadoutFixture.Key",
+      "SoldierCharacterBuildFixture.Key"
+    ]
+  }
+}

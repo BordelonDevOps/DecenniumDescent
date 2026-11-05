@@ -125,6 +125,21 @@ namespace Decennium.Foundation.Tests
                 var valid = World(RepairPolicy()); RejectUnchanged(valid, host, RepairCommand(valid, target: SharedRepairFixture.Toolkit), "RepairTargetUnsupported");
                 var intact = World(RepairPolicy(crafting: new SharedCraftingFixture())); RejectUnchanged(intact, host, RepairCommand(intact), "TargetDoesNotNeedRepair");
             });
+            cases.Add("tool_repair_site_access_uses_world_position_and_partial_travel_restore",()=>{
+                var policy=RepairPolicy(facts:new SharedRepairFixture(siteX:1,siteY:3));var s=World(policy);
+                RejectUnchanged(s,host,RepairCommand(s),"RepairStationOutOfReach");
+                WorldStep(s,-1,0,actor:worker);WorldAdvance(s,2,5);
+                var partial=s.Capture();Require(partial.Actors.Single(x=>x.Id==worker).X==3&&partial.WorldTraversals.Single().DistanceFeet==new RuleQuantity(2)
+                    &&partial.RuleClock==T(2,5),"Repair-site travel did not retain its exact partial position and elapsed time.");
+                s=new Simulation(policy,new SnapshotCodec().Decode(Bytes(s)),ExecutionProfile.Laboratory);
+                WorldAdvance(s,3,5);Require(s.Capture().Actors.Single(x=>x.Id==worker).X==2&&s.Capture().WorldTraversals.Length==0,
+                    "Saved repair-site travel did not resume to its adjacent cell.");
+                WorldStep(s,-1,0,actor:worker);WorldAdvance(s,1);
+                Require(s.Capture().Actors.Single(x=>x.Id==worker).X==1&&s.Capture().RuleClock==T(2),"Worker did not reach the authored repair site through traversal.");
+                RepairStart(s,worker);
+                Require(RepairJob(s).WorkerId==worker&&RepairJob(s).StartedAt==T(2)&&RepairStock(s)==new RuleQuantity(2),
+                    "Repair did not start at the authored site or reserved inputs before the procedure's first labor.");
+            });
             cases.Add("tool_repair_current_owner_grants_checked_before_start_resume_and_duplicate", () => {
                 var s = World(RepairPolicy()); var revoked = new Authority(host.Principal, new[] { worker }); var start = RepairCommand(s);
                 RejectUnchanged(s, revoked, start, "InventoryNotAuthorized"); WorldCommit(s, start); RejectUnchanged(s, revoked, start, "InventoryNotAuthorized");

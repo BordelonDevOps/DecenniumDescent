@@ -192,7 +192,7 @@ namespace Decennium.Foundation.Laboratory
             ContentOperation operation;
             ContentDefinitionBinding binding = null;
             if (IsPortableCommand(command.Kind)) {
-                operation = command.Kind == CommandKind.EquipPortableItem || command.Kind == CommandKind.RemovePortableItem
+                operation = command.Kind == CommandKind.EquipPortableItem || command.Kind == CommandKind.RemovePortableItem || command.Kind == CommandKind.DoffPortableShield
                     ? ContentOperation.PortableEquipment : ContentOperation.PortableInteraction;
                 var item = state.PortableEquipment.FirstOrDefault(x => x.Id == command.Target);
                 if (item == null) return null;
@@ -250,13 +250,13 @@ namespace Decennium.Foundation.Laboratory
         }
 
         private static bool IsPortableCommand(CommandKind k) => k == CommandKind.HandlePortableEquipment || k == CommandKind.EquipPortableItem
-            || k == CommandKind.RemovePortableItem || k == CommandKind.OpenPortableContainer || k == CommandKind.ClosePortableContainer;
+            || k == CommandKind.RemovePortableItem || k == CommandKind.DoffPortableShield || k == CommandKind.OpenPortableContainer || k == CommandKind.ClosePortableContainer;
         private static bool IsManufacturingCommand(CommandKind k) => k == CommandKind.StartManufacturing || k == CommandKind.PauseManufacturing
             || k == CommandKind.ResumeManufacturing || k == CommandKind.CancelManufacturing || k == CommandKind.ResolveManufacturingQuality || k == CommandKind.UseAlchemyDose;
         private static bool HandlerVersionSupported(string id, int version)
             => id == "portable-equipment" && version == 1 || id == "club-attack" && version == 1
                 || id == "formula-research" && version == 1 || id == "manufacturing" && version == 1 || id == "alchemy-dose" && version == 1;
-        private static string Hash(string value)
+        internal static string Hash(string value)
         {
             using (var sha = SHA256.Create()) return string.Concat(sha.ComputeHash(Encoding.UTF8.GetBytes(value)).Select(b => b.ToString("x2", CultureInfo.InvariantCulture)));
         }

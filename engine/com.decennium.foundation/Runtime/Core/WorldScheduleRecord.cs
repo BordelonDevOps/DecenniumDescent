@@ -128,7 +128,11 @@ namespace Decennium.Foundation
                 throw new ArgumentException("World calendar or interval mismatch.");
             foreach (var edge in s.WorldTraversals) {
                 var actor = s.Actors.SingleOrDefault(x => x.Id == edge.ActorId);
-                if (actor == null || !schedule.Order.Contains(edge.ActorId) || edge.StartedRevision > s.Revision || actor.X != edge.FromX || actor.Y != edge.FromY)
+                // A traversal can belong either to an actor in the tactical calendar or to an
+                // expedition member moving during noncombat exploration. The latter shares the
+                // same actor position and clock, but never receives an initiative interval.
+                if (actor == null || !schedule.Order.Contains(edge.ActorId) && s.InventoryCombat
+                    || edge.StartedRevision > s.Revision || actor.X != edge.FromX || actor.Y != edge.FromY)
                     throw new ArgumentException("Invalid traversal reference.");
             }
         }

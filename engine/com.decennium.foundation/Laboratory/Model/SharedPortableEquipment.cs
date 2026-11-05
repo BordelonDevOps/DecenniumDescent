@@ -8,11 +8,74 @@ namespace Decennium.Foundation.Laboratory
     {
         private PortableKitFixture portableKit;
         private static bool PortableCommand(CommandKind kind)=>kind==CommandKind.HandlePortableEquipment||kind==CommandKind.EquipPortableItem
-            ||kind==CommandKind.RemovePortableItem||kind==CommandKind.OpenPortableContainer||kind==CommandKind.ClosePortableContainer;
+            ||kind==CommandKind.RemovePortableItem||kind==CommandKind.DoffPortableShield||kind==CommandKind.OpenPortableContainer||kind==CommandKind.ClosePortableContainer;
         private void InitializePortableEquipment(Snapshot s)
         {
             if(portableKit==null)return;
             PortableEquipmentRules.Initialize(s);
+        }
+        private static void InitializeSoldierPortableEquipment(Snapshot s)
+        {
+            if(s.SchemaVersion<Snapshot.SoldierInitialBuildSchema||s.PortableEquipment.Length!=0)
+                throw new ArgumentException("Soldier starting equipment requires a clean schema28 physical-equipment ledger.");
+            string actor=TestOnlyPolicy.ActorId;RuleQuantity Q(long value)=>new RuleQuantity(value);
+            const string fitRule=SoldierInitialEquipmentIds.PackFitRule;
+            var fitMembers=new[]{SoldierInitialEquipmentIds.Rations,SoldierInitialEquipmentIds.Waterskin,SoldierInitialEquipmentIds.Water,
+                SoldierInitialEquipmentIds.Pitons,SoldierInitialEquipmentIds.Tinderbox};
+            var rations=SoldierInitialEquipmentIds.Rations;var skin=SoldierInitialEquipmentIds.Waterskin;var water=SoldierInitialEquipmentIds.Water;
+            var replacedStock=new[]{TestOnlyInventoryPolicy.FoodId,TestOnlyInventoryPolicy.WaterId};
+            bool inheritedActorSkin=s.Vessels.Any(x=>x.Id==TestOnlyFillingPolicy.ActorSkinId&&x.OwnerId==actor&&x.CustodianId==actor)
+                &&s.VesselContents.Count(x=>x.VesselId==TestOnlyFillingPolicy.ActorSkinId&&x.LotId==TestOnlyInventoryPolicy.WaterId)==1;
+            if(s.Work.Reservations.Any(x=>replacedStock.Contains(x.LotId))
+                ||s.InventoryLots.Any(x=>x.ParentId!=""&&replacedStock.Contains(x.ParentId))
+                ||s.VesselContents.Any(x=>replacedStock.Contains(x.LotId)
+                    &&!(x.LotId==TestOnlyInventoryPolicy.WaterId&&x.VesselId==TestOnlyFillingPolicy.ActorSkinId))
+                ||s.VesselContents.Any(x=>x.VesselId==TestOnlyFillingPolicy.ActorSkinId&&x.LotId!=TestOnlyInventoryPolicy.WaterId)
+                ||s.WaterFills.Any(x=>x.SourceLotId==TestOnlyInventoryPolicy.WaterId||x.DestinationId==TestOnlyFillingPolicy.ActorSkinId)
+                ||s.VesselMoves.Any(x=>x.VesselId==TestOnlyFillingPolicy.ActorSkinId))
+                throw new ArgumentException("Soldier starter stores cannot replace stock with active descendants, reservations or vessel assignments.");
+            if(!inheritedActorSkin)throw new ArgumentException("Soldier starter stores require the inherited, unmodified actor waterskin fixture.");
+            s.Work=new WorkLedger(s.Work.Lots.Where(x=>!replacedStock.Contains(x.Id)).Concat(new[]{
+                new ResourceLot(rations,TestOnlyInventoryPolicy.FoodUnit,Q(20),SoldierInitialEquipmentIds.Pack,actor),
+                new ResourceLot(water,TestOnlyInventoryPolicy.WaterUnit,Q(4),skin,actor)
+            }),s.Work.WorkerIntervals,s.Work.Reservations);
+            s.InventoryLots=s.InventoryLots.Where(x=>!replacedStock.Contains(x.LotId)).Concat(new[]{
+                new InventoryLotRecord(rations,"",actor,Q(20),s.RuleClock,NutritionKind.FoodPounds,new RuleTime(2592000),InventoryAccess.Stowed),
+                new InventoryLotRecord(water,"",actor,Q(4),s.RuleClock,NutritionKind.WaterPints,null,InventoryAccess.Stowed)
+            }).ToArray();
+            s.Vessels=s.Vessels.Where(x=>x.Id!=TestOnlyFillingPolicy.ActorSkinId)
+                .Concat(new[]{new WaterVesselRecord(skin,WaterVesselProfile.Waterskin,actor,SoldierInitialEquipmentIds.Pack,actor)}).ToArray();
+            s.VesselContents=s.VesselContents.Where(x=>x.VesselId!=TestOnlyFillingPolicy.ActorSkinId&&!replacedStock.Contains(x.LotId))
+                .Concat(new[]{new VesselContentRecord(water,skin)}).ToArray();
+            PortableEquipmentRecord Fixed(string id,string profile,string parent,PortablePlacement placement,long weight)
+                =>FixedQ(id,profile,parent,placement,Q(weight));
+            PortableEquipmentRecord FixedQ(string id,string profile,string parent,PortablePlacement placement,RuleQuantity weight)
+                =>new PortableEquipmentRecord(id,profile,actor,actor,parent,placement,PortableLinkKind.None,"",PortableMassBasis.Fixed,weight,weight);
+            var items=new[]{
+                new PortableEquipmentRecord(SoldierInitialEquipmentIds.ChainMail,"armor-and-shields.chain-mail",actor,actor,"",PortablePlacement.Worn,
+                    PortableLinkKind.None,"",PortableMassBasis.Fixed,Q(55),Q(55),wearable:true),
+                new PortableEquipmentRecord(SoldierInitialEquipmentIds.Shield,"armor-and-shields.shield",actor,actor,"",PortablePlacement.Worn,
+                    PortableLinkKind.None,"",PortableMassBasis.Fixed,Q(6),Q(6),wearable:true),
+                Fixed(SoldierInitialEquipmentIds.Dagger,"simple-melee-weapons.dagger","",PortablePlacement.Carried,1),
+                new PortableEquipmentRecord(SoldierInitialEquipmentIds.Pack,"adventuring-gear.backpack",actor,actor,"",PortablePlacement.Ground,
+                    PortableLinkKind.None,"",PortableMassBasis.Fixed,Q(5),Q(5),capacityPounds:Q(30),capacityCubicFeet:Q(1),
+                    wearable:true,open:true,fitRuleId:fitRule,fitMemberIds:fitMembers,groundX:0,groundY:0),
+                new PortableEquipmentRecord(rations,"adventuring-gear.rations-1-day",actor,actor,SoldierInitialEquipmentIds.Pack,
+                    PortablePlacement.Contained,PortableLinkKind.InventoryLot,rations,PortableMassBasis.FoodPounds,Q(20),null),
+                new PortableEquipmentRecord(skin,"adventuring-gear.waterskin",actor,actor,SoldierInitialEquipmentIds.Pack,
+                    PortablePlacement.Contained,PortableLinkKind.WaterVessel,skin,PortableMassBasis.Fixed,Q(5),Q(1)),
+                new PortableEquipmentRecord(water,"prototype.potable-water.pint",actor,actor,skin,PortablePlacement.Contained,
+                    PortableLinkKind.InventoryLot,water,PortableMassBasis.WaterPints,Q(4),null),
+                Fixed(SoldierInitialEquipmentIds.Tinderbox,"adventuring-gear.tinderbox",SoldierInitialEquipmentIds.Pack,PortablePlacement.Contained,1),
+                FixedQ(SoldierInitialEquipmentIds.Pitons,"adventuring-gear.piton",SoldierInitialEquipmentIds.Pack,PortablePlacement.Contained,Q(5).Scale(1,2)),
+                Fixed(SoldierInitialEquipmentIds.Crowbar,"adventuring-gear.crowbar",SoldierInitialEquipmentIds.Pack,PortablePlacement.Attached,5),
+                Fixed(SoldierInitialEquipmentIds.Hammer,"adventuring-gear.hammer",SoldierInitialEquipmentIds.Pack,PortablePlacement.Attached,3),
+                Fixed(SoldierInitialEquipmentIds.Torches,"adventuring-gear.torch",SoldierInitialEquipmentIds.Pack,PortablePlacement.Attached,10),
+                Fixed(SoldierInitialEquipmentIds.Rope,"adventuring-gear.rope-hempen-50-feet",SoldierInitialEquipmentIds.Pack,PortablePlacement.Attached,10)
+            };
+            s.PortableEquipment=items.Concat(new[]{new PortableEquipmentRecord(TestOnlyFillingPolicy.CompanionSkinId,"adventuring-gear.waterskin",
+                TestOnlyPolicy.CompanionId,TestOnlyPolicy.CompanionId,"",PortablePlacement.Carried,PortableLinkKind.WaterVessel,
+                TestOnlyFillingPolicy.CompanionSkinId,PortableMassBasis.Fixed,Q(5),Q(1))}).ToArray();
         }
         private static void SetPortable(Snapshot s,PortableEquipmentRecord value)
             =>s.PortableEquipment=s.PortableEquipment.Select(x=>x.Id==value.Id?value:x).ToArray();
@@ -35,9 +98,34 @@ namespace Decennium.Foundation.Laboratory
                 return "InvalidPortableTransition";
             }
         }
+        private string AssessPortableShieldDoff(Snapshot s,Command c,out PortableEquipmentRecord shield,out RepeatingCrossbowRecord crossbow)
+        {
+            shield=null;crossbow=null;
+            if(s.SchemaVersion<Snapshot.SoldierInitialBuildSchema)return "FeatureRequiresSchema28";
+            if(c.Inventory!=null||c.Combat!=null||c.Advancement!=null||c.Ranged!=null||c.X!=0||c.Y!=0)return "InvalidPortableRequest";
+            if(!s.InventoryCombat||connectedCombat==null||s.Encounter==null)return "ShieldDoffRequiresTacticalCombat";
+            if(PendingCalendarChoice(s))return "TacticalChoicePending";
+            if(c.Actor!=s.Encounter.CurrentActor)return "WrongRegularTurn";
+            if(OrdinaryInventory.Busy(s,c.Actor))return "WorkerBusy";
+            if(!CapableWorker(s,c.Actor)||!Permissions(s,c.Actor).Action)return "ConditionPreventsAction";
+            if(s.WorldTraversals.Any(x=>x.ActorId==c.Actor))return "TraversalRequiresStationaryInteraction";
+            var build=s.InitialCharacterLoadouts.SingleOrDefault(x=>x.ActorId==c.Actor);
+            if(build==null||c.Target!=build.ShieldId)return "ShieldDoffUnavailable";
+            shield=s.PortableEquipment.SingleOrDefault(x=>x.Id==build.ShieldId);
+            if(shield==null||shield.ProfileId!="armor-and-shields.shield"||!shield.Wearable||shield.CustodianId!=c.Actor
+                ||shield.ParentId!=""||shield.Placement!=PortablePlacement.Worn||shield.HeldHands!=0)return "ShieldNotWorn";
+            if(!CharacterAdvancementRules.ShieldTrainedCrossbowException(s,c.Actor))return "ShieldTrainedRequired";
+            crossbow=s.RepeatingCrossbows.SingleOrDefault(x=>x.Id==build.CrossbowId);
+            if(crossbow==null||crossbow.HeldBy!=c.Actor||crossbow.CustodianId!=c.Actor||crossbow.GripHands!=2
+                ||!s.Lives.Single(x=>x.ActorId==c.Actor).HeldItems.Contains(crossbow.Id))return "CrossbowMustBeHeldTwoHanded";
+            var interval=Interval(s,c.Actor);
+            if(interval.Interactions!=s.InventoryInteractions)return "TacticalInteractionLedgerMismatch";
+            if(interval.ActionSpent)return "ActionAlreadySpent";
+            return null;
+        }
         private string ResolvePortableEquipment(Snapshot s,Command c)
         {
-            if(portableKit==null)return "PortableEquipmentNotSelected";
+            if(portableKit==null&&soldierCharacterBuild==null&&harvestFixture==null)return "PortableEquipmentNotSelected";
             bool transfer=c.Kind==CommandKind.HandlePortableEquipment;
             if(transfer!=(c.Inventory!=null)||c.Combat!=null||c.X!=0||c.Y!=0)return "InvalidPortableRequest";
             if(transfer&&c.Inventory.Amount!=new RuleQuantity(1))return "PortableItemsAreIndivisible";
@@ -45,7 +133,9 @@ namespace Decennium.Foundation.Laboratory
             if(!PortableEquipmentRules.Accessible(s,c.Actor,item))return "PortableItemOutOfReach";
             if(OrdinaryInventory.Busy(s,c.Actor))return "WorkerBusy";
             if(!CapableWorker(s,c.Actor))return "WorkerCannotPerformTask";
-            if(AvailableHands(s,c.Actor)<1)return "HandlingHandRequired";
+            bool doffShield=c.Kind==CommandKind.DoffPortableShield;
+            bool dropsHeldItem=transfer&&c.Inventory.Handling==HandlingKind.Drop&&item.HeldHands>0;
+            if(AvailableHands(s,c.Actor)<1&&!doffShield&&!dropsHeldItem)return "HandlingHandRequired";
             if(s.WorldTraversals.Any(x=>x.ActorId==c.Actor))return "TraversalRequiresStationaryInteraction";
             var before=item.Placement;string from=item.ParentId,to="",recipient="";var after=before;PortableOperation operation;
             switch(c.Kind) {
@@ -67,7 +157,8 @@ namespace Decennium.Foundation.Laboratory
                             after=PortablePlacement.Carried;to="";break;
                         case HandlingKind.Stow:
                             operation=PortableOperation.Stow;to=c.Inventory.Destination;
-                            if(item.ParentId!=""||item.CustodianId!=c.Actor||item.Placement!=PortablePlacement.Carried||to!=PortableKitFixture.Pack)
+                            string expectedPack=soldierCharacterBuild==null?PortableKitFixture.Pack:SoldierInitialEquipmentIds.Pack;
+                            if(item.ParentId!=""||item.CustodianId!=c.Actor||item.Placement!=PortablePlacement.Carried||to!=expectedPack)
                                 return "InvalidPortableStow";
                             var pack=s.PortableEquipment.Single(x=>x.Id==to);
                             if(!PortableEquipmentRules.Accessible(s,c.Actor,pack)||!pack.Open)return "PortableContainerOutOfReach";
@@ -86,12 +177,23 @@ namespace Decennium.Foundation.Laboratory
                     }
                     break;
                 case CommandKind.EquipPortableItem:
+                    // The source assigns ten minutes to don heavy armor and an Action to don a
+                    // shield. This narrow handler only implements ordinary one-second handling;
+                    // do not route distinct donning procedures through that cost.
+                    if(soldierCharacterBuild!=null)return "EquipmentDonDoffProcedureUnsupported";
                     operation=PortableOperation.Wear;
                     if(c.Inventory!=null||!item.Wearable||item.ParentId!=""||item.CustodianId!=c.Actor||item.Placement!=PortablePlacement.Carried)return "CannotWearPortableItem";
                     after=PortablePlacement.Worn;break;
                 case CommandKind.RemovePortableItem:
+                    if(soldierCharacterBuild!=null)return "EquipmentDonDoffProcedureUnsupported";
                     operation=PortableOperation.Remove;
                     if(c.Inventory!=null||!item.Wearable||item.ParentId!=""||item.CustodianId!=c.Actor||item.Placement!=PortablePlacement.Worn)return "PortableItemNotWorn";
+                    after=PortablePlacement.Carried;break;
+                case CommandKind.DoffPortableShield:
+                    operation=PortableOperation.ShieldDoff;
+                    string doffFailure=AssessPortableShieldDoff(s,c,out _,out _);
+                    if(doffFailure!=null)return doffFailure;
+                    if(item.Id!=c.Target)return "ShieldDoffUnavailable";
                     after=PortablePlacement.Carried;break;
                 case CommandKind.OpenPortableContainer:
                     operation=PortableOperation.Open;
@@ -115,20 +217,30 @@ namespace Decennium.Foundation.Laboratory
                 :operation==PortableOperation.Retrieve||operation==PortableOperation.Pickup||operation==PortableOperation.Drop||operation==PortableOperation.Handover?"":projectedItem.ParentId;
             var changed=projectedItem.With(custodianId:newCustodian,
                 parentId:newParent,placement:after,open:operation==PortableOperation.Open?true:operation==PortableOperation.Close?false:null,
-                groundX:ground?projected.Actors.Single(x=>x.Id==c.Actor).X:0,groundY:ground?projected.Actors.Single(x=>x.Id==c.Actor).Y:0);
+                groundX:ground?projected.Actors.Single(x=>x.Id==c.Actor).X:0,groundY:ground?projected.Actors.Single(x=>x.Id==c.Actor).Y:0,
+                heldHands:operation==PortableOperation.ShieldDoff?1:after==PortablePlacement.Carried?projectedItem.HeldHands:0);
             SetPortable(projected,changed);
+            if(operation==PortableOperation.ShieldDoff) {
+                var loadout=projected.InitialCharacterLoadouts.Single(x=>x.ActorId==c.Actor);
+                projected.RepeatingCrossbows=projected.RepeatingCrossbows.Select(x=>x.Id==loadout.CrossbowId?x.WithGrip(1):x).ToArray();
+            }
             if(newCustodian!=item.CustodianId)foreach(var child in PortableEquipmentRules.Descendants(projected,item.Id))SetPortable(projected,child.With(custodianId:newCustodian));
             PortableEquipmentRules.SynchronizeLinks(projected);
             string projectionError=CheckPortableProjectedState(projected);if(projectionError!=null)return projectionError;
             bool tactical=s.InventoryCombat;
             RuleTime operationStart=s.RuleClock;
             if(tactical) {
+                if(operation==PortableOperation.ShieldDoff) {
+                    var interval=Interval(s,c.Actor);
+                    SetInterval(s,interval.PayAction());
+                } else {
                 if(connectedCombat==null||s.Encounter==null||s.Encounter.CurrentActor!=c.Actor||PendingCalendarChoice(s))return "TacticalChoicePending";
                 var interval=Interval(s,c.Actor);
                 if(interval.Interactions!=s.InventoryInteractions||interval.Interactions>=2)return "InteractionBudgetUnavailable";
                 if(interval.Interactions==1&&interval.ActionSpent)return "ActionAlreadySpent";
                 if(interval.Interactions==1&&!Permissions(s,c.Actor).Action)return "ConditionPreventsAction";
                 var spent=interval.SpendInteraction();SetInterval(s,spent);s.InventoryInteractions=spent.Interactions;
+                }
             } else {
                 RuleTime start=s.RuleClock,end=start.AddSeconds(1);
                 var condition=NextConditionDeadline(s);if(condition.HasValue&&condition.Value<=end)return "TimedHandlingBoundaryUnsupported";
@@ -147,8 +259,13 @@ namespace Decennium.Foundation.Laboratory
                 :operation==PortableOperation.Retrieve||operation==PortableOperation.Pickup||operation==PortableOperation.Drop||operation==PortableOperation.Handover?"":item.ParentId;
             changed=item.With(custodianId:newCustodian,
                 parentId:newParent,placement:after,open:operation==PortableOperation.Open?true:operation==PortableOperation.Close?false:null,
-                groundX:ground?s.Actors.Single(x=>x.Id==c.Actor).X:0,groundY:ground?s.Actors.Single(x=>x.Id==c.Actor).Y:0);
+                groundX:ground?s.Actors.Single(x=>x.Id==c.Actor).X:0,groundY:ground?s.Actors.Single(x=>x.Id==c.Actor).Y:0,
+                heldHands:operation==PortableOperation.ShieldDoff?1:after==PortablePlacement.Carried?item.HeldHands:0);
             SetPortable(s,changed);
+            if(operation==PortableOperation.ShieldDoff) {
+                var loadout=s.InitialCharacterLoadouts.Single(x=>x.ActorId==c.Actor);
+                s.RepeatingCrossbows=s.RepeatingCrossbows.Select(x=>x.Id==loadout.CrossbowId?x.WithGrip(1):x).ToArray();
+            }
             if(newCustodian!=item.CustodianId)foreach(var child in PortableEquipmentRules.Descendants(s,item.Id))SetPortable(s,child.With(custodianId:newCustodian));
             PortableEquipmentRules.SynchronizeLinks(s);
             string eventId=OrdinaryInventory.Identity(s,"portable");

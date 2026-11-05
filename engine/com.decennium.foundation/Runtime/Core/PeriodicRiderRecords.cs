@@ -189,7 +189,9 @@ namespace Decennium.Foundation
                     ||x.WorldSlot>=0&&(x.WorldSlot>s.WorldSchedule.ProcessedSlot||s.WorldSchedule.Start(x.WorldSlot)!=x.At)
                     ||x.RiderId!=""&&!s.PeriodicRiders.Any(r=>r.Id==x.RiderId))
                 ||s.PeriodicImmunities.Any(x=>!Actor(x.TargetId)||x.GrantedAt>s.RuleClock||x.EndedAt>s.RuleClock)
-                ||s.SkillTraining.Any(x=>!Actor(x.ActorId)||x.SkillId!="medicine"))
+                ||s.SkillTraining.Any(x=>!Actor(x.ActorId)||x.SkillId!="medicine"
+                    &&!(s.SchemaVersion>=Snapshot.FishingTrapLegacySchema&&x.SkillId=="fishing-tackle")
+                    &&!(s.SchemaVersion>=Snapshot.SoldierInitialBuildSchema&&s.InitialCharacterLoadouts.Any(b=>b.ActorId==x.ActorId&&b.SelectedSkillIds.Contains(x.SkillId)))))
                 throw new ArgumentException("Invalid periodic rider references.");
             foreach(var rider in s.PeriodicRiders.Where(x=>x.Present))
                 if(rider.NextStartSlot<=s.WorldSchedule.ProcessedSlot||rider.EndedAt.HasValue||rider.RemainingTicks<1)

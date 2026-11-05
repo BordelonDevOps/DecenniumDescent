@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "recordedUtc": "2026-11-05T01:13:21.0377913Z",
+  "branch": "Engine",
+  "engineBase": "be10936e9bf4065258ffb4ef4cff2b21e26901ef",
+  "sourceRevision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+  "catalogEvidence": "evidence/2026-11-04-character-advancement-catalog/SOURCE_BINDINGS.json",
+  "snapshotSchema": 30,
+  "implementationFiles": [
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/CharacterAdvancementRecords.cs",
+      "sha256": "51802a74cace0e73f4f251998f8a4a6e404d029b6d02ff3e622bcccbb5dd3c66"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+      "sha256": "4e375d8e816837c41d74a542c6aee456ed9cc6d463e24fb30d5d3e9bc8aef563"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/CharacterAdvancementCodec.cs",
+      "sha256": "484ff1847a199b35dfe918781f9f57479b8fc9cc9d54f8eb2d54352867525155"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/SnapshotCodec.cs",
+      "sha256": "b9b0502a736bb5fe955534d39b0a9ac227a49eb38431646e52b865991d749832"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCharacterAdvancement.cs",
+      "sha256": "5ea184b561078508212361da59f2f344aa76ff9bde50c892514804f58b4edece"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCraftingConsequences.cs",
+      "sha256": "15c5d4af22c2244f3f3e35f3b015b1f9a2a14d0b77d5e23bb3afa0d20e196430"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "sha256": "5c5b8162722397ef5ebef7c9a16e700fa2b9ed138c5a9df190f41c1ec5548adc"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/CharacterAdvancementCases.cs",
+      "sha256": "835b82cc0768802f6d72c53a36984ff7efb33b98919e8c4edccf788af1be62e0"
+    }
+  ],
+  "limits": [
+    "Schema30 event history persists canonical selected-card lists and validates chronological level chains.",
+    "Runtime advancement still accepts only the supported Soldier level-2 Base row; Soldier level 3 remains unbound.",
+    "No end-to-end pair of successive level-ups has passed save/restore replay.",
+    "Unity compilation, Edit Mode, Play Mode and player build were not run."
+  ]
+}

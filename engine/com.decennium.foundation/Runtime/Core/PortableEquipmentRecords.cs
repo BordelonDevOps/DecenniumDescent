@@ -6,8 +6,8 @@ namespace Decennium.Foundation
 {
     public enum PortablePlacement { Carried, Worn, Contained, Attached, Ground }
     public enum PortableLinkKind { None, InventoryLot, WaterVessel, SupplyEquipment }
-    public enum PortableMassBasis { Fixed, FoodPounds, WaterPints }
-    public enum PortableOperation { Pickup, Drop, Retrieve, Stow, Handover, Wear, Remove, Open, Close }
+    public enum PortableMassBasis { Fixed, FoodPounds, WaterPints, GenericPounds }
+    public enum PortableOperation { Pickup, Drop, Retrieve, Stow, Handover, Wear, Remove, Open, Close, ShieldDoff }
 
     /// <summary>One actual test-fixture item or quantity already tracked in another component.
     /// Weight estimates and container fit facts remain explicit and schema-versioned.</summary>
@@ -34,41 +34,45 @@ namespace Decennium.Foundation
         public ReadOnlyCollection<string> FitMemberIds { get; }
         public int GroundX { get; }
         public int GroundY { get; }
+        /// <summary>Hands occupied while carried. Currently authored only for a held Soldier shield.</summary>
+        public int HeldHands { get; }
 
         public PortableEquipmentRecord(string id,string profileId,string ownerId,string custodianId,string parentId,
             PortablePlacement placement,PortableLinkKind linkKind,string linkedId,PortableMassBasis massBasis,
             RuleQuantity? sourceWeightLb,RuleQuantity? operationalWeightLb,RuleQuantity? printedLoad=null,
             RuleQuantity? capacityPounds=null,RuleQuantity? capacityCubicFeet=null,bool wearable=false,bool open=false,
-            string fitRuleId="",string[] fitMemberIds=null,int groundX=0,int groundY=0)
+            string fitRuleId="",string[] fitMemberIds=null,int groundX=0,int groundY=0,int heldHands=0)
         {
             var members=fitMemberIds??Array.Empty<string>();
             if(!Validation.ValidId(id)||!Validation.ValidId(profileId)||!Validation.ValidId(ownerId)||!Validation.ValidId(custodianId)
                 ||parentId==null||(parentId!=""&&!Validation.ValidId(parentId))||!Enum.IsDefined(typeof(PortablePlacement),placement)
                 ||!Enum.IsDefined(typeof(PortableLinkKind),linkKind)||!Enum.IsDefined(typeof(PortableMassBasis),massBasis)
                 ||linkedId==null||(linkedId!=""&&!Validation.ValidId(linkedId))||((linkKind==PortableLinkKind.None)!=(linkedId==""))
-                ||(linkKind==PortableLinkKind.InventoryLot)!=(massBasis==PortableMassBasis.FoodPounds||massBasis==PortableMassBasis.WaterPints)
+                ||(linkKind==PortableLinkKind.InventoryLot)!=(massBasis==PortableMassBasis.FoodPounds||massBasis==PortableMassBasis.WaterPints||massBasis==PortableMassBasis.GenericPounds)
                 ||(massBasis==PortableMassBasis.Fixed)!=operationalWeightLb.HasValue
                 ||(sourceWeightLb.HasValue&&sourceWeightLb.Value<default(RuleQuantity))||(operationalWeightLb.HasValue&&operationalWeightLb.Value<default(RuleQuantity))
                 ||(printedLoad.HasValue&&printedLoad.Value<default(RuleQuantity))||(capacityPounds.HasValue&&capacityPounds.Value<default(RuleQuantity))
                 ||(capacityCubicFeet.HasValue&&capacityCubicFeet.Value<default(RuleQuantity))||(capacityPounds.HasValue!=capacityCubicFeet.HasValue)
-                ||(wearable&&placement!=PortablePlacement.Worn&&profileId!="adventuring-gear.backpack")
                 ||(placement==PortablePlacement.Worn&&!wearable)
                 ||((placement==PortablePlacement.Contained||placement==PortablePlacement.Attached)!=(parentId!=""))
                 ||(placement==PortablePlacement.Ground?(groundX<0||groundY<0):(groundX!=0||groundY!=0))
                 ||fitRuleId==null||(fitRuleId!=""&&!Validation.ValidId(fitRuleId))||members.Length>32
                 ||members.Any(x=>!Validation.ValidId(x)||x==id)||members.Distinct(StringComparer.Ordinal).Count()!=members.Length
-                ||((fitRuleId!="")!=(members.Length!=0))||open&&(capacityPounds==null))
+                ||((fitRuleId!="")!=(members.Length!=0))||open&&(capacityPounds==null)
+                ||heldHands<0||heldHands>2||heldHands>0&&(profileId!="armor-and-shields.shield"||placement!=PortablePlacement.Carried
+                    ||parentId!=""||!wearable)
+                ||(wearable&&placement!=PortablePlacement.Worn&&profileId!="adventuring-gear.backpack"&&profileId!="armor-and-shields.shield"))
                 throw new ArgumentException("Invalid portable equipment record.");
             Id=id;ProfileId=profileId;OwnerId=ownerId;CustodianId=custodianId;ParentId=parentId;Placement=placement;
             LinkKind=linkKind;LinkedId=linkedId;MassBasis=massBasis;SourceWeightLb=sourceWeightLb;OperationalWeightLb=operationalWeightLb;
             PrintedLoad=printedLoad;CapacityPounds=capacityPounds;CapacityCubicFeet=capacityCubicFeet;Wearable=wearable;Open=open;
-            FitRuleId=fitRuleId;this.fitMemberIds=members.ToArray();FitMemberIds=Array.AsReadOnly(this.fitMemberIds);GroundX=groundX;GroundY=groundY;
+            FitRuleId=fitRuleId;this.fitMemberIds=members.ToArray();FitMemberIds=Array.AsReadOnly(this.fitMemberIds);GroundX=groundX;GroundY=groundY;HeldHands=heldHands;
         }
         public PortableEquipmentRecord With(string custodianId=null,string parentId=null,PortablePlacement? placement=null,
-            bool? open=null,int? groundX=null,int? groundY=null)
+            bool? open=null,int? groundX=null,int? groundY=null,int? heldHands=null)
             =>new PortableEquipmentRecord(Id,ProfileId,OwnerId,custodianId??CustodianId,parentId??ParentId,placement??Placement,
                 LinkKind,LinkedId,MassBasis,SourceWeightLb,OperationalWeightLb,PrintedLoad,CapacityPounds,CapacityCubicFeet,
-                Wearable,open??Open,FitRuleId,fitMemberIds,groundX??GroundX,groundY??GroundY);
+                Wearable,open??Open,FitRuleId,fitMemberIds,groundX??GroundX,groundY??GroundY,heldHands??HeldHands);
     }
 
     /// <summary>Append-only record of a completed ordinary handling or container operation.</summary>
@@ -114,6 +118,8 @@ namespace Decennium.Foundation
                 return;
             }
             var items=s.PortableEquipment;
+            if(s.SchemaVersion<Snapshot.SoldierInitialBuildSchema&&items.Any(x=>x.HeldHands!=0))
+                throw new ArgumentException("Held portable equipment requires schema28.");
             if(items.Select(x=>x.Id).Distinct(StringComparer.Ordinal).Count()!=items.Length
                 ||items.Where(x=>x.LinkKind!=PortableLinkKind.None).Select(x=>x.LinkedId).Distinct(StringComparer.Ordinal).Count()!=items.Count(x=>x.LinkKind!=PortableLinkKind.None)
                 ||s.PortableHandling.Select(x=>x.Id).Distinct(StringComparer.Ordinal).Count()!=s.PortableHandling.Length
@@ -149,7 +155,8 @@ namespace Decennium.Foundation
                             var lot=s.Work.Lots.SingleOrDefault(x=>x.Id==item.LinkedId);var inventory=s.InventoryLots.SingleOrDefault(x=>x.LotId==item.LinkedId);
                             if(lot==null||inventory==null||lot.LocationId!=location||lot.CustodianId!=item.CustodianId||inventory.OwnerId!=item.OwnerId
                                 ||item.MassBasis==PortableMassBasis.FoodPounds&&inventory.Nutrition!=NutritionKind.FoodPounds
-                                ||item.MassBasis==PortableMassBasis.WaterPints&&inventory.Nutrition!=NutritionKind.WaterPints)
+                                ||item.MassBasis==PortableMassBasis.WaterPints&&inventory.Nutrition!=NutritionKind.WaterPints
+                                ||item.MassBasis==PortableMassBasis.GenericPounds&&(inventory.Nutrition!=NutritionKind.None||lot.UnitId!="mass-pound"))
                                 throw new ArgumentException("Portable inventory link does not match its physical lot.");
                             break;
                         case PortableLinkKind.WaterVessel:
@@ -179,6 +186,11 @@ namespace Decennium.Foundation
                 var item=items.SingleOrDefault(x=>x.Id==eventRecord.ItemId);
                 if(item==null||!Actor(eventRecord.ActorId)||eventRecord.Id!="inventory."+eventRecord.Revision.ToString(System.Globalization.CultureInfo.InvariantCulture)+".portable")
                     throw new ArgumentException("Invalid portable handling reference.");
+                if(eventRecord.Operation==PortableOperation.ShieldDoff&&(s.SchemaVersion<Snapshot.SoldierInitialBuildSchema||!eventRecord.Tactical
+                    ||eventRecord.Before!=PortablePlacement.Worn||eventRecord.After!=PortablePlacement.Carried
+                    ||item.ProfileId!="armor-and-shields.shield"||!item.Wearable
+                    ||!s.InitialCharacterLoadouts.Any(x=>x.ActorId==eventRecord.ActorId&&x.ShieldId==item.Id)))
+                    throw new ArgumentException("Invalid tactical shield-doff history.");
                 var work=s.Work.WorkerIntervals.Where(x=>x.JobId==eventRecord.Id).ToArray();
                 if(eventRecord.Tactical?(eventRecord.StartedAt!=eventRecord.EndedAt||work.Length!=0)
                     :eventRecord.EndedAt!=eventRecord.StartedAt.AddSeconds(1)||work.Length!=1||work[0].WorkerId!=eventRecord.ActorId
@@ -189,6 +201,7 @@ namespace Decennium.Foundation
                 &&!s.Handling.Any(j=>j.Id==w.JobId)&&!s.WaterFills.Any(j=>j.Id==w.JobId)&&!s.VesselMoves.Any(j=>j.Id==w.JobId)
                 &&!s.SupplyCacheAttempts.Any(j=>j.Id==w.JobId)&&!s.PortableHandling.Any(j=>j.Id==w.JobId)
                 &&!s.FormulaWork.Any(j=>j.Id==w.JobId)&&!s.RepairWork.Any(j=>j.Id==w.JobId)&&!s.ManufacturingOrders.Any(j=>j.Id==w.JobId)
+                &&!s.FishingTrapAttempts.Any(j=>j.Id==w.JobId)&&!s.FishingTrapRetrievals.Any(j=>j.Id==w.JobId)&&!s.HarvestAttempts.Any(j=>j.Id==w.JobId)
                 &&!s.CraftingIncidents.Any(j=>j.Workers.Count!=0&&w.JobId=="craft.remedy."+j.Revision.ToString(System.Globalization.CultureInfo.InvariantCulture))))
                 throw new ArgumentException("Unattributed portable handling labor.");
         }
@@ -209,7 +222,7 @@ namespace Decennium.Foundation
         private static bool FitsAuthoredMember(Snapshot s,PortableEquipmentRecord container,PortableEquipmentRecord item,PortableEquipmentRecord[] items)
         {
             if(container.FitMemberIds.Contains(item.Id,StringComparer.Ordinal))return true;
-            if(container.FitRuleId!="TEST_ONLY.explorer-pack-fit-v1"||item.LinkKind!=PortableLinkKind.InventoryLot)return false;
+            if(item.LinkKind!=PortableLinkKind.InventoryLot)return false;
             var lot=s.InventoryLots.SingleOrDefault(x=>x.LotId==item.LinkedId);var seen=new System.Collections.Generic.HashSet<string>(StringComparer.Ordinal);
             while(lot!=null&&lot.ParentId!="") {
                 if(!seen.Add(lot.ParentId))return false;

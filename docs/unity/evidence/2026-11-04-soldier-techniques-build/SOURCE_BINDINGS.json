@@ -1,0 +1,182 @@
+{
+  "schemaVersion": 1,
+  "recordedUtc": "2026-11-04T23:34:30.4103772Z",
+  "purpose": "Schema29 TEST_ONLY execution, persistence and audit binding for selected Soldier Warning Shot and Covering Fire.",
+  "branch": "Engine",
+  "sourceRevision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+  "status": "PARTIAL / TEST_ONLY / SOURCE-BOUND / PROVISIONAL",
+  "productionRuntimeSelectionEnabled": false,
+  "releaseApproved": false,
+  "schemaBump": 29,
+  "decisionAuthority": "Owner standing delegation: proceed on Codex/GPT consensus; consensus already recorded in Unity Rules Engine Development.",
+  "sources": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/soldier.json",
+      "gitBlobId": "c414a1d9ba2ce37cde89d0ef73265821bb74ac2d",
+      "sha256": "ab9cd3bd64355166dceb5a09e1ddab98443a957bb4bcdce813f1ad294ec048f0",
+      "locators": [
+        "/cards/5 (soldier.base.covering-fire)",
+        "/cards/7 (soldier.base.warning-shot)"
+      ]
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md",
+      "gitBlobId": "5a446dd0dabae096e51f419b5e71756e0169bb3b",
+      "sha256": "adb2f4752b45dc70ce792a675bb30dda362aab5056588061bcde3ba31c4c8a81",
+      "locators": [
+        "#reading-a-class-card",
+        "#action-and-timing-limits"
+      ]
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+      "gitBlobId": "72bcb58af57f8bfe27596ec0b1467e4c780a6ef8",
+      "sha256": "f90d039142145fbd31c37992ebece70d7926dc4b6081e340f9a2fd9dc7237bc6",
+      "locators": [
+        "#encounter-and-action-resources",
+        "#standard-actions",
+        "#cover-sight-and-search"
+      ]
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_BUILD_EXAMPLES.md",
+      "gitBlobId": "f05482f3fece2dbb04638b2fddcc8f74347c646b",
+      "sha256": "fb459620818cf03e6b9d130ed70d299ed77910647c1df58263d35a473025c4fa",
+      "locators": [
+        "Champion Soldier level 1 example: Warning Shot, Tactical Reposition, Shield Trained, Covering Fire"
+      ]
+    },
+    {
+      "path": "docs/unity/SOLDIER_TACTICAL_TECHNIQUE_RULE_DECISIONS.md",
+      "gitBlobId": "8dd69900856dcae2ca3188d5e14b90afd4cbef46",
+      "sha256": "bbc54cc7e70dbe783a16a3c3063d7619d7d2922207f5157357741abad7a29b31",
+      "locators": "entire delegated completion record"
+    }
+  ],
+  "decisionRecord": "docs/unity/SOLDIER_TACTICAL_TECHNIQUE_RULE_DECISIONS.md",
+  "implementationFiles": [
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/CharacterAdvancementRecords.cs",
+      "sha256": "17d31a428bac898f7ccee03d1ee881ef2788b27b1a825d76c69f739a2d308858"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+      "sha256": "b8d912ecd7bdcac57a46375b824a5eca2748f2b61a87f729a54721f41418a487"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SoldierTacticalFeatureRecords.cs",
+      "sha256": "5ceff59bb036724588f4a8e3c5dc8d8ed5e0d8093ad42d13a1341d6ff6b71d92"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/CharacterAdvancementCodec.cs",
+      "sha256": "f07cc66c42b8c38609159381445f6687396e26fa38bc1cedbcb759ddc9d0bb82"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/SnapshotCodec.cs",
+      "sha256": "ce5e902c1c14c7607e3d4e131f1cdba9453e445efc57aa9031ff84b409b99fc5"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/SoldierTacticalFeatureCodec.cs",
+      "sha256": "04708c7623f7fbfe1a339094ebba19cbc1b8ee70fce7090c694393199be43bbe"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCharacterAdvancement.cs",
+      "sha256": "bde572b0c17356f144c0dcd036ac6d74509e2fed7b6d9d2881be22b9f10e0a2b"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCraftingConsequences.cs",
+      "sha256": "1ab539112520f957c906579938141b84f91b285a830d51fe0a61890bddcbaa5d"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedOverwatchExecution.cs",
+      "sha256": "6a12116a43789dc4ecbbc935699379a9aa4a1392d50a779bc9b31e833beb40a2"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedToolRepair.cs",
+      "sha256": "01e5025d7ab84be5605e53edfd4322a32ca782d4f4e9263984a52b5a34b3afc1"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs",
+      "sha256": "5f5ebc52c7b05726c6ad14700e67f62e3357eaecfec4932ea78d4ab14aa184bb"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldRangedCombat.cs",
+      "sha256": "39ff36a8c2d5e55ff4b3c0eb74f8071c8dcd0d62966b4c40675119866826cfc0"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SoldierTacticalFeatures.cs",
+      "sha256": "8bd6622518881e7231fa67a1ba72615e9644f34d2c8368ac30fdac9462ee3423"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SoldierTacticalTechniqueFixture.cs",
+      "sha256": "437696210b6976081f0252d06b16990fbc28b4f91eff7fad43f9d5f25c7640d4"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlyClubAttackPolicy.cs",
+      "sha256": "a485997a51e115e7d4fe703b02b6fe84267dd888d4e171185f923db901472244"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "sha256": "34e7e451ddb78633f4431c9163007fba17aa625e1cad32040792fc739f80860a"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/CommandHistory.cs",
+      "sha256": "b576b6a791a09a45f522d648244a4ff4c4b9a47af2cae7e68b13c02c7616ce77"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/FoundationCases.cs",
+      "sha256": "d3b785f3916ccffd6a19218486074c758daffc8f26841c812f4765399acecad1"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/SoldierTacticalTechniqueCases.cs",
+      "sha256": "aad0b7730195680b1923b4944ef075af23bd4e51abd4456f38b047dde62291e7"
+    }
+  ],
+  "documentFiles": [
+    {
+      "path": "docs/unity/SOLDIER_TACTICAL_TECHNIQUE_RULE_DECISIONS.md",
+      "sha256": "a42a8204c5f46e4aa754390ec725ff6d268c84da638c2116af2da375b4d577a5",
+      "gitBlobId": "1bec16aa488bdd3987b483f47efcaa4004dff369"
+    },
+    {
+      "path": "docs/unity/DEVELOPMENT_HANDOFF.md",
+      "sha256": "f12d4e6cbd92fee3fdf7e20f113a44f5700f7462e353f156c29f05f122e3ab31",
+      "gitBlobId": "8e9ae52a4290535f4fcfd1c3d3dbbe703c70e0b9"
+    },
+    {
+      "path": "docs/unity/IMPLEMENTATION_TRACE.md",
+      "sha256": "44f411c20d514f61071e5eaa5846847c5e75ae30bce9c1c408cfbe4a07ca2955",
+      "gitBlobId": "0c7fd05c97039153185a9a9b396f79667a541b06"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-04-soldier-techniques-build/INDEPENDENT_REVIEW.md",
+      "sha256": "47e4fdf5522b23dac10173acbbbd1f61569a2fa6c4f3cb941f789436a5351eed",
+      "gitBlobId": "9019cbd142b9efd63def0a3fe0424f1691f83535"
+    }
+  ],
+  "reusedBindings": [
+    "docs/unity/evidence/2026-11-04-repeating-crossbow-combat/SOURCE_BINDINGS.json",
+    "docs/unity/evidence/2026-11-04-soldier-build/SOURCE_BINDINGS.json"
+  ],
+  "fingerprint": "SoldierTacticalTechniqueFixture binds the pinned Soldier card, timing/action sources, decision document Git blob and SHA-256 only to the schema29 Soldier-build policy; schema27/28 decision-file bytes remain unchanged.",
+  "verification": {
+    "compile": "PASS",
+    "compileResults": "docs/unity/evidence/2026-11-04-soldier-techniques-build/COMPILE_RESULTS.json",
+    "tests": "PASS (1062/1062 deterministic cases)",
+    "packageValidation": "PASS (14 static structure checks)",
+    "sourceBindingValidation": "NOT RUN",
+    "unityCompilation": "NOT RUN",
+    "editMode": "NOT RUN",
+    "playMode": "NOT RUN",
+    "build": "NOT RUN",
+    "gameplay": "NOT RUN",
+    "packageValidationResults": "docs/unity/evidence/2026-11-04-soldier-techniques-build/PACKAGE_RESULTS.json",
+    "testResults": "docs/unity/evidence/2026-11-04-soldier-techniques-build/HEADLESS_RESULTS.json"
+  },
+  "limits": [
+    "Fixed Soldier/companion/enemy TEST_ONLY roster, explicit alliance, one authored Repeating-crossbow profile and target lane.",
+    "This does not implement all Soldier cards, general faction/alliance resolution, all weapon profiles, a general effect framework, or production selection.",
+    "Compile evidence does not establish runtime validity, historical save-byte compatibility, regression coverage or Unity integration."
+  ],
+  "validationScript": "No formal source-binding validator was run for this increment."
+}

@@ -1,0 +1,83 @@
+{
+  "schema": 1,
+  "implementationBranch": "Engine",
+  "sourceRevision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+  "sources": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/playtest/character_foundation.json",
+      "snapshot": "sources/character_foundation.json",
+      "sha256": "21e12af81f191abe52d1e3272ed1f57c6446ed3d4487cafbd5609dff08e56a77",
+      "scope": "17 class profiles, Hit Dice and fixed later-level HP bases; required by the shared source-binding validator."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/FISHING_RECIPE_PLAYTEST.md",
+      "snapshot": "sources/FISHING_RECIPE_PLAYTEST.md",
+      "blob": "01aa68782e604c3e2b2e06ca1caf582d8cd01305",
+      "sha256": "447c77740e42a561346fdbbb0a5ed4e785421c27c4f399bfbd53ab45240d36cf",
+      "scope": "Start one attempt and the one-shot unattended Trap: setup/exposure, commitment, fixed minute-55 check, capture retention, retrieval, custody, allowance and abandonment."
+    }
+  ],
+  "implementations": [
+    {
+      "name": "Schema37 TEST_ONLY physical unattended Trap and retrieval lifecycle",
+      "code": [
+        "Runtime/Core/FishingTrapRecords.cs",
+        "Runtime/Core/Simulation.cs",
+        "Runtime/Core/PortableEquipmentRecords.cs",
+        "Runtime/Persistence/FishingTrapCodec.cs",
+        "Runtime/Persistence/SnapshotCodec.cs",
+        "Laboratory/Model/SharedFishingTrap.cs",
+        "Laboratory/Model/SharedCraftingConsequences.cs",
+        "Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+        "Laboratory/Model/SharedWorldCombatPolicy.cs",
+        "Laboratory/Model/OrdinaryInventory.cs",
+        "Tests/EditMode/FishingTrapCases.cs",
+        "Tests/EditMode/FoundationCases.cs"
+      ],
+      "tests": [
+        "fishing_trap_schema35_wire_shape_roundtrips_and_replays",
+        "fishing_trap_schema36_bait_wire_shape_roundtrips_and_replays",
+        "fishing_trap_setup_pause_resume_and_save_replay",
+        "fishing_trap_resolves_each_check_degree_once_without_inventory_award",
+        "fishing_trap_untrained_check_uses_and_records_disadvantage",
+        "fishing_trap_retrieval_moves_the_same_catch_after_saved_partial_work",
+        "fishing_trap_early_retrieval_spends_deployed_inputs_without_a_check",
+        "fishing_trap_check_resolves_before_retrieval_on_exact_tie",
+        "fishing_trap_abandonment_pauses_retrieval_and_keeps_its_receiver_reserved",
+        "fishing_trap_retrieval_rejects_excess_path_and_remote_worker",
+        "fishing_trap_another_capable_adjacent_worker_can_retrieve",
+        "fishing_trap_setter_identity_and_check_profile_are_world_supplied",
+        "fishing_trap_multiple_world_profiles_persist_and_resolve_independently",
+        "fishing_trap_shared_physical_candidate_is_allocated_once_across_profiles",
+        "fishing_trap_cancel_before_exposure_and_abandonment_preserve_opportunity",
+        "fishing_trap_deployment_requires_compatible_bait_stock"
+      ],
+      "implemented": [
+        "Preserve historical schema35 no-bait and schema36 bait/timing wire projections; schema37 appends finite opportunity, physical creature, Trap, receiving-location and retrieval state.",
+        "Reserve finite fixture opportunity, actual candidate body, physical Trap and one compatible ordinary bait portion before setup; pre-exposure cancellation releases only unspent reservations.",
+        "At completed setup/exposure spend bait and opportunity once, snapshot setter WIS/proficiency, deploy the Trap, and keep the check at attempt start + 55 minutes.",
+        "Use the fixture-supplied setter's own WIS and fishing-tackle profile; keep site, Trap and receiving-location identities supplied by the world fixture.",
+        "Resolve one deterministic check with untrained disadvantage and all four task degrees; successful capture retains the same creature body inside the Trap and awards no inventory lot.",
+        "Reserve an intact, supported, capacity-checked receiver and legal cord-length route before five active retrieval minutes; require an idle capable two-handed worker adjacent to the Trap.",
+        "Persist partial retrieval labor through pause and save/restore; permit a different capable adjacent worker to resume and receive custody.",
+        "At coincident deadlines resolve the scheduled fishing check before retrieval; early retrieval cancels the pending check without RNG or catch and does not refund spent inputs.",
+        "Keep the actual Trap and captured-creature identities, location, custody and recovery evaluation connected through retrieval or abandonment. Active retrieval is paused, with its destination reservation retained, if the setter abandons the Trap.",
+        "Initialize multiple independently supplied site/Trap profiles in one TEST_ONLY snapshot with stable order-independent content identity; exercise sequential setup, capture, retrieval and save/restore for each profile while preserving the other profile's state.",
+        "Allow distinct opportunity and stock-version labels to reference one shared actual creature body; reserve its response once at exposure, spend the losing committed opportunity and bait without a replacement response, and retain its empty physical Trap for retrieval."
+      ],
+      "notImplemented": [
+        "Versioned finite stock-member manifests and candidate sets; arbitrary overlapping allocation-set audits across differently labeled sites/routes; multi-creature weighting, renewal, attraction paths, hazards or prey movement/anatomy admission.",
+        "Complete assembly subcomponent histories, Rod, Net, attended fishing, assistants, equipment bonuses, magical bait receipts/suppression and general bait compatibility.",
+        "Escaped/released prey, general physical receiver layouts/elevations, deployment allowance reconciliation, lawful holder handover and a generalized inventory/custody model for all catches.",
+        "Production rule authority, Unity-host integration, presentation and complete exploration-to-management gameplay."
+      ]
+    }
+  ],
+  "validation": {
+    "compile": "COMPILE_RESULTS.json",
+    "headless": "HEADLESS_RESULTS.json",
+    "packageStatic": "PACKAGE_RESULTS.json",
+    "ruleBindings": "RULE_BINDINGS_VALIDATION.json",
+    "ruleDecisionRecord": "../../FISHING_TRAP_RULE_DECISIONS.md"
+  }
+}

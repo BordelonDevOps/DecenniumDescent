@@ -61,23 +61,94 @@ namespace Decennium.Foundation.Laboratory
             public WorldIntervalRecord Interval;
             public RangedAttackRequest AttackFacts;
             public int CarriedBolts;
+            public CommandKind Technique;
+        }
+        private sealed class SuppressionFireAssessment
+        {
+            public WorldIntervalRecord Interval;
+            public RepeatingCrossbowRecord Weapon;
+            public string[] AmmunitionLots;
+            public string[] TargetIds;
+            public int ClassLevel;
+            public int SaveDc;
         }
 
-        public bool SupportsCommand(CommandKind kind)=>kind==CommandKind.AttackRepeatingCrossbow||kind==CommandKind.ReloadRepeatingCrossbow;
+        public bool SupportsCommand(CommandKind kind)=>kind==CommandKind.AttackRepeatingCrossbow||kind==CommandKind.ReloadRepeatingCrossbow
+            ||kind==CommandKind.DoffPortableShield||kind==CommandKind.WarningShot||kind==CommandKind.CoveringFire
+            ||kind==CommandKind.TacticalAssessment||kind==CommandKind.OfferCommandStep||kind==CommandKind.RespondCommandStep
+            ||kind==CommandKind.SuppressionFire||kind==CommandKind.ActivateDefensiveFormation||kind==CommandKind.RespondDefensiveFormation
+            ||kind==CommandKind.BeginWorldStep||kind==CommandKind.SuspendWorldStep||kind==CommandKind.ResumeWorldStep
+            ||kind==CommandKind.StartToolRepair||kind==CommandKind.PauseToolRepair
+            ||kind==CommandKind.ResumeToolRepair||kind==CommandKind.CancelToolRepair
+            ||kind==CommandKind.StartHarvest||kind==CommandKind.PauseHarvest||kind==CommandKind.ResumeHarvest
+            ||kind==CommandKind.TacticalStep||kind==CommandKind.TacticalRepositionStep;
 
         public IEnumerable<Command> DiscoverCommands(Snapshot s,Authority authority,string actor)
         {
-            if(s==null||authority==null||rangedCombat==null||s.SchemaVersion<Snapshot.RepeatingCrossbowSchema
-                ||s.Encounter==null||!s.InventoryCombat||actor!=s.Encounter.CurrentActor||actor!=rangedCombat.ShooterId
-                ||!authority.Controls(actor)||!Validation.ValidId(actor))return Array.Empty<Command>();
+            if(s==null||authority==null||!authority.Controls(actor)||!Validation.ValidId(actor))return Array.Empty<Command>();
+            if(s.Encounter==null||!s.InventoryCombat)return DiscoverSharedWorldCommands(s,authority,actor);
+            var options=new System.Collections.Generic.List<Command>();
+            int optionIndex=0;
+            if(PendingDefensiveFormationShift(s)!=null) {
+                options.AddRange(DiscoverDefensiveFormationCommands(s,actor));return options;
+            }
+            var pendingStep=PendingCommandStepOffer(s);
+            if(pendingStep!=null) {
+                if(actor!=pendingStep.AllyActorId)return options;
+                var decline=new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+".commandstep.decline",actor,s.Revision,
+                    CommandKind.RespondCommandStep,pendingStep.Id,combat:new CombatRequest(s.Encounter.CurrentTurnId,choice:false));
+                if(AssessCommandStepResponse(s,decline,out _) == null)options.Add(decline);
+                var body=s.Actors.Single(x=>x.Id==actor);
+                foreach(var delta in new[]{new[]{-1,-1},new[]{-1,0},new[]{-1,1},new[]{0,-1},new[]{0,1},new[]{1,-1},new[]{1,0},new[]{1,1}}) {
+                    var response=new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+".commandstep.move."+(optionIndex++).ToString(CultureInfo.InvariantCulture),
+                        actor,s.Revision,CommandKind.RespondCommandStep,pendingStep.Id,body.X+delta[0],body.Y+delta[1],
+                        combat:new CombatRequest(s.Encounter.CurrentTurnId,choice:true));
+                    if(AssessCommandStepResponse(s,response,out _) == null)options.Add(response);
+                }
+                return options;
+            }
+            options.AddRange(DiscoverDefensiveFormationCommands(s,actor));
+            if(actor!=s.Encounter.CurrentActor)return options;
+            string turnId=s.Encounter.CurrentTurnId;
+            options.AddRange(DiscoverTacticalMovementCommands(s,actor));
+            if(s.SchemaVersion>=Snapshot.CommandStepSchema&&s.CharacterFeatureGrants.Any(x=>x.ActorId==actor
+                &&x.FeatureId==CharacterFeatureIds.CommandStep&&x.Origin==CharacterFeatureGrantOrigin.SelectedCard)
+                &&TestOnlyClubAttackPolicy.ActionSpent(s)) {
+                string actionId=s.Receipts.OrderByDescending(x=>x.Revision)
+                    .Select(x=>CommandStepActionReceipt(s,x.Id,actor,s.Encounter.TurnOrdinal,turnId)==null?"":x.Id)
+                    .FirstOrDefault(x=>x!="")??"";
+                if(actionId!="")foreach(var ally in s.TacticalAllies.Where(x=>x.Includes(actor)).Select(x=>x.Other(actor)).OrderBy(x=>x,StringComparer.Ordinal)) {
+                    var offer=new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+".commandstep.offer."+(optionIndex++).ToString(CultureInfo.InvariantCulture),
+                        actor,s.Revision,CommandKind.OfferCommandStep,ally,combat:new CombatRequest(turnId,actionId));
+                    if(AssessCommandStepOffer(s,offer,out _) == null)options.Add(offer);
+                }
+            }
+            if(s.SchemaVersion>=Snapshot.SoldierInitialBuildSchema) {
+                var build=s.InitialCharacterLoadouts.SingleOrDefault(x=>x.ActorId==actor);
+                if(build!=null) {
+                    var doff=new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+".ranged."+(optionIndex++).ToString(CultureInfo.InvariantCulture),
+                        actor,s.Revision,CommandKind.DoffPortableShield,build.ShieldId);
+                    if(AssessPortableShieldDoff(s,doff,out var shield,out var doffCrossbow)==null
+                        &&authority.MayUseInventory(shield.OwnerId)&&authority.MayUseInventory(doffCrossbow.OwnerId))options.Add(doff);
+                }
+            }
+            if(rangedCombat==null||s.SchemaVersion<Snapshot.RepeatingCrossbowSchema||actor!=rangedCombat.ShooterId)return options;
+            if(s.SchemaVersion>=Snapshot.TacticalAssessmentSchema
+                &&s.CharacterFeatureGrants.Any(x=>x.ActorId==actor&&x.FeatureId==CharacterFeatureIds.TacticalAssessment
+                    &&x.Origin==CharacterFeatureGrantOrigin.SelectedCard)) {
+                var assessmentTurnId=s.Encounter.CurrentTurnId;
+                foreach(var ally in s.TacticalAllies.Where(x=>x.Includes(actor)).Select(x=>x.Other(actor)).OrderBy(x=>x,StringComparer.Ordinal)) {
+                    var assessment=new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+".assessment."+(optionIndex++).ToString(CultureInfo.InvariantCulture),
+                        actor,s.Revision,CommandKind.TacticalAssessment,rangedCombat.TargetId,
+                        combat:new CombatRequest(assessmentTurnId,ally));
+                    if(AssessTacticalAssessment(s,assessment,out _) == null)options.Add(assessment);
+                }
+            }
             var weapon=s.RepeatingCrossbows.SingleOrDefault(x=>x.Id==RepeatingCrossbowFixture.WeaponId);
             if(weapon==null||weapon.OwnerId!=actor||weapon.CustodianId!=actor||weapon.HeldBy!=actor
                 ||!authority.MayUseInventory(weapon.OwnerId)||!s.Lives.Single(x=>x.ActorId==actor).HeldItems.Contains(weapon.Id))
-                return Array.Empty<Command>();
+                return options;
 
-            var options=new System.Collections.Generic.List<Command>();
-            int optionIndex=0;
-            string turnId=s.Encounter.CurrentTurnId;
             var ammo=s.AmmunitionLots.SingleOrDefault(x=>x.Id==RepeatingCrossbowFixture.AmmunitionId);
             if(ammo!=null&&ammo.CustodianId==actor&&ammo.OwnerId==actor&&ammo.Accessible&&authority.MayUseInventory(ammo.OwnerId)) {
                 int reloadMaximum=Math.Min(5-weapon.LoadedBoltLots.Count,ammo.AvailableQuantity);
@@ -91,21 +162,230 @@ namespace Decennium.Foundation.Laboratory
                 var request=new RangedRequest(turnId,weapon.Id,"",0);
                 options.Add(new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+".ranged."+optionIndex.ToString(CultureInfo.InvariantCulture),
                     actor,s.Revision,CommandKind.AttackRepeatingCrossbow,rangedCombat.TargetId,ranged:request));
+                if(s.SchemaVersion>=Snapshot.SoldierTacticalTechniquesSchema) {
+                    foreach(var technique in new[]{CommandKind.WarningShot,CommandKind.CoveringFire})
+                        if(s.CharacterFeatureGrants.Any(x=>x.ActorId==actor&&x.FeatureId==SoldierTacticalFeatures.Technique(technique)))
+                            options.Add(new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+".ranged."+(++optionIndex).ToString(CultureInfo.InvariantCulture),
+                                actor,s.Revision,technique,rangedCombat.TargetId,ranged:request));
+                }
+                if(s.SchemaVersion>=Snapshot.SuppressionFireSchema&&s.CharacterFeatureGrants.Any(x=>x.ActorId==actor
+                    &&x.FeatureId==CharacterFeatureIds.SuppressionFire&&x.Origin==CharacterFeatureGrantOrigin.SelectedCard)) {
+                    var targets=new[]{rangedCombat.TargetId}.Where(id=>s.WorldSchedule.Order.Contains(id)).ToArray();
+                    if(targets.Length!=0) {
+                        var suppressionRequest=new SuppressionFireRequest(turnId,weapon.Id,targets);
+                        var command=new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+".suppression."+(optionIndex++).ToString(CultureInfo.InvariantCulture),
+                            actor,s.Revision,CommandKind.SuppressionFire,x:rangedCombat.TargetX,y:rangedCombat.TargetY,suppressionFire:suppressionRequest);
+                        if(AssessSuppressionFire(s,command,out _) == null)options.Add(command);
+                    }
+                }
             }
             return options;
         }
 
         public CommandQueryResult QueryCommand(Snapshot s,Authority authority,Command c)
         {
-            string failure=AssessRepeatingCrossbow(s,c,out _);
+            var sharedWorld=QuerySharedWorldCommand(s,authority,c);
+            if(sharedWorld!=null)return sharedWorld;
+            if(c.Kind==CommandKind.ActivateDefensiveFormation||c.Kind==CommandKind.RespondDefensiveFormation)
+                return QueryDefensiveFormation(s,c);
+            if(c.Kind==CommandKind.OfferCommandStep) {
+                string offerFailure=AssessCommandStepOffer(s,c,out _);
+                return new CommandQueryResult(true,offerFailure==null,offerFailure??"Available",s.Revision,Array.Empty<CommandCost>());
+            }
+            if(c.Kind==CommandKind.RespondCommandStep) {
+                string responseFailure=AssessCommandStepResponse(s,c,out _);
+                return new CommandQueryResult(true,responseFailure==null,responseFailure??"Available",s.Revision,Array.Empty<CommandCost>());
+            }
+            if(c.Kind==CommandKind.TacticalAssessment) {
+                string assessmentFailure=AssessTacticalAssessment(s,c,out _);
+                var assessmentCosts=assessmentFailure==null?new[]{new CommandCost("bonus-action","",1)}:Array.Empty<CommandCost>();
+                return new CommandQueryResult(true,assessmentFailure==null,assessmentFailure??"Available",s.Revision,assessmentCosts);
+            }
+            if(c.Kind==CommandKind.SuppressionFire) {
+                string suppressionFailure=AssessSuppressionFire(s,c,out var facts);
+                var suppressionCosts=new System.Collections.Generic.List<CommandCost>();
+                if(suppressionFailure==null) {
+                    suppressionCosts.Add(new CommandCost("action","",1));
+                    foreach(var group in facts.AmmunitionLots.GroupBy(x=>x,StringComparer.Ordinal).OrderBy(x=>x.Key,StringComparer.Ordinal))
+                        suppressionCosts.Add(new CommandCost("ammunition",group.Key,group.Count()));
+                }
+                return new CommandQueryResult(true,suppressionFailure==null,suppressionFailure??"Available",s.Revision,suppressionCosts);
+            }
+            if(c.Kind==CommandKind.DoffPortableShield) {
+                string doffFailure=AssessPortableShieldDoff(s,c,out _,out _);
+                var doffCosts=doffFailure==null?new[]{new CommandCost("action","",1)}:Array.Empty<CommandCost>();
+                return new CommandQueryResult(true,doffFailure==null,doffFailure??"Available",s.Revision,doffCosts);
+            }
+            string failure=AssessRepeatingCrossbow(s,c,out var assessment);
             var costs=new System.Collections.Generic.List<CommandCost>();
             if(failure==null) {
                 costs.Add(new CommandCost("action","",1));
                 long bolts=c.Kind==CommandKind.ReloadRepeatingCrossbow?c.Ranged.Amount:1;
                 string resource=c.Kind==CommandKind.ReloadRepeatingCrossbow?c.Ranged.AmmoLotId:c.Ranged.WeaponId;
+                if(c.Kind==CommandKind.WarningShot||c.Kind==CommandKind.CoveringFire)resource=assessment.Weapon.LoadedBoltLots[0];
                 costs.Add(new CommandCost("ammunition",resource,bolts));
             }
             return new CommandQueryResult(true,failure==null,failure??"Available",s.Revision,costs);
+        }
+
+        private sealed class TacticalAssessmentFacts
+        {
+            public string AllyId;
+            public string ArmorCategory;
+            public bool HasCover;
+        }
+
+        private string AssessTacticalAssessment(Snapshot s,Command c,out TacticalAssessmentFacts facts)
+        {
+            facts=null;
+            if(rangedCombat==null||s.SchemaVersion<Snapshot.TacticalAssessmentSchema)return "TacticalAssessmentNotImplemented";
+            if(c.Inventory!=null||c.Advancement!=null||c.Ranged!=null||c.Combat==null||c.X!=0||c.Y!=0
+                ||c.Combat.Stance!=0||c.Combat.Choice||c.Combat.Knockout!=AttackKnockoutMode.OrdinaryOutcome
+                ||c.Combat.PressInstruction!=PressHitInstruction.ArmOrReplace)return "InvalidTacticalAssessmentRequest";
+            if(!s.InventoryCombat||s.Encounter==null)return "TacticalAssessmentRequiresEncounter";
+            if(PendingCalendarChoice(s))return "TacticalChoicePending";
+            if(c.Actor!=s.Encounter.CurrentActor||c.Combat.TurnId!=s.Encounter.CurrentTurnId)return "WrongRegularTurn";
+            if(c.Actor!=rangedCombat.ShooterId||c.Target!=rangedCombat.TargetId)return "AssessmentObservationUnavailable";
+            if(!s.WorldSchedule.Order.Contains(c.Target)||SoldierTacticalFeatures.IsAlly(s,c.Actor,c.Target))return "TargetMustBeEnemy";
+            if(!s.CharacterFeatureGrants.Any(x=>x.ActorId==c.Actor&&x.FeatureId==CharacterFeatureIds.TacticalAssessment
+                &&x.ClassName=="Soldier"&&x.ClassLevel==3&&x.Origin==CharacterFeatureGrantOrigin.SelectedCard))return "FeatureNotOwned";
+            var runtime=s.CharacterFeatureRuntime.SingleOrDefault(x=>x.ActorId==c.Actor);
+            if(runtime==null)return "FeatureRuntimeUnavailable";
+            if(runtime.TacticalAssessmentRechargeRemaining>0)return "TacticalAssessmentRecharging";
+            if(!CharacterAdvancementRules.BonusActionAvailable(s,c.Actor))return "BonusActionUnavailable";
+            if(!CapableWorker(s,c.Actor)||!Permissions(s,c.Actor).BonusAction)return "ConditionPreventsBonusAction";
+            var ally=s.TacticalAllies.Where(x=>x.Includes(c.Actor)).Select(x=>x.Other(c.Actor)).SingleOrDefault(x=>x==c.Combat.WeaponId);
+            if(ally==null||ally==c.Actor||!s.WorldSchedule.Order.Contains(ally))return "InvalidAssessmentAlly";
+            bool visible=rangedCombat.TargetVisible&&TestOnlyClubAttackPolicy.CanSee(s,c.Actor,c.Target);
+            if(!visible)return "TacticalAssessmentRequiresVisibleEnemy";
+            var shooter=s.Actors.Single(a=>a.Id==c.Actor);var target=s.Actors.Single(a=>a.Id==c.Target);
+            if(PlanarCombatGeometry.DistanceFeet(new CombatCell(shooter.X,shooter.Y),new CombatCell(target.X,target.Y))>60)
+                return "TacticalAssessmentOutOfRange";
+            if(s.TacticalAssessments.Length>=SoldierTacticalFeatureValidation.MaxAssessments)return "TacticalAssessmentHistoryCapacityReached";
+            var armor=s.PortableEquipment.Where(x=>x.CustodianId==c.Target&&x.ParentId==""&&x.Placement==PortablePlacement.Worn
+                &&x.ProfileId.StartsWith("armor-and-shields.",StringComparison.Ordinal)&&x.ProfileId!="armor-and-shields.shield").ToArray();
+            string category;
+            if(armor.Length==0)category="unarmored";
+            else if(armor.Length==1&&armor[0].ProfileId=="armor-and-shields.chain-mail")category="heavy";
+            else return "AssessmentArmorCategoryUnbound";
+            facts=new TacticalAssessmentFacts{AllyId=ally,ArmorCategory=category,HasCover=rangedCombat.TargetCover!=CombatCover.None};
+            return null;
+        }
+
+        private string AssessSuppressionFire(Snapshot s,Command c,out SuppressionFireAssessment facts)
+        {
+            facts=null;
+            if(rangedCombat==null||s.SchemaVersion<Snapshot.SuppressionFireSchema)return "SuppressionFireNotImplemented";
+            var request=c.SuppressionFire;
+            if(request==null||c.Inventory!=null||c.Combat!=null||c.Advancement!=null||c.Ranged!=null||c.Target!=""
+                ||c.OverwatchRider!=OverwatchRider.None||request.WeaponId!=RepeatingCrossbowFixture.WeaponId)
+                return "InvalidSuppressionFireRequest";
+            if(!s.InventoryCombat||s.Encounter==null)return "RangedCombatRequiresEncounter";
+            if(PendingCalendarChoice(s))return "TacticalChoicePending";
+            if(c.Actor!=s.Encounter.CurrentActor||request.TurnId!=s.Encounter.CurrentTurnId)return "WrongRegularTurn";
+            var interval=Interval(s,c.Actor);
+            if(interval.ActionSpent)return "ActionAlreadySpent";
+            if(!CapableWorker(s,c.Actor)||!Permissions(s,c.Actor).Action)return "ConditionPreventsAction";
+            if(!TestOnlyClubAttackPolicy.HasStance(s))return "StanceRequired";
+            var grants=s.CharacterFeatureGrants.Where(x=>x.ActorId==c.Actor&&x.FeatureId==CharacterFeatureIds.SuppressionFire
+                &&x.ClassName=="Soldier"&&x.ClassLevel==3&&x.Origin==CharacterFeatureGrantOrigin.SelectedCard).ToArray();
+            if(grants.Length!=1)return "FeatureNotOwned";
+            var runtime=s.CharacterFeatureRuntime.SingleOrDefault(x=>x.ActorId==c.Actor);
+            if(runtime==null)return "FeatureRuntimeUnavailable";
+            if(runtime.SuppressionFireRechargeRemaining>0)return "SuppressionFireRecharging";
+            if(s.RepeatingCrossbows.Length!=1)return "CrossbowUnavailable";
+            var weapon=s.RepeatingCrossbows.Single();
+            if(weapon.Id!=RepeatingCrossbowFixture.WeaponId||weapon.HeldBy!=c.Actor||weapon.CustodianId!=c.Actor
+                ||!s.Lives.Single(x=>x.ActorId==c.Actor).HeldItems.Contains(weapon.Id))return "CrossbowNotHeld";
+            if(weapon.LoadedBoltLots.Count<3)return "InsufficientLoadedBolts";
+            if(RepeatingCrossbowAttackHands(s,c.Actor,weapon)<2)return "TwoHandsRequired";
+            string physicalFailure=TestOnlyClubAttackPolicy.PhysicalAttackFailure(s,c.Actor);if(physicalFailure!=null)return physicalFailure;
+            if(s.SuppressionFireVolleys.Length>=SoldierTacticalFeatureValidation.MaxSuppressionVolleys)return "SuppressionFireHistoryCapacityReached";
+            if(c.X!=rangedCombat.TargetX||c.Y!=rangedCombat.TargetY)return "SuppressionZoneOutsideAuthoredFixture";
+            var shooter=s.Actors.Single(a=>a.Id==c.Actor);
+            long range=PlanarCombatGeometry.DistanceFeet(new CombatCell(shooter.X,shooter.Y),new CombatCell(c.X,c.Y));
+            if(range>RepeatingCrossbowShotRules.MaximumRangeFeet)return "SuppressionZoneOutOfRange";
+            if(!rangedCombat.TargetLocationKnown||!rangedCombat.TargetVisible||!rangedCombat.LineOfFireClear
+                ||!TestOnlyClubAttackPolicy.CanSee(s,c.Actor,rangedCombat.TargetId))return "SuppressionZoneNotPerceived";
+            var targetIds=request.TargetIds;
+            if(targetIds.Length<1||targetIds.Length>3)return "SuppressionFireTargetCountInvalid";
+            foreach(string targetId in targetIds) {
+                if(targetId!=rangedCombat.TargetId||!s.WorldSchedule.Order.Contains(targetId)||SoldierTacticalFeatures.IsAlly(s,c.Actor,targetId))
+                    return "SuppressionTargetOutsideAuthoredFixture";
+                var target=s.Actors.Single(a=>a.Id==targetId);var targetLife=s.Lives.Single(l=>l.ActorId==targetId);
+                if(targetLife.Dead)return "InvalidLivingTarget";
+                if(Math.Abs((long)target.X-c.X)>1||Math.Abs((long)target.Y-c.Y)>1)return "SuppressionTargetOutsideZone";
+                if(rangedCombat.TargetCover==CombatCover.Total)return "SuppressionTargetHasTotalCover";
+                if(!TestOnlyClubAttackPolicy.DamageConditionCapacity(s,targetId))return "ConditionHistoryCapacityReached";
+            }
+            var character=s.Characters.Single(x=>x.ActorId==c.Actor);
+            int level=grants[0].ClassLevel;
+            int dc=checked(8+PlaytestCharacters.ProficiencyBonus(character.Levels.Count)+PlaytestCharacters.AbilityModifier(character.Abilities[2]));
+            facts=new SuppressionFireAssessment{Interval=interval,Weapon=weapon,AmmunitionLots=weapon.LoadedBoltLots.Take(3).ToArray(),
+                TargetIds=targetIds,ClassLevel=level,SaveDc=dc};
+            return null;
+        }
+
+        private string ResolveSuppressionFire(Snapshot s,Command c)
+        {
+            string failure=AssessSuppressionFire(s,c,out var facts);if(failure!=null)return failure;
+            var weapon=facts.Weapon;
+            s.RepeatingCrossbows=s.RepeatingCrossbows.Select(x=>x.Id==weapon.Id?x.WithMagazine(x.LoadedBoltLots.Skip(3).ToArray()):x).ToArray();
+            uint damageBefore=s.RandomState,damageState=damageBefore;long damageWords=0;var dice=new int[facts.ClassLevel];
+            for(int i=0;i<dice.Length;i++){var draw=DiceStream.Draw(damageState,6);dice[i]=draw.Value+1;damageState=draw.NextState;damageWords=checked(damageWords+draw.WordsConsumed);}
+            long sharedDamage=dice.Sum(x=>(long)x);s.RandomState=damageState;
+            long expiry=SoldierTacticalFeatures.NextFutureStartSlot(s,c.Actor);
+            var results=new System.Collections.Generic.List<SuppressionFireTargetResult>();var slows=new System.Collections.Generic.List<SuppressionSlowRecord>();
+            int slowIndex=0;
+            foreach(string targetId in facts.TargetIds.OrderBy(x=>x,StringComparer.Ordinal)) {
+                var actor=s.Actors.Single(x=>x.Id==targetId);var life=s.Lives.Single(x=>x.ActorId==targetId);
+                var character=s.Characters.Single(x=>x.ActorId==targetId);
+                int modifier=checked(PlaytestCharacters.AbilityModifier(character.Abilities[1])+CharacterAdvancementRules.SaveProficiencyBonus(s,targetId,"DEX"));
+                uint saveBefore=s.RandomState,saveAfter=saveBefore;long saveWords=0;int natural=0;long total=0;bool success=false;
+                bool automaticFailure=life.Hp==0||life.Dead||TestOnlyClubAttackPolicy.ConditionsFor(s,targetId).View().AutomaticStrengthDexterityFailure;
+                if(!automaticFailure) {
+                    var save=PlaytestDice.RollD20(s.RandomState);natural=save.Natural;saveAfter=save.NextRandomState;saveWords=save.WordsConsumed;
+                    var rolled=PlaytestRolls.SavingThrow(natural,modifier,facts.SaveDc);total=rolled.Total;success=rolled.Success;s.RandomState=saveAfter;
+                }
+                long targetDamage=success?sharedDamage/2:sharedDamage;
+                long afterDefense=CharacterAdvancementRules.ReduceIncomingDamage(s,targetId,targetDamage);
+                if(TestOnlyClubAttackPolicy.ConditionsFor(s,targetId).View().Has(ConditionKind.Petrified))
+                    afterDefense=PlaytestConditions.PetrifiedDamage(afterDefense);
+                uint lifeBefore=s.RandomState;
+                var conCharacter=character;
+                int constitutionSave=checked(PlaytestCharacters.AbilityModifier(conCharacter.Abilities[2])
+                    +CharacterAdvancementRules.SaveProficiencyBonus(s,targetId,"CON"));
+                var rolledDamage=PlaytestDamageDice.Resolve(ActorLifeRules.Read(life),afterDefense,s.RuleClock,lifeBefore,
+                    constitutionSaveModifier:constitutionSave,critical:false,melee:false,knockout:KnockoutInstruction.OrdinaryOutcome);
+                s.RandomState=rolledDamage.NextRandomState;TestOnlyClubAttackPolicy.ApplyLife(s,life,rolledDamage.Outcome.State);
+                results.Add(new SuppressionFireTargetResult(targetId,actor.X,actor.Y,natural,modifier,total,success,targetDamage,afterDefense,
+                    saveBefore,saveAfter,saveWords,lifeBefore,rolledDamage.NextRandomState,rolledDamage.WordsConsumed));
+                if(!success) {
+                    if(s.SuppressionSlows.Length+slows.Count>=SoldierTacticalFeatureValidation.MaxSuppressionSlows)return "SuppressionSlowCapacityReached";
+                    string slowId="suppression-slow."+N(s.Revision+1)+"."+N(slowIndex++);
+                    slows.Add(new SuppressionSlowRecord(slowId,c.Id,c.Actor,targetId,s.Revision+1,expiry));
+                }
+            }
+            var volley=new SuppressionFireVolleyRecord(c.Id,s.Revision+1,s.Encounter.TurnOrdinal,c.Actor,weapon.Id,facts.AmmunitionLots,
+                s.RuleClock,c.X,c.Y,facts.ClassLevel,facts.SaveDc,dice,sharedDamage,damageBefore,damageState,damageWords,results.ToArray());
+            s.SuppressionFireVolleys=s.SuppressionFireVolleys.Concat(new[]{volley}).ToArray();
+            s.SuppressionSlows=s.SuppressionSlows.Concat(slows).ToArray();
+            var runtime=s.CharacterFeatureRuntime.Single(x=>x.ActorId==c.Actor).UseSuppressionFire();
+            s.CharacterFeatureRuntime=s.CharacterFeatureRuntime.Select(x=>x.ActorId==c.Actor?runtime:x).ToArray();
+            SetInterval(s,facts.Interval.PayAction());return null;
+        }
+
+        private string ResolveTacticalAssessment(Snapshot s,Command c)
+        {
+            string failure=AssessTacticalAssessment(s,c,out var facts);if(failure!=null)return failure;
+            if(!CharacterAdvancementRules.SpendBonusAction(s,c.Actor))return "BonusActionUnavailable";
+            var runtime=s.CharacterFeatureRuntime.Single(x=>x.ActorId==c.Actor).UseTacticalAssessment();
+            s.CharacterFeatureRuntime=s.CharacterFeatureRuntime.Select(x=>x.ActorId==c.Actor?runtime:x).ToArray();
+            long expiry=SoldierTacticalFeatures.NextFutureStartSlot(s,c.Actor);
+            var record=new TacticalAssessmentRecord(c.Id,c.Actor,facts.AllyId,c.Target,s.Revision+1,s.RuleClock,expiry,
+                facts.ArmorCategory,facts.HasCover);
+            s.TacticalAssessments=s.TacticalAssessments.Concat(new[]{record}).ToArray();
+            return null;
         }
 
         private void InitializeRepeatingCrossbow(Snapshot s)
@@ -132,7 +412,8 @@ namespace Decennium.Foundation.Laboratory
 
         private string AssessRepeatingCrossbow(Snapshot s,Command c,out RepeatingCrossbowAssessment assessment)
         {
-            assessment=new RepeatingCrossbowAssessment{Attack=c.Kind==CommandKind.AttackRepeatingCrossbow};
+            assessment=new RepeatingCrossbowAssessment{Attack=c.Kind==CommandKind.AttackRepeatingCrossbow||c.Kind==CommandKind.WarningShot||c.Kind==CommandKind.CoveringFire,
+                Technique=c.Kind};
             if(rangedCombat==null||s.SchemaVersion<Snapshot.RepeatingCrossbowSchema)return "RangedCommandNotImplemented";
             if(assessment.Attack&&AttackingFromActiveOverwatchZone(s,c.Actor,c.Target))return "OverwatchAttackTriggerNotImplemented";
             if(c.Inventory!=null||c.Combat!=null||c.Advancement!=null||c.Ranged==null||c.X!=0||c.Y!=0)return "InvalidRangedPayload";
@@ -163,37 +444,53 @@ namespace Decennium.Foundation.Laboratory
             if(c.Target==""||attackRequest.Amount!=0||attackRequest.AmmoLotId!="")return "InvalidRangedAttackRequest";
             if(c.Target!=rangedCombat.TargetId||!s.WorldSchedule.Order.Contains(c.Target))return "TargetOutsideEncounter";
             if(attackRequest.WeaponId!=weapon.Id||weapon.LoadedBoltLots.Count==0)return weapon.LoadedBoltLots.Count==0?"NoAmmunition":"CrossbowUnavailable";
+            if(c.Kind==CommandKind.WarningShot||c.Kind==CommandKind.CoveringFire) {
+                if(s.SchemaVersion<Snapshot.SoldierTacticalTechniquesSchema)return "TacticalFeatureNotImplemented";
+                string feature=SoldierTacticalFeatures.Technique(c.Kind);
+                if(!s.CharacterFeatureGrants.Any(x=>x.ActorId==c.Actor&&x.FeatureId==feature
+                    &&x.Origin==CharacterFeatureGrantOrigin.InitialClassSelection))return "FeatureNotOwned";
+                var runtime=s.CharacterFeatureRuntime.SingleOrDefault(x=>x.ActorId==c.Actor);if(runtime==null)return "FeatureRuntimeUnavailable";
+                if(c.Kind==CommandKind.WarningShot&&runtime.WarningShotRechargeRemaining>0)return "WarningShotRecharging";
+                if(c.Kind==CommandKind.CoveringFire&&runtime.CoveringFireRechargeRemaining>0)return "CoveringFireRecharging";
+                if(SoldierTacticalFeatures.IsAlly(s,c.Actor,c.Target))return "TargetMustBeEnemy";
+            }
             if(!TestOnlyClubAttackPolicy.HasStance(s))return "StanceRequired";
             if(s.RangedAttacks.Length==128)return "RangedAttackHistoryCapacityReached";
+            if(s.SchemaVersion>=Snapshot.SoldierTacticalTechniquesSchema&&s.TacticalAttackAudits.Length>=SoldierTacticalFeatureValidation.MaxAttackAudits)return "TacticalAttackAuditCapacityReached";
             var shooter=s.Actors.Single(a=>a.Id==c.Actor);var target=s.Actors.Single(a=>a.Id==c.Target);
             if(shooter.X!=rangedCombat.ShooterX||shooter.Y!=rangedCombat.ShooterY||target.X!=rangedCombat.TargetX||target.Y!=rangedCombat.TargetY)
                 return "AuthoredRangedLaneRequired";
             var life=s.Lives.SingleOrDefault(l=>l.ActorId==c.Target);if(life==null||life.Dead)return "InvalidLivingTarget";
             if(!TestOnlyClubAttackPolicy.DamageConditionCapacity(s,c.Target))return "ConditionHistoryCapacityReached";
-            if(AvailableHands(s,c.Actor)+(weapon.GripHands==1?1:0)<2)return "TwoHandsRequired";
+            if(RepeatingCrossbowAttackHands(s,c.Actor,weapon)<2)return "TwoHandsRequired";
             string physicalFailure=TestOnlyClubAttackPolicy.PhysicalAttackFailure(s,c.Actor);if(physicalFailure!=null)return physicalFailure;
             var combatant=s.RangedCombatants.Single(x=>x.ActorId==c.Actor);
             var targetCombatant=s.RangedCombatants.SingleOrDefault(x=>x.ActorId==c.Target);
             int targetDex=targetCombatant?.DexterityScore??s.Characters.Single(x=>x.ActorId==c.Target).Abilities[1];
             var targetStance=TestOnlyClubAttackPolicy.ActiveStance(s,c.Target);
-            int armorClass=checked((int)PrototypeArmor.UnarmoredBaseAc(targetDex)
+            int armorClass=checked(CharacterAdvancementRules.ArmorClass(s,c.Target,targetDex)
                 +(targetStance?.Kind==CombatStance.Aggressive?-2:targetStance?.Kind==CombatStance.Guarded?1:0)
                 +CharacterAdvancementRules.DefensivePositioningBonus(s,c.Target));
             bool targetVisible=rangedCombat.TargetVisible&&TestOnlyClubAttackPolicy.CanSee(s,c.Actor,c.Target);
+            long distance=PlanarCombatGeometry.DistanceFeet(new CombatCell(shooter.X,shooter.Y),new CombatCell(target.X,target.Y));
+            if(c.Kind==CommandKind.WarningShot&&(distance>60||!targetVisible))return "WarningShotRequiresVisibleTargetWithin60Feet";
+            if(c.Kind==CommandKind.CoveringFire&&(!rangedCombat.TargetLocationKnown||!targetVisible))return "CoveringFireRequiresPerceivedTarget";
             bool attackerUnseen=!TestOnlyClubAttackPolicy.CanSee(s,c.Target,c.Actor);
-            bool closeHostile=s.WorldSchedule.Order.Where(id=>id!=c.Actor).Any(id=>{
+            bool closeHostile=s.WorldSchedule.Order.Where(id=>id!=c.Actor&&!SoldierTacticalFeatures.IsAlly(s,c.Actor,id)).Any(id=>{
                 var other=s.Actors.Single(a=>a.Id==id);var otherLife=s.Lives.Single(l=>l.ActorId==id);
                 bool incapacitated=otherLife.Dead||otherLife.Hp==0||TestOnlyClubAttackPolicy.ConditionsFor(s,id).View().Clauses.Incapacitated;
                 return PlanarCombatGeometry.CloseHostileDisadvantage(PlanarCombatGeometry.DistanceFeet(new CombatCell(shooter.X,shooter.Y),new CombatCell(other.X,other.Y)),true,incapacitated,TestOnlyClubAttackPolicy.CanSee(s,id,c.Actor));
             });
             var attackerLife=s.Lives.Single(x=>x.ActorId==c.Actor);
-            int flatAttack=attackerLife.LinkedInjuries.Contains((int)Injury.OffensiveTrauma)?-1:0;
-            var rangedFacts=new RangedAttackRequest(PlanarCombatGeometry.DistanceFeet(new CombatCell(shooter.X,shooter.Y),new CombatCell(target.X,target.Y)),
+            var incomingEffects=SoldierTacticalFeatures.ForAttack(s,c.Actor,c.Target);
+            int flatAttack=checked((attackerLife.LinkedInjuries.Contains((int)Injury.OffensiveTrauma)?-1:0)-incomingEffects.CoveringFirePenalty
+                +incomingEffects.TacticalAssessmentBonus);
+            var rangedFacts=new RangedAttackRequest(distance,
                 RepeatingCrossbowShotRules.NormalRangeFeet,RepeatingCrossbowShotRules.MaximumRangeFeet,armorClass,
                 PlaytestCharacters.AbilityModifier(combatant.DexterityScore),combatant.ProficiencyBonus,combatant.CrossbowProficient,flatAttack,
                 rangedCombat.TargetCover,rangedCombat.TargetLocationKnown,targetVisible,rangedCombat.LineOfFireClear,attackerUnseen,closeHostile,
                 TestOnlyClubAttackPolicy.CombatConditions(s,c.Actor),TestOnlyClubAttackPolicy.CombatConditions(s,c.Target),
-                attackerInvisibleLocationKnown:true,targetInvisibleLocationKnown:true);
+                attackerInvisibleLocationKnown:true,targetInvisibleLocationKnown:true,additionalDisadvantageSources:incomingEffects.WarningShot?1:0);
             int carriedBolts=s.AmmunitionLots.Where(x=>x.CustodianId==c.Actor&&x.Accessible).Sum(x=>x.AvailableQuantity);
             var shotFailure=RepeatingCrossbowShotRules.CheckLegality(rangedFacts,new RepeatingFiveMagazine(weapon.LoadedBoltLots.Count),carriedBolts);
             if(shotFailure!=RepeatingCrossbowShotFailure.None)return ShotFailureCode(shotFailure);
@@ -222,6 +519,9 @@ namespace Decennium.Foundation.Laboratory
             var combatant=s.RangedCombatants.Single(x=>x.ActorId==c.Actor);
             var life=s.Lives.Single(x=>x.ActorId==c.Target);
             uint randomBefore=s.RandomState;
+            string attackId="ranged."+N(s.Revision+1);string technique=SoldierTacticalFeatures.Technique(c.Kind);
+            string captureFailure=SoldierTacticalFeatures.CaptureAndConsume(s,attackId,c.Actor,c.Target,technique,out _);
+            if(captureFailure!=null)return captureFailure;
             var shot=RepeatingCrossbowShotRules.Resolve(randomBefore,assessment.AttackFacts,new RepeatingFiveMagazine(weapon.LoadedBoltLots.Count),assessment.CarriedBolts);
             if(!shot.Legal)return ShotFailureCode(shot.Failure);
             var ammunitionLot=weapon.LoadedBoltLots[0];
@@ -230,12 +530,17 @@ namespace Decennium.Foundation.Laboratory
             uint effectsSeed=shot.RandomStateAfter,next=effectsSeed;int[] dice=shot.DamageDice.ToArray();long diceWords=shot.RandomWordsConsumed-shot.Attack.Roll.WordsConsumed;
             int flatDamage=0;long damageTotal=0,afterDefense=0;RolledDamage rolled=null;
             if(shot.Attack.Attack.Hit) {
-                int aggressive=TestOnlyClubAttackPolicy.ActiveStance(s,c.Actor)?.Kind==CombatStance.Aggressive?2:0;
-                flatDamage=checked(PlaytestCharacters.AbilityModifier(combatant.DexterityScore)+aggressive);
+                int aggressive=c.Kind==CommandKind.WarningShot?0:TestOnlyClubAttackPolicy.ActiveStance(s,c.Actor)?.Kind==CombatStance.Aggressive?2:0;
+                flatDamage=c.Kind==CommandKind.WarningShot?0:checked(PlaytestCharacters.AbilityModifier(combatant.DexterityScore)+aggressive);
                 damageTotal=Math.Max(0L,dice.Sum(x=>(long)x)+flatDamage);
-                afterDefense=TestOnlyClubAttackPolicy.ConditionsFor(s,c.Target).View().Has(ConditionKind.Petrified)?PlaytestConditions.PetrifiedDamage(damageTotal):damageTotal;
+                afterDefense=CharacterAdvancementRules.ReduceIncomingDamage(s,c.Target,damageTotal);
+                if(TestOnlyClubAttackPolicy.ConditionsFor(s,c.Target).View().Has(ConditionKind.Petrified))
+                    afterDefense=PlaytestConditions.PetrifiedDamage(afterDefense);
+                var targetCharacter=s.Characters.Single(x=>x.ActorId==c.Target);
+                int constitutionSave=checked(PlaytestCharacters.AbilityModifier(targetCharacter.Abilities[2])
+                    +CharacterAdvancementRules.SaveProficiencyBonus(s,c.Target,"CON"));
                 rolled=PlaytestDamageDice.Resolve(ActorLifeRules.Read(life),afterDefense,s.RuleClock,effectsSeed,
-                    constitutionSaveModifier:0,critical:shot.Attack.Critical,melee:false,knockout:KnockoutInstruction.OrdinaryOutcome);
+                    constitutionSaveModifier:constitutionSave,critical:shot.Attack.Critical,melee:false,knockout:KnockoutInstruction.OrdinaryOutcome);
                 next=rolled.NextRandomState;
             } else {dice=Array.Empty<int>();}
             var attack=shot.Attack.Attack;
@@ -245,8 +550,10 @@ namespace Decennium.Foundation.Laboratory
             var recordedAttack=new CombatAttackRoll(shot.Attack.Roll.First,shot.Attack.Roll.Second??0,shot.Attack.Roll.Natural,
                 shot.Attack.AttackModifier,shot.Attack.EffectiveArmorClass,shot.Attack.Attack.Hit,shot.Attack.Critical,
                 randomBefore,shot.Attack.Roll.NextRandomState,shot.Attack.Roll.WordsConsumed);
-            s.RangedAttacks=s.RangedAttacks.Concat(new[]{new RangedAttackRecord("ranged."+N(s.Revision+1),s.Revision+1,s.Encounter.TurnOrdinal,
+            s.RangedAttacks=s.RangedAttacks.Concat(new[]{new RangedAttackRecord(attackId,s.Revision+1,s.Encounter.TurnOrdinal,
                 c.Actor,c.Target,weapon.Id,ammunitionLot,s.RuleClock,recordedAttack,damage)}).ToArray();
+            if(shot.Attack.Attack.Hit)SoldierTacticalFeatures.ApplyHit(s,attackId,c.Actor,c.Target,c.Kind);
+            SoldierTacticalFeatures.StartRecharge(s,c.Actor,c.Kind);
             s.RandomState=next;SetInterval(s,interval.PayAction());return null;
         }
 

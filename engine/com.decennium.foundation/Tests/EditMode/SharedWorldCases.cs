@@ -10,7 +10,7 @@ namespace Decennium.Foundation.Tests
     public static partial class FoundationCases
     {
         private static Simulation World(TestOnlySharedWorldPolicy p = null) { p = p ?? new TestOnlySharedWorldPolicy(); return new Simulation(p, p.Initial(), ExecutionProfile.Laboratory); }
-        private static void WorldCommit(Simulation s, Command c) { var result = s.Execute(TestOnlySharedWorldPolicy.Host(), c); Require(result.Outcome == Outcome.Committed, c.Kind + ": " + result.Code); }
+        private static void WorldCommit(Simulation s, Command c) { var result = s.Execute(TestOnlySharedWorldPolicy.Host(), c); Require(result.Outcome == Outcome.Committed, c.Id + " (" + c.Kind + "): " + result.Code); }
         private static void WorldStep(Simulation s, int x, int y, bool run = false, string actor = TestOnlyPolicy.ActorId)
             => WorldCommit(s, IC(s, CommandKind.BeginWorldStep, run ? "run" : "walk", actor: actor, x: x, y: y));
         private static void WorldAdvance(Simulation s, int seconds, int denominator = 1) => WorldCommit(s, IC(s, CommandKind.AdvanceClock, x: seconds, y: denominator));
@@ -42,6 +42,29 @@ namespace Decennium.Foundation.Tests
                 WorldAdvance(s, 3, 5); v = s.Capture();
                 Require(v.WorldTraversals.Length == 0 && v.Actors.Single(a => a.Id == TestOnlyPolicy.ActorId).X == 1 && WorldLedger(s).MovementSpent == new RuleQuantity(5), "Arrival cost or position wrong.");
             });
+            cases.Add("shared_world_off_calendar_companion_travels_on_shared_clock_and_saves_exact_position",()=>{
+                var policy=new TestOnlySharedWorldPolicy(new SharedCombatFixture());var s=World(policy);
+                RejectUnchanged(s,host,IC(s,CommandKind.BeginWorldStep,"run",actor:TestOnlyPolicy.CompanionId,x:0,y:-1),
+                    "OffCalendarDashBudgetUnsupported");
+                var working=World(policy);FarmWork(working,CommandKind.PlantCrop);
+                RejectUnchanged(working,host,IC(working,CommandKind.BeginWorldStep,"walk",actor:TestOnlyPolicy.CompanionId,x:0,y:-1),"WorkerBusy");
+                WorldStep(s,0,-1,actor:TestOnlyPolicy.CompanionId);WorldAdvance(s,2,5);
+                RejectUnchanged(s,host,FarmCommand(s,CommandKind.PlantCrop),"TraversalRequiresStationaryInteraction");
+                var partial=s.Capture();var edge=partial.WorldTraversals.Single();
+                Require(edge.ActorId==TestOnlyPolicy.CompanionId&&edge.DistanceFeet==new RuleQuantity(2)
+                    &&partial.Actors.Single(x=>x.Id==TestOnlyPolicy.CompanionId).Y==3
+                    &&partial.WorldSchedule.Order.Count==2&&!partial.WorldSchedule.Order.Contains(TestOnlyPolicy.CompanionId)
+                    &&partial.WorldIntervals.All(x=>x.ActorId!=TestOnlyPolicy.CompanionId),
+                    "Off-calendar exploration movement changed the actor anchor or granted an initiative interval.");
+                byte[] bytes=Bytes(s);var restored=new Simulation(policy,new SnapshotCodec().Decode(bytes),ExecutionProfile.Laboratory);
+                Require(bytes.SequenceEqual(Bytes(restored)),"Saving an off-calendar traversal changed its exact partial position.");
+                WorldAdvance(restored,3,5);var arrived=restored.Capture();
+                Require(arrived.WorldTraversals.Length==0&&arrived.Actors.Single(x=>x.Id==TestOnlyPolicy.CompanionId).X==3
+                    &&arrived.Actors.Single(x=>x.Id==TestOnlyPolicy.CompanionId).Y==2
+                    &&arrived.WorldSchedule.Order.Count==2&&!arrived.WorldSchedule.Order.Contains(TestOnlyPolicy.CompanionId)
+                    &&arrived.WorldIntervals.All(x=>x.ActorId!=TestOnlyPolicy.CompanionId),
+                    "Companion arrival failed to use shared time without entering initiative.");
+            });
             cases.Add("shared_world_chunked_movement_and_companion_work_agree", () => {
                 var a = World(); var b = World(); foreach (var s in new[] { a, b }) { FarmWork(s, CommandKind.PlantCrop); WorldStep(s, 1, 0); }
                 WorldAdvance(a, 1); for (int i = 0; i < 10; i++) WorldAdvance(b, 1, 10);
@@ -69,6 +92,24 @@ namespace Decennium.Foundation.Tests
                     && WorldLedger(s).ActionSpent && WorldLedger(s).MovementSpent == new RuleQuantity(1, 2), "Running reset distance or got free post-Start Dash.");
                 WorldCommit(s, IC(s, CommandKind.SuspendWorldStep)); var before = WorldLedger(s);
                 WorldCommit(s, IC(s, CommandKind.ResumeWorldStep)); Require(WorldLedger(s).LastStart == before.LastStart && WorldLedger(s).MovementSpent == before.MovementSpent, "Input resume refilled interval.");
+            });
+            cases.Add("shared_world_run_query_charges_dash_only_once_per_interval", () => {
+                var s = World();
+                var first = IC(s, CommandKind.BeginWorldStep, "run", x: 0, y: 1);
+                var firstPreview = s.QueryCommand(host, first);
+                Require(firstPreview.Admissible && firstPreview.Costs.Count(x => x.Kind == "action" && x.Amount == 1) == 1,
+                    "Initial run preview omitted its Dash Action cost.");
+                WorldCommit(s, first); WorldAdvance(s, 1);
+                Require(s.Capture().WorldTraversals.Length == 0 && WorldLedger(s).DashPaid && WorldLedger(s).ActionSpent,
+                    "First run did not complete while retaining its paid Dash in the interval.");
+                var second = IC(s, CommandKind.BeginWorldStep, "run", x: 0, y: 1);
+                var secondPreview = s.QueryCommand(host, second);
+                Require(secondPreview.Admissible && !secondPreview.Costs.Any(x => x.Kind == "action"),
+                    "A second run in the same interval previewed a Dash Action that was already paid.");
+                WorldCommit(s, second);
+                Require(WorldLedger(s).DashPaid && WorldLedger(s).ActionSpent
+                    && s.Capture().WorldTraversals.Single().ActorId == TestOnlyPolicy.ActorId,
+                    "Second run failed to reuse the current interval's paid Dash.");
             });
             cases.Add("shared_world_later_actor_bootstrap_refresh_is_deliberately_short", () => {
                 var s = World(new TestOnlySharedWorldPolicy(3)); WorldAdvance(s, 2); WorldStep(s, 0, -1, true, AdditionalTacticalActor.Id); WorldAdvance(s, 2);
@@ -102,7 +143,7 @@ namespace Decennium.Foundation.Tests
                 Require(s.Execute(host, c).Outcome == Outcome.Duplicate && bytes.SequenceEqual(Bytes(s)), "Duplicate repeated movement start.");
                 RejectUnchanged(s, new Authority(host.Principal, Array.Empty<string>()), c, "NotAuthorized");
                 RejectUnchanged(s, new Authority("guest", new[] { TestOnlyPolicy.ActorId }), IC(s, CommandKind.AdvanceClock, x: 1, y: 1), "NotAuthorized");
-                RejectUnchanged(s, host, IC(s, CommandKind.BeginWorldStep, "walk", actor: TestOnlyPolicy.CompanionId, x: 1), "NoActivityCalendar");
+                RejectUnchanged(s, host, IC(s, CommandKind.BeginWorldStep, "walk", actor: TestOnlyPolicy.CompanionId, x: 1), "ConcurrentWorldTraversalUnsupported");
             });
             cases.Add("shared_world_week_calendar_is_sparse_and_farm_harvest_is_real", () => {
                 var s = World(); Mature(s); FarmWork(s, CommandKind.HarvestCrop); WorldAdvance(s, 3600); var v = s.Capture();
