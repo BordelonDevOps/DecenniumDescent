@@ -18,30 +18,42 @@ namespace Decennium.Foundation.Laboratory
             LegibleFormula = "research.legible-formula", Recipe14Evidence = "research.recipe14.guild-notes",
             Recipe14FreshEvidence = "research.recipe14.independent-notes", Recipe14LegibleFormula = "research.recipe14.legible-formula",
             Supplies = "research.writing-supplies";
-        public string RecipeId { get; }
+        private readonly string[] recipeIds;
+        public IReadOnlyList<string> RecipeIds { get; }
+        public string RecipeId => recipeIds.Length==1?recipeIds[0]:null;
         public string WorkerId { get; }
         public bool Qualified { get; }
         public bool Accessible { get; }
         public bool Sufficient { get; }
         public bool StationSuitable { get; }
         public SharedResearchFixture(string workerId = TestOnlyPolicy.CompanionId, bool qualified = true,
-            bool accessible = true, bool sufficient = true, bool stationSuitable = true,string recipeId=Recipe)
+            bool accessible = true, bool sufficient = true, bool stationSuitable = true,string recipeId=Recipe,IEnumerable<string> recipeIds=null)
         {
+            var selected=(recipeIds??new[]{recipeId}).ToArray();
             if ((workerId != TestOnlyPolicy.ActorId && workerId != TestOnlyPolicy.CompanionId)
-                ||recipeId!=Recipe&&recipeId!=Recipe14) throw new ArgumentException("Unknown supplied researcher or formula profile.");
-            RecipeId=recipeId;WorkerId = workerId; Qualified = qualified; Accessible = accessible; Sufficient = sufficient; StationSuitable = stationSuitable;
+                ||recipeIds!=null&&recipeId!=Recipe||selected.Length<1||selected.Length>2
+                ||selected.Any(x=>x!=Recipe&&x!=Recipe14)||selected.Distinct(StringComparer.Ordinal).Count()!=selected.Length)
+                throw new ArgumentException("Unknown supplied researcher or formula profile.");
+            this.recipeIds=selected.OrderBy(x=>Selector(x)).ToArray();RecipeIds=Array.AsReadOnly(this.recipeIds);
+            WorkerId = workerId; Qualified = qualified; Accessible = accessible; Sufficient = sufficient; StationSuitable = stationSuitable;
         }
+        public bool SupportsRecipe(string recipeId)=>recipeIds.Contains(recipeId,StringComparer.Ordinal);
         public static int Selector(string recipeId)=>recipeId==Recipe?0:recipeId==Recipe14?1:-1;
+        public static string RecipeForSelector(int selector)=>selector==0?Recipe:selector==1?Recipe14:null;
         public static string EvidenceFor(string recipeId,bool fresh=false,bool copy=false)
             =>recipeId==Recipe?(copy?LegibleFormula:fresh?FreshEvidence:Evidence)
                 :recipeId==Recipe14?(copy?Recipe14LegibleFormula:fresh?Recipe14FreshEvidence:Recipe14Evidence):null;
         public static int Difficulty(string recipeId)=>recipeId==Recipe?8:recipeId==Recipe14?11:throw new ArgumentException("Unknown formula profile.",nameof(recipeId));
         public static long MinimumResearchHours(string recipeId)=>recipeId==Recipe?0:recipeId==Recipe14?0:throw new ArgumentException("Unknown formula profile.",nameof(recipeId));
-        internal string Key => RecipeId==Recipe
-            ?"research-v1|recipe4-V4-32b2bf00c28584ad259c343bc5b961126d25078c094444c05bf3caf0c9edda5e|H8|INT-DC8|visual-evidence|retain-knowledge-work|retry-full-H|first-labor-copy-cost|windows0-8-16|"
-                + WorkerId + "|" + Qualified + "|" + Accessible + "|" + Sufficient + "|" + StationSuitable
-            :"research-v2|recipe14-source-46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4|H8|INT-DC11|visual-evidence|retain-knowledge-work|retry-full-H|first-labor-copy-cost|windows0-8-16|"
-                + WorkerId + "|" + Qualified + "|" + Accessible + "|" + Sufficient + "|" + StationSuitable;
+        internal string Key
+        {
+            get {
+                string facts=WorkerId+"|"+Qualified+"|"+Accessible+"|"+Sufficient+"|"+StationSuitable;
+                if(RecipeId==Recipe)return "research-v1|recipe4-V4-32b2bf00c28584ad259c343bc5b961126d25078c094444c05bf3caf0c9edda5e|H8|INT-DC8|visual-evidence|retain-knowledge-work|retry-full-H|first-labor-copy-cost|windows0-8-16|"+facts;
+                if(RecipeId==Recipe14)return "research-v2|recipe14-source-46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4|H8|INT-DC11|visual-evidence|retain-knowledge-work|retry-full-H|first-labor-copy-cost|windows0-8-16|"+facts;
+                return "research-multi-v1|source-46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4|"+string.Join(",",recipeIds)+"|recipe-keyed-formula-history|H8|"+facts;
+            }
+        }
     }
     public static class FormulaResearchRules
     {
@@ -65,6 +77,11 @@ namespace Decennium.Foundation.Laboratory
             if (research == null) return;
             s.Work = new WorkLedger(s.Work.Lots.Concat(new[] { new ResourceLot(SharedResearchFixture.Supplies, "writing-allotment-1sp", 3, TestOnlyCropPolicy.PlotId, research.WorkerId) }), s.Work.WorkerIntervals, s.Work.Reservations);
             s.InventoryLots = s.InventoryLots.Concat(new[] { new InventoryLotRecord(SharedResearchFixture.Supplies, "", research.WorkerId, new RuleQuantity(3), default, NutritionKind.None, null, InventoryAccess.Ground) }).ToArray();
+        }
+        private string ValidateFormulaProfile(Snapshot s)
+        {
+            if(research==null)return s.FormulaWork.Length==0?null:"FormulaFixtureNotSelected";
+            return s.FormulaWork.Any(x=>!research.SupportsRecipe(x.RecipeId))?"FormulaFixtureMismatch":null;
         }
         private static bool FormulaCommand(CommandKind kind) => kind == CommandKind.StartFormulaResearch || kind == CommandKind.StartFormulaCopy
             || kind == CommandKind.PauseFormulaWork || kind == CommandKind.ResumeFormulaWork || kind == CommandKind.CancelFormulaWork;
@@ -146,28 +163,29 @@ namespace Decennium.Foundation.Laboratory
             bool start = c.Kind == CommandKind.StartFormulaResearch || c.Kind == CommandKind.StartFormulaCopy;
             if (start) {
                 if (c.X < 0 || c.X > 1 || c.Kind == CommandKind.StartFormulaCopy && c.X != 0) return "UnknownResearchMethod";
-                if(SharedResearchFixture.Selector(research.RecipeId)!=c.Y)return "FormulaNotSelected";
+                string recipeId=SharedResearchFixture.RecipeForSelector(c.Y);
+                if(!research.SupportsRecipe(recipeId))return "FormulaNotSelected";
                 bool copy = c.Kind == CommandKind.StartFormulaCopy;
-                if (copy ? c.Target != SharedResearchFixture.EvidenceFor(research.RecipeId,copy:true)
-                    : c.Target != SharedResearchFixture.EvidenceFor(research.RecipeId) && c.Target != SharedResearchFixture.EvidenceFor(research.RecipeId,fresh:true)) return "UnknownResearchEvidence";
+                if (copy ? c.Target != SharedResearchFixture.EvidenceFor(recipeId,copy:true)
+                    : c.Target != SharedResearchFixture.EvidenceFor(recipeId) && c.Target != SharedResearchFixture.EvidenceFor(recipeId,fresh:true)) return "UnknownResearchEvidence";
                 string access = ResearchAccess(s, c.Actor, requiresPrimaryTool: !copy || s.SchemaVersion < 17); if (access != null) return access;
-                if (FormulaResearchRules.Knows(s, c.Actor, research.RecipeId)) return "FormulaAlreadyKnown";
+                if (FormulaResearchRules.Knows(s, c.Actor, recipeId)) return "FormulaAlreadyKnown";
                 if (s.FormulaWork.Any(x => x.WorkerId == c.Actor && FormulaOpen(x)) || OrdinaryInventory.Busy(s, c.Actor)) return "WorkerBusy";
                 if (copy && s.Work.AvailableAmount(SharedResearchFixture.Supplies) < new RuleQuantity(1)) return "WritingSuppliesUnavailable";
                 string method = copy ? "method.transcription" : c.X == 0 ? "method.sequence-analysis" : "method.independent-comparison";
-                if (!copy && s.FormulaWork.Any(x => x.WorkerId == c.Actor && x.RecipeId==research.RecipeId&&x.EvidenceId == c.Target && x.MethodId == method && x.Status == FormulaWorkStatus.Failure)) return "UnchangedResearchEvidence";
+                if (!copy && s.FormulaWork.Any(x => x.WorkerId == c.Actor && x.RecipeId==recipeId&&x.EvidenceId == c.Target && x.MethodId == method && x.Status == FormulaWorkStatus.Failure)) return "UnchangedResearchEvidence";
                 if (s.FormulaWork.Length == FormulaWorkValidation.MaxRecords) return "FormulaHistoryCapacityReached";
-                var prior = s.FormulaWork.Where(x => x.WorkerId == c.Actor && x.RecipeId == research.RecipeId && x.Status == FormulaWorkStatus.Failure)
+                var prior = s.FormulaWork.Where(x => x.WorkerId == c.Actor && x.RecipeId == recipeId && x.Status == FormulaWorkStatus.Failure)
                     .OrderByDescending(x=>x.UpdatedAt).ThenBy(x=>x.Id,StringComparer.Ordinal).FirstOrDefault();
                 string id = "formula." + (s.Revision + 1).ToString(CultureInfo.InvariantCulture);
-                var job = new FormulaWorkRecord(id, c.Actor, research.RecipeId, c.Target, method, copy ? FormulaWorkKind.Copy : FormulaWorkKind.Research,
-                    FormulaWorkStatus.Working, s.RuleClock, s.RuleClock, new ActiveWorkProgress(new[] { copy ? new RuleTime(3600) : FormulaResearchRules.RequiredTime(SharedResearchFixture.MinimumResearchHours(research.RecipeId)) }), previousAttemptId: prior?.Id ?? "");
+                var job = new FormulaWorkRecord(id, c.Actor, recipeId, c.Target, method, copy ? FormulaWorkKind.Copy : FormulaWorkKind.Research,
+                    FormulaWorkStatus.Working, s.RuleClock, s.RuleClock, new ActiveWorkProgress(new[] { copy ? new RuleTime(3600) : FormulaResearchRules.RequiredTime(SharedResearchFixture.MinimumResearchHours(recipeId)) }), previousAttemptId: prior?.Id ?? "");
                 if (copy) s.Work = s.Work.Reserve(id, Array.Empty<WorkerInterval>(), new[] { new ResourceReservation(id + ".supplies", id, SharedResearchFixture.Supplies, 1) });
                 BookFormula(s, job); s.FormulaWork = s.FormulaWork.Concat(new[] { job }).ToArray(); return null;
             }
             if (c.X != 0||c.Y!=0) return "InvalidFormulaRequest";
             var current = s.FormulaWork.SingleOrDefault(x => x.Id == c.Target && x.WorkerId == c.Actor); if (current == null) return "UnknownFormulaWork";
-            if(current.RecipeId!=research.RecipeId)return "FormulaNotSelected";
+            if(!research.SupportsRecipe(current.RecipeId))return "FormulaNotSelected";
             if (!FormulaOpen(current)) return "FormulaWorkClosed";
             if (c.Kind == CommandKind.PauseFormulaWork) {
                 if (current.Status != FormulaWorkStatus.Working) return "FormulaNotWorking";

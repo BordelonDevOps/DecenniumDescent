@@ -12,12 +12,19 @@ namespace Decennium.Foundation.Tests
         private static TestOnlySharedWorldPolicy ManufacturePolicy(uint seed=1,SharedManufacturingFixture facts=null,SharedCraftingFixture crafting=null,ConditionCombatFixture conditions=null)
         {
             var manufacturing=facts??new SharedManufacturingFixture();
-            return new TestOnlySharedWorldPolicy(new SharedCombatFixture(seed:seed),new SharedResearchFixture(recipeId:manufacturing.RecipeId),crafting??new SharedCraftingFixture(),new SharedRepairFixture(),manufacturing,conditions:conditions);
+            return new TestOnlySharedWorldPolicy(new SharedCombatFixture(seed:seed),new SharedResearchFixture(recipeIds:manufacturing.RecipeIds),crafting??new SharedCraftingFixture(),new SharedRepairFixture(),manufacturing,conditions:conditions);
         }
         private static TestOnlySharedWorldPolicy Recipe14ManufacturePolicy(uint seed=1,SharedCraftingFixture crafting=null,ConditionCombatFixture conditions=null)
             =>new TestOnlySharedWorldPolicy(TestOnlyContentManifest.CreateManufacturingExpansionProfile(),new SharedCombatFixture(seed:seed),
                 new SharedResearchFixture(recipeId:SharedResearchFixture.Recipe14),crafting??new SharedCraftingFixture(),new SharedRepairFixture(),
                 new SharedManufacturingFixture(recipeId:SharedResearchFixture.Recipe14),conditions:conditions);
+        private static TestOnlySharedWorldPolicy MultiRecipeManufacturePolicy(uint seed=1,SharedCraftingFixture crafting=null,ConditionCombatFixture conditions=null)
+        {
+            var recipes=new[]{SharedResearchFixture.Recipe,SharedResearchFixture.Recipe14};
+            return new TestOnlySharedWorldPolicy(TestOnlyContentManifest.CreateManufacturingExpansionProfile(),new SharedCombatFixture(seed:seed),
+                new SharedResearchFixture(recipeIds:recipes),crafting??new SharedCraftingFixture(),new SharedRepairFixture(),
+                new SharedManufacturingFixture(recipeIds:recipes),conditions:conditions);
+        }
         private static Command ManufactureCommand(Simulation s,CommandKind kind=CommandKind.StartManufacturing,string target=SharedResearchFixture.Recipe,int x=0,int y=0)
             =>new Command("manufacturing."+(s.Capture().Revision+1),TestOnlyPolicy.CompanionId,s.Capture().Revision,kind,target,x,y);
         private static CommandOption ManufacturingOption(Simulation s,Authority authority,CommandKind kind)
@@ -30,6 +37,14 @@ namespace Decennium.Foundation.Tests
         private static RuleQuantity Material(Simulation s,int component,int set=0,string recipe=SharedResearchFixture.Recipe)=>s.Capture().Work.Lots.Single(x=>x.Id==SharedManufacturingFixture.Lot(recipe,set,component)).Amount;
         private static uint ManufacturingMishapSeed(int result){for(uint seed=1;seed<1000000;seed++){var d20=PlaytestDice.RollD20(seed);if(d20.Natural==1&&DiceStream.Draw(d20.NextRandomState,6).Value+1==result)return seed;}throw new Exception("No mishap seed.");}
         private static uint ManufacturingNaturalSeed(int natural){for(uint seed=1;seed<1000000;seed++)if(PlaytestDice.RollD20(seed).Natural==natural)return seed;throw new Exception("No manufacturing seed.");}
+        private static uint ManufacturingNaturalPairSeed(int first,int second)
+        {
+            for(uint seed=1;seed<1000000;seed++){
+                var a=PlaytestDice.RollD20(seed);var b=PlaytestDice.RollD20(a.NextRandomState);
+                if(a.Natural==first&&b.Natural==second)return seed;
+            }
+            throw new Exception("No manufacturing pair seed.");
+        }
         private static Command DoseCommand(Simulation s,string dose,string recipient=TestOnlyPolicy.ActorId,string actor=TestOnlyPolicy.ActorId)
             =>new Command("dose."+(s.Capture().Revision+1),actor,s.Capture().Revision,CommandKind.UseAlchemyDose,dose,inventory:new InventoryRequest(new RuleQuantity(1),recipient));
         private static void AddManufacturingCases(Dictionary<string,Action> cases,string directory)
@@ -100,6 +115,64 @@ namespace Decennium.Foundation.Tests
                     &&s.Capture().Work.Lots.Single(x=>x.Id==SharedManufacturingFixture.PackagingFor(SharedResearchFixture.Recipe14)).Amount==new RuleQuantity(6)
                     &&!s.Capture().AlchemyDoses.Any(x=>x.RecipeId==SharedResearchFixture.Recipe14),
                     "Ordinary failure did not recover 1.25 salts and 0.50 spirits exactly, consume the catalyst, and retain unused packaging.");
+            });
+            cases.Add("manufacturing_two_source_recipes_coexist_with_recipe_keyed_knowledge_stock_and_replay",()=>{
+                var recipes=new[]{SharedResearchFixture.Recipe,SharedResearchFixture.Recipe14};
+                Throws<ArgumentException>(()=>new TestOnlySharedWorldPolicy(TestOnlyContentManifest.CreateSelectedProfile(),new SharedCombatFixture(),
+                    new SharedResearchFixture(recipeIds:recipes),new SharedCraftingFixture(),new SharedRepairFixture(),new SharedManufacturingFixture(recipeIds:recipes)));
+                var unbound=new TestOnlySharedWorldPolicy(new SharedCombatFixture(),new SharedResearchFixture(recipeIds:recipes),
+                    new SharedCraftingFixture(),new SharedRepairFixture(),new SharedManufacturingFixture(recipeIds:recipes));
+                Throws<ArgumentException>(()=>new Simulation(unbound,unbound.Initial(),ExecutionProfile.Laboratory));
+                var p=MultiRecipeManufacturePolicy(ManufacturingNaturalPairSeed(19,19));var s=World(p);
+                Require(s.Capture().SchemaVersion==Snapshot.ManufacturingSchema
+                    &&p.ContentFingerprint.StartsWith("TEST_ONLY.content-v1-",StringComparison.Ordinal),
+                    "The multi-recipe profile changed the manufacturing schema or omitted the trusted content fingerprint.");
+                LearnManufacturing(s,SharedResearchFixture.Recipe);
+                Require(FormulaResearchRules.Knows(s.Capture(),worker,SharedResearchFixture.Recipe)
+                    &&!FormulaResearchRules.Knows(s.Capture(),worker,SharedResearchFixture.Recipe14),
+                    "Copying recipe 4 granted recipe-14 knowledge.");
+                RejectUnchanged(s,host,ManufactureCommand(s,target:SharedResearchFixture.Recipe14,x:0,y:6),"ManufacturingCredentialMissing");
+                LearnManufacturing(s,SharedResearchFixture.Recipe14);
+                Require(FormulaResearchRules.Knows(s.Capture(),worker,SharedResearchFixture.Recipe)
+                    &&FormulaResearchRules.Knows(s.Capture(),worker,SharedResearchFixture.Recipe14),
+                    "The two recipe formulas did not remain independently learnable in one world.");
+
+                ManufactureStart(s,set:0,extra:2,recipe:SharedResearchFixture.Recipe);WorldAdvance(s,14400);
+                Require(Order(s).RecipeId==SharedResearchFixture.Recipe&&Order(s).Natural==19&&Order(s).Status==ManufacturingStatus.AwaitingChoice,
+                    "The recipe-4 order did not resolve through its own source profile.");
+                ManufactureChoice(s,CraftQualityChoice.FullYield,0);
+                byte[] firstRecipeSave=Bytes(s);s=new Simulation(p,new SnapshotCodec().Decode(firstRecipeSave),ExecutionProfile.Laboratory);
+                Require(firstRecipeSave.SequenceEqual(Bytes(s))&&s.Capture().ManufacturingOrders.Single().RecipeId==SharedResearchFixture.Recipe
+                    &&s.Capture().AlchemyDoses.Length==7&&s.Capture().AlchemyDoses.All(x=>x.RecipeId==SharedResearchFixture.Recipe),
+                    "The first recipe's settled history or outputs did not survive restore with their recipe identity.");
+
+                ManufactureStart(s,set:0,extra:6,recipe:SharedResearchFixture.Recipe14);WorldAdvance(s,7200);
+                Require(Order(s).RecipeId==SharedResearchFixture.Recipe14&&Order(s).Status==ManufacturingStatus.Paused
+                    &&Order(s).Work.Labor==T(7200)&&Order(s).Work.CompletedPhases==1&&Order(s).Work.Partial==default
+                    &&Order(s).Work.Remaining==T(13500),"Recipe 14 did not retain completed labor while resetting only its interrupted phase at the shared eight-hour boundary.");
+                byte[] paused=Bytes(s);s=new Simulation(p,new SnapshotCodec().Decode(paused),ExecutionProfile.Laboratory);
+                Require(paused.SequenceEqual(Bytes(s)),"Both recipe profiles did not survive paused-order save/restore.");
+                ManufactureControl(s,CommandKind.ResumeManufacturing);WorldAdvance(s,13500);
+                Require(Order(s).RecipeId==SharedResearchFixture.Recipe14&&Order(s).Natural==19&&Order(s).Status==ManufacturingStatus.AwaitingChoice,
+                    "The second order did not resume and resolve through recipe-14's source profile: status="+Order(s).Status+", natural="+Order(s).Natural+", quality="+Order(s).Quality+", clock="+s.Capture().RuleClock+", remaining="+Order(s).Work.Remaining+".");
+                byte[] pending=Bytes(s);s=new Simulation(p,new SnapshotCodec().Decode(pending),ExecutionProfile.Laboratory);
+                Require(pending.SequenceEqual(Bytes(s)),"The recipe-14 pending choice changed during restore.");
+                var choice=ManufactureCommand(s,CommandKind.ResolveManufacturingQuality,Order(s).Id,(int)CraftQualityChoice.FullYield,3);
+                Require(s.Execute(host,choice).Outcome==Outcome.Committed,"The recipe-14 quality choice did not settle in the multi-recipe world.");
+                byte[] settled=Bytes(s);
+                Require(s.Execute(host,choice).Outcome==Outcome.Duplicate&&Bytes(s).SequenceEqual(settled),
+                    "The second order's replay receipt duplicated a batch or changed deterministic state.");
+                var state=s.Capture();var first=state.ManufacturingOrders.Single(x=>x.RecipeId==SharedResearchFixture.Recipe);
+                var second=state.ManufacturingOrders.Single(x=>x.RecipeId==SharedResearchFixture.Recipe14);
+                Require(state.ManufacturingOrders.Length==2&&state.AlchemyDoses.Count(x=>x.RecipeId==SharedResearchFixture.Recipe)==7
+                    &&state.AlchemyDoses.Count(x=>x.RecipeId==SharedResearchFixture.Recipe14)==6
+                    &&Material(s,0,recipe:SharedResearchFixture.Recipe)==new RuleQuantity(1)
+                    &&Material(s,2,recipe:SharedResearchFixture.Recipe14)==new RuleQuantity(1)
+                    &&state.Work.Lots.Single(x=>x.Id==SharedManufacturingFixture.PackagingFor(SharedResearchFixture.Recipe)).Amount==new RuleQuantity(2)
+                    &&state.Work.Lots.Single(x=>x.Id==SharedManufacturingFixture.PackagingFor(SharedResearchFixture.Recipe14)).Amount==default
+                    &&first.RetainedCatalyst==0&&second.RetainedCatalyst==2
+                    &&state.ManufacturingOrders.Select(x=>x.RecipeId).Distinct(StringComparer.Ordinal).Count()==2,
+                    "The two recipe orders cross-used ingredient lots, output identities, catalysts, or packaging.");
             });
             cases.Add("manufacturing_native_mishap_identity_cannot_collide_with_supplied_occurrence",()=>{
                 var s=World(ManufacturePolicy(ManufacturingMishapSeed(3),crafting:new SharedCraftingFixture(events:new[]{new CraftingMishapFact("manufacture.order.4.mishap",3)})));

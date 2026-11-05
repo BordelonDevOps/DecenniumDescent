@@ -51,7 +51,8 @@ namespace Decennium.Foundation.Laboratory
             this.crafting=crafting;
             this.repair=repair;
             this.manufacturing=manufacturing;
-            if(manufacturing!=null&&(repair==null||research==null||research.WorkerId!=TestOnlyPolicy.CompanionId||research.RecipeId!=manufacturing.RecipeId))throw new ArgumentException("Manufacturing requires matching selected repair and formula fixtures.");
+            if(manufacturing!=null&&(repair==null||research==null||research.WorkerId!=TestOnlyPolicy.CompanionId
+                ||!research.RecipeIds.SequenceEqual(manufacturing.RecipeIds,StringComparer.Ordinal)))throw new ArgumentException("Manufacturing requires matching repair and formula recipe profiles.");
             if(repair!=null&&crafting==null)throw new ArgumentException("Repair requires the explicit physical crafting fixture.");
             if(crafting!=null&&combat==null)throw new ArgumentException("Crafting consequences require the explicit calendar host.");
             if(research!=null&&combat==null)throw new ArgumentException("Research requires the explicit connected calendar host.");
@@ -111,6 +112,12 @@ namespace Decennium.Foundation.Laboratory
             contentManifest=manifest??throw new ArgumentNullException(nameof(manifest));
             string error=contentManifest.ValidateBindings();
             if(error!=null)throw new ArgumentException(error,nameof(manifest));
+            if(research!=null&&research.RecipeIds.Any(id=>!contentManifest.Supports(contentManifest.ResolveSemantic("crafting",id),ContentOperation.FormulaResearch)
+                ||!contentManifest.Supports(contentManifest.ResolveSemantic("crafting",id),ContentOperation.FormulaCopy)))
+                throw new ArgumentException("Formula recipe profile is absent from the selected content manifest.",nameof(manifest));
+            if(manufacturing!=null&&manufacturing.RecipeIds.Any(id=>!contentManifest.Supports(contentManifest.ResolveSemantic("crafting",id),ContentOperation.Manufacture)
+                ||!contentManifest.Supports(contentManifest.ResolveSemantic("crafting",id),ContentOperation.UseProducedItem)))
+                throw new ArgumentException("Manufacturing recipe profile is absent from the selected content manifest.",nameof(manifest));
             ContentFingerprint=contentManifest.BindFingerprint(ContentFingerprint);
         }
         public static Authority Host() => new Authority("TEST_ONLY.host", new[] { TestOnlyPolicy.ActorId, TestOnlyPolicy.CompanionId, AdditionalTacticalActor.Id }, true, true,
@@ -607,7 +614,9 @@ namespace Decennium.Foundation.Laboratory
                 if(s.WorldSchedule!=null&&s.WorldTraversals.Any(x=>!s.WorldSchedule.Order.Contains(x.ActorId)
                     &&(x.ActorId!=TestOnlyPolicy.CompanionId&&!IsOffCalendarActivity(s,x.ActorId)
                         ||x.Running&&s.SchemaVersion<Snapshot.OffCalendarActivitySchema)))return "InvalidExplorationTraveler";
+                string formulaError=ValidateFormulaProfile(s);if(formulaError!=null)return formulaError;
                 string manufacturingError=ValidateManufacturingProfile(s);if(manufacturingError!=null)return manufacturingError;
+                if(manufacturing!=null&&manufacturing.RecipeIds.Count>1&&contentManifest==null)return "ManufacturingContentManifestRequired";
                 if(contentManifest!=null) {
                     string bindingError=contentManifest.ValidateBindings();if(bindingError!=null)return bindingError;
                     bindingError=contentManifest.ValidatePortableSnapshot(s);if(bindingError!=null)return bindingError;
