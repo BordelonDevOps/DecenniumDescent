@@ -1,0 +1,91 @@
+{
+  "profile": "TEST_ONLY.schema20.manufacturing-recipe14-expansion",
+  "sourceRevision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+  "manifestDigest": "5e1c8f3c1d796f4174d0c6eec334fc310e4473085edd9f288954024f9dcc8e79",
+  "sourceBindings": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/playtest/alchemy_recipe_candidate.json",
+      "gitBlob": "67d2bbc5ead75f331a2c99f41a75941f03fe431f",
+      "pointer": "/cards/13"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/director/crafting_recipe_review_catalog.json",
+      "gitBlob": "8d4acc4a13d42ff299b19116f6e70a34e79f2c6d",
+      "pointer": "/recipes/13"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/ALCHEMY_PUBLIC_RECIPE_CARDS.md",
+      "gitBlob": "a71c2e54ad86a8b35377323f16a9f4ff7df986e0",
+      "section": "recipe-14"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/ALCHEMY_RECIPE_PLAYTEST.md",
+      "gitBlob": "a253486adc64daaaa9d105f8911dcd267c971e06"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CRAFTING_HARVEST_PLAYTEST.md",
+      "gitBlob": "b2c15e1bd56bb62e0f1729f4f6d68413e62f9be9",
+      "section": "material-identity-consumption-and-substitution"
+    },
+    {
+      "path": "docs/canon/CANON_MANIFEST.json",
+      "gitBlob": "003b9c45d3b36be43a16c431fe341de725f7f406",
+      "section": "crafting"
+    },
+    {
+      "path": "docs/unity/FORMULA_RESEARCH_RULE_DECISIONS.md",
+      "gitRevision": "Engine",
+      "gitBlob": "7d13fabbb80ecaa9f9fcd28c68aa05d4c354e522"
+    }
+  ],
+  "implementationSha256": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ManufacturingRules.cs",
+      "sha256": "97de2c4084b634e8faf4bbbc34ae93547b3d286be1ae3ac6e1e67e6c90ad635d"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs",
+      "sha256": "7fa897dd2ad06fad4b9d16b8c2b18f9080fc14f28a7e949cf4b8627f97341349"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFormulaResearch.cs",
+      "sha256": "442090db1c1bce8226a55b8a182b1eb2769cda7ba16220d8b5e05731764d5cbc"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SourceContentResolution.cs",
+      "sha256": "6fc247b1d89c16b5fc4be95a495c41134dd507baf589f99a53a0fecc558fdd12"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "sha256": "a23e2be6a7dee40fea69aec357a57b826d77878a1139db907277f6509adf942c"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ManufacturingRecords.cs",
+      "sha256": "3c020408362f3dd15036f88c2961fef4c2ecad32b34bda8cf760d3078a37dceb"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/ManufacturingCases.cs",
+      "sha256": "d2b33280a577b226b7ce906730cfcb9533b4a8ebb05b8d6c79ca4146aa81faca"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/FormulaResearchCases.cs",
+      "sha256": "99b4af1f91c7a3f2b1a996ebbf3d575903923a19c4662531dfe637d1f44a08dd"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/ContentResolutionCases.cs",
+      "sha256": "45d4eec03407df9029bf5ee7baffbdf566411d8351c8110bf068f300e98203b6"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Content/test-only-content-manifest-recipe14.json",
+      "sha256": "739b2817049d8b00db4fd33c5cfb3806e6074825dea71efb9ce8545d6be6d392",
+      "manifestDigest": "5e1c8f3c1d796f4174d0c6eec334fc310e4473085edd9f288954024f9dcc8e79"
+    }
+  ],
+  "acceptanceCases": [
+    "content_manifest_recipe14_is_versioned_without_rebinding_legacy_profile",
+    "formula_research_recipe14_uses_its_exact_recipe_dc_without_granting_recipe4",
+    "manufacturing_recipe14_copy_pause_resume_save_completion_and_duplicate_replay",
+    "manufacturing_recipe14_definition_is_occurrence_scoped_and_uses_exact_recovery_units",
+    "manufacturing_recipe14_failed_batch_recovers_only_declared_bulk_lots"
+  ]
+}

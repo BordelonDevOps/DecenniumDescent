@@ -1,12 +1,93 @@
 #if DECENNIUM_TEST_ONLY && (UNITY_EDITOR || DEVELOPMENT_BUILD || HEADLESS_TESTS)
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 
 namespace Decennium.Foundation.Laboratory
 {
+    /// <summary>An exact source component occurrence. Divisibility is an explicit execution-profile
+    /// fact; role, name, category, price and weight never imply it.</summary>
+    public sealed class ManufacturingComponentDefinition
+    {
+        public string Id { get; }
+        public int Quantity { get; }
+        public RuleQuantity UnitMass { get; }
+        public bool Consumed { get; }
+        public bool Catalyst { get; }
+        public bool Divisible { get; }
+        public ManufacturingComponentDefinition(string id,int quantity,RuleQuantity unitMass,bool consumed,bool catalyst,bool divisible)
+        {
+            if(!Validation.ValidId(id)||quantity<1||unitMass<=default(RuleQuantity)||!consumed)
+                throw new ArgumentException("Invalid manufacturing component definition.");
+            Id=id;Quantity=quantity;UnitMass=unitMass;Consumed=consumed;Catalyst=catalyst;Divisible=divisible;
+        }
+    }
+
+    /// <summary>Immutable, bounded source profile for one operational Alchemy recipe.</summary>
+    public sealed class ManufacturingRecipeDefinition
+    {
+        private readonly ManufacturingComponentDefinition[] components;
+        public string Id { get; }
+        public int SkillLevel { get; }
+        public int Difficulty { get; }
+        public long MinimumResearchHours { get; }
+        public RuleTime FirstPhase { get; }
+        public RuleTime RemainingPhase { get; }
+        public int StandardYield { get; }
+        public int SourceVesselComponentIndex { get; }
+        public int SourceVesselCount => SourceVesselComponentIndex < 0 ? 0 : components[SourceVesselComponentIndex].Quantity;
+        public int MinimumSupplementaryVials => Math.Max(0,StandardYield-SourceVesselCount);
+        public int MaximumSupplementaryVials => Math.Max(0,ManufacturingRules.Yield(CraftQuality.Masterwork,StandardYield,CraftQualityChoice.FullYield)-SourceVesselCount);
+        public RuleQuantity ProductCompoundMass { get; }
+        public IReadOnlyList<ManufacturingComponentDefinition> Components { get; }
+
+        internal ManufacturingRecipeDefinition(string id,int skillLevel,int difficulty,long minimumResearchHours,RuleTime firstPhase,
+            RuleTime remainingPhase,int standardYield,int sourceVesselComponentIndex,RuleQuantity productCompoundMass,
+            IEnumerable<ManufacturingComponentDefinition> components)
+        {
+            this.components=(components??Array.Empty<ManufacturingComponentDefinition>()).ToArray();
+            if(!Validation.ValidId(id)||skillLevel<1||skillLevel>20||difficulty<1||difficulty>100||minimumResearchHours<0
+                ||firstPhase<=default(RuleTime)||remainingPhase<=default(RuleTime)||standardYield<1||this.components.Length<1||this.components.Length>8
+                ||this.components.Any(x=>x==null)||this.components.Select(x=>x.Id).Distinct(StringComparer.Ordinal).Count()!=this.components.Length
+                ||sourceVesselComponentIndex < -1||sourceVesselComponentIndex>=this.components.Length||productCompoundMass<=default(RuleQuantity))
+                throw new ArgumentException("Invalid manufacturing recipe definition.");
+            Id=id;SkillLevel=skillLevel;Difficulty=difficulty;MinimumResearchHours=minimumResearchHours;FirstPhase=firstPhase;
+            RemainingPhase=remainingPhase;StandardYield=standardYield;SourceVesselComponentIndex=sourceVesselComponentIndex;
+            ProductCompoundMass=productCompoundMass;Components=Array.AsReadOnly(this.components);
+        }
+        public RuleQuantity NonVesselMass
+        {
+            get { RuleQuantity total=default;for(int i=0;i<components.Length;i++)if(i!=SourceVesselComponentIndex)total+=components[i].UnitMass.Scale(components[i].Quantity);return total; }
+        }
+        public IEnumerable<int> CatalystIndexes => Enumerable.Range(0,components.Length).Where(i=>components[i].Catalyst);
+        public bool CanYield(CraftQuality quality,int reservedSupplementaryVials,int retainedCatalyst)
+        {
+            int yield=ManufacturingRules.Yield(quality,StandardYield,CraftQualityChoice.FullYield);
+            if(yield>SourceVesselCount+reservedSupplementaryVials)return false;
+            RuleQuantity compound=NonVesselMass;
+            if(retainedCatalyst>=0){if(retainedCatalyst>=components.Length||!components[retainedCatalyst].Catalyst)return false;compound-=components[retainedCatalyst].UnitMass;}
+            return ProductCompoundMass.Scale(yield)<=compound;
+        }
+    }
+
     public static class ManufacturingRules
     {
+        public const string Recipe4Id="recipe-4",Recipe14Id="recipe-14";
+        private static readonly ManufacturingRecipeDefinition Recipe4Definition=new ManufacturingRecipeDefinition(Recipe4Id,5,8,0,
+            new RuleTime(900),new RuleTime(13500),5,1,new RuleQuantity(1,10),new[]{
+                new ManufacturingComponentDefinition("ing-4-0-alchemical_catalyst",5,new RuleQuantity(1,10),true,true,true),
+                new ManufacturingComponentDefinition("ing-4-1-crystal_vial",5,new RuleQuantity(1,10),true,false,false),
+                new ManufacturingComponentDefinition("ing-4-2-alchemical_base",5,new RuleQuantity(1,10),true,false,true),
+                new ManufacturingComponentDefinition("drop-black_blood_sample",1,new RuleQuantity(38,100),true,true,true)});
+        private static readonly ManufacturingRecipeDefinition Recipe14Definition=new ManufacturingRecipeDefinition(Recipe14Id,5,11,0,
+            new RuleTime(900),new RuleTime(13500),4,-1,new RuleQuantity(1,10),new[]{
+                new ManufacturingComponentDefinition("ing-14-0-stabilizing_salts",5,new RuleQuantity(5,100),true,false,true),
+                new ManufacturingComponentDefinition("ing-14-1-distilled_spirits",2,new RuleQuantity(1,2),true,false,true),
+                new ManufacturingComponentDefinition("drop-black_blood_sample",1,new RuleQuantity(38,100),true,true,false)});
+        public static ManufacturingRecipeDefinition Recipe(string recipeId)
+            =>recipeId==Recipe4Id?Recipe4Definition:recipeId==Recipe14Id?Recipe14Definition:null;
+
         public static CraftQuality Quality(int natural, int modifier, int dc, bool takeTen = false)
         {
             if (natural < 1 || natural > 20 || takeTen && natural != 10) throw new ArgumentException("Invalid crafting die.");
@@ -52,7 +133,7 @@ namespace Decennium.Foundation.Laboratory
             while (level < 20 && xp >= 10 + level) { xp -= 10 + level; level++; }
             return (level, xp);
         }
-        // Exact public recipe-4 component occurrences, not a name-only substitute registry.
+        // Compatibility accessors for the pre-existing recipe-4 fixture and its pinned cases.
         public static readonly System.Collections.Generic.IReadOnlyList<string> Recipe4Components = Array.AsReadOnly(new[] { "ing-4-0-alchemical_catalyst", "ing-4-1-crystal_vial", "ing-4-2-alchemical_base", "drop-black_blood_sample" });
         public static readonly System.Collections.Generic.IReadOnlyList<int> Recipe4Amounts = Array.AsReadOnly(new[] { 5, 5, 5, 1 });
         public static RuleQuantity Recipe4Mass(int component) => component == 3 ? new RuleQuantity(38,100) : new RuleQuantity(1,10);
@@ -62,8 +143,7 @@ namespace Decennium.Foundation.Laboratory
             => new RuleQuantity(138,100) - (retainedCatalyst < 0 ? default : Recipe4Mass(retainedCatalyst));
         public static bool Recipe4CanYield(CraftQuality quality, int reservedExtraVials, int retainedCatalyst)
         {
-            int yield = Yield(quality, 5, CraftQualityChoice.FullYield);
-            return yield <= 5 + reservedExtraVials && new RuleQuantity(yield,10) <= Recipe4CompoundMass(retainedCatalyst);
+            return Recipe4Definition.CanYield(quality,reservedExtraVials,retainedCatalyst);
         }
     }
 }

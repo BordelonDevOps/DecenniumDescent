@@ -123,6 +123,30 @@ try {
         if ($gitExit -ne 0 -or $actualBlob.Trim() -ne $entry.sourceBlobId) { throw ('Manifest source blob mismatch: ' + $entry.sourcePath) }
     }
     Check ($sourceGroups.Count -ge 4) 'Every source locator resolves to its pinned Git blob'
+    $recipe14ManifestPath = Join-Path $packageRoot 'Laboratory/Content/test-only-content-manifest-recipe14.json'
+    $recipe14Manifest = Get-Content -Raw -LiteralPath $recipe14ManifestPath | ConvertFrom-Json
+    $recipe14TrustedDigest = [regex]::Match($resolverSource,'Recipe14TrustedDigest = "([0-9a-f]{64})"')
+    Check ($recipe14TrustedDigest.Success -and $recipe14Manifest.manifestDigest -eq $recipe14TrustedDigest.Groups[1].Value -and
+        $recipe14Manifest.schemaVersion -eq 1 -and $recipe14Manifest.entries.Count -le 64) 'Recipe-14 expansion manifest matches its separately trusted build digest'
+    Check ((Get-ContentManifestDigest $recipe14Manifest) -eq $recipe14Manifest.manifestDigest) 'Serialized recipe-14 bindings reproduce their immutable manifest digest'
+    Check ($recipe14Manifest.executionScope -eq 'TEST_ONLY' -and -not $recipe14Manifest.releaseApproved -and
+        -not $recipe14Manifest.runtimeSelectionEnabled -and $recipe14Manifest.playerKnowledgeGrants.Count -eq 0 -and
+        $recipe14Manifest.entries.Where({$_.domain -eq 'crafting' -and $_.semanticId -eq 'recipe-14'}).Count -eq 1 -and
+        $recipe14Manifest.entries.Where({$_.domain -eq 'crafting-component' -and $_.semanticId -eq 'recipe-14.drop-black_blood_sample'}).Count -eq 1 -and
+        $recipe14Manifest.entries.Where({$_.domain -eq 'recipe-result' -and $_.semanticId -eq 'recipe-14' -and $_.jsonPointer -eq '/cards/13/operational'}).Count -eq 1) 'Recipe-14 profile keeps recipe-scoped occurrence identity, output and TEST_ONLY boundaries'
+    $recipe14AuthorityReferences = @($recipe14Manifest.entries | ForEach-Object { $_.authorityReferences } | Sort-Object -Unique)
+    foreach ($reference in $recipe14AuthorityReferences) {
+        if (-not (Test-AuthorityReference ([string]$reference) $repositoryRoot)) { throw ('Recipe-14 authority reference mismatch: ' + $reference) }
+    }
+    $recipe14SourceGroups = @($recipe14Manifest.entries | Group-Object sourceRevision,sourcePath,sourceBlobId)
+    foreach ($group in $recipe14SourceGroups) {
+        $entry = $group.Group[0]
+        $actualBlobLines = @(& git -C $repositoryRoot rev-parse ($entry.sourceRevision + ':' + $entry.sourcePath) 2>$null)
+        $gitExit = $LASTEXITCODE
+        $actualBlob = if ($actualBlobLines.Count -eq 1) { [string]$actualBlobLines[0] } else { '' }
+        if ($gitExit -ne 0 -or $actualBlob.Trim() -ne $entry.sourceBlobId) { throw ('Recipe-14 source blob mismatch: ' + $entry.sourcePath) }
+    }
+    Check ($recipe14SourceGroups.Count -ge 5 -and $recipe14AuthorityReferences.Count -gt 0) 'Recipe-14 source and authority references resolve to pinned Git blobs'
     $report.status = 'PASS'
     $report.packageAssets = $assets.Count
     $report.uniqueGuids = $guids.Count

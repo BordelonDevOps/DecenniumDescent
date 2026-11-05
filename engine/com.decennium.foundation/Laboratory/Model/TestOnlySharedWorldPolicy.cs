@@ -51,7 +51,7 @@ namespace Decennium.Foundation.Laboratory
             this.crafting=crafting;
             this.repair=repair;
             this.manufacturing=manufacturing;
-            if(manufacturing!=null&&(repair==null||research==null||research.WorkerId!=TestOnlyPolicy.CompanionId))throw new ArgumentException("Manufacturing requires selected repair and companion knowledge fixtures.");
+            if(manufacturing!=null&&(repair==null||research==null||research.WorkerId!=TestOnlyPolicy.CompanionId||research.RecipeId!=manufacturing.RecipeId))throw new ArgumentException("Manufacturing requires matching selected repair and formula fixtures.");
             if(repair!=null&&crafting==null)throw new ArgumentException("Repair requires the explicit physical crafting fixture.");
             if(crafting!=null&&combat==null)throw new ArgumentException("Crafting consequences require the explicit calendar host.");
             if(research!=null&&combat==null)throw new ArgumentException("Research requires the explicit connected calendar host.");
@@ -96,6 +96,14 @@ namespace Decennium.Foundation.Laboratory
             if(combat==null||supplyCache==null||!supplyCache.HasTools||supplyCache.HasKey)
                 throw new ArgumentException("Portable kit requires the selected cache and tools, and rejects an unsourced-mass key fixture.");
             ContentFingerprint=PortableEquipmentRules.Fingerprint(ContentFingerprint,portableKit);
+            BindContentManifest(manifest);
+        }
+        /// <summary>Source-resolved manufacturing profile without unrelated portable-equipment state.</summary>
+        public TestOnlySharedWorldPolicy(TestOnlyContentManifest manifest,SharedCombatFixture combat,SharedResearchFixture research,
+            SharedCraftingFixture crafting,SharedRepairFixture repair,SharedManufacturingFixture manufacturing,
+            int walkingSpeed=30,ConditionCombatFixture conditions=null,params TacticalTerrainCell[] terrain)
+            :this(combat,research,crafting,repair,manufacturing,null,walkingSpeed,conditions,terrain)
+        {
             BindContentManifest(manifest);
         }
         private void BindContentManifest(TestOnlyContentManifest manifest)
@@ -454,7 +462,7 @@ namespace Decennium.Foundation.Laboratory
                 }
                 foreach(string id in manufacturingReady){
                     var job=s.ManufacturingOrders.Single(x=>x.Id==id);
-                    if(ManufacturingAccess(s,job.WorkerId,false,true)==null)FinishManufacturingCheck(s,job);
+                    if(ManufacturingAccess(s,job.WorkerId,false,true,job.RecipeId)==null)FinishManufacturingCheck(s,job);
                 }
                 PauseIncompatibleWork(s); CompleteSupplyCacheAttempts(s); ReconcileTraversal(s);
                 if(ManufacturingChoicePending(s)){
@@ -599,6 +607,7 @@ namespace Decennium.Foundation.Laboratory
                 if(s.WorldSchedule!=null&&s.WorldTraversals.Any(x=>!s.WorldSchedule.Order.Contains(x.ActorId)
                     &&(x.ActorId!=TestOnlyPolicy.CompanionId&&!IsOffCalendarActivity(s,x.ActorId)
                         ||x.Running&&s.SchemaVersion<Snapshot.OffCalendarActivitySchema)))return "InvalidExplorationTraveler";
+                string manufacturingError=ValidateManufacturingProfile(s);if(manufacturingError!=null)return manufacturingError;
                 if(contentManifest!=null) {
                     string bindingError=contentManifest.ValidateBindings();if(bindingError!=null)return bindingError;
                     bindingError=contentManifest.ValidatePortableSnapshot(s);if(bindingError!=null)return bindingError;

@@ -8,23 +8,30 @@ using System.Text;
 
 namespace Decennium.Foundation.Laboratory
 {
-    /// <summary>Exact public recipe4, two finite component sets and four supplementary Glass Vials.
-    /// Actual fortified-camp bench, heat, measuring glassware and sealed apparatus are supplied.
-    /// Fluid reagents are divisible to0.01 units; Crystal Vials are indivisible. Blood origin0,
-    /// declared unprotected interval4h. No acquisition, arbitrary substitution or free formula.</summary>
+    /// <summary>One exact reviewed Alchemy card, two finite component sets, authored camp apparatus,
+    /// and only the supplementary packaging required by that profile. Recipe-14 divisibility is an
+    /// explicit occurrence-scoped prototype completion, not a material-category default.</summary>
     public sealed class SharedManufacturingFixture
     {
         public const string Packaging="manufacture.glass-vials";
+        public string RecipeId { get; }
+        public string PackagingLot => PackagingFor(RecipeId);
+        public int PackagingQuantity => RecipeId==ManufacturingRules.Recipe14Id?6:4;
         public int InitialLevel { get; } public int InitialXp { get; } public bool StationReady { get; }
         public bool ToolTrained { get; } public RuleTime BloodInterval { get; }
         public bool RecordedFailureObservation { get; } public bool CompatibleIngestion { get; }
-        public SharedManufacturingFixture(int level=5,int xp=0,bool stationReady=true,bool toolTrained=true,long bloodIntervalSeconds=14400,bool recordedFailureObservation=false,bool compatibleIngestion=true)
+        public SharedManufacturingFixture(int level=5,int xp=0,bool stationReady=true,bool toolTrained=true,long bloodIntervalSeconds=14400,bool recordedFailureObservation=false,bool compatibleIngestion=true,string recipeId=ManufacturingRules.Recipe4Id)
         {
-            if(level<1||level>9||xp<0||xp>=10+level||bloodIntervalSeconds<3600||bloodIntervalSeconds>14400)throw new ArgumentException("Invalid supplied pre-specialty manufacturing facts.");
-            InitialLevel=level;InitialXp=xp;StationReady=stationReady;ToolTrained=toolTrained;BloodInterval=new RuleTime(bloodIntervalSeconds);RecordedFailureObservation=recordedFailureObservation;CompatibleIngestion=compatibleIngestion;
+            if(level<1||level>9||xp<0||xp>=10+level||bloodIntervalSeconds<3600||bloodIntervalSeconds>14400||ManufacturingRules.Recipe(recipeId)==null)throw new ArgumentException("Invalid supplied pre-specialty manufacturing facts.");
+            RecipeId=recipeId;InitialLevel=level;InitialXp=xp;StationReady=stationReady;ToolTrained=toolTrained;BloodInterval=new RuleTime(bloodIntervalSeconds);RecordedFailureObservation=recordedFailureObservation;CompatibleIngestion=compatibleIngestion;
         }
-        internal string Key=>"recipe4-manufacture-v1|public-reviewed-Alchemy|fortified-camp-bench-heat-glassware-sealed-apparatus|2-component-sets|4-glass-vials|divisible-fluids-0.01|blood-origin0|phase900-13500|"+InitialLevel+"|"+InitialXp+"|"+StationReady+"|"+ToolTrained+"|"+BloodInterval+"|"+RecordedFailureObservation+"|"+CompatibleIngestion;
+        internal string Key=>RecipeId==ManufacturingRules.Recipe4Id
+            ?"recipe4-manufacture-v1|public-reviewed-Alchemy|fortified-camp-bench-heat-glassware-sealed-apparatus|2-component-sets|4-glass-vials|divisible-fluids-0.01|blood-origin0|phase900-13500|"+InitialLevel+"|"+InitialXp+"|"+StationReady+"|"+ToolTrained+"|"+BloodInterval+"|"+RecordedFailureObservation+"|"+CompatibleIngestion
+            :"recipe14-manufacture-v2|source-46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4|recipe-14-exact-occurrences|salts-and-spirits-measurable-bulk-0.01|2-component-sets|6-glass-vials|blood-origin0|phase900-13500|"+InitialLevel+"|"+InitialXp+"|"+StationReady+"|"+ToolTrained+"|"+BloodInterval+"|"+RecordedFailureObservation+"|"+CompatibleIngestion;
         public static string Lot(int set,int component)=>"manufacture.set"+set.ToString(CultureInfo.InvariantCulture)+".component"+component.ToString(CultureInfo.InvariantCulture);
+        public static string Lot(string recipe,int set,int component)=>recipe==ManufacturingRules.Recipe4Id?Lot(set,component)
+            :"manufacture.recipe14.set"+set.ToString(CultureInfo.InvariantCulture)+".component"+component.ToString(CultureInfo.InvariantCulture);
+        public static string PackagingFor(string recipe)=>recipe==ManufacturingRules.Recipe4Id?Packaging:"manufacture.recipe14.glass-vials";
     }
     public sealed partial class TestOnlySharedWorldPolicy
     {
@@ -35,15 +42,45 @@ namespace Decennium.Foundation.Laboratory
         {
             if(manufacturing==null)return;
             var lots=s.Work.Lots.ToList();var inventoryLots=s.InventoryLots.ToList();
-            for(int set=0;set<2;set++)for(int component=0;component<4;component++){
-                string id=SharedManufacturingFixture.Lot(set,component);int amount=ManufacturingRules.Recipe4Amounts[component];
-                lots.Add(new ResourceLot(id,ManufacturingRules.Recipe4Components[component],amount,TestOnlyCropPolicy.PlotId,TestOnlyPolicy.CompanionId));
+            var recipe=ManufacturingRules.Recipe(manufacturing.RecipeId);
+            for(int set=0;set<2;set++)for(int component=0;component<recipe.Components.Count;component++){
+                var definition=recipe.Components[component];string id=SharedManufacturingFixture.Lot(recipe.Id,set,component);int amount=definition.Quantity;
+                lots.Add(new ResourceLot(id,definition.Id,amount,TestOnlyCropPolicy.PlotId,TestOnlyPolicy.CompanionId));
                 inventoryLots.Add(new InventoryLotRecord(id,"",TestOnlyPolicy.CompanionId,new RuleQuantity(amount),default,NutritionKind.None,null,InventoryAccess.Ground));
             }
-            lots.Add(new ResourceLot(SharedManufacturingFixture.Packaging,"ordinary.glass-vial-1gp",4,TestOnlyCropPolicy.PlotId,TestOnlyPolicy.CompanionId));
-            inventoryLots.Add(new InventoryLotRecord(SharedManufacturingFixture.Packaging,"",TestOnlyPolicy.CompanionId,new RuleQuantity(4),default,NutritionKind.None,null,InventoryAccess.Ground));
+            lots.Add(new ResourceLot(manufacturing.PackagingLot,"ordinary.glass-vial-1gp",manufacturing.PackagingQuantity,TestOnlyCropPolicy.PlotId,TestOnlyPolicy.CompanionId));
+            inventoryLots.Add(new InventoryLotRecord(manufacturing.PackagingLot,"",TestOnlyPolicy.CompanionId,new RuleQuantity(manufacturing.PackagingQuantity),default,NutritionKind.None,null,InventoryAccess.Ground));
             s.Work=new WorkLedger(lots,s.Work.WorkerIntervals,s.Work.Reservations);s.InventoryLots=inventoryLots.ToArray();
             s.Trades=new[]{new TradeProgressRecord(TestOnlyPolicy.CompanionId,SharedCraftingFixture.TradeId,manufacturing.InitialLevel,manufacturing.InitialXp)};
+        }
+        private string ValidateManufacturingProfile(Snapshot s)
+        {
+            if(manufacturing==null)return s.ManufacturingOrders.Length==0&&s.Trades.Length==0&&s.AlchemyDoses.Length==0?null:"ManufacturingFixtureNotSelected";
+            var recipe=ManufacturingRules.Recipe(manufacturing.RecipeId);
+            if(recipe==null||s.Trades.Length!=1||s.Trades[0].WorkerId!=TestOnlyPolicy.CompanionId||s.Trades[0].TradeId!=SharedCraftingFixture.TradeId
+                ||s.ManufacturingOrders.Any(x=>x.RecipeId!=recipe.Id||x.MaterialSet<0||x.MaterialSet>1
+                    ||x.ExtraVials<recipe.MinimumSupplementaryVials||x.ExtraVials>recipe.MaximumSupplementaryVials)
+                ||s.AlchemyDoses.Any(x=>x.RecipeId!=recipe.Id))return "ManufacturingFixtureMismatch";
+            foreach(var order in s.ManufacturingOrders){
+                for(int i=0;i<recipe.Components.Count;i++){
+                    var reservation=s.Work.Reservations.Where(x=>x.JobId==order.Id&&x.Id==ComponentClaim(order,i)).ToArray();
+                    if(reservation.Length!=1||reservation[0].LotId!=SharedManufacturingFixture.Lot(recipe.Id,order.MaterialSet,i)
+                        ||reservation[0].Amount!=new RuleQuantity(recipe.Components[i].Quantity))return "ManufacturingFixtureMismatch";
+                }
+                var package=s.Work.Reservations.Where(x=>x.JobId==order.Id&&x.Id==order.Id+".packaging").ToArray();
+                if(order.ExtraVials==0?package.Length!=0:package.Length!=1||package[0].LotId!=SharedManufacturingFixture.PackagingFor(recipe.Id)
+                    ||package[0].Amount!=new RuleQuantity(order.ExtraVials))return "ManufacturingFixtureMismatch";
+            }
+            foreach(var component in recipe.Components.Select((value,index)=>(value,index)))
+                for(int set=0;set<2;set++){
+                    string id=SharedManufacturingFixture.Lot(recipe.Id,set,component.index);
+                    if(!s.Work.Lots.Any(x=>x.Id==id&&x.UnitId==component.value.Id)
+                        ||!s.InventoryLots.Any(x=>x.LotId==id&&x.OwnerId==TestOnlyPolicy.CompanionId))return "ManufacturingFixtureMismatch";
+                }
+            string packagingId=SharedManufacturingFixture.PackagingFor(recipe.Id);
+            if(!s.Work.Lots.Any(x=>x.Id==packagingId&&x.UnitId=="ordinary.glass-vial-1gp")
+                ||!s.InventoryLots.Any(x=>x.LotId==packagingId&&x.OwnerId==TestOnlyPolicy.CompanionId))return "ManufacturingFixtureMismatch";
+            return null;
         }
         private static bool ManufacturingCommand(CommandKind k)=>k==CommandKind.StartManufacturing||k==CommandKind.PauseManufacturing||k==CommandKind.ResumeManufacturing||k==CommandKind.CancelManufacturing||k==CommandKind.ResolveManufacturingQuality||k==CommandKind.UseAlchemyDose;
         private static bool ManufacturingChoicePending(Snapshot s)=>s.ManufacturingOrders.Any(x=>x.Status==ManufacturingStatus.AwaitingChoice);
@@ -71,7 +108,8 @@ namespace Decennium.Foundation.Laboratory
                     continue;
                 }
                 if(order.Status!=ManufacturingStatus.AwaitingChoice)continue;
-                var catalysts=order.Quality==CraftQuality.Masterwork?new[]{0,3}:new[]{-1};
+                var profile=ManufacturingRules.Recipe(order.RecipeId);
+                var catalysts=order.Quality==CraftQuality.Masterwork?profile.CatalystIndexes.ToArray():new[]{-1};
                 foreach(var choice in new[]{CraftQualityChoice.Durability,CraftQualityChoice.FullYield})
                     foreach(int catalyst in catalysts)
                         yield return new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+"."+actorIndex.ToString(CultureInfo.InvariantCulture)
@@ -96,8 +134,10 @@ namespace Decennium.Foundation.Laboratory
             if(!current.Open)return "ManufacturingOrderClosed";
             if(current.Status!=ManufacturingStatus.AwaitingChoice||c.X<1||c.X>2)return "NoManufacturingQualityChoice";
             choice=(CraftQualityChoice)c.X;catalyst=c.Y-1;
-            if(current.Quality==CraftQuality.Masterwork?catalyst!=0&&catalyst!=3:catalyst!=-1)return "InvalidRetainedCatalyst";
-            if(choice==CraftQualityChoice.FullYield&&!ManufacturingRules.Recipe4CanYield(current.Quality,current.ExtraVials,catalyst))
+            var profile=ManufacturingRules.Recipe(current.RecipeId);
+            if(profile==null)return "ManufacturingRecipeUnavailable";
+            if(current.Quality==CraftQuality.Masterwork?!profile.CatalystIndexes.Contains(catalyst):catalyst!=-1)return "InvalidRetainedCatalyst";
+            if(choice==CraftQualityChoice.FullYield&&!profile.CanYield(current.Quality,current.ExtraVials,catalyst))
                 return "ManufacturingFullYieldUnavailable";
             return null;
         }
@@ -123,10 +163,10 @@ namespace Decennium.Foundation.Laboratory
             if(c.Kind!=CommandKind.ResumeManufacturing)return "InvalidManufacturingRequest";
             if(current.Status==ManufacturingStatus.Working)return "ManufacturingAlreadyWorking";
             string access=ManufacturingAccess(s,c.Actor,current.Status!=ManufacturingStatus.AwaitingCheck,
-                current.Status==ManufacturingStatus.AwaitingCheck);
+                current.Status==ManufacturingStatus.AwaitingCheck,current.RecipeId);
             if(access!=null)return access;
             if(OrdinaryInventory.Busy(s,c.Actor))return "WorkerBusy";
-            if(!current.StabilizedAt.HasValue&&BloodUnprotectedAge(s,current.MaterialSet)>=BloodSpoils)return "ManufacturingIngredientSpoiled";
+            if(!current.StabilizedAt.HasValue&&BloodUnprotectedAge(s,current.RecipeId,current.MaterialSet)>=BloodSpoils)return "ManufacturingIngredientSpoiled";
             return null;
         }
         private IEnumerable<string> ManufacturingOwners(Snapshot s,Command c)
@@ -143,22 +183,24 @@ namespace Decennium.Foundation.Laboratory
             =>new ManufacturingOrderRecord(j.Id,j.WorkerId,j.RecipeId,j.MaterialSet,j.ExtraVials,j.TakeTen,status,work??j.Work,j.StartedAt,s.RuleClock,stabilized??j.StabilizedAt,
                 first??j.First,second??j.Second,natural??j.Natural,quality??j.Quality,choice??j.Choice,catalyst??j.RetainedCatalyst,mishap??j.Mishap,xp??j.XpAward,finding??j.FindingId,incident??j.MishapIncidentId);
         private RuleTime BloodSpoils=>new RuleTime(checked(manufacturing.BloodInterval.Numerator*2),manufacturing.BloodInterval.Denominator);
-        public RuleTime BloodUnprotectedAge(Snapshot s,int materialSet)
+        public RuleTime BloodUnprotectedAge(Snapshot s,int materialSet)=>BloodUnprotectedAge(s,ManufacturingRules.Recipe4Id,materialSet);
+        public RuleTime BloodUnprotectedAge(Snapshot s,string recipeId,int materialSet)
         {
-            if(manufacturing==null||materialSet<0||materialSet>1)throw new ArgumentException("Unknown supplied blood lot.");
+            if(manufacturing==null||materialSet<0||materialSet>1||recipeId!=manufacturing.RecipeId)throw new ArgumentException("Unknown supplied blood lot.");
             RuleTime suspended=default;
-            foreach(var j in s.ManufacturingOrders.Where(x=>x.MaterialSet==materialSet&&x.StabilizedAt.HasValue)){
+            foreach(var j in s.ManufacturingOrders.Where(x=>x.RecipeId==recipeId&&x.MaterialSet==materialSet&&x.StabilizedAt.HasValue)){
                 RuleTime end=j.Open?s.RuleClock:j.UpdatedAt;
                 suspended=CampGreens.Add(suspended,CampGreens.Subtract(end,j.StabilizedAt.Value));
             }
             return CampGreens.Subtract(s.RuleClock,suspended);
         }
-        private string ManufacturingAccess(Snapshot s,string actor,bool window,bool checking=false)
+        private string ManufacturingAccess(Snapshot s,string actor,bool window,bool checking=false,string recipeId=ManufacturingRules.Recipe4Id)
         {
+            var recipe=ManufacturingRules.Recipe(recipeId);if(recipe==null)return "ManufacturingRecipeUnavailable";
             if(actor!=TestOnlyPolicy.CompanionId)return "ManufacturingCredentialMissing";
             var trade=ManufacturingTrade(s,actor);
             if(trade.Level>=10)return "ManufacturingSpecialtyNotImplemented";
-            if(!ManufacturingRules.Eligible(trade.Level,5,manufacturing.ToolTrained,FormulaResearchRules.Knows(s,actor,SharedResearchFixture.Recipe),true))return "ManufacturingCredentialMissing";
+            if(!ManufacturingRules.Eligible(trade.Level,recipe.SkillLevel,manufacturing.ToolTrained,FormulaResearchRules.Knows(s,actor,recipeId),true))return "ManufacturingCredentialMissing";
             if(!manufacturing.StationReady||CraftingRestrictions.OrderWorkBlocked(s,TestOnlyCropPolicy.PlotId))return "ManufacturingStationUnavailable";
             if(s.Structures.Single(x=>x.Id==SharedCraftingFixture.ToolId).Broken||TargetInActiveRepair(s,SharedCraftingFixture.ToolId))return "ManufacturingToolUnavailable";
             if(checking&&CraftingRestrictions.CraftingCheckBlocked(s,SharedCraftingFixture.ToolId))return "ManufacturingCalibrationRequired";
@@ -181,7 +223,7 @@ namespace Decennium.Foundation.Laboratory
         {
             if(manufacturing==null)return;
             foreach(var j in s.ManufacturingOrders.Where(x=>x.Status==ManufacturingStatus.Working).ToArray())
-                if(ManufacturingAccess(s,j.WorkerId,false)!=null||!j.StabilizedAt.HasValue&&BloodUnprotectedAge(s,j.MaterialSet)>=BloodSpoils)PauseManufacturing(s,j);
+                if(ManufacturingAccess(s,j.WorkerId,false,recipeId:j.RecipeId)!=null||!j.StabilizedAt.HasValue&&BloodUnprotectedAge(s,j.RecipeId,j.MaterialSet)>=BloodSpoils)PauseManufacturing(s,j);
         }
         private RuleTime? NextManufacturingBoundary(Snapshot s)
         {
@@ -189,7 +231,7 @@ namespace Decennium.Foundation.Laboratory
             foreach(var j in s.ManufacturingOrders.Where(x=>x.Status==ManufacturingStatus.Working)){
                 values.Add(s.Work.WorkerIntervals.Single(x=>x.JobId==j.Id&&x.Start<=s.RuleClock&&x.End>s.RuleClock).End);
                 values.Add(CampGreens.Add(s.RuleClock,CampGreens.Subtract(j.Work.Phases[j.Work.CompletedPhases],j.Work.Partial)));
-                var age=BloodUnprotectedAge(s,j.MaterialSet);
+                var age=BloodUnprotectedAge(s,j.RecipeId,j.MaterialSet);
                 if(!j.StabilizedAt.HasValue&&age<BloodSpoils)values.Add(CampGreens.Add(s.RuleClock,CampGreens.Subtract(BloodSpoils,age)));
             }
             return values.Count==0?(RuleTime?)null:values.Min();
@@ -200,7 +242,7 @@ namespace Decennium.Foundation.Laboratory
             foreach(var j in s.ManufacturingOrders.Where(x=>x.Status==ManufacturingStatus.Working).ToArray()){
                 var work=j.Work.Credit(elapsed);RuleTime? stabilized=j.StabilizedAt;
                 // Raw blood must still be usable at stabilization; a deadline is exclusive.
-                bool spoiled=!stabilized.HasValue&&BloodUnprotectedAge(s,j.MaterialSet)>=BloodSpoils;
+                bool spoiled=!stabilized.HasValue&&BloodUnprotectedAge(s,j.RecipeId,j.MaterialSet)>=BloodSpoils;
                 if(spoiled)work=new ActiveWorkProgress(work.Phases,0,default,work.Labor);
                 else if(!stabilized.HasValue&&work.CompletedPhases>0)stabilized=s.RuleClock;
                 var status=ManufacturingStatus.Working;
@@ -219,10 +261,12 @@ namespace Decennium.Foundation.Laboratory
         }
         private static void SettleManufacturingInputs(Snapshot s,ManufacturingOrderRecord j,CraftQualityChoice choice,int catalyst)
         {
-            int count=ManufacturingRules.Yield(j.Quality,5,choice);int extra=Math.Max(0,count-5);
-            for(int i=0;i<4;i++){
-                var amount=new RuleQuantity(ManufacturingRules.Recipe4Amounts[i]);RuleQuantity returned=default;
-                if(j.Quality==CraftQuality.Failed)returned=ManufacturingRules.FailureRecovery(amount,true,ManufacturingRules.Recipe4Catalyst(i),ManufacturingRules.Recipe4Divisible(i));
+            var recipe=ManufacturingRules.Recipe(j.RecipeId);if(recipe==null)throw new InvalidOperationException("ManufacturingRecipeUnavailable");
+            int count=ManufacturingRules.Yield(j.Quality,recipe.StandardYield,choice);
+            int extra=Math.Max(0,count-recipe.SourceVesselCount);
+            for(int i=0;i<recipe.Components.Count;i++){
+                var component=recipe.Components[i];var amount=new RuleQuantity(component.Quantity);RuleQuantity returned=default;
+                if(j.Quality==CraftQuality.Failed)returned=ManufacturingRules.FailureRecovery(amount,component.Consumed,component.Catalyst,component.Divisible);
                 else if(j.Quality==CraftQuality.Masterwork&&i==catalyst)returned=new RuleQuantity(1);
                 SettleClaim(s,j.Id,ComponentClaim(j,i),amount-returned);
             }
@@ -231,12 +275,13 @@ namespace Decennium.Foundation.Laboratory
         private void SettleManufacturing(Snapshot s,ManufacturingOrderRecord j,CraftQualityChoice choice,int catalyst,int mishap=0,bool inputsSettled=false)
         {
             if(!inputsSettled)SettleManufacturingInputs(s,j,choice,catalyst);
-            int count=ManufacturingRules.Yield(j.Quality,5,choice);
+            var recipe=ManufacturingRules.Recipe(j.RecipeId);if(recipe==null)throw new InvalidOperationException("ManufacturingRecipeUnavailable");
+            int count=ManufacturingRules.Yield(j.Quality,recipe.StandardYield,choice);
             var trade=ManufacturingTrade(s,j.WorkerId);string findingKey=j.RecipeId+".level"+trade.Level.ToString(CultureInfo.InvariantCulture);
             // Optional authored process evidence: sediment position and timing were measured and
             // written during this completed work, supporting a concretely different separation method.
             bool recorded=manufacturing.RecordedFailureObservation&&j.Quality<CraftQuality.Standard&&mishap!=6;
-            int xp=ManufacturingRules.TradeAward(j.Quality,trade.Level,5,10,manufacturing.ToolTrained,trade.SuccessfulRecipes.Contains(j.RecipeId),trade.Findings.Contains(findingKey),true,recorded,mishap);
+            int xp=ManufacturingRules.TradeAward(j.Quality,trade.Level,recipe.SkillLevel,10,manufacturing.ToolTrained,trade.SuccessfulRecipes.Contains(j.RecipeId),trade.Findings.Contains(findingKey),true,recorded,mishap);
             var next=ManufacturingRules.AdvanceTrade(trade.Level,trade.Xp,xp);var successes=trade.SuccessfulRecipes.ToList();
             var findings=trade.Findings.ToList();if(xp==1)findings.Add(findingKey);
             if(j.Quality>=CraftQuality.Standard&&!successes.Contains(j.RecipeId))successes.Add(j.RecipeId);
@@ -259,7 +304,8 @@ namespace Decennium.Foundation.Laboratory
             int modifier=PlaytestCharacters.AbilityModifier(character.Abilities[3])+PlaytestCharacters.ProficiencyBonus(character.Levels.Count)
                 +PlaytestLife.AbilityCheckInjuryPenalty(ActorLifeRules.Read(s.Lives.Single(x=>x.ActorId==j.WorkerId)),3,toolCheck:true);
             var roll=PlaytestDice.RollD20(s.RandomState,disadvantageSources:View(s,j.WorkerId).Has(ConditionKind.Poisoned)?1:0);s.RandomState=roll.NextRandomState;
-            var quality=ManufacturingRules.Quality(roll.Natural,modifier,8);
+            var recipe=ManufacturingRules.Recipe(j.RecipeId);if(recipe==null)throw new InvalidOperationException("ManufacturingRecipeUnavailable");
+            var quality=ManufacturingRules.Quality(roll.Natural,modifier,recipe.Difficulty);
             j=ChangeOrder(s,j,ManufacturingStatus.AwaitingChoice,first:roll.First,second:roll.Second??0,natural:roll.Natural,quality:quality);PutOrder(s,j);
             if(quality>=CraftQuality.Exceptional)return;
             if(quality==CraftQuality.Mishap){
@@ -281,19 +327,21 @@ namespace Decennium.Foundation.Laboratory
             if(c.Inventory!=null||c.Combat!=null)return "InvalidManufacturingRequest";
             if(PendingCalendarChoice(s))return "TacticalChoicePending";
             if(c.Kind==CommandKind.StartManufacturing){
-                if(c.Target!=SharedResearchFixture.Recipe||c.X<0||c.X>1||c.Y<0||c.Y>2)return "InvalidManufacturingRequest";
-                string access=ManufacturingAccess(s,c.Actor,true);if(access!=null)return access;
+                var recipe=ManufacturingRules.Recipe(c.Target);
+                if(recipe==null||c.Target!=manufacturing.RecipeId||c.X<0||c.X>1||c.Y<recipe.MinimumSupplementaryVials||c.Y>recipe.MaximumSupplementaryVials)return "InvalidManufacturingRequest";
+                string access=ManufacturingAccess(s,c.Actor,true,recipeId:recipe.Id);if(access!=null)return access;
                 if(CraftingRestrictions.NewOrderBlocked(s,c.Actor,TestOnlyCropPolicy.PlotId,SharedCraftingFixture.TradeId))return "ManufacturingLogRequired";
                 if(s.ManufacturingOrders.Any(x=>x.Open))return "ManufacturingApparatusClaimed";
                 if(OrdinaryInventory.Busy(s,c.Actor))return "WorkerBusy";
-                if(BloodUnprotectedAge(s,c.X)>=BloodSpoils)return "ManufacturingIngredientSpoiled";
+                if(BloodUnprotectedAge(s,recipe.Id,c.X)>=BloodSpoils)return "ManufacturingIngredientSpoiled";
                 if(s.ManufacturingOrders.Length==ManufacturingValidation.MaxOrders)return "ManufacturingHistoryFull";
-                for(int i=0;i<4;i++)if(s.Work.AvailableAmount(SharedManufacturingFixture.Lot(c.X,i))<new RuleQuantity(ManufacturingRules.Recipe4Amounts[i]))return "ManufacturingIngredientsUnavailable";
-                if(s.Work.AvailableAmount(SharedManufacturingFixture.Packaging)<new RuleQuantity(c.Y))return "ManufacturingPackagingUnavailable";
+                for(int i=0;i<recipe.Components.Count;i++)if(s.Work.AvailableAmount(SharedManufacturingFixture.Lot(recipe.Id,c.X,i))<new RuleQuantity(recipe.Components[i].Quantity))return "ManufacturingIngredientsUnavailable";
+                string packaging=SharedManufacturingFixture.PackagingFor(recipe.Id);
+                if(s.Work.AvailableAmount(packaging)<new RuleQuantity(c.Y))return "ManufacturingPackagingUnavailable";
                 string id="manufacture.order."+(s.Revision+1).ToString(CultureInfo.InvariantCulture);
-                var j=new ManufacturingOrderRecord(id,c.Actor,c.Target,c.X,c.Y,false,ManufacturingStatus.Working,new ActiveWorkProgress(new[]{new RuleTime(900),new RuleTime(13500)}),s.RuleClock,s.RuleClock);
-                var claims=Enumerable.Range(0,4).Select(i=>new ResourceReservation(ComponentClaim(j,i),id,SharedManufacturingFixture.Lot(c.X,i),ManufacturingRules.Recipe4Amounts[i])).ToList();
-                if(c.Y>0)claims.Add(new ResourceReservation(id+".packaging",id,SharedManufacturingFixture.Packaging,c.Y));
+                var j=new ManufacturingOrderRecord(id,c.Actor,c.Target,c.X,c.Y,false,ManufacturingStatus.Working,new ActiveWorkProgress(new[]{recipe.FirstPhase,recipe.RemainingPhase}),s.RuleClock,s.RuleClock);
+                var claims=Enumerable.Range(0,recipe.Components.Count).Select(i=>new ResourceReservation(ComponentClaim(j,i),id,SharedManufacturingFixture.Lot(recipe.Id,c.X,i),recipe.Components[i].Quantity)).ToList();
+                if(c.Y>0)claims.Add(new ResourceReservation(id+".packaging",id,packaging,c.Y));
                 s.Work=s.Work.Reserve(id,Array.Empty<WorkerInterval>(),claims);BookManufacturing(s,j);s.ManufacturingOrders=s.ManufacturingOrders.Concat(new[]{j}).ToArray();return null;
             }
             if(c.Kind==CommandKind.ResolveManufacturingQuality){
@@ -307,8 +355,9 @@ namespace Decennium.Foundation.Laboratory
             if(controlFailure!=null)return controlFailure;
             if(c.Kind==CommandKind.PauseManufacturing){PauseManufacturing(s,controlled);return null;}
             if(c.Kind==CommandKind.CancelManufacturing){
+                var recipe=ManufacturingRules.Recipe(controlled.RecipeId);if(recipe==null)return "ManufacturingRecipeUnavailable";
                 s.Work=s.Work.CancelFutureWork(controlled.Id,s.RuleClock);
-                for(int i=0;i<4;i++)SettleClaim(s,controlled.Id,ComponentClaim(controlled,i),controlled.Work.Labor==default?default:new RuleQuantity(ManufacturingRules.Recipe4Amounts[i]));
+                for(int i=0;i<recipe.Components.Count;i++)SettleClaim(s,controlled.Id,ComponentClaim(controlled,i),controlled.Work.Labor==default?default:new RuleQuantity(recipe.Components[i].Quantity));
                 if(controlled.ExtraVials>0)SettleClaim(s,controlled.Id,controlled.Id+".packaging",default);
                 PutOrder(s,ChangeOrder(s,controlled,ManufacturingStatus.Cancelled));return null;
             }

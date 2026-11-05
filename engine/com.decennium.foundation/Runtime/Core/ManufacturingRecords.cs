@@ -37,7 +37,7 @@ namespace Decennium.Foundation
             int first = 0, int second = 0, int natural = 0, CraftQuality quality = CraftQuality.None, CraftQualityChoice choice = CraftQualityChoice.StandardQuantity,
             int catalyst = -1, int mishap = 0, int xp = 0, string finding = "", string incident = "")
         {
-            if (new[] { id,worker,recipe }.Any(x => !Validation.ValidId(x)) || materialSet < 0 || materialSet > 7 || extraVials < 0 || extraVials > 2
+            if (new[] { id,worker,recipe }.Any(x => !Validation.ValidId(x)) || materialSet < 0 || materialSet > 7 || extraVials < 0 || extraVials > 6
                 || !Enum.IsDefined(typeof(ManufacturingStatus),status) || work == null || updated < start || stabilized.HasValue && (stabilized < start || stabilized > updated)
                 || first < 0 || first > 20 || second < 0 || second > 20 || natural < 0 || natural > 20 || !Enum.IsDefined(typeof(CraftQuality),quality)
                 || !Enum.IsDefined(typeof(CraftQualityChoice),choice) || catalyst < -1 || catalyst > 3 || mishap < 0 || mishap > 6 || xp < 0 || xp > 4

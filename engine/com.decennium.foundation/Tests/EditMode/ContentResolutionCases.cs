@@ -16,6 +16,19 @@ namespace Decennium.Foundation.Tests
         private static void AddContentResolutionCases(Dictionary<string,Action> cases,string directory)
         {
             var host=TestOnlySharedWorldPolicy.Host();
+            cases.Add("content_manifest_recipe14_is_versioned_without_rebinding_legacy_profile",()=>{
+                var manifest=TestOnlyContentManifest.CreateManufacturingExpansionProfile();
+                var legacy=TestOnlyContentManifest.CreateSelectedProfile();
+                Require(manifest.ValidateBindings()==null&&manifest.IsTrustedBuildMetadata&&manifest.Digest==TestOnlyContentManifest.Recipe14TrustedDigest
+                    &&legacy.ValidateBindings()==null&&legacy.IsTrustedBuildMetadata&&legacy.Digest==TestOnlyContentManifest.TrustedDigest,
+                    "Recipe-14 content was not separately pinned or changed the legacy manifest.");
+                Require(manifest.ResolveSemantic("crafting","recipe-14").JsonPointer=="/cards/13"
+                    &&manifest.ResolveSemantic("crafting-component","recipe-14.ing-14-0-stabilizing_salts").JsonPointer=="/cards/13/sourceRequirements/components/0"
+                    &&manifest.ResolveSemantic("recipe-result","recipe-14").JsonPointer=="/cards/13/operational"
+                    &&manifest.Supports(manifest.ResolveSemantic("crafting","recipe-14"),ContentOperation.Manufacture)
+                    &&!legacy.Entries.Any(x=>x.Domain=="crafting"&&x.SemanticId=="recipe-14"),
+                    "Recipe-14 source rows, operation binding or legacy profile boundary drifted.");
+            });
             cases.Add("content_manifest_binds_source_identity_visibility_and_legacy_profile_separately",()=>{
                 var manifest=TestOnlyContentManifest.CreateSelectedProfile();var resolved=ResolvedPolicy();
                 var legacy=PortablePolicy();var sameManifestProfile=new TestOnlySharedWorldPolicy(manifest,new PortableKitFixture(),new SharedCombatFixture(),new SupplyCacheFixture());

@@ -125,6 +125,7 @@ namespace Decennium.Foundation.Laboratory
         public const string SourceRevision = "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4";
         public const string PrototypeRevision = "f0019fe5b6e1d3a1eb506203dca933a004cf05b2";
         public const string TrustedDigest = "85bbdb47e144f2877334feda0108eb9c485d182db8ea4ff7a18a167c40594dae";
+        public const string Recipe14TrustedDigest = "5e1c8f3c1d796f4174d0c6eec334fc310e4473085edd9f288954024f9dcc8e79";
         private readonly ContentDefinitionBinding[] entries;
         public int SchemaVersion { get; }
         public string Digest { get; }
@@ -143,9 +144,11 @@ namespace Decennium.Foundation.Laboratory
         }
 
         public static TestOnlyContentManifest CreateSelectedProfile() => new TestOnlyContentManifest(SelectedEntries());
+        public static TestOnlyContentManifest CreateManufacturingExpansionProfile()
+            =>new TestOnlyContentManifest(SelectedEntries().Concat(Recipe14Entries()));
         public static TestOnlyContentManifest CreateSelectedProfileWithout(string domain, string semanticId)
             => new TestOnlyContentManifest(SelectedEntries().Where(x => !(x.Domain == domain && x.SemanticId == semanticId)));
-        public bool IsTrustedBuildMetadata => Digest == TrustedDigest;
+        public bool IsTrustedBuildMetadata => Digest == TrustedDigest || Digest == Recipe14TrustedDigest;
         public string BindFingerprint(string existingFingerprint)
         {
             if (!Validation.ValidId(existingFingerprint) || !IsTrustedBuildMetadata) throw new InvalidOperationException("ContentManifestBuildMismatch");
@@ -164,12 +167,12 @@ namespace Decennium.Foundation.Laboratory
 
         public string ValidateBindings()
         {
-            if (entries.Any(x => x.Operations.Contains(ContentOperation.Manufacture))
-                && (ResolveSemantic("crafting", "recipe-4") == null
-                    || new[] { "ing-4-0-alchemical_catalyst", "ing-4-1-crystal_vial", "ing-4-2-alchemical_base", "drop-black_blood_sample" }
-                        .Any(id => ResolveSemantic("crafting-component", id) == null)
-                    || ResolveSemantic("equipment", "alchemical-containers.glass-vial") == null
-                    || ResolveSemantic("recipe-result", "") == null)) return "ContentRequiredReferenceUnresolved";
+            foreach(var recipe in entries.Where(x=>x.Domain=="crafting"&&x.Operations.Contains(ContentOperation.Manufacture))) {
+                string[] components=ComponentsFor(recipe.SemanticId);string result=ResultFor(recipe.SemanticId);
+                if(components==null||components.Any(id=>ResolveSemantic("crafting-component",id)==null)
+                    ||ResolveSemantic("equipment","alchemical-containers.glass-vial")==null
+                    ||ResolveSemantic("recipe-result",result)==null)return "ContentRequiredReferenceUnresolved";
+            }
             if (entries.Any(x => x.Operations.Contains(ContentOperation.PortableInteraction))
                 && (ResolveSemantic("equipment", "pack.explorer") == null || ResolveSemantic("equipment", "adventuring-gear.backpack") == null)) return "ContentRequiredReferenceUnresolved";
             if (!IsTrustedBuildMetadata) return "ContentManifestBuildMismatch";
@@ -218,20 +221,24 @@ namespace Decennium.Foundation.Laboratory
                 var job = state.FormulaWork.FirstOrDefault(x => x.Id == command.Target);
                 operation = command.Kind == CommandKind.StartFormulaResearch || job == null || job.Kind == FormulaWorkKind.Research
                     ? ContentOperation.FormulaResearch : ContentOperation.FormulaCopy;
-                binding = ResolveSemantic("crafting", "recipe-4");
+                binding = ResolveSemantic("crafting",job?.RecipeId??RecipeForSelector(command.Y));
             }
             else if (command.Kind == CommandKind.StartFormulaCopy) {
-                operation = ContentOperation.FormulaCopy; binding = ResolveSemantic("crafting", "recipe-4");
+                operation = ContentOperation.FormulaCopy; binding = ResolveSemantic("crafting",RecipeForSelector(command.Y));
             }
             else if (IsManufacturingCommand(command.Kind)) {
                 var dose = command.Kind == CommandKind.UseAlchemyDose ? state.AlchemyDoses.FirstOrDefault(x => x.Id == command.Target) : null;
+                var order=command.Kind==CommandKind.UseAlchemyDose?null:state.ManufacturingOrders.FirstOrDefault(x=>x.Id==command.Target);
                 operation = command.Kind == CommandKind.UseAlchemyDose ? ContentOperation.UseProducedItem : ContentOperation.Manufacture;
-                binding = ResolveSemantic("crafting", dose?.RecipeId ?? (command.Kind == CommandKind.StartManufacturing ? command.Target : "recipe-4"));
+                string recipeId=dose?.RecipeId??order?.RecipeId??(command.Kind==CommandKind.StartManufacturing?command.Target:"recipe-4");
+                binding = ResolveSemantic("crafting",recipeId);
                 if (command.Kind == CommandKind.StartManufacturing && state.SchemaVersion >= Snapshot.ManufacturingSchema) {
-                    foreach (string component in new[] { "ing-4-0-alchemical_catalyst", "ing-4-1-crystal_vial", "ing-4-2-alchemical_base", "drop-black_blood_sample" })
+                    string[] components=ComponentsFor(recipeId);
+                    if(components==null)return "ContentRequiredReferenceUnresolved";
+                    foreach (string component in components)
                         if (!Supports(ResolveSemantic("crafting-component", component), ContentOperation.Manufacture)) return "ContentRequiredReferenceUnresolved";
                     if (!Supports(ResolveSemantic("equipment", "alchemical-containers.glass-vial"), ContentOperation.Manufacture)) return "ContentRequiredReferenceUnresolved";
-                    if (!Supports(ResolveSemantic("recipe-result", ""), ContentOperation.UseProducedItem)) return "ContentRequiredReferenceUnresolved";
+                    if (!Supports(ResolveSemantic("recipe-result",ResultFor(recipeId)), ContentOperation.UseProducedItem)) return "ContentRequiredReferenceUnresolved";
                 }
             }
             else return null;
@@ -255,7 +262,13 @@ namespace Decennium.Foundation.Laboratory
             || k == CommandKind.ResumeManufacturing || k == CommandKind.CancelManufacturing || k == CommandKind.ResolveManufacturingQuality || k == CommandKind.UseAlchemyDose;
         private static bool HandlerVersionSupported(string id, int version)
             => id == "portable-equipment" && version == 1 || id == "club-attack" && version == 1
-                || id == "formula-research" && version == 1 || id == "manufacturing" && version == 1 || id == "alchemy-dose" && version == 1;
+                || id == "formula-research" && (version==1||version==2) || id == "manufacturing" && (version==1||version==2)
+                || id == "alchemy-dose" && (version==1||version==2);
+        private static string RecipeForSelector(int selector)=>selector==0?"recipe-4":selector==1?"recipe-14":null;
+        private static string[] ComponentsFor(string recipeId)=>recipeId=="recipe-4"
+            ?new[]{"ing-4-0-alchemical_catalyst","ing-4-1-crystal_vial","ing-4-2-alchemical_base","drop-black_blood_sample"}
+            :recipeId=="recipe-14"?new[]{"recipe-14.ing-14-0-stabilizing_salts","recipe-14.ing-14-1-distilled_spirits","recipe-14.drop-black_blood_sample"}:null;
+        private static string ResultFor(string recipeId)=>recipeId=="recipe-4"?"":recipeId=="recipe-14"?"recipe-14":null;
         internal static string Hash(string value)
         {
             using (var sha = SHA256.Create()) return string.Concat(sha.ComputeHash(Encoding.UTF8.GetBytes(value)).Select(b => b.ToString("x2", CultureInfo.InvariantCulture)));
@@ -335,6 +348,40 @@ namespace Decennium.Foundation.Laboratory
             yield return new ContentDefinitionBinding("crafting-review", "recipe-4", SourceRevision, review, reviewBlob, "/recipes/3",
                 ContentAuthorityStatus.ReviewedAuthoredPlaytest, ContentVisibility.Internal, ContentViewerAccess.InternalOnly,
                 ContentValue.NotApplicable(), ContentValue.NotApplicable(), "", 0, true, Array.Empty<ContentOperation>(), null, researchAuthority);
+        }
+
+        private static IEnumerable<ContentDefinitionBinding> Recipe14Entries()
+        {
+            const string candidate="DescentReviewChanges/ReviewBible/data/playtest/alchemy_recipe_candidate.json";
+            const string candidateBlob="67d2bbc5ead75f331a2c99f41a75941f03fe431f";
+            const string review="DescentReviewChanges/ReviewBible/data/director/crafting_recipe_review_catalog.json";
+            const string reviewBlob="8d4acc4a13d42ff299b19116f6e70a34e79f2c6d";
+            string[] authority={
+                "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4:docs/canon/CANON_MANIFEST.json@003b9c45d3b36be43a16c431fe341de725f7f406#crafting",
+                "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4:DescentReviewChanges/ReviewBible/docs/mechanics/ALCHEMY_PUBLIC_RECIPE_CARDS.md@a71c2e54ad86a8b35377323f16a9f4ff7df986e0#recipe-14",
+                "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4:DescentReviewChanges/ReviewBible/docs/mechanics/ALCHEMY_RECIPE_PLAYTEST.md@a253486adc64daaaa9d105f8911dcd267c971e06",
+                "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4:DescentReviewChanges/ReviewBible/docs/mechanics/CRAFTING_HARVEST_PLAYTEST.md@b2c15e1bd56bb62e0f1729f4f6d68413e62f9be9#material-identity-consumption-and-substitution",
+                "Engine:docs/unity/FORMULA_RESEARCH_RULE_DECISIONS.md@7d13fabbb80ecaa9f9fcd28c68aa05d4c354e522"
+            };
+            yield return new ContentDefinitionBinding("crafting","recipe-14",SourceRevision,candidate,candidateBlob,"/cards/13",
+                ContentAuthorityStatus.ReviewedAuthoredPlaytest,ContentVisibility.Public,ContentViewerAccess.RequiresExistingKnowledge,
+                ContentValue.NotApplicable(),ContentValue.NotApplicable(),"",0,true,
+                new[]{ContentOperation.FormulaResearch,ContentOperation.FormulaCopy,ContentOperation.Manufacture,ContentOperation.UseProducedItem},null,authority,
+                new[]{new ContentHandlerBinding(ContentOperation.FormulaResearch,"formula-research",2),new ContentHandlerBinding(ContentOperation.FormulaCopy,"formula-research",2),
+                    new ContentHandlerBinding(ContentOperation.Manufacture,"manufacturing",2),new ContentHandlerBinding(ContentOperation.UseProducedItem,"alchemy-dose",2)});
+            string[] components={"ing-14-0-stabilizing_salts","ing-14-1-distilled_spirits","drop-black_blood_sample"};
+            for(int i=0;i<components.Length;i++)yield return new ContentDefinitionBinding("crafting-component","recipe-14."+components[i],SourceRevision,candidate,candidateBlob,
+                "/cards/13/sourceRequirements/components/"+i.ToString(CultureInfo.InvariantCulture),ContentAuthorityStatus.ReviewedAuthoredPlaytest,
+                ContentVisibility.Public,ContentViewerAccess.RequiresExistingKnowledge,ContentValue.NotApplicable(),ContentValue.NotApplicable(),
+                "",0,true,new[]{ContentOperation.Manufacture},null,authority,
+                new[]{new ContentHandlerBinding(ContentOperation.Manufacture,"manufacturing",2)});
+            yield return new ContentDefinitionBinding("recipe-result","recipe-14",SourceRevision,candidate,candidateBlob,"/cards/13/operational",
+                ContentAuthorityStatus.ReviewedAuthoredPlaytest,ContentVisibility.Public,ContentViewerAccess.RequiresExistingKnowledge,
+                ContentValue.NotApplicable(),ContentValue.NotApplicable(),"",0,true,new[]{ContentOperation.UseProducedItem},null,authority,
+                new[]{new ContentHandlerBinding(ContentOperation.UseProducedItem,"alchemy-dose",2)});
+            yield return new ContentDefinitionBinding("crafting-review","recipe-14",SourceRevision,review,reviewBlob,"/recipes/13",
+                ContentAuthorityStatus.ReviewedAuthoredPlaytest,ContentVisibility.Internal,ContentViewerAccess.InternalOnly,
+                ContentValue.NotApplicable(),ContentValue.NotApplicable(),"",0,true,Array.Empty<ContentOperation>(),null,authority);
         }
     }
 }

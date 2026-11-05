@@ -11,13 +11,14 @@ namespace Decennium.Foundation.Tests
     {
         private static TestOnlySharedWorldPolicy ResearchPolicy(uint seed = 1, SharedResearchFixture facts = null, ConditionCombatFixture conditions = null)
             => new TestOnlySharedWorldPolicy(new SharedCombatFixture(seed: seed), facts ?? new SharedResearchFixture(), conditions: conditions);
-        private static Command ResearchCommand(Simulation s, CommandKind kind = CommandKind.StartFormulaResearch, string target = SharedResearchFixture.Evidence, int method = 0, string worker = TestOnlyPolicy.CompanionId)
-            => new Command("research." + (s.Capture().Revision + 1), worker, s.Capture().Revision, kind, target, method);
+        private static Command ResearchCommand(Simulation s, CommandKind kind = CommandKind.StartFormulaResearch, string target = null, int method = 0, string worker = TestOnlyPolicy.CompanionId,string recipe=SharedResearchFixture.Recipe)
+            => new Command("research." + (s.Capture().Revision + 1), worker, s.Capture().Revision, kind, target??SharedResearchFixture.EvidenceFor(recipe,copy:kind==CommandKind.StartFormulaCopy), method,
+                kind==CommandKind.StartFormulaResearch||kind==CommandKind.StartFormulaCopy?SharedResearchFixture.Selector(recipe):0);
         private static FormulaWorkRecord ResearchJob(Simulation s) => s.Capture().FormulaWork.Last();
-        private static void ResearchStart(Simulation s, string evidence = SharedResearchFixture.Evidence, int method = 0, bool copy = false, string worker = TestOnlyPolicy.CompanionId)
-            => WorldCommit(s, ResearchCommand(s, copy ? CommandKind.StartFormulaCopy : CommandKind.StartFormulaResearch, copy ? SharedResearchFixture.LegibleFormula : evidence, method, worker));
+        private static void ResearchStart(Simulation s, string evidence = null, int method = 0, bool copy = false, string worker = TestOnlyPolicy.CompanionId,string recipe=SharedResearchFixture.Recipe)
+            => WorldCommit(s, ResearchCommand(s, copy ? CommandKind.StartFormulaCopy : CommandKind.StartFormulaResearch, evidence??SharedResearchFixture.EvidenceFor(recipe,copy:copy), method, worker,recipe));
         private static void ResearchControl(Simulation s, CommandKind kind, string worker = TestOnlyPolicy.CompanionId)
-            => WorldCommit(s, ResearchCommand(s, kind, ResearchJob(s).Id, worker: worker));
+            => WorldCommit(s, ResearchCommand(s, kind, ResearchJob(s).Id, worker: worker,recipe:ResearchJob(s).RecipeId));
         private static RuleQuantity WritingStock(Simulation s) => s.Capture().Work.Lots.Single(x => x.Id == SharedResearchFixture.Supplies).Amount;
         private static void AddFormulaResearchCases(Dictionary<string, Action> cases, string directory)
         {
@@ -46,6 +47,15 @@ namespace Decennium.Foundation.Tests
                 Require(!FormulaResearchRules.Succeeds(5, 2, 8) && FormulaResearchRules.Succeeds(6, 2, 8), "Research DC edge wrong.");
                 Require(!FormulaResearchRules.Succeeds(1, 7, 8) && FormulaResearchRules.Succeeds(1, 17, 8)
                     && FormulaResearchRules.Succeeds(20, -13, 8) && !FormulaResearchRules.Succeeds(20, -30, 8), "Task natural shifts became saving throws or automatic successes.");
+            });
+            cases.Add("formula_research_recipe14_uses_its_exact_recipe_dc_without_granting_recipe4",()=>{
+                var facts=new SharedResearchFixture(recipeId:SharedResearchFixture.Recipe14);
+                var s=World(ResearchPolicy(ManufacturingNaturalSeed(7),facts));ResearchStart(s,recipe:SharedResearchFixture.Recipe14);WorldAdvance(s,28800);
+                Require(ResearchJob(s).RecipeId==SharedResearchFixture.Recipe14&&ResearchJob(s).Natural==7
+                    &&ResearchJob(s).Status==FormulaWorkStatus.Failure
+                    &&!FormulaResearchRules.Knows(s.Capture(),TestOnlyPolicy.CompanionId,SharedResearchFixture.Recipe14)
+                    &&!FormulaResearchRules.Knows(s.Capture(),TestOnlyPolicy.CompanionId,SharedResearchFixture.Recipe),
+                    "Recipe-14 research ignored its DC 11 or granted knowledge after a failed check.");
             });
             cases.Add("formula_research_schema15_is_explicit_and_authority_checked", () => {
                 var p = ResearchPolicy(); var s = World(p);
