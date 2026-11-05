@@ -81,7 +81,7 @@ namespace Decennium.Foundation.Laboratory
             ||kind==CommandKind.StartToolRepair||kind==CommandKind.PauseToolRepair
             ||kind==CommandKind.ResumeToolRepair||kind==CommandKind.CancelToolRepair
             ||kind==CommandKind.StartHarvest||kind==CommandKind.PauseHarvest||kind==CommandKind.ResumeHarvest
-            ||kind==CommandKind.TacticalStep||kind==CommandKind.TacticalRepositionStep;
+            ||kind==CommandKind.TacticalStep||kind==CommandKind.TacticalRepositionStep||kind==CommandKind.Interact;
 
         public IEnumerable<Command> DiscoverCommands(Snapshot s,Authority authority,string actor)
         {

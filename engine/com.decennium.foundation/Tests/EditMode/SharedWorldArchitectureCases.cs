@@ -177,6 +177,18 @@ namespace Decennium.Foundation.Tests
             Require(working.WorkerId == worker && working.Status == HarvestAttemptStatus.Working
                 && WorldActivityProjection.CurrentWork(s.Capture()).Any(x => x.Id == working.Id && x.ActorId == worker),
                 "Procedure dispatch did not bind its existing activity and work records to the configured actor.");
+            var discoveredWorkOptions = s.DiscoverCommands(authority, worker);
+            var conflictViewIds = WorldActivityProjection.CurrentWork(s.Capture()).Select(x => x.Id).ToArray();
+            var activity = WorldActivityProjection.CurrentWork(s.Capture(), discoveredWorkOptions).Single(x => x.Id == working.Id);
+            var workerInterval = s.Capture().Work.WorkerIntervals.Single(x => x.JobId == working.Id && x.WorkerId == worker);
+            Require(conflictViewIds.SequenceEqual(WorldActivityProjection.CurrentWork(s.Capture(), discoveredWorkOptions).Select(x => x.Id))
+                && activity.Status == working.Status.ToString() && activity.RecordedWorkDone == working.WorkDone
+                && activity.RecordedWorkRequired == working.Duration && activity.WorkerIntervals.Count == 1
+                && activity.WorkerIntervals[0].Id == workerInterval.Id
+                && activity.ResourceReservations.SequenceEqual(s.Capture().Work.Reservations.Where(x => x.JobId == working.Id))
+                && activity.NextWorkerBoundary == workerInterval.End
+                && activity.AvailableCommands.Any(x => x.Command.Kind == CommandKind.PauseHarvest && x.Query.Admissible),
+                "The derived activity view did not expose stored harvest progress, linked claims, its next worker boundary, and the discovered pause option.");
 
             if (contender != null)
             {

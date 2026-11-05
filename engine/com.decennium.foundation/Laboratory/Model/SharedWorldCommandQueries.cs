@@ -232,6 +232,7 @@ namespace Decennium.Foundation.Laboratory
                     }
                 }
             }
+            foreach (var command in DiscoverFishingTrapControls(s, actor)) yield return command;
         }
 
         private IEnumerable<Command> DiscoverTacticalMovementCommands(Snapshot s, string actor)
@@ -249,6 +250,7 @@ namespace Decennium.Foundation.Laboratory
 
         private CommandQueryResult QuerySharedWorldCommand(Snapshot s, Authority authority, Command c)
         {
+            if (c.Kind == CommandKind.Interact) return QueryFishingTrapControl(s, c);
             if (c.Kind == CommandKind.TacticalStep || c.Kind == CommandKind.TacticalRepositionStep)
             {
                 if (!s.InventoryCombat) return new CommandQueryResult(true, false, "TacticalMovementRequiresEncounter", s.Revision);

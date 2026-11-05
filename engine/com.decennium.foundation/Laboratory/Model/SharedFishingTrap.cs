@@ -184,6 +184,85 @@ namespace Decennium.Foundation.Laboratory
                 ??throw new InvalidOperationException("Missing supplied fishing Trap profile: "+trapId);
         private bool IsFishingTrapCommand(Command c)=>fishingTrapProfiles.Length!=0&&c.Kind==CommandKind.Interact
             &&fishingTrapProfiles.Any(x=>x.TrapIdentity==c.Target);
+        private IEnumerable<Command> DiscoverFishingTrapControls(Snapshot s,string actor)
+        {
+            int index=0;
+            foreach(var profile in fishingTrapProfiles.OrderBy(x=>x.TrapIdentity,StringComparer.Ordinal)) {
+                foreach(var attempt in s.FishingTrapAttempts.Where(x=>x.TrapId==profile.TrapIdentity&&x.SetterId==actor
+                    &&(x.Status==FishingTrapAttemptStatus.SettingUp||x.Status==FishingTrapAttemptStatus.Paused))
+                    .OrderBy(x=>x.Id,StringComparer.Ordinal)) {
+                    if(attempt.Status==FishingTrapAttemptStatus.SettingUp)
+                        yield return TrapControlOption(s,actor,profile.TrapIdentity,FishingTrapInteraction.Pause,index++);
+                    else
+                        yield return TrapControlOption(s,actor,profile.TrapIdentity,FishingTrapInteraction.Resume,index++);
+                    yield return TrapControlOption(s,actor,profile.TrapIdentity,FishingTrapInteraction.Cancel,index++);
+                }
+                foreach(var job in s.FishingTrapRetrievals.Where(x=>x.TrapId==profile.TrapIdentity
+                    &&(x.Status==FishingTrapRetrievalStatus.Working&&x.WorkerId==actor||x.Status==FishingTrapRetrievalStatus.Paused))
+                    .OrderBy(x=>x.Id,StringComparer.Ordinal)) {
+                    yield return TrapControlOption(s,actor,profile.TrapIdentity,
+                        job.Status==FishingTrapRetrievalStatus.Working?FishingTrapInteraction.PauseRetrieval:FishingTrapInteraction.ResumeRetrieval,index++);
+                }
+            }
+        }
+        private static Command TrapControlOption(Snapshot s,string actor,string trapId,FishingTrapInteraction operation,int index)
+            =>new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+".fishing-trap."+index.ToString(CultureInfo.InvariantCulture),
+                actor,s.Revision,CommandKind.Interact,trapId,(int)operation);
+        private CommandQueryResult QueryFishingTrapControl(Snapshot s,Command c)
+        {
+            if(!IsFishingTrapCommand(c)||c.Combat!=null||c.Y!=0||!Enum.IsDefined(typeof(FishingTrapInteraction),c.X))
+                return new CommandQueryResult(false,false,"UnsupportedOperation",s.Revision);
+            var operation=(FishingTrapInteraction)c.X;
+            if(operation!=FishingTrapInteraction.Pause&&operation!=FishingTrapInteraction.Resume&&operation!=FishingTrapInteraction.Cancel
+                &&operation!=FishingTrapInteraction.PauseRetrieval&&operation!=FishingTrapInteraction.ResumeRetrieval)
+                return new CommandQueryResult(false,false,"UnsupportedOperation",s.Revision);
+            string failure=AssessFishingTrapControl(s,c,operation);
+            return new CommandQueryResult(true,failure==null,failure??"Available",s.Revision);
+        }
+        private string AssessFishingTrapControl(Snapshot s,Command c,FishingTrapInteraction operation)
+        {
+            if((operation==FishingTrapInteraction.Resume||operation==FishingTrapInteraction.ResumeRetrieval)
+                &&IsOffCalendarActivity(s,c.Actor)) {
+                var activity=ActivityInterval(s,c.Actor);
+                if(activity.Action==WorldActionCommitment.Dash
+                    ||activity.Action==WorldActionCommitment.ActiveLabor&&!CanContinueActivityLabor(s,c.Actor))
+                    return "OffCalendarActionAlreadySpent";
+            }
+            if(s.InventoryCombat)return "FishingRequiresExploration";
+            var profile=FishingTrapProfile(c.Target);
+            if(operation==FishingTrapInteraction.PauseRetrieval||operation==FishingTrapInteraction.ResumeRetrieval) {
+                if(!PhysicalFishingEnabled||c.Inventory!=null)return "InvalidFishingTrapRetrieval";
+                var job=operation==FishingTrapInteraction.PauseRetrieval
+                    ?s.FishingTrapRetrievals.SingleOrDefault(x=>x.TrapId==profile.TrapIdentity&&x.WorkerId==c.Actor&&x.Status==FishingTrapRetrievalStatus.Working)
+                    :s.FishingTrapRetrievals.SingleOrDefault(x=>x.TrapId==profile.TrapIdentity&&x.Status==FishingTrapRetrievalStatus.Paused);
+                if(job==null)return operation==FishingTrapInteraction.PauseRetrieval?"FishingTrapRetrievalNotWorking":"FishingTrapRetrievalNotPaused";
+                if(operation==FishingTrapInteraction.PauseRetrieval)return null;
+                if(!FishingTrapWorkerCanContinue(s,c.Actor))return "FishingTrapWorkerUnavailable";
+                if(OrdinaryInventory.Busy(s,c.Actor))return "WorkerBusy";
+                var trap=s.FishingTraps.SingleOrDefault(x=>x.TrapId==job.TrapId);
+                var receiver=s.FishingReceiveLocations.SingleOrDefault(x=>x.Id==job.DestinationId);
+                var attempt=s.FishingTrapAttempts.SingleOrDefault(x=>x.Id==job.AttemptId);
+                var creature=attempt==null?null:s.FishingCreatures.SingleOrDefault(x=>x.Id==attempt.CreatureId);
+                if(trap==null||receiver==null||attempt==null||creature==null)return "FishingTrapDeploymentUnavailable";
+                if(!FishingAccessFrom(s,c.Actor,trap.X,trap.Y))return "FishingTrapOutOfReach";
+                if(!CanReceiveFishingTrap(s,trap,creature,receiver))return "FishingReceiveCapacityOrPathUnavailable";
+                return null;
+            }
+            if(c.Inventory!=null)return "InvalidFishingTrapInteraction";
+            if(c.Actor!=profile.SetterId)return "FishingTrapSetterRequired";
+            var current=CurrentFishingTrap(s,c.Actor);
+            if(current==null||current.TrapId!=profile.TrapIdentity)return "FishingTrapDeploymentUnavailable";
+            if(operation==FishingTrapInteraction.Pause)
+                return current.Status==FishingTrapAttemptStatus.SettingUp?null:"FishingTrapNotSettingUp";
+            if(operation==FishingTrapInteraction.Resume) {
+                if(current.Status!=FishingTrapAttemptStatus.Paused)return "FishingTrapNotPaused";
+                if(!FishingTrapWorkerCanContinue(s,c.Actor))return "FishingTrapSetterUnavailable";
+                if(OrdinaryInventory.Busy(s,c.Actor))return "WorkerBusy";
+                return null;
+            }
+            return current.Status==FishingTrapAttemptStatus.SettingUp||current.Status==FishingTrapAttemptStatus.Paused
+                ?null:"FishingTrapAlreadyCommitted";
+        }
         private bool PhysicalFishingEnabled=>fishingTrapProfiles.Length!=0&&!fishingTrapLegacy&&!fishingTrapBaitOnly;
         private static FishingTrapAttemptRecord CurrentFishingTrap(Snapshot s,string actor)
             =>s.FishingTrapAttempts.Where(x=>x.ResponsibleHolderId==actor&&x.Status!=FishingTrapAttemptStatus.Cancelled

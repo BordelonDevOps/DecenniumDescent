@@ -86,8 +86,21 @@ namespace Decennium.Foundation.Tests
                     &&attempt.SetupLabor==new RuleTime(120)
                     &&s.Capture().Work.Reservations.Single(x=>x.Id==attempt.BaitReservationId).Status==ReservationStatus.Reserved,
                     "Setup did not accrue 120 seconds or retain its pre-setup bait reservation.");
+                byte[] beforeDiscovery=Bytes(s);var setupOptions=s.DiscoverCommands(TestOnlySharedWorldPolicy.Host(),fixture.SetterId);
+                var setupActivity=WorldActivityProjection.CurrentWork(s.Capture(),setupOptions).Single(x=>x.Id==attempt.Id);
+                Require(Bytes(s).SequenceEqual(beforeDiscovery)&&setupActivity.Status==attempt.Status.ToString()
+                    &&setupActivity.RecordedWorkDone==attempt.SetupLabor&&setupActivity.ResourceReservations.Any(x=>x.Id==attempt.BaitReservationId)
+                    &&setupActivity.AvailableCommands.Any(x=>x.Command.Kind==CommandKind.Interact&&x.Command.Target==fixture.TrapIdentity
+                        &&x.Command.X==(int)FishingTrapInteraction.Pause&&x.Query.Admissible)
+                    &&setupActivity.AvailableCommands.Any(x=>x.Command.Kind==CommandKind.Interact&&x.Command.Target==fixture.TrapIdentity
+                        &&x.Command.X==(int)FishingTrapInteraction.Cancel&&x.Query.Admissible),
+                    "Setup activity did not expose its existing discovered pause/cancel operations and linked bait reservation without mutation.");
                 TrapCommit(s,FishingTrapInteraction.Pause,"trap-pause");WorldAdvance(s,60);
-                Require(s.Capture().FishingTrapAttempts.Single().SetupLabor==new RuleTime(120),"Paused setup accrued labor.");
+                var pausedSetup=s.Capture().FishingTrapAttempts.Single();
+                var pausedOptions=s.DiscoverCommands(TestOnlySharedWorldPolicy.Host(),fixture.SetterId);
+                Require(pausedSetup.SetupLabor==new RuleTime(120)&&pausedOptions.Any(x=>x.Command.Kind==CommandKind.Interact
+                    &&x.Command.Target==fixture.TrapIdentity&&x.Command.X==(int)FishingTrapInteraction.Resume&&x.Query.Admissible),
+                    "Paused setup accrued labor or failed to discover its existing resume operation.");
                 TrapCommit(s,FishingTrapInteraction.Resume,"trap-resume");WorldAdvance(s,179);
                 attempt=s.Capture().FishingTrapAttempts.Single();Require(attempt.Status==FishingTrapAttemptStatus.SettingUp
                     &&attempt.SetupLabor==new RuleTime(299),"Resumed setup did not retain exact prior labor.");
@@ -108,6 +121,22 @@ namespace Decennium.Foundation.Tests
                     &&attempt.CheckOutcome==FishingTrapCheckOutcome.None&&attempt.DiceSelection==FishingTrapDiceSelection.None
                     &&s.Capture().RandomState==random,
                     "Delayed setup restarted the attempt clock or rolled without fifty continuous deployed minutes.");
+            });
+            cases.Add("fishing_trap_resume_query_matches_off_calendar_action_gate",()=>{
+                var fixture=new SharedFishingTrapFixture(12,1);
+                var policy=TestOnlySharedWorldPolicy.WithFishingTrapAndRepair(fixture,new SharedRepairFixture()).EnableOffCalendarActivity();
+                var snapshot=policy.Initial();
+                var interval=snapshot.WorldActivityIntervals.Single(x=>x.ActorId==TestOnlyPolicy.CompanionId);
+                snapshot.WorldActivityIntervals=snapshot.WorldActivityIntervals.Select(x=>x.ActorId==interval.ActorId
+                    ?interval.PayDash("trap-resume-prior-dash",1):x).ToArray();
+                snapshot.InventoryCombat=true;
+                var command=new Command("trap-resume-after-dash",TestOnlyPolicy.CompanionId,snapshot.Revision,
+                    CommandKind.Interact,fixture.TrapIdentity,(int)FishingTrapInteraction.Resume);
+                var query=policy.QueryCommand(snapshot,TestOnlySharedWorldPolicy.Host(),command);
+                string execution=policy.Resolve(snapshot,command);
+                Require(query.Supported&&!query.Admissible&&query.Code=="OffCalendarActionAlreadySpent"
+                    &&execution==query.Code,
+                    "Trap resume query and execution did not apply the shared off-calendar Action gate before the exploration-only check.");
             });
             cases.Add("fishing_trap_resolves_each_check_degree_once_without_inventory_award",()=>{
                 var fixture=new SharedFishingTrapFixture(12,1);var codec=new SnapshotCodec();
@@ -160,11 +189,22 @@ namespace Decennium.Foundation.Tests
                 Require(job.Status==FishingTrapRetrievalStatus.Working&&job.WorkDone==default
                     &&active.FishingReceiveLocations.Single().ReservedByRetrievalId==job.Id,
                     "Retrieval did not reserve its supported receiving location before work.");
+                byte[] beforeDiscovery=Bytes(s);var retrievalOptions=s.DiscoverCommands(TestOnlySharedWorldPolicy.Host(),job.WorkerId);
+                var retrievalActivity=WorldActivityProjection.CurrentWork(s.Capture(),retrievalOptions).Single(x=>x.Id==job.Id);
+                Require(Bytes(s).SequenceEqual(beforeDiscovery)&&retrievalActivity.Status==job.Status.ToString()
+                    &&retrievalActivity.WorkerIntervals.Any(x=>x.JobId==job.Id&&x.WorkerId==job.WorkerId)
+                    &&retrievalActivity.AvailableCommands.Any(x=>x.Command.Kind==CommandKind.Interact&&x.Command.Target==fixture.TrapIdentity
+                        &&x.Command.X==(int)FishingTrapInteraction.PauseRetrieval&&x.Query.Admissible),
+                    "Retrieval activity did not expose its existing discovered pause operation or linked worker claim without mutation.");
                 WorldAdvance(s,299);TrapCommit(s,FishingTrapInteraction.PauseRetrieval,"retrieve-pause");
                 var paused=s.Capture();job=paused.FishingTrapRetrievals.Single();
                 Require(job.Status==FishingTrapRetrievalStatus.Paused&&job.WorkDone==new RuleTime(299)
                     &&paused.FishingReceiveLocations.Single().ReservedByRetrievalId==job.Id,
                     "Paused retrieval did not preserve its partial labor and destination reservation.");
+                var pausedRetrievalOptions=s.DiscoverCommands(TestOnlySharedWorldPolicy.Host(),job.WorkerId);
+                Require(pausedRetrievalOptions.Any(x=>x.Command.Kind==CommandKind.Interact&&x.Command.Target==fixture.TrapIdentity
+                    &&x.Command.X==(int)FishingTrapInteraction.ResumeRetrieval&&x.Query.Admissible),
+                    "Paused retrieval did not discover its existing resume operation.");
                 var codec=new SnapshotCodec();var bytes=codec.Encode(paused);var restored=new Simulation(policy,codec.Decode(bytes),ExecutionProfile.Laboratory);
                 Require(bytes.SequenceEqual(codec.Encode(restored.Capture())),"Paused retrieval save changed its physical or labor state.");
                 TrapCommit(restored,FishingTrapInteraction.ResumeRetrieval,"retrieve-resume");WorldAdvance(restored,1);
