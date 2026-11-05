@@ -13,6 +13,8 @@ namespace Decennium.Foundation.Tests
             =>new TestOnlySharedWorldPolicy(new SharedCombatFixture(seed:seed),new SharedResearchFixture(),crafting??new SharedCraftingFixture(),new SharedRepairFixture(),facts??new SharedManufacturingFixture(),conditions:conditions);
         private static Command ManufactureCommand(Simulation s,CommandKind kind=CommandKind.StartManufacturing,string target=SharedResearchFixture.Recipe,int x=0,int y=0)
             =>new Command("manufacturing."+(s.Capture().Revision+1),TestOnlyPolicy.CompanionId,s.Capture().Revision,kind,target,x,y);
+        private static CommandOption ManufacturingOption(Simulation s,Authority authority,CommandKind kind)
+            =>s.DiscoverCommands(authority,TestOnlyPolicy.CompanionId).Single(x=>x.Command.Kind==kind&&x.Command.Target==Order(s).Id);
         private static ManufacturingOrderRecord Order(Simulation s)=>s.Capture().ManufacturingOrders.Last();
         private static void LearnManufacturing(Simulation s){ResearchStart(s,copy:true);WorldAdvance(s,3600);}
         private static void ManufactureStart(Simulation s,int set=0,int extra=0)=>WorldCommit(s,ManufactureCommand(s,x:set,y:extra));
@@ -91,6 +93,11 @@ namespace Decennium.Foundation.Tests
             });
             cases.Add("manufacturing_mid_tactical_slot_quality_continuation_finishes_original_end_once",()=>{
                 var p=ManufacturePolicy(SeedForDeath(16));var s=World(p);LearnManufacturing(s);WorldAdvance(s,1);ManufactureStart(s,extra:2);WorldAdvance(s,14398);BeginEncounter(s);
+                var remotePause=ManufacturingOption(s,host,CommandKind.PauseManufacturing);byte[] beforeRemoteQuery=Bytes(s);
+                var remotePauseQuery=s.QueryCommand(host,remotePause.Command);
+                Require(s.Capture().Encounter.CurrentActor!=worker&&remotePause.Query.Admissible&&remotePauseQuery.Admissible
+                    &&remotePauseQuery.Costs.Count==0&&Bytes(s).SequenceEqual(beforeRemoteQuery),
+                    "Off-turn manufacturing owner did not receive a pure existing pause option during combat.");
                 if(!s.Capture().Stances.Any(x=>x.TurnOrdinal==s.Capture().Encounter.TurnOrdinal))WorldCommit(s,Tac(s,CommandKind.SelectCombatStance,stance:(int)CombatStance.Guarded));
                 ConnectedEnd(s); //17999 ->18000; still one active second short.
                 WorldCommit(s,Tac(s,CommandKind.SelectCombatStance,stance:(int)CombatStance.Guarded));var end=Tac(s,CommandKind.EndRegularTurn);var result=s.Execute(host,end);
@@ -141,6 +148,49 @@ namespace Decennium.Foundation.Tests
                 Require(Order(s).Work.Retained==T(900)&&Order(s).Work.Labor==T(1899),"Later interruption lost completed processing or refunded labor.");
                 ManufactureControl(s,CommandKind.ResumeManufacturing);WorldAdvance(s,13500);Require(Order(s).Status==ManufacturingStatus.Complete,"Same paid order could not resume.");
             });
+            cases.Add("manufacturing_control_queries_discover_pause_resume_cancel_and_restore",()=>{
+                var p=ManufacturePolicy(SeedForDeath(6));var s=World(p);LearnManufacturing(s);ManufactureStart(s,extra:2);WorldAdvance(s,899);
+                byte[] before=Bytes(s);var workingOptions=s.DiscoverCommands(host,worker);var working=WorldActivityProjection.OpenProcedures(s.Capture(),workingOptions).Single(x=>x.Id==Order(s).Id);
+                var pause=working.AvailableCommands.Single(x=>x.Command.Kind==CommandKind.PauseManufacturing);
+                var workingCancel=working.AvailableCommands.Single(x=>x.Command.Kind==CommandKind.CancelManufacturing);
+                var pauseQuery=s.QueryCommand(host,pause.Command);var workingCancelQuery=s.QueryCommand(host,workingCancel.Command);
+                Require(working.Status==ManufacturingStatus.Working.ToString()&&pause.Query.Admissible&&workingCancel.Query.Admissible
+                    &&pauseQuery.Admissible&&workingCancelQuery.Admissible&&pauseQuery.Costs.Count==0&&workingCancelQuery.Costs.Count==0
+                    &&Bytes(s).SequenceEqual(before),"Working order controls were not discovered, queryable and pure.");
+                WorldCommit(s,pause.Command);var paused=Order(s);byte[] pausedBytes=Bytes(s);
+                var pausedOptions=s.DiscoverCommands(host,worker);var activity=WorldActivityProjection.OpenProcedures(s.Capture(),pausedOptions).Single(x=>x.Id==paused.Id);
+                var resume=activity.AvailableCommands.Single(x=>x.Command.Kind==CommandKind.ResumeManufacturing);
+                var cancel=activity.AvailableCommands.Single(x=>x.Command.Kind==CommandKind.CancelManufacturing);
+                var badPause=new Command("manufacturing.invalid-paused-pause."+s.Capture().Revision,worker,s.Capture().Revision,CommandKind.PauseManufacturing,paused.Id);
+                var badPauseQuery=s.QueryCommand(host,badPause);var resumeQuery=s.QueryCommand(host,resume.Command);var cancelQuery=s.QueryCommand(host,cancel.Command);
+                Require(activity.Status==ManufacturingStatus.Paused.ToString()&&activity.RecordedWorkDone==paused.Work.Retained
+                    &&activity.AvailableCommands.Count==2&&resumeQuery.Admissible&&cancelQuery.Admissible
+                    &&resumeQuery.Costs.Count==0&&cancelQuery.Costs.Count==0&&badPauseQuery.Supported&&!badPauseQuery.Admissible
+                    &&badPauseQuery.Code=="ManufacturingNotWorking"&&Bytes(s).SequenceEqual(pausedBytes),
+                    "Paused order controls, validation parity, or read purity were incorrect.");
+                string path=Path.Combine(directory,"manufacturing-controls.bin");var store=new FileSaveStore();store.Save(path,s.Capture());
+                var restored=new Simulation(p,store.Load(path),ExecutionProfile.Laboratory);var restoredOptions=restored.DiscoverCommands(host,worker);
+                var restoredActivity=WorldActivityProjection.OpenProcedures(restored.Capture(),restoredOptions).Single(x=>x.Id==paused.Id);
+                var restoredResume=restoredActivity.AvailableCommands.Single(x=>x.Command.Kind==CommandKind.ResumeManufacturing);
+                var restoredCancel=restoredActivity.AvailableCommands.Single(x=>x.Command.Kind==CommandKind.CancelManufacturing);
+                Require(restoredResume.Command.Id==resume.Command.Id&&restoredCancel.Command.Id==cancel.Command.Id
+                    &&restoredResume.Query.Admissible&&restoredCancel.Query.Admissible,"Restored order did not reconstruct the same admissible controls.");
+                var cancelled=new Simulation(p,restored.Capture(),ExecutionProfile.Laboratory);byte[] beforeCancel=Bytes(cancelled);
+                var cancelPreview=cancelled.QueryCommand(host,restoredCancel.Command);
+                Require(cancelPreview.Admissible&&cancelPreview.Costs.Count==0&&Bytes(cancelled).SequenceEqual(beforeCancel),"Cancel preview changed state or invented an immediate cost.");
+                WorldCommit(cancelled,restoredCancel.Command);byte[] cancelledBytes=Bytes(cancelled);
+                Require(Order(cancelled).Status==ManufacturingStatus.Cancelled&&Enumerable.Range(0,4).All(i=>Material(cancelled,i)==default)
+                    &&cancelled.Capture().Work.AvailableAmount(SharedManufacturingFixture.Packaging)==new RuleQuantity(4)
+                    &&cancelled.Execute(host,restoredCancel.Command).Outcome==Outcome.Duplicate&&Bytes(cancelled).SequenceEqual(cancelledBytes),
+                    "Existing cancellation settlement or duplicate receipt changed.");
+                byte[] beforeResume=Bytes(restored);var resumePreview=restored.QueryCommand(host,restoredResume.Command);
+                Require(resumePreview.Admissible&&resumePreview.Costs.Count==0&&Bytes(restored).SequenceEqual(beforeResume),"Resume preview changed state or invented an immediate cost.");
+                WorldCommit(restored,restoredResume.Command);byte[] resumedBytes=Bytes(restored);
+                Require(Order(restored).Status==ManufacturingStatus.Working&&Order(restored).Work.Labor==T(899)
+                    &&restored.Execute(host,restoredResume.Command).Outcome==Outcome.Duplicate&&Bytes(restored).SequenceEqual(resumedBytes),
+                    "Explicit resume lost paid labor or its replay receipt.");
+                WorldAdvance(restored,900);Require(Order(restored).Work.Retained==T(900),"Discovered resume did not continue the same retained order.");
+            });
             cases.Add("manufacturing_cancel_before_work_releases_after_work_spends_without_recovery",()=>{
                 var s=World(ManufacturePolicy());LearnManufacturing(s);ManufactureStart(s,extra:2);ManufactureControl(s,CommandKind.CancelManufacturing);
                 Require(Material(s,0)==new RuleQuantity(5),"Unstarted cancellation lost ingredients.");ManufactureStart(s,extra:2);WorldAdvance(s,1);ManufactureControl(s,CommandKind.CancelManufacturing);
@@ -160,14 +210,16 @@ namespace Decennium.Foundation.Tests
                 var invalidCatalyst=new Command("manufacturing.invalid-quality."+s.Capture().Revision,worker,s.Capture().Revision,
                     CommandKind.ResolveManufacturingQuality,Order(s).Id,(int)CraftQualityChoice.Durability,2);
                 var invalidQuery=s.QueryCommand(host,invalidCatalyst);
+                var pendingCancel=ManufactureCommand(s,CommandKind.CancelManufacturing,Order(s).Id);var pendingCancelQuery=s.QueryCommand(host,pendingCancel);
                 Require(activity.Status==ManufacturingStatus.AwaitingChoice.ToString()
                     &&activity.RecordedWorkDone==Order(s).Work.Retained&&activity.RecordedWorkRequired==Order(s).Work.Required
                     &&activity.ResourceReservations.SequenceEqual(s.Capture().Work.Reservations.Where(x=>x.JobId==Order(s).Id))
                     &&activity.AvailableCommands.Count==4&&qualityOptions.Length==4&&qualityOptions.All(x=>x.Query.Admissible)
                     &&activity.AvailableCommands.Any(x=>x.Command.Id==fullYieldCatalyst.Command.Id)
                     &&invalidQuery.Supported&&!invalidQuery.Admissible&&invalidQuery.Code=="InvalidRetainedCatalyst"
+                    &&pendingCancelQuery.Supported&&!pendingCancelQuery.Admissible&&pendingCancelQuery.Code=="ManufacturingChoicePending"
                     &&Bytes(s).SequenceEqual(bytes),
-                    "Pending manufacturing choice projection, legal catalyst/yield discovery, invalid-query assessment, or read purity was incorrect.");
+                    "Pending manufacturing choice projection, legal catalyst/yield discovery, blocked-cancel query, or read purity was incorrect.");
                 RejectUnchanged(s,host,IC(s,CommandKind.AdvanceClock,x:1,y:1),"ManufacturingChoicePending");RejectUnchanged(s,host,ManufactureCommand(s,CommandKind.CancelManufacturing,Order(s).Id),"ManufacturingChoicePending");
                 string path=Path.Combine(directory,"manufacturing-choice.bin");new FileSaveStore().Save(path,s.Capture());var loaded=new Simulation(p,new FileSaveStore().Load(path),ExecutionProfile.Laboratory);
                 var restoredOptions=loaded.DiscoverCommands(host,worker);
@@ -235,11 +287,19 @@ namespace Decennium.Foundation.Tests
                 var p=ManufacturePolicy(SeedForDeath(6),conditions:new ConditionCombatFixture(CCApply("stun","Stunned",worker),CCGrant("ward",worker,new ConditionStamp(T(18000)),"Stunned"),cure));var s=World(p);
                 CCDispatch(s,"stun",worker);CCDispatch(s,"ward",worker);LearnManufacturing(s);ManufactureStart(s);uint rng=s.Capture().RandomState;WorldAdvance(s,14400);
                 Require(Order(s).Status==ManufacturingStatus.AwaitingCheck&&Order(s).Work.Complete&&s.Capture().RandomState==rng&&s.Capture().AlchemyDoses.Length==0,"Incapable endpoint rolled or erased completed work.");
-                var awaiting=WorldActivityProjection.OpenProcedures(s.Capture(),s.DiscoverCommands(host,worker)).Single(x=>x.Id==Order(s).Id);
+                var awaitingOptions=s.DiscoverCommands(host,worker);var awaiting=WorldActivityProjection.OpenProcedures(s.Capture(),awaitingOptions).Single(x=>x.Id==Order(s).Id);
+                var blockedResume=awaitingOptions.Single(x=>x.Command.Kind==CommandKind.ResumeManufacturing&&x.Command.Target==Order(s).Id);
                 Require(awaiting.Kind==WorldProcedureKind.Manufacturing&&awaiting.Status==ManufacturingStatus.AwaitingCheck.ToString()
-                    &&awaiting.RecordedWorkRequired==Order(s).Work.Required,"Open activity view omitted the saved manufacturing check state.");
+                    &&awaiting.RecordedWorkRequired==Order(s).Work.Required
+                    &&awaiting.AvailableCommands.Any(x=>x.Command.Kind==CommandKind.CancelManufacturing)
+                    &&!awaiting.AvailableCommands.Any(x=>x.Command.Kind==CommandKind.ResumeManufacturing)
+                    &&!blockedResume.Query.Admissible&&blockedResume.Query.Code=="ManufacturingWorkerIncapable",
+                    "Awaiting-check view or capability-gated control discovery was incorrect.");
                 string path=Path.Combine(directory,"manufacturing-awaiting.bin");new FileSaveStore().Save(path,s.Capture());s=new Simulation(p,new FileSaveStore().Load(path),ExecutionProfile.Laboratory);
-                WorldAdvance(s,1);CCDispatch(s,"cure",worker);ManufactureControl(s,CommandKind.ResumeManufacturing);
+                WorldAdvance(s,1);CCDispatch(s,"cure",worker);
+                var resume=ManufacturingOption(s,host,CommandKind.ResumeManufacturing);var resumeQuery=s.QueryCommand(host,resume.Command);
+                Require(resumeQuery.Admissible&&resumeQuery.Costs.Count==0,"Recovered awaiting-check order did not expose its exact resolver-approved resume.");
+                WorldCommit(s,resume.Command);
                 Require(Order(s).Status==ManufacturingStatus.Complete&&Order(s).Work.Labor==T(14400)&&s.Capture().RuleClock==T(18001),"Earned check added labor or failed to resolve once.");
             });
             cases.Add("manufacturing_tactical_bench_dose_spends_action_heals_and_returns_exact_empty_vial",()=>{

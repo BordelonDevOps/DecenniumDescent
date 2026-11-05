@@ -1,5 +1,11 @@
 # Foundation and provisional rules implementation trace
 
+## 2026-11-05 — manufacturing control query and discovery (no save-schema change)
+
+Pause, Resume and Cancel manufacturing now share a single side-effect-free assessment between read-only query and the existing resolver. Discovery derives controls from the stored order status and only attaches options accepted by that assessment. It preserves the existing `ManufacturingOrderRecord`, `WorkLedger`, saved `ManufacturingAdvanceRecord`, settlement, and replay paths. Tactical discovery also exposes admissible controls for the order owner when another actor owns the active slot, as the resolver already allows. No cost, state transition, schema field, or settlement behavior was added.
+
+Four focused manufacturing cases pass **1/1 each**, covering working/paused transitions, cancellation, AwaitingCheck, choice-pending exclusion, purity, save/restore, duplicate receipts, and tactical off-turn controls. The full run is **1,119/1,127** with the exact same eight schema42 harvest failure names and exceptions as the saved preceding baseline; the increment adds one passing case. C# 9 warnings-as-errors compilation passes and package validation passes **14/14**. See [manufacturing-controls evidence](evidence/2026-11-05-manufacturing-controls/README.md).
+
 ## 2026-11-05 — open activity/traversal projection and manufacturing choice query (no save-schema change)
 
 `WorldActivityProjection.OpenProcedures(snapshot, discoveredOptions)` projects authoritative stored Working, Paused, AwaitingCheck and AwaitingChoice states. `Traversals(snapshot, discoveredOptions)` projects saved partial traversal geometry and state. Both attach only existing admissible same-actor/revision command options and remain transient. `CurrentWork(snapshot)` retains the identity/order contract used by active-work conflict checks. Passive intervals, inferred totals, and procedure claims absent from the existing records are not added.

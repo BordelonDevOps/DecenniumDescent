@@ -48,19 +48,34 @@ namespace Decennium.Foundation.Laboratory
         private static bool ManufacturingCommand(CommandKind k)=>k==CommandKind.StartManufacturing||k==CommandKind.PauseManufacturing||k==CommandKind.ResumeManufacturing||k==CommandKind.CancelManufacturing||k==CommandKind.ResolveManufacturingQuality||k==CommandKind.UseAlchemyDose;
         private static bool ManufacturingChoicePending(Snapshot s)=>s.ManufacturingOrders.Any(x=>x.Status==ManufacturingStatus.AwaitingChoice);
         private static bool ActiveManufacturing(Snapshot s)=>s.ManufacturingOrders.Any(x=>x.Status==ManufacturingStatus.Working);
-        private IEnumerable<Command> DiscoverManufacturingQualityChoices(Snapshot s,string actor)
+        private IEnumerable<Command> DiscoverManufacturingCommands(Snapshot s,string actor)
         {
             if(manufacturing==null||PendingCalendarChoice(s))yield break;
             int actorIndex=Array.FindIndex(s.Actors,x=>x.Id==actor);
             if(actorIndex<0)yield break;
-            int index=0;
-            foreach(var order in s.ManufacturingOrders.Where(x=>x.WorkerId==actor&&x.Status==ManufacturingStatus.AwaitingChoice)
+            int controlIndex=0,qualityIndex=0;
+            foreach(var order in s.ManufacturingOrders.Where(x=>x.WorkerId==actor&&x.Open)
                 .OrderBy(x=>x.Id,StringComparer.Ordinal)) {
+                if(order.Status==ManufacturingStatus.Working) {
+                    yield return new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+"."+actorIndex.ToString(CultureInfo.InvariantCulture)
+                        +".manufacturing-control."+(controlIndex++).ToString(CultureInfo.InvariantCulture),actor,s.Revision,CommandKind.PauseManufacturing,order.Id);
+                    yield return new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+"."+actorIndex.ToString(CultureInfo.InvariantCulture)
+                        +".manufacturing-control."+(controlIndex++).ToString(CultureInfo.InvariantCulture),actor,s.Revision,CommandKind.CancelManufacturing,order.Id);
+                    continue;
+                }
+                if(order.Status==ManufacturingStatus.Paused||order.Status==ManufacturingStatus.AwaitingCheck) {
+                    yield return new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+"."+actorIndex.ToString(CultureInfo.InvariantCulture)
+                        +".manufacturing-control."+(controlIndex++).ToString(CultureInfo.InvariantCulture),actor,s.Revision,CommandKind.ResumeManufacturing,order.Id);
+                    yield return new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+"."+actorIndex.ToString(CultureInfo.InvariantCulture)
+                        +".manufacturing-control."+(controlIndex++).ToString(CultureInfo.InvariantCulture),actor,s.Revision,CommandKind.CancelManufacturing,order.Id);
+                    continue;
+                }
+                if(order.Status!=ManufacturingStatus.AwaitingChoice)continue;
                 var catalysts=order.Quality==CraftQuality.Masterwork?new[]{0,3}:new[]{-1};
                 foreach(var choice in new[]{CraftQualityChoice.Durability,CraftQualityChoice.FullYield})
                     foreach(int catalyst in catalysts)
                         yield return new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+"."+actorIndex.ToString(CultureInfo.InvariantCulture)
-                                +".manufacturing-quality."+(index++).ToString(CultureInfo.InvariantCulture),actor,s.Revision,
+                                +".manufacturing-quality."+(qualityIndex++).ToString(CultureInfo.InvariantCulture),actor,s.Revision,
                             CommandKind.ResolveManufacturingQuality,order.Id,(int)choice,catalyst+1);
             }
         }
@@ -84,6 +99,34 @@ namespace Decennium.Foundation.Laboratory
             if(current.Quality==CraftQuality.Masterwork?catalyst!=0&&catalyst!=3:catalyst!=-1)return "InvalidRetainedCatalyst";
             if(choice==CraftQualityChoice.FullYield&&!ManufacturingRules.Recipe4CanYield(current.Quality,current.ExtraVials,catalyst))
                 return "ManufacturingFullYieldUnavailable";
+            return null;
+        }
+        private CommandQueryResult QueryManufacturingControl(Snapshot s,Command c)
+        {
+            string failure=AssessManufacturingControl(s,c,out _);
+            return new CommandQueryResult(true,failure==null,failure??"Available",s.Revision,Array.Empty<CommandCost>());
+        }
+        private string AssessManufacturingControl(Snapshot s,Command c,out ManufacturingOrderRecord current)
+        {
+            current=null;
+            if(manufacturing==null)return "ManufacturingNotSelected";
+            if(c.Inventory!=null||c.Combat!=null)return "InvalidManufacturingRequest";
+            if(PendingCalendarChoice(s))return "TacticalChoicePending";
+            current=s.ManufacturingOrders.SingleOrDefault(x=>x.Id==c.Target&&x.WorkerId==c.Actor);
+            if(current==null)return "UnknownManufacturingOrder";
+            if(!current.Open)return "ManufacturingOrderClosed";
+            if(c.X!=0||c.Y!=0)return "InvalidManufacturingRequest";
+            if(current.Status==ManufacturingStatus.AwaitingChoice)return "ManufacturingChoicePending";
+            if(c.Kind==CommandKind.PauseManufacturing)
+                return current.Status==ManufacturingStatus.Working?null:"ManufacturingNotWorking";
+            if(c.Kind==CommandKind.CancelManufacturing)return null;
+            if(c.Kind!=CommandKind.ResumeManufacturing)return "InvalidManufacturingRequest";
+            if(current.Status==ManufacturingStatus.Working)return "ManufacturingAlreadyWorking";
+            string access=ManufacturingAccess(s,c.Actor,current.Status!=ManufacturingStatus.AwaitingCheck,
+                current.Status==ManufacturingStatus.AwaitingCheck);
+            if(access!=null)return access;
+            if(OrdinaryInventory.Busy(s,c.Actor))return "WorkerBusy";
+            if(!current.StabilizedAt.HasValue&&BloodUnprotectedAge(s,current.MaterialSet)>=BloodSpoils)return "ManufacturingIngredientSpoiled";
             return null;
         }
         private IEnumerable<string> ManufacturingOwners(Snapshot s,Command c)
@@ -253,30 +296,26 @@ namespace Decennium.Foundation.Laboratory
                 if(c.Y>0)claims.Add(new ResourceReservation(id+".packaging",id,SharedManufacturingFixture.Packaging,c.Y));
                 s.Work=s.Work.Reserve(id,Array.Empty<WorkerInterval>(),claims);BookManufacturing(s,j);s.ManufacturingOrders=s.ManufacturingOrders.Concat(new[]{j}).ToArray();return null;
             }
-            var current=s.ManufacturingOrders.SingleOrDefault(x=>x.Id==c.Target&&x.WorkerId==c.Actor);if(current==null)return "UnknownManufacturingOrder";
-            if(!current.Open)return "ManufacturingOrderClosed";
             if(c.Kind==CommandKind.ResolveManufacturingQuality){
+                var current=s.ManufacturingOrders.SingleOrDefault(x=>x.Id==c.Target&&x.WorkerId==c.Actor);if(current==null)return "UnknownManufacturingOrder";
+                if(!current.Open)return "ManufacturingOrderClosed";
                 string choiceFailure=AssessManufacturingQualityChoice(s,c,out current,out var choice,out int catalyst);
                 if(choiceFailure!=null)return choiceFailure;
                 SettleManufacturing(s,current,choice,catalyst);ResumeManufacturingAdvance(s);return null;
             }
-            if(c.X!=0||c.Y!=0)return "InvalidManufacturingRequest";
-            if(current.Status==ManufacturingStatus.AwaitingChoice)return "ManufacturingChoicePending";
-            if(c.Kind==CommandKind.PauseManufacturing){if(current.Status!=ManufacturingStatus.Working)return "ManufacturingNotWorking";PauseManufacturing(s,current);return null;}
+            string controlFailure=AssessManufacturingControl(s,c,out var controlled);
+            if(controlFailure!=null)return controlFailure;
+            if(c.Kind==CommandKind.PauseManufacturing){PauseManufacturing(s,controlled);return null;}
             if(c.Kind==CommandKind.CancelManufacturing){
-                s.Work=s.Work.CancelFutureWork(current.Id,s.RuleClock);
-                for(int i=0;i<4;i++)SettleClaim(s,current.Id,ComponentClaim(current,i),current.Work.Labor==default?default:new RuleQuantity(ManufacturingRules.Recipe4Amounts[i]));
-                if(current.ExtraVials>0)SettleClaim(s,current.Id,current.Id+".packaging",default);
-                PutOrder(s,ChangeOrder(s,current,ManufacturingStatus.Cancelled));return null;
+                s.Work=s.Work.CancelFutureWork(controlled.Id,s.RuleClock);
+                for(int i=0;i<4;i++)SettleClaim(s,controlled.Id,ComponentClaim(controlled,i),controlled.Work.Labor==default?default:new RuleQuantity(ManufacturingRules.Recipe4Amounts[i]));
+                if(controlled.ExtraVials>0)SettleClaim(s,controlled.Id,controlled.Id+".packaging",default);
+                PutOrder(s,ChangeOrder(s,controlled,ManufacturingStatus.Cancelled));return null;
             }
             if(c.Kind==CommandKind.ResumeManufacturing){
-                if(current.Status==ManufacturingStatus.Working)return "ManufacturingAlreadyWorking";
-                string access=ManufacturingAccess(s,c.Actor,current.Status!=ManufacturingStatus.AwaitingCheck,current.Status==ManufacturingStatus.AwaitingCheck);if(access!=null)return access;
-                if(OrdinaryInventory.Busy(s,c.Actor))return "WorkerBusy";
-                if(!current.StabilizedAt.HasValue&&BloodUnprotectedAge(s,current.MaterialSet)>=BloodSpoils)return "ManufacturingIngredientSpoiled";
-                if(current.Status==ManufacturingStatus.AwaitingCheck){FinishManufacturingCheck(s,current);
+                if(controlled.Status==ManufacturingStatus.AwaitingCheck){FinishManufacturingCheck(s,controlled);
                     if(ManufacturingChoicePending(s))s.ManufacturingAdvance=new ManufacturingAdvanceRecord(s.RuleClock,false,c.Id,s.Revision+1,"");return null;}
-                BookManufacturing(s,current);PutOrder(s,ChangeOrder(s,current,ManufacturingStatus.Working));return null;
+                BookManufacturing(s,controlled);PutOrder(s,ChangeOrder(s,controlled,ManufacturingStatus.Working));return null;
             }
             return "InvalidManufacturingRequest";
         }
