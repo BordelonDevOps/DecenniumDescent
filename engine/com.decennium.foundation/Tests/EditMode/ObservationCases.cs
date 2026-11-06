@@ -182,6 +182,15 @@ namespace Decennium.Foundation.Tests
                     new ObservationSightProfile(AdditionalTacticalActor.Id, 30, 30)
                 });
 
+        private static ObservationFixture ObservationInclusiveRangeFixture()
+            => new ObservationFixture(8, 8, Array.Empty<ObservationGridCell>(),
+                new[]
+                {
+                    new ObservationSightProfile(TestOnlyPolicy.ActorId, 5, 30),
+                    new ObservationSightProfile(TestOnlyPolicy.CompanionId, 5, 30),
+                    new ObservationSightProfile(AdditionalTacticalActor.Id, 5, 30)
+                });
+
         private static ObservationFixture ObservationMultipleExposureFixture()
             => new ObservationFixture(8, 8,
                 new[]
@@ -224,7 +233,15 @@ namespace Decennium.Foundation.Tests
             else state.WorldTraversals = new[] { edge.With(toDistance, WorldTraversalStatus.Moving) };
             ObservationRules.ProcessWorldTraversalSegments(state,
                 new[] { new ObservationMovementSegment(edge, fromDistance, toDistance) }, start, end, revision);
+            RuleTime priorClock = state.RuleClock;
             state.RuleClock = end;
+            if (end > priorClock)
+            {
+                var stamp = new ConditionStamp(end);
+                state.Conditions = state.Conditions.Select((journal, index) => ConditionHistory.Restore(journal)
+                    .Append(ConditionOperation.Advance("host.clock.observation." + revision + "." + index, stamp))
+                    .State.Journal).ToArray();
+            }
             if (completes) ObservationRules.Refresh(state, end, revision);
         }
 
@@ -800,6 +817,110 @@ namespace Decennium.Foundation.Tests
                 Require(SameKnowledgeContent(blockedContinuation, split)
                     && split.ObserverKnowledge.Length == blockedContinuation.ObserverKnowledge.Length,
                     "Observer movement partitioning changed another observer's knowledge or later blocked evidence.");
+            });
+            cases.Add("observation_positive_time_moving_observer_loss_survives_boundary_save_and_blocked_remainder", () => {
+                var fixture = ObservationMovingObserverLimitFixture();
+                var policy = new TestOnlySharedWorldPolicy(new SharedCombatFixture()).EnableObservation(fixture);
+                string observer = TestOnlyPolicy.ActorId, target = TestOnlyPolicy.CompanionId;
+
+                Snapshot PlaceFixture()
+                {
+                    var state = ObservationStateAt(policy, observer, 1, 0, fixture);
+                    var stationaryTarget = state.Actors.Single(x => x.Id == target);
+                    stationaryTarget.X = 4;
+                    stationaryTarget.Y = 4;
+                    var third = state.Actors.Single(x => x.Id == AdditionalTacticalActor.Id);
+                    third.X = 7;
+                    third.Y = 7;
+                    ObservationRules.Initialize(state, fixture);
+                    return state;
+                }
+
+                var whole = PlaceFixture();
+                Require(ObservationGeometry.CanSee(whole, observer, target),
+                    "The positive-time moving-observer fixture did not begin with sight.");
+                ProcessObservationLeg(whole, observer, 1, 0, 2, 0,
+                    default, new RuleQuantity(5), T(0), T(1));
+                var wholeFinal = whole;
+                var wholeKnowledge = wholeFinal.ObserverKnowledge.Single(x => x.ObserverId == observer && x.TargetId == target);
+                Require(wholeFinal.RuleClock == T(1) && !ObservationGeometry.CanSee(wholeFinal, observer, target)
+                    && wholeKnowledge.Evidence == ObservationEvidenceKind.DirectSightLimit
+                    && wholeKnowledge.EvidenceAt == T(3, 5) && wholeKnowledge.EvidenceAt < wholeFinal.RuleClock
+                    && wholeKnowledge.CurrentLocationKnown && wholeKnowledge.LastKnownX == new RuleQuantity(4)
+                    && wholeKnowledge.LastKnownY == new RuleQuantity(4),
+                    "Interior positive-time observer sight loss did not retain its exact pre-deadline limit.");
+
+                var split = PlaceFixture();
+                ProcessObservationLeg(split, observer, 1, 0, 2, 0,
+                    default, new RuleQuantity(3), T(0), T(3, 5));
+                var atLimit = split.ObserverKnowledge.Single(x => x.ObserverId == observer && x.TargetId == target);
+                Require(split.RuleClock == T(3, 5)
+                    && split.WorldTraversals.Single(x => x.ActorId == observer).DistanceFeet == new RuleQuantity(3)
+                    && atLimit.Evidence == ObservationEvidenceKind.DirectSightLimit
+                    && atLimit.EvidenceAt == T(3, 5) && atLimit.CurrentLocationKnown,
+                    "Splitting at the interior sight-loss boundary did not persist the exact limit at positive time.");
+                var codec = new SnapshotCodec();
+                byte[] boundaryBytes = codec.Encode(split);
+                split = codec.Decode(boundaryBytes);
+                Require(boundaryBytes.SequenceEqual(codec.Encode(split)),
+                    "The positive-time sight-loss boundary changed across save and restore.");
+                ProcessObservationLeg(split, observer, 1, 0, 2, 0,
+                    new RuleQuantity(3), new RuleQuantity(5), T(3, 5), T(1));
+
+                Require(split.WorldTraversals.Length == 0 && split.RuleClock == wholeFinal.RuleClock
+                    && split.Actors.Single(x => x.Id == observer).X == wholeFinal.Actors.Single(x => x.Id == observer).X
+                    && SameKnowledgeContent(wholeFinal, split)
+                    && split.ObserverKnowledge.Single(x => x.ObserverId == observer && x.TargetId == target).EvidenceAt < split.RuleClock,
+                    "The blocked post-boundary remainder changed the complete semantic knowledge set or its earlier sight time.");
+            });
+            cases.Add("observation_inclusive_range_boundary_records_sight_then_stales_after_departure", () => {
+                var fixture = ObservationInclusiveRangeFixture();
+                var policy = new TestOnlySharedWorldPolicy(new SharedCombatFixture()).EnableObservation(fixture);
+                string target = TestOnlyPolicy.ActorId, observer = TestOnlyPolicy.CompanionId;
+                var state = ObservationStateAt(policy, target, 0, 0, fixture);
+                var observerActor = state.Actors.Single(x => x.Id == observer);
+                observerActor.X = 2;
+                observerActor.Y = 0;
+                var third = state.Actors.Single(x => x.Id == AdditionalTacticalActor.Id);
+                third.X = 6;
+                third.Y = 6;
+                ObservationRules.Initialize(state, fixture);
+                Require(!ObservationGeometry.CanSee(state, observer, target),
+                    "The range-boundary fixture unexpectedly starts inside the authored sight range.");
+
+                ProcessObservationLeg(state, target, 0, 0, 1, 0,
+                    default, new RuleQuantity(5), T(0), T(1));
+                var atRange = state;
+                var atRangeKnowledge = atRange.ObserverKnowledge.Single(x => x.ObserverId == observer && x.TargetId == target);
+                Require(ObservationGeometry.CanSee(atRange, observer, target)
+                    && atRangeKnowledge.CurrentLocationKnown
+                    && atRangeKnowledge.Evidence == ObservationEvidenceKind.DirectSight
+                    && atRangeKnowledge.LastKnownX == new RuleQuantity(1)
+                    && atRangeKnowledge.LastKnownY == default
+                    && atRangeKnowledge.EvidenceAt == T(1),
+                    "The inclusive authored range endpoint was not recorded as ordinary direct sight.");
+
+                var codec = new SnapshotCodec();
+                byte[] rangeBytes = codec.Encode(atRange);
+                var restored = codec.Decode(rangeBytes);
+                Require(rangeBytes.SequenceEqual(codec.Encode(restored)),
+                    "The exact inclusive range endpoint changed across save and restore.");
+                var replay = codec.Decode(rangeBytes);
+                ProcessObservationLeg(restored, target, 1, 0, 0, 0,
+                    default, new RuleQuantity(5), T(1), T(2));
+                ProcessObservationLeg(replay, target, 1, 0, 0, 0,
+                    default, new RuleQuantity(5), T(1), T(2));
+                var final = restored;
+                var finalKnowledge = final.ObserverKnowledge.Single(x => x.ObserverId == observer && x.TargetId == target);
+                Require(!ObservationGeometry.CanSee(final, observer, target)
+                    && final.Actors.Single(x => x.Id == target).X == 0 && final.RuleClock == T(2)
+                    && finalKnowledge.HasLastKnownLocation && !finalKnowledge.CurrentLocationKnown
+                    && finalKnowledge.Evidence == ObservationEvidenceKind.DirectSight
+                    && finalKnowledge.LastKnownX == new RuleQuantity(1) && finalKnowledge.LastKnownY == default
+                    && finalKnowledge.EvidenceAt == T(1) && finalKnowledge.EvidenceAt < final.RuleClock
+                    && !ObservationRules.LocationKnown(final, observer, target)
+                    && codec.Encode(final).SequenceEqual(codec.Encode(replay)),
+                    "Departing from the visible range boundary did not leave a deterministic stale ordinary sight record.");
             });
             cases.Add("observation_exact_path_retains_latest_of_multiple_exposure_intervals", () => {
                 var fixture = ObservationMultipleExposureFixture();
