@@ -1,5 +1,6 @@
 #if DECENNIUM_TEST_ONLY && (UNITY_EDITOR || DEVELOPMENT_BUILD || HEADLESS_TESTS)
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography;
@@ -107,21 +108,23 @@ namespace Decennium.Foundation.Laboratory
             RecordAttempt(s,attempt,success?SupplyCacheAttemptStatus.Succeeded:SupplyCacheAttemptStatus.Failed,natural,modifier);
             if(success)SetCache(s,Cache(s,attempt.CacheId).With(locked:false));
         }
-        private string ResolveSupplyCache(Snapshot s,Command c)
+        private string AssessSupplyCacheCommand(Snapshot s,Command c,out SupplyCacheRecord cache,
+            out SupplyCacheUnlockMethod method,out SupplyCacheEquipmentRecord equipment)
         {
+            cache=null;method=default(SupplyCacheUnlockMethod);equipment=null;
             if(c.Inventory!=null||c.Combat!=null||c.Target!=SupplyCacheFixture.CacheId||c.Y!=0)return "InvalidSupplyCacheInteraction";
-            var cache=Cache(s,c.Target);if(cache==null)return "UnknownSupplyCache";
+            cache=Cache(s,c.Target);if(cache==null)return "UnknownSupplyCache";
+            string cacheId=cache.Id;
             if(c.Actor!=cache.OwnerId)return "NoSupplyCachePermission";
             if(!NearCache(s,c.Actor,cache))return "SupplyCacheOutOfReach";
             if(s.WorldTraversals.Any(x=>x.ActorId==c.Actor))return "TraversalRequiresStationaryInteraction";
             var operation=(SupplyCacheInteraction)c.X;
             if(!Enum.IsDefined(typeof(SupplyCacheInteraction),operation))return "InvalidSupplyCacheInteraction";
             if(operation==SupplyCacheInteraction.Interrupt) {
-                var pending=s.SupplyCacheAttempts.SingleOrDefault(x=>x.Status==SupplyCacheAttemptStatus.Working&&x.CacheId==cache.Id&&x.ActorId==c.Actor);
-                if(pending==null)return "NoActiveSupplyCacheAttempt";
-                InterruptSupplyCacheAttempt(s,pending);return null;
+                var pending=s.SupplyCacheAttempts.SingleOrDefault(x=>x.Status==SupplyCacheAttemptStatus.Working&&x.CacheId==cacheId&&x.ActorId==c.Actor);
+                return pending==null?"NoActiveSupplyCacheAttempt":null;
             }
-            if(s.SupplyCacheAttempts.Any(x=>x.Status==SupplyCacheAttemptStatus.Working&&x.CacheId==cache.Id))return "SupplyCacheBusy";
+            if(s.SupplyCacheAttempts.Any(x=>x.Status==SupplyCacheAttemptStatus.Working&&x.CacheId==cacheId))return "SupplyCacheBusy";
             if(OrdinaryInventory.Busy(s,c.Actor))return "WorkerBusy";
             if(!CapableWorker(s,c.Actor))return "WorkerCannotPerformTask";
             if(AvailableHands(s,c.Actor)<1)return "HandlingHandRequired";
@@ -135,8 +138,7 @@ namespace Decennium.Foundation.Laboratory
                     if(interval.Interactions>=2)return "InteractionBudgetUnavailable";
                     if(interval.Interactions==1&&interval.ActionSpent)return "ActionAlreadySpent";
                     if(interval.Interactions==1&&!Permissions(s,c.Actor).Action)return "ConditionPreventsAction";
-                    var spent=interval.SpendInteraction();SetInterval(s,spent);s.InventoryInteractions=spent.Interactions;
-                    SetCache(s,cache.With(open:true));return null;
+                    return null;
                 }
                 RuleTime end=s.RuleClock.AddSeconds(1);
                 var condition=NextConditionDeadline(s);if(condition.HasValue&&condition.Value<=end)return "TimedHandlingBoundaryUnsupported";
@@ -145,23 +147,87 @@ namespace Decennium.Foundation.Laboratory
                 var remedy=NextRemedyBoundary(s);if(remedy.HasValue&&remedy.Value<=end)return "TimedHandlingBoundaryUnsupported";
                 var repairBoundary=NextRepairBoundary(s);if(repairBoundary.HasValue&&repairBoundary.Value<=end)return "TimedHandlingBoundaryUnsupported";
                 var manufacturingBoundary=NextManufacturingBoundary(s);if(manufacturingBoundary.HasValue&&manufacturingBoundary.Value<=end)return "TimedHandlingBoundaryUnsupported";
-                AdvanceTo(s,end,initiating:c);SetCache(s,cache.With(open:true));return null;
+                return null;
             }
             if(operation!=SupplyCacheInteraction.UnlockWithKey&&operation!=SupplyCacheInteraction.PickWithTools)return "InvalidSupplyCacheInteraction";
             if(!cache.Locked)return "SupplyCacheAlreadyUnlocked";
-            var method=operation==SupplyCacheInteraction.UnlockWithKey?SupplyCacheUnlockMethod.Key:SupplyCacheUnlockMethod.ThievesTools;
-            if(!CredentialAvailable(s,c.Actor,method,out var equipment))return method==SupplyCacheUnlockMethod.Key?"PhysicalKeyUnavailable":"ActualThievesToolsRequired";
+            method=operation==SupplyCacheInteraction.UnlockWithKey?SupplyCacheUnlockMethod.Key:SupplyCacheUnlockMethod.ThievesTools;
+            if(!CredentialAvailable(s,c.Actor,method,out equipment))return method==SupplyCacheUnlockMethod.Key?"PhysicalKeyUnavailable":"ActualThievesToolsRequired";
             var actionInterval=Interval(s,c.Actor);
             if(actionInterval.ActionSpent)return "ActionAlreadySpent";
             if(!Permissions(s,c.Actor).Action)return "ConditionPreventsAction";
             if(s.InventoryCombat) {
                 if(s.Encounter==null||s.Encounter.CurrentActor!=c.Actor||PendingCalendarChoice(s))return "TacticalChoicePending";
+                return null;
+            }
+            return OrdinaryInventory.Busy(s,c.Actor)?"WorkerBusy":null;
+        }
+        private CommandQueryResult QuerySupplyCacheCommand(Snapshot s,Command c)
+        {
+            if(!IsSupplyCacheCommand(c))return new CommandQueryResult(false,false,"UnsupportedOperation",s.Revision);
+            string failure=AssessSupplyCacheCommand(s,c,out _,out _,out _);
+            var costs=new System.Collections.Generic.List<CommandCost>();
+            if(failure==null) {
+                var operation=(SupplyCacheInteraction)c.X;
+                if(operation==SupplyCacheInteraction.Open) {
+                    if(s.InventoryCombat) {
+                        var interval=Interval(s,c.Actor);
+                        costs.Add(new CommandCost(interval.Interactions==0?"ordinary-interaction":"action","",1));
+                    } else costs.Add(new CommandCost("work-seconds","",1));
+                } else if(operation!=SupplyCacheInteraction.Interrupt) {
+                    costs.Add(new CommandCost("action","",1));
+                    if(!s.InventoryCombat)costs.Add(new CommandCost("work-seconds","",6));
+                }
+            }
+            return new CommandQueryResult(true,failure==null,failure??"Available",s.Revision,costs);
+        }
+        private IEnumerable<Command> DiscoverSupplyCacheCommands(Snapshot s,string actor)
+        {
+            int index=0;
+            if(supplyCache==null)yield break;
+            foreach(var cache in s.SupplyCaches.OrderBy(x=>x.Id,StringComparer.Ordinal)) {
+                if(cache.OwnerId!=actor||!NearCache(s,actor,cache))continue;
+                var working=s.SupplyCacheAttempts.SingleOrDefault(x=>x.Status==SupplyCacheAttemptStatus.Working
+                    &&x.CacheId==cache.Id&&x.ActorId==actor);
+                if(working!=null) {
+                    yield return SupplyCacheOption(s,actor,cache.Id,SupplyCacheInteraction.Interrupt,index++);
+                    continue;
+                }
+                if(cache.Locked) {
+                    if(CredentialAvailable(s,actor,SupplyCacheUnlockMethod.Key,out _))
+                        yield return SupplyCacheOption(s,actor,cache.Id,SupplyCacheInteraction.UnlockWithKey,index++);
+                    if(CredentialAvailable(s,actor,SupplyCacheUnlockMethod.ThievesTools,out _))
+                        yield return SupplyCacheOption(s,actor,cache.Id,SupplyCacheInteraction.PickWithTools,index++);
+                } else if(!cache.Open)
+                    yield return SupplyCacheOption(s,actor,cache.Id,SupplyCacheInteraction.Open,index++);
+            }
+        }
+        private static Command SupplyCacheOption(Snapshot s,string actor,string cacheId,SupplyCacheInteraction operation,int index)
+            =>new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+".supply-cache."+index.ToString(CultureInfo.InvariantCulture),
+                actor,s.Revision,CommandKind.Interact,cacheId,(int)operation);
+        private string ResolveSupplyCache(Snapshot s,Command c)
+        {
+            string failure=AssessSupplyCacheCommand(s,c,out var cache,out var method,out var equipment);
+            if(failure!=null)return failure;
+            var operation=(SupplyCacheInteraction)c.X;
+            if(operation==SupplyCacheInteraction.Interrupt) {
+                var pending=s.SupplyCacheAttempts.Single(x=>x.Status==SupplyCacheAttemptStatus.Working&&x.CacheId==cache.Id&&x.ActorId==c.Actor);
+                InterruptSupplyCacheAttempt(s,pending);return null;
+            }
+            if(operation==SupplyCacheInteraction.Open) {
+                if(s.InventoryCombat) {
+                    var interval=Interval(s,c.Actor);var spent=interval.SpendInteraction();SetInterval(s,spent);s.InventoryInteractions=spent.Interactions;
+                    SetCache(s,cache.With(open:true));return null;
+                }
+                AdvanceTo(s,s.RuleClock.AddSeconds(1),initiating:c);SetCache(s,cache.With(open:true));return null;
+            }
+            var actionInterval=Interval(s,c.Actor);
+            if(s.InventoryCombat) {
                 SetInterval(s,actionInterval.PayAction());
                 var immediate=new SupplyCacheAttemptRecord(OrdinaryInventory.Identity(s,"cache-attempt"),cache.Id,c.Actor,equipment.Id,method,
                     s.RuleClock,s.RuleClock,SupplyCacheAttemptStatus.Interrupted,tactical:true);
                 ResolveCacheAttempt(s,immediate);return null;
             }
-            if(OrdinaryInventory.Busy(s,c.Actor))return "WorkerBusy";
             string id=OrdinaryInventory.Identity(s,"cache-attempt");RuleTime start=s.RuleClock,endAttempt=start.AddSeconds(6);
             SetInterval(s,actionInterval.PayAction());
             s.Work=s.Work.Reserve(id,new[]{new WorkerInterval(id+".labor",id,c.Actor,start,endAttempt)},Array.Empty<ResourceReservation>());

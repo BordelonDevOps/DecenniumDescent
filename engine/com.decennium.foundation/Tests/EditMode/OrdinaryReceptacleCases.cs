@@ -28,6 +28,55 @@ namespace Decennium.Foundation.Tests
         private static void AddOrdinaryReceptacleCases(Dictionary<string,Action> cases,string directory)
         {
             var host=TestOnlySharedWorldPolicy.Host();var codec=new SnapshotCodec();
+            cases.Add("contextual_lock_commands_discover_and_query_without_mutation",()=>{
+                var cachePolicy=SupplyPolicy(toolsProficient:true,hasKey:true,hasTools:true);
+                var cache=SupplyWorld(cachePolicy);SupplyApproach(cache);byte[] cacheBefore=Bytes(cache);
+                var cachePick=SupplyCommand(cache,SupplyCacheInteraction.PickWithTools,id:"context-cache-preview");
+                var cacheQuery=cache.QueryCommand(host,cachePick);
+                Require(cacheQuery.Supported&&cacheQuery.Admissible&&cacheQuery.Costs.Any(x=>x.Kind=="action"&&x.Amount==1)
+                    &&cacheQuery.Costs.Any(x=>x.Kind=="work-seconds"&&x.Amount==6)&&Bytes(cache).SequenceEqual(cacheBefore),
+                    "The existing cache pick query was incorrect: supported="+cacheQuery.Supported+" admissible="+cacheQuery.Admissible
+                    +" code="+cacheQuery.Code+" costs="+string.Join(",",cacheQuery.Costs.Select(x=>x.Kind+":"+x.Amount))
+                    +" pure="+Bytes(cache).SequenceEqual(cacheBefore)+".");
+                var cacheOptions=cache.DiscoverCommands(host,TestOnlyPolicy.ActorId).Where(x=>x.Command.Kind==CommandKind.Interact
+                    &&x.Command.Target==SupplyCacheFixture.CacheId).ToArray();
+                Require(cacheOptions.Any(x=>x.Command.X==(int)SupplyCacheInteraction.UnlockWithKey&&x.Query.Admissible)
+                    &&cacheOptions.Any(x=>x.Command.X==(int)SupplyCacheInteraction.PickWithTools&&x.Query.Admissible)
+                    &&!cacheOptions.Any(x=>x.Command.X==(int)SupplyCacheInteraction.Open),
+                    "The reachable locked cache did not expose its available credentials as contextual commands.");
+                SupplyCommit(cache,cacheOptions.Single(x=>x.Command.X==(int)SupplyCacheInteraction.PickWithTools).Command);
+                WorldAdvance(cache,2);
+                var cacheInterrupt=cache.DiscoverCommands(host,TestOnlyPolicy.ActorId).Single(x=>x.Command.Kind==CommandKind.Interact
+                    &&x.Command.Target==SupplyCacheFixture.CacheId&&x.Command.X==(int)SupplyCacheInteraction.Interrupt);
+                byte[] cachePending=Bytes(cache);
+                Require(cacheInterrupt.Query.Admissible&&cacheInterrupt.Query.Costs.Count==0
+                    &&cache.QueryCommand(host,cacheInterrupt.Command).Admissible&&Bytes(cache).SequenceEqual(cachePending),
+                    "Cache interruption was not discoverable and queryable without changing active work.");
+                SupplyCommit(cache,cacheInterrupt.Command);
+                Require(cache.Capture().SupplyCacheAttempts.Single().Status==SupplyCacheAttemptStatus.Interrupted,
+                    "The discovered cache interruption did not use the existing attempt path.");
+
+                var receptaclePolicy=OrdinaryPolicy();var receptacle=World(receptaclePolicy);byte[] receptacleBefore=Bytes(receptacle);
+                var lockOptions=receptacle.DiscoverCommands(host,TestOnlyPolicy.ActorId).Where(x=>x.Command.Kind==CommandKind.Interact
+                    &&x.Command.Target==OrdinaryLockA).ToArray();
+                var receptaclePick=lockOptions.SingleOrDefault(x=>x.Command.X==(int)OrdinaryReceptacleInteraction.PickWithTools);
+                Require(receptaclePick!=null&&receptaclePick.Query.Admissible
+                    &&receptaclePick.Query.Costs.Any(x=>x.Kind=="action"&&x.Amount==1)
+                    &&receptaclePick.Query.Costs.Any(x=>x.Kind=="work-seconds"&&x.Amount==6)
+                    &&Bytes(receptacle).SequenceEqual(receptacleBefore),
+                    "The reachable receptacle did not expose a pure existing thieves-tools option with staged costs.");
+                OrdinaryCommit(receptacle,receptaclePick.Command);WorldAdvance(receptacle,2);
+                var receptacleInterrupt=receptacle.DiscoverCommands(host,TestOnlyPolicy.ActorId).Single(x=>x.Command.Kind==CommandKind.Interact
+                    &&x.Command.Target==OrdinaryLockA&&x.Command.X==(int)OrdinaryReceptacleInteraction.Interrupt);
+                byte[] receptaclePending=Bytes(receptacle);
+                Require(receptacleInterrupt.Query.Admissible&&receptacleInterrupt.Query.Costs.Count==0
+                    &&receptacle.QueryCommand(host,receptacleInterrupt.Command).Admissible
+                    &&Bytes(receptacle).SequenceEqual(receptaclePending),
+                    "Receptacle interruption was not discoverable and queryable without changing active work.");
+                OrdinaryCommit(receptacle,receptacleInterrupt.Command);
+                Require(receptacle.Capture().OrdinaryReceptacleAttempts.Single().Status==OrdinaryReceptacleAttemptStatus.Interrupted,
+                    "The discovered receptacle interruption did not use the existing attempt path.");
+            });
             cases.Add("ordinary_receptacle_schema50_authored_physical_locks_and_closed_stock",()=>{
                 var p=OrdinaryPolicy();var s=World(p);var v=s.Capture();
                 Require(v.SchemaVersion==Snapshot.OrdinaryReceptacleSchema&&v.OrdinaryReceptacleLocks.Length==2

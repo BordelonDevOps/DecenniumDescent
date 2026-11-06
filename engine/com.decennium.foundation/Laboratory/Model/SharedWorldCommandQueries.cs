@@ -312,7 +312,15 @@ namespace Decennium.Foundation.Laboratory
                 }
             }
             foreach (var command in DiscoverFishingTrapControls(s, actor)) yield return command;
+            foreach (var command in DiscoverContextualInteractions(s, authority, actor)) yield return command;
             foreach (var command in DiscoverManufacturingCommands(s, actor)) yield return command;
+        }
+
+        private IEnumerable<Command> DiscoverContextualInteractions(Snapshot s,Authority authority,string actor)
+        {
+            if(!authority.MayUseInventory(actor))yield break;
+            foreach(var command in DiscoverSupplyCacheCommands(s,actor))yield return command;
+            foreach(var command in DiscoverOrdinaryReceptacleCommands(s,actor))yield return command;
         }
 
         private IEnumerable<Command> DiscoverTacticalMovementCommands(Snapshot s, string actor)
@@ -330,6 +338,7 @@ namespace Decennium.Foundation.Laboratory
 
         private CommandQueryResult QuerySharedWorldCommand(Snapshot s, Authority authority, Command c)
         {
+            if (IsSupplyCacheCommand(c)) return QuerySupplyCacheCommand(s,c);
             if (IsOrdinaryReceptacleCommand(s,c)) return QueryOrdinaryReceptacleCommand(s,c);
             if (c.Kind == CommandKind.Interact) return QueryFishingTrapControl(s, c);
             if (c.Kind == CommandKind.ResolveManufacturingQuality) return QueryManufacturingQualityChoice(s, c);

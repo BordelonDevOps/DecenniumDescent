@@ -224,6 +224,32 @@ namespace Decennium.Foundation.Laboratory
             return new CommandQueryResult(true,failure==null,failure??"Available",s.Revision,costs);
         }
 
+        private System.Collections.Generic.IEnumerable<Command> DiscoverOrdinaryReceptacleCommands(Snapshot s,string actor)
+        {
+            int index=0;
+            if(ordinaryReceptacles==null)yield break;
+            foreach(var lockState in s.OrdinaryReceptacleLocks.OrderBy(x=>x.Id,StringComparer.Ordinal)) {
+                if(lockState.OwnerId!=actor)continue;
+                var container=s.PortableEquipment.SingleOrDefault(x=>x.Id==lockState.ContainerId);
+                if(container==null||!PortableEquipmentRules.Accessible(s,actor,container))continue;
+                var working=s.OrdinaryReceptacleAttempts.SingleOrDefault(x=>x.Status==OrdinaryReceptacleAttemptStatus.Working
+                    &&x.LockId==lockState.Id&&x.ActorId==actor);
+                if(working!=null) {
+                    yield return OrdinaryReceptacleOption(s,actor,lockState.Id,OrdinaryReceptacleInteraction.Interrupt,index++);
+                    continue;
+                }
+                if(!lockState.Locked)continue;
+                if(OrdinaryCredentialAvailable(s,lockState,OrdinaryReceptacleMethod.Key,actor,out _))
+                    yield return OrdinaryReceptacleOption(s,actor,lockState.Id,OrdinaryReceptacleInteraction.UnlockWithKey,index++);
+                if(OrdinaryCredentialAvailable(s,lockState,OrdinaryReceptacleMethod.ThievesTools,actor,out _))
+                    yield return OrdinaryReceptacleOption(s,actor,lockState.Id,OrdinaryReceptacleInteraction.PickWithTools,index++);
+            }
+        }
+
+        private static Command OrdinaryReceptacleOption(Snapshot s,string actor,string lockId,OrdinaryReceptacleInteraction operation,int index)
+            =>new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+".ordinary-receptacle."+index.ToString(CultureInfo.InvariantCulture),
+                actor,s.Revision,CommandKind.Interact,lockId,(int)operation);
+
         private string ResolveOrdinaryReceptacle(Snapshot s,Command c)
         {
             string failure=AssessOrdinaryReceptacleCommand(s,c,out var lockState,out var method,out var credential);

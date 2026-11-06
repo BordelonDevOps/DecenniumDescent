@@ -119,6 +119,7 @@ namespace Decennium.Foundation.Laboratory
             options.AddRange(DiscoverDefensiveFormationCommands(s,actor));
             if(actor!=s.Encounter.CurrentActor)return options;
             string turnId=s.Encounter.CurrentTurnId;
+            options.AddRange(DiscoverContextualInteractions(s,authority,actor));
             options.AddRange(DiscoverTacticalMovementCommands(s,actor));
             if(s.SchemaVersion>=Snapshot.CommandStepSchema&&s.CharacterFeatureGrants.Any(x=>x.ActorId==actor
                 &&x.FeatureId==CharacterFeatureIds.CommandStep&&x.Origin==CharacterFeatureGrantOrigin.SelectedCard)
