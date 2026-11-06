@@ -72,6 +72,7 @@ namespace Decennium.Foundation.Laboratory
                             && prior.LastKnownY == targetPosition.Y;
                         bool current = prior.CurrentLocationKnown && stillAtLastKnown;
                         string revealed = episode == "" ? "" : prior.RevealedInvisibleEpisodeId;
+                        if (current && episode != "") revealed = episode;
                         if (current != prior.CurrentLocationKnown || revealed != prior.RevealedInvisibleEpisodeId)
                             Set(s, Copy(prior, currentLocationKnown: current, revealedEpisode: revealed));
                     }

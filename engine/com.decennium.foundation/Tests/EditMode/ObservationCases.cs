@@ -258,6 +258,77 @@ namespace Decennium.Foundation.Tests
 
         private static void AddObservationCases(Dictionary<string, Action> cases)
         {
+            cases.Add("observation_invisible_latches_location_known_before_episode", () => {
+                var fixture = new ObservationFixture(8, 8, Array.Empty<ObservationGridCell>(),
+                    new[]
+                    {
+                        new ObservationSightProfile(TestOnlyPolicy.ActorId, 30, 30),
+                        new ObservationSightProfile(TestOnlyPolicy.CompanionId, 30, 30),
+                        new ObservationSightProfile(AdditionalTacticalActor.Id, 30, 30)
+                    });
+                var conditions = new ConditionCombatFixture(CCApply("known-invisible", "Invisible", AdditionalTacticalActor.Id));
+                var policy = new TestOnlySharedWorldPolicy(new SharedCombatFixture(), conditions: conditions).EnableObservation(fixture);
+                var simulation = World(policy);
+                var initial = simulation.Capture();
+                string observer = TestOnlyPolicy.ActorId, target = AdditionalTacticalActor.Id;
+                Require(ObservationRules.CanSee(initial, observer, target)
+                    && ObservationRules.LocationKnown(initial, observer, target),
+                    "The observer did not know the target's location before Invisible began.");
+                byte[] initialBytes = Bytes(simulation);
+                WorldCommit(simulation, new Command("observation.invisible.begin", observer, initial.Revision, CommandKind.BeginFixedEncounter));
+                var afterBegin = simulation.Capture();
+                WorldCommit(simulation, new Command("observation.invisible.apply", target, afterBegin.Revision,
+                    CommandKind.DispatchConditionEvent, "event.known-invisible"));
+                var invisible = simulation.Capture();
+                Require(TestOnlyClubAttackPolicy.ConditionsFor(invisible, target).View().Has(ConditionKind.Invisible)
+                    && !ObservationRules.CanSee(invisible, observer, target)
+                    && ObservationRules.LocationKnown(invisible, observer, target),
+                    "Applying Invisible failed to hide the visible target while preserving its current known location.");
+                Require(ObservationRules.InvisibleRevealed(invisible, observer, target),
+                    "Entering Invisible preserved the location but did not latch the new episode for that observer.");
+                byte[] saved = Bytes(simulation);
+                var restored = new Simulation(policy, new SnapshotCodec().Decode(saved), ExecutionProfile.Laboratory);
+                Require(saved.SequenceEqual(Bytes(restored))
+                    && ObservationRules.InvisibleRevealed(restored.Capture(), observer, target),
+                    "The pre-known Invisible latch did not persist across save and restore.");
+
+                for (int i = 0; i < restored.Capture().Encounter.Order.Count
+                    && restored.Capture().Encounter.CurrentActor != target; i++)
+                {
+                    var turn = restored.Capture();
+                    if (!turn.Stances.Any(x => x.ActorId == turn.Encounter.CurrentActor
+                        && x.TurnOrdinal == turn.Encounter.TurnOrdinal))
+                        WorldCommit(restored, Tac(restored, CommandKind.SelectCombatStance,
+                            stance: (int)CombatStance.Aggressive));
+                    WorldCommit(restored, Tac(restored, CommandKind.EndRegularTurn));
+                }
+                Require(restored.Capture().Encounter.CurrentActor == target,
+                    "The deterministic fixture did not reach the Invisible target's regular turn.");
+                if (!restored.Capture().Stances.Any(x => x.ActorId == target
+                    && x.TurnOrdinal == restored.Capture().Encounter.TurnOrdinal))
+                    WorldCommit(restored, Tac(restored, CommandKind.SelectCombatStance, stance: (int)CombatStance.Aggressive));
+                WorldCommit(restored, Tac(restored, CommandKind.TacticalStep, x: 4, y: 1));
+                var moved = restored.Capture();
+                var movedKnowledge = moved.ObserverKnowledge.Single(x => x.ObserverId == observer && x.TargetId == target);
+                Require(!movedKnowledge.CurrentLocationKnown && movedKnowledge.LastKnownX == new RuleQuantity(4)
+                    && movedKnowledge.LastKnownY == default && ObservationRules.InvisibleRevealed(moved, observer, target),
+                    "Unseen movement invalidated the old position but reset the same Invisible episode's latch.");
+                byte[] movedBytes = Bytes(restored);
+                var movedRestore = new Simulation(policy, new SnapshotCodec().Decode(movedBytes), ExecutionProfile.Laboratory);
+                Require(movedBytes.SequenceEqual(Bytes(movedRestore))
+                    && !ObservationRules.LocationKnown(movedRestore.Capture(), observer, target)
+                    && ObservationRules.InvisibleRevealed(movedRestore.Capture(), observer, target),
+                    "The latched episode or stale last-known position changed after movement save and restore.");
+
+                var replay = new Simulation(policy, new SnapshotCodec().Decode(initialBytes), ExecutionProfile.Laboratory);
+                WorldCommit(replay, new Command("observation.invisible.begin", observer,
+                    replay.Capture().Revision, CommandKind.BeginFixedEncounter));
+                WorldCommit(replay, new Command("observation.invisible.apply", target,
+                    replay.Capture().Revision, CommandKind.DispatchConditionEvent, "event.known-invisible"));
+                Require(saved.SequenceEqual(Bytes(replay)),
+                    "Replaying the shared encounter and condition commands changed the Invisible revelation latch.");
+            });
+
             cases.Add("observation_attack_rejects_known_target_through_effect_blocker", () => {
                 var fixture = new ObservationFixture(8, 8,
                     new[] { new ObservationGridCell(2, 0, blocksSight: false, blocksEffect: true,
