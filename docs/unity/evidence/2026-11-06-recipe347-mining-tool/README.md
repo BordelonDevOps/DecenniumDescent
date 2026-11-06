@@ -51,4 +51,4 @@ Final per-case reports and complete source hashes are [FOCUSED_CRITICAL_SUCCESS.
 
 This is one exact recipe and one pre-authored physical instance. Candidate state is explicit in snapshots, but this increment adds no command for losing/restoring tool members or changing suppression/melding dynamically. General recipe/family candidate registration, multiple candidates, a reusable tool acquisition/crafting path, portions, arbitrary item-on-surface geometry, additional mining recipes, production content, full source parity and release qualification remain outside this acceptance. The engine as a whole is not complete.
 
-The schema49 code review in **Unity Rules Engine Development** is the next review checkpoint. This local working-tree increment has not been pushed or committed.
+The schema49 code and evidence were later committed in `31eefbe7` and pushed to `Engine`. The retained packet is a review artifact; no GPT review of this source batch is recorded.
