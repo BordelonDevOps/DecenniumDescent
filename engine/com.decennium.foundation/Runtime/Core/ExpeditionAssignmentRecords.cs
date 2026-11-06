@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Decennium.Foundation
 {
-    public enum ExpeditionWorkProcedure { ToolRepair = 1, FishingTrapRetrieval = 2 }
+    public enum ExpeditionWorkProcedure { ToolRepair = 1, FishingTrapRetrieval = 2, MiningExtraction = 3 }
     public enum ExpeditionAssignmentStatus { Travelling = 1, Ready = 2, Started = 3, Cancelled = 4 }
 
     /// <summary>Explicit assignment intent. The selected fixture derives the physical work site;
@@ -13,16 +13,20 @@ namespace Decennium.Foundation
         public ExpeditionWorkProcedure Procedure { get; }
         public string TargetId { get; }
         public string DestinationId { get; }
+        public MiningSelectionRequest MiningSelection { get; }
         internal string Fingerprint => ((int)Procedure).ToString(System.Globalization.CultureInfo.InvariantCulture)
             + "|" + TargetId + "|" + DestinationId;
-        public ExpeditionAssignmentRequest(ExpeditionWorkProcedure procedure, string targetId, string destinationId = "")
+        public ExpeditionAssignmentRequest(ExpeditionWorkProcedure procedure, string targetId, string destinationId = "",
+            MiningSelectionRequest miningSelection = null)
         {
             if (!Enum.IsDefined(typeof(ExpeditionWorkProcedure), procedure) || !Validation.ValidId(targetId)
                 || destinationId == null || destinationId != "" && !Validation.ValidId(destinationId)
                 || procedure == ExpeditionWorkProcedure.ToolRepair && destinationId != ""
-                || procedure == ExpeditionWorkProcedure.FishingTrapRetrieval && destinationId == "")
+                || procedure == ExpeditionWorkProcedure.FishingTrapRetrieval && destinationId == ""
+                || procedure == ExpeditionWorkProcedure.MiningExtraction && (destinationId != "" || miningSelection == null)
+                || procedure != ExpeditionWorkProcedure.MiningExtraction && miningSelection != null)
                 throw new ArgumentException("Invalid expedition work assignment request.");
-            Procedure = procedure; TargetId = targetId; DestinationId = destinationId;
+            Procedure = procedure; TargetId = targetId; DestinationId = destinationId; MiningSelection = miningSelection;
         }
     }
 
@@ -39,11 +43,12 @@ namespace Decennium.Foundation
         public RuleTime UpdatedAt { get; }
         public ExpeditionAssignmentStatus Status { get; }
         public string WorkId { get; }
+        public MiningSelectionRequest MiningSelection { get; }
         public bool Open => Status == ExpeditionAssignmentStatus.Travelling || Status == ExpeditionAssignmentStatus.Ready;
 
         public ExpeditionWorkAssignmentRecord(string id, string workerId, ExpeditionWorkProcedure procedure, string targetId,
             string destinationId, int siteX, int siteY, RuleTime assignedAt, RuleTime updatedAt,
-            ExpeditionAssignmentStatus status, string workId = "")
+            ExpeditionAssignmentStatus status, string workId = "", MiningSelectionRequest miningSelection = null)
         {
             foreach (string value in new[] { id, workerId, targetId })
                 if (!Validation.ValidId(value)) throw new ArgumentException("Invalid expedition assignment identity.");
@@ -52,17 +57,20 @@ namespace Decennium.Foundation
                 || destinationId == null || destinationId != "" && !Validation.ValidId(destinationId)
                 || procedure == ExpeditionWorkProcedure.ToolRepair && destinationId != ""
                 || procedure == ExpeditionWorkProcedure.FishingTrapRetrieval && destinationId == ""
+                || procedure == ExpeditionWorkProcedure.MiningExtraction && (destinationId != "" || miningSelection == null)
+                || procedure != ExpeditionWorkProcedure.MiningExtraction && miningSelection != null
                 || siteX < 0 || siteY < 0 || assignedAt > updatedAt
                 || workId == null || workId != "" && !Validation.ValidId(workId)
                 || (status == ExpeditionAssignmentStatus.Started) != (workId != ""))
                 throw new ArgumentException("Invalid expedition assignment state.");
             Id = id; WorkerId = workerId; Procedure = procedure; TargetId = targetId; DestinationId = destinationId;
             SiteX = siteX; SiteY = siteY; AssignedAt = assignedAt; UpdatedAt = updatedAt; Status = status; WorkId = workId;
+            MiningSelection = miningSelection;
         }
 
         public ExpeditionWorkAssignmentRecord With(ExpeditionAssignmentStatus status, RuleTime at, string workId = "")
             => new ExpeditionWorkAssignmentRecord(Id, WorkerId, Procedure, TargetId, DestinationId, SiteX, SiteY,
-                AssignedAt, at, status, workId);
+                AssignedAt, at, status, workId, MiningSelection);
     }
 
     public static class ExpeditionAssignmentValidation
@@ -76,6 +84,9 @@ namespace Decennium.Foundation
                 || s.ExpeditionAssignments.Any(x => x == null)) throw new ArgumentException("Invalid expedition assignments.");
             if (s.SchemaVersion < Snapshot.ExpeditionAssignmentSchema && s.ExpeditionAssignments.Length != 0)
                 throw new ArgumentException("Expedition assignments require their snapshot schema.");
+            if (s.SchemaVersion < Snapshot.MiningExpeditionAssignmentSchema
+                && s.ExpeditionAssignments.Any(x => x.Procedure == ExpeditionWorkProcedure.MiningExtraction))
+                throw new ArgumentException("Mining assignments require schema47.");
             if (s.ExpeditionAssignments.Select(x => x.Id).Distinct(StringComparer.Ordinal).Count() != s.ExpeditionAssignments.Length
                 || s.ExpeditionAssignments.Where(x => x.Open).Select(x => x.WorkerId).Distinct(StringComparer.Ordinal).Count()
                     != s.ExpeditionAssignments.Count(x => x.Open))
@@ -91,12 +102,27 @@ namespace Decennium.Foundation
                         || s.WorldTraversals.Any(x => x.ActorId == worker.Id))
                         throw new ArgumentException("Ready expedition assignment is not at its work site.");
                 }
+                if (assignment.Procedure == ExpeditionWorkProcedure.MiningExtraction) {
+                    var deposit=s.MiningDeposits.SingleOrDefault(x=>x.Id==assignment.TargetId)
+                        ??throw new ArgumentException("Mining assignment references an unknown deposit.");
+                    var selection=assignment.MiningSelection;
+                    if(selection.DepositVersionId!=deposit.VersionId||assignment.SiteX!=deposit.SiteX||assignment.SiteY!=deposit.SiteY
+                        ||selection.CategoryIds.Any(id=>!s.MiningCategories.Any(x=>x.Id==id&&x.DepositId==deposit.Id&&x.Accessible)))
+                        throw new ArgumentException("Mining assignment does not match its exposed deposit and selected categories.");
+                }
                 if (assignment.Status == ExpeditionAssignmentStatus.Started)
                 {
                     bool linked = assignment.Procedure == ExpeditionWorkProcedure.ToolRepair
                         ? s.RepairWork.Any(x => x.Id == assignment.WorkId && x.WorkerId == assignment.WorkerId && x.TargetId == assignment.TargetId)
-                        : s.FishingTrapRetrievals.Any(x => x.Id == assignment.WorkId && x.WorkerId == assignment.WorkerId
-                            && x.TrapId == assignment.TargetId && x.DestinationId == assignment.DestinationId);
+                        : assignment.Procedure == ExpeditionWorkProcedure.FishingTrapRetrieval
+                            ? s.FishingTrapRetrievals.Any(x => x.Id == assignment.WorkId && x.WorkerId == assignment.WorkerId
+                                && x.TrapId == assignment.TargetId && x.DestinationId == assignment.DestinationId)
+                            : s.MiningAttempts.Any(x => x.Id == assignment.WorkId && x.WorkerId == assignment.WorkerId
+                                && x.DepositId == assignment.TargetId && x.DepositVersionId == assignment.MiningSelection.DepositVersionId
+                                && x.SelectedCategoryIds.SequenceEqual(assignment.MiningSelection.CategoryIds)
+                                && x.Ability == assignment.MiningSelection.Ability && x.Hurried == assignment.MiningSelection.Hurried
+                                && x.FailureVictimPreference == assignment.MiningSelection.FailureVictimPreference
+                                && x.CriticalRecoveryPreference == assignment.MiningSelection.CriticalRecoveryPreference);
                     if (!linked) throw new ArgumentException("Started expedition assignment has no matching procedure record.");
                 }
             }

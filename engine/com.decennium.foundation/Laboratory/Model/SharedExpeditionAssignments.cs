@@ -11,6 +11,7 @@ namespace Decennium.Foundation.Laboratory
             => s.ExpeditionAssignments = s.ExpeditionAssignments.Select(x => x.Id == value.Id ? value : x).ToArray();
 
         private bool AssignmentSite(Snapshot s, ExpeditionWorkProcedure procedure, string targetId, string destinationId,
+            MiningSelectionRequest miningSelection,
             out int siteX, out int siteY, out string error)
         {
             siteX = siteY = 0; error = null;
@@ -28,6 +29,16 @@ namespace Decennium.Foundation.Laboratory
                 if (trap == null || receiver == null || trap.SiteId != receiver.SiteId)
                 { error = "UnknownFishingTrapAssignmentTarget"; return false; }
                 siteX = trap.X; siteY = trap.Y; return true;
+            }
+            if (procedure == ExpeditionWorkProcedure.MiningExtraction)
+            {
+                if (miningFixture==null||s.SchemaVersion<Snapshot.MiningExpeditionAssignmentSchema)
+                { error="MiningAssignmentUnsupported"; return false; }
+                var deposit=s.MiningDeposits.SingleOrDefault(x=>x.Id==targetId);
+                if (deposit==null||destinationId!=""||miningSelection==null
+                    ||miningSelection.DepositVersionId!=deposit.VersionId)
+                { error="UnknownMiningAssignmentTarget"; return false; }
+                siteX=deposit.SiteX;siteY=deposit.SiteY;return true;
             }
             error = "UnknownExpeditionWorkProcedure"; return false;
         }
@@ -47,7 +58,8 @@ namespace Decennium.Foundation.Laboratory
 
         private string ResolveExpeditionAssignment(Snapshot s, Command c)
         {
-            if (!expeditionAssignmentsEnabled || s.SchemaVersion != Snapshot.ExpeditionAssignmentSchema)
+            if (!expeditionAssignmentsEnabled || s.SchemaVersion != Snapshot.ExpeditionAssignmentSchema
+                && s.SchemaVersion != Snapshot.MiningExpeditionAssignmentSchema)
                 return "ExpeditionAssignmentsNotSelected";
             if (s.InventoryCombat) return "WorkAssignmentRequiresExploration";
             if (c.Kind == CommandKind.AssignExpeditionWork)
@@ -57,7 +69,7 @@ namespace Decennium.Foundation.Laboratory
                 if (!ExpeditionAssignmentValidation.HasCapacity(s))
                     return "ExpeditionAssignmentCapacityReached";
                 if (s.ExpeditionAssignments.Any(x => x.Open && x.WorkerId == c.Actor)) return "WorkerAlreadyAssigned";
-                if (!AssignmentSite(s, request.Procedure, request.TargetId, request.DestinationId,
+                if (!AssignmentSite(s, request.Procedure, request.TargetId, request.DestinationId,request.MiningSelection,
                     out int siteX, out int siteY, out string siteError)) return siteError;
                 string id = "expedition.assignment." + (s.Revision + 1).ToString(CultureInfo.InvariantCulture);
                 var actor = s.Actors.Single(x => x.Id == c.Actor);
@@ -65,7 +77,7 @@ namespace Decennium.Foundation.Laboratory
                     ? ExpeditionAssignmentStatus.Ready : ExpeditionAssignmentStatus.Travelling;
                 s.ExpeditionAssignments = s.ExpeditionAssignments.Concat(new[] { new ExpeditionWorkAssignmentRecord(id,
                     c.Actor, request.Procedure, request.TargetId, request.DestinationId, siteX, siteY, s.RuleClock,
-                    s.RuleClock, status) }).ToArray();
+                    s.RuleClock, status, miningSelection:request.MiningSelection) }).ToArray();
                 return null;
             }
 
@@ -82,7 +94,7 @@ namespace Decennium.Foundation.Laboratory
             var worker = s.Actors.Single(x => x.Id == c.Actor);
             if (worker.X != current.SiteX || worker.Y != current.SiteY || s.WorldTraversals.Any(x => x.ActorId == c.Actor))
                 return "ExpeditionAssignmentNotAtSite";
-            if (!AssignmentSite(s, current.Procedure, current.TargetId, current.DestinationId,
+            if (!AssignmentSite(s, current.Procedure, current.TargetId, current.DestinationId,current.MiningSelection,
                 out int siteXNow, out int siteYNow, out string currentSiteError)) return currentSiteError;
             if (siteXNow != current.SiteX || siteYNow != current.SiteY) return "ExpeditionAssignmentSiteChanged";
 
@@ -97,7 +109,7 @@ namespace Decennium.Foundation.Laboratory
                 if (job == null) return "AssignmentProcedureDidNotCreateRepair";
                 workId = job.Id;
             }
-            else
+            else if(current.Procedure==ExpeditionWorkProcedure.FishingTrapRetrieval)
             {
                 int priorCount = s.FishingTrapRetrievals.Length;
                 var delegated = new Command(c.Id, c.Actor, c.ExpectedRevision, CommandKind.Interact, current.TargetId,
@@ -107,6 +119,16 @@ namespace Decennium.Foundation.Laboratory
                 var job = s.FishingTrapRetrievals.Skip(priorCount).SingleOrDefault();
                 if (job == null) return "AssignmentProcedureDidNotCreateTrapRetrieval";
                 workId = job.Id;
+            }
+            else
+            {
+                int priorCount=s.MiningAttempts.Length;
+                error=ResolveMining(s,new Command(c.Id,c.Actor,c.ExpectedRevision,CommandKind.StartMining,current.TargetId,
+                    miningSelection:current.MiningSelection));
+                if(error!=null)return error;
+                var job=s.MiningAttempts.Skip(priorCount).SingleOrDefault();
+                if(job==null)return "AssignmentProcedureDidNotCreateMiningAttempt";
+                workId=job.Id;
             }
             PutExpeditionAssignment(s, current.With(ExpeditionAssignmentStatus.Started, s.RuleClock, workId));
             return null;

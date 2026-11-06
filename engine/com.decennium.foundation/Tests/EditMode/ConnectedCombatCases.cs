@@ -138,6 +138,70 @@ namespace Decennium.Foundation.Tests
                 Require(Eaten(s)==new RuleQuantity(2,3)&&s.Capture().Lives.Single(x=>x.ActorId==AdditionalTacticalActor.Id).Dead&&s.Capture().Actors.Single(x=>x.Id==TestOnlyPolicy.ActorId).X==2,
                     "Three-layer loop lost combat outcome, actual intake or further exploration.");
             });
+            cases.Add("connected_exploration_combat_and_assigned_mining_share_one_saved_timeline",()=>{
+                var fixture=new SharedMiningFixture(siteX:1,siteY:3);
+                var p=TestOnlySharedWorldPolicy.WithMining(fixture,enemyHp:1).EnableExpeditionAssignments();
+                var s=World(p);
+                var selection=new MiningSelectionRequest(SharedMiningFixture.DepositVersionId,
+                    new[]{SharedMiningFixture.CategoryA},MiningAbilityChoice.Wisdom);
+                var request=new ExpeditionAssignmentRequest(ExpeditionWorkProcedure.MiningExtraction,
+                    SharedMiningFixture.DepositId,miningSelection:selection);
+                var assign=ExpeditionCommand(s,CommandKind.AssignExpeditionWork,request:request);
+                WorldCommit(s,assign);
+                WorldStep(s,-1,0,actor:TestOnlyPolicy.CompanionId);WorldAdvance(s,1);
+                WorldStep(s,-1,0,actor:TestOnlyPolicy.CompanionId);WorldAdvance(s,1);
+                var assignment=s.Capture().ExpeditionAssignments.Single();
+                Require(assignment.Status==ExpeditionAssignmentStatus.Ready&&assignment.SiteX==fixture.SiteX
+                    &&assignment.SiteY==fixture.SiteY,"Companion did not reach the assignment's authored mining site.");
+                WorldCommit(s,ExpeditionCommand(s,CommandKind.StartExpeditionWork,assignment.Id));
+                var started=s.Capture().MiningAttempts.Single();
+                Require(started.Status==MiningAttemptStatus.Working&&started.WorkerId==TestOnlyPolicy.CompanionId
+                    &&s.Capture().ExpeditionAssignments.Single().Status==ExpeditionAssignmentStatus.Started
+                    &&s.Capture().ExpeditionAssignments.Single().WorkId==started.Id,
+                    "Assignment did not retain the existing mining attempt as authoritative work.");
+
+                byte[] beforeApproach=Bytes(s);
+                s=new Simulation(p,new SnapshotCodec().Decode(beforeApproach),ExecutionProfile.Laboratory);
+                Require(beforeApproach.SequenceEqual(Bytes(s)),"Active assignment changed during save/restore before combat.");
+                WorldStep(s,1,0);WorldAdvance(s,1);WorldStep(s,1,0);WorldAdvance(s,1);WorldStep(s,1,0);
+                Require(s.Capture().InventoryCombat&&s.Capture().Encounter!=null
+                    &&!s.Capture().Encounter.Order.Contains(TestOnlyPolicy.CompanionId),
+                    "Exploration did not enter tactical combat while keeping the assigned worker off-calendar.");
+                WorldCommit(s,Tac(s,CommandKind.SelectCombatStance,stance:(int)CombatStance.Aggressive));
+                TacStep(s,3,0);
+                RuleTime workAtEntry=s.Capture().MiningAttempts.Single().WorkDone;
+                DefeatConnectedEnemy(s);WorldCommit(s,Tac(s,CommandKind.EndFixedEncounter));
+                var afterCombat=s.Capture();var continuing=afterCombat.MiningAttempts.Single();
+                Require(!afterCombat.InventoryCombat&&continuing.Status==MiningAttemptStatus.Working
+                    &&continuing.WorkDone>workAtEntry&&afterCombat.ExpeditionAssignments.Single().WorkId==continuing.Id,
+                    "Tactical time failed to continue the remote assignment or changed its linked procedure.");
+
+                string path=Path.Combine(directory,"connected-assigned-mining-after-combat.bin");
+                var store=new FileSaveStore();store.Save(path,afterCombat);
+                byte[] saved=File.ReadAllBytes(path);
+                s=new Simulation(p,store.Load(path),ExecutionProfile.Laboratory);
+                Require(saved.SequenceEqual(Bytes(s)),"Post-combat save/restore changed work, encounter or assignment history.");
+                WorldAdvance(s,continuing.DurationSeconds);
+                var settled=s.Capture();var result=settled.MiningAttempts.Single();
+                bool resolved=result.Status==MiningAttemptStatus.Success||result.Status==MiningAttemptStatus.CriticalSuccess
+                    ||result.Status==MiningAttemptStatus.Failure||result.Status==MiningAttemptStatus.CriticalFailure;
+                Require(resolved&&result.WorkDone==new RuleTime(result.DurationSeconds)
+                    &&settled.MiningAttempts.Length==1&&settled.MiningUnits.Length==2
+                    &&settled.ExpeditionAssignments.Single().WorkId==result.Id,
+                    "Mining failed to settle exactly one valid source-selected attempt after the encounter.");
+                byte[] settledBytes=Bytes(s);
+                Require(s.Execute(host,assign).Outcome==Outcome.Duplicate&&settledBytes.SequenceEqual(Bytes(s))
+                    &&s.Capture().MiningAttempts.Length==1,
+                    "Replaying the original assignment duplicated work or changed the finite deposit.");
+                var beforeContinue=s.Capture().Actors.Single(x=>x.Id==TestOnlyPolicy.ActorId);
+                var continuation=IC(s,CommandKind.BeginWorldStep,"walk",actor:TestOnlyPolicy.ActorId,x:-1,y:0);
+                var continued=s.Execute(host,continuation);
+                Require(continued.Outcome==Outcome.Committed,$"Post-settlement exploration from ({beforeContinue.X},{beforeContinue.Y}) west was rejected: {continued.Code}.");
+                WorldAdvance(s,1);
+                Require(s.Capture().Actors.Single(x=>x.Id==TestOnlyPolicy.ActorId).X==1
+                    &&s.Capture().MiningUnits.Single(x=>x.Id==SharedMiningFixture.UnitA).Status==MiningUnitStatus.Extracted,
+                    "Exploration did not continue after combat, mining settlement and save/restore.");
+            });
             cases.Add("connected_combat_off_grid_entry_rejects_and_preserves_partial_position",()=>{
                 var s=World(ConnectedPolicy());WorldStep(s,1,0);WorldAdvance(s,2,5);
                 RejectUnchanged(s,host,IC(s,CommandKind.BeginFixedEncounter),"OffGridCombatEntryUnsupported");

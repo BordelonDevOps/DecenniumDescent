@@ -125,7 +125,7 @@ namespace Decennium.Foundation.Laboratory
         }
         private string ResolvePortableEquipment(Snapshot s,Command c)
         {
-            if(portableKit==null&&soldierCharacterBuild==null&&harvestFixture==null)return "PortableEquipmentNotSelected";
+            if(portableKit==null&&soldierCharacterBuild==null&&harvestFixture==null&&ordinaryReceptacles==null)return "PortableEquipmentNotSelected";
             bool transfer=c.Kind==CommandKind.HandlePortableEquipment;
             if(transfer!=(c.Inventory!=null)||c.Combat!=null||c.X!=0||c.Y!=0)return "InvalidPortableRequest";
             if(transfer&&c.Inventory.Amount!=new RuleQuantity(1))return "PortableItemsAreIndivisible";
@@ -198,6 +198,7 @@ namespace Decennium.Foundation.Laboratory
                 case CommandKind.OpenPortableContainer:
                     operation=PortableOperation.Open;
                     if(c.Inventory!=null||!item.CapacityPounds.HasValue||item.Open)return "PortableContainerCannotOpen";
+                    if(s.OrdinaryReceptacleLocks.Any(x=>x.ContainerId==item.Id&&x.Locked))return "PortableContainerLocked";
                     break;
                 case CommandKind.ClosePortableContainer:
                     operation=PortableOperation.Close;

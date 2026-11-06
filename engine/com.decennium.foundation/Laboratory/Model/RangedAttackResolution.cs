@@ -41,6 +41,8 @@ namespace Decennium.Foundation.Laboratory
         public bool FrightenedSourceVisible { get; }
         public int AdditionalAdvantageSources { get; }
         public int AdditionalDisadvantageSources { get; }
+        public bool TargetUnseenDisadvantage { get; }
+        public bool AttackerUnseenAdvantage { get; }
 
         public RangedAttackRequest(long distanceFeet,long normalRangeFeet,long maximumRangeFeet,int targetArmorClass,
             int dexterityModifier,int proficiencyBonus,bool proficient,int flatAttackModifier,CombatCover targetCover,
@@ -48,7 +50,8 @@ namespace Decennium.Foundation.Laboratory
             ConditionClauses attackerConditions,ConditionClauses targetConditions,int attackerExhaustion=0,
             bool attackerInvisibleLocationKnown=false,bool targetInvisibleLocationKnown=false,
             bool targetSeesInvisibleAttacker=false,bool attackerSeesInvisibleTarget=false,bool frightenedSourceVisible=false,
-            int additionalAdvantageSources=0,int additionalDisadvantageSources=0)
+            int additionalAdvantageSources=0,int additionalDisadvantageSources=0,
+            bool? targetUnseenDisadvantage=null,bool? attackerUnseenAdvantage=null)
         {
             DistanceFeet=distanceFeet;NormalRangeFeet=normalRangeFeet;MaximumRangeFeet=maximumRangeFeet;
             TargetArmorClass=targetArmorClass;DexterityModifier=dexterityModifier;ProficiencyBonus=proficiencyBonus;
@@ -60,6 +63,8 @@ namespace Decennium.Foundation.Laboratory
             TargetSeesInvisibleAttacker=targetSeesInvisibleAttacker;AttackerSeesInvisibleTarget=attackerSeesInvisibleTarget;
             FrightenedSourceVisible=frightenedSourceVisible;AdditionalAdvantageSources=additionalAdvantageSources;
             AdditionalDisadvantageSources=additionalDisadvantageSources;
+            TargetUnseenDisadvantage=targetUnseenDisadvantage??!targetVisible;
+            AttackerUnseenAdvantage=attackerUnseenAdvantage??attackerUnseen;
         }
     }
 
@@ -123,8 +128,8 @@ namespace Decennium.Foundation.Laboratory
                 ConditionAttackKind.Ranged,request.AttackerExhaustion,request.AttackerInvisibleLocationKnown,
                 request.TargetInvisibleLocationKnown,request.TargetSeesInvisibleAttacker,request.AttackerSeesInvisibleTarget,
                 request.FrightenedSourceVisible);
-            bool advantage=conditions.AdvantagePresent||request.AttackerUnseen||request.AdditionalAdvantageSources>0;
-            bool disadvantage=conditions.DisadvantagePresent||!request.TargetVisible||range.RangeDisadvantage
+            bool advantage=conditions.AdvantagePresent||request.AttackerUnseenAdvantage||request.AdditionalAdvantageSources>0;
+            bool disadvantage=conditions.DisadvantagePresent||request.TargetUnseenDisadvantage||range.RangeDisadvantage
                 ||request.CloseHostileEligible||request.AdditionalDisadvantageSources>0;
             var roll=PlaytestDice.RollD20(initialRandomState,advantage?1:0,disadvantage?1:0);
             var attack=PlaytestRolls.AttackRoll(roll.Natural,modifier,armorClass);

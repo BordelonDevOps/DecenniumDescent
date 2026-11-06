@@ -64,6 +64,64 @@ namespace Decennium.Foundation.Tests
                     "Started assignment or linked procedure changed across save/restore.");
             });
 
+            cases.Add("expedition_assignment_travels_to_mine_and_dispatches_shared_extraction", () => {
+                var fixture=new SharedMiningFixture(siteX:1,siteY:3);
+                var unseeded=TestOnlySharedWorldPolicy.WithMining(fixture).EnableExpeditionAssignments();
+                uint seed=MiningSeedFor(TaskDegree.Success,MiningModifier(unseeded.Initial()));
+                var policy=TestOnlySharedWorldPolicy.WithMining(fixture,seed).EnableExpeditionAssignments();
+                var s=World(policy);var initial=s.Capture();
+                Require(initial.SchemaVersion==Snapshot.MiningExpeditionAssignmentSchema
+                    &&initial.WorldActivityIntervals.Any(x=>x.ActorId==worker),
+                    "Mining assignments did not select schema47 with the shared off-calendar activity ledger.");
+                var selection=new MiningSelectionRequest(SharedMiningFixture.DepositVersionId,
+                    new[]{SharedMiningFixture.CategoryA},MiningAbilityChoice.Wisdom);
+                var request=new ExpeditionAssignmentRequest(ExpeditionWorkProcedure.MiningExtraction,
+                    SharedMiningFixture.DepositId,miningSelection:selection);
+                var assign=ExpeditionCommand(s,CommandKind.AssignExpeditionWork,request:request,actor:worker);
+                WorldCommit(s,assign);
+                var assignment=s.Capture().ExpeditionAssignments.Single();
+                Require(assignment.Status==ExpeditionAssignmentStatus.Travelling&&assignment.SiteX==1&&assignment.SiteY==3
+                    &&assignment.MiningSelection.CategoryIds.SequenceEqual(new[]{SharedMiningFixture.CategoryA})
+                    &&s.Capture().RuleClock==initial.RuleClock&&s.Capture().MiningAttempts.Length==0
+                    &&s.Capture().Work.Reservations.Count==initial.Work.Reservations.Count,
+                    "Assigning extraction changed time/stock or failed to preserve the selected procedure.");
+                var receipt=s.Capture().Receipts.Single(x=>x.Id==assign.Id);
+                var replayed=CommandHistory.Read(receipt);
+                Require(replayed.ExpeditionAssignment.MiningSelection.DepositVersionId==selection.DepositVersionId
+                    &&replayed.ExpeditionAssignment.MiningSelection.CategoryIds.SequenceEqual(selection.CategoryIds),
+                    "Mining assignment receipt did not reconstruct its explicit extraction choice.");
+
+                WorldStep(s,-1,0,actor:worker);WorldAdvance(s,1);
+                Require(s.Capture().ExpeditionAssignments.Single().Status==ExpeditionAssignmentStatus.Travelling,
+                    "Partial route travel marked the mine assignment ready early.");
+                WorldStep(s,-1,0,actor:worker);WorldAdvance(s,1);
+                assignment=s.Capture().ExpeditionAssignments.Single();
+                Require(assignment.Status==ExpeditionAssignmentStatus.Ready&&s.Capture().Actors.Single(x=>x.Id==worker).X==1,
+                    "Arrival did not make the companion's mine assignment ready.");
+
+                var start=ExpeditionCommand(s,CommandKind.StartExpeditionWork,assignment.Id,actor:worker);
+                WorldCommit(s,start);
+                assignment=s.Capture().ExpeditionAssignments.Single();
+                var attempt=s.Capture().MiningAttempts.Single();
+                Require(assignment.Status==ExpeditionAssignmentStatus.Started&&assignment.WorkId==attempt.Id
+                    &&attempt.WorkerId==worker&&attempt.DepositId==SharedMiningFixture.DepositId
+                    &&attempt.SelectedCategoryIds.SequenceEqual(selection.CategoryIds)
+                    &&attempt.Ability==selection.Ability&&attempt.Status==MiningAttemptStatus.Working,
+                    "Assignment did not delegate into the existing shared mining transaction.");
+                var midwork=Bytes(s);
+                s=new Simulation(policy,new SnapshotCodec().Decode(midwork),ExecutionProfile.Laboratory);
+                Require(midwork.SequenceEqual(Bytes(s)),"Assigned mining work or selection changed on save/restore.");
+                WorldAdvance(s,1800);
+                var completed=s.Capture();attempt=completed.MiningAttempts.Single();
+                Require(attempt.Status==MiningAttemptStatus.Success&&completed.MiningUnits.Single(x=>x.Id==SharedMiningFixture.UnitA).Status==MiningUnitStatus.Extracted
+                    &&completed.MiningUnits.Single(x=>x.Id==SharedMiningFixture.UnitA).ReceivedContainerId==SharedMiningFixture.ReceiverId
+                    &&completed.ExpeditionAssignments.Single().WorkId==attempt.Id,
+                    "Assigned extraction did not settle finite mineral stock through the shared mining resolver.");
+                var settled=Bytes(s);var duplicate=s.Execute(host,assign);
+                Require(duplicate.Outcome==Outcome.Duplicate&&settled.SequenceEqual(Bytes(s)),
+                    "Duplicate mining assignment replay changed travel, stock or work state.");
+            });
+
             cases.Add("expedition_assignment_travels_to_physical_trap_and_reuses_retrieval", () => {
                 var fixture = new SharedFishingTrapFixture(12, 1, identity: "assigned-trap",
                     setterId: TestOnlyPolicy.CompanionId, trapOwnerId: TestOnlyPolicy.ActorId);

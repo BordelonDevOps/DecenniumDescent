@@ -1,0 +1,36 @@
+{
+  "policyId": "MGT-07.ASSAY.PROTOTYPE.2026-11-06.v1",
+  "status": "provisional prototype policy; not release-approved",
+  "sourceRevision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+  "sources": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/MINING_CANDIDATE_GUIDE.md",
+      "sha256": "726cb84a1104901f5b05b412039b458af5bb5168e4482fb9e9844b1b42b697c3"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/GATHERING_TOOL_CANDIDATE_GUIDE.md",
+      "sha256": "9b1e4defcd18569ad8d8305552ad740e62be1faea3e1de448e364bd7536215bc"
+    }
+  ],
+  "sourceRules": {
+    "workSeconds": 60,
+    "ability": "Wisdom",
+    "skill": "Mining",
+    "requiresPhysicalExistingSample": true,
+    "requiresDebitOnDestructiveAssay": true,
+    "failedInformationCheckRevealsReliableFindings": false,
+    "criticalSuccessAddsQuantityOrHiddenProperties": false,
+    "unchangedEvidenceOrWorkerChangeAllowsRepeat": false
+  },
+  "prototypePolicy": {
+    "portion": "Bind an exact authored positive quantity to stable inventory lot provenance; never infer sample quantity.",
+    "start": "Reserve the full sample portion, exclusive worker interval and evidence opportunity.",
+    "debit": "Consume the full portion with the first positive credited work.",
+    "pauseAndSave": "Retain credited labor and reservations; save and restore exactly; grant no offline progress.",
+    "cancel": "Before positive work, release the unused portion. After positive work, retain the debit and close without check, refund, finding or transferable labor.",
+    "completedBlockedCheck": "Retain AwaitingCheck and resolve once on eligible resume without more work or sample.",
+    "evidenceIdentity": "Use physical sample identity and canonical inventory lineage; splitting, replacement from the same root, renaming and worker changes do not create new evidence.",
+    "repeatIdentity": "Allow at most one resolved check per evidence basis and substantive authored method; identical renamed methods are the same method.",
+    "atomicity": "Commit check, findings, RNG and receipt through the shared simulation transaction."
+  }
+}

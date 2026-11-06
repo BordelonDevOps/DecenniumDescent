@@ -191,6 +191,7 @@ namespace Decennium.Foundation
                 ||s.PeriodicImmunities.Any(x=>!Actor(x.TargetId)||x.GrantedAt>s.RuleClock||x.EndedAt>s.RuleClock)
                 ||s.SkillTraining.Any(x=>!Actor(x.ActorId)||x.SkillId!="medicine"
                     &&!(s.SchemaVersion>=Snapshot.FishingTrapLegacySchema&&x.SkillId=="fishing-tackle")
+                    &&!(s.SchemaVersion>=Snapshot.MiningSchema&&x.SkillId=="mining-tools")
                     &&!(s.SchemaVersion>=Snapshot.SoldierInitialBuildSchema&&s.InitialCharacterLoadouts.Any(b=>b.ActorId==x.ActorId&&b.SelectedSkillIds.Contains(x.SkillId)))))
                 throw new ArgumentException("Invalid periodic rider references.");
             foreach(var rider in s.PeriodicRiders.Where(x=>x.Present))

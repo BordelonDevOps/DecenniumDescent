@@ -8,6 +8,9 @@ namespace Decennium.Foundation.Laboratory
 {
     public sealed partial class TestOnlySharedWorldPolicy
     {
+        private bool WorldWalkable(Snapshot s, int x, int y)
+            => TestOnlyPolicy.Walkable(x, y) && (observationFixture == null || ObservationGeometry.SupportsAnchorAt(s, x, y));
+
         private sealed class WorldStepFacts
         {
             public bool Scheduled;
@@ -39,7 +42,7 @@ namespace Decennium.Foundation.Laboratory
             int toX, toY;
             try { toX = checked(actor.X + c.X); toY = checked(actor.Y + c.Y); }
             catch (OverflowException) { return "InvalidWorldStep"; }
-            var spatial = WorldSpatialQueries.Step(s, actor.Id, actor.X, actor.Y, toX, toY, false, false, TestOnlyPolicy.Walkable);
+            var spatial = WorldSpatialQueries.Step(s, actor.Id, actor.X, actor.Y, toX, toY, false, false, (x, y) => WorldWalkable(s, x, y));
             if (spatial == SpatialStepFailure.Blocked) return "Blocked";
             if (spatial == SpatialStepFailure.Occupied) return "Occupied";
 
@@ -232,6 +235,82 @@ namespace Decennium.Foundation.Laboratory
                     }
                 }
             }
+            if(miningFixture!=null&&IsMiningWorker(actor)) {
+                var attempt=s.MiningAttempts.SingleOrDefault(x=>x.WorkerId==actor
+                    &&(x.Status==MiningAttemptStatus.Working||x.Status==MiningAttemptStatus.Paused||x.Status==MiningAttemptStatus.AwaitingCheck));
+                if(attempt!=null) {
+                    CommandKind kind=attempt.Status==MiningAttemptStatus.Working?CommandKind.PauseMining:CommandKind.ResumeMining;
+                    yield return new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+".mining."+(index++).ToString(CultureInfo.InvariantCulture),
+                        actor,s.Revision,kind,attempt.Id);
+                } else if(s.MiningAttempts.Length==0) {
+                    var deposit=s.MiningDeposits.SingleOrDefault();
+                    foreach(var category in s.MiningCategories.Where(x=>x.DepositId==deposit?.Id&&x.Accessible).OrderBy(x=>x.Id,StringComparer.Ordinal)) {
+                        if(deposit==null)break;
+                        var selection=new MiningSelectionRequest(deposit.VersionId,new[]{category.Id});
+                        yield return new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+".mining."+(index++).ToString(CultureInfo.InvariantCulture),
+                            actor,s.Revision,CommandKind.StartMining,deposit.Id,miningSelection:selection);
+                    }
+                }
+            }
+            if(miningFixture!=null&&miningFixture.MineralPreparationProfiles.Length>0&&IsMiningWorker(actor)) {
+                var attempts=s.MineralPreparationAttempts.Where(x=>x.WorkerId==actor
+                    &&(x.Status==MineralPreparationStatus.Working||x.Status==MineralPreparationStatus.Paused
+                        ||x.Status==MineralPreparationStatus.AwaitingCompletion))
+                    .OrderBy(x=>x.StartedAt).ThenBy(x=>x.Id,StringComparer.Ordinal).ToArray();
+                foreach(var attempt in attempts) {
+                    CommandKind kind=attempt.Status==MineralPreparationStatus.Working
+                        ?CommandKind.PauseMineralPreparation:CommandKind.ResumeMineralPreparation;
+                    yield return new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+".mineral-preparation."+(index++).ToString(CultureInfo.InvariantCulture),
+                        actor,s.Revision,kind,attempt.Id);
+                }
+                if(attempts.Length==0)foreach(var profile in s.MineralPreparationProfiles.OrderBy(x=>x.Id,StringComparer.Ordinal))
+                    if(!s.MineralPreparationAttempts.Any(x=>x.ProfileId==profile.Id))
+                        yield return new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+".mineral-preparation."+(index++).ToString(CultureInfo.InvariantCulture),
+                            actor,s.Revision,CommandKind.StartMineralPreparation,profile.UnitId);
+            }
+            if(prospectingFixture!=null&&IsProspectingWorker(actor)) {
+                var attempt=s.ProspectingAttempts.SingleOrDefault(x=>x.ActorId==actor
+                    &&(x.Status==ProspectingAttemptStatus.Working||x.Status==ProspectingAttemptStatus.Paused
+                        ||x.Status==ProspectingAttemptStatus.AwaitingCheck));
+                if(attempt!=null) {
+                    CommandKind kind=attempt.Status==ProspectingAttemptStatus.Working?CommandKind.PauseProspecting:CommandKind.ResumeProspecting;
+                    yield return new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+".prospecting."+(index++).ToString(CultureInfo.InvariantCulture),
+                        actor,s.Revision,kind,attempt.Id);
+                } else foreach(var patch in s.ProspectingPatches.OrderBy(x=>x.Id,StringComparer.Ordinal)) {
+                    yield return new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+".prospecting."+(index++).ToString(CultureInfo.InvariantCulture),
+                        actor,s.Revision,CommandKind.StartProspecting,patch.Id);
+                }
+            }
+            if(HasMiningAssay&&IsMiningWorker(actor)) {
+                var attempts=s.MiningAssayAttempts.Where(x=>x.WorkerId==actor
+                    &&(x.Status==MiningAssayStatus.Working||x.Status==MiningAssayStatus.Paused||x.Status==MiningAssayStatus.AwaitingCheck))
+                    .OrderBy(x=>x.StartedAt).ThenBy(x=>x.Id,StringComparer.Ordinal).ToArray();
+                var destructiveAttempts=s.DestructiveMiningAssayAttempts.Where(x=>x.WorkerId==actor
+                    &&(x.Status==MiningAssayStatus.Working||x.Status==MiningAssayStatus.Paused||x.Status==MiningAssayStatus.AwaitingCheck))
+                    .OrderBy(x=>x.StartedAt).ThenBy(x=>x.Id,StringComparer.Ordinal).ToArray();
+                foreach(var attempt in attempts) {
+                    CommandKind kind=attempt.Status==MiningAssayStatus.Working?CommandKind.PauseMiningAssay:CommandKind.ResumeMiningAssay;
+                    yield return new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+".mining-assay."+(index++).ToString(CultureInfo.InvariantCulture),
+                        actor,s.Revision,kind,attempt.Id);
+                }
+                foreach(var destructive in destructiveAttempts) {
+                    CommandKind kind=destructive.Status==MiningAssayStatus.Working?CommandKind.PauseMiningAssay:CommandKind.ResumeMiningAssay;
+                    yield return new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+".mining-assay."+(index++).ToString(CultureInfo.InvariantCulture),
+                        actor,s.Revision,kind,destructive.Id);
+                    yield return new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+".mining-assay."+(index++).ToString(CultureInfo.InvariantCulture),
+                        actor,s.Revision,CommandKind.CancelMiningAssay,destructive.Id);
+                }
+                if(attempts.Length==0&&destructiveAttempts.Length==0) {
+                    foreach(var profile in s.MiningAssayProfiles.OrderBy(x=>x.Id,StringComparer.Ordinal)) {
+                        if(s.MiningAssayAttempts.Any(x=>x.ProfileId==profile.Id))continue;
+                        yield return new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+".mining-assay."+(index++).ToString(CultureInfo.InvariantCulture),
+                            actor,s.Revision,CommandKind.StartMiningAssay,profile.Id);
+                    }
+                    foreach(var profile in s.DestructiveMiningAssayProfiles.OrderBy(x=>x.Id,StringComparer.Ordinal))
+                        yield return new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+".mining-assay."+(index++).ToString(CultureInfo.InvariantCulture),
+                            actor,s.Revision,CommandKind.StartMiningAssay,profile.Id);
+                }
+            }
             foreach (var command in DiscoverFishingTrapControls(s, actor)) yield return command;
             foreach (var command in DiscoverManufacturingCommands(s, actor)) yield return command;
         }
@@ -251,6 +330,7 @@ namespace Decennium.Foundation.Laboratory
 
         private CommandQueryResult QuerySharedWorldCommand(Snapshot s, Authority authority, Command c)
         {
+            if (IsOrdinaryReceptacleCommand(s,c)) return QueryOrdinaryReceptacleCommand(s,c);
             if (c.Kind == CommandKind.Interact) return QueryFishingTrapControl(s, c);
             if (c.Kind == CommandKind.ResolveManufacturingQuality) return QueryManufacturingQualityChoice(s, c);
             if (c.Kind == CommandKind.PauseManufacturing || c.Kind == CommandKind.ResumeManufacturing || c.Kind == CommandKind.CancelManufacturing)
@@ -280,6 +360,57 @@ namespace Decennium.Foundation.Laboratory
                     if (remaining.Denominator == 1) costs.Add(new CommandCost("work-seconds", "", remaining.Numerator));
                 }
                 return new CommandQueryResult(true, failure == null, failure ?? "Available", s.Revision, costs);
+            }
+            if(c.Kind==CommandKind.StartMining||c.Kind==CommandKind.PauseMining||c.Kind==CommandKind.ResumeMining) {
+                string failure=AssessMiningCommand(s,c,out var facts);var costs=new List<CommandCost>();
+                if(failure==null&&c.Kind==CommandKind.StartMining) {
+                    costs.Add(new CommandCost("work-seconds","",facts.Duration));
+                    costs.AddRange(facts.UnitIds.Select(id=>new CommandCost("finite-source-unit",id,1)));
+                } else if(failure==null&&c.Kind==CommandKind.ResumeMining&&facts.Current.Status==MiningAttemptStatus.Paused) {
+                    RuleTime remaining=SubtractMiningTime(new RuleTime(facts.Current.DurationSeconds),facts.Current.WorkDone);
+                    if(remaining.Denominator==1)costs.Add(new CommandCost("work-seconds","",remaining.Numerator));
+                }
+                return new CommandQueryResult(true,failure==null,failure??"Available",s.Revision,costs);
+            }
+            if(c.Kind==CommandKind.StartMineralPreparation||c.Kind==CommandKind.PauseMineralPreparation
+                ||c.Kind==CommandKind.ResumeMineralPreparation) {
+                string failure=AssessMineralPreparationCommand(s,c,out var facts);var costs=new List<CommandCost>();
+                if(failure==null&&c.Kind==CommandKind.StartMineralPreparation) {
+                    costs.Add(new CommandCost("work-seconds","",MineralPreparationValidation.WorkSeconds));
+                    costs.Add(new CommandCost("whole-mineral-unit",facts.Unit.Id,1));
+                } else if(failure==null&&c.Kind==CommandKind.ResumeMineralPreparation
+                    &&facts.Current.Status==MineralPreparationStatus.Paused) {
+                    RuleTime remaining=SubtractMiningTime(new RuleTime(MineralPreparationValidation.WorkSeconds),facts.Current.WorkDone);
+                    if(remaining.Denominator==1)costs.Add(new CommandCost("work-seconds","",remaining.Numerator));
+                }
+                return new CommandQueryResult(true,failure==null,failure??"Available",s.Revision,costs);
+            }
+            if(c.Kind==CommandKind.StartProspecting||c.Kind==CommandKind.PauseProspecting
+                ||c.Kind==CommandKind.ResumeProspecting||c.Kind==CommandKind.RecordProspectingExposure) {
+                string failure=AssessProspectingCommand(s,c,out var facts);var costs=new List<CommandCost>();
+                if(failure==null&&c.Kind==CommandKind.StartProspecting)
+                    costs.Add(new CommandCost("work-seconds","",ProspectingValidation.WorkSeconds));
+                else if(failure==null&&c.Kind==CommandKind.ResumeProspecting&&facts.Current.Status==ProspectingAttemptStatus.Paused
+                    &&facts.Current.WorkDone<new RuleTime(ProspectingValidation.WorkSeconds)) {
+                    RuleTime remaining=SubtractProspectingTime(new RuleTime(ProspectingValidation.WorkSeconds),facts.Current.WorkDone);
+                    if(remaining.Denominator==1)costs.Add(new CommandCost("work-seconds","",remaining.Numerator));
+                }
+                return new CommandQueryResult(true,failure==null,failure??"Available",s.Revision,costs);
+            }
+            if(c.Kind==CommandKind.StartMiningAssay||c.Kind==CommandKind.PauseMiningAssay||c.Kind==CommandKind.ResumeMiningAssay
+                ||c.Kind==CommandKind.CancelMiningAssay) {
+                string failure=AssessMiningAssayCommand(s,c,out var facts);var costs=new List<CommandCost>();
+                if(failure==null&&c.Kind==CommandKind.StartMiningAssay)
+                    costs.Add(new CommandCost("work-seconds","",MiningAssayValidation.WorkSeconds));
+                else if(failure==null&&c.Kind==CommandKind.ResumeMiningAssay) {
+                    var current=facts.DestructiveCurrent!=null?(RuleTime?)facts.DestructiveCurrent.WorkDone:facts.Current?.WorkDone;
+                    var status=facts.DestructiveCurrent!=null?facts.DestructiveCurrent.Status:facts.Current?.Status;
+                    if(status==MiningAssayStatus.Paused&&current.HasValue&&current.Value<new RuleTime(MiningAssayValidation.WorkSeconds)) {
+                    RuleTime remaining=SubtractMiningAssayTime(new RuleTime(MiningAssayValidation.WorkSeconds),current.Value);
+                    if(remaining.Denominator==1)costs.Add(new CommandCost("work-seconds","",remaining.Numerator));
+                    }
+                }
+                return new CommandQueryResult(true,failure==null,failure??"Available",s.Revision,costs);
             }
             if (s.InventoryCombat && (c.Kind == CommandKind.BeginWorldStep || c.Kind == CommandKind.SuspendWorldStep || c.Kind == CommandKind.ResumeWorldStep))
                 return new CommandQueryResult(false, false, "UnsupportedOperation", s.Revision);

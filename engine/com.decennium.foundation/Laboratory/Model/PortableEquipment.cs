@@ -102,6 +102,7 @@ namespace Decennium.Foundation.Laboratory
             }
             var modeled=records.Where(CarriedTree).ToArray();
             var burden=modeled.Select(x=>{
+                if(x.MassBasis==PortableMassBasis.Unmodeled)return new BurdenItem(x.Id,x.ParentId==""?null:x.ParentId,null,null);
                 var mass=PortableEquipmentValidation.Mass(s,x);
                 // A missing source weight is retained as null; only its approved operational
                 // Load fallback supplies estimated pounds for routine carrying.
@@ -158,7 +159,23 @@ namespace Decennium.Foundation.Laboratory
             return s.Work.Reservations.Any(x=>lots.Contains(x.LotId)&&x.RemainingAmount!=default)
                 ||s.Intakes.Any(x=>lots.Contains(x.LotId)&&x.Status==IntakeStatus.Working)
                 ||s.WaterFills.Any(x=>x.Pending&&(vessels.Contains(x.DestinationId)||vessels.Contains(WaterFilling.SourceVessel(s,x.SourceLotId))))
-                ||s.SupplyCacheAttempts.Any(x=>x.Status==SupplyCacheAttemptStatus.Working&&tools.Contains(x.EquipmentId));
+                ||s.SupplyCacheAttempts.Any(x=>x.Status==SupplyCacheAttemptStatus.Working&&tools.Contains(x.EquipmentId))
+                ||s.OrdinaryReceptacleAttempts.Any(x=>x.Status==OrdinaryReceptacleAttemptStatus.Working&&ids.Contains(x.CredentialItemId))
+                ||s.MiningAttempts.Where(x=>x.Status==MiningAttemptStatus.Working||x.Status==MiningAttemptStatus.Paused
+                    ||x.Status==MiningAttemptStatus.AwaitingCheck).Any(x=>{
+                        var deposit=s.MiningDeposits.SingleOrDefault(d=>d.Id==x.DepositId);
+                        return deposit!=null&&(ids.Contains(deposit.MiningToolsId)||ids.Contains(deposit.PickId)||ids.Contains(deposit.ReceiverId)
+                            ||x.SelectedUnitIds.Any(ids.Contains));
+                    })
+                ||s.SchemaVersion>=Snapshot.MiningToolCandidateSchema&&s.MiningToolUses.Where(x=>s.MiningAttempts.Any(a=>a.Id==x.MiningAttemptId
+                    &&(a.Status==MiningAttemptStatus.Working||a.Status==MiningAttemptStatus.Paused||a.Status==MiningAttemptStatus.AwaitingCheck)))
+                    .Any(x=>s.MiningToolCandidateProfiles.Any(p=>p.Id==x.ProfileId&&ids.Contains(p.ToolItemId)))
+                ||s.MineralPreparationAttempts.Where(x=>x.Status==MineralPreparationStatus.Working||x.Status==MineralPreparationStatus.Paused
+                    ||x.Status==MineralPreparationStatus.AwaitingCompletion).Any(x=>{
+                        var unit=s.MiningUnits.SingleOrDefault(u=>u.Id==x.UnitId);
+                        var deposit=unit==null?null:s.MiningDeposits.SingleOrDefault(d=>d.Id==unit.DepositId);
+                        return ids.Contains(x.UnitId)||deposit!=null&&(ids.Contains(deposit.MiningToolsId)||ids.Contains(deposit.ReceiverId));
+                    });
         }
         internal static bool InventoryAccessible(Snapshot s,string actor,string location)
         {

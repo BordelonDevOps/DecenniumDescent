@@ -72,7 +72,15 @@ namespace Decennium.Foundation.Laboratory
     public sealed partial class TestOnlySharedWorldPolicy
     {
         private readonly SharedCraftingFixture crafting;
-        private int SelectedSchema => harvestFixture!=null ? harvestFixture.SchemaVersion
+        private int SelectedSchema => observationFixture!=null ? Snapshot.ObservationSchema
+            : ordinaryReceptacles!=null ? Snapshot.OrdinaryReceptacleSchema
+            : prospectingFixture!=null ? Snapshot.ProspectingSchema
+            : miningFixture!=null ? (miningFixture.MiningToolCandidateProfiles.Length>0?Snapshot.MiningToolCandidateSchema
+                :miningFixture.MineralPreparationProfiles.Length>0?Snapshot.MineralPreparationSchema
+                :expeditionAssignmentsEnabled?Snapshot.MiningExpeditionAssignmentSchema
+                :miningFixture.DestructiveAssayProfiles.Length>0?Snapshot.DestructiveMiningAssaySchema
+                :miningFixture.AssayProfiles.Length>0?Snapshot.MiningAssaySchema:Snapshot.MiningSchema)
+            : harvestFixture!=null ? harvestFixture.SchemaVersion
             : offCalendarActivityEnabled ? Snapshot.OffCalendarActivitySchema
             : expeditionAssignmentsEnabled ? Snapshot.ExpeditionAssignmentSchema
             : fishingTrap!=null ? (fishingTrapLegacy?Snapshot.FishingTrapLegacySchema

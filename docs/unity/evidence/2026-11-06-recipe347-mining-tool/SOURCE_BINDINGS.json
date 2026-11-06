@@ -1,0 +1,113 @@
+{
+  "schema": 1,
+  "stableBindingId": "MGT.MINING.RECIPE-347.TOOL.USE.SCHEMA49",
+  "implementationBranch": "Engine",
+  "sourceRevision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+  "checkoutHead": "4df6738972ccba92cc7cf2495a3b0bf2547b596e",
+  "workingTreeState": "uncommitted Engine changes preserved",
+  "status": "partial TEST_ONLY implementation; not release-approved",
+  "rulesPolicy": "One actual recipe-347 mining candidate instance contributes its printed +2 Mining check, distinct ordinary reserve on Critical Success, and measured preparation within the unchanged extraction schedule. Candidate and source feasibility are checked at work and resolution. Codex/GPT operational completions are separately recorded in MINING_RULE_DECISIONS.md.",
+  "sources": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/MINING_CANDIDATE_GUIDE.md",
+      "blob": "9f489ece11739170ba311c9db7b1b7b184ae656d",
+      "sha256": "726cb84a1104901f5b05b412039b458af5bb5168e4482fb9e9844b1b42b697c3",
+      "snapshot": "sources/MINING_CANDIDATE_GUIDE.md",
+      "scope": "Exposed mineral extraction selection and timing; preparation timing, compatible ordinary work and actual waste/retained mass."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/GATHERING_TOOL_CANDIDATE_GUIDE.md",
+      "blob": "962603a03edaa1b446f33373b97525a0300be829",
+      "sha256": "9b1e4defcd18569ad8d8305552ad740e62be1faea3e1de448e364bd7536215bc",
+      "snapshot": "sources/GATHERING_TOOL_CANDIDATE_GUIDE.md",
+      "scope": "Direct lead participation, qualifying active work, current physical eligibility and retained tool claim."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/GATHERING_TOOL_CANDIDATE_BODY_CATALOGUE.md",
+      "blob": "e8f04a228d02a8ede474504f13ff416ce4eab0f2",
+      "sha256": "23fb5db0282881499abcddaa3cd259bab4262a34c884e5a80c1de8a894c5dd99",
+      "snapshot": "sources/GATHERING_TOOL_CANDIDATE_BODY_CATALOGUE.md",
+      "scope": "Recipe-347 physical tool body measurements, primary/optional members and tray capacity."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/MINING_CANDIDATE_RECIPE_CARDS.md",
+      "blob": "3fd8afde00495921d1ec1c305a529b9af80dc040",
+      "sha256": "c83b14b7df8475a1bdba05a69785e90dabcec5a12bb81cb722fa7737ab444a12",
+      "snapshot": "sources/MINING_CANDIDATE_RECIPE_CARDS.md",
+      "scope": "Recipe-347 card identity and all three printed mining effects."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/crafting/gathering_tool_recipe_candidate_public.json",
+      "blob": "521806e511a69caf615addc606a365e8f5376995",
+      "sha256": "121a396e18e7e294e26a469a42e434f70c24816659bc05c77f094fcbd9e06510",
+      "snapshot": "sources/gathering_tool_recipe_candidate_public.json",
+      "scope": "Reviewed public candidate data for the printed effects and shared candidate eligibility predicates."
+    }
+  ],
+  "implementation": [
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+      "sha256": "2c682a013cbb7dbe3aff041f3ade8cc4011ea69713622a351c1db5e153064b59",
+      "role": "Schema49 snapshot fields and strict snapshot validation gate."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/MiningRecords.cs",
+      "sha256": "34cae344a550a93df908461735b795ac8d8e2e44fd4d3b80aeb4a43b3571bfae",
+      "role": "Immutable candidate profile, instance/use records, pure eligibility and conservation validation."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/SnapshotCodec.cs",
+      "sha256": "48f1272b925c5183e224b7c3f980b32f730b8128ba2f827a91850c493e46c797",
+      "role": "Append-only schema49 snapshot encoding and decoding."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/MiningCodec.cs",
+      "sha256": "08ef99400864dec3cede24b33960420b2a9b88a7fff7acfb5f95cbe3ffd74aa3",
+      "role": "Candidate profile, state and use record codec."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs",
+      "sha256": "8c55125c8ac0b475bf19e0f046dbac537f08fe1d39f7160aec5f4c2af660c3b7",
+      "role": "TEST_ONLY content binding, admission, claim, clock participation, physical split and shared extraction settlement."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCraftingConsequences.cs",
+      "sha256": "339178d4ef99d7084529c235ed0cc5ce30e69e4830893ff9a7e7a140e31951a5",
+      "role": "Select schema49 when the candidate profile is explicitly authored."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/PortableEquipment.cs",
+      "sha256": "b21c7fab2678a61f530eefb6fe89f047916b36a8f41fc75b6f1db035d3cc5e78",
+      "role": "Prevent ordinary equipment handling from bypassing an active candidate use claim."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/OrdinaryInventory.cs",
+      "sha256": "b07fe2d5d092ce19d631d5514c1abc60e91cc62f55e68d69fef8caae84625100",
+      "role": "Reused inventory ancestry for exact retained and gangue mass descendants."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/MiningCases.cs",
+      "sha256": "283cc0127bc217aad16f1a979c120bbb62e7f03ca2c3dab9efec36414d6c43ae",
+      "role": "Three runnable integrated candidate acceptance cases."
+    }
+  ],
+  "tests": [
+    "recipe347_mining_tool_applies_check_reserve_and_integrated_dressing_through_shared_extraction",
+    "recipe347_failed_extraction_preserves_unawarded_prepared_mass_and_releases_reserve",
+    "recipe347_ineligible_candidate_has_no_effect_and_falls_back_to_base_mining"
+  ],
+  "dependencies": [
+    "schema43 finite exposed-node mining content and extraction settlement",
+    "schema48 measured ordinary mineral dressing and inventory ancestry",
+    "shared RuleClock, worker intervals and WorkLedger claims",
+    "existing PortableEquipmentRecord and ObjectStructureRecord authority",
+    "append-only snapshot persistence, command receipts and deterministic replay"
+  ],
+  "unsupported": [
+    "general gathering-tool recipe/candidate registry and multiple candidate families",
+    "dynamic in-play loss/restoration of tool members and suppression/melding transitions",
+    "tool manufacture, acquisition or any new proficiency/effect",
+    "mineral portions, arbitrary item-on-surface geometry and other recipe cards",
+    "production content, release approval and complete engine coverage"
+  ]
+}

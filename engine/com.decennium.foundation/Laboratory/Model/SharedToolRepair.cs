@@ -39,6 +39,32 @@ namespace Decennium.Foundation.Laboratory
         private readonly SharedRepairFixture repair;
         public IEnumerable<string> RequiredInventoryOwners(Snapshot s, Command c)
         {
+            if(IsProspectingCommand(c)&&c.Kind!=CommandKind.RecordProspectingExposure) {
+                string patchId=c.Kind==CommandKind.StartProspecting?c.Target
+                    :s.ProspectingAttempts.SingleOrDefault(x=>x.Id==c.Target)?.PatchId;
+                var patch=s.ProspectingPatches.SingleOrDefault(x=>x.Id==patchId);
+                var exposureId=c.Kind==CommandKind.StartProspecting?patch?.CurrentExposureId
+                    :s.ProspectingAttempts.SingleOrDefault(x=>x.Id==c.Target)?.ExposureId;
+                var exposure=s.ProspectingExposures.SingleOrDefault(x=>x.Id==exposureId);
+                if(patch==null||exposure==null)return Array.Empty<string>();
+                return new[]{patch.OwnerId}.Concat(exposure.RequiredImplementIds
+                    .Select(id=>s.PortableEquipment.SingleOrDefault(x=>x.Id==id)?.OwnerId))
+                    .Where(x=>x!=null).Distinct(StringComparer.Ordinal).ToArray();
+            }
+            if(IsMiningCommand(c)) {
+                string depositId=c.Kind==CommandKind.StartMining?c.Target:s.MiningAttempts.SingleOrDefault(x=>x.Id==c.Target)?.DepositId;
+                var deposit=s.MiningDeposits.SingleOrDefault(x=>x.Id==depositId);
+                if(deposit==null)return Array.Empty<string>();
+                string[] unitIds=c.Kind==CommandKind.StartMining
+                    ?s.MiningCategories.Where(x=>x.DepositId==deposit.Id&&(c.MiningSelection?.CategoryIds??Array.Empty<string>()).Contains(x.Id,StringComparer.Ordinal)).SelectMany(x=>x.UnitIds).ToArray()
+                    :s.MiningAttempts.SingleOrDefault(x=>x.Id==c.Target)?.SelectedUnitIds??Array.Empty<string>();
+                return new[]{deposit.OwnerId,s.PortableEquipment.SingleOrDefault(x=>x.Id==deposit.MiningToolsId)?.OwnerId,
+                    s.PortableEquipment.SingleOrDefault(x=>x.Id==deposit.PickId)?.OwnerId,
+                    s.PortableEquipment.SingleOrDefault(x=>x.Id==deposit.ReceiverId)?.OwnerId,
+                    s.Structures.SingleOrDefault(x=>x.Id==deposit.WorkSurfaceId)?.OwnerId}
+                    .Concat(s.InventoryLots.Where(x=>unitIds.Contains(x.LotId,StringComparer.Ordinal)).Select(x=>x.OwnerId))
+                    .Where(x=>x!=null).Distinct(StringComparer.Ordinal).ToArray();
+            }
             if(IsHarvestCommand(c)) {
                 string manifestId=c.Kind==CommandKind.StartHarvest
                     ?s.HarvestCategories.SingleOrDefault(x=>x.Id==c.Target)?.ManifestId
@@ -51,6 +77,16 @@ namespace Decennium.Foundation.Laboratory
                     s.PortableEquipment.SingleOrDefault(x=>x.Id==manifest.ContainerId)?.OwnerId,
                     s.Structures.SingleOrDefault(x=>x.Id==manifest.WorkSurfaceId)?.OwnerId}
                     .Where(x=>x!=null).Distinct(StringComparer.Ordinal).ToArray();
+            }
+            if(IsOrdinaryReceptacleCommand(s,c)) {
+                var lockState=s.OrdinaryReceptacleLocks.SingleOrDefault(x=>x.Id==c.Target);
+                if(lockState==null)return Array.Empty<string>();
+                string credentialId=c.X==(int)OrdinaryReceptacleInteraction.UnlockWithKey?lockState.KeyItemId
+                    :c.X==(int)OrdinaryReceptacleInteraction.PickWithTools?lockState.ToolsItemId
+                    :c.X==(int)OrdinaryReceptacleInteraction.Interrupt
+                        ?s.OrdinaryReceptacleAttempts.SingleOrDefault(x=>x.LockId==lockState.Id&&x.ActorId==c.Actor
+                            &&x.Status==OrdinaryReceptacleAttemptStatus.Working)?.CredentialItemId:"";
+                return new[]{lockState.OwnerId}.Concat(PortableEquipmentRules.Owners(s,credentialId)).Distinct(StringComparer.Ordinal).ToArray();
             }
             if(c.Kind==CommandKind.AttackRepeatingCrossbow||c.Kind==CommandKind.ReloadRepeatingCrossbow
                 ||c.Kind==CommandKind.WarningShot||c.Kind==CommandKind.CoveringFire) {

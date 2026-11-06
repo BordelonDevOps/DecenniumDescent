@@ -341,8 +341,7 @@ namespace Decennium.Foundation.Laboratory
                 }
                 var character=s.Characters.Single(x=>x.ActorId==attempt.SetterId);
                 var training=s.SkillTraining.SingleOrDefault(x=>x.ActorId==attempt.SetterId&&x.SkillId=="fishing-tackle");
-                int rank=training?.ProficiencyRank??0;
-                int pb=rank==0?0:PlaytestCharacters.ProficiencyBonus(character.Levels.Count)*(rank==2?2:1);
+                var check=AbilityCheckRules.Derive(character,training,3);
                 RuleTime due=fishingTrapLegacy?s.RuleClock.AddSeconds(3000):attempt.CheckDueAt.Value;
                 bool responseAvailable=true;
                 // This witnessed dry-set sequence exposes its reserved bait when setup completes.
@@ -361,7 +360,7 @@ namespace Decennium.Foundation.Laboratory
                 PutFishingTrap(s,new FishingTrapAttemptRecord(attempt.Id,attempt.SetterId,attempt.ResponsibleHolderId,attempt.TrapId,
                     attempt.OpportunityId,attempt.CreatureId,"",attempt.SiteId,attempt.StartedAt,labor,s.RuleClock,due,null,null,
                     responseAvailable?FishingTrapAttemptStatus.Soaking:FishingTrapAttemptStatus.NoResponse,true,
-                    PlaytestCharacters.AbilityModifier(character.Abilities[3]),rank,pb,
+                    check.AbilityModifier,check.ProficiencyRank,check.ProficiencyBonus,
                     FishingTrapDiceSelection.None,0,0,0,0,0,FishingTrapCheckDegree.None,FishingTrapCheckOutcome.None,0,0,0,
                     attempt.BaitLotId,attempt.BaitReservationId,fishingTrapLegacy?(RuleTime?)null:s.RuleClock));
             }

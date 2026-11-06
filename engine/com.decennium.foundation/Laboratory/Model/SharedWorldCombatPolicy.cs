@@ -16,13 +16,25 @@ namespace Decennium.Foundation.Laboratory
     }
     public sealed partial class TestOnlySharedWorldPolicy
     {
+        /// <summary>Opts this TEST_ONLY shared world into explicit planar observation content.
+        /// Call before Initial(); the map, per-actor ranges and records are part of schema51 saves.</summary>
+        public TestOnlySharedWorldPolicy EnableObservation(ObservationFixture fixture)
+        {
+            if (fixture == null) throw new ArgumentNullException(nameof(fixture));
+            if (initializationStarted) throw new InvalidOperationException("Observation content must be selected before Initial().");
+            if (observationFixture != null) throw new InvalidOperationException("Observation content is already selected.");
+            observationFixture = fixture;
+            ContentFingerprint = ObservationFixture.BindFingerprint(ContentFingerprint, fixture);
+            return this;
+        }
+
         /// <summary>Opts this TEST_ONLY fixture into the saved site-aware assignment increment.
         /// Call before Initial(); the selected schema and content fingerprint are part of the save scope.</summary>
         public TestOnlySharedWorldPolicy EnableExpeditionAssignments()
         {
             if (expeditionAssignmentsEnabled) return this;
-            if (!PhysicalFishingEnabled)
-                throw new InvalidOperationException("The assignment schema extends the physical Trap world and requires its finite stock records.");
+            if (!PhysicalFishingEnabled && miningFixture==null)
+                throw new InvalidOperationException("Expedition assignments require an enabled physical Trap or mining procedure.");
             expeditionAssignmentsEnabled = true;
             using (var hash = System.Security.Cryptography.SHA256.Create())
                 ContentFingerprint = "TEST_ONLY.site-assignment-v1-" + string.Concat(hash.ComputeHash(

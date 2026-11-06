@@ -399,12 +399,11 @@ namespace Decennium.Foundation.Laboratory
                 string access=HarvestAccess(s,c.Actor,manifest,selectedUnitIds:unitIds);if(access!=null)return access;
                 var character=s.Characters.Single(x=>x.ActorId==c.Actor);
                 var training=s.SkillTraining.SingleOrDefault(x=>x.ActorId==c.Actor&&x.SkillId=="fishing-tackle");
-                int rank=training?.ProficiencyRank??0;
-                int proficiency=rank==0?0:checked(PlaytestCharacters.ProficiencyBonus(character.Levels.Count)*(rank==2?2:1));
+                var check=AbilityCheckRules.Derive(character,training,3);
                 facts=new HarvestAssessment { Manifest=manifest,Categories=categories,Selected=selected,CategoryIds=categoryIds,UnitIds=unitIds,
                     FailurePreference=failurePreference,CriticalPreference=criticalPreference,
                     Duration=HarvestValidation.Duration(manifest.FullTimeSeconds,s.HarvestCategories.Count(x=>x.ManifestId==manifest.Id),categories.Length),
-                    AbilityModifier=PlaytestCharacters.AbilityModifier(character.Abilities[3]),ProficiencyRank=rank,ProficiencyBonus=proficiency };
+                    AbilityModifier=check.AbilityModifier,ProficiencyRank=check.ProficiencyRank,ProficiencyBonus=check.ProficiencyBonus };
                 return null;
             }
             var current=s.HarvestAttempts.SingleOrDefault(x=>x.Id==c.Target&&x.WorkerId==c.Actor);

@@ -30,8 +30,14 @@ namespace Decennium.Foundation.Laboratory
         }
         private static bool EffectiveProne(Snapshot s, string actor) => WithConditions(s)
             ? ConditionsFor(s, actor).View().Has(ConditionKind.Prone) : s.Lives.Single(x => x.ActorId == actor).Prone;
-        internal static bool CanSee(Snapshot s, string observer, string target) => !WithConditions(s)
-            || Aware(s, observer) && !ConditionsFor(s, observer).View().BlocksSight && !ConditionsFor(s, target).View().Has(ConditionKind.Invisible);
+        internal static bool CanSee(Snapshot s, string observer, string target)
+        {
+            if (s.SchemaVersion >= Snapshot.ObservationSchema) return ObservationRules.CanSee(s, observer, target);
+            bool conditionSight = !WithConditions(s)
+                || Aware(s, observer) && !ConditionsFor(s, observer).View().BlocksSight
+                    && !ConditionsFor(s, target).View().Has(ConditionKind.Invisible);
+            return conditionSight;
+        }
         internal static bool DamageConditionCapacity(Snapshot s, string target)
         {
             if (!WithConditions(s)) return true;
@@ -74,11 +80,21 @@ namespace Decennium.Foundation.Laboratory
             s.Conditions = s.Actors.Select(x => new ConditionJournal(ConditionHistory.PolicyId, x.Id, new ConditionStamp(s.RuleClock))).ToArray();
             foreach (var body in s.Lives.Where(x => x.Prone).ToArray()) AddPhysicalProne(s, body.ActorId, "initial-prone");
         }
-        internal static void AdvanceConditions(Snapshot s, string subevent = "")
+        internal static void AdvanceConditions(Snapshot s, string subevent = "", bool force = false,bool onlyAtExpiry = false)
         {
             if (!WithConditions(s)) return;
-            foreach (var journal in s.Conditions.ToArray())
-                if (journal.Now.Time < s.RuleClock) AppendCondition(s, journal.Target, ConditionOperation.Advance("host.clock." + N(s.Revision + 1) + subevent, new ConditionStamp(s.RuleClock)));
+            foreach (var journal in s.Conditions.ToArray()) {
+                if (journal.Now.Time >= s.RuleClock) continue;
+                var ledger=ConditionHistory.Restore(journal).Ledger;
+                bool deadlineDue=ledger.Applications.Any(x=>!x.EndedAt.HasValue&&x.Application.Expires.HasValue
+                        &&x.Application.Expires.Value.Time<=s.RuleClock)
+                    ||ledger.Immunities.Any(x=>!x.EndedAt.HasValue&&x.Grant.Expires.HasValue
+                        &&x.Grant.Expires.Value.Time<=s.RuleClock);
+                // World advances may cross many unrelated calendar/work boundaries. Preserve
+                // exact expiry transitions, but do not spend journal entries on unchanged clocks.
+                if(force||!onlyAtExpiry||deadlineDue)AppendCondition(s,journal.Target,ConditionOperation.Advance(
+                    "host.clock."+N(s.Revision+1)+subevent,new ConditionStamp(s.RuleClock)));
+            }
         }
         private string DispatchCondition(Snapshot s, Command c)
         {

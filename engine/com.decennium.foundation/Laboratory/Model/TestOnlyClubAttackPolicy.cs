@@ -208,8 +208,13 @@ namespace Decennium.Foundation.Laboratory
             if(target==null||target.ActorId==c.Actor||target.Dead)return "InvalidLivingTarget";
             if(!DamageConditionCapacity(s,c.Target))return "ConditionHistoryCapacityReached";
             var a=s.Actors.Single(x=>x.Id==c.Actor);var t=s.Actors.Single(x=>x.Id==c.Target);
+            if(s.SchemaVersion>=Snapshot.ObservationSchema&&!ObservationRules.LocationKnown(s,c.Actor,c.Target))return "TargetLocationUnknown";
+            if(s.SchemaVersion>=Snapshot.ObservationSchema&&!ObservationGeometry.LineOfEffectClear(s,c.Actor,c.Target))return "BlockedLineOfEffect";
             if(PlanarCombatGeometry.DistanceFeet(new CombatCell(a.X,a.Y),new CombatCell(t.X,t.Y))>5)return "TargetOutOfReach";
-            var modifiers=PlaytestConditions.Attack(CombatConditions(s,c.Actor),CombatConditions(s,c.Target),attackerInvisibleLocationKnown:true,targetInvisibleLocationKnown:true);
+            bool attackerInvisibleKnown=s.SchemaVersion<Snapshot.ObservationSchema||ObservationRules.InvisibleRevealed(s,c.Target,c.Actor);
+            bool targetInvisibleKnown=s.SchemaVersion<Snapshot.ObservationSchema||ObservationRules.InvisibleRevealed(s,c.Actor,c.Target);
+            var modifiers=PlaytestConditions.Attack(CombatConditions(s,c.Actor),CombatConditions(s,c.Target),
+                attackerInvisibleLocationKnown:attackerInvisibleKnown,targetInvisibleLocationKnown:targetInvisibleKnown);
             var incomingEffects=SoldierTacticalFeatures.ForAttack(s,c.Actor,c.Target);
             bool advantage=modifiers.AdvantagePresent,disadvantage=modifiers.DisadvantagePresent||incomingEffects.WarningShot;
             int modifier=checked((attacker.LinkedInjuries.Contains((int)Injury.OffensiveTrauma)?-1:0)-incomingEffects.CoveringFirePenalty

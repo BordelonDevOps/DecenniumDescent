@@ -1,0 +1,96 @@
+{
+  "status": "PASS",
+  "scope": "Exact source hash/blob, implementation-path and named-test evidence check; not full semantic or release certification",
+  "sourceRevision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+  "sourceChecks": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_PLAYER_BOOK.md",
+      "sha256Matches": true,
+      "pinnedBlobMatches": true
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/MINING_CANDIDATE_GUIDE.md",
+      "sha256Matches": true,
+      "pinnedBlobMatches": true
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/GATHERING_TOOL_CANDIDATE_GUIDE.md",
+      "sha256Matches": true,
+      "pinnedBlobMatches": true
+    }
+  ],
+  "implementationChecks": [
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExpeditionAssignmentRecords.cs",
+      "exists": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/CommandHistory.cs",
+      "exists": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+      "exists": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/ExpeditionAssignmentCodec.cs",
+      "exists": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/SnapshotCodec.cs",
+      "exists": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionAssignments.cs",
+      "exists": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs",
+      "exists": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCraftingConsequences.cs",
+      "exists": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs",
+      "exists": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "exists": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/ExpeditionAssignmentCases.cs",
+      "exists": true
+    }
+  ],
+  "namedTestChecks": [
+    {
+      "name": "expedition_assignment_travels_to_mine_and_dispatches_shared_extraction",
+      "passed": true
+    }
+  ],
+  "mapWorkItems": [
+    {
+      "id": "EXP-05",
+      "exists": true,
+      "status": "PARTIAL TEST_ONLY"
+    },
+    {
+      "id": "MGT-07",
+      "exists": true,
+      "status": "PARTIAL TEST_ONLY"
+    }
+  ],
+  "headlessStatus": "PASS",
+  "headlessCases": "1159/1159",
+  "packageStatus": "PASS",
+  "packageChecks": 18,
+  "packageAssets": 225,
+  "uniqueGuids": 225,
+  "headlessSourceHashCount": 199,
+  "headlessSourceHashMismatches": 0,
+  "packageSourceHashCount": 439,
+  "packageSourceHashMismatches": 0
+}

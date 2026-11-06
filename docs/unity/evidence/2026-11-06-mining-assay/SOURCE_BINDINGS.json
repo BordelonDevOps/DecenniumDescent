@@ -1,0 +1,47 @@
+{
+  "stableBindingId": "MGT-07.ASSAY.MANIFEST",
+  "sourceRevision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+  "checkoutBranch": "Engine",
+  "checkoutHead": "4df6738972ccba92cc7cf2495a3b0bf2547b596e",
+  "status": "partial TEST_ONLY; not release-approved",
+  "sources": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/MINING_CANDIDATE_GUIDE.md",
+      "section": "Choose the procedure; operational assay results and repeat evidence",
+      "sha256": "726cb84a1104901f5b05b412039b458af5bb5168e4482fb9e9844b1b42b697c3"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/GATHERING_TOOL_CANDIDATE_GUIDE.md",
+      "section": "Set up one real task; untrained ordinary information tasks; tool operation",
+      "sha256": "9b1e4defcd18569ad8d8305552ad740e62be1faea3e1de448e364bd7536215bc"
+    }
+  ],
+  "ownerAmendments": [],
+  "implementation": [
+    "engine/com.decennium.foundation/Runtime/Core/MiningAssayRecords.cs",
+    "engine/com.decennium.foundation/Runtime/Persistence/MiningAssayCodec.cs",
+    "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+    "engine/com.decennium.foundation/Runtime/Persistence/SnapshotCodec.cs",
+    "engine/com.decennium.foundation/Runtime/Core/WorldActivityRecord.cs",
+    "engine/com.decennium.foundation/Runtime/Core/PortableEquipmentRecords.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedMiningAssay.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCommandQueries.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedWorldRangedCombat.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedCraftingConsequences.cs"
+  ],
+  "tests": [
+    "mining_assay_findings_are_scoped_to_the_successful_profile",
+    "mining_assay_uses_shared_work_save_resume_and_only_authored_findings",
+    "mining_assay_uses_exact_source_dc_and_untrained_disadvantage_without_consumption",
+    "mining_assay_codec_rejects_noncanonical_exact_dc_flag"
+  ],
+  "unsupported": [
+    "destructive assay of an actual sample",
+    "sample portion selection and debit timing",
+    "new attempts on materially changed evidence or methods",
+    "assistant work and source-specific tool benefits",
+    "production-authoritative geology and remaining MGT-07 procedures"
+  ]
+}

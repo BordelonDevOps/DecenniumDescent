@@ -1,0 +1,93 @@
+{
+  "status": "PASS",
+  "scope": "Exact source hash/blob, implementation path, named test and report-source hash checks; not full semantic or release certification",
+  "sourceRevision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+  "sourceChecks": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/MINING_CANDIDATE_GUIDE.md",
+      "sha256Matches": true,
+      "pinnedBlobMatches": true
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/GATHERING_TOOL_CANDIDATE_GUIDE.md",
+      "sha256Matches": true,
+      "pinnedBlobMatches": true
+    }
+  ],
+  "implementationChecks": [
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/MiningRecords.cs",
+      "exists": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+      "exists": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WorldActivityRecord.cs",
+      "exists": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/PortableEquipmentRecords.cs",
+      "exists": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/MiningCodec.cs",
+      "exists": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/SnapshotCodec.cs",
+      "exists": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs",
+      "exists": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCraftingConsequences.cs",
+      "exists": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "exists": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCommandQueries.cs",
+      "exists": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldRangedCombat.cs",
+      "exists": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/PortableEquipment.cs",
+      "exists": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/OrdinaryInventory.cs",
+      "exists": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/MiningCases.cs",
+      "exists": true
+    }
+  ],
+  "namedTestCheck": {
+    "name": "mineral_preparation_conserves_measured_mass_and_resumes_after_save",
+    "present": true,
+    "passed": true
+  },
+  "headless": {
+    "status": "PASS",
+    "cases": "1160/1160",
+    "sourceHashCount": 199
+  },
+  "package": {
+    "status": "PASS",
+    "checks": 18,
+    "assets": 225,
+    "uniqueGuids": 225,
+    "sourceHashCount": 439
+  },
+  "reportSourceHashMismatches": 0
+}

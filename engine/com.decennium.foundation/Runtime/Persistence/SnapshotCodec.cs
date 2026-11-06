@@ -80,6 +80,14 @@ namespace Decennium.Foundation
                 if (state.SchemaVersion >= Snapshot.ExpeditionAssignmentSchema) ExpeditionAssignmentCodec.Write(writer,state);
                 if (state.SchemaVersion >= Snapshot.OffCalendarActivitySchema) WorldActivityCodec.Write(writer, state);
                 if (state.SchemaVersion >= Snapshot.HarvestSchema) HarvestCodec.Write(writer, state, state.SchemaVersion);
+                if (state.SchemaVersion >= Snapshot.MiningSchema) MiningCodec.Write(writer, state);
+                if (state.SchemaVersion >= Snapshot.ProspectingSchema) ProspectingCodec.Write(writer, state);
+                if (state.SchemaVersion >= Snapshot.MiningAssaySchema) MiningAssayCodec.Write(writer, state);
+                if (state.SchemaVersion >= Snapshot.DestructiveMiningAssaySchema) DestructiveMiningAssayCodec.Write(writer, state);
+                if (state.SchemaVersion >= Snapshot.MineralPreparationSchema) MineralPreparationCodec.Write(writer,state);
+                if (state.SchemaVersion >= Snapshot.MiningToolCandidateSchema) MiningToolCodec.Write(writer,state);
+                if (state.SchemaVersion >= Snapshot.OrdinaryReceptacleSchema) OrdinaryReceptacleCodec.Write(writer,state);
+                if (state.SchemaVersion >= Snapshot.ObservationSchema) ObservationCodec.Write(writer,state);
                 writer.Flush(); payload = stream.ToArray();
             }
             if (payload.Length + 32 > Limit(state.SchemaVersion)) throw new InvalidDataException("Save exceeds schema size limit.");
@@ -99,7 +107,7 @@ namespace Decennium.Foundation
                     if (reader.ReadInt32() != Magic) throw new InvalidDataException("Unsupported save format.");
                     int schema = reader.ReadInt32();
                     if (data.Length > Limit(schema)) throw new InvalidDataException("Save exceeds schema size limit.");
-                    if (schema != Snapshot.Schema && schema != Snapshot.WorkSchema && schema != Snapshot.CropSchema && schema != Snapshot.InventorySchema && schema != Snapshot.VesselSchema && schema != Snapshot.MovableVesselSchema && schema != Snapshot.EncounterSchema && schema != Snapshot.ActorLifeSchema && schema != Snapshot.ClubAttackSchema && schema != Snapshot.PostureSchema && schema != Snapshot.TacticalMovementSchema && schema != Snapshot.ConditionSchema && schema != Snapshot.SharedWorldSchema && schema != Snapshot.CalendarCombatSchema && schema != Snapshot.FormulaWorkSchema && schema != Snapshot.CraftingConsequenceSchema && schema != Snapshot.RepairWorkSchema && schema != Snapshot.ManufacturingSchema && schema != Snapshot.SupplyCacheSchema && schema != Snapshot.PortableEquipmentSchema && schema != Snapshot.CharacterAdvancementSchema && schema != Snapshot.RepeatingCrossbowSchema && schema != Snapshot.PeriodicRiderSchema && schema != Snapshot.SharedBonusActionSchema && schema != Snapshot.OverwatchSchema && schema != Snapshot.OverwatchExecutionSchema && schema != Snapshot.SoldierInitialLoadoutSchema && schema != Snapshot.SoldierInitialBuildSchema && schema != Snapshot.SoldierTacticalTechniquesSchema && schema != Snapshot.CharacterAdvancementHistorySchema && schema != Snapshot.TacticalAssessmentSchema && schema != Snapshot.CommandStepSchema && schema != Snapshot.SuppressionFireSchema && schema != Snapshot.DefensiveFormationSchema && schema != Snapshot.FishingTrapLegacySchema && schema != Snapshot.FishingTrapBaitSchema && schema != Snapshot.FishingTrapSchema && schema != Snapshot.FishingStockSchema && schema != Snapshot.ExpeditionAssignmentSchema && schema != Snapshot.OffCalendarActivitySchema && schema != Snapshot.HarvestSchema && schema != Snapshot.HarvestManifestSchema)
+                    if (schema != Snapshot.ObservationSchema && schema != Snapshot.OrdinaryReceptacleSchema && schema != Snapshot.MiningToolCandidateSchema && schema != Snapshot.MineralPreparationSchema && schema != Snapshot.MiningExpeditionAssignmentSchema && schema != Snapshot.DestructiveMiningAssaySchema && schema != Snapshot.MiningAssaySchema && schema != Snapshot.ProspectingSchema && schema != Snapshot.Schema && schema != Snapshot.WorkSchema && schema != Snapshot.CropSchema && schema != Snapshot.InventorySchema && schema != Snapshot.VesselSchema && schema != Snapshot.MovableVesselSchema && schema != Snapshot.EncounterSchema && schema != Snapshot.ActorLifeSchema && schema != Snapshot.ClubAttackSchema && schema != Snapshot.PostureSchema && schema != Snapshot.TacticalMovementSchema && schema != Snapshot.ConditionSchema && schema != Snapshot.SharedWorldSchema && schema != Snapshot.CalendarCombatSchema && schema != Snapshot.FormulaWorkSchema && schema != Snapshot.CraftingConsequenceSchema && schema != Snapshot.RepairWorkSchema && schema != Snapshot.ManufacturingSchema && schema != Snapshot.SupplyCacheSchema && schema != Snapshot.PortableEquipmentSchema && schema != Snapshot.CharacterAdvancementSchema && schema != Snapshot.RepeatingCrossbowSchema && schema != Snapshot.PeriodicRiderSchema && schema != Snapshot.SharedBonusActionSchema && schema != Snapshot.OverwatchSchema && schema != Snapshot.OverwatchExecutionSchema && schema != Snapshot.SoldierInitialLoadoutSchema && schema != Snapshot.SoldierInitialBuildSchema && schema != Snapshot.SoldierTacticalTechniquesSchema && schema != Snapshot.CharacterAdvancementHistorySchema && schema != Snapshot.TacticalAssessmentSchema && schema != Snapshot.CommandStepSchema && schema != Snapshot.SuppressionFireSchema && schema != Snapshot.DefensiveFormationSchema && schema != Snapshot.FishingTrapLegacySchema && schema != Snapshot.FishingTrapBaitSchema && schema != Snapshot.FishingTrapSchema && schema != Snapshot.FishingStockSchema && schema != Snapshot.ExpeditionAssignmentSchema && schema != Snapshot.OffCalendarActivitySchema && schema != Snapshot.HarvestSchema && schema != Snapshot.HarvestManifestSchema && schema != Snapshot.MiningSchema)
                         throw new InvalidDataException("Unsupported save schema.");
                     string fingerprint = ReadText(reader);
                     if (ReadText(reader) != RandomV1.Algorithm) throw new InvalidDataException("Unsupported RNG version.");
@@ -164,6 +172,14 @@ namespace Decennium.Foundation
                     if(schema >= Snapshot.ExpeditionAssignmentSchema)ExpeditionAssignmentCodec.Read(reader,s);
                     if(schema >= Snapshot.OffCalendarActivitySchema)WorldActivityCodec.Read(reader,s);
                     if(schema >= Snapshot.HarvestSchema)HarvestCodec.Read(reader,s,schema);
+                    if(schema >= Snapshot.MiningSchema)MiningCodec.Read(reader,s);
+                    if(schema >= Snapshot.ProspectingSchema)ProspectingCodec.Read(reader,s);
+                    if(schema >= Snapshot.MiningAssaySchema)MiningAssayCodec.Read(reader,s);
+                    if(schema >= Snapshot.DestructiveMiningAssaySchema)DestructiveMiningAssayCodec.Read(reader,s);
+                    if(schema >= Snapshot.MineralPreparationSchema)MineralPreparationCodec.Read(reader,s);
+                    if(schema >= Snapshot.MiningToolCandidateSchema)MiningToolCodec.Read(reader,s);
+                    if(schema >= Snapshot.OrdinaryReceptacleSchema)OrdinaryReceptacleCodec.Read(reader,s);
+                    if(schema >= Snapshot.ObservationSchema)ObservationCodec.Read(reader,s);
                     if (stream.Position != length) throw new InvalidDataException("Unexpected trailing save data.");
                     Validation.Snapshot(s); return s;
                 }

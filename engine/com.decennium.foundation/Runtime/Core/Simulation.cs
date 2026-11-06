@@ -21,7 +21,10 @@ namespace Decennium.Foundation
         RespondOverwatch, ResolveOverwatchRider, DoffPortableShield, WarningShot, CoveringFire, TacticalAssessment, OfferCommandStep, RespondCommandStep,
         SuppressionFire, ActivateDefensiveFormation, RespondDefensiveFormation,
         AssignExpeditionWork, CancelExpeditionWork, StartExpeditionWork,
-        StartHarvest, PauseHarvest, ResumeHarvest }
+        StartHarvest, PauseHarvest, ResumeHarvest, StartMining, PauseMining, ResumeMining,
+        StartProspecting, PauseProspecting, ResumeProspecting, RecordProspectingExposure,
+        StartMiningAssay, PauseMiningAssay, ResumeMiningAssay, CancelMiningAssay,
+        StartMineralPreparation, PauseMineralPreparation, ResumeMineralPreparation, Hide, Search }
     public enum Outcome { Rejected, Committed, Duplicate }
 
     // DTOs are detached copies. No caller ever receives the owned simulation state.
@@ -88,6 +91,15 @@ namespace Decennium.Foundation
         public const int OffCalendarActivitySchema = 40;
         public const int HarvestSchema = 41;
         public const int HarvestManifestSchema = 42;
+        public const int MiningSchema = 43;
+        public const int ProspectingSchema = 44;
+        public const int MiningAssaySchema = 45;
+        public const int DestructiveMiningAssaySchema = 46;
+        public const int MiningExpeditionAssignmentSchema = 47;
+        public const int MineralPreparationSchema = 48;
+        public const int MiningToolCandidateSchema = 49;
+        public const int OrdinaryReceptacleSchema = 50;
+        public const int ObservationSchema = 51;
         public const int MaxActors = 64;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
@@ -197,6 +209,31 @@ namespace Decennium.Foundation
         public HarvestCategoryRecord[] HarvestCategories = Array.Empty<HarvestCategoryRecord>();
         public HarvestMaterialUnitRecord[] HarvestUnits = Array.Empty<HarvestMaterialUnitRecord>();
         public HarvestAttemptRecord[] HarvestAttempts = Array.Empty<HarvestAttemptRecord>();
+        public MiningDepositRecord[] MiningDeposits = Array.Empty<MiningDepositRecord>();
+        public MiningCategoryRecord[] MiningCategories = Array.Empty<MiningCategoryRecord>();
+        public MiningMaterialUnitRecord[] MiningUnits = Array.Empty<MiningMaterialUnitRecord>();
+        public MiningAttemptRecord[] MiningAttempts = Array.Empty<MiningAttemptRecord>();
+        public ProspectingPatchRecord[] ProspectingPatches = Array.Empty<ProspectingPatchRecord>();
+        public ProspectingExposureRecord[] ProspectingExposures = Array.Empty<ProspectingExposureRecord>();
+        public ProspectingAttemptRecord[] ProspectingAttempts = Array.Empty<ProspectingAttemptRecord>();
+        public MiningAssayProfileRecord[] MiningAssayProfiles = Array.Empty<MiningAssayProfileRecord>();
+        public MiningAssayAttemptRecord[] MiningAssayAttempts = Array.Empty<MiningAssayAttemptRecord>();
+        public MiningAssaySampleRecord[] MiningAssaySamples = Array.Empty<MiningAssaySampleRecord>();
+        public DestructiveMiningAssayProfileRecord[] DestructiveMiningAssayProfiles = Array.Empty<DestructiveMiningAssayProfileRecord>();
+        public DestructiveMiningAssayAttemptRecord[] DestructiveMiningAssayAttempts = Array.Empty<DestructiveMiningAssayAttemptRecord>();
+        public MineralPreparationProfileRecord[] MineralPreparationProfiles = Array.Empty<MineralPreparationProfileRecord>();
+        public MineralPreparationAttemptRecord[] MineralPreparationAttempts = Array.Empty<MineralPreparationAttemptRecord>();
+        public MiningToolCandidateProfileRecord[] MiningToolCandidateProfiles = Array.Empty<MiningToolCandidateProfileRecord>();
+        public MiningToolInstanceStateRecord[] MiningToolInstanceStates = Array.Empty<MiningToolInstanceStateRecord>();
+        public MiningToolUseRecord[] MiningToolUses = Array.Empty<MiningToolUseRecord>();
+        public OrdinaryReceptacleLockRecord[] OrdinaryReceptacleLocks = Array.Empty<OrdinaryReceptacleLockRecord>();
+        public OrdinaryReceptacleAttemptRecord[] OrdinaryReceptacleAttempts = Array.Empty<OrdinaryReceptacleAttemptRecord>();
+        public int ObservationMapWidth, ObservationMapHeight;
+        public ObservationMapCellRecord[] ObservationCells = Array.Empty<ObservationMapCellRecord>();
+        public ObservationProfileRecord[] ObservationProfiles = Array.Empty<ObservationProfileRecord>();
+        public ObservationActionRecord[] ObservationActions = Array.Empty<ObservationActionRecord>();
+        public ObservationHideResultRecord[] ObservationHideResults = Array.Empty<ObservationHideResultRecord>();
+        public ObserverKnowledgeRecord[] ObserverKnowledge = Array.Empty<ObserverKnowledgeRecord>();
         public Snapshot Copy() => new Snapshot {
             DyingCadences = DyingCadences.ToArray(), Structures = Structures.ToArray(), CraftingIncidents = CraftingIncidents.ToArray(),
             WorldLifeMarkers = WorldLifeMarkers.ToArray(),
@@ -230,6 +267,24 @@ namespace Decennium.Foundation
             WorldActivityIntervals = WorldActivityIntervals.ToArray(),
             HarvestDonors = HarvestDonors.ToArray(), HarvestManifests = HarvestManifests.ToArray(),
             HarvestCategories = HarvestCategories.ToArray(), HarvestUnits = HarvestUnits.ToArray(), HarvestAttempts = HarvestAttempts.ToArray(),
+            MiningDeposits = MiningDeposits.ToArray(), MiningCategories = MiningCategories.ToArray(),
+            MiningUnits = MiningUnits.ToArray(), MiningAttempts = MiningAttempts.ToArray(),
+            ProspectingPatches = ProspectingPatches.ToArray(), ProspectingExposures = ProspectingExposures.ToArray(),
+            ProspectingAttempts = ProspectingAttempts.ToArray(),
+            MiningAssayProfiles = MiningAssayProfiles.ToArray(), MiningAssayAttempts = MiningAssayAttempts.ToArray(),
+            MiningAssaySamples = MiningAssaySamples.ToArray(),
+            DestructiveMiningAssayProfiles = DestructiveMiningAssayProfiles.ToArray(),
+            DestructiveMiningAssayAttempts = DestructiveMiningAssayAttempts.ToArray(),
+            MineralPreparationProfiles = MineralPreparationProfiles.ToArray(),
+            MineralPreparationAttempts = MineralPreparationAttempts.ToArray(),
+            MiningToolCandidateProfiles = MiningToolCandidateProfiles.ToArray(),
+            MiningToolInstanceStates = MiningToolInstanceStates.ToArray(),
+            MiningToolUses = MiningToolUses.ToArray(),
+            OrdinaryReceptacleLocks = OrdinaryReceptacleLocks.ToArray(), OrdinaryReceptacleAttempts = OrdinaryReceptacleAttempts.ToArray(),
+            ObservationMapWidth = ObservationMapWidth, ObservationMapHeight = ObservationMapHeight,
+            ObservationCells = ObservationCells.ToArray(), ObservationProfiles = ObservationProfiles.ToArray(),
+            ObservationActions = ObservationActions.ToArray(), ObservationHideResults = ObservationHideResults.ToArray(),
+            ObserverKnowledge = ObserverKnowledge.ToArray(),
             FormulaWork = FormulaWork.ToArray(),
             WorldSchedule = WorldSchedule, WorldIntervals = WorldIntervals.ToArray(), WorldTraversals = WorldTraversals.ToArray(),
             Conditions = Conditions.ToArray(), ClosedEncounters = ClosedEncounters.ToArray(),
@@ -322,6 +377,55 @@ namespace Decennium.Foundation
         }
     }
 
+    /// <summary>Explicit exposed-node choice. Category membership and difficulty are read from the
+    /// versioned deposit record; the request only carries player choices made before work.</summary>
+    public sealed class MiningSelectionRequest
+    {
+        private readonly string[] categoryIds;
+        public string DepositVersionId { get; }
+        public MiningAbilityChoice Ability { get; }
+        public bool Hurried { get; }
+        public string FailureVictimPreference { get; }
+        public string CriticalRecoveryPreference { get; }
+        public string[] CategoryIds=>(string[])categoryIds.Clone();
+        internal string Fingerprint=>DepositVersionId+"|"+((int)Ability).ToString(System.Globalization.CultureInfo.InvariantCulture)
+            +"|"+(Hurried?"1":"0")+"|"+string.Join(",",categoryIds)+"|"+FailureVictimPreference
+            +"|"+CriticalRecoveryPreference;
+        public MiningSelectionRequest(string depositVersionId,IEnumerable<string> categoryIds,
+            MiningAbilityChoice ability=MiningAbilityChoice.Wisdom,bool hurried=false,string failureVictimPreference="",
+            string criticalRecoveryPreference="")
+        {
+            if(!Validation.ValidId(depositVersionId)||categoryIds==null||!Enum.IsDefined(typeof(MiningAbilityChoice),ability)
+                ||failureVictimPreference==null||failureVictimPreference!=""&&!Validation.ValidId(failureVictimPreference)
+                ||criticalRecoveryPreference==null||criticalRecoveryPreference!=""&&!Validation.ValidId(criticalRecoveryPreference))
+                throw new ArgumentException("Invalid mining selection.");
+            var ids=categoryIds.ToArray();
+            if(ids.Length<1||ids.Length>MiningValidation.MaxRecords||ids.Any(x=>!Validation.ValidId(x))
+                ||ids.Distinct(StringComparer.Ordinal).Count()!=ids.Length)
+                throw new ArgumentException("Mining selection requires distinct category identities.");
+            ids=ids.OrderBy(x=>x,StringComparer.Ordinal).ToArray();
+            if(depositVersionId.Length+failureVictimPreference.Length+criticalRecoveryPreference.Length+string.Join(",",ids).Length>400)
+                throw new ArgumentException("Mining selection exceeds the receipt bound.");
+            DepositVersionId=depositVersionId;Ability=ability;Hurried=hurried;FailureVictimPreference=failureVictimPreference;
+            CriticalRecoveryPreference=criticalRecoveryPreference;
+            this.categoryIds=ids;
+        }
+    }
+
+    /// <summary>Trusted world-event reference used to activate a pre-authored new exposure.</summary>
+    public sealed class ProspectingExposureRequest
+    {
+        public string ExposureId { get; }
+        public string CauseId { get; }
+        internal string Fingerprint => ExposureId + "|" + CauseId;
+        public ProspectingExposureRequest(string exposureId, string causeId)
+        {
+            if (!Validation.ValidId(exposureId) || !Validation.ValidId(causeId))
+                throw new ArgumentException("Invalid prospecting exposure change reference.");
+            ExposureId = exposureId; CauseId = causeId;
+        }
+    }
+
     public sealed class Command
     {
         public string Id { get; }
@@ -340,13 +444,16 @@ namespace Decennium.Foundation
         public DefensiveFormationRequest DefensiveFormation { get; }
         public ExpeditionAssignmentRequest ExpeditionAssignment { get; }
         public HarvestSelectionRequest HarvestSelection { get; }
+        public MiningSelectionRequest MiningSelection { get; }
+        public ProspectingExposureRequest ProspectingExposure { get; }
         public Command(string id, string actor, long revision, CommandKind kind,
             string target = "", int x = 0, int y = 0, InventoryRequest inventory = null, CombatRequest combat = null,
             CharacterAdvancementRequest advancement = null, RangedRequest ranged = null, OverwatchRider overwatchRider = OverwatchRider.None,
             SuppressionFireRequest suppressionFire = null,DefensiveFormationRequest defensiveFormation = null,
-            ExpeditionAssignmentRequest expeditionAssignment = null,HarvestSelectionRequest harvestSelection = null)
+            ExpeditionAssignmentRequest expeditionAssignment = null,HarvestSelectionRequest harvestSelection = null,
+            MiningSelectionRequest miningSelection = null, ProspectingExposureRequest prospectingExposure = null)
         { if(!Enum.IsDefined(typeof(OverwatchRider),overwatchRider))throw new ArgumentException("Invalid Overwatch rider selection.");
-            Id = id; Actor = actor; ExpectedRevision = revision; Kind = kind; Target = target; X = x; Y = y; Inventory = inventory; Combat = combat; Advancement=advancement; Ranged=ranged; OverwatchRider=overwatchRider; SuppressionFire=suppressionFire;DefensiveFormation=defensiveFormation; ExpeditionAssignment=expeditionAssignment;HarvestSelection=harvestSelection; }
+            Id = id; Actor = actor; ExpectedRevision = revision; Kind = kind; Target = target; X = x; Y = y; Inventory = inventory; Combat = combat; Advancement=advancement; Ranged=ranged; OverwatchRider=overwatchRider; SuppressionFire=suppressionFire;DefensiveFormation=defensiveFormation; ExpeditionAssignment=expeditionAssignment;HarvestSelection=harvestSelection;MiningSelection=miningSelection;ProspectingExposure=prospectingExposure; }
         internal string Fingerprint => ((int)Kind).ToString(System.Globalization.CultureInfo.InvariantCulture)
             + "|" + Actor + "|" + Target + "|" + ExpectedRevision.ToString(System.Globalization.CultureInfo.InvariantCulture)
             + "|" + X.ToString(System.Globalization.CultureInfo.InvariantCulture)
@@ -360,8 +467,12 @@ namespace Decennium.Foundation
             + (OverwatchRider == OverwatchRider.None ? "" : "|overwatch-rider-v1|" + ((int)OverwatchRider).ToString(System.Globalization.CultureInfo.InvariantCulture))
             + (SuppressionFire == null ? "" : "|suppression-fire-v1|" + SuppressionFire.Fingerprint)
             + (DefensiveFormation == null ? "" : "|defensive-formation-v1|" + DefensiveFormation.Fingerprint)
-            + (ExpeditionAssignment == null ? "" : "|expedition-assignment-v1|" + ExpeditionAssignment.Fingerprint)
-            + (HarvestSelection == null ? "" : "|harvest-selection-v1|" + HarvestSelection.Fingerprint);
+            + (ExpeditionAssignment == null ? "" : ExpeditionAssignment.MiningSelection == null
+                ? "|expedition-assignment-v1|" + ExpeditionAssignment.Fingerprint
+                : "|expedition-mining-assignment-v1|" + ExpeditionAssignment.Fingerprint + "|" + ExpeditionAssignment.MiningSelection.Fingerprint)
+            + (HarvestSelection == null ? "" : "|harvest-selection-v1|" + HarvestSelection.Fingerprint)
+            + (MiningSelection == null ? "" : "|mining-selection-v1|" + MiningSelection.Fingerprint)
+            + (ProspectingExposure == null ? "" : "|prospecting-exposure-v1|" + ProspectingExposure.Fingerprint);
         // Structural history consistency only; receipts are not authentication credentials.
         public bool MatchesReceipt(CommandReceipt receipt) => receipt != null && ExpectedRevision >= 0
             && ExpectedRevision < long.MaxValue && receipt.Revision == ExpectedRevision + 1
@@ -481,8 +592,14 @@ namespace Decennium.Foundation
         {
             if (s == null || !ValidId(s.ContentFingerprint) || s.Revision < 0 || s.Clock < 0 || s.RandomState == 0)
                 throw new ArgumentException("Invalid snapshot header.");
-            if (s.SchemaVersion != Foundation.Snapshot.Schema && s.SchemaVersion != Foundation.Snapshot.WorkSchema
-                && s.SchemaVersion != Foundation.Snapshot.CropSchema && s.SchemaVersion != Foundation.Snapshot.InventorySchema && s.SchemaVersion != Foundation.Snapshot.VesselSchema && s.SchemaVersion != Foundation.Snapshot.MovableVesselSchema && s.SchemaVersion != Foundation.Snapshot.EncounterSchema && s.SchemaVersion != Foundation.Snapshot.ActorLifeSchema && s.SchemaVersion != Foundation.Snapshot.ClubAttackSchema && s.SchemaVersion != Foundation.Snapshot.PostureSchema && s.SchemaVersion != Foundation.Snapshot.TacticalMovementSchema && s.SchemaVersion != Foundation.Snapshot.ConditionSchema && s.SchemaVersion != Foundation.Snapshot.SharedWorldSchema && s.SchemaVersion != Foundation.Snapshot.CalendarCombatSchema && s.SchemaVersion != Foundation.Snapshot.FormulaWorkSchema && s.SchemaVersion != Foundation.Snapshot.CraftingConsequenceSchema && s.SchemaVersion != Foundation.Snapshot.RepairWorkSchema && s.SchemaVersion != Foundation.Snapshot.ManufacturingSchema && s.SchemaVersion != Foundation.Snapshot.SupplyCacheSchema && s.SchemaVersion != Foundation.Snapshot.PortableEquipmentSchema && s.SchemaVersion != Foundation.Snapshot.CharacterAdvancementSchema && s.SchemaVersion != Foundation.Snapshot.RepeatingCrossbowSchema && s.SchemaVersion != Foundation.Snapshot.PeriodicRiderSchema && s.SchemaVersion != Foundation.Snapshot.SharedBonusActionSchema && s.SchemaVersion != Foundation.Snapshot.OverwatchSchema && s.SchemaVersion != Foundation.Snapshot.OverwatchExecutionSchema && s.SchemaVersion != Foundation.Snapshot.SoldierInitialLoadoutSchema && s.SchemaVersion != Foundation.Snapshot.SoldierInitialBuildSchema && s.SchemaVersion != Foundation.Snapshot.SoldierTacticalTechniquesSchema && s.SchemaVersion != Foundation.Snapshot.CharacterAdvancementHistorySchema && s.SchemaVersion != Foundation.Snapshot.TacticalAssessmentSchema && s.SchemaVersion != Foundation.Snapshot.CommandStepSchema && s.SchemaVersion != Foundation.Snapshot.SuppressionFireSchema && s.SchemaVersion != Foundation.Snapshot.DefensiveFormationSchema && s.SchemaVersion != Foundation.Snapshot.FishingTrapLegacySchema && s.SchemaVersion != Foundation.Snapshot.FishingTrapBaitSchema && s.SchemaVersion != Foundation.Snapshot.FishingTrapSchema && s.SchemaVersion != Foundation.Snapshot.FishingStockSchema && s.SchemaVersion != Foundation.Snapshot.ExpeditionAssignmentSchema && s.SchemaVersion != Foundation.Snapshot.OffCalendarActivitySchema && s.SchemaVersion != Foundation.Snapshot.HarvestSchema && s.SchemaVersion != Foundation.Snapshot.HarvestManifestSchema)
+            if (s.SchemaVersion == Foundation.Snapshot.ProspectingSchema || s.SchemaVersion == Foundation.Snapshot.MiningAssaySchema
+                || s.SchemaVersion == Foundation.Snapshot.DestructiveMiningAssaySchema
+                || s.SchemaVersion == Foundation.Snapshot.MiningExpeditionAssignmentSchema
+                || s.SchemaVersion == Foundation.Snapshot.MineralPreparationSchema
+                || s.SchemaVersion == Foundation.Snapshot.MiningToolCandidateSchema || s.SchemaVersion == Foundation.Snapshot.OrdinaryReceptacleSchema
+                || s.SchemaVersion == Foundation.Snapshot.ObservationSchema) { }
+            else if (s.SchemaVersion != Foundation.Snapshot.Schema && s.SchemaVersion != Foundation.Snapshot.WorkSchema
+                && s.SchemaVersion != Foundation.Snapshot.CropSchema && s.SchemaVersion != Foundation.Snapshot.InventorySchema && s.SchemaVersion != Foundation.Snapshot.VesselSchema && s.SchemaVersion != Foundation.Snapshot.MovableVesselSchema && s.SchemaVersion != Foundation.Snapshot.EncounterSchema && s.SchemaVersion != Foundation.Snapshot.ActorLifeSchema && s.SchemaVersion != Foundation.Snapshot.ClubAttackSchema && s.SchemaVersion != Foundation.Snapshot.PostureSchema && s.SchemaVersion != Foundation.Snapshot.TacticalMovementSchema && s.SchemaVersion != Foundation.Snapshot.ConditionSchema && s.SchemaVersion != Foundation.Snapshot.SharedWorldSchema && s.SchemaVersion != Foundation.Snapshot.CalendarCombatSchema && s.SchemaVersion != Foundation.Snapshot.FormulaWorkSchema && s.SchemaVersion != Foundation.Snapshot.CraftingConsequenceSchema && s.SchemaVersion != Foundation.Snapshot.RepairWorkSchema && s.SchemaVersion != Foundation.Snapshot.ManufacturingSchema && s.SchemaVersion != Foundation.Snapshot.SupplyCacheSchema && s.SchemaVersion != Foundation.Snapshot.PortableEquipmentSchema && s.SchemaVersion != Foundation.Snapshot.CharacterAdvancementSchema && s.SchemaVersion != Foundation.Snapshot.RepeatingCrossbowSchema && s.SchemaVersion != Foundation.Snapshot.PeriodicRiderSchema && s.SchemaVersion != Foundation.Snapshot.SharedBonusActionSchema && s.SchemaVersion != Foundation.Snapshot.OverwatchSchema && s.SchemaVersion != Foundation.Snapshot.OverwatchExecutionSchema && s.SchemaVersion != Foundation.Snapshot.SoldierInitialLoadoutSchema && s.SchemaVersion != Foundation.Snapshot.SoldierInitialBuildSchema && s.SchemaVersion != Foundation.Snapshot.SoldierTacticalTechniquesSchema && s.SchemaVersion != Foundation.Snapshot.CharacterAdvancementHistorySchema && s.SchemaVersion != Foundation.Snapshot.TacticalAssessmentSchema && s.SchemaVersion != Foundation.Snapshot.CommandStepSchema && s.SchemaVersion != Foundation.Snapshot.SuppressionFireSchema && s.SchemaVersion != Foundation.Snapshot.DefensiveFormationSchema && s.SchemaVersion != Foundation.Snapshot.FishingTrapLegacySchema && s.SchemaVersion != Foundation.Snapshot.FishingTrapBaitSchema && s.SchemaVersion != Foundation.Snapshot.FishingTrapSchema && s.SchemaVersion != Foundation.Snapshot.FishingStockSchema && s.SchemaVersion != Foundation.Snapshot.ExpeditionAssignmentSchema && s.SchemaVersion != Foundation.Snapshot.OffCalendarActivitySchema && s.SchemaVersion != Foundation.Snapshot.HarvestSchema && s.SchemaVersion != Foundation.Snapshot.HarvestManifestSchema && s.SchemaVersion != Foundation.Snapshot.MiningSchema)
                 throw new ArgumentException("Unsupported snapshot schema.");
             if (s.SchemaVersion == Foundation.Snapshot.Schema && (s.Work != null || s.RuleClock != default))
                 throw new ArgumentException("Legacy snapshot cannot contain unsaved work or exact time.");
@@ -560,6 +677,14 @@ namespace Decennium.Foundation
             DefensiveFormationValidation.Validate(s);
             FishingTrapValidation.Validate(s);
             HarvestValidation.Validate(s);
+            MiningValidation.Validate(s);
+            ProspectingValidation.Validate(s);
+            MiningAssayValidation.Validate(s);
+            DestructiveMiningAssayValidation.Validate(s);
+            MineralPreparationValidation.Validate(s);
+            MiningToolValidation.Validate(s);
+            OrdinaryReceptacleValidation.Validate(s);
+            ObservationValidation.Validate(s);
         }
     }
 
@@ -600,6 +725,11 @@ namespace Decennium.Foundation
             if((command.Kind==CommandKind.AdvanceCharacterLevel)!=(command.Advancement!=null)
                 ||command.Advancement!=null&&(command.Inventory!=null||command.Combat!=null))return "UnexpectedCommandPayload";
             if(command.Fingerprint.Length>512)return "CommandFingerprintTooLong";
+            if ((command.Kind == CommandKind.RecordProspectingExposure) != (command.ProspectingExposure != null)
+                || command.ProspectingExposure != null && (command.Inventory != null || command.Combat != null
+                    || command.Advancement != null || command.Ranged != null || command.HarvestSelection != null
+                    || command.MiningSelection != null || command.Target == "" || command.X != 0 || command.Y != 0))
+                return "UnexpectedProspectingPayload";
             if((command.Kind==CommandKind.ResolveOverwatchRider)!=(command.OverwatchRider!=OverwatchRider.None)
                 ||command.OverwatchRider!=OverwatchRider.None&&(command.Inventory!=null||command.Combat!=null||command.Advancement!=null||command.Ranged!=null))
                 return "UnexpectedOverwatchPayload";
@@ -614,12 +744,15 @@ namespace Decennium.Foundation
             if(assignmentKind!=(command.ExpeditionAssignment!=null)
                 ||command.ExpeditionAssignment!=null&&(command.Inventory!=null||command.Combat!=null||command.Advancement!=null||command.Ranged!=null
                     ||command.OverwatchRider!=OverwatchRider.None||command.SuppressionFire!=null||command.DefensiveFormation!=null
+                    ||command.HarvestSelection!=null||command.MiningSelection!=null||command.ProspectingExposure!=null
                     ||command.Target!=""||command.X!=0||command.Y!=0)
                 ||(command.Kind==CommandKind.CancelExpeditionWork||command.Kind==CommandKind.StartExpeditionWork)
                     &&(command.ExpeditionAssignment!=null||command.Inventory!=null||command.Combat!=null||command.Advancement!=null
                         ||command.Ranged!=null||command.OverwatchRider!=OverwatchRider.None||command.SuppressionFire!=null
                         ||command.DefensiveFormation!=null||command.Target==""||command.X!=0||command.Y!=0))
                 return "UnexpectedExpeditionAssignmentPayload";
+            if(command.ExpeditionAssignment?.MiningSelection!=null&&state.SchemaVersion<Snapshot.MiningExpeditionAssignmentSchema)
+                return "MiningAssignmentRequiresSchema47";
             if(command.Kind==CommandKind.RespondDefensiveFormation&&(command.Inventory!=null||command.Advancement!=null||command.Ranged!=null
                 ||command.OverwatchRider!=OverwatchRider.None||command.SuppressionFire!=null||command.DefensiveFormation!=null))
                 return "UnexpectedDefensiveFormationResponsePayload";
@@ -628,7 +761,8 @@ namespace Decennium.Foundation
             if(rangedKind!=(command.Ranged!=null)||command.Ranged!=null&&(command.Inventory!=null||command.Combat!=null||command.Advancement!=null))return "UnexpectedRangedPayload";
             if ((!authority.Controls(command.Actor) && !(command.Kind==CommandKind.AwardCharacterMilestone&&authority.CanModifyWorld)) || (command.Kind == CommandKind.AdvanceClock && !authority.CanAdvanceClock)
                 || ((command.Kind == CommandKind.SetCropConditions || command.Kind == CommandKind.EnterInventoryCombat || command.Kind == CommandKind.BeginFixedEncounter || command.Kind == CommandKind.EndFixedEncounter || command.Kind == CommandKind.DispatchConditionEvent || command.Kind == CommandKind.DispatchCraftingMishap || command.Kind==CommandKind.AwardCharacterMilestone
-                    ||command.Kind==CommandKind.DispatchFixturePeriodicRider||command.Kind==CommandKind.SetPeriodicRiderSuppression||command.Kind==CommandKind.SetPeriodicFamilyImmunity||command.Kind==CommandKind.ApplyFixtureMagicalHealing) && !authority.CanModifyWorld))
+                    ||command.Kind==CommandKind.DispatchFixturePeriodicRider||command.Kind==CommandKind.SetPeriodicRiderSuppression||command.Kind==CommandKind.SetPeriodicFamilyImmunity||command.Kind==CommandKind.ApplyFixtureMagicalHealing
+                    ||command.Kind==CommandKind.RecordProspectingExposure) && !authority.CanModifyWorld))
                 return "NotAuthorized";
             if (policy is ICommandInventoryClaims claims) {
                 try {

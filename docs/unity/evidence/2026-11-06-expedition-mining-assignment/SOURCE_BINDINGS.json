@@ -1,0 +1,61 @@
+{
+  "schema": 1,
+  "stableBindingId": "EXPEDITION.MINING.EXTRACTION_ASSIGNMENT.SCHEMA47",
+  "implementationBranch": "Engine",
+  "sourceRevision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+  "checkoutHead": "4df6738972ccba92cc7cf2495a3b0bf2547b596e",
+  "workingTreeState": "uncommitted Engine changes preserved",
+  "status": "partial TEST_ONLY integration; not release-approved",
+  "rulesPolicy": "No new gameplay rule or timing policy is introduced. Reuses the persisted site-aware expedition assignment policy and the existing authored exposed-mineral extraction profile.",
+  "sources": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_PLAYER_BOOK.md",
+      "blob": "466871fc128dc5f06043a874da2b9c1d94ed80a5",
+      "sha256": "4c58b9f7063e562b785b8db6006699d3c4f68edd0e697d06db69662ba9b7e480",
+      "scope": "FL-01–03: expedition assignments, actual location and travel, and shared elapsed time."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/MINING_CANDIDATE_GUIDE.md",
+      "blob": "9f489ece11739170ba311c9db7b1b7b184ae656d",
+      "sha256": "726cb84a1104901f5b05b412039b458af5bb5168e4482fb9e9844b1b42b697c3",
+      "scope": "Choose the exposed-node extraction procedure; record and resolve the finite deposit; actor and work constraints."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/GATHERING_TOOL_CANDIDATE_GUIDE.md",
+      "blob": "962603a03edaa1b446f33373b97525a0300be829",
+      "sha256": "9b1e4defcd18569ad8d8305552ad740e62be1faea3e1de448e364bd7536215bc",
+      "scope": "Set up a real task; preserve worker, tool and work history."
+    }
+  ],
+  "dependencies": [
+    "schema39 persisted site-aware assignment records and shared traversal",
+    "schema40 shared off-calendar activity clock",
+    "schema43 finite exposed mineral extraction",
+    "schema44 prospecting records",
+    "schema45 nondestructive assay records",
+    "schema46 destructive assay records"
+  ],
+  "implementation": [
+    "engine/com.decennium.foundation/Runtime/Core/ExpeditionAssignmentRecords.cs",
+    "engine/com.decennium.foundation/Runtime/Core/CommandHistory.cs",
+    "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+    "engine/com.decennium.foundation/Runtime/Persistence/ExpeditionAssignmentCodec.cs",
+    "engine/com.decennium.foundation/Runtime/Persistence/SnapshotCodec.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionAssignments.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedCraftingConsequences.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+    "engine/com.decennium.foundation/Tests/EditMode/ExpeditionAssignmentCases.cs"
+  ],
+  "tests": [
+    "expedition_assignment_travels_to_mine_and_dispatches_shared_extraction"
+  ],
+  "unsupported": [
+    "automatic or overland route planning and general work-site discovery",
+    "general assignment command discovery",
+    "assistant bonuses and concurrent multiworker extraction",
+    "production site authority, mining content and release approval",
+    "general MGT-07 procedures beyond the existing bounded extraction/assay/prospecting slices"
+  ]
+}

@@ -23,11 +23,13 @@ namespace Decennium.Foundation.Laboratory
         private bool fishingTrapBaitOnly;
         private bool expeditionAssignmentsEnabled;
         private bool offCalendarActivityEnabled;
+        private ObservationFixture observationFixture;
+        private bool initializationStarted;
         private TestOnlyContentManifest contentManifest;
         public bool TestOnly => true;
         public string ContentFingerprint { get; private set; }
         public TestOnlySharedWorldPolicy(int walkingSpeed = 30, ConditionCombatFixture conditions = null, params TacticalTerrainCell[] terrain)
-            :this(null,walkingSpeed,conditions,terrain) { }
+            :this((SharedCombatFixture)null,walkingSpeed,conditions,terrain) { }
         public TestOnlySharedWorldPolicy(SharedCombatFixture combat,int walkingSpeed = 30, ConditionCombatFixture conditions = null, params TacticalTerrainCell[] terrain)
             :this(combat,(SharedResearchFixture)null,walkingSpeed,conditions,terrain) { }
         public TestOnlySharedWorldPolicy(SharedCombatFixture combat,SharedResearchFixture research,int walkingSpeed = 30, ConditionCombatFixture conditions = null, params TacticalTerrainCell[] terrain)
@@ -124,6 +126,7 @@ namespace Decennium.Foundation.Laboratory
             new[] { TestOnlyPolicy.ActorId, TestOnlyPolicy.CompanionId, AdditionalTacticalActor.Id }, new[] { TestOnlyPolicy.ActorId, TestOnlyPolicy.CompanionId });
         public Snapshot Initial()
         {
+            initializationStarted = true;
             if(contentManifest!=null&&contentManifest.ValidateBindings()!=null)throw new InvalidOperationException("ContentManifestBuildMismatch");
             var s = bodies.Initial(); s.SchemaVersion = SelectedSchema; s.ContentFingerprint = ContentFingerprint;
             var companion = s.Actors.Single(a => a.Id == TestOnlyPolicy.CompanionId); companion.X = 3; companion.Y = 3;
@@ -146,7 +149,10 @@ namespace Decennium.Foundation.Laboratory
             InitializeSupplyCache(s);
             InitializeFishingTrap(s);
             InitializePortableEquipment(s);
+            InitializeOrdinaryReceptacles(s);
             InitializeHarvest(s);
+            InitializeMining(s);
+            InitializeProspecting(s);
             if(s.SchemaVersion>=Snapshot.SharedBonusActionSchema&&s.BonusActions.Length==0)
                 s.BonusActions=s.WorldIntervals.Select(x=>new ActorBonusActionRecord(x.ActorId,checked((int)x.LastStart))).ToArray();
             InitializeCharacterAdvancement(s);
@@ -156,6 +162,11 @@ namespace Decennium.Foundation.Laboratory
             InitializeSoldierInitialLoadout(s);
             InitializeSoldierCharacterBuild(s);
             InitializeOverwatchRuntime(s);
+            if (observationFixture != null)
+            {
+                observationFixture.Initialize(s);
+                ObservationRules.Initialize(s, observationFixture);
+            }
             if(contentManifest!=null) {
                 string bindingError=contentManifest.ValidatePortableSnapshot(s);
                 if(bindingError!=null)throw new InvalidOperationException(bindingError);
@@ -217,10 +228,15 @@ namespace Decennium.Foundation.Laboratory
                 case CommandKind.StartExpeditionWork: case CommandKind.HandlePortableEquipment: case CommandKind.EquipPortableItem:
                 case CommandKind.RemovePortableItem: case CommandKind.OpenPortableContainer: case CommandKind.ClosePortableContainer:
                 case CommandKind.StartHarvest: case CommandKind.ResumeHarvest:
+                case CommandKind.StartMining: case CommandKind.ResumeMining:
+                case CommandKind.StartProspecting: case CommandKind.ResumeProspecting:
+                case CommandKind.StartMiningAssay: case CommandKind.ResumeMiningAssay:
+                case CommandKind.StartMineralPreparation: case CommandKind.ResumeMineralPreparation:
                     return true;
                 case CommandKind.Interact:
                     return c.X == (int)FishingTrapInteraction.Set || c.X == (int)FishingTrapInteraction.Resume
-                        || c.X == (int)FishingTrapInteraction.Retrieve || c.X == (int)FishingTrapInteraction.ResumeRetrieval;
+                        || c.X == (int)FishingTrapInteraction.Retrieve || c.X == (int)FishingTrapInteraction.ResumeRetrieval
+                        || c.X == (int)OrdinaryReceptacleInteraction.UnlockWithKey || c.X == (int)OrdinaryReceptacleInteraction.PickWithTools;
                 default: return false;
             }
         }
@@ -270,8 +286,13 @@ namespace Decennium.Foundation.Laboratory
             PauseIncompatibleRepairs(s);
             PauseIncompatibleManufacturing(s);
             InterruptSupplyCacheAttempts(s);
+            InterruptIncompatibleOrdinaryAttempts(s);
             PauseFishingTrapSetupIfIncompatible(s);
             PauseIncompatibleHarvesting(s);
+            PauseIncompatibleMining(s);
+            PauseIncompatibleProspecting(s);
+            PauseIncompatibleMiningAssay(s);
+            PauseIncompatibleMineralPreparation(s);
         }
         private static void RefreshIntervals(Snapshot s)
         {
@@ -319,7 +340,7 @@ namespace Decennium.Foundation.Laboratory
                 bool needsFreshDash=edge.Running&&offCalendar&&!activity.DashPaid;
                 if (needsFreshDash && s.RuleClock == WorldActivityIntervalRecord.StartAt(s.WorldSchedule, activity.IntervalIndex)) {
                     bool blocked = WorldSpatialQueries.Step(s, edge.ActorId, edge.FromX, edge.FromY, edge.ToX, edge.ToY,
-                        false, false, TestOnlyPolicy.Walkable) != SpatialStepFailure.None;
+                        false, false, (x, y) => WorldWalkable(s, x, y)) != SpatialStepFailure.None;
                     if (blocked || !Permissions(s, edge.ActorId).VoluntarySpeed || Speed(s, edge.ActorId) == 0) {
                         SetEdge(s, edge.With(edge.DistanceFeet, WorldTraversalStatus.Suspended));
                         continue;
@@ -363,8 +384,13 @@ namespace Decennium.Foundation.Laboratory
                 var repairBoundary = NextRepairBoundary(s); if(repairBoundary.HasValue&&repairBoundary.Value<next)next=repairBoundary.Value;
                 var manufacturingBoundary=NextManufacturingBoundary(s);if(manufacturingBoundary.HasValue&&manufacturingBoundary.Value<next)next=manufacturingBoundary.Value;
                 var cacheBoundary=NextSupplyCacheBoundary(s);if(cacheBoundary.HasValue&&cacheBoundary.Value<next)next=cacheBoundary.Value;
+                var receptacleBoundary=NextOrdinaryReceptacleBoundary(s);if(receptacleBoundary.HasValue&&receptacleBoundary.Value<next)next=receptacleBoundary.Value;
                 var trapBoundary=NextFishingTrapBoundary(s);if(trapBoundary.HasValue&&trapBoundary.Value<next)next=trapBoundary.Value;
                 var harvestBoundary=NextHarvestBoundary(s);if(harvestBoundary.HasValue&&harvestBoundary.Value<next)next=harvestBoundary.Value;
+                var miningBoundary=NextMiningBoundary(s);if(miningBoundary.HasValue&&miningBoundary.Value<next)next=miningBoundary.Value;
+                var prospectingBoundary=NextProspectingBoundary(s);if(prospectingBoundary.HasValue&&prospectingBoundary.Value<next)next=prospectingBoundary.Value;
+                var miningAssayBoundary=NextMiningAssayBoundary(s);if(miningAssayBoundary.HasValue&&miningAssayBoundary.Value<next)next=miningAssayBoundary.Value;
+                var mineralPreparationBoundary=NextMineralPreparationBoundary(s);if(mineralPreparationBoundary.HasValue&&mineralPreparationBoundary.Value<next)next=mineralPreparationBoundary.Value;
                 var tacticalFeatureBoundary=SoldierTacticalFeatures.NextDeadline(s);if(tacticalFeatureBoundary.HasValue&&tacticalFeatureBoundary.Value<next)next=tacticalFeatureBoundary.Value;
                 var active = s.WorldTraversals.Where(x => x.Status != WorldTraversalStatus.Suspended).ToArray();
                 // Stationary, living actors have no per-Start event here. The arithmetic cursor
@@ -389,6 +415,7 @@ namespace Decennium.Foundation.Laboratory
                     throw new InvalidOperationException("OffCalendarActionAlreadySpent");
                 var activityLabor = s.WorldActivityIntervals.ToDictionary(x => x.ActorId,
                     x => WorldActivityValidation.ActiveLaborReference(s, x.ActorId, segmentStart, next), StringComparer.Ordinal);
+                var observationSegments = new System.Collections.Generic.List<ObservationMovementSegment>();
                 foreach (var edge in active.Where(x => x.Status == WorldTraversalStatus.Moving)) {
                     long multiplier = CostPerFoot(s, edge); var distance = new RuleQuantity(5) - edge.DistanceFeet;
                     bool scheduled=s.WorldSchedule.Order.Contains(edge.ActorId);
@@ -401,12 +428,14 @@ namespace Decennium.Foundation.Laboratory
                 }
                 var elapsed = CampGreens.Subtract(next, s.RuleClock);
                 foreach (var edge in active.Where(x => x.Status == WorldTraversalStatus.Moving)) {
+                    var priorDistance = edge.DistanceFeet;
                     long multiplier = CostPerFoot(s, edge);
                     var distance = new RuleQuantity(elapsed.Numerator, elapsed.Denominator).Scale(checked(Speed(s, edge.ActorId) * (edge.Running ? 2 : 1)), 6 * multiplier);
                     bool scheduled=s.WorldSchedule.Order.Contains(edge.ActorId);
                     if(scheduled)SetInterval(s, Interval(s, edge.ActorId).Spend(distance.Scale(multiplier)));
                     else if(IsOffCalendarActivity(s,edge.ActorId))SetActivityInterval(s,ActivityInterval(s,edge.ActorId).Spend(distance.Scale(multiplier)));
                     var progress = edge.DistanceFeet + distance;
+                    if (distance > default(RuleQuantity)) observationSegments.Add(new ObservationMovementSegment(edge, priorDistance, progress));
                     if(distance>default(RuleQuantity))CharacterAdvancementRules.MarkMoved(s,edge.ActorId);
                     if (progress == new RuleQuantity(5)) {
                         var actor = s.Actors.Single(a => a.Id == edge.ActorId); actor.X = edge.ToX; actor.Y = edge.ToY;
@@ -414,6 +443,7 @@ namespace Decennium.Foundation.Laboratory
                         s.WorldTraversals = s.WorldTraversals.Where(x => x.ActorId != actor.Id).ToArray();
                     } else SetEdge(s, edge.With(progress, edge.Status));
                 }
+                ObservationRules.ProcessWorldTraversalSegments(s, observationSegments, segmentStart, next, s.Revision + 1);
                 // Existing procedures own crop/food/water completion and their local ordering.
                 // Movement duration was bounded before their advance, so they cannot over-credit it.
                 long previousSlot=s.WorldSchedule.ProcessedSlot;
@@ -421,19 +451,21 @@ namespace Decennium.Foundation.Laboratory
                 var repairsReady = new System.Collections.Generic.List<string>();
                 var manufacturingReady = new System.Collections.Generic.List<string>();
                 if(connectedCombat==null) {
-                    if(harvestFixture!=null)OrdinaryInventory.AdvanceTo(s,next,world=>{
-                        TestOnlyClubAttackPolicy.AdvanceConditions(world,"."+(++subevent).ToString(CultureInfo.InvariantCulture));
-                        PauseIncompatibleHarvesting(world);
-                    },(world,elapsedWork)=>CreditHarvestWork(world,elapsedWork));
+                    if(harvestFixture!=null||miningFixture!=null||prospectingFixture!=null)OrdinaryInventory.AdvanceTo(s,next,world=>{
+                        TestOnlyClubAttackPolicy.AdvanceConditions(world,"."+(++subevent).ToString(CultureInfo.InvariantCulture),
+                            onlyAtExpiry:miningFixture!=null||prospectingFixture!=null);
+                        PauseIncompatibleHarvesting(world);PauseIncompatibleMining(world);PauseIncompatibleProspecting(world);PauseIncompatibleMiningAssay(world);PauseIncompatibleMineralPreparation(world);
+                    },(world,elapsedWork)=>{CreditHarvestWork(world,elapsedWork);CreditMiningWork(world,elapsedWork);CreditProspectingWork(world,elapsedWork);CreditMiningAssayWork(world,elapsedWork);CreditMineralPreparationWork(world,elapsedWork);});
                     else {
                         OrdinaryInventory.AdvanceTo(s, next);
                         TestOnlyClubAttackPolicy.AdvanceConditions(s, "." + (++subevent).ToString(CultureInfo.InvariantCulture));
                     }
                 } else {
                     OrdinaryInventory.AdvanceTo(s,next,world=> {
-                        TestOnlyClubAttackPolicy.AdvanceConditions(world,"."+(++subevent).ToString(CultureInfo.InvariantCulture));
+                        TestOnlyClubAttackPolicy.AdvanceConditions(world,"."+(++subevent).ToString(CultureInfo.InvariantCulture),
+                            onlyAtExpiry:miningFixture!=null||prospectingFixture!=null);
                         PauseIncompatibleWork(world,false);
-                    }, (world,elapsedWork)=>{CreditFormulaWork(world,elapsedWork,ready);CreditRemedyWork(world,elapsedWork);CreditRepairWork(world,elapsedWork,repairsReady);CreditManufacturing(world,elapsedWork,manufacturingReady);CreditFishingTrapWork(world,elapsedWork);CreditHarvestWork(world,elapsedWork);});
+                    }, (world,elapsedWork)=>{CreditFormulaWork(world,elapsedWork,ready);CreditRemedyWork(world,elapsedWork);CreditRepairWork(world,elapsedWork,repairsReady);CreditManufacturing(world,elapsedWork,manufacturingReady);CreditFishingTrapWork(world,elapsedWork);CreditHarvestWork(world,elapsedWork);CreditMiningWork(world,elapsedWork);CreditProspectingWork(world,elapsedWork);CreditMiningAssayWork(world,elapsedWork);CreditMineralPreparationWork(world,elapsedWork);});
                 }
                 RefreshActivityIntervals(s);
                 foreach (var activity in s.WorldActivityIntervals.ToArray()) {
@@ -459,6 +491,10 @@ namespace Decennium.Foundation.Laboratory
                     SaveWorldLifeMarker(s,actor,s.WorldSchedule.Id,s.WorldSchedule.Origin,slot,checked((int)slot));
                 }
                 ProcessPeriodicRiderMarker(s,previousSlot);
+                ResolveReadyMining(s);
+                ResolveReadyProspecting(s);
+                ResolveReadyMiningAssays(s);
+                ResolveReadyMineralPreparations(s);
                 foreach(string id in ready) {
                     var job=s.FormulaWork.Single(x=>x.Id==id);
                     if(ResearchAccess(s,job.WorkerId,false)==null)FinishFormulaCheck(s,job);
@@ -471,18 +507,22 @@ namespace Decennium.Foundation.Laboratory
                     var job=s.ManufacturingOrders.Single(x=>x.Id==id);
                     if(ManufacturingAccess(s,job.WorkerId,false,true,job.RecipeId)==null)FinishManufacturingCheck(s,job);
                 }
-                PauseIncompatibleWork(s); CompleteSupplyCacheAttempts(s); ReconcileTraversal(s);
+                PauseIncompatibleWork(s); CompleteSupplyCacheAttempts(s); CompleteOrdinaryReceptacleAttempts(s); ReconcileTraversal(s);
+                ObservationRules.Refresh(s, s.RuleClock, s.Revision + 1);
                 if(ManufacturingChoicePending(s)){
+                    TestOnlyClubAttackPolicy.AdvanceConditions(s,".clock-final",true);
                     s.ManufacturingAdvance=continuation??new ManufacturingAdvanceRecord(target,exitAfterSlot,initiating.Id,s.Revision+1,
                         initiating.Kind==CommandKind.EndRegularTurn||initiating.Kind==CommandKind.EndFixedEncounter?initiating.Target:"");
                     if(connectedCombat!=null)ObserveCalendar(s);return;
                 }
             }
+            TestOnlyClubAttackPolicy.AdvanceConditions(s,".clock-final",true);
             if(connectedCombat!=null)ObserveCalendar(s);
         }
-        public string Resolve(Snapshot s, Command c)
+        private string ResolveCore(Snapshot s, Command c)
         {
             if (!s.Actors.Any(a => a.Id == c.Actor)) return "UnknownWorldActor";
+            if (c.Kind == CommandKind.Hide || c.Kind == CommandKind.Search) return ResolveObservationAction(s, c);
             if (IsOffCalendarActivity(s, c.Actor) && StartsOrResumesActivityWork(c)) {
                 var activity = ActivityInterval(s, c.Actor);
                 if (activity.Action == WorldActionCommitment.Dash
@@ -502,6 +542,11 @@ namespace Decennium.Foundation.Laboratory
             if(c.Kind==CommandKind.AssignExpeditionWork||c.Kind==CommandKind.CancelExpeditionWork||c.Kind==CommandKind.StartExpeditionWork)
                 return ResolveExpeditionAssignment(s,c);
             if(PortableCommand(c.Kind))return ResolvePortableEquipment(s,c);
+            if(IsOrdinaryReceptacleCommand(s,c))return ResolveOrdinaryReceptacle(s,c);
+            if(IsProspectingCommand(c))return ResolveProspecting(s,c);
+            if(IsMiningAssayCommand(c))return ResolveMiningAssay(s,c);
+            if(IsMineralPreparationCommand(c))return ResolveMineralPreparation(s,c);
+            if(IsMiningCommand(c))return ResolveMining(s,c);
             if(IsHarvestCommand(c))return ResolveHarvest(s,c);
             if(ManufacturingCommand(c.Kind))return ResolveManufacturing(s,c);
             if(IsFishingTrapCommand(c))return ResolveFishingTrap(s,c);
@@ -586,6 +631,10 @@ namespace Decennium.Foundation.Laboratory
                 var remedy=NextRemedyBoundary(s);if(remedy.HasValue&&remedy.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
                 var repairBoundary=NextRepairBoundary(s);if(repairBoundary.HasValue&&repairBoundary.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
                 var manufacturingBoundary=NextManufacturingBoundary(s);if(manufacturingBoundary.HasValue&&manufacturingBoundary.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
+                var miningBoundary=NextMiningBoundary(s);if(miningBoundary.HasValue&&miningBoundary.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
+                var prospectingBoundary=NextProspectingBoundary(s);if(prospectingBoundary.HasValue&&prospectingBoundary.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
+                var miningAssayBoundary=NextMiningAssayBoundary(s);if(miningAssayBoundary.HasValue&&miningAssayBoundary.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
+                var mineralPreparationBoundary=NextMineralPreparationBoundary(s);if(mineralPreparationBoundary.HasValue&&mineralPreparationBoundary.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
                 var tacticalFeatureBoundary=SoldierTacticalFeatures.NextDeadline(s);
                 if(tacticalFeatureBoundary.HasValue&&tacticalFeatureBoundary.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
             }
@@ -596,6 +645,10 @@ namespace Decennium.Foundation.Laboratory
                 CreditRemedyWork(s,CampGreens.Subtract(s.RuleClock,before));
                 CreditRepairWork(s,CampGreens.Subtract(s.RuleClock,before),new System.Collections.Generic.List<string>());
                 CreditManufacturing(s,CampGreens.Subtract(s.RuleClock,before),new System.Collections.Generic.List<string>());
+                CreditMiningWork(s,CampGreens.Subtract(s.RuleClock,before));
+                CreditProspectingWork(s,CampGreens.Subtract(s.RuleClock,before));
+                CreditMiningAssayWork(s,CampGreens.Subtract(s.RuleClock,before));
+                CreditMineralPreparationWork(s,CampGreens.Subtract(s.RuleClock,before));
                 // No traversal or condition deadline can occur inside the admitted interval.
                 TestOnlyClubAttackPolicy.AdvanceConditions(s, ".handling"); RefreshActivityIntervals(s);
                 CommitActivityLabor(s, c.Actor, WorldActivityValidation.ActiveLaborReference(s, c.Actor, before, s.RuleClock));
@@ -608,6 +661,10 @@ namespace Decennium.Foundation.Laboratory
         {
             try {
                 if (s.SchemaVersion != SelectedSchema || s.Receipts.Length != s.Revision) return "InvalidSharedWorldHeader";
+                if (observationFixture != null) {
+                    string observationError = observationFixture.ValidateSnapshot(s);
+                    if (observationError != null) return observationError;
+                }
                 // This laboratory has exactly one expedition member outside the tactical
                 // calendar. The calendar remains the initiative roster; the companion can use
                 // the shared exploration clock without gaining combat turns.
@@ -646,6 +703,53 @@ namespace Decennium.Foundation.Laboratory
                         ||s.PeriodicRiders.Where(x=>x.Present).GroupBy(x=>x.TargetId+"|"+x.OwnerId+"|"+x.SourceId,StringComparer.Ordinal).Any(g=>g.Count()>1)
                         ||s.SkillTraining.Any(x=>x.SkillId!="medicine"))return "InvalidPeriodicRiderFixture";
                 }
+                var miningSkills=s.SkillTraining.Where(x=>x.SkillId=="mining-tools").ToArray();
+                if(miningFixture!=null) {
+                    int expectedMiningSkills=miningFixture.Trained?MiningWorkerIds.Length:0;
+                    var authoredDeposits=miningFixture.Deposits.Select(x=>x.Deposit).ToArray();
+                    var authoredCategories=miningFixture.Deposits.SelectMany(x=>x.Categories).ToArray();
+                    var authoredUnits=miningFixture.Deposits.SelectMany(x=>x.Units).ToArray();
+                    var authoredItems=miningFixture.Deposits.SelectMany(x=>x.PhysicalItems).ToArray();
+                    var authoredSurfaces=miningFixture.Deposits.SelectMany(x=>x.WorkSurfaces).ToArray();
+                    var groundItems=authoredItems.Where(x=>x.Placement==PortablePlacement.Ground).ToDictionary(x=>x.Id,StringComparer.Ordinal);
+                    var assayProfiles=miningFixture.AssayProfiles;
+                    var assaySamples=miningFixture.AssaySamples;
+                    var destructiveProfiles=miningFixture.DestructiveAssayProfiles;
+                    var preparationProfiles=miningFixture.MineralPreparationProfiles;
+                    if(s.SchemaVersion!=SelectedSchema
+                        ||!s.MiningDeposits.Select(x=>x.Id).OrderBy(x=>x,StringComparer.Ordinal)
+                            .SequenceEqual(authoredDeposits.Select(x=>x.Id).OrderBy(x=>x,StringComparer.Ordinal))
+                        ||!s.MiningCategories.Select(x=>x.Id).OrderBy(x=>x,StringComparer.Ordinal)
+                            .SequenceEqual(authoredCategories.Select(x=>x.Id).OrderBy(x=>x,StringComparer.Ordinal))
+                        ||!s.MiningUnits.Select(x=>x.Id).OrderBy(x=>x,StringComparer.Ordinal)
+                            .SequenceEqual(authoredUnits.Select(x=>x.Id).OrderBy(x=>x,StringComparer.Ordinal))
+                        ||s.PortableEquipment.Count(x=>authoredItems.Any(a=>a.Id==x.Id))!=authoredItems.Length
+                        ||s.Structures.Count(x=>authoredSurfaces.Any(a=>a.Id==x.Id))!=authoredSurfaces.Length
+                        ||s.MiningAssayProfiles.Length!=assayProfiles.Length
+                        ||!s.MiningAssayProfiles.OrderBy(x=>x.Id,StringComparer.Ordinal)
+                            .Zip(assayProfiles.OrderBy(x=>x.Id,StringComparer.Ordinal),(a,b)=>a.HasSameContent(b)).All(x=>x)
+                        ||s.MiningAssaySamples.Length!=assaySamples.Length
+                        ||!s.MiningAssaySamples.OrderBy(x=>x.Id,StringComparer.Ordinal)
+                            .Zip(assaySamples.OrderBy(x=>x.Sample.Id,StringComparer.Ordinal),(a,b)=>a.HasSameContent(b.Sample)).All(x=>x)
+                        ||s.DestructiveMiningAssayProfiles.Length!=destructiveProfiles.Length
+                        ||!s.DestructiveMiningAssayProfiles.OrderBy(x=>x.Id,StringComparer.Ordinal)
+                            .Zip(destructiveProfiles.OrderBy(x=>x.Id,StringComparer.Ordinal),(a,b)=>a.Id==b.Id&&a.SampleId==b.SampleId
+                                &&a.MethodProfileId==b.MethodProfileId&&a.SampleAmount==b.SampleAmount).All(x=>x)
+                        ||s.MineralPreparationProfiles.Length!=preparationProfiles.Length
+                        ||!s.MineralPreparationProfiles.OrderBy(x=>x.Id,StringComparer.Ordinal)
+                            .Zip(preparationProfiles.OrderBy(x=>x.Id,StringComparer.Ordinal),(a,b)=>a.HasSameContent(b)).All(x=>x)
+                        ||miningSkills.Length!=expectedMiningSkills
+                        ||miningSkills.Any(x=>!MiningWorkerIds.Contains(x.ActorId,StringComparer.Ordinal)||x.ProficiencyRank!=1)
+                        ||s.PortableEquipment.Where(x=>groundItems.ContainsKey(x.Id)&&x.Placement==PortablePlacement.Ground)
+                            .Any(x=>x.GroundX!=groundItems[x.Id].GroundX||x.GroundY!=groundItems[x.Id].GroundY))
+                        return "InvalidMiningFixture";
+                } else if(s.MiningDeposits.Length+s.MiningCategories.Length+s.MiningUnits.Length+s.MiningAttempts.Length
+                    +s.MiningAssayProfiles.Length+s.MiningAssayAttempts.Length+s.MiningAssaySamples.Length
+                    +s.DestructiveMiningAssayProfiles.Length+s.DestructiveMiningAssayAttempts.Length
+                    +s.MineralPreparationProfiles.Length+s.MineralPreparationAttempts.Length!=0
+                    ||prospectingFixture==null&&miningSkills.Length!=0
+                    ||prospectingFixture!=null&&(miningSkills.Length!=(prospectingFixture.Trained?ProspectingWorkerIds.Length:0)
+                        ||miningSkills.Any(x=>!ProspectingWorkerIds.Contains(x.ActorId,StringComparer.Ordinal)||x.ProficiencyRank!=1)))return "MiningFixtureNotSelected";
                 var fishingSkills=s.SkillTraining.Where(x=>x.SkillId=="fishing-tackle").ToArray();
                 if(fishingTrapProfiles.Length==0) {
                     bool harvestSelected=harvestFixture!=null;
@@ -729,6 +833,8 @@ namespace Decennium.Foundation.Laboratory
                         ||s.FishingTraps.Length!=0||s.FishingReceiveLocations.Length!=0||s.FishingTrapRetrievals.Length!=0
                         ||s.FishingStockManifests.Length!=0||s.FishingStockAllocations.Length!=0))
                     return "InvalidFishingTrapFixture";
+                string prospectingError=ValidateProspectingFixtureState(s);
+                if(prospectingError!=null)return prospectingError;
                 var replay = Initial();
                 foreach (var receipt in s.Receipts.OrderBy(x => x.Revision)) {
                     var command = CommandHistory.Read(receipt);

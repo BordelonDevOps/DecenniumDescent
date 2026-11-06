@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "recordedUtc": "2026-11-06T14:33:58.9343409Z",
+  "implementationId": "TEST_ONLY.shared-ability-check-derivation-v1",
+  "sourceRevision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+  "sources": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md",
+      "gitBlob": "735e1a1f2661de6167dda58e0609749e0756ca85",
+      "localSnapshotSha256": "2343b5216dc7f3fdda87df24aa5a0ce8e7c0b2e2b492f62a772bf51631f5189f",
+      "scope": "Task-check ability and proficiency modifier; check degree resolution"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CHARACTER_CREATION_PLAYTEST.md",
+      "gitBlob": "04c77b3ddff460219600df2f28bac27d854647af",
+      "localSnapshotSha256": "5c9f9ab4c9b485546a249637a335f56193dd3d58e58c451f9561c4e330c09a84",
+      "scope": "Recorded ability scores, attained levels, explicit training and expertise distinction"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md",
+      "gitBlob": "735e1a1f2661de6167dda58e0609749e0756ca85",
+      "scope": "Existing single strongest applicable injury penalty policy; existing implementation retained"
+    }
+  ],
+  "implementation": {
+    "responsibility": "Purely derive selected ability modifier and one recorded rank contribution; optionally add current applicable injury penalty once.",
+    "authoritativeRecords": [
+      "ActorCharacterRecord",
+      "SkillTrainingRecord",
+      "domain-specific attempt and audit records",
+      "ActorLifeRecord projected through existing LifeState rules"
+    ],
+    "dependencies": [
+      "PlaytestCharacters.AbilityModifier",
+      "PlaytestCharacters.ProficiencyBonus",
+      "PlaytestLife.AbilityCheckInjuryPenalty"
+    ],
+    "limitations": "No skill-to-ability mapping, training grant, DC, dice, advantage source or outcome is inferred. The full engine and source-wide modifier coverage remain incomplete.",
+    "snapshotSchemaChanged": false
+  },
+  "validation": {
+    "focused": "PASS 1/1",
+    "headless": "PASS 1171/1171; C# 9 Roslyn warnings-as-errors",
+    "staticPackage": "PASS 18 checks; 231 assets; 231 unique GUIDs",
+    "diffCheck": "PASS"
+  },
+  "reviewStatus": "Not reviewed by GPT; the browser chat was inaccessible during this increment."
+}

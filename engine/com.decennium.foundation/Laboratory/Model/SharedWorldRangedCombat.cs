@@ -81,6 +81,12 @@ namespace Decennium.Foundation.Laboratory
             ||kind==CommandKind.StartToolRepair||kind==CommandKind.PauseToolRepair
             ||kind==CommandKind.ResumeToolRepair||kind==CommandKind.CancelToolRepair
             ||kind==CommandKind.StartHarvest||kind==CommandKind.PauseHarvest||kind==CommandKind.ResumeHarvest
+            ||kind==CommandKind.StartMining||kind==CommandKind.PauseMining||kind==CommandKind.ResumeMining
+            ||kind==CommandKind.StartProspecting||kind==CommandKind.PauseProspecting||kind==CommandKind.ResumeProspecting
+            ||kind==CommandKind.RecordProspectingExposure
+            ||kind==CommandKind.StartMiningAssay||kind==CommandKind.PauseMiningAssay||kind==CommandKind.ResumeMiningAssay
+            ||kind==CommandKind.CancelMiningAssay
+            ||kind==CommandKind.StartMineralPreparation||kind==CommandKind.PauseMineralPreparation||kind==CommandKind.ResumeMineralPreparation
             ||kind==CommandKind.TacticalStep||kind==CommandKind.TacticalRepositionStep||kind==CommandKind.Interact
             ||kind==CommandKind.ResolveManufacturingQuality||kind==CommandKind.PauseManufacturing
             ||kind==CommandKind.ResumeManufacturing||kind==CommandKind.CancelManufacturing;
@@ -308,7 +314,11 @@ namespace Decennium.Foundation.Laboratory
             var shooter=s.Actors.Single(a=>a.Id==c.Actor);
             long range=PlanarCombatGeometry.DistanceFeet(new CombatCell(shooter.X,shooter.Y),new CombatCell(c.X,c.Y));
             if(range>RepeatingCrossbowShotRules.MaximumRangeFeet)return "SuppressionZoneOutOfRange";
-            if(!rangedCombat.TargetLocationKnown||!rangedCombat.TargetVisible||!rangedCombat.LineOfFireClear
+            bool zoneLocationKnown=rangedCombat.TargetLocationKnown
+                &&(s.SchemaVersion<Snapshot.ObservationSchema||ObservationRules.LocationKnown(s,c.Actor,rangedCombat.TargetId));
+            bool zoneLineClear=rangedCombat.LineOfFireClear
+                &&(s.SchemaVersion<Snapshot.ObservationSchema||ObservationGeometry.LineOfEffectClear(s,c.Actor,rangedCombat.TargetId));
+            if(!zoneLocationKnown||!rangedCombat.TargetVisible||!zoneLineClear
                 ||!TestOnlyClubAttackPolicy.CanSee(s,c.Actor,rangedCombat.TargetId))return "SuppressionZoneNotPerceived";
             var targetIds=request.TargetIds;
             if(targetIds.Length<1||targetIds.Length>3)return "SuppressionFireTargetCountInvalid";
@@ -474,11 +484,21 @@ namespace Decennium.Foundation.Laboratory
             int armorClass=checked(CharacterAdvancementRules.ArmorClass(s,c.Target,targetDex)
                 +(targetStance?.Kind==CombatStance.Aggressive?-2:targetStance?.Kind==CombatStance.Guarded?1:0)
                 +CharacterAdvancementRules.DefensivePositioningBonus(s,c.Target));
+            bool targetLocationKnown=rangedCombat.TargetLocationKnown
+                &&(s.SchemaVersion<Snapshot.ObservationSchema||ObservationRules.LocationKnown(s,c.Actor,c.Target));
+            bool lineOfFireClear=rangedCombat.LineOfFireClear
+                &&(s.SchemaVersion<Snapshot.ObservationSchema||ObservationGeometry.LineOfEffectClear(s,c.Actor,c.Target));
             bool targetVisible=rangedCombat.TargetVisible&&TestOnlyClubAttackPolicy.CanSee(s,c.Actor,c.Target);
             long distance=PlanarCombatGeometry.DistanceFeet(new CombatCell(shooter.X,shooter.Y),new CombatCell(target.X,target.Y));
             if(c.Kind==CommandKind.WarningShot&&(distance>60||!targetVisible))return "WarningShotRequiresVisibleTargetWithin60Feet";
-            if(c.Kind==CommandKind.CoveringFire&&(!rangedCombat.TargetLocationKnown||!targetVisible))return "CoveringFireRequiresPerceivedTarget";
+            if(c.Kind==CommandKind.CoveringFire&&(!targetLocationKnown||!targetVisible))return "CoveringFireRequiresPerceivedTarget";
             bool attackerUnseen=!TestOnlyClubAttackPolicy.CanSee(s,c.Target,c.Actor);
+            bool attackerInvisibleKnown=s.SchemaVersion<Snapshot.ObservationSchema||ObservationRules.InvisibleRevealed(s,c.Target,c.Actor);
+            bool targetInvisibleKnown=s.SchemaVersion<Snapshot.ObservationSchema||ObservationRules.InvisibleRevealed(s,c.Actor,c.Target);
+            bool targetUnseenDisadvantage=!targetVisible&&!(s.SchemaVersion>=Snapshot.ObservationSchema&&targetInvisibleKnown
+                &&ObservationRules.InvisibleIsOnlySightBlocker(s,c.Actor,c.Target));
+            bool attackerUnseenAdvantage=attackerUnseen&&!(s.SchemaVersion>=Snapshot.ObservationSchema&&attackerInvisibleKnown
+                &&ObservationRules.InvisibleIsOnlySightBlocker(s,c.Target,c.Actor));
             bool closeHostile=s.WorldSchedule.Order.Where(id=>id!=c.Actor&&!SoldierTacticalFeatures.IsAlly(s,c.Actor,id)).Any(id=>{
                 var other=s.Actors.Single(a=>a.Id==id);var otherLife=s.Lives.Single(l=>l.ActorId==id);
                 bool incapacitated=otherLife.Dead||otherLife.Hp==0||TestOnlyClubAttackPolicy.ConditionsFor(s,id).View().Clauses.Incapacitated;
@@ -491,9 +511,11 @@ namespace Decennium.Foundation.Laboratory
             var rangedFacts=new RangedAttackRequest(distance,
                 RepeatingCrossbowShotRules.NormalRangeFeet,RepeatingCrossbowShotRules.MaximumRangeFeet,armorClass,
                 PlaytestCharacters.AbilityModifier(combatant.DexterityScore),combatant.ProficiencyBonus,combatant.CrossbowProficient,flatAttack,
-                rangedCombat.TargetCover,rangedCombat.TargetLocationKnown,targetVisible,rangedCombat.LineOfFireClear,attackerUnseen,closeHostile,
+                rangedCombat.TargetCover,targetLocationKnown,targetVisible,lineOfFireClear,attackerUnseen,closeHostile,
                 TestOnlyClubAttackPolicy.CombatConditions(s,c.Actor),TestOnlyClubAttackPolicy.CombatConditions(s,c.Target),
-                attackerInvisibleLocationKnown:true,targetInvisibleLocationKnown:true,additionalDisadvantageSources:incomingEffects.WarningShot?1:0);
+                attackerInvisibleLocationKnown:attackerInvisibleKnown,targetInvisibleLocationKnown:targetInvisibleKnown,
+                additionalDisadvantageSources:incomingEffects.WarningShot?1:0,
+                targetUnseenDisadvantage:targetUnseenDisadvantage,attackerUnseenAdvantage:attackerUnseenAdvantage);
             int carriedBolts=s.AmmunitionLots.Where(x=>x.CustodianId==c.Actor&&x.Accessible).Sum(x=>x.AvailableQuantity);
             var shotFailure=RepeatingCrossbowShotRules.CheckLegality(rangedFacts,new RepeatingFiveMagazine(weapon.LoadedBoltLots.Count),carriedBolts);
             if(shotFailure!=RepeatingCrossbowShotFailure.None)return ShotFailureCode(shotFailure);

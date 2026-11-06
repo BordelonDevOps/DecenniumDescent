@@ -13,7 +13,7 @@ namespace Decennium.Foundation
                 || receipt.Revision < 1 || string.IsNullOrEmpty(receipt.Fingerprint) || receipt.Fingerprint.Length > 512)
                 throw new ArgumentException("Invalid command receipt.");
             var p = receipt.Fingerprint.Split('|');
-            if (p.Length != 6 && p.Length != 8 && p.Length != 9 && p.Length != 10 && p.Length != 11 && p.Length != 12 && p.Length != 13) throw new ArgumentException("Invalid receipt fields.");
+            if (p.Length != 6 && p.Length != 8 && p.Length != 9 && p.Length != 10 && p.Length != 11 && p.Length != 12 && p.Length != 13 && p.Length != 14 && p.Length != 16) throw new ArgumentException("Invalid receipt fields.");
             int Int(string value) => int.TryParse(value, NumberStyles.AllowLeadingSign, CultureInfo.InvariantCulture, out int n)
                 ? n : throw new ArgumentException("Invalid receipt integer.");
             long Long(string value) => long.TryParse(value, NumberStyles.None, CultureInfo.InvariantCulture, out long n)
@@ -26,6 +26,8 @@ namespace Decennium.Foundation
             DefensiveFormationRequest defensiveFormation=null;
             ExpeditionAssignmentRequest expeditionAssignment=null;
             HarvestSelectionRequest harvestSelection=null;
+            MiningSelectionRequest miningSelection=null;
+            ProspectingExposureRequest prospectingExposure=null;
             OverwatchRider rider=OverwatchRider.None;
             if(p.Length==8&&p[6]=="overwatch-rider-v1") {
                 rider=(OverwatchRider)Int(p[7]);
@@ -42,7 +44,7 @@ namespace Decennium.Foundation
                 string[] recipients=p[8].Length==0?Array.Empty<string>():p[8].Split(',');
                 defensiveFormation=new DefensiveFormationRequest(p[7],recipients);
             }
-            if(p.Length==9&&p[6]!="defensive-formation-v1") {
+            if(p.Length==9&&p[6]!="defensive-formation-v1"&&p[6]!="prospecting-exposure-v1") {
                 if(kind!=CommandKind.AdvanceCharacterLevel||p[6]!="character-level-v1"||p[7]!=""&&!Validation.ValidId(p[7])||p[8]!=""&&!Validation.ValidId(p[8]))throw new ArgumentException("Invalid advancement receipt version or choices.");
                 advancement=new CharacterAdvancementRequest(p[7],p[8]);
             }
@@ -53,6 +55,13 @@ namespace Decennium.Foundation
             if(p.Length==10&&p[6]=="expedition-assignment-v1") {
                 if(kind!=CommandKind.AssignExpeditionWork)throw new ArgumentException("Expedition assignment payload has the wrong command kind.");
                 expeditionAssignment=new ExpeditionAssignmentRequest((ExpeditionWorkProcedure)Int(p[7]),p[8],p[9]);
+            }
+            if(p.Length==16&&p[6]=="expedition-mining-assignment-v1") {
+                if(kind!=CommandKind.AssignExpeditionWork||p[12]!="0"&&p[12]!="1")
+                    throw new ArgumentException("Mining assignment payload has the wrong command kind or hurry flag.");
+                string[] categories=p[13].Length==0?Array.Empty<string>():p[13].Split(',');
+                var selection=new MiningSelectionRequest(p[10],categories,(MiningAbilityChoice)Int(p[11]),p[12]=="1",p[14],p[15]);
+                expeditionAssignment=new ExpeditionAssignmentRequest((ExpeditionWorkProcedure)Int(p[7]),p[8],p[9],selection);
             }
             if(p.Length==10&&p[6]=="suppression-fire-v1") {
                 if(kind!=CommandKind.SuppressionFire)throw new ArgumentException("Suppression Fire payload has the wrong command kind.");
@@ -65,7 +74,7 @@ namespace Decennium.Foundation
                     throw new ArgumentException("Unknown ranged receipt version or command.");
                 ranged = new RangedRequest(p[7], p[8], p[9], Int(p[10]));
             }
-            if (p.Length >= 12) {
+            if (p.Length >= 12 && p[6] != "mining-selection-v1" && p[6] != "expedition-mining-assignment-v1") {
                 if (p[6] != (p.Length == 12 ? "combat-v1" : "combat-v2") || p.Length == 13 && p[12] != "1"
                     || p[11] != "0" && p[11] != "1") throw new ArgumentException("Invalid combat receipt version or flag.");
                 combat = new CombatRequest(p[7], p[8], Int(p[9]), (AttackKnockoutMode)Int(p[10]), p[11] == "1",
@@ -76,7 +85,16 @@ namespace Decennium.Foundation
                 string[] categories=p[8].Length==0?Array.Empty<string>():p[8].Split(',');
                 harvestSelection=new HarvestSelectionRequest(p[7],categories,p[9],p[10]);
             }
-            var command = new Command(receipt.Id, p[1], receipt.Revision - 1, kind, p[2], Int(p[4]), Int(p[5]), inventory, combat,advancement,ranged,rider,suppression,defensiveFormation,expeditionAssignment,harvestSelection);
+            if(p.Length==13&&p[6]=="mining-selection-v1") {
+                if(kind!=CommandKind.StartMining||p[9]!="0"&&p[9]!="1")throw new ArgumentException("Mining selection payload has the wrong command kind or hurry flag.");
+                string[] categories=p[10].Length==0?Array.Empty<string>():p[10].Split(',');
+                miningSelection=new MiningSelectionRequest(p[7],categories,(MiningAbilityChoice)Int(p[8]),p[9]=="1",p[11],p[12]);
+            }
+            if(p.Length==9&&p[6]=="prospecting-exposure-v1") {
+                if(kind!=CommandKind.RecordProspectingExposure)throw new ArgumentException("Prospecting exposure payload has the wrong command kind.");
+                prospectingExposure=new ProspectingExposureRequest(p[7],p[8]);
+            }
+            var command = new Command(receipt.Id, p[1], receipt.Revision - 1, kind, p[2], Int(p[4]), Int(p[5]), inventory, combat,advancement,ranged,rider,suppression,defensiveFormation,expeditionAssignment,harvestSelection,miningSelection,prospectingExposure);
             // Includes expected revision and exact canonical numeric representation, versions and fields.
             if (!command.MatchesReceipt(receipt)) throw new ArgumentException("Noncanonical or inconsistent command receipt.");
             return command;

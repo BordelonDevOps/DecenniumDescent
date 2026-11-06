@@ -58,7 +58,7 @@ namespace Decennium.Foundation.Tests
                 ["malformed_commands_are_bounded"] = () => {
                     var s = New(); RejectUnchanged(s, host, null, "InvalidCommand");
                     RejectUnchanged(s, host, new Command(new string('a',97),TestOnlyPolicy.ActorId,0,CommandKind.Move), "InvalidCommand");
-                    RejectUnchanged(s, host, new Command("bad",TestOnlyPolicy.ActorId,0,(CommandKind)99), "InvalidCommand");
+                    RejectUnchanged(s, host, new Command("bad",TestOnlyPolicy.ActorId,0,(CommandKind)int.MaxValue), "InvalidCommand");
                     RejectUnchanged(s, host, new Command("bad",TestOnlyPolicy.ActorId,0,CommandKind.Move,x:int.MinValue), "InvalidStep"); },
                 ["wall_blocks_movement"] = () => RejectUnchanged(New(),host,
                     new Command("wall",TestOnlyPolicy.ActorId,0,CommandKind.Move,x:1), "Blocked"),
@@ -201,6 +201,7 @@ namespace Decennium.Foundation.Tests
             };
             AddRollCases(cases);
             AddCharacterCases(cases);
+            AddAbilityCheckCases(cases);
             AddCharacterBuildCases(cases);
             AddLifeCases(cases);
             AddCombatBudgetCases(cases);
@@ -239,6 +240,7 @@ namespace Decennium.Foundation.Tests
             AddToolRepairCases(cases, directory);
             AddManufacturingCases(cases, directory);
             AddSupplyCacheCases(cases,directory);
+            AddOrdinaryReceptacleCases(cases,directory);
             AddPortableEquipmentCases(cases,directory);
             AddPostureCases(cases, directory);
             AddMaximumHpCases(cases);
@@ -250,6 +252,10 @@ namespace Decennium.Foundation.Tests
             AddFishingTrapCases(cases,directory);
             AddExpeditionAssignmentCases(cases,directory);
             AddHarvestCases(cases,directory);
+            AddMiningCases(cases,directory);
+            AddProspectingCases(cases,directory);
+            AddObservationCases(cases);
+            AddMiningAssayCases(cases,directory);
             AddPeriodicRiderCases(cases,directory);
             AddOverwatchExecutionCases(cases,directory);
             return cases;

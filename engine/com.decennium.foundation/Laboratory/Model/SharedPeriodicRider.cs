@@ -179,8 +179,7 @@ namespace Decennium.Foundation.Laboratory
             if(!CapableWorker(s,c.Actor)||!Permissions(s,c.Actor).Action)return "ConditionPreventsAction";
             var life=s.Lives.Single(x=>x.ActorId==c.Actor);var character=s.Characters.Single(x=>x.ActorId==c.Actor);
             var training=s.SkillTraining.SingleOrDefault(x=>x.ActorId==c.Actor&&x.SkillId=="medicine");
-            int rank=training?.ProficiencyRank??0;int ability=PlaytestCharacters.AbilityModifier(character.Abilities[4]);
-            int proficiency=PlaytestCharacters.ProficiencyBonus(character.Levels.Count);int modifier=checked(ability+(rank==1?proficiency:rank==2?2*proficiency:0));
+            int modifier=AbilityCheckRules.Derive(character,training,4).Total;
             var view=View(s,c.Actor);bool disadvantage=view.Clauses.Has(ConditionClause.Poisoned);
             uint before=s.RandomState;var roll=PlaytestDice.RollD20(before,disadvantage?0:0,disadvantage?1:0);
             var check=PlaytestRolls.TaskCheck(roll.Natural,modifier,rider.ApplyingDc);bool success=check.Success;

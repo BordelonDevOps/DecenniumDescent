@@ -6,7 +6,7 @@ namespace Decennium.Foundation
 {
     public enum PortablePlacement { Carried, Worn, Contained, Attached, Ground }
     public enum PortableLinkKind { None, InventoryLot, WaterVessel, SupplyEquipment }
-    public enum PortableMassBasis { Fixed, FoodPounds, WaterPints, GenericPounds }
+    public enum PortableMassBasis { Fixed, FoodPounds, WaterPints, GenericPounds, Unmodeled }
     public enum PortableOperation { Pickup, Drop, Retrieve, Stow, Handover, Wear, Remove, Open, Close, ShieldDoff }
 
     /// <summary>One actual test-fixture item or quantity already tracked in another component.
@@ -50,6 +50,7 @@ namespace Decennium.Foundation
                 ||linkedId==null||(linkedId!=""&&!Validation.ValidId(linkedId))||((linkKind==PortableLinkKind.None)!=(linkedId==""))
                 ||(linkKind==PortableLinkKind.InventoryLot)!=(massBasis==PortableMassBasis.FoodPounds||massBasis==PortableMassBasis.WaterPints||massBasis==PortableMassBasis.GenericPounds)
                 ||(massBasis==PortableMassBasis.Fixed)!=operationalWeightLb.HasValue
+                ||massBasis==PortableMassBasis.Unmodeled&&(sourceWeightLb.HasValue||operationalWeightLb.HasValue||linkKind!=PortableLinkKind.None)
                 ||(sourceWeightLb.HasValue&&sourceWeightLb.Value<default(RuleQuantity))||(operationalWeightLb.HasValue&&operationalWeightLb.Value<default(RuleQuantity))
                 ||(printedLoad.HasValue&&printedLoad.Value<default(RuleQuantity))||(capacityPounds.HasValue&&capacityPounds.Value<default(RuleQuantity))
                 ||(capacityCubicFeet.HasValue&&capacityCubicFeet.Value<default(RuleQuantity))||(capacityPounds.HasValue!=capacityCubicFeet.HasValue)
@@ -128,6 +129,8 @@ namespace Decennium.Foundation
                 throw new ArgumentException("Duplicate or future portable equipment history.");
             bool Actor(string id)=>s.Actors.Any(x=>x.Id==id);
             foreach(var item in items) {
+                if(item.MassBasis==PortableMassBasis.Unmodeled&&s.SchemaVersion<Snapshot.OrdinaryReceptacleSchema)
+                    throw new ArgumentException("Unmodeled mass requires schema50.");
                 if(!Actor(item.OwnerId)||!Actor(item.CustodianId))throw new ArgumentException("Portable owner or custodian is not an actor.");
                 if(item.ParentId!="") {
                     var parent=items.SingleOrDefault(x=>x.Id==item.ParentId);
@@ -202,8 +205,14 @@ namespace Decennium.Foundation
                 &&!s.SupplyCacheAttempts.Any(j=>j.Id==w.JobId)&&!s.PortableHandling.Any(j=>j.Id==w.JobId)
                 &&!s.FormulaWork.Any(j=>j.Id==w.JobId)&&!s.RepairWork.Any(j=>j.Id==w.JobId)&&!s.ManufacturingOrders.Any(j=>j.Id==w.JobId)
                 &&!s.FishingTrapAttempts.Any(j=>j.Id==w.JobId)&&!s.FishingTrapRetrievals.Any(j=>j.Id==w.JobId)&&!s.HarvestAttempts.Any(j=>j.Id==w.JobId)
+                &&!s.MiningAttempts.Any(j=>j.Id==w.JobId)
+                &&!s.ProspectingAttempts.Any(j=>j.Id==w.JobId)
+                &&!s.MiningAssayAttempts.Any(j=>j.Id==w.JobId)
+                &&!s.DestructiveMiningAssayAttempts.Any(j=>j.Id==w.JobId)
+                &&!s.MineralPreparationAttempts.Any(j=>j.Id==w.JobId)
+                &&!s.OrdinaryReceptacleAttempts.Any(j=>j.Id==w.JobId)
                 &&!s.CraftingIncidents.Any(j=>j.Workers.Count!=0&&w.JobId=="craft.remedy."+j.Revision.ToString(System.Globalization.CultureInfo.InvariantCulture))))
-                throw new ArgumentException("Unattributed portable handling labor.");
+                throw new ArgumentException("Unattributed worker interval.");
         }
         private static string GroundLocation(int x,int y)=>"ground."+x.ToString(System.Globalization.CultureInfo.InvariantCulture)+"."+y.ToString(System.Globalization.CultureInfo.InvariantCulture);
         public static string GroundLocation(PortableEquipmentRecord item)=>GroundLocation(item.GroundX,item.GroundY);
@@ -239,6 +248,7 @@ namespace Decennium.Foundation
         }
         public static RuleQuantity Mass(Snapshot s,PortableEquipmentRecord item) {
             if(item.MassBasis==PortableMassBasis.Fixed)return item.OperationalWeightLb.Value;
+            if(item.MassBasis==PortableMassBasis.Unmodeled)throw new InvalidOperationException("Portable item mass is not modeled.");
             var lot=s.Work.Lots.Single(x=>x.Id==item.LinkedId);
             return item.MassBasis==PortableMassBasis.FoodPounds?lot.Amount:lot.Amount;
         }

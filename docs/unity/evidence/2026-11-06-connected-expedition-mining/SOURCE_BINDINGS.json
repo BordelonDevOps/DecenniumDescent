@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "stableBindingId": "INTEGRATION.EXPLORATION.TACTICAL.ASSIGNED_MINING.NO_SCHEMA_CHANGE",
+  "implementationBranch": "Engine",
+  "sourceRevision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+  "checkoutHead": "4df6738972ccba92cc7cf2495a3b0bf2547b596e",
+  "workingTreeState": "uncommitted Engine changes preserved",
+  "status": "partial TEST_ONLY integration; not release-approved",
+  "rulesPolicy": "No new gameplay rule or timing policy. Reuses the previously source-bound exploration/tactical transition, site-aware assignment, finite mining procedure, shared clock, WorkLedger, save/restore and command replay.",
+  "sourceBindingArtifacts": [
+    {
+      "path": "docs/unity/evidence/2026-11-03-connected-combat/SOURCE_BINDINGS.json",
+      "sha256": "7bef84663685f0077745bd79e13cdd2a1de79a352c64de9f244a034a0e4e8424",
+      "scope": "Existing source binding for shared exploration/tactical clock, encounter transition and combat procedures."
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-06-expedition-mining-assignment/SOURCE_BINDINGS.json",
+      "sha256": "7ac7b1d744ba68e6088988a0b61a285e80ebe4f29ec3926fd8dd9f9600384092",
+      "scope": "Existing source binding for player-directed travel, assignment readiness, and finite mineral extraction."
+    },
+    {
+      "path": "docs/unity/CONNECTED_COMBAT_RULE_DECISIONS.md",
+      "sha256": "2466585d6fc737cc7c69e351ca00768ab065754f7f7637dcecce2c2ef66954d1",
+      "scope": "Adopted shared-calendar transition and fixed TEST_ONLY connected-combat limits."
+    },
+    {
+      "path": "docs/unity/EXPEDITION_ASSIGNMENT_RULE_DECISIONS.md",
+      "sha256": "a7dceae2ad9512328c346076ab784c2e1fe20d455cabb1d1ea2ddf125ae7eef1",
+      "scope": "Existing assignment intent, derived site, travel, readiness, and procedure delegation."
+    },
+    {
+      "path": "docs/unity/MINING_RULE_DECISIONS.md",
+      "sha256": "80072a9f4a7de193a35b2cd5bbc86048ff3ea32ad7f1324a8ed2abf0b6503a4a",
+      "scope": "Existing finite mineral extraction outcome and resource settlement boundaries."
+    }
+  ],
+  "implementationFiles": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs",
+      "sha256": "e361a8cb6e0f49bfd4fbb5f16e8fb797f97d9ad23ef3132c1f4c2b65701ee142",
+      "scope": "Fixture-only encounter HP parameter for WithMining; default behavior remains 26 HP."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/ConnectedCombatCases.cs",
+      "sha256": "cbf0ec2f026f91d116aa9fb626a1675f6d434acba25a8c21aa75c451eb8a671c",
+      "scope": "Cross-system acceptance scenario and terminal assertions."
+    }
+  ],
+  "acceptance": {
+    "case": "connected_exploration_combat_and_assigned_mining_share_one_saved_timeline",
+    "focused": "PASS 1/1",
+    "fullSuite": "PASS 1164/1164",
+    "staticPackage": "PASS 18/18; 225 assets; 225 unique GUIDs",
+    "schemaChange": false
+  },
+  "limitations": [
+    "Encounter and deposit are fixed TEST_ONLY content.",
+    "Companion travel is player-directed; autonomous assignment routing and general roster scheduling are not implemented.",
+    "No combat loot or reward is inferred.",
+    "The integrated case does not replace exact procedure-specific mining outcome tests or prove production content authority."
+  ]
+}

@@ -6,7 +6,7 @@ using System.Numerics;
 namespace Decennium.Foundation
 {
     public enum WorldActionCommitment { None, Dash, ActiveLabor }
-    public enum WorldProcedureKind { Crop, WaterFill, Intake, FormulaWork, Repair, Manufacturing, FishingTrapRetrieval, SupplyCache, FishingTrapSetup, Harvest }
+    public enum WorldProcedureKind { Crop, WaterFill, Intake, FormulaWork, Repair, Manufacturing, FishingTrapRetrieval, SupplyCache, FishingTrapSetup, Harvest, Mining, Prospecting, MiningAssay, MineralPreparation }
 
     /// <summary>Derived activity projection over the existing procedure records. It is never saved
     /// independently; each domain procedure remains authoritative for its state and settlement.</summary>
@@ -172,6 +172,37 @@ namespace Decennium.Foundation
                     result.Add(Create(s, attempt.Id, attempt.WorkerId, WorldProcedureKind.Harvest,
                     includeDetails ? attempt.Status.ToString() : null, includeDetails ? (RuleTime?)attempt.WorkDone : null,
                     includeDetails ? (RuleTime?)attempt.Duration : null, options, includeDetails));
+            foreach (var attempt in s.MiningAttempts ?? Array.Empty<MiningAttemptRecord>())
+                if (attempt.Status == MiningAttemptStatus.Working || includeOpen
+                    && (attempt.Status == MiningAttemptStatus.Paused || attempt.Status == MiningAttemptStatus.AwaitingCheck))
+                    result.Add(Create(s, attempt.Id, attempt.WorkerId, WorldProcedureKind.Mining,
+                    includeDetails ? attempt.Status.ToString() : null,
+                    includeDetails ? (RuleTime?)attempt.WorkDone : null,
+                    includeDetails ? (RuleTime?)new RuleTime(attempt.DurationSeconds) : null, options, includeDetails));
+            foreach (var attempt in s.ProspectingAttempts ?? Array.Empty<ProspectingAttemptRecord>())
+                if (attempt.Status == ProspectingAttemptStatus.Working || includeOpen
+                    && (attempt.Status == ProspectingAttemptStatus.Paused || attempt.Status == ProspectingAttemptStatus.AwaitingCheck))
+                    result.Add(Create(s, attempt.Id, attempt.ActorId, WorldProcedureKind.Prospecting,
+                    includeDetails ? attempt.Status.ToString() : null, includeDetails ? (RuleTime?)attempt.WorkDone : null,
+                    includeDetails ? (RuleTime?)new RuleTime(ProspectingValidation.WorkSeconds) : null, options, includeDetails));
+            foreach (var attempt in s.MiningAssayAttempts ?? Array.Empty<MiningAssayAttemptRecord>())
+                if (attempt.Status == MiningAssayStatus.Working || includeOpen
+                    && (attempt.Status == MiningAssayStatus.Paused || attempt.Status == MiningAssayStatus.AwaitingCheck))
+                    result.Add(Create(s, attempt.Id, attempt.WorkerId, WorldProcedureKind.MiningAssay,
+                    includeDetails ? attempt.Status.ToString() : null, includeDetails ? (RuleTime?)attempt.WorkDone : null,
+                    includeDetails ? (RuleTime?)new RuleTime(MiningAssayValidation.WorkSeconds) : null, options, includeDetails));
+            foreach (var attempt in s.DestructiveMiningAssayAttempts ?? Array.Empty<DestructiveMiningAssayAttemptRecord>())
+                if (attempt.Status == MiningAssayStatus.Working || includeOpen
+                    && (attempt.Status == MiningAssayStatus.Paused || attempt.Status == MiningAssayStatus.AwaitingCheck))
+                    result.Add(Create(s, attempt.Id, attempt.WorkerId, WorldProcedureKind.MiningAssay,
+                    includeDetails ? attempt.Status.ToString() : null, includeDetails ? (RuleTime?)attempt.WorkDone : null,
+                    includeDetails ? (RuleTime?)new RuleTime(MiningAssayValidation.WorkSeconds) : null, options, includeDetails));
+            foreach (var attempt in s.MineralPreparationAttempts ?? Array.Empty<MineralPreparationAttemptRecord>())
+                if (attempt.Status == MineralPreparationStatus.Working || includeOpen
+                    && (attempt.Status == MineralPreparationStatus.Paused || attempt.Status == MineralPreparationStatus.AwaitingCompletion))
+                    result.Add(Create(s, attempt.Id, attempt.WorkerId, WorldProcedureKind.MineralPreparation,
+                    includeDetails ? attempt.Status.ToString() : null, includeDetails ? (RuleTime?)attempt.WorkDone : null,
+                    includeDetails ? (RuleTime?)new RuleTime(MineralPreparationValidation.WorkSeconds) : null, options, includeDetails));
             return result.AsReadOnly();
         }
 
@@ -218,6 +249,10 @@ namespace Decennium.Foundation
                 case CommandKind.PauseManufacturing: case CommandKind.ResumeManufacturing: case CommandKind.CancelManufacturing:
                 case CommandKind.ResolveManufacturingQuality:
                 case CommandKind.PauseHarvest: case CommandKind.ResumeHarvest:
+                case CommandKind.PauseMining: case CommandKind.ResumeMining:
+                case CommandKind.PauseProspecting: case CommandKind.ResumeProspecting:
+                case CommandKind.PauseMiningAssay: case CommandKind.ResumeMiningAssay: case CommandKind.CancelMiningAssay:
+                case CommandKind.PauseMineralPreparation: case CommandKind.ResumeMineralPreparation:
                     return true;
                 default:
                     return false;
@@ -312,7 +347,12 @@ namespace Decennium.Foundation
                 || s.ManufacturingOrders.Any(x => x.Id == id && x.WorkerId == actor)
                 || s.FishingTrapRetrievals.Any(x => x.Id == id && x.WorkerId == actor)
                 || s.SupplyCacheAttempts.Any(x => x.Id == id && x.ActorId == actor)
-                || s.FishingTrapAttempts.Any(x => x.Id == id && x.SetterId == actor);
+                || s.FishingTrapAttempts.Any(x => x.Id == id && x.SetterId == actor)
+                || s.MiningAttempts.Any(x => x.Id == id && x.WorkerId == actor)
+                || s.ProspectingAttempts.Any(x => x.Id == id && x.ActorId == actor)
+                || s.MiningAssayAttempts.Any(x => x.Id == id && x.WorkerId == actor)
+                || s.DestructiveMiningAssayAttempts.Any(x => x.Id == id && x.WorkerId == actor)
+                || s.MineralPreparationAttempts.Any(x => x.Id == id && x.WorkerId == actor);
         }
 
         /// <summary>Returns persisted work-interval provenance for positive labor in a segment.

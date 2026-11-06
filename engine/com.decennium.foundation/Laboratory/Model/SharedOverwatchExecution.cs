@@ -138,12 +138,19 @@ namespace Decennium.Foundation.Laboratory
             var incomingEffects=SoldierTacticalFeatures.ForAttack(s,offer.OwnerId,offer.TargetId);
             int flatAttack=checked((s.Lives.Single(x=>x.ActorId==offer.OwnerId).LinkedInjuries.Contains((int)Injury.OffensiveTrauma)?-1:0)
                 -incomingEffects.CoveringFirePenalty+incomingEffects.TacticalAssessmentBonus);
+            bool attackerInvisibleKnown=s.SchemaVersion<Snapshot.ObservationSchema||ObservationRules.InvisibleRevealed(s,offer.TargetId,offer.OwnerId);
+            bool targetInvisibleKnown=s.SchemaVersion<Snapshot.ObservationSchema||ObservationRules.InvisibleRevealed(s,offer.OwnerId,offer.TargetId);
+            bool attackerUnseen=!TestOnlyClubAttackPolicy.CanSee(s,offer.TargetId,offer.OwnerId);
+            bool attackerUnseenAdvantage=attackerUnseen&&!(s.SchemaVersion>=Snapshot.ObservationSchema&&attackerInvisibleKnown
+                &&ObservationRules.InvisibleIsOnlySightBlocker(s,offer.TargetId,offer.OwnerId));
             var request=new RangedAttackRequest(distance,RepeatingCrossbowShotRules.NormalRangeFeet,RepeatingCrossbowShotRules.MaximumRangeFeet,ac,
                 PlaytestCharacters.AbilityModifier(attacker.DexterityScore),attacker.ProficiencyBonus,attacker.CrossbowProficient,flatAttack,
                 overwatchExecution.TargetCover,overwatchExecution.TargetLocationKnown,true,overwatchExecution.LineOfFireClear,
-                !TestOnlyClubAttackPolicy.CanSee(s,offer.TargetId,offer.OwnerId),closeHostile,
+                attackerUnseen,closeHostile,
                 TestOnlyClubAttackPolicy.CombatConditions(s,offer.OwnerId),TestOnlyClubAttackPolicy.CombatConditions(s,offer.TargetId),
-                attackerInvisibleLocationKnown:true,targetInvisibleLocationKnown:true,additionalDisadvantageSources:incomingEffects.WarningShot?1:0);
+                attackerInvisibleLocationKnown:attackerInvisibleKnown,targetInvisibleLocationKnown:targetInvisibleKnown,
+                additionalDisadvantageSources:incomingEffects.WarningShot?1:0,
+                targetUnseenDisadvantage:false,attackerUnseenAdvantage:attackerUnseenAdvantage);
             var attack=RangedAttackRules.Resolve(s.RandomState,request);if(!attack.Legal)return false;
             facts=new OverwatchShotFacts{Zone=zone,Weapon=weapon,Ammunition=ammunition,Attacker=attacker,Shooter=shooter,Target=target,
                 TargetLife=targetLife,Attack=attack};
@@ -255,7 +262,9 @@ namespace Decennium.Foundation.Laboratory
                     if(!success) {
                         int directionX=Math.Sign(target.X-owner.X),directionY=Math.Sign(target.Y-owner.Y);
                         toX=target.X+directionX;toY=target.Y+directionY;
-                        if((directionX!=0||directionY!=0)&&TestOnlyPolicy.Walkable(toX,toY)&&!s.Actors.Any(x=>x.Id!=target.Id&&x.X==toX&&x.Y==toY)) {
+                        if((directionX!=0||directionY!=0)&&TestOnlyPolicy.Walkable(toX,toY)
+                            &&(s.SchemaVersion<Snapshot.ObservationSchema||ObservationGeometry.SupportsAnchorAt(s,toX,toY))
+                            &&!s.Actors.Any(x=>x.Id!=target.Id&&x.X==toX&&x.Y==toY)) {
                             target.X=toX;target.Y=toY;moved=5;
                             CharacterAdvancementRules.MarkMoved(s,target.Id);
                             s.Clubs=s.Clubs.Select(x=>x.HeldBy==target.Id?new ClubInstance(x.Id,x.ProfileId,x.OwnerId,x.CustodianId,x.HeldBy,toX,toY):x).ToArray();

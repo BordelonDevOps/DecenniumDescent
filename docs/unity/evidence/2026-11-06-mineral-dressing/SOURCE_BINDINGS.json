@@ -1,0 +1,58 @@
+{
+  "schema": 1,
+  "stableBindingId": "MGT.MINERAL.DRESSING.MUNDANE.SCHEMA48",
+  "implementationBranch": "Engine",
+  "sourceRevision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+  "checkoutHead": "4df6738972ccba92cc7cf2495a3b0bf2547b596e",
+  "workingTreeState": "uncommitted Engine changes preserved",
+  "status": "partial TEST_ONLY implementation; not release-approved",
+  "rulesPolicy": "Source-backed ten-minute no-roll dressing for one whole extracted ordinary unit up to 1 lb. Measured gangue waste is explicit fixture content, retained mass is conserved, and no value/grade/condition/freshness change is inferred. General item-on-surface placement remains outside this fixture.",
+  "sources": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/MINING_CANDIDATE_GUIDE.md",
+      "blob": "9f489ece11739170ba311c9db7b1b7b184ae656d",
+      "sha256": "726cb84a1104901f5b05b412039b458af5bb5168e4482fb9e9844b1b42b697c3",
+      "scope": "Mineral preparation: ten active minutes, compatible Miner's tools, two hands, stable accessible surface, one ordinary unit or predeclared portion up to 1 lb, and actual waste/retained mass recording."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/GATHERING_TOOL_CANDIDATE_GUIDE.md",
+      "blob": "962603a03edaa1b446f33373b97525a0300be829",
+      "sha256": "9b1e4defcd18569ad8d8305552ad740e62be1faea3e1de448e364bd7536215bc",
+      "scope": "Shared task setup, worker/tool history, feasible active work and retained claim/progress conventions."
+    }
+  ],
+  "dependencies": [
+    "schema43 authored finite mineral unit and extraction receipt",
+    "schema40 shared off-calendar activity clock",
+    "shared WorkLedger reservation and active worker intervals",
+    "ordinary inventory ancestry and portable equipment custody",
+    "versioned snapshot codec, command receipts and replay"
+  ],
+  "implementation": [
+    "engine/com.decennium.foundation/Runtime/Core/MiningRecords.cs",
+    "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+    "engine/com.decennium.foundation/Runtime/Core/WorldActivityRecord.cs",
+    "engine/com.decennium.foundation/Runtime/Core/PortableEquipmentRecords.cs",
+    "engine/com.decennium.foundation/Runtime/Persistence/MiningCodec.cs",
+    "engine/com.decennium.foundation/Runtime/Persistence/SnapshotCodec.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedCraftingConsequences.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCommandQueries.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedWorldRangedCombat.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/PortableEquipment.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/OrdinaryInventory.cs",
+    "engine/com.decennium.foundation/Tests/EditMode/MiningCases.cs"
+  ],
+  "tests": [
+    "mineral_preparation_conserves_measured_mass_and_resumes_after_save"
+  ],
+  "unsupported": [
+    "predeclared portions and their physical identity",
+    "recipe-integrated preparation during extraction",
+    "general item-on-surface placement and geometry",
+    "exceptional, oversized, damaged or incompatible material preparation",
+    "general production mineral content, residue reuse, refining or excavation",
+    "release approval and full engine coverage"
+  ]
+}
