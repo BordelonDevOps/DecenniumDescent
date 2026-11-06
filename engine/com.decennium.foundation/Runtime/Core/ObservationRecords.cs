@@ -4,7 +4,9 @@ using System.Numerics;
 
 namespace Decennium.Foundation
 {
-    public enum ObservationEvidenceKind { None, DirectSight, Search, AttackEvidence }
+    /// <summary>DirectSightLimit is the excluded right-hand boundary where direct sight ceased along a path.
+    /// The target may have moved (leaving stale location evidence) or stayed in place while its observer moved.</summary>
+    public enum ObservationEvidenceKind { None = 0, DirectSight = 1, Search = 2, AttackEvidence = 3, DirectSightLimit = 4 }
     public enum ObservationActionKind { Hide, Search }
     public enum ObservationDieSelection { None, Normal, Advantage, Disadvantage }
     public enum ObservationTaskDegree { None, CriticalFailure, Failure, Success, CriticalSuccess }

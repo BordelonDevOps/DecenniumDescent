@@ -5,6 +5,14 @@ using System.Linq;
 
 namespace Decennium.Foundation.Laboratory
 {
+    /// <summary>Versioned TEST_ONLY observation procedures. Schema51 saves keep their original
+    /// sampled profile available for exact historical receipt replay.</summary>
+    public enum ObservationAlgorithmVersion
+    {
+        LegacySampledV1 = 1,
+        ExactPathIntervalsV2 = 2
+    }
+
     public sealed class ObservationMovementSegment
     {
         internal WorldTraversalRecord Edge { get; }
@@ -217,9 +225,13 @@ namespace Decennium.Foundation.Laboratory
         }
 
         public static void ProcessWorldTraversalSegments(Snapshot s, IReadOnlyList<ObservationMovementSegment> segments,
-            RuleTime start, RuleTime end, long revision)
+            RuleTime start, RuleTime end, long revision,
+            ObservationAlgorithmVersion algorithmVersion = ObservationAlgorithmVersion.ExactPathIntervalsV2)
         {
             if (segments == null || segments.Count == 0 || s.SchemaVersion < Snapshot.ObservationSchema) return;
+            if (algorithmVersion != ObservationAlgorithmVersion.LegacySampledV1
+                && algorithmVersion != ObservationAlgorithmVersion.ExactPathIntervalsV2)
+                throw new ArgumentOutOfRangeException(nameof(algorithmVersion));
             var moving = new HashSet<string>(segments.Select(x => x.Edge.ActorId), StringComparer.Ordinal);
             foreach (var segment in segments.OrderBy(x => x.Edge.ActorId, StringComparer.Ordinal))
             {
@@ -229,44 +241,90 @@ namespace Decennium.Foundation.Laboratory
                 foreach (var other in s.Actors.Where(x => x.Id != mover && !moving.Contains(x.Id)).OrderBy(x => x.Id, StringComparer.Ordinal))
                 {
                     var fixedPoint = ObservationGeometry.Position(s, other.Id);
-                    RecordPathSight(s, segment, mover, other.Id, true, fixedPoint, minimum, maximum, start, end, revision);
-                    RecordPathSight(s, segment, mover, other.Id, false, fixedPoint, minimum, maximum, start, end, revision);
+                    RecordPathSight(s, segment, mover, other.Id, true, fixedPoint, minimum, maximum, start, end, revision,
+                        algorithmVersion);
+                    RecordPathSight(s, segment, mover, other.Id, false, fixedPoint, minimum, maximum, start, end, revision,
+                        algorithmVersion);
                 }
             }
         }
 
         private static void RecordPathSight(Snapshot s, ObservationMovementSegment segment, string mover, string other,
             bool moverIsTarget, ObservationPoint fixedPoint, RuleQuantity minimum, RuleQuantity maximum,
-            RuleTime start, RuleTime end, long revision)
+            RuleTime start, RuleTime end, long revision, ObservationAlgorithmVersion algorithmVersion)
         {
             string observer = moverIsTarget ? other : mover;
             string target = moverIsTarget ? mover : other;
             long range = s.ObservationProfiles.Single(x => x.ActorId == observer).SightRangeFeet;
-            var samples = ObservationGeometry.ObservationSamples(s, fixedPoint, segment.Edge.FromX, segment.Edge.FromY,
-                segment.Edge.ToX, segment.Edge.ToY, range, minimum, maximum);
-            ObservationPoint lastVisible = default;
-            RuleQuantity lastParameter = default;
-            bool found = false;
-            foreach (var sample in samples)
+            bool VisibleAt(RuleQuantity parameter)
             {
                 var movingPoint = ObservationGeometry.AtEdge(segment.Edge.FromX, segment.Edge.FromY,
-                    segment.Edge.ToX, segment.Edge.ToY, sample);
+                    segment.Edge.ToX, segment.Edge.ToY, parameter);
                 var observerPoint = moverIsTarget ? fixedPoint : movingPoint;
                 var targetPoint = moverIsTarget ? movingPoint : fixedPoint;
-                if (DirectSightAt(s, observer, target, observerPoint, targetPoint))
-                { found = true; lastVisible = targetPoint; lastParameter = sample; }
+                return DirectSightAt(s, observer, target, observerPoint, targetPoint);
+            }
+
+            RuleQuantity lastParameter = default;
+            bool found = false;
+            bool isSightLimit = false;
+            if (algorithmVersion == ObservationAlgorithmVersion.LegacySampledV1)
+            {
+                var samples = ObservationGeometry.ObservationSamples(s, fixedPoint, segment.Edge.FromX, segment.Edge.FromY,
+                    segment.Edge.ToX, segment.Edge.ToY, range, minimum, maximum);
+                foreach (var sample in samples)
+                    if (VisibleAt(sample))
+                    {
+                        found = true;
+                        lastParameter = sample;
+                    }
+            }
+            else
+            {
+                var boundaries = ObservationGeometry.VisibilityBreakpoints(s, fixedPoint, segment.Edge.FromX,
+                    segment.Edge.FromY, segment.Edge.ToX, segment.Edge.ToY, range)
+                    .Where(x => x > minimum && x < maximum)
+                    .Concat(new[] { minimum, maximum }).Distinct().OrderBy(x => x).ToArray();
+                for (int i = 0; i < boundaries.Length; i++)
+                {
+                    RuleQuantity boundary = boundaries[i];
+                    if (VisibleAt(boundary))
+                    {
+                        found = true;
+                        lastParameter = boundary;
+                        isSightLimit = false;
+                    }
+                    if (i + 1 >= boundaries.Length) continue;
+                    RuleQuantity next = boundaries[i + 1];
+                    if (VisibleAt(Midpoint(boundary, next)) && !VisibleAt(next))
+                    {
+                        found = true;
+                        lastParameter = next;
+                        isSightLimit = true;
+                    }
+                }
             }
             if (!found) return;
             RuleQuantity subsegment = FractionBetween(lastParameter, minimum, maximum);
             RuleTime evidenceAt = ObservationGeometry.AtTime(start, end, subsegment);
+            var movingTarget = ObservationGeometry.AtEdge(segment.Edge.FromX, segment.Edge.FromY,
+                segment.Edge.ToX, segment.Edge.ToY, lastParameter);
+            var lastVisible = moverIsTarget ? movingTarget : fixedPoint;
             var actualTarget = ObservationGeometry.Position(s, target);
-            bool stillCurrent = lastVisible.X == actualTarget.X && lastVisible.Y == actualTarget.Y;
+            bool stillCurrent = !moverIsTarget
+                || !isSightLimit && lastVisible.X == actualTarget.X && lastVisible.Y == actualTarget.Y;
             var prior = Knowledge(s, observer, target);
             string episode = CurrentInvisibleEpisodeId(s, target);
             Set(s, NewKnowledge(s, observer, target, stillCurrent, lastVisible,
-                ObservationEvidenceKind.DirectSight, evidenceAt, revision,
+                isSightLimit ? ObservationEvidenceKind.DirectSightLimit : ObservationEvidenceKind.DirectSight,
+                evidenceAt, revision,
                 revealedEpisode: episode == "" ? prior?.RevealedInvisibleEpisodeId ?? "" : episode));
         }
+
+        private static RuleQuantity Midpoint(RuleQuantity left, RuleQuantity right)
+            => RuleQuantity.FromFraction((System.Numerics.BigInteger)left.Numerator * right.Denominator
+                + (System.Numerics.BigInteger)right.Numerator * left.Denominator,
+                (System.Numerics.BigInteger)2 * left.Denominator * right.Denominator);
 
         private static RuleQuantity FractionBetween(RuleQuantity point, RuleQuantity start, RuleQuantity end)
         {

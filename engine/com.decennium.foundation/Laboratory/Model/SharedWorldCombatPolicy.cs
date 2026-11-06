@@ -19,12 +19,22 @@ namespace Decennium.Foundation.Laboratory
         /// <summary>Opts this TEST_ONLY shared world into explicit planar observation content.
         /// Call before Initial(); the map, per-actor ranges and records are part of schema51 saves.</summary>
         public TestOnlySharedWorldPolicy EnableObservation(ObservationFixture fixture)
+            => EnableObservation(fixture, ObservationAlgorithmVersion.ExactPathIntervalsV2);
+
+        /// <summary>Selects the explicit observation procedure used by saved schema51 histories.
+        /// LegacySampledV1 is retained for replaying authentic saves created before exact intervals.</summary>
+        public TestOnlySharedWorldPolicy EnableObservation(ObservationFixture fixture,
+            ObservationAlgorithmVersion algorithmVersion)
         {
             if (fixture == null) throw new ArgumentNullException(nameof(fixture));
+            if (algorithmVersion != ObservationAlgorithmVersion.LegacySampledV1
+                && algorithmVersion != ObservationAlgorithmVersion.ExactPathIntervalsV2)
+                throw new ArgumentOutOfRangeException(nameof(algorithmVersion));
             if (initializationStarted) throw new InvalidOperationException("Observation content must be selected before Initial().");
             if (observationFixture != null) throw new InvalidOperationException("Observation content is already selected.");
             observationFixture = fixture;
-            ContentFingerprint = ObservationFixture.BindFingerprint(ContentFingerprint, fixture);
+            observationAlgorithmVersion = algorithmVersion;
+            ContentFingerprint = ObservationFixture.BindFingerprint(ContentFingerprint, fixture, algorithmVersion);
             return this;
         }
 

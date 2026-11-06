@@ -24,6 +24,7 @@ namespace Decennium.Foundation.Laboratory
         private bool expeditionAssignmentsEnabled;
         private bool offCalendarActivityEnabled;
         private ObservationFixture observationFixture;
+        private ObservationAlgorithmVersion observationAlgorithmVersion = ObservationAlgorithmVersion.ExactPathIntervalsV2;
         private bool initializationStarted;
         private TestOnlyContentManifest contentManifest;
         public bool TestOnly => true;
@@ -443,7 +444,8 @@ namespace Decennium.Foundation.Laboratory
                         s.WorldTraversals = s.WorldTraversals.Where(x => x.ActorId != actor.Id).ToArray();
                     } else SetEdge(s, edge.With(progress, edge.Status));
                 }
-                ObservationRules.ProcessWorldTraversalSegments(s, observationSegments, segmentStart, next, s.Revision + 1);
+                ObservationRules.ProcessWorldTraversalSegments(s, observationSegments, segmentStart, next, s.Revision + 1,
+                    observationAlgorithmVersion);
                 // Existing procedures own crop/food/water completion and their local ordering.
                 // Movement duration was bounded before their advance, so they cannot over-credit it.
                 long previousSlot=s.WorldSchedule.ProcessedSlot;

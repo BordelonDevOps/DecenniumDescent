@@ -97,11 +97,11 @@ namespace Decennium.Foundation.Tests
             Require(final.WorldTraversals.Length == 0 && mover.X == 2 && mover.Y == 0
                 && !ObservationGeometry.CanSee(final, observer, target)
                 && knowledge != null && knowledge.HasLastKnownLocation && !knowledge.CurrentLocationKnown
-                && knowledge.Evidence == ObservationEvidenceKind.DirectSight
-                && knowledge.EvidenceAt > T(1) && knowledge.EvidenceAt < T(2)
-                && knowledge.LastKnownX > new RuleQuantity(1) && knowledge.LastKnownX < new RuleQuantity(2)
-                && knowledge.LastKnownX.Denominator > 1 && knowledge.LastKnownY == default,
-                "A brief sighting during partial travel did not preserve the exact stale intermediate location after concealment at arrival.");
+                && knowledge.Evidence == ObservationEvidenceKind.DirectSightLimit
+                && knowledge.EvidenceAt == T(2)
+                && knowledge.LastKnownX == new RuleQuantity(2)
+                && knowledge.LastKnownY == default,
+                "A brief sighting during partial travel did not preserve the exact excluded sight-loss boundary after concealment at arrival.");
             return Bytes(simulation);
         }
 
@@ -144,6 +144,271 @@ namespace Decennium.Foundation.Tests
                     .SequenceEqual(partial.Receipts.Select(x => x.Fingerprint)),
                 "Partial observation changed authoritative clock, RNG, revision, or command history.");
             return result;
+        }
+
+        private static bool SameSightBoundary(ObserverKnowledgeRecord left, ObserverKnowledgeRecord right)
+            => left.HasLastKnownLocation && right.HasLastKnownLocation
+                && !left.CurrentLocationKnown && !right.CurrentLocationKnown
+                && left.LastKnownX == right.LastKnownX && left.LastKnownY == right.LastKnownY
+                && left.Evidence == ObservationEvidenceKind.DirectSightLimit
+                && right.Evidence == ObservationEvidenceKind.DirectSightLimit
+                && left.EvidenceAt == right.EvidenceAt && left.HiddenAttemptId == "" && right.HiddenAttemptId == "";
+
+        private static bool SameKnowledgeContent(ObserverKnowledgeRecord left, ObserverKnowledgeRecord right)
+            => left != null && right != null && left.ObserverId == right.ObserverId && left.TargetId == right.TargetId
+                && left.HasLastKnownLocation == right.HasLastKnownLocation
+                && left.CurrentLocationKnown == right.CurrentLocationKnown
+                && left.LastKnownX == right.LastKnownX && left.LastKnownY == right.LastKnownY
+                && left.Evidence == right.Evidence && left.EvidenceAt == right.EvidenceAt
+                && left.HiddenAttemptId == right.HiddenAttemptId
+                && left.RevealedInvisibleEpisodeId == right.RevealedInvisibleEpisodeId;
+
+        private static bool SameKnowledgeContent(Snapshot left, Snapshot right)
+        {
+            var a = left.ObserverKnowledge.OrderBy(x => x.ObserverId, StringComparer.Ordinal)
+                .ThenBy(x => x.TargetId, StringComparer.Ordinal).ToArray();
+            var b = right.ObserverKnowledge.OrderBy(x => x.ObserverId, StringComparer.Ordinal)
+                .ThenBy(x => x.TargetId, StringComparer.Ordinal).ToArray();
+            return a.Length == b.Length && a.Zip(b, SameKnowledgeContent).All(x => x);
+        }
+
+        private static ObservationFixture ObservationMovingObserverLimitFixture()
+            => new ObservationFixture(8, 8,
+                new[] { new ObservationGridCell(3, 1, blocksSight: true, blocksEffect: false, blocksMovement: false) },
+                new[]
+                {
+                    new ObservationSightProfile(TestOnlyPolicy.ActorId, 30, 30),
+                    new ObservationSightProfile(TestOnlyPolicy.CompanionId, 30, 30),
+                    new ObservationSightProfile(AdditionalTacticalActor.Id, 30, 30)
+                });
+
+        private static ObservationFixture ObservationMultipleExposureFixture()
+            => new ObservationFixture(8, 8,
+                new[]
+                {
+                    new ObservationGridCell(1, 4, blocksSight: true, blocksEffect: false, blocksMovement: false),
+                    new ObservationGridCell(4, 4, blocksSight: true, blocksEffect: false, blocksMovement: false)
+                },
+                new[]
+                {
+                    new ObservationSightProfile(TestOnlyPolicy.ActorId, 50, 30),
+                    new ObservationSightProfile(TestOnlyPolicy.CompanionId, 50, 30),
+                    new ObservationSightProfile(AdditionalTacticalActor.Id, 50, 30)
+                });
+
+        private static Snapshot ObservationStateAt(TestOnlySharedWorldPolicy policy, string actorId, int x, int y,
+            ObservationFixture fixture)
+        {
+            var state = policy.Initial();
+            var actor = state.Actors.Single(a => a.Id == actorId);
+            actor.X = x;
+            actor.Y = y;
+            ObservationRules.Initialize(state, fixture);
+            return state;
+        }
+
+        private static void ProcessObservationLeg(Snapshot state, string moverId, int fromX, int fromY,
+            int toX, int toY, RuleQuantity fromDistance, RuleQuantity toDistance, RuleTime start, RuleTime end)
+        {
+            long revision = checked(state.Revision + 1);
+            state.Revision = revision;
+            var edge = new WorldTraversalRecord(moverId, revision, fromX, fromY, toX, toY);
+            bool completes = toDistance == new RuleQuantity(5);
+            if (completes)
+            {
+                var mover = state.Actors.Single(a => a.Id == moverId);
+                mover.X = toX;
+                mover.Y = toY;
+                state.WorldTraversals = Array.Empty<WorldTraversalRecord>();
+            }
+            else state.WorldTraversals = new[] { edge.With(toDistance, WorldTraversalStatus.Moving) };
+            ObservationRules.ProcessWorldTraversalSegments(state,
+                new[] { new ObservationMovementSegment(edge, fromDistance, toDistance) }, start, end, revision);
+            state.RuleClock = end;
+            if (completes) ObservationRules.Refresh(state, end, revision);
+        }
+
+        private static byte[] RunObservationTacticalHideExitTrace(TestOnlySharedWorldPolicy policy,
+            ObservationFixture fixture, byte[] encounterBytes)
+        {
+            string hero = TestOnlyPolicy.ActorId;
+            string companion = TestOnlyPolicy.CompanionId;
+            string enemy = AdditionalTacticalActor.Id;
+            var codec = new SnapshotCodec();
+            var simulation = new Simulation(policy, codec.Decode(encounterBytes), ExecutionProfile.Laboratory);
+            var initial = simulation.Capture();
+            Require(initial.InventoryCombat && initial.Encounter.CurrentActor == hero
+                && initial.Actors.Single(x => x.Id == hero).X == 1 && initial.Actors.Single(x => x.Id == hero).Y == 0
+                && !ObservationRules.CanSee(initial, companion, hero)
+                && !ObservationRules.CanSee(initial, enemy, hero),
+                "The legal encounter entry did not retain the concealed shared-world anchor.");
+
+            WorldCommit(simulation, Tac(simulation, CommandKind.SelectCombatStance,
+                stance: (int)CombatStance.Aggressive));
+            WorldCommit(simulation, ObservationCommand(simulation, CommandKind.Hide, hero));
+            var hidden = simulation.Capture();
+            Require(hidden.ObservationHideResults.Length == 2
+                && hidden.ObservationHideResults.All(x => x.HiddenEstablished)
+                && ObservationRules.HiddenTo(hidden, companion, hero)
+                && ObservationRules.HiddenTo(hidden, enemy, hero),
+                "The legal tactical Hide did not establish both observer-specific Hidden results.");
+            byte[] afterHide = Bytes(simulation);
+            simulation = new Simulation(policy, codec.Decode(afterHide), ExecutionProfile.Laboratory);
+            Require(afterHide.SequenceEqual(Bytes(simulation))
+                && ObservationRules.HiddenTo(simulation.Capture(), companion, hero)
+                && ObservationRules.HiddenTo(simulation.Capture(), enemy, hero),
+                "Tactical Hide state changed across a saved encounter boundary.");
+
+            WorldCommit(simulation, Tac(simulation, CommandKind.EndRegularTurn));
+            int[,] enemyRoute = {
+                { 4, 1 }, { 4, 2 }, { 3, 2 }, { 2, 2 }, { 2, 3 }, { 1, 3 },
+                { 0, 3 }, { 0, 2 }, { 0, 1 }, { 0, 0 }
+            };
+            for (int i = 0; i < enemyRoute.GetLength(0); i++)
+            {
+                if (simulation.Capture().Encounter.CurrentActor != enemy)
+                    ConnectedEnd(simulation);
+                var turn = simulation.Capture();
+                Require(turn.Encounter.CurrentActor == enemy, "The blinded fixture opponent did not receive its movement turn.");
+                if (!turn.Stances.Any(x => x.ActorId == enemy && x.TurnOrdinal == turn.Encounter.TurnOrdinal))
+                    WorldCommit(simulation, Tac(simulation, CommandKind.SelectCombatStance,
+                        stance: (int)CombatStance.Aggressive));
+                TacStep(simulation, enemyRoute[i, 0], enemyRoute[i, 1]);
+                if (i == 5 || i == enemyRoute.GetLength(0) - 1)
+                    ConnectedEnd(simulation);
+            }
+            var adjacent = simulation.Capture();
+            Require(adjacent.Encounter.CurrentActor == hero
+                && adjacent.Actors.Single(x => x.Id == enemy).X == 0 && adjacent.Actors.Single(x => x.Id == enemy).Y == 0
+                && WorldSpatialQueries.WithinRange(adjacent.Actors.Single(x => x.Id == hero).X,
+                    adjacent.Actors.Single(x => x.Id == hero).Y, 0, 0, 1),
+                "The fixture opponent did not approach the concealed hider through legal tactical steps.");
+            DefeatConnectedEnemy(simulation);
+            Require(simulation.Capture().Lives.Single(x => x.ActorId == enemy).Dead,
+                "The tactical encounter did not resolve before exploration resumed.");
+            WorldCommit(simulation, Tac(simulation, CommandKind.EndFixedEncounter));
+            var exited = simulation.Capture();
+            Require(!exited.InventoryCombat && exited.Actors.Single(x => x.Id == hero).X == 1
+                && exited.Actors.Single(x => x.Id == hero).Y == 0
+                && ObservationRules.HiddenTo(exited, companion, hero)
+                && exited.ObservationActions.Any(x => x.Kind == ObservationActionKind.Hide
+                    && x.Outcome == ObservationActionOutcome.HideAttempted)
+                && exited.ObservationHideResults.Length == 2,
+                "A legal tactical Hide did not survive resolved encounter exit for the occluded companion.");
+
+            var otherObserverBefore = exited.ObserverKnowledge.Single(x => x.ObserverId == enemy && x.TargetId == hero);
+            byte[] exitedBytes = Bytes(simulation);
+            var uninterrupted = new Simulation(policy, codec.Decode(exitedBytes), ExecutionProfile.Laboratory);
+            WorldStep(uninterrupted, 1, 0);
+            WorldAdvance(uninterrupted, 1);
+            var uninterruptedFinal = uninterrupted.Capture();
+            var uninterruptedCompanion = uninterruptedFinal.ObserverKnowledge.Single(x => x.ObserverId == companion && x.TargetId == hero);
+            var uninterruptedOther = uninterruptedFinal.ObserverKnowledge.Single(x => x.ObserverId == enemy && x.TargetId == hero);
+            Require(uninterruptedFinal.WorldTraversals.Length == 0
+                && uninterruptedFinal.Actors.Single(x => x.Id == hero).X == 2
+                && uninterruptedFinal.Actors.Single(x => x.Id == hero).Y == 0
+                && !uninterruptedCompanion.CurrentLocationKnown && uninterruptedCompanion.HasLastKnownLocation
+                && uninterruptedCompanion.HiddenAttemptId == ""
+                && uninterruptedCompanion.Evidence == ObservationEvidenceKind.DirectSightLimit
+                && uninterruptedCompanion.LastKnownX == new RuleQuantity(2)
+                && uninterruptedCompanion.LastKnownY == default
+                && uninterruptedCompanion.EvidenceAt == uninterruptedFinal.RuleClock
+                && !ObservationGeometry.CanSee(uninterruptedFinal, fixture, companion, hero)
+                && uninterruptedOther.SameAs(otherObserverBefore)
+                && !ObservationRules.LocationKnown(uninterruptedFinal, enemy, hero),
+                "A single uninterrupted traversal did not retain the excluded sight-loss boundary as stale observer-specific evidence.");
+
+            byte[] exactLossBoundaryBytes = Bytes(uninterrupted);
+            var exactLossBoundaryRestored = new Simulation(policy, codec.Decode(exactLossBoundaryBytes), ExecutionProfile.Laboratory);
+            Require(exactLossBoundaryBytes.SequenceEqual(Bytes(exactLossBoundaryRestored)),
+                "Saving and restoring exactly at target sight loss changed its evidence or command replay.");
+            var exactLossBoundarySplit = new Simulation(policy, codec.Decode(exitedBytes), ExecutionProfile.Laboratory);
+            WorldStep(exactLossBoundarySplit, 1, 0);
+            WorldAdvance(exactLossBoundarySplit, 3, 4);
+            byte[] preLimitBytes = Bytes(exactLossBoundarySplit);
+            exactLossBoundarySplit = new Simulation(policy, codec.Decode(preLimitBytes), ExecutionProfile.Laboratory);
+            WorldAdvance(exactLossBoundarySplit, 1, 4);
+            var exactLossBoundary = exactLossBoundarySplit.Capture();
+            var exactLossKnowledge = exactLossBoundary.ObserverKnowledge.Single(x => x.ObserverId == companion && x.TargetId == hero);
+            var exactLossOther = exactLossBoundary.ObserverKnowledge.Single(x => x.ObserverId == enemy && x.TargetId == hero);
+            Require(SameSightBoundary(exactLossKnowledge, uninterruptedCompanion)
+                && exactLossOther.SameAs(otherObserverBefore)
+                && exactLossBoundary.RuleClock == uninterruptedFinal.RuleClock
+                && SameKnowledgeContent(uninterruptedFinal, exactLossBoundary),
+                "Splitting and restoring immediately before sight loss changed the complete observer-knowledge set.");
+            var splitLossBytes = Bytes(exactLossBoundarySplit);
+            exactLossBoundarySplit = new Simulation(policy, codec.Decode(splitLossBytes), ExecutionProfile.Laboratory);
+            Require(splitLossBytes.SequenceEqual(Bytes(exactLossBoundarySplit)),
+                "Restoring at the split sight-loss boundary changed the completed target traversal.");
+
+            var boundarySplit = new Simulation(policy, codec.Decode(exitedBytes), ExecutionProfile.Laboratory);
+            WorldStep(boundarySplit, 1, 0);
+            WorldAdvance(boundarySplit, 1, 5);
+            var atEntryBoundary = boundarySplit.Capture();
+            Require(atEntryBoundary.WorldTraversals.Single(x => x.ActorId == hero).DistanceFeet == new RuleQuantity(1)
+                && !ObservationGeometry.CanSee(atEntryBoundary, fixture, companion, hero)
+                && ObservationRules.HiddenTo(atEntryBoundary, companion, hero),
+                "The exact visibility-entry boundary was treated as visible instead of blocked.");
+            byte[] entryBoundaryBytes = Bytes(boundarySplit);
+            boundarySplit = new Simulation(policy, codec.Decode(entryBoundaryBytes), ExecutionProfile.Laboratory);
+            WorldAdvance(boundarySplit, 4, 5);
+            var boundarySplitFinal = boundarySplit.Capture();
+            var boundarySplitKnowledge = boundarySplitFinal.ObserverKnowledge.Single(x => x.ObserverId == companion && x.TargetId == hero);
+            var boundarySplitOther = boundarySplitFinal.ObserverKnowledge.Single(x => x.ObserverId == enemy && x.TargetId == hero);
+            Require(boundarySplitFinal.WorldTraversals.Length == 0
+                && SameSightBoundary(boundarySplitKnowledge, uninterruptedCompanion)
+                && boundarySplitOther.SameAs(otherObserverBefore)
+                && !ObservationRules.LocationKnown(boundarySplitFinal, companion, hero),
+                "Splitting and restoring at the exact visibility-entry boundary changed the final sight-limit evidence.");
+
+            WorldStep(simulation, 1, 0);
+            WorldAdvance(simulation, 1, 4);
+            var partial = simulation.Capture();
+            var edge = partial.WorldTraversals.Single(x => x.ActorId == hero);
+            var companionKnowledge = partial.ObserverKnowledge.Single(x => x.ObserverId == companion && x.TargetId == hero);
+            var otherObserverPartial = partial.ObserverKnowledge.Single(x => x.ObserverId == enemy && x.TargetId == hero);
+            var expectedX = new RuleQuantity(edge.FromX) + new RuleQuantity(edge.ToX - edge.FromX)
+                .Scale(edge.DistanceFeet.Numerator, checked(5 * edge.DistanceFeet.Denominator));
+            var expectedY = new RuleQuantity(edge.FromY) + new RuleQuantity(edge.ToY - edge.FromY)
+                .Scale(edge.DistanceFeet.Numerator, checked(5 * edge.DistanceFeet.Denominator));
+            Require(edge.DistanceFeet == new RuleQuantity(5, 4)
+                && companionKnowledge.HiddenAttemptId == ""
+                && companionKnowledge.Evidence == ObservationEvidenceKind.DirectSight
+                && companionKnowledge.CurrentLocationKnown
+                && companionKnowledge.LastKnownX == expectedX && companionKnowledge.LastKnownY == expectedY
+                && !ObservationRules.HiddenTo(partial, companion, hero)
+                && otherObserverPartial.SameAs(otherObserverBefore)
+                && ObservationRules.HiddenTo(partial, enemy, hero)
+                && !ObservationRules.LocationKnown(partial, enemy, hero),
+                "Legal shared exploration movement did not clear only the companion's Hidden state at its fractional sighting.");
+            byte[] partialBytes = Bytes(simulation);
+            simulation = new Simulation(policy, codec.Decode(partialBytes), ExecutionProfile.Laboratory);
+            Require(partialBytes.SequenceEqual(Bytes(simulation)),
+                "The legal post-combat partial traversal changed across save and restore.");
+
+            var visibleInterior = codec.Decode(partialBytes);
+            var probeEdge = visibleInterior.WorldTraversals.Single(x => x.ActorId == hero);
+            visibleInterior.WorldTraversals = new[] { probeEdge.With(new RuleQuantity(35, 8), probeEdge.Status) };
+            Require(ObservationGeometry.CanSee(visibleInterior, fixture, companion, hero),
+                "An exact interior point before the sight-limit boundary was incorrectly blocked.");
+
+            WorldAdvance(simulation, 3, 4);
+            var final = simulation.Capture();
+            companionKnowledge = final.ObserverKnowledge.Single(x => x.ObserverId == companion && x.TargetId == hero);
+            var otherObserverFinal = final.ObserverKnowledge.Single(x => x.ObserverId == enemy && x.TargetId == hero);
+            Require(final.WorldTraversals.Length == 0
+                && final.Actors.Single(x => x.Id == hero).X == 2 && final.Actors.Single(x => x.Id == hero).Y == 0
+                && !ObservationGeometry.CanSee(final, companion, hero)
+                && companionKnowledge.HasLastKnownLocation && !companionKnowledge.CurrentLocationKnown
+                && companionKnowledge.Evidence == ObservationEvidenceKind.DirectSightLimit
+                && companionKnowledge.LastKnownX == new RuleQuantity(2) && companionKnowledge.LastKnownY == default
+                && companionKnowledge.EvidenceAt == final.RuleClock
+                && SameSightBoundary(companionKnowledge, uninterruptedCompanion)
+                && otherObserverFinal.SameAs(otherObserverBefore)
+                && ObservationRules.HiddenTo(final, enemy, hero)
+                && !ObservationRules.LocationKnown(final, enemy, hero),
+                "The companion's excluded sight-loss boundary was not retained consistently after concealment.");
+            return Bytes(simulation);
         }
 
         private static uint ObservationHideSearchSeed(Snapshot initial)
@@ -432,6 +697,34 @@ namespace Decennium.Foundation.Tests
                     "Restoring the saved two-observer Hide state changed the partial-exposure transition.");
             });
 
+            cases.Add("observation_tactical_hide_survives_exit_then_legal_exploration_sighting_is_observer_specific", () => {
+                var fixture = ObservationObserverIsolatedGapFixture();
+                var seedPolicy = new TestOnlySharedWorldPolicy(new SharedCombatFixture()).EnableObservation(fixture);
+                uint seed = ObservationTwoObserverHideSeed(seedPolicy.Initial());
+                var conditions = new ConditionCombatFixture(CCApply("observation-exit-blind", "Blinded",
+                    AdditionalTacticalActor.Id));
+                var policy = new TestOnlySharedWorldPolicy(new SharedCombatFixture(1, seed), conditions: conditions)
+                    .EnableObservation(fixture);
+                var simulation = World(policy);
+                CCDispatch(simulation, "observation-exit-blind", AdditionalTacticalActor.Id);
+                WorldStep(simulation, 1, 0);
+                WorldAdvance(simulation, 1);
+                var beforeEncounter = simulation.Capture();
+                Require(beforeEncounter.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).X == 1
+                    && beforeEncounter.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).Y == 0
+                    && !ObservationRules.CanSee(beforeEncounter, TestOnlyPolicy.CompanionId, TestOnlyPolicy.ActorId)
+                    && !ObservationRules.CanSee(beforeEncounter, AdditionalTacticalActor.Id, TestOnlyPolicy.ActorId),
+                    "The legal world approach did not reach its authored concealed encounter anchor.");
+                WorldCommit(simulation, new Command("observation.hide-exit.begin", TestOnlyPolicy.ActorId,
+                    beforeEncounter.Revision, CommandKind.BeginFixedEncounter));
+                byte[] encounterBytes = Bytes(simulation);
+
+                byte[] firstRun = RunObservationTacticalHideExitTrace(policy, fixture, encounterBytes);
+                byte[] replay = RunObservationTacticalHideExitTrace(policy, fixture, encounterBytes);
+                Require(firstRun.SequenceEqual(replay),
+                    "The legal tactical Hide, combat exit and post-combat exploration sighting did not replay byte-for-byte.");
+            });
+
             cases.Add("observation_shared_world_traversal_records_partial_sighting_before_concealed_endpoint", () => {
                 var fixture = ObservationTraversalGapFixture();
                 var policy = new TestOnlySharedWorldPolicy(new SharedCombatFixture()).EnableObservation(fixture);
@@ -442,6 +735,96 @@ namespace Decennium.Foundation.Tests
                 byte[] replayed = RunObservationTraversalTrace(policy, replay);
                 Require(firstRun.SequenceEqual(replayed),
                     "Replaying fractional world movement and observation after restore changed the final bytes.");
+            });
+            cases.Add("observation_legacy_schema51_sampled_profile_replays_pushed_save", () => {
+                var fixture = ObservationTraversalGapFixture();
+                var legacy = new TestOnlySharedWorldPolicy(new SharedCombatFixture()).EnableObservation(fixture,
+                    ObservationAlgorithmVersion.LegacySampledV1);
+                var current = new TestOnlySharedWorldPolicy(new SharedCombatFixture()).EnableObservation(fixture);
+                byte[] bytes = ObservationLegacySaveFixture.Decode();
+                var decoded = new SnapshotCodec().Decode(bytes);
+                Require(decoded.SchemaVersion == Snapshot.ObservationSchema
+                    && decoded.ContentFingerprint == legacy.ContentFingerprint
+                    && decoded.ContentFingerprint.StartsWith("TEST_ONLY.observation-v1-", StringComparison.Ordinal)
+                    && decoded.ContentFingerprint != current.ContentFingerprint
+                    && decoded.ObserverKnowledge.Single(x => x.ObserverId == TestOnlyPolicy.CompanionId
+                        && x.TargetId == TestOnlyPolicy.ActorId).Evidence == ObservationEvidenceKind.DirectSight,
+                    "The authentic pushed schema51 save did not bind its original sampled observation profile.");
+                var restored = new Simulation(legacy, decoded, ExecutionProfile.Laboratory);
+                Require(bytes.SequenceEqual(Bytes(restored)),
+                    "The authentic pushed schema51 save changed bytes while replaying under its explicit legacy profile.");
+                Throws<ArgumentException>(() => new Simulation(current, decoded, ExecutionProfile.Laboratory));
+            });
+            cases.Add("observation_exact_intervals_cover_moving_observer_and_blocked_continuation", () => {
+                var fixture = ObservationMovingObserverLimitFixture();
+                var policy = new TestOnlySharedWorldPolicy(new SharedCombatFixture()).EnableObservation(fixture);
+                var whole = ObservationStateAt(policy, TestOnlyPolicy.CompanionId, 3, 2, fixture);
+                string observer = TestOnlyPolicy.ActorId, target = TestOnlyPolicy.CompanionId;
+                Require(ObservationGeometry.CanSee(whole, observer, target),
+                    "The moving-observer fixture did not begin with direct sight of its stationary target.");
+
+                ProcessObservationLeg(whole, observer, 0, 0, 1, 0, default, new RuleQuantity(5), T(0), T(0));
+                var boundary = whole;
+                var boundaryKnowledge = boundary.ObserverKnowledge.Single(x => x.ObserverId == observer && x.TargetId == target);
+                Require(!ObservationGeometry.CanSee(boundary, observer, target)
+                    && boundaryKnowledge.HasLastKnownLocation && boundaryKnowledge.CurrentLocationKnown
+                    && boundaryKnowledge.LastKnownX == new RuleQuantity(3) && boundaryKnowledge.LastKnownY == new RuleQuantity(2)
+                    && boundaryKnowledge.Evidence == ObservationEvidenceKind.DirectSightLimit
+                    && boundaryKnowledge.EvidenceAt == T(0)
+                    && ObservationRules.LocationKnown(boundary, observer, target),
+                    "Moving the observer out of sight incorrectly made the stationary target's location stale.");
+                byte[] boundaryBytes = new SnapshotCodec().Encode(boundary);
+                var restoredAtBoundary = new SnapshotCodec().Decode(boundaryBytes);
+                Require(boundaryBytes.SequenceEqual(new SnapshotCodec().Encode(restoredAtBoundary)),
+                    "The exact observer-motion sight limit changed across schema51 save and restore.");
+                ProcessObservationLeg(restoredAtBoundary, observer, 1, 0, 2, 0,
+                    default, new RuleQuantity(5), T(0), T(0));
+                var blockedContinuation = restoredAtBoundary;
+                Require(!ObservationGeometry.CanSee(blockedContinuation, observer, target)
+                    && SameKnowledgeContent(boundaryKnowledge,
+                        blockedContinuation.ObserverKnowledge.Single(x => x.ObserverId == observer && x.TargetId == target)),
+                    "A wholly blocked observer continuation overwrote the prior exact sight-loss evidence.");
+
+                var split = ObservationStateAt(policy, TestOnlyPolicy.CompanionId, 3, 2, fixture);
+                ProcessObservationLeg(split, observer, 0, 0, 1, 0, default, new RuleQuantity(15, 4), T(0), T(0));
+                byte[] partialBytes = new SnapshotCodec().Encode(split);
+                split = new SnapshotCodec().Decode(partialBytes);
+                ProcessObservationLeg(split, observer, 0, 0, 1, 0,
+                    new RuleQuantity(15, 4), new RuleQuantity(5), T(0), T(0));
+                var splitBoundary = split;
+                Require(SameKnowledgeContent(boundary, splitBoundary)
+                    && boundary.RuleClock == splitBoundary.RuleClock
+                    && boundary.Actors.Single(x => x.Id == observer).X == splitBoundary.Actors.Single(x => x.Id == observer).X,
+                    "Splitting and restoring immediately before observer sight loss changed the complete knowledge set.");
+                ProcessObservationLeg(split, observer, 1, 0, 2, 0, default, new RuleQuantity(5), T(0), T(0));
+                Require(SameKnowledgeContent(blockedContinuation, split)
+                    && split.ObserverKnowledge.Length == blockedContinuation.ObserverKnowledge.Length,
+                    "Observer movement partitioning changed another observer's knowledge or later blocked evidence.");
+            });
+            cases.Add("observation_exact_path_retains_latest_of_multiple_exposure_intervals", () => {
+                var fixture = ObservationMultipleExposureFixture();
+                var policy = new TestOnlySharedWorldPolicy(new SharedCombatFixture()).EnableObservation(fixture);
+                var state = ObservationStateAt(policy, TestOnlyPolicy.CompanionId, 0, 5, fixture);
+                string observer = TestOnlyPolicy.ActorId, target = TestOnlyPolicy.CompanionId;
+                bool[] visibleAtDestination = { false, false, true, false, false, false, true };
+                for (int x = 0; x < visibleAtDestination.Length; x++)
+                {
+                    ProcessObservationLeg(state, target, x, 5, x + 1, 5,
+                        default, new RuleQuantity(5), T(0), T(0));
+                    var current = state;
+                    bool visible = ObservationGeometry.CanSee(current, observer, target);
+                    var knowledge = current.ObserverKnowledge.Single(k => k.ObserverId == observer && k.TargetId == target);
+                    Require(visible == visibleAtDestination[x],
+                        "The authored multi-edge route did not alternate between direct sight and two opaque sight intervals.");
+                    if (x == 0 || x == 3)
+                        Require(!knowledge.CurrentLocationKnown && knowledge.Evidence == ObservationEvidenceKind.DirectSightLimit,
+                            "A sight-loss interval did not retain its exact stale target boundary.");
+                    if (x == 2 || x == 6)
+                        Require(knowledge.CurrentLocationKnown && knowledge.Evidence == ObservationEvidenceKind.DirectSight
+                            && knowledge.LastKnownX == new RuleQuantity(x + 1) && knowledge.LastKnownY == new RuleQuantity(5)
+                            && knowledge.EvidenceAt == T(0),
+                            "A later exposure interval failed to replace older blocked sight evidence.");
+                }
             });
 
             cases.Add("observation_map_rejects_unsupported_anchor_placement", () => {

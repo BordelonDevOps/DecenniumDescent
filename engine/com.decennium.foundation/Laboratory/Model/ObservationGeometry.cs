@@ -88,9 +88,17 @@ namespace Decennium.Foundation.Laboratory
             + "|cells=" + string.Join(";", cells.Select(x => x.Key)) + "|profiles=" + string.Join(";", profiles.Select(x => x.Key))
             + "|cell-centres|chebyshev-5ft|supercover-closed-cell-corner-blocks|channels-independent";
         internal static string BindFingerprint(string prior, ObservationFixture fixture)
+            => BindFingerprint(prior, fixture, ObservationAlgorithmVersion.LegacySampledV1);
+
+        internal static string BindFingerprint(string prior, ObservationFixture fixture,
+            ObservationAlgorithmVersion algorithmVersion)
         {
+            string fingerprintKind = algorithmVersion == ObservationAlgorithmVersion.LegacySampledV1
+                ? "TEST_ONLY.observation-v1-" : "TEST_ONLY.observation-v2-";
+            string procedure = algorithmVersion == ObservationAlgorithmVersion.LegacySampledV1
+                ? fixture.Key : fixture.Key + "|exact-path-sight-intervals-v2|excluded-sight-loss-boundaries";
             using (var sha = SHA256.Create())
-                return "TEST_ONLY.observation-v1-" + string.Concat(sha.ComputeHash(Encoding.UTF8.GetBytes(prior + "|" + fixture.Key))
+                return fingerprintKind + string.Concat(sha.ComputeHash(Encoding.UTF8.GetBytes(prior + "|" + procedure))
                     .Select(b => b.ToString("x2", CultureInfo.InvariantCulture)));
         }
         internal string ValidateSnapshot(Snapshot s)
