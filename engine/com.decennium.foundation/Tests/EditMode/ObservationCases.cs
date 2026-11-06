@@ -193,6 +193,20 @@ namespace Decennium.Foundation.Tests
 
             WorldCommit(simulation, new Command("observation.begin", hero, initial.Revision, CommandKind.BeginFixedEncounter));
             WorldCommit(simulation, Tac(simulation, CommandKind.SelectCombatStance, stance: (int)CombatStance.Aggressive));
+            byte[] beforeSearchQuery = Bytes(simulation);
+            var availableSearch = simulation.QueryCommand(host, ObservationCommand(simulation, CommandKind.Search, hero, 0, 0));
+            var outOfBoundsSearch = simulation.QueryCommand(host, ObservationCommand(simulation, CommandKind.Search,
+                hero, initial.ObservationMapWidth, 0));
+            var outOfRangeSearch = simulation.QueryCommand(host, ObservationCommand(simulation, CommandKind.Search, hero, 7, 7));
+            Require(availableSearch.Supported && availableSearch.Admissible && availableSearch.Code == "Available"
+                && availableSearch.Costs.Count == 1 && availableSearch.Costs[0].Kind == "action"
+                && availableSearch.Costs[0].ResourceId == "" && availableSearch.Costs[0].Amount == 1
+                && outOfBoundsSearch.Supported && !outOfBoundsSearch.Admissible
+                && outOfBoundsSearch.Code == "InvalidSearchRequest" && outOfBoundsSearch.Costs.Count == 0
+                && outOfRangeSearch.Supported && !outOfRangeSearch.Admissible
+                && outOfRangeSearch.Code == "SearchCellOutOfRange" && outOfRangeSearch.Costs.Count == 0
+                && beforeSearchQuery.SequenceEqual(Bytes(simulation)),
+                "The public Search query did not report Action cost and bounds/range failures without mutating state.");
             RejectUnchanged(simulation, host,
                 Tac(simulation, CommandKind.AttackClub, enemy, weapon: TestOnlyClubAttackPolicy.ActorClub), "TargetLocationUnknown");
             RejectUnchanged(simulation, host, ObservationCommand(simulation, CommandKind.Search, hero, 7, 7), "SearchCellOutOfRange");
@@ -219,6 +233,22 @@ namespace Decennium.Foundation.Tests
                 "Restoring the save changed observer-specific Hide outcomes.");
             WorldCommit(simulation, Tac(simulation, CommandKind.EndRegularTurn));
 
+            byte[] beforeDiscovery = Bytes(simulation);
+            var searchOptions = simulation.DiscoverCommands(host, enemy)
+                .Where(x => x.Command.Kind == CommandKind.Search).ToArray();
+            var hiddenCellOption = searchOptions.SingleOrDefault(x => x.Command.X == 0 && x.Command.Y == 0);
+            var emptyCellOption = searchOptions.SingleOrDefault(x => x.Command.X == 3 && x.Command.Y == 0);
+            Require(hiddenCellOption != null && emptyCellOption != null
+                && hiddenCellOption.Command.Target == simulation.Capture().Encounter.CurrentTurnId
+                && emptyCellOption.Command.Target == simulation.Capture().Encounter.CurrentTurnId
+                && hiddenCellOption.Query.Admissible && emptyCellOption.Query.Admissible
+                && hiddenCellOption.Query.Code == emptyCellOption.Query.Code
+                && hiddenCellOption.Query.Costs.Count == 1 && emptyCellOption.Query.Costs.Count == 1
+                && hiddenCellOption.Query.Costs[0].Kind == "action" && emptyCellOption.Query.Costs[0].Kind == "action"
+                && hiddenCellOption.Query.Costs[0].Amount == 1 && emptyCellOption.Query.Costs[0].Amount == 1
+                && beforeDiscovery.SequenceEqual(Bytes(simulation)),
+                "Search discovery exposed hidden occupancy or varied candidate availability/cost by hidden contents.");
+
             var search = ObservationCommand(simulation, CommandKind.Search, enemy, 0, 0);
             WorldCommit(simulation, search);
             var found = simulation.Capture();
@@ -233,6 +263,18 @@ namespace Decennium.Foundation.Tests
                 && !ObservationRules.KnownLocations(found, hero).Any(x => x.ActorId == enemy)
                 && !ObservationRules.KnownLocations(found, TestOnlyPolicy.CompanionId).Any(x => x.ActorId == hero),
                 "Search did not disclose the found location only to its searcher.");
+
+            byte[] beforeSpentSearchCheck = Bytes(simulation);
+            var spentSearch = ObservationCommand(simulation, CommandKind.Search, enemy, 0, 0);
+            var spentQuery = simulation.QueryCommand(host, spentSearch);
+            var spentSearchOptions = simulation.DiscoverCommands(host, enemy)
+                .Where(x => x.Command.Kind == CommandKind.Search).ToArray();
+            Require(spentQuery.Supported && !spentQuery.Admissible && spentQuery.Code == "ActionAlreadySpent"
+                && spentQuery.Costs.Count == 0 && spentSearchOptions.Length > 0
+                && spentSearchOptions.All(x => !x.Query.Admissible && x.Query.Costs.Count == 0)
+                && beforeSpentSearchCheck.SequenceEqual(Bytes(simulation)),
+                "A spent Action remained query-admissible, exposed a payable cost or mutated state during discovery.");
+            RejectUnchanged(simulation, host, spentSearch, "ActionAlreadySpent");
 
             var invalid = simulation.Capture();
             invalid.ObservationActions = invalid.ObservationActions.Select(x => x.Id == searchAction.Id

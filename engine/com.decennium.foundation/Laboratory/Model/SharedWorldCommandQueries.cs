@@ -338,6 +338,7 @@ namespace Decennium.Foundation.Laboratory
 
         private CommandQueryResult QuerySharedWorldCommand(Snapshot s, Authority authority, Command c)
         {
+            if (c.Kind == CommandKind.Search) return QueryObservationSearchCommand(s, c);
             if (IsSupplyCacheCommand(c)) return QuerySupplyCacheCommand(s,c);
             if (IsOrdinaryReceptacleCommand(s,c)) return QueryOrdinaryReceptacleCommand(s,c);
             if (c.Kind == CommandKind.Interact) return QueryFishingTrapControl(s, c);

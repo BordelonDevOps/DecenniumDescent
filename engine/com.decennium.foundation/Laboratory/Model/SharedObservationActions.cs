@@ -1,5 +1,6 @@
 #if DECENNIUM_TEST_ONLY && (UNITY_EDITOR || DEVELOPMENT_BUILD || HEADLESS_TESTS)
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 
@@ -17,6 +18,24 @@ namespace Decennium.Foundation.Laboratory
 
         private string ResolveObservationAction(Snapshot s, Command c)
         {
+            string failure = AssessObservationAction(s, c, out var interval);
+            if (failure != null) return failure;
+            ObservationPoint candidateCell = default;
+            if (c.Kind == CommandKind.Search)
+            {
+                failure = AssessSearchRequest(s, c, out candidateCell);
+                if (failure != null) return failure;
+            }
+            failure = c.Kind == CommandKind.Hide ? ResolveHide(s, c) : ResolveSearch(s, c, candidateCell);
+            if (failure != null) return failure;
+            SetInterval(s, interval.PayAction());
+            PauseIncompatibleWork(s);
+            return null;
+        }
+
+        private string AssessObservationAction(Snapshot s, Command c, out WorldIntervalRecord interval)
+        {
+            interval = null;
             if (observationFixture == null || s.SchemaVersion < Snapshot.ObservationSchema)
                 return "ObservationActionNotImplemented";
             if (s.Encounter == null || !s.InventoryCombat) return "ObservationActionRequiresTacticalCombat";
@@ -29,15 +48,54 @@ namespace Decennium.Foundation.Laboratory
                 return "InvalidObservationActionPayload";
             if (!ActorLifeRules.CanAct(s, c.Actor)) return "ActorCannotAct";
             if (!Permissions(s, c.Actor).Action) return "ConditionPreventsAction";
-            var interval = Interval(s, c.Actor);
+            interval = Interval(s, c.Actor);
             if (interval.ActionSpent) return "ActionAlreadySpent";
-            if (s.ObservationActions.Length >= ObservationValidation.MaxAttempts) return "ObservationHistoryCapacityReached";
-
-            string failure = c.Kind == CommandKind.Hide ? ResolveHide(s, c) : ResolveSearch(s, c);
-            if (failure != null) return failure;
-            SetInterval(s, interval.PayAction());
-            PauseIncompatibleWork(s);
+            if (s.ObservationActions.Length >= ObservationValidation.MaxAttempts)
+                return "ObservationHistoryCapacityReached";
             return null;
+        }
+
+        /// <summary>Pure public Search-request validation. Deliberately does not inspect Hidden
+        /// targets, observer knowledge or a target's recorded Stealth result.</summary>
+        private string AssessSearchRequest(Snapshot s, Command c, out ObservationPoint candidateCell)
+        {
+            candidateCell = default;
+            if (c.Target != s.Encounter.CurrentTurnId || c.X < 0 || c.Y < 0
+                || c.X >= s.ObservationMapWidth || c.Y >= s.ObservationMapHeight) return "InvalidSearchRequest";
+            var profile = s.ObservationProfiles.Single(x => x.ActorId == c.Actor);
+            var searcher = ObservationGeometry.Position(s, c.Actor);
+            candidateCell = new ObservationPoint(new RuleQuantity(c.X), new RuleQuantity(c.Y));
+            return WithinRange(searcher, candidateCell, profile.SearchRangeFeet) ? null : "SearchCellOutOfRange";
+        }
+
+        private CommandQueryResult QueryObservationSearchCommand(Snapshot s, Command c)
+        {
+            string failure = AssessObservationAction(s, c, out _);
+            if (failure == null) failure = AssessSearchRequest(s, c, out _);
+            var costs = failure == null
+                ? new[] { new CommandCost("action", "", 1) }
+                : Array.Empty<CommandCost>();
+            return new CommandQueryResult(true, failure == null, failure ?? "Available", s.Revision, costs);
+        }
+
+        private IEnumerable<Command> DiscoverObservationSearchCommands(Snapshot s, string actor)
+        {
+            if (observationFixture == null || s.SchemaVersion < Snapshot.ObservationSchema
+                || s.Encounter == null || !s.InventoryCombat || actor != s.Encounter.CurrentActor) yield break;
+            var profile = s.ObservationProfiles.SingleOrDefault(x => x.ActorId == actor);
+            if (profile == null) yield break;
+            var searcher = ObservationGeometry.Position(s, actor);
+            string turnId = s.Encounter.CurrentTurnId;
+            for (int y = 0; y < s.ObservationMapHeight; y++)
+            for (int x = 0; x < s.ObservationMapWidth; x++)
+            {
+                var candidateCell = new ObservationPoint(new RuleQuantity(x), new RuleQuantity(y));
+                if (!WithinRange(searcher, candidateCell, profile.SearchRangeFeet)) continue;
+                string id = "option." + s.Revision.ToString(System.Globalization.CultureInfo.InvariantCulture)
+                    + ".observation.search." + x.ToString(System.Globalization.CultureInfo.InvariantCulture)
+                    + "." + y.ToString(System.Globalization.CultureInfo.InvariantCulture);
+                yield return new Command(id, actor, s.Revision, CommandKind.Search, turnId, x, y);
+            }
         }
 
         private string ResolveHide(Snapshot s, Command c)
@@ -117,14 +175,8 @@ namespace Decennium.Foundation.Laboratory
             return null;
         }
 
-        private string ResolveSearch(Snapshot s, Command c)
+        private string ResolveSearch(Snapshot s, Command c, ObservationPoint candidateCell)
         {
-            if (c.Target != s.Encounter.CurrentTurnId || c.X < 0 || c.Y < 0
-                || c.X >= s.ObservationMapWidth || c.Y >= s.ObservationMapHeight) return "InvalidSearchRequest";
-            var profile = s.ObservationProfiles.Single(x => x.ActorId == c.Actor);
-            var searcher = ObservationGeometry.Position(s, c.Actor);
-            var candidateCell = new ObservationPoint(new RuleQuantity(c.X), new RuleQuantity(c.Y));
-            if (!WithinRange(searcher, candidateCell, profile.SearchRangeFeet)) return "SearchCellOutOfRange";
             var targets = s.Actors.Where(x => x.Id != c.Actor && s.WorldSchedule.Order.Contains(x.Id)
                     && ObservationRules.HiddenTo(s, c.Actor, x.Id))
                 .Where(x =>

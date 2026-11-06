@@ -88,6 +88,7 @@ namespace Decennium.Foundation.Laboratory
             ||kind==CommandKind.CancelMiningAssay
             ||kind==CommandKind.StartMineralPreparation||kind==CommandKind.PauseMineralPreparation||kind==CommandKind.ResumeMineralPreparation
             ||kind==CommandKind.TacticalStep||kind==CommandKind.TacticalRepositionStep||kind==CommandKind.Interact
+            ||kind==CommandKind.Search
             ||kind==CommandKind.ResolveManufacturingQuality||kind==CommandKind.PauseManufacturing
             ||kind==CommandKind.ResumeManufacturing||kind==CommandKind.CancelManufacturing;
 
@@ -121,6 +122,7 @@ namespace Decennium.Foundation.Laboratory
             string turnId=s.Encounter.CurrentTurnId;
             options.AddRange(DiscoverContextualInteractions(s,authority,actor));
             options.AddRange(DiscoverTacticalMovementCommands(s,actor));
+            options.AddRange(DiscoverObservationSearchCommands(s,actor));
             if(s.SchemaVersion>=Snapshot.CommandStepSchema&&s.CharacterFeatureGrants.Any(x=>x.ActorId==actor
                 &&x.FeatureId==CharacterFeatureIds.CommandStep&&x.Origin==CharacterFeatureGrantOrigin.SelectedCard)
                 &&TestOnlyClubAttackPolicy.ActionSpent(s)) {
