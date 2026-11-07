@@ -34,11 +34,10 @@ namespace Decennium.Foundation.Laboratory
             var body=s.Actors.SingleOrDefault(x=>x.Id==actor);
             return cache.OwnerId==actor&&body!=null&&Math.Abs((long)body.X-cache.X)+Math.Abs((long)body.Y-cache.Y)<=1;
         }
-        public static int PickCheckModifier(ActorCharacterRecord character,bool proficient,LifeState life)
+        public static int PickCheckModifier(CharacterStateFacts character,bool proficient)
         {
-            if(character==null||life==null)throw new ArgumentNullException(character==null?nameof(character):nameof(life));
-            var check=AbilityCheckRules.Derive(character,CharacterAbility.Dexterity,proficient?1:0);
-            return check.TotalWithInjury(life,toolCheck:true,manipulatesObject:true);
+            var check=AbilityCheckRules.Derive(character.Character,CharacterAbility.Dexterity,proficient?1:0);
+            return check.TotalWithInjury(character,toolCheck:true,manipulatesObject:true);
         }
     }
 
@@ -100,9 +99,8 @@ namespace Decennium.Foundation.Laboratory
             if(supplyCache.PickRequiresSight&&View(s,attempt.ActorId).BlocksSight) {
                 RecordAttempt(s,attempt,SupplyCacheAttemptStatus.Failed,0,0,automaticFailure:true);return;
             }
-            var character=s.Characters.Single(x=>x.ActorId==attempt.ActorId);
-            int modifier=SupplyCacheRules.PickCheckModifier(character,Cache(s,attempt.CacheId).ToolsProficient,
-                ActorLifeRules.Read(s.Lives.Single(x=>x.ActorId==attempt.ActorId)));
+            var character=CharacterStateFacts.ForActor(s,attempt.ActorId);
+            int modifier=SupplyCacheRules.PickCheckModifier(character,Cache(s,attempt.CacheId).ToolsProficient);
             var conditions=View(s,attempt.ActorId);
             var roll=PlaytestDice.RollD20(s.RandomState,disadvantageSources:conditions.Has(ConditionKind.Poisoned)?1:0);
             int natural=roll.Natural;s.RandomState=roll.NextRandomState;

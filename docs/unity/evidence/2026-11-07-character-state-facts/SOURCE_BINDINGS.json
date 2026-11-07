@@ -1,0 +1,188 @@
+{
+  "schemaVersion": 1,
+  "implementationId": "TEST_ONLY.shared-actor-character-training-injury-facts-v1",
+  "recordedUtc": "2026-11-07T21:09:27.9463109Z",
+  "baseCommit": "86eb96619e69f97c5ad85b8ed45f86a467bc5a12",
+  "snapshotSchema": "60 unchanged; no snapshot fields, codec branches, or save semantics added",
+  "sourceStatus": "Existing pinned character, explicit skill training, linked-injury and task rules; this read-model increment adopts no new gameplay rule.",
+  "authoritativeRecords": [
+    "ActorCharacterRecord: ActorId, ProfileId, six ordered Abilities, ordered CharacterLevelFact values (ClassName, BaseHp).",
+    "SkillTrainingRecord: optional matching ActorId, SkillId, ProficiencyRank; missing records remain rank 0.",
+    "ActorLifeRecord: matching ActorId and current LinkedInjuries; ActorLifeRules and PlaytestLife remain the policy authorities."
+  ],
+  "sourceReferences": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CHARACTER_CREATION_PLAYTEST.md",
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "gitBlob": "04c77b3ddff460219600df2f28bac27d854647af",
+      "sections": [
+        "Abilities and training"
+      ],
+      "scope": "Actor numerical facts and explicit training source."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md",
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "gitBlob": "735e1a1f2661de6167dda58e0609749e0756ca85",
+      "sections": [
+        "Linked injuries"
+      ],
+      "scope": "Existing injury aggregation policy reused without modification."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "gitBlob": "72bcb58af57f8bfe27596ec0b1467e4c780a6ef8",
+      "sections": [
+        "Cover, sight, Hide and Search"
+      ],
+      "scope": "Existing exploration check procedures."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/MINING_CANDIDATE_GUIDE.md",
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "gitBlob": "9f489ece11739170ba311c9db7b1b7b184ae656d",
+      "sections": [
+        "Choose the procedure",
+        "Record and resolve the deposit"
+      ],
+      "scope": "Existing task check inputs."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CRAFTING_HARVEST_PLAYTEST.md",
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "gitBlob": "b2c15e1bd56bb62e0f1729f4f6d68413e62f9be9",
+      "sections": [
+        "Identify and harvest"
+      ],
+      "scope": "Existing harvesting check procedure."
+    }
+  ],
+  "baseImplementationReferences": [
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ActorLifeRecords.cs",
+      "revision": "4caf7c105a059b544238de6d53b3a7582b84f16a",
+      "scope": "ActorCharacterRecord and ActorLifeRecord persisted authority."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/PeriodicRiderRecords.cs",
+      "revision": "b28837eb20be9e4f3ee35c090b7f436291ca6da1",
+      "scope": "SkillTrainingRecord persisted authority."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ActorLifeRules.cs",
+      "revision": "cb136d5e7464ebbaccbf5b537bdf6c3996d05330",
+      "scope": "Existing actor life projection and validation."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/PlaytestLife.cs",
+      "revision": "cec6d4f0760519ba9a896cc670e71b4cbd9d8b9d",
+      "scope": "Existing linked-injury penalty policy."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/AbilityCheckRules.cs",
+      "revision": "b3cba0c017666438c73088472a7dfa7777a3530e",
+      "scope": "Pre-increment check derivation."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/CharacterRuleFacts.cs",
+      "revision": "b5ab8c74c377219722d093af134ecd465c021797",
+      "scope": "Pre-increment read-only ability/level derivation."
+    }
+  ],
+  "behavior": [
+    "Character, life, and selected training records must resolve to one actor; missing or duplicate character/life identity and duplicate selected skill rows fail closed.",
+    "AbilityCheckModifier carries the actor ID and refuses injury aggregation against a different actor.",
+    "Existing caller-selected ability, proficiency source, DC, timing, dice, disadvantage, costs, and outcomes remain unchanged.",
+    "Queries hold references to immutable records, add no state, and are recomputed after snapshot records change."
+  ],
+  "compatibility": "Schema60 and earlier codec branches are unchanged. Full historical save regression suite passed.",
+  "validation": {
+    "headlessResult": "FULL_RESULTS.json",
+    "headlessStatus": "PASS",
+    "casesPassed": 1232,
+    "casesFailed": 0,
+    "testRun": "run-20261107T210246604Z-045a311e",
+    "staticPackageResult": "PACKAGE_RESULTS.json",
+    "staticPackageStatus": "PASS",
+    "staticChecksPassed": 18,
+    "staticChecksTotal": 18,
+    "packageAssets": 271,
+    "uniqueGuids": 271,
+    "packageRun": "static-20261107T210447100Z-a60ba639",
+    "focusedResult": "FOCUSED_RESULTS.json",
+    "focusedCases": 4,
+    "diffCheck": "PASS"
+  },
+  "changedPackageSourceHashes": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/AbilityCheckRules.cs",
+      "sha256": "b10b40ce86c1ae1fc3800aabe9c0d186171a25eeacfad0917240c352b1cc3239"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/CharacterRuleFacts.cs",
+      "sha256": "351c69dfd63ce7ac98717a8b8e78e6901a5dfd2d95a46dbd1b0095d9b8eb9d34"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionRouteMappingWork.cs",
+      "sha256": "67afbc8fc5bca36773c7159ba4409108cb91059ca5f93b50e575295b43db8a08"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionRouteReconnaissance.cs",
+      "sha256": "d2d1975f2fe3c2eb3294a5da34cec3ab043449ab5783fb599a5c88f90c5b54c0"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFormulaResearch.cs",
+      "sha256": "b478f273b2b2370680f6f1e623fd5241d66c00b434b1411a49d1d457b33413b9"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHarvest.cs",
+      "sha256": "f7131f1d8a103a3a10d6ec4960532df206a391116d89c09e6bcae82c1150b469"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs",
+      "sha256": "fa26b1ac2deb8958fa6fc4c80a7f440f75e0089490067bda1ef3eb2dcad41f2f"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs",
+      "sha256": "c04e87150dd82f0a9789e13caa3c4cfa6da5b594017caa85df3cfe16422f92d1"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedMiningAssay.cs",
+      "sha256": "d11e045c8743fb259502d6d0fe7122e2c8020347b830815579c6659944a5f5ca"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+      "sha256": "5a59109672174f4114f371f9c67bcc17ab37a9f3d3f5c12a0c641bc8eb1eeb2d"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedOrdinaryReceptacle.cs",
+      "sha256": "9dba3e96974ea63b4a8b9db56c48c94d08faedb8de60a4800d5846d6e67a289f"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedProspecting.cs",
+      "sha256": "ac7486c15090a1d04c7ce8ea560a6d71b50b29ea55f4892689b0ab27a701aaef"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSupplyCache.cs",
+      "sha256": "2fa71753d9d8782fb8705707a4cda3eb03fcb021a320dfe8a685419deec0c99f"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedToolRepair.cs",
+      "sha256": "5a8d5b1f38de2d57a638e845f2612351071e111bafbc7c9eb566e53b627e1ed2"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/AbilityCheckCases.cs",
+      "sha256": "24e275562e947df1e19a11e774c81a72d2f13e2569b19531d120cf43708dcef7"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/ConnectedCombatCases.cs",
+      "sha256": "de1033f8364e58775aad9eec92e0c9fedf0a9f252425e1ede3f8ef64512ad83f"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/SupplyCacheCases.cs",
+      "sha256": "394bf90fdfcbec07dd0b4a4b12e59715f083fc828849623a2ec9805852aa2452"
+    }
+  ],
+  "reviewStatus": "Independent read-only review found no remaining code blocker after the actor-bound lock path was corrected; current-run evidence was regenerated after the review."
+}

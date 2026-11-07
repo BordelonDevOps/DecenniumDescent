@@ -316,8 +316,16 @@ namespace Decennium.Foundation.Tests
                 var initial=s.Capture();
                 var heroFacts=CharacterRuleFacts.ForActor(initial,TestOnlyPolicy.ActorId);
                 var companionFacts=CharacterRuleFacts.ForActor(initial,TestOnlyPolicy.CompanionId);
+                var heroState=CharacterStateFacts.ForActor(initial,TestOnlyPolicy.ActorId);
+                var companionState=CharacterStateFacts.ForActor(initial,TestOnlyPolicy.CompanionId,"mining-tools");
                 Require(heroFacts.Source==initial.Characters.Single(x=>x.ActorId==TestOnlyPolicy.ActorId)
                     &&companionFacts.Source==initial.Characters.Single(x=>x.ActorId==TestOnlyPolicy.CompanionId)
+                    &&ReferenceEquals(heroState.Character,heroFacts.Source)
+                    &&ReferenceEquals(heroState.Life,initial.Lives.Single(x=>x.ActorId==TestOnlyPolicy.ActorId))
+                    &&ReferenceEquals(companionState.Character,companionFacts.Source)
+                    &&ReferenceEquals(companionState.Life,initial.Lives.Single(x=>x.ActorId==TestOnlyPolicy.CompanionId))
+                    &&ReferenceEquals(companionState.Training,initial.SkillTraining.Single(x=>x.ActorId==TestOnlyPolicy.CompanionId
+                        &&x.SkillId=="mining-tools"))
                     &&companionFacts.AbilityScore(CharacterAbility.Wisdom)==14,
                     "The connected actors did not resolve their authoritative shared character records.");
                 var selection=new MiningSelectionRequest(SharedMiningFixture.DepositVersionId,
@@ -337,9 +345,8 @@ namespace Decennium.Foundation.Tests
                     &&s.Capture().ExpeditionAssignments.Single().Status==ExpeditionAssignmentStatus.Started
                     &&s.Capture().ExpeditionAssignments.Single().WorkId==started.Id
                     &&started.Ability==MiningAbilityChoice.Wisdom
-                    &&started.AbilityModifier==companionFacts.AbilityModifier(CharacterAbility.Wisdom)
-                    &&started.ProficiencyRank==s.Capture().SkillTraining.Single(x=>x.ActorId==TestOnlyPolicy.CompanionId
-                        &&x.SkillId=="mining-tools").ProficiencyRank
+                    &&started.AbilityModifier==companionState.DeriveCheck(CharacterAbility.Wisdom).AbilityModifier
+                    &&started.ProficiencyRank==companionState.ProficiencyRank
                     &&started.ProficiencyBonus==companionFacts.ProficiencyContribution(started.ProficiencyRank),
                     "Assignment or the mining check did not retain work derived from the companion's authoritative facts.");
 
@@ -359,7 +366,10 @@ namespace Decennium.Foundation.Tests
                     &&continuing.WorkDone>workAtEntry&&afterCombat.ExpeditionAssignments.Single().WorkId==continuing.Id,
                     "Tactical time failed to continue the remote assignment or changed its linked procedure.");
                 var restoredHeroFacts=CharacterRuleFacts.ForActor(afterCombat,TestOnlyPolicy.ActorId);
+                var restoredHeroState=CharacterStateFacts.ForActor(afterCombat,TestOnlyPolicy.ActorId);
                 Require(restoredHeroFacts.Source==afterCombat.Characters.Single(x=>x.ActorId==TestOnlyPolicy.ActorId)
+                    &&ReferenceEquals(restoredHeroState.Character,restoredHeroFacts.Source)
+                    &&ReferenceEquals(restoredHeroState.Life,afterCombat.Lives.Single(x=>x.ActorId==TestOnlyPolicy.ActorId))
                     &&restoredHeroFacts.Source.Abilities.SequenceEqual(heroFacts.Source.Abilities)
                     &&restoredHeroFacts.Source.Levels.Count==heroFacts.Source.Levels.Count
                     &&restoredHeroFacts.ProficiencyBonus==heroFacts.ProficiencyBonus
@@ -373,11 +383,19 @@ namespace Decennium.Foundation.Tests
                 byte[] saved=File.ReadAllBytes(path);
                 s=new Simulation(p,store.Load(path),ExecutionProfile.Laboratory);
                 var loadedFacts=CharacterRuleFacts.ForActor(s.Capture(),TestOnlyPolicy.CompanionId);
+                var loadedState=CharacterStateFacts.ForActor(s.Capture(),TestOnlyPolicy.CompanionId,"mining-tools");
+                var replay=new Simulation(p,store.Load(path),ExecutionProfile.Laboratory);
                 Require(saved.SequenceEqual(Bytes(s))&&loadedFacts.Source.Abilities.SequenceEqual(companionFacts.Source.Abilities)
+                    &&ReferenceEquals(loadedState.Character,loadedFacts.Source)
+                    &&loadedState.Life.ActorId==TestOnlyPolicy.CompanionId
+                    &&loadedState.Training.ProficiencyRank==companionState.ProficiencyRank
                     &&loadedFacts.Source.Levels.Count==companionFacts.Source.Levels.Count
                     &&loadedFacts.TotalLevel==companionFacts.TotalLevel&&loadedFacts.ProficiencyBonus==companionFacts.ProficiencyBonus,
                     "Post-combat save/restore changed character facts, work, encounter or assignment history.");
                 WorldAdvance(s,continuing.DurationSeconds);
+                WorldAdvance(replay,continuing.DurationSeconds);
+                Require(Bytes(s).SequenceEqual(Bytes(replay)),
+                    "Identical work advances after save/restore produced different simulation and character-state bytes.");
                 var settled=s.Capture();var result=settled.MiningAttempts.Single();
                 bool resolved=result.Status==MiningAttemptStatus.Success||result.Status==MiningAttemptStatus.CriticalSuccess
                     ||result.Status==MiningAttemptStatus.Failure||result.Status==MiningAttemptStatus.CriticalFailure;

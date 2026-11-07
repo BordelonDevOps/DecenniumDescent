@@ -376,9 +376,9 @@ namespace Decennium.Foundation.Laboratory
             var leadFailure = route == null ? "RouteMappingDefinitionMissing"
                 : RouteMappingWorkerFailure(s, attempt.LeadId, route, attempt);
             if (task == null || leadFailure != null) throw new InvalidOperationException(leadFailure ?? "RouteMappingDefinitionMissing");
-            var modifier = AbilityCheckRules.Derive(s, attempt.LeadId,
-                TestOnlyExpeditionRouteMappingWorkFixture.SkillId, CharacterAbility.Wisdom);
-            int leadModifier = modifier.TotalWithInjury(ActorLifeRules.Read(s.Lives.Single(x => x.ActorId == attempt.LeadId)));
+            var actorFacts = CharacterStateFacts.ForActor(s, attempt.LeadId, TestOnlyExpeditionRouteMappingWorkFixture.SkillId);
+            var modifier = actorFacts.DeriveCheck(CharacterAbility.Wisdom);
+            int leadModifier = modifier.TotalWithInjury(actorFacts);
             int assistantBonus = attempt.AssistantIds.Length;
             int conditionOperationCount = s.Conditions.Single(x => x.Target == attempt.LeadId).Operations.Count;
             bool disadvantage = RouteMappingCheckDisadvantage(s, attempt.LeadId, s.RuleClock, conditionOperationCount);
@@ -464,9 +464,9 @@ namespace Decennium.Foundation.Laboratory
                         || replayedRoll.Natural != check.Natural || replayedRoll.NextRandomState != check.RandomAfter
                         || replayedRoll.WordsConsumed != check.WordsConsumed)
                         return "InvalidRouteMappingWorkRandomEvidence";
-                    var modifier = AbilityCheckRules.Derive(s, attempt.LeadId,
-                        TestOnlyExpeditionRouteMappingWorkFixture.SkillId, CharacterAbility.Wisdom);
-                    int leadModifier = modifier.TotalWithInjury(ActorLifeRules.Read(s.Lives.Single(x => x.ActorId == attempt.LeadId)));
+                    var actorFacts = CharacterStateFacts.ForActor(s, attempt.LeadId, TestOnlyExpeditionRouteMappingWorkFixture.SkillId);
+                    var modifier = actorFacts.DeriveCheck(CharacterAbility.Wisdom);
+                    int leadModifier = modifier.TotalWithInjury(actorFacts);
                     var expected = RuleResolution.TaskCheck(check.Natural, checked(leadModifier + attempt.AssistantIds.Length), task.Dc);
                     ExpeditionRouteMappingResultDegree degree = expected.Degree == RuleTaskDegree.CriticalFailure
                         ? ExpeditionRouteMappingResultDegree.CriticalFailure

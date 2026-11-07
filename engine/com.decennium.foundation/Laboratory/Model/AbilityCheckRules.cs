@@ -6,14 +6,16 @@ namespace Decennium.Foundation.Laboratory
     /// <summary>Pure ability plus recorded training derivation for one task check.</summary>
     public readonly struct AbilityCheckModifier
     {
+        public string ActorId { get; }
         public int AbilityIndex { get; }
         public int AbilityModifier { get; }
         public int ProficiencyRank { get; }
         public int ProficiencyBonus { get; }
         public int Total => checked(AbilityModifier + ProficiencyBonus);
 
-        internal AbilityCheckModifier(int abilityIndex, int abilityModifier, int proficiencyRank, int proficiencyBonus)
+        internal AbilityCheckModifier(string actorId, int abilityIndex, int abilityModifier, int proficiencyRank, int proficiencyBonus)
         {
+            ActorId = actorId;
             AbilityIndex = abilityIndex;
             AbilityModifier = abilityModifier;
             ProficiencyRank = proficiencyRank;
@@ -28,6 +30,14 @@ namespace Decennium.Foundation.Laboratory
             return checked(Total + PlaytestLife.AbilityCheckInjuryPenalty(life, AbilityIndex, toolCheck,
                 manipulatesObject, initiative, perception));
         }
+
+        public int TotalWithInjury(CharacterStateFacts character, bool toolCheck = false, bool manipulatesObject = false,
+            bool initiative = false, bool perception = false)
+        {
+            if (character.ActorId != ActorId)
+                throw new ArgumentException("Ability check belongs to a different actor.", nameof(character));
+            return character.TotalWithInjury(this, toolCheck, manipulatesObject, initiative, perception);
+        }
     }
 
     /// <summary>
@@ -41,9 +51,7 @@ namespace Decennium.Foundation.Laboratory
             CharacterAbility ability)
         {
             if (snapshot == null) throw new ArgumentNullException(nameof(snapshot));
-            var character = CharacterRuleFacts.ForActor(snapshot, actorId).Source;
-            var training = CharacterSkillTrainingFacts.Find(snapshot, actorId, skillId);
-            return Derive(character, training, ability);
+            return CharacterStateFacts.ForActor(snapshot, actorId, skillId).DeriveCheck(ability);
         }
 
         public static AbilityCheckModifier Derive(ActorCharacterRecord character, SkillTrainingRecord training,
@@ -78,7 +86,7 @@ namespace Decennium.Foundation.Laboratory
         {
             int index = (int)ability;
             int proficiency = facts.ProficiencyContribution(proficiencyRank);
-            return new AbilityCheckModifier(index, facts.AbilityModifier(ability), proficiencyRank, proficiency);
+            return new AbilityCheckModifier(facts.ActorId, index, facts.AbilityModifier(ability), proficiencyRank, proficiency);
         }
 
         /// <summary>Rank 0 is untrained, rank 1 adds one proficiency bonus, rank 2 adds two.</summary>

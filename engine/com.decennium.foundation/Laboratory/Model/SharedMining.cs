@@ -697,7 +697,7 @@ namespace Decennium.Foundation.Laboratory
 
         private void FinishMiningCheck(Snapshot s,MiningAttemptRecord prior)
         {
-            var character=s.Characters.Single(x=>x.ActorId==prior.WorkerId);
+            var actorFacts=CharacterStateFacts.ForActor(s,prior.WorkerId,"mining-tools");
             var toolUse=s.SchemaVersion>=Snapshot.MiningToolCandidateSchema
                 ?s.MiningToolUses.SingleOrDefault(x=>x.MiningAttemptId==prior.Id):null;
             var toolProfile=toolUse==null?null:s.MiningToolCandidateProfiles.Single(x=>x.Id==toolUse.ProfileId);
@@ -705,7 +705,7 @@ namespace Decennium.Foundation.Laboratory
             bool toolQualified=toolUse!=null&&MiningToolCandidateRules.Qualifies(s,toolProfile,toolInstance,toolUse,
                 prior.WorkerId,prior.SelectedUnitIds);
             CharacterAbility ability=prior.Ability==MiningAbilityChoice.Strength?CharacterAbility.Strength:CharacterAbility.Wisdom;
-            int injury=PlaytestLife.AbilityCheckInjuryPenalty(ActorLifeRules.Read(s.Lives.Single(x=>x.ActorId==prior.WorkerId)),(int)ability,toolCheck:true);
+            int injury=actorFacts.InjuryPenalty(ability,toolCheck:true);
             int modifier=checked(prior.AbilityModifier+prior.ProficiencyBonus+injury+(toolQualified?MiningToolCandidateProfileRecord.CheckBonus:0));
             int disadvantage=(prior.ProficiencyRank==0?1:0)+(prior.Hurried?1:0)
                 +(TestOnlyClubAttackPolicy.ConditionsFor(s,prior.WorkerId).View().Has(ConditionKind.Poisoned)?1:0);
@@ -721,9 +721,9 @@ namespace Decennium.Foundation.Laboratory
                 var draw=DiceStream.Draw(s.RandomState,4);d4=checked((int)draw.Value+1);damage=d4;
                 damage=CharacterAdvancementRules.ReduceIncomingDamage(s,prior.WorkerId,damage);
                 if(TestOnlyClubAttackPolicy.ConditionsFor(s,prior.WorkerId).View().Has(ConditionKind.Petrified))damage=PlaytestConditions.PetrifiedDamage(damage);
-                int constitution=checked(CharacterRuleFacts.From(character).AbilityModifier(CharacterAbility.Constitution)
+                int constitution=checked(actorFacts.Rules.AbilityModifier(CharacterAbility.Constitution)
                     +CharacterAdvancementRules.SaveProficiencyBonus(s,prior.WorkerId,"CON"));
-                var life=s.Lives.Single(x=>x.ActorId==prior.WorkerId);
+                var life=actorFacts.Life;
                 var injuryResult=PlaytestDamageDice.Resolve(ActorLifeRules.Read(life),damage,s.RuleClock,draw.NextState,constitution);
                 s.RandomState=injuryResult.NextRandomState;words=checked(words+draw.WordsConsumed+injuryResult.WordsConsumed);
                 wound=injuryResult.WoundRoll?.Natural??0;injuryRoll=injuryResult.InjuryD6??0;

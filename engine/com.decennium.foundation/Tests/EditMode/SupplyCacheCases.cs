@@ -173,9 +173,15 @@ namespace Decennium.Foundation.Tests
                 var impaired=poisoned.Capture().SupplyCacheAttempts.Single();
                 Require(ordinary.Natural>=15&&ordinary.Status==SupplyCacheAttemptStatus.Succeeded&&impaired.Natural<ordinary.Natural&&impaired.Status==SupplyCacheAttemptStatus.Failed,
                     "Poisoned did not apply disadvantage to the actual Dexterity tool check.");
-                var life=new LifeState(26,26,wounds:new[]{Injury.FineMotorTrauma});
-                var hero=plain.Capture().Characters.Single(x=>x.ActorId==TestOnlyPolicy.ActorId);
-                Require(SupplyCacheRules.PickCheckModifier(hero,false,life)==PlaytestCharacters.AbilityModifier(hero.Abilities[1])-1,
+                var injuredState=plain.Capture();
+                var existingLife=injuredState.Lives.Single(x=>x.ActorId==TestOnlyPolicy.ActorId);
+                var injuredLife=new ActorLifeRecord(existingLife.ActorId,existingLife.MaximumHp,existingLife.Hp,existingLife.TemporaryHp,
+                    new[]{(int)Injury.FineMotorTrauma},existingLife.Stable,existingLife.Dead,existingLife.UsesDeathSaves,
+                    existingLife.DeathSuccesses,existingLife.DeathFailures,existingLife.StableUntil,existingLife.LastDeathTurn,
+                    existingLife.Prone,existingLife.HeldItems);
+                injuredState.Lives=injuredState.Lives.Select(x=>x.ActorId==TestOnlyPolicy.ActorId?injuredLife:x).ToArray();
+                var hero=CharacterStateFacts.ForActor(injuredState,TestOnlyPolicy.ActorId);
+                Require(SupplyCacheRules.PickCheckModifier(hero,false)==PlaytestCharacters.AbilityModifier(hero.Character.Abilities[1])-1,
                     "Fine-Motor Injury was omitted from a Dexterity lock-manipulation check.");
             });
             cases.Add("supply_cache_blinded_task_requirement_is_an_authored_fixture_fact",()=>{

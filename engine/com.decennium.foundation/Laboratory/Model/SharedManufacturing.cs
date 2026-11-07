@@ -327,10 +327,10 @@ namespace Decennium.Foundation.Laboratory
             if(s.Receipts.Length>=511||s.Revision>=long.MaxValue-1)throw new InvalidOperationException("Manufacturing settlement receipt capacity reached.");
             if(s.AlchemyDoses.Length>ManufacturingValidation.MaxDoses-7||s.CraftingIncidents.Length==CraftingConsequenceValidation.MaxIncidents
                 ||!TestOnlyClubAttackPolicy.DamageConditionCapacity(s,j.WorkerId))throw new InvalidOperationException("Manufacturing result capacity reached.");
-            var character=s.Characters.Single(x=>x.ActorId==j.WorkerId);
-            var characterFacts=CharacterRuleFacts.From(character);
+            var actorFacts=CharacterStateFacts.ForActor(s,j.WorkerId);
+            var characterFacts=actorFacts.Rules;
             int modifier=characterFacts.AbilityModifier(CharacterAbility.Intelligence)+characterFacts.ProficiencyBonus
-                +PlaytestLife.AbilityCheckInjuryPenalty(ActorLifeRules.Read(s.Lives.Single(x=>x.ActorId==j.WorkerId)),3,toolCheck:true);
+                +actorFacts.InjuryPenalty(CharacterAbility.Intelligence,toolCheck:true);
             var roll=PlaytestDice.RollD20(s.RandomState,disadvantageSources:View(s,j.WorkerId).Has(ConditionKind.Poisoned)?1:0);s.RandomState=roll.NextRandomState;
             var recipe=ManufacturingRules.Recipe(j.RecipeId);if(recipe==null)throw new InvalidOperationException("ManufacturingRecipeUnavailable");
             var quality=ManufacturingRules.Quality(roll.Natural,modifier,recipe.Difficulty);

@@ -133,8 +133,8 @@ namespace Decennium.Foundation.Laboratory
                 return null;
             }
 
-            int modifier = AbilityCheckRules.Derive(s, actor.Id, "stealth", CharacterAbility.Dexterity)
-                .TotalWithInjury(ActorLifeRules.Read(s.Lives.Single(x => x.ActorId == actor.Id)));
+            var actorFacts = CharacterStateFacts.ForActor(s, actor.Id, "stealth");
+            int modifier = actorFacts.TotalWithInjury(CharacterAbility.Dexterity);
             int disadvantage = TestOnlyClubAttackPolicy.ConditionsFor(s, actor.Id).View().Has(ConditionKind.Poisoned) ? 1 : 0;
             var selection = PlaytestDice.Selection(0, disadvantage);
             var observerFacts = observers.Select(observer => new
@@ -203,8 +203,8 @@ namespace Decennium.Foundation.Laboratory
             var knowledge = s.ObserverKnowledge.Single(x => x.ObserverId == c.Actor && x.TargetId == target.Id);
             var hide = s.ObservationActions.Single(x => x.Id == knowledge.HiddenAttemptId && x.Kind == ObservationActionKind.Hide);
             int dc = checked((int)hide.Total);
-            int modifier = AbilityCheckRules.Derive(s, c.Actor, "perception", CharacterAbility.Wisdom)
-                .TotalWithInjury(ActorLifeRules.Read(s.Lives.Single(x => x.ActorId == c.Actor)), perception: true);
+            var actorFacts = CharacterStateFacts.ForActor(s, c.Actor, "perception");
+            int modifier = actorFacts.TotalWithInjury(CharacterAbility.Wisdom, perception: true);
             int disadvantage = TestOnlyClubAttackPolicy.ConditionsFor(s, c.Actor).View().Has(ConditionKind.Poisoned) ? 1 : 0;
             uint before = s.RandomState;
             var roll = PlaytestDice.RollD20(before, disadvantageSources: disadvantage);

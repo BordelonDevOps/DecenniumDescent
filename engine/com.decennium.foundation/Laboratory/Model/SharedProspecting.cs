@@ -392,7 +392,8 @@ namespace Decennium.Foundation.Laboratory
 
         private void FinishProspectingCheck(Snapshot s, ProspectingAttemptRecord prior, ProspectingExposureRecord exposure)
         {
-            int injury = PlaytestLife.AbilityCheckInjuryPenalty(ActorLifeRules.Read(s.Lives.Single(x => x.ActorId == prior.ActorId)), 4, toolCheck: true);
+            int injury = CharacterStateFacts.ForActor(s, prior.ActorId, "mining-tools")
+                .InjuryPenalty(CharacterAbility.Wisdom, toolCheck: true);
             int modifier = checked(prior.WisdomModifier + prior.ProficiencyBonus + injury);
             int disadvantage = (prior.ProficiencyRank == 0 ? 1 : 0)
                 + (TestOnlyClubAttackPolicy.ConditionsFor(s, prior.ActorId).View().Has(ConditionKind.Poisoned) ? 1 : 0);

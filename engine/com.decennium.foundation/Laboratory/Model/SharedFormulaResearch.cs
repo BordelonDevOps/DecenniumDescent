@@ -147,11 +147,11 @@ namespace Decennium.Foundation.Laboratory
         }
         private void FinishFormulaCheck(Snapshot s, FormulaWorkRecord job)
         {
-            var character = s.Characters.Single(x => x.ActorId == job.WorkerId);
-            var facts = CharacterRuleFacts.From(character);
+            var actorFacts = CharacterStateFacts.ForActor(s, job.WorkerId);
+            var facts = actorFacts.Rules;
             int modifier = facts.AbilityModifier(CharacterAbility.Intelligence) + facts.ProficiencyBonus;
             // Schema16 histories retain their original check outcomes. Schema17 corrects actual tool checks.
-            if (s.SchemaVersion >= 17) modifier += PlaytestLife.AbilityCheckInjuryPenalty(ActorLifeRules.Read(s.Lives.Single(x => x.ActorId == job.WorkerId)), 3, toolCheck: true);
+            if (s.SchemaVersion >= 17) modifier += actorFacts.InjuryPenalty(CharacterAbility.Intelligence, toolCheck: true);
             var roll = PlaytestDice.RollD20(s.RandomState, disadvantageSources: View(s, job.WorkerId).Has(ConditionKind.Poisoned) ? 1 : 0);
             s.RandomState = roll.NextRandomState;
             var status = FormulaResearchRules.Succeeds(roll.Natural, modifier, SharedResearchFixture.Difficulty(job.RecipeId)) ? FormulaWorkStatus.Success : FormulaWorkStatus.Failure;

@@ -80,6 +80,31 @@ namespace Decennium.Foundation.Tests
                 Throws<InvalidOperationException>(() => CharacterSkillTrainingFacts.Find(snapshot, hero, "perception"));
                 Throws<ArgumentNullException>(() => CharacterSkillTrainingFacts.Find(null, hero, "perception"));
                 Throws<ArgumentException>(() => CharacterSkillTrainingFacts.Find(snapshot, hero, "")); });
+            cases.Add("character_state_facts_join_existing_actor_records_without_copying", () => {
+                var snapshot = World(ConnectedPolicy()).Capture();
+                string hero = TestOnlyPolicy.ActorId, companion = TestOnlyPolicy.CompanionId;
+                snapshot.SkillTraining = new[] { new SkillTrainingRecord(hero, "tool-work", 1) };
+                var originalLife = snapshot.Lives.Single(x => x.ActorId == hero);
+                var injuredLife = new ActorLifeRecord(originalLife.ActorId, originalLife.MaximumHp, originalLife.Hp,
+                    originalLife.TemporaryHp, new[] { (int)Injury.FineMotorTrauma }, originalLife.Stable, originalLife.Dead,
+                    originalLife.UsesDeathSaves, originalLife.DeathSuccesses, originalLife.DeathFailures,
+                    originalLife.StableUntil, originalLife.LastDeathTurn, originalLife.Prone, originalLife.HeldItems);
+                snapshot.Lives = snapshot.Lives.Select(x => x.ActorId == hero ? injuredLife : x).ToArray();
+
+                var facts = CharacterStateFacts.ForActor(snapshot, hero, "tool-work");
+                var check = AbilityCheckRules.Derive(snapshot, hero, "tool-work", CharacterAbility.Intelligence);
+                Require(ReferenceEquals(facts.Character, snapshot.Characters.Single(x => x.ActorId == hero))
+                    && ReferenceEquals(facts.Life, injuredLife)
+                    && ReferenceEquals(facts.Training, snapshot.SkillTraining[0])
+                    && facts.ActorId == hero && facts.ProficiencyRank == 1
+                    && check.ActorId == hero && check.ProficiencyRank == 1
+                    && check.TotalWithInjury(facts, toolCheck: true, manipulatesObject: true) == check.Total - 1,
+                    "The actor-scoped facts copied, crossed, or failed to combine the persisted character, training, and injury records.");
+                var other = CharacterStateFacts.ForActor(snapshot, companion);
+                Throws<ArgumentException>(() => check.TotalWithInjury(other, toolCheck: true, manipulatesObject: true));
+                snapshot.Lives = snapshot.Lives.Concat(new[] { injuredLife }).ToArray();
+                Throws<InvalidOperationException>(() => CharacterStateFacts.ForActor(snapshot, hero));
+            });
             cases.Add("ability_check_injury_is_applied_once_at_resolution", () => {
                 var check = AbilityCheckRules.Derive(CheckCharacter(), new SkillTrainingRecord("worker", "craft", 1), 1);
                 var life = new LifeState(20, 20, wounds: new[] { Injury.FineMotorTrauma, Injury.FineMotorTrauma, Injury.FineMotorTrauma });

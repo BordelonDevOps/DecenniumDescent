@@ -60,5 +60,72 @@ namespace Decennium.Foundation.Laboratory
             return index;
         }
     }
+
+    /// <summary>
+    /// Ephemeral actor-scoped join over the existing character, skill-training and life records.
+    /// It owns no gameplay state; the immutable records in Snapshot remain authoritative. Resolve
+    /// it at the point of use rather than caching it across a command that replaces snapshot records.
+    /// </summary>
+    public readonly struct CharacterStateFacts
+    {
+        private readonly ActorCharacterRecord character;
+        private readonly ActorLifeRecord life;
+        private readonly SkillTrainingRecord training;
+
+        private CharacterStateFacts(ActorCharacterRecord character, ActorLifeRecord life, SkillTrainingRecord training)
+        {
+            this.character = character ?? throw new ArgumentNullException(nameof(character));
+            this.life = life ?? throw new ArgumentNullException(nameof(life));
+            if (character.ActorId != life.ActorId || training != null && training.ActorId != character.ActorId)
+                throw new ArgumentException("Character, life, and training facts must belong to the same actor.");
+            this.training = training;
+        }
+
+        public string ActorId => RequireCharacter().ActorId;
+        public ActorCharacterRecord Character => RequireCharacter();
+        public ActorLifeRecord Life => life ?? throw new InvalidOperationException("Character-state query is uninitialized.");
+        public SkillTrainingRecord Training => training;
+        public int ProficiencyRank => training?.ProficiencyRank ?? 0;
+        public CharacterRuleFacts Rules => CharacterRuleFacts.From(RequireCharacter());
+
+        public AbilityCheckModifier DeriveCheck(CharacterAbility ability)
+            => AbilityCheckRules.Derive(RequireCharacter(), training, ability);
+
+        public int InjuryPenalty(CharacterAbility ability, bool toolCheck = false, bool manipulatesObject = false,
+            bool initiative = false, bool perception = false)
+        {
+            Rules.AbilityScore(ability);
+            return PlaytestLife.AbilityCheckInjuryPenalty(ActorLifeRules.Read(Life), (int)ability,
+                toolCheck, manipulatesObject, initiative, perception);
+        }
+
+        public int TotalWithInjury(AbilityCheckModifier check, bool toolCheck = false, bool manipulatesObject = false,
+            bool initiative = false, bool perception = false)
+        {
+            if (check.ActorId != ActorId)
+                throw new ArgumentException("Ability check belongs to a different actor.", nameof(check));
+            return checked(check.Total + InjuryPenalty((CharacterAbility)check.AbilityIndex,
+                toolCheck, manipulatesObject, initiative, perception));
+        }
+
+        public int TotalWithInjury(CharacterAbility ability, bool toolCheck = false, bool manipulatesObject = false,
+            bool initiative = false, bool perception = false)
+            => TotalWithInjury(DeriveCheck(ability), toolCheck, manipulatesObject, initiative, perception);
+
+        public static CharacterStateFacts ForActor(Snapshot snapshot, string actorId, string skillId = null)
+        {
+            if (snapshot == null) throw new ArgumentNullException(nameof(snapshot));
+            if (!Validation.ValidId(actorId)) throw new ArgumentException("Actor identity is required.", nameof(actorId));
+            if (snapshot.Lives == null) throw new InvalidOperationException("Actor life state is unavailable.");
+            var character = CharacterRuleFacts.ForActor(snapshot, actorId).Source;
+            var lives = snapshot.Lives.Where(x => x != null && x.ActorId == actorId).Take(2).ToArray();
+            if (lives.Length != 1) throw new InvalidOperationException("Actor life state must resolve exactly once.");
+            var skill = skillId == null ? null : CharacterSkillTrainingFacts.Find(snapshot, actorId, skillId);
+            return new CharacterStateFacts(character, lives[0], skill);
+        }
+
+        private ActorCharacterRecord RequireCharacter()
+            => character ?? throw new InvalidOperationException("Character-state query is uninitialized.");
+    }
 }
 #endif

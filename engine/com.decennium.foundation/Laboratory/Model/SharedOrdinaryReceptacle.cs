@@ -162,9 +162,8 @@ namespace Decennium.Foundation.Laboratory
             if(ordinaryReceptacles.PickRequiresSight&&View(s,attempt.ActorId).BlocksSight) {
                 RecordOrdinaryAttempt(s,attempt,OrdinaryReceptacleAttemptStatus.Failed,0,0,automaticFailure:true);return;
             }
-            var character=s.Characters.Single(x=>x.ActorId==attempt.ActorId);
-            int modifier=SupplyCacheRules.PickCheckModifier(character,ordinaryReceptacles.ToolsProficient,
-                ActorLifeRules.Read(s.Lives.Single(x=>x.ActorId==attempt.ActorId)));
+            var character=CharacterStateFacts.ForActor(s,attempt.ActorId);
+            int modifier=SupplyCacheRules.PickCheckModifier(character,ordinaryReceptacles.ToolsProficient);
             var conditions=View(s,attempt.ActorId);
             var roll=PlaytestDice.RollD20(s.RandomState,disadvantageSources:conditions.Has(ConditionKind.Poisoned)?1:0);
             s.RandomState=roll.NextRandomState;

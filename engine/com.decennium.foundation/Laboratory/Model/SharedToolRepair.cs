@@ -215,10 +215,10 @@ namespace Decennium.Foundation.Laboratory
         }
         private static void FinishRepair(Snapshot s, RepairWorkRecord job)
         {
-            var character = s.Characters.Single(x => x.ActorId == job.WorkerId);
-            var facts = CharacterRuleFacts.From(character);
+            var actorFacts = CharacterStateFacts.ForActor(s, job.WorkerId);
+            var facts = actorFacts.Rules;
             int modifier = facts.AbilityModifier(CharacterAbility.Dexterity) + facts.ProficiencyBonus;
-            modifier += PlaytestLife.AbilityCheckInjuryPenalty(ActorLifeRules.Read(s.Lives.Single(x => x.ActorId == job.WorkerId)), 1, toolCheck: true);
+            modifier += actorFacts.InjuryPenalty(CharacterAbility.Dexterity, toolCheck: true);
             var roll = PlaytestDice.RollD20(s.RandomState, disadvantageSources: View(s, job.WorkerId).Has(ConditionKind.Poisoned) ? 1 : 0); s.RandomState = roll.NextRandomState;
             bool success = ObjectStructureRules.RepairSucceeds(roll.Natural, modifier);
             if (success) s.Structures = s.Structures.Select(x => x.Id == job.TargetId ? x.WithHp(x.MaximumHp) : x).ToArray();
