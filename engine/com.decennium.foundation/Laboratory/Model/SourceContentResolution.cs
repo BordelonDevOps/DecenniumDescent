@@ -126,6 +126,7 @@ namespace Decennium.Foundation.Laboratory
         public const string PrototypeRevision = "f0019fe5b6e1d3a1eb506203dca933a004cf05b2";
         public const string TrustedDigest = "85bbdb47e144f2877334feda0108eb9c485d182db8ea4ff7a18a167c40594dae";
         public const string Recipe14TrustedDigest = "5e1c8f3c1d796f4174d0c6eec334fc310e4473085edd9f288954024f9dcc8e79";
+        public const string BuriedCacheTrustedDigest = "9300b01847a7c142d0bec4ca28c3bf2a53913c28ac0e93f54b442c4b251a7eb7";
         private readonly ContentDefinitionBinding[] entries;
         public int SchemaVersion { get; }
         public string Digest { get; }
@@ -146,9 +147,12 @@ namespace Decennium.Foundation.Laboratory
         public static TestOnlyContentManifest CreateSelectedProfile() => new TestOnlyContentManifest(SelectedEntries());
         public static TestOnlyContentManifest CreateManufacturingExpansionProfile()
             =>new TestOnlyContentManifest(SelectedEntries().Concat(Recipe14Entries()));
+        public static TestOnlyContentManifest CreateBuriedCacheExcavationProfile()
+            => new TestOnlyContentManifest(SelectedEntries().Concat(new[] { BuriedCacheShovelEntry() }));
         public static TestOnlyContentManifest CreateSelectedProfileWithout(string domain, string semanticId)
             => new TestOnlyContentManifest(SelectedEntries().Where(x => !(x.Domain == domain && x.SemanticId == semanticId)));
-        public bool IsTrustedBuildMetadata => Digest == TrustedDigest || Digest == Recipe14TrustedDigest;
+        public bool IsTrustedBuildMetadata => Digest == TrustedDigest || Digest == Recipe14TrustedDigest
+            || Digest == BuriedCacheTrustedDigest;
         public string BindFingerprint(string existingFingerprint)
         {
             if (!Validation.ValidId(existingFingerprint) || !IsTrustedBuildMetadata) throw new InvalidOperationException("ContentManifestBuildMismatch");
@@ -349,6 +353,21 @@ namespace Decennium.Foundation.Laboratory
                 ContentAuthorityStatus.ReviewedAuthoredPlaytest, ContentVisibility.Internal, ContentViewerAccess.InternalOnly,
                 ContentValue.NotApplicable(), ContentValue.NotApplicable(), "", 0, true, Array.Empty<ContentOperation>(), null, researchAuthority);
         }
+
+        private static ContentDefinitionBinding BuriedCacheShovelEntry()
+            => new ContentDefinitionBinding("equipment", "adventuring-gear.shovel", SourceRevision,
+                "DescentReviewChanges/ReviewBible/data/playtest/equipment_acquisition_candidate.json",
+                "afd06198e19409385408ac258be7dc1d0b2600fb", "/items/146",
+                ContentAuthorityStatus.ReviewedAuthoredPlaytest, ContentVisibility.Public,
+                ContentViewerAccess.VisibleWithoutGrant, ContentValue.Known("5lb"), ContentValue.Known("5lb"),
+                "portable-equipment", 1, true,
+                new[] { ContentOperation.PortableEquipment, ContentOperation.PortableInteraction },
+                new[] { "adventuring-gear.shovel" }, new[] {
+                    "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4:docs/canon/CANON_MANIFEST.json@003b9c45d3b36be43a16c431fe341de725f7f406",
+                    "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4:docs/canon/REPOSITORY_PROMOTION.md@15c9fbc9553ec3f04f6f5ad032bdef96d41b65a3",
+                    "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4:DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md@60f81c5706857c5528d9d19e3da9ac15dcd7fb85",
+                    "Engine:docs/unity/PORTABLE_EQUIPMENT_RULE_DECISIONS.md@25776c3ef2c6287f9dd373b0136a1ad5ad1d9d69"
+                });
 
         private static IEnumerable<ContentDefinitionBinding> Recipe14Entries()
         {

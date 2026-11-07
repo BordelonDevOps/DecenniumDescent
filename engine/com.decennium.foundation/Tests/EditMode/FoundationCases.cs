@@ -251,6 +251,7 @@ namespace Decennium.Foundation.Tests
             AddSoldierDefensiveFormationCases(cases,directory);
             AddFishingTrapCases(cases,directory);
             AddExpeditionAssignmentCases(cases,directory);
+            AddCacheExcavationCases(cases,directory);
             AddHarvestCases(cases,directory);
             AddMiningCases(cases,directory);
             AddProspectingCases(cases,directory);

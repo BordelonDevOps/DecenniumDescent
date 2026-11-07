@@ -25,7 +25,8 @@ namespace Decennium.Foundation
         StartProspecting, PauseProspecting, ResumeProspecting, RecordProspectingExposure,
         StartMiningAssay, PauseMiningAssay, ResumeMiningAssay, CancelMiningAssay,
         StartMineralPreparation, PauseMineralPreparation, ResumeMineralPreparation, Hide, Search,
-        StartRouteTravel, PauseRouteTravel, ResumeRouteTravel, ConsumeTestOnlyRouteMappingResult, Dodge }
+        StartRouteTravel, PauseRouteTravel, ResumeRouteTravel, ConsumeTestOnlyRouteMappingResult, Dodge,
+        PauseCacheExcavation, ResumeCacheExcavation }
     public enum Outcome { Rejected, Committed, Duplicate }
 
     // DTOs are detached copies. No caller ever receives the owned simulation state.
@@ -106,6 +107,7 @@ namespace Decennium.Foundation
         public const int RouteMappingSchema = 54;
         public const int HuntingTrapSchema = 55;
         public const int DodgeSchema = 56;
+        public const int BuriedCacheSchema = 57;
         public const int MaxActors = 64;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
@@ -168,6 +170,8 @@ namespace Decennium.Foundation
         public SupplyCacheRecord[] SupplyCaches = Array.Empty<SupplyCacheRecord>();
         public SupplyCacheAttemptRecord[] SupplyCacheAttempts = Array.Empty<SupplyCacheAttemptRecord>();
         public SupplyCacheEquipmentRecord[] SupplyCacheEquipment = Array.Empty<SupplyCacheEquipmentRecord>();
+        public BuriedCacheSiteRecord[] BuriedCacheSites = Array.Empty<BuriedCacheSiteRecord>();
+        public CacheExcavationRecord[] CacheExcavations = Array.Empty<CacheExcavationRecord>();
         public PortableEquipmentRecord[] PortableEquipment = Array.Empty<PortableEquipmentRecord>();
         public PortableHandlingRecord[] PortableHandling = Array.Empty<PortableHandlingRecord>();
         public EncounterDashRecord[] EncounterDashes = Array.Empty<EncounterDashRecord>();
@@ -253,6 +257,7 @@ namespace Decennium.Foundation
             WorldLifeMarkers = WorldLifeMarkers.ToArray(),
             RepairWork = RepairWork.ToArray(), ManufacturingOrders = ManufacturingOrders.ToArray(), Trades = Trades.ToArray(), AlchemyDoses = AlchemyDoses.ToArray(), ManufacturingAdvance = ManufacturingAdvance,
             SupplyCaches = SupplyCaches.ToArray(), SupplyCacheAttempts = SupplyCacheAttempts.ToArray(), SupplyCacheEquipment = SupplyCacheEquipment.ToArray(),
+            BuriedCacheSites = BuriedCacheSites.ToArray(), CacheExcavations = CacheExcavations.ToArray(),
             PortableEquipment = PortableEquipment.ToArray(), PortableHandling = PortableHandling.ToArray(),
             CharacterMilestones = CharacterMilestones.ToArray(), CharacterHitDice = CharacterHitDice.ToArray(),
             CharacterFeatureGrants = CharacterFeatureGrants.ToArray(), CharacterAdvancements = CharacterAdvancements.ToArray(),
@@ -620,9 +625,10 @@ namespace Decennium.Foundation
                 || s.SchemaVersion == Foundation.Snapshot.ExpeditionRouteSchema
                 || s.SchemaVersion == Foundation.Snapshot.RouteObservationSchema
                 || s.SchemaVersion == Foundation.Snapshot.RouteMappingSchema
-                || s.SchemaVersion == Foundation.Snapshot.HuntingTrapSchema) { }
+                || s.SchemaVersion == Foundation.Snapshot.HuntingTrapSchema
+                || s.SchemaVersion == Foundation.Snapshot.BuriedCacheSchema) { }
             else if (s.SchemaVersion != Foundation.Snapshot.Schema && s.SchemaVersion != Foundation.Snapshot.WorkSchema
-                && s.SchemaVersion != Foundation.Snapshot.CropSchema && s.SchemaVersion != Foundation.Snapshot.InventorySchema && s.SchemaVersion != Foundation.Snapshot.VesselSchema && s.SchemaVersion != Foundation.Snapshot.MovableVesselSchema && s.SchemaVersion != Foundation.Snapshot.EncounterSchema && s.SchemaVersion != Foundation.Snapshot.ActorLifeSchema && s.SchemaVersion != Foundation.Snapshot.ClubAttackSchema && s.SchemaVersion != Foundation.Snapshot.PostureSchema && s.SchemaVersion != Foundation.Snapshot.TacticalMovementSchema && s.SchemaVersion != Foundation.Snapshot.ConditionSchema && s.SchemaVersion != Foundation.Snapshot.SharedWorldSchema && s.SchemaVersion != Foundation.Snapshot.CalendarCombatSchema && s.SchemaVersion != Foundation.Snapshot.FormulaWorkSchema && s.SchemaVersion != Foundation.Snapshot.CraftingConsequenceSchema && s.SchemaVersion != Foundation.Snapshot.RepairWorkSchema && s.SchemaVersion != Foundation.Snapshot.ManufacturingSchema && s.SchemaVersion != Foundation.Snapshot.SupplyCacheSchema && s.SchemaVersion != Foundation.Snapshot.PortableEquipmentSchema && s.SchemaVersion != Foundation.Snapshot.CharacterAdvancementSchema && s.SchemaVersion != Foundation.Snapshot.RepeatingCrossbowSchema && s.SchemaVersion != Foundation.Snapshot.PeriodicRiderSchema && s.SchemaVersion != Foundation.Snapshot.SharedBonusActionSchema && s.SchemaVersion != Foundation.Snapshot.OverwatchSchema && s.SchemaVersion != Foundation.Snapshot.OverwatchExecutionSchema && s.SchemaVersion != Foundation.Snapshot.SoldierInitialLoadoutSchema && s.SchemaVersion != Foundation.Snapshot.SoldierInitialBuildSchema && s.SchemaVersion != Foundation.Snapshot.SoldierTacticalTechniquesSchema && s.SchemaVersion != Foundation.Snapshot.CharacterAdvancementHistorySchema && s.SchemaVersion != Foundation.Snapshot.TacticalAssessmentSchema && s.SchemaVersion != Foundation.Snapshot.CommandStepSchema && s.SchemaVersion != Foundation.Snapshot.SuppressionFireSchema && s.SchemaVersion != Foundation.Snapshot.DefensiveFormationSchema && s.SchemaVersion != Foundation.Snapshot.FishingTrapLegacySchema && s.SchemaVersion != Foundation.Snapshot.FishingTrapBaitSchema && s.SchemaVersion != Foundation.Snapshot.FishingTrapSchema && s.SchemaVersion != Foundation.Snapshot.FishingStockSchema && s.SchemaVersion != Foundation.Snapshot.ExpeditionAssignmentSchema && s.SchemaVersion != Foundation.Snapshot.OffCalendarActivitySchema && s.SchemaVersion != Foundation.Snapshot.HarvestSchema && s.SchemaVersion != Foundation.Snapshot.HarvestManifestSchema && s.SchemaVersion != Foundation.Snapshot.MiningSchema && s.SchemaVersion != Foundation.Snapshot.DodgeSchema)
+                && s.SchemaVersion != Foundation.Snapshot.CropSchema && s.SchemaVersion != Foundation.Snapshot.InventorySchema && s.SchemaVersion != Foundation.Snapshot.VesselSchema && s.SchemaVersion != Foundation.Snapshot.MovableVesselSchema && s.SchemaVersion != Foundation.Snapshot.EncounterSchema && s.SchemaVersion != Foundation.Snapshot.ActorLifeSchema && s.SchemaVersion != Foundation.Snapshot.ClubAttackSchema && s.SchemaVersion != Foundation.Snapshot.PostureSchema && s.SchemaVersion != Foundation.Snapshot.TacticalMovementSchema && s.SchemaVersion != Foundation.Snapshot.ConditionSchema && s.SchemaVersion != Foundation.Snapshot.SharedWorldSchema && s.SchemaVersion != Foundation.Snapshot.CalendarCombatSchema && s.SchemaVersion != Foundation.Snapshot.FormulaWorkSchema && s.SchemaVersion != Foundation.Snapshot.CraftingConsequenceSchema && s.SchemaVersion != Foundation.Snapshot.RepairWorkSchema && s.SchemaVersion != Foundation.Snapshot.ManufacturingSchema && s.SchemaVersion != Foundation.Snapshot.SupplyCacheSchema && s.SchemaVersion != Foundation.Snapshot.PortableEquipmentSchema && s.SchemaVersion != Foundation.Snapshot.CharacterAdvancementSchema && s.SchemaVersion != Foundation.Snapshot.RepeatingCrossbowSchema && s.SchemaVersion != Foundation.Snapshot.PeriodicRiderSchema && s.SchemaVersion != Foundation.Snapshot.SharedBonusActionSchema && s.SchemaVersion != Foundation.Snapshot.OverwatchSchema && s.SchemaVersion != Foundation.Snapshot.OverwatchExecutionSchema && s.SchemaVersion != Foundation.Snapshot.SoldierInitialLoadoutSchema && s.SchemaVersion != Foundation.Snapshot.SoldierInitialBuildSchema && s.SchemaVersion != Foundation.Snapshot.SoldierTacticalTechniquesSchema && s.SchemaVersion != Foundation.Snapshot.CharacterAdvancementHistorySchema && s.SchemaVersion != Foundation.Snapshot.TacticalAssessmentSchema && s.SchemaVersion != Foundation.Snapshot.CommandStepSchema && s.SchemaVersion != Foundation.Snapshot.SuppressionFireSchema && s.SchemaVersion != Foundation.Snapshot.DefensiveFormationSchema && s.SchemaVersion != Foundation.Snapshot.FishingTrapLegacySchema && s.SchemaVersion != Foundation.Snapshot.FishingTrapBaitSchema && s.SchemaVersion != Foundation.Snapshot.FishingTrapSchema && s.SchemaVersion != Foundation.Snapshot.FishingStockSchema && s.SchemaVersion != Foundation.Snapshot.ExpeditionAssignmentSchema && s.SchemaVersion != Foundation.Snapshot.OffCalendarActivitySchema && s.SchemaVersion != Foundation.Snapshot.HarvestSchema && s.SchemaVersion != Foundation.Snapshot.HarvestManifestSchema && s.SchemaVersion != Foundation.Snapshot.MiningSchema && s.SchemaVersion != Foundation.Snapshot.DodgeSchema && s.SchemaVersion != Foundation.Snapshot.BuriedCacheSchema)
                 throw new ArgumentException("Unsupported snapshot schema.");
             if (s.SchemaVersion >= Foundation.Snapshot.RouteMappingSchema && !s.TestOnly)
                 throw new ArgumentException("TEST_ONLY route-mapping state cannot be loaded as release content.");
@@ -714,6 +720,7 @@ namespace Decennium.Foundation
             ExpeditionRouteSpatialValidation.Validate(s);
             ExpeditionRouteMappingValidation.Validate(s);
             HuntingTrapValidation.Validate(s);
+            CacheExcavationValidation.Validate(s);
         }
     }
 

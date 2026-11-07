@@ -6,7 +6,7 @@ using System.Numerics;
 namespace Decennium.Foundation
 {
     public enum WorldActionCommitment { None, Dash, ActiveLabor }
-    public enum WorldProcedureKind { Crop, WaterFill, Intake, FormulaWork, Repair, Manufacturing, FishingTrapRetrieval, SupplyCache, FishingTrapSetup, Harvest, Mining, Prospecting, MiningAssay, MineralPreparation }
+    public enum WorldProcedureKind { Crop, WaterFill, Intake, FormulaWork, Repair, Manufacturing, FishingTrapRetrieval, SupplyCache, FishingTrapSetup, Harvest, Mining, Prospecting, MiningAssay, MineralPreparation, CacheExcavation }
 
     /// <summary>Derived activity projection over the existing procedure records. It is never saved
     /// independently; each domain procedure remains authoritative for its state and settlement.</summary>
@@ -203,6 +203,12 @@ namespace Decennium.Foundation
                     result.Add(Create(s, attempt.Id, attempt.WorkerId, WorldProcedureKind.MineralPreparation,
                     includeDetails ? attempt.Status.ToString() : null, includeDetails ? (RuleTime?)attempt.WorkDone : null,
                     includeDetails ? (RuleTime?)new RuleTime(MineralPreparationValidation.WorkSeconds) : null, options, includeDetails));
+            foreach (var excavation in s.CacheExcavations ?? Array.Empty<CacheExcavationRecord>())
+                if (excavation.Status == CacheExcavationStatus.Working
+                    || includeOpen && excavation.Status == CacheExcavationStatus.Paused)
+                    result.Add(Create(s, excavation.Id, excavation.WorkerId, WorldProcedureKind.CacheExcavation,
+                    includeDetails ? excavation.Status.ToString() : null, includeDetails ? (RuleTime?)excavation.WorkDone : null,
+                    includeDetails ? (RuleTime?)new RuleTime(CacheExcavationRecord.RequiredWorkSeconds) : null, options, includeDetails));
             return result.AsReadOnly();
         }
 
@@ -253,6 +259,7 @@ namespace Decennium.Foundation
                 case CommandKind.PauseProspecting: case CommandKind.ResumeProspecting:
                 case CommandKind.PauseMiningAssay: case CommandKind.ResumeMiningAssay: case CommandKind.CancelMiningAssay:
                 case CommandKind.PauseMineralPreparation: case CommandKind.ResumeMineralPreparation:
+                case CommandKind.PauseCacheExcavation: case CommandKind.ResumeCacheExcavation:
                     return true;
                 default:
                     return false;
@@ -352,7 +359,8 @@ namespace Decennium.Foundation
                 || s.ProspectingAttempts.Any(x => x.Id == id && x.ActorId == actor)
                 || s.MiningAssayAttempts.Any(x => x.Id == id && x.WorkerId == actor)
                 || s.DestructiveMiningAssayAttempts.Any(x => x.Id == id && x.WorkerId == actor)
-                || s.MineralPreparationAttempts.Any(x => x.Id == id && x.WorkerId == actor);
+                || s.MineralPreparationAttempts.Any(x => x.Id == id && x.WorkerId == actor)
+                || s.CacheExcavations.Any(x => x.Id == id && x.WorkerId == actor);
         }
 
         /// <summary>Returns persisted work-interval provenance for positive labor in a segment.

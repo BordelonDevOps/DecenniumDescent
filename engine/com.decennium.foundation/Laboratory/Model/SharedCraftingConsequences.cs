@@ -72,7 +72,7 @@ namespace Decennium.Foundation.Laboratory
     public sealed partial class TestOnlySharedWorldPolicy
     {
         private readonly SharedCraftingFixture crafting;
-        private int SelectedSchema => dodgeActionEnabled ? Snapshot.DodgeSchema : huntingTrapFixture!=null ? Snapshot.HuntingTrapSchema
+        private int SelectedSchema => cacheExcavationEnabled ? Snapshot.BuriedCacheSchema : dodgeActionEnabled ? Snapshot.DodgeSchema : huntingTrapFixture!=null ? Snapshot.HuntingTrapSchema
             : routeMappingFixture!=null ? Snapshot.RouteMappingSchema
             : routeMotionFixture!=null ? Snapshot.RouteObservationSchema
             : routeTravelFixture!=null ? Snapshot.ExpeditionRouteSchema

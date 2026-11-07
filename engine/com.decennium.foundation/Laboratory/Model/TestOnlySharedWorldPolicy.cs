@@ -22,6 +22,7 @@ namespace Decennium.Foundation.Laboratory
         private bool fishingTrapLegacy;
         private bool fishingTrapBaitOnly;
         private bool expeditionAssignmentsEnabled;
+        private bool cacheExcavationEnabled;
         private bool offCalendarActivityEnabled;
         private bool dodgeActionEnabled;
         private ObservationFixture observationFixture;
@@ -151,6 +152,7 @@ namespace Decennium.Foundation.Laboratory
             InitializeSupplyCache(s);
             InitializeFishingTrap(s);
             InitializePortableEquipment(s);
+            InitializeBuriedCache(s);
             InitializeOrdinaryReceptacles(s);
             InitializeHuntingTrapDevices(s);
             InitializeHarvest(s);
@@ -230,6 +232,7 @@ namespace Decennium.Foundation.Laboratory
                 case CommandKind.StartCraftRemedy: case CommandKind.StartToolRepair: case CommandKind.ResumeToolRepair:
                 case CommandKind.StartManufacturing: case CommandKind.ResumeManufacturing: case CommandKind.UseAlchemyDose:
                 case CommandKind.StartExpeditionWork: case CommandKind.HandlePortableEquipment: case CommandKind.EquipPortableItem:
+                case CommandKind.ResumeCacheExcavation:
                 case CommandKind.RemovePortableItem: case CommandKind.OpenPortableContainer: case CommandKind.ClosePortableContainer:
                 case CommandKind.StartHarvest: case CommandKind.ResumeHarvest:
                 case CommandKind.StartMining: case CommandKind.ResumeMining:
@@ -298,6 +301,7 @@ namespace Decennium.Foundation.Laboratory
             PauseIncompatibleProspecting(s);
             PauseIncompatibleMiningAssay(s);
             PauseIncompatibleMineralPreparation(s);
+            PauseIncompatibleCacheExcavation(s);
         }
         private static void RefreshIntervals(Snapshot s)
         {
@@ -389,6 +393,7 @@ namespace Decennium.Foundation.Laboratory
                 var repairBoundary = NextRepairBoundary(s); if(repairBoundary.HasValue&&repairBoundary.Value<next)next=repairBoundary.Value;
                 var manufacturingBoundary=NextManufacturingBoundary(s);if(manufacturingBoundary.HasValue&&manufacturingBoundary.Value<next)next=manufacturingBoundary.Value;
                 var cacheBoundary=NextSupplyCacheBoundary(s);if(cacheBoundary.HasValue&&cacheBoundary.Value<next)next=cacheBoundary.Value;
+                var excavationBoundary=NextCacheExcavationBoundary(s);if(excavationBoundary.HasValue&&excavationBoundary.Value<next)next=excavationBoundary.Value;
                 var receptacleBoundary=NextOrdinaryReceptacleBoundary(s);if(receptacleBoundary.HasValue&&receptacleBoundary.Value<next)next=receptacleBoundary.Value;
                 var huntingTrapBoundary=NextHuntingTrapActionBoundary(s);if(huntingTrapBoundary.HasValue&&huntingTrapBoundary.Value<next)next=huntingTrapBoundary.Value;
                 var trapBoundary=NextFishingTrapBoundary(s);if(trapBoundary.HasValue&&trapBoundary.Value<next)next=trapBoundary.Value;
@@ -481,7 +486,7 @@ namespace Decennium.Foundation.Laboratory
                         TestOnlyClubAttackPolicy.AdvanceConditions(world,"."+(++subevent).ToString(CultureInfo.InvariantCulture),
                             onlyAtExpiry:s.SchemaVersion>=Snapshot.ExpeditionRouteSchema||miningFixture!=null||prospectingFixture!=null);
                         PauseIncompatibleWork(world,false);
-                    }, (world,elapsedWork)=>{CreditFormulaWork(world,elapsedWork,ready);CreditRemedyWork(world,elapsedWork);CreditRepairWork(world,elapsedWork,repairsReady);CreditManufacturing(world,elapsedWork,manufacturingReady);CreditFishingTrapWork(world,elapsedWork);CreditHarvestWork(world,elapsedWork);CreditMiningWork(world,elapsedWork);CreditProspectingWork(world,elapsedWork);CreditMiningAssayWork(world,elapsedWork);CreditMineralPreparationWork(world,elapsedWork);});
+                    }, (world,elapsedWork)=>{CreditFormulaWork(world,elapsedWork,ready);CreditRemedyWork(world,elapsedWork);CreditRepairWork(world,elapsedWork,repairsReady);CreditManufacturing(world,elapsedWork,manufacturingReady);CreditFishingTrapWork(world,elapsedWork);CreditHarvestWork(world,elapsedWork);CreditMiningWork(world,elapsedWork);CreditProspectingWork(world,elapsedWork);CreditMiningAssayWork(world,elapsedWork);CreditMineralPreparationWork(world,elapsedWork);CreditCacheExcavationWork(world,elapsedWork);});
                 }
                 RefreshActivityIntervals(s);
                 foreach (var activity in s.WorldActivityIntervals.ToArray()) {
@@ -575,6 +580,7 @@ namespace Decennium.Foundation.Laboratory
             if(ManufacturingChoicePending(s)&&c.Kind!=CommandKind.ResolveManufacturingQuality)return "ManufacturingChoicePending";
             if(c.Kind==CommandKind.AssignExpeditionWork||c.Kind==CommandKind.CancelExpeditionWork||c.Kind==CommandKind.StartExpeditionWork)
                 return ResolveExpeditionAssignment(s,c);
+            if(CacheExcavationCommand(c))return ResolveCacheExcavationControl(s,c);
             if(PortableCommand(c.Kind))return ResolvePortableEquipment(s,c);
             if(IsHuntingTrapCommand(s,c))return ResolveHuntingTrapCommand(s,c);
             if(IsOrdinaryReceptacleCommand(s,c))return ResolveOrdinaryReceptacle(s,c);
@@ -677,6 +683,7 @@ namespace Decennium.Foundation.Laboratory
                 var prospectingBoundary=NextProspectingBoundary(s);if(prospectingBoundary.HasValue&&prospectingBoundary.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
                 var miningAssayBoundary=NextMiningAssayBoundary(s);if(miningAssayBoundary.HasValue&&miningAssayBoundary.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
                 var mineralPreparationBoundary=NextMineralPreparationBoundary(s);if(mineralPreparationBoundary.HasValue&&mineralPreparationBoundary.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
+                var cacheExcavationBoundary=NextCacheExcavationBoundary(s);if(cacheExcavationBoundary.HasValue&&cacheExcavationBoundary.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
                 var tacticalFeatureBoundary=SoldierTacticalFeatures.NextDeadline(s);
                 if(tacticalFeatureBoundary.HasValue&&tacticalFeatureBoundary.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
             }
@@ -691,6 +698,7 @@ namespace Decennium.Foundation.Laboratory
                 CreditProspectingWork(s,CampGreens.Subtract(s.RuleClock,before));
                 CreditMiningAssayWork(s,CampGreens.Subtract(s.RuleClock,before));
                 CreditMineralPreparationWork(s,CampGreens.Subtract(s.RuleClock,before));
+                CreditCacheExcavationWork(s,CampGreens.Subtract(s.RuleClock,before));
                 // No traversal or condition deadline can occur inside the admitted interval.
                 TestOnlyClubAttackPolicy.AdvanceConditions(s, ".handling"); RefreshActivityIntervals(s);
                 CommitActivityLabor(s, c.Actor, WorldActivityValidation.ActiveLaborReference(s, c.Actor, before, s.RuleClock));

@@ -24,11 +24,13 @@ namespace Decennium.Foundation.Laboratory
     public enum SupplyCacheInteraction { UnlockWithKey=1,PickWithTools=2,Open=3,Interrupt=4 }
     public static class SupplyCacheRules
     {
-        internal static bool IsCacheLocation(Snapshot s,string location)=>s.SupplyCaches.Any(x=>x.Id==location&&x.Open);
+        internal static bool Buried(Snapshot s,string cacheId)
+            =>s.SchemaVersion>=Snapshot.BuriedCacheSchema&&s.BuriedCacheSites.Any(x=>x.CacheId==cacheId&&x.Buried);
+        internal static bool IsCacheLocation(Snapshot s,string location)=>!Buried(s,location)&&s.SupplyCaches.Any(x=>x.Id==location&&x.Open);
         internal static bool Accessible(Snapshot s,string actor,string location)
         {
             var cache=s.SupplyCaches.SingleOrDefault(x=>x.Id==location);
-            if(cache==null||!cache.Open)return false;
+            if(cache==null||Buried(s,location)||!cache.Open)return false;
             var body=s.Actors.SingleOrDefault(x=>x.Id==actor);
             return cache.OwnerId==actor&&body!=null&&Math.Abs((long)body.X-cache.X)+Math.Abs((long)body.Y-cache.Y)<=1;
         }
@@ -114,6 +116,7 @@ namespace Decennium.Foundation.Laboratory
             cache=null;method=default(SupplyCacheUnlockMethod);equipment=null;
             if(c.Inventory!=null||c.Combat!=null||c.Target!=SupplyCacheFixture.CacheId||c.Y!=0)return "InvalidSupplyCacheInteraction";
             cache=Cache(s,c.Target);if(cache==null)return "UnknownSupplyCache";
+            if(SupplyCacheRules.Buried(s,cache.Id))return "SupplyCacheBuried";
             string cacheId=cache.Id;
             if(c.Actor!=cache.OwnerId)return "NoSupplyCachePermission";
             if(!NearCache(s,c.Actor,cache))return "SupplyCacheOutOfReach";
@@ -186,6 +189,7 @@ namespace Decennium.Foundation.Laboratory
             int index=0;
             if(supplyCache==null)yield break;
             foreach(var cache in s.SupplyCaches.OrderBy(x=>x.Id,StringComparer.Ordinal)) {
+                if(SupplyCacheRules.Buried(s,cache.Id))continue;
                 if(cache.OwnerId!=actor||!NearCache(s,actor,cache))continue;
                 var working=s.SupplyCacheAttempts.SingleOrDefault(x=>x.Status==SupplyCacheAttemptStatus.Working
                     &&x.CacheId==cache.Id&&x.ActorId==actor);

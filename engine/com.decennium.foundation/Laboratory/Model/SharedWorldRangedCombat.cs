@@ -93,7 +93,8 @@ namespace Decennium.Foundation.Laboratory
             ||kind==CommandKind.Dodge&&dodgeActionEnabled
             ||kind==CommandKind.Search
             ||kind==CommandKind.ResolveManufacturingQuality||kind==CommandKind.PauseManufacturing
-            ||kind==CommandKind.ResumeManufacturing||kind==CommandKind.CancelManufacturing;
+            ||kind==CommandKind.ResumeManufacturing||kind==CommandKind.CancelManufacturing
+            ||kind==CommandKind.PauseCacheExcavation||kind==CommandKind.ResumeCacheExcavation;
 
         public IEnumerable<Command> DiscoverCommands(Snapshot s,Authority authority,string actor)
         {

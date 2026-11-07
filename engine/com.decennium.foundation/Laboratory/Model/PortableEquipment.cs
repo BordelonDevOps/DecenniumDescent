@@ -170,6 +170,7 @@ namespace Decennium.Foundation.Laboratory
                 ||s.SchemaVersion>=Snapshot.MiningToolCandidateSchema&&s.MiningToolUses.Where(x=>s.MiningAttempts.Any(a=>a.Id==x.MiningAttemptId
                     &&(a.Status==MiningAttemptStatus.Working||a.Status==MiningAttemptStatus.Paused||a.Status==MiningAttemptStatus.AwaitingCheck)))
                     .Any(x=>s.MiningToolCandidateProfiles.Any(p=>p.Id==x.ProfileId&&ids.Contains(p.ToolItemId)))
+                ||s.CacheExcavations.Any(x=>(x.Status==CacheExcavationStatus.Working||x.Status==CacheExcavationStatus.Paused)&&ids.Contains(x.ShovelId))
                 ||s.MineralPreparationAttempts.Where(x=>x.Status==MineralPreparationStatus.Working||x.Status==MineralPreparationStatus.Paused
                     ||x.Status==MineralPreparationStatus.AwaitingCompletion).Any(x=>{
                         var unit=s.MiningUnits.SingleOrDefault(u=>u.Id==x.UnitId);

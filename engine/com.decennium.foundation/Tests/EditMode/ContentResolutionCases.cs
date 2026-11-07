@@ -29,6 +29,21 @@ namespace Decennium.Foundation.Tests
                     &&!legacy.Entries.Any(x=>x.Domain=="crafting"&&x.SemanticId=="recipe-14"),
                     "Recipe-14 source rows, operation binding or legacy profile boundary drifted.");
             });
+            cases.Add("content_manifest_buried_cache_profile_pins_actual_shovel_without_rebinding_legacy",()=>{
+                var manifest=TestOnlyContentManifest.CreateBuriedCacheExcavationProfile();
+                var legacy=TestOnlyContentManifest.CreateSelectedProfile();
+                var shovel=manifest.ResolveRuntime("adventuring-gear.shovel");
+                Require(manifest.ValidateBindings()==null&&manifest.IsTrustedBuildMetadata
+                    &&manifest.Digest==TestOnlyContentManifest.BuriedCacheTrustedDigest
+                    &&shovel?.SourceBlobId=="afd06198e19409385408ac258be7dc1d0b2600fb"
+                    &&shovel.JsonPointer=="/items/146"&&shovel.SourceMass.Value=="5lb"
+                    &&shovel.OperationalMass.Value=="5lb"
+                    &&manifest.Supports(shovel,ContentOperation.PortableEquipment)
+                    &&manifest.Supports(shovel,ContentOperation.PortableInteraction)
+                    &&legacy.Digest==TestOnlyContentManifest.TrustedDigest
+                    &&legacy.ResolveRuntime("adventuring-gear.shovel")==null,
+                    "Buried-cache profile must pin its shovel while preserving the legacy manifest. Digest="+manifest.Digest);
+            });
             cases.Add("content_manifest_binds_source_identity_visibility_and_legacy_profile_separately",()=>{
                 var manifest=TestOnlyContentManifest.CreateSelectedProfile();var resolved=ResolvedPolicy();
                 var legacy=PortablePolicy();var sameManifestProfile=new TestOnlySharedWorldPolicy(manifest,new PortableKitFixture(),new SharedCombatFixture(),new SupplyCacheFixture());

@@ -57,12 +57,37 @@ namespace Decennium.Foundation.Laboratory
         public TestOnlySharedWorldPolicy EnableExpeditionAssignments()
         {
             if (expeditionAssignmentsEnabled) return this;
-            if (!PhysicalFishingEnabled && miningFixture==null)
+            if (!PhysicalFishingEnabled && miningFixture==null && !cacheExcavationEnabled)
                 throw new InvalidOperationException("Expedition assignments require an enabled physical Trap or mining procedure.");
             expeditionAssignmentsEnabled = true;
             using (var hash = System.Security.Cryptography.SHA256.Create())
                 ContentFingerprint = "TEST_ONLY.site-assignment-v1-" + string.Concat(hash.ComputeHash(
                     System.Text.Encoding.UTF8.GetBytes(ContentFingerprint + "|site-aware-work-assignment-v1"))
+                    .Select(x => x.ToString("x2", System.Globalization.CultureInfo.InvariantCulture)));
+            return this;
+        }
+
+        /// <summary>Opts the finite TEST_ONLY cache fixture into one shallow buried-site procedure.
+        /// Requires an actual portable kit so the shovel is present as equipment state.</summary>
+        public TestOnlySharedWorldPolicy EnableBuriedCacheExcavation()
+        {
+            if (initializationStarted) throw new InvalidOperationException("Cache excavation must be selected before Initial().");
+            if (cacheExcavationEnabled) return this;
+            if (portableKit == null || supplyCache == null || !supplyCache.HasTools || supplyCache.HasKey)
+                throw new InvalidOperationException("Buried-cache excavation requires the portable-kit cache fixture and actual thieves' tools.");
+            if (contentManifest != null)
+            {
+                var shovel = contentManifest.ResolveRuntime("adventuring-gear.shovel");
+                if (shovel == null || shovel.SemanticId != "adventuring-gear.shovel"
+                    || !contentManifest.Supports(shovel, ContentOperation.PortableEquipment)
+                    || !contentManifest.Supports(shovel, ContentOperation.PortableInteraction))
+                    throw new InvalidOperationException("Buried-cache excavation requires the source-resolved shovel content profile.");
+            }
+            cacheExcavationEnabled = true;
+            if (!expeditionAssignmentsEnabled) EnableExpeditionAssignments();
+            using (var hash = System.Security.Cryptography.SHA256.Create())
+                ContentFingerprint = "TEST_ONLY.buried-cache-v1-" + string.Concat(hash.ComputeHash(
+                    System.Text.Encoding.UTF8.GetBytes(ContentFingerprint + "|one-authored-safe-cache|shovel|300-active-seconds|retain-progress"))
                     .Select(x => x.ToString("x2", System.Globalization.CultureInfo.InvariantCulture)));
             return this;
         }
@@ -185,6 +210,7 @@ namespace Decennium.Foundation.Laboratory
             foreach(string actor in s.WorldSchedule.Order)PauseParticipantWork(s,actor);
             // Starts have already been processed by shared advancement. Do not replay one here.
             s.InventoryCombat=true;s.InventoryTurnActor=s.Encounter.CurrentActor;s.InventoryInteractions=Interval(s,s.Encounter.CurrentActor).Interactions;
+            PauseIncompatibleCacheExcavation(s);
             PauseIncompatibleRemedies(s);PauseIncompatibleRepairs(s);PauseIncompatibleManufacturing(s);
             PauseIncompatibleHarvesting(s);return null;
         }

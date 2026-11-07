@@ -113,6 +113,14 @@ namespace Decennium.Foundation.Laboratory
                 ?s.ExpeditionAssignments.SingleOrDefault(x=>x.Id==c.Target&&x.WorkerId==c.Actor):null;
             if(assignment?.Procedure==ExpeditionWorkProcedure.FishingTrapRetrieval)
                 return PortableEquipmentRules.Owners(s,assignment.TargetId);
+            if(assignment?.Procedure==ExpeditionWorkProcedure.CacheExcavation) {
+                var site=s.BuriedCacheSites.SingleOrDefault(x=>x.CacheId==assignment.TargetId);
+                return PortableEquipmentRules.Owners(s,site?.ShovelId);
+            }
+            if(CacheExcavationCommand(c)) {
+                var work=s.CacheExcavations.SingleOrDefault(x=>x.Id==c.Target&&x.WorkerId==c.Actor);
+                return PortableEquipmentRules.Owners(s,work?.ShovelId);
+            }
             bool assignedRepair=assignment?.Procedure==ExpeditionWorkProcedure.ToolRepair;
             if (repair == null || !assignedRepair&&c.Kind != CommandKind.StartToolRepair && c.Kind != CommandKind.ResumeToolRepair) return Array.Empty<string>();
             var job = c.Kind == CommandKind.ResumeToolRepair ? s.RepairWork.SingleOrDefault(x => x.Id == c.Target) : null;

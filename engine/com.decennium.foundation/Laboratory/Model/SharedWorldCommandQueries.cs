@@ -378,6 +378,7 @@ namespace Decennium.Foundation.Laboratory
                 }
             }
             foreach (var command in DiscoverFishingTrapControls(s, actor)) yield return command;
+            foreach (var command in DiscoverCacheExcavationControls(s, actor)) yield return command;
             foreach (var command in DiscoverContextualInteractions(s, authority, actor)) yield return command;
             foreach (var command in DiscoverManufacturingCommands(s, actor)) yield return command;
         }
@@ -408,6 +409,7 @@ namespace Decennium.Foundation.Laboratory
             if (RouteMappingResultCommand(c.Kind)) return QueryRouteMappingResultCommand(s, c);
             if (RouteTravelCommand(c.Kind)) return QueryRouteTravelCommand(s, c);
             if (c.Kind == CommandKind.Search) return QueryObservationSearchCommand(s, c);
+            if (CacheExcavationCommand(c)) return QueryCacheExcavationControl(s, c);
             if (IsSupplyCacheCommand(c)) return QuerySupplyCacheCommand(s,c);
             if (IsOrdinaryReceptacleCommand(s,c)) return QueryOrdinaryReceptacleCommand(s,c);
             if (IsHuntingTrapCommand(s,c)) return QueryHuntingTrapCommand(s,c);

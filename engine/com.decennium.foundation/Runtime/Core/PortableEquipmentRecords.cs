@@ -212,6 +212,7 @@ namespace Decennium.Foundation
                 &&!s.MineralPreparationAttempts.Any(j=>j.Id==w.JobId)
                 &&!s.OrdinaryReceptacleAttempts.Any(j=>j.Id==w.JobId)
                 &&!s.HuntingTrapActions.Any(j=>j.Id==w.JobId)
+                &&!s.CacheExcavations.Any(j=>j.Id==w.JobId)
                 &&!s.CraftingIncidents.Any(j=>j.Workers.Count!=0&&w.JobId=="craft.remedy."+j.Revision.ToString(System.Globalization.CultureInfo.InvariantCulture))))
                 throw new ArgumentException("Unattributed worker interval.");
         }

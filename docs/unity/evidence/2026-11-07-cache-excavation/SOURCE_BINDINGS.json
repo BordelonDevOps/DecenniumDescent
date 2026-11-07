@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "recordedUtc": "2026-11-07T10:08:15.977849Z",
+  "purpose": "Schema57 TEST_ONLY contextual excavation of one existing buried cache; full gameplay rules engine remains unfinished.",
+  "baseRevision": "94b6c0d8d9f56e1fe134ecefe0043c88f8dc522d",
+  "branch": "Engine",
+  "status": "PARTIAL / TEST_ONLY / SOURCE-BOUND / PROVISIONAL",
+  "productionRuntimeSelectionEnabled": false,
+  "releaseApproved": false,
+  "source": {
+    "path": "DescentReviewChanges/ReviewBible/data/playtest/equipment_acquisition_candidate.json",
+    "sourceRevision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+    "sourceBlobId": "afd06198e19409385408ac258be7dc1d0b2600fb",
+    "jsonPointer": "/items/146",
+    "excerpt": "sources/equipment-acquisition-shovel-item-146.json",
+    "sha256Excerpt": "f62d4049cd0c2ad00f234d608bae30b50e9909f126d680dd567c5802a883b3ad",
+    "semanticId": "adventuring-gear.shovel",
+    "status": "reviewed-authored-playtest",
+    "sourceWeightLb": 5.0,
+    "operationalBundleWeightLb": 5.0
+  },
+  "implementationFiles": [],
+  "acceptanceCases": [
+    "cache_excavation_assignment_resumes_exact_work_and_exposes_cache_once",
+    "cache_excavation_requires_assignment_site_and_can_only_be_started_once",
+    "content_manifest_buried_cache_profile_pins_actual_shovel_without_rebinding_legacy"
+  ],
+  "focusedValidation": [
+    {
+      "case": "cache_excavation_assignment_resumes_exact_work_and_exposes_cache_once",
+      "status": "PASS",
+      "passed": 1,
+      "testsDiscovered": 1,
+      "report": "focused/cache_excavation_assignment_resumes_exact_work_and_exposes_cache_once.json"
+    },
+    {
+      "case": "cache_excavation_requires_assignment_site_and_can_only_be_started_once",
+      "status": "PASS",
+      "passed": 1,
+      "testsDiscovered": 1,
+      "report": "focused/cache_excavation_requires_assignment_site_and_can_only_be_started_once.json"
+    },
+    {
+      "case": "content_manifest_buried_cache_profile_pins_actual_shovel_without_rebinding_legacy",
+      "status": "PASS",
+      "passed": 1,
+      "testsDiscovered": 1,
+      "report": "focused/content_manifest_buried_cache_profile_pins_actual_shovel_without_rebinding_legacy.json"
+    }
+  ],
+  "headless": {
+    "status": "PASS",
+    "language": "C# 9",
+    "testsDiscovered": 1208,
+    "passed": 1208,
+    "failed": 0,
+    "report": "HEADLESS_RESULTS.json",
+    "startedUtc": "2026-11-07T10:24:11.8106159Z",
+    "finishedUtc": "2026-11-07T10:26:11.5967704Z"
+  },
+  "packageStatic": {
+    "status": "PASS",
+    "scope": "Static package structure only; not Unity import, compilation or release-build validation",
+    "checks": 18,
+    "packageAssets": 257,
+    "uniqueGuids": 257,
+    "report": "PACKAGE_RESULTS.json",
+    "finishedUtc": "2026-11-07T10:24:16.3540547Z"
+  },
+  "gptReview": "GPT found no concrete blocker in the supplied implementation summary and excerpts; it did not inspect the local checkout or run validation. See GPT_REVIEW.md.",
+  "limitations": [
+    "Only the authored TEST_ONLY site, physical shovel, existing cache and 300-second safe-site profile are supported.",
+    "Unity import, Unity compilation, editor tests, player build and gameplay qualification were not run.",
+    "The optional contention regression requires a second worker-consuming procedure that the current cache-only fixture does not provide."
+  ],
+  "gitDiffCheck": "PASS after final code, line-ending preservation, documentation, and evidence updates"
+}

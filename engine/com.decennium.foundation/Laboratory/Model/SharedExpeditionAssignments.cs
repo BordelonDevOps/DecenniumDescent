@@ -40,6 +40,14 @@ namespace Decennium.Foundation.Laboratory
                 { error="UnknownMiningAssignmentTarget"; return false; }
                 siteX=deposit.SiteX;siteY=deposit.SiteY;return true;
             }
+            if (procedure == ExpeditionWorkProcedure.CacheExcavation)
+            {
+                if (!CacheExcavationSelected(s)) { error = "CacheExcavationNotSelected"; return false; }
+                var site = BuriedCacheSite(s, targetId);
+                if (site == null || destinationId != "") { error = "UnknownBuriedCacheSite"; return false; }
+                if (!site.Buried) { error = "CacheAlreadyExposed"; return false; }
+                siteX = site.X; siteY = site.Y; return true;
+            }
             error = "UnknownExpeditionWorkProcedure"; return false;
         }
 
@@ -58,9 +66,7 @@ namespace Decennium.Foundation.Laboratory
 
         private string ResolveExpeditionAssignment(Snapshot s, Command c)
         {
-            if (!expeditionAssignmentsEnabled || s.SchemaVersion != Snapshot.ExpeditionAssignmentSchema
-                && s.SchemaVersion != Snapshot.MiningExpeditionAssignmentSchema
-                && !(dodgeActionEnabled&&s.SchemaVersion==Snapshot.DodgeSchema))
+            if (!expeditionAssignmentsEnabled || s.SchemaVersion < Snapshot.ExpeditionAssignmentSchema)
                 return "ExpeditionAssignmentsNotSelected";
             if (s.InventoryCombat) return "WorkAssignmentRequiresExploration";
             if (c.Kind == CommandKind.AssignExpeditionWork)
@@ -120,6 +126,11 @@ namespace Decennium.Foundation.Laboratory
                 var job = s.FishingTrapRetrievals.Skip(priorCount).SingleOrDefault();
                 if (job == null) return "AssignmentProcedureDidNotCreateTrapRetrieval";
                 workId = job.Id;
+            }
+            else if (current.Procedure == ExpeditionWorkProcedure.CacheExcavation)
+            {
+                error = StartCacheExcavation(s, current, out workId);
+                if (error != null) return error;
             }
             else
             {
