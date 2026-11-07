@@ -533,6 +533,7 @@ namespace Decennium.Foundation.Laboratory
         private string ResolveCore(Snapshot s, Command c)
         {
             if (!s.Actors.Any(a => a.Id == c.Actor)) return "UnknownWorldActor";
+            if (RouteMappingResultCommand(c.Kind)) return ResolveRouteMappingResultCommand(s, c);
             if (RouteTravelCommand(c.Kind)) return ResolveRouteTravelCommand(s, c);
             var openRoute = routeTravelFixture == null ? null : OpenRouteTravel(s, c.Actor);
             var attachedRoutePosition = routeMotionFixture == null ? null : RouteSpatial(s, c.Actor);
@@ -692,6 +693,7 @@ namespace Decennium.Foundation.Laboratory
             try {
                 if (s.SchemaVersion != SelectedSchema || s.Receipts.Length != s.Revision) return "InvalidSharedWorldHeader";
                 string routeTravelError=ValidateRouteTravelState(s);if(routeTravelError!=null)return routeTravelError;
+                string routeMappingError=ValidateRouteMappingResultState(s);if(routeMappingError!=null)return routeMappingError;
                 if(s.SchemaVersion>=Snapshot.ExpeditionRouteSchema&&TestOnlyClubAttackPolicy.HasUnprocessedConditionDeadline(s))
                     return "UnprocessedConditionDeadline";
                 if (observationFixture != null) {

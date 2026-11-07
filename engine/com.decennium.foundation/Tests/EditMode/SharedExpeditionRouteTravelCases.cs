@@ -60,6 +60,10 @@ namespace Decennium.Foundation.Tests
             string actor = TestOnlyPolicy.ActorId)
             => new Command(id, actor, s.Capture().Revision, kind, RouteTravelId);
 
+        private static Command RouteMappingCommand(Simulation s, string resultId, string id,
+            string actor = TestOnlyPolicy.ActorId)
+            => new Command(id, actor, s.Capture().Revision, CommandKind.ConsumeTestOnlyRouteMappingResult, resultId);
+
         private static void RouteTravelReachSource(Simulation s)
         {
             WorldStep(s, 0, 1); WorldAdvance(s, 3, 2);
@@ -106,6 +110,123 @@ namespace Decennium.Foundation.Tests
                     && ExpeditionRouteTravelRules.BaseProgress(ExpeditionRouteMapping.Mapped) == new RuleQuantity(2)
                     && ExpeditionRouteTravelRules.BaseProgress(ExpeditionRouteMapping.Secured) == new RuleQuantity(2),
                     "FL-10 base Progress changed by starting Mapping.");
+            });
+
+            cases.Add("route_mapping_results_persist_without_claiming_a_check_or_passage", () => {
+                var routes = RouteTravelFixture(ExpeditionRouteQuality.Secured, risk: 2,
+                    mapping: ExpeditionRouteMapping.Unknown);
+                var results = new TestOnlyExpeditionRouteMappingResultFixture(routes,
+                    new TestOnlyExpeditionRouteMappingResult(RouteTravelId, "route.mapping.risk2.first",
+                        TestOnlyPolicy.ActorId, "evidence.synthetic.first", default,
+                        ExpeditionRouteMappingResultDegree.Success),
+                    new TestOnlyExpeditionRouteMappingResult(RouteTravelId, "route.mapping.risk2.second",
+                        TestOnlyPolicy.ActorId, "evidence.synthetic.second", default,
+                        ExpeditionRouteMappingResultDegree.Success),
+                    new TestOnlyExpeditionRouteMappingResult(RouteTravelId, "route.mapping.future",
+                        TestOnlyPolicy.ActorId, "evidence.synthetic.future", new RuleTime(1000),
+                        ExpeditionRouteMappingResultDegree.CriticalSuccess),
+                    new TestOnlyExpeditionRouteMappingResult(RouteTravelId, "route.mapping.other-actor",
+                        TestOnlyPolicy.CompanionId, "evidence.synthetic.other-actor", default,
+                        ExpeditionRouteMappingResultDegree.Success));
+                var policy = RouteTravelPolicy(routes).EnableTestOnlyRouteMappingResults(results);
+                var simulation = World(policy);
+                var initial = simulation.Capture();
+                Require(initial.SchemaVersion == Snapshot.RouteMappingSchema && initial.RouteMappingResults.Length == 0,
+                    "Synthetic mapping results did not select empty schema54 history.");
+                var first = RouteMappingCommand(simulation, "route.mapping.risk2.first", "route.mapping.apply.first");
+                var firstQuery = simulation.QueryCommand(host, first);
+                Require(firstQuery.Supported && firstQuery.Admissible && firstQuery.Costs.Count == 0,
+                    "Synthetic result query claimed costs or was not admissible: " + firstQuery.Code);
+                Require(Bytes(simulation).SequenceEqual(Bytes(new Simulation(policy,
+                        new SnapshotCodec().Decode(Bytes(simulation)), ExecutionProfile.Laboratory))),
+                    "Initial schema54 route mapping state did not replay canonically.");
+                WorldCommit(simulation, first);
+                var afterFirst = simulation.Capture();
+                Require(afterFirst.RouteMappingResults.Length == 1
+                    && afterFirst.RouteMappingResults[0].MappingBefore == ExpeditionRouteMapping.Unknown
+                    && afterFirst.RouteMappingResults[0].MappingAfter == ExpeditionRouteMapping.Unknown
+                    && afterFirst.RouteMappingResults[0].MarksAfter == 1
+                    && ExpeditionRouteMappingRules.Current(afterFirst, RouteTravelId, ExpeditionRouteMapping.Unknown).UnspentMarks == 1
+                    && afterFirst.RuleClock == initial.RuleClock && afterFirst.RandomState == initial.RandomState
+                    && afterFirst.Actors.Select(x => x.Id + "|" + x.X + "|" + x.Y)
+                        .SequenceEqual(initial.Actors.Select(x => x.Id + "|" + x.X + "|" + x.Y))
+                    && afterFirst.InventoryLots.Length == initial.InventoryLots.Length,
+                    "First Risk-2 success failed to retain one mark or changed unrelated simulation state.");
+                var checkpoint = Bytes(simulation);
+                var restored = new Simulation(policy, new SnapshotCodec().Decode(checkpoint), ExecutionProfile.Laboratory);
+                Require(checkpoint.SequenceEqual(Bytes(restored)), "Schema54 mapping result changed after save/restore.");
+                RejectUnchanged(restored, host, RouteMappingCommand(restored, "route.mapping.risk2.first",
+                    "route.mapping.apply.duplicate"), "RouteMappingResultAlreadyConsumed");
+                RejectUnchanged(restored, host, RouteMappingCommand(restored, "missing.synthetic.result",
+                    "route.mapping.apply.unknown"), "UnknownTestOnlyRouteMappingResult");
+                RejectUnchanged(restored, host, RouteMappingCommand(restored, "route.mapping.future",
+                    "route.mapping.apply.future"), "RouteMappingResultNotComplete");
+                RejectUnchanged(restored, host, RouteMappingCommand(restored, "route.mapping.other-actor",
+                    "route.mapping.apply.actor"), "RouteMappingResultActorMismatch");
+                WorldCommit(restored, RouteMappingCommand(restored, "route.mapping.risk2.second",
+                    "route.mapping.apply.second"));
+                var afterSecond = restored.Capture();
+                var knowledge = ExpeditionRouteMappingRules.Current(afterSecond, RouteTravelId, ExpeditionRouteMapping.Unknown);
+                Require(knowledge.Mapping == ExpeditionRouteMapping.Sketched && knowledge.UnspentMarks == 0
+                    && afterSecond.RouteMappingResults.Length == 2
+                    && afterSecond.RouteMappingResults.All(x => x.Synthetic
+                        && x.OperationId == ExpeditionRouteMappingRules.MapRouteOperationId),
+                    "Second distinct success did not cross Risk-2 threshold exactly once with auditable provenance.");
+                var replay = new Simulation(policy, new SnapshotCodec().Decode(Bytes(restored)), ExecutionProfile.Laboratory);
+                Require(Bytes(restored).SequenceEqual(Bytes(replay)), "Route mapping records failed deterministic replay.");
+            });
+
+            cases.Add("route_mapping_surplus_waits_for_a_distinct_success_and_does_not_survey", () => {
+                var routes = RouteTravelFixture(ExpeditionRouteQuality.Secured, risk: 1,
+                    mapping: ExpeditionRouteMapping.Unknown);
+                var results = new TestOnlyExpeditionRouteMappingResultFixture(routes,
+                    new TestOnlyExpeditionRouteMappingResult(RouteTravelId, "route.mapping.crit",
+                        TestOnlyPolicy.ActorId, "evidence.synthetic.crit", default,
+                        ExpeditionRouteMappingResultDegree.CriticalSuccess),
+                    new TestOnlyExpeditionRouteMappingResult(RouteTravelId, "route.mapping.failure",
+                        TestOnlyPolicy.ActorId, "evidence.synthetic.failure", default,
+                        ExpeditionRouteMappingResultDegree.Failure),
+                    new TestOnlyExpeditionRouteMappingResult(RouteTravelId, "route.mapping.success",
+                        TestOnlyPolicy.ActorId, "evidence.synthetic.success", default,
+                        ExpeditionRouteMappingResultDegree.Success));
+                var policy = RouteTravelPolicy(routes).EnableTestOnlyRouteMappingResults(results);
+                var simulation = World(policy);
+                WorldCommit(simulation, RouteMappingCommand(simulation, "route.mapping.crit", "route.mapping.crit.apply"));
+                var afterCritical = ExpeditionRouteMappingRules.Current(simulation.Capture(), RouteTravelId,
+                    ExpeditionRouteMapping.Unknown);
+                Require(afterCritical.Mapping == ExpeditionRouteMapping.Sketched && afterCritical.UnspentMarks == 1,
+                    "Critical success did not retain one surplus mark after one-level promotion.");
+                WorldCommit(simulation, RouteMappingCommand(simulation, "route.mapping.failure", "route.mapping.fail.apply"));
+                var afterFailure = ExpeditionRouteMappingRules.Current(simulation.Capture(), RouteTravelId,
+                    ExpeditionRouteMapping.Unknown);
+                Require(afterFailure.Mapping == ExpeditionRouteMapping.Sketched && afterFailure.UnspentMarks == 1,
+                    "Failure consumed or activated held surplus marks.");
+                WorldCommit(simulation, RouteMappingCommand(simulation, "route.mapping.success", "route.mapping.success.apply"));
+                var afterSuccess = ExpeditionRouteMappingRules.Current(simulation.Capture(), RouteTravelId,
+                    ExpeditionRouteMapping.Unknown);
+                Require(afterSuccess.Mapping == ExpeditionRouteMapping.Mapped && afterSuccess.UnspentMarks == 1,
+                    "A later distinct success failed to consume exactly one threshold and preserve excess.");
+
+                var unknownRoutes = RouteTravelFixture(ExpeditionRouteQuality.Secured, risk: 0,
+                    mapping: ExpeditionRouteMapping.Unknown);
+                var unknownResults = new TestOnlyExpeditionRouteMappingResultFixture(unknownRoutes,
+                    new TestOnlyExpeditionRouteMappingResult(RouteTravelId, "route.mapping.synthetic.survey",
+                        TestOnlyPolicy.ActorId, "evidence.synthetic.not-survey", default,
+                        ExpeditionRouteMappingResultDegree.Success));
+                var unknownPolicy = RouteTravelPolicy(unknownRoutes).EnableTestOnlyRouteMappingResults(unknownResults);
+                var unknownSimulation = World(unknownPolicy);
+                RouteTravelReachSource(unknownSimulation);
+                WorldCommit(unknownSimulation, RouteMappingCommand(unknownSimulation,
+                    "route.mapping.synthetic.survey", "route.mapping.synthetic.survey.apply"));
+                Require(ExpeditionRouteMappingRules.Current(unknownSimulation.Capture(), RouteTravelId,
+                        ExpeditionRouteMapping.Unknown).Mapping == ExpeditionRouteMapping.Sketched
+                    && unknownRoutes.Routes.Single().Mapping == ExpeditionRouteMapping.Unknown,
+                    "Synthetic result rewrote immutable authored Mapping or failed to record separate knowledge.");
+                var travel = RouteTravelCommand(unknownSimulation, CommandKind.StartRouteTravel,
+                    "route.mapping.synthetic.travel");
+                var travelQuery = unknownSimulation.QueryCommand(host, travel);
+                Require(travelQuery.Supported && !travelQuery.Admissible && travelQuery.Code == "RouteRequiresReconnaissance",
+                    "Synthetic Map Route result incorrectly established Unknown-route passage feasibility: " + travelQuery.Code);
             });
 
             cases.Add("expedition_route_shared_clock_save_pause_pace_change_and_management", () => {

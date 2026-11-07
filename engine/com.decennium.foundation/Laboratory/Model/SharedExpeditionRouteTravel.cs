@@ -311,6 +311,7 @@ namespace Decennium.Foundation.Laboratory
             if (error != null) throw new InvalidOperationException(error);
             s.RouteTravels = Array.Empty<ExpeditionRouteTravelRecord>();
             s.RouteTravelSpatial = Array.Empty<ExpeditionRouteSpatialRecord>();
+            s.RouteMappingResults = Array.Empty<ExpeditionRouteMappingResultRecord>();
         }
 
         private static bool RouteTravelCommand(CommandKind kind)
@@ -620,7 +621,8 @@ namespace Decennium.Foundation.Laboratory
         {
             if (routeTravelFixture == null)
                 return s.RouteTravels.Length == 0 ? null : "RouteTravelProfileMissing";
-            if (s.SchemaVersion != (routeMotionFixture == null ? Snapshot.ExpeditionRouteSchema : Snapshot.RouteObservationSchema))
+            if (s.SchemaVersion != (routeMappingFixture != null ? Snapshot.RouteMappingSchema
+                : routeMotionFixture == null ? Snapshot.ExpeditionRouteSchema : Snapshot.RouteObservationSchema))
                 return "RouteTravelSchemaMismatch";
             if (routeMotionFixture == null && ObservationRules.Enabled(s)) return "RouteObservationIntegrationUnsupported";
             string bindingError = routeMotionFixture == null

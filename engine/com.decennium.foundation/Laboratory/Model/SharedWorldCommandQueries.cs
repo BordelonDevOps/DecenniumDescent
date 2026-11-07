@@ -245,6 +245,11 @@ namespace Decennium.Foundation.Laboratory
                 foreach(var route in routeTravelFixture.Routes.OrderBy(x=>x.Id,StringComparer.Ordinal))
                     yield return new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+".route."+(index++).ToString(CultureInfo.InvariantCulture),
                         actor,s.Revision,CommandKind.StartRouteTravel,route.Id);
+            if(routeMappingFixture!=null)
+                foreach(var result in routeMappingFixture.Results.Where(x=>x.ActorId==actor
+                    &&s.RouteMappingResults.All(applied=>applied.ResultId!=x.ResultId)).OrderBy(x=>x.ResultId,StringComparer.Ordinal))
+                    yield return new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+".route-mapping."+(index++).ToString(CultureInfo.InvariantCulture),
+                        actor,s.Revision,CommandKind.ConsumeTestOnlyRouteMappingResult,result.ResultId);
             if (repair != null && IsRepairWorker(actor))
             {
                 var job = s.RepairWork.SingleOrDefault(x => x.WorkerId == actor && x.Open);
@@ -398,6 +403,7 @@ namespace Decennium.Foundation.Laboratory
 
         private CommandQueryResult QuerySharedWorldCommand(Snapshot s, Authority authority, Command c)
         {
+            if (RouteMappingResultCommand(c.Kind)) return QueryRouteMappingResultCommand(s, c);
             if (RouteTravelCommand(c.Kind)) return QueryRouteTravelCommand(s, c);
             if (c.Kind == CommandKind.Search) return QueryObservationSearchCommand(s, c);
             if (IsSupplyCacheCommand(c)) return QuerySupplyCacheCommand(s,c);
