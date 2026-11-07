@@ -2,6 +2,8 @@
 
 This checkpoint adds a bounded, source-pinned TEST_ONLY executor for one directed expedition route segment. The candidate source is `EX58-EXACT-2026-10-11`, FL-10/TR-13, SHA-256 `4c58b9f7063e562b785b8db6006699d3c4f68edd0e697d06db69662ba9b7e480`. It remains outside the release authority registry. Exact policy and remaining limits are described in [`IMPLEMENTATION_TRACE.md`](../../IMPLEMENTATION_TRACE.md).
 
+The implementation and evidence are committed and pushed on `Engine` at `7e7f6936b7168a19c83089ea4a8f0ed525fc5ed7`.
+
 ## Validation
 
 - Full shared C# 9 warnings-as-errors Roslyn compile/regression suite: **PASS, 1,191/1,191**. The report contains exact source hashes and runner metadata in [`FULL_TEST_RESULTS.json`](FULL_TEST_RESULTS.json).
