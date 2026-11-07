@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "implementationId": "TEST_ONLY.shared-skill-training-reads-v1",
+  "recordedUtc": "2026-11-07T20:37:15.6216575Z",
+  "baseCommit": "2b0d067428ea5bec8343606ebde5ad8a7aa585a1",
+  "snapshotSchema": "60 (unchanged; no new state or codec branches)",
+  "sourceStatus": "Existing character and task rules only; no new rule clause adopted.",
+  "authoritativeRecords": [
+    "SkillTrainingRecord: actor ID, skill ID, explicit proficiency rank 0-2.",
+    "ActorCharacterRecord: the same actor identity, six ability scores, and ordered levels used for ability/proficiency derivation."
+  ],
+  "sourceReferences": [
+    {
+      "sections": [
+        "Abilities and training"
+      ],
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "blobId": "04c77b3ddff460219600df2f28bac27d854647af",
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CHARACTER_CREATION_PLAYTEST.md"
+    },
+    {
+      "sections": [
+        "Cover, sight, Hide and Search"
+      ],
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "blobId": "72bcb58af57f8bfe27596ec0b1467e4c780a6ef8",
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md"
+    },
+    {
+      "sections": [
+        "Choose the procedure",
+        "Record and resolve the deposit"
+      ],
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "blobId": "9f489ece11739170ba311c9db7b1b7b184ae656d",
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/MINING_CANDIDATE_GUIDE.md"
+    },
+    {
+      "sections": [
+        "Identify and harvest"
+      ],
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "blobId": "b2c15e1bd56bb62e0f1729f4f6d68413e62f9be9",
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CRAFTING_HARVEST_PLAYTEST.md"
+    },
+    {
+      "sections": [
+        "SkillTrainingRecord"
+      ],
+      "revision": "2b0d067428ea5bec8343606ebde5ad8a7aa585a1",
+      "blobId": "b28837eb20be9e4f3ee35c090b7f436291ca6da1",
+      "path": "engine/com.decennium.foundation/Runtime/Core/PeriodicRiderRecords.cs"
+    },
+    {
+      "sections": [
+        "Existing modifier derivation before this increment"
+      ],
+      "revision": "2b0d067428ea5bec8343606ebde5ad8a7aa585a1",
+      "blobId": "a5d128a0a562cf9d60c1e64870ec10f0f0b2effd",
+      "path": "engine/com.decennium.foundation/Laboratory/Model/AbilityCheckRules.cs"
+    }
+  ],
+  "behavior": [
+    "Missing skill record resolves to proficiency rank 0.",
+    "Duplicate actor/skill matches fail closed.",
+    "Callers retain the selected ability, skill identity, task DC, timing, dice, and outcomes.",
+    "Queries return the existing immutable record and do not mutate or persist data."
+  ],
+  "compatibility": "Snapshot schema60 and all earlier save codec branches remain unchanged; full historical regression suite passed.",
+  "changedPackageSourceHashes": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/AbilityCheckRules.cs",
+      "sha256": "577cf4b02ab2e7377320476ad89a9ff5225e22f9bb3fe3eb462e5049e435313a"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/CharacterSkillTrainingFacts.cs",
+      "sha256": "f1ff66d542a88901705ed6d70fedeb8be9a3af9415f1fb7cb2f4c8ae1244013f"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/CharacterSkillTrainingFacts.cs.meta",
+      "sha256": "a21d47d02c470c1014d73b95ccbffdbac4621a73509330766e86062db7f9837e"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionRouteMappingWork.cs",
+      "sha256": "5b8552b021c96f4f3454aa7b4de122de731aca249d142e653b874b3cd5a80c0e"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionRouteReconnaissance.cs",
+      "sha256": "fa6f0a5eaf0262cd41353b19a559430103cbedfa1edf533d60571ef333e65fea"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFishingTrap.cs",
+      "sha256": "a682aa253664a5ae9aaac24ba223149bf4e849e49b640add325736dff8d03107"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHarvest.cs",
+      "sha256": "4a79eddc81ea8ab0e107d006acd0d5abe556bedb5d4e0655d71d13550e6e4249"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs",
+      "sha256": "fcc7db7eb554b5aaf07e13eecd9d0b9eaa31aceb36966c58183fc7cd727ebaf3"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedMiningAssay.cs",
+      "sha256": "a6153c576a9c3ca6f07058572898cc57f934720c774b935e93654d6ea800ca66"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+      "sha256": "4fed1a3e27eb74f54a6071980b5a8a8899d9d6197429bede8091860f16149ba3"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedPeriodicRider.cs",
+      "sha256": "2c2ec0e29b12bdcdfb72072944eb092a51b7e9eacc5db2ef874ed0cf2db9493a"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedProspecting.cs",
+      "sha256": "8448b265a741a6c4168c74183f94933b46dd057bb1be6dca12e8f2c1d542480c"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCommandQueries.cs",
+      "sha256": "7a7300aa788293806b863f4fa9a102dd4ea6bf1f4393f4ad6ba5276f4ba1ee25"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/AbilityCheckCases.cs",
+      "sha256": "9175567164c0b04e994306009dd8d4fe423e7297f34c662205c129be48713aa5"
+    }
+  ]
+}

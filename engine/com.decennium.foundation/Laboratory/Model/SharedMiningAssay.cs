@@ -125,9 +125,7 @@ namespace Decennium.Foundation.Laboratory
                     }
                     string sampleAccess = DestructiveAssayAccess(s, c.Actor, destructiveProfile);
                     if (sampleAccess != null) return sampleAccess;
-                    var destructiveCharacter = s.Characters.Single(x => x.ActorId == c.Actor);
-                    var destructiveTraining = s.SkillTraining.SingleOrDefault(x => x.ActorId == c.Actor && x.SkillId == "mining-tools");
-                    var destructiveCheck = AbilityCheckRules.Derive(destructiveCharacter, destructiveTraining, CharacterAbility.Wisdom);
+                    var destructiveCheck = AbilityCheckRules.Derive(s, c.Actor, "mining-tools", CharacterAbility.Wisdom);
                     facts = new MiningAssayAssessment { Profile = method, DestructiveProfile = destructiveProfile,
                         WisdomModifier = destructiveCheck.AbilityModifier, ProficiencyRank = destructiveCheck.ProficiencyRank,
                         ProficiencyBonus = destructiveCheck.ProficiencyBonus, CheckDc = MiningAssayValidation.Difficulty(s, method) };
@@ -146,9 +144,7 @@ namespace Decennium.Foundation.Laboratory
                 }
                 string access = MiningAssayAccess(s, c.Actor, profile);
                 if (access != null) return access;
-                var character = s.Characters.Single(x => x.ActorId == c.Actor);
-                var training = s.SkillTraining.SingleOrDefault(x => x.ActorId == c.Actor && x.SkillId == "mining-tools");
-                var check = AbilityCheckRules.Derive(character, training, CharacterAbility.Wisdom);
+                var check = AbilityCheckRules.Derive(s, c.Actor, "mining-tools", CharacterAbility.Wisdom);
                 facts = new MiningAssayAssessment { Profile = profile, WisdomModifier = check.AbilityModifier,
                     ProficiencyRank = check.ProficiencyRank, ProficiencyBonus = check.ProficiencyBonus,
                     CheckDc = MiningAssayValidation.Difficulty(s, profile) };

@@ -397,9 +397,7 @@ namespace Decennium.Foundation.Laboratory
                     if(criticalPreference!=""&&!damaged.Any(x=>x.Id==criticalPreference))return "InvalidHarvestCriticalRecoveryPreference";
                 }
                 string access=HarvestAccess(s,c.Actor,manifest,selectedUnitIds:unitIds);if(access!=null)return access;
-                var character=s.Characters.Single(x=>x.ActorId==c.Actor);
-                var training=s.SkillTraining.SingleOrDefault(x=>x.ActorId==c.Actor&&x.SkillId=="fishing-tackle");
-                var check=AbilityCheckRules.Derive(character,training,CharacterAbility.Intelligence);
+                var check=AbilityCheckRules.Derive(s,c.Actor,"fishing-tackle",CharacterAbility.Intelligence);
                 facts=new HarvestAssessment { Manifest=manifest,Categories=categories,Selected=selected,CategoryIds=categoryIds,UnitIds=unitIds,
                     FailurePreference=failurePreference,CriticalPreference=criticalPreference,
                     Duration=HarvestValidation.Duration(manifest.FullTimeSeconds,s.HarvestCategories.Count(x=>x.ManifestId==manifest.Id),categories.Length),

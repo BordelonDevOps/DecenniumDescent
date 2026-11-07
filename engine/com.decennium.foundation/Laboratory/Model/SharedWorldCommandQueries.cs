@@ -294,8 +294,8 @@ namespace Decennium.Foundation.Laboratory
                     var route = routeTravelFixture.Find(task.RouteId);
                     var assistants = s.Actors.Where(x => x.Id != actor
                             && WorldSpatialQueries.CardinalDistance(x.X, x.Y, route.FromX, route.FromY) == 1
-                            && s.SkillTraining.Any(t => t.ActorId == x.Id
-                                && t.SkillId == TestOnlyExpeditionRouteMappingWorkFixture.SkillId && t.ProficiencyRank > 0))
+                            && CharacterSkillTrainingFacts.IsTrained(s, x.Id,
+                                TestOnlyExpeditionRouteMappingWorkFixture.SkillId))
                         .Select(x => x.Id).OrderBy(x => x, StringComparer.Ordinal).ToArray();
                     for (int first = 0; first < assistants.Length; first++)
                     {

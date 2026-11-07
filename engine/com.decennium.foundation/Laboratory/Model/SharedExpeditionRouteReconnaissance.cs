@@ -461,11 +461,8 @@ namespace Decennium.Foundation.Laboratory
                 : RouteReconnaissanceWorkerFailure(s, attempt.LeadId, route, task, attempt);
             if (task == null || segment == null || workerFailure != null)
                 throw new InvalidOperationException(workerFailure ?? "RouteReconnaissanceDefinitionMissing");
-            var character = s.Characters.Single(x => x.ActorId == attempt.LeadId);
-            var training = s.SkillTraining.SingleOrDefault(x => x.ActorId == attempt.LeadId
-                && x.SkillId == TestOnlyExpeditionRouteReconnaissanceFixture.SkillId);
-            var modifier = AbilityCheckRules.Derive(character, training,
-                CharacterAbility.Wisdom);
+            var modifier = AbilityCheckRules.Derive(s, attempt.LeadId,
+                TestOnlyExpeditionRouteReconnaissanceFixture.SkillId, CharacterAbility.Wisdom);
             int leadModifier = modifier.TotalWithInjury(ActorLifeRules.Read(s.Lives.Single(x => x.ActorId == attempt.LeadId)));
             int conditionOperationCount = s.Conditions.Single(x => x.Target == attempt.LeadId).Operations.Count;
             bool disadvantage = RouteMappingCheckDisadvantage(s, attempt.LeadId, s.RuleClock, conditionOperationCount);
@@ -560,10 +557,8 @@ namespace Decennium.Foundation.Laboratory
                         || replayedRoll.Natural != check.Natural || replayedRoll.NextRandomState != check.RandomAfter
                         || replayedRoll.WordsConsumed != check.WordsConsumed)
                         return "InvalidRouteReconnaissanceRandomEvidence";
-                    var lead = s.Characters.Single(x => x.ActorId == attempt.LeadId);
-                    var training = s.SkillTraining.SingleOrDefault(x => x.ActorId == attempt.LeadId
-                        && x.SkillId == TestOnlyExpeditionRouteReconnaissanceFixture.SkillId);
-                    var modifier = AbilityCheckRules.Derive(lead, training, CharacterAbility.Wisdom);
+                    var modifier = AbilityCheckRules.Derive(s, attempt.LeadId,
+                        TestOnlyExpeditionRouteReconnaissanceFixture.SkillId, CharacterAbility.Wisdom);
                     int leadModifier = modifier.TotalWithInjury(ActorLifeRules.Read(s.Lives.Single(x => x.ActorId == attempt.LeadId)));
                     var expected = RuleResolution.TaskCheck(check.Natural, leadModifier, task.Dc);
                     var expectedDegree = expected.Degree == RuleTaskDegree.CriticalFailure ? ExpeditionRouteReconnaissanceDegree.CriticalFailure

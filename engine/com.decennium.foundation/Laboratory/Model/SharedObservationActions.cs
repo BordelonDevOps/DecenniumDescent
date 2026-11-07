@@ -133,9 +133,7 @@ namespace Decennium.Foundation.Laboratory
                 return null;
             }
 
-            var character = s.Characters.Single(x => x.ActorId == actor.Id);
-            var training = s.SkillTraining.SingleOrDefault(x => x.ActorId == actor.Id && x.SkillId == "stealth");
-            int modifier = AbilityCheckRules.Derive(character, training, CharacterAbility.Dexterity)
+            int modifier = AbilityCheckRules.Derive(s, actor.Id, "stealth", CharacterAbility.Dexterity)
                 .TotalWithInjury(ActorLifeRules.Read(s.Lives.Single(x => x.ActorId == actor.Id)));
             int disadvantage = TestOnlyClubAttackPolicy.ConditionsFor(s, actor.Id).View().Has(ConditionKind.Poisoned) ? 1 : 0;
             var selection = PlaytestDice.Selection(0, disadvantage);
@@ -205,9 +203,7 @@ namespace Decennium.Foundation.Laboratory
             var knowledge = s.ObserverKnowledge.Single(x => x.ObserverId == c.Actor && x.TargetId == target.Id);
             var hide = s.ObservationActions.Single(x => x.Id == knowledge.HiddenAttemptId && x.Kind == ObservationActionKind.Hide);
             int dc = checked((int)hide.Total);
-            var character = s.Characters.Single(x => x.ActorId == c.Actor);
-            var training = s.SkillTraining.SingleOrDefault(x => x.ActorId == c.Actor && x.SkillId == "perception");
-            int modifier = AbilityCheckRules.Derive(character, training, CharacterAbility.Wisdom)
+            int modifier = AbilityCheckRules.Derive(s, c.Actor, "perception", CharacterAbility.Wisdom)
                 .TotalWithInjury(ActorLifeRules.Read(s.Lives.Single(x => x.ActorId == c.Actor)), perception: true);
             int disadvantage = TestOnlyClubAttackPolicy.ConditionsFor(s, c.Actor).View().Has(ConditionKind.Poisoned) ? 1 : 0;
             uint before = s.RandomState;
@@ -235,9 +231,7 @@ namespace Decennium.Foundation.Laboratory
 
         private static int PassivePerception(Snapshot s, string actor)
         {
-            var character = s.Characters.Single(x => x.ActorId == actor);
-            var training = s.SkillTraining.SingleOrDefault(x => x.ActorId == actor && x.SkillId == "perception");
-            var check = AbilityCheckRules.Derive(character, training, CharacterAbility.Wisdom);
+            var check = AbilityCheckRules.Derive(s, actor, "perception", CharacterAbility.Wisdom);
             return checked(10 + check.Total);
         }
 

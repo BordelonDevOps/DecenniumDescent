@@ -177,9 +177,8 @@ namespace Decennium.Foundation.Laboratory
             if(AvailableHands(s,c.Actor)<1)return "UsableHandRequired";
             var interval=Interval(s,c.Actor);if(interval.ActionSpent)return "ActionAlreadySpent";
             if(!CapableWorker(s,c.Actor)||!Permissions(s,c.Actor).Action)return "ConditionPreventsAction";
-            var life=s.Lives.Single(x=>x.ActorId==c.Actor);var character=s.Characters.Single(x=>x.ActorId==c.Actor);
-            var training=s.SkillTraining.SingleOrDefault(x=>x.ActorId==c.Actor&&x.SkillId=="medicine");
-            int modifier=AbilityCheckRules.Derive(character,training,CharacterAbility.Wisdom).Total;
+            var life=s.Lives.Single(x=>x.ActorId==c.Actor);
+            int modifier=AbilityCheckRules.Derive(s,c.Actor,"medicine",CharacterAbility.Wisdom).Total;
             var view=View(s,c.Actor);bool disadvantage=view.Clauses.Has(ConditionClause.Poisoned);
             uint before=s.RandomState;var roll=PlaytestDice.RollD20(before,disadvantage?0:0,disadvantage?1:0);
             var check=PlaytestRolls.TaskCheck(roll.Natural,modifier,rider.ApplyingDc);bool success=check.Success;

@@ -339,9 +339,7 @@ namespace Decennium.Foundation.Laboratory
                         FishingTrapCheckDegree.None,FishingTrapCheckOutcome.None,0,0,0,attempt.BaitLotId,attempt.BaitReservationId,null));
                     continue;
                 }
-                var character=s.Characters.Single(x=>x.ActorId==attempt.SetterId);
-                var training=s.SkillTraining.SingleOrDefault(x=>x.ActorId==attempt.SetterId&&x.SkillId=="fishing-tackle");
-                var check=AbilityCheckRules.Derive(character,training,CharacterAbility.Intelligence);
+                var check=AbilityCheckRules.Derive(s,attempt.SetterId,"fishing-tackle",CharacterAbility.Intelligence);
                 RuleTime due=fishingTrapLegacy?s.RuleClock.AddSeconds(3000):attempt.CheckDueAt.Value;
                 bool responseAvailable=true;
                 // This witnessed dry-set sequence exposes its reserved bait when setup completes.

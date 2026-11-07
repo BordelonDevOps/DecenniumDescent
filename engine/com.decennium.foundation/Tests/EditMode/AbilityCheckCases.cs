@@ -56,6 +56,30 @@ namespace Decennium.Foundation.Tests
                 snapshot.Characters = snapshot.Characters.Concat(new[] { duplicate }).ToArray();
                 Throws<InvalidOperationException>(() => CharacterRuleFacts.ForActor(snapshot, duplicate.ActorId));
                 Throws<ArgumentOutOfRangeException>(() => facts.AbilityScore((CharacterAbility)99)); });
+            cases.Add("character_skill_training_queries_share_the_persisted_rank_records", () => {
+                var snapshot = World(ConnectedPolicy()).Capture();
+                string hero = TestOnlyPolicy.ActorId, companion = TestOnlyPolicy.CompanionId;
+                snapshot.SkillTraining = new[] {
+                    new SkillTrainingRecord(hero, "perception", 2),
+                    new SkillTrainingRecord(companion, "perception", 1),
+                    new SkillTrainingRecord(hero, "medicine", 0)
+                };
+                var records = snapshot.SkillTraining;
+                var expert = CharacterSkillTrainingFacts.Find(snapshot, hero, "perception");
+                var heroCheck = AbilityCheckRules.Derive(snapshot, hero, "perception", CharacterAbility.Wisdom);
+                var companionCheck = AbilityCheckRules.Derive(snapshot, companion, "perception", CharacterAbility.Wisdom);
+                Require(ReferenceEquals(records, snapshot.SkillTraining) && ReferenceEquals(expert, records[0])
+                    && heroCheck.ProficiencyRank == 2 && heroCheck.ProficiencyBonus
+                        == CharacterRuleFacts.ForActor(snapshot, hero).ProficiencyContribution(2)
+                    && companionCheck.ProficiencyRank == 1
+                    && CharacterSkillTrainingFacts.ProficiencyRank(snapshot, hero, "medicine") == 0
+                    && !CharacterSkillTrainingFacts.IsTrained(snapshot, hero, "medicine")
+                    && CharacterSkillTrainingFacts.Find(snapshot, companion, "medicine") == null,
+                    "Skill reads copied, crossed, or changed the persisted actor/training facts.");
+                snapshot.SkillTraining = records.Concat(new[] { new SkillTrainingRecord(hero, "perception", 1) }).ToArray();
+                Throws<InvalidOperationException>(() => CharacterSkillTrainingFacts.Find(snapshot, hero, "perception"));
+                Throws<ArgumentNullException>(() => CharacterSkillTrainingFacts.Find(null, hero, "perception"));
+                Throws<ArgumentException>(() => CharacterSkillTrainingFacts.Find(snapshot, hero, "")); });
             cases.Add("ability_check_injury_is_applied_once_at_resolution", () => {
                 var check = AbilityCheckRules.Derive(CheckCharacter(), new SkillTrainingRecord("worker", "craft", 1), 1);
                 var life = new LifeState(20, 20, wounds: new[] { Injury.FineMotorTrauma, Injury.FineMotorTrauma, Injury.FineMotorTrauma });

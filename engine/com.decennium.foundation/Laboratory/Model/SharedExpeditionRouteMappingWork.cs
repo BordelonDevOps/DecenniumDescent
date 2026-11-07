@@ -212,9 +212,8 @@ namespace Decennium.Foundation.Laboratory
                 }
                 foreach (string assistantId in c.RouteMappingWork.AssistantIds)
                 {
-                    var training = s.SkillTraining.SingleOrDefault(x => x.ActorId == assistantId
-                        && x.SkillId == TestOnlyExpeditionRouteMappingWorkFixture.SkillId);
-                    if (training == null || training.ProficiencyRank == 0) return "RouteMappingAssistantNotTrained";
+                    if (!CharacterSkillTrainingFacts.IsTrained(s, assistantId,
+                        TestOnlyExpeditionRouteMappingWorkFixture.SkillId)) return "RouteMappingAssistantNotTrained";
                 }
                 RuleTime end = CampGreens.Add(s.RuleClock, new RuleTime(TestOnlyExpeditionRouteMappingWorkFixture.RequiredWorkSeconds));
                 foreach (string actorId in team)
@@ -377,11 +376,8 @@ namespace Decennium.Foundation.Laboratory
             var leadFailure = route == null ? "RouteMappingDefinitionMissing"
                 : RouteMappingWorkerFailure(s, attempt.LeadId, route, attempt);
             if (task == null || leadFailure != null) throw new InvalidOperationException(leadFailure ?? "RouteMappingDefinitionMissing");
-            var character = s.Characters.Single(x => x.ActorId == attempt.LeadId);
-            var training = s.SkillTraining.SingleOrDefault(x => x.ActorId == attempt.LeadId
-                && x.SkillId == TestOnlyExpeditionRouteMappingWorkFixture.SkillId);
-            var modifier = AbilityCheckRules.Derive(character, training,
-                CharacterAbility.Wisdom);
+            var modifier = AbilityCheckRules.Derive(s, attempt.LeadId,
+                TestOnlyExpeditionRouteMappingWorkFixture.SkillId, CharacterAbility.Wisdom);
             int leadModifier = modifier.TotalWithInjury(ActorLifeRules.Read(s.Lives.Single(x => x.ActorId == attempt.LeadId)));
             int assistantBonus = attempt.AssistantIds.Length;
             int conditionOperationCount = s.Conditions.Single(x => x.Target == attempt.LeadId).Operations.Count;
@@ -468,10 +464,8 @@ namespace Decennium.Foundation.Laboratory
                         || replayedRoll.Natural != check.Natural || replayedRoll.NextRandomState != check.RandomAfter
                         || replayedRoll.WordsConsumed != check.WordsConsumed)
                         return "InvalidRouteMappingWorkRandomEvidence";
-                    var lead = s.Characters.Single(x => x.ActorId == attempt.LeadId);
-                    var training = s.SkillTraining.SingleOrDefault(x => x.ActorId == attempt.LeadId
-                        && x.SkillId == TestOnlyExpeditionRouteMappingWorkFixture.SkillId);
-                    var modifier = AbilityCheckRules.Derive(lead, training, CharacterAbility.Wisdom);
+                    var modifier = AbilityCheckRules.Derive(s, attempt.LeadId,
+                        TestOnlyExpeditionRouteMappingWorkFixture.SkillId, CharacterAbility.Wisdom);
                     int leadModifier = modifier.TotalWithInjury(ActorLifeRules.Read(s.Lives.Single(x => x.ActorId == attempt.LeadId)));
                     var expected = RuleResolution.TaskCheck(check.Natural, checked(leadModifier + attempt.AssistantIds.Length), task.Dc);
                     ExpeditionRouteMappingResultDegree degree = expected.Degree == RuleTaskDegree.CriticalFailure

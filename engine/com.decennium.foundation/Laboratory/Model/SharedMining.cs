@@ -904,10 +904,8 @@ namespace Decennium.Foundation.Laboratory
                 if(criticalPreference!=""&&!damaged.Any(x=>x.Id==criticalPreference))return "InvalidMiningCriticalRecoveryPreference";
                 if(c.MiningSelection.Hurried&&!deposit.HurryFeasible)return "MiningHurryNotFeasible";
                 string access=MiningAccess(s,c.Actor,deposit,selectedUnitIds:unitIds);if(access!=null)return access;
-                var character=s.Characters.Single(x=>x.ActorId==c.Actor);
-                var training=s.SkillTraining.SingleOrDefault(x=>x.ActorId==c.Actor&&x.SkillId=="mining-tools");
                 CharacterAbility ability=c.MiningSelection.Ability==MiningAbilityChoice.Strength?CharacterAbility.Strength:CharacterAbility.Wisdom;
-                var check=AbilityCheckRules.Derive(character,training,ability);
+                var check=AbilityCheckRules.Derive(s,c.Actor,"mining-tools",ability);
                 int dc;
                 if(deposit.ExactCheckDc.HasValue)dc=deposit.ExactCheckDc.Value;
                 else if(categories.Any(x=>x.Tier==0))return "MiningUnknownTierRequiresExactDc";

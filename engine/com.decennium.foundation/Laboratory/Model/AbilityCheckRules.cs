@@ -37,6 +37,15 @@ namespace Decennium.Foundation.Laboratory
     /// </summary>
     public static class AbilityCheckRules
     {
+        public static AbilityCheckModifier Derive(Snapshot snapshot, string actorId, string skillId,
+            CharacterAbility ability)
+        {
+            if (snapshot == null) throw new ArgumentNullException(nameof(snapshot));
+            var character = CharacterRuleFacts.ForActor(snapshot, actorId).Source;
+            var training = CharacterSkillTrainingFacts.Find(snapshot, actorId, skillId);
+            return Derive(character, training, ability);
+        }
+
         public static AbilityCheckModifier Derive(ActorCharacterRecord character, SkillTrainingRecord training,
             int abilityIndex)
         {
