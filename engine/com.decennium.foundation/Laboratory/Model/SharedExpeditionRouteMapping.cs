@@ -183,7 +183,8 @@ namespace Decennium.Foundation.Laboratory
 
         private bool RouteMappingSchemaActive(Snapshot s)
             => s.SchemaVersion == Snapshot.RouteMappingSchema
-                || huntingTrapFixture != null && s.SchemaVersion == Snapshot.HuntingTrapSchema;
+                || huntingTrapFixture != null && s.SchemaVersion == Snapshot.HuntingTrapSchema
+                || dodgeActionEnabled&&s.SchemaVersion==Snapshot.DodgeSchema;
 
     }
 }

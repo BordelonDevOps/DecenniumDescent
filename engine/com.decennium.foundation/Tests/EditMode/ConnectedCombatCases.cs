@@ -82,6 +82,34 @@ namespace Decennium.Foundation.Tests
                 RejectUnchanged(s,host,Tac(s,CommandKind.AttackClub,AdditionalTacticalActor.Id,weapon:TestOnlyClubAttackPolicy.ActorClub),"ActionAlreadySpent");
                 RejectUnchanged(s,host,Tac(s,CommandKind.EndFixedEncounter),"ConflictNotResolved");
             });
+            cases.Add("dodge_uses_shared_action_persists_disadvantages_visible_attack_and_expires_at_next_start",()=>{
+                var p=ConnectedPolicy(seed:SeedForDeath(16)).EnableDodgeAction();var s=ConnectedArena(p);
+                var dodge=s.DiscoverCommands(host,TestOnlyPolicy.ActorId).Single(x=>x.Command.Kind==CommandKind.Dodge).Command;
+                byte[] before=Bytes(s);uint random=s.Capture().RandomState;var preview=s.QueryCommand(host,dodge);
+                Require(preview.Supported&&preview.Admissible&&preview.Costs.Any(x=>x.Kind=="action"&&x.Amount==1)
+                    &&before.SequenceEqual(Bytes(s))&&s.Capture().RandomState==random,
+                    "Dodge query changed the shared world or omitted its Action cost.");
+                WorldCommit(s,dodge);
+                Require(TestOnlyClubAttackPolicy.DodgeEffective(s.Capture(),TestOnlyPolicy.ActorId)
+                    &&WorldLedger(s).ActionSpent,"Dodge did not use the shared Action interval or persist as active.");
+                RejectUnchanged(s,host,Tac(s,CommandKind.AttackClub,AdditionalTacticalActor.Id,
+                    weapon:TestOnlyClubAttackPolicy.ActorClub),"ActionAlreadySpent");
+                byte[] saved=Bytes(s);s=new Simulation(p,new SnapshotCodec().Decode(saved),ExecutionProfile.Laboratory);
+                Require(saved.SequenceEqual(Bytes(s)),"Dodge changed through the shared-world save/restore.");
+                ConnectedEnd(s);
+                Require(s.Capture().Encounter.CurrentActor==AdditionalTacticalActor.Id,"Dodge owner did not finish before the enemy turn.");
+                WorldCommit(s,Tac(s,CommandKind.SelectCombatStance,actor:AdditionalTacticalActor.Id,stance:(int)CombatStance.Guarded));
+                WorldCommit(s,Tac(s,CommandKind.AttackClub,TestOnlyPolicy.ActorId,actor:AdditionalTacticalActor.Id,weapon:AdditionalTacticalActor.ClubId));
+                var incoming=s.Capture().MeleeAttacks.Single(x=>x.AttackerId==AdditionalTacticalActor.Id);
+                Require(incoming.TargetId==TestOnlyPolicy.ActorId&&incoming.Attack.Second>0
+                    &&incoming.Attack.Selected==Math.Min(incoming.Attack.First,incoming.Attack.Second),
+                    "A visible enemy attack did not roll disadvantage against Dodge.");
+                ConnectedEnd(s);var nextStart=s.Capture();
+                Require(nextStart.Encounter.CurrentActor==TestOnlyPolicy.ActorId
+                    &&nextStart.Dodges.Single(x=>x.ActorId==TestOnlyPolicy.ActorId).ExpiresAt==nextStart.RuleClock
+                    &&!TestOnlyClubAttackPolicy.DodgeEffective(nextStart,TestOnlyPolicy.ActorId),
+                    "Dodge did not expire at its owner's exact next regular start.");
+            });
             cases.Add("connected_combat_remote_worker_cannot_be_attacked_or_act_in_encounter",()=>{
                 var s=ConnectedArena();
                 RejectUnchanged(s,host,Tac(s,CommandKind.AttackClub,TestOnlyPolicy.CompanionId,weapon:TestOnlyClubAttackPolicy.ActorClub),"TargetOutsideEncounter");

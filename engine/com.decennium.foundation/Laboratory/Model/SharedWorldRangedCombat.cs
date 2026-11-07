@@ -90,6 +90,7 @@ namespace Decennium.Foundation.Laboratory
             ||kind==CommandKind.CancelMiningAssay
             ||kind==CommandKind.StartMineralPreparation||kind==CommandKind.PauseMineralPreparation||kind==CommandKind.ResumeMineralPreparation
             ||kind==CommandKind.TacticalStep||kind==CommandKind.TacticalRepositionStep||kind==CommandKind.Interact
+            ||kind==CommandKind.Dodge&&dodgeActionEnabled
             ||kind==CommandKind.Search
             ||kind==CommandKind.ResolveManufacturingQuality||kind==CommandKind.PauseManufacturing
             ||kind==CommandKind.ResumeManufacturing||kind==CommandKind.CancelManufacturing;
@@ -122,6 +123,11 @@ namespace Decennium.Foundation.Laboratory
             options.AddRange(DiscoverDefensiveFormationCommands(s,actor));
             if(actor!=s.Encounter.CurrentActor)return options;
             string turnId=s.Encounter.CurrentTurnId;
+            if(dodgeActionEnabled) {
+                var dodge=new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+".dodge",actor,s.Revision,
+                    CommandKind.Dodge,combat:new CombatRequest(turnId));
+                if(bodies.AssessDodgeAction(s,dodge)==null)options.Add(dodge);
+            }
             options.AddRange(DiscoverContextualInteractions(s,authority,actor));
             options.AddRange(DiscoverTacticalMovementCommands(s,actor));
             options.AddRange(DiscoverObservationSearchCommands(s,actor));
@@ -200,6 +206,11 @@ namespace Decennium.Foundation.Laboratory
         {
             var sharedWorld=QuerySharedWorldCommand(s,authority,c);
             if(sharedWorld!=null)return sharedWorld;
+            if(c.Kind==CommandKind.Dodge&&dodgeActionEnabled) {
+                string dodgeFailure=bodies.AssessDodgeAction(s,c);
+                var dodgeCosts=dodgeFailure==null?new[]{new CommandCost("action","",1)}:Array.Empty<CommandCost>();
+                return new CommandQueryResult(true,dodgeFailure==null,dodgeFailure??"Available",s.Revision,dodgeCosts);
+            }
             if(c.Kind==CommandKind.ActivateDefensiveFormation||c.Kind==CommandKind.RespondDefensiveFormation)
                 return QueryDefensiveFormation(s,c);
             if(c.Kind==CommandKind.OfferCommandStep) {
@@ -362,7 +373,7 @@ namespace Decennium.Foundation.Laboratory
                 uint saveBefore=s.RandomState,saveAfter=saveBefore;long saveWords=0;int natural=0;long total=0;bool success=false;
                 bool automaticFailure=life.Hp==0||life.Dead||TestOnlyClubAttackPolicy.ConditionsFor(s,targetId).View().AutomaticStrengthDexterityFailure;
                 if(!automaticFailure) {
-                    var save=PlaytestDice.RollD20(s.RandomState);natural=save.Natural;saveAfter=save.NextRandomState;saveWords=save.WordsConsumed;
+                    var save=PlaytestDice.RollD20(s.RandomState,TestOnlyClubAttackPolicy.DodgeEffective(s,targetId)?1:0);natural=save.Natural;saveAfter=save.NextRandomState;saveWords=save.WordsConsumed;
                     var rolled=PlaytestRolls.SavingThrow(natural,modifier,facts.SaveDc);total=rolled.Total;success=rolled.Success;s.RandomState=saveAfter;
                 }
                 long targetDamage=success?sharedDamage/2:sharedDamage;
@@ -519,7 +530,8 @@ namespace Decennium.Foundation.Laboratory
                 rangedCombat.TargetCover,targetLocationKnown,targetVisible,lineOfFireClear,attackerUnseen,closeHostile,
                 TestOnlyClubAttackPolicy.CombatConditions(s,c.Actor),TestOnlyClubAttackPolicy.CombatConditions(s,c.Target),
                 attackerInvisibleLocationKnown:attackerInvisibleKnown,targetInvisibleLocationKnown:targetInvisibleKnown,
-                additionalDisadvantageSources:incomingEffects.WarningShot?1:0,
+                additionalDisadvantageSources:(incomingEffects.WarningShot?1:0)
+                    +(TestOnlyClubAttackPolicy.DodgeEffective(s,c.Target)&&TestOnlyClubAttackPolicy.CanSee(s,c.Target,c.Actor)?1:0),
                 targetUnseenDisadvantage:targetUnseenDisadvantage,attackerUnseenAdvantage:attackerUnseenAdvantage);
             int carriedBolts=s.AmmunitionLots.Where(x=>x.CustodianId==c.Actor&&x.Accessible).Sum(x=>x.AvailableQuantity);
             var shotFailure=RepeatingCrossbowShotRules.CheckLegality(rangedFacts,new RepeatingFiveMagazine(weapon.LoadedBoltLots.Count),carriedBolts);

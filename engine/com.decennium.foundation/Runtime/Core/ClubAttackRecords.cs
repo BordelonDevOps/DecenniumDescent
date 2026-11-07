@@ -71,6 +71,20 @@ namespace Decennium.Foundation
         }
         public bool SameAs(StanceSelectionRecord x)=>x!=null&&ActorId==x.ActorId&&Revision==x.Revision&&TurnOrdinal==x.TurnOrdinal&&Kind==x.Kind&&ExpiresAt==x.ExpiresAt;
     }
+    /// <summary>One ordinary Dodge Action, lasting until the actor's next regular start.</summary>
+    public sealed class DodgeRecord
+    {
+        public string ActorId { get; }
+        public long Revision { get; }
+        public int TurnOrdinal { get; }
+        public RuleTime ExpiresAt { get; }
+        public DodgeRecord(string actorId,long revision,int turnOrdinal,RuleTime expiresAt)
+        {
+            if(!Validation.ValidId(actorId)||revision<1||turnOrdinal<0)throw new ArgumentException("Invalid Dodge record.");
+            ActorId=actorId;Revision=revision;TurnOrdinal=turnOrdinal;ExpiresAt=expiresAt;
+        }
+        public bool SameAs(DodgeRecord x)=>x!=null&&ActorId==x.ActorId&&Revision==x.Revision&&TurnOrdinal==x.TurnOrdinal&&ExpiresAt==x.ExpiresAt;
+    }
     public sealed class CombatAttackRoll
     {
         public int First { get; }
@@ -155,13 +169,17 @@ namespace Decennium.Foundation
     {
         public static void Validate(Snapshot s)
         {
-            if(s.Clubs==null||s.Stances==null||s.MeleeAttacks==null||s.Presses==null||s.Clubs.Length>64||s.Stances.Length>128||s.MeleeAttacks.Length>128||s.Presses.Length>64
-                ||s.Clubs.Any(x=>x==null)||s.Stances.Any(x=>x==null)||s.MeleeAttacks.Any(x=>x==null)||s.Presses.Any(x=>x==null))throw new ArgumentException("Invalid combat collections.");
+            if(s.Clubs==null||s.Stances==null||s.Dodges==null||s.MeleeAttacks==null||s.Presses==null||s.Clubs.Length>64||s.Stances.Length>128||s.Dodges.Length>128||s.MeleeAttacks.Length>128||s.Presses.Length>64
+                ||s.Clubs.Any(x=>x==null)||s.Stances.Any(x=>x==null)||s.Dodges.Any(x=>x==null)||s.MeleeAttacks.Any(x=>x==null)||s.Presses.Any(x=>x==null))throw new ArgumentException("Invalid combat collections.");
             if(s.SchemaVersion<Snapshot.ClubAttackSchema) {
-                if(s.Clubs.Length+s.Stances.Length+s.MeleeAttacks.Length+s.Presses.Length!=0)throw new ArgumentException("Club combat requires schema9.");return;
+                if(s.Clubs.Length+s.Stances.Length+s.Dodges.Length+s.MeleeAttacks.Length+s.Presses.Length!=0)throw new ArgumentException("Club combat requires schema9.");return;
             }
             bool Actor(string id)=>s.Actors.Any(a=>a.Id==id);
             if(s.Clubs.Select(w=>w.Id).Distinct(StringComparer.Ordinal).Count()!=s.Clubs.Length||s.Presses.Select(p=>p.ActorId).Distinct(StringComparer.Ordinal).Count()!=s.Presses.Length
+                ||s.SchemaVersion<Snapshot.DodgeSchema&&s.Dodges.Length!=0
+                ||s.SchemaVersion>=Snapshot.DodgeSchema&&(s.Dodges.Select(d=>d.Revision).Distinct().Count()!=s.Dodges.Length
+                    ||s.Dodges.Any(d=>EncounterHistory.AtRevision(s,d.Revision)==null))
+                ||s.Dodges.Any(d=>!Actor(d.ActorId)||d.Revision>s.Revision)
                 ||s.Clubs.Any(w=>w.HeldBy!=""&&!Actor(w.HeldBy))||s.Stances.Any(t=>!Actor(t.ActorId)||t.Revision>s.Revision)
                 ||s.MeleeAttacks.Count(a=>a.Pending)>1||s.MeleeAttacks.Select(a=>a.Id).Distinct(StringComparer.Ordinal).Count()!=s.MeleeAttacks.Length
                 ||s.MeleeAttacks.Any(a=>!Actor(a.AttackerId)||!Actor(a.TargetId)||!s.Clubs.Any(w=>w.Id==a.WeaponId)&&!(s.SchemaVersion>=Snapshot.TacticalMovementSchema&&a.WeaponId==CombatProfileIds.OrdinaryUnarmed)||a.Revision>s.Revision||a.ResolvedRevision>s.Revision||a.At>s.RuleClock)

@@ -23,6 +23,7 @@ namespace Decennium.Foundation.Laboratory
         private bool fishingTrapBaitOnly;
         private bool expeditionAssignmentsEnabled;
         private bool offCalendarActivityEnabled;
+        private bool dodgeActionEnabled;
         private ObservationFixture observationFixture;
         private ObservationAlgorithmVersion observationAlgorithmVersion = ObservationAlgorithmVersion.ExactPathIntervalsV2;
         private bool initializationStarted;
@@ -738,12 +739,14 @@ namespace Decennium.Foundation.Laboratory
                     &&s.SchemaVersion!=Snapshot.CommandStepSchema&&s.SchemaVersion!=Snapshot.SuppressionFireSchema
                     &&s.SchemaVersion!=Snapshot.DefensiveFormationSchema
                     &&!(huntingTrapFixture!=null&&s.SchemaVersion==Snapshot.HuntingTrapSchema)
+                    &&!(dodgeActionEnabled&&s.SchemaVersion==Snapshot.DodgeSchema)
                     ||s.CharacterFeatureGrants.Count(g=>g.ActorId==TestOnlyPolicy.ActorId&&g.FeatureId==CharacterFeatureIds.Overwatch
                         &&g.Origin==CharacterFeatureGrantOrigin.AutomaticClassFeature)!=1
                     ||s.CharacterFeatureGrants.Any(g=>g.ActorId==TestOnlyPolicy.ActorId&&g.FeatureId==CharacterFeatureIds.Overwatch
                         &&g.Origin==CharacterFeatureGrantOrigin.AutomaticClassFeature&&(g.MilestoneId!=""||g.GrantedRevision!=0))))return "InvalidOverwatchFoundationFixture";
                 if(overwatchRuntime!=null&&((s.SchemaVersion!=Snapshot.OverwatchSchema&&s.SchemaVersion!=Snapshot.OverwatchExecutionSchema
-                    &&!(huntingTrapFixture!=null&&s.SchemaVersion==Snapshot.HuntingTrapSchema))||s.OverwatchIntervals.Length<1
+                    &&!(huntingTrapFixture!=null&&s.SchemaVersion==Snapshot.HuntingTrapSchema)
+                    &&!(dodgeActionEnabled&&s.SchemaVersion==Snapshot.DodgeSchema))||s.OverwatchIntervals.Length<1
                     ||s.OverwatchIntervals.Any(x=>x.ActorId!=TestOnlyPolicy.ActorId)))return "InvalidOverwatchDesignationFixture";
                 if(periodicRider!=null) {
                     if(s.SchemaVersion<Snapshot.PeriodicRiderSchema||s.PeriodicRiders.Any(x=>x.ProfileId!=PeriodicRiderFixture.ProfileId

@@ -59,7 +59,8 @@ namespace Decennium.Foundation.Laboratory
         private string ResolveExpeditionAssignment(Snapshot s, Command c)
         {
             if (!expeditionAssignmentsEnabled || s.SchemaVersion != Snapshot.ExpeditionAssignmentSchema
-                && s.SchemaVersion != Snapshot.MiningExpeditionAssignmentSchema)
+                && s.SchemaVersion != Snapshot.MiningExpeditionAssignmentSchema
+                && !(dodgeActionEnabled&&s.SchemaVersion==Snapshot.DodgeSchema))
                 return "ExpeditionAssignmentsNotSelected";
             if (s.InventoryCombat) return "WorkAssignmentRequiresExploration";
             if (c.Kind == CommandKind.AssignExpeditionWork)

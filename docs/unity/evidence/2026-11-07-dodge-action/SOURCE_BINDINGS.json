@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "recordedUtc": "2026-11-07T08:18:04Z",
+  "purpose": "TEST_ONLY schema56 Dodge Action and currently wired attack and Dexterity-save consumers; full rules engine remains unfinished.",
+  "baseRevision": "ea437a6d491e4fbf1cd50be341a661d84b911331",
+  "branch": "Engine",
+  "status": "PARTIAL / TEST_ONLY / SOURCE-BOUND / PROVISIONAL",
+  "productionRuntimeSelectionEnabled": false,
+  "releaseApproved": false,
+  "sources": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+      "sha256": "f90d039142145fbd31c37992ebece70d7926dc4b6081e340f9a2fd9dc7237bc6",
+      "snapshot": "../../2026-11-04-shared-bonus-action/sources/COMBAT_ACTION_PLAYTEST.md",
+      "sourceRevision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "rule": "Dodge row, line 80 in the checked-in snapshot"
+    }
+  ],
+  "changedCSources": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCharacterAdvancement.cs",
+      "sha256": "d2ddf21fd41d1e5e9d25ef79be0775987d82bfa929fd3281286bca2fe6e2889c"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCraftingConsequences.cs",
+      "sha256": "26ec436b34512673b1bda78c246e1157304f24e549dcab1e2da45ca218012875"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionAssignments.cs",
+      "sha256": "93782e7d9b756fbfd1ac285081315acc16b57937bc1c84506d0f9ec0b7e711ae"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionRouteMapping.cs",
+      "sha256": "20256de7c68009a594475ba4a53bd28c492c166858743ee665da68288eeb8f58"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionRouteTravel.cs",
+      "sha256": "1c626cd6fae869cbef74be2ce87480d4a585adb1c7a5fbe03be0ee67536e3bf1"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHuntingTrap.cs",
+      "sha256": "ebc245923c400b245e33ff5ce97e2812e29321e0719e539229940f23e3275e1b"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedOverwatchDesignation.cs",
+      "sha256": "52671f009334c24d8f4172c7eac419098574146b657ed9b98848f85ff71b6b4c"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedOverwatchExecution.cs",
+      "sha256": "3915b7105d04b01bf62ee0ba3e9317c5b725d024398411dbec76a63657e376e3"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedProspecting.cs",
+      "sha256": "ea26bf0fd00de709a431004f3f013d1dd2b387390e9e8f0ae9f6b8480f31fbe0"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs",
+      "sha256": "554a3a1d37e8ab5b771da75b3c7e7e23fac3280e50f29dc539734ea15f550a7d"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldRangedCombat.cs",
+      "sha256": "568224c2fd3b1b974146ead85bfd49f98a36d129a53e9784170b190e683e1eff"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlyClubAttackPolicy.cs",
+      "sha256": "0932e01e093a77a19e950d1f4496484ab02c5b60f37dc526072ba6a86cdd0489"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "sha256": "8cdd8c25e150e3ab7201c8a7f086a299e12ea06cbb5cc186e308800561262ce0"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClubAttackRecords.cs",
+      "sha256": "1b4742e29020f77a5afbc6a5161e2a5897b6d9a2ba552c8b66fba6562e1b28f1"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+      "sha256": "a10231e107a7911f68f44be8bebcf4903dee72a4b483433655c67b94891dcb41"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/ClubAttackCodec.cs",
+      "sha256": "2a3b523e1733f4b10fe283215d72a295db4a2be2fdf1483befdc47620ef59ea1"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/SnapshotCodec.cs",
+      "sha256": "f1668905be2da149d59c3aa4d14175a52b472a4c7a448399ac62d30f4ebf99b8"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/ConnectedCombatCases.cs",
+      "sha256": "37c25ea6e5f962bcd65c9318b54a50531e42b0a56bea95d28b915ad1943011cb"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/HuntingTrapCases.cs",
+      "sha256": "090ce6c6e0ffdfb2001e4a4e4c545266845555e48b0b9aa65f25c49fc4477d09"
+    }
+  ],
+  "newNamedCases": [
+    "dodge_uses_shared_action_persists_disadvantages_visible_attack_and_expires_at_next_start",
+    "hunting_trap_pending_overwatch_push_is_gated_before_save_and_then_resolves"
+  ],
+  "verification": {
+    "headless": "HEADLESS_RESULTS.json; 1205/1205 C# 9 warnings-as-errors cases passed.",
+    "packageStatic": "PACKAGE_RESULTS.json; 18/18 static checks passed; 253 assets and 253 unique GUIDs.",
+    "gitDiffCheck": "PASS after documentation and evidence updates.",
+    "gptReview": "GPT's excerpt review found no confirmed blocker. GPT did not inspect checkout or run validation. See GPT_REVIEW.md; optional coverage follow-ups are recorded there."
+  },
+  "limits": [
+    "The profile is explicitly TEST_ONLY and must be opted into before initial snapshot creation.",
+    "Dodge consumers are limited to existing club/unarmed, repeating-crossbow and Overwatch attacks plus the currently integrated suppression-fire and hunting-trap Dexterity saves.",
+    "No claim is made that every game attack or Dexterity save consumes Dodge."
+  ],
+  "optionalReviewFollowups": [
+    "Save/restore while Incapacitated or Speed 0, then recover before the Dodge expiry and confirm benefits return only before expiry.",
+    "Confirm unseen attackers do not get Dodge-derived disadvantage while qualifying Dexterity saves still get advantage; exercise opposing modifier cancellation and deterministic RNG consumption."
+  ]
+}

@@ -1,6 +1,8 @@
 #if DECENNIUM_TEST_ONLY && (UNITY_EDITOR || DEVELOPMENT_BUILD || HEADLESS_TESTS)
 using System;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace Decennium.Foundation.Laboratory
 {
@@ -16,6 +18,17 @@ namespace Decennium.Foundation.Laboratory
     }
     public sealed partial class TestOnlySharedWorldPolicy
     {
+        /// <summary>Opts this TEST_ONLY shared simulation into schema56's persisted Dodge Action.</summary>
+        public TestOnlySharedWorldPolicy EnableDodgeAction()
+        {
+            if(initializationStarted)throw new InvalidOperationException("Dodge content must be selected before Initial().");
+            if(dodgeActionEnabled)return this;
+            dodgeActionEnabled=true;
+            using(var hash=SHA256.Create())ContentFingerprint="TEST_ONLY.dodge-v1-"+string.Concat(hash.ComputeHash(
+                Encoding.UTF8.GetBytes(ContentFingerprint+"|source-dodge-until-next-regular-start|schema56"))
+                .Select(x=>x.ToString("x2",System.Globalization.CultureInfo.InvariantCulture)));
+            return this;
+        }
         /// <summary>Opts this TEST_ONLY shared world into explicit planar observation content.
         /// Call before Initial(); the map, per-actor ranges and records are part of schema51 saves.</summary>
         public TestOnlySharedWorldPolicy EnableObservation(ObservationFixture fixture)
@@ -299,7 +312,7 @@ namespace Decennium.Foundation.Laboratory
             }
             if((c.Kind==CommandKind.AttackClub||c.Kind==CommandKind.AttackUnarmed)&&AttackingFromActiveOverwatchZone(s,c.Actor,c.Target))
                 return "OverwatchAttackTriggerNotImplemented";
-            bool action=c.Kind==CommandKind.AttackClub||c.Kind==CommandKind.AttackUnarmed||c.Kind==CommandKind.Disengage;
+            bool action=c.Kind==CommandKind.AttackClub||c.Kind==CommandKind.AttackUnarmed||c.Kind==CommandKind.Disengage||c.Kind==CommandKind.Dodge;
             string failure=bodies.Resolve(s,c);if(failure!=null)return failure;
             string triggerError=QueueCompletedMovementOverwatch(s);if(triggerError!=null)return triggerError;
             NormalizePendingOverwatchOffers(s);

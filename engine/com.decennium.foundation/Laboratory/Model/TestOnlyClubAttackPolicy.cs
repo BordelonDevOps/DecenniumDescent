@@ -68,11 +68,34 @@ namespace Decennium.Foundation.Laboratory
             if(conditions!=null)InitializeConditions(s);return s;
         }
         public static StanceSelectionRecord ActiveStance(Snapshot s,string actor)=>s.Stances.LastOrDefault(t=>t.ActorId==actor&&s.RuleClock<t.ExpiresAt);
+        public static DodgeRecord ActiveDodge(Snapshot s,string actor)=>s.SchemaVersion>=Snapshot.DodgeSchema?s.Dodges.LastOrDefault(d=>d.ActorId==actor&&s.RuleClock<d.ExpiresAt):null;
+        public static bool DodgeEffective(Snapshot s,string actor)
+        {
+            if(ActiveDodge(s,actor)==null)return false;
+            var life=s.Lives.SingleOrDefault(x=>x.ActorId==actor);
+            return life!=null&&!life.Dead&&life.Hp>0&&WalkingSpeed(s,actor)>0&&!ConditionsFor(s,actor).View().Clauses.Incapacitated;
+        }
         public static PressRecord ActivePress(Snapshot s,string actor)=>s.Presses.SingleOrDefault(p=>p.ActorId==actor&&s.RuleClock<p.ExpiresAt);
         public static bool ActionSpent(Snapshot s)=>s.WorldSchedule!=null&&s.Encounter!=null?s.WorldIntervals.Single(x=>x.ActorId==s.Encounter.CurrentActor).ActionSpent:FixedEncounterRules.ActionSpent(s)||s.Encounter!=null&&s.MeleeAttacks.Any(a=>a.TurnOrdinal==s.Encounter.TurnOrdinal&&!a.Opportunity&&EncounterHistory.InCurrent(s,a.Revision))
-            ||s.Encounter!=null&&s.TacticalActors.Any(a=>a.ActorId==s.Encounter.CurrentActor&&a.DisengageTurn==s.Encounter.TurnOrdinal);
+            ||s.Encounter!=null&&s.TacticalActors.Any(a=>a.ActorId==s.Encounter.CurrentActor&&a.DisengageTurn==s.Encounter.TurnOrdinal)
+            ||s.Encounter!=null&&s.Dodges.Any(d=>d.ActorId==s.Encounter.CurrentActor&&d.TurnOrdinal==s.Encounter.TurnOrdinal&&EncounterHistory.InCurrent(s,d.Revision));
+        internal string AssessDodgeAction(Snapshot s,Command c)
+        {
+            if(s.SchemaVersion<Snapshot.DodgeSchema)return "DodgeRequiresSchema56";
+            if(s.Encounter==null)return "DodgeRequiresEncounter";
+            if(c.Inventory!=null||c.Combat==null||c.X!=0||c.Y!=0||c.Target!=""||c.Actor!=s.Encounter.CurrentActor
+                ||c.Combat.TurnId!=s.Encounter.CurrentTurnId||c.Combat.WeaponId!=""||c.Combat.Stance!=0
+                ||c.Combat.Knockout!=AttackKnockoutMode.OrdinaryOutcome||c.Combat.Choice
+                ||c.Combat.PressInstruction!=PressHitInstruction.ArmOrReplace)return "InvalidDodgeRequest";
+            if(s.MeleeAttacks.Any(a=>a.Pending)||tactical!=null&&(PendingMove(s)!=null||CurrentPressOffer(s)!=null))return "TacticalChoicePending";
+            if(!ActorLifeRules.CanAct(s,c.Actor))return "ActorCannotAct";
+            string restriction=ConditionActionFailure(s,c.Kind,c.Actor);if(restriction!=null)return restriction;
+            if(ActionSpent(s))return "ActionAlreadySpent";
+            if(s.Dodges.Length==128)return "DodgeHistoryCapacityReached";
+            return null;
+        }
         private bool Admitted(CommandKind k)=>k==CommandKind.AdvanceClock||k==CommandKind.BeginFixedEncounter||k==CommandKind.EndRegularTurn
-            ||k==CommandKind.EncounterDash||k==CommandKind.SelectCombatStance||k==CommandKind.AttackClub||k==CommandKind.ResolveKnockout
+            ||k==CommandKind.EncounterDash||k==CommandKind.SelectCombatStance||k==CommandKind.AttackClub||k==CommandKind.ResolveKnockout||k==CommandKind.Dodge
             ||Posture&&(k==CommandKind.StandFromProne||k==CommandKind.DropProne)
             ||conditions!=null&&k==CommandKind.DispatchConditionEvent
             ||tactical!=null&&(k==CommandKind.AttackUnarmed||k==CommandKind.TacticalStep||k==CommandKind.TacticalRepositionStep||k==CommandKind.RespondOpportunityAttack||k==CommandKind.RespondPress||k==CommandKind.Disengage);
@@ -123,7 +146,7 @@ namespace Decennium.Foundation.Laboratory
         {
             if(!Admitted(c.Kind))return "ClubCommandNotImplemented";
             bool combat=c.Kind==CommandKind.SelectCombatStance||c.Kind==CommandKind.AttackClub||c.Kind==CommandKind.ResolveKnockout
-                ||c.Kind==CommandKind.AttackUnarmed||c.Kind==CommandKind.RespondOpportunityAttack||c.Kind==CommandKind.RespondPress;
+                ||c.Kind==CommandKind.AttackUnarmed||c.Kind==CommandKind.RespondOpportunityAttack||c.Kind==CommandKind.RespondPress||c.Kind==CommandKind.Dodge;
             if(c.Inventory!=null||combat!=(c.Combat!=null))return "UnexpectedCombatPayload";
             var pending=s.MeleeAttacks.SingleOrDefault(a=>a.Pending);
             if(pending!=null) {
@@ -174,6 +197,11 @@ namespace Decennium.Foundation.Laboratory
                 if(s.Stances.Length==128)return "StanceHistoryCapacityReached";
                 s.Stances=s.Stances.Concat(new[]{new StanceSelectionRecord(c.Actor,s.Revision+1,e.TurnOrdinal,(CombatStance)c.Combat.Stance,FixedEncounterRules.Start(e,e.TurnOrdinal+e.Order.Count))}).ToArray();return null;
             }
+            if(c.Kind==CommandKind.Dodge) {
+                string failure=AssessDodgeAction(s,c);if(failure!=null)return failure;
+                s.Dodges=s.Dodges.Concat(new[]{new DodgeRecord(c.Actor,s.Revision+1,e.TurnOrdinal,
+                    FixedEncounterRules.Start(e,e.TurnOrdinal+e.Order.Count))}).ToArray();return null;
+            }
             if(c.Kind==CommandKind.TacticalStep) {
                 if(c.Target!=e.CurrentTurnId)return "WrongRegularTurn";
                 if(!HasStance(s))return "StanceRequired";
@@ -217,7 +245,8 @@ namespace Decennium.Foundation.Laboratory
             var modifiers=PlaytestConditions.Attack(CombatConditions(s,c.Actor),CombatConditions(s,c.Target),
                 attackerInvisibleLocationKnown:attackerInvisibleKnown,targetInvisibleLocationKnown:targetInvisibleKnown);
             var incomingEffects=SoldierTacticalFeatures.ForAttack(s,c.Actor,c.Target);
-            bool advantage=modifiers.AdvantagePresent,disadvantage=modifiers.DisadvantagePresent||incomingEffects.WarningShot;
+            bool advantage=modifiers.AdvantagePresent,disadvantage=modifiers.DisadvantagePresent||incomingEffects.WarningShot
+                ||DodgeEffective(s,c.Target)&&CanSee(s,c.Target,c.Actor);
             int modifier=checked((attacker.LinkedInjuries.Contains((int)Injury.OffensiveTrauma)?-1:0)-incomingEffects.CoveringFirePenalty
                 +incomingEffects.TacticalAssessmentBonus); // STR10, explicitly no Club proficiency grant.
             var defense=ActiveStance(s,c.Target);int dexterity=s.Characters.Single(x=>x.ActorId==c.Target).Abilities[1];
@@ -322,7 +351,7 @@ namespace Decennium.Foundation.Laboratory
                 &&Tables(s.Lives,r.Lives,(a,b)=>a.SameAs(b))&&s.LifeEvents.Length==r.LifeEvents.Length
                 &&!s.LifeEvents.Where((a,i)=>a.Revision!=r.LifeEvents[i].Revision||!a.SameOutcome(r.LifeEvents[i])).Any()
                 &&Tables(s.EncounterDashes,r.EncounterDashes,(a,b)=>a.ActorId==b.ActorId&&a.Revision==b.Revision&&a.TurnOrdinal==b.TurnOrdinal)
-                &&Tables(s.Clubs,r.Clubs,(a,b)=>a.SameAs(b))&&Tables(s.Stances,r.Stances,(a,b)=>a.SameAs(b))
+                &&Tables(s.Clubs,r.Clubs,(a,b)=>a.SameAs(b))&&Tables(s.Stances,r.Stances,(a,b)=>a.SameAs(b))&&Tables(s.Dodges,r.Dodges,(a,b)=>a.SameAs(b))
                 &&Tables(s.ActorMovement,r.ActorMovement,(a,b)=>a.SameAs(b))
                 &&Tables(s.TacticalActors,r.TacticalActors,(a,b)=>a.SameAs(b))&&Tables(s.TacticalMoves,r.TacticalMoves,(a,b)=>a.SameAs(b))&&Tables(s.PressOffers,r.PressOffers,(a,b)=>a.SameAs(b))
                 &&Tables(s.MeleeAttacks,r.MeleeAttacks,(a,b)=>a.SameAs(b))&&Tables(s.Presses,r.Presses,(a,b)=>a.SameAs(b))

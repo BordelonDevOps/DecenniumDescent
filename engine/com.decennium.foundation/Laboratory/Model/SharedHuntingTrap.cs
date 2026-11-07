@@ -107,7 +107,8 @@ namespace Decennium.Foundation.Laboratory
             if(huntingTrapFixture==null)
                 return registered.Length==0&&s.HuntingTrapDeployments.Length==0&&s.HuntingTrapActions.Length==0
                     &&s.HuntingTrapTriggers.Length==0&&s.HuntingTrapTethers.Length==0?null:"HuntingTrapFixtureNotSelected";
-            if(s.SchemaVersion!=Snapshot.HuntingTrapSchema||registered.Length!=huntingTrapFixture.Devices.Count)
+            if((s.SchemaVersion!=Snapshot.HuntingTrapSchema&&!(dodgeActionEnabled&&s.SchemaVersion==Snapshot.DodgeSchema))
+                ||registered.Length!=huntingTrapFixture.Devices.Count)
                 return "InvalidHuntingTrapFixture";
             foreach(var definition in huntingTrapFixture.Devices) {
                 if(!s.Actors.Any(x=>x.Id==definition.OwnerId)||definition.CompatibleActorIds.Any(actor=>!s.Actors.Any(x=>x.Id==actor))
@@ -438,7 +439,7 @@ namespace Decennium.Foundation.Laboratory
             bool automatic=life.Hp==0||life.Dead||TestOnlyClubAttackPolicy.ConditionsFor(s,target.Id).View().AutomaticStrengthDexterityFailure;
             uint before=s.RandomState,after=before;long words=0;int natural=0;long total=0;bool success=false;
             if(!automatic) {
-                var save=PlaytestDice.RollD20(before);natural=save.Natural;after=save.NextRandomState;words=save.WordsConsumed;
+                var save=PlaytestDice.RollD20(before,TestOnlyClubAttackPolicy.DodgeEffective(s,target.Id)?1:0);natural=save.Natural;after=save.NextRandomState;words=save.WordsConsumed;
                 var result=PlaytestRolls.SavingThrow(natural,modifier,13);total=result.Total;success=result.Success;s.RandomState=after;
             }
             int rolled=0;long applied=0;string tetherId="";

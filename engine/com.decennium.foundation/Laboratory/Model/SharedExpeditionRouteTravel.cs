@@ -652,7 +652,8 @@ namespace Decennium.Foundation.Laboratory
                 : routeMotionFixture == null ? Snapshot.ExpeditionRouteSchema : Snapshot.RouteObservationSchema;
             if (s.SchemaVersion != routeSchema
                 && !(huntingTrapFixture != null && s.SchemaVersion == Snapshot.HuntingTrapSchema
-                    && routeSchema < Snapshot.HuntingTrapSchema))
+                    && routeSchema < Snapshot.HuntingTrapSchema)
+                && !(dodgeActionEnabled&&s.SchemaVersion==Snapshot.DodgeSchema&&routeSchema<Snapshot.DodgeSchema))
                 return "RouteTravelSchemaMismatch";
             if (routeMotionFixture == null && ObservationRules.Enabled(s)) return "RouteObservationIntegrationUnsupported";
             string bindingError = routeMotionFixture == null

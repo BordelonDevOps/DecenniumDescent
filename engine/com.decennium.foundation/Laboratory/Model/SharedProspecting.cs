@@ -224,7 +224,7 @@ namespace Decennium.Foundation.Laboratory
                 return s.ProspectingPatches.Length + s.ProspectingExposures.Length + s.ProspectingAttempts.Length == 0
                     ? null : "ProspectingFixtureNotSelected";
             var authored = prospectingFixture.Patches;
-            if (s.SchemaVersion != Snapshot.ProspectingSchema || s.ProspectingPatches.Length != authored.Length
+            if ((s.SchemaVersion != Snapshot.ProspectingSchema&&!(dodgeActionEnabled&&s.SchemaVersion==Snapshot.DodgeSchema)) || s.ProspectingPatches.Length != authored.Length
                 || !s.ProspectingPatches.OrderBy(x=>x.Id,StringComparer.Ordinal).Zip(authored.OrderBy(x=>x.Patch.Id,StringComparer.Ordinal),
                     (a,b)=>a.Id==b.Patch.Id&&a.OwnerId==b.Patch.OwnerId&&a.SiteId==b.Patch.SiteId&&a.X==b.Patch.X&&a.Y==b.Patch.Y).All(x=>x)
                 || s.PortableEquipment.Count(x=>authored.SelectMany(p=>p.Implements).Any(i=>i.Id==x.Id))!=authored.Sum(x=>x.Implements.Length)

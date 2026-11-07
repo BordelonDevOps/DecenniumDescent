@@ -448,7 +448,8 @@ namespace Decennium.Foundation.Laboratory
             if((s.SchemaVersion!=Snapshot.SoldierInitialLoadoutSchema&&s.SchemaVersion!=Snapshot.SoldierInitialBuildSchema
                 &&s.SchemaVersion!=Snapshot.SoldierTacticalTechniquesSchema&&s.SchemaVersion!=Snapshot.CharacterAdvancementHistorySchema
                 &&s.SchemaVersion!=Snapshot.TacticalAssessmentSchema&&s.SchemaVersion!=Snapshot.CommandStepSchema
-                &&s.SchemaVersion!=Snapshot.SuppressionFireSchema&&s.SchemaVersion!=Snapshot.DefensiveFormationSchema)
+                &&s.SchemaVersion!=Snapshot.SuppressionFireSchema&&s.SchemaVersion!=Snapshot.DefensiveFormationSchema
+                &&!(dodgeActionEnabled&&s.SchemaVersion==Snapshot.DodgeSchema))
                 ||characterAdvancement==null||overwatchFoundation==null
                 ||s.WorldSchedule==null||s.CharacterFeatureGrants.Any(g=>g.ActorId==TestOnlyPolicy.ActorId&&g.Origin==CharacterFeatureGrantOrigin.InitialClassSelection))
                 throw new ArgumentException("Soldier initial selections require the explicit source-scoped Soldier 1 and Overwatch fixtures.");

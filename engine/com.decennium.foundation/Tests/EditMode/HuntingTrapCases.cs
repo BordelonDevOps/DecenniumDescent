@@ -241,7 +241,7 @@ namespace Decennium.Foundation.Tests
             cases.Add("hunting_trap_pending_overwatch_push_is_gated_before_save_and_then_resolves",()=>{
                 var traps=new HuntingTrapFixture(new HuntingTrapDefinition(HuntingTrapItem,TestOnlyPolicy.ActorId,3,0,
                     new[]{AdditionalTacticalActor.Id}));
-                var policy=OverwatchExecutionPolicy(SeedForNatural(10)).EnableHuntingTraps(traps);
+                var policy=OverwatchExecutionPolicy(SeedForNatural(10)).EnableHuntingTraps(traps).EnableDodgeAction();
                 var simulation=World(policy);
                 WorldCommit(simulation,new Command("hunting-trap.ow.begin",TestOnlyPolicy.ActorId,
                     simulation.Capture().Revision,CommandKind.BeginFixedEncounter));
@@ -268,6 +268,14 @@ namespace Decennium.Foundation.Tests
                 if(!simulation.Capture().Stances.Any(x=>x.TurnOrdinal==simulation.Capture().Encounter.TurnOrdinal))
                     WorldCommit(simulation,Tac(simulation,CommandKind.SelectCombatStance,actor:AdditionalTacticalActor.Id,
                         stance:(int)CombatStance.Guarded));
+                var dodge=simulation.DiscoverCommands(host,AdditionalTacticalActor.Id).Single(x=>x.Command.Kind==CommandKind.Dodge).Command;
+                var dodgeQuery=simulation.QueryCommand(host,dodge);
+                Require(dodgeQuery.Supported&&dodgeQuery.Admissible&&dodgeQuery.Costs.Any(x=>x.Kind=="action"&&x.Amount==1),
+                    "The connected Dodge command omitted its available Action cost.");
+                WorldCommit(simulation,dodge);
+                Require(TestOnlyClubAttackPolicy.DodgeEffective(simulation.Capture(),AdditionalTacticalActor.Id)
+                    &&WorldLedger(simulation,AdditionalTacticalActor.Id).ActionSpent,
+                    "Dodge did not use the shared Action interval or become active.");
                 TacStep(simulation,3,0);
                 var entered=simulation.Capture();var pendingTrap=entered.HuntingTrapTriggers.Single();
                 Require(entered.OverwatchOffers.Single().Status==OverwatchOfferStatus.Pending
@@ -277,11 +285,14 @@ namespace Decennium.Foundation.Tests
                     "Tactical entry did not retain both ordered Overwatch and trap decisions.");
                 WorldCommit(simulation,OverwatchResponse(simulation,true));
                 var shot=simulation.Capture();
-                Require(shot.RangedAttacks.Single().Attack.Hit
+                Require(shot.RangedAttacks.Single().Attack.Second>0
+                    &&shot.RangedAttacks.Single().Attack.Selected==Math.Min(shot.RangedAttacks.Single().Attack.First,
+                        shot.RangedAttacks.Single().Attack.Second)
+                    &&shot.RangedAttacks.Single().Attack.Hit
                     &&shot.OverwatchRiderChoices.Single().Status==OverwatchRiderChoiceStatus.Pending
                     &&shot.HuntingTrapTriggers.Single().Status==HuntingTrapTriggerStatus.Pending
                     &&shot.HuntingTrapTethers.Length==0,
-                    "The accepted Overwatch shot did not resolve before the pending trap's rider decision.");
+                    "The visible Overwatch attack ignored Dodge disadvantage or did not resolve before the pending trap's rider decision.");
                 byte[] afterShot=Bytes(simulation);uint randomAfterShot=shot.RandomState;
                 RejectUnchanged(simulation,host,OverwatchRiderCommand(simulation,OverwatchRider.Push),
                     "UnsupportedPendingTrapDisplacement");
@@ -293,6 +304,8 @@ namespace Decennium.Foundation.Tests
                 Require(resolved.HuntingTrapTriggers.Single().Status==HuntingTrapTriggerStatus.Resolved
                     &&resolved.HuntingTrapTriggers.Single().CreatedRevision==resolved.TacticalMoves.Single(x=>x.Status==TacticalMoveStatus.Completed
                         &&x.ToX==3&&x.ToY==0).ResolvedRevision
+                    &&resolved.HuntingTrapTriggers.Single().Natural==PlaytestDice.RollD20(resolved.HuntingTrapTriggers.Single().RandomBefore,1).Natural
+                    &&resolved.HuntingTrapTriggers.Single().WordsConsumed>=2
                     &&resolved.OverwatchRiderChoices.Single().Choice==OverwatchRider.Snare
                     &&resolved.Actors.Single(x=>x.Id==AdditionalTacticalActor.Id).X==3
                     &&resolved.Actors.Single(x=>x.Id==AdditionalTacticalActor.Id).Y==0,

@@ -151,7 +151,8 @@ namespace Decennium.Foundation.Laboratory
                 attackerUnseen,closeHostile,
                 TestOnlyClubAttackPolicy.CombatConditions(s,offer.OwnerId),TestOnlyClubAttackPolicy.CombatConditions(s,offer.TargetId),
                 attackerInvisibleLocationKnown:attackerInvisibleKnown,targetInvisibleLocationKnown:targetInvisibleKnown,
-                additionalDisadvantageSources:incomingEffects.WarningShot?1:0,
+                additionalDisadvantageSources:(incomingEffects.WarningShot?1:0)
+                    +(TestOnlyClubAttackPolicy.DodgeEffective(s,offer.TargetId)&&TestOnlyClubAttackPolicy.CanSee(s,offer.TargetId,offer.OwnerId)?1:0),
                 targetUnseenDisadvantage:false,attackerUnseenAdvantage:attackerUnseenAdvantage);
             var attack=RangedAttackRules.Resolve(s.RandomState,request);if(!attack.Legal)return false;
             facts=new OverwatchShotFacts{Zone=zone,Weapon=weapon,Ammunition=ammunition,Attacker=attacker,Shooter=shooter,Target=target,

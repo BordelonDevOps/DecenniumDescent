@@ -32,6 +32,10 @@ namespace Decennium.Foundation
             foreach(var p in s.Presses.OrderBy(x=>x.ActorId,StringComparer.Ordinal)) {
                 Text(w,p.ActorId);Text(w,p.TargetId);w.Write(p.ArmedRevision);Time(w,p.ExpiresAt);
             }
+            if(s.SchemaVersion>=Snapshot.DodgeSchema) {
+                w.Write(s.Dodges.Length);
+                foreach(var d in s.Dodges.OrderBy(x=>x.Revision)) {Text(w,d.ActorId);w.Write(d.Revision);w.Write(d.TurnOrdinal);Time(w,d.ExpiresAt);}
+            }
         }
         public static void Read(BinaryReader r,Snapshot s)
         {
@@ -52,6 +56,10 @@ namespace Decennium.Foundation
             }
             s.Presses=new PressRecord[Count(r,64)];
             for(int i=0;i<s.Presses.Length;i++)s.Presses[i]=new PressRecord(Text(r),Text(r),r.ReadInt64(),Time(r));
+            if(s.SchemaVersion>=Snapshot.DodgeSchema) {
+                s.Dodges=new DodgeRecord[Count(r,128)];
+                for(int i=0;i<s.Dodges.Length;i++)s.Dodges[i]=new DodgeRecord(Text(r),r.ReadInt64(),r.ReadInt32(),Time(r));
+            } else s.Dodges=Array.Empty<DodgeRecord>();
         }
         private static void Time(BinaryWriter w,RuleTime t){w.Write(t.Numerator);w.Write(t.Denominator);}
         private static RuleTime Time(BinaryReader r)=>new RuleTime(r.ReadInt64(),r.ReadInt64());
