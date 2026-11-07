@@ -1,2 +1,5 @@
 # Preserve tested source and asset bytes, including hash-bound Windows files.
 * -text
+
+# Preserve Unity-generated metadata bytes and treat CRLF as a line ending in diffs.
+/com.decennium.foundation/Laboratory/Model/RuleResolution.cs.meta -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

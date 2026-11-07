@@ -20,19 +20,13 @@ namespace Decennium.Foundation.Laboratory
     {
         public static D20Selection Selection(int advantageSources,int disadvantageSources)
         {
-            if(advantageSources<0 || disadvantageSources<0) throw new ArgumentOutOfRangeException(nameof(advantageSources));
-            if((advantageSources==0)==(disadvantageSources==0)) return D20Selection.Normal;
-            return advantageSources>0 ? D20Selection.Advantage : D20Selection.Disadvantage;
+            return (D20Selection)RuleDice.SelectD20(advantageSources, disadvantageSources);
         }
         public static D20Roll RollD20(uint initialState,int advantageSources=0,int disadvantageSources=0)
         {
-            D20Selection selection=Selection(advantageSources,disadvantageSources);
-            BoundedDraw first=DiceStream.Draw(initialState,20);
-            if(selection==D20Selection.Normal) return new D20Roll(selection,first.Value+1,null,first.Value+1,first.NextState,first.WordsConsumed);
-            BoundedDraw second=DiceStream.Draw(first.NextState,20);
-            int a=first.Value+1,b=second.Value+1;
-            return new D20Roll(selection,a,b,selection==D20Selection.Advantage?Math.Max(a,b):Math.Min(a,b),
-                second.NextState,checked(first.WordsConsumed+second.WordsConsumed));
+            RuleD20Roll roll = RuleDice.RollD20(initialState, advantageSources, disadvantageSources);
+            return new D20Roll((D20Selection)roll.Selection, roll.First, roll.Second, roll.Natural,
+                roll.NextRandomState, roll.WordsConsumed);
         }
     }
 }

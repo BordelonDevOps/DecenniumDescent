@@ -100,6 +100,29 @@ namespace Decennium.Foundation.Tests
                 Require(save.Total == -2147483647L && !save.Success && save.FailureMargin == 4294967294L, "Save overflow.");
                 Require(opposed.ActorTotal == 2147483648L && opposed.DefenderTotal == -2147483628L && opposed.ChangesState,
                     "Opposed overflow."); });
+            cases.Add("shared_rule_resolution_is_authority_for_all_four_roll_types", () => {
+                var task = RuleResolution.TaskCheck(1, 9, 10);
+                var attack = RuleResolution.AttackRoll(19, 0, 18, 19);
+                var save = RuleResolution.SavingThrow(1, 4, 10);
+                var opposed = RuleResolution.OpposedCheck(20, 0, 10, 10);
+                Require(task.Total == 10 && task.Degree == RuleTaskDegree.Failure && !task.Success
+                    && task.Degree == (RuleTaskDegree)PlaytestRolls.TaskCheck(1, 9, 10).Degree
+                    && attack.Total == 19 && attack.Hit && attack.Critical
+                    && attack.Hit == PlaytestRolls.AttackRoll(19, 0, 18, 19).Hit
+                    && save.Total == 5 && !save.Success && save.FailureMargin == 5
+                    && save.FailureMargin == PlaytestRolls.SavingThrow(1, 4, 10).FailureMargin
+                    && opposed.ActorTotal == 20 && opposed.DefenderTotal == 20 && !opposed.ChangesState
+                    && opposed.ChangesState == PlaytestRolls.OpposedCheck(20, 0, 10, 10).ChangesState,
+                    "Core resolution and the compatibility surface must produce the same sourced results."); });
+            cases.Add("shared_rule_resolution_rejects_invalid_and_zero_bounds", () => {
+                Throws<ArgumentOutOfRangeException>(() => RuleResolution.TaskCheck(0, 0, 10));
+                Throws<ArgumentOutOfRangeException>(() => RuleResolution.AttackRoll(10, 0, -1));
+                Throws<ArgumentOutOfRangeException>(() => RuleResolution.SavingThrow(10, 0, -1));
+                Throws<ArgumentOutOfRangeException>(() => RuleResolution.OpposedCheck(1, 0, 21, 0));
+                Require(RuleResolution.TaskCheck(10, -10, 0).Success
+                    && RuleResolution.AttackRoll(10, -10, 0).Hit
+                    && RuleResolution.SavingThrow(10, -10, 0).Success,
+                    "Zero fixed thresholds remain legal."); });
         }
     }
 }

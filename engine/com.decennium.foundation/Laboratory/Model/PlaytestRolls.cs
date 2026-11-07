@@ -49,49 +49,28 @@ namespace Decennium.Foundation.Laboratory
     {
         public static TaskCheckResult TaskCheck(int natural, int modifier, int dc)
         {
-            long total = RollTotal(natural, modifier, nameof(natural));
-            Nonnegative(dc, nameof(dc));
-            TaskDegree degree = total >= (long)dc + 10 ? TaskDegree.CriticalSuccess
-                : total >= dc ? TaskDegree.Success
-                : total <= (long)dc - 10 ? TaskDegree.CriticalFailure : TaskDegree.Failure;
-            if (natural == 20 && degree < TaskDegree.CriticalSuccess) degree++;
-            else if (natural == 1 && degree > TaskDegree.CriticalFailure) degree--;
-            return new TaskCheckResult(total, degree);
+            RuleTaskCheckResult result = RuleResolution.TaskCheck(natural, modifier, dc);
+            return new TaskCheckResult(result.Total, (TaskDegree)result.Degree);
         }
 
         public static AttackRollResult AttackRoll(int natural, int modifier, int armorClass, int criticalThreshold = 20)
         {
-            long total = RollTotal(natural, modifier, nameof(natural));
-            Nonnegative(armorClass, nameof(armorClass));
-            if (criticalThreshold < 2 || criticalThreshold > 20)
-                throw new ArgumentOutOfRangeException(nameof(criticalThreshold));
-            bool hit = natural != 1 && (natural == 20 || total >= armorClass);
-            return new AttackRollResult(total, hit, hit && natural >= criticalThreshold);
+            RuleAttackRollResult result = RuleResolution.AttackRoll(natural, modifier, armorClass, criticalThreshold);
+            return new AttackRollResult(result.Total, result.Hit, result.Critical);
         }
 
         public static SavingThrowResult SavingThrow(int natural, int modifier, int dc)
         {
-            long total = RollTotal(natural, modifier, nameof(natural));
-            Nonnegative(dc, nameof(dc));
-            return new SavingThrowResult(total, total >= dc, Math.Max(0L, (long)dc - total));
+            RuleSavingThrowResult result = RuleResolution.SavingThrow(natural, modifier, dc);
+            return new SavingThrowResult(result.Total, result.Success, result.FailureMargin);
         }
 
         public static OpposedCheckResult OpposedCheck(int actorNatural, int actorModifier, int defenderNatural, int defenderModifier)
         {
-            long actor = RollTotal(actorNatural, actorModifier, nameof(actorNatural));
-            long defender = RollTotal(defenderNatural, defenderModifier, nameof(defenderNatural));
-            return new OpposedCheckResult(actor, defender);
+            RuleOpposedCheckResult result = RuleResolution.OpposedCheck(actorNatural, actorModifier,
+                defenderNatural, defenderModifier);
+            return new OpposedCheckResult(result.ActorTotal, result.DefenderTotal);
         }
-
-        // Promote before arithmetic: all int modifiers/DCs are supported without wraparound.
-        private static long RollTotal(int natural, int modifier, string parameter)
-        {
-            if (natural < 1 || natural > 20) throw new ArgumentOutOfRangeException(parameter);
-            return (long)natural + modifier;
-        }
-
-        private static void Nonnegative(int value, string parameter)
-        { if (value < 0) throw new ArgumentOutOfRangeException(parameter); }
     }
 }
 #endif

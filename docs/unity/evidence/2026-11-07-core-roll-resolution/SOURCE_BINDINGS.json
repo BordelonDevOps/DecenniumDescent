@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "recordedUtc": "2026-11-07T11:00:15.0087482Z",
+  "implementationId": "TEST_ONLY.shared-rule-resolution-v1",
+  "status": "PARTIAL / PROVISIONAL / COMPILE-GATED",
+  "sourceRevision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+  "saveSchemaChange": false,
+  "releaseApproved": false,
+  "productionRuntimeSelectionEnabled": false,
+  "responsibilities": [
+    "Centralize existing task, attack, ordinary saving-throw and opposed-roll result arithmetic in one gated LabModel service.",
+    "Route the existing LabModel d20 compatibility API through RuleDice and the shared DiceStream RNG trace."
+  ],
+  "authoritativeRecords": "No new records or snapshot fields. Each existing gameplay procedure retains its own command, RNG state, operation record, and consequence ownership.",
+  "dependencies": [
+    "Runtime/Core/DiceStream.cs",
+    "Runtime/Core/Simulation.cs (RandomV1)",
+    "CORE_RESOLUTION_PLAYTEST.md"
+  ],
+  "sources": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md",
+      "section": "Rolls; Advantage and disadvantage",
+      "sha256": "69d0e64394de58c4d86a3ec57cf282978d131a1a9c1eaa21632bb7d3b72562da"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/tools/core_playtest_rules.py",
+      "sections": [
+        "task_check",
+        "attack_roll",
+        "saving_throw",
+        "opposed_check"
+      ],
+      "sha256": "a162117cf2c0c96a77ef5e594ce7247593930c57e6223fc7291ab12fc45c8d7d"
+    }
+  ],
+  "implementationSources": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/PlaytestDice.cs",
+      "sha256": "507b98b4e51ea0f9ede4ddf2365bf6471c9d425f4d20e88d6972b5c448b6edfe",
+      "modified": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/PlaytestRolls.cs",
+      "sha256": "ef0c64a97d6cc65ae71c0d935d4e713ee89f262736b20fddce0197b408650792",
+      "modified": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/RuleResolution.cs",
+      "sha256": "c62104cfd6f433bc39cbcac576b9da26644552df1fc1293f10227f665b86c574",
+      "modified": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/DiceCases.cs",
+      "sha256": "2da2558632c9a3a4d780889b1f2af68f757cb325902c8a1ae7630f98ab16fbac",
+      "modified": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/RollResolutionCases.cs",
+      "sha256": "14db5c5bb0b8ddbda48ea4a9b095266ea34e4b9ec9f4416ede9143d5822fe882",
+      "modified": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/DiceStream.cs",
+      "sha256": "cc0059f98da32685194bd7a69e6240d19ce386f8347317e5a2939e500689be68",
+      "modified": false
+    }
+  ],
+  "metadataHashes": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/RuleResolution.cs.meta",
+      "sha256": "97616ad5f2e36568045366fa80a18214cec606b8f54b3d2b0f5d4431dfc57268"
+    }
+  ],
+  "runnableAcceptances": [
+    "shared_rule_d20_matches_lab_adapter_and_keeps_trace",
+    "shared_rule_d20_rejects_invalid_modifier_counts_and_zero_state",
+    "shared_rule_resolution_is_authority_for_all_four_roll_types",
+    "shared_rule_resolution_rejects_invalid_and_zero_bounds"
+  ],
+  "validation": {
+    "fullSuite": "PASS",
+    "cases": "1212/1212",
+    "language": "C# 9",
+    "warningsAsErrors": true,
+    "package": "PASS",
+    "packageChecks": "18/18",
+    "packageAssets": 258,
+    "uniqueGuids": 258,
+    "unityCompilation": "NOT RUN",
+    "editMode": "NOT RUN",
+    "playMode": "NOT RUN",
+    "standaloneBuild": "NOT RUN",
+    "gameplay": "NOT RUN"
+  },
+  "reports": [
+    "FULL_TEST_RESULTS.json",
+    "PACKAGE_RESULTS.json"
+  ],
+  "limits": [
+    "Does not derive skills, proficiency, modifier eligibility or DCs.",
+    "Does not authorize commands, consume command-owned RNG, or apply source-specific effects.",
+    "Provisional rules remain behind the TEST_ONLY LabModel gate; no production or release authority is added.",
+    "Unity import, compilation, Play Mode, builds, and observed gameplay were not run."
+  ]
+}

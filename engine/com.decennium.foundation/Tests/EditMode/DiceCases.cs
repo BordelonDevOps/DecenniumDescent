@@ -53,6 +53,18 @@ namespace Decennium.Foundation.Tests
                         && a.Value==b.Value && a.NextState==b.NextState && a.WordsConsumed==b.WordsConsumed,"Bounded deterministic draw.");
                     state=a.NextState;
                 } });
+            cases.Add("shared_rule_d20_matches_lab_adapter_and_keeps_trace", () => {
+                var core = RuleDice.RollD20(123456789, 1, 0);
+                var lab = PlaytestDice.RollD20(123456789, 1, 0);
+                Require(core.Selection == RuleD20Selection.Advantage && core.First == 1 && core.Second == 16
+                    && core.Natural == 16 && core.NextRandomState == 2238813396 && core.WordsConsumed == 2
+                    && (int)core.Selection == (int)lab.Selection && core.First == lab.First && core.Second == lab.Second
+                    && core.Natural == lab.Natural && core.NextRandomState == lab.NextRandomState
+                    && core.WordsConsumed == lab.WordsConsumed, "Core and gated adapter must share one exact RNG path."); });
+            cases.Add("shared_rule_d20_rejects_invalid_modifier_counts_and_zero_state", () => {
+                Throws<ArgumentOutOfRangeException>(() => RuleDice.SelectD20(-1, 0));
+                Throws<ArgumentOutOfRangeException>(() => RuleDice.SelectD20(0, -1));
+                Throws<ArgumentException>(() => RuleDice.RollD20(0)); });
         }
     }
 }
