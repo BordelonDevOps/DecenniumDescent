@@ -229,6 +229,31 @@ namespace Decennium.Foundation.Tests
                     "Synthetic Map Route result incorrectly established Unknown-route passage feasibility: " + travelQuery.Code);
             });
 
+            cases.Add("route_travel_legacy_schema53_save_roundtrips_and_replays_pushed_fixture", () => {
+                var routes = RouteTravelFixture();
+                var policy = RouteObservationPolicy(routes);
+                var codec = new SnapshotCodec();
+                byte[] beforeBytes = RouteTravelLegacySaveFixture.DecodeBefore();
+                byte[] afterBytes = RouteTravelLegacySaveFixture.DecodeAfter();
+                var before = codec.Decode(beforeBytes);
+                var expectedAfter = codec.Decode(afterBytes);
+                Require(before.SchemaVersion == Snapshot.RouteObservationSchema
+                    && expectedAfter.SchemaVersion == Snapshot.RouteObservationSchema
+                    && before.ContentFingerprint == policy.ContentFingerprint
+                    && expectedAfter.ContentFingerprint == policy.ContentFingerprint
+                    && before.RouteTravels.Length == 1
+                    && before.RouteTravels[0].Status == ExpeditionRouteTravelStatus.Moving
+                    && before.RouteTravelSpatial.Length == 1
+                    && !before.RouteTravelSpatial[0].Detached,
+                    "Authentic pre-schema54 route saves did not bind to the original schema53 profile/state.");
+                var restored = new Simulation(policy, before, ExecutionProfile.Laboratory);
+                Require(beforeBytes.SequenceEqual(Bytes(restored)),
+                    "Authentic pre-schema54 schema53 save changed bytes when restored and re-encoded.");
+                WorldAdvance(restored, 5400);
+                Require(afterBytes.SequenceEqual(Bytes(restored)),
+                    "Schema53 route continuation after restore diverged from the pre-schema54 pushed result.");
+            });
+
             cases.Add("expedition_route_shared_clock_save_pause_pace_change_and_management", () => {
                 var conditionStart = new ConditionStamp(new RuleTime(9, 2));
                 var conditionExpiry = new ConditionStamp(new RuleTime(7209, 2));
