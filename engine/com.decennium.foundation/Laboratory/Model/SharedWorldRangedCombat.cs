@@ -78,6 +78,7 @@ namespace Decennium.Foundation.Laboratory
             ||kind==CommandKind.TacticalAssessment||kind==CommandKind.OfferCommandStep||kind==CommandKind.RespondCommandStep
             ||kind==CommandKind.SuppressionFire||kind==CommandKind.ActivateDefensiveFormation||kind==CommandKind.RespondDefensiveFormation
             ||kind==CommandKind.BeginWorldStep||kind==CommandKind.SuspendWorldStep||kind==CommandKind.ResumeWorldStep
+            ||kind==CommandKind.StartRouteTravel||kind==CommandKind.PauseRouteTravel||kind==CommandKind.ResumeRouteTravel
             ||kind==CommandKind.StartToolRepair||kind==CommandKind.PauseToolRepair
             ||kind==CommandKind.ResumeToolRepair||kind==CommandKind.CancelToolRepair
             ||kind==CommandKind.StartHarvest||kind==CommandKind.PauseHarvest||kind==CommandKind.ResumeHarvest
@@ -318,9 +319,9 @@ namespace Decennium.Foundation.Laboratory
             long range=PlanarCombatGeometry.DistanceFeet(new CombatCell(shooter.X,shooter.Y),new CombatCell(c.X,c.Y));
             if(range>RepeatingCrossbowShotRules.MaximumRangeFeet)return "SuppressionZoneOutOfRange";
             bool zoneLocationKnown=rangedCombat.TargetLocationKnown
-                &&(s.SchemaVersion<Snapshot.ObservationSchema||ObservationRules.LocationKnown(s,c.Actor,rangedCombat.TargetId));
+                &&(!ObservationRules.Enabled(s)||ObservationRules.LocationKnown(s,c.Actor,rangedCombat.TargetId));
             bool zoneLineClear=rangedCombat.LineOfFireClear
-                &&(s.SchemaVersion<Snapshot.ObservationSchema||ObservationGeometry.LineOfEffectClear(s,c.Actor,rangedCombat.TargetId));
+                &&(!ObservationRules.Enabled(s)||ObservationGeometry.LineOfEffectClear(s,c.Actor,rangedCombat.TargetId));
             if(!zoneLocationKnown||!rangedCombat.TargetVisible||!zoneLineClear
                 ||!TestOnlyClubAttackPolicy.CanSee(s,c.Actor,rangedCombat.TargetId))return "SuppressionZoneNotPerceived";
             var targetIds=request.TargetIds;
@@ -488,19 +489,19 @@ namespace Decennium.Foundation.Laboratory
                 +(targetStance?.Kind==CombatStance.Aggressive?-2:targetStance?.Kind==CombatStance.Guarded?1:0)
                 +CharacterAdvancementRules.DefensivePositioningBonus(s,c.Target));
             bool targetLocationKnown=rangedCombat.TargetLocationKnown
-                &&(s.SchemaVersion<Snapshot.ObservationSchema||ObservationRules.LocationKnown(s,c.Actor,c.Target));
+                &&(!ObservationRules.Enabled(s)||ObservationRules.LocationKnown(s,c.Actor,c.Target));
             bool lineOfFireClear=rangedCombat.LineOfFireClear
-                &&(s.SchemaVersion<Snapshot.ObservationSchema||ObservationGeometry.LineOfEffectClear(s,c.Actor,c.Target));
+                &&(!ObservationRules.Enabled(s)||ObservationGeometry.LineOfEffectClear(s,c.Actor,c.Target));
             bool targetVisible=rangedCombat.TargetVisible&&TestOnlyClubAttackPolicy.CanSee(s,c.Actor,c.Target);
             long distance=PlanarCombatGeometry.DistanceFeet(new CombatCell(shooter.X,shooter.Y),new CombatCell(target.X,target.Y));
             if(c.Kind==CommandKind.WarningShot&&(distance>60||!targetVisible))return "WarningShotRequiresVisibleTargetWithin60Feet";
             if(c.Kind==CommandKind.CoveringFire&&(!targetLocationKnown||!targetVisible))return "CoveringFireRequiresPerceivedTarget";
             bool attackerUnseen=!TestOnlyClubAttackPolicy.CanSee(s,c.Target,c.Actor);
-            bool attackerInvisibleKnown=s.SchemaVersion<Snapshot.ObservationSchema||ObservationRules.InvisibleRevealed(s,c.Target,c.Actor);
-            bool targetInvisibleKnown=s.SchemaVersion<Snapshot.ObservationSchema||ObservationRules.InvisibleRevealed(s,c.Actor,c.Target);
-            bool targetUnseenDisadvantage=!targetVisible&&!(s.SchemaVersion>=Snapshot.ObservationSchema&&targetInvisibleKnown
+            bool attackerInvisibleKnown=!ObservationRules.Enabled(s)||ObservationRules.InvisibleRevealed(s,c.Target,c.Actor);
+            bool targetInvisibleKnown=!ObservationRules.Enabled(s)||ObservationRules.InvisibleRevealed(s,c.Actor,c.Target);
+            bool targetUnseenDisadvantage=!targetVisible&&!(ObservationRules.Enabled(s)&&targetInvisibleKnown
                 &&ObservationRules.InvisibleIsOnlySightBlocker(s,c.Actor,c.Target));
-            bool attackerUnseenAdvantage=attackerUnseen&&!(s.SchemaVersion>=Snapshot.ObservationSchema&&attackerInvisibleKnown
+            bool attackerUnseenAdvantage=attackerUnseen&&!(ObservationRules.Enabled(s)&&attackerInvisibleKnown
                 &&ObservationRules.InvisibleIsOnlySightBlocker(s,c.Target,c.Actor));
             bool closeHostile=s.WorldSchedule.Order.Where(id=>id!=c.Actor&&!SoldierTacticalFeatures.IsAlly(s,c.Actor,id)).Any(id=>{
                 var other=s.Actors.Single(a=>a.Id==id);var otherLife=s.Lives.Single(l=>l.ActorId==id);

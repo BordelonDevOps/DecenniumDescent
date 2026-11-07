@@ -27,6 +27,8 @@ namespace Decennium.Foundation.Laboratory
             facts = null;
             if (c.Kind != CommandKind.BeginWorldStep || c.Inventory != null || (c.Target != "walk" && c.Target != "run")
                 || !WorldSpatialQueries.Neighbor(0, 0, c.X, c.Y, false)) return "InvalidWorldStep";
+            if (s.RouteTravels.Any(x => x.Status == ExpeditionRouteTravelStatus.Moving && x.TravelerId == c.Actor))
+                return "RouteTravelMustPauseFirst";
             bool scheduled = s.WorldSchedule.Order.Contains(c.Actor);
             bool offCalendar = !scheduled && (c.Actor == TestOnlyPolicy.CompanionId || IsOffCalendarActivity(s, c.Actor));
             if (!scheduled && (!offCalendar || s.InventoryCombat)) return "NoActivityCalendar";
@@ -45,6 +47,7 @@ namespace Decennium.Foundation.Laboratory
             var spatial = WorldSpatialQueries.Step(s, actor.Id, actor.X, actor.Y, toX, toY, false, false, (x, y) => WorldWalkable(s, x, y));
             if (spatial == SpatialStepFailure.Blocked) return "Blocked";
             if (spatial == SpatialStepFailure.Occupied) return "Occupied";
+            if (RoutePathReserved(s, actor.Id, toX, toY)) return "RouteTravelPathReserved";
 
             bool startsEncounter = s.WorldSchedule.Order.Where(id => id != actor.Id && !SoldierTacticalFeatures.IsAlly(s, actor.Id, id)
                 && (connectedCombat == null || !s.Lives.Single(l => l.ActorId == id).Dead)).Any(id => {
@@ -93,6 +96,19 @@ namespace Decennium.Foundation.Laboratory
                 DashAlreadyPaid = dashPaid,
                 ToX = toX, ToY = toY, Cost = movementCost };
             return null;
+        }
+
+        private bool RoutePathReserved(Snapshot s, string actor, int x, int y)
+        {
+            if (routeTravelFixture == null) return false;
+            foreach (var travel in s.RouteTravels.Where(t => t.Status == ExpeditionRouteTravelStatus.Moving
+                && t.TravelerId != actor))
+            {
+                var route = routeTravelFixture.Find(travel.RouteId);
+                if (route != null && route.Positions.Any(p => p.Progress > travel.Progress && p.X == x && p.Y == y))
+                    return true;
+            }
+            return false;
         }
 
         private string AssessTraversalControl(Snapshot s, Command c, out WorldTraversalRecord edge)
@@ -171,6 +187,7 @@ namespace Decennium.Foundation.Laboratory
         {
             var options = new List<Command>(); int index = 0;
             var pending = s.WorldTraversals.SingleOrDefault(x => x.ActorId == actor);
+            var routeTravel = routeTravelFixture == null ? null : OpenRouteTravel(s, actor);
             if (pending != null)
             {
                 var kind = pending.Status == WorldTraversalStatus.Suspended || pending.Status == WorldTraversalStatus.WaitingForRefresh
@@ -178,13 +195,21 @@ namespace Decennium.Foundation.Laboratory
                 yield return new Command("option." + s.Revision.ToString(CultureInfo.InvariantCulture) + ".world." + (index++).ToString(CultureInfo.InvariantCulture),
                     actor, s.Revision, kind);
             }
-            else
+            else if (!s.RouteTravels.Any(x => x.Status == ExpeditionRouteTravelStatus.Moving && x.TravelerId == actor))
             {
                 foreach (var delta in new[] { new[] { 0, -1 }, new[] { -1, 0 }, new[] { 1, 0 }, new[] { 0, 1 } })
                     foreach (string mode in new[] { "walk", "run" })
                         yield return new Command("option." + s.Revision.ToString(CultureInfo.InvariantCulture) + ".world." + (index++).ToString(CultureInfo.InvariantCulture),
                             actor, s.Revision, CommandKind.BeginWorldStep, mode, delta[0], delta[1]);
             }
+            if(routeTravel!=null)
+                yield return new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+".route."+(index++).ToString(CultureInfo.InvariantCulture),
+                    actor,s.Revision,routeTravel.Status==ExpeditionRouteTravelStatus.Moving?CommandKind.PauseRouteTravel:CommandKind.ResumeRouteTravel,
+                    routeTravel.RouteId);
+            else if(routeTravelFixture!=null&&!s.RouteTravels.Any(x=>x.TravelerId==actor&&x.Status!=ExpeditionRouteTravelStatus.SegmentComplete))
+                foreach(var route in routeTravelFixture.Routes.OrderBy(x=>x.Id,StringComparer.Ordinal))
+                    yield return new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+".route."+(index++).ToString(CultureInfo.InvariantCulture),
+                        actor,s.Revision,CommandKind.StartRouteTravel,route.Id);
             if (repair != null && IsRepairWorker(actor))
             {
                 var job = s.RepairWork.SingleOrDefault(x => x.WorkerId == actor && x.Open);
@@ -338,6 +363,7 @@ namespace Decennium.Foundation.Laboratory
 
         private CommandQueryResult QuerySharedWorldCommand(Snapshot s, Authority authority, Command c)
         {
+            if (RouteTravelCommand(c.Kind)) return QueryRouteTravelCommand(s, c);
             if (c.Kind == CommandKind.Search) return QueryObservationSearchCommand(s, c);
             if (IsSupplyCacheCommand(c)) return QuerySupplyCacheCommand(s,c);
             if (IsOrdinaryReceptacleCommand(s,c)) return QueryOrdinaryReceptacleCommand(s,c);

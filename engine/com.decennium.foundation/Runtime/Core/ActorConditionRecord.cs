@@ -16,7 +16,8 @@ namespace Decennium.Foundation
             if (!s.Actors.Select(x => x.Id).OrderBy(x => x, StringComparer.Ordinal)
                 .SequenceEqual(s.Conditions.Select(x => x.Target).OrderBy(x => x, StringComparer.Ordinal)))
                 throw new ArgumentException("Condition journals must match all admitted actors.");
-            if (s.Conditions.Any(x => x.Now.Time != s.RuleClock || x.Now.Phase != 0))
+            if (s.Conditions.Any(x => x.Now.Time > s.RuleClock || x.Now.Phase != 0
+                || s.SchemaVersion < Snapshot.ExpeditionRouteSchema && x.Now.Time != s.RuleClock))
                 throw new ArgumentException("Condition clock disagrees with world clock.");
         }
     }

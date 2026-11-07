@@ -33,7 +33,7 @@ namespace Decennium.Foundation.Laboratory
         internal static void Initialize(Snapshot s)
         {
             string actor=TestOnlyPolicy.ActorId,companion=TestOnlyPolicy.CompanionId;
-            if(s.SchemaVersion!=Snapshot.PortableEquipmentSchema||s.SupplyCaches.Length!=1
+            if(s.SchemaVersion<Snapshot.PortableEquipmentSchema||s.SupplyCaches.Length!=1
                 ||!s.SupplyCacheEquipment.Any(x=>x.Id==PortableKitFixture.Tools))throw new ArgumentException("Portable kit requires the selected cache and actual tools.");
             var pack=PortableKitFixture.Pack;
             s.Work=new WorkLedger(s.Work.Lots.Concat(new[]{

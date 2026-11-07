@@ -42,6 +42,13 @@ namespace Decennium.Foundation.Laboratory
     /// </summary>
     public static class ObservationRules
     {
+        /// <summary>True only when this snapshot actually selected and persisted observation
+        /// content. Append-only schemas may include unrelated systems without an observation map.</summary>
+        public static bool Enabled(Snapshot s)
+            => s != null && s.SchemaVersion >= Snapshot.ObservationSchema
+                && s.ObservationMapWidth > 0 && s.ObservationMapHeight > 0
+                && s.ObservationProfiles != null && s.ObservationProfiles.Length > 0;
+
         public static void Initialize(Snapshot s, ObservationFixture fixture)
         {
             if (s == null || fixture == null || s.SchemaVersion < Snapshot.ObservationSchema)
@@ -58,7 +65,7 @@ namespace Decennium.Foundation.Laboratory
         /// <summary>Refreshes endpoint visibility and invalidates stale locations after unseen movement.</summary>
         public static void Refresh(Snapshot s, RuleTime at, long revision)
         {
-            if (s == null || s.SchemaVersion < Snapshot.ObservationSchema) return;
+            if (!Enabled(s)) return;
             foreach (var observer in s.Actors.OrderBy(x => x.Id, StringComparer.Ordinal))
                 foreach (var target in s.Actors.OrderBy(x => x.Id, StringComparer.Ordinal))
                 {
@@ -109,7 +116,7 @@ namespace Decennium.Foundation.Laboratory
 
         public static bool CanSee(Snapshot s, string observerId, string targetId)
         {
-            if (s == null || s.SchemaVersion < Snapshot.ObservationSchema || observerId == targetId) return false;
+            if (!Enabled(s) || observerId == targetId) return false;
             if (!DirectSightAt(s, observerId, targetId, ObservationGeometry.Position(s, observerId), ObservationGeometry.Position(s, targetId)))
                 return false;
             return !HiddenTo(s, observerId, targetId);
@@ -127,7 +134,7 @@ namespace Decennium.Foundation.Laboratory
 
         public static bool HiddenTo(Snapshot s, string observerId, string targetId)
         {
-            if (s == null || s.SchemaVersion < Snapshot.ObservationSchema || observerId == targetId) return false;
+            if (!Enabled(s) || observerId == targetId) return false;
             var row = Knowledge(s, observerId, targetId);
             if (row == null || row.HiddenAttemptId == "") return false;
             return !DirectSightAt(s, observerId, targetId, ObservationGeometry.Position(s, observerId), ObservationGeometry.Position(s, targetId));
@@ -228,7 +235,7 @@ namespace Decennium.Foundation.Laboratory
             RuleTime start, RuleTime end, long revision,
             ObservationAlgorithmVersion algorithmVersion = ObservationAlgorithmVersion.ExactPathIntervalsV2)
         {
-            if (segments == null || segments.Count == 0 || s.SchemaVersion < Snapshot.ObservationSchema) return;
+            if (segments == null || segments.Count == 0 || !Enabled(s)) return;
             if (algorithmVersion != ObservationAlgorithmVersion.LegacySampledV1
                 && algorithmVersion != ObservationAlgorithmVersion.ExactPathIntervalsV2)
                 throw new ArgumentOutOfRangeException(nameof(algorithmVersion));

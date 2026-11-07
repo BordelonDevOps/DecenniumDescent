@@ -72,7 +72,8 @@ namespace Decennium.Foundation.Laboratory
     public sealed partial class TestOnlySharedWorldPolicy
     {
         private readonly SharedCraftingFixture crafting;
-        private int SelectedSchema => observationFixture!=null ? Snapshot.ObservationSchema
+        private int SelectedSchema => routeTravelFixture!=null ? Snapshot.ExpeditionRouteSchema
+            : observationFixture!=null ? Snapshot.ObservationSchema
             : ordinaryReceptacles!=null ? Snapshot.OrdinaryReceptacleSchema
             : prospectingFixture!=null ? Snapshot.ProspectingSchema
             : miningFixture!=null ? (miningFixture.MiningToolCandidateProfiles.Length>0?Snapshot.MiningToolCandidateSchema

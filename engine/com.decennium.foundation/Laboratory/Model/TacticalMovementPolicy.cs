@@ -34,7 +34,7 @@ namespace Decennium.Foundation.Laboratory
             var body=s.Actors.Single(a=>a.Id==actor);
             if(body.X!=fromX||body.Y!=fromY)return "MovementOriginChanged";
             var spatial=WorldSpatialQueries.Step(s,actor,fromX,fromY,x,y,true,true,
-                (px,py)=>TestOnlyPolicy.Walkable(px,py)&&(s.SchemaVersion<Snapshot.ObservationSchema||ObservationGeometry.SupportsAnchorAt(s,px,py)));
+                (px,py)=>TestOnlyPolicy.Walkable(px,py)&&(!ObservationRules.Enabled(s)||ObservationGeometry.SupportsAnchorAt(s,px,py)));
             if(spatial==SpatialStepFailure.NotNeighbor)return "InvalidTacticalStep";
             if(spatial==SpatialStepFailure.Blocked)return "BlockedTacticalStep";
             if(spatial==SpatialStepFailure.Occupied)return "OccupiedTacticalStep";
@@ -206,7 +206,7 @@ namespace Decennium.Foundation.Laboratory
                     }
                     else if(move.Kind==TacticalMoveKind.TacticalReposition)CharacterAdvancementRules.SpendReposition(s,move.ActorId,cost);
                     var actor=s.Actors.Single(a=>a.Id==move.ActorId);actor.X=move.ToX;actor.Y=move.ToY;
-                    if(s.SchemaVersion>=Snapshot.ObservationSchema)ObservationRules.Refresh(s,s.RuleClock,s.Revision+1);
+                    if(ObservationRules.Enabled(s))ObservationRules.Refresh(s,s.RuleClock,s.Revision+1);
                     if(cost>0)CharacterAdvancementRules.MarkMoved(s,move.ActorId);
                     s.Clubs=s.Clubs.Select(w=>w.HeldBy==actor.Id?new ClubInstance(w.Id,w.ProfileId,w.OwnerId,w.CustodianId,w.HeldBy,actor.X,actor.Y):w).ToArray();
                     if(s.SchemaVersion>=Snapshot.OverwatchExecutionSchema)

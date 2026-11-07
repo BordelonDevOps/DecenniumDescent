@@ -33,6 +33,16 @@ namespace Decennium.Foundation.Tests
                 Throws<ArgumentException>(() => CCApply("bad", "Blinded", expires: CJAt(1, 20)));
                 Throws<ArgumentException>(() => CCApply("bad", "Blinded", at: CJAt(0, 10)));
             });
+            cases.Add("condition_combat_pre_route_schema_reads_keep_their_original_journal_clock", () => {
+                var snapshot = CCPolicy().Initial();
+                var journal = snapshot.Conditions.Single(x => x.Target == TestOnlyPolicy.ActorId);
+                RuleTime savedJournalTime = journal.Now.Time;
+                snapshot.RuleClock = snapshot.RuleClock.AddSeconds(1);
+                var ledger = TestOnlyClubAttackPolicy.ConditionsFor(snapshot, TestOnlyPolicy.ActorId);
+                Require(snapshot.SchemaVersion == Snapshot.ConditionSchema && ledger.Now.Time == savedJournalTime
+                    && ledger.Now.Time != snapshot.RuleClock,
+                    "A pre-schema52 condition read projected sparse-journal time and changed historical behavior.");
+            });
             cases.Add("condition_combat_world_authority_and_retry_revocation_precede_duplicate", () => {
                 var p = CCPolicy(new[] { CCApply("blind", "Blinded") }); var s = Clubs(p); var c = CCCommand(s, "blind");
                 var noWorld = new Authority("TEST_ONLY.host", new[] { TestOnlyPolicy.ActorId });

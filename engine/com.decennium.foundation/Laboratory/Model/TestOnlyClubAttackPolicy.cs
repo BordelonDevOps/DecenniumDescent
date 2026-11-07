@@ -162,7 +162,8 @@ namespace Decennium.Foundation.Laboratory
                 }
                 // Dropping voluntarily changes no position, spent cost or stance allowance. Zero Speed alone does not prohibit it.
                 if(WithConditions(s)) {
-                    if(standing)AppendCondition(s,c.Actor,ConditionOperation.Cure("host.stand."+N(s.Revision+1),s.Conditions.Single(j=>j.Target==c.Actor).Now,"Prone"));
+                    if(standing)AppendCondition(s,c.Actor,ConditionOperation.Cure("host.stand."+N(s.Revision+1),
+                        new ConditionStamp(s.RuleClock),"Prone"));
                     else AddPhysicalProne(s,c.Actor,"voluntary-prone");
                 } else s.Lives=s.Lives.Select(l=>l.ActorId==c.Actor?ActorLifeRules.Record(l.ActorId,ActorLifeRules.Read(l),!standing,l.HeldItems):l).ToArray();return null;
             }
@@ -208,11 +209,11 @@ namespace Decennium.Foundation.Laboratory
             if(target==null||target.ActorId==c.Actor||target.Dead)return "InvalidLivingTarget";
             if(!DamageConditionCapacity(s,c.Target))return "ConditionHistoryCapacityReached";
             var a=s.Actors.Single(x=>x.Id==c.Actor);var t=s.Actors.Single(x=>x.Id==c.Target);
-            if(s.SchemaVersion>=Snapshot.ObservationSchema&&!ObservationRules.LocationKnown(s,c.Actor,c.Target))return "TargetLocationUnknown";
-            if(s.SchemaVersion>=Snapshot.ObservationSchema&&!ObservationGeometry.LineOfEffectClear(s,c.Actor,c.Target))return "BlockedLineOfEffect";
+            if(ObservationRules.Enabled(s)&&!ObservationRules.LocationKnown(s,c.Actor,c.Target))return "TargetLocationUnknown";
+            if(ObservationRules.Enabled(s)&&!ObservationGeometry.LineOfEffectClear(s,c.Actor,c.Target))return "BlockedLineOfEffect";
             if(PlanarCombatGeometry.DistanceFeet(new CombatCell(a.X,a.Y),new CombatCell(t.X,t.Y))>5)return "TargetOutOfReach";
-            bool attackerInvisibleKnown=s.SchemaVersion<Snapshot.ObservationSchema||ObservationRules.InvisibleRevealed(s,c.Target,c.Actor);
-            bool targetInvisibleKnown=s.SchemaVersion<Snapshot.ObservationSchema||ObservationRules.InvisibleRevealed(s,c.Actor,c.Target);
+            bool attackerInvisibleKnown=!ObservationRules.Enabled(s)||ObservationRules.InvisibleRevealed(s,c.Target,c.Actor);
+            bool targetInvisibleKnown=!ObservationRules.Enabled(s)||ObservationRules.InvisibleRevealed(s,c.Actor,c.Target);
             var modifiers=PlaytestConditions.Attack(CombatConditions(s,c.Actor),CombatConditions(s,c.Target),
                 attackerInvisibleLocationKnown:attackerInvisibleKnown,targetInvisibleLocationKnown:targetInvisibleKnown);
             var incomingEffects=SoldierTacticalFeatures.ForAttack(s,c.Actor,c.Target);

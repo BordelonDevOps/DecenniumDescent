@@ -204,6 +204,12 @@ namespace Decennium.Foundation
                     throw new ArgumentException("Observation state requires schema51.");
                 return;
             }
+            // Schema51 profiles always selected authored observation content. Later append-only
+            // schemas may carry other independent components without selecting observation.
+            if (s.SchemaVersion > Snapshot.ObservationSchema && s.ObservationMapWidth == 0
+                && s.ObservationMapHeight == 0 && s.ObservationCells.Length == 0
+                && s.ObservationProfiles.Length == 0 && s.ObservationActions.Length == 0
+                && s.ObservationHideResults.Length == 0 && s.ObserverKnowledge.Length == 0) return;
             if (s.ObservationMapWidth < 1 || s.ObservationMapWidth > 64 || s.ObservationMapHeight < 1 || s.ObservationMapHeight > 64
                 || s.ObservationCells.Select(x => x.X + "," + x.Y).Distinct(StringComparer.Ordinal).Count() != s.ObservationCells.Length
                 || s.ObservationCells.Any(x => x.X >= s.ObservationMapWidth || x.Y >= s.ObservationMapHeight)

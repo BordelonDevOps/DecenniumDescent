@@ -8,7 +8,12 @@ namespace Decennium.Foundation.Laboratory
     {
         private readonly ConditionCombatFixture conditions;
         public static ConditionLedger ConditionsFor(Snapshot s, string actor)
-            => ConditionHistory.Restore(s.Conditions.Single(x => x.Target == actor)).Ledger;
+        {
+            var ledger = ConditionHistory.Restore(s.Conditions.Single(x => x.Target == actor)).Ledger;
+            if (s.SchemaVersion < Snapshot.ExpeditionRouteSchema) return ledger;
+            var current = new EffectClockMarker(s.RuleClock);
+            return ledger.Now.CompareTo(current) < 0 ? ledger.AdvanceTo(current).State : ledger;
+        }
         private static bool WithConditions(Snapshot s) => s.SchemaVersion >= Snapshot.ConditionSchema;
         internal static bool Aware(Snapshot s, string actor) => ActorLifeRules.CanAct(s, actor)
             && (!WithConditions(s) || !ConditionsFor(s, actor).View().Unaware);
@@ -32,7 +37,7 @@ namespace Decennium.Foundation.Laboratory
             ? ConditionsFor(s, actor).View().Has(ConditionKind.Prone) : s.Lives.Single(x => x.ActorId == actor).Prone;
         internal static bool CanSee(Snapshot s, string observer, string target)
         {
-            if (s.SchemaVersion >= Snapshot.ObservationSchema) return ObservationRules.CanSee(s, observer, target);
+            if (ObservationRules.Enabled(s)) return ObservationRules.CanSee(s, observer, target);
             bool conditionSight = !WithConditions(s)
                 || Aware(s, observer) && !ConditionsFor(s, observer).View().BlocksSight
                     && !ConditionsFor(s, target).View().Has(ConditionKind.Invisible);
@@ -62,13 +67,26 @@ namespace Decennium.Foundation.Laboratory
             s.Clubs = s.Clubs.Select(x => x.HeldBy == actor ? new ClubInstance(x.Id, x.ProfileId, x.OwnerId, x.CustodianId, "", body.X, body.Y) : x).ToArray();
             s.RepeatingCrossbows=s.RepeatingCrossbows.Select(x=>x.HeldBy==actor?x.DropAt(body.X,body.Y):x).ToArray();
         }
+        private static void SynchronizeConditionJournal(Snapshot s, string actor, ConditionStamp at)
+        {
+            var journal = s.Conditions.Single(x => x.Target == actor);
+            if (journal.Now.Equals(at)) return;
+            if (journal.Now.Time > at.Time) throw new ArgumentException("Condition journal is ahead of the shared clock.");
+            string id = "host.clock." + N(s.Revision + 1) + ".sync." + actor;
+            CommitCondition(s, ConditionHistory.Restore(journal).Append(ConditionOperation.Advance(id, at)));
+        }
         private static void AppendCondition(Snapshot s, string actor, ConditionOperation operation)
-            => CommitCondition(s, ConditionHistory.Restore(s.Conditions.Single(x => x.Target == actor)).Append(operation));
+        {
+            var at = new ConditionStamp(s.RuleClock);
+            if (operation.Kind != ConditionOperationKind.Advance && operation.At.Equals(at))
+                SynchronizeConditionJournal(s, actor, at);
+            CommitCondition(s, ConditionHistory.Restore(s.Conditions.Single(x => x.Target == actor)).Append(operation));
+        }
         private static void AddPhysicalProne(Snapshot s, string actor, string cause)
         {
             var journal = s.Conditions.Single(x => x.Target == actor);
             string id = "host." + cause + "." + N(s.Revision + 1);
-            AppendCondition(s, actor, ConditionOperation.Apply(id, journal.Now,
+            AppendCondition(s, actor, ConditionOperation.Apply(id, new ConditionStamp(s.RuleClock),
                 new ConditionApplicationData(id, actor, "TEST_ONLY." + cause, "Prone", null, "stand-or-explicit-cure", true)));
         }
         private void InitializeConditions(Snapshot s)
@@ -96,6 +114,14 @@ namespace Decennium.Foundation.Laboratory
                     "host.clock."+N(s.Revision+1)+subevent,new ConditionStamp(s.RuleClock)));
             }
         }
+        internal static bool HasUnprocessedConditionDeadline(Snapshot s)
+            => s.Conditions.Any(journal => {
+                var ledger = ConditionHistory.Restore(journal).Ledger;
+                return ledger.Applications.Any(x => !x.EndedAt.HasValue && x.Application.Expires.HasValue
+                        && x.Application.Expires.Value.Time <= s.RuleClock)
+                    || ledger.Immunities.Any(x => !x.EndedAt.HasValue && x.Grant.Expires.HasValue
+                        && x.Grant.Expires.Value.Time <= s.RuleClock);
+            });
         private string DispatchCondition(Snapshot s, Command c)
         {
             if (c.X != 0 || c.Y != 0 || c.Inventory != null || c.Combat != null) return "InvalidConditionEvent";
@@ -105,6 +131,8 @@ namespace Decennium.Foundation.Laboratory
                 return "ContinuationCapacityReached";
             var fact = conditions.Events.SingleOrDefault(x => x.Operation.Id == c.Target && x.Target == c.Actor);
             if (fact == null) return "UnknownConditionEvent";
+            if (!fact.Operation.At.Equals(new ConditionStamp(s.RuleClock))) return "WrongConditionEventTime";
+            SynchronizeConditionJournal(s, fact.Target, fact.Operation.At);
             var journal = s.Conditions.Single(x => x.Target == fact.Target);
             if (journal.Operations.Any(x => x.Id == fact.Operation.Id)) return "ConditionEventAlreadyResolved";
             if (!journal.Now.Equals(fact.Operation.At)) return "WrongConditionEventTime";

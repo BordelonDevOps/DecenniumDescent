@@ -138,10 +138,10 @@ namespace Decennium.Foundation.Laboratory
             var incomingEffects=SoldierTacticalFeatures.ForAttack(s,offer.OwnerId,offer.TargetId);
             int flatAttack=checked((s.Lives.Single(x=>x.ActorId==offer.OwnerId).LinkedInjuries.Contains((int)Injury.OffensiveTrauma)?-1:0)
                 -incomingEffects.CoveringFirePenalty+incomingEffects.TacticalAssessmentBonus);
-            bool attackerInvisibleKnown=s.SchemaVersion<Snapshot.ObservationSchema||ObservationRules.InvisibleRevealed(s,offer.TargetId,offer.OwnerId);
-            bool targetInvisibleKnown=s.SchemaVersion<Snapshot.ObservationSchema||ObservationRules.InvisibleRevealed(s,offer.OwnerId,offer.TargetId);
+            bool attackerInvisibleKnown=!ObservationRules.Enabled(s)||ObservationRules.InvisibleRevealed(s,offer.TargetId,offer.OwnerId);
+            bool targetInvisibleKnown=!ObservationRules.Enabled(s)||ObservationRules.InvisibleRevealed(s,offer.OwnerId,offer.TargetId);
             bool attackerUnseen=!TestOnlyClubAttackPolicy.CanSee(s,offer.TargetId,offer.OwnerId);
-            bool attackerUnseenAdvantage=attackerUnseen&&!(s.SchemaVersion>=Snapshot.ObservationSchema&&attackerInvisibleKnown
+            bool attackerUnseenAdvantage=attackerUnseen&&!(ObservationRules.Enabled(s)&&attackerInvisibleKnown
                 &&ObservationRules.InvisibleIsOnlySightBlocker(s,offer.TargetId,offer.OwnerId));
             var request=new RangedAttackRequest(distance,RepeatingCrossbowShotRules.NormalRangeFeet,RepeatingCrossbowShotRules.MaximumRangeFeet,ac,
                 PlaytestCharacters.AbilityModifier(attacker.DexterityScore),attacker.ProficiencyBonus,attacker.CrossbowProficient,flatAttack,
@@ -263,7 +263,7 @@ namespace Decennium.Foundation.Laboratory
                         int directionX=Math.Sign(target.X-owner.X),directionY=Math.Sign(target.Y-owner.Y);
                         toX=target.X+directionX;toY=target.Y+directionY;
                         if((directionX!=0||directionY!=0)&&TestOnlyPolicy.Walkable(toX,toY)
-                            &&(s.SchemaVersion<Snapshot.ObservationSchema||ObservationGeometry.SupportsAnchorAt(s,toX,toY))
+                            &&(!ObservationRules.Enabled(s)||ObservationGeometry.SupportsAnchorAt(s,toX,toY))
                             &&!s.Actors.Any(x=>x.Id!=target.Id&&x.X==toX&&x.Y==toY)) {
                             target.X=toX;target.Y=toY;moved=5;
                             CharacterAdvancementRules.MarkMoved(s,target.Id);

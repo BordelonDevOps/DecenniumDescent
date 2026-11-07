@@ -32,6 +32,7 @@ namespace Decennium.Foundation.Laboratory
                 throw new ArgumentOutOfRangeException(nameof(algorithmVersion));
             if (initializationStarted) throw new InvalidOperationException("Observation content must be selected before Initial().");
             if (observationFixture != null) throw new InvalidOperationException("Observation content is already selected.");
+            if (routeTravelFixture != null) throw new InvalidOperationException("RouteObservationIntegrationUnsupported");
             observationFixture = fixture;
             observationAlgorithmVersion = algorithmVersion;
             ContentFingerprint = ObservationFixture.BindFingerprint(ContentFingerprint, fixture, algorithmVersion);
@@ -159,6 +160,9 @@ namespace Decennium.Foundation.Laboratory
             if(s.InventoryCombat)return "AlreadyInTacticalControl";
             if(s.WorldTraversals.Length!=0)return "OffGridCombatEntryUnsupported";
             if(s.WorldSchedule.ProcessedSlot>=int.MaxValue)return "CombatCalendarCapacityReached";
+            if(routeTravelFixture!=null)
+                foreach(var travel in s.RouteTravels.Where(x=>x.Status==ExpeditionRouteTravelStatus.Moving).ToArray())
+                    SetRouteTravel(s,travel.With(travel.NominalEffort,ExpeditionRouteTravelStatus.Paused));
             if(s.Encounter==null)s.Encounter=new FixedEncounterRecord("world.fixed-conflict",s.WorldSchedule.Origin,s.WorldSchedule.Order,new[]{s.Revision+1},new[]{(int)s.WorldSchedule.ProcessedSlot});
             foreach(string actor in s.WorldSchedule.Order)PauseParticipantWork(s,actor);
             // Starts have already been processed by shared advancement. Do not replay one here.

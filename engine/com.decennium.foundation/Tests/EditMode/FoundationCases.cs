@@ -255,6 +255,7 @@ namespace Decennium.Foundation.Tests
             AddMiningCases(cases,directory);
             AddProspectingCases(cases,directory);
             AddObservationCases(cases);
+            AddExpeditionRouteTravelCases(cases,directory);
             AddMiningAssayCases(cases,directory);
             AddPeriodicRiderCases(cases,directory);
             AddOverwatchExecutionCases(cases,directory);
