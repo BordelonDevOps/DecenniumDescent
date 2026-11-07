@@ -236,7 +236,7 @@ namespace Decennium.Foundation.Laboratory
         {
             var armor=s.PortableEquipment.SingleOrDefault(x=>x.CustodianId==actor&&x.ParentId==""
                 &&x.Placement==PortablePlacement.Worn&&x.ProfileId=="armor-and-shields.chain-mail");
-            return armor!=null&&s.Characters.Single(x=>x.ActorId==actor).Abilities[0]<13?10:0;
+            return armor!=null&&CharacterRuleFacts.ForActor(s,actor).AbilityScore(CharacterAbility.Strength)<13?10:0;
         }
         internal static bool ShieldOccupiesHand(Snapshot s,string actor)
             =>s.PortableEquipment.Any(x=>x.CustodianId==actor&&x.ParentId==""&&x.Placement==PortablePlacement.Worn
@@ -252,8 +252,7 @@ namespace Decennium.Foundation.Laboratory
         {
             var loadout=s.InitialCharacterLoadouts.SingleOrDefault(x=>x.ActorId==actor);
             if(loadout==null||!loadout.SavingThrowProficiencyIds.Contains(abilityId,StringComparer.Ordinal))return 0;
-            var character=s.Characters.Single(x=>x.ActorId==actor);
-            return PlaytestCharacters.ProficiencyBonus(character.Levels.Count);
+            return CharacterRuleFacts.ForActor(s,actor).ProficiencyBonus;
         }
         public static long ReduceIncomingDamage(Snapshot s,string actor,long amount)
         {
@@ -385,7 +384,8 @@ namespace Decennium.Foundation.Laboratory
             int lastStart=checked((int)s.WorldIntervals.Single(x=>x.ActorId==c.Actor).LastStart);
             if(priorRuntime!=null&&priorRuntime.LastRegularStart!=lastStart)return "FeatureRuntimeStartMismatch";
             var levels=character.Levels.Concat(new[]{new CharacterLevelFact("Soldier",6)}).ToArray();
-            var hp=PlaytestCharacters.BaseMaximumHp(levels.Select(x=>new CharacterLevelRecord(x.ClassName,x.BaseHp)).ToArray(),character.Abilities[2]);
+            var hp=PlaytestCharacters.BaseMaximumHp(levels.Select(x=>new CharacterLevelRecord(x.ClassName,x.BaseHp)).ToArray(),
+                CharacterRuleFacts.From(character).AbilityScore(CharacterAbility.Constitution));
             long newHp=PlaytestCharacters.ClampAfterCapacityChange(life.Hp,hp.BaseMaximum);
             // No resource or life transition is attached to a capacity increase.
             s.Characters=s.Characters.Select(x=>x.ActorId==c.Actor?new ActorCharacterRecord(x.ActorId,x.ProfileId,x.Abilities,levels):x).ToArray();

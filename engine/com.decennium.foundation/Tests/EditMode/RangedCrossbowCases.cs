@@ -77,6 +77,28 @@ namespace Decennium.Foundation.Tests
                 var restored=new Simulation(p,new FileSaveStore().Load(path),ExecutionProfile.Laboratory);
                 Require(Bytes(s).SequenceEqual(Bytes(restored)),"Ranged outcome, ammunition provenance or damage did not survive save/restore.");
             });
+            cases.Add("repeating_crossbow_attack_uses_character_facts_after_stale_cache_save_restore_and_replay",()=>{
+                var p=RangedPolicy(SeedForNatural(20),fixture:new RepeatingCrossbowFixture(legacyProficiencyBonusProjection:0));
+                var s=World(p);PrepareRangedActorTurn(s);
+                var initial=s.Capture();var cached=initial.RangedCombatants.Single(x=>x.ActorId==TestOnlyPolicy.ActorId);
+                Require(cached.ProficiencyBonus==0,"The test fixture did not initialize a stale compatibility projection.");
+                byte[] before=Bytes(s);var restoredBefore=new Simulation(p,codec.Decode(before),ExecutionProfile.Laboratory);
+                Require(before.SequenceEqual(Bytes(restoredBefore))&&restoredBefore.Capture().RangedCombatants.Single(x=>x.ActorId==cached.ActorId).ProficiencyBonus==0,
+                    "The historical ranged numeric cache did not survive byte-for-byte save/restore.");
+                var replay=new Simulation(p,codec.Decode(before),ExecutionProfile.Laboratory);
+                var attack=RangedCommand(restoredBefore,CommandKind.AttackRepeatingCrossbow,AdditionalTacticalActor.Id);
+                var first=restoredBefore.Execute(host,attack);var second=replay.Execute(host,attack);
+                var facts=CharacterRuleFacts.ForActor(restoredBefore.Capture(),TestOnlyPolicy.ActorId);
+                int expected=checked(facts.AbilityModifier(CharacterAbility.Dexterity)
+                    +(cached.CrossbowProficient?facts.ProficiencyBonus:0));
+                Require(first.Outcome==Outcome.Committed&&second.Outcome==Outcome.Committed
+                    &&restoredBefore.Capture().RangedAttacks.Single().Attack.Modifier==expected&&expected!=cached.ProficiencyBonus
+                    &&Bytes(restoredBefore).SequenceEqual(Bytes(replay)),
+                    "Attack resolution reused stale cached proficiency instead of the restored authoritative character record.");
+                byte[] after=Bytes(restoredBefore);var restoredAfter=new Simulation(p,codec.Decode(after),ExecutionProfile.Laboratory);
+                Require(after.SequenceEqual(Bytes(restoredAfter))&&restoredAfter.Execute(host,attack).Outcome==Outcome.Duplicate
+                    &&after.SequenceEqual(Bytes(restoredAfter)),"Post-attack save/restore or deterministic command replay changed the authoritative result.");
+            });
             cases.Add("repeating_crossbow_rejects_empty_ammo_and_blocked_unknown_or_total_cover_before_roll",()=>{
                 foreach(var item in new[]{
                     new{Fixture=new RepeatingCrossbowFixture(targetLocationKnown:false),Failure="RangedAttackUnknownTargetLocation"},

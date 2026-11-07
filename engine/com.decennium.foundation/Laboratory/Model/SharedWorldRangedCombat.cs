@@ -28,19 +28,23 @@ namespace Decennium.Foundation.Laboratory
         public CombatCover TargetCover { get; }
         public bool Proficient { get; }
         public string ProficiencySource { get; }
+        public int? LegacyProficiencyBonusProjection { get; }
         public RepeatingCrossbowFixture(bool targetLocationKnown=true,bool targetVisible=true,bool lineOfFireClear=true,
-            CombatCover targetCover=CombatCover.None,bool proficient=true,bool shooterIsAdditional=false)
+            CombatCover targetCover=CombatCover.None,bool proficient=true,bool shooterIsAdditional=false,int? legacyProficiencyBonusProjection=null)
         {
             ShooterId=shooterIsAdditional?AdditionalTacticalActor.Id:TestOnlyPolicy.ActorId;
             TargetId=shooterIsAdditional?TestOnlyPolicy.ActorId:AdditionalTacticalActor.Id;
             ShooterX=shooterIsAdditional?4:0;ShooterY=0;TargetX=shooterIsAdditional?0:4;TargetY=0;
             if(!Enum.IsDefined(typeof(CombatCover),targetCover))throw new ArgumentException("Unknown authored crossbow cover.");
             TargetLocationKnown=targetLocationKnown;TargetVisible=targetVisible;LineOfFireClear=lineOfFireClear;TargetCover=targetCover;
-            Proficient=proficient;ProficiencySource=proficient?TrainingId:"";
+            if(legacyProficiencyBonusProjection.HasValue&&(legacyProficiencyBonusProjection.Value<0||legacyProficiencyBonusProjection.Value>10))
+                throw new ArgumentOutOfRangeException(nameof(legacyProficiencyBonusProjection));
+            Proficient=proficient;ProficiencySource=proficient?TrainingId:"";LegacyProficiencyBonusProjection=legacyProficiencyBonusProjection;
         }
         internal string Key=>"repeating-crossbow-schema22-v1|new.repeating-heavy-crossbow:20lb:80/320:1d10-piercing:two-hands:repeating5|"
             +ShooterId+"|"+TargetId+"|lane="+ShooterX+","+ShooterY+">"+TargetX+","+TargetY+"|known="+TargetLocationKnown+"|visible="+TargetVisible
             +"|clear="+LineOfFireClear+"|cover="+(int)TargetCover+"|dex10|pb2|proficient="+Proficient+"|training="+ProficiencySource
+            +(LegacyProficiencyBonusProjection.HasValue?"|legacy-pb="+LegacyProficiencyBonusProjection.Value.ToString(CultureInfo.InvariantCulture):"")
             +"|kit=twenty-bolts-one-bundle-empty-magazine|combat-source=46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4";
         internal static string BindFingerprint(string prior,RepeatingCrossbowFixture facts)
         {
@@ -385,9 +389,9 @@ namespace Decennium.Foundation.Laboratory
                 if(rangedCombat.TargetCover==CombatCover.Total)return "SuppressionTargetHasTotalCover";
                 if(!TestOnlyClubAttackPolicy.DamageConditionCapacity(s,targetId))return "ConditionHistoryCapacityReached";
             }
-            var character=s.Characters.Single(x=>x.ActorId==c.Actor);
+            var character=CharacterRuleFacts.ForActor(s,c.Actor);
             int level=grants[0].ClassLevel;
-            int dc=checked(8+PlaytestCharacters.ProficiencyBonus(character.Levels.Count)+PlaytestCharacters.AbilityModifier(character.Abilities[2]));
+            int dc=checked(8+character.ProficiencyBonus+character.AbilityModifier(CharacterAbility.Constitution));
             facts=new SuppressionFireAssessment{Interval=interval,Weapon=weapon,AmmunitionLots=weapon.LoadedBoltLots.Take(3).ToArray(),
                 TargetIds=targetIds,ClassLevel=level,SaveDc=dc};
             return null;
@@ -406,8 +410,8 @@ namespace Decennium.Foundation.Laboratory
             int slowIndex=0;
             foreach(string targetId in facts.TargetIds.OrderBy(x=>x,StringComparer.Ordinal)) {
                 var actor=s.Actors.Single(x=>x.Id==targetId);var life=s.Lives.Single(x=>x.ActorId==targetId);
-                var character=s.Characters.Single(x=>x.ActorId==targetId);
-                int modifier=checked(PlaytestCharacters.AbilityModifier(character.Abilities[1])+CharacterAdvancementRules.SaveProficiencyBonus(s,targetId,"DEX"));
+                var character=CharacterRuleFacts.ForActor(s,targetId);
+                int modifier=checked(character.AbilityModifier(CharacterAbility.Dexterity)+CharacterAdvancementRules.SaveProficiencyBonus(s,targetId,"DEX"));
                 uint saveBefore=s.RandomState,saveAfter=saveBefore;long saveWords=0;int natural=0;long total=0;bool success=false;
                 bool automaticFailure=life.Hp==0||life.Dead||TestOnlyClubAttackPolicy.ConditionsFor(s,targetId).View().AutomaticStrengthDexterityFailure;
                 if(!automaticFailure) {
@@ -419,8 +423,7 @@ namespace Decennium.Foundation.Laboratory
                 if(TestOnlyClubAttackPolicy.ConditionsFor(s,targetId).View().Has(ConditionKind.Petrified))
                     afterDefense=PlaytestConditions.PetrifiedDamage(afterDefense);
                 uint lifeBefore=s.RandomState;
-                var conCharacter=character;
-                int constitutionSave=checked(PlaytestCharacters.AbilityModifier(conCharacter.Abilities[2])
+                int constitutionSave=checked(character.AbilityModifier(CharacterAbility.Constitution)
                     +CharacterAdvancementRules.SaveProficiencyBonus(s,targetId,"CON"));
                 var rolledDamage=PlaytestDamageDice.Resolve(ActorLifeRules.Read(life),afterDefense,s.RuleClock,lifeBefore,
                     constitutionSaveModifier:constitutionSave,critical:false,melee:false,knockout:KnockoutInstruction.OrdinaryOutcome);
@@ -459,7 +462,8 @@ namespace Decennium.Foundation.Laboratory
         {
             if(rangedCombat==null)return;
             if(s.SchemaVersion<Snapshot.RepeatingCrossbowSchema||s.Actors.All(a=>a.Id!=rangedCombat.ShooterId)
-                ||s.Actors.All(a=>a.Id!=rangedCombat.TargetId)||s.Characters.Single(c=>c.ActorId==rangedCombat.ShooterId).Abilities[1]!=10)
+                ||s.Actors.All(a=>a.Id!=rangedCombat.TargetId)||s.Characters.All(c=>c.ActorId!=rangedCombat.ShooterId)
+                ||CharacterRuleFacts.ForActor(s,rangedCombat.ShooterId).AbilityScore(CharacterAbility.Dexterity)!=10)
                 throw new ArgumentException("The explicit crossbow fixture does not match the selected actor roster.");
             var shooter=s.Actors.Single(a=>a.Id==rangedCombat.ShooterId);
             var target=s.Actors.Single(a=>a.Id==rangedCombat.TargetId);
@@ -468,12 +472,13 @@ namespace Decennium.Foundation.Laboratory
             var oldWeapon=s.Clubs.Single(c=>c.HeldBy==rangedCombat.ShooterId);
             s.Clubs=s.Clubs.Select(c=>c.Id==oldWeapon.Id?new ClubInstance(c.Id,c.ProfileId,c.OwnerId,c.CustodianId,"",shooter.X,shooter.Y):c).ToArray();
             s.Lives=s.Lives.Select(l=>l.ActorId==rangedCombat.ShooterId?ActorLifeRules.Record(l.ActorId,ActorLifeRules.Read(l),l.Prone,new[]{RepeatingCrossbowFixture.WeaponId}):l).ToArray();
-            var shooterCharacter=s.Characters.Single(c=>c.ActorId==rangedCombat.ShooterId);
+            var shooterFacts=CharacterRuleFacts.ForActor(s,rangedCombat.ShooterId);
             s.RepeatingCrossbows=new[]{new RepeatingCrossbowRecord(RepeatingCrossbowFixture.WeaponId,"new.repeating-heavy-crossbow",rangedCombat.ShooterId,
                 rangedCombat.ShooterId,rangedCombat.ShooterId,2,shooter.X,shooter.Y)};
             s.AmmunitionLots=new[]{new AmmunitionLotRecord(RepeatingCrossbowFixture.AmmunitionId,"ammunition.crossbow-bolts-20",rangedCombat.ShooterId,
                 rangedCombat.ShooterId,20,20,true)};
-            s.RangedCombatants=new[]{new RangedCombatantRecord(rangedCombat.ShooterId,shooterCharacter.Abilities[1],PlaytestCharacters.ProficiencyBonus(shooterCharacter.Levels.Count),
+            s.RangedCombatants=new[]{new RangedCombatantRecord(rangedCombat.ShooterId,shooterFacts.AbilityScore(CharacterAbility.Dexterity),
+                rangedCombat.LegacyProficiencyBonusProjection??shooterFacts.ProficiencyBonus,
                 rangedCombat.Proficient,rangedCombat.ProficiencySource)};
         }
 
@@ -532,8 +537,9 @@ namespace Decennium.Foundation.Laboratory
             if(RepeatingCrossbowAttackHands(s,c.Actor,weapon)<2)return "TwoHandsRequired";
             string physicalFailure=TestOnlyClubAttackPolicy.PhysicalAttackFailure(s,c.Actor);if(physicalFailure!=null)return physicalFailure;
             var combatant=s.RangedCombatants.Single(x=>x.ActorId==c.Actor);
-            var targetCombatant=s.RangedCombatants.SingleOrDefault(x=>x.ActorId==c.Target);
-            int targetDex=targetCombatant?.DexterityScore??s.Characters.Single(x=>x.ActorId==c.Target).Abilities[1];
+            var attackerFacts=CharacterRuleFacts.ForActor(s,c.Actor);
+            var targetFacts=CharacterRuleFacts.ForActor(s,c.Target);
+            int targetDex=targetFacts.AbilityScore(CharacterAbility.Dexterity);
             var targetStance=TestOnlyClubAttackPolicy.ActiveStance(s,c.Target);
             int armorClass=checked(CharacterAdvancementRules.ArmorClass(s,c.Target,targetDex)
                 +(targetStance?.Kind==CombatStance.Aggressive?-2:targetStance?.Kind==CombatStance.Guarded?1:0)
@@ -564,7 +570,7 @@ namespace Decennium.Foundation.Laboratory
                 +incomingEffects.TacticalAssessmentBonus);
             var rangedFacts=new RangedAttackRequest(distance,
                 RepeatingCrossbowShotRules.NormalRangeFeet,RepeatingCrossbowShotRules.MaximumRangeFeet,armorClass,
-                PlaytestCharacters.AbilityModifier(combatant.DexterityScore),combatant.ProficiencyBonus,combatant.CrossbowProficient,flatAttack,
+                attackerFacts.AbilityModifier(CharacterAbility.Dexterity),attackerFacts.ProficiencyBonus,combatant.CrossbowProficient,flatAttack,
                 rangedCombat.TargetCover,targetLocationKnown,targetVisible,lineOfFireClear,attackerUnseen,closeHostile,
                 TestOnlyClubAttackPolicy.CombatConditions(s,c.Actor),TestOnlyClubAttackPolicy.CombatConditions(s,c.Target),
                 attackerInvisibleLocationKnown:attackerInvisibleKnown,targetInvisibleLocationKnown:targetInvisibleKnown,
@@ -596,7 +602,7 @@ namespace Decennium.Foundation.Laboratory
             if(weapon.LoadedBoltLots.Count>0&&weapon.GripHands==1)
                 s.RepeatingCrossbows=s.RepeatingCrossbows.Select(x=>x.Id==weapon.Id?x.WithGrip(2):x).ToArray();
             weapon=s.RepeatingCrossbows.Single(x=>x.Id==weapon.Id);
-            var combatant=s.RangedCombatants.Single(x=>x.ActorId==c.Actor);
+            var attackerFacts=CharacterRuleFacts.ForActor(s,c.Actor);
             var life=s.Lives.Single(x=>x.ActorId==c.Target);
             uint randomBefore=s.RandomState;
             string attackId="ranged."+N(s.Revision+1);string technique=SoldierTacticalFeatures.Technique(c.Kind);
@@ -611,13 +617,12 @@ namespace Decennium.Foundation.Laboratory
             int flatDamage=0;long damageTotal=0,afterDefense=0;RolledDamage rolled=null;
             if(shot.Attack.Attack.Hit) {
                 int aggressive=c.Kind==CommandKind.WarningShot?0:TestOnlyClubAttackPolicy.ActiveStance(s,c.Actor)?.Kind==CombatStance.Aggressive?2:0;
-                flatDamage=c.Kind==CommandKind.WarningShot?0:checked(PlaytestCharacters.AbilityModifier(combatant.DexterityScore)+aggressive);
+                flatDamage=c.Kind==CommandKind.WarningShot?0:checked(attackerFacts.AbilityModifier(CharacterAbility.Dexterity)+aggressive);
                 damageTotal=Math.Max(0L,dice.Sum(x=>(long)x)+flatDamage);
                 afterDefense=CharacterAdvancementRules.ReduceIncomingDamage(s,c.Target,damageTotal);
                 if(TestOnlyClubAttackPolicy.ConditionsFor(s,c.Target).View().Has(ConditionKind.Petrified))
                     afterDefense=PlaytestConditions.PetrifiedDamage(afterDefense);
-                var targetCharacter=s.Characters.Single(x=>x.ActorId==c.Target);
-                int constitutionSave=checked(PlaytestCharacters.AbilityModifier(targetCharacter.Abilities[2])
+                int constitutionSave=checked(CharacterRuleFacts.ForActor(s,c.Target).AbilityModifier(CharacterAbility.Constitution)
                     +CharacterAdvancementRules.SaveProficiencyBonus(s,c.Target,"CON"));
                 rolled=PlaytestDamageDice.Resolve(ActorLifeRules.Read(life),afterDefense,s.RuleClock,effectsSeed,
                     constitutionSaveModifier:constitutionSave,critical:shot.Attack.Critical,melee:false,knockout:KnockoutInstruction.OrdinaryOutcome);

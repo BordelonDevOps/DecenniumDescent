@@ -4,6 +4,9 @@ using System.Linq;
 
 namespace Decennium.Foundation
 {
+    /// <summary>Stable index identity for the six stored ability-score values.</summary>
+    public enum CharacterAbility { Strength = 0, Dexterity = 1, Constitution = 2, Intelligence = 3, Wisdom = 4, Charisma = 5 }
+
     public sealed class CharacterLevelFact
     {
         public string ClassName { get; }

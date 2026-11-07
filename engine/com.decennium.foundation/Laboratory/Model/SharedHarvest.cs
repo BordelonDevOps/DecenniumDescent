@@ -273,7 +273,7 @@ namespace Decennium.Foundation.Laboratory
                 var draw=DiceStream.Draw(s.RandomState,4);d4=draw.Value+1;damage=d4;
                 damage=CharacterAdvancementRules.ReduceIncomingDamage(s,prior.WorkerId,damage);
                 if(TestOnlyClubAttackPolicy.ConditionsFor(s,prior.WorkerId).View().Has(ConditionKind.Petrified))damage=PlaytestConditions.PetrifiedDamage(damage);
-                int constitution=checked(PlaytestCharacters.AbilityModifier(character.Abilities[2])
+                int constitution=checked(CharacterRuleFacts.From(character).AbilityModifier(CharacterAbility.Constitution)
                     +CharacterAdvancementRules.SaveProficiencyBonus(s,prior.WorkerId,"CON"));
                 var life=s.Lives.Single(x=>x.ActorId==prior.WorkerId);
                 var injuryResult=PlaytestDamageDice.Resolve(ActorLifeRules.Read(life),damage,s.RuleClock,draw.NextState,constitution);
@@ -399,7 +399,7 @@ namespace Decennium.Foundation.Laboratory
                 string access=HarvestAccess(s,c.Actor,manifest,selectedUnitIds:unitIds);if(access!=null)return access;
                 var character=s.Characters.Single(x=>x.ActorId==c.Actor);
                 var training=s.SkillTraining.SingleOrDefault(x=>x.ActorId==c.Actor&&x.SkillId=="fishing-tackle");
-                var check=AbilityCheckRules.Derive(character,training,3);
+                var check=AbilityCheckRules.Derive(character,training,CharacterAbility.Intelligence);
                 facts=new HarvestAssessment { Manifest=manifest,Categories=categories,Selected=selected,CategoryIds=categoryIds,UnitIds=unitIds,
                     FailurePreference=failurePreference,CriticalPreference=criticalPreference,
                     Duration=HarvestValidation.Duration(manifest.FullTimeSeconds,s.HarvestCategories.Count(x=>x.ManifestId==manifest.Id),categories.Length),

@@ -247,9 +247,12 @@ namespace Decennium.Foundation.Laboratory
             var incomingEffects=SoldierTacticalFeatures.ForAttack(s,c.Actor,c.Target);
             bool advantage=modifiers.AdvantagePresent,disadvantage=modifiers.DisadvantagePresent||incomingEffects.WarningShot
                 ||DodgeEffective(s,c.Target)&&CanSee(s,c.Target,c.Actor);
-            int modifier=checked((attacker.LinkedInjuries.Contains((int)Injury.OffensiveTrauma)?-1:0)-incomingEffects.CoveringFirePenalty
+            var attackerFacts=CharacterRuleFacts.ForActor(s,c.Actor);
+            int strengthModifier=attackerFacts.AbilityModifier(CharacterAbility.Strength);
+            int modifier=checked(strengthModifier
+                +(attacker.LinkedInjuries.Contains((int)Injury.OffensiveTrauma)?-1:0)-incomingEffects.CoveringFirePenalty
                 +incomingEffects.TacticalAssessmentBonus); // STR10, explicitly no Club proficiency grant.
-            var defense=ActiveStance(s,c.Target);int dexterity=s.Characters.Single(x=>x.ActorId==c.Target).Abilities[1];
+            var defense=ActiveStance(s,c.Target);int dexterity=CharacterRuleFacts.ForActor(s,c.Target).AbilityScore(CharacterAbility.Dexterity);
             int ac=checked(CharacterAdvancementRules.ArmorClass(s,c.Target,dexterity)+(defense?.Kind==CombatStance.Aggressive?-2:defense?.Kind==CombatStance.Guarded?1:0)
                 +CharacterAdvancementRules.DefensivePositioningBonus(s,c.Target));
             string attackId="attack."+N(s.Revision+1);
@@ -262,11 +265,11 @@ namespace Decennium.Foundation.Laboratory
                 var dice=new int[unarmed?0:critical?2:1];long words=0;
                 for(int i=0;i<dice.Length;i++){var d=DiceStream.Draw(next,4);dice[i]=d.Value+1;next=d.NextState;words=checked(words+d.WordsConsumed);}
                 int flat=ActiveStance(s,c.Actor)?.Kind==CombatStance.Aggressive?2:0;
-                long total=unarmed?PrototypeUnarmed.Damage(10,flat):dice.Sum()+flat;
+                long total=unarmed?PrototypeUnarmed.Damage(attackerFacts.AbilityScore(CharacterAbility.Strength),flat)
+                    :Math.Max(0L,dice.Sum(x=>(long)x)+strengthModifier+flat);
                 total=CharacterAdvancementRules.ReduceIncomingDamage(s,c.Target,total);
                 if(WithConditions(s)&&ConditionsFor(s,c.Target).View().Has(ConditionKind.Petrified))total=PlaytestConditions.PetrifiedDamage(total);
-                var targetCharacter=s.Characters.Single(x=>x.ActorId==c.Target);
-                int constitutionSave=checked(PlaytestCharacters.AbilityModifier(targetCharacter.Abilities[2])
+                int constitutionSave=checked(CharacterRuleFacts.ForActor(s,c.Target).AbilityModifier(CharacterAbility.Constitution)
                     +CharacterAdvancementRules.SaveProficiencyBonus(s,c.Target,"CON"));
                 var result=PlaytestDamageDice.Resolve(ActorLifeRules.Read(target),total,s.RuleClock,next,constitutionSaveModifier:constitutionSave,
                     critical:critical,melee:true,knockout:(KnockoutInstruction)request.Knockout);
@@ -300,8 +303,7 @@ namespace Decennium.Foundation.Laboratory
             var before=s.Lives.Single(l=>l.ActorId==pending.TargetId);var d=pending.Damage;
             // Reconstruct the immutable continuation from its retained seed and unchanged target facts.
             // The prior rolls are verified, never applied to the world random stream a second time.
-            var targetCharacter=s.Characters.Single(x=>x.ActorId==pending.TargetId);
-            int constitutionSave=checked(PlaytestCharacters.AbilityModifier(targetCharacter.Abilities[2])
+            int constitutionSave=checked(CharacterRuleFacts.ForActor(s,pending.TargetId).AbilityModifier(CharacterAbility.Constitution)
                 +CharacterAdvancementRules.SaveProficiencyBonus(s,pending.TargetId,"CON"));
             var prior=PlaytestDamageDice.Resolve(ActorLifeRules.Read(before),d.Total,pending.At,d.EffectsSeed,constitutionSaveModifier:constitutionSave,
                 critical:pending.Attack.Critical,melee:true,knockout:KnockoutInstruction.AskIfEligible);

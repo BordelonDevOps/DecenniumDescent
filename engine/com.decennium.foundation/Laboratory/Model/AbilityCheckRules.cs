@@ -43,8 +43,15 @@ namespace Decennium.Foundation.Laboratory
             if (character == null) throw new ArgumentNullException(nameof(character));
             if (training != null && training.ActorId != character.ActorId)
                 throw new ArgumentException("Training belongs to a different actor.", nameof(training));
-            return Derive(character, abilityIndex, training?.ProficiencyRank ?? 0);
+            if (abilityIndex < 0 || abilityIndex >= character.Abilities.Count)
+                throw new ArgumentOutOfRangeException(nameof(abilityIndex));
+            var facts = CharacterRuleFacts.From(character);
+            return Derive(facts, (CharacterAbility)abilityIndex, training?.ProficiencyRank ?? 0);
         }
+
+        public static AbilityCheckModifier Derive(ActorCharacterRecord character, SkillTrainingRecord training,
+            CharacterAbility ability)
+            => Derive(character, training, (int)ability);
 
         /// <summary>Derives from an explicit rank, for fixture-backed checks not represented as skills.</summary>
         public static AbilityCheckModifier Derive(ActorCharacterRecord character, int abilityIndex, int proficiencyRank)
@@ -52,9 +59,17 @@ namespace Decennium.Foundation.Laboratory
             if (character == null) throw new ArgumentNullException(nameof(character));
             if (abilityIndex < 0 || abilityIndex >= character.Abilities.Count)
                 throw new ArgumentOutOfRangeException(nameof(abilityIndex));
-            int proficiency = ProficiencyContribution(character.Levels.Count, proficiencyRank);
-            return new AbilityCheckModifier(abilityIndex,
-                PlaytestCharacters.AbilityModifier(character.Abilities[abilityIndex]), proficiencyRank, proficiency);
+            return Derive(CharacterRuleFacts.From(character), (CharacterAbility)abilityIndex, proficiencyRank);
+        }
+
+        public static AbilityCheckModifier Derive(ActorCharacterRecord character, CharacterAbility ability, int proficiencyRank)
+            => Derive(character, (int)ability, proficiencyRank);
+
+        private static AbilityCheckModifier Derive(CharacterRuleFacts facts, CharacterAbility ability, int proficiencyRank)
+        {
+            int index = (int)ability;
+            int proficiency = facts.ProficiencyContribution(proficiencyRank);
+            return new AbilityCheckModifier(index, facts.AbilityModifier(ability), proficiencyRank, proficiency);
         }
 
         /// <summary>Rank 0 is untrained, rank 1 adds one proficiency bonus, rank 2 adds two.</summary>

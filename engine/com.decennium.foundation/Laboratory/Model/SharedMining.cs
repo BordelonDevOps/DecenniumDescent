@@ -704,8 +704,8 @@ namespace Decennium.Foundation.Laboratory
             var toolInstance=toolProfile==null?null:s.MiningToolInstanceStates.SingleOrDefault(x=>x.ProfileId==toolProfile.Id);
             bool toolQualified=toolUse!=null&&MiningToolCandidateRules.Qualifies(s,toolProfile,toolInstance,toolUse,
                 prior.WorkerId,prior.SelectedUnitIds);
-            int abilityIndex=prior.Ability==MiningAbilityChoice.Strength?0:4;
-            int injury=PlaytestLife.AbilityCheckInjuryPenalty(ActorLifeRules.Read(s.Lives.Single(x=>x.ActorId==prior.WorkerId)),abilityIndex,toolCheck:true);
+            CharacterAbility ability=prior.Ability==MiningAbilityChoice.Strength?CharacterAbility.Strength:CharacterAbility.Wisdom;
+            int injury=PlaytestLife.AbilityCheckInjuryPenalty(ActorLifeRules.Read(s.Lives.Single(x=>x.ActorId==prior.WorkerId)),(int)ability,toolCheck:true);
             int modifier=checked(prior.AbilityModifier+prior.ProficiencyBonus+injury+(toolQualified?MiningToolCandidateProfileRecord.CheckBonus:0));
             int disadvantage=(prior.ProficiencyRank==0?1:0)+(prior.Hurried?1:0)
                 +(TestOnlyClubAttackPolicy.ConditionsFor(s,prior.WorkerId).View().Has(ConditionKind.Poisoned)?1:0);
@@ -721,7 +721,7 @@ namespace Decennium.Foundation.Laboratory
                 var draw=DiceStream.Draw(s.RandomState,4);d4=checked((int)draw.Value+1);damage=d4;
                 damage=CharacterAdvancementRules.ReduceIncomingDamage(s,prior.WorkerId,damage);
                 if(TestOnlyClubAttackPolicy.ConditionsFor(s,prior.WorkerId).View().Has(ConditionKind.Petrified))damage=PlaytestConditions.PetrifiedDamage(damage);
-                int constitution=checked(PlaytestCharacters.AbilityModifier(character.Abilities[2])
+                int constitution=checked(CharacterRuleFacts.From(character).AbilityModifier(CharacterAbility.Constitution)
                     +CharacterAdvancementRules.SaveProficiencyBonus(s,prior.WorkerId,"CON"));
                 var life=s.Lives.Single(x=>x.ActorId==prior.WorkerId);
                 var injuryResult=PlaytestDamageDice.Resolve(ActorLifeRules.Read(life),damage,s.RuleClock,draw.NextState,constitution);
@@ -906,8 +906,8 @@ namespace Decennium.Foundation.Laboratory
                 string access=MiningAccess(s,c.Actor,deposit,selectedUnitIds:unitIds);if(access!=null)return access;
                 var character=s.Characters.Single(x=>x.ActorId==c.Actor);
                 var training=s.SkillTraining.SingleOrDefault(x=>x.ActorId==c.Actor&&x.SkillId=="mining-tools");
-                int abilityIndex=c.MiningSelection.Ability==MiningAbilityChoice.Strength?0:4;
-                var check=AbilityCheckRules.Derive(character,training,abilityIndex);
+                CharacterAbility ability=c.MiningSelection.Ability==MiningAbilityChoice.Strength?CharacterAbility.Strength:CharacterAbility.Wisdom;
+                var check=AbilityCheckRules.Derive(character,training,ability);
                 int dc;
                 if(deposit.ExactCheckDc.HasValue)dc=deposit.ExactCheckDc.Value;
                 else if(categories.Any(x=>x.Tier==0))return "MiningUnknownTierRequiresExactDc";

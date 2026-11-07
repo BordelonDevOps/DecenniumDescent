@@ -328,7 +328,8 @@ namespace Decennium.Foundation.Laboratory
             if(s.AlchemyDoses.Length>ManufacturingValidation.MaxDoses-7||s.CraftingIncidents.Length==CraftingConsequenceValidation.MaxIncidents
                 ||!TestOnlyClubAttackPolicy.DamageConditionCapacity(s,j.WorkerId))throw new InvalidOperationException("Manufacturing result capacity reached.");
             var character=s.Characters.Single(x=>x.ActorId==j.WorkerId);
-            int modifier=PlaytestCharacters.AbilityModifier(character.Abilities[3])+PlaytestCharacters.ProficiencyBonus(character.Levels.Count)
+            var characterFacts=CharacterRuleFacts.From(character);
+            int modifier=characterFacts.AbilityModifier(CharacterAbility.Intelligence)+characterFacts.ProficiencyBonus
                 +PlaytestLife.AbilityCheckInjuryPenalty(ActorLifeRules.Read(s.Lives.Single(x=>x.ActorId==j.WorkerId)),3,toolCheck:true);
             var roll=PlaytestDice.RollD20(s.RandomState,disadvantageSources:View(s,j.WorkerId).Has(ConditionKind.Poisoned)?1:0);s.RandomState=roll.NextRandomState;
             var recipe=ManufacturingRules.Recipe(j.RecipeId);if(recipe==null)throw new InvalidOperationException("ManufacturingRecipeUnavailable");

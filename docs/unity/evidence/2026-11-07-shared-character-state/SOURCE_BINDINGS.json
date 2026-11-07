@@ -1,0 +1,164 @@
+{
+  "schemaVersion": 1,
+  "implementationId": "TEST_ONLY.shared-character-state-derivation-v1",
+  "recordedUtc": "2026-11-07T20:06:47.092835Z",
+  "baseCommit": "37a086729b652b1491fcec3b5f094da6cf9f0e5f",
+  "snapshotSchema": "60 (unchanged; no new fields or codec branches)",
+  "sourceStatus": "Existing pinned character and combat rules only; no new rule clause adopted by this increment.",
+  "authoritativeRecords": [
+    "ActorCharacterRecord: ActorId, ProfileId, six ordered Abilities, chronological Levels (ClassName, BaseHp).",
+    "SkillTrainingRecord: explicit skill identity and ProficiencyRank.",
+    "RangedCombatantRecord: CrossbowProficient and TrainingId remain explicit; DexterityScore and ProficiencyBonus remain serialized compatibility projections.",
+    "ActorLifeRecord, condition, equipment, inventory, progression-grant, clock, RNG, work, command-receipt and SnapshotCodec records retain existing authorities."
+  ],
+  "reviewedEvidence": [
+    {
+      "sha256": "73b5c1740d113a67efb030adf9a1c6a5d1911a4e0954b13a907a417ab7c46889",
+      "blobId": "f9c5b41203aea1c104954c26feaebd3ea8bc355a",
+      "path": "docs/unity/evidence/2026-11-03-characters/SOURCE_BINDINGS.json"
+    },
+    {
+      "sha256": "f86558d01efdf311c23a978a80d4fcf9555cdaa14f82581cb6d51862d2582340",
+      "blobId": "b7e0968a3be614a76b3aa9333c95f946784dabe3",
+      "path": "docs/unity/ORDINARY_ATTACK_INTEGRATION_GUIDANCE.md"
+    },
+    {
+      "sha256": "ad0bd247f0bcf4a53669fcdeb583d5aec1c76e37b9515979da822a4f194691b5",
+      "blobId": "e5f6cd7d1b7693da541e2bf3d300bef6d6c9e22b",
+      "path": "docs/unity/MOVEMENT_AND_UNARMED_RULE_DECISIONS.md"
+    },
+    {
+      "sha256": "c76f0162524a78834ef6af2168502074ee93232140b58d3872268af4b7dda06e",
+      "blobId": "de593b9843e9890a99b57d4104c0d93de3957913",
+      "path": "docs/unity/ORDINARY_ATTACK_RULE_DECISIONS.md"
+    },
+    {
+      "sha256": "3e03edfedbbe69f890171dea5f87031bd2c6368d93d078f21c1112dbd8ad4e6b",
+      "blobId": "d58b82c84cbef9d35a004b153b0c4c5475066fa4",
+      "path": "docs/unity/evidence/2026-11-04-repeating-crossbow-combat/SOURCE_BINDINGS.json"
+    }
+  ],
+  "changedPackageSourceHashes": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/AbilityCheckRules.cs",
+      "sha256": "d56891a5e8eb6b8889f773a2197675eaeda62c7612d75c30dbbbcf9420c8bd15"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ActorLifeRules.cs",
+      "sha256": "06ee3a4cb088d9d056ac625553992024dffb8f347d24463b462b1f4c0cfe3324"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/CharacterRuleFacts.cs",
+      "sha256": "4802efd0a36bb6356d0c30b15eb0c24bf712b2c8c0fa0028ab94b1aa0886225a"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/CharacterRuleFacts.cs.meta",
+      "sha256": "275935737f4f494141a05d95a2cdec8b642c29c81952ed72578ba07e77d15340"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCharacterAdvancement.cs",
+      "sha256": "1d2ec610a9453e745c4020cb054abe4c5d4e79dc8bd3e945fd285b3670b49d14"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCraftingConsequences.cs",
+      "sha256": "cedcf1228c80c54ace477ca2a05de58dda4da4448b7fabb3779f0c4d9fdab52d"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionRouteMappingWork.cs",
+      "sha256": "bc19856f7eb73e5c570db1f1dc5eacb1ef0e885e66f7e4f2283e4232487f71e9"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionRouteReconnaissance.cs",
+      "sha256": "bc0f5100fd76ee94295e997dd6e531d111897ce5ec4e4eb71d5899f9d177ca94"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFishingTrap.cs",
+      "sha256": "180e1b65a3b734ce2d966b28523e311081a8feb76ec8b4a36d476cd9c9d98e29"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFormulaResearch.cs",
+      "sha256": "efb878f2cc6923ee98b1b9b71840727027bbe3da44d67dc42964b880f10964b2"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHarvest.cs",
+      "sha256": "010fbe5c70065df81119ca2a0135be80bbd420ece60e3b2da3b68620e7db9e2c"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHuntingTrap.cs",
+      "sha256": "ac8ca6ad4288936c8995b4c39d46f52c933ed988056273605394fcea684de3c4"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs",
+      "sha256": "6649556782f2dcc1dbe0517a0d404f2a1fad799e15b2d59333c9037a5498d380"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs",
+      "sha256": "63d625403da053e14441ce6660045e958b8abb66e978365ec1b4e896ccd95b03"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedMiningAssay.cs",
+      "sha256": "06277ae000a2e1c2bfecfe74202010902baaf0ea5854f7ffb081f79ab505826f"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+      "sha256": "bcf8edae6cfae6d6d3f71e7801406987399bb1d6b89ab91e5d8161e854f4c903"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedOverwatchExecution.cs",
+      "sha256": "d0647d662f77921b7c65a13970157713d0755c63147fe54c16733e330cb90b8d"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedPeriodicRider.cs",
+      "sha256": "e3a4b650d3fbde12b018cb788bf2951e9646e98776f79db2d3e07cffafc70b6c"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedProspecting.cs",
+      "sha256": "8ab22c68f9b59f508414b399dc72b6f432ea24ec85a24021446a4d71bfdf2f03"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSupplyCache.cs",
+      "sha256": "e99e89ff0fdbcb67c7434ac785a57cf33cdbc1c5d768e001be614c069ce7622f"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedToolRepair.cs",
+      "sha256": "edb45759e8c6a1b8c934b7bab60e99e56abbba1f97c4ac0dfe98105a5ba8f96b"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldRangedCombat.cs",
+      "sha256": "53a4857aec48363a8c1dd05c8c5b615c55a6be8756552d7af51a99bc9dd0e130"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlyClubAttackPolicy.cs",
+      "sha256": "630e1075de839d7c112ee14fbf13f5eb3b90149ba0fb0fa4b06546d571fd7649"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ActorLifeRecords.cs",
+      "sha256": "a5917c6e9a4da6ab8ba4addde8e5d61e3f6308d7b878b18d27b23e4031d472f9"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/RangedCombatRecords.cs",
+      "sha256": "5b5768e7e9a39598e42c54282c05364e4b89853e5f03c6d9b223afea34138c2f"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/AbilityCheckCases.cs",
+      "sha256": "3d1f1b6937267b9df0fa3bb120086fb22cba1c140cd2ccf9c43d69a2811c3ff6"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/ConnectedCombatCases.cs",
+      "sha256": "637e0a250a2d38097ea8f1856f563301c9f731d40c6538f260ad5d22e4bd11e3"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/RangedCrossbowCases.cs",
+      "sha256": "a3985d7b3b62506c06ffa22303c5435275752460b01f1b784932894aa068c00d"
+    }
+  ],
+  "validation": {
+    "packageReport": "PACKAGE_RESULTS.json",
+    "fullReport": "FULL_RESULTS.json",
+    "focusedReports": [
+      "FOCUSED_CHARACTER_FACTS.json",
+      "FOCUSED_CONNECTED_LOOP.json",
+      "FOCUSED_STALE_RANGED_CACHE.json"
+    ]
+  }
+}

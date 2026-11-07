@@ -35,6 +35,27 @@ namespace Decennium.Foundation.Tests
                 Require(expertCheck.AbilityIndex == 3 && expertCheck.AbilityModifier == 2
                     && expertCheck.ProficiencyRank == 2 && expertCheck.ProficiencyBonus == 6 && expertCheck.Total == 8,
                     "Rank-two check did not add the recorded double contribution."); });
+            cases.Add("character_rule_facts_are_ephemeral_queries_over_the_authoritative_record", () => {
+                var character = CheckCharacter();
+                var facts = CharacterRuleFacts.From(character);
+                var trained = new SkillTrainingRecord(character.ActorId, "survival", 1);
+                var check = AbilityCheckRules.Derive(character, trained, CharacterAbility.Wisdom);
+                Require(ReferenceEquals(facts.Source, character) && facts.ActorId == character.ActorId
+                    && facts.ProfileId == character.ProfileId && facts.TotalLevel == 5 && facts.ProficiencyBonus == 3
+                    && facts.AbilityScore(CharacterAbility.Strength) == 12
+                    && facts.AbilityModifier(CharacterAbility.Dexterity) == -1
+                    && facts.AbilityModifier(CharacterAbility.Intelligence) == 2
+                    && check.AbilityIndex == (int)CharacterAbility.Wisdom && check.Total == 5,
+                    "Derived facts or the check did not use the one persisted character record.");
+                var snapshot = World(ConnectedPolicy()).Capture();
+                var actorFacts = CharacterRuleFacts.ForActor(snapshot, TestOnlyPolicy.ActorId);
+                Require(ReferenceEquals(actorFacts.Source, snapshot.Characters.Single(x => x.ActorId == TestOnlyPolicy.ActorId)),
+                    "Actor lookup returned a copied or detached character record.");
+                Throws<InvalidOperationException>(() => CharacterRuleFacts.ForActor(snapshot, "missing-character"));
+                var duplicate = snapshot.Characters[0];
+                snapshot.Characters = snapshot.Characters.Concat(new[] { duplicate }).ToArray();
+                Throws<InvalidOperationException>(() => CharacterRuleFacts.ForActor(snapshot, duplicate.ActorId));
+                Throws<ArgumentOutOfRangeException>(() => facts.AbilityScore((CharacterAbility)99)); });
             cases.Add("ability_check_injury_is_applied_once_at_resolution", () => {
                 var check = AbilityCheckRules.Derive(CheckCharacter(), new SkillTrainingRecord("worker", "craft", 1), 1);
                 var life = new LifeState(20, 20, wounds: new[] { Injury.FineMotorTrauma, Injury.FineMotorTrauma, Injury.FineMotorTrauma });

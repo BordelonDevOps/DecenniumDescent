@@ -465,7 +465,7 @@ namespace Decennium.Foundation.Laboratory
             var training = s.SkillTraining.SingleOrDefault(x => x.ActorId == attempt.LeadId
                 && x.SkillId == TestOnlyExpeditionRouteReconnaissanceFixture.SkillId);
             var modifier = AbilityCheckRules.Derive(character, training,
-                TestOnlyExpeditionRouteReconnaissanceFixture.WisdomAbilityIndex);
+                CharacterAbility.Wisdom);
             int leadModifier = modifier.TotalWithInjury(ActorLifeRules.Read(s.Lives.Single(x => x.ActorId == attempt.LeadId)));
             int conditionOperationCount = s.Conditions.Single(x => x.Target == attempt.LeadId).Operations.Count;
             bool disadvantage = RouteMappingCheckDisadvantage(s, attempt.LeadId, s.RuleClock, conditionOperationCount);
@@ -563,8 +563,7 @@ namespace Decennium.Foundation.Laboratory
                     var lead = s.Characters.Single(x => x.ActorId == attempt.LeadId);
                     var training = s.SkillTraining.SingleOrDefault(x => x.ActorId == attempt.LeadId
                         && x.SkillId == TestOnlyExpeditionRouteReconnaissanceFixture.SkillId);
-                    var modifier = AbilityCheckRules.Derive(lead, training,
-                        TestOnlyExpeditionRouteReconnaissanceFixture.WisdomAbilityIndex);
+                    var modifier = AbilityCheckRules.Derive(lead, training, CharacterAbility.Wisdom);
                     int leadModifier = modifier.TotalWithInjury(ActorLifeRules.Read(s.Lives.Single(x => x.ActorId == attempt.LeadId)));
                     var expected = RuleResolution.TaskCheck(check.Natural, leadModifier, task.Dc);
                     var expectedDegree = expected.Degree == RuleTaskDegree.CriticalFailure ? ExpeditionRouteReconnaissanceDegree.CriticalFailure

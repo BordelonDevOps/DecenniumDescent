@@ -381,7 +381,7 @@ namespace Decennium.Foundation.Laboratory
             var training = s.SkillTraining.SingleOrDefault(x => x.ActorId == attempt.LeadId
                 && x.SkillId == TestOnlyExpeditionRouteMappingWorkFixture.SkillId);
             var modifier = AbilityCheckRules.Derive(character, training,
-                TestOnlyExpeditionRouteMappingWorkFixture.WisdomAbilityIndex);
+                CharacterAbility.Wisdom);
             int leadModifier = modifier.TotalWithInjury(ActorLifeRules.Read(s.Lives.Single(x => x.ActorId == attempt.LeadId)));
             int assistantBonus = attempt.AssistantIds.Length;
             int conditionOperationCount = s.Conditions.Single(x => x.Target == attempt.LeadId).Operations.Count;
@@ -471,7 +471,7 @@ namespace Decennium.Foundation.Laboratory
                     var lead = s.Characters.Single(x => x.ActorId == attempt.LeadId);
                     var training = s.SkillTraining.SingleOrDefault(x => x.ActorId == attempt.LeadId
                         && x.SkillId == TestOnlyExpeditionRouteMappingWorkFixture.SkillId);
-                    var modifier = AbilityCheckRules.Derive(lead, training, TestOnlyExpeditionRouteMappingWorkFixture.WisdomAbilityIndex);
+                    var modifier = AbilityCheckRules.Derive(lead, training, CharacterAbility.Wisdom);
                     int leadModifier = modifier.TotalWithInjury(ActorLifeRules.Read(s.Lives.Single(x => x.ActorId == attempt.LeadId)));
                     var expected = RuleResolution.TaskCheck(check.Natural, checked(leadModifier + attempt.AssistantIds.Length), task.Dc);
                     ExpeditionRouteMappingResultDegree degree = expected.Degree == RuleTaskDegree.CriticalFailure

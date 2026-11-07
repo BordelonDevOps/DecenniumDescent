@@ -135,7 +135,7 @@ namespace Decennium.Foundation.Laboratory
 
             var character = s.Characters.Single(x => x.ActorId == actor.Id);
             var training = s.SkillTraining.SingleOrDefault(x => x.ActorId == actor.Id && x.SkillId == "stealth");
-            int modifier = AbilityCheckRules.Derive(character, training, 1)
+            int modifier = AbilityCheckRules.Derive(character, training, CharacterAbility.Dexterity)
                 .TotalWithInjury(ActorLifeRules.Read(s.Lives.Single(x => x.ActorId == actor.Id)));
             int disadvantage = TestOnlyClubAttackPolicy.ConditionsFor(s, actor.Id).View().Has(ConditionKind.Poisoned) ? 1 : 0;
             var selection = PlaytestDice.Selection(0, disadvantage);
@@ -207,7 +207,7 @@ namespace Decennium.Foundation.Laboratory
             int dc = checked((int)hide.Total);
             var character = s.Characters.Single(x => x.ActorId == c.Actor);
             var training = s.SkillTraining.SingleOrDefault(x => x.ActorId == c.Actor && x.SkillId == "perception");
-            int modifier = AbilityCheckRules.Derive(character, training, 4)
+            int modifier = AbilityCheckRules.Derive(character, training, CharacterAbility.Wisdom)
                 .TotalWithInjury(ActorLifeRules.Read(s.Lives.Single(x => x.ActorId == c.Actor)), perception: true);
             int disadvantage = TestOnlyClubAttackPolicy.ConditionsFor(s, c.Actor).View().Has(ConditionKind.Poisoned) ? 1 : 0;
             uint before = s.RandomState;
@@ -237,7 +237,7 @@ namespace Decennium.Foundation.Laboratory
         {
             var character = s.Characters.Single(x => x.ActorId == actor);
             var training = s.SkillTraining.SingleOrDefault(x => x.ActorId == actor && x.SkillId == "perception");
-            var check = AbilityCheckRules.Derive(character, training, 4);
+            var check = AbilityCheckRules.Derive(character, training, CharacterAbility.Wisdom);
             return checked(10 + check.Total);
         }
 

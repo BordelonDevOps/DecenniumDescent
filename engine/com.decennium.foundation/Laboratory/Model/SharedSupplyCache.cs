@@ -37,7 +37,7 @@ namespace Decennium.Foundation.Laboratory
         public static int PickCheckModifier(ActorCharacterRecord character,bool proficient,LifeState life)
         {
             if(character==null||life==null)throw new ArgumentNullException(character==null?nameof(character):nameof(life));
-            var check=AbilityCheckRules.Derive(character,1,proficient?1:0);
+            var check=AbilityCheckRules.Derive(character,CharacterAbility.Dexterity,proficient?1:0);
             return check.TotalWithInjury(life,toolCheck:true,manipulatesObject:true);
         }
     }

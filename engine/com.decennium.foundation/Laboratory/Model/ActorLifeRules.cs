@@ -107,7 +107,8 @@ namespace Decennium.Foundation.Laboratory
                     var expected=Character(character.ActorId);
                     if(character.ProfileId!=expected.ProfileId||!character.Abilities.SequenceEqual(expected.Abilities)||character.Levels.Count!=expected.Levels.Count
                         ||character.Levels.Where((x,i)=>x.ClassName!=expected.Levels[i].ClassName||x.BaseHp!=expected.Levels[i].BaseHp).Any())return "UnknownCharacterFacts";
-                    long maximum=PlaytestCharacters.BaseMaximumHp(character.Levels.Select(x=>new CharacterLevelRecord(x.ClassName,x.BaseHp)).ToArray(),character.Abilities[2]).BaseMaximum;
+                    long maximum=PlaytestCharacters.BaseMaximumHp(character.Levels.Select(x=>new CharacterLevelRecord(x.ClassName,x.BaseHp)).ToArray(),
+                        CharacterRuleFacts.From(character).AbilityScore(CharacterAbility.Constitution)).BaseMaximum;
                     var life=s.Lives.Single(x=>x.ActorId==character.ActorId);ActorLifeRules.Read(life);
                     if(life.MaximumHp!=maximum||life.HeldItems.Count!=0||life.Hp==0&&!life.Prone)return "InvalidLifeProjection";
                 }

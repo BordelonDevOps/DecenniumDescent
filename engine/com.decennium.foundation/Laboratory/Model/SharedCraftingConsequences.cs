@@ -195,7 +195,7 @@ namespace Decennium.Foundation.Laboratory
                 damage = CharacterAdvancementRules.ReduceIncomingDamage(s,fact.LeadId,damage);
                 if (View(s, fact.LeadId).Has(ConditionKind.Petrified)) damage = PlaytestConditions.PetrifiedDamage(damage);
                 var character = s.Characters.Single(x => x.ActorId == fact.LeadId);
-                int constitutionSave=checked(PlaytestCharacters.AbilityModifier(character.Abilities[2])
+                int constitutionSave=checked(CharacterRuleFacts.From(character).AbilityModifier(CharacterAbility.Constitution)
                     +CharacterAdvancementRules.SaveProficiencyBonus(s,fact.LeadId,"CON"));
                 var result = PlaytestDamageDice.Resolve(ActorLifeRules.Read(before), damage, s.RuleClock, draw.NextState, constitutionSave);
                 s.RandomState = result.NextRandomState; words = checked(draw.WordsConsumed + result.WordsConsumed); wound = result.WoundRoll?.Natural ?? 0; injury = result.InjuryD6 ?? 0;

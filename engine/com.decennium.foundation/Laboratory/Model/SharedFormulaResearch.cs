@@ -148,7 +148,8 @@ namespace Decennium.Foundation.Laboratory
         private void FinishFormulaCheck(Snapshot s, FormulaWorkRecord job)
         {
             var character = s.Characters.Single(x => x.ActorId == job.WorkerId);
-            int modifier = PlaytestCharacters.AbilityModifier(character.Abilities[3]) + PlaytestCharacters.ProficiencyBonus(character.Levels.Count);
+            var facts = CharacterRuleFacts.From(character);
+            int modifier = facts.AbilityModifier(CharacterAbility.Intelligence) + facts.ProficiencyBonus;
             // Schema16 histories retain their original check outcomes. Schema17 corrects actual tool checks.
             if (s.SchemaVersion >= 17) modifier += PlaytestLife.AbilityCheckInjuryPenalty(ActorLifeRules.Read(s.Lives.Single(x => x.ActorId == job.WorkerId)), 3, toolCheck: true);
             var roll = PlaytestDice.RollD20(s.RandomState, disadvantageSources: View(s, job.WorkerId).Has(ConditionKind.Poisoned) ? 1 : 0);

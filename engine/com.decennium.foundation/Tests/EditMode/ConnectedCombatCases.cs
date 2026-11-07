@@ -310,9 +310,16 @@ namespace Decennium.Foundation.Tests
                     "Three-layer loop lost combat outcome, actual intake or further exploration.");
             });
             cases.Add("connected_exploration_combat_and_assigned_mining_share_one_saved_timeline",()=>{
-                var fixture=new SharedMiningFixture(siteX:1,siteY:3);
+                var fixture=new SharedMiningFixture(siteX:1,siteY:3,wisdom:14);
                 var p=TestOnlySharedWorldPolicy.WithMining(fixture,enemyHp:1).EnableExpeditionAssignments();
                 var s=World(p);
+                var initial=s.Capture();
+                var heroFacts=CharacterRuleFacts.ForActor(initial,TestOnlyPolicy.ActorId);
+                var companionFacts=CharacterRuleFacts.ForActor(initial,TestOnlyPolicy.CompanionId);
+                Require(heroFacts.Source==initial.Characters.Single(x=>x.ActorId==TestOnlyPolicy.ActorId)
+                    &&companionFacts.Source==initial.Characters.Single(x=>x.ActorId==TestOnlyPolicy.CompanionId)
+                    &&companionFacts.AbilityScore(CharacterAbility.Wisdom)==14,
+                    "The connected actors did not resolve their authoritative shared character records.");
                 var selection=new MiningSelectionRequest(SharedMiningFixture.DepositVersionId,
                     new[]{SharedMiningFixture.CategoryA},MiningAbilityChoice.Wisdom);
                 var request=new ExpeditionAssignmentRequest(ExpeditionWorkProcedure.MiningExtraction,
@@ -328,8 +335,13 @@ namespace Decennium.Foundation.Tests
                 var started=s.Capture().MiningAttempts.Single();
                 Require(started.Status==MiningAttemptStatus.Working&&started.WorkerId==TestOnlyPolicy.CompanionId
                     &&s.Capture().ExpeditionAssignments.Single().Status==ExpeditionAssignmentStatus.Started
-                    &&s.Capture().ExpeditionAssignments.Single().WorkId==started.Id,
-                    "Assignment did not retain the existing mining attempt as authoritative work.");
+                    &&s.Capture().ExpeditionAssignments.Single().WorkId==started.Id
+                    &&started.Ability==MiningAbilityChoice.Wisdom
+                    &&started.AbilityModifier==companionFacts.AbilityModifier(CharacterAbility.Wisdom)
+                    &&started.ProficiencyRank==s.Capture().SkillTraining.Single(x=>x.ActorId==TestOnlyPolicy.CompanionId
+                        &&x.SkillId=="mining-tools").ProficiencyRank
+                    &&started.ProficiencyBonus==companionFacts.ProficiencyContribution(started.ProficiencyRank),
+                    "Assignment or the mining check did not retain work derived from the companion's authoritative facts.");
 
                 byte[] beforeApproach=Bytes(s);
                 s=new Simulation(p,new SnapshotCodec().Decode(beforeApproach),ExecutionProfile.Laboratory);
@@ -346,12 +358,25 @@ namespace Decennium.Foundation.Tests
                 Require(!afterCombat.InventoryCombat&&continuing.Status==MiningAttemptStatus.Working
                     &&continuing.WorkDone>workAtEntry&&afterCombat.ExpeditionAssignments.Single().WorkId==continuing.Id,
                     "Tactical time failed to continue the remote assignment or changed its linked procedure.");
+                var restoredHeroFacts=CharacterRuleFacts.ForActor(afterCombat,TestOnlyPolicy.ActorId);
+                Require(restoredHeroFacts.Source==afterCombat.Characters.Single(x=>x.ActorId==TestOnlyPolicy.ActorId)
+                    &&restoredHeroFacts.Source.Abilities.SequenceEqual(heroFacts.Source.Abilities)
+                    &&restoredHeroFacts.Source.Levels.Count==heroFacts.Source.Levels.Count
+                    &&restoredHeroFacts.ProficiencyBonus==heroFacts.ProficiencyBonus
+                    &&afterCombat.MeleeAttacks.Any(x=>x.AttackerId==TestOnlyPolicy.ActorId)
+                    &&afterCombat.MeleeAttacks.Where(x=>x.AttackerId==TestOnlyPolicy.ActorId)
+                        .All(x=>x.Attack.Modifier==restoredHeroFacts.AbilityModifier(CharacterAbility.Strength)),
+                    "Tactical attacks did not use the same persisted hero ability facts as the connected simulation.");
 
                 string path=Path.Combine(directory,"connected-assigned-mining-after-combat.bin");
                 var store=new FileSaveStore();store.Save(path,afterCombat);
                 byte[] saved=File.ReadAllBytes(path);
                 s=new Simulation(p,store.Load(path),ExecutionProfile.Laboratory);
-                Require(saved.SequenceEqual(Bytes(s)),"Post-combat save/restore changed work, encounter or assignment history.");
+                var loadedFacts=CharacterRuleFacts.ForActor(s.Capture(),TestOnlyPolicy.CompanionId);
+                Require(saved.SequenceEqual(Bytes(s))&&loadedFacts.Source.Abilities.SequenceEqual(companionFacts.Source.Abilities)
+                    &&loadedFacts.Source.Levels.Count==companionFacts.Source.Levels.Count
+                    &&loadedFacts.TotalLevel==companionFacts.TotalLevel&&loadedFacts.ProficiencyBonus==companionFacts.ProficiencyBonus,
+                    "Post-combat save/restore changed character facts, work, encounter or assignment history.");
                 WorldAdvance(s,continuing.DurationSeconds);
                 var settled=s.Capture();var result=settled.MiningAttempts.Single();
                 bool resolved=result.Status==MiningAttemptStatus.Success||result.Status==MiningAttemptStatus.CriticalSuccess

@@ -318,7 +318,7 @@ namespace Decennium.Foundation.Laboratory
                 if (!ProspectingAccess(s, c.Actor, patch, exposure)) return "ProspectingAccessUnavailable";
                 var character = s.Characters.Single(x => x.ActorId == c.Actor);
                 var training = s.SkillTraining.SingleOrDefault(x => x.ActorId == c.Actor && x.SkillId == "mining-tools");
-                var check = AbilityCheckRules.Derive(character, training, 4);
+                var check = AbilityCheckRules.Derive(character, training, CharacterAbility.Wisdom);
                 facts = new ProspectingAssessment { Patch = patch, Exposure = exposure,
                     WisdomModifier = check.AbilityModifier, ProficiencyRank = check.ProficiencyRank,
                     ProficiencyBonus = check.ProficiencyBonus, CheckDc = ProspectingValidation.Difficulty(exposure.Signs) };

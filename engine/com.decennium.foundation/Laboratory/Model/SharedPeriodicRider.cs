@@ -146,8 +146,8 @@ namespace Decennium.Foundation.Laboratory
                         var draw=DiceStream.Draw(s.RandomState,4);die=draw.Value+1;afterRandom=draw.NextState;words=draw.WordsConsumed;
                         damage=CharacterAdvancementRules.ReduceIncomingDamage(s,rider.TargetId,die);
                         if(View(s,rider.TargetId).Has(ConditionKind.Petrified))damage=PlaytestConditions.PetrifiedDamage(damage);
-                        var character=s.Characters.Single(x=>x.ActorId==rider.TargetId);
-                        int constitutionSave=checked(PlaytestCharacters.AbilityModifier(character.Abilities[2])
+                        var character=CharacterRuleFacts.ForActor(s,rider.TargetId);
+                        int constitutionSave=checked(character.AbilityModifier(CharacterAbility.Constitution)
                             +CharacterAdvancementRules.SaveProficiencyBonus(s,rider.TargetId,"CON"));
                         var result=PlaytestDamageDice.Resolve(ActorLifeRules.Read(target),damage,s.RuleClock,afterRandom,
                             constitutionSaveModifier:constitutionSave,melee:false);
@@ -179,7 +179,7 @@ namespace Decennium.Foundation.Laboratory
             if(!CapableWorker(s,c.Actor)||!Permissions(s,c.Actor).Action)return "ConditionPreventsAction";
             var life=s.Lives.Single(x=>x.ActorId==c.Actor);var character=s.Characters.Single(x=>x.ActorId==c.Actor);
             var training=s.SkillTraining.SingleOrDefault(x=>x.ActorId==c.Actor&&x.SkillId=="medicine");
-            int modifier=AbilityCheckRules.Derive(character,training,4).Total;
+            int modifier=AbilityCheckRules.Derive(character,training,CharacterAbility.Wisdom).Total;
             var view=View(s,c.Actor);bool disadvantage=view.Clauses.Has(ConditionClause.Poisoned);
             uint before=s.RandomState;var roll=PlaytestDice.RollD20(before,disadvantage?0:0,disadvantage?1:0);
             var check=PlaytestRolls.TaskCheck(roll.Natural,modifier,rider.ApplyingDc);bool success=check.Success;

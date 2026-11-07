@@ -58,7 +58,11 @@ namespace Decennium.Foundation
             &&OriginalQuantity==x.OriginalQuantity&&AvailableQuantity==x.AvailableQuantity&&Accessible==x.Accessible;
     }
 
-    /// <summary>Explicit TEST_ONLY numerical/training facts; this is not inferred from possession or a class label.</summary>
+    /// <summary>
+    /// Explicit TEST_ONLY crossbow-training facts. DexterityScore and ProficiencyBonus are retained
+    /// as schema22+ serialized compatibility projections; runtime calculations use ActorCharacterRecord.
+    /// Training is not inferred from possession or a class label.
+    /// </summary>
     public sealed class RangedCombatantRecord
     {
         public string ActorId { get; }
