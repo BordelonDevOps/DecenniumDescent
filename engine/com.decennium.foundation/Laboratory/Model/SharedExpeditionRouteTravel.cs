@@ -342,11 +342,22 @@ namespace Decennium.Foundation.Laboratory
                 || c.Target == "" || c.X != 0 || c.Y != 0 || !Validation.ValidId(c.Target)) return "InvalidRouteTravelRequest";
             route = routeTravelFixture.Find(c.Target);
             if (route == null) return "UnknownRoute";
+            // Route commands are dispatched ahead of the shared manufacturing continuation
+            // guard. Keep their query and execution path aligned with that guard explicitly.
+            // This is schema53-only so schema52 command admission remains byte-for-byte in
+            // its historical behavioral envelope.
+            if (routeMotionFixture != null)
+            {
+                if (PendingCalendarChoice(s)) return "TacticalChoicePending";
+                if (ManufacturingChoicePending(s) || s.ManufacturingAdvance != null)
+                    return "ManufacturingChoicePending";
+            }
             current = OpenRouteTravel(s, c.Actor);
             if (c.Kind == CommandKind.StartRouteTravel)
             {
                 if (current != null) return "RouteTravelAlreadyOpen";
-                if (s.InventoryCombat || s.Encounter != null) return "RouteTravelDuringTacticalControl";
+                string controlFailure = RouteTravelControlFailure(s);
+                if (controlFailure != null) return controlFailure;
                 if (s.WorldTraversals.Length != 0) return "RouteTravelConflictsWithGridTraversal";
                 if (s.RouteTravels.Count(x => x.Status == ExpeditionRouteTravelStatus.SegmentComplete) >= ExpeditionRouteTravelValidation.MaxRecords)
                     return "RouteTravelHistoryCapacityReached";
@@ -396,7 +407,8 @@ namespace Decennium.Foundation.Laboratory
             if (c.Kind == CommandKind.PauseRouteTravel)
                 return current.Status == ExpeditionRouteTravelStatus.Moving ? null : "RouteTravelNotMoving";
             if (current.Status != ExpeditionRouteTravelStatus.Paused) return "RouteTravelNotPaused";
-            if (s.InventoryCombat || s.Encounter != null) return "RouteTravelDuringTacticalControl";
+            string resumeControlFailure = RouteTravelControlFailure(s);
+            if (resumeControlFailure != null) return resumeControlFailure;
             if (!Permissions(s, c.Actor).VoluntarySpeed || Speed(s, c.Actor) <= 0) return "ConditionPreventsRouteTravel";
             bool detachedRejoin = routeMotionFixture != null && RouteSpatial(s, c.Actor)?.Detached == true;
             if (s.WorldTraversals.Any(x => x.ActorId != c.Actor)
@@ -446,6 +458,18 @@ namespace Decennium.Foundation.Laboratory
                     });
                 if (hostileNear) return "RoutePassesTacticalThreatBoundary";
             }
+            return null;
+        }
+
+        private string RouteTravelControlFailure(Snapshot s)
+        {
+            if (routeMotionFixture == null)
+                return s.InventoryCombat || s.Encounter != null ? "RouteTravelDuringTacticalControl" : null;
+            // A completed conflict stays in the snapshot as history. Tactical control ends
+            // only after the existing exit command has committed and the canonical conflict
+            // record is resolved; retaining that record must not strand the expedition.
+            if (s.InventoryCombat || (s.Encounter != null && !ResolvedConflict(s)))
+                return "RouteTravelDuringTacticalControl";
             return null;
         }
 
@@ -499,7 +523,9 @@ namespace Decennium.Foundation.Laboratory
         {
             foreach (var travel in s.RouteTravels.Where(x => x.Status == ExpeditionRouteTravelStatus.Moving).ToArray())
             {
-                if (s.InventoryCombat || s.Encounter != null || !Permissions(s, travel.TravelerId).VoluntarySpeed
+                bool unresolvedTacticalControl = s.InventoryCombat
+                    || (s.Encounter != null && (routeMotionFixture == null || !ResolvedConflict(s)));
+                if (unresolvedTacticalControl || !Permissions(s, travel.TravelerId).VoluntarySpeed
                     || Speed(s, travel.TravelerId) <= 0)
                     SetRouteTravel(s, travel.With(travel.NominalEffort, ExpeditionRouteTravelStatus.Paused));
             }

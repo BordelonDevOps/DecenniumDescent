@@ -22,6 +22,17 @@ namespace Decennium.Foundation.Tests
                     new TestOnlyRoutePositionBinding(new RuleQuantity(2), 2, 3)
                 }));
 
+        private static TestOnlyExpeditionRouteFixture RouteTravelCheckpointFixture()
+            => new TestOnlyExpeditionRouteFixture(new TestOnlyExpeditionRoute(RouteTravelId,
+                TestOnlyPolicy.ContainerId, TestOnlyCropPolicy.PlotId, 1, 2, 3, 3, new RuleQuantity(4),
+                ExpeditionRouteQuality.Secured, 0, ExpeditionRouteMapping.Mapped, new RuleQuantity(10), new[] {
+                    new TestOnlyRoutePositionBinding(default, 1, 2),
+                    new TestOnlyRoutePositionBinding(new RuleQuantity(1), 1, 3),
+                    new TestOnlyRoutePositionBinding(new RuleQuantity(2), 2, 3),
+                    new TestOnlyRoutePositionBinding(new RuleQuantity(3), 2, 4),
+                    new TestOnlyRoutePositionBinding(new RuleQuantity(4), 3, 4)
+                }));
+
         private static TestOnlySharedWorldPolicy RouteTravelPolicy(TestOnlyExpeditionRouteFixture fixture,
             ConditionCombatFixture conditions = null)
             => new TestOnlySharedWorldPolicy(new PortableKitFixture(), new SharedCombatFixture(), new SupplyCacheFixture(),
@@ -33,9 +44,17 @@ namespace Decennium.Foundation.Tests
                 new TestOnlyRouteMotionLeg(RouteTravelId, default, new RuleQuantity(1), 1, 2, 1, 3),
                 new TestOnlyRouteMotionLeg(RouteTravelId, new RuleQuantity(1), new RuleQuantity(2), 1, 3, 2, 3));
 
-        private static TestOnlySharedWorldPolicy RouteObservationPolicy(TestOnlyExpeditionRouteFixture routes)
-            => new TestOnlySharedWorldPolicy(new PortableKitFixture(), new SharedCombatFixture(), new SupplyCacheFixture())
-                .EnableRouteObservationIntegration(routes, RouteTravelMotionFixture(routes), RouteTravelObservationFixture());
+        private static TestOnlyExpeditionRouteMotionFixture RouteTravelCheckpointMotionFixture(TestOnlyExpeditionRouteFixture routes)
+            => new TestOnlyExpeditionRouteMotionFixture(routes,
+                new TestOnlyRouteMotionLeg(RouteTravelId, default, new RuleQuantity(1), 1, 2, 1, 3),
+                new TestOnlyRouteMotionLeg(RouteTravelId, new RuleQuantity(1), new RuleQuantity(2), 1, 3, 2, 3),
+                new TestOnlyRouteMotionLeg(RouteTravelId, new RuleQuantity(2), new RuleQuantity(3), 2, 3, 2, 4),
+                new TestOnlyRouteMotionLeg(RouteTravelId, new RuleQuantity(3), new RuleQuantity(4), 2, 4, 3, 4));
+
+        private static TestOnlySharedWorldPolicy RouteObservationPolicy(TestOnlyExpeditionRouteFixture routes, long enemyHp = 26,
+            TestOnlyExpeditionRouteMotionFixture motion = null)
+            => new TestOnlySharedWorldPolicy(new PortableKitFixture(), new SharedCombatFixture(enemyHp), new SupplyCacheFixture())
+                .EnableRouteObservationIntegration(routes, motion ?? RouteTravelMotionFixture(routes), RouteTravelObservationFixture());
 
         private static Command RouteTravelCommand(Simulation s, CommandKind kind, string id = "route.command",
             string actor = TestOnlyPolicy.ActorId)
@@ -267,6 +286,30 @@ namespace Decennium.Foundation.Tests
                     "Combat save/restore lost paused route effort or exact route-anchor rejoin.");
             });
 
+            cases.Add("expedition_route_schema52_retained_encounter_remains_blocking", () => {
+                var routes = RouteTravelFixture();
+                var policy = new TestOnlySharedWorldPolicy(new PortableKitFixture(), new SharedCombatFixture(1), new SupplyCacheFixture())
+                    .EnableExpeditionRouteTravel(routes);
+                var simulation = World(policy);
+                Require(simulation.Capture().SchemaVersion == Snapshot.ExpeditionRouteSchema,
+                    "Route-only compatibility case did not select schema52.");
+                RouteTravelReachSource(simulation);
+                WorldCommit(simulation, RouteTravelCommand(simulation, CommandKind.StartRouteTravel, "route.schema52.start"));
+                WorldCommit(simulation, IC(simulation, CommandKind.BeginFixedEncounter));
+                while (simulation.Capture().Encounter.CurrentActor != TestOnlyPolicy.ActorId) ConnectedEnd(simulation);
+                WorldCommit(simulation, Tac(simulation, CommandKind.SelectCombatStance,
+                    stance: (int)CombatStance.Aggressive));
+                foreach (var position in new[] { new[] { 2, 2 }, new[] { 3, 2 }, new[] { 4, 2 }, new[] { 4, 1 } })
+                    TacStep(simulation, position[0], position[1]);
+                DefeatConnectedEnemy(simulation);
+                WorldCommit(simulation, Tac(simulation, CommandKind.EndFixedEncounter));
+                Require(!simulation.Capture().InventoryCombat && simulation.Capture().Encounter != null
+                    && simulation.Capture().Lives.Single(x => x.ActorId == AdditionalTacticalActor.Id).Dead,
+                    "Schema52 combat did not retain its resolved encounter record.");
+                RejectUnchanged(simulation, host, RouteTravelCommand(simulation, CommandKind.ResumeRouteTravel,
+                    "route.schema52.reject-resume"), "RouteTravelDuringTacticalControl");
+            });
+
             cases.Add("route_observation_fractional_detach_detour_exact_rejoin_and_replay", () => {
                 var routes = RouteTravelFixture();
                 var policy = RouteObservationPolicy(routes);
@@ -357,6 +400,187 @@ namespace Decennium.Foundation.Tests
                     && checkpoint.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).X == 1
                     && checkpoint.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).Y == 2,
                     "Checkpoint tactical entry did not transfer position authority to ordinary tactical grid state.");
+            });
+
+            cases.Add("route_observation_checkpoint_combat_paid_return_resume_and_intake", () => {
+                var routes = RouteTravelCheckpointFixture();
+                var motion = RouteTravelCheckpointMotionFixture(routes);
+                Simulation StartAtRoute(TestOnlySharedWorldPolicy selectedPolicy)
+                {
+                    var value = World(selectedPolicy);
+                    FarmWork(value, CommandKind.PlantCrop); // Companion manages the authored destination plot concurrently.
+                    RouteTravelReachSource(value);
+                    WorldCommit(value, Portable(value, CommandKind.HandlePortableEquipment, PortableKitFixture.Rations,
+                        handling: HandlingKind.Retrieve)); // Carry the meal so destination intake does not borrow cache reach.
+                    WorldCommit(value, RouteTravelCommand(value, CommandKind.StartRouteTravel, "route.loop.start"));
+                    return value;
+                }
+
+                var whole = StartAtRoute(RouteObservationPolicy(routes, enemyHp: 1, motion));
+                WorldAdvance(whole, 16200); // One complete 5-foot authored leg at the fixture's burden-adjusted pace.
+
+                var policy = RouteObservationPolicy(routes, enemyHp: 1, motion);
+                var simulation = StartAtRoute(policy);
+                WorldAdvance(simulation, 5400);
+                byte[] midLegSave = Bytes(simulation);
+                simulation = new Simulation(policy, new SnapshotCodec().Decode(midLegSave), ExecutionProfile.Laboratory);
+                Require(midLegSave.SequenceEqual(Bytes(simulation)), "Mid-leg route save/restore changed the canonical state.");
+                WorldAdvance(simulation, 10800);
+
+                var wholeState = whole.Capture();
+                var splitState = simulation.Capture();
+                var wholeSight = wholeState.ObserverKnowledge.Single(x => x.ObserverId == TestOnlyPolicy.CompanionId
+                    && x.TargetId == TestOnlyPolicy.ActorId);
+                var splitSight = splitState.ObserverKnowledge.Single(x => x.ObserverId == TestOnlyPolicy.CompanionId
+                    && x.TargetId == TestOnlyPolicy.ActorId);
+                Require(wholeState.RuleClock == splitState.RuleClock
+                    && wholeState.RouteTravels.Single().Progress == new RuleQuantity(1)
+                    && wholeState.RouteTravels.Single().Progress == splitState.RouteTravels.Single().Progress
+                    && wholeState.RouteTravels.Single().NominalEffort == splitState.RouteTravels.Single().NominalEffort
+                    && wholeState.RouteTravelSpatial.Single().X == splitState.RouteTravelSpatial.Single().X
+                    && wholeState.RouteTravelSpatial.Single().Y == splitState.RouteTravelSpatial.Single().Y
+                    && wholeSight.CurrentLocationKnown == splitSight.CurrentLocationKnown
+                    && wholeSight.LastKnownX == splitSight.LastKnownX && wholeSight.LastKnownY == splitSight.LastKnownY
+                    && wholeSight.Evidence == splitSight.Evidence && wholeSight.EvidenceAt == splitSight.EvidenceAt
+                    && wholeSight.CurrentLocationKnown && wholeSight.LastKnownX == new RuleQuantity(1)
+                    && wholeSight.LastKnownY == new RuleQuantity(3) && wholeSight.Evidence == ObservationEvidenceKind.DirectSight,
+                    "Whole versus split/save/restore route time changed checkpoint progress, physical pose, or sight evidence.");
+
+                byte[] checkpointSave = Bytes(simulation);
+                simulation = new Simulation(policy, new SnapshotCodec().Decode(checkpointSave), ExecutionProfile.Laboratory);
+                Require(checkpointSave.SequenceEqual(Bytes(simulation)), "Integer route checkpoint did not restore byte-for-byte.");
+                WorldCommit(simulation, IC(simulation, CommandKind.BeginFixedEncounter));
+                var encounter = simulation.Capture();
+                Require(encounter.InventoryCombat && encounter.RouteTravels.Single().Status == ExpeditionRouteTravelStatus.Paused
+                    && encounter.RouteTravelSpatial.Single().Detached
+                    && encounter.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).X == 1
+                    && encounter.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).Y == 3,
+                    "Tactical entry did not transfer the exact checkpoint into shared combat position state.");
+                RejectUnchanged(simulation, host, RouteTravelCommand(simulation, CommandKind.ResumeRouteTravel,
+                    "route.loop.resume-during-combat"), "RouteTravelDuringTacticalControl");
+                for (int skipped = 0; simulation.Capture().Encounter.CurrentActor != TestOnlyPolicy.ActorId; skipped++)
+                {
+                    Require(skipped < encounter.Encounter.Order.Count, "Combat initiative did not reach the expedition actor.");
+                    ConnectedEnd(simulation);
+                }
+                WorldCommit(simulation, Tac(simulation, CommandKind.SelectCombatStance,
+                    stance: (int)CombatStance.Aggressive));
+                foreach (var position in new[] { new[] { 2, 3 }, new[] { 2, 2 }, new[] { 3, 2 }, new[] { 4, 2 } })
+                    TacStep(simulation, position[0], position[1]);
+                ConnectedEnd(simulation); // The burden-adjusted tactical movement allowance is 20 feet.
+                while (simulation.Capture().Encounter.CurrentActor != TestOnlyPolicy.ActorId) ConnectedEnd(simulation);
+                WorldCommit(simulation, Tac(simulation, CommandKind.SelectCombatStance,
+                    stance: (int)CombatStance.Aggressive));
+                TacStep(simulation, 4, 1); // Final 5-foot step ends adjacent to the authored enemy at (4,0).
+                byte[] displacedCombatSave = Bytes(simulation);
+                simulation = new Simulation(policy, new SnapshotCodec().Decode(displacedCombatSave), ExecutionProfile.Laboratory);
+                Require(displacedCombatSave.SequenceEqual(Bytes(simulation))
+                    && simulation.Capture().Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).X == 4
+                    && simulation.Capture().Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).Y == 1,
+                    "Tactical displacement did not survive save/restore at its exact world position: bytes="
+                    + displacedCombatSave.SequenceEqual(Bytes(simulation)) + ", actor="
+                    + simulation.Capture().Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).X + ","
+                    + simulation.Capture().Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).Y + ", expected=4,1, encounter="
+                    + simulation.Capture().Encounter.CurrentActor + ", route=" + simulation.Capture().RouteTravels.Single().Status
+                    + ", detached=" + simulation.Capture().RouteTravelSpatial.Single().Detached + ".");
+                DefeatConnectedEnemy(simulation);
+                RejectUnchanged(simulation, host, RouteTravelCommand(simulation, CommandKind.ResumeRouteTravel,
+                    "route.loop.resume-before-combat-exit"), "RouteTravelDuringTacticalControl");
+                WorldCommit(simulation, Tac(simulation, CommandKind.EndFixedEncounter));
+                var exited = simulation.Capture();
+                Require(!exited.InventoryCombat && exited.Lives.Single(x => x.ActorId == AdditionalTacticalActor.Id).Dead
+                    && exited.RouteTravels.Single().Progress == new RuleQuantity(1)
+                    && exited.RouteTravels.Single().Status == ExpeditionRouteTravelStatus.Paused
+                    && exited.RouteTravelSpatial.Single().Detached
+                    && exited.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).X == 4
+                    && exited.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).Y == 1,
+                    "Combat exit reset route progress, failed to retain tactical displacement, or left the conflict unresolved.");
+                byte[] exitSave = Bytes(simulation);
+                simulation = new Simulation(policy, new SnapshotCodec().Decode(exitSave), ExecutionProfile.Laboratory);
+                Require(exitSave.SequenceEqual(Bytes(simulation)), "Resolved combat exit lost the detached route reference on restore.");
+                RejectUnchanged(simulation, host, RouteTravelCommand(simulation, CommandKind.ResumeRouteTravel,
+                    "route.loop.resume-from-displaced-position"), "TravelerNotAtBoundRoutePosition");
+
+                foreach (var step in new[] { new[] { -1, 0 }, new[] { 0, 1 }, new[] { -1, 0 }, new[] { -1, 0 }, new[] { 0, 1 } })
+                {
+                    WorldStep(simulation, step[0], step[1]);
+                    WorldAdvance(simulation, 3, 2);
+                }
+                var returned = simulation.Capture();
+                Require(returned.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).X == 1
+                    && returned.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).Y == 3
+                    && returned.WorldTraversals.Length == 0 && returned.RouteTravelSpatial.Single().Detached
+                    && returned.RouteTravels.Single().Progress == new RuleQuantity(1),
+                    "Ordinary paid movement did not return to the exact saved route checkpoint.");
+                byte[] returnSave = Bytes(simulation);
+                var resumedWhole = new Simulation(policy, new SnapshotCodec().Decode(returnSave), ExecutionProfile.Laboratory);
+                var resumedSplit = new Simulation(policy, new SnapshotCodec().Decode(returnSave), ExecutionProfile.Laboratory);
+                WorldCommit(resumedWhole, RouteTravelCommand(resumedWhole, CommandKind.ResumeRouteTravel, "route.loop.resume"));
+                WorldCommit(resumedSplit, RouteTravelCommand(resumedSplit, CommandKind.ResumeRouteTravel, "route.loop.resume"));
+                WorldAdvance(resumedWhole, 16200);
+                WorldAdvance(resumedSplit, 5400);
+                byte[] resumedMidLegSave = Bytes(resumedSplit);
+                resumedSplit = new Simulation(policy, new SnapshotCodec().Decode(resumedMidLegSave), ExecutionProfile.Laboratory);
+                Require(resumedMidLegSave.SequenceEqual(Bytes(resumedSplit)),
+                    "Post-combat resumed route save/restore changed the canonical state.");
+                WorldAdvance(resumedSplit, 10800);
+                var wholeResumed = resumedWhole.Capture();
+                var splitResumed = resumedSplit.Capture();
+                var wholeResumedSight = wholeResumed.ObserverKnowledge.Single(x => x.ObserverId == TestOnlyPolicy.CompanionId
+                    && x.TargetId == TestOnlyPolicy.ActorId);
+                var splitResumedSight = splitResumed.ObserverKnowledge.Single(x => x.ObserverId == TestOnlyPolicy.CompanionId
+                    && x.TargetId == TestOnlyPolicy.ActorId);
+                Require(wholeResumed.RuleClock == splitResumed.RuleClock
+                    && wholeResumed.RouteTravels.Single().Progress == splitResumed.RouteTravels.Single().Progress
+                    && wholeResumed.RouteTravels.Single().NominalEffort == splitResumed.RouteTravels.Single().NominalEffort
+                    && wholeResumed.RouteTravelSpatial.Length == splitResumed.RouteTravelSpatial.Length
+                    && wholeResumed.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).X
+                        == splitResumed.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).X
+                    && wholeResumed.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).Y
+                        == splitResumed.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).Y
+                    && wholeResumedSight.CurrentLocationKnown == splitResumedSight.CurrentLocationKnown
+                    && wholeResumedSight.LastKnownX == splitResumedSight.LastKnownX
+                    && wholeResumedSight.LastKnownY == splitResumedSight.LastKnownY
+                    && wholeResumedSight.Evidence == splitResumedSight.Evidence
+                    && wholeResumedSight.EvidenceAt == splitResumedSight.EvidenceAt,
+                    "Post-combat route continuation changed under split time or save/restore.");
+                simulation = resumedSplit;
+                var arrived = simulation.Capture();
+                Require(arrived.RouteTravels.Single().Status == ExpeditionRouteTravelStatus.SegmentComplete
+                    && arrived.RouteTravels.Single().Progress == new RuleQuantity(2)
+                    && arrived.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).X == 2
+                    && arrived.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).Y == 3
+                    && Crop(simulation).Stage == CropStage.Growing,
+                    "Route resume failed to complete at its destination while remote crop management continued.");
+
+                var intake = IC(simulation, CommandKind.StartIntake, PortableKitFixture.Rations,
+                    new InventoryRequest(new RuleQuantity(2, 3)));
+                WorldCommit(simulation, intake);
+                WorldAdvance(simulation, 600);
+                Require(simulation.Capture().Intakes.Single().Status == IntakeStatus.Complete
+                    && Eaten(simulation) == new RuleQuantity(2, 3)
+                    && simulation.Capture().RouteTravels.Single().Status == ExpeditionRouteTravelStatus.SegmentComplete,
+                    "Destination resource management did not continue on the same clock and persisted route outcome.");
+
+                var nextSegment = RouteTravelCommand(simulation, CommandKind.StartRouteTravel, "route.loop.next-segment");
+                var nextSegmentQuery = simulation.QueryCommand(host, nextSegment);
+                Require(nextSegmentQuery.Supported && nextSegmentQuery.Admissible,
+                    "Resolved encounter history blocked a lawful next route segment: " + nextSegmentQuery.Code);
+                WorldCommit(simulation, nextSegment);
+                WorldAdvance(simulation, 16200);
+                var continuation = simulation.Capture();
+                var latestRoute = continuation.RouteTravels.OrderBy(x => x.StartedRevision).Last();
+                Require(!continuation.InventoryCombat && continuation.Encounter != null
+                    && continuation.Lives.Single(x => x.ActorId == AdditionalTacticalActor.Id).Dead
+                    && continuation.RouteTravels.Length == 2
+                    && latestRoute.Status == ExpeditionRouteTravelStatus.Moving
+                    && latestRoute.Progress == new RuleQuantity(3)
+                    && continuation.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).X == 2
+                    && continuation.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).Y == 4,
+                    "Retained resolved combat history paused or rewrote the next route segment.");
+                var replay = new Simulation(policy, new SnapshotCodec().Decode(Bytes(simulation)), ExecutionProfile.Laboratory);
+                Require(Bytes(simulation).SequenceEqual(Bytes(replay)),
+                    "Completed travel, combat, return, resumed route, crop and intake state failed canonical replay.");
             });
 
             cases.Add("expedition_route_and_observation_profile_composition_fails_closed", () => {
