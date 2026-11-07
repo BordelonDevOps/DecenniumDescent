@@ -1,8 +1,37 @@
-# Decennium foundation laboratory
+# Decennium C# simulation engine
 
 **Development branch: [`Engine`](https://github.com/BordelonDevOps/DecenniumDescent/tree/Engine).** The owner requested a dedicated branch from `main` for all engine work. Source code, tests, Unity host source/settings and the related `docs/unity/` records belong on this branch. Generated caches, user settings and temporary build output remain ignored. The branch retains the rules repository inherited from `main`; no rules-source promotion is implied.
 
-Technical foundation plus source-bound C# character, damage/life, combat-budget, duration and dice procedures. Shared worker/resource reservations now join the existing transaction and save path in an explicit schema2 technical fixture. Owner-approved prototype clock/traversal arithmetic is available; the adopted Camp Greens lifecycle now runs through schema3 commands and saves. General job/worker access and spatial execution remain unfinished. **Current owner direction: develop the complete engine in plain C# across exploration, tactical combat and resource management first; integrate with Unity afterward.** The full engine is incomplete. Current counts, source bindings and review findings are in the [handoff](../docs/unity/DEVELOPMENT_HANDOFF.md) and [current evidence](../docs/unity/evidence/2026-11-03-condition-combat/SOURCE_BINDINGS.json). Unity package import, scenes, Play Mode and builds remain deferred.
+The owner-directed deliverable is a C# simulation for **direct exploration, tactical combat, and resource management over one shared world state**. Develop and validate the rules engine before Unity presentation integration. The engine remains incomplete; current feature coverage and validation evidence are in the [handoff](../docs/unity/DEVELOPMENT_HANDOFF.md) and [implementation trace](../docs/unity/IMPLEMENTATION_TRACE.md). Do not treat bounded `TEST_ONLY` profiles as complete production systems or release-approved content.
+
+## Current architecture map
+
+```mermaid
+flowchart LR
+    Src["Pinned rules and validated content"] --> Defs["Definitions and selected policy"]
+    Input["Player or companion intent"] --> Cmd["Validated C# command boundary"]
+    Defs --> Sim["Authoritative shared simulation"]
+    Cmd --> Sim
+    Sim --> State["Exploration · Tactical Combat · Management"]
+    State --> Shared["Clock · RNG · Inventory · Work · Reservations"]
+    Sim --> Out["Receipts · Results · Read-only queries"]
+    Sim <--> Persist["Versioned snapshots and replay"]
+    Test["Headless deterministic tests"] --> Core
+    Core["Runtime/Core · Unity-free"] --> PersistAsm["Runtime/Persistence · Core only"]
+    Lab["Laboratory/Model · gated TEST_ONLY"] --> Core
+    Lab --> PersistAsm
+    Unity["Future Unity presentation adapter · deferred"] --> Cmd
+```
+
+The simulation owns legality, elapsed time, random draws, state transitions, and committed receipts. Player input and companion AI submit through the same command boundary. Read models do not mutate authoritative state. Persistence encodes the records needed to resume and replay accepted commands; compatibility remains schema-versioned.
+
+| Assembly | Responsibility | Dependencies and boundary |
+| --- | --- | --- |
+| `Decennium.Foundation.Core` | Simulation records, rule calculations, validation, command transactions, shared clock, random stream, inventory and work authority. | No assembly dependencies; no Unity references. |
+| `Decennium.Foundation.Persistence` | Snapshot validation, versioned codecs and canonical command history. | References Core; no Unity references. |
+| `Decennium.Foundation.LabModel` | Opt-in prototype procedures and finite synthetic fixtures. | Compile-gated by `DECENNIUM_TEST_ONLY` plus Editor/Development/Headless context; references Core and Persistence. Its test profiles are not production rule or content approval. |
+| `Decennium.Foundation.Tests` | Headless deterministic regression cases compiled against the same package sources. | Exercises Core, Persistence and gated LabModel behavior; it is not Unity Editor or player-build evidence. |
+| Unity Editor tools and laboratory host | Authoring and later presentation/qualification adapters. | Unity-facing code is isolated from Core. Decennium package import, player-facing scenes, Play Mode and builds remain deferred. |
 
 Unity **6000.3.28f1 LTS** is installed at `C:\Program Files\Unity\Hub\Editor\6000.3.28f1\Editor\Unity.exe`. After owner license activation, template creation at `UnityLaboratory/` completed with exit 0. This is environment preparation only: the foundation package has not been imported, and no Decennium scene has been generated. The earlier license failure is retained in [historical environment evidence](../docs/unity/evidence/2026-11-03-rolls/UNITY_ENVIRONMENT.json); the successful attempt is recorded in `engine/artifacts/unity-qualification-20261103T174953/01-create.json` and its adjacent log. Preserve this unused template while C# work continues.
 
