@@ -89,6 +89,14 @@ namespace Decennium.Foundation
                 throw new ArgumentException("Invalid route-mapping query.");
             var latest = (snapshot.RouteMappingResults ?? Array.Empty<ExpeditionRouteMappingResultRecord>())
                 .Where(x => x.RouteId == routeId).OrderBy(x => x.AppliedRevision).LastOrDefault();
+            long latestRevision = latest?.AppliedRevision ?? 0;
+            var work = snapshot.SchemaVersion >= Snapshot.RouteMappingWorkSchema
+                ? (snapshot.RouteMappingWorkAttempts ?? Array.Empty<ExpeditionRouteMappingWorkAttemptRecord>())
+                    .Where(x => x.RouteId == routeId && x.Check != null)
+                    .OrderBy(x => x.Check.AppliedRevision).LastOrDefault()
+                : null;
+            if (work != null && work.Check.AppliedRevision > latestRevision)
+                return new ExpeditionRouteMappingKnowledge(work.Check.MappingAfter, work.Check.MarksAfter);
             return latest == null ? new ExpeditionRouteMappingKnowledge(initialMapping, 0)
                 : new ExpeditionRouteMappingKnowledge(latest.MappingAfter, latest.MarksAfter);
         }

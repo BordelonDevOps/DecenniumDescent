@@ -28,6 +28,7 @@ namespace Decennium.Foundation
             HarvestSelectionRequest harvestSelection=null;
             MiningSelectionRequest miningSelection=null;
             ProspectingExposureRequest prospectingExposure=null;
+            RouteMappingWorkRequest routeMappingWork=null;
             OverwatchRider rider=OverwatchRider.None;
             if(p.Length==8&&p[6]=="overwatch-rider-v1") {
                 rider=(OverwatchRider)Int(p[7]);
@@ -94,7 +95,11 @@ namespace Decennium.Foundation
                 if(kind!=CommandKind.RecordProspectingExposure)throw new ArgumentException("Prospecting exposure payload has the wrong command kind.");
                 prospectingExposure=new ProspectingExposureRequest(p[7],p[8]);
             }
-            var command = new Command(receipt.Id, p[1], receipt.Revision - 1, kind, p[2], Int(p[4]), Int(p[5]), inventory, combat,advancement,ranged,rider,suppression,defensiveFormation,expeditionAssignment,harvestSelection,miningSelection,prospectingExposure);
+            if(p.Length==8&&p[6]=="route-map-team-v1") {
+                if(kind!=CommandKind.StartRouteMappingWork)throw new ArgumentException("Map Route team payload has the wrong command kind.");
+                routeMappingWork=new RouteMappingWorkRequest(p[7].Length==0?Array.Empty<string>():p[7].Split(','));
+            }
+            var command = new Command(receipt.Id, p[1], receipt.Revision - 1, kind, p[2], Int(p[4]), Int(p[5]), inventory, combat,advancement,ranged,rider,suppression,defensiveFormation,expeditionAssignment,harvestSelection,miningSelection,prospectingExposure,routeMappingWork);
             // Includes expected revision and exact canonical numeric representation, versions and fields.
             if (!command.MatchesReceipt(receipt)) throw new ArgumentException("Noncanonical or inconsistent command receipt.");
             return command;

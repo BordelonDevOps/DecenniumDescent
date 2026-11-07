@@ -484,7 +484,8 @@ namespace Decennium.Foundation.Laboratory
             {
                 s.RouteTravels = s.RouteTravels.Concat(new[] { new ExpeditionRouteTravelRecord(route.Id, c.Actor,
                     s.Revision + 1, start, award, start, default, route.Mapping, ExpeditionRouteTravelStatus.Moving) }).ToArray();
-                if (routeMotionFixture != null || huntingTrapFixture != null)
+                if (routeMotionFixture != null || huntingTrapFixture != null
+                    || s.SchemaVersion >= Snapshot.RouteObservationSchema)
                 {
                     var binding = route.PositionAt(start);
                     var poseX = routeMotionFixture == null ? new RuleQuantity(binding.X)
@@ -603,7 +604,7 @@ namespace Decennium.Foundation.Laboratory
                         SetRouteSpatial(s, spatial.With(pose.X, pose.Y, false));
                     }
                 }
-                else if (huntingTrapFixture != null)
+                else if (huntingTrapFixture != null || s.SchemaVersion >= Snapshot.RouteObservationSchema)
                 {
                     if (updated.Status == ExpeditionRouteTravelStatus.SegmentComplete)
                         s.RouteTravelSpatial = s.RouteTravelSpatial.Where(x => x.TravelStartedRevision != updated.StartedRevision).ToArray();
@@ -648,7 +649,8 @@ namespace Decennium.Foundation.Laboratory
         {
             if (routeTravelFixture == null)
                 return s.RouteTravels.Length == 0 ? null : "RouteTravelProfileMissing";
-            int routeSchema = routeMappingFixture != null ? Snapshot.RouteMappingSchema
+            int routeSchema = routeMappingWorkFixture != null ? Snapshot.RouteMappingWorkSchema
+                : routeMappingFixture != null ? Snapshot.RouteMappingSchema
                 : routeMotionFixture == null ? Snapshot.ExpeditionRouteSchema : Snapshot.RouteObservationSchema;
             if (s.SchemaVersion != routeSchema
                 && !(huntingTrapFixture != null && s.SchemaVersion == Snapshot.HuntingTrapSchema
@@ -698,7 +700,8 @@ namespace Decennium.Foundation.Laboratory
                         || spatial.Detached && travel.Status != ExpeditionRouteTravelStatus.Paused
                         || !spatial.Detached && (actor.X != binding.X || actor.Y != binding.Y)))
                     return "TravelerNotAtBoundRoutePosition";
-                if (routeMotionFixture == null && huntingTrapFixture != null)
+                if (routeMotionFixture == null
+                    && (huntingTrapFixture != null || s.SchemaVersion >= Snapshot.RouteObservationSchema))
                 {
                     var routeSpatial = RouteSpatial(s, travel.TravelerId);
                     if (routeSpatial == null || routeSpatial.Detached || routeSpatial.RouteId != travel.RouteId

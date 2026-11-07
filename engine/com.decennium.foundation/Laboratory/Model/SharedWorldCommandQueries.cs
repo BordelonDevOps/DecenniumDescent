@@ -251,6 +251,43 @@ namespace Decennium.Foundation.Laboratory
                     &&s.RouteMappingResults.All(applied=>applied.ResultId!=x.ResultId)).OrderBy(x=>x.ResultId,StringComparer.Ordinal))
                     yield return new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+".route-mapping."+(index++).ToString(CultureInfo.InvariantCulture),
                         actor,s.Revision,CommandKind.ConsumeTestOnlyRouteMappingResult,result.ResultId);
+            if (routeMappingWorkFixture != null)
+            {
+                foreach (var currentMappingWork in s.RouteMappingWorkAttempts.Where(x => x.LeadId == actor
+                    && x.Status != ExpeditionRouteMappingWorkStatus.Resolved).OrderBy(x => x.StartedRevision))
+                {
+                    CommandKind control = currentMappingWork.Status == ExpeditionRouteMappingWorkStatus.Working
+                        ? CommandKind.PauseRouteMappingWork : CommandKind.ResumeRouteMappingWork;
+                    yield return new Command("option." + s.Revision.ToString(CultureInfo.InvariantCulture) + ".route-work." + (index++).ToString(CultureInfo.InvariantCulture),
+                        actor, s.Revision, control, currentMappingWork.Id);
+                }
+                foreach (var task in routeMappingWorkFixture.Tasks.OrderBy(x => x.RouteId, StringComparer.Ordinal))
+                {
+                    if (s.RouteMappingWorkAttempts.Any(x => x.RouteId == task.RouteId
+                        && x.Status != ExpeditionRouteMappingWorkStatus.Resolved)) continue;
+                    Command CreateRouteWork(string[] helpers)
+                        => new Command("option." + s.Revision.ToString(CultureInfo.InvariantCulture) + ".route-work." + (index++).ToString(CultureInfo.InvariantCulture),
+                            actor, s.Revision, CommandKind.StartRouteMappingWork, task.RouteId,
+                            routeMappingWork: new RouteMappingWorkRequest(helpers));
+                    yield return CreateRouteWork(Array.Empty<string>());
+                    var route = routeTravelFixture.Find(task.RouteId);
+                    var assistants = s.Actors.Where(x => x.Id != actor
+                            && WorldSpatialQueries.CardinalDistance(x.X, x.Y, route.FromX, route.FromY) == 1
+                            && s.SkillTraining.Any(t => t.ActorId == x.Id
+                                && t.SkillId == TestOnlyExpeditionRouteMappingWorkFixture.SkillId && t.ProficiencyRank > 0))
+                        .Select(x => x.Id).OrderBy(x => x, StringComparer.Ordinal).ToArray();
+                    for (int first = 0; first < assistants.Length; first++)
+                    {
+                        yield return CreateRouteWork(new[] { assistants[first] });
+                        for (int second = first + 1; second < assistants.Length; second++)
+                        {
+                            yield return CreateRouteWork(new[] { assistants[first], assistants[second] });
+                            for (int third = second + 1; third < assistants.Length; third++)
+                                yield return CreateRouteWork(new[] { assistants[first], assistants[second], assistants[third] });
+                        }
+                    }
+                }
+            }
             if (repair != null && IsRepairWorker(actor))
             {
                 var job = s.RepairWork.SingleOrDefault(x => x.WorkerId == actor && x.Open);
@@ -407,6 +444,7 @@ namespace Decennium.Foundation.Laboratory
         private CommandQueryResult QuerySharedWorldCommand(Snapshot s, Authority authority, Command c)
         {
             if (RouteMappingResultCommand(c.Kind)) return QueryRouteMappingResultCommand(s, c);
+            if (RouteMappingWorkCommand(c.Kind)) return QueryRouteMappingWork(s, c);
             if (RouteTravelCommand(c.Kind)) return QueryRouteTravelCommand(s, c);
             if (c.Kind == CommandKind.Search) return QueryObservationSearchCommand(s, c);
             if (CacheExcavationCommand(c)) return QueryCacheExcavationControl(s, c);

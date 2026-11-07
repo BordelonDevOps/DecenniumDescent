@@ -26,7 +26,8 @@ namespace Decennium.Foundation
         StartMiningAssay, PauseMiningAssay, ResumeMiningAssay, CancelMiningAssay,
         StartMineralPreparation, PauseMineralPreparation, ResumeMineralPreparation, Hide, Search,
         StartRouteTravel, PauseRouteTravel, ResumeRouteTravel, ConsumeTestOnlyRouteMappingResult, Dodge,
-        PauseCacheExcavation, ResumeCacheExcavation, Ready, RespondReady }
+        PauseCacheExcavation, ResumeCacheExcavation, Ready, RespondReady,
+        StartRouteMappingWork, PauseRouteMappingWork, ResumeRouteMappingWork }
     public enum Outcome { Rejected, Committed, Duplicate }
 
     // DTOs are detached copies. No caller ever receives the owned simulation state.
@@ -109,6 +110,7 @@ namespace Decennium.Foundation
         public const int DodgeSchema = 56;
         public const int BuriedCacheSchema = 57;
         public const int ReadyActionSchema = 58;
+        public const int RouteMappingWorkSchema = 59;
         public const int MaxActors = 64;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
@@ -251,6 +253,7 @@ namespace Decennium.Foundation
         public ExpeditionRouteTravelRecord[] RouteTravels = Array.Empty<ExpeditionRouteTravelRecord>();
         public ExpeditionRouteSpatialRecord[] RouteTravelSpatial = Array.Empty<ExpeditionRouteSpatialRecord>();
         public ExpeditionRouteMappingResultRecord[] RouteMappingResults = Array.Empty<ExpeditionRouteMappingResultRecord>();
+        public ExpeditionRouteMappingWorkAttemptRecord[] RouteMappingWorkAttempts = Array.Empty<ExpeditionRouteMappingWorkAttemptRecord>();
         public HuntingTrapDeploymentRecord[] HuntingTrapDeployments = Array.Empty<HuntingTrapDeploymentRecord>();
         public HuntingTrapActionRecord[] HuntingTrapActions = Array.Empty<HuntingTrapActionRecord>();
         public HuntingTrapTriggerRecord[] HuntingTrapTriggers = Array.Empty<HuntingTrapTriggerRecord>();
@@ -311,6 +314,7 @@ namespace Decennium.Foundation
             RouteTravels = RouteTravels.ToArray(),
             RouteTravelSpatial = RouteTravelSpatial.ToArray(),
             RouteMappingResults = RouteMappingResults.ToArray(),
+            RouteMappingWorkAttempts = RouteMappingWorkAttempts.ToArray(),
             HuntingTrapDeployments = HuntingTrapDeployments.ToArray(), HuntingTrapActions = HuntingTrapActions.ToArray(),
             HuntingTrapTriggers = HuntingTrapTriggers.ToArray(), HuntingTrapTethers = HuntingTrapTethers.ToArray(),
             FormulaWork = FormulaWork.ToArray(),
@@ -474,14 +478,16 @@ namespace Decennium.Foundation
         public HarvestSelectionRequest HarvestSelection { get; }
         public MiningSelectionRequest MiningSelection { get; }
         public ProspectingExposureRequest ProspectingExposure { get; }
+        public RouteMappingWorkRequest RouteMappingWork { get; }
         public Command(string id, string actor, long revision, CommandKind kind,
             string target = "", int x = 0, int y = 0, InventoryRequest inventory = null, CombatRequest combat = null,
             CharacterAdvancementRequest advancement = null, RangedRequest ranged = null, OverwatchRider overwatchRider = OverwatchRider.None,
             SuppressionFireRequest suppressionFire = null,DefensiveFormationRequest defensiveFormation = null,
             ExpeditionAssignmentRequest expeditionAssignment = null,HarvestSelectionRequest harvestSelection = null,
-            MiningSelectionRequest miningSelection = null, ProspectingExposureRequest prospectingExposure = null)
+            MiningSelectionRequest miningSelection = null, ProspectingExposureRequest prospectingExposure = null,
+            RouteMappingWorkRequest routeMappingWork = null)
         { if(!Enum.IsDefined(typeof(OverwatchRider),overwatchRider))throw new ArgumentException("Invalid Overwatch rider selection.");
-            Id = id; Actor = actor; ExpectedRevision = revision; Kind = kind; Target = target; X = x; Y = y; Inventory = inventory; Combat = combat; Advancement=advancement; Ranged=ranged; OverwatchRider=overwatchRider; SuppressionFire=suppressionFire;DefensiveFormation=defensiveFormation; ExpeditionAssignment=expeditionAssignment;HarvestSelection=harvestSelection;MiningSelection=miningSelection;ProspectingExposure=prospectingExposure; }
+            Id = id; Actor = actor; ExpectedRevision = revision; Kind = kind; Target = target; X = x; Y = y; Inventory = inventory; Combat = combat; Advancement=advancement; Ranged=ranged; OverwatchRider=overwatchRider; SuppressionFire=suppressionFire;DefensiveFormation=defensiveFormation; ExpeditionAssignment=expeditionAssignment;HarvestSelection=harvestSelection;MiningSelection=miningSelection;ProspectingExposure=prospectingExposure;RouteMappingWork=routeMappingWork; }
         internal string Fingerprint => ((int)Kind).ToString(System.Globalization.CultureInfo.InvariantCulture)
             + "|" + Actor + "|" + Target + "|" + ExpectedRevision.ToString(System.Globalization.CultureInfo.InvariantCulture)
             + "|" + X.ToString(System.Globalization.CultureInfo.InvariantCulture)
@@ -500,7 +506,8 @@ namespace Decennium.Foundation
                 : "|expedition-mining-assignment-v1|" + ExpeditionAssignment.Fingerprint + "|" + ExpeditionAssignment.MiningSelection.Fingerprint)
             + (HarvestSelection == null ? "" : "|harvest-selection-v1|" + HarvestSelection.Fingerprint)
             + (MiningSelection == null ? "" : "|mining-selection-v1|" + MiningSelection.Fingerprint)
-            + (ProspectingExposure == null ? "" : "|prospecting-exposure-v1|" + ProspectingExposure.Fingerprint);
+            + (ProspectingExposure == null ? "" : "|prospecting-exposure-v1|" + ProspectingExposure.Fingerprint)
+            + (RouteMappingWork == null ? "" : "|route-map-team-v1|" + RouteMappingWork.Fingerprint);
         // Structural history consistency only; receipts are not authentication credentials.
         public bool MatchesReceipt(CommandReceipt receipt) => receipt != null && ExpectedRevision >= 0
             && ExpectedRevision < long.MaxValue && receipt.Revision == ExpectedRevision + 1
@@ -620,7 +627,7 @@ namespace Decennium.Foundation
         {
             if (s == null || !ValidId(s.ContentFingerprint) || s.Revision < 0 || s.Clock < 0 || s.RandomState == 0)
                 throw new ArgumentException("Invalid snapshot header.");
-            if (s.SchemaVersion == Foundation.Snapshot.ReadyActionSchema) { }
+            if (s.SchemaVersion == Foundation.Snapshot.ReadyActionSchema || s.SchemaVersion == Foundation.Snapshot.RouteMappingWorkSchema) { }
             else if (s.SchemaVersion == Foundation.Snapshot.ProspectingSchema || s.SchemaVersion == Foundation.Snapshot.MiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.DestructiveMiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.MiningExpeditionAssignmentSchema
@@ -725,6 +732,7 @@ namespace Decennium.Foundation
             ExpeditionRouteTravelValidation.Validate(s);
             ExpeditionRouteSpatialValidation.Validate(s);
             ExpeditionRouteMappingValidation.Validate(s);
+            ExpeditionRouteMappingWorkValidation.Validate(s);
             HuntingTrapValidation.Validate(s);
             CacheExcavationValidation.Validate(s);
         }
@@ -773,6 +781,14 @@ namespace Decennium.Foundation
                     || command.Advancement != null || command.Ranged != null || command.HarvestSelection != null
                     || command.MiningSelection != null || command.Target == "" || command.X != 0 || command.Y != 0))
                 return "UnexpectedProspectingPayload";
+            if ((command.Kind == CommandKind.StartRouteMappingWork) != (command.RouteMappingWork != null)
+                || command.RouteMappingWork != null && (command.Inventory != null || command.Combat != null
+                    || command.Advancement != null || command.Ranged != null || command.OverwatchRider != OverwatchRider.None
+                    || command.SuppressionFire != null || command.DefensiveFormation != null
+                    || command.ExpeditionAssignment != null || command.HarvestSelection != null
+                    || command.MiningSelection != null || command.ProspectingExposure != null
+                    || command.Target == "" || command.X != 0 || command.Y != 0))
+                return "UnexpectedRouteMappingWorkPayload";
             if((command.Kind==CommandKind.ResolveOverwatchRider)!=(command.OverwatchRider!=OverwatchRider.None)
                 ||command.OverwatchRider!=OverwatchRider.None&&(command.Inventory!=null||command.Combat!=null||command.Advancement!=null||command.Ranged!=null))
                 return "UnexpectedOverwatchPayload";

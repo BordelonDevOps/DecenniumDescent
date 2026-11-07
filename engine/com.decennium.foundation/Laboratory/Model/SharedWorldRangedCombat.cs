@@ -79,6 +79,7 @@ namespace Decennium.Foundation.Laboratory
             ||kind==CommandKind.SuppressionFire||kind==CommandKind.ActivateDefensiveFormation||kind==CommandKind.RespondDefensiveFormation
             ||kind==CommandKind.BeginWorldStep||kind==CommandKind.SuspendWorldStep||kind==CommandKind.ResumeWorldStep
             ||kind==CommandKind.StartRouteTravel||kind==CommandKind.PauseRouteTravel||kind==CommandKind.ResumeRouteTravel
+            ||kind==CommandKind.StartRouteMappingWork||kind==CommandKind.PauseRouteMappingWork||kind==CommandKind.ResumeRouteMappingWork
             ||kind==CommandKind.ConsumeTestOnlyRouteMappingResult
             ||kind==CommandKind.StartToolRepair||kind==CommandKind.PauseToolRepair
             ||kind==CommandKind.ResumeToolRepair||kind==CommandKind.CancelToolRepair

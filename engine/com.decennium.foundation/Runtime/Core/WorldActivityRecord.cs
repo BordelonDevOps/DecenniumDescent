@@ -6,7 +6,7 @@ using System.Numerics;
 namespace Decennium.Foundation
 {
     public enum WorldActionCommitment { None, Dash, ActiveLabor }
-    public enum WorldProcedureKind { Crop, WaterFill, Intake, FormulaWork, Repair, Manufacturing, FishingTrapRetrieval, SupplyCache, FishingTrapSetup, Harvest, Mining, Prospecting, MiningAssay, MineralPreparation, CacheExcavation }
+    public enum WorldProcedureKind { Crop, WaterFill, Intake, FormulaWork, Repair, Manufacturing, FishingTrapRetrieval, SupplyCache, FishingTrapSetup, Harvest, Mining, Prospecting, MiningAssay, MineralPreparation, CacheExcavation, RouteMappingWork }
 
     /// <summary>Derived activity projection over the existing procedure records. It is never saved
     /// independently; each domain procedure remains authoritative for its state and settlement.</summary>
@@ -209,6 +209,15 @@ namespace Decennium.Foundation
                     result.Add(Create(s, excavation.Id, excavation.WorkerId, WorldProcedureKind.CacheExcavation,
                     includeDetails ? excavation.Status.ToString() : null, includeDetails ? (RuleTime?)excavation.WorkDone : null,
                     includeDetails ? (RuleTime?)new RuleTime(CacheExcavationRecord.RequiredWorkSeconds) : null, options, includeDetails));
+            foreach (var attempt in s.RouteMappingWorkAttempts ?? Array.Empty<ExpeditionRouteMappingWorkAttemptRecord>())
+                if (attempt.Status == ExpeditionRouteMappingWorkStatus.Working
+                    || includeOpen && (attempt.Status == ExpeditionRouteMappingWorkStatus.Paused
+                        || attempt.Status == ExpeditionRouteMappingWorkStatus.AwaitingCheck))
+                    foreach (string worker in new[] { attempt.LeadId }.Concat(attempt.AssistantIds))
+                        result.Add(Create(s, attempt.Id, worker, WorldProcedureKind.RouteMappingWork,
+                            includeDetails ? attempt.Status.ToString() : null,
+                            includeDetails ? (RuleTime?)attempt.WorkDone : null,
+                            includeDetails ? (RuleTime?)attempt.WorkRequired : null, options, includeDetails));
             return result.AsReadOnly();
         }
 
@@ -260,6 +269,7 @@ namespace Decennium.Foundation
                 case CommandKind.PauseMiningAssay: case CommandKind.ResumeMiningAssay: case CommandKind.CancelMiningAssay:
                 case CommandKind.PauseMineralPreparation: case CommandKind.ResumeMineralPreparation:
                 case CommandKind.PauseCacheExcavation: case CommandKind.ResumeCacheExcavation:
+                case CommandKind.PauseRouteMappingWork: case CommandKind.ResumeRouteMappingWork:
                     return true;
                 default:
                     return false;
