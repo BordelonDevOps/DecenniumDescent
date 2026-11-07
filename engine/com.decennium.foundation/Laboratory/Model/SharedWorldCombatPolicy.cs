@@ -160,9 +160,14 @@ namespace Decennium.Foundation.Laboratory
             if(s.InventoryCombat)return "AlreadyInTacticalControl";
             if(s.WorldTraversals.Length!=0)return "OffGridCombatEntryUnsupported";
             if(s.WorldSchedule.ProcessedSlot>=int.MaxValue)return "CombatCalendarCapacityReached";
+            if(routeMotionFixture!=null&&s.RouteTravelSpatial.Any(x=>!x.Detached
+                &&(x.X.Denominator!=1||x.Y.Denominator!=1)))return "OffGridCombatEntryUnsupported";
             if(routeTravelFixture!=null)
                 foreach(var travel in s.RouteTravels.Where(x=>x.Status==ExpeditionRouteTravelStatus.Moving).ToArray())
                     SetRouteTravel(s,travel.With(travel.NominalEffort,ExpeditionRouteTravelStatus.Paused));
+            if(routeMotionFixture!=null)
+                foreach(var spatial in s.RouteTravelSpatial.Where(x=>!x.Detached).ToArray())
+                    SetRouteSpatial(s,spatial.With(spatial.X,spatial.Y,true));
             if(s.Encounter==null)s.Encounter=new FixedEncounterRecord("world.fixed-conflict",s.WorldSchedule.Origin,s.WorldSchedule.Order,new[]{s.Revision+1},new[]{(int)s.WorldSchedule.ProcessedSlot});
             foreach(string actor in s.WorldSchedule.Order)PauseParticipantWork(s,actor);
             // Starts have already been processed by shared advancement. Do not replay one here.

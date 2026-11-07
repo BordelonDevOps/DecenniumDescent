@@ -28,6 +28,15 @@ namespace Decennium.Foundation.Tests
                 conditions: conditions)
                 .EnableExpeditionRouteTravel(fixture);
 
+        private static TestOnlyExpeditionRouteMotionFixture RouteTravelMotionFixture(TestOnlyExpeditionRouteFixture routes)
+            => new TestOnlyExpeditionRouteMotionFixture(routes,
+                new TestOnlyRouteMotionLeg(RouteTravelId, default, new RuleQuantity(1), 1, 2, 1, 3),
+                new TestOnlyRouteMotionLeg(RouteTravelId, new RuleQuantity(1), new RuleQuantity(2), 1, 3, 2, 3));
+
+        private static TestOnlySharedWorldPolicy RouteObservationPolicy(TestOnlyExpeditionRouteFixture routes)
+            => new TestOnlySharedWorldPolicy(new PortableKitFixture(), new SharedCombatFixture(), new SupplyCacheFixture())
+                .EnableRouteObservationIntegration(routes, RouteTravelMotionFixture(routes), RouteTravelObservationFixture());
+
         private static Command RouteTravelCommand(Simulation s, CommandKind kind, string id = "route.command",
             string actor = TestOnlyPolicy.ActorId)
             => new Command(id, actor, s.Capture().Revision, kind, RouteTravelId);
@@ -256,6 +265,98 @@ namespace Decennium.Foundation.Tests
                     && restored.Capture().RouteTravels.Single().Status == ExpeditionRouteTravelStatus.Paused
                     && restored.Capture().Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).Y == 2,
                     "Combat save/restore lost paused route effort or exact route-anchor rejoin.");
+            });
+
+            cases.Add("route_observation_fractional_detach_detour_exact_rejoin_and_replay", () => {
+                var routes = RouteTravelFixture();
+                var policy = RouteObservationPolicy(routes);
+                var simulation = World(policy);
+                Require(simulation.Capture().SchemaVersion == Snapshot.RouteObservationSchema,
+                    "Composed route-motion and observation content did not select schema53.");
+                RouteTravelReachSource(simulation);
+                WorldCommit(simulation, RouteTravelCommand(simulation, CommandKind.StartRouteTravel, "route.observed.start"));
+                WorldAdvance(simulation, 4050); // At 20 ft/speed, secured quality earns 3600 nominal seconds (Progress 1/4).
+                var moving = simulation.Capture();
+                var movingTravel = moving.RouteTravels.Single();
+                var movingPosition = moving.RouteTravelSpatial.Single();
+                var visible = moving.ObserverKnowledge.Single(x => x.ObserverId == TestOnlyPolicy.CompanionId
+                    && x.TargetId == TestOnlyPolicy.ActorId);
+                Require(movingTravel.Progress == new RuleQuantity(1, 4)
+                    && moving.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).Y == 2
+                    && movingPosition.X == new RuleQuantity(1) && movingPosition.Y == new RuleQuantity(9, 4)
+                    && ObservationRules.KnownLocations(moving, TestOnlyPolicy.CompanionId).Single(x => x.ActorId == TestOnlyPolicy.ActorId).Y
+                        == new RuleQuantity(9, 4)
+                    && visible.CurrentLocationKnown && visible.LastKnownY == new RuleQuantity(9, 4)
+                    && visible.Evidence == ObservationEvidenceKind.DirectSight,
+                    "Continuous route pose or route-segment observation did not use exact Progress and shared time.");
+                WorldCommit(simulation, RouteTravelCommand(simulation, CommandKind.PauseRouteTravel, "route.observed.pause"));
+                RejectUnchanged(simulation, host, IC(simulation, CommandKind.BeginFixedEncounter),
+                    "OffGridCombatEntryUnsupported");
+                RuleTime detachAt = simulation.Capture().RuleClock;
+                RuleTime effortAtDetach = simulation.Capture().RouteTravels.Single().NominalEffort;
+                RuleQuantity movementBefore = simulation.Capture().WorldIntervals.Single(x => x.ActorId == TestOnlyPolicy.ActorId).MovementSpent;
+                RejectUnchanged(simulation, host, IC(simulation, CommandKind.BeginWorldStep, "walk", x: -1),
+                    "RouteDepartureDirectionUnsupported");
+                WorldStep(simulation, 0, 1);
+                var detached = simulation.Capture();
+                Require(detached.RuleClock == detachAt && detached.RouteTravels.Single().NominalEffort == effortAtDetach
+                    && detached.WorldIntervals.Single(x => x.ActorId == TestOnlyPolicy.ActorId).MovementSpent == movementBefore
+                    && detached.WorldTraversals.Single().DistanceFeet == new RuleQuantity(5, 4)
+                    && detached.RouteTravelSpatial.Single().Detached
+                    && ObservationRules.KnownLocations(detached, TestOnlyPolicy.CompanionId).Single(x => x.ActorId == TestOnlyPolicy.ActorId).Y
+                        == new RuleQuantity(9, 4),
+                    "Detaching charged time or displacement, changed route effort, or changed exact physical position.");
+                byte[] afterDetach = Bytes(simulation);
+                var replay = new Simulation(policy, new SnapshotCodec().Decode(afterDetach), ExecutionProfile.Laboratory);
+                Require(afterDetach.SequenceEqual(Bytes(replay)),
+                    "Save/restore immediately after route-derived nonzero traversal origin changed canonical bytes.");
+                var forgedOffset = new SnapshotCodec().Decode(afterDetach);
+                forgedOffset.WorldTraversals = forgedOffset.WorldTraversals.Select(x => x.With(new RuleQuantity(3, 2), x.Status)).ToArray();
+                Throws<ArgumentException>(() => new Simulation(policy, forgedOffset, ExecutionProfile.Laboratory));
+
+                void ContinueDetour(Simulation value)
+                {
+                    WorldAdvance(value, 9, 8); // The seeded 5/4 ft is pre-existing position; only 15/4 ft is paid.
+                    WorldStep(value, -1, 0); WorldAdvance(value, 3, 2);
+                    WorldStep(value, 1, 0); WorldAdvance(value, 3, 2);
+                    WorldStep(value, 0, -1); WorldAdvance(value, 3, 2); // Return to the old integer anchor only.
+                    RejectUnchanged(value, host, RouteTravelCommand(value, CommandKind.ResumeRouteTravel,
+                        "route.observed.reject-old-anchor"), "TravelerNotAtBoundRoutePosition");
+                    WorldStep(value, 0, 1); WorldAdvance(value, 3, 2);
+                    WorldStep(value, 0, -1); WorldAdvance(value, 9, 8);
+                    WorldCommit(value, IC(value, CommandKind.SuspendWorldStep));
+                    var atRejoin = value.Capture();
+                    Require(atRejoin.WorldTraversals.Single().Status == WorldTraversalStatus.Suspended
+                        && atRejoin.WorldTraversals.Single().DistanceFeet == new RuleQuantity(15, 4)
+                        && ObservationRules.KnownLocations(atRejoin, TestOnlyPolicy.CompanionId).Single(x => x.ActorId == TestOnlyPolicy.ActorId).Y
+                            == new RuleQuantity(9, 4),
+                        "Paid return did not stop at the exact fractional rejoin point.");
+                    WorldCommit(value, RouteTravelCommand(value, CommandKind.ResumeRouteTravel, "route.observed.resume"));
+                    var rejoined = value.Capture();
+                    Require(rejoined.WorldTraversals.Length == 0 && !rejoined.RouteTravelSpatial.Single().Detached
+                        && rejoined.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).Y == 2
+                        && ObservationRules.KnownLocations(rejoined, TestOnlyPolicy.CompanionId).Single(x => x.ActorId == TestOnlyPolicy.ActorId).Y
+                            == new RuleQuantity(9, 4)
+                        && rejoined.RouteTravels.Single().Progress == new RuleQuantity(1, 4),
+                        "Reattachment snapped, charged movement, or advanced route effort.");
+                }
+                ContinueDetour(simulation);
+                ContinueDetour(replay);
+                Require(Bytes(simulation).SequenceEqual(Bytes(replay)),
+                    "Detached traversal save/restore diverged during paid detour, exact rejoin, or replay.");
+            });
+
+            cases.Add("route_observation_checkpoint_tactical_entry_detaches_route_pose", () => {
+                var routes = RouteTravelFixture(); var policy = RouteObservationPolicy(routes); var simulation = World(policy);
+                RouteTravelReachSource(simulation);
+                WorldCommit(simulation, RouteTravelCommand(simulation, CommandKind.StartRouteTravel, "route.checkpoint.start"));
+                WorldCommit(simulation, IC(simulation, CommandKind.BeginFixedEncounter));
+                var checkpoint = simulation.Capture();
+                Require(checkpoint.InventoryCombat && checkpoint.RouteTravels.Single().Status == ExpeditionRouteTravelStatus.Paused
+                    && checkpoint.RouteTravelSpatial.Single().Detached
+                    && checkpoint.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).X == 1
+                    && checkpoint.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).Y == 2,
+                    "Checkpoint tactical entry did not transfer position authority to ordinary tactical grid state.");
             });
 
             cases.Add("expedition_route_and_observation_profile_composition_fails_closed", () => {

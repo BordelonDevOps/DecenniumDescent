@@ -130,9 +130,128 @@ namespace Decennium.Foundation.Laboratory
         }
     }
 
+    /// <summary>An explicitly authored straight physical edge for one interval of route
+    /// Progress. Linear interpolation is a fixture choice, never inferred for an arbitrary route.</summary>
+    public sealed class TestOnlyRouteMotionLeg
+    {
+        public string RouteId { get; }
+        public RuleQuantity StartProgress { get; }
+        public RuleQuantity EndProgress { get; }
+        public int FromX { get; }
+        public int FromY { get; }
+        public int ToX { get; }
+        public int ToY { get; }
+
+        public TestOnlyRouteMotionLeg(string routeId, RuleQuantity startProgress, RuleQuantity endProgress,
+            int fromX, int fromY, int toX, int toY)
+        {
+            if (!Validation.ValidId(routeId) || startProgress < default(RuleQuantity) || endProgress <= startProgress
+                || fromX < 0 || fromY < 0 || toX < 0 || toY < 0
+                || WorldSpatialQueries.CardinalDistance(fromX, fromY, toX, toY) != 1)
+                throw new ArgumentException("Invalid authored route-motion leg.");
+            RouteId = routeId; StartProgress = startProgress; EndProgress = endProgress;
+            FromX = fromX; FromY = fromY; ToX = toX; ToY = toY;
+        }
+
+        internal string Canonical => RouteId + "|" + StartProgress + ".." + EndProgress + "|"
+            + FromX.ToString(CultureInfo.InvariantCulture) + "," + FromY.ToString(CultureInfo.InvariantCulture)
+            + "->" + ToX.ToString(CultureInfo.InvariantCulture) + "," + ToY.ToString(CultureInfo.InvariantCulture);
+
+        internal RuleQuantity ParameterAt(RuleQuantity progress)
+        {
+            RuleQuantity elapsed = progress - StartProgress;
+            RuleQuantity duration = EndProgress - StartProgress;
+            return RuleQuantity.FromFraction((BigInteger)elapsed.Numerator * duration.Denominator,
+                (BigInteger)elapsed.Denominator * duration.Numerator);
+        }
+
+        internal ObservationPoint PositionAt(RuleQuantity progress)
+        {
+            RuleQuantity t = ParameterAt(progress);
+            RuleQuantity Coordinate(int start, int end)
+                => RuleQuantity.FromFraction((BigInteger)start * t.Denominator
+                    + (BigInteger)(end - start) * t.Numerator, t.Denominator);
+            return new ObservationPoint(Coordinate(FromX, ToX), Coordinate(FromY, ToY));
+        }
+
+        internal RuleQuantity DistanceFeetAt(RuleQuantity progress) => ParameterAt(progress).Scale(5);
+    }
+
+    /// <summary>Fingerprint-bound continuous physical paths for a TEST_ONLY route set. Every
+    /// route edge must be explicitly authored; this fixture does not infer straight paths.</summary>
+    public sealed class TestOnlyExpeditionRouteMotionFixture
+    {
+        private readonly TestOnlyRouteMotionLeg[] legs;
+        public string RouteFingerprint { get; }
+        public string Fingerprint { get; }
+
+        public TestOnlyExpeditionRouteMotionFixture(TestOnlyExpeditionRouteFixture routes,
+            params TestOnlyRouteMotionLeg[] legs)
+        {
+            if (routes == null || legs == null || legs.Length < 1 || legs.Length > 128 || legs.Any(x => x == null)
+                || legs.Select(x => x.RouteId + "|" + x.StartProgress).Distinct(StringComparer.Ordinal).Count() != legs.Length)
+                throw new ArgumentException("Invalid authored route-motion fixture.");
+            RouteFingerprint = routes.Fingerprint;
+            this.legs = legs.OrderBy(x => x.RouteId, StringComparer.Ordinal).ThenBy(x => x.StartProgress).ToArray();
+            string error = ValidateRoutes(routes);
+            if (error != null) throw new ArgumentException(error);
+            string key = "route-motion-linear-cardinal-v1|" + RouteFingerprint + "|"
+                + string.Join(";", this.legs.Select(x => x.Canonical));
+            using (var sha = SHA256.Create()) Fingerprint = "TEST_ONLY.route-motion-v1-"
+                + string.Concat(sha.ComputeHash(Encoding.UTF8.GetBytes(key)).Select(b => b.ToString("x2", CultureInfo.InvariantCulture)));
+        }
+
+        internal string ValidateRoutes(TestOnlyExpeditionRouteFixture routes)
+        {
+            if (routes == null || routes.Fingerprint != RouteFingerprint) return "RouteMotionFixtureMismatch";
+            foreach (var route in routes.Routes)
+            {
+                var routeLegs = legs.Where(x => x.RouteId == route.Id).ToArray();
+                var expected = route.Positions.Zip(route.Positions.Skip(1), (a, b) => new {
+                    Start = a, End = b
+                }).ToArray();
+                if (routeLegs.Length != expected.Length) return "RouteMotionBindingIncomplete";
+                for (int i = 0; i < expected.Length; i++)
+                    if (routeLegs[i].StartProgress != expected[i].Start.Progress
+                        || routeLegs[i].EndProgress != expected[i].End.Progress
+                        || routeLegs[i].FromX != expected[i].Start.X || routeLegs[i].FromY != expected[i].Start.Y
+                        || routeLegs[i].ToX != expected[i].End.X || routeLegs[i].ToY != expected[i].End.Y)
+                        return "RouteMotionBindingDoesNotMatchPositionCheckpoints";
+            }
+            if (legs.Any(x => routes.Routes.All(r => r.Id != x.RouteId))) return "RouteMotionDefinitionMissing";
+            return null;
+        }
+
+        internal string ValidateBindings(Snapshot s, TestOnlyExpeditionRouteFixture routes,
+            SharedHarvestFixture harvest, SharedWorldConfiguration config)
+        {
+            string error = ValidateRoutes(routes);
+            if (error != null) return error;
+            foreach (var leg in legs)
+                if (!TestOnlyPolicy.Walkable(leg.FromX, leg.FromY) || !TestOnlyPolicy.Walkable(leg.ToX, leg.ToY)
+                    || s.ObservationMapWidth < 1 || !ObservationGeometry.SupportsAnchorAt(s, leg.FromX, leg.FromY)
+                    || !ObservationGeometry.SupportsAnchorAt(s, leg.ToX, leg.ToY))
+                    return "RouteMotionGeometryOutsideObservationMap";
+            return routes.ValidateBindings(s, harvest, config);
+        }
+
+        internal TestOnlyRouteMotionLeg LegAt(string routeId, RuleQuantity progress)
+            => legs.Where(x => x.RouteId == routeId && x.StartProgress <= progress && progress < x.EndProgress)
+                .OrderBy(x => x.StartProgress).FirstOrDefault()
+                ?? legs.Where(x => x.RouteId == routeId && progress == x.EndProgress).OrderBy(x => x.StartProgress).LastOrDefault();
+
+        internal ObservationPoint PositionAt(string routeId, RuleQuantity progress)
+        {
+            var leg = LegAt(routeId, progress);
+            if (leg == null) return default;
+            return leg.PositionAt(progress);
+        }
+    }
+
     public sealed partial class TestOnlySharedWorldPolicy
     {
         private TestOnlyExpeditionRouteFixture routeTravelFixture;
+        private TestOnlyExpeditionRouteMotionFixture routeMotionFixture;
 
         /// <summary>Opt into the exact-candidate ordinary travel slice before Initial(). This
         /// changes the TEST_ONLY profile fingerprint and selects the append-only schema52 envelope.</summary>
@@ -148,13 +267,50 @@ namespace Decennium.Foundation.Laboratory
             return this;
         }
 
+        /// <summary>Selects a new TEST_ONLY composed route-motion and observation profile. Route
+        /// travel progress owns motion on explicitly authored cardinal legs. This is schema53;
+        /// legacy route-only schema52 remains byte- and behavior-compatible.</summary>
+        public TestOnlySharedWorldPolicy EnableRouteObservationIntegration(
+            TestOnlyExpeditionRouteFixture routes, TestOnlyExpeditionRouteMotionFixture motion,
+            ObservationFixture observation,
+            ObservationAlgorithmVersion algorithmVersion = ObservationAlgorithmVersion.ExactPathIntervalsV2)
+        {
+            if (initializationStarted) throw new InvalidOperationException("World initialization has already started.");
+            if (routes == null || motion == null || observation == null)
+                throw new ArgumentNullException("Composed route-observation profile requires route, motion, and observation content.");
+            if (routeTravelFixture != null || observationFixture != null || routeMotionFixture != null)
+                throw new InvalidOperationException("Route-observation content is already selected or conflicts with an existing profile.");
+            if (algorithmVersion != ObservationAlgorithmVersion.LegacySampledV1
+                && algorithmVersion != ObservationAlgorithmVersion.ExactPathIntervalsV2)
+                throw new ArgumentOutOfRangeException(nameof(algorithmVersion));
+            string error = motion.ValidateRoutes(routes);
+            if (error != null) throw new InvalidOperationException(error);
+            routeTravelFixture = routes; routeMotionFixture = motion;
+            observationFixture = observation; observationAlgorithmVersion = algorithmVersion;
+            ContentFingerprint = BindRouteMotionFingerprint(ContentFingerprint, routes, motion);
+            ContentFingerprint = ObservationFixture.BindFingerprint(ContentFingerprint, observation, algorithmVersion);
+            return this;
+        }
+
+        private static string BindRouteMotionFingerprint(string prior, TestOnlyExpeditionRouteFixture routes,
+            TestOnlyExpeditionRouteMotionFixture motion)
+        {
+            using (var sha = SHA256.Create()) return "TEST_ONLY.route-observation-v1-"
+                + string.Concat(sha.ComputeHash(Encoding.UTF8.GetBytes(prior + "|" + routes.Fingerprint
+                    + "|" + motion.Fingerprint)).Select(b => b.ToString("x2", CultureInfo.InvariantCulture)));
+        }
+
         private void InitializeExpeditionRouteTravel(Snapshot s)
         {
             if (routeTravelFixture == null) return;
-            if (observationFixture != null) throw new InvalidOperationException("RouteObservationIntegrationUnsupported");
-            string error = routeTravelFixture.ValidateBindings(s, harvestFixture, worldConfiguration);
+            if (routeMotionFixture == null && observationFixture != null)
+                throw new InvalidOperationException("RouteObservationIntegrationUnsupported");
+            string error = routeMotionFixture == null
+                ? routeTravelFixture.ValidateBindings(s, harvestFixture, worldConfiguration)
+                : routeMotionFixture.ValidateBindings(s, routeTravelFixture, harvestFixture, worldConfiguration);
             if (error != null) throw new InvalidOperationException(error);
             s.RouteTravels = Array.Empty<ExpeditionRouteTravelRecord>();
+            s.RouteTravelSpatial = Array.Empty<ExpeditionRouteSpatialRecord>();
         }
 
         private static bool RouteTravelCommand(CommandKind kind)
@@ -168,8 +324,14 @@ namespace Decennium.Foundation.Laboratory
             => s.RouteTravels.Where(x => x.RouteId == routeId && x.TravelerId == actor)
                 .OrderByDescending(x => x.StartedRevision).FirstOrDefault();
 
+        private static ExpeditionRouteSpatialRecord RouteSpatial(Snapshot s, string actor)
+            => s.RouteTravelSpatial.SingleOrDefault(x => x.TravelerId == actor);
+
         private void SetRouteTravel(Snapshot s, ExpeditionRouteTravelRecord value)
             => s.RouteTravels = s.RouteTravels.Select(x => x.StartedRevision == value.StartedRevision ? value : x).ToArray();
+
+        private static void SetRouteSpatial(Snapshot s, ExpeditionRouteSpatialRecord value)
+            => s.RouteTravelSpatial = s.RouteTravelSpatial.Select(x => x.TravelStartedRevision == value.TravelStartedRevision ? value : x).ToArray();
 
         private string AssessRouteTravelCommand(Snapshot s, Command c, out TestOnlyExpeditionRoute route,
             out ExpeditionRouteTravelRecord current, out RuleQuantity startingProgress, out RuleQuantity segmentAward)
@@ -236,10 +398,37 @@ namespace Decennium.Foundation.Laboratory
             if (current.Status != ExpeditionRouteTravelStatus.Paused) return "RouteTravelNotPaused";
             if (s.InventoryCombat || s.Encounter != null) return "RouteTravelDuringTacticalControl";
             if (!Permissions(s, c.Actor).VoluntarySpeed || Speed(s, c.Actor) <= 0) return "ConditionPreventsRouteTravel";
-            if (s.WorldTraversals.Any(x => x.ActorId == c.Actor) || OrdinaryInventory.Busy(s, c.Actor)
+            bool detachedRejoin = routeMotionFixture != null && RouteSpatial(s, c.Actor)?.Detached == true;
+            if (s.WorldTraversals.Any(x => x.ActorId != c.Actor)
+                || s.WorldTraversals.Any(x => x.ActorId == c.Actor) && !detachedRejoin
+                || OrdinaryInventory.Busy(s, c.Actor)
                 || WorldActivityValidation.HasActiveLabor(s, c.Actor, s.RuleClock, s.RuleClock.AddSeconds(1))) return "RouteTravelerBusy";
             var currentPosition = route.PositionAt(current.Progress); var currentActor = s.Actors.Single(x => x.Id == c.Actor);
-            if (currentPosition == null || currentActor.X != currentPosition.X || currentActor.Y != currentPosition.Y)
+            var routeSpatial = RouteSpatial(s, c.Actor);
+            if (routeMotionFixture != null)
+            {
+                if (routeSpatial == null || routeSpatial.RouteId != route.Id || routeSpatial.TravelStartedRevision != current.StartedRevision)
+                    return "RoutePositionAuthorityMismatch";
+                var expectedPose = routeMotionFixture.PositionAt(route.Id, current.Progress);
+                if (routeSpatial.X != expectedPose.X || routeSpatial.Y != expectedPose.Y)
+                    return "RoutePositionAuthorityMismatch";
+                if (routeSpatial.Detached)
+                {
+                    var edge = s.WorldTraversals.SingleOrDefault(x => x.ActorId == c.Actor);
+                    if (edge != null && edge.Status != WorldTraversalStatus.Suspended)
+                        return "RouteRejoinRequiresSuspendedTraversal";
+                    var actualPose = ObservationGeometry.Position(s, c.Actor);
+                    if (actualPose.X != routeSpatial.X || actualPose.Y != routeSpatial.Y)
+                        return "TravelerNotAtBoundRoutePosition";
+                    if (edge == null && (routeSpatial.X.Denominator != 1 || routeSpatial.Y.Denominator != 1))
+                        return "RouteRejoinTraversalRequired";
+                }
+                else if (currentActor.X != currentPosition.X || currentActor.Y != currentPosition.Y
+                    || ObservationGeometry.Position(s, c.Actor).X != expectedPose.X
+                    || ObservationGeometry.Position(s, c.Actor).Y != expectedPose.Y)
+                    return "TravelerNotAtBoundRoutePosition";
+            }
+            else if (currentPosition == null || currentActor.X != currentPosition.X || currentActor.Y != currentPosition.Y)
                 return "TravelerNotAtBoundRoutePosition";
             var resumeBurden = PortableEquipmentRules.CarriedBurden(s, c.Actor);
             if (!resumeBurden.Load.HasValue) return "RouteLoadEvidenceIncomplete";
@@ -268,7 +457,29 @@ namespace Decennium.Foundation.Laboratory
             {
                 s.RouteTravels = s.RouteTravels.Concat(new[] { new ExpeditionRouteTravelRecord(route.Id, c.Actor,
                     s.Revision + 1, start, award, start, default, route.Mapping, ExpeditionRouteTravelStatus.Moving) }).ToArray();
+                if (routeMotionFixture != null)
+                {
+                    var pose = routeMotionFixture.PositionAt(route.Id, start);
+                    s.RouteTravelSpatial = s.RouteTravelSpatial.Concat(new[] { new ExpeditionRouteSpatialRecord(
+                        route.Id, c.Actor, s.Revision + 1, pose.X, pose.Y, false) }).ToArray();
+                }
                 return null;
+            }
+            if (c.Kind == CommandKind.ResumeRouteTravel && routeMotionFixture != null)
+            {
+                var spatial = RouteSpatial(s, c.Actor);
+                if (spatial.Detached)
+                {
+                    var edge = s.WorldTraversals.SingleOrDefault(x => x.ActorId == c.Actor);
+                    if (edge != null) s.WorldTraversals = s.WorldTraversals.Where(x => x.ActorId != c.Actor).ToArray();
+                    var binding = route.PositionAt(current.Progress);
+                    var actor = s.Actors.Single(x => x.Id == c.Actor);
+                    actor.X = binding.X; actor.Y = binding.Y;
+                    s.Clubs = s.Clubs.Select(x => x.HeldBy == actor.Id
+                        ? new ClubInstance(x.Id, x.ProfileId, x.OwnerId, x.CustodianId, x.HeldBy, actor.X, actor.Y) : x).ToArray();
+                    var pose = routeMotionFixture.PositionAt(route.Id, current.Progress);
+                    SetRouteSpatial(s, spatial.With(pose.X, pose.Y, false));
+                }
             }
             SetRouteTravel(s, current.With(current.NominalEffort,
                 c.Kind == CommandKind.PauseRouteTravel ? ExpeditionRouteTravelStatus.Paused : ExpeditionRouteTravelStatus.Moving));
@@ -339,7 +550,41 @@ namespace Decennium.Foundation.Laboratory
                     s.Clubs = s.Clubs.Select(c => c.HeldBy == actor.Id
                         ? new ClubInstance(c.Id, c.ProfileId, c.OwnerId, c.CustodianId, c.HeldBy, actor.X, actor.Y) : c).ToArray();
                 }
+                if (routeMotionFixture != null)
+                {
+                    if (updated.Status == ExpeditionRouteTravelStatus.SegmentComplete)
+                        s.RouteTravelSpatial = s.RouteTravelSpatial.Where(x => x.TravelStartedRevision != updated.StartedRevision).ToArray();
+                    else
+                    {
+                        var pose = routeMotionFixture.PositionAt(route.Id, updated.Progress);
+                        var spatial = RouteSpatial(s, updated.TravelerId);
+                        if (spatial == null || spatial.Detached) throw new InvalidOperationException("MovingRouteSpatialAuthorityMissing");
+                        SetRouteSpatial(s, spatial.With(pose.X, pose.Y, false));
+                    }
+                }
             }
+        }
+
+        private List<ObservationMovementSegment> RouteObservationSegments(Snapshot s,
+            IReadOnlyDictionary<long, RuleQuantity> progressBefore)
+        {
+            var result = new List<ObservationMovementSegment>();
+            if (routeMotionFixture == null || observationFixture == null) return result;
+            foreach (long startedRevision in progressBefore.Keys.OrderBy(x => x))
+            {
+                var travel = s.RouteTravels.SingleOrDefault(x => x.StartedRevision == startedRevision);
+                if (travel == null || !progressBefore.TryGetValue(travel.StartedRevision, out var fromProgress)
+                    || travel.Progress <= fromProgress) continue;
+                var leg = routeMotionFixture.LegAt(travel.RouteId, fromProgress);
+                if (leg == null || travel.Progress > leg.EndProgress)
+                    throw new InvalidOperationException("RouteObservationSegmentCrossedAuthoredLeg");
+                RuleQuantity fromDistance = leg.DistanceFeetAt(fromProgress);
+                RuleQuantity toDistance = leg.DistanceFeetAt(travel.Progress);
+                var edge = new WorldTraversalRecord(travel.TravelerId, travel.StartedRevision,
+                    leg.FromX, leg.FromY, leg.ToX, leg.ToY, fromDistance, false, WorldTraversalStatus.Moving);
+                result.Add(new ObservationMovementSegment(edge, fromDistance, toDistance));
+            }
+            return result;
         }
 
         private bool RouteTravelOpenForActor(Snapshot s, string actor)
@@ -349,9 +594,12 @@ namespace Decennium.Foundation.Laboratory
         {
             if (routeTravelFixture == null)
                 return s.RouteTravels.Length == 0 ? null : "RouteTravelProfileMissing";
-            if (s.SchemaVersion != Snapshot.ExpeditionRouteSchema) return "RouteTravelSchemaMismatch";
-            if (ObservationRules.Enabled(s)) return "RouteObservationIntegrationUnsupported";
-            string bindingError = routeTravelFixture.ValidateBindings(s, harvestFixture, worldConfiguration);
+            if (s.SchemaVersion != (routeMotionFixture == null ? Snapshot.ExpeditionRouteSchema : Snapshot.RouteObservationSchema))
+                return "RouteTravelSchemaMismatch";
+            if (routeMotionFixture == null && ObservationRules.Enabled(s)) return "RouteObservationIntegrationUnsupported";
+            string bindingError = routeMotionFixture == null
+                ? routeTravelFixture.ValidateBindings(s, harvestFixture, worldConfiguration)
+                : routeMotionFixture.ValidateBindings(s, routeTravelFixture, harvestFixture, worldConfiguration);
             if (bindingError != null) return bindingError;
             foreach (var group in s.RouteTravels.GroupBy(x => x.TravelerId + "|" + x.RouteId, StringComparer.Ordinal))
             {
@@ -381,8 +629,15 @@ namespace Decennium.Foundation.Laboratory
                 var route = routeTravelFixture.Find(travel.RouteId);
                 var binding = route?.PositionAt(travel.Progress);
                 var actor = s.Actors.SingleOrDefault(x => x.Id == travel.TravelerId);
+                var spatial = routeMotionFixture == null ? null : RouteSpatial(s, travel.TravelerId);
                 if (binding == null || actor == null || travel.Status == ExpeditionRouteTravelStatus.Moving
-                    && (actor.X != binding.X || actor.Y != binding.Y))
+                    && (actor.X != binding.X || actor.Y != binding.Y)
+                    || routeMotionFixture != null && (spatial == null || spatial.RouteId != travel.RouteId
+                        || spatial.TravelStartedRevision != travel.StartedRevision
+                        || spatial.X != routeMotionFixture.PositionAt(route.Id, travel.Progress).X
+                        || spatial.Y != routeMotionFixture.PositionAt(route.Id, travel.Progress).Y
+                        || spatial.Detached && travel.Status != ExpeditionRouteTravelStatus.Paused
+                        || !spatial.Detached && (actor.X != binding.X || actor.Y != binding.Y)))
                     return "TravelerNotAtBoundRoutePosition";
             }
             return null;

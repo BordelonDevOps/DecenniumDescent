@@ -278,17 +278,6 @@ namespace Decennium.Foundation
             => coordinate.Numerator >= 0 && (BigInteger)coordinate.Numerator < (BigInteger)extent * coordinate.Denominator;
 
         private static (RuleQuantity X, RuleQuantity Y) Position(Snapshot s, string actorId)
-        {
-            var actor = s.Actors.Single(x => x.Id == actorId);
-            var edge = s.WorldTraversals?.SingleOrDefault(x => x.ActorId == actorId);
-            if (edge == null) return (new RuleQuantity(actor.X), new RuleQuantity(actor.Y));
-            RuleQuantity Fraction(int origin, int direction)
-            {
-                BigInteger n = (BigInteger)origin * 5 * edge.DistanceFeet.Denominator + (BigInteger)direction * edge.DistanceFeet.Numerator;
-                return RuleQuantity.FromFraction(n, (BigInteger)5 * edge.DistanceFeet.Denominator);
-            }
-            int dx = Math.Sign(edge.ToX - edge.FromX), dy = Math.Sign(edge.ToY - edge.FromY);
-            return (Fraction(edge.FromX, dx), Fraction(edge.FromY, dy));
-        }
+            => WorldPositionResolver.Position(s, actorId);
     }
 }

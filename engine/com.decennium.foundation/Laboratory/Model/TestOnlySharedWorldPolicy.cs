@@ -446,7 +446,10 @@ namespace Decennium.Foundation.Laboratory
                         s.WorldTraversals = s.WorldTraversals.Where(x => x.ActorId != actor.Id).ToArray();
                     } else SetEdge(s, edge.With(progress, edge.Status));
                 }
+                var routeProgressBefore = s.RouteTravels.Where(x => x.Status == ExpeditionRouteTravelStatus.Moving)
+                    .ToDictionary(x => x.StartedRevision, x => x.Progress);
                 AdvanceRouteTravel(s, elapsed);
+                observationSegments.AddRange(RouteObservationSegments(s, routeProgressBefore));
                 ObservationRules.ProcessWorldTraversalSegments(s, observationSegments, segmentStart, next, s.Revision + 1,
                     observationAlgorithmVersion);
                 // Existing procedures own crop/food/water completion and their local ordering.
@@ -532,6 +535,13 @@ namespace Decennium.Foundation.Laboratory
             if (!s.Actors.Any(a => a.Id == c.Actor)) return "UnknownWorldActor";
             if (RouteTravelCommand(c.Kind)) return ResolveRouteTravelCommand(s, c);
             var openRoute = routeTravelFixture == null ? null : OpenRouteTravel(s, c.Actor);
+            var attachedRoutePosition = routeMotionFixture == null ? null : RouteSpatial(s, c.Actor);
+            if (openRoute?.Status == ExpeditionRouteTravelStatus.Paused && attachedRoutePosition != null
+                && !attachedRoutePosition.Detached
+                && (attachedRoutePosition.X.Denominator != 1 || attachedRoutePosition.Y.Denominator != 1)
+                && c.Kind != CommandKind.BeginWorldStep && c.Kind != CommandKind.AdvanceClock
+                && c.Kind != CommandKind.DispatchConditionEvent && c.Kind != CommandKind.BeginFixedEncounter)
+                return "RouteTravelerMustDetachBeforeStationaryAction";
             if (openRoute?.Status == ExpeditionRouteTravelStatus.Moving
                 && c.Kind != CommandKind.AdvanceClock && c.Kind != CommandKind.DispatchConditionEvent
                 && c.Kind != CommandKind.BeginFixedEncounter) return "RouteTravelMustPauseFirst";
@@ -596,7 +606,14 @@ namespace Decennium.Foundation.Laboratory
                     else { string error=PayActivityDash(s,c.Actor,c.Id,s.Revision+1);if(error!=null)return error; }
                 }
                 var actor = s.Actors.Single(x => x.Id == c.Actor);
-                s.WorldTraversals = s.WorldTraversals.Concat(new[] { new WorldTraversalRecord(c.Actor, s.Revision + 1, actor.X, actor.Y, facts.ToX, facts.ToY, running: c.Target == "run") }).ToArray();
+                if (facts.DetachesRoute)
+                {
+                    var routeSpatial = s.RouteTravelSpatial.SingleOrDefault(x => x.TravelerId == c.Actor);
+                    if (routeSpatial == null || routeSpatial.Detached) return "RoutePositionAuthorityMismatch";
+                    SetRouteSpatial(s, routeSpatial.With(routeSpatial.X, routeSpatial.Y, true));
+                }
+                s.WorldTraversals = s.WorldTraversals.Concat(new[] { new WorldTraversalRecord(c.Actor, s.Revision + 1,
+                    actor.X, actor.Y, facts.ToX, facts.ToY, facts.InitialDistance, c.Target == "run") }).ToArray();
                 SyncExpeditionAssignments(s,c.Actor); return null;
             }
             if (c.Kind == CommandKind.SuspendWorldStep || c.Kind == CommandKind.ResumeWorldStep) {

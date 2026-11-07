@@ -1,0 +1,33 @@
+# Route motion and observation completion
+
+## Status and authority
+
+This is a **delegated TEST_ONLY prototype completion** agreed between Codex and **Unity Rules Engine Development** on 2026-11-07. It is not recovered rule text and is not release-approved. The pinned EX58 Player Book candidate (`EX58-EXACT-2026-10-11`, FL-10/TR-13) supplies abstract route Progress, travel effort and authored position checkpoints. It does not specify continuous interpolation between checkpoints, physical detachment offsets, or exact route rejoin behavior. The following mechanics exist only in the new composed schema53 fixture profile.
+
+The owner delegated unresolved rule completions to Codex/GPT agreement and asked for GPT review packets and regular Engine-branch pushes. No owner decision was needed for this increment.
+
+## Adopted TEST_ONLY policy
+
+1. **Explicit path authority.** A schema53 profile requires a route fixture, route-motion fixture and observation fixture. Every pair of adjacent route position checkpoints must have a matching explicitly authored straight cardinal five-foot motion leg and exact start/end Progress interval. Linear Progress-to-position mapping is a fixture declaration, never inferred for arbitrary routes. Missing, incomplete or mismatched legs reject profile selection or restore.
+2. **Single physical-position resolver.** While route travel is attached, the exact position is the projection of persisted `ExpeditionRouteTravelRecord.Progress` through the selected fingerprinted motion leg. `ExpeditionRouteSpatialRecord` persists that projection and the detached rejoin reference for snapshot validation. While detached, an active `WorldTraversalRecord` owns the live position; otherwise ordinary `ActorState` is used. `WorldPositionResolver` is shared by observation geometry and core observation validation.
+3. **Route sighting.** Each shared-clock route interval is bounded at authored checkpoint and condition boundaries. Its exact path and interval time are adapted into the existing `ObservationMovementSegment` processor. It creates no fake movement command, movement allowance, route effort, or elapsed time. Route travel continues to own its existing shared-clock effort and Progress.
+4. **Fractional departure.** A paused, attached traveler may leave a fractional route position only toward the current authored leg's endpoint. The existing `BeginWorldStep` command seeds its ordinary traversal distance from the route-derived physical offset; payloads cannot supply or forge that offset. Creating the traversal and marking route state Detached are one transaction. Seeded distance is existing position: detach spends no time, movement, route effort, or sight evidence. Other directions reject before mutation.
+5. **Paid return and exact rejoin.** Detachment freezes the route's Progress and rejoin reference. Ordinary movement, observation, clock and movement spending use the existing traversal pipeline. A fractional rejoin requires an exact physical-position match and a suspended traversal; a whole-grid rejoin may use the exact `ActorState` point without a synthetic partial traversal. `ResumeRouteTravel` atomically consumes a matching suspended partial traversal, normalizes the integer actor anchor without moving the physical point, restores attached route authority and records its ordinary command receipt. Failed checks preserve both authorities. No remaining edge distance or movement allowance is refunded, and reattachment emits no endpoint-arrival movement.
+6. **Tactical boundary.** Tactical entry from an attached route is allowed at an authored integer checkpoint and detaches route authority at that checkpoint. Mid-edge tactical entry remains rejected until a tactical geometry profile can represent it. The existing tactical grid and movement commands remain authoritative after checkpoint entry.
+7. **Compatibility boundary.** Route-only profiles continue to select schema52 and preserve the existing schema52 payload and behavior. Schema53 appends only the explicit spatial handoff records; no earlier schema layout changes.
+
+## Record ownership and dependencies
+
+- `ExpeditionRouteTravelRecord` owns exact segment effort, Progress, mapping-at-start and status.
+- Fingerprinted `TestOnlyRouteMotionLeg` content owns the explicit route interval and physical line mapping.
+- `ExpeditionRouteSpatialRecord` is the validated attached-pose projection or frozen detached rejoin reference.
+- `WorldPositionResolver` resolves route, traversal and grid-anchor positions in authority order.
+- `WorldTraversalRecord`, `ActorState`, `RuleClock`, observation knowledge, shared clock boundaries, command receipts, deterministic replay and the append-only snapshot codec remain the existing physical movement, time, sight, command and persistence authorities.
+
+The implementation reuses `AdvanceTo`, `ObservationMovementSegment`, `ObservationRules.ProcessWorldTraversalSegments`, `WorldTraversalRecord`, `Simulation` transactions and the existing schema52 route calculations. Route movement and observation do not own independent clocks or positions.
+
+## Runnable acceptance and limits
+
+`route_observation_fractional_detach_detour_exact_rejoin_and_replay` covers Progress 1/4, exact direct sight, a 5/4-foot route-derived traversal origin, zero-cost detachment, paid detour, rejection at the old integer anchor, exact suspended 15/4-foot rejoin, no-snap reattachment, save/restore, deterministic replay and forged-offset rejection. `route_observation_checkpoint_tactical_entry_detaches_route_pose` covers checkpoint-only tactical entry. Evidence and source hashes are in [the schema53 handoff evidence](evidence/2026-11-07-route-observation-handoff/README.md).
+
+Curved paths, diagonal/corner geometry, unspecified time profiles, arbitrary departures, mid-edge tactical entry, route risk/hazards, convoy movement, general destination access and production route content remain unsupported. The full source rules engine is unfinished; this work is one composed TEST_ONLY slice.

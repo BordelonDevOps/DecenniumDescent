@@ -17,6 +17,8 @@ namespace Decennium.Foundation.Laboratory
             public bool OffCalendar;
             public bool StartsEncounter;
             public bool DashAlreadyPaid;
+            public bool DetachesRoute;
+            public RuleQuantity InitialDistance;
             public int ToX;
             public int ToY;
             public long Cost;
@@ -29,6 +31,8 @@ namespace Decennium.Foundation.Laboratory
                 || !WorldSpatialQueries.Neighbor(0, 0, c.X, c.Y, false)) return "InvalidWorldStep";
             if (s.RouteTravels.Any(x => x.Status == ExpeditionRouteTravelStatus.Moving && x.TravelerId == c.Actor))
                 return "RouteTravelMustPauseFirst";
+            if (routeMotionFixture != null && s.RouteTravelSpatial.Any(x => !x.Detached && x.TravelerId != c.Actor))
+                return "RouteTravelerMustDetachBeforeOtherMovement";
             bool scheduled = s.WorldSchedule.Order.Contains(c.Actor);
             bool offCalendar = !scheduled && (c.Actor == TestOnlyPolicy.CompanionId || IsOffCalendarActivity(s, c.Actor));
             if (!scheduled && (!offCalendar || s.InventoryCombat)) return "NoActivityCalendar";
@@ -44,6 +48,36 @@ namespace Decennium.Foundation.Laboratory
             int toX, toY;
             try { toX = checked(actor.X + c.X); toY = checked(actor.Y + c.Y); }
             catch (OverflowException) { return "InvalidWorldStep"; }
+            RuleQuantity initialDistance = default;
+            bool detachesRoute = false;
+            if (routeMotionFixture != null)
+            {
+                var travel = OpenRouteTravel(s, c.Actor);
+                var spatialPosition = s.RouteTravelSpatial.SingleOrDefault(x => x.TravelerId == c.Actor);
+                if (travel != null && travel.Status == ExpeditionRouteTravelStatus.Paused
+                    && spatialPosition != null && !spatialPosition.Detached)
+                {
+                    var route = routeTravelFixture.Find(travel.RouteId);
+                    var checkpoint = route.PositionAt(travel.Progress);
+                    if (checkpoint == null || actor.X != checkpoint.X || actor.Y != checkpoint.Y
+                        || spatialPosition.X != routeMotionFixture.PositionAt(route.Id, travel.Progress).X
+                        || spatialPosition.Y != routeMotionFixture.PositionAt(route.Id, travel.Progress).Y)
+                        return "RoutePositionAuthorityMismatch";
+                    var pose = new ObservationPoint(spatialPosition.X, spatialPosition.Y);
+                    bool atCheckpoint = pose.X.Denominator == 1 && pose.Y.Denominator == 1;
+                    if (!atCheckpoint)
+                    {
+                        var leg = routeMotionFixture.LegAt(route.Id, travel.Progress);
+                        if (leg == null || actor.X != leg.FromX || actor.Y != leg.FromY
+                            || toX != leg.ToX || toY != leg.ToY)
+                            return "RouteDepartureDirectionUnsupported";
+                        initialDistance = leg.DistanceFeetAt(travel.Progress);
+                        if (initialDistance <= default(RuleQuantity) || initialDistance >= new RuleQuantity(5))
+                            return "RouteDepartureOffsetUnsupported";
+                    }
+                    detachesRoute = true;
+                }
+            }
             var spatial = WorldSpatialQueries.Step(s, actor.Id, actor.X, actor.Y, toX, toY, false, false, (x, y) => WorldWalkable(s, x, y));
             if (spatial == SpatialStepFailure.Blocked) return "Blocked";
             if (spatial == SpatialStepFailure.Occupied) return "Occupied";
@@ -74,7 +108,8 @@ namespace Decennium.Foundation.Laboratory
                     if (!dashPaid && !Permissions(s, c.Actor).Dash) return "ConditionPreventsDash";
                 }
             }
-            var edge = new WorldTraversalRecord(c.Actor, s.Revision + 1, actor.X, actor.Y, toX, toY, running: c.Target == "run");
+            var edge = new WorldTraversalRecord(c.Actor, s.Revision + 1, actor.X, actor.Y, toX, toY,
+                initialDistance, running: c.Target == "run");
             long movementCost;
             try { movementCost = checked(CostPerFoot(s, edge) * 5); }
             catch (OverflowException) { return "InvalidWorldStep"; }
@@ -93,7 +128,7 @@ namespace Decennium.Foundation.Laboratory
             // movement allowance prevents entering the edge.
             if ((scheduled || hasActivityBudget) && available == default) return "InsufficientMovement";
             facts = new WorldStepFacts { Scheduled = scheduled, OffCalendar = offCalendar, StartsEncounter = startsEncounter,
-                DashAlreadyPaid = dashPaid,
+                DashAlreadyPaid = dashPaid, DetachesRoute = detachesRoute, InitialDistance = initialDistance,
                 ToX = toX, ToY = toY, Cost = movementCost };
             return null;
         }

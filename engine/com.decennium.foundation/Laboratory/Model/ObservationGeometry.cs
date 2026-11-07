@@ -185,17 +185,8 @@ namespace Decennium.Foundation.Laboratory
 
         internal static ObservationPoint Position(Snapshot s, string actorId)
         {
-            var actor = s.Actors.Single(a => a.Id == actorId);
-            var edge = s.WorldTraversals.SingleOrDefault(x => x.ActorId == actorId);
-            if (edge == null) return new ObservationPoint(new RuleQuantity(actor.X), new RuleQuantity(actor.Y));
-            int dx = Math.Sign(edge.ToX - edge.FromX), dy = Math.Sign(edge.ToY - edge.FromY);
-            RuleQuantity Coordinate(int origin, int direction)
-            {
-                BigInteger numerator = (BigInteger)origin * 5 * edge.DistanceFeet.Denominator
-                    + (BigInteger)direction * edge.DistanceFeet.Numerator;
-                return RuleQuantity.FromFraction(numerator, (BigInteger)5 * edge.DistanceFeet.Denominator);
-            }
-            return new ObservationPoint(Coordinate(edge.FromX, dx), Coordinate(edge.FromY, dy));
+            var point = WorldPositionResolver.Position(s, actorId);
+            return new ObservationPoint(point.X, point.Y);
         }
 
         public static bool CanSee(Snapshot s, ObservationFixture fixture, string observerId, string targetId)
