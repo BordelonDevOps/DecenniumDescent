@@ -20,7 +20,8 @@ namespace Decennium.Foundation.Tests
         {
             var v=s.Capture();actor=actor??v.Encounter.CurrentActor;
             bool combat=kind==CommandKind.AttackUnarmed||kind==CommandKind.AttackClub||kind==CommandKind.SelectCombatStance||kind==CommandKind.ResolveKnockout
-                ||kind==CommandKind.RespondOpportunityAttack||kind==CommandKind.RespondPress||kind==CommandKind.RespondDefensiveFormation;
+                ||kind==CommandKind.RespondOpportunityAttack||kind==CommandKind.RespondPress||kind==CommandKind.RespondDefensiveFormation
+                ||kind==CommandKind.Ready||kind==CommandKind.RespondReady;
             if(target==null)target=combat?"":v.Encounter.CurrentTurnId;
             return new Command("tactical.command."+(v.Revision+1),actor,v.Revision,kind,target,x,y,
                 combat:combat?new CombatRequest(v.Encounter.CurrentTurnId,weapon,stance,knockout,choice,press):null);

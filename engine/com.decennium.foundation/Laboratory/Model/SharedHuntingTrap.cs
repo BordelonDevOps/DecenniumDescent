@@ -107,7 +107,8 @@ namespace Decennium.Foundation.Laboratory
             if(huntingTrapFixture==null)
                 return registered.Length==0&&s.HuntingTrapDeployments.Length==0&&s.HuntingTrapActions.Length==0
                     &&s.HuntingTrapTriggers.Length==0&&s.HuntingTrapTethers.Length==0?null:"HuntingTrapFixtureNotSelected";
-            if((s.SchemaVersion!=Snapshot.HuntingTrapSchema&&!(dodgeActionEnabled&&s.SchemaVersion==Snapshot.DodgeSchema))
+            if((s.SchemaVersion!=Snapshot.HuntingTrapSchema&&!(dodgeActionEnabled&&s.SchemaVersion==Snapshot.DodgeSchema)
+                &&!(readyActionEnabled&&s.SchemaVersion==Snapshot.ReadyActionSchema))
                 ||registered.Length!=huntingTrapFixture.Devices.Count)
                 return "InvalidHuntingTrapFixture";
             foreach(var definition in huntingTrapFixture.Devices) {
@@ -427,6 +428,7 @@ namespace Decennium.Foundation.Laboratory
                 var next=NextPostStepChoice(s);if(next!=PostStepChoiceKind.HuntingTrap)break;
                 var trigger=PendingHuntingTrapTrigger(s);if(trigger==null)break;
                 ResolveHuntingTrapTrigger(s,trigger);
+                NormalizePendingReadyOccurrences(s);
             }
         }
         private void ResolveHuntingTrapTrigger(Snapshot s,HuntingTrapTriggerRecord trigger)

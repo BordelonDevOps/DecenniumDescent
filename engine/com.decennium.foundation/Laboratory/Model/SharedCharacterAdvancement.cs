@@ -449,7 +449,8 @@ namespace Decennium.Foundation.Laboratory
                 &&s.SchemaVersion!=Snapshot.SoldierTacticalTechniquesSchema&&s.SchemaVersion!=Snapshot.CharacterAdvancementHistorySchema
                 &&s.SchemaVersion!=Snapshot.TacticalAssessmentSchema&&s.SchemaVersion!=Snapshot.CommandStepSchema
                 &&s.SchemaVersion!=Snapshot.SuppressionFireSchema&&s.SchemaVersion!=Snapshot.DefensiveFormationSchema
-                &&!(dodgeActionEnabled&&s.SchemaVersion==Snapshot.DodgeSchema))
+                &&!(dodgeActionEnabled&&s.SchemaVersion==Snapshot.DodgeSchema)
+                &&!(readyActionEnabled&&s.SchemaVersion==Snapshot.ReadyActionSchema))
                 ||characterAdvancement==null||overwatchFoundation==null
                 ||s.WorldSchedule==null||s.CharacterFeatureGrants.Any(g=>g.ActorId==TestOnlyPolicy.ActorId&&g.Origin==CharacterFeatureGrantOrigin.InitialClassSelection))
                 throw new ArgumentException("Soldier initial selections require the explicit source-scoped Soldier 1 and Overwatch fixtures.");
@@ -473,7 +474,8 @@ namespace Decennium.Foundation.Laboratory
                 :characterAdvancement.TacticalAssessmentSchemaEnabled?Snapshot.TacticalAssessmentSchema
                 :characterAdvancement.HistorySchemaEnabled?Snapshot.CharacterAdvancementHistorySchema
                 :soldierCharacterBuild.TacticalTechniquesEnabled?Snapshot.SoldierTacticalTechniquesSchema:Snapshot.SoldierInitialBuildSchema;
-            if(s.SchemaVersion!=expectedSchema||soldierInitialLoadout==null||overwatchFoundation==null
+            if((s.SchemaVersion!=expectedSchema&&!(readyActionEnabled&&s.SchemaVersion==Snapshot.ReadyActionSchema))
+                ||soldierInitialLoadout==null||overwatchFoundation==null
                 ||characterAdvancement==null||s.WorldSchedule==null||s.RepeatingCrossbows.Length!=1||s.AmmunitionLots.Length!=1)
                 throw new ArgumentException("Soldier character build requires its complete source-scoped level-one fixture.");
             s.Lives=s.Lives.Select(x=>x.ActorId==TestOnlyPolicy.ActorId
@@ -504,6 +506,10 @@ namespace Decennium.Foundation.Laboratory
                     checked((int)s.WorldSchedule.LatestStart(m.ActorId,s.WorldSchedule.ProcessedSlot)),m.TurnOrdinal<0?0:m.Spent)).ToArray();
                 s.BonusActions=s.WorldIntervals.Select(interval=>new ActorBonusActionRecord(interval.ActorId,checked((int)interval.LastStart))).ToArray();
                 s.TacticalAllies=new[]{new TacticalAllyRecord(TestOnlyPolicy.ActorId,TestOnlyPolicy.CompanionId)};
+                if(offCalendarActivityEnabled||s.SchemaVersion>=Snapshot.OffCalendarActivitySchema)
+                    s.WorldActivityIntervals=s.Actors.Where(actor=>!s.WorldSchedule.Order.Contains(actor.Id)).OrderBy(actor=>actor.Id,StringComparer.Ordinal)
+                        .Select(actor=>new WorldActivityIntervalRecord(s.WorldSchedule.Id,actor.Id,
+                            WorldActivityIntervalRecord.IndexAt(s.WorldSchedule,s.RuleClock))).ToArray();
             }
         }
         public TestOnlySharedWorldPolicy(OverwatchFoundationFixture overwatch,CharacterAdvancementFixture advancement,SharedCombatFixture combat,

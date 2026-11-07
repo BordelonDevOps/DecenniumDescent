@@ -91,6 +91,7 @@ namespace Decennium.Foundation.Laboratory
             ||kind==CommandKind.StartMineralPreparation||kind==CommandKind.PauseMineralPreparation||kind==CommandKind.ResumeMineralPreparation
             ||kind==CommandKind.TacticalStep||kind==CommandKind.TacticalRepositionStep||kind==CommandKind.Interact
             ||kind==CommandKind.Dodge&&dodgeActionEnabled
+            ||(kind==CommandKind.Ready||kind==CommandKind.RespondReady)&&readyActionEnabled
             ||kind==CommandKind.Search
             ||kind==CommandKind.ResolveManufacturingQuality||kind==CommandKind.PauseManufacturing
             ||kind==CommandKind.ResumeManufacturing||kind==CommandKind.CancelManufacturing
@@ -121,6 +122,17 @@ namespace Decennium.Foundation.Laboratory
                 }
                 return options;
             }
+            if(NextPostStepChoice(s)==PostStepChoiceKind.Ready) {
+                var occurrence=PendingReadyOccurrence(s);
+                var ready=occurrence==null?null:s.ReadyActions.SingleOrDefault(x=>x.Id==occurrence.ReadyActionId&&x.Armed);
+                if(ready!=null&&actor==ready.ActorId)foreach(bool accept in new[]{false,true}) {
+                    var response=new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+".ready."+(accept?"accept":"decline"),
+                        actor,s.Revision,CommandKind.RespondReady,occurrence.Id,
+                        combat:new CombatRequest(s.Encounter.CurrentTurnId,choice:accept,pressInstruction:PressHitInstruction.KeepExisting));
+                    if(AssessReadyResponse(s,response,out _,out _) == null)options.Add(response);
+                }
+                return options;
+            }
             options.AddRange(DiscoverDefensiveFormationCommands(s,actor));
             if(actor!=s.Encounter.CurrentActor)return options;
             string turnId=s.Encounter.CurrentTurnId;
@@ -128,6 +140,19 @@ namespace Decennium.Foundation.Laboratory
                 var dodge=new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+".dodge",actor,s.Revision,
                     CommandKind.Dodge,combat:new CombatRequest(turnId));
                 if(bodies.AssessDodgeAction(s,dodge)==null)options.Add(dodge);
+            }
+            if(readyActionEnabled) {
+                foreach(var target in s.WorldSchedule.Order.Where(id=>id!=actor&&!SoldierTacticalFeatures.IsAlly(s,actor,id))
+                    .OrderBy(id=>id,StringComparer.Ordinal)) {
+                    var weapons=new[]{""}.Concat(s.Clubs.Where(x=>x.HeldBy==actor&&x.CustodianId==actor&&authority.MayUseInventory(x.OwnerId))
+                        .Select(x=>x.Id).OrderBy(x=>x,StringComparer.Ordinal));
+                    foreach(string readyWeapon in weapons) {
+                        var ready=new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+".ready."+(optionIndex++).ToString(CultureInfo.InvariantCulture),
+                            actor,s.Revision,CommandKind.Ready,target,x:5,combat:new CombatRequest(turnId,readyWeapon,
+                                pressInstruction:PressHitInstruction.KeepExisting));
+                        if(AssessReadyDeclaration(s,ready)==null)options.Add(ready);
+                    }
+                }
             }
             options.AddRange(DiscoverContextualInteractions(s,authority,actor));
             options.AddRange(DiscoverTacticalMovementCommands(s,actor));
@@ -207,6 +232,16 @@ namespace Decennium.Foundation.Laboratory
         {
             var sharedWorld=QuerySharedWorldCommand(s,authority,c);
             if(sharedWorld!=null)return sharedWorld;
+            if((c.Kind==CommandKind.Ready||c.Kind==CommandKind.RespondReady)&&readyActionEnabled) {
+                string readyFailure;
+                if(c.Kind==CommandKind.Ready)readyFailure=AssessReadyDeclaration(s,c);
+                else readyFailure=AssessReadyResponse(s,c,out _,out _);
+                var readyCosts=readyFailure==null&&c.Kind==CommandKind.Ready
+                    ?new[]{new CommandCost("action","",1)}
+                    :readyFailure==null&&c.Kind==CommandKind.RespondReady&&c.Combat.Choice
+                        ?new[]{new CommandCost("reaction","",1)}:Array.Empty<CommandCost>();
+                return new CommandQueryResult(true,readyFailure==null,readyFailure??"Available",s.Revision,readyCosts);
+            }
             if(c.Kind==CommandKind.Dodge&&dodgeActionEnabled) {
                 string dodgeFailure=bodies.AssessDodgeAction(s,c);
                 var dodgeCosts=dodgeFailure==null?new[]{new CommandCost("action","",1)}:Array.Empty<CommandCost>();

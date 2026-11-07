@@ -12,7 +12,7 @@ namespace Decennium.Foundation.Laboratory
     /// calendar and periodic-rider records. Geometry remains restricted to the authored cardinal lane.</summary>
     public sealed partial class TestOnlySharedWorldPolicy
     {
-        private enum PostStepChoiceKind { None, Press, Overwatch, HuntingTrap }
+        private enum PostStepChoiceKind { None, Press, Overwatch, HuntingTrap, Ready }
 
         private sealed class OverwatchShotFacts
         {
@@ -47,11 +47,22 @@ namespace Decennium.Foundation.Laboratory
                 events.Add((ow.CreatedRevision,ow.SourceAppliedRevision,ow.Id,PostStepChoiceKind.Overwatch));
             var trap=PendingHuntingTrapTrigger(s);if(trap!=null)
                 events.Add((trap.CreatedRevision,trap.SourceAppliedRevision,trap.Id,PostStepChoiceKind.HuntingTrap));
+            var ready=PendingReadyOccurrence(s);if(ready!=null)
+                events.Add((ready.CreatedRevision,ready.SourceAppliedRevision,ready.Id,PostStepChoiceKind.Ready));
             return events.OrderBy(x=>x.Created).ThenBy(x=>x.Source).ThenBy(x=>x.Id,StringComparer.Ordinal)
                 .Select(x=>x.Kind).FirstOrDefault();
         }
 
-        internal static bool OverwatchHasPriorityOverPress(Snapshot s)=>NextPostStepChoice(s)==PostStepChoiceKind.Overwatch;
+        internal static bool EarlierPostStepChoiceThanPress(Snapshot s)
+        {
+            var next=NextPostStepChoice(s);
+            return next!=PostStepChoiceKind.None&&next!=PostStepChoiceKind.Press;
+        }
+        internal static bool NextPostStepAllowsPressFollow(Snapshot s)
+        {
+            var next=NextPostStepChoice(s);
+            return next==PostStepChoiceKind.None||next==PostStepChoiceKind.Press;
+        }
 
         private static bool AttackingFromActiveOverwatchZone(Snapshot s,string actor,string target)
             =>s.SchemaVersion>=Snapshot.OverwatchExecutionSchema&&s.OverwatchDesignations.Any(z=>z.Status==OverwatchDesignationStatus.Active
@@ -60,11 +71,12 @@ namespace Decennium.Foundation.Laboratory
 
         private string QueueCompletedMovementOverwatch(Snapshot s)
         {
-            if(s.SchemaVersion<Snapshot.OverwatchExecutionSchema||overwatchExecution==null)return null;
+            if(!readyActionEnabled&&(s.SchemaVersion<Snapshot.OverwatchExecutionSchema||overwatchExecution==null))return null;
             var completed=s.TacticalMoves.Where(x=>x.Status==TacticalMoveStatus.Completed&&x.ResolvedRevision==s.Revision+1)
                 .OrderBy(x=>x.ResolvedRevision).ThenBy(x=>x.Id,StringComparer.Ordinal).ToArray();
             foreach(var move in completed) {
-                foreach(var zone in s.OverwatchDesignations.Where(x=>x.Status==OverwatchDesignationStatus.Active&&x.OwnerId!=move.ActorId
+                foreach(var zone in s.OverwatchDesignations.Where(x=>overwatchExecution!=null&&s.SchemaVersion>=Snapshot.OverwatchExecutionSchema
+                    &&x.Status==OverwatchDesignationStatus.Active&&x.OwnerId!=move.ActorId
                     &&CurrentOverwatchInterval(s,x.OwnerId)?.LastRegularStart==x.LastRegularStart)
                     .OrderBy(x=>x.CreatedRevision).ThenBy(x=>x.Id,StringComparer.Ordinal)) {
                     bool horizontal=move.ToY==zone.Y0+1&&move.ToX>=zone.X0&&move.ToX<=zone.X0+2;
@@ -78,7 +90,9 @@ namespace Decennium.Foundation.Laboratory
                         zone.Id,s.Revision+1,zone.CreatedRevision)}).ToArray();
                 }
             }
+            string readyError=QueueCompletedReadyOccurrences(s);if(readyError!=null)return readyError;
             NormalizePendingOverwatchOffers(s);
+            NormalizePendingReadyOccurrences(s);
             return null;
         }
 

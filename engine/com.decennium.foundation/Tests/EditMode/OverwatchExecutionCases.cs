@@ -220,6 +220,83 @@ namespace Decennium.Foundation.Tests
                     &&overwatchFirst.Capture().TacticalActors.Single(x=>x.ActorId==TestOnlyPolicy.ActorId).PressConsumed,
                     "Resolving the earlier Overwatch occurrence failed to unblock the later Press follow.");
             });
+            cases.Add("ready_and_overwatch_compete_for_one_shared_reaction_in_application_order",()=>{
+                Simulation CompetingReadyAndOverwatch(bool readyFirst)
+                {
+                    var p=OverwatchExecutionPolicy(SeedForNatural(10),designation:new OverwatchDesignationFixture(-1,0)).EnableReadyAction();
+                    var s=World(p);WorldCommit(s,new Command("ready-ow.begin",TestOnlyPolicy.ActorId,s.Capture().Revision,CommandKind.BeginFixedEncounter));
+                    RangedCommit(s,RangedCommand(s,CommandKind.ReloadRepeatingCrossbow,amount:1));
+                    WorldCommit(s,Tac(s,CommandKind.SelectCombatStance,stance:(int)CombatStance.Aggressive));
+                    WorldCommit(s,Tac(s,CommandKind.EndRegularTurn));
+                    WorldCommit(s,Tac(s,CommandKind.SelectCombatStance,actor:AdditionalTacticalActor.Id,stance:(int)CombatStance.Guarded));
+                    WorldCommit(s,Tac(s,CommandKind.EndRegularTurn,actor:AdditionalTacticalActor.Id));
+                    WorldCommit(s,Tac(s,CommandKind.SelectCombatStance,stance:(int)CombatStance.Aggressive));
+                    void DeclareReady()
+                    {
+                        var readyOptions=s.DiscoverCommands(host,TestOnlyPolicy.ActorId).Where(x=>x.Command.Kind==CommandKind.Ready
+                            &&x.Command.Target==AdditionalTacticalActor.Id&&x.Command.Combat.WeaponId=="").ToArray();
+                        Require(readyOptions.Length==1,"Combined profile did not expose one unarmed Ready declaration.");
+                        WorldCommit(s,readyOptions[0].Command);
+                    }
+                    void DesignateOverwatch()
+                    {
+                        WorldCommit(s,new Command("ready-ow.designate."+s.Capture().Revision,TestOnlyPolicy.ActorId,s.Capture().Revision,
+                            CommandKind.DesignateOverwatch,s.Capture().Encounter.CurrentTurnId,x:-1,y:0));
+                    }
+                    if(readyFirst){DeclareReady();DesignateOverwatch();}else{DesignateOverwatch();DeclareReady();}
+                    WorldCommit(s,Tac(s,CommandKind.EndRegularTurn));
+                    WorldCommit(s,Tac(s,CommandKind.SelectCombatStance,actor:AdditionalTacticalActor.Id,stance:(int)CombatStance.Guarded));
+                    foreach(var cell in new[]{(4,1),(3,2),(2,2),(1,2),(0,1)}) {
+                        try {TacStep(s,cell.Item1,cell.Item2);}
+                        catch(Exception ex) {throw new Exception("Competition route failed at "+cell.Item1+","+cell.Item2
+                            +" from "+s.Capture().Actors.Single(x=>x.Id==AdditionalTacticalActor.Id).X+","+s.Capture().Actors.Single(x=>x.Id==AdditionalTacticalActor.Id).Y,ex);}
+                        while(TestOnlyClubAttackPolicy.PendingMove(s.Capture())!=null)AnswerOpportunity(s,false);
+                    }
+                    var pending=s.Capture();var occurrences=pending.ReadyOccurrences.Where(x=>x.Pending).ToArray();
+                    var offers=pending.OverwatchOffers.Where(x=>x.Status==OverwatchOfferStatus.Pending).ToArray();
+                    Require(occurrences.Length==1&&offers.Length==1,"Shared target step did not produce exactly one Ready and one Overwatch occurrence."
+                        +" ready="+occurrences.Length+" overwatch="+offers.Length+" position="+pending.Actors.Single(x=>x.Id==AdditionalTacticalActor.Id).X+","+pending.Actors.Single(x=>x.Id==AdditionalTacticalActor.Id).Y
+                        +" moves="+string.Join(";",pending.TacticalMoves.Where(x=>x.Status==TacticalMoveStatus.Completed).Select(x=>x.ToX+","+x.ToY)));
+                    var occurrence=occurrences[0];var offer=offers[0];
+                    Require(occurrence.CreatedRevision==offer.CreatedRevision
+                        &&(readyFirst?occurrence.SourceAppliedRevision<offer.SourceAppliedRevision
+                            :occurrence.SourceAppliedRevision>offer.SourceAppliedRevision),
+                        "Ready and Overwatch were not queued from the same completed step in source-application order.");
+                    Command readyResponse;
+                    if(readyFirst) {
+                        var readyResponses=s.DiscoverCommands(host,TestOnlyPolicy.ActorId).Where(x=>x.Command.Kind==CommandKind.RespondReady
+                            &&x.Command.Combat.Choice).ToArray();
+                        Require(readyResponses.Length==1,"Ready could not be accepted when its occurrence won the ordered queue.");
+                        readyResponse=readyResponses[0].Command;
+                    } else readyResponse=new Command("ready-ow.deferred-ready",TestOnlyPolicy.ActorId,pending.Revision,
+                        CommandKind.RespondReady,occurrence.Id,combat:new CombatRequest(pending.Encounter.CurrentTurnId,choice:true,
+                            pressInstruction:PressHitInstruction.KeepExisting));
+                    if(readyFirst)RejectUnchanged(s,host,OverwatchResponse(s,true),"ReadyActionChoicePending");
+                    else RejectUnchanged(s,host,readyResponse,"OverwatchChoicePending");
+                    WorldCommit(s,readyFirst?readyResponse:OverwatchResponse(s,true));
+                    var resolved=s.Capture();
+                    Require(!WorldLedger(s,TestOnlyPolicy.ActorId).ReactionAvailable,
+                        "The earlier accepted post-step occurrence did not spend the shared Reaction.");
+                    if(readyFirst) {
+                        Require(resolved.ReadyActions.Single().Status==ReadyActionStatus.Released
+                            &&resolved.ReadyOccurrences.Single(x=>x.Id==occurrence.Id).Status==ReadyOccurrenceStatus.Accepted
+                            &&resolved.OverwatchOffers.Single(x=>x.Id==offer.Id).Status==OverwatchOfferStatus.Invalidated
+                            &&resolved.RangedAttacks.Length==0&&resolved.RepeatingCrossbows.Single().LoadedBoltLots.Count==1,
+                            "Accepting earlier Ready did not invalidate Overwatch without spending its ammunition.");
+                    } else {
+                        Require(resolved.ReadyActions.Single().Armed
+                            &&resolved.ReadyOccurrences.Single(x=>x.Id==occurrence.Id).Status==ReadyOccurrenceStatus.Invalidated
+                            &&resolved.OverwatchOffers.Single(x=>x.Id==offer.Id).Status==OverwatchOfferStatus.Accepted
+                            &&resolved.RangedAttacks.Length==1&&resolved.RepeatingCrossbows.Single().LoadedBoltLots.Count==0,
+                            "Accepting earlier Overwatch did not invalidate Ready while spending its shot resources.");
+                    }
+                    Require(!s.DiscoverCommands(host,TestOnlyPolicy.ActorId).Any(x=>x.Command.Kind==CommandKind.RespondReady
+                        ||x.Command.Kind==CommandKind.RespondOverwatch),
+                        "The later invalidated occurrence remained available as a release response.");
+                    return s;
+                }
+                CompetingReadyAndOverwatch(true);CompetingReadyAndOverwatch(false);
+            });
             cases.Add("overwatch_accepted_opportunity_attack_invalidates_without_refiring_or_duplicate_trigger",()=>{
                 var s=World(OverwatchExecutionPolicy(SeedForNatural(20),designation:new OverwatchDesignationFixture(0,-1)));
                 WorldCommit(s,new Command("ow.oa.begin",TestOnlyPolicy.ActorId,s.Capture().Revision,CommandKind.BeginFixedEncounter));

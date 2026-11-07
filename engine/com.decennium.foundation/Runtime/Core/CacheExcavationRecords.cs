@@ -79,6 +79,9 @@ namespace Decennium.Foundation
                     throw new ArgumentException("Cache excavation requires schema57.");
                 return;
             }
+            // Later schemas may add unrelated optional records without selecting the optional
+            // buried-cache fixture. Its founding schema still requires the authored site.
+            if(s.SchemaVersion>Snapshot.BuriedCacheSchema&&s.BuriedCacheSites.Length==0&&s.CacheExcavations.Length==0)return;
             if (s.BuriedCacheSites.Length != 1 || s.SupplyCaches.Length != 1 || s.PortableEquipment.Length == 0)
                 throw new ArgumentException("Schema57 requires its authored buried-cache fixture.");
             var site = s.BuriedCacheSites[0];

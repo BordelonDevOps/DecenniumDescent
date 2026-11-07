@@ -110,6 +110,149 @@ namespace Decennium.Foundation.Tests
                     &&!TestOnlyClubAttackPolicy.DodgeEffective(nextStart,TestOnlyPolicy.ActorId),
                     "Dodge did not expire at its owner's exact next regular start.");
             });
+            cases.Add("ready_action_persists_declared_trigger_and_resolves_off_turn_shared_attack",()=>{
+                var p=ConnectedPolicy().EnableReadyAction();var s=World(p);
+                WorldStep(s,1,0);WorldAdvance(s,1);WorldStep(s,1,0);WorldAdvance(s,1);WorldStep(s,1,0);
+                Require(s.Capture().InventoryCombat&&s.Capture().Actors.Single(x=>x.Id==TestOnlyPolicy.ActorId).X==2,
+                    "Ready fixture did not enter the shared encounter at the ten-foot approach position.");
+                WorldCommit(s,Tac(s,CommandKind.SelectCombatStance,stance:(int)CombatStance.Aggressive));
+                var declaration=s.DiscoverCommands(host,TestOnlyPolicy.ActorId).Single(x=>x.Command.Kind==CommandKind.Ready
+                    &&x.Command.Target==AdditionalTacticalActor.Id&&x.Command.Combat.WeaponId==TestOnlyClubAttackPolicy.ActorClub).Command;
+                byte[] before=Bytes(s);uint random=s.Capture().RandomState;var preview=s.QueryCommand(host,declaration);
+                Require(preview.Supported&&preview.Admissible&&preview.Costs.Count==1&&preview.Costs[0].Kind=="action"
+                    &&before.SequenceEqual(Bytes(s))&&random==s.Capture().RandomState,
+                    "Ready query mutated state or omitted its Action cost.");
+                WorldCommit(s,declaration);
+                Require(s.Capture().SchemaVersion==Snapshot.ReadyActionSchema&&WorldLedger(s).ActionSpent
+                    &&s.Capture().ReadyActions.Single().Armed&&s.Capture().ReadyActions.Single().WeaponId==TestOnlyClubAttackPolicy.ActorClub,
+                    "Ready declaration did not persist its named target, response weapon, and paid Action.");
+                byte[] armed=Bytes(s);s=new Simulation(p,new SnapshotCodec().Decode(armed),ExecutionProfile.Laboratory);
+                Require(armed.SequenceEqual(Bytes(s)),"Armed Ready Action changed across codec restore.");
+                WorldCommit(s,Tac(s,CommandKind.EndRegularTurn));
+                WorldCommit(s,Tac(s,CommandKind.SelectCombatStance,actor:AdditionalTacticalActor.Id,stance:(int)CombatStance.Guarded));
+                TacStep(s,3,0);var occurrence=s.Capture().ReadyOccurrences.Single();
+                Require(occurrence.Pending&&occurrence.OwnerId==TestOnlyPolicy.ActorId&&occurrence.TargetId==AdditionalTacticalActor.Id
+                    &&s.Capture().Actors.Single(x=>x.Id==AdditionalTacticalActor.Id).X==3,
+                    "Completed target entry did not create the persisted Ready occurrence.");
+                var responses=s.DiscoverCommands(host,TestOnlyPolicy.ActorId).Where(x=>x.Command.Kind==CommandKind.RespondReady).ToArray();
+                Require(responses.Length==2&&responses.Any(x=>x.Command.Combat.Choice)&&responses.Any(x=>!x.Command.Combat.Choice),
+                    "Ready owner did not receive accept and decline options while outside their regular turn.");
+                var accept=responses.Single(x=>x.Command.Combat.Choice).Command;
+                var responsePreview=s.QueryCommand(host,accept);before=Bytes(s);
+                Require(responsePreview.Admissible&&responsePreview.Costs.Single().Kind=="reaction"&&before.SequenceEqual(Bytes(s)),
+                    "Ready response query was not read-only or omitted the Reaction cost.");
+                s=new Simulation(p,new SnapshotCodec().Decode(before),ExecutionProfile.Laboratory);
+                WorldCommit(s,accept);var result=s.Capture();var attack=result.MeleeAttacks.Single(x=>x.Id==occurrence.Id||x.AttackerId==TestOnlyPolicy.ActorId);
+                Require(result.ReadyActions.Single().Status==ReadyActionStatus.Released
+                    &&result.ReadyOccurrences.Single().Status==ReadyOccurrenceStatus.Accepted
+                    &&attack.AttackerId==TestOnlyPolicy.ActorId&&attack.TargetId==AdditionalTacticalActor.Id&&!attack.Opportunity
+                    &&!WorldLedger(s,TestOnlyPolicy.ActorId).ReactionAvailable&&WorldLedger(s,TestOnlyPolicy.ActorId).ActionSpent,
+                    "Accepting Ready did not spend the shared Reaction and execute one ordinary off-turn attack.");
+                byte[] accepted=Bytes(s);
+                Require(s.Execute(host,accept).Outcome==Outcome.Duplicate&&accepted.SequenceEqual(Bytes(s)),
+                    "Ready response replay was not idempotent.");
+            });
+            cases.Add("declined_ready_occurrence_keeps_reaction_and_waits_for_next_entry",()=>{
+                var p=ConnectedPolicy().EnableReadyAction();var s=World(p);
+                WorldStep(s,1,0);WorldAdvance(s,1);WorldStep(s,1,0);WorldAdvance(s,1);WorldStep(s,1,0);
+                WorldCommit(s,Tac(s,CommandKind.SelectCombatStance,stance:(int)CombatStance.Aggressive));
+                var declaration=s.DiscoverCommands(host,TestOnlyPolicy.ActorId).Single(x=>x.Command.Kind==CommandKind.Ready
+                    &&x.Command.Target==AdditionalTacticalActor.Id&&x.Command.Combat.WeaponId=="").Command;
+                WorldCommit(s,declaration);WorldCommit(s,Tac(s,CommandKind.EndRegularTurn));
+                WorldCommit(s,Tac(s,CommandKind.SelectCombatStance,actor:AdditionalTacticalActor.Id,stance:(int)CombatStance.Guarded));
+                TacStep(s,3,0);var first=s.Capture().ReadyOccurrences.Single(x=>x.Pending);
+                var decline=s.DiscoverCommands(host,TestOnlyPolicy.ActorId).Single(x=>x.Command.Kind==CommandKind.RespondReady&&!x.Command.Combat.Choice).Command;
+                WorldCommit(s,decline);
+                Require(s.Capture().ReadyActions.Single().Armed&&s.Capture().ReadyOccurrences.Single(x=>x.Id==first.Id).Status==ReadyOccurrenceStatus.Declined
+                    &&WorldLedger(s,TestOnlyPolicy.ActorId).ReactionAvailable,"Declining a Ready occurrence consumed its Reaction or declaration.");
+                TacStep(s,4,0);
+                while(TestOnlyClubAttackPolicy.PendingMove(s.Capture())!=null)AnswerOpportunity(s,false);
+                Require(!s.Capture().ReadyOccurrences.Any(x=>x.Pending),"Leaving the trigger distance fired Ready again.");
+                TacStep(s,3,0);var second=s.Capture().ReadyOccurrences.Single(x=>x.Pending);
+                Require(s.Capture().ReadyOccurrences.Count(x=>x.Pending)==1,
+                    "Re-entering the declared trigger distance did not create another occurrence.");
+                var accept=s.DiscoverCommands(host,TestOnlyPolicy.ActorId).Single(x=>x.Command.Kind==CommandKind.RespondReady
+                    &&x.Command.Combat.Choice).Command;
+                WorldCommit(s,accept);var resolved=s.Capture();
+                Require(resolved.ReadyActions.Single().Status==ReadyActionStatus.Released
+                    &&resolved.ReadyOccurrences.Single(x=>x.Id==first.Id).Status==ReadyOccurrenceStatus.Declined
+                    &&resolved.ReadyOccurrences.Single(x=>x.Id==second.Id).Status==ReadyOccurrenceStatus.Accepted
+                    &&!WorldLedger(s,TestOnlyPolicy.ActorId).ReactionAvailable,
+                    "A later accepted occurrence discarded prior decline history or failed to consume the shared Reaction.");
+            });
+            cases.Add("ready_action_expires_at_owners_next_regular_start",()=>{
+                var p=ConnectedPolicy().EnableReadyAction();var s=World(p);
+                WorldStep(s,1,0);WorldAdvance(s,1);WorldStep(s,1,0);WorldAdvance(s,1);WorldStep(s,1,0);
+                WorldCommit(s,Tac(s,CommandKind.SelectCombatStance,stance:(int)CombatStance.Aggressive));
+                var declaration=s.DiscoverCommands(host,TestOnlyPolicy.ActorId).Single(x=>x.Command.Kind==CommandKind.Ready
+                    &&x.Command.Target==AdditionalTacticalActor.Id&&x.Command.Combat.WeaponId=="").Command;
+                WorldCommit(s,declaration);int expiry=s.Capture().ReadyActions.Single().ExpiresAfterTurnOrdinal;
+                WorldCommit(s,Tac(s,CommandKind.EndRegularTurn));
+                WorldCommit(s,Tac(s,CommandKind.SelectCombatStance,actor:AdditionalTacticalActor.Id,stance:(int)CombatStance.Guarded));
+                TacStep(s,3,0);var declinedOccurrence=s.Capture().ReadyOccurrences.Single(x=>x.Pending);
+                var decline=s.DiscoverCommands(host,TestOnlyPolicy.ActorId).Single(x=>x.Command.Kind==CommandKind.RespondReady
+                    &&!x.Command.Combat.Choice).Command;
+                WorldCommit(s,decline);
+                WorldCommit(s,Tac(s,CommandKind.EndRegularTurn,actor:AdditionalTacticalActor.Id));
+                var action=s.Capture().ReadyActions.Single();
+                Require(s.Capture().Encounter.CurrentActor==TestOnlyPolicy.ActorId&&s.Capture().Encounter.TurnOrdinal==expiry
+                    &&action.Status==ReadyActionStatus.Expired&&action.ResolutionId==s.Capture().Receipts.Last().Id
+                    &&s.Capture().ReadyOccurrences.Single(x=>x.Id==declinedOccurrence.Id).Status==ReadyOccurrenceStatus.Declined,
+                    "Ready Action did not expire on the owner's exact next regular start.");
+                uint random=s.Capture().RandomState;int attackCount=s.Capture().MeleeAttacks.Length;
+                var expiredRelease=new Command("ready.expired.release",TestOnlyPolicy.ActorId,s.Capture().Revision,
+                    CommandKind.RespondReady,declinedOccurrence.Id,
+                    combat:new CombatRequest(s.Capture().Encounter.CurrentTurnId,choice:true,
+                        pressInstruction:PressHitInstruction.KeepExisting));
+                RejectUnchanged(s,host,expiredRelease,"NoPendingReadyChoice");
+                Require(random==s.Capture().RandomState&&attackCount==s.Capture().MeleeAttacks.Length
+                    &&WorldLedger(s).ReactionAvailable,
+                    "A stale Ready release after exact expiry changed RNG, attacks or the refreshed Reaction.");
+            });
+            cases.Add("ready_action_expiry_survives_tactical_exit_chunking_and_restore",()=>{
+                var p=TacticalTechniquePolicy(SeedForNatural(20),enemyHp:1,enemyMaximumHp:1).EnableReadyAction();
+                var tactical=World(p);BeginEncounter(tactical);
+                Require(tactical.Capture().Encounter.Order.SequenceEqual(new[]{TestOnlyPolicy.ActorId,TestOnlyPolicy.CompanionId,AdditionalTacticalActor.Id}),
+                    "Ready exit fixture did not use the authored three-actor initiative roster.");
+                WorldCommit(tactical,Tac(tactical,CommandKind.SelectCombatStance,stance:(int)CombatStance.Aggressive));
+                var declaration=tactical.DiscoverCommands(host,TestOnlyPolicy.ActorId).Single(x=>x.Command.Kind==CommandKind.Ready
+                    &&x.Command.Target==AdditionalTacticalActor.Id&&x.Command.Combat.WeaponId=="").Command;
+                WorldCommit(tactical,declaration);var armed=tactical.Capture().ReadyActions.Single();
+                Require(armed.ExpiresAt==tactical.Capture().WorldSchedule.Start(armed.ExpiresAfterTurnOrdinal),
+                    "Ready Action did not capture its exact next-own-start marker.");
+                WorldCommit(tactical,Tac(tactical,CommandKind.EndRegularTurn));
+                WorldCommit(tactical,Tac(tactical,CommandKind.SelectCombatStance,actor:TestOnlyPolicy.CompanionId,stance:(int)CombatStance.Aggressive));
+                foreach(var step in new[]{(4,3),(4,2),(4,1)})TacStep(tactical,step.Item1,step.Item2);
+                WorldCommit(tactical,Tac(tactical,CommandKind.AttackUnarmed,AdditionalTacticalActor.Id,actor:TestOnlyPolicy.CompanionId));
+                Require(tactical.Capture().Lives.Single(x=>x.ActorId==AdditionalTacticalActor.Id).Dead,
+                    "Deterministic companion attack did not resolve the one-hit-point encounter target.");
+                WorldCommit(tactical,Tac(tactical,CommandKind.EndFixedEncounter,actor:TestOnlyPolicy.CompanionId));
+                var exited=tactical.Capture();var afterExit=exited.ReadyActions.Single();
+                Require(!exited.InventoryCombat&&exited.RuleClock==T(4)&&afterExit.Armed&&afterExit.ExpiresAt==T(6),
+                    "Encounter exit blocked on Ready or changed its future owner-start expiry.");
+
+                byte[] exitedBytes=Bytes(tactical);var restored=new Simulation(p,new SnapshotCodec().Decode(exitedBytes),ExecutionProfile.Laboratory);
+                Require(exitedBytes.SequenceEqual(Bytes(restored)),"Armed post-exit Ready lifecycle changed across save/restore.");
+                var wholeAdvance=IC(restored,CommandKind.AdvanceClock,x:4,y:1);WorldCommit(restored,wholeAdvance);
+                var whole=restored.Capture().ReadyActions.Single();
+                Require(restored.Capture().RuleClock==T(8)&&whole.Status==ReadyActionStatus.Expired&&whole.ExpiresAt==T(6)
+                    &&whole.ResolutionId==wholeAdvance.Id&&whole.ResolvedRevision==restored.Capture().Receipts.Single(x=>x.Id==wholeAdvance.Id).Revision,
+                    "A large post-exit clock advance skipped or shifted the exact Ready expiry.");
+
+                var split=new Simulation(p,new SnapshotCodec().Decode(exitedBytes),ExecutionProfile.Laboratory);
+                var toDeadline=IC(split,CommandKind.AdvanceClock,x:2,y:1);WorldCommit(split,toDeadline);
+                var atBoundary=split.Capture();var boundaryAction=atBoundary.ReadyActions.Single();
+                Require(atBoundary.RuleClock==T(6)&&boundaryAction.Status==ReadyActionStatus.Expired
+                    &&boundaryAction.ExpiresAt==T(6)&&boundaryAction.ResolutionId==toDeadline.Id,
+                    "Split advancement did not expire Ready at its exact saved boundary.");
+                byte[] boundaryBytes=Bytes(split);split=new Simulation(p,new SnapshotCodec().Decode(boundaryBytes),ExecutionProfile.Laboratory);
+                Require(boundaryBytes.SequenceEqual(Bytes(split)),"Expired Ready lifecycle changed across boundary save/restore.");
+                string expiryId=split.Capture().ReadyActions.Single().ResolutionId;long expiryRevision=split.Capture().ReadyActions.Single().ResolvedRevision;
+                WorldAdvance(split,2);var resumed=split.Capture().ReadyActions.Single();
+                Require(split.Capture().RuleClock==restored.Capture().RuleClock&&resumed.Status==ReadyActionStatus.Expired
+                    &&resumed.ExpiresAt==whole.ExpiresAt&&resumed.ResolutionId==expiryId&&resumed.ResolvedRevision==expiryRevision,
+                    "Split/save-restored clock advancement repeated or changed the Ready expiry.");
+            });
             cases.Add("connected_combat_remote_worker_cannot_be_attacked_or_act_in_encounter",()=>{
                 var s=ConnectedArena();
                 RejectUnchanged(s,host,Tac(s,CommandKind.AttackClub,TestOnlyPolicy.CompanionId,weapon:TestOnlyClubAttackPolicy.ActorClub),"TargetOutsideEncounter");

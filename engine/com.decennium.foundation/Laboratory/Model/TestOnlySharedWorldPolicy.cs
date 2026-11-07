@@ -25,6 +25,7 @@ namespace Decennium.Foundation.Laboratory
         private bool cacheExcavationEnabled;
         private bool offCalendarActivityEnabled;
         private bool dodgeActionEnabled;
+        private bool readyActionEnabled;
         private ObservationFixture observationFixture;
         private ObservationAlgorithmVersion observationAlgorithmVersion = ObservationAlgorithmVersion.ExactPathIntervalsV2;
         private bool initializationStarted;
@@ -62,7 +63,8 @@ namespace Decennium.Foundation.Laboratory
             if(crafting!=null&&combat==null)throw new ArgumentException("Crafting consequences require the explicit calendar host.");
             if(research!=null&&combat==null)throw new ArgumentException("Research requires the explicit connected calendar host.");
             this.conditions = conditions ?? new ConditionCombatFixture();
-            this.terrain = new TacticalCombatFixture(new AdditionalTacticalActor(4, combat==null?4:0, walkingSpeed,combat?.EnemyHp??26), terrain);
+            this.terrain = new TacticalCombatFixture(new AdditionalTacticalActor(4, combat==null?4:0, walkingSpeed,
+                combat?.EnemyHp??26,combat?.EnemyMaximumHp??26), terrain);
             bodies = new TestOnlyClubAttackPolicy(actorHp:crafting?.HeroHp??26,companionHp:crafting?.CompanionHp??26,actorBaseWalkingSpeed: walkingSpeed, companionBaseWalkingSpeed: walkingSpeed,
                 tactical: this.terrain, conditions: this.conditions,seed:combat?.Seed??1,
                 deferredConditionTargets:scenario?.Actors.Select(x=>x.Id).ToArray());
@@ -386,6 +388,7 @@ namespace Decennium.Foundation.Laboratory
             while (s.RuleClock < target) {
                 ReconcileRouteTravel(s); ReconcileTraversal(s); RuleTime segmentStart = s.RuleClock; RuleTime next = target;
                 var condition = NextConditionDeadline(s); if (condition.HasValue && condition.Value < next) next = condition.Value;
+                var readyExpiry=NextReadyActionExpiry(s);if(readyExpiry.HasValue&&readyExpiry.Value<next)next=readyExpiry.Value;
                 var periodic = NextPeriodicMarker(s); if(periodic.HasValue&&periodic.Value<next)next=periodic.Value;
                 var formula = NextFormulaBoundary(s); if (formula.HasValue && formula.Value < next) next = formula.Value;
                 var dying = NextDyingMarker(s); if(dying.HasValue&&dying.Value<next)next=dying.Value;
@@ -532,17 +535,18 @@ namespace Decennium.Foundation.Laboratory
                 PauseIncompatibleWork(s); CompleteSupplyCacheAttempts(s); CompleteOrdinaryReceptacleAttempts(s);
                 CompleteHuntingTrapActions(s); ReconcileTraversal(s);
                 ObservationRules.Refresh(s, s.RuleClock, s.Revision + 1);
+                ExpireReadyActionsAtStart(s,initiating);
                 if(ManufacturingChoicePending(s)){
                     TestOnlyClubAttackPolicy.AdvanceConditions(s,".clock-final",s.SchemaVersion<Snapshot.ExpeditionRouteSchema,
                         s.SchemaVersion>=Snapshot.ExpeditionRouteSchema);
                     s.ManufacturingAdvance=continuation??new ManufacturingAdvanceRecord(target,exitAfterSlot,initiating.Id,s.Revision+1,
                         initiating.Kind==CommandKind.EndRegularTurn||initiating.Kind==CommandKind.EndFixedEncounter?initiating.Target:"");
-                    if(connectedCombat!=null)ObserveCalendar(s);return null;
+                    if(connectedCombat!=null){ObserveCalendar(s);ExpireReadyActionsAtStart(s,initiating);}return null;
                 }
             }
             TestOnlyClubAttackPolicy.AdvanceConditions(s,".clock-final",s.SchemaVersion<Snapshot.ExpeditionRouteSchema,
                 s.SchemaVersion>=Snapshot.ExpeditionRouteSchema);
-            if(connectedCombat!=null)ObserveCalendar(s);
+            if(connectedCombat!=null){ObserveCalendar(s);ExpireReadyActionsAtStart(s,initiating);}
             return null;
         }
         private string ResolveCore(Snapshot s, Command c)
@@ -748,13 +752,15 @@ namespace Decennium.Foundation.Laboratory
                     &&s.SchemaVersion!=Snapshot.DefensiveFormationSchema
                     &&!(huntingTrapFixture!=null&&s.SchemaVersion==Snapshot.HuntingTrapSchema)
                     &&!(dodgeActionEnabled&&s.SchemaVersion==Snapshot.DodgeSchema)
+                    &&!(readyActionEnabled&&s.SchemaVersion==Snapshot.ReadyActionSchema)
                     ||s.CharacterFeatureGrants.Count(g=>g.ActorId==TestOnlyPolicy.ActorId&&g.FeatureId==CharacterFeatureIds.Overwatch
                         &&g.Origin==CharacterFeatureGrantOrigin.AutomaticClassFeature)!=1
                     ||s.CharacterFeatureGrants.Any(g=>g.ActorId==TestOnlyPolicy.ActorId&&g.FeatureId==CharacterFeatureIds.Overwatch
                         &&g.Origin==CharacterFeatureGrantOrigin.AutomaticClassFeature&&(g.MilestoneId!=""||g.GrantedRevision!=0))))return "InvalidOverwatchFoundationFixture";
                 if(overwatchRuntime!=null&&((s.SchemaVersion!=Snapshot.OverwatchSchema&&s.SchemaVersion!=Snapshot.OverwatchExecutionSchema
                     &&!(huntingTrapFixture!=null&&s.SchemaVersion==Snapshot.HuntingTrapSchema)
-                    &&!(dodgeActionEnabled&&s.SchemaVersion==Snapshot.DodgeSchema))||s.OverwatchIntervals.Length<1
+                    &&!(dodgeActionEnabled&&s.SchemaVersion==Snapshot.DodgeSchema)
+                    &&!(readyActionEnabled&&s.SchemaVersion==Snapshot.ReadyActionSchema))||s.OverwatchIntervals.Length<1
                     ||s.OverwatchIntervals.Any(x=>x.ActorId!=TestOnlyPolicy.ActorId)))return "InvalidOverwatchDesignationFixture";
                 if(periodicRider!=null) {
                     if(s.SchemaVersion<Snapshot.PeriodicRiderSchema||s.PeriodicRiders.Any(x=>x.ProfileId!=PeriodicRiderFixture.ProfileId

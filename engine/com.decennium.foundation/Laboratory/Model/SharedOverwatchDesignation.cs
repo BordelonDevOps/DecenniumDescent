@@ -85,7 +85,8 @@ namespace Decennium.Foundation.Laboratory
             if(overwatchRuntime==null)return;
             bool trapLayeredSchema=huntingTrapFixture!=null&&s.SchemaVersion==Snapshot.HuntingTrapSchema;
             bool dodgeLayeredSchema=dodgeActionEnabled&&s.SchemaVersion==Snapshot.DodgeSchema;
-            bool executionSchema=s.SchemaVersion==Snapshot.OverwatchExecutionSchema||trapLayeredSchema||dodgeLayeredSchema;
+            bool readyLayeredSchema=readyActionEnabled&&s.SchemaVersion==Snapshot.ReadyActionSchema;
+            bool executionSchema=s.SchemaVersion==Snapshot.OverwatchExecutionSchema||trapLayeredSchema||dodgeLayeredSchema||readyLayeredSchema;
             if((s.SchemaVersion!=Snapshot.OverwatchSchema&&!executionSchema)
                 ||executionSchema!=(overwatchExecution!=null)
                 ||overwatchFoundation==null||periodicRider==null||rangedCombat==null

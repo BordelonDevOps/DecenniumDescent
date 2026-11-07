@@ -12,9 +12,10 @@ namespace Decennium.Foundation.Laboratory
     public sealed class SharedCombatFixture
     {
         public long EnemyHp { get; }
+        public long EnemyMaximumHp { get; }
         public uint Seed { get; }
-        public SharedCombatFixture(long enemyHp=26,uint seed=1)
-        {if(enemyHp<1||enemyHp>26||seed==0)throw new ArgumentException("Invalid connected combat fixture.");EnemyHp=enemyHp;Seed=seed;}
+        public SharedCombatFixture(long enemyHp=26,uint seed=1,long enemyMaximumHp=26)
+        {if(enemyHp<1||enemyMaximumHp<enemyHp||enemyMaximumHp>26||seed==0)throw new ArgumentException("Invalid connected combat fixture.");EnemyHp=enemyHp;EnemyMaximumHp=enemyMaximumHp;Seed=seed;}
     }
     public sealed partial class TestOnlySharedWorldPolicy
     {
@@ -26,6 +27,19 @@ namespace Decennium.Foundation.Laboratory
             dodgeActionEnabled=true;
             using(var hash=SHA256.Create())ContentFingerprint="TEST_ONLY.dodge-v1-"+string.Concat(hash.ComputeHash(
                 Encoding.UTF8.GetBytes(ContentFingerprint+"|source-dodge-until-next-regular-start|schema56"))
+                .Select(x=>x.ToString("x2",System.Globalization.CultureInfo.InvariantCulture)));
+            return this;
+        }
+        /// <summary>Opts a connected TEST_ONLY calendar into the persisted nonspell Ready Action
+        /// slice. Named-target five-foot club/unarmed attacks use schema58 and the shared reaction queue.</summary>
+        public TestOnlySharedWorldPolicy EnableReadyAction()
+        {
+            if(initializationStarted)throw new InvalidOperationException("Ready Action content must be selected before Initial().");
+            if(readyActionEnabled)return this;
+            if(connectedCombat==null)throw new InvalidOperationException("Ready Action requires the connected tactical calendar fixture.");
+            readyActionEnabled=true;
+            using(var hash=SHA256.Create())ContentFingerprint="TEST_ONLY.ready-action-v1-"+string.Concat(hash.ComputeHash(
+                Encoding.UTF8.GetBytes(ContentFingerprint+"|named-target-enters-five-foot-reach|club-or-unarmed|shared-post-step-order|exact-shared-clock-own-start-expiry|schema58"))
                 .Select(x=>x.ToString("x2",System.Globalization.CultureInfo.InvariantCulture)));
             return this;
         }
@@ -216,6 +230,7 @@ namespace Decennium.Foundation.Laboratory
         }
         internal static bool PendingCalendarChoice(Snapshot s)=>s.MeleeAttacks.Any(x=>x.Pending)||TestOnlyClubAttackPolicy.PendingMove(s)!=null
             ||TestOnlyClubAttackPolicy.CurrentPressOffer(s)!=null||s.OverwatchOffers.Any(x=>x.Status==OverwatchOfferStatus.Pending)
+            ||s.ReadyOccurrences.Any(x=>x.Status==ReadyOccurrenceStatus.Pending)
             ||s.OverwatchRiderChoices.Any(x=>x.Status==OverwatchRiderChoiceStatus.Pending)||PendingCommandStepOffer(s)!=null
             ||s.InventoryCombat&&s.HuntingTrapTriggers.Any(x=>x.Status==HuntingTrapTriggerStatus.Pending)
             ||s.DefensiveFormations.Any(x=>x.Active&&x.Shifts.Any(y=>y.Status==DefensiveFormationShiftStatus.AwaitingResponse
@@ -230,7 +245,7 @@ namespace Decennium.Foundation.Laboratory
                 string formationError=ResolveDefensiveFormationResponse(s,c);
                 if(formationError==null) {
                     string formationTriggerError=QueueCompletedMovementOverwatch(s);if(formationTriggerError!=null)return formationTriggerError;
-                    NormalizePendingOverwatchOffers(s);FinishDefensiveFormationContinuation(s,c.Id);
+                    NormalizePendingOverwatchOffers(s);NormalizePendingReadyOccurrences(s);FinishDefensiveFormationContinuation(s,c.Id);
                 }
                 return formationError;
             }
@@ -239,7 +254,7 @@ namespace Decennium.Foundation.Laboratory
             if(commandStep!=null) {
                 if(c.Kind!=CommandKind.RespondCommandStep)return "CommandStepChoicePending";
                 string stepError=ResolveCommandStepResponse(s,c);
-                if(stepError==null)NormalizePendingOverwatchOffers(s);
+                if(stepError==null){string queued=QueueCompletedMovementOverwatch(s);if(queued!=null)return queued;NormalizePendingOverwatchOffers(s);NormalizePendingReadyOccurrences(s);}
                 return stepError;
             }
             if(c.Kind==CommandKind.RespondCommandStep)return "NoPendingCommandStepChoice";
@@ -248,28 +263,41 @@ namespace Decennium.Foundation.Laboratory
             if(riderChoice!=null) {
                 if(c.Kind!=CommandKind.ResolveOverwatchRider)return "OverwatchRiderChoicePending";
                 string riderError=ResolveOverwatchRiderChoice(s,c);if(riderError!=null)return riderError;
-                if(NextPostStepChoice(s)==PostStepChoiceKind.None) {
-                    bodies.ContinueTacticalFlow(s);string queueError=QueueCompletedMovementOverwatch(s);if(queueError!=null)return queueError;
-                    NormalizePendingOverwatchOffers(s);
-                    FinishDefensiveFormationContinuation(s,c.Id);
-                }
+                NormalizePendingReadyOccurrences(s);ResolveOrderedHuntingTrapTrigger(s);
+                bodies.ContinueTacticalFlow(s);string queueError=QueueCompletedMovementOverwatch(s);if(queueError!=null)return queueError;
+                NormalizePendingOverwatchOffers(s);NormalizePendingReadyOccurrences(s);
+                FinishDefensiveFormationContinuation(s,c.Id);
                 return null;
             }
             var pendingMove=TestOnlyClubAttackPolicy.PendingMove(s);
             if(pendingMove==null) {
                 var postStep=NextPostStepChoice(s);
+                if(postStep==PostStepChoiceKind.Ready) {
+                    if(c.Kind!=CommandKind.RespondReady)return "ReadyActionChoicePending";
+                    string readyError=ResolveReadyResponse(s,c);if(readyError!=null)return readyError;
+                    NormalizePendingReadyOccurrences(s);ResolveOrderedHuntingTrapTrigger(s);
+                    if(!s.MeleeAttacks.Any(x=>x.Pending)) {
+                        bodies.ContinueTacticalFlow(s);string queueError=QueueCompletedMovementOverwatch(s);if(queueError!=null)return queueError;
+                        NormalizePendingOverwatchOffers(s);NormalizePendingReadyOccurrences(s);
+                        ResolveOrderedHuntingTrapTrigger(s);FinishDefensiveFormationContinuation(s,c.Id);
+                    }
+                    return null;
+                }
                 if(postStep==PostStepChoiceKind.Overwatch) {
                     if(c.Kind!=CommandKind.RespondOverwatch)return "OverwatchChoicePending";
                     string responseError=ResolveOverwatchResponse(s,c);if(responseError!=null)return responseError;
-                    if(!s.OverwatchRiderChoices.Any(x=>x.Status==OverwatchRiderChoiceStatus.Pending)&&NextPostStepChoice(s)==PostStepChoiceKind.None) {
+                    NormalizePendingReadyOccurrences(s);ResolveOrderedHuntingTrapTrigger(s);
+                    if(!s.OverwatchRiderChoices.Any(x=>x.Status==OverwatchRiderChoiceStatus.Pending)) {
                         bodies.ContinueTacticalFlow(s);string queueError=QueueCompletedMovementOverwatch(s);if(queueError!=null)return queueError;
-                        NormalizePendingOverwatchOffers(s);
+                        NormalizePendingOverwatchOffers(s);NormalizePendingReadyOccurrences(s);
+                        ResolveOrderedHuntingTrapTrigger(s);
                         FinishDefensiveFormationContinuation(s,c.Id);
                     }
                     return null;
                 }
                 if(postStep==PostStepChoiceKind.Press&&c.Kind==CommandKind.RespondOverwatch)return "EarlierPostStepChoicePending";
             } else if(c.Kind==CommandKind.RespondOverwatch)return "OpportunityChoicePending";
+            if(c.Kind==CommandKind.RespondReady)return "NoPendingReadyChoice";
             if(c.Kind==CommandKind.RespondOverwatch)return "NoPendingOverwatchChoice";
             if(c.Kind==CommandKind.ResolveOverwatchRider)return "NoPendingOverwatchRiderChoice";
             if(HasMovingDefensiveFormation(s)&&c.Kind!=CommandKind.RespondOpportunityAttack&&c.Kind!=CommandKind.RespondPress
@@ -321,6 +349,7 @@ namespace Decennium.Foundation.Laboratory
                 if(PendingCalendarChoice(s))return "TacticalChoicePending";
                 return ResolveOverwatchDesignation(s,c);
             }
+            if(c.Kind==CommandKind.Ready)return ResolveReadyDeclaration(s,c);
             if(c.Kind==CommandKind.CurePeriodicRider)return ResolvePeriodicMedicine(s,c);
             if((c.Kind==CommandKind.HandleInventory||c.Kind==CommandKind.HandleVessel)&&s.SchemaVersion>=Snapshot.SupplyCacheSchema) {
                 if(PendingCalendarChoice(s))return "TacticalChoicePending";

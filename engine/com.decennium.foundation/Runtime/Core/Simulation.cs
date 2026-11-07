@@ -26,7 +26,7 @@ namespace Decennium.Foundation
         StartMiningAssay, PauseMiningAssay, ResumeMiningAssay, CancelMiningAssay,
         StartMineralPreparation, PauseMineralPreparation, ResumeMineralPreparation, Hide, Search,
         StartRouteTravel, PauseRouteTravel, ResumeRouteTravel, ConsumeTestOnlyRouteMappingResult, Dodge,
-        PauseCacheExcavation, ResumeCacheExcavation }
+        PauseCacheExcavation, ResumeCacheExcavation, Ready, RespondReady }
     public enum Outcome { Rejected, Committed, Duplicate }
 
     // DTOs are detached copies. No caller ever receives the owned simulation state.
@@ -108,6 +108,7 @@ namespace Decennium.Foundation
         public const int HuntingTrapSchema = 55;
         public const int DodgeSchema = 56;
         public const int BuriedCacheSchema = 57;
+        public const int ReadyActionSchema = 58;
         public const int MaxActors = 64;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
@@ -146,6 +147,8 @@ namespace Decennium.Foundation
         public ClubInstance[] Clubs = Array.Empty<ClubInstance>();
         public StanceSelectionRecord[] Stances = Array.Empty<StanceSelectionRecord>();
         public DodgeRecord[] Dodges = Array.Empty<DodgeRecord>();
+        public ReadyActionRecord[] ReadyActions = Array.Empty<ReadyActionRecord>();
+        public ReadyOccurrenceRecord[] ReadyOccurrences = Array.Empty<ReadyOccurrenceRecord>();
         public MeleeAttackRecord[] MeleeAttacks = Array.Empty<MeleeAttackRecord>();
         public PressRecord[] Presses = Array.Empty<PressRecord>();
         public ActorTacticalRecord[] TacticalActors = Array.Empty<ActorTacticalRecord>();
@@ -271,6 +274,7 @@ namespace Decennium.Foundation
             InitialCharacterLoadouts = InitialCharacterLoadouts.ToArray(), ShieldStationarity = ShieldStationarity.ToArray(),
             OverwatchIntervals = OverwatchIntervals.ToArray(), OverwatchDesignations = OverwatchDesignations.ToArray(),
             OverwatchOffers = OverwatchOffers.ToArray(), OverwatchRiderChoices = OverwatchRiderChoices.ToArray(),
+            ReadyActions = ReadyActions.ToArray(), ReadyOccurrences = ReadyOccurrences.ToArray(),
             TacticalAllies = TacticalAllies.ToArray(), SoldierTacticalEffects = SoldierTacticalEffects.ToArray(), TacticalAttackAudits = TacticalAttackAudits.ToArray(),
             TacticalAssessments = TacticalAssessments.ToArray(),
             CommandStepOffers = CommandStepOffers.ToArray(),
@@ -616,7 +620,8 @@ namespace Decennium.Foundation
         {
             if (s == null || !ValidId(s.ContentFingerprint) || s.Revision < 0 || s.Clock < 0 || s.RandomState == 0)
                 throw new ArgumentException("Invalid snapshot header.");
-            if (s.SchemaVersion == Foundation.Snapshot.ProspectingSchema || s.SchemaVersion == Foundation.Snapshot.MiningAssaySchema
+            if (s.SchemaVersion == Foundation.Snapshot.ReadyActionSchema) { }
+            else if (s.SchemaVersion == Foundation.Snapshot.ProspectingSchema || s.SchemaVersion == Foundation.Snapshot.MiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.DestructiveMiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.MiningExpeditionAssignmentSchema
                 || s.SchemaVersion == Foundation.Snapshot.MineralPreparationSchema
@@ -704,6 +709,7 @@ namespace Decennium.Foundation
             RangedCombatValidation.Validate(s);
             PeriodicRiderValidation.Validate(s);
             OverwatchValidation.Validate(s);
+            ReadyActionValidation.Validate(s);
             SoldierTacticalFeatureValidation.Validate(s);
             DefensiveFormationValidation.Validate(s);
             FishingTrapValidation.Validate(s);
@@ -755,7 +761,8 @@ namespace Decennium.Foundation
                 || !Enum.IsDefined(typeof(CommandKind), command.Kind)) return "InvalidCommand";
             bool combatKind=command.Kind==CommandKind.SelectCombatStance||command.Kind==CommandKind.AttackClub||command.Kind==CommandKind.ResolveKnockout||command.Kind==CommandKind.Dodge
                 ||command.Kind==CommandKind.AttackUnarmed||command.Kind==CommandKind.RespondOpportunityAttack||command.Kind==CommandKind.RespondPress
-                ||command.Kind==CommandKind.RespondOverwatch||command.Kind==CommandKind.TacticalAssessment
+                ||command.Kind==CommandKind.RespondOverwatch||command.Kind==CommandKind.Ready||command.Kind==CommandKind.RespondReady
+                ||command.Kind==CommandKind.TacticalAssessment
                 ||command.Kind==CommandKind.OfferCommandStep||command.Kind==CommandKind.RespondCommandStep||command.Kind==CommandKind.RespondDefensiveFormation;
             if(combatKind!=(command.Combat!=null)||command.Combat!=null&&command.Inventory!=null)return "UnexpectedCombatPayload";
             if((command.Kind==CommandKind.AdvanceCharacterLevel)!=(command.Advancement!=null)
@@ -857,6 +864,16 @@ namespace Decennium.Foundation
             }
             if(command.Kind==CommandKind.AttackClub||command.Kind==CommandKind.RespondOpportunityAttack&&command.Combat.Choice) {
                 var club=state.Clubs.FirstOrDefault(w=>w.Id==command.Combat.WeaponId);
+                if(club!=null&&!authority.MayUseInventory(club.OwnerId))return "InventoryNotAuthorized";
+            }
+            if(command.Kind==CommandKind.Ready) {
+                var club=state.Clubs.FirstOrDefault(w=>w.Id==command.Combat.WeaponId);
+                if(club!=null&&!authority.MayUseInventory(club.OwnerId))return "InventoryNotAuthorized";
+            }
+            if(command.Kind==CommandKind.RespondReady&&command.Combat.Choice) {
+                var occurrence=state.ReadyOccurrences.FirstOrDefault(x=>x.Id==command.Target&&x.Pending);
+                var ready=occurrence==null?null:state.ReadyActions.FirstOrDefault(x=>x.Id==occurrence.ReadyActionId);
+                var club=ready==null?null:state.Clubs.FirstOrDefault(w=>w.Id==ready.WeaponId);
                 if(club!=null&&!authority.MayUseInventory(club.OwnerId))return "InventoryNotAuthorized";
             }
             return null;

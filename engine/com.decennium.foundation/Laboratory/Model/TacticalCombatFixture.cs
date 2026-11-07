@@ -9,9 +9,9 @@ namespace Decennium.Foundation.Laboratory
     public sealed class AdditionalTacticalActor
     {
         public const string Id="TEST_ONLY.third-combatant",ClubId="TEST_ONLY.third-club";
-        public int X { get; } public int Y { get; } public int WalkingSpeed { get; } public long Hp { get; }
-        public AdditionalTacticalActor(int x,int y,int walkingSpeed,long hp=26)
-        {if(!TestOnlyPolicy.Walkable(x,y)||walkingSpeed<0||hp<1||hp>26)throw new ArgumentException("Invalid third actor fixture facts.");X=x;Y=y;WalkingSpeed=walkingSpeed;Hp=hp;}
+        public int X { get; } public int Y { get; } public int WalkingSpeed { get; } public long Hp { get; } public long MaximumHp { get; }
+        public AdditionalTacticalActor(int x,int y,int walkingSpeed,long hp=26,long maximumHp=26)
+        {if(!TestOnlyPolicy.Walkable(x,y)||walkingSpeed<0||hp<1||maximumHp<hp||maximumHp>26)throw new ArgumentException("Invalid third actor fixture facts.");X=x;Y=y;WalkingSpeed=walkingSpeed;Hp=hp;MaximumHp=maximumHp;}
     }
     public sealed class TacticalTerrainCell
     {
@@ -32,8 +32,17 @@ namespace Decennium.Foundation.Laboratory
             if(rows.Any(x=>x==null)||rows.Select(x=>x.X+","+x.Y).Distinct(StringComparer.Ordinal).Count()!=rows.Length)throw new ArgumentException("Duplicate/null supplied terrain.");
             Terrain=Array.AsReadOnly(rows.OrderBy(x=>x.X).ThenBy(x=>x.Y).ToArray());
         }
-        internal string Fingerprint=>"tactical-v1|"+(Third==null?"none":string.Join(",",new long[]{Third.X,Third.Y,Third.WalkingSpeed,Third.Hp}.Select(x=>x.ToString(CultureInfo.InvariantCulture))))
-            +"|"+string.Join(";",Terrain.Select(x=>x.X.ToString(CultureInfo.InvariantCulture)+","+x.Y.ToString(CultureInfo.InvariantCulture)+","+((int)x.Terrain).ToString(CultureInfo.InvariantCulture)));
+        internal string Fingerprint
+        {
+            get
+            {
+                string third=Third==null?"none":string.Join(",",new long[]{Third.X,Third.Y,Third.WalkingSpeed,Third.Hp}
+                    .Select(x=>x.ToString(CultureInfo.InvariantCulture)));
+                if(Third!=null&&Third.MaximumHp!=26)third+=",maxhp="+Third.MaximumHp.ToString(CultureInfo.InvariantCulture);
+                return "tactical-v1|"+third+"|"+string.Join(";",Terrain.Select(x=>x.X.ToString(CultureInfo.InvariantCulture)
+                    +","+x.Y.ToString(CultureInfo.InvariantCulture)+","+((int)x.Terrain).ToString(CultureInfo.InvariantCulture)));
+            }
+        }
         internal TerrainCost At(int x,int y)=>Terrain.FirstOrDefault(t=>t.X==x&&t.Y==y)?.Terrain??TerrainCost.Normal;
         public static Authority Host()=>new Authority("TEST_ONLY.host",new[]{TestOnlyPolicy.ActorId,TestOnlyPolicy.CompanionId,AdditionalTacticalActor.Id},true,true,
             new[]{TestOnlyPolicy.ActorId,TestOnlyPolicy.CompanionId,AdditionalTacticalActor.Id});

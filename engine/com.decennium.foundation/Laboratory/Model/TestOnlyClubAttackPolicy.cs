@@ -59,7 +59,7 @@ namespace Decennium.Foundation.Laboratory
                 var third=tactical.Third;var original=s.Characters[0];
                 s.Actors=s.Actors.Concat(new[]{new ActorState{Id=AdditionalTacticalActor.Id,X=third.X,Y=third.Y}}).ToArray();
                 s.Characters=s.Characters.Concat(new[]{new ActorCharacterRecord(AdditionalTacticalActor.Id,original.ProfileId,original.Abilities,original.Levels)}).ToArray();
-                s.Lives=s.Lives.Concat(new[]{ActorLifeRules.Record(AdditionalTacticalActor.Id,new LifeState(26,third.Hp),false)}).ToArray();
+                s.Lives=s.Lives.Concat(new[]{ActorLifeRules.Record(AdditionalTacticalActor.Id,new LifeState(third.MaximumHp,third.Hp),false)}).ToArray();
             }
             if(Posture){s.SchemaVersion=tactical==null?Snapshot.PostureSchema:Snapshot.TacticalMovementSchema;s.ActorMovement=s.Actors.Select(a=>new ActorMovementRecord(a.Id,a.Id==TestOnlyPolicy.ActorId?actorBaseSpeed.Value:a.Id==TestOnlyPolicy.CompanionId?companionBaseSpeed.Value:tactical.Third.WalkingSpeed)).ToArray();}
             if(tactical!=null)s.TacticalActors=s.Actors.Select(a=>new ActorTacticalRecord(a.Id)).ToArray();
@@ -281,6 +281,16 @@ namespace Decennium.Foundation.Laboratory
             s.RandomState=next;
             var record=new MeleeAttackRecord(attackId,s.Revision+1,pending?0:s.Revision+1,s.Encounter.TurnOrdinal,c.Actor,c.Target,unarmed?CombatProfileIds.OrdinaryUnarmed:weapon.Id,s.RuleClock,request.Knockout,attack,damage,opportunity,request.PressInstruction);
             s.MeleeAttacks=s.MeleeAttacks.Concat(new[]{record}).ToArray();return null;
+        }
+        internal static string ResolveReadyAttack(Snapshot s,string commandId,string actorId,string targetId,string weaponId,
+            AttackKnockoutMode knockout)
+        {
+            if(s==null||s.Encounter==null||!Validation.ValidId(commandId)||!Validation.ValidId(actorId)||!Validation.ValidId(targetId)
+                ||weaponId==null||weaponId!=""&&!Validation.ValidId(weaponId))return "InvalidReadyAttack";
+            bool unarmed=weaponId=="";
+            var command=new Command(commandId,actorId,s.Revision,unarmed?CommandKind.AttackUnarmed:CommandKind.AttackClub,targetId,
+                combat:new CombatRequest(s.Encounter.CurrentTurnId,weaponId,knockout:knockout,pressInstruction:PressHitInstruction.KeepExisting));
+            return Attack(s,command,opportunity:false);
         }
         private static string Complete(Snapshot s,Command c,MeleeAttackRecord pending)
         {

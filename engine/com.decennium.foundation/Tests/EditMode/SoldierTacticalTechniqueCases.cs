@@ -9,9 +9,9 @@ namespace Decennium.Foundation.Tests
 {
     public static partial class FoundationCases
     {
-        private static TestOnlySharedWorldPolicy TacticalTechniquePolicy(uint seed=1,long enemyHp=26)
+        private static TestOnlySharedWorldPolicy TacticalTechniquePolicy(uint seed=1,long enemyHp=26,long enemyMaximumHp=26)
             =>new TestOnlySharedWorldPolicy(SoldierCharacterBuildFixture.ForTacticalTechniques(),new OverwatchFoundationFixture(),
-                new CharacterAdvancementFixture(),new SharedCombatFixture(enemyHp,seed));
+                new CharacterAdvancementFixture(),new SharedCombatFixture(enemyHp,seed,enemyMaximumHp));
 
         private static TestOnlySharedWorldPolicy SuppressionTechniquePolicy(uint seed=1)
             =>new TestOnlySharedWorldPolicy(SoldierCharacterBuildFixture.ForTacticalTechniques(),new OverwatchFoundationFixture(),

@@ -191,7 +191,7 @@ namespace Decennium.Foundation.Laboratory
         private void AdvanceTacticalFlow(Snapshot s)
         {
             while(!s.MeleeAttacks.Any(a=>a.Pending)) {
-                if(s.SchemaVersion>=Snapshot.OverwatchExecutionSchema&&TestOnlySharedWorldPolicy.OverwatchHasPriorityOverPress(s))return;
+                if(s.SchemaVersion>=Snapshot.OverwatchExecutionSchema&&TestOnlySharedWorldPolicy.EarlierPostStepChoiceThanPress(s))return;
                 var move=PendingMove(s);
                 if(move!=null) {
                     if(StepFailure(s,move.ActorId,move.FromX,move.FromY,move.ToX,move.ToY,move.Kind,move.ParentCommandStepOffer,move.ParentDefensiveFormationId)!=null) {
@@ -261,7 +261,7 @@ namespace Decennium.Foundation.Laboratory
             SetOffer(s,offer.Resolve(r.Choice?PressOfferStatus.Accepted:PressOfferStatus.Declined,s.Revision+1));
             if(r.Choice) {
                 var actor=TacticalActor(s,c.Actor);SetTactical(s,new ActorTacticalRecord(actor.ActorId,actor.LastRegularStart,actor.ReactionAvailable,actor.MobileFeet,true,actor.DisengageTurn));
-                if(s.SchemaVersion<Snapshot.OverwatchExecutionSchema||!s.OverwatchOffers.Any(x=>x.Status==OverwatchOfferStatus.Pending)) {
+                if(s.SchemaVersion<Snapshot.OverwatchExecutionSchema||TestOnlySharedWorldPolicy.NextPostStepAllowsPressFollow(s)) {
                     var departed=s.TacticalMoves.Single(m=>m.Id==offer.MoveId);BeginStep(s,c.Actor,departed.FromX,departed.FromY,TacticalMoveKind.Press,offer.Id);
                 }
             }

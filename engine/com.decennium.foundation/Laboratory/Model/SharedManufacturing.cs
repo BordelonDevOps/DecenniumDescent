@@ -376,7 +376,7 @@ namespace Decennium.Foundation.Laboratory
                 if(!current.Open)return "ManufacturingOrderClosed";
                 string choiceFailure=AssessManufacturingQualityChoice(s,c,out current,out var choice,out int catalyst);
                 if(choiceFailure!=null)return choiceFailure;
-                SettleManufacturing(s,current,choice,catalyst);return ResumeManufacturingAdvance(s);
+                SettleManufacturing(s,current,choice,catalyst);return ResumeManufacturingAdvance(s,c);
             }
             string controlFailure=AssessManufacturingControl(s,c,out var controlled);
             if(controlFailure!=null)return controlFailure;
@@ -395,10 +395,10 @@ namespace Decennium.Foundation.Laboratory
             }
             return "InvalidManufacturingRequest";
         }
-        private string ResumeManufacturingAdvance(Snapshot s)
+        private string ResumeManufacturingAdvance(Snapshot s,Command initiating)
         {
             var pending=s.ManufacturingAdvance;if(pending==null)return null;s.ManufacturingAdvance=null;
-            if(pending.Target>s.RuleClock){string failure=AdvanceTo(s,pending.Target,pending.ExitAfterSlot,continuation:pending);if(failure!=null)return failure;}
+            if(pending.Target>s.RuleClock){string failure=AdvanceTo(s,pending.Target,pending.ExitAfterSlot,initiating:initiating,continuation:pending);if(failure!=null)return failure;}
             if(s.ManufacturingAdvance==null&&pending.ExitAfterSlot&&ResolvedConflict(s)&&!PendingCalendarChoice(s)){
                 s.InventoryCombat=false;s.InventoryTurnActor="";s.InventoryInteractions=0;
             }
