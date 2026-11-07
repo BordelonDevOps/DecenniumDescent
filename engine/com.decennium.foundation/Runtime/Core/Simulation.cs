@@ -27,7 +27,8 @@ namespace Decennium.Foundation
         StartMineralPreparation, PauseMineralPreparation, ResumeMineralPreparation, Hide, Search,
         StartRouteTravel, PauseRouteTravel, ResumeRouteTravel, ConsumeTestOnlyRouteMappingResult, Dodge,
         PauseCacheExcavation, ResumeCacheExcavation, Ready, RespondReady,
-        StartRouteMappingWork, PauseRouteMappingWork, ResumeRouteMappingWork }
+        StartRouteMappingWork, PauseRouteMappingWork, ResumeRouteMappingWork,
+        StartRouteReconnaissance, PauseRouteReconnaissance, ResumeRouteReconnaissance }
     public enum Outcome { Rejected, Committed, Duplicate }
 
     // DTOs are detached copies. No caller ever receives the owned simulation state.
@@ -111,6 +112,7 @@ namespace Decennium.Foundation
         public const int BuriedCacheSchema = 57;
         public const int ReadyActionSchema = 58;
         public const int RouteMappingWorkSchema = 59;
+        public const int RouteReconnaissanceSchema = 60;
         public const int MaxActors = 64;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
@@ -254,6 +256,8 @@ namespace Decennium.Foundation
         public ExpeditionRouteSpatialRecord[] RouteTravelSpatial = Array.Empty<ExpeditionRouteSpatialRecord>();
         public ExpeditionRouteMappingResultRecord[] RouteMappingResults = Array.Empty<ExpeditionRouteMappingResultRecord>();
         public ExpeditionRouteMappingWorkAttemptRecord[] RouteMappingWorkAttempts = Array.Empty<ExpeditionRouteMappingWorkAttemptRecord>();
+        public ExpeditionRouteSegmentRecord[] RouteSegments = Array.Empty<ExpeditionRouteSegmentRecord>();
+        public ExpeditionRouteReconnaissanceAttemptRecord[] RouteReconnaissanceAttempts = Array.Empty<ExpeditionRouteReconnaissanceAttemptRecord>();
         public HuntingTrapDeploymentRecord[] HuntingTrapDeployments = Array.Empty<HuntingTrapDeploymentRecord>();
         public HuntingTrapActionRecord[] HuntingTrapActions = Array.Empty<HuntingTrapActionRecord>();
         public HuntingTrapTriggerRecord[] HuntingTrapTriggers = Array.Empty<HuntingTrapTriggerRecord>();
@@ -315,6 +319,7 @@ namespace Decennium.Foundation
             RouteTravelSpatial = RouteTravelSpatial.ToArray(),
             RouteMappingResults = RouteMappingResults.ToArray(),
             RouteMappingWorkAttempts = RouteMappingWorkAttempts.ToArray(),
+            RouteSegments = RouteSegments.ToArray(), RouteReconnaissanceAttempts = RouteReconnaissanceAttempts.ToArray(),
             HuntingTrapDeployments = HuntingTrapDeployments.ToArray(), HuntingTrapActions = HuntingTrapActions.ToArray(),
             HuntingTrapTriggers = HuntingTrapTriggers.ToArray(), HuntingTrapTethers = HuntingTrapTethers.ToArray(),
             FormulaWork = FormulaWork.ToArray(),
@@ -627,7 +632,9 @@ namespace Decennium.Foundation
         {
             if (s == null || !ValidId(s.ContentFingerprint) || s.Revision < 0 || s.Clock < 0 || s.RandomState == 0)
                 throw new ArgumentException("Invalid snapshot header.");
-            if (s.SchemaVersion == Foundation.Snapshot.ReadyActionSchema || s.SchemaVersion == Foundation.Snapshot.RouteMappingWorkSchema) { }
+            if (s.SchemaVersion == Foundation.Snapshot.ReadyActionSchema
+                || s.SchemaVersion == Foundation.Snapshot.RouteMappingWorkSchema
+                || s.SchemaVersion == Foundation.Snapshot.RouteReconnaissanceSchema) { }
             else if (s.SchemaVersion == Foundation.Snapshot.ProspectingSchema || s.SchemaVersion == Foundation.Snapshot.MiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.DestructiveMiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.MiningExpeditionAssignmentSchema
@@ -733,6 +740,7 @@ namespace Decennium.Foundation
             ExpeditionRouteSpatialValidation.Validate(s);
             ExpeditionRouteMappingValidation.Validate(s);
             ExpeditionRouteMappingWorkValidation.Validate(s);
+            ExpeditionRouteReconnaissanceValidation.Validate(s);
             HuntingTrapValidation.Validate(s);
             CacheExcavationValidation.Validate(s);
         }
@@ -789,6 +797,15 @@ namespace Decennium.Foundation
                     || command.MiningSelection != null || command.ProspectingExposure != null
                     || command.Target == "" || command.X != 0 || command.Y != 0))
                 return "UnexpectedRouteMappingWorkPayload";
+            bool routeReconnaissanceCommand = command.Kind == CommandKind.StartRouteReconnaissance
+                || command.Kind == CommandKind.PauseRouteReconnaissance || command.Kind == CommandKind.ResumeRouteReconnaissance;
+            if (routeReconnaissanceCommand && (command.Inventory != null || command.Combat != null
+                || command.Advancement != null || command.Ranged != null || command.OverwatchRider != OverwatchRider.None
+                || command.SuppressionFire != null || command.DefensiveFormation != null
+                || command.ExpeditionAssignment != null || command.HarvestSelection != null
+                || command.MiningSelection != null || command.ProspectingExposure != null
+                || command.RouteMappingWork != null || command.Target == "" || command.X != 0 || command.Y != 0))
+                return "UnexpectedRouteReconnaissancePayload";
             if((command.Kind==CommandKind.ResolveOverwatchRider)!=(command.OverwatchRider!=OverwatchRider.None)
                 ||command.OverwatchRider!=OverwatchRider.None&&(command.Inventory!=null||command.Combat!=null||command.Advancement!=null||command.Ranged!=null))
                 return "UnexpectedOverwatchPayload";

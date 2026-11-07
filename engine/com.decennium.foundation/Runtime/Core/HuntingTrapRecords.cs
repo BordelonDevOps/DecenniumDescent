@@ -328,6 +328,7 @@ namespace Decennium.Foundation
                 &&s.DestructiveMiningAssayAttempts.All(j=>j.Id!=w.JobId)&&s.MineralPreparationAttempts.All(j=>j.Id!=w.JobId)
                 &&s.OrdinaryReceptacleAttempts.All(j=>j.Id!=w.JobId)
                 &&s.RouteMappingWorkAttempts.All(j=>j.Id!=w.JobId)
+                &&s.RouteReconnaissanceAttempts.All(j=>j.Id!=w.JobId)
                 &&s.CacheExcavations.All(j=>j.Id!=w.JobId)))
                 throw new ArgumentException("Unattributed hunting-trap worker interval.");
         }

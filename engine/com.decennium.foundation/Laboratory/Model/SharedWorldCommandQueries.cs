@@ -251,6 +251,27 @@ namespace Decennium.Foundation.Laboratory
                     &&s.RouteMappingResults.All(applied=>applied.ResultId!=x.ResultId)).OrderBy(x=>x.ResultId,StringComparer.Ordinal))
                     yield return new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+".route-mapping."+(index++).ToString(CultureInfo.InvariantCulture),
                         actor,s.Revision,CommandKind.ConsumeTestOnlyRouteMappingResult,result.ResultId);
+            if (routeReconnaissanceFixture != null)
+            {
+                foreach (var currentReconnaissance in s.RouteReconnaissanceAttempts.Where(x => x.LeadId == actor
+                    && x.Status != ExpeditionRouteReconnaissanceStatus.Resolved).OrderBy(x => x.StartedRevision))
+                {
+                    CommandKind control = currentReconnaissance.Status == ExpeditionRouteReconnaissanceStatus.Working
+                        ? CommandKind.PauseRouteReconnaissance : CommandKind.ResumeRouteReconnaissance;
+                    yield return new Command("option." + s.Revision.ToString(CultureInfo.InvariantCulture) + ".route-recon."
+                        + (index++).ToString(CultureInfo.InvariantCulture), actor, s.Revision, control, currentReconnaissance.Id);
+                }
+                foreach (var task in routeReconnaissanceFixture.Tasks.OrderBy(x => x.RouteId, StringComparer.Ordinal))
+                {
+                    var segment = s.RouteSegments.SingleOrDefault(x => x.RouteId == task.RouteId
+                        && x.StartingProgress == default);
+                    if (segment != null && segment.Status != ExpeditionRouteSegmentStatus.ReconnaissanceRequired) continue;
+                    if (segment != null && segment.TravelerId != actor) continue;
+                    yield return new Command("option." + s.Revision.ToString(CultureInfo.InvariantCulture) + ".route-recon."
+                        + (index++).ToString(CultureInfo.InvariantCulture), actor, s.Revision,
+                        CommandKind.StartRouteReconnaissance, task.RouteId);
+                }
+            }
             if (routeMappingWorkFixture != null)
             {
                 foreach (var currentMappingWork in s.RouteMappingWorkAttempts.Where(x => x.LeadId == actor
@@ -445,6 +466,7 @@ namespace Decennium.Foundation.Laboratory
         {
             if (RouteMappingResultCommand(c.Kind)) return QueryRouteMappingResultCommand(s, c);
             if (RouteMappingWorkCommand(c.Kind)) return QueryRouteMappingWork(s, c);
+            if (RouteReconnaissanceCommand(c.Kind)) return QueryRouteReconnaissance(s, c);
             if (RouteTravelCommand(c.Kind)) return QueryRouteTravelCommand(s, c);
             if (c.Kind == CommandKind.Search) return QueryObservationSearchCommand(s, c);
             if (CacheExcavationCommand(c)) return QueryCacheExcavationControl(s, c);

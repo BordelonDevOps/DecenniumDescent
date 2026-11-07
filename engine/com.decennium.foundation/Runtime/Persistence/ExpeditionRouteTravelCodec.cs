@@ -26,9 +26,18 @@ namespace Decennium.Foundation
             int count = ReadCount(reader, ExpeditionRouteTravelValidation.MaxRecords);
             snapshot.RouteTravels = new ExpeditionRouteTravelRecord[count];
             for (int i = 0; i < count; i++)
-                snapshot.RouteTravels[i] = new ExpeditionRouteTravelRecord(ReadText(reader), ReadText(reader), reader.ReadInt64(),
-                    ReadQuantity(reader), ReadQuantity(reader), ReadQuantity(reader), new RuleTime(reader.ReadInt64(), reader.ReadInt64()),
-                    (ExpeditionRouteMapping)reader.ReadInt32(), (ExpeditionRouteTravelStatus)reader.ReadInt32());
+            {
+                string routeId = ReadText(reader), travelerId = ReadText(reader);
+                long revision = reader.ReadInt64();
+                RuleQuantity start = ReadQuantity(reader), award = ReadQuantity(reader), progress = ReadQuantity(reader);
+                var effort = new RuleTime(reader.ReadInt64(), reader.ReadInt64());
+                var mapping = (ExpeditionRouteMapping)reader.ReadInt32();
+                var status = (ExpeditionRouteTravelStatus)reader.ReadInt32();
+                snapshot.RouteTravels[i] = new ExpeditionRouteTravelRecord(routeId, travelerId, revision,
+                    start, award, progress, effort, mapping, status,
+                    snapshot.SchemaVersion >= Snapshot.RouteReconnaissanceSchema
+                        && mapping == ExpeditionRouteMapping.Unknown);
+            }
         }
 
         private static void WriteQuantity(BinaryWriter writer, RuleQuantity value)

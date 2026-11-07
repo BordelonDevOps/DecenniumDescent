@@ -100,13 +100,14 @@ namespace Decennium.Foundation
 
         public ExpeditionRouteTravelRecord(string routeId, string travelerId, long startedRevision,
             RuleQuantity segmentStartProgress, RuleQuantity segmentProgressAward, RuleQuantity progress,
-            RuleTime nominalEffort, ExpeditionRouteMapping startingMapping, ExpeditionRouteTravelStatus status)
+            RuleTime nominalEffort, ExpeditionRouteMapping startingMapping, ExpeditionRouteTravelStatus status,
+            bool reconnaissanceAuthorized = false)
         {
             if (!Validation.ValidId(routeId) || !Validation.ValidId(travelerId) || startedRevision < 1
                 || segmentProgressAward == default || progress < segmentStartProgress
                 || progress > segmentStartProgress + segmentProgressAward || nominalEffort > new RuleTime(ExpeditionRouteTravelRules.NominalSegmentSeconds)
                 || !Enum.IsDefined(typeof(ExpeditionRouteMapping), startingMapping)
-                || startingMapping == ExpeditionRouteMapping.Unknown
+                || startingMapping == ExpeditionRouteMapping.Unknown && !reconnaissanceAuthorized
                 || !Enum.IsDefined(typeof(ExpeditionRouteTravelStatus), status)
                 || (status == ExpeditionRouteTravelStatus.SegmentComplete) != (nominalEffort == new RuleTime(ExpeditionRouteTravelRules.NominalSegmentSeconds))
                 || ExpeditionRouteTravelRules.ProgressAtEffort(segmentStartProgress, segmentProgressAward, nominalEffort) != progress)
@@ -119,7 +120,8 @@ namespace Decennium.Foundation
         public ExpeditionRouteTravelRecord With(RuleTime nominalEffort, ExpeditionRouteTravelStatus status)
             => new ExpeditionRouteTravelRecord(RouteId, TravelerId, StartedRevision, SegmentStartProgress,
                 SegmentProgressAward, ExpeditionRouteTravelRules.ProgressAtEffort(SegmentStartProgress,
-                    SegmentProgressAward, nominalEffort), nominalEffort, StartingMapping, status);
+                    SegmentProgressAward, nominalEffort), nominalEffort, StartingMapping, status,
+                StartingMapping == ExpeditionRouteMapping.Unknown);
     }
 
     public static class ExpeditionRouteTravelValidation

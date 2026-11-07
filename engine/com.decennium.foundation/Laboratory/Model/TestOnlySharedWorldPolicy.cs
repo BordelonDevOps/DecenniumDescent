@@ -176,6 +176,7 @@ namespace Decennium.Foundation.Laboratory
             }
             InitializeExpeditionRouteTravel(s);
             InitializeRouteMappingWork(s);
+            InitializeRouteReconnaissance(s);
             if(contentManifest!=null) {
                 string bindingError=contentManifest.ValidatePortableSnapshot(s);
                 if(bindingError!=null)throw new InvalidOperationException(bindingError);
@@ -306,6 +307,7 @@ namespace Decennium.Foundation.Laboratory
             PauseIncompatibleMineralPreparation(s);
             PauseIncompatibleCacheExcavation(s);
             PauseIncompatibleRouteMappingWork(s);
+            PauseIncompatibleRouteReconnaissance(s);
         }
         private static void RefreshIntervals(Snapshot s)
         {
@@ -410,6 +412,7 @@ namespace Decennium.Foundation.Laboratory
                 var tacticalFeatureBoundary=SoldierTacticalFeatures.NextDeadline(s);if(tacticalFeatureBoundary.HasValue&&tacticalFeatureBoundary.Value<next)next=tacticalFeatureBoundary.Value;
                 var routeBoundary=NextRouteTravelBoundary(s);if(routeBoundary.HasValue&&routeBoundary.Value<next)next=routeBoundary.Value;
                 var routeMappingWorkBoundary=NextRouteMappingWorkBoundary(s);if(routeMappingWorkBoundary.HasValue&&routeMappingWorkBoundary.Value<next)next=routeMappingWorkBoundary.Value;
+                var routeReconnaissanceBoundary=NextRouteReconnaissanceBoundary(s);if(routeReconnaissanceBoundary.HasValue&&routeReconnaissanceBoundary.Value<next)next=routeReconnaissanceBoundary.Value;
                 var active = s.WorldTraversals.Where(x => x.Status != WorldTraversalStatus.Suspended).ToArray();
                 // Stationary, living actors have no per-Start event here. The arithmetic cursor
                 // skips empty intervals; active movement must visit its real budget boundaries.
@@ -475,14 +478,15 @@ namespace Decennium.Foundation.Laboratory
                 long previousSlot=s.WorldSchedule.ProcessedSlot;
                 var ready = new System.Collections.Generic.List<string>();
                 var routeMappingReady = new System.Collections.Generic.List<string>();
+                var routeReconnaissanceReady = new System.Collections.Generic.List<string>();
                 var repairsReady = new System.Collections.Generic.List<string>();
                 var manufacturingReady = new System.Collections.Generic.List<string>();
                 if(connectedCombat==null) {
-                    if(harvestFixture!=null||miningFixture!=null||prospectingFixture!=null||routeMappingWorkFixture!=null)OrdinaryInventory.AdvanceTo(s,next,world=>{
+                    if(harvestFixture!=null||miningFixture!=null||prospectingFixture!=null||routeMappingWorkFixture!=null||routeReconnaissanceFixture!=null)OrdinaryInventory.AdvanceTo(s,next,world=>{
                         TestOnlyClubAttackPolicy.AdvanceConditions(world,"."+(++subevent).ToString(CultureInfo.InvariantCulture),
                             onlyAtExpiry:s.SchemaVersion>=Snapshot.ExpeditionRouteSchema||miningFixture!=null||prospectingFixture!=null);
-                        PauseIncompatibleHarvesting(world);PauseIncompatibleMining(world);PauseIncompatibleProspecting(world);PauseIncompatibleMiningAssay(world);PauseIncompatibleMineralPreparation(world);PauseIncompatibleRouteMappingWork(world);
-                    },(world,elapsedWork)=>{CreditHarvestWork(world,elapsedWork);CreditMiningWork(world,elapsedWork);CreditProspectingWork(world,elapsedWork);CreditMiningAssayWork(world,elapsedWork);CreditMineralPreparationWork(world,elapsedWork);CreditRouteMappingWork(world,elapsedWork,initiating,routeMappingReady);});
+                        PauseIncompatibleHarvesting(world);PauseIncompatibleMining(world);PauseIncompatibleProspecting(world);PauseIncompatibleMiningAssay(world);PauseIncompatibleMineralPreparation(world);PauseIncompatibleRouteMappingWork(world);PauseIncompatibleRouteReconnaissance(world);
+                    },(world,elapsedWork)=>{CreditHarvestWork(world,elapsedWork);CreditMiningWork(world,elapsedWork);CreditProspectingWork(world,elapsedWork);CreditMiningAssayWork(world,elapsedWork);CreditMineralPreparationWork(world,elapsedWork);CreditRouteMappingWork(world,elapsedWork,initiating,routeMappingReady);CreditRouteReconnaissance(world,elapsedWork,routeReconnaissanceReady);});
                     else {
                         OrdinaryInventory.AdvanceTo(s, next);
                         TestOnlyClubAttackPolicy.AdvanceConditions(s, "." + (++subevent).ToString(CultureInfo.InvariantCulture),
@@ -493,7 +497,7 @@ namespace Decennium.Foundation.Laboratory
                         TestOnlyClubAttackPolicy.AdvanceConditions(world,"."+(++subevent).ToString(CultureInfo.InvariantCulture),
                             onlyAtExpiry:s.SchemaVersion>=Snapshot.ExpeditionRouteSchema||miningFixture!=null||prospectingFixture!=null);
                         PauseIncompatibleWork(world,false);
-                    }, (world,elapsedWork)=>{CreditFormulaWork(world,elapsedWork,ready);CreditRemedyWork(world,elapsedWork);CreditRepairWork(world,elapsedWork,repairsReady);CreditManufacturing(world,elapsedWork,manufacturingReady);CreditFishingTrapWork(world,elapsedWork);CreditHarvestWork(world,elapsedWork);CreditMiningWork(world,elapsedWork);CreditProspectingWork(world,elapsedWork);CreditMiningAssayWork(world,elapsedWork);CreditMineralPreparationWork(world,elapsedWork);CreditCacheExcavationWork(world,elapsedWork);CreditRouteMappingWork(world,elapsedWork,initiating,routeMappingReady);});
+                    }, (world,elapsedWork)=>{CreditFormulaWork(world,elapsedWork,ready);CreditRemedyWork(world,elapsedWork);CreditRepairWork(world,elapsedWork,repairsReady);CreditManufacturing(world,elapsedWork,manufacturingReady);CreditFishingTrapWork(world,elapsedWork);CreditHarvestWork(world,elapsedWork);CreditMiningWork(world,elapsedWork);CreditProspectingWork(world,elapsedWork);CreditMiningAssayWork(world,elapsedWork);CreditMineralPreparationWork(world,elapsedWork);CreditCacheExcavationWork(world,elapsedWork);CreditRouteMappingWork(world,elapsedWork,initiating,routeMappingReady);CreditRouteReconnaissance(world,elapsedWork,routeReconnaissanceReady);});
                 }
                 RefreshActivityIntervals(s);
                 foreach (var activity in s.WorldActivityIntervals.ToArray()) {
@@ -539,6 +543,7 @@ namespace Decennium.Foundation.Laboratory
                 PauseIncompatibleWork(s); CompleteSupplyCacheAttempts(s); CompleteOrdinaryReceptacleAttempts(s);
                 CompleteHuntingTrapActions(s); ReconcileTraversal(s);
                 ResolveReadyRouteMappingWorkChecks(s, routeMappingReady, initiating);
+                ResolveReadyRouteReconnaissanceChecks(s, routeReconnaissanceReady, initiating);
                 ObservationRules.Refresh(s, s.RuleClock, s.Revision + 1);
                 ExpireReadyActionsAtStart(s,initiating);
                 if(ManufacturingChoicePending(s)){
@@ -559,6 +564,7 @@ namespace Decennium.Foundation.Laboratory
             if (!s.Actors.Any(a => a.Id == c.Actor)) return "UnknownWorldActor";
             if (RouteMappingResultCommand(c.Kind)) return ResolveRouteMappingResultCommand(s, c);
             if (RouteMappingWorkCommand(c.Kind)) return ResolveRouteMappingWork(s, c);
+            if (RouteReconnaissanceCommand(c.Kind)) return ResolveRouteReconnaissance(s, c);
             if (RouteTravelCommand(c.Kind)) return ResolveRouteTravelCommand(s, c);
             var openRoute = routeTravelFixture == null ? null : OpenRouteTravel(s, c.Actor);
             var attachedRoutePosition = routeMotionFixture == null ? null : RouteSpatial(s, c.Actor);
@@ -698,6 +704,8 @@ namespace Decennium.Foundation.Laboratory
                 if(tacticalFeatureBoundary.HasValue&&tacticalFeatureBoundary.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
                 var routeMappingWorkBoundary=NextRouteMappingWorkBoundary(s);
                 if(routeMappingWorkBoundary.HasValue&&routeMappingWorkBoundary.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
+                var routeReconnaissanceBoundary=NextRouteReconnaissanceBoundary(s);
+                if(routeReconnaissanceBoundary.HasValue&&routeReconnaissanceBoundary.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
             }
             var before = s.RuleClock; string failure = inventory.Resolve(s, c);
             if (failure != null) return failure;
@@ -712,6 +720,7 @@ namespace Decennium.Foundation.Laboratory
                 CreditMineralPreparationWork(s,CampGreens.Subtract(s.RuleClock,before));
                 CreditCacheExcavationWork(s,CampGreens.Subtract(s.RuleClock,before));
                 CreditRouteMappingWork(s,CampGreens.Subtract(s.RuleClock,before),c);
+                CreditRouteReconnaissance(s,CampGreens.Subtract(s.RuleClock,before));
                 // No traversal or condition deadline can occur inside the admitted interval.
                 TestOnlyClubAttackPolicy.AdvanceConditions(s, ".handling"); RefreshActivityIntervals(s);
                 CommitActivityLabor(s, c.Actor, WorldActivityValidation.ActiveLaborReference(s, c.Actor, before, s.RuleClock));
@@ -727,6 +736,7 @@ namespace Decennium.Foundation.Laboratory
                 string routeTravelError=ValidateRouteTravelState(s);if(routeTravelError!=null)return routeTravelError;
                 string routeMappingError=ValidateRouteMappingResultState(s);if(routeMappingError!=null)return routeMappingError;
                 string routeMappingWorkError=ValidateRouteMappingWorkState(s);if(routeMappingWorkError!=null)return routeMappingWorkError;
+                string routeReconnaissanceError=ValidateRouteReconnaissanceState(s);if(routeReconnaissanceError!=null)return routeReconnaissanceError;
                 string huntingTrapError=ValidateHuntingTrapFixtureState(s);if(huntingTrapError!=null)return huntingTrapError;
                 if(s.SchemaVersion>=Snapshot.ExpeditionRouteSchema&&TestOnlyClubAttackPolicy.HasUnprocessedConditionDeadline(s))
                     return "UnprocessedConditionDeadline";

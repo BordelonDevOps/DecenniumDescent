@@ -366,7 +366,6 @@ namespace Decennium.Foundation.Laboratory
                 if (s.RouteTravels.Any(x => x.Status == ExpeditionRouteTravelStatus.Moving)) return "ConcurrentRouteTravelUnsupported";
                 if (route.Risk != 0) return "RouteRiskResolutionUnsupported";
                 if (route.Quality != ExpeditionRouteQuality.Secured) return "RouteQualityConsequenceUnsupported";
-                if (route.Mapping == ExpeditionRouteMapping.Unknown) return "RouteRequiresReconnaissance";
                 if (OrdinaryInventory.Busy(s, c.Actor) || WorldActivityValidation.HasActiveLabor(s, c.Actor, s.RuleClock, s.RuleClock.AddSeconds(1)))
                     return "RouteTravelerBusy";
                 if (!Permissions(s, c.Actor).VoluntarySpeed || Speed(s, c.Actor) <= 0) return "ConditionPreventsRouteTravel";
@@ -394,7 +393,15 @@ namespace Decennium.Foundation.Laboratory
                         });
                     if (hostileNear) return "RoutePassesTacticalThreatBoundary";
                 }
-                segmentAward = ExpeditionRouteTravelRules.BaseProgress(route.Mapping);
+                if (route.Mapping == ExpeditionRouteMapping.Unknown)
+                {
+                    var segment = RouteSegment(s, route.Id, c.Actor, startingProgress);
+                    if (!RouteReconnaissanceSelected(s) || segment == null
+                        || segment.Status != ExpeditionRouteSegmentStatus.Feasible)
+                        return "RouteRequiresReconnaissance";
+                    segmentAward = segment.ProgressAward;
+                }
+                else segmentAward = ExpeditionRouteTravelRules.BaseProgress(route.Mapping);
                 RuleQuantity remaining = route.LengthProgress - startingProgress;
                 if (segmentAward == default || remaining < segmentAward) return "RouteTerminalProgressUnsupported";
                 RuleQuantity segmentEndProgress = startingProgress + segmentAward;
@@ -483,7 +490,15 @@ namespace Decennium.Foundation.Laboratory
             if (c.Kind == CommandKind.StartRouteTravel)
             {
                 s.RouteTravels = s.RouteTravels.Concat(new[] { new ExpeditionRouteTravelRecord(route.Id, c.Actor,
-                    s.Revision + 1, start, award, start, default, route.Mapping, ExpeditionRouteTravelStatus.Moving) }).ToArray();
+                    s.Revision + 1, start, award, start, default, route.Mapping, ExpeditionRouteTravelStatus.Moving,
+                    route.Mapping == ExpeditionRouteMapping.Unknown) }).ToArray();
+                if (route.Mapping == ExpeditionRouteMapping.Unknown)
+                {
+                    var segment = RouteSegment(s, route.Id, c.Actor, start);
+                    if (segment == null || segment.Status != ExpeditionRouteSegmentStatus.Feasible)
+                        throw new InvalidOperationException("RouteReconnaissanceFeasibilityDisappeared");
+                    PutRouteSegment(s, segment.StartTravel(s.Revision + 1));
+                }
                 if (routeMotionFixture != null || huntingTrapFixture != null
                     || s.SchemaVersion >= Snapshot.RouteObservationSchema)
                 {
@@ -577,6 +592,11 @@ namespace Decennium.Foundation.Laboratory
                     ? ExpeditionRouteTravelStatus.SegmentComplete : ExpeditionRouteTravelStatus.Moving;
                 var updated = travel.With(effort, status);
                 SetRouteTravel(s, updated);
+                if (updated.Status == ExpeditionRouteTravelStatus.SegmentComplete)
+                {
+                    var segment = RouteSegmentForTravel(s, updated);
+                    if (segment != null) PutRouteSegment(s, segment.CompleteTravel(s.Revision + 1));
+                }
                 var position = route.PositionAt(updated.Progress);
                 var actor = s.Actors.Single(x => x.Id == updated.TravelerId);
                 if (position != null && (actor.X != position.X || actor.Y != position.Y))
@@ -649,7 +669,8 @@ namespace Decennium.Foundation.Laboratory
         {
             if (routeTravelFixture == null)
                 return s.RouteTravels.Length == 0 ? null : "RouteTravelProfileMissing";
-            int routeSchema = routeMappingWorkFixture != null ? Snapshot.RouteMappingWorkSchema
+            int routeSchema = routeReconnaissanceFixture != null ? Snapshot.RouteReconnaissanceSchema
+                : routeMappingWorkFixture != null ? Snapshot.RouteMappingWorkSchema
                 : routeMappingFixture != null ? Snapshot.RouteMappingSchema
                 : routeMotionFixture == null ? Snapshot.ExpeditionRouteSchema : Snapshot.RouteObservationSchema;
             if (s.SchemaVersion != routeSchema
@@ -671,9 +692,18 @@ namespace Decennium.Foundation.Laboratory
                 foreach (var travel in history)
                 {
                     var receipt = s.Receipts.SingleOrDefault(x => x.Revision == travel.StartedRevision);
+                    var reconSegment = s.RouteSegments.SingleOrDefault(x => x.RouteId == travel.RouteId
+                        && x.TravelerId == travel.TravelerId && x.StartingProgress == travel.SegmentStartProgress
+                        && x.TravelStartedRevision == travel.StartedRevision);
+                    RuleQuantity expectedAward = route.Mapping == ExpeditionRouteMapping.Unknown
+                        ? reconSegment?.ProgressAward ?? default : ExpeditionRouteTravelRules.BaseProgress(route.Mapping);
                     if (travel.SegmentStartProgress != expectedStart || travel.StartingMapping != route.Mapping
                         || route.Positions.All(x => x.Progress != travel.SegmentStartProgress + travel.SegmentProgressAward)
-                        || travel.SegmentProgressAward != ExpeditionRouteTravelRules.BaseProgress(route.Mapping)
+                        || travel.SegmentProgressAward != expectedAward
+                        || route.Mapping == ExpeditionRouteMapping.Unknown && (reconSegment == null
+                            || reconSegment.FeasibilityAttemptId == ""
+                            || reconSegment.Status != (travel.Status == ExpeditionRouteTravelStatus.SegmentComplete
+                                ? ExpeditionRouteSegmentStatus.Complete : ExpeditionRouteSegmentStatus.Traveling))
                         || receipt == null) return "InvalidRouteTravelHistory";
                     Command command;
                     try { command = CommandHistory.Read(receipt); }

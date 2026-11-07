@@ -6,7 +6,7 @@ using System.Numerics;
 namespace Decennium.Foundation
 {
     public enum WorldActionCommitment { None, Dash, ActiveLabor }
-    public enum WorldProcedureKind { Crop, WaterFill, Intake, FormulaWork, Repair, Manufacturing, FishingTrapRetrieval, SupplyCache, FishingTrapSetup, Harvest, Mining, Prospecting, MiningAssay, MineralPreparation, CacheExcavation, RouteMappingWork }
+    public enum WorldProcedureKind { Crop, WaterFill, Intake, FormulaWork, Repair, Manufacturing, FishingTrapRetrieval, SupplyCache, FishingTrapSetup, Harvest, Mining, Prospecting, MiningAssay, MineralPreparation, CacheExcavation, RouteMappingWork, RouteReconnaissance }
 
     /// <summary>Derived activity projection over the existing procedure records. It is never saved
     /// independently; each domain procedure remains authoritative for its state and settlement.</summary>
@@ -218,6 +218,14 @@ namespace Decennium.Foundation
                             includeDetails ? attempt.Status.ToString() : null,
                             includeDetails ? (RuleTime?)attempt.WorkDone : null,
                             includeDetails ? (RuleTime?)attempt.WorkRequired : null, options, includeDetails));
+            foreach (var attempt in s.RouteReconnaissanceAttempts ?? Array.Empty<ExpeditionRouteReconnaissanceAttemptRecord>())
+                if (attempt.Status == ExpeditionRouteReconnaissanceStatus.Working
+                    || includeOpen && (attempt.Status == ExpeditionRouteReconnaissanceStatus.Paused
+                        || attempt.Status == ExpeditionRouteReconnaissanceStatus.AwaitingCheck))
+                    result.Add(Create(s, attempt.Id, attempt.LeadId, WorldProcedureKind.RouteReconnaissance,
+                        includeDetails ? attempt.Status.ToString() : null,
+                        includeDetails ? (RuleTime?)attempt.WorkDone : null,
+                        includeDetails ? (RuleTime?)attempt.WorkRequired : null, options, includeDetails));
             return result.AsReadOnly();
         }
 
@@ -262,6 +270,7 @@ namespace Decennium.Foundation
                 case CommandKind.PauseFormulaWork: case CommandKind.ResumeFormulaWork: case CommandKind.CancelFormulaWork:
                 case CommandKind.PauseToolRepair: case CommandKind.ResumeToolRepair: case CommandKind.CancelToolRepair:
                 case CommandKind.PauseManufacturing: case CommandKind.ResumeManufacturing: case CommandKind.CancelManufacturing:
+                case CommandKind.PauseRouteReconnaissance: case CommandKind.ResumeRouteReconnaissance:
                 case CommandKind.ResolveManufacturingQuality:
                 case CommandKind.PauseHarvest: case CommandKind.ResumeHarvest:
                 case CommandKind.PauseMining: case CommandKind.ResumeMining:
