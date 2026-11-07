@@ -11,6 +11,10 @@ namespace Decennium.Foundation.Laboratory
         public string Resolve(Snapshot s, Command c)
         {
             string error = ResolveCore(s, c);
+            if(error==null&&s.InventoryCombat) {
+                error=QueueCompletedTacticalHuntingTrapEntries(s);
+                if(error==null)ResolveOrderedHuntingTrapTrigger(s);
+            }
             if (error == null && ObservationRules.Enabled(s))
                 ObservationRules.Refresh(s, s.RuleClock, s.Revision + 1);
             return error;

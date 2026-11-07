@@ -1,0 +1,188 @@
+{
+  "schemaVersion": 1,
+  "recordedUtc": "2026-11-07T07:21:11.7717703Z",
+  "purpose": "TEST_ONLY schema55 ordinary hunting-trap lifecycle integrated with shared exploration, tactical combat, route travel, inventory and deterministic persistence; full rules engine remains unfinished.",
+  "sourceRevision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+  "branch": "Engine",
+  "status": "PARTIAL / TEST_ONLY / PROVISIONAL / OWNER-DELEGATED CODEX-GPT CONSENSUS",
+  "productionRuntimeSelectionEnabled": false,
+  "releaseApproved": false,
+  "sourcePythonExecuted": false,
+  "sources": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/EQUIPMENT_ACQUISITION_PLAYTEST.md",
+      "sha256": "406c68622102b444c6afb005e2d50cfd75171fe8d90db36a06d02df2d67bf27d",
+      "snapshot": "sources/EQUIPMENT_ACQUISITION_PLAYTEST.md"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+      "sha256": "5fa622f43b6948e7e991f1ca5a237de584900e92cfd4f37eed47586d73222039",
+      "snapshot": "sources/BODY_EQUIPMENT_PLAYTEST.md"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/EQUIPMENT_ITEM_PROCEDURES.md",
+      "sha256": "ea0b6c89191160c9e56a97563d55e9f1022bd1b7b732c648fd0c3882aab2a050",
+      "snapshot": "sources/EQUIPMENT_ITEM_PROCEDURES.md"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/EQUIPMENT_SOURCE_BINDINGS.md",
+      "sha256": "a4a45a51e00d2481ed8916b269c2e8197abef524c176d745fa438bea886e5aa8",
+      "snapshot": "sources/EQUIPMENT_SOURCE_BINDINGS.md"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/playtest/equipment_acquisition_candidate.json",
+      "sha256": "4037e188edb890c971acb39e8679cfd5a142b0042508af30c95d4703d2a2745b",
+      "snapshot": "sources/equipment_acquisition_candidate.json"
+    }
+  ],
+  "implementation": [
+    "engine/com.decennium.foundation/Laboratory/Model/SharedCraftingConsequences.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionRouteMapping.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionRouteTravel.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedHuntingTrap.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedHuntingTrap.cs.meta",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedOverwatchDesignation.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedOverwatchExecution.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedPortableEquipment.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedSupplyCache.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCommandQueries.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/TacticalMovementPolicy.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+    "engine/com.decennium.foundation/Runtime/Core/HuntingTrapRecords.cs",
+    "engine/com.decennium.foundation/Runtime/Core/HuntingTrapRecords.cs.meta",
+    "engine/com.decennium.foundation/Runtime/Core/PortableEquipmentRecords.cs",
+    "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+    "engine/com.decennium.foundation/Runtime/Persistence/HuntingTrapCodec.cs",
+    "engine/com.decennium.foundation/Runtime/Persistence/HuntingTrapCodec.cs.meta",
+    "engine/com.decennium.foundation/Runtime/Persistence/SnapshotCodec.cs",
+    "engine/com.decennium.foundation/Tests/EditMode/FoundationCases.cs",
+    "engine/com.decennium.foundation/Tests/EditMode/HuntingTrapCases.cs",
+    "engine/com.decennium.foundation/Tests/EditMode/HuntingTrapCases.cs.meta"
+  ],
+  "changedFileHashes": [
+    {
+      "path": "com.decennium.foundation/Laboratory/Model/SharedCraftingConsequences.cs",
+      "sha256": "c5644072f2003dc160b80c9e7918a483249de4962201c026286757a852e9c026"
+    },
+    {
+      "path": "com.decennium.foundation/Laboratory/Model/SharedExpeditionRouteMapping.cs",
+      "sha256": "e45e4a0206269a5037a2c96582326d0f59d144d67b7d4acd03dd3318268baa9e"
+    },
+    {
+      "path": "com.decennium.foundation/Laboratory/Model/SharedExpeditionRouteTravel.cs",
+      "sha256": "493e43b69b35fb5f57a18368406d44bc4a57ccfd7bc931cc4d06ed777c9e6a02"
+    },
+    {
+      "path": "com.decennium.foundation/Laboratory/Model/SharedHuntingTrap.cs",
+      "sha256": "de95a376024c7555a4be1a1c4994f029d10a8c50fca8921aeb8e58266562699d"
+    },
+    {
+      "path": "com.decennium.foundation/Laboratory/Model/SharedHuntingTrap.cs.meta",
+      "sha256": "602894326dc5a0491e06899dfd023a55089c33a95b320fd05b70058c2bda759c"
+    },
+    {
+      "path": "com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs",
+      "sha256": "89fdcaa72fe4a92ecc3772bec48d036b12445bd9d38341ed734e96cf87d37db3"
+    },
+    {
+      "path": "com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+      "sha256": "4ac8870565bb7719a1238f231d90621f10488e4c0729ecf9b092e43d65272c25"
+    },
+    {
+      "path": "com.decennium.foundation/Laboratory/Model/SharedOverwatchDesignation.cs",
+      "sha256": "1131604b9087a56667473a4e85bf36351963d81ab47cfd3d2472e85406b435ac"
+    },
+    {
+      "path": "com.decennium.foundation/Laboratory/Model/SharedOverwatchExecution.cs",
+      "sha256": "3716ef8b6d6c1e4294e8d4dcaa065cdbf2471ba1bbcf5ff2e748dc0602038b1a"
+    },
+    {
+      "path": "com.decennium.foundation/Laboratory/Model/SharedPortableEquipment.cs",
+      "sha256": "b0f4d25f6f17f2a6771d628a50c3b9026a662fcfd51d05ea2f1502e0526cdb9f"
+    },
+    {
+      "path": "com.decennium.foundation/Laboratory/Model/SharedSupplyCache.cs",
+      "sha256": "2e8dda419fb31d3a46304b38f8f279a33334924b8dc88bbc2ebf4e37cbebd5f2"
+    },
+    {
+      "path": "com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs",
+      "sha256": "3b1d8e8d6f185c91fa006321796ddf2143b8776b6fe70efa1160443761989a11"
+    },
+    {
+      "path": "com.decennium.foundation/Laboratory/Model/SharedWorldCommandQueries.cs",
+      "sha256": "a8ec28a5eb9778ab3c75852f57f5638b471475d0bcdf7f2d6d291017dd1f07f5"
+    },
+    {
+      "path": "com.decennium.foundation/Laboratory/Model/TacticalMovementPolicy.cs",
+      "sha256": "a06a11280350e2d2312f61d929d704232eefef504211369810478c609459510e"
+    },
+    {
+      "path": "com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "sha256": "b014eb7355ae5312f6b126223088abf977a06bb9f7cd3af08c2df3f759abe936"
+    },
+    {
+      "path": "com.decennium.foundation/Runtime/Core/HuntingTrapRecords.cs",
+      "sha256": "e7ffa3a4ca35cc1ba9fcadec0dd032962b7795aba5529bb2ca03b7f539612b02"
+    },
+    {
+      "path": "com.decennium.foundation/Runtime/Core/HuntingTrapRecords.cs.meta",
+      "sha256": "852f7847cd0f823b79b788360cf2b5088e622e0dd84791eb3258f1a0be752d3e"
+    },
+    {
+      "path": "com.decennium.foundation/Runtime/Core/PortableEquipmentRecords.cs",
+      "sha256": "88b4883a55f0ef2315e0c77e00a9f91cdc1bbcc9096194b6c944a4d78e09b720"
+    },
+    {
+      "path": "com.decennium.foundation/Runtime/Core/Simulation.cs",
+      "sha256": "54736ccba09d99dddaeacd2ceb737d7cfbb082432bae739c44ce781e863e0f39"
+    },
+    {
+      "path": "com.decennium.foundation/Runtime/Persistence/HuntingTrapCodec.cs",
+      "sha256": "7b33f5e9dc2d26276f360b2b91729e8f0138c667eba2fdf933f313f4693b838e"
+    },
+    {
+      "path": "com.decennium.foundation/Runtime/Persistence/HuntingTrapCodec.cs.meta",
+      "sha256": "3e56363ffca7488893540eb3b89ad6ab241af028464b422bb81b831a31902ec8"
+    },
+    {
+      "path": "com.decennium.foundation/Runtime/Persistence/SnapshotCodec.cs",
+      "sha256": "4fc12c36d6eb4184b76cfc3f178c52605566f5b491e00eb259065da5b3fe633d"
+    },
+    {
+      "path": "com.decennium.foundation/Tests/EditMode/FoundationCases.cs",
+      "sha256": "a4b2831cca528f52ea5df54c40967967144613e30c3f487c797901b268a38918"
+    },
+    {
+      "path": "com.decennium.foundation/Tests/EditMode/HuntingTrapCases.cs",
+      "sha256": "4a87c9b194d0f46f517124e6e5b2370a6a8f4a7668adc53975845f19b5f1e300"
+    },
+    {
+      "path": "com.decennium.foundation/Tests/EditMode/HuntingTrapCases.cs.meta",
+      "sha256": "97a2b7c61030bfb209c133dda4f9c4303b3772b4b246c56b3941f9fa3b2c4437"
+    }
+  ],
+  "newNamedCases": [
+    "hunting_trap_shares_exploration_clock_mining_save_and_tethered_recovery",
+    "hunting_trap_route_checkpoint_pauses_releases_and_resumes_with_saved_effort",
+    "hunting_trap_route_segment_completion_preserves_completed_status",
+    "hunting_trap_composes_with_route_mapping_schema",
+    "hunting_trap_pending_overwatch_push_is_gated_before_save_and_then_resolves",
+    "hunting_trap_pending_entry_blocks_only_overlength_push_geometry"
+  ],
+  "verification": {
+    "headless": "HEADLESS_RESULTS.json; 1204/1204 C# 9 warnings-as-errors cases passed; runtime presentation and gameplay checks not run.",
+    "packageStatic": "PACKAGE_RESULTS.json; 18/18 static checks passed; 253 assets and 253 unique GUIDs; not runtime or release-build evidence.",
+    "gitDiffCheck": "PASS after documentation and evidence updates.",
+    "gptReview": "GPT summary-based review found no confirmed blocker; optional coverage suggestions are recorded in GPT_REVIEW.md. GPT did not inspect the checkout or run validation."
+  },
+  "limits": [
+    "One finite TEST_ONLY authored ordinary hunting-trap profile; deployment geometry and compatible actors are explicit fixture facts.",
+    "No general hazard framework, concealed-trap discovery, anchor motion/destruction, aerial or anatomy-incompatible entrants, teleport entries, or arbitrary route mid-leg geometry.",
+    "Tactical movement uses whole grid cells; unsupported fractional/overlength Push while an entry is pending fails closed.",
+    "The pinned item procedure is reviewed authored PLAYTEST procedure, not original-book wording or release approval.",
+    "Schemas 1–54 retain prior branches; this fixture explicitly selects schema55."
+  ]
+}

@@ -125,11 +125,14 @@ namespace Decennium.Foundation.Laboratory
         }
         private string ResolvePortableEquipment(Snapshot s,Command c)
         {
-            if(portableKit==null&&soldierCharacterBuild==null&&harvestFixture==null&&ordinaryReceptacles==null)return "PortableEquipmentNotSelected";
+            if(portableKit==null&&soldierCharacterBuild==null&&harvestFixture==null&&ordinaryReceptacles==null&&huntingTrapFixture==null)return "PortableEquipmentNotSelected";
             bool transfer=c.Kind==CommandKind.HandlePortableEquipment;
             if(transfer!=(c.Inventory!=null)||c.Combat!=null||c.X!=0||c.Y!=0)return "InvalidPortableRequest";
             if(transfer&&c.Inventory.Amount!=new RuleQuantity(1))return "PortableItemsAreIndivisible";
             var item=s.PortableEquipment.SingleOrDefault(x=>x.Id==c.Target);if(item==null)return "UnknownPortableItem";
+            if(huntingTrapFixture?.Find(item.Id)!=null&&s.HuntingTrapDeployments.Any(x=>x.TrapItemId==item.Id)
+                ||huntingTrapFixture?.Find(item.Id)!=null&&s.HuntingTrapActions.Any(x=>x.TrapItemId==item.Id&&x.Status==HuntingTrapActionStatus.Working))
+                return "HuntingTrapDeviceInUse";
             if(!PortableEquipmentRules.Accessible(s,c.Actor,item))return "PortableItemOutOfReach";
             if(OrdinaryInventory.Busy(s,c.Actor))return "WorkerBusy";
             if(!CapableWorker(s,c.Actor))return "WorkerCannotPerformTask";
@@ -252,7 +255,7 @@ namespace Decennium.Foundation.Laboratory
                 var manufacturingBoundary=NextManufacturingBoundary(s);if(manufacturingBoundary.HasValue&&manufacturingBoundary.Value<=end)return "TimedHandlingBoundaryUnsupported";
                 string id=OrdinaryInventory.Identity(s,"portable");
                 s.Work=s.Work.Reserve(id,new[]{new WorkerInterval(id+".labor",id,c.Actor,start,end)},Array.Empty<ResourceReservation>());
-                AdvanceTo(s,end,initiating:c);
+                string timeFailure=AdvanceTo(s,end,initiating:c);if(timeFailure!=null)return timeFailure;
             }
             // The action and any shared-time work finish before physical custody changes.
             item=s.PortableEquipment.Single(x=>x.Id==c.Target);

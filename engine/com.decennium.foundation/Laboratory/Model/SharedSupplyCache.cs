@@ -219,7 +219,8 @@ namespace Decennium.Foundation.Laboratory
                     var interval=Interval(s,c.Actor);var spent=interval.SpendInteraction();SetInterval(s,spent);s.InventoryInteractions=spent.Interactions;
                     SetCache(s,cache.With(open:true));return null;
                 }
-                AdvanceTo(s,s.RuleClock.AddSeconds(1),initiating:c);SetCache(s,cache.With(open:true));return null;
+                string timeFailure=AdvanceTo(s,s.RuleClock.AddSeconds(1),initiating:c);if(timeFailure!=null)return timeFailure;
+                SetCache(s,cache.With(open:true));return null;
             }
             var actionInterval=Interval(s,c.Actor);
             if(s.InventoryCombat) {

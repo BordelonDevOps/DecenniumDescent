@@ -48,6 +48,7 @@ namespace Decennium.Foundation.Laboratory
             int toX, toY;
             try { toX = checked(actor.X + c.X); toY = checked(actor.Y + c.Y); }
             catch (OverflowException) { return "InvalidWorldStep"; }
+            if(HuntingTrapValidation.BlocksGridMove(s,c.Actor,toX,toY))return "HuntingTrapTetherPreventsMovement";
             RuleQuantity initialDistance = default;
             bool detachesRoute = false;
             if (routeMotionFixture != null)
@@ -383,6 +384,7 @@ namespace Decennium.Foundation.Laboratory
 
         private IEnumerable<Command> DiscoverContextualInteractions(Snapshot s,Authority authority,string actor)
         {
+            foreach(var command in DiscoverHuntingTrapCommands(s,actor))yield return command;
             if(!authority.MayUseInventory(actor))yield break;
             foreach(var command in DiscoverSupplyCacheCommands(s,actor))yield return command;
             foreach(var command in DiscoverOrdinaryReceptacleCommands(s,actor))yield return command;
@@ -408,6 +410,7 @@ namespace Decennium.Foundation.Laboratory
             if (c.Kind == CommandKind.Search) return QueryObservationSearchCommand(s, c);
             if (IsSupplyCacheCommand(c)) return QuerySupplyCacheCommand(s,c);
             if (IsOrdinaryReceptacleCommand(s,c)) return QueryOrdinaryReceptacleCommand(s,c);
+            if (IsHuntingTrapCommand(s,c)) return QueryHuntingTrapCommand(s,c);
             if (c.Kind == CommandKind.Interact) return QueryFishingTrapControl(s, c);
             if (c.Kind == CommandKind.ResolveManufacturingQuality) return QueryManufacturingQualityChoice(s, c);
             if (c.Kind == CommandKind.PauseManufacturing || c.Kind == CommandKind.ResumeManufacturing || c.Kind == CommandKind.CancelManufacturing)

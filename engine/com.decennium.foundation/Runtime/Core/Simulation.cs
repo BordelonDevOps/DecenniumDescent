@@ -104,6 +104,7 @@ namespace Decennium.Foundation
         public const int ExpeditionRouteSchema = 52;
         public const int RouteObservationSchema = 53;
         public const int RouteMappingSchema = 54;
+        public const int HuntingTrapSchema = 55;
         public const int MaxActors = 64;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
@@ -241,6 +242,10 @@ namespace Decennium.Foundation
         public ExpeditionRouteTravelRecord[] RouteTravels = Array.Empty<ExpeditionRouteTravelRecord>();
         public ExpeditionRouteSpatialRecord[] RouteTravelSpatial = Array.Empty<ExpeditionRouteSpatialRecord>();
         public ExpeditionRouteMappingResultRecord[] RouteMappingResults = Array.Empty<ExpeditionRouteMappingResultRecord>();
+        public HuntingTrapDeploymentRecord[] HuntingTrapDeployments = Array.Empty<HuntingTrapDeploymentRecord>();
+        public HuntingTrapActionRecord[] HuntingTrapActions = Array.Empty<HuntingTrapActionRecord>();
+        public HuntingTrapTriggerRecord[] HuntingTrapTriggers = Array.Empty<HuntingTrapTriggerRecord>();
+        public HuntingTrapTetherRecord[] HuntingTrapTethers = Array.Empty<HuntingTrapTetherRecord>();
         public Snapshot Copy() => new Snapshot {
             DyingCadences = DyingCadences.ToArray(), Structures = Structures.ToArray(), CraftingIncidents = CraftingIncidents.ToArray(),
             WorldLifeMarkers = WorldLifeMarkers.ToArray(),
@@ -295,6 +300,8 @@ namespace Decennium.Foundation
             RouteTravels = RouteTravels.ToArray(),
             RouteTravelSpatial = RouteTravelSpatial.ToArray(),
             RouteMappingResults = RouteMappingResults.ToArray(),
+            HuntingTrapDeployments = HuntingTrapDeployments.ToArray(), HuntingTrapActions = HuntingTrapActions.ToArray(),
+            HuntingTrapTriggers = HuntingTrapTriggers.ToArray(), HuntingTrapTethers = HuntingTrapTethers.ToArray(),
             FormulaWork = FormulaWork.ToArray(),
             WorldSchedule = WorldSchedule, WorldIntervals = WorldIntervals.ToArray(), WorldTraversals = WorldTraversals.ToArray(),
             Conditions = Conditions.ToArray(), ClosedEncounters = ClosedEncounters.ToArray(),
@@ -610,7 +617,8 @@ namespace Decennium.Foundation
                 || s.SchemaVersion == Foundation.Snapshot.ObservationSchema
                 || s.SchemaVersion == Foundation.Snapshot.ExpeditionRouteSchema
                 || s.SchemaVersion == Foundation.Snapshot.RouteObservationSchema
-                || s.SchemaVersion == Foundation.Snapshot.RouteMappingSchema) { }
+                || s.SchemaVersion == Foundation.Snapshot.RouteMappingSchema
+                || s.SchemaVersion == Foundation.Snapshot.HuntingTrapSchema) { }
             else if (s.SchemaVersion != Foundation.Snapshot.Schema && s.SchemaVersion != Foundation.Snapshot.WorkSchema
                 && s.SchemaVersion != Foundation.Snapshot.CropSchema && s.SchemaVersion != Foundation.Snapshot.InventorySchema && s.SchemaVersion != Foundation.Snapshot.VesselSchema && s.SchemaVersion != Foundation.Snapshot.MovableVesselSchema && s.SchemaVersion != Foundation.Snapshot.EncounterSchema && s.SchemaVersion != Foundation.Snapshot.ActorLifeSchema && s.SchemaVersion != Foundation.Snapshot.ClubAttackSchema && s.SchemaVersion != Foundation.Snapshot.PostureSchema && s.SchemaVersion != Foundation.Snapshot.TacticalMovementSchema && s.SchemaVersion != Foundation.Snapshot.ConditionSchema && s.SchemaVersion != Foundation.Snapshot.SharedWorldSchema && s.SchemaVersion != Foundation.Snapshot.CalendarCombatSchema && s.SchemaVersion != Foundation.Snapshot.FormulaWorkSchema && s.SchemaVersion != Foundation.Snapshot.CraftingConsequenceSchema && s.SchemaVersion != Foundation.Snapshot.RepairWorkSchema && s.SchemaVersion != Foundation.Snapshot.ManufacturingSchema && s.SchemaVersion != Foundation.Snapshot.SupplyCacheSchema && s.SchemaVersion != Foundation.Snapshot.PortableEquipmentSchema && s.SchemaVersion != Foundation.Snapshot.CharacterAdvancementSchema && s.SchemaVersion != Foundation.Snapshot.RepeatingCrossbowSchema && s.SchemaVersion != Foundation.Snapshot.PeriodicRiderSchema && s.SchemaVersion != Foundation.Snapshot.SharedBonusActionSchema && s.SchemaVersion != Foundation.Snapshot.OverwatchSchema && s.SchemaVersion != Foundation.Snapshot.OverwatchExecutionSchema && s.SchemaVersion != Foundation.Snapshot.SoldierInitialLoadoutSchema && s.SchemaVersion != Foundation.Snapshot.SoldierInitialBuildSchema && s.SchemaVersion != Foundation.Snapshot.SoldierTacticalTechniquesSchema && s.SchemaVersion != Foundation.Snapshot.CharacterAdvancementHistorySchema && s.SchemaVersion != Foundation.Snapshot.TacticalAssessmentSchema && s.SchemaVersion != Foundation.Snapshot.CommandStepSchema && s.SchemaVersion != Foundation.Snapshot.SuppressionFireSchema && s.SchemaVersion != Foundation.Snapshot.DefensiveFormationSchema && s.SchemaVersion != Foundation.Snapshot.FishingTrapLegacySchema && s.SchemaVersion != Foundation.Snapshot.FishingTrapBaitSchema && s.SchemaVersion != Foundation.Snapshot.FishingTrapSchema && s.SchemaVersion != Foundation.Snapshot.FishingStockSchema && s.SchemaVersion != Foundation.Snapshot.ExpeditionAssignmentSchema && s.SchemaVersion != Foundation.Snapshot.OffCalendarActivitySchema && s.SchemaVersion != Foundation.Snapshot.HarvestSchema && s.SchemaVersion != Foundation.Snapshot.HarvestManifestSchema && s.SchemaVersion != Foundation.Snapshot.MiningSchema)
                 throw new ArgumentException("Unsupported snapshot schema.");
@@ -703,6 +711,7 @@ namespace Decennium.Foundation
             ExpeditionRouteTravelValidation.Validate(s);
             ExpeditionRouteSpatialValidation.Validate(s);
             ExpeditionRouteMappingValidation.Validate(s);
+            HuntingTrapValidation.Validate(s);
         }
     }
 

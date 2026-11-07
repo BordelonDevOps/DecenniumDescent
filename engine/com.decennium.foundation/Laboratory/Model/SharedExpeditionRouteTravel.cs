@@ -357,6 +357,7 @@ namespace Decennium.Foundation.Laboratory
             if (c.Kind == CommandKind.StartRouteTravel)
             {
                 if (current != null) return "RouteTravelAlreadyOpen";
+                if(HuntingTrapValidation.HasActiveTether(s,c.Actor))return "HuntingTrapTetherPreventsRouteTravel";
                 string controlFailure = RouteTravelControlFailure(s);
                 if (controlFailure != null) return controlFailure;
                 if (s.WorldTraversals.Length != 0) return "RouteTravelConflictsWithGridTraversal";
@@ -408,6 +409,7 @@ namespace Decennium.Foundation.Laboratory
             if (c.Kind == CommandKind.PauseRouteTravel)
                 return current.Status == ExpeditionRouteTravelStatus.Moving ? null : "RouteTravelNotMoving";
             if (current.Status != ExpeditionRouteTravelStatus.Paused) return "RouteTravelNotPaused";
+            if(HuntingTrapValidation.HasActiveTether(s,c.Actor))return "HuntingTrapTetherPreventsRouteTravel";
             string resumeControlFailure = RouteTravelControlFailure(s);
             if (resumeControlFailure != null) return resumeControlFailure;
             if (!Permissions(s, c.Actor).VoluntarySpeed || Speed(s, c.Actor) <= 0) return "ConditionPreventsRouteTravel";
@@ -482,11 +484,15 @@ namespace Decennium.Foundation.Laboratory
             {
                 s.RouteTravels = s.RouteTravels.Concat(new[] { new ExpeditionRouteTravelRecord(route.Id, c.Actor,
                     s.Revision + 1, start, award, start, default, route.Mapping, ExpeditionRouteTravelStatus.Moving) }).ToArray();
-                if (routeMotionFixture != null)
+                if (routeMotionFixture != null || huntingTrapFixture != null)
                 {
-                    var pose = routeMotionFixture.PositionAt(route.Id, start);
+                    var binding = route.PositionAt(start);
+                    var poseX = routeMotionFixture == null ? new RuleQuantity(binding.X)
+                        : routeMotionFixture.PositionAt(route.Id, start).X;
+                    var poseY = routeMotionFixture == null ? new RuleQuantity(binding.Y)
+                        : routeMotionFixture.PositionAt(route.Id, start).Y;
                     s.RouteTravelSpatial = s.RouteTravelSpatial.Concat(new[] { new ExpeditionRouteSpatialRecord(
-                        route.Id, c.Actor, s.Revision + 1, pose.X, pose.Y, false) }).ToArray();
+                        route.Id, c.Actor, s.Revision + 1, poseX, poseY, false) }).ToArray();
                 }
                 return null;
             }
@@ -554,11 +560,12 @@ namespace Decennium.Foundation.Laboratory
             return result;
         }
 
-        private void AdvanceRouteTravel(Snapshot s, RuleTime elapsed)
+        private string AdvanceRouteTravel(Snapshot s, RuleTime elapsed, RuleTime occurredAt)
         {
             foreach (var travel in s.RouteTravels.Where(x => x.Status == ExpeditionRouteTravelStatus.Moving).ToArray())
             {
                 var route = routeTravelFixture.Find(travel.RouteId);
+                var priorPosition = route.PositionAt(travel.Progress);
                 long speed = Speed(s, travel.TravelerId);
                 if (speed <= 0) continue;
                 RuleTime earned = ExpeditionRouteTravelRules.EarnedNominalEffort(elapsed, speed, route.Quality);
@@ -577,6 +584,13 @@ namespace Decennium.Foundation.Laboratory
                     s.Clubs = s.Clubs.Select(c => c.HeldBy == actor.Id
                         ? new ClubInstance(c.Id, c.ProfileId, c.OwnerId, c.CustodianId, c.HeldBy, actor.X, actor.Y) : c).ToArray();
                 }
+                if(position!=null&&priorPosition!=null&&position.Progress==updated.Progress&&updated.Progress>travel.Progress
+                    &&(priorPosition.X!=position.X||priorPosition.Y!=position.Y)) {
+                    string entryId=HuntingTrapIdentity("route-entry|"+route.Id+"|"+updated.StartedRevision+"|"+position.Progress);
+                    string trapError=QueueHuntingTrapEntry(s,updated.TravelerId,entryId,HuntingTrapEntryKind.RouteTravelCheckpoint,
+                        position.X,position.Y,s.Revision+1,occurredAt,route.Id,updated.StartedRevision,position.Progress);
+                    if(trapError!=null)return trapError;
+                }
                 if (routeMotionFixture != null)
                 {
                     if (updated.Status == ExpeditionRouteTravelStatus.SegmentComplete)
@@ -589,7 +603,20 @@ namespace Decennium.Foundation.Laboratory
                         SetRouteSpatial(s, spatial.With(pose.X, pose.Y, false));
                     }
                 }
+                else if (huntingTrapFixture != null)
+                {
+                    if (updated.Status == ExpeditionRouteTravelStatus.SegmentComplete)
+                        s.RouteTravelSpatial = s.RouteTravelSpatial.Where(x => x.TravelStartedRevision != updated.StartedRevision).ToArray();
+                    else
+                    {
+                        if (position == null) throw new InvalidOperationException("MovingRoutePositionBindingMissing");
+                        var spatial = RouteSpatial(s, updated.TravelerId);
+                        if (spatial == null || spatial.Detached) throw new InvalidOperationException("MovingRouteSpatialAuthorityMissing");
+                        SetRouteSpatial(s, spatial.With(new RuleQuantity(position.X), new RuleQuantity(position.Y), false));
+                    }
+                }
             }
+            return null;
         }
 
         private List<ObservationMovementSegment> RouteObservationSegments(Snapshot s,
@@ -621,8 +648,11 @@ namespace Decennium.Foundation.Laboratory
         {
             if (routeTravelFixture == null)
                 return s.RouteTravels.Length == 0 ? null : "RouteTravelProfileMissing";
-            if (s.SchemaVersion != (routeMappingFixture != null ? Snapshot.RouteMappingSchema
-                : routeMotionFixture == null ? Snapshot.ExpeditionRouteSchema : Snapshot.RouteObservationSchema))
+            int routeSchema = routeMappingFixture != null ? Snapshot.RouteMappingSchema
+                : routeMotionFixture == null ? Snapshot.ExpeditionRouteSchema : Snapshot.RouteObservationSchema;
+            if (s.SchemaVersion != routeSchema
+                && !(huntingTrapFixture != null && s.SchemaVersion == Snapshot.HuntingTrapSchema
+                    && routeSchema < Snapshot.HuntingTrapSchema))
                 return "RouteTravelSchemaMismatch";
             if (routeMotionFixture == null && ObservationRules.Enabled(s)) return "RouteObservationIntegrationUnsupported";
             string bindingError = routeMotionFixture == null
@@ -667,6 +697,14 @@ namespace Decennium.Foundation.Laboratory
                         || spatial.Detached && travel.Status != ExpeditionRouteTravelStatus.Paused
                         || !spatial.Detached && (actor.X != binding.X || actor.Y != binding.Y)))
                     return "TravelerNotAtBoundRoutePosition";
+                if (routeMotionFixture == null && huntingTrapFixture != null)
+                {
+                    var routeSpatial = RouteSpatial(s, travel.TravelerId);
+                    if (routeSpatial == null || routeSpatial.Detached || routeSpatial.RouteId != travel.RouteId
+                        || routeSpatial.TravelStartedRevision != travel.StartedRevision
+                        || routeSpatial.X != new RuleQuantity(binding.X) || routeSpatial.Y != new RuleQuantity(binding.Y))
+                        return "RouteTravelSpatialAuthorityMismatch";
+                }
             }
             return null;
         }

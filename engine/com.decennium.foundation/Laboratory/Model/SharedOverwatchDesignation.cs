@@ -83,8 +83,10 @@ namespace Decennium.Foundation.Laboratory
         private void InitializeOverwatchRuntime(Snapshot s)
         {
             if(overwatchRuntime==null)return;
-            if((s.SchemaVersion!=Snapshot.OverwatchSchema&&s.SchemaVersion!=Snapshot.OverwatchExecutionSchema)
-                ||(s.SchemaVersion==Snapshot.OverwatchExecutionSchema)!=(overwatchExecution!=null)
+            bool trapLayeredSchema=huntingTrapFixture!=null&&s.SchemaVersion==Snapshot.HuntingTrapSchema;
+            bool executionSchema=s.SchemaVersion==Snapshot.OverwatchExecutionSchema||trapLayeredSchema;
+            if((s.SchemaVersion!=Snapshot.OverwatchSchema&&!executionSchema)
+                ||executionSchema!=(overwatchExecution!=null)
                 ||overwatchFoundation==null||periodicRider==null||rangedCombat==null
                 ||rangedCombat.ShooterId!=TestOnlyPolicy.ActorId)
                 throw new ArgumentException("The TEST_ONLY Overwatch designation fixture is incomplete or out of scope.");

@@ -178,6 +178,7 @@ namespace Decennium.Foundation.Laboratory
         internal static bool PendingCalendarChoice(Snapshot s)=>s.MeleeAttacks.Any(x=>x.Pending)||TestOnlyClubAttackPolicy.PendingMove(s)!=null
             ||TestOnlyClubAttackPolicy.CurrentPressOffer(s)!=null||s.OverwatchOffers.Any(x=>x.Status==OverwatchOfferStatus.Pending)
             ||s.OverwatchRiderChoices.Any(x=>x.Status==OverwatchRiderChoiceStatus.Pending)||PendingCommandStepOffer(s)!=null
+            ||s.InventoryCombat&&s.HuntingTrapTriggers.Any(x=>x.Status==HuntingTrapTriggerStatus.Pending)
             ||s.DefensiveFormations.Any(x=>x.Active&&x.Shifts.Any(y=>y.Status==DefensiveFormationShiftStatus.AwaitingResponse
                 ||y.Status==DefensiveFormationShiftStatus.Moving));
         private static bool ResolvedConflict(Snapshot s)=>s.Lives.Single(x=>x.ActorId==AdditionalTacticalActor.Id).Dead;
@@ -256,7 +257,8 @@ namespace Decennium.Foundation.Laboratory
                 if(s.WorldSchedule.ProcessedSlot>=int.MaxValue-1)return "CombatCalendarCapacityReached";
                 ExpireOverwatchSnares(s,c.Actor,s.Encounter.TurnOrdinal,s.Revision+1);
                 CharacterAdvancementRules.EndRegularTurn(s,c.Actor,s.Encounter.TurnOrdinal);
-                AdvanceTo(s,s.WorldSchedule.Start(s.WorldSchedule.ProcessedSlot+1),exit,c);
+                string timeFailure=AdvanceTo(s,s.WorldSchedule.Start(s.WorldSchedule.ProcessedSlot+1),exit,c);
+                if(timeFailure!=null)return timeFailure;
                 if(s.ManufacturingAdvance!=null)return null;
                 s.InventoryInteractions=Interval(s,s.Encounter.CurrentActor).Interactions;
                 // Time and consequences are committed even if the exit predicate no longer holds.

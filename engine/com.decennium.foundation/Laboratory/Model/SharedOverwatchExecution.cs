@@ -12,7 +12,7 @@ namespace Decennium.Foundation.Laboratory
     /// calendar and periodic-rider records. Geometry remains restricted to the authored cardinal lane.</summary>
     public sealed partial class TestOnlySharedWorldPolicy
     {
-        private enum PostStepChoiceKind { None, Press, Overwatch }
+        private enum PostStepChoiceKind { None, Press, Overwatch, HuntingTrap }
 
         private sealed class OverwatchShotFacts
         {
@@ -40,13 +40,15 @@ namespace Decennium.Foundation.Laboratory
 
         private static PostStepChoiceKind NextPostStepChoice(Snapshot s)
         {
-            var press=TestOnlyClubAttackPolicy.CurrentPressOffer(s);var ow=PendingOverwatchOffer(s);
-            if(press==null)return ow==null?PostStepChoiceKind.None:PostStepChoiceKind.Overwatch;
-            if(ow==null)return PostStepChoiceKind.Press;
-            int order=press.CreatedRevision.CompareTo(ow.CreatedRevision);
-            if(order==0)order=press.ArmedRevision.CompareTo(ow.SourceAppliedRevision);
-            if(order==0)order=string.CompareOrdinal(press.Id,ow.Id);
-            return order<=0?PostStepChoiceKind.Press:PostStepChoiceKind.Overwatch;
+            var events=new System.Collections.Generic.List<(long Created,long Source,string Id,PostStepChoiceKind Kind)>();
+            var press=TestOnlyClubAttackPolicy.CurrentPressOffer(s);if(press!=null)
+                events.Add((press.CreatedRevision,press.ArmedRevision,press.Id,PostStepChoiceKind.Press));
+            var ow=PendingOverwatchOffer(s);if(ow!=null)
+                events.Add((ow.CreatedRevision,ow.SourceAppliedRevision,ow.Id,PostStepChoiceKind.Overwatch));
+            var trap=PendingHuntingTrapTrigger(s);if(trap!=null)
+                events.Add((trap.CreatedRevision,trap.SourceAppliedRevision,trap.Id,PostStepChoiceKind.HuntingTrap));
+            return events.OrderBy(x=>x.Created).ThenBy(x=>x.Source).ThenBy(x=>x.Id,StringComparer.Ordinal)
+                .Select(x=>x.Kind).FirstOrDefault();
         }
 
         internal static bool OverwatchHasPriorityOverPress(Snapshot s)=>NextPostStepChoice(s)==PostStepChoiceKind.Overwatch;
@@ -247,6 +249,13 @@ namespace Decennium.Foundation.Laboratory
                 case OverwatchRider.Push:
                     if(TestOnlyClubAttackPolicy.ConditionsFor(s,pending.TargetId).View().Clauses.Has(ConditionClause.Staggered))return "UnsupportedStaggeredPush";
                     if(owner.X!=target.X&&owner.Y!=target.Y)return "UnsupportedOverwatchPushGeometry";
+                    int directionX=Math.Sign(target.X-owner.X),directionY=Math.Sign(target.Y-owner.Y);
+                    if((directionX!=0||directionY!=0)
+                        &&PendingHuntingTrapEntryBlocksMove(s,pending.TargetId,target.X+directionX,target.Y+directionY))
+                        return "UnsupportedPendingTrapDisplacement";
+                    if((directionX!=0||directionY!=0)
+                        &&HuntingTrapValidation.BlocksGridMove(s,pending.TargetId,target.X+directionX,target.Y+directionY))
+                        return "HuntingTrapTetherPreventsPush";
                     var charTarget=s.Characters.Single(x=>x.ActorId==pending.TargetId);
                     var charOwner=s.Characters.Single(x=>x.ActorId==pending.OwnerId);
                     dc=checked(8+PlaytestCharacters.ProficiencyBonus(charOwner.Levels.Count)+PlaytestCharacters.AbilityModifier(charOwner.Abilities[2]));
@@ -260,7 +269,6 @@ namespace Decennium.Foundation.Laboratory
                         var result=PlaytestRolls.SavingThrow(natural,modifier,dc);total=result.Total;success=result.Success;s.RandomState=randomAfter;
                     }
                     if(!success) {
-                        int directionX=Math.Sign(target.X-owner.X),directionY=Math.Sign(target.Y-owner.Y);
                         toX=target.X+directionX;toY=target.Y+directionY;
                         if((directionX!=0||directionY!=0)&&TestOnlyPolicy.Walkable(toX,toY)
                             &&(!ObservationRules.Enabled(s)||ObservationGeometry.SupportsAnchorAt(s,toX,toY))

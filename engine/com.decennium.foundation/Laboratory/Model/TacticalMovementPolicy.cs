@@ -33,6 +33,7 @@ namespace Decennium.Foundation.Laboratory
             if(WithConditions(s)&&(!Aware(s,actor)||!CurrentPermissions(s,actor).VoluntarySpeed))return "ConditionPreventsMovement";
             var body=s.Actors.Single(a=>a.Id==actor);
             if(body.X!=fromX||body.Y!=fromY)return "MovementOriginChanged";
+            if(HuntingTrapValidation.BlocksGridMove(s,actor,x,y))return "HuntingTrapTetherPreventsMovement";
             var spatial=WorldSpatialQueries.Step(s,actor,fromX,fromY,x,y,true,true,
                 (px,py)=>TestOnlyPolicy.Walkable(px,py)&&(!ObservationRules.Enabled(s)||ObservationGeometry.SupportsAnchorAt(s,px,py)));
             if(spatial==SpatialStepFailure.NotNeighbor)return "InvalidTacticalStep";

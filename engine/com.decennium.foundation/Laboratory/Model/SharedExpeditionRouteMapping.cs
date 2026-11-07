@@ -99,7 +99,7 @@ namespace Decennium.Foundation.Laboratory
         {
             result = null; route = null;
             if (routeMappingFixture == null || routeTravelFixture == null) return "RouteMappingResultsNotEnabled";
-            if (s.SchemaVersion != Snapshot.RouteMappingSchema || c.Target == "" || !Validation.ValidId(c.Target)
+            if (!RouteMappingSchemaActive(s) || c.Target == "" || !Validation.ValidId(c.Target)
                 || c.X != 0 || c.Y != 0 || c.Inventory != null || c.Combat != null || c.Advancement != null
                 || c.Ranged != null || c.OverwatchRider != OverwatchRider.None || c.SuppressionFire != null
                 || c.DefensiveFormation != null || c.ExpeditionAssignment != null || c.HarvestSelection != null
@@ -144,7 +144,7 @@ namespace Decennium.Foundation.Laboratory
             if (routeMappingFixture == null)
                 return s.RouteMappingResults.Length == 0 && s.SchemaVersion != Snapshot.RouteMappingSchema
                     ? null : "RouteMappingResultFixtureMissing";
-            if (s.SchemaVersion != Snapshot.RouteMappingSchema || routeTravelFixture == null
+            if (!RouteMappingSchemaActive(s) || routeTravelFixture == null
                 || routeMappingFixture.ValidateRoutes(routeTravelFixture) != null)
                 return "RouteMappingSchemaOrFixtureMismatch";
             foreach (var group in s.RouteMappingResults.GroupBy(x => x.RouteId, StringComparer.Ordinal))
@@ -180,6 +180,10 @@ namespace Decennium.Foundation.Laboratory
             }
             return null;
         }
+
+        private bool RouteMappingSchemaActive(Snapshot s)
+            => s.SchemaVersion == Snapshot.RouteMappingSchema
+                || huntingTrapFixture != null && s.SchemaVersion == Snapshot.HuntingTrapSchema;
 
     }
 }

@@ -151,6 +151,7 @@ namespace Decennium.Foundation.Laboratory
             InitializeFishingTrap(s);
             InitializePortableEquipment(s);
             InitializeOrdinaryReceptacles(s);
+            InitializeHuntingTrapDevices(s);
             InitializeHarvest(s);
             InitializeMining(s);
             InitializeProspecting(s);
@@ -289,6 +290,7 @@ namespace Decennium.Foundation.Laboratory
             PauseIncompatibleManufacturing(s);
             InterruptSupplyCacheAttempts(s);
             InterruptIncompatibleOrdinaryAttempts(s);
+            InterruptIncompatibleHuntingTrapActions(s);
             PauseFishingTrapSetupIfIncompatible(s);
             PauseIncompatibleHarvesting(s);
             PauseIncompatibleMining(s);
@@ -372,7 +374,7 @@ namespace Decennium.Foundation.Laboratory
                 .Concat(l.Immunities.Where(x => !x.EndedAt.HasValue).Select(x => x.Grant.Expires))).Where(x => x.HasValue && x.Value.Time > s.RuleClock).Select(x => x.Value.Time).ToArray();
             return values.Length == 0 ? (RuleTime?)null : values.Min();
         }
-        private void AdvanceTo(Snapshot s, RuleTime target, bool exitAfterSlot=false, Command initiating=null, ManufacturingAdvanceRecord continuation=null)
+        private string AdvanceTo(Snapshot s, RuleTime target, bool exitAfterSlot=false, Command initiating=null, ManufacturingAdvanceRecord continuation=null)
         {
             if (target <= s.RuleClock) throw new ArgumentException("Positive shared advance required.");
             int subevent = 0;
@@ -387,6 +389,7 @@ namespace Decennium.Foundation.Laboratory
                 var manufacturingBoundary=NextManufacturingBoundary(s);if(manufacturingBoundary.HasValue&&manufacturingBoundary.Value<next)next=manufacturingBoundary.Value;
                 var cacheBoundary=NextSupplyCacheBoundary(s);if(cacheBoundary.HasValue&&cacheBoundary.Value<next)next=cacheBoundary.Value;
                 var receptacleBoundary=NextOrdinaryReceptacleBoundary(s);if(receptacleBoundary.HasValue&&receptacleBoundary.Value<next)next=receptacleBoundary.Value;
+                var huntingTrapBoundary=NextHuntingTrapActionBoundary(s);if(huntingTrapBoundary.HasValue&&huntingTrapBoundary.Value<next)next=huntingTrapBoundary.Value;
                 var trapBoundary=NextFishingTrapBoundary(s);if(trapBoundary.HasValue&&trapBoundary.Value<next)next=trapBoundary.Value;
                 var harvestBoundary=NextHarvestBoundary(s);if(harvestBoundary.HasValue&&harvestBoundary.Value<next)next=harvestBoundary.Value;
                 var miningBoundary=NextMiningBoundary(s);if(miningBoundary.HasValue&&miningBoundary.Value<next)next=miningBoundary.Value;
@@ -443,12 +446,15 @@ namespace Decennium.Foundation.Laboratory
                     if (progress == new RuleQuantity(5)) {
                         var actor = s.Actors.Single(a => a.Id == edge.ActorId); actor.X = edge.ToX; actor.Y = edge.ToY;
                         s.Clubs = s.Clubs.Select(c => c.HeldBy == actor.Id ? new ClubInstance(c.Id, c.ProfileId, c.OwnerId, c.CustodianId, c.HeldBy, actor.X, actor.Y) : c).ToArray();
+                        string trapError=QueueHuntingTrapEntry(s,actor.Id,"world."+Number(edge.StartedRevision),HuntingTrapEntryKind.ExplorationStep,
+                            edge.ToX,edge.ToY,s.Revision+1,next);
+                        if(trapError!=null)return trapError;
                         s.WorldTraversals = s.WorldTraversals.Where(x => x.ActorId != actor.Id).ToArray();
                     } else SetEdge(s, edge.With(progress, edge.Status));
                 }
                 var routeProgressBefore = s.RouteTravels.Where(x => x.Status == ExpeditionRouteTravelStatus.Moving)
                     .ToDictionary(x => x.StartedRevision, x => x.Progress);
-                AdvanceRouteTravel(s, elapsed);
+                string routeTrapError=AdvanceRouteTravel(s,elapsed,next);if(routeTrapError!=null)return routeTrapError;
                 observationSegments.AddRange(RouteObservationSegments(s, routeProgressBefore));
                 ObservationRules.ProcessWorldTraversalSegments(s, observationSegments, segmentStart, next, s.Revision + 1,
                     observationAlgorithmVersion);
@@ -487,6 +493,7 @@ namespace Decennium.Foundation.Laboratory
                 }
                 SyncExpeditionAssignments(s);
                 ResolveDueFishingTrapChecks(s);
+                ResolveWorldHuntingTrapTriggers(s);
                 CompleteFishingTrapRetrievals(s);
                 SoldierTacticalFeatures.ExpireEndMarkers(s,previousSlot,s.WorldSchedule.SlotAt(s.RuleClock),s.Revision+1);
                 RefreshIntervals(s);
@@ -516,19 +523,21 @@ namespace Decennium.Foundation.Laboratory
                     var job=s.ManufacturingOrders.Single(x=>x.Id==id);
                     if(ManufacturingAccess(s,job.WorkerId,false,true,job.RecipeId)==null)FinishManufacturingCheck(s,job);
                 }
-                PauseIncompatibleWork(s); CompleteSupplyCacheAttempts(s); CompleteOrdinaryReceptacleAttempts(s); ReconcileTraversal(s);
+                PauseIncompatibleWork(s); CompleteSupplyCacheAttempts(s); CompleteOrdinaryReceptacleAttempts(s);
+                CompleteHuntingTrapActions(s); ReconcileTraversal(s);
                 ObservationRules.Refresh(s, s.RuleClock, s.Revision + 1);
                 if(ManufacturingChoicePending(s)){
                     TestOnlyClubAttackPolicy.AdvanceConditions(s,".clock-final",s.SchemaVersion<Snapshot.ExpeditionRouteSchema,
                         s.SchemaVersion>=Snapshot.ExpeditionRouteSchema);
                     s.ManufacturingAdvance=continuation??new ManufacturingAdvanceRecord(target,exitAfterSlot,initiating.Id,s.Revision+1,
                         initiating.Kind==CommandKind.EndRegularTurn||initiating.Kind==CommandKind.EndFixedEncounter?initiating.Target:"");
-                    if(connectedCombat!=null)ObserveCalendar(s);return;
+                    if(connectedCombat!=null)ObserveCalendar(s);return null;
                 }
             }
             TestOnlyClubAttackPolicy.AdvanceConditions(s,".clock-final",s.SchemaVersion<Snapshot.ExpeditionRouteSchema,
                 s.SchemaVersion>=Snapshot.ExpeditionRouteSchema);
             if(connectedCombat!=null)ObserveCalendar(s);
+            return null;
         }
         private string ResolveCore(Snapshot s, Command c)
         {
@@ -566,6 +575,7 @@ namespace Decennium.Foundation.Laboratory
             if(c.Kind==CommandKind.AssignExpeditionWork||c.Kind==CommandKind.CancelExpeditionWork||c.Kind==CommandKind.StartExpeditionWork)
                 return ResolveExpeditionAssignment(s,c);
             if(PortableCommand(c.Kind))return ResolvePortableEquipment(s,c);
+            if(IsHuntingTrapCommand(s,c))return ResolveHuntingTrapCommand(s,c);
             if(IsOrdinaryReceptacleCommand(s,c))return ResolveOrdinaryReceptacle(s,c);
             if(IsProspectingCommand(c))return ResolveProspecting(s,c);
             if(IsMiningAssayCommand(c))return ResolveMiningAssay(s,c);
@@ -593,7 +603,7 @@ namespace Decennium.Foundation.Laboratory
             if (c.Combat != null) return "SharedCombatHandoffNotImplemented";
             if (c.Kind == CommandKind.AdvanceClock) {
                 if (c.Inventory != null || c.Target != "" || c.X < 1 || c.Y < 1) return "InvalidWorldAdvance";
-                AdvanceTo(s, CampGreens.Add(s.RuleClock, new RuleTime(c.X, c.Y)),initiating:c); return null;
+                return AdvanceTo(s, CampGreens.Add(s.RuleClock, new RuleTime(c.X, c.Y)),initiating:c);
             }
             if (c.Kind == CommandKind.BeginWorldStep) {
                 string assessment = AssessWorldStep(s, c, out var facts); if (assessment != null) return assessment;
@@ -694,6 +704,7 @@ namespace Decennium.Foundation.Laboratory
                 if (s.SchemaVersion != SelectedSchema || s.Receipts.Length != s.Revision) return "InvalidSharedWorldHeader";
                 string routeTravelError=ValidateRouteTravelState(s);if(routeTravelError!=null)return routeTravelError;
                 string routeMappingError=ValidateRouteMappingResultState(s);if(routeMappingError!=null)return routeMappingError;
+                string huntingTrapError=ValidateHuntingTrapFixtureState(s);if(huntingTrapError!=null)return huntingTrapError;
                 if(s.SchemaVersion>=Snapshot.ExpeditionRouteSchema&&TestOnlyClubAttackPolicy.HasUnprocessedConditionDeadline(s))
                     return "UnprocessedConditionDeadline";
                 if (observationFixture != null) {
@@ -726,11 +737,13 @@ namespace Decennium.Foundation.Laboratory
                     &&s.SchemaVersion!=Snapshot.TacticalAssessmentSchema
                     &&s.SchemaVersion!=Snapshot.CommandStepSchema&&s.SchemaVersion!=Snapshot.SuppressionFireSchema
                     &&s.SchemaVersion!=Snapshot.DefensiveFormationSchema
+                    &&!(huntingTrapFixture!=null&&s.SchemaVersion==Snapshot.HuntingTrapSchema)
                     ||s.CharacterFeatureGrants.Count(g=>g.ActorId==TestOnlyPolicy.ActorId&&g.FeatureId==CharacterFeatureIds.Overwatch
                         &&g.Origin==CharacterFeatureGrantOrigin.AutomaticClassFeature)!=1
                     ||s.CharacterFeatureGrants.Any(g=>g.ActorId==TestOnlyPolicy.ActorId&&g.FeatureId==CharacterFeatureIds.Overwatch
                         &&g.Origin==CharacterFeatureGrantOrigin.AutomaticClassFeature&&(g.MilestoneId!=""||g.GrantedRevision!=0))))return "InvalidOverwatchFoundationFixture";
-                if(overwatchRuntime!=null&&((s.SchemaVersion!=Snapshot.OverwatchSchema&&s.SchemaVersion!=Snapshot.OverwatchExecutionSchema)||s.OverwatchIntervals.Length<1
+                if(overwatchRuntime!=null&&((s.SchemaVersion!=Snapshot.OverwatchSchema&&s.SchemaVersion!=Snapshot.OverwatchExecutionSchema
+                    &&!(huntingTrapFixture!=null&&s.SchemaVersion==Snapshot.HuntingTrapSchema))||s.OverwatchIntervals.Length<1
                     ||s.OverwatchIntervals.Any(x=>x.ActorId!=TestOnlyPolicy.ActorId)))return "InvalidOverwatchDesignationFixture";
                 if(periodicRider!=null) {
                     if(s.SchemaVersion<Snapshot.PeriodicRiderSchema||s.PeriodicRiders.Any(x=>x.ProfileId!=PeriodicRiderFixture.ProfileId
