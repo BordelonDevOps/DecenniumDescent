@@ -2,7 +2,7 @@
 
 ## Module checkpoint
 
-This is a bounded C# simulation increment on `Engine`, built on the current schema61 checkpoint. The four concrete blockers from GPT's first evidence review are corrected and have regressions. The mandatory review of this corrected commit is pending. Do not begin the successor module until GPT has reviewed the updated evidence, all concrete blockers are resolved, and both reviewers agree on the next dependency.
+This is a bounded C# simulation increment on `Engine`, built on the current schema61 checkpoint. GPT reviewed and accepted correction commit `e4e12fb651fd029cec469e34ebf07214ce55194c`; it found no remaining concrete acceptance blocker. The exact review and its limits are recorded in [GPT_REVIEW.md](GPT_REVIEW.md). The next mapped increment is selected: qualifying Rest Watch and Rest Debt accounting within MGT-03, using the pinned FL-03 and Expedition Strain recovery ordering.
 
 The increment executes the adopted fixed-profile daily rules over the existing shared world. It is not production authority and does not complete Decennium's engine.
 
@@ -73,6 +73,12 @@ GPT's review of commit `d4662e3` found four concrete blockers. Each was independ
 GPT also requested a cross-midnight intake acceptance; that case now saves/restores across midnight and verifies both half-open day attributions. The repair evidence README describes Carpenter eligibility as `IsRepairWorker` plus the explicit `SharedRepairFixture.Trained` fixture fact; no qualification is inferred from `SkillTrainingRecord`.
 
 Clean pre-fix reproductions for all four behavioral blockers are retained here: [same-command route pace](development-attempts/gpt-review-reproduction-clean/candidate-route-pace.json), [same-command work interruption](development-attempts/gpt-review-reproduction-clean/candidate-work-interruption.json), [effective-HP healing](development-attempts/gpt-review-reproduction-clean/effective-hp-healing.json), [post-encounter Dash](development-attempts/gpt-review-reproduction-clean/dash-after-encounter-exit.json), and [modified death-save RNG gating](development-attempts/gpt-review-reproduction-clean/modified-death-save.json). These are focused pre-fix results; other early attempts also include test-fixture setup and harness corrections, which are not reported as gameplay defects.
+
+## GPT review result
+
+GPT accepted this bounded TEST_ONLY module at `e4e12fb651fd029cec469e34ebf07214ce55194c`, verified the four corrections against the prior blockers, and found no concrete blocker, source-policy contradiction, duplicate authority, or confirmed historical-save defect in the changed paths. GPT inspected the pushed diff, implementations, added test bodies, pre-fix failures, source clauses, decision contract, reports, trace, and handoff. It did **not** run C# tests/builds, the package validator, Unity checks, or an independent source-hash audit; its validation was review of the retained evidence. It confirmed all thirteen named module cases are present and passing in the full report.
+
+GPT listed three items as optional hardening, not acceptance conditions: forged settlement/intake/reservation-link restore cases; authentic pre-change schema61 save continuation; and an end-to-end Critical Wounds scenario (the current critical-ceiling assertion exercises the resolution helper while real capped dose use is connected). No disagreement remains on the accepted MGT-03 increment.
 
 ## Limitations
 
