@@ -2,6 +2,8 @@
 using System;
 using System.Globalization;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace Decennium.Foundation.Laboratory
 {
@@ -19,7 +21,19 @@ namespace Decennium.Foundation.Laboratory
         public TestOnlyInventoryPolicy(long remainingFoodFreshness=2592000,TestOnlyCropPolicy cropPolicy=null)
         {if(remainingFoodFreshness<0)throw new ArgumentOutOfRangeException(nameof(remainingFoodFreshness));freshSeconds=remainingFoodFreshness;crops=cropPolicy??new TestOnlyCropPolicy();}
         public bool TestOnly=>true;
-        public string ContentFingerprint=>"TEST_ONLY.inventory-v1-f"+freshSeconds.ToString(CultureInfo.InvariantCulture);
+        public string ContentFingerprint {
+            get {
+                string legacy="TEST_ONLY.inventory-v1-f"+freshSeconds.ToString(CultureInfo.InvariantCulture);
+                // Preserve historical default-profile saves exactly. Custom crop rules, including
+                // worker eligibility, change the commands this inventory host can admit and must
+                // therefore participate in its own persisted content identity.
+                if(crops.ContentFingerprint=="TEST_ONLY.camp-greens-v1-s8-w512")return legacy;
+                string key=legacy+"|crop="+crops.ContentFingerprint;
+                using(var sha=SHA256.Create())
+                    return "TEST_ONLY.inventory-v1-c"+string.Concat(sha.ComputeHash(Encoding.UTF8.GetBytes(key))
+                        .Select(b=>b.ToString("x2",CultureInfo.InvariantCulture)));
+            }
+        }
         public static Authority Host()=>new Authority("TEST_ONLY.host",new[]{TestOnlyPolicy.ActorId,TestOnlyPolicy.CompanionId},true,true,
             new[]{TestOnlyPolicy.ActorId,TestOnlyPolicy.CompanionId},new[]{TestOnlyPolicy.ActorId,TestOnlyPolicy.CompanionId});
         public Snapshot Initial()

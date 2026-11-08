@@ -13,6 +13,12 @@ namespace Decennium.Foundation.Tests
         private const string CropId="TEST_ONLY.crop";
         private static Simulation Farm(long seeds=8,long water=512)
         {var p=new TestOnlyCropPolicy(seeds,water);return new Simulation(p,p.Initial(),ExecutionProfile.Laboratory);}
+        private static Simulation MultiworkerFarm()
+        {
+            var p=new TestOnlyCropPolicy(workerIds:new[]{TestOnlyPolicy.ActorId,TestOnlyPolicy.CompanionId});var state=p.Initial();
+            var actor=state.Actors.Single(a=>a.Id==TestOnlyPolicy.ActorId);actor.X=2;actor.Y=3;
+            return new Simulation(p,state,ExecutionProfile.Laboratory);
+        }
         private static Command FarmCommand(Simulation s,CommandKind kind,string target=CropId,int x=0,int y=0,string actor=TestOnlyPolicy.CompanionId,string id=null)
             =>new Command(id??("farm-"+s.Capture().Revision),actor,s.Capture().Revision,kind,target,x,y);
         private static void FarmCommit(Simulation s,Command c)
@@ -74,6 +80,23 @@ namespace Decennium.Foundation.Tests
                 FarmWork(s,CommandKind.PlantCrop);FarmAdvance(s,1800);var crop=Crop(s);
                 Require(crop.Stage==CropStage.Growing&&crop.CareUntil==T(93600)&&crop.Tasks[0].StartedAt==T(0)
                     &&s.Capture().Work.Reservations.Count==2&&s.Capture().Work.Lots.Single(l=>l.Id==TestOnlyCropPolicy.SeedLotId).Quantity==7,"Resume repaid or reset planting."); });
+            cases.Add("crop_zero_progress_pause_cannot_be_reassigned",()=>{
+                var s=MultiworkerFarm();FarmWork(s,CommandKind.PlantCrop);FarmWork(s,CommandKind.PauseCrop);
+                RejectUnchanged(s,host,FarmCommand(s,CommandKind.PlantCrop,actor:TestOnlyPolicy.ActorId),"PolicyFailure");
+                var task=Crop(s).Tasks.Single();Require(task.Status==CropWorkStatus.Paused&&task.Progress==T(0)
+                    &&task.WorkerId==TestOnlyPolicy.CompanionId&&s.Capture().Work.WorkerIntervals.Count==0,"Zero-progress reassignment changed the paused worker or booking."); });
+            cases.Add("crop_positive_progress_pause_rejects_reassignment_and_allows_original_worker_resume",()=>{
+                var s=MultiworkerFarm();FarmWork(s,CommandKind.PlantCrop);FarmAdvance(s,1);FarmWork(s,CommandKind.PauseCrop);
+                RejectUnchanged(s,host,FarmCommand(s,CommandKind.PlantCrop,actor:TestOnlyPolicy.ActorId),"PolicyFailure");
+                var paused=Crop(s).Tasks.Single();Require(paused.Status==CropWorkStatus.Paused&&paused.Progress==T(1)
+                    &&paused.WorkerId==TestOnlyPolicy.CompanionId,"Positive-progress rejection changed the paused task.");
+                FarmWork(s,CommandKind.PlantCrop);FarmAdvance(s,3599);var v=s.Capture();var completed=Crop(s).Tasks.Single();
+                Require(Crop(s).Stage==CropStage.Growing&&completed.Status==CropWorkStatus.Complete&&completed.WorkerId==TestOnlyPolicy.CompanionId
+                    &&v.Work.WorkerIntervals.All(w=>w.WorkerId==TestOnlyPolicy.CompanionId)&&v.Work.Lots.Single(l=>l.Id==TestOnlyCropPolicy.SeedLotId).Quantity==7,
+                    "Original worker resume lost progress, provenance or spent input.");
+                var bytes=Bytes(s);var restoredPolicy=new TestOnlyCropPolicy(workerIds:new[]{TestOnlyPolicy.ActorId,TestOnlyPolicy.CompanionId});
+                var restored=new Simulation(restoredPolicy,codec.Decode(bytes),ExecutionProfile.Laboratory);
+                Require(Bytes(restored).SequenceEqual(bytes),"Same-worker crop resume did not survive save/restore."); });
             cases.Add("crop_first_hour_is_active_growth_begins_after_completion",()=>{
                 var s=Farm();FarmWork(s,CommandKind.PlantCrop);FarmUntil(s,T(10799,3));
                 Require(Crop(s).Stage==CropStage.Planting&&Crop(s).Growth==T(0),"Rounded incomplete planting upward.");

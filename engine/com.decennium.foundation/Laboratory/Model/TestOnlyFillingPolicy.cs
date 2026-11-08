@@ -2,6 +2,8 @@
 using System;
 using System.Globalization;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace Decennium.Foundation.Laboratory
 {
@@ -23,8 +25,21 @@ namespace Decennium.Foundation.Laboratory
             movable=movableVessels;actorHands=actorUsableHands;companionHands=companionUsableHands;inventory=new TestOnlyInventoryPolicy(remainingFoodFreshness,cropPolicy);
         }
         public bool TestOnly=>true;
-        public string ContentFingerprint=>(movable?"TEST_ONLY.movable-v1-":"TEST_ONLY.filling-v1-")+actorHands.ToString(CultureInfo.InvariantCulture)+"-"+companionHands.ToString(CultureInfo.InvariantCulture)
-            +"-"+inventory.ContentFingerprint;
+        public string ContentFingerprint {
+            get {
+                string prefix=(movable?"TEST_ONLY.movable-v1-":"TEST_ONLY.filling-v1-")
+                    +actorHands.ToString(CultureInfo.InvariantCulture)+"-"+companionHands.ToString(CultureInfo.InvariantCulture)+"-";
+                // Keep every historical filling fingerprint whose inventory child used the
+                // original food-freshness identity. Hash only newly parameterized crop profiles.
+                if(inventory.ContentFingerprint.StartsWith("TEST_ONLY.inventory-v1-f",StringComparison.Ordinal))
+                    return prefix+inventory.ContentFingerprint;
+                string key=(movable?"movable":"filling")+"|actorHands="+actorHands.ToString(CultureInfo.InvariantCulture)
+                    +"|companionHands="+companionHands.ToString(CultureInfo.InvariantCulture)+"|inventory="+inventory.ContentFingerprint;
+                using(var sha=SHA256.Create())
+                    return (movable?"TEST_ONLY.movable-v1-c":"TEST_ONLY.filling-v1-c")
+                        +string.Concat(sha.ComputeHash(Encoding.UTF8.GetBytes(key)).Select(b=>b.ToString("x2",CultureInfo.InvariantCulture)));
+            }
+        }
         public static Authority Host()=>TestOnlyInventoryPolicy.Host();
         private int Hands(string actor)=>actor==TestOnlyPolicy.ActorId?actorHands:companionHands;
         private static WaterVesselRecord[] InitialVessels()=>new[]{

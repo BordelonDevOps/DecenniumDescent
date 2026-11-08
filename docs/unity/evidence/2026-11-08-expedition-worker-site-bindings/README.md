@@ -23,6 +23,10 @@ No saved fields, codec branches, or schema migration were added. Existing schema
 
 The initial no-argument source-binding run used the validator's historical schema39 manifest and its archived headless receipt. It stopped on the unchanged `ActorConditionRecord.cs` hash before reaching tests; [RULE_BINDINGS_STALE_DEFAULT.json](RULE_BINDINGS_STALE_DEFAULT.json) preserves that result. The validator was rerun with this increment's fresh manifest and the current full-suite receipt, and passed. No unrelated source pin was refreshed.
 
+## GPT review correction
+
+GPT reviewed commit `e0d08014` and found two concrete issues: standalone inventory/filling fingerprints omitted custom crop-worker configuration, and a zero-progress paused crop task could be resumed by another worker. Both are fixed without a schema or codec change. Default inventory and filling saves retain their historical fingerprints and exact byte hashes; custom inventory/filling configurations now have distinct bounded fingerprints. Crop tasks retain their original worker across pause/resume, and different-worker resume rejects before new labor is booked. The full reports, pre-fix reproductions, and fresh four-test binding audit are preserved in [review-correction](review-correction/README.md). GPT found the crop/mining-only binding boundary sound; its next recommendation is registered tool-repair assignments through the existing handler.
+
 ## Limits
 
 The profile currently binds the existing Camp Greens and mining procedures only. The crop handler still requires the prepared plot at `(3,3)`; the mining site comes from the deposit record. Movement remains player-directed. There is no roster acquisition, autonomous route planning, started-work reassignment, general scheduler, or production worker/site authority. Registration does not grant mining qualification or equipment, and the current profile does not generalize binding validation to repair, trap, or cache assignments.

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using Decennium.Foundation.Laboratory;
 
 namespace Decennium.Foundation.Tests
@@ -27,6 +28,27 @@ namespace Decennium.Foundation.Tests
         private static void AddInventoryCases(Dictionary<string,Action> cases,string directory)
         {
             var host=TestOnlyInventoryPolicy.Host();var codec=new SnapshotCodec();
+            cases.Add("inventory_crop_worker_profiles_bind_fingerprint_and_preserve_default_save",()=>{
+                var legacy=new TestOnlyInventoryPolicy();var legacyBytes=codec.Encode(legacy.Initial());string hash;
+                using(var sha=SHA256.Create())hash=string.Concat(sha.ComputeHash(legacyBytes).Select(b=>b.ToString("x2")));
+                Require(legacy.ContentFingerprint=="TEST_ONLY.inventory-v1-f2592000"&&legacyBytes.Length==1265
+                    &&hash=="c047706e3cc322f8e666db823d0ac21ac22755e7ce75c14728175d602e8d8d5b","Default inventory save bytes or historical fingerprint changed.");
+                var crops=new TestOnlyCropPolicy(workerIds:new[]{TestOnlyPolicy.ActorId,TestOnlyPolicy.CompanionId});
+                var configured=new TestOnlyInventoryPolicy(cropPolicy:crops);
+                Require(configured.ContentFingerprint!=legacy.ContentFingerprint,"Inventory fingerprint omitted the configured crop worker profile.");
+                byte[] configuredBytes=codec.Encode(configured.Initial());
+                Throws<ArgumentException>(()=>new Simulation(configured,codec.Decode(legacyBytes),ExecutionProfile.Laboratory));
+                Throws<ArgumentException>(()=>new Simulation(legacy,codec.Decode(configuredBytes),ExecutionProfile.Laboratory));
+                var legacyFilling=new TestOnlyFillingPolicy();var configuredFilling=new TestOnlyFillingPolicy(cropPolicy:crops);
+                byte[] legacyFillBytes=codec.Encode(legacyFilling.Initial());string fillingHash;
+                using(var sha=SHA256.Create())fillingHash=string.Concat(sha.ComputeHash(legacyFillBytes).Select(b=>b.ToString("x2")));
+                Require(legacyFilling.ContentFingerprint=="TEST_ONLY.filling-v1-2-2-TEST_ONLY.inventory-v1-f2592000"
+                    &&legacyFillBytes.Length==1857&&fillingHash=="a7cafd703e09319ba9353a11ae0233e008618ab2c13a0e820c3ad6c993c5971b",
+                    "Default filling save bytes or historical fingerprint changed.");
+                Require(legacyFilling.ContentFingerprint!=configuredFilling.ContentFingerprint,"Filling fingerprint omitted its configured crop worker profile.");
+                byte[] configuredFillBytes=codec.Encode(configuredFilling.Initial());
+                Throws<ArgumentException>(()=>new Simulation(configuredFilling,codec.Decode(legacyFillBytes),ExecutionProfile.Laboratory));
+                Throws<ArgumentException>(()=>new Simulation(legacyFilling,codec.Decode(configuredFillBytes),ExecutionProfile.Laboratory)); });
             cases.Add("inventory_fractional_portion_is_timeless_and_retains_history",()=>{
                 var s=Inventory();string child=Portion(s,Q(1,3));var v=s.Capture();var meta=v.InventoryLots.Single(x=>x.LotId==child);
                 Require(IL(s,TestOnlyInventoryPolicy.FoodId).Amount==Q(5,3)&&IL(s,child).Amount==Q(1,3)&&v.RuleClock==T(0)

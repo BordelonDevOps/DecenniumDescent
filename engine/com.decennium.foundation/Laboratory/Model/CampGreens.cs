@@ -27,8 +27,8 @@ namespace Decennium.Foundation.Laboratory
         internal static long Duration(CropWorkKind kind)=>kind==CropWorkKind.Plant?PlantSeconds:kind==CropWorkKind.Tend?TendSeconds:HarvestSeconds;
         private static bool Closed(CropStage stage)=>stage==CropStage.Harvested||stage==CropStage.Failed;
         private static bool Eligible(CropDraft crop,RuleTime at)=>crop.Suitable&&crop.CareUntil.HasValue&&at<crop.CareUntil.Value;
-        private static CropWorkRecord UpdateTask(CropWorkRecord task,CropWorkStatus status,RuleTime progress,RuleTime? end,string worker=null)
-            =>new CropWorkRecord(task.Id,worker??task.WorkerId,task.Kind,status,task.StartedAt,progress,end,task.InputReservations);
+        private static CropWorkRecord UpdateTask(CropWorkRecord task,CropWorkStatus status,RuleTime progress,RuleTime? end)
+            =>new CropWorkRecord(task.Id,task.WorkerId,task.Kind,status,task.StartedAt,progress,end,task.InputReservations);
         private static void Replace(Snapshot state,CropBatchRecord crop)
         {state.Crops=state.Crops.Select(c=>c.Id==crop.Id?crop:c).ToArray();}
         private static string NewId(Snapshot state,string kind)=>"crop."+kind+"."+checked(state.Revision+1).ToString(CultureInfo.InvariantCulture);
@@ -68,7 +68,8 @@ namespace Decennium.Foundation.Laboratory
             var draft=Draft(state,crop);var paused=draft.Tasks.SingleOrDefault(t=>t.Kind==kind&&t.Status==CropWorkStatus.Paused);
             CropWorkRecord task;
             if(paused!=null) {
-                task=UpdateTask(paused,CropWorkStatus.Working,paused.Progress,null,worker);
+                if(paused.WorkerId!=worker)throw new ArgumentException("Paused crop work cannot change workers.");
+                task=UpdateTask(paused,CropWorkStatus.Working,paused.Progress,null);
                 draft.Tasks[draft.Tasks.IndexOf(paused)]=task;
             } else {
                 if(kind==CropWorkKind.Plant || draft.Tasks.Count>=CropBatchRecord.MaxTasks)throw new ArgumentException("Cannot create this crop task.");
