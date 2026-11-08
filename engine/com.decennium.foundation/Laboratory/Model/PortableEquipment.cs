@@ -116,6 +116,35 @@ namespace Decennium.Foundation.Laboratory
                 burden.Add(new BurdenItem(crossbow.Id,null,new RuleQuantity(20)+new RuleQuantity(3L*crossbow.LoadedBoltLots.Count,40),null));
             foreach(var lot in s.AmmunitionLots.Where(x=>x.CustodianId==actor))
                 burden.Add(new BurdenItem(lot.Id,null,new RuleQuantity(3L*lot.AvailableQuantity,40),null));
+            if(s.SchemaVersion>=Snapshot.ExpeditionStrainRecoverySchema) {
+                // Schema64's TEST_ONLY inventory composition can have no PortableEquipment
+                // records at all. Preserve its existing fixed-pouch fact and include legacy
+                // carried lots/vessels that the portable projection does not own. Earlier
+                // schemas retain their exact historical projection.
+                if(!records.Any(x=>x.ProfileId=="adventuring-gear.pouch"&&x.OwnerId==actor))
+                    burden.Add(new BurdenItem("TEST_ONLY.default-pouch."+actor,null,new RuleQuantity(1),new RuleQuantity(1,10)));
+                var portableLots=new HashSet<string>(records.Where(x=>x.LinkKind==PortableLinkKind.InventoryLot)
+                    .Select(x=>x.LinkedId),StringComparer.Ordinal);
+                var carriedVesselIds=new HashSet<string>(s.Vessels.Where(v=>v.LocationId==actor&&v.CustodianId==actor)
+                    .Select(v=>v.Id),StringComparer.Ordinal);
+                var unlinkedVessels=s.Vessels.Where(v=>v.LocationId==actor&&v.CustodianId==actor
+                    &&!records.Any(x=>x.LinkKind==PortableLinkKind.WaterVessel&&x.LinkedId==v.Id)).ToArray();
+                var coveredUnlinkedContents=new HashSet<string>(StringComparer.Ordinal);
+                foreach(var vessel in unlinkedVessels) {
+                    var contents=s.VesselContents.Where(x=>x.VesselId==vessel.Id&&!portableLots.Contains(x.LotId))
+                        .Select(x=>s.Work.Lots.Single(l=>l.Id==x.LotId)).ToArray();
+                    string physicalId="TEST_ONLY.unlinked-vessel."+vessel.Id;
+                    var mass=WaterFilling.Tare(vessel.Profile)+RuleQuantity.Sum(contents.Select(x=>x.Amount));
+                    var contentIds=contents.Select(x=>x.Id).ToArray();
+                    foreach(var id in contentIds)coveredUnlinkedContents.Add(id);
+                    burden.Add(new BurdenItem(physicalId,null,mass,mass.Scale(1,10),contentIds,contentIds));
+                    foreach(var content in contents)
+                        burden.Add(new BurdenItem(content.Id,physicalId,content.Amount,content.Amount.Scale(1,10)));
+                }
+                foreach(var lot in s.Work.Lots.Where(x=>(x.LocationId==actor||carriedVesselIds.Contains(x.LocationId))
+                    &&!portableLots.Contains(x.Id)&&!coveredUnlinkedContents.Contains(x.Id)))
+                    burden.Add(new BurdenItem(lot.Id,null,lot.Amount,lot.Amount.Scale(1,10)));
+            }
             return PlaytestCarrying.Total(burden);
         }
         public static bool IsBurdened(Snapshot s,string actor)

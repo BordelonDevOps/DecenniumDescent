@@ -49,6 +49,7 @@ namespace Decennium.Foundation
                 Text(w, x.EncounterId); Time(w, x.MarkerPhase);
             }
             if (s.SchemaVersion >= Snapshot.RestDebtSchema) RestDebtStateCodec.Write(w, s);
+            if (s.SchemaVersion >= Snapshot.ExpeditionStrainRecoverySchema) StrainRecoveryStateCodec.Write(w, s);
         }
 
         public static void Read(BinaryReader r, Snapshot s)
@@ -79,6 +80,7 @@ namespace Decennium.Foundation
             for (int i = 0; i < s.ExpeditionDashLocks.Length; i++)
                 s.ExpeditionDashLocks[i] = new ExpeditionDashLockRecord(Text(r), r.ReadInt64(), Time(r), Time(r), Text(r), Time(r));
             if (s.SchemaVersion >= Snapshot.RestDebtSchema) RestDebtStateCodec.Read(r, s);
+            if (s.SchemaVersion >= Snapshot.ExpeditionStrainRecoverySchema) StrainRecoveryStateCodec.Read(r, s);
         }
 
         private static int Count(BinaryReader r, int maximum)
@@ -162,6 +164,80 @@ namespace Decennium.Foundation
             for (int i = 0; i < s.RestDebtEvents.Length; i++)
                 s.RestDebtEvents[i] = new RestDebtEventRecord(Text(r), Text(r), (RestDebtEventKind)r.ReadInt32(),
                     Time(r), r.ReadInt64(), r.ReadInt32(), Text(r), Text(r), Time(r), Time(r), Text(r));
+        }
+    }
+
+    internal static class StrainRecoveryStateCodec
+    {
+        private static void Text(BinaryWriter w, string value) => SnapshotCodec.WriteText(w, value);
+        private static string Text(BinaryReader r) => SnapshotCodec.ReadText(r);
+        private static void Time(BinaryWriter w, RuleTime value) { w.Write(value.Numerator); w.Write(value.Denominator); }
+        private static RuleTime Time(BinaryReader r) => new RuleTime(r.ReadInt64(), r.ReadInt64());
+        private static int Count(BinaryReader r, int maximum) => SnapshotCodec.ReadCount(r, maximum);
+
+        public static void Write(BinaryWriter w, Snapshot s)
+        {
+            w.Write(s.ExpeditionStrainRecoveryGateUpdates.Length);
+            foreach (var x in s.ExpeditionStrainRecoveryGateUpdates.OrderBy(x => x.At).ThenBy(x => x.Revision)
+                .ThenBy(x => x.ActorId, StringComparer.Ordinal).ThenBy(x => x.PointId, StringComparer.Ordinal))
+            {
+                Text(w, x.Id); Text(w, x.ActorId); Text(w, x.PointId); Text(w, x.SettlementId);
+                Time(w, x.At); w.Write(x.Revision);
+            }
+            w.Write(s.ExpeditionBeneficialRests.Length);
+            foreach (var x in s.ExpeditionBeneficialRests.OrderBy(x => x.CompletedAt).ThenBy(x => x.Revision)
+                .ThenBy(x => x.ActorId, StringComparer.Ordinal))
+            {
+                Text(w, x.Id); Text(w, x.ActorId); Text(w, x.RecoveryOfferId); Text(w, x.RestIntervalId);
+                Time(w, x.CompletedAt); w.Write(x.Revision);
+            }
+            w.Write(s.ExpeditionStrainRecoveryOffers.Length);
+            foreach (var x in s.ExpeditionStrainRecoveryOffers.OrderBy(x => x.CompletedAt).ThenBy(x => x.ActorId, StringComparer.Ordinal))
+            {
+                Text(w, x.Id); Text(w, x.ActorId); Text(w, x.RestIntervalId); Text(w, x.InitiatingCommandId);
+                Time(w, x.CompletedAt); w.Write(x.Revision); w.Write(x.PointIds.Length);
+                foreach (string pointId in x.PointIds) Text(w, pointId);
+                Text(w, x.ChosenPointId); w.Write(x.ResolvedRevision);
+            }
+            w.Write(s.ExpeditionStrainRemovals.Length);
+            foreach (var x in s.ExpeditionStrainRemovals.OrderBy(x => x.At).ThenBy(x => x.Revision)
+                .ThenBy(x => x.ActorId, StringComparer.Ordinal).ThenBy(x => x.MutationSequence))
+            {
+                Text(w, x.Id); Text(w, x.ActorId); Text(w, x.PointId); Text(w, x.GainId); Text(w, x.BeneficialRestId);
+                Time(w, x.At); w.Write(x.Revision); w.Write(x.MutationSequence);
+            }
+        }
+
+        public static void Read(BinaryReader r, Snapshot s)
+        {
+            s.ExpeditionStrainRecoveryGateUpdates = new ExpeditionStrainRecoveryGateUpdateRecord[
+                Count(r, ExpeditionProvisioningValidation.MaxStrainRecoveryGateUpdates)];
+            for (int i = 0; i < s.ExpeditionStrainRecoveryGateUpdates.Length; i++)
+                s.ExpeditionStrainRecoveryGateUpdates[i] = new ExpeditionStrainRecoveryGateUpdateRecord(
+                    Text(r), Text(r), Text(r), Text(r), Time(r), r.ReadInt64());
+            s.ExpeditionBeneficialRests = new ExpeditionBeneficialRestRecord[
+                Count(r, ExpeditionProvisioningValidation.MaxBeneficialRests)];
+            for (int i = 0; i < s.ExpeditionBeneficialRests.Length; i++)
+                s.ExpeditionBeneficialRests[i] = new ExpeditionBeneficialRestRecord(
+                    Text(r), Text(r), Text(r), Text(r), Time(r), r.ReadInt64());
+            s.ExpeditionStrainRecoveryOffers = new ExpeditionStrainRecoveryOfferRecord[
+                Count(r, ExpeditionProvisioningValidation.MaxStrainRecoveryOffers)];
+            for (int i = 0; i < s.ExpeditionStrainRecoveryOffers.Length; i++)
+            {
+                string id = Text(r), actor = Text(r), rest = Text(r), initiating = Text(r);
+                RuleTime completedAt = Time(r); long revision = r.ReadInt64();
+                int pointCount = Count(r, 6); if (pointCount == 0) throw new InvalidDataException("Empty Strain recovery offer.");
+                var points = new string[pointCount];
+                for (int point = 0; point < pointCount; point++) points[point] = Text(r);
+                string chosenPointId = Text(r); long resolvedRevision = r.ReadInt64();
+                s.ExpeditionStrainRecoveryOffers[i] = new ExpeditionStrainRecoveryOfferRecord(
+                    id, actor, rest, initiating, completedAt, revision, points, chosenPointId, resolvedRevision);
+            }
+            s.ExpeditionStrainRemovals = new ExpeditionStrainRemovalRecord[
+                Count(r, ExpeditionProvisioningValidation.MaxStrainRemovals)];
+            for (int i = 0; i < s.ExpeditionStrainRemovals.Length; i++)
+                s.ExpeditionStrainRemovals[i] = new ExpeditionStrainRemovalRecord(Text(r), Text(r), Text(r), Text(r),
+                    Text(r), Time(r), r.ReadInt64(), r.ReadInt32());
         }
     }
 }

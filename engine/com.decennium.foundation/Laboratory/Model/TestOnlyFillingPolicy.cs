@@ -46,6 +46,7 @@ namespace Decennium.Foundation.Laboratory
             new WaterVesselRecord(ActorSkinId,WaterVesselProfile.Waterskin,TestOnlyPolicy.ActorId,TestOnlyPolicy.ActorId,TestOnlyPolicy.ActorId),
             new WaterVesselRecord(CompanionSkinId,WaterVesselProfile.Waterskin,TestOnlyPolicy.CompanionId,TestOnlyPolicy.CompanionId,TestOnlyPolicy.CompanionId),
             new WaterVesselRecord(FlaskId,WaterVesselProfile.OrdinaryFlask,TestOnlyPolicy.CompanionId,TestOnlyCropPolicy.PlotId,TestOnlyPolicy.CompanionId)};
+        internal static bool IsBaseFixtureVessel(string id)=>id==ActorSkinId||id==CompanionSkinId||id==FlaskId;
         public Snapshot Initial()
         {
             var s=inventory.Initial();s.SchemaVersion=movable?Snapshot.MovableVesselSchema:Snapshot.VesselSchema;s.ContentFingerprint=ContentFingerprint;s.Vessels=InitialVessels();

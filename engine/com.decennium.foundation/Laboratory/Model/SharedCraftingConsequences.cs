@@ -72,7 +72,8 @@ namespace Decennium.Foundation.Laboratory
     public sealed partial class TestOnlySharedWorldPolicy
     {
         private readonly SharedCraftingFixture crafting;
-        private int SelectedSchema => restDebtProfile!=null ? Snapshot.RestDebtSchema
+        private int SelectedSchema => strainRecoveryProfile != null ? Snapshot.ExpeditionStrainRecoverySchema
+            : restDebtProfile != null ? Snapshot.RestDebtSchema
             : dailyProvisioning!=null ? Snapshot.DailyProvisioningSchema
             : characterAdvancement!=null&&characterAdvancement.LevelFourAdvancementEnabled ? Snapshot.SharedCharacterAdvancementSchema
             : routeReconnaissanceFixture!=null ? Snapshot.RouteReconnaissanceSchema

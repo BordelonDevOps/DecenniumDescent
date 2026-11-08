@@ -277,6 +277,10 @@ namespace Decennium.Foundation
         public const int MaxRestIntervals = 4096;
         public const int MaxRestWatchOutcomes = 16384;
         public const int MaxRestDebtEvents = 16384;
+        public const int MaxStrainRecoveryGateUpdates = 32768;
+        public const int MaxBeneficialRests = 4096;
+        public const int MaxStrainRecoveryOffers = 4096;
+        public const int MaxStrainRemovals = 8192;
 
         public static void Validate(Snapshot s)
         {
@@ -290,12 +294,18 @@ namespace Decennium.Foundation
                 || s.RestIntervals == null || s.RestIntervals.Length > MaxRestIntervals
                 || s.RestWatchOutcomes == null || s.RestWatchOutcomes.Length > MaxRestWatchOutcomes
                 || s.RestDebtEvents == null || s.RestDebtEvents.Length > MaxRestDebtEvents
+                || s.ExpeditionStrainRecoveryGateUpdates == null || s.ExpeditionStrainRecoveryGateUpdates.Length > MaxStrainRecoveryGateUpdates
+                || s.ExpeditionBeneficialRests == null || s.ExpeditionBeneficialRests.Length > MaxBeneficialRests
+                || s.ExpeditionStrainRecoveryOffers == null || s.ExpeditionStrainRecoveryOffers.Length > MaxStrainRecoveryOffers
+                || s.ExpeditionStrainRemovals == null || s.ExpeditionStrainRemovals.Length > MaxStrainRemovals
                 || s.DailyProvisioningSettlements.Any(x => x == null)
                 || s.DailyProvisioningConsumption.Any(x => x == null)
                 || s.ExpeditionStrainGains.Any(x => x == null)
                 || s.ExpeditionDashLocks.Any(x => x == null)
                 || s.RestWatchSchedules.Any(x => x == null) || s.RestIntervals.Any(x => x == null)
-                || s.RestWatchOutcomes.Any(x => x == null) || s.RestDebtEvents.Any(x => x == null))
+                || s.RestWatchOutcomes.Any(x => x == null) || s.RestDebtEvents.Any(x => x == null)
+                || s.ExpeditionStrainRecoveryGateUpdates.Any(x => x == null) || s.ExpeditionBeneficialRests.Any(x => x == null)
+                || s.ExpeditionStrainRecoveryOffers.Any(x => x == null) || s.ExpeditionStrainRemovals.Any(x => x == null))
                 throw new ArgumentException("Invalid Expedition provisioning or Strain collections.");
 
             if (s.SchemaVersion < Snapshot.DailyProvisioningSchema)
@@ -303,7 +313,9 @@ namespace Decennium.Foundation
                 if (s.DailyProvisioningSettlements.Length != 0 || s.DailyProvisioningConsumption.Length != 0
                     || s.ExpeditionStrainGains.Length != 0 || s.ExpeditionDashLocks.Length != 0
                     || s.RestWatchSchedules.Length != 0 || s.RestIntervals.Length != 0
-                    || s.RestWatchOutcomes.Length != 0 || s.RestDebtEvents.Length != 0)
+                    || s.RestWatchOutcomes.Length != 0 || s.RestDebtEvents.Length != 0
+                    || s.ExpeditionStrainRecoveryGateUpdates.Length != 0 || s.ExpeditionBeneficialRests.Length != 0
+                    || s.ExpeditionStrainRecoveryOffers.Length != 0 || s.ExpeditionStrainRemovals.Length != 0)
                     throw new ArgumentException("Daily provisioning state requires schema62.");
                 return;
             }
@@ -312,6 +324,10 @@ namespace Decennium.Foundation
                     || s.RestWatchOutcomes.Length != 0 || s.RestDebtEvents.Length != 0
                     || s.ExpeditionStrainGains.Any(x => x.CauseKind != ExpeditionStrainCauseKind.DailyProvisioning || x.GainSequence != 0)))
                 throw new ArgumentException("Rest Debt state requires schema63.");
+            if (s.SchemaVersion < Snapshot.ExpeditionStrainRecoverySchema
+                && (s.ExpeditionStrainRecoveryGateUpdates.Length != 0 || s.ExpeditionBeneficialRests.Length != 0
+                    || s.ExpeditionStrainRecoveryOffers.Length != 0 || s.ExpeditionStrainRemovals.Length != 0))
+                throw new ArgumentException("Expedition Strain recovery state requires schema64.");
             if (!s.TestOnly) throw new ArgumentException("Expedition provisioning is TEST_ONLY.");
 
             bool Actor(string id) => s.Actors.Any(x => x.Id == id);
@@ -369,18 +385,23 @@ namespace Decennium.Foundation
                 var ordered = s.SchemaVersion >= Snapshot.RestDebtSchema
                     ? group.OrderBy(x => x.At).ThenBy(x => x.Revision).ThenBy(x => x.GainSequence).ThenBy(x => x.Id, StringComparer.Ordinal).ToArray()
                     : group.OrderBy(x => x.At).ThenBy(x => x.Revision).ThenBy(x => x.Id, StringComparer.Ordinal).ToArray();
-                int level = 0;
-                foreach (var gain in ordered)
+                if (s.SchemaVersion < Snapshot.ExpeditionStrainRecoverySchema)
                 {
-                    if (gain.LevelBefore != level || gain.AttemptedAmount != 1
-                        || gain.AddedAmount != Math.Min(1, 6 - level))
-                        throw new ArgumentException("Expedition Strain point history is not cumulative.");
-                    level = gain.LevelAfter;
+                    int level = 0;
+                    foreach (var gain in ordered)
+                    {
+                        if (gain.LevelBefore != level || gain.AttemptedAmount != 1
+                            || gain.AddedAmount != Math.Min(1, 6 - level))
+                            throw new ArgumentException("Expedition Strain point history is not cumulative.");
+                        level = gain.LevelAfter;
+                    }
                 }
             }
 
             if (s.SchemaVersion >= Snapshot.RestDebtSchema)
                 ValidateRestDebtReferences(s, Actor);
+            if (s.SchemaVersion >= Snapshot.ExpeditionStrainRecoverySchema)
+                ValidateRecoveryReferences(s, Actor, Settlement);
 
             if (s.ExpeditionDashLocks.Select(x => x.ActorId).Distinct(StringComparer.Ordinal).Count()
                     != s.ExpeditionDashLocks.Length
@@ -479,6 +500,165 @@ namespace Decennium.Foundation
             if (s.ExpeditionStrainGains.Any(x => x.CauseKind != ExpeditionStrainCauseKind.DailyProvisioning
                 && !s.RestDebtEvents.Any(e => e.Id == x.CauseId && e.StrainGainId == x.Id)))
                 throw new ArgumentException("Rest Debt Strain gain has no unique causal event.");
+        }
+
+        private static void ValidateRecoveryReferences(Snapshot s, Func<string, bool> actorExists,
+            Func<string, bool> settlementExists)
+        {
+            if (s.ExpeditionStrainRecoveryGateUpdates.Select(x => x.Id).Distinct(StringComparer.Ordinal).Count()
+                    != s.ExpeditionStrainRecoveryGateUpdates.Length
+                || s.ExpeditionStrainRecoveryGateUpdates.Select(x => x.PointId).Distinct(StringComparer.Ordinal).Count()
+                    != s.ExpeditionStrainRecoveryGateUpdates.Length
+                || s.ExpeditionStrainRecoveryGateUpdates.Any(x => !actorExists(x.ActorId) || x.Revision > s.Revision
+                    || x.At > s.RuleClock || !settlementExists(x.SettlementId)))
+                throw new ArgumentException("Invalid Expedition Strain recovery gate history.");
+
+            foreach (var update in s.ExpeditionStrainRecoveryGateUpdates)
+            {
+                var settlement = s.DailyProvisioningSettlements.Single(x => x.Id == update.SettlementId);
+                var gain = s.ExpeditionStrainGains.SingleOrDefault(x => x.PointId == update.PointId);
+                if (settlement.ActorId != update.ActorId || settlement.HasShortfall || settlement.End != update.At
+                    || settlement.Revision != update.Revision || gain == null || gain.ActorId != update.ActorId
+                    || gain.CauseKind != ExpeditionStrainCauseKind.DailyProvisioning || gain.OrdinaryRemovable != true
+                    || gain.RemovalGateMet != false || gain.At >= update.At
+                    || s.DailyProvisioningSettlements.Single(x => x.Id == gain.CauseId).DayOrdinal >= settlement.DayOrdinal)
+                    throw new ArgumentException("Recovery gate update is not proven by a later supported day.");
+            }
+
+            if (s.ExpeditionBeneficialRests.Select(x => x.Id).Distinct(StringComparer.Ordinal).Count()
+                    != s.ExpeditionBeneficialRests.Length
+                || s.ExpeditionBeneficialRests.Select(x => x.RestIntervalId).Distinct(StringComparer.Ordinal).Count()
+                    != s.ExpeditionBeneficialRests.Length
+                || s.ExpeditionBeneficialRests.Any(x => !actorExists(x.ActorId) || x.Revision > s.Revision
+                    || x.CompletedAt > s.RuleClock))
+                throw new ArgumentException("Invalid beneficial Long Rest history.");
+            foreach (var group in s.ExpeditionBeneficialRests.GroupBy(x => x.ActorId, StringComparer.Ordinal))
+            {
+                var ordered = group.OrderBy(x => x.CompletedAt).ThenBy(x => x.Revision).ToArray();
+                for (int i = 0; i < ordered.Length; i++)
+                {
+                    var benefit = ordered[i];
+                    var interval = s.RestIntervals.SingleOrDefault(x => x.Id == benefit.RestIntervalId);
+                    var offer = s.ExpeditionStrainRecoveryOffers.SingleOrDefault(x => x.Id == benefit.RecoveryOfferId);
+                    if (interval == null || interval.ActorId != benefit.ActorId || interval.Status != RestIntervalStatus.Completed
+                        || interval.EndedAt != benefit.CompletedAt || benefit.Revision < interval.Revision
+                        || offer == null || offer.Pending || offer.ActorId != benefit.ActorId
+                        || offer.RestIntervalId != benefit.RestIntervalId || offer.CompletedAt != benefit.CompletedAt
+                        || offer.ResolvedRevision != benefit.Revision)
+                        throw new ArgumentException("Beneficial Long Rest has no exact completed interval.");
+                    if (i > 0 && benefit.CompletedAt < ordered[i - 1].CompletedAt.AddSeconds(24 * 60 * 60))
+                        throw new ArgumentException("Beneficial Long Rest limit is less than 24 elapsed hours.");
+                }
+            }
+
+            if (s.ExpeditionStrainRecoveryOffers.Select(x => x.Id).Distinct(StringComparer.Ordinal).Count()
+                    != s.ExpeditionStrainRecoveryOffers.Length
+                || s.ExpeditionStrainRecoveryOffers.Where(x => x.Pending).Select(x => x.ActorId).Distinct(StringComparer.Ordinal).Count()
+                    != s.ExpeditionStrainRecoveryOffers.Count(x => x.Pending)
+                || s.ExpeditionStrainRecoveryOffers.Any(x => !actorExists(x.ActorId) || x.Revision > s.Revision
+                    || x.CompletedAt > s.RuleClock || x.Pending && x.CompletedAt != s.RuleClock
+                    || !s.Receipts.Any(r => r.Id == x.InitiatingCommandId && r.Revision == x.Revision)
+                    || !x.Pending && (x.ResolvedRevision > s.Revision || x.ResolvedRevision <= x.Revision)))
+                throw new ArgumentException("Invalid pending Expedition Strain recovery offer.");
+            foreach (var offer in s.ExpeditionStrainRecoveryOffers)
+            {
+                var interval = s.RestIntervals.SingleOrDefault(x => x.Id == offer.RestIntervalId);
+                if (interval == null || interval.ActorId != offer.ActorId || interval.Status != RestIntervalStatus.Completed
+                    || interval.EndedAt != offer.CompletedAt)
+                    throw new ArgumentException("Recovery offer has no exact completed Rest.");
+                var benefit = s.ExpeditionBeneficialRests.SingleOrDefault(x => x.RecoveryOfferId == offer.Id);
+                if (offer.Pending ? benefit != null : benefit == null || benefit.RestIntervalId != offer.RestIntervalId
+                    || benefit.ActorId != offer.ActorId || benefit.CompletedAt != offer.CompletedAt)
+                    throw new ArgumentException("Recovery offer resolution does not match its Rest benefit.");
+                var latestSettlement = s.DailyProvisioningSettlements.Where(x => x.ActorId == offer.ActorId && x.End <= offer.CompletedAt)
+                    .OrderByDescending(x => x.End).FirstOrDefault();
+                if (offer.Pending && latestSettlement != null && latestSettlement.HasShortfall)
+                    throw new ArgumentException("A recovery offer remains open while the actor provisioning block is active.");
+                foreach (string pointId in offer.PointIds)
+                {
+                    var gain = s.ExpeditionStrainGains.SingleOrDefault(x => x.PointId == pointId);
+                    bool gateMet = gain != null && (gain.RemovalGateMet == true
+                        || s.ExpeditionStrainRecoveryGateUpdates.Any(x => x.PointId == pointId
+                            && x.At <= offer.CompletedAt && x.Revision <= offer.Revision));
+                    bool activeAtCompletion = gain != null && gain.At <= offer.CompletedAt && gain.Revision <= offer.Revision
+                        && !s.ExpeditionStrainRemovals.Any(x => x.ActorId == offer.ActorId && x.PointId == pointId
+                            && x.At <= offer.CompletedAt && x.Revision <= offer.Revision);
+                    if (gain == null || gain.ActorId != offer.ActorId || gain.AddedAmount != 1
+                        || gain.OrdinaryRemovable != true || !gateMet || !activeAtCompletion)
+                        throw new ArgumentException("Recovery offer contains an unclassified or unqualified point.");
+                    if (!offer.Pending && offer.ChosenPointId == pointId
+                        && !s.ExpeditionStrainRemovals.Any(x => x.BeneficialRestId == benefit.Id && x.PointId == pointId))
+                        throw new ArgumentException("Chosen recovery point has no matching removal event.");
+                }
+            }
+
+            if (s.ExpeditionStrainRemovals.Select(x => x.Id).Distinct(StringComparer.Ordinal).Count()
+                    != s.ExpeditionStrainRemovals.Length
+                || s.ExpeditionStrainRemovals.Select(x => x.PointId).Distinct(StringComparer.Ordinal).Count()
+                    != s.ExpeditionStrainRemovals.Length
+                || s.ExpeditionStrainRemovals.Select(x => x.BeneficialRestId).Distinct(StringComparer.Ordinal).Count()
+                    != s.ExpeditionStrainRemovals.Length
+                || s.ExpeditionStrainRemovals.Any(x => !actorExists(x.ActorId) || x.Revision > s.Revision
+                    || x.At > s.RuleClock))
+                throw new ArgumentException("Invalid Expedition Strain point-removal history.");
+            foreach (var removal in s.ExpeditionStrainRemovals)
+            {
+                var gain = s.ExpeditionStrainGains.SingleOrDefault(x => x.Id == removal.GainId);
+                var benefit = s.ExpeditionBeneficialRests.SingleOrDefault(x => x.Id == removal.BeneficialRestId);
+                if (gain == null || gain.ActorId != removal.ActorId || gain.PointId != removal.PointId
+                    || gain.AddedAmount != 1 || gain.OrdinaryRemovable != true || benefit == null
+                    || benefit.ActorId != removal.ActorId || benefit.CompletedAt != removal.At
+                    || benefit.Revision > removal.Revision)
+                    throw new ArgumentException("Strain removal is not linked to one eligible point and its Rest.");
+            }
+            if (s.ExpeditionStrainRemovals.Length != s.ExpeditionBeneficialRests.Length)
+                throw new ArgumentException("Each beneficial Rest in this slice must record exactly one Strain removal.");
+
+            // Schema64 orders gains and removals in one actor-local event stream. Gain records
+            // retain their original causes; removal events only change whether a point is active.
+            foreach (string actor in s.ExpeditionStrainGains.Select(x => x.ActorId)
+                .Concat(s.ExpeditionStrainRemovals.Select(x => x.ActorId)).Distinct(StringComparer.Ordinal))
+            {
+                var events = s.ExpeditionStrainGains.Where(x => x.ActorId == actor).Select(x => new StrainEvent(
+                        x.At, x.Revision, x.GainSequence, x, null))
+                    .Concat(s.ExpeditionStrainRemovals.Where(x => x.ActorId == actor).Select(x => new StrainEvent(
+                        x.At, x.Revision, x.MutationSequence, null, x)))
+                    .OrderBy(x => x.At).ThenBy(x => x.Revision).ThenBy(x => x.Sequence).ToArray();
+                if (events.GroupBy(x => x.Revision.ToString(System.Globalization.CultureInfo.InvariantCulture) + "|"
+                    + x.Sequence.ToString(System.Globalization.CultureInfo.InvariantCulture), StringComparer.Ordinal).Any(x => x.Count() > 1))
+                    throw new ArgumentException("Expedition Strain mutation sequence is not unique within the command.");
+                int level = 0;
+                var activePoints = new System.Collections.Generic.HashSet<string>(StringComparer.Ordinal);
+                foreach (var item in events)
+                {
+                    if (item.Gain != null)
+                    {
+                        var gain = item.Gain;
+                        if (gain.LevelBefore != level || gain.AttemptedAmount != 1
+                            || gain.AddedAmount != Math.Min(1, 6 - level))
+                            throw new ArgumentException("Expedition Strain active-point history is not cumulative.");
+                        if (gain.AddedAmount > 0) { activePoints.Add(gain.PointId); level++; }
+                    }
+                    else
+                    {
+                        if (!activePoints.Remove(item.Removal.PointId) || level <= 0)
+                            throw new ArgumentException("Expedition Strain removal targets an inactive or absent point.");
+                        level--;
+                    }
+                }
+            }
+        }
+
+        private sealed class StrainEvent
+        {
+            public RuleTime At { get; }
+            public long Revision { get; }
+            public int Sequence { get; }
+            public ExpeditionStrainGainRecord Gain { get; }
+            public ExpeditionStrainRemovalRecord Removal { get; }
+            public StrainEvent(RuleTime at, long revision, int sequence, ExpeditionStrainGainRecord gain,
+                ExpeditionStrainRemovalRecord removal)
+            { At = at; Revision = revision; Sequence = sequence; Gain = gain; Removal = removal; }
         }
     }
 }

@@ -97,6 +97,8 @@ namespace Decennium.Foundation.Laboratory
             ||kind==CommandKind.CancelMiningAssay
             ||kind==CommandKind.StartMineralPreparation||kind==CommandKind.PauseMineralPreparation||kind==CommandKind.ResumeMineralPreparation
             ||kind==CommandKind.ScheduleRestWatch||kind==CommandKind.BeginRest||kind==CommandKind.InterruptRest
+            ||kind==CommandKind.AdvanceClock&&strainRecoveryProfile!=null
+            ||kind==CommandKind.ResolveExpeditionStrainRecovery
             ||kind==CommandKind.TacticalStep||kind==CommandKind.TacticalRepositionStep||kind==CommandKind.Interact
             ||kind==CommandKind.Dodge&&dodgeActionEnabled
             ||(kind==CommandKind.Ready||kind==CommandKind.RespondReady)&&readyActionEnabled
@@ -108,6 +110,7 @@ namespace Decennium.Foundation.Laboratory
         public IEnumerable<Command> DiscoverCommands(Snapshot s,Authority authority,string actor)
         {
             if(s==null||authority==null||!authority.Controls(actor)||!Validation.ValidId(actor))return Array.Empty<Command>();
+            if(HasPendingRecoveryOffer(s))return DiscoverStrainRecoveryChoices(s,actor);
             if(s.Encounter==null||!s.InventoryCombat)return DiscoverSharedWorldCommands(s,authority,actor);
             var options=new System.Collections.Generic.List<Command>();
             int optionIndex=0;
@@ -238,10 +241,18 @@ namespace Decennium.Foundation.Laboratory
 
         public CommandQueryResult QueryCommand(Snapshot s,Authority authority,Command c)
         {
+            string pendingRecoveryFailure=PendingRecoveryChoiceFailure(s,c);
+            if(pendingRecoveryFailure!=null)
+                return new CommandQueryResult(true,false,pendingRecoveryFailure,s.Revision);
+            if(IsStrainRecoveryCommand(c.Kind))return QueryStrainRecoveryChoice(s,c);
             string restingActorFailure=RestingActorCommandFailure(s,c);
             if(restingActorFailure!=null)
                 return new CommandQueryResult(true,false,restingActorFailure,s.Revision);
             if(IsRestDebtCommand(c.Kind))return QueryRestDebtCommand(s,c);
+            if(c.Kind==CommandKind.AdvanceClock&&strainRecoveryProfile!=null) {
+                string clockFailure=ResolveCore(s.Copy(),c);
+                return new CommandQueryResult(true,clockFailure==null,clockFailure??"Available",s.Revision);
+            }
             var sharedWorld=QuerySharedWorldCommand(s,authority,c);
             if(sharedWorld!=null)return sharedWorld;
             if((c.Kind==CommandKind.Ready||c.Kind==CommandKind.RespondReady)&&readyActionEnabled) {

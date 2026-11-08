@@ -102,7 +102,8 @@ namespace Decennium.Foundation.Laboratory
             if (restDebtProfile == null) return;
             string error = restDebtProfile.ValidateBindings(s, dailyProvisioning);
             if (error != null) throw new InvalidOperationException(error);
-            if (s.SchemaVersion != Snapshot.RestDebtSchema || s.RuleClock != dailyProvisioning.CanonicalDayOrigin)
+            int expectedSchema = strainRecoveryProfile != null ? Snapshot.ExpeditionStrainRecoverySchema : Snapshot.RestDebtSchema;
+            if (s.SchemaVersion != expectedSchema || s.RuleClock != dailyProvisioning.CanonicalDayOrigin)
                 throw new InvalidOperationException("RestDebtRequiresCanonicalInitialProfile");
             s.RestWatchSchedules = Array.Empty<RestWatchScheduleRecord>();
             s.RestIntervals = Array.Empty<RestIntervalRecord>();
@@ -174,7 +175,8 @@ namespace Decennium.Foundation.Laboratory
 
         private string ResolveRestDebtCommand(Snapshot s, Command c)
         {
-            if (restDebtProfile == null || s.SchemaVersion != Snapshot.RestDebtSchema) return "RestDebtNotSelected";
+            int expectedSchema = strainRecoveryProfile != null ? Snapshot.ExpeditionStrainRecoverySchema : Snapshot.RestDebtSchema;
+            if (restDebtProfile == null || s.SchemaVersion != expectedSchema) return "RestDebtNotSelected";
             if (!restDebtProfile.IncludesActor(c.Actor)) return "RestDebtActorNotRegistered";
             if (c.Inventory != null || c.Combat != null || c.Advancement != null || c.Ranged != null
                 || c.OverwatchRider != OverwatchRider.None || c.SuppressionFire != null || c.DefensiveFormation != null
@@ -390,7 +392,8 @@ namespace Decennium.Foundation.Laboratory
                     && s.RestWatchOutcomes.Length == 0 && s.RestDebtEvents.Length == 0
                     && s.ExpeditionStrainGains.All(x => x.CauseKind == ExpeditionStrainCauseKind.DailyProvisioning)
                     ? null : "RestDebtProfileMissing";
-            if (s.SchemaVersion != Snapshot.RestDebtSchema || s.ContentFingerprint != ContentFingerprint
+            int expectedSchema = strainRecoveryProfile != null ? Snapshot.ExpeditionStrainRecoverySchema : Snapshot.RestDebtSchema;
+            if (s.SchemaVersion != expectedSchema || s.ContentFingerprint != ContentFingerprint
                 || restDebtProfile.ValidateBindings(s, dailyProvisioning) != null)
                 return "RestDebtProfileMismatch";
 

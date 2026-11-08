@@ -85,7 +85,11 @@ namespace Decennium.Foundation.Laboratory
                 throw new ArgumentException("Invalid Expedition Strain projection request.");
             if (s.SchemaVersion < Snapshot.DailyProvisioningSchema)
                 return new ExpeditionStrainEffectProjection(0);
-            int level = OrderedGains(s, actorId).Where(x => x.Revision <= revision && x.At <= at).Sum(x => x.AddedAmount);
+            int level;
+            if (s.SchemaVersion >= Snapshot.ExpeditionStrainRecoverySchema)
+                level = OrderedMutations(s, actorId).Where(x => x.Revision <= revision && x.At <= at)
+                    .Sum(x => x.Gain != null ? x.Gain.AddedAmount : -1);
+            else level = OrderedGains(s, actorId).Where(x => x.Revision <= revision && x.At <= at).Sum(x => x.AddedAmount);
             if (level < 0 || level > 6) throw new InvalidOperationException("Invalid Expedition Strain point total.");
             return new ExpeditionStrainEffectProjection(level);
         }
@@ -100,6 +104,15 @@ namespace Decennium.Foundation.Laboratory
         internal static int PriorLevel(Snapshot s, ExpeditionStrainGainRecord target)
         {
             int level = 0;
+            if (s.SchemaVersion >= Snapshot.ExpeditionStrainRecoverySchema)
+            {
+                foreach (var mutation in OrderedMutations(s, target.ActorId))
+                {
+                    if (mutation.Gain?.Id == target.Id) return level;
+                    level = checked(level + (mutation.Gain != null ? mutation.Gain.AddedAmount : -1));
+                }
+                throw new InvalidOperationException("Strain gain is absent from its actor history.");
+            }
             foreach (var gain in OrderedGains(s, target.ActorId))
             {
                 if (gain.Id == target.Id) return level;
@@ -109,9 +122,46 @@ namespace Decennium.Foundation.Laboratory
         }
 
         internal static int NextGainSequence(Snapshot s, string actorId, long revision)
-            => s.SchemaVersion < Snapshot.RestDebtSchema ? 0
-                : s.ExpeditionStrainGains.Where(x => x.ActorId == actorId && x.Revision == revision)
-                    .Select(x => x.GainSequence).DefaultIfEmpty(-1).Max() + 1;
+        {
+            if (s.SchemaVersion < Snapshot.RestDebtSchema) return 0;
+            int last = s.ExpeditionStrainGains.Where(x => x.ActorId == actorId && x.Revision == revision)
+                .Select(x => x.GainSequence).DefaultIfEmpty(-1).Max();
+            if (s.SchemaVersion >= Snapshot.ExpeditionStrainRecoverySchema)
+                last = Math.Max(last, s.ExpeditionStrainRemovals.Where(x => x.ActorId == actorId && x.Revision == revision)
+                    .Select(x => x.MutationSequence).DefaultIfEmpty(-1).Max());
+            return last + 1;
+        }
+
+        internal static bool RecoveryGateMet(Snapshot s, ExpeditionStrainGainRecord gain, RuleTime at, long revision)
+            => gain.RemovalGateMet == true || s.ExpeditionStrainRecoveryGateUpdates.Any(x => x.PointId == gain.PointId
+                && x.At <= at && x.Revision <= revision);
+
+        internal static bool IsActivePoint(Snapshot s, string actorId, string pointId, RuleTime at, long revision)
+        {
+            var gain = s.ExpeditionStrainGains.SingleOrDefault(x => x.ActorId == actorId && x.PointId == pointId);
+            if (gain == null || gain.AddedAmount != 1 || gain.At > at || gain.Revision > revision) return false;
+            return !s.ExpeditionStrainRemovals.Any(x => x.ActorId == actorId && x.PointId == pointId
+                && x.At <= at && x.Revision <= revision);
+        }
+
+        private static StrainMutation[] OrderedMutations(Snapshot s, string actorId)
+            => s.ExpeditionStrainGains.Where(x => x.ActorId == actorId).Select(x => new StrainMutation(
+                    x.At, x.Revision, x.GainSequence, x, null))
+                .Concat(s.ExpeditionStrainRemovals.Where(x => x.ActorId == actorId).Select(x => new StrainMutation(
+                    x.At, x.Revision, x.MutationSequence, null, x)))
+                .OrderBy(x => x.At).ThenBy(x => x.Revision).ThenBy(x => x.Sequence).ToArray();
+
+        private sealed class StrainMutation
+        {
+            public RuleTime At { get; }
+            public long Revision { get; }
+            public int Sequence { get; }
+            public ExpeditionStrainGainRecord Gain { get; }
+            public ExpeditionStrainRemovalRecord Removal { get; }
+            public StrainMutation(RuleTime at, long revision, int sequence, ExpeditionStrainGainRecord gain,
+                ExpeditionStrainRemovalRecord removal)
+            { At = at; Revision = revision; Sequence = sequence; Gain = gain; Removal = removal; }
+        }
 
         public static ExpeditionStrainEffectProjection Current(Snapshot s, string actorId)
             // Command-policy resolution operates on a detached candidate whose revision is still
@@ -222,7 +272,8 @@ namespace Decennium.Foundation.Laboratory
             if (dailyProvisioning == null) return;
             string error = dailyProvisioning.ValidateBindings(s);
             if (error != null) throw new InvalidOperationException(error);
-            int expectedSchema = restDebtProfile == null ? Snapshot.DailyProvisioningSchema : Snapshot.RestDebtSchema;
+            int expectedSchema = strainRecoveryProfile != null ? Snapshot.ExpeditionStrainRecoverySchema
+                : restDebtProfile == null ? Snapshot.DailyProvisioningSchema : Snapshot.RestDebtSchema;
             if (s.SchemaVersion != expectedSchema || s.RuleClock != dailyProvisioning.CanonicalDayOrigin)
                 throw new InvalidOperationException("DailyProvisioningRequiresCanonicalInitialProfile");
             s.DailyProvisioningSettlements = Array.Empty<DailyProvisioningSettlementRecord>();
@@ -233,23 +284,33 @@ namespace Decennium.Foundation.Laboratory
             s.RestIntervals = Array.Empty<RestIntervalRecord>();
             s.RestWatchOutcomes = Array.Empty<RestWatchOutcomeRecord>();
             s.RestDebtEvents = Array.Empty<RestDebtEventRecord>();
+            s.ExpeditionStrainRecoveryGateUpdates = Array.Empty<ExpeditionStrainRecoveryGateUpdateRecord>();
+            s.ExpeditionBeneficialRests = Array.Empty<ExpeditionBeneficialRestRecord>();
+            s.ExpeditionStrainRecoveryOffers = Array.Empty<ExpeditionStrainRecoveryOfferRecord>();
+            s.ExpeditionStrainRemovals = Array.Empty<ExpeditionStrainRemovalRecord>();
         }
 
         private string ValidateDailyProvisioningState(Snapshot s)
         {
             if (dailyProvisioning == null)
                 return s.SchemaVersion != Snapshot.DailyProvisioningSchema && s.SchemaVersion != Snapshot.RestDebtSchema
+                    && s.SchemaVersion != Snapshot.ExpeditionStrainRecoverySchema
                     && s.DailyProvisioningSettlements.Length == 0
                     && s.DailyProvisioningConsumption.Length == 0 && s.ExpeditionStrainGains.Length == 0
                     && s.ExpeditionDashLocks.Length == 0 && s.RestWatchSchedules.Length == 0 && s.RestIntervals.Length == 0
-                    && s.RestWatchOutcomes.Length == 0 && s.RestDebtEvents.Length == 0 ? null : "DailyProvisioningProfileMissing";
-            int expectedSchema = restDebtProfile == null ? Snapshot.DailyProvisioningSchema : Snapshot.RestDebtSchema;
+                    && s.RestWatchOutcomes.Length == 0 && s.RestDebtEvents.Length == 0
+                    && s.ExpeditionStrainRecoveryGateUpdates.Length == 0 && s.ExpeditionBeneficialRests.Length == 0
+                    && s.ExpeditionStrainRecoveryOffers.Length == 0 && s.ExpeditionStrainRemovals.Length == 0
+                    ? null : "DailyProvisioningProfileMissing";
+            int expectedSchema = strainRecoveryProfile != null ? Snapshot.ExpeditionStrainRecoverySchema
+                : restDebtProfile == null ? Snapshot.DailyProvisioningSchema : Snapshot.RestDebtSchema;
             if (s.SchemaVersion != expectedSchema || !s.TestOnly
                 || s.ContentFingerprint != ContentFingerprint || dailyProvisioning.ValidateBindings(s) != null)
                 return "DailyProvisioningProfileMismatch";
             string dailyError = ValidateDailyProvisioningHistory(s);
             if (dailyError != null) return dailyError;
-            return ValidateRestDebtState(s);
+            string restDebtError = ValidateRestDebtState(s);
+            return restDebtError ?? ValidateStrainRecoveryState(s);
         }
 
         private string ValidateDailyProvisioningHistory(Snapshot s)
@@ -411,6 +472,8 @@ namespace Decennium.Foundation.Laboratory
                         living, gainId, s.Revision + 1);
                     s.DailyProvisioningSettlements = s.DailyProvisioningSettlements.Concat(new[] { settlement }).ToArray();
                     s.DailyProvisioningConsumption = s.DailyProvisioningConsumption.Concat(contributions).ToArray();
+                    string gateError = RecordProvisioningGateUpdates(s, settlement);
+                    if (gateError != null) return gateError;
                     ExpeditionStrainRules.ClampLife(s, actor, end, s.Revision + 1);
                 }
                 day = checked(day + 1);

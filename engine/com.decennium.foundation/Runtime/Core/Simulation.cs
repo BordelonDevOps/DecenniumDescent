@@ -29,7 +29,7 @@ namespace Decennium.Foundation
         PauseCacheExcavation, ResumeCacheExcavation, Ready, RespondReady,
         StartRouteMappingWork, PauseRouteMappingWork, ResumeRouteMappingWork,
         StartRouteReconnaissance, PauseRouteReconnaissance, ResumeRouteReconnaissance,
-        ScheduleRestWatch, BeginRest, InterruptRest }
+        ScheduleRestWatch, BeginRest, InterruptRest, ResolveExpeditionStrainRecovery }
     public enum Outcome { Rejected, Committed, Duplicate }
 
     // DTOs are detached copies. No caller ever receives the owned simulation state.
@@ -117,6 +117,7 @@ namespace Decennium.Foundation
         public const int SharedCharacterAdvancementSchema = 61;
         public const int DailyProvisioningSchema = 62;
         public const int RestDebtSchema = 63;
+        public const int ExpeditionStrainRecoverySchema = 64;
         public const int MaxActors = 64;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
@@ -270,6 +271,10 @@ namespace Decennium.Foundation
         public RestIntervalRecord[] RestIntervals = Array.Empty<RestIntervalRecord>();
         public RestWatchOutcomeRecord[] RestWatchOutcomes = Array.Empty<RestWatchOutcomeRecord>();
         public RestDebtEventRecord[] RestDebtEvents = Array.Empty<RestDebtEventRecord>();
+        public ExpeditionStrainRecoveryGateUpdateRecord[] ExpeditionStrainRecoveryGateUpdates = Array.Empty<ExpeditionStrainRecoveryGateUpdateRecord>();
+        public ExpeditionBeneficialRestRecord[] ExpeditionBeneficialRests = Array.Empty<ExpeditionBeneficialRestRecord>();
+        public ExpeditionStrainRecoveryOfferRecord[] ExpeditionStrainRecoveryOffers = Array.Empty<ExpeditionStrainRecoveryOfferRecord>();
+        public ExpeditionStrainRemovalRecord[] ExpeditionStrainRemovals = Array.Empty<ExpeditionStrainRemovalRecord>();
         public HuntingTrapDeploymentRecord[] HuntingTrapDeployments = Array.Empty<HuntingTrapDeploymentRecord>();
         public HuntingTrapActionRecord[] HuntingTrapActions = Array.Empty<HuntingTrapActionRecord>();
         public HuntingTrapTriggerRecord[] HuntingTrapTriggers = Array.Empty<HuntingTrapTriggerRecord>();
@@ -337,6 +342,10 @@ namespace Decennium.Foundation
             ExpeditionStrainGains = ExpeditionStrainGains.ToArray(), ExpeditionDashLocks = ExpeditionDashLocks.ToArray(),
             RestWatchSchedules = RestWatchSchedules.ToArray(), RestIntervals = RestIntervals.ToArray(),
             RestWatchOutcomes = RestWatchOutcomes.ToArray(), RestDebtEvents = RestDebtEvents.ToArray(),
+            ExpeditionStrainRecoveryGateUpdates = ExpeditionStrainRecoveryGateUpdates.ToArray(),
+            ExpeditionBeneficialRests = ExpeditionBeneficialRests.ToArray(),
+            ExpeditionStrainRecoveryOffers = ExpeditionStrainRecoveryOffers.ToArray(),
+            ExpeditionStrainRemovals = ExpeditionStrainRemovals.ToArray(),
             HuntingTrapDeployments = HuntingTrapDeployments.ToArray(), HuntingTrapActions = HuntingTrapActions.ToArray(),
             HuntingTrapTriggers = HuntingTrapTriggers.ToArray(), HuntingTrapTethers = HuntingTrapTethers.ToArray(),
             FormulaWork = FormulaWork.ToArray(),
@@ -657,7 +666,8 @@ namespace Decennium.Foundation
                 || s.SchemaVersion == Foundation.Snapshot.RouteMappingWorkSchema
                 || s.SchemaVersion == Foundation.Snapshot.RouteReconnaissanceSchema
                 || s.SchemaVersion == Foundation.Snapshot.DailyProvisioningSchema
-                || s.SchemaVersion == Foundation.Snapshot.RestDebtSchema) { }
+                || s.SchemaVersion == Foundation.Snapshot.RestDebtSchema
+                || s.SchemaVersion == Foundation.Snapshot.ExpeditionStrainRecoverySchema) { }
             else if (s.SchemaVersion == Foundation.Snapshot.ProspectingSchema || s.SchemaVersion == Foundation.Snapshot.MiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.DestructiveMiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.MiningExpeditionAssignmentSchema
@@ -808,6 +818,12 @@ namespace Decennium.Foundation
             if((command.Kind==CommandKind.AdvanceCharacterLevel)!=(command.Advancement!=null)
                 ||command.Advancement!=null&&(command.Inventory!=null||command.Combat!=null))return "UnexpectedCommandPayload";
             if(command.Fingerprint.Length>512)return "CommandFingerprintTooLong";
+            if(command.Kind==CommandKind.ResolveExpeditionStrainRecovery
+                &&(command.Target==""||command.X!=0||command.Y!=0||command.Inventory!=null||command.Combat!=null
+                    ||command.Advancement!=null||command.Ranged!=null||command.OverwatchRider!=OverwatchRider.None
+                    ||command.SuppressionFire!=null||command.DefensiveFormation!=null||command.ExpeditionAssignment!=null
+                    ||command.HarvestSelection!=null||command.MiningSelection!=null||command.ProspectingExposure!=null
+                    ||command.RouteMappingWork!=null))return "UnexpectedStrainRecoveryPayload";
             if ((command.Kind == CommandKind.RecordProspectingExposure) != (command.ProspectingExposure != null)
                 || command.ProspectingExposure != null && (command.Inventory != null || command.Combat != null
                     || command.Advancement != null || command.Ranged != null || command.HarvestSelection != null
@@ -935,6 +951,12 @@ namespace Decennium.Foundation
             }
             return null;
         }
+        private bool AcceptedClockAwaitingChoice(CommandReceipt receipt)
+            => receipt != null && (state.ManufacturingAdvance != null
+                    && state.ManufacturingAdvance.CommandId == receipt.Id
+                    && state.ManufacturingAdvance.CommandRevision == receipt.Revision
+                || state.ExpeditionStrainRecoveryOffers.Any(x => x.Pending
+                    && x.InitiatingCommandId == receipt.Id && x.Revision == receipt.Revision));
         public CommandResult Execute(Authority authority, Command command)
         {
             string preflightFailure=ValidateCommandAndAuthority(authority,command);
@@ -942,7 +964,8 @@ namespace Decennium.Foundation
             CommandReceipt previous = state.Receipts.FirstOrDefault(r => r.Principal == authority.Principal && r.Id == command.Id);
             if (previous != null)
                 return previous.Fingerprint == command.Fingerprint
-                    ? new CommandResult(Outcome.Duplicate, (state.ManufacturingAdvance?.CommandId==command.Id && state.ManufacturingAdvance.CommandRevision==previous.Revision)?"AlreadyAcceptedSuspended":"AlreadyCommitted", previous.Revision,(state.ManufacturingAdvance?.CommandId==command.Id && state.ManufacturingAdvance.CommandRevision==previous.Revision)) : Reject("CommandIdConflict");
+                    ? new CommandResult(Outcome.Duplicate, AcceptedClockAwaitingChoice(previous)?"AlreadyAcceptedSuspended":"AlreadyCommitted",
+                        previous.Revision,AcceptedClockAwaitingChoice(previous)) : Reject("CommandIdConflict");
             if (command.ExpectedRevision != state.Revision) return Reject("StaleRevision");
             if (!state.Actors.Any(a => a.Id == command.Actor)) return Reject("UnknownActor");
             if (state.Revision == long.MaxValue || state.Receipts.Length == (state.SchemaVersion >= Snapshot.InventorySchema ? 512 : Validation.MaxReceipts)) return Reject("SessionCapacityReached");
@@ -962,7 +985,9 @@ namespace Decennium.Foundation
             try { ValidateCandidate(candidate); }
             catch (ArgumentException) { return Reject("InvalidResult"); }
             state = candidate.Copy();
-            return new CommandResult(Outcome.Committed, state.ManufacturingAdvance?.CommandId==command.Id?"AcceptedSuspended":"Committed", state.Revision,state.ManufacturingAdvance?.CommandId==command.Id);
+            var acceptedReceipt=state.Receipts.Single(r=>r.Principal==authority.Principal&&r.Id==command.Id);
+            bool awaitingChoice=AcceptedClockAwaitingChoice(acceptedReceipt);
+            return new CommandResult(Outcome.Committed, awaitingChoice?"AcceptedSuspended":"Committed", state.Revision,awaitingChoice);
         }
         public CommandQueryResult QueryCommand(Authority authority, Command command)
         {

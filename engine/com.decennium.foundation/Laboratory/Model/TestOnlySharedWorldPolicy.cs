@@ -180,6 +180,7 @@ namespace Decennium.Foundation.Laboratory
             InitializeRouteReconnaissance(s);
             InitializeDailyProvisioning(s);
             InitializeRestDebt(s);
+            InitializeStrainRecovery(s);
             if(contentManifest!=null) {
                 string bindingError=contentManifest.ValidatePortableSnapshot(s);
                 if(bindingError!=null)throw new InvalidOperationException(bindingError);
@@ -546,6 +547,7 @@ namespace Decennium.Foundation.Laboratory
                 ResolveReadyMineralPreparations(s);
                 string provisioningError=SettleDueProvisioning(s);if(provisioningError!=null)return provisioningError;
                 string restDebtError=ProcessRestDebtBoundary(s);if(restDebtError!=null)return restDebtError;
+                ClampExpeditionStrainLife(s);
                 foreach(string id in ready) {
                     var job=s.FormulaWork.Single(x=>x.Id==id);
                     if(ResearchAccess(s,job.WorkerId,false)==null)FinishFormulaCheck(s,job);
@@ -564,11 +566,18 @@ namespace Decennium.Foundation.Laboratory
                 ResolveReadyRouteReconnaissanceChecks(s, routeReconnaissanceReady, initiating);
                 ObservationRules.Refresh(s, s.RuleClock, s.Revision + 1);
                 ExpireReadyActionsAtStart(s,initiating);
+                string recoveryOfferError=OpenStrainRecoveryOffers(s,initiating);
+                if(recoveryOfferError!=null)return recoveryOfferError;
                 if(ManufacturingChoicePending(s)){
                     TestOnlyClubAttackPolicy.AdvanceConditions(s,".clock-final",s.SchemaVersion<Snapshot.ExpeditionRouteSchema,
                         s.SchemaVersion>=Snapshot.ExpeditionRouteSchema);
                     s.ManufacturingAdvance=continuation??new ManufacturingAdvanceRecord(target,exitAfterSlot,initiating.Id,s.Revision+1,
                         initiating.Kind==CommandKind.EndRegularTurn||initiating.Kind==CommandKind.EndFixedEncounter?initiating.Target:"");
+                    if(connectedCombat!=null){ObserveCalendar(s);ExpireReadyActionsAtStart(s,initiating);}return null;
+                }
+                if(HasPendingRecoveryOffer(s)){
+                    TestOnlyClubAttackPolicy.AdvanceConditions(s,".clock-final",s.SchemaVersion<Snapshot.ExpeditionRouteSchema,
+                        s.SchemaVersion>=Snapshot.ExpeditionRouteSchema);
                     if(connectedCombat!=null){ObserveCalendar(s);ExpireReadyActionsAtStart(s,initiating);}return null;
                 }
             }
@@ -580,6 +589,9 @@ namespace Decennium.Foundation.Laboratory
         private string ResolveCore(Snapshot s, Command c)
         {
             if (!s.Actors.Any(a => a.Id == c.Actor)) return "UnknownWorldActor";
+            string pendingRecoveryFailure = PendingRecoveryChoiceFailure(s, c);
+            if (pendingRecoveryFailure != null) return pendingRecoveryFailure;
+            if (IsStrainRecoveryCommand(c.Kind)) return ResolveStrainRecoveryChoice(s, c);
             if (IsRestDebtCommand(c.Kind)) return ResolveRestDebtCommand(s, c);
             string restingActorFailure = RestingActorCommandFailure(s, c);
             if (restingActorFailure != null) return restingActorFailure;
@@ -730,7 +742,11 @@ namespace Decennium.Foundation.Laboratory
                 var restDebtBoundary=NextRestDebtBoundary(s);
                 if(restDebtBoundary.HasValue&&restDebtBoundary.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
             }
-            var before = s.RuleClock; string failure = inventory.Resolve(s, c);
+            var before = s.RuleClock;
+            string failure = c.Kind==CommandKind.HandleVessel&&strainRecoveryProfile!=null
+                ?VesselHandling.Resolve(s,c,actor=>AvailableHands(s,actor),id=>s.PortableEquipment.Length==0
+                    &&TestOnlyFillingPolicy.IsBaseFixtureVessel(id))
+                :inventory.Resolve(s, c);
             if (failure != null) return failure;
             if (s.RuleClock > before) {
                 CreditFormulaWork(s,CampGreens.Subtract(s.RuleClock,before),new System.Collections.Generic.List<string>());
@@ -751,6 +767,8 @@ namespace Decennium.Foundation.Laboratory
                 if(connectedCombat!=null)ObserveCalendar(s);
                 string provisioningError=SettleDueProvisioning(s);if(provisioningError!=null)return provisioningError;
                 string restDebtError=ProcessRestDebtBoundary(s);if(restDebtError!=null)return restDebtError;
+                ClampExpeditionStrainLife(s);
+                string recoveryOfferError=OpenStrainRecoveryOffers(s,c);if(recoveryOfferError!=null)return recoveryOfferError;
             }
             return null;
         }

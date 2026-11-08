@@ -93,6 +93,9 @@ namespace Decennium.Foundation.Tests
             TestOnlySharedWorldPolicy RestDebtPolicy(TestOnlyRestDebtProfile restProfile = null)
                 => new TestOnlySharedWorldPolicy().EnableCampGreensAssignments()
                     .EnableDailyProvisioning().EnableRestDebt(restProfile);
+            TestOnlySharedWorldPolicy StrainRecoveryPolicy()
+                => new TestOnlySharedWorldPolicy().EnableCampGreensAssignments()
+                    .EnableDailyProvisioning().EnableRestDebt().EnableExpeditionStrainRecovery();
             Simulation RestoreRestDebt(Simulation simulation, TestOnlySharedWorldPolicy policy)
                 => new Simulation(policy, codec.Decode(Bytes(simulation)), ExecutionProfile.Laboratory);
             void ScheduleRest(Simulation simulation, long day, RestWatchSlot slot, string actor = TestOnlyPolicy.ActorId)
@@ -934,6 +937,222 @@ namespace Decennium.Foundation.Tests
                         x.ActorId, x.SourceId, x.TrackId, x.At, x.Revision, x.LevelBefore, x.AttemptedAmount,
                         x.AddedAmount, x.OrdinaryRemovable, x.RemovalGateMet, x.Endpoint)).ToArray();
                 Throws<ArgumentException>(() => Validation.Snapshot(forged));
+            });
+
+            cases.Add("secure_rest_recovers_one_provisioning_strain_point_after_supported_day_and_replays_choice", () => {
+                var policy = StrainRecoveryPolicy();
+                var simulation = World(policy);
+                Require(simulation.Capture().SchemaVersion == Snapshot.ExpeditionStrainRecoverySchema
+                    && simulation.Capture().TestOnly
+                    && simulation.Capture().ExpeditionStrainRecoveryOffers.Length == 0,
+                    "The recovery scenario did not select the isolated schema64 TEST_ONLY profile.");
+
+                // Day 0 deliberately settles unsupported. The fixed food/water lots in stock do not
+                // count as consumption. The missed Evening Watch opens Rest Debt at hour 24.
+                ScheduleRest(simulation, 1, RestWatchSlot.Afternoon);
+                AdvanceRestDebt(simulation, 24 * 3600);
+                var unsupported = simulation.Capture();
+                var firstProvisioningGain = unsupported.ExpeditionStrainGains.Single(x =>
+                    x.CauseKind == ExpeditionStrainCauseKind.DailyProvisioning && x.ActorId == TestOnlyPolicy.ActorId);
+                Require(firstProvisioningGain.OrdinaryRemovable == true && firstProvisioningGain.RemovalGateMet == false
+                    && unsupported.RestDebtEvents.Any(x => x.ActorId == TestOnlyPolicy.ActorId
+                        && x.Kind == RestDebtEventKind.Opened)
+                    && unsupported.ExpeditionBeneficialRests.Length == 0
+                    && unsupported.ExpeditionStrainRecoveryOffers.Length == 0,
+                    "Stock or a first unsupported day incorrectly opened Strain recovery.");
+
+                // Consume actual lot-backed provisions on day 1. The hero's ordinary Club uses
+                // one hand, so the empty-handed companion fills its own skin at the prepared plot.
+                // The hero explores to the plot edge before the companion fills. The active
+                // plot-flask fill prevents a physical pickup until its work is canceled.
+                WorldCommit(simulation, IC(simulation, CommandKind.StartIntake, TestOnlyInventoryPolicy.FoodId,
+                    new InventoryRequest(new RuleQuantity(2))));
+                AdvanceRestDebt(simulation, 30 * 60);
+                WorldCommit(simulation, IC(simulation, CommandKind.StartIntake, TestOnlyInventoryPolicy.WaterId,
+                    new InventoryRequest(new RuleQuantity(4))));
+                AdvanceRestDebt(simulation, 4 * 60);
+                foreach (var step in new[] { new[] { 1, 0 }, new[] { 1, 0 }, new[] { 1, 0 }, new[] { 0, 1 }, new[] { 0, 1 } }) {
+                    WorldStep(simulation, step[0], step[1]);
+                    AdvanceRestDebt(simulation, 1);
+                }
+                WorldCommit(simulation, IC(simulation, CommandKind.StartWaterFill, TestOnlyFillingPolicy.SupplyId,
+                    new InventoryRequest(new RuleQuantity(1), TestOnlyFillingPolicy.FlaskId), TestOnlyPolicy.CompanionId));
+                var pendingPlotFill = simulation.Capture().WaterFills.Single(x => x.DestinationId==TestOnlyFillingPolicy.FlaskId);
+                RejectUnchanged(simulation, host, IC(simulation, CommandKind.HandleVessel, TestOnlyFillingPolicy.FlaskId,
+                    new InventoryRequest(new RuleQuantity(1), "", HandlingKind.Pickup), TestOnlyPolicy.ActorId),
+                    "VesselHasPendingWork");
+                WorldCommit(simulation, IC(simulation, CommandKind.CancelWaterFill, pendingPlotFill.Id,
+                    actor: TestOnlyPolicy.CompanionId));
+                WorldCommit(simulation, IC(simulation, CommandKind.StartWaterFill, TestOnlyFillingPolicy.SupplyId,
+                    new InventoryRequest(new RuleQuantity(4), TestOnlyFillingPolicy.CompanionSkinId), TestOnlyPolicy.CompanionId));
+                AdvanceRestDebt(simulation, 60);
+                var fill = simulation.Capture().WaterFills.Single(x => x.DestinationId==TestOnlyFillingPolicy.CompanionSkinId);
+                Require(fill.WorkerId == TestOnlyPolicy.CompanionId && fill.Status == WaterFillStatus.Complete
+                    && fill.OutputLotId != "", "The shared filling authority did not complete the companion's physical water transfer.");
+                // The off-calendar companion uses six-second activity intervals. This one
+                // second reaches the next interval so the paid handover is recorded wholly
+                // inside one interval rather than straddling its boundary.
+                AdvanceRestDebt(simulation,1);
+                var beforeHandover = simulation.Capture();
+                var heroBurdenBefore = PortableEquipmentRules.CarriedBurden(beforeHandover, TestOnlyPolicy.ActorId);
+                var companionBurdenBefore = PortableEquipmentRules.CarriedBurden(beforeHandover, TestOnlyPolicy.CompanionId);
+                Require(beforeHandover.PortableEquipment.Length==0
+                    &&heroBurdenBefore.Pounds==new RuleQuantity(4)&&companionBurdenBefore.Pounds==new RuleQuantity(6),
+                    "Schema64 did not include the fixture pouches, held Club, unlinked skin tare and actual carried water exactly once.");
+                var noHands = beforeHandover.Copy();
+                noHands.Clubs = noHands.Clubs.Concat(new[]{new ClubInstance("TEST_ONLY.second-companion-club",
+                    "weapon.club",TestOnlyPolicy.CompanionId,TestOnlyPolicy.CompanionId,TestOnlyPolicy.CompanionId,3,3),
+                    new ClubInstance("TEST_ONLY.third-companion-club","weapon.club",TestOnlyPolicy.CompanionId,
+                        TestOnlyPolicy.CompanionId,TestOnlyPolicy.CompanionId,3,3)}).ToArray();
+                var noHandsVessels=noHands.Vessels;var noHandsMoves=noHands.VesselMoves;var noHandsWork=noHands.Work;
+                var attemptedHandover=IC(simulation,CommandKind.HandleVessel,TestOnlyFillingPolicy.CompanionSkinId,
+                    new InventoryRequest(new RuleQuantity(1),TestOnlyPolicy.ActorId,HandlingKind.Handover),TestOnlyPolicy.CompanionId);
+                var vesselResolver=typeof(VesselHandling).GetMethod("Resolve",
+                    System.Reflection.BindingFlags.NonPublic|System.Reflection.BindingFlags.Static);
+                Require(vesselResolver!=null&&vesselResolver.GetParameters().Length==4,
+                    "The schema64 vessel adapter no longer exposes its expected internal resolver seam.");
+                string handFailure=(string)vesselResolver.Invoke(null,new object[]{noHands,attemptedHandover,
+                    new Func<string,int>(actor=>2-noHands.Clubs.Count(x=>x.HeldBy==actor)),
+                    new Func<string,bool>(id=>id==TestOnlyFillingPolicy.ActorSkinId||id==TestOnlyFillingPolicy.CompanionSkinId
+                        ||id==TestOnlyFillingPolicy.FlaskId)});
+                Require(handFailure=="HandlingHandRequired"&&noHands.RuleClock==beforeHandover.RuleClock
+                    &&ReferenceEquals(noHands.Vessels,noHandsVessels)&&ReferenceEquals(noHands.VesselMoves,noHandsMoves)
+                    &&ReferenceEquals(noHands.Work,noHandsWork),
+                    "An actor with both hands occupied moved an unlinked vessel or changed shared state.");
+                var recipientNoHands=beforeHandover.Copy();
+                recipientNoHands.Clubs=recipientNoHands.Clubs.Concat(new[]{new ClubInstance("TEST_ONLY.second-hero-club",
+                    "weapon.club",TestOnlyPolicy.ActorId,TestOnlyPolicy.ActorId,TestOnlyPolicy.ActorId,3,2)}).ToArray();
+                var recipientVessels=recipientNoHands.Vessels;var recipientMoves=recipientNoHands.VesselMoves;
+                var recipientWork=recipientNoHands.Work;
+                string recipientFailure=(string)vesselResolver.Invoke(null,new object[]{recipientNoHands,attemptedHandover,
+                    new Func<string,int>(actor=>2-recipientNoHands.Clubs.Count(x=>x.HeldBy==actor)),
+                    new Func<string,bool>(id=>id==TestOnlyFillingPolicy.ActorSkinId||id==TestOnlyFillingPolicy.CompanionSkinId
+                        ||id==TestOnlyFillingPolicy.FlaskId)});
+                Require(recipientFailure=="RecipientHandsUnavailable"&&recipientNoHands.RuleClock==beforeHandover.RuleClock
+                    &&ReferenceEquals(recipientNoHands.Vessels,recipientVessels)&&ReferenceEquals(recipientNoHands.VesselMoves,recipientMoves)
+                    &&ReferenceEquals(recipientNoHands.Work,recipientWork),
+                    "A recipient with both hands occupied received a vessel or changed shared state.");
+                var linkedVessel=beforeHandover.Copy();
+                linkedVessel.PortableEquipment=new[]{new PortableEquipmentRecord("TEST_ONLY.linked-companion-skin",
+                    "adventuring-gear.waterskin",TestOnlyPolicy.CompanionId,TestOnlyPolicy.CompanionId,"",PortablePlacement.Carried,
+                    PortableLinkKind.WaterVessel,TestOnlyFillingPolicy.CompanionSkinId,PortableMassBasis.Fixed,
+                    new RuleQuantity(1),new RuleQuantity(1))};
+                string linkedFailure=(string)vesselResolver.Invoke(null,new object[]{linkedVessel,attemptedHandover,
+                    new Func<string,int>(actor=>2),new Func<string,bool>(id=>id==TestOnlyFillingPolicy.ActorSkinId
+                        ||id==TestOnlyFillingPolicy.CompanionSkinId||id==TestOnlyFillingPolicy.FlaskId)});
+                Require(linkedFailure=="UsePortableEquipmentHandling",
+                    "An actual portable vessel link bypassed its established handler.");
+                var handover=IC(simulation, CommandKind.HandleVessel, TestOnlyFillingPolicy.CompanionSkinId,
+                    new InventoryRequest(new RuleQuantity(1), TestOnlyPolicy.ActorId, HandlingKind.Handover),
+                    TestOnlyPolicy.CompanionId);
+                WorldCommit(simulation, handover);
+                var afterHandover=simulation.Capture();
+                var movedSkin=afterHandover.Vessels.Single(x=>x.Id==TestOnlyFillingPolicy.CompanionSkinId);
+                Require(movedSkin.LocationId==TestOnlyPolicy.ActorId&&movedSkin.CustodianId==TestOnlyPolicy.ActorId
+                    &&movedSkin.OwnerId==TestOnlyPolicy.CompanionId
+                    &&afterHandover.VesselContents.Any(x=>x.LotId==fill.OutputLotId&&x.VesselId==movedSkin.Id)
+                    &&afterHandover.Work.Lots.Single(x=>x.Id==fill.OutputLotId).Amount==new RuleQuantity(4)
+                    &&afterHandover.RuleClock==beforeHandover.RuleClock.AddSeconds(1)
+                    &&PortableEquipmentRules.CarriedBurden(afterHandover,TestOnlyPolicy.ActorId).Pounds==new RuleQuantity(9)
+                    &&PortableEquipmentRules.CarriedBurden(afterHandover,TestOnlyPolicy.CompanionId).Pounds==new RuleQuantity(1),
+                    "The one-second handover changed ownership, water identity/quantity or double-counted/omitted carried mass.");
+                WorldCommit(simulation, IC(simulation, CommandKind.StartIntake, fill.OutputLotId,
+                    new InventoryRequest(new RuleQuantity(4)), TestOnlyPolicy.ActorId));
+                AdvanceRestDebt(simulation, 4 * 60);
+                foreach (var step in new[] { new[] { -1, 0 }, new[] { -1, 0 }, new[] { -1, 0 }, new[] { 0, -1 }, new[] { 0, -1 } }) {
+                    WorldStep(simulation, step[0], step[1]);
+                    AdvanceRestDebt(simulation, 1);
+                }
+
+                // A second, unrelated missed Watch and the already due debt produce two more
+                // ineligible points. A later supported day clears the actor-wide block without
+                // rewriting any original Strain gain.
+                AdvanceRestDebt(simulation, 16 * 3600 - (30 * 60 + 4 * 60 + 60 + 5 + 1 + 1 + 4 * 60 + 5));
+                var atForty = simulation.Capture();
+                Require(atForty.RuleClock == T(40 * 3600)
+                    && ExpeditionStrainRules.Current(atForty, TestOnlyPolicy.ActorId).Level == 3
+                    && atForty.ExpeditionStrainGains.Count(x => x.ActorId == TestOnlyPolicy.ActorId) == 3
+                    && atForty.ExpeditionStrainGains.Where(x => x.CauseKind != ExpeditionStrainCauseKind.DailyProvisioning)
+                        .All(x => x.OrdinaryRemovable == null && x.RemovalGateMet == null),
+                    "The due and missed Rest events did not retain their distinct ineligible Strain points.");
+                var originalGains = StrainSemantics(atForty);
+
+                WorldCommit(simulation, IC(simulation, CommandKind.BeginRest, "TEST_ONLY.safe-berth"));
+                AdvanceRestDebt(simulation, 4 * 3600);
+                string restPath = Path.Combine(directory, "strain-recovery-active-rest.ddsave");
+                new FileSaveStore().Save(restPath, simulation.Capture());
+                simulation = new Simulation(policy, new FileSaveStore().Load(restPath), ExecutionProfile.Laboratory);
+                byte[] beforeCompletion = Bytes(simulation);
+                var parallel = RestoreRestDebt(simulation, policy);
+                Require(beforeCompletion.SequenceEqual(Bytes(parallel)),
+                    "The active secure Rest changed through save/restore before its boundary.");
+
+                AdvanceRestDebt(simulation, 4 * 3600);
+                AdvanceRestDebt(parallel, 4 * 3600);
+                var offered = simulation.Capture();
+                var dailySettlement = offered.DailyProvisioningSettlements.Single(x => x.ActorId == TestOnlyPolicy.ActorId
+                    && x.DayOrdinal == 1);
+                var dailyEvidence = offered.DailyProvisioningConsumption.Where(x => x.SettlementId == dailySettlement.Id).ToArray();
+                var offer = offered.ExpeditionStrainRecoveryOffers.Single(x => x.ActorId == TestOnlyPolicy.ActorId && x.Pending);
+                Require(offered.RuleClock == T(48 * 3600) && dailySettlement.FoodConsumed == new RuleQuantity(2)
+                    && dailySettlement.WaterConsumed == new RuleQuantity(8) && !dailySettlement.HasShortfall
+                    && dailyEvidence.Length == 3 && dailyEvidence.All(x => offered.Intakes.Any(i => i.Id == x.IntakeId
+                        && i.LotId == x.LotId && i.ReservationId == x.ReservationId))
+                    && offered.ExpeditionStrainRecoveryGateUpdates.Single(x => x.PointId == firstProvisioningGain.PointId).SettlementId
+                        == dailySettlement.Id
+                    && offered.RestDebtEvents.Last(x => x.ActorId == TestOnlyPolicy.ActorId).Kind == RestDebtEventKind.Cleared
+                    && offer.PointIds.SequenceEqual(new[] { firstProvisioningGain.PointId })
+                    && ExpeditionStrainRules.Current(offered, TestOnlyPolicy.ActorId).Level == 3
+                    && originalGains.SequenceEqual(StrainSemantics(offered)),
+                    "Actual day-1 consumption, debt clearance, append-only recovery gate and secure-rest offer did not settle together.");
+                Require(Bytes(simulation).SequenceEqual(Bytes(parallel)),
+                    "Whole and save/restored clock advancement diverged at the secure Rest boundary.");
+
+                var unrelated = IC(simulation, CommandKind.AdvanceClock, actor: TestOnlyPolicy.ActorId, x: 1, y: 1);
+                byte[] pendingBefore = Bytes(simulation);
+                var blockedQuery = simulation.QueryCommand(host, unrelated);
+                Require(blockedQuery.Supported && !blockedQuery.Admissible
+                    && blockedQuery.Code == "ExpeditionStrainRecoveryChoicePending"
+                    && pendingBefore.SequenceEqual(Bytes(simulation)),
+                    "The unresolved patient choice did not freeze further state-changing commands.");
+                RejectUnchanged(simulation, host, unrelated, "ExpeditionStrainRecoveryChoicePending");
+
+                string pendingPath = Path.Combine(directory, "strain-recovery-pending-choice.ddsave");
+                new FileSaveStore().Save(pendingPath, simulation.Capture());
+                var restored = new Simulation(policy, new FileSaveStore().Load(pendingPath), ExecutionProfile.Laboratory);
+                Require(Bytes(simulation).SequenceEqual(Bytes(restored)),
+                    "The pending recovery offer changed through file save/restore.");
+                var discovered = restored.DiscoverCommands(host, TestOnlyPolicy.ActorId)
+                    .Where(x => x.Command.Kind == CommandKind.ResolveExpeditionStrainRecovery).ToArray();
+                Require(discovered.Length == 1 && discovered[0].Query.Supported && discovered[0].Query.Admissible
+                    && discovered[0].Command.Target == firstProvisioningGain.PointId,
+                    "The player was not offered exactly the eligible original daily-provisioning point.");
+
+                var replayA = RestoreRestDebt(restored, policy);
+                var replayB = RestoreRestDebt(restored, policy);
+                var choice = discovered[0].Command;
+                WorldCommit(replayA, choice);
+                WorldCommit(replayB, choice);
+                var recovered = replayA.Capture();
+                var recovery = recovered.ExpeditionStrainRemovals.Single();
+                var unchangedLife = atForty.Lives.Single(x => x.ActorId == TestOnlyPolicy.ActorId);
+                var finalLife = recovered.Lives.Single(x => x.ActorId == TestOnlyPolicy.ActorId);
+                byte[] beforeDuplicate = Bytes(replayA);
+                var duplicateResult = replayA.Execute(host, choice);
+                Require(Bytes(replayA).SequenceEqual(Bytes(replayB))
+                    && duplicateResult.Outcome == Outcome.Duplicate && beforeDuplicate.SequenceEqual(Bytes(replayA))
+                    && recovered.ExpeditionBeneficialRests.Single().RecoveryOfferId == offer.Id
+                    && recovery.PointId == firstProvisioningGain.PointId
+                    && recovered.ExpeditionStrainGains.Any(x => x.PointId == recovery.PointId)
+                    && ExpeditionStrainRules.Current(recovered, TestOnlyPolicy.ActorId).Level == 2
+                    && recovered.RestDebtEvents.Count(x => x.ActorId == TestOnlyPolicy.ActorId) == offered.RestDebtEvents.Count(x => x.ActorId == TestOnlyPolicy.ActorId)
+                    && originalGains.SequenceEqual(StrainSemantics(recovered))
+                    && finalLife.Hp == unchangedLife.Hp && finalLife.Dead == unchangedLife.Dead,
+                    "Patient-selected recovery did not remove exactly one eligible point, preserve source history/life, and replay deterministically.");
+                var afterResolutionSave = Bytes(replayA);
+                var finalRestore = RestoreRestDebt(replayA, policy);
+                Require(afterResolutionSave.SequenceEqual(Bytes(finalRestore)),
+                    "Resolved benefit and point-removal history changed through save/restore.");
             });
         }
     }

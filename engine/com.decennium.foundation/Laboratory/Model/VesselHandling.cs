@@ -35,12 +35,14 @@ namespace Decennium.Foundation.Laboratory
             ||s.VesselContents.Where(x=>x.VesselId==vessel).Any(x=>s.Work.Reservations.Any(r=>r.LotId==x.LotId&&r.RemainingAmount!=default));
         private static bool Near(Snapshot s,string actor,string other)
         {var a=s.Actors.Single(x=>x.Id==actor);var b=s.Actors.Single(x=>x.Id==other);return Math.Abs((long)a.X-b.X)+Math.Abs((long)a.Y-b.Y)<=1;}
-        internal static string Resolve(Snapshot s,Command c,Func<string,int> hands)
+        internal static string Resolve(Snapshot s,Command c,Func<string,int> hands,Func<string,bool> allowUnlinkedPortableVessel=null)
         {
             if(c.Inventory==null||c.Inventory.Amount!=new RuleQuantity(1)||c.X!=0||c.Y!=0)return "InvalidVesselHandling";
             var vessel=s.Vessels.SingleOrDefault(v=>v.Id==c.Target);if(vessel==null)return "UnknownVessel";
-            if(s.SchemaVersion>=Snapshot.PortableEquipmentSchema)return s.PortableEquipment.Any(x=>x.LinkKind==PortableLinkKind.WaterVessel&&x.LinkedId==vessel.Id)
-                ?"UsePortableEquipmentHandling":"PortableEquipmentRequired";
+            if(s.SchemaVersion>=Snapshot.PortableEquipmentSchema) {
+                if(s.PortableEquipment.Any(x=>x.LinkKind==PortableLinkKind.WaterVessel&&x.LinkedId==vessel.Id))return "UsePortableEquipmentHandling";
+                if(allowUnlinkedPortableVessel==null||!allowUnlinkedPortableVessel(vessel.Id))return "PortableEquipmentRequired";
+            }
             if(hands(c.Actor)<1)return "HandlingHandRequired";
             if(OrdinaryInventory.Busy(s,c.Actor))return "WorkerBusy";
             if(PendingUse(s,vessel.Id))return "VesselHasPendingWork";
