@@ -3,8 +3,26 @@ using System.Linq;
 
 namespace Decennium.Foundation
 {
-    public enum ExpeditionWorkProcedure { ToolRepair = 1, FishingTrapRetrieval = 2, MiningExtraction = 3, CacheExcavation = 4 }
+    public enum ExpeditionWorkProcedure
+    {
+        ToolRepair = 1, FishingTrapRetrieval = 2, MiningExtraction = 3, CacheExcavation = 4,
+        CropPlanting = 5, CropTending = 6, CropHarvesting = 7
+    }
     public enum ExpeditionAssignmentStatus { Travelling = 1, Ready = 2, Started = 3, Cancelled = 4 }
+
+    public static class ExpeditionWorkProcedureRules
+    {
+        public static bool TryGetCropWork(ExpeditionWorkProcedure procedure, out CropWorkKind kind)
+        {
+            switch (procedure)
+            {
+                case ExpeditionWorkProcedure.CropPlanting: kind = CropWorkKind.Plant; return true;
+                case ExpeditionWorkProcedure.CropTending: kind = CropWorkKind.Tend; return true;
+                case ExpeditionWorkProcedure.CropHarvesting: kind = CropWorkKind.Harvest; return true;
+                default: kind = default; return false;
+            }
+        }
+    }
 
     /// <summary>Explicit assignment intent. The selected fixture derives the physical work site;
     /// this payload supplies neither site authority nor procedure qualifications.</summary>
@@ -25,6 +43,7 @@ namespace Decennium.Foundation
                 || procedure == ExpeditionWorkProcedure.FishingTrapRetrieval && destinationId == ""
                 || procedure == ExpeditionWorkProcedure.MiningExtraction && (destinationId != "" || miningSelection == null)
                 || procedure == ExpeditionWorkProcedure.CacheExcavation && destinationId != ""
+                || ExpeditionWorkProcedureRules.TryGetCropWork(procedure, out _) && destinationId != ""
                 || procedure != ExpeditionWorkProcedure.MiningExtraction && miningSelection != null)
                 throw new ArgumentException("Invalid expedition work assignment request.");
             Procedure = procedure; TargetId = targetId; DestinationId = destinationId; MiningSelection = miningSelection;
@@ -60,6 +79,7 @@ namespace Decennium.Foundation
                 || procedure == ExpeditionWorkProcedure.FishingTrapRetrieval && destinationId == ""
                 || procedure == ExpeditionWorkProcedure.MiningExtraction && (destinationId != "" || miningSelection == null)
                 || procedure == ExpeditionWorkProcedure.CacheExcavation && destinationId != ""
+                || ExpeditionWorkProcedureRules.TryGetCropWork(procedure, out _) && destinationId != ""
                 || procedure != ExpeditionWorkProcedure.MiningExtraction && miningSelection != null
                 || siteX < 0 || siteY < 0 || assignedAt > updatedAt
                 || workId == null || workId != "" && !Validation.ValidId(workId)
@@ -80,6 +100,12 @@ namespace Decennium.Foundation
         public const int MaxAssignments = 64;
         public static bool HasCapacity(Snapshot s)
             => s != null && s.ExpeditionAssignments != null && s.ExpeditionAssignments.Length < MaxAssignments;
+        private static bool CropTaskMatches(Snapshot s, ExpeditionWorkAssignmentRecord assignment)
+        {
+            if (!ExpeditionWorkProcedureRules.TryGetCropWork(assignment.Procedure, out var kind)) return false;
+            return s.Crops.Any(crop => crop.Id == assignment.TargetId && crop.Tasks.Any(task => task.Id == assignment.WorkId
+                && task.WorkerId == assignment.WorkerId && task.Kind == kind));
+        }
         public static void Validate(Snapshot s)
         {
             if (s.ExpeditionAssignments == null || s.ExpeditionAssignments.Length > MaxAssignments
@@ -94,7 +120,11 @@ namespace Decennium.Foundation
                 throw new ArgumentException("Cache excavation assignments require schema57.");
             if (s.ExpeditionAssignments.Select(x => x.Id).Distinct(StringComparer.Ordinal).Count() != s.ExpeditionAssignments.Length
                 || s.ExpeditionAssignments.Where(x => x.Open).Select(x => x.WorkerId).Distinct(StringComparer.Ordinal).Count()
-                    != s.ExpeditionAssignments.Count(x => x.Open))
+                    != s.ExpeditionAssignments.Count(x => x.Open)
+                || s.ExpeditionAssignments.Where(x => x.Procedure == ExpeditionWorkProcedure.CropPlanting
+                    && x.Status != ExpeditionAssignmentStatus.Cancelled).Select(x => x.TargetId)
+                    .Distinct(StringComparer.Ordinal).Count() != s.ExpeditionAssignments.Count(x => x.Procedure == ExpeditionWorkProcedure.CropPlanting
+                        && x.Status != ExpeditionAssignmentStatus.Cancelled))
                 throw new ArgumentException("Duplicate or overlapping expedition assignments.");
             foreach (var assignment in s.ExpeditionAssignments)
             {
@@ -119,6 +149,21 @@ namespace Decennium.Foundation
                     && !s.BuriedCacheSites.Any(x => x.CacheId == assignment.TargetId
                         && x.X == assignment.SiteX && x.Y == assignment.SiteY))
                     throw new ArgumentException("Cache excavation assignment does not match its buried site.");
+                if (ExpeditionWorkProcedureRules.TryGetCropWork(assignment.Procedure, out _))
+                {
+                    var crop = s.Crops.SingleOrDefault(x => x.Id == assignment.TargetId);
+                    if (assignment.DestinationId != ""
+                        || assignment.Procedure == ExpeditionWorkProcedure.CropPlanting
+                            && (assignment.Status == ExpeditionAssignmentStatus.Started
+                                ? crop == null || !s.CropPlots.Any(plot => plot.Id == crop.PlotId)
+                                : assignment.Status != ExpeditionAssignmentStatus.Cancelled && crop != null)
+                        || assignment.Procedure != ExpeditionWorkProcedure.CropPlanting
+                            && (crop == null || !s.CropPlots.Any(plot => plot.Id == crop.PlotId)))
+                        throw new ArgumentException("Crop assignment does not match its crop batch and plot.");
+                    if (assignment.Status == ExpeditionAssignmentStatus.Started
+                        && !CropTaskMatches(s, assignment))
+                        throw new ArgumentException("Started crop assignment has no matching crop task.");
+                }
                 if (assignment.Status == ExpeditionAssignmentStatus.Started)
                 {
                     bool linked = assignment.Procedure == ExpeditionWorkProcedure.ToolRepair
@@ -133,8 +178,10 @@ namespace Decennium.Foundation
                                 && x.Ability == assignment.MiningSelection.Ability && x.Hurried == assignment.MiningSelection.Hurried
                                 && x.FailureVictimPreference == assignment.MiningSelection.FailureVictimPreference
                                 && x.CriticalRecoveryPreference == assignment.MiningSelection.CriticalRecoveryPreference)
-                                : s.CacheExcavations.Any(x => x.Id == assignment.WorkId && x.AssignmentId == assignment.Id
-                                    && x.WorkerId == assignment.WorkerId && x.CacheId == assignment.TargetId);
+                                : assignment.Procedure == ExpeditionWorkProcedure.CacheExcavation
+                                    ? s.CacheExcavations.Any(x => x.Id == assignment.WorkId && x.AssignmentId == assignment.Id
+                                        && x.WorkerId == assignment.WorkerId && x.CacheId == assignment.TargetId)
+                                    : CropTaskMatches(s, assignment);
                     if (!linked) throw new ArgumentException("Started expedition assignment has no matching procedure record.");
                 }
             }

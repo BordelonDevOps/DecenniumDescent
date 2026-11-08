@@ -15,6 +15,7 @@ namespace Decennium.Foundation.Laboratory
     public static class CampGreens
     {
         public const long PlantSeconds=3600,TendSeconds=900,HarvestSeconds=3600,GrowthSeconds=604800,CareSeconds=86400,WindowSeconds=172800;
+        public const long SeedPacketsPerPlant=1,WaterPintsPerWork=8,FoodPoundsPerHarvest=8;
         public const string SeedUnit="prototype.camp-greens.seed-packet",WaterUnit="prototype.suitable-water.pint",FoodUnit="prototype.camp-greens.food-pound";
         internal static RuleTime Add(RuleTime a,RuleTime b)=>RuleTime.FromFraction((BigInteger)a.Numerator*b.Denominator
             +(BigInteger)b.Numerator*a.Denominator,(BigInteger)a.Denominator*b.Denominator);
@@ -83,8 +84,8 @@ namespace Decennium.Foundation.Laboratory
                 if(lot.UnitId!=unit||lot.LocationId!=plot)throw new ArgumentException("Wrong crop input unit or location.");
                 claims.Add(new ResourceReservation(id+suffix,id,lotId,quantity));
             }
-            if(kind==CropWorkKind.Plant)Input(".seed",seedLot,SeedUnit,1); // One explicitly authored0.1-lb packet.
-            if(kind!=CropWorkKind.Harvest)Input(".water",waterLot,WaterUnit,8);
+            if(kind==CropWorkKind.Plant)Input(".seed",seedLot,SeedUnit,SeedPacketsPerPlant); // One explicitly authored0.1-lb packet.
+            if(kind!=CropWorkKind.Harvest)Input(".water",waterLot,WaterUnit,WaterPintsPerWork);
             state.Work=state.Work.Reserve(id,Array.Empty<WorkerInterval>(),claims);
             foreach(var claim in claims)state.Work=state.Work.Consume(id,claim.Id);
             return new CropWorkRecord(id,worker,kind,CropWorkStatus.Working,state.RuleClock,default,null,claims.Select(c=>c.Id));
@@ -166,7 +167,7 @@ namespace Decennium.Foundation.Laboratory
                         if(task.Kind==CropWorkKind.Harvest) {
                             crop.Stage=CropStage.Harvested;crop.ClosedAt=target;
                             string lotId=task.Id+".food";RuleTime freshness=task.StartedAt.AddSeconds(WindowSeconds);
-                            state.Work=new WorkLedger(state.Work.Lots.Concat(new[]{new ResourceLot(lotId,FoodUnit,8,crop.PlotId,crop.OwnerId)}),
+                            state.Work=new WorkLedger(state.Work.Lots.Concat(new[]{new ResourceLot(lotId,FoodUnit,FoodPoundsPerHarvest,crop.PlotId,crop.OwnerId)}),
                                 state.Work.WorkerIntervals,state.Work.Reservations);
                             outputs.Add(new CropFoodRecord(lotId,crop.Id,freshness,target>=freshness));
                         }

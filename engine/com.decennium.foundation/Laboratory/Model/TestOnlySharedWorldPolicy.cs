@@ -22,6 +22,7 @@ namespace Decennium.Foundation.Laboratory
         private bool fishingTrapLegacy;
         private bool fishingTrapBaitOnly;
         private bool expeditionAssignmentsEnabled;
+        private bool cropAssignmentsEnabled;
         private bool cacheExcavationEnabled;
         private bool offCalendarActivityEnabled;
         private bool dodgeActionEnabled;

@@ -7,11 +7,12 @@ namespace Decennium.Foundation.Laboratory
 {
     public sealed partial class TestOnlySharedWorldPolicy
     {
+        private const int CampGreensSiteX = 3, CampGreensSiteY = 3;
         private static void PutExpeditionAssignment(Snapshot s, ExpeditionWorkAssignmentRecord value)
             => s.ExpeditionAssignments = s.ExpeditionAssignments.Select(x => x.Id == value.Id ? value : x).ToArray();
 
         private bool AssignmentSite(Snapshot s, ExpeditionWorkProcedure procedure, string targetId, string destinationId,
-            MiningSelectionRequest miningSelection,
+            MiningSelectionRequest miningSelection, string existingAssignmentId,
             out int siteX, out int siteY, out string error)
         {
             siteX = siteY = 0; error = null;
@@ -48,6 +49,31 @@ namespace Decennium.Foundation.Laboratory
                 if (!site.Buried) { error = "CacheAlreadyExposed"; return false; }
                 siteX = site.X; siteY = site.Y; return true;
             }
+            if (ExpeditionWorkProcedureRules.TryGetCropWork(procedure, out var cropKind))
+            {
+                if (!cropAssignmentsEnabled || destinationId != "")
+                { error = "CampGreensAssignmentUnsupported"; return false; }
+                var plot = s.CropPlots.SingleOrDefault(x => x.Id == TestOnlyCropPolicy.PlotId);
+                if (plot == null) { error = "CampGreensPlotUnavailable"; return false; }
+                if (cropKind == CropWorkKind.Plant)
+                {
+                    if (s.Crops.Any(x => x.Id == targetId)
+                        || s.ExpeditionAssignments.Any(x => x.Procedure == ExpeditionWorkProcedure.CropPlanting
+                            && x.Id != existingAssignmentId && x.TargetId == targetId
+                            && x.Status != ExpeditionAssignmentStatus.Cancelled))
+                    { error = "CropBatchAlreadyExistsOrAssigned"; return false; }
+                }
+                else
+                {
+                    var crop = s.Crops.SingleOrDefault(x => x.Id == targetId);
+                    var expectedStage = cropKind == CropWorkKind.Tend ? CropStage.Growing : CropStage.Mature;
+                    if (crop == null || crop.PlotId != plot.Id || crop.Stage != expectedStage)
+                    { error = cropKind == CropWorkKind.Tend ? "CropNotTendable" : "CropNotHarvestable"; return false; }
+                }
+                // The existing TEST_ONLY Camp Greens plot is authored at this world tile;
+                // CropPlotRecord itself remains content identity/suitability, not geometry.
+                siteX = CampGreensSiteX; siteY = CampGreensSiteY; return true;
+            }
             error = "UnknownExpeditionWorkProcedure"; return false;
         }
 
@@ -76,7 +102,7 @@ namespace Decennium.Foundation.Laboratory
                 if (!ExpeditionAssignmentValidation.HasCapacity(s))
                     return "ExpeditionAssignmentCapacityReached";
                 if (s.ExpeditionAssignments.Any(x => x.Open && x.WorkerId == c.Actor)) return "WorkerAlreadyAssigned";
-                if (!AssignmentSite(s, request.Procedure, request.TargetId, request.DestinationId,request.MiningSelection,
+                if (!AssignmentSite(s, request.Procedure, request.TargetId, request.DestinationId,request.MiningSelection,"",
                     out int siteX, out int siteY, out string siteError)) return siteError;
                 string id = "expedition.assignment." + (s.Revision + 1).ToString(CultureInfo.InvariantCulture);
                 var actor = s.Actors.Single(x => x.Id == c.Actor);
@@ -101,7 +127,7 @@ namespace Decennium.Foundation.Laboratory
             var worker = s.Actors.Single(x => x.Id == c.Actor);
             if (worker.X != current.SiteX || worker.Y != current.SiteY || s.WorldTraversals.Any(x => x.ActorId == c.Actor))
                 return "ExpeditionAssignmentNotAtSite";
-            if (!AssignmentSite(s, current.Procedure, current.TargetId, current.DestinationId,current.MiningSelection,
+            if (!AssignmentSite(s, current.Procedure, current.TargetId, current.DestinationId,current.MiningSelection,current.Id,
                 out int siteXNow, out int siteYNow, out string currentSiteError)) return currentSiteError;
             if (siteXNow != current.SiteX || siteYNow != current.SiteY) return "ExpeditionAssignmentSiteChanged";
 
@@ -131,6 +157,17 @@ namespace Decennium.Foundation.Laboratory
             {
                 error = StartCacheExcavation(s, current, out workId);
                 if (error != null) return error;
+            }
+            else if (ExpeditionWorkProcedureRules.TryGetCropWork(current.Procedure, out var cropKind))
+            {
+                CommandKind kind = cropKind == CropWorkKind.Plant ? CommandKind.PlantCrop
+                    : cropKind == CropWorkKind.Tend ? CommandKind.TendCrop : CommandKind.HarvestCrop;
+                error = Resolve(s, new Command(c.Id, c.Actor, c.ExpectedRevision, kind, current.TargetId));
+                if (error != null) return error;
+                var task = s.Crops.Single(x => x.Id == current.TargetId).Tasks.SingleOrDefault(x =>
+                    x.WorkerId == current.WorkerId && x.Kind == cropKind && x.Status == CropWorkStatus.Working);
+                if (task == null) return "AssignmentProcedureDidNotCreateCropWork";
+                workId = task.Id;
             }
             else
             {

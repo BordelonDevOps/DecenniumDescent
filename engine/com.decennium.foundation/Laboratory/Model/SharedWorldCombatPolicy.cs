@@ -71,12 +71,41 @@ namespace Decennium.Foundation.Laboratory
         public TestOnlySharedWorldPolicy EnableExpeditionAssignments()
         {
             if (expeditionAssignmentsEnabled) return this;
-            if (!PhysicalFishingEnabled && miningFixture==null && !cacheExcavationEnabled)
-                throw new InvalidOperationException("Expedition assignments require an enabled physical Trap or mining procedure.");
+            if (!PhysicalFishingEnabled && miningFixture==null && !cacheExcavationEnabled && !cropAssignmentsEnabled)
+                throw new InvalidOperationException("Expedition assignments require an enabled physical work procedure.");
             expeditionAssignmentsEnabled = true;
             using (var hash = System.Security.Cryptography.SHA256.Create())
                 ContentFingerprint = "TEST_ONLY.site-assignment-v1-" + string.Concat(hash.ComputeHash(
                     System.Text.Encoding.UTF8.GetBytes(ContentFingerprint + "|site-aware-work-assignment-v1"))
+                    .Select(x => x.ToString("x2", System.Globalization.CultureInfo.InvariantCulture)));
+            return this;
+        }
+
+        /// <summary>Opts this TEST_ONLY world into player-directed assignments for the existing
+        /// prepared Camp Greens plot. Crop timing, costs, freshness and output remain owned by
+        /// CampGreens; the assignment adds no crop state or alternate work authority.</summary>
+        public TestOnlySharedWorldPolicy EnableCampGreensAssignments()
+        {
+            if (initializationStarted) throw new InvalidOperationException("Camp Greens assignments must be selected before Initial().");
+            if (cropAssignmentsEnabled) return this;
+            cropAssignmentsEnabled = true;
+            if (!expeditionAssignmentsEnabled) EnableExpeditionAssignments();
+            string key = "camp-greens-assignment-v1|" + TestOnlyCropPolicy.PlotId + "|"
+                + TestOnlyCropPolicy.SeedLotId + "|" + TestOnlyCropPolicy.WaterLotId + "|"
+                + CampGreens.SeedPacketsPerPlant.ToString(System.Globalization.CultureInfo.InvariantCulture) + "|"
+                + CampGreens.WaterPintsPerWork.ToString(System.Globalization.CultureInfo.InvariantCulture) + "|"
+                + CampGreens.FoodPoundsPerHarvest.ToString(System.Globalization.CultureInfo.InvariantCulture) + "|"
+                + CampGreens.PlantSeconds.ToString(System.Globalization.CultureInfo.InvariantCulture) + "|"
+                + CampGreens.TendSeconds.ToString(System.Globalization.CultureInfo.InvariantCulture) + "|"
+                + CampGreens.GrowthSeconds.ToString(System.Globalization.CultureInfo.InvariantCulture) + "|"
+                + CampGreens.CareSeconds.ToString(System.Globalization.CultureInfo.InvariantCulture) + "|"
+                + CampGreens.WindowSeconds.ToString(System.Globalization.CultureInfo.InvariantCulture) + "|"
+                + CampGreens.HarvestSeconds.ToString(System.Globalization.CultureInfo.InvariantCulture) + "|"
+                + CampGreensSiteX.ToString(System.Globalization.CultureInfo.InvariantCulture) + "|"
+                + CampGreensSiteY.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            using (var hash = System.Security.Cryptography.SHA256.Create())
+                ContentFingerprint = "TEST_ONLY.farm-assign-v1-" + string.Concat(hash.ComputeHash(
+                    System.Text.Encoding.UTF8.GetBytes(ContentFingerprint + "|" + key))
                     .Select(x => x.ToString("x2", System.Globalization.CultureInfo.InvariantCulture)));
             return this;
         }

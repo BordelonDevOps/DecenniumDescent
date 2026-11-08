@@ -391,6 +391,122 @@ namespace Decennium.Foundation.Tests
                     action: WorldActionCommitment.Dash, actionReference: "forged.dash", actionReferenceRevision: 1);
                 Throws<ArgumentException>(() => Validation.Snapshot(invalid));
             });
+
+            cases.Add("assigned_camp_greens_uses_shared_travel_work_and_crop_authorities", () => {
+                const string cropId = "TEST_ONLY.assigned-crop";
+                var policy = new TestOnlySharedWorldPolicy(new SharedCombatFixture()).EnableCampGreensAssignments();
+                var simulation = World(policy);
+                Require(simulation.Capture().SchemaVersion == Snapshot.ExpeditionAssignmentSchema
+                    && simulation.Capture().CropPlots.Any(x => x.Id == TestOnlyCropPolicy.PlotId),
+                    "Assigned farming did not reuse the existing plot and assignment schema.");
+
+                WorldStep(simulation, -1, 0, actor: worker);
+                WorldAdvance(simulation, 1);
+                var plantRequest = new ExpeditionAssignmentRequest(ExpeditionWorkProcedure.CropPlanting, cropId);
+                WorldCommit(simulation, ExpeditionCommand(simulation, CommandKind.AssignExpeditionWork,
+                    request: plantRequest, actor: worker));
+                var assignment = simulation.Capture().ExpeditionAssignments.Single();
+                Require(assignment.Status == ExpeditionAssignmentStatus.Travelling && assignment.TargetId == cropId
+                    && assignment.SiteX == 3 && assignment.SiteY == 3,
+                    "Planting assignment did not derive its destination from the authored plot.");
+
+                WorldStep(simulation, 1, 0);
+                WorldAdvance(simulation, 1);
+                Require(simulation.Capture().ExpeditionAssignments.Single().Status == ExpeditionAssignmentStatus.Travelling,
+                    "Lead exploration prematurely marked an unmoved companion ready.");
+                WorldStep(simulation, 1, 0, actor: worker);
+                WorldAdvance(simulation, 1);
+                assignment = simulation.Capture().ExpeditionAssignments.Single();
+                var afterTravel = simulation.Capture();
+                Require(assignment.Status == ExpeditionAssignmentStatus.Ready
+                    && afterTravel.Actors.Single(x => x.Id == worker).X == 3
+                    && afterTravel.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).X == 1,
+                    "Companion travel and lead exploration did not advance on the same clock: assignment="
+                        + assignment.Status + ", worker=" + afterTravel.Actors.Single(x => x.Id == worker).X + ","
+                        + afterTravel.Actors.Single(x => x.Id == worker).Y + ", lead="
+                        + afterTravel.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).X + ","
+                        + afterTravel.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).Y + ", clock=" + afterTravel.RuleClock
+                        + ", traversals=" + afterTravel.WorldTraversals.Length);
+
+                string cancelledPlantAssignment = assignment.Id;
+                WorldCommit(simulation, ExpeditionCommand(simulation, CommandKind.CancelExpeditionWork,
+                    cancelledPlantAssignment, actor: worker));
+                WorldCommit(simulation, ExpeditionCommand(simulation, CommandKind.AssignExpeditionWork,
+                    request: plantRequest, actor: worker));
+                assignment = simulation.Capture().ExpeditionAssignments.Single(x => x.Open && x.WorkerId == worker);
+                Require(assignment.Id != cancelledPlantAssignment && assignment.Status == ExpeditionAssignmentStatus.Ready,
+                    "A cancelled pre-start crop assignment prevented reusing its uncreated batch identity.");
+
+                var startPlant = ExpeditionCommand(simulation, CommandKind.StartExpeditionWork, assignment.Id, actor: worker);
+                WorldCommit(simulation, startPlant);
+                var started = simulation.Capture().ExpeditionAssignments.Single(x => x.Id == assignment.Id);
+                var plantTask = simulation.Capture().Crops.Single(x => x.Id == cropId).Tasks.Single();
+                Require(started.Status == ExpeditionAssignmentStatus.Started && started.WorkId == plantTask.Id
+                    && plantTask.Kind == CropWorkKind.Plant && plantTask.WorkerId == worker
+                    && simulation.Capture().Work.Lots.Single(x => x.Id == TestOnlyCropPolicy.SeedLotId).Amount == new RuleQuantity(7)
+                    && simulation.Capture().Work.Lots.Single(x => x.Id == TestOnlyCropPolicy.WaterLotId).Amount == new RuleQuantity(504),
+                    "Assigned planting did not use Camp Greens costs and its authoritative crop task.");
+                WorldAdvance(simulation, 1800);
+                byte[] partialPlant = Bytes(simulation);
+                var firstReplay = new Simulation(policy, new SnapshotCodec().Decode(partialPlant), ExecutionProfile.Laboratory);
+                var secondReplay = new Simulation(policy, new SnapshotCodec().Decode(partialPlant), ExecutionProfile.Laboratory);
+                Require(partialPlant.SequenceEqual(Bytes(firstReplay)), "Mid-plant save/restore changed crop or assignment state.");
+                byte[] beforeDuplicate = Bytes(simulation);
+                Require(simulation.Execute(TestOnlySharedWorldPolicy.Host(), startPlant).Outcome == Outcome.Duplicate
+                    && beforeDuplicate.SequenceEqual(Bytes(simulation)), "Duplicate assignment start changed inputs or crop work.");
+                WorldAdvance(firstReplay, 1800);
+                WorldAdvance(secondReplay, 1800);
+                Require(Bytes(firstReplay).SequenceEqual(Bytes(secondReplay))
+                    && firstReplay.Capture().Crops.Single(x => x.Id == cropId).Stage == CropStage.Growing,
+                    "Restored planting continuations did not settle deterministically.");
+                simulation = firstReplay;
+
+                string AssignAndStart(ExpeditionWorkProcedure procedure)
+                {
+                    WorldCommit(simulation, ExpeditionCommand(simulation, CommandKind.AssignExpeditionWork,
+                        request: new ExpeditionAssignmentRequest(procedure, cropId), actor: worker));
+                    var next = simulation.Capture().ExpeditionAssignments.Single(x => x.Open && x.WorkerId == worker);
+                    WorldCommit(simulation, ExpeditionCommand(simulation, CommandKind.StartExpeditionWork, next.Id, actor: worker));
+                    return next.Id;
+                }
+
+                for (int day = 0; day < 6; day++)
+                {
+                    WorldAdvance(simulation, 85500);
+                    Require(simulation.Capture().Crops.Single(x => x.Id == cropId).CareUntil
+                        == simulation.Capture().RuleClock.AddSeconds(900), "Tending did not begin 15 minutes before the care deadline.");
+                    string tendingId = AssignAndStart(ExpeditionWorkProcedure.CropTending);
+                    WorldAdvance(simulation, 900);
+                    var crop = simulation.Capture().Crops.Single(x => x.Id == cropId);
+                    Require(simulation.Capture().ExpeditionAssignments.Single(x => x.Id == tendingId).WorkId == crop.Tasks.Last().Id
+                        && crop.Tasks.Last().Kind == CropWorkKind.Tend,
+                        "Tending assignment did not link the authoritative crop work record.");
+                }
+                WorldAdvance(simulation, 86400);
+                Require(simulation.Capture().Crops.Single(x => x.Id == cropId).Stage == CropStage.Mature,
+                    "Assigned tending did not preserve the adopted growth schedule.");
+
+                string harvestId = AssignAndStart(ExpeditionWorkProcedure.CropHarvesting);
+                WorldAdvance(simulation, 1800);
+                byte[] partialHarvest = Bytes(simulation);
+                var harvestReplayA = new Simulation(policy, new SnapshotCodec().Decode(partialHarvest), ExecutionProfile.Laboratory);
+                var harvestReplayB = new Simulation(policy, new SnapshotCodec().Decode(partialHarvest), ExecutionProfile.Laboratory);
+                WorldAdvance(harvestReplayA, 1800);
+                WorldAdvance(harvestReplayB, 1800);
+                var finalA = harvestReplayA.Capture();
+                var finalB = harvestReplayB.Capture();
+                var finalCrop = finalA.Crops.Single(x => x.Id == cropId);
+                var foodLot = finalA.CropFood.Single(x => x.BatchId == cropId);
+                RuleQuantity cropYield = finalA.Work.Lots.Single(x => x.Id == foodLot.LotId).Amount;
+                bool replayEqual = Bytes(harvestReplayA).SequenceEqual(Bytes(harvestReplayB));
+                RuleQuantity edible = OrdinaryInventory.EdibleFood(finalA);
+                string linkedWork = finalA.ExpeditionAssignments.Single(x => x.Id == harvestId).WorkId;
+                Require(replayEqual && finalCrop.Stage == CropStage.Harvested && cropYield == new RuleQuantity(8)
+                    && edible == new RuleQuantity(10) && linkedWork == finalCrop.Tasks.Last().Id,
+                    "Assigned harvest did not save, replay, and settle through existing finite food output: replay="
+                        + replayEqual + ", stage=" + finalCrop.Stage + ", crop yield=" + cropYield + ", edible=" + edible + ", assignmentWork="
+                        + linkedWork + ", cropWork=" + finalCrop.Tasks.Last().Id + ", clock=" + finalA.RuleClock);
+            });
         }
     }
 }
