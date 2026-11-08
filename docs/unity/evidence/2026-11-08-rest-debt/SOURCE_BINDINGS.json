@@ -96,6 +96,7 @@
       ],
       "code": [
         "Runtime/Core/ExpeditionProvisioningRecords.cs",
+        "Runtime/Core/WorldPositionResolver.cs",
         "Runtime/Core/Simulation.cs",
         "Runtime/Persistence/ExpeditionProvisioningCodec.cs",
         "Runtime/Persistence/SnapshotCodec.cs",
@@ -112,13 +113,17 @@
       "implemented": [
         "Persist typed cause references and per-actor same-command gain order in the shared Strain ledger; preserve schema62 wire layout.",
         "Resolve prospective Rest Watch choices, missed outcomes, debt opening, due settlement, same-boundary ordering, reset and safe-rest clearance on RuleClock.",
+        "Resolve Rest-site admission from exact shared physical position; reject every outstanding ordinary traversal, including suspended partial movement.",
+        "Share the active-Rest command-admission rejection between query and execution, while preserving Rest controls and AdvanceClock.",
         "Reuse WorkLedger, assignments and traversals to reject overlapping work and share time with companion activities.",
         "Use explicit fingerprinted TEST_ONLY safe-site/eligibility facts; reject tactical entry while a Rest is active because no authoritative emergency event dispatcher exists.",
         "Expose Rest commands through the common discovery/query authority and save all lifecycle records for deterministic replay."
       ],
       "tests": [
         "rest_debt_connects_companion_work_safe_rest_deadline_and_replay",
-        "rest_debt_and_daily_provisioning_share_same_time_strain_order"
+        "rest_debt_and_daily_provisioning_share_same_time_strain_order",
+        "rest_debt_requires_physical_safe_site_after_suspended_traversal_restore",
+        "resting_movement_query_and_execution_share_admission_guard"
       ]
     }
   ],

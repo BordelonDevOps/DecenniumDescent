@@ -581,7 +581,8 @@ namespace Decennium.Foundation.Laboratory
         {
             if (!s.Actors.Any(a => a.Id == c.Actor)) return "UnknownWorldActor";
             if (IsRestDebtCommand(c.Kind)) return ResolveRestDebtCommand(s, c);
-            if (IsActorResting(s, c.Actor) && c.Kind != CommandKind.AdvanceClock) return "ActorCurrentlyResting";
+            string restingActorFailure = RestingActorCommandFailure(s, c);
+            if (restingActorFailure != null) return restingActorFailure;
             if (RouteMappingResultCommand(c.Kind)) return ResolveRouteMappingResultCommand(s, c);
             if (RouteMappingWorkCommand(c.Kind)) return ResolveRouteMappingWork(s, c);
             if (RouteReconnaissanceCommand(c.Kind)) return ResolveRouteReconnaissance(s, c);

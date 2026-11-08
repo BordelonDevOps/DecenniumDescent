@@ -686,6 +686,82 @@ namespace Decennium.Foundation.Tests
                     "Post-restore command replay diverged after multi-day settlement.");
             });
 
+            cases.Add("rest_debt_requires_physical_safe_site_after_suspended_traversal_restore", () => {
+                var policy = RestDebtPolicy();
+                var simulation = World(policy);
+                WorldStep(simulation, 1, 0);
+                WorldAdvance(simulation, 2, 5);
+                WorldCommit(simulation, IC(simulation, CommandKind.SuspendWorldStep));
+                var suspended = simulation.Capture();
+                var actor = suspended.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId);
+                var position = WorldPositionResolver.Position(suspended, TestOnlyPolicy.ActorId);
+                Require(actor.X == 0 && position.X > default(RuleQuantity) && position.X < new RuleQuantity(1),
+                    "The fixture did not create a suspended actor physically between the departure anchor and berth.");
+
+                var beginRest = IC(simulation, CommandKind.BeginRest, "TEST_ONLY.safe-berth");
+                byte[] beforeQuery = Bytes(simulation);
+                var query = simulation.QueryCommand(host, beginRest);
+                Require(query.Supported && !query.Admissible && query.Code == "ActorNotAtRestSite"
+                    && beforeQuery.SequenceEqual(Bytes(simulation)),
+                    "Rest discovery accepted a stale anchor or mutated the suspended traversal state.");
+                RejectUnchanged(simulation, host, beginRest, "ActorNotAtRestSite");
+
+                string savePath = Path.Combine(directory, "rest-debt-suspended-traversal.ddsave");
+                new FileSaveStore().Save(savePath, simulation.Capture());
+                var restored = new Simulation(policy, new FileSaveStore().Load(savePath), ExecutionProfile.Laboratory);
+                var restoredBeginRest = IC(restored, CommandKind.BeginRest, "TEST_ONLY.safe-berth");
+                byte[] beforeRestoredQuery = Bytes(restored);
+                var restoredQuery = restored.QueryCommand(host, restoredBeginRest);
+                Require(restoredQuery.Supported && !restoredQuery.Admissible
+                    && restoredQuery.Code == "ActorNotAtRestSite"
+                    && beforeRestoredQuery.SequenceEqual(Bytes(restored)),
+                    "Save/restore lost exact physical traversal position for Rest-site discovery.");
+                RejectUnchanged(restored, host, restoredBeginRest, "ActorNotAtRestSite");
+
+                WorldCommit(restored, IC(restored, CommandKind.ResumeWorldStep));
+                WorldAdvance(restored, 3, 5);
+                Require(restored.Capture().WorldTraversals.Length == 0
+                    && restored.Capture().Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).X == 1,
+                    "Restored movement did not finish at the next physical grid anchor.");
+                WorldStep(restored, -1, 0);
+                WorldAdvance(restored, 1);
+                var returned = restored.Capture();
+                var returnedPosition = WorldPositionResolver.Position(returned, TestOnlyPolicy.ActorId);
+                Require(returned.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).X == 0
+                    && returnedPosition.X == default(RuleQuantity) && returnedPosition.Y == default(RuleQuantity),
+                    "The actor did not return physically to the authored safe berth.");
+                var validBeginRest = IC(restored, CommandKind.BeginRest, "TEST_ONLY.safe-berth");
+                var validRestQuery = restored.QueryCommand(host, validBeginRest);
+                Require(validRestQuery.Supported && validRestQuery.Admissible,
+                    "A physically returned actor could not discover qualifying Rest at the safe berth.");
+                WorldCommit(restored, validBeginRest);
+                Require(restored.Capture().RestIntervals.Single().Status == RestIntervalStatus.Active,
+                    "A physically returned actor could not begin the qualifying Rest.");
+            });
+
+            cases.Add("resting_movement_query_and_execution_share_admission_guard", () => {
+                var policy = RestDebtPolicy();
+                var simulation = World(policy);
+                WorldCommit(simulation, IC(simulation, CommandKind.BeginRest, "TEST_ONLY.safe-berth"));
+                var move = IC(simulation, CommandKind.BeginWorldStep, "walk", x: 1, y: 0);
+                byte[] beforeQuery = Bytes(simulation);
+                var query = simulation.QueryCommand(host, move);
+                Require(query.Supported && !query.Admissible && query.Code == "ActorCurrentlyResting"
+                    && beforeQuery.SequenceEqual(Bytes(simulation)),
+                    "Movement discovery did not share the execution Rest guard or mutated active Rest state.");
+                RejectUnchanged(simulation, host, move, "ActorCurrentlyResting");
+
+                var activeRest = simulation.Capture().RestIntervals.Single();
+                WorldCommit(simulation, IC(simulation, CommandKind.InterruptRest, activeRest.Id));
+                var moveAfterInterruption = IC(simulation, CommandKind.BeginWorldStep, "walk", x: 1, y: 0);
+                var resumedQuery = simulation.QueryCommand(host, moveAfterInterruption);
+                Require(resumedQuery.Supported && resumedQuery.Admissible,
+                    "Explicitly interrupting Rest did not restore normal movement discovery.");
+                WorldCommit(simulation, moveAfterInterruption);
+                Require(simulation.Capture().WorldTraversals.Single().ActorId == TestOnlyPolicy.ActorId,
+                    "Movement did not execute after Rest was explicitly interrupted.");
+            });
+
             cases.Add("rest_debt_connects_companion_work_safe_rest_deadline_and_replay", () => {
                 const string cropId = "TEST_ONLY.rest-debt-assigned-crop";
                 var policy = RestDebtPolicy();

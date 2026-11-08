@@ -116,6 +116,10 @@ namespace Decennium.Foundation.Laboratory
         private bool IsActorResting(Snapshot s, string actor)
             => restDebtProfile != null && s.RestIntervals.Any(x => x.ActorId == actor && x.Status == RestIntervalStatus.Active);
 
+        private string RestingActorCommandFailure(Snapshot s, Command c)
+            => IsActorResting(s, c.Actor) && c.Kind != CommandKind.AdvanceClock && !IsRestDebtCommand(c.Kind)
+                ? "ActorCurrentlyResting" : null;
+
         private RuleTime WatchStart(long day, RestWatchSlot slot)
             => new RuleTime(checked(day * 86400 + (long)slot * RestWatchSeconds));
 
@@ -207,12 +211,13 @@ namespace Decennium.Foundation.Laboratory
                 if (c.Target == null) return "InvalidRestSite";
                 var site = restDebtProfile.Site(c.Target);
                 if (site == null || !site.SafeBerth || !site.QualifyingRestEligible) return "RestSiteNotQualified";
-                var actor = s.Actors.Single(x => x.Id == c.Actor);
-                if (actor.X != site.X || actor.Y != site.Y) return "ActorNotAtRestSite";
+                var position = WorldPositionResolver.Position(s, c.Actor);
+                if (position.X != new RuleQuantity(site.X) || position.Y != new RuleQuantity(site.Y))
+                    return "ActorNotAtRestSite";
                 if (IsActorResting(s, c.Actor)) return "ActorAlreadyResting";
                 RuleTime end = s.RuleClock.AddSeconds(RestWatchSeconds);
                 if (WorldActivityValidation.HasActiveLabor(s, c.Actor, s.RuleClock, end)
-                    || s.WorldTraversals.Any(x => x.ActorId == c.Actor && x.Status != WorldTraversalStatus.Suspended)
+                    || s.WorldTraversals.Any(x => x.ActorId == c.Actor)
                     || s.RouteTravels.Any(x => x.TravelerId == c.Actor && x.Status == ExpeditionRouteTravelStatus.Moving)
                     || s.ExpeditionAssignments.Any(x => x.WorkerId == c.Actor && x.Open))
                     return "RestConflictsWithAssignedActivity";

@@ -238,6 +238,9 @@ namespace Decennium.Foundation.Laboratory
 
         public CommandQueryResult QueryCommand(Snapshot s,Authority authority,Command c)
         {
+            string restingActorFailure=RestingActorCommandFailure(s,c);
+            if(restingActorFailure!=null)
+                return new CommandQueryResult(true,false,restingActorFailure,s.Revision);
             if(IsRestDebtCommand(c.Kind))return QueryRestDebtCommand(s,c);
             var sharedWorld=QuerySharedWorldCommand(s,authority,c);
             if(sharedWorld!=null)return sharedWorld;
